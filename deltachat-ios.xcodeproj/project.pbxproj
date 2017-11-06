@@ -45,6 +45,7 @@
 		7A9FB5551FB08557001FEA36 /* mrstock.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB5311FB08557001FEA36 /* mrstock.c */; };
 		7A9FB5561FB08557001FEA36 /* mrtools.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB5331FB08557001FEA36 /* mrtools.c */; };
 		7A9FB5571FB08557001FEA36 /* stress.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB5351FB08557001FEA36 /* stress.c */; };
+		8B6D425BC604F7C43B65D436 /* Pods_deltachat_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A9FB1401FB061E2001FEA36 /* deltachat-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "deltachat-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A9FB1451FB061E2001FEA36 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,8 @@
 		7A9FB5341FB08557001FEA36 /* mrtools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrtools.h; sourceTree = "<group>"; };
 		7A9FB5351FB08557001FEA36 /* stress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stress.c; sourceTree = "<group>"; };
 		7A9FB5361FB08557001FEA36 /* stress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stress.h; sourceTree = "<group>"; };
+		8DE110C607A0E4485C43B5FA /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A9FB4F91FB084E6001FEA36 /* libetpan-ios.a in Frameworks */,
+				8B6D425BC604F7C43B65D436 /* Pods_deltachat_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +166,7 @@
 				7A9FB1421FB061E2001FEA36 /* deltachat-ios */,
 				7A9FB1411FB061E2001FEA36 /* Products */,
 				7A9FB4F81FB084E6001FEA36 /* Frameworks */,
+				7DB2DC4CCB84D323E5130F99 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -207,6 +213,7 @@
 		7A9FB4F81FB084E6001FEA36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -279,6 +286,15 @@
 			path = "libraries/deltachat-core/src";
 			sourceTree = "<group>";
 		};
+		7DB2DC4CCB84D323E5130F99 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8DE110C607A0E4485C43B5FA /* Pods-deltachat-ios.debug.xcconfig */,
+				A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -286,9 +302,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A9FB1521FB061E2001FEA36 /* Build configuration list for PBXNativeTarget "deltachat-ios" */;
 			buildPhases = (
+				58C9D79942D26B7F8F210DA1 /* [CP] Check Pods Manifest.lock */,
 				7A9FB13C1FB061E2001FEA36 /* Sources */,
 				7A9FB13D1FB061E2001FEA36 /* Frameworks */,
 				7A9FB13E1FB061E2001FEA36 /* Resources */,
+				269B032E4F093924FBEF3924 /* [CP] Embed Pods Frameworks */,
+				5666073C703CC2D48B2D265F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -375,6 +394,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		269B032E4F093924FBEF3924 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5666073C703CC2D48B2D265F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58C9D79942D26B7F8F210DA1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-deltachat-ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7A9FB13C1FB061E2001FEA36 /* Sources */ = {
@@ -542,6 +612,7 @@
 		};
 		7A9FB1531FB061E2001FEA36 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DE110C607A0E4485C43B5FA /* Pods-deltachat-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -562,6 +633,7 @@
 		};
 		7A9FB1541FB061E2001FEA36 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
