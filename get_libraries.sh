@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-if [[ ! -d ../deltachat-core ]]; then
+base='../deltachat-core'
+dst=deltachat-ios/libraries
+# dst_deltachat_core="${dst}/deltachat-core"
+
+if [[ ! -d "${base}" ]]; then
     echo Error: deltachat-core repository expected in parent directory
     exit 1
 fi
 
-echo it is there
-
-
+rm -rf "${dst}"
+mkdir -p "${dst}"
+cp -r "${base}" "$dst"
