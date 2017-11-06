@@ -25,8 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         window.backgroundColor = UIColor.white
         
-        hello()
-        
         return true
     }
 
