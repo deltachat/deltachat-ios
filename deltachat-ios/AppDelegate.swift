@@ -8,6 +8,16 @@
 
 import UIKit
 
+extension String {
+    var nullTerminated: Data? {
+        if var data = self.data(using: String.Encoding.utf8) {
+            data.append(0)
+            return data
+        }
+        return nil
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -25,6 +35,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         window.backgroundColor = UIColor.white
         
+        guard let ump = mrmailbox_get_version_str() else {
+            fatalError("Error: invalid version string")
+        }
+        let versionString = String(cString: ump)
+        print(versionString)
+        
+        // TODO: - add callback as first parameter
+        //       - second param remains nil (user data for more than one mailbox)
+        guard let m = mrmailbox_new(nil, nil) else {
+            fatalError("Error: mrmailbox_new returned nil")
+        }
+        let mailbox = m.pointee
+        
+        let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
+        let documentsPath = paths[0]
+        let dbfile = documentsPath + "/messenger.db"
+        print(dbfile)
+        
+//        let nt:Data? = dbfile.nullTerminated
+
+        let r = mrmailbox_open(m, dbfile, nil)
+        print(r)
+
+//        dbfile.withCString {
+//            (cString:UnsafePointer<Int8>) in
+//            mrmailbox_open(m, cString, nil)
+//        }
+        
+        //
+        
+        //        guard let dbfileCString = dbfile.cString(using: .utf8) else {
+//            fatalError("Error: error converting to cstring")
+//        }
+
+//        mrmailbox_open(m, nt, nil)
+
+//        let msql = mailbox.m_sql
+//        print(msql)
+
         return true
     }
 

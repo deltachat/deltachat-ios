@@ -7,12 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A7923401FB0A14300BC2DE5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A79233F1FB0A14300BC2DE5 /* libiconv.tbd */; };
+		7A79236A1FB0A2C800BC2DE5 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A79235D1FB0A2C800BC2DE5 /* compress.c */; };
+		7A79236B1FB0A2C800BC2DE5 /* create.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A79235E1FB0A2C800BC2DE5 /* create.c */; };
+		7A79236C1FB0A2C800BC2DE5 /* crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A79235F1FB0A2C800BC2DE5 /* crypto.c */; };
+		7A79236D1FB0A2C800BC2DE5 /* keyring.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923601FB0A2C800BC2DE5 /* keyring.c */; };
+		7A79236E1FB0A2C800BC2DE5 /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923611FB0A2C800BC2DE5 /* misc.c */; };
+		7A79236F1FB0A2C800BC2DE5 /* openssl_crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923621FB0A2C800BC2DE5 /* openssl_crypto.c */; };
+		7A7923701FB0A2C800BC2DE5 /* packet-parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923631FB0A2C800BC2DE5 /* packet-parse.c */; };
+		7A7923711FB0A2C800BC2DE5 /* packet-show.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923641FB0A2C800BC2DE5 /* packet-show.c */; };
+		7A7923721FB0A2C800BC2DE5 /* reader.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923651FB0A2C800BC2DE5 /* reader.c */; };
+		7A7923731FB0A2C800BC2DE5 /* signature.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923661FB0A2C800BC2DE5 /* signature.c */; };
+		7A7923741FB0A2C800BC2DE5 /* symmetric.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923671FB0A2C800BC2DE5 /* symmetric.c */; };
+		7A7923751FB0A2C800BC2DE5 /* validate.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923681FB0A2C800BC2DE5 /* validate.c */; };
+		7A7923761FB0A2C800BC2DE5 /* writer.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923691FB0A2C800BC2DE5 /* writer.c */; };
 		7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */; };
 		7A9FB1461FB061E2001FEA36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB1451FB061E2001FEA36 /* ViewController.swift */; };
 		7A9FB14B1FB061E2001FEA36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
 		7A9FB14E1FB061E2001FEA36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */; };
 		7A9FB4F91FB084E6001FEA36 /* libetpan-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9FB4EF1FB083F1001FEA36 /* libetpan-ios.a */; };
-		7A9FB5371FB08557001FEA36 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB4FB1FB08557001FEA36 /* main.c */; };
 		7A9FB5381FB08557001FEA36 /* mraheader.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB4FC1FB08557001FEA36 /* mraheader.c */; };
 		7A9FB5391FB08557001FEA36 /* mrapeerstate.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB4FE1FB08557001FEA36 /* mrapeerstate.c */; };
 		7A9FB53A1FB08557001FEA36 /* mrchat.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB5001FB08557001FEA36 /* mrchat.c */; };
@@ -74,6 +87,43 @@
 
 /* Begin PBXFileReference section */
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A79233F1FB0A14300BC2DE5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		7A7923451FB0A2C800BC2DE5 /* config-netpgp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-netpgp.h"; sourceTree = "<group>"; };
+		7A7923461FB0A2C800BC2DE5 /* config-original-as-configured-for-ubuntu-16.04-64bit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-original-as-configured-for-ubuntu-16.04-64bit.h"; sourceTree = "<group>"; };
+		7A7923471FB0A2C800BC2DE5 /* config-pep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-pep.h"; sourceTree = "<group>"; };
+		7A7923481FB0A2C800BC2DE5 /* create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = create.h; sourceTree = "<group>"; };
+		7A7923491FB0A2C800BC2DE5 /* crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto.h; sourceTree = "<group>"; };
+		7A79234A1FB0A2C800BC2DE5 /* defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = defs.h; sourceTree = "<group>"; };
+		7A79234B1FB0A2C800BC2DE5 /* errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = errors.h; sourceTree = "<group>"; };
+		7A79234C1FB0A2C800BC2DE5 /* keyring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyring.h; sourceTree = "<group>"; };
+		7A79234D1FB0A2C800BC2DE5 /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory.h; sourceTree = "<group>"; };
+		7A79234E1FB0A2C800BC2DE5 /* netpgpdefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = netpgpdefs.h; sourceTree = "<group>"; };
+		7A79234F1FB0A2C800BC2DE5 /* netpgpdigest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = netpgpdigest.h; sourceTree = "<group>"; };
+		7A7923501FB0A2C800BC2DE5 /* netpgpsdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = netpgpsdk.h; sourceTree = "<group>"; };
+		7A7923511FB0A2C800BC2DE5 /* openssl11stub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openssl11stub.h; sourceTree = "<group>"; };
+		7A7923521FB0A2C800BC2DE5 /* packet-parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "packet-parse.h"; sourceTree = "<group>"; };
+		7A7923531FB0A2C800BC2DE5 /* packet-show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "packet-show.h"; sourceTree = "<group>"; };
+		7A7923541FB0A2C800BC2DE5 /* packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packet.h; sourceTree = "<group>"; };
+		7A7923551FB0A2C800BC2DE5 /* readerwriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = readerwriter.h; sourceTree = "<group>"; };
+		7A7923561FB0A2C800BC2DE5 /* signature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signature.h; sourceTree = "<group>"; };
+		7A7923571FB0A2C800BC2DE5 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		7A7923581FB0A2C800BC2DE5 /* validate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = validate.h; sourceTree = "<group>"; };
+		7A7923591FB0A2C800BC2DE5 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		7A79235A1FB0A2C800BC2DE5 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
+		7A79235B1FB0A2C800BC2DE5 /* netpgp-extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "netpgp-extra.h"; sourceTree = "<group>"; };
+		7A79235D1FB0A2C800BC2DE5 /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compress.c; sourceTree = "<group>"; };
+		7A79235E1FB0A2C800BC2DE5 /* create.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = create.c; sourceTree = "<group>"; };
+		7A79235F1FB0A2C800BC2DE5 /* crypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypto.c; sourceTree = "<group>"; };
+		7A7923601FB0A2C800BC2DE5 /* keyring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = keyring.c; sourceTree = "<group>"; };
+		7A7923611FB0A2C800BC2DE5 /* misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = misc.c; sourceTree = "<group>"; };
+		7A7923621FB0A2C800BC2DE5 /* openssl_crypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = openssl_crypto.c; sourceTree = "<group>"; };
+		7A7923631FB0A2C800BC2DE5 /* packet-parse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "packet-parse.c"; sourceTree = "<group>"; };
+		7A7923641FB0A2C800BC2DE5 /* packet-show.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "packet-show.c"; sourceTree = "<group>"; };
+		7A7923651FB0A2C800BC2DE5 /* reader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = reader.c; sourceTree = "<group>"; };
+		7A7923661FB0A2C800BC2DE5 /* signature.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = signature.c; sourceTree = "<group>"; };
+		7A7923671FB0A2C800BC2DE5 /* symmetric.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = symmetric.c; sourceTree = "<group>"; };
+		7A7923681FB0A2C800BC2DE5 /* validate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = validate.c; sourceTree = "<group>"; };
+		7A7923691FB0A2C800BC2DE5 /* writer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = writer.c; sourceTree = "<group>"; };
 		7A9FB1401FB061E2001FEA36 /* deltachat-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "deltachat-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A9FB1451FB061E2001FEA36 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,7 +132,6 @@
 		7A9FB14F1FB061E2001FEA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A9FB1561FB06540001FEA36 /* deltachat-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "deltachat-ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		7A9FB4E21FB083F0001FEA36 /* libetpan.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libetpan.xcodeproj; path = "../libetpan/build-mac/libetpan.xcodeproj"; sourceTree = "<group>"; };
-		7A9FB4FB1FB08557001FEA36 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		7A9FB4FC1FB08557001FEA36 /* mraheader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mraheader.c; sourceTree = "<group>"; };
 		7A9FB4FD1FB08557001FEA36 /* mraheader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mraheader.h; sourceTree = "<group>"; };
 		7A9FB4FE1FB08557001FEA36 /* mrapeerstate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrapeerstate.c; sourceTree = "<group>"; };
@@ -151,6 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A7923401FB0A14300BC2DE5 /* libiconv.tbd in Frameworks */,
 				7A9FB4F91FB084E6001FEA36 /* libetpan-ios.a in Frameworks */,
 				8B6D425BC604F7C43B65D436 /* Pods_deltachat_ios.framework in Frameworks */,
 			);
@@ -159,6 +209,82 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A7923411FB0A2B800BC2DE5 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				7A7923421FB0A2C800BC2DE5 /* netpgp */,
+			);
+			name = libs;
+			sourceTree = "<group>";
+		};
+		7A7923421FB0A2C800BC2DE5 /* netpgp */ = {
+			isa = PBXGroup;
+			children = (
+				7A7923431FB0A2C800BC2DE5 /* include */,
+				7A79235C1FB0A2C800BC2DE5 /* src */,
+			);
+			name = netpgp;
+			path = "libraries/deltachat-core/libs/netpgp";
+			sourceTree = "<group>";
+		};
+		7A7923431FB0A2C800BC2DE5 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				7A7923441FB0A2C800BC2DE5 /* netpgp */,
+				7A79235B1FB0A2C800BC2DE5 /* netpgp-extra.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		7A7923441FB0A2C800BC2DE5 /* netpgp */ = {
+			isa = PBXGroup;
+			children = (
+				7A7923451FB0A2C800BC2DE5 /* config-netpgp.h */,
+				7A7923461FB0A2C800BC2DE5 /* config-original-as-configured-for-ubuntu-16.04-64bit.h */,
+				7A7923471FB0A2C800BC2DE5 /* config-pep.h */,
+				7A7923481FB0A2C800BC2DE5 /* create.h */,
+				7A7923491FB0A2C800BC2DE5 /* crypto.h */,
+				7A79234A1FB0A2C800BC2DE5 /* defs.h */,
+				7A79234B1FB0A2C800BC2DE5 /* errors.h */,
+				7A79234C1FB0A2C800BC2DE5 /* keyring.h */,
+				7A79234D1FB0A2C800BC2DE5 /* memory.h */,
+				7A79234E1FB0A2C800BC2DE5 /* netpgpdefs.h */,
+				7A79234F1FB0A2C800BC2DE5 /* netpgpdigest.h */,
+				7A7923501FB0A2C800BC2DE5 /* netpgpsdk.h */,
+				7A7923511FB0A2C800BC2DE5 /* openssl11stub.h */,
+				7A7923521FB0A2C800BC2DE5 /* packet-parse.h */,
+				7A7923531FB0A2C800BC2DE5 /* packet-show.h */,
+				7A7923541FB0A2C800BC2DE5 /* packet.h */,
+				7A7923551FB0A2C800BC2DE5 /* readerwriter.h */,
+				7A7923561FB0A2C800BC2DE5 /* signature.h */,
+				7A7923571FB0A2C800BC2DE5 /* types.h */,
+				7A7923581FB0A2C800BC2DE5 /* validate.h */,
+				7A7923591FB0A2C800BC2DE5 /* version.h */,
+				7A79235A1FB0A2C800BC2DE5 /* writer.h */,
+			);
+			path = netpgp;
+			sourceTree = "<group>";
+		};
+		7A79235C1FB0A2C800BC2DE5 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				7A79235D1FB0A2C800BC2DE5 /* compress.c */,
+				7A79235E1FB0A2C800BC2DE5 /* create.c */,
+				7A79235F1FB0A2C800BC2DE5 /* crypto.c */,
+				7A7923601FB0A2C800BC2DE5 /* keyring.c */,
+				7A7923611FB0A2C800BC2DE5 /* misc.c */,
+				7A7923621FB0A2C800BC2DE5 /* openssl_crypto.c */,
+				7A7923631FB0A2C800BC2DE5 /* packet-parse.c */,
+				7A7923641FB0A2C800BC2DE5 /* packet-show.c */,
+				7A7923651FB0A2C800BC2DE5 /* reader.c */,
+				7A7923661FB0A2C800BC2DE5 /* signature.c */,
+				7A7923671FB0A2C800BC2DE5 /* symmetric.c */,
+				7A7923681FB0A2C800BC2DE5 /* validate.c */,
+				7A7923691FB0A2C800BC2DE5 /* writer.c */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		7A9FB1371FB061E2001FEA36 = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +321,7 @@
 		7A9FB15B1FB07364001FEA36 /* libraries */ = {
 			isa = PBXGroup;
 			children = (
+				7A7923411FB0A2B800BC2DE5 /* libs */,
 				7A9FB4FA1FB08557001FEA36 /* src */,
 			);
 			name = libraries;
@@ -213,6 +340,7 @@
 		7A9FB4F81FB084E6001FEA36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7A79233F1FB0A14300BC2DE5 /* libiconv.tbd */,
 				6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */,
 			);
 			name = Frameworks;
@@ -221,7 +349,6 @@
 		7A9FB4FA1FB08557001FEA36 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				7A9FB4FB1FB08557001FEA36 /* main.c */,
 				7A9FB4FC1FB08557001FEA36 /* mraheader.c */,
 				7A9FB4FD1FB08557001FEA36 /* mraheader.h */,
 				7A9FB4FE1FB08557001FEA36 /* mrapeerstate.c */,
@@ -451,19 +578,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A79236E1FB0A2C800BC2DE5 /* misc.c in Sources */,
 				7A9FB5561FB08557001FEA36 /* mrtools.c in Sources */,
+				7A7923731FB0A2C800BC2DE5 /* signature.c in Sources */,
 				7A9FB5541FB08557001FEA36 /* mrsqlite3.c in Sources */,
 				7A9FB5511FB08557001FEA36 /* mrsaxparser.c in Sources */,
 				7A9FB54B1FB08557001FEA36 /* mrmimeparser.c in Sources */,
 				7A9FB5481FB08557001FEA36 /* mrmailbox_log.c in Sources */,
+				7A79236B1FB0A2C800BC2DE5 /* create.c in Sources */,
 				7A9FB5421FB08557001FEA36 /* mrkeyring.c in Sources */,
+				7A79236D1FB0A2C800BC2DE5 /* keyring.c in Sources */,
+				7A7923721FB0A2C800BC2DE5 /* reader.c in Sources */,
 				7A9FB54F1FB08557001FEA36 /* mrpgp.c in Sources */,
+				7A7923701FB0A2C800BC2DE5 /* packet-parse.c in Sources */,
 				7A9FB5431FB08557001FEA36 /* mrloginparam.c in Sources */,
 				7A9FB5501FB08557001FEA36 /* mrpoortext.c in Sources */,
+				7A7923751FB0A2C800BC2DE5 /* validate.c in Sources */,
 				7A9FB5551FB08557001FEA36 /* mrstock.c in Sources */,
 				7A9FB53B1FB08557001FEA36 /* mrchatlist.c in Sources */,
 				7A9FB1461FB061E2001FEA36 /* ViewController.swift in Sources */,
 				7A9FB54E1FB08557001FEA36 /* mrparam.c in Sources */,
+				7A7923741FB0A2C800BC2DE5 /* symmetric.c in Sources */,
 				7A9FB54C1FB08557001FEA36 /* mrmsg.c in Sources */,
 				7A9FB5521FB08557001FEA36 /* mrsimplify.c in Sources */,
 				7A9FB5381FB08557001FEA36 /* mraheader.c in Sources */,
@@ -471,21 +606,25 @@
 				7A9FB53D1FB08557001FEA36 /* mrcontact.c in Sources */,
 				7A9FB5451FB08557001FEA36 /* mrmailbox_configure.c in Sources */,
 				7A9FB5491FB08557001FEA36 /* mrmailbox_tools.c in Sources */,
+				7A7923711FB0A2C800BC2DE5 /* packet-show.c in Sources */,
 				7A9FB5441FB08557001FEA36 /* mrmailbox.c in Sources */,
-				7A9FB5371FB08557001FEA36 /* main.c in Sources */,
 				7A9FB5401FB08557001FEA36 /* mrjob.c in Sources */,
 				7A9FB53A1FB08557001FEA36 /* mrchat.c in Sources */,
 				7A9FB5411FB08557001FEA36 /* mrkey.c in Sources */,
+				7A7923761FB0A2C800BC2DE5 /* writer.c in Sources */,
 				7A9FB5571FB08557001FEA36 /* stress.c in Sources */,
 				7A9FB53F1FB08557001FEA36 /* mrimap.c in Sources */,
+				7A79236F1FB0A2C800BC2DE5 /* openssl_crypto.c in Sources */,
 				7A9FB5391FB08557001FEA36 /* mrapeerstate.c in Sources */,
 				7A9FB5531FB08557001FEA36 /* mrsmtp.c in Sources */,
 				7A9FB53E1FB08557001FEA36 /* mrdehtml.c in Sources */,
+				7A79236C1FB0A2C800BC2DE5 /* crypto.c in Sources */,
 				7A9FB5461FB08557001FEA36 /* mrmailbox_e2ee.c in Sources */,
 				7A9FB54A1FB08557001FEA36 /* mrmimefactory.c in Sources */,
 				7A9FB54D1FB08557001FEA36 /* mrosnative.c in Sources */,
 				7A9FB5471FB08557001FEA36 /* mrmailbox_imex.c in Sources */,
 				7A9FB53C1FB08557001FEA36 /* mrcmdline.c in Sources */,
+				7A79236A1FB0A2C800BC2DE5 /* compress.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,10 +757,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S595XJ38G3;
-				"HEADER_SEARCH_PATHS[arch=*]" = "";
+				HEADER_SEARCH_PATHS = "deltachat-ios/libraries/deltachat-core/libs/netpgp/include";
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-lsasl2";
+				OTHER_LDFLAGS = (
+					"-lsasl2",
+					"-lz",
+					"-lcrypto",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jonasreinsch.deltachat-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "deltachat-ios/deltachat-ios-Bridging-Header.h";
@@ -639,9 +782,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S595XJ38G3;
+				HEADER_SEARCH_PATHS = "deltachat-ios/libraries/deltachat-core/libs/netpgp/include";
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-lsasl2";
+				OTHER_LDFLAGS = (
+					"-lsasl2",
+					"-lz",
+					"-lcrypto",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jonasreinsch.deltachat-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "deltachat-ios/deltachat-ios-Bridging-Header.h";
