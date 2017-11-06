@@ -12,3 +12,4 @@ fi
 rm -rf "${dst}"
 mkdir -p "${dst}"
 cp -r "${base}" "$dst"
+rm -rf "$dst"/deltachat-core/.git*
