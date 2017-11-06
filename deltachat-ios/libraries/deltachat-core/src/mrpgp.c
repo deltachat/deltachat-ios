@@ -58,7 +58,8 @@ static pgp_io_t s_io;
 
 void mrpgp_init(mrmailbox_t* mailbox)
 {
-	SSL_library_init(); /* older, but more compatible function, simply defined as OPENSSL_init_ssl().
+    OPENSSL_init();
+	/*SSL_library_init(); */ /* older, but more compatible function, simply defined as OPENSSL_init_ssl().
 						SSL_library_init() should be called from the main thread before OpenSSL is called from other threads.
 	                    libEtPan may call SSL_library_init() again later, however, this should be no problem.
 	                    SSL_library_init() always returns "1", so it is safe to discard the return value */
