@@ -20,6 +20,12 @@ func sendMessageSwiftOnly(chatPointer: UnsafeMutablePointer<mrchat_t>, msgPointe
     }
 }
 
+func sendMessageViaCore(chatPointer: UnsafeMutablePointer<mrchat_t>, msgPointer: UnsafeMutablePointer<mrmsg_t>, msg: String) {
+    mrmsg_set_text(msgPointer, msg)
+    msgPointer.pointee.m_type = MR_MSG_TEXT
+    mrchat_send_msg(chatPointer, msgPointer)
+}
+
 @_silgen_name("callbackSwift")
 
 public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLong, data1String: UnsafePointer<Int8>, data2String: UnsafePointer<Int8>) -> CUnsignedLong {
@@ -45,7 +51,8 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
             let chatPointer = mrmailbox_get_chat(mailboxPointer, chatId)
             let msgPointer = mrmsg_new()!
 
-            sendMessageSwiftOnly(chatPointer: chatPointer!, msgPointer: msgPointer, msg: "test with new dc core")
+// sendMessageSwiftOnly(chatPointer: chatPointer!, msgPointer: msgPointer, msg: "(sent with Swift) test with new dc core")
+            sendMessageViaCore(chatPointer: chatPointer!, msgPointer: msgPointer, msg: "(sent with new core function) test with new dc core")
         }
         
         break
@@ -92,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(dbfile)
         
         let r = mrmailbox_open(mailboxPointer, dbfile, nil)
-        mrmailbox_set_config(mailboxPointer, "addr", "bob@librechat.net")
+        mrmailbox_set_config(mailboxPointer, "addr", "alice@librechat.net")
         mrmailbox_set_config(mailboxPointer, "mail_pw", "foobar")
         mrmailbox_configure_and_connect(mailboxPointer)
         print(r)
