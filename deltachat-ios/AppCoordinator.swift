@@ -22,11 +22,11 @@ class AppCoordinator {
         settingsViewController.view.backgroundColor = UIColor.blue
         
         let contactTabbarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
-        let chatTabbarItem = UITabBarItem(title: "Chat", image: nil, tag: 1)
+        let chatTabbarItem = UITabBarItem(title: "Chats", image: nil, tag: 1)
         let settingsTabbarItem = UITabBarItem(title: "Settings", image: nil, tag: 2)
         
         contactViewController.tabBarItem = contactTabbarItem
-        chatViewController.tabBarItem = chatTabbarItem
+        chatNavigationController.tabBarItem = chatTabbarItem
         settingsViewController.tabBarItem = settingsTabbarItem
         
         let tabBarController = UITabBarController()
