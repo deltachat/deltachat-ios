@@ -108,7 +108,7 @@ static uintptr_t receive_event(mrmailbox_t* mailbox, int event, uintptr_t data1,
 
 int main(int argc, char ** argv)
 {
-	mrmailbox_t* mailbox = mrmailbox_new(receive_event, NULL);
+	mrmailbox_t* mailbox = mrmailbox_new(receive_event, NULL, "CLI");
 
 	mrmailbox_cmdline_skip_auth(mailbox); /* disable the need to enter the command `auth <password>` for all mailboxes. */
 

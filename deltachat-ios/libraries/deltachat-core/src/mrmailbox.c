@@ -876,7 +876,7 @@ static void cb_receive_imf(mrimap_t* imap, const char* imf_raw_not_terminated, s
 }
 
 
-mrmailbox_t* mrmailbox_new(mrmailboxcb_t cb, void* userData)
+mrmailbox_t* mrmailbox_new(mrmailboxcb_t cb, void* userdata, const char* os_name)
 {
 	mrmailbox_get_thread_index(); /* make sure, the main thread has the index #1, only for a nicer look of the logs */
 
@@ -892,9 +892,10 @@ mrmailbox_t* mrmailbox_new(mrmailboxcb_t cb, void* userData)
 
 	ths->m_sql      = mrsqlite3_new(ths);
 	ths->m_cb       = cb? cb : cb_dummy;
-	ths->m_userData = userData;
+	ths->m_userdata = userdata;
 	ths->m_imap     = mrimap_new(cb_get_config_int, cb_set_config_int, cb_receive_imf, (void*)ths, ths);
 	ths->m_smtp     = mrsmtp_new(ths);
+	ths->m_os_name  = safe_strdup(os_name);
 
 	mrjob_init_thread(ths);
 
@@ -946,6 +947,7 @@ void mrmailbox_unref(mrmailbox_t* ths)
 		free(ths->m_log_ringbuf[i]);
 	}
 
+	free(ths->m_os_name);
 	free(ths);
 
 	if( s_localize_mb_obj==ths ) {
