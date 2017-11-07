@@ -14,7 +14,7 @@ class AppCoordinator {
         let contactViewController = UIViewController()
         contactViewController.view.backgroundColor = UIColor.red
         
-        let chatViewController = ChatViewController()
+        let chatViewController = ChatListController()
         let chatNavigationController = UINavigationController(rootViewController: chatViewController)
         
         chatViewController.view.backgroundColor = UIColor.green

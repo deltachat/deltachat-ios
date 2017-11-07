@@ -1,5 +1,5 @@
 //
-//  ChatViewController.swift
+//  ChatListController.swift
 //  deltachat-ios
 //
 //  Created by Bastian van de Wetering on 07.11.17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatViewController: UIViewController {
+class ChatListController: UIViewController {
 
     let chatTable = UITableView()
     var chats: [String] = ["Eins", "Zwei", "Drei"]
@@ -40,7 +40,7 @@ class ChatViewController: UIViewController {
     }
 }
 
-extension ChatViewController: ChatPresenter {
+extension ChatListController: ChatPresenter {
     func displayChat(index: Int) {
         let chatVC = UIViewController()
         chatVC.title = chats[index]
