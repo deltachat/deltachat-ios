@@ -29,16 +29,6 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
     return 0
 }
 
-extension String {
-    var nullTerminated: Data? {
-        if var data = self.data(using: String.Encoding.utf8) {
-            data.append(0)
-            return data
-        }
-        return nil
-    }
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -61,11 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         let versionString = String(cString: ump)
         print(versionString)
-        
-        // TODO: - add callback as first parameter
-        //       - second param remains nil (user data for more than one mailbox)
-        
 
+        //       - second param remains nil (user data for more than one mailbox)
         guard let m = mrmailbox_new(callback_ios, nil) else {
             fatalError("Error: mrmailbox_new returned nil")
         }
@@ -76,28 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dbfile = documentsPath + "/messenger.db"
         print(dbfile)
         
-//        let nt:Data? = dbfile.nullTerminated
-
         let r = mrmailbox_open(m, dbfile, nil)
         print(r)
-        
-//        mrmailbox_c
-
-//        dbfile.withCString {
-//            (cString:UnsafePointer<Int8>) in
-//            mrmailbox_open(m, cString, nil)
-//        }
-        
-        //
-        
-        //        guard let dbfileCString = dbfile.cString(using: .utf8) else {
-//            fatalError("Error: error converting to cstring")
-//        }
-
-//        mrmailbox_open(m, nt, nil)
-
-//        let msql = mailbox.m_sql
-//        print(msql)
 
         return true
     }
