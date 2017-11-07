@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7A451D941FB1B1DB00177250 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A451D921FB1B1DB00177250 /* wrapper.c */; };
+		7A451DAE1FB1F5A200177250 /* libetpan-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A451DA71FB1F4BF00177250 /* libetpan-ios.a */; };
 		7A7923401FB0A14300BC2DE5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A79233F1FB0A14300BC2DE5 /* libiconv.tbd */; };
 		7A79236A1FB0A2C800BC2DE5 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A79235D1FB0A2C800BC2DE5 /* compress.c */; };
 		7A79236B1FB0A2C800BC2DE5 /* create.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A79235E1FB0A2C800BC2DE5 /* create.c */; };
@@ -26,7 +27,6 @@
 		7A9FB1461FB061E2001FEA36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB1451FB061E2001FEA36 /* ViewController.swift */; };
 		7A9FB14B1FB061E2001FEA36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
 		7A9FB14E1FB061E2001FEA36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */; };
-		7A9FB4F91FB084E6001FEA36 /* libetpan-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9FB4EF1FB083F1001FEA36 /* libetpan-ios.a */; };
 		7A9FB5381FB08557001FEA36 /* mraheader.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB4FC1FB08557001FEA36 /* mraheader.c */; };
 		7A9FB5391FB08557001FEA36 /* mrapeerstate.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB4FE1FB08557001FEA36 /* mrapeerstate.c */; };
 		7A9FB53A1FB08557001FEA36 /* mrchat.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB5001FB08557001FEA36 /* mrchat.c */; };
@@ -63,23 +63,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7A9FB4EA1FB083F1001FEA36 /* PBXContainerItemProxy */ = {
+		7A451DA21FB1F4BF00177250 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 7A9FB4E21FB083F0001FEA36 /* libetpan.xcodeproj */;
+			containerPortal = 7A451D9A1FB1F4BF00177250 /* libetpan.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = libetpan;
 		};
-		7A9FB4EC1FB083F1001FEA36 /* PBXContainerItemProxy */ = {
+		7A451DA41FB1F4BF00177250 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 7A9FB4E21FB083F0001FEA36 /* libetpan.xcodeproj */;
+			containerPortal = 7A451D9A1FB1F4BF00177250 /* libetpan.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = C69AB10A10546FE500F32FBD;
 			remoteInfo = "static libetpan";
 		};
-		7A9FB4EE1FB083F1001FEA36 /* PBXContainerItemProxy */ = {
+		7A451DA61FB1F4BF00177250 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 7A9FB4E21FB083F0001FEA36 /* libetpan.xcodeproj */;
+			containerPortal = 7A451D9A1FB1F4BF00177250 /* libetpan.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = C682E2C015B315EF00BE9DA7;
 			remoteInfo = "libetpan ios";
@@ -90,6 +90,7 @@
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A451D921FB1B1DB00177250 /* wrapper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wrapper.c; sourceTree = "<group>"; };
 		7A451D931FB1B1DB00177250 /* wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wrapper.h; sourceTree = "<group>"; };
+		7A451D9A1FB1F4BF00177250 /* libetpan.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libetpan.xcodeproj; path = "deltachat-ios/libraries/libetpan/build-mac/libetpan.xcodeproj"; sourceTree = "<group>"; };
 		7A79233F1FB0A14300BC2DE5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		7A7923451FB0A2C800BC2DE5 /* config-netpgp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-netpgp.h"; sourceTree = "<group>"; };
 		7A7923461FB0A2C800BC2DE5 /* config-original-as-configured-for-ubuntu-16.04-64bit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-original-as-configured-for-ubuntu-16.04-64bit.h"; sourceTree = "<group>"; };
@@ -134,7 +135,6 @@
 		7A9FB14D1FB061E2001FEA36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A9FB14F1FB061E2001FEA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A9FB1561FB06540001FEA36 /* deltachat-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "deltachat-ios-Bridging-Header.h"; sourceTree = "<group>"; };
-		7A9FB4E21FB083F0001FEA36 /* libetpan.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libetpan.xcodeproj; path = "../libetpan/build-mac/libetpan.xcodeproj"; sourceTree = "<group>"; };
 		7A9FB4FC1FB08557001FEA36 /* mraheader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mraheader.c; sourceTree = "<group>"; };
 		7A9FB4FD1FB08557001FEA36 /* mraheader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mraheader.h; sourceTree = "<group>"; };
 		7A9FB4FE1FB08557001FEA36 /* mrapeerstate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrapeerstate.c; sourceTree = "<group>"; };
@@ -203,8 +203,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A451DAE1FB1F5A200177250 /* libetpan-ios.a in Frameworks */,
 				7A7923401FB0A14300BC2DE5 /* libiconv.tbd in Frameworks */,
-				7A9FB4F91FB084E6001FEA36 /* libetpan-ios.a in Frameworks */,
 				8B6D425BC604F7C43B65D436 /* Pods_deltachat_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,6 +212,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A451D9B1FB1F4BF00177250 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7A451DA31FB1F4BF00177250 /* libetpan.framework */,
+				7A451DA51FB1F4BF00177250 /* libetpan.a */,
+				7A451DA71FB1F4BF00177250 /* libetpan-ios.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7A7923411FB0A2B800BC2DE5 /* libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,7 +301,7 @@
 		7A9FB1371FB061E2001FEA36 = {
 			isa = PBXGroup;
 			children = (
-				7A9FB4E21FB083F0001FEA36 /* libetpan.xcodeproj */,
+				7A451D9A1FB1F4BF00177250 /* libetpan.xcodeproj */,
 				7A9FB1421FB061E2001FEA36 /* deltachat-ios */,
 				7A9FB1411FB061E2001FEA36 /* Products */,
 				7A9FB4F81FB084E6001FEA36 /* Frameworks */,
@@ -330,16 +340,6 @@
 				7A9FB4FA1FB08557001FEA36 /* src */,
 			);
 			name = libraries;
-			sourceTree = "<group>";
-		};
-		7A9FB4E31FB083F0001FEA36 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7A9FB4EB1FB083F1001FEA36 /* libetpan.framework */,
-				7A9FB4ED1FB083F1001FEA36 /* libetpan.a */,
-				7A9FB4EF1FB083F1001FEA36 /* libetpan-ios.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		7A9FB4F81FB084E6001FEA36 /* Frameworks */ = {
@@ -480,8 +480,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 7A9FB4E31FB083F0001FEA36 /* Products */;
-					ProjectRef = 7A9FB4E21FB083F0001FEA36 /* libetpan.xcodeproj */;
+					ProductGroup = 7A451D9B1FB1F4BF00177250 /* Products */;
+					ProjectRef = 7A451D9A1FB1F4BF00177250 /* libetpan.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -492,25 +492,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		7A9FB4EB1FB083F1001FEA36 /* libetpan.framework */ = {
+		7A451DA31FB1F4BF00177250 /* libetpan.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = libetpan.framework;
-			remoteRef = 7A9FB4EA1FB083F1001FEA36 /* PBXContainerItemProxy */;
+			remoteRef = 7A451DA21FB1F4BF00177250 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		7A9FB4ED1FB083F1001FEA36 /* libetpan.a */ = {
+		7A451DA51FB1F4BF00177250 /* libetpan.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libetpan.a;
-			remoteRef = 7A9FB4EC1FB083F1001FEA36 /* PBXContainerItemProxy */;
+			remoteRef = 7A451DA41FB1F4BF00177250 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		7A9FB4EF1FB083F1001FEA36 /* libetpan-ios.a */ = {
+		7A451DA71FB1F4BF00177250 /* libetpan-ios.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libetpan-ios.a";
-			remoteRef = 7A9FB4EE1FB083F1001FEA36 /* PBXContainerItemProxy */;
+			remoteRef = 7A451DA61FB1F4BF00177250 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
