@@ -326,6 +326,17 @@ cleanup:
 }
 
 
+void mrmsg_set_text(mrmsg_t* msg, const char* text)
+{
+	if( msg==NULL || text==NULL ) {
+		return;
+	}
+
+	free(msg->m_text);
+	msg->m_text = safe_strdup(text);
+}
+
+
 char* mrmailbox_get_msg_info(mrmailbox_t* mailbox, uint32_t msg_id)
 {
 	mrstrbuilder_t ret;

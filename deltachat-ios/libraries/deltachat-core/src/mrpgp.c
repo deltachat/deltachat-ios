@@ -58,11 +58,14 @@ static pgp_io_t s_io;
 
 void mrpgp_init(mrmailbox_t* mailbox)
 {
-    OPENSSL_init();
-	/*SSL_library_init(); */ /* older, but more compatible function, simply defined as OPENSSL_init_ssl().
-						SSL_library_init() should be called from the main thread before OpenSSL is called from other threads.
-	                    libEtPan may call SSL_library_init() again later, however, this should be no problem.
-	                    SSL_library_init() always returns "1", so it is safe to discard the return value */
+	#ifdef __APPLE__
+		OPENSSL_init();
+	#else
+		SSL_library_init(); /* older, but more compatible function, simply defined as OPENSSL_init_ssl().
+							SSL_library_init() should be called from the main thread before OpenSSL is called from other threads.
+							libEtPan may call SSL_library_init() again later, however, this should be no problem.
+							SSL_library_init() always returns "1", so it is safe to discard the return value */
+	#endif
 
 	/* setup i/o structure */
 	memset(&s_io, 0, sizeof(pgp_io_t));

@@ -60,10 +60,15 @@ static void log_msglist(mrmailbox_t* mailbox, carray* msglist)
 			}
 
 			char* temp2 = mr_timestamp_to_str(msg->m_timestamp);
-				mrmailbox_log_info(mailbox, 0, "Msg#%i: %s (Contact#%i): %s %s%s%s%s [%s]", (int)msg->m_id, contact_name, contact_id, msg->m_text,
+				mrmailbox_log_info(mailbox, 0, "Msg#%i: %s (Contact#%i): %s %s%s%s%s%s [%s]",
+					(int)msg->m_id,
+					contact_name,
+					contact_id,
+					msg->m_text,
 					mrmsg_show_padlock(msg)? "\xF0\x9F\x94\x92" : "",
 					msg->m_starred? " \xE2\x98\x85" : "",
 					msg->m_from_id==1? "" : (msg->m_state==MR_IN_SEEN? "[SEEN]" : (msg->m_state==MR_IN_NOTICED? "[NOTICED]":"[FRESH]")),
+					mrparam_get_int(msg->m_param, MRP_SYSTEM_CMD, 0)? "[SYSTEM]" : "",
 					statestr,
 					temp2);
 			free(temp2);
@@ -572,7 +577,7 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 			if( arg1 && arg1[0] ) {
 				mrmsg_t* msg = mrmsg_new();
 					msg->m_type = MR_MSG_TEXT;
-					msg->m_text = strdup(arg1);
+					mrmsg_set_text(msg, arg1);
 					if( mrchat_send_msg(sel_chat, msg) ) {
 						ret = safe_strdup("Message sent.");
 					}

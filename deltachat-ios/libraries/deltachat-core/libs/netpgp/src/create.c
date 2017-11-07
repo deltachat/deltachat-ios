@@ -1321,6 +1321,7 @@ pgp_write_symm_enc_data(const uint8_t *data,
 				       const uint8_t* key, // EDIT BY MR - the key was simply missing
 				       pgp_output_t * output)
 {
+	// TODO: use PGP_PTAG_CT_SE_IP_DATA instead of PGP_PTAG_CT_SE_DATA
 	pgp_crypt_t	crypt_info;
 	uint8_t		*encrypted = (uint8_t *) NULL;
 	size_t		encrypted_sz;
@@ -1347,8 +1348,8 @@ pgp_write_symm_enc_data(const uint8_t *data,
 	}
 
 	return pgp_write_ptag(output, PGP_PTAG_CT_SE_DATA) &&
-		pgp_write_length(output, (unsigned)(len)) && // EDIT BY MR: length was: 1 + encrypted_sz - why?
-		pgp_write(output, data, (unsigned)len);
+		pgp_write_length(output, (unsigned)(encrypted_sz)) &&
+		pgp_write(output, encrypted, (unsigned)encrypted_sz); // EDIT BY MR: originally the input data was written to output
 }
 
 /**

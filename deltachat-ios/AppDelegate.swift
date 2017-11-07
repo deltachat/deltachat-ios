@@ -45,7 +45,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
             let chatPointer = mrmailbox_get_chat(mailboxPointer, chatId)
             let msgPointer = mrmsg_new()!
 
-            sendMessageSwiftOnly(chatPointer: chatPointer!, msgPointer: msgPointer, msg: "uziuzi")
+            sendMessageSwiftOnly(chatPointer: chatPointer!, msgPointer: msgPointer, msg: "test with new dc core")
         }
         
         break

@@ -426,8 +426,8 @@ int mrmailbox_render_keys_to_html(mrmailbox_t* mailbox, const char* passphrase, 
 	#define                AES_KEY_LENGTH 16
 	uint8_t                key[AES_KEY_LENGTH];
 
-	pgp_output_t*          decr_output = NULL;
-	pgp_memory_t*          decr_mem = NULL;
+	pgp_output_t*          payload_output = NULL;
+	pgp_memory_t*          payload_mem = NULL;
 
 	pgp_output_t*          encr_output = NULL;
 	pgp_memory_t*          encr_mem = NULL;
@@ -444,29 +444,33 @@ int mrmailbox_render_keys_to_html(mrmailbox_t* mailbox, const char* passphrase, 
 
 	/* create the payload */
 
-	mrsqlite3_lock(mailbox->m_sql);
-	locked = 1;
+	{
+		mrsqlite3_lock(mailbox->m_sql);
+		locked = 1;
 
-		self_addr = mrsqlite3_get_config__(mailbox->m_sql, "configured_addr", NULL);
-		mrkey_load_self_private__(curr_private_key, self_addr, mailbox->m_sql);
+			self_addr = mrsqlite3_get_config__(mailbox->m_sql, "configured_addr", NULL);
+			mrkey_load_self_private__(curr_private_key, self_addr, mailbox->m_sql);
 
-		char* key_asc = mrkey_render_asc(curr_private_key, mailbox->m_e2ee_enabled? "Autocrypt-Prefer-Encrypt: mutual\r\n" : NULL);
-		if( key_asc == NULL ) {
-			goto cleanup;
-		}
+			char* payload_key_asc = mrkey_render_asc(curr_private_key, mailbox->m_e2ee_enabled? "Autocrypt-Prefer-Encrypt: mutual\r\n" : NULL);
+			if( payload_key_asc == NULL ) {
+				goto cleanup;
+			}
 
-	mrsqlite3_unlock(mailbox->m_sql);
-	locked = 0;
+		mrsqlite3_unlock(mailbox->m_sql);
+		locked = 0;
 
-	//printf("\n~~~~~~~~~~~~~~~~~~~~SETUP-PAYLOAD~~~~~~~~~~~~~~~~~~~~\n%s~~~~~~~~~~~~~~~~~~~~/SETUP-PAYLOAD~~~~~~~~~~~~~~~~~~~~\n",key_asc); // DEBUG OUTPUT
+		//printf("\n~~~~~~~~~~~~~~~~~~~~SETUP-PAYLOAD~~~~~~~~~~~~~~~~~~~~\n%s~~~~~~~~~~~~~~~~~~~~/SETUP-PAYLOAD~~~~~~~~~~~~~~~~~~~~\n",key_asc); // DEBUG OUTPUT
 
 
-	/* put the payload into a literal data packet which will be encrypted then, see RFC 4880, 5.7 :
-	"When it has been decrypted, it contains other packets (usually a literal data packet or compressed data
-	packet, but in theory other Symmetrically Encrypted Data packets or sequences of packets that form whole OpenPGP messages)" */
+		/* put the payload into a literal data packet which will be encrypted then, see RFC 4880, 5.7 :
+		"When it has been decrypted, it contains other packets (usually a literal data packet or compressed data
+		packet, but in theory other Symmetrically Encrypted Data packets or sequences of packets that form whole OpenPGP messages)" */
 
-	pgp_setup_memory_write(&decr_output, &decr_mem, 128);
-	pgp_write_litdata(decr_output, (const uint8_t*)key_asc, strlen(key_asc), PGP_LDT_BINARY);
+		pgp_setup_memory_write(&payload_output, &payload_mem, 128);
+		pgp_write_litdata(payload_output, (const uint8_t*)payload_key_asc, strlen(payload_key_asc), PGP_LDT_BINARY);
+
+		free(payload_key_asc);
+	}
 
 
 	/* create salt for the key */
@@ -565,10 +569,15 @@ int mrmailbox_render_keys_to_html(mrmailbox_t* mailbox, const char* passphrase, 
 	  pgp_write_scalar (encr_output, s2k_iter_id, 1);  // 1 octets
 	}
 
-	/* Tag 9 */
-	pgp_write_symm_enc_data((const uint8_t*)decr_mem->buf, decr_mem->length, PGP_SA_AES_128, key, encr_output);
+	for(int j=0; j<AES_KEY_LENGTH; j++) {
+		printf("%02x", key[j]);
+	}
+		printf("\n----------------\n");
 
-	/* done with symetric key block */
+	/* Tag 18 */
+	pgp_write_symm_enc_data((const uint8_t*)payload_mem->buf, payload_mem->length, PGP_SA_AES_128, key, encr_output);
+
+	/* done with symmetric key block */
 	pgp_writer_close(encr_output);
 	encr_string = mr_null_terminate((const char*)encr_mem->buf, encr_mem->length);
 
@@ -613,8 +622,8 @@ cleanup:
 	if( stmt ) { sqlite3_finalize(stmt); }
 	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 
-	if( decr_output ) { pgp_output_delete(decr_output); }
-	if( decr_mem ) { pgp_memory_free(decr_mem); }
+	if( payload_output ) { pgp_output_delete(payload_output); }
+	if( payload_mem ) { pgp_memory_free(payload_mem); }
 
 	if( encr_output ) { pgp_output_delete(encr_output); }
 	if( encr_mem ) { pgp_memory_free(encr_mem); }

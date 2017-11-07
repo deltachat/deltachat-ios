@@ -88,8 +88,7 @@ static uint32_t lookup_group_by_grpid__(mrmailbox_t* mailbox, mrmimeparser_t* mi
 						grpid1 = safe_strdup(optional_field->fld_value);
 					}
 					else if( strcasecmp(optional_field->fld_name, "X-MrGrpName")==0 || strcasecmp(optional_field->fld_name, "Chat-Group-Name")==0 ) {
-						grpname = mr_decode_header_string(optional_field->fld_value);
-						mime_parser->m_is_system_message = MR_SYSTEM_GROUPNAME_CHANGED;
+						grpname = mr_decode_header_string(optional_field->fld_value); /* this is no changed groupname message */
 					}
 					else if( strcasecmp(optional_field->fld_name, "X-MrRemoveFromGrp")==0 || strcasecmp(optional_field->fld_name, "Chat-Group-Member-Removed")==0 ) {
 						X_MrRemoveFromGrp = optional_field->fld_value;

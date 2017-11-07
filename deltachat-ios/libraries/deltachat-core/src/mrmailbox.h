@@ -33,7 +33,7 @@
  * they're strings. Eg. mrmsg_get_state() does _always_ return the state of the
  * time the objects is created.
  * If you want an _updated state_, you have to recreate the object reflecting
- * the message - or use methods that explcitly force reloading.
+ * the message - or use methods that explicitly force reloading.
  *
  ******************************************************************************/
 
