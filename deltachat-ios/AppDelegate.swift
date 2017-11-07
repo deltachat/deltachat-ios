@@ -8,6 +8,17 @@
 
 import UIKit
 
+var mailboxPointer:UnsafeMutablePointer<mrmailbox_t>!
+
+func sendMessageSwiftOnly(chatPointer: UnsafeMutablePointer<mrchat_t>, msgPointer: UnsafeMutablePointer<mrmsg_t>, msg: String) {
+    msg.withCString {
+        cString in
+        let s:UnsafeMutablePointer<Int8> = UnsafeMutablePointer(mutating: cString)
+        msgPointer.pointee.m_text = s
+        msgPointer.pointee.m_type = MR_MSG_TEXT
+        mrchat_send_msg(chatPointer, msgPointer)
+    }
+}
 
 @_silgen_name("callbackSwift")
 
@@ -23,6 +34,22 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
     case MR_EVENT_ERROR:
         let s = String(cString: data2String)
         print("Error: \(s)")
+    case MR_EVENT_IS_ONLINE:
+        return 1
+    case MR_EVENT_CONFIGURE_ENDED:
+        if data1 == 0 {
+            fatalError("MR_EVENT_CONFIGURE_ENDED: (TODO: add dialogue here)")
+        } else {
+            let contactId = mrmailbox_create_contact(mailboxPointer, "Björn", "bpetersen@b44t.com")
+            let chatId = mrmailbox_create_chat_by_contact_id(mailboxPointer, contactId)
+            let chatPointer = mrmailbox_get_chat(mailboxPointer, chatId)
+            let msgPointer = mrmsg_new()!
+
+            sendMessageSwiftOnly(chatPointer: chatPointer!, msgPointer: msgPointer, msg: "uziuzi")
+        }
+        
+        break
+//        mrmailbox_send
     default:
         break
     }
@@ -53,17 +80,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(versionString)
 
         //       - second param remains nil (user data for more than one mailbox)
-        guard let m = mrmailbox_new(callback_ios, nil) else {
+        mailboxPointer = mrmailbox_new(callback_ios, nil)
+        guard mailboxPointer != nil else {
             fatalError("Error: mrmailbox_new returned nil")
         }
-        let mailbox = m.pointee
+        let mailbox = mailboxPointer.pointee
         
         let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
         let documentsPath = paths[0]
         let dbfile = documentsPath + "/messenger.db"
         print(dbfile)
         
-        let r = mrmailbox_open(m, dbfile, nil)
+        let r = mrmailbox_open(mailboxPointer, dbfile, nil)
+        mrmailbox_set_config(mailboxPointer, "addr", "bob@librechat.net")
+        mrmailbox_set_config(mailboxPointer, "mail_pw", "foobar")
+        mrmailbox_configure_and_connect(mailboxPointer)
         print(r)
 
         return true
