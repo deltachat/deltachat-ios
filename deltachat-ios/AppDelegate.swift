@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(versionString)
 
         //       - second param remains nil (user data for more than one mailbox)
-        mailboxPointer = mrmailbox_new(callback_ios, nil)
+        mailboxPointer = mrmailbox_new(callback_ios, nil, "iOS")
         guard mailboxPointer != nil else {
             fatalError("Error: mrmailbox_new returned nil")
         }
