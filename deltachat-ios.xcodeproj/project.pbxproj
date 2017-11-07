@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7A451D941FB1B1DB00177250 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A451D921FB1B1DB00177250 /* wrapper.c */; };
 		7A451DAE1FB1F5A200177250 /* libetpan-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A451DA71FB1F4BF00177250 /* libetpan-ios.a */; };
+		7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A451DAF1FB1F84900177250 /* AppCoordinator.swift */; };
 		7A7923401FB0A14300BC2DE5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A79233F1FB0A14300BC2DE5 /* libiconv.tbd */; };
 		7A79236A1FB0A2C800BC2DE5 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A79235D1FB0A2C800BC2DE5 /* compress.c */; };
 		7A79236B1FB0A2C800BC2DE5 /* create.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A79235E1FB0A2C800BC2DE5 /* create.c */; };
@@ -91,6 +92,7 @@
 		7A451D921FB1B1DB00177250 /* wrapper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wrapper.c; sourceTree = "<group>"; };
 		7A451D931FB1B1DB00177250 /* wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wrapper.h; sourceTree = "<group>"; };
 		7A451D9A1FB1F4BF00177250 /* libetpan.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libetpan.xcodeproj; path = "deltachat-ios/libraries/libetpan/build-mac/libetpan.xcodeproj"; sourceTree = "<group>"; };
+		7A451DAF1FB1F84900177250 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		7A79233F1FB0A14300BC2DE5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		7A7923451FB0A2C800BC2DE5 /* config-netpgp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-netpgp.h"; sourceTree = "<group>"; };
 		7A7923461FB0A2C800BC2DE5 /* config-original-as-configured-for-ubuntu-16.04-64bit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-original-as-configured-for-ubuntu-16.04-64bit.h"; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				7A9FB1561FB06540001FEA36 /* deltachat-ios-Bridging-Header.h */,
 				7A451D921FB1B1DB00177250 /* wrapper.c */,
 				7A451D931FB1B1DB00177250 /* wrapper.h */,
+				7A451DAF1FB1F84900177250 /* AppCoordinator.swift */,
 			);
 			path = "deltachat-ios";
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 				7A9FB5471FB08557001FEA36 /* mrmailbox_imex.c in Sources */,
 				7A9FB53C1FB08557001FEA36 /* mrcmdline.c in Sources */,
 				7A79236A1FB0A2C800BC2DE5 /* compress.c in Sources */,
+				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

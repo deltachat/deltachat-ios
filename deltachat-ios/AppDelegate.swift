@@ -76,9 +76,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = window else {
             fatalError("window was nil in app delegate")
         }
-        window.rootViewController = ViewController()
-        window.makeKeyAndVisible()
-        window.backgroundColor = UIColor.white
+        let appCoordinator = AppCoordinator()
+        appCoordinator.setupMainViewControllers(window: window)
+        
+    
+        
         
         guard let ump = mrmailbox_get_version_str() else {
             fatalError("Error: invalid version string")
