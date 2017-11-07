@@ -11,8 +11,10 @@ import UIKit
 class ChatViewController: UIViewController {
 
     let chatTable = UITableView()
+    var chats: [String] = ["Eins", "Zwei", "Drei"]
     
     let chatSource = ChatTableDataSource()
+    let chatTableDelegate = ChatTableDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +27,10 @@ class ChatViewController: UIViewController {
         chatTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         chatTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         chatTable.register(UITableViewCell.self , forCellReuseIdentifier: "ChatCell")
+        chatSource.chats = chats
         chatTable.dataSource = chatSource
-        chatTable.reloadData()
+        chatTableDelegate.chatPresenter = self
+        chatTable.delegate = chatTableDelegate
     }
     
 
@@ -36,9 +40,17 @@ class ChatViewController: UIViewController {
     }
 }
 
+extension ChatViewController: ChatPresenter {
+    func displayChat(index: Int) {
+        let chatVC = UIViewController()
+        chatVC.title = chats[index]
+        self.navigationController?.pushViewController(chatVC, animated: true)
+    }
+}
+
 class ChatTableDataSource: NSObject, UITableViewDataSource  {
     
-    var chats: [String] = ["Eins", "Zwei", "Drei"]
+    var chats: [String] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chats.count
@@ -50,5 +62,20 @@ class ChatTableDataSource: NSObject, UITableViewDataSource  {
         cell.textLabel?.text = title
         return cell
     }
+}
+
+protocol ChatPresenter: class {
+    func displayChat(index: Int)
+}
+
+class ChatTableDelegate: NSObject, UITableViewDelegate {
+    
+    weak var chatPresenter: ChatPresenter?
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        chatPresenter?.displayChat(index: row)
+    }
+    
 }
 
