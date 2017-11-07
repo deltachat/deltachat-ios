@@ -10,11 +10,23 @@ import UIKit
 
 class ChatViewController: UIViewController {
 
+    let chatTable = UITableView()
+    
+    let chatSource = ChatTableDataSource()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Chats"
-        //title = "Chats"
-        
+        title = "Chats"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.addSubview(chatTable)
+        chatTable.translatesAutoresizingMaskIntoConstraints = false
+        chatTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        chatTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        chatTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        chatTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        chatTable.register(UITableViewCell.self , forCellReuseIdentifier: "ChatCell")
+        chatTable.dataSource = chatSource
+        chatTable.reloadData()
     }
     
 
@@ -22,16 +34,21 @@ class ChatViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+class ChatTableDataSource: NSObject, UITableViewDataSource  {
+    
+    var chats: [String] = ["Eins", "Zwei", "Drei"]
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return chats.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath)
+        let title = chats[indexPath.row]
+        cell.textLabel?.text = title
+        return cell
+    }
+}
+
