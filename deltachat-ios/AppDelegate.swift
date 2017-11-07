@@ -8,6 +8,27 @@
 
 import UIKit
 
+
+@_silgen_name("callbackSwift")
+
+public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLong, data1String: UnsafePointer<Int8>, data2String: UnsafePointer<Int8>) -> CUnsignedLong {
+    
+    switch event {
+    case MR_EVENT_INFO:
+        let s = String(cString: data2String)
+        print("Info: \(s)")
+    case MR_EVENT_WARNING:
+        let s = String(cString: data2String)
+        print("Warning: \(s)")
+    case MR_EVENT_ERROR:
+        let s = String(cString: data2String)
+        print("Error: \(s)")
+    default:
+        break
+    }
+    return 0
+}
+
 extension String {
     var nullTerminated: Data? {
         if var data = self.data(using: String.Encoding.utf8) {
@@ -43,7 +64,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // TODO: - add callback as first parameter
         //       - second param remains nil (user data for more than one mailbox)
-        guard let m = mrmailbox_new(nil, nil) else {
+        
+
+        guard let m = mrmailbox_new(callback_ios, nil) else {
             fatalError("Error: mrmailbox_new returned nil")
         }
         let mailbox = m.pointee
@@ -57,6 +80,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let r = mrmailbox_open(m, dbfile, nil)
         print(r)
+        
+//        mrmailbox_c
 
 //        dbfile.withCString {
 //            (cString:UnsafePointer<Int8>) in
