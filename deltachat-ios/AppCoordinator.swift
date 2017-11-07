@@ -13,7 +13,10 @@ class AppCoordinator {
     func setupMainViewControllers(window: UIWindow) {
         let contactViewController = UIViewController()
         contactViewController.view.backgroundColor = UIColor.red
+        
         let chatViewController = UIViewController()
+        let chatNavigationController = UINavigationController(rootViewController: chatViewController)
+        
         chatViewController.view.backgroundColor = UIColor.green
         let settingsViewController = UIViewController()
         settingsViewController.view.backgroundColor = UIColor.blue
@@ -30,7 +33,7 @@ class AppCoordinator {
         
         tabBarController.viewControllers = [
             contactViewController,
-            chatViewController,
+            chatNavigationController,
             settingsViewController,
         ]
         
