@@ -434,7 +434,7 @@ extension ChatViewController: MessageInputBarDelegate {
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
 //        messageList.append(Message(text: text, sender: currentSender(), messageId: UUID().uuidString, date: Date()))
         
-        mrmailbox_send_text_msg(mailboxPointer, self.chatId, text)
+        mrmailbox_send_text_msg(mailboxPointer, UInt32(self.chatId), text)
         print(text)
         inputBar.inputTextView.text = String()
 //        messagesCollectionView.reloadData()
