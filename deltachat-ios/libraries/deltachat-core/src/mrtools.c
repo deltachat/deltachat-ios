@@ -1133,6 +1133,12 @@ int carray_search(carray* haystack, void* needle, unsigned int* indx)
 }
 
 
+uint32_t carray_get_uint32(carray* haystack, unsigned int indx)
+{
+	return (uint32_t)(uintptr_t)haystack->array[indx];
+}
+
+
 void clist_free_content(const clist* haystack)
 {
 	clistiter* iter;

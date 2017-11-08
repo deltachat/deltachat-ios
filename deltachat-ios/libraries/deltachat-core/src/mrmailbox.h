@@ -834,6 +834,11 @@ you can skip this using mrmailbox_cmdline_skip_auth().*/
 void                 mrmailbox_cmdline_skip_auth    ();
 
 
+/* carray tools, already defined are things as
+unsigned unt carray_count() */
+uint32_t             carray_get_uint32              (carray*, unsigned int index);
+
+
 #ifdef __cplusplus
 } /* /extern "C" */
 #endif
