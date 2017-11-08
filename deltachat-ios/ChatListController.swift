@@ -8,7 +8,54 @@
 
 import UIKit
 
-class Chat {
+class MRMessage {
+    
+    private var messagePointer: UnsafeMutablePointer<mrmsg_t>
+    
+    var id: Int {
+        return Int(messagePointer.pointee.m_id)
+    }
+    
+    var fromContactId: Int {
+        return Int(messagePointer.pointee.m_from_id)
+    }
+    
+    var toContactId: Int {
+        return Int(messagePointer.pointee.m_to_id)
+    }
+    
+    var chatId: Int {
+        return Int(messagePointer.pointee.m_chat_id)
+    }
+    
+    var text: String? {
+        return String(cString: messagePointer.pointee.m_text)
+    }
+    
+    // MR_MSG_*
+    var type: Int {
+        return Int(messagePointer.pointee.m_type)
+    }
+    
+    // MR_STATE_*
+    var state: Int {
+        return Int(messagePointer.pointee.m_state)
+    }
+    
+    var timestamp: Int64 {
+        return Int64(messagePointer.pointee.m_timestamp)
+    }
+    
+    init(id: Int) {
+        messagePointer = mrmailbox_get_msg(mailboxPointer, UInt32(id))
+    }
+    
+    deinit {
+        mrmsg_unref(messagePointer)
+    }
+}
+
+class MRChat {
     
     private var chatPointer: UnsafeMutablePointer<mrchat_t>
     
@@ -36,7 +83,7 @@ class Chat {
     }
 }
 
-class PoorText {
+class MRPoorText {
     
     private var poorTextPointer: UnsafeMutablePointer<mrpoortext_t>
     
@@ -76,7 +123,7 @@ class PoorText {
     }
 }
 
-class ChatList {
+class MRChatList {
     
     private var chatListPointer: UnsafeMutablePointer<mrchatlist_t>
     
@@ -98,11 +145,11 @@ class ChatList {
         return Int(mrchatlist_get_msg_id_by_index(self.chatListPointer, index))
     }
     
-    func summary(index: Int) -> PoorText {
+    func summary(index: Int) -> MRPoorText {
         guard let poorTextPointer = mrchatlist_get_summary_by_index(self.chatListPointer, index, nil) else {
             fatalError("poor text pointer was nil")
         }
-        return PoorText(poorTextPointer: poorTextPointer)
+        return MRPoorText(poorTextPointer: poorTextPointer)
     }
     
     deinit {
@@ -112,7 +159,7 @@ class ChatList {
 
 
 class ChatListController: UIViewController {
-    var chatList:ChatList?
+    var chatList:MRChatList?
 
     let chatTable = UITableView()
     
@@ -124,7 +171,7 @@ class ChatListController: UIViewController {
             fatalError("chatlistPointer was nil")
         }
         // ownership of chatlistPointer transferred here to ChatList object
-        self.chatList = ChatList(chatListPointer: chatlistPointer)
+        self.chatList = MRChatList(chatListPointer: chatlistPointer)
         
         chatTableDataSource.chatList = self.chatList
         chatTable.reloadData()
@@ -174,7 +221,7 @@ extension ChatListController: ChatPresenter {
 }
 
 class ChatTableDataSource: NSObject, UITableViewDataSource  {
-    weak var chatList:ChatList?
+    weak var chatList:MRChatList?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let chatList = self.chatList else {
@@ -199,7 +246,7 @@ class ChatTableDataSource: NSObject, UITableViewDataSource  {
         }
 
         let chatId = chatList.getChatId(index: row)
-        let chat = Chat(id: chatId)
+        let chat = MRChat(id: chatId)
         let summary = chatList.summary(index: row)
         
         cell.textLabel?.text = "\(chat.name)"

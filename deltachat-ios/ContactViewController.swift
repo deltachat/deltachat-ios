@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Contact {
+class MRContact {
     private var contactPointer: UnsafeMutablePointer<mrcontact_t>
 
     var name: String {
@@ -106,7 +106,7 @@ class ContactTableDataSource: NSObject, UITableViewDataSource {
         }
         let row = indexPath.row
         let id = contacts[row]
-        let contact = Contact(id: id)
+        let contact = MRContact(id: id)
         
         cell.textLabel?.text = contact.name
         cell.detailTextLabel?.text = contact.email

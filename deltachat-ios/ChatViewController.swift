@@ -40,7 +40,7 @@ class ChatViewController: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let chat = Chat(id: self.chatId)
+        let chat = MRChat(id: self.chatId)
         title = chat.name
         
         DispatchQueue.global(qos: .userInitiated).async {
