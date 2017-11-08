@@ -36,8 +36,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         if data1 == 0 {
             fatalError("MR_EVENT_CONFIGURE_ENDED: (TODO: add dialogue here)")
         } else {
-            sendTestMessage(name: "Björn", email: "bpetersen@b44t.com", text: "geraffel")
-            sendTestMessage(name: "Q", email: "quickmsgtest1@b44t.com", text: "hugu")
+//            sendTestMessage(name: "Q", email: "quickmsgtest1@b44t.com", text: "hugu")
         }
         
         break
