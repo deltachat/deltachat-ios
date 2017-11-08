@@ -392,9 +392,11 @@ extension ChatViewController: LocationMessageDisplayDelegate {
 extension ChatViewController: MessageInputBarDelegate {
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
-        messageList.append(Message(text: text, sender: currentSender(), messageId: UUID().uuidString, date: Date()))
+//        messageList.append(Message(text: text, sender: currentSender(), messageId: UUID().uuidString, date: Date()))
+        
+        print(text)
         inputBar.inputTextView.text = String()
-        messagesCollectionView.reloadData()
+//        messagesCollectionView.reloadData()
         messagesCollectionView.scrollToBottom()
     }
 

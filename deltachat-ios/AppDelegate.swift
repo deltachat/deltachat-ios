@@ -65,11 +65,24 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         // TODO: reload all views
         // e.g. when message appears that is not new, i.e. no need
         // to set badge / notification
-        break
+        
+        let nc = NotificationCenter.default
+        
+        DispatchQueue.main.async {
+            nc.post(name:Notification.Name(rawValue:"MrEventMsgsChanged"),
+                    object: nil,
+                    userInfo: ["message":"Messages Changed!", "date":Date()])
+        }
+
     case MR_EVENT_INCOMING_MSG:
         // TODO: reload all views + set notification / badge
         // mrmailbox_get_fresh_msgs
-        break
+        let nc = NotificationCenter.default
+        DispatchQueue.main.async {
+            nc.post(name:Notification.Name(rawValue:"MrEventIncomingMsg"),
+                    object: nil,
+                    userInfo: ["message":"Incoming Message!", "date":Date()])
+        }
     default:
         break
     }
@@ -120,6 +133,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         mrmailbox_configure_and_connect(mailboxPointer)
         print(r)
+        
+        let nc = NotificationCenter.default
+        nc.addObserver(forName:Notification.Name(rawValue:"MrEventMsgsChanged"),
+                       object:nil, queue:nil) {
+                        notification in
+                        print("----------- MrEventMsgsChanged notification received --------")
+        }
+        
+        nc.addObserver(forName:Notification.Name(rawValue:"MrEventIncomingMsg"),
+                       object:nil, queue:nil) {
+                        notification in
+                        print("----------- MrEventIncomi    ngMsg received --------")
+        }
+
 
         return true
     }
