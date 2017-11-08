@@ -38,6 +38,7 @@
 #define INTERRUPT_IDLE  \
 	if( ths && ths->m_can_idle && ths->m_hEtpan && ths->m_hEtpan->imap_stream ) { \
 		if( pthread_mutex_trylock(&ths->m_inwait_mutex)!=0 ) { \
+			mrmailbox_log_info(ths->m_mailbox, 0, "Interrupting IDLE..."); \
 			mailstream_interrupt_idle(ths->m_hEtpan->imap_stream); \
 			pthread_mutex_lock(&ths->m_inwait_mutex); /* make sure, mailimap_idle_done() is called - otherwise the other routines do not work */ \
 		} \
@@ -1284,6 +1285,7 @@ void mrimap_disconnect(mrimap_t* ths)
 				ths->m_watch_do_exit = 1;
 
 				LOCK_HANDLE
+					mrmailbox_log_info(ths->m_mailbox, 0, "Interrupting IDLE for disconnecting...");
 					mailstream_interrupt_idle(ths->m_hEtpan->imap_stream);
 				UNLOCK_HANDLE
 			}
