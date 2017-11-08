@@ -95,8 +95,6 @@ class ContactTableDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self), for: indexPath)
-        
         let cell:UITableViewCell
         if let c = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self)) {
             cell = c

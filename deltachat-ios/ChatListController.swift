@@ -84,22 +84,26 @@ class ChatList {
         return mrchatlist_get_cnt(chatListPointer)
         //return Int(chatListPointer.pointee.m_cnt)
     }
-
     
     // takes ownership of specified pointer
     init(chatListPointer: UnsafeMutablePointer<mrchatlist_t>) {
         self.chatListPointer = chatListPointer
     }
 
-    func getChat(index: Int) {
-        mrchatlist_get_chat_by_index(self.chatListPointer, index)
+    func getChatId(index: Int) -> Int {
+        return Int(mrchatlist_get_chat_id_by_index(self.chatListPointer, index))
     }
     
-    func getMessage(index: Int) {
-        mrchatlist_get_msg_by_index(self.chatListPointer, index)
+    func getMessageId(index: Int) -> Int {
+        return Int(mrchatlist_get_msg_id_by_index(self.chatListPointer, index))
     }
     
-    
+    func summary(index: Int) -> PoorText {
+        guard let poorTextPointer = mrchatlist_get_summary_by_index(self.chatListPointer, index, nil) else {
+            fatalError("poor text pointer was nil")
+        }
+        return PoorText(poorTextPointer: poorTextPointer)
+    }
     
     deinit {
         mrchatlist_unref(chatListPointer)
@@ -108,15 +112,30 @@ class ChatList {
 
 
 class ChatListController: UIViewController {
+    var chatList:ChatList?
 
     let chatTable = UITableView()
     var chats: [(String, String)] = [("Coffee Meeting", "Let's go or what? I..."), ("Daniela", "Did you hear about what Dr. J. was suggesting..."), ("Alice", "Did you receive..."), ("Bob", "Knock..."), ("Eva", "🍏")]
     
-    let chatSource = ChatTableDataSource()
+    let chatTableDataSource = ChatTableDataSource()
     let chatTableDelegate = ChatTableDelegate()
     
     override func viewWillAppear(_ animated: Bool) {
+        guard let chatlistPointer = mrmailbox_get_chatlist(mailboxPointer, 0, nil) else {
+            fatalError("chatlistPointer was nil")
+        }
+        // ownership of chatlistPointer transferred here to ChatList object
+        self.chatList = ChatList(chatListPointer: chatlistPointer)
         
+        chatTableDataSource.chatList = self.chatList
+        chatTable.reloadData()
+        
+        /*
+        let c_contacts = mrmailbox_get_known_contacts(mailboxPointer, nil)
+        self.contactIds = Utils.copyAndFreeArray(inputArray: c_contacts)
+        contactTableDataSource.contacts = self.contactIds
+        contactTable.reloadData()
+ */
     }
     
     override func viewDidLoad() {
@@ -129,8 +148,8 @@ class ChatListController: UIViewController {
         chatTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         chatTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         chatTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        chatSource.chats = chats
-        chatTable.dataSource = chatSource
+        chatTableDataSource.chats = chats
+        chatTable.dataSource = chatTableDataSource
         chatTableDelegate.chatPresenter = self
         chatTable.delegate = chatTableDelegate
     }
@@ -152,23 +171,46 @@ extension ChatListController: ChatPresenter {
 }
 
 class ChatTableDataSource: NSObject, UITableViewDataSource  {
-    
+    weak var chatList:ChatList?
     var chats: [(String, String)] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chats.count
+        guard let chatList = self.chatList else {
+            fatalError("chatList was nil in data source")
+        }
+        print(chatList.length)
+        
+        return chatList.length
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
+        guard let chatList = self.chatList else {
+            fatalError("chatList was nil in data source")
+        }
+        
         let cell:UITableViewCell
         if let c = tableView.dequeueReusableCell(withIdentifier: "ChatCell") {
             cell = c
         } else {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: "ChatCell")
         }
-        let title = chats[indexPath.row].0
-        cell.textLabel?.text = title
-        cell.detailTextLabel?.text = chats[indexPath.row].1
+//        let title = chats[indexPath.row].0
+        let chatId = chatList.getChatId(index: row)
+        let chat = Chat(id: chatId)
+        let summary = chatList.summary(index: row)
+        
+        cell.textLabel?.text = "\(chat.name)"
+        let result1 = summary.text1 ?? ""
+        let result2 = summary.text2 ?? ""
+        let result:String
+        if !result1.isEmpty && !result2.isEmpty {
+            result = "\(result1): \(result2)"
+        } else {
+            result = "\(result1)\(result2)"
+        }
+        
+        cell.detailTextLabel?.text = result
         return cell
     }
 }
