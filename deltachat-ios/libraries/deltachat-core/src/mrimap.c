@@ -1229,7 +1229,7 @@ int mrimap_connect(mrimap_t* ths, const mrloginparam_t* lp)
 		ths->m_can_idle = mailimap_has_idle(ths->m_hEtpan);
 		ths->m_has_xlist = mailimap_has_xlist(ths->m_hEtpan);
 
-		#ifndef __APPLE__
+		#ifdef __APPLE__
 		ths->m_can_idle = 0; // HACK to force iOS not to work IMAP-IDLE which does not work for now, see also (*)
 		#endif
 

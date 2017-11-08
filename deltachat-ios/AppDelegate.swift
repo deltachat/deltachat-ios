@@ -10,29 +10,10 @@ import UIKit
 
 var mailboxPointer:UnsafeMutablePointer<mrmailbox_t>!
 
-func sendMessageSwiftOnly(chatPointer: UnsafeMutablePointer<mrchat_t>, msgPointer: UnsafeMutablePointer<mrmsg_t>, msg: String) {
-    msg.withCString {
-        cString in
-        let s:UnsafeMutablePointer<Int8> = UnsafeMutablePointer(mutating: cString)
-        msgPointer.pointee.m_text = s
-        msgPointer.pointee.m_type = MR_MSG_TEXT
-        mrchat_send_msg(chatPointer, msgPointer)
-    }
-}
-
 func sendTestMessage(name n: String, email: String, text: String) {
-//    let contactId = mrmailbox_create_contact(mailboxPointer, "Björn", "bpetersen@b44t.com")
     let contactId = mrmailbox_create_contact(mailboxPointer, n, email)
     let chatId = mrmailbox_create_chat_by_contact_id(mailboxPointer, contactId)
-    let chatPointer = mrmailbox_get_chat(mailboxPointer, chatId)
-    let msgPointer = mrmsg_new()!
-    sendMessageViaCore(chatPointer: chatPointer!, msgPointer: msgPointer, msg: text)
-}
-
-func sendMessageViaCore(chatPointer: UnsafeMutablePointer<mrchat_t>, msgPointer: UnsafeMutablePointer<mrmsg_t>, msg: String) {
-    mrmsg_set_text(msgPointer, msg)
-    msgPointer.pointee.m_type = MR_MSG_TEXT
-    mrchat_send_msg(chatPointer, msgPointer)
+    mrmailbox_send_text_msg(mailboxPointer, chatId, text)
 }
 
 @_silgen_name("callbackSwift")
