@@ -25,10 +25,6 @@ class ChatViewController: MessagesViewController {
 
     }
     
-    deinit {
-
-    }
-    
     func getMessageIds() {
         let c_messageIds = mrmailbox_get_chat_msgs(mailboxPointer, UInt32(self.chatId), 0, 0)
         self.messageIds = Utils.copyAndFreeArray(inputArray: c_messageIds)
