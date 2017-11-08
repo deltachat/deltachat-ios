@@ -9,12 +9,16 @@
 import Foundation
 import UIKit
 
-class Utils {
-    
- 
-    
-    
-    
+struct Utils {
+    static func copyAndFreeArray(inputArray:UnsafeMutablePointer<carray>?) -> [Int] {
+        var acc:[Int] = []
+        let len = carray_count(inputArray)
+        for i in 0 ..< len {
+            acc.append(Int(carray_get_uint32(inputArray, i)))
+        }
+        carray_free(inputArray)
+        return acc
+    }
 }
 
 

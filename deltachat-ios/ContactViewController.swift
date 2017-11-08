@@ -26,20 +26,7 @@ class ContactViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         let c_contact = mrmailbox_get_known_contacts(mailboxPointer, nil)
         
-        let len = carray_count(c_contact)
-        
-        
-        
-        //let con = convert(length: len, data: c_contact)
-        
-        
-        
-    }
-    
-    func convert(length: UInt32, data: UnsafePointer<UInt32>) -> [UInt32] {
-        
-        let buffer = UnsafeBufferPointer(start: data, count: Int(length));
-        return Array(buffer)
+        self.contacts = Utils.copyAndFreeArray(inputArray: c_contact)
     }
     
     override func viewDidLoad() {
