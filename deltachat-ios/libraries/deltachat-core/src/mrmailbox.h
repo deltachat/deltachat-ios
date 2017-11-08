@@ -121,7 +121,9 @@ typedef struct mrmailbox_t
 	int              m_job_do_exit;
 
 	mrmailboxcb_t    m_cb;
-	void*            m_userData;
+	void*            m_userdata;
+
+	char*            m_os_name;
 
 	uint32_t         m_cmdline_sel_chat_id;
 
@@ -141,8 +143,12 @@ typedef struct mrmailbox_t
 
 /* mrmailbox_new() creates a new mailbox object.  After creation it is usually
 opened, connected and mails are fetched; see the corresponding functions below.
-After usage, the mailbox object must be freed using mrmailbox_unref(). */
-mrmailbox_t*         mrmailbox_new                  (mrmailboxcb_t, void* userData);
+The os name is only for decorative use and is shown eg. in the X-Mailer header
+in the form "Delta Chat <version> for <osName>" */
+mrmailbox_t*         mrmailbox_new                  (mrmailboxcb_t, void* userData, const char* osName);
+
+/* After usage, the mailbox object must be freed using mrmailbox_unref().
+If app runs can only be terminated by a forced kill, this may be superfluous. */
 void                 mrmailbox_unref                (mrmailbox_t*);
 
 

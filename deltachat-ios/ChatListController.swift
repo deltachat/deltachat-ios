@@ -11,7 +11,7 @@ import UIKit
 class ChatListController: UIViewController {
 
     let chatTable = UITableView()
-    var chats: [String] = ["Eins", "Zwei", "Drei"]
+    var chats: [(String, String)] = [("Coffee Meeting", "Let's go or what? I..."), ("Daniela", "Did you hear about what Dr. J. was suggesting..."), ("Alice", "Did you receive..."), ("Bob", "Knock..."), ("Eva", "🍏")]
     
     let chatSource = ChatTableDataSource()
     let chatTableDelegate = ChatTableDelegate()
@@ -26,7 +26,6 @@ class ChatListController: UIViewController {
         chatTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         chatTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         chatTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        chatTable.register(UITableViewCell.self , forCellReuseIdentifier: "ChatCell")
         chatSource.chats = chats
         chatTable.dataSource = chatSource
         chatTableDelegate.chatPresenter = self
@@ -43,23 +42,29 @@ class ChatListController: UIViewController {
 extension ChatListController: ChatPresenter {
     func displayChat(index: Int) {
         let chatVC = UIViewController()
-        chatVC.title = chats[index]
+        chatVC.title = chats[index].0
         self.navigationController?.pushViewController(chatVC, animated: true)
     }
 }
 
 class ChatTableDataSource: NSObject, UITableViewDataSource  {
     
-    var chats: [String] = []
+    var chats: [(String, String)] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chats.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath)
-        let title = chats[indexPath.row]
+        let cell:UITableViewCell
+        if let c = tableView.dequeueReusableCell(withIdentifier: "ChatCell") {
+            cell = c
+        } else {
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "ChatCell")
+        }
+        let title = chats[indexPath.row].0
         cell.textLabel?.text = title
+        cell.detailTextLabel?.text = chats[indexPath.row].1
         return cell
     }
 }
