@@ -76,6 +76,37 @@ class PoorText {
     }
 }
 
+class ChatList {
+    
+    private var chatListPointer: UnsafeMutablePointer<mrchatlist_t>
+    
+    var length: Int {
+        return mrchatlist_get_cnt(chatListPointer)
+        //return Int(chatListPointer.pointee.m_cnt)
+    }
+
+    
+    // takes ownership of specified pointer
+    init(chatListPointer: UnsafeMutablePointer<mrchatlist_t>) {
+        self.chatListPointer = chatListPointer
+    }
+
+    func getChat(index: Int) {
+        mrchatlist_get_chat_by_index(self.chatListPointer, index)
+    }
+    
+    func getMessage(index: Int) {
+        mrchatlist_get_msg_by_index(self.chatListPointer, index)
+    }
+    
+    
+    
+    deinit {
+        mrchatlist_unref(chatListPointer)
+    }
+}
+
+
 class ChatListController: UIViewController {
 
     let chatTable = UITableView()
@@ -83,6 +114,10 @@ class ChatListController: UIViewController {
     
     let chatSource = ChatTableDataSource()
     let chatTableDelegate = ChatTableDelegate()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
