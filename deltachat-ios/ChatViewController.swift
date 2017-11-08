@@ -40,6 +40,9 @@ class ChatViewController: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let chat = Chat(id: self.chatId)
+        title = chat.name
+        
         DispatchQueue.global(qos: .userInitiated).async {
             SampleData.shared.getMessages(count: 10) { messages in
                 DispatchQueue.main.async {
