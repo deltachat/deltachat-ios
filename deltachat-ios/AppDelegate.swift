@@ -125,7 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         nc.addObserver(forName:Notification.Name(rawValue:"MrEventIncomingMsg"),
                        object:nil, queue:nil) {
                         notification in
-                        print("----------- MrEventIncomi    ngMsg received --------")
+                        print("----------- MrEventIncomingMsg received --------")
         }
 
 

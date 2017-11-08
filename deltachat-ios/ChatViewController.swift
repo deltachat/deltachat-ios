@@ -13,11 +13,20 @@ import MapKit
 class ChatViewController: MessagesViewController {
     let chatId: Int
     var messageIds:[Int] = []
+
+    var msgChangedObserver: Any?
+    var incomingMsgObserver: Any?
     
     init(chatId: Int) {
         self.chatId = chatId
         super.init(nibName: nil, bundle: nil)
         self.getMessageIds()
+
+
+    }
+    
+    deinit {
+
     }
     
     func getMessageIds() {
@@ -34,6 +43,37 @@ class ChatViewController: MessagesViewController {
             DispatchQueue.main.async {
                 self.messagesCollectionView.reloadData()
             }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let nc = NotificationCenter.default
+        msgChangedObserver = nc.addObserver(forName:Notification.Name(rawValue:"MrEventMsgsChanged"),
+                                            object:nil, queue:nil) {
+                                                notification in
+                                                print("----------- MrEventMsgsChanged notification received --------")
+                                                self.getMessageIds()
+                                                self.messagesCollectionView.reloadData()
+                                                self.messagesCollectionView.scrollToBottom()
+        }
+        
+        incomingMsgObserver = nc.addObserver(forName:Notification.Name(rawValue:"MrEventIncomingMsg"),
+                                             object:nil, queue:nil) {
+                                                notification in
+                                                print("----------- MrEventIncomingMsg received --------")
+                                                self.getMessageIds()
+                                                self.messagesCollectionView.reloadData()
+                                                self.messagesCollectionView.scrollToBottom()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        let nc = NotificationCenter.default
+        if let msgChangedObserver = self.msgChangedObserver {
+            nc.removeObserver(msgChangedObserver)
+        }
+        if let incomingMsgObserver = self.incomingMsgObserver {
+            nc.removeObserver(incomingMsgObserver)
         }
     }
     
@@ -394,10 +434,11 @@ extension ChatViewController: MessageInputBarDelegate {
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
 //        messageList.append(Message(text: text, sender: currentSender(), messageId: UUID().uuidString, date: Date()))
         
+        mrmailbox_send_text_msg(mailboxPointer, self.chatId, text)
         print(text)
         inputBar.inputTextView.text = String()
 //        messagesCollectionView.reloadData()
-        messagesCollectionView.scrollToBottom()
+//        messagesCollectionView.scrollToBottom()
     }
 
 
