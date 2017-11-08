@@ -17,20 +17,15 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrcmdline.c
- * Purpose: implement mrmailbox_cmdline(), this file is optional
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
-#include "mrmailbox.h"
-#include "mrcmdline.h"
+/* If you do not want to use mrmailbox_cmdline(), this file MAY NOT included to
+your library */
+
+
+#include "mrmailbox_internal.h"
 #include "mrapeerstate.h"
-#include "mrtools.h"
 #include "mrkey.h"
 
 
@@ -53,10 +48,10 @@ static void log_msglist(mrmailbox_t* mailbox, carray* msglist)
 
 			const char* statestr = "";
 			switch( msg->m_state ) {
-				case MR_OUT_PENDING:   statestr = " o";   break;
-				case MR_OUT_DELIVERED: statestr = " √";   break;
-				case MR_OUT_MDN_RCVD:  statestr = " √√";  break;
-				case MR_OUT_ERROR:     statestr = " ERR"; break;
+				case MR_STATE_OUT_PENDING:   statestr = " o";   break;
+				case MR_STATE_OUT_DELIVERED: statestr = " √";   break;
+				case MR_STATE_OUT_MDN_RCVD:  statestr = " √√";  break;
+				case MR_STATE_OUT_ERROR:     statestr = " ERR"; break;
 			}
 
 			char* temp2 = mr_timestamp_to_str(msg->m_timestamp);
@@ -67,7 +62,7 @@ static void log_msglist(mrmailbox_t* mailbox, carray* msglist)
 					msg->m_text,
 					mrmsg_show_padlock(msg)? "\xF0\x9F\x94\x92" : "",
 					msg->m_starred? " \xE2\x98\x85" : "",
-					msg->m_from_id==1? "" : (msg->m_state==MR_IN_SEEN? "[SEEN]" : (msg->m_state==MR_IN_NOTICED? "[NOTICED]":"[FRESH]")),
+					msg->m_from_id==1? "" : (msg->m_state==MR_STATE_IN_SEEN? "[SEEN]" : (msg->m_state==MR_STATE_IN_NOTICED? "[NOTICED]":"[FRESH]")),
 					mrparam_get_int(msg->m_param, MRP_SYSTEM_CMD, 0)? "[SYSTEM]" : "",
 					statestr,
 					temp2);
@@ -421,10 +416,10 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 							statestr = " [Archived]";
 						}
 						else switch( poortext->m_state ) {
-							case MR_OUT_PENDING:   statestr = " o";   break;
-							case MR_OUT_DELIVERED: statestr = " √";   break;
-							case MR_OUT_MDN_RCVD:  statestr = " √√";  break;
-							case MR_OUT_ERROR:     statestr = " ERR"; break;
+							case MR_STATE_OUT_PENDING:   statestr = " o";   break;
+							case MR_STATE_OUT_DELIVERED: statestr = " √";   break;
+							case MR_STATE_OUT_MDN_RCVD:  statestr = " √√";  break;
+							case MR_STATE_OUT_ERROR:     statestr = " ERR"; break;
 						}
 
 						char* timestr = mr_timestamp_to_str(poortext->m_timestamp);

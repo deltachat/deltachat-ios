@@ -17,15 +17,12 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrmimeparser.h
- * Purpose: Parse MIME body; this is the text part of an IMF, see
- *          https://tools.ietf.org/html/rfc5322
- *          mrmimeparser_t has no deep dependencies to mrmailbox_t or to the
- *          database (mrmailbox_t is used for logging only).
- *
  ******************************************************************************/
+
+
+/* Parse MIME body; this is the text part of an IMF, see https://tools.ietf.org/html/rfc5322
+mrmimeparser_t has no deep dependencies to mrmailbox_t or to the database
+(mrmailbox_t is used for logging only). */
 
 
 #ifndef __MRMIMEPARSER_H__
@@ -36,9 +33,6 @@ extern "C" {
 
 
 /*** library-private **********************************************************/
-
-
-#include "mrmsg.h"
 
 
 typedef struct mrmimepart_t

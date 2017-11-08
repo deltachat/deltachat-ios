@@ -17,11 +17,6 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrimap.c
- * Purpose: Reading from IMAP servers, see header for details.
- *
  ******************************************************************************/
 
 
@@ -30,10 +25,9 @@
 #include <sys/stat.h>
 #include <string.h>
 #include <unistd.h> /* for sleep() */
-#include "mrmailbox.h"
+#include "mrmailbox_internal.h"
 #include "mrimap.h"
 #include "mrosnative.h"
-#include "mrtools.h"
 #include "mrloginparam.h"
 
 #define LOCK_HANDLE   pthread_mutex_lock(&ths->m_hEtpanmutex); mrmailbox_wake_lock(ths->m_mailbox); handle_locked = 1;

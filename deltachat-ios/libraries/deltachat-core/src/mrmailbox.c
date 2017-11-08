@@ -17,27 +17,18 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrmailbox.c
- * Purpose: mrmailbox_t represents a single mailbox, see header for details.
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h> /* for getpid() */
 #include <unistd.h>    /* for getpid() */
-#include <sqlite3.h>
 #include <openssl/opensslv.h>
-#include "mrmailbox.h"
+#include "mrmailbox_internal.h"
 #include "mrimap.h"
 #include "mrsmtp.h"
 #include "mrmimeparser.h"
 #include "mrmimefactory.h"
-#include "mrcontact.h"
 #include "mrtools.h"
 #include "mrjob.h"
 #include "mrloginparam.h"
@@ -488,7 +479,7 @@ static void receive_imf(mrmailbox_t* ths, const char* imf_raw_not_terminated, si
 			(of course, the user can add other chats manually later) */
 			if( incoming )
 			{
-				state = (flags&MR_IMAP_SEEN)? MR_IN_SEEN : MR_IN_FRESH;
+				state = (flags&MR_IMAP_SEEN)? MR_STATE_IN_SEEN : MR_STATE_IN_FRESH;
 				to_id = MR_CONTACT_ID_SELF;
 
 				/* test if there is a normal chat with the sender - if so, this allows us to create groups in the next step */
@@ -538,9 +529,9 @@ static void receive_imf(mrmailbox_t* ths, const char* imf_raw_not_terminated, si
 
 					if( chat_id == 0 ) {
 						chat_id = MR_CHAT_ID_DEADDROP;
-						if( state == MR_IN_FRESH ) {
+						if( state == MR_STATE_IN_FRESH ) {
 							if( incoming_origin<MR_ORIGIN_MIN_VERIFIED && mime_parser->m_is_send_by_messenger==0 ) {
-								state = MR_IN_NOTICED; /* degrade state for unknown senders and non-delta messages (the latter may be removed if we run into spam problems, currently this is fine) (noticed messages do count as being unread; therefore, the deaddrop will not popup in the chatlist) */
+								state = MR_STATE_IN_NOTICED; /* degrade state for unknown senders and non-delta messages (the latter may be removed if we run into spam problems, currently this is fine) (noticed messages do count as being unread; therefore, the deaddrop will not popup in the chatlist) */
 							}
 						}
 					}
@@ -548,7 +539,7 @@ static void receive_imf(mrmailbox_t* ths, const char* imf_raw_not_terminated, si
 			}
 			else /* outgoing */
 			{
-				state = MR_OUT_DELIVERED; /* the mail is on the IMAP server, probably it is also deliverd.  We cannot recreate other states (read, error). */
+				state = MR_STATE_OUT_DELIVERED; /* the mail is on the IMAP server, probably it is also deliverd.  We cannot recreate other states (read, error). */
 				from_id = MR_CONTACT_ID_SELF;
 				if( carray_count(to_ids) >= 1 ) {
 					to_id   = (uint32_t)(uintptr_t)carray_get(to_ids, 0);
@@ -677,7 +668,7 @@ static void receive_imf(mrmailbox_t* ths, const char* imf_raw_not_terminated, si
 			{
 				create_event_to_send = 0;
 			}
-			else if( incoming && state==MR_IN_FRESH )
+			else if( incoming && state==MR_STATE_IN_FRESH )
 			{
 				if( from_id_blocked ) {
 					create_event_to_send = 0;

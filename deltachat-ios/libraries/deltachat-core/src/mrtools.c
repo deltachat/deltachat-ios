@@ -17,28 +17,19 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrtools.c
- * Purpose: Some tools, see header for details.
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
 #include <stdarg.h>
 #include <ctype.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <sqlite3.h>
 #include <sys/stat.h>
 #include <sys/types.h> /* for getpid() */
 #include <unistd.h>    /* for getpid() */
 #include <libetpan/libetpan.h>
 #include <libetpan/mailimap_types.h>
-#include "mrmailbox.h"
-#include "mrtools.h"
+#include "mrmailbox_internal.h"
 
 
 /*******************************************************************************

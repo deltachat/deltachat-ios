@@ -17,21 +17,13 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrmimeparser.c
- * Purpose: Parse MIME body, see header for details.
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
-#include "mrmailbox.h"
+#include "mrmailbox_internal.h"
 #include "mrmimeparser.h"
 #include "mrmimefactory.h"
 #include "mrsimplify.h"
-#include "mrtools.h"
 
 
 /*******************************************************************************

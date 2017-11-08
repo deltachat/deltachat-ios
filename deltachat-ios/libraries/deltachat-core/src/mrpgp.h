@@ -17,13 +17,7 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrpgp.h
- * Purpose: Frontend for the crypto-engine
- *
  ******************************************************************************/
-
 
 
 #ifndef __MRPGP_H__

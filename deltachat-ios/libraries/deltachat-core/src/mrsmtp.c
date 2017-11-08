@@ -17,20 +17,13 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrsmtp.c
- * Purpose: Use SMTP servers
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
 #include <libetpan/libetpan.h>
-#include "mrmailbox.h"
+#include "mrmailbox_internal.h"
 #include "mrsmtp.h"
-#include "mrtools.h"
+
 
 #ifndef DEBUG_SMTP
 #define DEBUG_SMTP 0

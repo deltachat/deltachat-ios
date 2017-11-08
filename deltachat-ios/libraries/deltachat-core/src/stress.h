@@ -17,12 +17,6 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    stress.h
- * Purpose: Stress some functions for testing; if used as a lib, this file is
- *          obsolete.
- *
  ******************************************************************************/
 
 

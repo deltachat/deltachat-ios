@@ -17,11 +17,6 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrkey.h
- * Purpose: Handle keys
- *
  ******************************************************************************/
 
 
@@ -35,6 +30,7 @@ extern "C" {
 /*** library-private **********************************************************/
 
 typedef struct mrmailbox_t mrmailbox_t;
+typedef struct sqlite3_stmt sqlite3_stmt;
 
 
 #define MR_PUBLIC  0

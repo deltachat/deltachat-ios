@@ -17,13 +17,11 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrtools.h
- * Purpose: Some tools and enhancements to the used libraries, there should be
- *          no references to mrmailbox_t and other "larger" classes here.
- *
  ******************************************************************************/
+
+
+/* Some tools and enhancements to the used libraries, there should be
+no references to mrmailbox_t and other "larger" classes here. */
 
 
 #ifndef __MRTOOLS_H__

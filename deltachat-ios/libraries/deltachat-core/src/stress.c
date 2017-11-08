@@ -17,25 +17,18 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    stress.c
- * Purpose: Stress some functions for testing; if used as a lib, this file is
- *          obsolete.
- *
- *******************************************************************************
- *
- * For memory checking, use eg.
- * $ valgrind --leak-check=full --tool=memcheck ./deltachat-core <db>
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
+/* Stress some functions for testing; if used as a lib, this file is obsolete.
+For memory checking, use eg.
+$ valgrind --leak-check=full --tool=memcheck ./deltachat-core <db>
+*/
+
+
 #include <ctype.h>
-#include <string.h>
 #include <assert.h>
-#include "mrmailbox.h"
+#include "mrmailbox_internal.h"
 #include "mrsimplify.h"
 #include "mrmimeparser.h"
 #include "mrmimefactory.h"
@@ -43,7 +36,6 @@
 #include "mrapeerstate.h"
 #include "mraheader.h"
 #include "mrkeyring.h"
-#include "mrtools.h"
 
 
 void stress_functions(mrmailbox_t* mailbox)
@@ -148,13 +140,13 @@ void stress_functions(mrmailbox_t* mailbox)
 		assert( strcmp(str, "")==0 );
 		free(str);
 
-        assert( strcmp("fresh="     MR_STRINGIFY(MR_IN_FRESH),      "fresh=10")==0 ); /* these asserts check the values, the existance of the macros and also MR_STRINGIFY() */
-        assert( strcmp("noticed="   MR_STRINGIFY(MR_IN_NOTICED),    "noticed=13")==0 );
-        assert( strcmp("seen="      MR_STRINGIFY(MR_IN_SEEN),       "seen=16")==0 );
-        assert( strcmp("pending="   MR_STRINGIFY(MR_OUT_PENDING),   "pending=20")==0 );
-        assert( strcmp("error="     MR_STRINGIFY(MR_OUT_ERROR),     "error=24")==0 );
-        assert( strcmp("delivered=" MR_STRINGIFY(MR_OUT_DELIVERED), "delivered=26")==0 );
-        assert( strcmp("mdn_rcvd="  MR_STRINGIFY(MR_OUT_MDN_RCVD),  "mdn_rcvd=28")==0 );
+        assert( strcmp("fresh="     MR_STRINGIFY(MR_STATE_IN_FRESH),      "fresh=10")==0 ); /* these asserts check the values, the existance of the macros and also MR_STRINGIFY() */
+        assert( strcmp("noticed="   MR_STRINGIFY(MR_STATE_IN_NOTICED),    "noticed=13")==0 );
+        assert( strcmp("seen="      MR_STRINGIFY(MR_STATE_IN_SEEN),       "seen=16")==0 );
+        assert( strcmp("pending="   MR_STRINGIFY(MR_STATE_OUT_PENDING),   "pending=20")==0 );
+        assert( strcmp("error="     MR_STRINGIFY(MR_STATE_OUT_ERROR),     "error=24")==0 );
+        assert( strcmp("delivered=" MR_STRINGIFY(MR_STATE_OUT_DELIVERED), "delivered=26")==0 );
+        assert( strcmp("mdn_rcvd="  MR_STRINGIFY(MR_STATE_OUT_MDN_RCVD),  "mdn_rcvd=28")==0 );
 
         assert( strcmp("deaddrop="     MR_STRINGIFY(MR_CHAT_ID_DEADDROP),         "deaddrop=1")==0 );
         assert( strcmp("to_deaddrop="  MR_STRINGIFY(MR_CHAT_ID_TO_DEADDROP),      "to_deaddrop=2")==0 );

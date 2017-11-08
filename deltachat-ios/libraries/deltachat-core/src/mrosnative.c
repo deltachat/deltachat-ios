@@ -17,14 +17,12 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrosnative.c
- * Purpose: Some functions that are called by the backend under certain
- *          circumstances.  The frontents should create a copy of this file
- *          and implement the functions as needed.
- *
  ******************************************************************************/
+
+
+/* Some functions that are called by the backend under certain
+circumstances.  The frontents should create a copy of this file
+and implement the functions as needed, eg. for attaching threads in JNI. */
 
 
 #include <stdlib.h>

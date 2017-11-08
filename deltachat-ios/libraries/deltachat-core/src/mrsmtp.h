@@ -17,12 +17,6 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrsmtp.h
- * Purpose: Use SMTP servers with no dependencies to mrmailbox_t only for
- *          logging.
- *
  ******************************************************************************/
 
 
@@ -48,7 +42,7 @@ typedef struct mrsmtp_t
 	int             m_log_connect_errors;
 	int             m_log_usual_error;
 
-	mrmailbox_t*    m_mailbox;
+	mrmailbox_t*    m_mailbox; /* only for logging! */
 } mrsmtp_t;
 
 mrsmtp_t*    mrsmtp_new          (mrmailbox_t*);

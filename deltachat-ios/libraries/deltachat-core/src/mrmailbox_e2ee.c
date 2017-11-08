@@ -17,23 +17,15 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mre2ee.c
- * Purpose: Handle End-To-End-Encryption
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
-#include "mrmailbox.h"
+#include "mrmailbox_internal.h"
 #include "mrpgp.h"
 #include "mrapeerstate.h"
 #include "mraheader.h"
 #include "mrkeyring.h"
 #include "mrmimeparser.h"
-#include "mrtools.h"
 
 
 static struct mailmime* new_data_part(void* data, size_t data_bytes, char* default_content_type, int default_encoding)

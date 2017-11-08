@@ -17,18 +17,11 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrloginparam.c
- * Purpose: Handle IMAP/POP3/SMTP parameters, see header for details.
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include "mrmailbox.h"
+#include "mrmailbox_internal.h"
 #include "mrloginparam.h"
-#include "mrtools.h"
 
 
 /*******************************************************************************

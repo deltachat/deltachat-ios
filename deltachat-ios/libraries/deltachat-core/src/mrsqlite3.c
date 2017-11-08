@@ -17,38 +17,26 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrsqlite3.c
- * Purpose: MrSqlite3 wraps around SQLite
- *
- *******************************************************************************
- *
- * Some hints to the underlying database:
- *
- * - `PRAGMA cache_size` and `PRAGMA page_size`: As we save BLOBs in external
- *   files, caching is not that important; we rely on the system defaults here
- *   (normally 2 MB cache, 1 KB page size on sqlite < 3.12.0, 4 KB for newer
- *   versions)
- *
- * - We use `sqlite3_last_insert_rowid()` to find out created records - for this
- *   purpose, the primary ID has to be marked using `INTEGER PRIMARY KEY`, see
- *   https://www.sqlite.org/c3ref/last_insert_rowid.html
- *
- * - Some words to the "param" fields:  These fields contains a string with
- *   additonal, named parameters which must not be accessed by a search and/or
- *   are very seldomly used. Moreover, this allows smart minor database updates.
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
-#include "mrmailbox.h"
-#include "mrsqlite3.h"
-#include "mrtools.h"
-#include "mrchat.h"
-#include "mrcontact.h"
+#include "mrmailbox_internal.h"
+
+
+/* This class wraps around SQLite.  Some hints to the underlying database:
+
+- `PRAGMA cache_size` and `PRAGMA page_size`: As we save BLOBs in external
+  files, caching is not that important; we rely on the system defaults here
+  (normally 2 MB cache, 1 KB page size on sqlite < 3.12.0, 4 KB for newer
+  versions)
+
+- We use `sqlite3_last_insert_rowid()` to find out created records - for this
+  purpose, the primary ID has to be marked using `INTEGER PRIMARY KEY`, see
+  https://www.sqlite.org/c3ref/last_insert_rowid.html
+
+- Some words to the "param" fields:  These fields contains a string with
+  additonal, named parameters which must not be accessed by a search and/or
+  are very seldomly used. Moreover, this allows smart minor database updates. */
 
 
 /*******************************************************************************

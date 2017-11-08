@@ -17,20 +17,11 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrjob.c
- * Purpose: Handle jobs
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <memory.h>
-#include "mrmailbox.h"
+#include "mrmailbox_internal.h"
 #include "mrjob.h"
-#include "mrchat.h"
-#include "mrmsg.h"
 #include "mrosnative.h"
 
 

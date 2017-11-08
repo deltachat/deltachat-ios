@@ -17,40 +17,34 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrpgp.c
- * Purpose: End-to-end-encryption and other cryptographic functions
- *          based upon OpenSSL and BSD's netpgp.
- *
- *******************************************************************************
- *
- * If we want to switch to other encryption engines, here are the functions to
- * be replaced.
- *
- * However, eg. GpgME cannot (easily) be used standalone and GnuPG's licence
- * would not allow the original creator of Delta Chat to release a proprietary
- * version, which, however, is required for the Apple store. (NB: the original
- * creator is the only person who could do this, a normal licensee is not
- * allowed to do so at all)
- *
- * So, we do not see a simple alternative - but everyone is welcome to implement
- * one :-)
- *
  ******************************************************************************/
 
 
-#include <string.h>
+/* End-to-end-encryption and other cryptographic functions based upon OpenSSL
+and BSD's netpgp.
+
+If we want to switch to other encryption engines, here are the functions to
+be replaced.
+
+However, eg. GpgME cannot (easily) be used standalone and GnuPG's licence
+would not allow the original creator of Delta Chat to release a proprietary
+version, which, however, is required for the Apple store. (NB: the original
+creator is the only person who could do this, a normal licensee is not
+allowed to do so at all)
+
+So, we do not see a simple alternative - but everyone is welcome to implement
+one :-) */
+
+
 #include <openssl/ssl.h>
 #include <openssl/rand.h>
 #include <openssl/rsa.h>
 #include <openssl/evp.h>
 #include <netpgp-extra.h>
-#include "mrmailbox.h"
+#include "mrmailbox_internal.h"
 #include "mrkey.h"
 #include "mrkeyring.h"
 #include "mrpgp.h"
-#include "mrtools.h"
 
 
 static pgp_io_t s_io;

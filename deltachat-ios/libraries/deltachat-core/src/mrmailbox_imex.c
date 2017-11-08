@@ -17,26 +17,19 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrmailbox_imex.c - Import and Export things
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
 #include <dirent.h>
 #include <openssl/rand.h>
 #include <libetpan/mmapstring.h>
 #include <netpgp-extra.h>
-#include "mrmailbox.h"
+#include "mrmailbox_internal.h"
 #include "mrmimeparser.h"
 #include "mrosnative.h"
 #include "mrloginparam.h"
 #include "mraheader.h"
 #include "mrapeerstate.h"
-#include "mrtools.h"
 #include "mrpgp.h"
 
 static int s_imex_do_exit = 1; /* the value 1 avoids MR_IMEX_CANCEL from stopping already stopped threads */

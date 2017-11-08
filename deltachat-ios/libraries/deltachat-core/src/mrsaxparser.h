@@ -17,22 +17,6 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrsaxparser.h
- * Purpose: mrsaxparser_t parses XML and HTML files that may not be wellformed
- *          and spits out all text and tags found.
- *          - Attributes are recognized with single, double or no quotes
- *          - Whitespace ignored inside tags
- *          - Self-closing tags are issued as open-tag plus close-tag
- *          - CDATA is supoorted; DTA, comments, processing instruction are
- *            skipped properly
- *          - The parser does not care about hierarchy, if needed this can be
- *            done by the user.
- *          - Input and output strings must be UTF-8 encoded.
- *          - Tag and attribute names are converted to lower case.
- *          - Parsing does not stop on errors; instead errors are recovered.
- *
  ******************************************************************************/
 
 

@@ -17,18 +17,10 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrchatlist.c
- * Purpose: See header
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
-#include "mrmailbox.h"
-#include "mrtools.h"
+#include "mrmailbox_internal.h"
 
 
 /*******************************************************************************
@@ -188,7 +180,7 @@ mrmsg_t* mrchatlist_get_msg_by_index(mrchatlist_t* ths, size_t index)
 }
 
 
-mrpoortext_t* mrchatlist_get_summary_by_index(mrchatlist_t* chatlist, size_t index, mrchat_t* chat)
+mrpoortext_t* mrchatlist_get_summary_by_index(mrchatlist_t* chatlist, size_t index, mrchat_t* chat /*may be NULL*/)
 {
 	/* The summary is created by the chat, not by the last message.
 	This is because we may want to display drafts here or stuff as
@@ -197,21 +189,34 @@ mrpoortext_t* mrchatlist_get_summary_by_index(mrchatlist_t* chatlist, size_t ind
 	message. */
 
 	mrpoortext_t* ret = mrpoortext_new();
+	int           locked = 0;
 	uint32_t      lastmsg_id = 0;
 	mrmsg_t*      lastmsg = NULL;
 	mrcontact_t*  lastcontact = NULL;
+	mrchat_t*     chat_to_delete = NULL;
 
-	if( chatlist == NULL || index >= chatlist->m_cnt || chat == NULL ) {
-		ret->m_text2 = safe_strdup("ErrNoChat");
+	if( chatlist == NULL || index >= chatlist->m_cnt ) {
+		ret->m_text2 = safe_strdup("ErrBadChatlistIndex");
 		goto cleanup;
 	}
 
 	lastmsg_id = (uint32_t)(uintptr_t)carray_get(chatlist->m_chatNlastmsg_ids, index*IDS_PER_RESULT+1);
 
 	/* load data from database */
-	if( lastmsg_id )
-	{
-		mrsqlite3_lock(chatlist->m_mailbox->m_sql);
+	mrsqlite3_lock(chatlist->m_mailbox->m_sql);
+	locked = 1;
+
+		if( chat==NULL ) {
+			chat = mrchat_new(chatlist->m_mailbox);
+			chat_to_delete = chat;
+			if( !mrchat_load_from_db__(chat, (uint32_t)(uintptr_t)carray_get(chatlist->m_chatNlastmsg_ids, index*IDS_PER_RESULT)) ) {
+				ret->m_text2 = safe_strdup("ErrCannotReadChat");
+				goto cleanup;
+			}
+		}
+
+		if( lastmsg_id )
+		{
 
 			lastmsg = mrmsg_new();
 			mrmsg_load_from_db__(lastmsg, chatlist->m_mailbox, lastmsg_id);
@@ -222,8 +227,10 @@ mrpoortext_t* mrchatlist_get_summary_by_index(mrchatlist_t* chatlist, size_t ind
 				mrcontact_load_from_db__(lastcontact, chatlist->m_mailbox->m_sql, lastmsg->m_from_id);
 			}
 
-		mrsqlite3_unlock(chatlist->m_mailbox->m_sql);
-	}
+		}
+
+	mrsqlite3_unlock(chatlist->m_mailbox->m_sql);
+	locked = 0;
 
 	if( chat->m_id == MR_CHAT_ID_ARCHIVED_LINK )
 	{
@@ -254,8 +261,10 @@ mrpoortext_t* mrchatlist_get_summary_by_index(mrchatlist_t* chatlist, size_t ind
 	}
 
 cleanup:
+	if( locked ) { mrsqlite3_unlock(chatlist->m_mailbox->m_sql); }
 	mrmsg_unref(lastmsg);
 	mrcontact_unref(lastcontact);
+	mrchat_unref(chat_to_delete);
 	return ret;
 }
 

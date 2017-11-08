@@ -17,14 +17,12 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrstock.h
- * Purpose: Add translated strings that are used by the messager backend.
- *          As the logging functions may use these strings, do not log any
- *          errors from here.
- *
  ******************************************************************************/
+
+
+/* Add translated strings that are used by the messager backend.
+As the logging functions may use these strings, do not log any
+errors from here. */
 
 
 #include <stdlib.h>

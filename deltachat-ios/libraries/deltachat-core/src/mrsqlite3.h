@@ -17,19 +17,13 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrsqlite3.h
- * Purpose: MrSqlite3 wraps around SQLite
- *
- *******************************************************************************
- *
- * NB: In general, function names ending with a `__` implie that _no_
- * locking takes place inside the functions!  So the caller must make sure, the
- * database is locked as needed.  Of course, the same is true if you call any
- * sqlite3-function directly.
- *
  ******************************************************************************/
+
+
+/* NB: In general, function names ending with a `__` implie that _no_
+locking takes place inside the functions!  So the caller must make sure, the
+database is locked as needed.  Of course, the same is true if you call any
+sqlite3-function directly. */
 
 
 #ifndef __MRSQLITE3_H__
@@ -174,7 +168,7 @@ typedef struct mrsqlite3_t
 	/* helper for MrSqlite3Transaction */
 	int           m_transactionCount;
 
-	mrmailbox_t*  m_mailbox; /* used for logging and to acquire wakelocks, there may be N mrsqlite_t objects per mrmailbox! In practise, we use 2 on backup, 1 otherwise. */
+	mrmailbox_t*  m_mailbox; /* used for logging and to acquire wakelocks, there may be N mrsqlite3_t objects per mrmailbox! In practise, we use 2 on backup, 1 otherwise. */
 
 	/* the user must make sure, only one thread uses sqlite at the same time!
 	for this purpose, all calls must be enclosed by a locked m_critical; use mrsqlite3_lock() for this purpose */

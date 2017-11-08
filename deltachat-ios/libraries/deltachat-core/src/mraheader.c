@@ -17,32 +17,14 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mraheader.c
- * Purpose: Handle Autocrypt:-headers
- *
- *******************************************************************************
- *
- * Delta Chat aims to implement Autocrypt-Level0, see
- * https://autocrypt.readthedocs.io/en/latest/level0.html for details.
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
 #include <ctype.h>
-#include "mrmailbox.h"
-#include "mrtools.h"
+#include "mrmailbox_internal.h"
 #include "mraheader.h"
 #include "mrapeerstate.h"
 #include "mrmimeparser.h"
-
-
-/*******************************************************************************
- * Parse Header
- ******************************************************************************/
 
 
 static void mraheader_empty(mraheader_t* ths)
@@ -61,6 +43,11 @@ static void mraheader_empty(mraheader_t* ths)
 		ths->m_public_key = mrkey_new();
 	}
 }
+
+
+/*******************************************************************************
+ * Render Autocrypt Header
+ ******************************************************************************/
 
 
 char* mraheader_render(const mraheader_t* ths)
@@ -102,7 +89,7 @@ cleanup:
 
 
 /*******************************************************************************
- * Parse Header
+ * Parse Autocrypt Header
  ******************************************************************************/
 
 

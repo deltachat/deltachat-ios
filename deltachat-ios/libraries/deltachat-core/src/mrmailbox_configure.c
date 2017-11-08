@@ -17,23 +17,16 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrmailbox_configure.c
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
 #include <dirent.h>
-#include "mrmailbox.h"
+#include "mrmailbox_internal.h"
 #include "mrloginparam.h"
 #include "mrimap.h"
 #include "mrsmtp.h"
 #include "mrosnative.h"
 #include "mrsaxparser.h"
-#include "mrtools.h"
 #include "mrjob.h"
 
 

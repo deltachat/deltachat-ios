@@ -17,19 +17,10 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrchat.c
- * Purpose: mrchat_t represents a single chat, see header for details.
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
-#include "mrmailbox.h"
-#include "mrtools.h"
-#include "mrcontact.h"
+#include "mrmailbox_internal.h"
 #include "mrapeerstate.h"
 #include "mrjob.h"
 #include "mrsmtp.h"
@@ -51,7 +42,7 @@ int mrmailbox_get_fresh_msg_count__(mrmailbox_t* mailbox, uint32_t chat_id)
 	sqlite3_stmt* stmt = NULL;
 
 	stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_COUNT_FROM_msgs_WHERE_state_AND_chat_id,
-		"SELECT COUNT(*) FROM msgs WHERE state=" MR_STRINGIFY(MR_IN_FRESH) " AND chat_id=?;"); /* we have an index over the state-column, this should be sufficient as there are typically only few fresh messages */
+		"SELECT COUNT(*) FROM msgs WHERE state=" MR_STRINGIFY(MR_STATE_IN_FRESH) " AND chat_id=?;"); /* we have an index over the state-column, this should be sufficient as there are typically only few fresh messages */
 	sqlite3_bind_int(stmt, 1, chat_id);
 
 	if( sqlite3_step(stmt) != SQLITE_ROW ) {
@@ -67,7 +58,7 @@ uint32_t mrmailbox_get_last_deaddrop_fresh_msg__(mrmailbox_t* mailbox)
 	sqlite3_stmt* stmt = NULL;
 
 	stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_id_FROM_msgs_WHERE_fresh_AND_deaddrop,
-		"SELECT id FROM msgs WHERE state=" MR_STRINGIFY(MR_IN_FRESH) " AND chat_id=" MR_STRINGIFY(MR_CHAT_ID_DEADDROP) " ORDER BY timestamp DESC, id DESC;"); /* we have an index over the state-column, this should be sufficient as there are typically only few fresh messages */
+		"SELECT id FROM msgs WHERE state=" MR_STRINGIFY(MR_STATE_IN_FRESH) " AND chat_id=" MR_STRINGIFY(MR_CHAT_ID_DEADDROP) " ORDER BY timestamp DESC, id DESC;"); /* we have an index over the state-column, this should be sufficient as there are typically only few fresh messages */
 
 	if( sqlite3_step(stmt) != SQLITE_ROW ) {
 		return 0;
@@ -404,7 +395,7 @@ int mrmailbox_marknoticed_chat(mrmailbox_t* ths, uint32_t chat_id)
 	mrsqlite3_lock(ths->m_sql);
 
 		stmt = mrsqlite3_predefine__(ths->m_sql, UPDATE_msgs_SET_state_WHERE_chat_id_AND_state,
-			"UPDATE msgs SET state=" MR_STRINGIFY(MR_IN_NOTICED) " WHERE chat_id=? AND state=" MR_STRINGIFY(MR_IN_FRESH) ";");
+			"UPDATE msgs SET state=" MR_STRINGIFY(MR_STATE_IN_NOTICED) " WHERE chat_id=? AND state=" MR_STRINGIFY(MR_STATE_IN_FRESH) ";");
 		sqlite3_bind_int(stmt, 1, chat_id);
 		sqlite3_step(stmt);
 
@@ -671,7 +662,7 @@ carray* mrmailbox_get_fresh_msgs(mrmailbox_t* mailbox)
 			"SELECT m.id"
 				" FROM msgs m"
 				" LEFT JOIN contacts ct ON m.from_id=ct.id"
-				" WHERE m.state=" MR_STRINGIFY(MR_IN_FRESH) " AND m.chat_id!=? AND ct.blocked=0"
+				" WHERE m.state=" MR_STRINGIFY(MR_STATE_IN_FRESH) " AND m.chat_id!=? AND ct.blocked=0"
 				" ORDER BY m.timestamp DESC,m.id DESC;"); /* the list starts with the newest messages*/
 		sqlite3_bind_int(stmt, 1, show_deaddrop? 0 : MR_CHAT_ID_DEADDROP);
 
@@ -1213,7 +1204,7 @@ static void mark_as_error(mrmailbox_t* mailbox, mrmsg_t* msg)
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
-		mrmailbox_update_msg_state__(mailbox, msg->m_id, MR_OUT_ERROR);
+		mrmailbox_update_msg_state__(mailbox, msg->m_id, MR_STATE_OUT_ERROR);
 	mrsqlite3_unlock(mailbox->m_sql);
 	mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, msg->m_chat_id, 0);
 }
@@ -1290,7 +1281,7 @@ void mrmailbox_send_msg_to_smtp(mrmailbox_t* mailbox, mrjob_t* job)
 			free(emlname);
 		}
 
-		mrmailbox_update_msg_state__(mailbox, mimefactory.m_msg->m_id, MR_OUT_DELIVERED);
+		mrmailbox_update_msg_state__(mailbox, mimefactory.m_msg->m_id, MR_STATE_OUT_DELIVERED);
 		if( mimefactory.m_out_encrypted && mrparam_get_int(mimefactory.m_msg->m_param, MRP_GUARANTEE_E2EE, 0)==0 ) {
 			mrparam_set_int(mimefactory.m_msg->m_param, MRP_GUARANTEE_E2EE, 1); /* can upgrade to E2EE - fine! */
 			mrmsg_save_param_to_disk__(mimefactory.m_msg);
@@ -1387,7 +1378,7 @@ uint32_t mrchat_send_msg__(mrchat_t* ths, const mrmsg_t* msg, time_t timestamp)
 	sqlite3_bind_int  (stmt,  4, to_id);
 	sqlite3_bind_int64(stmt,  5, timestamp);
 	sqlite3_bind_int  (stmt,  6, msg->m_type);
-	sqlite3_bind_int  (stmt,  7, MR_OUT_PENDING);
+	sqlite3_bind_int  (stmt,  7, MR_STATE_OUT_PENDING);
 	sqlite3_bind_text (stmt,  8, msg->m_text? msg->m_text : "",  -1, SQLITE_STATIC);
 	sqlite3_bind_text (stmt,  9, msg->m_param->m_packed, -1, SQLITE_STATIC);
 	if( sqlite3_step(stmt) != SQLITE_DONE ) {

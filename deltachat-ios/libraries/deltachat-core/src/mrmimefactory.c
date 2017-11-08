@@ -17,18 +17,11 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrmimefactory.c
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
-#include "mrmailbox.h"
+#include "mrmailbox_internal.h"
 #include "mrmimefactory.h"
-#include "mrtools.h"
 
 #define LINEEND "\r\n" /* lineend used in IMF */
 

@@ -17,26 +17,20 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    main.c
- * Purpose: Testing frame; if used as a lib, this file is obsolete.
- *
- *******************************************************************************
- *
- * Usage:  messenger-backend <databasefile>
- * (for "Code::Blocks, use Project / Set programs' arguments")
- * all further options can be set using the set-command (type ? for help).
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <stdio.h>
+/* This is a CLI program and a little testing frame.  This file must not be
+included when using Delta Chat Core as a library.
+
+Usage:  messenger-backend <databasefile>
+(for "Code::Blocks, use Project / Set programs' arguments")
+all further options can be set using the set-command (type ? for help). */
+
+
 #include <string.h>
 #include "mrmailbox.h"
-#include "mrcmdline.h"
-#include "mrtools.h"
+#include "mrmailbox_internal.h"
 #include "stress.h"
 
 

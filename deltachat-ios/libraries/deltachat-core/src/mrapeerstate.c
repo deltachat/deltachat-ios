@@ -17,29 +17,16 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrapeerstate.c
- * Purpose: mrapeerstate_t represents the state of an Autocrypt peer
- *
- *******************************************************************************
- *
- * Delta Chat aims to implement Autocrypt-Level0, see
- * https://autocrypt.readthedocs.io/en/latest/level0.html for details.
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
-#include "mrmailbox.h"
-#include "mrtools.h"
+#include "mrmailbox_internal.h"
 #include "mrapeerstate.h"
 #include "mraheader.h"
 
 
 /*******************************************************************************
- * Load/save
+ * mrapeerstate_t represents the state of an Autocrypt peer - Load/save
  ******************************************************************************/
 
 

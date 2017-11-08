@@ -17,12 +17,6 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrsimplify.h
- * Purpose: Simplify and normalise text: Remove quotes, signatures, unnecessary
- *          lineends etc.
- *
  ******************************************************************************/
 
 
@@ -44,7 +38,9 @@ typedef struct mrsimplify_t
 mrsimplify_t* mrsimplify_new           ();
 void          mrsimplify_unref         (mrsimplify_t*);
 
-/* The data returned from Simplify() must be free()'d when no longer used, private */
+/* Simplify and normalise text: Remove quotes, signatures, unnecessary
+lineends etc.
+The data returned from Simplify() must be free()'d when no longer used, private */
 char*         mrsimplify_simplify      (mrsimplify_t*, const char* txt_unterminated, int txt_bytes, int is_html);
 
 

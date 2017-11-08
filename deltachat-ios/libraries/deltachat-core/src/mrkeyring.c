@@ -17,19 +17,11 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrkeyring.c
- * Purpose: Handle keys
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <string.h>
+#include "mrmailbox_internal.h"
 #include <memory.h>
-#include <sqlite3.h>
-#include "mrmailbox.h"
 #include "mrkey.h"
 #include "mrkeyring.h"
 #include "mrtools.h"

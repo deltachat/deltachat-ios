@@ -17,17 +17,10 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrpoortext.c
- * Purpose: See header.
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include "mrmailbox.h"
-#include "mrtools.h"
+#include "mrmailbox_internal.h"
 
 
 /*******************************************************************************

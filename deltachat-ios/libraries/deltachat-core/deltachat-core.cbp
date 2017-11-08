@@ -465,6 +465,7 @@
 		<Unit filename="src/mrmailbox.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/mrmailbox.h" />
 		<Unit filename="src/mrmailbox_configure.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -474,6 +475,7 @@
 		<Unit filename="src/mrmailbox_imex.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/mrmailbox_internal.h" />
 		<Unit filename="src/mrmailbox_log.c">
 			<Option compilerVar="CC" />
 		</Unit>

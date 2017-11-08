@@ -17,14 +17,12 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrimap.h
- * Purpose: Reading from IMAP servers with no dependencies to the database.
- *          mrmailbox_t is only used for logging and to get information about
- *          the online state.
- *
  ******************************************************************************/
+
+
+/* Purpose: Reading from IMAP servers with no dependencies to the database.
+mrmailbox_t is only used for logging and to get information about 
+the online state. */
 
 
 #ifndef __MRIMAP_H__

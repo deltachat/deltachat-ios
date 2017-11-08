@@ -17,30 +17,21 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/ .
  *
- *******************************************************************************
- *
- * File:    mrmailbox_log.c
- * Purpose: Error handling.
- *
- *******************************************************************************
- *
- * Asynchronous "Thread-errors" are reported by the mrmailbox_log_error()
- * function.  These errors must be shown to the user by a bubble or so.
- *
- * "Normal" errors are usually returned by a special value (null or so) and are
- * usually not reported using mrmailbox_log_error() - its up to the caller to
- * decide, what should be reported or done.  However, these "Normal" errors
- * are usually logged by mrmailbox_log_warning().
- *
  ******************************************************************************/
 
 
-#include <stdlib.h>
-#include <stdio.h>
+/* Asynchronous "Thread-errors" are reported by the mrmailbox_log_error()
+function.  These errors must be shown to the user by a bubble or so.
+
+"Normal" errors are usually returned by a special value (null or so) and are
+usually not reported using mrmailbox_log_error() - its up to the caller to
+decide, what should be reported or done.  However, these "Normal" errors
+are usually logged by mrmailbox_log_warning(). */
+
+
 #include <stdarg.h>
 #include <memory.h>
-#include "mrmailbox.h"
-#include "mrtools.h"
+#include "mrmailbox_internal.h"
 
 
 /*******************************************************************************
