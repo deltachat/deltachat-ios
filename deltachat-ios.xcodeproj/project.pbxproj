@@ -65,6 +65,8 @@
 		AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */; };
 		AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DE1FB3246400DCDD78 /* Message.swift */; };
 		AEACE2E11FB3271700DCDD78 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E01FB3271700DCDD78 /* SampleData.swift */; };
+		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
+		AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E41FB32E1900DCDD78 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,6 +208,8 @@
 		AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		AEACE2DE1FB3246400DCDD78 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AEACE2E01FB3271700DCDD78 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		AEACE2E41FB32E1900DCDD78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +348,8 @@
 				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
 				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
 				AEACE2E01FB3271700DCDD78 /* SampleData.swift */,
+				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
+				AEACE2E41FB32E1900DCDD78 /* Utils.swift */,
 			);
 			path = "deltachat-ios";
 			sourceTree = "<group>";
@@ -641,6 +647,7 @@
 				7A7923761FB0A2C800BC2DE5 /* writer.c in Sources */,
 				7A9FB5571FB08557001FEA36 /* stress.c in Sources */,
 				7A9FB53F1FB08557001FEA36 /* mrimap.c in Sources */,
+				AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */,
 				7A79236F1FB0A2C800BC2DE5 /* openssl_crypto.c in Sources */,
 				7A9FB5391FB08557001FEA36 /* mrapeerstate.c in Sources */,
 				7A9FB5531FB08557001FEA36 /* mrsmtp.c in Sources */,
@@ -654,6 +661,7 @@
 				7A9FB53C1FB08557001FEA36 /* mrcmdline.c in Sources */,
 				7A79236A1FB0A2C800BC2DE5 /* compress.c in Sources */,
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
+				AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
