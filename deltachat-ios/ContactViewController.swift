@@ -12,10 +12,16 @@ class Contact {
     private var contactPointer: UnsafeMutablePointer<mrcontact_t>
 
     var name: String {
+        if contactPointer.pointee.m_name == nil {
+            return email
+        }
         return String(cString: contactPointer.pointee.m_name)
     }
     
     var email: String {
+        if contactPointer.pointee.m_addr == nil {
+            return "error: no email in contact"
+        }
         return String(cString: contactPointer.pointee.m_addr)
     }
     
@@ -47,8 +53,6 @@ class ContactViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +65,6 @@ class ContactViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        contactTable.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
         contactTable.dataSource = self.contactTableDataSource
         contactTable.delegate = self.contactTableDelegate
         
@@ -92,12 +95,20 @@ class ContactTableDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self), for: indexPath)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self), for: indexPath)
+        
+        let cell:UITableViewCell
+        if let c = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self)) {
+            cell = c
+        } else {
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: String(describing: UITableViewCell.self))
+        }
         let row = indexPath.row
         let id = contacts[row]
         let contact = Contact(id: id)
         
         cell.textLabel?.text = contact.name
+        cell.detailTextLabel?.text = contact.email
 
         return cell
     }
