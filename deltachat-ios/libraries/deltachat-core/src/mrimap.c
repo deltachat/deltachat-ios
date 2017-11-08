@@ -937,6 +937,10 @@ static void* watch_thread_entry_point(void* entry_arg)
 				}
 			}
 
+			#ifdef __APPLE__
+			seconds_to_wait = 10; // HACK to force iOS not to work IMAP-IDLE which does not work for now, see also (*)
+			#endif
+
 			/* wait */
 			mrmailbox_log_info(ths->m_mailbox, 0, "IMAP-watch-thread waits %i seconds.", (int)seconds_to_wait);
 			pthread_mutex_lock(&ths->m_watch_condmutex);
@@ -1224,6 +1228,11 @@ int mrimap_connect(mrimap_t* ths, const mrloginparam_t* lp)
 		/* we set the following flags here and not in setup_handle_if_needed__() as they must not change during connection */
 		ths->m_can_idle = mailimap_has_idle(ths->m_hEtpan);
 		ths->m_has_xlist = mailimap_has_xlist(ths->m_hEtpan);
+
+		#ifndef __APPLE__
+		ths->m_can_idle = 0; // HACK to force iOS not to work IMAP-IDLE which does not work for now, see also (*)
+		#endif
+
 
 		if( ths->m_hEtpan->imap_connection_info && ths->m_hEtpan->imap_connection_info->imap_capability ) {
 			/* just log the whole capabilities list (the mailimap_has_*() function also use this list, so this is a good overview on problems) */
