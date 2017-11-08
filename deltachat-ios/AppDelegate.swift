@@ -20,6 +20,15 @@ func sendMessageSwiftOnly(chatPointer: UnsafeMutablePointer<mrchat_t>, msgPointe
     }
 }
 
+func sendTestMessage(name n: String, email: String, text: String) {
+//    let contactId = mrmailbox_create_contact(mailboxPointer, "Björn", "bpetersen@b44t.com")
+    let contactId = mrmailbox_create_contact(mailboxPointer, n, email)
+    let chatId = mrmailbox_create_chat_by_contact_id(mailboxPointer, contactId)
+    let chatPointer = mrmailbox_get_chat(mailboxPointer, chatId)
+    let msgPointer = mrmsg_new()!
+    sendMessageViaCore(chatPointer: chatPointer!, msgPointer: msgPointer, msg: text)
+}
+
 func sendMessageViaCore(chatPointer: UnsafeMutablePointer<mrchat_t>, msgPointer: UnsafeMutablePointer<mrmsg_t>, msg: String) {
     mrmsg_set_text(msgPointer, msg)
     msgPointer.pointee.m_type = MR_MSG_TEXT
@@ -46,13 +55,8 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         if data1 == 0 {
             fatalError("MR_EVENT_CONFIGURE_ENDED: (TODO: add dialogue here)")
         } else {
-            let contactId = mrmailbox_create_contact(mailboxPointer, "Björn", "bpetersen@b44t.com")
-            let chatId = mrmailbox_create_chat_by_contact_id(mailboxPointer, contactId)
-            let chatPointer = mrmailbox_get_chat(mailboxPointer, chatId)
-            let msgPointer = mrmsg_new()!
-
-// sendMessageSwiftOnly(chatPointer: chatPointer!, msgPointer: msgPointer, msg: "(sent with Swift) test with new dc core")
-            sendMessageViaCore(chatPointer: chatPointer!, msgPointer: msgPointer, msg: "(sent with new core function) test with new dc core")
+            sendTestMessage(name: "Björn", email: "bpetersen@b44t.com", text: "bla")
+            sendTestMessage(name: "Q", email: "quickmsgtest1@b44t.com", text: "bli")
         }
         
         break
@@ -101,8 +105,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(dbfile)
         
         let r = mrmailbox_open(mailboxPointer, dbfile, nil)
+        
         mrmailbox_set_config(mailboxPointer, "addr", "alice@librechat.net")
         mrmailbox_set_config(mailboxPointer, "mail_pw", "foobar")
+        
         mrmailbox_configure_and_connect(mailboxPointer)
         print(r)
 

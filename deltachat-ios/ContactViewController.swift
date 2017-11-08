@@ -75,7 +75,7 @@ class ContactViewController: UIViewController {
         contactTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         contactTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
