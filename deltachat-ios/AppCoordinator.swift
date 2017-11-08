@@ -23,6 +23,9 @@ class AppCoordinator: Coordinator {
         let chatNavigationController = UINavigationController(rootViewController: chatViewController)
         
         let settingsViewController = UIViewController()
+        let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
+        settingsViewController.title = "Settings"
+        settingsViewController.navigationController?.navigationBar.prefersLargeTitles = true
         
         let chatIcon = #imageLiteral(resourceName: "ic_chat_36pt").withRenderingMode(.alwaysTemplate)
         let contactsIcon = #imageLiteral(resourceName: "ic_people_36pt").withRenderingMode(.alwaysTemplate)
@@ -34,14 +37,14 @@ class AppCoordinator: Coordinator {
         
         contactNavigationController.tabBarItem = contactTabbarItem
         chatNavigationController.tabBarItem = chatTabbarItem
-        settingsViewController.tabBarItem = settingsTabbarItem
+        settingsNavigationController.tabBarItem = settingsTabbarItem
         
         let tabBarController = UITabBarController()
         
         tabBarController.viewControllers = [
             contactNavigationController,
             chatNavigationController,
-            settingsViewController,
+            settingsNavigationController,
         ]
         
         window.rootViewController = tabBarController
