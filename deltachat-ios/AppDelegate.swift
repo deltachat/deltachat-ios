@@ -55,12 +55,21 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         if data1 == 0 {
             fatalError("MR_EVENT_CONFIGURE_ENDED: (TODO: add dialogue here)")
         } else {
-            sendTestMessage(name: "Björn", email: "bpetersen@b44t.com", text: "bla")
-            sendTestMessage(name: "Q", email: "quickmsgtest1@b44t.com", text: "bli")
+            sendTestMessage(name: "Björn", email: "bpetersen@b44t.com", text: "geraffel")
+            sendTestMessage(name: "Q", email: "quickmsgtest1@b44t.com", text: "hugu")
         }
         
         break
 //        mrmailbox_send
+    case MR_EVENT_MSGS_CHANGED:
+        // TODO: reload all views
+        // e.g. when message appears that is not new, i.e. no need
+        // to set badge / notification
+        break
+    case MR_EVENT_INCOMING_MSG:
+        // TODO: reload all views + set notification / badge
+        // mrmailbox_get_fresh_msgs
+        break
     default:
         break
     }
