@@ -65,6 +65,9 @@ class ContactViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Contacts"
+        navigationController?.navigationBar.prefersLargeTitles = true
+
         contactTable.dataSource = self.contactTableDataSource
         contactTable.delegate = self.contactTableDelegate
         

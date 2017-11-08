@@ -17,6 +17,7 @@ class AppCoordinator: Coordinator {
     
     func setupViewControllers(window: UIWindow) {
         let contactViewController = ContactViewController(coordinator: self)
+        let contactNavigationController = UINavigationController(rootViewController: contactViewController)
         
         let chatViewController = ChatListController()
         let chatNavigationController = UINavigationController(rootViewController: chatViewController)
@@ -31,14 +32,14 @@ class AppCoordinator: Coordinator {
         let chatTabbarItem = UITabBarItem(title: "Chats", image: chatIcon, tag: 1)
         let settingsTabbarItem = UITabBarItem(title: "Settings", image: settingsIcon, tag: 2)
         
-        contactViewController.tabBarItem = contactTabbarItem
+        contactNavigationController.tabBarItem = contactTabbarItem
         chatNavigationController.tabBarItem = chatTabbarItem
         settingsViewController.tabBarItem = settingsTabbarItem
         
         let tabBarController = UITabBarController()
         
         tabBarController.viewControllers = [
-            contactViewController,
+            contactNavigationController,
             chatNavigationController,
             settingsViewController,
         ]
