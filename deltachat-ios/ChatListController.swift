@@ -43,6 +43,7 @@ extension ChatListController: ChatPresenter {
     func displayChat(index: Int) {
         let chatVC = ChatViewController()
         chatVC.title = chats[index].0
+        chatVC.hidesBottomBarWhenPushed = true 
         self.navigationController?.pushViewController(chatVC, animated: true)
     }
 }
