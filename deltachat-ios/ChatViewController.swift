@@ -209,12 +209,11 @@ extension ChatViewController: MessagesDataSource {
     func currentSender() -> Sender {
         
         let currentSender = Sender(id: "1", displayName: "Alice")
-        return SampleData.shared.currentSender
+        return currentSender
     }
     
     func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
         return self.messageIds.count
-//        return messageList.count
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
@@ -224,10 +223,7 @@ extension ChatViewController: MessagesDataSource {
         let contact = MRContact(id: message.fromContactId)
         
         let sender = Sender(id: "\(contact.id)", displayName: contact.name)
-        
         return Message(text: message.text ?? "- empty -", sender: sender, messageId: "\(messageId)", date: Date(timeIntervalSince1970: Double(message.timestamp)))
-        
-//        return messageList[indexPath.section]
     }
     
     func avatar(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Avatar {
