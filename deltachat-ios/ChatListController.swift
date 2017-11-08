@@ -163,7 +163,13 @@ class ChatListController: UIViewController {
 
 extension ChatListController: ChatPresenter {
     func displayChat(index: Int) {
-        let chatVC = ChatViewController()
+        guard let chatList = self.chatList else {
+            fatalError("chatList was nil in ChatPresenter extension")
+        }
+        
+        let chatId = chatList.getChatId(index: index)
+
+        let chatVC = ChatViewController(chatId: chatId)
         chatVC.title = chats[index].0
         chatVC.hidesBottomBarWhenPushed = true 
         self.navigationController?.pushViewController(chatVC, animated: true)

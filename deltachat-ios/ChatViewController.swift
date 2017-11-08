@@ -11,7 +11,24 @@ import MessageKit
 import MapKit
 
 class ChatViewController: MessagesViewController {
-
+    let chatId: Int
+    var messageIds:[Int] = []
+    
+    init(chatId: Int) {
+        self.chatId = chatId
+        super.init(nibName: nil, bundle: nil)
+        self.getMessageIds()
+    }
+    
+    func getMessageIds() {
+        let c_messageIds = mrmailbox_get_chat_msgs(mailboxPointer, UInt32(self.chatId), 0, 0)
+        self.messageIds = Utils.copyAndFreeArray(inputArray: c_messageIds)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var messageList: [Message] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -191,11 +208,15 @@ extension ChatViewController: MessagesDataSource {
     }
     
     func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
-        return messageList.count
+        return self.messageIds.count
+//        return messageList.count
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        return messageList[indexPath.section]
+        let sender = Sender(id: "blubber", displayName: "Björn")
+        return Message(text: "test --", sender: sender, messageId: "id", date: Date(timeIntervalSince1970: 0))
+        
+//        return messageList[indexPath.section]
     }
     
     func avatar(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Avatar {
