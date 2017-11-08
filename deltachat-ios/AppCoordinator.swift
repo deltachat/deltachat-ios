@@ -8,10 +8,15 @@
 
 import UIKit
 
-class AppCoordinator {
+protocol Coordinator {
+    func setupViewControllers(window: UIWindow)
+}
+
+
+class AppCoordinator: Coordinator {
     
-    func setupMainViewControllers(window: UIWindow) {
-        let contactViewController = UIViewController()
+    func setupViewControllers(window: UIWindow) {
+        let contactViewController = ContactViewController(coordinator: self)
         contactViewController.view.backgroundColor = UIColor.red
         
         let chatViewController = ChatListController()

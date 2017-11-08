@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             fatalError("window was nil in app delegate")
         }
         let appCoordinator = AppCoordinator()
-        appCoordinator.setupMainViewControllers(window: window)
+        appCoordinator.setupViewControllers(window: window)
         
     
         

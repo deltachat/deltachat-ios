@@ -67,6 +67,7 @@
 		AEACE2E11FB3271700DCDD78 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E01FB3271700DCDD78 /* SampleData.swift */; };
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
 		AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E41FB32E1900DCDD78 /* Utils.swift */; };
+		AEACE2E91FB34D9100DCDD78 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E81FB34D9100DCDD78 /* ContactViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +211,7 @@
 		AEACE2E01FB3271700DCDD78 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AEACE2E41FB32E1900DCDD78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		AEACE2E81FB34D9100DCDD78 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -350,6 +352,7 @@
 				AEACE2E01FB3271700DCDD78 /* SampleData.swift */,
 				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
 				AEACE2E41FB32E1900DCDD78 /* Utils.swift */,
+				AEACE2E81FB34D9100DCDD78 /* ContactViewController.swift */,
 			);
 			path = "deltachat-ios";
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A79236E1FB0A2C800BC2DE5 /* misc.c in Sources */,
+				AEACE2E91FB34D9100DCDD78 /* ContactViewController.swift in Sources */,
 				7A9FB5561FB08557001FEA36 /* mrtools.c in Sources */,
 				7A7923731FB0A2C800BC2DE5 /* signature.c in Sources */,
 				7A9FB5541FB08557001FEA36 /* mrsqlite3.c in Sources */,
