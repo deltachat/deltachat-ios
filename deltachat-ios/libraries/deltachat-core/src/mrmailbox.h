@@ -357,8 +357,12 @@ int           mrchat_get_fresh_msg_count   (mrchat_t*);
 int           mrchat_set_draft             (mrchat_t*, const char*); /* Save draft in object and, if changed, in database.  May result in "MR_EVENT_MSGS_UPDATED".  Returns true/false. */
 
 
+/* send a simple text message to the given chat. */
+uint32_t      mrmailbox_send_text_msg      (mrmailbox_t*, uint32_t chat_id, const char* text_to_send);
+
+
 /* save message in database and send it, the given message object is not unref'd by the function but some fields are set up! */
-uint32_t      mrchat_send_msg              (mrchat_t*, mrmsg_t*);
+uint32_t      mrmailbox_send_msg           (mrmailbox_t*, uint32_t chat_id, mrmsg_t*);
 
 
 

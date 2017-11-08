@@ -1121,7 +1121,7 @@ int mrmailbox_delete_chat(mrmailbox_t* mailbox, uint32_t chat_id)
 		mrparam_set_int(msg->m_param, MRP_SYSTEM_CMD, MR_SYSTEM_MEMBER_REMOVED_FROM_GROUP);
 		mrparam_set    (msg->m_param, MRP_SYSTEM_CMD_PARAM, contact->m_addr);
 		mrparam_set_int(msg->m_param, MRP_DEL_AFTER_SEND, link_msg_to_chat_deletion);
-		mrchat_send_msg(chat, msg);
+		mrmailbox_send_msg(mailbox, chat->m_id, msg);
 	}
 	else
 	#endif
@@ -1397,16 +1397,36 @@ cleanup:
 }
 
 
-uint32_t mrchat_send_msg(mrchat_t* ths, mrmsg_t* msg)
+uint32_t mrmailbox_send_text_msg(mrmailbox_t* mailbox, uint32_t chat_id, const char* text_to_send)
+{
+	mrmsg_t* msg = mrmsg_new();
+	uint32_t ret = 0;
+
+	if( mailbox == NULL || chat_id <= MR_CHAT_ID_LAST_SPECIAL || text_to_send == NULL ) {
+		goto cleanup;
+	}
+
+	msg->m_type = MR_MSG_TEXT;
+	mrmsg_set_text(msg, text_to_send);
+
+	ret = mrmailbox_send_msg(mailbox, chat_id, msg);
+
+cleanup:
+	mrmsg_unref(msg);
+	return ret;
+}
+
+
+uint32_t mrmailbox_send_msg(mrmailbox_t* mailbox, uint32_t chat_id, mrmsg_t* msg)
 {
 	char* pathNfilename = NULL;
 
-	if( ths == NULL || msg == NULL || ths->m_id <= MR_CHAT_ID_LAST_SPECIAL ) {
+	if( mailbox == NULL || msg == NULL || chat_id <= MR_CHAT_ID_LAST_SPECIAL ) {
 		return 0;
 	}
 
 	msg->m_id      = 0;
-	msg->m_mailbox = ths->m_mailbox;
+	msg->m_mailbox = mailbox;
 
 	if( msg->m_type == MR_MSG_TEXT )
 	{
@@ -1451,7 +1471,7 @@ uint32_t mrchat_send_msg(mrchat_t* ths, mrmsg_t* msg)
 				free(buf);
 			}
 
-			mrmailbox_log_info(ths->m_mailbox, 0, "Attaching \"%s\" for message type #%i.", pathNfilename, (int)msg->m_type);
+			mrmailbox_log_info(mailbox, 0, "Attaching \"%s\" for message type #%i.", pathNfilename, (int)msg->m_type);
 
 			if( msg->m_text ) { free(msg->m_text); }
 			if( msg->m_type == MR_MSG_AUDIO ) {
@@ -1472,27 +1492,33 @@ uint32_t mrchat_send_msg(mrchat_t* ths, mrmsg_t* msg)
 		}
 		else
 		{
-			mrmailbox_log_error(ths->m_mailbox, 0, "Attachment missing for message of type #%i.", (int)msg->m_type); /* should not happen */
+			mrmailbox_log_error(mailbox, 0, "Attachment missing for message of type #%i.", (int)msg->m_type); /* should not happen */
 			goto cleanup;
 		}
 	}
 	else
 	{
-		mrmailbox_log_error(ths->m_mailbox, 0, "Cannot send messages of type #%i.", (int)msg->m_type); /* should not happen */
+		mrmailbox_log_error(mailbox, 0, "Cannot send messages of type #%i.", (int)msg->m_type); /* should not happen */
 		goto cleanup;
 	}
 
-	mrsqlite3_lock(ths->m_mailbox->m_sql);
-	mrsqlite3_begin_transaction__(ths->m_mailbox->m_sql);
+	mrsqlite3_lock(mailbox->m_sql);
+	mrsqlite3_begin_transaction__(mailbox->m_sql);
 
-		mrmailbox_unarchive_chat__(ths->m_mailbox, ths->m_id);
+		mrmailbox_unarchive_chat__(mailbox, chat_id);
 
-		ths->m_mailbox->m_smtp->m_log_connect_errors = 1;
+		mailbox->m_smtp->m_log_connect_errors = 1;
 
-		msg->m_id = mrchat_send_msg__(ths, msg, mr_create_smeared_timestamp__());
+		{
+			mrchat_t* chat = mrchat_new(mailbox);
+			if( mrchat_load_from_db__(chat, chat_id) ) {
+				msg->m_id = mrchat_send_msg__(chat, msg, mr_create_smeared_timestamp__());
+			}
+			mrchat_unref(chat);
+		}
 
-	mrsqlite3_commit__(ths->m_mailbox->m_sql);
-	mrsqlite3_unlock(ths->m_mailbox->m_sql);
+	mrsqlite3_commit__(mailbox->m_sql);
+	mrsqlite3_unlock(mailbox->m_sql);
 
 cleanup:
 	free(pathNfilename);
@@ -1653,7 +1679,7 @@ int mrmailbox_set_chat_name(mrmailbox_t* mailbox, uint32_t chat_id, const char* 
 		msg->m_type = MR_MSG_TEXT;
 		msg->m_text = mrstock_str_repl_string2(MR_STR_MSGGRPNAME, chat->m_name, new_name);
 		mrparam_set_int(msg->m_param, MRP_SYSTEM_CMD, MR_SYSTEM_GROUPNAME_CHANGED);
-		msg->m_id = mrchat_send_msg(chat, msg);
+		msg->m_id = mrmailbox_send_msg(mailbox, chat->m_id, msg);
 		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, chat_id, msg->m_id);
 	}
 	mailbox->m_cb(mailbox, MR_EVENT_CHAT_MODIFIED, chat_id, 0);
@@ -1707,7 +1733,7 @@ int mrmailbox_set_chat_image(mrmailbox_t* mailbox, uint32_t chat_id, const char*
 		mrparam_set    (msg->m_param, MRP_SYSTEM_CMD_PARAM, new_image);
 		msg->m_type = MR_MSG_TEXT;
 		msg->m_text = mrstock_str(new_image? MR_STR_MSGGRPIMGCHANGED : MR_STR_MSGGRPIMGDELETED);
-		msg->m_id = mrchat_send_msg(chat, msg);
+		msg->m_id = mrmailbox_send_msg(mailbox, chat->m_id, msg);
 		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, chat_id, msg->m_id);
 	}
 	mailbox->m_cb(mailbox, MR_EVENT_CHAT_MODIFIED, chat_id, 0);
@@ -1808,7 +1834,7 @@ int mrmailbox_add_contact_to_chat(mrmailbox_t* mailbox, uint32_t chat_id, uint32
 		msg->m_text = mrstock_str_repl_string(MR_STR_MSGADDMEMBER, (contact->m_authname&&contact->m_authname[0])? contact->m_authname : contact->m_addr);
 		mrparam_set_int(msg->m_param, MRP_SYSTEM_CMD, MR_SYSTEM_MEMBER_ADDED_TO_GROUP);
 		mrparam_set    (msg->m_param, MRP_SYSTEM_CMD_PARAM, contact->m_addr);
-		msg->m_id = mrchat_send_msg(chat, msg);
+		msg->m_id = mrmailbox_send_msg(mailbox, chat->m_id, msg);
 		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, chat_id, msg->m_id);
 	}
 	mailbox->m_cb(mailbox, MR_EVENT_CHAT_MODIFIED, chat_id, 0);
@@ -1869,7 +1895,7 @@ int mrmailbox_remove_contact_from_chat(mrmailbox_t* mailbox, uint32_t chat_id, u
 			}
 			mrparam_set_int(msg->m_param, MRP_SYSTEM_CMD, MR_SYSTEM_MEMBER_REMOVED_FROM_GROUP);
 			mrparam_set    (msg->m_param, MRP_SYSTEM_CMD_PARAM, contact->m_addr);
-			msg->m_id = mrchat_send_msg(chat, msg);
+			msg->m_id = mrmailbox_send_msg(mailbox, chat->m_id, msg);
 			mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, chat_id, msg->m_id);
 		}
 	}
