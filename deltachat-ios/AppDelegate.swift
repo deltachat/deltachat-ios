@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AudioToolbox
+
 
 var mailboxPointer:UnsafeMutablePointer<mrmailbox_t>!
 
@@ -125,6 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                        object:nil, queue:nil) {
                         notification in
                         print("----------- MrEventIncomingMsg received --------")
+                        AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
         }
 
 
