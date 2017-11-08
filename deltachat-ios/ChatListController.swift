@@ -41,7 +41,7 @@ class ChatListController: UIViewController {
 
 extension ChatListController: ChatPresenter {
     func displayChat(index: Int) {
-        let chatVC = UIViewController()
+        let chatVC = ChatViewController()
         chatVC.title = chats[index].0
         self.navigationController?.pushViewController(chatVC, animated: true)
     }
