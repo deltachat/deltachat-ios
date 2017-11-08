@@ -21,9 +21,15 @@ class AppCoordinator {
         let settingsViewController = UIViewController()
         settingsViewController.view.backgroundColor = UIColor.blue
         
-        let contactTabbarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
-        let chatTabbarItem = UITabBarItem(title: "Chats", image: nil, tag: 1)
-        let settingsTabbarItem = UITabBarItem(title: "Settings", image: nil, tag: 2)
+        
+        
+        let chatIcon = #imageLiteral(resourceName: "ic_chat_36pt").withRenderingMode(.alwaysTemplate)
+        let contactsIcon = #imageLiteral(resourceName: "ic_people_36pt").withRenderingMode(.alwaysTemplate)
+        let settingsIcon = #imageLiteral(resourceName: "ic_settings_36pt").withRenderingMode(.alwaysTemplate)
+        
+        let contactTabbarItem = UITabBarItem(title: "Contacts", image: contactsIcon, tag: 0)
+        let chatTabbarItem = UITabBarItem(title: "Chats", image: chatIcon, tag: 1)
+        let settingsTabbarItem = UITabBarItem(title: "Settings", image: settingsIcon, tag: 2)
         
         contactViewController.tabBarItem = contactTabbarItem
         chatNavigationController.tabBarItem = chatTabbarItem
