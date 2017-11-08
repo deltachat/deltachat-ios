@@ -115,7 +115,6 @@ class ChatListController: UIViewController {
     var chatList:ChatList?
 
     let chatTable = UITableView()
-    var chats: [(String, String)] = [("Coffee Meeting", "Let's go or what? I..."), ("Daniela", "Did you hear about what Dr. J. was suggesting..."), ("Alice", "Did you receive..."), ("Bob", "Knock..."), ("Eva", "🍏")]
     
     let chatTableDataSource = ChatTableDataSource()
     let chatTableDelegate = ChatTableDelegate()
@@ -148,7 +147,6 @@ class ChatListController: UIViewController {
         chatTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         chatTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         chatTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        chatTableDataSource.chats = chats
         chatTable.dataSource = chatTableDataSource
         chatTableDelegate.chatPresenter = self
         chatTable.delegate = chatTableDelegate
@@ -168,9 +166,8 @@ extension ChatListController: ChatPresenter {
         }
         
         let chatId = chatList.getChatId(index: index)
-
         let chatVC = ChatViewController(chatId: chatId)
-        chatVC.title = chats[index].0
+
         chatVC.hidesBottomBarWhenPushed = true 
         self.navigationController?.pushViewController(chatVC, animated: true)
     }
@@ -178,7 +175,6 @@ extension ChatListController: ChatPresenter {
 
 class ChatTableDataSource: NSObject, UITableViewDataSource  {
     weak var chatList:ChatList?
-    var chats: [(String, String)] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let chatList = self.chatList else {
@@ -201,7 +197,7 @@ class ChatTableDataSource: NSObject, UITableViewDataSource  {
         } else {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: "ChatCell")
         }
-//        let title = chats[indexPath.row].0
+
         let chatId = chatList.getChatId(index: row)
         let chat = Chat(id: chatId)
         let summary = chatList.summary(index: row)
