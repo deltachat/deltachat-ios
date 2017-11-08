@@ -160,6 +160,16 @@ size_t mrchatlist_get_cnt(mrchatlist_t* ths)
 }
 
 
+uint32_t mrchatlist_get_chat_id_by_index(mrchatlist_t* ths, size_t index)
+{
+	if( ths == NULL || ths->m_chatNlastmsg_ids == NULL || index >= ths->m_cnt ) {
+		return 0;
+	}
+
+	return (uint32_t)(uintptr_t)carray_get(ths->m_chatNlastmsg_ids, index*IDS_PER_RESULT);
+}
+
+
 mrchat_t* mrchatlist_get_chat_by_index(mrchatlist_t* ths, size_t index)
 {
 	if( ths == NULL || ths->m_chatNlastmsg_ids == NULL || index >= ths->m_cnt ) {
@@ -167,6 +177,16 @@ mrchat_t* mrchatlist_get_chat_by_index(mrchatlist_t* ths, size_t index)
 	}
 
 	return mrmailbox_get_chat(ths->m_mailbox, (uint32_t)(uintptr_t)carray_get(ths->m_chatNlastmsg_ids, index*IDS_PER_RESULT));
+}
+
+
+uint32_t mrchatlist_get_msg_id_by_index(mrchatlist_t* ths, size_t index)
+{
+	if( ths == NULL || ths->m_chatNlastmsg_ids == NULL || index >= ths->m_cnt ) {
+		return 0;
+	}
+
+	return (uint32_t)(uintptr_t)carray_get(ths->m_chatNlastmsg_ids, index*IDS_PER_RESULT+1);
 }
 
 

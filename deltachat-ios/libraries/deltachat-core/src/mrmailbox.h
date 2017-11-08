@@ -191,8 +191,10 @@ typedef struct mrchatlist_t
 } mrchatlist_t;
 void                 mrchatlist_unref                    (mrchatlist_t*);
 size_t               mrchatlist_get_cnt                  (mrchatlist_t*);
-mrchat_t*            mrchatlist_get_chat_by_index        (mrchatlist_t*, size_t index); /* result must be unref'd */
-mrmsg_t*             mrchatlist_get_msg_by_index         (mrchatlist_t*, size_t index); /* result must be unref'd */
+uint32_t             mrchatlist_get_chat_id_by_index     (mrchatlist_t*, size_t index);
+uint32_t             mrchatlist_get_msg_id_by_index      (mrchatlist_t*, size_t index);
+mrchat_t*            mrchatlist_get_chat_by_index        (mrchatlist_t*, size_t index); /* deprecated - result must be unref'd */
+mrmsg_t*             mrchatlist_get_msg_by_index         (mrchatlist_t*, size_t index); /* deprecated - result must be unref'd */
 
 
 /* Get a summary for a chatlist index. The last parameter can be set to speed up
