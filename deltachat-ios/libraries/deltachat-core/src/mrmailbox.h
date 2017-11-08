@@ -211,6 +211,7 @@ has the following format:
                    message
 - m_state          the state of the message as one of the MR_STATE_*
                    identifiers.  0 if there is no message.
+The function never returns NULL.
 */
 mrpoortext_t*        mrchatlist_get_summary_by_index     (mrchatlist_t*, size_t index, mrchat_t*);
 

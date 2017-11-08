@@ -368,7 +368,7 @@ static void* configure_thread_entry_point(void* entry_arg)
 	mrmailbox_t*    mailbox = (mrmailbox_t*)entry_arg;
 	mrosnative_setup_thread(mailbox); /* must be very first */
 
-	int             success = 0, i;
+	int             success = 0, locked = 0, i;
 	int             imap_connected = 0;
 
 	mrloginparam_t* param = mrloginparam_new();
@@ -395,8 +395,12 @@ static void* configure_thread_entry_point(void* entry_arg)
 	 **************************************************************************/
 
 	mrsqlite3_lock(mailbox->m_sql);
+	locked = 1;
+
 		mrloginparam_read__(param, mailbox->m_sql, "");
+
 	mrsqlite3_unlock(mailbox->m_sql);
+	locked = 0;
 
 	if( param->m_addr == NULL ) {
 		mrmailbox_log_error(mailbox, 0, "Please enter the email address.");
@@ -606,12 +610,20 @@ static void* configure_thread_entry_point(void* entry_arg)
 	PROGRESS(90)
 
 	/* configuration success - write back the configured parameters with the "configured_" prefix; also write the "configured"-flag */
-	mrloginparam_write__(param, mailbox->m_sql, "configured_" /*the trailing underscore is correct*/);
-	mrsqlite3_set_config_int__(mailbox->m_sql, "configured", 1);
+	mrsqlite3_lock(mailbox->m_sql);
+	locked = 1;
+
+		mrloginparam_write__(param, mailbox->m_sql, "configured_" /*the trailing underscore is correct*/);
+		mrsqlite3_set_config_int__(mailbox->m_sql, "configured", 1);
+
+	mrsqlite3_unlock(mailbox->m_sql);
+	locked = 0;
+
 	success = 1;
 	mrmailbox_log_info(mailbox, 0, "Configure completed successfully.");
 
 exit_:
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 	if( !success && imap_connected ) {
 		mrimap_disconnect(mailbox->m_imap);
 	}

@@ -208,7 +208,7 @@ mrpoortext_t* mrchatlist_get_summary_by_index(mrchatlist_t* chatlist, size_t ind
 	Also, sth. as "No messages" would not work if the summary comes from a
 	message. */
 
-	mrpoortext_t* ret = mrpoortext_new();
+	mrpoortext_t* ret = mrpoortext_new(); /* the function never returns NULL */
 	int           locked = 0;
 	uint32_t      lastmsg_id = 0;
 	mrmsg_t*      lastmsg = NULL;
