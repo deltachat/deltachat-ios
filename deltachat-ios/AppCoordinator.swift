@@ -17,16 +17,11 @@ class AppCoordinator: Coordinator {
     
     func setupViewControllers(window: UIWindow) {
         let contactViewController = ContactViewController(coordinator: self)
-        contactViewController.view.backgroundColor = UIColor.red
         
         let chatViewController = ChatListController()
         let chatNavigationController = UINavigationController(rootViewController: chatViewController)
         
-        chatViewController.view.backgroundColor = UIColor.green
         let settingsViewController = UIViewController()
-        settingsViewController.view.backgroundColor = UIColor.blue
-        
-        
         
         let chatIcon = #imageLiteral(resourceName: "ic_chat_36pt").withRenderingMode(.alwaysTemplate)
         let contactsIcon = #imageLiteral(resourceName: "ic_people_36pt").withRenderingMode(.alwaysTemplate)
