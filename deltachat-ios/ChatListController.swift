@@ -8,6 +8,74 @@
 
 import UIKit
 
+class Chat {
+    
+    private var chatPointer: UnsafeMutablePointer<mrchat_t>
+    
+    var id: Int {
+        return Int(chatPointer.pointee.m_id)
+    }
+    
+    var name: String {
+        if chatPointer.pointee.m_name == nil {
+            return "Error - no name"
+        }
+        return String(cString: chatPointer.pointee.m_name)
+    }
+    
+    var type: Int {
+        return Int(chatPointer.pointee.m_type)
+    }
+    
+    init(id: Int) {
+        chatPointer = mrmailbox_get_chat(mailboxPointer, UInt32(id))
+    }
+    
+    deinit {
+        mrchat_unref(chatPointer)
+    }
+}
+
+class PoorText {
+    
+    private var poorTextPointer: UnsafeMutablePointer<mrpoortext_t>
+    
+    var text1: String? {
+        if poorTextPointer.pointee.m_text1 == nil {
+            return nil
+        }
+        return String(cString: poorTextPointer.pointee.m_text1)
+    }
+    
+    var text2: String? {
+        if poorTextPointer.pointee.m_text2 == nil {
+            return nil
+        }
+        return String(cString: poorTextPointer.pointee.m_text2)
+    }
+    
+    var text1Meaning: Int {
+        return Int(poorTextPointer.pointee.m_text1_meaning)
+    }
+    
+    var timeStamp: Int {
+        return Int(poorTextPointer.pointee.m_timestamp)
+    }
+    
+    var state: Int {
+        return Int(poorTextPointer.pointee.m_state)
+    }
+    
+    // takes ownership of specified pointer
+    init(poorTextPointer: UnsafeMutablePointer<mrpoortext_t>) {
+        self.poorTextPointer = poorTextPointer
+    }
+    
+    deinit {
+        mrpoortext_unref(poorTextPointer)
+    }
+}
+
 class ChatListController: UIViewController {
 
     let chatTable = UITableView()
