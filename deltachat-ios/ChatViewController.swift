@@ -216,7 +216,14 @@ extension ChatViewController: MessagesDataSource {
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
+        let section = indexPath.section
+        let messageId = messageIds[section]
+        
+        
+        
         let sender = Sender(id: "blubber", displayName: "Björn")
+        
+        
         return Message(text: "test --", sender: sender, messageId: "id", date: Date(timeIntervalSince1970: 0))
         
 //        return messageList[indexPath.section]
