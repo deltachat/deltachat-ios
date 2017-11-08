@@ -165,8 +165,11 @@ class ChatListController: UIViewController {
     
     let chatTableDataSource = ChatTableDataSource()
     let chatTableDelegate = ChatTableDelegate()
+
+    var msgChangedObserver: Any?
+    var incomingMsgObserver: Any?
     
-    override func viewWillAppear(_ animated: Bool) {
+    func getChatList() {
         guard let chatlistPointer = mrmailbox_get_chatlist(mailboxPointer, 0, nil) else {
             fatalError("chatlistPointer was nil")
         }
@@ -175,13 +178,37 @@ class ChatListController: UIViewController {
         
         chatTableDataSource.chatList = self.chatList
         chatTable.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getChatList()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let nc = NotificationCenter.default
+        msgChangedObserver = nc.addObserver(forName:Notification.Name(rawValue:"MrEventMsgsChanged"),
+                                            object:nil, queue:nil) {
+                                                notification in
+                                                print("----------- MrEventMsgsChanged notification received --------")
+                                                self.getChatList()
+        }
         
-        /*
-        let c_contacts = mrmailbox_get_known_contacts(mailboxPointer, nil)
-        self.contactIds = Utils.copyAndFreeArray(inputArray: c_contacts)
-        contactTableDataSource.contacts = self.contactIds
-        contactTable.reloadData()
- */
+        incomingMsgObserver = nc.addObserver(forName:Notification.Name(rawValue:"MrEventIncomingMsg"),
+                                             object:nil, queue:nil) {
+                                                notification in
+                                                print("----------- MrEventIncomingMsg received --------")
+                                                self.getChatList()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        let nc = NotificationCenter.default
+        if let msgChangedObserver = self.msgChangedObserver {
+            nc.removeObserver(msgChangedObserver)
+        }
+        if let incomingMsgObserver = self.incomingMsgObserver {
+            nc.removeObserver(incomingMsgObserver)
+        }
     }
     
     override func viewDidLoad() {
@@ -199,7 +226,6 @@ class ChatListController: UIViewController {
         chatTable.delegate = chatTableDelegate
     }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
