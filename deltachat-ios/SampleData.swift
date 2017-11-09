@@ -142,7 +142,6 @@ final class SampleData {
     }
     
     func randomMessage() -> Message {
-        
         let randomNumberSender = Int(arc4random_uniform(UInt32(senders.count)))
         let randomNumberText = Int(arc4random_uniform(UInt32(messageTextValues.count)))
         let randomNumberImage = Int(arc4random_uniform(UInt32(messageImages.count)))

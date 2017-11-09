@@ -8,36 +8,6 @@
 
 import UIKit
 
-class MRContact {
-    private var contactPointer: UnsafeMutablePointer<mrcontact_t>
-
-    var name: String {
-        if contactPointer.pointee.m_name == nil {
-            return email
-        }
-        return String(cString: contactPointer.pointee.m_name)
-    }
-    
-    var email: String {
-        if contactPointer.pointee.m_addr == nil {
-            return "error: no email in contact"
-        }
-        return String(cString: contactPointer.pointee.m_addr)
-    }
-    
-    var id: Int {
-        return Int(contactPointer.pointee.m_id)
-    }
-    
-    init(id: Int) {
-        contactPointer = mrmailbox_get_contact(mailboxPointer, UInt32(id))
-    }
-    
-    deinit {
-        mrcontact_unref(contactPointer)
-    }
-}
-
 class ContactViewController: UIViewController {
     var coordinator: Coordinator
     var contactIds: [Int] = []

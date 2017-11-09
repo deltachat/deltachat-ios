@@ -21,8 +21,6 @@ class ChatViewController: MessagesViewController {
         self.chatId = chatId
         super.init(nibName: nil, bundle: nil)
         self.getMessageIds()
-
-
     }
     
     func getMessageIds() {
@@ -436,6 +434,4 @@ extension ChatViewController: MessageInputBarDelegate {
 //        messagesCollectionView.reloadData()
 //        messagesCollectionView.scrollToBottom()
     }
-
-
 }

@@ -12,7 +12,6 @@ protocol Coordinator {
     func setupViewControllers(window: UIWindow)
 }
 
-
 class AppCoordinator: Coordinator {
     
     func setupViewControllers(window: UIWindow) {
@@ -51,6 +50,4 @@ class AppCoordinator: Coordinator {
         window.makeKeyAndVisible()
         window.backgroundColor = UIColor.white
     }
-    
 }
-

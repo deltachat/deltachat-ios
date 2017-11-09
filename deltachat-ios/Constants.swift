@@ -9,10 +9,7 @@
 import UIKit
 
 struct Constants {
-    
-    struct Color {
+     struct Color {
         static let bubble = UIColor(netHex: 0xefffde)
-        
     }
-    
 }
