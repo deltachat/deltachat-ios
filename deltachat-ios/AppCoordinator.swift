@@ -42,7 +42,7 @@ class AppCoordinator: Coordinator {
         let tabBarController = UITabBarController()
         
         tabBarController.viewControllers = [
-            contactNavigationController,
+//            contactNavigationController,
             chatNavigationController,
             settingsNavigationController,
         ]

@@ -213,7 +213,7 @@ class ChatListController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Chats"
+        title = "Delta Chat"
         navigationController?.navigationBar.prefersLargeTitles = true
         view.addSubview(chatTable)
         chatTable.translatesAutoresizingMaskIntoConstraints = false
