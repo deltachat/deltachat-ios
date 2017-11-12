@@ -157,7 +157,7 @@ static uint32_t lookup_group_by_grpid__(mrmailbox_t* mailbox, mrmimeparser_t* mi
 	{
 		stmt = mrsqlite3_prepare_v2_(mailbox->m_sql,
 			"INSERT INTO chats (type, name, grpid) VALUES(?, ?, ?);");
-		sqlite3_bind_int (stmt, 1, MR_CHAT_GROUP);
+		sqlite3_bind_int (stmt, 1, MR_CHAT_TYPE_GROUP);
 		sqlite3_bind_text(stmt, 2, grpname, -1, SQLITE_STATIC);
 		sqlite3_bind_text(stmt, 3, grpid, -1, SQLITE_STATIC);
 		if( sqlite3_step(stmt)!=SQLITE_DONE ) {
@@ -1139,6 +1139,18 @@ int32_t mrmailbox_get_config_int(mrmailbox_t* ths, const char* key, int32_t def)
 	mrsqlite3_unlock(ths->m_sql);
 
 	return ret;
+}
+
+
+char* mrmailbox_get_blobdir(mrmailbox_t* mailbox)
+{
+	return safe_strdup(mailbox? mailbox->m_blobdir : NULL);
+}
+
+
+void* mrmailbox_get_userdata(mrmailbox_t* mailbox)
+{
+	return mailbox? mailbox->m_userdata : NULL;
 }
 
 

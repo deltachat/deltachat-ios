@@ -88,7 +88,7 @@ void mrpoortext_fill(mrpoortext_t* ths, const mrmsg_t* msg, const mrchat_t* chat
 		ths->m_text1 = NULL;
 		ths->m_text1_meaning = MR_TEXT1_NORMAL;
 	}
-	else if( chat->m_type==MR_CHAT_GROUP )
+	else if( chat->m_type==MR_CHAT_TYPE_GROUP )
 	{
 		if( contact==NULL ) {
 			free(ths->m_text1);

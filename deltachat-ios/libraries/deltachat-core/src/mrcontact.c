@@ -218,7 +218,7 @@ uint32_t mrmailbox_add_or_lookup_contact__( mrmailbox_t* mailbox,
 				stmt = mrsqlite3_predefine__(mailbox->m_sql, UPDATE_chats_SET_n_WHERE_c,
 					"UPDATE chats SET name=? WHERE type=? AND id IN(SELECT chat_id FROM chats_contacts WHERE contact_id=?);");
 				sqlite3_bind_text(stmt, 1, name, -1, SQLITE_STATIC);
-				sqlite3_bind_int (stmt, 2, MR_CHAT_NORMAL);
+				sqlite3_bind_int (stmt, 2, MR_CHAT_TYPE_NORMAL);
 				sqlite3_bind_int (stmt, 3, row_id);
 				sqlite3_step     (stmt);
 			}
@@ -598,7 +598,7 @@ int mrmailbox_block_contact(mrmailbox_t* mailbox, uint32_t contact_id, int new_b
 				stmt = mrsqlite3_predefine__(mailbox->m_sql, UPDATE_chats_SET_blocked,
 					"UPDATE chats SET blocked=? WHERE type=? AND id IN (SELECT chat_id FROM chats_contacts WHERE contact_id=?);");
 				sqlite3_bind_int(stmt, 1, new_blocking);
-				sqlite3_bind_int(stmt, 2, MR_CHAT_NORMAL);
+				sqlite3_bind_int(stmt, 2, MR_CHAT_TYPE_NORMAL);
 				sqlite3_bind_int(stmt, 3, contact_id);
 				if( sqlite3_step(stmt)!=SQLITE_DONE ) {
 					goto cleanup;

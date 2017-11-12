@@ -160,7 +160,7 @@ size_t mrchatlist_get_cnt(mrchatlist_t* ths)
 }
 
 
-uint32_t mrchatlist_get_chat_id_by_index(mrchatlist_t* ths, size_t index)
+uint32_t mrchatlist_get_chat_id(mrchatlist_t* ths, size_t index)
 {
 	if( ths == NULL || ths->m_chatNlastmsg_ids == NULL || index >= ths->m_cnt ) {
 		return 0;
@@ -170,7 +170,7 @@ uint32_t mrchatlist_get_chat_id_by_index(mrchatlist_t* ths, size_t index)
 }
 
 
-mrchat_t* mrchatlist_get_chat_by_index(mrchatlist_t* ths, size_t index)
+mrchat_t* mrchatlist_get_chat_by_index(mrchatlist_t* ths, size_t index) /* deprecated */
 {
 	if( ths == NULL || ths->m_chatNlastmsg_ids == NULL || index >= ths->m_cnt ) {
 		return 0;
@@ -180,7 +180,7 @@ mrchat_t* mrchatlist_get_chat_by_index(mrchatlist_t* ths, size_t index)
 }
 
 
-uint32_t mrchatlist_get_msg_id_by_index(mrchatlist_t* ths, size_t index)
+uint32_t mrchatlist_get_msg_id(mrchatlist_t* ths, size_t index)
 {
 	if( ths == NULL || ths->m_chatNlastmsg_ids == NULL || index >= ths->m_cnt ) {
 		return 0;
@@ -190,7 +190,7 @@ uint32_t mrchatlist_get_msg_id_by_index(mrchatlist_t* ths, size_t index)
 }
 
 
-mrmsg_t* mrchatlist_get_msg_by_index(mrchatlist_t* ths, size_t index)
+mrmsg_t* mrchatlist_get_msg_by_index(mrchatlist_t* ths, size_t index) /* deprecated */
 {
 	if( ths == NULL || ths->m_chatNlastmsg_ids == NULL || index >= ths->m_cnt ) {
 		return 0;
@@ -200,7 +200,7 @@ mrmsg_t* mrchatlist_get_msg_by_index(mrchatlist_t* ths, size_t index)
 }
 
 
-mrpoortext_t* mrchatlist_get_summary_by_index(mrchatlist_t* chatlist, size_t index, mrchat_t* chat /*may be NULL*/)
+mrpoortext_t* mrchatlist_get_summary(mrchatlist_t* chatlist, size_t index, mrchat_t* chat /*may be NULL*/)
 {
 	/* The summary is created by the chat, not by the last message.
 	This is because we may want to display drafts here or stuff as
@@ -241,7 +241,7 @@ mrpoortext_t* mrchatlist_get_summary_by_index(mrchatlist_t* chatlist, size_t ind
 			lastmsg = mrmsg_new();
 			mrmsg_load_from_db__(lastmsg, chatlist->m_mailbox, lastmsg_id);
 
-			if( lastmsg->m_from_id != MR_CONTACT_ID_SELF  &&  chat->m_type == MR_CHAT_GROUP )
+			if( lastmsg->m_from_id != MR_CONTACT_ID_SELF  &&  chat->m_type == MR_CHAT_TYPE_GROUP )
 			{
 				lastcontact = mrcontact_new();
 				mrcontact_load_from_db__(lastcontact, chatlist->m_mailbox->m_sql, lastmsg->m_from_id);

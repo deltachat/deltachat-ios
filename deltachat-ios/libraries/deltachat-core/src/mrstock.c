@@ -25,11 +25,7 @@ As the logging functions may use these strings, do not log any
 errors from here. */
 
 
-#include <stdlib.h>
-#include <memory.h>
-#include "mrmailbox.h"
-#include "mrtools.h"
-
+#include "mrmailbox_internal.h"
 
 
 /*******************************************************************************

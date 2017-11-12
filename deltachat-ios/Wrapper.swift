@@ -169,15 +169,15 @@ class MRChatList {
     }
     
     func getChatId(index: Int) -> Int {
-        return Int(mrchatlist_get_chat_id_by_index(self.chatListPointer, index))
+        return Int(mrchatlist_get_chat_id(self.chatListPointer, index))
     }
     
     func getMessageId(index: Int) -> Int {
-        return Int(mrchatlist_get_msg_id_by_index(self.chatListPointer, index))
+        return Int(mrchatlist_get_msg_id(self.chatListPointer, index))
     }
     
     func summary(index: Int) -> MRPoorText {
-        guard let poorTextPointer = mrchatlist_get_summary_by_index(self.chatListPointer, index, nil) else {
+        guard let poorTextPointer = mrchatlist_get_summary(self.chatListPointer, index, nil) else {
             fatalError("poor text pointer was nil")
         }
         return MRPoorText(poorTextPointer: poorTextPointer)

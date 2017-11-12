@@ -57,6 +57,15 @@
 			<Add directory="libs/netpgp/include" />
 		</Compiler>
 		<Unit filename="README.md" />
+		<Unit filename="cmdline/cmdline.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cmdline/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cmdline/stress.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libs/libetpan/src/data-types/base64.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -423,9 +432,6 @@
 		<Unit filename="libs/sqlite/sqlite3.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/main.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/mraheader.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -436,9 +442,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/mrchatlist.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/mrcmdline.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/mrcontact.c">
@@ -519,9 +522,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/mrtools.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/stress.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>

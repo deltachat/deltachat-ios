@@ -402,7 +402,7 @@ static char* get_subject(const mrchat_t* chat, const mrmsg_t* msg, int afwd_emai
 	char *ret, *raw_subject = mrmsg_get_summarytext_by_raw(msg->m_type, msg->m_text, msg->m_param, APPROX_SUBJECT_CHARS);
 	const char* fwd = afwd_email? "Fwd: " : "";
 
-	if( chat->m_type==MR_CHAT_GROUP )
+	if( chat->m_type==MR_CHAT_TYPE_GROUP )
 	{
 		ret = mr_mprintf(MR_CHAT_PREFIX " %s: %s%s", chat->m_name, fwd, raw_subject);
 	}
@@ -498,7 +498,7 @@ int mrmimefactory_render(mrmimefactory_t* factory, int encrypt_to_self)
 		struct mailmime* meta_part = NULL;
 
 		/* build header etc. */
-		if( chat->m_type==MR_CHAT_GROUP )
+		if( chat->m_type==MR_CHAT_TYPE_GROUP )
 		{
 			mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("X-MrGrpId"), safe_strdup(chat->m_grpid)));
 			mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("X-MrGrpName"), mr_encode_header_string(chat->m_name)));

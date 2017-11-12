@@ -28,14 +28,14 @@ $ valgrind --leak-check=full --tool=memcheck ./deltachat-core <db>
 
 #include <ctype.h>
 #include <assert.h>
-#include "mrmailbox_internal.h"
-#include "mrsimplify.h"
-#include "mrmimeparser.h"
-#include "mrmimefactory.h"
-#include "mrpgp.h"
-#include "mrapeerstate.h"
-#include "mraheader.h"
-#include "mrkeyring.h"
+#include "../src/mrmailbox_internal.h"
+#include "../src/mrsimplify.h"
+#include "../src/mrmimeparser.h"
+#include "../src/mrmimefactory.h"
+#include "../src/mrpgp.h"
+#include "../src/mrapeerstate.h"
+#include "../src/mraheader.h"
+#include "../src/mrkeyring.h"
 
 
 void stress_functions(mrmailbox_t* mailbox)
@@ -140,54 +140,58 @@ void stress_functions(mrmailbox_t* mailbox)
 		assert( strcmp(str, "")==0 );
 		free(str);
 
-        assert( strcmp("fresh="     MR_STRINGIFY(MR_STATE_IN_FRESH),      "fresh=10")==0 ); /* these asserts check the values, the existance of the macros and also MR_STRINGIFY() */
-        assert( strcmp("noticed="   MR_STRINGIFY(MR_STATE_IN_NOTICED),    "noticed=13")==0 );
-        assert( strcmp("seen="      MR_STRINGIFY(MR_STATE_IN_SEEN),       "seen=16")==0 );
-        assert( strcmp("pending="   MR_STRINGIFY(MR_STATE_OUT_PENDING),   "pending=20")==0 );
-        assert( strcmp("error="     MR_STRINGIFY(MR_STATE_OUT_ERROR),     "error=24")==0 );
-        assert( strcmp("delivered=" MR_STRINGIFY(MR_STATE_OUT_DELIVERED), "delivered=26")==0 );
-        assert( strcmp("mdn_rcvd="  MR_STRINGIFY(MR_STATE_OUT_MDN_RCVD),  "mdn_rcvd=28")==0 );
+		assert( strcmp("fresh="     MR_STRINGIFY(MR_STATE_IN_FRESH),      "fresh=10")==0 ); /* these asserts check the values, the existance of the macros and also MR_STRINGIFY() */
+		assert( strcmp("noticed="   MR_STRINGIFY(MR_STATE_IN_NOTICED),    "noticed=13")==0 );
+		assert( strcmp("seen="      MR_STRINGIFY(MR_STATE_IN_SEEN),       "seen=16")==0 );
+		assert( strcmp("pending="   MR_STRINGIFY(MR_STATE_OUT_PENDING),   "pending=20")==0 );
+		assert( strcmp("error="     MR_STRINGIFY(MR_STATE_OUT_ERROR),     "error=24")==0 );
+		assert( strcmp("delivered=" MR_STRINGIFY(MR_STATE_OUT_DELIVERED), "delivered=26")==0 );
+		assert( strcmp("mdn_rcvd="  MR_STRINGIFY(MR_STATE_OUT_MDN_RCVD),  "mdn_rcvd=28")==0 );
 
-        assert( strcmp("deaddrop="     MR_STRINGIFY(MR_CHAT_ID_DEADDROP),         "deaddrop=1")==0 );
-        assert( strcmp("to_deaddrop="  MR_STRINGIFY(MR_CHAT_ID_TO_DEADDROP),      "to_deaddrop=2")==0 );
-        assert( strcmp("trash="        MR_STRINGIFY(MR_CHAT_ID_TRASH),            "trash=3")==0 );
-        assert( strcmp("in_creation="  MR_STRINGIFY(MR_CHAT_ID_MSGS_IN_CREATION), "in_creation=4")==0 );
-        assert( strcmp("starred="      MR_STRINGIFY(MR_CHAT_ID_STARRED),          "starred=5")==0 );
-        assert( strcmp("archivedlink=" MR_STRINGIFY(MR_CHAT_ID_ARCHIVED_LINK),    "archivedlink=6")==0 );
-        assert( strcmp("spcl_chat="    MR_STRINGIFY(MR_CHAT_ID_LAST_SPECIAL),     "spcl_chat=9")==0 );
+		assert( strcmp("undefined="    MR_STRINGIFY(MR_CHAT_TYPE_UNDEFINED),      "undefined=0")==0 );
+		assert( strcmp("normal="       MR_STRINGIFY(MR_CHAT_TYPE_NORMAL),         "normal=100")==0 );
+		assert( strcmp("group="        MR_STRINGIFY(MR_CHAT_TYPE_GROUP),          "group=120")==0 );
 
-        assert( strcmp("self="         MR_STRINGIFY(MR_CONTACT_ID_SELF),          "self=1")==0 );
-        assert( strcmp("system="       MR_STRINGIFY(MR_CONTACT_ID_SYSTEM),        "system=2")==0 );
-        assert( strcmp("spcl_contact=" MR_STRINGIFY(MR_CHAT_ID_LAST_SPECIAL),     "spcl_contact=9")==0 );
+		assert( strcmp("deaddrop="     MR_STRINGIFY(MR_CHAT_ID_DEADDROP),         "deaddrop=1")==0 );
+		assert( strcmp("to_deaddrop="  MR_STRINGIFY(MR_CHAT_ID_TO_DEADDROP),      "to_deaddrop=2")==0 );
+		assert( strcmp("trash="        MR_STRINGIFY(MR_CHAT_ID_TRASH),            "trash=3")==0 );
+		assert( strcmp("in_creation="  MR_STRINGIFY(MR_CHAT_ID_MSGS_IN_CREATION), "in_creation=4")==0 );
+		assert( strcmp("starred="      MR_STRINGIFY(MR_CHAT_ID_STARRED),          "starred=5")==0 );
+		assert( strcmp("archivedlink=" MR_STRINGIFY(MR_CHAT_ID_ARCHIVED_LINK),    "archivedlink=6")==0 );
+		assert( strcmp("spcl_chat="    MR_STRINGIFY(MR_CHAT_ID_LAST_SPECIAL),     "spcl_chat=9")==0 );
 
-        assert( strcmp("grpimg="    MR_STRINGIFY(MR_SYSTEM_GROUPIMAGE_CHANGED), "grpimg=3")==0 );
+		assert( strcmp("self="         MR_STRINGIFY(MR_CONTACT_ID_SELF),          "self=1")==0 );
+		assert( strcmp("system="       MR_STRINGIFY(MR_CONTACT_ID_SYSTEM),        "system=2")==0 );
+		assert( strcmp("spcl_contact=" MR_STRINGIFY(MR_CONTACT_ID_LAST_SPECIAL),  "spcl_contact=9")==0 );
 
-        assert( MRP_FILE == 'f' );
-        assert( MRP_WIDTH == 'w' );
-        assert( MRP_HEIGHT == 'h' );
-        assert( MRP_DURATION == 'd' );
-        assert( MRP_MIMETYPE == 'm' );
-        assert( MRP_AUTHORNAME == 'N' );
-        assert( MRP_TRACKNAME == 'n' );
-        assert( MRP_FORWARDED == 'a' );
-        assert( MRP_UNPROMOTED == 'U' );
+		assert( strcmp("grpimg="    MR_STRINGIFY(MR_SYSTEM_GROUPIMAGE_CHANGED), "grpimg=3")==0 );
 
-        char* buf1 = strdup("ol\xc3\xa1 mundo <>\"'& äÄöÖüÜß fooÆçÇ ♦&noent;"); char* buf2 = strdup(buf1);
-        mr_replace_bad_utf8_chars(buf2);
-        assert( strcmp(buf1, buf2)==0 );
-        free(buf1); free(buf2);
+		assert( MRP_FILE == 'f' );
+		assert( MRP_WIDTH == 'w' );
+		assert( MRP_HEIGHT == 'h' );
+		assert( MRP_DURATION == 'd' );
+		assert( MRP_MIMETYPE == 'm' );
+		assert( MRP_AUTHORNAME == 'N' );
+		assert( MRP_TRACKNAME == 'n' );
+		assert( MRP_FORWARDED == 'a' );
+		assert( MRP_UNPROMOTED == 'U' );
 
-        buf1 = strdup("ISO-String with Ae: \xC4"); buf2 = strdup(buf1);
-        mr_replace_bad_utf8_chars(buf2);
-        assert( strcmp("ISO-String with Ae: _", buf2)==0 );
-        free(buf1); free(buf2);
+		char* buf1 = strdup("ol\xc3\xa1 mundo <>\"'& äÄöÖüÜß fooÆçÇ ♦&noent;"); char* buf2 = strdup(buf1);
+		mr_replace_bad_utf8_chars(buf2);
+		assert( strcmp(buf1, buf2)==0 );
+		free(buf1); free(buf2);
 
-        buf1 = strdup(""); buf2 = strdup(buf1);
-        mr_replace_bad_utf8_chars(buf2);
-        assert( buf2[0]==0 );
-        free(buf1); free(buf2);
+		buf1 = strdup("ISO-String with Ae: \xC4"); buf2 = strdup(buf1);
+		mr_replace_bad_utf8_chars(buf2);
+		assert( strcmp("ISO-String with Ae: _", buf2)==0 );
+		free(buf1); free(buf2);
 
-        mr_replace_bad_utf8_chars(NULL); /* should do nothing */
+		buf1 = strdup(""); buf2 = strdup(buf1);
+		mr_replace_bad_utf8_chars(buf2);
+		assert( buf2[0]==0 );
+		free(buf1); free(buf2);
+
+		mr_replace_bad_utf8_chars(NULL); /* should do nothing */
 	}
 
 	/* test mrparam

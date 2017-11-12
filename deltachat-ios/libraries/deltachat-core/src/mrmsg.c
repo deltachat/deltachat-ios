@@ -455,7 +455,7 @@ mrpoortext_t* mrmsg_get_summary(mrmsg_t* msg, mrchat_t* chat)
 		chat_to_delete = chat;
 	}
 
-	if( msg->m_from_id != MR_CONTACT_ID_SELF  &&  chat->m_type == MR_CHAT_GROUP ) {
+	if( msg->m_from_id != MR_CONTACT_ID_SELF  &&  chat->m_type == MR_CHAT_TYPE_GROUP ) {
 		contact = mrmailbox_get_contact(chat->m_mailbox, msg->m_from_id);
 	}
 
@@ -1106,7 +1106,7 @@ int mrmailbox_mdn_from_ext__(mrmailbox_t* mailbox, uint32_t from_id, const char*
 	}
 
 	/* normal chat? that's quite easy. */
-	if( chat_type == MR_CHAT_NORMAL )
+	if( chat_type == MR_CHAT_TYPE_NORMAL )
 	{
 		mrmailbox_update_msg_state__(mailbox, *ret_msg_id, MR_STATE_OUT_MDN_RCVD);
 		return 1; /* send event about new state */
