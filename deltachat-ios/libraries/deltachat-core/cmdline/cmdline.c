@@ -167,7 +167,6 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 			"configurecancel\n"
 			"connect\n"
 			"disconnect\n"
-			"fetch\n"
 			"restore <days>\n"
 
 			"\nChat commands:\n"
@@ -364,10 +363,6 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 	{
 		mrmailbox_disconnect(mailbox);
 		ret = COMMAND_SUCCEEDED;
-	}
-	else if( strcmp(cmd, "fetch")==0 )
-	{
-		ret = mrmailbox_fetch(mailbox)? COMMAND_SUCCEEDED : COMMAND_FAILED;
 	}
 	else if( strcmp(cmd, "restore")==0 )
 	{
@@ -659,7 +654,8 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 	{
 		if( arg1 ) {
 			int chat_id = atoi(arg1);
-			ret = mrmailbox_archive_chat(mailbox, chat_id, strcmp(cmd, "archive")==0? 1 : 0)!=0? COMMAND_SUCCEEDED : COMMAND_FAILED;
+			mrmailbox_archive_chat(mailbox, chat_id, strcmp(cmd, "archive")==0? 1 : 0);
+			ret = COMMAND_SUCCEEDED;
 		}
 		else {
 			ret = safe_strdup("ERROR: Argument <chat-id> missing.");
@@ -669,7 +665,8 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 	{
 		if( arg1 ) {
 			int chat_id = atoi(arg1);
-			ret = mrmailbox_delete_chat(mailbox, chat_id)!=0? COMMAND_SUCCEEDED : COMMAND_FAILED;
+			mrmailbox_delete_chat(mailbox, chat_id);
+			ret = COMMAND_SUCCEEDED;
 		}
 		else {
 			ret = safe_strdup("ERROR: Argument <chat-id> missing.");
@@ -708,7 +705,8 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 			*arg2 = 0; arg2++;
 			uint32_t msg_ids[1], chat_id = atoi(arg2);
 			msg_ids[0] = atoi(arg1);
-			ret = mrmailbox_forward_msgs(mailbox, msg_ids, 1, chat_id)? COMMAND_SUCCEEDED : COMMAND_FAILED;
+			mrmailbox_forward_msgs(mailbox, msg_ids, 1, chat_id);
+			ret = COMMAND_SUCCEEDED;
 		}
 		else {
 			ret = safe_strdup("ERROR: Arguments <msg-id> <chat-id> expected.");
@@ -719,7 +717,8 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 		if( arg1 ) {
 			uint32_t msg_ids[1];
 			msg_ids[0] = atoi(arg1);
-			ret = mrmailbox_markseen_msgs(mailbox, msg_ids, 1)? COMMAND_SUCCEEDED : COMMAND_FAILED;
+			mrmailbox_markseen_msgs(mailbox, msg_ids, 1);
+			ret = COMMAND_SUCCEEDED;
 		}
 		else {
 			ret = safe_strdup("ERROR: Argument <msg-id> missing.");
@@ -730,7 +729,8 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 		if( arg1 ) {
 			uint32_t msg_ids[1];
 			msg_ids[0] = atoi(arg1);
-			ret = mrmailbox_star_msgs(mailbox, msg_ids, 1, strcmp(cmd, "star")==0? 1 : 0)? COMMAND_SUCCEEDED : COMMAND_FAILED;
+			mrmailbox_star_msgs(mailbox, msg_ids, 1, strcmp(cmd, "star")==0? 1 : 0);
+			ret = COMMAND_SUCCEEDED;
 		}
 		else {
 			ret = safe_strdup("ERROR: Argument <msg-id> missing.");
@@ -741,7 +741,8 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 		if( arg1 ) {
 			uint32_t ids[1];
 			ids[0] = atoi(arg1);
-			ret = mrmailbox_delete_msgs(mailbox, ids, 1)? COMMAND_SUCCEEDED : COMMAND_FAILED;
+			mrmailbox_delete_msgs(mailbox, ids, 1);
+			ret = COMMAND_SUCCEEDED;
 		}
 		else {
 			ret = safe_strdup("ERROR: Argument <msg-id> missing.");

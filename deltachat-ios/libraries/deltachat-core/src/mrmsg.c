@@ -28,6 +28,11 @@
 #include "mrmimefactory.h"
 
 
+/**
+ * Foobar
+ */
+
+
 /*******************************************************************************
  * Tools
  ******************************************************************************/
@@ -163,10 +168,10 @@ int mrmailbox_rfc724_mid_cnt__(mrmailbox_t* mailbox, const char* rfc724_mid)
 }
 
 
+/* check, if the given Message-ID exists in the database (if not, the message is normally downloaded from the server and parsed,
+so, we should even keep unuseful messages in the database (we can leave the other fields empty to safe space) */
 int mrmailbox_rfc724_mid_exists__(mrmailbox_t* mailbox, const char* rfc724_mid, char** ret_server_folder, uint32_t* ret_server_uid)
 {
-	/* check, if the given Message-ID exists in the database (if not, the message is normally downloaded from the server and parsed,
-	so, we should even keep unuseful messages in the database (we can leave the other fields empty to safe space) */
 	sqlite3_stmt* stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_ss_FROM_msgs_WHERE_m,
 		"SELECT server_folder, server_uid FROM msgs WHERE rfc724_mid=?;");
 	sqlite3_bind_text(stmt, 1, rfc724_mid, -1, SQLITE_STATIC);
@@ -238,6 +243,12 @@ cleanup:
  ******************************************************************************/
 
 
+ /**
+ * Create new mrmsg_t object as needed for sending messages using
+ * mrmailbox_send_msg().
+ *
+ * @memberof mrmsg_t
+ */
 mrmsg_t* mrmsg_new()
 {
 	mrmsg_t* ths = NULL;
@@ -254,6 +265,15 @@ mrmsg_t* mrmsg_new()
 }
 
 
+/**
+ * Free an mrmsg_t object created eg. by mrmsg_new() or mrmailbox_get_msg().
+ * This also free()s all strings; so if you set up the object yourself, make sure
+ * to use strdup()!
+ *
+ * @memberof mrmsg_t
+ *
+ * @param msg The message object to free.
+ */
 void mrmsg_unref(mrmsg_t* ths)
 {
 	if( ths==NULL ) {
@@ -287,16 +307,29 @@ void mrmsg_empty(mrmsg_t* ths)
 }
 
 
-mrmsg_t* mrmailbox_get_msg(mrmailbox_t* ths, uint32_t id)
+/**
+ * Get a single message object of the type mrmsg_t.
+ * For a list of messages in a chat, see mrmailbox_get_chat_msgs()
+ * For a list or chats, see mrmailbox_get_chatlist()
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as created by mrmailbox_new()
+ *
+ * @param msg_id The message ID for which the message object should be created.
+ *
+ * @return A mrmsg_t message object. When done, the object must be freed using mrmsg_unref()
+ */
+mrmsg_t* mrmailbox_get_msg(mrmailbox_t* mailbox, uint32_t msg_id)
 {
 	int success = 0;
 	int db_locked = 0;
 	mrmsg_t* obj = mrmsg_new();
 
-	mrsqlite3_lock(ths->m_sql);
+	mrsqlite3_lock(mailbox->m_sql);
 	db_locked = 1;
 
-		if( !mrmsg_load_from_db__(obj, ths, id) ) {
+		if( !mrmsg_load_from_db__(obj, mailbox, msg_id) ) {
 			goto cleanup;
 		}
 
@@ -304,7 +337,7 @@ mrmsg_t* mrmailbox_get_msg(mrmailbox_t* ths, uint32_t id)
 
 cleanup:
 	if( db_locked ) {
-		mrsqlite3_unlock(ths->m_sql);
+		mrsqlite3_unlock(mailbox->m_sql);
 	}
 
 	if( success ) {
@@ -328,6 +361,18 @@ void mrmsg_set_text(mrmsg_t* msg, const char* text)
 }
 
 
+/**
+ * Get an informational text for a single message. the text is multiline and may
+ * contain eg. the raw text of the message.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox the mailbox object as created by mrmailbox_new()
+ *
+ * @param msg_id the message id for which information should be generated
+ *
+ * @return text string, must be free()'d after usage
+ */
 char* mrmailbox_get_msg_info(mrmailbox_t* mailbox, uint32_t msg_id)
 {
 	mrstrbuilder_t ret;
@@ -438,6 +483,17 @@ cleanup:
 }
 
 
+/**
+ * Get a summary for a message. The last parameter can be set to speed up
+ * things if the chat object is already available; if not, it is faster to pass
+ * NULL here.  The result must be freed using mrpoortext_unref().
+ * Typically used to display a search result.
+ *
+ * @memberof mrmsg_t
+ *
+ * @return  The returned summary is similar to mrchatlist_get_summary(), however, without
+ *     "draft", "no messages" and so on.
+ */
 mrpoortext_t* mrmsg_get_summary(mrmsg_t* msg, mrchat_t* chat)
 {
 	mrpoortext_t* ret = mrpoortext_new();
@@ -467,7 +523,11 @@ cleanup:
 	return ret;
 }
 
-
+/**
+ * Check if a padlock should be shown beside the message.
+ *
+ * @memberof mrmsg_t
+ */
 int mrmsg_show_padlock(mrmsg_t* msg)
 {
 	/* a padlock guarantees that the message is e2ee _and_ answers will be as well */
@@ -500,6 +560,12 @@ void mr_get_authorNtitle_from_filename(const char* pathNfilename, char** ret_aut
 }
 
 
+/**
+ * Get a message summary as a single line of text.  Typically used for
+ * notifications.  The returned value must be free()'d.
+ *
+ * @memberof mrmsg_t
+ */
 char* mrmsg_get_summarytext(mrmsg_t* msg, int approx_characters)
 {
 	if( msg==NULL ) {
@@ -567,6 +633,41 @@ char* mrmsg_get_summarytext_by_raw(int type, const char* text, mrparam_t* param,
 }
 
 
+/**
+ * Find out full path, file name and extension of the file associated with a
+ * message.
+ *
+ * @param msg the message object
+ *
+ * @return full path, file name and extension of the file associated with the
+ *     message.  If there is no file associated with the message, an emtpy
+ *     string is returned.  The returned value must be free()'d.
+ */
+char* mrmsg_get_fullpath(mrmsg_t* msg)
+{
+	char* ret = NULL;
+
+	if( msg == NULL ) {
+		goto cleanup;
+	}
+
+	ret = mrparam_get(msg->m_param, MRP_FILE, NULL);
+
+cleanup:
+	return ret? ret : safe_strdup(NULL);
+}
+
+
+/**
+ * Find out the base file name and extension of the file associated with a
+ * message.
+ *
+ * @param msg the message object
+ *
+ * @return base file name plus extension without part.  If there is no file
+ *     associated with the message, an empty string is returned.  The returned
+ *     value must be free()'d.
+ */
 char* mrmsg_get_filename(mrmsg_t* msg)
 {
 	char* ret = NULL, *pathNfilename = NULL;
@@ -588,16 +689,23 @@ cleanup:
 }
 
 
+/**
+ * Returns real author (as return.text1, this is not always the sender, NULL if
+ * unknown) and title (return.text2, NULL if unknown) of a message.
+ *
+ * For voice messages, the author the sender and the trackname is the sending time
+ * For music messages, we read the information from the filename
+ * We do not read ID3 and such at this stage, the needed libraries may be buggy
+ * and the whole stuff is way to complicated.
+ * However, this is not a great disadvantage, as the sender usually sets the filename in a way we expect it -
+ * if not, we simply print the whole filename as we do it for documents.  All fine in any case :-)
+ *
+ * @param msg the message object
+ *
+ * @return poortext object that must be unref'd using mrpoortext_unref() when no longer used.
+ */
 mrpoortext_t* mrmsg_get_mediainfo(mrmsg_t* msg)
 {
-	/* Get authorname and trackname of a message.
-	- for voice messages, the author the sender and the trackname is the sending time
-	- for music messages,
-	  - read the information from the filename
-	  - for security reasons, we DO NOT read ID3 and such at this stage, the needed libraries may be buggy
-		and the whole stuff is way to complicated.
-		However, this is not a great disadvantage, as the sender usually sets the filename in a way we expect it -
-		if not, we simply print the whole filename as we do it for documents.  All fine in any case :-) */
 	mrpoortext_t* ret = mrpoortext_new();
 	char *pathNfilename = NULL;
 	mrcontact_t* contact = NULL;
@@ -660,8 +768,20 @@ int mrmsg_is_increation__(const mrmsg_t* msg)
 }
 
 
-int mrmsg_is_increation(mrmsg_t* msg) /* surrounds mrmsg_is_increation__() with locking and error checking */
+/**
+ * Check if a message is still in creation.  The user can mark files as being
+ * in creation by simply creating a file `<filename>.increation`. If
+ * `<filename>` is created then, the user should just delete
+ * `<filename>.increation`
+ *
+ * @param msg the message object
+ *
+ * @return 1=message is still in creation (`<filename>.increation` exists),
+ *     0=message no longer in creation
+ */
+int mrmsg_is_increation(mrmsg_t* msg)
 {
+	/* surrounds mrmsg_is_increation__() with locking and error checking */
 	int is_increation = 0;
 	if( msg && msg->m_mailbox && MR_MSG_NEEDS_ATTACHMENT(msg->m_type) /*additional check for speed reasons*/ )
 	{
@@ -673,6 +793,7 @@ int mrmsg_is_increation(mrmsg_t* msg) /* surrounds mrmsg_is_increation__() with 
 }
 
 
+/* Internal function similar to mrmsg_save_param_to_disk() but without locking. */
 void mrmsg_save_param_to_disk__(mrmsg_t* msg)
 {
 	if( msg == NULL || msg->m_mailbox == NULL || msg->m_mailbox->m_sql == NULL ) {
@@ -687,6 +808,12 @@ void mrmsg_save_param_to_disk__(mrmsg_t* msg)
 }
 
 
+/**
+ * can be used to add some additional, persistent information to a messages
+ * record.
+ *
+ * @memberof mrmsg_t
+ */
 void mrmsg_save_param_to_disk(mrmsg_t* msg)
 {
 	if( msg == NULL || msg->m_mailbox == NULL || msg->m_mailbox->m_sql == NULL ) {
@@ -704,6 +831,7 @@ void mrmsg_save_param_to_disk(mrmsg_t* msg)
  ******************************************************************************/
 
 
+/* internal function */
 void mrmailbox_delete_msg_on_imap(mrmailbox_t* mailbox, mrjob_t* job)
 {
 	int      locked = 0, delete_from_server = 1;
@@ -801,12 +929,26 @@ cleanup:
 }
 
 
-int mrmailbox_delete_msgs(mrmailbox_t* ths, const uint32_t* msg_ids, int msg_cnt)
+/**
+ * Delete a list of messages. The messages are deleted on the current device and
+ * on the IMAP server.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox the mailbox object as created by mrmailbox_new()
+ *
+ * @param msg_ids an array of uint32_t containing all message IDs that should be deleted
+ *
+ * @param msg_cnt the number of messages IDs in the msg_ids array
+ *
+ * @return none
+ */
+void mrmailbox_delete_msgs(mrmailbox_t* ths, const uint32_t* msg_ids, int msg_cnt)
 {
 	int i;
 
 	if( ths == NULL || msg_ids == NULL || msg_cnt <= 0 ) {
-		return 0;
+		return;
 	}
 
 	mrsqlite3_lock(ths->m_sql);
@@ -820,17 +962,28 @@ int mrmailbox_delete_msgs(mrmailbox_t* ths, const uint32_t* msg_ids, int msg_cnt
 
 	mrsqlite3_commit__(ths->m_sql);
 	mrsqlite3_unlock(ths->m_sql);
-
-	return 1;
 }
 
 
-int mrmailbox_forward_msgs(mrmailbox_t* mailbox, const uint32_t* msg_ids_unsorted, int msg_cnt, uint32_t chat_id)
+/**
+ * Forward a list of messages to another chat.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox the mailbox object as created by mrmailbox_new()
+ *
+ * @param msg_ids an array of uint32_t containing all message IDs that should be forwarded
+ *
+ * @param msg_cnt the number of messages IDs in the msg_ids array
+ *
+ * @return none
+ */
+void mrmailbox_forward_msgs(mrmailbox_t* mailbox, const uint32_t* msg_ids_unsorted, int msg_cnt, uint32_t chat_id)
 {
 	mrmsg_t*      msg = mrmsg_new();
 	mrchat_t*     chat = mrchat_new(mailbox);
 	mrcontact_t*  contact = mrcontact_new();
-	int           success = 0, locked = 0, transaction_pending = 0;
+	int           locked = 0, transaction_pending = 0;
 	carray*       created_db_entries = carray_new(16);
 	char*         idsstr = NULL, *q3 = NULL;
 	sqlite3_stmt* stmt = NULL;
@@ -875,8 +1028,6 @@ int mrmailbox_forward_msgs(mrmailbox_t* mailbox, const uint32_t* msg_ids_unsorte
 	mrsqlite3_commit__(mailbox->m_sql);
 	transaction_pending = 0;
 
-	success = 1;
-
 cleanup:
 	if( transaction_pending ) { mrsqlite3_rollback__(mailbox->m_sql); }
 	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
@@ -893,16 +1044,32 @@ cleanup:
 	if( stmt ) { sqlite3_finalize(stmt); }
 	free(idsstr);
 	if( q3 ) { sqlite3_free(q3); }
-	return success;
 }
 
 
-int mrmailbox_star_msgs(mrmailbox_t* mailbox, const uint32_t* msg_ids, int msg_cnt, int star)
+/**
+ * Star/unstar messages by setting the last parameter to 0 (unstar) or 1(star).
+ * Starred messages are collected in a virtual chat that can be shown using
+ * mrmailbox_get_chat_msgs() using the chat_id MR_CHAT_ID_STARRED.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as created by mrmailbox_new()
+ *
+ * @param msg_ids An array of uint32_t message IDs defining the messages to star or unstar
+ *
+ * @param msg_cnt The number of IDs in msg_ids
+ *
+ * @param star 0=unstar the messages in msg_ids, 1=star them
+ *
+ * @return none
+ */
+void mrmailbox_star_msgs(mrmailbox_t* mailbox, const uint32_t* msg_ids, int msg_cnt, int star)
 {
 	int i;
 
 	if( mailbox == NULL || msg_ids == NULL || msg_cnt <= 0 || (star!=0 && star!=1) ) {
-		return 0;
+		return;
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
@@ -919,8 +1086,6 @@ int mrmailbox_star_msgs(mrmailbox_t* mailbox, const uint32_t* msg_ids, int msg_c
 
 	mrsqlite3_commit__(mailbox->m_sql);
 	mrsqlite3_unlock(mailbox->m_sql);
-
-	return 1;
 }
 
 
@@ -1027,12 +1192,26 @@ cleanup:
 }
 
 
-int mrmailbox_markseen_msgs(mrmailbox_t* mailbox, const uint32_t* msg_ids, int msg_cnt)
+/**
+ * Mark a message as _seen_, updates the IMAP state and
+ * sends MDNs. if the message is not in a real chat (eg. a contact request), the
+ * message is only marked as NOTICED and no IMAP/MDNs is done.  See also
+ * mrmailbox_marknoticed_chat() and mrmailbox_marknoticed_contact()
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param msg_ids an array of uint32_t containing all the messages IDs that should be marked as seen
+ *
+ * @param msg_cnt the number of message IDs in msg_ids
+ *
+ * @return none
+ */
+void mrmailbox_markseen_msgs(mrmailbox_t* mailbox, const uint32_t* msg_ids, int msg_cnt)
 {
 	int i, send_event = 0;
 
 	if( mailbox == NULL || msg_ids == NULL || msg_cnt <= 0 ) {
-		return 0;
+		return;
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
@@ -1072,8 +1251,6 @@ int mrmailbox_markseen_msgs(mrmailbox_t* mailbox, const uint32_t* msg_ids, int m
 	if( send_event ) {
 		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, 0, 0);
 	}
-
-	return 1;
 }
 
 

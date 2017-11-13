@@ -867,6 +867,32 @@ static void cb_receive_imf(mrimap_t* imap, const char* imf_raw_not_terminated, s
 }
 
 
+/**
+ * mrmailbox_new() creates a new mailbox object.  After creation it is usually
+ * opened, connected and mails are fetched.
+ * After usage, the object should be deleted using mrmailbox_unref().
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param cb a callback function that is called for events (update,
+ *     state changes etc.) and to get some information form the client (eg. translation
+ *     for a given string)
+ *     - The callback MAY be called from _any_ thread, not only the main/GUI thread!
+ *     - The callback MUST NOT call any mrmailbox_* and related functions unless stated
+ *       otherwise!
+ *     - The callback SHOULD return _fast_, for GUI updates etc. you should
+ *       post yourself an asynchronous message to your GUI thread, if needed.
+ *     - If not mentioned otherweise, the callback should return 0.
+ *
+ * @param userdata can be used by the client for any purpuse.  He finds it
+ *     later in mrmailbox_get_userdata().
+ *
+ * @param os_name is only for decorative use and is shown eg. in the X-Mailer header
+ *     in the form "Delta Chat <version> for <osName>"
+ *
+ * @return a mailbox object with some public members the object must be passed to the other mailbox functions
+ *     and the object must be freed using mrmailbox_unref() after usage.
+ */
 mrmailbox_t* mrmailbox_new(mrmailboxcb_t cb, void* userdata, const char* os_name)
 {
 	mrmailbox_get_thread_index(); /* make sure, the main thread has the index #1, only for a nicer look of the logs */
@@ -914,6 +940,16 @@ mrmailbox_t* mrmailbox_new(mrmailboxcb_t cb, void* userdata, const char* os_name
 }
 
 
+/**
+ * After usage, the mailbox object should be freed using mrmailbox_unref().
+ * If app runs can only be terminated by a forced kill, this may be superfluous.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox the mailbox object as created by mrmailbox_new()
+ *
+ * @return none
+ */
 void mrmailbox_unref(mrmailbox_t* ths)
 {
 	if( ths==NULL ) {
@@ -955,6 +991,21 @@ static void update_config_cache__(mrmailbox_t* ths, const char* key)
 }
 
 
+/**
+ * Open mailbox database.  If the given file does not exist, it is
+ * created and can be set up using mrmailbox_set_config() afterwards.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox: the mailbox object as created by mrmailbox_new
+ *
+ * @param dbfile the file to use to store the database, sth. like "~/file" won't work on all systems, if in doubt, use absolute paths
+ *
+ * @param blobdir a directory to store the blobs in, the trailing slash is added by us, so if you want to
+ * avoid double slashes, do not add one. If you give NULL as blobdir, `dbfile-blobs` is used in the same directory as _dbfile_ will be created in.
+ *
+ * @return 1 on success, 0 on failure
+ */
 int mrmailbox_open(mrmailbox_t* ths, const char* dbfile, const char* blobdir)
 {
 	int success = 0;
@@ -1011,6 +1062,15 @@ cleanup:
 }
 
 
+/**
+ * Close mailbox database.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox the mailbox object as created by mrmailbox_new()
+ *
+ * @return none
+ */
 void mrmailbox_close(mrmailbox_t* ths)
 {
 	if( ths == NULL ) {
@@ -1036,6 +1096,15 @@ void mrmailbox_close(mrmailbox_t* ths)
 }
 
 
+/**
+ * Check if a given mailbox database is open.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox the mailbox object as created by mrmailbox_new
+ *
+ * @return 0=mailbox is not open, 1=mailbox is open
+ */
 int mrmailbox_is_open(const mrmailbox_t* ths)
 {
 	if( ths == NULL ) {
@@ -1076,6 +1145,33 @@ cleanup:
  ******************************************************************************/
 
 
+/**
+ * Configure the mailbox.  The configuration is handled by key=value pairs. Typical configuration options are:
+ *
+ * - addr         = address to display (needed)
+ * - mail_server  = IMAP-server, guessed if left out
+ * - mail_user    = IMAP-username, guessed if left out
+ * - mail_pw      = IMAP-password (needed)
+ * - mail_port    = IMAP-port, guessed if left out
+ * - send_server  = SMTP-server, guessed if left out
+ * - send_user    = SMTP-user, guessed if left out
+ * - send_pw      = SMTP-password, guessed if left out
+ * - send_port    = SMTP-port, guessed if left out
+ * - server_flags = IMAP-/SMTP-flags, guessed if left out
+ * - displayname  = Own name to use when sending messages.  MUAs are allowed to spread this way eg. using CC, defaults to empty
+ * - selfstatus   = Own status to display eg. in email footers, defaults to a standard text
+ * - e2ee_enabled = 0=no e2ee, 1=prefer encryption (default)
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param ths the mailbox object
+ *
+ * @param key the option to change, typically one of the strings listed above
+ *
+ * @param value the value to save for "key"
+ *
+ * @return 0=failure, 1=success
+ */
 int mrmailbox_set_config(mrmailbox_t* ths, const char* key, const char* value)
 {
 	int ret;
@@ -1093,6 +1189,20 @@ int mrmailbox_set_config(mrmailbox_t* ths, const char* key, const char* value)
 }
 
 
+/**
+ * Get a configuration option set by mrmailbox_set_config()
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param ths the mailbox object as created by mrmmailbox_new()
+ *
+ * @param key the key to query
+ *
+ * @param def default value to return if "key" is unset
+ *
+ * @return Returns current value of "key", if "key" is unset, "def" is returned (which may be NULL)
+ *     If the returned values is not NULL, the return value must be free()'d,
+ */
 char* mrmailbox_get_config(mrmailbox_t* ths, const char* key, const char* def)
 {
 	char* ret;
@@ -1109,6 +1219,12 @@ char* mrmailbox_get_config(mrmailbox_t* ths, const char* key, const char* def)
 }
 
 
+/**
+ * Similar to mrmailbox_set_config() but sets an integer instead of a string.
+ * If there is already a key with a string set, this is overwritten by the given integer value.
+ *
+ * @memberof mrmailbox_t
+ */
 int mrmailbox_set_config_int(mrmailbox_t* ths, const char* key, int32_t value)
 {
 	int ret;
@@ -1126,6 +1242,11 @@ int mrmailbox_set_config_int(mrmailbox_t* ths, const char* key, int32_t value)
 }
 
 
+/**
+ * Similar as mrmailbox_get_config() but gets the value as an integer instead of a string.
+ *
+ * @memberof mrmailbox_t
+ */
 int32_t mrmailbox_get_config_int(mrmailbox_t* ths, const char* key, int32_t def)
 {
 	int32_t ret;
@@ -1142,19 +1263,33 @@ int32_t mrmailbox_get_config_int(mrmailbox_t* ths, const char* key, int32_t def)
 }
 
 
+/**
+ * Get the blob directory.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as returned by mrmailbox_new().
+ *
+ * @return String which must be free()'d after usage.
+ */
 char* mrmailbox_get_blobdir(mrmailbox_t* mailbox)
 {
 	return safe_strdup(mailbox? mailbox->m_blobdir : NULL);
 }
 
 
-void* mrmailbox_get_userdata(mrmailbox_t* mailbox)
-{
-	return mailbox? mailbox->m_userdata : NULL;
-}
-
-
-char* mrmailbox_get_info(mrmailbox_t* ths)
+/**
+ * mrmailbox_get_info() returns a multi-line output about the current
+ * configuration and the last log entries. the returned string must be free()'d,
+ * returns NULL on errors.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as returned by mrmailbox_new().
+ *
+ * @return String which must be free()'d after usage.
+ */
+char* mrmailbox_get_info(mrmailbox_t* mailbox)
 {
 	const char* unset = "0";
 	char *displayname = NULL, *temp = NULL, *l_readable_str = NULL, *l2_readable_str = NULL, *fingerprint_str = NULL;
@@ -1165,7 +1300,7 @@ char* mrmailbox_get_info(mrmailbox_t* ths)
 	mrstrbuilder_t  ret;
 	mrstrbuilder_init(&ret);
 
-	if( ths == NULL ) {
+	if( mailbox == NULL ) {
 		return safe_strdup("ErrBadPtr");
 	}
 
@@ -1173,44 +1308,44 @@ char* mrmailbox_get_info(mrmailbox_t* ths)
 	l = mrloginparam_new();
 	l2 = mrloginparam_new();
 
-	mrsqlite3_lock(ths->m_sql);
+	mrsqlite3_lock(mailbox->m_sql);
 
-		mrloginparam_read__(l, ths->m_sql, "");
-		mrloginparam_read__(l2, ths->m_sql, "configured_" /*the trailing underscore is correct*/);
+		mrloginparam_read__(l, mailbox->m_sql, "");
+		mrloginparam_read__(l2, mailbox->m_sql, "configured_" /*the trailing underscore is correct*/);
 
-		displayname     = mrsqlite3_get_config__(ths->m_sql, "displayname", NULL);
+		displayname     = mrsqlite3_get_config__(mailbox->m_sql, "displayname", NULL);
 
-		chats           = mrmailbox_get_chat_cnt__(ths);
-		real_msgs       = mrmailbox_get_real_msg_cnt__(ths);
-		deaddrop_msgs   = mrmailbox_get_deaddrop_msg_cnt__(ths);
-		contacts        = mrmailbox_get_real_contact_cnt__(ths);
+		chats           = mrmailbox_get_chat_cnt__(mailbox);
+		real_msgs       = mrmailbox_get_real_msg_cnt__(mailbox);
+		deaddrop_msgs   = mrmailbox_get_deaddrop_msg_cnt__(mailbox);
+		contacts        = mrmailbox_get_real_contact_cnt__(mailbox);
 
-		is_configured   = mrsqlite3_get_config_int__(ths->m_sql, "configured", 0);
+		is_configured   = mrsqlite3_get_config_int__(mailbox->m_sql, "configured", 0);
 
-		dbversion       = mrsqlite3_get_config_int__(ths->m_sql, "dbversion", 0);
+		dbversion       = mrsqlite3_get_config_int__(mailbox->m_sql, "dbversion", 0);
 
-		e2ee_enabled    = ths->m_e2ee_enabled;
+		e2ee_enabled    = mailbox->m_e2ee_enabled;
 
-		mdns_enabled    = mrsqlite3_get_config_int__(ths->m_sql, "mdns_enabled", MR_MDNS_DEFAULT_ENABLED);
+		mdns_enabled    = mrsqlite3_get_config_int__(mailbox->m_sql, "mdns_enabled", MR_MDNS_DEFAULT_ENABLED);
 
-		sqlite3_stmt* stmt = mrsqlite3_prepare_v2_(ths->m_sql, "SELECT COUNT(*) FROM keypairs;");
+		sqlite3_stmt* stmt = mrsqlite3_prepare_v2_(mailbox->m_sql, "SELECT COUNT(*) FROM keypairs;");
 		sqlite3_step(stmt);
 		prv_key_count = sqlite3_column_int(stmt, 0);
 		sqlite3_finalize(stmt);
 
-		stmt = mrsqlite3_prepare_v2_(ths->m_sql, "SELECT COUNT(*) FROM acpeerstates;");
+		stmt = mrsqlite3_prepare_v2_(mailbox->m_sql, "SELECT COUNT(*) FROM acpeerstates;");
 		sqlite3_step(stmt);
 		pub_key_count = sqlite3_column_int(stmt, 0);
 		sqlite3_finalize(stmt);
 
-		if( mrkey_load_self_public__(self_public, l2->m_addr, ths->m_sql) ) {
-			fingerprint_str = mrkey_render_fingerprint(self_public, ths);
+		if( mrkey_load_self_public__(self_public, l2->m_addr, mailbox->m_sql) ) {
+			fingerprint_str = mrkey_render_fingerprint(self_public, mailbox);
 		}
 		else {
 			fingerprint_str = safe_strdup("<Not yet calculated>");
 		}
 
-	mrsqlite3_unlock(ths->m_sql);
+	mrsqlite3_unlock(mailbox->m_sql);
 
 	l_readable_str = mrloginparam_get_readable(l);
 	l2_readable_str = mrloginparam_get_readable(l2);
@@ -1241,7 +1376,7 @@ char* mrmailbox_get_info(mrmailbox_t* ths)
 		/* In the frontends, additional software hints may follow here. */
 
 		, chats, real_msgs, deaddrop_msgs, contacts
-		, ths->m_dbfile? ths->m_dbfile : unset,   dbversion,   ths->m_blobdir? ths->m_blobdir : unset
+		, mailbox->m_dbfile? mailbox->m_dbfile : unset,   dbversion,   mailbox->m_blobdir? mailbox->m_blobdir : unset
 
         , displayname? displayname : unset
 		, is_configured
@@ -1263,19 +1398,19 @@ char* mrmailbox_get_info(mrmailbox_t* ths)
 	free(temp);
 
 	/* add log excerpt */
-	pthread_mutex_lock(&ths->m_log_ringbuf_critical); /*take care not to log here! */
+	pthread_mutex_lock(&mailbox->m_log_ringbuf_critical); /*take care not to log here! */
 		for( int i = 0; i < MR_LOG_RINGBUF_SIZE; i++ ) {
-			int j = (ths->m_log_ringbuf_pos+i) % MR_LOG_RINGBUF_SIZE;
-			if( ths->m_log_ringbuf[j] ) {
+			int j = (mailbox->m_log_ringbuf_pos+i) % MR_LOG_RINGBUF_SIZE;
+			if( mailbox->m_log_ringbuf[j] ) {
 				struct tm wanted_struct;
-				memcpy(&wanted_struct, localtime(&ths->m_log_ringbuf_times[j]), sizeof(struct tm));
+				memcpy(&wanted_struct, localtime(&mailbox->m_log_ringbuf_times[j]), sizeof(struct tm));
 				temp = mr_mprintf("\n%02i:%02i:%02i ", (int)wanted_struct.tm_hour, (int)wanted_struct.tm_min, (int)wanted_struct.tm_sec);
 					mrstrbuilder_cat(&ret, temp);
-					mrstrbuilder_cat(&ret, ths->m_log_ringbuf[j]);
+					mrstrbuilder_cat(&ret, mailbox->m_log_ringbuf[j]);
 				free(temp);
 			}
 		}
-	pthread_mutex_unlock(&ths->m_log_ringbuf_critical);
+	pthread_mutex_unlock(&mailbox->m_log_ringbuf_critical);
 
 	/* free data */
 	mrloginparam_unref(l);
@@ -1345,6 +1480,13 @@ int mrmailbox_reset_tables(mrmailbox_t* ths, int bits)
 }
 
 
+/**
+ * Use mrmailbox_get_version_str() to find out the version of the Delta Chat core library.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @return String with version number as `major.minor.revision`. The return value must be free()'d.
+ */
 char* mrmailbox_get_version_str(void)
 {
 	return mr_mprintf("%i.%i.%i", (int)MR_VERSION_MAJOR, (int)MR_VERSION_MINOR, (int)MR_VERSION_REVISION);
@@ -1423,24 +1565,43 @@ cleanup:
 }
 
 
-void mrmailbox_connect(mrmailbox_t* ths)
+/**
+ * Connect to the mailbox using the configured settings.  We connect using IMAP-IDLE or, if this is not possible,
+ * a using pull algorithm.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as created by mrmailbox_new()
+ *
+ * @return None
+ */
+void mrmailbox_connect(mrmailbox_t* mailbox)
 {
-	if( ths == NULL ) {
+	if( mailbox == NULL ) {
 		return;
 	}
 
-	mrsqlite3_lock(ths->m_sql);
+	mrsqlite3_lock(mailbox->m_sql);
 
-		ths->m_smtp->m_log_connect_errors = 1;
-		ths->m_imap->m_log_connect_errors = 1;
+		mailbox->m_smtp->m_log_connect_errors = 1;
+		mailbox->m_imap->m_log_connect_errors = 1;
 
-		mrjob_kill_action__(ths, MRJ_CONNECT_TO_IMAP);
-		mrjob_add__(ths, MRJ_CONNECT_TO_IMAP, 0, NULL);
+		mrjob_kill_action__(mailbox, MRJ_CONNECT_TO_IMAP);
+		mrjob_add__(mailbox, MRJ_CONNECT_TO_IMAP, 0, NULL);
 
-	mrsqlite3_unlock(ths->m_sql);
+	mrsqlite3_unlock(mailbox->m_sql);
 }
 
 
+/**
+ * Disonnect the mailbox from the server.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as created by mrmailbox_new()
+ *
+ * @return None
+ */
 void mrmailbox_disconnect(mrmailbox_t* ths)
 {
 	if( ths == NULL ) {
@@ -1456,16 +1617,7 @@ void mrmailbox_disconnect(mrmailbox_t* ths)
 }
 
 
-int mrmailbox_fetch(mrmailbox_t* ths)
-{
-	if( ths == NULL ) {
-		return 0;
-	}
-
-	return mrimap_fetch(ths->m_imap);
-}
-
-
+/* restore old data from the IMAP server, not really implemented. */
 int mrmailbox_restore(mrmailbox_t* ths, time_t seconds_to_restore)
 {
 	if( ths == NULL ) {

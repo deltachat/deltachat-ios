@@ -42,14 +42,24 @@ mrpoortext_t* mrpoortext_new()
 }
 
 
-void mrpoortext_unref(mrpoortext_t* ths)
+/**
+ * Frees a mrpoortext_t object created eg. by mrchatlist_get_summary() or by
+ * mrmsg_eget_summary().  This also frees the strings objects.
+ *
+ * @memberof mrpoortext_t
+ *
+ * @param poortext The mrpoortext_t object to free.
+ *
+ * @return None
+ */
+void mrpoortext_unref(mrpoortext_t* poortext)
 {
-	if( ths==NULL ) {
+	if( poortext==NULL ) {
 		return;
 	}
 
-	mrpoortext_empty(ths);
-	free(ths);
+	mrpoortext_empty(poortext);
+	free(poortext);
 }
 
 

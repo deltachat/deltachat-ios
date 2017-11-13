@@ -4,4 +4,3 @@
 
 #include "mrmailbox.h"
 #include "wrapper.h"
-#include "mrmailbox_internal.h"

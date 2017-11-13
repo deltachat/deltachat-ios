@@ -129,15 +129,25 @@ mrchatlist_t* mrchatlist_new(mrmailbox_t* mailbox)
 }
 
 
-void mrchatlist_unref(mrchatlist_t* ths)
+/**
+ * Free a mrchatlist_t object as created eg. by mrmailbox_get_chatlist().
+ *
+ * @memberof mrchatlist_t
+ *
+ * @param chatlist The chatlist object to free.
+ *
+ * @return None.
+ *
+ */
+void mrchatlist_unref(mrchatlist_t* chatlist)
 {
-	if( ths==NULL ) {
+	if( chatlist==NULL ) {
 		return;
 	}
 
-	mrchatlist_empty(ths);
-	carray_free(ths->m_chatNlastmsg_ids);
-	free(ths);
+	mrchatlist_empty(chatlist);
+	carray_free(chatlist->m_chatNlastmsg_ids);
+	free(chatlist);
 }
 
 
@@ -150,16 +160,35 @@ void mrchatlist_empty(mrchatlist_t* ths)
 }
 
 
-size_t mrchatlist_get_cnt(mrchatlist_t* ths)
+/**
+ * Find out the number of chats in a chatlist.
+ *
+ * @memberof mrchatlist_t
+ *
+ * @param chatlist The chatlist object as created eg. by mrmailbox_get_chatlist().
+ *
+ * @return Returns the number of items in a mrchatlist_t object. 0 on errors or if the list is empty.
+ */
+size_t mrchatlist_get_cnt(mrchatlist_t* chatlist)
 {
-	if( ths == NULL ) {
+	if( chatlist == NULL ) {
 		return 0;
 	}
 
-	return ths->m_cnt;
+	return chatlist->m_cnt;
 }
 
 
+/**
+ * Get a single chat ID of a chatlist.
+ *
+ * @memberof mrchatlist_t
+ *
+ * @param chatlist The chatlist object as created eg. by mrmailbox_get_chatlist().
+ *
+ * @return Returns the chat_id of the item at the given index.  Index must be between
+ *     0 and mrchatlist_get_cnt()-1.
+ */
 uint32_t mrchatlist_get_chat_id(mrchatlist_t* ths, size_t index)
 {
 	if( ths == NULL || ths->m_chatNlastmsg_ids == NULL || index >= ths->m_cnt ) {
@@ -180,6 +209,16 @@ mrchat_t* mrchatlist_get_chat_by_index(mrchatlist_t* ths, size_t index) /* depre
 }
 
 
+/**
+ * Get a single message ID of a chatlist.
+ *
+ * @memberof mrchatlist_t
+ *
+ * @param chatlist The chatlist object as created eg. by mrmailbox_get_chatlist().
+ *
+ * @return Returns the message_id of the item at the given index.  Index must be between
+ *     0 and mrchatlist_get_cnt()-1.  If there is no message at the given index (eg. the chat may be empty), 0 is returned.
+ */
 uint32_t mrchatlist_get_msg_id(mrchatlist_t* ths, size_t index)
 {
 	if( ths == NULL || ths->m_chatNlastmsg_ids == NULL || index >= ths->m_cnt ) {
@@ -200,6 +239,32 @@ mrmsg_t* mrchatlist_get_msg_by_index(mrchatlist_t* ths, size_t index) /* depreca
 }
 
 
+/**
+ * Get a summary for a chatlist index.
+ *
+ * The summary is returned by a mrpoortext_t object with the following fields:
+ *
+ * - m_text1: contains the username or the strings "Me", "Draft" and so on.
+ *   The string may be colored by having a look at m_text1_meaning.
+ *   If there is no such name, the element is NULL (eg. for "No messages")
+ *
+ * - m_text1_meaning: one of the MR_TEXT1_* constants
+ *
+ * - m_text2: contains an excerpt of the message text or strings as
+ *   "No messages".  may be NULL of there is no such text (eg. for the archive)
+ *
+ * - m_timestamp: the timestamp of the message.  May be 0 if there is no message
+ *
+ * - m_state: the state of the message as one of the MR_STATE_* identifiers.  0 if there is no message.
+ *
+ * @memberof mrchatlist_t
+ *
+ * @param chat  Giving the correct chat object here, this this will speed up
+ *     things a little.  If the chat object is not available by you, it is faster to pass
+ *     NULL here.
+ *
+ * @return The result must be freed using mrpoortext_unref().  The function never returns NULL.
+ */
 mrpoortext_t* mrchatlist_get_summary(mrchatlist_t* chatlist, size_t index, mrchat_t* chat /*may be NULL*/)
 {
 	/* The summary is created by the chat, not by the last message.

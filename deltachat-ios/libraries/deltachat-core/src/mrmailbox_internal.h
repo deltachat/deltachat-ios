@@ -35,58 +35,13 @@ extern "C" {
 #include "mrsqlite3.h"
 #include "mrtools.h"
 
-typedef struct mrjob_t mrjob_t;
-typedef struct mrimap_t mrimap_t;
-typedef struct mrsmtp_t mrsmtp_t;
 typedef struct mrmimeparser_t mrmimeparser_t;
-typedef struct mrsqlite3_t mrsqlite3_t;
+typedef struct mrjob_t      mrjob_t;
 
 
 /*******************************************************************************
  * Internal mailbox handling
  ******************************************************************************/
-
-
-/* mrmailbox_t represents a single mailbox, normally, typically only one
-instance of this class is present.
-Each mailbox is linked to an IMAP/POP3 account and uses a separate
-SQLite database for offline functionality and for mailbox-related
-settings. */
-typedef struct mrmailbox_t
-{
-	void*            m_userdata;
-
-	mrsqlite3_t*     m_sql;      /* != NULL */
-	char*            m_dbfile;
-	char*            m_blobdir;
-
-	mrimap_t*        m_imap;     /* != NULL */
-	mrsmtp_t*        m_smtp;     /* != NULL */
-
-	pthread_t        m_job_thread;
-	pthread_cond_t   m_job_cond;
-	pthread_mutex_t  m_job_condmutex;
-	int              m_job_condflag;
-	int              m_job_do_exit;
-
-	mrmailboxcb_t    m_cb;
-
-	char*            m_os_name;
-
-	uint32_t         m_cmdline_sel_chat_id;
-
-	int              m_wake_lock;
-	pthread_mutex_t  m_wake_lock_critical;
-
-	int              m_e2ee_enabled;
-
-	#define          MR_LOG_RINGBUF_SIZE 200
-	pthread_mutex_t  m_log_ringbuf_critical;
-	char*            m_log_ringbuf[MR_LOG_RINGBUF_SIZE];
-	time_t           m_log_ringbuf_times[MR_LOG_RINGBUF_SIZE];
-	int              m_log_ringbuf_pos; /* the oldest position resp. the position that is overwritten next */
-
-} mrmailbox_t;
 
 
 #define MR_E2EE_DEFAULT_ENABLED  1
@@ -136,17 +91,6 @@ int    mrmailbox_get_archived_count__                    (mrmailbox_t*);
 /*******************************************************************************
  * Internal chatlist handling
  ******************************************************************************/
-
-
-/* The chatlist object and some function for helping accessing it.
-The chatlist object is not updated.  If you want an update, you have to recreate
-the object. */
-typedef struct mrchatlist_t
-{
-	size_t          m_cnt;
-	carray*         m_chatNlastmsg_ids;
-	mrmailbox_t*    m_mailbox;
-} mrchatlist_t;
 
 
 mrchatlist_t* mrchatlist_new                 (mrmailbox_t*);

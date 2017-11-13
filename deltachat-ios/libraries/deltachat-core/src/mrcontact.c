@@ -552,15 +552,27 @@ static void marknoticed_contact__(mrmailbox_t* mailbox, uint32_t contact_id)
 }
 
 
-int mrmailbox_marknoticed_contact(mrmailbox_t* mailbox, uint32_t contact_id)
+/**
+ * Mark all messages send by the given contact
+ * as _noticed_.  See also mrmailbox_marknoticed_chat() and
+ * mrmailbox_markseen_msgs()
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as created by mrmmailbox_new()
+ *
+ * @param contact_id The contact ID of which all messages should be marked as noticed.
+ *
+ * @return none
+ */
+void mrmailbox_marknoticed_contact(mrmailbox_t* mailbox, uint32_t contact_id)
 {
     if( mailbox == NULL ) {
-		return 0;
+		return;
     }
     mrsqlite3_lock(mailbox->m_sql);
 		marknoticed_contact__(mailbox, contact_id);
     mrsqlite3_unlock(mailbox->m_sql);
-    return 1;
 }
 
 

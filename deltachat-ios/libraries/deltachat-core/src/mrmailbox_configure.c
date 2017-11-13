@@ -644,6 +644,24 @@ exit_:
  ******************************************************************************/
 
 
+/**
+ * mrmailbox_configure_and_connect() configures and connects a mailbox.
+ *
+ * - Before your call this function, you should set at least `addr` and `mail_pw`
+ *   using mrmailbox_set_config().
+ * - mrmailbox_configure_and_connect() returns immediately, configuration is done
+ *   in another thread; when done, the event MR_EVENT_CONFIGURE_ENDED ist posted
+ * - There is no need to call this every program start, the result is saved in the
+ *   database.
+ * - mrmailbox_configure_and_connect() should be called after any settings
+ *   change.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox the mailbox object as created by mrmailbox_new()
+ *
+ * @return none
+ */
 void mrmailbox_configure_and_connect(mrmailbox_t* mailbox)
 {
 	if( mailbox == NULL ) {
@@ -679,6 +697,15 @@ void mrmailbox_configure_and_connect(mrmailbox_t* mailbox)
 }
 
 
+/**
+ * Cancel an configuration started by mrmailbox_configure_and_connect().
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as created by mrmailbox_new()
+ *
+ * @return None
+ */
 void mrmailbox_configure_cancel(mrmailbox_t* mailbox)
 {
 	if( mailbox == NULL ) {
@@ -695,6 +722,16 @@ void mrmailbox_configure_cancel(mrmailbox_t* mailbox)
 }
 
 
+/**
+ * Check if the mailbox is already configured.  Typically, for unconfigured mailboxes, the user is prompeted for
+ * to enter some settings and mrmailbox_configure_and_connect() is called with them.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as created by mrmailbox_new()
+ *
+ * @return None
+ */
 int mrmailbox_is_configured(mrmailbox_t* mailbox)
 {
 	int is_configured;

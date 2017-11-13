@@ -317,13 +317,35 @@ int mrchat_load_from_db__(mrchat_t* ths, uint32_t id)
  ******************************************************************************/
 
 
-mrchatlist_t* mrmailbox_get_chatlist(mrmailbox_t* ths, int listflags, const char* query)
+/**
+ * Get a list of chats.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned by mrmailbox_new()
+ *
+ * @param listflags A combination of flags:
+ *     - if the flag MR_GCL_ARCHIVED_ONLY is set, only archived chats are returned.
+ *       if MR_GCL_ARCHIVED_ONLY is not set, only unarchived chats are returned and
+ *       the pseudo-chat MR_CHAT_ID_ARCHIVED_LINK is added if there are _any_ archived
+ *       chats
+ *     - if the flag MR_GCL_NO_SPECIALS is set, deaddrop and archive link are not added
+ *       to the list (may be used eg. for selecting chats on forwarding, the flag is
+ *      F not needed when MR_GCL_ARCHIVED_ONLY is already set)
+
+ * @param query An optional query for filtering the list.  Only chats matching this query
+ *     are returned.  Give NULL for no filtering.
+ *
+ * @return A chatlist as an mrchatlist_t object. Must be freed using
+ *     mrchatlist_unref() when no longer used
+ */
+mrchatlist_t* mrmailbox_get_chatlist(mrmailbox_t* mailbox, int listflags, const char* query)
 {
 	int success = 0;
 	int db_locked = 0;
-	mrchatlist_t* obj = mrchatlist_new(ths);
+	mrchatlist_t* obj = mrchatlist_new(mailbox);
 
-	mrsqlite3_lock(ths->m_sql);
+	mrsqlite3_lock(mailbox->m_sql);
 	db_locked = 1;
 
 	if( !mrchatlist_load_from_db__(obj, listflags, query) ) {
@@ -337,7 +359,7 @@ mrchatlist_t* mrmailbox_get_chatlist(mrmailbox_t* ths, int listflags, const char
 	/* cleanup */
 cleanup:
 	if( db_locked ) {
-		mrsqlite3_unlock(ths->m_sql);
+		mrsqlite3_unlock(mailbox->m_sql);
 	}
 
 	if( success ) {
@@ -350,7 +372,20 @@ cleanup:
 }
 
 
-mrchat_t* mrmailbox_get_chat(mrmailbox_t* ths, uint32_t id)
+/**
+ * Get a chat object of type mrchat_t by a chat_id.
+ * To access the mrchat_t object, see mrchat.h
+ * The result must be unref'd using mrchat_unref().
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ *
+ * @param chat_id The ID of the chat to get the chat object for.
+ *
+ * @return A chat object, must be freed using mrchat_unref() when done.
+ */
+mrchat_t* mrmailbox_get_chat(mrmailbox_t* ths, uint32_t chat_id)
 {
 	int success = 0;
 	int db_locked = 0;
@@ -359,7 +394,7 @@ mrchat_t* mrmailbox_get_chat(mrmailbox_t* ths, uint32_t id)
 	mrsqlite3_lock(ths->m_sql);
 	db_locked = 1;
 
-	if( !mrchat_load_from_db__(obj, id) ) {
+	if( !mrchat_load_from_db__(obj, chat_id) ) {
 		goto cleanup;
 	}
 
@@ -382,6 +417,16 @@ cleanup:
 }
 
 
+/**
+ * mrmailbox_marknoticed_chat() marks all message in a whole chat as NOTICED.
+ * NOTICED messages are no longer FRESH and do not count as being unseen.
+ * IMAP/MDNs is not done for noticed messages.  See also mrmailbox_marknoticed_contact()
+ * and mrmailbox_markseen_msgs()
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ */
 int mrmailbox_marknoticed_chat(mrmailbox_t* ths, uint32_t chat_id)
 {
 	/* marking a chat as "seen" is done by marking all fresh chat messages as "noticed" -
@@ -405,6 +450,15 @@ int mrmailbox_marknoticed_chat(mrmailbox_t* ths, uint32_t chat_id)
 }
 
 
+/**
+ * If there is a normal chat with the given contact_id, this chat_id is
+ * retunred.  If there is no normal chat with the contact_id, the function
+ * returns 0
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ */
 uint32_t mrmailbox_get_chat_id_by_contact_id(mrmailbox_t* mailbox, uint32_t contact_id)
 {
 	uint32_t chat_id = 0;
@@ -419,6 +473,14 @@ uint32_t mrmailbox_get_chat_id_by_contact_id(mrmailbox_t* mailbox, uint32_t cont
 }
 
 
+/**
+ * Create a normal chat with a single user.  To create group chats,
+ * see mrmailbox_create_group_chat()
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ */
 uint32_t mrmailbox_create_chat_by_contact_id(mrmailbox_t* ths, uint32_t contact_id)
 {
 	uint32_t      chat_id = 0;
@@ -482,6 +544,14 @@ static carray* mrmailbox_get_chat_media__(mrmailbox_t* mailbox, uint32_t chat_id
 }
 
 
+/**
+ * Returns all message IDs of the given types in a chat.  Typically used to show
+ * a gallery.  The result must be carray_free()'d
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ */
 carray* mrmailbox_get_chat_media(mrmailbox_t* mailbox, uint32_t chat_id, int msg_type, int or_msg_type)
 {
 	carray* ret = NULL;
@@ -496,6 +566,14 @@ carray* mrmailbox_get_chat_media(mrmailbox_t* mailbox, uint32_t chat_id, int msg
 }
 
 
+/**
+ * Returns all message IDs of the given types in a chat.  Typically used to show
+ * a gallery.  The result must be carray_free()'d
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ */
 uint32_t mrmailbox_get_next_media(mrmailbox_t* mailbox, uint32_t curr_msg_id, int dir)
 {
 	uint32_t ret_msg_id = 0;
@@ -551,6 +629,24 @@ cleanup:
 }
 
 
+/**
+ * mrmailbox_get_chat_contacts() returns contact IDs, the result must be
+ * carray_free()'d.
+ *
+ * - for normal chats, the function always returns exactly one contact
+ *   MR_CONTACT_ID_SELF is _not_ returned.
+ *
+ * - for group chats all members are returned, MR_CONTACT_ID_SELF is returned
+ *   explicitly as it may happen that oneself gets removed from a still existing
+ *   group
+ *
+ * - for the deaddrop, all contacts are returned, MR_CONTACT_ID_SELF is not
+ *   added
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ */
 carray* mrmailbox_get_chat_contacts(mrmailbox_t* mailbox, uint32_t chat_id)
 {
 	/* Normal chats do not include SELF.  Group chats do (as it may happen that one is deleted from a
@@ -607,6 +703,11 @@ mrchat_t* mrchat_new(mrmailbox_t* mailbox)
 }
 
 
+/**
+ * Frees a mrchat_t object created eg. by mrmailbox_get_chat().
+ *
+ * @memberof mrchat_t
+ */
 void mrchat_unref(mrchat_t* ths)
 {
 	if( ths==NULL ) {
@@ -643,6 +744,14 @@ void mrchat_empty(mrchat_t* ths)
 }
 
 
+/**
+ * Returns message IDs of fresh messages, Typically used for implementing
+ * notification summaries.  The result must be free()'d.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ */
 carray* mrmailbox_get_fresh_msgs(mrmailbox_t* mailbox)
 {
 	int           show_deaddrop, success = 0, locked = 0;
@@ -692,6 +801,22 @@ cleanup:
 }
 
 
+/**
+ * mrmailbox_get_chat_msgs() returns a view on a chat.
+ * The function returns an array of message IDs, which must be carray_free()'d by
+ * the caller.  Optionally, some special markers added to the ID-array may help to
+ * implement virtual lists:
+ *
+ * - If you add the flag MR_GCM_ADD_DAY_MARKER, the marker MR_MSG_ID_DAYMARKER will
+ *   be added before each day (regarding the local timezone)
+ *
+ * - If you specify marker1before, the id MR_MSG_ID_MARKER1 will be added just
+ *   before the given ID.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ */
 carray* mrmailbox_get_chat_msgs(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t flags, uint32_t marker1before)
 {
 	int           success = 0, locked = 0;
@@ -775,6 +900,24 @@ cleanup:
 }
 
 
+/**
+ * Search messages containing the given query string.
+ * Searching can be done globally (chat_id=0) or in a specified chat only (chat_id
+ * set).
+ *
+ * - The function returns an array of messages IDs which must be carray_free()'d
+ *   by the caller.
+ *
+ * - If nothing can be found, the function returns NULL.
+ *
+ * Global chat results are typically displayed using mrmsg_get_summary(), chat
+ * search results may just hilite the corresponding messages and present a
+ * prev/next button.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ */
 carray* mrmailbox_search_msgs(mrmailbox_t* mailbox, uint32_t chat_id, const char* query__)
 {
 	int           success = 0, locked = 0;
@@ -910,6 +1053,15 @@ cleanup:
 }
 
 
+/**
+ * save message in database and send it, the given message object is not unref'd
+ * by the function but some fields are set up! Sends the event
+ * MR_EVENT_MSGS_CHANGED on succcess.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ */
 void mrmailbox_set_draft(mrmailbox_t* mailbox, uint32_t chat_id, const char* msg)
 {
 	set_draft_int(mailbox, NULL, chat_id, msg);
@@ -923,6 +1075,12 @@ int mrchat_set_draft(mrchat_t* chat, const char* msg) /* deprecated */
 }
 
 
+/**
+ * either the email-address or the number of group members, the result must be
+ * free()'d!
+ *
+ * @memberof mrchat_t
+ */
 char* mrchat_get_subtitle(mrchat_t* ths)
 {
 	/* returns either the address or the number of chat members */
@@ -983,6 +1141,13 @@ char* mrchat_get_subtitle(mrchat_t* ths)
 }
 
 
+/**
+ * Returns the total number of messages in a chat.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ */
 int mrmailbox_get_total_msg_count(mrmailbox_t* mailbox, uint32_t chat_id)
 {
 	int ret;
@@ -999,6 +1164,14 @@ int mrmailbox_get_total_msg_count(mrmailbox_t* mailbox, uint32_t chat_id)
 }
 
 
+/**
+ * Returns the number of fresh messages in a chat.  Typically used to implement
+ * a badge with a number in the chatlist.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ */
 int mrmailbox_get_fresh_msg_count(mrmailbox_t* mailbox, uint32_t chat_id)
 {
 	int ret;
@@ -1015,10 +1188,28 @@ int mrmailbox_get_fresh_msg_count(mrmailbox_t* mailbox, uint32_t chat_id)
 }
 
 
-int mrmailbox_archive_chat(mrmailbox_t* mailbox, uint32_t chat_id, int archive)
+/**
+ * Archiv or unarchive a chat by setting the last paramter to 0 (unarchive) or
+ * 1 (archive).  Archived chats are not returned in the default chatlist returned
+ * by mrmailbox_get_chatlist(0, NULL).  Instead, if there are _any_ archived chats,
+ * the pseudo-chat with the chat_id MR_CHAT_ID_ARCHIVED_LINK will be added the the
+ * end of the chatlist.
+ * To get a list of archived chats, use mrmailbox_get_chatlist(MR_GCL_ARCHIVED_ONLY, NULL).
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ *
+ * @param chat_id The ID of the chat to archive or unarchive.
+ *
+ * @param archive 1=archive chat, 0=unarchive chat
+ *
+ * @return None
+ */
+void mrmailbox_archive_chat(mrmailbox_t* mailbox, uint32_t chat_id, int archive)
 {
 	if( mailbox == NULL || chat_id <= MR_CHAT_ID_LAST_SPECIAL || (archive!=0 && archive!=1) ) {
-		return 0;
+		return;
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
@@ -1028,8 +1219,6 @@ int mrmailbox_archive_chat(mrmailbox_t* mailbox, uint32_t chat_id, int archive)
 		sqlite3_step(stmt);
 		sqlite3_finalize(stmt);
 	mrsqlite3_unlock(mailbox->m_sql);
-
-	return 1;
 }
 
 
@@ -1108,9 +1297,38 @@ cleanup:
 }
 
 
-int mrmailbox_delete_chat(mrmailbox_t* mailbox, uint32_t chat_id)
+/**
+ * Delete a chat:
+ *
+ * - messages are deleted from the device and the chat database entry is deleted
+ *
+ * - messages are _not_ deleted from the server
+ *
+ * - the chat is not blocked, so new messages from the user/the group may appear
+ *   and the user may create the chat again
+ *
+ * - this is also one of the reasons, why groups are _not left_ -  this would
+ *   be unexpected as deleting a normal chat also does not prevent new mails
+ *
+ * - moreover, there may be valid reasons only to leave a group and only to
+ *   delete a group
+ *
+ * - another argument is, that leaving a group requires sending a message to
+ *   all group members - esp. for groups not used for a longer time, this is
+ *   really unexpected
+ *
+ * - to leave a chat, use mrmailbox_remove_contact_from_chat(mailbox, chat_id, MR_CONTACT_ID_SELF)
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ *
+ * @param chat_id The ID of the chat to delete.
+ *
+ * @return None
+ */
+void mrmailbox_delete_chat(mrmailbox_t* mailbox, uint32_t chat_id)
 {
-	int          success = 0;
 	mrchat_t*    chat = mrmailbox_get_chat(mailbox, chat_id);
 	mrcontact_t* contact = NULL;
 	mrmsg_t*     msg = mrmsg_new();
@@ -1154,13 +1372,11 @@ int mrmailbox_delete_chat(mrmailbox_t* mailbox, uint32_t chat_id)
 	}
 
 	mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, 0, 0);
-	success = 1;
 
 cleanup:
 	mrchat_unref(chat);
 	mrcontact_unref(contact);
 	mrmsg_unref(msg);
-	return success;
 }
 
 
@@ -1420,6 +1636,14 @@ cleanup:
 }
 
 
+/**
+ * send a simple text message to the given chat.
+ * Sends the event MR_EVENT_MSGS_CHANGED on succcess
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ */
 uint32_t mrmailbox_send_text_msg(mrmailbox_t* mailbox, uint32_t chat_id, const char* text_to_send)
 {
 	mrmsg_t* msg = mrmsg_new();
@@ -1440,6 +1664,15 @@ cleanup:
 }
 
 
+/**
+ * save message in database and send it, the given message object is not unref'd
+ * by the function but some fields are set up! Sends the event
+ * MR_EVENT_MSGS_CHANGED on succcess.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ */
 uint32_t mrmailbox_send_msg(mrmailbox_t* mailbox, uint32_t chat_id, mrmsg_t* msg)
 {
 	char* pathNfilename = NULL;
