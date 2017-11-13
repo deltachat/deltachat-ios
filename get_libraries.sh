@@ -8,6 +8,22 @@ if [[ ! -d "${base}" ]]; then
     exit 1
 fi
 
+cd "${base}"
+
+if [[ $? -ne 0 ]]; then
+    echo Error: could not change to deltachat-core directory
+    exit 1
+fi
+
+git pull
+
+if [[ $? -ne 0 ]]; then
+    echo Error: pulling deltachat-core repository failed
+    exit 1
+fi
+
+cd -
+
 rm -rf "${dst}"/deltachat-core
 mkdir -p "${dst}"
 cp -r "${base}" "$dst"
