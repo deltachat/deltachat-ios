@@ -27,7 +27,10 @@
 #include "mrmimeparser.h"
 
 
-static void mraheader_empty(mraheader_t* ths)
+/**
+ * @private @memberof mraheader_t
+ */
+void mraheader_empty(mraheader_t* ths)
 {
 	if( ths == NULL ) {
 		return;
@@ -50,6 +53,9 @@ static void mraheader_empty(mraheader_t* ths)
  ******************************************************************************/
 
 
+/**
+ * @memberof mraheader_t
+ */
 char* mraheader_render(const mraheader_t* ths)
 {
 	int            success = 0;
@@ -145,6 +151,9 @@ static int add_attribute(mraheader_t* ths, const char* name, const char* value /
 }
 
 
+/**
+ * @memberof mraheader_t
+ */
 int mraheader_set_from_string(mraheader_t* ths, const char* header_str__)
 {
 	/* according to RFC 5322 (Internet Message Format), the given string may contain `\r\n` before any whitespace.
@@ -218,6 +227,9 @@ cleanup:
  ******************************************************************************/
 
 
+/**
+ * @memberof mraheader_t
+ */
 mraheader_t* mraheader_new()
 {
 	mraheader_t* ths = NULL;
@@ -232,6 +244,9 @@ mraheader_t* mraheader_new()
 }
 
 
+/**
+ * @memberof mraheader_t
+ */
 void mraheader_unref(mraheader_t* ths)
 {
 	if( ths==NULL ) {
@@ -244,6 +259,9 @@ void mraheader_unref(mraheader_t* ths)
 }
 
 
+/**
+ * @memberof mraheader_t
+ */
 mraheader_t* mraheader_new_from_imffields(const char* wanted_from, const struct mailimf_fields* header)
 {
 	clistiter*   cur;

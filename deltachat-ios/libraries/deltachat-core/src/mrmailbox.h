@@ -33,14 +33,14 @@ extern "C" {
 
 
 #include <libetpan/libetpan.h> /* defines uint16_t etc. */
+#include "mrchatlist.h"
+#include "mrchat.h"
+#include "mrmsg.h"
+#include "mrcontact.h"
+#include "mrpoortext.h"
+#include "mrparam.h"
 
 typedef struct mrmailbox_t  mrmailbox_t;
-typedef struct mrchatlist_t mrchatlist_t;
-typedef struct mrchat_t     mrchat_t;
-typedef struct mrmsg_t      mrmsg_t;
-typedef struct mrcontact_t  mrcontact_t;
-typedef struct mrpoortext_t mrpoortext_t;
-typedef struct mrparam_t    mrparam_t;
 typedef struct mrimap_t     mrimap_t;
 typedef struct mrsmtp_t     mrsmtp_t;
 typedef struct mrsqlite3_t  mrsqlite3_t;
@@ -51,7 +51,7 @@ typedef struct mrsqlite3_t  mrsqlite3_t;
  *
  * @memberof mrmailbox_t
  *
- * @param mailbox the mailbox object as created by mrmailbox_new
+ * @param mailbox the mailbox object as returned by mrmailbox_new().
  *
  * @param event one of the MR_EVENT_* constants
  *
@@ -65,8 +65,8 @@ typedef uintptr_t (*mrmailboxcb_t) (mrmailbox_t*, int event, uintptr_t data1, ui
 
 
 /**
- * mrmailbox_t represents a single mailbox, normally, typically only one
- * instance of this class is present.
+ * A single mailbox; typically only one instance of this class is present.
+ *
  * Each mailbox is linked to an IMAP/POP3 account and uses a separate
  * SQLite database for offline functionality and for mailbox-related
  * settings.
@@ -112,11 +112,9 @@ typedef struct mrmailbox_t
 mrmailbox_t*    mrmailbox_new               (mrmailboxcb_t, void* userdata, const char* os_name);
 void            mrmailbox_unref             (mrmailbox_t*);
 
-
 int             mrmailbox_open              (mrmailbox_t*, const char* dbfile, const char* blobdir);
 void            mrmailbox_close             (mrmailbox_t*);
 int             mrmailbox_is_open           (const mrmailbox_t*);
-
 
 int             mrmailbox_set_config        (mrmailbox_t*, const char* key, const char* value);
 char*           mrmailbox_get_config        (mrmailbox_t*, const char* key, const char* def);
@@ -125,97 +123,37 @@ int32_t         mrmailbox_get_config_int    (mrmailbox_t*, const char* key, int3
 char*           mrmailbox_get_blobdir       (mrmailbox_t*);
 char*           mrmailbox_get_version_str   (void);
 
-
 void            mrmailbox_configure_and_connect(mrmailbox_t*);
 void            mrmailbox_configure_cancel  (mrmailbox_t*);
 int             mrmailbox_is_configured     (mrmailbox_t*);
 
-
 void            mrmailbox_connect           (mrmailbox_t*);
 void            mrmailbox_disconnect        (mrmailbox_t*);
-
 
 int             mrmailbox_restore           (mrmailbox_t*, time_t seconds_to_restore); /* not really implemented */
 char*           mrmailbox_get_info          (mrmailbox_t*);
 
 
-/*******************************************************************************
- * Handle chatlists
- ******************************************************************************/
-
-
-/**
- * Chatlist objects contain a chat IDs and, if possible, message IDs belonging to them.
- * Chatlist objects are created eg. using mrmailbox_get_chatlist().
- * The chatlist object is not updated.  If you want an update, you have to recreate
- * the object.
- */
-typedef struct mrchatlist_t
-{
-	mrmailbox_t*    m_mailbox; /**< The mailbox, the chatlist belongs to */
-
-	/** @privatesection */
-	size_t          m_cnt;
-	carray*         m_chatNlastmsg_ids;
-} mrchatlist_t;
-
-
+/* Handle chatlists */
 #define         MR_GCL_ARCHIVED_ONLY        0x01
 #define         MR_GCL_NO_SPECIALS          0x02
 mrchatlist_t*   mrmailbox_get_chatlist      (mrmailbox_t*, int flags, const char* query);
 
 
-void            mrchatlist_unref            (mrchatlist_t*);
-size_t          mrchatlist_get_cnt          (mrchatlist_t*);
-uint32_t        mrchatlist_get_chat_id      (mrchatlist_t*, size_t index);
-uint32_t        mrchatlist_get_msg_id       (mrchatlist_t*, size_t index);
-mrpoortext_t*   mrchatlist_get_summary      (mrchatlist_t*, size_t index, mrchat_t*);
-
-
-/**
- * the poortext object and some function accessing it.  A poortext object
- * contains some strings together with their meaning and some attributes.  The
- * object is mainly used for summary returns of chats and chatlists
- */
-typedef struct mrpoortext_t
-{
-	int             m_text1_meaning;   /**< One of MR_TEXT1_NORMAL, MR_TEXT1_DRAFT, MR_TEXT1_USERNAME or MR_TEXT1_SELF */
-	char*           m_text1;           /**< may be NULL */
-	char*           m_text2;           /**< may be NULL */
-	time_t          m_timestamp;       /**< may be 0 */
-	int             m_state;           /**< may be 0 */
-} mrpoortext_t;
-
-
-#define         MR_TEXT1_NORMAL    0 /**< @memberof mrpoortext_t */
-#define         MR_TEXT1_DRAFT     1 /**< @memberof mrpoortext_t */
-#define         MR_TEXT1_USERNAME  2 /**< @memberof mrpoortext_t */
-#define         MR_TEXT1_SELF      3 /**< @memberof mrpoortext_t */
-
-
-void            mrpoortext_unref            (mrpoortext_t*);
-
-
-/*******************************************************************************
- * Handle chats
- ******************************************************************************/
-
-
+/* Handle chats */
 uint32_t        mrmailbox_create_chat_by_contact_id (mrmailbox_t*, uint32_t contact_id);
 uint32_t        mrmailbox_get_chat_id_by_contact_id (mrmailbox_t*, uint32_t contact_id);
-
 
 uint32_t        mrmailbox_send_text_msg     (mrmailbox_t*, uint32_t chat_id, const char* text_to_send);
 uint32_t        mrmailbox_send_msg          (mrmailbox_t*, uint32_t chat_id, mrmsg_t*);
 void            mrmailbox_set_draft         (mrmailbox_t*, uint32_t chat_id, const char*);
-
 
 #define         MR_GCM_ADDDAYMARKER         0x01
 carray*         mrmailbox_get_chat_msgs     (mrmailbox_t*, uint32_t chat_id, uint32_t flags, uint32_t marker1before);
 int             mrmailbox_get_total_msg_count (mrmailbox_t*, uint32_t chat_id);
 int             mrmailbox_get_fresh_msg_count (mrmailbox_t*, uint32_t chat_id);
 carray*         mrmailbox_get_fresh_msgs    (mrmailbox_t*);
-int             mrmailbox_marknoticed_chat  (mrmailbox_t*, uint32_t chat_id);
+void            mrmailbox_marknoticed_chat  (mrmailbox_t*, uint32_t chat_id);
 carray*         mrmailbox_get_chat_media    (mrmailbox_t*, uint32_t chat_id, int msg_type, int or_msg_type);
 uint32_t        mrmailbox_get_next_media    (mrmailbox_t*, uint32_t curr_msg_id, int dir);
 
@@ -228,81 +166,16 @@ carray*         mrmailbox_search_msgs       (mrmailbox_t*, uint32_t chat_id, con
 mrchat_t*       mrmailbox_get_chat          (mrmailbox_t*, uint32_t chat_id);
 
 
-/**
- * Chat objects are created using eg. mrmailbox_get_chat().
- * The chat object is not updated.  If you want an update, you have to recreate the
- * object.
- */
-typedef struct mrchat_t
-{
-	#define         MR_CHAT_ID_DEADDROP         1 /* messages send from unknown/unwanted users to us, chats_contacts is not set up. This group may be shown normally. */
-	#define         MR_CHAT_ID_TO_DEADDROP      2 /* messages send from us to unknown/unwanted users (this may happen when deleting chats or when using CC: in the email-program) */
-	#define         MR_CHAT_ID_TRASH            3 /* messages that should be deleted get this chat_id; the messages are deleted from the working thread later then. This is also needed as rfc724_mid should be preset as long as the message is not deleted on the server (otherwise it is downloaded again) */
-	#define         MR_CHAT_ID_MSGS_IN_CREATION 4 /* a message is just in creation but not yet assigned to a chat (eg. we may need the message ID to set up blobs; this avoids unready message to be send and shown) */
-	#define         MR_CHAT_ID_STARRED          5 /* virtual chat containing all starred messages */
-	#define         MR_CHAT_ID_ARCHIVED_LINK    6 /* a link at the end of the chatlist, if present the UI should show the button "Archived chats" */
-	#define         MR_CHAT_ID_LAST_SPECIAL     9 /* larger chat IDs are "real" chats, their messages are "real" messages. */
-	uint32_t        m_id;
-
-	#define         MR_CHAT_TYPE_UNDEFINED      0
-	#define         MR_CHAT_TYPE_NORMAL       100 /* a normal chat is a chat with a single contact, chats_contacts contains one record for the user, MR_CONTACT_ID_SELF is not added. */
-	#define         MR_CHAT_TYPE_GROUP        120 /* a group chat, chats_contacts conain all group members, incl. MR_CONTACT_ID_SELF */
-	int             m_type;
-
-	char*           m_name;                       /**< NULL if unset */
-	time_t          m_draft_timestamp;            /**< 0 if there is no draft */
-	char*           m_draft_text;                 /**< NULL if unset */
-	mrmailbox_t*    m_mailbox;                    /**< != NULL */
-	int             m_archived;                   /**< 1=chat archived, this state should always be shown the UI, eg. the search will also return archived chats */
-	mrparam_t*      m_param;                      /**< != NULL */
-
-	/** @privatesection */
-	char*           m_grpid;                      /* NULL if unset */
-} mrchat_t;
-
-
-void            mrchat_unref                (mrchat_t*);
-char*           mrchat_get_subtitle         (mrchat_t*);
-
-
-/*******************************************************************************
- * Handle group chats
- ******************************************************************************/
-
-
-/* Create a new group chat.  After creation, the groups has one member with the
-ID MR_CONTACT_ID_SELF. */
+/* Handle group chats */
 uint32_t        mrmailbox_create_group_chat (mrmailbox_t*, const char* name);
-
-
-/* Check of a given contact_id is a member of a group chat defined by chat_id.
-Returns values: 1=contact is in chat, 0=contact is not in chat */
 int             mrmailbox_is_contact_in_chat (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id);
-
-
-/* Add/remove a given contact_id to a  groupchat defined by chat_id. */
-int             mrmailbox_add_contact_to_chat      (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id);
+int             mrmailbox_add_contact_to_chat (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id);
 int             mrmailbox_remove_contact_from_chat (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id);
-
-
-/* Set the name of a group chat.  The name is changed locally _and_ for all
-members of the chat.  the latter is done by a special message send to all
-users. */
 int             mrmailbox_set_chat_name     (mrmailbox_t*, uint32_t chat_id, const char* name);
-
-
-/* Set the group image of a group chat or delete it by passing NULL to the
-`image` parameter.
-The image is changed locally _and_ for all members of the chat.  The latter is
-done by a special message send to all users. */
 int             mrmailbox_set_chat_image    (mrmailbox_t*, uint32_t chat_id, const char* image);
 
 
-/*******************************************************************************
- * Handle messages
- ******************************************************************************/
-
-
+/* Handle messages */
 char*           mrmailbox_get_msg_info      (mrmailbox_t*, uint32_t msg_id);
 void            mrmailbox_delete_msgs       (mrmailbox_t*, const uint32_t* msg_ids, int msg_cnt);
 void            mrmailbox_forward_msgs      (mrmailbox_t*, const uint32_t* msg_ids, int msg_cnt, uint32_t chat_id);
@@ -312,172 +185,17 @@ void            mrmailbox_star_msgs         (mrmailbox_t*, const uint32_t* msg_i
 mrmsg_t*        mrmailbox_get_msg           (mrmailbox_t*, uint32_t msg_id);
 
 
-/**
- * The message object and some function for helping accessing it.  The message
- * object is not updated.  If you want an update, you have to recreate the
- * object.
- */
-typedef struct mrmsg_t
-{
-	#define         MR_MSG_ID_MARKER1       1 /**< any user-defined marker */
-	#define         MR_MSG_ID_DAYMARKER     9 /**< in a list, the next message is on a new day, useful to show headlines */
-	#define         MR_MSG_ID_LAST_SPECIAL  9
-	uint32_t        m_id;
 
-	uint32_t        m_from_id;                /**< contact, 0=unset, 1=self .. >9=real contacts */
-	uint32_t        m_to_id;                  /**< contact, 0=unset, 1=self .. >9=real contacts */
-	uint32_t        m_chat_id;                /**< the chat, the message belongs to: 0=unset, 1=unknwon sender .. >9=real chats */
-	time_t          m_timestamp;              /**< unix time the message was sended */
-
-	#define         MR_MSG_UNDEFINED        0
-	#define         MR_MSG_TEXT            10
-	#define         MR_MSG_IMAGE           20 /**< param: MRP_FILE, MRP_WIDTH, MRP_HEIGHT */
-	#define         MR_MSG_GIF             21 /**< param: MRP_FILE, MRP_WIDTH, MRP_HEIGHT */
-	#define         MR_MSG_AUDIO           40 /**< param: MRP_FILE, MRP_DURATION */
-	#define         MR_MSG_VOICE           41 /**< param: MRP_FILE, MRP_DURATION */
-	#define         MR_MSG_VIDEO           50 /**< param: MRP_FILE, MRP_WIDTH, MRP_HEIGHT, MRP_DURATION */
-	#define         MR_MSG_FILE            60 /**< param: MRP_FILE */
-	int             m_type;
-
-	#define         MR_STATE_UNDEFINED      0
-	#define         MR_STATE_IN_FRESH      10 /**< incoming message, not noticed nor seen */
-	#define         MR_STATE_IN_NOTICED    13 /**< incoming message noticed (eg. chat opened but message not yet read - noticed messages are not counted as unread but did not marked as read nor resulted in MDNs) */
-	#define         MR_STATE_IN_SEEN       16 /**< incoming message marked as read on IMAP and MDN may be send */
-	#define         MR_STATE_OUT_PENDING   20 /**< hit "send" button - but the message is pending in some way, maybe we're offline (no checkmark) */
-	#define         MR_STATE_OUT_ERROR     24 /**< unrecoverable error (recoverable errors result in pending messages) */
-	#define         MR_STATE_OUT_DELIVERED 26 /**< outgoing message successfully delivered to server (one checkmark) */
-	#define         MR_STATE_OUT_MDN_RCVD  28 /**< outgoing message read (two checkmarks; this requires goodwill on the receiver's side) */
-	int             m_state;
-
-	char*           m_text;                   /**< message text or NULL if unset */
-	mrparam_t*      m_param;                  /**< MRP_FILE, MRP_WIDTH, MRP_HEIGHT etc. depends on the type, != NULL */
-	int             m_starred;
-
-	/** @privatesection */
-	int             m_is_msgrmsg;
-	mrmailbox_t*    m_mailbox;                /* may be NULL, set on loading from database and on sending */
-	char*           m_rfc724_mid;
-	char*           m_server_folder;
-	uint32_t        m_server_uid;
-} mrmsg_t;
-
-
-mrmsg_t*        mrmsg_new                   ();
-void            mrmsg_unref                 (mrmsg_t*);
-void            mrmsg_empty                 (mrmsg_t*);
-mrpoortext_t*   mrmsg_get_summary           (mrmsg_t*, mrchat_t*);
-char*           mrmsg_get_summarytext       (mrmsg_t*, int approx_characters);
-int             mrmsg_show_padlock          (mrmsg_t*);
-char*           mrmsg_get_fullpath          (mrmsg_t*);
-char*           mrmsg_get_filename          (mrmsg_t*);
-mrpoortext_t*   mrmsg_get_mediainfo         (mrmsg_t*);
-int             mrmsg_is_increation         (mrmsg_t*);
-void            mrmsg_save_param_to_disk    (mrmsg_t*);
-
-
-/* Only sets the text field, MR_MSG_TEXT must be set additionally.
-Previously texts are free()'d. */
-void            mrmsg_set_text              (mrmsg_t*, const char* text);
-
-
-/*******************************************************************************
- * Handle contacts
- ******************************************************************************/
-
-
-/* create a single contact and return the ID.  If the contact's email address
-already exists, the name is updated and the origin is increased to
-"manually created". */
+/* Handle contacts */
 uint32_t        mrmailbox_create_contact    (mrmailbox_t*, const char* name, const char* addr);
-
-
-/* add a number of contacts in the format:
-`Name one\nAddress one\nName two\Address two`
-If the contact's email address already exists, the name is updated and the
-origin is increased to "manually created". */
 int             mrmailbox_add_address_book  (mrmailbox_t*, const char*);
-
-
-/* returns known and unblocked contacts, the result must be carray_free()'d.
-To get information about a single contact, see mrmailbox_get_contact() */
 carray*         mrmailbox_get_known_contacts (mrmailbox_t*, const char* query);
-
-
-/* Contact blocking handling.
-mrmailbox_block_contact() may result in a MR_EVENT_BLOCKING_CHANGED event. */
 int             mrmailbox_get_blocked_count (mrmailbox_t*);
 carray*         mrmailbox_get_blocked_contacts (mrmailbox_t*);
-int             mrmailbox_block_contact     (mrmailbox_t*, uint32_t contact_id, int block);
-
-
-/* get a multi-line encryption info, used to compare the fingerprints. */
+void            mrmailbox_block_contact     (mrmailbox_t*, uint32_t contact_id, int block);
 char*           mrmailbox_get_contact_encrinfo (mrmailbox_t*, uint32_t contact_id);
-
-
-/* delete a contact from the local device.  It may happen that this is not
-possible as the contact is used.  In this case, the contact can be blocked. */
 int             mrmailbox_delete_contact    (mrmailbox_t*, uint32_t contact_id);
-
-
-/* Get a single contact object of the type mrcontact_t - for a list, see mrmailbox_get_known_contacts() */
 mrcontact_t*    mrmailbox_get_contact       (mrmailbox_t*, uint32_t contact_id);
-
-
-/* The contact object and some function for helping accessing it.
-The contact object is not updated.  If you want an update, you have to recreate
-the object. */
-typedef struct mrcontact_t
-{
-	#define         MR_CONTACT_ID_SELF         1
-	#define         MR_CONTACT_ID_SYSTEM       2
-	#define         MR_CONTACT_ID_LAST_SPECIAL 9
-	uint32_t        m_id;
-
-	char*           m_name;     /* may be NULL or empty, this name should not be spreaded as it may be "Daddy" and so on; initially set to m_authname */
-	char*           m_authname; /* may be NULL or empty, this is the name authorized by the sender, only this name may be speaded to others, eg. in To:-lists; for displaying in the app, use m_name */
-	char*           m_addr;     /* may be NULL or empty */
-	int             m_origin;
-	int             m_blocked;
-} mrcontact_t;
-void            mrcontact_unref             (mrcontact_t*);
-
-
-/*******************************************************************************
- * Additional parameter handling
- ******************************************************************************/
-
-
-int             mrparam_exists              (mrparam_t*, int key);
-char*           mrparam_get                 (mrparam_t*, int key, const char* def); /* the value may be an empty string, "def" is returned only if the value unset.  The result must be free()'d in any case. */
-int32_t         mrparam_get_int             (mrparam_t*, int key, int32_t def);
-void            mrparam_set                 (mrparam_t*, int key, const char* value);
-void            mrparam_set_int             (mrparam_t*, int key, int32_t value);
-
-
-/* Parameters availalble */
-#define MRP_FILE              'f'  /* for msgs */
-#define MRP_WIDTH             'w'  /* for msgs */
-#define MRP_HEIGHT            'h'  /* for msgs */
-#define MRP_DURATION          'd'  /* for msgs */
-#define MRP_MIMETYPE          'm'  /* for msgs */
-#define MRP_AUTHORNAME        'N'  /* for msgs: name of author or artist */
-#define MRP_TRACKNAME         'n'  /* for msgs: name of author or artist */
-#define MRP_GUARANTEE_E2EE    'c'  /* for msgs: 'c'rypted in original/guarantee E2EE or the message is not send */
-#define MRP_ERRONEOUS_E2EE    'e'  /* for msgs: decrypted with validation errors or without mutual set, if neither 'c' nor 'e' are preset, the messages is only transport encrypted */
-#define MRP_WANTS_MDN         'r'  /* for msgs: an incoming message which requestes a MDN (aka read receipt) */
-#define MRP_FORWARDED         'a'  /* for msgs */
-#define MRP_SYSTEM_CMD        'S'  /* for msgs */
-#define MRP_SYSTEM_CMD_PARAM  'E'  /* for msgs */
-
-#define MRP_SERVER_FOLDER     'Z'  /* for jobs */
-#define MRP_SERVER_UID        'z'  /* for jobs */
-#define MRP_TIMES             't'  /* for jobs: times a job was tried */
-#define MRP_TIMES_INCREATION  'T'  /* for jobs: times a job was tried, used for increation */
-
-#define MRP_REFERENCES        'R'  /* for groups and chats: References-header last used for a chat */
-#define MRP_UNPROMOTED        'U'  /* for groups */
-#define MRP_PROFILE_IMAGE     'i'  /* for groups and contacts */
-#define MRP_DEL_AFTER_SEND    'P'  /* for groups and msgs: physically delete group after message sending if msg-value matches group-value */
 
 
 /*******************************************************************************
@@ -631,10 +349,6 @@ nested or unsynchronized calls */
  ******************************************************************************/
 
 
-/* mrmailbox_imex() imports and exports export keys, backup etc.
-Function, sends MR_EVENT_IMEX_* events.
-To avoid double slashes, the given directory should not end with a slash.
-_what_ to export is defined by a MR_IMEX_* constant */
 #define MR_IMEX_CANCEL                      0
 #define MR_IMEX_EXPORT_SELF_KEYS            1 /**< param1 is a directory where the keys are written to */
 #define MR_IMEX_IMPORT_SELF_KEYS            2 /**< param1 is a directory where the keys are searched in and read from */
@@ -644,21 +358,29 @@ _what_ to export is defined by a MR_IMEX_* constant */
 #define MR_BAK_PREFIX                      "delta-chat"
 #define MR_BAK_SUFFIX                      "bak"
 void            mrmailbox_imex              (mrmailbox_t*, int what, const char* param1, const char* setup_code);
-
-
-/* returns backup_file or NULL, may only be used on fresh installations (mrmailbox_is_configured() returns 0); returned strings must be free()'d */
 char*           mrmailbox_imex_has_backup   (mrmailbox_t*, const char* dir);
 
 
-/* Check if the user is authorized by the given password in some way. This is to promt for the password eg. before exporting keys/backup. */
+/**
+ * Check if the user is authorized by the given password in some way.
+ * This is to promt for the password eg. before exporting keys/backup.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as created by mrmailbox_new().
+ *
+ * @param pw Password to check.
+ *
+ * @return 1=user is authorized, 0=user is not authorized.
+ */
 int             mrmailbox_check_password    (mrmailbox_t*, const char* pw);
 
 
-/* should be written down by the user, forwareded to mrmailbox_imex() for encryption then, must be wiped and free()'d after usage */
+
 char*           mrmailbox_create_setup_code (mrmailbox_t*);
 
 
-/* mainly for testing, import a folder with eml-files, a single eml-file, e-mail plus public key, ... NULL for the last command */
+
 int             mrmailbox_poke_spec         (mrmailbox_t*, const char* spec);
 
 

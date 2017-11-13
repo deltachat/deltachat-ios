@@ -20,38 +20,42 @@
  ******************************************************************************/
 
 
-#ifndef __MRAHEADER_H__
-#define __MRAHEADER_H__
+#ifndef __MRCHATLIST_H__
+#define __MRCHATLIST_H__
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 
-#include "mrkey.h"
+typedef struct mrmailbox_t  mrmailbox_t;
+typedef struct mrpoortext_t mrpoortext_t;
+typedef struct mrchat_t     mrchat_t;
 
 
 /**
- * Parse and create [Autocrypt-headers](https://autocrypt.org/en/latest/level1.html#the-autocrypt-header); library-internal.
+ * Chatlist objects contain a chat IDs and, if possible, message IDs belonging to them.
+ * Chatlist objects are created eg. using mrmailbox_get_chatlist().
+ * The chatlist object is not updated.  If you want an update, you have to recreate
+ * the object.
  */
-typedef struct mraheader_t
+typedef struct mrchatlist_t
 {
-	char*          m_addr;
-	mrkey_t*       m_public_key; /* != NULL */
-	int            m_prefer_encrypt; /* YES, NO or NOPREFERENCE if attribute is missing */
-} mraheader_t;
+	mrmailbox_t*    m_mailbox; /**< The mailbox, the chatlist belongs to */
+
+	/** @privatesection */
+	size_t          m_cnt;
+	carray*         m_chatNlastmsg_ids;
+} mrchatlist_t;
 
 
-mraheader_t* mraheader_new               (); /* the returned pointer is ref'd and must be unref'd after usage */
-mraheader_t* mraheader_new_from_imffields(const char* wanted_from, const struct mailimf_fields* mime);
-void         mraheader_empty             (mraheader_t*);
-void         mraheader_unref             (mraheader_t*);
-
-int          mraheader_set_from_string   (mraheader_t*, const char* header_str);
-
-char*        mraheader_render            (const mraheader_t*);
+void            mrchatlist_unref            (mrchatlist_t*);
+size_t          mrchatlist_get_cnt          (mrchatlist_t*);
+uint32_t        mrchatlist_get_chat_id      (mrchatlist_t*, size_t index);
+uint32_t        mrchatlist_get_msg_id       (mrchatlist_t*, size_t index);
+mrpoortext_t*   mrchatlist_get_summary      (mrchatlist_t*, size_t index, mrchat_t*);
 
 
 #ifdef __cplusplus
 } /* /extern "C" */
 #endif
-#endif /* __MRAHEADER_H__ */
+#endif /* __MRCHATLIST_H__ */

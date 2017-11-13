@@ -20,12 +20,6 @@
  ******************************************************************************/
 
 
-/* NB: In general, function names ending with a `__` implie that _no_
-locking takes place inside the functions!  So the caller must make sure, the
-database is locked as needed.  Of course, the same is true if you call any
-sqlite3-function directly. */
-
-
 #ifndef __MRSQLITE3_H__
 #define __MRSQLITE3_H__
 #ifdef __cplusplus
@@ -157,22 +151,22 @@ enum
 };
 
 
+/**
+ * Library-internal.
+ *
+ * In general, function names ending with two underscores (`__`) implie that _no_
+ * locking takes place inside the functions!  So the caller must make sure, the
+ * database is locked as needed.  Of course, the same is true if you call any
+ * sqlite3-function directly.
+ */
 typedef struct mrsqlite3_t
 {
-	/* prepared statements - this is the favourite way for the caller to use SQLite */
-	sqlite3_stmt* m_pd[PREDEFINED_CNT];
-
-	/* m_sqlite is the database given as dbfile to Open() */
-	sqlite3*      m_cobj;
-
-	/* helper for MrSqlite3Transaction */
-	int           m_transactionCount;
-
-	mrmailbox_t*  m_mailbox; /* used for logging and to acquire wakelocks, there may be N mrsqlite3_t objects per mrmailbox! In practise, we use 2 on backup, 1 otherwise. */
-
-	/* the user must make sure, only one thread uses sqlite at the same time!
-	for this purpose, all calls must be enclosed by a locked m_critical; use mrsqlite3_lock() for this purpose */
-	pthread_mutex_t m_critical_;
+	/** @privatesection */
+	sqlite3_stmt* m_pd[PREDEFINED_CNT]; /**< prepared statements - this is the favourite way for the caller to use SQLite */
+	sqlite3*      m_cobj;               /**< is the database given as dbfile to Open() */
+	int           m_transactionCount;   /**< helper for transactions */
+	mrmailbox_t*  m_mailbox;            /**< used for logging and to acquire wakelocks, there may be N mrsqlite3_t objects per mrmailbox! In practise, we use 2 on backup, 1 otherwise. */
+	pthread_mutex_t m_critical_;        /**< the user must make sure, only one thread uses sqlite at the same time! for this purpose, all calls must be enclosed by a locked m_critical; use mrsqlite3_lock() for this purpose */
 
 } mrsqlite3_t;
 

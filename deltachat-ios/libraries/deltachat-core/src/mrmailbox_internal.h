@@ -185,9 +185,6 @@ void         mr_get_authorNtitle_from_filename(const char* pathNfilename, char**
 #define MR_ORIGIN_MIN_VERIFIED        (MR_ORIGIN_INCOMING_REPLY_TO) /* contacts with at least this origin value are verified and known not to be spam */
 #define MR_ORIGIN_MIN_START_NEW_NCHAT (0x7FFFFFFF)                  /* contacts with at least this origin value start a new "normal" chat, defaults to off */
 
-mrcontact_t* mrcontact_new                    (); /* the returned pointer is ref'd and must be unref'd after usage */
-void         mrcontact_empty                  (mrcontact_t*);
-int          mrcontact_load_from_db__         (mrcontact_t*, mrsqlite3_t*, uint32_t id);
 size_t       mrmailbox_get_real_contact_cnt__ (mrmailbox_t*);
 uint32_t     mrmailbox_add_or_lookup_contact__(mrmailbox_t*, const char* display_name /*can be NULL*/, const char* addr_spec, int origin, int* sth_modified);
 int          mrmailbox_get_contact_origin__   (mrmailbox_t*, uint32_t id, int* ret_blocked);
@@ -197,38 +194,6 @@ int          mrmailbox_contact_addr_equals__  (mrmailbox_t*, uint32_t contact_id
 void         mrmailbox_scaleup_contact_origin__(mrmailbox_t*, uint32_t contact_id, int origin);
 void         mr_normalize_name                (char* full_name);
 char*        mr_get_first_name                (const char* full_name); /* returns part before the space or after a comma; the result must be free()'d */
-
-
-/*******************************************************************************
- * Internal poortext handling
- ******************************************************************************/
-
-
-mrpoortext_t* mrpoortext_new       ();
-void          mrpoortext_empty     (mrpoortext_t*);
-
-#define MR_SUMMARY_CHARACTERS 160 /* in practice, the user additinally cuts the string himself pixel-accurate */
-void mrpoortext_fill(mrpoortext_t*, const mrmsg_t*, const mrchat_t*, const mrcontact_t*);
-
-
-/*******************************************************************************
- * Internal additional parameter handling
- ******************************************************************************/
-
-
-/* The parameter object as used eg. by mrchat_t or mrmsg_t.
-To access the single parameters use the setter and getter functions with an
-MRP_* contant */
-typedef struct mrparam_t
-{
-	char*           m_packed;    /* != NULL */
-} mrparam_t;
-
-
-mrparam_t*    mrparam_new          ();
-void          mrparam_empty        (mrparam_t*);
-void          mrparam_unref        (mrparam_t*);
-void          mrparam_set_packed   (mrparam_t*, const char*); /* overwrites all existing parameters */
 
 
 /*******************************************************************************

@@ -306,6 +306,13 @@ cleanup:
 }
 
 
+/**
+ * Library-internal.
+ *
+ * Calling this function is not thread-safe, locking is up to the caller.
+ *
+ * @private @memberof mrcontact_t
+ */
 int mrcontact_load_from_db__(mrcontact_t* ths, mrsqlite3_t* sql, uint32_t contact_id)
 {
 	int           success = 0;
@@ -345,6 +352,21 @@ cleanup:
  ******************************************************************************/
 
 
+ /**
+ * Add a single contact. and return the ID.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as created by mrmailbox_new().
+ *
+ * @param name Name of the contact to add.
+ *
+ * @param addr E-mail-address of the contact to add. If the email address
+ *     already exists, the name is updated and the origin is increased to
+ *     "manually created".
+ *
+ * @return Contact ID of the created or reused contact.
+ */
 uint32_t mrmailbox_create_contact(mrmailbox_t* mailbox, const char* name, const char* addr)
 {
 	uint32_t contact_id = 0;
@@ -366,6 +388,21 @@ cleanup:
 }
 
 
+/**
+ * Add a number of contacts. The contacts must be added as
+ *
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox the mailbox object as created by mrmailbox_new().
+ *
+ * @param address_book A multi-line string in the format in the format
+ *     `Name one\nAddress one\nName two\Address two`.  If an email address
+ *      already exists, the name is updated and the origin is increased to
+ *      "manually created".
+ *
+ * @return The number of modified or added contacts.
+ */
 int mrmailbox_add_address_book(mrmailbox_t* ths, const char* adr_book) /* format: Name one\nAddress one\nName two\Address two */
 {
 	carray* lines = NULL;
@@ -406,6 +443,21 @@ cleanup:
 }
 
 
+/**
+ * Returns known and unblocked contacts.
+ *
+ * To get information about a single contact, see mrmailbox_get_contact().
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as created by mrmailbox_new().
+ *
+ * @param query A string to filter the list.  Typically used to implement an
+ *     incremental search.  NULL for no filtering.
+ *
+ * @return An array containing all contact IDs.  Must be carray_free()'d
+ *     after usage.
+ */
 carray* mrmailbox_get_known_contacts(mrmailbox_t* mailbox, const char* query)
 {
 	int           locked = 0;
@@ -460,6 +512,16 @@ cleanup:
 }
 
 
+/**
+ * Get blocked contacts.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as created by mrmailbox_new().
+ *
+ * @return An array containing all blocked contact IDs.  Must be carray_free()'d
+ *     after usage.
+ */
 carray* mrmailbox_get_blocked_contacts(mrmailbox_t* mailbox)
 {
 	carray*       ret = carray_new(100);
@@ -487,6 +549,13 @@ cleanup:
 }
 
 
+/**
+ * Get the number of blocked contacts.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as created by mrmailbox_new().
+ */
 int mrmailbox_get_blocked_count(mrmailbox_t* mailbox)
 {
 	int           ret = 0, locked = 0;
@@ -517,6 +586,18 @@ cleanup:
 }
 
 
+/**
+ * Get a single contact object.  For a list, see eg. mrmailbox_get_known_contacts().
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as created by mrmailbox_new().
+ *
+ * @param contact_id ID of the contact to get the object for.
+ *
+ * @return The contact object, must be freed using mrcontact_unref() when no
+ *     longer used.  NULL on errors.
+ */
 mrcontact_t* mrmailbox_get_contact(mrmailbox_t* ths, uint32_t contact_id)
 {
 	mrcontact_t* ret = mrcontact_new();
@@ -576,14 +657,29 @@ void mrmailbox_marknoticed_contact(mrmailbox_t* mailbox, uint32_t contact_id)
 }
 
 
-int mrmailbox_block_contact(mrmailbox_t* mailbox, uint32_t contact_id, int new_blocking)
+/**
+ * Block or unblock a contact.
+ *
+ * May result in a MR_EVENT_BLOCKING_CHANGED event.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as created by mrmailbox_new().
+ *
+ * @param contact_id The ID of the contact to block or unblock.
+ *
+ * @param block 1=block contact, 0=unblock contact
+ *
+ * @return None.
+ */
+void mrmailbox_block_contact(mrmailbox_t* mailbox, uint32_t contact_id, int new_blocking)
 {
-	int success = 0, locked = 0, send_event = 0, transaction_pending = 0;
+	int locked = 0, send_event = 0, transaction_pending = 0;
 	mrcontact_t*  contact = mrcontact_new();
 	sqlite3_stmt* stmt;
 
 	if( mailbox == NULL ) {
-		return 0;
+		return;
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
@@ -632,8 +728,6 @@ int mrmailbox_block_contact(mrmailbox_t* mailbox, uint32_t contact_id, int new_b
 		mailbox->m_cb(mailbox, MR_EVENT_CONTACTS_CHANGED, 0, 0);
 	}
 
-	success = 1;
-
 cleanup:
 	if( transaction_pending ) {
 		mrsqlite3_rollback__(mailbox->m_sql);
@@ -644,7 +738,6 @@ cleanup:
 	}
 
 	mrcontact_unref(contact);
-	return success;
 }
 
 
@@ -657,6 +750,19 @@ static void cat_fingerprint(mrstrbuilder_t* ret, const char* addr, const char* f
 }
 
 
+/**
+ * Get encryption info.
+ * Get a multi-line encryption info, containing your fingerprint and the
+ * fingerprint of the contact, used eg. to compare the fingerprints.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as created by mrmailbox_new().
+ *
+ * @param contact_id ID of the contact to get the encryption info for.
+ *
+ * @return multi-line text, must be free()'d after usage.
+ */
 char* mrmailbox_get_contact_encrinfo(mrmailbox_t* mailbox, uint32_t contact_id)
 {
 	int             locked = 0;
@@ -773,6 +879,18 @@ cleanup:
 }
 
 
+/**
+ * Delete a contact.  The contact is deleted from the local device.  It may happen that this is not
+ * possible as the contact is in used.  In this case, the contact can be blocked.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as created by mrmailbox_new().
+ *
+ * @param contact_id ID of the contact to delete.
+ *
+ * @return 1=success, 0=error
+ */
 int mrmailbox_delete_contact(mrmailbox_t* mailbox, uint32_t contact_id)
 {
 	int           locked = 0, success = 0;
@@ -842,6 +960,11 @@ int mrmailbox_contact_addr_equals__(mrmailbox_t* mailbox, uint32_t contact_id, c
 }
 
 
+/**
+ * Create a new contact object in memory.
+ *
+ * @memberof mrcontact_t
+ */
 mrcontact_t* mrcontact_new()
 {
 	mrcontact_t* ths = NULL;
@@ -854,6 +977,11 @@ mrcontact_t* mrcontact_new()
 }
 
 
+/**
+ * Free a contact object.
+ *
+ * @memberof mrcontact_t
+ */
 void mrcontact_unref(mrcontact_t* ths)
 {
 	if( ths==NULL ) {
@@ -865,6 +993,11 @@ void mrcontact_unref(mrcontact_t* ths)
 }
 
 
+/**
+ * Empty a contact object.
+ *
+ * @memberof mrcontact_t
+ */
 void mrcontact_empty(mrcontact_t* ths)
 {
 	if( ths == NULL ) {

@@ -868,7 +868,7 @@ static void cb_receive_imf(mrimap_t* imap, const char* imf_raw_not_terminated, s
 
 
 /**
- * mrmailbox_new() creates a new mailbox object.  After creation it is usually
+ * Create a new mailbox object.  After creation it is usually
  * opened, connected and mails are fetched.
  * After usage, the object should be deleted using mrmailbox_unref().
  *
@@ -941,12 +941,12 @@ mrmailbox_t* mrmailbox_new(mrmailboxcb_t cb, void* userdata, const char* os_name
 
 
 /**
- * After usage, the mailbox object should be freed using mrmailbox_unref().
+ * Free a mailbox object.
  * If app runs can only be terminated by a forced kill, this may be superfluous.
  *
  * @memberof mrmailbox_t
  *
- * @param mailbox the mailbox object as created by mrmailbox_new()
+ * @param mailbox the mailbox object as created by mrmailbox_new().
  *
  * @return none
  */
@@ -1190,7 +1190,7 @@ int mrmailbox_set_config(mrmailbox_t* ths, const char* key, const char* value)
 
 
 /**
- * Get a configuration option set by mrmailbox_set_config()
+ * Get a configuration option.  The configuration option is typically set by mrmailbox_set_config() or by the library itself.
  *
  * @memberof mrmailbox_t
  *
@@ -1220,7 +1220,7 @@ char* mrmailbox_get_config(mrmailbox_t* ths, const char* key, const char* def)
 
 
 /**
- * Similar to mrmailbox_set_config() but sets an integer instead of a string.
+ * Configure the mailbox.  Similar to mrmailbox_set_config() but sets an integer instead of a string.
  * If there is already a key with a string set, this is overwritten by the given integer value.
  *
  * @memberof mrmailbox_t
@@ -1243,7 +1243,7 @@ int mrmailbox_set_config_int(mrmailbox_t* ths, const char* key, int32_t value)
 
 
 /**
- * Similar as mrmailbox_get_config() but gets the value as an integer instead of a string.
+ * Get a configuration option. Similar as mrmailbox_get_config() but gets the value as an integer instead of a string.
  *
  * @memberof mrmailbox_t
  */
@@ -1279,15 +1279,14 @@ char* mrmailbox_get_blobdir(mrmailbox_t* mailbox)
 
 
 /**
- * mrmailbox_get_info() returns a multi-line output about the current
- * configuration and the last log entries. the returned string must be free()'d,
- * returns NULL on errors.
+ * Get information about the mailbox.  The information is returned by a multi-line string and contains information about the current
+ * configuration and the last log entries.
  *
  * @memberof mrmailbox_t
  *
  * @param mailbox Mailbox object as returned by mrmailbox_new().
  *
- * @return String which must be free()'d after usage.
+ * @return String which must be free()'d after usage.  Never returns NULL.
  */
 char* mrmailbox_get_info(mrmailbox_t* mailbox)
 {
@@ -1481,7 +1480,7 @@ int mrmailbox_reset_tables(mrmailbox_t* ths, int bits)
 
 
 /**
- * Use mrmailbox_get_version_str() to find out the version of the Delta Chat core library.
+ * Find out the version of the Delta Chat core library.
  *
  * @memberof mrmailbox_t
  *

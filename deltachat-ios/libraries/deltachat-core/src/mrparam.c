@@ -69,77 +69,96 @@ static char* find_param(char* ths, int key, char** ret_p2)
  ******************************************************************************/
 
 
+/**
+ * @memberof mrparam_t
+ */
 mrparam_t* mrparam_new()
 {
-	mrparam_t* ths;
+	mrparam_t* param;
 
-	if( (ths=calloc(1, sizeof(mrparam_t)))==NULL ) {
+	if( (param=calloc(1, sizeof(mrparam_t)))==NULL ) {
 		exit(28); /* cannot allocate little memory, unrecoverable error */
 	}
 
-	ths->m_packed = calloc(1, 1);
+	param->m_packed = calloc(1, 1);
 
-    return ths;
+    return param;
 }
 
 
-void mrparam_unref(mrparam_t* ths)
+/**
+ * @memberof mrparam_t
+ */
+void mrparam_unref(mrparam_t* param)
 {
-	if( ths==NULL ) {
+	if( param==NULL ) {
 		return;
 	}
 
-	mrparam_empty(ths);
-	free(ths->m_packed);
-	free(ths);
+	mrparam_empty(param);
+	free(param->m_packed);
+	free(param);
 }
 
 
-void mrparam_empty(mrparam_t* ths)
+/**
+ * @memberof mrparam_t
+ */
+void mrparam_empty(mrparam_t* param)
 {
-	if( ths == NULL ) {
+	if( param == NULL ) {
 		return;
 	}
 
-	ths->m_packed[0] = 0;
+	param->m_packed[0] = 0;
 }
 
 
-void mrparam_set_packed(mrparam_t* ths, const char* packed)
+/**
+ * @memberof mrparam_t
+ */
+void mrparam_set_packed(mrparam_t* param, const char* packed)
 {
-	if( ths == NULL ) {
+	if( param == NULL ) {
 		return;
 	}
 
-	mrparam_empty(ths);
+	mrparam_empty(param);
 
 	if( packed ) {
-		free(ths->m_packed);
-		ths->m_packed = safe_strdup(packed);
+		free(param->m_packed);
+		param->m_packed = safe_strdup(packed);
 	}
 }
 
 
-int mrparam_exists(mrparam_t* ths, int key)
+/**
+ * @memberof mrparam_t
+ */
+int mrparam_exists(mrparam_t* param, int key)
 {
 	char *p2;
 
-	if( ths == NULL || key == 0 ) {
+	if( param == NULL || key == 0 ) {
 		return 0;
 	}
 
-	return find_param(ths->m_packed, key, &p2)? 1 : 0;
+	return find_param(param->m_packed, key, &p2)? 1 : 0;
 }
 
-char* mrparam_get(mrparam_t* ths, int key, const char* def)
+
+/**
+ * @memberof mrparam_t
+ */
+char* mrparam_get(mrparam_t* param, int key, const char* def)
 {
 	char *p1, *p2, bak, *ret;
 
-	if( ths == NULL || key == 0 ) {
+	if( param == NULL || key == 0 ) {
 		return def? safe_strdup(def) : NULL;
 	}
 
-	p1 = find_param(ths->m_packed, key, &p2);
+	p1 = find_param(param->m_packed, key, &p2);
 	if( p1 == NULL ) {
 		return def? safe_strdup(def) : NULL;
 	}
@@ -155,13 +174,16 @@ char* mrparam_get(mrparam_t* ths, int key, const char* def)
 }
 
 
-int32_t mrparam_get_int(mrparam_t* ths, int key, int32_t def)
+/**
+ * @memberof mrparam_t
+ */
+int32_t mrparam_get_int(mrparam_t* param, int key, int32_t def)
 {
-	if( ths == NULL || key == 0 ) {
+	if( param == NULL || key == 0 ) {
 		return def;
 	}
 
-    char* str = mrparam_get(ths, key, NULL);
+    char* str = mrparam_get(param, key, NULL);
     if( str == NULL ) {
 		return def;
     }
@@ -171,15 +193,19 @@ int32_t mrparam_get_int(mrparam_t* ths, int key, int32_t def)
 }
 
 
-void mrparam_set(mrparam_t* ths, int key, const char* value)
+/**
+ * @memberof mrparam_t
+ *
+ */
+void mrparam_set(mrparam_t* param, int key, const char* value)
 {
 	char *old1, *old2, *new1 = NULL;
 
-	if( ths == NULL || key == 0 ) {
+	if( param == NULL || key == 0 ) {
 		return;
 	}
 
-	old1 = ths->m_packed;
+	old1 = param->m_packed;
 	old2 = NULL;
 
 	/* remove existing parameter from packed string, if any */
@@ -218,14 +244,17 @@ void mrparam_set(mrparam_t* ths, int key, const char* value)
 			old2?         old2 : "");
 	}
 
-	free(ths->m_packed);
-	ths->m_packed = new1;
+	free(param->m_packed);
+	param->m_packed = new1;
 }
 
 
-void mrparam_set_int(mrparam_t* ths, int key, int32_t value)
+/**
+ * @memberof mrparam_t
+ */
+void mrparam_set_int(mrparam_t* param, int key, int32_t value)
 {
-	if( ths == NULL || key == 0 ) {
+	if( param == NULL || key == 0 ) {
 		return;
 	}
 
@@ -233,6 +262,6 @@ void mrparam_set_int(mrparam_t* ths, int key, int32_t value)
     if( value_str == NULL ) {
 		return;
     }
-    mrparam_set(ths, key, value_str);
+    mrparam_set(param, key, value_str);
     free(value_str);
 }

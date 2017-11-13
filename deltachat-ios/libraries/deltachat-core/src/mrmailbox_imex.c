@@ -84,10 +84,23 @@ cleanup:
 }
 
 
-int mrmailbox_poke_spec(mrmailbox_t* mailbox, const char* spec__) /* spec is a file, a directory or NULL for the last import */
+/**
+ * Import a file to the database.
+ * For testing, import a folder with eml-files, a single eml-file, e-mail plus public key and so on.
+ * For normal importing, use mrmailbox_imex().
+ *
+ * @private @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as created by mrmailbox_new().
+ *
+ * @param spec The file or directory to import. NULL for the last command.
+ *
+ * @return 1=success, 0=error.
+ */
+int mrmailbox_poke_spec(mrmailbox_t* mailbox, const char* spec)
 {
 	int            success = 0;
-	char*          spec = NULL;
+	char*          real_spec = NULL;
 	char*          suffix = NULL;
 	DIR*           dir = NULL;
 	struct dirent* dir_entry;
@@ -104,54 +117,54 @@ int mrmailbox_poke_spec(mrmailbox_t* mailbox, const char* spec__) /* spec is a f
 	}
 
 	/* if `spec` is given, remember it for later usage; if it is not given, try to use the last one */
-	if( spec__ )
+	if( spec )
 	{
-		spec = safe_strdup(spec__);
+		real_spec = safe_strdup(spec);
 		mrsqlite3_lock(mailbox->m_sql);
-			mrsqlite3_set_config__(mailbox->m_sql, "import_spec", spec);
+			mrsqlite3_set_config__(mailbox->m_sql, "import_spec", real_spec);
 		mrsqlite3_unlock(mailbox->m_sql);
 	}
 	else {
 		mrsqlite3_lock(mailbox->m_sql);
-			spec = mrsqlite3_get_config__(mailbox->m_sql, "import_spec", NULL); /* may still NULL */
+			real_spec = mrsqlite3_get_config__(mailbox->m_sql, "import_spec", NULL); /* may still NULL */
 		mrsqlite3_unlock(mailbox->m_sql);
-		if( spec == NULL ) {
+		if( real_spec == NULL ) {
 			mrmailbox_log_error(mailbox, 0, "Import: No file or folder given.");
 			goto cleanup;
 		}
 	}
 
-	suffix = mr_get_filesuffix_lc(spec);
+	suffix = mr_get_filesuffix_lc(real_spec);
 	if( suffix && strcmp(suffix, "eml")==0 ) {
 		/* import a single file */
-		if( mrmailbox_poke_eml_file(mailbox, spec) ) { /* errors are logged in any case */
+		if( mrmailbox_poke_eml_file(mailbox, real_spec) ) { /* errors are logged in any case */
 			read_cnt++;
 		}
 	}
 	else if( suffix && (strcmp(suffix, "pem")==0||strcmp(suffix, "asc")==0) ) {
 		/* import a publix key */
-		char* separator = strchr(spec, ' ');
+		char* separator = strchr(real_spec, ' ');
 		if( separator==NULL ) {
 			mrmailbox_log_error(mailbox, 0, "Import: Key files must be specified as \"<addr> <key-file>\".");
 			goto cleanup;
 		}
 		*separator = 0;
-		if( poke_public_key(mailbox, spec, separator+1) ) {
+		if( poke_public_key(mailbox, real_spec, separator+1) ) {
 			read_cnt++;
 		}
 		*separator = ' ';
 	}
 	else {
 		/* import a directory */
-		if( (dir=opendir(spec))==NULL ) {
-			mrmailbox_log_error(mailbox, 0, "Import: Cannot open directory \"%s\".", spec);
+		if( (dir=opendir(real_spec))==NULL ) {
+			mrmailbox_log_error(mailbox, 0, "Import: Cannot open directory \"%s\".", real_spec);
 			goto cleanup;
 		}
 
 		while( (dir_entry=readdir(dir))!=NULL ) {
 			name = dir_entry->d_name; /* name without path; may also be `.` or `..` */
 			if( strlen(name)>=4 && strcmp(&name[strlen(name)-4], ".eml")==0 ) {
-				char* path_plus_name = mr_mprintf("%s/%s", spec, name);
+				char* path_plus_name = mr_mprintf("%s/%s", real_spec, name);
 				mrmailbox_log_info(mailbox, 0, "Import: %s", path_plus_name);
 				if( mrmailbox_poke_eml_file(mailbox, path_plus_name) ) { /* no abort on single errors errors are logged in any case */
 					read_cnt++;
@@ -161,7 +174,7 @@ int mrmailbox_poke_spec(mrmailbox_t* mailbox, const char* spec__) /* spec is a f
 		}
 	}
 
-	mrmailbox_log_info(mailbox, 0, "Import: %i items read from \"%s\".", read_cnt, spec);
+	mrmailbox_log_info(mailbox, 0, "Import: %i items read from \"%s\".", read_cnt, real_spec);
 	if( read_cnt > 0 ) {
 		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, 0, 0); /* even if read_cnt>0, the number of messages added to the database may be 0. While we regard this issue using IMAP, we ignore it here. */
 	}
@@ -174,7 +187,7 @@ cleanup:
 	if( dir ) {
 		closedir(dir);
 	}
-	free(spec);
+	free(real_spec);
 	free(suffix);
 	return success;
 }
@@ -820,6 +833,19 @@ cleanup:
  ******************************************************************************/
 
 
+/**
+ * Check if there is a backup file.
+ *
+ * May only be used on fresh installations (mrmailbox_is_configured() returns 0).
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as created by mrmailbox_new().
+ *
+ * @param dir Directory to search backups in.
+ *
+ * @return String with the backup file or NULL; returned strings must be free()'d.
+ */
 char* mrmailbox_imex_has_backup(mrmailbox_t* mailbox, const char* dir_name)
 {
 	char*          ret = NULL;
@@ -1059,6 +1085,26 @@ cleanup:
 }
 
 
+/**
+ * Import/export things.
+ *
+ * mrmailbox_imex() imports and exports export keys, backup etc.
+ * Function, sends MR_EVENT_IMEX_* events.
+ * To avoid double slashes, the given directory should not end with a slash.
+ * _what_ to export is defined by a MR_IMEX_* constant.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as created by mrmailbox_new().
+ *
+ * @param what One of the MR_IMEX_* constants.
+ *
+ * @param param1 Meaning depends on the MR_IMEX_* constants.
+ *
+ * @param setup_code Setup-code to encrypt/decrypt data.
+ *
+ * @return None.
+ */
 void mrmailbox_imex(mrmailbox_t* mailbox, int what, const char* param1, const char* setup_code)
 {
 	mrimexthreadparam_t* thread_param;
@@ -1137,11 +1183,24 @@ cleanup:
 }
 
 
-/* create an "Autocrypt Level 1" setup code in the form
-1234-1234-1234-
-1234-1234-1234-
-1234-1234-1234
-Linebreaks and spaces MUST NOT be added to the setup code, but the "-" are. */
+/**
+ * Create random setup code.
+ *
+ * The created "Autocrypt Level 1" setup code has the following form:
+ *
+ *     1234-1234-1234-
+ *     1234-1234-1234-
+ *     1234-1234-1234
+ *
+ * Linebreaks and spaces are not added to the setup code, but the "-" are.
+ * Should be given to  mrmailbox_imex() for encryption, should be wiped and free()'d after usage.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as created by mrmailbox_new().
+ *
+ * @return Setup code, must be free()'d after usage.
+ */
 char* mrmailbox_create_setup_code(mrmailbox_t* mailbox)
 {
 	#define   CODE_ELEMS 9

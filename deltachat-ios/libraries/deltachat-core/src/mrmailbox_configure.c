@@ -645,7 +645,7 @@ exit_:
 
 
 /**
- * mrmailbox_configure_and_connect() configures and connects a mailbox.
+ * Configure and connect a mailbox.
  *
  * - Before your call this function, you should set at least `addr` and `mail_pw`
  *   using mrmailbox_set_config().

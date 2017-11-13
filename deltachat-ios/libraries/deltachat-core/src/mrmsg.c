@@ -350,6 +350,23 @@ cleanup:
 }
 
 
+/**
+ * Set the text of a message object.
+ *
+ * The text is _not_ modified in the database, this function is only a helper to
+ * set up a message object to be sent afterwards. The type of the message object
+ * is not changed implicitly to MR_MSG_TEXT when using this function. Previously
+ * set texts are free()'d.
+ *
+ * @memberof mrmsg_t
+ *
+ * @param msg Message to set the text for.
+ *
+ * @param text Text to set.  The function creates a copy of the given text so
+ *     that it can be free()'d just after this function is called.
+ *
+ * @return None.
+ */
 void mrmsg_set_text(mrmsg_t* msg, const char* text)
 {
 	if( msg==NULL || text==NULL ) {
@@ -367,7 +384,7 @@ void mrmsg_set_text(mrmsg_t* msg, const char* text)
  *
  * @memberof mrmailbox_t
  *
- * @param mailbox the mailbox object as created by mrmailbox_new()
+ * @param mailbox the mailbox object as created by mrmailbox_new().
  *
  * @param msg_id the message id for which information should be generated
  *

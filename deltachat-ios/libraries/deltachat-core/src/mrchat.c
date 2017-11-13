@@ -418,35 +418,37 @@ cleanup:
 
 
 /**
- * mrmailbox_marknoticed_chat() marks all message in a whole chat as NOTICED.
- * NOTICED messages are no longer FRESH and do not count as being unseen.
+ * Mark all message in a chat as _noticed_.
+ * _Noticed_ messages are no longer _fresh_ and do not count as being unseen.
  * IMAP/MDNs is not done for noticed messages.  See also mrmailbox_marknoticed_contact()
  * and mrmailbox_markseen_msgs()
  *
  * @memberof mrmailbox_t
  *
  * @param mailbox The mailbox object as returned from mrmailbox_new().
+ *
+ * @param chat_id The chat ID of which all messages should be marked as being noticed.
+ *
+ * @return None.
  */
-int mrmailbox_marknoticed_chat(mrmailbox_t* ths, uint32_t chat_id)
+void mrmailbox_marknoticed_chat(mrmailbox_t* mailbox, uint32_t chat_id)
 {
 	/* marking a chat as "seen" is done by marking all fresh chat messages as "noticed" -
 	"noticed" messages are not counted as being unread but are still waiting for being marked as "seen" using mrmailbox_markseen_msgs() */
 	sqlite3_stmt* stmt;
 
-	if( ths == NULL ) {
-		return 0;
+	if( mailbox == NULL ) {
+		return;
 	}
 
-	mrsqlite3_lock(ths->m_sql);
+	mrsqlite3_lock(mailbox->m_sql);
 
-		stmt = mrsqlite3_predefine__(ths->m_sql, UPDATE_msgs_SET_state_WHERE_chat_id_AND_state,
+		stmt = mrsqlite3_predefine__(mailbox->m_sql, UPDATE_msgs_SET_state_WHERE_chat_id_AND_state,
 			"UPDATE msgs SET state=" MR_STRINGIFY(MR_STATE_IN_NOTICED) " WHERE chat_id=? AND state=" MR_STRINGIFY(MR_STATE_IN_FRESH) ";");
 		sqlite3_bind_int(stmt, 1, chat_id);
 		sqlite3_step(stmt);
 
-	mrsqlite3_unlock(ths->m_sql);
-
-	return 1;
+	mrsqlite3_unlock(mailbox->m_sql);
 }
 
 
@@ -480,47 +482,52 @@ uint32_t mrmailbox_get_chat_id_by_contact_id(mrmailbox_t* mailbox, uint32_t cont
  * @memberof mrmailbox_t
  *
  * @param mailbox The mailbox object as returned from mrmailbox_new().
+ *
+ * @param contact_id The contact ID to create the chat for.  If there is already
+ *     a chat with this contact, the already existing ID is returned.
+ *
+ * @return The created or reused chat ID on success. 0 on errors.
  */
-uint32_t mrmailbox_create_chat_by_contact_id(mrmailbox_t* ths, uint32_t contact_id)
+uint32_t mrmailbox_create_chat_by_contact_id(mrmailbox_t* mailbox, uint32_t contact_id)
 {
 	uint32_t      chat_id = 0;
 	int           send_event = 0, locked = 0;
 
-	if( ths == NULL ) {
+	if( mailbox == NULL ) {
 		return 0;
 	}
 
-	mrsqlite3_lock(ths->m_sql);
+	mrsqlite3_lock(mailbox->m_sql);
 	locked = 1;
 
-		chat_id = mrmailbox_lookup_real_nchat_by_contact_id__(ths, contact_id);
+		chat_id = mrmailbox_lookup_real_nchat_by_contact_id__(mailbox, contact_id);
 		if( chat_id ) {
-			mrmailbox_log_warning(ths, 0, "Chat with contact %i already exists.", (int)contact_id);
+			mrmailbox_log_warning(mailbox, 0, "Chat with contact %i already exists.", (int)contact_id);
 			goto cleanup;
 		}
 
-        if( 0==mrmailbox_real_contact_exists__(ths, contact_id) ) {
-			mrmailbox_log_warning(ths, 0, "Cannot create chat, contact %i does not exist.", (int)contact_id);
+        if( 0==mrmailbox_real_contact_exists__(mailbox, contact_id) ) {
+			mrmailbox_log_warning(mailbox, 0, "Cannot create chat, contact %i does not exist.", (int)contact_id);
 			goto cleanup;
         }
 
-		chat_id = mrmailbox_create_or_lookup_nchat_by_contact_id__(ths, contact_id);
+		chat_id = mrmailbox_create_or_lookup_nchat_by_contact_id__(mailbox, contact_id);
 		if( chat_id ) {
 			send_event = 1;
 		}
 
-		mrmailbox_scaleup_contact_origin__(ths, contact_id, MR_ORIGIN_CREATE_CHAT);
+		mrmailbox_scaleup_contact_origin__(mailbox, contact_id, MR_ORIGIN_CREATE_CHAT);
 
-	mrsqlite3_unlock(ths->m_sql);
+	mrsqlite3_unlock(mailbox->m_sql);
 	locked = 0;
 
 cleanup:
 	if( locked ) {
-		mrsqlite3_unlock(ths->m_sql);
+		mrsqlite3_unlock(mailbox->m_sql);
 	}
 
 	if( send_event ) {
-		ths->m_cb(ths, MR_EVENT_MSGS_CHANGED, 0, 0);
+		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, 0, 0);
 	}
 
 	return chat_id;
@@ -630,10 +637,9 @@ cleanup:
 
 
 /**
- * mrmailbox_get_chat_contacts() returns contact IDs, the result must be
- * carray_free()'d.
+ * Get contact IDs belonging to a chat.
  *
- * - for normal chats, the function always returns exactly one contact
+ * - for normal chats, the function always returns exactly one contact,
  *   MR_CONTACT_ID_SELF is _not_ returned.
  *
  * - for group chats all members are returned, MR_CONTACT_ID_SELF is returned
@@ -646,6 +652,10 @@ cleanup:
  * @memberof mrmailbox_t
  *
  * @param mailbox The mailbox object as returned from mrmailbox_new().
+ *
+ * @param chat_id Chat ID to get the belonging contact IDs for.
+ *
+ * @return an array of contact IDs belonging to the chat; must be freed using carray_free() when done.
  */
 carray* mrmailbox_get_chat_contacts(mrmailbox_t* mailbox, uint32_t chat_id)
 {
@@ -745,7 +755,7 @@ void mrchat_empty(mrchat_t* ths)
 
 
 /**
- * Returns message IDs of fresh messages, Typically used for implementing
+ * Returns the message IDs of all _fresh_ messages of any chat. Typically used for implementing
  * notification summaries.  The result must be free()'d.
  *
  * @memberof mrmailbox_t
@@ -802,7 +812,7 @@ cleanup:
 
 
 /**
- * mrmailbox_get_chat_msgs() returns a view on a chat.
+ * Get all message IDs belonging to a chat.
  * The function returns an array of message IDs, which must be carray_free()'d by
  * the caller.  Optionally, some special markers added to the ID-array may help to
  * implement virtual lists:
@@ -1054,13 +1064,17 @@ cleanup:
 
 
 /**
- * save message in database and send it, the given message object is not unref'd
- * by the function but some fields are set up! Sends the event
- * MR_EVENT_MSGS_CHANGED on succcess.
+ * Save a draft for a chat.
  *
  * @memberof mrmailbox_t
  *
  * @param mailbox The mailbox object as returned from mrmailbox_new().
+ *
+ * @param chat_id The chat ID to save the draft for.
+ *
+ * @param msg The message text to save as a draft.
+ *
+ * @return None.
  */
 void mrmailbox_set_draft(mrmailbox_t* mailbox, uint32_t chat_id, const char* msg)
 {
@@ -1843,6 +1857,27 @@ int mrmailbox_add_contact_to_chat__(mrmailbox_t* mailbox, uint32_t chat_id, uint
 }
 
 
+/**
+ * Create a new group chat.
+ *
+ * After creation, the groups has one member with the
+ * ID MR_CONTACT_ID_SELF and is in _unpromoted_ state.  This means, you can
+ * add or remove members, change the name, the group image and so on without
+ * messages being send to all group members.
+ *
+ * This changes as soon as the first message is sent to the group members and
+ * the group becomes _promoted_.  After that, all changes are synced with all
+ * group members by sending status message.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as created by mrmailbox_new().
+ *
+ * @param name The name of the group chat to create.
+ *     The name may be changed later using mrmailbox_set_chat_name().
+ *
+ * @return The chat ID of the new group chat, 0 on errors.
+ */
 uint32_t mrmailbox_create_group_chat(mrmailbox_t* mailbox, const char* chat_name)
 {
 	uint32_t      chat_id = 0;
@@ -1893,6 +1928,22 @@ cleanup:
 }
 
 
+/**
+ * Set group name.
+ *
+ * If the group is already _promoted_ (any message was sent to the group),
+ * all group members are informed by a special message that is sent automatically by this function.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param chat_id The chat ID to set the name for.  Must be a group chat.
+ *
+ * @param name New name of the group.
+ *
+ * @param mailbox Mailbox object as created by mrmailbox_new().
+ *
+ * @return 1=success, 0=error
+ */
 int mrmailbox_set_chat_name(mrmailbox_t* mailbox, uint32_t chat_id, const char* new_name)
 {
 	/* the function only sets the names of group chats; normal chats get their names from the contacts */
@@ -1953,6 +2004,23 @@ cleanup:
 }
 
 
+/**
+ * Set group image.
+ *
+ * If the group is already _promoted_ (any message was sent to the group),
+ * all group members are informed by a special message that is sent automatically by this function.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as created by mrmailbox_new().
+ *
+ * @param chat_id The chat ID to set the image for.
+ *
+ * @param image Full path of the image to use as the group image.  If you pass NULL here,
+ *     the group image is deleted (for promoted groups, all members are informed about this change anyway).
+ *
+ * @return 1=success, 0=error
+ */
 int mrmailbox_set_chat_image(mrmailbox_t* mailbox, uint32_t chat_id, const char* new_image /*NULL=remove image*/)
 {
 	int       success = 0, locked = 0;;
@@ -2028,6 +2096,20 @@ int mrmailbox_is_contact_in_chat__(mrmailbox_t* mailbox, uint32_t chat_id, uint3
 }
 
 
+/**
+ * Check if a given contact ID is a member of a group chat.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as created by mrmailbox_new().
+ *
+ * @param chat_id The chat ID to check.
+ *
+ * @param contact_id The contact ID to check.  To check if yourself is member
+ *     of the chat, pass MR_CONTACT_ID_SELF (1) here.
+ *
+ * @return 1=contact ID is member of chat ID, 0=contact is not in chat
+ */
 int mrmailbox_is_contact_in_chat(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t contact_id)
 {
 	/* this function works for group and for normal chats, however, it is more useful for group chats.
@@ -2042,6 +2124,22 @@ int mrmailbox_is_contact_in_chat(mrmailbox_t* mailbox, uint32_t chat_id, uint32_
 }
 
 
+/**
+ * Add a member to a group.
+ *
+ * If the group is already _promoted_ (any message was sent to the group),
+ * all group members are informed by a special message that is sent automatically by this function.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as created by mrmailbox_new().
+ *
+ * @param chat_id The chat ID to add the contact to.  Must be a group chat.
+ *
+ * @param contact_id The contact ID to add to the chat.
+ *
+ * @return 1=member added to group, 0=error
+ */
 int mrmailbox_add_contact_to_chat(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t contact_id /*may be MR_CONTACT_ID_SELF*/)
 {
 	int          success = 0, locked = 0;
@@ -2109,6 +2207,22 @@ cleanup:
 }
 
 
+/**
+ * Remove a member from a group.
+ *
+ * If the group is already _promoted_ (any message was sent to the group),
+ * all group members are informed by a special message that is sent automatically by this function.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as created by mrmailbox_new().
+ *
+ * @param chat_id The chat ID to remove the contact from.  Must be a group chat.
+ *
+ * @param contact_id The contact ID to remove from the chat.
+ *
+ * @return 1=member removed from group, 0=error
+ */
 int mrmailbox_remove_contact_from_chat(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t contact_id /*may be MR_CONTACT_ID_SELF*/)
 {
 	int          success = 0, locked = 0;
