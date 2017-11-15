@@ -150,7 +150,10 @@ class CredentialsController: UITableViewController {
     }
     
     @objc func saveAccountButtonPressed() {
-        print("model: \(model)")
+        dismiss(animated: true) {
+            initCore(withCredentials: true, email: self.model.email, password: self.model.password)
+            AppDelegate.appCoordinator.setupInnerViewControllers()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -178,7 +181,6 @@ class CredentialsController: UITableViewController {
         
         return cells[row]
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
