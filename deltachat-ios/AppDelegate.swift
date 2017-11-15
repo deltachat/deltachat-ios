@@ -92,12 +92,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let appCoordinator = AppCoordinator()
         appCoordinator.setupViewControllers(window: window)
         
-        guard let ump = mrmailbox_get_version_str() else {
-            fatalError("Error: invalid version string")
-        }
-        let versionString = String(cString: ump)
-        print(versionString)
-
         //       - second param remains nil (user data for more than one mailbox)
         mailboxPointer = mrmailbox_new(callback_ios, nil, "iOS")
         guard mailboxPointer != nil else {
@@ -115,7 +109,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mrmailbox_set_config(mailboxPointer, "mail_pw", "foobar")
         
         mrmailbox_configure_and_connect(mailboxPointer)
-        print(r)
         
         let nc = NotificationCenter.default
         nc.addObserver(forName:Notification.Name(rawValue:"MrEventMsgsChanged"),
