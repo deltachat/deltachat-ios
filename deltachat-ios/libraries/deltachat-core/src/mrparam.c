@@ -27,11 +27,6 @@
 #include "mrtools.h"
 
 
-/*******************************************************************************
- * Tools
- ******************************************************************************/
-
-
 static char* find_param(char* ths, int key, char** ret_p2)
 {
 	char *p1, *p2;
@@ -64,13 +59,12 @@ static char* find_param(char* ths, int key, char** ret_p2)
 }
 
 
-/*******************************************************************************
- * Main interface
- ******************************************************************************/
-
-
 /**
+ * Create new parameter list object.
+ *
  * @memberof mrparam_t
+ *
+ * @return The created parameter list object.
  */
 mrparam_t* mrparam_new()
 {
@@ -87,7 +81,11 @@ mrparam_t* mrparam_new()
 
 
 /**
+ * Free an parameter list object created eg. by mrparam_new().
+ *
  * @memberof mrparam_t
+ *
+ * @param param The parameter list object to free.
  */
 void mrparam_unref(mrparam_t* param)
 {
@@ -102,7 +100,13 @@ void mrparam_unref(mrparam_t* param)
 
 
 /**
+ * Delete all parameters.
+ *
  * @memberof mrparam_t
+ *
+ * @param param Parameter object to modify.
+ *
+ * @return None.
  */
 void mrparam_empty(mrparam_t* param)
 {
@@ -115,7 +119,18 @@ void mrparam_empty(mrparam_t* param)
 
 
 /**
- * @memberof mrparam_t
+ * Store a parameter set.  The parameter set must be given in a packed form as
+ * `a=value1\nb=value2`. The format should be very strict, additional spaces are not allowed.
+ *
+ * Before the new packed parameters are stored, _all_ existant parameters are deleted.
+ *
+ * @private @memberof mrparam_t
+ *
+ * @param param Parameter object to modify.
+ *
+ * @param packed Parameters to set, see comment above.
+ *
+ * @return None.
  */
 void mrparam_set_packed(mrparam_t* param, const char* packed)
 {
@@ -133,7 +148,15 @@ void mrparam_set_packed(mrparam_t* param, const char* packed)
 
 
 /**
+ * Check if a parameter exists.
+ *
  * @memberof mrparam_t
+ *
+ * @param param Parameter object to query.
+ *
+ * @param key Key of the parameter to check the existance, one of the MRP_* constants.
+ *
+ * @return 1=parameter exists in object, 0=parameter does not exist in parameter object.
  */
 int mrparam_exists(mrparam_t* param, int key)
 {
@@ -148,7 +171,17 @@ int mrparam_exists(mrparam_t* param, int key)
 
 
 /**
+ * Get value of a parameter.
+ *
  * @memberof mrparam_t
+ *
+ * @param param Parameter object to query.
+ *
+ * @param key Key of the parameter to get, one of the MRP_* constants.
+ *
+ * @param def Value to return if the parameter is not set.
+ *
+ * @return The stored value or the default value.  In both cases, the returned value must be free()'d.
  */
 char* mrparam_get(mrparam_t* param, int key, const char* def)
 {
@@ -175,7 +208,17 @@ char* mrparam_get(mrparam_t* param, int key, const char* def)
 
 
 /**
+ * Get value of a parameter.
+ *
  * @memberof mrparam_t
+ *
+ * @param param Parameter object to query.
+ *
+ * @param key Key of the parameter to get, one of the MRP_* constants.
+ *
+ * @param def Value to return if the parameter is not set.
+ *
+ * @return The stored value or the default value.
  */
 int32_t mrparam_get_int(mrparam_t* param, int key, int32_t def)
 {
@@ -194,9 +237,19 @@ int32_t mrparam_get_int(mrparam_t* param, int key, int32_t def)
 
 
 /**
+ * Set parameter to a string.
+ *
  * @memberof mrparam_t
  *
+ * @param param Parameter object to modify.
+ *
+ * @param key Key of the parameter to modify, one of the MRP_* constants.
+ *
+ * @param value Value to store for key.
+ *
+ * @return None.
  */
+
 void mrparam_set(mrparam_t* param, int key, const char* value)
 {
 	char *old1, *old2, *new1 = NULL;
@@ -250,7 +303,17 @@ void mrparam_set(mrparam_t* param, int key, const char* value)
 
 
 /**
+ * Set parameter to an integer.
+ *
  * @memberof mrparam_t
+ *
+ * @param param Parameter object to modify.
+ *
+ * @param key Key of the parameter to modify, one of the MRP_* constants.
+ *
+ * @param value Value to store for key.
+ *
+ * @return None.
  */
 void mrparam_set_int(mrparam_t* param, int key, int32_t value)
 {

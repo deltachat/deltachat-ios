@@ -32,11 +32,12 @@ extern "C" {
 #endif
 
 
-/*** library-private **********************************************************/
-
-
+/**
+ * Library-internal.
+ */
 typedef struct mrmimepart_t
 {
+	/** @privatesection */
 	int                 m_type; /*one of MR_MSG_* */
 	int                 m_is_meta; /*meta parts contain eg. profile or group images and are only present if there is at least one "normal" part*/
 	char*               m_msg;
@@ -46,8 +47,13 @@ typedef struct mrmimepart_t
 } mrmimepart_t;
 
 
+/**
+ * Library-internal.
+ */
 typedef struct mrmimeparser_t
 {
+	/** @privatesection */
+
 	/* data, read-only, must not be free()'d (it is free()'d when the MrMimeParser object gets destructed) */
 	carray*                m_parts;    /*array of mrmimepart_t objects*/
 	struct mailmime*       m_mimeroot;

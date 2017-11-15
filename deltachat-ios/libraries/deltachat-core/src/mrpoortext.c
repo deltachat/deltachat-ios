@@ -43,8 +43,8 @@ mrpoortext_t* mrpoortext_new()
 
 
 /**
- * Frees a mrpoortext_t object created eg. by mrchatlist_get_summary() or by
- * mrmsg_eget_summary().  This also frees the strings objects.
+ * Frees a poortext object. Poortext objects are typically created by mrchatlist_get_summary() or by
+ * mrmsg_get_summary().  This also frees the strings objects.
  *
  * @memberof mrpoortext_t
  *
@@ -106,7 +106,7 @@ void mrpoortext_fill(mrpoortext_t* ths, const mrmsg_t* msg, const mrchat_t* chat
 			ths->m_text1_meaning = MR_TEXT1_NORMAL;
 		}
 		else if( contact->m_name && contact->m_name[0] ) {
-			ths->m_text1 = mr_get_first_name(contact->m_name);
+			ths->m_text1 = mrcontact_get_first_name(contact->m_name);
 			ths->m_text1_meaning = MR_TEXT1_USERNAME;
 		}
 		else if( contact->m_addr && contact->m_addr[0] ) {

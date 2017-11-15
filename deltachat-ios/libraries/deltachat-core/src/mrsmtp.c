@@ -107,7 +107,7 @@ int mrsmtp_connect(mrsmtp_t* ths, const mrloginparam_t* lp)
 
 	LOCK_SMTP
 
-		if( ths->m_mailbox->m_cb(ths->m_mailbox, MR_EVENT_IS_ONLINE, 0, 0)!=1 ) {
+		if( ths->m_mailbox->m_cb(ths->m_mailbox, MR_EVENT_IS_OFFLINE, 0, 0)!=0 ) {
 			mrmailbox_log_error_if(&ths->m_log_connect_errors, ths->m_mailbox, MR_ERR_NONETWORK, NULL);
 			goto cleanup;
 		}

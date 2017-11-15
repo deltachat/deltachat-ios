@@ -171,7 +171,7 @@ void mrmailbox_log_error_if(int* condition, mrmailbox_t* mailbox, int code, cons
 	va_start(va, msg);
 		if( *condition ) {
 			/* pop-up error, if we're offline, force a "not connected" error (the function is not used for other cases) */
-			if( mailbox->m_cb(mailbox, MR_EVENT_IS_ONLINE, 0, 0)!=1 ) {
+			if( mailbox->m_cb(mailbox, MR_EVENT_IS_OFFLINE, 0, 0)!=0 ) {
 				mrmailbox_log_vprintf(mailbox, MR_EVENT_ERROR, MR_ERR_NONETWORK, NULL, va);
 			}
 			else {

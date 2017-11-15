@@ -24,9 +24,165 @@
 your library */
 
 
+#include <dirent.h>
 #include "../src/mrmailbox_internal.h"
+#include "../src/mraheader.h"
 #include "../src/mrapeerstate.h"
 #include "../src/mrkey.h"
+#include "../src/mrpgp.h"
+
+
+static int poke_public_key(mrmailbox_t* mailbox, const char* addr, const char* public_key_file)
+{
+	/* mainly for testing: if the partner does not support Autocrypt,
+	encryption is disabled as soon as the first messages comes from the partner */
+	mraheader_t*    header = mraheader_new();
+	mrapeerstate_t* peerstate = mrapeerstate_new();
+	int             locked = 0, success = 0;
+
+	if( addr==NULL || public_key_file==NULL || peerstate==NULL || header==NULL ) {
+		goto cleanup;
+	}
+
+	/* create a fake autocrypt header */
+	header->m_addr             = safe_strdup(addr);
+	header->m_prefer_encrypt   = MRA_PE_MUTUAL;
+	if( !mrkey_set_from_file(header->m_public_key, public_key_file, mailbox)
+	 || !mrpgp_is_valid_key(mailbox, header->m_public_key) ) {
+		mrmailbox_log_warning(mailbox, 0, "No valid key found in \"%s\".", public_key_file);
+		goto cleanup;
+	}
+
+	/* update/create peerstate */
+	mrsqlite3_lock(mailbox->m_sql);
+	locked = 1;
+
+		if( mrapeerstate_load_from_db__(peerstate, mailbox->m_sql, addr) ) {
+			mrapeerstate_apply_header(peerstate, header, time(NULL));
+			mrapeerstate_save_to_db__(peerstate, mailbox->m_sql, 0);
+		}
+		else {
+			mrapeerstate_init_from_header(peerstate, header, time(NULL));
+			mrapeerstate_save_to_db__(peerstate, mailbox->m_sql, 1);
+		}
+
+		success = 1;
+
+cleanup:
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
+	mrapeerstate_unref(peerstate);
+	mraheader_unref(header);
+	return success;
+}
+
+
+/*
+ * Import a file to the database.
+ * For testing, import a folder with eml-files, a single eml-file, e-mail plus public key and so on.
+ * For normal importing, use mrmailbox_imex().
+ *
+ * @private @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as created by mrmailbox_new().
+ *
+ * @param spec The file or directory to import. NULL for the last command.
+ *
+ * @return 1=success, 0=error.
+ */
+static int poke_spec(mrmailbox_t* mailbox, const char* spec)
+{
+	int            success = 0;
+	char*          real_spec = NULL;
+	char*          suffix = NULL;
+	DIR*           dir = NULL;
+	struct dirent* dir_entry;
+	int            read_cnt = 0;
+	char*          name;
+
+	if( mailbox == NULL ) {
+		return 0;
+	}
+
+	if( !mrsqlite3_is_open(mailbox->m_sql) ) {
+        mrmailbox_log_error(mailbox, 0, "Import: Database not opened.");
+		goto cleanup;
+	}
+
+	/* if `spec` is given, remember it for later usage; if it is not given, try to use the last one */
+	if( spec )
+	{
+		real_spec = safe_strdup(spec);
+		mrsqlite3_lock(mailbox->m_sql);
+			mrsqlite3_set_config__(mailbox->m_sql, "import_spec", real_spec);
+		mrsqlite3_unlock(mailbox->m_sql);
+	}
+	else {
+		mrsqlite3_lock(mailbox->m_sql);
+			real_spec = mrsqlite3_get_config__(mailbox->m_sql, "import_spec", NULL); /* may still NULL */
+		mrsqlite3_unlock(mailbox->m_sql);
+		if( real_spec == NULL ) {
+			mrmailbox_log_error(mailbox, 0, "Import: No file or folder given.");
+			goto cleanup;
+		}
+	}
+
+	suffix = mr_get_filesuffix_lc(real_spec);
+	if( suffix && strcmp(suffix, "eml")==0 ) {
+		/* import a single file */
+		if( mrmailbox_poke_eml_file(mailbox, real_spec) ) { /* errors are logged in any case */
+			read_cnt++;
+		}
+	}
+	else if( suffix && (strcmp(suffix, "pem")==0||strcmp(suffix, "asc")==0) ) {
+		/* import a publix key */
+		char* separator = strchr(real_spec, ' ');
+		if( separator==NULL ) {
+			mrmailbox_log_error(mailbox, 0, "Import: Key files must be specified as \"<addr> <key-file>\".");
+			goto cleanup;
+		}
+		*separator = 0;
+		if( poke_public_key(mailbox, real_spec, separator+1) ) {
+			read_cnt++;
+		}
+		*separator = ' ';
+	}
+	else {
+		/* import a directory */
+		if( (dir=opendir(real_spec))==NULL ) {
+			mrmailbox_log_error(mailbox, 0, "Import: Cannot open directory \"%s\".", real_spec);
+			goto cleanup;
+		}
+
+		while( (dir_entry=readdir(dir))!=NULL ) {
+			name = dir_entry->d_name; /* name without path; may also be `.` or `..` */
+			if( strlen(name)>=4 && strcmp(&name[strlen(name)-4], ".eml")==0 ) {
+				char* path_plus_name = mr_mprintf("%s/%s", real_spec, name);
+				mrmailbox_log_info(mailbox, 0, "Import: %s", path_plus_name);
+				if( mrmailbox_poke_eml_file(mailbox, path_plus_name) ) { /* no abort on single errors errors are logged in any case */
+					read_cnt++;
+				}
+				free(path_plus_name);
+            }
+		}
+	}
+
+	mrmailbox_log_info(mailbox, 0, "Import: %i items read from \"%s\".", read_cnt, real_spec);
+	if( read_cnt > 0 ) {
+		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, 0, 0); /* even if read_cnt>0, the number of messages added to the database may be 0. While we regard this issue using IMAP, we ignore it here. */
+	}
+
+	/* success */
+	success = 1;
+
+	/* cleanup */
+cleanup:
+	if( dir ) {
+		closedir(dir);
+	}
+	free(real_spec);
+	free(suffix);
+	return success;
+}
 
 
 static void log_msglist(mrmailbox_t* mailbox, carray* msglist)
@@ -264,7 +420,7 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 	}
 	else if( strcmp(cmd, "poke")==0 )
 	{
-		ret = mrmailbox_poke_spec(mailbox, arg1)? COMMAND_SUCCEEDED : COMMAND_FAILED;
+		ret = poke_spec(mailbox, arg1)? COMMAND_SUCCEEDED : COMMAND_FAILED;
 	}
 	else if( strcmp(cmd, "export-setup")==0 )
 	{

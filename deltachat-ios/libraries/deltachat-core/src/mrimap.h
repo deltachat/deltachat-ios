@@ -21,7 +21,7 @@
 
 
 /* Purpose: Reading from IMAP servers with no dependencies to the database.
-mrmailbox_t is only used for logging and to get information about 
+mrmailbox_t is only used for logging and to get information about
 the online state. */
 
 
@@ -31,8 +31,6 @@ the online state. */
 extern "C" {
 #endif
 
-
-/*** library-private **********************************************************/
 
 typedef struct mrloginparam_t mrloginparam_t;
 typedef struct mrimap_t mrimap_t;
@@ -44,8 +42,13 @@ typedef void     (*mr_set_config_int_t)(mrimap_t*, const char*, int32_t);
 typedef void     (*mr_receive_imf_t)   (mrimap_t*, const char* imf_raw_not_terminated, size_t imf_raw_bytes, const char* server_folder, uint32_t server_uid, uint32_t flags);
 
 
+/**
+ * Library-internal.
+ */
 typedef struct mrimap_t
 {
+	/** @privatesection */
+
 	char*                 m_imap_server;
 	int                   m_imap_port;
 	char*                 m_imap_user;

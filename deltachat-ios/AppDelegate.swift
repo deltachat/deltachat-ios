@@ -32,8 +32,15 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
     case MR_EVENT_ERROR:
         let s = String(cString: data2String)
         print("Error: \(s)")
-    case MR_EVENT_IS_ONLINE:
-        return 1
+    // TODO
+    // check online state, return
+    // - 0 when online
+    // - 1 when offline
+    case MR_EVENT_IS_OFFLINE:
+        return 0
+    // TODO
+    // this will become a synchronous API, start thread directly
+    // from
     case MR_EVENT_CONFIGURE_ENDED:
         if data1 == 0 {
             fatalError("MR_EVENT_CONFIGURE_ENDED: (TODO: add dialogue here)")

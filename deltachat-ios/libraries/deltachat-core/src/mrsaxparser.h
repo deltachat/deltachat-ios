@@ -27,9 +27,6 @@ extern "C" {
 #endif
 
 
-typedef struct mrsaxparser_t mrsaxparser_t;
-
-
 typedef void (*mrsaxparser_starttag_cb_t) (void* userdata, const char* tag, char** attr);
 typedef void (*mrsaxparser_endtag_cb_t)   (void* userdata, const char* tag);
 typedef void (*mrsaxparser_text_cb_t)     (void* userdata, const char* text, int len); /* len is only informational, text is already null-terminated */

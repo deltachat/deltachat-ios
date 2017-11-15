@@ -27,7 +27,7 @@ extern "C" {
 #endif
 
 
-/*** library-private **********************************************************/
+/*** library-internal *********************************************************/
 
 char* mr_dehtml(char* buf_terminated); /* mr_dehtml() returns way too many lineends; however, an optimisation on this issue is not needed as the lineends are typically remove in further processing by the caller */
 

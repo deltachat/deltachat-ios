@@ -27,10 +27,13 @@ extern "C" {
 #endif
 
 
-/*** library-private **********************************************************/
-
+/**
+ * Library-internal.
+ */
 typedef struct mrloginparam_t
 {
+	/**  @privatesection */
+
 	/* IMAP/POP3 - all pointers may be NULL if unset, public read */
 	char*         m_addr;
 	char*         m_mail_server;

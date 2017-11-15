@@ -20,6 +20,7 @@
  ******************************************************************************/
 
 
+#include <assert.h>
 #include <dirent.h>
 #include <openssl/rand.h>
 #include <libetpan/mmapstring.h>
@@ -38,159 +39,6 @@ static int s_imex_do_exit = 1; /* the value 1 avoids MR_IMEX_CANCEL from stoppin
 /*******************************************************************************
  * Import
  ******************************************************************************/
-
-
-static int poke_public_key(mrmailbox_t* mailbox, const char* addr, const char* public_key_file)
-{
-	/* mainly for testing: if the partner does not support Autocrypt,
-	encryption is disabled as soon as the first messages comes from the partner */
-	mraheader_t*    header = mraheader_new();
-	mrapeerstate_t* peerstate = mrapeerstate_new();
-	int             locked = 0, success = 0;
-
-	if( addr==NULL || public_key_file==NULL || peerstate==NULL || header==NULL ) {
-		goto cleanup;
-	}
-
-	/* create a fake autocrypt header */
-	header->m_addr             = safe_strdup(addr);
-	header->m_prefer_encrypt   = MRA_PE_MUTUAL;
-	if( !mrkey_set_from_file(header->m_public_key, public_key_file, mailbox)
-	 || !mrpgp_is_valid_key(mailbox, header->m_public_key) ) {
-		mrmailbox_log_warning(mailbox, 0, "No valid key found in \"%s\".", public_key_file);
-		goto cleanup;
-	}
-
-	/* update/create peerstate */
-	mrsqlite3_lock(mailbox->m_sql);
-	locked = 1;
-
-		if( mrapeerstate_load_from_db__(peerstate, mailbox->m_sql, addr) ) {
-			mrapeerstate_apply_header(peerstate, header, time(NULL));
-			mrapeerstate_save_to_db__(peerstate, mailbox->m_sql, 0);
-		}
-		else {
-			mrapeerstate_init_from_header(peerstate, header, time(NULL));
-			mrapeerstate_save_to_db__(peerstate, mailbox->m_sql, 1);
-		}
-
-		success = 1;
-
-cleanup:
-	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
-	mrapeerstate_unref(peerstate);
-	mraheader_unref(header);
-	return success;
-}
-
-
-/**
- * Import a file to the database.
- * For testing, import a folder with eml-files, a single eml-file, e-mail plus public key and so on.
- * For normal importing, use mrmailbox_imex().
- *
- * @private @memberof mrmailbox_t
- *
- * @param mailbox Mailbox object as created by mrmailbox_new().
- *
- * @param spec The file or directory to import. NULL for the last command.
- *
- * @return 1=success, 0=error.
- */
-int mrmailbox_poke_spec(mrmailbox_t* mailbox, const char* spec)
-{
-	int            success = 0;
-	char*          real_spec = NULL;
-	char*          suffix = NULL;
-	DIR*           dir = NULL;
-	struct dirent* dir_entry;
-	int            read_cnt = 0;
-	char*          name;
-
-	if( mailbox == NULL ) {
-		return 0;
-	}
-
-	if( !mrsqlite3_is_open(mailbox->m_sql) ) {
-        mrmailbox_log_error(mailbox, 0, "Import: Database not opened.");
-		goto cleanup;
-	}
-
-	/* if `spec` is given, remember it for later usage; if it is not given, try to use the last one */
-	if( spec )
-	{
-		real_spec = safe_strdup(spec);
-		mrsqlite3_lock(mailbox->m_sql);
-			mrsqlite3_set_config__(mailbox->m_sql, "import_spec", real_spec);
-		mrsqlite3_unlock(mailbox->m_sql);
-	}
-	else {
-		mrsqlite3_lock(mailbox->m_sql);
-			real_spec = mrsqlite3_get_config__(mailbox->m_sql, "import_spec", NULL); /* may still NULL */
-		mrsqlite3_unlock(mailbox->m_sql);
-		if( real_spec == NULL ) {
-			mrmailbox_log_error(mailbox, 0, "Import: No file or folder given.");
-			goto cleanup;
-		}
-	}
-
-	suffix = mr_get_filesuffix_lc(real_spec);
-	if( suffix && strcmp(suffix, "eml")==0 ) {
-		/* import a single file */
-		if( mrmailbox_poke_eml_file(mailbox, real_spec) ) { /* errors are logged in any case */
-			read_cnt++;
-		}
-	}
-	else if( suffix && (strcmp(suffix, "pem")==0||strcmp(suffix, "asc")==0) ) {
-		/* import a publix key */
-		char* separator = strchr(real_spec, ' ');
-		if( separator==NULL ) {
-			mrmailbox_log_error(mailbox, 0, "Import: Key files must be specified as \"<addr> <key-file>\".");
-			goto cleanup;
-		}
-		*separator = 0;
-		if( poke_public_key(mailbox, real_spec, separator+1) ) {
-			read_cnt++;
-		}
-		*separator = ' ';
-	}
-	else {
-		/* import a directory */
-		if( (dir=opendir(real_spec))==NULL ) {
-			mrmailbox_log_error(mailbox, 0, "Import: Cannot open directory \"%s\".", real_spec);
-			goto cleanup;
-		}
-
-		while( (dir_entry=readdir(dir))!=NULL ) {
-			name = dir_entry->d_name; /* name without path; may also be `.` or `..` */
-			if( strlen(name)>=4 && strcmp(&name[strlen(name)-4], ".eml")==0 ) {
-				char* path_plus_name = mr_mprintf("%s/%s", real_spec, name);
-				mrmailbox_log_info(mailbox, 0, "Import: %s", path_plus_name);
-				if( mrmailbox_poke_eml_file(mailbox, path_plus_name) ) { /* no abort on single errors errors are logged in any case */
-					read_cnt++;
-				}
-				free(path_plus_name);
-            }
-		}
-	}
-
-	mrmailbox_log_info(mailbox, 0, "Import: %i items read from \"%s\".", read_cnt, real_spec);
-	if( read_cnt > 0 ) {
-		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, 0, 0); /* even if read_cnt>0, the number of messages added to the database may be 0. While we regard this issue using IMAP, we ignore it here. */
-	}
-
-	/* success */
-	success = 1;
-
-	/* cleanup */
-cleanup:
-	if( dir ) {
-		closedir(dir);
-	}
-	free(real_spec);
-	free(suffix);
-	return success;
-}
 
 
 static int import_self_keys(mrmailbox_t* mailbox, const char* dir_name)
@@ -324,7 +172,7 @@ static void export_key_to_asc_file(mrmailbox_t* mailbox, const char* dir, int id
 		mrmailbox_log_error(mailbox, 0, "Cannot write key to %s", file_name);
 	}
 	else {
-		mailbox->m_cb(mailbox, MR_EVENT_IMEX_FILE_WRITTEN, (uintptr_t)file_name, (uintptr_t)"application/pgp-keys");
+		mailbox->m_cb(mailbox, MR_EVENT_IMEX_FILE_WRITTEN, (uintptr_t)file_name, NULL);
 	}
 	free(file_content);
 	free(file_name);
@@ -654,7 +502,7 @@ static int export_setup_file(mrmailbox_t* mailbox, const char* dir, const char* 
 		mrmailbox_log_error(mailbox, 0, "Cannot write keys to %s", file_name);
 	}
 	else {
-		mailbox->m_cb(mailbox, MR_EVENT_IMEX_FILE_WRITTEN, (uintptr_t)file_name, (uintptr_t)"application/autocrypt-key-backup");
+		mailbox->m_cb(mailbox, MR_EVENT_IMEX_FILE_WRITTEN, (uintptr_t)file_name, NULL);
 	}
 
 	success = 1;
@@ -808,7 +656,7 @@ static int export_backup(mrmailbox_t* mailbox, const char* dir)
 	mrsqlite3_set_config_int__(dest_sql, "backup_time", now);
 	mrsqlite3_set_config__    (dest_sql, "backup_for", mailbox->m_blobdir);
 
-	mailbox->m_cb(mailbox, MR_EVENT_IMEX_FILE_WRITTEN, (uintptr_t)dest_pathNfilename, (uintptr_t)"application/octet-stream");
+	mailbox->m_cb(mailbox, MR_EVENT_IMEX_FILE_WRITTEN, (uintptr_t)dest_pathNfilename, NULL);
 	success = 1;
 
 cleanup:
@@ -842,7 +690,7 @@ cleanup:
  *
  * @param mailbox Mailbox object as created by mrmailbox_new().
  *
- * @param dir Directory to search backups in.
+ * @param dir_name Directory to search backups in.
  *
  * @return String with the backup file or NULL; returned strings must be free()'d.
  */
@@ -901,10 +749,22 @@ cleanup:
 }
 
 
+static void ensure_no_slash(char* path)
+{
+	int path_len = strlen(path);
+	if( path_len > 0 ) {
+		if( path[path_len-1] == '/'
+		 || path[path_len-1] == '\\' ) {
+			path[path_len-1] = 0;
+		}
+	}
+}
+
+
 static int import_backup(mrmailbox_t* mailbox, const char* backup_to_import)
 {
 	/* command for testing eg.
-	imex import-backup /home/bpetersen/temp/delta-chat-2017-10-05.bak
+	imex import-backup /home/bpetersen/temp/delta-chat-2017-11-14.bak
 	*/
 
 	int           success = 0;
@@ -912,6 +772,8 @@ static int import_backup(mrmailbox_t* mailbox, const char* backup_to_import)
 	int           processed_files_count = 0, total_files_count = 0;
 	sqlite3_stmt* stmt = NULL;
 	char*         pathNfilename = NULL;
+	char*         repl_from = NULL;
+	char*         repl_to = NULL;
 
 	mrmailbox_log_info(mailbox, 0, "Import \"%s\" to \"%s\".", backup_to_import, mailbox->m_dbfile);
 
@@ -985,10 +847,38 @@ static int import_backup(mrmailbox_t* mailbox, const char* backup_to_import)
 	mrsqlite3_execute__(mailbox->m_sql, "DROP TABLE backup_blobs;");
 	mrsqlite3_execute__(mailbox->m_sql, "VACUUM;");
 
+	/* rewrite references to the blobs */
+	repl_from = mrsqlite3_get_config__(mailbox->m_sql, "backup_for", NULL);
+	if( repl_from && strlen(repl_from)>1 && mailbox->m_blobdir && strlen(mailbox->m_blobdir)>1 )
+	{
+		ensure_no_slash(repl_from);
+		repl_to = safe_strdup(mailbox->m_blobdir);
+		ensure_no_slash(repl_to);
+
+		mrmailbox_log_info(mailbox, 0, "Rewriting paths from '%s' to '%s' ...", repl_from, repl_to);
+
+		assert( 'f' == MRP_FILE );
+		assert( 'i' == MRP_PROFILE_IMAGE );
+
+		char* q3 = sqlite3_mprintf("UPDATE msgs SET param=replace(param, 'f=%q/', 'f=%q/');", repl_from, repl_to); /* cannot use mr_mprintf() because of "%q" */
+			mrsqlite3_execute__(mailbox->m_sql, q3);
+		sqlite3_free(q3);
+
+		q3 = sqlite3_mprintf("UPDATE chats SET param=replace(param, 'i=%q/', 'i=%q/');", repl_from, repl_to);
+			mrsqlite3_execute__(mailbox->m_sql, q3);
+		sqlite3_free(q3);
+
+		q3 = sqlite3_mprintf("UPDATE contacts SET param=replace(param, 'i=%q/', 'i=%q/');", repl_from, repl_to);
+			mrsqlite3_execute__(mailbox->m_sql, q3);
+		sqlite3_free(q3);
+	}
+
 	success = 1;
 
 cleanup:
 	free(pathNfilename);
+	free(repl_from);
+	free(repl_to);
 	if( stmt )  { sqlite3_finalize(stmt); }
 	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 	return success;
@@ -1146,6 +1036,18 @@ void mrmailbox_imex(mrmailbox_t* mailbox, int what, const char* param1, const ch
 }
 
 
+/**
+ * Check if the user is authorized by the given password in some way.
+ * This is to promt for the password eg. before exporting keys/backup.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox Mailbox object as created by mrmailbox_new().
+ *
+ * @param test_pw Password to check.
+ *
+ * @return 1=user is authorized, 0=user is not authorized.
+ */
 int mrmailbox_check_password(mrmailbox_t* mailbox, const char* test_pw)
 {
 	/* Check if the given password matches the configured mail_pw.
@@ -1188,9 +1090,11 @@ cleanup:
  *
  * The created "Autocrypt Level 1" setup code has the following form:
  *
- *     1234-1234-1234-
- *     1234-1234-1234-
- *     1234-1234-1234
+ * ```
+ * 1234-1234-1234-
+ * 1234-1234-1234-
+ * 1234-1234-1234
+ * ```
  *
  * Linebreaks and spaces are not added to the setup code, but the "-" are.
  * Should be given to  mrmailbox_imex() for encryption, should be wiped and free()'d after usage.

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A0052A11FBC50C40048C3BF /* CredentialsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0052A01FBC50C40048C3BF /* CredentialsController.swift */; };
 		7A451D941FB1B1DB00177250 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A451D921FB1B1DB00177250 /* wrapper.c */; };
 		7A451DAE1FB1F5A200177250 /* libetpan-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A451DA71FB1F4BF00177250 /* libetpan-ios.a */; };
 		7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A451DAF1FB1F84900177250 /* AppCoordinator.swift */; };
@@ -94,6 +95,7 @@
 
 /* Begin PBXFileReference section */
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A0052A01FBC50C40048C3BF /* CredentialsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsController.swift; sourceTree = "<group>"; };
 		7A451D921FB1B1DB00177250 /* wrapper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wrapper.c; sourceTree = "<group>"; };
 		7A451D931FB1B1DB00177250 /* wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wrapper.h; sourceTree = "<group>"; };
 		7A451D9A1FB1F4BF00177250 /* libetpan.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libetpan.xcodeproj; path = "deltachat-ios/libraries/libetpan/build-mac/libetpan.xcodeproj"; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 				7A451D931FB1B1DB00177250 /* wrapper.h */,
 				7A451DBD1FB4AD0700177250 /* Wrapper.swift */,
 				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
+				7A0052A01FBC50C40048C3BF /* CredentialsController.swift */,
 				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
 				AEACE2E01FB3271700DCDD78 /* SampleData.swift */,
 				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
@@ -591,6 +594,7 @@
 				7A79236E1FB0A2C800BC2DE5 /* misc.c in Sources */,
 				AEACE2E91FB34D9100DCDD78 /* ContactViewController.swift in Sources */,
 				7A9FB5561FB08557001FEA36 /* mrtools.c in Sources */,
+				7A0052A11FBC50C40048C3BF /* CredentialsController.swift in Sources */,
 				7A7923731FB0A2C800BC2DE5 /* signature.c in Sources */,
 				7A9FB5541FB08557001FEA36 /* mrsqlite3.c in Sources */,
 				7A9FB5511FB08557001FEA36 /* mrsaxparser.c in Sources */,

@@ -23,95 +23,15 @@
 #include "mrmailbox_internal.h"
 
 
-/*******************************************************************************
- * Tools
- ******************************************************************************/
-
-
-int mrchatlist_load_from_db__(mrchatlist_t* ths, int listflags, const char* query__)
-{
-	int           success = 0;
-	int           add_archived_link_item = 0;
-	sqlite3_stmt* stmt = NULL;
-	char*         strLikeCmd = NULL, *query = NULL;
-
-	if( ths == NULL || ths->m_mailbox == NULL ) {
-		goto cleanup;
-	}
-
-	mrchatlist_empty(ths);
-
-	/* select example with left join and minimum: http://stackoverflow.com/questions/7588142/mysql-left-join-min */
-	#define QUR1 "SELECT c.id, m.id FROM chats c " \
-	                " LEFT JOIN msgs m ON (c.id=m.chat_id AND m.timestamp=(SELECT MAX(timestamp) FROM msgs WHERE chat_id=c.id)) " \
-	                " WHERE c.id>" MR_STRINGIFY(MR_CHAT_ID_LAST_SPECIAL) " AND c.blocked=0"
-	#define QUR2    " GROUP BY c.id " /* GROUP BY is needed as there may be several messages with the same timestamp */ \
-	                " ORDER BY MAX(c.draft_timestamp, IFNULL(m.timestamp,0)) DESC,m.id DESC;" /* the list starts with the newest chats */
-
-	if( listflags & MR_GCL_ARCHIVED_ONLY )
-	{
-		/* show archived chats */
-		stmt = mrsqlite3_predefine__(ths->m_mailbox->m_sql, SELECT_ii_FROM_chats_LEFT_JOIN_msgs_WHERE_archived,
-			QUR1 " AND c.archived=1 " QUR2);
-	}
-	else if( query__==NULL )
-	{
-		/* show normal chatlist  */
-		if( !(listflags & MR_GCL_NO_SPECIALS) ) {
-			uint32_t last_deaddrop_fresh_msg_id = mrmailbox_get_last_deaddrop_fresh_msg__(ths->m_mailbox);
-			if( last_deaddrop_fresh_msg_id > 0 ) {
-				carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)MR_CHAT_ID_DEADDROP, NULL); /* show deaddrop with the last fresh message */
-				carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)last_deaddrop_fresh_msg_id, NULL);
-			}
-			add_archived_link_item = 1;
-		}
-
-		stmt = mrsqlite3_predefine__(ths->m_mailbox->m_sql, SELECT_ii_FROM_chats_LEFT_JOIN_msgs_WHERE_unarchived,
-			QUR1 " AND c.archived=0 " QUR2);
-	}
-	else
-	{
-		/* show chatlist filtered by a search string, this includes archived and unarchived */
-		query = safe_strdup(query__);
-		mr_trim(query);
-		if( query[0]==0 ) {
-			success = 1; /*empty result*/
-			goto cleanup;
-		}
-		strLikeCmd = mr_mprintf("%%%s%%", query);
-		stmt = mrsqlite3_predefine__(ths->m_mailbox->m_sql, SELECT_ii_FROM_chats_LEFT_JOIN_msgs_WHERE_query,
-			QUR1 " AND c.name LIKE ? " QUR2);
-		sqlite3_bind_text(stmt, 1, strLikeCmd, -1, SQLITE_STATIC);
-	}
-
-    while( sqlite3_step(stmt) == SQLITE_ROW )
-    {
-		#define IDS_PER_RESULT 2
-		carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)sqlite3_column_int(stmt, 0), NULL);
-		carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)sqlite3_column_int(stmt, 1), NULL);
-    }
-
-    if( add_archived_link_item && mrmailbox_get_archived_count__(ths->m_mailbox)>0 )
-    {
-		carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)MR_CHAT_ID_ARCHIVED_LINK, NULL);
-		carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)0, NULL);
-    }
-
-	ths->m_cnt = carray_count(ths->m_chatNlastmsg_ids)/IDS_PER_RESULT;
-	success = 1;
-
-cleanup:
-	free(query);
-	free(strLikeCmd);
-	return success;
-}
-
-
-/*******************************************************************************
- * Main interface
- ******************************************************************************/
-
-
+/**
+ * Create a chatlist object in memory.
+ *
+ * @private @memberof mrchatlist_t
+ *
+ * @param mailbox The mailbox object that should be stored in the chatlist object.
+ *
+ * @return New and empty chatlist object, must be freed using mrchatlist_unref().
+ */
 mrchatlist_t* mrchatlist_new(mrmailbox_t* mailbox)
 {
 	mrchatlist_t* ths = NULL;
@@ -151,11 +71,20 @@ void mrchatlist_unref(mrchatlist_t* chatlist)
 }
 
 
-void mrchatlist_empty(mrchatlist_t* ths)
+/**
+ * Empty a chatlist object.
+ *
+ * @memberof mrchatlist_t
+ *
+ * @param chatlist The chatlist object to empty.
+ *
+ * @return None.
+ */
+void mrchatlist_empty(mrchatlist_t* chatlist)
 {
-	if( ths  ) {
-		ths->m_cnt = 0;
-		carray_set_size(ths->m_chatNlastmsg_ids, 0);
+	if( chatlist  ) {
+		chatlist->m_cnt = 0;
+		carray_set_size(chatlist->m_chatNlastmsg_ids, 0);
 	}
 }
 
@@ -186,16 +115,18 @@ size_t mrchatlist_get_cnt(mrchatlist_t* chatlist)
  *
  * @param chatlist The chatlist object as created eg. by mrmailbox_get_chatlist().
  *
+ * @param index The index to get the chat ID for.
+ *
  * @return Returns the chat_id of the item at the given index.  Index must be between
  *     0 and mrchatlist_get_cnt()-1.
  */
-uint32_t mrchatlist_get_chat_id(mrchatlist_t* ths, size_t index)
+uint32_t mrchatlist_get_chat_id(mrchatlist_t* chatlist, size_t index)
 {
-	if( ths == NULL || ths->m_chatNlastmsg_ids == NULL || index >= ths->m_cnt ) {
+	if( chatlist == NULL || chatlist->m_chatNlastmsg_ids == NULL || index >= chatlist->m_cnt ) {
 		return 0;
 	}
 
-	return (uint32_t)(uintptr_t)carray_get(ths->m_chatNlastmsg_ids, index*IDS_PER_RESULT);
+	return (uint32_t)(uintptr_t)carray_get(chatlist->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT);
 }
 
 
@@ -205,7 +136,7 @@ mrchat_t* mrchatlist_get_chat_by_index(mrchatlist_t* ths, size_t index) /* depre
 		return 0;
 	}
 
-	return mrmailbox_get_chat(ths->m_mailbox, (uint32_t)(uintptr_t)carray_get(ths->m_chatNlastmsg_ids, index*IDS_PER_RESULT));
+	return mrmailbox_get_chat(ths->m_mailbox, (uint32_t)(uintptr_t)carray_get(ths->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT));
 }
 
 
@@ -216,16 +147,18 @@ mrchat_t* mrchatlist_get_chat_by_index(mrchatlist_t* ths, size_t index) /* depre
  *
  * @param chatlist The chatlist object as created eg. by mrmailbox_get_chatlist().
  *
+ * @param index The index to get the chat ID for.
+ *
  * @return Returns the message_id of the item at the given index.  Index must be between
  *     0 and mrchatlist_get_cnt()-1.  If there is no message at the given index (eg. the chat may be empty), 0 is returned.
  */
-uint32_t mrchatlist_get_msg_id(mrchatlist_t* ths, size_t index)
+uint32_t mrchatlist_get_msg_id(mrchatlist_t* chatlist, size_t index)
 {
-	if( ths == NULL || ths->m_chatNlastmsg_ids == NULL || index >= ths->m_cnt ) {
+	if( chatlist == NULL || chatlist->m_chatNlastmsg_ids == NULL || index >= chatlist->m_cnt ) {
 		return 0;
 	}
 
-	return (uint32_t)(uintptr_t)carray_get(ths->m_chatNlastmsg_ids, index*IDS_PER_RESULT+1);
+	return (uint32_t)(uintptr_t)carray_get(chatlist->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT+1);
 }
 
 
@@ -235,7 +168,7 @@ mrmsg_t* mrchatlist_get_msg_by_index(mrchatlist_t* ths, size_t index) /* depreca
 		return 0;
 	}
 
-	return mrmailbox_get_msg(ths->m_mailbox, (uint32_t)(uintptr_t)carray_get(ths->m_chatNlastmsg_ids, index*IDS_PER_RESULT+1));
+	return mrmailbox_get_msg(ths->m_mailbox, (uint32_t)(uintptr_t)carray_get(ths->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT+1));
 }
 
 
@@ -258,6 +191,10 @@ mrmsg_t* mrchatlist_get_msg_by_index(mrchatlist_t* ths, size_t index) /* depreca
  * - m_state: the state of the message as one of the MR_STATE_* identifiers.  0 if there is no message.
  *
  * @memberof mrchatlist_t
+ *
+ * @param chatlist The chatlist to query as returned eg. from mrmailbox_get_chatlist().
+ *
+ * @param index The index to query in the chatlist.
  *
  * @param chat  Giving the correct chat object here, this this will speed up
  *     things a little.  If the chat object is not available by you, it is faster to pass
@@ -285,7 +222,7 @@ mrpoortext_t* mrchatlist_get_summary(mrchatlist_t* chatlist, size_t index, mrcha
 		goto cleanup;
 	}
 
-	lastmsg_id = (uint32_t)(uintptr_t)carray_get(chatlist->m_chatNlastmsg_ids, index*IDS_PER_RESULT+1);
+	lastmsg_id = (uint32_t)(uintptr_t)carray_get(chatlist->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT+1);
 
 	/* load data from database */
 	mrsqlite3_lock(chatlist->m_mailbox->m_sql);
@@ -294,7 +231,7 @@ mrpoortext_t* mrchatlist_get_summary(mrchatlist_t* chatlist, size_t index, mrcha
 		if( chat==NULL ) {
 			chat = mrchat_new(chatlist->m_mailbox);
 			chat_to_delete = chat;
-			if( !mrchat_load_from_db__(chat, (uint32_t)(uintptr_t)carray_get(chatlist->m_chatNlastmsg_ids, index*IDS_PER_RESULT)) ) {
+			if( !mrchat_load_from_db__(chat, (uint32_t)(uintptr_t)carray_get(chatlist->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT)) ) {
 				ret->m_text2 = safe_strdup("ErrCannotReadChat");
 				goto cleanup;
 			}
@@ -354,4 +291,86 @@ cleanup:
 }
 
 
+/**
+ * Library-internal.
+ *
+ * Calling this function is not thread-safe, locking is up to the caller.
+ *
+ * @private @memberof mrchatlist_t
+ */
+int mrchatlist_load_from_db__(mrchatlist_t* ths, int listflags, const char* query__)
+{
+	int           success = 0;
+	int           add_archived_link_item = 0;
+	sqlite3_stmt* stmt = NULL;
+	char*         strLikeCmd = NULL, *query = NULL;
 
+	if( ths == NULL || ths->m_mailbox == NULL ) {
+		goto cleanup;
+	}
+
+	mrchatlist_empty(ths);
+
+	/* select example with left join and minimum: http://stackoverflow.com/questions/7588142/mysql-left-join-min */
+	#define QUR1 "SELECT c.id, m.id FROM chats c " \
+	                " LEFT JOIN msgs m ON (c.id=m.chat_id AND m.timestamp=(SELECT MAX(timestamp) FROM msgs WHERE chat_id=c.id)) " \
+	                " WHERE c.id>" MR_STRINGIFY(MR_CHAT_ID_LAST_SPECIAL) " AND c.blocked=0"
+	#define QUR2    " GROUP BY c.id " /* GROUP BY is needed as there may be several messages with the same timestamp */ \
+	                " ORDER BY MAX(c.draft_timestamp, IFNULL(m.timestamp,0)) DESC,m.id DESC;" /* the list starts with the newest chats */
+
+	if( listflags & MR_GCL_ARCHIVED_ONLY )
+	{
+		/* show archived chats */
+		stmt = mrsqlite3_predefine__(ths->m_mailbox->m_sql, SELECT_ii_FROM_chats_LEFT_JOIN_msgs_WHERE_archived,
+			QUR1 " AND c.archived=1 " QUR2);
+	}
+	else if( query__==NULL )
+	{
+		/* show normal chatlist  */
+		if( !(listflags & MR_GCL_NO_SPECIALS) ) {
+			uint32_t last_deaddrop_fresh_msg_id = mrmailbox_get_last_deaddrop_fresh_msg__(ths->m_mailbox);
+			if( last_deaddrop_fresh_msg_id > 0 ) {
+				carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)MR_CHAT_ID_DEADDROP, NULL); /* show deaddrop with the last fresh message */
+				carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)last_deaddrop_fresh_msg_id, NULL);
+			}
+			add_archived_link_item = 1;
+		}
+
+		stmt = mrsqlite3_predefine__(ths->m_mailbox->m_sql, SELECT_ii_FROM_chats_LEFT_JOIN_msgs_WHERE_unarchived,
+			QUR1 " AND c.archived=0 " QUR2);
+	}
+	else
+	{
+		/* show chatlist filtered by a search string, this includes archived and unarchived */
+		query = safe_strdup(query__);
+		mr_trim(query);
+		if( query[0]==0 ) {
+			success = 1; /*empty result*/
+			goto cleanup;
+		}
+		strLikeCmd = mr_mprintf("%%%s%%", query);
+		stmt = mrsqlite3_predefine__(ths->m_mailbox->m_sql, SELECT_ii_FROM_chats_LEFT_JOIN_msgs_WHERE_query,
+			QUR1 " AND c.name LIKE ? " QUR2);
+		sqlite3_bind_text(stmt, 1, strLikeCmd, -1, SQLITE_STATIC);
+	}
+
+    while( sqlite3_step(stmt) == SQLITE_ROW )
+    {
+		carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)sqlite3_column_int(stmt, 0), NULL);
+		carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)sqlite3_column_int(stmt, 1), NULL);
+    }
+
+    if( add_archived_link_item && mrmailbox_get_archived_count__(ths->m_mailbox)>0 )
+    {
+		carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)MR_CHAT_ID_ARCHIVED_LINK, NULL);
+		carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)0, NULL);
+    }
+
+	ths->m_cnt = carray_count(ths->m_chatNlastmsg_ids)/MR_CHATLIST_IDS_PER_RESULT;
+	success = 1;
+
+cleanup:
+	free(query);
+	free(strLikeCmd);
+	return success;
+}

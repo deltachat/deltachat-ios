@@ -384,12 +384,12 @@ static void* configure_thread_entry_point(void* entry_arg)
 
 	PROGRESS(0)
 
-	if( mailbox->m_cb(mailbox, MR_EVENT_IS_ONLINE, 0, 0)!=1 ) {
+	if( mailbox->m_cb(mailbox, MR_EVENT_IS_OFFLINE, 0, 0)!=0 ) {
 		mrmailbox_log_error(mailbox, MR_ERR_NONETWORK, NULL);
 		goto exit_;
 	}
 
-	PROGRESS(10)
+	PROGRESS(100)
 
 	/* 1.  Load the parameters and check email-address and password
 	 **************************************************************************/
@@ -423,7 +423,7 @@ static void* configure_thread_entry_point(void* entry_arg)
 		param->m_mail_pw = safe_strdup(NULL);
 	}
 
-	PROGRESS(20)
+	PROGRESS(200)
 
 
 	/* 2.  Autoconfig
@@ -444,7 +444,7 @@ static void* configure_thread_entry_point(void* entry_arg)
 				char* url = mr_mprintf("%s://autoconfig.%s/mail/config-v1.1.xml?emailaddress=%s", i==0?"http":"https", param_domain, param_addr_urlencoded); /* Thunderbird may or may not use SSL */
 				param_autoconfig = moz_autoconfigure(mailbox, url, param);
 				free(url);
-				PROGRESS(30+i*5)
+				PROGRESS(300+i*50)
 			}
 		}
 
@@ -453,7 +453,7 @@ static void* configure_thread_entry_point(void* entry_arg)
 				char* url = mr_mprintf("https://%s%s/autodiscover/autodiscover.xml", i==0?"":"autodiscover.", param_domain); /* Outlook uses always SSL but different domains */
 				param_autoconfig = outlk_autodiscover(mailbox, url, param);
 				free(url);
-				PROGRESS(40+i*5)
+				PROGRESS(400+i*50)
 			}
 		}
 
@@ -463,7 +463,7 @@ static void* configure_thread_entry_point(void* entry_arg)
 			char* url = mr_mprintf("https://autoconfig.thunderbird.net/v1.1/%s", param_domain); /* always SSL for Thunderbird's database */
 			param_autoconfig = moz_autoconfigure(mailbox, url, param);
 			free(url);
-			PROGRESS(50)
+			PROGRESS(500)
 		}
 
 		/* C.  Do we have any result? */
@@ -577,7 +577,7 @@ static void* configure_thread_entry_point(void* entry_arg)
 		goto exit_;
 	}
 
-	PROGRESS(60)
+	PROGRESS(600)
 
 	/* try to connect to IMAP */
 	{ char* r = mrloginparam_get_readable(param); mrmailbox_log_info(mailbox, 0, "Trying: %s", r); free(r); }
@@ -587,7 +587,7 @@ static void* configure_thread_entry_point(void* entry_arg)
 	}
 	imap_connected = 1;
 
-	PROGRESS(80)
+	PROGRESS(800)
 
 	/* try to connect to SMTP - if we did not got an autoconfig, the first try was SSL-465 and we do a second try with STARTTLS-587 */
 	if( !mrsmtp_connect(mailbox->m_smtp, param) )  {
@@ -595,7 +595,7 @@ static void* configure_thread_entry_point(void* entry_arg)
 			goto exit_;
 		}
 
-		PROGRESS(85)
+		PROGRESS(850)
 
 		param->m_server_flags &= ~MR_SMTP_SOCKET_FLAGS;
 		param->m_server_flags |=  MR_SMTP_SOCKET_STARTTLS;
@@ -607,7 +607,7 @@ static void* configure_thread_entry_point(void* entry_arg)
 		}
 	}
 
-	PROGRESS(90)
+	PROGRESS(900)
 
 	/* configuration success - write back the configured parameters with the "configured_" prefix; also write the "configured"-flag */
 	mrsqlite3_lock(mailbox->m_sql);

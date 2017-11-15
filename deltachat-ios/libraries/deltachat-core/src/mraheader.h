@@ -31,7 +31,7 @@ extern "C" {
 
 
 /**
- * Parse and create [Autocrypt-headers](https://autocrypt.org/en/latest/level1.html#the-autocrypt-header); library-internal.
+ * Library-internal. Parse and create [Autocrypt-headers](https://autocrypt.org/en/latest/level1.html#the-autocrypt-header).
  */
 typedef struct mraheader_t
 {

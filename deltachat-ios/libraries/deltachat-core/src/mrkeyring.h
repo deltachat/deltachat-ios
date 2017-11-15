@@ -27,13 +27,17 @@ extern "C" {
 #endif
 
 
-/*** library-private **********************************************************/
-
 typedef struct mrkey_t mrkey_t;
 
+
+/**
+ * Library-internal.
+ */
 typedef struct mrkeyring_t
 {
-	mrkey_t** m_keys; /* only pointers to keys, the caller is responsible for freeing them and should make sure, the pointers are valid as long as the keyring is valid */
+	/** @privatesection */
+
+	mrkey_t** m_keys; /**< Keys in the keyring. Only pointers to keys, the caller is responsible for freeing them and should make sure, the pointers are valid as long as the keyring is valid. */
 	int       m_count;
 	int       m_allocated;
 } mrkeyring_t;

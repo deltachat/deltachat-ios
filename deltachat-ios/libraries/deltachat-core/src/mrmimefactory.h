@@ -27,7 +27,7 @@ extern "C" {
 #endif
 
 
-/*** library-private **********************************************************/
+
 
 typedef struct mrmsg_t mrmsg_t;
 typedef struct mrchat_t mrchat_t;
@@ -47,7 +47,12 @@ typedef enum {
 } mrmimefactory_loaded_t;
 
 
+/**
+ * Library-internal.
+ */
 typedef struct mrmimefactory_t {
+
+	/** @privatesection */
 
 	/* in: parameters, set eg. by mrmimefactory_load_msg() */
 	char*        m_from_addr;

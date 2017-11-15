@@ -993,7 +993,7 @@ static int mrmimeparser_add_single_part_if_known(mrmimeparser_t* ths, struct mai
 				/* split author/title from the original filename (if we do it from the real filename, we'll also get numbers appended by mr_get_fine_pathNfilename()) */
 				if( msg_type == MR_MSG_AUDIO ) {
 					char* author = NULL, *title = NULL;
-					mr_get_authorNtitle_from_filename(desired_filename, &author, &title);
+					mrmsg_get_authorNtitle_from_filename(desired_filename, &author, &title);
 					mrparam_set(part->m_param, MRP_AUTHORNAME, author);
 					mrparam_set(part->m_param, MRP_TRACKNAME, title);
 					free(author);

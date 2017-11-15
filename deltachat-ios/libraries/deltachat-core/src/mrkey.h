@@ -27,8 +27,6 @@ extern "C" {
 #endif
 
 
-/*** library-private **********************************************************/
-
 typedef struct mrmailbox_t mrmailbox_t;
 typedef struct sqlite3_stmt sqlite3_stmt;
 
@@ -37,13 +35,17 @@ typedef struct sqlite3_stmt sqlite3_stmt;
 #define MR_PRIVATE 1
 
 
+/**
+ * Library-internal.
+ */
 typedef struct mrkey_t
 {
-	int            _m_heap_refcnt; /* !=0 for objects created with mrkey_new(), 0 for stack objects  */
-
 	void*          m_binary;
 	int            m_bytes;
 	int            m_type;
+
+	/** @privatesection */
+	int            _m_heap_refcnt; /* !=0 for objects created with mrkey_new(), 0 for stack objects  */
 } mrkey_t;
 
 

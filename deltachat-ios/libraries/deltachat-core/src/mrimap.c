@@ -1083,7 +1083,7 @@ static int setup_handle_if_needed__(mrimap_t* ths)
 		goto cleanup;
     }
 
-	if( ths->m_mailbox->m_cb(ths->m_mailbox, MR_EVENT_IS_ONLINE, 0, 0)!=1 ) {
+	if( ths->m_mailbox->m_cb(ths->m_mailbox, MR_EVENT_IS_OFFLINE, 0, 0)!=0 ) {
 		mrmailbox_log_error_if(&ths->m_log_connect_errors, ths->m_mailbox, MR_ERR_NONETWORK, NULL);
 		goto cleanup;
 	}

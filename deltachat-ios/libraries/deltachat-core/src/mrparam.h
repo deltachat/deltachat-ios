@@ -28,7 +28,7 @@ extern "C" {
 
 
 /**
- * Handle key=value parameters.
+ * An object for handling key=value parameter lists.
  * The parameter object is used eg. by mrchat_t or mrmsg_t.
  * To access the single parameters use the setter and getter functions with an
  * MRP_* constant.

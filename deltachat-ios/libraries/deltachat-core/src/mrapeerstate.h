@@ -27,9 +27,6 @@ extern "C" {
 #endif
 
 
-/*** library-private **********************************************************/
-
-
 #include "mrkey.h"
 
 
@@ -42,8 +39,12 @@ typedef struct mraheader_t mraheader_t;
 #define MRA_PE_RESET         20
 
 
+/**
+ * Library-internal.
+ */
 typedef struct mrapeerstate_t
 {
+	/** @privatesection */
 	char*          m_addr;
 	time_t         m_last_seen;
 	time_t         m_last_seen_autocrypt;
