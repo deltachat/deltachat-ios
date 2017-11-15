@@ -15,8 +15,9 @@ protocol Coordinator {
 class AppCoordinator: Coordinator {
     func setupViewControllers(window: UIWindow) {
         let credentialsController = CredentialsController()
+        let credentialsNav = UINavigationController(rootViewController: credentialsController)
         
-        window.rootViewController = credentialsController
+        window.rootViewController = credentialsNav
         window.makeKeyAndVisible()
         window.backgroundColor = UIColor.white
     }
