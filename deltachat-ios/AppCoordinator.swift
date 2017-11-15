@@ -13,16 +13,30 @@ protocol Coordinator {
 }
 
 class AppCoordinator: Coordinator {
+    let tabBarController = UITabBarController()
+
     func setupViewControllers(window: UIWindow) {
-        let credentialsController = CredentialsController()
-        let credentialsNav = UINavigationController(rootViewController: credentialsController)
-        
-        window.rootViewController = credentialsNav
+        window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         window.backgroundColor = UIColor.white
+        
+        let ud = UserDefaults.standard
+        if ud.bool(forKey: Constants.Keys.deltachatUserProvidedCredentialsKey) {
+            initCore(withCredentials: false)
+            setupInnerViewControllers()
+        } else {
+//            let email = "alice@librechat.net"
+//            let password = "foobar"
+//            initCore(email: email, password: password)
+            
+            let credentialsController = CredentialsController()
+            let credentialsNav = UINavigationController(rootViewController: credentialsController)
+
+            tabBarController.present(credentialsNav, animated: false, completion: nil)
+        }
     }
     
-    func setupViewControllersReal(window: UIWindow) {
+    func setupInnerViewControllers() {
 
         let contactViewController = ContactViewController(coordinator: self)
         let contactNavigationController = UINavigationController(rootViewController: contactViewController)
@@ -47,16 +61,10 @@ class AppCoordinator: Coordinator {
         chatNavigationController.tabBarItem = chatTabbarItem
         settingsNavigationController.tabBarItem = settingsTabbarItem
         
-        let tabBarController = UITabBarController()
-        
         tabBarController.viewControllers = [
 //            contactNavigationController,
             chatNavigationController,
             settingsNavigationController,
         ]
-        
-        window.rootViewController = tabBarController
-        window.makeKeyAndVisible()
-        window.backgroundColor = UIColor.white
     }
 }

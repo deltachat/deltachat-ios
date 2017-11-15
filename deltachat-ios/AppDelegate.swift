@@ -15,7 +15,7 @@ var mailboxPointer:UnsafeMutablePointer<mrmailbox_t>!
 func sendTestMessage(name n: String, email: String, text: String) {
     let contactId = mrmailbox_create_contact(mailboxPointer, n, email)
     let chatId = mrmailbox_create_chat_by_contact_id(mailboxPointer, contactId)
-    mrmailbox_send_text_msg(mailboxPointer, chatId, text)
+//    mrmailbox_send_text_msg(mailboxPointer, chatId, text)
 }
 
 @_silgen_name("callbackSwift")
@@ -80,6 +80,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    static let appCoordinator = AppCoordinator()
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -89,41 +90,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = window else {
             fatalError("window was nil in app delegate")
         }
-        let appCoordinator = AppCoordinator()
-        appCoordinator.setupViewControllers(window: window)
-        
-        //       - second param remains nil (user data for more than one mailbox)
-        mailboxPointer = mrmailbox_new(callback_ios, nil, "iOS")
-        guard mailboxPointer != nil else {
-            fatalError("Error: mrmailbox_new returned nil")
-        }
-        
-        let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
-        let documentsPath = paths[0]
-        let dbfile = documentsPath + "/messenger.db"
-        print(dbfile)
-        
-        let r = mrmailbox_open(mailboxPointer, dbfile, nil)
-        
-        mrmailbox_set_config(mailboxPointer, "addr", "alice@librechat.net")
-        mrmailbox_set_config(mailboxPointer, "mail_pw", "foobar")
-        
-        mrmailbox_configure_and_connect(mailboxPointer)
-        
-        let nc = NotificationCenter.default
-        nc.addObserver(forName:Notification.Name(rawValue:"MrEventMsgsChanged"),
-                       object:nil, queue:nil) {
-                        notification in
-                        print("----------- MrEventMsgsChanged notification received --------")
-        }
-        
-        nc.addObserver(forName:Notification.Name(rawValue:"MrEventIncomingMsg"),
-                       object:nil, queue:nil) {
-                        notification in
-                        print("----------- MrEventIncomingMsg received --------")
-                        AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
-        }
+        AppDelegate.appCoordinator.setupViewControllers(window: window)
 
         return true
+    }
+}
+
+
+func initCore(withCredentials: Bool, email: String = "", password: String = "") {
+    let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
+    let documentsPath = paths[0]
+    let dbfile = documentsPath + "/messenger.db"
+    print(dbfile)
+    
+    //       - second param remains nil (user data for more than one mailbox)
+    mailboxPointer = mrmailbox_new(callback_ios, nil, "iOS")
+    guard mailboxPointer != nil else {
+        fatalError("Error: mrmailbox_new returned nil")
+    }
+    
+    let _ = mrmailbox_open(mailboxPointer, dbfile, nil)
+    
+    if withCredentials {
+        if !(email.contains("@") && (email.count >= 3)) {
+            fatalError("initCore called with withCredentials flag set to true, but email not valid")
+        }
+        if password.isEmpty {
+            fatalError("initCore called with withCredentials flag set to true, password is empty")
+        }
+        mrmailbox_set_config(mailboxPointer, "addr", email)
+        mrmailbox_set_config(mailboxPointer, "mail_pw", password)
+//            -        mrmailbox_set_config(mailboxPointer, "addr", "alice@librechat.net")
+//            -        mrmailbox_set_config(mailboxPointer, "mail_pw", "foobar")
+        UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
+        UserDefaults.standard.synchronize()
+    }
+    
+    mrmailbox_configure_and_connect(mailboxPointer)
+    
+    addVibrationOnIncomingMessage()
+}
+
+func addVibrationOnIncomingMessage() {
+    let nc = NotificationCenter.default
+    nc.addObserver(forName:Notification.Name(rawValue:"MrEventIncomingMsg"),
+                   object:nil, queue:nil) {
+                    notification in
+                    print("----------- MrEventIncomingMsg received --------")
+                    AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
     }
 }

@@ -8,47 +8,33 @@
 
 import UIKit
 
-class TextFieldCell:UITableViewCell {
-    let height: CGFloat = 80
-    let margin: CGFloat = 15
+class TextFieldCell2:UITableViewCell {
     let textField = UITextField()
-    let label = UILabel()
     
-    init(placeholder: String) {
-        super.init(style: .default, reuseIdentifier: nil)
-
-        layout()
+    init(description: String, placeholder: String) {
+        super.init(style: .value1, reuseIdentifier: nil)
         
-        label.text = "\(placeholder):"
-        textField.placeholder = placeholder
-    }
-    
-    func layout() {
-        label.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(label)
-        
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        textLabel?.text = "\(description):"
         contentView.addSubview(textField)
         
-        contentView.heightAnchor.constraint(equalToConstant: height).isActive = true
-        
-        label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: margin).isActive = true
-        label.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
-        label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: margin).isActive = true
-        label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -margin).isActive = true
-        
-        textField.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.6).isActive = true
-        textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin).isActive = true
-        textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: margin).isActive = true
-        textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -margin).isActive = true
-    }
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
+        textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        textField.textAlignment = .right
 
+        textField.placeholder = placeholder
+        
+        selectionStyle = .none
+    }
+    
+    
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    static func makeEmailCell() -> TextFieldCell {
-        let emailCell = TextFieldCell(placeholder: "Email")
+    static func makeEmailCell() -> TextFieldCell2 {
+        let emailCell = TextFieldCell2(description: "Email", placeholder: "you@example.com")
         
         emailCell.textField.textContentType = UITextContentType.emailAddress
         emailCell.textField.keyboardType = .emailAddress
@@ -59,8 +45,8 @@ class TextFieldCell:UITableViewCell {
         return emailCell
     }
     
-    static func makePasswordCell() -> TextFieldCell {
-        let passwordCell = TextFieldCell(placeholder: "Password")
+    static func makePasswordCell() -> TextFieldCell2 {
+        let passwordCell = TextFieldCell2(description: "Password", placeholder: "your IMAP password")
         
         passwordCell.textField.textContentType = UITextContentType.password
         passwordCell.textField.isSecureTextEntry = true
@@ -69,56 +55,17 @@ class TextFieldCell:UITableViewCell {
     }
 }
 
-
-class ButtonCell:UITableViewCell {
-    let height: CGFloat = 80
-    let margin: CGFloat = 15
-    let button = UIButton(type: UIButtonType.system)
-    
-    func enable() {
-        button.isEnabled = true
-    }
-    
-    func disable() {
-        button.isEnabled = false
-    }
-    
-    init() {
-        super.init(style: .default, reuseIdentifier: nil)
-
-        button.setTitle("Save Account", for: .normal)
-        
-        layout()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func layout() {
-        contentView.heightAnchor.constraint(equalToConstant: height).isActive = true
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(button)
-        
-        button.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: margin).isActive = true
-        button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin).isActive = true
-        button.topAnchor.constraint(equalTo: contentView.topAnchor, constant: margin).isActive = true
-        button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -margin).isActive = true
-    }
-}
-
 class CredentialsController: UITableViewController {
-    let emailCell = TextFieldCell.makeEmailCell()
-    let passwordCell = TextFieldCell.makePasswordCell()
-    let buttonCell = ButtonCell()
+    let emailCell = TextFieldCell2.makeEmailCell()
+    let passwordCell = TextFieldCell2.makePasswordCell()
+    var doneButton:UIBarButtonItem?
     
     var model:(email:String, password:String) = ("", "") {
         didSet {
-            if (model.email.contains("@") && model.email.count >= 3 && !model.password.isEmpty) {
-                buttonCell.enable()
+            if (Utils.isValid(model.email) && !model.password.isEmpty) {
+                doneButton?.isEnabled = true
             } else {
-                buttonCell.disable()
+                doneButton?.isEnabled = false
             }
         }
     }
@@ -126,15 +73,18 @@ class CredentialsController: UITableViewController {
     let cells:[UITableViewCell]
     
     init() {
-        cells = [emailCell, passwordCell, buttonCell]
 
-        super.init(style: .plain)
+
+        
+        cells = [emailCell, passwordCell]
+
+        super.init(style: .grouped)
+        doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(CredentialsController.saveAccountButtonPressed))
+        doneButton?.isEnabled = false
+        navigationItem.rightBarButtonItem = doneButton
         
         emailCell.textField.addTarget(self, action: #selector(CredentialsController.emailTextChanged), for: UIControlEvents.editingChanged)
         passwordCell.textField.addTarget(self, action: #selector(CredentialsController.passwordTextChanged), for: UIControlEvents.editingChanged)
-        buttonCell.button.addTarget(self, action: #selector(CredentialsController.saveAccountButtonPressed), for: .touchUpInside)
-        
-        buttonCell.disable()
     }
     
     @objc func emailTextChanged() {
@@ -150,7 +100,10 @@ class CredentialsController: UITableViewController {
     }
     
     @objc func saveAccountButtonPressed() {
-        print("model: \(model)")
+        dismiss(animated: true) {
+            initCore(withCredentials: true, email: self.model.email, password: self.model.password)
+            AppDelegate.appCoordinator.setupInnerViewControllers()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -160,13 +113,7 @@ class CredentialsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Email Account"
-        
-        // auto-size table view cells
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 80
-        
-        tableView.separatorStyle = .none
+        title = "Account"
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -178,7 +125,6 @@ class CredentialsController: UITableViewController {
         
         return cells[row]
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
