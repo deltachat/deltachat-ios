@@ -13,8 +13,16 @@ protocol Coordinator {
 }
 
 class AppCoordinator: Coordinator {
-    
     func setupViewControllers(window: UIWindow) {
+        let credentialsController = CredentialsController()
+        
+        window.rootViewController = credentialsController
+        window.makeKeyAndVisible()
+        window.backgroundColor = UIColor.white
+    }
+    
+    func setupViewControllersReal(window: UIWindow) {
+
         let contactViewController = ContactViewController(coordinator: self)
         let contactNavigationController = UINavigationController(rootViewController: contactViewController)
         
