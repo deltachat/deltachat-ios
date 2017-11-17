@@ -12,6 +12,7 @@ class NewContactController: UITableViewController {
     let nameCell = TextFieldCell.makeNameCell()
     let emailCell = TextFieldCell.makeEmailCell()
     var doneButton:UIBarButtonItem?
+    var cancelButton:UIBarButtonItem?
     
     var model:(name:String, email:String) = ("", "") {
         didSet {
@@ -32,6 +33,9 @@ class NewContactController: UITableViewController {
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(NewContactController.saveContactButtonPressed))
         doneButton?.isEnabled = false
         navigationItem.rightBarButtonItem = doneButton
+        
+        cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(NewContactController.cancelButtonPressed))
+        navigationItem.leftBarButtonItem = cancelButton
         
         nameCell.textField.addTarget(self, action: #selector(NewContactController.nameTextChanged), for: UIControlEvents.editingChanged)
         emailCell.textField.addTarget(self, action: #selector(NewContactController.emailTextChanged), for: UIControlEvents.editingChanged)
@@ -54,6 +58,10 @@ class NewContactController: UITableViewController {
             let contactId = mrmailbox_create_contact(mailboxPointer, self.model.name, self.model.email)
             let _ = mrmailbox_create_chat_by_contact_id(mailboxPointer, contactId)
         }
+    }
+    
+    @objc func cancelButtonPressed() {
+        dismiss(animated: true, completion: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
