@@ -57,6 +57,17 @@ class TextFieldCell:UITableViewCell {
         
         return passwordCell
     }
+    
+    static func makeNameCell() -> TextFieldCell {
+        let nameCell = TextFieldCell(description: "Name", placeholder: "new contacts nickname")
+        
+        nameCell.textField.autocapitalizationType = .words
+        nameCell.textField.autocorrectionType = .no
+        nameCell.textField.textContentType = UITextContentType.givenName
+        nameCell.textField.keyboardType = .namePhonePad
+        
+        return nameCell
+    }
 }
 
 class CredentialsController: UITableViewController {
@@ -115,6 +126,7 @@ class CredentialsController: UITableViewController {
         super.viewDidLoad()
         
         title = "Account"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
