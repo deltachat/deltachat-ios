@@ -62,7 +62,7 @@ class AppCoordinator: Coordinator {
         settingsNavigationController.tabBarItem = settingsTabbarItem
         
         tabBarController.viewControllers = [
-//            contactNavigationController,
+            contactNavigationController,
             chatNavigationController,
             settingsNavigationController,
         ]

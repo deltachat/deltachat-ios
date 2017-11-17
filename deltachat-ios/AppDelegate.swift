@@ -41,12 +41,12 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
     // TODO
     // this will become a synchronous API, start thread directly
     // from
-    case MR_EVENT_CONFIGURE_ENDED:
-        if data1 == 0 {
-            fatalError("MR_EVENT_CONFIGURE_ENDED: (TODO: add dialogue here)")
-        } else {
+//    case MR_EVENT_CONFIGURE_ENDED:
+//        if data1 == 0 {
+//            fatalError("MR_EVENT_CONFIGURE_ENDED: (TODO: add dialogue here)")
+//        } else {
 //            sendTestMessage(name: "Q", email: "quickmsgtest1@b44t.com", text: "hugu")
-        }
+//        }
         
         break
 //        mrmailbox_send
@@ -126,7 +126,10 @@ func initCore(withCredentials: Bool, email: String = "", password: String = "") 
         UserDefaults.standard.synchronize()
     }
     
-    mrmailbox_configure_and_connect(mailboxPointer)
+    DispatchQueue.global(qos: .default).async {
+        mrmailbox_configure_and_connect(mailboxPointer)
+        print("finished")
+    }
     
     addVibrationOnIncomingMessage()
 }
