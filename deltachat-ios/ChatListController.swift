@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class ChatListController: UIViewController {
     var chatList:MRChatList?
 
@@ -76,6 +74,15 @@ class ChatListController: UIViewController {
         chatTable.dataSource = chatTableDataSource
         chatTableDelegate.chatPresenter = self
         chatTable.delegate = chatTableDelegate
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ChatListController.addChat))
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    @objc func addChat() {
+        let ncc = NewContactController()
+        let nav = UINavigationController(rootViewController: ncc)
+        present(nav, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
