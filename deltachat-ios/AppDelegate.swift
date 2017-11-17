@@ -38,18 +38,6 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
     // - 1 when offline
     case MR_EVENT_IS_OFFLINE:
         return 0
-    // TODO
-    // this will become a synchronous API, start thread directly
-    // from
-//    case MR_EVENT_CONFIGURE_ENDED:
-//        if data1 == 0 {
-//            fatalError("MR_EVENT_CONFIGURE_ENDED: (TODO: add dialogue here)")
-//        } else {
-//            sendTestMessage(name: "Q", email: "quickmsgtest1@b44t.com", text: "hugu")
-//        }
-        
-        break
-//        mrmailbox_send
     case MR_EVENT_MSGS_CHANGED:
         // TODO: reload all views
         // e.g. when message appears that is not new, i.e. no need
@@ -127,8 +115,8 @@ func initCore(withCredentials: Bool, email: String = "", password: String = "") 
     }
     
     DispatchQueue.global(qos: .default).async {
+        // TODO: handle failure
         mrmailbox_configure_and_connect(mailboxPointer)
-        print("finished")
     }
     
     addVibrationOnIncomingMessage()
