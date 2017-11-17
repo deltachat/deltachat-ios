@@ -27,7 +27,11 @@ class TextFieldCell2:UITableViewCell {
         selectionStyle = .none
     }
     
-    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if selected {
+            textField.becomeFirstResponder()
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
