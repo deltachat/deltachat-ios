@@ -115,8 +115,11 @@ func initCore(withCredentials: Bool, email: String = "", password: String = "") 
     }
     
     DispatchQueue.global(qos: .default).async {
-        // TODO: handle failure
+        // TODO: - handle failure, need to show credentials screen again
         mrmailbox_configure_and_connect(mailboxPointer)
+        // TODO: next two lines should move here in success case
+        // UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
+        // UserDefaults.standard.synchronize()
     }
     
     addVibrationOnIncomingMessage()
