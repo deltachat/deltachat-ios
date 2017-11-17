@@ -354,22 +354,50 @@ cleanup:
 
 
 /*******************************************************************************
- * The configuration thread
+ * Main interface
  ******************************************************************************/
 
 
-static pthread_t s_configure_thread;
-static int       s_configure_thread_created = 0;
+static int       s_configure_running = 0;
 static int       s_configure_do_exit = 1; /* the value 1 avoids mrmailbox_configure_cancel() from stopping already stopped threads */
 
 
-static void* configure_thread_entry_point(void* entry_arg)
+/**
+ * Configure and connect a mailbox.
+ *
+ * - Before your call this function, you should set at least `addr` and `mail_pw`
+ *   using mrmailbox_set_config().
+ *
+ * - mrmailbox_configure_and_connect() may take a while, so it might be a good idea to let it run in a non-GUI-thread;
+ *   to cancel the configuration progress, you can then use mrmailbox_configure_cancel().
+ *
+ * - The function sends out a number of #MR_EVENT_CONFIGURE_PROGRESS events that may be used to create
+ *   a progress bar or stuff like that.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox the mailbox object as created by mrmailbox_new().
+ *
+ * @return 1=configured and connected,
+ *     0=not configured, not explicitly connected, however, an existing connection may still be present
+ *
+ * There is no need to call this every program start, the result is saved in the
+ * database. Instead, you can use mrmailbox_connect() which reuses the configuration
+ * and is much faster:
+ *
+ * ```
+ * if( mrmailbox_is_configured(mailbox) ) {
+ *     mrmailbox_connect(mailbox); // fast, reuse the configuration
+ * }
+ * else {
+ *     mrmailbox_configure_and_connect(mailbox); // may take a while, typically started in a thread
+ * }
+ * ```
+ */
+int mrmailbox_configure_and_connect(mrmailbox_t* mailbox)
 {
-	mrmailbox_t*    mailbox = (mrmailbox_t*)entry_arg;
-	mrosnative_setup_thread(mailbox); /* must be very first */
-
 	int             success = 0, locked = 0, i;
-	int             imap_connected = 0;
+	int             imap_connected_here = 0;
 
 	mrloginparam_t* param = mrloginparam_new();
 	char*           param_domain = NULL; /* just a pointer inside param, must not be freed! */
@@ -377,8 +405,40 @@ static void* configure_thread_entry_point(void* entry_arg)
 	mrloginparam_t* param_autoconfig = NULL;
 
 	#define         PROGRESS(p) \
-						if( s_configure_do_exit ) { goto exit_; } \
+						if( s_configure_do_exit ) { goto cleanup; } \
 						mailbox->m_cb(mailbox, MR_EVENT_CONFIGURE_PROGRESS, (p), 0);
+
+	if( mailbox == NULL ) {
+		goto cleanup;
+	}
+
+	if( !mrsqlite3_is_open(mailbox->m_sql) ) {
+		mrmailbox_log_error(mailbox, 0, "Cannot configure, database not opened.");
+		s_configure_do_exit = 1;
+		goto cleanup;
+	}
+
+	if( s_configure_running || s_configure_do_exit == 0 ) {
+		mrmailbox_log_error(mailbox, 0, "Already configuring.");
+		goto cleanup;
+	}
+
+	s_configure_running = 1;
+	s_configure_do_exit = 0;
+
+	/* disconnect */
+	mrmailbox_disconnect(mailbox);
+
+	mrsqlite3_lock(mailbox->m_sql);
+	locked = 1;
+
+		//mrsqlite3_set_config_int__(mailbox->m_sql, "configured", 0); -- NO: we do _not_ reset this flag if it was set once; otherwise the user won't get back to his chats (as an alternative, we could change the UI).  Moreover, and not changeable in the UI, we use this flag to check if we shall search for backups.
+		mailbox->m_smtp->m_log_connect_errors = 1;
+		mailbox->m_imap->m_log_connect_errors = 1;
+		mrjob_kill_action__(mailbox, MRJ_CONNECT_TO_IMAP);
+
+	mrsqlite3_unlock(mailbox->m_sql);
+	locked = 0;
 
 	mrmailbox_log_info(mailbox, 0, "Configure ...");
 
@@ -386,7 +446,7 @@ static void* configure_thread_entry_point(void* entry_arg)
 
 	if( mailbox->m_cb(mailbox, MR_EVENT_IS_OFFLINE, 0, 0)!=0 ) {
 		mrmailbox_log_error(mailbox, MR_ERR_NONETWORK, NULL);
-		goto exit_;
+		goto cleanup;
 	}
 
 	PROGRESS(100)
@@ -404,14 +464,14 @@ static void* configure_thread_entry_point(void* entry_arg)
 
 	if( param->m_addr == NULL ) {
 		mrmailbox_log_error(mailbox, 0, "Please enter the email address.");
-		goto exit_;
+		goto cleanup;
 	}
 	mr_trim(param->m_addr);
 
 	param_domain = strchr(param->m_addr, '@');
 	if( param_domain==NULL || param_domain[0]==0 ) {
 		mrmailbox_log_error(mailbox, 0, "Bad email-address.");
-		goto exit_;
+		goto cleanup;
 	}
 	param_domain++;
 
@@ -574,7 +634,7 @@ static void* configure_thread_entry_point(void* entry_arg)
 	 || param->m_server_flags == 0 )
 	{
 		mrmailbox_log_error(mailbox, 0, "Account settings incomplete.");
-		goto exit_;
+		goto cleanup;
 	}
 
 	PROGRESS(600)
@@ -583,16 +643,16 @@ static void* configure_thread_entry_point(void* entry_arg)
 	{ char* r = mrloginparam_get_readable(param); mrmailbox_log_info(mailbox, 0, "Trying: %s", r); free(r); }
 
 	if( !mrimap_connect(mailbox->m_imap, param) ) {
-		goto exit_;
+		goto cleanup;
 	}
-	imap_connected = 1;
+	imap_connected_here = 1;
 
 	PROGRESS(800)
 
 	/* try to connect to SMTP - if we did not got an autoconfig, the first try was SSL-465 and we do a second try with STARTTLS-587 */
 	if( !mrsmtp_connect(mailbox->m_smtp, param) )  {
 		if( param_autoconfig ) {
-			goto exit_;
+			goto cleanup;
 		}
 
 		PROGRESS(850)
@@ -603,7 +663,7 @@ static void* configure_thread_entry_point(void* entry_arg)
 		{ char* r = mrloginparam_get_readable(param); mrmailbox_log_info(mailbox, 0, "Trying: %s", r); free(r); }
 
 		if( !mrsmtp_connect(mailbox->m_smtp, param) ) {
-			goto exit_;
+			goto cleanup;
 		}
 	}
 
@@ -622,83 +682,34 @@ static void* configure_thread_entry_point(void* entry_arg)
 	success = 1;
 	mrmailbox_log_info(mailbox, 0, "Configure completed successfully.");
 
-exit_:
+cleanup:
 	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
-	if( !success && imap_connected ) {
+	if( !success && imap_connected_here ) {
 		mrimap_disconnect(mailbox->m_imap);
 	}
 	mrloginparam_unref(param);
 	mrloginparam_unref(param_autoconfig);
 	free(param_addr_urlencoded);
 
-	s_configure_do_exit = 1; /* set this before sending MR_EVENT_CONFIGURE_ENDED, avoids mrmailbox_configure_cancel() to stop the thread */
-	mailbox->m_cb(mailbox, MR_EVENT_CONFIGURE_ENDED, success, 0);
-	s_configure_thread_created = 0;
-	mrosnative_unsetup_thread(mailbox); /* must be very last */
-	return NULL;
-}
-
-
-/*******************************************************************************
- * Main interface
- ******************************************************************************/
-
-
-/**
- * Configure and connect a mailbox.
- *
- * - Before your call this function, you should set at least `addr` and `mail_pw`
- *   using mrmailbox_set_config().
- * - mrmailbox_configure_and_connect() returns immediately, configuration is done
- *   in another thread; when done, the event MR_EVENT_CONFIGURE_ENDED ist posted
- * - There is no need to call this every program start, the result is saved in the
- *   database.
- * - mrmailbox_configure_and_connect() should be called after any settings
- *   change.
- *
- * @memberof mrmailbox_t
- *
- * @param mailbox the mailbox object as created by mrmailbox_new()
- *
- * @return none
- */
-void mrmailbox_configure_and_connect(mrmailbox_t* mailbox)
-{
-	if( mailbox == NULL ) {
-		return;
-	}
-
-	if( !mrsqlite3_is_open(mailbox->m_sql) ) {
-		mrmailbox_log_error(mailbox, 0, "Cannot configure, database not opened.");
-		s_configure_do_exit = 1;
-		mailbox->m_cb(mailbox, MR_EVENT_CONFIGURE_ENDED, 0, 0);
-		return;
-	}
-
-	if( s_configure_thread_created || s_configure_do_exit == 0 ) {
-		mrmailbox_log_error(mailbox, 0, "Already configuring.");
-		return; /* do not send a MR_EVENT_CONFIGURE_ENDED event, this is done by the already existing thread */
-	}
-
-	s_configure_thread_created = 1;
-	s_configure_do_exit        = 0;
-
-	/* disconnect */
-	mrmailbox_disconnect(mailbox);
-	mrsqlite3_lock(mailbox->m_sql);
-		//mrsqlite3_set_config_int__(mailbox->m_sql, "configured", 0); -- NO: we do _not_ reset this flag if it was set once; otherwise the user won't get back to his chats (as an alternative, we could change the UI).  Moreover, and not changeable in the UI, we use this flag to check if we shall search for backups.
-		mailbox->m_smtp->m_log_connect_errors = 1;
-		mailbox->m_imap->m_log_connect_errors = 1;
-		mrjob_kill_action__(mailbox, MRJ_CONNECT_TO_IMAP);
-	mrsqlite3_unlock(mailbox->m_sql);
-
-	/* start a thread for the configuration it self, when done, we'll post a MR_EVENT_CONFIGURE_ENDED event */
-	pthread_create(&s_configure_thread, NULL, configure_thread_entry_point, mailbox);
+	s_configure_do_exit = 1; /* set this before sending terminating, avoids mrmailbox_configure_cancel() to stop the thread */
+	s_configure_running = 0;
+	return success;
 }
 
 
 /**
- * Cancel an configuration started by mrmailbox_configure_and_connect().
+ * Signal the configure-process to stop.
+ *
+ * After that, mrmailbox_configure_cancel() returns _without_ waiting
+ * for mrmailbox_configure_and_connect() to return.
+ *
+ * mrmailbox_configure_and_connect() will return ASAP then, however, it may
+ * still take a moment.  If in doubt, the caller may also decide the kill the
+ * thread after a few seconds; eg. the configuration process may hang in a
+ * function not under the control of the core (eg. #MR_EVENT_HTTP_GET). Another
+ * reason for mrmailbox_configure_cancel() not to wait is that otherwise it
+ * would be GUI-blocking and should be started in another thread then; this
+ * would make things even more complicated.
  *
  * @memberof mrmailbox_t
  *
@@ -712,25 +723,30 @@ void mrmailbox_configure_cancel(mrmailbox_t* mailbox)
 		return;
 	}
 
-	if( s_configure_thread_created && s_configure_do_exit==0 )
+	if( s_configure_running && s_configure_do_exit==0 )
 	{
-		mrmailbox_log_info(mailbox, 0, "Stopping configure-thread...");
-			s_configure_do_exit = 1;
-			pthread_join(s_configure_thread, NULL);
-		mrmailbox_log_info(mailbox, 0, "Configure-thread stopped.");
+		mrmailbox_log_info(mailbox, 0, "Signaling the configure-process to stop ASAP.");
+		s_configure_do_exit = 1;
+	}
+	else
+	{
+		mrmailbox_log_info(mailbox, 0, "No configure-process to stop.");
 	}
 }
 
 
 /**
- * Check if the mailbox is already configured.  Typically, for unconfigured mailboxes, the user is prompeted for
- * to enter some settings and mrmailbox_configure_and_connect() is called with them.
+ * Check if the mailbox is already configured.
+ *
+ * Typically, for unconfigured mailboxes, the user is prompeted for
+ * to enter some settings and mrmailbox_configure_and_connect() is called in a thread then.
  *
  * @memberof mrmailbox_t
  *
- * @param mailbox The mailbox object as created by mrmailbox_new()
+ * @param mailbox The mailbox object as created by mrmailbox_new().
  *
- * @return None
+ * @return 1=mailbox is configured and mrmailbox_connect() can be called directly as needed,
+ *     0=mailbox is not configured and a configuration by mrmailbox_configure_and_connect() is required.
  */
 int mrmailbox_is_configured(mrmailbox_t* mailbox)
 {

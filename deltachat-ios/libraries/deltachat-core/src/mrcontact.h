@@ -38,7 +38,7 @@ typedef struct mrsqlite3_t mrsqlite3_t;
 typedef struct mrcontact_t
 {
 	/**
-	 * The contact ID
+	 * The contact ID.
 	 *
 	 * Special message IDs:
 	 * - MR_CONTACT_ID_SELF (1) - this is the owner of the mailbox with the email-address set by mrmailbox_set_config() using "addr".
@@ -49,13 +49,42 @@ typedef struct mrcontact_t
 	#define         MR_CONTACT_ID_SELF         1
 	#define         MR_CONTACT_ID_LAST_SPECIAL 9
 
-	char*           m_name;     /**< may be NULL or empty, this name should not be spreaded as it may be "Daddy" and so on; initially set to m_authname */
-	char*           m_authname; /**< may be NULL or empty, this is the name authorized by the sender, only this name may be speaded to others, eg. in To:-lists; for displaying in the app, use m_name */
-	char*           m_addr;     /**< may be NULL or empty */
-	int             m_blocked;  /**< Blocked state. 1=contact is blocked, 0=contact is not blocked. */
+	/**
+	 * Name given by the user to the contact.
+	 *
+	 * Should be used for displaying everywhere and is editable by the user but must not be
+	 * spreaded via mail (To:, CC: ...) as it as it may be sth. like "Daddy".
+	 *
+	 * May be NULL or empty, initially set to #m_authname
+	 */
+	char*           m_name;
+
+	/**
+	 * Name authorized by the contact himself.
+	 *
+	 * May be NULL or empty, this is the name authorized by the sender,
+	 * only this name may be speaded to others, eg. in To:-lists;
+	 * for displaying in the app, use #m_name
+	 */
+	char*           m_authname;
+
+	/**
+	 * The E-Mail-Address of the contact.
+	 *
+	 * May be NULL or empty.
+	 */
+	char*           m_addr;
+
+	/**
+	 * Blocked state.
+	 *
+	 * 1=contact is blocked, 0=contact is not blocked.
+	 * To block or unblock a contact, use mrmailbox_block_contact().
+	 */
+	int             m_blocked;
 
 	/** @privatesection */
-	int             m_origin;   /**< The original of the contact. One of the MR_ORIGIN_* constants */
+	int             m_origin;   /**< The original of the contact. One of the MR_ORIGIN_* constants. */
 } mrcontact_t;
 
 

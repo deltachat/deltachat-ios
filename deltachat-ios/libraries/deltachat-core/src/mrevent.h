@@ -30,6 +30,8 @@ extern "C" {
  * @file
  *
  * The following constants are used as events reported to the callback given to mrmailbox_new().
+ *
+ * If you do not want to handle an event, it is always safe to return 0, so there is no need to add a "case" for every event.
  */
 
 
@@ -151,23 +153,9 @@ extern "C" {
 
 
 /**
- * Configurartion enden.
- * You'll get this event from a call to mrmailbox_configure_and_connect()
+ * Inform about the configuration progress started by mrmailbox_configure_and_connect().
  *
- * @param data1 0=failed-not-connected, 1=configured-and-connected
- *
- * @param data2 0
- *
- * @return 0
- */
-#define MR_EVENT_CONFIGURE_ENDED          2040
-
-
-/**
- * Inform about the configuration progress.
- * As we want to get rid of the threads in the core, this event may be deleted.
- *
- * @param data1 permille
+ * @param data1 Permille
  *
  * @param data2 0
  *
@@ -190,7 +178,7 @@ extern "C" {
 
 
 /**
- * Inform about the import/export progress.
+ * Inform about the import/export progress started by mrmailbox_imex().
  *
  * @param data1 Permille
  *
@@ -237,22 +225,63 @@ extern "C" {
 #define MR_EVENT_IS_OFFLINE               2081
 
 
-/** get a string from the frontend, data1=MR_STR_*, ret=string which will be
-free()'d by the backend */
+/**
+ * Requeste a localized string from the frontend.
+ *
+ * @param data1 ID of the string to request, one of the MR_STR_* constants as defined in mrstock.h
+ *
+ * @param data2 0
+ *
+ * @return Null-terminated UTF-8 string.  CAVE: The string will be free()'d by the core, so make
+ *     sure it is allocated using malloc() or a compatible function.
+ *     If you cannot provide the requested string, just return 0; the core will use a default string then.
+ */
 #define MR_EVENT_GET_STRING               2091
 
 
-/** synchronous http/https(!) call, data1=url, ret=content which will be
-free()'d by the backend, 0 on errors */
+/**
+ * Requeste a localized quantitiy string from the frontend.
+ * Quantitiy strings may have eg. different plural forms and usually also include the count itself to the string.
+ * Typical strings in this form are "1 Message" vs. "2 Messages".
+ *
+ * @param data1 ID of the string to request, one of the MR_STR_* constants as defined in mrstock.h
+ *
+ * @param data2 The count. The frontend may retrurn different strings on this value and normally also includes
+ *     the value itself to the string.
+ *
+ * @return Null-terminated UTF-8 string.  CAVE: The string will be free()'d by the core, so make
+ *     sure it is allocated using malloc() or a compatible function.
+ *     If you cannot provide the requested string, just return 0; the core will use a default string then.
+ */
 #define MR_EVENT_GET_QUANTITY_STRING      2092
 
 
-/** synchronous http/https(!) call, data1=url, ret=content which will be free()'d
-by the backend, 0 on errors */
+/**
+ * Request a HTTP-file from the frontend.
+ *
+ * @param data1 URL
+ *
+ * @param data2 0
+ *
+ * @return The content of the requested file as a null-terminated UTF-8 string. CAVE: The string will be free()'d by the core,
+ *     so make sure it is allocated using malloc() or a compatible function.
+ *     If you cannot provide the content, just return 0.
+ */
 #define MR_EVENT_HTTP_GET                 2100
 
-/** acquire wakeLock (data1=1) or release it (data1=0), the backend does not make
-nested or unsynchronized calls */
+/**
+ * Acquire or release a wakelock.
+ *
+ * The core surrounds critcal functions that should not be killed by the operating system with wakelocks.
+ * Before a critical function _MR_EVENT_WAKE_LOCK with data1=1_ is called, it it finishes, _MR_EVENT_WAKE_LOCK with data1=0_ is called.
+ * If you do not need this functionality, just ignore this event.
+ *
+ * @param data1 1=acquire wakelock, 0=release wakelock, the core does not make nested or unsynchronized calls
+ *
+ * @param data2 0
+ *
+ * @return 0
+ */
 #define MR_EVENT_WAKE_LOCK                2110
 
 

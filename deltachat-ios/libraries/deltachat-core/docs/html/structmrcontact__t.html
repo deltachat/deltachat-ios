@@ -121,16 +121,14 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ab2ee31297c327e04ed14673adbd49716"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmrcontact__t.html#ab2ee31297c327e04ed14673adbd49716">m_id</a></td></tr>
 <tr class="memdesc:ab2ee31297c327e04ed14673adbd49716"><td class="mdescLeft">&#160;</td><td class="mdescRight">The contact ID.  <a href="#ab2ee31297c327e04ed14673adbd49716">More...</a><br /></td></tr>
 <tr class="separator:ab2ee31297c327e04ed14673adbd49716"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48fba862b41f7da3b8c6193c0554654b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48fba862b41f7da3b8c6193c0554654b"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmrcontact__t.html#a48fba862b41f7da3b8c6193c0554654b">m_name</a></td></tr>
-<tr class="memdesc:a48fba862b41f7da3b8c6193c0554654b"><td class="mdescLeft">&#160;</td><td class="mdescRight">may be NULL or empty, this name should not be spreaded as it may be "Daddy" and so on; initially set to m_authname <br /></td></tr>
+<tr class="memitem:a48fba862b41f7da3b8c6193c0554654b"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmrcontact__t.html#a48fba862b41f7da3b8c6193c0554654b">m_name</a></td></tr>
+<tr class="memdesc:a48fba862b41f7da3b8c6193c0554654b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name given by the user to the contact.  <a href="#a48fba862b41f7da3b8c6193c0554654b">More...</a><br /></td></tr>
 <tr class="separator:a48fba862b41f7da3b8c6193c0554654b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a559c848feee29d334098f9a581448e56"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmrcontact__t.html#a559c848feee29d334098f9a581448e56">m_authname</a></td></tr>
-<tr class="memdesc:a559c848feee29d334098f9a581448e56"><td class="mdescLeft">&#160;</td><td class="mdescRight">may be NULL or empty, this is the name authorized by the sender, only this name may be speaded to others, eg.  <a href="#a559c848feee29d334098f9a581448e56">More...</a><br /></td></tr>
+<tr class="memdesc:a559c848feee29d334098f9a581448e56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name authorized by the contact himself.  <a href="#a559c848feee29d334098f9a581448e56">More...</a><br /></td></tr>
 <tr class="separator:a559c848feee29d334098f9a581448e56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaedd60ba4cad97bb87ba5a55958341e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaedd60ba4cad97bb87ba5a55958341e5"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmrcontact__t.html#aaedd60ba4cad97bb87ba5a55958341e5">m_addr</a></td></tr>
-<tr class="memdesc:aaedd60ba4cad97bb87ba5a55958341e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">may be NULL or empty <br /></td></tr>
+<tr class="memitem:aaedd60ba4cad97bb87ba5a55958341e5"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmrcontact__t.html#aaedd60ba4cad97bb87ba5a55958341e5">m_addr</a></td></tr>
+<tr class="memdesc:aaedd60ba4cad97bb87ba5a55958341e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The E-Mail-Address of the contact.  <a href="#aaedd60ba4cad97bb87ba5a55958341e5">More...</a><br /></td></tr>
 <tr class="separator:aaedd60ba4cad97bb87ba5a55958341e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac22d500e5c439b07c943ed2c7afb2a23"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmrcontact__t.html#ac22d500e5c439b07c943ed2c7afb2a23">m_blocked</a></td></tr>
 <tr class="memdesc:ac22d500e5c439b07c943ed2c7afb2a23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocked state.  <a href="#ac22d500e5c439b07c943ed2c7afb2a23">More...</a><br /></td></tr>
@@ -197,6 +195,21 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="st
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="aaedd60ba4cad97bb87ba5a55958341e5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* mrcontact_t::m_addr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The E-Mail-Address of the contact. </p>
+<p>May be NULL or empty. </p>
+
+</div>
+</div>
 <a class="anchor" id="a559c848feee29d334098f9a581448e56"></a>
 <div class="memitem">
 <div class="memproto">
@@ -207,8 +220,8 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="st
       </table>
 </div><div class="memdoc">
 
-<p>may be NULL or empty, this is the name authorized by the sender, only this name may be speaded to others, eg. </p>
-<p>in To:-lists; for displaying in the app, use m_name </p>
+<p>Name authorized by the contact himself. </p>
+<p>May be NULL or empty, this is the name authorized by the sender, only this name may be speaded to others, eg. in To:-lists; for displaying in the app, use <a class="el" href="structmrcontact__t.html#a48fba862b41f7da3b8c6193c0554654b" title="Name given by the user to the contact. ">m_name</a> </p>
 
 </div>
 </div>
@@ -223,7 +236,7 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="st
 </div><div class="memdoc">
 
 <p>Blocked state. </p>
-<p>1=contact is blocked, 0=contact is not blocked. </p>
+<p>1=contact is blocked, 0=contact is not blocked. To block or unblock a contact, use <a class="el" href="structmrmailbox__t.html#abb069358386b767a60444651195e0895" title="Block or unblock a contact. ">mrmailbox_block_contact()</a>. </p>
 
 </div>
 </div>
@@ -242,6 +255,22 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="st
 <li>MR_CONTACT_ID_SELF (1) - this is the owner of the mailbox with the email-address set by <a class="el" href="structmrmailbox__t.html#a19b3e9f5209bc326fc77f3944522e8ad" title="Configure the mailbox. ">mrmailbox_set_config()</a> using "addr".</li>
 </ul>
 <p>Normal contact IDs are larger than these special ones (larger than MR_CONTACT_ID_LAST_SPECIAL). </p>
+
+</div>
+</div>
+<a class="anchor" id="a48fba862b41f7da3b8c6193c0554654b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* mrcontact_t::m_name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Name given by the user to the contact. </p>
+<p>Should be used for displaying everywhere and is editable by the user but must not be spreaded via mail (To:, CC: ...) as it as it may be sth. like "Daddy".</p>
+<p>May be NULL or empty, initially set to <a class="el" href="structmrcontact__t.html#a559c848feee29d334098f9a581448e56" title="Name authorized by the contact himself. ">m_authname</a> </p>
 
 </div>
 </div>

@@ -520,16 +520,6 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 		mrmailbox_disconnect(mailbox);
 		ret = COMMAND_SUCCEEDED;
 	}
-	else if( strcmp(cmd, "restore")==0 )
-	{
-		if( arg1 ) {
-			int days = atoi(arg1);
-			ret = mrmailbox_restore(mailbox, days*24*60*60)? COMMAND_SUCCEEDED : COMMAND_FAILED;
-		}
-		else {
-			ret = safe_strdup("ERROR: Argument <days> missing.");
-		}
-	}
 	else if( strcmp(cmd, "info")==0 )
 	{
 		ret = mrmailbox_get_info(mailbox);
@@ -932,6 +922,9 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 				mrmailbox_add_address_book(mailbox, book);
 				ret = COMMAND_SUCCEEDED;
 			free(book);
+		}
+		else if( arg1 ) {
+			ret = mrmailbox_create_contact(mailbox, NULL, arg1)? COMMAND_SUCCEEDED : COMMAND_FAILED;
 		}
 		else {
 			ret = safe_strdup("ERROR: Arguments <name> <addr> expected.");

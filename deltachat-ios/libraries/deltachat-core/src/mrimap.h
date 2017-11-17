@@ -81,10 +81,6 @@ typedef struct mrimap_t
 	pthread_cond_t        m_heartbeat_cond;
 	pthread_mutex_t       m_heartbeat_condmutex;
 
-	pthread_t             m_restore_thread;
-	int                   m_restore_thread_created;
-	int                   m_restore_do_exit;
-
 	struct mailimap_fetch_type* m_fetch_type_uid;
 	struct mailimap_fetch_type* m_fetch_type_body;
 	struct mailimap_fetch_type* m_fetch_type_flags;
@@ -106,7 +102,6 @@ int       mrimap_connect           (mrimap_t*, const mrloginparam_t*);
 void      mrimap_disconnect        (mrimap_t*);
 int       mrimap_is_connected      (mrimap_t*);
 int       mrimap_fetch             (mrimap_t*);
-int       mrimap_restore           (mrimap_t*, time_t seconds_to_restore);
 
 int       mrimap_append_msg        (mrimap_t*, time_t timestamp, const char* data_not_terminated, size_t data_bytes, char** ret_server_folder, uint32_t* ret_server_uid);
 

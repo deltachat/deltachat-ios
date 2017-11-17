@@ -172,7 +172,7 @@ static void export_key_to_asc_file(mrmailbox_t* mailbox, const char* dir, int id
 		mrmailbox_log_error(mailbox, 0, "Cannot write key to %s", file_name);
 	}
 	else {
-		mailbox->m_cb(mailbox, MR_EVENT_IMEX_FILE_WRITTEN, (uintptr_t)file_name, NULL);
+		mailbox->m_cb(mailbox, MR_EVENT_IMEX_FILE_WRITTEN, (uintptr_t)file_name, 0);
 	}
 	free(file_content);
 	free(file_name);
@@ -502,7 +502,7 @@ static int export_setup_file(mrmailbox_t* mailbox, const char* dir, const char* 
 		mrmailbox_log_error(mailbox, 0, "Cannot write keys to %s", file_name);
 	}
 	else {
-		mailbox->m_cb(mailbox, MR_EVENT_IMEX_FILE_WRITTEN, (uintptr_t)file_name, NULL);
+		mailbox->m_cb(mailbox, MR_EVENT_IMEX_FILE_WRITTEN, (uintptr_t)file_name, 0);
 	}
 
 	success = 1;
@@ -656,7 +656,7 @@ static int export_backup(mrmailbox_t* mailbox, const char* dir)
 	mrsqlite3_set_config_int__(dest_sql, "backup_time", now);
 	mrsqlite3_set_config__    (dest_sql, "backup_for", mailbox->m_blobdir);
 
-	mailbox->m_cb(mailbox, MR_EVENT_IMEX_FILE_WRITTEN, (uintptr_t)dest_pathNfilename, NULL);
+	mailbox->m_cb(mailbox, MR_EVENT_IMEX_FILE_WRITTEN, (uintptr_t)dest_pathNfilename, 0);
 	success = 1;
 
 cleanup:

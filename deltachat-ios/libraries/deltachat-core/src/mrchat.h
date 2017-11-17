@@ -72,12 +72,61 @@ typedef struct mrchat_t
 	#define         MR_CHAT_TYPE_GROUP        120
 
 
-	char*           m_name;                       /**< NULL if unset */
-	time_t          m_draft_timestamp;            /**< 0 if there is no draft */
-	char*           m_draft_text;                 /**< NULL if unset */
-	mrmailbox_t*    m_mailbox;                    /**< != NULL */
-	int             m_archived;                   /**< 1=chat archived, this state should always be shown the UI, eg. the search will also return archived chats */
-	mrparam_t*      m_param;                      /**< != NULL */
+	/**
+	 * Name of the chat.
+	 *
+	 * For one-to-one chats, this is the name of the contact.
+	 * For group chats, this is the name given eg. to mrmailbox_create_group_chat() or
+	 * received by a group-creation message.
+	 *
+	 * To change the name, use mrmailbox_set_chat_name()
+	 *
+	 * NULL if unset.
+	 */
+	char*           m_name;
+
+	/**
+	 * Timestamp of the draft.
+	 *
+	 * The draft itself is placed in mrchat_t::m_draft_text.
+	 * To save a draft for a chat, use mrmailbox_set_draft()
+	 *
+	 * 0 if there is no draft.
+	 */
+	time_t          m_draft_timestamp;
+
+	/**
+	 * The draft text.
+	 *
+	 * The timetamp of the draft is placed in mrchat_t::m_draft_timestamp.
+	 * To save a draft for a chat, use mrmailbox_set_draft()
+	 *
+	 * NULL if there is no draft.
+	 */
+	char*           m_draft_text;
+
+	/**
+	 * The mailbox object the chat belongs to. Never NULL.
+	 */
+	mrmailbox_t*    m_mailbox;
+
+	/**
+	 * Flag for the archived state.
+	 *
+	 * 1=chat archived, 0=chat not archived.
+	 *
+	 * To archive or unarchive chats, use mrmailbox_archive_chat().
+	 * If chats are archived, this should be shown in the UI by a little icon or text,
+	 * eg. the search will also return archived chats.
+	 */
+	int             m_archived;
+
+	/**
+	 * Additional parameters for the chat.
+	 *
+	 * To access the parameters, use mrparam_exists(), mrparam_get() for mrparam_get_int()
+	 */
+	mrparam_t*      m_param;
 
 	/** @privatesection */
 	char*           m_grpid;                      /* NULL if unset */

@@ -1266,21 +1266,6 @@ int32_t mrmailbox_get_config_int(mrmailbox_t* ths, const char* key, int32_t def)
 
 
 /**
- * Get the blob directory.
- *
- * @memberof mrmailbox_t
- *
- * @param mailbox Mailbox object as returned by mrmailbox_new().
- *
- * @return String which must be free()'d after usage.
- */
-char* mrmailbox_get_blobdir(mrmailbox_t* mailbox)
-{
-	return safe_strdup(mailbox? mailbox->m_blobdir : NULL);
-}
-
-
-/**
  * Get information about the mailbox.  The information is returned by a multi-line string and contains information about the current
  * configuration and the last log entries.
  *
@@ -1618,17 +1603,6 @@ void mrmailbox_disconnect(mrmailbox_t* mailbox)
 }
 
 
-/* restore old data from the IMAP server, not really implemented. */
-int mrmailbox_restore(mrmailbox_t* ths, time_t seconds_to_restore)
-{
-	if( ths == NULL ) {
-		return 0;
-	}
-
-	return mrimap_restore(ths->m_imap, seconds_to_restore);
-}
-
-
 /**
  * Stay alive.
  * The library tries itself to stay alive. For this purpose there is an additional
@@ -1705,9 +1679,7 @@ cleanup:
 
 
 /**
- * Get a chat object of type mrchat_t by a chat_id.
- * To access the mrchat_t object, see mrchat.h
- * The result must be unref'd using mrchat_unref().
+ * Get chat object by a chat ID.
  *
  * @memberof mrmailbox_t
  *
@@ -1715,7 +1687,7 @@ cleanup:
  *
  * @param chat_id The ID of the chat to get the chat object for.
  *
- * @return A chat object, must be freed using mrchat_unref() when done.
+ * @return A chat object of the type mrchat_t, must be freed using mrchat_unref() when done.
  */
 mrchat_t* mrmailbox_get_chat(mrmailbox_t* mailbox, uint32_t chat_id)
 {
@@ -2369,6 +2341,8 @@ cleanup:
 /**
  * Save a draft for a chat.
  *
+ * To get the draft for a given chat ID, use mrchat_t::m_draft_text
+ *
  * @memberof mrmailbox_t
  *
  * @param mailbox The mailbox object as returned from mrmailbox_new().
@@ -2649,6 +2623,8 @@ int mrmailbox_get_fresh_msg_count(mrmailbox_t* mailbox, uint32_t chat_id)
  * end of the chatlist.
  *
  * To get a list of archived chats, use mrmailbox_get_chatlist() with the flag MR_GCL_ARCHIVED_ONLY.
+ *
+ * To find out the archived state of a given chat, use mrchat_t::m_archived
  *
  * @memberof mrmailbox_t
  *
@@ -3324,7 +3300,7 @@ int mrmailbox_add_contact_to_chat__(mrmailbox_t* mailbox, uint32_t chat_id, uint
  * Create a new group chat.
  *
  * After creation, the groups has one member with the
- * ID MR_CONTACT_ID_SELF and is in _unpromoted_ state.  This means, you can
+ * ID [MR_CONTACT_ID_SELF](@ref mrcontact_t::m_id) and is in _unpromoted_ state.  This means, you can
  * add or remove members, change the name, the group image and so on without
  * messages being send to all group members.
  *
@@ -3338,6 +3314,7 @@ int mrmailbox_add_contact_to_chat__(mrmailbox_t* mailbox, uint32_t chat_id, uint
  *
  * @param chat_name The name of the group chat to create.
  *     The name may be changed later using mrmailbox_set_chat_name().
+ *     To find out the name of a group later, see mrchat_t::m_name
  *
  * @return The chat ID of the new group chat, 0 on errors.
  */
