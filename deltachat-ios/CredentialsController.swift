@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TextFieldCell2:UITableViewCell {
+class TextFieldCell:UITableViewCell {
     let textField = UITextField()
     
     init(description: String, placeholder: String) {
@@ -37,8 +37,8 @@ class TextFieldCell2:UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    static func makeEmailCell() -> TextFieldCell2 {
-        let emailCell = TextFieldCell2(description: "Email", placeholder: "you@example.com")
+    static func makeEmailCell() -> TextFieldCell {
+        let emailCell = TextFieldCell(description: "Email", placeholder: "you@example.com")
         
         emailCell.textField.textContentType = UITextContentType.emailAddress
         emailCell.textField.keyboardType = .emailAddress
@@ -49,8 +49,8 @@ class TextFieldCell2:UITableViewCell {
         return emailCell
     }
     
-    static func makePasswordCell() -> TextFieldCell2 {
-        let passwordCell = TextFieldCell2(description: "Password", placeholder: "your IMAP password")
+    static func makePasswordCell() -> TextFieldCell {
+        let passwordCell = TextFieldCell(description: "Password", placeholder: "your IMAP password")
         
         passwordCell.textField.textContentType = UITextContentType.password
         passwordCell.textField.isSecureTextEntry = true
@@ -60,8 +60,8 @@ class TextFieldCell2:UITableViewCell {
 }
 
 class CredentialsController: UITableViewController {
-    let emailCell = TextFieldCell2.makeEmailCell()
-    let passwordCell = TextFieldCell2.makePasswordCell()
+    let emailCell = TextFieldCell.makeEmailCell()
+    let passwordCell = TextFieldCell.makePasswordCell()
     var doneButton:UIBarButtonItem?
     
     var model:(email:String, password:String) = ("", "") {
@@ -77,9 +77,6 @@ class CredentialsController: UITableViewController {
     let cells:[UITableViewCell]
     
     init() {
-
-
-        
         cells = [emailCell, passwordCell]
 
         super.init(style: .grouped)
