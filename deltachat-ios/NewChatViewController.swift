@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol ChatDisplayer: class {
+    func displayNewChat(contactId: Int)
+}
+
 class NewChatViewController: UITableViewController {
     var contactIds: [Int] = Utils.getContactIds()
+    weak var chatDisplayer: ChatDisplayer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +25,11 @@ class NewChatViewController: UITableViewController {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(NewChatViewController.cancelButtonPressed))
         
         navigationItem.rightBarButtonItem = cancelButton
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        contactIds = Utils.getContactIds()
+        tableView.reloadData()
     }
     
     @objc func cancelButtonPressed() {
@@ -85,6 +95,28 @@ class NewChatViewController: UITableViewController {
         cell.detailTextLabel?.text = contact.email
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        if row == 0 {
+            let newContactController = NewContactController()
+            navigationController?.pushViewController(newContactController, animated: true)
+        }
+        if row == 1 {
+            let alertController = UIAlertController(title: "Not implemented", message: "Adding groups is not yet implemented.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            present(alertController, animated: false, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        if row > 1 {
+            let contactIndex = row - 2
+            let contactId = contactIds[contactIndex]
+            dismiss(animated: false) {
+                self.chatDisplayer?.displayNewChat(contactId: contactId)
+            }
+        }
     }
 
 

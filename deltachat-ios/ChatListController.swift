@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ChatListController: UIViewController {
     var chatList:MRChatList?
 
@@ -81,6 +82,7 @@ class ChatListController: UIViewController {
     
     @objc func addChat() {
         let ncv = NewChatViewController()
+        ncv.chatDisplayer = self
         let nav = UINavigationController(rootViewController: ncv)
         present(nav, animated: true, completion: nil)
     }
@@ -92,6 +94,7 @@ class ChatListController: UIViewController {
 }
 
 extension ChatListController: ChatPresenter {
+
     func displayChat(index: Int) {
         guard let chatList = self.chatList else {
             fatalError("chatList was nil in ChatPresenter extension")
@@ -99,11 +102,24 @@ extension ChatListController: ChatPresenter {
         
         let chatId = chatList.getChatId(index: index)
         let chatVC = ChatViewController(chatId: chatId)
+        
 
         chatVC.hidesBottomBarWhenPushed = true 
         self.navigationController?.pushViewController(chatVC, animated: true)
     }
 }
+
+extension ChatListController: ChatDisplayer {
+    func displayNewChat(contactId: Int) {
+        let chatId = mrmailbox_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+        let chatVC = ChatViewController(chatId: Int(chatId))
+        
+        chatVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(chatVC, animated: true)
+    }
+    
+}
+
 
 class ChatTableDataSource: NSObject, UITableViewDataSource  {
     weak var chatList:MRChatList?

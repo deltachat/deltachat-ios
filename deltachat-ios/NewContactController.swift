@@ -54,14 +54,14 @@ class NewContactController: UITableViewController {
     }
     
     @objc func saveContactButtonPressed() {
-        dismiss(animated: true) {
-            let contactId = mrmailbox_create_contact(mailboxPointer, self.model.name, self.model.email)
-            let _ = mrmailbox_create_chat_by_contact_id(mailboxPointer, contactId)
-        }
+        let contactId = mrmailbox_create_contact(mailboxPointer, self.model.name, self.model.email)
+        navigationController?.popViewController(animated: true)
+        
+        
     }
     
     @objc func cancelButtonPressed() {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
     required init?(coder aDecoder: NSCoder) {
