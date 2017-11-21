@@ -47,6 +47,15 @@ class ContactViewController: UIViewController {
         contactTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         contactTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         contactTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ContactViewController.addContact))
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    @objc func addContact() {
+        let ncc = NewContactController()
+        let nav = UINavigationController(rootViewController: ncc)
+        present(nav, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

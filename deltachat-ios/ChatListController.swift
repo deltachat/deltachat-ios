@@ -75,14 +75,14 @@ class ChatListController: UIViewController {
         chatTableDelegate.chatPresenter = self
         chatTable.delegate = chatTableDelegate
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ChatListController.addChat))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(ChatListController.addChat))
         navigationItem.rightBarButtonItem = addButton
     }
     
     @objc func addChat() {
-        let ncc = NewContactController()
-        let nav = UINavigationController(rootViewController: ncc)
-        present(nav, animated: true, completion: nil)
+//        let ncv = NewChatViewController
+//        let nav = UINavigationController(rootViewController: ncv)
+//        present(nav, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
