@@ -60,6 +60,7 @@
 		7A9FB5541FB08557001FEA36 /* mrsqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB52F1FB08557001FEA36 /* mrsqlite3.c */; };
 		7A9FB5551FB08557001FEA36 /* mrstock.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB5311FB08557001FEA36 /* mrstock.c */; };
 		7A9FB5561FB08557001FEA36 /* mrtools.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB5331FB08557001FEA36 /* mrtools.c */; };
+		7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */; };
 		8B6D425BC604F7C43B65D436 /* Pods_deltachat_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */; };
 		AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */; };
 		AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */; };
@@ -195,6 +196,7 @@
 		7A9FB5311FB08557001FEA36 /* mrstock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrstock.c; sourceTree = "<group>"; };
 		7A9FB5331FB08557001FEA36 /* mrtools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrtools.c; sourceTree = "<group>"; };
 		7A9FB5341FB08557001FEA36 /* mrtools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrtools.h; sourceTree = "<group>"; };
+		7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		8DE110C607A0E4485C43B5FA /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.release.xcconfig"; sourceTree = "<group>"; };
 		AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				7A0052A01FBC50C40048C3BF /* CredentialsController.swift */,
 				7A0052C71FBE6CB40048C3BF /* NewContactController.swift */,
 				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
+				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
 				AEACE2E01FB3271700DCDD78 /* SampleData.swift */,
 				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
 				AEACE2E41FB32E1900DCDD78 /* Utils.swift */,
@@ -616,6 +619,7 @@
 				AEACE2E11FB3271700DCDD78 /* SampleData.swift in Sources */,
 				7A9FB5551FB08557001FEA36 /* mrstock.c in Sources */,
 				7A9FB53B1FB08557001FEA36 /* mrchatlist.c in Sources */,
+				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
 				AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */,
 				7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */,
 				7A9FB54E1FB08557001FEA36 /* mrparam.c in Sources */,

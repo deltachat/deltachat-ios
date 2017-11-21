@@ -80,9 +80,9 @@ class ChatListController: UIViewController {
     }
     
     @objc func addChat() {
-//        let ncv = NewChatViewController
-//        let nav = UINavigationController(rootViewController: ncv)
-//        present(nav, animated: true, completion: nil)
+        let ncv = NewChatViewController()
+        let nav = UINavigationController(rootViewController: ncv)
+        present(nav, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

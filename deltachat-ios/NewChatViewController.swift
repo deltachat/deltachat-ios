@@ -9,15 +9,21 @@
 import UIKit
 
 class NewChatViewController: UITableViewController {
+    var contactIds: [Int] = Utils.getContactIds()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        title = "New Chat"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(NewChatViewController.cancelButtonPressed))
+        
+        navigationItem.rightBarButtonItem = cancelButton
+    }
+    
+    @objc func cancelButtonPressed() {
+        dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,24 +34,59 @@ class NewChatViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.contactIds.count + 2
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
+        if row == 0 {
+            // new contact row
+            let cell:UITableViewCell
+            if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
+                cell = c
+            } else {
+                cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
+            }
+            cell.textLabel?.text = "New Contact"
+            cell.textLabel?.textColor = self.view.tintColor
+
+            return cell
+        }
+        if row == 1 {
+            // new group row
+            let cell:UITableViewCell
+            if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
+                cell = c
+            } else {
+                cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
+            }
+            cell.textLabel?.text = "New Group"
+            cell.textLabel?.textColor = self.view.tintColor
+            
+            return cell
+        }
+        
+        let cell:UITableViewCell
+        if let c = tableView.dequeueReusableCell(withIdentifier: "contactCell") {
+            cell = c
+        } else {
+            cell = UITableViewCell(style: .value1, reuseIdentifier: "contactCell")
+        }
+        
+        let contactRow = row - 2
+
+        let contact = MRContact(id: contactIds[contactRow])
+        cell.textLabel?.text = contact.name
+        cell.detailTextLabel?.text = contact.email
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.

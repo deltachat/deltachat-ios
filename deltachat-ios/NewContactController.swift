@@ -46,7 +46,7 @@ class NewContactController: UITableViewController {
         
         model.email = emailText
     }
-    
+                
     @objc func nameTextChanged() {
         let nameText = nameCell.textField.text ?? ""
         
