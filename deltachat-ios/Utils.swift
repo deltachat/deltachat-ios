@@ -10,6 +10,12 @@ import Foundation
 import UIKit
 
 struct Utils {
+    static func getContactIds() -> [Int] {
+        let c_contacts = mrmailbox_get_known_contacts(mailboxPointer, nil)
+        return Utils.copyAndFreeArray(inputArray: c_contacts)
+    }
+
+    
     static func copyAndFreeArray(inputArray:UnsafeMutablePointer<carray>?) -> [Int] {
         var acc:[Int] = []
         let len = carray_count(inputArray)

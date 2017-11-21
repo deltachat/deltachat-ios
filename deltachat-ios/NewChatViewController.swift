@@ -1,22 +1,15 @@
 //
 //  NewChatViewController.swift
-//  MessageKit
+//  deltachat-ios
 //
-//  Created by Jonas Reinsch on 20.11.17.
+//  Created by Jonas Reinsch on 21.11.17.
+//  Copyright © 2017 Jonas Reinsch. All rights reserved.
 //
 
 import UIKit
 
 class NewChatViewController: UITableViewController {
-    
-    init() {
-        super.init(style: .plain)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
