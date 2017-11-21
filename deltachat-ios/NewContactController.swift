@@ -14,9 +14,13 @@ class NewContactController: UITableViewController {
     var doneButton:UIBarButtonItem?
     var cancelButton:UIBarButtonItem?
     
+    func contactIsValid() -> Bool {
+        return (Utils.isValid(model.email) && !model.name.isEmpty)
+    }
+    
     var model:(name:String, email:String) = ("", "") {
         didSet {
-            if (Utils.isValid(model.email) && !model.name.isEmpty) {
+            if contactIsValid() {
                 doneButton?.isEnabled = true
             } else {
                 doneButton?.isEnabled = false
@@ -26,10 +30,33 @@ class NewContactController: UITableViewController {
     
     let cells:[UITableViewCell]
     
+    // for editing existing contacts (only
+    // the name may be edited, therefore disable
+    // the email field)
+    convenience init(contactIdForUpdate: Int) {
+        self.init()
+        title = "Edit Contact"
+
+        let contact = MRContact(id: contactIdForUpdate)
+        nameCell.textField.text = contact.name
+        emailCell.textField.text = contact.email
+        emailCell.textField.isEnabled = false
+        emailCell.contentView.alpha = 0.3
+        
+        model.name = contact.name
+        model.email = contact.email
+
+        if contactIsValid() {
+            doneButton?.isEnabled = true
+        }
+    }
+    
+    // for creating a new contact
     init() {
         cells = [nameCell, emailCell]
-        
+
         super.init(style: .grouped)
+        title = "New Contact"
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(NewContactController.saveContactButtonPressed))
         doneButton?.isEnabled = false
         navigationItem.rightBarButtonItem = doneButton
@@ -54,10 +81,8 @@ class NewContactController: UITableViewController {
     }
     
     @objc func saveContactButtonPressed() {
-        let contactId = mrmailbox_create_contact(mailboxPointer, self.model.name, self.model.email)
+        mrmailbox_create_contact(mailboxPointer, self.model.name, self.model.email)
         navigationController?.popViewController(animated: true)
-        
-        
     }
     
     @objc func cancelButtonPressed() {
@@ -71,7 +96,6 @@ class NewContactController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "New Contact"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     

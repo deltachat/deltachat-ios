@@ -65,6 +65,7 @@ class NewChatViewController: UITableViewController {
             cell.textLabel?.text = "New Contact"
             cell.textLabel?.textColor = self.view.tintColor
 
+
             return cell
         }
         if row == 1 {
@@ -87,6 +88,8 @@ class NewChatViewController: UITableViewController {
         } else {
             cell = UITableViewCell(style: .value1, reuseIdentifier: "contactCell")
         }
+        
+        cell.accessoryType = .detailDisclosureButton
         
         let contactRow = row - 2
 
@@ -116,6 +119,16 @@ class NewChatViewController: UITableViewController {
             dismiss(animated: false) {
                 self.chatDisplayer?.displayNewChat(contactId: contactId)
             }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let row = indexPath.row
+        if row > 1 {
+            let contactIndex = row - 2
+            let contactId = contactIds[contactIndex]
+            let newContactController = NewContactController(contactIdForUpdate: contactId)
+            navigationController?.pushViewController(newContactController, animated: true)
         }
     }
 
