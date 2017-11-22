@@ -54,8 +54,13 @@ class NewContactController: UITableViewController {
     // for creating a new contact
     init() {
         cells = [emailCell, nameCell]
-
         super.init(style: .grouped)
+        emailCell.textField.delegate = self
+        nameCell.textField.delegate = self
+        // always show return key with name field, because
+        // name is optional
+        nameCell.textField.enablesReturnKeyAutomatically = false
+        
         title = "New Contact"
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(NewContactController.saveContactButtonPressed))
         doneButton?.isEnabled = false
@@ -66,6 +71,14 @@ class NewContactController: UITableViewController {
 
         emailCell.textField.addTarget(self, action: #selector(NewContactController.emailTextChanged), for: UIControlEvents.editingChanged)
         nameCell.textField.addTarget(self, action: #selector(NewContactController.nameTextChanged), for: UIControlEvents.editingChanged)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if emailCell.textField.isEnabled {
+            emailCell.textField.becomeFirstResponder()
+        } else {
+            nameCell.textField.becomeFirstResponder()
+        }
     }
     
     @objc func emailTextChanged() {
@@ -115,3 +128,20 @@ class NewContactController: UITableViewController {
     }
 }
 
+extension NewContactController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailCell.textField {
+            // only switch to next line if email is valid
+            if contactIsValid() {
+                nameCell.textField.becomeFirstResponder()
+            }
+        } else if textField == nameCell.textField {
+            if contactIsValid() {
+                saveContactButtonPressed()
+            }
+        }
+        return true
+    }
+
+    
+}
