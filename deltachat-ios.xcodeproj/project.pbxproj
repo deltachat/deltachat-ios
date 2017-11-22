@@ -788,6 +788,7 @@
 				DEVELOPMENT_TEAM = S595XJ38G3;
 				HEADER_SEARCH_PATHS = "deltachat-ios/libraries/deltachat-core/libs/netpgp/include";
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-lsasl2",
@@ -813,6 +814,7 @@
 				DEVELOPMENT_TEAM = S595XJ38G3;
 				HEADER_SEARCH_PATHS = "deltachat-ios/libraries/deltachat-core/libs/netpgp/include";
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-lsasl2",
