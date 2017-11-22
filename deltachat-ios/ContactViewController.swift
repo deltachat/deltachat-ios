@@ -86,7 +86,7 @@ class ContactTableDataSource: NSObject, UITableViewDataSource {
         let row = indexPath.row
         let id = contacts[row]
         let contact = MRContact(id: id)
-        
+
         cell.textLabel?.text = contact.name
         cell.detailTextLabel?.text = contact.email
 

@@ -16,7 +16,11 @@ class MRContact {
         if contactPointer.pointee.m_name == nil {
             return email
         }
-        return String(cString: contactPointer.pointee.m_name)
+        let name = String(cString: contactPointer.pointee.m_name)
+        if name.isEmpty {
+            return email
+        }
+        return name
     }
     
     var email: String {
