@@ -142,6 +142,4 @@ extension NewContactController: UITextFieldDelegate {
         }
         return true
     }
-
-    
 }

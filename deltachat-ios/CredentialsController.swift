@@ -84,9 +84,13 @@ class CredentialsController: UITableViewController {
     let passwordCell = TextFieldCell.makePasswordCell()
     var doneButton:UIBarButtonItem?
     
+    func readyForLogin() -> Bool {
+        return Utils.isValid(model.email) && !model.password.isEmpty
+    }
+    
     var model:(email:String, password:String) = ("", "") {
         didSet {
-            if (Utils.isValid(model.email) && !model.password.isEmpty) {
+            if readyForLogin() {
                 doneButton?.isEnabled = true
             } else {
                 doneButton?.isEnabled = false
@@ -106,6 +110,13 @@ class CredentialsController: UITableViewController {
         
         emailCell.textField.addTarget(self, action: #selector(CredentialsController.emailTextChanged), for: UIControlEvents.editingChanged)
         passwordCell.textField.addTarget(self, action: #selector(CredentialsController.passwordTextChanged), for: UIControlEvents.editingChanged)
+        
+        emailCell.textField.delegate = self
+        passwordCell.textField.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        emailCell.textField.becomeFirstResponder()
     }
     
     @objc func emailTextChanged() {
@@ -151,5 +162,24 @@ class CredentialsController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+}
+
+extension CredentialsController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailCell.textField {
+            if let emailText = emailCell.textField.text {
+                // only jump to next field if valid email
+                if Utils.isValid(emailText) {
+                    passwordCell.textField.becomeFirstResponder()
+                }
+            }
+        }
+        if textField == passwordCell.textField {
+            if readyForLogin() {
+                self.saveAccountButtonPressed()
+            }
+        }
+        return true
     }
 }
