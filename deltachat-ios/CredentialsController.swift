@@ -49,8 +49,6 @@ class TextFieldCell:UITableViewCell {
     static func makeEmailCell() -> TextFieldCell {
         let emailCell = TextFieldCell(description: "Email", placeholder: "you@example.com")
         
-        // this suggests the own email
-        emailCell.textField.textContentType = UITextContentType.emailAddress
         emailCell.textField.keyboardType = .emailAddress
         // switch off quicktype
         emailCell.textField.autocorrectionType = .no
@@ -114,6 +112,7 @@ class CredentialsController: UITableViewController {
         emailCell.textField.addTarget(self, action: #selector(CredentialsController.emailTextChanged), for: UIControlEvents.editingChanged)
         passwordCell.textField.addTarget(self, action: #selector(CredentialsController.passwordTextChanged), for: UIControlEvents.editingChanged)
         
+        emailCell.textField.textContentType = UITextContentType.emailAddress
         emailCell.textField.delegate = self
         passwordCell.textField.delegate = self
         emailCell.textField.returnKeyType = .next
