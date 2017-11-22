@@ -16,9 +16,15 @@ class TextFieldCell:UITableViewCell {
         
         textLabel?.text = "\(description):"
         contentView.addSubview(textField)
-        
+
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
+        
+        // see: https://stackoverflow.com/a/35903650
+        // this makes the textField respect the trailing margin of
+        // the table view cell
+        let margins = contentView.layoutMarginsGuide
+        let trailing = margins.trailingAnchor
+        textField.trailingAnchor.constraint(equalTo: trailing).isActive = true
         textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         textField.textAlignment = .right
 
@@ -26,6 +32,7 @@ class TextFieldCell:UITableViewCell {
         
         selectionStyle = .none
     }
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         if selected {
