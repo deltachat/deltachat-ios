@@ -31,6 +31,8 @@ class TextFieldCell:UITableViewCell {
         textField.placeholder = placeholder
         
         selectionStyle = .none
+        
+        textField.enablesReturnKeyAutomatically = true
     }
     
     
