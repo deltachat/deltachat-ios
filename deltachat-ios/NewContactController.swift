@@ -9,13 +9,13 @@
 import UIKit
 
 class NewContactController: UITableViewController {
-    let nameCell = TextFieldCell.makeNameCell()
     let emailCell = TextFieldCell.makeEmailCell()
+    let nameCell = TextFieldCell.makeNameCell()
     var doneButton:UIBarButtonItem?
     var cancelButton:UIBarButtonItem?
     
     func contactIsValid() -> Bool {
-        return (Utils.isValid(model.email) && !model.name.isEmpty)
+        return Utils.isValid(model.email)
     }
     
     var model:(name:String, email:String) = ("", "") {
@@ -53,7 +53,7 @@ class NewContactController: UITableViewController {
     
     // for creating a new contact
     init() {
-        cells = [nameCell, emailCell]
+        cells = [emailCell, nameCell]
 
         super.init(style: .grouped)
         title = "New Contact"
@@ -63,9 +63,9 @@ class NewContactController: UITableViewController {
         
         cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(NewContactController.cancelButtonPressed))
         navigationItem.leftBarButtonItem = cancelButton
-        
-        nameCell.textField.addTarget(self, action: #selector(NewContactController.nameTextChanged), for: UIControlEvents.editingChanged)
+
         emailCell.textField.addTarget(self, action: #selector(NewContactController.emailTextChanged), for: UIControlEvents.editingChanged)
+        nameCell.textField.addTarget(self, action: #selector(NewContactController.nameTextChanged), for: UIControlEvents.editingChanged)
     }
     
     @objc func emailTextChanged() {
