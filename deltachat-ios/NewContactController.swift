@@ -57,9 +57,13 @@ class NewContactController: UITableViewController {
         super.init(style: .grouped)
         emailCell.textField.delegate = self
         nameCell.textField.delegate = self
+        
+        
         // always show return key with name field, because
         // name is optional
         nameCell.textField.enablesReturnKeyAutomatically = false
+        emailCell.textField.returnKeyType = .next
+        nameCell.textField.returnKeyType = .done
         
         title = "New Contact"
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(NewContactController.saveContactButtonPressed))

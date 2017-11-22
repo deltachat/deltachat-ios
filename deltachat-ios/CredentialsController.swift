@@ -113,6 +113,8 @@ class CredentialsController: UITableViewController {
         
         emailCell.textField.delegate = self
         passwordCell.textField.delegate = self
+        emailCell.textField.returnKeyType = .next
+        passwordCell.textField.returnKeyType = .done
     }
     
     override func viewDidAppear(_ animated: Bool) {
