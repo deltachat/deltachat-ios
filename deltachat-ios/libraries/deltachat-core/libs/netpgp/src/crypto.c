@@ -306,9 +306,9 @@ write_parsed_cb(const pgp_packet_t *pkt, pgp_cbdata_t *cbinfo)
 		return pgp_get_seckey_cb(pkt, cbinfo);
 
 	case PGP_GET_PASSPHRASE:
-		if (cbinfo->cryptinfo.getpassphrase) {
-            return cbinfo->cryptinfo.getpassphrase(pkt, cbinfo);
-        }
+		//if (cbinfo->cryptinfo.getpassphrase) { -- EDIT BY MR
+        //    return cbinfo->cryptinfo.getpassphrase(pkt, cbinfo);
+        //}
         break;
 
 	case PGP_PTAG_CT_LITDATA_BODY:
@@ -575,9 +575,10 @@ pgp_decrypt_buf(pgp_io_t *io,
 			pgp_keyring_t *pubring,
 			const unsigned use_armour,
 			const unsigned sshkeys,
-			void *passfp,
-			int numtries,
-			pgp_cbfunc_t *getpassfunc)
+			//void *passfp, -- EDIT BY MR
+			//int numtries, -- EDIT BY MR
+			//pgp_cbfunc_t *getpassfunc -- EDIT BY MR
+			const char* symm_passphrase)
 {
 	pgp_stream_t	*parse = NULL;
 	pgp_memory_t	*outmem;
@@ -605,10 +606,11 @@ pgp_decrypt_buf(pgp_io_t *io,
 	/* setup keyring and passphrase callback */
 	parse->cbinfo.cryptinfo.secring = secring;
 	parse->cbinfo.cryptinfo.pubring = pubring;
-	parse->cbinfo.passfp = passfp;
-	parse->cbinfo.cryptinfo.getpassphrase = getpassfunc;
+	//parse->cbinfo.passfp = passfp; -- EDIT BY MR
+	//parse->cbinfo.cryptinfo.getpassphrase = getpassfunc;
 	parse->cbinfo.sshseckey = (sshkeys) ? &secring->keys[0].key.seckey : NULL;
-	parse->cbinfo.numtries = numtries;
+	//parse->cbinfo.numtries = numtries; --  EDIT BY MR
+	parse->cbinfo.cryptinfo.symm_passphrase = symm_passphrase; // EDIT BY MR -- only if this is set, we try symm. decryption
 
 	/* Set up armour/passphrase options */
 	if (use_armour) {
@@ -676,9 +678,9 @@ pgp_decrypt_and_validate_buf(pgp_io_t *io,
 {
     // historical code bloat...
     const unsigned sshkeys = 0;
-    void *passfp = NULL;
-    int numtries = -1;
-    pgp_cbfunc_t *getpassfunc = NULL;
+    //void *passfp = NULL; -- EDIT BY MR
+    //int numtries = -1; -- EDIT BY MR
+    //pgp_cbfunc_t *getpassfunc = NULL; -- EDIT BY MR
 
     validate_data_cb_t	 validation;
 	pgp_stream_t	*stream = NULL;
@@ -714,10 +716,10 @@ pgp_decrypt_and_validate_buf(pgp_io_t *io,
 	/* setup keyring and passphrase callback */
 	stream->cbinfo.cryptinfo.secring = secring;
 	stream->cbinfo.cryptinfo.pubring = pubring;
-	stream->cbinfo.passfp = passfp;
-	stream->cbinfo.cryptinfo.getpassphrase = getpassfunc;
+	//stream->cbinfo.passfp = passfp; -- EDIT BY MR
+	//stream->cbinfo.cryptinfo.getpassphrase = getpassfunc; // EDIT BY MR
 	stream->cbinfo.sshseckey = (sshkeys) ? &secring->keys[0].key.seckey : NULL;
-	stream->cbinfo.numtries = numtries;
+	//stream->cbinfo.numtries = numtries; -- EDIT BY MR
 
 	/* Set up armour */
 	if (use_armour) {
@@ -756,7 +758,7 @@ pgp_decrypt_and_validate_buf(pgp_io_t *io,
     pgp_writer_close(stream->cbinfo.output);
     pgp_output_delete(stream->cbinfo.output);
 
-	pgp_teardown_memory_read(stream, inmem);
+	pgp_teardown_memory_read(stream, inmem); /* calls pgp_stream_delete() and pgp_memory_free() */
 	pgp_memory_free(validation.mem);
 
 	return outmem;

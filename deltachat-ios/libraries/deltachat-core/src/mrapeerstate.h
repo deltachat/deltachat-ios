@@ -35,7 +35,6 @@ typedef struct mraheader_t mraheader_t;
 
 #define MRA_PE_NOPREFERENCE   0 /* prefer-encrypt states */
 #define MRA_PE_MUTUAL         1
-#define MRA_PE_GOSSIP         2
 #define MRA_PE_RESET         20
 
 
@@ -46,26 +45,43 @@ typedef struct mrapeerstate_t
 {
 	/** @privatesection */
 	char*          m_addr;
-	time_t         m_last_seen;
+	time_t         m_last_seen;  /* may be 0 if the peer was created by gossipping */
+
 	time_t         m_last_seen_autocrypt;
-	mrkey_t*       m_public_key; /*!=NULL*/
+	mrkey_t*       m_public_key; /* may be NULL, however, in the database, either public_key or gossip_key is set */
 	int            m_prefer_encrypt;
 
-	#define        MRA_SAVE_LAST_SEEN 0x01
-	#define        MRA_SAVE_ALL       0x02
+	time_t         m_gossip_timestamp;
+	mrkey_t*       m_gossip_key; /* may be NULL */
+
+	char*          m_fingerprint; /* fingerprint belonging to public_key (if set) or m_gossip_key (otherwise), may be NULL */
+
+	#define        MRA_SAVE_TIMESTAMPS 0x01
+	#define        MRA_SAVE_ALL        0x02
 	int            m_to_save;
 } mrapeerstate_t;
 
 
-mrapeerstate_t* mrapeerstate_new             (); /* the returned pointer is ref'd and must be unref'd after usage */
-void            mrapeerstate_unref           (mrapeerstate_t*);
+mrapeerstate_t* mrapeerstate_new                  (); /* the returned pointer is ref'd and must be unref'd after usage */
+void            mrapeerstate_unref                (mrapeerstate_t*);
 
-int             mrapeerstate_init_from_header  (mrapeerstate_t*, const mraheader_t*, time_t message_time);
-int             mrapeerstate_degrade_encryption(mrapeerstate_t*, time_t message_time);
-int             mrapeerstate_apply_header      (mrapeerstate_t*, const mraheader_t*, time_t message_time); /*returns 1 on changes*/
+int             mrapeerstate_init_from_header     (mrapeerstate_t*, const mraheader_t*, time_t message_time);
+int             mrapeerstate_init_from_gossip     (mrapeerstate_t*, const mraheader_t*, time_t message_time);
 
-int             mrapeerstate_load_from_db__  (mrapeerstate_t*, mrsqlite3_t*, const char* addr);
-int             mrapeerstate_save_to_db__    (const mrapeerstate_t*, mrsqlite3_t*, int create);
+int             mrapeerstate_degrade_encryption   (mrapeerstate_t*, time_t message_time);
+
+void            mrapeerstate_apply_header         (mrapeerstate_t*, const mraheader_t*, time_t message_time);
+void            mrapeerstate_apply_gossip         (mrapeerstate_t*, const mraheader_t*, time_t message_time);
+
+char*           mrapeerstate_render_gossip_header (const mrapeerstate_t*);
+
+mrkey_t*        mrapeerstate_peek_key             (const mrapeerstate_t*);
+
+int             mrapeerstate_recalc_fingerprint   (mrapeerstate_t*);
+
+int             mrapeerstate_load_by_addr__       (mrapeerstate_t*, mrsqlite3_t*, const char* addr);
+int             mrapeerstate_load_by_fingerprint__(mrapeerstate_t*, mrsqlite3_t*, const char* fingerprint);
+int             mrapeerstate_save_to_db__         (const mrapeerstate_t*, mrsqlite3_t*, int create);
 
 
 #ifdef __cplusplus

@@ -29,15 +29,17 @@ extern "C" {
 
 
 
-typedef struct mrmsg_t mrmsg_t;
-typedef struct mrchat_t mrchat_t;
-typedef struct mrmailbox_t mrmailbox_t;
+typedef struct _mrmsg mrmsg_t;
+typedef struct _mrchat mrchat_t;
+typedef struct _mrmailbox mrmailbox_t;
 
 
 #define MR_SYSTEM_GROUPNAME_CHANGED           2
 #define MR_SYSTEM_GROUPIMAGE_CHANGED          3
 #define MR_SYSTEM_MEMBER_ADDED_TO_GROUP       4
 #define MR_SYSTEM_MEMBER_REMOVED_FROM_GROUP   5
+#define MR_SYSTEM_AUTOCRYPT_SETUP_MESSAGE     6
+#define MR_SYSTEM_OOB_VERIFY_MESSAGE          7
 
 
 typedef enum {
@@ -73,7 +75,7 @@ typedef struct mrmimefactory_t {
 	char*        m_references;
 	int          m_req_mdn;
 
-	/* out: after a successfull mrmimefactory_create_mime(), here's the data */
+	/* out: after a successfull mrmimefactory_render(), here's the data */
 	MMAPString*  m_out;
 	int          m_out_encrypted;
 

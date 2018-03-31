@@ -128,7 +128,7 @@ int mrsmtp_connect(mrsmtp_t* ths, const mrloginparam_t* lp)
 
 		ths->m_hEtpan = mailsmtp_new(0, NULL);
 		if( ths->m_hEtpan == NULL ) {
-			mrmailbox_log_error(ths->m_mailbox, 0, "SMTP-object creationed failed.");
+			mrmailbox_log_error(ths->m_mailbox, 0, "SMTP-object creation failed.");
 			goto cleanup;
 		}
 		mailsmtp_set_progress_callback(ths->m_hEtpan, body_progress, ths);
@@ -139,9 +139,9 @@ int mrsmtp_connect(mrsmtp_t* ths, const mrloginparam_t* lp)
 		/* connect to SMTP server */
 		if( lp->m_server_flags&(MR_SMTP_SOCKET_STARTTLS|MR_SMTP_SOCKET_PLAIN) )
 		{
-			mrmailbox_log_info(ths->m_mailbox, 0, "Connecting to SMTP-server \"%s:%i\"...", lp->m_send_server, (int)lp->m_send_port);
+			mrmailbox_log_info(ths->m_mailbox, 0, "Connecting to SMTP-server \"%s:%i\" via Socket...", lp->m_send_server, (int)lp->m_send_port);
 			if( (r=mailsmtp_socket_connect(ths->m_hEtpan, lp->m_send_server, lp->m_send_port)) != MAILSMTP_NO_ERROR ) {
-				mrmailbox_log_error_if(&ths->m_log_connect_errors, ths->m_mailbox, 0, "SMTP-STARTTLS connection to %s:%i failed (%s)", lp->m_send_server, (int)lp->m_send_port, mailsmtp_strerror(r));
+				mrmailbox_log_error_if(&ths->m_log_connect_errors, ths->m_mailbox, 0, "SMTP-Socket connection to %s:%i failed (%s)", lp->m_send_server, (int)lp->m_send_port, mailsmtp_strerror(r));
 				goto cleanup;
 			}
 		}

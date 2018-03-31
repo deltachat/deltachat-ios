@@ -28,10 +28,13 @@ extern "C" {
 
 
 /**
- * An object for handling key=value parameter lists.
- * The parameter object is used eg. by mrchat_t or mrmsg_t.
- * To access the single parameters use the setter and getter functions with an
- * MRP_* constant.
+ * An object for handling key=value parameter lists; for the key, curently only
+ * a single character is allowed.
+ *
+ * The object is used eg. by mrchat_t or mrmsg_t, for readable paramter names,
+ * these classes define some MRP_* constantats.
+ *
+ * Only for library-internal use.
  */
 typedef struct mrparam_t
 {
@@ -53,6 +56,8 @@ typedef struct mrparam_t
 #define MRP_FORWARDED         'a'  /* for msgs */
 #define MRP_SYSTEM_CMD        'S'  /* for msgs */
 #define MRP_SYSTEM_CMD_PARAM  'E'  /* for msgs */
+#define MRP_SYSTEM_CMD_PARAM2 'F'  /* for msgs */
+#define MRP_SYSTEM_CMD_PARAM3 'G'  /* for msgs */
 
 #define MRP_SERVER_FOLDER     'Z'  /* for jobs */
 #define MRP_SERVER_UID        'z'  /* for jobs */
@@ -62,23 +67,22 @@ typedef struct mrparam_t
 #define MRP_REFERENCES        'R'  /* for groups and chats: References-header last used for a chat */
 #define MRP_UNPROMOTED        'U'  /* for groups */
 #define MRP_PROFILE_IMAGE     'i'  /* for groups and contacts */
-#define MRP_DEL_AFTER_SEND    'P'  /* for groups and msgs: physically delete group after message sending if msg-value matches group-value */
+#define MRP_SELFTALK          'K'  /* for chats */
 
 
 /* user functions */
-int             mrparam_exists       (mrparam_t*, int key);
-char*           mrparam_get          (mrparam_t*, int key, const char* def); /* the value may be an empty string, "def" is returned only if the value unset.  The result must be free()'d in any case. */
-int32_t         mrparam_get_int      (mrparam_t*, int key, int32_t def);
-void            mrparam_set          (mrparam_t*, int key, const char* value);
-void            mrparam_set_int      (mrparam_t*, int key, int32_t value);
+int             mrparam_exists         (mrparam_t*, int key);
+char*           mrparam_get            (mrparam_t*, int key, const char* def); /* the value may be an empty string, "def" is returned only if the value unset.  The result must be free()'d in any case. */
+int32_t         mrparam_get_int        (mrparam_t*, int key, int32_t def);
+void            mrparam_set            (mrparam_t*, int key, const char* value);
+void            mrparam_set_int        (mrparam_t*, int key, int32_t value);
 
 /* library-private */
-mrparam_t*      mrparam_new          ();
-void            mrparam_empty        (mrparam_t*);
-void            mrparam_unref        (mrparam_t*);
-void            mrparam_set_packed   (mrparam_t*, const char*);
-
-
+mrparam_t*      mrparam_new            ();
+void            mrparam_empty          (mrparam_t*);
+void            mrparam_unref          (mrparam_t*);
+void            mrparam_set_packed     (mrparam_t*, const char*);
+void            mrparam_set_urlencoded (mrparam_t*, const char*);
 
 
 #ifdef __cplusplus

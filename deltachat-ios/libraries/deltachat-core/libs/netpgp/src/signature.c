@@ -1224,7 +1224,7 @@ pgp_sign_buf(pgp_io_t *io,
 	pgp_sig_type_t	 sig_type;
 	pgp_hash_alg_t	 hash_alg;
 	pgp_output_t		*output;
-	pgp_memory_t		*mem;
+	pgp_memory_t		*mem = NULL;
 	uint8_t			 keyid[PGP_KEY_ID_SIZE];
 	pgp_hash_t		*hash;
 	unsigned		 ret;
@@ -1232,7 +1232,7 @@ pgp_sign_buf(pgp_io_t *io,
 	sig = NULL;
 	sig_type = PGP_SIG_BINARY;
 	output = NULL;
-	mem = pgp_memory_new();
+	//mem = pgp_memory_new(); // EDIT BY MR: fix memory leak - pointer is overwritten by pgp_setup_memory_write() below
 	hash = NULL;
 
 	hash_alg = pgp_str_to_hash_alg(hashname);
@@ -1259,7 +1259,7 @@ pgp_sign_buf(pgp_io_t *io,
 	pgp_start_sig(sig, seckey, hash_alg, sig_type);
 
 	/* setup writer */
-	pgp_setup_memory_write(&output, &mem, insize);
+	pgp_setup_memory_write(&output, &mem, insize); /* calls pgp_output_new() and pgp_memory_new() */
 
 	if (cleartext) {
 		/* Do the signing */
@@ -1312,6 +1312,7 @@ pgp_sign_buf(pgp_io_t *io,
 
 		/* tidy up */
 		pgp_writer_close(output);
+		pgp_output_delete(output); // EDIT BY MR: fix memory leak
 		pgp_create_sig_delete(sig);
 	}
 	return mem;

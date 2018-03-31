@@ -53,6 +53,9 @@ static char* read_autoconf_file(mrmailbox_t* mailbox, const char* url)
  ******************************************************************************/
 
 
+/* documentation: https://developer.mozilla.org/en-US/docs/Mozilla/Thunderbird/Autoconfiguration */
+
+
 typedef struct moz_autoconfigure_t
 {
 	const mrloginparam_t* m_in;
@@ -65,7 +68,7 @@ typedef struct moz_autoconfigure_t
 	/* currently, we assume there is only one emailProvider tag in the
 	file, see example at https://wiki.mozilla.org/Thunderbird:Autoconfiguration:ConfigFileFormat
 	moreover, we assume, the returned domains match the one queried.  I've not seen another example (bp).
-	However, _if_ the assumpltions are wrong, we can add a first saxparser-pass that searches for the correct domain
+	However, _if_ the assumptions are wrong, we can add a first saxparser-pass that searches for the correct domain
 	and the second pass will look for the index found. */
 
 	#define MOZ_SERVER_IMAP 1
@@ -358,10 +361,6 @@ cleanup:
  ******************************************************************************/
 
 
-static int       s_configure_running = 0;
-static int       s_configure_do_exit = 1; /* the value 1 avoids mrmailbox_configure_cancel() from stopping already stopped threads */
-
-
 /**
  * Configure and connect a mailbox.
  *
@@ -369,7 +368,7 @@ static int       s_configure_do_exit = 1; /* the value 1 avoids mrmailbox_config
  *   using mrmailbox_set_config().
  *
  * - mrmailbox_configure_and_connect() may take a while, so it might be a good idea to let it run in a non-GUI-thread;
- *   to cancel the configuration progress, you can then use mrmailbox_configure_cancel().
+ *   to stop the configuration progress, you can use mrmailbox_stop_ongoing_process().
  *
  * - The function sends out a number of #MR_EVENT_CONFIGURE_PROGRESS events that may be used to create
  *   a progress bar or stuff like that.
@@ -399,32 +398,27 @@ int mrmailbox_configure_and_connect(mrmailbox_t* mailbox)
 	int             success = 0, locked = 0, i;
 	int             imap_connected_here = 0;
 
-	mrloginparam_t* param = mrloginparam_new();
+	mrloginparam_t* param = NULL;
 	char*           param_domain = NULL; /* just a pointer inside param, must not be freed! */
 	char*           param_addr_urlencoded = NULL;
 	mrloginparam_t* param_autoconfig = NULL;
 
-	#define         PROGRESS(p) \
-						if( s_configure_do_exit ) { goto cleanup; } \
-						mailbox->m_cb(mailbox, MR_EVENT_CONFIGURE_PROGRESS, (p), 0);
-
-	if( mailbox == NULL ) {
-		goto cleanup;
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
+		return 0;
 	}
+
+	if( !mrmailbox_alloc_ongoing(mailbox) ) {
+		return 0; /* no cleanup as this would call mrmailbox_free_ongoing() */
+	}
+
+	#define PROGRESS(p) \
+				if( mr_shall_stop_ongoing ) { goto cleanup; } \
+				mailbox->m_cb(mailbox, MR_EVENT_CONFIGURE_PROGRESS, (p), 0);
 
 	if( !mrsqlite3_is_open(mailbox->m_sql) ) {
 		mrmailbox_log_error(mailbox, 0, "Cannot configure, database not opened.");
-		s_configure_do_exit = 1;
 		goto cleanup;
 	}
-
-	if( s_configure_running || s_configure_do_exit == 0 ) {
-		mrmailbox_log_error(mailbox, 0, "Already configuring.");
-		goto cleanup;
-	}
-
-	s_configure_running = 1;
-	s_configure_do_exit = 0;
 
 	/* disconnect */
 	mrmailbox_disconnect(mailbox);
@@ -453,6 +447,8 @@ int mrmailbox_configure_and_connect(mrmailbox_t* mailbox)
 
 	/* 1.  Load the parameters and check email-address and password
 	 **************************************************************************/
+
+	param = mrloginparam_new();
 
 	mrsqlite3_lock(mailbox->m_sql);
 	locked = 1;
@@ -501,10 +497,19 @@ int mrmailbox_configure_and_connect(mrmailbox_t* mailbox)
 		/* A.  Search configurations from the domain used in the email-address */
 		for( i = 0; i <= 1; i++ ) {
 			if( param_autoconfig==NULL ) {
-				char* url = mr_mprintf("%s://autoconfig.%s/mail/config-v1.1.xml?emailaddress=%s", i==0?"http":"https", param_domain, param_addr_urlencoded); /* Thunderbird may or may not use SSL */
+				char* url = mr_mprintf("%s://autoconfig.%s/mail/config-v1.1.xml?emailaddress=%s", i==0?"https":"http", param_domain, param_addr_urlencoded); /* Thunderbird may or may not use SSL */
 				param_autoconfig = moz_autoconfigure(mailbox, url, param);
 				free(url);
-				PROGRESS(300+i*50)
+				PROGRESS(300+i*20)
+			}
+		}
+
+		for( i = 0; i <= 1; i++ ) {
+			if( param_autoconfig==NULL ) {
+				char* url = mr_mprintf("%s://%s/.well-known/autoconfig/mail/config-v1.1.xml?emailaddress=%s", i==0?"https":"http", param_domain, param_addr_urlencoded); // the doc does not mention `emailaddress=`, however, Thunderbird adds it, see https://releases.mozilla.org/pub/thunderbird/ ,  which makes some sense
+				param_autoconfig = moz_autoconfigure(mailbox, url, param);
+				free(url);
+				PROGRESS(340+i*30)
 			}
 		}
 
@@ -691,47 +696,8 @@ cleanup:
 	mrloginparam_unref(param_autoconfig);
 	free(param_addr_urlencoded);
 
-	s_configure_do_exit = 1; /* set this before sending terminating, avoids mrmailbox_configure_cancel() to stop the thread */
-	s_configure_running = 0;
+	mrmailbox_free_ongoing(mailbox);
 	return success;
-}
-
-
-/**
- * Signal the configure-process to stop.
- *
- * After that, mrmailbox_configure_cancel() returns _without_ waiting
- * for mrmailbox_configure_and_connect() to return.
- *
- * mrmailbox_configure_and_connect() will return ASAP then, however, it may
- * still take a moment.  If in doubt, the caller may also decide the kill the
- * thread after a few seconds; eg. the configuration process may hang in a
- * function not under the control of the core (eg. #MR_EVENT_HTTP_GET). Another
- * reason for mrmailbox_configure_cancel() not to wait is that otherwise it
- * would be GUI-blocking and should be started in another thread then; this
- * would make things even more complicated.
- *
- * @memberof mrmailbox_t
- *
- * @param mailbox The mailbox object as created by mrmailbox_new()
- *
- * @return None
- */
-void mrmailbox_configure_cancel(mrmailbox_t* mailbox)
-{
-	if( mailbox == NULL ) {
-		return;
-	}
-
-	if( s_configure_running && s_configure_do_exit==0 )
-	{
-		mrmailbox_log_info(mailbox, 0, "Signaling the configure-process to stop ASAP.");
-		s_configure_do_exit = 1;
-	}
-	else
-	{
-		mrmailbox_log_info(mailbox, 0, "No configure-process to stop.");
-	}
 }
 
 
@@ -752,7 +718,7 @@ int mrmailbox_is_configured(mrmailbox_t* mailbox)
 {
 	int is_configured;
 
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return 0;
 	}
 
@@ -769,3 +735,82 @@ int mrmailbox_is_configured(mrmailbox_t* mailbox)
 	return is_configured? 1 : 0;
 }
 
+
+/*
+ * Request an ongoing process to start.
+ * Returns 0=process started, 1=not started, there is running another process
+ */
+static int s_ongoing_running = 0;
+int        mr_shall_stop_ongoing = 1; /* the value 1 avoids mrmailbox_stop_ongoing_process() from stopping already stopped threads */
+int mrmailbox_alloc_ongoing(mrmailbox_t* mailbox)
+{
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
+		return 0;
+	}
+
+	if( s_ongoing_running || mr_shall_stop_ongoing == 0 ) {
+		mrmailbox_log_warning(mailbox, 0, "There is already another ongoing process running.");
+		return 0;
+	}
+
+	s_ongoing_running     = 1;
+	mr_shall_stop_ongoing = 0;
+	return 1;
+}
+
+
+/*
+ * Frees the process allocated with mrmailbox_alloc_ongoing() - independingly of mr_shall_stop_ongoing.
+ * If mrmailbox_alloc_ongoing() fails, this function MUST NOT be called.
+ */
+void mrmailbox_free_ongoing(mrmailbox_t* mailbox)
+{
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
+		return;
+	}
+
+	s_ongoing_running     = 0;
+	mr_shall_stop_ongoing = 1; /* avoids mrmailbox_stop_ongoing_process() to stop the thread */
+}
+
+
+/**
+ * Signal an ongoing process to stop.
+ *
+ * After that, mrmailbox_stop_ongoing_process() returns _without_ waiting
+ * for the ongoing process to return.
+ *
+ * The ongoing process will return ASAP then, however, it may
+ * still take a moment.  If in doubt, the caller may also decide to kill the
+ * thread after a few seconds; eg. the process may hang in a
+ * function not under the control of the core (eg. #MR_EVENT_HTTP_GET). Another
+ * reason for mrmailbox_stop_ongoing_process() not to wait is that otherwise it
+ * would be GUI-blocking and should be started in another thread then; this
+ * would make things even more complicated.
+ *
+ * Typical ongoing processes are started by mrmailbox_configure_and_connect(),
+ * mrmailbox_initiate_key_transfer() or mrmailbox_imex(). As there is always at most only
+ * one onging process at the same time, there is no need to define _which_ process to exit.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object.
+ *
+ * @return None
+ */
+void mrmailbox_stop_ongoing_process(mrmailbox_t* mailbox)
+{
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
+		return;
+	}
+
+	if( s_ongoing_running && mr_shall_stop_ongoing==0 )
+	{
+		mrmailbox_log_info(mailbox, 0, "Signaling the ongoing process to stop ASAP.");
+		mr_shall_stop_ongoing = 1;
+	}
+	else
+	{
+		mrmailbox_log_info(mailbox, 0, "No ongoing process to stop.");
+	}
+}

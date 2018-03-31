@@ -374,6 +374,7 @@ pgp_validate_key_cb(const pgp_packet_t *pkt, pgp_cbdata_t *cbinfo)
         pgp_pubkey_t *sigkey = NULL;
         pgp_pubkey_t *primary_pubkey;
 
+		// last_seen is eg. LS_ID or LS_SUBKEY
 		if(vdata->last_seen == LS_UNKNOWN)
             break;
 
@@ -479,7 +480,7 @@ pgp_validate_key_cb(const pgp_packet_t *pkt, pgp_cbdata_t *cbinfo)
                         "Unexpected signature type 0x%02x\n",
                             content->sig.info.type);
             }
-		}
+		} // END switch(content->sig.info.type)
 
 		if (valid) {
 			if (vdata->result && !add_sig_to_list(&content->sig.info,
@@ -489,6 +490,9 @@ pgp_validate_key_cb(const pgp_packet_t *pkt, pgp_cbdata_t *cbinfo)
 				    "Can't add valid sig to list\n");
 			}
 	        vdata->sig_is_valid = 1;
+	        if( vdata->valid_sig_info.key_alg ) {
+				pgp_free_sig_info(&vdata->valid_sig_info); // EDIT BY MR: fix memory leak - according to validate.h, valid_sig_info should contain the _last_ signature, so free previous ones
+			}
             copy_sig_info(&vdata->valid_sig_info,
                           &content->sig.info);
 		} else if (vdata->result){
@@ -915,7 +919,7 @@ pgp_filter_keys_from_mem(
             pgp_keyring_t *destsecring,
             pgp_keyring_t *certring,
             const unsigned armour,
-            pgp_memory_t *mem)
+            const pgp_memory_t *mem)
 {
 	pgp_stream_t *stream;
 	validate_key_cb_t vdata;

@@ -32,14 +32,16 @@ extern "C" {
 #endif
 
 
-/**
- * Library-internal.
- */
+#include "mrhash.h"
+#include "mrparam.h"
+
+
 typedef struct mrmimepart_t
 {
 	/** @privatesection */
 	int                 m_type; /*one of MR_MSG_* */
 	int                 m_is_meta; /*meta parts contain eg. profile or group images and are only present if there is at least one "normal" part*/
+	int                 m_int_mimetype;
 	char*               m_msg;
 	char*               m_msg_raw;
 	int                 m_bytes;
@@ -47,17 +49,18 @@ typedef struct mrmimepart_t
 } mrmimepart_t;
 
 
-/**
- * Library-internal.
- */
 typedef struct mrmimeparser_t
 {
 	/** @privatesection */
 
-	/* data, read-only, must not be free()'d (it is free()'d when the MrMimeParser object gets destructed) */
-	carray*                m_parts;    /*array of mrmimepart_t objects*/
+	/* data, read-only, must not be free()'d (it is free()'d when the mrmimeparser_t object gets destructed) */
+	carray*                m_parts;             /* array of mrmimepart_t objects */
 	struct mailmime*       m_mimeroot;
-	struct mailimf_fields* m_header;   /* a pointer somewhere to the MIME data, must not be freed */
+
+	mrhash_t               m_header;            /* memoryhole-compliant header */
+	struct mailimf_fields* m_header_root;       /* must NOT be freed, do not use for query, merged into m_header, a pointer somewhere to the MIME data*/
+	struct mailimf_fields* m_header_protected;  /* MUST be freed, do not use for query, merged into m_header  */
+
 	char*                  m_subject;
 	int                    m_is_send_by_messenger;
 	int                    m_decrypted_and_validated;
@@ -69,43 +72,42 @@ typedef struct mrmimeparser_t
 
 	mrmailbox_t*           m_mailbox;
 
-	carray*                m_reports; /* array of mailmime objects */
+	carray*                m_reports;           /* array of mailmime objects */
 
 	int                    m_is_system_message;
 
 } mrmimeparser_t;
 
 
-mrmimeparser_t*       mrmimeparser_new            (const char* blobdir, mrmailbox_t*);
-void                  mrmimeparser_unref          (mrmimeparser_t*);
-void                  mrmimeparser_empty          (mrmimeparser_t*);
+mrmimeparser_t*  mrmimeparser_new                    (const char* blobdir, mrmailbox_t*);
+void             mrmimeparser_unref                  (mrmimeparser_t*);
+void             mrmimeparser_empty                  (mrmimeparser_t*);
 
-/* The data returned from Parse() must not be freed (it is free()'d when the MrMimeParser object gets destructed)
-Unless memory-allocation-errors occur, Parse() returns at least one empty part.
-(this is because we want to add even these message to our database to avoid reading them several times.
-of course, these empty messages are not added to any chat) */
-void                  mrmimeparser_parse          (mrmimeparser_t*, const char* body_not_terminated, size_t body_bytes);
+void             mrmimeparser_parse                  (mrmimeparser_t*, const char* body_not_terminated, size_t body_bytes);
 
-/* mrmimeparser_get_last_nonmeta() gets the _last_ part _not_ flagged with m_is_meta. */
-mrmimepart_t*   mrmimeparser_get_last_nonmeta  (mrmimeparser_t*);
-#define         mrmimeparser_has_nonmeta(a)    (mrmimeparser_get_last_nonmeta((a))!=NULL)
 
-/* mrmimeparser_is_mailinglist_message() just checks if there is a `List-ID`-header. */
-int                   mrmimeparser_is_mailinglist_message (mrmimeparser_t*);
+/* the following functions can be used only after a call to mrmimeparser_parse() */
+struct mailimf_field*          mrmimeparser_lookup_field           (mrmimeparser_t*, const char* field_name);
+struct mailimf_optional_field* mrmimeparser_lookup_optional_field  (mrmimeparser_t*, const char* field_name);
+struct mailimf_optional_field* mrmimeparser_lookup_optional_field2 (mrmimeparser_t*, const char* field_name, const char* or_field_name);
+mrmimepart_t*                  mrmimeparser_get_last_nonmeta       (mrmimeparser_t*);
+#define                        mrmimeparser_has_nonmeta(a)         (mrmimeparser_get_last_nonmeta((a))!=NULL)
+int                            mrmimeparser_is_mailinglist_message (mrmimeparser_t*);
+int                            mrmimeparser_sender_equals_recipient(mrmimeparser_t*);
+
+
 
 /* low-level-tools for working with mailmime structures directly */
-char*                          mr_find_first_addr    (const struct mailimf_mailbox_list*); /*the result must be freed*/
-char*                          mr_normalize_addr     (const char*); /*the result must be freed*/
-struct mailimf_fields*         mr_find_mailimf_fields(struct mailmime*); /*the result is a pointer to mime, must not be freed*/
-struct mailimf_field*          mr_find_mailimf_field (struct mailimf_fields*, int wanted_fld_type); /*the result is a pointer to mime, must not be freed*/
-struct mailimf_optional_field* mr_find_mailimf_field2(struct mailimf_fields*, const char* wanted_fld_name);
-struct mailmime_parameter*     mr_find_ct_parameter  (struct mailmime*, const char* name);
-int                            mr_mime_transfer_decode(struct mailmime*, const char** ret_decoded_data, size_t* ret_decoded_data_bytes, char** ret_to_mmap_string_unref);
-
-
 #ifdef MR_USE_MIME_DEBUG
-void mr_print_mime(struct mailmime * mime);
+void                           mailmime_print                (struct mailmime*);
 #endif
+struct mailmime_parameter*     mailmime_find_ct_parameter    (struct mailmime*, const char* name);
+int                            mailmime_transfer_decode      (struct mailmime*, const char** ret_decoded_data, size_t* ret_decoded_data_bytes, char** ret_to_mmap_string_unref);
+struct mailimf_fields*         mailmime_find_mailimf_fields  (struct mailmime*); /*the result is a pointer to mime, must not be freed*/
+char*                          mailimf_find_first_addr       (const struct mailimf_mailbox_list*); /*the result must be freed*/
+struct mailimf_field*          mailimf_find_field            (struct mailimf_fields*, int wanted_fld_type); /*the result is a pointer to mime, must not be freed*/
+struct mailimf_optional_field* mailimf_find_optional_field   (struct mailimf_fields*, const char* wanted_fld_name);
+mrhash_t*                      mailimf_get_recipients        (struct mailimf_fields*);
 
 
 #ifdef __cplusplus

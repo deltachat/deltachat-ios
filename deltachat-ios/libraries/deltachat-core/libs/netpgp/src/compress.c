@@ -359,9 +359,6 @@ pgp_decompress(pgp_region_t *region, pgp_stream_t *stream,
 #endif
 
 	default:
-		PGP_ERROR_1(&stream->errors,
-			PGP_E_ALG_UNSUPPORTED_COMPRESS_ALG,
-			"Compression algorithm %d is not yet supported", type);
 		return 0;
 	}
 
@@ -392,15 +389,30 @@ pgp_decompress(pgp_region_t *region, pgp_stream_t *stream,
 #endif
 
 	default:
-		PGP_ERROR_1(&stream->errors,
-			PGP_E_ALG_UNSUPPORTED_COMPRESS_ALG,
-			"Compression algorithm %d is not yet supported", type);
 		return 0;
 	}
 
 	ret = pgp_parse(stream, !printerrors);
 
 	pgp_reader_pop(stream);
+
+	// EDIT BY MR - fix memory leak
+	switch (type) {
+		case PGP_C_ZIP:
+		case PGP_C_ZLIB:
+			inflateEnd(&z.zstream);
+			break;
+
+		#ifdef HAVE_BZLIB_H
+		case PGP_C_BZIP2:
+			BZ2_bzDecompressEnd(&bz.bzstream);
+			break;
+		#endif
+
+		default:
+			return 0;
+	}
+	// /EDIT BY MR - fix memory leak
 
 	return ret;
 }
@@ -483,6 +495,7 @@ pgp_writez(pgp_output_t *out, const uint8_t *data, const unsigned len)
 		pgp_write_scalar(out, PGP_C_ZLIB, 1) &&
 		pgp_write(out, zip->dst, (unsigned)zip->stream.total_out);
 
+	deflateEnd(&zip->stream); // EDIT BY MR: fix memory leak
 	free(zip->src);
 	free(zip->dst);
 	free(zip);

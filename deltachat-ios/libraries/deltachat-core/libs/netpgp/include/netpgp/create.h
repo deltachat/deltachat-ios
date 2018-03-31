@@ -93,11 +93,11 @@ unsigned pgp_write_one_pass_sig(pgp_output_t *,
 				const pgp_seckey_t *,
 				const pgp_hash_alg_t,
 				const pgp_sig_type_t);
-unsigned pgp_write_litdata(pgp_output_t *, 
+unsigned pgp_write_litdata(pgp_output_t *,
 				const uint8_t *,
 				const int,
 				const pgp_litdata_enum);
-pgp_pk_sesskey_t *pgp_create_pk_sesskey(pgp_key_t *, const char *, pgp_pk_sesskey_t *);
+pgp_pk_sesskey_t *pgp_create_pk_sesskey(pgp_key_t *, const char *, const pgp_pk_sesskey_t *);
 unsigned pgp_write_pk_sesskey(pgp_output_t *, pgp_pk_sesskey_t *);
 unsigned pgp_write_xfer_key(pgp_output_t *output,
             const pgp_key_t *key,
@@ -113,9 +113,11 @@ void pgp_fast_create_rsa_seckey(pgp_seckey_t *, time_t, BIGNUM *,
 				BIGNUM *, BIGNUM *);
 unsigned encode_m_buf(const uint8_t *, size_t, const pgp_pubkey_t *,
 				uint8_t *);
+#if 0 //////
 unsigned pgp_fileread_litdata(const char *, const pgp_litdata_enum,
 				pgp_output_t *);
 unsigned pgp_write_symm_enc_data(const uint8_t *, const int, pgp_symm_alg_t, const uint8_t* key,
 				pgp_output_t *);
+#endif //////
 
 #endif /* CREATE_H_ */

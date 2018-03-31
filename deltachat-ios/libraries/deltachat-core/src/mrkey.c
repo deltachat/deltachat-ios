@@ -20,8 +20,9 @@
  ******************************************************************************/
 
 
-#include "mrmailbox_internal.h"
+#include <ctype.h>
 #include <memory.h>
+#include "mrmailbox_internal.h"
 #include "mrkey.h"
 #include "mrpgp.h"
 #include "mrtools.h"
@@ -98,7 +99,7 @@ void mrkey_unref(mrkey_t* ths)
 }
 
 
-int mrkey_set_from_raw(mrkey_t* ths, const void* data, int bytes, int type)
+int mrkey_set_from_binary(mrkey_t* ths, const void* data, int bytes, int type)
 {
     mrkey_empty(ths);
     if( ths==NULL || data==NULL || bytes <= 0 ) {
@@ -121,7 +122,7 @@ int mrkey_set_from_key(mrkey_t* ths, const mrkey_t* o)
 	if( ths==NULL || o==NULL ) {
 		return 0;
 	}
-	return mrkey_set_from_raw(ths, o->m_binary, o->m_bytes, o->m_type);
+	return mrkey_set_from_binary(ths, o->m_binary, o->m_bytes, o->m_type);
 }
 
 
@@ -131,7 +132,7 @@ int mrkey_set_from_stmt(mrkey_t* ths, sqlite3_stmt* stmt, int index, int type)
 	if( ths==NULL || stmt==NULL ) {
 		return 0;
 	}
-	return mrkey_set_from_raw(ths, (unsigned char*)sqlite3_column_blob(stmt, index), sqlite3_column_bytes(stmt, index), type);
+	return mrkey_set_from_binary(ths, (unsigned char*)sqlite3_column_blob(stmt, index), sqlite3_column_bytes(stmt, index), type);
 }
 
 
@@ -151,7 +152,7 @@ int mrkey_set_from_base64(mrkey_t* ths, const char* base64, int type)
 		return 0; /* bad key */
 	}
 
-	mrkey_set_from_raw(ths, result, result_len, type);
+	mrkey_set_from_binary(ths, result, result_len, type);
 	mmap_string_unref(result);
 
 	return 1;
@@ -161,7 +162,7 @@ int mrkey_set_from_base64(mrkey_t* ths, const char* base64, int type)
 int mrkey_set_from_file(mrkey_t* ths, const char* pathNfilename, mrmailbox_t* mailbox)
 {
 	char*   buf = NULL;
-	char    *p1, *p2; /* just pointers inside buf, must not be freed */
+	char    *headerline, *base64; /* just pointers inside buf, must not be freed */
 	size_t  buf_bytes;
 	int     type = -1, success = 0;
 
@@ -176,37 +177,23 @@ int mrkey_set_from_file(mrkey_t* ths, const char* pathNfilename, mrmailbox_t* ma
 		goto cleanup; /* error is already loged */
 	}
 
-	mr_remove_cr_chars(buf); /* make comparison easier */
-	mr_trim(buf);
-
-	if( strncmp(buf, "-----BEGIN PGP PUBLIC KEY BLOCK-----\n", 37)==0 ) {
-		if( mr_str_replace(&buf, "-----END PGP PUBLIC KEY BLOCK-----", "")!=1 ) {
-			mrmailbox_log_warning(mailbox, 0, "Bad header for key \"%s\".", pathNfilename);
-			goto cleanup;
-		}
-		type = MR_PUBLIC;
-		p1 = buf + 37; /* must be done after buf-pointer modification in mr_str_replace() */
+	if( !mr_split_armored_data(buf, &headerline, NULL, NULL, &base64)
+	 || headerline == NULL || base64 == NULL ) {
+		goto cleanup;
 	}
-	else if( strncmp(buf, "-----BEGIN PGP PRIVATE KEY BLOCK-----\n", 38)==0 ) {
-		if( mr_str_replace(&buf, "-----END PGP PRIVATE KEY BLOCK-----", "")!=1 ) {
-			mrmailbox_log_warning(mailbox, 0, "Bad header for key \"%s\".", pathNfilename);
-			goto cleanup;
-		}
+
+	if( strcmp(headerline, "-----BEGIN PGP PUBLIC KEY BLOCK-----")==0 ) {
+		type = MR_PUBLIC;
+	}
+	else if( strcmp(headerline, "-----BEGIN PGP PRIVATE KEY BLOCK-----")==0 ) {
 		type = MR_PRIVATE;
-		p1 = buf + 38; /* must be done after buf-pointer modification in mr_str_replace() */
 	}
 	else {
 		mrmailbox_log_warning(mailbox, 0, "Header missing for key \"%s\".", pathNfilename);
 		goto cleanup;
 	}
 
-	/* base64 starts after first empty line, if any */
-	p2 = strstr(p1, "\n\n"); /* `\r*  is already removed above */
-	if( p2 ) {
-		p1 = p2;
-	}
-
-	if( !mrkey_set_from_base64(ths, p1, type) ) {
+	if( !mrkey_set_from_base64(ths, base64, type) ) {
 		mrmailbox_log_warning(mailbox, 0, "Bad data in key \"%s\".", pathNfilename);
 		goto cleanup;
 	}
@@ -416,43 +403,111 @@ cleanup:
 }
 
 
-char* mr_render_fingerprint(const uint8_t* data, size_t bytes)
+int mrkey_render_asc_to_file(const mrkey_t* key, const char* file, mrmailbox_t* mailbox /* for logging only */)
 {
-	int i;
-	char* temp;
+	int   success = 0;
+	char* file_content = NULL;
 
-	if( data ==NULL || bytes <= 0 ) {
-		return safe_strdup("ErrFingerprint2");
+	if( key == NULL || file == NULL || mailbox == NULL ) {
+		goto cleanup;
 	}
 
-	char* ret = malloc(bytes*4+1); if( ret==NULL ) { exit(46); }
-	ret[0] = 0;
-
-	for( i = 0; i < bytes; i++ ) {
-		temp = mr_mprintf("%02X%s", (int)data[i], (i==6||i==13)?"\n":" ");
-		strcat(ret, temp);
-		free(temp);
+	file_content = mrkey_render_asc(key, NULL);
+	if( file_content == NULL ) {
+		goto cleanup;
 	}
 
-	return ret;
+	if( !mr_write_file(file, file_content, strlen(file_content), mailbox) ) {
+		mrmailbox_log_error(mailbox, 0, "Cannot write key to %s", file);
+		goto cleanup;
+	}
+
+cleanup:
+	free(file_content);
+	return success;
 }
 
 
-char* mrkey_render_fingerprint(const mrkey_t* key, mrmailbox_t* mailbox)
+/* make a fingerprint human-readable */
+char* mr_format_fingerprint(const char* fingerprint)
+{
+	int i = 0, fingerprint_len = strlen(fingerprint);
+	mrstrbuilder_t ret;
+	mrstrbuilder_init(&ret, 0);
+
+    while( fingerprint[i] ) {
+		mrstrbuilder_catf(&ret, "%c", fingerprint[i]);
+		i++;
+		if( i != fingerprint_len ) {
+			if( i%20 == 0 ) {
+				mrstrbuilder_cat(&ret, "\n");
+			}
+			else if( i%4 == 0 ) {
+				mrstrbuilder_cat(&ret, " ");
+			}
+		}
+    }
+
+	return ret.m_buf;
+}
+
+
+/* bring a human-readable or otherwise formatted fingerprint back to the
+40-characters-uppercase-hex format */
+char* mr_normalize_fingerprint(const char* in)
+{
+	if( in == NULL ) {
+		return NULL;
+	}
+
+	mrstrbuilder_t out;
+	mrstrbuilder_init(&out, 0);
+
+	const char* p1 = in;
+	while( *p1 ) {
+		if( (*p1 >= '0' && *p1 <= '9') || (*p1 >= 'A' && *p1 <= 'F') || (*p1 >= 'a' && *p1 <= 'f') ) {
+			mrstrbuilder_catf(&out, "%c", toupper(*p1)); /* make uppercase which is needed as we do not search case-insensitive, see comment in mrsqlite3.c */
+		}
+		p1++;
+	}
+
+	return out.m_buf;
+}
+
+
+char* mrkey_get_fingerprint(const mrkey_t* key)
 {
 	uint8_t* fingerprint_buf = NULL;
 	size_t   fingerprint_bytes = 0;
+	char*    fingerprint_hex = NULL;
+	int      i;
 
-	if( key==NULL || mailbox == NULL ) {
-		return safe_strdup("ErrFingerprint0");
+	if( key == NULL ) {
+		goto cleanup;
 	}
 
-	if( !mrpgp_calc_fingerprint(mailbox, key, &fingerprint_buf, &fingerprint_bytes) ) {
-		return safe_strdup("ErrFingerprint1");
+	if( !mrpgp_calc_fingerprint(key, &fingerprint_buf, &fingerprint_bytes) ) {
+		goto cleanup;
 	}
 
-	char* fingerprint_str = mr_render_fingerprint(fingerprint_buf, fingerprint_bytes);
+	if( (fingerprint_hex=calloc(1, fingerprint_bytes*2+1))==NULL ) {
+		goto cleanup;
+	}
+
+	for( i = 0; i < fingerprint_bytes; i++ ) {
+		snprintf(&fingerprint_hex[i*2], 3, "%02X", (int)fingerprint_buf[i]); /* 'X' instead of 'x' ensures the fingerprint is uppercase which is needed as we do not search case-insensitive, see comment in mrsqlite3.c */
+	}
+
+cleanup:
 	free(fingerprint_buf);
-	return fingerprint_str;
+	return fingerprint_hex? fingerprint_hex : safe_strdup(NULL);
 }
 
+
+char* mrkey_get_formatted_fingerprint(const mrkey_t* key)
+{
+	char* rawhex = mrkey_get_fingerprint(key);
+	char* formatted = mr_format_fingerprint(rawhex);
+	free(rawhex);
+	return formatted;
+}

@@ -30,7 +30,7 @@ extern "C" {
 /*** library-private **********************************************************/
 
 
-typedef struct mrmailbox_t mrmailbox_t;
+typedef struct _mrmailbox mrmailbox_t;
 
 int  mrosnative_setup_thread   (mrmailbox_t*); /*returns true/false*/
 void mrosnative_unsetup_thread (mrmailbox_t*);

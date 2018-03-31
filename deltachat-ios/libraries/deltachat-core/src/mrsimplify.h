@@ -32,6 +32,8 @@ extern "C" {
 typedef struct mrsimplify_t
 {
 	int m_is_forwarded;
+	int m_is_cut_at_begin;
+	int m_is_cut_at_end;
 } mrsimplify_t;
 
 

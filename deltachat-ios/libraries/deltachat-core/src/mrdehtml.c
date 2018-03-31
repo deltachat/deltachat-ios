@@ -164,7 +164,7 @@ char* mr_dehtml(char* buf_terminated)
 
 		memset(&dehtml, 0, sizeof(dehtml_t));
 		dehtml.m_add_text   = DO_ADD_REMOVE_LINEENDS;
-		mrstrbuilder_init(&dehtml.m_strbuilder);
+		mrstrbuilder_init(&dehtml.m_strbuilder, strlen(buf_terminated));
 
 		mrsaxparser_init(&saxparser, &dehtml);
 		mrsaxparser_set_tag_handler(&saxparser, dehtml_starttag_cb, dehtml_endtag_cb);

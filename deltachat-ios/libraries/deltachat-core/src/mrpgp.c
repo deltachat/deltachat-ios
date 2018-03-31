@@ -84,6 +84,110 @@ void mrpgp_rand_seed(mrmailbox_t* mailbox, const void* buf, size_t bytes)
 }
 
 
+/* Split data from PGP Armored Data as defined in https://tools.ietf.org/html/rfc4880#section-6.2.
+The given buffer is modified and the returned pointers are just point inside the modified buffer,
+no additional data to free therefore.
+(NB: netpgp allows only parsing of Version, Comment, MessageID, Hash and Charset) */
+int mr_split_armored_data(char* buf, char** ret_headerline, char** ret_setupcodebegin, char** ret_preferencrypt, char** ret_base64)
+{
+	int    success = 0;
+	size_t line_chars = 0;
+	char*  line = buf;
+	char*  p1 = buf, *p2;
+	char*  headerline = NULL;
+	char*  base64 = NULL;
+	#define PGP_WS "\t\r\n "
+
+	if( ret_headerline )     { *ret_headerline = NULL; }
+	if( ret_setupcodebegin ) { *ret_setupcodebegin = NULL; }
+	if( ret_preferencrypt )  { *ret_preferencrypt = NULL; }
+	if( ret_base64 )         { *ret_base64 = NULL; }
+
+	if( buf == NULL || ret_headerline == NULL ) {
+		goto cleanup;
+	}
+
+	mr_remove_cr_chars(buf);
+	while( *p1 ) {
+		if( *p1  == '\n' ) {
+			/* line found ... */
+			line[line_chars] = 0;
+			if( headerline == NULL ) {
+				/* ... headerline */
+				mr_trim(line);
+				if( strncmp(line, "-----BEGIN ", 11)==0 && strncmp(&line[strlen(line)-5], "-----", 5)==0 ) {
+					headerline = line;
+					if( ret_headerline ) {
+						*ret_headerline = headerline;
+					}
+				}
+			}
+			else if( strspn(line, PGP_WS)==strlen(line) ) {
+				/* ... empty line: base64 starts on next line */
+				base64 = p1+1;
+				break;
+			}
+			else if( (p2=strchr(line, ':'))==NULL ) {
+				/* ... non-standard-header without empty line: base64 starts with this line */
+				line[line_chars] = '\n';
+				base64 = line;
+				break;
+			}
+			else {
+				/* header line */
+				*p2 = 0;
+				mr_trim(line);
+				if( strcasecmp(line, "Passphrase-Begin")==0 ) {
+					p2++;
+					mr_trim(p2);
+					if( ret_setupcodebegin ) {
+						*ret_setupcodebegin = p2;
+					}
+				}
+				else if( strcasecmp(line, "Autocrypt-Prefer-Encrypt")==0 ) {
+					p2++;
+					mr_trim(p2);
+					if( ret_preferencrypt ) {
+						*ret_preferencrypt = p2;
+					}
+				}
+			}
+
+			/* prepare for next line */
+			p1++;
+			line = p1;
+			line_chars = 0;
+		}
+		else {
+			p1++;
+			line_chars++;
+		}
+	}
+
+	if( headerline == NULL || base64 == NULL ) {
+		goto cleanup;
+	}
+
+	/* now, line points to beginning of base64 data, search end */
+	if( (p1=strstr(base64, "-----END "/*the trailing space makes sure, this is not a normal base64 sequence*/))==NULL
+	 || strncmp(p1+9, headerline+11, strlen(headerline+11))!=0 ) {
+		goto cleanup;
+	}
+
+	*p1 = 0;
+	mr_trim(base64);
+
+	if( ret_base64 ) {
+		*ret_base64 = base64;
+	}
+
+	success = 1;
+
+cleanup:
+	return success;
+}
+
+
 /*******************************************************************************
  * Key generatation
  ******************************************************************************/
@@ -277,8 +381,8 @@ int mrpgp_create_keypair(mrmailbox_t* mailbox, const char* addr, mrkey_t* ret_pu
 		goto cleanup;
 	}
 
-	mrkey_set_from_raw(ret_public_key, pubmem->buf, pubmem->length, MR_PUBLIC);
-	mrkey_set_from_raw(ret_private_key, secmem->buf, secmem->length, MR_PRIVATE);
+	mrkey_set_from_binary(ret_public_key, pubmem->buf, pubmem->length, MR_PUBLIC);
+	mrkey_set_from_binary(ret_private_key, secmem->buf, secmem->length, MR_PRIVATE);
 
 	success = 1;
 
@@ -314,7 +418,6 @@ int mrpgp_is_valid_key(mrmailbox_t* mailbox, const mrkey_t* raw_key)
 	}
 
 	pgp_memory_add(keysmem, raw_key->m_binary, raw_key->m_bytes);
-
 	pgp_filter_keys_from_mem(&s_io, public_keys, private_keys, NULL, 0, keysmem); /* function returns 0 on any error in any packet - this does not mean, we cannot use the key. We check the details below therefore. */
 
 	if( raw_key->m_type == MR_PUBLIC && public_keys->keyc >= 1 ) {
@@ -332,21 +435,20 @@ cleanup:
 }
 
 
-int mrpgp_calc_fingerprint(mrmailbox_t* mailbox, const mrkey_t* raw_key, uint8_t** ret_fingerprint, size_t* ret_fingerprint_bytes)
+int mrpgp_calc_fingerprint(const mrkey_t* raw_key, uint8_t** ret_fingerprint, size_t* ret_fingerprint_bytes)
 {
 	int             success = 0;
 	pgp_keyring_t*  public_keys = calloc(1, sizeof(pgp_keyring_t));
 	pgp_keyring_t*  private_keys = calloc(1, sizeof(pgp_keyring_t));
 	pgp_memory_t*   keysmem = pgp_memory_new();
 
-	if( mailbox==NULL || raw_key==NULL || ret_fingerprint==NULL || *ret_fingerprint!=NULL || ret_fingerprint_bytes==NULL || *ret_fingerprint_bytes!=0
+	if( raw_key==NULL || ret_fingerprint==NULL || *ret_fingerprint!=NULL || ret_fingerprint_bytes==NULL || *ret_fingerprint_bytes!=0
 	 || raw_key->m_binary == NULL || raw_key->m_bytes <= 0
 	 || public_keys==NULL || private_keys==NULL || keysmem==NULL ) {
 		goto cleanup;
 	}
 
 	pgp_memory_add(keysmem, raw_key->m_binary, raw_key->m_bytes);
-
 	pgp_filter_keys_from_mem(&s_io, public_keys, private_keys, NULL, 0, keysmem);
 
 	if( raw_key->m_type != MR_PUBLIC || public_keys->keyc <= 0 ) {
@@ -406,7 +508,7 @@ int mrpgp_split_key(mrmailbox_t* mailbox, const mrkey_t* private_in, mrkey_t* re
 		goto cleanup;
 	}
 
-	mrkey_set_from_raw(ret_public_key, pubmem->buf, pubmem->length, MR_PUBLIC);
+	mrkey_set_from_binary(ret_public_key, pubmem->buf, pubmem->length, MR_PUBLIC);
 
 	success = 1;
 
@@ -452,10 +554,11 @@ int mrpgp_pk_encrypt(  mrmailbox_t*       mailbox,
 
 	/* setup keys (the keys may come from pgp_filter_keys_fileread(), see also pgp_keyring_add(rcpts, key)) */
 	for( i = 0; i < raw_public_keys_for_encryption->m_count; i++ ) {
+		pgp_memory_clear(keysmem);
 		pgp_memory_add(keysmem, raw_public_keys_for_encryption->m_keys[i]->m_binary, raw_public_keys_for_encryption->m_keys[i]->m_bytes);
+		pgp_filter_keys_from_mem(&s_io, public_keys, private_keys/*should stay empty*/, NULL, 0, keysmem);
 	}
 
-	pgp_filter_keys_from_mem(&s_io, public_keys, private_keys/*should stay empty*/, NULL, 0, keysmem);
 	if( public_keys->keyc <=0 || private_keys->keyc!=0 ) {
 		mrmailbox_log_warning(mailbox, 0, "Encryption-keyring contains unexpected data (%i/%i)", public_keys->keyc, private_keys->keyc);
 		goto cleanup;
@@ -477,7 +580,8 @@ int mrpgp_pk_encrypt(  mrmailbox_t*       mailbox,
 			}
 
 			pgp_key_t* sk0 = &private_keys->keys[0];
-			signedmem = pgp_sign_buf(&s_io, plain_text, plain_bytes, &sk0->key.seckey, time(NULL)/*birthtime*/, 0/*duration*/, "sha1", 0/*armored*/, 0/*cleartext*/);
+			signedmem = pgp_sign_buf(&s_io, plain_text, plain_bytes, &sk0->key.seckey, time(NULL)/*birthtime*/, 0/*duration*/,
+				NULL/*hash, defaults to sha256*/, 0/*armored*/, 0/*cleartext*/);
 			if( signedmem == NULL ) {
 				mrmailbox_log_warning(mailbox, 0, "Signing failed.");
 				goto cleanup;
@@ -544,10 +648,11 @@ int mrpgp_pk_decrypt(  mrmailbox_t*       mailbox,
 
 	/* setup keys (the keys may come from pgp_filter_keys_fileread(), see also pgp_keyring_add(rcpts, key)) */
 	for( i = 0; i < raw_private_keys_for_decryption->m_count; i++ ) {
+		pgp_memory_clear(keysmem); /* a simple concatenate of private binary keys fails (works for public keys, however, we don't do it there either) */
 		pgp_memory_add(keysmem, raw_private_keys_for_decryption->m_keys[i]->m_binary, raw_private_keys_for_decryption->m_keys[i]->m_bytes);
+		pgp_filter_keys_from_mem(&s_io, dummy_keys/*should stay empty*/, private_keys, NULL, 0, keysmem);
 	}
 
-	pgp_filter_keys_from_mem(&s_io, dummy_keys/*should stay empty*/, private_keys, NULL, 0, keysmem);
 	if( private_keys->keyc<=0 ) {
 		mrmailbox_log_warning(mailbox, 0, "Decryption-keyring contains unexpected data (%i/%i)", public_keys->keyc, private_keys->keyc);
 		goto cleanup;

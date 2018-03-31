@@ -140,7 +140,8 @@ Function based upon ezxml_decode() from the "ezxml" parser which is
 Copyright 2004-2006 Aaron Voisine <aaron@voisine.org> */
 static char* xml_decode(char* s, char type)
 {
-	char *e, *r = s, *m = s;
+	char *e, *r = s;
+	const char* original_buf = s;
 	long b, c, d, l;
 
 	for (; *s; s++) { /* normalize line endings */
@@ -183,8 +184,17 @@ static char* xml_decode(char* s, char type)
 
 			if (s_ent[b++]) { /* found a match */
 				if ((c = strlen(s_ent[b])) - 1 > (e = strchr(s, ';')) - s) {
+					/* the replacement is larger than the entity: enlarge buffer */
 					l = (d = (s - r)) + c + strlen(e); /* new length */
-					r = (r == m) ? strcpy(malloc(l), r) : realloc(r, l);
+					if( r == original_buf ) {
+						char* new_ret = malloc(l); if( new_ret == NULL ) { return r; }
+						strcpy(new_ret, r);
+						r = new_ret;
+					}
+					else {
+						char* new_ret = realloc(r, l); if( new_ret == NULL ) { return r; }
+						r = new_ret;
+					}
 					e = strchr((s = r + d), ';'); /* fix up pointers */
 				}
 

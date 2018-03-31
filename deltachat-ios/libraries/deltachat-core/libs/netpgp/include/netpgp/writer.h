@@ -69,7 +69,7 @@ typedef unsigned pgp_writer_func_t(const uint8_t *,
 	     unsigned,
 	     pgp_error_t **,
 	     pgp_writer_t *);
-typedef unsigned 
+typedef unsigned
 pgp_writer_finaliser_t(pgp_error_t **, pgp_writer_t *);
 typedef void    pgp_writer_destroyer_t(pgp_writer_t *);
 
@@ -114,7 +114,9 @@ unsigned pgp_write_mpi(pgp_output_t *, const BIGNUM *);
 void pgp_writer_info_delete(pgp_writer_t *);
 unsigned pgp_writer_info_finalise(pgp_error_t **, pgp_writer_t *);
 
+#if 0 //////
 void pgp_push_stream_enc_se_ip(pgp_output_t *, pgp_key_t *, const char *);
+#endif //////
 
 void pgp_push_sum16_writer(pgp_output_t *output);
 

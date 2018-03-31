@@ -184,11 +184,11 @@ final class SampleData {
     func getAvatarFor(sender: Sender) -> Avatar {
         switch sender {
         case dan:
-            return Avatar(image: #imageLiteral(resourceName: "ic_people_36pt").withRenderingMode(.alwaysTemplate), initals: "DL")
+            return Avatar(image: #imageLiteral(resourceName: "ic_people_36pt").withRenderingMode(.alwaysTemplate), initials: "DL")
         case steven:
-            return Avatar(initals: "S")
+            return Avatar(initials: "S")
         case jobs:
-            return Avatar(image: #imageLiteral(resourceName: "ic_people_36pt").withRenderingMode(.alwaysTemplate), initals: "SJ")
+            return Avatar(image: #imageLiteral(resourceName: "ic_people_36pt").withRenderingMode(.alwaysTemplate), initials: "SJ")
         case cook:
             return Avatar(image: #imageLiteral(resourceName: "ic_people_36pt").withRenderingMode(.alwaysTemplate))
         default:

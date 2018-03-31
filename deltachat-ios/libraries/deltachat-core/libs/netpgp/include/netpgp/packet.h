@@ -658,7 +658,9 @@ typedef struct pgp_sig_t {
 	/* The following fields are only used while parsing the signature */
 	uint8_t		 hash2[2];	/* high 2 bytes of hashed value */
 	size_t		 v4_hashstart;	/* only valid if accumulate is set */
+	#if 0 // EDIT BY MR - sighash not needed
 	pgp_hash_t     *hash;	/* the hash filled in for the data so far */
+	#endif
 } pgp_sig_t;
 
 /** The raw bytes of a signature subpacket */

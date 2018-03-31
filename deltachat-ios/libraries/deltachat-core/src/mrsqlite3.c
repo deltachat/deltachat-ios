@@ -21,6 +21,7 @@
 
 
 #include "mrmailbox_internal.h"
+#include "mrapeerstate.h"
 
 
 /* This class wraps around SQLite.  Some hints to the underlying database:
@@ -200,11 +201,12 @@ int mrsqlite3_open__(mrsqlite3_t* ths, const char* dbfile, int flags)
 						" param TEXT DEFAULT '');");
 			mrsqlite3_execute__(ths, "CREATE INDEX chats_index1 ON chats (grpid);");
 			mrsqlite3_execute__(ths, "CREATE TABLE chats_contacts (chat_id INTEGER, contact_id INTEGER);");
-			mrsqlite3_execute__(ths, "CREATE INDEX chats_contacts_index1 ON chats_contacts (chat_id);"); /* the other way round, an index on contact_id is only needed for blocking users */
-			mrsqlite3_execute__(ths, "INSERT INTO chats (id,type,name) VALUES (1,120,'deaddrop'), (2,120,'to_deaddrop'), (3,120,'trash'), (4,120,'msgs_in_creation'), (5,120,'starred'), (6,120,'archivedlink'), (7,100,'rsvd'), (8,100,'rsvd'), (9,100,'rsvd');");
+			mrsqlite3_execute__(ths, "CREATE INDEX chats_contacts_index1 ON chats_contacts (chat_id);");
+			mrsqlite3_execute__(ths, "INSERT INTO chats (id,type,name) VALUES (1,120,'deaddrop'), (2,120,'rsvd'), (3,120,'trash'), (4,120,'msgs_in_creation'), (5,120,'starred'), (6,120,'archivedlink'), (7,100,'rsvd'), (8,100,'rsvd'), (9,100,'rsvd');");
 			#if !defined(MR_CHAT_TYPE_NORMAL) || MR_CHAT_TYPE_NORMAL!=100 || MR_CHAT_TYPE_GROUP!=120 || \
-			 MR_CHAT_ID_DEADDROP!=1 || MR_CHAT_ID_TO_DEADDROP!=2 || MR_CHAT_ID_TRASH!=3 || \
-			 MR_CHAT_ID_MSGS_IN_CREATION!=4 || MR_CHAT_ID_STARRED!=5 || MR_CHAT_ID_ARCHIVED_LINK!=6
+			 MR_CHAT_ID_DEADDROP!=1 || MR_CHAT_ID_TRASH!=3 || \
+			 MR_CHAT_ID_MSGS_IN_CREATION!=4 || MR_CHAT_ID_STARRED!=5 || MR_CHAT_ID_ARCHIVED_LINK!=6 || \
+			 MR_CHAT_NOT_BLOCKED!=0  || MR_CHAT_MANUALLY_BLOCKED!=1 || MR_CHAT_DEADDROP_BLOCKED!=2
 				#error
 			#endif
 
@@ -326,6 +328,54 @@ int mrsqlite3_open__(mrsqlite3_t* ths, const char* dbfile, int flags)
 				mrsqlite3_execute__(ths, "CREATE INDEX chats_index2 ON chats (archived);");
 				mrsqlite3_execute__(ths, "ALTER TABLE msgs ADD COLUMN starred INTEGER DEFAULT 0;");
 				mrsqlite3_execute__(ths, "CREATE INDEX msgs_index5 ON msgs (starred);");
+
+				dbversion = NEW_DB_VERSION;
+				mrsqlite3_set_config_int__(ths, "dbversion", NEW_DB_VERSION);
+			}
+		#undef NEW_DB_VERSION
+
+		#define NEW_DB_VERSION 18
+			if( dbversion < NEW_DB_VERSION )
+			{
+				mrsqlite3_execute__(ths, "ALTER TABLE acpeerstates ADD COLUMN gossip_timestamp INTEGER DEFAULT 0;");
+				mrsqlite3_execute__(ths, "ALTER TABLE acpeerstates ADD COLUMN gossip_key;");
+
+				dbversion = NEW_DB_VERSION;
+				mrsqlite3_set_config_int__(ths, "dbversion", NEW_DB_VERSION);
+			}
+		#undef NEW_DB_VERSION
+
+		#define NEW_DB_VERSION 27
+			if( dbversion < NEW_DB_VERSION )
+			{
+				mrsqlite3_execute__(ths, "DELETE FROM msgs WHERE chat_id=1 OR chat_id=2;"); /* chat.id=1 and chat.id=2 are the old deaddrops, the current ones are defined by chats.blocked=2 */
+				mrsqlite3_execute__(ths, "CREATE INDEX chats_contacts_index2 ON chats_contacts (contact_id);"); /* needed to find chat by contact list */
+				mrsqlite3_execute__(ths, "ALTER TABLE msgs ADD COLUMN timestamp_sent INTEGER DEFAULT 0;");
+				mrsqlite3_execute__(ths, "ALTER TABLE msgs ADD COLUMN timestamp_rcvd INTEGER DEFAULT 0;");
+				mrsqlite3_execute__(ths, "ALTER TABLE acpeerstates ADD COLUMN fingerprint TEXT DEFAULT '';"); /* do not add `COLLATE NOCASE` case-insensivity is not needed as we force uppercase on store - otoh case-sensivity may be neeed for other/upcoming fingerprint formats */
+				mrsqlite3_execute__(ths, "CREATE INDEX acpeerstates_index2 ON acpeerstates (fingerprint);");
+
+				/* init fingerprint column */
+				sqlite3_stmt* stmt = mrsqlite3_prepare_v2_(ths, "SELECT addr FROM acpeerstates;");
+					while( sqlite3_step(stmt) == SQLITE_ROW ) {
+						mrapeerstate_t* peerstate = mrapeerstate_new();
+							if( mrapeerstate_load_by_addr__(peerstate, ths, (const char*)sqlite3_column_text(stmt, 0))
+							 && mrapeerstate_recalc_fingerprint(peerstate) ) {
+								mrapeerstate_save_to_db__(peerstate, ths, 0/*don't create*/);
+							}
+						mrapeerstate_unref(peerstate);
+					}
+				sqlite3_finalize(stmt);
+
+				dbversion = NEW_DB_VERSION;
+				mrsqlite3_set_config_int__(ths, "dbversion", NEW_DB_VERSION);
+			}
+		#undef NEW_DB_VERSION
+
+		#define NEW_DB_VERSION 28
+			if( dbversion < NEW_DB_VERSION )
+			{
+				mrsqlite3_execute__(ths, "ALTER TABLE msgs ADD COLUMN hidden INTEGER DEFAULT 0;");
 
 				dbversion = NEW_DB_VERSION;
 				mrsqlite3_set_config_int__(ths, "dbversion", NEW_DB_VERSION);
@@ -578,13 +628,13 @@ void mrsqlite3_lock(mrsqlite3_t* ths) /* wait and lock */
 {
 	pthread_mutex_lock(&ths->m_critical_);
 
-	mrmailbox_wake_lock(ths->m_mailbox);
+	//mrmailbox_wake_lock(ths->m_mailbox);
 }
 
 
 void mrsqlite3_unlock(mrsqlite3_t* ths)
 {
-	mrmailbox_wake_unlock(ths->m_mailbox);
+	//mrmailbox_wake_unlock(ths->m_mailbox);
 
 	pthread_mutex_unlock(&ths->m_critical_);
 }
