@@ -930,12 +930,12 @@ pgp_mem_len(const pgp_memory_t *mem)
    \return Pointer to data
 */
 void *
-pgp_mem_data(pgp_memory_t *mem)
+pgp_mem_data(const pgp_memory_t *mem)
 {
 	return mem->buf;
 }
 
-/* read a gile into an pgp_memory_t */
+/* read a file into an pgp_memory_t */
 int
 pgp_mem_readfile(pgp_memory_t *mem, const char *f)
 {

@@ -440,7 +440,9 @@ write_seckey_body(const pgp_seckey_t *key,
 
         /* use this session key to encrypt */
 
-        pgp_crypt_any(&crypted, key->alg);
+        if( !pgp_crypt_any(&crypted, key->alg) ) {
+			return 0; // EDIT BY MR
+        }
         crypted.set_iv(&crypted, key->iv);
         crypted.set_crypt_key(&crypted, sesskey);
         pgp_encrypt_init(&crypted);
@@ -1000,7 +1002,7 @@ encode_m_buf(const uint8_t *M, size_t mLen, const pgp_pubkey_t * pubkey,
 \note Currently hard-coded to use RSA
 */
 pgp_pk_sesskey_t *
-pgp_create_pk_sesskey(pgp_key_t *key, const char *ciphername, pgp_pk_sesskey_t *initial_sesskey)
+pgp_create_pk_sesskey(pgp_key_t *key, const char *ciphername, const pgp_pk_sesskey_t *initial_sesskey)
 {
 	/*
          * Creates a random session key and encrypts it for the given key
@@ -1025,8 +1027,9 @@ pgp_create_pk_sesskey(pgp_key_t *key, const char *ciphername, pgp_pk_sesskey_t *
 
 	/* allocate unencoded_m_buf here */
 	(void) memset(&cipherinfo, 0x0, sizeof(cipherinfo));
-	pgp_crypt_any(&cipherinfo,
-		cipher = pgp_str_to_cipher((ciphername) ? ciphername : "cast5"));
+	if( !pgp_crypt_any(&cipherinfo, cipher = pgp_str_to_cipher((ciphername) ? ciphername : "cast5")) ) {
+		return NULL; // EDIT BY MR
+	}
 	unencoded_m_buf = calloc(1, cipherinfo.keysize + 1 + 2);
 	if (unencoded_m_buf == NULL) {
 		(void) fprintf(stderr,
@@ -1090,6 +1093,9 @@ pgp_create_pk_sesskey(pgp_key_t *key, const char *ciphername, pgp_pk_sesskey_t *
 	sesskey->symm_alg = cipher;
     if(initial_sesskey){
         if(initial_sesskey->symm_alg != cipher){
+            free(unencoded_m_buf); // EDIT BY MR: fix potential memory leak
+            free(encoded_m_buf);   //   - " -
+            free(sesskey);         //   - " -
             return NULL;
         }
         memcpy(sesskey->key, initial_sesskey->key, cipherinfo.keysize);
@@ -1244,6 +1250,7 @@ pgp_write_litdata(pgp_output_t *output,
 \return 1 if OK; else 0
 */
 
+#if 0 //////
 unsigned
 pgp_fileread_litdata(const char *filename,
 				 const pgp_litdata_enum type,
@@ -1263,6 +1270,7 @@ pgp_fileread_litdata(const char *filename,
 	pgp_memory_free(mem);
 	return ret;
 }
+#endif //////
 
 /**
    \ingroup HighLevel_General
@@ -1314,6 +1322,7 @@ pgp_filewrite(const char *filename, const char *buf,
 \return 1 if OK; else 0
 \note Hard-coded to use AES256
 */
+#if 0 //////
 unsigned
 pgp_write_symm_enc_data(const uint8_t *data,
 				       const int len,
@@ -1327,7 +1336,9 @@ pgp_write_symm_enc_data(const uint8_t *data,
 	size_t		encrypted_sz;
 	int             done = 0;
 
-	pgp_crypt_any(&crypt_info, alg);
+	if( !pgp_crypt_any(&crypt_info, alg) ) {
+		return 0; // EDIT BY MR
+	}
 
 	crypt_info.set_crypt_key(&crypt_info, key);
 
@@ -1351,6 +1362,7 @@ pgp_write_symm_enc_data(const uint8_t *data,
 		pgp_write_length(output, (unsigned)(encrypted_sz)) &&
 		pgp_write(output, encrypted, (unsigned)encrypted_sz); // EDIT BY MR: originally the input data was written to output
 }
+#endif //////
 
 /**
 \ingroup Core_WritePackets

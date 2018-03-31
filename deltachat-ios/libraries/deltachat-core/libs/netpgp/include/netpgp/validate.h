@@ -150,5 +150,5 @@ pgp_filter_keys_from_mem(pgp_io_t *io,
             pgp_keyring_t *destsecring,
             pgp_keyring_t *certring,
             const unsigned armour,
-            pgp_memory_t *mem);
+            const pgp_memory_t *mem);
 #endif /* !VALIDATE_H_ */

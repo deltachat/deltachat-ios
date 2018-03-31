@@ -36,13 +36,14 @@ extern "C" {
 
 
 /**
- * The user may write an informational string to the log.
+ * The library-user may write an informational string to the log.
  * Passed to the callback given to mrmailbox_new().
- * This event should not be reported using a popup or something like that.
+ *
+ * This event should not be reported to the end-user using a popup or something like that.
  *
  * @param data1 0
  *
- * @param data2 Info string
+ * @param data2 Info string in english language.
  *
  * @return 0
  */
@@ -50,13 +51,14 @@ extern "C" {
 
 
 /**
- * The user should write an warning string to the log.
+ * The library-user should write a warning string to the log.
  * Passed to the callback given to mrmailbox_new().
- * This event should not be reported using a popup or something like that.
+ *
+ * This event should not be reported to the end-user using a popup or something like that.
  *
  * @param data1 0
  *
- * @param data2 Warning string
+ * @param data2 Warning string in english language.
  *
  * @return 0
  */
@@ -64,21 +66,38 @@ extern "C" {
 
 
 /**
- * The user should show an error.
- * The error must be reported to the user by a non-disturbing bubble or so.
+ * The library-user should report an error to the end-user.
+ * Passed to the callback given to mrmailbox_new().
  *
- * @param data1 0
+ * As most things are asynchrounous, things may go wrong at any time and the user
+ * should not be disturbed by a dialog or so.  Instead, use a bubble or so.
  *
- * @param data2 Error string
+ * However, for ongoing processes (eg. mrmailbox_configure_and_connect())
+ * or for functions that are expected to fail (eg. mrmailbox_continue_key_transfer())
+ * it might be better to delay showing these events until the function has really
+ * failed (returned false). It should be sufficient to report only the _last_ error
+ * in a messasge box then.
+ *
+ * @param data1 Error code, see mrerror.h for a list of constants.
+ *
+ * @param data2 Error string, always set, never NULL. Frequent error strings are
+ *     localized using MR_EVENT_GET_STRING, however, most error strings will be
+ *     in english language.
+ *
  *
  * @return 0
  */
 #define MR_EVENT_ERROR                    400
 
 
+
 /**
- * One or more messages changed for some reasons in the database. Messages may be added or
- * removed.
+ * Messages or chats changed.  One or more messages or chats changed for various
+ * reasons in the database:
+ * - Messages sent, received or removed
+ * - A message could not be sent (see mrmsg_get_state()/MR_STATE_OUT_ERROR)
+ * - Chats created, deleted or archived
+ * - A draft has been set
  *
  * @param data1 chat_id for single added messages
  *
@@ -93,6 +112,8 @@ extern "C" {
  * There is a fresh message. Typically, the user will show an notification
  * when receiving this message.
  *
+ * There is no extra #MR_EVENT_MSGS_CHANGED event send together with this event.
+ *
  * @param data1 chat_id
  *
  * @param data2 msg_id
@@ -103,7 +124,7 @@ extern "C" {
 
 
 /**
- * A single message is send successfully (state changed from  MR_STATE_OUT_PENDING to
+ * A single message is sent successfully (state changed from  MR_STATE_OUT_PENDING to
  * MR_STATE_OUT_DELIVERED, see mrmsg_t::m_state).
  *
  * @param data1 chat_id
@@ -129,7 +150,9 @@ extern "C" {
 
 
 /**
- * Group name/image changed or members added/removed.
+ * Group changed.  The name or the image of a chat group was changed or members were added or removed.
+ * See mrmailbox_set_chat_name(), mrmailbox_set_chat_profile_image(), mrmailbox_add_contact_to_chat()
+ * and mrmailbox_remove_contact_from_chat().
  *
  * @param data1 chat_id
  *
@@ -165,19 +188,6 @@ extern "C" {
 
 
 /**
- * Import/export done. You'll get this event from a call to mrmailbox_imex().
- * As we want to get rid of the threads in the core, this event may be deleted.
- *
- * @param data1 0:failed, 1=success
- *
- * @param data2 0
- *
- * @return 0
- */
-#define MR_EVENT_IMEX_ENDED               2050
-
-
-/**
  * Inform about the import/export progress started by mrmailbox_imex().
  *
  * @param data1 Permille
@@ -191,8 +201,7 @@ extern "C" {
 
 /**
  * A file has been exported. A file has been written by mrmailbox_imex().
- * This event may be send multiple times by a single call to mrmailbox_imex();
- * if the export is done, #MR_EVENT_IMEX_ENDED is sent.
+ * This event may be sent multiple times by a single call to mrmailbox_imex().
  *
  * A typical purpose for a handler of this event may be to make the file public to some system
  * services.
@@ -204,6 +213,9 @@ extern "C" {
  * @return 0
  */
 #define MR_EVENT_IMEX_FILE_WRITTEN        2052
+
+
+#define MR_EVENT_SECURE_JOIN_REQUESTED    2060
 
 
 /*******************************************************************************
@@ -246,7 +258,7 @@ extern "C" {
  *
  * @param data1 ID of the string to request, one of the MR_STR_* constants as defined in mrstock.h
  *
- * @param data2 The count. The frontend may retrurn different strings on this value and normally also includes
+ * @param data2 The count. The frontend may return different strings on this value and normally also includes
  *     the value itself to the string.
  *
  * @return Null-terminated UTF-8 string.  CAVE: The string will be free()'d by the core, so make
@@ -257,13 +269,15 @@ extern "C" {
 
 
 /**
- * Request a HTTP-file from the frontend.
+ * Request a HTTP-file or HTTPS-file from the frontend.
  *
- * @param data1 URL
+ * @param data1 Null-terminated UTF-8 string containing the URL. The string starts with https:// or http://. Must not be free()'d or modified by the frontend.
  *
  * @param data2 0
  *
- * @return The content of the requested file as a null-terminated UTF-8 string. CAVE: The string will be free()'d by the core,
+ * @return The content of the requested file as a null-terminated UTF-8 string;
+ *     Response headers, encodings etc. must be stripped, only the raw file, which may be binary, should be returned.
+ *     CAVE: The string will be free()'d by the core,
  *     so make sure it is allocated using malloc() or a compatible function.
  *     If you cannot provide the content, just return 0.
  */
@@ -272,8 +286,8 @@ extern "C" {
 /**
  * Acquire or release a wakelock.
  *
- * The core surrounds critcal functions that should not be killed by the operating system with wakelocks.
- * Before a critical function _MR_EVENT_WAKE_LOCK with data1=1_ is called, it it finishes, _MR_EVENT_WAKE_LOCK with data1=0_ is called.
+ * The core surrounds critical functions that should not be killed by the operating system with wakelocks.
+ * Before a critical function _MR_EVENT_WAKE_LOCK with data1=1_ is called, when it finishes, _MR_EVENT_WAKE_LOCK with data1=0_ is called.
  * If you do not need this functionality, just ignore this event.
  *
  * @param data1 1=acquire wakelock, 0=release wakelock, the core does not make nested or unsynchronized calls

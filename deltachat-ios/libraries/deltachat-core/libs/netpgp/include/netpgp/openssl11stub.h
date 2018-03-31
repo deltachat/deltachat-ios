@@ -1,3 +1,4 @@
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 int RSA_set0_key(RSA *r, BIGNUM *n, BIGNUM *e, BIGNUM *d)
 {
@@ -131,3 +132,4 @@ int DSA_set0_key(DSA *d, BIGNUM *pub_key, BIGNUM *priv_key)
     return 1;
 }
 
+#endif

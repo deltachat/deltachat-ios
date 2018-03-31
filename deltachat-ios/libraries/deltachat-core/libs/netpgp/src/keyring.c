@@ -483,6 +483,7 @@ pgp_key_get_sigkey(pgp_key_t *key)
 }
 
 /* Get a sec key to write a signature */
+#if 0 //////
 pgp_seckey_t *
 pgp_key_get_certkey(pgp_key_t *key)
 {
@@ -490,6 +491,7 @@ pgp_key_get_certkey(pgp_key_t *key)
         pgp_key_find_key_conds(key, NULL, NULL, &is_signing_role, NULL, 1, 0);
     return key_get_seckey_from_subidx(key, NULL, subkeyidx);
 }
+#endif //////
 
 static unsigned is_encryption_role(const pgp_sig_info_t *siginfo, void *arg)
 {
@@ -890,6 +892,7 @@ pgp_add_selfsigned_userid(pgp_key_t *skey, pgp_key_t *pkey, const uint8_t *useri
 }
 #endif //////
 
+#if 0 //////
 unsigned
 pgp_key_revoke(pgp_key_t *skey, pgp_key_t *pkey, uint8_t code, const char *reason)
 {
@@ -924,6 +927,7 @@ pgp_key_revoke(pgp_key_t *skey, pgp_key_t *pkey, uint8_t code, const char *reaso
 
 	return 1;
 }
+#endif //////
 
 /**
 \ingroup Core_Keys
@@ -1503,7 +1507,7 @@ unsigned pgp_update_userid(
         pgp_key_t *key,
         const uint8_t *userid,
         const pgp_subpacket_t *sigpkt,
-        pgp_sig_info_t *siginfo)
+        const pgp_sig_info_t *siginfo)
 {
 	    unsigned    	 	 uididx = 0;
         unsigned    	 	 uidsigidx = 0;
@@ -1548,7 +1552,7 @@ unsigned pgp_update_userid(
 		uidsigp->uid = uididx;
 
         /* store sig info and packet */
-        copy_sig_info(&uidsigp->siginfo, siginfo);
+        copy_sig_info(&uidsigp->siginfo /*dst*/, siginfo /*src*/);
         pgp_copy_packet(&uidsigp->packet, sigpkt);
 
         return 0;

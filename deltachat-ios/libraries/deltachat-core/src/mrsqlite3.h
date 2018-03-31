@@ -32,7 +32,7 @@ extern "C" {
 #include <sqlite3.h>
 #include <libetpan/libetpan.h>
 #include <pthread.h>
-typedef struct mrmailbox_t mrmailbox_t;
+typedef struct _mrmailbox mrmailbox_t;
 
 
 /* predefined statements */
@@ -53,7 +53,6 @@ enum
 	,SELECT_id_FROM_contacts_WHERE_id
 	,SELECT_na_FROM_chats_contacs_JOIN_contacts_WHERE_cc
 	,SELECT_p_FROM_chats_contacs_JOIN_contacts_peerstates_WHERE_cc
-	,SELECT_id_FROM_contacts_WHERE_chat_id
 	,SELECT_id_FROM_contacts_ORDER_BY
 	,SELECT_id_FROM_contacts_WHERE_query_ORDER_BY
 	,SELECT_COUNT_FROM_contacts_WHERE_blocked
@@ -74,12 +73,14 @@ enum
 	,SELECT_id_FROM_chats_WHERE_contact_id
 	,SELECT_id_FROM_CHATS_WHERE_grpid
 	,SELECT_timestamp_FROM_msgs_WHERE_timestamp
+	,SELECT_param_FROM_msgs
 	,SELECT_it_FROM_msgs_JOIN_chats_WHERE_rfc724
 	,SELECT_MAX_timestamp_FROM_msgs
 	,SELECT_rfc724_FROM_msgs_ORDER_BY_timestamp_LIMIT_1
 	,UPDATE_chats_SET_draft_WHERE_id
 	,UPDATE_chats_SET_n_WHERE_c
-	,UPDATE_chats_SET_blocked
+	,UPDATE_chats_SET_blocked_WHERE_chat_id
+	,UPDATE_chats_SET_blocked_WHERE_contact_id
 	,UPDATE_chats_SET_unarchived
 
 	,SELECT_a_FROM_chats_contacts_WHERE_i
@@ -96,7 +97,6 @@ enum
 	,SELECT_COUNT_FROM_msgs_WHERE_chat_id
 	,SELECT_COUNT_FROM_msgs_WHERE_rfc724_mid
 	,SELECT_COUNT_FROM_msgs_WHERE_ft
-	,SELECT_COUNT_DISTINCT_f_FROM_msgs_WHERE_c
 	,SELECT_i_FROM_msgs_WHERE_ctt
 	,SELECT_id_FROM_msgs_WHERE_cm
 	,SELECT_id_FROM_msgs_WHERE_mcm
@@ -107,14 +107,15 @@ enum
 	,SELECT_i_FROM_msgs_LEFT_JOIN_contacts_WHERE_c
 	,SELECT_i_FROM_msgs_LEFT_JOIN_contacts_WHERE_starred
 	,SELECT_i_FROM_msgs_LEFT_JOIN_contacts_WHERE_fresh
+	,SELECT_i_FROM_msgs_LEFT_JOIN_chats_contacts_WHERE_blocked
 	,SELECT_i_FROM_msgs_WHERE_query
 	,SELECT_i_FROM_msgs_WHERE_chat_id_AND_query
 	,INSERT_INTO_msgs_msscftttsmttpb
+	,INSERT_INTO_msgs_cftttst
 	,INSERT_INTO_msgs_mcftttstpb
 	,UPDATE_msgs_SET_chat_id_WHERE_id
 	,UPDATE_msgs_SET_state_WHERE_id
-	,UPDATE_msgs_SET_seen_WHERE_id_AND_chat_id_AND_freshORnoticed
-	,UPDATE_msgs_SET_noticed_WHERE_id_AND_fresh
+	,SELECT_state_blocked_FROM_msgs_LEFT_JOIN_chats_WHERE_id
 	,UPDATE_msgs_SET_state_WHERE_chat_id_AND_state
 	,UPDATE_msgs_SET_state_WHERE_from_id_AND_state
 	,UPDATE_msgs_SET_ss_WHERE_rfc724_mid
@@ -138,7 +139,8 @@ enum
 	,SELECT_FROM_leftgrps_WHERE_grpid
 
 	,INSERT_INTO_acpeerstates_a
-	,SELECT_aclpp_FROM_acpeerstates_WHERE_a
+	,SELECT_fields_FROM_acpeerstates_WHERE_addr
+	,SELECT_fields_FROM_acpeerstates_WHERE_fingerprint
 	,UPDATE_acpeerstates_SET_l_WHERE_a
 	,UPDATE_acpeerstates_SET_lcpp_WHERE_a
 

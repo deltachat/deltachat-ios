@@ -107,7 +107,7 @@ __RCSID("$NetBSD$");
  * \param subregion
  * \param stream	How to parse
  *
- * \return 1 on success, 0 on failure
+ * \return 1 on success, 0 on failure; if 0 is returned, data cannot be used
  */
 static int
 limread_data(pgp_data_t *data, unsigned len,
@@ -125,8 +125,15 @@ limread_data(pgp_data_t *data, unsigned len,
 		return 0;
 	}
 
-	return pgp_limited_read(stream, data->contents, data->len, subregion,
+	int read_ok = pgp_limited_read(stream, data->contents, data->len, subregion,
 			&stream->errors, &stream->readinfo, &stream->cbinfo);
+	if( !read_ok ) {
+		free(data->contents); // EDIT BY MR: fix memory leak
+		data->contents = NULL;
+		return 0;
+	}
+
+	return 1;
 }
 
 /**
@@ -1543,6 +1550,7 @@ parse_userid(pgp_region_t *region, pgp_stream_t *stream)
 	return 1;
 }
 
+#if 0 // EDIT BY MR - sighash not needed
 static pgp_hash_t     *
 parse_hash_find(pgp_stream_t *stream, const uint8_t *keyid)
 {
@@ -1556,6 +1564,7 @@ parse_hash_find(pgp_stream_t *stream, const uint8_t *keyid)
 	}
 	return NULL;
 }
+#endif
 
 /**
  * \ingroup Core_Parse
@@ -1663,10 +1672,14 @@ parse_v3_sig(pgp_region_t *region,
 			region->length - region->readc);
 		return 0;
 	}
+
+	#if 0 // EDIT BY MR - sighash not needed
 	if (pkt.u.sig.info.signer_id_set) {
 		pkt.u.sig.hash = parse_hash_find(stream,
 				pkt.u.sig.info.signer_id);
 	}
+	#endif
+
 	CALLBACK(PGP_PTAG_CT_SIGNATURE, &stream->cbinfo, &pkt);
 	return 1;
 }
@@ -2295,6 +2308,7 @@ parse_hash_init(pgp_stream_t *stream, pgp_hash_alg_t type,
 		(void) fprintf(stderr, "parse_hash_init: bad alloc 0\n");
 		/* just continue and die here */
 		/* XXX - agc - no way to return failure */
+		exit(70); // EDIT BY MR - cannot allocate a few bytes? if this happends, we cannot do anything about it
 	} else {
 		stream->hashes = hash;
 	}
@@ -2307,6 +2321,20 @@ parse_hash_init(pgp_stream_t *stream, pgp_hash_alg_t type,
 		/* XXX - agc - no way to return failure */
 	}
 	(void) memcpy(hash->keyid, keyid, sizeof(hash->keyid));
+}
+
+
+// EDIT BY MR: this function was declared but not implemented
+void parse_hash_finish(pgp_stream_t* stream)
+{
+	if( stream->hashes ) {
+		uint8_t		hashbuf[NETPGP_BUFSIZ];
+		for (int i = 0; i<stream->hashc; i++) {
+			stream->hashes[i].hash.finish(&stream->hashes[i].hash, hashbuf);
+		}
+		free(stream->hashes);
+		stream->hashes = NULL;
+	}
 }
 
 /**
@@ -2398,6 +2426,8 @@ parse_litdata(pgp_region_t *region, pgp_stream_t *stream)
 	pgp_packet_t	 pkt;
 	uint8_t		 c = 0x0;
 
+	memset(&pkt, 0, sizeof(pgp_packet_t));
+
 	if (!limread(&c, 1, region, stream)) {
 		return 0;
 	}
@@ -2415,7 +2445,7 @@ parse_litdata(pgp_region_t *region, pgp_stream_t *stream)
 	}
 	CALLBACK(PGP_PTAG_CT_LITDATA_HEADER, &stream->cbinfo, &pkt);
 	mem = pkt.u.litdata_body.mem = pgp_memory_new();
-	pgp_memory_init(pkt.u.litdata_body.mem,
+	pgp_memory_init(mem,
 			(unsigned)((region->length * 101) / 100) + 12);
 	pkt.u.litdata_body.data = mem->buf;
 
@@ -2431,6 +2461,7 @@ parse_litdata(pgp_region_t *region, pgp_stream_t *stream)
 	}
 
 	/* XXX - get rid of mem here? */
+	pgp_memory_free(mem); // EDIT BY MR - fix memory leak
 
 	return 1;
 }
@@ -2759,7 +2790,9 @@ parse_seckey(pgp_content_enum tag, pgp_region_t *region, pgp_stream_t *stream)
 
 		pgp_forget(passphrase, passlen);
 
-		pgp_crypt_any(&decrypt, pkt.u.seckey.alg);
+		if( !pgp_crypt_any(&decrypt, pkt.u.seckey.alg) ) {
+			return 0; // EDIT BY MR
+		}
 		if (pgp_get_debug_level(__FILE__)) {
 			hexdump(stderr, "input iv", pkt.u.seckey.iv, pgp_block_size(pkt.u.seckey.alg));
 			hexdump(stderr, "key", key, CAST_KEY_LENGTH);
@@ -3071,7 +3104,9 @@ parse_pk_sesskey(pgp_region_t *region,
 		(void) fprintf(stderr, "got pk session key via callback\n");
 	}
 
-	pgp_crypt_any(&stream->decrypt, pkt.u.pk_sesskey.symm_alg);
+	if( !pgp_crypt_any(&stream->decrypt, pkt.u.pk_sesskey.symm_alg) ) {
+		return 0; // EDIT BY MR
+	}
 	iv = calloc(1, stream->decrypt.blocksize);
 	if (iv == NULL) {
 		(void) fprintf(stderr, "parse_pk_sesskey: bad alloc\n");
@@ -3083,6 +3118,221 @@ parse_pk_sesskey(pgp_region_t *region,
 	free(iv);
 	return 1;
 }
+
+// EDIT BY MR
+uint8_t* pgp_s2k_do(const char* passphrase,
+                    int wanted_key_len,
+                    pgp_s2k_specifier_t s2k_spec, pgp_hash_alg_t s2k_hash_algo, const uint8_t* s2k_salt, int s2k_iter_id)
+{
+	#define     S2K_MIN(X, Y) (((X) < (Y))? (X) : (Y))
+	unsigned    done = 0;
+	unsigned    i = 0;
+	int         passphrase_len = strlen(passphrase);
+	pgp_hash_t  hash;
+	#define     EXPBIAS 6
+	int         s2k_iter_count = (16 + (s2k_iter_id & 15)) << ((s2k_iter_id >> 4) + EXPBIAS);
+	uint8_t     *key = calloc(1, wanted_key_len);
+	if( key == NULL ) {
+		return NULL;
+	}
+
+	for (done = 0, i = 0; done < wanted_key_len; i++) {
+		unsigned    hashsize;
+		unsigned    j;
+		unsigned    needed;
+		unsigned    size;
+		uint8_t     zero = 0;
+		uint8_t     *hashed;
+
+		pgp_hash_any(&hash, s2k_hash_algo);
+		hashsize = pgp_hash_size(s2k_hash_algo);
+		needed = wanted_key_len - done;
+		size = S2K_MIN(needed, hashsize);
+		if ((hashed = calloc(1, hashsize)) == NULL) {
+			free(key);
+			return NULL;
+		}
+		if (!hash.init(&hash)) {
+			free(hashed);
+			free(key);
+			return NULL;
+		}
+
+		/* preload if iterating  */
+		for (j = 0; j < i; j++) {
+			/*
+			 * Coverity shows a DEADCODE error on this
+			 * line. This is expected since the hardcoded
+			 * use of SHA1 and CAST5 means that it will
+			 * not used. This will change however when
+			 * other algorithms are supported.
+			 */
+			hash.add(&hash, &zero, 1);
+		}
+
+		if (s2k_spec == PGP_S2KS_ITERATED_AND_SALTED )
+		{
+			int remaining_octets = s2k_iter_count;
+			while( 1 )
+			{
+				int hash_now = S2K_MIN(PGP_SALT_SIZE, remaining_octets);
+				hash.add(&hash, s2k_salt, hash_now);
+				remaining_octets -= hash_now;
+				if( remaining_octets<=0 ) {
+					break;
+				}
+
+				hash_now = S2K_MIN(passphrase_len, remaining_octets);
+				hash.add(&hash, (uint8_t*)passphrase, hash_now);
+				remaining_octets -= hash_now;
+				if( remaining_octets<=0 ) {
+					break;
+				}
+			}
+		}
+		else
+		{
+			if (s2k_spec == PGP_S2KS_SALTED) {
+				hash.add(&hash, s2k_salt, PGP_SALT_SIZE);
+			}
+			hash.add(&hash, (uint8_t*)passphrase, (unsigned)passphrase_len);
+		}
+
+		hash.finish(&hash, hashed);
+
+		/*
+		 * if more in hash than is needed by session key, use
+		 * the leftmost octets
+		 */
+		(void) memcpy(&key[i * hashsize], hashed, (unsigned)size);
+		done += (unsigned)size;
+		free(hashed);
+		if (done > wanted_key_len) {
+			free(key);
+			return NULL;
+		}
+	}
+	return key;
+}
+// /EDIT BY MR
+
+// EDIT BY MR - parse Symmetric-Key Encrypted Session Key Packets (Tag 3)
+static int parse_sk_sesskey(pgp_region_t *region, pgp_stream_t *stream)
+{
+	int         success = 0;
+	uint8_t     version = 0, algo = 0;
+	pgp_crypt_t ci;
+	uint8_t     s2k_spec = 0, s2k_hash_algo = 0, s2k_salt[PGP_SALT_SIZE], s2k_iter_id = 0;
+	uint8_t*    encr_session_key = NULL, *decr_session_key = NULL;
+	int         session_key_bytes = 0;
+	uint8_t*    iv = NULL;
+	uint8_t*    key = NULL;
+
+	if( region == NULL || stream == NULL || stream->cbinfo.cryptinfo.symm_passphrase == NULL ) {
+		goto cleanup;
+	}
+
+	/* 2 bytes - Version & algorithm  */
+	if( !limread(&version, 1, region, stream) || version != 4
+	 || !limread(&algo, 1, region, stream) ) {
+		goto cleanup;
+	}
+
+	/* n bytes - S2K specifier */
+	if (!limread(&s2k_spec, 1, region, stream)
+	 || (s2k_spec!=PGP_S2KS_SIMPLE && s2k_spec!=PGP_S2KS_SALTED && s2k_spec!=PGP_S2KS_ITERATED_AND_SALTED)
+	 || !limread(&s2k_hash_algo, 1, region, stream) ) {
+		goto cleanup;
+	}
+
+	if( s2k_spec==PGP_S2KS_SALTED || s2k_spec==PGP_S2KS_ITERATED_AND_SALTED ) {
+		if (!limread(s2k_salt, PGP_SALT_SIZE, region, stream)) {
+			goto cleanup;
+		}
+	}
+
+	if( s2k_spec==PGP_S2KS_ITERATED_AND_SALTED ) {
+		if (!limread(&s2k_iter_id, 1, region, stream)) {
+			goto cleanup;
+		}
+	}
+
+	/* calculate the key from the passphrase */
+	if( !pgp_crypt_any(&ci, algo) ) {
+		goto cleanup;
+	}
+	if( (key = pgp_s2k_do(stream->cbinfo.cryptinfo.symm_passphrase, ci.keysize,
+						  s2k_spec, s2k_hash_algo, s2k_salt, s2k_iter_id)) == NULL ) {
+		goto cleanup;
+	}
+
+	/* set up stream->decrypt so that PGP_PTAG_CT_SE_IP_DATA can decrypt the data
+	as it does for "Public-Key Encrypted Session Key Packets (Tag 1)" */
+	if( region->length > region->readc )
+	{
+		/* n bytes - Encrypted session key _is_ present. From RFC 4880:
+		"[...] The result of applying the S2K algorithm to the passphrase is
+		used to decrypt just that encrypted session key field, using CFB mode
+		with an IV of all zeros. The decryption result consists of a one-octet
+		algorithm identifier that specifies the symmetric-key encryption
+		algorithm used to encrypt the following Symmetrically Encrypted Data
+		packet, followed by the session key octets themselves. */
+
+		/* read the data */
+		session_key_bytes = region->length - region->readc;
+		if( (encr_session_key=malloc(session_key_bytes)) == NULL
+		 || (decr_session_key=malloc(session_key_bytes)) == NULL
+		 || !limread(encr_session_key, session_key_bytes, region, stream) ) {
+			goto cleanup;
+		}
+
+		/* decrypt the read data */
+		iv = calloc(1, stream->decrypt.blocksize); if( iv == NULL ) { goto cleanup; }
+		ci.set_iv(&ci, iv);
+		free(iv);
+		iv = NULL;
+		ci.set_crypt_key(&ci, key);
+		pgp_encrypt_init(&ci);
+		pgp_decrypt_se_ip(&ci, decr_session_key, encr_session_key, session_key_bytes); /* pgp_decrypt_se_ip() decrypts using CFB mode, pgp_decrypt_se() would not */
+		ci.decrypt_finish(&ci);
+
+		/* use decrypted data as key */
+		algo = decr_session_key[0];
+		if( !pgp_crypt_any(&stream->decrypt, algo)
+		 || stream->decrypt.keysize != (session_key_bytes-1/*skip algo identifier*/) ) {
+			goto cleanup;
+		}
+		iv = calloc(1, stream->decrypt.blocksize); if( iv == NULL ) { goto cleanup; }
+		stream->decrypt.set_iv(&stream->decrypt, iv);
+		stream->decrypt.set_crypt_key(&stream->decrypt, &decr_session_key[1]/*skip algo identifier*/);
+		pgp_encrypt_init(&stream->decrypt);
+	}
+	else
+	{
+		/* 0 bytes - Encrypted session key is _not_ present. From RFC 4880:
+		"[...] The S2K algorithm applied to the passphrase produces the session
+		key for decrypting the file, using the symmetric cipher algorithm from
+		the Symmetric-Key Encrypted Session Key packet." */
+		if( !pgp_crypt_any(&stream->decrypt, algo) ) {
+			goto cleanup;
+		}
+		iv = calloc(1, stream->decrypt.blocksize); if( iv == NULL ) { goto cleanup; }
+		stream->decrypt.set_iv(&stream->decrypt, iv);
+		stream->decrypt.set_crypt_key(&stream->decrypt, key);
+		pgp_encrypt_init(&stream->decrypt);
+	}
+
+	success = 1;
+	stream->cbinfo.gotpass = 1;
+
+cleanup:
+	free(key);
+	free(iv);
+	free(encr_session_key);
+	free(decr_session_key);
+	return success;
+}
+// /EDIT BY MR
 
 #if 0
 static int
@@ -3403,6 +3653,10 @@ parse_packet(pgp_stream_t *stream, uint32_t *pktlen)
 		ret = parse_pk_sesskey(&region, stream);
 		break;
 
+	case PGP_PTAG_CT_SK_SESSION_KEY:
+		ret = parse_sk_sesskey(&region, stream);
+		break;
+
 	case PGP_PTAG_CT_SE_DATA:
         // SE_DATA CURRENTLY BROKEN
         ret = 0;
@@ -3565,6 +3819,8 @@ pgp_stream_delete(pgp_stream_t *stream)
 	pgp_cbdata_t	*cbinfo;
 	pgp_cbdata_t	*next;
     pgp_cryptinfo_t *cryptinfo = &stream->cbinfo.cryptinfo;
+
+	parse_hash_finish(stream); // EDIT BY MR: fix memory leak
 
 	for (cbinfo = stream->cbinfo.next; cbinfo; cbinfo = next) {
 		next = cbinfo->next;

@@ -28,6 +28,11 @@
 #include "mrmimeparser.h"
 
 
+/*******************************************************************************
+ * Tools
+ ******************************************************************************/
+
+
 static struct mailmime* new_data_part(void* data, size_t data_bytes, char* default_content_type, int default_encoding)
 {
   //char basename_buf[PATH_MAX];
@@ -138,8 +143,51 @@ static struct mailmime* new_data_part(void* data, size_t data_bytes, char* defau
 }
 
 
+/**
+ * Check if a MIME structure contains a multipart/report part.
+ *
+ * As reports are often unencrypted, we do not reset the Autocrypt header in
+ * this case.
+ *
+ * However, Delta Chat itself has no problem with encrypted multipart/report
+ * parts and MUAs should be encouraged to encrpyt multipart/reports as well so
+ * that we could use the normal Autocrypt processing.
+ *
+ * @private
+ *
+ * @param mime The mime struture to check
+ *
+ * @return 1=multipart/report found in MIME, 0=no multipart/report found
+ */
+static int contains_report(struct mailmime* mime)
+{
+	if( mime->mm_type == MAILMIME_MULTIPLE )
+	{
+		if( mime->mm_content_type->ct_type->tp_type==MAILMIME_TYPE_COMPOSITE_TYPE
+		 && mime->mm_content_type->ct_type->tp_data.tp_composite_type->ct_type == MAILMIME_COMPOSITE_TYPE_MULTIPART
+		 && strcmp(mime->mm_content_type->ct_subtype, "report")==0 ) {
+			return 1;
+		}
+
+		clistiter* cur;
+		for( cur=clist_begin(mime->mm_data.mm_multipart.mm_mp_list); cur!=NULL; cur=clist_next(cur)) {
+			if( contains_report((struct mailmime*)clist_content(cur)) ) {
+				return 1;
+			}
+		}
+	}
+	else if( mime->mm_type == MAILMIME_MESSAGE )
+	{
+		if( contains_report(mime->mm_data.mm_message.mm_msg_mime) ) {
+			return 1;
+		}
+	}
+
+	return 0;
+}
+
 /*******************************************************************************
- * Tools
+ * Generate Keypairs
  ******************************************************************************/
 
 
@@ -150,7 +198,7 @@ static int load_or_generate_self_public_key__(mrmailbox_t* mailbox, mrkey_t* pub
 	int        key_created = 0;
 	int        success = 0, key_creation_here = 0;
 
-	if( mailbox == NULL || public_key == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || public_key == NULL ) {
 		goto cleanup;
 	}
 
@@ -238,7 +286,7 @@ int mrmailbox_ensure_secret_key_exists(mrmailbox_t* mailbox)
 	mrkey_t* public_key = mrkey_new();
 	char*    self_addr = NULL;
 
-	if( mailbox==NULL || public_key==NULL ) {
+	if( mailbox==NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || public_key==NULL ) {
 		goto cleanup;
 	}
 
@@ -246,6 +294,7 @@ int mrmailbox_ensure_secret_key_exists(mrmailbox_t* mailbox)
 	locked = 1;
 
 		if( (self_addr=mrsqlite3_get_config__(mailbox->m_sql, "configured_addr", NULL))==NULL ) {
+			mrmailbox_log_warning(mailbox, 0, "Cannot ensure secret key if mailbox is not configured.");
 			goto cleanup;
 		}
 
@@ -274,16 +323,17 @@ void mrmailbox_e2ee_encrypt(mrmailbox_t* mailbox, const clist* recipients_addr,
 {
 	int                    locked = 0, col = 0, do_encrypt = 0;
 	mraheader_t*           autocryptheader = mraheader_new();
-	struct mailimf_fields* imffields = NULL; /*just a pointer into mailmime structure, must not be freed*/
+	struct mailimf_fields* imffields_unprotected = NULL; /*just a pointer into mailmime structure, must not be freed*/
 	mrkeyring_t*           keyring = mrkeyring_new();
 	mrkey_t*               sign_key = mrkey_new();
 	MMAPString*            plain = mmap_string_new("");
 	char*                  ctext = NULL;
 	size_t                 ctext_bytes = 0;
+	mrarray_t*             peerstates = mrarray_new(NULL, 10);
 
 	if( helper ) { memset(helper, 0, sizeof(mrmailbox_e2ee_helper_t)); }
 
-	if( mailbox == NULL || recipients_addr == NULL || in_out_message == NULL
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || recipients_addr == NULL || in_out_message == NULL
 	 || in_out_message->mm_parent /* libEtPan's pgp_encrypt_mime() takes the parent as the new root. We just expect the root as being given to this function. */
 	 || autocryptheader == NULL || keyring==NULL || sign_key==NULL || plain == NULL || helper == NULL ) {
 		goto cleanup;
@@ -292,7 +342,7 @@ void mrmailbox_e2ee_encrypt(mrmailbox_t* mailbox, const clist* recipients_addr,
 	mrsqlite3_lock(mailbox->m_sql);
 	locked = 1;
 
-		/* load autocrypt header from db */
+		/* init autocrypt header from db */
 		autocryptheader->m_prefer_encrypt = MRA_PE_NOPREFERENCE;
 		if( mailbox->m_e2ee_enabled ) {
 			autocryptheader->m_prefer_encrypt = MRA_PE_MUTUAL;
@@ -311,23 +361,23 @@ void mrmailbox_e2ee_encrypt(mrmailbox_t* mailbox, const clist* recipients_addr,
 		if( autocryptheader->m_prefer_encrypt==MRA_PE_MUTUAL || e2ee_guaranteed )
 		{
 			do_encrypt = 1;
-			mrapeerstate_t* peerstate = mrapeerstate_new();
 			clistiter*      iter1;
 			for( iter1 = clist_begin(recipients_addr); iter1!=NULL ; iter1=clist_next(iter1) ) {
 				const char* recipient_addr = clist_content(iter1);
-				if( mrapeerstate_load_from_db__(peerstate, mailbox->m_sql, recipient_addr)
-				 && peerstate->m_public_key->m_binary!=NULL
-				 && peerstate->m_public_key->m_bytes>0
+				mrapeerstate_t* peerstate = mrapeerstate_new();
+				if( mrapeerstate_load_by_addr__(peerstate, mailbox->m_sql, recipient_addr)
+				 && mrapeerstate_peek_key(peerstate)
 				 && (peerstate->m_prefer_encrypt==MRA_PE_MUTUAL || e2ee_guaranteed) )
 				{
-					mrkeyring_add(keyring, peerstate->m_public_key); /* we always add all recipients (even on IMAP upload) as otherwise forwarding may fail */
+					mrkeyring_add(keyring, mrapeerstate_peek_key(peerstate)); /* we always add all recipients (even on IMAP upload) as otherwise forwarding may fail */
+					mrarray_add_ptr(peerstates, peerstate);
 				}
 				else {
+					mrapeerstate_unref(peerstate);
 					do_encrypt = 0;
 					break; /* if we cannot encrypt to a single recipient, we cannot encrypt the message at all */
 				}
 			}
-			mrapeerstate_unref(peerstate);
 		}
 
 		if( do_encrypt ) {
@@ -340,6 +390,10 @@ void mrmailbox_e2ee_encrypt(mrmailbox_t* mailbox, const clist* recipients_addr,
 	mrsqlite3_unlock(mailbox->m_sql);
 	locked = 0;
 
+	if( (imffields_unprotected=mailmime_find_mailimf_fields(in_out_message))==NULL ) {
+		goto cleanup;
+	}
+
 	/* encrypt message, if possible */
 	if( do_encrypt )
 	{
@@ -347,9 +401,61 @@ void mrmailbox_e2ee_encrypt(mrmailbox_t* mailbox, const clist* recipients_addr,
 		mailprivacy_prepare_mime(in_out_message); /* encode quoted printable all text parts */
 
 		struct mailmime* part_to_encrypt = in_out_message->mm_data.mm_message.mm_msg_mime;
+		part_to_encrypt->mm_parent = NULL;
+		struct mailimf_fields* imffields_encrypted = mailimf_fields_new_empty();
+		struct mailmime* message_to_encrypt = mailmime_new(MAILMIME_MESSAGE, NULL, 0, mailmime_fields_new_empty(), /* mailmime_new_message_data() calls mailmime_fields_new_with_version() which would add the unwanted MIME-Version:-header */
+			mailmime_get_content_message(), NULL, NULL, NULL, NULL, imffields_encrypted, part_to_encrypt);
+
+		/* gossip keys */
+		int iCnt = mrarray_get_cnt(peerstates);
+		if( iCnt > 1 ) {
+			for( int i = 0; i < iCnt; i++ ) {
+				char* p = mrapeerstate_render_gossip_header((mrapeerstate_t*)mrarray_get_ptr(peerstates, i));
+				if( p ) {
+					mailimf_fields_add(imffields_encrypted, mailimf_field_new_custom(strdup("Autocrypt-Gossip"), p/*takes ownership*/));
+				}
+			}
+		}
+
+		/* memoryhole headers */
+		clistiter* cur = clist_begin(imffields_unprotected->fld_list);
+		while( cur!=NULL ) {
+			int move_to_encrypted = 0;
+
+			struct mailimf_field* field = (struct mailimf_field*)clist_content(cur);
+			if( field ) {
+				if( field->fld_type == MAILIMF_FIELD_SUBJECT ) {
+					move_to_encrypted = 1;
+				}
+				else if( field->fld_type == MAILIMF_FIELD_OPTIONAL_FIELD ) {
+					struct mailimf_optional_field* opt_field = field->fld_data.fld_optional_field;
+					if( opt_field && opt_field->fld_name ) {
+						if(  strncmp(opt_field->fld_name, "Secure-Join", 11)==0
+						 || (strncmp(opt_field->fld_name, "Chat-", 5)==0 && strcmp(opt_field->fld_name, "Chat-Version")!=0)/*Chat-Version may be used for filtering, however, this is subject to cha*/ ) {
+							move_to_encrypted = 1;
+						}
+					}
+				}
+			}
+
+			if( move_to_encrypted ) {
+				mailimf_fields_add(imffields_encrypted, field);
+				cur = clist_delete(imffields_unprotected->fld_list, cur);
+			}
+			else {
+				cur = clist_next(cur);
+			}
+		}
+
+		char* e = mrstock_str(MR_STR_ENCRYPTEDMSG); char* subject_str = mr_mprintf(MR_CHAT_PREFIX " %s", e); free(e);
+		struct mailimf_subject* subject = mailimf_subject_new(mr_encode_header_string(subject_str));
+		mailimf_fields_add(imffields_unprotected, mailimf_field_new(MAILIMF_FIELD_SUBJECT, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, subject, NULL, NULL, NULL));
+		free(subject_str);
+
+		clist_append(part_to_encrypt->mm_content_type->ct_parameters, mailmime_param_new_with_data("protected-headers", "v1"));
 
 		/* convert part to encrypt to plain text */
-		mailmime_write_mem(plain, &col, part_to_encrypt);
+		mailmime_write_mem(plain, &col, message_to_encrypt);
 		if( plain->str == NULL || plain->len<=0 ) {
 			goto cleanup;
 		}
@@ -377,25 +483,17 @@ void mrmailbox_e2ee_encrypt(mrmailbox_t* mailbox, const clist* recipients_addr,
 		/* replace the original MIME-structure by the encrypted MIME-structure */
 		in_out_message->mm_data.mm_message.mm_msg_mime = encrypted_part;
 		encrypted_part->mm_parent = in_out_message;
-		part_to_encrypt->mm_parent = NULL;
-		mailmime_free(part_to_encrypt);
+		mailmime_free(message_to_encrypt);
 		//MMAPString* t3=mmap_string_new("");mailmime_write_mem(t3,&col,in_out_message);char* t4=mr_null_terminate(t3->str,t3->len); printf("ENCRYPTED+MIME_ENCODED:\n%s\n",t4);free(t4);mmap_string_free(t3); // DEBUG OUTPUT
 
 		helper->m_encryption_successfull = 1;
-	}
-
-	/* add Autocrypt:-header to allow the recipient to send us encrypted messages back
-	(the Autocrypt:-header in the IMAP copy is needed to detect the presence of the first Autocrypt:-client if the user tries to enable multiple device
-	(we show a warning then to avoid the generation of a second keypair and to allow the user to import the first key)) */
-	if( (imffields=mr_find_mailimf_fields(in_out_message))==NULL ) {
-		goto cleanup;
 	}
 
 	char* p = mraheader_render(autocryptheader);
 	if( p == NULL ) {
 		goto cleanup;
 	}
-	mailimf_fields_add(imffields, mailimf_field_new_custom(strdup("Autocrypt"), p/*takes ownership of pointer*/));
+	mailimf_fields_add(imffields_unprotected, mailimf_field_new_custom(strdup("Autocrypt"), p/*takes ownership of pointer*/));
 
 cleanup:
 	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
@@ -403,6 +501,9 @@ cleanup:
 	mrkeyring_unref(keyring);
 	mrkey_unref(sign_key);
 	if( plain ) { mmap_string_free(plain); }
+
+	for( int i=mrarray_get_cnt(peerstates)-1; i>=0; i-- ) { mrapeerstate_unref((mrapeerstate_t*)mrarray_get_ptr(peerstates, i)); }
+	mrarray_unref(peerstates);
 }
 
 
@@ -528,7 +629,7 @@ static int decrypt_part(mrmailbox_t*       mailbox,
 			goto cleanup;
 		}
 
-		//mr_print_mime(new_mime);
+		//mailmime_print(new_mime);
 
 		*ret_decrypted_mime = decrypted_mime;
 		sth_decrypted = 1;
@@ -545,11 +646,12 @@ cleanup:
 }
 
 
-static int decrypt_recursive(mrmailbox_t*       mailbox,
-                             struct mailmime*   mime,
-                             const mrkeyring_t* private_keyring,
-                             const mrkey_t*     public_key_for_validate,
-                             int*               ret_validation_errors)
+static int decrypt_recursive(mrmailbox_t*            mailbox,
+                             struct mailmime*        mime,
+                             const mrkeyring_t*      private_keyring,
+                             const mrkey_t*          public_key_for_validate,
+                             int*                    ret_validation_errors,
+                             struct mailimf_fields** ret_gossip_headers )
 {
 	struct mailmime_content* ct;
 	clistiter*               cur;
@@ -568,6 +670,19 @@ static int decrypt_recursive(mrmailbox_t*       mailbox,
 				struct mailmime* decrypted_mime = NULL;
 				if( decrypt_part(mailbox, (struct mailmime*)clist_content(cur), private_keyring, public_key_for_validate, ret_validation_errors, &decrypted_mime) )
 				{
+					/* remember the header containing potentially Autocrypt-Gossip */
+					if( *ret_gossip_headers == NULL /* use the outermost decrypted part */
+					 && (*ret_validation_errors) == 0 /* do not trust the gossipped keys when the message cannot be validated eg. due to a bad signature */ )
+					{
+						size_t dummy = 0;
+						struct mailimf_fields* test = NULL;
+						if( mailimf_envelope_and_optional_fields_parse(decrypted_mime->mm_mime_start, decrypted_mime->mm_length, &dummy, &test)==MAILIMF_NO_ERROR
+						 && test ) {
+							*ret_gossip_headers = test;
+						}
+					}
+
+					/* replace encrypted mime structure by decrypted one */
 					mailmime_substitute(mime, decrypted_mime);
 					mailmime_free(mime);
 					return 1; /* sth. decrypted, start over from root searching for encrypted parts */
@@ -576,7 +691,7 @@ static int decrypt_recursive(mrmailbox_t*       mailbox,
 		}
 		else {
 			for( cur=clist_begin(mime->mm_data.mm_multipart.mm_mp_list); cur!=NULL; cur=clist_next(cur)) {
-				if( decrypt_recursive(mailbox, (struct mailmime*)clist_content(cur), private_keyring, public_key_for_validate, ret_validation_errors) ) {
+				if( decrypt_recursive(mailbox, (struct mailmime*)clist_content(cur), private_keyring, public_key_for_validate, ret_validation_errors, ret_gossip_headers) ) {
 					return 1; /* sth. decrypted, start over from root searching for encrypted parts */
 				}
 			}
@@ -584,7 +699,7 @@ static int decrypt_recursive(mrmailbox_t*       mailbox,
 	}
 	else if( mime->mm_type == MAILMIME_MESSAGE )
 	{
-		if( decrypt_recursive(mailbox, mime->mm_data.mm_message.mm_msg_mime, private_keyring, public_key_for_validate, ret_validation_errors) ) {
+		if( decrypt_recursive(mailbox, mime->mm_data.mm_message.mm_msg_mime, private_keyring, public_key_for_validate, ret_validation_errors, ret_gossip_headers) ) {
 			return 1; /* sth. decrypted, start over from root searching for encrypted parts */
 		}
 	}
@@ -593,34 +708,56 @@ static int decrypt_recursive(mrmailbox_t*       mailbox,
 }
 
 
-static int contains_report(struct mailmime* mime)
+static void update_gossip_peerstates(mrmailbox_t* mailbox, time_t message_time, struct mailimf_fields* imffields, const struct mailimf_fields* gossip_headers)
 {
-	/* returns true if the mime structure contains a multipart/report
-	(as reports are often unencrypted, we do not reset the Autocrypt header in this case)
-	(however, MUA should be encouraged to encrpyt multipart/reports as well so that we can use the normal Autocrypt processing) */
-	if( mime->mm_type == MAILMIME_MULTIPLE )
-	{
-		if( mime->mm_content_type->ct_type->tp_type==MAILMIME_TYPE_COMPOSITE_TYPE
-		 && mime->mm_content_type->ct_type->tp_data.tp_composite_type->ct_type == MAILMIME_COMPOSITE_TYPE_MULTIPART
-		 && strcmp(mime->mm_content_type->ct_subtype, "report")==0 ) {
-			return 1;
-		}
+	clistiter* cur1;
+	mrhash_t*  recipients = NULL;
 
-		clistiter* cur;
-		for( cur=clist_begin(mime->mm_data.mm_multipart.mm_mp_list); cur!=NULL; cur=clist_next(cur)) {
-			if( contains_report((struct mailmime*)clist_content(cur)) ) {
-				return 1;
+	for( cur1 = clist_begin(gossip_headers->fld_list); cur1!=NULL ; cur1=clist_next(cur1) )
+	{
+		struct mailimf_field* field = (struct mailimf_field*)clist_content(cur1);
+		if( field->fld_type == MAILIMF_FIELD_OPTIONAL_FIELD )
+		{
+			const struct mailimf_optional_field* optional_field = field->fld_data.fld_optional_field;
+			if( optional_field && optional_field->fld_name && strcasecmp(optional_field->fld_name, "Autocrypt-Gossip")==0 )
+			{
+				mraheader_t* gossip_header = mraheader_new();
+				if( mraheader_set_from_string(gossip_header, optional_field->fld_value)
+				 && mrpgp_is_valid_key(mailbox, gossip_header->m_public_key) )
+				{
+					/* found an Autocrypt-Gossip entry, create recipents list and check if addr matches */
+					if( recipients == NULL ) {
+						recipients = mailimf_get_recipients(imffields);
+					}
+
+					if( mrhash_find(recipients, gossip_header->m_addr, strlen(gossip_header->m_addr)) )
+					{
+						/* valid recipient: update peerstate */
+						mrapeerstate_t* peerstate = mrapeerstate_new();
+						if( !mrapeerstate_load_by_addr__(peerstate, mailbox->m_sql, gossip_header->m_addr) ) {
+							mrapeerstate_init_from_gossip(peerstate, gossip_header, message_time);
+							mrapeerstate_save_to_db__(peerstate, mailbox->m_sql, 1/*create*/);
+						}
+						else {
+							mrapeerstate_apply_gossip(peerstate, gossip_header, message_time);
+							mrapeerstate_save_to_db__(peerstate, mailbox->m_sql, 0/*do not create*/);
+						}
+						mrapeerstate_unref(peerstate);
+					}
+					else
+					{
+						mrmailbox_log_info(mailbox, 0, "Ignoring gossipped \"%s\" as the address is not in To/Cc list.", gossip_header->m_addr);
+					}
+				}
+				mraheader_unref(gossip_header);
 			}
 		}
 	}
-	else if( mime->mm_type == MAILMIME_MESSAGE )
-	{
-		if( contains_report(mime->mm_data.mm_message.mm_msg_mime) ) {
-			return 1;
-		}
-	}
 
-	return 0;
+	if( recipients ) {
+		mrhash_clear(recipients);
+		free(recipients);
+	}
 }
 
 
@@ -628,7 +765,7 @@ int mrmailbox_e2ee_decrypt(mrmailbox_t* mailbox, struct mailmime* in_out_message
 {
 	/* return values: 0=nothing to decrypt/cannot decrypt, 1=sth. decrypted
 	(to detect parts that could not be decrypted, simply look for left "multipart/encrypted" MIME types */
-	struct mailimf_fields* imffields = mr_find_mailimf_fields(in_out_message); /*just a pointer into mailmime structure, must not be freed*/
+	struct mailimf_fields* imffields = mailmime_find_mailimf_fields(in_out_message); /*just a pointer into mailmime structure, must not be freed*/
 	mraheader_t*           autocryptheader = NULL;
 	time_t                 message_time = 0;
 	mrapeerstate_t*        peerstate = mrapeerstate_new();
@@ -636,8 +773,9 @@ int mrmailbox_e2ee_decrypt(mrmailbox_t* mailbox, struct mailmime* in_out_message
 	char*                  from = NULL, *self_addr = NULL;
 	mrkeyring_t*           private_keyring = mrkeyring_new();
 	int                    sth_decrypted = 0;
+	struct mailimf_fields* gossip_headers = NULL;
 
-	if( mailbox==NULL || in_out_message==NULL || ret_validation_errors==NULL
+	if( mailbox==NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || in_out_message==NULL || ret_validation_errors==NULL
 	 || imffields==NULL || peerstate==NULL || private_keyring==NULL ) {
 		goto cleanup;
 	}
@@ -648,12 +786,12 @@ int mrmailbox_e2ee_decrypt(mrmailbox_t* mailbox, struct mailmime* in_out_message
 	- Do not abort on errors - we should try at last the decyption below */
 	if( imffields )
 	{
-		struct mailimf_field* field = mr_find_mailimf_field(imffields, MAILIMF_FIELD_FROM);
+		struct mailimf_field* field = mailimf_find_field(imffields, MAILIMF_FIELD_FROM);
 		if( field && field->fld_data.fld_from ) {
-			from = mr_find_first_addr(field->fld_data.fld_from->frm_mb_list);
+			from = mailimf_find_first_addr(field->fld_data.fld_from->frm_mb_list);
 		}
 
-		field = mr_find_mailimf_field(imffields, MAILIMF_FIELD_ORIG_DATE);
+		field = mailimf_find_field(imffields, MAILIMF_FIELD_ORIG_DATE);
 		if( field && field->fld_data.fld_orig_date ) {
 			struct mailimf_orig_date* orig_date = field->fld_data.fld_orig_date;
 			if( orig_date ) {
@@ -681,7 +819,7 @@ int mrmailbox_e2ee_decrypt(mrmailbox_t* mailbox, struct mailmime* in_out_message
 		if( message_time > 0
 		 && from )
 		{
-			if( mrapeerstate_load_from_db__(peerstate, mailbox->m_sql, from) ) {
+			if( mrapeerstate_load_by_addr__(peerstate, mailbox->m_sql, from) ) {
 				if( autocryptheader ) {
 					mrapeerstate_apply_header(peerstate, autocryptheader, message_time);
 					mrapeerstate_save_to_db__(peerstate, mailbox->m_sql, 0/*no not create*/);
@@ -710,8 +848,8 @@ int mrmailbox_e2ee_decrypt(mrmailbox_t* mailbox, struct mailmime* in_out_message
 		}
 
 		/* if not yet done, load peer with public key for verification (should be last as the peer may be modified above) */
-		if( peerstate->m_public_key->m_bytes <= 0 ) {
-			mrapeerstate_load_from_db__(peerstate, mailbox->m_sql, from);
+		if( peerstate->m_last_seen == 0 ) {
+			mrapeerstate_load_by_addr__(peerstate, mailbox->m_sql, from);
 		}
 
 	mrsqlite3_unlock(mailbox->m_sql);
@@ -721,23 +859,25 @@ int mrmailbox_e2ee_decrypt(mrmailbox_t* mailbox, struct mailmime* in_out_message
 	*ret_validation_errors = 0;
 	int avoid_deadlock = 10;
 	while( avoid_deadlock > 0 ) {
-		if( !decrypt_recursive(mailbox, in_out_message, private_keyring, peerstate->m_public_key->m_bytes>0? peerstate->m_public_key : NULL, ret_validation_errors) ) {
+		if( !decrypt_recursive(mailbox, in_out_message, private_keyring,
+		        peerstate->m_public_key, /* never use gossip_key for validation - if we get a mail to validate from the user, we normally also have the public_key */
+		        ret_validation_errors, &gossip_headers) ) {
 			break;
 		}
 		sth_decrypted = 1;
 		avoid_deadlock--;
 	}
 
-	if( *ret_validation_errors == 0 ) {
-		if( peerstate->m_prefer_encrypt != MRA_PE_MUTUAL ) {
-			*ret_validation_errors = MR_VALIDATE_NOT_MUTUAL; /* this results in MRP_ERRONEOUS_E2EE instead of MRP_GUARANTEE_E2EE and finally in mrmsg_show_padlock() returning `false` */
-		}
+	/* check for Autocrypt-Gossip (NB: maybe we should use this header also for mrmimeparser_t::m_header_protected)  */
+	if( gossip_headers ) {
+		update_gossip_peerstates(mailbox, message_time, imffields, gossip_headers);
 	}
 
-	//mr_print_mime(in_out_message);
+	//mailmime_print(in_out_message);
 
 cleanup:
 	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
+	if( gossip_headers ) { mailimf_fields_free(gossip_headers); }
 	mraheader_unref(autocryptheader);
 	mrapeerstate_unref(peerstate);
 	mrkeyring_unref(private_keyring);

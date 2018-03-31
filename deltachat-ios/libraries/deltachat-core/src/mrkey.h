@@ -27,7 +27,7 @@ extern "C" {
 #endif
 
 
-typedef struct mrmailbox_t mrmailbox_t;
+typedef struct _mrmailbox mrmailbox_t;
 typedef struct sqlite3_stmt sqlite3_stmt;
 
 
@@ -53,11 +53,11 @@ mrkey_t* mrkey_new           ();
 mrkey_t* mrkey_ref           (mrkey_t*);
 void     mrkey_unref         (mrkey_t*);
 
-int   mrkey_set_from_raw  (mrkey_t*, const void* data, int bytes, int type);
-int   mrkey_set_from_key  (mrkey_t*, const mrkey_t*);
-int   mrkey_set_from_stmt (mrkey_t*, sqlite3_stmt*, int index, int type);
-int   mrkey_set_from_base64(mrkey_t*,const char* base64, int type);
-int   mrkey_set_from_file (mrkey_t*, const char* file, mrmailbox_t* mailbox);
+int   mrkey_set_from_binary  (mrkey_t*, const void* data, int bytes, int type);
+int   mrkey_set_from_key     (mrkey_t*, const mrkey_t*);
+int   mrkey_set_from_stmt    (mrkey_t*, sqlite3_stmt*, int index, int type);
+int   mrkey_set_from_base64  (mrkey_t*, const char* base64, int type);
+int   mrkey_set_from_file    (mrkey_t*, const char* file, mrmailbox_t* mailbox);
 
 int   mrkey_equals        (const mrkey_t*, const mrkey_t*);
 
@@ -68,8 +68,13 @@ int   mrkey_load_self_private__(mrkey_t*, const char* self_addr, mrsqlite3_t* sq
 char* mr_render_base64   (const void* buf, size_t buf_bytes, int break_every, const char* break_chars, int add_checksum); /* the result must be freed */
 char* mrkey_render_base64(const mrkey_t* ths, int break_every, const char* break_chars, int add_checksum); /* the result must be freed */
 char* mrkey_render_asc   (const mrkey_t*, const char* add_header_lines); /* each header line must be terminated by \r\n, the result must be freed */
-char* mrkey_render_fingerprint(const mrkey_t*, mrmailbox_t* mailbox);
-char* mr_render_fingerprint(const uint8_t* data, size_t bytes);
+int   mrkey_render_asc_to_file(const mrkey_t*, const char* file, mrmailbox_t* mailbox);
+
+char* mr_format_fingerprint          (const char*);
+char* mr_normalize_fingerprint       (const char*);
+char* mrkey_get_fingerprint          (const mrkey_t*);
+char* mrkey_get_formatted_fingerprint(const mrkey_t*);
+
 void  mr_wipe_secret_mem(void* buf, size_t buf_bytes);
 
 

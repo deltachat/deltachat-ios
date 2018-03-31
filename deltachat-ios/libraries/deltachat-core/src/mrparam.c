@@ -62,7 +62,7 @@ static char* find_param(char* ths, int key, char** ret_p2)
 /**
  * Create new parameter list object.
  *
- * @memberof mrparam_t
+ * @private @memberof mrparam_t
  *
  * @return The created parameter list object.
  */
@@ -83,7 +83,7 @@ mrparam_t* mrparam_new()
 /**
  * Free an parameter list object created eg. by mrparam_new().
  *
- * @memberof mrparam_t
+ * @private @memberof mrparam_t
  *
  * @param param The parameter list object to free.
  */
@@ -100,7 +100,7 @@ void mrparam_unref(mrparam_t* param)
 
 
 /**
- * Delete all parameters.
+ * Delete all parameters in the object.
  *
  * @memberof mrparam_t
  *
@@ -143,6 +143,26 @@ void mrparam_set_packed(mrparam_t* param, const char* packed)
 	if( packed ) {
 		free(param->m_packed);
 		param->m_packed = safe_strdup(packed);
+	}
+}
+
+
+/**
+ * Same as mrparam_set_packed() but uses '&' as a separator (instead '\n').
+ * Urldecoding itself is not done by this function, this is up to the caller.
+ */
+void mrparam_set_urlencoded(mrparam_t* param, const char* urlencoded)
+{
+	if( param == NULL ) {
+		return;
+	}
+
+	mrparam_empty(param);
+
+	if( urlencoded ) {
+		free(param->m_packed);
+		param->m_packed = safe_strdup(urlencoded);
+		mr_str_replace(&param->m_packed, "&", "\n");
 	}
 }
 
@@ -245,7 +265,7 @@ int32_t mrparam_get_int(mrparam_t* param, int key, int32_t def)
  *
  * @param key Key of the parameter to modify, one of the MRP_* constants.
  *
- * @param value Value to store for key.
+ * @param value Value to store for key. NULL to clear the value.
  *
  * @return None.
  */

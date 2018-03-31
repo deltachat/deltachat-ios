@@ -111,7 +111,7 @@ void mrsimplify_unref(mrsimplify_t* ths)
  ******************************************************************************/
 
 
-static void mrsimplify_simplify_plain_text(mrsimplify_t* ths, char* buf_terminated)
+static char* mrsimplify_simplify_plain_text(mrsimplify_t* ths, const char* buf_terminated)
 {
 	/* This function ...
 	... removes all text after the line `-- ` (footer mark)
@@ -119,7 +119,8 @@ static void mrsimplify_simplify_plain_text(mrsimplify_t* ths, char* buf_terminat
 	    these are all lines starting with the character `>`
 	... remove a non-empty line before the removed quote (contains sth. like "On 2.9.2016, Bjoern wrote:" in different formats and lanugages) */
 
-	/* TODO: If we know, the mail is from another Messenger, we could skip most of this stuff */
+	/* we could skip some of this stuff if we know that the mail is from another messenger,
+	however, this adds some additional complexity and seems not to be needed currently */
 
 	/* split the given buffer into lines */
 	carray* lines = mr_split_into_lines(buf_terminated);
@@ -128,17 +129,29 @@ static void mrsimplify_simplify_plain_text(mrsimplify_t* ths, char* buf_terminat
 
 	/* search for the line `-- ` and ignore this and all following lines
 	If the line contains more characters, it is _not_ treated as the footer start mark (hi, Thorsten) */
-	for( l = l_first; l <= l_last; l++ )
 	{
-		line = (char*)carray_get(lines, l);
-		if( strcmp(line, "-- ")==0
-		 || strcmp(line, "--  ")==0 /* quoted-printable may encode `-- ` to `-- =20` which is converted back to `--  ` ... */
-		 || strcmp(line, "--")==0   /* this is not documented, but occurs frequently; however, if we get problems with this, skip this HACK */
-		 || strcmp(line, "---")==0  /*       - " -                                                                                          */
-		 || strcmp(line, "----")==0 /*       - " -                                                                                          */ )
+		int footer_mark = 0;
+		for( l = l_first; l <= l_last; l++ )
 		{
-			l_last = l - 1; /* if l_last is -1, there are no lines */
-			break; /* done */
+			/* hide standard footer, "-- " - we do not set m_is_cut_at_end if we find this mark */
+			line = (char*)carray_get(lines, l);
+			if( strcmp(line, "-- ")==0
+			 || strcmp(line, "--  ")==0 ) { /* quoted-printable may encode `-- ` to `-- =20` which is converted back to `--  ` ... */
+				footer_mark = 1;
+			}
+
+			/* also hide some non-standard footers - they got m_is_cut_at_end set, however  */
+			if( strcmp(line, "--")==0
+			 || strcmp(line, "---")==0
+			 || strcmp(line, "----")==0 ) {
+				footer_mark = 1;
+				ths->m_is_cut_at_end = 1;
+			}
+
+			if( footer_mark ) {
+				l_last = l - 1; /* if l_last is -1, there are no lines */
+				break; /* done */
+			}
 		}
 	}
 
@@ -151,7 +164,7 @@ static void mrsimplify_simplify_plain_text(mrsimplify_t* ths, char* buf_terminat
 		 && strncmp(line1, "From: ", 6)==0
 		 && line2[0] == 0 )
 		{
-            ths->m_is_forwarded = 1;
+            ths->m_is_forwarded = 1; /* nothing is cutted, the forward state should displayed explicitly in the ui */
             l_first += 3;
 		}
 	}
@@ -168,6 +181,7 @@ static void mrsimplify_simplify_plain_text(mrsimplify_t* ths, char* buf_terminat
 		 || strncmp(line, "~~~~~", 5)==0 )
 		{
 			l_last = l - 1; /* if l_last is -1, there are no lines */
+			ths->m_is_cut_at_end = 1;
 			break; /* done */
 		}
 	}
@@ -189,6 +203,7 @@ static void mrsimplify_simplify_plain_text(mrsimplify_t* ths, char* buf_terminat
 		if( l_lastQuotedLine != -1 )
 		{
 			l_last = l_lastQuotedLine-1; /* if l_last is -1, there are no lines */
+			ths->m_is_cut_at_end = 1;
 
 			if( l_last > 0 ) {
 				if( mr_is_empty_line((char*)carray_get(lines, l_last)) ) { /* allow one empty line between quote and quote headline (eg. mails from Jürgen) */
@@ -228,14 +243,20 @@ static void mrsimplify_simplify_plain_text(mrsimplify_t* ths, char* buf_terminat
 		if( l_lastQuotedLine != -1 )
 		{
 			l_first = l_lastQuotedLine + 1;
+			ths->m_is_cut_at_begin = 1;
 		}
 	}
 
 	/* re-create buffer from the remaining lines */
-	char* p1 = buf_terminated;
-	*p1 = 0; /* make sure, the string is terminated if there are no lines (l_last==-1) */
+	mrstrbuilder_t ret;
+	mrstrbuilder_init(&ret, strlen(buf_terminated));
 
-	int add_nl = 0; /* we write empty lines only in case and non-empty line follows */
+	if( ths->m_is_cut_at_begin ) {
+		mrstrbuilder_cat(&ret, MR_ELLIPSE_STR " ");
+	}
+
+	int pending_linebreaks = 0; /* we write empty lines only in case and non-empty line follows */
+	int content_lines_added = 0;
 
 	for( l = l_first; l <= l_last; l++ )
 	{
@@ -243,30 +264,33 @@ static void mrsimplify_simplify_plain_text(mrsimplify_t* ths, char* buf_terminat
 
 		if( mr_is_empty_line(line) )
 		{
-			add_nl++;
+			pending_linebreaks++;
 		}
 		else
 		{
-			if( p1 != buf_terminated ) /* flush empty lines - except if we're at the start of the buffer */
+			if( content_lines_added ) /* flush empty lines - except if we're at the start of the buffer */
 			{
-				if( add_nl > 2 ) { add_nl = 2; } /* ignore more than one empty line (however, regard normal line ends) */
-				while( add_nl ) {
-					*p1 = '\n';
-					p1++;
-					add_nl--;
+				if( pending_linebreaks > 2 ) { pending_linebreaks = 2; } /* ignore more than one empty line (however, regard normal line ends) */
+				while( pending_linebreaks ) {
+					mrstrbuilder_cat(&ret, "\n");
+					pending_linebreaks--;
 				}
 			}
 
-			size_t line_len = strlen(line);
-
-			strcpy(p1, line);
-
-			p1 = &p1[line_len]; /* points to the current terminating nullcharacters which is overwritten with the next line */
-			add_nl = 1;
+			mrstrbuilder_cat(&ret, line);
+			content_lines_added++;
+			pending_linebreaks = 1;
 		}
 	}
 
+	if( ths->m_is_cut_at_end
+	 && (!ths->m_is_cut_at_begin || content_lines_added) /* avoid two `[...]` without content */ ) {
+		mrstrbuilder_cat(&ret, " " MR_ELLIPSE_STR);
+	}
+
 	mr_free_splitted_lines(lines);
+
+	return ret.m_buf;
 }
 
 
@@ -278,11 +302,15 @@ static void mrsimplify_simplify_plain_text(mrsimplify_t* ths, char* buf_terminat
 char* mrsimplify_simplify(mrsimplify_t* ths, const char* in_unterminated, int in_bytes, int is_html)
 {
 	/* create a copy of the given buffer */
-	char* out = NULL;
+	char* out = NULL, *temp = NULL;
 
-	if( in_unterminated == NULL || in_bytes <= 0 ) {
+	if( ths == NULL || in_unterminated == NULL || in_bytes <= 0 ) {
 		return safe_strdup("");
 	}
+
+	ths->m_is_forwarded    = 0;
+	ths->m_is_cut_at_begin = 0;
+	ths->m_is_cut_at_end   = 0;
 
 	out = strndup((char*)in_unterminated, in_bytes); /* strndup() makes sure, the string is null-terminated */
 	if( out == NULL ) {
@@ -291,8 +319,7 @@ char* mrsimplify_simplify(mrsimplify_t* ths, const char* in_unterminated, int in
 
 	/* convert HTML to text, if needed */
 	if( is_html ) {
-		char* temp = mr_dehtml(out); /* mr_dehtml() returns way too much lineends, however they're removed in the simplification below */
-		if( temp ) {
+		if( (temp = mr_dehtml(out)) != NULL ) { /* mr_dehtml() returns way too much lineends, however they're removed in the simplification below */
 			free(out);
 			out = temp;
 		}
@@ -300,7 +327,10 @@ char* mrsimplify_simplify(mrsimplify_t* ths, const char* in_unterminated, int in
 
 	/* simplify the text in the buffer (characters to remove may be marked by `\r`) */
 	mr_remove_cr_chars(out); /* make comparisons easier, eg. for line `-- ` */
-	mrsimplify_simplify_plain_text(ths, out);
+	if( (temp = mrsimplify_simplify_plain_text(ths, out)) != NULL ) {
+		free(out);
+		out = temp;
+	}
 
 	/* remove all `\r` from string */
 	mr_remove_cr_chars(out);

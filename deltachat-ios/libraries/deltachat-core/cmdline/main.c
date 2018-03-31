@@ -51,16 +51,22 @@ static char* read_cmd(void)
 }
 
 
+static int s_do_log_info = 0;
+
+
 static uintptr_t receive_event(mrmailbox_t* mailbox, int event, uintptr_t data1, uintptr_t data2)
 {
-	switch( event ) {
+	switch( event )
+	{
 		case MR_EVENT_GET_STRING:
 		case MR_EVENT_GET_QUANTITY_STRING:
 		case MR_EVENT_WAKE_LOCK:
 			break; /* do not show the event as this would fill the screen */
 
 		case MR_EVENT_INFO:
-			printf("%s\n", (char*)data2);
+			if( s_do_log_info ) {
+				printf("%s\n", (char*)data2);
+			}
 			break;
 
 		case MR_EVENT_WARNING:
@@ -86,12 +92,32 @@ static uintptr_t receive_event(mrmailbox_t* mailbox, int event, uintptr_t data1,
 				return (uintptr_t)ret;
 			}
 
+		case MR_EVENT_IS_OFFLINE:
+			printf("{{Received MR_EVENT_IS_OFFLINE()}}\n");
+			break;
+
+		case MR_EVENT_MSGS_CHANGED:
+			printf("{{Received MR_EVENT_MSGS_CHANGED(%i, %i)}}\n", (int)data1, (int)data2);
+			break;
+
+		case MR_EVENT_CONTACTS_CHANGED:
+			printf("{{Received MR_EVENT_CONTACTS_CHANGED()}}\n");
+			break;
+
+		case MR_EVENT_CONFIGURE_PROGRESS:
+			printf("{{Received MR_EVENT_CONFIGURE_PROGRESS(%i ‰)}}\n", (int)data1);
+			break;
+
+		case MR_EVENT_IMEX_PROGRESS:
+			printf("{{Received MR_EVENT_IMEX_PROGRESS(%i ‰)}}\n", (int)data1);
+			break;
+
 		case MR_EVENT_IMEX_FILE_WRITTEN:
-			printf("{{Received event MR_EVENT_IMEX_FILE_WRITTEN (%s, %s)}}\n", (char*)data1, (char*)data2);
+			printf("{{Received MR_EVENT_IMEX_FILE_WRITTEN(%s)}}\n", (char*)data1);
 			break;
 
 		default:
-			printf("{{Received event #%i (%i, %i)}}\n", (int)event, (int)data1, (int)data2);
+			printf("{{Received MR_EVENT_%i(%i, %i)}}\n", (int)event, (int)data1, (int)data2);
 			break;
 	}
 	return 0;
@@ -104,10 +130,9 @@ int main(int argc, char ** argv)
 
 	mrmailbox_cmdline_skip_auth(mailbox); /* disable the need to enter the command `auth <password>` for all mailboxes. */
 
-	printf("Delta Chat Core is awaiting your commands.\n"); /* use neutral speach here, the Delta Chat Core is not directly related to any front end or end-product. */
-
 	/* open database from the commandline (if omitted, it can be opened using the `open`-command) */
 	if( argc == 2 ) {
+		printf("Opening %s ...\n", argv[1]);
 		if( !mrmailbox_open(mailbox, argv[1], NULL) ) {
 			printf("ERROR: Cannot open mailbox.\n");
 		}
@@ -117,6 +142,9 @@ int main(int argc, char ** argv)
 	}
 
 	stress_functions(mailbox);
+
+	printf("Delta Chat Core is awaiting your commands.\n");
+	s_do_log_info = 1;
 
 	/* wait for command */
 	while(1)
@@ -128,6 +156,18 @@ int main(int argc, char ** argv)
 		{
 			printf("\n\n\n\n"); /* insert some blank lines to visualize the break in the buffer */
 			printf("\e[1;1H\e[2J"); /* should work on ANSI terminals and on Windows 10. If not, well, then not. */
+		}
+		else if( strcmp(cmd, "getqr")==0 || strcmp(cmd, "getbadqr")==0 )
+		{
+			char* qrstr  = mrmailbox_oob_get_qr(mailbox);
+			if( strcmp(cmd, "getbadqr")==0 && strlen(qrstr)>40 ) {
+				for( int i = 12; i < 22; i++ ) { qrstr[i] = '0'; }
+			}
+			printf("%s\n", qrstr);
+			char* syscmd = mr_mprintf("qrencode -t ansiutf8 \"%s\" -o -", qrstr); /* `-t ansiutf8`=use back/write, `-t utf8`=use terminal colors */
+			system(syscmd);
+			free(syscmd);
+			free(qrstr);
 		}
 		else if( strcmp(cmd, "exit")==0 )
 		{

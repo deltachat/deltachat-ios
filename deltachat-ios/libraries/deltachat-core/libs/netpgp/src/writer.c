@@ -1069,6 +1069,7 @@ pgp_push_enc_se_ip(pgp_output_t *output, const pgp_keyring_t *pubkeys, const cha
 	    pgp_write_pk_sesskey(output, encrypted_pk_sesskey);
 
         if(encrypted_pk_sesskey != initial_sesskey){
+			pgp_pk_sesskey_free(encrypted_pk_sesskey); // EDIT BY MR: fix memory leak
     	    free(encrypted_pk_sesskey);
         }
     }
@@ -1085,7 +1086,9 @@ pgp_push_enc_se_ip(pgp_output_t *output, const pgp_keyring_t *pubkeys, const cha
 		(void) fprintf(stderr, "pgp_push_enc_se_ip: bad alloc\n");
 		return 0;
 	}
-	pgp_crypt_any(encrypted, initial_sesskey->symm_alg);
+	if( !pgp_crypt_any(encrypted, initial_sesskey->symm_alg) ) {
+		return 0; // EDIT BY MR
+	}
 	if ((iv = calloc(1, encrypted->blocksize)) == NULL) {
 		free(se_ip);
 		free(encrypted);
@@ -1103,6 +1106,7 @@ pgp_push_enc_se_ip(pgp_output_t *output, const pgp_keyring_t *pubkeys, const cha
 	pgp_writer_push(output, encrypt_se_ip_writer, NULL,
 			encrypt_se_ip_destroyer, se_ip);
 	/* tidy up */
+	pgp_pk_sesskey_free(initial_sesskey); // EDIT BY MR: fix memory leak
 	free(initial_sesskey);
 	free(iv);
 	return 1;
@@ -1116,13 +1120,13 @@ encrypt_se_ip_writer(const uint8_t *src,
 {
 	const unsigned	 bufsz = 128;
 	encrypt_se_ip_t	*se_ip = pgp_writer_get_arg(writer);
-	pgp_output_t	*litoutput;
-	pgp_output_t	*zoutput;
-	pgp_output_t	*output;
-	pgp_memory_t	*litmem;
-	pgp_memory_t	*zmem;
-	pgp_memory_t	*localmem;
-	unsigned	 ret = 1;
+	pgp_output_t	*litoutput = NULL; // EDIT BY MR: init the pointer just to be prepared if we cleanup before we call pgp_setup_memory_write()
+	pgp_output_t	*zoutput = NULL;
+	pgp_output_t	*output = NULL;
+	pgp_memory_t	*litmem = NULL;
+	pgp_memory_t	*zmem = NULL;
+	pgp_memory_t	*localmem = NULL;
+	unsigned	    ret = 0; // EDIT BY MR: default to failure, this makes cleaning easier
 
     const uint8_t *zsrc;
     unsigned zsrclen;
@@ -1136,7 +1140,7 @@ encrypt_se_ip_writer(const uint8_t *src,
         pgp_write_litdata(litoutput, src, (const int)len, PGP_LDT_BINARY);
         if (pgp_mem_len(litmem) <= len) {
             (void) fprintf(stderr, "encrypt_se_ip_writer: bad len\n");
-            return 0;
+            goto cleanup; // EDIT BY MR - fix memory leak
         }
         zsrc = pgp_mem_data(litmem);
         zsrclen = (unsigned)pgp_mem_len(litmem);
@@ -1155,16 +1159,21 @@ encrypt_se_ip_writer(const uint8_t *src,
 	if (pgp_mem_len(localmem) <= pgp_mem_len(zmem)) {
 		(void) fprintf(stderr,
 				"encrypt_se_ip_writer: bad comp len\n");
-		return 0;
+		goto cleanup; // EDIT BY MR - fix memory leak
 	}
 
 	/* now write memory to next writer */
 	ret = stacked_write(writer, pgp_mem_data(localmem),
 				(unsigned)pgp_mem_len(localmem), errors);
 
-	pgp_memory_free(localmem);
-	pgp_memory_free(zmem);
-	pgp_memory_free(litmem);
+cleanup:
+	if( localmem )  { pgp_memory_free(localmem); }
+	if( zmem )      { pgp_memory_free(zmem); }
+	if( litmem )    { pgp_memory_free(litmem); }
+
+	if( output )    { pgp_output_delete(output); } // EDIT BY MR - fix memory leak
+	if( zoutput )   { pgp_output_delete(zoutput); } // EDIT BY MR - fix memory leak
+	if( litoutput ) { pgp_output_delete(litoutput); } // EDIT BY MR - fix memory leak
 
 	return ret;
 }
@@ -1175,7 +1184,12 @@ encrypt_se_ip_destroyer(pgp_writer_t *writer)
 	encrypt_se_ip_t	*se_ip;
 
 	se_ip = pgp_writer_get_arg(writer);
-	free(se_ip->crypt);
+
+	if( se_ip->crypt ) {
+		se_ip->crypt->decrypt_finish(se_ip->crypt); // EDIT BY MR - fix memory leak
+		free(se_ip->crypt);
+	}
+
 	free(se_ip);
 }
 
@@ -1478,6 +1492,7 @@ pgp_pop_sum16_writer(pgp_output_t *output)
 
 /**************************************************************************/
 
+#if 0 //////
 #define MAX_PARTIAL_DATA_LENGTH 1073741824
 
 typedef struct {
@@ -1489,8 +1504,9 @@ typedef struct {
 	pgp_output_t	*se_ip_out;
 	pgp_hash_t	 hash;
 } str_enc_se_ip_t;
+#endif //////
 
-
+#if 0 //////
 static unsigned
 str_enc_se_ip_writer(const uint8_t *src,
 			    unsigned len,
@@ -1502,6 +1518,7 @@ str_enc_se_ip_finaliser(pgp_error_t **errors,
 			       pgp_writer_t * writer);
 
 static void     str_enc_se_ip_destroyer(pgp_writer_t *writer);
+#endif //////
 
 /* */
 
@@ -1510,6 +1527,7 @@ static void     str_enc_se_ip_destroyer(pgp_writer_t *writer);
 \param output
 \param pubkey
 */
+#if 0 //////
 void
 pgp_push_stream_enc_se_ip(pgp_output_t *output, pgp_key_t *pubkey, const char *cipher)
 {
@@ -1534,7 +1552,9 @@ pgp_push_stream_enc_se_ip(pgp_output_t *output, pgp_key_t *pubkey, const char *c
 			"pgp_push_stream_enc_se_ip: bad alloc\n");
 		return;
 	}
-	pgp_crypt_any(encrypted, encrypted_pk_sesskey->symm_alg);
+	if( !pgp_crypt_any(encrypted, encrypted_pk_sesskey->symm_alg) ) {
+		return; // EDIT BY MR
+	}
 	if ((iv = calloc(1, encrypted->blocksize)) == NULL) {
 		free(encrypted);
 		free(se_ip);
@@ -1565,9 +1585,11 @@ pgp_push_stream_enc_se_ip(pgp_output_t *output, pgp_key_t *pubkey, const char *c
 	free(encrypted_pk_sesskey);
 	free(iv);
 }
+#endif //////
 
 
 /* calculate the partial data length */
+#if 0 //////
 static unsigned
 partial_data_len(unsigned len)
 {
@@ -1590,7 +1612,9 @@ partial_data_len(unsigned len)
 	}
 	return mask;
 }
+#endif //////
 
+#if 0 //////
 static unsigned
 write_partial_len(pgp_output_t *output, unsigned len)
 {
@@ -1606,7 +1630,9 @@ write_partial_len(pgp_output_t *output, unsigned len)
 	c = 224 + i;
 	return pgp_write(output, &c, 1);
 }
+#endif //////
 
+#if 0 //////
 static unsigned
 stream_write_litdata(pgp_output_t *output,
 			const uint8_t *data,
@@ -1623,7 +1649,9 @@ stream_write_litdata(pgp_output_t *output,
 	}
 	return 1;
 }
+#endif //////
 
+#if 0 //////
 static unsigned
 stream_write_litdata_first(pgp_output_t *output,
 				const uint8_t *data,
@@ -1656,7 +1684,9 @@ stream_write_litdata_first(pgp_output_t *output,
 
 	return stream_write_litdata(output, data, (unsigned)sz_towrite);
 }
+#endif //////
 
+#if 0 //////
 static unsigned
 stream_write_litdata_last(pgp_output_t *output,
 				const uint8_t *data,
@@ -1665,7 +1695,9 @@ stream_write_litdata_last(pgp_output_t *output,
 	pgp_write_length(output, len);
 	return pgp_write(output, data, len);
 }
+#endif //////
 
+#if 0 //////
 static unsigned
 stream_write_se_ip(pgp_output_t *output,
 			const uint8_t *data,
@@ -1689,7 +1721,9 @@ stream_write_se_ip(pgp_output_t *output,
 	}
 	return 1;
 }
+#endif //////
 
+#if 0 //////
 static unsigned
 stream_write_se_ip_first(pgp_output_t *output,
 			const uint8_t *data,
@@ -1743,7 +1777,9 @@ stream_write_se_ip_first(pgp_output_t *output,
 	free(preamble);
 	return 1;
 }
+#endif //////
 
+#if 0 //////
 static unsigned
 stream_write_se_ip_last(pgp_output_t *output,
 			const uint8_t *data,
@@ -1788,7 +1824,9 @@ stream_write_se_ip_last(pgp_output_t *output,
 
 	return 1;
 }
+#endif //////
 
+#if 0 //////
 static unsigned
 str_enc_se_ip_writer(const uint8_t *src,
 			    unsigned len,
@@ -1838,8 +1876,10 @@ str_enc_se_ip_writer(const uint8_t *src,
 
 	return ret;
 }
+#endif //////
 
 /* write last chunk of data */
+#if 0 //////
 static unsigned
 str_enc_se_ip_finaliser(pgp_error_t **errors, pgp_writer_t *writer)
 {
@@ -1877,7 +1917,9 @@ str_enc_se_ip_finaliser(pgp_error_t **errors, pgp_writer_t *writer)
 	return stacked_write(writer, pgp_mem_data(se_ip->se_ip_mem),
 				 (unsigned)pgp_mem_len(se_ip->se_ip_mem), errors);
 }
+#endif //////
 
+#if 0 //////
 static void
 str_enc_se_ip_destroyer(pgp_writer_t *writer)
 {
@@ -1893,3 +1935,4 @@ str_enc_se_ip_destroyer(pgp_writer_t *writer)
 	free(se_ip->crypt);
 	free(se_ip);
 }
+#endif //////

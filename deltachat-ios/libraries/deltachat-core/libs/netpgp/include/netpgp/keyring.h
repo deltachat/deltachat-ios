@@ -138,7 +138,7 @@ unsigned pgp_update_userid(
         pgp_key_t *key,
         const uint8_t *userid,
         const pgp_subpacket_t *sigpkt,
-        pgp_sig_info_t *siginfo);
+        const pgp_sig_info_t *siginfo);
 
 // pgp_subpacket_t *pgp_add_subpacket(pgp_key_t *,
 // 						const pgp_subpacket_t *);
@@ -185,7 +185,9 @@ const uint8_t *pgp_key_get_primary_userid(pgp_key_t *key);
 
 
 pgp_pubkey_t * pgp_key_get_sigkey(pgp_key_t *key);
+#if 0 //////
 pgp_seckey_t * pgp_key_get_certkey(pgp_key_t *key);
+#endif //////
 pgp_pubkey_t * pgp_key_get_enckey(pgp_key_t *key, const uint8_t **id);
 pgp_seckey_t * pgp_key_get_deckey(pgp_key_t *key, const uint8_t **id);
 
@@ -202,7 +204,9 @@ pgp_key_find_uid_cond(
 
 const pgp_key_rating_t pgp_key_get_rating(pgp_key_t *key);
 
-unsigned 
+#if 0 //////
+unsigned
 pgp_key_revoke(pgp_key_t *skey, pgp_key_t *pkey, uint8_t code, const char *reason);
+#endif //////
 
 #endif /* KEYRING_H_ */

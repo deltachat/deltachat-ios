@@ -121,7 +121,7 @@ void mrloginparam_write__(const mrloginparam_t* ths, mrsqlite3_t* sql, const cha
 static char* get_readable_flags(int flags)
 {
 	mrstrbuilder_t strbuilder;
-	mrstrbuilder_init(&strbuilder);
+	mrstrbuilder_init(&strbuilder, 0);
 	#define CAT_FLAG(f, s) if( (1<<bit)==(f) ) { mrstrbuilder_cat(&strbuilder, (s)); flag_added = 1; }
 
 	for( int bit = 0; bit <= 30; bit++ )

@@ -810,11 +810,14 @@ parse_headers(pgp_stream_t *stream, dearmour_t *dearmour, pgp_error_t **errors,
 		} else {
 			if (size <= nbuf + 1) {
 				size += size + 80;
-				buf = realloc(buf, size);
-				if (buf == NULL) {
+				char* new_buf = realloc(buf, size); // EDIT BY MR: do not overwrite buf when realloc() returns NULL, fix memory leak
+				if (new_buf == NULL) {
 					(void) fprintf(stderr, "bad alloc\n");
 					ret = -1;
 					goto end;
+				}
+				else {
+					buf = new_buf;
 				}
 			}
 			buf[nbuf++] = c;
@@ -1590,19 +1593,21 @@ se_ip_data_reader(pgp_stream_t *stream, void *dest_,
 		uint8_t		*plaintext;
 		uint8_t		*mdc;
 		uint8_t		*mdc_hash;
-		pgp_hash_t	hash;
+		//pgp_hash_t	hash; // EDIT BY MR - unused variable
 		size_t		b;
 		size_t          sz_preamble;
 		size_t          sz_mdc_hash;
 		size_t          sz_mdc;
 		size_t          sz_plaintext;
 
+		/* EDIT BY MR - fix memory leak done with unused variable
 		pgp_hash_any(&hash, PGP_HASH_SHA1);
 		if (!hash.init(&hash)) {
 			(void) fprintf(stderr,
 				"se_ip_data_reader: can't init hash\n");
 			return -1;
 		}
+		*/
 
 		pgp_init_subregion(&decrypted_region, NULL);
 		decrypted_region.length =
@@ -1717,7 +1722,7 @@ pgp_reader_push_se_ip_data(pgp_stream_t *stream, pgp_crypt_t *decrypt,
 	} else {
 		se_ip->region = region;
 		se_ip->decrypt = decrypt;
-		pgp_reader_push(stream, se_ip_data_reader, se_ip_data_destroyer,
+		pgp_reader_push(stream, se_ip_data_reader, NULL /*giving se_ip_data_destroyer() does not work for additional pushed readers currenty; so we call se_ip_data_destroyer() below directly*/,
 				se_ip);
 	}
 }
@@ -1728,11 +1733,7 @@ pgp_reader_push_se_ip_data(pgp_stream_t *stream, pgp_crypt_t *decrypt,
 void
 pgp_reader_pop_se_ip_data(pgp_stream_t *stream)
 {
-	/*
-	 * decrypt_se_ip_t
-	 * *se_ip=pgp_reader_get_arg(pgp_readinfo(stream));
-	 */
-	/* free(se_ip); */
+	se_ip_data_destroyer(pgp_readinfo(stream));
 	pgp_reader_pop(stream);
 }
 
@@ -1926,7 +1927,7 @@ pgp_teardown_memory_write(pgp_output_t *output, pgp_memory_t *mem)
 void
 pgp_setup_memory_read(pgp_io_t *io,
 			pgp_stream_t **stream,
-			pgp_memory_t *mem,
+			const pgp_memory_t *mem,
 			void *vp,
 			pgp_cb_ret_t callback(const pgp_packet_t *,
 						pgp_cbdata_t *),

@@ -153,3 +153,20 @@ int mrmailbox_restore(mrmailbox_t* ths, time_t seconds_to_restore)
 	return mrimap_restore(ths->m_imap, seconds_to_restore);
 }
 	
+
+static char* get_file_disposition_suffix_(struct mailmime_disposition* file_disposition)
+{
+	if( file_disposition ) {
+		clistiter* cur;
+		for( cur = clist_begin(file_disposition->dsp_parms); cur != NULL; cur = clist_next(cur) ) {
+			struct mailmime_disposition_parm* dsp_param = (struct mailmime_disposition_parm*)clist_content(cur);
+			if( dsp_param ) {
+				if( dsp_param->pa_type==MAILMIME_DISPOSITION_PARM_FILENAME ) {
+					return mr_get_filesuffix_lc(dsp_param->pa_data.pa_filename);
+				}
+			}
+		}
+	}
+	return NULL;
+}
+

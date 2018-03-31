@@ -24,10 +24,10 @@
 #include <sys/types.h> /* for getpid() */
 #include <unistd.h>    /* for getpid() */
 #include <openssl/opensslv.h>
+#include <assert.h>
 #include "mrmailbox_internal.h"
 #include "mrimap.h"
 #include "mrsmtp.h"
-#include "mrmimeparser.h"
 #include "mrmimefactory.h"
 #include "mrtools.h"
 #include "mrjob.h"
@@ -35,806 +35,6 @@
 #include "mrkey.h"
 #include "mrpgp.h"
 #include "mrapeerstate.h"
-
-
-/*******************************************************************************
- * Handle groups for received messages
- ******************************************************************************/
-
-
-#define MR_CREATE_GROUP_AS_NEEDED  0x01
-
-
-static uint32_t lookup_group_by_grpid__(mrmailbox_t* mailbox, mrmimeparser_t* mime_parser, int create_flags,
-                                        uint32_t from_id, carray* to_ids)
-{
-	/* search the grpid in the header */
-	uint32_t              chat_id = 0;
-	clistiter*            cur;
-	struct mailimf_field* field;
-	char*                 grpid1 = NULL, *grpid2 = NULL, *grpid3 = NULL, *grpid4 = NULL;
-	const char*           grpid = NULL; /* must not be freed, just one of the others */
-	char*                 grpname = NULL;
-	sqlite3_stmt*         stmt;
-	int                   i, to_ids_cnt = carray_count(to_ids);
-	char*                 self_addr = NULL;
-	int                   recreate_member_list = 0;
-	int                   send_EVENT_CHAT_MODIFIED = 0;
-
-	/* special commands */
-	char*                 X_MrRemoveFromGrp = NULL; /* pointer somewhere into mime_parser, must not be freed */
-	char*                 X_MrAddToGrp = NULL; /* pointer somewhere into mime_parser, must not be freed */
-	int                   X_MrGrpNameChanged = 0;
-	int                   X_MrGrpImageChanged = 0;
-
-	for( cur = clist_begin(mime_parser->m_header->fld_list); cur!=NULL ; cur=clist_next(cur) )
-	{
-		field = (struct mailimf_field*)clist_content(cur);
-		if( field )
-		{
-			if( field->fld_type == MAILIMF_FIELD_OPTIONAL_FIELD )
-			{
-				struct mailimf_optional_field* optional_field = field->fld_data.fld_optional_field;
-				if( optional_field && optional_field->fld_name ) {
-					if( strcasecmp(optional_field->fld_name, "X-MrGrpId")==0 || strcasecmp(optional_field->fld_name, "Chat-Group-ID")==0 ) {
-						grpid1 = safe_strdup(optional_field->fld_value);
-					}
-					else if( strcasecmp(optional_field->fld_name, "X-MrGrpName")==0 || strcasecmp(optional_field->fld_name, "Chat-Group-Name")==0 ) {
-						grpname = mr_decode_header_string(optional_field->fld_value); /* this is no changed groupname message */
-					}
-					else if( strcasecmp(optional_field->fld_name, "X-MrRemoveFromGrp")==0 || strcasecmp(optional_field->fld_name, "Chat-Group-Member-Removed")==0 ) {
-						X_MrRemoveFromGrp = optional_field->fld_value;
-						mime_parser->m_is_system_message = MR_SYSTEM_MEMBER_REMOVED_FROM_GROUP;
-					}
-					else if( strcasecmp(optional_field->fld_name, "X-MrAddToGrp")==0 || strcasecmp(optional_field->fld_name, "Chat-Group-Member-Added")==0 ) {
-						X_MrAddToGrp = optional_field->fld_value;
-						mime_parser->m_is_system_message = MR_SYSTEM_MEMBER_ADDED_TO_GROUP;
-					}
-					else if( strcasecmp(optional_field->fld_name, "X-MrGrpNameChanged")==0 || strcasecmp(optional_field->fld_name, "Chat-Group-Name-Changed")==0 ) {
-						X_MrGrpNameChanged = 1;
-						mime_parser->m_is_system_message = MR_SYSTEM_GROUPNAME_CHANGED;
-					}
-					else if( strcasecmp(optional_field->fld_name, "Chat-Group-Image")==0 ) {
-						X_MrGrpImageChanged = 1;
-						mime_parser->m_is_system_message = MR_SYSTEM_GROUPIMAGE_CHANGED;
-					}
-				}
-			}
-			else if( field->fld_type == MAILIMF_FIELD_MESSAGE_ID )
-			{
-				struct mailimf_message_id* fld_message_id = field->fld_data.fld_message_id;
-				if( fld_message_id ) {
-					grpid2 = mr_extract_grpid_from_rfc724_mid(fld_message_id->mid_value);
-				}
-			}
-			else if( field->fld_type == MAILIMF_FIELD_IN_REPLY_TO )
-			{
-				struct mailimf_in_reply_to* fld_in_reply_to = field->fld_data.fld_in_reply_to;
-				if( fld_in_reply_to ) {
-					grpid3 = mr_extract_grpid_from_rfc724_mid_list(fld_in_reply_to->mid_list);
-				}
-			}
-			else if( field->fld_type == MAILIMF_FIELD_REFERENCES )
-			{
-				struct mailimf_references* fld_references = field->fld_data.fld_references;
-				if( fld_references ) {
-					grpid4 = mr_extract_grpid_from_rfc724_mid_list(fld_references->mid_list);
-				}
-			}
-
-		}
-	}
-
-	grpid = grpid1? grpid1 : (grpid2? grpid2 : (grpid3? grpid3 : grpid4));
-	if( grpid == NULL ) {
-		goto cleanup;
-	}
-
-	/* check, if we have a chat with this group ID */
-	stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_id_FROM_CHATS_WHERE_grpid,
-		"SELECT id FROM chats WHERE grpid=?;");
-	sqlite3_bind_text (stmt, 1, grpid, -1, SQLITE_STATIC);
-	if( sqlite3_step(stmt)==SQLITE_ROW ) {
-		chat_id = sqlite3_column_int(stmt, 0);
-	}
-
-	/* check if the sender is a member of the existing group -
-	if not, the message does not go to the group chat but to the normal chat with the sender */
-	if( chat_id!=0 && !mrmailbox_is_contact_in_chat__(mailbox, chat_id, from_id) ) {
-		chat_id = 0;
-		goto cleanup;
-	}
-
-	/* check if the group does not exist but should be created */
-	int group_explicitly_left = mrmailbox_group_explicitly_left__(mailbox, grpid);
-
-	self_addr = mrsqlite3_get_config__(mailbox->m_sql, "configured_addr", "");
-	if( chat_id == 0
-	 && (create_flags&MR_CREATE_GROUP_AS_NEEDED)
-	 && grpname
-	 && X_MrRemoveFromGrp==NULL /*otherwise, a pending "quit" message may pop up*/
-	 && (!group_explicitly_left || (X_MrAddToGrp&&strcasecmp(self_addr,X_MrAddToGrp)==0) ) /*re-create explicitly left groups only if ourself is re-added*/
-	 )
-	{
-		stmt = mrsqlite3_prepare_v2_(mailbox->m_sql,
-			"INSERT INTO chats (type, name, grpid) VALUES(?, ?, ?);");
-		sqlite3_bind_int (stmt, 1, MR_CHAT_TYPE_GROUP);
-		sqlite3_bind_text(stmt, 2, grpname, -1, SQLITE_STATIC);
-		sqlite3_bind_text(stmt, 3, grpid, -1, SQLITE_STATIC);
-		if( sqlite3_step(stmt)!=SQLITE_DONE ) {
-			goto cleanup;
-		}
-		sqlite3_finalize(stmt);
-		chat_id = sqlite3_last_insert_rowid(mailbox->m_sql->m_cobj);
-		recreate_member_list = 1;
-	}
-
-	/* again, check chat_id */
-	if( chat_id <= MR_CHAT_ID_LAST_SPECIAL ) {
-		chat_id = 0;
-		if( group_explicitly_left ) {
-			chat_id = MR_CHAT_ID_TRASH; /* we got a message for a chat we've deleted - do not show this even as a normal chat */
-		}
-		goto cleanup;
-	}
-
-	/* execute group commands */
-	if( X_MrAddToGrp || X_MrRemoveFromGrp )
-	{
-		recreate_member_list = 1;
-	}
-	else if( X_MrGrpNameChanged && grpname && strlen(grpname) < 200 )
-	{
-		stmt = mrsqlite3_prepare_v2_(mailbox->m_sql, "UPDATE chats SET name=? WHERE id=?;");
-		sqlite3_bind_text(stmt, 1, grpname, -1, SQLITE_STATIC);
-		sqlite3_bind_int (stmt, 2, chat_id);
-		sqlite3_step(stmt);
-		sqlite3_finalize(stmt);
-		mailbox->m_cb(mailbox, MR_EVENT_CHAT_MODIFIED, chat_id, 0);
-	}
-
-	if( X_MrGrpImageChanged )
-	{
-		int   ok = 0;
-		char* grpimage = NULL;
-		if( carray_count(mime_parser->m_parts)>=1 ) {
-			mrmimepart_t* textpart = (mrmimepart_t*)carray_get(mime_parser->m_parts, 0);
-			if( textpart->m_type == MR_MSG_TEXT ) {
-				if( carray_count(mime_parser->m_parts)>=2 ) {
-					mrmimepart_t* imgpart = (mrmimepart_t*)carray_get(mime_parser->m_parts, 1);
-					if( imgpart->m_type == MR_MSG_IMAGE ) {
-						grpimage = mrparam_get(imgpart->m_param, MRP_FILE, NULL);
-						ok = 1;
-					}
-				}
-				else {
-					ok = 1;
-				}
-			}
-		}
-
-		if( ok ) {
-			mrchat_t* chat = mrchat_new(mailbox);
-				mrmailbox_log_info(mailbox, 0, "New group image set to %s.", grpimage? "DELETED" : grpimage);
-				mrchat_load_from_db__(chat, chat_id);
-				mrparam_set(chat->m_param, MRP_PROFILE_IMAGE, grpimage/*may be NULL*/);
-				mrchat_update_param__(chat);
-			mrchat_unref(chat);
-			free(grpimage);
-			send_EVENT_CHAT_MODIFIED = 1;
-		}
-	}
-
-	/* add members to group/check members
-	for recreation: we should add a timestamp */
-	if( recreate_member_list )
-	{
-		const char* skip = X_MrRemoveFromGrp? X_MrRemoveFromGrp : NULL;
-
-		stmt = mrsqlite3_prepare_v2_(mailbox->m_sql, "DELETE FROM chats_contacts WHERE chat_id=?;");
-		sqlite3_bind_int (stmt, 1, chat_id);
-		sqlite3_step(stmt);
-		sqlite3_finalize(stmt);
-
-		if( skip==NULL || strcasecmp(self_addr, skip) != 0 ) {
-			mrmailbox_add_contact_to_chat__(mailbox, chat_id, MR_CONTACT_ID_SELF);
-		}
-
-		if( from_id > MR_CONTACT_ID_LAST_SPECIAL ) {
-			if( mrmailbox_contact_addr_equals__(mailbox, from_id, self_addr)==0
-			 && (skip==NULL || mrmailbox_contact_addr_equals__(mailbox, from_id, skip)==0) ) {
-				mrmailbox_add_contact_to_chat__(mailbox, chat_id, from_id);
-			}
-		}
-
-		for( i = 0; i < to_ids_cnt; i++ )
-		{
-			uint32_t to_id = (uint32_t)(uintptr_t)carray_get(to_ids, i); /* to_id is only once in to_ids and is non-special */
-			if( mrmailbox_contact_addr_equals__(mailbox, to_id, self_addr)==0
-			 && (skip==NULL || mrmailbox_contact_addr_equals__(mailbox, to_id, skip)==0) ) {
-				mrmailbox_add_contact_to_chat__(mailbox, chat_id, to_id);
-			}
-		}
-		send_EVENT_CHAT_MODIFIED = 1;
-	}
-
-	if( send_EVENT_CHAT_MODIFIED ) {
-		mailbox->m_cb(mailbox, MR_EVENT_CHAT_MODIFIED, chat_id, 0);
-	}
-
-	/* check the number of receivers -
-	the only critical situation is if the user hits "Reply" instead of "Reply all" in a non-messenger-client */
-	if( to_ids_cnt == 1 && mime_parser->m_is_send_by_messenger==0 ) {
-		int is_contact_cnt = mrmailbox_get_chat_contact_count__(mailbox, chat_id);
-		if( is_contact_cnt > 3 /* to_ids_cnt==1 may be "From: A, To: B, SELF" as SELF is not counted in to_ids_cnt. So everything up to 3 is no error. */ ) {
-			chat_id = 0;
-			goto cleanup;
-		}
-	}
-
-cleanup:
-	free(grpid1);
-	free(grpid2);
-	free(grpid3);
-	free(grpid4);
-	free(grpname);
-	free(self_addr);
-	return chat_id;
-}
-
-
-/*******************************************************************************
- * Receive a message and add it to the database
- ******************************************************************************/
-
-
-static void receive_imf(mrmailbox_t* ths, const char* imf_raw_not_terminated, size_t imf_raw_bytes,
-                          const char* server_folder, uint32_t server_uid, uint32_t flags)
-{
-	/* the function returns the number of created messages in the database */
-	int              incoming = 0;
-	int              incoming_origin = MR_ORIGIN_UNSET;
-	#define          outgoing (!incoming)
-
-	carray*          to_ids = NULL;
-
-	uint32_t         from_id = 0;
-	int              from_id_blocked = 0;
-	uint32_t         to_id   = 0;
-	uint32_t         chat_id = 0;
-	int              state   = MR_STATE_UNDEFINED;
-
-	sqlite3_stmt*    stmt;
-	size_t           i, icnt;
-	uint32_t         first_dblocal_id = 0;
-	char*            rfc724_mid = NULL; /* Message-ID from the header */
-	time_t           message_timestamp = MR_INVALID_TIMESTAMP;
-	mrmimeparser_t*  mime_parser = mrmimeparser_new(ths->m_blobdir, ths);
-	int              db_locked = 0;
-	int              transaction_pending = 0;
-	clistiter*       cur1;
-	const struct mailimf_field* field;
-
-	carray*          created_db_entries = carray_new(16);
-	int              create_event_to_send = MR_EVENT_MSGS_CHANGED;
-
-	carray*          rr_event_to_send = carray_new(16);
-
-	int              has_return_path = 0;
-	char*            txt_raw = NULL;
-
-	mrmailbox_log_info(ths, 0, "Receive message #%lu from %s.", server_uid, server_folder? server_folder:"?");
-
-	to_ids = carray_new(16);
-	if( to_ids==NULL || created_db_entries==NULL || rr_event_to_send==NULL || mime_parser == NULL ) {
-		mrmailbox_log_info(ths, 0, "Bad param.");
-		goto cleanup;
-	}
-
-	/* parse the imf to mailimf_message {
-	        mailimf_fields* msg_fields {
-	          clist* fld_list; // list of mailimf_field
-	        }
-	        mailimf_body* msg_body { // != NULL
-                const char * bd_text; // != NULL
-                size_t bd_size;
-	        }
-	   };
-	normally, this is done by mailimf_message_parse(), however, as we also need the MIME data,
-	we use mailmime_parse() through MrMimeParser (both call mailimf_struct_multiple_parse() somewhen, I did not found out anything
-	that speaks against this approach yet) */
-	mrmimeparser_parse(mime_parser, imf_raw_not_terminated, imf_raw_bytes);
-	if( mime_parser->m_header == NULL ) {
-		mrmailbox_log_info(ths, 0, "No header.");
-		goto cleanup; /* Error - even adding an empty record won't help as we do not know the message ID */
-	}
-
-	mrsqlite3_lock(ths->m_sql);
-	db_locked = 1;
-
-	mrsqlite3_begin_transaction__(ths->m_sql);
-	transaction_pending = 1;
-
-
-		/* Check, if the mail comes from extern, resp. is not send by us.  This is a _really_ important step
-		as messages send by us are used to validate other mail senders and receivers.
-		For this purpose, we assume, the `Return-Path:`-header is never present if the message is send by us.
-		The `Received:`-header may be another idea, however, this is also set if mails are transfered from other accounts via IMAP.
-		Using `From:` alone is no good idea, as mailboxes may use different sending-addresses - moreover, they may change over the years.
-		However, we use `From:` as an additional hint below. */
-		for( cur1 = clist_begin(mime_parser->m_header->fld_list); cur1!=NULL ; cur1=clist_next(cur1) )
-		{
-			field = (struct mailimf_field*)clist_content(cur1);
-			if( field )
-			{
-				if( field->fld_type == MAILIMF_FIELD_RETURN_PATH )
-				{
-					has_return_path = 1;
-				}
-				else if( field->fld_type == MAILIMF_FIELD_OPTIONAL_FIELD )
-				{
-					struct mailimf_optional_field* optional_field = field->fld_data.fld_optional_field;
-					if( optional_field && strcasecmp(optional_field->fld_name, "Return-Path")==0 )
-					{
-						has_return_path = 1; /* "MAILIMF_FIELD_OPTIONAL_FIELD.Return-Path" should be "MAILIMF_FIELD_RETURN_PATH", however, this is not always the case */
-					}
-				}
-			}
-		}
-
-		if( has_return_path ) {
-			incoming = 1;
-		}
-
-
-		/* for incoming messages, get From: and check if it is known (for known From:'s we add the other To:/Cc:/Bcc: in the 3rd pass) */
-		if( incoming
-		 && (field=mr_find_mailimf_field(mime_parser->m_header,  MAILIMF_FIELD_FROM  ))!=NULL )
-		{
-			struct mailimf_from* fld_from = field->fld_data.fld_from;
-			if( fld_from )
-			{
-				int check_self;
-				carray* from_list = carray_new(16);
-				mrmailbox_add_or_lookup_contacts_by_mailbox_list__(ths, fld_from->frm_mb_list, MR_ORIGIN_INCOMING_UNKNOWN_FROM, from_list, &check_self);
-				if( check_self )
-				{
-					incoming = 0; /* The `Return-Path:`-approach above works well, however, there may be messages outgoing messages which we also receive -
-					              for these messages, the `Return-Path:` is set although we're the sender.  To correct these cases, we add an
-					              additional From: check - which, however, will not work for older From:-addresses used on the mailbox. */
-				}
-				else
-				{
-					if( carray_count(from_list)>=1 ) /* if there is no from given, from_id stays 0 which is just fine.  These messages are very rare, however, we have to add the to the database (they to to the "deaddrop" chat) to avoid a re-download from the server. See also [**] */
-					{
-						from_id = (uint32_t)(uintptr_t)carray_get(from_list, 0);
-						incoming_origin = mrmailbox_get_contact_origin__(ths, from_id, &from_id_blocked);
-					}
-				}
-				carray_free(from_list);
-			}
-		}
-
-		/* Make sure, to_ids starts with the first To:-address (Cc: and Bcc: are added in the loop below pass) */
-		if( (field=mr_find_mailimf_field(mime_parser->m_header, MAILIMF_FIELD_TO))!=NULL )
-		{
-			struct mailimf_to* fld_to = field->fld_data.fld_to; /* can be NULL */
-			if( fld_to )
-			{
-				mrmailbox_add_or_lookup_contacts_by_address_list__(ths, fld_to->to_addr_list /*!= NULL*/,
-					outgoing? MR_ORIGIN_OUTGOING_TO : (incoming_origin>=MR_ORIGIN_MIN_VERIFIED? MR_ORIGIN_INCOMING_TO : MR_ORIGIN_INCOMING_UNKNOWN_TO), to_ids, NULL);
-			}
-		}
-
-		if( mrmimeparser_has_nonmeta(mime_parser) )
-		{
-
-			/**********************************************************************
-			 * Add parts
-			 *********************************************************************/
-
-			/* collect the rest information */
-			for( cur1 = clist_begin(mime_parser->m_header->fld_list); cur1!=NULL ; cur1=clist_next(cur1) )
-			{
-				field = (struct mailimf_field*)clist_content(cur1);
-				if( field )
-				{
-					if( field->fld_type == MAILIMF_FIELD_MESSAGE_ID )
-					{
-						struct mailimf_message_id* fld_message_id = field->fld_data.fld_message_id;
-						if( fld_message_id ) {
-							rfc724_mid = safe_strdup(fld_message_id->mid_value);
-						}
-					}
-					else if( field->fld_type == MAILIMF_FIELD_CC )
-					{
-						struct mailimf_cc* fld_cc = field->fld_data.fld_cc;
-						if( fld_cc ) {
-							mrmailbox_add_or_lookup_contacts_by_address_list__(ths, fld_cc->cc_addr_list,
-								outgoing? MR_ORIGIN_OUTGOING_CC : (incoming_origin>=MR_ORIGIN_MIN_VERIFIED? MR_ORIGIN_INCOMING_CC : MR_ORIGIN_INCOMING_UNKNOWN_CC), to_ids, NULL);
-						}
-					}
-					else if( field->fld_type == MAILIMF_FIELD_BCC )
-					{
-						struct mailimf_bcc* fld_bcc = field->fld_data.fld_bcc;
-						if( outgoing && fld_bcc ) {
-							mrmailbox_add_or_lookup_contacts_by_address_list__(ths, fld_bcc->bcc_addr_list,
-								MR_ORIGIN_OUTGOING_BCC, to_ids, NULL);
-						}
-					}
-					else if( field->fld_type == MAILIMF_FIELD_ORIG_DATE )
-					{
-						struct mailimf_orig_date* orig_date = field->fld_data.fld_orig_date;
-						if( orig_date ) {
-							message_timestamp = mr_timestamp_from_date(orig_date->dt_date_time); /* is not yet checked against bad times! */
-						}
-					}
-				}
-
-			} /* for */
-
-
-			/* check if the message introduces a new chat:
-			- outgoing messages introduce a chat with the first to: address if they are send by a messenger
-			- incoming messages introduce a chat only for known contacts if they are send by a messenger
-			(of course, the user can add other chats manually later) */
-			if( incoming )
-			{
-				state = (flags&MR_IMAP_SEEN)? MR_STATE_IN_SEEN : MR_STATE_IN_FRESH;
-				to_id = MR_CONTACT_ID_SELF;
-
-				/* test if there is a normal chat with the sender - if so, this allows us to create groups in the next step */
-				int test_normal_chat_id = mrmailbox_lookup_real_nchat_by_contact_id__(ths, from_id); /* note that the test_normal_chat_id is also used below (saves one lookup call) */
-
-				/* check for a group chat */
-				chat_id = lookup_group_by_grpid__(ths, mime_parser, (test_normal_chat_id || incoming_origin>=MR_ORIGIN_MIN_START_NEW_NCHAT/*always false, for now*/)? MR_CREATE_GROUP_AS_NEEDED : 0, from_id, to_ids);
-				if( chat_id == 0 )
-				{
-					if( mrmimeparser_is_mailinglist_message(mime_parser) )
-					{
-						chat_id = MR_CHAT_ID_TRASH;
-						mrmailbox_log_info(ths, 0, "Message belongs to a mailing list and is ignored.");
-						/* currently we do not show mailing list messages as the would result in lots of unwanted mesages:
-						(NB: typical mailing list header: `From: sender@gmx.net To: list@address.net)
-
-						- even if we know the sender, it does not make sense, to extract an mailing list message from the context and
-						  show it in the thread
-
-						- if we do not know the sender, it may be "known" by the is_reply_to_known_message__() function -
-						  this would be even more irritating as the sender may be unknown to the user
-						  (typical scenario: the users posts a message to a mailing list and an formally unknown user answers -
-						  this message would pop up in Delta Chat as it is a reply to a sent message)
-
-						"Mailing lists messages" in this sense are messages marked by List-Id or Precedence headers.
-						For the future, we might want to show mailing lists as groups.
-						NB: MR_CHAT_ID_TRASH does not remove the message on IMAP, it simply copies it to an invisible chat
-						(we have to track the message-id as otherwise the message pops up again and again) */
-					}
-					else
-					{
-						chat_id = test_normal_chat_id;
-						if( chat_id == 0 )
-						{
-							if( incoming_origin>=MR_ORIGIN_MIN_START_NEW_NCHAT/*always false, for now*/ )
-							{
-								chat_id = mrmailbox_create_or_lookup_nchat_by_contact_id__(ths, from_id);
-							}
-							else if( mrmailbox_is_reply_to_known_message__(ths, mime_parser) )
-							{
-								mrmailbox_scaleup_contact_origin__(ths, from_id, MR_ORIGIN_INCOMING_REPLY_TO);
-								//chat_id = mrmailbox_create_or_lookup_nchat_by_contact_id__(ths, from_id); -- we do not want any chat to be created implicitly.  Because of the origin-scale-up, the contact requests will pop up and this should be just fine.
-								mrmailbox_log_info(ths, 0, "Message is a reply to a known message, mark sender as known.");
-							}
-						}
-					}
-
-					if( chat_id == 0 ) {
-						chat_id = MR_CHAT_ID_DEADDROP;
-						if( state == MR_STATE_IN_FRESH ) {
-							if( incoming_origin<MR_ORIGIN_MIN_VERIFIED && mime_parser->m_is_send_by_messenger==0 ) {
-								state = MR_STATE_IN_NOTICED; /* degrade state for unknown senders and non-delta messages (the latter may be removed if we run into spam problems, currently this is fine) (noticed messages do count as being unread; therefore, the deaddrop will not popup in the chatlist) */
-							}
-						}
-					}
-				}
-			}
-			else /* outgoing */
-			{
-				state = MR_STATE_OUT_DELIVERED; /* the mail is on the IMAP server, probably it is also deliverd.  We cannot recreate other states (read, error). */
-				from_id = MR_CONTACT_ID_SELF;
-				if( carray_count(to_ids) >= 1 ) {
-					to_id   = (uint32_t)(uintptr_t)carray_get(to_ids, 0);
-
-					chat_id = lookup_group_by_grpid__(ths, mime_parser, MR_CREATE_GROUP_AS_NEEDED, from_id, to_ids);
-					if( chat_id == 0 )
-					{
-						chat_id = mrmailbox_lookup_real_nchat_by_contact_id__(ths, to_id);
-						if( chat_id == 0 && mime_parser->m_is_send_by_messenger && !mrmailbox_is_contact_blocked__(ths, to_id) ) {
-							chat_id = mrmailbox_create_or_lookup_nchat_by_contact_id__(ths, to_id);
-						}
-					}
-				}
-
-				if( chat_id == 0 ) {
-					chat_id = MR_CHAT_ID_TO_DEADDROP;
-				}
-			}
-
-			/* correct message_timestamp, it should not be used before,
-			however, we cannot do this earlier as we need from_id to be set */
-			message_timestamp = mrmailbox_correct_bad_timestamp__(ths, chat_id, from_id, message_timestamp, (flags&MR_IMAP_SEEN)? 0 : 1 /*fresh message?*/);
-
-			/* unarchive chat */
-			mrmailbox_unarchive_chat__(ths, chat_id);
-
-			/* check, if the mail is already in our database - if so, there's nothing more to do
-			(we may get a mail twice eg. it it is moved between folders) */
-			if( rfc724_mid == NULL ) {
-				/* header is lacking a Message-ID - this may be the case, if the message was sent from this account and the mail client
-				the the SMTP-server set the ID (true eg. for the Webmailer used in all-inkl-KAS)
-				in these cases, we build a message ID based on some useful header fields that do never change (date, to)
-				we do not use the folder-local id, as this will change if the mail is moved to another folder. */
-				rfc724_mid = mr_create_incoming_rfc724_mid(message_timestamp, from_id, to_ids);
-				if( rfc724_mid == NULL ) {
-					mrmailbox_log_info(ths, 0, "Cannot create Message-ID.");
-					goto cleanup;
-				}
-			}
-
-			{
-				char*    old_server_folder = NULL;
-				uint32_t old_server_uid = 0;
-				if( mrmailbox_rfc724_mid_exists__(ths, rfc724_mid, &old_server_folder, &old_server_uid) ) {
-					/* The message is already added to our database; rollback.  If needed, update the server_uid which may have changed if the message was moved around on the server. */
-					if( strcmp(old_server_folder, server_folder)!=0 || old_server_uid!=server_uid ) {
-						mrsqlite3_rollback__(ths->m_sql);
-						transaction_pending = 0;
-						mrmailbox_update_server_uid__(ths, rfc724_mid, server_folder, server_uid);
-					}
-					free(old_server_folder);
-					mrmailbox_log_info(ths, 0, "Message already in DB.");
-					goto cleanup;
-				}
-			}
-
-			/* if the message is not send by a messenger, check if it sent at least a reply to a messenger message
-			(later, we move these replies to the Chats-folder) */
-			int msgrmsg = mime_parser->m_is_send_by_messenger; /* 1 or 0 for yes/no */
-			if( msgrmsg )
-			{
-				mrmailbox_log_info(ths, 0, "Message sent by another messenger (will be moved to Chats-folder).");
-			}
-			else
-			{
-				if( mrmailbox_is_reply_to_messenger_message__(ths, mime_parser) )
-				{
-					mrmailbox_log_info(ths, 0, "Message is a reply to a messenger message (will be moved to Chats-folder).");
-					msgrmsg = 2; /* 2=no, but is reply to messenger message */
-				}
-			}
-
-			/* fine, so far.  now, split the message into simple parts usable as "short messages"
-			and add them to the database (mails send by other messenger clients should result
-			into only one message; mails send by other clients may result in several messages (eg. one per attachment)) */
-			icnt = carray_count(mime_parser->m_parts); /* should be at least one - maybe empty - part */
-			for( i = 0; i < icnt; i++ )
-			{
-				mrmimepart_t* part = (mrmimepart_t*)carray_get(mime_parser->m_parts, i);
-				if( part->m_is_meta ) {
-					continue;
-				}
-
-				if( part->m_type == MR_MSG_TEXT ) {
-					txt_raw = mr_mprintf("%s\n\n%s", mime_parser->m_subject? mime_parser->m_subject : "", part->m_msg_raw);
-					if( mime_parser->m_is_system_message ) {
-						mrparam_set_int(part->m_param, MRP_SYSTEM_CMD, mime_parser->m_is_system_message);
-					}
-				}
-
-				stmt = mrsqlite3_predefine__(ths->m_sql, INSERT_INTO_msgs_msscftttsmttpb,
-					"INSERT INTO msgs (rfc724_mid,server_folder,server_uid,chat_id,from_id, to_id,timestamp,type, state,msgrmsg,txt,txt_raw,param,bytes)"
-					" VALUES (?,?,?,?,?, ?,?,?, ?,?,?,?,?,?);");
-				sqlite3_bind_text (stmt,  1, rfc724_mid, -1, SQLITE_STATIC);
-				sqlite3_bind_text (stmt,  2, server_folder, -1, SQLITE_STATIC);
-				sqlite3_bind_int  (stmt,  3, server_uid);
-				sqlite3_bind_int  (stmt,  4, chat_id);
-				sqlite3_bind_int  (stmt,  5, from_id);
-				sqlite3_bind_int  (stmt,  6, to_id);
-				sqlite3_bind_int64(stmt,  7, message_timestamp);
-				sqlite3_bind_int  (stmt,  8, part->m_type);
-				sqlite3_bind_int  (stmt,  9, state);
-				sqlite3_bind_int  (stmt, 10, msgrmsg);
-				sqlite3_bind_text (stmt, 11, part->m_msg? part->m_msg : "", -1, SQLITE_STATIC);
-				sqlite3_bind_text (stmt, 12, txt_raw? txt_raw : "", -1, SQLITE_STATIC);
-				sqlite3_bind_text (stmt, 13, part->m_param->m_packed, -1, SQLITE_STATIC);
-				sqlite3_bind_int  (stmt, 14, part->m_bytes);
-				if( sqlite3_step(stmt) != SQLITE_DONE ) {
-					mrmailbox_log_info(ths, 0, "Cannot write DB.");
-					goto cleanup; /* i/o error - there is nothing more we can do - in other cases, we try to write at least an empty record */
-				}
-
-				free(txt_raw);
-				txt_raw = NULL;
-
-				if( first_dblocal_id == 0 ) {
-					first_dblocal_id = sqlite3_last_insert_rowid(ths->m_sql->m_cobj);
-				}
-
-				carray_add(created_db_entries, (void*)(uintptr_t)chat_id, NULL);
-				carray_add(created_db_entries, (void*)(uintptr_t)first_dblocal_id, NULL);
-			}
-
-			/* check event to send */
-			if( chat_id == MR_CHAT_ID_TRASH )
-			{
-				create_event_to_send = 0;
-			}
-			else if( incoming && state==MR_STATE_IN_FRESH )
-			{
-				if( from_id_blocked ) {
-					create_event_to_send = 0;
-				}
-				else if( chat_id == MR_CHAT_ID_DEADDROP ) {
-					create_event_to_send = MR_EVENT_MSGS_CHANGED;
-					/*if( mrsqlite3_get_config_int__(ths->m_sql, "show_deaddrop", 0)!=0 ) {
-						create_event_to_send = MR_EVENT_INCOMING_MSG;
-					}*/
-				}
-				else {
-					create_event_to_send = MR_EVENT_INCOMING_MSG;
-				}
-			}
-
-		}
-
-
-		if( carray_count(mime_parser->m_reports) > 0 )
-		{
-			/******************************************************************
-			 * Handle reports (mainly MDNs)
-			 *****************************************************************/
-
-			int mdns_enabled = mrsqlite3_get_config_int__(ths->m_sql, "mdns_enabled", MR_MDNS_DEFAULT_ENABLED);
-			icnt = carray_count(mime_parser->m_reports);
-			for( i = 0; i < icnt; i++ )
-			{
-				int                        mdn_consumed = 0;
-				struct mailmime*           report_root = carray_get(mime_parser->m_reports, i);
-				struct mailmime_parameter* report_type = mr_find_ct_parameter(report_root, "report-type");
-				if( report_root==NULL || report_type==NULL || report_type->pa_value==NULL ) {
-					continue;
-				}
-
-				if( strcmp(report_type->pa_value, "disposition-notification") == 0
-				 && clist_count(report_root->mm_data.mm_multipart.mm_mp_list) >= 2 /* the first part is for humans, the second for machines */ )
-				{
-					if( mdns_enabled /*to get a clear functionality, do not show incoming MDNs if the options is disabled*/ )
-					{
-						struct mailmime* report_data = (struct mailmime*)clist_content(clist_next(clist_begin(report_root->mm_data.mm_multipart.mm_mp_list)));
-						if( report_data
-						 && report_data->mm_content_type->ct_type->tp_type==MAILMIME_TYPE_COMPOSITE_TYPE
-						 && report_data->mm_content_type->ct_type->tp_data.tp_composite_type->ct_type==MAILMIME_COMPOSITE_TYPE_MESSAGE
-						 && strcmp(report_data->mm_content_type->ct_subtype, "disposition-notification")==0 )
-						{
-							/* we received a MDN (although the MDN is only a header, we parse it as a complete mail) */
-							const char* report_body = NULL;
-							size_t      report_body_bytes = 0;
-							char*       to_mmap_string_unref = NULL;
-							if( mr_mime_transfer_decode(report_data, &report_body, &report_body_bytes, &to_mmap_string_unref) )
-							{
-								struct mailmime* report_parsed = NULL;
-								size_t dummy = 0;
-								if( mailmime_parse(report_body, report_body_bytes, &dummy, &report_parsed)==MAIL_NO_ERROR
-								 && report_parsed!=NULL )
-								{
-									struct mailimf_fields* report_fields = mr_find_mailimf_fields(report_parsed);
-									if( report_fields )
-									{
-										struct mailimf_optional_field* of_disposition = mr_find_mailimf_field2(report_fields, "Disposition"); /* MUST be preset, _if_ preset, we assume a sort of attribution and do not go into details */
-										struct mailimf_optional_field* of_org_msgid   = mr_find_mailimf_field2(report_fields, "Original-Message-ID"); /* can't live without */
-										if( of_disposition && of_disposition->fld_value && of_org_msgid && of_org_msgid->fld_value )
-										{
-											char* rfc724_mid = NULL;
-											dummy = 0;
-											if( mailimf_msg_id_parse(of_org_msgid->fld_value, strlen(of_org_msgid->fld_value), &dummy, &rfc724_mid)==MAIL_NO_ERROR
-											 && rfc724_mid!=NULL )
-											{
-												uint32_t chat_id = 0;
-												uint32_t msg_id = 0;
-												if( mrmailbox_mdn_from_ext__(ths, from_id, rfc724_mid, &chat_id, &msg_id) ) {
-													carray_add(rr_event_to_send, (void*)(uintptr_t)chat_id, NULL);
-													carray_add(rr_event_to_send, (void*)(uintptr_t)msg_id, NULL);
-												}
-												mdn_consumed = (msg_id!=0);
-												free(rfc724_mid);
-											}
-										}
-									}
-									mailmime_free(report_parsed);
-								}
-
-								if( to_mmap_string_unref ) { mmap_string_unref(to_mmap_string_unref); }
-							}
-						}
-					}
-
-					/* Move the MDN away to the chats folder.  We do this for:
-					- Consumed or not consumed MDNs from other messengers
-					- Consumed MDNs from normal MUAs
-					Unconsumed MDNs from normal MUAs are _not_ moved.
-					NB: we do not delete the MDN as it may be used by other clients
-
-					CAVE: we rely on mrimap_markseen_msg() not to move messages that are aready in the correct folder.
-					otherwiese, the moved message get a new server_uid and is "fresh" again and we will be here again to move it away -
-					a classical deadlock, see also (***) */
-					if( mime_parser->m_is_send_by_messenger || mdn_consumed ) {
-						char* jobparam = mr_mprintf("%c=%s\n%c=%lu", MRP_SERVER_FOLDER, server_folder, MRP_SERVER_UID, server_uid);
-							mrjob_add__(ths, MRJ_MARKSEEN_MDN_ON_IMAP, 0, jobparam);
-						free(jobparam);
-					}
-				}
-
-			} /* for() */
-
-		}
-
-		/* debug print? */
-		if( mrsqlite3_get_config_int__(ths->m_sql, "save_eml", 0) ) {
-			char* emlname = mr_mprintf("%s/%s-%i.eml", ths->m_blobdir, server_folder, (int)first_dblocal_id /*may be 0 for MDNs*/);
-			FILE* emlfileob = fopen(emlname, "w");
-			if( emlfileob ) {
-				fwrite(imf_raw_not_terminated, 1, imf_raw_bytes, emlfileob);
-				fclose(emlfileob);
-			}
-			free(emlname);
-		}
-
-	/* end sql-transaction */
-	mrsqlite3_commit__(ths->m_sql);
-	transaction_pending = 0;
-
-	/* done */
-cleanup:
-	if( transaction_pending ) {
-		mrsqlite3_rollback__(ths->m_sql);
-	}
-
-	if( db_locked ) {
-		mrsqlite3_unlock(ths->m_sql);
-	}
-
-	if( mime_parser ) {
-		mrmimeparser_unref(mime_parser);
-	}
-
-	if( rfc724_mid ) {
-		free(rfc724_mid);
-	}
-
-	if( to_ids ) {
-		carray_free(to_ids);
-	}
-
-	if( created_db_entries ) {
-		if( create_event_to_send ) {
-			size_t i, icnt = carray_count(created_db_entries);
-			for( i = 0; i < icnt; i += 2 ) {
-				ths->m_cb(ths, create_event_to_send, (uintptr_t)carray_get(created_db_entries, i), (uintptr_t)carray_get(created_db_entries, i+1));
-			}
-		}
-		carray_free(created_db_entries);
-	}
-
-	if( rr_event_to_send ) {
-		size_t i, icnt = carray_count(rr_event_to_send);
-		for( i = 0; i < icnt; i += 2 ) {
-			ths->m_cb(ths, MR_EVENT_MSG_READ, (uintptr_t)carray_get(rr_event_to_send, i), (uintptr_t)carray_get(rr_event_to_send, i+1));
-		}
-		carray_free(rr_event_to_send);
-	}
-
-	free(txt_raw);
-}
 
 
 /*******************************************************************************
@@ -846,25 +46,25 @@ static uintptr_t cb_dummy(mrmailbox_t* mailbox, int event, uintptr_t data1, uint
 {
 	return 0;
 }
-static int32_t cb_get_config_int(mrimap_t* imap, const char* key, int32_t value)
+static char* cb_get_config(mrimap_t* imap, const char* key, const char* def)
 {
 	mrmailbox_t* mailbox = (mrmailbox_t*)imap->m_userData;
 	mrsqlite3_lock(mailbox->m_sql);
-		int32_t ret = mrsqlite3_get_config_int__(mailbox->m_sql, key, value);
+		char* ret = mrsqlite3_get_config__(mailbox->m_sql, key, def);
 	mrsqlite3_unlock(mailbox->m_sql);
 	return ret;
 }
-static void cb_set_config_int(mrimap_t* imap, const char* key, int32_t def)
+static void cb_set_config(mrimap_t* imap, const char* key, const char* value)
 {
 	mrmailbox_t* mailbox = (mrmailbox_t*)imap->m_userData;
 	mrsqlite3_lock(mailbox->m_sql);
-		mrsqlite3_set_config_int__(mailbox->m_sql, key, def);
+		mrsqlite3_set_config__(mailbox->m_sql, key, value);
 	mrsqlite3_unlock(mailbox->m_sql);
 }
 static void cb_receive_imf(mrimap_t* imap, const char* imf_raw_not_terminated, size_t imf_raw_bytes, const char* server_folder, uint32_t server_uid, uint32_t flags)
 {
 	mrmailbox_t* mailbox = (mrmailbox_t*)imap->m_userData;
-	receive_imf(mailbox, imf_raw_not_terminated, imf_raw_bytes, server_folder, server_uid, flags);
+	mrmailbox_receive_imf(mailbox, imf_raw_not_terminated, imf_raw_bytes, server_folder, server_uid, flags);
 }
 
 
@@ -889,8 +89,10 @@ static void cb_receive_imf(mrimap_t* imap, const char* imf_raw_not_terminated, s
  * @param userdata can be used by the client for any purpuse.  He finds it
  *     later in mrmailbox_get_userdata().
  *
- * @param os_name is only for decorative use and is shown eg. in the X-Mailer header
- *     in the form "Delta Chat <version> for <osName>"
+ * @param os_name is only for decorative use and is shown eg. in the `X-Mailer:` header
+ *     in the form "Delta Chat <version> for <os_name>".
+ *     You can give the name of the operating system and/or the used environment here.
+ *     It is okay to give NULL, in this case `X-Mailer:` header is set to "Delta Chat <version>".
  *
  * @return a mailbox object with some public members the object must be passed to the other mailbox functions
  *     and the object must be freed using mrmailbox_unref() after usage.
@@ -909,12 +111,13 @@ mrmailbox_t* mrmailbox_new(mrmailboxcb_t cb, void* userdata, const char* os_name
 
 	pthread_mutex_init(&ths->m_wake_lock_critical, NULL);
 
+	ths->m_magic    = MR_MAILBOX_MAGIC;
 	ths->m_sql      = mrsqlite3_new(ths);
 	ths->m_cb       = cb? cb : cb_dummy;
 	ths->m_userdata = userdata;
-	ths->m_imap     = mrimap_new(cb_get_config_int, cb_set_config_int, cb_receive_imf, (void*)ths, ths);
+	ths->m_imap     = mrimap_new(cb_get_config, cb_set_config, cb_receive_imf, (void*)ths, ths);
 	ths->m_smtp     = mrsmtp_new(ths);
-	ths->m_os_name  = safe_strdup(os_name);
+	ths->m_os_name  = strdup_keep_null(os_name);
 
 	mrjob_init_thread(ths);
 
@@ -954,7 +157,7 @@ mrmailbox_t* mrmailbox_new(mrmailboxcb_t cb, void* userdata, const char* os_name
  */
 void mrmailbox_unref(mrmailbox_t* mailbox)
 {
-	if( mailbox==NULL ) {
+	if( mailbox==NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return;
 	}
 
@@ -977,11 +180,30 @@ void mrmailbox_unref(mrmailbox_t* mailbox)
 	}
 
 	free(mailbox->m_os_name);
+	mailbox->m_magic = 0;
 	free(mailbox);
 
 	if( s_localize_mb_obj==mailbox ) {
 		s_localize_mb_obj = NULL;
 	}
+}
+
+
+/**
+ * Get user data associated with a mailbox object.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox the mailbox object as created by mrmailbox_new().
+ *
+ * @return User data, this is the second parameter given to mrmailbox_new().
+ */
+void* mrmailbox_get_userdata(mrmailbox_t* mailbox)
+{
+	if( mailbox==NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
+		return NULL;
+	}
+	return mailbox->m_userdata;
 }
 
 
@@ -1001,10 +223,15 @@ static void update_config_cache__(mrmailbox_t* ths, const char* key)
  *
  * @param mailbox: the mailbox object as created by mrmailbox_new
  *
- * @param dbfile the file to use to store the database, sth. like "~/file" won't work on all systems, if in doubt, use absolute paths
+ * @param dbfile the file to use to store the database, sth. like "~/file" won't
+ *     work on all systems, if in doubt, use absolute paths.
+ *     You can find the file path later in mrmailbox_t::m_dbfile
  *
- * @param blobdir a directory to store the blobs in, the trailing slash is added by us, so if you want to
- * avoid double slashes, do not add one. If you give NULL as blobdir, `dbfile-blobs` is used in the same directory as _dbfile_ will be created in.
+ * @param blobdir a directory to store the blobs in, the trailing slash is added
+ *     by us, so if you want to avoid double slashes, do not add one. If you
+ *     give NULL as blobdir, `dbfile-blobs` is used in the same directory as
+ *     _dbfile_ will be created in.
+ *     You can find the path to the blob direcrory later in mrmailbox_t::m_blobdir
  *
  * @return 1 on success, 0 on failure
  */
@@ -1013,52 +240,47 @@ int mrmailbox_open(mrmailbox_t* mailbox, const char* dbfile, const char* blobdir
 	int success = 0;
 	int db_locked = 0;
 
-	if( mailbox == NULL || dbfile == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || dbfile == NULL ) {
 		goto cleanup;
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
 	db_locked = 1;
 
-	/* Open() sets up the object and connects to the given database
-	from which all configuration is read/written to. */
+		/* Open() sets up the object and connects to the given database
+		from which all configuration is read/written to. */
 
-	/* Create/open sqlite database */
-	if( !mrsqlite3_open__(mailbox->m_sql, dbfile, 0) ) {
-		goto cleanup;
-	}
-	mrjob_kill_action__(mailbox, MRJ_CONNECT_TO_IMAP);
-
-	/* backup dbfile name */
-	mailbox->m_dbfile = safe_strdup(dbfile);
-
-	/* set blob-directory
-	(to avoid double slashed, the given directory should not end with an slash) */
-	if( blobdir && blobdir[0] ) {
-		mailbox->m_blobdir = safe_strdup(blobdir);
-	}
-	else {
-		mailbox->m_blobdir = mr_mprintf("%s-blobs", dbfile);
-		mr_create_folder(mailbox->m_blobdir, mailbox);
-	}
-
-	/* cache some settings */
-	update_config_cache__(mailbox, NULL);
-
-	/* success */
-	success = 1;
-
-	/* cleanup */
-cleanup:
-	if( !success ) {
-		if( mrsqlite3_is_open(mailbox->m_sql) ) {
-			mrsqlite3_close__(mailbox->m_sql);
+		/* Create/open sqlite database */
+		if( !mrsqlite3_open__(mailbox->m_sql, dbfile, 0) ) {
+			goto cleanup;
 		}
-	}
+		mrjob_kill_action__(mailbox, MRJ_CONNECT_TO_IMAP);
 
-	if( db_locked ) {
-		mrsqlite3_unlock(mailbox->m_sql);
-	}
+		/* backup dbfile name */
+		mailbox->m_dbfile = safe_strdup(dbfile);
+
+		/* set blob-directory
+		(to avoid double slashed, the given directory should not end with an slash) */
+		if( blobdir && blobdir[0] ) {
+			mailbox->m_blobdir = safe_strdup(blobdir);
+		}
+		else {
+			mailbox->m_blobdir = mr_mprintf("%s-blobs", dbfile);
+			mr_create_folder(mailbox->m_blobdir, mailbox);
+		}
+
+		update_config_cache__(mailbox, NULL);
+
+		success = 1;
+
+cleanup:
+		if( !success ) {
+			if( mrsqlite3_is_open(mailbox->m_sql) ) {
+				mrsqlite3_close__(mailbox->m_sql);
+			}
+		}
+
+	if( db_locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 
 	return success;
 }
@@ -1075,7 +297,7 @@ cleanup:
  */
 void mrmailbox_close(mrmailbox_t* mailbox)
 {
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return;
 	}
 
@@ -1099,7 +321,7 @@ void mrmailbox_close(mrmailbox_t* mailbox)
 
 
 /**
- * Check if a given mailbox database is open.
+ * Check if the mailbox database is open.
  *
  * @memberof mrmailbox_t
  *
@@ -1117,28 +339,22 @@ int mrmailbox_is_open(const mrmailbox_t* mailbox)
 }
 
 
-int mrmailbox_poke_eml_file(mrmailbox_t* ths, const char* filename)
+/**
+ * Get the blob directory.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox the mailbox object as created by mrmailbox_new().
+ *
+ * @return Blob directory associated with the mailbox object, empty string if unset or on errors. NULL is never returned.
+ *     The returned string must be free()'d.
+ */
+char* mrmailbox_get_blobdir(mrmailbox_t* mailbox)
 {
-	/* mainly for testing, may be called by mrmailbox_import_spec() */
-	int     success = 0;
-	char*   data = NULL;
-	size_t  data_bytes;
-
-	if( ths == NULL ) {
-		return 0;
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
+		return safe_strdup(NULL);
 	}
-
-	if( mr_read_file(filename, (void**)&data, &data_bytes, ths) == 0 ) {
-		goto cleanup;
-	}
-
-	receive_imf(ths, data, data_bytes, "import", 0, 0); /* this static function is the reason why this function is not moved to mrmailbox_imex.c */
-	success = 1;
-
-cleanup:
-	free(data);
-
-	return success;
+	return safe_strdup(mailbox->m_blobdir);
 }
 
 
@@ -1178,13 +394,15 @@ int mrmailbox_set_config(mrmailbox_t* ths, const char* key, const char* value)
 {
 	int ret;
 
-	if( ths == NULL || key == NULL ) { /* "value" may be NULL */
+	if( ths == NULL || ths->m_magic != MR_MAILBOX_MAGIC || key == NULL ) { /* "value" may be NULL */
 		return 0;
 	}
 
 	mrsqlite3_lock(ths->m_sql);
+
 		ret = mrsqlite3_set_config__(ths->m_sql, key, value);
 		update_config_cache__(ths, key);
+
 	mrsqlite3_unlock(ths->m_sql);
 
 	return ret;
@@ -1209,12 +427,14 @@ char* mrmailbox_get_config(mrmailbox_t* ths, const char* key, const char* def)
 {
 	char* ret;
 
-	if( ths == NULL || key == NULL ) { /* "def" may be NULL */
+	if( ths == NULL || ths->m_magic != MR_MAILBOX_MAGIC || key == NULL ) { /* "def" may be NULL */
 		return strdup_keep_null(def);
 	}
 
 	mrsqlite3_lock(ths->m_sql);
+
 		ret = mrsqlite3_get_config__(ths->m_sql, key, def);
+
 	mrsqlite3_unlock(ths->m_sql);
 
 	return ret; /* the returned string must be free()'d, returns NULL only if "def" is NULL and "key" is unset */
@@ -1231,13 +451,15 @@ int mrmailbox_set_config_int(mrmailbox_t* ths, const char* key, int32_t value)
 {
 	int ret;
 
-	if( ths == NULL || key == NULL ) {
+	if( ths == NULL || ths->m_magic != MR_MAILBOX_MAGIC || key == NULL ) {
 		return 0;
 	}
 
 	mrsqlite3_lock(ths->m_sql);
+
 		ret = mrsqlite3_set_config_int__(ths->m_sql, key, value);
 		update_config_cache__(ths, key);
+
 	mrsqlite3_unlock(ths->m_sql);
 
 	return ret;
@@ -1253,12 +475,14 @@ int32_t mrmailbox_get_config_int(mrmailbox_t* ths, const char* key, int32_t def)
 {
 	int32_t ret;
 
-	if( ths == NULL || key == NULL ) {
+	if( ths == NULL || ths->m_magic != MR_MAILBOX_MAGIC || key == NULL ) {
 		return def;
 	}
 
 	mrsqlite3_lock(ths->m_sql);
+
 		ret = mrsqlite3_get_config_int__(ths->m_sql, key, def);
+
 	mrsqlite3_unlock(ths->m_sql);
 
 	return ret;
@@ -1284,9 +508,9 @@ char* mrmailbox_get_info(mrmailbox_t* mailbox)
 	mrkey_t* self_public = mrkey_new();
 
 	mrstrbuilder_t  ret;
-	mrstrbuilder_init(&ret);
+	mrstrbuilder_init(&ret, 0);
 
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return safe_strdup("ErrBadPtr");
 	}
 
@@ -1325,7 +549,7 @@ char* mrmailbox_get_info(mrmailbox_t* mailbox)
 		sqlite3_finalize(stmt);
 
 		if( mrkey_load_self_public__(self_public, l2->m_addr, mailbox->m_sql) ) {
-			fingerprint_str = mrkey_render_fingerprint(self_public, mailbox);
+			fingerprint_str = mrkey_get_formatted_fingerprint(self_public);
 		}
 		else {
 			fingerprint_str = safe_strdup("<Not yet calculated>");
@@ -1425,47 +649,6 @@ int mrmailbox_get_archived_count__(mrmailbox_t* mailbox)
 }
 
 
-int mrmailbox_reset_tables(mrmailbox_t* ths, int bits)
-{
-	mrmailbox_log_info(ths, 0, "Resetting tables (%i)...", bits);
-
-	mrsqlite3_lock(ths->m_sql);
-
-		if( bits & 1 ) {
-			mrsqlite3_execute__(ths->m_sql, "DELETE FROM jobs;");
-			mrmailbox_log_info(ths, 0, "Job resetted.");
-		}
-
-		if( bits & 2 ) {
-			mrsqlite3_execute__(ths->m_sql, "DELETE FROM acpeerstates;");
-			mrmailbox_log_info(ths, 0, "Peerstates resetted.");
-		}
-
-		if( bits & 4 ) {
-			mrsqlite3_execute__(ths->m_sql, "DELETE FROM keypairs;");
-			mrmailbox_log_info(ths, 0, "Private keypairs resetted.");
-		}
-
-		if( bits & 8 ) {
-			mrsqlite3_execute__(ths->m_sql, "DELETE FROM contacts WHERE id>" MR_STRINGIFY(MR_CONTACT_ID_LAST_SPECIAL) ";"); /* the other IDs are reserved - leave these rows to make sure, the IDs are not used by normal contacts*/
-			mrsqlite3_execute__(ths->m_sql, "DELETE FROM chats WHERE id>" MR_STRINGIFY(MR_CHAT_ID_LAST_SPECIAL) ";");
-			mrsqlite3_execute__(ths->m_sql, "DELETE FROM chats_contacts;");
-			mrsqlite3_execute__(ths->m_sql, "DELETE FROM msgs WHERE id>" MR_STRINGIFY(MR_MSG_ID_LAST_SPECIAL) ";");
-			mrsqlite3_execute__(ths->m_sql, "DELETE FROM config WHERE keyname LIKE 'imap.%' OR keyname LIKE 'configured%';");
-			mrsqlite3_execute__(ths->m_sql, "DELETE FROM leftgrps;");
-			mrmailbox_log_info(ths, 0, "Rest but server config resetted.");
-		}
-
-		update_config_cache__(ths, NULL);
-
-	mrsqlite3_unlock(ths->m_sql);
-
-	ths->m_cb(ths, MR_EVENT_MSGS_CHANGED, 0, 0);
-
-	return 1;
-}
-
-
 /**
  * Find out the version of the Delta Chat core library.
  *
@@ -1481,7 +664,7 @@ char* mrmailbox_get_version_str(void)
 
 void mrmailbox_wake_lock(mrmailbox_t* mailbox)
 {
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return;
 	}
 	pthread_mutex_lock(&mailbox->m_wake_lock_critical);
@@ -1495,14 +678,17 @@ void mrmailbox_wake_lock(mrmailbox_t* mailbox)
 
 void mrmailbox_wake_unlock(mrmailbox_t* mailbox)
 {
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return;
 	}
 	pthread_mutex_lock(&mailbox->m_wake_lock_critical);
 		if( mailbox->m_wake_lock == 1 ) {
 			mailbox->m_cb(mailbox, MR_EVENT_WAKE_LOCK, 0, 0);
 		}
-		mailbox->m_wake_lock--;
+
+		if( mailbox->m_wake_lock > 0 ) {
+			mailbox->m_wake_lock--;
+		}
 	pthread_mutex_unlock(&mailbox->m_wake_lock_critical);
 }
 
@@ -1516,6 +702,10 @@ void mrmailbox_connect_to_imap(mrmailbox_t* ths, mrjob_t* job /*may be NULL if t
 {
 	int             is_locked = 0;
 	mrloginparam_t* param = mrloginparam_new();
+
+	if( ths == NULL || ths->m_magic != MR_MAILBOX_MAGIC ) {
+		goto cleanup;
+	}
 
 	if( mrimap_is_connected(ths->m_imap) ) {
 		mrmailbox_log_info(ths, 0, "Already connected or trying to connect.");
@@ -1541,13 +731,8 @@ void mrmailbox_connect_to_imap(mrmailbox_t* ths, mrjob_t* job /*may be NULL if t
 	}
 
 cleanup:
-	if( param ) {
-		mrloginparam_unref(param);
-	}
-
-	if( is_locked ) {
-		mrsqlite3_unlock(ths->m_sql);
-	}
+	if( is_locked ) { mrsqlite3_unlock(ths->m_sql); }
+	mrloginparam_unref(param);
 }
 
 
@@ -1563,7 +748,7 @@ cleanup:
  */
 void mrmailbox_connect(mrmailbox_t* mailbox)
 {
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return;
 	}
 
@@ -1590,12 +775,14 @@ void mrmailbox_connect(mrmailbox_t* mailbox)
  */
 void mrmailbox_disconnect(mrmailbox_t* mailbox)
 {
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return;
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
+
 		mrjob_kill_action__(mailbox, MRJ_CONNECT_TO_IMAP);
+
 	mrsqlite3_unlock(mailbox->m_sql);
 
 	mrimap_disconnect(mailbox->m_imap);
@@ -1611,16 +798,22 @@ void mrmailbox_disconnect(mrmailbox_t* mailbox)
  * force additional checks manually by just calling mrmailbox_heartbeat() about every minute.
  * If in doubt, call this function too often, not too less :-)
  *
+ * The function MUST NOT be called from the UI thread and may take a moment to return.
+ *
  * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object.
+ *
+ * @return None.
  */
-void mrmailbox_heartbeat(mrmailbox_t* ths)
+void mrmailbox_heartbeat(mrmailbox_t* mailbox)
 {
-	if( ths == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return;
 	}
 
 	//mrmailbox_log_info(ths, 0, "<3 Mailbox");
-	mrimap_heartbeat(ths->m_imap);
+	mrimap_heartbeat(mailbox->m_imap);
 }
 
 /**
@@ -1647,26 +840,29 @@ void mrmailbox_heartbeat(mrmailbox_t* ths)
  */
 mrchatlist_t* mrmailbox_get_chatlist(mrmailbox_t* mailbox, int listflags, const char* query)
 {
+	clock_t       start = clock();
+
 	int success = 0;
 	int db_locked = 0;
 	mrchatlist_t* obj = mrchatlist_new(mailbox);
 
-	mrsqlite3_lock(mailbox->m_sql);
-	db_locked = 1;
-
-	if( !mrchatlist_load_from_db__(obj, listflags, query) ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		goto cleanup;
 	}
 
-	/* success */
+	mrsqlite3_lock(mailbox->m_sql);
+	db_locked = 1;
 
-	success = 1;
+		if( !mrchatlist_load_from_db__(obj, listflags, query) ) {
+			goto cleanup;
+		}
 
-	/* cleanup */
+		success = 1;
+
 cleanup:
-	if( db_locked ) {
-		mrsqlite3_unlock(mailbox->m_sql);
-	}
+	if( db_locked ) { mrsqlite3_unlock(mailbox->m_sql); }
+
+	mrmailbox_log_info(mailbox, 0, "Chatlist created in %.3f ms.", (double)(clock()-start)*1000.0/CLOCKS_PER_SEC);
 
 	if( success ) {
 		return obj;
@@ -1695,21 +891,21 @@ mrchat_t* mrmailbox_get_chat(mrmailbox_t* mailbox, uint32_t chat_id)
 	int db_locked = 0;
 	mrchat_t* obj = mrchat_new(mailbox);
 
-	mrsqlite3_lock(mailbox->m_sql);
-	db_locked = 1;
-
-	if( !mrchat_load_from_db__(obj, chat_id) ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		goto cleanup;
 	}
 
-	/* success */
-	success = 1;
+	mrsqlite3_lock(mailbox->m_sql);
+	db_locked = 1;
 
-	/* cleanup */
+		if( !mrchat_load_from_db__(obj, chat_id) ) {
+			goto cleanup;
+		}
+
+		success = 1;
+
 cleanup:
-	if( db_locked ) {
-		mrsqlite3_unlock(mailbox->m_sql);
-	}
+	if( db_locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 
 	if( success ) {
 		return obj;
@@ -1722,7 +918,7 @@ cleanup:
 
 
 /**
- * Mark all message in a chat as _noticed_.
+ * Mark all messages in a chat as _noticed_.
  * _Noticed_ messages are no longer _fresh_ and do not count as being unseen.
  * IMAP/MDNs is not done for noticed messages.  See also mrmailbox_marknoticed_contact()
  * and mrmailbox_markseen_msgs()
@@ -1741,7 +937,7 @@ void mrmailbox_marknoticed_chat(mrmailbox_t* mailbox, uint32_t chat_id)
 	"noticed" messages are not counted as being unread but are still waiting for being marked as "seen" using mrmailbox_markseen_msgs() */
 	sqlite3_stmt* stmt;
 
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return;
 	}
 
@@ -1758,6 +954,7 @@ void mrmailbox_marknoticed_chat(mrmailbox_t* mailbox, uint32_t chat_id)
 
 /**
  * Check, if there is a normal chat with a given contact.
+ * To get the chat messages, use mrmailbox_get_chat_msgs().
  *
  * @memberof mrmailbox_t
  *
@@ -1772,20 +969,30 @@ void mrmailbox_marknoticed_chat(mrmailbox_t* mailbox, uint32_t chat_id)
 uint32_t mrmailbox_get_chat_id_by_contact_id(mrmailbox_t* mailbox, uint32_t contact_id)
 {
 	uint32_t chat_id = 0;
+	int      chat_id_blocked = 0;
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
+		return 0;
+	}
 
 	mrsqlite3_lock(mailbox->m_sql);
 
-		chat_id = mrmailbox_lookup_real_nchat_by_contact_id__(mailbox, contact_id);
+		mrmailbox_lookup_real_nchat_by_contact_id__(mailbox, contact_id, &chat_id, &chat_id_blocked);
 
 	mrsqlite3_unlock(mailbox->m_sql);
 
-	return chat_id;
+	return chat_id_blocked? 0 : chat_id; /* from outside view, chats only existing in the deaddrop do not exist */
 }
 
 
 /**
  * Create a normal chat with a single user.  To create group chats,
- * see mrmailbox_create_group_chat()
+ * see mrmailbox_create_group_chat().
+ *
+ * If there is already an exitant chat, this ID is returned and no new chat is
+ * crated.  If there is no existant chat with the user, a new chat is created;
+ * this new chat may already contain messages, eg. from the deaddrop, to get the
+ * chat messages, use mrmailbox_get_chat_msgs().
  *
  * @memberof mrmailbox_t
  *
@@ -1799,40 +1006,39 @@ uint32_t mrmailbox_get_chat_id_by_contact_id(mrmailbox_t* mailbox, uint32_t cont
 uint32_t mrmailbox_create_chat_by_contact_id(mrmailbox_t* mailbox, uint32_t contact_id)
 {
 	uint32_t      chat_id = 0;
+	int           chat_blocked = 0;
 	int           send_event = 0, locked = 0;
 
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return 0;
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
 	locked = 1;
 
-		chat_id = mrmailbox_lookup_real_nchat_by_contact_id__(mailbox, contact_id);
+		mrmailbox_lookup_real_nchat_by_contact_id__(mailbox, contact_id, &chat_id, &chat_blocked);
 		if( chat_id ) {
-			mrmailbox_log_warning(mailbox, 0, "Chat with contact %i already exists.", (int)contact_id);
-			goto cleanup;
+			if( chat_blocked ) {
+				mrmailbox_unblock_chat__(mailbox, chat_id); /* unblock chat (typically move it from the deaddrop to view) */
+				send_event = 1;
+			}
+			goto cleanup; /* success */
 		}
 
-        if( 0==mrmailbox_real_contact_exists__(mailbox, contact_id) ) {
+        if( 0==mrmailbox_real_contact_exists__(mailbox, contact_id) && contact_id!=MR_CONTACT_ID_SELF ) {
 			mrmailbox_log_warning(mailbox, 0, "Cannot create chat, contact %i does not exist.", (int)contact_id);
 			goto cleanup;
         }
 
-		chat_id = mrmailbox_create_or_lookup_nchat_by_contact_id__(mailbox, contact_id);
+		mrmailbox_create_or_lookup_nchat_by_contact_id__(mailbox, contact_id, MR_CHAT_NOT_BLOCKED, &chat_id, NULL);
 		if( chat_id ) {
 			send_event = 1;
 		}
 
 		mrmailbox_scaleup_contact_origin__(mailbox, contact_id, MR_ORIGIN_CREATE_CHAT);
 
-	mrsqlite3_unlock(mailbox->m_sql);
-	locked = 0;
-
 cleanup:
-	if( locked ) {
-		mrsqlite3_unlock(mailbox->m_sql);
-	}
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 
 	if( send_event ) {
 		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, 0, 0);
@@ -1842,9 +1048,78 @@ cleanup:
 }
 
 
-static carray* mrmailbox_get_chat_media__(mrmailbox_t* mailbox, uint32_t chat_id, int msg_type, int or_msg_type)
+/**
+ * Create a normal chat or a group chat by a messages ID that comes typically
+ * from the deaddrop, MR_CHAT_ID_DEADDROP (1).
+ *
+ * If the given message ID already belongs to a normal chat or to a group chat,
+ * the chat ID of this chat is returned and no new chat is created.
+ * If a new chat is created, the given message ID is moved to this chat, however,
+ * there may be more messages moved to the chat from the deaddrop. To get the
+ * chat messages, use mrmailbox_get_chat_msgs().
+ *
+ * If the user should be start asked the chat is created, he should just be
+ * asked whether he wants to chat with the _contact_ belonging to the message;
+ * the group names may be really weired when take from the subject of implicit
+ * groups and this may look confusing.
+ *
+ * Moreover, this function also scales up the origin of the contact belonging
+ * to the message and, depending on the contacts origin, messages from the
+ * same group may be shown or not - so, all in all, it is fine to show the
+ * contact name only.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ *
+ * @param msg_id The message ID to create the chat for.
+ *
+ * @return The created or reused chat ID on success. 0 on errors.
+ */
+uint32_t mrmailbox_create_chat_by_msg_id(mrmailbox_t* mailbox, uint32_t msg_id)
 {
-	carray* ret = carray_new(100);
+	int       locked     = 0;
+	uint32_t  chat_id    = 0;
+	int       send_event = 0;
+	mrmsg_t*  msg        = mrmsg_new();
+	mrchat_t* chat       = mrchat_new(mailbox);
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
+		goto cleanup;
+	}
+
+	mrsqlite3_lock(mailbox->m_sql);
+	locked = 1;
+
+		if( !mrmsg_load_from_db__(msg, mailbox, msg_id)
+		 || !mrchat_load_from_db__(chat, msg->m_chat_id)
+		 || chat->m_id <= MR_CHAT_ID_LAST_SPECIAL ) {
+			goto cleanup;
+		}
+
+		chat_id = chat->m_id;
+
+		if( chat->m_blocked ) {
+			mrmailbox_unblock_chat__(mailbox, chat->m_id);
+			send_event = 1;
+		}
+
+		mrmailbox_scaleup_contact_origin__(mailbox, msg->m_from_id, MR_ORIGIN_CREATE_CHAT);
+
+cleanup:
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
+	mrmsg_unref(msg);
+	mrchat_unref(chat);
+	if( send_event ) {
+		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, 0, 0);
+	}
+	return chat_id;
+}
+
+
+static mrarray_t* mrmailbox_get_chat_media__(mrmailbox_t* mailbox, uint32_t chat_id, int msg_type, int or_msg_type)
+{
+	mrarray_t* ret = mrarray_new(mailbox, 100);
 
 	sqlite3_stmt* stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_i_FROM_msgs_WHERE_ctt,
 		"SELECT id FROM msgs WHERE chat_id=? AND (type=? OR type=?) ORDER BY timestamp, id;");
@@ -1852,7 +1127,7 @@ static carray* mrmailbox_get_chat_media__(mrmailbox_t* mailbox, uint32_t chat_id
 	sqlite3_bind_int(stmt, 2, msg_type);
 	sqlite3_bind_int(stmt, 3, or_msg_type>0? or_msg_type : msg_type);
 	while( sqlite3_step(stmt) == SQLITE_ROW ) {
-		carray_add(ret, (void*)(uintptr_t)sqlite3_column_int(stmt, 0), NULL);
+		mrarray_add_id(ret, sqlite3_column_int(stmt, 0));
 	}
 
 	return ret;
@@ -1861,7 +1136,7 @@ static carray* mrmailbox_get_chat_media__(mrmailbox_t* mailbox, uint32_t chat_id
 
 /**
  * Returns all message IDs of the given types in a chat.  Typically used to show
- * a gallery.  The result must be carray_free()'d
+ * a gallery.  The result must be mrarray_unref()'d
  *
  * @memberof mrmailbox_t
  *
@@ -1876,23 +1151,28 @@ static carray* mrmailbox_get_chat_media__(mrmailbox_t* mailbox, uint32_t chat_id
  *
  * @return An array with messages from the given chat ID that have the wanted message types.
  */
-carray* mrmailbox_get_chat_media(mrmailbox_t* mailbox, uint32_t chat_id, int msg_type, int or_msg_type)
+mrarray_t* mrmailbox_get_chat_media(mrmailbox_t* mailbox, uint32_t chat_id, int msg_type, int or_msg_type)
 {
-	carray* ret = NULL;
+	mrarray_t* ret = NULL;
 
-	if( mailbox ) {
-		mrsqlite3_lock(mailbox->m_sql);
-			ret = mrmailbox_get_chat_media__(mailbox, chat_id, msg_type, or_msg_type);
-		mrsqlite3_unlock(mailbox->m_sql);
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
+		return NULL;
 	}
+
+	mrsqlite3_lock(mailbox->m_sql);
+
+		ret = mrmailbox_get_chat_media__(mailbox, chat_id, msg_type, or_msg_type);
+
+	mrsqlite3_unlock(mailbox->m_sql);
 
 	return ret;
 }
 
 
 /**
- * Returns all message IDs of the given types in a chat.  Typically used to show
- * a gallery.  The result must be carray_free()'d
+ * Get next/previous message of the same type.
+ * Typically used to implement the "next" and "previous" buttons on a media
+ * player playing eg. voice messages.
  *
  * @memberof mrmailbox_t
  *
@@ -1902,20 +1182,20 @@ carray* mrmailbox_get_chat_media(mrmailbox_t* mailbox, uint32_t chat_id, int msg
  *
  * @param dir 1=get the next (image) message, -1=get the previous one.
  *
- * @return Returns the message ID that should be displayed next. The
- *     returned message is in the same chat as the given one.
+ * @return Returns the message ID that should be played next. The
+ *     returned message is in the same chat as the given one and has the same type.
  *     Typically, this result is passed again to mrmailbox_get_next_media()
- *     later on the next swipe.
+ *     later on the next swipe. If there is not next/previous message, the function returns 0.
  */
 uint32_t mrmailbox_get_next_media(mrmailbox_t* mailbox, uint32_t curr_msg_id, int dir)
 {
 	uint32_t ret_msg_id = 0;
 	mrmsg_t* msg = mrmsg_new();
 	int      locked = 0;
-	carray*  list = NULL;
+	mrarray_t* list = NULL;
 	int      i, cnt;
 
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		goto cleanup;
 	}
 
@@ -1933,20 +1213,20 @@ uint32_t mrmailbox_get_next_media(mrmailbox_t* mailbox, uint32_t curr_msg_id, in
 	mrsqlite3_unlock(mailbox->m_sql);
 	locked = 0;
 
-	cnt = carray_count(list);
+	cnt = mrarray_get_cnt(list);
 	for( i = 0; i < cnt; i++ ) {
-		if( curr_msg_id == (uint32_t)(uintptr_t)carray_get(list, i) )
+		if( curr_msg_id == mrarray_get_id(list, i) )
 		{
 			if( dir > 0 ) {
 				/* get the next message from the current position */
 				if( i+1 < cnt ) {
-					ret_msg_id = (uint32_t)(uintptr_t)carray_get(list, i+1);
+					ret_msg_id = mrarray_get_id(list, i+1);
 				}
 			}
 			else if( dir < 0 ) {
 				/* get the previous message from the current position */
 				if( i-1 >= 0 ) {
-					ret_msg_id = (uint32_t)(uintptr_t)carray_get(list, i-1);
+					ret_msg_id = mrarray_get_id(list, i-1);
 				}
 			}
 			break;
@@ -1956,7 +1236,7 @@ uint32_t mrmailbox_get_next_media(mrmailbox_t* mailbox, uint32_t curr_msg_id, in
 
 cleanup:
 	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
-	if( list ) { carray_free(list); }
+	mrarray_unref(list);
 	mrmsg_unref(msg);
 	return ret_msg_id;
 }
@@ -1981,47 +1261,42 @@ cleanup:
  *
  * @param chat_id Chat ID to get the belonging contact IDs for.
  *
- * @return an array of contact IDs belonging to the chat; must be freed using carray_free() when done.
+ * @return an array of contact IDs belonging to the chat; must be freed using mrarray_unref() when done.
  */
-carray* mrmailbox_get_chat_contacts(mrmailbox_t* mailbox, uint32_t chat_id)
+mrarray_t* mrmailbox_get_chat_contacts(mrmailbox_t* mailbox, uint32_t chat_id)
 {
 	/* Normal chats do not include SELF.  Group chats do (as it may happen that one is deleted from a
 	groupchat but the chats stays visible, moreover, this makes displaying lists easier) */
-	carray*       ret = carray_new(100);
+	int           locked = 0;
+	mrarray_t*    ret = mrarray_new(mailbox, 100);
 	sqlite3_stmt* stmt;
 
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		goto cleanup;
 	}
 
-	mrsqlite3_lock(mailbox->m_sql);
+	if( chat_id == MR_CHAT_ID_DEADDROP ) {
+		goto cleanup; /* we could also create a list for all contacts in the deaddrop by searching contacts belonging to chats with chats.blocked=2, however, currently this is not needed */
+	}
 
-		if( chat_id == MR_CHAT_ID_DEADDROP )
-		{
-			stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_id_FROM_contacts_WHERE_chat_id,
-				"SELECT DISTINCT from_id FROM msgs WHERE chat_id=? and from_id!=0 ORDER BY id DESC;"); /* from_id in the deaddrop chat may be 0, see comment [**] */
-			sqlite3_bind_int(stmt, 1, chat_id);
-		}
-		else
-		{
-			stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_c_FROM_chats_contacts_WHERE_c_ORDER_BY,
-				"SELECT cc.contact_id FROM chats_contacts cc"
-					" LEFT JOIN contacts c ON c.id=cc.contact_id"
-					" WHERE cc.chat_id=?"
-					" ORDER BY c.id=1, LOWER(c.name||c.addr), c.id;");
-			sqlite3_bind_int(stmt, 1, chat_id);
-		}
+	mrsqlite3_lock(mailbox->m_sql);
+	locked = 1;
+
+		stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_c_FROM_chats_contacts_WHERE_c_ORDER_BY,
+			"SELECT cc.contact_id FROM chats_contacts cc"
+				" LEFT JOIN contacts c ON c.id=cc.contact_id"
+				" WHERE cc.chat_id=?"
+				" ORDER BY c.id=1, LOWER(c.name||c.addr), c.id;");
+		sqlite3_bind_int(stmt, 1, chat_id);
 
 		while( sqlite3_step(stmt) == SQLITE_ROW ) {
-			carray_add(ret, (void*)(uintptr_t)sqlite3_column_int(stmt, 0), NULL);
+			mrarray_add_id(ret, sqlite3_column_int(stmt, 0));
 		}
 
-	mrsqlite3_unlock(mailbox->m_sql);
-
 cleanup:
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 	return ret;
 }
-
 
 
 /**
@@ -2032,13 +1307,13 @@ cleanup:
  *
  * @param mailbox The mailbox object as returned from mrmailbox_new().
  */
-carray* mrmailbox_get_fresh_msgs(mrmailbox_t* mailbox)
+mrarray_t* mrmailbox_get_fresh_msgs(mrmailbox_t* mailbox)
 {
 	int           show_deaddrop, success = 0, locked = 0;
-	carray*       ret = carray_new(128);
+	mrarray_t*    ret = mrarray_new(mailbox, 128);
 	sqlite3_stmt* stmt = NULL;
 
-	if( mailbox==NULL || ret == NULL ) {
+	if( mailbox==NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || ret == NULL ) {
 		goto cleanup;
 	}
 
@@ -2051,12 +1326,13 @@ carray* mrmailbox_get_fresh_msgs(mrmailbox_t* mailbox)
 			"SELECT m.id"
 				" FROM msgs m"
 				" LEFT JOIN contacts ct ON m.from_id=ct.id"
-				" WHERE m.state=" MR_STRINGIFY(MR_STATE_IN_FRESH) " AND m.chat_id!=? AND ct.blocked=0"
+				" LEFT JOIN chats c ON m.chat_id=c.id"
+				" WHERE m.state=" MR_STRINGIFY(MR_STATE_IN_FRESH) " AND ct.blocked=0 AND (c.blocked=0 OR c.blocked=?)"
 				" ORDER BY m.timestamp DESC,m.id DESC;"); /* the list starts with the newest messages*/
-		sqlite3_bind_int(stmt, 1, show_deaddrop? 0 : MR_CHAT_ID_DEADDROP);
+		sqlite3_bind_int(stmt, 1, show_deaddrop? MR_CHAT_DEADDROP_BLOCKED : 0);
 
 		while( sqlite3_step(stmt) == SQLITE_ROW ) {
-			carray_add(ret, (void*)(uintptr_t)sqlite3_column_int(stmt, 0), NULL);
+			mrarray_add_id(ret, sqlite3_column_int(stmt, 0));
 		}
 
 	mrsqlite3_unlock(mailbox->m_sql);
@@ -2065,16 +1341,14 @@ carray* mrmailbox_get_fresh_msgs(mrmailbox_t* mailbox)
 	success = 1;
 
 cleanup:
-	if( locked ) {
-		mrsqlite3_unlock(mailbox->m_sql);
-	}
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 
 	if( success ) {
 		return ret;
 	}
 	else {
 		if( ret ) {
-			carray_free(ret);
+			mrarray_unref(ret);
 		}
 		return NULL;
 	}
@@ -2098,12 +1372,14 @@ cleanup:
  * @param marker1before An optional message ID.  If set, the id MR_MSG_ID_MARKER1 will be added just
  *   before the given ID in the returned array.  Set this to 0 if you do not want this behaviour.
  *
- * @return Array of message IDs, must be carray_free()'d when no longer used.
+ * @return Array of message IDs, must be mrarray_unref()'d when no longer used.
  */
-carray* mrmailbox_get_chat_msgs(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t flags, uint32_t marker1before)
+mrarray_t* mrmailbox_get_chat_msgs(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t flags, uint32_t marker1before)
 {
+	clock_t       start = clock();
+
 	int           success = 0, locked = 0;
-	carray*       ret = carray_new(512);
+	mrarray_t*    ret = mrarray_new(mailbox, 512);
 	sqlite3_stmt* stmt = NULL;
 
 	uint32_t      curr_id;
@@ -2112,20 +1388,35 @@ carray* mrmailbox_get_chat_msgs(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t
 	long          cnv_to_local = mr_gm2local_offset();
 	#define       SECONDS_PER_DAY 86400
 
-	if( mailbox==NULL || ret == NULL ) {
+	if( mailbox==NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || ret == NULL ) {
 		goto cleanup;
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
 	locked = 1;
 
-		if( chat_id == MR_CHAT_ID_STARRED )
+		if( chat_id == MR_CHAT_ID_DEADDROP )
+		{
+			stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_i_FROM_msgs_LEFT_JOIN_chats_contacts_WHERE_blocked,
+				"SELECT m.id, m.timestamp"
+					" FROM msgs m"
+					" LEFT JOIN chats ON m.chat_id=chats.id"
+					" LEFT JOIN contacts ON m.from_id=contacts.id"
+					" WHERE m.from_id!=" MR_STRINGIFY(MR_CONTACT_ID_SELF)
+					"   AND m.hidden=0 "
+					"   AND chats.blocked=2 "
+					"   AND contacts.blocked=0"
+					" ORDER BY m.timestamp,m.id;"); /* the list starts with the oldest message*/
+		}
+		else if( chat_id == MR_CHAT_ID_STARRED )
 		{
 			stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_i_FROM_msgs_LEFT_JOIN_contacts_WHERE_starred,
 				"SELECT m.id, m.timestamp"
 					" FROM msgs m"
 					" LEFT JOIN contacts ct ON m.from_id=ct.id"
-					" WHERE m.starred=1 AND ct.blocked=0"
+					" WHERE m.starred=1 "
+					"   AND m.hidden=0 "
+					"   AND ct.blocked=0"
 					" ORDER BY m.timestamp,m.id;"); /* the list starts with the oldest message*/
 		}
 		else
@@ -2134,7 +1425,9 @@ carray* mrmailbox_get_chat_msgs(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t
 				"SELECT m.id, m.timestamp"
 					" FROM msgs m"
 					" LEFT JOIN contacts ct ON m.from_id=ct.id"
-					" WHERE m.chat_id=? AND ct.blocked=0"
+					" WHERE m.chat_id=? "
+					"   AND m.hidden=0 "
+					"   AND ct.blocked=0"
 					" ORDER BY m.timestamp,m.id;"); /* the list starts with the oldest message*/
 			sqlite3_bind_int(stmt, 1, chat_id);
 		}
@@ -2145,7 +1438,7 @@ carray* mrmailbox_get_chat_msgs(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t
 
 			/* add user marker */
 			if( curr_id == marker1before ) {
-				carray_add(ret, (void*)MR_MSG_ID_MARKER1, NULL);
+				mrarray_add_id(ret, MR_MSG_ID_MARKER1);
 			}
 
 			/* add daymarker, if needed */
@@ -2153,12 +1446,12 @@ carray* mrmailbox_get_chat_msgs(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t
 				curr_local_timestamp = (time_t)sqlite3_column_int64(stmt, 1) + cnv_to_local;
 				curr_day = curr_local_timestamp/SECONDS_PER_DAY;
 				if( curr_day != last_day ) {
-					carray_add(ret, (void*)MR_MSG_ID_DAYMARKER, NULL);
+					mrarray_add_id(ret, MR_MSG_ID_DAYMARKER);
 					last_day = curr_day;
 				}
 			}
 
-			carray_add(ret, (void*)(uintptr_t)curr_id, NULL);
+			mrarray_add_id(ret, curr_id);
 		}
 
 	mrsqlite3_unlock(mailbox->m_sql);
@@ -2167,16 +1460,16 @@ carray* mrmailbox_get_chat_msgs(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t
 	success = 1;
 
 cleanup:
-	if( locked ) {
-		mrsqlite3_unlock(mailbox->m_sql);
-	}
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
+
+	mrmailbox_log_info(mailbox, 0, "Message list for chat #%i created in %.3f ms.", chat_id, (double)(clock()-start)*1000.0/CLOCKS_PER_SEC);
 
 	if( success ) {
 		return ret;
 	}
 	else {
 		if( ret ) {
-			carray_free(ret);
+			mrarray_unref(ret);
 		}
 		return NULL;
 	}
@@ -2201,17 +1494,19 @@ cleanup:
  *
  * @param query The query to search for.
  *
- * @return An array of message IDs. Must be freed using carray_free() when no longer needed.
+ * @return An array of message IDs. Must be freed using mrarray_unref() when no longer needed.
  *     If nothing can be found, the function returns NULL.
  */
-carray* mrmailbox_search_msgs(mrmailbox_t* mailbox, uint32_t chat_id, const char* query)
+mrarray_t* mrmailbox_search_msgs(mrmailbox_t* mailbox, uint32_t chat_id, const char* query)
 {
+	clock_t       start = clock();
+
 	int           success = 0, locked = 0;
-	carray*       ret = carray_new(100);
+	mrarray_t*    ret = mrarray_new(mailbox, 100);
 	char*         strLikeInText = NULL, *strLikeBeg=NULL, *real_query = NULL;
 	sqlite3_stmt* stmt = NULL;
 
-	if( mailbox==NULL || ret == NULL || query == NULL ) {
+	if( mailbox==NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || ret == NULL || query == NULL ) {
 		goto cleanup;
 	}
 
@@ -2234,14 +1529,14 @@ carray* mrmailbox_search_msgs(mrmailbox_t* mailbox, uint32_t chat_id, const char
 		An extra table with all words and a COLLATE NOCASE indexes may help, however,
 		this must be updated all the time and probably consumes more time than we can save in tenthousands of searches.
 		For now, we just expect the following query to be fast enough :-) */
-		#define QUR1  "SELECT m.id, m.timestamp" \
-		                  " FROM msgs m" \
-		                  " LEFT JOIN contacts ct ON m.from_id=ct.id" \
-		                  " WHERE"
-		#define QUR2      " AND ct.blocked=0 AND (txt LIKE ? OR ct.name LIKE ?)"
 		if( chat_id ) {
 			stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_i_FROM_msgs_WHERE_chat_id_AND_query,
-				QUR1 " m.chat_id=? " QUR2 " ORDER BY m.timestamp,m.id;"); /* chats starts with the oldest message*/
+				"SELECT m.id, m.timestamp FROM msgs m"
+				" LEFT JOIN contacts ct ON m.from_id=ct.id"
+				" WHERE m.chat_id=? "
+					" AND m.hidden=0 "
+					" AND ct.blocked=0 AND (txt LIKE ? OR ct.name LIKE ?)"
+				" ORDER BY m.timestamp,m.id;"); /* chats starts with the oldest message*/
 			sqlite3_bind_int (stmt, 1, chat_id);
 			sqlite3_bind_text(stmt, 2, strLikeInText, -1, SQLITE_STATIC);
 			sqlite3_bind_text(stmt, 3, strLikeBeg, -1, SQLITE_STATIC);
@@ -2249,15 +1544,21 @@ carray* mrmailbox_search_msgs(mrmailbox_t* mailbox, uint32_t chat_id, const char
 		else {
 			int show_deaddrop = 0;//mrsqlite3_get_config_int__(mailbox->m_sql, "show_deaddrop", 0);
 			stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_i_FROM_msgs_WHERE_query,
-				QUR1 " (m.chat_id>? OR m.chat_id=?) " QUR2 " ORDER BY m.timestamp DESC,m.id DESC;"); /* chat overview starts with the newest message*/
-			sqlite3_bind_int (stmt, 1, MR_CHAT_ID_LAST_SPECIAL);
-			sqlite3_bind_int (stmt, 2, show_deaddrop? MR_CHAT_ID_DEADDROP : MR_CHAT_ID_LAST_SPECIAL+1 /*just any ID that is already selected*/);
-			sqlite3_bind_text(stmt, 3, strLikeInText, -1, SQLITE_STATIC);
-			sqlite3_bind_text(stmt, 4, strLikeBeg, -1, SQLITE_STATIC);
+				"SELECT m.id, m.timestamp FROM msgs m"
+				" LEFT JOIN contacts ct ON m.from_id=ct.id"
+				" LEFT JOIN chats c ON m.chat_id=c.id"
+				" WHERE m.chat_id>" MR_STRINGIFY(MR_CHAT_ID_LAST_SPECIAL)
+					" AND m.hidden=0 "
+					" AND (c.blocked=0 OR c.blocked=?)"
+					" AND ct.blocked=0 AND (m.txt LIKE ? OR ct.name LIKE ?)"
+				" ORDER BY m.timestamp DESC,m.id DESC;"); /* chat overview starts with the newest message*/
+			sqlite3_bind_int (stmt, 1, show_deaddrop? MR_CHAT_DEADDROP_BLOCKED : 0);
+			sqlite3_bind_text(stmt, 2, strLikeInText, -1, SQLITE_STATIC);
+			sqlite3_bind_text(stmt, 3, strLikeBeg, -1, SQLITE_STATIC);
 		}
 
 		while( sqlite3_step(stmt) == SQLITE_ROW ) {
-			carray_add(ret, (void*)(uintptr_t)sqlite3_column_int(stmt, 0), NULL);
+			mrarray_add_id(ret, sqlite3_column_int(stmt, 0));
 		}
 
 	mrsqlite3_unlock(mailbox->m_sql);
@@ -2266,18 +1567,20 @@ carray* mrmailbox_search_msgs(mrmailbox_t* mailbox, uint32_t chat_id, const char
 	success = 1;
 
 cleanup:
-	if( locked ) {
-		mrsqlite3_unlock(mailbox->m_sql);
-	}
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 	free(strLikeInText);
 	free(strLikeBeg);
 	free(real_query);
+
+	mrmailbox_log_info(mailbox, 0, "Message list for search \"%s\" in chat #%i created in %.3f ms.", query, chat_id, (double)(clock()-start)*1000.0/CLOCKS_PER_SEC);
+
+
 	if( success ) {
 		return ret;
 	}
 	else {
 		if( ret ) {
-			carray_free(ret);
+			mrarray_unref(ret);
 		}
 		return NULL;
 	}
@@ -2289,7 +1592,7 @@ static void set_draft_int(mrmailbox_t* mailbox, mrchat_t* chat, uint32_t chat_id
 	sqlite3_stmt* stmt;
 	mrchat_t*     chat_to_delete = NULL;
 
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		goto cleanup;
 	}
 
@@ -2366,17 +1669,15 @@ int mrchat_set_draft(mrchat_t* chat, const char* msg) /* deprecated */
 }
 
 
-
-#define IS_SELF_IN_GROUP__ (mrmailbox_is_contact_in_chat__(mailbox, chat_id, MR_CONTACT_ID_SELF)==1)
-#define DO_SEND_STATUS_MAILS (mrparam_get_int(chat->m_param, MRP_UNPROMOTED, 0)==0)
-
-
 int mrmailbox_get_fresh_msg_count__(mrmailbox_t* mailbox, uint32_t chat_id)
 {
 	sqlite3_stmt* stmt = NULL;
 
 	stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_COUNT_FROM_msgs_WHERE_state_AND_chat_id,
-		"SELECT COUNT(*) FROM msgs WHERE state=" MR_STRINGIFY(MR_STATE_IN_FRESH) " AND chat_id=?;"); /* we have an index over the state-column, this should be sufficient as there are typically only few fresh messages */
+		"SELECT COUNT(*) FROM msgs "
+		" WHERE state=" MR_STRINGIFY(MR_STATE_IN_FRESH)
+		"   AND hidden=0 "
+		"   AND chat_id=?;"); /* we have an index over the state-column, this should be sufficient as there are typically only few fresh messages */
 	sqlite3_bind_int(stmt, 1, chat_id);
 
 	if( sqlite3_step(stmt) != SQLITE_ROW ) {
@@ -2392,7 +1693,13 @@ uint32_t mrmailbox_get_last_deaddrop_fresh_msg__(mrmailbox_t* mailbox)
 	sqlite3_stmt* stmt = NULL;
 
 	stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_id_FROM_msgs_WHERE_fresh_AND_deaddrop,
-		"SELECT id FROM msgs WHERE state=" MR_STRINGIFY(MR_STATE_IN_FRESH) " AND chat_id=" MR_STRINGIFY(MR_CHAT_ID_DEADDROP) " ORDER BY timestamp DESC, id DESC;"); /* we have an index over the state-column, this should be sufficient as there are typically only few fresh messages */
+		"SELECT m.id "
+		" FROM msgs m "
+		" LEFT JOIN chats c ON c.id=m.chat_id "
+		" WHERE m.state=" MR_STRINGIFY(MR_STATE_IN_FRESH)
+		"   AND m.hidden=0 "
+		"   AND c.blocked=" MR_STRINGIFY(MR_CHAT_DEADDROP_BLOCKED)
+		" ORDER BY m.timestamp DESC, m.id DESC;"); /* we have an index over the state-column, this should be sufficient as there are typically only few fresh messages */
 
 	if( sqlite3_step(stmt) != SQLITE_ROW ) {
 		return 0;
@@ -2422,13 +1729,12 @@ size_t mrmailbox_get_chat_cnt__(mrmailbox_t* mailbox)
 {
 	sqlite3_stmt* stmt;
 
-	if( mailbox == NULL || mailbox->m_sql->m_cobj==NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || mailbox->m_sql->m_cobj==NULL ) {
 		return 0; /* no database, no chats - this is no error (needed eg. for information) */
 	}
 
-	stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_COUNT_FROM_chats, "SELECT COUNT(*) FROM chats WHERE id>?;");
-	sqlite3_bind_int(stmt, 1, MR_CHAT_ID_LAST_SPECIAL);
-
+	stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_COUNT_FROM_chats,
+		"SELECT COUNT(*) FROM chats WHERE id>" MR_STRINGIFY(MR_CHAT_ID_LAST_SPECIAL) " AND blocked=0;");
 	if( sqlite3_step(stmt) != SQLITE_ROW ) {
 		return 0;
 	}
@@ -2437,50 +1743,57 @@ size_t mrmailbox_get_chat_cnt__(mrmailbox_t* mailbox)
 }
 
 
-uint32_t mrmailbox_lookup_real_nchat_by_contact_id__(mrmailbox_t* mailbox, uint32_t contact_id) /* checks for "real" chats (non-trash, non-unknown) */
+void mrmailbox_lookup_real_nchat_by_contact_id__(mrmailbox_t* mailbox, uint32_t contact_id, uint32_t* ret_chat_id, int* ret_chat_blocked)
 {
+	/* checks for "real" chats or self-chat */
 	sqlite3_stmt* stmt;
-	uint32_t chat_id = 0;
 
-	if( mailbox == NULL || mailbox->m_sql->m_cobj==NULL ) {
-		return 0; /* no database, no chats - this is no error (needed eg. for information) */
+	if( ret_chat_id )      { *ret_chat_id = 0;      }
+	if( ret_chat_blocked ) { *ret_chat_blocked = 0; }
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || mailbox->m_sql->m_cobj==NULL ) {
+		return; /* no database, no chats - this is no error (needed eg. for information) */
 	}
 
 	stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_id_FROM_chats_WHERE_contact_id,
-			"SELECT c.id"
+			"SELECT c.id, c.blocked"
 			" FROM chats c"
 			" INNER JOIN chats_contacts j ON c.id=j.chat_id"
-			" WHERE c.type=? AND c.id>? AND j.contact_id=?;");
-	sqlite3_bind_int(stmt, 1, MR_CHAT_TYPE_NORMAL);
-	sqlite3_bind_int(stmt, 2, MR_CHAT_ID_LAST_SPECIAL);
-	sqlite3_bind_int(stmt, 3, contact_id);
+			" WHERE c.type=" MR_STRINGIFY(MR_CHAT_TYPE_NORMAL) " AND c.id>" MR_STRINGIFY(MR_CHAT_ID_LAST_SPECIAL) " AND j.contact_id=?;");
+	sqlite3_bind_int(stmt, 1, contact_id);
 
 	if( sqlite3_step(stmt) == SQLITE_ROW ) {
-		chat_id = sqlite3_column_int(stmt, 0);
+		if( ret_chat_id )      { *ret_chat_id      = sqlite3_column_int(stmt, 0); }
+		if( ret_chat_blocked ) { *ret_chat_blocked = sqlite3_column_int(stmt, 1); }
 	}
-
-	return chat_id;
 }
 
 
-uint32_t mrmailbox_create_or_lookup_nchat_by_contact_id__(mrmailbox_t* mailbox, uint32_t contact_id)
+void mrmailbox_create_or_lookup_nchat_by_contact_id__(mrmailbox_t* mailbox, uint32_t contact_id, int create_blocked, uint32_t* ret_chat_id, int* ret_chat_blocked)
 {
 	uint32_t      chat_id = 0;
+	int           chat_blocked = 0;
 	mrcontact_t*  contact = NULL;
 	char*         chat_name;
 	char*         q = NULL;
 	sqlite3_stmt* stmt = NULL;
 
-	if( mailbox == NULL || mailbox->m_sql->m_cobj==NULL ) {
-		return 0; /* database not opened - error */
+	if( ret_chat_id )      { *ret_chat_id = 0;      }
+	if( ret_chat_blocked ) { *ret_chat_blocked = 0; }
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || mailbox->m_sql->m_cobj==NULL ) {
+		return; /* database not opened - error */
 	}
 
 	if( contact_id == 0 ) {
-		return 0;
+		return;
 	}
 
-	if( (chat_id=mrmailbox_lookup_real_nchat_by_contact_id__(mailbox, contact_id)) != 0 ) {
-		return chat_id; /* soon success */
+	mrmailbox_lookup_real_nchat_by_contact_id__(mailbox, contact_id, &chat_id, &chat_blocked);
+	if( chat_id != 0 ) {
+		if( ret_chat_id )      { *ret_chat_id      = chat_id;      }
+		if( ret_chat_blocked ) { *ret_chat_blocked = chat_blocked; }
+		return; /* soon success */
 	}
 
 	/* get fine chat name */
@@ -2492,7 +1805,9 @@ uint32_t mrmailbox_create_or_lookup_nchat_by_contact_id__(mrmailbox_t* mailbox, 
 	chat_name = (contact->m_name&&contact->m_name[0])? contact->m_name : contact->m_addr;
 
 	/* create chat record */
-	q = sqlite3_mprintf("INSERT INTO chats (type, name) VALUES(%i, %Q)", MR_CHAT_TYPE_NORMAL, chat_name);
+	q = sqlite3_mprintf("INSERT INTO chats (type, name, param, blocked) VALUES(%i, %Q, %Q, %i)", MR_CHAT_TYPE_NORMAL, chat_name,
+		contact_id==MR_CONTACT_ID_SELF? "K=1" : "", create_blocked);
+	assert( MRP_SELFTALK == 'K' );
 	stmt = mrsqlite3_prepare_v2_(mailbox->m_sql, q);
 	if( stmt == NULL) {
 		goto cleanup;
@@ -2522,31 +1837,13 @@ uint32_t mrmailbox_create_or_lookup_nchat_by_contact_id__(mrmailbox_t* mailbox, 
 	sqlite3_finalize(stmt);
 	stmt = NULL;
 
-	/* add already existing messages to the chat record */
-	q = sqlite3_mprintf("UPDATE msgs SET chat_id=%i WHERE (chat_id=%i AND from_id=%i) OR (chat_id=%i AND to_id=%i);",
-		chat_id,
-		MR_CHAT_ID_DEADDROP, contact_id,
-		MR_CHAT_ID_TO_DEADDROP, contact_id);
-	stmt = mrsqlite3_prepare_v2_(mailbox->m_sql, q);
-
-    if( sqlite3_step(stmt) != SQLITE_DONE ) {
-		goto cleanup;
-    }
-
-	/* cleanup */
 cleanup:
-	if( q ) {
-		sqlite3_free(q);
-	}
+	if( q )       { sqlite3_free(q); }
+	if( stmt )    { sqlite3_finalize(stmt); }
+	if( contact ) { mrcontact_unref(contact); }
 
-	if( stmt ) {
-		sqlite3_finalize(stmt);
-	}
-
-	if( contact ) {
-		mrcontact_unref(contact);
-	}
-	return chat_id;
+	if( ret_chat_id )      { *ret_chat_id      = chat_id; }
+	if( ret_chat_blocked ) { *ret_chat_blocked = create_blocked; }
 }
 
 
@@ -2574,7 +1871,7 @@ int mrmailbox_get_total_msg_count(mrmailbox_t* mailbox, uint32_t chat_id)
 {
 	int ret;
 
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return 0;
 	}
 
@@ -2602,7 +1899,7 @@ int mrmailbox_get_fresh_msg_count(mrmailbox_t* mailbox, uint32_t chat_id)
 {
 	int ret;
 
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return 0;
 	}
 
@@ -2626,19 +1923,21 @@ int mrmailbox_get_fresh_msg_count(mrmailbox_t* mailbox, uint32_t chat_id)
  *
  * To find out the archived state of a given chat, use mrchat_t::m_archived
  *
+ * Calling this function usually results in the event #MR_EVENT_MSGS_CHANGED
+ *
  * @memberof mrmailbox_t
  *
  * @param mailbox The mailbox object as returned from mrmailbox_new().
  *
  * @param chat_id The ID of the chat to archive or unarchive.
  *
- * @param archive 1=archive chat, 0=unarchive chat
+ * @param archive 1=archive chat, 0=unarchive chat, all other values are reserved for future use
  *
  * @return None
  */
 void mrmailbox_archive_chat(mrmailbox_t* mailbox, uint32_t chat_id, int archive)
 {
-	if( mailbox == NULL || chat_id <= MR_CHAT_ID_LAST_SPECIAL || (archive!=0 && archive!=1) ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || chat_id <= MR_CHAT_ID_LAST_SPECIAL || (archive!=0 && archive!=1) ) {
 		return;
 	}
 
@@ -2649,6 +1948,8 @@ void mrmailbox_archive_chat(mrmailbox_t* mailbox, uint32_t chat_id, int archive)
 		sqlite3_step(stmt);
 		sqlite3_finalize(stmt);
 	mrsqlite3_unlock(mailbox->m_sql);
+
+	mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, 0, 0);
 }
 
 
@@ -2657,27 +1958,47 @@ void mrmailbox_archive_chat(mrmailbox_t* mailbox, uint32_t chat_id, int archive)
  ******************************************************************************/
 
 
-/* _If_ deleting a group chat would implies to leave the group, things get complicated
-as this would require to send a message before the chat is deleted physically.
-To make things even more complicated, there may be other chat messages waiting to be send.
-
-We used the following approach:
-1. If we do not need to send a message, we delete the chat directly
-2. If we need to send a message, we set chats.blocked=1 and add the parameter
-   MRP_DEL_AFTER_SEND with a random value to both, the last message to be send and to the
-   chat (we would use msg_id, however, we may not get this in time)
-3. When the messag with the MRP_DEL_AFTER_SEND-value of the chat was send to IMAP, we physically
-   delete the chat.
-
-However, from 2017-11-02, we do not implicitly leave the group as this results in different behaviours to normal
-chat and _only_ leaving a group is also a valid usecase. */
-
-
-int mrmailbox_delete_chat_part2(mrmailbox_t* mailbox, uint32_t chat_id)
+/**
+ * Delete a chat.
+ *
+ * Messages are deleted from the device and the chat database entry is deleted.
+ * After that, the event #MR_EVENT_MSGS_CHANGED is posted.
+ *
+ * Things that are _not_ done implicitly:
+ *
+ * - Messages are **not deleted from the server**.
+ *
+ * - The chat or the contact is **not blocked**, so new messages from the user/the group may appear
+ *   and the user may create the chat again.
+ *
+ * - **Groups are not left** - this would
+ *   be unexpected as (1) deleting a normal chat also does not prevent new mails
+ *   from arriving, (2) leaving a group requires sending a message to
+ *   all group members - esp. for groups not used for a longer time, this is
+ *   really unexpected when deletion results in contacting all members again,
+ *   (3) only leaving groups is also a valid usecase.
+ *
+ * To leave a chat explicitly, use mrmailbox_remove_contact_from_chat() with
+ * chat_id=MR_CONTACT_ID_SELF)
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ *
+ * @param chat_id The ID of the chat to delete.
+ *
+ * @return None
+ */
+void mrmailbox_delete_chat(mrmailbox_t* mailbox, uint32_t chat_id)
 {
-	int       success = 0, locked = 0, pending_transaction = 0;
+	/* Up to 2017-11-02 deleting a group also implied leaving it, see above why we have changed this. */
+	int       locked = 0, pending_transaction = 0;
 	mrchat_t* obj = mrchat_new(mailbox);
 	char*     q3 = NULL;
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || chat_id <= MR_CHAT_ID_LAST_SPECIAL ) {
+		goto cleanup;
+	}
 
 	mrsqlite3_lock(mailbox->m_sql);
 	locked = 1;
@@ -2716,99 +2037,14 @@ int mrmailbox_delete_chat_part2(mrmailbox_t* mailbox, uint32_t chat_id)
 	mrsqlite3_unlock(mailbox->m_sql);
 	locked = 0;
 
-	success = 1;
+	mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, 0, 0);
 
 cleanup:
 	if( pending_transaction ) { mrsqlite3_rollback__(mailbox->m_sql); }
 	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 	mrchat_unref(obj);
 	if( q3 ) { sqlite3_free(q3); }
-	return success;
 }
-
-
-/**
- * Delete a chat:
- *
- * - messages are deleted from the device and the chat database entry is deleted
- *
- * - messages are _not_ deleted from the server
- *
- * - the chat is not blocked, so new messages from the user/the group may appear
- *   and the user may create the chat again
- *
- * - this is also one of the reasons, why groups are _not left_ -  this would
- *   be unexpected as deleting a normal chat also does not prevent new mails
- *
- * - moreover, there may be valid reasons only to leave a group and only to
- *   delete a group
- *
- * - another argument is, that leaving a group requires sending a message to
- *   all group members - esp. for groups not used for a longer time, this is
- *   really unexpected
- *
- * - to leave a chat, use mrmailbox_remove_contact_from_chat(mailbox, chat_id, MR_CONTACT_ID_SELF)
- *
- * @memberof mrmailbox_t
- *
- * @param mailbox The mailbox object as returned from mrmailbox_new().
- *
- * @param chat_id The ID of the chat to delete.
- *
- * @return None
- */
-void mrmailbox_delete_chat(mrmailbox_t* mailbox, uint32_t chat_id)
-{
-	mrchat_t*    chat = mrmailbox_get_chat(mailbox, chat_id);
-	mrcontact_t* contact = NULL;
-	mrmsg_t*     msg = mrmsg_new();
-
-	if( mailbox == NULL || chat_id <= MR_CHAT_ID_LAST_SPECIAL || chat == NULL ) {
-		goto cleanup;
-	}
-
-	#ifdef GROUP_DELETE_IMPLIES_LEAVING
-	if( chat->m_type == MR_CHAT_TYPE_GROUP
-	 && mrmailbox_is_contact_in_chat(mailbox, chat_id, MR_CONTACT_ID_SELF)
-	 && DO_SEND_STATUS_MAILS )
-	{
-		/* _first_ mark chat to being delete and _then_ send the message to inform others that we've quit the group
-		(the order is important - otherwise the message may be send asynchronous before we update the group. */
-		int link_msg_to_chat_deletion = (int)time(NULL);
-
-		mrparam_set_int(chat->m_param, MRP_DEL_AFTER_SEND, link_msg_to_chat_deletion);
-		mrsqlite3_lock(mailbox->m_sql);
-			sqlite3_stmt* stmt = mrsqlite3_prepare_v2_(mailbox->m_sql, "UPDATE chats SET blocked=1, param=? WHERE id=?;");
-			sqlite3_bind_text (stmt, 1, chat->m_param->m_packed, -1, SQLITE_STATIC);
-			sqlite3_bind_int  (stmt, 2, chat_id);
-			sqlite3_step(stmt);
-			sqlite3_finalize(stmt);
-			mrmailbox_set_group_explicitly_left__(mailbox, chat->m_grpid);
-		mrsqlite3_unlock(mailbox->m_sql);
-
-		contact = mrmailbox_get_contact(mailbox, MR_CONTACT_ID_SELF);
-		msg->m_type = MR_MSG_TEXT;
-		msg->m_text = mrstock_str(MR_STR_MSGGROUPLEFT);
-		mrparam_set_int(msg->m_param, MRP_SYSTEM_CMD, MR_SYSTEM_MEMBER_REMOVED_FROM_GROUP);
-		mrparam_set    (msg->m_param, MRP_SYSTEM_CMD_PARAM, contact->m_addr);
-		mrparam_set_int(msg->m_param, MRP_DEL_AFTER_SEND, link_msg_to_chat_deletion);
-		mrmailbox_send_msg(mailbox, chat->m_id, msg);
-	}
-	else
-	#endif
-	{
-		/* directly delete the chat */
-		mrmailbox_delete_chat_part2(mailbox, chat_id);
-	}
-
-	mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, 0, 0);
-
-cleanup:
-	mrchat_unref(chat);
-	mrcontact_unref(contact);
-	mrmsg_unref(msg);
-}
-
 
 
 /*******************************************************************************
@@ -2836,11 +2072,11 @@ void mrmailbox_send_msg_to_imap(mrmailbox_t* mailbox, mrjob_t* job)
 	/* create message */
 	if( mrmimefactory_load_msg(&mimefactory, job->m_foreign_id)==0
 	 || mimefactory.m_from_addr == NULL ) {
-		goto cleanup; /* should not happen as we've send the message to the SMTP server before */
+		goto cleanup; /* should not happen as we've sent the message to the SMTP server before */
 	}
 
 	if( !mrmimefactory_render(&mimefactory, 1/*encrypt to self*/) ) {
-		goto cleanup; /* should not happen as we've send the message to the SMTP server before */
+		goto cleanup; /* should not happen as we've sent the message to the SMTP server before */
 	}
 
 	if( !mrimap_append_msg(mailbox->m_imap, mimefactory.m_msg->m_timestamp, mimefactory.m_out->str, mimefactory.m_out->len, &server_folder, &server_uid) ) {
@@ -2852,14 +2088,6 @@ void mrmailbox_send_msg_to_imap(mrmailbox_t* mailbox, mrjob_t* job)
 			mrmailbox_update_server_uid__(mailbox, mimefactory.m_msg->m_rfc724_mid, server_folder, server_uid);
 		mrsqlite3_unlock(mailbox->m_sql);
 	}
-
-	/* check, if the chat shall be deleted pysically */
-	#ifdef GROUP_DELETE_IMPLIES_LEAVING
-	if( mrparam_get_int(mimefactory.m_chat->m_param, MRP_DEL_AFTER_SEND, 0)!=0
-	 && mrparam_get_int(mimefactory.m_chat->m_param, MRP_DEL_AFTER_SEND, 0)==mrparam_get_int(mimefactory.m_msg->m_param, MRP_DEL_AFTER_SEND, 0) ) {
-		mrmailbox_delete_chat_part2(mailbox, mimefactory.m_chat->m_id);
-	}
-	#endif
 
 cleanup:
 	mrmimefactory_empty(&mimefactory);
@@ -2922,7 +2150,7 @@ void mrmailbox_send_msg_to_smtp(mrmailbox_t* mailbox, mrjob_t* job)
 			goto cleanup; /* no redo, no IMAP - there won't be more recipients next time. */
 		}
 
-		/* have we guaranteed encryption but cannot fullfill it for any reason? Do not send the message then.*/
+		/* have we guaranteed encryption but cannot fulfill it for any reason? Do not send the message then.*/
 		if( mrparam_get_int(mimefactory.m_msg->m_param, MRP_GUARANTEE_E2EE, 0) && !mimefactory.m_out_encrypted ) {
 			mark_as_error(mailbox, mimefactory.m_msg);
 			mrmailbox_log_error(mailbox, 0, "End-to-end-encryption unavailable unexpectedly.");
@@ -2945,7 +2173,9 @@ void mrmailbox_send_msg_to_smtp(mrmailbox_t* mailbox, mrjob_t* job)
 			char* emlname = mr_mprintf("%s/to-smtp-%i.eml", mailbox->m_blobdir, (int)mimefactory.m_msg->m_id);
 			FILE* emlfileob = fopen(emlname, "w");
 			if( emlfileob ) {
-				fwrite(mimefactory.m_out->str, 1, mimefactory.m_out->len, emlfileob);
+				if( mimefactory.m_out ) {
+					fwrite(mimefactory.m_out->str, 1, mimefactory.m_out->len, emlfileob);
+				}
 				fclose(emlfileob);
 			}
 			free(emlname);
@@ -2957,7 +2187,9 @@ void mrmailbox_send_msg_to_smtp(mrmailbox_t* mailbox, mrjob_t* job)
 			mrmsg_save_param_to_disk__(mimefactory.m_msg);
 		}
 
-		if( (mailbox->m_imap->m_server_flags&MR_NO_EXTRA_IMAP_UPLOAD)==0 ) {
+		if( (mailbox->m_imap->m_server_flags&MR_NO_EXTRA_IMAP_UPLOAD)==0
+		 && mrparam_get(mimefactory.m_chat->m_param, MRP_SELFTALK, 0)==0
+		 && mrparam_get_int(mimefactory.m_msg->m_param, MRP_SYSTEM_CMD, 0)!=MR_SYSTEM_OOB_VERIFY_MESSAGE ) {
 			mrjob_add__(mailbox, MRJ_SEND_MSG_TO_IMAP, mimefactory.m_msg->m_id, NULL); /* send message to IMAP in another job */
 		}
 
@@ -2971,7 +2203,28 @@ cleanup:
 }
 
 
-uint32_t mrmailbox_send_msg_i__(mrmailbox_t* mailbox, mrchat_t* chat, const mrmsg_t* msg, time_t timestamp)
+static int last_msg_in_chat_encrypted(mrsqlite3_t* sql, uint32_t chat_id)
+{
+	int last_is_encrypted = 0;
+	sqlite3_stmt* stmt = mrsqlite3_predefine__(sql, SELECT_param_FROM_msgs,
+		"SELECT param "
+		" FROM msgs "
+		" WHERE timestamp=(SELECT MAX(timestamp) FROM msgs WHERE chat_id=?) "
+		" ORDER BY id DESC;");
+	sqlite3_bind_int(stmt, 1, chat_id);
+	if( sqlite3_step(stmt) == SQLITE_ROW ) {
+		mrparam_t* msg_param = mrparam_new();
+		mrparam_set_packed(msg_param, (char*)sqlite3_column_text(stmt, 0));
+		if( mrparam_exists(msg_param, MRP_GUARANTEE_E2EE) ) {
+			last_is_encrypted = 1;
+		}
+		mrparam_unref(msg_param);
+	}
+	return last_is_encrypted;
+}
+
+
+static uint32_t mrmailbox_send_msg_i__(mrmailbox_t* mailbox, mrchat_t* chat, const mrmsg_t* msg, time_t timestamp)
 {
 	char*         rfc724_mid = NULL;
 	sqlite3_stmt* stmt;
@@ -2984,8 +2237,11 @@ uint32_t mrmailbox_send_msg_i__(mrmailbox_t* mailbox, mrchat_t* chat, const mrms
 
 	{
 		char* from = mrsqlite3_get_config__(mailbox->m_sql, "configured_addr", NULL);
-		if( from == NULL ) { goto cleanup; }
-			rfc724_mid = mr_create_outgoing_rfc724_mid(chat->m_type==MR_CHAT_TYPE_GROUP? chat->m_grpid : NULL, from);
+		if( from == NULL ) {
+			mrmailbox_log_error(mailbox, 0, "Cannot send message, not configured successfully.");
+			goto cleanup;
+		}
+		rfc724_mid = mr_create_outgoing_rfc724_mid(chat->m_type==MR_CHAT_TYPE_GROUP? chat->m_grpid : NULL, from);
 		free(from);
 	}
 
@@ -2995,6 +2251,7 @@ uint32_t mrmailbox_send_msg_i__(mrmailbox_t* mailbox, mrchat_t* chat, const mrms
 			"SELECT contact_id FROM chats_contacts WHERE chat_id=?;");
 		sqlite3_bind_int(stmt, 1, chat->m_id);
 		if( sqlite3_step(stmt) != SQLITE_ROW ) {
+			mrmailbox_log_error(mailbox, 0, "Cannot send message, contact for chat #%i not found.", chat->m_id);
 			goto cleanup;
 		}
 		to_id = sqlite3_column_int(stmt, 0);
@@ -3009,28 +2266,48 @@ uint32_t mrmailbox_send_msg_i__(mrmailbox_t* mailbox, mrchat_t* chat, const mrms
 	}
 
 	/* check if we can guarantee E2EE for this message.  If we can, we won't send the message without E2EE later (because of a reset, changed settings etc. - messages may be delayed significally if there is no network present) */
-	int can_guarantee_e2ee = 0;
-	if( mailbox->m_e2ee_enabled ) {
-		can_guarantee_e2ee = 1;
+	int do_guarantee_e2ee = 0;
+	int system_command = mrparam_get_int(msg->m_param, MRP_SYSTEM_CMD, 0);
+	if( mailbox->m_e2ee_enabled && system_command!=MR_SYSTEM_AUTOCRYPT_SETUP_MESSAGE )
+	{
+		int can_encrypt = 1, all_mutual = 1; /* be optimistic */
 		sqlite3_stmt* stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_p_FROM_chats_contacs_JOIN_contacts_peerstates_WHERE_cc,
 			"SELECT ps.prefer_encrypted "
 			 " FROM chats_contacts cc "
 			 " LEFT JOIN contacts c ON cc.contact_id=c.id "
 			 " LEFT JOIN acpeerstates ps ON c.addr=ps.addr "
-			 " WHERE cc.chat_id=? AND cc.contact_id>?;");
+			 " WHERE cc.chat_id=? "                                               /* take care that this statement returns NULL rows if there is no peerstates for a chat member! */
+			 " AND cc.contact_id>" MR_STRINGIFY(MR_CONTACT_ID_LAST_SPECIAL) ";"); /* for MRP_SELFTALK this statement does not return any row */
 		sqlite3_bind_int(stmt, 1, chat->m_id);
-		sqlite3_bind_int(stmt, 2, MR_CONTACT_ID_LAST_SPECIAL);
 		while( sqlite3_step(stmt) == SQLITE_ROW )
 		{
-			int prefer_encrypted = sqlite3_column_type(stmt, 0)==SQLITE_NULL? MRA_PE_NOPREFERENCE : sqlite3_column_int(stmt, 0);
-			if( prefer_encrypted != MRA_PE_MUTUAL ) { /* when gossip becomes available, gossip keys should be used only in groups */
-				can_guarantee_e2ee = 0;
-				break;
+			if( sqlite3_column_type(stmt, 0)==SQLITE_NULL ) {
+				can_encrypt = 0;
+				all_mutual = 0;
+			}
+			else {
+				/* the peerstate exist, so we have either public_key or gossip_key and can encrypt potentially */
+				int prefer_encrypted = sqlite3_column_int(stmt, 0);
+				if( prefer_encrypted != MRA_PE_MUTUAL ) {
+					all_mutual = 0;
+				}
+			}
+		}
+
+		if( can_encrypt )
+		{
+			if( all_mutual ) {
+				do_guarantee_e2ee = 1;
+			}
+			else {
+				if( last_msg_in_chat_encrypted(mailbox->m_sql, chat->m_id) ) {
+					do_guarantee_e2ee = 1;
+				}
 			}
 		}
 	}
 
-	if( can_guarantee_e2ee ) {
+	if( do_guarantee_e2ee ) {
 		mrparam_set_int(msg->m_param, MRP_GUARANTEE_E2EE, 1);
 	}
 	else {
@@ -3041,7 +2318,7 @@ uint32_t mrmailbox_send_msg_i__(mrmailbox_t* mailbox, mrchat_t* chat, const mrms
 
 	/* add message to the database */
 	stmt = mrsqlite3_predefine__(mailbox->m_sql, INSERT_INTO_msgs_mcftttstpb,
-		"INSERT INTO msgs (rfc724_mid,chat_id,from_id,to_id, timestamp,type,state, txt,param) VALUES (?,?,?,?, ?,?,?, ?,?);");
+		"INSERT INTO msgs (rfc724_mid,chat_id,from_id,to_id, timestamp,type,state, txt,param,hidden) VALUES (?,?,?,?, ?,?,?, ?,?,?);");
 	sqlite3_bind_text (stmt,  1, rfc724_mid, -1, SQLITE_STATIC);
 	sqlite3_bind_int  (stmt,  2, MR_CHAT_ID_MSGS_IN_CREATION);
 	sqlite3_bind_int  (stmt,  3, MR_CONTACT_ID_SELF);
@@ -3051,7 +2328,9 @@ uint32_t mrmailbox_send_msg_i__(mrmailbox_t* mailbox, mrchat_t* chat, const mrms
 	sqlite3_bind_int  (stmt,  7, MR_STATE_OUT_PENDING);
 	sqlite3_bind_text (stmt,  8, msg->m_text? msg->m_text : "",  -1, SQLITE_STATIC);
 	sqlite3_bind_text (stmt,  9, msg->m_param->m_packed, -1, SQLITE_STATIC);
+	sqlite3_bind_int  (stmt, 10, msg->m_hidden);
 	if( sqlite3_step(stmt) != SQLITE_DONE ) {
+		mrmailbox_log_error(mailbox, 0, "Cannot send message, cannot insert to database.", chat->m_id);
 		goto cleanup;
 	}
 
@@ -3068,53 +2347,18 @@ cleanup:
 
 
 /**
- * Send a simple text message to the given chat.
+ * Send a message of any type to a chat. The given message object is not unref'd
+ * by the function but some fields are set up.
  *
  * Sends the event #MR_EVENT_MSGS_CHANGED on succcess.
  * However, this does not imply, the message really reached the recipient -
  * sending may be delayed eg. due to network problems. However, from your
  * view, you're done with the message. Sooner or later it will find its way.
  *
- * @memberof mrmailbox_t
+ * To send a simple text message, you can also use mrmailbox_send_text_msg()
+ * which is easier to use.
  *
- * @param mailbox The mailbox object as returned from mrmailbox_new().
- *
- * @param chat_id Chat ID to send the message to.
- *
- * @param text_to_send Text to send to the chat defined by the chat ID.
- *
- * @return The ID of the message that is about being sent.
- */
-uint32_t mrmailbox_send_text_msg(mrmailbox_t* mailbox, uint32_t chat_id, const char* text_to_send)
-{
-	mrmsg_t* msg = mrmsg_new();
-	uint32_t ret = 0;
-
-	if( mailbox == NULL || chat_id <= MR_CHAT_ID_LAST_SPECIAL || text_to_send == NULL ) {
-		goto cleanup;
-	}
-
-	msg->m_type = MR_MSG_TEXT;
-	mrmsg_set_text(msg, text_to_send);
-
-	ret = mrmailbox_send_msg(mailbox, chat_id, msg);
-
-cleanup:
-	mrmsg_unref(msg);
-	return ret;
-}
-
-
-/**
- * save message in database and send it, the given message object is not unref'd
- * by the function but some fields are set up!
- *
- * Sends the event #MR_EVENT_MSGS_CHANGED on succcess.
- * However, this does not imply, the message really reached the recipient -
- * sending may be delayed eg. due to network problems. However, from your
- * view, you're done with the message. Sooner or later it will find its way.
- *
- * @memberof mrmailbox_t
+ * @private @memberof mrmailbox_t
  *
  * @param mailbox The mailbox object as returned from mrmailbox_new().
  *
@@ -3125,12 +2369,29 @@ cleanup:
  *     free it using mrmsg_unref() as usual.
  *
  * @return The ID of the message that is about being sent.
+ *
+ * Examples:
+ *
+ * ```
+ * mrmsg_t* msg1 = mrmsg_new();
+ *    mrmsg_set_type(msg1, MR_MSG_TEXT);
+ *    mrmsg_set_text(msg1, "Hi there!");
+ *    mrmailbox_send_msg(mailbox, chat_id, msg1); // send a simple text message
+ * mrmsg_unref(msg1);
+ *
+ * mrmsg_t* msg2 = mrmsg_new();
+ *    mrmsg_set_type(msg2, MR_MSG_IMAGE);
+ *    mrmsg_set_file(msg2, "/path/to/image.jpg");
+ *    mrmailbox_send_msg(mailbox, chat_id, msg2); // send a simple text message
+ * mrmsg_unref(msg1);
+ * ```
  */
-uint32_t mrmailbox_send_msg(mrmailbox_t* mailbox, uint32_t chat_id, mrmsg_t* msg)
+uint32_t mrmailbox_send_msg_object(mrmailbox_t* mailbox, uint32_t chat_id, mrmsg_t* msg)
 {
+	int   locked = 0, transaction_pending = 0;
 	char* pathNfilename = NULL;
 
-	if( mailbox == NULL || msg == NULL || chat_id <= MR_CHAT_ID_LAST_SPECIAL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || msg == NULL || chat_id <= MR_CHAT_ID_LAST_SPECIAL ) {
 		return 0;
 	}
 
@@ -3147,8 +2408,8 @@ uint32_t mrmailbox_send_msg(mrmailbox_t* mailbox, uint32_t chat_id, mrmsg_t* msg
 		if( pathNfilename )
 		{
 			/* Got an attachment. Take care, the file may not be ready in this moment!
-			This is useful eg. if a video should be sended and already shown as "being processed" in the chat.
-			In this case, the user should create an `.increation`; when the file is deleted later on, the message is sended.
+			This is useful eg. if a video should be sent and already shown as "being processed" in the chat.
+			In this case, the user should create an `.increation`; when the file is deleted later on, the message is sent.
 			(we do not use a state in the database as this would make eg. forwarding such messages much more complicated) */
 
 			if( msg->m_type == MR_MSG_FILE || msg->m_type == MR_MSG_IMAGE )
@@ -3212,7 +2473,9 @@ uint32_t mrmailbox_send_msg(mrmailbox_t* mailbox, uint32_t chat_id, mrmsg_t* msg
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
+	locked = 1;
 	mrsqlite3_begin_transaction__(mailbox->m_sql);
+	transaction_pending = 1;
 
 		mrmailbox_unarchive_chat__(mailbox, chat_id);
 
@@ -3222,18 +2485,378 @@ uint32_t mrmailbox_send_msg(mrmailbox_t* mailbox, uint32_t chat_id, mrmsg_t* msg
 			mrchat_t* chat = mrchat_new(mailbox);
 			if( mrchat_load_from_db__(chat, chat_id) ) {
 				msg->m_id = mrmailbox_send_msg_i__(mailbox, chat, msg, mr_create_smeared_timestamp__());
+				if( msg ->m_id == 0 ) {
+					goto cleanup; /* error already logged */
+				}
 			}
 			mrchat_unref(chat);
 		}
 
 	mrsqlite3_commit__(mailbox->m_sql);
+	transaction_pending = 0;
 	mrsqlite3_unlock(mailbox->m_sql);
+	locked = 0;
 
 	mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, chat_id, msg->m_id);
 
 cleanup:
+	if( transaction_pending ) { mrsqlite3_rollback__(mailbox->m_sql); }
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 	free(pathNfilename);
 	return msg->m_id;
+}
+
+
+/**
+ * Send a simple text message a given chat.
+ *
+ * Sends the event #MR_EVENT_MSGS_CHANGED on succcess.
+ * However, this does not imply, the message really reached the recipient -
+ * sending may be delayed eg. due to network problems. However, from your
+ * view, you're done with the message. Sooner or later it will find its way.
+ *
+ * See also mrmailbox_send_image_msg().
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ * @param chat_id Chat ID to send the text message to.
+ * @param text_to_send Text to send to the chat defined by the chat ID.
+ *
+ * @return The ID of the message that is about being sent.
+ */
+uint32_t mrmailbox_send_text_msg(mrmailbox_t* mailbox, uint32_t chat_id, const char* text_to_send)
+{
+	mrmsg_t* msg = mrmsg_new();
+	uint32_t ret = 0;
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || chat_id <= MR_CHAT_ID_LAST_SPECIAL || text_to_send == NULL ) {
+		goto cleanup;
+	}
+
+	msg->m_type = MR_MSG_TEXT;
+	msg->m_text = safe_strdup(text_to_send);
+
+	ret = mrmailbox_send_msg_object(mailbox, chat_id, msg);
+
+cleanup:
+	mrmsg_unref(msg);
+	return ret;
+}
+
+
+/**
+ * Send an image to a chat.
+ *
+ * Sends the event #MR_EVENT_MSGS_CHANGED on succcess.
+ * However, this does not imply, the message really reached the recipient -
+ * sending may be delayed eg. due to network problems. However, from your
+ * view, you're done with the message. Sooner or later it will find its way.
+ *
+ * See also mrmailbox_send_text_msg().
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ * @param chat_id Chat ID to send the image to.
+ * @param file Full path of the image file to send. The core may make a copy of the file.
+ * @param filemime Mime type of the file to send. NULL if you don't know or don't care.
+ * @param width Width in pixel of the file. 0 if you don't know or don't care.
+ * @param height Width in pixel of the file. 0 if you don't know or don't care.
+ *
+ * @return The ID of the message that is about being sent.
+ */
+uint32_t mrmailbox_send_image_msg(mrmailbox_t* mailbox, uint32_t chat_id, const char* file, const char* filemime, int width, int height)
+{
+	mrmsg_t* msg = mrmsg_new();
+	uint32_t ret = 0;
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || chat_id <= MR_CHAT_ID_LAST_SPECIAL || file == NULL ) {
+		goto cleanup;
+	}
+
+	msg->m_type = MR_MSG_IMAGE;
+	mrparam_set    (msg->m_param, MRP_FILE,   file);
+	mrparam_set_int(msg->m_param, MRP_WIDTH,  width);  /* set in sending job, if 0 */
+	mrparam_set_int(msg->m_param, MRP_HEIGHT, height); /* set in sending job, if 0 */
+
+	ret = mrmailbox_send_msg_object(mailbox, chat_id, msg);
+
+cleanup:
+	mrmsg_unref(msg);
+	return ret;
+
+}
+
+
+/**
+ * Send a video to a chat.
+ *
+ * Sends the event #MR_EVENT_MSGS_CHANGED on succcess.
+ * However, this does not imply, the message really reached the recipient -
+ * sending may be delayed eg. due to network problems. However, from your
+ * view, you're done with the message. Sooner or later it will find its way.
+ *
+ * See also mrmailbox_send_image_msg().
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ * @param chat_id Chat ID to send the video to.
+ * @param file Full path of the video file to send. The core may make a copy of the file.
+ * @param filemime Mime type of the file to send. NULL if you don't know or don't care.
+ * @param width Width in video of the file, if known. 0 if you don't know or don't care.
+ * @param height Width in video of the file, if known. 0 if you don't know or don't care.
+ * @param duration Length of the video in milliseconds. 0 if you don't know or don't care.
+ *
+ * @return The ID of the message that is about being sent.
+ */
+uint32_t mrmailbox_send_video_msg(mrmailbox_t* mailbox, uint32_t chat_id, const char* file, const char* filemime, int width, int height, int duration)
+{
+	mrmsg_t* msg = mrmsg_new();
+	uint32_t ret = 0;
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || chat_id <= MR_CHAT_ID_LAST_SPECIAL || file == NULL ) {
+		goto cleanup;
+	}
+
+	msg->m_type = MR_MSG_VIDEO;
+	mrparam_set    (msg->m_param, MRP_FILE,     file);
+	mrparam_set    (msg->m_param, MRP_MIMETYPE, filemime);
+	mrparam_set_int(msg->m_param, MRP_WIDTH,    width);
+	mrparam_set_int(msg->m_param, MRP_HEIGHT,   height);
+	mrparam_set_int(msg->m_param, MRP_DURATION, duration);
+
+	ret = mrmailbox_send_msg_object(mailbox, chat_id, msg);
+
+cleanup:
+	mrmsg_unref(msg);
+	return ret;
+
+}
+
+
+/**
+ * Send a voice message to a chat.  Voice messages are messages just recorded though the device microphone.
+ * For sending music or other audio data, use mrmailbox_send_audio_msg().
+ *
+ * Sends the event #MR_EVENT_MSGS_CHANGED on succcess.
+ * However, this does not imply, the message really reached the recipient -
+ * sending may be delayed eg. due to network problems. However, from your
+ * view, you're done with the message. Sooner or later it will find its way.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ * @param chat_id Chat ID to send the voice message to.
+ * @param file Full path of the file to send. The core may make a copy of the file.
+ * @param filemime Mime type of the file to send. NULL if you don't know or don't care.
+ * @param duration Length of the voice message in milliseconds. 0 if you don't know or don't care.
+ *
+ * @return The ID of the message that is about being sent.
+ */
+uint32_t mrmailbox_send_voice_msg(mrmailbox_t* mailbox, uint32_t chat_id, const char* file, const char* filemime, int duration)
+{
+	mrmsg_t* msg = mrmsg_new();
+	uint32_t ret = 0;
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || chat_id <= MR_CHAT_ID_LAST_SPECIAL || file == NULL ) {
+		goto cleanup;
+	}
+
+	msg->m_type = MR_MSG_VOICE;
+	mrparam_set    (msg->m_param, MRP_FILE,     file);
+	mrparam_set    (msg->m_param, MRP_MIMETYPE, filemime);
+	mrparam_set_int(msg->m_param, MRP_DURATION, duration);
+
+	ret = mrmailbox_send_msg_object(mailbox, chat_id, msg);
+
+cleanup:
+	mrmsg_unref(msg);
+	return ret;
+}
+
+
+/**
+ * Send an audio file to a chat.  Audio messages are eg. music tracks.
+ * For voice messages just recorded though the device microphone, use mrmailbox_send_voice_msg().
+ *
+ * Sends the event #MR_EVENT_MSGS_CHANGED on succcess.
+ * However, this does not imply, the message really reached the recipient -
+ * sending may be delayed eg. due to network problems. However, from your
+ * view, you're done with the message. Sooner or later it will find its way.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ * @param chat_id Chat ID to send the audio to.
+ * @param file Full path of the file to send. The core may make a copy of the file.
+ * @param filemime Mime type of the file to send. NULL if you don't know or don't care.
+ * @param duration Length of the audio in milliseconds. 0 if you don't know or don't care.
+ * @param author Author or artist of the file. NULL if you don't know or don't care.
+ * @param trackname Trackname or title of the file. NULL if you don't know or don't care.
+ *
+ * @return The ID of the message that is about being sent.
+ */
+uint32_t mrmailbox_send_audio_msg(mrmailbox_t* mailbox, uint32_t chat_id, const char* file, const char* filemime, int duration, const char* author, const char* trackname)
+{
+	mrmsg_t* msg = mrmsg_new();
+	uint32_t ret = 0;
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || chat_id <= MR_CHAT_ID_LAST_SPECIAL || file == NULL ) {
+		goto cleanup;
+	}
+
+	msg->m_type = MR_MSG_AUDIO;
+	mrparam_set    (msg->m_param, MRP_FILE,       file);
+	mrparam_set    (msg->m_param, MRP_MIMETYPE,   filemime);
+	mrparam_set_int(msg->m_param, MRP_DURATION,   duration);
+	mrparam_set    (msg->m_param, MRP_AUTHORNAME, author);
+	mrparam_set    (msg->m_param, MRP_TRACKNAME,  trackname);
+
+	ret = mrmailbox_send_msg_object(mailbox, chat_id, msg);
+
+cleanup:
+	mrmsg_unref(msg);
+	return ret;
+}
+
+
+/**
+ * Send a document to a chat. Use this function to send any document or file to
+ * a chat.
+ *
+ * Sends the event #MR_EVENT_MSGS_CHANGED on succcess.
+ * However, this does not imply, the message really reached the recipient -
+ * sending may be delayed eg. due to network problems. However, from your
+ * view, you're done with the message. Sooner or later it will find its way.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object as returned from mrmailbox_new().
+ * @param chat_id Chat ID to send the document to.
+ * @param file Full path of the file to send. The core may make a copy of the file.
+ * @param filemime Mime type of the file to send. NULL if you don't know or don't care.
+ *
+ * @return The ID of the message that is about being sent.
+ */
+uint32_t mrmailbox_send_file_msg(mrmailbox_t* mailbox, uint32_t chat_id, const char* file, const char* filemime)
+{
+	mrmsg_t* msg = mrmsg_new();
+	uint32_t ret = 0;
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || chat_id <= MR_CHAT_ID_LAST_SPECIAL || file == NULL ) {
+		goto cleanup;
+	}
+
+	msg->m_type = MR_MSG_FILE;
+	mrparam_set(msg->m_param, MRP_FILE,     file);
+	mrparam_set(msg->m_param, MRP_MIMETYPE, filemime);
+
+	ret = mrmailbox_send_msg_object(mailbox, chat_id, msg);
+
+cleanup:
+	mrmsg_unref(msg);
+	return ret;
+}
+
+
+/**
+ * Send foreign contact data to a chat.
+ *
+ * Sends the name and the email address of another contact to a chat.
+ * The contact this may or may not be a member of the chat.
+ *
+ * Typically used to share a contact to another member or to a group of members.
+ *
+ * Internally, the function just creates an appropriate text message and sends it
+ * using mrmailbox_send_text_msg().
+ *
+ * NB: The "vcard" in the function name is just an abbreviation of "visiting card" and
+ * is not related to the VCARD data format.
+ *
+ * @memberof mrmailbox_t
+ *
+ * @param mailbox The mailbox object.
+ *
+ * @param chat_id The chat to send the message to.
+ *
+ * @param contact_id The contact whichs data should be shared to the chat.
+ *
+ * @return Returns the ID of the message sent.
+ */
+uint32_t mrmailbox_send_vcard_msg(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t contact_id)
+{
+	uint32_t     ret = 0;
+	mrmsg_t*     msg = mrmsg_new();
+	mrcontact_t* contact = NULL;
+	char*        text_to_send = NULL;
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || chat_id <= MR_CHAT_ID_LAST_SPECIAL ) {
+		goto cleanup;
+	}
+
+	if( (contact=mrmailbox_get_contact(mailbox, contact_id)) == NULL ) {
+		goto cleanup;
+	}
+
+	if( contact->m_authname && contact->m_authname[0] ) {
+		text_to_send = mr_mprintf("%s: %s", contact->m_authname, contact->m_addr);
+	}
+	else {
+		text_to_send = safe_strdup(contact->m_addr);
+	}
+
+	ret = mrmailbox_send_text_msg(mailbox, chat_id, text_to_send);
+
+cleanup:
+	mrmsg_unref(msg);
+	mrcontact_unref(contact);
+	free(text_to_send);
+	return ret;
+}
+
+
+/*
+ * Log a system message.
+ * Such a message is typically shown in the "middle" of the chat.
+ * Texts are typically "Alice has added Bob to the group" or "Alice fingerprint verified."
+ */
+uint32_t mrmailbox_add_system_msg(mrmailbox_t* mailbox, uint32_t chat_id, const char* text)
+{
+	uint32_t      msg_id = 0;
+	int           locked = 0;
+	sqlite3_stmt* stmt = NULL;
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || text == NULL ) {
+		goto cleanup;
+	}
+
+	mrsqlite3_lock(mailbox->m_sql);
+	locked = 1;
+
+		stmt = mrsqlite3_predefine__(mailbox->m_sql, INSERT_INTO_msgs_cftttst,
+			"INSERT INTO msgs (chat_id,from_id,to_id, timestamp,type,state, txt) VALUES (?,?,?, ?,?,?, ?);");
+		sqlite3_bind_int  (stmt,  1, chat_id);
+		sqlite3_bind_int  (stmt,  2, MR_CONTACT_ID_SYSTEM);
+		sqlite3_bind_int  (stmt,  3, MR_CONTACT_ID_SYSTEM);
+		sqlite3_bind_int64(stmt,  4, mr_create_smeared_timestamp__());
+		sqlite3_bind_int  (stmt,  5, MR_MSG_TEXT);
+		sqlite3_bind_int  (stmt,  6, MR_STATE_IN_NOTICED);
+		sqlite3_bind_text (stmt,  7, text,  -1, SQLITE_STATIC);
+		if( sqlite3_step(stmt) != SQLITE_DONE ) {
+			mrmailbox_log_error(mailbox, 0, "Cannot add system message to database.");
+			goto cleanup;
+		}
+
+		msg_id = sqlite3_last_insert_rowid(mailbox->m_sql->m_cobj);
+
+	mrsqlite3_unlock(mailbox->m_sql);
+	locked = 0;
+
+cleanup:
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
+	return msg_id;
 }
 
 
@@ -3242,7 +2865,11 @@ cleanup:
  ******************************************************************************/
 
 
-int mrmailbox_group_explicitly_left__(mrmailbox_t* mailbox, const char* grpid)
+#define IS_SELF_IN_GROUP__ (mrmailbox_is_contact_in_chat__(mailbox, chat_id, MR_CONTACT_ID_SELF)==1)
+#define DO_SEND_STATUS_MAILS (mrparam_get_int(chat->m_param, MRP_UNPROMOTED, 0)==0)
+
+
+int mrmailbox_is_group_explicitly_left__(mrmailbox_t* mailbox, const char* grpid)
 {
 	sqlite3_stmt* stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_FROM_leftgrps_WHERE_grpid, "SELECT id FROM leftgrps WHERE grpid=?;");
 	sqlite3_bind_text (stmt, 1, grpid, -1, SQLITE_STATIC);
@@ -3252,7 +2879,7 @@ int mrmailbox_group_explicitly_left__(mrmailbox_t* mailbox, const char* grpid)
 
 void mrmailbox_set_group_explicitly_left__(mrmailbox_t* mailbox, const char* grpid)
 {
-	if( !mrmailbox_group_explicitly_left__(mailbox, grpid) )
+	if( !mrmailbox_is_group_explicitly_left__(mailbox, grpid) )
 	{
 		sqlite3_stmt* stmt = mrsqlite3_prepare_v2_(mailbox->m_sql, "INSERT INTO leftgrps (grpid) VALUES(?);");
 		sqlite3_bind_text (stmt, 1, grpid, -1, SQLITE_STATIC);
@@ -3267,7 +2894,7 @@ static int mrmailbox_real_group_exists__(mrmailbox_t* mailbox, uint32_t chat_id)
 	sqlite3_stmt* stmt;
 	int           ret = 0;
 
-	if( mailbox == NULL || mailbox->m_sql->m_cobj==NULL
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || mailbox->m_sql->m_cobj==NULL
 	 || chat_id <= MR_CHAT_ID_LAST_SPECIAL ) {
 		return 0;
 	}
@@ -3299,14 +2926,16 @@ int mrmailbox_add_contact_to_chat__(mrmailbox_t* mailbox, uint32_t chat_id, uint
 /**
  * Create a new group chat.
  *
- * After creation, the groups has one member with the
- * ID [MR_CONTACT_ID_SELF](@ref mrcontact_t::m_id) and is in _unpromoted_ state.  This means, you can
+ * After creation, the group has one member with the
+ * ID MR_CONTACT_ID_SELF and is in _unpromoted_ state.  This means, you can
  * add or remove members, change the name, the group image and so on without
- * messages being send to all group members.
+ * messages being sent to all group members.
  *
  * This changes as soon as the first message is sent to the group members and
  * the group becomes _promoted_.  After that, all changes are synced with all
  * group members by sending status message.
+ *
+ * To check, if a chat is still unpromoted, you mrchat_is_unpromoted()
  *
  * @memberof mrmailbox_t
  *
@@ -3325,7 +2954,7 @@ uint32_t mrmailbox_create_group_chat(mrmailbox_t* mailbox, const char* chat_name
 	char*         draft_txt = NULL, *grpid = NULL;
 	sqlite3_stmt* stmt = NULL;
 
-	if( mailbox == NULL || chat_name==NULL || chat_name[0]==0 ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || chat_name==NULL || chat_name[0]==0 ) {
 		return 0;
 	}
 
@@ -3372,7 +3001,9 @@ cleanup:
  * Set group name.
  *
  * If the group is already _promoted_ (any message was sent to the group),
- * all group members are informed by a special message that is sent automatically by this function.
+ * all group members are informed by a special status message that is sent automatically by this function.
+ *
+ * Sends out #MR_EVENT_CHAT_MODIFIED and #MR_EVENT_MSGS_CHANGED if a status message was sent.
  *
  * @memberof mrmailbox_t
  *
@@ -3392,7 +3023,7 @@ int mrmailbox_set_chat_name(mrmailbox_t* mailbox, uint32_t chat_id, const char* 
 	mrmsg_t*  msg = mrmsg_new();
 	char*     q3 = NULL;
 
-	if( mailbox==NULL || new_name==NULL || new_name[0]==0 ) {
+	if( mailbox==NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || new_name==NULL || new_name[0]==0 || chat_id <= MR_CHAT_ID_LAST_SPECIAL ) {
 		goto cleanup;
 	}
 
@@ -3428,7 +3059,7 @@ int mrmailbox_set_chat_name(mrmailbox_t* mailbox, uint32_t chat_id, const char* 
 		msg->m_type = MR_MSG_TEXT;
 		msg->m_text = mrstock_str_repl_string2(MR_STR_MSGGRPNAME, chat->m_name, new_name);
 		mrparam_set_int(msg->m_param, MRP_SYSTEM_CMD, MR_SYSTEM_GROUPNAME_CHANGED);
-		msg->m_id = mrmailbox_send_msg(mailbox, chat->m_id, msg);
+		msg->m_id = mrmailbox_send_msg_object(mailbox, chat_id, msg);
 		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, chat_id, msg->m_id);
 	}
 	mailbox->m_cb(mailbox, MR_EVENT_CHAT_MODIFIED, chat_id, 0);
@@ -3445,10 +3076,14 @@ cleanup:
 
 
 /**
- * Set group image.
+ * Set group profile image.
  *
  * If the group is already _promoted_ (any message was sent to the group),
- * all group members are informed by a special message that is sent automatically by this function.
+ * all group members are informed by a special status message that is sent automatically by this function.
+ *
+ * Sends out #MR_EVENT_CHAT_MODIFIED and #MR_EVENT_MSGS_CHANGED if a status message was sent.
+ *
+ * To find out the profile image of a chat, use mrchat_get_profile_image()
  *
  * @memberof mrmailbox_t
  *
@@ -3461,13 +3096,13 @@ cleanup:
  *
  * @return 1=success, 0=error
  */
-int mrmailbox_set_chat_image(mrmailbox_t* mailbox, uint32_t chat_id, const char* new_image /*NULL=remove image*/)
+int mrmailbox_set_chat_profile_image(mrmailbox_t* mailbox, uint32_t chat_id, const char* new_image /*NULL=remove image*/)
 {
 	int       success = 0, locked = 0;;
 	mrchat_t* chat = mrchat_new(mailbox);
 	mrmsg_t*  msg = mrmsg_new();
 
-	if( mailbox==NULL ) {
+	if( mailbox==NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || chat_id <= MR_CHAT_ID_LAST_SPECIAL ) {
 		goto cleanup;
 	}
 
@@ -3499,7 +3134,7 @@ int mrmailbox_set_chat_image(mrmailbox_t* mailbox, uint32_t chat_id, const char*
 		mrparam_set    (msg->m_param, MRP_SYSTEM_CMD_PARAM, new_image);
 		msg->m_type = MR_MSG_TEXT;
 		msg->m_text = mrstock_str(new_image? MR_STR_MSGGRPIMGCHANGED : MR_STR_MSGGRPIMGDELETED);
-		msg->m_id = mrmailbox_send_msg(mailbox, chat->m_id, msg);
+		msg->m_id = mrmailbox_send_msg_object(mailbox, chat_id, msg);
 		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, chat_id, msg->m_id);
 	}
 	mailbox->m_cb(mailbox, MR_EVENT_CHAT_MODIFIED, chat_id, 0);
@@ -3555,11 +3190,17 @@ int mrmailbox_is_contact_in_chat(mrmailbox_t* mailbox, uint32_t chat_id, uint32_
 	/* this function works for group and for normal chats, however, it is more useful for group chats.
 	MR_CONTACT_ID_SELF may be used to check, if the user itself is in a group chat (MR_CONTACT_ID_SELF is not added to normal chats) */
 	int ret = 0;
-	if( mailbox ) {
-		mrsqlite3_lock(mailbox->m_sql);
-			ret = mrmailbox_is_contact_in_chat__(mailbox, chat_id, contact_id);
-		mrsqlite3_unlock(mailbox->m_sql);
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
+		return 0;
 	}
+
+	mrsqlite3_lock(mailbox->m_sql);
+
+		ret = mrmailbox_is_contact_in_chat__(mailbox, chat_id, contact_id);
+
+	mrsqlite3_unlock(mailbox->m_sql);
+
 	return ret;
 }
 
@@ -3568,7 +3209,9 @@ int mrmailbox_is_contact_in_chat(mrmailbox_t* mailbox, uint32_t chat_id, uint32_
  * Add a member to a group.
  *
  * If the group is already _promoted_ (any message was sent to the group),
- * all group members are informed by a special message that is sent automatically by this function.
+ * all group members are informed by a special status message that is sent automatically by this function.
+ *
+ * Sends out #MR_EVENT_CHAT_MODIFIED and #MR_EVENT_MSGS_CHANGED if a status message was sent.
  *
  * @memberof mrmailbox_t
  *
@@ -3583,12 +3226,12 @@ int mrmailbox_is_contact_in_chat(mrmailbox_t* mailbox, uint32_t chat_id, uint32_
 int mrmailbox_add_contact_to_chat(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t contact_id /*may be MR_CONTACT_ID_SELF*/)
 {
 	int          success = 0, locked = 0;
-	mrcontact_t* contact = mrmailbox_get_contact(mailbox, contact_id); /* mrcontact_load_from_db__() does not load SELF fields */
+	mrcontact_t* contact = mrmailbox_get_contact(mailbox, contact_id);
 	mrchat_t*    chat = mrchat_new(mailbox);
 	mrmsg_t*     msg = mrmsg_new();
 	char*        self_addr = NULL;
 
-	if( mailbox == NULL || contact == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || contact == NULL || chat_id <= MR_CHAT_ID_LAST_SPECIAL ) {
 		goto cleanup;
 	}
 
@@ -3630,7 +3273,7 @@ int mrmailbox_add_contact_to_chat(mrmailbox_t* mailbox, uint32_t chat_id, uint32
 		msg->m_text = mrstock_str_repl_string(MR_STR_MSGADDMEMBER, (contact->m_authname&&contact->m_authname[0])? contact->m_authname : contact->m_addr);
 		mrparam_set_int(msg->m_param, MRP_SYSTEM_CMD, MR_SYSTEM_MEMBER_ADDED_TO_GROUP);
 		mrparam_set    (msg->m_param, MRP_SYSTEM_CMD_PARAM, contact->m_addr);
-		msg->m_id = mrmailbox_send_msg(mailbox, chat->m_id, msg);
+		msg->m_id = mrmailbox_send_msg_object(mailbox, chat_id, msg);
 		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, chat_id, msg->m_id);
 	}
 	mailbox->m_cb(mailbox, MR_EVENT_CHAT_MODIFIED, chat_id, 0);
@@ -3651,7 +3294,9 @@ cleanup:
  * Remove a member from a group.
  *
  * If the group is already _promoted_ (any message was sent to the group),
- * all group members are informed by a special message that is sent automatically by this function.
+ * all group members are informed by a special status message that is sent automatically by this function.
+ *
+ * Sends out #MR_EVENT_CHAT_MODIFIED and #MR_EVENT_MSGS_CHANGED if a status message was sent.
  *
  * @memberof mrmailbox_t
  *
@@ -3666,12 +3311,12 @@ cleanup:
 int mrmailbox_remove_contact_from_chat(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t contact_id /*may be MR_CONTACT_ID_SELF*/)
 {
 	int          success = 0, locked = 0;
-	mrcontact_t* contact = mrmailbox_get_contact(mailbox, contact_id); /* mrcontact_load_from_db__() does not load SELF fields */
+	mrcontact_t* contact = mrmailbox_get_contact(mailbox, contact_id);
 	mrchat_t*    chat = mrchat_new(mailbox);
 	mrmsg_t*     msg = mrmsg_new();
 	char*        q3 = NULL;
 
-	if( mailbox == NULL || (contact_id<=MR_CONTACT_ID_LAST_SPECIAL && contact_id!=MR_CONTACT_ID_SELF) ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || chat_id <= MR_CHAT_ID_LAST_SPECIAL || (contact_id<=MR_CONTACT_ID_LAST_SPECIAL && contact_id!=MR_CONTACT_ID_SELF) ) {
 		goto cleanup; /* we do not check if "contact_id" exists but just delete all records with the id from chats_contacts */
 	}                 /* this allows to delete pending references to deleted contacts.  Of course, this should _not_ happen. */
 
@@ -3707,7 +3352,7 @@ int mrmailbox_remove_contact_from_chat(mrmailbox_t* mailbox, uint32_t chat_id, u
 			}
 			mrparam_set_int(msg->m_param, MRP_SYSTEM_CMD, MR_SYSTEM_MEMBER_REMOVED_FROM_GROUP);
 			mrparam_set    (msg->m_param, MRP_SYSTEM_CMD_PARAM, contact->m_addr);
-			msg->m_id = mrmailbox_send_msg(mailbox, chat->m_id, msg);
+			msg->m_id = mrmailbox_send_msg_object(mailbox, chat_id, msg);
 			mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, chat_id, msg->m_id);
 		}
 	}
@@ -3748,7 +3393,7 @@ int mrmailbox_real_contact_exists__(mrmailbox_t* mailbox, uint32_t contact_id)
 	sqlite3_stmt* stmt;
 	int           ret = 0;
 
-	if( mailbox == NULL || mailbox->m_sql->m_cobj==NULL
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || mailbox->m_sql->m_cobj==NULL
 	 || contact_id <= MR_CONTACT_ID_LAST_SPECIAL ) {
 		return 0;
 	}
@@ -3769,7 +3414,7 @@ size_t mrmailbox_get_real_contact_cnt__(mrmailbox_t* mailbox)
 {
 	sqlite3_stmt* stmt;
 
-	if( mailbox == NULL || mailbox->m_sql->m_cobj==NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || mailbox->m_sql->m_cobj==NULL ) {
 		return 0;
 	}
 
@@ -3800,8 +3445,8 @@ uint32_t mrmailbox_add_or_lookup_contact__( mrmailbox_t* mailbox,
 
 	*sth_modified = 0;
 
-	if( mailbox == NULL || addr__ == NULL || origin <= 0 ) {
-		return 0;
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || addr__ == NULL || origin <= 0 ) {
+		goto cleanup;
 	}
 
 	/* normalize the email-address:
@@ -3863,7 +3508,7 @@ uint32_t mrmailbox_add_or_lookup_contact__( mrmailbox_t* mailbox,
 			if( update_name )
 			{
 				/* Update the contact name also if it is used as a group name.
-				This is one of the few duplicated data, however, getting the chat list is much faster this way.*/
+				This is one of the few duplicated data, however, getting the chat list is easier this way.*/
 				stmt = mrsqlite3_predefine__(mailbox->m_sql, UPDATE_chats_SET_n_WHERE_c,
 					"UPDATE chats SET name=? WHERE type=? AND id IN(SELECT chat_id FROM chats_contacts WHERE contact_id=?);");
 				sqlite3_bind_text(stmt, 1, name, -1, SQLITE_STATIC);
@@ -3871,9 +3516,9 @@ uint32_t mrmailbox_add_or_lookup_contact__( mrmailbox_t* mailbox,
 				sqlite3_bind_int (stmt, 3, row_id);
 				sqlite3_step     (stmt);
 			}
-		}
 
-		*sth_modified = 1;
+			*sth_modified = 1;
+		}
 	}
 	else
 	{
@@ -3901,7 +3546,7 @@ cleanup:
 
 void mrmailbox_scaleup_contact_origin__(mrmailbox_t* mailbox, uint32_t contact_id, int origin)
 {
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return;
 	}
 
@@ -3917,52 +3562,61 @@ void mrmailbox_scaleup_contact_origin__(mrmailbox_t* mailbox, uint32_t contact_i
 int mrmailbox_is_contact_blocked__(mrmailbox_t* mailbox, uint32_t contact_id)
 {
 	int          is_blocked = 0;
-	mrcontact_t* ths = mrcontact_new();
+	mrcontact_t* contact = mrcontact_new();
 
-	if( mrcontact_load_from_db__(ths, mailbox->m_sql, contact_id) ) { /* we could optimize this by loading only the needed fields */
-		if( ths->m_blocked ) {
+	if( mrcontact_load_from_db__(contact, mailbox->m_sql, contact_id) ) { /* we could optimize this by loading only the needed fields */
+		if( contact->m_blocked ) {
 			is_blocked = 1;
 		}
 	}
 
-	mrcontact_unref(ths);
+	mrcontact_unref(contact);
 	return is_blocked;
 }
 
 
 int mrmailbox_get_contact_origin__(mrmailbox_t* mailbox, uint32_t contact_id, int* ret_blocked)
 {
-	int          ret = MR_ORIGIN_UNSET;
+	int          ret = 0;
 	int          dummy; if( ret_blocked==NULL ) { ret_blocked = &dummy; }
-	mrcontact_t* ths = mrcontact_new();
+	mrcontact_t* contact = mrcontact_new();
 
 	*ret_blocked = 0;
 
-	if( !mrcontact_load_from_db__(ths, mailbox->m_sql, contact_id) ) { /* we could optimize this by loading only the needed fields */
+	if( !mrcontact_load_from_db__(contact, mailbox->m_sql, contact_id) ) { /* we could optimize this by loading only the needed fields */
 		goto cleanup;
 	}
 
-	if( ths->m_blocked ) {
+	if( contact->m_blocked ) {
 		*ret_blocked = 1;
 		goto cleanup;
 	}
 
-	ret = ths->m_origin;
+	ret = contact->m_origin;
 
 cleanup:
-	mrcontact_unref(ths);
+	mrcontact_unref(contact);
 	return ret;
 }
 
 
 /**
- * Add a single contact. and return the ID.
+ * Add a single contact.
+ *
+ * We assume, the contact name, if any, is entered by the user and is used "as is" therefore,
+ * mr_normalize_name() is _not_ called for the name.
+ *
+ * To add a number of contacts, see mrmailbox_add_address_book() which is much faster for adding
+ * a bunch of addresses.
+ *
+ * May result in a #MR_EVENT_CONTACTS_CHANGED event.
  *
  * @memberof mrmailbox_t
  *
  * @param mailbox The mailbox object as created by mrmailbox_new().
  *
- * @param name Name of the contact to add.
+ * @param name Name of the contact to add. If you do not know the name belonging
+ *     to the address, you can give NULL here.
  *
  * @param addr E-mail-address of the contact to add. If the email address
  *     already exists, the name is updated and the origin is increased to
@@ -3974,7 +3628,7 @@ uint32_t mrmailbox_create_contact(mrmailbox_t* mailbox, const char* name, const 
 {
 	uint32_t contact_id = 0;
 
-	if( mailbox == NULL || addr == NULL || addr[0]==0 ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || addr == NULL || addr[0]==0 ) {
 		goto cleanup;
 	}
 
@@ -3992,8 +3646,15 @@ cleanup:
 
 
 /**
- * Add a number of contacts. The contacts must be added as
+ * Add a number of contacts.
  *
+ * Typically used to add the whole address book from the OS. As names here are typically not
+ * well formatted, we call mr_normalize_name() for each name given.
+ *
+ * To add a single contact entered by the user, you should prefer mrmailbox_create_contact(),
+ * however, for adding a bunch of addresses, this function is _much_ faster.
+ *
+ * The function takes are of not overwriting names manually added or edited by mrmailbox_create_contact().
  *
  * @memberof mrmailbox_t
  *
@@ -4012,7 +3673,7 @@ int mrmailbox_add_address_book(mrmailbox_t* mailbox, const char* adr_book) /* fo
 	size_t  i, iCnt;
 	int     sth_modified, modify_cnt = 0;
 
-	if( mailbox == NULL || adr_book == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || adr_book == NULL ) {
 		goto cleanup;
 	}
 
@@ -4028,7 +3689,7 @@ int mrmailbox_add_address_book(mrmailbox_t* mailbox, const char* adr_book) /* fo
 		for( i = 0; i+1 < iCnt; i += 2 ) {
 			char* name = (char*)carray_get(lines, i);
 			char* addr = (char*)carray_get(lines, i+1);
-			mrcontact_normalize_name(name);
+			mr_normalize_name(name);
 			mrmailbox_add_or_lookup_contact__(mailbox, name, addr, MR_ORIGIN_ADRESS_BOOK, &sth_modified);
 			if( sth_modified ) {
 				modify_cnt++;
@@ -4058,59 +3719,77 @@ cleanup:
  * @param query A string to filter the list.  Typically used to implement an
  *     incremental search.  NULL for no filtering.
  *
- * @return An array containing all contact IDs.  Must be carray_free()'d
+ * @return An array containing all contact IDs.  Must be mrarray_unref()'d
  *     after usage.
  */
-carray* mrmailbox_get_known_contacts(mrmailbox_t* mailbox, const char* query)
+mrarray_t* mrmailbox_get_known_contacts(mrmailbox_t* mailbox, const char* query)
 {
 	int           locked = 0;
-	carray*       ret = carray_new(100);
+	char*         self_addr = NULL;
+	char*         self_name = NULL;
+	char*         self_name2 = NULL;
+	int           add_self = 0;
+	mrarray_t*    ret = mrarray_new(mailbox, 100);
 	char*         s3strLikeCmd = NULL;
 	sqlite3_stmt* stmt;
 
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		goto cleanup;
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
 	locked = 1;
 
-		if( query ) {
+		self_addr = mrsqlite3_get_config__(mailbox->m_sql, "configured_addr", ""); /* we add MR_CONTACT_ID_SELF explicitly; so avoid doubles if the address is present as a normal entry for some case */
+
+		if( query )
+		{
 			if( (s3strLikeCmd=sqlite3_mprintf("%%%s%%", query))==NULL ) {
 				goto cleanup;
 			}
 			stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_id_FROM_contacts_WHERE_query_ORDER_BY,
 				"SELECT id FROM contacts"
-					" WHERE id>? AND origin>=? AND blocked=0 AND (name LIKE ? OR addr LIKE ?)" /* see comments in mrmailbox_search_msgs() about the LIKE operator */
+					" WHERE addr!=? AND id>" MR_STRINGIFY(MR_CONTACT_ID_LAST_SPECIAL) " AND origin>=" MR_STRINGIFY(MR_ORIGIN_MIN_CONTACT_LIST) " AND blocked=0 AND (name LIKE ? OR addr LIKE ?)" /* see comments in mrmailbox_search_msgs() about the LIKE operator */
 					" ORDER BY LOWER(name||addr),id;");
-			sqlite3_bind_int (stmt, 1, MR_CONTACT_ID_LAST_SPECIAL);
-			sqlite3_bind_int (stmt, 2, MR_ORIGIN_MIN_CONTACT_LIST);
+			sqlite3_bind_text(stmt, 1, self_addr, -1, SQLITE_STATIC);
+			sqlite3_bind_text(stmt, 2, s3strLikeCmd, -1, SQLITE_STATIC);
 			sqlite3_bind_text(stmt, 3, s3strLikeCmd, -1, SQLITE_STATIC);
-			sqlite3_bind_text(stmt, 4, s3strLikeCmd, -1, SQLITE_STATIC);
+
+			self_name  = mrsqlite3_get_config__(mailbox->m_sql, "displayname", "");
+			self_name2 = mrstock_str(MR_STR_SELF);
+			if( mr_str_contains(self_addr, query) || mr_str_contains(self_name, query) || mr_str_contains(self_name2, query) ) {
+				add_self = 1;
+			}
 		}
-		else {
+		else
+		{
 			stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_id_FROM_contacts_ORDER_BY,
 				"SELECT id FROM contacts"
-					" WHERE id>? AND origin>=? AND blocked=0"
+					" WHERE addr!=? AND id>" MR_STRINGIFY(MR_CONTACT_ID_LAST_SPECIAL) " AND origin>=" MR_STRINGIFY(MR_ORIGIN_MIN_CONTACT_LIST) " AND blocked=0"
 					" ORDER BY LOWER(name||addr),id;");
-			sqlite3_bind_int(stmt, 1, MR_CONTACT_ID_LAST_SPECIAL);
-			sqlite3_bind_int(stmt, 2, MR_ORIGIN_MIN_CONTACT_LIST);
+			sqlite3_bind_text(stmt, 1, self_addr, -1, SQLITE_STATIC);
+
+			add_self = 1;
 		}
 
 		while( sqlite3_step(stmt) == SQLITE_ROW ) {
-			carray_add(ret, (void*)(uintptr_t)sqlite3_column_int(stmt, 0), NULL);
+			mrarray_add_id(ret, sqlite3_column_int(stmt, 0));
 		}
 
 	mrsqlite3_unlock(mailbox->m_sql);
 	locked = 0;
 
+	/* to the end of the list, add self - this is to be in sync with member lists and to allow the user to start a self talk */
+	if( add_self ) {
+		mrarray_add_id(ret, MR_CONTACT_ID_SELF);
+	}
+
 cleanup:
-	if( locked ) {
-		mrsqlite3_unlock(mailbox->m_sql);
-	}
-	if( s3strLikeCmd ) {
-		sqlite3_free(s3strLikeCmd);
-	}
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
+	if( s3strLikeCmd ) { sqlite3_free(s3strLikeCmd); }
+	free(self_addr);
+	free(self_name);
+	free(self_name2);
 	return ret;
 }
 
@@ -4122,15 +3801,15 @@ cleanup:
  *
  * @param mailbox The mailbox object as created by mrmailbox_new().
  *
- * @return An array containing all blocked contact IDs.  Must be carray_free()'d
+ * @return An array containing all blocked contact IDs.  Must be mrarray_unref()'d
  *     after usage.
  */
-carray* mrmailbox_get_blocked_contacts(mrmailbox_t* mailbox)
+mrarray_t* mrmailbox_get_blocked_contacts(mrmailbox_t* mailbox)
 {
-	carray*       ret = carray_new(100);
+	mrarray_t*    ret = mrarray_new(mailbox, 100);
 	sqlite3_stmt* stmt;
 
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		goto cleanup;
 	}
 
@@ -4142,7 +3821,7 @@ carray* mrmailbox_get_blocked_contacts(mrmailbox_t* mailbox)
 				" ORDER BY LOWER(name||addr),id;");
 		sqlite3_bind_int(stmt, 1, MR_CONTACT_ID_LAST_SPECIAL);
 		while( sqlite3_step(stmt) == SQLITE_ROW ) {
-			carray_add(ret, (void*)(uintptr_t)sqlite3_column_int(stmt, 0), NULL);
+			mrarray_add_id(ret, sqlite3_column_int(stmt, 0));
 		}
 
 	mrsqlite3_unlock(mailbox->m_sql);
@@ -4164,7 +3843,7 @@ int mrmailbox_get_blocked_count(mrmailbox_t* mailbox)
 	int           ret = 0, locked = 0;
 	sqlite3_stmt* stmt;
 
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		goto cleanup;
 	}
 
@@ -4192,6 +3871,10 @@ cleanup:
 /**
  * Get a single contact object.  For a list, see eg. mrmailbox_get_known_contacts().
  *
+ * For contact MR_CONTACT_ID_SELF (1), the function returns the name
+ * MR_STR_SELF (typically "Me" in the selected language) and the email address
+ * defined by mrmailbox_set_config().
+ *
  * @memberof mrmailbox_t
  *
  * @param mailbox The mailbox object as created by mrmailbox_new().
@@ -4207,18 +3890,9 @@ mrcontact_t* mrmailbox_get_contact(mrmailbox_t* mailbox, uint32_t contact_id)
 
 	mrsqlite3_lock(mailbox->m_sql);
 
-		if( contact_id == MR_CONTACT_ID_SELF )
-		{
-			ret->m_id   = contact_id;
-			ret->m_name = mrstock_str(MR_STR_SELF);
-			ret->m_addr = mrsqlite3_get_config__(mailbox->m_sql, "configured_addr", NULL);
-		}
-		else
-		{
-			if( !mrcontact_load_from_db__(ret, mailbox->m_sql, contact_id) ) {
-				mrcontact_unref(ret);
-				ret = NULL;
-			}
+		if( !mrcontact_load_from_db__(ret, mailbox->m_sql, contact_id) ) {
+			mrcontact_unref(ret);
+			ret = NULL;
 		}
 
 	mrsqlite3_unlock(mailbox->m_sql);
@@ -4237,7 +3911,7 @@ static void marknoticed_contact__(mrmailbox_t* mailbox, uint32_t contact_id)
 
 
 /**
- * Mark all messages send by the given contact
+ * Mark all messages sent by the given contact
  * as _noticed_.  See also mrmailbox_marknoticed_chat() and
  * mrmailbox_markseen_msgs()
  *
@@ -4251,19 +3925,43 @@ static void marknoticed_contact__(mrmailbox_t* mailbox, uint32_t contact_id)
  */
 void mrmailbox_marknoticed_contact(mrmailbox_t* mailbox, uint32_t contact_id)
 {
-    if( mailbox == NULL ) {
+    if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		return;
     }
     mrsqlite3_lock(mailbox->m_sql);
+
 		marknoticed_contact__(mailbox, contact_id);
+
     mrsqlite3_unlock(mailbox->m_sql);
+}
+
+
+void mrmailbox_block_chat__(mrmailbox_t* mailbox, uint32_t chat_id, int new_blocking)
+{
+	sqlite3_stmt* stmt;
+
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
+		return;
+	}
+
+	stmt = mrsqlite3_predefine__(mailbox->m_sql, UPDATE_chats_SET_blocked_WHERE_chat_id,
+		"UPDATE chats SET blocked=? WHERE id=?;");
+	sqlite3_bind_int(stmt, 1, new_blocking);
+	sqlite3_bind_int(stmt, 2, chat_id);
+	sqlite3_step(stmt);
+}
+
+
+void mrmailbox_unblock_chat__(mrmailbox_t* mailbox, uint32_t chat_id)
+{
+	mrmailbox_block_chat__(mailbox, chat_id, MR_CHAT_NOT_BLOCKED);
 }
 
 
 /**
  * Block or unblock a contact.
  *
- * May result in a MR_EVENT_BLOCKING_CHANGED event.
+ * May result in a #MR_EVENT_CONTACTS_CHANGED event.
  *
  * @memberof mrmailbox_t
  *
@@ -4281,8 +3979,8 @@ void mrmailbox_block_contact(mrmailbox_t* mailbox, uint32_t contact_id, int new_
 	mrcontact_t*  contact = mrcontact_new();
 	sqlite3_stmt* stmt;
 
-	if( mailbox == NULL ) {
-		return;
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || contact_id <= MR_CONTACT_ID_LAST_SPECIAL ) {
+		goto cleanup;
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
@@ -4306,7 +4004,7 @@ void mrmailbox_block_contact(mrmailbox_t* mailbox, uint32_t contact_id, int new_
 				(Maybe, beside normal chats (type=100) we should also block group chats with only this user.
 				However, I'm not sure about this point; it may be confusing if the user wants to add other people;
 				this would result in recreating the same group...) */
-				stmt = mrsqlite3_predefine__(mailbox->m_sql, UPDATE_chats_SET_blocked,
+				stmt = mrsqlite3_predefine__(mailbox->m_sql, UPDATE_chats_SET_blocked_WHERE_contact_id,
 					"UPDATE chats SET blocked=? WHERE type=? AND id IN (SELECT chat_id FROM chats_contacts WHERE contact_id=?);");
 				sqlite3_bind_int(stmt, 1, new_blocking);
 				sqlite3_bind_int(stmt, 2, MR_CHAT_TYPE_NORMAL);
@@ -4332,14 +4030,8 @@ void mrmailbox_block_contact(mrmailbox_t* mailbox, uint32_t contact_id, int new_
 	}
 
 cleanup:
-	if( transaction_pending ) {
-		mrsqlite3_rollback__(mailbox->m_sql);
-	}
-
-	if( locked ) {
-		mrsqlite3_unlock(mailbox->m_sql);
-	}
-
+	if( transaction_pending ) { mrsqlite3_rollback__(mailbox->m_sql); }
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 	mrcontact_unref(contact);
 }
 
@@ -4354,9 +4046,9 @@ static void cat_fingerprint(mrstrbuilder_t* ret, const char* addr, const char* f
 
 
 /**
- * Get encryption info.
+ * Get encryption info for a contact.
  * Get a multi-line encryption info, containing your fingerprint and the
- * fingerprint of the contact, used eg. to compare the fingerprints.
+ * fingerprint of the contact, used eg. to compare the fingerprints for a simple out-of-band verification.
  *
  * @memberof mrmailbox_t
  *
@@ -4380,8 +4072,12 @@ char* mrmailbox_get_contact_encrinfo(mrmailbox_t* mailbox, uint32_t contact_id)
 	char*           fingerprint_str_other = NULL;
 	char*           p;
 
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
+		goto cleanup;
+	}
+
 	mrstrbuilder_t  ret;
-	mrstrbuilder_init(&ret);
+	mrstrbuilder_init(&ret, 0);
 
 	mrsqlite3_lock(mailbox->m_sql);
 	locked = 1;
@@ -4389,7 +4085,7 @@ char* mrmailbox_get_contact_encrinfo(mrmailbox_t* mailbox, uint32_t contact_id)
 		if( !mrcontact_load_from_db__(contact, mailbox->m_sql, contact_id) ) {
 			goto cleanup;
 		}
-		peerstate_ok = mrapeerstate_load_from_db__(peerstate, mailbox->m_sql, contact->m_addr);
+		peerstate_ok = mrapeerstate_load_by_addr__(peerstate, mailbox->m_sql, contact->m_addr);
 		mrloginparam_read__(loginparam, mailbox->m_sql, "configured_");
 		e2ee_enabled = mailbox->m_e2ee_enabled;
 
@@ -4402,7 +4098,7 @@ char* mrmailbox_get_contact_encrinfo(mrmailbox_t* mailbox, uint32_t contact_id)
 	if( e2ee_enabled
 	 && peerstate_ok
 	 && peerstate->m_prefer_encrypt==MRA_PE_MUTUAL
-	 && peerstate->m_public_key->m_binary!=NULL )
+	 && peerstate->m_public_key!=NULL )
 	{
 		/* e2e fine and used */
 		p = mrstock_str(MR_STR_ENCR_E2E); mrstrbuilder_cat(&ret, p); free(p);
@@ -4422,11 +4118,11 @@ char* mrmailbox_get_contact_encrinfo(mrmailbox_t* mailbox, uint32_t contact_id)
 		}
 
 		/* ... and then explain why we cannot use e2e */
-		if( peerstate_ok && peerstate->m_public_key->m_binary!=NULL && peerstate->m_prefer_encrypt!=MRA_PE_MUTUAL ) {
-			explain_id = MR_STR_E2E_DIS_BY_RCPT;
-		}
-		else if( !e2ee_enabled ) {
+		if( !e2ee_enabled ) {
 			explain_id = MR_STR_E2E_DIS_BY_YOU;
+		}
+		else if( peerstate_ok && mrapeerstate_peek_key(peerstate) ) {
+			explain_id = MR_STR_E2E_DIS_BY_RCPT; /* this includes the situation where we have only a gossip_key and no direct contact to the recipient */
 		}
 		else {
 			explain_id = MR_STR_E2E_NO_AUTOCRYPT;
@@ -4435,7 +4131,7 @@ char* mrmailbox_get_contact_encrinfo(mrmailbox_t* mailbox, uint32_t contact_id)
 
 	/* show fingerprints for comparison (sorted by email-address to make a device-side-by-side comparison easier) */
 	if( peerstate_ok
-	 && peerstate->m_public_key->m_binary!=NULL )
+	 && mrapeerstate_peek_key(peerstate) )
 	{
 		if( self_key->m_binary == NULL ) {
 			mrpgp_rand_seed(mailbox, peerstate->m_addr, strlen(peerstate->m_addr) /*just some random data*/);
@@ -4451,8 +4147,8 @@ char* mrmailbox_get_contact_encrinfo(mrmailbox_t* mailbox, uint32_t contact_id)
 		p = mrstock_str(MR_STR_FINGERPRINTS); mrstrbuilder_cat(&ret, p); free(p);
 		mrstrbuilder_cat(&ret, ":\n\n");
 
-		fingerprint_str_self = mrkey_render_fingerprint(self_key, mailbox);
-		fingerprint_str_other = mrkey_render_fingerprint(peerstate->m_public_key, mailbox);
+		fingerprint_str_self = mrkey_get_formatted_fingerprint(self_key);
+		fingerprint_str_other = mrkey_get_formatted_fingerprint(mrapeerstate_peek_key(peerstate));
 
 		if( strcmp(loginparam->m_addr, peerstate->m_addr)<0 ) {
 			cat_fingerprint(&ret, loginparam->m_addr, fingerprint_str_self);
@@ -4484,7 +4180,9 @@ cleanup:
 
 /**
  * Delete a contact.  The contact is deleted from the local device.  It may happen that this is not
- * possible as the contact is in used.  In this case, the contact can be blocked.
+ * possible as the contact is in use.  In this case, the contact can be blocked.
+ *
+ * May result in a #MR_EVENT_CONTACTS_CHANGED event.
  *
  * @memberof mrmailbox_t
  *
@@ -4499,7 +4197,7 @@ int mrmailbox_delete_contact(mrmailbox_t* mailbox, uint32_t contact_id)
 	int           locked = 0, success = 0;
 	sqlite3_stmt* stmt;
 
-	if( mailbox == NULL || contact_id <= MR_CONTACT_ID_LAST_SPECIAL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || contact_id <= MR_CONTACT_ID_LAST_SPECIAL ) {
 		goto cleanup;
 	}
 
@@ -4538,9 +4236,7 @@ int mrmailbox_delete_contact(mrmailbox_t* mailbox, uint32_t contact_id)
 	success = 1;
 
 cleanup:
-	if( locked ) {
-		mrsqlite3_unlock(mailbox->m_sql);
-	}
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 	return success;
 }
 
@@ -4596,9 +4292,12 @@ size_t mrmailbox_get_real_msg_cnt__(mrmailbox_t* mailbox)
 	}
 
 	sqlite3_stmt* stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_COUNT_FROM_msgs_WHERE_assigned,
-		"SELECT COUNT(*) FROM msgs WHERE id>? AND chat_id>?;");
-	sqlite3_bind_int(stmt, 1, MR_MSG_ID_LAST_SPECIAL);
-	sqlite3_bind_int(stmt, 2, MR_CHAT_ID_LAST_SPECIAL);
+		"SELECT COUNT(*) "
+		" FROM msgs m "
+		" LEFT JOIN chats c ON c.id=m.chat_id "
+		" WHERE m.id>" MR_STRINGIFY(MR_MSG_ID_LAST_SPECIAL)
+		" AND m.chat_id>" MR_STRINGIFY(MR_CHAT_ID_LAST_SPECIAL)
+		" AND c.blocked=0;");
 	if( sqlite3_step(stmt) != SQLITE_ROW ) {
 		mrsqlite3_log_error(mailbox->m_sql, "mr_get_assigned_msg_cnt_() failed.");
 		return 0;
@@ -4610,13 +4309,12 @@ size_t mrmailbox_get_real_msg_cnt__(mrmailbox_t* mailbox)
 
 size_t mrmailbox_get_deaddrop_msg_cnt__(mrmailbox_t* mailbox)
 {
-	if( mailbox==NULL || mailbox->m_sql->m_cobj==NULL ) {
+	if( mailbox==NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || mailbox->m_sql->m_cobj==NULL ) {
 		return 0;
 	}
 
 	sqlite3_stmt* stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_COUNT_FROM_msgs_WHERE_unassigned,
-		"SELECT COUNT(*) FROM msgs WHERE chat_id=?;");
-	sqlite3_bind_int(stmt, 1, MR_CHAT_ID_DEADDROP);
+		"SELECT COUNT(*) FROM msgs m LEFT JOIN chats c ON c.id=m.chat_id WHERE c.blocked=2;");
 	if( sqlite3_step(stmt) != SQLITE_ROW ) {
 		return 0;
 	}
@@ -4627,7 +4325,7 @@ size_t mrmailbox_get_deaddrop_msg_cnt__(mrmailbox_t* mailbox)
 
 int mrmailbox_rfc724_mid_cnt__(mrmailbox_t* mailbox, const char* rfc724_mid)
 {
-	if( mailbox==NULL || mailbox->m_sql->m_cobj==NULL ) {
+	if( mailbox==NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || mailbox->m_sql->m_cobj==NULL ) {
 		return 0;
 	}
 
@@ -4644,7 +4342,7 @@ int mrmailbox_rfc724_mid_cnt__(mrmailbox_t* mailbox, const char* rfc724_mid)
 
 
 /* check, if the given Message-ID exists in the database (if not, the message is normally downloaded from the server and parsed,
-so, we should even keep unuseful messages in the database (we can leave the other fields empty to safe space) */
+so, we should even keep unuseful messages in the database (we can leave the other fields empty to save space) */
 int mrmailbox_rfc724_mid_exists__(mrmailbox_t* mailbox, const char* rfc724_mid, char** ret_server_folder, uint32_t* ret_server_uid)
 {
 	sqlite3_stmt* stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_ss_FROM_msgs_WHERE_m,
@@ -4665,7 +4363,7 @@ int mrmailbox_rfc724_mid_exists__(mrmailbox_t* mailbox, const char* rfc724_mid, 
 void mrmailbox_update_server_uid__(mrmailbox_t* mailbox, const char* rfc724_mid, const char* server_folder, uint32_t server_uid)
 {
 	sqlite3_stmt* stmt = mrsqlite3_predefine__(mailbox->m_sql, UPDATE_msgs_SET_ss_WHERE_rfc724_mid,
-		"UPDATE msgs SET server_folder=?, server_uid=? WHERE rfc724_mid=?;"); /* we update by "rfc724_mid" instead "id" as there may be several db-entries refering to the same "rfc724_mid" */
+		"UPDATE msgs SET server_folder=?, server_uid=? WHERE rfc724_mid=?;"); /* we update by "rfc724_mid" instead of "id" as there may be several db-entries refering to the same "rfc724_mid" */
 	sqlite3_bind_text(stmt, 1, server_folder, -1, SQLITE_STATIC);
 	sqlite3_bind_int (stmt, 2, server_uid);
 	sqlite3_bind_text(stmt, 3, rfc724_mid, -1, SQLITE_STATIC);
@@ -4692,6 +4390,10 @@ mrmsg_t* mrmailbox_get_msg(mrmailbox_t* mailbox, uint32_t msg_id)
 	int db_locked = 0;
 	mrmsg_t* obj = mrmsg_new();
 
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
+		goto cleanup;
+	}
+
 	mrsqlite3_lock(mailbox->m_sql);
 	db_locked = 1;
 
@@ -4702,9 +4404,7 @@ mrmsg_t* mrmailbox_get_msg(mrmailbox_t* mailbox, uint32_t msg_id)
 		success = 1;
 
 cleanup:
-	if( db_locked ) {
-		mrsqlite3_unlock(mailbox->m_sql);
-	}
+	if( db_locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 
 	if( success ) {
 		return obj;
@@ -4719,6 +4419,14 @@ cleanup:
 /**
  * Get an informational text for a single message. the text is multiline and may
  * contain eg. the raw text of the message.
+ *
+ * The max. text returned is typically longer (about 100000 characters) than the
+ * max. text returned by mrmsg_get_text() (about 30000 characters).
+ *
+ * If the library is compiled for andoid, some basic html-formatting for he
+ * subject and the footer is added. However we should change this function so
+ * that it returns eg. an array of pairwise key-value strings and the caller
+ * can show the whole stuff eg. in a table.
  *
  * @memberof mrmailbox_t
  *
@@ -4736,9 +4444,9 @@ char* mrmailbox_get_msg_info(mrmailbox_t* mailbox, uint32_t msg_id)
 	mrmsg_t*       msg = mrmsg_new();
 	char           *rawtxt = NULL, *p;
 
-	mrstrbuilder_init(&ret);
+	mrstrbuilder_init(&ret, 0);
 
-	if( mailbox == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC ) {
 		goto cleanup;
 	}
 
@@ -4757,13 +4465,37 @@ char* mrmailbox_get_msg_info(mrmailbox_t* mailbox, uint32_t msg_id)
 
 		rawtxt = safe_strdup((char*)sqlite3_column_text(stmt, 0));
 
+		#ifdef __ANDROID__
+			p = strchr(rawtxt, '\n');
+			if( p ) {
+				char* subject = rawtxt;
+				*p = 0;
+				p++;
+				rawtxt = mr_mprintf("<b>%s</b>\n%s", subject, p);
+				free(subject);
+			}
+		#endif
+
+		mr_trim(rawtxt);
+		mr_truncate_str(rawtxt, MR_MAX_GET_INFO_LEN);
+
 	mrsqlite3_unlock(mailbox->m_sql);
 	locked = 0;
 
 	/* add time */
-	mrstrbuilder_cat(&ret, "Date: ");
-	p = mr_timestamp_to_str(msg->m_timestamp); mrstrbuilder_cat(&ret, p); free(p);
+	mrstrbuilder_cat(&ret, "Sent: ");
+	p = mr_timestamp_to_str(mrmsg_get_timestamp(msg)); mrstrbuilder_cat(&ret, p); free(p);
 	mrstrbuilder_cat(&ret, "\n");
+
+	if( msg->m_from_id != MR_CONTACT_ID_SELF ) {
+		mrstrbuilder_cat(&ret, "Received: ");
+		p = mr_timestamp_to_str(msg->m_timestamp_rcvd? msg->m_timestamp_rcvd : msg->m_timestamp); mrstrbuilder_cat(&ret, p); free(p);
+		mrstrbuilder_cat(&ret, "\n");
+	}
+
+	if( msg->m_from_id == MR_CONTACT_ID_SYSTEM || msg->m_to_id == MR_CONTACT_ID_SYSTEM ) { // do not use mrmsg_is_systemcmd() as this would als catch system messages sent as real messages by others
+		goto cleanup; // internal message, no further details needed
+	}
 
 	/* add encryption state */
 	int e2ee_errors;
@@ -4773,9 +4505,6 @@ char* mrmailbox_get_msg_info(mrmailbox_t* mailbox, uint32_t msg_id)
 		}
 		else if( e2ee_errors&MR_VALIDATE_UNKNOWN_SIGNATURE ) {
 			p = safe_strdup("End-to-end, unknown signature");
-		}
-		else if( e2ee_errors&MR_VALIDATE_NOT_MUTUAL ) {
-			p = safe_strdup("End-to-end, not mutual");
 		}
 		else {
 			p = safe_strdup("End-to-end, no signature");
@@ -4807,7 +4536,7 @@ char* mrmailbox_get_msg_info(mrmailbox_t* mailbox, uint32_t msg_id)
 	/* add file info */
 	char* file = mrparam_get(msg->m_param, MRP_FILE, NULL);
 	if( file ) {
-		p = mr_mprintf("File: %s, %i bytes\n", file, mr_get_filebytes(file)); mrstrbuilder_cat(&ret, p); free(p);
+		p = mr_mprintf("File: %s, %i bytes\n", file, (int)mr_get_filebytes(file)); mrstrbuilder_cat(&ret, p); free(p);
 	}
 
 	if( msg->m_type != MR_MSG_TEXT ) {
@@ -4828,7 +4557,17 @@ char* mrmailbox_get_msg_info(mrmailbox_t* mailbox, uint32_t msg_id)
 	if( rawtxt && rawtxt[0] ) {
 		mrstrbuilder_cat(&ret, "\n");
 		mrstrbuilder_cat(&ret, rawtxt);
+		mrstrbuilder_cat(&ret, "\n");
 	}
+
+	/* add Message-ID, Server-Folder and Server-UID; the database ID is normally only of interest if you have access to sqlite; if so you can easily get it from the "msgs" table. */
+	#ifdef __ANDROID__
+		mrstrbuilder_cat(&ret, "<c#808080>");
+	#endif
+	mrstrbuilder_catf(&ret, "\nMessage-ID: %s\nLast seen as: %s/%i", msg->m_rfc724_mid, msg->m_server_folder, (int)msg->m_server_uid);
+	#ifdef __ANDROID__
+		mrstrbuilder_cat(&ret, "</c>");
+	#endif
 
 cleanup:
 	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
@@ -4839,7 +4578,7 @@ cleanup:
 
 
 /**
- * Forward a list of messages to another chat.
+ * Forward messages to another chat.
  *
  * @memberof mrmailbox_t
  *
@@ -4864,7 +4603,7 @@ void mrmailbox_forward_msgs(mrmailbox_t* mailbox, const uint32_t* msg_ids, int m
 	sqlite3_stmt* stmt = NULL;
 	time_t        curr_timestamp;
 
-	if( mailbox == NULL || msg_ids==NULL || msg_cnt <= 0 || chat_id <= MR_CHAT_ID_LAST_SPECIAL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || msg_ids==NULL || msg_cnt <= 0 || chat_id <= MR_CHAT_ID_LAST_SPECIAL ) {
 		goto cleanup;
 	}
 
@@ -4923,7 +4662,7 @@ cleanup:
 
 
 /**
- * Star/unstar messages by setting the last parameter to 0 (unstar) or 1(star).
+ * Star/unstar messages by setting the last parameter to 0 (unstar) or 1 (star).
  * Starred messages are collected in a virtual chat that can be shown using
  * mrmailbox_get_chat_msgs() using the chat_id MR_CHAT_ID_STARRED.
  *
@@ -4943,7 +4682,7 @@ void mrmailbox_star_msgs(mrmailbox_t* mailbox, const uint32_t* msg_ids, int msg_
 {
 	int i;
 
-	if( mailbox == NULL || msg_ids == NULL || msg_cnt <= 0 || (star!=0 && star!=1) ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || msg_ids == NULL || msg_cnt <= 0 || (star!=0 && star!=1) ) {
 		return;
 	}
 
@@ -4983,7 +4722,7 @@ void mrmailbox_delete_msg_on_imap(mrmailbox_t* mailbox, mrjob_t* job)
 		}
 
 		if( mrmailbox_rfc724_mid_cnt__(mailbox, msg->m_rfc724_mid) != 1 ) {
-			mrmailbox_log_info(mailbox, 0, "The message is deleted from the server when all message are deleted.");
+			mrmailbox_log_info(mailbox, 0, "The message is deleted from the server when all parts are deleted.");
 			delete_from_server = 0;
 		}
 
@@ -5010,7 +4749,7 @@ void mrmailbox_delete_msg_on_imap(mrmailbox_t* mailbox, mrjob_t* job)
 
 	/* we delete the database entry ...
 	- if the message is successfully removed from the server
-	- or if there are other parts of the messages in the database (in this case we have not deleted if from the server)
+	- or if there are other parts of the message in the database (in this case we have not deleted if from the server)
 	(As long as the message is not removed from the IMAP-server, we need at least one database entry to avoid a re-download) */
 	mrsqlite3_lock(mailbox->m_sql);
 	locked = 1;
@@ -5060,15 +4799,13 @@ void mrmailbox_delete_msg_on_imap(mrmailbox_t* mailbox, mrjob_t* job)
 	locked = 0;
 
 cleanup:
-	if( locked ) {
-		mrsqlite3_unlock(mailbox->m_sql);
-	}
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 	mrmsg_unref(msg);
 }
 
 
 /**
- * Delete a list of messages. The messages are deleted on the current device and
+ * Delete messages. The messages are deleted on the current device and
  * on the IMAP server.
  *
  * @memberof mrmailbox_t
@@ -5085,7 +4822,7 @@ void mrmailbox_delete_msgs(mrmailbox_t* mailbox, const uint32_t* msg_ids, int ms
 {
 	int i;
 
-	if( mailbox == NULL || msg_ids == NULL || msg_cnt <= 0 ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || msg_ids == NULL || msg_cnt <= 0 ) {
 		return;
 	}
 
@@ -5172,9 +4909,7 @@ void mrmailbox_markseen_msg_on_imap(mrmailbox_t* mailbox, mrjob_t* job)
 	}
 
 cleanup:
-	if( locked ) {
-		mrsqlite3_unlock(mailbox->m_sql);
-	}
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 	mrmsg_unref(msg);
 	free(new_server_folder);
 }
@@ -5224,49 +4959,64 @@ cleanup:
  */
 void mrmailbox_markseen_msgs(mrmailbox_t* mailbox, const uint32_t* msg_ids, int msg_cnt)
 {
+	int locked = 0, transaction_pending = 0;
 	int i, send_event = 0;
+	int curr_state = 0, curr_blocked = 0;
 
-	if( mailbox == NULL || msg_ids == NULL || msg_cnt <= 0 ) {
-		return;
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || msg_ids == NULL || msg_cnt <= 0 ) {
+		goto cleanup;
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
+	locked = 1;
 	mrsqlite3_begin_transaction__(mailbox->m_sql);
+	transaction_pending = 1;
 
 		for( i = 0; i < msg_cnt; i++ )
 		{
-			sqlite3_stmt* stmt = mrsqlite3_predefine__(mailbox->m_sql, UPDATE_msgs_SET_seen_WHERE_id_AND_chat_id_AND_freshORnoticed,
-				"UPDATE msgs SET state=" MR_STRINGIFY(MR_STATE_IN_SEEN)
-				" WHERE id=? AND chat_id>" MR_STRINGIFY(MR_CHAT_ID_LAST_SPECIAL) " AND (state=" MR_STRINGIFY(MR_STATE_IN_FRESH) " OR state=" MR_STRINGIFY(MR_STATE_IN_NOTICED) ");");
+			sqlite3_stmt* stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_state_blocked_FROM_msgs_LEFT_JOIN_chats_WHERE_id,
+				"SELECT m.state, c.blocked "
+				" FROM msgs m "
+				" LEFT JOIN chats c ON c.id=m.chat_id "
+				" WHERE m.id=? AND m.chat_id>" MR_STRINGIFY(MR_CHAT_ID_LAST_SPECIAL));
 			sqlite3_bind_int(stmt, 1, msg_ids[i]);
-			sqlite3_step(stmt);
-			if( sqlite3_changes(mailbox->m_sql->m_cobj) )
+			if( sqlite3_step(stmt) != SQLITE_ROW ) {
+				goto cleanup;
+			}
+			curr_state   = sqlite3_column_int(stmt, 0);
+			curr_blocked = sqlite3_column_int(stmt, 1);
+			if( curr_blocked == 0 )
 			{
-				mrmailbox_log_info(mailbox, 0, "Seen message #%i.", msg_ids[i]);
-				mrjob_add__(mailbox, MRJ_MARKSEEN_MSG_ON_IMAP, msg_ids[i], NULL); /* results in a call to mrmailbox_markseen_msg_on_imap() */
-				send_event = 1;
+				if( curr_state == MR_STATE_IN_FRESH || curr_state == MR_STATE_IN_NOTICED ) {
+					mrmailbox_update_msg_state__(mailbox, msg_ids[i], MR_STATE_IN_SEEN);
+					mrmailbox_log_info(mailbox, 0, "Seen message #%i.", msg_ids[i]);
+					mrjob_add__(mailbox, MRJ_MARKSEEN_MSG_ON_IMAP, msg_ids[i], NULL); /* results in a call to mrmailbox_markseen_msg_on_imap() */
+					send_event = 1;
+				}
 			}
 			else
 			{
 				/* message may be in contact requests, mark as NOTICED, this does not force IMAP updated nor send MDNs */
-				sqlite3_stmt* stmt2 = mrsqlite3_predefine__(mailbox->m_sql, UPDATE_msgs_SET_noticed_WHERE_id_AND_fresh,
-					"UPDATE msgs SET state=" MR_STRINGIFY(MR_STATE_IN_NOTICED)
-					" WHERE id=? AND state=" MR_STRINGIFY(MR_STATE_IN_FRESH) ";");
-				sqlite3_bind_int(stmt2, 1, msg_ids[i]);
-				sqlite3_step(stmt2);
-				if( sqlite3_changes(mailbox->m_sql->m_cobj) ) {
+				if( curr_state == MR_STATE_IN_FRESH ) {
+					mrmailbox_update_msg_state__(mailbox, msg_ids[i], MR_STATE_IN_NOTICED);
 					send_event = 1;
 				}
 			}
 		}
 
 	mrsqlite3_commit__(mailbox->m_sql);
+	transaction_pending = 0;
 	mrsqlite3_unlock(mailbox->m_sql);
+	locked = 0;
 
-	/* the event us needed eg. to remove the deaddrop from the chatlist */
+	/* the event is needed eg. to remove the deaddrop from the chatlist */
 	if( send_event ) {
 		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, 0, 0);
 	}
+
+cleanup:
+	if( transaction_pending ) { mrsqlite3_rollback__(mailbox->m_sql); }
+	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 }
 
 
@@ -5274,7 +5024,7 @@ int mrmailbox_mdn_from_ext__(mrmailbox_t* mailbox, uint32_t from_id, const char*
                                      uint32_t* ret_chat_id,
                                      uint32_t* ret_msg_id)
 {
-	if( mailbox == NULL || from_id <= MR_CONTACT_ID_LAST_SPECIAL || rfc724_mid == NULL || ret_chat_id==NULL || ret_msg_id==NULL
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || from_id <= MR_CONTACT_ID_LAST_SPECIAL || rfc724_mid == NULL || ret_chat_id==NULL || ret_msg_id==NULL
 	 || *ret_chat_id != 0 || *ret_msg_id != 0 ) {
 		return 0;
 	}
@@ -5355,12 +5105,13 @@ void mrmailbox_send_mdn(mrmailbox_t* mailbox, mrjob_t* job)
 	mrmimefactory_t mimefactory;
 	mrmimefactory_init(&mimefactory, mailbox);
 
-	if( mailbox == NULL || job == NULL ) {
+	if( mailbox == NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || job == NULL ) {
 		return;
 	}
 
 	/* connect to SMTP server, if not yet done */
-	if( !mrsmtp_is_connected(mailbox->m_smtp) ) {
+	if( !mrsmtp_is_connected(mailbox->m_smtp) )
+	{
 		mrloginparam_t* loginparam = mrloginparam_new();
 			mrsqlite3_lock(mailbox->m_sql);
 				mrloginparam_read__(loginparam, mailbox->m_sql, "configured_");

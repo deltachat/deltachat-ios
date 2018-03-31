@@ -33,7 +33,15 @@ extern "C" {
 #include <string.h>
 #include "mrsqlite3.h"
 #include "mrtools.h"
+#include "mrparam.h"
 #include "mrstock.h"
+#include "mrarray-private.h"
+#include "mrchat-private.h"
+#include "mrchatlist-private.h"
+#include "mrlot-private.h"
+#include "mrmsg-private.h"
+#include "mrcontact-private.h"
+#include "mrmailbox-private.h"
 
 
 #ifdef __cplusplus

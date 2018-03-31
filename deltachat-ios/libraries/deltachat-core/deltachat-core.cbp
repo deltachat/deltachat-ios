@@ -438,6 +438,9 @@
 		<Unit filename="src/mrapeerstate.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/mrarray.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/mrchat.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -448,6 +451,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/mrdehtml.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/mrevent.h" />
+		<Unit filename="src/mrhash.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/mrimap.c">
@@ -463,6 +470,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/mrloginparam.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/mrlot.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/mrmailbox.c">
@@ -482,7 +492,10 @@
 		<Unit filename="src/mrmailbox_log.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrmailbox_tools.c">
+		<Unit filename="src/mrmailbox_oob.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/mrmailbox_receive_imf.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/mrmimefactory.c">
@@ -501,9 +514,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/mrpgp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/mrpoortext.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/mrsaxparser.c">

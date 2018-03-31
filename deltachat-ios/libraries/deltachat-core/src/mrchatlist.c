@@ -22,6 +22,8 @@
 
 #include "mrmailbox_internal.h"
 
+#define MR_CHATLIST_MAGIC 0xc4a71157
+
 
 /**
  * Create a chatlist object in memory.
@@ -40,8 +42,9 @@ mrchatlist_t* mrchatlist_new(mrmailbox_t* mailbox)
 		exit(20);
 	}
 
+	ths->m_magic   = MR_CHATLIST_MAGIC;
 	ths->m_mailbox = mailbox;
-	if( (ths->m_chatNlastmsg_ids=carray_new(128))==NULL ) {
+	if( (ths->m_chatNlastmsg_ids=mrarray_new(mailbox, 128))==NULL ) {
 		exit(32);
 	}
 
@@ -50,23 +53,24 @@ mrchatlist_t* mrchatlist_new(mrmailbox_t* mailbox)
 
 
 /**
- * Free a mrchatlist_t object as created eg. by mrmailbox_get_chatlist().
+ * Free a chatlist object.
  *
  * @memberof mrchatlist_t
  *
- * @param chatlist The chatlist object to free.
+ * @param chatlist The chatlist object to free, created eg. by mrmailbox_get_chatlist(), mrmailbox_search_msgs().
  *
  * @return None.
  *
  */
 void mrchatlist_unref(mrchatlist_t* chatlist)
 {
-	if( chatlist==NULL ) {
+	if( chatlist==NULL || chatlist->m_magic != MR_CHATLIST_MAGIC ) {
 		return;
 	}
 
 	mrchatlist_empty(chatlist);
-	carray_free(chatlist->m_chatNlastmsg_ids);
+	mrarray_unref(chatlist->m_chatNlastmsg_ids);
+	chatlist->m_magic = 0;
 	free(chatlist);
 }
 
@@ -74,7 +78,7 @@ void mrchatlist_unref(mrchatlist_t* chatlist)
 /**
  * Empty a chatlist object.
  *
- * @memberof mrchatlist_t
+ * @private @memberof mrchatlist_t
  *
  * @param chatlist The chatlist object to empty.
  *
@@ -82,10 +86,12 @@ void mrchatlist_unref(mrchatlist_t* chatlist)
  */
 void mrchatlist_empty(mrchatlist_t* chatlist)
 {
-	if( chatlist  ) {
-		chatlist->m_cnt = 0;
-		carray_set_size(chatlist->m_chatNlastmsg_ids, 0);
+	if( chatlist == NULL || chatlist->m_magic != MR_CHATLIST_MAGIC ) {
+		return;
 	}
+
+	chatlist->m_cnt = 0;
+	mrarray_empty(chatlist->m_chatNlastmsg_ids);
 }
 
 
@@ -100,7 +106,7 @@ void mrchatlist_empty(mrchatlist_t* chatlist)
  */
 size_t mrchatlist_get_cnt(mrchatlist_t* chatlist)
 {
-	if( chatlist == NULL ) {
+	if( chatlist == NULL || chatlist->m_magic != MR_CHATLIST_MAGIC ) {
 		return 0;
 	}
 
@@ -110,6 +116,8 @@ size_t mrchatlist_get_cnt(mrchatlist_t* chatlist)
 
 /**
  * Get a single chat ID of a chatlist.
+ *
+ * To get the message object from the message ID, use mrmailbox_get_chat().
  *
  * @memberof mrchatlist_t
  *
@@ -122,26 +130,18 @@ size_t mrchatlist_get_cnt(mrchatlist_t* chatlist)
  */
 uint32_t mrchatlist_get_chat_id(mrchatlist_t* chatlist, size_t index)
 {
-	if( chatlist == NULL || chatlist->m_chatNlastmsg_ids == NULL || index >= chatlist->m_cnt ) {
+	if( chatlist == NULL || chatlist->m_magic != MR_CHATLIST_MAGIC || chatlist->m_chatNlastmsg_ids == NULL || index >= chatlist->m_cnt ) {
 		return 0;
 	}
 
-	return (uint32_t)(uintptr_t)carray_get(chatlist->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT);
-}
-
-
-mrchat_t* mrchatlist_get_chat_by_index(mrchatlist_t* ths, size_t index) /* deprecated */
-{
-	if( ths == NULL || ths->m_chatNlastmsg_ids == NULL || index >= ths->m_cnt ) {
-		return 0;
-	}
-
-	return mrmailbox_get_chat(ths->m_mailbox, (uint32_t)(uintptr_t)carray_get(ths->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT));
+	return mrarray_get_id(chatlist->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT);
 }
 
 
 /**
  * Get a single message ID of a chatlist.
+ *
+ * To get the message object from the message ID, use mrmailbox_get_msg().
  *
  * @memberof mrchatlist_t
  *
@@ -154,55 +154,43 @@ mrchat_t* mrchatlist_get_chat_by_index(mrchatlist_t* ths, size_t index) /* depre
  */
 uint32_t mrchatlist_get_msg_id(mrchatlist_t* chatlist, size_t index)
 {
-	if( chatlist == NULL || chatlist->m_chatNlastmsg_ids == NULL || index >= chatlist->m_cnt ) {
+	if( chatlist == NULL || chatlist->m_magic != MR_CHATLIST_MAGIC || chatlist->m_chatNlastmsg_ids == NULL || index >= chatlist->m_cnt ) {
 		return 0;
 	}
 
-	return (uint32_t)(uintptr_t)carray_get(chatlist->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT+1);
-}
-
-
-mrmsg_t* mrchatlist_get_msg_by_index(mrchatlist_t* ths, size_t index) /* deprecated */
-{
-	if( ths == NULL || ths->m_chatNlastmsg_ids == NULL || index >= ths->m_cnt ) {
-		return 0;
-	}
-
-	return mrmailbox_get_msg(ths->m_mailbox, (uint32_t)(uintptr_t)carray_get(ths->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT+1));
+	return mrarray_get_id(chatlist->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT+1);
 }
 
 
 /**
  * Get a summary for a chatlist index.
  *
- * The summary is returned by a mrpoortext_t object with the following fields:
+ * The summary is returned by a mrlot_t object with the following fields:
  *
- * - m_text1: contains the username or the strings "Me", "Draft" and so on.
+ * - mrlot_t::m_text1: contains the username or the strings "Me", "Draft" and so on.
  *   The string may be colored by having a look at m_text1_meaning.
- *   If there is no such name, the element is NULL (eg. for "No messages")
+ *   If there is no such name or it should not be displayed, the element is NULL.
  *
- * - m_text1_meaning: one of the MR_TEXT1_* constants
+ * - mrlot_t::m_text1_meaning: one of MR_TEXT1_USERNAME, MR_TEXT1_SELF or MR_TEXT1_DRAFT.
+ *   Typically used to show mrlot_t::m_text1 with different colors. 0 if not applicable.
  *
- * - m_text2: contains an excerpt of the message text or strings as
- *   "No messages".  may be NULL of there is no such text (eg. for the archive)
+ * - mrlot_t::m_text2: contains an excerpt of the message text or strings as
+ *   "No messages".  May be NULL of there is no such text (eg. for the archive link)
  *
- * - m_timestamp: the timestamp of the message.  May be 0 if there is no message
+ * - mrlot_t::m_timestamp: the timestamp of the message.  0 if not applicable.
  *
- * - m_state: the state of the message as one of the MR_STATE_* identifiers.  0 if there is no message.
+ * - mrlot_t::m_state: The state of the message as one of the MR_STATE_* constants (see #mrmsg_get_state()).  0 if not applicable.
  *
  * @memberof mrchatlist_t
  *
  * @param chatlist The chatlist to query as returned eg. from mrmailbox_get_chatlist().
- *
  * @param index The index to query in the chatlist.
+ * @param chat To speed up things, pass an already available chat object here.
+ *     If the chat object is not yet available, it is faster to pass NULL.
  *
- * @param chat  Giving the correct chat object here, this this will speed up
- *     things a little.  If the chat object is not available by you, it is faster to pass
- *     NULL here.
- *
- * @return The result must be freed using mrpoortext_unref().  The function never returns NULL.
+ * @return The summary as an mrlot_t object. Must be freed using mrlot_unref().  NULL is never returned.
  */
-mrpoortext_t* mrchatlist_get_summary(mrchatlist_t* chatlist, size_t index, mrchat_t* chat /*may be NULL*/)
+mrlot_t* mrchatlist_get_summary(mrchatlist_t* chatlist, size_t index, mrchat_t* chat /*may be NULL*/)
 {
 	/* The summary is created by the chat, not by the last message.
 	This is because we may want to display drafts here or stuff as
@@ -210,19 +198,19 @@ mrpoortext_t* mrchatlist_get_summary(mrchatlist_t* chatlist, size_t index, mrcha
 	Also, sth. as "No messages" would not work if the summary comes from a
 	message. */
 
-	mrpoortext_t* ret = mrpoortext_new(); /* the function never returns NULL */
+	mrlot_t*      ret = mrlot_new(); /* the function never returns NULL */
 	int           locked = 0;
 	uint32_t      lastmsg_id = 0;
 	mrmsg_t*      lastmsg = NULL;
 	mrcontact_t*  lastcontact = NULL;
 	mrchat_t*     chat_to_delete = NULL;
 
-	if( chatlist == NULL || index >= chatlist->m_cnt ) {
+	if( chatlist == NULL || chatlist->m_magic != MR_CHATLIST_MAGIC || index >= chatlist->m_cnt ) {
 		ret->m_text2 = safe_strdup("ErrBadChatlistIndex");
 		goto cleanup;
 	}
 
-	lastmsg_id = (uint32_t)(uintptr_t)carray_get(chatlist->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT+1);
+	lastmsg_id = mrarray_get_id(chatlist->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT+1);
 
 	/* load data from database */
 	mrsqlite3_lock(chatlist->m_mailbox->m_sql);
@@ -231,7 +219,7 @@ mrpoortext_t* mrchatlist_get_summary(mrchatlist_t* chatlist, size_t index, mrcha
 		if( chat==NULL ) {
 			chat = mrchat_new(chatlist->m_mailbox);
 			chat_to_delete = chat;
-			if( !mrchat_load_from_db__(chat, (uint32_t)(uintptr_t)carray_get(chatlist->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT)) ) {
+			if( !mrchat_load_from_db__(chat, mrarray_get_id(chatlist->m_chatNlastmsg_ids, index*MR_CHATLIST_IDS_PER_RESULT)) ) {
 				ret->m_text2 = safe_strdup("ErrCannotReadChat");
 				goto cleanup;
 			}
@@ -267,7 +255,7 @@ mrpoortext_t* mrchatlist_get_summary(mrchatlist_t* chatlist, size_t index, mrcha
 		ret->m_text1_meaning = MR_TEXT1_DRAFT;
 
 		ret->m_text2 = safe_strdup(chat->m_draft_text);
-		mr_truncate_n_unwrap_str(ret->m_text2, MR_SUMMARY_CHARACTERS, 1);
+		mr_truncate_n_unwrap_str(ret->m_text2, MR_SUMMARY_CHARACTERS, 1/*unwrap*/);
 
 		ret->m_timestamp = chat->m_draft_timestamp;
 	}
@@ -279,7 +267,7 @@ mrpoortext_t* mrchatlist_get_summary(mrchatlist_t* chatlist, size_t index, mrcha
 	else
 	{
 		/* show the last message */
-		mrpoortext_fill(ret, lastmsg, chat, lastcontact);
+		mrlot_fill(ret, lastmsg, chat, lastcontact);
 	}
 
 cleanup:
@@ -288,6 +276,24 @@ cleanup:
 	mrcontact_unref(lastcontact);
 	mrchat_unref(chat_to_delete);
 	return ret;
+}
+
+
+/**
+ * Helper function to get the associated mailbox object.
+ *
+ * @memberof mrchatlist_t
+ *
+ * @param chatlist The chatlist object to empty.
+ *
+ * @return Mailbox object associated with the chatlist. NULL if none or on errors.
+ */
+mrmailbox_t* mrchatlist_get_mailbox(mrchatlist_t* chatlist)
+{
+	if( chatlist == NULL || chatlist->m_magic != MR_CHATLIST_MAGIC ) {
+		return NULL;
+	}
+	return chatlist->m_mailbox;
 }
 
 
@@ -305,7 +311,7 @@ int mrchatlist_load_from_db__(mrchatlist_t* ths, int listflags, const char* quer
 	sqlite3_stmt* stmt = NULL;
 	char*         strLikeCmd = NULL, *query = NULL;
 
-	if( ths == NULL || ths->m_mailbox == NULL ) {
+	if( ths == NULL || ths->m_magic != MR_CHATLIST_MAGIC || ths->m_mailbox == NULL ) {
 		goto cleanup;
 	}
 
@@ -313,7 +319,7 @@ int mrchatlist_load_from_db__(mrchatlist_t* ths, int listflags, const char* quer
 
 	/* select example with left join and minimum: http://stackoverflow.com/questions/7588142/mysql-left-join-min */
 	#define QUR1 "SELECT c.id, m.id FROM chats c " \
-	                " LEFT JOIN msgs m ON (c.id=m.chat_id AND m.timestamp=(SELECT MAX(timestamp) FROM msgs WHERE chat_id=c.id)) " \
+	                " LEFT JOIN msgs m ON (c.id=m.chat_id AND m.timestamp=(SELECT MAX(timestamp) FROM msgs WHERE chat_id=c.id AND hidden=0)) " \
 	                " WHERE c.id>" MR_STRINGIFY(MR_CHAT_ID_LAST_SPECIAL) " AND c.blocked=0"
 	#define QUR2    " GROUP BY c.id " /* GROUP BY is needed as there may be several messages with the same timestamp */ \
 	                " ORDER BY MAX(c.draft_timestamp, IFNULL(m.timestamp,0)) DESC,m.id DESC;" /* the list starts with the newest chats */
@@ -330,8 +336,8 @@ int mrchatlist_load_from_db__(mrchatlist_t* ths, int listflags, const char* quer
 		if( !(listflags & MR_GCL_NO_SPECIALS) ) {
 			uint32_t last_deaddrop_fresh_msg_id = mrmailbox_get_last_deaddrop_fresh_msg__(ths->m_mailbox);
 			if( last_deaddrop_fresh_msg_id > 0 ) {
-				carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)MR_CHAT_ID_DEADDROP, NULL); /* show deaddrop with the last fresh message */
-				carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)last_deaddrop_fresh_msg_id, NULL);
+				mrarray_add_id(ths->m_chatNlastmsg_ids, MR_CHAT_ID_DEADDROP); /* show deaddrop with the last fresh message */
+				mrarray_add_id(ths->m_chatNlastmsg_ids, last_deaddrop_fresh_msg_id);
 			}
 			add_archived_link_item = 1;
 		}
@@ -356,17 +362,17 @@ int mrchatlist_load_from_db__(mrchatlist_t* ths, int listflags, const char* quer
 
     while( sqlite3_step(stmt) == SQLITE_ROW )
     {
-		carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)sqlite3_column_int(stmt, 0), NULL);
-		carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)sqlite3_column_int(stmt, 1), NULL);
+		mrarray_add_id(ths->m_chatNlastmsg_ids, sqlite3_column_int(stmt, 0));
+		mrarray_add_id(ths->m_chatNlastmsg_ids, sqlite3_column_int(stmt, 1));
     }
 
     if( add_archived_link_item && mrmailbox_get_archived_count__(ths->m_mailbox)>0 )
     {
-		carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)MR_CHAT_ID_ARCHIVED_LINK, NULL);
-		carray_add(ths->m_chatNlastmsg_ids, (void*)(uintptr_t)0, NULL);
+		mrarray_add_id(ths->m_chatNlastmsg_ids, MR_CHAT_ID_ARCHIVED_LINK);
+		mrarray_add_id(ths->m_chatNlastmsg_ids, 0);
     }
 
-	ths->m_cnt = carray_count(ths->m_chatNlastmsg_ids)/MR_CHATLIST_IDS_PER_RESULT;
+	ths->m_cnt = mrarray_get_cnt(ths->m_chatNlastmsg_ids)/MR_CHATLIST_IDS_PER_RESULT;
 	success = 1;
 
 cleanup:

@@ -89,7 +89,7 @@ void pgp_teardown_memory_write(pgp_output_t *, pgp_memory_t *);
 /* memory reading */
 void pgp_setup_memory_read(pgp_io_t *,
 				pgp_stream_t **,
-				pgp_memory_t *,
+				const pgp_memory_t *,
 				void *,
 				pgp_cb_ret_t callback(const pgp_packet_t *,
 					pgp_cbdata_t *),

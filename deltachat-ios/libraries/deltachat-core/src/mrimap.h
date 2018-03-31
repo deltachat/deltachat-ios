@@ -37,8 +37,8 @@ typedef struct mrimap_t mrimap_t;
 
 #define MR_IMAP_SEEN 0x0001L
 
-typedef int32_t  (*mr_get_config_int_t)(mrimap_t*, const char*, int32_t);
-typedef void     (*mr_set_config_int_t)(mrimap_t*, const char*, int32_t);
+typedef char*    (*mr_get_config_t)    (mrimap_t*, const char*, const char*);
+typedef void     (*mr_set_config_t)    (mrimap_t*, const char*, const char*);
 typedef void     (*mr_receive_imf_t)   (mrimap_t*, const char* imf_raw_not_terminated, size_t imf_raw_bytes, const char* server_folder, uint32_t server_uid, uint32_t flags);
 
 
@@ -60,6 +60,7 @@ typedef struct mrimap_t
 	pthread_mutex_t       m_hEtpanmutex;
 	int                   m_idle_set_up;
 	char*                 m_selected_folder;
+	int                   m_selected_folder_needs_expunge;
 	int                   m_should_reconnect;
 
 	int                   m_can_idle;
@@ -82,11 +83,12 @@ typedef struct mrimap_t
 	pthread_mutex_t       m_heartbeat_condmutex;
 
 	struct mailimap_fetch_type* m_fetch_type_uid;
+	struct mailimap_fetch_type* m_fetch_type_message_id;
 	struct mailimap_fetch_type* m_fetch_type_body;
 	struct mailimap_fetch_type* m_fetch_type_flags;
 
-	mr_get_config_int_t   m_get_config_int;
-	mr_set_config_int_t   m_set_config_int;
+	mr_get_config_t       m_get_config;
+	mr_set_config_t       m_set_config;
 	mr_receive_imf_t      m_receive_imf;
 	void*                 m_userData;
 	mrmailbox_t*          m_mailbox;
@@ -95,7 +97,7 @@ typedef struct mrimap_t
 } mrimap_t;
 
 
-mrimap_t* mrimap_new               (mr_get_config_int_t, mr_set_config_int_t, mr_receive_imf_t, void* userData, mrmailbox_t*);
+mrimap_t* mrimap_new               (mr_get_config_t, mr_set_config_t, mr_receive_imf_t, void* userData, mrmailbox_t*);
 void      mrimap_unref             (mrimap_t*);
 
 int       mrimap_connect           (mrimap_t*, const mrloginparam_t*);

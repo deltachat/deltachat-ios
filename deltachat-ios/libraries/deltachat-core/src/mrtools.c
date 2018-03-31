@@ -27,6 +27,7 @@
 #include <sys/stat.h>
 #include <sys/types.h> /* for getpid() */
 #include <unistd.h>    /* for getpid() */
+#include <openssl/rand.h>
 #include <libetpan/libetpan.h>
 #include <libetpan/mailimap_types.h>
 #include "mrmailbox_internal.h"
@@ -144,6 +145,9 @@ char* mr_strlower(const char* in) /* the result must be free()'d */
 }
 
 
+/*
+ * haystack may be realloc()'d, returns the number of replacements.
+ */
 int mr_str_replace(char** haystack, const char* needle, const char* replacement)
 {
 	int replacements = 0, start_search_pos = 0, needle_len, replacement_len;
@@ -169,6 +173,25 @@ int mr_str_replace(char** haystack, const char* needle, const char* replacement)
 	}
 
 	return replacements;
+}
+
+
+int mr_str_contains(const char* haystack, const const char* needle)
+{
+	/* case-insensitive search of needle in haystack, return 1 if found, 0 if not */
+	if( strstr(haystack, needle)!=NULL ) {
+		return 1;
+	}
+
+	char* haystack_lower = mr_strlower(haystack);
+	char* needle_lower = mr_strlower(needle);
+
+		int ret = strstr(haystack_lower, needle_lower)? 1 : 0;
+
+	free(haystack_lower);
+	free(needle_lower);
+
+	return ret;
 }
 
 
@@ -336,6 +359,7 @@ void mr_truncate_n_unwrap_str(char* buf, int approx_characters, int do_unwrap)
 	/* Function unwraps the given string and removes unnecessary whitespace.
 	Function stops processing after approx_characters are processed.
 	(as we're using UTF-8, for simplicity, we cut the string only at whitespaces). */
+	const char* ellipse_utf8 = do_unwrap? " ..." : " " MR_ELLIPSE_STR; /* a single line is truncated `...` instead of `[...]` (the former is typically also used by the UI to fit strings in a rectangle) */
 	int lastIsCharacter = 0;
 	unsigned char* p1 = (unsigned char*)buf; /* force unsigned - otherwise the `> ' '` comparison will fail */
 	while( *p1 ) {
@@ -346,7 +370,6 @@ void mr_truncate_n_unwrap_str(char* buf, int approx_characters, int do_unwrap)
 			if( lastIsCharacter ) {
 				size_t used_bytes = (size_t)((uintptr_t)p1 - (uintptr_t)buf);
 				if( mr_utf8_strnlen(buf, used_bytes) >= approx_characters ) {
-					const char* ellipse_utf8 = " ...";
 					size_t      buf_bytes = strlen(buf);
 					if( buf_bytes-used_bytes >= strlen(ellipse_utf8) /* check if we have room for the ellipse */ ) {
 						strcpy((char*)p1, ellipse_utf8);
@@ -370,6 +393,25 @@ void mr_truncate_n_unwrap_str(char* buf, int approx_characters, int do_unwrap)
 
 	if( do_unwrap ) {
 		mr_remove_cr_chars(buf);
+	}
+}
+
+
+void mr_truncate_str(char* buf, int approx_chars)
+{
+	if( approx_chars > 0 && strlen(buf) > approx_chars+strlen(MR_ELLIPSE_STR) )
+	{
+		char* p = &buf[approx_chars]; /* null-terminate string at the desired length */
+		*p = 0;
+
+		if( strchr(buf, ' ')!=NULL ) {
+			while( p[-1] != ' ' && p[-1] != '\n' ) { /* rewind to the previous space, avoid half utf-8 characters */
+				p--;
+				*p = 0;
+			}
+		}
+
+		strcat(p, MR_ELLIPSE_STR);
 	}
 }
 
@@ -415,7 +457,7 @@ void mr_free_splitted_lines(carray* lines)
 char* mr_insert_breaks(const char* in, int break_every, const char* break_chars)
 {
 	/* insert a space every n characters, the return must be free()'d.
-	this is useful for allow lines being wrapped according to RFC 5322 (adds linebreaks before spaces) */
+	this is useful to allow lines being wrapped according to RFC 5322 (adds linebreaks before spaces) */
 
 	if( in == NULL || break_every <= 0 || break_chars == NULL ) {
 		return safe_strdup(in);
@@ -444,41 +486,18 @@ char* mr_insert_breaks(const char* in, int break_every, const char* break_chars)
 }
 
 
-char* mr_arr_to_string(const uint32_t* arr, int cnt)
-{
-	/* return comma-separated value-string from integer array */
-	if( arr==NULL || cnt <= 0 ) {
-		return safe_strdup("");
-	}
-
-	char* ret = malloc(cnt*12/*sign,10 digits,comma*/+1/*terminating zero*/);
-	if( ret == NULL ) { exit(35); }
-	ret[0] = 0;
-
-	int i;
-	for( i=0; i<cnt; i++ ) {
-		if( i ) {
-			strcat(ret, ",");
-		}
-		sprintf(&ret[strlen(ret)], "%lu", (unsigned long)arr[i]);
-	}
-
-	return ret;
-}
-
-
 /*******************************************************************************
  * String tools - mrstrbuilder_t
  ******************************************************************************/
 
 
-void mrstrbuilder_init(mrstrbuilder_t* ths)
+void mrstrbuilder_init(mrstrbuilder_t* ths, int init_bytes)
 {
 	if( ths==NULL ) {
 		return;
 	}
 
-	ths->m_allocated    = 128; /* do not get too large here, esp. if use _many_ of these objects at the same time (currently, this is not the case) */
+	ths->m_allocated    = MR_MAX(init_bytes, 128); /* use a small default minimum, we may use _many_ of these objects at the same time */
     ths->m_buf          = malloc(ths->m_allocated); if( ths->m_buf==NULL ) { exit(38); }
     ths->m_buf[0]       = 0;
 	ths->m_free         = ths->m_allocated - 1 /*the nullbyte! */;
@@ -512,6 +531,40 @@ char* mrstrbuilder_cat(mrstrbuilder_t* ths, const char* text)
 	ths->m_free -= len;
 
 	return ret;
+}
+
+
+void mrstrbuilder_catf(mrstrbuilder_t* strbuilder, const char* format, ...)
+{
+	char  testbuf[1];
+	char* buf;
+	int   char_cnt_without_zero;
+
+	va_list argp;
+	va_list argp_copy;
+	va_start(argp, format);
+	va_copy(argp_copy, argp);
+
+	char_cnt_without_zero = vsnprintf(testbuf, 0, format, argp);
+	va_end(argp);
+	if( char_cnt_without_zero < 0) {
+		va_end(argp_copy);
+		mrstrbuilder_cat(strbuilder, "ErrFmt");
+		return;
+	}
+
+	buf = malloc(char_cnt_without_zero+2 /* +1 would be enough, however, protect against off-by-one-errors */);
+	if( buf == NULL ) {
+		va_end(argp_copy);
+		mrstrbuilder_cat(strbuilder, "ErrMem");
+		return;
+	}
+
+	vsnprintf(buf, char_cnt_without_zero+1, format, argp_copy);
+	va_end(argp_copy);
+
+	mrstrbuilder_cat(strbuilder, buf);
+	free(buf);
 }
 
 
@@ -1059,8 +1112,8 @@ char* imap_utf8_to_modified_utf7(const char *src, int change_spaces)
 
 
 /* Converts an integer value to its hex character*/
-char to_hex(char code) {
-	static char hex[] = "0123456789abcdef";
+static char to_uppercase_hex(char code) {
+	static char hex[] = "0123456789ABCDEF";
 	return hex[code & 15];
 }
 
@@ -1074,7 +1127,7 @@ char* mr_url_encode(const char *str) {
 		else if (*pstr == ' ')
 			*pbuf++ = '+';
 		else
-			*pbuf++ = '%', *pbuf++ = to_hex(*pstr >> 4), *pbuf++ = to_hex(*pstr & 15);
+			*pbuf++ = '%', *pbuf++ = to_uppercase_hex(*pstr >> 4), *pbuf++ = to_uppercase_hex(*pstr & 15);
 		pstr++;
 	}
 	*pbuf = '\0';
@@ -1083,13 +1136,13 @@ char* mr_url_encode(const char *str) {
 
 
 /* Converts a hex character to its integer value */
-/*static char from_hex(char ch) {
+static char from_hex(char ch) {
 	return isdigit(ch) ? ch - '0' : tolower(ch) - 'a' + 10;
-}*/
+}
 
 
 /* Returns a url-decoded version of str, be sure to free() the returned string after use */
-/*char* mr_url_decode(const char *str) {
+char* mr_url_decode(const char *str) {
 	const char *pstr = str;
 	char *buf = malloc(strlen(str) + 1), *pbuf = buf;
 	while (*pstr) {
@@ -1107,36 +1160,12 @@ char* mr_url_encode(const char *str) {
 	}
 	*pbuf = '\0';
 	return buf;
-}*/
+}
 
 
 /*******************************************************************************
- * carray/clist tools
+ * clist tools
  ******************************************************************************/
-
-
-int carray_search(carray* haystack, void* needle, unsigned int* indx)
-{
-	void** data = carray_data(haystack);
-	unsigned int i, cnt = carray_count(haystack);
-	for( i=0; i<cnt; i++ )
-	{
-		if( data[i] == needle ) {
-			if( indx ) {
-				*indx = i;
-			}
-			return 1;
-		}
-	}
-
-	return 0;
-}
-
-
-uint32_t carray_get_uint32(carray* haystack, unsigned int indx)
-{
-	return (uint32_t)(uintptr_t)haystack->array[indx];
-}
 
 
 void clist_free_content(const clist* haystack)
@@ -1408,13 +1437,14 @@ char* mr_create_id(void)
 	- unique as two IDs generated on two devices should not be the same. However, collisions are not world-wide but only by the few contacts.
 
 	Additional information:
-	- for OUTGOING messages this ID is written to the header as `X-MrGrpId:` and is added to the message ID as Gr.<grpid>.<random>@<random>
-	- for INCOMING messages, the ID is taken from the X-MrGrpId-header or from the Message-ID in the In-Reply-To: or References:-Header
+	- for OUTGOING messages this ID is written to the header as `Chat-Group-ID:` and is added to the message ID as Gr.<grpid>.<random>@<random>
+	- for INCOMING messages, the ID is taken from the Chat-Group-ID-header or from the Message-ID in the In-Reply-To: or References:-Header
 	- the group ID should be a string with the characters [a-zA-Z0-9\-_] */
-	uint32_t now = time(NULL);
-	uint32_t pid = getpid();
-	uint32_t rnd = random() ^ pid;
-	return encode_66bits_as_base64(now, rnd, pid/*only the lower 2 bits are taken from this value*/);
+	uint32_t buf[3];
+	if( !RAND_bytes((unsigned char*)&buf, sizeof(uint32_t)*3) ) {
+		RAND_pseudo_bytes((unsigned char*)&buf, sizeof(uint32_t)*3);
+	}
+	return encode_66bits_as_base64(buf[0], buf[1], buf[2]/*only the lower 2 bits are taken from this value*/);
 }
 
 
@@ -1434,21 +1464,31 @@ char* mr_create_outgoing_rfc724_mid(const char* grpid, const char* from_addr)
 	- the message ID should be globally unique
 	- do not add a counter or any private data as as this may give unneeded information to the receiver	*/
 
-	char* msgid = mr_create_id(), *ret = NULL;
+	char*       rand1 = NULL;
+	char*       rand2 = mr_create_id();
+	char*       ret = NULL;
+	const char* at_hostname = strchr(from_addr, '@');
+
+	if( at_hostname == NULL ) {
+		at_hostname = "@nohost";
+	}
+
 	if( grpid ) {
-		ret = mr_mprintf("Gr.%s.%s.%s", grpid, msgid, from_addr);
+		ret = mr_mprintf("Gr.%s.%s%s", grpid, rand2, at_hostname);
 		               /* ^^^ `Gr.` must never change as this is used to identify group messages in normal-clients-replies. The dot is choosen as this is normally not used for random ID creation. */
 	}
 	else {
-		ret = mr_mprintf("Mr.%s.%s", msgid, from_addr);
+		rand1 = mr_create_id();
+		ret = mr_mprintf("Mr.%s.%s%s", rand1, rand2, at_hostname);
 		               /* ^^^ `Mr.` is currently not used, however, this may change in future */
 	}
-	free(msgid);
+
+	free(rand2);
 	return ret;
 }
 
 
-char* mr_create_incoming_rfc724_mid(time_t message_timestamp, uint32_t contact_id_from, carray* contact_ids_to)
+char* mr_create_incoming_rfc724_mid(time_t message_timestamp, uint32_t contact_id_from, mrarray_t* contact_ids_to)
 {
 	/* Function generates a Message-ID for incoming messages that lacks one.
 	- normally, this function is not needed as incoming messages already have an ID
@@ -1456,15 +1496,15 @@ char* mr_create_incoming_rfc724_mid(time_t message_timestamp, uint32_t contact_i
 	- when fetching the same message again, this function should generate the same Message-ID
 	*/
 
-	if( message_timestamp == MR_INVALID_TIMESTAMP || contact_ids_to == NULL || carray_count(contact_ids_to)==0 ) {
+	if( message_timestamp == MR_INVALID_TIMESTAMP || contact_ids_to == NULL || mrarray_get_cnt(contact_ids_to)==0 ) {
 		return NULL;
 	}
 
-	/* find out the largets receiver ID (we could also take the smallest, but it should be unique) */
-	size_t   i, icnt = carray_count(contact_ids_to);
+	/* find out the largest receiver ID (we could also take the smallest, but it should be unique) */
+	size_t   i, icnt = mrarray_get_cnt(contact_ids_to);
 	uint32_t largest_id_to = 0;
 	for( i = 0; i < icnt; i++ ) {
-		uint32_t cur_id = (uint32_t)(uintptr_t)carray_get(contact_ids_to, i);
+		uint32_t cur_id = mrarray_get_id(contact_ids_to, i);
 		if( cur_id > largest_id_to ) {
 			largest_id_to = cur_id;
 		}
@@ -1478,31 +1518,34 @@ char* mr_create_incoming_rfc724_mid(time_t message_timestamp, uint32_t contact_i
 
 char* mr_extract_grpid_from_rfc724_mid(const char* mid)
 {
-	/* extract our group ID from Message-IDs as `Gr.12345678.morerandom.user@domain.de`; "12345678" is the wanted ID in this example. */
-	int success = 0;
-	char* ret = NULL, *p1;
+	/* extract our group ID from Message-IDs as `Gr.12345678901.morerandom@domain.de`; "12345678901" is the wanted ID in this example. */
+	int   success = 0;
+	char* grpid = NULL, *p1;
+	int   grpid_len;
 
-    if( mid == NULL || strlen(mid)<8 || mid[0]!='G' || mid[1]!='r' || mid[2]!='.' ) {
+	if( mid == NULL || strlen(mid)<8 || mid[0]!='G' || mid[1]!='r' || mid[2]!='.' ) {
 		goto cleanup;
-    }
+	}
 
-	ret = safe_strdup(&mid[3]);
+	grpid = safe_strdup(&mid[3]);
 
-	p1 = strchr(ret, '.');
+	p1 = strchr(grpid, '.');
 	if( p1 == NULL ) {
 		goto cleanup;
 	}
 	*p1 = 0;
 
-	if( strlen(ret)!=MR_VALID_ID_LEN ) {
+	#define MR_ALSO_VALID_ID_LEN  16 /* length returned by create_adhoc_grp_id__() */
+	grpid_len = strlen(grpid);
+	if( grpid_len!=MR_CREATE_ID_LEN && grpid_len!=MR_ALSO_VALID_ID_LEN ) { /* strict length comparison, the 'Gr.' magic is weak enough */
 		goto cleanup;
 	}
 
 	success = 1;
 
 cleanup:
-	if( success == 0 ) { free(ret); ret = NULL; }
-    return success? ret : NULL;
+	if( success == 0 ) { free(grpid); grpid = NULL; }
+	return success? grpid : NULL;
 }
 
 
@@ -1540,11 +1583,11 @@ int mr_file_exist(const char* pathNfilename)
 }
 
 
-size_t mr_get_filebytes(const char* pathNfilename)
+uint64_t mr_get_filebytes(const char* pathNfilename)
 {
 	struct stat st;
 	if( stat(pathNfilename, &st) == 0 ) {
-		return (size_t)st.st_size;
+		return (uint64_t)st.st_size;
 	}
 	else {
 		return 0;
@@ -1618,7 +1661,7 @@ int mr_copy_file(const char* src, const char* dest, mrmailbox_t* log/*may be NUL
 		close(fd_src);
 		fd_src = -1;
 		if( mr_get_filebytes(src)!=0 ) {
-			mrmailbox_log_error(log, 0, "Different size informatio for \"%s\".", bytes_read, dest);
+			mrmailbox_log_error(log, 0, "Different size information for \"%s\".", bytes_read, dest);
 			goto cleanup;
 		}
     }
@@ -1660,10 +1703,10 @@ char* mr_get_filesuffix_lc(const char* pathNfilename)
 
 void mr_split_filename(const char* pathNfilename, char** ret_basename, char** ret_all_suffixes_incl_dot)
 {
-	/* splits a filename into basename and all suffixes, eg. "/path/foo.tar.gz" is splitted into "foo.tar" and ".gz",
+	/* splits a filename into basename and all suffixes, eg. "/path/foo.tar.gz" is split into "foo.tar" and ".gz",
 	(we use the _last_ dot which allows the usage inside the filename which are very usual;
 	maybe the detection could be more intelligent, however, for the moment, it is just file)
-	- if there is no suffix, the returned suffix string is empty, eg. "/path/foobar" is splitted into "foobar" and ""
+	- if there is no suffix, the returned suffix string is empty, eg. "/path/foobar" is split into "foobar" and ""
 	- the case of the returned suffix is preserved; this is to allow reconstruction of (similar) names */
 	char* basename = mr_get_filename(pathNfilename), *suffix;
 	char* p1 = strrchr(basename, '.');

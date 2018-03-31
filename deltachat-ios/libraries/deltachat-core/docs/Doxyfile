@@ -562,7 +562,7 @@ INLINE_INFO            = YES
 # name. If set to NO, the members will appear in declaration order.
 # The default value is: YES.
 
-SORT_MEMBER_DOCS       = YES
+SORT_MEMBER_DOCS       = NO
 
 # If the SORT_BRIEF_DOCS tag is set to YES then doxygen will sort the brief
 # descriptions of file, namespace and class members alphabetically by member
@@ -853,7 +853,8 @@ EXCLUDE_PATTERNS       =
 
 ######################################################
 EXCLUDE_SYMBOLS        = mraheader_t mrapeerstate_t mrmailbox_e2ee_helper_t mrimap_t mrjob_t mrkey_t mrkeyring_t mrloginparam_t mrmime*_t 
-EXCLUDE_SYMBOLS       += mrsaxparser_t mrsimplify_t mrsmtp_t mrsqlite3_t mrstrbuilder_t
+EXCLUDE_SYMBOLS       += mrsaxparser_t mrsimplify_t mrsmtp_t mrsqlite3_t mrstrbuilder_t mrparam_t mrhash_t mrhashelem_t
+EXCLUDE_SYMBOLS       += _mrchat _mrchatlist _mrcontact _mrmsg _mrmailbox _mrlot _mrarray
 ######################################################
 
 # The EXAMPLE_PATH tag can be used to specify one or more files or directories

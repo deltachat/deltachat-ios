@@ -23,11 +23,17 @@
 #include "mrmailbox_internal.h"
 #include "mrcontact.h"
 
+#define MR_CONTACT_MAGIC 0x0c047ac7
+
 
 /**
  * Create a new contact object in memory.
+ * Typically the user does not call this function directly but gets contact
+ * objects using mrmailbox_get_contact().
  *
- * @memberof mrcontact_t
+ * @private @memberof mrcontact_t
+ *
+ * @return The contact object. Must be freed using mrcontact_unref() when done.
  */
 mrcontact_t* mrcontact_new()
 {
@@ -37,6 +43,8 @@ mrcontact_t* mrcontact_new()
 		exit(19); /* cannot allocate little memory, unrecoverable error */
 	}
 
+	ths->m_magic = MR_CONTACT_MAGIC;
+
 	return ths;
 }
 
@@ -45,42 +53,197 @@ mrcontact_t* mrcontact_new()
  * Free a contact object.
  *
  * @memberof mrcontact_t
+ *
+ * @param contact The contact object as created eg. by mrmailbox_get_contact().
+ *
+ * @return None.
  */
-void mrcontact_unref(mrcontact_t* ths)
+void mrcontact_unref(mrcontact_t* contact)
 {
-	if( ths==NULL ) {
+	if( contact==NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
 		return;
 	}
 
-	mrcontact_empty(ths);
-	free(ths);
+	mrcontact_empty(contact);
+	contact->m_magic = 0;
+	free(contact);
 }
 
 
 /**
  * Empty a contact object.
+ * Typically not needed by the user of the library. To free a contact object,
+ * use mrcontact_unref().
  *
- * @memberof mrcontact_t
+ * @private @memberof mrcontact_t
+ *
+ * @param contact The contact object to free.
+ *
+ * @return None.
  */
-void mrcontact_empty(mrcontact_t* ths)
+void mrcontact_empty(mrcontact_t* contact)
 {
-	if( ths == NULL ) {
+	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
 		return;
 	}
 
-	ths->m_id = 0;
+	contact->m_id = 0;
 
-	free(ths->m_name); /* it is safe to call free(NULL) */
-	ths->m_name = NULL;
+	free(contact->m_name); /* it is safe to call free(NULL) */
+	contact->m_name = NULL;
 
-	free(ths->m_authname);
-	ths->m_authname = NULL;
+	free(contact->m_authname);
+	contact->m_authname = NULL;
 
-	free(ths->m_addr);
-	ths->m_addr = NULL;
+	free(contact->m_addr);
+	contact->m_addr = NULL;
 
-	ths->m_origin = 0;
-	ths->m_blocked = 0;
+	contact->m_origin = 0;
+	contact->m_blocked = 0;
+}
+
+
+/*******************************************************************************
+ * Getters
+ ******************************************************************************/
+
+
+/**
+ * Get the ID of the contact.
+ *
+ * @memberof mrcontact_t
+ *
+ * @param contact The contact object.
+ *
+ * @return the ID of the contact, 0 on errors.
+ */
+uint32_t mrcontact_get_id(mrcontact_t* contact)
+{
+	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
+		return 0;
+	}
+	return contact->m_id;
+}
+
+
+/**
+ * Get email address.  The email address is always set for a contact.
+ *
+ * @memberof mrcontact_t
+ *
+ * @param contact The contact object.
+ *
+ * @return String with the email address, must be free()'d. Never returns NULL.
+ */
+char* mrcontact_get_addr(mrcontact_t* contact)
+{
+	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
+		return safe_strdup(NULL);
+	}
+
+	return safe_strdup(contact->m_addr);
+}
+
+
+/**
+ * Get name. This is the name as defined the the contact himself or
+ * modified by the user.  May be an empty string.
+ *
+ * This name is typically used in a form where the user can edit the name of a contact.
+ * This name must not be spreaded via mail (To:, CC: ...) as it as it may be sth. like "Daddy".
+ * To get a fine name to display in lists etc., use mrcontact_get_display_name() or mrcontact_get_name_n_addr().
+ *
+ * @memberof mrcontact_t
+ *
+ * @param contact The contact object.
+ *
+ * @return String with the name to display, must be free()'d. Empty string if unset, never returns NULL.
+ */
+char* mrcontact_get_name(mrcontact_t* contact)
+{
+	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
+		return safe_strdup(NULL);
+	}
+
+	return safe_strdup(contact->m_name);
+}
+
+
+/**
+ * Get display name. This is the name as defined the the contact himself,
+ * modified by the user or, if both are unset, the email address.
+ *
+ * This name is typically used in lists and must not be speaded via mail (To:, CC: ...).
+ * To get the name editable in a formular, use mrcontact_get_edit_name().
+ *
+ * @memberof mrcontact_t
+ *
+ * @param contact The contact object.
+ *
+ * @return String with the name to display, must be free()'d. Never returns NULL.
+ */
+char* mrcontact_get_display_name(mrcontact_t* contact)
+{
+	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
+		return safe_strdup(NULL);
+	}
+
+	if( contact->m_name && contact->m_name[0] ) {
+		return safe_strdup(contact->m_name);
+	}
+
+	return safe_strdup(contact->m_addr);
+}
+
+
+/**
+ * Get a summary of name and address.
+ *
+ * The returned string is either "Name (email@domain.com)" or just
+ * "email@domain.com" if the name is unset.
+ *
+ * The summary is typically used when asking the user something about the contact.
+ * The attached email address makes the question unique, eg. "Chat with Alan Miller (am@uniquedomain.com)?"
+ *
+ * The summary must not be spreaded via mail (To:, CC: ...) as it as it may contain sth. like "Daddy".
+ *
+ * @memberof mrcontact_t
+ *
+ * @param contact The contact object.
+ *
+ * @return Summary string, must be free()'d. Never returns NULL.
+ */
+char* mrcontact_get_name_n_addr(mrcontact_t* contact)
+{
+	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
+		return safe_strdup(NULL);
+	}
+
+	if( contact->m_name && contact->m_name[0] ) {
+		return mr_mprintf("%s (%s)", contact->m_name, contact->m_addr);
+	}
+
+	return safe_strdup(contact->m_addr);
+}
+
+
+/**
+ * Check if a contact is blocked.
+ *
+ * To block or unblock a contact, use mrmailbox_block_contact().
+ *
+ * @memberof mrcontact_t
+ *
+ * @param contact The contact object.
+ *
+ * @return 1=contact is blocked, 0=contact is not blocked.
+ */
+int mrcontact_is_blocked(mrcontact_t* contact)
+{
+	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
+		return 0;
+	}
+	return contact->m_blocked;
 }
 
 
@@ -90,13 +253,13 @@ void mrcontact_empty(mrcontact_t* ths)
  * In a string, get the part before the first space.
  * If there is no space in the string, the whole string is returned.
  *
- * @memberof mrcontact_t
+ * @private @memberof mrcontact_t
  *
- * @param full_name Full name of the contct.
+ * @param full_name Full name of the contact.
  *
  * @return String with the first name, must be free()'d after usage.
  */
-char* mrcontact_get_first_name(const char* full_name)
+char* mr_get_first_name(const char* full_name)
 {
 	char* first_name = safe_strdup(full_name);
 	char* p1 = strchr(first_name, ' ');
@@ -113,6 +276,11 @@ char* mrcontact_get_first_name(const char* full_name)
 }
 
 
+/*******************************************************************************
+ * Misc.
+ ******************************************************************************/
+
+
 /**
  * Normalize a name in-place.
  *
@@ -120,14 +288,16 @@ char* mrcontact_get_first_name(const char* full_name)
  * - Convert names as "Petersen, Björn" to "Björn Petersen"
  * - Trims the resulting string
  *
- * @memberof mrcontact_t
+ * Typically, this function is not needed as it is called implicitly by mrmailbox_add_address_book()
+ *
+ * @private @memberof mrcontact_t
  *
  * @param full_name Buffer with the name, is modified during processing; the
  *     resulting string may be shorter but never longer.
  *
  * @return None. But the given buffer may be modified.
  */
-void mrcontact_normalize_name(char* full_name)
+void mr_normalize_name(char* full_name)
 {
 	if( full_name == NULL ) {
 		return; /* error, however, this can be treated as documented behaviour */
@@ -165,6 +335,35 @@ void mrcontact_normalize_name(char* full_name)
 
 
 /**
+ * Normalize an email address.
+ *
+ * Normalization includes:
+ * - removing `mailto:` prefix
+ *
+ * Not sure if we should also unifiy international characters before the @,
+ * see also https://autocrypt.readthedocs.io/en/latest/address-canonicalization.html
+ *
+ * @private @memberof mrcontact_t
+ *
+ * @param email_addr__ The email address to normalize.
+ *
+ * @return The normalized email address, must be free()'d. NULL is never returned.
+ */
+char* mr_normalize_addr(const char* email_addr__)
+{
+	char* addr = safe_strdup(email_addr__);
+	mr_trim(addr);
+	if( strncmp(addr, "mailto:", 7)==0 ) {
+		char* old = addr;
+		addr = safe_strdup(&old[7]);
+		free(old);
+		mr_trim(addr);
+	}
+	return addr;
+}
+
+
+/**
  * Library-internal.
  *
  * Calling this function is not thread-safe, locking is up to the caller.
@@ -176,30 +375,37 @@ int mrcontact_load_from_db__(mrcontact_t* ths, mrsqlite3_t* sql, uint32_t contac
 	int           success = 0;
 	sqlite3_stmt* stmt;
 
-	if( ths == NULL || sql == NULL ) {
+	if( ths == NULL || ths->m_magic != MR_CONTACT_MAGIC || sql == NULL ) {
 		return 0;
 	}
 
 	mrcontact_empty(ths);
 
-	stmt = mrsqlite3_predefine__(sql, SELECT_naob_FROM_contacts_i,
-		"SELECT name, addr, origin, blocked, authname FROM contacts WHERE id=?;");
-	sqlite3_bind_int(stmt, 1, contact_id);
-	if( sqlite3_step(stmt) != SQLITE_ROW ) {
-		goto cleanup;
+	if( contact_id == MR_CONTACT_ID_SELF )
+	{
+		ths->m_id   = contact_id;
+		ths->m_name = mrstock_str(MR_STR_SELF);
+		ths->m_addr = mrsqlite3_get_config__(sql, "configured_addr", "");
+	}
+	else
+	{
+		stmt = mrsqlite3_predefine__(sql, SELECT_naob_FROM_contacts_i,
+			"SELECT name, addr, origin, blocked, authname FROM contacts WHERE id=?;");
+		sqlite3_bind_int(stmt, 1, contact_id);
+		if( sqlite3_step(stmt) != SQLITE_ROW ) {
+			goto cleanup;
+		}
+
+		ths->m_id               = contact_id;
+		ths->m_name             = safe_strdup((char*)sqlite3_column_text (stmt, 0));
+		ths->m_addr             = safe_strdup((char*)sqlite3_column_text (stmt, 1));
+		ths->m_origin           =                    sqlite3_column_int  (stmt, 2);
+		ths->m_blocked          =                    sqlite3_column_int  (stmt, 3);
+		ths->m_authname         = safe_strdup((char*)sqlite3_column_text (stmt, 4));
 	}
 
-	ths->m_id               = contact_id;
-	ths->m_name             = safe_strdup((char*)sqlite3_column_text (stmt, 0));
-	ths->m_addr             = safe_strdup((char*)sqlite3_column_text (stmt, 1));
-	ths->m_origin           =                    sqlite3_column_int  (stmt, 2);
-	ths->m_blocked          =                    sqlite3_column_int  (stmt, 3);
-	ths->m_authname         = safe_strdup((char*)sqlite3_column_text (stmt, 4));
-
-	/* success */
 	success = 1;
 
-	/* cleanup */
 cleanup:
 	return success;
 }
