@@ -449,8 +449,7 @@
 				7A9FB13C1FB061E2001FEA36 /* Sources */,
 				7A9FB13D1FB061E2001FEA36 /* Frameworks */,
 				7A9FB13E1FB061E2001FEA36 /* Resources */,
-				269B032E4F093924FBEF3924 /* [CP] Embed Pods Frameworks */,
-				5666073C703CC2D48B2D265F /* [CP] Copy Pods Resources */,
+				30C8FE37A924BE7AFF9661C1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -539,7 +538,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		269B032E4F093924FBEF3924 /* [CP] Embed Pods Frameworks */ = {
+		30C8FE37A924BE7AFF9661C1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -555,21 +554,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5666073C703CC2D48B2D265F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		58C9D79942D26B7F8F210DA1 /* [CP] Check Pods Manifest.lock */ = {
