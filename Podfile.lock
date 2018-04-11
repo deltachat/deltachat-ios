@@ -1,0 +1,20 @@
+PODS:
+  - MessageKit (0.13.3)
+  - openssl-ios-bitcode (1.0.210)
+
+DEPENDENCIES:
+  - MessageKit
+  - openssl-ios-bitcode
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - MessageKit
+    - openssl-ios-bitcode
+
+SPEC CHECKSUMS:
+  MessageKit: 63c5811bdf1087384c76732fa4b5479b2ed11568
+  openssl-ios-bitcode: c833701a4488bd43de0051db41cfa75f6fef8109
+
+PODFILE CHECKSUM: c057d65ca0f57313f89f48ea66fc7773d4a562aa
+
+COCOAPODS: 1.5.0
