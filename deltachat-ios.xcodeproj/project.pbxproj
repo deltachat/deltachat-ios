@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70A4C09B208007B700D577B3 /* mrmailbox_receive_imf.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C089208007B500D577B3 /* mrmailbox_receive_imf.c */; };
+		70A4C09C208007B700D577B3 /* mrmailbox_securejoin.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C08B208007B500D577B3 /* mrmailbox_securejoin.c */; };
+		70A4C09D208007B700D577B3 /* mrarray.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C08C208007B600D577B3 /* mrarray.c */; };
+		70A4C09E208007B700D577B3 /* mrhash.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C08E208007B600D577B3 /* mrhash.c */; };
+		70A4C09F208007B700D577B3 /* mrmailbox_qr.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C090208007B600D577B3 /* mrmailbox_qr.c */; };
+		70A4C0A0208007B700D577B3 /* mrlot.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C094208007B600D577B3 /* mrlot.c */; };
+		70A4C0A1208007B700D577B3 /* mrmailbox_keyhistory.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C095208007B700D577B3 /* mrmailbox_keyhistory.c */; };
 		7A0052A11FBC50C40048C3BF /* CredentialsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0052A01FBC50C40048C3BF /* CredentialsController.swift */; };
 		7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0052C71FBE6CB40048C3BF /* NewContactController.swift */; };
 		7A451D941FB1B1DB00177250 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A451D921FB1B1DB00177250 /* wrapper.c */; };
@@ -46,7 +53,6 @@
 		7A9FB5461FB08557001FEA36 /* mrmailbox_e2ee.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB5171FB08557001FEA36 /* mrmailbox_e2ee.c */; };
 		7A9FB5471FB08557001FEA36 /* mrmailbox_imex.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB5181FB08557001FEA36 /* mrmailbox_imex.c */; };
 		7A9FB5481FB08557001FEA36 /* mrmailbox_log.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB5191FB08557001FEA36 /* mrmailbox_log.c */; };
-		7A9FB5491FB08557001FEA36 /* mrmailbox_tools.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB51A1FB08557001FEA36 /* mrmailbox_tools.c */; };
 		7A9FB54A1FB08557001FEA36 /* mrmimefactory.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB51B1FB08557001FEA36 /* mrmimefactory.c */; };
 		7A9FB54B1FB08557001FEA36 /* mrmimeparser.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB51D1FB08557001FEA36 /* mrmimeparser.c */; };
 		7A9FB54C1FB08557001FEA36 /* mrmsg.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB51F1FB08557001FEA36 /* mrmsg.c */; };
@@ -97,6 +103,32 @@
 
 /* Begin PBXFileReference section */
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70A4C081208007B400D577B3 /* mrarray-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mrarray-private.h"; sourceTree = "<group>"; };
+		70A4C082208007B400D577B3 /* mrchatlist-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mrchatlist-private.h"; sourceTree = "<group>"; };
+		70A4C083208007B400D577B3 /* mrevent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrevent.h; sourceTree = "<group>"; };
+		70A4C084208007B500D577B3 /* mrerror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrerror.h; sourceTree = "<group>"; };
+		70A4C085208007B500D577B3 /* mrpoortext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrpoortext.h; sourceTree = "<group>"; };
+		70A4C086208007B500D577B3 /* mrlot-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mrlot-private.h"; sourceTree = "<group>"; };
+		70A4C087208007B500D577B3 /* mrmailbox-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mrmailbox-private.h"; sourceTree = "<group>"; };
+		70A4C088208007B500D577B3 /* mrcontact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrcontact.h; sourceTree = "<group>"; };
+		70A4C089208007B500D577B3 /* mrmailbox_receive_imf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrmailbox_receive_imf.c; sourceTree = "<group>"; };
+		70A4C08A208007B500D577B3 /* mrchat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrchat.h; sourceTree = "<group>"; };
+		70A4C08B208007B500D577B3 /* mrmailbox_securejoin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrmailbox_securejoin.c; sourceTree = "<group>"; };
+		70A4C08C208007B600D577B3 /* mrarray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrarray.c; sourceTree = "<group>"; };
+		70A4C08D208007B600D577B3 /* mrmsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrmsg.h; sourceTree = "<group>"; };
+		70A4C08E208007B600D577B3 /* mrhash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrhash.c; sourceTree = "<group>"; };
+		70A4C08F208007B600D577B3 /* mrchatlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrchatlist.h; sourceTree = "<group>"; };
+		70A4C090208007B600D577B3 /* mrmailbox_qr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrmailbox_qr.c; sourceTree = "<group>"; };
+		70A4C091208007B600D577B3 /* mrcontact-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mrcontact-private.h"; sourceTree = "<group>"; };
+		70A4C092208007B600D577B3 /* mrarray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrarray.h; sourceTree = "<group>"; };
+		70A4C093208007B600D577B3 /* mrparam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrparam.h; sourceTree = "<group>"; };
+		70A4C094208007B600D577B3 /* mrlot.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrlot.c; sourceTree = "<group>"; };
+		70A4C095208007B700D577B3 /* mrmailbox_keyhistory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrmailbox_keyhistory.c; sourceTree = "<group>"; };
+		70A4C096208007B700D577B3 /* mrhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrhash.h; sourceTree = "<group>"; };
+		70A4C097208007B700D577B3 /* mrstock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrstock.h; sourceTree = "<group>"; };
+		70A4C098208007B700D577B3 /* mrmsg-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mrmsg-private.h"; sourceTree = "<group>"; };
+		70A4C099208007B700D577B3 /* mrchat-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mrchat-private.h"; sourceTree = "<group>"; };
+		70A4C09A208007B700D577B3 /* mrlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrlot.h; sourceTree = "<group>"; };
 		7A0052A01FBC50C40048C3BF /* CredentialsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsController.swift; sourceTree = "<group>"; };
 		7A0052C71FBE6CB40048C3BF /* NewContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactController.swift; sourceTree = "<group>"; };
 		7A451D921FB1B1DB00177250 /* wrapper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wrapper.c; sourceTree = "<group>"; };
@@ -173,7 +205,6 @@
 		7A9FB5171FB08557001FEA36 /* mrmailbox_e2ee.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrmailbox_e2ee.c; sourceTree = "<group>"; };
 		7A9FB5181FB08557001FEA36 /* mrmailbox_imex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrmailbox_imex.c; sourceTree = "<group>"; };
 		7A9FB5191FB08557001FEA36 /* mrmailbox_log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrmailbox_log.c; sourceTree = "<group>"; };
-		7A9FB51A1FB08557001FEA36 /* mrmailbox_tools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrmailbox_tools.c; sourceTree = "<group>"; };
 		7A9FB51B1FB08557001FEA36 /* mrmimefactory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrmimefactory.c; sourceTree = "<group>"; };
 		7A9FB51C1FB08557001FEA36 /* mrmimefactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrmimefactory.h; sourceTree = "<group>"; };
 		7A9FB51D1FB08557001FEA36 /* mrmimeparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrmimeparser.c; sourceTree = "<group>"; };
@@ -401,7 +432,6 @@
 				7A9FB5171FB08557001FEA36 /* mrmailbox_e2ee.c */,
 				7A9FB5181FB08557001FEA36 /* mrmailbox_imex.c */,
 				7A9FB5191FB08557001FEA36 /* mrmailbox_log.c */,
-				7A9FB51A1FB08557001FEA36 /* mrmailbox_tools.c */,
 				7A9FB51B1FB08557001FEA36 /* mrmimefactory.c */,
 				7A9FB51C1FB08557001FEA36 /* mrmimefactory.h */,
 				7A9FB51D1FB08557001FEA36 /* mrmimeparser.c */,
@@ -421,6 +451,32 @@
 				7A9FB52E1FB08557001FEA36 /* mrsmtp.h */,
 				7A9FB52F1FB08557001FEA36 /* mrsqlite3.c */,
 				7A9FB5301FB08557001FEA36 /* mrsqlite3.h */,
+				70A4C081208007B400D577B3 /* mrarray-private.h */,
+				70A4C08C208007B600D577B3 /* mrarray.c */,
+				70A4C092208007B600D577B3 /* mrarray.h */,
+				70A4C099208007B700D577B3 /* mrchat-private.h */,
+				70A4C08A208007B500D577B3 /* mrchat.h */,
+				70A4C082208007B400D577B3 /* mrchatlist-private.h */,
+				70A4C08F208007B600D577B3 /* mrchatlist.h */,
+				70A4C091208007B600D577B3 /* mrcontact-private.h */,
+				70A4C088208007B500D577B3 /* mrcontact.h */,
+				70A4C084208007B500D577B3 /* mrerror.h */,
+				70A4C083208007B400D577B3 /* mrevent.h */,
+				70A4C08E208007B600D577B3 /* mrhash.c */,
+				70A4C096208007B700D577B3 /* mrhash.h */,
+				70A4C086208007B500D577B3 /* mrlot-private.h */,
+				70A4C094208007B600D577B3 /* mrlot.c */,
+				70A4C09A208007B700D577B3 /* mrlot.h */,
+				70A4C095208007B700D577B3 /* mrmailbox_keyhistory.c */,
+				70A4C090208007B600D577B3 /* mrmailbox_qr.c */,
+				70A4C089208007B500D577B3 /* mrmailbox_receive_imf.c */,
+				70A4C08B208007B500D577B3 /* mrmailbox_securejoin.c */,
+				70A4C087208007B500D577B3 /* mrmailbox-private.h */,
+				70A4C098208007B700D577B3 /* mrmsg-private.h */,
+				70A4C08D208007B600D577B3 /* mrmsg.h */,
+				70A4C093208007B600D577B3 /* mrparam.h */,
+				70A4C085208007B500D577B3 /* mrpoortext.h */,
+				70A4C097208007B700D577B3 /* mrstock.h */,
 				7A9FB5311FB08557001FEA36 /* mrstock.c */,
 				7A9FB5331FB08557001FEA36 /* mrtools.c */,
 				7A9FB5341FB08557001FEA36 /* mrtools.h */,
@@ -596,6 +652,7 @@
 				7A79236D1FB0A2C800BC2DE5 /* keyring.c in Sources */,
 				7A7923721FB0A2C800BC2DE5 /* reader.c in Sources */,
 				7A9FB54F1FB08557001FEA36 /* mrpgp.c in Sources */,
+				70A4C0A1208007B700D577B3 /* mrmailbox_keyhistory.c in Sources */,
 				7A7923701FB0A2C800BC2DE5 /* packet-parse.c in Sources */,
 				7A9FB5431FB08557001FEA36 /* mrloginparam.c in Sources */,
 				7A9FB5501FB08557001FEA36 /* mrpoortext.c in Sources */,
@@ -609,13 +666,13 @@
 				7A9FB54E1FB08557001FEA36 /* mrparam.c in Sources */,
 				AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */,
 				7A7923741FB0A2C800BC2DE5 /* symmetric.c in Sources */,
+				70A4C09C208007B700D577B3 /* mrmailbox_securejoin.c in Sources */,
 				7A9FB54C1FB08557001FEA36 /* mrmsg.c in Sources */,
 				7A9FB5521FB08557001FEA36 /* mrsimplify.c in Sources */,
 				7A9FB5381FB08557001FEA36 /* mraheader.c in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
 				7A9FB53D1FB08557001FEA36 /* mrcontact.c in Sources */,
 				7A9FB5451FB08557001FEA36 /* mrmailbox_configure.c in Sources */,
-				7A9FB5491FB08557001FEA36 /* mrmailbox_tools.c in Sources */,
 				7A7923711FB0A2C800BC2DE5 /* packet-show.c in Sources */,
 				7A9FB5441FB08557001FEA36 /* mrmailbox.c in Sources */,
 				7A9FB5401FB08557001FEA36 /* mrjob.c in Sources */,
@@ -625,12 +682,17 @@
 				7A9FB53F1FB08557001FEA36 /* mrimap.c in Sources */,
 				AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */,
 				7A79236F1FB0A2C800BC2DE5 /* openssl_crypto.c in Sources */,
+				70A4C0A0208007B700D577B3 /* mrlot.c in Sources */,
 				7A9FB5391FB08557001FEA36 /* mrapeerstate.c in Sources */,
 				7A9FB5531FB08557001FEA36 /* mrsmtp.c in Sources */,
+				70A4C09B208007B700D577B3 /* mrmailbox_receive_imf.c in Sources */,
 				7A9FB53E1FB08557001FEA36 /* mrdehtml.c in Sources */,
 				7A79236C1FB0A2C800BC2DE5 /* crypto.c in Sources */,
 				7A451DBE1FB4AD0700177250 /* Wrapper.swift in Sources */,
+				70A4C09D208007B700D577B3 /* mrarray.c in Sources */,
+				70A4C09F208007B700D577B3 /* mrmailbox_qr.c in Sources */,
 				7A9FB5461FB08557001FEA36 /* mrmailbox_e2ee.c in Sources */,
+				70A4C09E208007B700D577B3 /* mrhash.c in Sources */,
 				7A9FB54A1FB08557001FEA36 /* mrmimefactory.c in Sources */,
 				7A451D941FB1B1DB00177250 /* wrapper.c in Sources */,
 				7A9FB54D1FB08557001FEA36 /* mrosnative.c in Sources */,
