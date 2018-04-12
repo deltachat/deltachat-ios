@@ -12,7 +12,9 @@ import UIKit
 struct Utils {
     static func getContactIds() -> [Int] {
         let c_contacts = mrmailbox_get_known_contacts(mailboxPointer, nil)
-        return Utils.copyAndFreeArray(inputArray: c_contacts)
+        // FIXME!
+        // return Utils.copyAndFreeArray(inputArray: c_contacts)
+        return []
     }
 
     
@@ -20,7 +22,8 @@ struct Utils {
         var acc:[Int] = []
         let len = carray_count(inputArray)
         for i in 0 ..< len {
-            acc.append(Int(carray_get_uint32(inputArray, i)))
+            // FIXME!
+            // acc.append(Int(carray_get_uint32(inputArray, i)))
         }
         carray_free(inputArray)
         return acc
