@@ -120,7 +120,7 @@ class MRChat {
 
 class MRPoorText {
     
-    private var poorTextPointer: UnsafeMutablePointer<mrpoortext_t>
+    private var poorTextPointer: UnsafeMutablePointer<mrlot_t>
     
     var text1: String? {
         if poorTextPointer.pointee.m_text1 == nil {
@@ -149,12 +149,12 @@ class MRPoorText {
     }
     
     // takes ownership of specified pointer
-    init(poorTextPointer: UnsafeMutablePointer<mrpoortext_t>) {
+    init(poorTextPointer: UnsafeMutablePointer<mrlot_t>) {
         self.poorTextPointer = poorTextPointer
     }
     
     deinit {
-        mrpoortext_unref(poorTextPointer)
+        mrlot_unref(poorTextPointer)
     }
 }
 
