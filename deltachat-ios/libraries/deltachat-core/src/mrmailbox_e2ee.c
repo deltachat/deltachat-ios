@@ -318,8 +318,9 @@ cleanup:
 
 
 void mrmailbox_e2ee_encrypt(mrmailbox_t* mailbox, const clist* recipients_addr,
+                    int force_unencrypted,
                     int e2ee_guaranteed, /*set if e2ee was possible on sending time; we should not degrade to transport*/
-                    int encrypt_to_self, struct mailmime* in_out_message, mrmailbox_e2ee_helper_t* helper)
+                    struct mailmime* in_out_message, mrmailbox_e2ee_helper_t* helper)
 {
 	int                    locked = 0, col = 0, do_encrypt = 0;
 	mraheader_t*           autocryptheader = mraheader_new();
@@ -364,7 +365,7 @@ void mrmailbox_e2ee_encrypt(mrmailbox_t* mailbox, const clist* recipients_addr,
 			clistiter*      iter1;
 			for( iter1 = clist_begin(recipients_addr); iter1!=NULL ; iter1=clist_next(iter1) ) {
 				const char* recipient_addr = clist_content(iter1);
-				mrapeerstate_t* peerstate = mrapeerstate_new();
+				mrapeerstate_t* peerstate = mrapeerstate_new(mailbox);
 				if( mrapeerstate_load_by_addr__(peerstate, mailbox->m_sql, recipient_addr)
 				 && mrapeerstate_peek_key(peerstate)
 				 && (peerstate->m_prefer_encrypt==MRA_PE_MUTUAL || e2ee_guaranteed) )
@@ -385,6 +386,10 @@ void mrmailbox_e2ee_encrypt(mrmailbox_t* mailbox, const clist* recipients_addr,
 			if( !mrkey_load_self_private__(sign_key, autocryptheader->m_addr, mailbox->m_sql) ) {
 				do_encrypt = 0;
 			}
+		}
+
+		if( force_unencrypted ) {
+			do_encrypt = 0;
 		}
 
 	mrsqlite3_unlock(mailbox->m_sql);
@@ -733,7 +738,7 @@ static void update_gossip_peerstates(mrmailbox_t* mailbox, time_t message_time, 
 					if( mrhash_find(recipients, gossip_header->m_addr, strlen(gossip_header->m_addr)) )
 					{
 						/* valid recipient: update peerstate */
-						mrapeerstate_t* peerstate = mrapeerstate_new();
+						mrapeerstate_t* peerstate = mrapeerstate_new(mailbox);
 						if( !mrapeerstate_load_by_addr__(peerstate, mailbox->m_sql, gossip_header->m_addr) ) {
 							mrapeerstate_init_from_gossip(peerstate, gossip_header, message_time);
 							mrapeerstate_save_to_db__(peerstate, mailbox->m_sql, 1/*create*/);
@@ -761,19 +766,23 @@ static void update_gossip_peerstates(mrmailbox_t* mailbox, time_t message_time, 
 }
 
 
-int mrmailbox_e2ee_decrypt(mrmailbox_t* mailbox, struct mailmime* in_out_message, int* ret_validation_errors)
+int mrmailbox_e2ee_decrypt(mrmailbox_t* mailbox, struct mailmime* in_out_message, int* ret_validation_errors, int* ret_degrade_event)
 {
 	/* return values: 0=nothing to decrypt/cannot decrypt, 1=sth. decrypted
 	(to detect parts that could not be decrypted, simply look for left "multipart/encrypted" MIME types */
 	struct mailimf_fields* imffields = mailmime_find_mailimf_fields(in_out_message); /*just a pointer into mailmime structure, must not be freed*/
 	mraheader_t*           autocryptheader = NULL;
 	time_t                 message_time = 0;
-	mrapeerstate_t*        peerstate = mrapeerstate_new();
+	mrapeerstate_t*        peerstate = mrapeerstate_new(mailbox);
 	int                    locked = 0;
 	char*                  from = NULL, *self_addr = NULL;
 	mrkeyring_t*           private_keyring = mrkeyring_new();
 	int                    sth_decrypted = 0;
 	struct mailimf_fields* gossip_headers = NULL;
+
+	if( ret_degrade_event ) {
+		*ret_degrade_event = 0;
+	}
 
 	if( mailbox==NULL || mailbox->m_magic != MR_MAILBOX_MAGIC || in_out_message==NULL || ret_validation_errors==NULL
 	 || imffields==NULL || peerstate==NULL || private_keyring==NULL ) {
@@ -836,6 +845,10 @@ int mrmailbox_e2ee_decrypt(mrmailbox_t* mailbox, struct mailmime* in_out_message
 				mrapeerstate_init_from_header(peerstate, autocryptheader, message_time);
 				mrapeerstate_save_to_db__(peerstate, mailbox->m_sql, 1/*create*/);
 			}
+		}
+
+		if( ret_degrade_event ) {
+			*ret_degrade_event = peerstate->m_degrade_event;
 		}
 
 		/* load private key for decryption */

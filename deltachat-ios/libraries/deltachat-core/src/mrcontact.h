@@ -37,11 +37,11 @@ extern "C" {
 typedef struct _mrcontact mrcontact_t;
 
 #define         MR_CONTACT_ID_SELF         1
-#define         MR_CONTACT_ID_SYSTEM       2
+#define         MR_CONTACT_ID_DEVICE       2
 #define         MR_CONTACT_ID_LAST_SPECIAL 9
 
 
-mrcontact_t* mrcontact_new                    (); /* the returned pointer is ref'd and must be unref'd after usage */
+mrcontact_t* mrcontact_new                    (mrmailbox_t*); /* the returned pointer is ref'd and must be unref'd after usage */
 void         mrcontact_empty                  (mrcontact_t*);
 void         mrcontact_unref                  (mrcontact_t*);
 
@@ -51,6 +51,7 @@ char*        mrcontact_get_name               (mrcontact_t*);
 char*        mrcontact_get_display_name       (mrcontact_t*);
 char*        mrcontact_get_name_n_addr        (mrcontact_t*);
 int          mrcontact_is_blocked             (mrcontact_t*);
+int          mrcontact_is_verified            (mrcontact_t*);
 
 
 #ifdef __cplusplus

@@ -118,7 +118,7 @@ void            mrmailbox_set_group_explicitly_left__             (mrmailbox_t*,
 size_t          mrmailbox_get_real_msg_cnt__                      (mrmailbox_t*); /* the number of messages assigned to real chat (!=deaddrop, !=trash) */
 size_t          mrmailbox_get_deaddrop_msg_cnt__                  (mrmailbox_t*);
 int             mrmailbox_rfc724_mid_cnt__                        (mrmailbox_t*, const char* rfc724_mid);
-int             mrmailbox_rfc724_mid_exists__                     (mrmailbox_t*, const char* rfc724_mid, char** ret_server_folder, uint32_t* ret_server_uid);
+uint32_t        mrmailbox_rfc724_mid_exists__                     (mrmailbox_t*, const char* rfc724_mid, char** ret_server_folder, uint32_t* ret_server_uid);
 void            mrmailbox_update_server_uid__                     (mrmailbox_t*, const char* rfc724_mid, const char* server_folder, uint32_t server_uid);
 void            mrmailbox_update_msg_chat_id__                    (mrmailbox_t*, uint32_t msg_id, uint32_t chat_id);
 void            mrmailbox_update_msg_state__                      (mrmailbox_t*, uint32_t msg_id, int state);
@@ -128,6 +128,8 @@ void            mrmailbox_send_mdn                                (mrmailbox_t*,
 void            mrmailbox_markseen_msg_on_imap                    (mrmailbox_t* mailbox, mrjob_t* job);
 void            mrmailbox_markseen_mdn_on_imap                    (mrmailbox_t* mailbox, mrjob_t* job);
 int             mrmailbox_get_thread_index                        (void);
+uint32_t        mrmailbox_add_device_msg                          (mrmailbox_t*, uint32_t chat_id, const char* text);
+uint32_t        mrmailbox_add_device_msg__                        (mrmailbox_t*, uint32_t chat_id, const char* text, time_t timestamp);
 
 
 /* library private: end-to-end-encryption */
@@ -139,8 +141,8 @@ typedef struct mrmailbox_e2ee_helper_t {
 	void* m_cdata_to_free;
 } mrmailbox_e2ee_helper_t;
 
-void            mrmailbox_e2ee_encrypt      (mrmailbox_t*, const clist* recipients_addr, int e2ee_guaranteed, int encrypt_to_self, struct mailmime* in_out_message, mrmailbox_e2ee_helper_t*);
-int             mrmailbox_e2ee_decrypt      (mrmailbox_t*, struct mailmime* in_out_message, int* ret_validation_errors); /* returns 1 if sth. was decrypted, 0 in other cases */
+void            mrmailbox_e2ee_encrypt      (mrmailbox_t*, const clist* recipients_addr, int force_unencrypted, int e2ee_guaranteed, struct mailmime* in_out_message, mrmailbox_e2ee_helper_t*);
+int             mrmailbox_e2ee_decrypt      (mrmailbox_t*, struct mailmime* in_out_message, int* ret_validation_errors, int* ret_degrade_event); /* returns 1 if sth. was decrypted, 0 in other cases */
 void            mrmailbox_e2ee_thanks       (mrmailbox_e2ee_helper_t*); /* frees data referenced by "mailmime" but not freed by mailmime_free(). After calling mre2ee_unhelp(), in_out_message cannot be used any longer! */
 int             mrmailbox_ensure_secret_key_exists (mrmailbox_t*); /* makes sure, the private key exists, needed only for exporting keys and the case no message was sent before */
 char*           mrmailbox_create_setup_code (mrmailbox_t*);
@@ -153,11 +155,15 @@ int             mrmailbox_alloc_ongoing     (mrmailbox_t*);
 void            mrmailbox_free_ongoing      (mrmailbox_t*);
 
 
-/* private oob-stuff */
-int             mrmailbox_oob_is_handshake_message__  (mrmailbox_t*, mrmimeparser_t*); /* must be called from lock */
-void            mrmailbox_oob_handle_handshake_message(mrmailbox_t*, mrmimeparser_t*, uint32_t chat_id); /* must not be called from lock */
+/* library private: secure-join */
+int             mrmailbox_is_securejoin_handshake__  (mrmailbox_t*, mrmimeparser_t*); /* must be called from lock */
+void            mrmailbox_handle_securejoin_handshake(mrmailbox_t*, mrmimeparser_t*, uint32_t chat_id); /* must not be called from lock */
 
-uint32_t        mrmailbox_add_system_msg              (mrmailbox_t*, uint32_t chat_id, const char* text);
+#define OPENPGP4FPR_SCHEME "OPENPGP4FPR:" /* yes: uppercase */
+
+
+/* library private: key-history */
+void            mrmailbox_add_to_keyhistory__(mrmailbox_t*, const char* rfc724_mid, time_t, const char* addr, const char* fingerprint);
 
 
 #ifdef __cplusplus

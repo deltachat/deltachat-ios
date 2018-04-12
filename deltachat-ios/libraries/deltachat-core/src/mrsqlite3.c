@@ -186,7 +186,7 @@ int mrsqlite3_open__(mrsqlite3_t* ths, const char* dbfile, int flags)
 						" param TEXT DEFAULT '');");      /* param is for future use, eg. for the status */
 			mrsqlite3_execute__(ths, "CREATE INDEX contacts_index1 ON contacts (name COLLATE NOCASE);"); /* needed for query contacts */
 			mrsqlite3_execute__(ths, "CREATE INDEX contacts_index2 ON contacts (addr COLLATE NOCASE);"); /* needed for query and on receiving mails */
-			mrsqlite3_execute__(ths, "INSERT INTO contacts (id,name,origin) VALUES (1,'self',262144), (2,'system',262144), (3,'rsvd',262144), (4,'rsvd',262144), (5,'rsvd',262144), (6,'rsvd',262144), (7,'rsvd',262144), (8,'rsvd',262144), (9,'rsvd',262144);");
+			mrsqlite3_execute__(ths, "INSERT INTO contacts (id,name,origin) VALUES (1,'self',262144), (2,'device',262144), (3,'rsvd',262144), (4,'rsvd',262144), (5,'rsvd',262144), (6,'rsvd',262144), (7,'rsvd',262144), (8,'rsvd',262144), (9,'rsvd',262144);");
 			#if !defined(MR_ORIGIN_INTERNAL) || MR_ORIGIN_INTERNAL!=262144
 				#error
 			#endif
@@ -250,8 +250,11 @@ int mrsqlite3_open__(mrsqlite3_t* ths, const char* dbfile, int flags)
 			mrsqlite3_set_config_int__(ths, "dbversion", 0);
 		}
 
-		/* Update database */
+		// (1) update low-level database structure.
+		// this should be done before updates that use high-level objects that rely themselves on the low-level structure.
 		int dbversion = mrsqlite3_get_config_int__(ths, "dbversion", 0);
+		int recalc_fingerprints = 0;
+
 		#define NEW_DB_VERSION 1
 			if( dbversion < NEW_DB_VERSION )
 			{
@@ -355,32 +358,37 @@ int mrsqlite3_open__(mrsqlite3_t* ths, const char* dbfile, int flags)
 				mrsqlite3_execute__(ths, "ALTER TABLE acpeerstates ADD COLUMN fingerprint TEXT DEFAULT '';"); /* do not add `COLLATE NOCASE` case-insensivity is not needed as we force uppercase on store - otoh case-sensivity may be neeed for other/upcoming fingerprint formats */
 				mrsqlite3_execute__(ths, "CREATE INDEX acpeerstates_index2 ON acpeerstates (fingerprint);");
 
-				/* init fingerprint column */
-				sqlite3_stmt* stmt = mrsqlite3_prepare_v2_(ths, "SELECT addr FROM acpeerstates;");
-					while( sqlite3_step(stmt) == SQLITE_ROW ) {
-						mrapeerstate_t* peerstate = mrapeerstate_new();
-							if( mrapeerstate_load_by_addr__(peerstate, ths, (const char*)sqlite3_column_text(stmt, 0))
-							 && mrapeerstate_recalc_fingerprint(peerstate) ) {
-								mrapeerstate_save_to_db__(peerstate, ths, 0/*don't create*/);
-							}
-						mrapeerstate_unref(peerstate);
-					}
-				sqlite3_finalize(stmt);
-
 				dbversion = NEW_DB_VERSION;
 				mrsqlite3_set_config_int__(ths, "dbversion", NEW_DB_VERSION);
 			}
 		#undef NEW_DB_VERSION
 
-		#define NEW_DB_VERSION 28
+		#define NEW_DB_VERSION 31
 			if( dbversion < NEW_DB_VERSION )
 			{
 				mrsqlite3_execute__(ths, "ALTER TABLE msgs ADD COLUMN hidden INTEGER DEFAULT 0;");
+				mrsqlite3_execute__(ths, "ALTER TABLE acpeerstates ADD COLUMN verified INTEGER DEFAULT 0;");
+				recalc_fingerprints = 1;
 
 				dbversion = NEW_DB_VERSION;
 				mrsqlite3_set_config_int__(ths, "dbversion", NEW_DB_VERSION);
 			}
 		#undef NEW_DB_VERSION
+
+		// (2) updates that require high-level objects (the structure is complete now and all objects are usable)
+		if( recalc_fingerprints )
+		{
+			sqlite3_stmt* stmt = mrsqlite3_prepare_v2_(ths, "SELECT addr FROM acpeerstates;");
+				while( sqlite3_step(stmt) == SQLITE_ROW ) {
+					mrapeerstate_t* peerstate = mrapeerstate_new(ths->m_mailbox);
+						if( mrapeerstate_load_by_addr__(peerstate, ths, (const char*)sqlite3_column_text(stmt, 0))
+						 && mrapeerstate_recalc_fingerprint(peerstate) ) {
+							mrapeerstate_save_to_db__(peerstate, ths, 0/*don't create*/);
+						}
+					mrapeerstate_unref(peerstate);
+				}
+			sqlite3_finalize(stmt);
+		}
 	}
 
 	mrmailbox_log_info(ths->m_mailbox, 0, "Opened \"%s\" successfully.", dbfile);

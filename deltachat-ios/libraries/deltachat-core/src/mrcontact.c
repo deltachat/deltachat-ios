@@ -22,6 +22,7 @@
 
 #include "mrmailbox_internal.h"
 #include "mrcontact.h"
+#include "mrapeerstate.h"
 
 #define MR_CONTACT_MAGIC 0x0c047ac7
 
@@ -35,7 +36,7 @@
  *
  * @return The contact object. Must be freed using mrcontact_unref() when done.
  */
-mrcontact_t* mrcontact_new()
+mrcontact_t* mrcontact_new(mrmailbox_t* mailbox)
 {
 	mrcontact_t* ths = NULL;
 
@@ -43,7 +44,8 @@ mrcontact_t* mrcontact_new()
 		exit(19); /* cannot allocate little memory, unrecoverable error */
 	}
 
-	ths->m_magic = MR_CONTACT_MAGIC;
+	ths->m_magic   = MR_CONTACT_MAGIC;
+	ths->m_mailbox = mailbox;
 
 	return ths;
 }
@@ -248,6 +250,50 @@ int mrcontact_is_blocked(mrcontact_t* contact)
 
 
 /**
+ * Check if a contact was verified eg. by a secure-join QR code scan
+ * and if the key has not changed since this verification.
+ *
+ * The UI may draw a checkbox or sth. like that beside verified contacts.
+ *
+ * @memberof mrcontact_t
+ *
+ * @param contact The contact object.
+ *
+ * @return 1=contact is verified, 0=contact is not verified.
+ */
+int mrcontact_is_verified(mrcontact_t* contact)
+{
+	// if you change the algorithm here, you may also want to adapt mrchat_is_verfied()
+
+	int             contact_verified = 0;
+	mrapeerstate_t* peerstate        = mrapeerstate_new(contact->m_mailbox);
+
+	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
+		goto cleanup;
+	}
+
+	if( contact->m_id == MR_CONTACT_ID_SELF ) {
+		contact_verified = 1;
+		goto cleanup; // we're always sort of secured-verified as we could verify the key on this device any time with the key on this device
+	}
+
+	if( !mrapeerstate_load_by_addr__(peerstate, contact->m_mailbox->m_sql, contact->m_addr) ) {
+		goto cleanup;
+	}
+
+	if( peerstate->m_verified==0 || peerstate->m_prefer_encrypt!=MRA_PE_MUTUAL ) {
+		goto cleanup;
+	}
+
+	contact_verified = 1;
+
+cleanup:
+	mrapeerstate_unref(peerstate);
+	return contact_verified;
+}
+
+
+/**
  * Get the first name.
  *
  * In a string, get the part before the first space.
@@ -390,7 +436,9 @@ int mrcontact_load_from_db__(mrcontact_t* ths, mrsqlite3_t* sql, uint32_t contac
 	else
 	{
 		stmt = mrsqlite3_predefine__(sql, SELECT_naob_FROM_contacts_i,
-			"SELECT name, addr, origin, blocked, authname FROM contacts WHERE id=?;");
+			"SELECT c.name, c.addr, c.origin, c.blocked, c.authname "
+			" FROM contacts c "
+			" WHERE c.id=?;");
 		sqlite3_bind_int(stmt, 1, contact_id);
 		if( sqlite3_step(stmt) != SQLITE_ROW ) {
 			goto cleanup;

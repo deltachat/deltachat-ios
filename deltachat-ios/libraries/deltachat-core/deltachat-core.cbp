@@ -489,13 +489,19 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/mrmailbox_internal.h" />
+		<Unit filename="src/mrmailbox_keyhistory.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/mrmailbox_log.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrmailbox_oob.c">
+		<Unit filename="src/mrmailbox_qr.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/mrmailbox_receive_imf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/mrmailbox_securejoin.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/mrmimefactory.c">

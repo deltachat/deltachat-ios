@@ -139,7 +139,7 @@ static int poke_public_key(mrmailbox_t* mailbox, const char* addr, const char* p
 	/* mainly for testing: if the partner does not support Autocrypt,
 	encryption is disabled as soon as the first messages comes from the partner */
 	mraheader_t*    header = mraheader_new();
-	mrapeerstate_t* peerstate = mrapeerstate_new();
+	mrapeerstate_t* peerstate = mrapeerstate_new(mailbox);
 	int             locked = 0, success = 0;
 
 	if( addr==NULL || public_key_file==NULL || peerstate==NULL || header==NULL ) {
@@ -318,7 +318,7 @@ static void log_msglist(mrmailbox_t* mailbox, mrarray_t* msglist)
 					msgtext,
 					mrmsg_is_starred(msg)? " \xE2\x98\x85" : "",
 					mrmsg_get_from_id(msg)==1? "" : (mrmsg_get_state(msg)==MR_STATE_IN_SEEN? "[SEEN]" : (mrmsg_get_state(msg)==MR_STATE_IN_NOTICED? "[NOTICED]":"[FRESH]")),
-					mrmsg_is_systemcmd(msg)? "[SYSTEM]" : "",
+					mrmsg_is_info(msg)? "[INFO]" : "",
 					statestr,
 					temp2);
 			free(msgtext);
@@ -338,7 +338,7 @@ static void log_contactlist(mrmailbox_t* mailbox, mrarray_t* contacts)
 {
 	int             i, cnt = mrarray_get_cnt(contacts);
 	mrcontact_t*    contact = NULL;
-	mrapeerstate_t* peerstate = mrapeerstate_new();
+	mrapeerstate_t* peerstate = mrapeerstate_new(mailbox);
 
 	for( i = 0; i < cnt; i++ ) {
 		uint32_t contact_id = mrarray_get_id(contacts, i);
@@ -347,7 +347,8 @@ static void log_contactlist(mrmailbox_t* mailbox, mrarray_t* contacts)
 		if( (contact=mrmailbox_get_contact(mailbox, contact_id))!=NULL ) {
 			char* name = mrcontact_get_name(contact);
 			char* addr = mrcontact_get_addr(contact);
-			line = mr_mprintf("%s, %s", (name&&name[0])? name : "<name unset>", (addr&&addr[0])? addr : "<addr unset>");
+			const char* verified = mrcontact_is_verified(contact)? " √": "";
+			line = mr_mprintf("%s%s <%s>", (name&&name[0])? name : "<name unset>", verified, (addr&&addr[0])? addr : "addr unset");
 			mrsqlite3_lock(mailbox->m_sql);
 				int peerstate_ok = mrapeerstate_load_by_addr__(peerstate, mailbox->m_sql, addr);
 			mrsqlite3_unlock(mailbox->m_sql);
@@ -703,8 +704,9 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 
 					char* temp_subtitle = mrchat_get_subtitle(chat);
 					char* temp_name = mrchat_get_name(chat);
-						mrmailbox_log_info(mailbox, 0, "%s#%i: %s [%s] [%i fresh]", mrchat_get_type(chat)==MR_CHAT_TYPE_GROUP? "Groupchat" : "Chat",
-							(int)mrchat_get_id(chat), temp_name, temp_subtitle, (int)mrmailbox_get_fresh_msg_count(mailbox, mrchat_get_id(chat)));
+					const char* verified = mrchat_is_verified(chat)? " √": "";
+						mrmailbox_log_info(mailbox, 0, "%s#%i: %s%s [%s] [%i fresh]", mrchat_get_type(chat)==MR_CHAT_TYPE_GROUP? "Groupchat" : "Chat",
+							(int)mrchat_get_id(chat), temp_name, verified, temp_subtitle, (int)mrmailbox_get_fresh_msg_count(mailbox, mrchat_get_id(chat)));
 					free(temp_subtitle);
 					free(temp_name);
 
@@ -1166,7 +1168,7 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 
 	else if( strcmp(cmd, "getqr")==0 )
 	{
-		ret = mrmailbox_oob_get_qr(mailbox);
+		ret = mrmailbox_get_securejoin_qr(mailbox, 0);
 	}
 	else if( strcmp(cmd, "checkqr")==0 )
 	{

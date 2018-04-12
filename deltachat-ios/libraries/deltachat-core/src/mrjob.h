@@ -51,7 +51,7 @@ typedef struct mrjob_t
 
 void     mrjob_init_thread     (mrmailbox_t*);
 void     mrjob_exit_thread     (mrmailbox_t*);
-uint32_t mrjob_add__           (mrmailbox_t*, int action, int foreign_id, const char* param); /* returns the job_id or 0 on errors. the job may or may not be done if the function returns. */
+uint32_t mrjob_add__           (mrmailbox_t*, int action, int foreign_id, const char* param, int delay); /* returns the job_id or 0 on errors. the job may or may not be done if the function returns. */
 void     mrjob_kill_action__   (mrmailbox_t*, int action); /* delete all pending jobs with the given action */
 
 #define  MR_AT_ONCE            0

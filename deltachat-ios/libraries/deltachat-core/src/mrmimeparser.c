@@ -1422,7 +1422,7 @@ void mrmimeparser_parse(mrmimeparser_t* ths, const char* body_not_terminated, si
 	/* decrypt, if possible; handle Autocrypt:-header
 	(decryption may modifiy the given object) */
 	int validation_errors = 0;
-	if( mrmailbox_e2ee_decrypt(ths->m_mailbox, ths->m_mimeroot, &validation_errors) ) {
+	if( mrmailbox_e2ee_decrypt(ths->m_mailbox, ths->m_mimeroot, &validation_errors, &ths->m_degrade_event) ) {
 		if( validation_errors == 0 ) {
 			ths->m_decrypted_and_validated = 1;
 		}
@@ -1467,7 +1467,7 @@ void mrmimeparser_parse(mrmimeparser_t* ths, const char* body_not_terminated, si
 		}
 		if( has_setup_file ) {
 			/* delete all parts but the application/autocrypt-setup part */
-			ths->m_is_system_message = MR_SYSTEM_AUTOCRYPT_SETUP_MESSAGE;
+			ths->m_is_system_message = MR_CMD_AUTOCRYPT_SETUP_MESSAGE;
 			for( i = 0; i < carray_count(ths->m_parts); i++ ) {
 				mrmimepart_t* part = (mrmimepart_t*)carray_get(ths->m_parts, i);
 				if( part->m_int_mimetype!=MR_MIMETYPE_AC_SETUP_FILE ) {
@@ -1560,7 +1560,7 @@ void mrmimeparser_parse(mrmimeparser_t* ths, const char* body_not_terminated, si
 	 && carray_count(ths->m_parts)>=1 ) {
 		mrmimepart_t* textpart = (mrmimepart_t*)carray_get(ths->m_parts, 0);
 		if( textpart->m_type == MR_MSG_TEXT ) {
-			mrparam_set_int(textpart->m_param, MRP_SYSTEM_CMD, MR_SYSTEM_GROUPIMAGE_CHANGED);
+			mrparam_set_int(textpart->m_param, MRP_CMD, MR_CMD_GROUPIMAGE_CHANGED);
 			if( carray_count(ths->m_parts)>=2 ) {
 				mrmimepart_t* imgpart = (mrmimepart_t*)carray_get(ths->m_parts, 1);
 				if( imgpart->m_type == MR_MSG_IMAGE ) {

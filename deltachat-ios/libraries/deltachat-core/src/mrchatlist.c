@@ -233,7 +233,7 @@ mrlot_t* mrchatlist_get_summary(mrchatlist_t* chatlist, size_t index, mrchat_t* 
 
 			if( lastmsg->m_from_id != MR_CONTACT_ID_SELF  &&  chat->m_type == MR_CHAT_TYPE_GROUP )
 			{
-				lastcontact = mrcontact_new();
+				lastcontact = mrcontact_new(chatlist->m_mailbox);
 				mrcontact_load_from_db__(lastcontact, chatlist->m_mailbox->m_sql, lastmsg->m_from_id);
 			}
 

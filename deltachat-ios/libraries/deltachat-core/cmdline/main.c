@@ -81,7 +81,7 @@ static uintptr_t receive_event(mrmailbox_t* mailbox, int event, uintptr_t data1,
 			{
 				char* ret = NULL;
 				char* tempFile = mr_get_fine_pathNfilename(mailbox->m_blobdir, "curl.result");
-				char* cmd = mr_mprintf("curl --silent --location --fail %s > %s", (char*)data1, tempFile); /* --location = follow redirects */
+				char* cmd = mr_mprintf("curl --silent --location --fail --insecure %s > %s", (char*)data1, tempFile); /* --location = follow redirects */
 				int error = system(cmd);
 				if( error == 0 ) { /* -1=system() error, !0=curl errors forced by -f, 0=curl success */
 					size_t bytes = 0;
@@ -159,7 +159,8 @@ int main(int argc, char ** argv)
 		}
 		else if( strcmp(cmd, "getqr")==0 || strcmp(cmd, "getbadqr")==0 )
 		{
-			char* qrstr  = mrmailbox_oob_get_qr(mailbox);
+			mrmailbox_connect(mailbox);
+			char* qrstr  = mrmailbox_get_securejoin_qr(mailbox, 0);
 			if( strcmp(cmd, "getbadqr")==0 && strlen(qrstr)>40 ) {
 				for( int i = 12; i < 22; i++ ) { qrstr[i] = '0'; }
 			}

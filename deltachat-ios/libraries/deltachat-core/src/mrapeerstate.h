@@ -44,6 +44,8 @@ typedef struct mraheader_t mraheader_t;
 typedef struct mrapeerstate_t
 {
 	/** @privatesection */
+	mrmailbox_t*   m_mailbox;
+
 	char*          m_addr;
 	time_t         m_last_seen;  /* may be 0 if the peer was created by gossipping */
 
@@ -55,14 +57,20 @@ typedef struct mrapeerstate_t
 	mrkey_t*       m_gossip_key; /* may be NULL */
 
 	char*          m_fingerprint; /* fingerprint belonging to public_key (if set) or m_gossip_key (otherwise), may be NULL */
+	int            m_verified;    // fingerprint verified?
 
 	#define        MRA_SAVE_TIMESTAMPS 0x01
 	#define        MRA_SAVE_ALL        0x02
 	int            m_to_save;
+
+	#define        MRA_DE_ENCRYPTION_PAUSED   0x01 // recoverable by an incoming encrypted mail
+	#define        MRA_DE_FINGERPRINT_CHANGED 0x02 // recoverable by a new verify
+	int            m_degrade_event;
+
 } mrapeerstate_t;
 
 
-mrapeerstate_t* mrapeerstate_new                  (); /* the returned pointer is ref'd and must be unref'd after usage */
+mrapeerstate_t* mrapeerstate_new                  (mrmailbox_t*); /* the returned pointer is ref'd and must be unref'd after usage */
 void            mrapeerstate_unref                (mrapeerstate_t*);
 
 int             mrapeerstate_init_from_header     (mrapeerstate_t*, const mraheader_t*, time_t message_time);
@@ -78,6 +86,8 @@ char*           mrapeerstate_render_gossip_header (const mrapeerstate_t*);
 mrkey_t*        mrapeerstate_peek_key             (const mrapeerstate_t*);
 
 int             mrapeerstate_recalc_fingerprint   (mrapeerstate_t*);
+
+int             mrapeerstate_set_verified         (mrapeerstate_t*, const char* fingerprint);
 
 int             mrapeerstate_load_by_addr__       (mrapeerstate_t*, mrsqlite3_t*, const char* addr);
 int             mrapeerstate_load_by_fingerprint__(mrapeerstate_t*, mrsqlite3_t*, const char* fingerprint);

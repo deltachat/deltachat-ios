@@ -91,7 +91,7 @@ char*           mrmsg_get_summarytext       (const mrmsg_t*, int approx_characte
 int             mrmsg_is_sent               (const mrmsg_t*);
 int             mrmsg_is_starred            (const mrmsg_t*);
 int             mrmsg_is_forwarded          (const mrmsg_t*);
-int             mrmsg_is_systemcmd          (const mrmsg_t*);
+int             mrmsg_is_info               (const mrmsg_t*);
 int             mrmsg_is_increation         (const mrmsg_t*);
 
 int             mrmsg_is_setupmessage       (const mrmsg_t*);

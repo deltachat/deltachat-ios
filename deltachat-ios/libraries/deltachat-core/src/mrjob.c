@@ -198,18 +198,19 @@ void mrjob_exit_thread(mrmailbox_t* mailbox)
 }
 
 
-uint32_t mrjob_add__(mrmailbox_t* mailbox, int action, int foreign_id, const char* param)
+uint32_t mrjob_add__(mrmailbox_t* mailbox, int action, int foreign_id, const char* param, int delay_seconds)
 {
 	time_t        timestamp = time(NULL);
 	sqlite3_stmt* stmt;
 	uint32_t      job_id = 0;
 
 	stmt = mrsqlite3_predefine__(mailbox->m_sql, INSERT_INTO_jobs_aafp,
-		"INSERT INTO jobs (added_timestamp, action, foreign_id, param) VALUES (?,?,?,?);");
+		"INSERT INTO jobs (added_timestamp, action, foreign_id, param, desired_timestamp) VALUES (?,?,?,?,?);");
 	sqlite3_bind_int64(stmt, 1, timestamp);
 	sqlite3_bind_int  (stmt, 2, action);
 	sqlite3_bind_int  (stmt, 3, foreign_id);
 	sqlite3_bind_text (stmt, 4, param? param : "",  -1, SQLITE_STATIC);
+	sqlite3_bind_int64(stmt, 5, delay_seconds>0? (timestamp+delay_seconds) : 0);
 	if( sqlite3_step(stmt) != SQLITE_DONE ) {
 		return 0;
 	}

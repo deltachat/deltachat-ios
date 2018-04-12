@@ -52,7 +52,6 @@ extern "C" {
 #define MR_STR_MSGADDMEMBER               17
 #define MR_STR_MSGDELMEMBER               18
 #define MR_STR_MSGGROUPLEFT               19
-#define MR_STR_ERROR                      20
 #define MR_STR_SELFNOTINGRP               21
 #define MR_STR_NONETWORK                  22
 #define MR_STR_GIF                        23

@@ -46,6 +46,7 @@ typedef struct mrmimepart_t
 	char*               m_msg_raw;
 	int                 m_bytes;
 	mrparam_t*          m_param;
+
 } mrmimepart_t;
 
 
@@ -75,6 +76,8 @@ typedef struct mrmimeparser_t
 	carray*                m_reports;           /* array of mailmime objects */
 
 	int                    m_is_system_message;
+
+	int                    m_degrade_event;
 
 } mrmimeparser_t;
 

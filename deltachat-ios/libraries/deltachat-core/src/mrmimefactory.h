@@ -34,12 +34,12 @@ typedef struct _mrchat mrchat_t;
 typedef struct _mrmailbox mrmailbox_t;
 
 
-#define MR_SYSTEM_GROUPNAME_CHANGED           2
-#define MR_SYSTEM_GROUPIMAGE_CHANGED          3
-#define MR_SYSTEM_MEMBER_ADDED_TO_GROUP       4
-#define MR_SYSTEM_MEMBER_REMOVED_FROM_GROUP   5
-#define MR_SYSTEM_AUTOCRYPT_SETUP_MESSAGE     6
-#define MR_SYSTEM_OOB_VERIFY_MESSAGE          7
+#define MR_CMD_GROUPNAME_CHANGED           2
+#define MR_CMD_GROUPIMAGE_CHANGED          3
+#define MR_CMD_MEMBER_ADDED_TO_GROUP       4
+#define MR_CMD_MEMBER_REMOVED_FROM_GROUP   5
+#define MR_CMD_AUTOCRYPT_SETUP_MESSAGE     6
+#define MR_CMD_SECUREJOIN_MESSAGE          7
 
 
 typedef enum {
@@ -89,7 +89,7 @@ void        mrmimefactory_init              (mrmimefactory_t*, mrmailbox_t*);
 void        mrmimefactory_empty             (mrmimefactory_t*);
 int         mrmimefactory_load_msg          (mrmimefactory_t*, uint32_t msg_id);
 int         mrmimefactory_load_mdn          (mrmimefactory_t*, uint32_t msg_id);
-int         mrmimefactory_render            (mrmimefactory_t*, int encrypt_to_self);
+int         mrmimefactory_render            (mrmimefactory_t*);
 
 
 #ifdef __cplusplus

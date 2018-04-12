@@ -508,9 +508,10 @@ char* mrmailbox_initiate_key_transfer(mrmailbox_t* mailbox)
 
 	msg = mrmsg_new();
 	msg->m_type = MR_MSG_FILE;
-	mrparam_set    (msg->m_param, MRP_FILE,       setup_file_name);
-	mrparam_set    (msg->m_param, MRP_MIMETYPE,   "application/autocrypt-setup");
-	mrparam_set_int(msg->m_param, MRP_SYSTEM_CMD, MR_SYSTEM_AUTOCRYPT_SETUP_MESSAGE);
+	mrparam_set    (msg->m_param, MRP_FILE,              setup_file_name);
+	mrparam_set    (msg->m_param, MRP_MIMETYPE,          "application/autocrypt-setup");
+	mrparam_set_int(msg->m_param, MRP_CMD,               MR_CMD_AUTOCRYPT_SETUP_MESSAGE);
+	mrparam_set_int(msg->m_param, MRP_FORCE_UNENCRYPTED, 2); // 2=do not even add Autocrypt-header
 
 	CHECK_EXIT
 

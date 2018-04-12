@@ -68,7 +68,7 @@ these to work.
 
 - [bzip2](http://bzip.org)
 
-To build you need to have [meson](http://mesonbuild.com) and
+To build you need to have [meson](http://mesonbuild.com) (at least version 0.36.0) and
 [ninja](https://ninja-build.org) installed as well.
 
 On Linux (e.g. Debian Stretch) you can install all these using: 
@@ -84,7 +84,7 @@ cd builddir
 meson
 # optionally configure some parameters
 # run `meson configure` to see the options, e.g. 
-meson config -Dlibdir=lib
+meson configure -Dlibdir=lib
 ninja
 sudo ninja install
 sudo ldconfig

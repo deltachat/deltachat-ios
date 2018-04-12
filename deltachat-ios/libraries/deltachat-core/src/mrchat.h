@@ -65,6 +65,7 @@ time_t          mrchat_get_draft_timestamp  (mrchat_t*);
 int             mrchat_get_archived         (mrchat_t*);
 int             mrchat_is_unpromoted        (mrchat_t*);
 int             mrchat_is_self_talk         (mrchat_t*);
+int             mrchat_is_verified          (mrchat_t*);
 
 
 #ifdef __cplusplus

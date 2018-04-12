@@ -378,6 +378,52 @@ int mrchat_is_unpromoted(mrchat_t* chat)
 }
 
 
+int mrchat_is_verified(mrchat_t* chat)
+{
+	// if you change the algorithm here, you may also want to adapt mrcontact_is_verfied()
+
+	int           chat_verified = 0;
+	int           locked = 0;
+	sqlite3_stmt* stmt;
+
+	if( chat == NULL || chat->m_magic != MR_CHAT_MAGIC ) {
+		goto cleanup;
+	}
+
+	if( chat->m_id == MR_CHAT_ID_DEADDROP || chat->m_id == MR_CHAT_ID_STARRED ) {
+		goto cleanup; // deaddrop & co. are never verified
+	}
+
+	mrsqlite3_lock(chat->m_mailbox->m_sql);
+	locked = 1;
+
+		stmt = mrsqlite3_predefine__(chat->m_mailbox->m_sql, SELECT_verified_FROM_chats_contacts_WHERE_chat_id,
+			"SELECT c.id, ps.verified, ps.prefer_encrypted "
+			" FROM chats_contacts cc"
+			" LEFT JOIN contacts c ON c.id=cc.contact_id"
+			" LEFT JOIN acpeerstates ps ON c.addr=ps.addr "
+			" WHERE cc.chat_id=?;");
+		sqlite3_bind_int(stmt, 1, chat->m_id);
+		while( sqlite3_step(stmt) == SQLITE_ROW )
+		{
+			uint32_t contact_id       = sqlite3_column_int(stmt, 0);
+			int      contact_verified = sqlite3_column_int(stmt, 1);
+			int      prefer_encrypt   = sqlite3_column_int(stmt, 2);
+			if( contact_id != MR_CONTACT_ID_SELF // see mrcontact_is_verified() for condition's explanations
+			 && (contact_verified==0 || prefer_encrypt!=MRA_PE_MUTUAL) )
+			{
+				goto cleanup; // a single unverified contact results in an unverified chat
+			}
+		}
+
+		chat_verified = 1;
+
+cleanup:
+	if( locked ) { mrsqlite3_unlock(chat->m_mailbox->m_sql); }
+	return chat_verified;
+}
+
+
 /**
  * Check if a chat is a self talk.  Self talks are normal chats with
  * the only contact MR_CONTACT_ID_SELF.

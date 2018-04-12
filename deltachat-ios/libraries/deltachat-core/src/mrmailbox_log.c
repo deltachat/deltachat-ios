@@ -95,22 +95,16 @@ static void mrmailbox_log_vprintf(mrmailbox_t* mailbox, int event, int code, con
 	else if( msg_format )
 	{
 		#define BUFSIZE 1024
-		char tempbuf[BUFSIZE];
+		char tempbuf[BUFSIZE+1];
 		vsnprintf(tempbuf, BUFSIZE, msg_format, va);
 		msg = safe_strdup(tempbuf);
-
-		if( event == MR_EVENT_ERROR ) {
-			char* temp = msg;
-			msg = mrstock_str_repl_string(MR_STR_ERROR, temp);
-			free(temp);
-		}
 	}
 
 	/* if we have still no message, create one based upon  the code */
 	if( msg == NULL ) {
 		     if( event == MR_EVENT_INFO )    { msg = mr_mprintf("Info: %i",    (int)code); }
 		else if( event == MR_EVENT_WARNING ) { msg = mr_mprintf("Warning: %i", (int)code); }
-		else                                 { msg = mrstock_str_repl_int(MR_STR_ERROR, code); }
+		else                                 { msg = mr_mprintf("Error: %i",   (int)code); }
 	}
 
 	/* prefix the message by the thread-id? we do this for non-errros that are normally only logged (for the few errros, the thread should be clear (enough)) */

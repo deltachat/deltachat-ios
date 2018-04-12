@@ -276,6 +276,20 @@ static int mrmailbox_is_reply_to_messenger_message__(mrmailbox_t* mailbox, mrmim
  ******************************************************************************/
 
 
+static uint32_t add_degrade_message__(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t from_id, time_t timestamp)
+{
+	mrcontact_t* contact = mrcontact_new(mailbox);
+	mrcontact_load_from_db__(contact, mailbox->m_sql, from_id);
+
+	char* msg = mr_mprintf("Changed setup for %s", contact->m_addr);
+	uint32_t msg_id = mrmailbox_add_device_msg__(mailbox, chat_id, msg, timestamp);
+	free(msg);
+
+	mrcontact_unref(contact);
+	return msg_id;
+}
+
+
 static void mrmailbox_calc_timestamps__(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t from_id, time_t message_timestamp, int is_fresh_msg,
                                         time_t* sort_timestamp, time_t* sent_timestamp, time_t* rcvd_timestamp)
 {
@@ -661,19 +675,19 @@ static void create_or_lookup_group__(mrmailbox_t* mailbox, mrmimeparser_t* mime_
 
 		if( (optional_field=mrmimeparser_lookup_optional_field2(mime_parser, "Chat-Group-Member-Removed", "X-MrRemoveFromGrp"))!=NULL ) {
 			X_MrRemoveFromGrp = optional_field->fld_value;
-			mime_parser->m_is_system_message = MR_SYSTEM_MEMBER_REMOVED_FROM_GROUP;
+			mime_parser->m_is_system_message = MR_CMD_MEMBER_REMOVED_FROM_GROUP;
 		}
 		else if( (optional_field=mrmimeparser_lookup_optional_field2(mime_parser, "Chat-Group-Member-Added", "X-MrAddToGrp"))!=NULL ) {
 			X_MrAddToGrp = optional_field->fld_value;
-			mime_parser->m_is_system_message = MR_SYSTEM_MEMBER_ADDED_TO_GROUP;
+			mime_parser->m_is_system_message = MR_CMD_MEMBER_ADDED_TO_GROUP;
 		}
 		else if( (optional_field=mrmimeparser_lookup_optional_field2(mime_parser, "Chat-Group-Name-Changed", "X-MrGrpNameChanged"))!=NULL ) {
 			X_MrGrpNameChanged = 1;
-			mime_parser->m_is_system_message = MR_SYSTEM_GROUPNAME_CHANGED;
+			mime_parser->m_is_system_message = MR_CMD_GROUPNAME_CHANGED;
 		}
 		else if( (optional_field=mrmimeparser_lookup_optional_field(mime_parser, "Chat-Group-Image"))!=NULL ) {
 			X_MrGrpImageChanged = 1;
-			mime_parser->m_is_system_message = MR_SYSTEM_GROUPIMAGE_CHANGED;
+			mime_parser->m_is_system_message = MR_CMD_GROUPIMAGE_CHANGED;
 		}
 	}
 
@@ -870,6 +884,8 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 	int              has_return_path = 0;
 	int              is_handshake_message = 0;
 	char*            txt_raw = NULL;
+
+	uint32_t         degrade_msg_id = 0;
 
 	mrmailbox_log_info(mailbox, 0, "Receiving message %s/%lu...", server_folder? server_folder:"?", server_uid);
 
@@ -1111,7 +1127,7 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 			}
 
 			/* check of the message is a special handshake message; if so, mark it as "seen" here and handle it when done */
-			is_handshake_message = mrmailbox_oob_is_handshake_message__(mailbox, mime_parser);
+			is_handshake_message = mrmailbox_is_securejoin_handshake__(mailbox, mime_parser);
 			if( is_handshake_message ) {
 				hidden = 1;
 				if( state==MR_STATE_IN_FRESH || state==MR_STATE_IN_NOTICED ) {
@@ -1186,6 +1202,10 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 				}
 			}
 
+			if( mime_parser->m_degrade_event ) {
+				degrade_msg_id = add_degrade_message__(mailbox, chat_id, from_id, sort_timestamp);
+			}
+
 			/* fine, so far.  now, split the message into simple parts usable as "short messages"
 			and add them to the database (mails sent by other messenger clients should result
 			into only one message; mails sent by other clients may result in several messages (eg. one per attachment)) */
@@ -1202,7 +1222,7 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 				}
 
 				if( mime_parser->m_is_system_message ) {
-					mrparam_set_int(part->m_param, MRP_SYSTEM_CMD, mime_parser->m_is_system_message);
+					mrparam_set_int(part->m_param, MRP_CMD, mime_parser->m_is_system_message);
 				}
 
 				stmt = mrsqlite3_predefine__(mailbox->m_sql, INSERT_INTO_msgs_msscftttsmttpb,
@@ -1347,7 +1367,7 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 					a classical deadlock, see also (***) in mrimap.c */
 					if( mime_parser->m_is_send_by_messenger || mdn_consumed ) {
 						char* jobparam = mr_mprintf("%c=%s\n%c=%lu", MRP_SERVER_FOLDER, server_folder, MRP_SERVER_UID, server_uid);
-							mrjob_add__(mailbox, MRJ_MARKSEEN_MDN_ON_IMAP, 0, jobparam);
+							mrjob_add__(mailbox, MRJ_MARKSEEN_MDN_ON_IMAP, 0, jobparam, 0);
 						free(jobparam);
 					}
 				}
@@ -1376,7 +1396,11 @@ cleanup:
 	if( db_locked ) { mrsqlite3_unlock(mailbox->m_sql); }
 
 	if( is_handshake_message ) {
-		mrmailbox_oob_handle_handshake_message(mailbox, mime_parser, chat_id); /* must be called after unlocking before deletion of mime_parser */
+		mrmailbox_handle_securejoin_handshake(mailbox, mime_parser, chat_id); /* must be called after unlocking before deletion of mime_parser */
+	}
+	else if( mime_parser->m_degrade_event ) {
+		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, chat_id, degrade_msg_id);
+		mailbox->m_cb(mailbox, MR_EVENT_CHAT_MODIFIED, chat_id, 0);
 	}
 
 	mrmimeparser_unref(mime_parser);
