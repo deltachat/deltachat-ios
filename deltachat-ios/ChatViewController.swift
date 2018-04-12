@@ -91,7 +91,7 @@ class ChatViewController: MessagesViewController {
         messagesCollectionView.messageCellDelegate = self
         messageInputBar.delegate = self
         messageInputBar.sendButton.tintColor = UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1)
-        scrollsToBottomOnFirstLayout = true //default false
+        // scrollsToBottomOnFirstLayout = true //default false
         scrollsToBottomOnKeybordBeginsEditing = true // default false
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_keyboard"),
@@ -280,7 +280,7 @@ extension ChatViewController: MessagesDataSource {
 
 // MARK: - MessagesDisplayDelegate
 
-extension ChatViewController: MessagesDisplayDelegate, TextMessageDisplayDelegate {
+extension ChatViewController: MessagesDisplayDelegate {
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         return isFromCurrentSender(message: message) ? Constants.Color.bubble : UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
@@ -302,6 +302,9 @@ extension ChatViewController: MessagesDisplayDelegate, TextMessageDisplayDelegat
 // MARK: - MessagesLayoutDelegate
 
 extension ChatViewController: MessagesLayoutDelegate {
+    func heightForLocation(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 40
+    }
     
     func messagePadding(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIEdgeInsets {
         if isFromCurrentSender(message: message) {
@@ -327,8 +330,8 @@ extension ChatViewController: MessagesLayoutDelegate {
         }
     }
     
-    func avatarAlignment(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> AvatarAlignment {
-        return .messageBottom
+    func avatarAlignment(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> AvatarPosition.Horizontal {
+        return AvatarPosition.Horizontal.cellLeading
     }
     
     func footerViewSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
@@ -338,40 +341,26 @@ extension ChatViewController: MessagesLayoutDelegate {
     
 }
 
-// MARK: - LocationMessageLayoutDelegate
-
-extension ChatViewController: LocationMessageLayoutDelegate {
-    
-    func heightForLocation(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return 200
-    }
-    
-}
-
-// MARK: - MediaMessageLayoutDelegate
-
-extension ChatViewController: MediaMessageLayoutDelegate {}
 
 // MARK: - MessageCellDelegate
 
 extension ChatViewController: MessageCellDelegate {
-    
-    func didTapAvatar<T>(in cell: MessageCollectionViewCell<T>) {
-        print("Avatar tapped")
-    }
-    
-    func didTapMessage<T>(in cell: MessageCollectionViewCell<T>) {
+    func didTapMessage(in cell: MessageCollectionViewCell) {
         print("Message tapped")
     }
     
-    func didTapTopLabel<T>(in cell: MessageCollectionViewCell<T>) {
+    func didTapAvatar(in cell: MessageCollectionViewCell) {
+        print("Avatar tapped")
+    
+    }
+    
+    func didTapTopLabel(in cell: MessageCollectionViewCell) {
         print("Top label tapped")
     }
-    
-    func didTapBottomLabel<T>(in cell: MessageCollectionViewCell<T>) {
-        print("Bottom label tapped")
+
+    func didTapBottomLabel(in cell: MessageCollectionViewCell) {
+        print ("Bottom label tapped")
     }
-    
 }
 
 // MARK: - MessageLabelDelegate
@@ -395,7 +384,7 @@ extension ChatViewController: MessageLabelDelegate {
     }
     
 }
-
+/*
 // MARK: - LocationMessageDisplayDelegate
 
 extension ChatViewController: LocationMessageDisplayDelegate {
@@ -420,8 +409,10 @@ extension ChatViewController: LocationMessageDisplayDelegate {
     }
     
 }
+*/
 
 // MARK: - MessageInputBarDelegate
+ 
 
 extension ChatViewController: MessageInputBarDelegate {
     
@@ -435,3 +426,4 @@ extension ChatViewController: MessageInputBarDelegate {
 //        messagesCollectionView.scrollToBottom()
     }
 }
+
