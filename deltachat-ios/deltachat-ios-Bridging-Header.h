@@ -9,4 +9,5 @@
 #include "mrmsg-private.h"
 #include "mrchat-private.h"
 #include "mrlot-private.h"
+#include "mrarray-private.h"
 #include "wrapper.h"
