@@ -15,7 +15,13 @@ struct Utils {
         return Utils.copyAndFreeArray(inputArray: c_contacts)
     }
 
-    
+    static func getInitials(inputName:String) -> String {
+        let nameParts = inputName.split(separator: " ")
+        let initials:[Character] = nameParts.compactMap {part in part.first}
+        let initialsString:String = String(initials)
+        return initialsString
+    }
+
     static func copyAndFreeArray(inputArray:UnsafeMutablePointer<mrarray_t>?) -> [Int] {
         var acc:[Int] = []
         let len = mrarray_get_cnt(inputArray)
