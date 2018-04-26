@@ -14,6 +14,7 @@
 		70A4C09F208007B700D577B3 /* mrmailbox_qr.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C090208007B600D577B3 /* mrmailbox_qr.c */; };
 		70A4C0A0208007B700D577B3 /* mrlot.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C094208007B600D577B3 /* mrlot.c */; };
 		70A4C0A1208007B700D577B3 /* mrmailbox_keyhistory.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C095208007B700D577B3 /* mrmailbox_keyhistory.c */; };
+		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
 		7A0052A11FBC50C40048C3BF /* CredentialsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0052A01FBC50C40048C3BF /* CredentialsController.swift */; };
 		7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0052C71FBE6CB40048C3BF /* NewContactController.swift */; };
 		7A451D941FB1B1DB00177250 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A451D921FB1B1DB00177250 /* wrapper.c */; };
@@ -129,6 +130,7 @@
 		70A4C098208007B700D577B3 /* mrmsg-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mrmsg-private.h"; sourceTree = "<group>"; };
 		70A4C099208007B700D577B3 /* mrchat-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mrchat-private.h"; sourceTree = "<group>"; };
 		70A4C09A208007B700D577B3 /* mrlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrlot.h; sourceTree = "<group>"; };
+		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		7A0052A01FBC50C40048C3BF /* CredentialsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsController.swift; sourceTree = "<group>"; };
 		7A0052C71FBE6CB40048C3BF /* NewContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactController.swift; sourceTree = "<group>"; };
 		7A451D921FB1B1DB00177250 /* wrapper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wrapper.c; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 				7A451D921FB1B1DB00177250 /* wrapper.c */,
 				7A451D931FB1B1DB00177250 /* wrapper.h */,
 				7A451DBD1FB4AD0700177250 /* Wrapper.swift */,
+				70B8882D2091B8550074812E /* ContactCell.swift */,
 				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
 				7A0052A01FBC50C40048C3BF /* CredentialsController.swift */,
 				7A0052C71FBE6CB40048C3BF /* NewContactController.swift */,
@@ -693,6 +696,7 @@
 				70A4C09F208007B700D577B3 /* mrmailbox_qr.c in Sources */,
 				7A9FB5461FB08557001FEA36 /* mrmailbox_e2ee.c in Sources */,
 				70A4C09E208007B700D577B3 /* mrhash.c in Sources */,
+				70B8882E2091B8550074812E /* ContactCell.swift in Sources */,
 				7A9FB54A1FB08557001FEA36 /* mrmimefactory.c in Sources */,
 				7A451D941FB1B1DB00177250 /* wrapper.c in Sources */,
 				7A9FB54D1FB08557001FEA36 /* mrosnative.c in Sources */,
