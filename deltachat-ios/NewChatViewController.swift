@@ -82,11 +82,12 @@ class NewChatViewController: UITableViewController {
             return cell
         }
         
-        let cell:UITableViewCell
-        if let c = tableView.dequeueReusableCell(withIdentifier: "contactCell") {
+        let cell:ContactCell
+        if let c = tableView.dequeueReusableCell(withIdentifier: "contactCell") as? ContactCell {
             cell = c
         } else {
-            cell = UITableViewCell(style: .value1, reuseIdentifier: "contactCell")
+            // cell = UITableViewCell(style: .value1, reuseIdentifier: "contactCell")
+            cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
         }
         
         cell.accessoryType = .detailDisclosureButton
@@ -94,9 +95,9 @@ class NewChatViewController: UITableViewController {
         let contactRow = row - 2
 
         let contact = MRContact(id: contactIds[contactRow])
-        cell.textLabel?.text = contact.name
-        cell.detailTextLabel?.text = contact.email
-
+        cell.nameLabel.text = contact.name
+        // cell.detailTextLabel?.text = contact.email
+        cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
         return cell
     }
     
