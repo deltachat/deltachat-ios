@@ -98,6 +98,8 @@ class NewChatViewController: UITableViewController {
         cell.nameLabel.text = contact.name
         // cell.detailTextLabel?.text = contact.email
         cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
+        let contactColor = Utils.color(row: contactRow, colors: Constants.chatColors)
+        cell.setColor(contactColor)
         return cell
     }
     

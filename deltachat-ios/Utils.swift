@@ -10,6 +10,15 @@ import Foundation
 import UIKit
 
 struct Utils {
+    static func colorIndex(row: Int, colors:[UIColor]) -> Int {
+        return row % colors.count
+    }
+    
+    static func color(row: Int, colors:[UIColor]) -> UIColor {
+        let index = colorIndex(row: row, colors: colors)
+        return colors[index]
+    }
+    
     static func getContactIds() -> [Int] {
         let c_contacts = mrmailbox_get_known_contacts(mailboxPointer, nil)
         return Utils.copyAndFreeArray(inputArray: c_contacts)
