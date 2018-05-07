@@ -68,6 +68,7 @@ enum
 	,SELECT_ii_FROM_chats_LEFT_JOIN_msgs_WHERE_archived
 	,SELECT_ii_FROM_chats_LEFT_JOIN_msgs_WHERE_unarchived
 	,SELECT_ii_FROM_chats_LEFT_JOIN_msgs_WHERE_query
+	,SELECT_ii_FROM_chats_LEFT_JOIN_msgs_WHERE_contact_id
 	,SELECT_itndd_FROM_chats_WHERE_i
 	,SELECT_id_FROM_chats_WHERE_id
 	,SELECT_id_FROM_chats_WHERE_contact_id
@@ -88,7 +89,7 @@ enum
 	,SELECT_COUNT_FROM_chats_contacts_WHERE_contact_id
 	,SELECT_verified_FROM_chats_contacts_WHERE_chat_id
 	,SELECT_c_FROM_chats_contacts_WHERE_c
-	,SELECT_c_FROM_chats_contacts_WHERE_c_ORDER_BY
+	,SELECT_contact_id_FROM_chats_contacts_WHERE_chat_id_ORDER_BY
 	,SELECT_void_FROM_chats_contacts_WHERE_chat_id_AND_contact_id
 	,INSERT_INTO_chats_contacts
 
@@ -203,8 +204,15 @@ void          mrsqlite3_reset_all_predefinitions(mrsqlite3_t*);
 the user of MrSqlite3 must make sure that the MrSqlite3-object is only used by one thread at the same time.
 In general, we will lock the hightest level as possible - this avoids deadlocks and massive on/off lockings.
 Low-level-functions, eg. the MrSqlite3-methods, do not lock. */
+#ifdef MR_USE_LOCK_DEBUG
+#define       mrsqlite3_lock(a)          mrsqlite3_lockNdebug((a), __FILE__, __LINE__)
+#define       mrsqlite3_unlock(a)        mrsqlite3_unlockNdebug((a), __FILE__, __LINE__)
+void          mrsqlite3_lockNdebug       (mrsqlite3_t*, const char* filename, int line);
+void          mrsqlite3_unlockNdebug     (mrsqlite3_t*, const char* filename, int line);
+#else
 void          mrsqlite3_lock             (mrsqlite3_t*); /* lock or wait; these calls must not be nested in a single thread */
 void          mrsqlite3_unlock           (mrsqlite3_t*);
+#endif
 
 /* nestable transactions, only the outest is really used */
 void          mrsqlite3_begin_transaction__(mrsqlite3_t*);

@@ -252,7 +252,7 @@ static char* mrsimplify_simplify_plain_text(mrsimplify_t* ths, const char* buf_t
 	mrstrbuilder_init(&ret, strlen(buf_terminated));
 
 	if( ths->m_is_cut_at_begin ) {
-		mrstrbuilder_cat(&ret, MR_ELLIPSE_STR " ");
+		mrstrbuilder_cat(&ret, MR_EDITORIAL_ELLIPSE " ");
 	}
 
 	int pending_linebreaks = 0; /* we write empty lines only in case and non-empty line follows */
@@ -285,7 +285,7 @@ static char* mrsimplify_simplify_plain_text(mrsimplify_t* ths, const char* buf_t
 
 	if( ths->m_is_cut_at_end
 	 && (!ths->m_is_cut_at_begin || content_lines_added) /* avoid two `[...]` without content */ ) {
-		mrstrbuilder_cat(&ret, " " MR_ELLIPSE_STR);
+		mrstrbuilder_cat(&ret, " " MR_EDITORIAL_ELLIPSE);
 	}
 
 	mr_free_splitted_lines(lines);

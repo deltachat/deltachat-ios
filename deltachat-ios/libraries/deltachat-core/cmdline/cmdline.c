@@ -347,8 +347,9 @@ static void log_contactlist(mrmailbox_t* mailbox, mrarray_t* contacts)
 		if( (contact=mrmailbox_get_contact(mailbox, contact_id))!=NULL ) {
 			char* name = mrcontact_get_name(contact);
 			char* addr = mrcontact_get_addr(contact);
-			const char* verified = mrcontact_is_verified(contact)? " √": "";
-			line = mr_mprintf("%s%s <%s>", (name&&name[0])? name : "<name unset>", verified, (addr&&addr[0])? addr : "addr unset");
+			int verified_state = mrcontact_is_verified(contact);
+			const char* verified_str = verified_state? (verified_state==2? " √√":" √"): "";
+			line = mr_mprintf("%s%s <%s>", (name&&name[0])? name : "<name unset>", verified_str, (addr&&addr[0])? addr : "addr unset");
 			mrsqlite3_lock(mailbox->m_sql);
 				int peerstate_ok = mrapeerstate_load_by_addr__(peerstate, mailbox->m_sql, addr);
 			mrsqlite3_unlock(mailbox->m_sql);
@@ -385,6 +386,14 @@ static int s_is_auth = 0;
 void mrmailbox_cmdline_skip_auth()
 {
 	s_is_auth = 1;
+}
+
+
+static const char* chat_prefix(const mrchat_t* chat)
+{
+	     if( chat->m_type == MR_CHAT_TYPE_GROUP ) { return "Group"; }
+	else if( chat->m_type == MR_CHAT_TYPE_VERIFIED_GROUP ) { return "VerifiedGroup"; }
+	else { return "Single"; }
 }
 
 
@@ -452,6 +461,7 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 				"createchat <contact-id>\n"
 				"createchatbymsg <msg-id>\n"
 				"creategroup <name>\n"
+				"createverified <name>\n"
 				"addmember <contact-id>\n"
 				"removemember <contact-id>\n"
 				"groupname <name>\n"
@@ -476,12 +486,13 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 				"delmsg <msg-id>\n"
 				"===========================Contact commands==\n"
 				"listcontacts [<query>]\n"
+				"listverified [<query>]\n"
 				"addcontact [<name>] <addr>\n"
 				"contactinfo <contact-id>\n"
 				"delcontact <contact-id>\n"
 				"cleanupcontacts\n"
 				"======================================Misc.==\n"
-				"getqr\n"
+				"getqr [<chat-id>]\n"
 				"getbadqr\n"
 				"checkqr <qr-contenct>\n"
 				"event <event-id to test>\n"
@@ -693,7 +704,7 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 	else if( strcmp(cmd, "listchats")==0 || strcmp(cmd, "listarchived")==0 || strcmp(cmd, "chats")==0 )
 	{
 		int listflags = strcmp(cmd, "listarchived")==0? MR_GCL_ARCHIVED_ONLY : 0;
-		mrchatlist_t* chatlist = mrmailbox_get_chatlist(mailbox, listflags, arg1);
+		mrchatlist_t* chatlist = mrmailbox_get_chatlist(mailbox, listflags, arg1, 0);
 		if( chatlist ) {
 			int i, cnt = mrchatlist_get_cnt(chatlist);
 			if( cnt>0 ) {
@@ -704,9 +715,9 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 
 					char* temp_subtitle = mrchat_get_subtitle(chat);
 					char* temp_name = mrchat_get_name(chat);
-					const char* verified = mrchat_is_verified(chat)? " √": "";
-						mrmailbox_log_info(mailbox, 0, "%s#%i: %s%s [%s] [%i fresh]", mrchat_get_type(chat)==MR_CHAT_TYPE_GROUP? "Groupchat" : "Chat",
-							(int)mrchat_get_id(chat), temp_name, verified, temp_subtitle, (int)mrmailbox_get_fresh_msg_count(mailbox, mrchat_get_id(chat)));
+						mrmailbox_log_info(mailbox, 0, "%s#%i: %s [%s] [%i fresh]",
+							chat_prefix(chat),
+							(int)mrchat_get_id(chat), temp_name, temp_subtitle, (int)mrmailbox_get_fresh_msg_count(mailbox, mrchat_get_id(chat)));
 					free(temp_subtitle);
 					free(temp_name);
 
@@ -767,7 +778,7 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 			mrarray_t* msglist = mrmailbox_get_chat_msgs(mailbox, mrchat_get_id(sel_chat), MR_GCM_ADDDAYMARKER, 0);
 			char* temp2 = mrchat_get_subtitle(sel_chat);
 			char* temp_name = mrchat_get_name(sel_chat);
-				mrmailbox_log_info(mailbox, 0, "Chat#%i: %s [%s]", mrchat_get_id(sel_chat), temp_name, temp2);
+				mrmailbox_log_info(mailbox, 0, "%s#%i: %s [%s]", chat_prefix(sel_chat), mrchat_get_id(sel_chat), temp_name, temp2);
 			free(temp_name);
 			free(temp2);
 			if( msglist ) {
@@ -793,7 +804,7 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 		if( arg1 ) {
 			int contact_id = atoi(arg1);
 			int chat_id = mrmailbox_create_chat_by_contact_id(mailbox, contact_id);
-			ret = chat_id!=0? mr_mprintf("Chat#%lu created successfully.", chat_id) : COMMAND_FAILED;
+			ret = chat_id!=0? mr_mprintf("Single#%lu created successfully.", chat_id) : COMMAND_FAILED;
 		}
 		else {
 			ret = safe_strdup("ERROR: Argument <contact-id> missing.");
@@ -804,7 +815,14 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 		if( arg1 ) {
 			int msg_id = atoi(arg1);
 			int chat_id = mrmailbox_create_chat_by_msg_id(mailbox, msg_id);
-			ret = chat_id!=0? mr_mprintf("Chat#%lu created successfully.", chat_id) : COMMAND_FAILED;
+			if( chat_id != 0 ) {
+				mrchat_t* chat = mrmailbox_get_chat(mailbox, chat_id);
+					ret = mr_mprintf("%s#%lu created successfully.", chat_prefix(chat), chat_id);
+				mrchat_unref(chat);
+			}
+			else {
+				ret = COMMAND_FAILED;
+			}
 		}
 		else {
 			ret = safe_strdup("ERROR: Argument <msg-id> missing.");
@@ -813,8 +831,18 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 	else if( strcmp(cmd, "creategroup")==0 )
 	{
 		if( arg1 ) {
-			int chat_id = mrmailbox_create_group_chat(mailbox, arg1);
-			ret = chat_id!=0? mr_mprintf("Groupchat#%lu created successfully.", chat_id) : COMMAND_FAILED;
+			int chat_id = mrmailbox_create_group_chat(mailbox, 0, arg1);
+			ret = chat_id!=0? mr_mprintf("Group#%lu created successfully.", chat_id) : COMMAND_FAILED;
+		}
+		else {
+			ret = safe_strdup("ERROR: Argument <name> missing.");
+		}
+	}
+	else if( strcmp(cmd, "createverified")==0 )
+	{
+		if( arg1 ) {
+			int chat_id = mrmailbox_create_group_chat(mailbox, 1, arg1);
+			ret = chat_id!=0? mr_mprintf("VerifiedGroup#%lu created successfully.", chat_id) : COMMAND_FAILED;
 		}
 		else {
 			ret = safe_strdup("ERROR: Argument <name> missing.");
@@ -1108,9 +1136,9 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 	 * Contact commands
 	 ******************************************************************************/
 
-	else if( strcmp(cmd, "listcontacts")==0 || strcmp(cmd, "contacts")==0 )
+	else if( strcmp(cmd, "listcontacts")==0 || strcmp(cmd, "contacts")==0 || strcmp(cmd, "listverified")==0 )
 	{
-		mrarray_t* contacts = mrmailbox_get_known_contacts(mailbox, arg1);
+		mrarray_t* contacts = mrmailbox_get_contacts(mailbox, strcmp(cmd, "listverified")==0? MR_GCL_VERIFIED_ONLY : 0, arg1);
 		if( contacts ) {
 			log_contactlist(mailbox, contacts);
 			ret = mr_mprintf("%i contacts.", (int)mrarray_get_cnt(contacts));
@@ -1142,7 +1170,34 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 	{
 		if( arg1 ) {
 			int contact_id = atoi(arg1);
-			ret = mrmailbox_get_contact_encrinfo(mailbox, contact_id);
+			mrstrbuilder_t strbuilder;
+			mrstrbuilder_init(&strbuilder, 0);
+
+			mrcontact_t* contact = mrmailbox_get_contact(mailbox, contact_id);
+			char* nameNaddr = mrcontact_get_name_n_addr(contact);
+			mrstrbuilder_catf(&strbuilder, "Contact info for: %s:\n\n", nameNaddr);
+			free(nameNaddr);
+			mrcontact_unref(contact);
+
+			char* encrinfo = mrmailbox_get_contact_encrinfo(mailbox, contact_id);
+			mrstrbuilder_cat(&strbuilder, encrinfo);
+			free(encrinfo);
+
+			mrchatlist_t* chatlist = mrmailbox_get_chatlist(mailbox, 0, NULL, contact_id);
+			int chatlist_cnt = mrchatlist_get_cnt(chatlist);
+			if( chatlist_cnt > 0 ) {
+				mrstrbuilder_catf(&strbuilder, "\n\n%i chats shared with Contact#%i: ", chatlist_cnt, contact_id);
+				for( int i = 0; i < chatlist_cnt; i++ ) {
+					if( i ) { mrstrbuilder_cat(&strbuilder, ", ");  }
+
+					mrchat_t* chat = mrmailbox_get_chat(mailbox, mrchatlist_get_chat_id(chatlist, i));
+						mrstrbuilder_catf(&strbuilder, "%s#%i", chat_prefix(chat), mrchat_get_id(chat));
+					mrchat_unref(chat);
+				}
+			}
+			mrchatlist_unref(chatlist);
+
+			ret = strbuilder.m_buf;
 		}
 		else {
 			ret = safe_strdup("ERROR: Argument <contact-id> missing.");
@@ -1168,7 +1223,8 @@ char* mrmailbox_cmdline(mrmailbox_t* mailbox, const char* cmdline)
 
 	else if( strcmp(cmd, "getqr")==0 )
 	{
-		ret = mrmailbox_get_securejoin_qr(mailbox, 0);
+		ret = mrmailbox_get_securejoin_qr(mailbox, arg1? atoi(arg1) : 0);
+		if( ret == NULL || ret[0]==0 ) { free(ret); ret = COMMAND_FAILED; }
 	}
 	else if( strcmp(cmd, "checkqr")==0 )
 	{

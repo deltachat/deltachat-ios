@@ -76,7 +76,7 @@ char* mrkey_get_fingerprint          (const mrkey_t*);
 char* mrkey_get_formatted_fingerprint(const mrkey_t*);
 
 void  mr_wipe_secret_mem(void* buf, size_t buf_bytes);
-
+char* mr_binary_fingerprint_to_uc_hex(const uint8_t* fingerprint_buf, size_t fingerprint_bytes);
 
 #ifdef __cplusplus
 } /* /extern "C" */

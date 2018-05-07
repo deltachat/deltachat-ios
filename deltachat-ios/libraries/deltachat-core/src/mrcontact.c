@@ -119,7 +119,7 @@ void mrcontact_empty(mrcontact_t* contact)
  *
  * @return the ID of the contact, 0 on errors.
  */
-uint32_t mrcontact_get_id(mrcontact_t* contact)
+uint32_t mrcontact_get_id(const mrcontact_t* contact)
 {
 	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
 		return 0;
@@ -137,7 +137,7 @@ uint32_t mrcontact_get_id(mrcontact_t* contact)
  *
  * @return String with the email address, must be free()'d. Never returns NULL.
  */
-char* mrcontact_get_addr(mrcontact_t* contact)
+char* mrcontact_get_addr(const mrcontact_t* contact)
 {
 	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
 		return safe_strdup(NULL);
@@ -161,7 +161,7 @@ char* mrcontact_get_addr(mrcontact_t* contact)
  *
  * @return String with the name to display, must be free()'d. Empty string if unset, never returns NULL.
  */
-char* mrcontact_get_name(mrcontact_t* contact)
+char* mrcontact_get_name(const mrcontact_t* contact)
 {
 	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
 		return safe_strdup(NULL);
@@ -176,7 +176,7 @@ char* mrcontact_get_name(mrcontact_t* contact)
  * modified by the user or, if both are unset, the email address.
  *
  * This name is typically used in lists and must not be speaded via mail (To:, CC: ...).
- * To get the name editable in a formular, use mrcontact_get_edit_name().
+ * To get the name editable in a formular, use mrcontact_get_name().
  *
  * @memberof mrcontact_t
  *
@@ -184,7 +184,7 @@ char* mrcontact_get_name(mrcontact_t* contact)
  *
  * @return String with the name to display, must be free()'d. Never returns NULL.
  */
-char* mrcontact_get_display_name(mrcontact_t* contact)
+char* mrcontact_get_display_name(const mrcontact_t* contact)
 {
 	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
 		return safe_strdup(NULL);
@@ -215,7 +215,7 @@ char* mrcontact_get_display_name(mrcontact_t* contact)
  *
  * @return Summary string, must be free()'d. Never returns NULL.
  */
-char* mrcontact_get_name_n_addr(mrcontact_t* contact)
+char* mrcontact_get_name_n_addr(const mrcontact_t* contact)
 {
 	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
 		return safe_strdup(NULL);
@@ -223,6 +223,31 @@ char* mrcontact_get_name_n_addr(mrcontact_t* contact)
 
 	if( contact->m_name && contact->m_name[0] ) {
 		return mr_mprintf("%s (%s)", contact->m_name, contact->m_addr);
+	}
+
+	return safe_strdup(contact->m_addr);
+}
+
+
+/**
+ * Get the part of the name before the first space. In most languages, this seems to be
+ * the prename. If there is no space, the full display name is returned.
+ * If the display name is not set, the e-mail address is returned.
+ *
+ * @memberof mrcontact_t
+ *
+ * @param contact The contact object.
+ *
+ * @return String with the name to display, must be free()'d. Never returns NULL.
+ */
+char* mrcontact_get_first_name(const mrcontact_t* contact)
+{
+	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
+		return safe_strdup(NULL);
+	}
+
+	if( contact->m_name && contact->m_name[0] ) {
+		return mr_get_first_name(contact->m_name);
 	}
 
 	return safe_strdup(contact->m_addr);
@@ -240,12 +265,32 @@ char* mrcontact_get_name_n_addr(mrcontact_t* contact)
  *
  * @return 1=contact is blocked, 0=contact is not blocked.
  */
-int mrcontact_is_blocked(mrcontact_t* contact)
+int mrcontact_is_blocked(const mrcontact_t* contact)
 {
 	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
 		return 0;
 	}
 	return contact->m_blocked;
+}
+
+
+int mrcontact_is_verified__(const mrcontact_t* contact, const mrapeerstate_t* peerstate)
+{
+	int             contact_verified = MRV_NOT_VERIFIED;
+
+	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
+		goto cleanup;
+	}
+
+	if( contact->m_id == MR_CONTACT_ID_SELF ) {
+		contact_verified = MRV_BIDIRECTIONAL;
+		goto cleanup; // we're always sort of secured-verified as we could verify the key on this device any time with the key on this device
+	}
+
+	contact_verified = MR_MAX(peerstate->m_public_key_verified, peerstate->m_gossip_key_verified);
+
+cleanup:
+	return contact_verified;
 }
 
 
@@ -259,35 +304,33 @@ int mrcontact_is_blocked(mrcontact_t* contact)
  *
  * @param contact The contact object.
  *
- * @return 1=contact is verified, 0=contact is not verified.
+ * @return MRV_NOT_VERIFIED (0): contact is not verified.
+ *    MRV_SIMPLE (1): =SELF has verified the contact but not the other way round.
+ *    MRV_BIDIRECTIONAL (2): SELF and contact have verified their fingerprints in both directions; in the UI typically checkmarks are shown.
  */
-int mrcontact_is_verified(mrcontact_t* contact)
+int mrcontact_is_verified(const mrcontact_t* contact)
 {
-	// if you change the algorithm here, you may also want to adapt mrchat_is_verfied()
-
-	int             contact_verified = 0;
-	mrapeerstate_t* peerstate        = mrapeerstate_new(contact->m_mailbox);
+	int             contact_verified = MRV_NOT_VERIFIED;
+	int             locked           = 0;
+	mrapeerstate_t* peerstate        = NULL;
 
 	if( contact == NULL || contact->m_magic != MR_CONTACT_MAGIC ) {
 		goto cleanup;
 	}
 
-	if( contact->m_id == MR_CONTACT_ID_SELF ) {
-		contact_verified = 1;
-		goto cleanup; // we're always sort of secured-verified as we could verify the key on this device any time with the key on this device
-	}
+	peerstate = mrapeerstate_new(contact->m_mailbox);
 
-	if( !mrapeerstate_load_by_addr__(peerstate, contact->m_mailbox->m_sql, contact->m_addr) ) {
-		goto cleanup;
-	}
+	mrsqlite3_lock(contact->m_mailbox->m_sql);
+	locked = 1;
 
-	if( peerstate->m_verified==0 || peerstate->m_prefer_encrypt!=MRA_PE_MUTUAL ) {
-		goto cleanup;
-	}
+		if( !mrapeerstate_load_by_addr__(peerstate, contact->m_mailbox->m_sql, contact->m_addr) ) {
+			goto cleanup;
+		}
 
-	contact_verified = 1;
+		contact_verified = mrcontact_is_verified__(contact, peerstate);
 
 cleanup:
+	if( locked ) { mrsqlite3_unlock(contact->m_mailbox->m_sql); }
 	mrapeerstate_unref(peerstate);
 	return contact_verified;
 }

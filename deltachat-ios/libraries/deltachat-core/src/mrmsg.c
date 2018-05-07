@@ -380,12 +380,11 @@ char* mrmsg_get_filemime(const mrmsg_t* msg)
 
 	ret = mrparam_get(msg->m_param, MRP_MIMETYPE, NULL);
 	if( ret == NULL ) {
-		int dummy_msgtype = 0;
 		file = mrparam_get(msg->m_param, MRP_FILE, NULL);
 		if( file == NULL ) {
 			goto cleanup;
 		}
-		mrmsg_guess_msgtype_from_suffix(file, &dummy_msgtype, &ret);
+		mrmsg_guess_msgtype_from_suffix(file, NULL, &ret);
 
 		if( ret == NULL ) {
 			ret = safe_strdup("application/octet-stream");
@@ -581,11 +580,22 @@ int mrmsg_get_duration(const mrmsg_t* msg)
 int mrmsg_get_showpadlock(const mrmsg_t* msg)
 {
 	/* a padlock guarantees that the message is e2ee _and_ answers will be as well */
-	if( msg == NULL || msg->m_magic != MR_MSG_MAGIC ) {
+	int show_encryption_state = 0;
+
+	if( msg == NULL || msg->m_magic != MR_MSG_MAGIC || msg->m_mailbox == NULL ) {
 		return 0;
 	}
 
-	if( msg->m_mailbox && msg->m_mailbox->m_e2ee_enabled ) {
+	if( msg->m_mailbox->m_e2ee_enabled ) {
+		show_encryption_state = 1;
+	}
+	else {
+		mrchat_t* chat = mrmailbox_get_chat(msg->m_mailbox, msg->m_chat_id);
+		show_encryption_state = mrchat_is_verified(chat);
+		mrchat_unref(chat);
+	}
+
+	if( show_encryption_state ) {
 		if( mrparam_get_int(msg->m_param, MRP_GUARANTEE_E2EE, 0) != 0 ) {
 			return 1;
 		}
@@ -641,7 +651,7 @@ mrlot_t* mrmsg_get_summary(const mrmsg_t* msg, const mrchat_t* chat)
 		chat = chat_to_delete;
 	}
 
-	if( msg->m_from_id != MR_CONTACT_ID_SELF  &&  chat->m_type == MR_CHAT_TYPE_GROUP ) {
+	if( msg->m_from_id != MR_CONTACT_ID_SELF && MR_CHAT_TYPE_IS_MULTI(chat->m_type) ) {
 		contact = mrmailbox_get_contact(chat->m_mailbox, msg->m_from_id);
 	}
 
@@ -755,7 +765,7 @@ int mrmsg_is_forwarded(const mrmsg_t* msg)
  * created due to other actions, eg. mrmailbox_set_chat_name(), mrmailbox_set_chat_profile_image()
  * or mrmailbox_add_contact_to_chat().
  *
- * These messages are typically shown i n the center of the chat view,
+ * These messages are typically shown in the center of the chat view,
  * mrmsg_get_text() returns a descriptive text about what is going on.
  *
  * There is no need to perfrom any action when seeing such a message - this is already done by the core.
@@ -950,6 +960,7 @@ int mrmsg_load_from_db__(mrmsg_t* ths, mrmailbox_t* mailbox, uint32_t id)
  * @param pathNfilename Path and filename of the file to guess the type for.
  *
  * @param[out] ret_msgtype Guessed message type is copied here as one of the MR_MSG_* constants.
+ *     May be NULL if you're not interested in this value.
  *
  * @param[out] ret_mime The pointer to a string buffer is set to the guessed MIME-type. May be NULL. Must be free()'d by the caller.
  *
@@ -957,41 +968,49 @@ int mrmsg_load_from_db__(mrmsg_t* ths, mrmailbox_t* mailbox, uint32_t id)
  */
 void mrmsg_guess_msgtype_from_suffix(const char* pathNfilename, int* ret_msgtype, char** ret_mime)
 {
-	if( pathNfilename == NULL || ret_msgtype == NULL || ret_mime == NULL) {
-		return;
+	char* suffix = NULL;
+	int   dummy_msgtype = 0;
+	char* dummy_buf = NULL;
+
+	if( pathNfilename == NULL ) {
+		goto cleanup;
 	}
+
+	if( ret_msgtype == NULL ) { ret_msgtype = &dummy_msgtype; }
+	if( ret_mime == NULL )    { ret_mime = &dummy_buf; }
 
 	*ret_msgtype = MR_MSG_UNDEFINED;
 	*ret_mime = NULL;
 
-	char* s = mr_get_filesuffix_lc(pathNfilename);
-	if( s == NULL ) {
+	suffix = mr_get_filesuffix_lc(pathNfilename);
+	if( suffix == NULL ) {
 		goto cleanup;
 	}
 
-	if( strcmp(s, "mp3")==0 ) {
+	if( strcmp(suffix, "mp3")==0 ) {
 		*ret_msgtype = MR_MSG_AUDIO;
 		*ret_mime = safe_strdup("audio/mpeg");
 	}
-	else if( strcmp(s, "mp4")==0 ) {
+	else if( strcmp(suffix, "mp4")==0 ) {
 		*ret_msgtype = MR_MSG_VIDEO;
 		*ret_mime = safe_strdup("video/mp4");
 	}
-	else if( strcmp(s, "jpg")==0 || strcmp(s, "jpeg")==0 ) {
+	else if( strcmp(suffix, "jpg")==0 || strcmp(suffix, "jpeg")==0 ) {
 		*ret_msgtype = MR_MSG_IMAGE;
 		*ret_mime = safe_strdup("image/jpeg");
 	}
-	else if( strcmp(s, "png")==0 ) {
+	else if( strcmp(suffix, "png")==0 ) {
 		*ret_msgtype = MR_MSG_IMAGE;
 		*ret_mime = safe_strdup("image/png");
 	}
-	else if( strcmp(s, "gif")==0 ) {
+	else if( strcmp(suffix, "gif")==0 ) {
 		*ret_msgtype = MR_MSG_GIF;
 		*ret_mime = safe_strdup("image/gif");
 	}
 
 cleanup:
-	free(s);
+	free(suffix);
+	free(dummy_buf);
 }
 
 

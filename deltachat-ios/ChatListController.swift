@@ -21,7 +21,7 @@ class ChatListController: UIViewController {
     var incomingMsgObserver: Any?
     
     func getChatList() {
-        guard let chatlistPointer = mrmailbox_get_chatlist(mailboxPointer, 0, nil) else {
+        guard let chatlistPointer = mrmailbox_get_chatlist(mailboxPointer, 0, nil, 0) else {
             fatalError("chatlistPointer was nil")
         }
         // ownership of chatlistPointer transferred here to ChatList object

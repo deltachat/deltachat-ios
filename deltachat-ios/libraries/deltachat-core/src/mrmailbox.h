@@ -28,7 +28,7 @@ extern "C" {
 
 
 #define MR_VERSION_MAJOR    0
-#define MR_VERSION_MINOR    16
+#define MR_VERSION_MINOR    17
 #define MR_VERSION_REVISION 0
 
 
@@ -221,7 +221,7 @@ char*           mrmailbox_get_info          (mrmailbox_t*);
 /* Handle chatlists */
 #define         MR_GCL_ARCHIVED_ONLY        0x01
 #define         MR_GCL_NO_SPECIALS          0x02
-mrchatlist_t*   mrmailbox_get_chatlist      (mrmailbox_t*, int flags, const char* query);
+mrchatlist_t*   mrmailbox_get_chatlist      (mrmailbox_t*, int flags, const char* query_str, uint32_t query_id);
 
 
 /* Handle chats */
@@ -257,7 +257,7 @@ mrchat_t*       mrmailbox_get_chat          (mrmailbox_t*, uint32_t chat_id);
 
 
 /* Handle group chats */
-uint32_t        mrmailbox_create_group_chat        (mrmailbox_t*, const char* name);
+uint32_t        mrmailbox_create_group_chat        (mrmailbox_t*, int verified, const char* name);
 int             mrmailbox_is_contact_in_chat       (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id);
 int             mrmailbox_add_contact_to_chat      (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id);
 int             mrmailbox_remove_contact_from_chat (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id);
@@ -278,7 +278,11 @@ mrmsg_t*        mrmailbox_get_msg           (mrmailbox_t*, uint32_t msg_id);
 /* Handle contacts */
 uint32_t        mrmailbox_create_contact    (mrmailbox_t*, const char* name, const char* addr);
 int             mrmailbox_add_address_book  (mrmailbox_t*, const char*);
-mrarray_t*      mrmailbox_get_known_contacts (mrmailbox_t*, const char* query);
+
+#define         MR_GCL_VERIFIED_ONLY 0x01
+#define         MR_GCL_ADD_SELF      0x02
+mrarray_t*      mrmailbox_get_contacts      (mrmailbox_t*, uint32_t flags, const char* query);
+
 int             mrmailbox_get_blocked_count (mrmailbox_t*);
 mrarray_t*      mrmailbox_get_blocked_contacts (mrmailbox_t*);
 void            mrmailbox_block_contact     (mrmailbox_t*, uint32_t contact_id, int block);
@@ -303,16 +307,18 @@ void            mrmailbox_heartbeat         (mrmailbox_t*);
 
 
 /* out-of-band verification */
-#define         MR_QR_ASK_SECUREJOIN        200 /* id=contact */
+#define         MR_QR_ASK_VERIFYCONTACT     200 /* id=contact */
+#define         MR_QR_ASK_VERIFYGROUP       202 /* text1=groupname */
 #define         MR_QR_FPR_OK                210 /* id=contact */
 #define         MR_QR_FPR_MISMATCH          220 /* id=contact */
 #define         MR_QR_FPR_WITHOUT_ADDR      230 /* test1=formatted fingerprint */
 #define         MR_QR_ADDR                  320 /* id=contact */
 #define         MR_QR_TEXT                  330 /* text1=text */
+#define         MR_QR_URL                   332 /* text1=text */
 #define         MR_QR_ERROR                 400 /* text1=error string */
 mrlot_t*        mrmailbox_check_qr          (mrmailbox_t*, const char* qr);
 char*           mrmailbox_get_securejoin_qr (mrmailbox_t*, uint32_t chat_id);
-int             mrmailbox_join_securejoin   (mrmailbox_t*, const char* qr);
+uint32_t        mrmailbox_join_securejoin   (mrmailbox_t*, const char* qr);
 
 
 /* deprecated functions */

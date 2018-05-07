@@ -28,6 +28,7 @@ extern "C" {
 
 
 typedef struct mrsqlite3_t mrsqlite3_t;
+typedef struct mrapeerstate_t mrapeerstate_t;
 
 
 /** the structure behind mrcontact_t */
@@ -78,6 +79,7 @@ struct _mrcontact
 #define MR_ORIGIN_MIN_START_NEW_NCHAT (0x7FFFFFFF)                  /* contacts with at least this origin value start a new "normal" chat, defaults to off */
 
 int          mrcontact_load_from_db__         (mrcontact_t*, mrsqlite3_t*, uint32_t contact_id);
+int          mrcontact_is_verified__          (const mrcontact_t*, const mrapeerstate_t*);
 void         mr_normalize_name                (char* full_name);
 char*        mr_normalize_addr                (const char* email_addr);
 char*        mr_get_first_name                (const char* full_name);

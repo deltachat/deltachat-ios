@@ -41,8 +41,8 @@ struct _mrlot
 	uint32_t        m_id;              /**< The meaning of this value is defined by the creator of the object. 0 if not applicable. */
 
 	char*           m_fingerprint;     /**< used for qr code scanning only */
-	char*           m_random_public;   /**< used for qr code scanning only */
-	char*           m_random_secret;   /**< used for qr code scanning only */
+	char*           m_invitenumber;    /**< used for qr code scanning only */
+	char*           m_auth;            /**< used for qr code scanning only */
 };
 
 

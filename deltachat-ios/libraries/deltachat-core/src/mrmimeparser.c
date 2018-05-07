@@ -23,6 +23,8 @@
 #include "mrmailbox_internal.h"
 #include "mrmimeparser.h"
 #include "mrmimefactory.h"
+#include "mruudecode.h"
+#include "mrpgp.h"
 #include "mrsimplify.h"
 
 
@@ -845,6 +847,7 @@ mrmimeparser_t* mrmimeparser_new(const char* blobdir, mrmailbox_t* mailbox)
 	ths->m_parts   = carray_new(16);
 	ths->m_blobdir = blobdir; /* no need to copy the string at the moment */
 	ths->m_reports = carray_new(16);
+	ths->m_e2ee_helper = calloc(1, sizeof(mrmailbox_e2ee_helper_t));
 
 	mrhash_init(&ths->m_header, MRHASH_STRING, 0/* do not copy key */);
 
@@ -872,6 +875,7 @@ void mrmimeparser_unref(mrmimeparser_t* ths)
 	mrmimeparser_empty(ths);
 	if( ths->m_parts )   { carray_free(ths->m_parts); }
 	if( ths->m_reports ) { carray_free(ths->m_reports); }
+	free(ths->m_e2ee_helper);
 	free(ths);
 }
 
@@ -932,22 +936,78 @@ void mrmimeparser_empty(mrmimeparser_t* ths)
 		carray_set_size(ths->m_reports, 0);
 	}
 
-	ths->m_decrypted_and_validated = 0;
-	ths->m_decrypted_with_validation_errors = 0;
 	ths->m_decrypting_failed = 0;
+
+	mrmailbox_e2ee_thanks(ths->m_e2ee_helper);
 }
 
 
 static void do_add_single_part(mrmimeparser_t* parser, mrmimepart_t* part)
 {
 	/* add a single part to the list of parts, the parser takes the ownership of the part, so you MUST NOT unref it after calling this function. */
-	if( parser->m_decrypted_and_validated ) {
+	if( parser->m_e2ee_helper->m_encrypted && mrhash_count(parser->m_e2ee_helper->m_signatures)>0 ) {
 		mrparam_set_int(part->m_param, MRP_GUARANTEE_E2EE, 1);
 	}
-	else if( parser->m_decrypted_with_validation_errors ) {
-		mrparam_set_int(part->m_param, MRP_ERRONEOUS_E2EE, parser->m_decrypted_with_validation_errors);
+	else if( parser->m_e2ee_helper->m_encrypted ) {
+		mrparam_set_int(part->m_param, MRP_ERRONEOUS_E2EE, MRE2EE_NO_VALID_SIGNATURE);
 	}
 	carray_add(parser->m_parts, (void*)part, NULL);
+}
+
+
+static void do_add_single_file_part(mrmimeparser_t* parser, int msg_type, int mime_type,
+                                    const char* decoded_data, size_t decoded_data_bytes,
+                                    const char* desired_filename)
+{
+	mrmimepart_t* part = NULL;
+	char*         pathNfilename = NULL;
+
+	/* create a free file name to use */
+	if( (pathNfilename=mr_get_fine_pathNfilename(parser->m_blobdir, desired_filename)) == NULL ) {
+		goto cleanup;
+	}
+
+	/* copy data to file */
+	if( mr_write_file(pathNfilename, decoded_data, decoded_data_bytes, parser->m_mailbox)==0 ) {
+		goto cleanup;
+	}
+
+	part = mrmimepart_new();
+	part->m_type  = msg_type;
+	part->m_int_mimetype = mime_type;
+	part->m_bytes = decoded_data_bytes;
+	mrparam_set(part->m_param, MRP_FILE, pathNfilename);
+	if( MR_MSG_MAKE_FILENAME_SEARCHABLE(msg_type) ) {
+		part->m_msg = mr_get_filename(pathNfilename);
+	}
+	else if( MR_MSG_MAKE_SUFFIX_SEARCHABLE(msg_type) ) {
+		part->m_msg = mr_get_filesuffix_lc(pathNfilename);
+	}
+
+	if( mime_type == MR_MIMETYPE_IMAGE ) {
+		uint32_t w = 0, h = 0;
+		if( mr_get_filemeta(decoded_data, decoded_data_bytes, &w, &h) ) {
+			mrparam_set_int(part->m_param, MRP_WIDTH, w);
+			mrparam_set_int(part->m_param, MRP_HEIGHT, h);
+		}
+	}
+
+	/* split author/title from the original filename (if we do it from the real filename, we'll also get numbers appended by mr_get_fine_pathNfilename()) */
+	if( msg_type == MR_MSG_AUDIO ) {
+		char* author = NULL, *title = NULL;
+		mrmsg_get_authorNtitle_from_filename(desired_filename, &author, &title);
+		mrparam_set(part->m_param, MRP_AUTHORNAME, author);
+		mrparam_set(part->m_param, MRP_TRACKNAME, title);
+		free(author);
+		free(title);
+	}
+
+	do_add_single_part(parser, part);
+	part = NULL;
+
+cleanup:
+	free(pathNfilename);
+	mrmimepart_unref(part);
 }
 
 
@@ -958,7 +1018,6 @@ static int mrmimeparser_add_single_part_if_known(mrmimeparser_t* ths, struct mai
 
 	int                          mime_type;
 	struct mailmime_data*        mime_data;
-	char*                        pathNfilename = NULL;
 	char*                        file_suffix = NULL, *desired_filename = NULL;
 	int                          msg_type;
 
@@ -1018,7 +1077,36 @@ static int mrmimeparser_add_single_part_if_known(mrmimeparser_t* ths, struct mai
 					}
 				}
 
-				char* simplified_txt = mrsimplify_simplify(simplifier, decoded_data, decoded_data_bytes, mime_type==MR_MIMETYPE_TEXT_HTML? 1 : 0);
+				// add uuencoded stuff as MR_MSG_FILE/MR_MSG_IMAGE/etc. parts
+				char* txt = strndup(decoded_data, decoded_data_bytes);
+				{
+					char*  uu_blob = NULL, *uu_filename = NULL, *new_txt = NULL;
+					size_t uu_blob_bytes = 0;
+					int    uu_msg_type = 0, added_uu_parts = 0;
+					while( (new_txt=mruudecode_do(txt, &uu_blob, &uu_blob_bytes, &uu_filename)) != NULL )
+					{
+						mrmsg_guess_msgtype_from_suffix(uu_filename, &uu_msg_type, NULL);
+						if( uu_msg_type == 0 ) {
+							uu_msg_type = MR_MSG_FILE;
+						}
+
+						do_add_single_file_part(ths, uu_msg_type, 0, uu_blob, uu_blob_bytes, uu_filename);
+
+						free(txt);         txt = new_txt; new_txt = NULL;
+						free(uu_blob);     uu_blob = NULL; uu_blob_bytes = 0; uu_msg_type = 0;
+						free(uu_filename); uu_filename = NULL;
+
+						added_uu_parts++;
+						if( added_uu_parts > 50/*fence against endless loops*/ ) {
+							break;
+						}
+					}
+				}
+
+				// add text as MR_MSG_TEXT part
+				char* simplified_txt = mrsimplify_simplify(simplifier, txt, strlen(txt), mime_type==MR_MIMETYPE_TEXT_HTML? 1 : 0);
+				free(txt);
+				txt = NULL;
 				if( simplified_txt && simplified_txt[0] )
 				{
 					part = mrmimepart_new();
@@ -1086,48 +1174,7 @@ static int mrmimeparser_add_single_part_if_known(mrmimeparser_t* ths, struct mai
 
 				mr_replace_bad_utf8_chars(desired_filename);
 
-				/* create a free file name to use */
-				if( (pathNfilename=mr_get_fine_pathNfilename(ths->m_blobdir, desired_filename)) == NULL ) {
-					goto cleanup;
-				}
-
-				/* copy data to file */
-                if( mr_write_file(pathNfilename, decoded_data, decoded_data_bytes, ths->m_mailbox)==0 ) {
-					goto cleanup;
-                }
-
-				part = mrmimepart_new();
-				part->m_type  = msg_type;
-				part->m_int_mimetype = mime_type;
-				part->m_bytes = decoded_data_bytes;
-				mrparam_set(part->m_param, MRP_FILE, pathNfilename);
-				if( MR_MSG_MAKE_FILENAME_SEARCHABLE(msg_type) ) {
-					part->m_msg = mr_get_filename(pathNfilename);
-				}
-				else if( MR_MSG_MAKE_SUFFIX_SEARCHABLE(msg_type) ) {
-					part->m_msg = mr_get_filesuffix_lc(pathNfilename);
-				}
-
-				if( mime_type == MR_MIMETYPE_IMAGE ) {
-					uint32_t w = 0, h = 0;
-					if( mr_get_filemeta(decoded_data, decoded_data_bytes, &w, &h) ) {
-						mrparam_set_int(part->m_param, MRP_WIDTH, w);
-						mrparam_set_int(part->m_param, MRP_HEIGHT, h);
-					}
-				}
-
-				/* split author/title from the original filename (if we do it from the real filename, we'll also get numbers appended by mr_get_fine_pathNfilename()) */
-				if( msg_type == MR_MSG_AUDIO ) {
-					char* author = NULL, *title = NULL;
-					mrmsg_get_authorNtitle_from_filename(desired_filename, &author, &title);
-					mrparam_set(part->m_param, MRP_AUTHORNAME, author);
-					mrparam_set(part->m_param, MRP_TRACKNAME, title);
-					free(author);
-					free(title);
-				}
-
-				do_add_single_part(ths, part);
-				part = NULL;
+				do_add_single_file_part(ths, msg_type, mime_type, decoded_data, decoded_data_bytes, desired_filename);
 			}
 			break;
 
@@ -1140,7 +1187,6 @@ cleanup:
 	mrsimplify_unref(simplifier);
 	if( charset_buffer ) { charconv_buffer_free(charset_buffer); }
 	if( transfer_decoding_buffer ) { mmap_string_unref(transfer_decoding_buffer); }
-	free(pathNfilename);
 	free(file_suffix);
 	free(desired_filename);
 	mrmimepart_unref(part);
@@ -1235,7 +1281,11 @@ static int mrmimeparser_parse_mime_recursive(mrmimeparser_t* ths, struct mailmim
 					{
 						mrmimepart_t* part = mrmimepart_new();
 						part->m_type = MR_MSG_TEXT;
-						part->m_msg = mrstock_str(MR_STR_ENCRYPTEDMSG); /* not sure if the text "Encrypted message" is 100% sufficient here (bp) */
+
+						char* msg_body = mrstock_str(MR_STR_CANTDECRYPT_MSG_BODY);
+						part->m_msg = mr_mprintf(MR_EDITORIAL_OPEN "%s" MR_EDITORIAL_CLOSE, msg_body);
+						free(msg_body);
+
 						carray_add(ths->m_parts, (void*)part, NULL);
 						any_part_added = 1;
 						ths->m_decrypting_failed = 1;
@@ -1421,15 +1471,7 @@ void mrmimeparser_parse(mrmimeparser_t* ths, const char* body_not_terminated, si
 
 	/* decrypt, if possible; handle Autocrypt:-header
 	(decryption may modifiy the given object) */
-	int validation_errors = 0;
-	if( mrmailbox_e2ee_decrypt(ths->m_mailbox, ths->m_mimeroot, &validation_errors, &ths->m_degrade_event) ) {
-		if( validation_errors == 0 ) {
-			ths->m_decrypted_and_validated = 1;
-		}
-		else {
-			ths->m_decrypted_with_validation_errors = validation_errors;
-		}
-	}
+	mrmailbox_e2ee_decrypt(ths->m_mailbox, ths->m_mimeroot, ths->m_e2ee_helper);
 
 	//printf("after decryption:\n"); mailmime_print(ths->m_mimeroot);
 
@@ -1636,7 +1678,7 @@ cleanup:
  */
 struct mailimf_field* mrmimeparser_lookup_field(mrmimeparser_t* mimeparser, const char* field_name)
 {
-	return (struct mailimf_field*)mrhash_find(&mimeparser->m_header, field_name, strlen(field_name));
+	return (struct mailimf_field*)mrhash_find_str(&mimeparser->m_header, field_name);
 }
 
 
@@ -1656,7 +1698,7 @@ struct mailimf_field* mrmimeparser_lookup_field(mrmimeparser_t* mimeparser, cons
  */
 struct mailimf_optional_field* mrmimeparser_lookup_optional_field(mrmimeparser_t* mimeparser, const char* field_name)
 {
-	struct mailimf_field* field = mrhash_find(&mimeparser->m_header, field_name, strlen(field_name));
+	struct mailimf_field* field = mrhash_find_str(&mimeparser->m_header, field_name);
 	if( field && field->fld_type == MAILIMF_FIELD_OPTIONAL_FIELD ) {
 		return field->fld_data.fld_optional_field;
 	}
@@ -1826,7 +1868,7 @@ int mrmimeparser_sender_equals_recipient(mrmimeparser_t* mimeparser)
 	}
 
 	/* check if From: == To:/Cc: */
-	if( mrhash_find(recipients, from_addr_norm, strlen(from_addr_norm)) ) {
+	if( mrhash_find_str(recipients, from_addr_norm) ) {
 		sender_equals_recipient = 1;
 	}
 

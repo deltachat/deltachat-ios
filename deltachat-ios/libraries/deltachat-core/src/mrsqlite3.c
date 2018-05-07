@@ -70,13 +70,13 @@ sqlite3_stmt* mrsqlite3_prepare_v2_(mrsqlite3_t* ths, const char* querystr)
 	if( sqlite3_prepare_v2(ths->m_cobj,
 	         querystr, -1 /*read `sql` up to the first null-byte*/,
 	         &retStmt,
-	         NULL /*tail not interesing, we use only single statements*/) != SQLITE_OK )
+	         NULL /*tail not interesting, we use only single statements*/) != SQLITE_OK )
 	{
 		mrsqlite3_log_error(ths, "Query failed: %s", querystr);
 		return NULL;
 	}
 
-	/* success - the result mus be freed using sqlite3_finalize() */
+	/* success - the result must be freed using sqlite3_finalize() */
 	return retStmt;
 }
 
@@ -158,7 +158,7 @@ int mrsqlite3_open__(mrsqlite3_t* ths, const char* dbfile, int flags)
 	}
 
 	if( ths->m_cobj ) {
-		mrmailbox_log_error(ths->m_mailbox, 0, "Cannot open, database \"%s\" already opend.", dbfile);
+		mrmailbox_log_error(ths->m_mailbox, 0, "Cannot open, database \"%s\" already opened.", dbfile);
 		goto cleanup;
 	}
 
@@ -203,7 +203,7 @@ int mrsqlite3_open__(mrsqlite3_t* ths, const char* dbfile, int flags)
 			mrsqlite3_execute__(ths, "CREATE TABLE chats_contacts (chat_id INTEGER, contact_id INTEGER);");
 			mrsqlite3_execute__(ths, "CREATE INDEX chats_contacts_index1 ON chats_contacts (chat_id);");
 			mrsqlite3_execute__(ths, "INSERT INTO chats (id,type,name) VALUES (1,120,'deaddrop'), (2,120,'rsvd'), (3,120,'trash'), (4,120,'msgs_in_creation'), (5,120,'starred'), (6,120,'archivedlink'), (7,100,'rsvd'), (8,100,'rsvd'), (9,100,'rsvd');");
-			#if !defined(MR_CHAT_TYPE_NORMAL) || MR_CHAT_TYPE_NORMAL!=100 || MR_CHAT_TYPE_GROUP!=120 || \
+			#if !defined(MR_CHAT_TYPE_SINGLE) || MR_CHAT_TYPE_SINGLE!=100 || MR_CHAT_TYPE_GROUP!=120 || \
 			 MR_CHAT_ID_DEADDROP!=1 || MR_CHAT_ID_TRASH!=3 || \
 			 MR_CHAT_ID_MSGS_IN_CREATION!=4 || MR_CHAT_ID_STARRED!=5 || MR_CHAT_ID_ARCHIVED_LINK!=6 || \
 			 MR_CHAT_NOT_BLOCKED!=0  || MR_CHAT_MANUALLY_BLOCKED!=1 || MR_CHAT_DEADDROP_BLOCKED!=2
@@ -355,19 +355,23 @@ int mrsqlite3_open__(mrsqlite3_t* ths, const char* dbfile, int flags)
 				mrsqlite3_execute__(ths, "CREATE INDEX chats_contacts_index2 ON chats_contacts (contact_id);"); /* needed to find chat by contact list */
 				mrsqlite3_execute__(ths, "ALTER TABLE msgs ADD COLUMN timestamp_sent INTEGER DEFAULT 0;");
 				mrsqlite3_execute__(ths, "ALTER TABLE msgs ADD COLUMN timestamp_rcvd INTEGER DEFAULT 0;");
-				mrsqlite3_execute__(ths, "ALTER TABLE acpeerstates ADD COLUMN fingerprint TEXT DEFAULT '';"); /* do not add `COLLATE NOCASE` case-insensivity is not needed as we force uppercase on store - otoh case-sensivity may be neeed for other/upcoming fingerprint formats */
-				mrsqlite3_execute__(ths, "CREATE INDEX acpeerstates_index2 ON acpeerstates (fingerprint);");
 
 				dbversion = NEW_DB_VERSION;
 				mrsqlite3_set_config_int__(ths, "dbversion", NEW_DB_VERSION);
 			}
 		#undef NEW_DB_VERSION
 
-		#define NEW_DB_VERSION 31
+		#define NEW_DB_VERSION 34
 			if( dbversion < NEW_DB_VERSION )
 			{
 				mrsqlite3_execute__(ths, "ALTER TABLE msgs ADD COLUMN hidden INTEGER DEFAULT 0;");
-				mrsqlite3_execute__(ths, "ALTER TABLE acpeerstates ADD COLUMN verified INTEGER DEFAULT 0;");
+				mrsqlite3_execute__(ths, "ALTER TABLE msgs_mdns ADD COLUMN timestamp_sent INTEGER DEFAULT 0;");
+				mrsqlite3_execute__(ths, "ALTER TABLE acpeerstates ADD COLUMN public_key_fingerprint TEXT DEFAULT '';"); /* do not add `COLLATE NOCASE` case-insensivity is not needed as we force uppercase on store - otoh case-sensivity may be neeed for other/upcoming fingerprint formats */
+				mrsqlite3_execute__(ths, "ALTER TABLE acpeerstates ADD COLUMN public_key_verified INTEGER DEFAULT 0;");
+				mrsqlite3_execute__(ths, "ALTER TABLE acpeerstates ADD COLUMN gossip_key_fingerprint TEXT DEFAULT '';"); /* do not add `COLLATE NOCASE` case-insensivity is not needed as we force uppercase on store - otoh case-sensivity may be neeed for other/upcoming fingerprint formats */
+				mrsqlite3_execute__(ths, "ALTER TABLE acpeerstates ADD COLUMN gossip_key_verified INTEGER DEFAULT 0;");
+				mrsqlite3_execute__(ths, "CREATE INDEX acpeerstates_index3 ON acpeerstates (public_key_fingerprint);");
+				mrsqlite3_execute__(ths, "CREATE INDEX acpeerstates_index4 ON acpeerstates (gossip_key_fingerprint);");
 				recalc_fingerprints = 1;
 
 				dbversion = NEW_DB_VERSION;
@@ -436,7 +440,7 @@ int mrsqlite3_is_open(const mrsqlite3_t* ths)
 
 sqlite3_stmt* mrsqlite3_predefine__(mrsqlite3_t* ths, size_t idx, const char* querystr)
 {
-	/* predefines a statement or resets and reuses a statment.
+	/* predefines a statement or resets and reuses a statement.
 	Subsequent call may ommit the querystring.
 	CAVE: you must not call this function with different strings for the same index! */
 
@@ -632,17 +636,38 @@ int mrsqlite3_set_config_int__(mrsqlite3_t* ths, const char* key, int32_t value)
  ******************************************************************************/
 
 
+#ifdef MR_USE_LOCK_DEBUG
+void mrsqlite3_lockNdebug(mrsqlite3_t* ths, const char* filename, int linenum) /* wait and lock */
+#else
 void mrsqlite3_lock(mrsqlite3_t* ths) /* wait and lock */
+#endif
 {
+	#ifdef MR_USE_LOCK_DEBUG
+		clock_t start = clock();
+		mrmailbox_log_info(ths->m_mailbox, 0, "    waiting for lock at %s#L%i", filename, linenum);
+	#endif
+
 	pthread_mutex_lock(&ths->m_critical_);
+
+	#ifdef MR_USE_LOCK_DEBUG
+		mrmailbox_log_info(ths->m_mailbox, 0, "{{{ LOCK AT %s#L%i after %.3f ms", filename, linenum, (double)(clock()-start)*1000.0/CLOCKS_PER_SEC);
+	#endif
 
 	//mrmailbox_wake_lock(ths->m_mailbox);
 }
 
 
+#ifdef MR_USE_LOCK_DEBUG
+void mrsqlite3_unlockNdebug(mrsqlite3_t* ths, const char* filename, int linenum)
+#else
 void mrsqlite3_unlock(mrsqlite3_t* ths)
+#endif
 {
 	//mrmailbox_wake_unlock(ths->m_mailbox);
+
+	#ifdef MR_USE_LOCK_DEBUG
+		mrmailbox_log_info(ths->m_mailbox, 0, "    UNLOCK AT %s#L%i }}}", filename, linenum);
+	#endif
 
 	pthread_mutex_unlock(&ths->m_critical_);
 }

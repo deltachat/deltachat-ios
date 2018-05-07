@@ -276,6 +276,20 @@ void stress_functions(mrmailbox_t* mailbox)
 		mrmimeparser_unref(mimeparser);
 	}
 
+	/* test message helpers
+	 **************************************************************************/
+
+	{
+		int type;
+		char* mime;
+		mrmsg_guess_msgtype_from_suffix("foo/bar-sth.mp3", NULL, NULL);
+		mrmsg_guess_msgtype_from_suffix("foo/bar-sth.mp3", NULL, &mime);
+		assert( strcmp(mime, "audio/mpeg")==0 );
+		mrmsg_guess_msgtype_from_suffix("foo/bar-sth.mp3", &type, NULL);
+		assert( type == MR_MSG_AUDIO );
+		free(mime);
+	}
+
 	/* test some string functions
 	 **************************************************************************/
 
@@ -288,7 +302,7 @@ void stress_functions(mrmailbox_t* mailbox)
 
 		str = strdup("this is a little test string");
 			mr_truncate_str(str, 16);
-			assert( strcmp(str, "this is a " MR_ELLIPSE_STR)==0 );
+			assert( strcmp(str, "this is a " MR_EDITORIAL_ELLIPSE)==0 );
 		free(str);
 
 		str = strdup("1234");
@@ -343,8 +357,9 @@ void stress_functions(mrmailbox_t* mailbox)
 		assert( strcmp("mdn_rcvd="  MR_STRINGIFY(MR_STATE_OUT_MDN_RCVD),  "mdn_rcvd=28")==0 );
 
 		assert( strcmp("undefined="    MR_STRINGIFY(MR_CHAT_TYPE_UNDEFINED),      "undefined=0")==0 );
-		assert( strcmp("normal="       MR_STRINGIFY(MR_CHAT_TYPE_NORMAL),         "normal=100")==0 );
+		assert( strcmp("single="       MR_STRINGIFY(MR_CHAT_TYPE_SINGLE),         "single=100")==0 );
 		assert( strcmp("group="        MR_STRINGIFY(MR_CHAT_TYPE_GROUP),          "group=120")==0 );
+		assert( strcmp("vgroup="       MR_STRINGIFY(MR_CHAT_TYPE_VERIFIED_GROUP), "vgroup=130")==0 );
 
 		assert( strcmp("deaddrop="     MR_STRINGIFY(MR_CHAT_ID_DEADDROP),         "deaddrop=1")==0 );
 		assert( strcmp("trash="        MR_STRINGIFY(MR_CHAT_ID_TRASH),            "trash=3")==0 );
@@ -357,6 +372,10 @@ void stress_functions(mrmailbox_t* mailbox)
 		assert( strcmp("spcl_contact=" MR_STRINGIFY(MR_CONTACT_ID_LAST_SPECIAL),  "spcl_contact=9")==0 );
 
 		assert( strcmp("grpimg="    MR_STRINGIFY(MR_CMD_GROUPIMAGE_CHANGED), "grpimg=3")==0 );
+
+		assert( strcmp("notverified="    MR_STRINGIFY(MRV_NOT_VERIFIED),  "notverified=0")==0 );
+		assert( strcmp("simple="         MR_STRINGIFY(MRV_SIMPLE),        "simple=1")==0 );
+		assert( strcmp("bidirectional="  MR_STRINGIFY(MRV_BIDIRECTIONAL), "bidirectional=2")==0 );
 
 		assert( MRP_FILE == 'f' );
 		assert( MRP_WIDTH == 'w' );
@@ -709,46 +728,74 @@ void stress_functions(mrmailbox_t* mailbox)
 		{
 			mrkeyring_t* keyring = mrkeyring_new();
 			mrkeyring_add(keyring, private_key);
+
+			mrkeyring_t* public_keyring = mrkeyring_new();
+			mrkeyring_add(public_keyring, public_key);
+
+			mrkeyring_t* public_keyring2 = mrkeyring_new();
+			mrkeyring_add(public_keyring2, public_key2);
+
 			void* plain = NULL;
-			int validation_errors = 0, ok;
+			mrhash_t valid_signatures;
+			mrhash_init(&valid_signatures, MRHASH_STRING, 1/*copy key*/);
+			int ok;
 
-			ok = mrpgp_pk_decrypt(mailbox, ctext_signed, ctext_signed_bytes, keyring, public_key/*for validate*/, 1, &plain, &plain_bytes, &validation_errors);
+			ok = mrpgp_pk_decrypt(mailbox, ctext_signed, ctext_signed_bytes, keyring, public_keyring/*for validate*/, 1, &plain, &plain_bytes, &valid_signatures);
 			assert( ok && plain && plain_bytes>0 );
 			assert( strncmp((char*)plain, original_text, strlen(original_text))==0 );
-			assert( validation_errors == 0 );
+			assert( mrhash_count(&valid_signatures) == 1 );
 			free(plain); plain = NULL;
+			mrhash_clear(&valid_signatures);
 
-			ok = mrpgp_pk_decrypt(mailbox, ctext_signed, ctext_signed_bytes, keyring, NULL/*for validate*/, 1, &plain, &plain_bytes, &validation_errors);
+			ok = mrpgp_pk_decrypt(mailbox, ctext_signed, ctext_signed_bytes, keyring, NULL/*for validate*/, 1, &plain, &plain_bytes, &valid_signatures);
 			assert( ok && plain && plain_bytes>0 );
 			assert( strncmp((char*)plain, original_text, strlen(original_text))==0 );
-			assert( validation_errors == MR_VALIDATE_UNKNOWN_SIGNATURE );
+			assert( mrhash_count(&valid_signatures) == 0 );
 			free(plain); plain = NULL;
+			mrhash_clear(&valid_signatures);
 
-			ok = mrpgp_pk_decrypt(mailbox, ctext_signed, ctext_signed_bytes, keyring, public_key2/*for validate*/, 1, &plain, &plain_bytes, &validation_errors);
+			ok = mrpgp_pk_decrypt(mailbox, ctext_signed, ctext_signed_bytes, keyring, public_keyring2/*for validate*/, 1, &plain, &plain_bytes, &valid_signatures);
 			assert( ok && plain && plain_bytes>0 );
 			assert( strncmp((char*)plain, original_text, strlen(original_text))==0 );
-			assert( validation_errors == MR_VALIDATE_UNKNOWN_SIGNATURE );
+			assert( mrhash_count(&valid_signatures) == 0 );
 			free(plain); plain = NULL;
+			mrhash_clear(&valid_signatures);
 
-			ok = mrpgp_pk_decrypt(mailbox, ctext_unsigned, ctext_unsigned_bytes, keyring, public_key/*for validate*/, 1, &plain, &plain_bytes, &validation_errors);
+			mrkeyring_add(public_keyring2, public_key);
+			ok = mrpgp_pk_decrypt(mailbox, ctext_signed, ctext_signed_bytes, keyring, public_keyring2/*for validate*/, 1, &plain, &plain_bytes, &valid_signatures);
 			assert( ok && plain && plain_bytes>0 );
 			assert( strncmp((char*)plain, original_text, strlen(original_text))==0 );
-			assert( validation_errors == MR_VALIDATE_NO_SIGNATURE );
+			assert( mrhash_count(&valid_signatures) == 1 );
 			free(plain); plain = NULL;
+			mrhash_clear(&valid_signatures);
+
+			ok = mrpgp_pk_decrypt(mailbox, ctext_unsigned, ctext_unsigned_bytes, keyring, public_keyring/*for validate*/, 1, &plain, &plain_bytes, &valid_signatures);
+			assert( ok && plain && plain_bytes>0 );
+			assert( strncmp((char*)plain, original_text, strlen(original_text))==0 );
+			assert( mrhash_count(&valid_signatures) == 0 );
+			free(plain); plain = NULL;
+			mrhash_clear(&valid_signatures);
 
 			mrkeyring_unref(keyring);
+			mrkeyring_unref(public_keyring);
+			mrkeyring_unref(public_keyring2);
 		}
 
 		{
 			mrkeyring_t* keyring = mrkeyring_new();
 			mrkeyring_add(keyring, private_key2);
+
+			mrkeyring_t* public_keyring = mrkeyring_new();
+			mrkeyring_add(public_keyring, public_key);
+
 			void* plain = NULL;
-			int validation_errors = 0;
-			int ok = mrpgp_pk_decrypt(mailbox, ctext_signed, ctext_signed_bytes, keyring, public_key/*for validate*/, 1, &plain, &plain_bytes, &validation_errors);
+			int ok = mrpgp_pk_decrypt(mailbox, ctext_signed, ctext_signed_bytes, keyring, public_keyring/*for validate*/, 1, &plain, &plain_bytes, NULL);
 			assert( ok && plain && plain_bytes>0 );
 			assert( strcmp(plain, original_text)==0 );
-			mrkeyring_unref(keyring);
 			free(plain);
+
+			mrkeyring_unref(keyring);
+			mrkeyring_unref(public_keyring);
 		}
 
 		free(ctext_signed);
@@ -772,11 +819,11 @@ void stress_functions(mrmailbox_t* mailbox)
 	if( mrmailbox_is_configured(mailbox) )
 	{
 		char* qr = mrmailbox_get_securejoin_qr(mailbox, 0);
-		assert( strlen(qr)>55 && strncmp(qr, "OPENPGP4FPR:", 12)==0 && strncmp(&qr[52], "#v=", 3)==0 );
+		assert( strlen(qr)>55 && strncmp(qr, "OPENPGP4FPR:", 12)==0 && strncmp(&qr[52], "#a=", 3)==0 );
 
 		mrlot_t* res = mrmailbox_check_qr(mailbox, qr);
 		assert( res );
-		assert( res->m_state == MR_QR_ASK_SECUREJOIN || res->m_state == MR_QR_FPR_MISMATCH || res->m_state == MR_QR_FPR_WITHOUT_ADDR );
+		assert( res->m_state == MR_QR_ASK_VERIFYCONTACT || res->m_state == MR_QR_FPR_MISMATCH || res->m_state == MR_QR_FPR_WITHOUT_ADDR );
 
 		mrlot_unref(res);
 		free(qr);

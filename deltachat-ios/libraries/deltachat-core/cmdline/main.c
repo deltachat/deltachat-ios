@@ -51,7 +51,7 @@ static char* read_cmd(void)
 }
 
 
-static int s_do_log_info = 0;
+static int s_do_log_info = 1;
 
 
 static uintptr_t receive_event(mrmailbox_t* mailbox, int event, uintptr_t data1, uintptr_t data2)
@@ -126,6 +126,7 @@ static uintptr_t receive_event(mrmailbox_t* mailbox, int event, uintptr_t data1,
 
 int main(int argc, char ** argv)
 {
+	char*        cmd = NULL;
 	mrmailbox_t* mailbox = mrmailbox_new(receive_event, NULL, "CLI");
 
 	mrmailbox_cmdline_skip_auth(mailbox); /* disable the need to enter the command `auth <password>` for all mailboxes. */
@@ -141,16 +142,21 @@ int main(int argc, char ** argv)
 		printf("ERROR: Bad arguments\n");
 	}
 
+	s_do_log_info = 0;
 	stress_functions(mailbox);
+	s_do_log_info = 1;
 
 	printf("Delta Chat Core is awaiting your commands.\n");
-	s_do_log_info = 1;
 
 	/* wait for command */
 	while(1)
 	{
 		/* read command */
-		const char* cmd = read_cmd();
+		const char* cmdline = read_cmd();
+		free(cmd);
+		cmd = safe_strdup(cmdline);
+		char* arg1 = strchr(cmd, ' ');
+		if( arg1 ) { *arg1 = 0; arg1++; }
 
 		if( strcmp(cmd, "clear")==0 )
 		{
@@ -160,14 +166,16 @@ int main(int argc, char ** argv)
 		else if( strcmp(cmd, "getqr")==0 || strcmp(cmd, "getbadqr")==0 )
 		{
 			mrmailbox_connect(mailbox);
-			char* qrstr  = mrmailbox_get_securejoin_qr(mailbox, 0);
-			if( strcmp(cmd, "getbadqr")==0 && strlen(qrstr)>40 ) {
-				for( int i = 12; i < 22; i++ ) { qrstr[i] = '0'; }
+			char* qrstr  = mrmailbox_get_securejoin_qr(mailbox, arg1? atoi(arg1) : 0);
+			if( qrstr && qrstr[0] ) {
+				if( strcmp(cmd, "getbadqr")==0 && strlen(qrstr)>40 ) {
+					for( int i = 12; i < 22; i++ ) { qrstr[i] = '0'; }
+				}
+				printf("%s\n", qrstr);
+				char* syscmd = mr_mprintf("qrencode -t ansiutf8 \"%s\" -o -", qrstr); /* `-t ansiutf8`=use back/write, `-t utf8`=use terminal colors */
+				system(syscmd);
+				free(syscmd);
 			}
-			printf("%s\n", qrstr);
-			char* syscmd = mr_mprintf("qrencode -t ansiutf8 \"%s\" -o -", qrstr); /* `-t ansiutf8`=use back/write, `-t utf8`=use terminal colors */
-			system(syscmd);
-			free(syscmd);
 			free(qrstr);
 		}
 		else if( strcmp(cmd, "exit")==0 )
@@ -180,7 +188,7 @@ int main(int argc, char ** argv)
 		}
 		else
 		{
-			char* execute_result = mrmailbox_cmdline(mailbox, cmd);
+			char* execute_result = mrmailbox_cmdline(mailbox, cmdline);
 			if( execute_result ) {
 				printf("%s\n", execute_result);
 				free(execute_result);
@@ -188,6 +196,7 @@ int main(int argc, char ** argv)
 		}
 	}
 
+	free(cmd);
 	mrmailbox_close(mailbox);
 	mrmailbox_unref(mailbox);
 	mailbox = NULL;

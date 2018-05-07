@@ -22,6 +22,7 @@
 
 #include "mrmailbox_internal.h"
 #include "mrmimefactory.h"
+#include "mrapeerstate.h"
 
 #define LINEEND "\r\n" /* lineend used in IMF */
 
@@ -133,33 +134,49 @@ int mrmimefactory_load_msg(mrmimefactory_t* factory, uint32_t msg_id)
 			}
 			else
 			{
+				int min_verified = factory->m_chat->m_type == MR_CHAT_TYPE_VERIFIED_GROUP? MRV_BIDIRECTIONAL : MRV_NOT_VERIFIED;
+
 				sqlite3_stmt* stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_na_FROM_chats_contacs_JOIN_contacts_WHERE_cc,
-					"SELECT c.authname, c.addr FROM chats_contacts cc LEFT JOIN contacts c ON cc.contact_id=c.id WHERE cc.chat_id=? AND cc.contact_id>?;");
+					"SELECT c.authname, c.addr, ps.public_key_verified, ps.gossip_key_verified "
+					" FROM chats_contacts cc "
+					" LEFT JOIN contacts c ON cc.contact_id=c.id "
+					" LEFT JOIN acpeerstates ps ON c.addr=ps.addr "
+					" WHERE cc.chat_id=? AND cc.contact_id>" MR_STRINGIFY(MR_CONTACT_ID_LAST_SPECIAL) ";");
 				sqlite3_bind_int(stmt, 1, factory->m_msg->m_chat_id);
-				sqlite3_bind_int(stmt, 2, MR_CONTACT_ID_LAST_SPECIAL);
 				while( sqlite3_step(stmt) == SQLITE_ROW )
 				{
-					const char* authname = (const char*)sqlite3_column_text(stmt, 0);
-					const char* addr = (const char*)sqlite3_column_text(stmt, 1);
+					const char* authname            = (const char*)sqlite3_column_text(stmt, 0);
+					const char* addr                = (const char*)sqlite3_column_text(stmt, 1);
+					int         public_key_verified =              sqlite3_column_int (stmt, 2);
+					int         gossip_key_verified =              sqlite3_column_int (stmt, 3);
 					if( clist_search_string_nocase(factory->m_recipients_addr, addr)==0 )
 					{
-						clist_append(factory->m_recipients_names, (void*)((authname&&authname[0])? safe_strdup(authname) : NULL));
-						clist_append(factory->m_recipients_addr,  (void*)safe_strdup(addr));
+						if( public_key_verified >= min_verified || gossip_key_verified >= min_verified )
+						{
+							clist_append(factory->m_recipients_names, (void*)((authname&&authname[0])? safe_strdup(authname) : NULL));
+							clist_append(factory->m_recipients_addr,  (void*)safe_strdup(addr));
+						}
 					}
 				}
 
 				int command = mrparam_get_int(factory->m_msg->m_param, MRP_CMD, 0);
 				if( command==MR_CMD_MEMBER_REMOVED_FROM_GROUP /* for added members, the list is just fine */) {
-					char* email_to_remove = mrparam_get(factory->m_msg->m_param, MRP_CMD_PARAM, NULL);
-					char* self_addr = mrsqlite3_get_config__(mailbox->m_sql, "configured_addr", "");
+					char* email_to_remove     = mrparam_get(factory->m_msg->m_param, MRP_CMD_PARAM, NULL);
+					char* self_addr           = mrsqlite3_get_config__(mailbox->m_sql, "configured_addr", "");
+					mrapeerstate_t* peerstate = mrapeerstate_new(mailbox);
+					mrapeerstate_load_by_addr__(peerstate, mailbox->m_sql, email_to_remove);
 					if( email_to_remove && strcasecmp(email_to_remove, self_addr)!=0 )
 					{
 						if( clist_search_string_nocase(factory->m_recipients_addr, email_to_remove)==0 )
 						{
-							clist_append(factory->m_recipients_names, NULL);
-							clist_append(factory->m_recipients_addr,  (void*)email_to_remove);
+							if( peerstate->m_public_key_verified >= min_verified || peerstate->m_gossip_key_verified >= min_verified )
+							{
+								clist_append(factory->m_recipients_names, NULL);
+								clist_append(factory->m_recipients_addr,  (void*)email_to_remove);
+							}
 						}
 					}
+					mrapeerstate_unref(peerstate);
 					free(self_addr);
 				}
 
@@ -418,7 +435,7 @@ static char* get_subject(const mrchat_t* chat, const mrmsg_t* msg, int afwd_emai
 	{
 		ret = mrstock_str(MR_STR_AC_SETUP_MSG_SUBJECT); /* do not add the "Chat:" prefix for setup messages */
 	}
-	else if( chat->m_type==MR_CHAT_TYPE_GROUP )
+	else if( MR_CHAT_TYPE_IS_MULTI(chat->m_type) )
 	{
 		ret = mr_mprintf(MR_CHAT_PREFIX " %s: %s%s", chat->m_name, fwd, raw_subject);
 	}
@@ -449,7 +466,8 @@ int mrmimefactory_render(mrmimefactory_t* factory)
 	int                          parts = 0;
 	mrmailbox_e2ee_helper_t      e2ee_helper;
 	int                          e2ee_guaranteed = 0;
-	int                          force_unencrypted = 0; // 1=add Autocrypt-header (needed eg. for handshaking), 2=no Autocrypte-header (used for MDN)
+	int                          min_verified = MRV_NOT_VERIFIED;
+	int                          force_plaintext = 0; // 1=add Autocrypt-header (needed eg. for handshaking), 2=no Autocrypte-header (used for MDN)
 	char*                        grpimage = NULL;
 
 	memset(&e2ee_helper, 0, sizeof(mrmailbox_e2ee_helper_t));
@@ -518,33 +536,52 @@ int mrmimefactory_render(mrmimefactory_t* factory)
 		struct mailmime* meta_part = NULL;
 		char* placeholdertext = NULL;
 
-		force_unencrypted = mrparam_get_int(factory->m_msg->m_param, MRP_FORCE_UNENCRYPTED, 0);
-		e2ee_guaranteed   = mrparam_get_int(factory->m_msg->m_param, MRP_GUARANTEE_E2EE, 0);
+		if( chat->m_type == MR_CHAT_TYPE_VERIFIED_GROUP ) {
+			mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("Chat-Verified"), strdup("1")));
+			force_plaintext   = 0;
+			e2ee_guaranteed   = 1;
+			min_verified      = MRV_BIDIRECTIONAL;
+		}
+		else {
+			if( (force_plaintext = mrparam_get_int(factory->m_msg->m_param, MRP_FORCE_PLAINTEXT, 0)) == 0 ) {
+				e2ee_guaranteed = mrparam_get_int(factory->m_msg->m_param, MRP_GUARANTEE_E2EE, 0);
+			}
+		}
 
 		/* build header etc. */
 		int command = mrparam_get_int(msg->m_param, MRP_CMD, 0);
-		if( chat->m_type==MR_CHAT_TYPE_GROUP )
+		if( MR_CHAT_TYPE_IS_MULTI(chat->m_type) )
 		{
 			mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("Chat-Group-ID"), safe_strdup(chat->m_grpid)));
 			mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("Chat-Group-Name"), mr_encode_header_string(chat->m_name)));
 
-			if( command == MR_CMD_MEMBER_REMOVED_FROM_GROUP ) {
+
+			if( command == MR_CMD_MEMBER_REMOVED_FROM_GROUP )
+			{
 				char* email_to_remove = mrparam_get(msg->m_param, MRP_CMD_PARAM, NULL);
 				if( email_to_remove ) {
 					mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("Chat-Group-Member-Removed"), email_to_remove));
 				}
 			}
-			else if( command == MR_CMD_MEMBER_ADDED_TO_GROUP ) {
+			else if( command == MR_CMD_MEMBER_ADDED_TO_GROUP )
+			{
 				char* email_to_add = mrparam_get(msg->m_param, MRP_CMD_PARAM, NULL);
 				if( email_to_add ) {
 					mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("Chat-Group-Member-Added"), email_to_add));
 					grpimage = mrparam_get(chat->m_param, MRP_PROFILE_IMAGE, NULL);
 				}
+
+				if( mrparam_get_int(msg->m_param, MRP_CMD_PARAM2, 0) ) {
+					mrmailbox_log_info(msg->m_mailbox, 0, "sending secure-join message '%s' >>>>>>>>>>>>>>>>>>>>>>>>>", "vg-member-added");
+					mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("Secure-Join"), strdup("vg-member-added")));
+				}
 			}
-			else if( command == MR_CMD_GROUPNAME_CHANGED ) {
+			else if( command == MR_CMD_GROUPNAME_CHANGED )
+			{
 				mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("Chat-Group-Name-Changed"), strdup("1")));
 			}
-			else if( command == MR_CMD_GROUPIMAGE_CHANGED ) {
+			else if( command == MR_CMD_GROUPIMAGE_CHANGED )
+			{
 				grpimage = mrparam_get(msg->m_param, MRP_CMD_PARAM, NULL);
 				if( grpimage==NULL ) {
 					mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("Chat-Group-Image"), safe_strdup("0")));
@@ -563,14 +600,26 @@ int mrmimefactory_render(mrmimefactory_t* factory)
 				mrmailbox_log_info(msg->m_mailbox, 0, "sending secure-join message '%s' >>>>>>>>>>>>>>>>>>>>>>>>>", step);
 				mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("Secure-Join"), step/*mailimf takes ownership of string*/));
 
-				char* random_secret = mrparam_get(msg->m_param, MRP_CMD_PARAM2, NULL);
-				if( random_secret ) {
-					mailimf_fields_add(imf_fields, mailimf_field_new_custom(strcmp(step, "request")==0? strdup("Secure-Join-Random-Public"):strdup("Secure-Join-Random-Secret"), random_secret/*mailimf takes ownership of string*/));
+				char* param2 = mrparam_get(msg->m_param, MRP_CMD_PARAM2, NULL);
+				if( param2 ) {
+					mailimf_fields_add(imf_fields, mailimf_field_new_custom(
+						(strcmp(step, "vg-request-with-auth")==0 || strcmp(step, "vc-request-with-auth")==0)?
+							strdup("Secure-Join-Auth") : strdup("Secure-Join-Invitenumber"),
+						param2/*mailimf takes ownership of string*/));
 				}
 
 				char* fingerprint = mrparam_get(msg->m_param, MRP_CMD_PARAM3, NULL);
 				if( fingerprint ) {
-					mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("Secure-Join-Fingerprint"), fingerprint/*mailimf takes ownership of string*/));
+					mailimf_fields_add(imf_fields, mailimf_field_new_custom(
+						strdup("Secure-Join-Fingerprint"),
+						fingerprint/*mailimf takes ownership of string*/));
+				}
+
+				char* grpid = mrparam_get(msg->m_param, MRP_CMD_PARAM4, NULL);
+				if( grpid ) {
+					mailimf_fields_add(imf_fields, mailimf_field_new_custom(
+						strdup("Secure-Join-Group"),
+						grpid/*mailimf takes ownership of string*/));
 				}
 			}
 		}
@@ -703,7 +752,7 @@ int mrmimefactory_render(mrmimefactory_t* factory)
 		- in older versions, we did not encrypt messages to ourself when they to to SMTP - however, if these messages
 		  are forwarded for any reasons (eg. gmail always forwards to IMAP), we have no chance to decrypt them;
 		  this issue is fixed with 0.9.4 */
-		force_unencrypted = 2;
+		force_plaintext = 2;
 	}
 	else
 	{
@@ -724,8 +773,8 @@ int mrmimefactory_render(mrmimefactory_t* factory)
 	struct mailimf_subject* subject = mailimf_subject_new(mr_encode_header_string(subject_str));
 	mailimf_fields_add(imf_fields, mailimf_field_new(MAILIMF_FIELD_SUBJECT, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, subject, NULL, NULL, NULL));
 
-	if( force_unencrypted != 2 ) {
-		mrmailbox_e2ee_encrypt(factory->m_mailbox, factory->m_recipients_addr, force_unencrypted, e2ee_guaranteed, message, &e2ee_helper);
+	if( force_plaintext != 2 ) {
+		mrmailbox_e2ee_encrypt(factory->m_mailbox, factory->m_recipients_addr, force_plaintext, e2ee_guaranteed, min_verified, message, &e2ee_helper);
 	}
 
 	if( e2ee_helper.m_encryption_successfull ) {

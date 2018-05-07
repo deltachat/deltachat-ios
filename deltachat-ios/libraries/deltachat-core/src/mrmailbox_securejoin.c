@@ -29,68 +29,139 @@
 #include "mrmimefactory.h"
 #include "mrjob.h"
 
+#define      LOCK                 { mrsqlite3_lock  (mailbox->m_sql); locked = 1; }
+#define      UNLOCK  if( locked ) { mrsqlite3_unlock(mailbox->m_sql); locked = 0; }
+
 
 /*******************************************************************************
- * Tools: Alice's random_public and random_secret mini-datastore
+ * Tools: Alice's invitenumber and auth mini-datastore
  ******************************************************************************/
 
 
-/* the "mini-datastore is used to remember Alice's last few random_public and
-random_secret as they're written to a QR code.  This is needed for later
+/* the "mini-datastore is used to remember Alice's last few invitenumbers and
+auths as they're written to a QR code.  This is needed for later
 comparison when the data are provided by Bob. */
 
 
-static void store_random__(mrmailbox_t* mailbox, const char* datastore_name, const char* to_add)
+static void store_tag__(mrmailbox_t* mailbox, const char* datastore_name, const char* to_add)
 {
-	// prepend new random to the list of all tags
-	#define MAX_REMEMBERED_RANDOMS 10
-	#define MAX_REMEMBERED_CHARS (MAX_REMEMBERED_RANDOMS*(MR_CREATE_ID_LEN+1))
-	char* old_randoms = mrsqlite3_get_config__(mailbox->m_sql, datastore_name, "");
-	if( strlen(old_randoms) > MAX_REMEMBERED_CHARS ) {
-		old_randoms[MAX_REMEMBERED_CHARS] = 0; // the oldest tag may be incomplete und unrecognizable, however, this is no problem as it would be deleted soon anyway
+	// prepend new tag to the list of all tags
+	#define MAX_REMEMBERED_TAGS 10
+	#define MAX_REMEMBERED_CHARS (MAX_REMEMBERED_TAGS*(MR_CREATE_ID_LEN+1))
+	char* old_tags = mrsqlite3_get_config__(mailbox->m_sql, datastore_name, "");
+	if( strlen(old_tags) > MAX_REMEMBERED_CHARS ) {
+		old_tags[MAX_REMEMBERED_CHARS] = 0; // the oldest tag may be incomplete and unrecognizable, however, this should not be a problem as it would be deleted soon anyway
 	}
-	char* new_randoms = mr_mprintf("%s,%s", to_add, old_randoms);
-	mrsqlite3_set_config__(mailbox->m_sql, datastore_name, new_randoms);
+	char* new_tags = mr_mprintf("%s,%s", to_add, old_tags);
+	mrsqlite3_set_config__(mailbox->m_sql, datastore_name, new_tags);
 
-	free(old_randoms);
-	free(new_randoms);
+	free(old_tags);
+	free(new_tags);
 }
 
 
-static int lookup_random__(mrmailbox_t* mailbox, const char* datastore_name, const char* to_lookup)
+static int lookup_tag__(mrmailbox_t* mailbox, const char* datastore_name, const char* to_lookup)
 {
 	int            found       = 0;
-	char*          old_randoms = NULL;
+	char*          old_tags    = NULL;
 	carray*        lines       = NULL;
 
-	//mrstrbuilder_t new_randoms;  -- we do not delete the randoms to allow multiple scans, the randoms are deleted when new are generated
-	//mrstrbuilder_init(&new_randoms, 0);
-
-	old_randoms = mrsqlite3_get_config__(mailbox->m_sql, datastore_name, "");
-	mr_str_replace(&old_randoms, ",", "\n");
-	lines = mr_split_into_lines(old_randoms);
+	old_tags = mrsqlite3_get_config__(mailbox->m_sql, datastore_name, "");
+	mr_str_replace(&old_tags, ",", "\n");
+	lines = mr_split_into_lines(old_tags);
 	for( int i = 0; i < carray_count(lines); i++ ) {
-		char* random  = (char*)carray_get(lines, i); mr_trim(random);
-		if( strlen(random) >= 4 && strcmp(random, to_lookup) == 0 ) {
+		char* tag  = (char*)carray_get(lines, i); mr_trim(tag);
+		if( strlen(tag) >= 4 && strcmp(tag, to_lookup) == 0 ) {
 			found = 1;
 		}
-		//else {
-		//	mrstrbuilder_catf(&new_randoms, "%s,", random);
-		//}
 	}
 
-	//mrsqlite3_set_config__(mailbox->m_sql, datastore_name, new_randoms.m_buf);
-	//free(new_randoms.m_buf);
-
 	mr_free_splitted_lines(lines);
-	free(old_randoms);
+	free(old_tags);
 	return found;
+}
+
+
+/*******************************************************************************
+ * Tools: Handle degraded keys and lost verificaton
+ ******************************************************************************/
+
+
+void mrmailbox_handle_degrade_event(mrmailbox_t* mailbox, mrapeerstate_t* peerstate)
+{
+	sqlite3_stmt* stmt            = NULL;
+	int           locked          = 0;
+	uint32_t      contact_id      = 0;
+	uint32_t      contact_chat_id = 0;
+
+	if( mailbox == NULL || peerstate == NULL ) {
+		goto cleanup;
+	}
+
+	// - we do not issue an warning for MRA_DE_ENCRYPTION_PAUSED as this is quite normal
+	// - currently, we do not issue an extra warning for MRA_DE_VERIFICATION_LOST - this always comes
+	//   together with MRA_DE_FINGERPRINT_CHANGED which is logged, the idea is not to bother
+	//   with things they cannot fix, so the user is just kicked from the verified group
+	//   (and he will know this and can fix this)
+
+	if( peerstate->m_degrade_event & MRA_DE_FINGERPRINT_CHANGED )
+	{
+		LOCK
+
+			stmt = mrsqlite3_prepare_v2_(mailbox->m_sql, "SELECT id FROM contacts WHERE addr=?;");
+				sqlite3_bind_text(stmt, 1, peerstate->m_addr, -1, SQLITE_STATIC);
+				sqlite3_step(stmt);
+				contact_id = sqlite3_column_int(stmt, 0);
+			sqlite3_finalize(stmt);
+
+			if( contact_id == 0 ) {
+				goto cleanup;
+			}
+
+			mrmailbox_create_or_lookup_nchat_by_contact_id__(mailbox, contact_id, MR_CHAT_DEADDROP_BLOCKED, &contact_chat_id, NULL);
+
+		UNLOCK
+
+		char* msg = mr_mprintf("Changed setup for %s", peerstate->m_addr);
+		mrmailbox_add_device_msg(mailbox, contact_chat_id, msg);
+		free(msg);
+		mailbox->m_cb(mailbox, MR_EVENT_CHAT_MODIFIED, contact_chat_id, 0);
+	}
+
+cleanup:
+	UNLOCK
 }
 
 
 /*******************************************************************************
  * Tools: Misc.
  ******************************************************************************/
+
+
+static int encrypted_and_signed(mrmimeparser_t* mimeparser, const char* expected_fingerprint)
+{
+	if( !mimeparser->m_e2ee_helper->m_encrypted ) {
+		mrmailbox_log_warning(mimeparser->m_mailbox, 0, "Message not encrypted.");
+		return 0;
+	}
+
+	if( mrhash_count(mimeparser->m_e2ee_helper->m_signatures)<=0 ) {
+		mrmailbox_log_warning(mimeparser->m_mailbox, 0, "Message not signed.");
+		return 0;
+	}
+
+	if( expected_fingerprint == NULL ) {
+		mrmailbox_log_warning(mimeparser->m_mailbox, 0, "Fingerprint for comparison missing.");
+		return 0;
+	}
+
+	if( mrhash_find_str(mimeparser->m_e2ee_helper->m_signatures, expected_fingerprint) == NULL ) {
+		mrmailbox_log_warning(mimeparser->m_mailbox, 0, "Message does not match expected fingerprint %s.", expected_fingerprint);
+		return 0;
+	}
+
+	return 1;
+}
 
 
 static char* get_self_fingerprint(mrmailbox_t* mailbox)
@@ -123,10 +194,10 @@ cleanup:
 }
 
 
-static uint32_t chat_id_2_contact_id(mrmailbox_t* mailbox, uint32_t chat_id)
+static uint32_t chat_id_2_contact_id(mrmailbox_t* mailbox, uint32_t contact_chat_id)
 {
 	uint32_t   contact_id = 0;
-	mrarray_t* contacts = mrmailbox_get_chat_contacts(mailbox, chat_id);
+	mrarray_t* contacts = mrmailbox_get_chat_contacts(mailbox, contact_chat_id);
 
 	if( mrarray_get_cnt(contacts) != 1 ) {
 		goto cleanup;
@@ -140,11 +211,11 @@ cleanup:
 }
 
 
-static int fingerprint_equals_sender(mrmailbox_t* mailbox, const char* fingerprint, uint32_t chat_id)
+static int fingerprint_equals_sender(mrmailbox_t* mailbox, const char* fingerprint, uint32_t contact_chat_id)
 {
 	int             fingerprint_equal      = 0;
 	int             locked                 = 0;
-	mrarray_t*      contacts               = mrmailbox_get_chat_contacts(mailbox, chat_id);
+	mrarray_t*      contacts               = mrmailbox_get_chat_contacts(mailbox, contact_chat_id);
 	mrcontact_t*    contact                = mrcontact_new(mailbox);
 	mrapeerstate_t* peerstate              = mrapeerstate_new(mailbox);
 	char*           fingerprint_normalized = NULL;
@@ -166,7 +237,7 @@ static int fingerprint_equals_sender(mrmailbox_t* mailbox, const char* fingerpri
 
 	fingerprint_normalized = mr_normalize_fingerprint(fingerprint);
 
-	if( strcasecmp(fingerprint_normalized, peerstate->m_fingerprint) == 0 ) {
+	if( strcasecmp(fingerprint_normalized, peerstate->m_public_key_fingerprint) == 0 ) {
 		fingerprint_equal = 1;
 	}
 
@@ -188,9 +259,15 @@ static int mark_peer_as_verified__(mrmailbox_t* mailbox, const char* fingerprint
 		goto cleanup;
 	}
 
-	if( !mrapeerstate_set_verified(peerstate, fingerprint) ) {
+	if( !mrapeerstate_set_verified(peerstate, MRA_PUBLIC_KEY, fingerprint, MRV_BIDIRECTIONAL) ) {
 		goto cleanup;
 	}
+
+	// set MUTUAL as an out-of-band-verification is a strong hint that encryption is wanted.
+	// the state may be corrected by the Autocrypt headers as usual later;
+	// maybe it is a good idea to add the prefer-encrypt-state to the QR code.
+	peerstate->m_prefer_encrypt = MRA_PE_MUTUAL;
+	peerstate->m_to_save       |= MRA_SAVE_ALL;
 
 	mrapeerstate_save_to_db__(peerstate, mailbox->m_sql, 0);
 	success = 1;
@@ -213,7 +290,7 @@ static const char* lookup_field(mrmimeparser_t* mimeparser, const char* key)
 }
 
 
-static void send_handshake_msg(mrmailbox_t* mailbox, uint32_t chat_id, const char* step, const char* random, const char* fingerprint)
+static void send_handshake_msg(mrmailbox_t* mailbox, uint32_t contact_chat_id, const char* step, const char* param2, const char* fingerprint, const char* grpid)
 {
 	mrmsg_t* msg = mrmsg_new();
 
@@ -223,34 +300,38 @@ static void send_handshake_msg(mrmailbox_t* mailbox, uint32_t chat_id, const cha
 	mrparam_set_int(msg->m_param, MRP_CMD,       MR_CMD_SECUREJOIN_MESSAGE);
 	mrparam_set    (msg->m_param, MRP_CMD_PARAM, step);
 
-	if( random ) {
-		mrparam_set(msg->m_param, MRP_CMD_PARAM2, random);
+	if( param2 ) {
+		mrparam_set(msg->m_param, MRP_CMD_PARAM2, param2); // depening on step, this goes either to Secure-Join-Invitenumber or Secure-Join-Auth in mrmimefactory.c
 	}
 
 	if( fingerprint ) {
 		mrparam_set(msg->m_param, MRP_CMD_PARAM3, fingerprint);
 	}
 
-	if( strcmp(step, "request") == 0 ) {
-		mrparam_set_int(msg->m_param, MRP_FORCE_UNENCRYPTED, 1); // the request message MUST NOT be encrypted - it may be that the key has changed and the message cannot be decrypted otherwise
+	if( grpid ) {
+		mrparam_set(msg->m_param, MRP_CMD_PARAM4, grpid);
+	}
+
+	if( strcmp(step, "vg-request")==0 || strcmp(step, "vc-request")==0 ) {
+		mrparam_set_int(msg->m_param, MRP_FORCE_PLAINTEXT, 1); // the request message MUST NOT be encrypted - it may be that the key has changed and the message cannot be decrypted otherwise
 	}
 	else {
 		mrparam_set_int(msg->m_param, MRP_GUARANTEE_E2EE, 1); /* all but the first message MUST be encrypted */
 	}
 
-	mrmailbox_send_msg_object(mailbox, chat_id, msg);
+	mrmailbox_send_msg_object(mailbox, contact_chat_id, msg);
 
 	mrmsg_unref(msg);
 }
 
 
-static void could_not_establish_secure_connection(mrmailbox_t* mailbox, uint32_t chat_id, const char* details)
+static void could_not_establish_secure_connection(mrmailbox_t* mailbox, uint32_t contact_chat_id, const char* details)
 {
-	uint32_t     contact_id = chat_id_2_contact_id(mailbox, chat_id);
+	uint32_t     contact_id = chat_id_2_contact_id(mailbox, contact_chat_id);
 	mrcontact_t* contact    = mrmailbox_get_contact(mailbox, contact_id);
 	char*        msg        = mr_mprintf("Could not establish secure connection to %s.", contact? contact->m_addr : "?");
 
-	mrmailbox_add_device_msg(mailbox, chat_id, msg);
+	mrmailbox_add_device_msg(mailbox, contact_chat_id, msg);
 
 	mrmailbox_log_error(mailbox, 0, "%s (%s)", msg, details); // additionaly raise an error; this typically results in a toast (inviter side) or a dialog (joiner side)
 
@@ -259,24 +340,24 @@ static void could_not_establish_secure_connection(mrmailbox_t* mailbox, uint32_t
 }
 
 
-static void secure_connection_established(mrmailbox_t* mailbox, uint32_t chat_id)
+static void secure_connection_established(mrmailbox_t* mailbox, uint32_t contact_chat_id)
 {
-	uint32_t     contact_id = chat_id_2_contact_id(mailbox, chat_id);
+	uint32_t     contact_id = chat_id_2_contact_id(mailbox, contact_chat_id);
 	mrcontact_t* contact    = mrmailbox_get_contact(mailbox, contact_id);
 	char*        msg        = mr_mprintf("Secure connection to %s established.", contact? contact->m_addr : "?");
 
-	mrmailbox_add_device_msg(mailbox, chat_id, msg);
+	mrmailbox_add_device_msg(mailbox, contact_chat_id, msg);
 
 	// in addition to MR_EVENT_MSGS_CHANGED (sent by mrmailbox_add_device_msg()), also send MR_EVENT_CHAT_MODIFIED to update all views
-	mailbox->m_cb(mailbox, MR_EVENT_CHAT_MODIFIED, chat_id, 0);
+	mailbox->m_cb(mailbox, MR_EVENT_CHAT_MODIFIED, contact_chat_id, 0);
 
 	free(msg);
 	mrcontact_unref(contact);
 }
 
 
-#define         PLEASE_PROVIDE_RANDOM_SECRET 2
-#define         SECUREJOIN_BROADCAST         4
+#define         VC_AUTH_REQUIRED     2
+#define         VC_CONTACT_CONFIRM   6
 static int      s_bob_expects = 0;
 
 static mrlot_t* s_bobs_qr_scan = NULL; // should be surround eg. by mrsqlite3_lock/unlock
@@ -305,30 +386,37 @@ static void end_bobs_joining(mrmailbox_t* mailbox, int status)
  *
  * The scanning Delta Chat device will pass the scanned content to
  * mrmailbox_check_qr() then; if this function returns
- * MR_QR_ASK_SECUREJOIN an out-of-band-verification can be joined using
- * mrmailbox_join_securejoin()
+ * MR_QR_ASK_VERIFYCONTACT or MR_QR_ASK_VERIFYGROUP an out-of-band-verification
+ * can be joined using mrmailbox_join_securejoin()
  *
  * @memberof mrmailbox_t
  *
  * @param mailbox The mailbox object.
  *
+ * @param contact_chat_id If set to the ID of a chat, the "Joining a verified group" protocol is offered in the QR code.
+ *     If set to 0, the "Setup Verified Contact" protocol is offered in the QR code.
+ *
  * @return Text that should go to the qr code.
  */
-char* mrmailbox_get_securejoin_qr(mrmailbox_t* mailbox, uint32_t chat_id)
+char* mrmailbox_get_securejoin_qr(mrmailbox_t* mailbox, uint32_t group_chat_id)
 {
-	/* ==================================
-	   ==== Alice - the inviter side ====
-	   ================================== */
+	/* =========================================================
+	   ====             Alice - the inviter side            ====
+	   ====   Step 1 in "Setup verified contact" protocol   ====
+	   ========================================================= */
 
-	int      locked               = 0;
-	char*    qr                   = NULL;
-	char*    self_addr            = NULL;
-	char*    self_addr_urlencoded = NULL;
-	char*    self_name            = NULL;
-	char*    self_name_urlencoded = NULL;
-	char*    fingerprint          = NULL;
-	char*    random_public        = NULL;
-	char*    random_secret        = NULL;
+	int       locked               = 0;
+	char*     qr                   = NULL;
+	char*     self_addr            = NULL;
+	char*     self_addr_urlencoded = NULL;
+	char*     self_name            = NULL;
+	char*     self_name_urlencoded = NULL;
+	char*     fingerprint          = NULL;
+	char*     invitenumber         = NULL;
+	char*     auth                 = NULL;
+	mrchat_t* chat                 = NULL;
+	char*     group_name           = NULL;
+	char*     group_name_urlencoded= NULL;
 
 	if( mailbox == NULL || mailbox->m_magic!=MR_MAILBOX_MAGIC ) {
 		goto cleanup;
@@ -336,21 +424,22 @@ char* mrmailbox_get_securejoin_qr(mrmailbox_t* mailbox, uint32_t chat_id)
 
 	mrmailbox_ensure_secret_key_exists(mailbox);
 
-	// random_public will be used to allow starting the handshake, random_secret will be used to verify the fingerprint
-	random_public = mr_create_id();
-	random_secret = mr_create_id();
+	// invitenumber will be used to allow starting the handshake, auth will be used to verify the fingerprint
+	invitenumber  = mr_create_id();
+	auth          = mr_create_id();
 
 	mrsqlite3_lock(mailbox->m_sql);
 	locked = 1;
 
 		if( (self_addr = mrsqlite3_get_config__(mailbox->m_sql, "configured_addr", NULL)) == NULL ) {
+			mrmailbox_log_error(mailbox, 0, "Not configured.");
 			goto cleanup;
 		}
 
 		self_name = mrsqlite3_get_config__(mailbox->m_sql, "displayname", "");
 
-		store_random__(mailbox, "secureJoin.randomPublics", random_public);
-		store_random__(mailbox, "secureJoin.randomSecrets", random_secret);
+		store_tag__(mailbox, "secureJoin.invitenumbers", invitenumber);
+		store_tag__(mailbox, "secureJoin.auths", auth);
 
 	mrsqlite3_unlock(mailbox->m_sql);
 	locked = 0;
@@ -361,7 +450,24 @@ char* mrmailbox_get_securejoin_qr(mrmailbox_t* mailbox, uint32_t chat_id)
 
 	self_addr_urlencoded = mr_url_encode(self_addr);
 	self_name_urlencoded = mr_url_encode(self_name);
-	qr = mr_mprintf(OPENPGP4FPR_SCHEME "%s#v=%s&n=%s&p=%s&s=%s", fingerprint, self_addr_urlencoded, self_name_urlencoded, random_public, random_secret);
+
+	if( group_chat_id )
+	{
+		// parameters used: a=g=x=i=s=
+		chat = mrmailbox_get_chat(mailbox, group_chat_id);
+		if( chat->m_type != MR_CHAT_TYPE_VERIFIED_GROUP ) {
+			mrmailbox_log_error(mailbox, 0, "Secure join is only available for verified groups.");
+			goto cleanup;
+		}
+		group_name = mrchat_get_name(chat);
+		group_name_urlencoded = mr_url_encode(group_name);
+		qr = mr_mprintf(OPENPGP4FPR_SCHEME "%s#a=%s&g=%s&x=%s&i=%s&s=%s", fingerprint, self_addr_urlencoded, group_name_urlencoded, chat->m_grpid, invitenumber, auth);
+	}
+	else
+	{
+		// parameters used: a=n=i=s=
+		qr = mr_mprintf(OPENPGP4FPR_SCHEME "%s#a=%s&n=%s&i=%s&s=%s", fingerprint, self_addr_urlencoded, self_name_urlencoded, invitenumber, auth);
+	}
 
 cleanup:
 	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
@@ -370,7 +476,11 @@ cleanup:
 	free(self_name);
 	free(self_name_urlencoded);
 	free(fingerprint);
-	free(random_secret);
+	free(invitenumber);
+	free(auth);
+	mrchat_unref(chat);
+	free(group_name);
+	free(group_name_urlencoded);
 	return qr? qr : safe_strdup(NULL);
 }
 
@@ -378,7 +488,7 @@ cleanup:
 /**
  * Join an out-of-band-verification initiated on another device with mrmailbox_get_securejoin_qr().
  * This function is typically called when mrmailbox_check_qr() returns
- * lot.m_state=MR_QR_ASK_SECUREJOIN
+ * lot.m_state=MR_QR_ASK_VERIFYCONTACT or lot.m_state=MR_QR_ASK_VERIFYGROUP.
  *
  * This function takes some time and sends and receives several messages.
  * You should call it in a separate thread; if you want to abort it, you should
@@ -393,18 +503,26 @@ cleanup:
  * @return 0=Out-of-band verification failed or aborted, 1=Out-of-band
  *     verification successfull, the UI may redirect to the corresponding chat
  *     where a new system message with the state was added.
+ *
+ *     TODO: check if we should say to the caller, which activity to show after
+ *     vc-request:
+ *     - for a qr-scan while group-creation, returning to the chatlist might be better
+ *     - for a qr-scan to add a contact (even without handshake), opening the created normal-chat is better
+ *     (for vg-request always the new group is shown, this is perfect)
  */
-int mrmailbox_join_securejoin(mrmailbox_t* mailbox, const char* qr)
+uint32_t mrmailbox_join_securejoin(mrmailbox_t* mailbox, const char* qr)
 {
-	/* =================================
-	   ==== Bob - the joiner's side ====
-	   ================================= */
+	/* ==========================================================
+	   ====             Bob - the joiner's side             =====
+	   ====   Step 2 in "Setup verified contact" protocol   =====
+	   ========================================================== */
 
-	int      success           = 0;
+	int      ret_chat_id       = 0;
 	int      ongoing_allocated = 0;
 	#define  CHECK_EXIT        if( mr_shall_stop_ongoing ) { goto cleanup; }
-	uint32_t chat_id           = 0;
+	uint32_t contact_chat_id   = 0;
 	mrlot_t* qr_scan           = NULL;
+	int      join_vg           = 0;
 
 	mrmailbox_log_info(mailbox, 0, "Requesting secure-join ...");
 
@@ -414,11 +532,14 @@ int mrmailbox_join_securejoin(mrmailbox_t* mailbox, const char* qr)
 		goto cleanup;
 	}
 
-	if( ((qr_scan=mrmailbox_check_qr(mailbox, qr))==NULL) || qr_scan->m_state!=MR_QR_ASK_SECUREJOIN ) {
+	if( ((qr_scan=mrmailbox_check_qr(mailbox, qr))==NULL)
+	 || (qr_scan->m_state!=MR_QR_ASK_VERIFYCONTACT && qr_scan->m_state!=MR_QR_ASK_VERIFYGROUP) ) {
+		mrmailbox_log_error(mailbox, 0, "Unknown QR code.");
 		goto cleanup;
 	}
 
-	if( (chat_id=mrmailbox_create_chat_by_contact_id(mailbox, qr_scan->m_id)) == 0 ) {
+	if( (contact_chat_id=mrmailbox_create_chat_by_contact_id(mailbox, qr_scan->m_id)) == 0 ) {
+		mrmailbox_log_error(mailbox, 0, "Unknown contact.");
 		goto cleanup;
 	}
 
@@ -431,26 +552,47 @@ int mrmailbox_join_securejoin(mrmailbox_t* mailbox, const char* qr)
 
 	CHECK_EXIT
 
-	s_bobs_status = 0;
-	s_bob_expects = PLEASE_PROVIDE_RANDOM_SECRET;
+	join_vg = (qr_scan->m_state==MR_QR_ASK_VERIFYGROUP);
 
+	s_bobs_status = 0;
 	mrsqlite3_lock(mailbox->m_sql);
 		s_bobs_qr_scan = qr_scan;
 	mrsqlite3_unlock(mailbox->m_sql);
 
-	send_handshake_msg(mailbox, chat_id, "request", qr_scan->m_random_public, NULL); // Bob -> Alice
+	if( fingerprint_equals_sender(mailbox, qr_scan->m_fingerprint, contact_chat_id) ) {
+		// the scanned fingerprint matches Alice's key, we can proceed to step 4b) directly and save two mails
+		mrmailbox_log_info(mailbox, 0, "Taking protocol shortcut.");
+		s_bob_expects = VC_CONTACT_CONFIRM;
+		mailbox->m_cb(mailbox, MR_EVENT_SECUREJOIN_JOINER_PROGRESS, chat_id_2_contact_id(mailbox, contact_chat_id), 4);
+		char* own_fingerprint = get_self_fingerprint(mailbox);
+		send_handshake_msg(mailbox, contact_chat_id, join_vg? "vg-request-with-auth" : "vc-request-with-auth",
+			qr_scan->m_auth, own_fingerprint, join_vg? qr_scan->m_text2 : NULL); // Bob -> Alice
+		free(own_fingerprint);
+	}
+	else {
+		s_bob_expects = VC_AUTH_REQUIRED;
+		send_handshake_msg(mailbox, contact_chat_id, join_vg? "vg-request" : "vc-request",
+			qr_scan->m_invitenumber, NULL, NULL); // Bob -> Alice
+	}
 
 	while( 1 ) {
 		CHECK_EXIT
 
-		usleep(300*1000);
+		usleep(300*1000); // 0.3 seconds
 	}
 
 cleanup:
 	s_bob_expects = 0;
 
 	if( s_bobs_status == BOB_SUCCESS ) {
-		success = 1;
+		if( join_vg ) {
+			mrsqlite3_lock(mailbox->m_sql);
+				ret_chat_id = mrmailbox_get_chat_id_by_grpid__(mailbox, qr_scan->m_text2, NULL, NULL);
+			mrsqlite3_unlock(mailbox->m_sql);
+		}
+		else {
+			ret_chat_id = contact_chat_id;
+		}
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
@@ -460,32 +602,24 @@ cleanup:
 	mrlot_unref(qr_scan);
 
 	if( ongoing_allocated ) { mrmailbox_free_ongoing(mailbox); }
-	return success;
+	return ret_chat_id;
 }
 
 
-/*
- * mrmailbox_is_securejoin_handshake__() should be called called for each
- * incoming mail. if the mail belongs to an secure-join handshake, the function
- * returns 1. The caller should unlock everything, stop normal message
- * processing and call mrmailbox_handle_securejoin_handshake() then.
- */
-int mrmailbox_is_securejoin_handshake__(mrmailbox_t* mailbox, mrmimeparser_t* mimeparser)
+int mrmailbox_handle_securejoin_handshake(mrmailbox_t* mailbox, mrmimeparser_t* mimeparser, uint32_t contact_id)
 {
-	if( mailbox == NULL || mimeparser == NULL || lookup_field(mimeparser, "Secure-Join") == NULL ) {
-		return 0;
-	}
+	int          locked = 0;
+	const char*  step   = NULL;
+	int          join_vg = 0;
+	char*        scanned_fingerprint_of_alice = NULL;
+	char*        auth = NULL;
+	char*        own_fingerprint = NULL;
+	uint32_t     contact_chat_id = 0;
+	int          contact_chat_id_blocked = 0;
+	char*        grpid = NULL;
+	int          ret = 0;
 
-	return 1; /* processing is continued in mrmailbox_handle_securejoin_handshake() */
-}
-
-
-void mrmailbox_handle_securejoin_handshake(mrmailbox_t* mailbox, mrmimeparser_t* mimeparser, uint32_t chat_id)
-{
-	int                   locked = 0;
-	const char*           step   = NULL;
-
-	if( mailbox == NULL || mimeparser == NULL || chat_id <= MR_CHAT_ID_LAST_SPECIAL ) {
+	if( mailbox == NULL || mimeparser == NULL || contact_id <= MR_CONTACT_ID_LAST_SPECIAL ) {
 		goto cleanup;
 	}
 
@@ -494,175 +628,221 @@ void mrmailbox_handle_securejoin_handshake(mrmailbox_t* mailbox, mrmimeparser_t*
 	}
 	mrmailbox_log_info(mailbox, 0, ">>>>>>>>>>>>>>>>>>>>>>>>> secure-join message '%s' received", step);
 
-	if( strcmp(step, "request")==0 )
+	join_vg = (strncmp(step, "vg-", 3)==0);
+	LOCK
+		mrmailbox_create_or_lookup_nchat_by_contact_id__(mailbox, contact_id, MR_CHAT_NOT_BLOCKED, &contact_chat_id, &contact_chat_id_blocked);
+		if( contact_chat_id_blocked ) {
+			mrmailbox_unblock_chat__(mailbox, contact_chat_id);
+		}
+	UNLOCK
+
+	ret = MR_IS_HANDSHAKE_STOP_NORMAL_PROCESSING;
+
+	if( strcmp(step, "vg-request")==0 || strcmp(step, "vc-request")==0 )
 	{
-		/* ==================================
-		   ==== Alice - the inviter side ====
-		   ================================== */
+		/* =========================================================
+		   ====             Alice - the inviter side            ====
+		   ====   Step 3 in "Setup verified contact" protocol   ====
+		   ========================================================= */
 
 		// this message may be unencrypted (Bob, the joinder and the sender, might not have Alice's key yet)
 
 		// it just ensures, we have Bobs key now. If we do _not_ have the key because eg. MitM has removed it,
 		// send_message() will fail with the error "End-to-end-encryption unavailable unexpectedly.", so, there is no additional check needed here.
 
-		// verify that the `Secure-Join-Random-Public:`-header matches random_public written to the QR code
-		uint32_t    contact_id = chat_id_2_contact_id(mailbox, chat_id);
-		const char* random_public = NULL;
-		if( (random_public=lookup_field(mimeparser, "Secure-Join-Random-Public")) == NULL ) {
-			mrmailbox_log_warning(mailbox, 0, "Secure-join denied (random-public missing)."); // do not raise an error, this might just be spam or come from an old request
+		// verify that the `Secure-Join-Invitenumber:`-header matches invitenumber written to the QR code
+		const char* invitenumber = NULL;
+		if( (invitenumber=lookup_field(mimeparser, "Secure-Join-Invitenumber")) == NULL ) {
+			mrmailbox_log_warning(mailbox, 0, "Secure-join denied (invitenumber missing)."); // do not raise an error, this might just be spam or come from an old request
 			goto cleanup;
 		}
 
-		mrsqlite3_lock(mailbox->m_sql);
-		locked = 1;
-			if( lookup_random__(mailbox, "secureJoin.randomPublics", random_public) == 0 ) {
-				mrmailbox_log_warning(mailbox, 0, "Secure-join denied (bad random-public).");  // do not raise an error, this might just be spam or come from an old request
+		LOCK
+			if( lookup_tag__(mailbox, "secureJoin.invitenumbers", invitenumber) == 0 ) {
+				mrmailbox_log_warning(mailbox, 0, "Secure-join denied (bad invitenumber).");  // do not raise an error, this might just be spam or come from an old request
 				goto cleanup;
 			}
-		mrsqlite3_unlock(mailbox->m_sql);
-		locked = 0;
+		UNLOCK
 
 		mrmailbox_log_info(mailbox, 0, "Secure-join requested.");
 
-		mailbox->m_cb(mailbox, MR_EVENT_SECUREJOIN_REQUESTED, contact_id, 0);
+		mailbox->m_cb(mailbox, MR_EVENT_SECUREJOIN_INVITER_PROGRESS, contact_id, 3);
 
-		send_handshake_msg(mailbox, chat_id, "please-provide-random-secret", NULL, NULL); // Alice -> Bob
+		send_handshake_msg(mailbox, contact_chat_id, join_vg? "vg-auth-required" : "vc-auth-required",
+			NULL, NULL, NULL); // Alice -> Bob
 	}
-	else if( strcmp(step, "please-provide-random-secret")==0 )
+	else if( strcmp(step, "vg-auth-required")==0 || strcmp(step, "vc-auth-required")==0 )
 	{
-		/* =================================
-		   ==== Bob - the joiner's side ====
-		   ================================= */
+		/* ==========================================================
+		   ====             Bob - the joiner's side             =====
+		   ====   Step 4 in "Setup verified contact" protocol   =====
+		   ========================================================== */
 
-		if( !mimeparser->m_decrypted_and_validated ) {
-			could_not_establish_secure_connection(mailbox, chat_id, "Not encrypted.");
+		// verify that Alice's Autocrypt key and fingerprint matches the QR-code
+		LOCK
+			if( s_bobs_qr_scan == NULL || s_bob_expects != VC_AUTH_REQUIRED || (join_vg && s_bobs_qr_scan->m_state!=MR_QR_ASK_VERIFYGROUP) ) {
+				mrmailbox_log_warning(mailbox, 0, "auth-required message out of sync.");
+				goto cleanup; // no error, just aborted somehow or a mail from another handshake
+			}
+			scanned_fingerprint_of_alice = safe_strdup(s_bobs_qr_scan->m_fingerprint);
+			auth = safe_strdup(s_bobs_qr_scan->m_auth);
+			if( join_vg ) {
+				grpid = safe_strdup(s_bobs_qr_scan->m_text2);
+			}
+		UNLOCK
+
+		if( !encrypted_and_signed(mimeparser, scanned_fingerprint_of_alice) ) {
+			could_not_establish_secure_connection(mailbox, contact_chat_id, mimeparser->m_e2ee_helper->m_encrypted? "No valid signature." : "Not encrypted.");
 			end_bobs_joining(mailbox, BOB_ERROR);
 			goto cleanup;
 		}
 
-		// verify that Alice's Autocrypt key and fingerprint matches the QR-code
-		mrsqlite3_lock(mailbox->m_sql);
-		locked = 1;
-			if( s_bobs_qr_scan == NULL || s_bob_expects != PLEASE_PROVIDE_RANDOM_SECRET ) {
-				goto cleanup; // no error, just aborted somehow or a mail from another handshake
-			}
-			char* scanned_fingerprint_of_alice = safe_strdup(s_bobs_qr_scan->m_fingerprint);
-			char* random_secret                = safe_strdup(s_bobs_qr_scan->m_random_secret);
-		mrsqlite3_unlock(mailbox->m_sql);
-		locked = 0;
-
-		if( !fingerprint_equals_sender(mailbox, scanned_fingerprint_of_alice, chat_id) ) {
+		if( !fingerprint_equals_sender(mailbox, scanned_fingerprint_of_alice, contact_chat_id) ) {
 			// MitM?
-			could_not_establish_secure_connection(mailbox, chat_id, "Fingerprint mismatch on joiner-side.");
+			could_not_establish_secure_connection(mailbox, contact_chat_id, "Fingerprint mismatch on joiner-side.");
 			end_bobs_joining(mailbox, BOB_ERROR);
 			goto cleanup;
 		}
 
 		mrmailbox_log_info(mailbox, 0, "Fingerprint verified.");
 
-		char* own_fingerprint = get_self_fingerprint(mailbox);
+		own_fingerprint = get_self_fingerprint(mailbox);
 
-		s_bob_expects = SECUREJOIN_BROADCAST;
-		send_handshake_msg(mailbox, chat_id, "random-secret", random_secret, own_fingerprint); // Bob -> Alice
+		mailbox->m_cb(mailbox, MR_EVENT_SECUREJOIN_JOINER_PROGRESS, contact_id, 4);
 
-		free(own_fingerprint);
-		free(scanned_fingerprint_of_alice);
-		free(random_secret);
+		s_bob_expects = VC_CONTACT_CONFIRM;
+		send_handshake_msg(mailbox, contact_chat_id, join_vg? "vg-request-with-auth" : "vc-request-with-auth",
+			auth, own_fingerprint, grpid); // Bob -> Alice
 	}
-	else if( strcmp(step, "random-secret")==0 )
+	else if( strcmp(step, "vg-request-with-auth")==0 || strcmp(step, "vc-request-with-auth")==0 )
 	{
-		/* ==================================
-		   ==== Alice - the inviter side ====
-		   ================================== */
-
-		if( !mimeparser->m_decrypted_and_validated ) {
-			could_not_establish_secure_connection(mailbox, chat_id, "Random-secret not encrypted.");
-			goto cleanup;
-		}
+		/* ============================================================
+		   ====              Alice - the inviter side              ====
+		   ====   Steps 5+6 in "Setup verified contact" protocol   ====
+		   ====  Step 6 in "Out-of-band verified groups" protocol  ====
+		   ============================================================ */
 
 		// verify that Secure-Join-Fingerprint:-header matches the fingerprint of Bob
 		const char* fingerprint = NULL;
 		if( (fingerprint=lookup_field(mimeparser, "Secure-Join-Fingerprint")) == NULL ) {
-			could_not_establish_secure_connection(mailbox, chat_id, "Fingerprint not provided.");
+			could_not_establish_secure_connection(mailbox, contact_chat_id, "Fingerprint not provided.");
 			goto cleanup;
 		}
 
-		if( !fingerprint_equals_sender(mailbox, fingerprint, chat_id) ) {
+		if( !encrypted_and_signed(mimeparser, fingerprint) ) {
+			could_not_establish_secure_connection(mailbox, contact_chat_id, "Auth not encrypted.");
+			goto cleanup;
+		}
+
+		if( !fingerprint_equals_sender(mailbox, fingerprint, contact_chat_id) ) {
 			// MitM?
-			could_not_establish_secure_connection(mailbox, chat_id, "Fingerprint mismatch on inviter-side.");
+			could_not_establish_secure_connection(mailbox, contact_chat_id, "Fingerprint mismatch on inviter-side.");
 			goto cleanup;
 		}
 
 		mrmailbox_log_info(mailbox, 0, "Fingerprint verified.");
 
-		// verify that the `Secure-Join-Random-Secret:`-header matches the secret written to the QR code
-		const char* random_secret = NULL;
-		if( (random_secret=lookup_field(mimeparser, "Secure-Join-Random-Secret")) == NULL ) {
-			could_not_establish_secure_connection(mailbox, chat_id, "Random-secret not provided.");
+		// verify that the `Secure-Join-Auth:`-header matches the secret written to the QR code
+		const char* auth = NULL;
+		if( (auth=lookup_field(mimeparser, "Secure-Join-Auth")) == NULL ) {
+			could_not_establish_secure_connection(mailbox, contact_chat_id, "Auth not provided.");
 			goto cleanup;
 		}
 
-		uint32_t contact_id = chat_id_2_contact_id(mailbox, chat_id);
-		mrsqlite3_lock(mailbox->m_sql);
-		locked = 1;
-			if( lookup_random__(mailbox, "secureJoin.randomSecrets", random_secret) == 0 ) {
+		LOCK
+			if( lookup_tag__(mailbox, "secureJoin.auths", auth) == 0 ) {
 				mrsqlite3_unlock(mailbox->m_sql);
 				locked = 0;
-				could_not_establish_secure_connection(mailbox, chat_id, "Random-secret invalid.");
+				could_not_establish_secure_connection(mailbox, contact_chat_id, "Auth invalid.");
 				goto cleanup;
 			}
 
 			if( !mark_peer_as_verified__(mailbox, fingerprint) ) {
 				mrsqlite3_unlock(mailbox->m_sql);
 				locked = 0;
-				could_not_establish_secure_connection(mailbox, chat_id, "Fingerprint mismatch on inviter-side."); // should not happen, we've compared the fingerprint some lines above
+				could_not_establish_secure_connection(mailbox, contact_chat_id, "Fingerprint mismatch on inviter-side."); // should not happen, we've compared the fingerprint some lines above
 				goto cleanup;
 			}
 
 			mrmailbox_scaleup_contact_origin__(mailbox, contact_id, MR_ORIGIN_SECUREJOIN_INVITED);
-		mrsqlite3_unlock(mailbox->m_sql);
-		locked = 0;
+		UNLOCK
 
-		mrmailbox_log_info(mailbox, 0, "Random secret verified.");
+		mrmailbox_log_info(mailbox, 0, "Auth verified.");
 
-		secure_connection_established(mailbox, chat_id);
+		secure_connection_established(mailbox, contact_chat_id);
 
-		send_handshake_msg(mailbox, chat_id, "broadcast", NULL, NULL); // Alice -> Bob and all other group members
+		mailbox->m_cb(mailbox, MR_EVENT_CONTACTS_CHANGED, contact_id/*selected contact*/, 0);
+		mailbox->m_cb(mailbox, MR_EVENT_SECUREJOIN_INVITER_PROGRESS, contact_id, 6);
+
+		if( join_vg ) {
+			// the vg-member-added message is special: this is a normal Chat-Group-Member-Added message with an additional Secure-Join header
+			grpid = safe_strdup(lookup_field(mimeparser, "Secure-Join-Group"));
+			int is_verified = 0;
+			LOCK
+				uint32_t verified_chat_id = mrmailbox_get_chat_id_by_grpid__(mailbox, grpid, NULL, &is_verified);
+			UNLOCK
+			if( verified_chat_id == 0 || !is_verified ) {
+				mrmailbox_log_error(mailbox, 0, "Verified chat not found.");
+				goto cleanup;
+			}
+
+			mrmailbox_add_contact_to_chat4(mailbox, verified_chat_id, contact_id, 1/*from_handshake*/); // Alice -> Bob and all members
+		}
+		else {
+			send_handshake_msg(mailbox, contact_chat_id, "vc-contact-confirm",
+				NULL, NULL, NULL); // Alice -> Bob
+		}
 	}
-	else if( strcmp(step, "broadcast")==0 )
+	else if( strcmp(step, "vg-member-added")==0 || strcmp(step, "vc-contact-confirm")==0 )
 	{
-		/* =================================
-		   ==== Bob - the joiner's side ====
-		   ================================= */
+		/* ==========================================================
+		   ====             Bob - the joiner's side             =====
+		   ====   Step 7 in "Setup verified contact" protocol   =====
+		   ========================================================== */
 
-		if( s_bob_expects != SECUREJOIN_BROADCAST ) {
-			mrmailbox_log_warning(mailbox, 0, "Unexpected secure-join mail order.");
-			goto cleanup; // ignore the mail without raising and error; may come from another handshake
+		if( join_vg ) {
+			// vg-member-added is just part of a Chat-Group-Member-Added which should be kept in any way, eg. for multi-client
+			ret = MR_IS_HANDSHAKE_CONTINUE_NORMAL_PROCESSING;
 		}
 
-		if( !mimeparser->m_decrypted_and_validated ) {
-			could_not_establish_secure_connection(mailbox, chat_id, "Broadcast not encrypted.");
+		if( s_bob_expects != VC_CONTACT_CONFIRM ) {
+			if( join_vg ) {
+				mrmailbox_log_info(mailbox, 0, "vg-member-added received as broadcast.");
+			}
+			else {
+				mrmailbox_log_warning(mailbox, 0, "Unexpected secure-join mail order.");
+			}
+			goto cleanup;
+		}
+
+		LOCK
+			if( s_bobs_qr_scan == NULL || (join_vg && s_bobs_qr_scan->m_state!=MR_QR_ASK_VERIFYGROUP) ) {
+				mrmailbox_log_warning(mailbox, 0, "Message out of sync or belongs to a different handshake.");
+				goto cleanup;
+			}
+			scanned_fingerprint_of_alice = safe_strdup(s_bobs_qr_scan->m_fingerprint);
+		UNLOCK
+
+		if( !encrypted_and_signed(mimeparser, scanned_fingerprint_of_alice) ) {
+			could_not_establish_secure_connection(mailbox, contact_chat_id, "Contact confirm message not encrypted.");
 			end_bobs_joining(mailbox, BOB_ERROR);
 			goto cleanup;
 		}
 
-		uint32_t contact_id = chat_id_2_contact_id(mailbox, chat_id);
-		mrsqlite3_lock(mailbox->m_sql);
-		locked = 1;
-			if( s_bobs_qr_scan == NULL ) {
-				goto cleanup; // no error, just aborted somehow or a mail from another handshake
-			}
+		// TODO: for the broadcasted vg-member-added, make sure, the message is ours (eg. by comparing Chat-Group-Member-Added against SELF)
 
-			if( !mark_peer_as_verified__(mailbox, s_bobs_qr_scan->m_fingerprint) ) {
-				could_not_establish_secure_connection(mailbox, chat_id, "Fingerprint mismatch on joiner-side."); // MitM? - key has changed since please-provide-random-secret message
+		LOCK
+			if( !mark_peer_as_verified__(mailbox, scanned_fingerprint_of_alice) ) {
+				could_not_establish_secure_connection(mailbox, contact_chat_id, "Fingerprint mismatch on joiner-side."); // MitM? - key has changed since vc-auth-required message
 				goto cleanup;
 			}
 
 			mrmailbox_scaleup_contact_origin__(mailbox, contact_id, MR_ORIGIN_SECUREJOIN_JOINED);
-		mrsqlite3_unlock(mailbox->m_sql);
-		locked = 0;
+		UNLOCK
 
-		secure_connection_established(mailbox, chat_id);
+		secure_connection_established(mailbox, contact_chat_id);
+
+		mailbox->m_cb(mailbox, MR_EVENT_CONTACTS_CHANGED, 0/*no select event*/, 0);
 
 		s_bob_expects = 0;
 		end_bobs_joining(mailbox, BOB_SUCCESS);
@@ -670,14 +850,23 @@ void mrmailbox_handle_securejoin_handshake(mrmailbox_t* mailbox, mrmimeparser_t*
 
 	// delete the message in 20 seconds - typical handshake last about 5 seconds, so do not disturb the connection _now_.
 	// for errors, we do not the corresoinding message at all, it may come eg. from another device or may be useful to find out what was going wrong.
-	struct mailimf_field* field;
-	if( (field=mrmimeparser_lookup_field(mimeparser, "Message-ID"))!=NULL && field->fld_type==MAILIMF_FIELD_MESSAGE_ID ) {
-		struct mailimf_message_id* fld_message_id = field->fld_data.fld_message_id;
-		if( fld_message_id && fld_message_id->mid_value ) {
-			mrjob_add__(mailbox, MRJ_DELETE_MSG_ON_IMAP, mrmailbox_rfc724_mid_exists__(mailbox, fld_message_id->mid_value, NULL, NULL), NULL, 20);
+	if( ret == MR_IS_HANDSHAKE_STOP_NORMAL_PROCESSING ) {
+		struct mailimf_field* field;
+		if( (field=mrmimeparser_lookup_field(mimeparser, "Message-ID"))!=NULL && field->fld_type==MAILIMF_FIELD_MESSAGE_ID ) {
+			struct mailimf_message_id* fld_message_id = field->fld_data.fld_message_id;
+			if( fld_message_id && fld_message_id->mid_value ) {
+				mrjob_add__(mailbox, MRJ_DELETE_MSG_ON_IMAP, mrmailbox_rfc724_mid_exists__(mailbox, fld_message_id->mid_value, NULL, NULL), NULL, 20);
+			}
 		}
 	}
 
 cleanup:
-	if( locked ) { mrsqlite3_unlock(mailbox->m_sql); }
+
+	UNLOCK
+
+	free(scanned_fingerprint_of_alice);
+	free(auth);
+	free(own_fingerprint);
+	free(grpid);
+	return ret;
 }

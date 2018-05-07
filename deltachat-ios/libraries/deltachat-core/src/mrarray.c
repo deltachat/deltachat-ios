@@ -63,7 +63,7 @@ mrarray_t* mrarray_new(mrmailbox_t* mailbox, size_t initsize)
  *
  * @memberof mrarray_t
  *
- * @param array The array object to free, created eg. by mrmailbox_get_chatlist(), mrmailbox_get_known_contacts() and so on.
+ * @param array The array object to free, created eg. by mrmailbox_get_chatlist(), mrmailbox_get_contacts() and so on.
  *
  * @return None.
  *
@@ -436,7 +436,7 @@ char* mrarray_get_string(const mrarray_t* array, const char* sep)
 	char* ret = NULL;
 
 	if( array == NULL || array->m_magic != MR_ARRAY_MAGIC || sep==NULL ) {
-		return NULL;
+		return safe_strdup("");
 	}
 
 	INT_ARR_TO_STR(array->m_array, array->m_count);

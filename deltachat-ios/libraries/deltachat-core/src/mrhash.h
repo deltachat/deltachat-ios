@@ -102,6 +102,8 @@ void*   mrhash_insert   (mrhash_t*, const void *pKey, int nKey, void *pData);
 void*   mrhash_find     (const mrhash_t*, const void *pKey, int nKey);
 void    mrhash_clear    (mrhash_t*);
 
+#define mrhash_find_str(H, s) mrhash_find((H), (s), strlen((s)))
+
 
 /*
  * Macros for looping over all elements of a hash table.  The idiom is

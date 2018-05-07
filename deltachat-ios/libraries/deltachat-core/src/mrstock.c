@@ -61,22 +61,20 @@ static char* default_string(int id, int qty)
 		case MR_STR_MSGGROUPLEFT:          return safe_strdup("Group left.");
 		case MR_STR_SELFNOTINGRP:          return safe_strdup("You must be a member of the group to perform this action.");
 		case MR_STR_NONETWORK:             return safe_strdup("No network available.");
-		case MR_STR_ENCR_E2E:              return safe_strdup("End-to-end encryption enabled.");
+		case MR_STR_E2E_AVAILABLE:         return safe_strdup("End-to-end encryption available.");
 		case MR_STR_ENCR_TRANSP:           return safe_strdup("Transport-encryption.");
 		case MR_STR_ENCR_NONE:             return safe_strdup("No encryption.");
 		case MR_STR_FINGERPRINTS:          return safe_strdup("Fingerprints");
 		case MR_STR_READRCPT:              return safe_strdup("Return receipt");
 		case MR_STR_READRCPT_MAILBODY:     return safe_strdup("This is a return receipt for the message \"%1$s\".");
 		case MR_STR_MSGGRPIMGDELETED:      return safe_strdup("Group image deleted.");
-		case MR_STR_E2E_FINE:              return safe_strdup("Please check, if all fingerprints match.");
-		case MR_STR_E2E_NO_AUTOCRYPT:      return safe_strdup("E2EE will be enabled automatically.");
-		case MR_STR_E2E_DIS_BY_YOU:        return safe_strdup("E2EE will be endable if you enable the corresponding option.");
-		case MR_STR_E2E_DIS_BY_RCPT:       return safe_strdup("E2EE will be enabled if the recipients enables the corresponding option.");/* do not say, the recipient has _disabled_ the option, this may not be true! */
+		case MR_STR_E2E_PREFERRED:         return safe_strdup("End-to-end encryption preferred.");
 		case MR_STR_ARCHIVEDCHATS:         return safe_strdup("Archived chats");
 		case MR_STR_STARREDMSGS:           return safe_strdup("Starred messages");
 		case MR_STR_AC_SETUP_MSG_SUBJECT:  return safe_strdup("Autocrypt Setup Message");
 		case MR_STR_AC_SETUP_MSG_BODY:     return safe_strdup("This is the Autocrypt Setup Message used to transfer your key between clients.\n\nTo decrypt and use your key, open the message in an Autocrypt-compliant client and enter the setup code presented on the generating device.");
 		case MR_STR_SELFTALK_SUBTITLE:     return safe_strdup("Messages I sent to myself");
+		case MR_STR_CANTDECRYPT_MSG_BODY:  return safe_strdup("This message was encrypted for another setup.");
 	}
 	return safe_strdup("ErrStr");
 }

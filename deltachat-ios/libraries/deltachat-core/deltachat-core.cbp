@@ -540,6 +540,9 @@
 		<Unit filename="src/mrtools.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/mruudecode.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Extensions>
 			<envvars />
 			<code_completion />

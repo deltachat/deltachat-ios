@@ -20,9 +20,11 @@
  ******************************************************************************/
 
 
+#include <assert.h>
 #include "mrmailbox_internal.h"
 #include "mrmimeparser.h"
 #include "mrmimefactory.h"
+#include "mrapeerstate.h"
 #include "mrimap.h"
 #include "mrjob.h"
 #include "mrarray-private.h"
@@ -75,7 +77,7 @@ static void add_or_lookup_contact_by_addr__(mrmailbox_t* mailbox, const char* di
 }
 
 
-static void mrmailbox_add_or_lookup_contacts_by_mailbox_list__(mrmailbox_t* mailbox, struct mailimf_mailbox_list* mb_list, int origin, mrarray_t* ids, int* check_self)
+static void mrmailbox_add_or_lookup_contacts_by_mailbox_list__(mrmailbox_t* mailbox, const struct mailimf_mailbox_list* mb_list, int origin, mrarray_t* ids, int* check_self)
 {
 	clistiter* cur;
 
@@ -92,7 +94,7 @@ static void mrmailbox_add_or_lookup_contacts_by_mailbox_list__(mrmailbox_t* mail
 }
 
 
-static void mrmailbox_add_or_lookup_contacts_by_address_list__(mrmailbox_t* mailbox, struct mailimf_address_list* adr_list, int origin, mrarray_t* ids, int* check_self)
+static void mrmailbox_add_or_lookup_contacts_by_address_list__(mrmailbox_t* mailbox, const struct mailimf_address_list* adr_list, int origin, mrarray_t* ids, int* check_self)
 {
 	clistiter* cur;
 
@@ -276,18 +278,7 @@ static int mrmailbox_is_reply_to_messenger_message__(mrmailbox_t* mailbox, mrmim
  ******************************************************************************/
 
 
-static uint32_t add_degrade_message__(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t from_id, time_t timestamp)
-{
-	mrcontact_t* contact = mrcontact_new(mailbox);
-	mrcontact_load_from_db__(contact, mailbox->m_sql, from_id);
 
-	char* msg = mr_mprintf("Changed setup for %s", contact->m_addr);
-	uint32_t msg_id = mrmailbox_add_device_msg__(mailbox, chat_id, msg, timestamp);
-	free(msg);
-
-	mrcontact_unref(contact);
-	return msg_id;
-}
 
 
 static void mrmailbox_calc_timestamps__(mrmailbox_t* mailbox, uint32_t chat_id, uint32_t from_id, time_t message_timestamp, int is_fresh_msg,
@@ -371,7 +362,7 @@ static mrarray_t* search_chat_ids_by_contact_ids(mrmailbox_t* mailbox, const mra
 	                     " FROM chats_contacts cc "
 	                     " LEFT JOIN chats c ON c.id=cc.chat_id "
 	                     " WHERE cc.chat_id IN(SELECT chat_id FROM chats_contacts WHERE contact_id IN(%s))"
-	                     "   AND c.type=" MR_STRINGIFY(MR_CHAT_TYPE_GROUP) /* do not select normal chats which are equal to a group with a single member and without SELF */
+	                     "   AND c.type=" MR_STRINGIFY(MR_CHAT_TYPE_GROUP) /* no verified groups and no single chats (which are equal to a group with a single member and without SELF) */
 	                     "   AND cc.contact_id!=" MR_STRINGIFY(MR_CONTACT_ID_SELF) /* ignore SELF, we've also removed it above - if the user has left the group, it is still the same group */
 	                     " ORDER BY cc.chat_id, cc.contact_id;",
 	                     contact_ids_str);
@@ -482,14 +473,14 @@ static char* create_adhoc_grp_id__(mrmailbox_t* mailbox, mrarray_t* member_ids /
 }
 
 
-static uint32_t create_group_record__(mrmailbox_t* mailbox, const char* grpid, const char* grpname, int create_blocked)
+static uint32_t create_group_record__(mrmailbox_t* mailbox, const char* grpid, const char* grpname, int create_blocked, int create_verified)
 {
 	uint32_t      chat_id = 0;
 	sqlite3_stmt* stmt = NULL;
 
 	stmt = mrsqlite3_prepare_v2_(mailbox->m_sql,
 		"INSERT INTO chats (type, name, grpid, blocked) VALUES(?, ?, ?, ?);");
-	sqlite3_bind_int (stmt, 1, MR_CHAT_TYPE_GROUP);
+	sqlite3_bind_int (stmt, 1, create_verified? MR_CHAT_TYPE_VERIFIED_GROUP : MR_CHAT_TYPE_GROUP);
 	sqlite3_bind_text(stmt, 2, grpname, -1, SQLITE_STATIC);
 	sqlite3_bind_text(stmt, 3, grpid, -1, SQLITE_STATIC);
 	sqlite3_bind_int (stmt, 4, create_blocked);
@@ -572,10 +563,10 @@ static void create_or_lookup_adhoc_group__(mrmailbox_t* mailbox, mrmimeparser_t*
 	}
 
 	/* create group record */
-	chat_id = create_group_record__(mailbox, grpid, grpname, create_blocked);
+	chat_id = create_group_record__(mailbox, grpid, grpname, create_blocked, 0);
 	chat_id_blocked = create_blocked;
 	for( i = 0; i < mrarray_get_cnt(member_ids); i++ ) {
-		mrmailbox_add_contact_to_chat__(mailbox, chat_id, mrarray_get_id(member_ids, i));
+		mrmailbox_add_to_chat_contacts_table__(mailbox, chat_id, mrarray_get_id(member_ids, i));
 	}
 
 	mailbox->m_cb(mailbox, MR_EVENT_CHAT_MODIFIED, chat_id, 0);
@@ -590,6 +581,84 @@ cleanup:
 	if( q3 ) { sqlite3_free(q3); }
 	if( ret_chat_id )         { *ret_chat_id         = chat_id; }
 	if( ret_chat_id_blocked ) { *ret_chat_id_blocked = chat_id_blocked; }
+}
+
+
+static int check_verified_properties__(mrmailbox_t* mailbox, mrmimeparser_t* mimeparser,
+                                       uint32_t from_id, const mrarray_t* to_ids)
+{
+	int             everythings_okay = 0;
+	mrcontact_t*    contact          = mrcontact_new(mailbox);
+	mrapeerstate_t* peerstate        = mrapeerstate_new(mailbox);
+	char*           to_ids_str       = NULL;
+	char*           q3               = NULL;
+	sqlite3_stmt*   stmt             = NULL;
+
+	// ensure, the contact is verified
+	if( !mrcontact_load_from_db__(contact, mailbox->m_sql, from_id)
+	 || !mrapeerstate_load_by_addr__(peerstate, mailbox->m_sql, contact->m_addr)
+	 || mrcontact_is_verified__(contact, peerstate) < MRV_BIDIRECTIONAL ) {
+		mrmailbox_log_warning(mailbox, 0, "Cannot verifiy group; sender is not verified.");
+		goto cleanup;
+	}
+
+	// ensure, the message is encrypted
+	if( !mimeparser->m_e2ee_helper->m_encrypted ) {
+		mrmailbox_log_warning(mailbox, 0, "Cannot verifiy group; message is not encrypted properly.");
+		goto cleanup;
+	}
+
+	// ensure, the message is signed with a verified key of the sender
+	if( !mrapeerstate_has_verified_key(peerstate, mimeparser->m_e2ee_helper->m_signatures) ) {
+		mrmailbox_log_warning(mailbox, 0, "Cannot verifiy group; message is not signed properly.");
+		goto cleanup;
+    }
+
+	// check that all members are verified.
+	// if a verification is missing, check if this was just gossiped - as we've verified the sender, we verify the member then.
+	to_ids_str = mrarray_get_string(to_ids, ",");
+	q3 = sqlite3_mprintf("SELECT c.addr, ps.public_key_verified, ps.gossip_key_verified "
+						 " FROM contacts c "
+						 " LEFT JOIN acpeerstates ps ON c.addr=ps.addr "
+						 " WHERE c.id IN(%s) ",
+						 to_ids_str);
+	stmt = mrsqlite3_prepare_v2_(mailbox->m_sql, q3);
+	if( sqlite3_step(stmt)==SQLITE_ROW )
+	{
+		const char* to_addr     = (const char*)sqlite3_column_text(stmt, 0);
+		int public_key_verified =              sqlite3_column_int (stmt, 1);
+		int gossip_key_verified =              sqlite3_column_int (stmt, 2);
+
+		if( gossip_key_verified < MRV_BIDIRECTIONAL
+		 && mrhash_find_str(mimeparser->m_e2ee_helper->m_gossipped_addr, to_addr)
+		 && mrapeerstate_load_by_addr__(peerstate, mailbox->m_sql, to_addr) )
+		{
+			// mark gossip-key as verified even if there is a public-verified-key; mrapeerstate_peek_key() will peek the newer one
+			// (the date is already updated in update_gossip_peerstates())
+			mrmailbox_log_info(mailbox, 0, "Marking gossipped key %s as verified due to verified %s.", to_addr, contact->m_addr);
+			mrapeerstate_set_verified(peerstate, MRA_GOSSIP_KEY, peerstate->m_gossip_key_fingerprint, MRV_BIDIRECTIONAL);
+			mrapeerstate_save_to_db__(peerstate, mailbox->m_sql, 0);
+			gossip_key_verified = MRV_BIDIRECTIONAL;
+		}
+
+		if( public_key_verified < MRV_BIDIRECTIONAL && gossip_key_verified < MRV_BIDIRECTIONAL )
+		{
+			mrmailbox_log_warning(mailbox, 0, "Cannot verifiy group; recipient %s is not gossipped.", to_addr);
+			goto cleanup;
+		}
+	}
+
+	// it's up to the caller to check if the sender is a member of the group
+	// (we do this for both, verified and unverified group, so we do not check this here)
+	everythings_okay = 1;
+
+cleanup:
+	if( stmt ) { sqlite3_finalize(stmt); }
+	mrcontact_unref(contact);
+	mrapeerstate_unref(peerstate);
+	free(to_ids_str);
+	if( q3 ) { sqlite3_free(q3); }
+	return everythings_okay;
 }
 
 
@@ -609,10 +678,11 @@ static void create_or_lookup_group__(mrmailbox_t* mailbox, mrmimeparser_t* mime_
                                      int32_t from_id, const mrarray_t* to_ids,
                                      uint32_t* ret_chat_id, int* ret_chat_id_blocked)
 {
-	uint32_t              chat_id = 0;
-	int                   chat_id_blocked = 0;
-	char*                 grpid = NULL;
-	char*                 grpname = NULL;
+	uint32_t              chat_id          = 0;
+	int                   chat_id_blocked  = 0;
+	int                   chat_id_verified = 0;
+	char*                 grpid            = NULL;
+	char*                 grpname          = NULL;
 	sqlite3_stmt*         stmt;
 	int                   i, to_ids_cnt = mrarray_get_cnt(to_ids);
 	char*                 self_addr = NULL;
@@ -692,12 +762,17 @@ static void create_or_lookup_group__(mrmailbox_t* mailbox, mrmimeparser_t* mime_
 	}
 
 	/* check, if we have a chat with this group ID */
-	stmt = mrsqlite3_predefine__(mailbox->m_sql, SELECT_id_FROM_CHATS_WHERE_grpid,
-		"SELECT id, blocked FROM chats WHERE grpid=?;");
-	sqlite3_bind_text (stmt, 1, grpid, -1, SQLITE_STATIC);
-	if( sqlite3_step(stmt)==SQLITE_ROW ) {
-		chat_id = sqlite3_column_int(stmt, 0);
-		chat_id_blocked = sqlite3_column_int(stmt, 1);
+	if( (chat_id=mrmailbox_get_chat_id_by_grpid__(mailbox, grpid, &chat_id_blocked, &chat_id_verified))!=0 ) {
+		if( chat_id_verified
+		 && !check_verified_properties__(mailbox, mime_parser, from_id, to_ids) ) {
+			chat_id          = 0; // force the creation of an unverified ad-hoc group.
+			chat_id_blocked  = 0;
+			chat_id_verified = 0;
+			free(grpid);
+			grpid = NULL;
+			free(grpname);
+			grpname = NULL;
+		}
 	}
 
 	/* check if the sender is a member of the existing group -
@@ -714,13 +789,22 @@ static void create_or_lookup_group__(mrmailbox_t* mailbox, mrmimeparser_t* mime_
 	self_addr = mrsqlite3_get_config__(mailbox->m_sql, "configured_addr", "");
 	if( chat_id == 0
 	 && !mrmimeparser_is_mailinglist_message(mime_parser)
+	 && grpid
 	 && grpname
 	 && X_MrRemoveFromGrp==NULL /*otherwise, a pending "quit" message may pop up*/
 	 && (!group_explicitly_left || (X_MrAddToGrp&&strcasecmp(self_addr,X_MrAddToGrp)==0) ) /*re-create explicitly left groups only if ourself is re-added*/
 	 )
 	{
-		chat_id = create_group_record__(mailbox, grpid, grpname, create_blocked);
-		chat_id_blocked = create_blocked;
+		int create_verified = 0;
+		if( mrmimeparser_lookup_field(mime_parser, "Chat-Verified") ) {
+			if( check_verified_properties__(mailbox, mime_parser, from_id, to_ids) ) {
+				create_verified = 1;
+			}
+		}
+
+		chat_id = create_group_record__(mailbox, grpid, grpname, create_blocked, create_verified);
+		chat_id_blocked  = create_blocked;
+		chat_id_verified = create_verified;
 		recreate_member_list = 1;
 	}
 
@@ -795,13 +879,13 @@ static void create_or_lookup_group__(mrmailbox_t* mailbox, mrmimeparser_t* mime_
 		sqlite3_finalize(stmt);
 
 		if( skip==NULL || strcasecmp(self_addr, skip) != 0 ) {
-			mrmailbox_add_contact_to_chat__(mailbox, chat_id, MR_CONTACT_ID_SELF);
+			mrmailbox_add_to_chat_contacts_table__(mailbox, chat_id, MR_CONTACT_ID_SELF);
 		}
 
 		if( from_id > MR_CONTACT_ID_LAST_SPECIAL ) {
 			if( mrmailbox_contact_addr_equals__(mailbox, from_id, self_addr)==0
 			 && (skip==NULL || mrmailbox_contact_addr_equals__(mailbox, from_id, skip)==0) ) {
-				mrmailbox_add_contact_to_chat__(mailbox, chat_id, from_id);
+				mrmailbox_add_to_chat_contacts_table__(mailbox, chat_id, from_id);
 			}
 		}
 
@@ -810,7 +894,7 @@ static void create_or_lookup_group__(mrmailbox_t* mailbox, mrmimeparser_t* mime_
 			uint32_t to_id = mrarray_get_id(to_ids, i); /* to_id is only once in to_ids and is non-special */
 			if( mrmailbox_contact_addr_equals__(mailbox, to_id, self_addr)==0
 			 && (skip==NULL || mrmailbox_contact_addr_equals__(mailbox, to_id, skip)==0) ) {
-				mrmailbox_add_contact_to_chat__(mailbox, chat_id, to_id);
+				mrmailbox_add_to_chat_contacts_table__(mailbox, chat_id, to_id);
 			}
 		}
 		send_EVENT_CHAT_MODIFIED = 1;
@@ -849,7 +933,7 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
                            const char* server_folder, uint32_t server_uid, uint32_t flags)
 {
 	/* the function returns the number of created messages in the database */
-	int              incoming = 0;
+	int              incoming = 1;
 	int              incoming_origin = 0;
 	#define          outgoing (!incoming)
 
@@ -881,11 +965,7 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 
 	carray*          rr_event_to_send = carray_new(16);
 
-	int              has_return_path = 0;
-	int              is_handshake_message = 0;
 	char*            txt_raw = NULL;
-
-	uint32_t         degrade_msg_id = 0;
 
 	mrmailbox_log_info(mailbox, 0, "Receiving message %s/%lu...", server_folder? server_folder:"?", server_uid);
 
@@ -913,18 +993,21 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 		goto cleanup; /* Error - even adding an empty record won't help as we do not know the message ID */
 	}
 
-	/* Check, if the mail comes from extern, resp. is not sent by us.  This is a _really_ important step
-	as messages sent by us are used to validate other mail senders and receivers.
-	For this purpose, we assume, the `Return-Path:`-header is never present if the message is sent by us.
-	The `Received:`-header may be another idea, however, this is also set if mails are transfered from other accounts via IMAP.
-	Using `From:` alone is no good idea, as mailboxes may use different sending-addresses - moreover, they may change over the years.
-	However, we use `From:` as an additional hint below. */
-	if( mrmimeparser_lookup_field(mime_parser, "Return-Path") ) {
-		has_return_path = 1;
+	/* messages without a Return-Path header typically are outgoing, however, if the Return-Path header
+	is missing for other reasons, see issue #150, foreign messages appear as own messages, this is very confusing.
+	as it may even be confusing when _own_ messages sent from other devices with other e-mail-adresses appear as being sent from SELF
+	we disabled this check for now */
+	#if 0
+	if( !mrmimeparser_lookup_field(mime_parser, "Return-Path") ) {
+		incoming = 0;
 	}
+	#endif
 
-	if( has_return_path ) {
-		incoming = 1;
+	if( (field=mrmimeparser_lookup_field(mime_parser, "Date"))!=NULL && field->fld_type==MAILIMF_FIELD_ORIG_DATE ) {
+		struct mailimf_orig_date* orig_date = field->fld_data.fld_orig_date;
+		if( orig_date ) {
+			sent_timestamp = mr_timestamp_from_date(orig_date->dt_date_time); // is not yet checked against bad times! we do this later if we have the database information.
+		}
 	}
 
 	mrsqlite3_lock(mailbox->m_sql);
@@ -932,9 +1015,9 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 	mrsqlite3_begin_transaction__(mailbox->m_sql);
 	transaction_pending = 1;
 
-		/* for incoming messages, get From: and check if it is known (for known From:'s we add the other To:/Cc:/Bcc: in the 3rd pass) */
-		if( incoming
-		 && (field=mrmimeparser_lookup_field(mime_parser, "From"))!=NULL
+		/* get From: and check if it is known (for known From:'s we add the other To:/Cc: in the 3rd pass)
+		or if From: is equal to SELF (in this case, it is any outgoing messages, we do not check Return-Path any more as this is unreliable, see issue #150 */
+		if( (field=mrmimeparser_lookup_field(mime_parser, "From"))!=NULL
 		 && field->fld_type==MAILIMF_FIELD_FROM)
 		{
 			struct mailimf_from* fld_from = field->fld_data.fld_from;
@@ -945,15 +1028,11 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 				mrmailbox_add_or_lookup_contacts_by_mailbox_list__(mailbox, fld_from->frm_mb_list, MR_ORIGIN_INCOMING_UNKNOWN_FROM, from_list, &check_self);
 				if( check_self )
 				{
+					incoming = 0;
+
 					if( mrmimeparser_sender_equals_recipient(mime_parser) )
 					{
 						from_id = MR_CONTACT_ID_SELF;
-					}
-					else
-					{
-						incoming = 0; /* The `Return-Path:`-approach above works well, however, there may be outgoing messages which we also receive -
-									  for these messages, the `Return-Path:` is set although we're the sender.  To correct these cases, we add an
-									  additional From: check - which, however, will not work for older From:-addresses used on the mailbox. */
 					}
 				}
 				else
@@ -968,7 +1047,7 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 			}
 		}
 
-		/* Make sure, to_ids starts with the first To:-address (Cc: and Bcc: are added in the loop below pass) */
+		/* Make sure, to_ids starts with the first To:-address (Cc: is added in the loop below pass) */
 		if( (field=mrmimeparser_lookup_field(mime_parser, "To"))!=NULL
 		 && field->fld_type==MAILIMF_FIELD_TO )
 		{
@@ -987,22 +1066,15 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 			 * Add parts
 			 *********************************************************************/
 
-			/* collect the rest information */
+			/* collect the rest information, CC: is added to the to-list, BCC: is ignored
+			(we should not add BCC to groups as this would split groups. We could add them as "known contacts",
+			however, the benefit is very small and this may leak data that is expected to be hidden) */
 			if( (field=mrmimeparser_lookup_field(mime_parser, "Cc"))!=NULL && field->fld_type==MAILIMF_FIELD_CC )
 			{
 				struct mailimf_cc* fld_cc = field->fld_data.fld_cc;
 				if( fld_cc ) {
 					mrmailbox_add_or_lookup_contacts_by_address_list__(mailbox, fld_cc->cc_addr_list,
 						outgoing? MR_ORIGIN_OUTGOING_CC : (incoming_origin>=MR_ORIGIN_MIN_VERIFIED? MR_ORIGIN_INCOMING_CC : MR_ORIGIN_INCOMING_UNKNOWN_CC), to_ids, NULL);
-				}
-			}
-
-			if( (field=mrmimeparser_lookup_field(mime_parser, "Bcc"))!=NULL && field->fld_type==MAILIMF_FIELD_BCC )
-			{
-				struct mailimf_bcc* fld_bcc = field->fld_data.fld_bcc;
-				if( outgoing && fld_bcc ) {
-					mrmailbox_add_or_lookup_contacts_by_address_list__(mailbox, fld_bcc->bcc_addr_list,
-						MR_ORIGIN_OUTGOING_BCC, to_ids, NULL);
 				}
 			}
 
@@ -1014,6 +1086,19 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 			{
 				state = (flags&MR_IMAP_SEEN)? MR_STATE_IN_SEEN : MR_STATE_IN_FRESH;
 				to_id = MR_CONTACT_ID_SELF;
+
+				// handshake messages must be processed before chats are crated (eg. contacs may be marked as verified)
+				assert( chat_id == 0 );
+				if( mrmimeparser_lookup_field(mime_parser, "Secure-Join") ) {
+					mrsqlite3_commit__(mailbox->m_sql);
+					mrsqlite3_unlock(mailbox->m_sql);
+						if( mrmailbox_handle_securejoin_handshake(mailbox, mime_parser, from_id) == MR_IS_HANDSHAKE_STOP_NORMAL_PROCESSING ) {
+							hidden = 1;
+							state = MR_STATE_IN_SEEN;
+						}
+					mrsqlite3_lock(mailbox->m_sql);
+					mrsqlite3_begin_transaction__(mailbox->m_sql);
+				}
 
 				/* test if there is a normal chat with the sender - if so, this allows us to create groups in the next step */
 				uint32_t test_normal_chat_id = 0;
@@ -1126,23 +1211,8 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 				}
 			}
 
-			/* check of the message is a special handshake message; if so, mark it as "seen" here and handle it when done */
-			is_handshake_message = mrmailbox_is_securejoin_handshake__(mailbox, mime_parser);
-			if( is_handshake_message ) {
-				hidden = 1;
-				if( state==MR_STATE_IN_FRESH || state==MR_STATE_IN_NOTICED ) {
-					state = MR_STATE_IN_SEEN;
-				}
-			}
-
 			/* correct message_timestamp, it should not be used before,
 			however, we cannot do this earlier as we need from_id to be set */
-			if( (field=mrmimeparser_lookup_field(mime_parser, "Date"))!=NULL && field->fld_type==MAILIMF_FIELD_ORIG_DATE ) {
-				struct mailimf_orig_date* orig_date = field->fld_data.fld_orig_date;
-				if( orig_date ) {
-					sent_timestamp = mr_timestamp_from_date(orig_date->dt_date_time); /* is not yet checked against bad times! */
-				}
-			}
 			mrmailbox_calc_timestamps__(mailbox, chat_id, from_id, sent_timestamp, (flags&MR_IMAP_SEEN)? 0 : 1 /*fresh message?*/,
 				&sort_timestamp, &sent_timestamp, &rcvd_timestamp);
 
@@ -1200,10 +1270,6 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 					mrmailbox_log_info(mailbox, 0, "Message is a reply to a messenger message (will be moved to Chats-folder).");
 					msgrmsg = 2; /* 2=no, but is reply to messenger message */
 				}
-			}
-
-			if( mime_parser->m_degrade_event ) {
-				degrade_msg_id = add_degrade_message__(mailbox, chat_id, from_id, sort_timestamp);
 			}
 
 			/* fine, so far.  now, split the message into simple parts usable as "short messages"
@@ -1284,6 +1350,13 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 				}
 			}
 		}
+		else
+		{
+			// there are no non-meta data in message, do some basic calculations so that the varaiables are correct in the further processing
+			if( sent_timestamp > time(NULL) ) {
+				sent_timestamp = time(NULL);
+			}
+		}
 
 
 		if( carray_count(mime_parser->m_reports) > 0 )
@@ -1339,7 +1412,7 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 											{
 												uint32_t chat_id = 0;
 												uint32_t msg_id = 0;
-												if( mrmailbox_mdn_from_ext__(mailbox, from_id, rfc724_mid, &chat_id, &msg_id) ) {
+												if( mrmailbox_mdn_from_ext__(mailbox, from_id, rfc724_mid, sent_timestamp, &chat_id, &msg_id) ) {
 													carray_add(rr_event_to_send, (void*)(uintptr_t)chat_id, NULL);
 													carray_add(rr_event_to_send, (void*)(uintptr_t)msg_id, NULL);
 												}
@@ -1394,14 +1467,6 @@ void mrmailbox_receive_imf(mrmailbox_t* mailbox, const char* imf_raw_not_termina
 cleanup:
 	if( transaction_pending ) { mrsqlite3_rollback__(mailbox->m_sql); }
 	if( db_locked ) { mrsqlite3_unlock(mailbox->m_sql); }
-
-	if( is_handshake_message ) {
-		mrmailbox_handle_securejoin_handshake(mailbox, mime_parser, chat_id); /* must be called after unlocking before deletion of mime_parser */
-	}
-	else if( mime_parser->m_degrade_event ) {
-		mailbox->m_cb(mailbox, MR_EVENT_MSGS_CHANGED, chat_id, degrade_msg_id);
-		mailbox->m_cb(mailbox, MR_EVENT_CHAT_MODIFIED, chat_id, 0);
-	}
 
 	mrmimeparser_unref(mime_parser);
 	free(rfc724_mid);

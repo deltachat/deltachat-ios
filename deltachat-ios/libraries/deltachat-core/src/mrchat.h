@@ -36,9 +36,12 @@ typedef struct _mrmailbox mrmailbox_t;
 #define         MR_CHAT_ID_STARRED          5 /* virtual chat showing all messages flagged with msgs.starred=2 */
 #define         MR_CHAT_ID_ARCHIVED_LINK    6 /* only an indicator in a chatlist */
 #define         MR_CHAT_ID_LAST_SPECIAL     9 /* larger chat IDs are "real" chats, their messages are "real" messages. */
-#define         MR_CHAT_TYPE_UNDEFINED      0
-#define         MR_CHAT_TYPE_NORMAL       100
-#define         MR_CHAT_TYPE_GROUP        120
+
+
+#define         MR_CHAT_TYPE_UNDEFINED        0
+#define         MR_CHAT_TYPE_SINGLE         100
+#define         MR_CHAT_TYPE_GROUP          120
+#define         MR_CHAT_TYPE_VERIFIED_GROUP 130
 
 
 /**

@@ -92,7 +92,7 @@ newsnntp * newsnntp_new(size_t progr_rate, progress_function * progr_fun)
   f = malloc(sizeof(* f));
   if (f == NULL)
     goto err;
-  
+
   f->nntp_stream = NULL;
   f->nntp_readonly = FALSE;
 
@@ -110,7 +110,7 @@ newsnntp * newsnntp_new(size_t progr_rate, progress_function * progr_fun)
 	f->nntp_timeout = 0;
 	f->nntp_progress_fun = NULL;
 	f->nntp_progress_context = NULL;
-  
+
   f->nntp_logger = NULL;
   f->nntp_logger_context = NULL;
 
@@ -166,7 +166,7 @@ int newsnntp_quit(newsnntp * f)
     res = NEWSNNTP_ERROR_STREAM;
     goto close;
   }
-  
+
   response = read_line(f);
   if (response == NULL) {
     res = NEWSNNTP_ERROR_STREAM;
@@ -182,7 +182,7 @@ int newsnntp_quit(newsnntp * f)
   mailstream_close(f->nntp_stream);
 
   f->nntp_stream = NULL;
-  
+
   return res;
 }
 
@@ -286,10 +286,10 @@ static int newsnntp_get_content(newsnntp * f, char ** result,
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-    
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-    
+
   case 220:
   case 221:
   case 222:
@@ -309,7 +309,7 @@ static int newsnntp_get_content(newsnntp * f, char ** result,
         mmap_string_free(buffer);
         return NEWSNNTP_ERROR_MEMORY;
       }
-      
+
       * result = result_multiline;
       * result_len = buffer->len;
       return NEWSNNTP_NO_ERROR;
@@ -399,12 +399,12 @@ group_info_init(char * name, uint32_t first, uint32_t last, uint32_t count,
 		char type)
 {
   struct newsnntp_group_info * n;
-  
+
   n = malloc(sizeof(* n));
 
   if (n == NULL)
     return NULL;
-  
+
   n->grp_name = strdup(name);
   if (n->grp_name == NULL) {
     free(n);
@@ -456,15 +456,15 @@ int newsnntp_group(newsnntp * f, const char * groupname,
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-    
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-      
+
   case 211:
     if (!parse_group_info(f->nntp_response, info))
       return NEWSNNTP_ERROR_INVALID_RESPONSE;
     return NEWSNNTP_NO_ERROR;
-      
+
   case 411:
     return NEWSNNTP_ERROR_NO_SUCH_NEWS_GROUP;
 
@@ -502,14 +502,14 @@ int newsnntp_list(newsnntp * f, clist ** result)
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-    
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-      
+
   case 215:
     * result = read_groups_list(f);
     return NEWSNNTP_NO_ERROR;
-    
+
   default:
     return NEWSNNTP_ERROR_UNEXPECTED_RESPONSE;
   }
@@ -549,21 +549,21 @@ int newsnntp_post(newsnntp * f, const char * message, size_t size)
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-    
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
 
   case 340:
     break;
-      
+
   case 440:
     return NEWSNNTP_ERROR_POSTING_NOT_ALLOWED;
-    
+
   default:
     return NEWSNNTP_ERROR_UNEXPECTED_RESPONSE;
   }
 
-  send_data(f, message, size); 
+  send_data(f, message, size);
 
   response = read_line(f);
   if (response == NULL)
@@ -574,10 +574,10 @@ int newsnntp_post(newsnntp * f, const char * message, size_t size)
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-      
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-      
+
   case 240:
     return NEWSNNTP_NO_ERROR;
     return 1;
@@ -625,7 +625,7 @@ int newsnntp_authinfo_username(newsnntp * f, const char * username)
 
   case 281:
     return NEWSNNTP_NO_ERROR;
-      
+
   default:
     return NEWSNNTP_ERROR_UNEXPECTED_RESPONSE;
   }
@@ -654,7 +654,7 @@ int newsnntp_authinfo_password(newsnntp * f, const char * password)
 
   case 481:
     return NEWSNNTP_ERROR_AUTHENTICATION_REJECTED;
-      
+
   case 482:
     return NEWSNNTP_ERROR_AUTHENTICATION_OUT_OF_SEQUENCE;
 
@@ -663,7 +663,7 @@ int newsnntp_authinfo_password(newsnntp * f, const char * password)
 
   case 281:
     return NEWSNNTP_NO_ERROR;
-      
+
   default:
     return NEWSNNTP_ERROR_UNEXPECTED_RESPONSE;
   }
@@ -699,15 +699,15 @@ int newsnntp_list_overview_fmt(newsnntp * f, clist ** result)
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-      
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-      
+
   case 215:
     * result = read_headers_list(f);
     return NEWSNNTP_NO_ERROR;
 
-  case 503: 
+  case 503:
     return NEWSNNTP_ERROR_PROGRAM_ERROR;
 
   default:
@@ -750,7 +750,7 @@ int newsnntp_list_active(newsnntp * f, const char * wildcard, clist ** result)
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-      
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
 
@@ -779,12 +779,12 @@ static struct newsnntp_group_time *
 group_time_new(char * group_name, time_t date, char * email)
 {
   struct newsnntp_group_time * n;
-  
+
   n = malloc(sizeof(* n));
 
   if (n == NULL)
     return NULL;
-  
+
   n->grp_name = strdup(group_name);
   if (n->grp_name == NULL) {
     free(n);
@@ -847,15 +847,15 @@ int newsnntp_list_active_times(newsnntp * f, clist ** result)
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-      
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-      
+
   case 215:
     * result = read_group_time_list(f);
     return NEWSNNTP_NO_ERROR;
 
-  case 503: 
+  case 503:
     return NEWSNNTP_ERROR_PROGRAM_ERROR;
 
   default:
@@ -881,12 +881,12 @@ static struct newsnntp_distrib_value_meaning *
 distrib_value_meaning_new(char * value, char * meaning)
 {
   struct newsnntp_distrib_value_meaning * n;
-  
+
   n = malloc(sizeof(* n));
 
   if (n == NULL)
     return NULL;
-  
+
   n->dst_value = strdup(value);
   if (n->dst_value == NULL) {
     free(n);
@@ -933,7 +933,7 @@ int newsnntp_list_distribution(newsnntp * f, clist ** result)
   r = send_command(f, command);
   if (r == -1)
     return NEWSNNTP_ERROR_STREAM;
-  
+
   response = read_line(f);
   if (response == NULL)
     return NEWSNNTP_ERROR_STREAM;
@@ -943,17 +943,17 @@ int newsnntp_list_distribution(newsnntp * f, clist ** result)
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-      
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-      
+
   case 215:
     * result = read_distrib_value_meaning_list(f);
     return NEWSNNTP_NO_ERROR;
-    
-  case 503: 
+
+  case 503:
     return NEWSNNTP_ERROR_PROGRAM_ERROR;
-    
+
   default:
     return NEWSNNTP_ERROR_UNEXPECTED_RESPONSE;
   }
@@ -985,7 +985,7 @@ distrib_default_value_new(uint32_t weight, char * group_pattern, char * value)
   n = malloc(sizeof(* n));
   if (n == NULL)
     return NULL;
-  
+
   n->dst_group_pattern = strdup(group_pattern);
   if (n->dst_group_pattern == NULL) {
     free(n);
@@ -1042,17 +1042,17 @@ int newsnntp_list_distrib_pats(newsnntp * f, clist ** result)
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-      
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-      
+
   case 215:
     * result = read_distrib_default_value_list(f);
     return NEWSNNTP_NO_ERROR;
 
-  case 503: 
+  case 503:
     return NEWSNNTP_ERROR_PROGRAM_ERROR;
-    
+
   default:
     return NEWSNNTP_ERROR_UNEXPECTED_RESPONSE;
   }
@@ -1084,7 +1084,7 @@ group_description_new(char * group_name, char * description)
   n = malloc(sizeof(* n));
   if (n == NULL)
     return NULL;
-  
+
   n->grp_name = strdup(group_name);
   if (n->grp_name == NULL) {
     free(n);
@@ -1129,7 +1129,7 @@ int newsnntp_list_newsgroups(newsnntp * f, const char * pattern,
     snprintf(command, NNTP_STRING_SIZE, "LIST NEWSGROUPS %s\r\n", pattern);
   else
     snprintf(command, NNTP_STRING_SIZE, "LIST NEWSGROUPS\r\n");
-  
+
   r = send_command(f, command);
   if (r == -1)
     return NEWSNNTP_ERROR_STREAM;
@@ -1143,15 +1143,15 @@ int newsnntp_list_newsgroups(newsnntp * f, const char * pattern,
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-      
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-      
+
   case 215:
     * result = read_group_description_list(f);
     return NEWSNNTP_NO_ERROR;
 
-  case 503: 
+  case 503:
     return NEWSNNTP_ERROR_PROGRAM_ERROR;
 
   default:
@@ -1205,15 +1205,15 @@ int newsnntp_list_subscriptions(newsnntp * f, clist ** result)
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-      
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-      
+
   case 215:
     * result = read_subscriptions_list(f);
     return NEWSNNTP_NO_ERROR;
 
-  case 503: 
+  case 503:
     return NEWSNNTP_ERROR_PROGRAM_ERROR;
 
   default:
@@ -1271,20 +1271,20 @@ int newsnntp_listgroup(newsnntp * f, const char * group_name,
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-      
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-      
+
   case 211:
     * result = read_articles_list(f);
     return NEWSNNTP_NO_ERROR;
-      
+
   case 412:
     return NEWSNNTP_ERROR_NO_NEWSGROUP_SELECTED;
 
-  case 502: 
+  case 502:
     return NEWSNNTP_ERROR_NO_PERMISSION;
-    
+
   default:
     return NEWSNNTP_ERROR_UNEXPECTED_RESPONSE;
   }
@@ -1310,7 +1310,7 @@ int newsnntp_mode_reader(newsnntp * f)
   int r;
 
   snprintf(command, NNTP_STRING_SIZE, "MODE READER\r\n");
-  
+
   r = send_command(f, command);
   if (r == -1)
     return NEWSNNTP_ERROR_STREAM;
@@ -1323,10 +1323,10 @@ int newsnntp_mode_reader(newsnntp * f)
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-      
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-      
+
   case 200:
   case 201:
     return NEWSNNTP_NO_ERROR;
@@ -1383,7 +1383,7 @@ int newsnntp_date(newsnntp * f, struct tm * tm)
     tm->tm_sec = atoi(second);
 
     return NEWSNNTP_NO_ERROR;
-      
+
   default:
     return NEWSNNTP_ERROR_UNEXPECTED_RESPONSE;
   }
@@ -1407,7 +1407,7 @@ static struct newsnntp_xhdr_resp_item * xhdr_resp_item_new(uint32_t article,
   n = malloc(sizeof(* n));
   if (n == NULL)
     return NULL;
-  
+
   n->hdr_value = strdup(value);
   if (n->hdr_value == NULL) {
     free(n);
@@ -1485,10 +1485,10 @@ static int newsnntp_xhdr_resp(newsnntp * f, clist ** result)
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-      
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-      
+
   case 221:
     * result = read_xhdr_resp_list(f);
     return NEWSNNTP_NO_ERROR;
@@ -1502,7 +1502,7 @@ static int newsnntp_xhdr_resp(newsnntp * f, clist ** result)
   case 430:
     return NEWSNNTP_ERROR_ARTICLE_NOT_FOUND;
 
-  case 502: 
+  case 502:
     return NEWSNNTP_ERROR_NO_PERMISSION;
 
   default:
@@ -1541,7 +1541,7 @@ xover_resp_item_new(uint32_t article,
   n = malloc(sizeof(* n));
   if (n == NULL)
     return NULL;
-  
+
   n->ovr_subject = strdup(subject);
   if (n->ovr_subject == NULL) {
     free(n);
@@ -1604,7 +1604,7 @@ void xover_resp_item_free(struct newsnntp_xover_resp_item * n)
     free(n->ovr_references);
   clist_foreach(n->ovr_others, (clist_func) free, NULL);
   clist_free(n->ovr_others);
-  
+
   free(n);
 }
 
@@ -1640,7 +1640,7 @@ int newsnntp_xover_single(newsnntp * f, uint32_t article,
   cur = clist_begin(list);
   item = clist_content(cur);
   clist_free(list);
-  
+
   * result = item;
 
   return r;
@@ -1674,10 +1674,10 @@ static int newsnntp_xover_resp(newsnntp * f, clist ** result)
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-      
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-      
+
   case 224:
     * result = read_xover_resp_list(f);
     return NEWSNNTP_NO_ERROR;
@@ -1726,17 +1726,17 @@ int newsnntp_authinfo_generic(newsnntp * f, const char * authentificator,
   switch (r) {
   case 480:
     return NEWSNNTP_ERROR_REQUEST_AUTHORIZATION_USERNAME;
-      
+
   case 381:
     return NEWSNNTP_WARNING_REQUEST_AUTHORIZATION_PASSWORD;
-      
+
   case 281:
     return NEWSNNTP_NO_ERROR;
 
   case 500:
     return NEWSNNTP_ERROR_COMMAND_NOT_UNDERSTOOD;
 
-  case 501: 
+  case 501:
     return NEWSNNTP_ERROR_COMMAND_NOT_SUPPORTED;
 
   case 502:
@@ -1830,7 +1830,7 @@ static int parse_response(newsnntp * f, char * response)
     f->nntp_response = f->nntp_response_buffer->str;
   else
     f->nntp_response = NULL;
- 
+
   return code;
 }
 
@@ -1885,7 +1885,7 @@ static int parse_group_info(char * response,
     return FALSE;
 
   * result = info;
-  
+
   return TRUE;
 }
 
@@ -1908,7 +1908,7 @@ static clist * read_groups_list(newsnntp * f)
 
   while (1) {
     char * p;
-      
+
     line = read_line(f);
     if (line == NULL)
       goto free_list;
@@ -1968,13 +1968,13 @@ static clist * read_headers_list(newsnntp * f)
 
   while (1) {
     line = read_line(f);
-    
+
     if (line == NULL)
       goto free_list;
-    
+
     if (mailstream_is_end_multiline(line))
       break;
-    
+
     header = strdup(line);
     if (header == NULL)
       goto free_list;
@@ -2014,39 +2014,39 @@ static clist * read_group_time_list(newsnntp * f)
   while (1) {
     char * p;
     char * remaining;
-    
+
     line = read_line(f);
-    
+
     if (line == NULL)
       goto free_list;
 
     if (mailstream_is_end_multiline(line))
       break;
-    
+
     p = cut_token(line);
     if (p == NULL)
       continue;
-      
+
     date = strtoul(p, &remaining, 10);
 
     p = remaining;
     parse_space(&p);
 
     email = p;
-    
+
     group_name = line;
-    
+
     n = group_time_new(group_name, date, email);
     if (n == NULL)
       goto free_list;
-    
+
     r = clist_append(group_time_list, n);
     if (r < 0) {
       group_time_free(n);
       goto free_list;
     }
   }
-  
+
   return group_time_list;
 
  free_list:
@@ -2073,18 +2073,18 @@ static clist * read_distrib_value_meaning_list(newsnntp * f)
 
   while (1) {
     char * p;
-      
+
     line = read_line(f);
     if (line == NULL)
       goto free_list;
 
     if (mailstream_is_end_multiline(line))
       break;
-      
+
     p = cut_token(line);
     if (p == NULL)
       continue;
-      
+
     meaning = p;
 
     value = line;
@@ -2128,7 +2128,7 @@ static clist * read_distrib_default_value_list(newsnntp * f)
   while (1) {
     char * p;
     char * remaining;
-      
+
     line = read_line(f);
     if (line == NULL)
       goto free_list;
@@ -2141,7 +2141,7 @@ static clist * read_distrib_default_value_list(newsnntp * f)
     weight = (uint32_t)strtoul(p, &remaining, 10);
     p = remaining;
     parse_space(&p);
-      
+
     p = cut_token(line);
     if (p == NULL)
       continue;
@@ -2185,7 +2185,7 @@ static clist * read_group_description_list(newsnntp * f)
 
   while (1) {
     char * p;
-      
+
     line = read_line(f);
     if (line == NULL)
       goto free_list;
@@ -2317,30 +2317,30 @@ static clist * read_xhdr_resp_list(newsnntp * f)
 
   while (1) {
     line = read_line(f);
-    
+
     if (line == NULL)
       goto free_list;
-    
+
     if (mailstream_is_end_multiline(line))
       break;
-    
+
     article = (uint32_t) strtoul(line, &line, 10);
     if (!parse_space(&line))
       continue;
-    
+
     value = line;
-    
+
     n = xhdr_resp_item_new(article, value);
     if (n == NULL)
       goto free_list;
-    
+
     r = clist_append(xhdr_resp_list, n);
     if (r < 0) {
       xhdr_resp_item_free(n);
       goto free_list;
     }
   }
-  
+
   return xhdr_resp_list;
 
  free_list:
@@ -2367,14 +2367,14 @@ static clist * read_xover_resp_list(newsnntp * f)
   uint32_t line_count;
   clist * others;
   int r;
-  
+
   xover_resp_list = clist_new();
   if (xover_resp_list == NULL)
     goto err;
 
   while (1) {
     char * p;
-      
+
     line = read_line(f);
 
     if (line == NULL)

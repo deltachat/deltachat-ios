@@ -34,9 +34,7 @@ typedef struct mrkeyring_t mrkeyring_t;
 
 
 /* validation errors */
-#define MR_VALIDATE_NO_SIGNATURE      0x01
-#define MR_VALIDATE_UNKNOWN_SIGNATURE 0x02
-#define MR_VALIDATE_BAD_SIGNATURE     0x04
+#define MRE2EE_NO_VALID_SIGNATURE 0x02
 
 /* misc. */
 void mrpgp_init             (mrmailbox_t*);
@@ -51,7 +49,7 @@ int  mrpgp_calc_fingerprint (const mrkey_t*, uint8_t** fingerprint, size_t* fing
 int  mrpgp_split_key        (mrmailbox_t*, const mrkey_t* private_in, mrkey_t* public_out);
 
 int  mrpgp_pk_encrypt       (mrmailbox_t*, const void* plain, size_t plain_bytes, const mrkeyring_t*, const mrkey_t* sign_key, int use_armor, void** ret_ctext, size_t* ret_ctext_bytes);
-int  mrpgp_pk_decrypt       (mrmailbox_t*, const void* ctext, size_t ctext_bytes, const mrkeyring_t*, const mrkey_t* validate_key, int use_armor, void** plain, size_t* plain_bytes, int* ret_validation_errors);
+int  mrpgp_pk_decrypt       (mrmailbox_t*, const void* ctext, size_t ctext_bytes, const mrkeyring_t*, const mrkeyring_t* validate_keys, int use_armor, void** plain, size_t* plain_bytes, mrhash_t* ret_signature_fingerprints);
 
 
 #ifdef __cplusplus

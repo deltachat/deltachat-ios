@@ -231,7 +231,7 @@ mrlot_t* mrchatlist_get_summary(mrchatlist_t* chatlist, size_t index, mrchat_t* 
 			lastmsg = mrmsg_new();
 			mrmsg_load_from_db__(lastmsg, chatlist->m_mailbox, lastmsg_id);
 
-			if( lastmsg->m_from_id != MR_CONTACT_ID_SELF  &&  chat->m_type == MR_CHAT_TYPE_GROUP )
+			if( lastmsg->m_from_id != MR_CONTACT_ID_SELF  &&  MR_CHAT_TYPE_IS_MULTI(chat->m_type) )
 			{
 				lastcontact = mrcontact_new(chatlist->m_mailbox);
 				mrcontact_load_from_db__(lastcontact, chatlist->m_mailbox->m_sql, lastmsg->m_from_id);
@@ -304,8 +304,10 @@ mrmailbox_t* mrchatlist_get_mailbox(mrchatlist_t* chatlist)
  *
  * @private @memberof mrchatlist_t
  */
-int mrchatlist_load_from_db__(mrchatlist_t* ths, int listflags, const char* query__)
+int mrchatlist_load_from_db__(mrchatlist_t* ths, int listflags, const char* query__, uint32_t query_contact_id)
 {
+	clock_t       start = clock();
+
 	int           success = 0;
 	int           add_archived_link_item = 0;
 	sqlite3_stmt* stmt = NULL;
@@ -319,12 +321,25 @@ int mrchatlist_load_from_db__(mrchatlist_t* ths, int listflags, const char* quer
 
 	/* select example with left join and minimum: http://stackoverflow.com/questions/7588142/mysql-left-join-min */
 	#define QUR1 "SELECT c.id, m.id FROM chats c " \
-	                " LEFT JOIN msgs m ON (c.id=m.chat_id AND m.timestamp=(SELECT MAX(timestamp) FROM msgs WHERE chat_id=c.id AND hidden=0)) " \
+	                " LEFT JOIN msgs m ON (c.id=m.chat_id AND m.hidden=0 AND m.timestamp=(SELECT MAX(timestamp) FROM msgs WHERE chat_id=c.id AND hidden=0)) " /* not: `m.hidden` which would refer the outer select and takes lot of time*/ \
 	                " WHERE c.id>" MR_STRINGIFY(MR_CHAT_ID_LAST_SPECIAL) " AND c.blocked=0"
 	#define QUR2    " GROUP BY c.id " /* GROUP BY is needed as there may be several messages with the same timestamp */ \
 	                " ORDER BY MAX(c.draft_timestamp, IFNULL(m.timestamp,0)) DESC,m.id DESC;" /* the list starts with the newest chats */
 
-	if( listflags & MR_GCL_ARCHIVED_ONLY )
+	// nb: the query currently shows messages from blocked contacts in groups.
+	// however, for normal-groups, this is okay as the message is also returned by mrmailbox_get_chat_msgs()
+	// (otherwise it would be hard to follow conversations, wa and tg do the same)
+	// for the deaddrop, however, they should really be hidden, however, _currently_ the deaddrop is not
+	// shown at all permanent in the chatlist.
+
+	if( query_contact_id )
+	{
+		// show chats shared with a given contact
+		stmt = mrsqlite3_predefine__(ths->m_mailbox->m_sql, SELECT_ii_FROM_chats_LEFT_JOIN_msgs_WHERE_contact_id,
+			QUR1 " AND c.id IN(SELECT chat_id FROM chats_contacts WHERE contact_id=?) " QUR2);
+		sqlite3_bind_int(stmt, 1, query_contact_id);
+	}
+	else if( listflags & MR_GCL_ARCHIVED_ONLY )
 	{
 		/* show archived chats */
 		stmt = mrsqlite3_predefine__(ths->m_mailbox->m_sql, SELECT_ii_FROM_chats_LEFT_JOIN_msgs_WHERE_archived,
@@ -376,6 +391,8 @@ int mrchatlist_load_from_db__(mrchatlist_t* ths, int listflags, const char* quer
 	success = 1;
 
 cleanup:
+	mrmailbox_log_info(ths->m_mailbox, 0, "Chatlist for search \"%s\" created in %.3f ms.", query__?query__:"", (double)(clock()-start)*1000.0/CLOCKS_PER_SEC);
+
 	free(query);
 	free(strLikeCmd);
 	return success;

@@ -20,7 +20,7 @@ struct Utils {
     }
     
     static func getContactIds() -> [Int] {
-        let c_contacts = mrmailbox_get_known_contacts(mailboxPointer, nil)
+        let c_contacts = mrmailbox_get_contacts(mailboxPointer, 0, nil)
         return Utils.copyAndFreeArray(inputArray: c_contacts)
     }
 

@@ -1,7 +1,7 @@
 /*******************************************************************************
  *
  *                              Delta Chat Core
- *                      Copyright (C) 2018 Björn Petersen
+ *                      Copyright (C) 2017 Björn Petersen
  *                   Contact: r10s@b44t.com, http://b44t.com
  *
  * This program is free software: you can redistribute it and/or modify it under
@@ -27,3 +27,4 @@ void mrmailbox_add_to_keyhistory__(mrmailbox_t* mailbox, const char* rfc724_mid,
 {
 	// TODO
 }
+

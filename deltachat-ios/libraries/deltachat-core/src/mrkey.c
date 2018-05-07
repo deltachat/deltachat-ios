@@ -475,18 +475,12 @@ char* mr_normalize_fingerprint(const char* in)
 }
 
 
-char* mrkey_get_fingerprint(const mrkey_t* key)
+char* mr_binary_fingerprint_to_uc_hex(const uint8_t* fingerprint_buf, size_t fingerprint_bytes)
 {
-	uint8_t* fingerprint_buf = NULL;
-	size_t   fingerprint_bytes = 0;
-	char*    fingerprint_hex = NULL;
-	int      i;
+	char* fingerprint_hex = NULL;
+	int   i;
 
-	if( key == NULL ) {
-		goto cleanup;
-	}
-
-	if( !mrpgp_calc_fingerprint(key, &fingerprint_buf, &fingerprint_bytes) ) {
+	if( fingerprint_buf == NULL || fingerprint_bytes <= 0 ) {
 		goto cleanup;
 	}
 
@@ -497,6 +491,27 @@ char* mrkey_get_fingerprint(const mrkey_t* key)
 	for( i = 0; i < fingerprint_bytes; i++ ) {
 		snprintf(&fingerprint_hex[i*2], 3, "%02X", (int)fingerprint_buf[i]); /* 'X' instead of 'x' ensures the fingerprint is uppercase which is needed as we do not search case-insensitive, see comment in mrsqlite3.c */
 	}
+
+cleanup:
+	return fingerprint_hex;
+}
+
+
+char* mrkey_get_fingerprint(const mrkey_t* key)
+{
+	uint8_t* fingerprint_buf = NULL;
+	size_t   fingerprint_bytes = 0;
+	char*    fingerprint_hex = NULL;
+
+	if( key == NULL ) {
+		goto cleanup;
+	}
+
+	if( !mrpgp_calc_fingerprint(key, &fingerprint_buf, &fingerprint_bytes) ) {
+		goto cleanup;
+	}
+
+	fingerprint_hex = mr_binary_fingerprint_to_uc_hex(fingerprint_buf, fingerprint_bytes);
 
 cleanup:
 	free(fingerprint_buf);

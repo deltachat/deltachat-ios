@@ -20,29 +20,18 @@
  ******************************************************************************/
 
 
-#ifndef __MRCHATLIST_PRIVATE_H__
-#define __MRCHATLIST_PRIVATE_H__
+#ifndef __MRUUDECODE_H__
+#define __MRUUDECODE_H__
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 
-/** the structure behind mrchatlist_t */
-struct _mrchatlist
-{
-	/** @privatesection */
-	uint32_t        m_magic;
-	mrmailbox_t*    m_mailbox; /**< The mailbox, the chatlist belongs to */
-	#define         MR_CHATLIST_IDS_PER_RESULT 2
-	size_t          m_cnt;
-	mrarray_t*      m_chatNlastmsg_ids;
-};
-
-
-int             mrchatlist_load_from_db__   (mrchatlist_t*, int listflags, const char* query, uint32_t query_contact_id);
+char* mruudecode_do(const char* text, char** ret_binary, size_t* ret_binary_bytes, char** ret_filename);
 
 
 #ifdef __cplusplus
 } /* /extern "C" */
 #endif
-#endif /* __MRCHATLIST_PRIVATE_H__ */
+#endif /* __MRUUDECODE_H__ */
+

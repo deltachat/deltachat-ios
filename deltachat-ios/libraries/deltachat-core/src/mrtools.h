@@ -37,7 +37,9 @@ extern "C" {
 int     mr_exactly_one_bit_set     (int v);
 
 /* string tools */
-#define MR_ELLIPSE_STR             "[...]"
+#define MR_EDITORIAL_OPEN          "["
+#define MR_EDITORIAL_CLOSE         "]"
+#define MR_EDITORIAL_ELLIPSE       MR_EDITORIAL_OPEN "..." MR_EDITORIAL_CLOSE
 char*   safe_strdup                (const char*); /* safe_strdup() returns empty string if NULL is given, never returns NULL (exists on errors) */
 char*   strdup_keep_null           (const char*); /* strdup(NULL) is undefined, safe_strdup_keep_null(NULL) returns NULL in this case */
 int     atoi_null_is_0             (const char*);

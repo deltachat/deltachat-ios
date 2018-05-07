@@ -51,8 +51,13 @@ struct _mrchat
 };
 
 
-int             mrchat_load_from_db__       (mrchat_t*, uint32_t id);
-int             mrchat_update_param__       (mrchat_t*);
+int             mrchat_load_from_db__             (mrchat_t*, uint32_t id);
+int             mrchat_update_param__             (mrchat_t*);
+int             mrchat_are_all_members_verified__ (mrchat_t*);
+
+
+#define         MR_CHAT_TYPE_IS_MULTI(a)   ((a)==MR_CHAT_TYPE_GROUP || (a)==MR_CHAT_TYPE_VERIFIED_GROUP)
+#define         MR_CHAT_TYPE_CAN_SEND(a)   ((a)==MR_CHAT_TYPE_SINGLE || (a)==MR_CHAT_TYPE_GROUP || (a)==MR_CHAT_TYPE_VERIFIED_GROUP)
 
 
 #define         MR_CHAT_PREFIX              "Chat:"      /* you MUST NOT modify this or the following strings */

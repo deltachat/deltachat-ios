@@ -34,6 +34,7 @@ lib_src = [
   'mrsqlite3.c',
   'mrstock.c',
   'mrtools.c',
+  'mruudecode.c',
 ]
 lib_hdr = [
   'mraheader.h',

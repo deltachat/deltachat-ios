@@ -32,6 +32,7 @@ typedef struct mrsmtp_t       mrsmtp_t;
 typedef struct mrsqlite3_t    mrsqlite3_t;
 typedef struct mrjob_t        mrjob_t;
 typedef struct mrmimeparser_t mrmimeparser_t;
+typedef struct mrhash_t       mrhash_t;
 
 
 /** Structure behind mrmailbox_t */
@@ -110,7 +111,7 @@ int             mrmailbox_get_fresh_msg_count__                   (mrmailbox_t*,
 uint32_t        mrmailbox_get_last_deaddrop_fresh_msg__           (mrmailbox_t*);
 void            mrmailbox_send_msg_to_smtp                        (mrmailbox_t*, mrjob_t*);
 void            mrmailbox_send_msg_to_imap                        (mrmailbox_t*, mrjob_t*);
-int             mrmailbox_add_contact_to_chat__                   (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id);
+int             mrmailbox_add_to_chat_contacts_table__            (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id);
 int             mrmailbox_is_contact_in_chat__                    (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id);
 int             mrmailbox_get_chat_contact_count__                (mrmailbox_t*, uint32_t chat_id);
 int             mrmailbox_is_group_explicitly_left__              (mrmailbox_t*, const char* grpid);
@@ -123,13 +124,15 @@ void            mrmailbox_update_server_uid__                     (mrmailbox_t*,
 void            mrmailbox_update_msg_chat_id__                    (mrmailbox_t*, uint32_t msg_id, uint32_t chat_id);
 void            mrmailbox_update_msg_state__                      (mrmailbox_t*, uint32_t msg_id, int state);
 void            mrmailbox_delete_msg_on_imap                      (mrmailbox_t* mailbox, mrjob_t* job);
-int             mrmailbox_mdn_from_ext__                          (mrmailbox_t*, uint32_t from_id, const char* rfc724_mid, uint32_t* ret_chat_id, uint32_t* ret_msg_id); /* returns 1 if an event should be send */
+int             mrmailbox_mdn_from_ext__                          (mrmailbox_t*, uint32_t from_id, const char* rfc724_mid, time_t, uint32_t* ret_chat_id, uint32_t* ret_msg_id); /* returns 1 if an event should be send */
 void            mrmailbox_send_mdn                                (mrmailbox_t*, mrjob_t* job);
 void            mrmailbox_markseen_msg_on_imap                    (mrmailbox_t* mailbox, mrjob_t* job);
 void            mrmailbox_markseen_mdn_on_imap                    (mrmailbox_t* mailbox, mrjob_t* job);
 int             mrmailbox_get_thread_index                        (void);
 uint32_t        mrmailbox_add_device_msg                          (mrmailbox_t*, uint32_t chat_id, const char* text);
 uint32_t        mrmailbox_add_device_msg__                        (mrmailbox_t*, uint32_t chat_id, const char* text, time_t timestamp);
+int             mrmailbox_add_contact_to_chat4                    (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id, int from_handshake);
+uint32_t        mrmailbox_get_chat_id_by_grpid__                  (mrmailbox_t*, const char* grpid, int* ret_blocked, int* ret_verified);
 
 
 /* library private: end-to-end-encryption */
@@ -137,12 +140,19 @@ uint32_t        mrmailbox_add_device_msg__                        (mrmailbox_t*,
 #define MR_MDNS_DEFAULT_ENABLED  1
 
 typedef struct mrmailbox_e2ee_helper_t {
+	// encryption
 	int   m_encryption_successfull;
 	void* m_cdata_to_free;
+
+	// decryption
+	int       m_encrypted;  // encrypted without problems
+	mrhash_t* m_signatures; // fingerprints of valid signatures
+	mrhash_t* m_gossipped_addr;
+
 } mrmailbox_e2ee_helper_t;
 
-void            mrmailbox_e2ee_encrypt      (mrmailbox_t*, const clist* recipients_addr, int force_unencrypted, int e2ee_guaranteed, struct mailmime* in_out_message, mrmailbox_e2ee_helper_t*);
-int             mrmailbox_e2ee_decrypt      (mrmailbox_t*, struct mailmime* in_out_message, int* ret_validation_errors, int* ret_degrade_event); /* returns 1 if sth. was decrypted, 0 in other cases */
+void            mrmailbox_e2ee_encrypt      (mrmailbox_t*, const clist* recipients_addr, int force_plaintext, int e2ee_guaranteed, int min_verified, struct mailmime* in_out_message, mrmailbox_e2ee_helper_t*);
+void            mrmailbox_e2ee_decrypt      (mrmailbox_t*, struct mailmime* in_out_message, mrmailbox_e2ee_helper_t*); /* returns 1 if sth. was decrypted, 0 in other cases */
 void            mrmailbox_e2ee_thanks       (mrmailbox_e2ee_helper_t*); /* frees data referenced by "mailmime" but not freed by mailmime_free(). After calling mre2ee_unhelp(), in_out_message cannot be used any longer! */
 int             mrmailbox_ensure_secret_key_exists (mrmailbox_t*); /* makes sure, the private key exists, needed only for exporting keys and the case no message was sent before */
 char*           mrmailbox_create_setup_code (mrmailbox_t*);
@@ -156,8 +166,11 @@ void            mrmailbox_free_ongoing      (mrmailbox_t*);
 
 
 /* library private: secure-join */
-int             mrmailbox_is_securejoin_handshake__  (mrmailbox_t*, mrmimeparser_t*); /* must be called from lock */
-void            mrmailbox_handle_securejoin_handshake(mrmailbox_t*, mrmimeparser_t*, uint32_t chat_id); /* must not be called from lock */
+#define         MR_IS_HANDSHAKE_CONTINUE_NORMAL_PROCESSING 1
+#define         MR_IS_HANDSHAKE_STOP_NORMAL_PROCESSING     2
+int             mrmailbox_handle_securejoin_handshake(mrmailbox_t*, mrmimeparser_t*, uint32_t contact_id);
+void            mrmailbox_handle_degrade_event       (mrmailbox_t*, mrapeerstate_t*);
+
 
 #define OPENPGP4FPR_SCHEME "OPENPGP4FPR:" /* yes: uppercase */
 
