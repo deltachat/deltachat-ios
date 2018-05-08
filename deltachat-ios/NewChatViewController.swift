@@ -90,13 +90,11 @@ class NewChatViewController: UITableViewController {
             cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
         }
         
-        cell.accessoryType = .detailDisclosureButton
-        
         let contactRow = row - 2
 
         let contact = MRContact(id: contactIds[contactRow])
         cell.nameLabel.text = contact.name
-        // cell.detailTextLabel?.text = contact.email
+        cell.emailLabel.text = contact.email
         cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
         let contactColor = Utils.color(row: contactRow, colors: Constants.chatColors)
         cell.setColor(contactColor)
