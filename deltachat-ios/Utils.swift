@@ -26,7 +26,7 @@ struct Utils {
 
     static func getInitials(inputName:String) -> String {
         let nameParts = inputName.split(separator: " ")
-        let initials:[Character] = nameParts.compactMap {part in part.first}
+        let initials:[Character] = nameParts.compactMap {part in part.capitalized.first}
         let initialsString:String = String(initials)
         return initialsString
     }
