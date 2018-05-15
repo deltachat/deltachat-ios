@@ -17,7 +17,7 @@ class NewChatViewController: UITableViewController {
     weak var chatDisplayer: ChatDisplayer?
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+        //super.viewDidLoad()
 
         title = "New Chat"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -98,6 +98,8 @@ class NewChatViewController: UITableViewController {
         cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
         let contactColor = Utils.color(row: contactRow, colors: Constants.chatColors)
         cell.setColor(contactColor)
+        
+        cell.accessoryType = .detailDisclosureButton
         return cell
     }
     
