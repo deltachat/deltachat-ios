@@ -75,7 +75,6 @@ class ChatListController: UIViewController {
         chatTable.dataSource = chatTableDataSource
         chatTableDelegate.chatPresenter = self
         chatTable.delegate = chatTableDelegate
-        
         let addButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(ChatListController.addChat))
         navigationItem.rightBarButtonItem = addButton
     }
@@ -139,18 +138,21 @@ class ChatTableDataSource: NSObject, UITableViewDataSource  {
             fatalError("chatList was nil in data source")
         }
         
-        let cell:UITableViewCell
-        if let c = tableView.dequeueReusableCell(withIdentifier: "ChatCell") {
+        let cell:ContactCell
+        if let c = tableView.dequeueReusableCell(withIdentifier: "ChatCell") as? ContactCell {
             cell = c
         } else {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "ChatCell")
+            cell = ContactCell(style: .subtitle, reuseIdentifier: "ChatCell")
         }
 
         let chatId = chatList.getChatId(index: row)
         let chat = MRChat(id: chatId)
         let summary = chatList.summary(index: row)
         
-        cell.textLabel?.text = "\(chat.name)"
+        cell.nameLabel.text = chat.name
+        cell.initialsLabel.text = Utils.getInitials(inputName: chat.name)
+        let contactColor = Utils.color(row: row, colors: Constants.chatColors)
+        cell.setColor(contactColor)
         let result1 = summary.text1 ?? ""
         let result2 = summary.text2 ?? ""
         let result:String
@@ -160,7 +162,7 @@ class ChatTableDataSource: NSObject, UITableViewDataSource  {
             result = "\(result1)\(result2)"
         }
         
-        cell.detailTextLabel?.text = result
+        cell.emailLabel.text = result
         return cell
     }
 }
