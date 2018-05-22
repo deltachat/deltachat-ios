@@ -10,6 +10,7 @@ import UIKit
 
 class ContactProfileViewController: UITableViewController {
     let contactId:Int
+    let contactColor:UIColor
     var name:String {
         return MRContact(id: contactId).name
     }
@@ -17,8 +18,9 @@ class ContactProfileViewController: UITableViewController {
         return MRContact(id: contactId).email
     }
     
-    init(contactId: Int) {
+    init(contactId: Int, contactColor: UIColor) {
         self.contactId = contactId
+        self.contactColor = contactColor
         super.init(style: .plain)
     }
     
@@ -64,6 +66,7 @@ class ContactProfileViewController: UITableViewController {
             contactCell.nameLabel.text = name
             contactCell.emailLabel.text = email
             contactCell.initialsLabel.text = Utils.getInitials(inputName: name)
+            contactCell.setColor(self.contactColor)
             return contactCell
         }
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)

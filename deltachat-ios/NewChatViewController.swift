@@ -96,7 +96,7 @@ class NewChatViewController: UITableViewController {
         cell.nameLabel.text = contact.name
         cell.emailLabel.text = contact.email
         cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
-        let contactColor = Utils.color(row: contactRow, colors: Constants.chatColors)
+        let contactColor = Utils.contactColor(row: contactRow)
         cell.setColor(contactColor)
         
         cell.accessoryType = .detailDisclosureButton
@@ -132,7 +132,8 @@ class NewChatViewController: UITableViewController {
             let contactId = contactIds[contactIndex]
             // let newContactController = NewContactController(contactIdForUpdate: contactId)
             // navigationController?.pushViewController(newContactController, animated: true)
-            let contactProfileController = ContactProfileViewController(contactId: contactId)
+            let contactColor = Utils.contactColor(row: contactIndex)
+            let contactProfileController = ContactProfileViewController(contactId: contactId, contactColor: contactColor)
             navigationController?.pushViewController(contactProfileController, animated: true)
         }
     }
