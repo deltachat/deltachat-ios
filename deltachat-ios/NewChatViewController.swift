@@ -130,8 +130,10 @@ class NewChatViewController: UITableViewController {
         if row > 1 {
             let contactIndex = row - 2
             let contactId = contactIds[contactIndex]
-            let newContactController = NewContactController(contactIdForUpdate: contactId)
-            navigationController?.pushViewController(newContactController, animated: true)
+            // let newContactController = NewContactController(contactIdForUpdate: contactId)
+            // navigationController?.pushViewController(newContactController, animated: true)
+            let contactProfileController = ContactProfileViewController(contactId: contactId)
+            navigationController?.pushViewController(contactProfileController, animated: true)
         }
     }
 

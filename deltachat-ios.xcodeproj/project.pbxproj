@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7092474120B3869500AF8799 /* ContactProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactProfileViewController.swift */; };
 		70A4C09B208007B700D577B3 /* mrmailbox_receive_imf.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C089208007B500D577B3 /* mrmailbox_receive_imf.c */; };
 		70A4C09C208007B700D577B3 /* mrmailbox_securejoin.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C08B208007B500D577B3 /* mrmailbox_securejoin.c */; };
 		70A4C09D208007B700D577B3 /* mrarray.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C08C208007B600D577B3 /* mrarray.c */; };
@@ -105,6 +106,7 @@
 
 /* Begin PBXFileReference section */
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7092474020B3869500AF8799 /* ContactProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactProfileViewController.swift; sourceTree = "<group>"; };
 		70A4C081208007B400D577B3 /* mrarray-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mrarray-private.h"; sourceTree = "<group>"; };
 		70A4C082208007B400D577B3 /* mrchatlist-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mrchatlist-private.h"; sourceTree = "<group>"; };
 		70A4C083208007B400D577B3 /* mrevent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mrevent.h; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				70B8882D2091B8550074812E /* ContactCell.swift */,
 				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
 				7A0052A01FBC50C40048C3BF /* CredentialsController.swift */,
+				7092474020B3869500AF8799 /* ContactProfileViewController.swift */,
 				7A0052C71FBE6CB40048C3BF /* NewContactController.swift */,
 				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
 				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
@@ -706,6 +709,7 @@
 				7A9FB54A1FB08557001FEA36 /* mrmimefactory.c in Sources */,
 				7A451D941FB1B1DB00177250 /* wrapper.c in Sources */,
 				7A9FB54D1FB08557001FEA36 /* mrosnative.c in Sources */,
+				7092474120B3869500AF8799 /* ContactProfileViewController.swift in Sources */,
 				7A9FB5471FB08557001FEA36 /* mrmailbox_imex.c in Sources */,
 				7A79236A1FB0A2C800BC2DE5 /* compress.c in Sources */,
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,

@@ -51,6 +51,10 @@ class NewContactController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
     // for creating a new contact
     init() {
         cells = [emailCell, nameCell]
