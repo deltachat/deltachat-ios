@@ -72,7 +72,10 @@ class ContactProfileViewController: UITableViewController {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
 
         if row == 1 {
+            let settingsImage = #imageLiteral(resourceName: "baseline_settings_black_18pt").withRenderingMode(.alwaysTemplate)
             cell.textLabel?.text = "Settings"
+            cell.imageView?.image = settingsImage
+            cell.imageView?.tintColor = UIColor.gray
         }
         if row == 2 {
             cell.textLabel?.text = "Edit name"
