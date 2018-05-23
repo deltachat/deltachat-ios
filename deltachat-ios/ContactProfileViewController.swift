@@ -42,6 +42,21 @@ class ContactProfileViewController: UITableViewController {
 
     @objc func didPressDotsButton() {
         print("pressed")
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Copy to clipboard",
+                                            style: .default,
+                                            handler: {a in print("Copy to clipboard")}))
+        actionSheet.addAction(UIAlertAction(title: "Block contact",
+                                            style: .default,
+                                            handler: {a in print("Block contact")}))
+        actionSheet.addAction(UIAlertAction(title: "Delete contact",
+                                            style: .destructive,
+                                            handler: {a in print("Delete contact")}))
+        actionSheet.addAction(UIAlertAction(title: "Cancel",
+                                            style: .cancel,
+                                            handler: {a in print("Cancel")}))
+        present(actionSheet, animated: true, completion: nil)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,6 +83,7 @@ class ContactProfileViewController: UITableViewController {
             contactCell.initialsLabel.text = Utils.getInitials(inputName: name)
             contactCell.setColor(self.contactColor)
             contactCell.darkMode = true
+            contactCell.selectionStyle = .none
             return contactCell
         }
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
