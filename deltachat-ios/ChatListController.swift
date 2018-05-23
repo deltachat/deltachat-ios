@@ -65,7 +65,7 @@ class ChatListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Delta Chat"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         view.addSubview(chatTable)
         chatTable.translatesAutoresizingMaskIntoConstraints = false
         chatTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -75,8 +75,40 @@ class ChatListController: UIViewController {
         chatTable.dataSource = chatTableDataSource
         chatTableDelegate.chatPresenter = self
         chatTable.delegate = chatTableDelegate
-        let addButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(ChatListController.addChat))
-        navigationItem.rightBarButtonItem = addButton
+        let dotsImage:UIImage = #imageLiteral(resourceName: "ic_more_vert")
+        let dotsButton = UIBarButtonItem(image: dotsImage, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(didPressDotsButton))
+        
+        let composeButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(ChatListController.addChat))
+        
+        navigationItem.rightBarButtonItems = [dotsButton, composeButton]
+    }
+    
+    @objc func didPressDotsButton() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "New chat",
+                                            style: .default,
+                                            handler: {a in print("New chat")}))
+        actionSheet.addAction(UIAlertAction(title: "New group",
+                                            style: .default,
+                                            handler: {a in print("New group")}))
+        actionSheet.addAction(UIAlertAction(title: "Scan QR code",
+                                            style: .default,
+                                            handler: {a in print("Scan QR code")}))
+        actionSheet.addAction(UIAlertAction(title: "Show QR code",
+                                            style: .default,
+                                            handler: {a in print("Show QR code")}))
+        actionSheet.addAction(UIAlertAction(title: "Contact requests",
+                                            style: .default,
+                                            handler: {a in print("Contact requests")}))
+        actionSheet.addAction(UIAlertAction(title: "Settings",
+                                            style: .default,
+                                            handler: {a in print("Settings")}))
+        actionSheet.addAction(UIAlertAction(title: "Cancel",
+                                            style: .cancel,
+                                            handler: {a in print("Cancel")}))
+        present(actionSheet, animated: true, completion: nil)
+        
+        
     }
     
     @objc func addChat() {
