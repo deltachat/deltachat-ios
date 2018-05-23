@@ -67,6 +67,7 @@ class ContactProfileViewController: UITableViewController {
             contactCell.emailLabel.text = email
             contactCell.initialsLabel.text = Utils.getInitials(inputName: name)
             contactCell.setColor(self.contactColor)
+            contactCell.darkMode = true
             return contactCell
         }
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)

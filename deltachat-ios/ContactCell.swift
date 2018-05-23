@@ -13,6 +13,15 @@ class ContactCell: UITableViewCell {
     let initialsLabel:UILabel = UILabel()
     let nameLabel = UILabel()
     let emailLabel = UILabel()
+    var darkMode: Bool = false {
+        didSet {
+            if darkMode {
+                contentView.backgroundColor = UIColor.darkGray
+                nameLabel.textColor = UIColor.white
+                emailLabel.textColor = UIColor.white
+            }
+        }
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         //Init von der Superklasse aufrufen nachschauen
@@ -22,6 +31,8 @@ class ContactCell: UITableViewCell {
         let initialsLabelCornerRadius = initialsLabelSize/2
         let margin:CGFloat = 15
         initialsLabel.textAlignment = NSTextAlignment.center
+        initialsLabel.textColor = UIColor.white
+        initialsLabel.font = UIFont.systemFont(ofSize: 24)
         initialsLabel.translatesAutoresizingMaskIntoConstraints = false
         initialsLabel.widthAnchor.constraint(equalToConstant: initialsLabelSize).isActive = true
         initialsLabel.heightAnchor.constraint(equalToConstant: initialsLabelSize).isActive = true
@@ -46,23 +57,6 @@ class ContactCell: UITableViewCell {
         
         emailLabel.font = UIFont.systemFont(ofSize: 14)
         emailLabel.textColor = UIColor.gray
-        
-        
-        
-
-        //configure and layout nameLabel
-        //nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        //self.contentView.addSubview(nameLabel)
-        //nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin).isActive = true
-        //nameLabel.centerYAnchor.constraint(equalTo: initialsLabel.centerYAnchor).isActive = true
-    
-        //emailLabel.translatesAutoresizingMaskIntoConstraints = false
-        //self.contentView.addSubview(emailLabel)
-        //emailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin).isActive = true
-        //emailLabel.centerYAnchor.constraint(equalTo: initialsLabel.centerYAnchor).isActive = true
-        
-        
-    
     }
     
     
