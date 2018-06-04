@@ -77,10 +77,8 @@ class ChatListController: UIViewController {
         chatTable.delegate = chatTableDelegate
         let dotsImage:UIImage = #imageLiteral(resourceName: "ic_more_vert")
         let dotsButton = UIBarButtonItem(image: dotsImage, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(didPressDotsButton))
-        
-        let composeButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(ChatListController.addChat))
-        
-        navigationItem.rightBarButtonItems = [dotsButton, composeButton]
+    
+        navigationItem.rightBarButtonItem = dotsButton
     }
     
     @objc func didPressDotsButton() {
