@@ -40,6 +40,14 @@ class ContactProfileViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = dotsButton
     }
 
+    func displayNewChat(contactId: Int) {
+        let chatId = mrmailbox_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+        let chatVC = ChatViewController(chatId: Int(chatId))
+        
+        chatVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(chatVC, animated: true)
+    }
+    
     @objc func didPressDotsButton() {
         print("pressed")
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -114,6 +122,9 @@ class ContactProfileViewController: UITableViewController {
         if row == 2 {
             let newContactController = NewContactController(contactIdForUpdate: contactId)
             navigationController?.pushViewController(newContactController, animated: true)
+        }
+        if row == 4 {
+            displayNewChat(contactId: contactId)
         }
     }
 }

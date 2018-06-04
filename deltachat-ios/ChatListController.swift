@@ -85,7 +85,11 @@ class ChatListController: UIViewController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "New chat",
                                             style: .default,
-                                            handler: {a in print("New chat")}))
+                                            handler: {
+                                                [unowned self]
+                                                a in
+                                                self.didPressNewChat()
+        }))
         actionSheet.addAction(UIAlertAction(title: "New group",
                                             style: .default,
                                             handler: {a in print("New group")}))
@@ -109,7 +113,7 @@ class ChatListController: UIViewController {
         
     }
     
-    @objc func addChat() {
+    @objc func didPressNewChat() {
         let ncv = NewChatViewController()
         ncv.chatDisplayer = self
         let nav = UINavigationController(rootViewController: ncv)
