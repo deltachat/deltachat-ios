@@ -13,10 +13,10 @@ protocol Coordinator {
 }
 
 class AppCoordinator: Coordinator {
-    let tabBarController = UITabBarController()
+    let baseController = UIViewController()
 
     func setupViewControllers(window: UIWindow) {
-        window.rootViewController = tabBarController
+        window.rootViewController = baseController
         window.makeKeyAndVisible()
         window.backgroundColor = UIColor.white
         
@@ -32,39 +32,15 @@ class AppCoordinator: Coordinator {
             let credentialsController = CredentialsController()
             let credentialsNav = UINavigationController(rootViewController: credentialsController)
 
-            tabBarController.present(credentialsNav, animated: false, completion: nil)
+            baseController.present(credentialsNav, animated: false, completion: nil)
         }
     }
     
     func setupInnerViewControllers() {
 
-        let contactViewController = ContactViewController(coordinator: self)
-        let contactNavigationController = UINavigationController(rootViewController: contactViewController)
-        
         let chatViewController = ChatListController()
         let chatNavigationController = UINavigationController(rootViewController: chatViewController)
         
-        let settingsViewController = UIViewController()
-        let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
-        settingsViewController.title = "Settings"
-        settingsViewController.navigationController?.navigationBar.prefersLargeTitles = true
-        
-        let chatIcon = #imageLiteral(resourceName: "ic_chat_36pt").withRenderingMode(.alwaysTemplate)
-        let contactsIcon = #imageLiteral(resourceName: "ic_people_36pt").withRenderingMode(.alwaysTemplate)
-        let settingsIcon = #imageLiteral(resourceName: "ic_settings_36pt").withRenderingMode(.alwaysTemplate)
-        
-        let contactTabbarItem = UITabBarItem(title: "Contacts", image: contactsIcon, tag: 0)
-        let chatTabbarItem = UITabBarItem(title: "Chats", image: chatIcon, tag: 1)
-        let settingsTabbarItem = UITabBarItem(title: "Settings", image: settingsIcon, tag: 2)
-        
-        contactNavigationController.tabBarItem = contactTabbarItem
-        chatNavigationController.tabBarItem = chatTabbarItem
-        settingsNavigationController.tabBarItem = settingsTabbarItem
-        
-        tabBarController.viewControllers = [
-//            contactNavigationController,
-            chatNavigationController,
-            settingsNavigationController,
-        ]
+        baseController.present(chatNavigationController, animated: false, completion: nil)
     }
 }

@@ -93,7 +93,7 @@ class ChatListController: UIViewController {
         actionSheet.addAction(UIAlertAction(title: "New group",
                                             style: .default,
                                             handler: {a in print("New group")}))
-        actionSheet.addAction(UIAlertAction(title: "Scan QR code",
+/*: actionSheet.addAction(UIAlertAction(title: "Scan QR code",
                                             style: .default,
                                             handler: {a in print("Scan QR code")}))
         actionSheet.addAction(UIAlertAction(title: "Show QR code",
@@ -101,7 +101,7 @@ class ChatListController: UIViewController {
                                             handler: {a in print("Show QR code")}))
         actionSheet.addAction(UIAlertAction(title: "Contact requests",
                                             style: .default,
-                                            handler: {a in print("Contact requests")}))
+                                            handler: {a in print("Contact requests")}))*/
         actionSheet.addAction(UIAlertAction(title: "Settings",
                                             style: .default,
                                             handler: {a in print("Settings")}))
