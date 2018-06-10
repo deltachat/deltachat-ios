@@ -37,7 +37,7 @@ class ContactProfileViewController: UITableViewController {
         super.viewDidLoad()
         let dotsImage:UIImage = #imageLiteral(resourceName: "ic_more_vert")
         let dotsButton = UIBarButtonItem(image: dotsImage, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(didPressDotsButton))
-        self.navigationItem.rightBarButtonItem = dotsButton
+       // self.navigationItem.rightBarButtonItem = dotsButton
     }
 
     func displayNewChat(contactId: Int) {
@@ -107,10 +107,10 @@ class ContactProfileViewController: UITableViewController {
         if row == 2 {
             cell.textLabel?.text = "Edit name"
         }
-        if row == 3 {
+        /*if row == 3 {
             cell.textLabel?.text = "Encryption"
-        }
-        if row == 4 {
+        }*/
+        if row == 3 {
             cell.textLabel?.text = "New chat"
         }
         return cell
@@ -119,11 +119,17 @@ class ContactProfileViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
+        
+        if row == 1 {
+            let alert = UIAlertController(title: "Not implemented", message: "Settings are not implemented yet.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
         if row == 2 {
             let newContactController = NewContactController(contactIdForUpdate: contactId)
             navigationController?.pushViewController(newContactController, animated: true)
         }
-        if row == 4 {
+        if row == 3 {
             displayNewChat(contactId: contactId)
         }
     }
