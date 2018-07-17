@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7070FB3D20FDD9FE000DC258 /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */; };
 		7092474120B3869500AF8799 /* ContactProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactProfileViewController.swift */; };
 		70A4C09B208007B700D577B3 /* mrmailbox_receive_imf.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C089208007B500D577B3 /* mrmailbox_receive_imf.c */; };
 		70A4C09C208007B700D577B3 /* mrmailbox_securejoin.c in Sources */ = {isa = PBXBuildFile; fileRef = 70A4C08B208007B500D577B3 /* mrmailbox_securejoin.c */; };
@@ -106,6 +107,7 @@
 
 /* Begin PBXFileReference section */
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 		7092474020B3869500AF8799 /* ContactProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactProfileViewController.swift; sourceTree = "<group>"; };
 		70A4C081208007B400D577B3 /* mrarray-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mrarray-private.h"; sourceTree = "<group>"; };
 		70A4C082208007B400D577B3 /* mrchatlist-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mrchatlist-private.h"; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				AEACE2DE1FB3246400DCDD78 /* Message.swift */,
+				7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */,
 				7A9FB15B1FB07364001FEA36 /* libraries */,
 				7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */,
 				7A451DAF1FB1F84900177250 /* AppCoordinator.swift */,
@@ -663,6 +666,7 @@
 				AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */,
 				7A79236D1FB0A2C800BC2DE5 /* keyring.c in Sources */,
 				7A7923721FB0A2C800BC2DE5 /* reader.c in Sources */,
+				7070FB3D20FDD9FE000DC258 /* NewGroupViewController.swift in Sources */,
 				7A9FB54F1FB08557001FEA36 /* mrpgp.c in Sources */,
 				70A4C0A1208007B700D577B3 /* mrmailbox_keyhistory.c in Sources */,
 				7A7923701FB0A2C800BC2DE5 /* packet-parse.c in Sources */,
@@ -859,7 +863,7 @@
 					"-lz",
 					"-lcrypto",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jonasreinsch.deltachat-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jonasreinsch.deltachatios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "deltachat-ios/deltachat-ios-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -885,7 +889,7 @@
 					"-lz",
 					"-lcrypto",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jonasreinsch.deltachat-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jonasreinsch.deltachatios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "deltachat-ios/deltachat-ios-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

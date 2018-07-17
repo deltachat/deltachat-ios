@@ -110,11 +110,8 @@ class NewChatViewController: UITableViewController {
             navigationController?.pushViewController(newContactController, animated: true)
         }
         if row == 1 {
-            let alertController = UIAlertController(title: "Not implemented", message: "Adding groups is not yet implemented.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alertController.addAction(okAction)
-            present(alertController, animated: false, completion: nil)
-            tableView.deselectRow(at: indexPath, animated: true)
+            let newGroupController = NewGroupViewController()
+            navigationController?.pushViewController(newGroupController, animated: true)
         }
         if row > 1 {
             let contactIndex = row - 2
