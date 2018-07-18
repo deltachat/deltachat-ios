@@ -55,20 +55,6 @@ class NewChatViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         if row == 0 {
-            // new contact row
-            let cell:UITableViewCell
-            if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
-                cell = c
-            } else {
-                cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
-            }
-            cell.textLabel?.text = "New Contact"
-            cell.textLabel?.textColor = self.view.tintColor
-
-
-            return cell
-        }
-        if row == 1 {
             // new group row
             let cell:UITableViewCell
             if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
@@ -77,6 +63,19 @@ class NewChatViewController: UITableViewController {
                 cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
             }
             cell.textLabel?.text = "New Group"
+            cell.textLabel?.textColor = self.view.tintColor
+            
+            return cell
+        }
+        if row == 1 {
+            // new contact row
+            let cell:UITableViewCell
+            if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
+                cell = c
+            } else {
+                cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
+            }
+            cell.textLabel?.text = "New Contact"
             cell.textLabel?.textColor = self.view.tintColor
             
             return cell
@@ -106,12 +105,12 @@ class NewChatViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         if row == 0 {
-            let newContactController = NewContactController()
-            navigationController?.pushViewController(newContactController, animated: true)
-        }
-        if row == 1 {
             let newGroupController = NewGroupViewController()
             navigationController?.pushViewController(newGroupController, animated: true)
+        }
+        if row == 1 {
+            let newContactController = NewContactController()
+            navigationController?.pushViewController(newContactController, animated: true)
         }
         if row > 1 {
             let contactIndex = row - 2
