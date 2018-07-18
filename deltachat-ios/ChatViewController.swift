@@ -24,7 +24,7 @@ class ChatViewController: MessagesViewController {
     }
     
     func getMessageIds() {
-        let c_messageIds = mrmailbox_get_chat_msgs(mailboxPointer, UInt32(self.chatId), 0, 0)
+        let c_messageIds = dc_get_chat_msgs(mailboxPointer, UInt32(self.chatId), 0, 0)
         self.messageIds = Utils.copyAndFreeArray(inputArray: c_messageIds)
     }
     
@@ -419,7 +419,7 @@ extension ChatViewController: MessageInputBarDelegate {
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
 //        messageList.append(Message(text: text, sender: currentSender(), messageId: UUID().uuidString, date: Date()))
         
-        mrmailbox_send_text_msg(mailboxPointer, UInt32(self.chatId), text)
+        dc_send_text_msg(mailboxPointer, UInt32(self.chatId), text)
         print(text)
         inputBar.inputTextView.text = String()
 //        messagesCollectionView.reloadData()

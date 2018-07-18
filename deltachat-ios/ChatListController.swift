@@ -21,7 +21,7 @@ class ChatListController: UIViewController {
     var incomingMsgObserver: Any?
     
     func getChatList() {
-        guard let chatlistPointer = mrmailbox_get_chatlist(mailboxPointer, 0, nil, 0) else {
+        guard let chatlistPointer = dc_get_chatlist(mailboxPointer, 0, nil, 0) else {
             fatalError("chatlistPointer was nil")
         }
         // ownership of chatlistPointer transferred here to ChatList object
@@ -144,7 +144,7 @@ extension ChatListController: ChatPresenter {
 
 extension ChatListController: ChatDisplayer {
     func displayNewChat(contactId: Int) {
-        let chatId = mrmailbox_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+        let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
         let chatVC = ChatViewController(chatId: Int(chatId))
         
         chatVC.hidesBottomBarWhenPushed = true

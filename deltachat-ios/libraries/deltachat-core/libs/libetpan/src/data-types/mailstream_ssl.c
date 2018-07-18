@@ -262,6 +262,7 @@ void mailstream_gnutls_init_not_required(void)
 void mailstream_openssl_init_not_required(void)
 {
 #ifdef USE_SSL
+  mailstream_ssl_init_lock();
   MUTEX_LOCK(&ssl_lock);
   openssl_init_done = 1;
   MUTEX_UNLOCK(&ssl_lock);
@@ -361,7 +362,7 @@ static int wait_SSL_connect(int s, int want_read, time_t timeout_seconds)
     return -1;
   }
 
-  if (pfd.revents & pfd.events) {
+  if (pfd.revents & pfd.events != pfd.events) {
     return -1;
   }
 #endif
@@ -408,7 +409,7 @@ static void mailstream_ssl_context_free(struct mailstream_ssl_context * ssl_ctx)
 
 static int mailstream_openssl_client_cert_cb(SSL *ssl, X509 **x509, EVP_PKEY **pkey)
 {
-	struct mailstream_ssl_context * ssl_context = (struct mailstream_ssl_context *)SSL_CTX_get_app_data(ssl->ctx);
+	struct mailstream_ssl_context * ssl_context = (struct mailstream_ssl_context *)SSL_CTX_get_app_data(SSL_get_SSL_CTX(ssl));
 	
 	if (x509 == NULL || pkey == NULL) {
 		return 0;
@@ -793,7 +794,7 @@ static int mailstream_low_ssl_get_fd(mailstream_low * s)
 static int wait_read(mailstream_low * s)
 {
   struct timeval timeout;
-  int fd;
+  int cancellation_fd;
   struct mailstream_ssl_data * ssl_data;
   int r;
   int cancelled;
@@ -821,10 +822,10 @@ static int wait_read(mailstream_low * s)
     return 0;
 #endif
 
-  fd = mailstream_cancel_get_fd(ssl_data->cancel);
+  cancellation_fd = mailstream_cancel_get_fd(ssl_data->cancel);
 #if defined(WIN32)
   FD_ZERO(&fds_read);
-  FD_SET(fd, &fds_read);
+  FD_SET(cancellation_fd, &fds_read);
   event = CreateEvent(NULL, TRUE, FALSE, NULL);
   WSAEventSelect(ssl_data->fd, event, FD_READ | FD_CLOSE);
   FD_SET(event, &fds_read);
@@ -835,7 +836,7 @@ static int wait_read(mailstream_low * s)
     return -1;
   }
   
-  cancelled = (fds_read.fd_array[r - WAIT_OBJECT_0] == fd);
+  cancelled = (fds_read.fd_array[r - WAIT_OBJECT_0] == cancellation_fd);
   WSAEventSelect(ssl_data->fd, event, 0);
   CloseHandle(event);
 #elif USE_POLL
@@ -843,7 +844,7 @@ static int wait_read(mailstream_low * s)
   pfd[0].events = POLLIN;
   pfd[0].revents = 0;
 
-  pfd[1].fd = fd;
+  pfd[1].fd = cancellation_fd;
   pfd[1].events = POLLIN;
   pfd[1].revents = 0;
 
@@ -854,13 +855,13 @@ static int wait_read(mailstream_low * s)
   cancelled = pfd[1].revents & POLLIN;
 #else
   FD_ZERO(&fds_read);
-  FD_SET(fd, &fds_read);
+  FD_SET(cancellation_fd, &fds_read);
   FD_SET(ssl_data->fd, &fds_read);
-  max_fd = fd > ssl_data->fd ? fd : ssl_data->fd;
+  max_fd = cancellation_fd > ssl_data->fd ? cancellation_fd : ssl_data->fd;
   r = select(max_fd + 1, &fds_read, NULL, NULL, &timeout);
   if (r <= 0)
       return -1;
-  cancelled = FD_ISSET(fd, &fds_read);
+  cancelled = FD_ISSET(cancellation_fd, &fds_read);
 #endif
   if (cancelled) {
     /* cancelled */
@@ -952,7 +953,7 @@ static int wait_write(mailstream_low * s)
 {
   struct timeval timeout;
   int r;
-  int fd;
+  int cancellation_fd;
   struct mailstream_ssl_data * ssl_data;
   int cancelled;
   int write_enabled;
@@ -980,11 +981,11 @@ static int wait_write(mailstream_low * s)
     timeout.tv_usec = 0;
   }
   
-  fd = mailstream_cancel_get_fd(ssl_data->cancel);
+  cancellation_fd = mailstream_cancel_get_fd(ssl_data->cancel);
 #if defined(WIN32)
   FD_ZERO(&fds_read);
   FD_ZERO(&fds_write);
-  FD_SET(fd, &fds_read);
+  FD_SET(cancellation_fd, &fds_read);
   event = CreateEvent(NULL, TRUE, FALSE, NULL);
   WSAEventSelect(ssl_data->fd, event, FD_WRITE | FD_CLOSE);
   FD_SET(event, &fds_read);
@@ -995,7 +996,7 @@ static int wait_write(mailstream_low * s)
     return -1;
 	}
   
-  cancelled = (fds_read.fd_array[r - WAIT_OBJECT_0] == fd) /* SEB 20070709 */;
+  cancelled = (fds_read.fd_array[r - WAIT_OBJECT_0] == cancellation_fd) /* SEB 20070709 */;
   write_enabled = (fds_read.fd_array[r - WAIT_OBJECT_0] == event);
 	WSAEventSelect(ssl_data->fd, event, 0);
 	CloseHandle(event);
@@ -1004,7 +1005,7 @@ static int wait_write(mailstream_low * s)
   pfd[0].events = POLLOUT;
   pfd[0].revents = 0;
 
-  pfd[1].fd = fd;
+  pfd[1].fd = cancellation_fd;
   pfd[1].events = POLLIN;
   pfd[1].revents = 0;
 
@@ -1017,15 +1018,15 @@ static int wait_write(mailstream_low * s)
 #else
   FD_ZERO(&fds_read);
   FD_ZERO(&fds_write);
-  FD_SET(fd, &fds_read);
+  FD_SET(cancellation_fd, &fds_read);
   FD_SET(ssl_data->fd, &fds_write);
   
-  max_fd = fd > ssl_data->fd ? fd : ssl_data->fd;
+  max_fd = cancellation_fd > ssl_data->fd ? cancellation_fd : ssl_data->fd;
   r = select(max_fd + 1, &fds_read, &fds_write, NULL, &timeout);
   if (r <= 0)
     return -1;
 
-  cancelled = FD_ISSET(fd, &fds_read);
+  cancelled = FD_ISSET(cancellation_fd, &fds_read);
   write_enabled = FD_ISSET(ssl_data->fd, &fds_write);
 #endif
   
@@ -1454,8 +1455,8 @@ carray * mailstream_low_ssl_get_certificate_chain(mailstream_low * s)
   }
   
   result = carray_new(4);
-  for(skpos = 0 ; skpos < sk_num(skx) ; skpos ++) {
-    X509 * x = (X509 *) sk_value(skx, skpos);
+  for(skpos = 0 ; skpos < sk_num((_STACK *) skx) ; skpos ++) {
+    X509 * x = (X509 *) sk_value((_STACK *) skx, skpos);
     unsigned char * p;
     MMAPString * str;
     int length = i2d_X509(x, NULL);

@@ -36,10 +36,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 			<Add option="-DHAVE_CONFIG_H" />
-			<Add option="-DMR_USE_MIME_DEBUG" />
+			<Add option="-DDC_USE_MIME_DEBUG" />
 			<Add option="-DHAVE_ICONV" />
 			<Add option="-DSQLITE_OMIT_LOAD_EXTENSION" />
-			<Add option="-DMR_E2EE_DEFAULT_ENABLED=1" />
 			<Add directory="libs/libetpan/src" />
 			<Add directory="libs/libetpan/src/data-types" />
 			<Add directory="libs/libetpan/src/low-level" />
@@ -363,15 +362,6 @@
 		<Unit filename="libs/libetpan/src/low-level/mime/mailmime_write_mem.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libs/libetpan/src/low-level/nntp/newsnntp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libs/libetpan/src/low-level/nntp/newsnntp_socket.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libs/libetpan/src/low-level/nntp/newsnntp_ssl.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libs/libetpan/src/low-level/smtp/mailsmtp.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -432,117 +422,124 @@
 		<Unit filename="libs/sqlite/sqlite3.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mraheader.c">
+		<Unit filename="src/dc_aheader.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrapeerstate.c">
+		<Unit filename="src/dc_apeerstate.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrarray.c">
+		<Unit filename="src/dc_array.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrchat.c">
+		<Unit filename="src/dc_chat.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrchatlist.c">
+		<Unit filename="src/dc_chatlist.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrcontact.c">
+		<Unit filename="src/dc_configure.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrdehtml.c">
+		<Unit filename="src/dc_contact.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrevent.h" />
-		<Unit filename="src/mrhash.c">
+		<Unit filename="src/dc_context.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrimap.c">
+		<Unit filename="src/dc_dehtml.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrjob.c">
+		<Unit filename="src/dc_e2ee.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrkey.c">
+		<Unit filename="src/dc_hash.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrkeyring.c">
+		<Unit filename="src/dc_imap.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrloginparam.c">
+		<Unit filename="src/dc_imex.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrlot.c">
+		<Unit filename="src/dc_job.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrmailbox.c">
+		<Unit filename="src/dc_key.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrmailbox.h" />
-		<Unit filename="src/mrmailbox_configure.c">
+		<Unit filename="src/dc_keyhistory.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrmailbox_e2ee.c">
+		<Unit filename="src/dc_keyring.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrmailbox_imex.c">
+		<Unit filename="src/dc_log.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrmailbox_internal.h" />
-		<Unit filename="src/mrmailbox_keyhistory.c">
+		<Unit filename="src/dc_loginparam.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrmailbox_log.c">
+		<Unit filename="src/dc_lot.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrmailbox_qr.c">
+		<Unit filename="src/dc_mimefactory.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrmailbox_receive_imf.c">
+		<Unit filename="src/dc_mimeparser.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrmailbox_securejoin.c">
+		<Unit filename="src/dc_msg.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrmimefactory.c">
+		<Unit filename="src/dc_openssl.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrmimeparser.c">
+		<Unit filename="src/dc_param.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrmsg.c">
+		<Unit filename="src/dc_pgp.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrosnative.c">
+		<Unit filename="src/dc_qr.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrparam.c">
+		<Unit filename="src/dc_receive_imf.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrpgp.c">
+		<Unit filename="src/dc_saxparser.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrsaxparser.c">
+		<Unit filename="src/dc_securejoin.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrsimplify.c">
+		<Unit filename="src/dc_simplify.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrsmtp.c">
+		<Unit filename="src/dc_smtp.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrsqlite3.c">
+		<Unit filename="src/dc_sqlite3.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrstock.c">
+		<Unit filename="src/dc_stock.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mrtools.c">
+		<Unit filename="src/dc_strbuilder.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/mruudecode.c">
+		<Unit filename="src/dc_strencode.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/dc_token.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/dc_tools.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/dc_uudecode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/deltachat.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />

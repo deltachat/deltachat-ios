@@ -1,335 +1,274 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
-#ifndef __MRMAILBOX_H__
-#define __MRMAILBOX_H__
+// deprecated file
+#ifndef __MRMAILBOX_DEPRECATED_H__
+#define __MRMAILBOX_DEPRECATED_H__
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+#include "deltachat.h"
 
-#define MR_VERSION_MAJOR    0
-#define MR_VERSION_MINOR    17
-#define MR_VERSION_REVISION 0
+// types
+#define mrmailbox_t                         dc_context_t
+#define mrmailboxcb_t                       dc_callback_t
+#define mrarray_t                           dc_array_t
+#define mrchatlist_t                        dc_chatlist_t
+#define mrchat_t                            dc_chat_t
+#define mrmsg_t                             dc_msg_t
+#define mrcontact_t                         dc_contact_t
+#define mrlot_t                             dc_lot_t
 
+// mailbox functions
+#define MR_GCL_ARCHIVED_ONLY                DC_GCL_ARCHIVED_ONLY
+#define MR_GCL_NO_SPECIALS                  DC_GCL_NO_SPECIALS
+#define MR_GCL_VERIFIED_ONLY                DC_GCL_VERIFIED_ONLY
+#define MR_GCL_ADD_SELF                     DC_GCL_ADD_SELF
+#define MR_IMEX_EXPORT_SELF_KEYS            DC_IMEX_EXPORT_SELF_KEYS
+#define MR_IMEX_IMPORT_SELF_KEYS            DC_IMEX_IMPORT_SELF_KEYS
+#define MR_IMEX_EXPORT_BACKUP               DC_IMEX_EXPORT_BACKUP
+#define MR_IMEX_IMPORT_BACKUP               DC_IMEX_IMPORT_BACKUP
+#define MR_QR_ASK_VERIFYCONTACT             DC_QR_ASK_VERIFYCONTACT
+#define MR_QR_ASK_VERIFYGROUP               DC_QR_ASK_VERIFYGROUP
+#define MR_QR_FPR_OK                        DC_QR_FPR_OK
+#define MR_QR_FPR_MISMATCH                  DC_QR_FPR_MISMATCH
+#define MR_QR_FPR_WITHOUT_ADDR              DC_QR_FPR_WITHOUT_ADDR
+#define MR_QR_ADDR                          DC_QR_ADDR
+#define MR_QR_TEXT                          DC_QR_TEXT
+#define MR_QR_URL                           DC_QR_URL
+#define MR_QR_ERROR                         DC_QR_ERROR
+#define MR_GCM_ADDDAYMARKER                 DC_GCM_ADDDAYMARKER
+#define mrmailbox_new                       dc_context_new
+#define mrmailbox_unref                     dc_context_unref
+#define mrmailbox_get_userdata              dc_get_userdata
+#define mrmailbox_open                      dc_open
+#define mrmailbox_close                     dc_close
+#define mrmailbox_is_open                   dc_is_open
+#define mrmailbox_get_blobdir               dc_get_blobdir
+#define mrmailbox_set_config                dc_set_config
+#define mrmailbox_get_config                dc_get_config
+#define mrmailbox_set_config_int            dc_set_config_int
+#define mrmailbox_get_config_int            dc_get_config_int
+#define mrmailbox_get_info                  dc_get_info
+#define mrmailbox_get_version_str           dc_get_version_str
+#define mrmailbox_configure                 dc_configure
+#define mrmailbox_is_configured             dc_is_configured
+#define mrmailbox_get_chatlist              dc_get_chatlist
+#define mrmailbox_create_chat_by_msg_id     dc_create_chat_by_msg_id
+#define mrmailbox_create_chat_by_contact_id dc_create_chat_by_contact_id
+#define mrmailbox_get_chat_id_by_contact_id dc_get_chat_id_by_contact_id
+#define mrmailbox_send_text_msg             dc_send_text_msg
+#define mrmailbox_send_image_msg            dc_send_image_msg
+#define mrmailbox_send_video_msg            dc_send_video_msg
+#define mrmailbox_send_voice_msg            dc_send_voice_msg
+#define mrmailbox_send_audio_msg            dc_send_audio_msg
+#define mrmailbox_send_file_msg             dc_send_file_msg
+#define mrmailbox_send_vcard_msg            dc_send_vcard_msg
+#define mrmailbox_set_draft                 dc_set_text_draft
+#define mrmailbox_get_chat_msgs             dc_get_chat_msgs
+#define mrmailbox_get_total_msg_count       dc_get_msg_cnt
+#define mrmailbox_get_fresh_msg_count       dc_get_fresh_msg_cnt
+#define mrmailbox_get_fresh_msgs            dc_get_fresh_msgs
+#define mrmailbox_marknoticed_chat          dc_marknoticed_chat
+#define mrmailbox_get_chat_media            dc_get_chat_media
+#define mrmailbox_get_next_media            dc_get_next_media
+#define mrmailbox_archive_chat              dc_archive_chat
+#define mrmailbox_delete_chat               dc_delete_chat
+#define mrmailbox_get_chat_contacts         dc_get_chat_contacts
+#define mrmailbox_search_msgs               dc_search_msgs
+#define mrmailbox_get_chat                  dc_get_chat
+#define mrmailbox_create_group_chat         dc_create_group_chat
+#define mrmailbox_is_contact_in_chat        dc_is_contact_in_chat
+#define mrmailbox_add_contact_to_chat       dc_add_contact_to_chat
+#define mrmailbox_remove_contact_from_chat  dc_remove_contact_from_chat
+#define mrmailbox_set_chat_name             dc_set_chat_name
+#define mrmailbox_set_chat_profile_image    dc_set_chat_profile_image
+#define mrmailbox_get_msg_info              dc_get_msg_info
+#define mrmailbox_delete_msgs               dc_delete_msgs
+#define mrmailbox_forward_msgs              dc_forward_msgs
+#define mrmailbox_marknoticed_contact       dc_marknoticed_contact
+#define mrmailbox_markseen_msgs             dc_markseen_msgs
+#define mrmailbox_star_msgs                 dc_star_msgs
+#define mrmailbox_get_msg                   dc_get_msg
+#define mrmailbox_create_contact            dc_create_contact
+#define mrmailbox_add_address_book          dc_add_address_book
+#define mrmailbox_get_contacts              dc_get_contacts
+#define mrmailbox_get_blocked_count         dc_get_blocked_cnt
+#define mrmailbox_get_blocked_contacts      dc_get_blocked_contacts
+#define mrmailbox_block_contact             dc_block_contact
+#define mrmailbox_get_contact_encrinfo      dc_get_contact_encrinfo
+#define mrmailbox_delete_contact            dc_delete_contact
+#define mrmailbox_get_contact               dc_get_contact
+#define mrmailbox_imex                      dc_imex
+#define mrmailbox_imex_has_backup           dc_imex_has_backup
+#define mrmailbox_check_password            dc_check_password
+#define mrmailbox_initiate_key_transfer     dc_initiate_key_transfer
+#define mrmailbox_continue_key_transfer     dc_continue_key_transfer
+#define mrmailbox_stop_ongoing_process      dc_stop_ongoing_process
+#define mrmailbox_check_qr                  dc_check_qr
+#define mrmailbox_get_securejoin_qr         dc_get_securejoin_qr
+#define mrmailbox_join_securejoin           dc_join_securejoin
+#define mrmailbox_imex_cancel               dc_stop_ongoing_process
+#define mrmailbox_configure_cancel          dc_stop_ongoing_process
+#define mrmailbox_heartbeat(a)
 
-/**
- * @mainpage Getting started
- *
- * This document describes how to handle the Delta Chat core library.
- * For general information about Delta Chat itself, see <https://delta.chat> and <https://github.com/deltachat>.
- *
- * Let's start.
- *
- * First of all, you have to define a function that is called by the library on
- * specific events (eg. when the configuration is done or when fresh messages arrive).
- * Your function should look like the following:
- *
- * ```
- * #include <mrmailbox.h>
- *
- * uintptr_t my_delta_handler(mrmailbox_t* mailbox, int event, uintptr_t data1, uintptr_t data2)
- * {
- *     return 0; // for unhandled events, it is always safe to return 0
- * }
- * ```
- *
- * After that, you can create and configure a mrmailbox_t object easily as follows:
- *
- * ```
- * mrmailbox_t* mailbox = mrmailbox_new(my_delta_handler, NULL, NULL);
- *
- * mrmailbox_set_config(mailbox, "addr",    "alice@delta.chat"); // use some real test credentials here
- * mrmailbox_set_config(mailbox, "mail_pw", "***");
- *
- * mrmailbox_configure_and_connect(mailbox);
- * ```
- *
- * mrmailbox_configure_and_connect() may take a while and saves the result in
- * the database. On subsequent starts, you can call mrmailbox_connect() instead
- * if mrmailbox_is_configured() returns true.
- *
- * However, now you can send your first message:
- *
- * ```
- * uint32_t contact_id = mrmailbox_create_contact(mailbox, NULL, "bob@delta.chat"); // use a real testing address here
- * uint32_t chat_id    = mrmailbox_create_chat_by_contact_id(mailbox, contact_id);
- *
- * mrmailbox_send_text_msg(mailbox, chat_id, "Hi, here is my first message!");
- * ```
- *
- * Now, go to the testing address (bob) and you should have received a normal email.
- * Answer this email in any email program with "Got it!" and you will get the message from delta as follows:
- *
- * ```
- * mrarray_t* msglist = mrmailbox_get_chat_msgs(mailbox, chat_id, 0, 0);
- * for( size_t i = 0; i < mrarray_get_cnt(msglist); i++ )
- * {
- *     uint32_t msg_id = mrarray_get_id(msglist, i);
- *     mrmsg_t* msg    = mrmailbox_get_msg(mailbox, msg_id);
- *     char*    text   = mrmsg_get_text(msg);
- *
- *     printf("message %i: %s\n", i+1, text);
- *
- *     free(text);
- *     mrmsg_unref(msg);
- * }
- * mrarray_unref(msglist);
- * ```
- *
- * This will output the following two lines:
- *
- * ```
- * Message 1: Hi, here is my first message!
- * Message 2: Got it!
- * ```
- *
- *
- * ## Class reference
- *
- * For a class reference, see the "Classes" link atop.
- *
- *
- * ## Further hints
- *
- * Here are some additional, unsorted hints that may be useful.
- * If you need any further assistance, please do not hesitate to contact us at <r10s@b44t.com>.
- *
- * - Two underscores at the end of a function-name may be a _hint_, that this
- *   function does no resource locking. Such functions must not be used.
- *
- * - For objects, C-structures are used.  If not mentioned otherwise, you can
- *   read the members here directly.
- *
- * - For `get`-functions, you have to unref the return value in some way.
- *
- * - Strings in function arguments or return values are usually UTF-8 encoded
- *
- * - Threads are implemented using POSIX threads (`pthread_*` functions)
- *
- * - The issue-tracker for the core library is here: <https://github.com/deltachat/deltachat-core/issues>
- *
- * The following points are important mainly for the authors of the library itself:
- *
- * - For indentation, use tabs.  Alignments that are not placed at the beginning
- *   of a line should be done with spaces.
- *
- * - For padding between functions, classes etc. use 2 empty lines
- *
- * - Source files are encoded as UTF-8 with Unix line endings (a simple `LF`, `0x0A` or
- *   `\n`)
- *
- * Please keep in mind, that your derived work must be released under a
- * **GPL-compatible licence**.  For details, please have a look at the [LICENSE file](https://github.com/deltachat/deltachat-core/blob/master/LICENSE) accompanying the source code.
- *
- * See you.
- */
+// array functions
+#define mrarray_new                         dc_array_new
+#define mrarray_empty                       dc_array_empty
+#define mrarray_unref                       dc_array_unref
+#define mrarray_add_uint                    dc_array_add_uint
+#define mrarray_add_id                      dc_array_add_id
+#define mrarray_add_ptr                     dc_array_add_ptr
+#define mrarray_get_cnt                     dc_array_get_cnt
+#define mrarray_get_uint                    dc_array_get_uint
+#define mrarray_get_id                      dc_array_get_id
+#define mrarray_get_ptr                     dc_array_get_ptr
+#define mrarray_search_id                   dc_array_search_id
+#define mrarray_get_raw                     dc_array_get_raw
 
+// chatlist functions
+#define mrchatlist_new                      dc_chatlist_new
+#define mrchatlist_empty                    dc_chatlist_empty
+#define mrchatlist_unref                    dc_chatlist_unref
+#define mrchatlist_get_cnt                  dc_chatlist_get_cnt
+#define mrchatlist_get_chat_id              dc_chatlist_get_chat_id
+#define mrchatlist_get_msg_id               dc_chatlist_get_msg_id
+#define mrchatlist_get_summary              dc_chatlist_get_summary
+#define mrchatlist_get_mailbox              dc_chatlist_get_context
 
-#ifndef PY_CFFI
-#include <pthread.h>
-#include <libetpan/libetpan.h> /* defines uint16_t */
-#endif
+// chat functions
+#define MR_CHAT_ID_DEADDROP                 DC_CHAT_ID_DEADDROP
+#define MR_CHAT_ID_TRASH                    DC_CHAT_ID_TRASH
+#define MR_CHAT_ID_MSGS_IN_CREATION         DC_CHAT_ID_MSGS_IN_CREATION
+#define MR_CHAT_ID_STARRED                  DC_CHAT_ID_STARRED
+#define MR_CHAT_ID_ARCHIVED_LINK            DC_CHAT_ID_ARCHIVED_LINK
+#define MR_CHAT_ID_LAST_SPECIAL             DC_CHAT_ID_LAST_SPECIAL
+#define MR_CHAT_TYPE_UNDEFINED              DC_CHAT_TYPE_UNDEFINED
+#define MR_CHAT_TYPE_SINGLE                 DC_CHAT_TYPE_SINGLE
+#define MR_CHAT_TYPE_GROUP                  DC_CHAT_TYPE_GROUP
+#define MR_CHAT_TYPE_VERIFIED_GROUP         DC_CHAT_TYPE_VERIFIED_GROUP
+#define mrchat_new                          dc_chat_new
+#define mrchat_empty                        dc_chat_empty
+#define mrchat_unref                        dc_chat_unref
+#define mrchat_get_id                       dc_chat_get_id
+#define mrchat_get_type                     dc_chat_get_type
+#define mrchat_get_name                     dc_chat_get_name
+#define mrchat_get_subtitle                 dc_chat_get_subtitle
+#define mrchat_get_profile_image            dc_chat_get_profile_image
+#define mrchat_get_draft                    dc_chat_get_text_draft
+#define mrchat_get_draft_timestamp          dc_chat_get_draft_timestamp
+#define mrchat_get_archived                 dc_chat_get_archived
+#define mrchat_is_unpromoted                dc_chat_is_unpromoted
+#define mrchat_is_self_talk                 dc_chat_is_self_talk
+#define mrchat_is_verified                  dc_chat_is_verified
 
-#include "mrarray.h"
-#include "mrchatlist.h"
-#include "mrchat.h"
-#include "mrmsg.h"
-#include "mrcontact.h"
-#include "mrlot.h"
-#include "mrevent.h"
-#include "mrerror.h"
+// message functions
+#define MR_MSG_ID_MARKER1                   DC_MSG_ID_MARKER1
+#define MR_MSG_ID_DAYMARKER                 DC_MSG_ID_DAYMARKER
+#define MR_MSG_ID_LAST_SPECIAL              DC_MSG_ID_LAST_SPECIAL
+#define MR_MSG_UNDEFINED                    DC_MSG_UNDEFINED
+#define MR_MSG_TEXT                         DC_MSG_TEXT
+#define MR_MSG_IMAGE                        DC_MSG_IMAGE
+#define MR_MSG_GIF                          DC_MSG_GIF
+#define MR_MSG_AUDIO                        DC_MSG_AUDIO
+#define MR_MSG_VOICE                        DC_MSG_VOICE
+#define MR_MSG_VIDEO                        DC_MSG_VIDEO
+#define MR_MSG_FILE                         DC_MSG_FILE
+#define MR_STATE_UNDEFINED                  DC_STATE_UNDEFINED
+#define MR_STATE_IN_FRESH                   DC_STATE_IN_FRESH
+#define MR_STATE_IN_NOTICED                 DC_STATE_IN_NOTICED
+#define MR_STATE_IN_SEEN                    DC_STATE_IN_SEEN
+#define MR_STATE_OUT_PENDING                DC_STATE_OUT_PENDING
+#define MR_STATE_OUT_ERROR                  DC_STATE_OUT_FAILED
+#define MR_STATE_OUT_DELIVERED              DC_STATE_OUT_DELIVERED
+#define MR_STATE_OUT_MDN_RCVD               DC_STATE_OUT_MDN_RCVD
+#define mrmsg_new                           dc_msg_new
+#define mrmsg_unref                         dc_msg_unref
+#define mrmsg_empty                         dc_msg_empty
+#define mrmsg_get_id                        dc_msg_get_id
+#define mrmsg_get_from_id                   dc_msg_get_from_id
+#define mrmsg_get_chat_id                   dc_msg_get_chat_id
+#define mrmsg_get_type                      dc_msg_get_type
+#define mrmsg_get_state                     dc_msg_get_state
+#define mrmsg_get_timestamp                 dc_msg_get_timestamp
+#define mrmsg_get_text                      dc_msg_get_text
+#define mrmsg_get_file                      dc_msg_get_file
+#define mrmsg_get_filename                  dc_msg_get_filename
+#define mrmsg_get_filemime                  dc_msg_get_filemime
+#define mrmsg_get_filebytes                 dc_msg_get_filebytes
+#define mrmsg_get_mediainfo                 dc_msg_get_mediainfo
+#define mrmsg_get_width                     dc_msg_get_width
+#define mrmsg_get_height                    dc_msg_get_height
+#define mrmsg_get_duration                  dc_msg_get_duration
+#define mrmsg_get_showpadlock               dc_msg_get_showpadlock
+#define mrmsg_get_summary                   dc_msg_get_summary
+#define mrmsg_get_summarytext               dc_msg_get_summarytext
+#define mrmsg_is_sent                       dc_msg_is_sent
+#define mrmsg_is_starred                    dc_msg_is_starred
+#define mrmsg_is_forwarded                  dc_msg_is_forwarded
+#define mrmsg_is_info                       dc_msg_is_info
+#define mrmsg_is_increation                 dc_msg_is_increation
+#define mrmsg_is_setupmessage               dc_msg_is_setupmessage
+#define mrmsg_get_setupcodebegin            dc_msg_get_setupcodebegin
+#define mrmsg_latefiling_mediasize          dc_msg_latefiling_mediasize
 
+// contact function
+#define MR_CONTACT_ID_SELF                  DC_CONTACT_ID_SELF
+#define MR_CONTACT_ID_DEVICE                DC_CONTACT_ID_DEVICE
+#define MR_CONTACT_ID_LAST_SPECIAL          DC_CONTACT_ID_LAST_SPECIAL
+#define mrcontact_new                       dc_contact_new
+#define mrcontact_empty                     dc_contact_empty
+#define mrcontact_unref                     dc_contact_unref
+#define mrcontact_get_id                    dc_contact_get_id
+#define mrcontact_get_addr                  dc_contact_get_addr
+#define mrcontact_get_name                  dc_contact_get_name
+#define mrcontact_get_display_name          dc_contact_get_display_name
+#define mrcontact_get_name_n_addr           dc_contact_get_name_n_addr
+#define mrcontact_get_first_name            dc_contact_get_first_name
+#define mrcontact_is_blocked                dc_contact_is_blocked
+#define mrcontact_is_verified               dc_contact_is_verified
 
-/**
- * @class mrmailbox_t
- *
- * An object representing a single mailbox.
- *
- * Each mailbox is linked to an IMAP/POP3 account and uses a separate
- * SQLite database for offline functionality and for mailbox-related
- * settings.
- */
-typedef struct _mrmailbox mrmailbox_t;
-
-
-/**
- * Callback function that should be given to mrmailbox_new().
- *
- * @memberof mrmailbox_t
- *
- * @param mailbox the mailbox object as returned by mrmailbox_new().
- *
- * @param event one of the MR_EVENT_* constants as defined in mrevent.h
- *
- * @param data1 depends on the event parameter
- *
- * @param data2 depends on the event parameter
- *
- * @return return 0 unless stated otherwise in the event parameter documentation
- */
-typedef uintptr_t (*mrmailboxcb_t) (mrmailbox_t*, int event, uintptr_t data1, uintptr_t data2);
-
-
-
-
-/* create/open/connect */
-mrmailbox_t*    mrmailbox_new               (mrmailboxcb_t, void* userdata, const char* os_name);
-void            mrmailbox_unref             (mrmailbox_t*);
-void*           mrmailbox_get_userdata      (mrmailbox_t*);
-
-int             mrmailbox_open              (mrmailbox_t*, const char* dbfile, const char* blobdir);
-void            mrmailbox_close             (mrmailbox_t*);
-int             mrmailbox_is_open           (const mrmailbox_t*);
-char*           mrmailbox_get_blobdir       (mrmailbox_t*);
-
-int             mrmailbox_set_config        (mrmailbox_t*, const char* key, const char* value);
-char*           mrmailbox_get_config        (mrmailbox_t*, const char* key, const char* def);
-int             mrmailbox_set_config_int    (mrmailbox_t*, const char* key, int32_t value);
-int32_t         mrmailbox_get_config_int    (mrmailbox_t*, const char* key, int32_t def);
-char*           mrmailbox_get_version_str   (void);
-
-int             mrmailbox_configure_and_connect(mrmailbox_t*);
-void            mrmailbox_stop_ongoing_process(mrmailbox_t*);
-int             mrmailbox_is_configured     (mrmailbox_t*);
-
-void            mrmailbox_connect           (mrmailbox_t*);
-void            mrmailbox_disconnect        (mrmailbox_t*);
-
-char*           mrmailbox_get_info          (mrmailbox_t*);
-
-
-/* Handle chatlists */
-#define         MR_GCL_ARCHIVED_ONLY        0x01
-#define         MR_GCL_NO_SPECIALS          0x02
-mrchatlist_t*   mrmailbox_get_chatlist      (mrmailbox_t*, int flags, const char* query_str, uint32_t query_id);
-
-
-/* Handle chats */
-uint32_t        mrmailbox_create_chat_by_msg_id     (mrmailbox_t*, uint32_t contact_id);
-uint32_t        mrmailbox_create_chat_by_contact_id (mrmailbox_t*, uint32_t contact_id);
-uint32_t        mrmailbox_get_chat_id_by_contact_id (mrmailbox_t*, uint32_t contact_id);
-
-uint32_t        mrmailbox_send_text_msg     (mrmailbox_t*, uint32_t chat_id, const char* text_to_send);
-uint32_t        mrmailbox_send_image_msg    (mrmailbox_t*, uint32_t chat_id, const char* file, const char* filemime, int width, int height);
-uint32_t        mrmailbox_send_video_msg    (mrmailbox_t*, uint32_t chat_id, const char* file, const char* filemime, int width, int height, int duration);
-uint32_t        mrmailbox_send_voice_msg    (mrmailbox_t*, uint32_t chat_id, const char* file, const char* filemime, int duration);
-uint32_t        mrmailbox_send_audio_msg    (mrmailbox_t*, uint32_t chat_id, const char* file, const char* filemime, int duration, const char* author, const char* trackname);
-uint32_t        mrmailbox_send_file_msg     (mrmailbox_t*, uint32_t chat_id, const char* file, const char* filemime);
-uint32_t        mrmailbox_send_vcard_msg    (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id);
-void            mrmailbox_set_draft         (mrmailbox_t*, uint32_t chat_id, const char*);
-
-#define         MR_GCM_ADDDAYMARKER         0x01
-mrarray_t*      mrmailbox_get_chat_msgs     (mrmailbox_t*, uint32_t chat_id, uint32_t flags, uint32_t marker1before);
-int             mrmailbox_get_total_msg_count (mrmailbox_t*, uint32_t chat_id);
-int             mrmailbox_get_fresh_msg_count (mrmailbox_t*, uint32_t chat_id);
-mrarray_t*      mrmailbox_get_fresh_msgs    (mrmailbox_t*);
-void            mrmailbox_marknoticed_chat  (mrmailbox_t*, uint32_t chat_id);
-mrarray_t*      mrmailbox_get_chat_media    (mrmailbox_t*, uint32_t chat_id, int msg_type, int or_msg_type);
-uint32_t        mrmailbox_get_next_media    (mrmailbox_t*, uint32_t curr_msg_id, int dir);
-
-void            mrmailbox_archive_chat      (mrmailbox_t*, uint32_t chat_id, int archive);
-void            mrmailbox_delete_chat       (mrmailbox_t*, uint32_t chat_id);
-
-mrarray_t*      mrmailbox_get_chat_contacts (mrmailbox_t*, uint32_t chat_id);
-mrarray_t*      mrmailbox_search_msgs       (mrmailbox_t*, uint32_t chat_id, const char* query);
-
-mrchat_t*       mrmailbox_get_chat          (mrmailbox_t*, uint32_t chat_id);
-
-
-/* Handle group chats */
-uint32_t        mrmailbox_create_group_chat        (mrmailbox_t*, int verified, const char* name);
-int             mrmailbox_is_contact_in_chat       (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id);
-int             mrmailbox_add_contact_to_chat      (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id);
-int             mrmailbox_remove_contact_from_chat (mrmailbox_t*, uint32_t chat_id, uint32_t contact_id);
-int             mrmailbox_set_chat_name            (mrmailbox_t*, uint32_t chat_id, const char* name);
-int             mrmailbox_set_chat_profile_image   (mrmailbox_t*, uint32_t chat_id, const char* image);
+// lot functions
+#define MR_TEXT1_DRAFT                      DC_TEXT1_DRAFT
+#define MR_TEXT1_USERNAME                   DC_TEXT1_USERNAME
+#define MR_TEXT1_SELF                       DC_TEXT1_SELF
+#define mrlot_new                           dc_lot_new
+#define mrlot_empty                         dc_lot_empty
+#define mrlot_unref                         dc_lot_unref
+#define mrlot_get_text1                     dc_lot_get_text1
+#define mrlot_get_text2                     dc_lot_get_text2
+#define mrlot_get_text1_meaning             dc_lot_get_text1_meaning
+#define mrlot_get_state                     dc_lot_get_state
+#define mrlot_get_id                        dc_lot_get_id
+#define mrlot_get_timestamp                 dc_lot_get_timestamp
 
 
-/* Handle messages */
-char*           mrmailbox_get_msg_info      (mrmailbox_t*, uint32_t msg_id);
-void            mrmailbox_delete_msgs       (mrmailbox_t*, const uint32_t* msg_ids, int msg_cnt);
-void            mrmailbox_forward_msgs      (mrmailbox_t*, const uint32_t* msg_ids, int msg_cnt, uint32_t chat_id);
-void            mrmailbox_marknoticed_contact (mrmailbox_t*, uint32_t contact_id);
-void            mrmailbox_markseen_msgs     (mrmailbox_t*, const uint32_t* msg_ids, int msg_cnt);
-void            mrmailbox_star_msgs         (mrmailbox_t*, const uint32_t* msg_ids, int msg_cnt, int star);
-mrmsg_t*        mrmailbox_get_msg           (mrmailbox_t*, uint32_t msg_id);
+// events
+#define MR_EVENT_INFO                        DC_EVENT_INFO
+#define MR_EVENT_WARNING                     DC_EVENT_WARNING
+#define MR_EVENT_ERROR                       DC_EVENT_ERROR
+#define MR_EVENT_MSGS_CHANGED                DC_EVENT_MSGS_CHANGED
+#define MR_EVENT_INCOMING_MSG                DC_EVENT_INCOMING_MSG
+#define MR_EVENT_MSG_DELIVERED               DC_EVENT_MSG_DELIVERED
+#define MR_EVENT_MSG_READ                    DC_EVENT_MSG_READ
+#define MR_EVENT_CHAT_MODIFIED               DC_EVENT_CHAT_MODIFIED
+#define MR_EVENT_CONTACTS_CHANGED            DC_EVENT_CONTACTS_CHANGED
+#define MR_EVENT_CONFIGURE_PROGRESS          DC_EVENT_CONFIGURE_PROGRESS
+#define MR_EVENT_IMEX_PROGRESS               DC_EVENT_IMEX_PROGRESS
+#define MR_EVENT_IMEX_FILE_WRITTEN           DC_EVENT_IMEX_FILE_WRITTEN
+#define MR_EVENT_SECUREJOIN_INVITER_PROGRESS DC_EVENT_SECUREJOIN_INVITER_PROGRESS
+#define MR_EVENT_SECUREJOIN_JOINER_PROGRESS  DC_EVENT_SECUREJOIN_JOINER_PROGRESS
+#define MR_EVENT_IS_OFFLINE                  DC_EVENT_IS_OFFLINE
+#define MR_EVENT_GET_STRING                  DC_EVENT_GET_STRING
+#define MR_EVENT_GET_QUANTITY_STRING         DC_EVENT_GET_QUANTITY_STRING
+#define MR_EVENT_HTTP_GET                    DC_EVENT_HTTP_GET
 
-
-/* Handle contacts */
-uint32_t        mrmailbox_create_contact    (mrmailbox_t*, const char* name, const char* addr);
-int             mrmailbox_add_address_book  (mrmailbox_t*, const char*);
-
-#define         MR_GCL_VERIFIED_ONLY 0x01
-#define         MR_GCL_ADD_SELF      0x02
-mrarray_t*      mrmailbox_get_contacts      (mrmailbox_t*, uint32_t flags, const char* query);
-
-int             mrmailbox_get_blocked_count (mrmailbox_t*);
-mrarray_t*      mrmailbox_get_blocked_contacts (mrmailbox_t*);
-void            mrmailbox_block_contact     (mrmailbox_t*, uint32_t contact_id, int block);
-char*           mrmailbox_get_contact_encrinfo (mrmailbox_t*, uint32_t contact_id);
-int             mrmailbox_delete_contact    (mrmailbox_t*, uint32_t contact_id);
-mrcontact_t*    mrmailbox_get_contact       (mrmailbox_t*, uint32_t contact_id);
-
-
-/* Import/export and Tools */
-#define         MR_IMEX_EXPORT_SELF_KEYS      1 /* param1 is a directory where the keys are written to */
-#define         MR_IMEX_IMPORT_SELF_KEYS      2 /* param1 is a directory where the keys are searched in and read from */
-#define         MR_IMEX_EXPORT_BACKUP        11 /* param1 is a directory where the backup is written to */
-#define         MR_IMEX_IMPORT_BACKUP        12 /* param1 is the file with the backup to import */
-#define         MR_BAK_PREFIX                "delta-chat"
-#define         MR_BAK_SUFFIX                "bak"
-int             mrmailbox_imex              (mrmailbox_t*, int what, const char* param1, const char* param2);
-char*           mrmailbox_imex_has_backup   (mrmailbox_t*, const char* dir);
-int             mrmailbox_check_password    (mrmailbox_t*, const char* pw);
-char*           mrmailbox_initiate_key_transfer(mrmailbox_t*);
-int             mrmailbox_continue_key_transfer(mrmailbox_t*, uint32_t msg_id, const char* setup_code);
-void            mrmailbox_heartbeat         (mrmailbox_t*);
-
-
-/* out-of-band verification */
-#define         MR_QR_ASK_VERIFYCONTACT     200 /* id=contact */
-#define         MR_QR_ASK_VERIFYGROUP       202 /* text1=groupname */
-#define         MR_QR_FPR_OK                210 /* id=contact */
-#define         MR_QR_FPR_MISMATCH          220 /* id=contact */
-#define         MR_QR_FPR_WITHOUT_ADDR      230 /* test1=formatted fingerprint */
-#define         MR_QR_ADDR                  320 /* id=contact */
-#define         MR_QR_TEXT                  330 /* text1=text */
-#define         MR_QR_URL                   332 /* text1=text */
-#define         MR_QR_ERROR                 400 /* text1=error string */
-mrlot_t*        mrmailbox_check_qr          (mrmailbox_t*, const char* qr);
-char*           mrmailbox_get_securejoin_qr (mrmailbox_t*, uint32_t chat_id);
-uint32_t        mrmailbox_join_securejoin   (mrmailbox_t*, const char* qr);
-
-
-/* deprecated functions */
-int             mrchat_set_draft            (mrchat_t*, const char* msg);   /* deprecated - use mrmailbox_set_draft() instead */
-#define         mrpoortext_t                mrlot_t
-#define         mrpoortext_unref            mrlot_unref
-#define         mrmailbox_imex_cancel       mrmailbox_stop_ongoing_process
-#define         mrmailbox_configure_cancel  mrmailbox_stop_ongoing_process
+// errors
+#define MR_ERR_SEE_STRING                    DC_ERROR_SEE_STRING
+#define MR_ERR_SELF_NOT_IN_GROUP             DC_ERROR_SELF_NOT_IN_GROUP
+#define MR_ERR_NONETWORK                     DC_ERROR_NO_NETWORK
 
 
 #ifdef __cplusplus
-} /* /extern "C" */
+}
 #endif
-#endif /* __MRMAILBOX_H__ */
+#endif // __MRMAILBOX_DEPRECATED_H__
+

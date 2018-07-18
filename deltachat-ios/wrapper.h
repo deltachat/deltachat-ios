@@ -10,11 +10,11 @@
 #define wrapper_h
 
 #include <stdio.h>
-#include "mrmailbox.h"
+#include "deltachat.h"
 
 // typedef uintptr_t (*mrmailboxcb_t) (mrmailbox_t*, int event, uintptr_t data1, uintptr_t data2);
 
 
-uintptr_t callback_ios(mrmailbox_t* mailbox, int event, uintptr_t data1, uintptr_t data2);
+uintptr_t callback_ios(dc_context_t* mailbox, int event, uintptr_t data1, uintptr_t data2);
 
 #endif /* wrapper_h */

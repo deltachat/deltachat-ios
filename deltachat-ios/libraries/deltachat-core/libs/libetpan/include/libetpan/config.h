@@ -8,7 +8,7 @@
 #endif
 
 /* Define to detected Berkeley DB major version number */
-/* #undef DBVERS */
+#define DBVERS 0
 
 /* Define to 1 if you have the <arpa/inet.h> header file. */
 #define HAVE_ARPA_INET_H 1
@@ -68,7 +68,7 @@
 #define HAVE_MMAP 1
 
 /* Define to 1 if you have the <netdb.h> header file. */
-/* #undef HAVE_NETDB_H */
+#define HAVE_NETDB_H 1
 
 /* Define to 1 if you have the <netinet/in.h> header file. */
 #define HAVE_NETINET_IN_H 1
@@ -97,6 +97,9 @@
 /* Define to 1 if you have the <sys/param.h> header file. */
 #define HAVE_SYS_PARAM_H 1
 
+/* Define to 1 if you have the <sys/poll.h> header file. */
+/* #undef HAVE_SYS_POLL_H */
+
 /* Define to 1 if you have the <sys/select.h> header file. */
 #define HAVE_SYS_SELECT_H 1
 
@@ -122,16 +125,18 @@
 #define LIBETPAN_REENTRANT 1
 
 /* Define this to the version of libEtPan */
-//#define LIBETPAN_VERSION "1.2-dev-20141203"
+#define LIBETPAN_VERSION "1.8.0-dev-20180704"
 
 /* Define this to the major version of libEtPan */
-//#define LIBETPAN_VERSION_MAJOR 1
+#define LIBETPAN_VERSION_MAJOR 1
+
+/* Define this to the micro version of libEtPan */
+#define LIBETPAN_VERSION_MICRO 0
 
 /* Define this to the minor version of libEtPan */
-//#define LIBETPAN_VERSION_MINOR 2
+#define LIBETPAN_VERSION_MINOR 8
 
-/* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
 #define LT_OBJDIR ".libs/"
 
 /* Name of package */
@@ -144,7 +149,7 @@
 #define PACKAGE_NAME "libetpan"
 
 /* Define to the full name and version of this package. */
-//#define PACKAGE_STRING "libetpan 1.2"
+#define PACKAGE_STRING "libetpan 1.8.0"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "libetpan"
@@ -153,7 +158,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-//#define PACKAGE_VERSION "1.2"
+#define PACKAGE_VERSION "1.8.0"
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
@@ -164,6 +169,9 @@
 /* Define to use GnuTLS */
 /* #undef USE_GNUTLS */
 
+/* use poll instead of select */
+/* #undef USE_POLL */
+
 /* Define to use SASL */
 #define USE_SASL 1
 
@@ -171,7 +179,7 @@
 #define USE_SSL 1
 
 /* Version number of package */
-//#define VERSION "1.2"
+#define VERSION "1.8.0"
 
 /* Define to `__inline__' or `__inline' if that's what the C compiler
    calls it, or to nothing if 'inline' is not supported under any name.  */

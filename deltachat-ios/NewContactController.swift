@@ -102,7 +102,7 @@ class NewContactController: UITableViewController {
     }
     
     @objc func saveContactButtonPressed() {
-        mrmailbox_create_contact(mailboxPointer, self.model.name, self.model.email)
+        dc_create_contact(mailboxPointer, self.model.name, self.model.email)
         navigationController?.popViewController(animated: true)
     }
     

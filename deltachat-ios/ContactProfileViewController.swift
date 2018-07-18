@@ -41,7 +41,7 @@ class ContactProfileViewController: UITableViewController {
     }
 
     func displayNewChat(contactId: Int) {
-        let chatId = mrmailbox_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+        let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
         let chatVC = ChatViewController(chatId: Int(chatId))
         
         chatVC.hidesBottomBarWhenPushed = true

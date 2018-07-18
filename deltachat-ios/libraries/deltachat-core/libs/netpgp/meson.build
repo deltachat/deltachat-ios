@@ -1,9 +1,9 @@
 project('netpgp', 'c')
 
 # pkg-config dependencies
+pthreads = dependency('threads')
 zlib = dependency('zlib')
 openssl = dependency('openssl')
-pthreads = dependency('threads')
 
 # Dependencies without pkg-config, just try linking against them
 compiler = meson.get_compiler('c')
@@ -28,11 +28,11 @@ src = [
 inc = include_directories('include')
 
 
-lib = library(
+lib = static_library(
   'netpgp', src,
   dependencies: [zlib, bzip2, openssl, pthreads],
   include_directories: inc,
-  install: true,
+  install: false,
 )
 
 dep = declare_dependency(

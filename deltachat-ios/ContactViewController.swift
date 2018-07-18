@@ -26,7 +26,7 @@ class ContactViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let c_contacts = mrmailbox_get_contacts(mailboxPointer, 0, nil)
+        let c_contacts = dc_get_contacts(mailboxPointer, 0, nil)
         self.contactIds = Utils.copyAndFreeArray(inputArray: c_contacts)
         contactTableDataSource.contacts = self.contactIds
         contactTable.reloadData()

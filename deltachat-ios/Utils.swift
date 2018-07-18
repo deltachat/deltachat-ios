@@ -25,7 +25,7 @@ struct Utils {
     }
     
     static func getContactIds() -> [Int] {
-        let c_contacts = mrmailbox_get_contacts(mailboxPointer, 0, nil)
+        let c_contacts = dc_get_contacts(mailboxPointer, 0, nil)
         return Utils.copyAndFreeArray(inputArray: c_contacts)
     }
 
@@ -36,14 +36,14 @@ struct Utils {
         return initialsString
     }
 
-    static func copyAndFreeArray(inputArray:UnsafeMutablePointer<mrarray_t>?) -> [Int] {
+    static func copyAndFreeArray(inputArray:UnsafeMutablePointer<dc_array_t>?) -> [Int] {
         var acc:[Int] = []
-        let len = mrarray_get_cnt(inputArray)
+        let len = dc_array_get_cnt(inputArray)
         for i in 0 ..< len {
-            let e = mrarray_get_id(inputArray, i)
+            let e = dc_array_get_id(inputArray, i)
             acc.append(Int(e))
         }
-        mrarray_unref(inputArray)
+        dc_array_unref(inputArray)
         return acc
     }
     

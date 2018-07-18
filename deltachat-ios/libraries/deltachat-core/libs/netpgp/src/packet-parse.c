@@ -3287,7 +3287,7 @@ static int parse_sk_sesskey(pgp_region_t *region, pgp_stream_t *stream)
 		}
 
 		/* decrypt the read data */
-		iv = calloc(1, stream->decrypt.blocksize); if( iv == NULL ) { goto cleanup; }
+		iv = calloc(1, ci.blocksize); if( iv == NULL ) { goto cleanup; } // EDIT BY MR
 		ci.set_iv(&ci, iv);
 		free(iv);
 		iv = NULL;

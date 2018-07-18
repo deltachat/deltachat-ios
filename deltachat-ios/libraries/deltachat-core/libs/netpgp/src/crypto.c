@@ -626,13 +626,14 @@ pgp_decrypt_buf(pgp_io_t *io,
 	}
 
 	/* tidy up */
-	pgp_teardown_memory_read(parse, inmem);
-
 	pgp_writer_close(parse->cbinfo.output);
 	pgp_output_delete(parse->cbinfo.output);
-
-	/* if we didn't get the passphrase, return NULL */
-	return (parse->cbinfo.gotpass) ? outmem : NULL;
+	if (!parse->cbinfo.gotpass) { // EDIT BY MR
+		pgp_memory_free(outmem);
+		outmem = NULL; /* if we didn't get the passphrase, return NULL */
+	}
+	pgp_teardown_memory_read(parse, inmem);
+	return outmem;
 }
 
 /* Special callback for decrypt and validate */

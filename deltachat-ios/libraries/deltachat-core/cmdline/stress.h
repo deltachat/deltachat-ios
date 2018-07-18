@@ -27,7 +27,7 @@ extern "C" {
 #endif
 
 
-void stress_functions(mrmailbox_t*);
+void stress_functions(dc_context_t*);
 
 
 #ifdef __cplusplus

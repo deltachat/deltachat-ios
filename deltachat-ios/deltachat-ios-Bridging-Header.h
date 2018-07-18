@@ -2,6 +2,17 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
+#include "deltachat.h"
+#include "dc_context.h"
+#include "dc_contact.h"
+#include "dc_chat.h"
+#include "dc_chatlist.h"
+#include "dc_msg.h"
+#include "dc_lot.h"
+#include "dc_array.h"
+#include "wrapper.h"
+
+/*
 #include "mrsqlite3.h"
 #include "mrhash.h"
 #include "mrapeerstate.h"
@@ -14,3 +25,4 @@
 #include "mrlot-private.h"
 #include "mrarray-private.h"
 #include "wrapper.h"
+*/

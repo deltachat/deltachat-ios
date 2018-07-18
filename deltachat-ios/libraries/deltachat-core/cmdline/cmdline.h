@@ -20,8 +20,8 @@
  ******************************************************************************/
 
 
-#ifndef __MRCMDLINE_H__
-#define __MRCMDLINE_H__
+#ifndef __DC_CMDLINE_H__
+#define __DC_CMDLINE_H__
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -32,20 +32,20 @@ extern "C" {
   to give users some special power to the database and to the connection.
 - For security reasons, the first command must be `auth <password>`; once authorized, this is
   is valid for _all_ exising and future mailbox objects.  You can skip the authorisation process
-  by calling mrmailbox_cmdline_skip_auth()
+  by calling dc_cmdline_skip_auth()
 - The returned result may contain multiple lines  separated by `\n` and must be
   free()'d if no longer needed.
-- some commands may use mrmailbox_log_info() for additional output.
+- some commands may use dc_log_info() for additional output.
 - The command `help` gives an overview */
-char*           mrmailbox_cmdline           (mrmailbox_t*, const char* cmd);
+char*           dc_cmdline           (dc_context_t*, const char* cmd);
 
 
-/* If the command line authorisation (see mrmailbox_cmdline()) is not desired, eg. for a command line client,
-you can skip this using mrmailbox_cmdline_skip_auth().*/
-void            mrmailbox_cmdline_skip_auth ();
+/* If the command line authorisation (see dc_cmdline()) is not desired, eg. for a command line client,
+you can skip this using dc_cmdline_skip_auth().*/
+void            dc_cmdline_skip_auth ();
 
 
 #ifdef __cplusplus
-} /* /extern "C" */
+} // /extern "C"
 #endif
-#endif /* __MRCMDLINE_H__ */
+#endif // __DC_CMDLINE_H__

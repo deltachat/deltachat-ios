@@ -1,0 +1,6 @@
+option(
+  'system-etpan',
+  type: 'boolean',
+  value: false,
+  description: 'Do not use vendored libetpan (uses libetpan-config)',
+)

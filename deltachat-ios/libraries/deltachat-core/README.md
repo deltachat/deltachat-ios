@@ -50,13 +50,22 @@ of external libraries, most of which are detected using
 Usually this just works automatically, provided the depending libraries are
 installed correctly.
 
-Installing all of these using your system libraries is the easiest route.
-Please note that you may need "development" packages installed for
-these to work.
+By default a few stripped-down versions of these libraries are bundled
+with Delta Chat Core and these will be used.  They are marked as
+optional in the list below.  It is possible to use system-provided
+versions of these libraries using a configure option to meson.
 
-- [LibEtPan](https://github.com/dinhviethoa/libetpan); this does not
-  use `pkg-config`, instead it ships with a `libetpan-config` binary
-  which must be in the PATH to be picked up by the build system.
+Otherwise installing all of these using your system libraries is the
+easiest route.  Please note that you may need "development" packages
+installed for these to work.
+
+- [LibEtPan](https://github.com/dinhviethoa/libetpan); **optional** A
+  stripped-down version of this library is vendored and used by
+  default.  Use the `system-etpan=true` option to use a
+  system-provided version instead.  Note that this does not use
+  pkg-config so the system-provided version will be looked up by using
+  `libetpan-config` which must be in the PATH.  Version 1.8 or newer
+  is required.
 
 - [OpenSSL](https://www.openssl.org/)
 
@@ -71,7 +80,7 @@ these to work.
 To build you need to have [meson](http://mesonbuild.com) (at least version 0.36.0) and
 [ninja](https://ninja-build.org) installed as well.
 
-On Linux (e.g. Debian Stretch) you can install all these using: 
+On Linux (e.g. Debian Stretch) you can install all these using:
 
 `sudo apt install libetpan-dev libssl-dev libsqlite3-dev libsasl2-dev libbz2-dev zlib1g-dev meson ninja-build`.
 
@@ -82,9 +91,9 @@ starting from the project's root directory:
 mkdir builddir
 cd builddir
 meson
-# optionally configure some parameters
-# run `meson configure` to see the options, e.g. 
-meson configure -Dlibdir=lib
+# Optionally configure some other parameters
+# run `meson configure` to see the options, e.g.
+#    meson configure -Dsystem-etpan=true
 ninja
 sudo ninja install
 sudo ldconfig
@@ -98,7 +107,9 @@ sudo ninja uninstall
 
 Note that the above assumes `/usr/local/lib` is configured somewhere
 in `/etc/ld.so.conf` or `/etc/ld.so.conf.d/*`, which is fairly
-standard.
+standard.  It is possible your system uses
+`/usr/local/lib/x86_64-linux-gnu` which should be auto-detected and
+just work as well.
 
 
 License
