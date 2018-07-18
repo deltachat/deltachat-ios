@@ -64,11 +64,6 @@ class ContactViewController: UIViewController {
     }
 }
 
-protocol ContactPresenter: class {
-    
-    
-}
-
 class ContactTableDataSource: NSObject, UITableViewDataSource {
     var contacts: [Int] = []
 
