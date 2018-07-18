@@ -36,6 +36,11 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
     // check online state, return
     // - 0 when online
     // - 1 when offline
+    case DC_EVENT_CONFIGURE_PROGRESS:
+        DispatchQueue.main.async {
+            print(data1) // progress in promille, 0 - error, 1000 - completed
+        }
+        return 0
     case DC_EVENT_IS_OFFLINE:
         return 0
     case DC_EVENT_MSGS_CHANGED:
@@ -94,7 +99,22 @@ func initCore(withCredentials: Bool, email: String = "", password: String = "") 
     //       - second param remains nil (user data for more than one mailbox)
     mailboxPointer = dc_context_new(callback_ios, nil, "iOS")
     guard mailboxPointer != nil else {
-        fatalError("Error: mrmailbox_new returned nil")
+        fatalError("Error: dc_context_new returned nil")
+    }
+    
+    DispatchQueue.global().async {
+        while true {
+            dc_perform_imap_jobs(mailboxPointer)
+            dc_perform_imap_fetch(mailboxPointer)
+            dc_perform_imap_idle(mailboxPointer)
+        }
+    }
+    
+    DispatchQueue.global().async {
+        while true {
+            dc_perform_smtp_jobs(mailboxPointer)
+            dc_perform_smtp_idle(mailboxPointer)
+        }
     }
     
     let _ = dc_open(mailboxPointer, dbfile, nil)
@@ -112,15 +132,14 @@ func initCore(withCredentials: Bool, email: String = "", password: String = "") 
 //            -        mrmailbox_set_config(mailboxPointer, "mail_pw", "foobar")
         UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
         UserDefaults.standard.synchronize()
-    }
-    
-    DispatchQueue.global(qos: .default).async {
+        
         // TODO: - handle failure, need to show credentials screen again
         dc_configure(mailboxPointer)
         // TODO: next two lines should move here in success case
         // UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
         // UserDefaults.standard.synchronize()
     }
+
     
     addVibrationOnIncomingMessage()
 }
