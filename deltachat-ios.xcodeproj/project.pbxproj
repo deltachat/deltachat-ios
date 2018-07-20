@@ -344,7 +344,6 @@
 			isa = PBXGroup;
 			children = (
 				AEACE2DE1FB3246400DCDD78 /* Message.swift */,
-				7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */,
 				7A9FB15B1FB07364001FEA36 /* libraries */,
 				7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */,
 				7A451DAF1FB1F84900177250 /* AppCoordinator.swift */,
@@ -362,6 +361,7 @@
 				7A0052C71FBE6CB40048C3BF /* NewContactController.swift */,
 				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
 				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
+				7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */,
 				AEACE2E01FB3271700DCDD78 /* SampleData.swift */,
 				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
 				AEACE2E41FB32E1900DCDD78 /* Utils.swift */,
