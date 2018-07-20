@@ -12,12 +12,19 @@ class NewGroupViewController: UITableViewController {
 
     let contactCellReuseIdentifier = "xyz"
     var contactIds: [Int] = Utils.getContactIds()
-    var contactIdsForGroup: Set<Int> = []
+    var contactIdsForGroup: Set<Int> = [] {
+        didSet {
+            let c = contactIdsForGroup.count
+           self.navigationItem.prompt = "\(c) members and me"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "New Group"
+        self.navigationItem.prompt = "0 members and me"
         tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
 
     override func didReceiveMemoryWarning() {
