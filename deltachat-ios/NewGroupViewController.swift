@@ -15,8 +15,12 @@ class NewGroupViewController: UITableViewController {
     var contactIdsForGroup: Set<Int> = [] {
         didSet {
             let c = contactIdsForGroup.count
-           self.navigationItem.prompt = "\(c) members and me"
+            self.navigationItem.prompt = "\(c) members and me"
         }
+    }
+    
+    @objc func didPressGroupCreationNextButton() {
+        print("Jetzt geht es weiter")
     }
     
     override func viewDidLoad() {
@@ -25,7 +29,10 @@ class NewGroupViewController: UITableViewController {
         self.navigationItem.prompt = "0 members and me"
         tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
         navigationController?.navigationBar.prefersLargeTitles = false
+        let groupCreationNextButton = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(didPressGroupCreationNextButton))
+        navigationItem.rightBarButtonItem = groupCreationNextButton
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
