@@ -23,13 +23,14 @@ Email-based instant messaging for iOS.
       already displayed), leave out group settings
        and settings for contact for now
 - [ ] ui-polishing, eg.
-  - smarter time/date display
+  - [ ] smarter time/date display
     (time beside messages, date as headlines)
-  - adapt avatars (use the colored images from the chatlist
+  - [ ] adapt avatars (use the colored images from the chatlist
     also in the chat, no avatars beside outgoing messages
-  - show e-mail-address in the chat-title and/or open profile
+  - [ ] show e-mail-address in the chat-title and/or open profile
     when clicking on chat-title
     (subtitle) dc_chat_get_subtitle
+- [ ] add a progress indicator while doing the configuration
 - [ ] allow sending of images
       and taking+sending photos directly from the camera.
       (videos and voice messages
