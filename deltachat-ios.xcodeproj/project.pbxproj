@@ -47,6 +47,7 @@
 		7070FB9120FF4118000DC258 /* dc_strencode.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8720FF4117000DC258 /* dc_strencode.c */; };
 		7070FB9220FF4118000DC258 /* dc_imap.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8820FF4118000DC258 /* dc_imap.c */; };
 		7070FB9320FF4118000DC258 /* dc_msg.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8920FF4118000DC258 /* dc_msg.c */; };
+		7070FB9B2101ECBB000DC258 /* GroupNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* GroupNameController.swift */; };
 		7092474120B3869500AF8799 /* ContactProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactProfileViewController.swift */; };
 		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
 		7A0052A11FBC50C40048C3BF /* CredentialsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0052A01FBC50C40048C3BF /* CredentialsController.swift */; };
@@ -157,6 +158,7 @@
 		7070FB8720FF4117000DC258 /* dc_strencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_strencode.c; sourceTree = "<group>"; };
 		7070FB8820FF4118000DC258 /* dc_imap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_imap.c; sourceTree = "<group>"; };
 		7070FB8920FF4118000DC258 /* dc_msg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_msg.c; sourceTree = "<group>"; };
+		7070FB9A2101ECBB000DC258 /* GroupNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNameController.swift; sourceTree = "<group>"; };
 		7092474020B3869500AF8799 /* ContactProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactProfileViewController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		7A0052A01FBC50C40048C3BF /* CredentialsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsController.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
 				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
 				7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */,
+				7070FB9A2101ECBB000DC258 /* GroupNameController.swift */,
 				AEACE2E01FB3271700DCDD78 /* SampleData.swift */,
 				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
 				AEACE2E41FB32E1900DCDD78 /* Utils.swift */,
@@ -610,6 +613,7 @@
 				7070FB8B20FF4118000DC258 /* dc_keyhistory.c in Sources */,
 				7070FB6520FF345F000DC258 /* dc_chatlist.c in Sources */,
 				AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */,
+				7070FB9B2101ECBB000DC258 /* GroupNameController.swift in Sources */,
 				7070FB6D20FF345F000DC258 /* dc_imex.c in Sources */,
 				7A79236D1FB0A2C800BC2DE5 /* keyring.c in Sources */,
 				7070FB6620FF345F000DC258 /* dc_param.c in Sources */,

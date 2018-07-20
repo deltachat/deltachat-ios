@@ -20,9 +20,8 @@ class NewGroupViewController: UITableViewController {
     }
     
     @objc func didPressGroupCreationNextButton() {
-        print("Jetzt geht es weiter")
+        navigationController?.pushViewController(GroupNameController(), animated: true)
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "New Group"
