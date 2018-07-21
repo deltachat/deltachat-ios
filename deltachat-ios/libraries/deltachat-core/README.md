@@ -112,6 +112,15 @@ standard.  It is possible your system uses
 just work as well.
 
 
+Testing program
+--------------------------------------------------------------------------------
+
+After a successful build there is also a little testing program in `builddir/cmdline`.
+You start the program with `./delta <database-file>`
+(if the database file does not exist, it is created).
+The program then shows a promt and typing `help` gives some help about the available commands.
+
+
 License
 --------------------------------------------------------------------------------
 

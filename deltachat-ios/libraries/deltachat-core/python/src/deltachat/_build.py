@@ -10,7 +10,7 @@ def ffibuilder():
     builder.set_source(
         'deltachat.capi',
         """
-            #include <deltachat/mrmailbox.h>
+            #include <deltachat/deltachat.h>
         """,
         libraries=['deltachat'],
     )
@@ -21,7 +21,7 @@ def ffibuilder():
     cc = distutils.ccompiler.new_compiler(force=True)
     distutils.sysconfig.customize_compiler(cc)
     with tempfile.NamedTemporaryFile(mode='w', suffix='.h') as src_fp:
-        src_fp.write('#include <deltachat/mrmailbox.h>')
+        src_fp.write('#include <deltachat/deltachat.h>')
         src_fp.flush()
         with tempfile.NamedTemporaryFile(mode='r') as dst_fp:
             cc.preprocess(source=src_fp.name,

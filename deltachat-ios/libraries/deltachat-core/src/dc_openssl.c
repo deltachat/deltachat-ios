@@ -134,16 +134,16 @@ void dc_openssl_init(void)
 				CRYPTO_set_dynlock_destroy_callback(dyn_destroy_function);
 
 				// see https://wiki.openssl.org/index.php/Library_Initialization
-#ifdef __APPLE__
-                OPENSSL_init();
-#else
-				SSL_load_error_strings();
-				#if OPENSSL_VERSION_NUMBER < 0x10100000L
-				SSL_library_init();
+				#ifdef __APPLE__
+					OPENSSL_init();
 				#else
-				OPENSSL_init_ssl(0, NULL);
+					SSL_load_error_strings();
+					#if OPENSSL_VERSION_NUMBER < 0x10100000L
+					SSL_library_init();
+					#else
+					OPENSSL_init_ssl(0, NULL);
+					#endif
 				#endif
-#endif
 				OpenSSL_add_all_algorithms();
 			}
 			mailstream_openssl_init_not_required();
