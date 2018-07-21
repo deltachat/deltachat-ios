@@ -1,12 +1,16 @@
 # deltachat-ios
+
 Email-based instant messaging for iOS.
 
-- after cloning, go to the top level directory of the project and run 'pod install' (See https://guides.cocoapods.org/using/getting-started.html for an introduction to CocoaPods)
+## How to build with Xcode
 
-- then, open deltachat-ios.xcworkspace (*not* deltachat-ios.xcodeproj ), e.g. by running 'open deltachat-ios.xcworkspace' in the shell.
+    $ git clone git@github.com:deltachat/deltachat-ios.git
+    $ cd deltachat-ios
+    $ open deltachat-ios.xcworkspace # do not: open deltachat-ios.xcodeproj
+    
+This should open Xcode. Then make sure that at the top there is *deltachat-ios* selected as scheme (and not *libetpan* or something similar).
 
-
-### Roadmap / TODO for 'minimal viable version'
+## Roadmap / TODO for 'minimal viable version'
 
 - [X] use new deltachat-core-api and
  adapt threads to the following scheme:
