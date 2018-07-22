@@ -20,7 +20,7 @@ class NewGroupViewController: UITableViewController {
     }
     
     @objc func didPressGroupCreationNextButton() {
-        navigationController?.pushViewController(GroupNameController(), animated: true)
+        navigationController?.pushViewController(GroupNameController(contactIdsForGroup: contactIdsForGroup), animated: true)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

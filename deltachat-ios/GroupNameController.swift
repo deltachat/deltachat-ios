@@ -11,6 +11,7 @@ import UIKit
 class GroupNameController: UIViewController {
     var doneButton:UIBarButtonItem!
     let groupNameTextField = UITextField()
+    let contactIdsForGroup:Set<Int>
     var groupName = "" {
         didSet {
             if groupName.isEmpty {
@@ -21,6 +22,15 @@ class GroupNameController: UIViewController {
                 doneButton.isEnabled = true
             }
         }
+    }
+    
+    init(contactIdsForGroup:Set<Int>) {
+        self.contactIdsForGroup = contactIdsForGroup
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func layoutTextField() {
@@ -38,9 +48,23 @@ class GroupNameController: UIViewController {
         groupNameTextField.delegate = self
         layoutTextField()
         
-        doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+        doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didPressDoneButton))
         navigationItem.rightBarButtonItem = doneButton
         doneButton.isEnabled = false
+    }
+    
+    @objc func didPressDoneButton() {
+        print("Done Button pressed")
+        let groupChatId = dc_create_group_chat(mailboxPointer, 0, groupName)
+        for contactId in contactIdsForGroup {
+            let success = dc_add_contact_to_chat(mailboxPointer, groupChatId, UInt32(contactId))
+            if success == 1 {
+                print("successfully added \(contactId) to group \(groupName)")
+            } else {
+                // FIXME
+                fatalError("failed to add \(contactId) to group \(groupName)")
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
