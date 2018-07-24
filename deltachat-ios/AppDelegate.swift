@@ -12,12 +12,6 @@ import AudioToolbox
 
 var mailboxPointer:UnsafeMutablePointer<dc_context_t>!
 
-func sendTestMessage(name n: String, email: String, text: String) {
-    let contactId = dc_create_contact(mailboxPointer, n, email)
-    let chatId = dc_create_chat_by_contact_id(mailboxPointer, contactId)
-//    mrmailbox_send_text_msg(mailboxPointer, chatId, text)
-}
-
 @_silgen_name("callbackSwift")
 
 public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLong, data1String: UnsafePointer<Int8>, data2String: UnsafePointer<Int8>) -> CUnsignedLong {
@@ -128,8 +122,7 @@ func initCore(withCredentials: Bool, email: String = "", password: String = "") 
         }
         dc_set_config(mailboxPointer, "addr", email)
         dc_set_config(mailboxPointer, "mail_pw", password)
-//            -        mrmailbox_set_config(mailboxPointer, "addr", "alice@librechat.net")
-//            -        mrmailbox_set_config(mailboxPointer, "mail_pw", "foobar")
+
         UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
         UserDefaults.standard.synchronize()
         
@@ -139,7 +132,6 @@ func initCore(withCredentials: Bool, email: String = "", password: String = "") 
         // UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
         // UserDefaults.standard.synchronize()
     }
-
     
     addVibrationOnIncomingMessage()
 }
