@@ -45,6 +45,7 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
       and taking+sending photos directly from the camera.
       (videos and voice messages
       and other attachments can be done in a later version)
+- [ ] support DC_EVENT_HTTP_GET event
 - [ ] allow advanced configuration options on setup
       to make sure users can connect if the autoconfig fails
       (imap-server, imap-port, imap-flags, same for smtp -
