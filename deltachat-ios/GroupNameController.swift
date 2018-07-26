@@ -78,7 +78,7 @@ class GroupNameController: UIViewController {
 
 extension GroupNameController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let text = (textField.text! as! NSString).replacingCharacters(in: range, with: string)
+        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         groupName = text
         
         return true
