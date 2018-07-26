@@ -33,7 +33,7 @@ extern "C" {
 #endif
 
 
-#define DC_VERSION_STR "0.19.0"
+#define DC_VERSION_STR "0.19.2"
 
 
 /**
@@ -95,7 +95,7 @@ extern "C" {
  * sqlite-file and is created as needed:
  *
  * ```
- * dc_open(context, "example.db");
+ * dc_open(context, "example.db", NULL);
  * ```
  *
  * Now you can **configure the context:**
@@ -849,9 +849,10 @@ time_t          dc_lot_get_timestamp     (const dc_lot_t*);
  */
 
 
-#define DC_EVENT_DATA2_IS_STRING(e)  ((e)==DC_EVENT_INFO) || (e)==DC_EVENT_WARNING || (e)==DC_EVENT_ERROR))
+#define DC_EVENT_DATA1_IS_STRING(e)  ((e)==DC_EVENT_HTTP_GET)
+#define DC_EVENT_DATA2_IS_STRING(e)  ((e)==DC_EVENT_INFO || (e)==DC_EVENT_WARNING || (e)==DC_EVENT_ERROR)
 #define DC_EVENT_RETURNS_INT         ((e)==DC_EVENT_IS_OFFLINE)
-#define DC_EVENT_RETURNS_STRING(e)   ((e)==DC_EVENT_INFO) || (e)==DC_EVENT_GET_QUANTITY_STRING || (e)==DC_EVENT_GET_STRING))
+#define DC_EVENT_RETURNS_STRING(e)   ((e)==DC_EVENT_GET_QUANTITY_STRING || (e)==DC_EVENT_GET_STRING || (e)==DC_EVENT_HTTP_GET)
 
 
 /**

@@ -1045,14 +1045,13 @@ void dc_imap_idle(dc_imap_t* imap)
 
 void dc_imap_interrupt_idle(dc_imap_t* imap)
 {
-	if (imap==NULL) { // imap->etpan may be NULL
-		dc_log_warning(imap->context, 0, "Interrupt IMAP-IDLE: Bad parameter.");
+	if (imap==NULL) {
 		return;
 	}
 
 	if (imap->can_idle)
 	{
-		if (imap && imap->etpan && imap->etpan->imap_stream) {
+		if (imap->etpan && imap->etpan->imap_stream) {
 			mailstream_interrupt_idle(imap->etpan->imap_stream);
 		}
 	}

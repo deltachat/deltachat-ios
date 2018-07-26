@@ -103,6 +103,10 @@ void dc_mimefactory_empty(dc_mimefactory_t* factory)
 
 static void set_error(dc_mimefactory_t* factory, const char* text)
 {
+	if (factory==NULL) {
+		return;
+	}
+
 	free(factory->error);
 	factory->error = dc_strdup_keep_null(text);
 }
@@ -263,48 +267,48 @@ cleanup:
 int dc_mimefactory_load_mdn(dc_mimefactory_t* factory, uint32_t msg_id)
 {
 	int           success = 0;
-	dc_contact_t* contact = dc_contact_new(factory->context);
+	dc_contact_t* contact = NULL;
 
 	if (factory==NULL) {
 		goto cleanup;
 	}
 
-	dc_context_t* context = factory->context;
-
 	factory->recipients_names = clist_new();
 	factory->recipients_addr  = clist_new();
-	factory->msg              = dc_msg_new(context);
+	factory->msg              = dc_msg_new(factory->context);
 
-		if (!dc_sqlite3_get_config_int(context->sql, "mdns_enabled", DC_MDNS_DEFAULT_ENABLED)) {
-			goto cleanup; /* MDNs not enabled - check this is late, in the job. the use may have changed its choice while offline ... */
-		}
+	if (!dc_sqlite3_get_config_int(factory->context->sql, "mdns_enabled", DC_MDNS_DEFAULT_ENABLED)) {
+		goto cleanup; /* MDNs not enabled - check this is late, in the job. the use may have changed its choice while offline ... */
+	}
 
-		if (!dc_msg_load_from_db(factory->msg, context, msg_id)
-		 || !dc_contact_load_from_db(contact, context->sql, factory->msg->from_id)) {
-			goto cleanup;
-		}
+	contact = dc_contact_new(factory->context);
+	if (!dc_msg_load_from_db(factory->msg, factory->context, msg_id)
+	 || !dc_contact_load_from_db(contact, factory->context->sql, factory->msg->from_id)) {
+		goto cleanup;
+	}
 
-		if (contact->blocked
-		 || factory->msg->chat_id<=DC_CHAT_ID_LAST_SPECIAL/* Do not send MDNs trash etc.; chats.blocked is already checked by the caller in dc_markseen_msgs() */) {
-			goto cleanup;
-		}
+	if (contact->blocked
+	 || factory->msg->chat_id<=DC_CHAT_ID_LAST_SPECIAL/* Do not send MDNs trash etc.; chats.blocked is already checked by the caller in dc_markseen_msgs() */) {
+		goto cleanup;
+	}
 
-		if (factory->msg->from_id <= DC_CONTACT_ID_LAST_SPECIAL) {
-			goto cleanup;
-		}
+	if (factory->msg->from_id <= DC_CONTACT_ID_LAST_SPECIAL) {
+		goto cleanup;
+	}
 
-		clist_append(factory->recipients_names, (void*)((contact->authname&&contact->authname[0])? dc_strdup(contact->authname) : NULL));
-		clist_append(factory->recipients_addr,  (void*)dc_strdup(contact->addr));
+	clist_append(factory->recipients_names, (void*)((contact->authname&&contact->authname[0])? dc_strdup(contact->authname) : NULL));
+	clist_append(factory->recipients_addr,  (void*)dc_strdup(contact->addr));
 
-		load_from(factory);
+	load_from(factory);
 
-		factory->timestamp = dc_create_smeared_timestamp(context);
-		factory->rfc724_mid = dc_create_outgoing_rfc724_mid(NULL, factory->from_addr);
+	factory->timestamp = dc_create_smeared_timestamp(factory->context);
+	factory->rfc724_mid = dc_create_outgoing_rfc724_mid(NULL, factory->from_addr);
 
 	success = 1;
 	factory->loaded = DC_MF_MDN_LOADED;
 
 cleanup:
+	dc_contact_unref(contact);
 	return success;
 }
 

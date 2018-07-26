@@ -301,7 +301,7 @@ void stress_functions(dc_context_t* context)
 		free(mime);
 	}
 
-	/* test some string functions
+	/* test some string functions and macros
 	 **************************************************************************/
 
 	{
@@ -495,6 +495,23 @@ void stress_functions(dc_context_t* context)
 		assert( strcmp(buf2, "Björn Petersen")==0 );
 		free(buf1);
 		free(buf2);
+
+		assert(  DC_EVENT_DATA1_IS_STRING(2100) );
+		assert( !DC_EVENT_DATA1_IS_STRING(100) );
+		assert( !DC_EVENT_DATA1_IS_STRING(300) );
+		assert( !DC_EVENT_DATA1_IS_STRING(400) );
+
+		assert(  DC_EVENT_DATA2_IS_STRING(100) );
+		assert(  DC_EVENT_DATA2_IS_STRING(300) );
+		assert(  DC_EVENT_DATA2_IS_STRING(400) );
+		assert( !DC_EVENT_DATA2_IS_STRING(2010) );
+
+		assert(  DC_EVENT_RETURNS_STRING(2091) );
+		assert(  DC_EVENT_RETURNS_STRING(2092) );
+		assert(  DC_EVENT_RETURNS_STRING(2100) );
+		assert( !DC_EVENT_RETURNS_STRING(100) );
+		assert( !DC_EVENT_RETURNS_STRING(300) );
+		assert( !DC_EVENT_RETURNS_STRING(400) );
 	}
 
 	/* test dc_array_t

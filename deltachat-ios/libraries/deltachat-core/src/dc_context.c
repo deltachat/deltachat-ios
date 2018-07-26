@@ -80,7 +80,6 @@ static void cb_receive_imf(dc_imap_t* imap, const char* imf_raw_not_terminated, 
 /**
  * Create a new context object.  After creation it is usually
  * opened, connected and mails are fetched.
- * After usage, the object should be deleted using dc_context_unref().
  *
  * @memberof dc_context_t
  * @param cb a callback function that is called for events (update,
@@ -149,6 +148,9 @@ dc_context_t* dc_context_new(dc_callback_t cb, void* userdata, const char* os_na
 /**
  * Free a context object.
  * If app runs can only be terminated by a forced kill, this may be superfluous.
+ * Before the context object is freed, connections to SMTP, IMAP and database
+ * are closed. You can also do this explicitly by calling dc_close() on your own
+ * before calling dc_context_unref().
  *
  * @memberof dc_context_t
  * @param context the context object as created by dc_context_new().
@@ -225,13 +227,13 @@ static void update_config_cache(dc_context_t* context, const char* key)
  * created and can be set up using dc_set_config() afterwards.
  *
  * @memberof dc_context_t
- * @param context: the context object as created by dc_context_new()
- * @param dbfile the file to use to store the database, sth. like "~/file" won't
+ * @param context The context object as created by dc_context_new().
+ * @param dbfile The file to use to store the database, sth. like `~/file` won't
  *     work on all systems, if in doubt, use absolute paths.
- * @param blobdir a directory to store the blobs in, the trailing slash is added
- *     by us, so if you want to avoid double slashes, do not add one. If you
- *     give NULL as blobdir, `dbfile-blobs` is used in the same directory as
- *     _dbfile_ will be created in.
+ * @param blobdir A directory to store the blobs in. The trailing slash is added
+ *     by deltachat-core, so if you want to avoid double slashes, do not add one.
+ *     If you pass NULL or the empty string, deltachat-core creates a directory
+ *     beside _dbfile_ with the same name and the suffix `-blobs`.
  * @return 1 on success, 0 on failure
  */
 int dc_open(dc_context_t* context, const char* dbfile, const char* blobdir)
@@ -279,11 +281,16 @@ cleanup:
 
 
 /**
- * Close context database.
+ * Close context database opened by dc_open().
+ * Before this, connections to SMTP and IMAP are closed; these connections
+ * are started automatically as needed eg. by sending for fetching messages.
+ * This function is also implicitly called by dc_context_unref().
+ * Multiple calls to this functions are okay, the function takes care not
+ * to free objects twice.
  *
  * @memberof dc_context_t
- * @param context the context object as created by dc_context_new()
- * @return none
+ * @param context The context object as created by dc_context_new().
+ * @return None.
  */
 void dc_close(dc_context_t* context)
 {
