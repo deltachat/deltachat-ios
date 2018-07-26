@@ -92,7 +92,7 @@ class MRMessage {
 
 class MRChat {
     
-    private var chatPointer: UnsafeMutablePointer<dc_chat_t>
+    var chatPointer: UnsafeMutablePointer<dc_chat_t>
     
     var id: Int {
         return Int(chatPointer.pointee.id)

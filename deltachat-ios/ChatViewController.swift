@@ -21,6 +21,25 @@ class ChatViewController: MessagesViewController {
         self.chatId = chatId
         super.init(nibName: nil, bundle: nil)
         self.getMessageIds()
+        
+        /*
+        let chat = MRChat(id: chatId)
+         let subtitle = dc_chat_get_subtitle(chat.chatPointer)!
+
+        let s = String(validatingUTF8: subtitle)
+        print(s)
+ */
+
+    }
+    
+    var textDraft:String? {
+        let chat = MRChat(id: chatId)
+        // FIXME: need to free pointer
+        if let textDraft = dc_chat_get_text_draft(chat.chatPointer) {
+            let s = String(validatingUTF8: textDraft)!
+            return s
+        }
+        return nil
     }
     
     func getMessageIds() {
@@ -61,7 +80,14 @@ class ChatViewController: MessagesViewController {
         }
     }
     
+    func setTextDraft() {
+        if let text = self.messageInputBar.inputTextView.text {
+            dc_set_text_draft(mailboxPointer, UInt32(chatId), text.cString(using: .utf8))
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
+        setTextDraft()
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
@@ -76,6 +102,9 @@ class ChatViewController: MessagesViewController {
         
         let chat = MRChat(id: self.chatId)
         title = chat.name
+        
+        messageInputBar.inputTextView.text = textDraft
+        messageInputBar.inputTextView.becomeFirstResponder()
         
         DispatchQueue.global(qos: .userInitiated).async {
             SampleData.shared.getMessages(count: 10) { messages in
