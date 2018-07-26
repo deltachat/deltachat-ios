@@ -65,6 +65,9 @@ class GroupNameController: UIViewController {
                 fatalError("failed to add \(contactId) to group \(groupName)")
             }
         }
+        let chatVC = ChatViewController(chatId: Int(groupChatId))
+        navigationController?.pushViewController(chatVC, animated: true)
+        
     }
 
     override func didReceiveMemoryWarning() {
