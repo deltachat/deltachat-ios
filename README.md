@@ -28,11 +28,17 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
  we could say, for the first version, we're a foreground app
  and figure out background things later
 - [X] order: new group, new contact
-- [ ] allow group creation
-      (afaik groups created on other devices are
-      already displayed), leave out group settings
-       and settings for contact for now
+- [X] allow group creation (leave out group settings
+      and settings for contact for now)
+- [X] text drafts support
+- [ ] add a progress indicator while doing the configuration
+- [ ] allow sending of images
+      and taking+sending photos directly from the camera.
+      (videos and voice messages
+      and other attachments can be done in a later version)
+- [ ] support DC_EVENT_HTTP_GET event
 - [ ] ui-polishing, eg.
+  - [ ] improve group creation UI
   - [ ] smarter time/date display
     (time beside messages, date as headlines)
   - [ ] adapt avatars (use the colored images from the chatlist
@@ -40,16 +46,8 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
   - [ ] show e-mail-address in the chat-title and/or open profile
     when clicking on chat-title
     (subtitle) dc_chat_get_subtitle
-- [ ] add a progress indicator while doing the configuration
-- [ ] allow sending of images
-      and taking+sending photos directly from the camera.
-      (videos and voice messages
-      and other attachments can be done in a later version)
-- [ ] support DC_EVENT_HTTP_GET event
 - [ ] allow advanced configuration options on setup
       to make sure users can connect if the autoconfig fails
       (imap-server, imap-port, imap-flags, same for smtp -
       if not yet implemented
       (cannot test currently, iphone-battery is empty))
-- [ ] text drafts (not really important at first)
-      is included in dc_chat_get_subtitle
