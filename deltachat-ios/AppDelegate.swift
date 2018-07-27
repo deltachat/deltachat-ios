@@ -14,9 +14,20 @@ var mailboxPointer:UnsafeMutablePointer<dc_context_t>!
 
 @_silgen_name("callbackSwift")
 
-public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLong, data1String: UnsafePointer<Int8>, data2String: UnsafePointer<Int8>) -> CUnsignedLong {
+public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLong, data1String: UnsafePointer<Int8>, data2String: UnsafePointer<Int8>) -> UnsafePointer<Int8>? {
     
     switch event {
+    case DC_EVENT_HTTP_GET:
+        let urlString = String(cString: data1String)
+        guard let url = URL(string: urlString) else {
+            return nil
+        }
+        // FIXME: synchronous call ok here?
+        guard let configText = try? String(contentsOf: url) else {
+            return nil
+        }
+        let p = UnsafePointer(strdup(configText))
+        return p
     case DC_EVENT_INFO:
         let s = String(cString: data2String)
         print("Info: \(s)")
@@ -34,9 +45,9 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         DispatchQueue.main.async {
             print(data1) // progress in promille, 0 - error, 1000 - completed
         }
-        return 0
+        return nil
     case DC_EVENT_IS_OFFLINE:
-        return 0
+        return nil
     case DC_EVENT_MSGS_CHANGED:
         // TODO: reload all views
         // e.g. when message appears that is not new, i.e. no need
@@ -62,7 +73,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
     default:
         break
     }
-    return 0
+    return nil
 }
 
 @UIApplicationMain
