@@ -22,10 +22,10 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         guard let url = URL(string: urlString) else {
             return nil
         }
-        // FIXME: synchronous call ok here?
         guard let configText = try? String(contentsOf: url) else {
             return nil
         }
+        // see the strdup tip here: https://oleb.net/blog/2016/10/swift-array-of-c-strings/#alternative-strdup-and-free
         let p = UnsafePointer(strdup(configText))
         return p
     case DC_EVENT_INFO:
