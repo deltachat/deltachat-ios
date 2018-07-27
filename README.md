@@ -31,12 +31,12 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
 - [X] allow group creation (leave out group settings
       and settings for contact for now)
 - [X] text drafts support
+- [X] support DC_EVENT_HTTP_GET event
 - [ ] add a progress indicator while doing the configuration
 - [ ] allow sending of images
       and taking+sending photos directly from the camera.
       (videos and voice messages
       and other attachments can be done in a later version)
-- [ ] support DC_EVENT_HTTP_GET event
 - [ ] ui-polishing, eg.
   - [ ] improve group creation UI
   - [ ] smarter time/date display
