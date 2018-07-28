@@ -69,7 +69,7 @@ upcoming (not released)
 - groups can be created
 - text drafts support
 
-### Beta 1:
+### Beta 1
 2018-06-11
 
 - UI: colored initial circles
