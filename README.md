@@ -51,3 +51,24 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
       (imap-server, imap-port, imap-flags, same for smtp -
       if not yet implemented
       (cannot test currently, iphone-battery is empty))
+
+## Beta Changelog
+
+Betas are distributed via Testflight
+
+### Beta 3 (upcoming, not yet released)
+
+- support automatic configuration via DC_EVENT_HTTP_GET event
+- progress indicator while doing the configuration
+
+### Beta 2
+
+- new deltachat-core-api (no more polling, much faster)
+- groups can be created
+- text drafts support
+
+### Beta 1:
+
+- UI: colored initial circles
+- screens and menus now more closely resemble the Android version, while staying true to iOS conventions
+
