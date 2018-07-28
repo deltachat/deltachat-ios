@@ -52,23 +52,25 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
       if not yet implemented
       (cannot test currently, iphone-battery is empty))
 
-## Beta Changelog
+## Changelog
 
 Betas are distributed via Testflight
 
-### Beta 3 (upcoming, not yet released)
+### Beta 3
+upcoming (not released)
 
 - support automatic configuration via DC_EVENT_HTTP_GET event
 - progress indicator while doing the configuration
 
 ### Beta 2
+2018-07-26
 
 - new deltachat-core-api (no more polling, much faster)
 - groups can be created
 - text drafts support
 
 ### Beta 1:
+2018-06-11
 
 - UI: colored initial circles
 - screens and menus now more closely resemble the Android version, while staying true to iOS conventions
-
