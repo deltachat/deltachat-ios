@@ -33,6 +33,8 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
 - [X] text drafts support
 - [X] support DC_EVENT_HTTP_GET event
 - [ ] add a progress indicator while doing the configuration
+- [ ] allow re-configuring (e.g. after entering wrong credentials)
+      at an arbitrary point in time
 - [ ] allow sending of images
       and taking+sending photos directly from the camera.
       (videos and voice messages
@@ -46,6 +48,7 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
   - [ ] show e-mail-address in the chat-title and/or open profile
     when clicking on chat-title
     (subtitle) dc_chat_get_subtitle
+- [ ] read address book for contact suggestions
 - [ ] allow advanced configuration options on setup
       to make sure users can connect if the autoconfig fails
       (imap-server, imap-port, imap-flags, same for smtp -
