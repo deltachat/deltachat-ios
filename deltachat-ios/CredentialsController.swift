@@ -84,6 +84,7 @@ class CredentialsController: UITableViewController {
     let emailCell = TextFieldCell.makeEmailCell()
     let passwordCell = TextFieldCell.makePasswordCell()
     var doneButton:UIBarButtonItem?
+    let progressBar = UIProgressView(progressViewStyle: .default)
     
     func readyForLogin() -> Bool {
         return Utils.isValid(model.email) && !model.password.isEmpty
