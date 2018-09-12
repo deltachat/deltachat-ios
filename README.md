@@ -54,6 +54,11 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
       (imap-server, imap-port, imap-flags, same for smtp -
       if not yet implemented
       (cannot test currently, iphone-battery is empty))
+- [ ] check notifications, currently there is only a vibrate,
+      however, we should keep in mind that the first version
+      may be a "foreground" app, so "system notifications" may
+      be delayed to a later version
+- [ ] check how to solve this: new messages are only seen if a chat is closed and shown again (similar to that). No tune, no number at icon. https://github.com/deltachat/deltachat-ios/issues/9#issue-356157986
 
 ## Testing
 
