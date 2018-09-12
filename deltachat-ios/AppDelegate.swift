@@ -43,7 +43,16 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
     // - 1 when offline
     case DC_EVENT_CONFIGURE_PROGRESS:
         DispatchQueue.main.async {
-            print(data1) // progress in promille, 0 - error, 1000 - completed
+            // progress in promille, 0 - error, 1000 - completed
+            let progressInPromille = Float(data1)
+            let progress = progressInPromille / 1000
+            
+            if data1 == 1000 {
+                AppDelegate.appCoordinator.setupInnerViewControllers()
+            }
+            if data1 == 0 {
+                AppDelegate.appCoordinator.displayCredentialsController()
+            }
         }
         return nil
     case DC_EVENT_IS_OFFLINE:

@@ -29,11 +29,15 @@ class AppCoordinator: Coordinator {
 //            let password = "foobar"
 //            initCore(email: email, password: password)
             
-            let credentialsController = CredentialsController()
-            let credentialsNav = UINavigationController(rootViewController: credentialsController)
-
-            baseController.present(credentialsNav, animated: false, completion: nil)
+            displayCredentialsController()
         }
+    }
+    
+    func displayCredentialsController() {
+        let credentialsController = CredentialsController()
+        let credentialsNav = UINavigationController(rootViewController: credentialsController)
+        
+        baseController.present(credentialsNav, animated: false, completion: nil)
     }
     
     func setupInnerViewControllers() {

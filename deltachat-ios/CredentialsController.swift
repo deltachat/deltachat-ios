@@ -139,7 +139,6 @@ class CredentialsController: UITableViewController {
     @objc func saveAccountButtonPressed() {
         dismiss(animated: true) {
             initCore(withCredentials: true, email: self.model.email, password: self.model.password)
-            AppDelegate.appCoordinator.setupInnerViewControllers()
         }
     }
     
