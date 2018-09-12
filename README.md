@@ -32,7 +32,7 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
       and settings for contact for now)
 - [X] text drafts support
 - [X] support DC_EVENT_HTTP_GET event
-- [ ] add a progress indicator while doing the configuration
+- [X] add a progress indicator while doing the configuration
 - [ ] allow re-configuring (e.g. after entering wrong credentials)
       at an arbitrary point in time
 - [ ] allow sending of images
