@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7032FF8F2149C1DB00B7EC83 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7032FF8E2149C1DB00B7EC83 /* BaseController.swift */; };
 		7070FB3D20FDD9FE000DC258 /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */; };
 		7070FB4020FF3421000DC258 /* dc_chat.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3E20FF3420000DC258 /* dc_chat.c */; };
 		7070FB4120FF3421000DC258 /* dc_smtp.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3F20FF3421000DC258 /* dc_smtp.c */; };
@@ -111,6 +112,7 @@
 
 /* Begin PBXFileReference section */
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7032FF8E2149C1DB00B7EC83 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 		7070FB3E20FF3420000DC258 /* dc_chat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_chat.c; sourceTree = "<group>"; };
 		7070FB3F20FF3421000DC258 /* dc_smtp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_smtp.c; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				7A451D931FB1B1DB00177250 /* wrapper.h */,
 				7A451DBD1FB4AD0700177250 /* Wrapper.swift */,
 				70B8882D2091B8550074812E /* ContactCell.swift */,
+				7032FF8E2149C1DB00B7EC83 /* BaseController.swift */,
 				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
 				7A0052A01FBC50C40048C3BF /* CredentialsController.swift */,
 				7092474020B3869500AF8799 /* ContactProfileViewController.swift */,
@@ -647,6 +650,7 @@
 				7070FB6120FF345F000DC258 /* dc_securejoin.c in Sources */,
 				7A7923741FB0A2C800BC2DE5 /* symmetric.c in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
+				7032FF8F2149C1DB00B7EC83 /* BaseController.swift in Sources */,
 				7070FB9320FF4118000DC258 /* dc_msg.c in Sources */,
 				7A7923711FB0A2C800BC2DE5 /* packet-show.c in Sources */,
 				7070FB6820FF345F000DC258 /* dc_array.c in Sources */,

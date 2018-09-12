@@ -45,13 +45,20 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         DispatchQueue.main.async {
             // progress in promille, 0 - error, 1000 - completed
             let progressInPromille = Float(data1)
-            let progress = progressInPromille / 1000
-            
+            AppDelegate.progress = progressInPromille / 1000
+            print("progress: \(AppDelegate.progress)")
             if data1 == 1000 {
                 AppDelegate.appCoordinator.setupInnerViewControllers()
             }
             if data1 == 0 {
                 AppDelegate.appCoordinator.displayCredentialsController()
+            }
+            let nc = NotificationCenter.default
+            
+            DispatchQueue.main.async {
+                nc.post(name:Notification.Name(rawValue:"ProgressUpdated"),
+                        object: nil,
+                        userInfo: ["message":"Progress updated", "date":Date()])
             }
         }
         return nil
@@ -88,6 +95,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     static let appCoordinator = AppCoordinator()
+    static var progress:Float = 0
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

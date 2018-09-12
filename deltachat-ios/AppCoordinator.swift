@@ -13,7 +13,7 @@ protocol Coordinator {
 }
 
 class AppCoordinator: Coordinator {
-    let baseController = UIViewController()
+    let baseController = BaseController()
 
     func setupViewControllers(window: UIWindow) {
         window.rootViewController = baseController
