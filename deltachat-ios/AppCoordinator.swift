@@ -21,6 +21,7 @@ class AppCoordinator: Coordinator {
         window.backgroundColor = UIColor.white
         
         let ud = UserDefaults.standard
+        
         if ud.bool(forKey: Constants.Keys.deltachatUserProvidedCredentialsKey) {
             initCore(withCredentials: false)
             setupInnerViewControllers()

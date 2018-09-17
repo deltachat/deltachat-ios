@@ -15,16 +15,34 @@ class ProgressViewContainer: UIView {
     
     init() {
         super.init(frame: .zero)
-        self.backgroundColor = .white
+        self.backgroundColor = .lightGray
         
-        progressView.progressTintColor = .red
-        progressView.trackTintColor = .lightGray
-        progressView.progress = 0.1
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(label)
+        label.textAlignment = .center
+        label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -50).isActive = true
+        label.textColor = .darkGray
+        label.text = "Configuring…"
+        
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(activityIndicator)
+        
+        activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 50).isActive = true
+        activityIndicator.startAnimating()
+        
+        
+        progressView.progressTintColor = .darkGray
+        progressView.trackTintColor = .white
+        progressView.progress = 0.0
         
         self.addSubview(progressView)
         
         progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressView.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
+        progressView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         progressView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
         progressView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
     }
