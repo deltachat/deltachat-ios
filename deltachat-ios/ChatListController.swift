@@ -20,6 +20,8 @@ class ChatListController: UIViewController {
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
     
+    var dotsButton: UIBarButtonItem!
+    
     func getChatList() {
         guard let chatlistPointer = dc_get_chatlist(mailboxPointer, 0, nil, 0) else {
             fatalError("chatlistPointer was nil")
@@ -76,7 +78,7 @@ class ChatListController: UIViewController {
         chatTableDelegate.chatPresenter = self
         chatTable.delegate = chatTableDelegate
         let dotsImage:UIImage = #imageLiteral(resourceName: "ic_more_vert")
-        let dotsButton = UIBarButtonItem(image: dotsImage, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(didPressDotsButton))
+        dotsButton = UIBarButtonItem(image: dotsImage, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(didPressDotsButton))
     
         navigationItem.rightBarButtonItem = dotsButton
     }
@@ -108,6 +110,11 @@ actionSheet.addAction(UIAlertAction(title: "Scan QR code",
         actionSheet.addAction(UIAlertAction(title: "Cancel",
                                             style: .cancel,
                                             handler: {a in print("Cancel")}))
+        
+        if let popoverController = actionSheet.popoverPresentationController {
+            popoverController.barButtonItem = dotsButton
+        }
+        
         present(actionSheet, animated: true, completion: nil)
         
         
