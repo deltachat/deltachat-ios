@@ -69,10 +69,11 @@ Please [send us a mail](mailto:ios@getdelta.org?subject=Testflight%20invite%20re
 ## Changelog
 
 ### Beta 3
-upcoming (not released)
+2018-09-17
 
 - support automatic configuration via DC_EVENT_HTTP_GET event
 - progress indicator while doing the configuration
+- fixes iPad crash
 
 ### Beta 2
 2018-07-26
