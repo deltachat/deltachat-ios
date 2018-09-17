@@ -48,10 +48,12 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
             AppDelegate.progress = progressInPromille / 1000
             print("progress: \(AppDelegate.progress)")
             if data1 == 1000 {
+                UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
+                UserDefaults.standard.synchronize()
                 AppDelegate.appCoordinator.setupInnerViewControllers()
             }
             if data1 == 0 {
-                AppDelegate.appCoordinator.displayCredentialsController()
+                AppDelegate.appCoordinator.displayCredentialsController(message: "Configuration failed. Make sure to enter correct credentials. If using GMail, enable access for 'less secure apps' first.")
             }
             let nc = NotificationCenter.default
             
@@ -150,9 +152,6 @@ func initCore(withCredentials: Bool, email: String = "", password: String = "") 
         }
         dc_set_config(mailboxPointer, "addr", email)
         dc_set_config(mailboxPointer, "mail_pw", password)
-
-        UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
-        UserDefaults.standard.synchronize()
         
         // TODO: - handle failure, need to show credentials screen again
         dc_configure(mailboxPointer)

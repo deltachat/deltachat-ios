@@ -33,11 +33,22 @@ class AppCoordinator: Coordinator {
         }
     }
     
-    func displayCredentialsController() {
+    func displayCredentialsController(message: String? = nil) {
         let credentialsController = CredentialsController()
         let credentialsNav = UINavigationController(rootViewController: credentialsController)
         
-        baseController.present(credentialsNav, animated: false, completion: nil)
+        if baseController.presentedViewController != nil {
+            baseController.dismiss(animated: false, completion: nil)
+        }
+        
+        baseController.present(credentialsNav, animated: false) {
+            if let message = message {
+                let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                credentialsNav.present(alert, animated: false, completion: nil)
+                
+            }
+        }
     }
     
     func setupInnerViewControllers() {
