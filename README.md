@@ -51,9 +51,7 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
 - [ ] read address book for contact suggestions
 - [ ] allow advanced configuration options on setup
       to make sure users can connect if the autoconfig fails
-      (imap-server, imap-port, imap-flags, same for smtp -
-      if not yet implemented
-      (cannot test currently, iphone-battery is empty))
+      (imap-server, imap-port, imap-flags, same for smtp)
 - [ ] check notifications, currently there is only a vibrate,
       however, we should keep in mind that the first version
       may be a "foreground" app, so "system notifications" may
@@ -69,10 +67,11 @@ Please [send us a mail](mailto:ios@getdelta.org?subject=Testflight%20invite%20re
 ## Changelog
 
 ### Beta 3
-upcoming (not released)
+2018-09-17
 
 - support automatic configuration via DC_EVENT_HTTP_GET event
 - progress indicator while doing the configuration
+- fixes iPad crash
 
 ### Beta 2
 2018-07-26
