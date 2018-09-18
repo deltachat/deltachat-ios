@@ -36,6 +36,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         print("Warning: \(s)")
     case DC_EVENT_ERROR:
         let s = String(cString: data2String)
+        AppDelegate.lastErrorDuringConfig = s
         print("Error: \(s)")
     // TODO
     // check online state, return
@@ -53,7 +54,11 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                 AppDelegate.appCoordinator.setupInnerViewControllers()
             }
             if data1 == 0 {
-                AppDelegate.appCoordinator.displayCredentialsController(message: "Configuration failed. Make sure to enter correct credentials. If using GMail, enable access for 'less secure apps' first.")
+                if let lastErrorMessage = AppDelegate.lastErrorDuringConfig {
+                    AppDelegate.appCoordinator.displayCredentialsController(message: lastErrorMessage)
+                } else {
+                    AppDelegate.appCoordinator.displayCredentialsController(message: "Configuration failed. Make sure to enter correct credentials. If using GMail, enable access for 'less secure apps' first.")
+                }
             }
             let nc = NotificationCenter.default
             
@@ -98,6 +103,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
 class AppDelegate: UIResponder, UIApplicationDelegate {
     static let appCoordinator = AppCoordinator()
     static var progress:Float = 0
+    static var lastErrorDuringConfig:String? = nil
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
