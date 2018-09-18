@@ -66,6 +66,11 @@ Please [send us a mail](mailto:ios@getdelta.org?subject=Testflight%20invite%20re
 
 ## Changelog
 
+### Beta 4
+2018-09-18
+
+- display last DC_EVENT_ERROR string upon configuration failure
+
 ### Beta 3
 2018-09-17
 
