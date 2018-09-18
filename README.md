@@ -51,9 +51,7 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
 - [ ] read address book for contact suggestions
 - [ ] allow advanced configuration options on setup
       to make sure users can connect if the autoconfig fails
-      (imap-server, imap-port, imap-flags, same for smtp -
-      if not yet implemented
-      (cannot test currently, iphone-battery is empty))
+      (imap-server, imap-port, imap-flags, same for smtp)
 - [ ] check notifications, currently there is only a vibrate,
       however, we should keep in mind that the first version
       may be a "foreground" app, so "system notifications" may
