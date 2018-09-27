@@ -84,12 +84,22 @@ class CredentialsController: UITableViewController {
     let emailCell = TextFieldCell.makeEmailCell()
     let passwordCell = TextFieldCell.makePasswordCell()
     var doneButton:UIBarButtonItem?
+    var advancedButton:UIBarButtonItem?
     let progressBar = UIProgressView(progressViewStyle: .default)
     
     func readyForLogin() -> Bool {
         return Utils.isValid(model.email) && !model.password.isEmpty
     }
     
+    var advancedMode = false {
+        didSet {
+            if advancedMode {
+                advancedButton?.title = "Standard"
+            } else {
+                advancedButton?.title = "Advanced"
+            }
+        }
+    }
     var model:(email:String, password:String) = ("", "") {
         didSet {
             if readyForLogin() {
@@ -106,9 +116,11 @@ class CredentialsController: UITableViewController {
         cells = [emailCell, passwordCell]
 
         super.init(style: .grouped)
-        doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(CredentialsController.saveAccountButtonPressed))
+        doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didPressSaveAccountButton))
         doneButton?.isEnabled = false
+        advancedButton = UIBarButtonItem(title: "Advanced", style: .done, target: self, action: #selector(didPressAdvancedButton))
         navigationItem.rightBarButtonItem = doneButton
+        navigationItem.leftBarButtonItem = advancedButton
         
         emailCell.textField.addTarget(self, action: #selector(CredentialsController.emailTextChanged), for: UIControlEvents.editingChanged)
         passwordCell.textField.addTarget(self, action: #selector(CredentialsController.passwordTextChanged), for: UIControlEvents.editingChanged)
@@ -136,10 +148,14 @@ class CredentialsController: UITableViewController {
         model.password = passwordText
     }
     
-    @objc func saveAccountButtonPressed() {
+    @objc func didPressSaveAccountButton() {
         dismiss(animated: true) {
             initCore(withCredentials: true, email: self.model.email, password: self.model.password)
         }
+    }
+    
+    @objc func didPressAdvancedButton() {
+        advancedMode = !advancedMode 
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -181,7 +197,7 @@ extension CredentialsController: UITextFieldDelegate {
         }
         if textField == passwordCell.textField {
             if readyForLogin() {
-                self.saveAccountButtonPressed()
+                self.didPressSaveAccountButton()
             }
         }
         return true
