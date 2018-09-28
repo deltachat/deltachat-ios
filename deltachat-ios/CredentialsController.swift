@@ -98,6 +98,7 @@ class CredentialsController: UITableViewController {
             } else {
                 advancedButton?.title = "Advanced"
             }
+            tableView.reloadData()
         }
     }
     var model:(email:String, password:String) = ("", "") {
@@ -155,7 +156,7 @@ class CredentialsController: UITableViewController {
     }
     
     @objc func didPressAdvancedButton() {
-        advancedMode = !advancedMode 
+        advancedMode = !advancedMode
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -169,14 +170,53 @@ class CredentialsController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cells.count
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return advancedMode ? 3 : 1
     }
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return cells.count
+        }
+        if section == 1 {
+            return 4
+        }
+        if section == 2 {
+            return 5
+        }
+        return 0 // should never happen
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            return "IMAP"
+        }
+        if section == 2 {
+            return "SMTP"
+        }
+        return nil
+    }
+    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = indexPath.section
         let row = indexPath.row
         
-        return cells[row]
+        if section == 0 {
+            return cells[row]
+        }
+        let imapCellLabels = ["IMAP Login Name", "IMAP Server", "IMAP Port", "Security"]
+        let smtpCellLabels = ["SMTP Login Name", "SMTP Password", "SMTP Server", "SMTP Port", "Security"]
+        
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        if section == 1 {
+            cell.textLabel?.text = imapCellLabels[row]
+        }
+        if section == 2 {
+            cell.textLabel?.text = smtpCellLabels[row]
+        }
+        return cell
+        
     }
 
     override func didReceiveMemoryWarning() {
