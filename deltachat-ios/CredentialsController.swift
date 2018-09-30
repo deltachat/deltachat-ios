@@ -16,6 +16,20 @@ enum SecurityMode: String, CaseIterable {
     case off = "Off"
 }
 
+typealias CredentialsModel = (
+    email:String,
+    password:String,
+    imapLoginName:String?,
+    imapServer:String?,
+    imapPort:String?,
+    imapSecurity:SecurityMode,
+    smtpLoginName:String?,
+    smtpPassword:String?,
+    smtpServer:String?,
+    smtpPort:String?,
+    smtpSecurity:SecurityMode
+)
+
 class TextFieldCell:UITableViewCell {
     let textField = UITextField()
     
@@ -136,19 +150,7 @@ class CredentialsController: UITableViewController {
             tableView.reloadData()
         }
     }
-    var model:(
-        email:String,
-        password:String,
-        imapLoginName:String?,
-        imapServer:String?,
-        imapPort:String?,
-        imapSecurity:SecurityMode,
-        smtpLoginName:String?,
-        smtpPassword:String?,
-        smtpServer:String?,
-        smtpPort:String?,
-        smtpSecurity:SecurityMode
-        ) = ("", "", nil, nil, nil, SecurityMode.automatic, nil, nil, nil, nil, SecurityMode.automatic) {
+    var model:CredentialsModel = ("", "", nil, nil, nil, SecurityMode.automatic, nil, nil, nil, nil, SecurityMode.automatic) {
         didSet {
             if readyForLogin() {
                 doneButton?.isEnabled = true
@@ -196,7 +198,6 @@ class CredentialsController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         emailCell.textField.becomeFirstResponder()
     }
-
     
     @objc func didPressSaveAccountButton() {
         dismiss(animated: true) {
