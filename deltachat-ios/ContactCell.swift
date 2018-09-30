@@ -23,7 +23,7 @@ class ContactCell: UITableViewCell {
         }
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         //Init von der Superklasse aufrufen nachschauen
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         //configure and layout initialsLabel

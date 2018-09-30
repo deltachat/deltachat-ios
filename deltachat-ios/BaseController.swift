@@ -26,7 +26,7 @@ class ProgressViewContainer: UIView {
         label.textColor = .darkGray
         label.text = "Configuring…"
         
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(activityIndicator)
         

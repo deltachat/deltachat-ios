@@ -46,7 +46,7 @@ class AppCoordinator: Coordinator {
             if let message = message {
                 let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
                 
-                alert.addAction(UIAlertAction(title: "Help / Provider Overview", style: UIAlertActionStyle.default, handler: {
+                alert.addAction(UIAlertAction(title: "Help / Provider Overview", style: UIAlertAction.Style.default, handler: {
                     _ in
                     let url = URL(string: "https://support.delta.chat/t/provider-overview/56/2")!
                     UIApplication.shared.open(url, options: [:])

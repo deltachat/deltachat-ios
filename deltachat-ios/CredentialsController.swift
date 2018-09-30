@@ -124,13 +124,13 @@ class CredentialsController: UITableViewController {
     let imapCellLoginName = TextFieldCell.makeConfigCell(label: "IMAP Login Name", placeholder: "Automatic")
     let imapCellServer = TextFieldCell.makeConfigCell(label: "IMAP Server", placeholder: "Automatic")
     let imapCellPort = TextFieldCell.makeConfigCell(label: "IMAP Port", placeholder: "Automatic")
-    let imapCellSecurity = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: nil)
+    let imapCellSecurity = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: nil)
     
     let smtpCellLoginName = TextFieldCell.makeConfigCell(label: "SMTP Login Name", placeholder: "Automatic")
     let smtpCellPassword = TextFieldCell.makeConfigCell(label: "SMTP Password", placeholder: "As above")
     let smtpCellServer = TextFieldCell.makeConfigCell(label: "SMTP Server", placeholder: "Automatic")
     let smtpCellPort = TextFieldCell.makeConfigCell(label: "SMTP Port", placeholder: "Automatic")
-    let smtpCellSecurity = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: nil)
+    let smtpCellSecurity = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: nil)
     
     var doneButton:UIBarButtonItem?
     var advancedButton:UIBarButtonItem?
@@ -177,8 +177,8 @@ class CredentialsController: UITableViewController {
         
         // FIXME: refactor: do not use target/action here for text field changes
         //        but text field delegate
-        emailCell.textField.addTarget(self, action: #selector(emailTextChanged), for: UIControlEvents.editingChanged)
-        passwordCell.textField.addTarget(self, action: #selector(passwordTextChanged), for: UIControlEvents.editingChanged)
+        emailCell.textField.addTarget(self, action: #selector(emailTextChanged), for: UIControl.Event.editingChanged)
+        passwordCell.textField.addTarget(self, action: #selector(passwordTextChanged), for: UIControl.Event.editingChanged)
         imapCellLoginName.textField.addTarget(self, action: #selector(imapLoginNameChanged), for: .editingChanged)
         imapCellServer.textField.addTarget(self, action: #selector(imapServerChanged), for: .editingChanged)
         imapCellPort.textField.addTarget(self, action: #selector(imapPortChanged), for: .editingChanged)
