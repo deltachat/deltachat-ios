@@ -78,11 +78,38 @@ class TextFieldCell:UITableViewCell {
         
         return nameCell
     }
+    
+    static func makeConfigCell(label: String, placeholder: String) -> TextFieldCell {
+        let nameCell = TextFieldCell(description: label, placeholder: placeholder)
+        
+        nameCell.textField.autocapitalizationType = .words
+        nameCell.textField.autocorrectionType = .no
+        // .namePhonePad doesn't support autocapitalization
+        // see: https://stackoverflow.com/a/36365399
+        // therefore we use .default to capitalize the first character of the name
+        nameCell.textField.keyboardType = .default
+        
+        return nameCell
+    }
+    
+    
 }
 
 class CredentialsController: UITableViewController {
     let emailCell = TextFieldCell.makeEmailCell()
     let passwordCell = TextFieldCell.makePasswordCell()
+    
+    let imapCellLoginName = TextFieldCell.makeConfigCell(label: "IMAP Login Name", placeholder: "Automatic")
+    let imapCellServer = TextFieldCell.makeConfigCell(label: "IMAP Server", placeholder: "Automatic")
+    let imapCellPort = TextFieldCell.makeConfigCell(label: "IMAP Port", placeholder: "Automatic")
+    let imapCellSecurity = TextFieldCell.makeConfigCell(label: "Security", placeholder: "Automatic")
+    
+    let smtpCellLoginName = TextFieldCell.makeConfigCell(label: "SMTP Login Name", placeholder: "Automatic")
+    let smtpCellPassword = TextFieldCell.makeConfigCell(label: "SMTP Password", placeholder: "As above")
+    let smtpCellServer = TextFieldCell.makeConfigCell(label: "SMTP Server", placeholder: "Automatic")
+    let smtpCellPort = TextFieldCell.makeConfigCell(label: "SMTP Port", placeholder: "Automatic")
+    let smtpCellSecurity = TextFieldCell.makeConfigCell(label: "Security", placeholder: "Automatic")
+    
     var doneButton:UIBarButtonItem?
     var advancedButton:UIBarButtonItem?
     let progressBar = UIProgressView(progressViewStyle: .default)
@@ -101,7 +128,19 @@ class CredentialsController: UITableViewController {
             tableView.reloadData()
         }
     }
-    var model:(email:String, password:String) = ("", "") {
+    var model:(
+        email:String,
+        password:String,
+        imapLoginName:String?,
+        imapServer:String?,
+        imapPort:String?,
+        imapSecurity:String?,
+        smtpLoginName:String?,
+        smtpPassword:String?,
+        smtpServer:String?,
+        smtpPort:String?,
+        smtpSecurity:String?
+        ) = ("", "", nil, nil, nil, nil, nil, nil, nil, nil, nil) {
         didSet {
             if readyForLogin() {
                 doneButton?.isEnabled = true
@@ -205,17 +244,32 @@ class CredentialsController: UITableViewController {
         if section == 0 {
             return cells[row]
         }
-        let imapCellLabels = ["IMAP Login Name", "IMAP Server", "IMAP Port", "Security"]
-        let smtpCellLabels = ["SMTP Login Name", "SMTP Password", "SMTP Server", "SMTP Port", "Security"]
         
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         if section == 1 {
-            cell.textLabel?.text = imapCellLabels[row]
+            if row == 0 {
+                return imapCellLoginName
+            } else if row == 1 {
+                return imapCellServer
+            } else if row == 2 {
+                return imapCellPort
+            } else if row == 3 {
+                return imapCellSecurity
+            }
         }
         if section == 2 {
-            cell.textLabel?.text = smtpCellLabels[row]
+            if row == 0 {
+                return smtpCellLoginName
+            } else if row == 1 {
+                return smtpCellPassword
+            } else if row == 2 {
+                return smtpCellServer
+            } else if row == 3 {
+                return smtpCellPort
+            } else if row == 4 {
+                return smtpCellSecurity
+            }
         }
-        return cell
+        return UITableViewCell()
         
     }
 
