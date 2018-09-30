@@ -147,6 +147,7 @@ class CredentialsController: UITableViewController {
             } else {
                 doneButton?.isEnabled = false
             }
+            print(model)
         }
     }
     
@@ -162,8 +163,20 @@ class CredentialsController: UITableViewController {
         navigationItem.rightBarButtonItem = doneButton
         navigationItem.leftBarButtonItem = advancedButton
         
-        emailCell.textField.addTarget(self, action: #selector(CredentialsController.emailTextChanged), for: UIControlEvents.editingChanged)
-        passwordCell.textField.addTarget(self, action: #selector(CredentialsController.passwordTextChanged), for: UIControlEvents.editingChanged)
+        // FIXME: refactor: do not use target/action here for text field changes
+        //        but text field delegate
+        emailCell.textField.addTarget(self, action: #selector(emailTextChanged), for: UIControlEvents.editingChanged)
+        passwordCell.textField.addTarget(self, action: #selector(passwordTextChanged), for: UIControlEvents.editingChanged)
+        imapCellLoginName.textField.addTarget(self, action: #selector(imapLoginNameChanged), for: .editingChanged)
+        imapCellServer.textField.addTarget(self, action: #selector(imapServerChanged), for: .editingChanged)
+        imapCellPort.textField.addTarget(self, action: #selector(imapPortChanged), for: .editingChanged)
+        imapCellSecurity.textField.addTarget(self, action: #selector(imapSecurityChanged), for: .editingChanged)
+        
+        smtpCellLoginName.textField.addTarget(self, action: #selector(smtpLoginNamedChanged), for: .editingChanged)
+        smtpCellPassword.textField.addTarget(self, action: #selector(smtpPasswordChanged), for: .editingChanged)
+        smtpCellServer.textField.addTarget(self, action: #selector(smtpServerChanged), for: .editingChanged)
+        smtpCellPort.textField.addTarget(self, action: #selector(smtpPortChanged), for: .editingChanged)
+        smtpCellSecurity.textField.addTarget(self, action: #selector(smtpSecurityChanged), for: .editingChanged)
         
         emailCell.textField.textContentType = UITextContentType.emailAddress
         emailCell.textField.delegate = self
@@ -175,18 +188,7 @@ class CredentialsController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         emailCell.textField.becomeFirstResponder()
     }
-    
-    @objc func emailTextChanged() {
-        let emailText = emailCell.textField.text ?? ""
-        
-        model.email = emailText
-    }
-    
-    @objc func passwordTextChanged() {
-        let passwordText = passwordCell.textField.text ?? ""
-        
-        model.password = passwordText
-    }
+
     
     @objc func didPressSaveAccountButton() {
         dismiss(animated: true) {
@@ -294,6 +296,47 @@ extension CredentialsController: UITextFieldDelegate {
                 self.didPressSaveAccountButton()
             }
         }
+        
         return true
+    }
+}
+
+extension CredentialsController {
+    @objc func emailTextChanged() {
+        let emailText = emailCell.textField.text ?? ""
+        
+        model.email = emailText
+    }
+    @objc func passwordTextChanged() {
+        let passwordText = passwordCell.textField.text ?? ""
+        
+        model.password = passwordText
+    }
+    @objc func imapLoginNameChanged() {
+        model.imapLoginName = imapCellLoginName.textField.text
+    }
+    @objc func imapServerChanged() {
+        model.imapServer = imapCellServer.textField.text
+    }
+    @objc func imapPortChanged() {
+        model.imapPort = imapCellPort.textField.text
+    }
+    @objc func imapSecurityChanged() {
+        model.imapSecurity = imapCellPort.textField.text
+    }
+    @objc func smtpLoginNamedChanged() {
+        model.smtpLoginName = smtpCellLoginName.textField.text
+    }
+    @objc func smtpPasswordChanged() {
+        model.smtpPassword = smtpCellPassword.textField.text
+    }
+    @objc func smtpServerChanged() {
+        model.smtpServer = smtpCellServer.textField.text
+    }
+    @objc func smtpPortChanged() {
+        model.smtpPort = smtpCellPort.textField.text
+    }
+    @objc func smtpSecurityChanged() {
+        model.smtpSecurity = smtpCellSecurity.textField.text
     }
 }
