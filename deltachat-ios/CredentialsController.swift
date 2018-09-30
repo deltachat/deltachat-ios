@@ -362,10 +362,6 @@ extension CredentialsController {
     @objc func imapPortChanged() {
         model.imapPort = imapCellPort.textField.text
     }
-    @objc func imapSecurityChanged() {
-        // FIXME
-        //        model.imapSecurity = imapCellSecurity.textField.text
-    }
     @objc func smtpLoginNamedChanged() {
         model.smtpLoginName = smtpCellLoginName.textField.text
     }
@@ -377,9 +373,5 @@ extension CredentialsController {
     }
     @objc func smtpPortChanged() {
         model.smtpPort = smtpCellPort.textField.text
-    }
-    @objc func smtpSecurityChanged() {
-        // FIXME
-        //        model.smtpSecurity = smtpCellSecurity.textField.text
     }
 }
