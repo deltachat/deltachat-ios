@@ -267,6 +267,12 @@ class CredentialsController: UITableViewController {
                 }))
             }
             actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {a in}))
+
+            if let popoverController = actionSheet.popoverPresentationController {
+                if let cell = tableView.cellForRow(at: indexPath) {
+                    popoverController.sourceView = cell.detailTextLabel
+                }
+            }
             self.present(actionSheet, animated: true, completion: {})
         }
     }
