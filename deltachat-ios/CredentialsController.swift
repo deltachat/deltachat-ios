@@ -8,6 +8,14 @@
 
 import UIKit
 
+// valid security modes for IMAP and SMTP
+enum SecurityMode: String, CaseIterable {
+    case automatic = "Automatic"
+    case ssltls = "SSL/TLS"
+    case starttls = "STARTTLS"
+    case off = "Off"
+}
+
 class TextFieldCell:UITableViewCell {
     let textField = UITextField()
     
@@ -102,13 +110,13 @@ class CredentialsController: UITableViewController {
     let imapCellLoginName = TextFieldCell.makeConfigCell(label: "IMAP Login Name", placeholder: "Automatic")
     let imapCellServer = TextFieldCell.makeConfigCell(label: "IMAP Server", placeholder: "Automatic")
     let imapCellPort = TextFieldCell.makeConfigCell(label: "IMAP Port", placeholder: "Automatic")
-    let imapCellSecurity = TextFieldCell.makeConfigCell(label: "Security", placeholder: "Automatic")
+    let imapCellSecurity = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: nil)
     
     let smtpCellLoginName = TextFieldCell.makeConfigCell(label: "SMTP Login Name", placeholder: "Automatic")
     let smtpCellPassword = TextFieldCell.makeConfigCell(label: "SMTP Password", placeholder: "As above")
     let smtpCellServer = TextFieldCell.makeConfigCell(label: "SMTP Server", placeholder: "Automatic")
     let smtpCellPort = TextFieldCell.makeConfigCell(label: "SMTP Port", placeholder: "Automatic")
-    let smtpCellSecurity = TextFieldCell.makeConfigCell(label: "Security", placeholder: "Automatic")
+    let smtpCellSecurity = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: nil)
     
     var doneButton:UIBarButtonItem?
     var advancedButton:UIBarButtonItem?
@@ -134,19 +142,21 @@ class CredentialsController: UITableViewController {
         imapLoginName:String?,
         imapServer:String?,
         imapPort:String?,
-        imapSecurity:String?,
+        imapSecurity:SecurityMode,
         smtpLoginName:String?,
         smtpPassword:String?,
         smtpServer:String?,
         smtpPort:String?,
-        smtpSecurity:String?
-        ) = ("", "", nil, nil, nil, nil, nil, nil, nil, nil, nil) {
+        smtpSecurity:SecurityMode
+        ) = ("", "", nil, nil, nil, SecurityMode.automatic, nil, nil, nil, nil, SecurityMode.automatic) {
         didSet {
             if readyForLogin() {
                 doneButton?.isEnabled = true
             } else {
                 doneButton?.isEnabled = false
             }
+            smtpCellSecurity.detailTextLabel?.text = model.smtpSecurity.rawValue
+            imapCellSecurity.detailTextLabel?.text = model.imapSecurity.rawValue
             print(model)
         }
     }
@@ -170,13 +180,11 @@ class CredentialsController: UITableViewController {
         imapCellLoginName.textField.addTarget(self, action: #selector(imapLoginNameChanged), for: .editingChanged)
         imapCellServer.textField.addTarget(self, action: #selector(imapServerChanged), for: .editingChanged)
         imapCellPort.textField.addTarget(self, action: #selector(imapPortChanged), for: .editingChanged)
-        imapCellSecurity.textField.addTarget(self, action: #selector(imapSecurityChanged), for: .editingChanged)
         
         smtpCellLoginName.textField.addTarget(self, action: #selector(smtpLoginNamedChanged), for: .editingChanged)
         smtpCellPassword.textField.addTarget(self, action: #selector(smtpPasswordChanged), for: .editingChanged)
         smtpCellServer.textField.addTarget(self, action: #selector(smtpServerChanged), for: .editingChanged)
         smtpCellPort.textField.addTarget(self, action: #selector(smtpPortChanged), for: .editingChanged)
-        smtpCellSecurity.textField.addTarget(self, action: #selector(smtpSecurityChanged), for: .editingChanged)
         
         emailCell.textField.textContentType = UITextContentType.emailAddress
         emailCell.textField.delegate = self
@@ -239,13 +247,22 @@ class CredentialsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if ((indexPath.section == 1) && (indexPath.row == 3)) || ((indexPath.section == 2) && (indexPath.row == 4)) {
-            // FIXME: deselect row here
+        let isIMAP = indexPath.section == 1
+        let isSMTP = indexPath.section == 2
+        if (isIMAP && (indexPath.row == 3)) || (isSMTP && (indexPath.row == 4)) {
             let actionSheet = UIAlertController(title: "Security", message: nil, preferredStyle: .actionSheet)
-            actionSheet.addAction(UIAlertAction(title: "Automatic", style: .default, handler: {a in}))
-            actionSheet.addAction(UIAlertAction(title: "SSL/TLS", style: .default, handler: {a in}))
-            actionSheet.addAction(UIAlertAction(title: "STARTTLS", style: .default, handler: {a in}))
-            actionSheet.addAction(UIAlertAction(title: "Off", style: .default, handler: {a in}))
+            for securityMode in SecurityMode.allCases {
+                actionSheet.addAction(UIAlertAction(title: securityMode.rawValue, style: .default, handler: {
+                    [unowned self]
+                    _ in
+                    if isIMAP {
+                        self.model.imapSecurity = securityMode
+                    }
+                    if isSMTP {
+                        self.model.smtpSecurity = securityMode
+                    }
+                }))
+            }
             actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {a in}))
             self.present(actionSheet, animated: true, completion: {})
         }
@@ -271,11 +288,10 @@ class CredentialsController: UITableViewController {
 //                return imapCellSecurity
             } else if row == 3 {
                 // FIXME: support iPad
-                let imapCellSec = UITableViewCell(style: .default, reuseIdentifier: nil)
-                imapCellSec.textLabel?.text = "Security:"
-                imapCellSec.selectionStyle = .none
-                //                return smtpCellSecurity
-                return imapCellSec
+                imapCellSecurity.textLabel?.text = "Security:"
+                imapCellSecurity.selectionStyle = .none
+                imapCellSecurity.detailTextLabel?.text = model.imapSecurity.rawValue
+                return imapCellSecurity
         }
         }
         if section == 2 {
@@ -290,11 +306,10 @@ class CredentialsController: UITableViewController {
             } else if row == 4 {
                 // FIXME: support iPad
 
-                let smtpCellSec = UITableViewCell(style: .default, reuseIdentifier: nil)
-                smtpCellSec.selectionStyle = .none
-                smtpCellSec.textLabel?.text = "Security:"
-//                return smtpCellSecurity
-                return smtpCellSec
+                smtpCellSecurity.selectionStyle = .none
+                smtpCellSecurity.textLabel?.text = "Security:"
+                smtpCellSecurity.detailTextLabel?.text = model.smtpSecurity.rawValue
+                return smtpCellSecurity
             }
         }
         return UITableViewCell()
@@ -348,7 +363,8 @@ extension CredentialsController {
         model.imapPort = imapCellPort.textField.text
     }
     @objc func imapSecurityChanged() {
-        model.imapSecurity = imapCellPort.textField.text
+        // FIXME
+        //        model.imapSecurity = imapCellSecurity.textField.text
     }
     @objc func smtpLoginNamedChanged() {
         model.smtpLoginName = smtpCellLoginName.textField.text
@@ -363,6 +379,7 @@ extension CredentialsController {
         model.smtpPort = smtpCellPort.textField.text
     }
     @objc func smtpSecurityChanged() {
-        model.smtpSecurity = smtpCellSecurity.textField.text
+        // FIXME
+        //        model.smtpSecurity = smtpCellSecurity.textField.text
     }
 }
