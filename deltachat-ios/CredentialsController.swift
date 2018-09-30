@@ -238,6 +238,19 @@ class CredentialsController: UITableViewController {
         return nil
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if ((indexPath.section == 1) && (indexPath.row == 3)) || ((indexPath.section == 2) && (indexPath.row == 4)) {
+            // FIXME: deselect row here
+            let actionSheet = UIAlertController(title: "Security", message: nil, preferredStyle: .actionSheet)
+            actionSheet.addAction(UIAlertAction(title: "Automatic", style: .default, handler: {a in}))
+            actionSheet.addAction(UIAlertAction(title: "SSL/TLS", style: .default, handler: {a in}))
+            actionSheet.addAction(UIAlertAction(title: "STARTTLS", style: .default, handler: {a in}))
+            actionSheet.addAction(UIAlertAction(title: "Off", style: .default, handler: {a in}))
+            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {a in}))
+            self.present(actionSheet, animated: true, completion: {})
+        }
+    }
+    
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
@@ -254,9 +267,16 @@ class CredentialsController: UITableViewController {
                 return imapCellServer
             } else if row == 2 {
                 return imapCellPort
+//            } else if row == 3 {
+//                return imapCellSecurity
             } else if row == 3 {
-                return imapCellSecurity
-            }
+                // FIXME: support iPad
+                let imapCellSec = UITableViewCell(style: .default, reuseIdentifier: nil)
+                imapCellSec.textLabel?.text = "Security:"
+                imapCellSec.selectionStyle = .none
+                //                return smtpCellSecurity
+                return imapCellSec
+        }
         }
         if section == 2 {
             if row == 0 {
@@ -268,7 +288,13 @@ class CredentialsController: UITableViewController {
             } else if row == 3 {
                 return smtpCellPort
             } else if row == 4 {
-                return smtpCellSecurity
+                // FIXME: support iPad
+
+                let smtpCellSec = UITableViewCell(style: .default, reuseIdentifier: nil)
+                smtpCellSec.selectionStyle = .none
+                smtpCellSec.textLabel?.text = "Security:"
+//                return smtpCellSecurity
+                return smtpCellSec
             }
         }
         return UITableViewCell()
