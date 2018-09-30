@@ -200,8 +200,10 @@ class CredentialsController: UITableViewController {
     }
     
     @objc func didPressSaveAccountButton() {
+        let m = model
+        let a = advancedMode
         dismiss(animated: true) {
-            initCore(withCredentials: true, email: self.model.email, password: self.model.password)
+            initCore(withCredentials: true, advancedMode: a, model: m)
         }
     }
     

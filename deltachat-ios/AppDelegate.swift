@@ -120,7 +120,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 
-func initCore(withCredentials: Bool, email: String = "", password: String = "") {
+func initCore(withCredentials: Bool, advancedMode:Bool = false, model:CredentialsModel? = nil) {
+/*    let DC_LP_AUTH_NORMAL:Int = 0x4
+    let DC_LP_IMAP_SOCKET_PLAIN:Int = 0x400
+    let DC_LP_IMAP_SOCKET_SSL:Int = 0x200
+    let DC_LP_IMAP_SOCKET_STARTTLS:Int = 0x100
+    let DC_LP_SMTP_SOCKET_PLAIN:Int = 0x40000
+    let DC_LP_SMTP_SOCKET_SSL:Int = 0x20000
+    let DC_LP_SMTP_SOCKET_STARTTLS:Int = 0x10000*/
+
     let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
     let documentsPath = paths[0]
     let dbfile = documentsPath + "/messenger.db"
@@ -150,14 +158,69 @@ func initCore(withCredentials: Bool, email: String = "", password: String = "") 
     let _ = dc_open(mailboxPointer, dbfile, nil)
     
     if withCredentials {
-        if !(email.contains("@") && (email.count >= 3)) {
+        guard let model = model else {
+            fatalError("withCredentials == true implies non-nil model")
+        }
+        if !(model.email.contains("@") && (model.email.count >= 3)) {
             fatalError("initCore called with withCredentials flag set to true, but email not valid")
         }
-        if password.isEmpty {
+        if model.password.isEmpty {
             fatalError("initCore called with withCredentials flag set to true, password is empty")
         }
-        dc_set_config(mailboxPointer, "addr", email)
-        dc_set_config(mailboxPointer, "mail_pw", password)
+        dc_set_config(mailboxPointer, "addr", model.email)
+        dc_set_config(mailboxPointer, "mail_pw", model.password)
+        if advancedMode {
+            if let imapLoginName = model.imapLoginName {
+                dc_set_config(mailboxPointer, "mail_user", imapLoginName)
+            }
+            if let imapServer = model.imapServer {
+                dc_set_config(mailboxPointer, "mail_server", imapServer)
+            }
+            if let imapPort = model.imapPort {
+                dc_set_config(mailboxPointer, "mail_port", imapPort)
+            }
+
+            
+            if let smtpLoginName = model.smtpLoginName {
+                dc_set_config(mailboxPointer, "send_user", smtpLoginName)
+            }
+            if let smtpPassword = model.smtpPassword {
+                dc_set_config(mailboxPointer, "send_pw", smtpPassword)
+            }
+            if let smtpServer = model.smtpServer {
+                dc_set_config(mailboxPointer, "send_server", smtpServer)
+            }
+            if let smtpPort = model.smtpPort {
+                dc_set_config(mailboxPointer, "send_port", smtpPort)
+            }
+            
+            var flags:Int32 = 0
+            if (model.smtpSecurity == .automatic) && (model.imapSecurity == .automatic) {
+                flags = DC_LP_AUTH_NORMAL
+            } else {
+                if model.smtpSecurity == .off {
+                    flags |= DC_LP_SMTP_SOCKET_PLAIN
+                } else if model.smtpSecurity == .ssltls {
+                    flags |= DC_LP_SMTP_SOCKET_SSL
+                } else if model.smtpSecurity == .starttls {
+                    flags |= DC_LP_SMTP_SOCKET_STARTTLS
+                }
+                
+                if model.imapSecurity == .off {
+                    flags |= DC_LP_IMAP_SOCKET_PLAIN
+                } else if model.imapSecurity == .ssltls {
+                    flags |= DC_LP_IMAP_SOCKET_SSL
+                } else if model.imapSecurity == .starttls {
+                    flags |= DC_LP_IMAP_SOCKET_STARTTLS
+                }
+            }
+            let ptr: UnsafeMutablePointer<Int32> = UnsafeMutablePointer.allocate(capacity: 1)
+            ptr.pointee = flags
+            let rp = UnsafeRawPointer(ptr)
+            // rebind memory from Int32 to Int8
+            let up = rp.bindMemory(to: Int8.self, capacity: 1)
+            dc_set_config(mailboxPointer, "server_flags", up)
+        }
         
         // TODO: - handle failure, need to show credentials screen again
         dc_configure(mailboxPointer)

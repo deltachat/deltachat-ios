@@ -215,6 +215,7 @@
 		7A9FB14D1FB061E2001FEA36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A9FB14F1FB061E2001FEA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A9FB1561FB06540001FEA36 /* deltachat-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "deltachat-ios-Bridging-Header.h"; sourceTree = "<group>"; };
+		7ABE47E321617ACF002F5A67 /* dc_loginparam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dc_loginparam.h; sourceTree = "<group>"; };
 		7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		8DE110C607A0E4485C43B5FA /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -407,6 +408,7 @@
 				7070FB7E20FF3833000DC258 /* dc_msg.h */,
 				7070FB7B20FF3815000DC258 /* dc_contact.h */,
 				7070FB7D20FF3815000DC258 /* dc_lot.h */,
+				7ABE47E321617ACF002F5A67 /* dc_loginparam.h */,
 				7070FB7820FF353E000DC258 /* deltachat.h */,
 				7070FB4D20FF345C000DC258 /* dc_array.c */,
 				7070FB4A20FF345C000DC258 /* dc_chatlist.c */,

@@ -10,7 +10,10 @@
 #include "dc_msg.h"
 #include "dc_lot.h"
 #include "dc_array.h"
+#include "dc_loginparam.h"
 #include "wrapper.h"
+
+
 
 /*
 #include "mrsqlite3.h"
