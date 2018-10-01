@@ -33,6 +33,9 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
 - [X] text drafts support
 - [X] support DC_EVENT_HTTP_GET event
 - [X] add a progress indicator while doing the configuration
+- [X] allow advanced configuration options on setup
+      to make sure users can connect if the autoconfig fails
+      (imap-server, imap-port, imap-flags, same for smtp)
 - [ ] allow re-configuring (e.g. after entering wrong credentials)
       at an arbitrary point in time
 - [ ] allow sending of images
@@ -49,9 +52,6 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
     when clicking on chat-title
     (subtitle) dc_chat_get_subtitle
 - [ ] read address book for contact suggestions
-- [ ] allow advanced configuration options on setup
-      to make sure users can connect if the autoconfig fails
-      (imap-server, imap-port, imap-flags, same for smtp)
 - [ ] check notifications, currently there is only a vibrate,
       however, we should keep in mind that the first version
       may be a "foreground" app, so "system notifications" may
@@ -63,6 +63,13 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
 Betas are distributed via Testflight.
 
 Please [send us a mail](mailto:ios@getdelta.org?subject=Testflight%20invite%20request&body=Hello,%0A%0APlease%20send%20me%20a%20Testflight%20invite%20for%20Deltachat%20iOS) if you also want to test the app.
+
+## Changelog
+
+### Beta 5
+2018-10-01
+
+- allow advanced configuration options on setup to make sure users can connect if the autoconfig fails (imap-server, imap-port, imap-flags, same for smtp)
 
 ## Changelog
 
