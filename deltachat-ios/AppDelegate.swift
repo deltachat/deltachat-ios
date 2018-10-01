@@ -121,13 +121,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 func initCore(withCredentials: Bool, advancedMode:Bool = false, model:CredentialsModel? = nil) {
-/*    let DC_LP_AUTH_NORMAL:Int = 0x4
-    let DC_LP_IMAP_SOCKET_PLAIN:Int = 0x400
-    let DC_LP_IMAP_SOCKET_SSL:Int = 0x200
-    let DC_LP_IMAP_SOCKET_STARTTLS:Int = 0x100
-    let DC_LP_SMTP_SOCKET_PLAIN:Int = 0x40000
-    let DC_LP_SMTP_SOCKET_SSL:Int = 0x20000
-    let DC_LP_SMTP_SOCKET_STARTTLS:Int = 0x10000*/
 
     let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
     let documentsPath = paths[0]
