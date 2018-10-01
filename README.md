@@ -71,8 +71,6 @@ Please [send us a mail](mailto:ios@getdelta.org?subject=Testflight%20invite%20re
 
 - allow advanced configuration options on setup to make sure users can connect if the autoconfig fails (imap-server, imap-port, imap-flags, same for smtp)
 
-## Changelog
-
 ### Beta 4
 2018-09-18
 
