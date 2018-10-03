@@ -165,14 +165,22 @@ class CredentialsController: UITableViewController {
     
     let cells:[UITableViewCell]
     
-    init() {
+    init(isCancellable:Bool = false) {
         cells = [emailCell, passwordCell]
 
         super.init(style: .grouped)
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didPressSaveAccountButton))
         doneButton?.isEnabled = false
         advancedButton = UIBarButtonItem(title: "Advanced", style: .done, target: self, action: #selector(didPressAdvancedButton))
-        navigationItem.rightBarButtonItem = doneButton
+        
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didPressCancelButton))
+        
+        if isCancellable {
+            navigationItem.rightBarButtonItems = [doneButton!, cancelButton]
+        } else {
+            navigationItem.rightBarButtonItem = doneButton
+        }
+        
         navigationItem.leftBarButtonItem = advancedButton
         
         // FIXME: refactor: do not use target/action here for text field changes
@@ -197,6 +205,10 @@ class CredentialsController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         emailCell.textField.becomeFirstResponder()
+    }
+    
+    @objc func didPressCancelButton() {
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func didPressSaveAccountButton() {
@@ -301,7 +313,7 @@ class CredentialsController: UITableViewController {
                 imapCellSecurity.selectionStyle = .none
                 imapCellSecurity.detailTextLabel?.text = model.imapSecurity.rawValue
                 return imapCellSecurity
-        }
+            }
         }
         if section == 2 {
             if row == 0 {

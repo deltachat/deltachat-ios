@@ -103,10 +103,17 @@ actionSheet.addAction(UIAlertAction(title: "Scan QR code",
                                             handler: {a in print("Show QR code")}))
         actionSheet.addAction(UIAlertAction(title: "Contact requests",
                                             style: .default,
-                                            handler: {a in print("Contact requests")}))
+                                            handler: {a in print("Contact requests")}))*/
         actionSheet.addAction(UIAlertAction(title: "Settings",
                                             style: .default,
-                                            handler: {a in print("Settings")}))*/
+                                            handler: {a in
+                                                print("Settings")
+                                                let credentials = CredentialsController(isCancellable: true)
+                                                let nav = UINavigationController(rootViewController: credentials)
+                                                self.present(nav, animated: true, completion: nil)
+                                                
+                                                
+        }))
         actionSheet.addAction(UIAlertAction(title: "Cancel",
                                             style: .cancel,
                                             handler: {a in print("Cancel")}))
