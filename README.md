@@ -36,8 +36,8 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
 - [X] allow advanced configuration options on setup
       to make sure users can connect if the autoconfig fails
       (imap-server, imap-port, imap-flags, same for smtp)
-- [ ] allow re-configuring (e.g. after entering wrong credentials)
-      at an arbitrary point in time
+- [X] allow re-configuring (e.g. after changing the IMAP/SMTP password) at
+      an arbitrary point in time
 - [ ] allow sending of images
       and taking+sending photos directly from the camera.
       (videos and voice messages
