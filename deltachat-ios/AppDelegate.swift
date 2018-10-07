@@ -55,9 +55,9 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
             }
             if data1 == 0 {
                 if let lastErrorMessage = AppDelegate.lastErrorDuringConfig {
-                    AppDelegate.appCoordinator.displayCredentialsController(message: lastErrorMessage)
+                    AppDelegate.appCoordinator.displayCredentialsController(message: lastErrorMessage, isCancellable: AppDelegate.cancellableCredentialsController)
                 } else {
-                    AppDelegate.appCoordinator.displayCredentialsController(message: "Configuration failed. Make sure to enter correct credentials. If using GMail, enable access for 'less secure apps' first.")
+                    AppDelegate.appCoordinator.displayCredentialsController(message: "Configuration failed. Make sure to enter correct credentials. If using GMail, enable access for 'less secure apps' first.", isCancellable: AppDelegate.cancellableCredentialsController)
                 }
             }
             let nc = NotificationCenter.default
@@ -104,6 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let appCoordinator = AppCoordinator()
     static var progress:Float = 0
     static var lastErrorDuringConfig:String? = nil
+    static var cancellableCredentialsController = false
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -120,7 +121,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 
-func initCore(withCredentials: Bool, advancedMode:Bool = false, model:CredentialsModel? = nil) {
+func initCore(withCredentials: Bool, advancedMode:Bool = false, model:CredentialsModel? = nil, cancellableCredentialsUponFailure: Bool = false) {
+    AppDelegate.cancellableCredentialsController = cancellableCredentialsUponFailure
 
     let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
     let documentsPath = paths[0]

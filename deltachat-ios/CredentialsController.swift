@@ -164,9 +164,11 @@ class CredentialsController: UITableViewController {
     }
     
     let cells:[UITableViewCell]
+    let isCancellable:Bool
     
     init(isCancellable:Bool = false) {
         cells = [emailCell, passwordCell]
+        self.isCancellable = isCancellable
 
         super.init(style: .grouped)
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didPressSaveAccountButton))
@@ -208,14 +210,16 @@ class CredentialsController: UITableViewController {
     }
     
     @objc func didPressCancelButton() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false) {
+            AppDelegate.appCoordinator.setupInnerViewControllers()
+        }
     }
     
     @objc func didPressSaveAccountButton() {
         let m = model
         let a = advancedMode
         dismiss(animated: true) {
-            initCore(withCredentials: true, advancedMode: a, model: m)
+            initCore(withCredentials: true, advancedMode: a, model: m, cancellableCredentialsUponFailure: self.isCancellable)
         }
     }
     

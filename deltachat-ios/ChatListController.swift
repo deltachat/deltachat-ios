@@ -107,11 +107,7 @@ actionSheet.addAction(UIAlertAction(title: "Scan QR code",
         actionSheet.addAction(UIAlertAction(title: "Settings",
                                             style: .default,
                                             handler: {a in
-                                                print("Settings")
-                                                let credentials = CredentialsController(isCancellable: true)
-                                                let nav = UINavigationController(rootViewController: credentials)
-                                                self.present(nav, animated: true, completion: nil)
-                                                
+                                                AppDelegate.appCoordinator.displayCredentialsController(isCancellable: true)
                                                 
         }))
         actionSheet.addAction(UIAlertAction(title: "Cancel",

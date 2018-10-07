@@ -34,8 +34,9 @@ class AppCoordinator: Coordinator {
         }
     }
     
-    func displayCredentialsController(message: String? = nil) {
-        let credentialsController = CredentialsController()
+    func displayCredentialsController(message: String? = nil, isCancellable:Bool = false) {
+        let credentialsController = CredentialsController(isCancellable: isCancellable)
+        
         let credentialsNav = UINavigationController(rootViewController: credentialsController)
         
         if baseController.presentedViewController != nil {
@@ -61,8 +62,8 @@ class AppCoordinator: Coordinator {
     
     func setupInnerViewControllers() {
 
-        let chatViewController = ChatListController()
-        let chatNavigationController = UINavigationController(rootViewController: chatViewController)
+        let chatListController = ChatListController()
+        let chatNavigationController = UINavigationController(rootViewController: chatListController)
         
         baseController.present(chatNavigationController, animated: false, completion: nil)
     }
