@@ -60,9 +60,11 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
 
 ## Testing
 
-Betas are distributed via Testflight.
+Betas are distributed via Testflight. Click on this link
 
-Please [send us a mail](mailto:ios@getdelta.org?subject=Testflight%20invite%20request&body=Hello,%0A%0APlease%20send%20me%20a%20Testflight%20invite%20for%20Deltachat%20iOS) if you also want to test the app.
+https://testflight.apple.com/join/WVoYFOZe
+
+on your iPhone or iPad to try Deltachat iOS Beta.
 
 ## Changelog
 
