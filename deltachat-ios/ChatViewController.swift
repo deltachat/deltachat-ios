@@ -123,11 +123,16 @@ class ChatViewController: MessagesViewController {
         // scrollsToBottomOnFirstLayout = true //default false
         scrollsToBottomOnKeybordBeginsEditing = true // default false
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_keyboard"),
+        /*navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_keyboard"),
                                                             style: .plain,
                                                             target: self,
-                                                            action: #selector(handleKeyboardButton))
+                                                            action: #selector(handleKeyboardButton))*/
+        
+        let photoButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(didPressPhotoButton))
+        navigationItem.rightBarButtonItem = photoButton
     }
+    
+
     
     @objc func handleKeyboardButton() {
         
@@ -367,6 +372,20 @@ extension ChatViewController: MessagesLayoutDelegate {
         
         return CGSize(width: messagesCollectionView.bounds.width, height: 10)
     }
+    
+    @objc func didPressPhotoButton() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        imagePicker.cameraDevice = .rear
+        self.present(imagePicker, animated: true, completion: nil)
+        
+
+    }
+    
+}
+
+extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
 }
 
