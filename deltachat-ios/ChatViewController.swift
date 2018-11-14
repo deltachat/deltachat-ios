@@ -382,14 +382,36 @@ extension ChatViewController: MessagesLayoutDelegate {
         imagePicker.sourceType = .camera
         imagePicker.cameraDevice = .rear
         self.present(imagePicker, animated: true, completion: nil)
-        
-
     }
     
+    fileprivate func saveImage(image: UIImage) -> String? {
+        guard let data = image.jpegData(compressionQuality: 1) else {
+            return nil
+        }
+        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
+            return nil
+        }
+        do {
+            let path = directory.appendingPathComponent("attachment.jpg")
+            try data.write(to: path!)
+            return path?.relativePath
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
 }
 
 extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage,
+            let width = Int32(exactly: pickedImage.size.width),
+            let height = Int32(exactly: pickedImage.size.height),
+            let path = saveImage(image: pickedImage) {
+            dc_send_image_msg(mailboxPointer, UInt32(self.chatId), path, "image/jpeg", width, height)
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 
