@@ -10,45 +10,79 @@ import Foundation
 import MessageKit
 import CoreLocation
 
+struct Location: LocationItem {
+    var location: CLLocation
+    
+    var size: CGSize
+    
+    init(location: CLLocation, size: CGSize) {
+        self.location = location
+        self.size = size
+    }
+    
+}
 
+struct Media: MediaItem {
+    var url: URL? = nil
+    
+    var image: UIImage?
+    
+    var placeholderImage: UIImage = UIImage(named: "ic_attach_file_36pt")!
+    
+    var size: CGSize {
+        if let image = image {
+            return image.size
+        } else {
+            return placeholderImage.size
+        }
+    }
+    
+    init(url: URL? = nil, image: UIImage? = nil) {
+        self.url = url
+        self.image = image
+    }
+}
 
 struct Message: MessageType {
     
     var messageId: String
     var sender: Sender
     var sentDate: Date
-    var data: MessageData
+    var kind: MessageKind
     
-    init(data: MessageData, sender: Sender, messageId: String, date: Date) {
-        self.data = data
+    init(kind: MessageKind, sender: Sender, messageId: String, date: Date) {
+        self.kind = kind
         self.sender = sender
         self.messageId = messageId
         self.sentDate = date
     }
     
     init(text: String, sender: Sender, messageId: String, date: Date) {
-        self.init(data: .text(text), sender: sender, messageId: messageId, date: date)
+        self.init(kind: .text(text), sender: sender, messageId: messageId, date: date)
     }
     
     init(attributedText: NSAttributedString, sender: Sender, messageId: String, date: Date) {
-        self.init(data: .attributedText(attributedText), sender: sender, messageId: messageId, date: date)
+        self.init(kind: .attributedText(attributedText), sender: sender, messageId: messageId, date: date)
     }
     
     init(image: UIImage, sender: Sender, messageId: String, date: Date) {
-        self.init(data: .photo(image), sender: sender, messageId: messageId, date: date)
+        let media = Media(image: image)
+        self.init(kind: .photo(media), sender: sender, messageId: messageId, date: date)
     }
     
     init(thumbnail: UIImage, sender: Sender, messageId: String, date: Date) {
         let url = URL(fileURLWithPath: "")
-        self.init(data: .video(file: url, thumbnail: thumbnail), sender: sender, messageId: messageId, date: date)
+        let media = Media(url: url, image: thumbnail)
+        self.init(kind: .video(media), sender: sender, messageId: messageId, date: date)
     }
     
     init(location: CLLocation, sender: Sender, messageId: String, date: Date) {
-        self.init(data: .location(location), sender: sender, messageId: messageId, date: date)
+        let locationItem = Location(location: location, size: CGSize(width: 100, height: 50))
+        self.init(kind: .location(locationItem), sender: sender, messageId: messageId, date: date)
     }
     
     init(emoji: String, sender: Sender, messageId: String, date: Date) {
-        self.init(data: .emoji(emoji), sender: sender, messageId: messageId, date: date)
+        self.init(kind: .emoji(emoji), sender: sender, messageId: messageId, date: date)
     }
     
 }

@@ -119,8 +119,8 @@ extern "C" {
 
 #if !(defined(VMS) || defined(__VMS)) /* VMS uses logical names instead */
 #if defined(HEADER_CRYPTLIB_H) && !defined(OPENSSLDIR)
-#define ENGINESDIR "/var/folders/w4/0p27zfnx3zlbn52s5mxbytj00000gn/T//openssl/bin/iPhoneOS11.4-arm64.sdk/lib/engines"
-#define OPENSSLDIR "/var/folders/w4/0p27zfnx3zlbn52s5mxbytj00000gn/T//openssl/bin/iPhoneOS11.4-arm64.sdk"
+#define ENGINESDIR "/var/folders/kq/b12_zq811mn_xbl6n91kg9q40000gn/T//openssl/bin/iPhoneOS12.1-arm64.sdk/lib/engines"
+#define OPENSSLDIR "/var/folders/kq/b12_zq811mn_xbl6n91kg9q40000gn/T//openssl/bin/iPhoneOS12.1-arm64.sdk"
 #endif
 #endif
 

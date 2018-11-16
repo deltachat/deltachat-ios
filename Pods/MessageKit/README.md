@@ -56,9 +56,9 @@ See [VISION.md](https://github.com/MessageKit/MessageKit/blob/master/VISION.md) 
 pod 'MessageKit'
 ````
 
-If your project is still using Swift 3. Add the following code in your Podfile.
+If your project is still using Swift 3, you can add the following code to your Podfile:
 
-````
+````ruby
 target 'TARGET_NAME' do
     pod 'MessageKit'
     ...
@@ -78,7 +78,7 @@ end
 
 To integrate MessageKit using Carthage, add the following to your `Cartfile`:
 
-````ruby
+````
 github "MessageKit/MessageKit"
 ````
 
@@ -114,6 +114,8 @@ Interested in contributing to MessageKit? Click here to join our [Slack](https:/
 ### Apps using this library
 
 Add your app to the list of apps using this library and make a pull request.
+
+- [MediQuo](https://www.mediquo.com)
 
 *Please provide attribution, it is greatly appreciated.*
 
