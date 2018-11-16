@@ -1,24 +1,20 @@
 PODS:
   - MessageKit (1.0.0)
   - openssl-ios-bitcode (1.0.210)
-  - SnapKit (4.0.1)
 
 DEPENDENCIES:
   - MessageKit (= 1.0.0)
   - openssl-ios-bitcode (= 1.0.210)
-  - SnapKit (~> 4.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - MessageKit
     - openssl-ios-bitcode
-    - SnapKit
 
 SPEC CHECKSUMS:
   MessageKit: 16160036b16476b04bd0e9f2c7ce67e662e503e4
   openssl-ios-bitcode: c833701a4488bd43de0051db41cfa75f6fef8109
-  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: b18882081bc3e0790641d9587f94f63500487061
+PODFILE CHECKSUM: dea2da329ab919c5c400d1fd104627f9904b3072
 
 COCOAPODS: 1.5.3
