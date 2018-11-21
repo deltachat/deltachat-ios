@@ -385,12 +385,28 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
     
     fileprivate func saveImage(image: UIImage) -> String? {
-        guard let data = image.jpegData(compressionQuality: 1) else {
-            return nil
-        }
         guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
             return nil
         }
+        
+        let size = image.size.applying(CGAffineTransform(scaleX: 0.2, y: 0.2))
+        let hasAlpha = false
+        let scale: CGFloat = 0.0
+        
+        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: size))
+        
+        let _scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        guard let scaledImage = _scaledImage else {
+            return nil
+        }
+        
+        guard let data = scaledImage.jpegData(compressionQuality: 0.9) else {
+            return nil
+        }
+        
         do {
             let path = directory.appendingPathComponent("attachment.jpg")
             try data.write(to: path!)
