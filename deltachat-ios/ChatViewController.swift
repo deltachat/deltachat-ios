@@ -63,7 +63,7 @@ class ChatViewController: MessagesViewController {
         super.viewWillAppear(animated)
         
         let nc = NotificationCenter.default
-        msgChangedObserver = nc.addObserver(forName:notificationChanged,
+        msgChangedObserver = nc.addObserver(forName:dc_notificationChanged,
                                             object:nil, queue: OperationQueue.main) {
                                                 notification in
                                                 print("----------- MrEventMsgsChanged notification received --------")
@@ -72,7 +72,7 @@ class ChatViewController: MessagesViewController {
                                                 self.messagesCollectionView.scrollToBottom()
         }
         
-        incomingMsgObserver = nc.addObserver(forName:notificationIncoming,
+        incomingMsgObserver = nc.addObserver(forName:dc_notificationIncoming,
                                              object:nil, queue: OperationQueue.main) {
                                                 notification in
                                                 print("----------- MrEventIncomingMsg received --------")

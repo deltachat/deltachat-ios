@@ -42,14 +42,14 @@ class ChatListController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let nc = NotificationCenter.default
-        msgChangedObserver = nc.addObserver(forName:Notification.Name(rawValue:"MrEventMsgsChanged"),
+        msgChangedObserver = nc.addObserver(forName:dc_notificationChanged,
                                             object:nil, queue:nil) {
                                                 notification in
                                                 print("----------- MrEventMsgsChanged notification received --------")
                                                 self.getChatList()
         }
         
-        incomingMsgObserver = nc.addObserver(forName:Notification.Name(rawValue:"MrEventIncomingMsg"),
+        incomingMsgObserver = nc.addObserver(forName:dc_notificationIncoming,
                                              object:nil, queue:nil) {
                                                 notification in
                                                 print("----------- MrEventIncomingMsg received --------")
