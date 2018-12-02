@@ -288,13 +288,17 @@ extension ChatViewController: MessagesDataSource {
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        let section = indexPath.section
-        let messageId = messageIds[section]
+        let row = indexPath.row
+        let messageId = messageIds[row]
         let message = MRMessage(id: messageId)
         let contact = MRContact(id: message.fromContactId)
         
         let sender = Sender(id: "\(contact.id)", displayName: contact.name)
-        return Message(text: message.text ?? "- empty -", sender: sender, messageId: "\(messageId)", date: Date(timeIntervalSince1970: Double(message.timestamp)))
+        if let image = message.image {
+            return Message(image: image, sender: sender, messageId: "\(messageId)", date: Date(timeIntervalSince1970: Double(message.timestamp)))
+        } else {
+            return Message(text: message.text ?? "- empty -", sender: sender, messageId: "\(messageId)", date: Date(timeIntervalSince1970: Double(message.timestamp)))
+        }
     }
     
     func avatar(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Avatar {
@@ -408,7 +412,8 @@ extension ChatViewController: MessagesLayoutDelegate {
         }
         
         do {
-            let path = directory.appendingPathComponent("attachment.jpg")
+            let timestamp = Int(Date().timeIntervalSince1970) 
+            let path = directory.appendingPathComponent("\(chatId)_\(timestamp).jpg")
             try data.write(to: path!)
             return path?.relativePath
         } catch {
