@@ -11,6 +11,8 @@ import AudioToolbox
 
 
 var mailboxPointer:UnsafeMutablePointer<dc_context_t>!
+let notificationChanged = Notification.Name(rawValue:"MrEventMsgsChanged")
+let notificationIncoming = Notification.Name(rawValue:"MrEventIncomingMsg")
 
 @_silgen_name("callbackSwift")
 
@@ -79,7 +81,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         let nc = NotificationCenter.default
         
         DispatchQueue.main.async {
-            nc.post(name:Notification.Name(rawValue:"MrEventMsgsChanged"),
+            nc.post(name:notificationChanged,
                     object: nil,
                     userInfo: ["message":"Messages Changed!", "date":Date()])
         }
@@ -89,7 +91,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         // mrmailbox_get_fresh_msgs
         let nc = NotificationCenter.default
         DispatchQueue.main.async {
-            nc.post(name:Notification.Name(rawValue:"MrEventIncomingMsg"),
+            nc.post(name:notificationIncoming,
                     object: nil,
                     userInfo: ["message":"Incoming Message!", "date":Date()])
         }
