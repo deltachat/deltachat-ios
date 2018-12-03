@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 class MRContact {
     private var contactPointer: UnsafeMutablePointer<dc_contact_t>
@@ -66,6 +66,33 @@ class MRMessage {
     var text: String? {
         return String(cString: messagePointer.pointee.text)
     }
+    
+    var mimeType: String? {
+        guard let result = dc_msg_get_filemime(messagePointer) else { return nil }
+        return String(cString: result)
+    }
+    
+    lazy var image: UIImage? = { [unowned self] in
+        guard let documents = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else { return nil }
+        let filetype = dc_msg_get_type(messagePointer)
+        let file = dc_msg_get_filename(messagePointer)
+        if let cFile = file, filetype == DC_MSG_IMAGE {
+            let filename = String(cString: cFile)
+            let path: URL = documents.appendingPathComponent(filename)
+            if path.isFileURL {
+                do {
+                    let data = try Data(contentsOf: path)
+                    let image = UIImage(data: data)
+                    return image
+                } catch (_) {
+                    return nil
+                }
+            }
+            return nil
+        } else {
+            return nil
+        }
+    }()
     
     // MR_MSG_*
     var type: Int {

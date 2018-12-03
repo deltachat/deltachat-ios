@@ -34,19 +34,22 @@ class ChatListController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         getChatList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         let nc = NotificationCenter.default
-        msgChangedObserver = nc.addObserver(forName:Notification.Name(rawValue:"MrEventMsgsChanged"),
+        msgChangedObserver = nc.addObserver(forName:dc_notificationChanged,
                                             object:nil, queue:nil) {
                                                 notification in
                                                 print("----------- MrEventMsgsChanged notification received --------")
                                                 self.getChatList()
         }
         
-        incomingMsgObserver = nc.addObserver(forName:Notification.Name(rawValue:"MrEventIncomingMsg"),
+        incomingMsgObserver = nc.addObserver(forName:dc_notificationIncoming,
                                              object:nil, queue:nil) {
                                                 notification in
                                                 print("----------- MrEventIncomingMsg received --------")
@@ -55,6 +58,8 @@ class ChatListController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
@@ -128,11 +133,6 @@ actionSheet.addAction(UIAlertAction(title: "Scan QR code",
         ncv.chatDisplayer = self
         let nav = UINavigationController(rootViewController: ncv)
         present(nav, animated: true, completion: nil)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 

@@ -59,10 +59,12 @@ class ChatViewController: MessagesViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         let nc = NotificationCenter.default
-        msgChangedObserver = nc.addObserver(forName:Notification.Name(rawValue:"MrEventMsgsChanged"),
-                                            object:nil, queue:nil) {
+        msgChangedObserver = nc.addObserver(forName:dc_notificationChanged,
+                                            object:nil, queue: OperationQueue.main) {
                                                 notification in
                                                 print("----------- MrEventMsgsChanged notification received --------")
                                                 self.getMessageIds()
@@ -70,8 +72,8 @@ class ChatViewController: MessagesViewController {
                                                 self.messagesCollectionView.scrollToBottom()
         }
         
-        incomingMsgObserver = nc.addObserver(forName:Notification.Name(rawValue:"MrEventIncomingMsg"),
-                                             object:nil, queue:nil) {
+        incomingMsgObserver = nc.addObserver(forName:dc_notificationIncoming,
+                                             object:nil, queue: OperationQueue.main) {
                                                 notification in
                                                 print("----------- MrEventIncomingMsg received --------")
                                                 self.getMessageIds()
@@ -87,6 +89,8 @@ class ChatViewController: MessagesViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
         setTextDraft()
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
@@ -288,13 +292,17 @@ extension ChatViewController: MessagesDataSource {
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        let section = indexPath.section
-        let messageId = messageIds[section]
+        let row = indexPath.row
+        let messageId = messageIds[row]
         let message = MRMessage(id: messageId)
         let contact = MRContact(id: message.fromContactId)
         
         let sender = Sender(id: "\(contact.id)", displayName: contact.name)
-        return Message(text: message.text ?? "- empty -", sender: sender, messageId: "\(messageId)", date: Date(timeIntervalSince1970: Double(message.timestamp)))
+        if let image = message.image {
+            return Message(image: image, sender: sender, messageId: "\(messageId)", date: Date(timeIntervalSince1970: Double(message.timestamp)))
+        } else {
+            return Message(text: message.text ?? "- empty -", sender: sender, messageId: "\(messageId)", date: Date(timeIntervalSince1970: Double(message.timestamp)))
+        }
     }
     
     func avatar(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Avatar {
@@ -408,7 +416,8 @@ extension ChatViewController: MessagesLayoutDelegate {
         }
         
         do {
-            let path = directory.appendingPathComponent("attachment.jpg")
+            let timestamp = Int(Date().timeIntervalSince1970) 
+            let path = directory.appendingPathComponent("\(chatId)_\(timestamp).jpg")
             try data.write(to: path!)
             return path?.relativePath
         } catch {
@@ -420,12 +429,15 @@ extension ChatViewController: MessagesLayoutDelegate {
 
 extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage,
-            let width = Int32(exactly: pickedImage.size.width),
-            let height = Int32(exactly: pickedImage.size.height),
-            let path = saveImage(image: pickedImage) {
-            dc_send_image_msg(mailboxPointer, UInt32(self.chatId), path, "image/jpeg", width, height)
+        DispatchQueue.global().async {
+            if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage,
+                let width = Int32(exactly: pickedImage.size.width),
+                let height = Int32(exactly: pickedImage.size.height),
+                let path = self.saveImage(image: pickedImage) {
+                dc_send_image_msg(mailboxPointer, UInt32(self.chatId), path, "image/jpeg", width, height)
+            }
         }
+        
         dismiss(animated: true, completion: nil)
     }
 }
@@ -507,8 +519,9 @@ extension ChatViewController: MessageInputBarDelegate {
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
 //        messageList.append(Message(text: text, sender: currentSender(), messageId: UUID().uuidString, date: Date()))
-        
-        dc_send_text_msg(mailboxPointer, UInt32(self.chatId), text)
+        DispatchQueue.global().async {
+            dc_send_text_msg(mailboxPointer, UInt32(self.chatId), text)
+        }
         print(text)
         inputBar.inputTextView.text = String()
 //        messagesCollectionView.reloadData()

@@ -65,9 +65,16 @@ class GroupNameController: UIViewController {
                 fatalError("failed to add \(contactId) to group \(groupName)")
             }
         }
-
-        let chatVC = ChatViewController(chatId: Int(groupChatId))
-        navigationController?.pushViewController(chatVC, animated: true)
+        groupNameTextField.resignFirstResponder()
+        let root = navigationController?.presentingViewController
+        navigationController?.dismiss(animated: true) {
+            let chatVC = ChatViewController(chatId: Int(groupChatId))
+            if let navigationRoot = root as? UINavigationController {
+                navigationRoot.pushViewController(chatVC, animated: true)
+            }
+        }
+        
+        
         
     }
 
