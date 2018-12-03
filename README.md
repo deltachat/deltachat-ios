@@ -38,10 +38,11 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
       (imap-server, imap-port, imap-flags, same for smtp)
 - [X] allow re-configuring (e.g. after changing the IMAP/SMTP password) at
       an arbitrary point in time
-- [ ] allow sending of images
+- [X] allow sending of images
       and taking+sending photos directly from the camera.
       (videos and voice messages
       and other attachments can be done in a later version)
+- [ ] reception of images
 - [ ] ui-polishing, eg.
   - [ ] improve group creation UI
   - [ ] smarter time/date display
