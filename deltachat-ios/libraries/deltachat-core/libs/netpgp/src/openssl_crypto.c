@@ -527,10 +527,14 @@ pgp_rsa_private_encrypt(uint8_t *out,
 
 
 	/* debug */
+	/* as the check takes ~800 ms, we disable it for now.
+	   (the key is already checked in deltachat-core-land
+	   and RSA_private_encrypt() will return an error on problems)
 	if (RSA_check_key(orsa) != 1) {
 		(void) fprintf(stderr, "RSA_check_key is not set\n");
 		return 0;
 	}
+	*/
 	/* end debug */
 
 	n = RSA_private_encrypt((int)length, in, out, orsa, RSA_NO_PADDING);

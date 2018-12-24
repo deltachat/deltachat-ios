@@ -9,10 +9,12 @@ lib_src = [
   'dc_hash.c',
   'dc_imap.c',
   'dc_job.c',
+  'dc_jobthread.c',
   'dc_key.c',
   'dc_keyring.c',
   'dc_loginparam.c',
   'dc_lot.c',
+  'dc_move.c',
   'dc_context.c',
   'dc_configure.c',
   'dc_e2ee.c',
@@ -37,44 +39,31 @@ lib_src = [
   'dc_strencode.c',
   'dc_token.c',
   'dc_tools.c',
-  'dc_uudecode.c',
 ]
-lib_hdr = [
-  'deltachat.h',
-  'dc_apeerstate.h',
-  'dc_dehtml.h',
-  'dc_hash.h',
-  'dc_imap.h',
-  'dc_job.h',
-  'dc_key.h',
-  'dc_keyring.h',
-  'dc_loginparam.h',
-  'dc_lot.h',
-  'dc_context.h',
-  'dc_mimefactory.h',
-  'dc_mimeparser.h',
-  'dc_msg.h',
-  'dc_param.h',
-  'dc_pgp.h',
-  'dc_saxparser.h',
-  'dc_simplify.h',
-  'dc_smtp.h',
-  'dc_sqlite3.h',
-  'dc_stock.h',
-  'dc_strbuilder.h',
-  'dc_strencode.h',
-  'dc_tools.h',
-]
+
+lib_deps = [pthreads, zlib, openssl, sasl, sqlite, etpan, netpgp, math]
 lib_inc = include_directories('.')
-
-
 lib = library(
   'deltachat', lib_src,
-  dependencies: [zlib, openssl, pthreads, sasl, sqlite, etpan, netpgp],
+  dependencies: lib_deps,
   include_directories: lib_inc,
+  version: version,
   install: true,
 )
-install_headers(
-  lib_hdr,
-  subdir: 'deltachat',
+dep = declare_dependency(
+  include_directories: lib_inc,
+  dependencies: lib_deps,
+  link_with: [lib],
+  version: version,
 )
+install_headers(['deltachat.h'],
+                subdir: 'deltachat')
+
+
+pkg = import('pkgconfig')
+pkg.generate(libraries : lib,
+             version : version,
+             subdirs : ['deltachat'],
+             name : 'libdeltachat',
+             filebase : 'deltachat',
+             description : 'Create your own, email-compatible messenger.')

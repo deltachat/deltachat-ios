@@ -84,7 +84,7 @@ __RCSID("$NetBSD$");
 #include <inttypes.h>
 #endif
 
-#ifdef HAVE_OPENSSL_IDEA_H
+#ifdef HAVE_OPENSSL_CAST_H
 #include <openssl/cast.h>
 #endif
 

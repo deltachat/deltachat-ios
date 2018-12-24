@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #ifndef __DC_APEERSTATE_H__
 #define __DC_APEERSTATE_H__
 #ifdef __cplusplus
@@ -95,7 +73,7 @@ int              dc_apeerstate_recalc_fingerprint   (dc_apeerstate_t*);
 
 #define          DC_PS_GOSSIP_KEY 0
 #define          DC_PS_PUBLIC_KEY 1
-int              dc_apeerstate_set_verified         (dc_apeerstate_t*, int which_key, const char* fingerprint, int verfied);
+int              dc_apeerstate_set_verified         (dc_apeerstate_t*, int which_key, const char* fingerprint, int verified);
 
 int              dc_apeerstate_load_by_addr         (dc_apeerstate_t*, dc_sqlite3_t*, const char* addr);
 int              dc_apeerstate_load_by_fingerprint  (dc_apeerstate_t*, dc_sqlite3_t*, const char* fingerprint);

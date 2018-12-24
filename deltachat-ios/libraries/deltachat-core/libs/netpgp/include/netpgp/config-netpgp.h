@@ -1,6 +1,9 @@
-
 #ifndef __CONFIG_NETPGP_H__
 #define __CONFIG_NETPGP_H__
+
+#ifdef HAVE_CONFIG_MESON
+#include "config-netpgp-meson.h"
+#else
 
 
 /* src/lib/config.h.  Generated from config.h.in by configure.  */
@@ -197,5 +200,5 @@
    such a type exists and the standard includes do not define it. */
 /* #undef uint8_t */
 
-
+#endif /* HAVE_CONFIG_MESON */
 #endif /* __CONFIG_NETPGP_H__ */

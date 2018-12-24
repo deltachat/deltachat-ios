@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #ifndef __DC_HASH_H__
 #define __DC_HASH_H__
 #ifdef __cplusplus
@@ -95,6 +73,12 @@ typedef struct dc_hashelem_t
 
 
 /*
+ * Just to make the last parameter of dc_hash_init() more readable.
+ */
+#define DC_HASH_COPY_KEY  1
+
+
+/*
  * Access routines.  To delete an element, insert a NULL pointer.
  */
 void    dc_hash_init     (dc_hash_t*, int keytype, int copyKey);
@@ -103,6 +87,7 @@ void*   dc_hash_find     (const dc_hash_t*, const void *pKey, int nKey);
 void    dc_hash_clear    (dc_hash_t*);
 
 #define dc_hash_find_str(H, s) dc_hash_find((H), (s), strlen((s)))
+#define dc_hash_insert_str(H, s, d) dc_hash_insert((H), (s), strlen((s)), (d))
 
 
 /*

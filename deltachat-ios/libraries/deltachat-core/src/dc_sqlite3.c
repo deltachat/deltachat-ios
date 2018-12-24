@@ -1,25 +1,4 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
+#include <assert.h>
 #include "dc_context.h"
 #include "dc_apeerstate.h"
 
@@ -32,7 +11,7 @@ we do not know from which threads the UI calls the dc_*() functions.
 As the open the Database in serialized mode explicitly, in general, this is
 safe. However, there are some points to keep in mind:
 
-1. Reading can be done at the same time from several threads, howver, only
+1. Reading can be done at the same time from several threads, however, only
    one thread can write.  If a seconds thread tries to write, this thread
    is halted until the first has finished writing, at most the timespan set
    by sqlite3_busy_timeout().
@@ -42,14 +21,10 @@ safe. However, there are some points to keep in mind:
    Transaction cannot be nested, we recommend to use them only in the
    top-level functions or not to use them.
 
-3. Using sqlite3_last_insert_rowid() causes race conditions.  If you need
-   this function, you have to wrap *all* INSERTs by a critical section.
-   We recommend not to use this function. */
-
-
-/*******************************************************************************
- * Tools
- ******************************************************************************/
+3. Using sqlite3_last_insert_rowid() and sqlite3_changes() cause race conditions
+   (between the query and the call another thread may insert or update a row.
+   These functions MUST NOT be used;
+   dc_sqlite3_get_rowid() provides an alternative. */
 
 
 void dc_sqlite3_log_error(dc_sqlite3_t* sql, const char* msg_format, ...)
@@ -116,8 +91,11 @@ cleanup:
 
 uint32_t dc_sqlite3_get_rowid(dc_sqlite3_t* sql, const char* table, const char* field, const char* value)
 {
+	// alternative to sqlite3_last_insert_rowid() which MUST NOT be used due to race conditions, see comment above.
+	// the ORDER BY ensures, this function always returns the most recent id,
+	// eg. if a Message-ID is splitted into different messages.
 	uint32_t id = 0;
-	char* q3 = sqlite3_mprintf("SELECT id FROM %s WHERE %s=%Q;", table, field, value);
+	char* q3 = sqlite3_mprintf("SELECT id FROM %s WHERE %s=%Q ORDER BY id DESC;", table, field, value);
 	sqlite3_stmt* stmt = dc_sqlite3_prepare(sql, q3);
 	if (SQLITE_ROW==sqlite3_step(stmt)) {
 		id = sqlite3_column_int(stmt, 0);
@@ -126,11 +104,6 @@ uint32_t dc_sqlite3_get_rowid(dc_sqlite3_t* sql, const char* table, const char* 
 	sqlite3_free(q3);
 	return id;
 }
-
-
-/*******************************************************************************
- * Main interface
- ******************************************************************************/
 
 
 dc_sqlite3_t* dc_sqlite3_new(dc_context_t* context)
@@ -163,6 +136,10 @@ void dc_sqlite3_unref(dc_sqlite3_t* sql)
 
 int dc_sqlite3_open(dc_sqlite3_t* sql, const char* dbfile, int flags)
 {
+	if (dc_sqlite3_is_open(sql)) {
+		return 0; // a cleanup would close the database
+	}
+
 	if (sql==NULL || dbfile==NULL) {
 		goto cleanup;
 	}
@@ -192,6 +169,9 @@ int dc_sqlite3_open(dc_sqlite3_t* sql, const char* dbfile, int flags)
 		dc_sqlite3_log_error(sql, "Cannot open database \"%s\".", dbfile); /* ususally, even for errors, the pointer is set up (if not, this is also checked by dc_sqlite3_log_error()) */
 		goto cleanup;
 	}
+
+	// let SQLite overwrite deleted content with zeros
+	dc_sqlite3_execute(sql, "PRAGMA secure_delete=on;");
 
 	// Only one process can make changes to the database at one time.
 	// busy_timeout defines, that if a seconds process wants write access, this second process will wait some milliseconds
@@ -261,7 +241,7 @@ int dc_sqlite3_open(dc_sqlite3_t* sql, const char* dbfile, int flags)
 						" state INTEGER DEFAULT 0,"
 						" msgrmsg INTEGER DEFAULT 1,"      /* does the message come from a messenger? (0=no, 1=yes, 2=no, but the message is a reply to a messenger message) */
 						" bytes INTEGER DEFAULT 0,"        /* not used, added in ~ v0.1.12 */
-						" txt TEXT DEFAULT '',"            /* as this is also used for (fulltext) searching, nothing but normal, plain text should go here */
+						" txt TEXT DEFAULT '',"
 						" txt_raw TEXT DEFAULT '',"
 						" param TEXT DEFAULT '');");
 			dc_sqlite3_execute(sql, "CREATE INDEX msgs_index1 ON msgs (rfc724_mid);");     /* in our database, one email may be split up to several messages (eg. one per image), so the email-Message-ID may be used for several records; id is always unique */
@@ -294,9 +274,13 @@ int dc_sqlite3_open(dc_sqlite3_t* sql, const char* dbfile, int flags)
 		}
 
 		// (1) update low-level database structure.
-		// this should be done before updates that use high-level objects that rely themselves on the low-level structure.
+		// this should be done before updates that use high-level objects that
+		// rely themselves on the low-level structure.
+		// --------------------------------------------------------------------
+
 		int dbversion = dbversion_before_update;
 		int recalc_fingerprints = 0;
+		int update_file_paths = 0;
 
 		#define NEW_DB_VERSION 1
 			if (dbversion < NEW_DB_VERSION)
@@ -457,7 +441,77 @@ int dc_sqlite3_open(dc_sqlite3_t* sql, const char* dbfile, int flags)
 			}
 		#undef NEW_DB_VERSION
 
-		// (2) updates that require high-level objects (the structure is complete now and all objects are usable)
+		#define NEW_DB_VERSION 41
+			if (dbversion < NEW_DB_VERSION)
+			{
+				update_file_paths = 1;
+
+				dbversion = NEW_DB_VERSION;
+				dc_sqlite3_set_config_int(sql, "dbversion", NEW_DB_VERSION);
+			}
+		#undef NEW_DB_VERSION
+
+		#define NEW_DB_VERSION 42
+			if (dbversion < NEW_DB_VERSION)
+			{
+				// older versions set the txt-field to the filenames, for debugging and fulltext search.
+				// to allow text+attachment compound messages, we need to reset these fields.
+				dc_sqlite3_execute(sql, "UPDATE msgs SET txt='' WHERE type!=" DC_STRINGIFY(DC_MSG_TEXT));
+
+				dbversion = NEW_DB_VERSION;
+				dc_sqlite3_set_config_int(sql, "dbversion", NEW_DB_VERSION);
+			}
+		#undef NEW_DB_VERSION
+
+		#define NEW_DB_VERSION 44
+			if (dbversion < NEW_DB_VERSION)
+			{
+				dc_sqlite3_execute(sql, "ALTER TABLE msgs ADD COLUMN mime_headers TEXT;");
+
+				dbversion = NEW_DB_VERSION;
+				dc_sqlite3_set_config_int(sql, "dbversion", NEW_DB_VERSION);
+			}
+		#undef NEW_DB_VERSION
+
+		#define NEW_DB_VERSION 46
+			if (dbversion < NEW_DB_VERSION)
+			{
+				dc_sqlite3_execute(sql, "ALTER TABLE msgs ADD COLUMN mime_in_reply_to TEXT;");
+				dc_sqlite3_execute(sql, "ALTER TABLE msgs ADD COLUMN mime_references TEXT;");
+
+				dbversion = NEW_DB_VERSION;
+				dc_sqlite3_set_config_int(sql, "dbversion", NEW_DB_VERSION);
+			}
+		#undef NEW_DB_VERSION
+
+		#define NEW_DB_VERSION 47
+			if (dbversion < NEW_DB_VERSION)
+			{
+				dc_sqlite3_execute(sql, "ALTER TABLE jobs ADD COLUMN tries INTEGER DEFAULT 0;");
+
+				dbversion = NEW_DB_VERSION;
+				dc_sqlite3_set_config_int(sql, "dbversion", NEW_DB_VERSION);
+			}
+		#undef NEW_DB_VERSION
+
+		#define NEW_DB_VERSION 48
+			if (dbversion < NEW_DB_VERSION)
+			{
+				dc_sqlite3_execute(sql, "ALTER TABLE msgs ADD COLUMN move_state INTEGER DEFAULT 1;");
+				assert( DC_MOVE_STATE_UNDEFINED == 0 );
+				assert( DC_MOVE_STATE_PENDING == 1 );
+				assert( DC_MOVE_STATE_STAY == 2 );
+				assert( DC_MOVE_STATE_MOVING == 3 );
+
+				dbversion = NEW_DB_VERSION;
+				dc_sqlite3_set_config_int(sql, "dbversion", NEW_DB_VERSION);
+			}
+		#undef NEW_DB_VERSION
+
+		// (2) updates that require high-level objects
+		// (the structure is complete now and all objects are usable)
+		// --------------------------------------------------------------------
+
 		if (recalc_fingerprints)
 		{
 			sqlite3_stmt* stmt = dc_sqlite3_prepare(sql, "SELECT addr FROM acpeerstates;");
@@ -470,6 +524,28 @@ int dc_sqlite3_open(dc_sqlite3_t* sql, const char* dbfile, int flags)
 					dc_apeerstate_unref(peerstate);
 				}
 			sqlite3_finalize(stmt);
+		}
+
+		if (update_file_paths)
+		{
+			// versions before 2018-08 save the absolute paths in the database files at "param.f=";
+			// for newer versions, we copy files always to the blob directory and store relative paths.
+			// this snippet converts older databases and can be removed after some time.
+			char* repl_from = dc_sqlite3_get_config(sql, "backup_for", sql->context->blobdir);
+			dc_ensure_no_slash(repl_from);
+
+			assert('f'==DC_PARAM_FILE);
+			char* q3 = sqlite3_mprintf("UPDATE msgs SET param=replace(param, 'f=%q/', 'f=$BLOBDIR/');", repl_from);
+			dc_sqlite3_execute(sql, q3);
+			sqlite3_free(q3);
+
+			assert('i'==DC_PARAM_PROFILE_IMAGE);
+			q3 = sqlite3_mprintf("UPDATE chats SET param=replace(param, 'i=%q/', 'i=$BLOBDIR/');", repl_from);
+			dc_sqlite3_execute(sql, q3);
+			sqlite3_free(q3);
+
+			free(repl_from);
+			dc_sqlite3_set_config(sql, "backup_for", NULL);
 		}
 	}
 
@@ -668,8 +744,12 @@ int dc_sqlite3_set_config_int(dc_sqlite3_t* sql, const char* key, int32_t value)
  ******************************************************************************/
 
 
+#undef USE_TRANSACTIONS
+
+
 void dc_sqlite3_begin_transaction(dc_sqlite3_t* sql)
 {
+#ifdef USE_TRANSACTIONS
 	// `BEGIN IMMEDIATE` ensures, only one thread may write.
 	// all other calls to `BEGIN IMMEDIATE` will try over until sqlite3_busy_timeout() is reached.
 	// CAVE: This also implies that transactions MUST NOT be nested.
@@ -678,24 +758,29 @@ void dc_sqlite3_begin_transaction(dc_sqlite3_t* sql)
 		dc_sqlite3_log_error(sql, "Cannot begin transaction.");
 	}
 	sqlite3_finalize(stmt);
+#endif
 }
 
 
 void dc_sqlite3_rollback(dc_sqlite3_t* sql)
 {
+#ifdef USE_TRANSACTIONS
 	sqlite3_stmt* stmt = dc_sqlite3_prepare(sql, "ROLLBACK;");
 	if (sqlite3_step(stmt) != SQLITE_DONE) {
 		dc_sqlite3_log_error(sql, "Cannot rollback transaction.");
 	}
 	sqlite3_finalize(stmt);
+#endif
 }
 
 
 void dc_sqlite3_commit(dc_sqlite3_t* sql)
 {
+#ifdef USE_TRANSACTIONS
 	sqlite3_stmt* stmt = dc_sqlite3_prepare(sql, "COMMIT;");
 	if (sqlite3_step(stmt) != SQLITE_DONE) {
 		dc_sqlite3_log_error(sql, "Cannot commit transaction.");
 	}
 	sqlite3_finalize(stmt);
+#endif
 }

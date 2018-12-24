@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 /* Stress some functions for testing; if used as a lib, this file is obsolete.
 For memory checking, use eg.
 $ valgrind --leak-check=full --tool=memcheck ./deltachat-core <db>
@@ -214,6 +192,64 @@ void stress_functions(dc_context_t* context)
 		dc_simplify_unref(simplify);
 	}
 
+	/* test file functions
+	 **************************************************************************/
+
+	if (dc_is_open(context))
+	{
+		if (dc_file_exist(context, "$BLOBDIR/foobar")
+		 || dc_file_exist(context, "$BLOBDIR/dada")
+		 || dc_file_exist(context, "$BLOBDIR/foobar.dadada")
+		 || dc_file_exist(context, "$BLOBDIR/foobar-folder")) {
+			dc_delete_file(context, "$BLOBDIR/foobar");
+			dc_delete_file(context, "$BLOBDIR/dada");
+			dc_delete_file(context, "$BLOBDIR/foobar.dadada");
+			dc_delete_file(context, "$BLOBDIR/foobar-folder");
+		}
+
+		dc_write_file(context, "$BLOBDIR/foobar", "content", 7);
+		assert( dc_file_exist(context, "$BLOBDIR/foobar") );
+		assert( !dc_file_exist(context, "$BLOBDIR/foobarx") );
+		assert( dc_get_filebytes(context, "$BLOBDIR/foobar")==7 );
+
+		char* absPath = dc_mprintf("%s/%s", context->blobdir, "foobar");
+		assert(  dc_is_blobdir_path(context, absPath) );
+		assert(  dc_is_blobdir_path(context, "$BLOBDIR/fofo") );
+		assert( !dc_is_blobdir_path(context, "/BLOBDIR/fofo") );
+		assert( dc_file_exist(context, absPath) );
+		free(absPath);
+
+		assert( dc_copy_file(context, "$BLOBDIR/foobar", "$BLOBDIR/dada") );
+		assert( dc_get_filebytes(context, "$BLOBDIR/dada")==7 );
+
+		void* buf;
+		size_t buf_bytes;
+		assert( dc_read_file(context, "$BLOBDIR/dada", &buf, &buf_bytes) );
+		assert( buf_bytes==7 );
+		assert( strcmp(buf, "content")==0 );
+		free(buf);
+
+		assert( dc_delete_file(context, "$BLOBDIR/foobar") );
+		assert( dc_delete_file(context, "$BLOBDIR/dada") );
+
+		assert( dc_create_folder(context, "$BLOBDIR/foobar-folder") );
+		assert( dc_file_exist(context, "$BLOBDIR/foobar-folder") );
+		assert( dc_delete_file(context, "$BLOBDIR/foobar-folder") );
+
+		char* fn0 = dc_get_fine_pathNfilename(context, "$BLOBDIR", "foobar.dadada");
+		assert( fn0 );
+		assert( strcmp(fn0, "$BLOBDIR/foobar.dadada")==0 );
+		dc_write_file(context, fn0, "content", 7);
+
+		char* fn1 = dc_get_fine_pathNfilename(context, "$BLOBDIR", "foobar.dadada");
+		assert( fn1 );
+		assert( strcmp(fn1, "$BLOBDIR/foobar-1.dadada")==0 );
+
+		assert( dc_delete_file(context, fn0) );
+		free(fn0);
+		free(fn1);
+	}
+
 	/* test mailmime
 	**************************************************************************/
 
@@ -305,6 +341,23 @@ void stress_functions(dc_context_t* context)
 	 **************************************************************************/
 
 	{
+		assert( atol("")==0 ); /* we rely on this eg. in dc_sqlite3_get_config() */
+		assert( atoi("")==0 );
+
+		assert( !dc_may_be_valid_addr(NULL) );
+		assert( !dc_may_be_valid_addr("") );
+		assert(  dc_may_be_valid_addr("user@domain.tld") );
+		assert( !dc_may_be_valid_addr("uuu") );
+		assert( !dc_may_be_valid_addr("dd.tt") );
+		assert( !dc_may_be_valid_addr("tt.dd@uu") );
+		assert( !dc_may_be_valid_addr("uu") );
+		assert( !dc_may_be_valid_addr("u@d") );
+		assert( !dc_may_be_valid_addr("u@d.") );
+		assert( !dc_may_be_valid_addr("u@d.t") );
+		assert(  dc_may_be_valid_addr("u@d.tt") );
+		assert( !dc_may_be_valid_addr("u@.tt") );
+		assert( !dc_may_be_valid_addr("@d.tt") );
+
 		char* str = strdup("aaa");
 		int replacements = dc_str_replace(&str, "a", "ab"); /* no endless recursion here! */
 		assert( strcmp(str, "ababab")==0 );
@@ -359,6 +412,29 @@ void stress_functions(dc_context_t* context)
 		assert( strcmp(str, "")==0 );
 		free(str);
 
+		clist* list = dc_str_to_clist(NULL, " ");
+		assert( clist_count(list)==0 );
+		clist_free_content(list);
+		clist_free(list);
+
+		list = dc_str_to_clist("", " ");
+		assert( clist_count(list)==1 );
+		clist_free_content(list);
+		clist_free(list);
+
+		list = dc_str_to_clist(" ", " ");
+		assert( clist_count(list)==2 );
+		clist_free_content(list);
+		clist_free(list);
+
+		list = dc_str_to_clist("foo bar test", " ");
+		assert(clist_count(list)==3);
+		str = dc_str_from_clist(list, " ");
+		assert( strcmp(str, "foo bar test")==0 );
+		clist_free_content(list);
+		clist_free(list);
+		free(str);
+
 		assert( strcmp("fresh="     DC_STRINGIFY(DC_STATE_IN_FRESH),      "fresh=10")==0 ); /* these asserts check the values, the existance of the macros and also DC_STRINGIFY() */
 		assert( strcmp("noticed="   DC_STRINGIFY(DC_STATE_IN_NOTICED),    "noticed=13")==0 );
 		assert( strcmp("seen="      DC_STRINGIFY(DC_STATE_IN_SEEN),       "seen=16")==0 );
@@ -395,8 +471,6 @@ void stress_functions(dc_context_t* context)
 		assert( DC_PARAM_HEIGHT == 'h' );
 		assert( DC_PARAM_DURATION == 'd' );
 		assert( DC_PARAM_MIMETYPE == 'm' );
-		assert( DC_PARAM_AUTHORNAME == 'N' );
-		assert( DC_PARAM_TRACKNAME == 'n' );
 		assert( DC_PARAM_FORWARDED == 'a' );
 		assert( DC_PARAM_UNPROMOTED == 'U' );
 
@@ -497,6 +571,7 @@ void stress_functions(dc_context_t* context)
 		free(buf2);
 
 		assert(  DC_EVENT_DATA1_IS_STRING(2100) );
+		assert(  DC_EVENT_DATA1_IS_STRING(2052) );
 		assert( !DC_EVENT_DATA1_IS_STRING(100) );
 		assert( !DC_EVENT_DATA1_IS_STRING(300) );
 		assert( !DC_EVENT_DATA1_IS_STRING(400) );
@@ -507,7 +582,6 @@ void stress_functions(dc_context_t* context)
 		assert( !DC_EVENT_DATA2_IS_STRING(2010) );
 
 		assert(  DC_EVENT_RETURNS_STRING(2091) );
-		assert(  DC_EVENT_RETURNS_STRING(2092) );
 		assert(  DC_EVENT_RETURNS_STRING(2100) );
 		assert( !DC_EVENT_RETURNS_STRING(100) );
 		assert( !DC_EVENT_RETURNS_STRING(300) );
@@ -600,6 +674,51 @@ void stress_functions(dc_context_t* context)
 		assert( strcmp(p1->packed, "")==0 );
 
 		dc_param_unref(p1);
+	}
+
+	/* test keys for dc_set_config() and dc_get_config()
+	 **************************************************************************/
+
+	{
+		char* keys = dc_get_config(context, "sys.config_keys");
+		assert( keys && keys[0] );
+
+		dc_strbuilder_t sb;
+		dc_strbuilder_init(&sb, 200);
+		dc_strbuilder_catf(&sb, " %s ", keys);
+		free(keys);
+		keys = sb.buf;
+
+		assert( strstr(keys, " probably_never_a_key ")==NULL );
+		assert( strstr(keys, " addr ")!=NULL );
+		assert( strstr(keys, " mail_server ")!=NULL );
+		assert( strstr(keys, " mail_user ")!=NULL );
+		assert( strstr(keys, " mail_pw ")!=NULL );
+		assert( strstr(keys, " mail_port ")!=NULL );
+		assert( strstr(keys, " send_server ")!=NULL );
+		assert( strstr(keys, " send_user ")!=NULL );
+		assert( strstr(keys, " send_pw ")!=NULL );
+		assert( strstr(keys, " send_port ")!=NULL );
+		assert( strstr(keys, " server_flags ")!=NULL );
+		assert( strstr(keys, " imap_folder ")!=NULL );
+		assert( strstr(keys, " displayname ")!=NULL );
+		assert( strstr(keys, " selfstatus ")!=NULL );
+		assert( strstr(keys, " selfavatar ")!=NULL );
+		assert( strstr(keys, " e2ee_enabled ")!=NULL );
+		assert( strstr(keys, " mdns_enabled ")!=NULL );
+		assert( strstr(keys, " save_mime_headers ")!=NULL );
+		assert( strstr(keys, " configured_addr ")!=NULL );
+		assert( strstr(keys, " configured_mail_server ")!=NULL );
+		assert( strstr(keys, " configured_mail_user ")!=NULL );
+		assert( strstr(keys, " configured_mail_pw ")!=NULL );
+		assert( strstr(keys, " configured_mail_port ")!=NULL );
+		assert( strstr(keys, " configured_send_server ")!=NULL );
+		assert( strstr(keys, " configured_send_user ")!=NULL );
+		assert( strstr(keys, " configured_send_pw ")!=NULL );
+		assert( strstr(keys, " configured_send_port ")!=NULL );
+		assert( strstr(keys, " configured_server_flags ")!=NULL );
+
+		free(keys);
 	}
 
 	/* test Autocrypt header parsing functions

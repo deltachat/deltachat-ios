@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include "dc_context.h"
 #include "dc_imap.h"
 #include "dc_smtp.h"
@@ -38,9 +16,11 @@
  *
  * @memberof dc_msg_t
  * @param context The context that should be stored in the message object.
+ * @param viewtype The type to the message object to create,
+ *     one of the @ref DC_MSG constants.
  * @return The created message object.
  */
-dc_msg_t* dc_msg_new(dc_context_t* context)
+dc_msg_t* dc_msg_new(dc_context_t* context, int viewtype)
 {
 	dc_msg_t* msg = NULL;
 
@@ -50,10 +30,24 @@ dc_msg_t* dc_msg_new(dc_context_t* context)
 
 	msg->context   = context;
 	msg->magic     = DC_MSG_MAGIC;
-	msg->type      = DC_MSG_UNDEFINED;
+	msg->type      = viewtype;
 	msg->state     = DC_STATE_UNDEFINED;
 	msg->param     = dc_param_new();
 
+	return msg;
+}
+
+
+dc_msg_t* dc_msg_new_untyped(dc_context_t* context)
+{
+	return dc_msg_new(context, 0);
+}
+
+
+dc_msg_t* dc_msg_new_load(dc_context_t* context, uint32_t msg_id)
+{
+	dc_msg_t* msg = dc_msg_new_untyped(context);
+	dc_msg_load_from_db(msg, context, msg_id);
 	return msg;
 }
 
@@ -63,6 +57,7 @@ dc_msg_t* dc_msg_new(dc_context_t* context)
  *
  * @memberof dc_msg_t
  * @param msg The message object to free.
+ *     If NULL is given, nothing is done.
  * @return None.
  */
 void dc_msg_unref(dc_msg_t* msg)
@@ -97,6 +92,9 @@ void dc_msg_empty(dc_msg_t* msg)
 	free(msg->rfc724_mid);
 	msg->rfc724_mid = NULL;
 
+	free(msg->in_reply_to);
+	msg->in_reply_to = NULL;
+
 	free(msg->server_folder);
 	msg->server_folder = NULL;
 
@@ -111,7 +109,8 @@ void dc_msg_empty(dc_msg_t* msg)
  *
  * @memberof dc_msg_t
  * @param msg The message object.
- * @return the ID of the message, 0 on errors.
+ * @return The ID of the message.
+ *     0 if the given message object is invalid.
  */
 uint32_t dc_msg_get_id(const dc_msg_t* msg)
 {
@@ -133,7 +132,7 @@ uint32_t dc_msg_get_id(const dc_msg_t* msg)
  *
  * @memberof dc_msg_t
  * @param msg The message object.
- * @return the ID of the contact who wrote the message, DC_CONTACT_ID_SELF (1)
+ * @return The ID of the contact who wrote the message, DC_CONTACT_ID_SELF (1)
  *     if this is an outgoing message, 0 on errors.
  */
 uint32_t dc_msg_get_from_id(const dc_msg_t* msg)
@@ -153,7 +152,7 @@ uint32_t dc_msg_get_from_id(const dc_msg_t* msg)
  *
  * @memberof dc_msg_t
  * @param msg The message object.
- * @return the ID of the chat the message belongs to, 0 on errors.
+ * @return The ID of the chat the message belongs to, 0 on errors.
  */
 uint32_t dc_msg_get_chat_id(const dc_msg_t* msg)
 {
@@ -169,14 +168,13 @@ uint32_t dc_msg_get_chat_id(const dc_msg_t* msg)
  *
  * @memberof dc_msg_t
  * @param msg The message object.
- * @return One of DC_MSG_TEXT (10), DC_MSG_IMAGE (20), DC_MSG_GIF (21),
- *     DC_MSG_AUDIO (40), DC_MSG_VOICE (41), DC_MSG_VIDEO (50), DC_MSG_FILE (60)
- *     or DC_MSG_UNDEFINED (0) if the type is undefined.
+ * @return One of the @ref DC_MSG constants.
+ *     0 if the given message object is invalid.
  */
-int dc_msg_get_type(const dc_msg_t* msg)
+int dc_msg_get_viewtype(const dc_msg_t* msg)
 {
 	if (msg==NULL || msg->magic!=DC_MSG_MAGIC) {
-		return DC_MSG_UNDEFINED;
+		return 0;
 	}
 	return msg->type;
 }
@@ -219,10 +217,16 @@ int dc_msg_get_state(const dc_msg_t* msg)
 
 
 /**
- * Get message sending time. The sending time is returned by a unix timestamp.
- * Note that the message list is not sorted by the _sending_ time but by the _receiving_ time.
- * Cave: the message list is sorted by receiving time (otherwise new messages would non pop up at the expected place),
- * however, if a message is delayed for any reason, the correct sending time will be displayed.
+ * Get message sending time.
+ * The sending time is returned as a unix timestamp in seconds.
+ *
+ * Note that the message lists returned eg. by dc_get_chat_msgs()
+ * are not sorted by the _sending_ time but by the _receiving_ time.
+ * This ensures newly received messages always pop up at the end of the list,
+ * however, for delayed messages, the correct sending time will be displayed.
+ *
+ * To display detailed information about the times to the user,
+ * the UI can use dc_get_msg_info().
  *
  * @memberof dc_msg_t
  * @param msg The message object.
@@ -239,8 +243,29 @@ time_t dc_msg_get_timestamp(const dc_msg_t* msg)
 
 
 /**
+ * Get message receive time.
+ * The receive time is returned as a unix timestamp in seconds.
+ *
+ * To get the sending time, use dc_msg_get_timestamp().
+ *
+ * @memberof dc_msg_t
+ * @param msg The message object.
+ * @return Receiving time of the message.
+ *     For outgoing messages, 0 is returned.
+ */
+time_t dc_msg_get_received_timestamp(const dc_msg_t* msg)
+{
+	if (msg==NULL || msg->magic!=DC_MSG_MAGIC) {
+		return 0;
+	}
+
+	return msg->timestamp_rcvd;
+}
+
+
+/**
  * Get the text of the message.
- * If there is no text associalted with the message, an empty string is returned.
+ * If there is no text associated with the message, an empty string is returned.
  * NULL is never returned.
  *
  * The returned text is plain text, HTML is stripped.
@@ -286,16 +311,20 @@ char* dc_msg_get_text(const dc_msg_t* msg)
  */
 char* dc_msg_get_file(const dc_msg_t* msg)
 {
-	char* ret = NULL;
+	char* file_rel = NULL;
+	char* file_abs = NULL;
 
 	if (msg==NULL || msg->magic!=DC_MSG_MAGIC) {
 		goto cleanup;
 	}
 
-	ret = dc_param_get(msg->param, DC_PARAM_FILE, NULL);
+	if ((file_rel = dc_param_get(msg->param, DC_PARAM_FILE, NULL))!=NULL) {
+		file_abs = dc_get_abs_path(msg->context, file_rel);
+	}
 
 cleanup:
-	return ret? ret : dc_strdup(NULL);
+	free(file_rel);
+	return file_abs? file_abs : dc_strdup(NULL);
 }
 
 
@@ -392,72 +421,10 @@ uint64_t dc_msg_get_filebytes(const dc_msg_t* msg)
 		goto cleanup;
 	}
 
-	ret = dc_get_filebytes(file);
+	ret = dc_get_filebytes(msg->context, file);
 
 cleanup:
 	free(file);
-	return ret;
-}
-
-
-/**
- * Get real author and title.
- *
- * The information is returned by a dc_lot_t object with the following fields:
- *
- * - dc_lot_t::text1: Author of the media.  For voice messages, this is the sender.
- *   For music messages, the information are read from the filename. NULL if unknown.
- * - dc_lot_t::text2: Title of the media.  For voice messages, this is the date.
- *   For music messages, the information are read from the filename. NULL if unknown.
- *
- * Currently, we do not read ID3 and such at this stage, the needed libraries are too complicated and oversized.
- * However, this is no big problem, as the sender usually sets the filename in a way we expect it.
- *
- * @memberof dc_msg_t
- * @param msg The message object.
- * @return Media information as an dc_lot_t object. Must be freed using dc_lot_unref().  NULL is never returned.
- */
-dc_lot_t* dc_msg_get_mediainfo(const dc_msg_t* msg)
-{
-	dc_lot_t*     ret = dc_lot_new();
-	char*         pathNfilename = NULL;
-	dc_contact_t* contact = NULL;
-
-	if (msg==NULL || msg->magic!=DC_MSG_MAGIC || msg->context==NULL) {
-		goto cleanup;
-	}
-
-	if (msg->type==DC_MSG_VOICE)
-	{
-		if ((contact = dc_get_contact(msg->context, msg->from_id))==NULL) {
-			goto cleanup;
-		}
-		ret->text1 = dc_strdup((contact->name&&contact->name[0])? contact->name : contact->addr);
-		ret->text2 = dc_stock_str(msg->context, DC_STR_VOICEMESSAGE);
-	}
-	else
-	{
-		ret->text1 = dc_param_get(msg->param, DC_PARAM_AUTHORNAME, NULL);
-		ret->text2 = dc_param_get(msg->param, DC_PARAM_TRACKNAME, NULL);
-		if (ret->text1 && ret->text1[0] && ret->text2 && ret->text2[0]) {
-			goto cleanup;
-		}
-		free(ret->text1); ret->text1 = NULL;
-		free(ret->text2); ret->text2 = NULL;
-
-		pathNfilename = dc_param_get(msg->param, DC_PARAM_FILE, NULL);
-		if (pathNfilename==NULL) {
-			goto cleanup;
-		}
-		dc_msg_get_authorNtitle_from_filename(pathNfilename, &ret->text1, &ret->text2);
-		if (ret->text1==NULL && ret->text2!=NULL) {
-			ret->text1 = dc_stock_str(msg->context, DC_STR_AUDIO);
-		}
-	}
-
-cleanup:
-	free(pathNfilename);
-	dc_contact_unref(contact);
 	return ret;
 }
 
@@ -467,7 +434,7 @@ cleanup:
  * If the width is unknown or if the associated file is no image or video file,
  * 0 is returned.
  *
- * Often the ascpect ratio is the more interesting thing. You can calculate
+ * Often the aspect ratio is the more interesting thing. You can calculate
  * this using dc_msg_get_width() / dc_msg_get_height().
  *
  * See also dc_msg_get_duration().
@@ -509,7 +476,7 @@ int dc_msg_get_height(const dc_msg_t* msg)
 
 
 /**
- * Get duration of audio or video.  The duration is returned in milliseconds (ms).
+ * Get the duration of audio or video.  The duration is returned in milliseconds (ms).
  * If the duration is unknown or if the associated file is no audio or video file,
  * 0 is returned.
  *
@@ -537,26 +504,12 @@ int dc_msg_get_duration(const dc_msg_t* msg)
  */
 int dc_msg_get_showpadlock(const dc_msg_t* msg)
 {
-	/* a padlock guarantees that the message is e2ee _and_ answers will be as well */
-	int show_encryption_state = 0;
-
 	if (msg==NULL || msg->magic!=DC_MSG_MAGIC || msg->context==NULL) {
 		return 0;
 	}
 
-	if (msg->context->e2ee_enabled) {
-		show_encryption_state = 1;
-	}
-	else {
-		dc_chat_t* chat = dc_get_chat(msg->context, msg->chat_id);
-		show_encryption_state = dc_chat_is_verified(chat);
-		dc_chat_unref(chat);
-	}
-
-	if (show_encryption_state) {
-		if (dc_param_get_int(msg->param, DC_PARAM_GUARANTEE_E2EE, 0)!=0) {
-			return 1;
-		}
+	if (dc_param_get_int(msg->param, DC_PARAM_GUARANTEE_E2EE, 0)!=0) {
+		return 1;
 	}
 
 	return 0;
@@ -709,7 +662,7 @@ int dc_msg_is_forwarded(const dc_msg_t* msg)
  * These messages are typically shown in the center of the chat view,
  * dc_msg_get_text() returns a descriptive text about what is going on.
  *
- * There is no need to perfrom any action when seeing such a message - this is already done by the core.
+ * There is no need to perform any action when seeing such a message - this is already done by the core.
  * Typically, these messages are displayed in the center of the chat.
  *
  * @memberof dc_msg_t
@@ -746,7 +699,7 @@ int dc_msg_is_info(const dc_msg_t* msg)
  * @memberof dc_msg_t
  * @param msg The message object.
  * @return 1=message is a setup message, 0=no setup message.
- *     For setup messages, dc_msg_get_type() returns DC_MSG_FILE.
+ *     For setup messages, dc_msg_get_viewtype() returns DC_MSG_FILE.
  */
 int dc_msg_is_setupmessage(const dc_msg_t* msg)
 {
@@ -789,7 +742,7 @@ char* dc_msg_get_setupcodebegin(const dc_msg_t* msg)
 		goto cleanup;
 	}
 
-	if (!dc_read_file(filename, (void**)&buf, &buf_bytes, msg->context) || buf==NULL || buf_bytes <= 0) {
+	if (!dc_read_file(msg->context, filename, (void**)&buf, &buf_bytes) || buf==NULL || buf_bytes <= 0) {
 		goto cleanup;
 	}
 
@@ -807,7 +760,7 @@ cleanup:
 }
 
 
-#define DC_MSG_FIELDS " m.id,rfc724_mid,m.server_folder,m.server_uid,m.chat_id, " \
+#define DC_MSG_FIELDS " m.id,rfc724_mid,m.mime_in_reply_to,m.server_folder,m.server_uid,m.move_state,m.chat_id, " \
                       " m.from_id,m.to_id,m.timestamp,m.timestamp_sent,m.timestamp_rcvd, m.type,m.state,m.msgrmsg,m.txt, " \
                       " m.param,m.starred,m.hidden,c.blocked "
 
@@ -818,8 +771,10 @@ static int dc_msg_set_from_stmt(dc_msg_t* msg, sqlite3_stmt* row, int row_offset
 
 	msg->id           =           (uint32_t)sqlite3_column_int  (row, row_offset++);
 	msg->rfc724_mid   =    dc_strdup((char*)sqlite3_column_text (row, row_offset++));
+	msg->in_reply_to  =    dc_strdup((char*)sqlite3_column_text (row, row_offset++));
 	msg->server_folder=    dc_strdup((char*)sqlite3_column_text (row, row_offset++));
 	msg->server_uid   =           (uint32_t)sqlite3_column_int  (row, row_offset++);
+	msg->move_state   =    (dc_move_state_t)sqlite3_column_int  (row, row_offset++);
 	msg->chat_id      =           (uint32_t)sqlite3_column_int  (row, row_offset++);
 
 	msg->from_id      =           (uint32_t)sqlite3_column_int  (row, row_offset++);
@@ -830,7 +785,7 @@ static int dc_msg_set_from_stmt(dc_msg_t* msg, sqlite3_stmt* row, int row_offset
 
 	msg->type         =                     sqlite3_column_int  (row, row_offset++);
 	msg->state        =                     sqlite3_column_int  (row, row_offset++);
-	msg->is_msgrmsg   =                     sqlite3_column_int  (row, row_offset++);
+	msg->is_dc_message=                     sqlite3_column_int  (row, row_offset++);
 	msg->text         =    dc_strdup((char*)sqlite3_column_text (row, row_offset++));
 
 	dc_param_set_packed( msg->param, (char*)sqlite3_column_text (row, row_offset++));
@@ -908,7 +863,7 @@ void dc_msg_guess_msgtype_from_suffix(const char* pathNfilename, int* ret_msgtyp
 	if (ret_msgtype==NULL) { ret_msgtype = &dummy_msgtype; }
 	if (ret_mime==NULL)    { ret_mime = &dummy_buf; }
 
-	*ret_msgtype = DC_MSG_UNDEFINED;
+	*ret_msgtype = 0;
 	*ret_mime = NULL;
 
 	suffix = dc_get_filesuffix_lc(pathNfilename);
@@ -943,27 +898,6 @@ cleanup:
 }
 
 
-void dc_msg_get_authorNtitle_from_filename(const char* pathNfilename, char** ret_author, char** ret_title)
-{
-	/* function extracts AUTHOR and TITLE from a path given as `/path/other folder/AUTHOR - TITLE.mp3`
-	if the mark ` - ` is not preset, the whole name (without suffix) is used as the title and the author is NULL. */
-	char* author = NULL;
-	char* title = NULL;
-	char* p = NULL;
-
-	dc_split_filename(pathNfilename, &title, NULL);
-	p = strstr(title, " - ");
-	if (p) {
-		*p = 0;
-		author = title;
-		title  = dc_strdup(&p[3]);
-	}
-
-	if (ret_author) { *ret_author = author; } else { free(author); }
-	if (ret_title)  { *ret_title  = title; }  else { free(title); }
-}
-
-
 char* dc_msg_get_summarytext_by_raw(int type, const char* text, dc_param_t* param, int approx_characters, dc_context_t* context)
 {
 	/* get a summary text, result must be free()'d, never returns NULL. */
@@ -990,14 +924,6 @@ char* dc_msg_get_summarytext_by_raw(int type, const char* text, dc_param_t* para
 			break;
 
 		case DC_MSG_AUDIO:
-			if ((value=dc_param_get(param, DC_PARAM_TRACKNAME, NULL))==NULL) { /* although we send files with "author - title" in the filename, existing files may follow other conventions, so this lookup is neccessary */
-				pathNfilename = dc_param_get(param, DC_PARAM_FILE, "ErrFilename");
-				dc_msg_get_authorNtitle_from_filename(pathNfilename, NULL, &value);
-			}
-			label = dc_stock_str(context, DC_STR_AUDIO);
-			ret = dc_mprintf("%s: %s", label, value);
-			break;
-
 		case DC_MSG_FILE:
 			if (dc_param_get_int(param, DC_PARAM_CMD, 0)==DC_CMD_AUTOCRYPT_SETUP_MESSAGE) {
 				ret = dc_stock_str(context, DC_STR_AC_SETUP_MSG_SUBJECT);
@@ -1005,7 +931,7 @@ char* dc_msg_get_summarytext_by_raw(int type, const char* text, dc_param_t* para
 			else {
 				pathNfilename = dc_param_get(param, DC_PARAM_FILE, "ErrFilename");
 				value = dc_get_filename(pathNfilename);
-				label = dc_stock_str(context, DC_STR_FILE);
+				label = dc_stock_str(context, type==DC_MSG_AUDIO? DC_STR_AUDIO : DC_STR_FILE);
 				ret = dc_mprintf("%s: %s", label, value);
 			}
 			break;
@@ -1030,22 +956,21 @@ char* dc_msg_get_summarytext_by_raw(int type, const char* text, dc_param_t* para
 
 
 /**
- * Check if a message is still in creation.  The user can mark files as being
+ * Check if a message is still in creation.  The UI can mark files as being
  * in creation by simply creating a file `<filename>.increation`. If
- * `<filename>` is created then, the user should just delete
+ * `<filename>` is created completely then, the user should just delete
  * `<filename>.increation`.
  *
- * Typically, this is used for videos that should be recoded by the user before
+ * Typically, this is used for videos that are recoded by the UI before
  * they can be sent.
  *
  * @memberof dc_msg_t
- * @param msg the message object
+ * @param msg The message object
  * @return 1=message is still in creation (`<filename>.increation` exists),
  *     0=message no longer in creation
  */
 int dc_msg_is_increation(const dc_msg_t* msg)
 {
-	/* surrounds dc_msg_is_increation() with locking and error checking */
 	int is_increation = 0;
 
 	if (msg==NULL || msg->magic!=DC_MSG_MAGIC || msg->context==NULL) {
@@ -1057,7 +982,7 @@ int dc_msg_is_increation(const dc_msg_t* msg)
 		char* pathNfilename = dc_param_get(msg->param, DC_PARAM_FILE, NULL);
 		if (pathNfilename) {
 			char* totest = dc_mprintf("%s.increation", pathNfilename);
-			if (dc_file_exist(totest)) {
+			if (dc_file_exist(msg->context, totest)) {
 				is_increation = 1;
 			}
 			free(totest);
@@ -1081,26 +1006,6 @@ void dc_msg_save_param_to_disk(dc_msg_t* msg)
 	sqlite3_bind_int (stmt, 2, msg->id);
 	sqlite3_step(stmt);
 	sqlite3_finalize(stmt);
-}
-
-
-/**
- * Set the type of a message object.
- * The function does not check of the type is valid and the function does not alter any information in the database;
- * both may be done by dc_send_msg() later.
- *
- * @memberof dc_msg_t
- * @param msg The message object.
- * @param type The type to set, one of DC_MSG_TEXT (10), DC_MSG_IMAGE (20), DC_MSG_GIF (21),
- *     DC_MSG_AUDIO (40), DC_MSG_VOICE (41), DC_MSG_VIDEO (50), DC_MSG_FILE (60)
- * @return None.
- */
-void dc_msg_set_type(dc_msg_t* msg, int type)
-{
-	if (msg==NULL || msg->magic!=DC_MSG_MAGIC) {
-		return;
-	}
-	msg->type = type;
 }
 
 
@@ -1187,27 +1092,6 @@ void dc_msg_set_duration(dc_msg_t* msg, int duration)
 
 
 /**
- * Set the media information associated with message object.
- * Typically this is the author and the trackname of an audio or video associated using dc_msg_set_file().
- * This does not alter any information in the database; this may be done by dc_send_msg() later.
- *
- * @memberof dc_msg_t
- * @param msg The message object.
- * @param author Author or artist. NULL if you don't know or don't care.
- * @param trackname Trackname or title. NULL if you don't know or don't care.
- * @return None.
- */
-void dc_msg_set_mediainfo(dc_msg_t* msg, const char* author, const char* trackname)
-{
-	if (msg==NULL || msg->magic!=DC_MSG_MAGIC) {
-		return;
-	}
-	dc_param_set(msg->param, DC_PARAM_AUTHORNAME, author);
-	dc_param_set(msg->param, DC_PARAM_TRACKNAME, trackname);
-}
-
-
-/**
  * Late filing information to a message.
  * In contrast to the dc_msg_set_*() functions, this function really stores the information in the database.
  *
@@ -1224,8 +1108,8 @@ void dc_msg_set_mediainfo(dc_msg_t* msg, const char* author, const char* trackna
  *
  * @memberof dc_msg_t
  * @param msg The message object.
- * @param width The new width to store in the message object. 0 if you do not want to change it.
- * @param height The new height to store in the message object. 0 if you do not want to change it.
+ * @param width The new width to store in the message object. 0 if you do not want to change width and height.
+ * @param height The new height to store in the message object. 0 if you do not want to change width and height.
  * @param duration The new duration to store in the message object. 0 if you do not want to change it.
  * @return None.
  */
@@ -1235,15 +1119,12 @@ void dc_msg_latefiling_mediasize(dc_msg_t* msg, int width, int height, int durat
 		goto cleanup;
 	}
 
-	if (width > 0) {
+	if (width>0 && height>0) {
 		dc_param_set_int(msg->param, DC_PARAM_WIDTH, width);
-	}
-
-	if (height > 0) {
 		dc_param_set_int(msg->param, DC_PARAM_HEIGHT, height);
 	}
 
-	if (duration > 0) {
+	if (duration>0) {
 		dc_param_set_int(msg->param, DC_PARAM_DURATION, duration);
 	}
 
@@ -1281,6 +1162,19 @@ void dc_update_msg_state(dc_context_t* context, uint32_t msg_id, int state)
 }
 
 
+void dc_update_msg_move_state(dc_context_t* context, const char* rfc724_mid, dc_move_state_t state)
+{
+	// we update the move_state for all messages belonging to a given Message-ID
+	// so that the state stay intact when parts are deleted
+	sqlite3_stmt* stmt = dc_sqlite3_prepare(context->sql,
+		"UPDATE msgs SET move_state=? WHERE rfc724_mid=?;");
+	sqlite3_bind_int (stmt, 1, state);
+	sqlite3_bind_text(stmt, 2, rfc724_mid, -1, SQLITE_STATIC);
+	sqlite3_step(stmt);
+	sqlite3_finalize(stmt);
+}
+
+
 /**
  * Changes the state of PENDING or DELIVERED messages to DC_STATE_OUT_FAILED.
  * Moreover, the message error text can be updated.
@@ -1290,7 +1184,7 @@ void dc_update_msg_state(dc_context_t* context, uint32_t msg_id, int state)
  */
 void dc_set_msg_failed(dc_context_t* context, uint32_t msg_id, const char* error)
 {
-	dc_msg_t*     msg = dc_msg_new(context);
+	dc_msg_t*     msg = dc_msg_new_untyped(context);
 	sqlite3_stmt* stmt = NULL;
 
 	if (!dc_msg_load_from_db(msg, context, msg_id)) {
@@ -1408,8 +1302,14 @@ cleanup:
  */
 uint32_t dc_rfc724_mid_exists(dc_context_t* context, const char* rfc724_mid, char** ret_server_folder, uint32_t* ret_server_uid)
 {
-	uint32_t ret = 0;
-	sqlite3_stmt* stmt = dc_sqlite3_prepare(context->sql,
+	uint32_t      ret = 0;
+	sqlite3_stmt* stmt = NULL;
+
+	if (context==NULL || rfc724_mid==NULL || rfc724_mid[0]==0) {
+		goto cleanup;
+	}
+
+	stmt = dc_sqlite3_prepare(context->sql,
 		"SELECT server_folder, server_uid, id FROM msgs WHERE rfc724_mid=?;");
 	sqlite3_bind_text(stmt, 1, rfc724_mid, -1, SQLITE_STATIC);
 	if (sqlite3_step(stmt)!=SQLITE_ROW) {
@@ -1448,12 +1348,14 @@ void dc_update_server_uid(dc_context_t* context, const char* rfc724_mid, const c
  * @memberof dc_context_t
  * @param context The context as created by dc_context_new().
  * @param msg_id The message ID for which the message object should be created.
- * @return A dc_msg_t message object. When done, the object must be freed using dc_msg_unref()
+ * @return A dc_msg_t message object.
+ *     On errors, NULL is returned.
+ *     When done, the object must be freed using dc_msg_unref().
  */
 dc_msg_t* dc_get_msg(dc_context_t* context, uint32_t msg_id)
 {
 	int success = 0;
-	dc_msg_t* obj = dc_msg_new(context);
+	dc_msg_t* obj = dc_msg_new_untyped(context);
 
 	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC) {
 		goto cleanup;
@@ -1477,24 +1379,21 @@ cleanup:
 
 
 /**
- * Get an informational text for a single message. the text is multiline and may
+ * Get an informational text for a single message. The text is multiline and may
  * contain eg. the raw text of the message.
  *
  * The max. text returned is typically longer (about 100000 characters) than the
  * max. text returned by dc_msg_get_text() (about 30000 characters).
  *
- * If the library is compiled for android, some basic html-formatting for the
- * subject and the footer is added.
- *
  * @memberof dc_context_t
- * @param context the context object as created by dc_context_new().
- * @param msg_id the message id for which information should be generated
- * @return text string, must be free()'d after usage
+ * @param context The context object as created by dc_context_new().
+ * @param msg_id The message id for which information should be generated
+ * @return Text string, must be free()'d after usage
  */
 char* dc_get_msg_info(dc_context_t* context, uint32_t msg_id)
 {
 	sqlite3_stmt*   stmt = NULL;
-	dc_msg_t*       msg = dc_msg_new(context);
+	dc_msg_t*       msg = dc_msg_new_untyped(context);
 	dc_contact_t*   contact_from = dc_contact_new(context);
 	char*           rawtxt = NULL;
 	char*           p = NULL;
@@ -1519,23 +1418,13 @@ char* dc_get_msg_info(dc_context_t* context, uint32_t msg_id)
 	sqlite3_finalize(stmt);
 	stmt = NULL;
 
-	#ifdef __ANDROID__ // TODO: this (and the following `#ifdef __ANDROID__`) is a little hack to make the android message appearing a little smarter
-		p = strchr(rawtxt, '\n');
-		if (p) {
-			char* subject = rawtxt;
-			*p = 0;
-			p++;
-			rawtxt = dc_mprintf("<b>%s</b>\n%s", subject, p);
-			free(subject);
-		}
-	#endif
-
 	dc_trim(rawtxt);
 	dc_truncate_str(rawtxt, DC_MAX_GET_INFO_LEN);
 
 	/* add time */
 	dc_strbuilder_cat(&ret, "Sent: ");
 	p = dc_timestamp_to_str(dc_msg_get_timestamp(msg)); dc_strbuilder_cat(&ret, p); free(p);
+	p = dc_contact_get_name_n_addr(contact_from); dc_strbuilder_catf(&ret, " by %s", p); free(p);
 	dc_strbuilder_cat(&ret, "\n");
 
 	if (msg->from_id!=DC_CONTACT_ID_SELF) {
@@ -1559,7 +1448,7 @@ char* dc_get_msg_info(dc_context_t* context, uint32_t msg_id)
 
 		dc_contact_t* contact = dc_contact_new(context);
 			dc_contact_load_from_db(contact, context->sql, sqlite3_column_int64(stmt, 0));
-			p = dc_contact_get_display_name(contact); dc_strbuilder_cat(&ret, p); free(p);
+			p = dc_contact_get_name_n_addr(contact); dc_strbuilder_cat(&ret, p); free(p);
 		dc_contact_unref(contact);
 		dc_strbuilder_cat(&ret, "\n");
 	}
@@ -1604,18 +1493,11 @@ char* dc_get_msg_info(dc_context_t* context, uint32_t msg_id)
 		free(p);
 	}
 
-	/* add sender (only for info messages as the avatar may not be shown for them) */
-	if (dc_msg_is_info(msg)) {
-		dc_strbuilder_cat(&ret, "Sender: ");
-		p = dc_contact_get_name_n_addr(contact_from); dc_strbuilder_cat(&ret, p); free(p);
-		dc_strbuilder_cat(&ret, "\n");
-	}
-
 	/* add file info */
-	if ((p=dc_param_get(msg->param, DC_PARAM_FILE, NULL))!=NULL) {
-		dc_strbuilder_catf(&ret, "\nFile: %s, %i bytes\n", p, (int)dc_get_filebytes(p));
-		free(p);
+	if ((p=dc_msg_get_file(msg))!=NULL && p[0]) {
+		dc_strbuilder_catf(&ret, "\nFile: %s, %i bytes\n", p, (int)dc_get_filebytes(context, p));
 	}
+	free(p);
 
 	if (msg->type!=DC_MSG_TEXT) {
 		p = NULL;
@@ -1629,6 +1511,10 @@ char* dc_get_msg_info(dc_context_t* context, uint32_t msg_id)
 			default:           p = dc_mprintf("%i", msg->type); break;
 		}
 		dc_strbuilder_catf(&ret, "Type: %s\n", p);
+		free(p);
+
+		p = dc_msg_get_filemime(msg);
+		dc_strbuilder_catf(&ret, "Mimetype: %s\n", p);
 		free(p);
 	}
 
@@ -1651,10 +1537,6 @@ char* dc_get_msg_info(dc_context_t* context, uint32_t msg_id)
 	}
 
 	/* add Message-ID, Server-Folder and Server-UID; the database ID is normally only of interest if you have access to sqlite; if so you can easily get it from the "msgs" table. */
-	#ifdef __ANDROID__
-		dc_strbuilder_cat(&ret, "<c#808080>");
-	#endif
-
 	if (msg->rfc724_mid && msg->rfc724_mid[0]) {
 		dc_strbuilder_catf(&ret, "\nMessage-ID: %s", msg->rfc724_mid);
 	}
@@ -1663,16 +1545,48 @@ char* dc_get_msg_info(dc_context_t* context, uint32_t msg_id)
 		dc_strbuilder_catf(&ret, "\nLast seen as: %s/%i", msg->server_folder, (int)msg->server_uid);
 	}
 
-	#ifdef __ANDROID__
-		dc_strbuilder_cat(&ret, "</c>");
-	#endif
-
 cleanup:
 	sqlite3_finalize(stmt);
 	dc_msg_unref(msg);
 	dc_contact_unref(contact_from);
 	free(rawtxt);
 	return ret.buf;
+}
+
+
+/**
+ * Get the raw mime-headers of the given message.
+ * Raw headers are saved for incoming messages
+ * only if `dc_set_config(context, "save_mime_headers", "1")`
+ * was called before.
+ *
+ * @memberof dc_context_t
+ * @param context The context object as created by dc_context_new().
+ * @param msg_id The message id, must be the id of an incoming message.
+ * @return Raw headers as a multi-line string, must be free()'d after usage.
+ *     Returns NULL if there are no headers saved for the given message,
+ *     eg. because of save_mime_headers is not set
+ *     or the message is not incoming.
+ */
+char* dc_get_mime_headers(dc_context_t* context, uint32_t msg_id)
+{
+	char*         eml = NULL;
+	sqlite3_stmt* stmt = NULL;
+
+	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC) {
+		goto cleanup;
+	}
+
+	stmt = dc_sqlite3_prepare(context->sql,
+		"SELECT mime_headers FROM msgs WHERE id=?;");
+	sqlite3_bind_int(stmt, 1, msg_id);
+	if (sqlite3_step(stmt)==SQLITE_ROW) {
+		eml = dc_strdup_keep_null((const char*)sqlite3_column_text(stmt, 0));
+	}
+
+cleanup:
+	sqlite3_finalize(stmt);
+	return eml;
 }
 
 
@@ -1686,7 +1600,7 @@ cleanup:
  * @param msg_ids An array of uint32_t message IDs defining the messages to star or unstar
  * @param msg_cnt The number of IDs in msg_ids
  * @param star 0=unstar the messages in msg_ids, 1=star them
- * @return none
+ * @return None.
  */
 void dc_star_msgs(dc_context_t* context, const uint32_t* msg_ids, int msg_cnt, int star)
 {
@@ -1716,15 +1630,89 @@ void dc_star_msgs(dc_context_t* context, const uint32_t* msg_ids, int msg_cnt, i
  ******************************************************************************/
 
 
+ /**
+  * Low-level function to delete a message from the database.
+  * This does not delete the messages from the server.
+  *
+  * @private @memberof dc_context_t
+  */
+void dc_delete_msg_from_db(dc_context_t* context, uint32_t msg_id)
+{
+	dc_msg_t*     msg = dc_msg_new_untyped(context);
+	sqlite3_stmt* stmt = NULL;
+
+	if (!dc_msg_load_from_db(msg, context, msg_id)) {
+		goto cleanup;
+	}
+
+	stmt = dc_sqlite3_prepare(context->sql,
+		"DELETE FROM msgs WHERE id=?;");
+	sqlite3_bind_int(stmt, 1, msg->id);
+	sqlite3_step(stmt);
+	sqlite3_finalize(stmt);
+	stmt = NULL;
+
+	stmt = dc_sqlite3_prepare(context->sql,
+		"DELETE FROM msgs_mdns WHERE msg_id=?;");
+	sqlite3_bind_int(stmt, 1, msg->id);
+	sqlite3_step(stmt);
+	sqlite3_finalize(stmt);
+	stmt = NULL;
+
+	char* pathNfilename = dc_param_get(msg->param, DC_PARAM_FILE, NULL);
+	if (pathNfilename) {
+		if (strncmp("$BLOBDIR", pathNfilename, 8)==0)
+		{
+			char* strLikeFilename = dc_mprintf("%%f=%s%%", pathNfilename);
+			stmt = dc_sqlite3_prepare(context->sql,
+				"SELECT id FROM msgs WHERE type!=? AND param LIKE ?;"); /* if this gets too slow, an index over "type" should help. */
+			sqlite3_bind_int (stmt, 1, DC_MSG_TEXT);
+			sqlite3_bind_text(stmt, 2, strLikeFilename, -1, SQLITE_STATIC);
+			int file_used_by_other_msgs = (sqlite3_step(stmt)==SQLITE_ROW)? 1 : 0;
+			free(strLikeFilename);
+			sqlite3_finalize(stmt);
+			stmt = NULL;
+
+			if (!file_used_by_other_msgs)
+			{
+				dc_delete_file(context, pathNfilename);
+
+				char* increation_file = dc_mprintf("%s.increation", pathNfilename);
+				dc_delete_file(context, increation_file);
+				free(increation_file);
+
+				char* filenameOnly = dc_get_filename(pathNfilename);
+				if (msg->type==DC_MSG_VOICE) {
+					char* waveform_file = dc_mprintf("%s/%s.waveform", context->blobdir, filenameOnly);
+					dc_delete_file(context, waveform_file);
+					free(waveform_file);
+				}
+				else if (msg->type==DC_MSG_VIDEO) {
+					char* preview_file = dc_mprintf("%s/%s-preview.jpg", context->blobdir, filenameOnly);
+					dc_delete_file(context, preview_file);
+					free(preview_file);
+				}
+				free(filenameOnly);
+			}
+		}
+		free(pathNfilename);
+	}
+
+cleanup:
+	sqlite3_finalize(stmt);
+	dc_msg_unref(msg);
+}
+
+
 /**
  * Delete messages. The messages are deleted on the current device and
  * on the IMAP server.
  *
  * @memberof dc_context_t
- * @param context the context object as created by dc_context_new()
+ * @param context The context object as created by dc_context_new()
  * @param msg_ids an array of uint32_t containing all message IDs that should be deleted
- * @param msg_cnt the number of messages IDs in the msg_ids array
- * @return none
+ * @param msg_cnt The number of messages IDs in the msg_ids array
+ * @return None.
  */
 void dc_delete_msgs(dc_context_t* context, const uint32_t* msg_ids, int msg_cnt)
 {
@@ -1741,6 +1729,10 @@ void dc_delete_msgs(dc_context_t* context, const uint32_t* msg_ids, int msg_cnt)
 		}
 
 	dc_sqlite3_commit(context->sql);
+
+	if (msg_cnt) {
+		context->cb(context, DC_EVENT_MSGS_CHANGED, 0, 0);
+	}
 }
 
 
@@ -1757,9 +1749,9 @@ void dc_delete_msgs(dc_context_t* context, const uint32_t* msg_ids, int msg_cnt)
  *
  * @memberof dc_context_t
  * @param context The context object.
- * @param msg_ids an array of uint32_t containing all the messages IDs that should be marked as seen.
+ * @param msg_ids An array of uint32_t containing all the messages IDs that should be marked as seen.
  * @param msg_cnt The number of message IDs in msg_ids.
- * @return none
+ * @return None.
  */
 void dc_markseen_msgs(dc_context_t* context, const uint32_t* msg_ids, int msg_cnt)
 {
@@ -1796,7 +1788,7 @@ void dc_markseen_msgs(dc_context_t* context, const uint32_t* msg_ids, int msg_cn
 				if (curr_state==DC_STATE_IN_FRESH || curr_state==DC_STATE_IN_NOTICED) {
 					dc_update_msg_state(context, msg_ids[i], DC_STATE_IN_SEEN);
 					dc_log_info(context, 0, "Seen message #%i.", msg_ids[i]);
-					dc_job_add(context, DC_JOB_MARKSEEN_MSG_ON_IMAP, msg_ids[i], NULL, 0); /* results in a call to dc_markseen_msg_on_imap() */
+					dc_job_add(context, DC_JOB_MARKSEEN_MSG_ON_IMAP, msg_ids[i], NULL, 0);
 					send_event = 1;
 				}
 			}

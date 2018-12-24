@@ -1,7 +1,6 @@
 import distutils.ccompiler
 import distutils.sysconfig
 import tempfile
-
 import cffi
 
 
@@ -11,12 +10,31 @@ def ffibuilder():
         'deltachat.capi',
         """
             #include <deltachat/deltachat.h>
+            const char * dupstring_helper(const char* string)
+            {
+                return strdup(string);
+            }
+            int dc_get_event_signature_types(int e)
+            {
+                int result = 0;
+                if (DC_EVENT_DATA1_IS_STRING(e))
+                    result |= 1;
+                if (DC_EVENT_DATA2_IS_STRING(e))
+                    result |= 2;
+                if (DC_EVENT_RETURNS_STRING(e))
+                    result |= 4;
+                if (DC_EVENT_RETURNS_INT(e))
+                    result |= 8;
+                return result;
+            }
         """,
         libraries=['deltachat'],
     )
     builder.cdef("""
         typedef int... time_t;
         void free(void *ptr);
+        extern const char * dupstring_helper(const char* string);
+        extern int dc_get_event_signature_types(int);
     """)
     cc = distutils.ccompiler.new_compiler(force=True)
     distutils.sysconfig.customize_compiler(cc)
@@ -39,5 +57,7 @@ def ffibuilder():
 
 
 if __name__ == '__main__':
+    import os.path
+    pkgdir = os.path.join(os.path.dirname(__file__), '..')
     builder = ffibuilder()
-    builder.compile(verbose=True)
+    builder.compile(tmpdir=pkgdir, verbose=True)

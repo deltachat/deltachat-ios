@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include <stdarg.h>
 #include <unistd.h>
 #include "dc_context.h"
@@ -37,10 +15,24 @@
  * The function should be called after a QR code is scanned.
  * The function takes the raw text scanned and checks what can be done with it.
  *
+ * The QR code state is returned in dc_lot_t::state as:
+ *
+ * - DC_QR_ASK_VERIFYCONTACT with dc_lot_t::id=Contact ID
+ * - DC_QR_ASK_VERIFYGROUP withdc_lot_t::text1=Group name
+ * - DC_QR_FPR_OK with dc_lot_t::id=Contact ID
+ * - DC_QR_FPR_MISMATCH with dc_lot_t::id=Contact ID
+ * - DC_QR_FPR_WITHOUT_ADDR with dc_lot_t::test1=Formatted fingerprint
+ * - DC_QR_ADDR with dc_lot_t::id=Contact ID
+ * - DC_QR_TEXT with dc_lot_t::text1=Text
+ * - DC_QR_URL with dc_lot_t::text1=URL
+ * - DC_QR_ERROR with dc_lot_t::text1=Error string
+ *
+ *
  * @memberof dc_context_t
  * @param context The context object.
  * @param qr The text of the scanned QR code.
- * @return Parsed QR code as an dc_lot_t object.
+ * @return Parsed QR code as an dc_lot_t object. The returned object must be
+ *     freed using dc_lot_unref() after usage.
  */
 dc_lot_t* dc_check_qr(dc_context_t* context, const char* qr)
 {
@@ -178,7 +170,7 @@ dc_lot_t* dc_check_qr(dc_context_t* context, const char* qr)
 		char* temp = dc_urldecode(addr);      free(addr); addr = temp; /* urldecoding is needed at least for OPENPGP4FPR but should not hurt in the other cases */
 		      temp = dc_addr_normalize(addr); free(addr); addr = temp;
 
-		if (strlen(addr) < 3 || strchr(addr, '@')==NULL || strchr(addr, '.')==NULL) {
+		if (!dc_may_be_valid_addr(addr)) {
 			qr_parsed->state = DC_QR_ERROR;
 			qr_parsed->text1 = dc_strdup("Bad e-mail address.");
 			goto cleanup;

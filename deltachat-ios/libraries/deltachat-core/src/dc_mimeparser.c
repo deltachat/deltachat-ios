@@ -1,31 +1,21 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include "dc_context.h"
 #include "dc_mimeparser.h"
 #include "dc_mimefactory.h"
-#include "dc_uudecode.h"
 #include "dc_pgp.h"
 #include "dc_simplify.h"
+
+
+
+// deprecated: flag to switch generation of compound messages on and off.
+static int s_generate_compound_msgs = 1;
+
+
+// deprecated: call dc_no_compound_msgs()
+// to switch generation of compound messages off for the whole library.
+void dc_no_compound_msgs(void)
+{
+	s_generate_compound_msgs = 0;
+}
 
 
 /*******************************************************************************
@@ -653,7 +643,18 @@ static int mailmime_is_attachment_disposition(struct mailmime* mime)
 }
 
 
-static int mailmime_get_mime_type(struct mailmime* mime, int* msg_type)
+static void reconcat_mime(char** raw_mime, const char* type, const char* subtype)
+{
+	if (raw_mime) {
+		*raw_mime = dc_mprintf("%s/%s",
+			type? type : "application",
+			subtype? subtype : "octet-stream");
+	}
+}
+
+
+static int mailmime_get_mime_type(struct mailmime* mime, int* msg_type,
+	char** raw_mime /*set only for discrete types with attachments*/)
 {
 	#define DC_MIMETYPE_MP_ALTERNATIVE      10
 	#define DC_MIMETYPE_MP_RELATED          20
@@ -672,7 +673,7 @@ static int mailmime_get_mime_type(struct mailmime* mime, int* msg_type)
 
 	struct mailmime_content* c = mime->mm_content_type;
 	int dummy = 0; if (msg_type==NULL) { msg_type = &dummy; }
-	*msg_type = DC_MSG_UNDEFINED;
+	*msg_type = 0;
 
 	if (c==NULL || c->ct_type==NULL) {
 		return 0;
@@ -696,6 +697,7 @@ static int mailmime_get_mime_type(struct mailmime* mime, int* msg_type)
 						return DC_MIMETYPE_TEXT_HTML;
                     }
 					*msg_type = DC_MSG_FILE;
+					reconcat_mime(raw_mime, "text", c->ct_subtype);
 					return DC_MIMETYPE_FILE;
 
 				case MAILMIME_DISCRETE_TYPE_IMAGE:
@@ -704,27 +706,33 @@ static int mailmime_get_mime_type(struct mailmime* mime, int* msg_type)
 					}
 					else if (strcmp(c->ct_subtype, "svg+xml")==0) {
 						*msg_type = DC_MSG_FILE;
+						reconcat_mime(raw_mime, "image", c->ct_subtype);
 						return DC_MIMETYPE_FILE;
 					}
 					else {
 						*msg_type = DC_MSG_IMAGE;
 					}
+					reconcat_mime(raw_mime, "image", c->ct_subtype);
 					return DC_MIMETYPE_IMAGE;
 
 				case MAILMIME_DISCRETE_TYPE_AUDIO:
 					*msg_type = DC_MSG_AUDIO; /* we correct this later to DC_MSG_VOICE, currently, this is not possible as we do not know the main header */
+					reconcat_mime(raw_mime, "audio", c->ct_subtype);
 					return DC_MIMETYPE_AUDIO;
 
 				case MAILMIME_DISCRETE_TYPE_VIDEO:
 					*msg_type = DC_MSG_VIDEO;
+					reconcat_mime(raw_mime, "video", c->ct_subtype);
 					return DC_MIMETYPE_VIDEO;
 
 				default:
 					*msg_type = DC_MSG_FILE;
 					if (c->ct_type->tp_data.tp_discrete_type->dt_type==MAILMIME_DISCRETE_TYPE_APPLICATION
 					 && strcmp(c->ct_subtype, "autocrypt-setup")==0) {
+						reconcat_mime(raw_mime, "application", c->ct_subtype);
 						return DC_MIMETYPE_AC_SETUP_FILE; /* application/autocrypt-setup */
 					}
+					reconcat_mime(raw_mime, c->ct_type->tp_data.tp_discrete_type->dt_extension, c->ct_subtype);
 					return DC_MIMETYPE_FILE;
 			}
 			break;
@@ -786,7 +794,7 @@ static dc_mimepart_t* dc_mimepart_new(void)
 		exit(33);
 	}
 
-	mimepart->type    = DC_MSG_UNDEFINED;
+	mimepart->type    = 0;
 	mimepart->param   = dc_param_new();
 
 	return mimepart;
@@ -799,15 +807,11 @@ static void dc_mimepart_unref(dc_mimepart_t* mimepart)
 		return;
 	}
 
-	if (mimepart->msg) {
-		free(mimepart->msg);
-		mimepart->msg = NULL;
-	}
+	free(mimepart->msg);
+	mimepart->msg = NULL;
 
-	if (mimepart->msg_raw) {
-		free(mimepart->msg_raw);
-		mimepart->msg_raw = NULL;
-	}
+	free(mimepart->msg_raw);
+	mimepart->msg_raw = NULL;
 
 	dc_param_unref(mimepart->param);
 	free(mimepart);
@@ -863,8 +867,15 @@ void dc_mimeparser_unref(dc_mimeparser_t* mimeparser)
 	}
 
 	dc_mimeparser_empty(mimeparser);
-	if (mimeparser->parts)   { carray_free(mimeparser->parts); }
-	if (mimeparser->reports) { carray_free(mimeparser->reports); }
+
+	if (mimeparser->parts) {
+		carray_free(mimeparser->parts);
+	}
+
+	if (mimeparser->reports) {
+		carray_free(mimeparser->reports);
+	}
+
 	free(mimeparser->e2ee_helper);
 	free(mimeparser);
 }
@@ -944,6 +955,7 @@ static void do_add_single_part(dc_mimeparser_t* parser, dc_mimepart_t* part)
 
 
 static void do_add_single_file_part(dc_mimeparser_t* parser, int msg_type, int mime_type,
+                                    const char* raw_mime,
                                     const char* decoded_data, size_t decoded_data_bytes,
                                     const char* desired_filename)
 {
@@ -951,12 +963,12 @@ static void do_add_single_file_part(dc_mimeparser_t* parser, int msg_type, int m
 	char*          pathNfilename = NULL;
 
 	/* create a free file name to use */
-	if ((pathNfilename=dc_get_fine_pathNfilename(parser->blobdir, desired_filename))==NULL) {
+	if ((pathNfilename=dc_get_fine_pathNfilename(parser->context, "$BLOBDIR", desired_filename))==NULL) {
 		goto cleanup;
 	}
 
 	/* copy data to file */
-	if (dc_write_file(pathNfilename, decoded_data, decoded_data_bytes, parser->context)==0) {
+	if (dc_write_file(parser->context, pathNfilename, decoded_data, decoded_data_bytes)==0) {
 		goto cleanup;
 	}
 
@@ -965,12 +977,7 @@ static void do_add_single_file_part(dc_mimeparser_t* parser, int msg_type, int m
 	part->int_mimetype = mime_type;
 	part->bytes = decoded_data_bytes;
 	dc_param_set(part->param, DC_PARAM_FILE, pathNfilename);
-	if (DC_MSG_MAKE_FILENAME_SEARCHABLE(msg_type)) {
-		part->msg = dc_get_filename(pathNfilename);
-	}
-	else if (DC_MSG_MAKE_SUFFIX_SEARCHABLE(msg_type)) {
-		part->msg = dc_get_filesuffix_lc(pathNfilename);
-	}
+	dc_param_set(part->param, DC_PARAM_MIMETYPE, raw_mime);
 
 	if (mime_type==DC_MIMETYPE_IMAGE) {
 		uint32_t w = 0, h = 0;
@@ -978,16 +985,6 @@ static void do_add_single_file_part(dc_mimeparser_t* parser, int msg_type, int m
 			dc_param_set_int(part->param, DC_PARAM_WIDTH, w);
 			dc_param_set_int(part->param, DC_PARAM_HEIGHT, h);
 		}
-	}
-
-	/* split author/title from the original filename (if we do it from the real filename, we'll also get numbers appended by dc_get_fine_pathNfilename()) */
-	if (msg_type==DC_MSG_AUDIO) {
-		char* author = NULL, *title = NULL;
-		dc_msg_get_authorNtitle_from_filename(desired_filename, &author, &title);
-		dc_param_set(part->param, DC_PARAM_AUTHORNAME, author);
-		dc_param_set(part->param, DC_PARAM_TRACKNAME, title);
-		free(author);
-		free(title);
 	}
 
 	do_add_single_part(parser, part);
@@ -1009,6 +1006,7 @@ static int dc_mimeparser_add_single_part_if_known(dc_mimeparser_t* mimeparser, s
 	char*                        file_suffix = NULL;
 	char*                        desired_filename = NULL;
 	int                          msg_type = 0;
+	char*                        raw_mime = NULL;
 
 	char*                        transfer_decoding_buffer = NULL; /* mmap_string_unref()'d if set */
 	char*                        charset_buffer = NULL; /* charconv_buffer_free()'d if set (just calls mmap_string_unref()) */
@@ -1021,7 +1019,7 @@ static int dc_mimeparser_add_single_part_if_known(dc_mimeparser_t* mimeparser, s
 	}
 
 	/* get mime type from `mime` */
-	mime_type = mailmime_get_mime_type(mime, &msg_type);
+	mime_type = mailmime_get_mime_type(mime, &msg_type, &raw_mime);
 
 	/* get data pointer from `mime` */
 	mime_data = mime->mm_data.mm_single;
@@ -1066,36 +1064,7 @@ static int dc_mimeparser_add_single_part_if_known(dc_mimeparser_t* mimeparser, s
 					}
 				}
 
-				// add uuencoded stuff as DC_MSG_FILE/DC_MSG_IMAGE/etc. parts
-				char* txt = strndup(decoded_data, decoded_data_bytes);
-				{
-					char*  uu_blob = NULL, *uu_filename = NULL, *new_txt = NULL;
-					size_t uu_blob_bytes = 0;
-					int    uu_msg_type = 0, added_uu_parts = 0;
-					while ((new_txt=dc_uudecode_do(txt, &uu_blob, &uu_blob_bytes, &uu_filename))!=NULL)
-					{
-						dc_msg_guess_msgtype_from_suffix(uu_filename, &uu_msg_type, NULL);
-						if (uu_msg_type==0) {
-							uu_msg_type = DC_MSG_FILE;
-						}
-
-						do_add_single_file_part(mimeparser, uu_msg_type, 0, uu_blob, uu_blob_bytes, uu_filename);
-
-						free(txt);         txt = new_txt; new_txt = NULL;
-						free(uu_blob);     uu_blob = NULL; uu_blob_bytes = 0; uu_msg_type = 0;
-						free(uu_filename); uu_filename = NULL;
-
-						added_uu_parts++;
-						if (added_uu_parts > 50/*fence against endless loops*/) {
-							break;
-						}
-					}
-				}
-
-				// add text as DC_MSG_TEXT part
-				char* simplified_txt = dc_simplify_simplify(simplifier, txt, strlen(txt), mime_type==DC_MIMETYPE_TEXT_HTML? 1 : 0);
-				free(txt);
-				txt = NULL;
+				char* simplified_txt = dc_simplify_simplify(simplifier, decoded_data, decoded_data_bytes, mime_type==DC_MIMETYPE_TEXT_HTML? 1 : 0);
 				if (simplified_txt && simplified_txt[0])
 				{
 					part = dc_mimepart_new();
@@ -1187,7 +1156,7 @@ static int dc_mimeparser_add_single_part_if_known(dc_mimeparser_t* mimeparser, s
 
 				dc_replace_bad_utf8_chars(desired_filename);
 
-				do_add_single_file_part(mimeparser, msg_type, mime_type, decoded_data, decoded_data_bytes, desired_filename);
+				do_add_single_file_part(mimeparser, msg_type, mime_type, raw_mime, decoded_data, decoded_data_bytes, desired_filename);
 			}
 			break;
 
@@ -1203,6 +1172,7 @@ cleanup:
 	free(file_suffix);
 	free(desired_filename);
 	dc_mimepart_unref(part);
+	free(raw_mime);
 
 	return carray_count(mimeparser->parts)>old_part_count? 1 : 0; /* any part added? */
 }
@@ -1247,14 +1217,14 @@ static int dc_mimeparser_parse_mime_recursive(dc_mimeparser_t* mimeparser, struc
 			break;
 
 		case MAILMIME_MULTIPLE:
-			switch (mailmime_get_mime_type(mime, NULL))
+			switch (mailmime_get_mime_type(mime, NULL, NULL))
 			{
 				case DC_MIMETYPE_MP_ALTERNATIVE: /* add "best" part */
 					/* Most times, mutlipart/alternative contains true alternatives as text/plain and text/html.
 					If we find a multipart/mixed inside mutlipart/alternative, we use this (happens eg in apple mail: "plaintext" as an alternative to "html+PDF attachment") */
 					for (cur=clist_begin(mime->mm_data.mm_multipart.mm_mp_list); cur!=NULL; cur=clist_next(cur)) {
 						struct mailmime* childmime = (struct mailmime*)clist_content(cur);
-						if (mailmime_get_mime_type(childmime, NULL)==DC_MIMETYPE_MP_MIXED) {
+						if (mailmime_get_mime_type(childmime, NULL, NULL)==DC_MIMETYPE_MP_MIXED) {
 							any_part_added = dc_mimeparser_parse_mime_recursive(mimeparser, childmime);
 							break;
 						}
@@ -1265,7 +1235,7 @@ static int dc_mimeparser_parse_mime_recursive(dc_mimeparser_t* mimeparser, struc
 						/* search for text/plain and add this */
 						for (cur=clist_begin(mime->mm_data.mm_multipart.mm_mp_list); cur!=NULL; cur=clist_next(cur)) {
 							struct mailmime* childmime = (struct mailmime*)clist_content(cur);
-							if (mailmime_get_mime_type(childmime, NULL)==DC_MIMETYPE_TEXT_PLAIN) {
+							if (mailmime_get_mime_type(childmime, NULL, NULL)==DC_MIMETYPE_TEXT_PLAIN) {
 								any_part_added = dc_mimeparser_parse_mime_recursive(mimeparser, childmime);
 								break;
 							}
@@ -1297,6 +1267,7 @@ static int dc_mimeparser_parse_mime_recursive(dc_mimeparser_t* mimeparser, struc
 
 						char* msg_body = dc_stock_str(mimeparser->context, DC_STR_CANTDECRYPT_MSG_BODY);
 						part->msg = dc_mprintf(DC_EDITORIAL_OPEN "%s" DC_EDITORIAL_CLOSE, msg_body);
+						part->msg_raw = dc_strdup(part->msg);
 						free(msg_body);
 
 						carray_add(mimeparser->parts, (void*)part, NULL);
@@ -1345,10 +1316,10 @@ static int dc_mimeparser_parse_mime_recursive(dc_mimeparser_t* mimeparser, struc
 							int plain_cnt = 0, html_cnt = 0;
 							for (cur=clist_begin(mime->mm_data.mm_multipart.mm_mp_list); cur!=NULL; cur=clist_next(cur)) {
 								struct mailmime* childmime = (struct mailmime*)clist_content(cur);
-								if (mailmime_get_mime_type(childmime, NULL)==DC_MIMETYPE_TEXT_PLAIN) {
+								if (mailmime_get_mime_type(childmime, NULL, NULL)==DC_MIMETYPE_TEXT_PLAIN) {
 									plain_cnt++;
 								}
-								else if (mailmime_get_mime_type(childmime, NULL)==DC_MIMETYPE_TEXT_HTML) {
+								else if (mailmime_get_mime_type(childmime, NULL, NULL)==DC_MIMETYPE_TEXT_HTML) {
 									html_part = childmime;
 									html_cnt++;
 								}
@@ -1488,10 +1459,6 @@ void dc_mimeparser_parse(dc_mimeparser_t* mimeparser, const char* body_not_termi
 	/* recursively check, whats parsed, this also sets up header_old */
 	dc_mimeparser_parse_mime_recursive(mimeparser, mimeparser->mimeroot);
 
-	// TOCHECK: text parts may be moved to the beginning of the list - either here or in do_add_single_part()
-	//       usecase: eg. the Buchungsbestätigungen of Deutsch Bahn have the PDF before the explaining text.
-	//       may also be handy for extracting binaries from uuencoded text and just add the rest text after the binaries.
-
 	/* setup header */
 	hash_header(&mimeparser->header, mimeparser->header_root, mimeparser->context);
 	hash_header(&mimeparser->header, mimeparser->header_protected, mimeparser->context); /* overwrite the original header with the protected one */
@@ -1504,7 +1471,7 @@ void dc_mimeparser_parse(dc_mimeparser_t* mimeparser, const char* body_not_termi
 		}
 	}
 
-	if (dc_mimeparser_lookup_optional_field2(mimeparser, "Chat-Version", "X-MrMsg")) {
+	if (dc_mimeparser_lookup_optional_field(mimeparser, "Chat-Version")) {
 		mimeparser->is_send_by_messenger = 1;
 	}
 
@@ -1530,6 +1497,24 @@ void dc_mimeparser_parse(dc_mimeparser_t* mimeparser, const char* body_not_termi
 			}
 		}
 		mimeparser->is_send_by_messenger = 0; /* do not treat a setup message as a messenger message (eg. do not move setup messages to the Chats-folder; there may be a 3rd device that wants to handle it) */
+	}
+
+	// create compound messages
+	if (mimeparser->is_send_by_messenger
+	 && s_generate_compound_msgs
+	 && carray_count(mimeparser->parts)==2)
+	{
+		dc_mimepart_t* textpart = (dc_mimepart_t*)carray_get(mimeparser->parts, 0);
+		dc_mimepart_t* filepart = (dc_mimepart_t*)carray_get(mimeparser->parts, 1);
+
+		if (textpart->type==DC_MSG_TEXT && DC_MSG_NEEDS_ATTACHMENT(filepart->type))
+		{
+			free(filepart->msg);
+			filepart->msg = textpart->msg;
+			textpart->msg = NULL;
+			dc_mimepart_unref(textpart);
+			carray_delete_slow(mimeparser->parts, 0);
+		}
 	}
 
 	/* prepend subject to message? */
@@ -1587,17 +1572,13 @@ void dc_mimeparser_parse(dc_mimeparser_t* mimeparser, const char* body_not_termi
 		and read some additional parameters */
 		dc_mimepart_t* part = (dc_mimepart_t*)carray_get(mimeparser->parts, 0);
 		if (part->type==DC_MSG_AUDIO) {
-			if (dc_mimeparser_lookup_optional_field2(mimeparser, "Chat-Voice-Message", "X-MrVoiceMessage")) {
-				free(part->msg);
-				part->msg = strdup("ogg"); /* DC_MSG_AUDIO adds sets the whole filename which is useless. however, the extension is useful. */
+			if (dc_mimeparser_lookup_optional_field(mimeparser, "Chat-Voice-Message")) {
 				part->type = DC_MSG_VOICE;
-				dc_param_set(part->param, DC_PARAM_AUTHORNAME, NULL); /* remove unneeded information */
-				dc_param_set(part->param, DC_PARAM_TRACKNAME, NULL);
 			}
 		}
 
 		if (part->type==DC_MSG_AUDIO || part->type==DC_MSG_VOICE || part->type==DC_MSG_VIDEO) {
-			const struct mailimf_optional_field* field = dc_mimeparser_lookup_optional_field2(mimeparser, "Chat-Duration", "X-MrDurationMs");
+			const struct mailimf_optional_field* field = dc_mimeparser_lookup_optional_field(mimeparser, "Chat-Duration");
 			if (field) {
 				int duration_ms = atoi(field->fld_value);
 				if (duration_ms > 0 && duration_ms < 24*60*60*1000) {
@@ -1625,7 +1606,7 @@ void dc_mimeparser_parse(dc_mimeparser_t* mimeparser, const char* body_not_termi
 	/* check, if the message asks for a MDN */
 	if (!mimeparser->decrypting_failed)
 	{
-		const struct mailimf_optional_field* dn_field = dc_mimeparser_lookup_optional_field(mimeparser, "Chat-Disposition-Notification-To"); /* we use "Chat-Disposition-Notification-To" as replies to "Disposition-Notification-To" are weired in many cases, are just freetext and/or do not follow any standard. */
+		const struct mailimf_optional_field* dn_field = dc_mimeparser_lookup_optional_field(mimeparser, "Chat-Disposition-Notification-To"); /* we use "Chat-Disposition-Notification-To" as replies to "Disposition-Notification-To" are weird in many cases, are just freetext and/or do not follow any standard. */
 		if (dn_field && dc_mimeparser_get_last_nonmeta(mimeparser)/*just check if the mail is not empty*/)
 		{
 			struct mailimf_mailbox_list* mb_list = NULL;
@@ -1666,7 +1647,12 @@ cleanup:
 	if (!dc_mimeparser_has_nonmeta(mimeparser) && carray_count(mimeparser->reports)==0) {
 		dc_mimepart_t* part = dc_mimepart_new();
 		part->type = DC_MSG_TEXT;
-		part->msg = dc_strdup(mimeparser->subject? mimeparser->subject : "Empty message");
+		if (mimeparser->subject && !mimeparser->is_send_by_messenger) {
+			part->msg = dc_strdup(mimeparser->subject);
+		}
+		else {
+			part->msg = dc_strdup("");
+		}
 		carray_add(mimeparser->parts, (void*)part, NULL);
 	}
 }
@@ -1709,17 +1695,6 @@ struct mailimf_optional_field* dc_mimeparser_lookup_optional_field(dc_mimeparser
 		return field->fld_data.fld_optional_field;
 	}
 	return NULL;
-}
-
-
-/*
- * Lookup the first name and return, if found.
- * If not, try to lookup the second name.
- */
-struct mailimf_optional_field* dc_mimeparser_lookup_optional_field2(dc_mimeparser_t* mimeparser, const char* field_name, const char* or_field_name)
-{
-	struct mailimf_optional_field* of = dc_mimeparser_lookup_optional_field(mimeparser, field_name);
-	return of? of : dc_mimeparser_lookup_optional_field(mimeparser, or_field_name);
 }
 
 

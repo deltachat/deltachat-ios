@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -35,6 +13,51 @@
 #include "dc_key.h"
 #include "dc_pgp.h"
 #include "dc_apeerstate.h"
+
+
+static const char* config_keys[] = {
+	 "addr"
+	,"mail_server"
+	,"mail_user"
+	,"mail_pw"
+	,"mail_port"
+	,"send_server"
+	,"send_user"
+	,"send_pw"
+	,"send_port"
+	,"server_flags"
+	,"imap_folder" // deprecated
+	,"displayname"
+	,"selfstatus"
+	,"selfavatar"
+	,"e2ee_enabled"
+	,"mdns_enabled"
+	,"inbox_watch"
+	,"sentbox_watch"
+	,"mvbox_watch"
+	,"mvbox_move"
+	,"save_mime_headers"
+	,"configured_addr"
+	,"configured_mail_server"
+	,"configured_mail_user"
+	,"configured_mail_pw"
+	,"configured_mail_port"
+	,"configured_send_server"
+	,"configured_send_user"
+	,"configured_send_pw"
+	,"configured_send_port"
+	,"configured_server_flags"
+	,"configured"
+};
+
+
+static const char* sys_config_keys[] = {
+	 "sys.version"
+	,"sys.msgsize_max_recommended"
+	,"sys.config_keys"
+};
+
+#define str_array_len(a) (sizeof(a)/sizeof(char*))
 
 
 /**
@@ -70,6 +93,54 @@ static void cb_set_config(dc_imap_t* imap, const char* key, const char* value)
 }
 
 
+static int cb_precheck_imf(dc_imap_t* imap, const char* rfc724_mid,
+                           const char* server_folder, uint32_t server_uid)
+{
+	int      rfc724_mid_exists = 0;
+	uint32_t msg_id = 0;
+	char*    old_server_folder = NULL;
+	uint32_t old_server_uid = 0;
+	int      mark_seen = 0;
+
+	msg_id = dc_rfc724_mid_exists(imap->context, rfc724_mid,
+		&old_server_folder, &old_server_uid);
+
+	if (msg_id!=0)
+	{
+		rfc724_mid_exists = 1;
+
+		if (old_server_folder[0]==0 && old_server_uid==0) {
+			dc_log_info(imap->context, 0, "[move] detected bbc-self %s", rfc724_mid);
+			mark_seen = 1;
+		}
+		else if (strcmp(old_server_folder, server_folder)!=0) {
+			dc_log_info(imap->context, 0, "[move] detected moved message %s", rfc724_mid);
+			dc_update_msg_move_state(imap->context, rfc724_mid, DC_MOVE_STATE_STAY);
+		}
+
+		if (strcmp(old_server_folder, server_folder)!=0
+		 || old_server_uid!=server_uid) {
+			dc_update_server_uid(imap->context, rfc724_mid, server_folder, server_uid);
+		}
+
+		dc_do_heuristics_moves(imap->context, server_folder, msg_id);
+
+		if (mark_seen) {
+			dc_job_add(imap->context, DC_JOB_MARKSEEN_MSG_ON_IMAP, msg_id, NULL, 0);
+		}
+	}
+
+	// TODO: also optimize for already processed report/mdn Message-IDs.
+	// this happens regulary as eg. mdns are typically read from the INBOX,
+	// moved to MVBOX and popping up from there.
+	// when modifying tables for this purpose, maybe also target #112 (mdn cleanup)
+
+	free(old_server_folder);
+
+	return rfc724_mid_exists;
+}
+
+
 static void cb_receive_imf(dc_imap_t* imap, const char* imf_raw_not_terminated, size_t imf_raw_bytes, const char* server_folder, uint32_t server_uid, uint32_t flags)
 {
 	dc_context_t* context = (dc_context_t*)imap->userData;
@@ -83,7 +154,7 @@ static void cb_receive_imf(dc_imap_t* imap, const char* imf_raw_not_terminated, 
  *
  * @memberof dc_context_t
  * @param cb a callback function that is called for events (update,
- *     state changes etc.) and to get some information form the client (eg. translation
+ *     state changes etc.) and to get some information from the client (eg. translation
  *     for a given string).
  *     See @ref DC_EVENT for a list of possible events that may be passed to the callback.
  *     - The callback MAY be called from _any_ thread, not only the main/GUI thread!
@@ -98,8 +169,8 @@ static void cb_receive_imf(dc_imap_t* imap, const char* imf_raw_not_terminated, 
  *     in the form "Delta Chat <version> for <os_name>".
  *     You can give the name of the operating system and/or the used environment here.
  *     It is okay to give NULL, in this case `X-Mailer:` header is set to "Delta Chat <version>".
- * @return a context object with some public members the object must be passed to the other context functions
- *     and the object must be freed using dc_context_unref() after usage.
+ * @return A context object with some public members. The object must be passed to the other context functions
+ *     and must be freed using dc_context_unref() after usage.
  */
 dc_context_t* dc_context_new(dc_callback_t cb, void* userdata, const char* os_name)
 {
@@ -111,8 +182,9 @@ dc_context_t* dc_context_new(dc_callback_t cb, void* userdata, const char* os_na
 
 	pthread_mutex_init(&context->smear_critical, NULL);
 	pthread_mutex_init(&context->bobs_qr_critical, NULL);
-	pthread_mutex_init(&context->log_ringbuf_critical, NULL);
-	pthread_mutex_init(&context->imapidle_condmutex, NULL);
+	pthread_mutex_init(&context->inboxidle_condmutex, NULL);
+	dc_jobthread_init(&context->sentbox_thread, context, "SENTBOX", "configured_sentbox_folder");
+	dc_jobthread_init(&context->mvbox_thread, context, "MVBOX", "configured_mvbox_folder");
 	pthread_mutex_init(&context->smtpidle_condmutex, NULL);
 	pthread_cond_init(&context->smtpidle_cond, NULL);
 
@@ -126,7 +198,9 @@ dc_context_t* dc_context_new(dc_callback_t cb, void* userdata, const char* os_na
 
 	dc_pgp_init();
 	context->sql      = dc_sqlite3_new(context);
-	context->imap     = dc_imap_new(cb_get_config, cb_set_config, cb_receive_imf, (void*)context, context);
+	context->inbox    = dc_imap_new(cb_get_config, cb_set_config, cb_precheck_imf, cb_receive_imf, (void*)context, context);
+	context->sentbox_thread.imap = dc_imap_new(cb_get_config, cb_set_config, cb_precheck_imf, cb_receive_imf, (void*)context, context);
+	context->mvbox_thread.imap = dc_imap_new(cb_get_config, cb_set_config, cb_precheck_imf, cb_receive_imf, (void*)context, context);
 	context->smtp     = dc_smtp_new(context);
 
 	/* Random-seed.  An additional seed with more random data is done just before key generation
@@ -153,8 +227,9 @@ dc_context_t* dc_context_new(dc_callback_t cb, void* userdata, const char* os_na
  * before calling dc_context_unref().
  *
  * @memberof dc_context_t
- * @param context the context object as created by dc_context_new().
- * @return none
+ * @param context The context object as created by dc_context_new().
+ *     If NULL is given, nothing is done.
+ * @return None.
  */
 void dc_context_unref(dc_context_t* context)
 {
@@ -168,7 +243,9 @@ void dc_context_unref(dc_context_t* context)
 		dc_close(context);
 	}
 
-	dc_imap_unref(context->imap);
+	dc_imap_unref(context->inbox);
+	dc_imap_unref(context->sentbox_thread.imap);
+	dc_imap_unref(context->mvbox_thread.imap);
 	dc_smtp_unref(context->smtp);
 	dc_sqlite3_unref(context->sql);
 
@@ -176,14 +253,11 @@ void dc_context_unref(dc_context_t* context)
 
 	pthread_mutex_destroy(&context->smear_critical);
 	pthread_mutex_destroy(&context->bobs_qr_critical);
-	pthread_mutex_destroy(&context->log_ringbuf_critical);
-	pthread_mutex_destroy(&context->imapidle_condmutex);
+	pthread_mutex_destroy(&context->inboxidle_condmutex);
+	dc_jobthread_exit(&context->sentbox_thread);
+	dc_jobthread_exit(&context->mvbox_thread);
 	pthread_cond_destroy(&context->smtpidle_cond);
 	pthread_mutex_destroy(&context->smtpidle_condmutex);
-
-	for (int i = 0; i < DC_LOG_RINGBUF_SIZE; i++) {
-		free(context->log_ringbuf[i]);
-	}
 
 	free(context->os_name);
 	context->magic = 0;
@@ -195,7 +269,7 @@ void dc_context_unref(dc_context_t* context)
  * Get user data associated with a context object.
  *
  * @memberof dc_context_t
- * @param context the context object as created by dc_context_new().
+ * @param context The context object as created by dc_context_new().
  * @return User data, this is the second parameter given to dc_context_new().
  */
 void* dc_get_userdata(dc_context_t* context)
@@ -208,72 +282,55 @@ void* dc_get_userdata(dc_context_t* context)
 
 
 /**
- * This function reads some simple integer flags for fast and easy access.
- * To keep multi-thread-safety, we must not cache strings this way.
- * The function is called by dc_config_set*() and by dc_open().
- *
- * @private @memberof dc_context_t
- */
-static void update_config_cache(dc_context_t* context, const char* key)
-{
-	if (key==NULL || strcmp(key, "e2ee_enabled")==0) {
-		context->e2ee_enabled = dc_sqlite3_get_config_int(context->sql, "e2ee_enabled", DC_E2EE_DEFAULT_ENABLED);
-	}
-}
-
-
-/**
  * Open context database.  If the given file does not exist, it is
  * created and can be set up using dc_set_config() afterwards.
  *
  * @memberof dc_context_t
  * @param context The context object as created by dc_context_new().
- * @param dbfile The file to use to store the database, sth. like `~/file` won't
+ * @param dbfile The file to use to store the database, something like `~/file` won't
  *     work on all systems, if in doubt, use absolute paths.
- * @param blobdir A directory to store the blobs in. The trailing slash is added
- *     by deltachat-core, so if you want to avoid double slashes, do not add one.
+ * @param blobdir A directory to store the blobs in; a trailing slash is not needed.
  *     If you pass NULL or the empty string, deltachat-core creates a directory
  *     beside _dbfile_ with the same name and the suffix `-blobs`.
  * @return 1 on success, 0 on failure
+ *     eg. if the file is not writable
+ *     or if there is already a database opened for the context.
  */
 int dc_open(dc_context_t* context, const char* dbfile, const char* blobdir)
 {
 	int success = 0;
 
+	if (dc_is_open(context)) {
+		return 0; // a cleanup would close the database
+	}
+
 	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC || dbfile==NULL) {
 		goto cleanup;
 	}
 
-	/* Open() sets up the object and connects to the given database
-	from which all configuration is read/written to. */
-
-	/* Create/open sqlite database */
-	if (!dc_sqlite3_open(context->sql, dbfile, 0)) {
-		goto cleanup;
-	}
-
-	/* backup dbfile name */
 	context->dbfile = dc_strdup(dbfile);
 
 	/* set blob-directory
-	(to avoid double slashed, the given directory should not end with an slash) */
+	(to avoid double slashes, the given directory should not end with an slash) */
 	if (blobdir && blobdir[0]) {
 		context->blobdir = dc_strdup(blobdir);
+		dc_ensure_no_slash(context->blobdir);
 	}
 	else {
 		context->blobdir = dc_mprintf("%s-blobs", dbfile);
-		dc_create_folder(context->blobdir, context);
+		dc_create_folder(context, context->blobdir);
 	}
 
-	update_config_cache(context, NULL);
+	/* Create/open sqlite database, this may already use the blobdir */
+	if (!dc_sqlite3_open(context->sql, dbfile, 0)) {
+		goto cleanup;
+	}
 
 	success = 1;
 
 cleanup:
 	if (!success) {
-		if (dc_sqlite3_is_open(context->sql)) {
-			dc_sqlite3_close(context->sql);
-		}
+		dc_close(context);
 	}
 
 	return success;
@@ -298,7 +355,9 @@ void dc_close(dc_context_t* context)
 		return;
 	}
 
-	dc_imap_disconnect(context->imap);
+	dc_imap_disconnect(context->inbox);
+	dc_imap_disconnect(context->sentbox_thread.imap);
+	dc_imap_disconnect(context->mvbox_thread.imap);
 	dc_smtp_disconnect(context->smtp);
 
 	if (dc_sqlite3_is_open(context->sql)) {
@@ -317,7 +376,7 @@ void dc_close(dc_context_t* context)
  * Check if the context database is open.
  *
  * @memberof dc_context_t
- * @param context the context object as created by dc_context_new().
+ * @param context The context object as created by dc_context_new().
  * @return 0=context is not open, 1=context is open.
  */
 int dc_is_open(const dc_context_t* context)
@@ -334,7 +393,7 @@ int dc_is_open(const dc_context_t* context)
  * Get the blob directory.
  *
  * @memberof dc_context_t
- * @param context the context object as created by dc_context_new().
+ * @param context The context object as created by dc_context_new().
  * @return Blob directory associated with the context object, empty string if unset or on errors. NULL is never returned.
  *     The returned string must be free()'d.
  */
@@ -351,146 +410,276 @@ char* dc_get_blobdir(const dc_context_t* context)
  * INI-handling, Information
  ******************************************************************************/
 
-
-static int32_t get_sys_config_int(const char* key, int32_t def, int* def_returned)
+static int is_settable_config_key(const char* key)
 {
-	if (strcmp(key, "sys.msgsize_max_recommended")==0) {
-		return DC_MSGSIZE_MAX_RECOMMENDED;
+	for (int i = 0; i < str_array_len(config_keys); i++) {
+		if (strcmp(key, config_keys[i]) == 0) {
+			return 1;
+		}
 	}
-	else {
-		*def_returned = 1;
-		return def;
-	}
+	return 0;
 }
 
 
-static char* get_sys_config_str(const char* key, const char* def)
+static int is_gettable_config_key(const char* key)
 {
-	if (strcmp(key, "sys.version")==0) {
+	for (int i = 0; i < str_array_len(sys_config_keys); i++) {
+		if (strcmp(key, sys_config_keys[i]) == 0) {
+			return 1;
+		}
+	}
+	return is_settable_config_key(key);
+}
+
+
+static char* get_config_keys_str()
+{
+	dc_strbuilder_t  ret;
+	dc_strbuilder_init(&ret, 0);
+
+	for (int i = 0; i < str_array_len(config_keys); i++) {
+		if (strlen(ret.buf) > 0) {
+			dc_strbuilder_cat(&ret, " ");
+		}
+		dc_strbuilder_cat(&ret, config_keys[i]);
+	}
+
+	for (int i = 0; i < str_array_len(sys_config_keys); i++) {
+		if (strlen(ret.buf) > 0) {
+			dc_strbuilder_cat(&ret, " ");
+		}
+		dc_strbuilder_cat(&ret, sys_config_keys[i]);
+	}
+
+	return ret.buf;
+}
+
+static char* get_sys_config_str(const char* key)
+{
+	if (strcmp(key, "sys.version")==0)
+	{
 		return dc_strdup(DC_VERSION_STR);
 	}
+	else if (strcmp(key, "sys.msgsize_max_recommended")==0)
+	{
+		return dc_mprintf("%i", DC_MSGSIZE_MAX_RECOMMENDED);
+	}
+	else if (strcmp(key, "sys.config_keys")==0)
+	{
+		return get_config_keys_str();
+	}
 	else {
-		int def_returned = 0;
-		int32_t int_val = get_sys_config_int(key, 0, &def_returned);
-		return def_returned? dc_strdup_keep_null(def) : dc_mprintf("%i", int_val);
+		return dc_strdup(NULL);
 	}
 }
 
 
 /**
- * Configure the context.  The configuration is handled by key=value pairs, see
- * dc_get_config() for a list of possible options.
+ * Configure the context.  The configuration is handled by key=value pairs as:
  *
- * @memberof dc_context_t
- * @param context The context object
- * @param key The option to change, see dc_get_config() for a list.
- *     Keys starting with `sys` cannot be modified.
- * @param value The value to save for "key"
- * @return 0=failure, 1=success
- */
-int dc_set_config(dc_context_t* context, const char* key, const char* value)
-{
-	int ret = 0;
-
-	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC || key==NULL) { /* "value" may be NULL */
-		return 0;
-	}
-
-	ret = dc_sqlite3_set_config(context->sql, key, value);
-	update_config_cache(context, key);
-
-	return ret;
-}
-
-
-/**
- * Get a configuration option. The configuration option is typically set by dc_set_config() or by the library itself.
- * To get an option as an integer, you can use dc_get_config_int() as an alternative.
- * Typical configuration options are:
- *
- * - `addr`         = address to display (needed)
+ * - `addr`         = address to display (always needed)
  * - `mail_server`  = IMAP-server, guessed if left out
  * - `mail_user`    = IMAP-username, guessed if left out
- * - `mail_pw`      = IMAP-password (needed)
+ * - `mail_pw`      = IMAP-password (always needed)
  * - `mail_port`    = IMAP-port, guessed if left out
  * - `send_server`  = SMTP-server, guessed if left out
  * - `send_user`    = SMTP-user, guessed if left out
  * - `send_pw`      = SMTP-password, guessed if left out
  * - `send_port`    = SMTP-port, guessed if left out
- * - `server_flags` = IMAP-/SMTP-flags, guessed if left out
+ * - `server_flags` = IMAP-/SMTP-flags as a combination of @ref DC_LP flags, guessed if left out
  * - `displayname`  = Own name to use when sending messages.  MUAs are allowed to spread this way eg. using CC, defaults to empty
  * - `selfstatus`   = Own status to display eg. in email footers, defaults to a standard text
+ * - `selfavatar`   = File containing avatar. Will be copied to blob directory.
+ *                    NULL to remove the avatar.
+ *                    It is planned for future versions
+ *                    to send this image together with the next messages.
  * - `e2ee_enabled` = 0=no end-to-end-encryption, 1=prefer end-to-end-encryption (default)
+ * - `mdns_enabled` = 0=do not send or request read receipts,
+ *                    1=send and request read receipts (default)
+ * - `inbox_watch`  = 1=watch `INBOX`-folder for changes (default),
+ *                    0=do not watch the `INBOX`-folder
+ * - `sentbox_watch`= 1=watch `Sent`-folder for changes (default),
+ *                    0=do not watch the `Sent`-folder
+ * - `mvbox_watch`  = 1=watch `DeltaChat`-folder for changes (default),
+ *                    0=do not watch the `DeltaChat`-folder
+ * - `mvbox_move`   = 1=heuristically detect chat-messages
+ *                    and move them to the `DeltaChat`-folder,
+ *                    0=do not move chat-messages
+ * - `save_mime_headers` = 1=save mime headers and make dc_get_mime_headers() work for subsequent calls,
+ *                    0=do not save mime headers (default)
  *
- * Moreover, this function can be used to query some global system values:
- *
- * - `sys.version`  = get the version string eg. as `1.2.3` or as `1.2.3special4`
- * - `sys.msgsize_max_recommended` = maximal recommended attachment size in bytes.
- *                    All possible overheads are already substracted and this value can be used eg. for direct comparison
- *                    with the size of a file the user wants to attach. If an attachment is larger than this value,
- *                    an error (no warning as it should be shown to the user) is logged but the attachment is sent anyway.
- *
- * @memberof dc_context_t
- * @param context The context object as created by dc_context_new(). For querying system values, this can be NULL.
- * @param key The key to query
- * @param def Default value to return if "key" is unset.
- * @return Returns current value of "key", if "key" is unset, "def" is returned (which may be NULL)
- *     If the returned values is not NULL, the return value must be free()'d,
- */
-char* dc_get_config(dc_context_t* context, const char* key, const char* def)
-{
-	if (key && key[0]=='s' && key[1]=='y' && key[2]=='s' && key[3]=='.') {
-		return get_sys_config_str(key, def);
-	}
-
-	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC || key==NULL) { /* "def" may be NULL */
-		return dc_strdup_keep_null(def);
-	}
-
-	return dc_sqlite3_get_config(context->sql, key, def);
-}
-
-
-/**
- * Configure the context.  Similar to dc_set_config() but sets an integer instead of a string.
- * If there is already a key with a string set, this is overwritten by the given integer value.
+ * If you want to retrieve a value, use dc_get_config().
  *
  * @memberof dc_context_t
+ * @param context The context object
+ * @param key The option to change, see above.
+ * @param value The value to save for "key"
+ * @return 0=failure, 1=success
  */
-int dc_set_config_int(dc_context_t* context, const char* key, int32_t value)
+int dc_set_config(dc_context_t* context, const char* key, const char* value)
 {
-	int ret = 0;
+	int   ret = 0;
+	char* rel_path = NULL;
 
-	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC || key==NULL) {
+	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC || key==NULL || !is_settable_config_key(key)) { /* "value" may be NULL */
 		return 0;
 	}
 
-	ret = dc_sqlite3_set_config_int(context->sql, key, value);
-	update_config_cache(context, key);
+	if (strcmp(key, "selfavatar")==0 && value)
+	{
+		rel_path = dc_strdup(value);
+		if (!dc_make_rel_and_copy(context, &rel_path)) {
+			goto cleanup;
+		}
+		ret = dc_sqlite3_set_config(context->sql, key, rel_path);
+	}
+	else if(strcmp(key, "inbox_watch")==0)
+	{
+		ret = dc_sqlite3_set_config(context->sql, key, value);
+		dc_interrupt_imap_idle(context); // force idle() to be called again with the new mode
+	}
+	else if(strcmp(key, "sentbox_watch")==0)
+	{
+		ret = dc_sqlite3_set_config(context->sql, key, value);
+		dc_interrupt_sentbox_idle(context); // force idle() to be called again with the new mode
+	}
+	else if(strcmp(key, "mvbox_watch")==0)
+	{
+		ret = dc_sqlite3_set_config(context->sql, key, value);
+		dc_interrupt_mvbox_idle(context); // force idle() to be called again with the new mode
+	}
+	else
+	{
+		ret = dc_sqlite3_set_config(context->sql, key, value);
+	}
 
+cleanup:
+	free(rel_path);
 	return ret;
 }
 
 
 /**
- * Get a configuration option. Similar as dc_get_config() but gets the value as an integer instead of a string.
+ * Get a configuration option.
+ * The configuration option is set by dc_set_config() or by the library itself.
+ *
+ * Beside the options shown at dc_set_config(),
+ * this function can be used to query some global system values:
+ *
+ * - `sys.version`  = get the version string eg. as `1.2.3` or as `1.2.3special4`
+ * - `sys.msgsize_max_recommended` = maximal recommended attachment size in bytes.
+ *                    All possible overheads are already subtracted and this value can be used eg. for direct comparison
+ *                    with the size of a file the user wants to attach. If an attachment is larger than this value,
+ *                    an error (no warning as it should be shown to the user) is logged but the attachment is sent anyway.
+ * - `sys.config_keys` = get a space-separated list of all config-keys available.
+ *                    The config-keys are the keys that can be passed to the parameter `key` of this function.
  *
  * @memberof dc_context_t
+ * @param context The context object as created by dc_context_new(). For querying system values, this can be NULL.
+ * @param key The key to query.
+ * @return Returns current value of "key", if "key" is unset, the default value is returned.
+ *     The returned value must be free()'d, NULL is never returned.
  */
-int32_t dc_get_config_int(dc_context_t* context, const char* key, int32_t def)
+char* dc_get_config(dc_context_t* context, const char* key)
 {
+	char* value = NULL;
+
 	if (key && key[0]=='s' && key[1]=='y' && key[2]=='s' && key[3]=='.') {
-		int def_returned = 0;
-		return get_sys_config_int(key, def, &def_returned);
+		return get_sys_config_str(key);
 	}
 
-	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC || key==NULL) {
-		return def;
+	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC || key==NULL || !is_gettable_config_key(key)) {
+		return dc_strdup("");
 	}
 
-	return dc_sqlite3_get_config_int(context->sql, key, def);
+	if (strcmp(key, "selfavatar")==0) {
+		char* rel_path = dc_sqlite3_get_config(context->sql, key, NULL);
+		if (rel_path) {
+			value = dc_get_abs_path(context, rel_path);
+			free(rel_path);
+		}
+	}
+	else {
+		value = dc_sqlite3_get_config(context->sql, key, NULL);
+	}
+
+	if (value==NULL)
+	{
+		// no value yet, use default value
+		if (strcmp(key, "e2ee_enabled")==0) {
+			value = dc_mprintf("%i", DC_E2EE_DEFAULT_ENABLED);
+		}
+		else if (strcmp(key, "mdns_enabled")==0) {
+			value = dc_mprintf("%i", DC_MDNS_DEFAULT_ENABLED);
+		}
+		else if (strcmp(key, "imap_folder")==0) {
+			value = dc_strdup("INBOX");
+		}
+		else if (strcmp(key, "inbox_watch")==0) {
+			value = dc_mprintf("%i", DC_INBOX_WATCH_DEFAULT);
+		}
+		else if (strcmp(key, "sentbox_watch")==0) {
+			value = dc_mprintf("%i", DC_SENTBOX_WATCH_DEFAULT);
+		}
+		else if (strcmp(key, "mvbox_watch")==0) {
+			value = dc_mprintf("%i", DC_MVBOX_WATCH_DEFAULT);
+		}
+		else if (strcmp(key, "mvbox_move")==0) {
+			value = dc_mprintf("%i", DC_MVBOX_MOVE_DEFAULT);
+		}
+		else {
+			value = dc_mprintf("");
+		}
+	}
+
+	return value;
 }
 
+
+/**
+ * Tool to check if a folder is equal to the configured INBOX.
+ * @private @memberof dc_context_t
+ */
+int dc_is_inbox(dc_context_t* context, const char* folder_name)
+{
+	int is_inbox = 0;
+	if (folder_name) {
+		is_inbox = strcasecmp("INBOX", folder_name)==0? 1 : 0;
+	}
+	return is_inbox;
+}
+
+
+/**
+ * Tool to check if a folder is equal to the configured sent-folder.
+ * @private @memberof dc_context_t
+ */
+int dc_is_sentbox(dc_context_t* context, const char* folder_name)
+{
+	char* sentbox_name = dc_sqlite3_get_config(context->sql, "configured_sentbox_folder", NULL);
+	int is_sentbox = 0;
+	if (sentbox_name && folder_name) {
+		is_sentbox = strcasecmp(sentbox_name, folder_name)==0? 1 : 0;
+	}
+	free(sentbox_name);
+	return is_sentbox;
+}
+
+
+/**
+ * Tool to check if a folder is equal to the configured sent-folder.
+ * @private @memberof dc_context_t
+ */
+int dc_is_mvbox(dc_context_t* context, const char* folder_name)
+{
+	char* mvbox_name = dc_sqlite3_get_config(context->sql, "configured_mvbox_folder", NULL);
+	int is_mvbox = 0;
+	if (mvbox_name && folder_name) {
+		is_mvbox = strcasecmp(mvbox_name, folder_name)==0? 1 : 0;
+	}
+	free(mvbox_name);
+	return is_mvbox;
+}
 
 /**
  * Find out the version of the Delta Chat core library.
@@ -506,8 +695,9 @@ char* dc_get_version_str(void)
 
 
 /**
- * Get information about the context.  The information is returned by a multi-line string and contains information about the current
- * configuration and the last log entries.
+ * Get information about the context.
+ * The information is returned by a multi-line string
+ * and contains information about the current configuration.
  *
  * @memberof dc_context_t
  * @param context The context as created by dc_context_new().
@@ -523,6 +713,13 @@ char* dc_get_info(dc_context_t* context)
 	char*            fingerprint_str = NULL;
 	dc_loginparam_t* l = NULL;
 	dc_loginparam_t* l2 = NULL;
+	int              inbox_watch = 0;
+	int              sentbox_watch = 0;
+	int              mvbox_watch = 0;
+	int              mvbox_move = 0;
+	int              folders_configured = 0;
+	char*            configured_sentbox_folder = NULL;
+	char*            configured_mvbox_folder = NULL;
 	int              contacts = 0;
 	int              chats = 0;
 	int              real_msgs = 0;
@@ -557,11 +754,8 @@ char* dc_get_info(dc_context_t* context)
 	contacts        = dc_get_real_contact_cnt(context);
 
 	is_configured   = dc_sqlite3_get_config_int(context->sql, "configured", 0);
-
 	dbversion       = dc_sqlite3_get_config_int(context->sql, "dbversion", 0);
-
-	e2ee_enabled    = context->e2ee_enabled;
-
+	e2ee_enabled    = dc_sqlite3_get_config_int(context->sql, "e2ee_enabled", DC_E2EE_DEFAULT_ENABLED);
 	mdns_enabled    = dc_sqlite3_get_config_int(context->sql, "mdns_enabled", DC_MDNS_DEFAULT_ENABLED);
 
 	sqlite3_stmt* stmt = dc_sqlite3_prepare(context->sql, "SELECT COUNT(*) FROM keypairs;");
@@ -575,7 +769,7 @@ char* dc_get_info(dc_context_t* context)
 	sqlite3_finalize(stmt);
 
 	if (dc_key_load_self_public(self_public, l2->addr, context->sql)) {
-		fingerprint_str = dc_key_get_formatted_fingerprint(self_public);
+		fingerprint_str = dc_key_get_fingerprint(self_public);
 	}
 	else {
 		fingerprint_str = dc_strdup("<Not yet calculated>");
@@ -584,67 +778,78 @@ char* dc_get_info(dc_context_t* context)
 	l_readable_str = dc_loginparam_get_readable(l);
 	l2_readable_str = dc_loginparam_get_readable(l2);
 
-	/* create info
-	- some keys are display lower case - these can be changed using the `set`-command
-	- we do not display the password here; in the cli-utility, you can see it using `get mail_pw`
-	- use neutral speach; the Delta Chat Core is not directly related to any front end or end-product
-	- contributors: You're welcome to add your names here */
+	inbox_watch = dc_sqlite3_get_config_int(context->sql, "inbox_watch", DC_INBOX_WATCH_DEFAULT);
+	sentbox_watch = dc_sqlite3_get_config_int(context->sql, "sentbox_watch", DC_SENTBOX_WATCH_DEFAULT);
+	mvbox_watch = dc_sqlite3_get_config_int(context->sql, "mvbox_watch", DC_MVBOX_WATCH_DEFAULT);
+	mvbox_move = dc_sqlite3_get_config_int(context->sql, "mvbox_move", DC_MVBOX_MOVE_DEFAULT);
+	folders_configured = dc_sqlite3_get_config_int(context->sql, "folders_configured", 0);
+	configured_sentbox_folder = dc_sqlite3_get_config(context->sql, "configured_sentbox_folder", "<unset>");
+	configured_mvbox_folder = dc_sqlite3_get_config(context->sql, "configured_mvbox_folder", "<unset>");
+
 	temp = dc_mprintf(
-		"Chats: %i\n"
-		"Chat messages: %i\n"
-		"Messages in contact requests: %i\n"
-		"Contacts: %i\n"
-		"Database=%s, dbversion=%i, Blobdir=%s\n"
-		"\n"
-		"displayname=%s\n"
-		"configured=%i\n"
-		"config0=%s\n"
-		"config1=%s\n"
+		"deltachat_core_version=v%s\n"
+		"sqlite_version=%s\n"
+		"sqlite_thread_safe=%i\n"
+		"libetpan_version=%i.%i\n"
+		"openssl_version=%i.%i.%i%c\n"
+		"compile_date=" __DATE__ ", " __TIME__ "\n"
+		"arch=%i\n"
+		"number_of_chats=%i\n"
+		"number_of_chat_messages=%i\n"
+		"messages_in_contact_requests=%i\n"
+		"number_of_contacts=%i\n"
+		"database_dir=%s\n"
+		"database_version=%i\n"
+		"blobdir=%s\n"
+		"display_name=%s\n"
+		"is_configured=%i\n"
+		"entered_account_settings=%s\n"
+		"used_account_settings=%s\n"
+		"inbox_watch=%i\n"
+		"sentbox_watch=%i\n"
+		"mvbox_watch=%i\n"
+		"mvbox_move=%i\n"
+		"folders_configured=%i\n"
+		"configured_sentbox_folder=%s\n"
+		"configured_mvbox_folder=%s\n"
 		"mdns_enabled=%i\n"
 		"e2ee_enabled=%i\n"
-		"E2EE_DEFAULT_ENABLED=%i\n"
-		"Private keys=%i, public keys=%i, fingerprint=\n%s\n"
-		"\n"
-		"Using Delta Chat Core v%s, SQLite %s-ts%i, libEtPan %i.%i, OpenSSL %i.%i.%i%c. Compiled " __DATE__ ", " __TIME__ " for %i bit usage.\n\n"
-		"Log excerpt:\n"
-		/* In the frontends, additional software hints may follow here. */
-
-		, chats, real_msgs, deaddrop_msgs, contacts
-		, context->dbfile? context->dbfile : unset,   dbversion,   context->blobdir? context->blobdir : unset
-
-        , displayname? displayname : unset
-		, is_configured
-		, l_readable_str, l2_readable_str
-
-		, mdns_enabled
-
-		, e2ee_enabled
-		, DC_E2EE_DEFAULT_ENABLED
-		, prv_key_cnt, pub_key_cnt, fingerprint_str
+		"private_key_count=%i\n"
+		"public_key_count=%i\n"
+		"fingerprint=%s\n"
 
 		, DC_VERSION_STR
-		, SQLITE_VERSION, sqlite3_threadsafe()   ,  libetpan_get_version_major(), libetpan_get_version_minor()
+		, SQLITE_VERSION
+		, sqlite3_threadsafe()
+		, libetpan_get_version_major(), libetpan_get_version_minor()
 		, (int)(OPENSSL_VERSION_NUMBER>>28), (int)(OPENSSL_VERSION_NUMBER>>20)&0xFF, (int)(OPENSSL_VERSION_NUMBER>>12)&0xFF, (char)('a'-1+((OPENSSL_VERSION_NUMBER>>4)&0xFF))
 		, sizeof(void*)*8
-
+		, chats
+		, real_msgs
+		, deaddrop_msgs
+		, contacts
+		, context->dbfile? context->dbfile : unset
+		, dbversion
+		, context->blobdir? context->blobdir : unset
+		, displayname? displayname : unset
+		, is_configured
+		, l_readable_str
+		, l2_readable_str
+		, inbox_watch
+		, sentbox_watch
+		, mvbox_watch
+		, mvbox_move
+		, folders_configured
+		, configured_sentbox_folder
+		, configured_mvbox_folder
+		, mdns_enabled
+		, e2ee_enabled
+		, prv_key_cnt
+		, pub_key_cnt
+		, fingerprint_str
 		);
 	dc_strbuilder_cat(&ret, temp);
 	free(temp);
-
-	/* add log excerpt */
-	pthread_mutex_lock(&context->log_ringbuf_critical); /*take care not to log here! */
-		for (int i = 0; i < DC_LOG_RINGBUF_SIZE; i++) {
-			int j = (context->log_ringbuf_pos+i) % DC_LOG_RINGBUF_SIZE;
-			if (context->log_ringbuf[j]) {
-				struct tm wanted_struct;
-				memcpy(&wanted_struct, localtime(&context->log_ringbuf_times[j]), sizeof(struct tm));
-				temp = dc_mprintf("\n%02i:%02i:%02i ", (int)wanted_struct.tm_hour, (int)wanted_struct.tm_min, (int)wanted_struct.tm_sec);
-					dc_strbuilder_cat(&ret, temp);
-					dc_strbuilder_cat(&ret, context->log_ringbuf[j]);
-				free(temp);
-			}
-		}
-	pthread_mutex_unlock(&context->log_ringbuf_critical);
 
 	/* free data */
 	dc_loginparam_unref(l);
@@ -652,6 +857,8 @@ char* dc_get_info(dc_context_t* context)
 	free(displayname);
 	free(l_readable_str);
 	free(l2_readable_str);
+	free(configured_sentbox_folder);
+	free(configured_mvbox_folder);
 	free(fingerprint_str);
 	dc_key_unref(self_public);
 	return ret.buf; /* must be freed by the caller */
@@ -664,17 +871,18 @@ char* dc_get_info(dc_context_t* context)
 
 
 /**
- * Returns the message IDs of all _fresh_ messages of any chat. Typically used for implementing
- * notification summaries.
+ * Returns the message IDs of all _fresh_ messages of any chat.
+ * Typically used for implementing notification summaries.
+ * The list is already sorted and starts with the most recent fresh message.
  *
  * @memberof dc_context_t
  * @param context The context object as returned from dc_context_new().
  * @return Array of message IDs, must be dc_array_unref()'d when no longer used.
+ *     On errors, the list is empty. NULL is never returned.
  */
 dc_array_t* dc_get_fresh_msgs(dc_context_t* context)
 {
 	int           show_deaddrop = 0;
-	int           success = 0;
 	dc_array_t*   ret = dc_array_new(context, 128);
 	sqlite3_stmt* stmt = NULL;
 
@@ -682,35 +890,27 @@ dc_array_t* dc_get_fresh_msgs(dc_context_t* context)
 		goto cleanup;
 	}
 
-	show_deaddrop = 0;//dc_sqlite3_get_config_int(context->sql, "show_deaddrop", 0);
-
 	stmt = dc_sqlite3_prepare(context->sql,
 		"SELECT m.id"
-			" FROM msgs m"
-			" LEFT JOIN contacts ct ON m.from_id=ct.id"
-			" LEFT JOIN chats c ON m.chat_id=c.id"
-			" WHERE m.state=" DC_STRINGIFY(DC_STATE_IN_FRESH) " AND ct.blocked=0 AND (c.blocked=0 OR c.blocked=?)"
-			" ORDER BY m.timestamp DESC,m.id DESC;"); /* the list starts with the newest messages*/
-	sqlite3_bind_int(stmt, 1, show_deaddrop? DC_CHAT_DEADDROP_BLOCKED : 0);
+		" FROM msgs m"
+		" LEFT JOIN contacts ct ON m.from_id=ct.id"
+		" LEFT JOIN chats c ON m.chat_id=c.id"
+		" WHERE m.state=?"
+		"   AND m.chat_id>?"
+		"   AND ct.blocked=0"
+		"   AND (c.blocked=0 OR c.blocked=?)"
+		" ORDER BY m.timestamp DESC,m.id DESC;");
+	sqlite3_bind_int(stmt, 1, DC_STATE_IN_FRESH);
+	sqlite3_bind_int(stmt, 2, DC_CHAT_ID_LAST_SPECIAL);
+	sqlite3_bind_int(stmt, 3, show_deaddrop? DC_CHAT_DEADDROP_BLOCKED : 0);
 
 	while (sqlite3_step(stmt)==SQLITE_ROW) {
 		dc_array_add_id(ret, sqlite3_column_int(stmt, 0));
 	}
 
-	success = 1;
-
 cleanup:
 	sqlite3_finalize(stmt);
-
-	if (success) {
-		return ret;
-	}
-	else {
-		if (ret) {
-			dc_array_unref(ret);
-		}
-		return NULL;
-	}
+	return ret;
 }
 
 

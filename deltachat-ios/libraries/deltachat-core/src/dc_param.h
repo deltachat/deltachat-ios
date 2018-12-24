@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #ifndef __DC_PARAM_H__
 #define __DC_PARAM_H__
 #ifdef __cplusplus
@@ -48,8 +26,6 @@ typedef struct dc_param_t
 #define DC_PARAM_HEIGHT            'h'  /* for msgs */
 #define DC_PARAM_DURATION          'd'  /* for msgs */
 #define DC_PARAM_MIMETYPE          'm'  /* for msgs */
-#define DC_PARAM_AUTHORNAME        'N'  /* for msgs: name of author or artist */
-#define DC_PARAM_TRACKNAME         'n'  /* for msgs: name of author or artist */
 #define DC_PARAM_GUARANTEE_E2EE    'c'  /* for msgs: incoming: message is encryoted, outgoing: guarantee E2EE or the message is not send */
 #define DC_PARAM_ERRONEOUS_E2EE    'e'  /* for msgs: decrypted with validation errors or without mutual set, if neither 'c' nor 'e' are preset, the messages is only transport encrypted */
 #define DC_PARAM_FORCE_PLAINTEXT   'u'  /* for msgs: force unencrypted message, either DC_FP_ADD_AUTOCRYPT_HEADER (1), DC_FP_NO_AUTOCRYPT_HEADER (2) or 0 */
@@ -64,9 +40,8 @@ typedef struct dc_param_t
 
 #define DC_PARAM_SERVER_FOLDER     'Z'  /* for jobs */
 #define DC_PARAM_SERVER_UID        'z'  /* for jobs */
-#define DC_PARAM_TIMES             't'  /* for jobs: times a job was tried */
+#define DC_PARAM_ALSO_MOVE         'M'  /* for jobs */
 
-#define DC_PARAM_REFERENCES        'R'  /* for groups and chats: References-header last used for a chat */
 #define DC_PARAM_UNPROMOTED        'U'  /* for groups */
 #define DC_PARAM_PROFILE_IMAGE     'i'  /* for groups and contacts */
 #define DC_PARAM_SELFTALK          'K'  /* for chats */

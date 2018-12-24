@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include "dc_context.h"
 #include "dc_pgp.h"
 #include "dc_aheader.h"
@@ -231,7 +209,8 @@ static int load_or_generate_self_public_key(dc_context_t* context, dc_key_t* pub
 		{
 			dc_key_t* private_key = dc_key_new();
 
-			dc_log_info(context, 0, "Generating keypair ...");
+			clock_t start = clock();
+			dc_log_info(context, 0, "Generating keypair with %i bits, e=%i ...", DC_KEYGEN_BITS, DC_KEYGEN_E);
 
 				/* The public key must contain the following:
 				- a signing-capable primary key Kp
@@ -258,7 +237,7 @@ static int load_or_generate_self_public_key(dc_context_t* context, dc_key_t* pub
 				goto cleanup;
 			}
 
-			dc_log_info(context, 0, "Keypair generated.");
+			dc_log_info(context, 0, "Keypair generated in %.3f s.", (double)(clock()-start)/CLOCKS_PER_SEC);
 
 			dc_key_unref(private_key);
 		}
@@ -334,7 +313,7 @@ void dc_e2ee_encrypt(dc_context_t* context, const clist* recipients_addr,
 
 		/* init autocrypt header from db */
 		autocryptheader->prefer_encrypt = DC_PE_NOPREFERENCE;
-		if (context->e2ee_enabled) {
+		if (dc_sqlite3_get_config_int(context->sql, "e2ee_enabled", DC_E2EE_DEFAULT_ENABLED)) {
 			autocryptheader->prefer_encrypt = DC_PE_MUTUAL;
 		}
 
@@ -444,10 +423,8 @@ void dc_e2ee_encrypt(dc_context_t* context, const clist* recipients_addr,
 			}
 		}
 
-		char* e = dc_stock_str(context, DC_STR_ENCRYPTEDMSG); char* subject_str = dc_mprintf(DC_CHAT_PREFIX " %s", e); free(e);
-		struct mailimf_subject* subject = mailimf_subject_new(dc_encode_header_words(subject_str));
+		struct mailimf_subject* subject = mailimf_subject_new(dc_strdup("..."));
 		mailimf_fields_add(imffields_unprotected, mailimf_field_new(MAILIMF_FIELD_SUBJECT, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, subject, NULL, NULL, NULL));
-		free(subject_str);
 
 		clist_append(part_to_encrypt->mm_content_type->ct_parameters, mailmime_param_new_with_data("protected-headers", "v1"));
 
