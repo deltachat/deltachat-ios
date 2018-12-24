@@ -1,0 +1,3 @@
+[submodule "deltachat-ios/libraries/deltachat-core"]
+	path = deltachat-ios/libraries/deltachat-core
+	url = git@github.com:deltachat/deltachat-core.git
