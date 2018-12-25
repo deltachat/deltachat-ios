@@ -25,12 +25,12 @@
 import UIKit
 
 /**
- A InputItem that inherits from UIButton
- 
+ A subclass of UIButton that conforms to InputItem
+
  ## Important Notes ##
  1. Intended to be used in an `InputStackView`
- */
-open class InputBarButtonItem: UIButton {
+*/
+open class InputBarButtonItem: UIButton, InputItem {
     
     /// The spacing properties of the InputBarButtonItem
     ///
@@ -108,12 +108,18 @@ open class InputBarButtonItem: UIButton {
     
     /// Calls the onSelectedAction or onDeselectedAction when set
     open override var isHighlighted: Bool {
-        didSet {
-            if isHighlighted {
+        get {
+            return super.isHighlighted
+        }
+        set {
+            guard newValue != isHighlighted else { return }
+            super.isHighlighted = newValue
+            if newValue {
                 onSelectedAction?(self)
             } else {
                 onDeselectedAction?(self)
             }
+            
         }
     }
     
@@ -317,7 +323,7 @@ open class InputBarButtonItem: UIButton {
     }
     
     /// An InputBarButtonItem that's spacing property is set to be .fixed with the width arguement
-    open class func fixedSpace(_ width: CGFloat) -> InputBarButtonItem {
+    public static func fixedSpace(_ width: CGFloat) -> InputBarButtonItem {
         let item = InputBarButtonItem()
         item.setSize(.zero, animated: false)
         item.spacing = .fixed(width)

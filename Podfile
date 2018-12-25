@@ -1,7 +1,7 @@
 target 'deltachat-ios' do
   use_frameworks!
   pod 'openssl-ios-bitcode', '1.0.210'
-  pod 'MessageKit', '1.0.0'
+  pod 'MessageKit', '2.0.0'
   post_install do |installer|
       installer.pods_project.targets.each do |target|
           if target.name == 'MessageKit'

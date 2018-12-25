@@ -112,6 +112,13 @@ open class MessageLabel: UILabel {
             if !isConfiguring { setNeedsDisplay() }
         }
     }
+
+    open override var intrinsicContentSize: CGSize {
+        var size = super.intrinsicContentSize
+        size.width += textInsets.horizontal
+        size.height += textInsets.vertical
+        return size
+    }
     
     internal var messageLabelFont: UIFont?
 
@@ -159,12 +166,12 @@ open class MessageLabel: UILabel {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.numberOfLines = 0
-        self.lineBreakMode = .byWordWrapping
+        setupView()
     }
 
     public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        setupView()
     }
 
     // MARK: - Open Methods
@@ -296,6 +303,11 @@ open class MessageLabel: UILabel {
             fatalError(MessageKitError.unrecognizedCheckingResult)
         }
     }
+    
+    private func setupView() {
+        numberOfLines = 0
+        lineBreakMode = .byWordWrapping
+    }
 
     // MARK: - Parsing Text
 
@@ -304,7 +316,22 @@ open class MessageLabel: UILabel {
         let checkingTypes = enabledDetectors.reduce(0) { $0 | $1.textCheckingType.rawValue }
         let detector = try? NSDataDetector(types: checkingTypes)
         let range = NSRange(location: 0, length: text.length)
-        return detector?.matches(in: text.string, options: [], range: range) ?? []
+        let matches = detector?.matches(in: text.string, options: [], range: range) ?? []
+
+        guard enabledDetectors.contains(.url) else {
+            return matches
+        }
+
+        // Enumerate NSAttributedString NSLinks and append ranges
+        var results: [NSTextCheckingResult] = matches
+
+        text.enumerateAttribute(NSAttributedString.Key.link, in: range, options: []) { value, range, _ in
+            guard let url = value as? URL else { return }
+            let result = NSTextCheckingResult.linkCheckingResult(range: range, url: url)
+            results.append(result)
+        }
+
+        return results
     }
 
     private func setRangesForDetectors(in checkingResults: [NSTextCheckingResult]) {
@@ -372,7 +399,7 @@ open class MessageLabel: UILabel {
 
     }
 
-  internal func handleGesture(_ touchLocation: CGPoint) -> Bool {
+  open func handleGesture(_ touchLocation: CGPoint) -> Bool {
 
         guard let index = stringIndex(at: touchLocation) else { return false }
 

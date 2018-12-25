@@ -1,20 +1,24 @@
 PODS:
-  - MessageKit (1.0.0)
+  - MessageInputBar/Core (0.4.1)
+  - MessageKit (2.0.0):
+    - MessageInputBar/Core
   - openssl-ios-bitcode (1.0.210)
 
 DEPENDENCIES:
-  - MessageKit (= 1.0.0)
+  - MessageKit (= 2.0.0)
   - openssl-ios-bitcode (= 1.0.210)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - MessageInputBar
     - MessageKit
     - openssl-ios-bitcode
 
 SPEC CHECKSUMS:
-  MessageKit: 16160036b16476b04bd0e9f2c7ce67e662e503e4
+  MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
+  MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
   openssl-ios-bitcode: c833701a4488bd43de0051db41cfa75f6fef8109
 
-PODFILE CHECKSUM: dea2da329ab919c5c400d1fd104627f9904b3072
+PODFILE CHECKSUM: 738743efb43b4f6b89816b656cd3f132c9e93608
 
 COCOAPODS: 1.5.3

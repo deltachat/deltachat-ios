@@ -9,6 +9,7 @@
 import UIKit
 import MessageKit
 import MapKit
+import MessageInputBar
 
 class ChatViewController: MessagesViewController {
     let chatId: Int
@@ -129,10 +130,11 @@ class ChatViewController: MessagesViewController {
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messageCellDelegate = self
+        
         messageInputBar.delegate = self
         messageInputBar.sendButton.tintColor = UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1)
         // scrollsToBottomOnFirstLayout = true //default false
-        scrollsToBottomOnKeybordBeginsEditing = true // default false
+        scrollsToBottomOnKeyboardBeginsEditing = true // default false
         
         /*navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_keyboard"),
                                                             style: .plain,

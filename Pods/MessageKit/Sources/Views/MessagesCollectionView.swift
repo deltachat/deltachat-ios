@@ -52,7 +52,7 @@ open class MessagesCollectionView: UICollectionView {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(frame: .zero, collectionViewLayout: MessagesCollectionViewFlowLayout())
     }
 
     public convenience init() {
@@ -121,6 +121,13 @@ open class MessagesCollectionView: UICollectionView {
         register(headerFooterClass,
                  forSupplementaryViewOfKind: kind,
                  withReuseIdentifier: String(describing: T.self))
+    }
+    
+    /// Registers a nib with reusable view for a specific SectionKind
+    public func register<T: UICollectionReusableView>(_ nib: UINib? = UINib(nibName: String(describing: T.self), bundle: nil), headerFooterClassOfNib headerFooterClass: T.Type, forSupplementaryViewOfKind kind: String) {
+        register(nib,
+                 forSupplementaryViewOfKind: kind,
+                 withReuseIdentifier: String(describing: T.self))        
     }
 
     /// Generically dequeues a cell of the correct type allowing you to avoid scattering your code with guard-let-else-fatal
