@@ -73,18 +73,18 @@ class MRMessage {
     }
     
     lazy var image: UIImage? = { [unowned self] in
-        guard let documents = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else { return nil }
         let filetype = dc_msg_get_viewtype(messagePointer)
-        let file = dc_msg_get_filename(messagePointer)
+        let file = dc_msg_get_file(messagePointer)
         if let cFile = file, filetype == DC_MSG_IMAGE {
             let filename = String(cString: cFile)
-            let path: URL = documents.appendingPathComponent(filename)
+            let path: URL = URL.init(fileURLWithPath: filename, isDirectory: false)
             if path.isFileURL {
                 do {
                     let data = try Data(contentsOf: path)
                     let image = UIImage(data: data)
                     return image
-                } catch (_) {
+                } catch {
+                    print("failed to load image", error, filename)
                     return nil
                 }
             }
