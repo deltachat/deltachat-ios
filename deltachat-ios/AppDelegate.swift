@@ -152,6 +152,20 @@ func initCore(withCredentials: Bool, advancedMode:Bool = false, model:Credential
         }
     }
     
+    DispatchQueue.global().async {
+        while true {
+            dc_perform_sentbox_fetch(mailboxPointer)
+            dc_perform_sentbox_idle(mailboxPointer)
+        }
+    }
+    
+    DispatchQueue.global().async {
+        while true {
+            dc_perform_mvbox_fetch(mailboxPointer)
+            dc_perform_mvbox_idle(mailboxPointer)
+        }
+    }
+    
     let _ = dc_open(mailboxPointer, dbfile, nil)
     
     if withCredentials {
