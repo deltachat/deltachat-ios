@@ -59,8 +59,7 @@ class NewGroupViewController: UITableViewController {
         cell.nameLabel.text = contact.name
         cell.emailLabel.text = contact.email
         cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
-        let contactColor = Utils.contactColor(row: contactRow)
-        cell.setColor(contactColor)
+        cell.setColor(contact.color)
         
         return cell
     }

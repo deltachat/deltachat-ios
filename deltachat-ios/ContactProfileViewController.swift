@@ -9,18 +9,14 @@
 import UIKit
 
 class ContactProfileViewController: UITableViewController {
-    let contactId:Int
-    let contactColor:UIColor
-    var name:String {
-        return MRContact(id: contactId).name
-    }
-    var email:String {
-        return MRContact(id: contactId).email
+    let contactId: Int
+
+    var contact: MRContact {
+        return MRContact(id: contactId)
     }
     
-    init(contactId: Int, contactColor: UIColor) {
+    init(contactId: Int) {
         self.contactId = contactId
-        self.contactColor = contactColor
         super.init(style: .plain)
     }
     
@@ -60,12 +56,16 @@ class ContactProfileViewController: UITableViewController {
         let row = indexPath.row
         if row == 0 {
             let contactCell = ContactCell()
-            contactCell.nameLabel.text = name
-            contactCell.emailLabel.text = email
-            contactCell.initialsLabel.text = Utils.getInitials(inputName: name)
-            contactCell.setColor(self.contactColor)
+            contactCell.nameLabel.text = contact.name
+            contactCell.emailLabel.text = contact.email
             contactCell.darkMode = true
             contactCell.selectionStyle = .none
+            if let img = contact.profileImage {
+                contactCell.setImage(img)
+            } else {
+                contactCell.setBackupImage(name: contact.name, color: contact.color)
+            }
+            
             return contactCell
         }
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)

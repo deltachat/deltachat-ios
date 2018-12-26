@@ -9,10 +9,10 @@
 import UIKit
 
 class ContactCell: UITableViewCell {
-    //Klasse initialisieren nachschauen
     let initialsLabel:UILabel = UILabel()
     let nameLabel = UILabel()
     let emailLabel = UILabel()
+    
     var darkMode: Bool = false {
         didSet {
             if darkMode {
@@ -24,8 +24,8 @@ class ContactCell: UITableViewCell {
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        //Init von der Superklasse aufrufen nachschauen
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+   
         //configure and layout initialsLabel
         let initialsLabelSize:CGFloat = 60
         let initialsLabelCornerRadius = initialsLabelSize/2
@@ -59,6 +59,16 @@ class ContactCell: UITableViewCell {
         emailLabel.textColor = UIColor.gray
     }
     
+    func setImage(_ img: UIImage) {
+        let attachment = NSTextAttachment()
+        attachment.image = img
+        initialsLabel.attributedText = NSAttributedString(attachment: attachment)
+    }
+    
+    func setBackupImage(name: String, color: UIColor) {
+        initialsLabel.text = Utils.getInitials(inputName: name)
+        setColor(color)
+    }
     
     func setColor(_ color: UIColor) {
         self.initialsLabel.backgroundColor = color

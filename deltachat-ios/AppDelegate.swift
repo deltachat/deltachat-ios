@@ -67,36 +67,59 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
             DispatchQueue.main.async {
                 nc.post(name:Notification.Name(rawValue:"ProgressUpdated"),
                         object: nil,
-                        userInfo: ["message":"Progress updated", "date":Date()])
+                        userInfo: ["message":"Progress updated", "date": Date()])
             }
         }
         return nil
     case DC_EVENT_IS_OFFLINE:
         return nil
-    case DC_EVENT_MSGS_CHANGED:
+    case DC_EVENT_MSGS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED:
         // TODO: reload all views
         // e.g. when message appears that is not new, i.e. no need
         // to set badge / notification
-        
+        print("change", event)
         let nc = NotificationCenter.default
         
         DispatchQueue.main.async {
             nc.post(name:dc_notificationChanged,
                     object: nil,
-                    userInfo: ["message":"Messages Changed!", "date":Date()])
+                    userInfo: [
+                        "message_id": Int(data2),
+                        "chat_id": Int(data1),
+                        "date": Date()
+                    ])
         }
 
     case DC_EVENT_INCOMING_MSG:
         // TODO: reload all views + set notification / badge
         // mrmailbox_get_fresh_msgs
         let nc = NotificationCenter.default
+        
+        // let msg = MRMessage.init(id: Int(data2))
+        // TODO: default summary
+        // if let summary = msg.summary(chars: 32) {
+        // TODO: dispatch user notification
         DispatchQueue.main.async {
-            nc.post(name:dc_notificationIncoming,
-                    object: nil,
-                    userInfo: ["message":"Incoming Message!", "date":Date()])
+             nc.post(name:dc_notificationIncoming,
+                     object: nil,
+                     userInfo: [
+                        "message_id": Int(data2),
+                        "chat_id": Int(data1),
+                        "date": Date()
+                    ])
         }
-    default:
+    case DC_EVENT_IMAP_CONNECTED:
+        print("imap connected", data2String)
+    case DC_EVENT_SMTP_CONNECTED:
+        print("smtp connected", data2String)
+    case DC_EVENT_GET_STRING:
         break
+    case DC_EVENT_SMTP_MESSAGE_SENT:
+        print("smtp message sent", data2String)
+    case DC_EVENT_MSG_DELIVERED:
+        print("message delivered", data1, data2)
+    default:
+        print("unknown event", event, data1String, data2String)
     }
     return nil
 }
@@ -137,7 +160,7 @@ func initCore(withCredentials: Bool, advancedMode:Bool = false, model:Credential
         fatalError("Error: dc_context_new returned nil")
     }
     
-    DispatchQueue.global().async {
+    DispatchQueue.global(qos: .background).async {
         while true {
             dc_perform_imap_jobs(mailboxPointer)
             dc_perform_imap_fetch(mailboxPointer)
@@ -145,21 +168,21 @@ func initCore(withCredentials: Bool, advancedMode:Bool = false, model:Credential
         }
     }
     
-    DispatchQueue.global().async {
+    DispatchQueue.global(qos: .utility).async {
         while true {
             dc_perform_smtp_jobs(mailboxPointer)
             dc_perform_smtp_idle(mailboxPointer)
         }
     }
     
-    DispatchQueue.global().async {
+    DispatchQueue.global(qos: .background).async {
         while true {
             dc_perform_sentbox_fetch(mailboxPointer)
             dc_perform_sentbox_idle(mailboxPointer)
         }
     }
     
-    DispatchQueue.global().async {
+    DispatchQueue.global(qos: .background).async {
         while true {
             dc_perform_mvbox_fetch(mailboxPointer)
             dc_perform_mvbox_idle(mailboxPointer)

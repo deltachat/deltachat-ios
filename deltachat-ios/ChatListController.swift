@@ -20,7 +20,7 @@ class ChatListController: UIViewController {
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
     
-    var dotsButton: UIBarButtonItem!
+    var newButton: UIBarButtonItem!
     
     func getChatList() {
         guard let chatlistPointer = dc_get_chatlist(mailboxPointer, 0, nil, 0) else {
@@ -36,7 +36,18 @@ class ChatListController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
+        
         getChatList()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = false
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,8 +68,8 @@ class ChatListController: UIViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
@@ -71,8 +82,8 @@ class ChatListController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Delta Chat"
-        navigationController?.navigationBar.prefersLargeTitles = false
+        title = "Chats"
+        navigationController?.navigationBar.prefersLargeTitles = true
         view.addSubview(chatTable)
         chatTable.translatesAutoresizingMaskIntoConstraints = false
         chatTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -82,51 +93,12 @@ class ChatListController: UIViewController {
         chatTable.dataSource = chatTableDataSource
         chatTableDelegate.chatPresenter = self
         chatTable.delegate = chatTableDelegate
-        let dotsImage:UIImage = #imageLiteral(resourceName: "ic_more_vert")
-        dotsButton = UIBarButtonItem(image: dotsImage, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(didPressDotsButton))
+        let newImage:UIImage = UIImage(named: "create_new")!
+        newButton = UIBarButtonItem(image: newImage, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(didPressNewChat))
     
-        navigationItem.rightBarButtonItem = dotsButton
+        navigationItem.rightBarButtonItem = newButton
     }
     
-    @objc func didPressDotsButton() {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "New chat",
-                                            style: .default,
-                                            handler: {
-                                                [unowned self]
-                                                a in
-                                                self.didPressNewChat()
-        }))
-        /* actionSheet.addAction(UIAlertAction(title: "New group",
-                                            style: .default,
-                                            handler: {a in print("New group")}))
-actionSheet.addAction(UIAlertAction(title: "Scan QR code",
-                                            style: .default,
-                                            handler: {a in print("Scan QR code")}))
-        actionSheet.addAction(UIAlertAction(title: "Show QR code",
-                                            style: .default,
-                                            handler: {a in print("Show QR code")}))
-        actionSheet.addAction(UIAlertAction(title: "Contact requests",
-                                            style: .default,
-                                            handler: {a in print("Contact requests")}))*/
-        actionSheet.addAction(UIAlertAction(title: "Settings",
-                                            style: .default,
-                                            handler: {a in
-                                                AppDelegate.appCoordinator.displayCredentialsController(isCancellable: true)
-                                                
-        }))
-        actionSheet.addAction(UIAlertAction(title: "Cancel",
-                                            style: .cancel,
-                                            handler: {a in print("Cancel")}))
-        
-        if let popoverController = actionSheet.popoverPresentationController {
-            popoverController.barButtonItem = dotsButton
-        }
-        
-        present(actionSheet, animated: true, completion: nil)
-        
-        
-    }
     
     @objc func didPressNewChat() {
         let ncv = NewChatViewController()
@@ -194,9 +166,8 @@ class ChatTableDataSource: NSObject, UITableViewDataSource  {
         let summary = chatList.summary(index: row)
         
         cell.nameLabel.text = chat.name
-        cell.initialsLabel.text = Utils.getInitials(inputName: chat.name)
-        let contactColor = Utils.color(row: row, colors: Constants.chatColors)
-        cell.setColor(contactColor)
+        cell.setBackupImage(name: chat.name, color: chat.color)
+
         let result1 = summary.text1 ?? ""
         let result2 = summary.text2 ?? ""
         let result:String

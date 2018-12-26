@@ -10,20 +10,6 @@ import Foundation
 import UIKit
 
 struct Utils {
-    static func colorIndex(row: Int, colors:[UIColor]) -> Int {
-        return row % colors.count
-    }
-    
-    static func color(row: Int, colors:[UIColor]) -> UIColor {
-        let index = colorIndex(row: row, colors: colors)
-        return colors[index]
-    }
-    
-    static func contactColor(row: Int) -> UIColor {
-        let contactColor = Utils.color(row: row, colors: Constants.chatColors)
-        return contactColor
-    }
-    
     static func getContactIds() -> [Int] {
         let c_contacts = dc_get_contacts(mailboxPointer, 0, nil)
         return Utils.copyAndFreeArray(inputArray: c_contacts)
@@ -53,6 +39,27 @@ struct Utils {
         
         let emailTest = NSPredicate(format:"SELF MATCHES[c] %@", emailRegEx)
         return emailTest.evaluate(with: email)
+    }
+    
+    static func formatAddressForQuery(address: [String : String]) -> String {
+        // Open address in Apple Maps app.
+        var addressParts = [String]()
+        let addAddressPart: ((String?) -> Void) = { (part) in
+            guard let part = part else {
+                return
+            }
+            guard part.count > 0 else {
+                return
+            }
+            addressParts.append(part)
+        }
+        addAddressPart(address["Street"])
+        addAddressPart(address["Neighborhood"])
+        addAddressPart(address["City"])
+        addAddressPart(address["Region"])
+        addAddressPart(address["Postcode"])
+        addAddressPart(address["Country"])
+        return addressParts.joined(separator: ", ")
     }
 }
 

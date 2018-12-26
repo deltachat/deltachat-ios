@@ -30,6 +30,39 @@ class MRContact {
         return String(cString: contactPointer.pointee.addr)
     }
     
+    var isVerified: Bool {
+        return dc_contact_is_verified(contactPointer) == 1
+    }
+    
+    var isBlocked: Bool {
+        return dc_contact_is_blocked(contactPointer) == 1
+    }
+    
+    lazy var profileImage: UIImage? = { [unowned self] in
+        let file = dc_contact_get_profile_image(contactPointer)
+        if let cFile = file {
+            let filename = String(cString: cFile)
+            let path: URL = URL.init(fileURLWithPath: filename, isDirectory: false)
+            if path.isFileURL {
+                do {
+                    let data = try Data(contentsOf: path)
+                    let image = UIImage(data: data)
+                    return image
+                } catch {
+                    print("failed to load image", error, filename)
+                    return nil
+                }
+            }
+            return nil
+        }
+        
+        return nil
+    }()
+    
+    var color: UIColor {
+        return UIColor(netHex: Int(dc_contact_get_color(contactPointer)))
+    }
+    
     var id: Int {
         return Int(contactPointer.pointee.id)
     }
@@ -54,6 +87,10 @@ class MRMessage {
     var fromContactId: Int {
         return Int(messagePointer.pointee.from_id)
     }
+    
+    lazy var fromContact: MRContact = {
+        return MRContact(id: fromContactId)
+    }()
     
     var toContactId: Int {
         return Int(messagePointer.pointee.to_id)
@@ -103,6 +140,21 @@ class MRMessage {
     var state: Int {
         return Int(messagePointer.pointee.state)
     }
+
+    func stateOutDescription() -> String {
+        switch Int32(state) {
+        case DC_STATE_OUT_DRAFT:
+                return "Draft"
+        case DC_STATE_OUT_PENDING:
+                return "Pending"
+        case DC_STATE_OUT_DELIVERED:
+            return "Sent"
+        case DC_STATE_OUT_MDN_RCVD:
+            return "Read"
+        default:
+            return "Unknown"
+        }
+    }
     
     var timestamp: Int64 {
         return Int64(messagePointer.pointee.timestamp)
@@ -110,6 +162,12 @@ class MRMessage {
     
     init(id: Int) {
         messagePointer = dc_get_msg(mailboxPointer, UInt32(id))
+    }
+    
+    func summary(chars: Int) -> String? {
+        guard let result = dc_msg_get_summarytext(messagePointer, Int32(chars)) else { return nil }
+
+        return String(cString: result)
     }
     
     deinit {
@@ -136,6 +194,10 @@ class MRChat {
         return Int(chatPointer.pointee.type)
     }
     
+    var color: UIColor {
+        return UIColor(netHex: Int(dc_chat_get_color(chatPointer)))
+    }
+
     init(id: Int) {
         chatPointer = dc_get_chat(mailboxPointer, UInt32(id))
     }

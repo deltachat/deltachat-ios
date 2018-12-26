@@ -234,7 +234,7 @@ class CredentialsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Account"
+        title = "Settings"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     

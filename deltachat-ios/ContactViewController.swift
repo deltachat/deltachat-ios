@@ -8,28 +8,18 @@
 
 import UIKit
 
-class ContactViewController: UIViewController {
-    var coordinator: Coordinator
+class ContactViewController: UITableViewController {
     var contactIds: [Int] = []
-    
-    let contactTable = UITableView()
-    let contactTableDataSource = ContactTableDataSource()
-    let contactTableDelegate = ContactTableDelegate()
-    
-    init(coordinator: Coordinator) {
-        self.coordinator = coordinator
-        super.init(nibName: nil, bundle: nil)
-    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let c_contacts = dc_get_contacts(mailboxPointer, 0, nil)
-        self.contactIds = Utils.copyAndFreeArray(inputArray: c_contacts)
-        contactTableDataSource.contacts = self.contactIds
-        contactTable.reloadData()
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        contactIds = Utils.getContactIds()
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -38,16 +28,6 @@ class ContactViewController: UIViewController {
         title = "Contacts"
         navigationController?.navigationBar.prefersLargeTitles = true
 
-        contactTable.dataSource = self.contactTableDataSource
-        contactTable.delegate = self.contactTableDelegate
-        
-        view.addSubview(contactTable)
-        contactTable.translatesAutoresizingMaskIntoConstraints = false
-        contactTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        contactTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        contactTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        contactTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ContactViewController.addContact))
         navigationItem.rightBarButtonItem = addButton
     }
@@ -62,33 +42,31 @@ class ContactViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-}
 
-class ContactTableDataSource: NSObject, UITableViewDataSource {
-    var contacts: [Int] = []
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contacts.count
+    
+    // MARK: - Table view data source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return contactIds.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell
         if let c = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self)) {
             cell = c
         } else {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: String(describing: UITableViewCell.self))
         }
-        let row = indexPath.row
-        let id = contacts[row]
-        let contact = MRContact(id: id)
-
+        
+        let contact = MRContact(id: contactIds[indexPath.row])
+        
         cell.textLabel?.text = contact.name
         cell.detailTextLabel?.text = contact.email
-
+        
         return cell
     }
-}
-
-class ContactTableDelegate: NSObject, UITableViewDelegate {
-    
 }

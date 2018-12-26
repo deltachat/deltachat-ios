@@ -71,7 +71,7 @@ class BaseController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(animated)
         let nc = NotificationCenter.default
         progressChangedObserver = nc.addObserver(forName:Notification.Name(rawValue:"ProgressUpdated"),
                                             object:nil, queue:nil) {
@@ -81,7 +81,8 @@ class BaseController: UIViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         let nc = NotificationCenter.default
         if let progressChangedObserver = self.progressChangedObserver {
             nc.removeObserver(progressChangedObserver)
