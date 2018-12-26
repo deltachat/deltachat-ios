@@ -136,6 +136,10 @@ class MRChat {
         return Int(chatPointer.pointee.type)
     }
     
+    func empty() {
+        dc_chat_empty(chatPointer)
+    }
+    
     init(id: Int) {
         chatPointer = dc_get_chat(mailboxPointer, UInt32(id))
     }
@@ -194,6 +198,14 @@ class MRChatList {
         //return Int(chatListPointer.pointee.m_cnt)
     }
     
+    var chatIds: [Int] {
+        var output: [Int] = []
+        for i in 0..<length {
+            output.append(getChatId(index: i))
+        }
+        return output
+    }
+    
     // takes ownership of specified pointer
     init(chatListPointer: UnsafeMutablePointer<dc_chatlist_t>) {
         self.chatListPointer = chatListPointer
@@ -212,6 +224,10 @@ class MRChatList {
             fatalError("poor text pointer was nil")
         }
         return MRPoorText(poorTextPointer: poorTextPointer)
+    }
+    
+    func removeChat(index: Int) {
+        dc_delete_chat(chatListPointer.pointee.context, UInt32(getChatId(index: index)))
     }
     
     deinit {

@@ -7,9 +7,11 @@
 //
 
 import UIKit
-
+import Differ
 
 class ChatListController: UIViewController {
+    fileprivate var lastChatIds: [Int] = []
+    
     var chatList:MRChatList?
 
     let chatTable = UITableView()
@@ -27,10 +29,13 @@ class ChatListController: UIViewController {
             fatalError("chatlistPointer was nil")
         }
         // ownership of chatlistPointer transferred here to ChatList object
-        self.chatList = MRChatList(chatListPointer: chatlistPointer)
+        let chatList = MRChatList(chatListPointer: chatlistPointer)
+        self.chatList = chatList
         
         chatTableDataSource.chatList = self.chatList
-        chatTable.reloadData()
+
+        chatTable.animateRowChanges(oldData: lastChatIds, newData: chatList.chatIds)
+        lastChatIds = chatList.chatIds
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -150,6 +155,10 @@ extension ChatListController: ChatPresenter {
         chatVC.hidesBottomBarWhenPushed = true 
         self.navigationController?.pushViewController(chatVC, animated: true)
     }
+    
+    func deleteChat(index: Int) {
+        chatList?.removeChat(index: index)
+    }
 }
 
 extension ChatListController: ChatDisplayer {
@@ -160,7 +169,6 @@ extension ChatListController: ChatDisplayer {
         chatVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(chatVC, animated: true)
     }
-    
 }
 
 
@@ -189,10 +197,10 @@ class ChatTableDataSource: NSObject, UITableViewDataSource  {
             cell = ContactCell(style: .subtitle, reuseIdentifier: "ChatCell")
         }
 
-        let chatId = chatList.getChatId(index: row)
+        let chatId = chatList.chatIds[row]
         let chat = MRChat(id: chatId)
         let summary = chatList.summary(index: row)
-        
+        cell.selectionStyle = .none
         cell.nameLabel.text = chat.name
         cell.initialsLabel.text = Utils.getInitials(inputName: chat.name)
         let contactColor = Utils.color(row: row, colors: Constants.chatColors)
@@ -209,10 +217,15 @@ class ChatTableDataSource: NSObject, UITableViewDataSource  {
         cell.emailLabel.text = result
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 }
 
 protocol ChatPresenter: class {
     func displayChat(index: Int)
+    func deleteChat(index: Int)
 }
 
 class ChatTableDelegate: NSObject, UITableViewDelegate {
@@ -222,5 +235,14 @@ class ChatTableDelegate: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         chatPresenter?.displayChat(index: row)
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .normal, title: "Delete") { (rowAction, indexPath) in
+            self.chatPresenter?.deleteChat(index: indexPath.row)
+        }
+        deleteAction.backgroundColor = .red
+        
+        return [deleteAction]
     }
 }
