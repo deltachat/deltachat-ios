@@ -19,6 +19,9 @@ class ContactListController: UITableViewController {
         self.title = "Contacts"
         navigationController?.navigationBar.prefersLargeTitles = true
         
+        contactIds = Utils.getContactIds()
+        
+        tableView.rowHeight = 80
         tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
     }
     
@@ -36,16 +39,21 @@ class ContactListController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell:ContactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as? ContactCell else {
-            fatalError("shouldn't happen")
+        let cell:ContactCell
+        if let c = tableView.dequeueReusableCell(withIdentifier: "ChatCell") as? ContactCell {
+            cell = c
+        } else {
+            cell = ContactCell(style: .subtitle, reuseIdentifier: "ChatCell")
         }
-        
         let row = indexPath.row
         let contactRow = row
         
         let contact = MRContact(id: contactIds[contactRow])
         cell.nameLabel.text = contact.name
         cell.emailLabel.text = contact.email
+        
+        // TODO: provider a nice selection
+        cell.selectionStyle = .none
         
         if let img = contact.profileImage {
             cell.setImage(img)

@@ -60,6 +60,7 @@ class ChatViewController: MessagesViewController {
                 self.messageList = self.messageIds.map(self.idToMessage)
                 self.messagesCollectionView.reloadData()
                 self.refreshControl.endRefreshing()
+                self.messagesCollectionView.scrollToBottom(animated: false)
             }
         }
     }
@@ -356,7 +357,6 @@ extension ChatViewController: MessagesDataSource {
 
         guard indexPath.section < messageList.count else { return nil }
         if let m = messageToMRMessage(message: messageList[indexPath.section]) {
-            print("state", m.stateOutDescription(), !isNextMessageSameSender(at: indexPath) && isFromCurrentSender(message: message))
             if !isNextMessageSameSender(at: indexPath) && isFromCurrentSender(message: message) {
                 return NSAttributedString(string: m.stateOutDescription(), attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
             }
@@ -607,17 +607,14 @@ extension ChatViewController: MessageLabelDelegate {
         if let escapedMapAddress = mapAddress.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             // Use query, to handle malformed addresses
             if let url = URL(string: "http://maps.apple.com/?q=\(escapedMapAddress)") {
-                print("open address", url, addressComponents)
                 UIApplication.shared.open(url as URL)
             }
         }
     }
     
     func didSelectDate(_ date: Date) {
-        print("date open", date)
         let interval = date.timeIntervalSinceReferenceDate
         if let url = NSURL(string: "calshow:\(interval)") {
-            print("open", url)
             UIApplication.shared.open(url as URL)
         }
     }
@@ -671,7 +668,6 @@ extension ChatViewController: MessageInputBarDelegate {
         DispatchQueue.global().async {
             dc_send_text_msg(mailboxPointer, UInt32(self.chatId), text)
         }
-        print(text)
         inputBar.inputTextView.text = String()
     }
 }

@@ -93,6 +93,9 @@ class ChatListController: UIViewController {
         chatTable.dataSource = chatTableDataSource
         chatTableDelegate.chatPresenter = self
         chatTable.delegate = chatTableDelegate
+        
+        chatTable.rowHeight = 80
+        
         let newImage:UIImage = UIImage(named: "create_new")!
         newButton = UIBarButtonItem(image: newImage, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(didPressNewChat))
     
@@ -158,7 +161,7 @@ class ChatTableDataSource: NSObject, UITableViewDataSource  {
         if let c = tableView.dequeueReusableCell(withIdentifier: "ChatCell") as? ContactCell {
             cell = c
         } else {
-            cell = ContactCell(style: .subtitle, reuseIdentifier: "ChatCell")
+            cell = ContactCell(style: .default, reuseIdentifier: "ChatCell")
         }
 
         let chatId = chatList.getChatId(index: row)
@@ -166,7 +169,11 @@ class ChatTableDataSource: NSObject, UITableViewDataSource  {
         let summary = chatList.summary(index: row)
         
         cell.nameLabel.text = chat.name
-        cell.setBackupImage(name: chat.name, color: chat.color)
+        if let img = chat.profileImage {
+            cell.setImage(img)
+        } else {
+            cell.setBackupImage(name: chat.name, color: chat.color)
+        }
 
         let result1 = summary.text1 ?? ""
         let result2 = summary.text2 ?? ""

@@ -16,11 +16,6 @@ class AppCoordinator: Coordinator {
     let baseController = BaseController()
 
     func setupViewControllers(window: UIWindow) {
-        let ud = UserDefaults.standard
-        if ud.bool(forKey: Constants.Keys.deltachatUserProvidedCredentialsKey) {
-            initCore(withCredentials: false)
-        }
-        
         window.rootViewController = AppTabBarController()
         window.makeKeyAndVisible()
         // window.backgroundColor = UIColor.white
