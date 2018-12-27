@@ -96,9 +96,10 @@ class ChatListController: UIViewController {
         
         chatTable.rowHeight = 80
         
-        let newImage:UIImage = UIImage(named: "create_new")!
+        let newImage = UIImage(named: "create_new")!
         newButton = UIBarButtonItem(image: newImage, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(didPressNewChat))
     
+        newButton.tintColor = Constants.primaryColor
         navigationItem.rightBarButtonItem = newButton
     }
     

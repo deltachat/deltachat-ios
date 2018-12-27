@@ -318,7 +318,13 @@ extension ChatViewController: MessagesDataSource {
     }
     
     func avatar(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Avatar {
-        return SampleData.shared.getAvatarFor(sender: message.sender)
+        if let id = Int(messageList[indexPath.section].messageId) {
+            let message = MRMessage(id: id)
+            let contact = message.fromContact
+            return Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.name))
+        }
+        
+        return Avatar(image: nil, initials: "?")
     }
     
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {

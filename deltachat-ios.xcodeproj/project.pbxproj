@@ -92,7 +92,6 @@
 		AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */; };
 		AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */; };
 		AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DE1FB3246400DCDD78 /* Message.swift */; };
-		AEACE2E11FB3271700DCDD78 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E01FB3271700DCDD78 /* SampleData.swift */; };
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
 		AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E41FB32E1900DCDD78 /* Utils.swift */; };
 /* End PBXBuildFile section */
@@ -249,7 +248,6 @@
 		AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; };
 		AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		AEACE2DE1FB3246400DCDD78 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		AEACE2E01FB3271700DCDD78 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AEACE2E41FB32E1900DCDD78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -268,6 +266,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		78ED838A21D5570700243125 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */,
+				78E45E4121D3DB4000D4B15E /* UIViewController+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		78ED838B21D56BAA00243125 /* TopViews */ = {
+			isa = PBXGroup;
+			children = (
+				78E45E3F21D3D70700D4B15E /* ContactListController.swift */,
+				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
+				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
+			);
+			name = TopViews;
+			sourceTree = "<group>";
+		};
 		7A451D9B1FB1F4BF00177250 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,7 +406,6 @@
 				7A451DAF1FB1F84900177250 /* AppCoordinator.swift */,
 				78E45E4B21D404AE00D4B15E /* CustomCell.swift */,
 				7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */,
-				78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */,
 				7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */,
 				7A9FB14F1FB061E2001FEA36 /* Info.plist */,
 				7A9FB1561FB06540001FEA36 /* deltachat-ios-Bridging-Header.h */,
@@ -399,20 +415,17 @@
 				70B8882D2091B8550074812E /* ContactCell.swift */,
 				7032FF8E2149C1DB00B7EC83 /* BaseController.swift */,
 				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
+				78ED838B21D56BAA00243125 /* TopViews */,
 				78E45E3221D3CBC000D4B15E /* AppTabBarController.swift */,
 				78E45E3D21D3D28C00D4B15E /* NavigationController.swift */,
 				7A0052A01FBC50C40048C3BF /* CredentialsController.swift */,
-				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
 				7092474020B3869500AF8799 /* ContactProfileViewController.swift */,
 				7A0052C71FBE6CB40048C3BF /* NewContactController.swift */,
-				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
-				78E45E4121D3DB4000D4B15E /* UIViewController+Extension.swift */,
+				78ED838A21D5570700243125 /* Extensions */,
 				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
 				7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */,
-				78E45E3F21D3D70700D4B15E /* ContactListController.swift */,
 				70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */,
 				7070FB9A2101ECBB000DC258 /* GroupNameController.swift */,
-				AEACE2E01FB3271700DCDD78 /* SampleData.swift */,
 				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
 				AEACE2E41FB32E1900DCDD78 /* Utils.swift */,
 				78E45E3B21D3D03700D4B15E /* TableViewCell.swift */,
@@ -548,7 +561,7 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -699,7 +712,6 @@
 				70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */,
 				78E45E3E21D3D28C00D4B15E /* NavigationController.swift in Sources */,
 				7A7923751FB0A2C800BC2DE5 /* validate.c in Sources */,
-				AEACE2E11FB3271700DCDD78 /* SampleData.swift in Sources */,
 				78E45E4021D3D70700D4B15E /* ContactListController.swift in Sources */,
 				7070FB6A20FF345F000DC258 /* dc_saxparser.c in Sources */,
 				7070FB8A20FF4118000DC258 /* dc_log.c in Sources */,

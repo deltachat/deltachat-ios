@@ -14,6 +14,8 @@ import JGProgressHUD
 
 final internal class SettingsViewController: QuickTableViewController {
     let documentInteractionController = UIDocumentInteractionController()
+    var backupProgressObserver: Any?
+    var backupHud: JGProgressHUD?
 
     // MARK: - Properties
 
@@ -28,9 +30,85 @@ final internal class SettingsViewController: QuickTableViewController {
         title = "Settings"
 
         documentInteractionController.delegate = self as? UIDocumentInteractionControllerDelegate
+        
+        
         setTable()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let nc = NotificationCenter.default
+        backupProgressObserver = nc.addObserver(
+            forName: dc_notificationBackupProgress,
+            object: nil,
+            queue: nil) {
+                notification in
+                if let ui = notification.userInfo {
+                    if ui["error"] as! Bool {
+                        self.setHudError()
+                    } else if ui["done"] as! Bool {
+                        self.setHudDone()
+                    } else {
+                        self.setHudProgress(ui["progress"] as! Int)
+                    }
+                }
+            }
+    }
 
+    private func setHudError() {
+        if let hud = self.backupHud {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                UIView.animate(withDuration: 0.1, animations: {
+                    hud.textLabel.text = "Error"
+                    hud.detailTextLabel.text = nil
+                    hud.indicatorView = JGProgressHUDErrorIndicatorView()
+                })
+                
+                hud.dismiss(afterDelay: 1.0)
+            }
+        }
+    }
+    
+    private func setHudDone() {
+        if let hud = self.backupHud {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                UIView.animate(withDuration: 0.1, animations: {
+                    hud.textLabel.text = "Success"
+                    hud.detailTextLabel.text = nil
+                        hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+                })
+
+                hud.dismiss(afterDelay: 1.0)
+            }
+        }
+    }
+    
+    private func setHudProgress(_ progress: Int) {
+        if let hud = self.backupHud {
+            hud.progress = Float(progress)/1000.0
+            hud.detailTextLabel.text = "\(progress/10)% Complete"
+        }
+    }
+    
+    private func showBackupHud() {
+        let hud = JGProgressHUD(style: .dark)
+        hud.vibrancyEnabled = true
+        hud.indicatorView = JGProgressHUDPieIndicatorView()
+
+        hud.detailTextLabel.text = "0% Complete"
+        hud.textLabel.text = "Creating Backup"
+        hud.show(in: self.view)
+        
+        backupHud = hud
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        let nc = NotificationCenter.default
+        if let backupProgressObserver = self.backupProgressObserver {
+            nc.removeObserver(backupProgressObserver)
+        }
+    }
     private func setTable() {
         tableContents = [
           Section(
@@ -189,13 +267,7 @@ final internal class SettingsViewController: QuickTableViewController {
         if let documents = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.delta.chat.ios")?.path {
             print("create backup in", documents)
             dc_imex(mailboxPointer, DC_IMEX_EXPORT_BACKUP, documents, nil)
-
-            let hud = JGProgressHUD(style: .dark)
-            hud.textLabel.text = "Creating Backup"
-            hud.show(in: self.view)
-
-            // TODO: dismiss when actually done
-            hud.dismiss(afterDelay: 2.0)
+            showBackupHud()
         }
     }
 
@@ -211,15 +283,14 @@ final internal class SettingsViewController: QuickTableViewController {
                 guard mailboxPointer != nil else {
                     fatalError("Error: dc_context_new returned nil")
                 }
-
-                dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
-
+                
                 let hud = JGProgressHUD(style: .dark)
                 hud.textLabel.text = "Restoring Backup"
                 hud.show(in: self.view)
+                
+                dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
 
-                // TODO: dismiss when actually done
-                hud.dismiss(afterDelay: 2.0)
+                hud.dismiss(afterDelay: 1.0)
             } else {
                 let alert = UIAlertController(title: "Can not restore", message: "No Backup found", preferredStyle: .alert)
                 self.present(alert, animated: true, completion: nil)

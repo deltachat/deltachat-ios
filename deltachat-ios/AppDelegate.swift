@@ -12,9 +12,12 @@ import UserNotifications
 import Reachability
 
 var mailboxPointer:UnsafeMutablePointer<dc_context_t>!
+
 let dc_notificationChanged = Notification.Name(rawValue:"MrEventMsgsChanged")
 let dc_notificationStateChanged = Notification.Name(rawValue:"MrEventStateChanged")
 let dc_notificationIncoming = Notification.Name(rawValue:"MrEventIncomingMsg")
+let dc_notificationBackupProgress = Notification.Name(rawValue:"MrEventBackupProgress")
+
 
 @_silgen_name("callbackSwift")
 
@@ -81,7 +84,6 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                     object: nil,
                     userInfo: ["state": "offline"])
         }
-        return nil
     case DC_EVENT_IMAP_CONNECTED, DC_EVENT_SMTP_CONNECTED:
         print("connected")
         let nc = NotificationCenter.default
@@ -90,7 +92,6 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                     object: nil,
                     userInfo: ["state": "online"])
         }
-        return nil
     case DC_EVENT_MSGS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED:
         // TODO: reload all views
         // e.g. when message appears that is not new, i.e. no need
@@ -107,7 +108,6 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                         "date": Date()
                     ])
         }
-
     case DC_EVENT_INCOMING_MSG:
         // TODO: reload all views + set notification / badge
         // mrmailbox_get_fresh_msgs
@@ -126,18 +126,26 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                         "date": Date()
                     ])
         }
-    case DC_EVENT_GET_STRING:
-        break
     case DC_EVENT_SMTP_MESSAGE_SENT:
         print("smtp message sent", data2String)
     case DC_EVENT_MSG_DELIVERED:
         print("message delivered", data1, data2)
     case DC_EVENT_IMEX_PROGRESS:
-        print("backup progress")
+        let nc = NotificationCenter.default
+        DispatchQueue.main.async {
+            nc.post(
+                name: dc_notificationBackupProgress,
+                object: nil,
+                userInfo: [
+                    "progress": Int(data1),
+                    "error": Int(data1) == 0,
+                    "done": Int(data1) == 1000
+            ])
+        }
     case DC_EVENT_IMEX_FILE_WRITTEN:
-        print("finished creating backup")
+        print("backup file written", String(cString: data1String))
     default:
-        print("unknown event", event, data1String, data2String)
+        print("unknown event", event)
     }
 
     return nil

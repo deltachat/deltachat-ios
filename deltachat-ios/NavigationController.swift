@@ -17,19 +17,13 @@ final class NavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBar.isTranslucent = false
-        navigationBar.tintColor = .white
-        
-        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
        
         if #available(iOS 11.0, *) {
             navigationBar.prefersLargeTitles = true
-            navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-            navigationBar.barTintColor = Constants.primaryColor
         } else {
             navigationBar.setBackgroundImage(UIImage(), for: .default)
         }
-        view.backgroundColor = Constants.primaryColor
+
         self.setShadow(nil)
         
         let nc = NotificationCenter.default
@@ -61,28 +55,6 @@ final class NavigationController: UINavigationController {
         let nc = NotificationCenter.default
         if let stateChangedObserver = self.stateChangedObserver {
             nc.removeObserver(stateChangedObserver)
-        }
-    }
-    
-    func setAppearanceStyle(to style: UIStatusBarStyle) {
-        self.setShadow(nil)
-        
-        if style == .default {
-            navigationBar.tintColor = .white
-            navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-            if #available(iOS 11.0, *) {
-                navigationBar.prefersLargeTitles = true
-                navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-                navigationBar.barTintColor = Constants.primaryColor
-            }
-        } else if style == .lightContent {
-            navigationBar.tintColor = UIColor(red: 0, green: 0.5, blue: 1, alpha: 1)
-            navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
-            if #available(iOS 11.0, *) {
-                navigationBar.prefersLargeTitles = true
-                navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
-                navigationBar.barTintColor = .white
-            }
         }
     }
 }
