@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 /* If you do not want to use dc_cmdline(), this file MAY NOT included to
 your library */
 
@@ -113,7 +91,7 @@ static int dc_poke_eml_file(dc_context_t* context, const char* filename)
 		return 0;
 	}
 
-	if (dc_read_file(filename, (void**)&data, &data_bytes, context) == 0) {
+	if (dc_read_file(context, filename, (void**)&data, &data_bytes) == 0) {
 		goto cleanup;
 	}
 
@@ -265,6 +243,42 @@ cleanup:
 }
 
 
+static void log_msg(dc_context_t* context, const char* prefix, dc_msg_t* msg)
+{
+	dc_contact_t* contact = dc_get_contact(context, dc_msg_get_from_id(msg));
+	char* contact_name = dc_contact_get_name(contact);
+	int contact_id = dc_contact_get_id(contact);
+
+	const char* statestr = "";
+	switch (dc_msg_get_state(msg)) {
+		case DC_STATE_OUT_PENDING:   statestr = " o";   break;
+		case DC_STATE_OUT_DELIVERED: statestr = " √";   break;
+		case DC_STATE_OUT_MDN_RCVD:  statestr = " √√";  break;
+		case DC_STATE_OUT_FAILED:    statestr = " !!";  break;
+	}
+
+	char* temp2 = dc_timestamp_to_str(dc_msg_get_timestamp(msg));
+	char* msgtext = dc_msg_get_text(msg);
+		dc_log_info(context, 0, "%s#%i%s: %s (Contact#%i): %s %s%s%s%s [%s]",
+			prefix,
+			(int)dc_msg_get_id(msg),
+			dc_msg_get_showpadlock(msg)? "\xF0\x9F\x94\x92" : "",
+			contact_name,
+			contact_id,
+			msgtext,
+			dc_msg_is_starred(msg)? " \xE2\x98\x85" : "",
+			dc_msg_get_from_id(msg)==1? "" : (dc_msg_get_state(msg)==DC_STATE_IN_SEEN? "[SEEN]" : (dc_msg_get_state(msg)==DC_STATE_IN_NOTICED? "[NOTICED]":"[FRESH]")),
+			dc_msg_is_info(msg)? "[INFO]" : "",
+			statestr,
+			temp2);
+	free(msgtext);
+	free(temp2);
+	free(contact_name);
+
+	dc_contact_unref(contact);
+}
+
+
 static void log_msglist(dc_context_t* context, dc_array_t* msglist)
 {
 	int i, cnt = dc_array_get_cnt(msglist), lines_out = 0;
@@ -278,36 +292,7 @@ static void log_msglist(dc_context_t* context, dc_array_t* msglist)
 			if (lines_out==0) { dc_log_info(context, 0, "--------------------------------------------------------------------------------"); lines_out++; }
 
 			dc_msg_t* msg = dc_get_msg(context, msg_id);
-			dc_contact_t* contact = dc_get_contact(context, dc_msg_get_from_id(msg));
-			char* contact_name = dc_contact_get_name(contact);
-			int contact_id = dc_contact_get_id(contact);
-
-			const char* statestr = "";
-			switch (dc_msg_get_state(msg)) {
-				case DC_STATE_OUT_PENDING:   statestr = " o";   break;
-				case DC_STATE_OUT_DELIVERED: statestr = " √";   break;
-				case DC_STATE_OUT_MDN_RCVD:  statestr = " √√";  break;
-				case DC_STATE_OUT_FAILED:    statestr = " !!";  break;
-			}
-
-			char* temp2 = dc_timestamp_to_str(dc_msg_get_timestamp(msg));
-			char* msgtext = dc_msg_get_text(msg);
-				dc_log_info(context, 0, "Msg#%i%s: %s (Contact#%i): %s %s%s%s%s [%s]",
-					(int)dc_msg_get_id(msg),
-					dc_msg_get_showpadlock(msg)? "\xF0\x9F\x94\x92" : "",
-					contact_name,
-					contact_id,
-					msgtext,
-					dc_msg_is_starred(msg)? " \xE2\x98\x85" : "",
-					dc_msg_get_from_id(msg)==1? "" : (dc_msg_get_state(msg)==DC_STATE_IN_SEEN? "[SEEN]" : (dc_msg_get_state(msg)==DC_STATE_IN_NOTICED? "[NOTICED]":"[FRESH]")),
-					dc_msg_is_info(msg)? "[INFO]" : "",
-					statestr,
-					temp2);
-			free(msgtext);
-			free(temp2);
-			free(contact_name);
-
-			dc_contact_unref(contact);
+			log_msg(context, "Msg", msg);
 			dc_msg_unref(msg);
 		}
 	}
@@ -433,7 +418,7 @@ char* dc_cmdline(dc_context_t* context, const char* cmdline)
 				"configure\n"
 				"connect\n"
 				"disconnect\n"
-				"poll\n"
+				"maybenetwork\n"
 				"help imex (Import/Export)\n"
 				"==============================Chat commands==\n"
 				"listchats [<query>]\n"
@@ -449,7 +434,7 @@ char* dc_cmdline(dc_context_t* context, const char* cmdline)
 				"groupimage [<file>]\n"
 				"chatinfo\n"
 				"send <text>\n"
-				"sendimage <file>\n"
+				"sendimage <file> [<text>]\n"
 				"sendfile <file>\n"
 				"draft [<text>]\n"
 				"listmedia\n"
@@ -487,7 +472,7 @@ char* dc_cmdline(dc_context_t* context, const char* cmdline)
 	else if (!s_is_auth)
 	{
 		if (strcmp(cmd, "auth")==0) {
-			char* is_pw = dc_get_config(context, "mail_pw", "");
+			char* is_pw = dc_get_config(context, "mail_pw");
 			if (strcmp(arg1, is_pw)==0) {
 				s_is_auth = 1;
 				ret = COMMAND_SUCCEEDED;
@@ -600,7 +585,7 @@ char* dc_cmdline(dc_context_t* context, const char* cmdline)
 		char* file_name = dc_mprintf("%s/autocrypt-setup-message.html", context->blobdir);
 		char* file_content = NULL;
 			if ((file_content=dc_render_setup_file(context, setup_code)) != NULL
-			 && dc_write_file(file_name, file_content, strlen(file_content), context)) {
+			 && dc_write_file(context, file_name, file_content, strlen(file_content))) {
 				ret = dc_mprintf("Setup message written to: %s\nSetup code: %s", file_name, setup_code);
 			}
 			else {
@@ -646,14 +631,9 @@ char* dc_cmdline(dc_context_t* context, const char* cmdline)
 	else if (strcmp(cmd, "get")==0)
 	{
 		if (arg1) {
-			char* val = dc_get_config(context, arg1, "<unset>");
-			if (val) {
-				ret = dc_mprintf("%s=%s", arg1, val);
-				free(val);
-			}
-			else {
-				ret = COMMAND_FAILED;
-			}
+			char* val = dc_get_config(context, arg1);
+			ret = dc_mprintf("%s=%s", arg1, val);
+			free(val);
 		}
 		else {
 			ret = dc_strdup("ERROR: Argument <key> missing.");
@@ -665,6 +645,11 @@ char* dc_cmdline(dc_context_t* context, const char* cmdline)
 		if (ret == NULL) {
 			ret = COMMAND_FAILED;
 		}
+	}
+	else if (strcmp(cmd, "maybenetwork")==0)
+	{
+		dc_maybe_network(context);
+		ret = COMMAND_SUCCEEDED;
 	}
 
 	/*******************************************************************************
@@ -755,12 +740,10 @@ char* dc_cmdline(dc_context_t* context, const char* cmdline)
 				log_msglist(context, msglist);
 				dc_array_unref(msglist);
 			}
-			if (dc_chat_get_draft_timestamp(sel_chat)) {
-				char* timestr = dc_timestamp_to_str(dc_chat_get_draft_timestamp(sel_chat));
-				char* drafttext = dc_chat_get_text_draft(sel_chat);
-					dc_log_info(context, 0, "Draft: %s [%s]", drafttext, timestr);
-				free(drafttext);
-				free(timestr);
+			dc_msg_t* draft = dc_get_draft(context, dc_chat_get_id(sel_chat));
+			if (draft) {
+				log_msg(context, "Draft", draft);
+				dc_msg_unref(draft);
 			}
 			ret = dc_mprintf("%i messages.", dc_get_msg_cnt(context, dc_chat_get_id(sel_chat)));
 			dc_marknoticed_chat(context, dc_chat_get_id(sel_chat));
@@ -917,35 +900,34 @@ char* dc_cmdline(dc_context_t* context, const char* cmdline)
 			ret = dc_strdup("No chat selected.");
 		}
 	}
-	else if (strcmp(cmd, "sendimage")==0)
+	else if (strcmp(cmd, "sendempty")==0)
 	{
 		if (sel_chat) {
-			if (arg1 && arg1[0]) {
-				if (dc_send_image_msg(context, dc_chat_get_id(sel_chat), arg1, NULL, 0, 0)) {
-					ret = dc_strdup("Image sent.");
-				}
-				else {
-					ret = dc_strdup("ERROR: Sending image failed.");
-				}
+			if (dc_send_text_msg(context, dc_chat_get_id(sel_chat), "")) {
+				ret = dc_strdup("Message sent.");
 			}
 			else {
-				ret = dc_strdup("ERROR: No image given.");
+				ret = dc_strdup("ERROR: Sending failed.");
 			}
 		}
 		else {
 			ret = dc_strdup("No chat selected.");
 		}
 	}
-	else if (strcmp(cmd, "sendfile")==0)
+	else if (strcmp(cmd, "sendimage")==0 || strcmp(cmd, "sendfile")==0)
 	{
 		if (sel_chat) {
 			if (arg1 && arg1[0]) {
-				if (dc_send_file_msg(context, dc_chat_get_id(sel_chat), arg1, NULL)) {
-					ret = dc_strdup("File sent.");
-				}
-				else {
-					ret = dc_strdup("ERROR: Sending file failed.");
-				}
+				char* arg2 = strchr(arg1, ' ');
+				if (arg2) { *arg2 = 0; arg2++; }
+
+				dc_msg_t* msg = dc_msg_new(context,
+					strcmp(cmd, "sendimage")==0? DC_MSG_IMAGE : DC_MSG_FILE);
+				dc_msg_set_file(msg, arg1, NULL);
+				dc_msg_set_text(msg, arg2);
+				dc_send_msg(context, dc_chat_get_id(sel_chat), msg);
+				dc_msg_unref(msg);
+				ret = COMMAND_SUCCEEDED;
 			}
 			else {
 				ret = dc_strdup("ERROR: No file given.");
@@ -973,11 +955,14 @@ char* dc_cmdline(dc_context_t* context, const char* cmdline)
 	{
 		if (sel_chat) {
 			if (arg1 && arg1[0]) {
-				dc_set_text_draft(context, dc_chat_get_id(sel_chat), arg1);
+				dc_msg_t* draft = dc_msg_new(context, DC_MSG_TEXT);
+				dc_msg_set_text(draft, arg1);
+				dc_set_draft(context, dc_chat_get_id(sel_chat), draft);
+				dc_msg_unref(draft);
 				ret = dc_strdup("Draft saved.");
 			}
 			else {
-				dc_set_text_draft(context, dc_chat_get_id(sel_chat), NULL);
+				dc_set_draft(context, dc_chat_get_id(sel_chat), NULL);
 				ret = dc_strdup("Draft deleted.");
 			}
 		}
@@ -1222,7 +1207,7 @@ char* dc_cmdline(dc_context_t* context, const char* cmdline)
 	{
 		if (arg1) {
 			unsigned char* buf = NULL; size_t buf_bytes; uint32_t w, h;
-			if (dc_read_file(arg1, (void**)&buf, &buf_bytes, context)) {
+			if (dc_read_file(context, arg1, (void**)&buf, &buf_bytes)) {
 				dc_get_filemeta(buf, buf_bytes, &w, &h);
 				ret = dc_mprintf("width=%i, height=%i", (int)w, (int)h);
 			}

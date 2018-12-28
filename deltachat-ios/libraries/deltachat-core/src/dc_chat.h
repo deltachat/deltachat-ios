@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #ifndef __DC_CHAT_H__
 #define __DC_CHAT_H__
 #ifdef __cplusplus
@@ -41,8 +19,6 @@ struct _dc_chat
 	uint32_t        id;
 	int             type;             /**< Chat type. Use dc_chat_get_type() to access this field. */
 	char*           name;             /**< Name of the chat. Use dc_chat_get_name() to access this field. NULL if unset. */
-	char*           draft_text;	    /**< Draft text. NULL if there is no draft. */
-	time_t          draft_timestamp;  /**< Timestamp of the draft. 0 if there is no draft. */
 	int             archived;         /**< Archived state. Better use dc_chat_get_archived() to access this object. */
 	dc_context_t*   context;          /**< The context object the chat belongs to. */
 	char*           grpid;            /**< Group ID that is used by all clients. Only used if the chat is a group. NULL if unset */
@@ -57,7 +33,6 @@ int             dc_chat_update_param               (dc_chat_t*);
 #define         DC_CHAT_TYPE_CAN_SEND(a)   ((a)==DC_CHAT_TYPE_SINGLE || (a)==DC_CHAT_TYPE_GROUP || (a)==DC_CHAT_TYPE_VERIFIED_GROUP)
 
 #define         DC_CHAT_PREFIX              "Chat:"      /* you MUST NOT modify this or the following strings */
-#define         DC_CHATS_FOLDER             "DeltaChat"  // make sure not to use reserved words here, eg. "Chats" or "Chat" are reserved in gmail
 
 
 // Context functions to work with chats

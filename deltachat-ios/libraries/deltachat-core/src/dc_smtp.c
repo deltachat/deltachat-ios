@@ -1,24 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
 #include <unistd.h>
 #include <libetpan/libetpan.h>
 #include "dc_context.h"
@@ -88,7 +67,7 @@ static void logger(mailsmtp* smtp, int log_type, const char* buffer__, size_t si
 	char* buffer = malloc(size+1);
 	memcpy(buffer, buffer__, size);
 	buffer[size] = 0;
-	printf("SMPT: %i: %s", log_type, buffer__);
+	printf("SMTP: %i: %s", log_type, buffer__);
 }
 #endif
 
@@ -103,11 +82,6 @@ int dc_smtp_connect(dc_smtp_t* smtp, const dc_loginparam_t* lp)
 		return 0;
 	}
 
-	if (smtp->context->cb(smtp->context, DC_EVENT_IS_OFFLINE, 0, 0)!=0) {
-		dc_log_error_if(&smtp->log_connect_errors, smtp->context, DC_ERROR_NO_NETWORK, NULL);
-		goto cleanup;
-	}
-
 	if (smtp->etpan) {
 		dc_log_warning(smtp->context, 0, "SMTP already connected.");
 		success = 1; /* otherwise, the handle would get deleted */
@@ -115,7 +89,8 @@ int dc_smtp_connect(dc_smtp_t* smtp, const dc_loginparam_t* lp)
 	}
 
 	if (lp->addr==NULL || lp->send_server==NULL || lp->send_port==0) {
-		dc_log_error_if(&smtp->log_connect_errors, smtp->context, 0, "SMTP bad parameters.");
+		dc_log_event_seq(smtp->context, DC_EVENT_ERROR_NETWORK, &smtp->log_connect_errors,
+			"SMTP bad parameters.");
 		goto cleanup;
 	}
 
@@ -137,14 +112,18 @@ int dc_smtp_connect(dc_smtp_t* smtp, const dc_loginparam_t* lp)
 	if (lp->server_flags&(DC_LP_SMTP_SOCKET_STARTTLS|DC_LP_SMTP_SOCKET_PLAIN))
 	{
 		if ((r=mailsmtp_socket_connect(smtp->etpan, lp->send_server, lp->send_port)) != MAILSMTP_NO_ERROR) {
-			dc_log_error_if(&smtp->log_connect_errors, smtp->context, 0, "SMTP-Socket connection to %s:%i failed (%s)", lp->send_server, (int)lp->send_port, mailsmtp_strerror(r));
+			dc_log_event_seq(smtp->context, DC_EVENT_ERROR_NETWORK, &smtp->log_connect_errors,
+				"SMTP-Socket connection to %s:%i failed (%s)",
+				lp->send_server, (int)lp->send_port, mailsmtp_strerror(r));
 			goto cleanup;
 		}
 	}
 	else
 	{
 		if ((r=mailsmtp_ssl_connect(smtp->etpan, lp->send_server, lp->send_port)) != MAILSMTP_NO_ERROR) {
-			dc_log_error_if(&smtp->log_connect_errors, smtp->context, 0, "SMPT-SSL connection to %s:%i failed (%s)", lp->send_server, (int)lp->send_port, mailsmtp_strerror(r));
+			dc_log_event_seq(smtp->context, DC_EVENT_ERROR_NETWORK, &smtp->log_connect_errors,
+				"SMTP-SSL connection to %s:%i failed (%s)",
+				lp->send_server, (int)lp->send_port, mailsmtp_strerror(r));
 			goto cleanup;
 		}
 	}
@@ -159,14 +138,16 @@ int dc_smtp_connect(dc_smtp_t* smtp, const dc_loginparam_t* lp)
 	}
 
 	if (r != MAILSMTP_NO_ERROR) {
-		dc_log_error_if(&smtp->log_connect_errors, smtp->context, 0, "SMTP-helo failed (%s)", mailsmtp_strerror(r));
+		dc_log_event_seq(smtp->context, DC_EVENT_ERROR_NETWORK, &smtp->log_connect_errors,
+			"SMTP-helo failed (%s)", mailsmtp_strerror(r));
 		goto cleanup;
 	}
 
 	if (lp->server_flags&DC_LP_SMTP_SOCKET_STARTTLS)
 	{
 		if ((r=mailsmtp_socket_starttls(smtp->etpan)) != MAILSMTP_NO_ERROR) {
-			dc_log_error_if(&smtp->log_connect_errors, smtp->context, 0, "SMTP-STARTTLS failed (%s)", mailsmtp_strerror(r));
+			dc_log_event_seq(smtp->context, DC_EVENT_ERROR_NETWORK, &smtp->log_connect_errors,
+				"SMTP-STARTTLS failed (%s)", mailsmtp_strerror(r));
 			goto cleanup;
 		}
 
@@ -179,7 +160,8 @@ int dc_smtp_connect(dc_smtp_t* smtp, const dc_loginparam_t* lp)
 		}
 
 		if (r != MAILSMTP_NO_ERROR) {
-			dc_log_error_if(&smtp->log_connect_errors, smtp->context, 0, "SMTP-helo failed (%s)", mailsmtp_strerror(r));
+			dc_log_event_seq(smtp->context, DC_EVENT_ERROR_NETWORK, &smtp->log_connect_errors,
+				"SMTP-helo failed (%s)", mailsmtp_strerror(r));
 			goto cleanup;
 		}
 		dc_log_info(smtp->context, 0, "SMTP-server %s:%i STARTTLS-connected.", lp->send_server, (int)lp->send_port);
@@ -214,12 +196,14 @@ int dc_smtp_connect(dc_smtp_t* smtp, const dc_loginparam_t* lp)
 			}
 			if (r != MAILSMTP_NO_ERROR)
 			{
-				dc_log_error_if(&smtp->log_connect_errors, smtp->context, 0, "SMTP-login failed for user %s (%s)", lp->send_user, mailsmtp_strerror(r));
+				dc_log_event_seq(smtp->context, DC_EVENT_ERROR_NETWORK, &smtp->log_connect_errors,
+					"SMTP-login failed for user %s (%s)", lp->send_user, mailsmtp_strerror(r));
 				goto cleanup;
 			}
 		}
 
-		dc_log_info(smtp->context, 0, "SMTP-login as %s ok.", lp->send_user);
+		dc_log_event(smtp->context, DC_EVENT_SMTP_CONNECTED, 0,
+                     "SMTP-login as %s ok.", lp->send_user);
 	}
 
 	success = 1;
@@ -310,6 +294,8 @@ int dc_smtp_send_msg(dc_smtp_t* smtp, const clist* recipients, const char* data_
 		goto cleanup;
 	}
 
+    dc_log_event(smtp->context, DC_EVENT_SMTP_MESSAGE_SENT, 0,
+                 "Message was sent to SMTP server");
 	success = 1;
 
 cleanup:

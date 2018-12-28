@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include <stdarg.h>
 #include <unistd.h>
 #include "dc_context.h"
@@ -226,7 +204,7 @@ static const char* lookup_field(dc_mimeparser_t* mimeparser, const char* key)
 
 static void send_handshake_msg(dc_context_t* context, uint32_t contact_chat_id, const char* step, const char* param2, const char* fingerprint, const char* grpid)
 {
-	dc_msg_t* msg = dc_msg_new();
+	dc_msg_t* msg = dc_msg_new_untyped(context);
 
 	msg->type = DC_MSG_TEXT;
 	msg->text = dc_mprintf("Secure-Join: %s", step);
@@ -316,7 +294,8 @@ static void end_bobs_joining(dc_context_t* context, int status)
  * @param context The context object.
  * @param group_chat_id If set to the ID of a chat, the "Joining a verified group" protocol is offered in the QR code.
  *     If set to 0, the "Setup Verified Contact" protocol is offered in the QR code.
- * @return Text that should go to the qr code.
+ * @return Text that should go to the QR code, on problems, an empty QR code is returned.
+ *     The returned string must be free()'d after usage.
  */
 char* dc_get_securejoin_qr(dc_context_t* context, uint32_t group_chat_id)
 {
@@ -454,13 +433,6 @@ uint32_t dc_join_securejoin(dc_context_t* context, const char* qr)
 
 	if ((contact_chat_id=dc_create_chat_by_contact_id(context, qr_scan->id))==0) {
 		dc_log_error(context, 0, "Unknown contact.");
-		goto cleanup;
-	}
-
-	CHECK_EXIT
-
-	if (context->cb(context, DC_EVENT_IS_OFFLINE, 0, 0)!=0) {
-		dc_log_error(context, DC_ERROR_NO_NETWORK, NULL);
 		goto cleanup;
 	}
 

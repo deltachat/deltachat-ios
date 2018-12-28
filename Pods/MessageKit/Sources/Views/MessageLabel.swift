@@ -117,25 +117,25 @@ open class MessageLabel: UILabel {
 
     private var attributesNeedUpdate = false
 
-    public static var defaultAttributes: [NSAttributedStringKey: Any] = {
+    public static var defaultAttributes: [NSAttributedString.Key: Any] = {
         return [
-            NSAttributedStringKey.foregroundColor: UIColor.darkText,
-            NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
-            NSAttributedStringKey.underlineColor: UIColor.darkText
+            NSAttributedString.Key.foregroundColor: UIColor.darkText,
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+            NSAttributedString.Key.underlineColor: UIColor.darkText
         ]
     }()
 
-    open internal(set) var addressAttributes: [NSAttributedStringKey: Any] = defaultAttributes
+    open internal(set) var addressAttributes: [NSAttributedString.Key: Any] = defaultAttributes
 
-    open internal(set) var dateAttributes: [NSAttributedStringKey: Any] = defaultAttributes
+    open internal(set) var dateAttributes: [NSAttributedString.Key: Any] = defaultAttributes
 
-    open internal(set) var phoneNumberAttributes: [NSAttributedStringKey: Any] = defaultAttributes
+    open internal(set) var phoneNumberAttributes: [NSAttributedString.Key: Any] = defaultAttributes
 
-    open internal(set) var urlAttributes: [NSAttributedStringKey: Any] = defaultAttributes
+    open internal(set) var urlAttributes: [NSAttributedString.Key: Any] = defaultAttributes
     
-    open internal(set) var transitInformationAttributes: [NSAttributedStringKey: Any] = defaultAttributes
+    open internal(set) var transitInformationAttributes: [NSAttributedString.Key: Any] = defaultAttributes
 
-    public func setAttributes(_ attributes: [NSAttributedStringKey: Any], detector: DetectorType) {
+    public func setAttributes(_ attributes: [NSAttributedString.Key: Any], detector: DetectorType) {
         switch detector {
         case .phoneNumber:
             phoneNumberAttributes = attributes
@@ -171,7 +171,7 @@ open class MessageLabel: UILabel {
 
     open override func drawText(in rect: CGRect) {
 
-        let insetRect = UIEdgeInsetsInsetRect(rect, textInsets)
+        let insetRect = rect.inset(by: textInsets)
         textContainer.size = CGSize(width: insetRect.width, height: rect.height)
 
         let origin = insetRect.origin
@@ -263,7 +263,7 @@ open class MessageLabel: UILabel {
         }
     }
 
-    private func detectorAttributes(for detectorType: DetectorType) -> [NSAttributedStringKey: Any] {
+    private func detectorAttributes(for detectorType: DetectorType) -> [NSAttributedString.Key: Any] {
 
         switch detectorType {
         case .address:
@@ -280,7 +280,7 @@ open class MessageLabel: UILabel {
 
     }
 
-    private func detectorAttributes(for checkingResultType: NSTextCheckingResult.CheckingType) -> [NSAttributedStringKey: Any] {
+    private func detectorAttributes(for checkingResultType: NSTextCheckingResult.CheckingType) -> [NSAttributedString.Key: Any] {
         switch checkingResultType {
         case .address:
             return addressAttributes

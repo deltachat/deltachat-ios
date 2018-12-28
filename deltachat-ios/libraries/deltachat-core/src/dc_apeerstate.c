@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include "dc_context.h"
 #include "dc_apeerstate.h"
 #include "dc_aheader.h"
@@ -533,7 +511,7 @@ cleanup:
  * @param peerstate The peerstate object.
  * @param which_key Which key should be marked as being verified? DC_PS_GOSSIP_KEY (1) or DC_PS_PUBLIC_KEY (2)
  * @param fingerprint Fingerprint expected in the object
- * @param verified DC_BIDIRECT_VERIFIED (2): contact verfied in both directions
+ * @param verified DC_BIDIRECT_VERIFIED (2): contact verified in both directions
  * @return 1=the given fingerprint is equal to the peer's fingerprint and
  *     the verified-state is set; you should call dc_apeerstate_save_to_db()
  *     to permanently store this state.

@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #ifndef __DC_CONTACT_H__
 #define __DC_CONTACT_H__
 #ifdef __cplusplus
@@ -68,8 +46,8 @@ struct _dc_contact
 #define DC_ORIGIN_OUTGOING_TO              0x4000 /* message sent by us */
 #define DC_ORIGIN_INTERNAL                0x40000 /* internal use */
 #define DC_ORIGIN_ADRESS_BOOK             0x80000 /* address is in our address book */
-#define DC_ORIGIN_SECUREJOIN_INVITED    0x1000000 /* set on Alice's side for contacts like Bob that have scanned the QR code offered by her. Only means the contact has once been established using the "securejoin" procedure in the past, getting the current key verification status requires calling dc_contact_is_verfied() ! */
-#define DC_ORIGIN_SECUREJOIN_JOINED     0x2000000 /* set on Bob's side for contacts scanned and verified from a QR code. Only means the contact has once been established using the "securejoin" procedure in the past, getting the current key verification status requires calling dc_contact_is_verfied() ! */
+#define DC_ORIGIN_SECUREJOIN_INVITED    0x1000000 /* set on Alice's side for contacts like Bob that have scanned the QR code offered by her. Only means the contact has once been established using the "securejoin" procedure in the past, getting the current key verification status requires calling dc_contact_is_verified() ! */
+#define DC_ORIGIN_SECUREJOIN_JOINED     0x2000000 /* set on Bob's side for contacts scanned and verified from a QR code. Only means the contact has once been established using the "securejoin" procedure in the past, getting the current key verification status requires calling dc_contact_is_verified() ! */
 #define DC_ORIGIN_MANUALLY_CREATED      0x4000000 /* contact added mannually by dc_create_contact(), this should be the largets origin as otherwise the user cannot modify the names */
 
 #define DC_ORIGIN_MIN_CONTACT_LIST    (DC_ORIGIN_INCOMING_REPLY_TO) /* contacts with at least this origin value are shown in the contact list */

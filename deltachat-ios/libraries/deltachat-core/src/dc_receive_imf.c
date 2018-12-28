@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include <assert.h>
 #include <netpgp-extra.h>
 #include "dc_context.h"
@@ -164,7 +142,7 @@ static int dc_is_reply_to_known_message(dc_context_t* context, dc_mimeparser_t* 
 	`In-Reply-To`/`References:` (to support non-Delta-Clients) or from `Chat-Predecessor:` (Delta clients, see comment in dc_chat.c) */
 
 	struct mailimf_optional_field* optional_field = NULL;
-	if ((optional_field=dc_mimeparser_lookup_optional_field2(mime_parser, "Chat-Predecessor", "X-MrPredecessor"))!=NULL)
+	if ((optional_field=dc_mimeparser_lookup_optional_field(mime_parser, "Chat-Predecessor"))!=NULL)
 	{
 		if (is_known_rfc724_mid(context, optional_field->fld_value)) {
 			return 1;
@@ -189,80 +167,6 @@ static int dc_is_reply_to_known_message(dc_context_t* context, dc_mimeparser_t* 
 		struct mailimf_references* fld_references = field->fld_data.fld_references;
 		if (fld_references) {
 			if (is_known_rfc724_mid_in_list(context, field->fld_data.fld_references->mid_list)) {
-				return 1;
-			}
-		}
-	}
-
-	return 0;
-}
-
-
-/*******************************************************************************
- * Check if a message is a reply to any messenger message
- ******************************************************************************/
-
-
-static int is_msgrmsg_rfc724_mid(dc_context_t* context, const char* rfc724_mid)
-{
-	int is_msgrmsg = 0;
-	if (rfc724_mid) {
-		sqlite3_stmt* stmt = dc_sqlite3_prepare(context->sql,
-			"SELECT id FROM msgs "
-			" WHERE rfc724_mid=? "
-			" AND msgrmsg!=0 "
-			" AND chat_id>" DC_STRINGIFY(DC_CHAT_ID_LAST_SPECIAL) ";");
-		sqlite3_bind_text(stmt, 1, rfc724_mid, -1, SQLITE_STATIC);
-		if (sqlite3_step(stmt)==SQLITE_ROW) {
-			is_msgrmsg = 1;
-		}
-		sqlite3_finalize(stmt);
-	}
-	return is_msgrmsg;
-}
-
-
-static int is_msgrmsg_rfc724_mid_in_list(dc_context_t* context, const clist* mid_list)
-{
-	if (mid_list) {
-		for (clistiter* cur = clist_begin(mid_list); cur!=NULL ; cur=clist_next(cur)) {
-			if (is_msgrmsg_rfc724_mid(context, clist_content(cur))) {
-				return 1;
-			}
-		}
-	}
-
-	return 0;
-}
-
-
-static int dc_is_reply_to_messenger_message(dc_context_t* context, dc_mimeparser_t* mime_parser)
-{
-	/* function checks, if the message defined by mime_parser references a message send by us from Delta Chat.
-
-	This is similar to is_reply_to_known_message() but
-	- checks also if any of the referenced IDs are send by a messenger
-	- it is okay, if the referenced messages are moved to trash here
-	- no check for the Chat-* headers (function is only called if it is no messenger message itself) */
-
-	struct mailimf_field* field = NULL;
-	if ((field=dc_mimeparser_lookup_field(mime_parser, "In-Reply-To"))!=NULL
-	 && field->fld_type==MAILIMF_FIELD_IN_REPLY_TO)
-	{
-		struct mailimf_in_reply_to* fld_in_reply_to = field->fld_data.fld_in_reply_to;
-		if (fld_in_reply_to) {
-			if (is_msgrmsg_rfc724_mid_in_list(context, field->fld_data.fld_in_reply_to->mid_list)) {
-				return 1;
-			}
-		}
-	}
-
-	if ((field=dc_mimeparser_lookup_field(mime_parser, "References"))!=NULL
-	 && field->fld_type==MAILIMF_FIELD_REFERENCES)
-	{
-		struct mailimf_references* fld_references = field->fld_data.fld_references;
-		if (fld_references) {
-			if (is_msgrmsg_rfc724_mid_in_list(context, field->fld_data.fld_references->mid_list)) {
 				return 1;
 			}
 		}
@@ -560,7 +464,7 @@ static void create_or_lookup_adhoc_group(dc_context_t* context, dc_mimeparser_t*
 		grpname = dc_strdup(mime_parser->subject);
 	}
 	else {
-		grpname = dc_stock_str_repl_pl(context, DC_STR_MEMBER,  dc_array_get_cnt(member_ids));
+		grpname = dc_stock_str_repl_int(context, DC_STR_MEMBER,  dc_array_get_cnt(member_ids));
 	}
 
 	/* create group record */
@@ -699,14 +603,14 @@ static void create_or_lookup_group(dc_context_t* context, dc_mimeparser_t* mime_
 	char*         X_MrRemoveFromGrp = NULL; /* pointer somewhere into mime_parser, must not be freed */
 	char*         X_MrAddToGrp = NULL; /* pointer somewhere into mime_parser, must not be freed */
 	int           X_MrGrpNameChanged = 0;
-	int           X_MrGrpImageChanged = 0;
+	const char*   X_MrGrpImageChanged = NULL;
 
 	/* search the grpid in the header */
 	{
 		struct mailimf_field*          field = NULL;
 		struct mailimf_optional_field* optional_field = NULL;
 
-		if ((optional_field=dc_mimeparser_lookup_optional_field2(mime_parser, "Chat-Group-ID", "X-MrGrpId"))!=NULL) {
+		if ((optional_field=dc_mimeparser_lookup_optional_field(mime_parser, "Chat-Group-ID"))!=NULL) {
 			grpid = dc_strdup(optional_field->fld_value);
 		}
 
@@ -746,24 +650,24 @@ static void create_or_lookup_group(dc_context_t* context, dc_mimeparser_t* mime_
 			}
 		}
 
-		if ((optional_field=dc_mimeparser_lookup_optional_field2(mime_parser, "Chat-Group-Name", "X-MrGrpName"))!=NULL) {
+		if ((optional_field=dc_mimeparser_lookup_optional_field(mime_parser, "Chat-Group-Name"))!=NULL) {
 			grpname = dc_decode_header_words(optional_field->fld_value); /* this is no changed groupname message */
 		}
 
-		if ((optional_field=dc_mimeparser_lookup_optional_field2(mime_parser, "Chat-Group-Member-Removed", "X-MrRemoveFromGrp"))!=NULL) {
+		if ((optional_field=dc_mimeparser_lookup_optional_field(mime_parser, "Chat-Group-Member-Removed"))!=NULL) {
 			X_MrRemoveFromGrp = optional_field->fld_value;
 			mime_parser->is_system_message = DC_CMD_MEMBER_REMOVED_FROM_GROUP;
 		}
-		else if ((optional_field=dc_mimeparser_lookup_optional_field2(mime_parser, "Chat-Group-Member-Added", "X-MrAddToGrp"))!=NULL) {
+		else if ((optional_field=dc_mimeparser_lookup_optional_field(mime_parser, "Chat-Group-Member-Added"))!=NULL) {
 			X_MrAddToGrp = optional_field->fld_value;
 			mime_parser->is_system_message = DC_CMD_MEMBER_ADDED_TO_GROUP;
 		}
-		else if ((optional_field=dc_mimeparser_lookup_optional_field2(mime_parser, "Chat-Group-Name-Changed", "X-MrGrpNameChanged"))!=NULL) {
+		else if ((optional_field=dc_mimeparser_lookup_optional_field(mime_parser, "Chat-Group-Name-Changed"))!=NULL) {
 			X_MrGrpNameChanged = 1;
 			mime_parser->is_system_message = DC_CMD_GROUPNAME_CHANGED;
 		}
 		else if ((optional_field=dc_mimeparser_lookup_optional_field(mime_parser, "Chat-Group-Image"))!=NULL) {
-			X_MrGrpImageChanged = 1;
+			X_MrGrpImageChanged = optional_field->fld_value;
 			mime_parser->is_system_message = DC_CMD_GROUPIMAGE_CHANGED;
 		}
 	}
@@ -846,18 +750,15 @@ static void create_or_lookup_group(dc_context_t* context, dc_mimeparser_t* mime_
 	{
 		int   ok = 0;
 		char* grpimage = NULL;
-		if (carray_count(mime_parser->parts)>=1) {
-			dc_mimepart_t* textpart = (dc_mimepart_t*)carray_get(mime_parser->parts, 0);
-			if (textpart->type==DC_MSG_TEXT) {
-				if (carray_count(mime_parser->parts)>=2) {
-					dc_mimepart_t* imgpart = (dc_mimepart_t*)carray_get(mime_parser->parts, 1);
-					if (imgpart->type==DC_MSG_IMAGE) {
-						grpimage = dc_param_get(imgpart->param, DC_PARAM_FILE, NULL);
-						ok = 1;
-					}
-				}
-				else {
-					ok = 1;
+		if( strcmp(X_MrGrpImageChanged, "0")==0 ) {
+			ok = 1; // group image deleted
+		}
+		else {
+			for (int i = 0; i < carray_count(mime_parser->parts); i++) {
+				dc_mimepart_t* part = (dc_mimepart_t*)carray_get(mime_parser->parts, i);
+				if (part->type==DC_MSG_IMAGE) {
+					grpimage = dc_param_get(part->param, DC_PARAM_FILE, NULL);
+					ok = 1; // new group image set
 				}
 			}
 		}
@@ -955,11 +856,11 @@ void dc_receive_imf(dc_context_t* context, const char* imf_raw_not_terminated, s
 	int              state = DC_STATE_UNDEFINED;
 	int              hidden = 0;
 	int              add_delete_job = 0;
+	uint32_t         insert_msg_id = 0;
 
 	sqlite3_stmt*    stmt = NULL;
 	size_t           i = 0;
 	size_t           icnt = 0;
-	uint32_t         first_dblocal_id = 0;
 	char*            rfc724_mid = NULL; /* Message-ID from the header */
 	time_t           sort_timestamp = DC_INVALID_TIMESTAMP;
 	time_t           sent_timestamp = DC_INVALID_TIMESTAMP;
@@ -967,6 +868,8 @@ void dc_receive_imf(dc_context_t* context, const char* imf_raw_not_terminated, s
 	dc_mimeparser_t* mime_parser = dc_mimeparser_new(context->blobdir, context);
 	int              transaction_pending = 0;
 	const struct mailimf_field* field;
+	char*            mime_in_reply_to = NULL;
+	char*            mime_references = NULL;
 
 	carray*          created_db_entries = carray_new(16);
 	int              create_event_to_send = DC_EVENT_MSGS_CHANGED;
@@ -1095,7 +998,7 @@ void dc_receive_imf(dc_context_t* context, const char* imf_raw_not_terminated, s
 			}
 
 			if (rfc724_mid==NULL) {
-				rfc724_mid = dc_create_incoming_rfc724_mid(sort_timestamp, from_id, to_ids);
+				rfc724_mid = dc_create_incoming_rfc724_mid(sent_timestamp, from_id, to_ids);
 				if (rfc724_mid==NULL) {
 					dc_log_info(context, 0, "Cannot create Message-ID.");
 					goto cleanup;
@@ -1203,8 +1106,12 @@ void dc_receive_imf(dc_context_t* context, const char* imf_raw_not_terminated, s
 				/* degrade state for unknown senders and non-delta messages
 				(the latter may be removed if we run into spam problems, currently this is fine)
 				(noticed messages do count as being unread; therefore, the deaddrop will not popup in the chatlist) */
-				if (chat_id_blocked && state==DC_STATE_IN_FRESH) {
-					if (incoming_origin<DC_ORIGIN_MIN_VERIFIED && mime_parser->is_send_by_messenger==0) {
+				if (chat_id_blocked && state==DC_STATE_IN_FRESH)
+				{
+					if (incoming_origin < DC_ORIGIN_MIN_VERIFIED
+					 && mime_parser->is_send_by_messenger == 0
+					 && !dc_is_mvbox(context, server_folder))
+					{
 						state = DC_STATE_IN_NOTICED;
 					}
 				}
@@ -1260,19 +1167,35 @@ void dc_receive_imf(dc_context_t* context, const char* imf_raw_not_terminated, s
 			/* unarchive chat */
 			dc_unarchive_chat(context, chat_id);
 
-			/* if the message is not sent by a messenger, check if it is sent at least as a reply to a messenger message
-			(later, we move these replies to the folder used for DeltaChat messages) */
-			int msgrmsg = mime_parser->is_send_by_messenger; /* 1 or 0 for yes/no */
-			if (msgrmsg)
-			{
-				dc_log_info(context, 0, "Message sent by another messenger.");
+			// if the mime-headers should be saved, find out its size
+			// (the mime-header ends with an empty line)
+			int save_mime_headers = dc_sqlite3_get_config_int(context->sql, "save_mime_headers", 0);
+			int header_bytes = imf_raw_bytes;
+			if (save_mime_headers) {
+				char* p;
+				if ((p=strstr(imf_raw_not_terminated, "\r\n\r\n"))!=NULL) {
+					header_bytes = (p-imf_raw_not_terminated)+4;
+				}
+				else if ((p=strstr(imf_raw_not_terminated, "\n\n"))!=NULL) {
+					header_bytes = (p-imf_raw_not_terminated)+2;
+				}
 			}
-			else
+
+			if ((field=dc_mimeparser_lookup_field(mime_parser, "In-Reply-To"))!=NULL
+			 && field->fld_type==MAILIMF_FIELD_IN_REPLY_TO)
 			{
-				if (dc_is_reply_to_messenger_message(context, mime_parser))
-				{
-					dc_log_info(context, 0, "Message is a reply to a messenger message.");
-					msgrmsg = 2; /* 2=no, but is reply to messenger message */
+				struct mailimf_in_reply_to* fld_in_reply_to = field->fld_data.fld_in_reply_to;
+				if (fld_in_reply_to) {
+					mime_in_reply_to = dc_str_from_clist(field->fld_data.fld_in_reply_to->mid_list, " ");
+				}
+			}
+
+			if ((field=dc_mimeparser_lookup_field(mime_parser, "References"))!=NULL
+			 && field->fld_type==MAILIMF_FIELD_REFERENCES)
+			{
+				struct mailimf_references* fld_references = field->fld_data.fld_references;
+				if (fld_references) {
+					mime_references = dc_str_from_clist(field->fld_data.fld_references->mid_list, " ");
 				}
 			}
 
@@ -1281,8 +1204,11 @@ void dc_receive_imf(dc_context_t* context, const char* imf_raw_not_terminated, s
 			into only one message; mails sent by other clients may result in several messages (eg. one per attachment)) */
 			icnt = carray_count(mime_parser->parts); /* should be at least one - maybe empty - part */
 			stmt = dc_sqlite3_prepare(context->sql,
-				"INSERT INTO msgs (rfc724_mid,server_folder,server_uid,chat_id,from_id, to_id,timestamp,timestamp_sent,timestamp_rcvd,type, state,msgrmsg,txt,txt_raw,param, bytes,hidden)"
-				" VALUES (?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?);");
+				"INSERT INTO msgs (rfc724_mid, server_folder, server_uid, chat_id, from_id, to_id,"
+				" timestamp, timestamp_sent, timestamp_rcvd, type, state, msgrmsg, "
+				" txt, txt_raw, param, bytes, hidden, mime_headers, "
+				" mime_in_reply_to, mime_references)"
+				" VALUES (?,?,?,?,?,?, ?,?,?,?,?,?, ?,?,?,?,?,?, ?,?);");
 			for (i = 0; i < icnt; i++)
 			{
 				dc_mimepart_t* part = (dc_mimepart_t*)carray_get(mime_parser->parts, i);
@@ -1310,12 +1236,15 @@ void dc_receive_imf(dc_context_t* context, const char* imf_raw_not_terminated, s
 				sqlite3_bind_int64(stmt,  9, rcvd_timestamp);
 				sqlite3_bind_int  (stmt, 10, part->type);
 				sqlite3_bind_int  (stmt, 11, state);
-				sqlite3_bind_int  (stmt, 12, msgrmsg);
+				sqlite3_bind_int  (stmt, 12, mime_parser->is_send_by_messenger);
 				sqlite3_bind_text (stmt, 13, part->msg? part->msg : "", -1, SQLITE_STATIC);
 				sqlite3_bind_text (stmt, 14, txt_raw? txt_raw : "", -1, SQLITE_STATIC);
 				sqlite3_bind_text (stmt, 15, part->param->packed, -1, SQLITE_STATIC);
 				sqlite3_bind_int  (stmt, 16, part->bytes);
 				sqlite3_bind_int  (stmt, 17, hidden);
+				sqlite3_bind_text (stmt, 18, save_mime_headers? imf_raw_not_terminated : NULL, header_bytes, SQLITE_STATIC);
+				sqlite3_bind_text (stmt, 19, mime_in_reply_to, -1, SQLITE_STATIC);
+				sqlite3_bind_text (stmt, 20, mime_references, -1, SQLITE_STATIC);
 				if (sqlite3_step(stmt)!=SQLITE_DONE) {
 					dc_log_info(context, 0, "Cannot write DB.");
 					goto cleanup; /* i/o error - there is nothing more we can do - in other cases, we try to write at least an empty record */
@@ -1324,12 +1253,10 @@ void dc_receive_imf(dc_context_t* context, const char* imf_raw_not_terminated, s
 				free(txt_raw);
 				txt_raw = NULL;
 
-				if (first_dblocal_id==0) {
-					first_dblocal_id = dc_sqlite3_get_rowid(context->sql, "msgs", "rfc724_mid", rfc724_mid); // rfc724_mid is unique only for the first insert
-				}
+				insert_msg_id = dc_sqlite3_get_rowid(context->sql, "msgs", "rfc724_mid", rfc724_mid);
 
 				carray_add(created_db_entries, (void*)(uintptr_t)chat_id, NULL);
-				carray_add(created_db_entries, (void*)(uintptr_t)first_dblocal_id, NULL);
+				carray_add(created_db_entries, (void*)(uintptr_t)insert_msg_id, NULL);
 			}
 
 			dc_log_info(context, 0, "Message has %i parts and is assigned to chat #%i.", icnt, chat_id);
@@ -1354,6 +1281,8 @@ void dc_receive_imf(dc_context_t* context, const char* imf_raw_not_terminated, s
 					create_event_to_send = DC_EVENT_INCOMING_MSG;
 				}
 			}
+
+			dc_do_heuristics_moves(context, server_folder, insert_msg_id);
 		}
 		else
 		{
@@ -1438,15 +1367,17 @@ void dc_receive_imf(dc_context_t* context, const char* imf_raw_not_terminated, s
 					- Consumed or not consumed MDNs from other messengers
 					- Consumed MDNs from normal MUAs
 					Unconsumed MDNs from normal MUAs are _not_ moved.
-					NB: we do not delete the MDN as it may be used by other clients
-
-					CAVE: we rely on dc_imap_markseen_msg() not to move messages that are already in the correct folder.
-					otherwise, the moved message get a new server_uid and is "fresh" again and we will be here again to move it away -
-					a classical deadlock, see also (***) in dc_imap.c */
+					NB: we do not delete the MDN as it may be used by other clients */
 					if (mime_parser->is_send_by_messenger || mdn_consumed) {
-						char* jobparam = dc_mprintf("%c=%s\n%c=%lu", DC_PARAM_SERVER_FOLDER, server_folder, DC_PARAM_SERVER_UID, server_uid);
-							dc_job_add(context, DC_JOB_MARKSEEN_MDN_ON_IMAP, 0, jobparam, 0);
-						free(jobparam);
+						dc_param_t* param = dc_param_new();
+						dc_param_set(param, DC_PARAM_SERVER_FOLDER, server_folder);
+						dc_param_set_int(param, DC_PARAM_SERVER_UID, server_uid);
+						if (mime_parser->is_send_by_messenger
+						 && dc_sqlite3_get_config_int(context->sql, "mvbox_move", DC_MVBOX_MOVE_DEFAULT)) {
+							dc_param_set_int(param, DC_PARAM_ALSO_MOVE, 1);
+						}
+						dc_job_add(context, DC_JOB_MARKSEEN_MDN_ON_IMAP, 0, param->packed, 0);
+						dc_param_unref(param);
 					}
 				}
 
@@ -1454,19 +1385,8 @@ void dc_receive_imf(dc_context_t* context, const char* imf_raw_not_terminated, s
 
 		}
 
-		/* debug print? */
-		if (dc_sqlite3_get_config_int(context->sql, "save_eml", 0)) {
-			char* emlname = dc_mprintf("%s/%s-%i.eml", context->blobdir, server_folder, (int)first_dblocal_id /*may be 0 for MDNs*/);
-			FILE* emlfileob = fopen(emlname, "w");
-			if (emlfileob) {
-				fwrite(imf_raw_not_terminated, 1, imf_raw_bytes, emlfileob);
-				fclose(emlfileob);
-			}
-			free(emlname);
-		}
-
-		if (add_delete_job) {
-			dc_job_add(context, DC_JOB_DELETE_MSG_ON_IMAP, first_dblocal_id, NULL, 0);
+		if (add_delete_job && carray_count(created_db_entries)>=2) {
+			dc_job_add(context, DC_JOB_DELETE_MSG_ON_IMAP, (int)(uintptr_t)carray_get(created_db_entries, 1), NULL, 0);
 		}
 
 	dc_sqlite3_commit(context->sql);
@@ -1477,6 +1397,8 @@ cleanup:
 
 	dc_mimeparser_unref(mime_parser);
 	free(rfc724_mid);
+	free(mime_in_reply_to);
+	free(mime_references);
 	dc_array_unref(to_ids);
 
 	if (created_db_entries) {

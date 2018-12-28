@@ -9,7 +9,6 @@ inc = include_directories('.')
 
 exe = executable(
   'delta', src,
-  dependencies: [pthreads, etpan],
-  link_with: lib,
+  dependencies: [dep],
   install: true,
 )

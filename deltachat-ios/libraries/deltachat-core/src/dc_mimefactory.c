@@ -1,32 +1,9 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include "dc_context.h"
 #include "dc_mimefactory.h"
 #include "dc_apeerstate.h"
 
 
 #define LINEEND "\r\n" /* lineend used in IMF */
-
 
 
 /*******************************************************************************
@@ -81,8 +58,8 @@ void dc_mimefactory_empty(dc_mimefactory_t* factory)
 	dc_chat_unref(factory->chat);
 	factory->chat = NULL;
 
-	free(factory->predecessor);
-	factory->predecessor = NULL;
+	free(factory->in_reply_to);
+	factory->in_reply_to = NULL;
 
 	free(factory->references);
 	factory->references = NULL;
@@ -139,7 +116,7 @@ int dc_mimefactory_load_msg(dc_mimefactory_t* factory, uint32_t msg_id)
 
 	factory->recipients_names = clist_new();
 	factory->recipients_addr  = clist_new();
-	factory->msg              = dc_msg_new(context);
+	factory->msg              = dc_msg_new_untyped(context);
 	factory->chat             = dc_chat_new(context);
 
 		if (dc_msg_load_from_db(factory->msg, context, msg_id)
@@ -197,56 +174,15 @@ int dc_mimefactory_load_msg(dc_mimefactory_t* factory, uint32_t msg_id)
 				}
 			}
 
-			/* Get a predecessor of the mail to send.
-			For simplicity, we use the last message send not by us.
-			This is not 100% accurate and may even be a newer message if first sending fails and new messages arrive -
-			however, as we currently only use it to identifify answers from different email addresses, this is sufficient.
-
-			Our first idea was to write the predecessor to the `In-Reply-To:` header, however, this results
-			in infinite depth thread views eg. in thunderbird.  Maybe we can work around this issue by using only one
-			predecessor anchor a day, however, for the moment, we just use the `Chat-Predecessor` header that does not
-			disturb other mailers.
-
-			Finally, maybe the Predecessor/In-Reply-To header is not needed for all answers but only to the first ones -
-			or after the sender has changes its email address. */
 			stmt = dc_sqlite3_prepare(context->sql,
-				"SELECT rfc724_mid FROM msgs WHERE timestamp=(SELECT max(timestamp) FROM msgs WHERE chat_id=? AND from_id!=?);");
-			sqlite3_bind_int  (stmt, 1, factory->msg->chat_id);
-			sqlite3_bind_int  (stmt, 2, DC_CONTACT_ID_SELF);
+				"SELECT mime_in_reply_to, mime_references FROM msgs WHERE id=?");
+			sqlite3_bind_int  (stmt, 1, factory->msg->id);
 			if (sqlite3_step(stmt)==SQLITE_ROW) {
-				factory->predecessor = dc_strdup_keep_null((const char*)sqlite3_column_text(stmt, 0));
+				factory->in_reply_to = dc_strdup((const char*)sqlite3_column_text(stmt, 0));
+				factory->references  = dc_strdup((const char*)sqlite3_column_text(stmt, 1));
 			}
 			sqlite3_finalize(stmt);
 			stmt = NULL;
-
-			/* get a References:-header: either the same as the last one or a random one.
-			To avoid endless nested threads, we do not use In-Reply-To: here but link subsequent mails to the same reference.
-			This "same reference" is re-calculated after 24 hours to avoid completely different messages being linked to an old context.
-
-			Regarding multi-client: Different clients will create difference References:-header, maybe we will sync these headers some day,
-			however one could also see this as a feature :) (there may be different contextes on different clients)
-			(also, the References-header is not the most important thing, and, at least for now, we do not want to make things too complicated.  */
-			time_t prev_msg_time = 0;
-			stmt = dc_sqlite3_prepare(context->sql,
-				"SELECT max(timestamp) FROM msgs WHERE chat_id=? AND id!=?");
-			sqlite3_bind_int  (stmt, 1, factory->msg->chat_id);
-			sqlite3_bind_int  (stmt, 2, factory->msg->id);
-			if (sqlite3_step(stmt)==SQLITE_ROW) {
-				prev_msg_time = sqlite3_column_int64(stmt, 0);
-			}
-			sqlite3_finalize(stmt);
-			stmt = NULL;
-
-			#define NEW_THREAD_THRESHOLD 24*60*60
-			if (prev_msg_time!=0 && factory->msg->timestamp - prev_msg_time < NEW_THREAD_THRESHOLD) {
-				factory->references = dc_param_get(factory->chat->param, DC_PARAM_REFERENCES, NULL);
-			}
-
-			if (factory->references==NULL) {
-				factory->references = dc_create_dummy_references_mid();
-				dc_param_set(factory->chat->param, DC_PARAM_REFERENCES, factory->references);
-				dc_chat_update_param(factory->chat);
-			}
 
 			success = 1;
 			factory->loaded = DC_MF_MSG_LOADED;
@@ -275,7 +211,7 @@ int dc_mimefactory_load_mdn(dc_mimefactory_t* factory, uint32_t msg_id)
 
 	factory->recipients_names = clist_new();
 	factory->recipients_addr  = clist_new();
-	factory->msg              = dc_msg_new(factory->context);
+	factory->msg              = dc_msg_new_untyped(factory->context);
 
 	if (!dc_sqlite3_get_config_int(factory->context->sql, "mdns_enabled", DC_MDNS_DEFAULT_ENABLED)) {
 		goto cleanup; /* MDNs not enabled - check this is late, in the job. the use may have changed its choice while offline ... */
@@ -322,7 +258,7 @@ static int is_file_size_okay(const dc_msg_t* msg)
 {
 	int      file_size_okay = 1;
 	char*    pathNfilename = dc_param_get(msg->param, DC_PARAM_FILE, NULL);
-	uint64_t bytes = dc_get_filebytes(pathNfilename);
+	uint64_t bytes = dc_get_filebytes(msg->context, pathNfilename);
 
 	if (bytes>DC_MSGSIZE_UPPER_LIMIT) {
 		file_size_okay = 0;
@@ -377,16 +313,7 @@ static struct mailmime* build_body_file(const dc_msg_t* msg, const char* base_na
 			suffix? suffix : "dat");
 	}
 	else if (msg->type==DC_MSG_AUDIO) {
-		char* author = dc_param_get(msg->param, DC_PARAM_AUTHORNAME, NULL);
-		char* title = dc_param_get(msg->param, DC_PARAM_TRACKNAME, NULL);
-		if (author && author[0] && title && title[0] && suffix) {
-			filename_to_send = dc_mprintf("%s - %s.%s",  author, title, suffix); /* the separator ` - ` is used on the receiver's side to construct the information; we avoid using ID3-scanners for security purposes */
-		}
-		else {
-			filename_to_send = dc_get_filename(pathNfilename);
-		}
-		free(author);
-		free(title);
+		filename_to_send = dc_get_filename(pathNfilename);
 	}
 	else if (msg->type==DC_MSG_IMAGE || msg->type==DC_MSG_GIF) {
 		if (base_name==NULL) {
@@ -456,7 +383,7 @@ static struct mailmime* build_body_file(const dc_msg_t* msg, const char* base_na
 
 	mime_sub = mailmime_new_empty(content, mime_fields);
 
-	mailmime_set_body_file(mime_sub, dc_strdup(pathNfilename));
+	mailmime_set_body_file(mime_sub, dc_get_abs_path(msg->context, pathNfilename));
 
 	if (ret_file_name_as_sent) {
 		*ret_file_name_as_sent = dc_strdup(filename_to_send);
@@ -539,14 +466,18 @@ int dc_mimefactory_render(dc_mimefactory_t* factory)
 		}
 
 		clist* references_list = NULL;
-		if (factory->references) {
-			references_list = clist_new();
-			clist_append(references_list,  (void*)dc_strdup(factory->references));
+		if (factory->references && factory->references[0]) {
+			references_list = dc_str_to_clist(factory->references, " ");
+		}
+
+		clist* in_reply_to_list = NULL;
+		if (factory->in_reply_to && factory->in_reply_to[0]) {
+			in_reply_to_list = dc_str_to_clist(factory->in_reply_to, " ");
 		}
 
 		imf_fields = mailimf_fields_new_with_data_all(mailimf_get_date(factory->timestamp), from,
 			NULL /* sender */, NULL /* reply-to */,
-			to, NULL /* cc */, NULL /* bcc */, dc_strdup(factory->rfc724_mid), NULL /* in-reply-to */,
+			to, NULL /* cc */, NULL /* bcc */, dc_strdup(factory->rfc724_mid), in_reply_to_list,
 			references_list /* references */,
 			NULL /* subject set later */);
 
@@ -559,12 +490,9 @@ int dc_mimefactory_render(dc_mimefactory_t* factory)
 			factory->context->os_name? factory->context->os_name : "")));
 
 		mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("Chat-Version"), strdup("1.0"))); /* mark message as being sent by a messenger */
-		if (factory->predecessor) {
-			mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("Chat-Predecessor"), strdup(factory->predecessor)));
-		}
 
 		if (factory->req_mdn) {
-			/* we use "Chat-Disposition-Notification-To" as replies to "Disposition-Notification-To" are weired in many cases, are just freetext and/or do not follow any standard. */
+			/* we use "Chat-Disposition-Notification-To" as replies to "Disposition-Notification-To" are weird in many cases, are just freetext and/or do not follow any standard. */
 			mailimf_fields_add(imf_fields, mailimf_field_new_custom(strdup("Chat-Disposition-Notification-To"), strdup(factory->from_addr)));
 		}
 
@@ -673,7 +601,7 @@ int dc_mimefactory_render(dc_mimefactory_t* factory)
 
 		if (grpimage)
 		{
-			dc_msg_t* meta = dc_msg_new(factory->context);
+			dc_msg_t* meta = dc_msg_new_untyped(factory->context);
 			meta->type = DC_MSG_IMAGE;
 			dc_param_set(meta->param, DC_PARAM_FILE, grpimage);
 			char* filename_as_sent = NULL;
@@ -706,11 +634,11 @@ int dc_mimefactory_render(dc_mimefactory_t* factory)
 		}
 
 		const char* final_text = NULL;
-		if (msg->type==DC_MSG_TEXT && msg->text && msg->text[0]) { /* `text` may also contain data otherwise, eg. the filename of attachments */
-			final_text = msg->text;
-		}
-		else if (placeholdertext) {
+		if (placeholdertext) {
 			final_text = placeholdertext;
+		}
+		else if (msg->text && msg->text[0]) {
+			final_text = msg->text;
 		}
 
 		char* footer = factory->selfstatus;

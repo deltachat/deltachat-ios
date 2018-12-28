@@ -122,6 +122,10 @@ pgp_key_free(pgp_key_t *key)
 {
 	unsigned        n;
 
+	if (key==NULL) {
+		return;
+	}
+
 	if (key->type == PGP_PTAG_CT_PUBLIC_KEY) {
 		pgp_pubkey_free(&key->key.pubkey);
 	} else {

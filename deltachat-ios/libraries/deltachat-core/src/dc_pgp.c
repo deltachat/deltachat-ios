@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 /* End-to-end-encryption and other cryptographic functions based upon OpenSSL
 and BSD's netpgp.
 
@@ -330,8 +308,8 @@ int dc_pgp_create_keypair(dc_context_t* context, const char* addr, dc_key_t* ret
 
 
 	/* generate two keypairs */
-	if (!pgp_rsa_generate_keypair(&seckey, 3072/*bits*/, 65537UL/*e*/, NULL, NULL, NULL, 0)
-	 || !pgp_rsa_generate_keypair(&subkey, 3072/*bits*/, 65537UL/*e*/, NULL, NULL, NULL, 0)) {
+	if (!pgp_rsa_generate_keypair(&seckey, DC_KEYGEN_BITS, DC_KEYGEN_E, NULL, NULL, NULL, 0)
+	 || !pgp_rsa_generate_keypair(&subkey, DC_KEYGEN_BITS, DC_KEYGEN_E, NULL, NULL, NULL, 0)) {
 		goto cleanup;
 	}
 
@@ -576,6 +554,8 @@ int dc_pgp_pk_encrypt( dc_context_t*       context,
 		const void* signed_text = NULL;
 		size_t      signed_bytes = 0;
 		int         encrypt_raw_packet = 0;
+		clock_t     sign_clocks = 0;
+		clock_t     encrypt_clocks = 0;
 
 		if (raw_private_key_for_signing) {
 			pgp_memory_clear(keysmem);
@@ -586,9 +566,14 @@ int dc_pgp_pk_encrypt( dc_context_t*       context,
 				goto cleanup;
 			}
 
+			clock_t start = clock();
+
 			pgp_key_t* sk0 = &private_keys->keys[0];
 			signedmem = pgp_sign_buf(&s_io, plain_text, plain_bytes, &sk0->key.seckey, time(NULL)/*birthtime*/, 0/*duration*/,
 				NULL/*hash, defaults to sha256*/, 0/*armored*/, 0/*cleartext*/);
+
+			sign_clocks = clock()-start;
+
 			if (signedmem==NULL) {
 				dc_log_warning(context, 0, "Signing failed.");
 				goto cleanup;
@@ -603,7 +588,14 @@ int dc_pgp_pk_encrypt( dc_context_t*       context,
 			encrypt_raw_packet = 0;
 		}
 
+		clock_t start = clock();
+
 		pgp_memory_t* outmem = pgp_encrypt_buf(&s_io, signed_text, signed_bytes, public_keys, use_armor, NULL/*cipher*/, encrypt_raw_packet);
+
+		encrypt_clocks = clock()-start;
+
+		dc_log_info(context, 0, "Message signed in %.3f ms and encrypted in %.3f ms.", (double)(sign_clocks)*1000.0/CLOCKS_PER_SEC, (double)(encrypt_clocks)*1000.0/CLOCKS_PER_SEC);
+
 		if (outmem==NULL) {
 			dc_log_warning(context, 0, "Encryption failed.");
 			goto cleanup;

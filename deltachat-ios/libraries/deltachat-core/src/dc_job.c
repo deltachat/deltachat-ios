@@ -1,27 +1,6 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include <stdarg.h>
 #include <unistd.h>
+#include <math.h>
 #include "dc_context.h"
 #include "dc_loginparam.h"
 #include "dc_job.h"
@@ -35,89 +14,26 @@
  ******************************************************************************/
 
 
-static int connect_to_imap(dc_context_t* context, dc_job_t* job /*may be NULL if the function is called directly!*/)
+static int connect_to_inbox(dc_context_t* context)
 {
-	#define          NOT_CONNECTED     0
-	#define          ALREADY_CONNECTED 1
-	#define          JUST_CONNECTED    2
-	int              ret_connected = NOT_CONNECTED;
-	dc_loginparam_t* param = dc_loginparam_new();
+	int   ret_connected = DC_NOT_CONNECTED;
 
-	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC || context->imap==NULL) {
-		dc_log_warning(context, 0, "Cannot connect to IMAP: Bad parameters.");
+	ret_connected = dc_connect_to_configured_imap(context, context->inbox);
+	if (!ret_connected) {
 		goto cleanup;
 	}
 
-	if (dc_imap_is_connected(context->imap)) {
-		ret_connected = ALREADY_CONNECTED;
-		goto cleanup;
-	}
-
-	if (dc_sqlite3_get_config_int(context->sql, "configured", 0)==0) {
-		dc_log_warning(context, 0, "Not configured, cannot connect."); // this is no error, connect() is called eg. when the screen is switched on, it's okay if the caller does not check all circumstances here
-		goto cleanup;
-	}
-
-	dc_loginparam_read(param, context->sql, "configured_" /*the trailing underscore is correct*/);
-
-	if (!dc_imap_connect(context->imap, param)) {
-		dc_job_try_again_later(job, DC_STANDARD_DELAY, NULL);
-		goto cleanup;
-	}
-
-	ret_connected = JUST_CONNECTED;
+	dc_imap_set_watch_folder(context->inbox, "INBOX");
 
 cleanup:
-	dc_loginparam_unref(param);
 	return ret_connected;
-}
-
-
-static void dc_job_do_DC_JOB_SEND_MSG_TO_IMAP(dc_context_t* context, dc_job_t* job)
-{
-	char*             server_folder = NULL;
-	uint32_t          server_uid = 0;
-	dc_mimefactory_t  mimefactory;
-	dc_mimefactory_init(&mimefactory, context);
-
-	/* connect to IMAP-server */
-	if (!dc_imap_is_connected(context->imap)) {
-		connect_to_imap(context, NULL);
-		if (!dc_imap_is_connected(context->imap)) {
-			dc_job_try_again_later(job, DC_STANDARD_DELAY, NULL);
-			goto cleanup;
-		}
-	}
-
-	/* create message */
-	if (dc_mimefactory_load_msg(&mimefactory, job->foreign_id)==0
-	 || mimefactory.from_addr==NULL) {
-		goto cleanup; /* should not happen as we've sent the message to the SMTP server before */
-	}
-
-	if (!dc_mimefactory_render(&mimefactory)) {
-		goto cleanup; /* should not happen as we've sent the message to the SMTP server before */
-	}
-
-	if (!dc_imap_append_msg(context->imap, mimefactory.msg->timestamp, mimefactory.out->str, mimefactory.out->len, &server_folder, &server_uid)) {
-		dc_job_try_again_later(job, DC_AT_ONCE, NULL);
-		goto cleanup;
-	}
-	else {
-		dc_update_server_uid(context, mimefactory.msg->rfc724_mid, server_folder, server_uid);
-	}
-
-cleanup:
-	dc_mimefactory_empty(&mimefactory);
-	free(server_folder);
 }
 
 
 static void dc_job_do_DC_JOB_DELETE_MSG_ON_IMAP(dc_context_t* context, dc_job_t* job)
 {
 	int           delete_from_server = 1;
-	dc_msg_t*     msg = dc_msg_new(context);
-	sqlite3_stmt* stmt = NULL;
+	dc_msg_t*     msg = dc_msg_new_untyped(context);
 
 	if (!dc_msg_load_from_db(msg, context, job->foreign_id)
 	 || msg->rfc724_mid==NULL || msg->rfc724_mid[0]==0 /* eg. device messages have no Message-ID */) {
@@ -132,15 +48,15 @@ static void dc_job_do_DC_JOB_DELETE_MSG_ON_IMAP(dc_context_t* context, dc_job_t*
 	/* if this is the last existing part of the message, we delete the message from the server */
 	if (delete_from_server)
 	{
-		if (!dc_imap_is_connected(context->imap)) {
-			connect_to_imap(context, NULL);
-			if (!dc_imap_is_connected(context->imap)) {
+		if (!dc_imap_is_connected(context->inbox)) {
+			connect_to_inbox(context);
+			if (!dc_imap_is_connected(context->inbox)) {
 				dc_job_try_again_later(job, DC_STANDARD_DELAY, NULL);
 				goto cleanup;
 			}
 		}
 
-		if (!dc_imap_delete_msg(context->imap, msg->rfc724_mid, msg->server_folder, msg->server_uid))
+		if (!dc_imap_delete_msg(context->inbox, msg->rfc724_mid, msg->server_folder, msg->server_uid))
 		{
 			dc_job_try_again_later(job, DC_AT_ONCE, NULL);
 			goto cleanup;
@@ -151,76 +67,22 @@ static void dc_job_do_DC_JOB_DELETE_MSG_ON_IMAP(dc_context_t* context, dc_job_t*
 	- if the message is successfully removed from the server
 	- or if there are other parts of the message in the database (in this case we have not deleted if from the server)
 	(As long as the message is not removed from the IMAP-server, we need at least one database entry to avoid a re-download) */
-	stmt = dc_sqlite3_prepare(context->sql,
-		"DELETE FROM msgs WHERE id=?;");
-	sqlite3_bind_int(stmt, 1, msg->id);
-	sqlite3_step(stmt);
-	sqlite3_finalize(stmt);
-	stmt = NULL;
-
-	stmt = dc_sqlite3_prepare(context->sql,
-		"DELETE FROM msgs_mdns WHERE msg_id=?;");
-	sqlite3_bind_int(stmt, 1, msg->id);
-	sqlite3_step(stmt);
-	sqlite3_finalize(stmt);
-	stmt = NULL;
-
-	char* pathNfilename = dc_param_get(msg->param, DC_PARAM_FILE, NULL);
-	if (pathNfilename) {
-		if (strncmp(context->blobdir, pathNfilename, strlen(context->blobdir))==0)
-		{
-			char* strLikeFilename = dc_mprintf("%%f=%s%%", pathNfilename);
-			stmt = dc_sqlite3_prepare(context->sql,
-				"SELECT id FROM msgs WHERE type!=? AND param LIKE ?;"); /* if this gets too slow, an index over "type" should help. */
-			sqlite3_bind_int (stmt, 1, DC_MSG_TEXT);
-			sqlite3_bind_text(stmt, 2, strLikeFilename, -1, SQLITE_STATIC);
-			int file_used_by_other_msgs = (sqlite3_step(stmt)==SQLITE_ROW)? 1 : 0;
-			free(strLikeFilename);
-			sqlite3_finalize(stmt);
-			stmt = NULL;
-
-			if (!file_used_by_other_msgs)
-			{
-				dc_delete_file(pathNfilename, context);
-
-				char* increation_file = dc_mprintf("%s.increation", pathNfilename);
-				dc_delete_file(increation_file, context);
-				free(increation_file);
-
-				char* filenameOnly = dc_get_filename(pathNfilename);
-				if (msg->type==DC_MSG_VOICE) {
-					char* waveform_file = dc_mprintf("%s/%s.waveform", context->blobdir, filenameOnly);
-					dc_delete_file(waveform_file, context);
-					free(waveform_file);
-				}
-				else if (msg->type==DC_MSG_VIDEO) {
-					char* preview_file = dc_mprintf("%s/%s-preview.jpg", context->blobdir, filenameOnly);
-					dc_delete_file(preview_file, context);
-					free(preview_file);
-				}
-				free(filenameOnly);
-			}
-		}
-		free(pathNfilename);
-	}
+	dc_delete_msg_from_db(context, msg->id);
 
 cleanup:
-	sqlite3_finalize(stmt);
 	dc_msg_unref(msg);
 }
 
 
-static void dc_job_do_DC_JOB_MARKSEEN_MSG_ON_IMAP(dc_context_t* context, dc_job_t* job)
+static void dc_job_do_DC_JOB_MOVE_MSG(dc_context_t* context, dc_job_t* job)
 {
-	dc_msg_t* msg = dc_msg_new(context);
-	char*     new_server_folder = NULL;
-	uint32_t  new_server_uid = 0;
-	int       in_ms_flags = 0;
-	int       out_ms_flags = 0;
+	dc_msg_t* msg = dc_msg_new_untyped(context);
+	char*     dest_folder = NULL;
+	uint32_t  dest_uid = 0;
 
-	if (!dc_imap_is_connected(context->imap)) {
-		connect_to_imap(context, NULL);
-		if (!dc_imap_is_connected(context->imap)) {
+	if (!dc_imap_is_connected(context->inbox)) {
+		connect_to_inbox(context);
+		if (!dc_imap_is_connected(context->inbox)) {
 			dc_job_try_again_later(job, DC_STANDARD_DELAY, NULL);
 			goto cleanup;
 		}
@@ -230,66 +92,100 @@ static void dc_job_do_DC_JOB_MARKSEEN_MSG_ON_IMAP(dc_context_t* context, dc_job_
 		goto cleanup;
 	}
 
-	/* add an additional job for sending the MDN (here in a thread for fast ui resonses) (an extra job as the MDN has a lower priority) */
-	if (dc_param_get_int(msg->param, DC_PARAM_WANTS_MDN, 0) /* DC_PARAM_WANTS_MDN is set only for one part of a multipart-message */
-	 && dc_sqlite3_get_config_int(context->sql, "mdns_enabled", DC_MDNS_DEFAULT_ENABLED)) {
-		in_ms_flags |= DC_MS_SET_MDNSent_FLAG;
+	if (dc_sqlite3_get_config_int(context->sql, "folders_configured", 0)<DC_FOLDERS_CONFIGURED_VERSION) {
+		dc_configure_folders(context, context->inbox, DC_CREATE_MVBOX);
 	}
 
-	if (msg->is_msgrmsg) {
-		in_ms_flags |= DC_MS_ALSO_MOVE;
-	}
+	dest_folder = dc_sqlite3_get_config(context->sql, "configured_mvbox_folder", NULL);
 
-	if (dc_imap_markseen_msg(context->imap, msg->server_folder, msg->server_uid,
-		   in_ms_flags, &new_server_folder, &new_server_uid, &out_ms_flags)!=0)
-	{
-		if ((new_server_folder && new_server_uid) || out_ms_flags&DC_MS_MDNSent_JUST_SET)
-		{
-			if (new_server_folder && new_server_uid)
-			{
-				dc_update_server_uid(context, msg->rfc724_mid, new_server_folder, new_server_uid);
-			}
-
-			if (out_ms_flags&DC_MS_MDNSent_JUST_SET)
-			{
-				dc_job_add(context, DC_JOB_SEND_MDN, msg->id, NULL, 0);
-			}
-		}
-	}
-	else
-	{
-		dc_job_try_again_later(job, DC_AT_ONCE, NULL);
+	switch (dc_imap_move(context->inbox, msg->server_folder, msg->server_uid, dest_folder, &dest_uid)) {
+		case DC_FAILED:       goto cleanup;
+		case DC_RETRY_LATER:  dc_job_try_again_later(job, DC_STANDARD_DELAY, NULL); break;
+		case DC_ALREADY_DONE: break;
+		case DC_SUCCESS:      dc_update_server_uid(context, msg->rfc724_mid, dest_folder, dest_uid); break;
 	}
 
 cleanup:
+	free(dest_folder);
 	dc_msg_unref(msg);
-	free(new_server_folder);
 }
 
 
-static void dc_job_do_DC_JOB_MARKSEEN_MDN_ON_IMAP(dc_context_t* context, dc_job_t* job)
+static void dc_job_do_DC_JOB_MARKSEEN_MSG_ON_IMAP(dc_context_t* context, dc_job_t* job)
 {
-	char*    server_folder = dc_param_get(job->param, DC_PARAM_SERVER_FOLDER, NULL);
-	uint32_t server_uid = dc_param_get_int(job->param, DC_PARAM_SERVER_UID, 0);
-	char*    new_server_folder = NULL;
-	uint32_t new_server_uid = 0;
-	int      out_ms_flags = 0;
+	dc_msg_t* msg = dc_msg_new_untyped(context);
 
-	if (!dc_imap_is_connected(context->imap)) {
-		connect_to_imap(context, NULL);
-		if (!dc_imap_is_connected(context->imap)) {
+	if (!dc_imap_is_connected(context->inbox)) {
+		connect_to_inbox(context);
+		if (!dc_imap_is_connected(context->inbox)) {
 			dc_job_try_again_later(job, DC_STANDARD_DELAY, NULL);
 			goto cleanup;
 		}
 	}
 
-	if (dc_imap_markseen_msg(context->imap, server_folder, server_uid, DC_MS_ALSO_MOVE, &new_server_folder, &new_server_uid, &out_ms_flags)==0) {
-		dc_job_try_again_later(job, DC_AT_ONCE, NULL);
+	if (!dc_msg_load_from_db(msg, context, job->foreign_id)) {
+		goto cleanup;
+	}
+
+	switch (dc_imap_set_seen(context->inbox, msg->server_folder, msg->server_uid)) {
+		case DC_FAILED:      goto cleanup;
+		case DC_RETRY_LATER: dc_job_try_again_later(job, DC_STANDARD_DELAY, NULL); goto cleanup;
+		default:             break;
+	}
+
+	if (dc_param_get_int(msg->param, DC_PARAM_WANTS_MDN, 0)
+	 && dc_sqlite3_get_config_int(context->sql, "mdns_enabled", DC_MDNS_DEFAULT_ENABLED))
+	{
+		switch (dc_imap_set_mdnsent(context->inbox, msg->server_folder, msg->server_uid)) {
+			case DC_FAILED:       goto cleanup;
+			case DC_RETRY_LATER:  dc_job_try_again_later(job, DC_STANDARD_DELAY, NULL); goto cleanup;
+			case DC_ALREADY_DONE: break;
+			case DC_SUCCESS:      dc_job_add(context, DC_JOB_SEND_MDN, msg->id, NULL, 0); break;
+		}
 	}
 
 cleanup:
-	free(server_folder);
-	free(new_server_folder);
+	dc_msg_unref(msg);
+}
+
+
+static void dc_job_do_DC_JOB_MARKSEEN_MDN_ON_IMAP(dc_context_t* context, dc_job_t* job)
+{
+	char*     folder = dc_param_get(job->param, DC_PARAM_SERVER_FOLDER, NULL);
+	uint32_t  uid = dc_param_get_int(job->param, DC_PARAM_SERVER_UID, 0);
+	char*     dest_folder = NULL;
+	uint32_t  dest_uid = 0;
+
+	if (!dc_imap_is_connected(context->inbox)) {
+		connect_to_inbox(context);
+		if (!dc_imap_is_connected(context->inbox)) {
+			dc_job_try_again_later(job, DC_STANDARD_DELAY, NULL);
+			goto cleanup;
+		}
+	}
+
+	if (dc_imap_set_seen(context->inbox, folder, uid)==0) {
+		dc_job_try_again_later(job, DC_STANDARD_DELAY, NULL);
+	}
+
+	if (dc_param_get_int(job->param, DC_PARAM_ALSO_MOVE, 0))
+	{
+		if (dc_sqlite3_get_config_int(context->sql, "folders_configured", 0)<DC_FOLDERS_CONFIGURED_VERSION) {
+			dc_configure_folders(context, context->inbox, DC_CREATE_MVBOX);
+		}
+
+		dest_folder = dc_sqlite3_get_config(context->sql, "configured_mvbox_folder", NULL);
+
+		switch (dc_imap_move(context->inbox, folder, uid, dest_folder, &dest_uid)) {
+			case DC_FAILED:      goto cleanup;
+			case DC_RETRY_LATER: dc_job_try_again_later(job, DC_STANDARD_DELAY, NULL); break;
+			default:             break;
+		}
+	}
+
+cleanup:
+	free(folder);
+	free(dest_folder);
 }
 
 
@@ -300,6 +196,7 @@ cleanup:
 
 static void dc_job_do_DC_JOB_SEND_MSG_TO_SMTP(dc_context_t* context, dc_job_t* job)
 {
+	char*            pathNfilename = NULL;
 	dc_mimefactory_t mimefactory;
 	dc_mimefactory_init(&mimefactory, context);
 
@@ -319,7 +216,7 @@ static void dc_job_do_DC_JOB_SEND_MSG_TO_SMTP(dc_context_t* context, dc_job_t* j
 	if (!dc_mimefactory_load_msg(&mimefactory, job->foreign_id)
 	 || mimefactory.from_addr==NULL) {
 		dc_log_warning(context, 0, "Cannot load data to send, maybe the message is deleted in between.");
-		goto cleanup; // no redo, no IMAP. moreover, as the data does not exist, there is no need in calling mark_as_error()
+		goto cleanup; // no redo, no IMAP. moreover, as the data does not exist, there is no need in calling dc_set_msg_failed()
 	}
 
 	/* check if the message is ready (normally, only video files may be delayed this way) */
@@ -329,8 +226,28 @@ static void dc_job_do_DC_JOB_SEND_MSG_TO_SMTP(dc_context_t* context, dc_job_t* j
 		goto cleanup;
 	}
 
-	/* send message - it's okay if there are no recipients, this is a group with only OURSELF; we only upload to IMAP in this case */
-	if (clist_count(mimefactory.recipients_addr) > 0)
+	/* set width/height of images, if not yet done */
+	if (DC_MSG_NEEDS_ATTACHMENT(mimefactory.msg->type)) {
+		char* pathNfilename = dc_param_get(mimefactory.msg->param, DC_PARAM_FILE, NULL);
+		if (pathNfilename) {
+			if ((mimefactory.msg->type==DC_MSG_IMAGE || mimefactory.msg->type==DC_MSG_GIF)
+			 && !dc_param_exists(mimefactory.msg->param, DC_PARAM_WIDTH)) {
+				unsigned char* buf = NULL; size_t buf_bytes; uint32_t w, h;
+				dc_param_set_int(mimefactory.msg->param, DC_PARAM_WIDTH, 0);
+				dc_param_set_int(mimefactory.msg->param, DC_PARAM_HEIGHT, 0);
+				if (dc_read_file(context, pathNfilename, (void**)&buf, &buf_bytes)) {
+					if (dc_get_filemeta(buf, buf_bytes, &w, &h)) {
+						dc_param_set_int(mimefactory.msg->param, DC_PARAM_WIDTH, w);
+						dc_param_set_int(mimefactory.msg->param, DC_PARAM_HEIGHT, h);
+					}
+				}
+				free(buf);
+				dc_msg_save_param_to_disk(mimefactory.msg);
+			}
+		}
+	}
+
+	/* send message */
 	{
 		if (!dc_mimefactory_render(&mimefactory)) {
 			dc_set_msg_failed(context, job->foreign_id, mimefactory.error);
@@ -341,6 +258,12 @@ static void dc_job_do_DC_JOB_SEND_MSG_TO_SMTP(dc_context_t* context, dc_job_t* j
 		if (dc_param_get_int(mimefactory.msg->param, DC_PARAM_GUARANTEE_E2EE, 0) && !mimefactory.out_encrypted) {
 			dc_set_msg_failed(context, job->foreign_id, "End-to-end-encryption unavailable unexpectedly.");
 			goto cleanup; /* unrecoverable */
+		}
+
+		/* add SELF to the recipient list (it's no longer used elsewhere, so a copy of the whole list is needless) */
+		if (clist_search_string_nocase(mimefactory.recipients_addr, mimefactory.from_addr)==0) {
+			clist_append(mimefactory.recipients_names, NULL);
+			clist_append(mimefactory.recipients_addr,  (void*)dc_strdup(mimefactory.from_addr));
 		}
 
 		if (!dc_smtp_send_msg(context->smtp, mimefactory.recipients_addr, mimefactory.out->str, mimefactory.out->len)) {
@@ -359,29 +282,10 @@ static void dc_job_do_DC_JOB_SEND_MSG_TO_SMTP(dc_context_t* context, dc_job_t* j
 	/* done */
 	dc_sqlite3_begin_transaction(context->sql);
 
-		/* debug print? */
-		if (dc_sqlite3_get_config_int(context->sql, "save_eml", 0)) {
-			char* emlname = dc_mprintf("%s/to-smtp-%i.eml", context->blobdir, (int)mimefactory.msg->id);
-			FILE* emlfileob = fopen(emlname, "w");
-			if (emlfileob) {
-				if (mimefactory.out) {
-					fwrite(mimefactory.out->str, 1, mimefactory.out->len, emlfileob);
-				}
-				fclose(emlfileob);
-			}
-			free(emlname);
-		}
-
 		dc_update_msg_state(context, mimefactory.msg->id, DC_STATE_OUT_DELIVERED);
 		if (mimefactory.out_encrypted && dc_param_get_int(mimefactory.msg->param, DC_PARAM_GUARANTEE_E2EE, 0)==0) {
 			dc_param_set_int(mimefactory.msg->param, DC_PARAM_GUARANTEE_E2EE, 1); /* can upgrade to E2EE - fine! */
 			dc_msg_save_param_to_disk(mimefactory.msg);
-		}
-
-		if ((context->imap->server_flags&DC_NO_EXTRA_IMAP_UPLOAD)==0
-		 && dc_param_get(mimefactory.chat->param, DC_PARAM_SELFTALK, 0)==0
-		 && dc_param_get_int(mimefactory.msg->param, DC_PARAM_CMD, 0)!=DC_CMD_SECUREJOIN_MESSAGE) {
-			dc_job_add(context, DC_JOB_SEND_MSG_TO_IMAP, mimefactory.msg->id, NULL, 0); /* send message to IMAP in another job */
 		}
 
 		// TODO: add to keyhistory
@@ -393,6 +297,7 @@ static void dc_job_do_DC_JOB_SEND_MSG_TO_SMTP(dc_context_t* context, dc_job_t* j
 
 cleanup:
 	dc_mimefactory_empty(&mimefactory);
+	free(pathNfilename);
 }
 
 
@@ -439,18 +344,18 @@ cleanup:
 static void dc_suspend_smtp_thread(dc_context_t* context, int suspend)
 {
 	pthread_mutex_lock(&context->smtpidle_condmutex);
-		context->smtpidle_suspend = suspend;
+		context->smtp_suspended = suspend;
 	pthread_mutex_unlock(&context->smtpidle_condmutex);
 
-	// the smtp-thread may be in perform_jobs() when this function is called,
-	// wait until we arrive in idle(). for simplicity, we do this by polling a variable
-	// (in fact, this is only needed when calling configure() is called)
+	// if the smtp-thread is currently in dc_perform_smtp_jobs(),
+	// wait until the jobs are done.
+	// this function is only needed during dc_configure();
+	// for simplicity, we do this by polling a variable.
 	if (suspend)
 	{
 		while (1) {
 			pthread_mutex_lock(&context->smtpidle_condmutex);
-				if (context->smtpidle_in_idleing) {
-					context->perform_smtp_jobs_needed = 0;
+				if (context->smtp_doing_jobs==0) {
 					pthread_mutex_unlock(&context->smtpidle_condmutex);
 					return;
 				}
@@ -464,6 +369,48 @@ static void dc_suspend_smtp_thread(dc_context_t* context, int suspend)
 /*******************************************************************************
  * Tools
  ******************************************************************************/
+
+
+static time_t get_backoff_time_offset(int c_tries)
+{
+	#define MULTIPLY 60
+	#define JOB_RETRIES 17 // results in ~3 weeks for the last backoff timespan
+
+	time_t N = (time_t)pow((double)2, c_tries - 1);
+
+	N = N * MULTIPLY;
+
+	time_t seconds = rand() % (N+1);
+
+	if (seconds<1) {
+		seconds = 1;
+	}
+
+	return seconds;
+}
+
+
+static time_t get_next_wakeup_time(dc_context_t* context, int thread)
+{
+	time_t        wakeup_time = 0;
+	sqlite3_stmt* stmt = NULL;
+
+	stmt = dc_sqlite3_prepare(context->sql,
+		"SELECT MIN(desired_timestamp)"
+		" FROM jobs"
+		" WHERE thread=?;");
+	sqlite3_bind_int(stmt, 1, thread);
+	if (sqlite3_step(stmt)==SQLITE_ROW) {
+		wakeup_time = sqlite3_column_int(stmt, 0);
+	}
+
+	if (wakeup_time==0) {
+		wakeup_time = time(NULL) + 10*60;
+	}
+
+	sqlite3_finalize(stmt);
+	return wakeup_time;
+}
 
 
 void dc_job_add(dc_context_t* context, int action, int foreign_id, const char* param, int delay_seconds)
@@ -489,7 +436,7 @@ void dc_job_add(dc_context_t* context, int action, int foreign_id, const char* p
 	sqlite3_bind_int  (stmt, 3, action);
 	sqlite3_bind_int  (stmt, 4, foreign_id);
 	sqlite3_bind_text (stmt, 5, param? param : "",  -1, SQLITE_STATIC);
-	sqlite3_bind_int64(stmt, 6, delay_seconds>0? (timestamp+delay_seconds) : 0);
+	sqlite3_bind_int64(stmt, 6, timestamp+delay_seconds);
 	sqlite3_step(stmt);
 	sqlite3_finalize(stmt);
 
@@ -504,12 +451,16 @@ void dc_job_add(dc_context_t* context, int action, int foreign_id, const char* p
 
 static void dc_job_update(dc_context_t* context, const dc_job_t* job)
 {
-	sqlite3_stmt* update_stmt = dc_sqlite3_prepare(context->sql,
-		"UPDATE jobs SET desired_timestamp=0, param=? WHERE id=?;");
-	sqlite3_bind_text (update_stmt, 1, job->param->packed, -1, SQLITE_STATIC);
-	sqlite3_bind_int  (update_stmt, 2, job->job_id);
-	sqlite3_step(update_stmt);
-	sqlite3_finalize(update_stmt);
+	sqlite3_stmt* stmt = dc_sqlite3_prepare(context->sql,
+		"UPDATE jobs"
+		" SET desired_timestamp=?, tries=?, param=?"
+		" WHERE id=?;");
+	sqlite3_bind_int64(stmt, 1, job->desired_timestamp);
+	sqlite3_bind_int64(stmt, 2, job->tries);
+	sqlite3_bind_text (stmt, 3, job->param->packed, -1, SQLITE_STATIC);
+	sqlite3_bind_int  (stmt, 4, job->job_id);
+	sqlite3_step(stmt);
+	sqlite3_finalize(stmt);
 }
 
 
@@ -551,11 +502,11 @@ void dc_job_kill_actions(dc_context_t* context, int action1, int action2)
 }
 
 
-static void dc_job_perform(dc_context_t* context, int thread)
+static void dc_job_perform(dc_context_t* context, int thread, int probe_network)
 {
 	sqlite3_stmt* select_stmt = NULL;
 	dc_job_t      job;
-	#define       THREAD_STR (thread==DC_IMAP_THREAD? "IMAP" : "SMTP")
+	#define       THREAD_STR (thread==DC_IMAP_THREAD? "INBOX" : "SMTP")
 	#define       IS_EXCLUSIVE_JOB (DC_JOB_CONFIGURE_IMAP==job.action || DC_JOB_IMEX_IMAP==job.action)
 
 	memset(&job, 0, sizeof(dc_job_t));
@@ -565,16 +516,37 @@ static void dc_job_perform(dc_context_t* context, int thread)
 		goto cleanup;
 	}
 
-	select_stmt = dc_sqlite3_prepare(context->sql,
-		"SELECT id, action, foreign_id, param FROM jobs WHERE thread=? AND desired_timestamp<=? ORDER BY action DESC, added_timestamp;");
-	sqlite3_bind_int64(select_stmt, 1, thread);
-	sqlite3_bind_int64(select_stmt, 2, time(NULL));
+	if (probe_network==0) {
+		// processing for first-try and after backoff-timeouts:
+		// process jobs in the order they were added.
+		#define FIELDS "id, action, foreign_id, param, added_timestamp, desired_timestamp, tries"
+		select_stmt = dc_sqlite3_prepare(context->sql,
+			"SELECT " FIELDS " FROM jobs"
+			" WHERE thread=? AND desired_timestamp<=?"
+			" ORDER BY action DESC, added_timestamp;");
+		sqlite3_bind_int64(select_stmt, 1, thread);
+		sqlite3_bind_int64(select_stmt, 2, time(NULL));
+	}
+	else {
+		// processing after call to dc_maybe_network():
+		// process _all_ pending jobs that failed before
+		// in the order of their backoff-times.
+		select_stmt = dc_sqlite3_prepare(context->sql,
+			"SELECT " FIELDS " FROM jobs"
+			" WHERE thread=? AND tries>0"
+			" ORDER BY desired_timestamp, action DESC;");
+		sqlite3_bind_int64(select_stmt, 1, thread);
+	}
+
 	while (sqlite3_step(select_stmt)==SQLITE_ROW)
 	{
-		job.job_id                          = sqlite3_column_int (select_stmt, 0);
-		job.action                          = sqlite3_column_int (select_stmt, 1);
-		job.foreign_id                      = sqlite3_column_int (select_stmt, 2);
-		dc_param_set_packed(job.param, (char*)sqlite3_column_text(select_stmt, 3));
+		job.job_id                          = sqlite3_column_int  (select_stmt, 0);
+		job.action                          = sqlite3_column_int  (select_stmt, 1);
+		job.foreign_id                      = sqlite3_column_int  (select_stmt, 2);
+		dc_param_set_packed(job.param, (char*)sqlite3_column_text (select_stmt, 3));
+		job.added_timestamp                 = sqlite3_column_int64(select_stmt, 4);
+		job.desired_timestamp               = sqlite3_column_int64(select_stmt, 5);
+		job.tries                           = sqlite3_column_int  (select_stmt, 6);
 
 		dc_log_info(context, 0, "%s-job #%i, action %i started...", THREAD_STR, (int)job.job_id, (int)job.action);
 
@@ -586,6 +558,8 @@ static void dc_job_perform(dc_context_t* context, int thread)
 			dc_job_kill_actions(context, job.action, 0);
 			sqlite3_finalize(select_stmt);
 			select_stmt = NULL;
+			dc_jobthread_suspend(&context->sentbox_thread, 1);
+			dc_jobthread_suspend(&context->mvbox_thread, 1);
 			dc_suspend_smtp_thread(context, 1);
 		}
 
@@ -595,10 +569,10 @@ static void dc_job_perform(dc_context_t* context, int thread)
 
 			switch (job.action) {
 				case DC_JOB_SEND_MSG_TO_SMTP:     dc_job_do_DC_JOB_SEND_MSG_TO_SMTP     (context, &job); break;
-				case DC_JOB_SEND_MSG_TO_IMAP:     dc_job_do_DC_JOB_SEND_MSG_TO_IMAP     (context, &job); break;
 				case DC_JOB_DELETE_MSG_ON_IMAP:   dc_job_do_DC_JOB_DELETE_MSG_ON_IMAP   (context, &job); break;
 				case DC_JOB_MARKSEEN_MSG_ON_IMAP: dc_job_do_DC_JOB_MARKSEEN_MSG_ON_IMAP (context, &job); break;
 				case DC_JOB_MARKSEEN_MDN_ON_IMAP: dc_job_do_DC_JOB_MARKSEEN_MDN_ON_IMAP (context, &job); break;
+				case DC_JOB_MOVE_MSG:             dc_job_do_DC_JOB_MOVE_MSG             (context, &job); break;
 				case DC_JOB_SEND_MDN:             dc_job_do_DC_JOB_SEND_MDN             (context, &job); break;
 				case DC_JOB_CONFIGURE_IMAP:       dc_job_do_DC_JOB_CONFIGURE_IMAP       (context, &job); break;
 				case DC_JOB_IMEX_IMAP:            dc_job_do_DC_JOB_IMEX_IMAP            (context, &job); break;
@@ -610,6 +584,8 @@ static void dc_job_perform(dc_context_t* context, int thread)
 		}
 
 		if (IS_EXCLUSIVE_JOB) {
+			dc_jobthread_suspend(&context->sentbox_thread, 0);
+			dc_jobthread_suspend(&context->mvbox_thread, 0);
 			dc_suspend_smtp_thread(context, 0);
 			goto cleanup;
 		}
@@ -620,20 +596,19 @@ static void dc_job_perform(dc_context_t* context, int thread)
 		}
 		else if (job.try_again==DC_AT_ONCE || job.try_again==DC_STANDARD_DELAY)
 		{
-			// Define the number of job-retries, each retry may result in 2 tries (for fast network-failure-recover).
-			// The first job-retries are done asap, the last retry is delayed about a minute.
-			// Network errors do not count as failed tries.
-			#define JOB_RETRIES 3
+			int tries = job.tries + 1;
 
-			int is_online = dc_is_online(context)? 1 : 0;
-			int tries_while_online = dc_param_get_int(job.param, DC_PARAM_TIMES, 0) + is_online;
+			if( tries < JOB_RETRIES ) {
+				job.tries = tries;
 
-			if( tries_while_online < JOB_RETRIES ) {
-				dc_param_set_int(job.param, DC_PARAM_TIMES, tries_while_online);
+				time_t time_offset = get_backoff_time_offset(tries);
+				job.desired_timestamp = job.added_timestamp + time_offset;
+
 				dc_job_update(context, &job);
-				dc_log_info(context, 0, "%s-job #%i not succeeded on try #%i.", THREAD_STR, (int)job.job_id, tries_while_online);
+				dc_log_info(context, 0, "%s-job #%i not succeeded on try #%i, retry in ADD_TIME+%i (in %i seconds).", THREAD_STR, (int)job.job_id,
+					tries, time_offset, (job.added_timestamp+time_offset)-time(NULL));
 
-				if (thread==DC_SMTP_THREAD && is_online && tries_while_online<(JOB_RETRIES-1)) {
+				if (thread==DC_SMTP_THREAD && tries<(JOB_RETRIES-1)) {
 					pthread_mutex_lock(&context->smtpidle_condmutex);
 						context->perform_smtp_jobs_needed = DC_JOBS_NEEDED_AVOID_DOS;
 					pthread_mutex_unlock(&context->smtpidle_condmutex);
@@ -644,6 +619,14 @@ static void dc_job_perform(dc_context_t* context, int thread)
 					dc_set_msg_failed(context, job.foreign_id, job.pending_error);
 				}
 				dc_job_delete(context, &job);
+			}
+
+			if (probe_network) {
+				// on dc_maybe_network() we stop trying here;
+				// these jobs are already tried once.
+				// otherwise, we just continue with the next job
+				// to give other jobs a chance being tried at least once.
+				goto cleanup;
 			}
 		}
 		else
@@ -666,103 +649,8 @@ cleanup:
 
 /**
  * Execute pending imap-jobs.
- * This function and dc_perform_imap_fetch() and dc_perform_imap_idle() must be called from the same thread,
- * typically in a loop.
- *
- * See dc_interrupt_imap_idle() for an example.
- *
- * @memberof dc_context_t
- * @param context The context as created by dc_context_new().
- * @return None
- */
-void dc_perform_imap_jobs(dc_context_t* context)
-{
-	dc_log_info(context, 0, "IMAP-jobs started...");
-
-	pthread_mutex_lock(&context->imapidle_condmutex);
-		context->perform_imap_jobs_needed = 0;
-	pthread_mutex_unlock(&context->imapidle_condmutex);
-
-	dc_job_perform(context, DC_IMAP_THREAD);
-
-	dc_log_info(context, 0, "IMAP-jobs ended.");
-}
-
-
-/**
- * Fetch new messages, if any.
- * This function and dc_perform_imap_jobs() and dc_perform_imap_idle() must be called from the same thread,
- * typically in a loop.
- *
- * See dc_interrupt_imap_idle() for an example.
- *
- * @memberof dc_context_t
- * @param context The context as created by dc_context_new().
- * @return None.
- */
-void dc_perform_imap_fetch(dc_context_t* context)
-{
-	clock_t start = clock();
-
-	if (!connect_to_imap(context, NULL)) {
-		return;
-	}
-
-	dc_log_info(context, 0, "IMAP-fetch started...");
-
-	dc_imap_fetch(context->imap);
-
-	if (context->imap->should_reconnect
-	 && context->cb(context, DC_EVENT_IS_OFFLINE, 0, 0)==0)
-	{
-		dc_log_info(context, 0, "IMAP-fetch aborted, starting over...");
-		dc_imap_fetch(context->imap);
-	}
-
-	dc_log_info(context, 0, "IMAP-fetch done in %.0f ms.", (double)(clock()-start)*1000.0/CLOCKS_PER_SEC);
-}
-
-
-/**
- * Wait for messages or jobs.
- * This function and dc_perform_imap_jobs() and dc_perform_imap_fetch() must be called from the same thread,
- * typically in a loop.
- *
- * You should call this function directly after calling dc_perform_imap_fetch().
- *
- * See dc_interrupt_imap_idle() for an example.
- *
- * @memberof dc_context_t
- * @param context The context as created by dc_context_new().
- * @return None.
- */
-void dc_perform_imap_idle(dc_context_t* context)
-{
-	connect_to_imap(context, NULL); // also idle if connection fails because of not-configured, no-network, whatever. dc_imap_idle() will handle this by the fake-idle and log a warning
-
-	pthread_mutex_lock(&context->imapidle_condmutex);
-		if (context->perform_imap_jobs_needed) {
-			dc_log_info(context, 0, "IMAP-IDLE will not be started because of waiting jobs.");
-			pthread_mutex_unlock(&context->imapidle_condmutex);
-			return;
-		}
-	pthread_mutex_unlock(&context->imapidle_condmutex);
-
-	dc_log_info(context, 0, "IMAP-IDLE started...");
-
-	dc_imap_idle(context->imap);
-
-	dc_log_info(context, 0, "IMAP-IDLE ended.");
-}
-
-
-/**
- * Interrupt waiting for imap-jobs.
- * If dc_perform_imap_jobs(), dc_perform_imap_fetch() and dc_perform_imap_idle() are called in a loop,
- * calling this function causes imap-jobs to be executed and messages to be fetched.
- *
- * Internally, this function is called whenever a imap-jobs should be processed (delete message, markseen etc.),
- * for the UI view it may make sense to call the function eg. on network changes to fetch messages immediately.
+ * This function and dc_perform_imap_fetch() and dc_perform_imap_idle()
+ * must be called from the same thread, typically in a loop.
  *
  * Example:
  *
@@ -781,32 +669,314 @@ void dc_perform_imap_idle(dc_context_t* context)
  *
  *     ... program runs ...
  *
- *     // network becomes available again - the interrupt causes
- *     // dc_perform_imap_idle() in the thread to return so that jobs are executed
- *     // and messages are fetched.
- *     dc_interrupt_imap_idle(context);
+ *     // network becomes available again -
+ *     // the interrupt causes dc_perform_imap_idle() in the thread above
+ *     // to return so that jobs are executed and messages are fetched.
+ *     dc_maybe_network(context);
  *
  * @memberof dc_context_t
  * @param context The context as created by dc_context_new().
- * @return None
+ * @return None.
+ */
+void dc_perform_imap_jobs(dc_context_t* context)
+{
+	dc_log_info(context, 0, "INBOX-jobs started...");
+
+	pthread_mutex_lock(&context->inboxidle_condmutex);
+		int probe_imap_network = context->probe_imap_network;
+		context->probe_imap_network = 0;
+
+		context->perform_inbox_jobs_needed = 0;
+	pthread_mutex_unlock(&context->inboxidle_condmutex);
+
+	dc_job_perform(context, DC_IMAP_THREAD, probe_imap_network);
+
+	dc_log_info(context, 0, "INBOX-jobs ended.");
+}
+
+
+/**
+ * Fetch new messages, if any.
+ * This function and dc_perform_imap_jobs() and dc_perform_imap_idle() must be called from the same thread,
+ * typically in a loop.
+ *
+ * See dc_perform_imap_jobs() for an example.
+ *
+ * @memberof dc_context_t
+ * @param context The context as created by dc_context_new().
+ * @return None.
+ */
+void dc_perform_imap_fetch(dc_context_t* context)
+{
+	clock_t start = clock();
+
+	if (!connect_to_inbox(context)) {
+		return;
+	}
+
+	if (dc_sqlite3_get_config_int(context->sql, "inbox_watch", DC_INBOX_WATCH_DEFAULT)==0) {
+		dc_log_info(context, 0, "INBOX-watch disabled.");
+		return;
+	}
+
+	dc_log_info(context, 0, "INBOX-fetch started...");
+
+	dc_imap_fetch(context->inbox);
+
+	if (context->inbox->should_reconnect)
+	{
+		dc_log_info(context, 0, "INBOX-fetch aborted, starting over...");
+		dc_imap_fetch(context->inbox);
+	}
+
+	dc_log_info(context, 0, "INBOX-fetch done in %.0f ms.", (double)(clock()-start)*1000.0/CLOCKS_PER_SEC);
+}
+
+
+/**
+ * Wait for messages or jobs.
+ * This function and dc_perform_imap_jobs() and dc_perform_imap_fetch() must be called from the same thread,
+ * typically in a loop.
+ *
+ * You should call this function directly after calling dc_perform_imap_fetch().
+ *
+ * See dc_perform_imap_jobs() for an example.
+ *
+ * @memberof dc_context_t
+ * @param context The context as created by dc_context_new().
+ * @return None.
+ */
+void dc_perform_imap_idle(dc_context_t* context)
+{
+	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC) {
+		return;
+	}
+
+	// also idle if connection fails because of not-configured,
+	// no-network, whatever. dc_imap_idle() will handle this by the fake-idle and log a warning
+	connect_to_inbox(context);
+
+	pthread_mutex_lock(&context->inboxidle_condmutex);
+		if (context->perform_inbox_jobs_needed) {
+			dc_log_info(context, 0, "INBOX-IDLE will not be started because of waiting jobs.");
+			pthread_mutex_unlock(&context->inboxidle_condmutex);
+			return;
+		}
+	pthread_mutex_unlock(&context->inboxidle_condmutex);
+
+	// TODO: optimisation: inbox_watch should also be regarded here to save some bytes.
+	// however, the thread and the imap connection are needed even if inbox_watch is disabled
+	// as the jobs are happending here.
+	// anyway, the best way would be to switch this thread also to dc_jobthread_t
+	// which has all the needed capabilities.
+
+	dc_log_info(context, 0, "INBOX-IDLE started...");
+
+	dc_imap_idle(context->inbox);
+
+	dc_log_info(context, 0, "INBOX-IDLE ended.");
+}
+
+
+/**
+ * Interrupt waiting for imap-jobs.
+ * If dc_perform_imap_jobs(), dc_perform_imap_fetch() and dc_perform_imap_idle() are called in a loop,
+ * calling this function causes imap-jobs to be executed and messages to be fetched.
+ *
+ * dc_interrupt_imap_idle() does _not_ interrupt dc_perform_imap_jobs() or dc_perform_imap_fetch().
+ * If the imap-thread is inside one of these functions when dc_interrupt_imap_idle() is called, however,
+ * the next call of the imap-thread to dc_perform_imap_idle() is interrupted immediately.
+ *
+ * Internally, this function is called whenever a imap-jobs should be processed
+ * (delete message, markseen etc.).
+ *
+ * When you need to call this function just because to get jobs done after network changes,
+ * use dc_maybe_network() instead.
+ *
+ * @memberof dc_context_t
+ * @param context The context as created by dc_context_new().
+ * @return None.
  */
 void dc_interrupt_imap_idle(dc_context_t* context)
 {
-	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC || context->imap==NULL) {
+	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC || context->inbox==NULL) {
 		dc_log_warning(context, 0, "Interrupt IMAP-IDLE: Bad parameters.");
 		return;
 	}
 
 	dc_log_info(context, 0, "Interrupting IMAP-IDLE...");
 
-	pthread_mutex_lock(&context->imapidle_condmutex);
+	pthread_mutex_lock(&context->inboxidle_condmutex);
 		// when this function is called, it might be that the idle-thread is in
 		// perform_idle_jobs() instead of idle(). if so, added jobs will be performed after the _next_ idle-jobs loop.
 		// setting the flag perform_imap_jobs_needed makes sure, idle() returns immediately in this case.
-		context->perform_imap_jobs_needed = 1;
-	pthread_mutex_unlock(&context->imapidle_condmutex);
+		context->perform_inbox_jobs_needed = 1;
+	pthread_mutex_unlock(&context->inboxidle_condmutex);
 
-	dc_imap_interrupt_idle(context->imap);
+	dc_imap_interrupt_idle(context->inbox);
+}
+
+
+/*******************************************************************************
+ * User-functions to handle IMAP-jobs in the secondary IMAP-thread
+ ******************************************************************************/
+
+
+/**
+ * Fetch new messages from the MVBOX, if any.
+ * The MVBOX is a folder on the account where chat messages are moved to.
+ * The moving is done to not disturb shared accounts that are used by both,
+ * Delta Chat and a classical MUA.
+ *
+ * This function and dc_perform_mvbox_idle()
+ * must be called from the same thread, typically in a loop.
+ *
+ * Example:
+ *
+ *     void* mvbox_thread_func(void* context)
+ *     {
+ *         while (true) {
+ *             dc_perform_mvbox_fetch(context);
+ *             dc_perform_mvbox_idle(context);
+ *         }
+ *     }
+ *
+ *     // start mvbox-thread that runs forever
+ *     pthread_t mvbox_thread;
+ *     pthread_create(&mvbox_thread, NULL, mvbox_thread_func, context);
+ *
+ *     ... program runs ...
+ *
+ *     // network becomes available again -
+ *     // the interrupt causes dc_perform_mvbox_idle() in the thread above
+ *     // to return so that and messages are fetched.
+ *     dc_maybe_network(context);
+ *
+ * @memberof dc_context_t
+ * @param context The context as created by dc_context_new().
+ * @return None.
+ */
+void dc_perform_mvbox_fetch(dc_context_t* context)
+{
+	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC) {
+		return;
+	}
+
+	int use_network = dc_sqlite3_get_config_int(context->sql, "mvbox_watch", DC_MVBOX_WATCH_DEFAULT);
+	dc_jobthread_fetch(&context->mvbox_thread, use_network);
+}
+
+
+/**
+ * Wait for messages or jobs in the MVBOX-thread.
+ * This function and dc_perform_mvbox_fetch().
+ * must be called from the same thread, typically in a loop.
+ *
+ * You should call this function directly after calling dc_perform_mvbox_fetch().
+ *
+ * See dc_perform_mvbox_fetch() for an example.
+ *
+ * @memberof dc_context_t
+ * @param context The context as created by dc_context_new().
+ * @return None.
+ */
+void dc_perform_mvbox_idle(dc_context_t* context)
+{
+	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC) {
+		return;
+	}
+
+	int use_network = dc_sqlite3_get_config_int(context->sql, "mvbox_watch", DC_MVBOX_WATCH_DEFAULT);
+	dc_jobthread_idle(&context->mvbox_thread, use_network);
+}
+
+
+/**
+ * Interrupt waiting for MVBOX-fetch.
+ * dc_interrupt_mvbox_idle() does _not_ interrupt dc_perform_mvbox_fetch().
+ * If the MVBOX-thread is inside this function when dc_interrupt_mvbox_idle() is called, however,
+ * the next call of the MVBOX-thread to dc_perform_mvbox_idle() is interrupted immediately.
+ *
+ * Internally, this function is called whenever a imap-jobs should be processed.
+ *
+ * When you need to call this function just because to get jobs done after network changes,
+ * use dc_maybe_network() instead.
+ *
+ * @memberof dc_context_t
+ * @param context The context as created by dc_context_new().
+ * @return None.
+ */
+void dc_interrupt_mvbox_idle(dc_context_t* context)
+{
+	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC) {
+		dc_log_warning(context, 0, "Interrupt MVBOX-IDLE: Bad parameters.");
+		return;
+	}
+
+	dc_jobthread_interrupt_idle(&context->mvbox_thread);
+}
+
+
+/*******************************************************************************
+ * User-functions to handle IMAP-jobs in the Sendbox-IMAP-thread
+ ******************************************************************************/
+
+
+/**
+ * Fetch new messages from the Sent folder, if any.
+ * This function and dc_perform_sentbox_idle()
+ * must be called from the same thread, typically in a loop.
+ *
+ * @memberof dc_context_t
+ * @param context The context as created by dc_context_new().
+ * @return None.
+ */
+void dc_perform_sentbox_fetch(dc_context_t* context)
+{
+	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC) {
+		return;
+	}
+
+	int use_network = dc_sqlite3_get_config_int(context->sql, "sentbox_watch", DC_SENTBOX_WATCH_DEFAULT);
+	dc_jobthread_fetch(&context->sentbox_thread, use_network);
+}
+
+
+/**
+ * Wait for messages or jobs in the SENTBOX-thread.
+ * This function and dc_perform_sentbox_fetch()
+ * must be called from the same thread, typically in a loop.
+ *
+ * @memberof dc_context_t
+ * @param context The context as created by dc_context_new().
+ * @return None.
+ */
+void dc_perform_sentbox_idle(dc_context_t* context)
+{
+	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC) {
+		return;
+	}
+
+	int use_network = dc_sqlite3_get_config_int(context->sql, "sentbox_watch", DC_SENTBOX_WATCH_DEFAULT);
+	dc_jobthread_idle(&context->sentbox_thread, use_network);
+}
+
+
+/**
+ * Interrupt waiting for messages or jobs in the SENTBOX-thread.
+ *
+ * @memberof dc_context_t
+ * @param context The context as created by dc_context_new().
+ * @return None.
+ */
+void dc_interrupt_sentbox_idle(dc_context_t* context)
+{
+	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC) {
+		dc_log_warning(context, 0, "Interrupt SENT-IDLE: Bad parameters.");
+		return;
+	}
+
+	dc_jobthread_interrupt_idle(&context->sentbox_thread);
 }
 
 
@@ -820,23 +990,53 @@ void dc_interrupt_imap_idle(dc_context_t* context)
  * This function and dc_perform_smtp_idle() must be called from the same thread,
  * typically in a loop.
  *
- * See dc_interrupt_smtp_idle() for an example.
+ * Example:
+ *
+ *     void* smtp_thread_func(void* context)
+ *     {
+ *         while (true) {
+ *             dc_perform_smtp_jobs(context);
+ *             dc_perform_smtp_idle(context);
+ *         }
+ *     }
+ *
+ *     // start smtp-thread that runs forever
+ *     pthread_t smtp_thread;
+ *     pthread_create(&smtp_thread, NULL, smtp_thread_func, context);
+ *
+ *     ... program runs ...
+ *
+ *     // network becomes available again -
+ *     // the interrupt causes dc_perform_smtp_idle() in the thread above
+ *     // to return so that jobs are executed
+ *     dc_maybe_network(context);
  *
  * @memberof dc_context_t
  * @param context The context as created by dc_context_new().
- * @return None
+ * @return None.
  */
 void dc_perform_smtp_jobs(dc_context_t* context)
 {
-	dc_log_info(context, 0, "SMTP-jobs started...");
-
 	pthread_mutex_lock(&context->smtpidle_condmutex);
+		int probe_smtp_network = context->probe_smtp_network;
+		context->probe_smtp_network = 0;
+
 		context->perform_smtp_jobs_needed = 0;
+		if (context->smtp_suspended) {
+			dc_log_info(context, 0, "SMTP-jobs suspended.");
+			pthread_mutex_unlock(&context->smtpidle_condmutex);
+			return;
+		}
+		context->smtp_doing_jobs = 1;
 	pthread_mutex_unlock(&context->smtpidle_condmutex);
 
-	dc_job_perform(context, DC_SMTP_THREAD);
-
+	dc_log_info(context, 0, "SMTP-jobs started...");
+	dc_job_perform(context, DC_SMTP_THREAD, probe_smtp_network);
 	dc_log_info(context, 0, "SMTP-jobs ended.");
+
+	pthread_mutex_lock(&context->smtpidle_condmutex);
+		context->smtp_doing_jobs = 0;
+	pthread_mutex_unlock(&context->smtpidle_condmutex);
 }
 
 
@@ -849,7 +1049,7 @@ void dc_perform_smtp_jobs(dc_context_t* context)
  *
  * @memberof dc_context_t
  * @param context The context as created by dc_context_new().
- * @return None
+ * @return None.
  */
 void dc_perform_smtp_idle(dc_context_t* context)
 {
@@ -868,20 +1068,14 @@ void dc_perform_smtp_idle(dc_context_t* context)
 		}
 		else
 		{
-			context->smtpidle_in_idleing = 1; // checked in suspend(), for idle-interruption the pthread-condition below is used
-
-				do {
-					int r = 0;
-					struct timespec wakeup_at;
-					memset(&wakeup_at, 0, sizeof(wakeup_at));
-					wakeup_at.tv_sec  = time(NULL) + ((context->perform_smtp_jobs_needed==DC_JOBS_NEEDED_AVOID_DOS)? 2 : DC_SMTP_IDLE_SEC);
-					while (context->smtpidle_condflag==0 && r==0) {
-						r = pthread_cond_timedwait(&context->smtpidle_cond, &context->smtpidle_condmutex, &wakeup_at); // unlock mutex -> wait -> lock mutex
-					}
-				} while (context->smtpidle_suspend);
-				context->smtpidle_condflag = 0;
-
-			context->smtpidle_in_idleing = 0;
+			int r = 0;
+			struct timespec wakeup_at;
+			memset(&wakeup_at, 0, sizeof(wakeup_at));
+			wakeup_at.tv_sec  = get_next_wakeup_time(context, DC_SMTP_THREAD)+1;
+			while (context->smtpidle_condflag==0 && r==0) {
+				r = pthread_cond_timedwait(&context->smtpidle_cond, &context->smtpidle_condmutex, &wakeup_at); // unlock mutex -> wait -> lock mutex
+			}
+			context->smtpidle_condflag = 0;
 		}
 
 	pthread_mutex_unlock(&context->smtpidle_condmutex);
@@ -895,32 +1089,18 @@ void dc_perform_smtp_idle(dc_context_t* context)
  * If dc_perform_smtp_jobs() and dc_perform_smtp_idle() are called in a loop,
  * calling this function causes jobs to be executed.
  *
- * Internally, this function is called whenever a message is to be send,
- * for the UI view it may make sense to call the function eg. on network changes.
+ * dc_interrupt_smtp_idle() does _not_ interrupt dc_perform_smtp_jobs().
+ * If the smtp-thread is inside this function when dc_interrupt_smtp_idle() is called, however,
+ * the next call of the smtp-thread to dc_perform_smtp_idle() is interrupted immediately.
  *
- * Example:
+ * Internally, this function is called whenever a message is to be sent.
  *
- *     void* smtp_thread_func(void* context)
- *     {
- *         while (true) {
- *             dc_perform_smtp_jobs(context);
- *             dc_perform_smtp_idle(context);
- *         }
- *     }
- *
- *     // start smtp-thread that runs forever
- *     pthread_t smtp_thread;
- *     pthread_create(&smtp_thread, NULL, smtp_thread_func, context);
- *
- *     ... program runs ...
- *
- *     // network becomes available again - the interrupt causes
- *     // dc_perform_smtp_idle() in the thread to return so that jobs are executed
- *     dc_interrupt_smtp_idle(context);
+ * When you need to call this function just because to get jobs done after network changes,
+ * use dc_maybe_network() instead.
  *
  * @memberof dc_context_t
  * @param context The context as created by dc_context_new().
- * @return None
+ * @return None.
  */
 void dc_interrupt_smtp_idle(dc_context_t* context)
 {
@@ -942,4 +1122,34 @@ void dc_interrupt_smtp_idle(dc_context_t* context)
 		pthread_cond_signal(&context->smtpidle_cond);
 
 	pthread_mutex_unlock(&context->smtpidle_condmutex);
+}
+
+
+
+/**
+ * This function can be called whenever there is a hint
+ * that the network is available again.
+ * The library will try to send pending messages out.
+ *
+ * @memberof dc_context_t
+ * @param context The context as created by dc_context_new().
+ * @return None.
+ */
+void dc_maybe_network(dc_context_t* context)
+{
+	// the following flags are forwarded to dc_job_perform() and make sure,
+	// sending is tried independingly of retry-count or timeouts.
+	// if the first messages comes through, the others are be retried as well.
+	pthread_mutex_lock(&context->smtpidle_condmutex);
+		context->probe_smtp_network = 1;
+	pthread_mutex_unlock(&context->smtpidle_condmutex);
+
+	pthread_mutex_lock(&context->inboxidle_condmutex);
+		context->probe_imap_network = 1;
+	pthread_mutex_unlock(&context->inboxidle_condmutex);
+
+	dc_interrupt_smtp_idle(context);
+	dc_interrupt_imap_idle(context);
+	dc_interrupt_mvbox_idle(context);
+	dc_interrupt_sentbox_idle(context);
 }

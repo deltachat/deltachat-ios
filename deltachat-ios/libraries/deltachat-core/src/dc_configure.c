@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include <dirent.h>
 #include <unistd.h>
 #include "dc_context.h"
@@ -31,20 +9,42 @@
 
 
 /*******************************************************************************
- * Tools
+ * Connect to configured account
  ******************************************************************************/
 
 
-static char* read_autoconf_file(dc_context_t* context, const char* url)
+int dc_connect_to_configured_imap(dc_context_t* context, dc_imap_t* imap)
 {
-	char* filecontent = NULL;
-	dc_log_info(context, 0, "Testing %s ...", url);
-	filecontent = (char*)context->cb(context, DC_EVENT_HTTP_GET, (uintptr_t)url, 0);
-	if (filecontent==NULL) {
-		dc_log_info(context, 0, "Can't read file."); /* this is not a warning or an error, we're just testing */
-		return NULL;
+	int              ret_connected = DC_NOT_CONNECTED;
+	dc_loginparam_t* param = dc_loginparam_new();
+
+	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC || imap==NULL) {
+		dc_log_warning(imap->context, 0, "Cannot connect to IMAP: Bad parameters.");
+		goto cleanup;
 	}
-	return filecontent;
+
+	if (dc_imap_is_connected(imap)) {
+		ret_connected = DC_ALREADY_CONNECTED;
+		goto cleanup;
+	}
+
+	if (dc_sqlite3_get_config_int(imap->context->sql, "configured", 0)==0) {
+		dc_log_warning(imap->context, 0, "Not configured, cannot connect.");
+		goto cleanup;
+	}
+
+	dc_loginparam_read(param, imap->context->sql,
+		"configured_" /*the trailing underscore is correct*/);
+
+	if (!dc_imap_connect(imap, param)) {
+		goto cleanup;
+	}
+
+	ret_connected = DC_JUST_CONNECTED;
+
+cleanup:
+	dc_loginparam_unref(param);
+	return ret_connected;
 }
 
 
@@ -83,6 +83,23 @@ typedef struct moz_autoconfigure_t
 	int                    tag_config;
 
 } moz_autoconfigure_t;
+
+
+static char* read_autoconf_file(dc_context_t* context, const char* url)
+{
+	char* filecontent = NULL;
+
+	dc_log_info(context, 0, "Testing %s ...", url);
+
+	filecontent = (char*)context->cb(context, DC_EVENT_HTTP_GET, (uintptr_t)url, 0);
+	if (filecontent==NULL || filecontent[0]==0) {
+		free(filecontent);
+		dc_log_info(context, 0, "Can't read file."); /* this is not a warning or an error, we're just testing */
+		return NULL;
+	}
+
+	return filecontent;
+}
 
 
 static void moz_autoconfigure_starttag_cb(void* userdata, const char* tag, char** attr)
@@ -399,17 +416,275 @@ cleanup:
 
 
 /*******************************************************************************
- * Main interface
+ * Configure folders
+ ******************************************************************************/
+
+
+typedef struct dc_imapfolder_t
+{
+	char* name_to_select;
+	char* name_utf8;
+
+	#define MEANING_UNKNOWN      0
+	#define MEANING_SENT_OBJECTS 1
+	#define MEANING_OTHER_KNOWN  2
+	int     meaning;
+} dc_imapfolder_t;
+
+
+static int get_folder_meaning(struct mailimap_mbx_list_flags* flags)
+{
+	int ret_meaning = MEANING_UNKNOWN;
+
+	// We check for flags if we get some
+	// (LIST may also return some, see https://tools.ietf.org/html/rfc6154 )
+	if (flags)
+	{
+		clistiter* iter2;
+		for (iter2=clist_begin(flags->mbf_oflags); iter2!=NULL; iter2=clist_next(iter2))
+		{
+			struct mailimap_mbx_list_oflag* oflag = (struct mailimap_mbx_list_oflag*)clist_content(iter2);
+			switch (oflag->of_type)
+			{
+				case MAILIMAP_MBX_LIST_OFLAG_FLAG_EXT:
+					if (strcasecmp(oflag->of_flag_ext, "spam")==0
+					 || strcasecmp(oflag->of_flag_ext, "trash")==0
+					 || strcasecmp(oflag->of_flag_ext, "drafts")==0
+					 || strcasecmp(oflag->of_flag_ext, "junk")==0)
+					{
+						ret_meaning = MEANING_OTHER_KNOWN;
+					}
+					else if (strcasecmp(oflag->of_flag_ext, "sent")==0)
+					{
+						ret_meaning = MEANING_SENT_OBJECTS;
+					}
+					break;
+			}
+		}
+	}
+
+	return ret_meaning;
+}
+
+
+static int get_folder_meaning_by_name(const char* folder_name)
+{
+	// try to get the folder meaning by the name of the folder.
+	// only used if the server does not support XLIST.
+	int ret_meaning = MEANING_UNKNOWN;
+
+	// TODO: lots languages missing - maybe there is a list somewhere on other MUAs?
+	// however, if we fail to find out the sent-folder,
+	// only watching this folder is not working. at least, this is no show stopper.
+	// CAVE: if possible, take care not to add a name here that is "sent" in one language
+	// but sth. different in others - a hard job.
+	static const char* sent_names =
+		",sent,sent objects,gesendet,";
+
+	char* lower = dc_mprintf(",%s,", folder_name);
+	dc_strlower_in_place(lower);
+	if (strstr(sent_names, lower)!=NULL) {
+		ret_meaning = MEANING_SENT_OBJECTS;
+	}
+
+	free(lower);
+	return ret_meaning;
+}
+
+
+static clist* list_folders(dc_imap_t* imap)
+{
+	clist*     imap_list = NULL;
+	clistiter* iter1 = NULL;
+	clist *    ret_list = clist_new();
+	int        r = 0;
+	int        xlist_works = 0;
+
+	if (imap==NULL || imap->etpan==NULL) {
+		goto cleanup;
+	}
+
+	// the "*" also returns all subdirectories;
+	// so the resulting foldernames may contain
+	// foldernames with delimiters as "folder/subdir/subsubdir"
+	//
+	// when switching to XLIST: at least my server claims
+	// that it support XLIST but does not return folder flags.
+	// so, if we did not get a _single_ flag, sth. seems not to work.
+	if (imap->has_xlist)  {
+		r = mailimap_xlist(imap->etpan, "", "*", &imap_list);
+	}
+	else {
+		r = mailimap_list(imap->etpan, "", "*", &imap_list);
+	}
+
+	if (dc_imap_is_error(imap, r) || imap_list==NULL) {
+		imap_list = NULL;
+		dc_log_warning(imap->context, 0, "Cannot get folder list.");
+		goto cleanup;
+	}
+
+	if (clist_count(imap_list)<=0) {
+		dc_log_warning(imap->context, 0, "Folder list is empty.");
+		goto cleanup;
+	}
+
+	// default IMAP delimiter if none is returned by the list command
+	imap->imap_delimiter = '.';
+	for (iter1 = clist_begin(imap_list); iter1!=NULL ; iter1 = clist_next(iter1))
+	{
+		struct mailimap_mailbox_list* imap_folder =
+			(struct mailimap_mailbox_list*)clist_content(iter1);
+
+		if (imap_folder->mb_delimiter) {
+			imap->imap_delimiter = imap_folder->mb_delimiter;
+		}
+
+		dc_imapfolder_t* ret_folder = calloc(1, sizeof(dc_imapfolder_t));
+
+		if (strcasecmp(imap_folder->mb_name, "INBOX")==0) {
+			// Force upper case INBOX. Servers may return any case, however,
+			// all variants MUST lead to the same INBOX, see RFC 3501 5.1
+			ret_folder->name_to_select = dc_strdup("INBOX");
+		}
+		else {
+			ret_folder->name_to_select = dc_strdup(imap_folder->mb_name);
+		}
+
+		ret_folder->name_utf8 = dc_decode_modified_utf7(imap_folder->mb_name, 0);
+		ret_folder->meaning = get_folder_meaning(imap_folder->mb_flag);
+
+		if (ret_folder->meaning==MEANING_OTHER_KNOWN
+		 || ret_folder->meaning==MEANING_SENT_OBJECTS /*INBOX is no hint for a working XLIST*/) {
+			xlist_works = 1;
+		}
+
+		clist_append(ret_list, (void*)ret_folder);
+	}
+
+	// at least my own server claims that it support XLIST
+	// but does not return folder flags.
+	if (!xlist_works) {
+		for (iter1 = clist_begin(ret_list); iter1!=NULL ; iter1 = clist_next(iter1))
+		{
+			dc_imapfolder_t* ret_folder = (struct dc_imapfolder_t*)clist_content(iter1);
+			ret_folder->meaning = get_folder_meaning_by_name(ret_folder->name_utf8);
+		}
+	}
+
+cleanup:
+	if (imap_list) {
+		mailimap_list_result_free(imap_list);
+	}
+	return ret_list;
+}
+
+
+static void free_folders(clist* folders)
+{
+	if (folders) {
+		clistiter* iter1;
+		for (iter1 = clist_begin(folders); iter1!=NULL ; iter1 = clist_next(iter1)) {
+			dc_imapfolder_t* ret_folder = (struct dc_imapfolder_t*)clist_content(iter1);
+			free(ret_folder->name_to_select);
+			free(ret_folder->name_utf8);
+			free(ret_folder);
+		}
+		clist_free(folders);
+	}
+}
+
+
+void dc_configure_folders(dc_context_t* context, dc_imap_t* imap, int flags)
+{
+	#define DC_DEF_MVBOX "DeltaChat"
+
+	clist*     folder_list = NULL;
+	clistiter* iter;
+	char*      mvbox_folder = NULL;
+	char*      sentbox_folder = NULL;
+	char*      fallback_folder = NULL;
+
+	if (imap==NULL || imap->etpan==NULL) {
+		goto cleanup;
+	}
+
+	dc_log_info(context, 0, "Configuring IMAP-folders.");
+
+	// this sets imap->imap_delimiter as side-effect
+	folder_list = list_folders(imap);
+
+	// MVBOX-folder exists? maybe under INBOX?
+	fallback_folder = dc_mprintf("INBOX%c%s", imap->imap_delimiter, DC_DEF_MVBOX);
+	for (iter=clist_begin(folder_list); iter!=NULL; iter=clist_next(iter))
+	{
+		dc_imapfolder_t* folder = (struct dc_imapfolder_t*)clist_content(iter);
+		if (strcmp(folder->name_utf8, DC_DEF_MVBOX)==0
+		 || strcmp(folder->name_utf8, fallback_folder)==0) {
+			if (mvbox_folder==NULL) {
+				mvbox_folder = dc_strdup(folder->name_to_select);
+			}
+		}
+
+		if (folder->meaning==MEANING_SENT_OBJECTS) {
+			if(sentbox_folder==NULL) {
+				sentbox_folder = dc_strdup(folder->name_to_select);
+			}
+		}
+	}
+
+	// create folder if not exist
+	if (mvbox_folder==NULL && (flags&DC_CREATE_MVBOX))
+	{
+		dc_log_info(context, 0, "Creating MVBOX-folder \"%s\"...", DC_DEF_MVBOX);
+		int r = mailimap_create(imap->etpan, DC_DEF_MVBOX);
+		if (dc_imap_is_error(imap, r)) {
+			dc_log_warning(context, 0, "Cannot create MVBOX-folder, using trying INBOX subfolder.");
+			r = mailimap_create(imap->etpan, fallback_folder);
+			if (dc_imap_is_error(imap, r)) {
+				/* continue on errors, we'll just use a different folder then */
+				dc_log_warning(context, 0, "Cannot create MVBOX-folder.");
+			}
+			else {
+				mvbox_folder = dc_strdup(fallback_folder);
+				dc_log_info(context, 0, "MVBOX-folder created as INBOX subfolder.");
+			}
+		}
+		else {
+			mvbox_folder = dc_strdup(DC_DEF_MVBOX);
+			dc_log_info(context, 0, "MVBOX-folder created.");
+		}
+
+		// SUBSCRIBE is needed to make the folder visible to the LSUB command
+		// that may be used by other MUAs to list folders.
+		// for the LIST command, the folder is always visible.
+		mailimap_subscribe(imap->etpan, mvbox_folder);
+	}
+
+	// remember the configuration, mvbox_folder may be NULL
+	dc_sqlite3_set_config_int(context->sql, "folders_configured", DC_FOLDERS_CONFIGURED_VERSION);
+	dc_sqlite3_set_config(context->sql, "configured_mvbox_folder", mvbox_folder);
+	dc_sqlite3_set_config(context->sql, "configured_sentbox_folder", sentbox_folder);
+
+cleanup:
+	free_folders(folder_list);
+	free(mvbox_folder);
+	free(fallback_folder);
+}
+
+
+/*******************************************************************************
+ * Configure
  ******************************************************************************/
 
 
 void dc_job_do_DC_JOB_CONFIGURE_IMAP(dc_context_t* context, dc_job_t* job)
 {
 	int              success = 0;
-	int              i = 0;
 	int              imap_connected_here = 0;
 	int              smtp_connected_here = 0;
 	int              ongoing_allocated_here = 0;
+	char*            mvbox_folder = NULL;
 
 	dc_loginparam_t* param = NULL;
 	char*            param_domain = NULL; /* just a pointer inside param, must not be freed! */
@@ -434,23 +709,20 @@ void dc_job_do_DC_JOB_CONFIGURE_IMAP(dc_context_t* context, dc_job_t* job)
 		goto cleanup;
 	}
 
-	dc_imap_disconnect(context->imap);
+	dc_imap_disconnect(context->inbox);
+	dc_imap_disconnect(context->sentbox_thread.imap);
+	dc_imap_disconnect(context->mvbox_thread.imap);
 	dc_smtp_disconnect(context->smtp);
 
 	//dc_sqlite3_set_config_int(context->sql, "configured", 0); -- NO: we do _not_ reset this flag if it was set once; otherwise the user won't get back to his chats (as an alternative, we could change the UI).  Moreover, and not changeable in the UI, we use this flag to check if we shall search for backups.
 	context->smtp->log_connect_errors = 1;
-	context->imap->log_connect_errors = 1;
+	context->inbox->log_connect_errors = 1;
+	context->sentbox_thread.imap->log_connect_errors = 1;
+	context->mvbox_thread.imap->log_connect_errors = 1;
 
 	dc_log_info(context, 0, "Configure ...");
 
 	PROGRESS(0)
-
-	if (context->cb(context, DC_EVENT_IS_OFFLINE, 0, 0)!=0) {
-		dc_log_error(context, DC_ERROR_NO_NETWORK, NULL);
-		goto cleanup;
-	}
-
-	PROGRESS(100)
 
 	/* 1.  Load the parameters and check email-address and password
 	 **************************************************************************/
@@ -495,32 +767,42 @@ void dc_job_do_DC_JOB_CONFIGURE_IMAP(dc_context_t* context, dc_job_t* job)
 	/*&&param->send_pw     ==NULL -- the password cannot be auto-configured and is no criterion for autoconfig or not */
 	 && param->server_flags==0)
 	{
-		/* A.  Search configurations from the domain used in the email-address */
-		for (i = 0; i <= 1; i++) {
-			if (param_autoconfig==NULL) {
-				char* url = dc_mprintf("%s://autoconfig.%s/mail/config-v1.1.xml?emailaddress=%s", i==0?"https":"http", param_domain, param_addr_urlencoded); /* Thunderbird may or may not use SSL */
-				param_autoconfig = moz_autoconfigure(context, url, param);
-				free(url);
-				PROGRESS(300+i*20)
-			}
+		/* A.  Search configurations from the domain used in the email-address, prefer encrypted */
+		if (param_autoconfig==NULL) {
+			char* url = dc_mprintf("https://autoconfig.%s/mail/config-v1.1.xml?emailaddress=%s", param_domain, param_addr_urlencoded);
+			param_autoconfig = moz_autoconfigure(context, url, param);
+			free(url);
+			PROGRESS(300)
 		}
 
-		for (i = 0; i <= 1; i++) {
-			if (param_autoconfig==NULL) {
-				char* url = dc_mprintf("%s://%s/.well-known/autoconfig/mail/config-v1.1.xml?emailaddress=%s", i==0?"https":"http", param_domain, param_addr_urlencoded); // the doc does not mention `emailaddress=`, however, Thunderbird adds it, see https://releases.mozilla.org/pub/thunderbird/ ,  which makes some sense
-				param_autoconfig = moz_autoconfigure(context, url, param);
-				free(url);
-				PROGRESS(340+i*30)
-			}
+		if (param_autoconfig==NULL) {
+			char* url = dc_mprintf("https://%s/.well-known/autoconfig/mail/config-v1.1.xml?emailaddress=%s", param_domain, param_addr_urlencoded); // the doc does not mention `emailaddress=`, however, Thunderbird adds it, see https://releases.mozilla.org/pub/thunderbird/ ,  which makes some sense
+			param_autoconfig = moz_autoconfigure(context, url, param);
+			free(url);
+			PROGRESS(310)
 		}
 
-		for (i = 0; i <= 1; i++) {
+		for (int i = 0; i <= 1; i++) {
 			if (param_autoconfig==NULL) {
 				char* url = dc_mprintf("https://%s%s/autodiscover/autodiscover.xml", i==0?"":"autodiscover.", param_domain); /* Outlook uses always SSL but different domains */
 				param_autoconfig = outlk_autodiscover(context, url, param);
 				free(url);
-				PROGRESS(400+i*50)
+				PROGRESS(320+i*10)
 			}
+		}
+
+		if (param_autoconfig==NULL) {
+			char* url = dc_mprintf("http://autoconfig.%s/mail/config-v1.1.xml", param_domain); // do not transfer the email-address unencrypted
+			param_autoconfig = moz_autoconfigure(context, url, param);
+			free(url);
+			PROGRESS(340)
+		}
+
+		if (param_autoconfig==NULL) {
+			char* url = dc_mprintf("http://%s/.well-known/autoconfig/mail/config-v1.1.xml", param_domain); // do not transfer the email-address unencrypted
+			param_autoconfig = moz_autoconfigure(context, url, param);
+			free(url);
+			PROGRESS(350)
 		}
 
 		/* B.  If we have no configuration yet, search configuration in Thunderbird's centeral database */
@@ -561,7 +843,7 @@ void dc_job_do_DC_JOB_CONFIGURE_IMAP(dc_context_t* context, dc_job_t* job)
 	{
 		/* NB: Checking GMa'l too often (<10 Minutes) may result in blocking, says https://github.com/itprojects/InboxPager/blob/HEAD/README.md#gmail-configuration
 		Also note https://www.google.com/settings/security/lesssecureapps */
-		param->server_flags |= DC_LP_AUTH_XOAUTH2 | DC_NO_EXTRA_IMAP_UPLOAD | DC_NO_MOVE_TO_CHATS;
+		param->server_flags |= DC_LP_AUTH_XOAUTH2;
 	}
 
 
@@ -645,11 +927,33 @@ void dc_job_do_DC_JOB_CONFIGURE_IMAP(dc_context_t* context, dc_job_t* job)
 
 	PROGRESS(600)
 
-	/* try to connect to IMAP */
+	/* try to connect to IMAP - if we did not got an autoconfig,
+	we do a second try with the localpart of the email-address as the loginname
+	(the part before the '@') */
 	{ char* r = dc_loginparam_get_readable(param); dc_log_info(context, 0, "Trying: %s", r); free(r); }
 
-	if (!dc_imap_connect(context->imap, param)) {
-		goto cleanup;
+	if (!dc_imap_connect(context->inbox, param)) {
+		if (param_autoconfig) {
+			goto cleanup;
+		}
+
+		PROGRESS(650)
+
+		char* at = strchr(param->mail_user, '@');
+		if (at) {
+			*at = 0;
+		}
+
+		at = strchr(param->send_user, '@');
+		if (at) {
+			*at = 0;
+		}
+
+		{ char* r = dc_loginparam_get_readable(param); dc_log_info(context, 0, "Trying: %s", r); free(r); }
+
+		if (!dc_imap_connect(context->inbox, param)) {
+			goto cleanup;
+		}
 	}
 
 	imap_connected_here = 1;
@@ -678,6 +982,13 @@ void dc_job_do_DC_JOB_CONFIGURE_IMAP(dc_context_t* context, dc_job_t* job)
 
 	PROGRESS(900)
 
+	int flags =
+		 ( dc_sqlite3_get_config_int(context->sql, "mvbox_watch", DC_MVBOX_WATCH_DEFAULT)
+		|| dc_sqlite3_get_config_int(context->sql, "mvbox_move", DC_MVBOX_MOVE_DEFAULT) ) ? DC_CREATE_MVBOX : 0;
+	dc_configure_folders(context, context->inbox, flags);
+
+	PROGRESS(910);
+
 	/* configuration success - write back the configured parameters with the "configured_" prefix; also write the "configured"-flag */
 
 	dc_loginparam_write(param, context->sql, "configured_" /*the trailing underscore is correct*/);
@@ -696,56 +1007,91 @@ void dc_job_do_DC_JOB_CONFIGURE_IMAP(dc_context_t* context, dc_job_t* job)
 	PROGRESS(940)
 
 cleanup:
-	context->cb(context, DC_EVENT_CONFIGURE_PROGRESS, 950, 0);
+	if (imap_connected_here) {
+		dc_imap_disconnect(context->inbox);
+	}
 
-	if (imap_connected_here) { dc_imap_disconnect(context->imap); }
-	context->cb(context, DC_EVENT_CONFIGURE_PROGRESS, 960, 0);
-
-	if (smtp_connected_here) { dc_smtp_disconnect(context->smtp); }
-	context->cb(context, DC_EVENT_CONFIGURE_PROGRESS, 970, 0);
+	if (smtp_connected_here) {
+		dc_smtp_disconnect(context->smtp);
+	}
 
 	dc_loginparam_unref(param);
 	dc_loginparam_unref(param_autoconfig);
 	free(param_addr_urlencoded);
-	if (ongoing_allocated_here) { dc_free_ongoing(context); }
-	context->cb(context, DC_EVENT_CONFIGURE_PROGRESS, 980, 0);
-
-	context->cb(context, DC_EVENT_CONFIGURE_PROGRESS, 990, 0);
+	if (ongoing_allocated_here) {
+		dc_free_ongoing(context);
+	}
+	free(mvbox_folder);
 
 	context->cb(context, DC_EVENT_CONFIGURE_PROGRESS, success? 1000 : 0, 0);
 }
 
 
 /**
- * Configure and connect a context.
- * For this, the function creates a job that is executed in the IMAP-thread then;
- * this requires to call dc_perform_imap_jobs() regulary.
+ * Configure a context.
+ * For this purpose, the function creates a job
+ * that is executed in the IMAP-thread then;
+ * this requires to call dc_perform_imap_jobs() regularly.
+ * If the context is already configured,
+ * this function will try to change the configuration.
  *
- * - Before your call this function, you should set at least `addr` and `mail_pw`
- *   using dc_set_config().
+ * - Before you call this function,
+ *   you must set at least `addr` and `mail_pw` using dc_set_config().
  *
- * - While dc_configure() returns immediately, the started configuration-job may take a while,
- *   you can stop it using dc_stop_ongoing_process().
+ * - Use `mail_user` to use a different user name than `addr`
+ *   and `send_pw` to use a different password for the SMTP server.
  *
- * - The function sends out a number of #DC_EVENT_CONFIGURE_PROGRESS events that may be used to create
- *   a progress bar or stuff like that.
+ *     - If _no_ more options are specified,
+ *       the function **uses autoconfigure/autodiscover**
+ *       to get the full configuration from well-known URLs.
+ *
+ *     - If _more_ options as `mail_server`, `mail_port`, `send_server`,
+ *       `send_port`, `send_user` or `server_flags` are specified,
+ *       **autoconfigure/autodiscover is skipped**.
+ *
+ * While dc_configure() returns immediately,
+ * the started configuration-job may take a while.
+ *
+ * During configuration, #DC_EVENT_CONFIGURE_PROGRESS events are emmited;
+ * they indicate a successful configuration as well as errors
+ * and may be used to create a progress bar.
+ *
+ * Additional calls to dc_configure() while a config-job is running are ignored.
+ * To interrupt a configuration prematurely, use dc_stop_ongoing_process();
+ * this is not needed if #DC_EVENT_CONFIGURE_PROGRESS reports success.
+ *
+ * On a successfull configuration,
+ * the core makes a copy of the parameters mentioned above:
+ * the original parameters as are never modified by the core.
+ *
+ * UI-implementors should keep this in mind -
+ * eg. if the UI wants to prefill a configure-edit-dialog with these parameters,
+ * the UI should reset them if the user cancels the dialog
+ * after a configure-attempts has failed.
+ * Otherwise the parameters may not reflect the current configuation.
  *
  * @memberof dc_context_t
- * @param context the context object as created by dc_context_new().
+ * @param context The context object as created by dc_context_new().
  * @return None.
  *
- * There is no need to call this every program start, the result is saved in the
- * database and you can call use the connection directly:
+ * There is no need to call dc_configure() on every program start,
+ * the configuration result is saved in the database
+ * and you can use the connection directly:
  *
- * ```
+ * ~~~
  * if (!dc_is_configured(context)) {
  *     dc_configure(context);
  *     // wait for progress events
  * }
- * ```
+ * ~~~
  */
 void dc_configure(dc_context_t* context)
 {
+	if (dc_has_ongoing(context)) {
+		dc_log_warning(context, 0, "There is already another ongoing process running.");
+		return;
+	}
+
 	dc_job_kill_actions(context, DC_JOB_CONFIGURE_IMAP, 0);
 	dc_job_add(context, DC_JOB_CONFIGURE_IMAP, 0, NULL, 0); // results in a call to dc_configure_job()
 }
@@ -754,12 +1100,12 @@ void dc_configure(dc_context_t* context)
 /**
  * Check if the context is already configured.
  *
- * Typically, for unconfigured accounts, the user is prompeted for
+ * Typically, for unconfigured accounts, the user is prompted
  * to enter some settings and dc_configure() is called in a thread then.
  *
  * @memberof dc_context_t
  * @param context The context object as created by dc_context_new().
- * @return 1=context is configuredc can be used;
+ * @return 1=context is configured and can be used;
  *     0=context is not configured and a configuration by dc_configure() is required.
  */
 int dc_is_configured(const dc_context_t* context)
@@ -768,11 +1114,20 @@ int dc_is_configured(const dc_context_t* context)
 		return 0;
 	}
 
-	if (dc_imap_is_connected(context->imap)) { /* if we're connected, we're also configured. this check will speed up the check as no database is involved */
-		return 1;
+	return dc_sqlite3_get_config_int(context->sql, "configured", 0)? 1 : 0;
+}
+
+
+/*
+ * Check if there is an ongoing process.
+ */
+int dc_has_ongoing(dc_context_t* context)
+{
+	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC) {
+		return 0;
 	}
 
-	return dc_sqlite3_get_config_int(context->sql, "configured", 0)? 1 : 0;
+	return (context->ongoing_running || context->shall_stop_ongoing==0)? 1 : 0;
 }
 
 
@@ -786,7 +1141,7 @@ int dc_alloc_ongoing(dc_context_t* context)
 		return 0;
 	}
 
-	if (context->ongoing_running || context->shall_stop_ongoing==0) {
+	if (dc_has_ongoing(context)) {
 		dc_log_warning(context, 0, "There is already another ongoing process running.");
 		return 0;
 	}
@@ -832,7 +1187,7 @@ void dc_free_ongoing(dc_context_t* context)
  *
  * @memberof dc_context_t
  * @param context The context object.
- * @return None
+ * @return None.
  */
 void dc_stop_ongoing_process(dc_context_t* context)
 {

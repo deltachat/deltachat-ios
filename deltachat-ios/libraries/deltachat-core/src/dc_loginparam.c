@@ -1,32 +1,5 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include "dc_context.h"
 #include "dc_loginparam.h"
-
-
-/*******************************************************************************
- * Main interface
- ******************************************************************************/
 
 
 dc_loginparam_t* dc_loginparam_new()
@@ -140,9 +113,6 @@ static char* get_readable_flags(int flags)
 			CAT_FLAG(DC_LP_SMTP_SOCKET_STARTTLS, "SMTP_STARTTLS ");
 			CAT_FLAG(DC_LP_SMTP_SOCKET_SSL,      "SMTP_SSL ");
 			CAT_FLAG(DC_LP_SMTP_SOCKET_PLAIN,    "SMTP_PLAIN ");
-
-			CAT_FLAG(DC_NO_EXTRA_IMAP_UPLOAD, "NO_EXTRA_IMAP_UPLOAD ");
-			CAT_FLAG(DC_NO_MOVE_TO_CHATS,     "NO_MOVE_TO_CHATS ");
 
 			if (!flag_added) {
 				char* temp = dc_mprintf("0x%x ", 1<<bit); dc_strbuilder_cat(&strbuilder, temp); free(temp);

@@ -1,71 +1,84 @@
-Delta Chat Core Library
-================================================================================
+# Delta Chat Core Library
 
-You can use the _Delta Chat Core Library_ to build **your own messenger** or
-plugin that is completely **compatible** with the existing email infrastructure.
+[![Build Status](https://travis-ci.org/deltachat/deltachat-core.svg?branch=master)](https://travis-ci.org/deltachat/deltachat-core)
 
-![Logo](https://delta.chat/assets/features/start-img4.png)
+The _Delta Chat Core Library_ is written in cross-platform **C**,
+documented at <https://c.delta.chat>.  
 
-Using this library in your app, you get the **ease** of well-known messengers
-with the **reach** of email. Moreover, you're **independent** from other companies or
-services as your data is not relayed through Delta Chat, only your email
-provider. That means that there are no Delta Chat servers, only clients made compatible via Delta Chat Core.
+The ``deltachat`` Python bindings can be found in the 
+[python subdirectory](https://github.com/deltachat/deltachat-core/tree/master/python)
+and are documented at <https://py.delta.chat>.
 
-The library is used eg. in the [Delta Chat Android Frontend](https://github.com/deltachat/deltachat-android)
-and in the [Delta Chat iOS Frontend](https://github.com/deltachat/deltachat-ios), but can also be used for
-completely different messenger projects.
+## binary/distribution packages  (work-in-progress)
 
-Some features at a glance:
+There are work-in-progress efforts for creating (binary) packages which
+do not require that you build the library manually:
 
-- **Secure** with automatic end-to-end-encryption, supporting the new
-  [Autocrypt](https://autocrypt.org/) standard
-- **Fast** by the use of Push-IMAP
-- **Read receipts**
-- **Largest userbase** - recipients _not_ using Delta Chat can be reached as well
-- **Compatible** - not only to itself
-- **Elegant** and **simple** user interface
-- **Distributed** system
-- **No Spam** - only messages of known users are shown by default
-- **Reliable** - safe for professional use
-- **Trustworthy** - can even be used for business messages
-- **Libre software** and [standards-based](https://delta.chat/en/standards)
+- [libdeltachat-core-git archlinux package](https://aur.archlinux.org/packages/libdeltachat-core-git/>)
+
+- [Debian packaging](https://github.com/deltachat/deltachat-core/issues/299)
+
+- [Windows building](https://github.com/deltachat/deltachat-core/issues/306)
+
+If you can help with advancing or adding to these efforts, be our guest. 
+Otherwise read on for how to get ``libdeltachat.so`` and ``deltachat.h``
+installed into your system. 
+
+## building your own ``libdeltachat.so``
+
+### getting a recent enough ``meson`` for building 
+
+If you have installed ``meson`` in your environment check the version::
+
+    meson --version
+   
+You need to have version ``0.47.2`` at least. If the version
+is older there is a recommended way of getting a better version:
+
+1. uninstall your system-level ``meson`` package (if possible)
+
+2. ensure you have at least ``python3.5`` installed and type:
+   ```
+       python3 -m pip 
+   ```
+
+   to check that you have "pip" installed. If not available, you
+   might get it as a ``python3-pip`` package or you could follow
+   [installing pip](https://pip.pypa.io/en/stable/installing/).
+
+3. then pip-install meson into your home-directory:
+   ```
+       python3 -u -m pip install meson
+   ```
+
+   the ``-u`` causes the pip-install to put a ``meson`` command line tool into
+   ``~/.local/`` or %APPDATA%\Python on Windows.  
+
+4. run ``meson --version`` to verify it's at at least version 0.48.0 now.
+   If the ``meson`` command is not found, add ``~/.local/bin`` to ``PATH``
+   and try again (``export PATH=~/.local/bin:$PATH`` on many unix-y terminals).
 
 
-API Documentation
---------------------------------------------------------------------------------
+### installing "ninja-build" 
 
-The C-API is documented at <https://deltachat.github.io/api/>.
+On Linux and Mac you need to install 'ninja-build' (debian package name)
+to be able to actually build/compile things. 
 
-Please keep in mind, that your derived work must be released under a
-GPL-compatible licence.  For details, please have a look at the [LICENSE file](https://github.com/deltachat/deltachat-core/blob/master/LICENSE) accompanying the source code.
-
-
-Build
---------------------------------------------------------------------------------
-
-Delta Chat Core can be built as a library using the
-[meson](http://mesonbuild.com) build system. It depends on a number
-of external libraries, most of which are detected using
+Note that most dependencies below are detected using
 [pkg-config](https://www.freedesktop.org/wiki/Software/pkg-config/).
-Usually this just works automatically, provided the depending libraries are
-installed correctly.
+Usually this just works automatically, provided the depending libraries
+are installed correctly.  
 
-By default a few stripped-down versions of these libraries are bundled
-with Delta Chat Core and these will be used.  They are marked as
-optional in the list below.  It is possible to use system-provided
-versions of these libraries using a configure option to meson.
+### installing c-level dependencies 
 
-Otherwise installing all of these using your system libraries is the
-easiest route.  Please note that you may need "development" packages
-installed for these to work.
+The deltachat core library depends on a number of external libraries,
+which you may need to install (we have some fallbacks if you don't):
 
-- [LibEtPan](https://github.com/dinhviethoa/libetpan); **optional** A
-  stripped-down version of this library is vendored and used by
-  default.  Use the `system-etpan=true` option to use a
-  system-provided version instead.  Note that this does not use
-  pkg-config so the system-provided version will be looked up by using
-  `libetpan-config` which must be in the PATH.  Version 1.8 or newer
-  is required.
+- [LibEtPan](https://github.com/dinhviethoa/libetpan); Note that this
+  library does not use pkg-config so the system-provided version will
+  be looked up by using `libetpan-config` which must be in the PATH.
+  Version 1.8 or newer is required. LibEtPan must be compiled with
+  SASL support enabled.
 
 - [OpenSSL](https://www.openssl.org/)
 
@@ -73,19 +86,18 @@ installed for these to work.
 
 - [zlib](https://zlib.net)
 
-- libsasl
+- [libsasl](https://cyrusimap.org/sasl/)
 
-- [bzip2](http://bzip.org)
+To install these on debian you can type:
+```
+    sudo apt install libetpan-dev libssl-dev libsqlite3-dev libsasl2-dev libbz2-dev zlib1g-dev
+```
 
-To build you need to have [meson](http://mesonbuild.com) (at least version 0.36.0) and
-[ninja](https://ninja-build.org) installed as well.
 
-On Linux (e.g. Debian Stretch) you can install all these using:
-
-`sudo apt install libetpan-dev libssl-dev libsqlite3-dev libsasl2-dev libbz2-dev zlib1g-dev meson ninja-build`.
+### performing the actual build 
 
 Once all dependencies are installed, creating a build is as follows,
-starting from the project's root directory:
+starting from a [deltachat-core github checkout](https://github.com/deltachat/deltachat-core):
 
 ```
 mkdir builddir
@@ -93,7 +105,7 @@ cd builddir
 meson
 # Optionally configure some other parameters
 # run `meson configure` to see the options, e.g.
-#    meson configure -Dsystem-etpan=true
+#    meson configure --default-library=static
 ninja
 sudo ninja install
 sudo ldconfig
@@ -104,26 +116,58 @@ is thus also supported:
 ```
 sudo ninja uninstall
 ```
-
-Note that the above assumes `/usr/local/lib` is configured somewhere
+**NOTE** that the above assumes `/usr/local/lib` is configured somewhere
 in `/etc/ld.so.conf` or `/etc/ld.so.conf.d/*`, which is fairly
 standard.  It is possible your system uses
 `/usr/local/lib/x86_64-linux-gnu` which should be auto-detected and
 just work as well.
 
 
-Testing program
---------------------------------------------------------------------------------
+### Building without system-level dependencies 
+
+By default stripped-down versions of the dependencies are bundled with
+Delta Chat Core and these will be used when a dependency is missing.
+You can choose to always use the bundled version of the dependencies
+by invoking meson with the `--wrap-mode=forcefallback` option.
+Likewise you can forbid using the bundled dependencies using
+`--wrap-mode=nofallback`.
+
+There also is an experimental feature where you can build a version of the
+shared `libdeltachat.so` library with no further external
+dependencies.  This can be done by passing the `-Dmonolith=true`
+option to meson.  Note that this implies `--wrap-mode=forcefallback`
+since this will always use all the bundled dependencies.
+
+
+## Language bindings and frontend Projects
+
+Language bindings are available for:
+
+- [Node.js](https://www.npmjs.com/package/deltachat-node)
+- [Python](https://py.delta.chat)
+- **Java** and **Swift** (contained in the Android/iOS repos) 
+
+The following "frontend" project make use of the C-library
+or its language bindings: 
+
+- [Android](https://github.com/deltachat/deltachat-android)
+- [iOS](https://github.com/deltachat/deltachat-ios) 
+- [Desktop](https://github.com/deltachat/deltachat-desktop)
+- [Pidgin](https://gitlab.com/lupine/purple-plugin-delta)
+
+## Testing program
 
 After a successful build there is also a little testing program in `builddir/cmdline`.
 You start the program with `./delta <database-file>`
 (if the database file does not exist, it is created).
-The program then shows a promt and typing `help` gives some help about the available commands.
+The program then shows a prompt and typing `help` gives some help about the available commands.
+
+New tests are currently developed using Python, see 
+https://github.com/deltachat/deltachat-core/tree/master/python/tests
 
 
-License
---------------------------------------------------------------------------------
+## License
 
-Licensed under the GPLv3, see LICENSE file for details.
+Licensed under the MPL 2.0 see [LICENSE](./LICENSE) file for details.
 
-Copyright © 2017, 2018 Delta Chat contributors
+Copyright © 2017, 2018 Björn Petersen and Delta Chat contributors.

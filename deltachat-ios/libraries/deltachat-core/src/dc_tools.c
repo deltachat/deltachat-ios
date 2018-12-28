@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include <stdarg.h>
 #include <ctype.h>
 #include <fcntl.h>
@@ -179,7 +157,7 @@ int dc_str_replace(char** haystack, const char* needle, const char* replacement)
 }
 
 
-int dc_str_contains(const char* haystack, const const char* needle)
+int dc_str_contains(const char* haystack, const char* needle)
 {
 	/* case-insensitive search of needle in haystack, return 1 if found, 0 if not */
 	if (haystack==NULL || needle==NULL) {
@@ -574,6 +552,87 @@ char* dc_insert_breaks(const char* in, int break_every, const char* break_chars)
 }
 
 
+// Join clist element to a string.
+char* dc_str_from_clist(const clist* list, const char* delimiter)
+{
+	dc_strbuilder_t str;
+	dc_strbuilder_init(&str, 256);
+
+	if (list) {
+		for (clistiter* cur = clist_begin(list); cur!=NULL ; cur=clist_next(cur)) {
+			const char* rfc724_mid = clist_content(cur);
+			if (rfc724_mid) {
+				if (str.buf[0] && delimiter) {
+					dc_strbuilder_cat(&str, delimiter);
+				}
+				dc_strbuilder_cat(&str, rfc724_mid);
+			}
+		}
+	}
+
+	return str.buf;
+}
+
+
+// Split a string by a character.
+// If the string is empty or NULL, an empty list is returned.
+// The returned clist must be freed using clist_free_content()+clist_free()
+// or given eg. to libetpan objects.
+clist* dc_str_to_clist(const char* str, const char* delimiter)
+{
+	clist* list = clist_new();
+	if (list==NULL) {
+		exit(54);
+	}
+
+	if (str && delimiter && strlen(delimiter)>=1) {
+		const char* p1 = str;
+		while (1) {
+			const char* p2 = strstr(p1, delimiter);
+			if (p2==NULL) {
+				clist_append(list,  (void*)strdup(p1));
+				break;
+			}
+			else {
+				clist_append(list, (void*)strndup(p1, p2-p1));
+				p1 = p2+strlen(delimiter);
+			}
+		}
+	}
+
+	return list;
+}
+
+
+int dc_str_to_color(const char* str)
+{
+	char* str_lower = dc_strlower(str);
+
+	static uint32_t colors[] = {
+		0xe56555,
+		0xf28c48,
+		0x8e85ee,
+		0x76c84d,
+		0x5bb6cc,
+		0x549cdd,
+		0xd25c99,
+		0xb37800
+	};
+
+	int checksum = 0;
+	int str_len = strlen(str_lower);
+	for (int i = 0; i < str_len; i++) {
+		checksum += (i+1)*str_lower[i];
+		checksum %= 0x00FFFFFF;
+	}
+
+	int color_index = checksum % (sizeof(colors)/sizeof(uint32_t));
+
+	free(str_lower);
+	return colors[color_index];
+}
+
+
 /*******************************************************************************
  * clist tools
  ******************************************************************************/
@@ -868,16 +927,6 @@ char* dc_create_id(void)
 }
 
 
-char* dc_create_dummy_references_mid()
-{
-	char* msgid = dc_create_id();
-	char* ret = NULL;
-	ret = dc_mprintf("Rf.%s@mr.thread", msgid);
-	free(msgid);
-	return ret;
-}
-
-
 char* dc_create_outgoing_rfc724_mid(const char* grpid, const char* from_addr)
 {
 	/* Function generates a Message-ID that can be used for a new outgoing message.
@@ -918,7 +967,7 @@ char* dc_create_incoming_rfc724_mid(time_t message_timestamp, uint32_t contact_i
 	- when fetching the same message again, this function should generate the same Message-ID
 	*/
 
-	if (message_timestamp==DC_INVALID_TIMESTAMP || contact_ids_to==NULL || dc_array_get_cnt(contact_ids_to)==0) {
+	if (contact_ids_to==NULL || dc_array_get_cnt(contact_ids_to)==0) {
 		return NULL;
 	}
 
@@ -995,26 +1044,30 @@ char* dc_extract_grpid_from_rfc724_mid_list(const clist* list)
  ******************************************************************************/
 
 
-int dc_file_exist(const char* pathNfilename)
+/*
+ * removes trailing slash from given path.
+ */
+void dc_ensure_no_slash(char* pathNfilename)
 {
-	struct stat st;
-	if (stat(pathNfilename, &st)==0) {
-		return 1; /* the size, however, may be 0 */
-	}
-	else {
-		return 0;
+	int path_len = strlen(pathNfilename);
+	if (path_len > 0) {
+		if (pathNfilename[path_len-1]=='/'
+		 || pathNfilename[path_len-1]=='\\') {
+			pathNfilename[path_len-1] = 0;
+		}
 	}
 }
 
 
-uint64_t dc_get_filebytes(const char* pathNfilename)
+void dc_validate_filename(char* filename)
 {
-	struct stat st;
-	if (stat(pathNfilename, &st)==0) {
-		return (uint64_t)st.st_size;
-	}
-	else {
-		return 0;
+	/* function modifies the given buffer and replaces all characters not valid in filenames by a "-" */
+	char* p1 = filename;
+	while (*p1) {
+		if (*p1=='/' || *p1=='\\' || *p1==':') {
+			*p1 = '-';
+		}
+		p1++;
 	}
 }
 
@@ -1033,97 +1086,6 @@ char* dc_get_filename(const char* pathNfilename)
 	else {
 		return dc_strdup(pathNfilename);
 	}
-}
-
-
-int dc_delete_file(const char* pathNfilename, dc_context_t* log/*may be NULL*/)
-{
-	if (pathNfilename==NULL) {
-		return 0;
-	}
-
-	if (remove(pathNfilename)!=0) {
-		dc_log_warning(log, 0, "Cannot delete \"%s\".", pathNfilename);
-		return 0;
-	}
-
-	return 1;
-}
-
-
-int dc_copy_file(const char* src, const char* dest, dc_context_t* log/*may be NULL*/)
-{
-    int     success = 0;
-    int     fd_src = -1;
-    int     fd_dest = -1;
-    #define DC_COPY_BUF_SIZE 4096
-    char    buf[DC_COPY_BUF_SIZE];
-    size_t  bytes_read = 0;
-    int     anything_copied = 0;
-
-	if (src==NULL || dest==NULL) {
-		return 0;
-	}
-
-    if ((fd_src=open(src, O_RDONLY)) < 0) {
-		dc_log_error(log, 0, "Cannot open source file \"%s\".", src);
-        goto cleanup;
-	}
-
-    if ((fd_dest=open(dest, O_WRONLY|O_CREAT|O_EXCL, 0666)) < 0) {
-		dc_log_error(log, 0, "Cannot open destination file \"%s\".", dest);
-        goto cleanup;
-	}
-
-    while ((bytes_read=read(fd_src, buf, DC_COPY_BUF_SIZE)) > 0) {
-        if (write(fd_dest, buf, bytes_read)!=bytes_read) {
-            dc_log_error(log, 0, "Cannot write %i bytes to \"%s\".", bytes_read, dest);
-		}
-		anything_copied = 1;
-    }
-
-    if (!anything_copied) {
-		/* not a single byte copied -> check if the source is empty, too */
-		close(fd_src);
-		fd_src = -1;
-		if (dc_get_filebytes(src)!=0) {
-			dc_log_error(log, 0, "Different size information for \"%s\".", bytes_read, dest);
-			goto cleanup;
-		}
-    }
-
-    success = 1;
-
-cleanup:
-	if (fd_src >= 0) { close(fd_src); }
-	if (fd_dest >= 0) { close(fd_dest); }
-	return success;
-}
-
-
-int dc_create_folder(const char* pathNfilename, dc_context_t* log)
-{
-	struct stat st;
-	if (stat(pathNfilename, &st)==-1) {
-		if (mkdir(pathNfilename, 0755)!=0) {
-			dc_log_warning(log, 0, "Cannot create directory \"%s\".", pathNfilename);
-			return 0;
-		}
-	}
-	return 1;
-}
-
-
-char* dc_get_filesuffix_lc(const char* pathNfilename)
-{
-	if (pathNfilename) {
-		const char* p = strrchr(pathNfilename, '.'); /* use the last point, we're interesting the "main" type */
-		if (p) {
-			p++;
-			return dc_strlower(p); /* in contrast to dc_split_filename() we return the lowercase suffix */
-		}
-	}
-	return NULL;
 }
 
 
@@ -1152,117 +1114,16 @@ void dc_split_filename(const char* pathNfilename, char** ret_basename, char** re
 }
 
 
-
-void dc_validate_filename(char* filename)
+char* dc_get_filesuffix_lc(const char* pathNfilename)
 {
-	/* function modifies the given buffer and replaces all characters not valid in filenames by a "-" */
-	char* p1 = filename;
-	while (*p1) {
-		if (*p1=='/' || *p1=='\\' || *p1==':') {
-			*p1 = '-';
+	if (pathNfilename) {
+		const char* p = strrchr(pathNfilename, '.'); /* use the last point, we're interesting the "main" type */
+		if (p) {
+			p++;
+			return dc_strlower(p); /* in contrast to dc_split_filename() we return the lowercase suffix */
 		}
-		p1++;
 	}
-}
-
-
-char* dc_get_fine_pathNfilename(const char* folder, const char* desired_filenameNsuffix__)
-{
-	char*       ret = NULL;
-	char*       filenameNsuffix = NULL;
-	char*       basename = NULL;
-	char*       dotNSuffix = NULL;
-	time_t      now = time(NULL);
-	struct stat st;
-	int         i = 0;
-
-	filenameNsuffix = dc_strdup(desired_filenameNsuffix__);
-	dc_validate_filename(filenameNsuffix);
-	dc_split_filename(filenameNsuffix, &basename, &dotNSuffix);
-
-	for (i = 0; i < 1000 /*no deadlocks, please*/; i++) {
-		if (i) {
-			time_t idx = i<100? i : now+i;
-			ret = dc_mprintf("%s/%s-%lu%s", folder, basename, (unsigned long)idx, dotNSuffix);
-		}
-		else {
-			ret = dc_mprintf("%s/%s%s", folder, basename, dotNSuffix);
-		}
-		if (stat(ret, &st)==-1) {
-			goto cleanup; /* fine filename found */
-		}
-		free(ret); /* try over with the next index */
-		ret = NULL;
-	}
-
-cleanup:
-	free(filenameNsuffix);
-	free(basename);
-	free(dotNSuffix);
-	return ret;
-}
-
-
-int dc_write_file(const char* pathNfilename, const void* buf, size_t buf_bytes, dc_context_t* log)
-{
-	int success = 0;
-
-	FILE* f = fopen(pathNfilename, "wb");
-	if (f) {
-		if (fwrite(buf, 1, buf_bytes, f)==buf_bytes) {
-			success = 1;
-		}
-		else {
-			dc_log_warning(log, 0, "Cannot write %lu bytes to \"%s\".", (unsigned long)buf_bytes, pathNfilename);
-		}
-		fclose(f);
-	}
-	else {
-		dc_log_warning(log, 0, "Cannot open \"%s\" for writing.", pathNfilename);
-	}
-
-	return success;
-}
-
-
-int dc_read_file(const char* pathNfilename, void** buf, size_t* buf_bytes, dc_context_t* log)
-{
-	int success = 0;
-
-	if (pathNfilename==NULL || buf==NULL || buf_bytes==NULL) {
-		return 0; /* do not go to cleanup as this would dereference "buf" and "buf_bytes" */
-	}
-
-	*buf = NULL;
-	*buf_bytes = 0;
-	FILE* f = fopen(pathNfilename, "rb");
-	if (f==NULL) { goto cleanup; }
-
-	fseek(f, 0, SEEK_END);
-	*buf_bytes = ftell(f);
-	fseek(f, 0, SEEK_SET);
-	if (*buf_bytes<=0) { goto cleanup; }
-
-	*buf = malloc( (*buf_bytes) + 1 /*be pragmatic and terminate all files by a null - fine for texts and does not hurt for the rest */);
-	if (*buf==NULL) { goto cleanup; }
-
-	((char*)*buf)[*buf_bytes /*we allocated one extra byte above*/] = 0;
-
-	if (fread(*buf, 1, *buf_bytes, f)!=*buf_bytes) { goto cleanup; }
-
-	success = 1;
-
-cleanup:
-	if (f) {
-		fclose(f);
-	}
-	if (success==0) {
-		free(*buf);
-		*buf = NULL;
-		*buf_bytes = 0;
-		dc_log_warning(log, 0, "Cannot read \"%s\" or file is empty.", pathNfilename);
-	}
-	return success; /* buf must be free()'d by the caller */
+	return NULL;
 }
 
 
@@ -1313,4 +1174,363 @@ int dc_get_filemeta(const void* buf_start, size_t buf_bytes, uint32_t* ret_width
 	}
 
 	return 0;
+}
+
+
+char* dc_get_abs_path(dc_context_t* context, const char* pathNfilename)
+{
+	int   success           = 0;
+	char* pathNfilename_abs = NULL;
+
+	if (context==NULL || pathNfilename==NULL) {
+		goto cleanup;
+	}
+
+	pathNfilename_abs = dc_strdup(pathNfilename);
+
+	if (strncmp(pathNfilename_abs, "$BLOBDIR", 8)==0) {
+		if (context->blobdir==NULL) {
+			goto cleanup;
+		}
+		dc_str_replace(&pathNfilename_abs, "$BLOBDIR", context->blobdir);
+	}
+
+	success = 1;
+
+cleanup:
+	if (!success) {
+		free(pathNfilename_abs);
+		pathNfilename_abs = NULL;
+	}
+	return pathNfilename_abs;
+}
+
+
+int dc_file_exist(dc_context_t* context, const char* pathNfilename)
+{
+	int   exist = 0;
+	char* pathNfilename_abs = NULL;
+
+	if ((pathNfilename_abs=dc_get_abs_path(context, pathNfilename))==NULL) {
+		goto cleanup;
+	}
+
+	struct stat st;
+	if (stat(pathNfilename_abs, &st)==0) {
+		exist = 1; // the size, however, may be 0
+	}
+
+cleanup:
+	free(pathNfilename_abs);
+	return exist;
+}
+
+
+uint64_t dc_get_filebytes(dc_context_t* context, const char* pathNfilename)
+{
+	uint64_t filebytes = 0;
+	char*    pathNfilename_abs = NULL;
+
+	if ((pathNfilename_abs=dc_get_abs_path(context, pathNfilename))==NULL) {
+		goto cleanup;
+	}
+
+	struct stat st;
+	if (stat(pathNfilename_abs, &st)==0) {
+		filebytes = (uint64_t)st.st_size;
+	}
+
+cleanup:
+	free(pathNfilename_abs);
+	return filebytes;
+}
+
+
+int dc_delete_file(dc_context_t* context, const char* pathNfilename)
+{
+	int   success = 0;
+	char* pathNfilename_abs = NULL;
+
+	if ((pathNfilename_abs=dc_get_abs_path(context, pathNfilename))==NULL) {
+		goto cleanup;
+	}
+
+	if (remove(pathNfilename_abs)!=0) {
+		dc_log_warning(context, 0, "Cannot delete \"%s\".", pathNfilename);
+		goto cleanup;
+	}
+
+	success = 1;
+
+cleanup:
+	free(pathNfilename_abs);
+	return success;
+}
+
+
+int dc_copy_file(dc_context_t* context, const char* src, const char* dest)
+{
+    int     success = 0;
+    char*   src_abs = NULL;
+    char*   dest_abs = NULL;
+    int     fd_src = -1;
+    int     fd_dest = -1;
+    #define DC_COPY_BUF_SIZE 4096
+    char    buf[DC_COPY_BUF_SIZE];
+    size_t  bytes_read = 0;
+    int     anything_copied = 0;
+
+	if ((src_abs=dc_get_abs_path(context, src))==NULL
+	 || (dest_abs=dc_get_abs_path(context, dest))==NULL) {
+		goto cleanup;
+	}
+
+	if ((fd_src=open(src_abs, O_RDONLY)) < 0) {
+		dc_log_error(context, 0, "Cannot open source file \"%s\".", src);
+		goto cleanup;
+	}
+
+	if ((fd_dest=open(dest_abs, O_WRONLY|O_CREAT|O_EXCL, 0666)) < 0) {
+		dc_log_error(context, 0, "Cannot open destination file \"%s\".", dest);
+		goto cleanup;
+	}
+
+    while ((bytes_read=read(fd_src, buf, DC_COPY_BUF_SIZE)) > 0) {
+        if (write(fd_dest, buf, bytes_read)!=bytes_read) {
+            dc_log_error(context, 0, "Cannot write %i bytes to \"%s\".", bytes_read, dest);
+		}
+		anything_copied = 1;
+    }
+
+    if (!anything_copied) {
+		/* not a single byte copied -> check if the source is empty, too */
+		close(fd_src);
+		fd_src = -1;
+		if (dc_get_filebytes(context, src)!=0) {
+			dc_log_error(context, 0, "Different size information for \"%s\".", bytes_read, dest);
+			goto cleanup;
+		}
+    }
+
+    success = 1;
+
+cleanup:
+	if (fd_src >= 0) { close(fd_src); }
+	if (fd_dest >= 0) { close(fd_dest); }
+	free(src_abs);
+	free(dest_abs);
+	return success;
+}
+
+
+int dc_create_folder(dc_context_t* context, const char* pathNfilename)
+{
+	int   success = 0;
+	char* pathNfilename_abs = NULL;
+
+	if ((pathNfilename_abs=dc_get_abs_path(context, pathNfilename))==NULL) {
+		goto cleanup;
+	}
+
+	struct stat st;
+	if (stat(pathNfilename_abs, &st)==-1) {
+		if (mkdir(pathNfilename_abs, 0755)!=0) {
+			dc_log_warning(context, 0, "Cannot create directory \"%s\".", pathNfilename);
+			goto cleanup;
+		}
+	}
+
+	success = 1;
+
+cleanup:
+	free(pathNfilename_abs);
+	return success;
+}
+
+
+int dc_write_file(dc_context_t* context, const char* pathNfilename, const void* buf, size_t buf_bytes)
+{
+	int   success = 0;
+	char* pathNfilename_abs = NULL;
+
+	if ((pathNfilename_abs=dc_get_abs_path(context, pathNfilename))==NULL) {
+		goto cleanup;
+	}
+
+	FILE* f = fopen(pathNfilename_abs, "wb");
+	if (f) {
+		if (fwrite(buf, 1, buf_bytes, f)==buf_bytes) {
+			success = 1;
+		}
+		else {
+			dc_log_warning(context, 0, "Cannot write %lu bytes to \"%s\".", (unsigned long)buf_bytes, pathNfilename);
+		}
+		fclose(f);
+	}
+	else {
+		dc_log_warning(context, 0, "Cannot open \"%s\" for writing.", pathNfilename);
+	}
+
+cleanup:
+	free(pathNfilename_abs);
+	return success;
+}
+
+
+int dc_read_file(dc_context_t* context, const char* pathNfilename, void** buf, size_t* buf_bytes)
+{
+	int   success = 0;
+	char* pathNfilename_abs = NULL;
+
+	if (pathNfilename==NULL || buf==NULL || buf_bytes==NULL) {
+		return 0; /* do not go to cleanup as this would dereference "buf" and "buf_bytes" */
+	}
+
+	*buf = NULL;
+	*buf_bytes = 0;
+
+	if ((pathNfilename_abs=dc_get_abs_path(context, pathNfilename))==NULL) {
+		goto cleanup;
+	}
+
+	FILE* f = fopen(pathNfilename_abs, "rb");
+	if (f==NULL) { goto cleanup; }
+
+	fseek(f, 0, SEEK_END);
+	*buf_bytes = ftell(f);
+	fseek(f, 0, SEEK_SET);
+	if (*buf_bytes<=0) { goto cleanup; }
+
+	*buf = malloc( (*buf_bytes) + 1 /*be pragmatic and terminate all files by a null - fine for texts and does not hurt for the rest */);
+	if (*buf==NULL) { goto cleanup; }
+
+	((char*)*buf)[*buf_bytes /*we allocated one extra byte above*/] = 0;
+
+	if (fread(*buf, 1, *buf_bytes, f)!=*buf_bytes) { goto cleanup; }
+
+	success = 1;
+
+cleanup:
+	if (f) {
+		fclose(f);
+	}
+	if (success==0) {
+		free(*buf);
+		*buf = NULL;
+		*buf_bytes = 0;
+		dc_log_warning(context, 0, "Cannot read \"%s\" or file is empty.", pathNfilename);
+	}
+	free(pathNfilename_abs);
+	return success; /* buf must be free()'d by the caller */
+}
+
+
+char* dc_get_fine_pathNfilename(dc_context_t* context, const char* pathNfolder, const char* desired_filenameNsuffix__)
+{
+	char*  ret = NULL;
+	char*  pathNfolder_wo_slash = NULL;
+	char*  filenameNsuffix = NULL;
+	char*  basename = NULL;
+	char*  dotNSuffix = NULL;
+	time_t now = time(NULL);
+	int    i = 0;
+
+	pathNfolder_wo_slash = dc_strdup(pathNfolder);
+	dc_ensure_no_slash(pathNfolder_wo_slash);
+
+	filenameNsuffix = dc_strdup(desired_filenameNsuffix__);
+	dc_validate_filename(filenameNsuffix);
+	dc_split_filename(filenameNsuffix, &basename, &dotNSuffix);
+
+	for (i = 0; i < 1000 /*no deadlocks, please*/; i++) {
+		if (i) {
+			time_t idx = i<100? i : now+i;
+			ret = dc_mprintf("%s/%s-%lu%s", pathNfolder_wo_slash, basename, (unsigned long)idx, dotNSuffix);
+		}
+		else {
+			ret = dc_mprintf("%s/%s%s", pathNfolder_wo_slash, basename, dotNSuffix);
+		}
+		if (!dc_file_exist(context, ret)) {
+			goto cleanup; /* fine filename found */
+		}
+		free(ret); /* try over with the next index */
+		ret = NULL;
+	}
+
+cleanup:
+	free(filenameNsuffix);
+	free(basename);
+	free(dotNSuffix);
+	free(pathNfolder_wo_slash);
+	return ret;
+}
+
+
+void dc_make_rel_path(dc_context_t* context, char** path)
+{
+	if (context==NULL || path==NULL || *path==NULL) {
+		return;
+	}
+
+	if (strncmp(*path, context->blobdir, strlen(context->blobdir))==0) {
+		dc_str_replace(path, context->blobdir, "$BLOBDIR");
+	}
+}
+
+
+/**
+ * Check if a path describes a file in the blob directory.
+ * The path can be absolute or relative (starting with `$BLOBDIR`).
+ * The function does not check if the file really exists.
+ */
+int dc_is_blobdir_path(dc_context_t* context, const char* path)
+{
+	if ((strncmp(path, context->blobdir, strlen(context->blobdir))==0)
+	 || (strncmp(path, "$BLOBDIR", 8)==0)) {
+		return 1;
+	}
+	return 0;
+}
+
+
+/**
+ * Copy a file to the blob directory, if needed.
+ *
+ * @param context The context object as returned from dc_context_new().
+ * @param[in,out] path The path, may be modified to a relative path
+ *     starting with `$BLOBDIR`.
+ * @return 1=success file may or may not be copied, 0=error
+ */
+int dc_make_rel_and_copy(dc_context_t* context, char** path)
+{
+	int   success = 0;
+	char* filename = NULL;
+	char* blobdir_path = NULL;
+
+	if (context==NULL || path==NULL || *path==NULL) {
+		goto cleanup;
+	}
+
+	if (dc_is_blobdir_path(context, *path)) {
+		dc_make_rel_path(context, path);
+		success = 1; // file is already in blobdir
+		goto cleanup;
+	}
+
+	if ((filename=dc_get_filename(*path))==NULL
+	 || (blobdir_path=dc_get_fine_pathNfilename(context, "$BLOBDIR", filename))==NULL
+	 || !dc_copy_file(context, *path, blobdir_path)) {
+		goto cleanup;
+	}
+
+	free(*path);
+	*path = blobdir_path;
+	blobdir_path = NULL;
+	dc_make_rel_path(context, path);
+    success = 1;
+
+cleanup:
+	free(blobdir_path);
+	free(filename);
+	return success;
 }

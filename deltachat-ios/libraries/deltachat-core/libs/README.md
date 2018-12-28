@@ -14,3 +14,12 @@ Linux repositories.
 Moreover, we've fixed some bugs here and there; these lines are marked by
 `EDIT BY MR` then (as soon as we find the time, we should check if such changes
 could form a pull request to the used library).
+
+
+# OpenSSL
+
+- OpenSSL was take from Telegram-FOSS-master-3.10.1(821)
+  and has the version 1.0.1t
+- removed the following configuration options:
+  OPENSSL_NO_CAMELLIA -DOPENSSL_NO_CAST
+  as Camellia as well as CAST is needed in PGP

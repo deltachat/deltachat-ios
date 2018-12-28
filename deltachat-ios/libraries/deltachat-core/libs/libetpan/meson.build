@@ -1,4 +1,12 @@
-project('etpan', 'c')
+project('etpan', 'c',
+        version: '1.8',
+        license: '3-part BSD')
+
+pthreads = dependency('threads')
+zlib = dependency('zlib', fallback: ['zlib', 'zlib_dep'])
+openssl = dependency('openssl', fallback: ['openssl', 'dep'])
+sqlite = dependency('sqlite3', fallback: ['sqlite', 'dep'])
+sasl = dependency('libsasl2', fallback: ['cyrussasl', 'dep'])
 
 src = [
   'src/data-types/base64.c',
@@ -123,20 +131,39 @@ inc = include_directories(
   'include/libetpan',
 )
 
-pthreads = dependency('threads')
-zlib = dependency('zlib')
-openssl = dependency('openssl')
-sqlite = dependency('sqlite3')
-libsasl = dependency('libsasl2')
 add_project_arguments('-DHAVE_CONFIG_H', language: 'c')
-add_project_arguments('-DHAVE_ICONV', language: 'c')
+# add_project_arguments('-DHAVE_ICONV', language: 'c')
 
-lib = static_library(
-  'etpan', src,
-  dependencies: [pthreads, zlib, openssl, sqlite, libsasl],
-  include_directories: inc,
-  install: false,
+# We don't own this subproject, silence some warnings
+cc = meson.get_compiler('c')
+ccargs = cc.get_supported_arguments(
+  [
+    '-Wno-format-truncation',
+    '-Wno-misleading-indentation',
+    '-Wno-sometimes-uninitialized',
+    '-Wno-unused-function',
+  ]
 )
+
+if get_option('static-pic-lib')
+  lib = static_library(
+    'etpan', src,
+    c_args: ccargs,
+    pic: true,
+    dependencies: [pthreads, zlib, openssl, sqlite, sasl],
+    include_directories: inc,
+  )
+else
+  if get_option('default_library') != 'static'
+    error('Only --default-library=static is supported for now')
+  endif
+  lib = library(
+    'etpan', src,
+    c_args: ccargs,
+    dependencies: [pthreads, zlib, openssl, sqlite, sasl],
+    include_directories: inc,
+  )
+endif
 
 dep = declare_dependency(
   include_directories: include_directories('include'),
