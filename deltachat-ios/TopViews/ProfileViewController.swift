@@ -47,12 +47,12 @@ class ProfileViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 4
+            return 2
         }
 
         return 0
@@ -62,46 +62,38 @@ class ProfileViewController: UITableViewController {
         let row = indexPath.row
 
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-
-        let settingsImage = #imageLiteral(resourceName: "baseline_settings_black_18pt").withRenderingMode(.alwaysTemplate)
-        cell.imageView?.image = settingsImage
-        cell.imageView?.tintColor = UIColor.clear
-
-        if row == 0 {
-            cell.textLabel?.text = "Settings"
-            cell.imageView?.tintColor = UIColor.gray
-        }
-        if row == 1 {
-            cell.textLabel?.text = "Edit name"
-        }
-
-        if row == 2 {
-            cell.textLabel?.text = "New chat"
-        }
-
-        if row == 3 {
-            if let fingerprint = dc_get_securejoin_qr(mailboxPointer, 0) {
-                let textView = UITextView()
-                textView.text = "Fingerprint: \(fingerprint)"
-                textView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-                cell.addSubview(textView)
-
-                let frame = CGRect(origin: .zero, size: .init(width: 100, height: 100))
-                let imageView = QRCodeView(frame: frame)
-                imageView.generateCode(
-                    String(cString: fingerprint),
-                    foregroundColor: .darkText,
-                    backgroundColor: .white
-                )
-
-                cell.addSubview(imageView)
-                let viewsDictionary = ["textView": textView, "imageView": imageView]
-                cell.addConstraints(
-                    NSLayoutConstraint.constraints(
-                        withVisualFormat: "V:|[textView]-5-[imageView]|", metrics: nil, views: viewsDictionary
-                    )
-                )
+        if indexPath.section == 0 {
+            if row == 0 {
+                if let fingerprint = dc_get_securejoin_qr(mailboxPointer, 0) {
+                    cell.textLabel?.text = "Fingerprint: \(fingerprint)"
+                    cell.textLabel?.textAlignment = .center
+                }
             }
+            if row == 1 {
+                if let fingerprint = dc_get_securejoin_qr(mailboxPointer, 0) {
+                    let width: CGFloat = 130
+
+                    let frame = CGRect(origin: .zero, size: .init(width: width, height: width))
+                    let imageView = QRCodeView(frame: frame)
+                    imageView.generateCode(
+                        String(cString: fingerprint),
+                        foregroundColor: .darkText,
+                        backgroundColor: .white
+                    )
+                    imageView.translatesAutoresizingMaskIntoConstraints = false
+                    // imageView.center = cell.center
+                    cell.addSubview(imageView)
+
+                    imageView.centerXAnchor.constraint(equalTo: cell.centerXAnchor).isActive = true
+                    imageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+                    imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
+                    imageView.heightAnchor.constraint(equalToConstant: width).isActive = true
+                }
+            }
+        }
+
+        if indexPath.section == 1 {
+            if row == 0 {}
         }
 
         return cell
@@ -109,13 +101,17 @@ class ProfileViewController: UITableViewController {
 
     override func tableView(_: UITableView, didSelectRowAt _: IndexPath) {}
 
-    override func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
-        return 80
+    override func tableView(_: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 80
+        }
+
+        return 20
     }
 
     override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 3 {
-            return 200
+        if indexPath.row == 1 {
+            return 150
         }
 
         return 46
@@ -125,15 +121,16 @@ class ProfileViewController: UITableViewController {
         let bg = UIColor(red: 248 / 255, green: 248 / 255, blue: 255 / 255, alpha: 1.0)
         if section == 0 {
             let contactCell = ContactCell()
+            let name = MRConfig.displayname ?? contact.name
             contactCell.backgroundColor = bg
-            contactCell.nameLabel.text = contact.name
+            contactCell.nameLabel.text = name
             contactCell.emailLabel.text = contact.email
             contactCell.darkMode = false
             contactCell.selectionStyle = .none
             if let img = contact.profileImage {
                 contactCell.setImage(img)
             } else {
-                contactCell.setBackupImage(name: contact.name, color: contact.color)
+                contactCell.setBackupImage(name: name, color: contact.color)
             }
             contactCell.setVerified(isVerified: contact.isVerified)
             return contactCell
