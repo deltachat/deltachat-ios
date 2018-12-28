@@ -159,6 +159,10 @@ class MRMessage {
     var timestamp: Int64 {
         return Int64(messagePointer.pointee.timestamp)
     }
+    
+    var isInfo: Bool {
+        return dc_msg_is_info(messagePointer) == 1
+    }
 
     init(id: Int) {
         messagePointer = dc_get_msg(mailboxPointer, UInt32(id))

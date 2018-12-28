@@ -22,9 +22,7 @@ class ChatViewController: MessagesViewController {
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+    var disableWriting = false
     
     init(chatId: Int) {
         self.chatId = chatId
@@ -68,12 +66,17 @@ class ChatViewController: MessagesViewController {
     private func idToMessage(messageId: Int) -> Message {
         let message = MRMessage(id: messageId)
         let contact = MRContact(id: message.fromContactId)
-        
+        let messageId = "\(messageId)"
+        let date = Date(timeIntervalSince1970: Double(message.timestamp))
         let sender = Sender(id: "\(contact.id)", displayName: contact.name)
-        if let image = message.image {
-            return Message(image: image, sender: sender, messageId: "\(messageId)", date: Date(timeIntervalSince1970: Double(message.timestamp)))
+        
+        if message.isInfo {
+            let text = NSAttributedString(string: message.text ?? "", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+            return Message(attributedText: text, sender: sender, messageId: messageId, date: date)
+        } else if let image = message.image {
+            return Message(image: image, sender: sender, messageId: messageId, date: date)
         } else {
-            return Message(text: message.text ?? "- empty -", sender: sender, messageId: "\(messageId)", date: Date(timeIntervalSince1970: Double(message.timestamp)))
+            return Message(text: message.text ?? "- empty -", sender: sender, messageId: messageId, date: date)
         }
     }
     
@@ -158,17 +161,26 @@ class ChatViewController: MessagesViewController {
         }
     }
     
+    override var inputAccessoryView: UIView? {
+        if disableWriting {
+            return nil
+        }
+        
+        return messageInputBar
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let chat = MRChat(id: self.chatId)
-        
-        configureMessageCollectionView()
-        configureMessageInputBar()
         updateTitleView(title: chat.name, subtitle: nil)
         
-        messageInputBar.inputTextView.text = textDraft
-        messageInputBar.inputTextView.becomeFirstResponder()
+        configureMessageCollectionView()
+        if !disableWriting {
+            configureMessageInputBar()
+            messageInputBar.inputTextView.text = textDraft
+            messageInputBar.inputTextView.becomeFirstResponder()
+        }
         
         loadFirstMessages()
     }
@@ -176,7 +188,6 @@ class ChatViewController: MessagesViewController {
     func configureMessageCollectionView() {
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messageCellDelegate = self
-       
         
         scrollsToBottomOnKeyboardBeginsEditing = true // default false
         maintainPositionOnKeyboardFrameChanged = true // default false
@@ -354,6 +365,15 @@ extension ChatViewController: MessagesDataSource {
         return messageList[indexPath.section].sender == messageList[indexPath.section - 1].sender
     }
     
+    func isInfoMessage(at indexPath: IndexPath) -> Bool {
+        if let id = Int(messageList[indexPath.section].messageId) {
+            return MRMessage(id: id).isInfo
+        }
+        
+        return false
+    }
+        
+    
     func isNextMessageSameSender(at indexPath: IndexPath) -> Bool {
         guard indexPath.section + 1 < messageList.count else { return false }
         return messageList[indexPath.section].sender == messageList[indexPath.section + 1].sender
@@ -433,6 +453,15 @@ extension ChatViewController: MessagesDisplayDelegate {
     }
     
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+
+        if isInfoMessage(at: indexPath) {
+            return .custom { view in
+                view.style = .none
+                view.backgroundColor = UIColor(alpha: 0, red: 0, green: 0, blue: 0)
+                view.center.x = self.view.center.x
+
+            }
+        }
         
         var corners: UIRectCorner = []
         
@@ -472,7 +501,7 @@ extension ChatViewController: MessagesDisplayDelegate {
             let contact = message.fromContact
             let avatar = Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.name))
             avatarView.set(avatar: avatar)
-            avatarView.isHidden = isNextMessageSameSender(at: indexPath)
+            avatarView.isHidden = isNextMessageSameSender(at: indexPath) || message.isInfo
         }
     }
     
@@ -501,7 +530,7 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
     
     func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return (!isNextMessageSameSender(at: indexPath) && isFromCurrentSender(message: message)) ? 16 : 0
+        return (!isNextMessageSameSender(at: indexPath) && isFromCurrentSender(message: message)) && !isInfoMessage(at: indexPath) ? 16 : 0
     }
 
     func heightForLocation(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
@@ -637,7 +666,6 @@ extension ChatViewController: MessageLabelDelegate {
     func didSelectURL(_ url: URL) {
         UIApplication.shared.open(url)
     }
-    
 }
 
 // MARK: - LocationMessageDisplayDelegate

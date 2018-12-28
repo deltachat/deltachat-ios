@@ -23,7 +23,7 @@ class ChatListController: UIViewController {
     var newButton: UIBarButtonItem!
     
     func getChatList() {
-        guard let chatlistPointer = dc_get_chatlist(mailboxPointer, 0, nil, 0) else {
+        guard let chatlistPointer = dc_get_chatlist(mailboxPointer, DC_GCL_NO_SPECIALS, nil, 0) else {
             fatalError("chatlistPointer was nil")
         }
         // ownership of chatlistPointer transferred here to ChatList object

@@ -11,12 +11,12 @@ import UIKit
 
 extension UIViewController {
     
-    func updateTitleView(title: String, subtitle: String?, baseColor: UIColor = .white) {
+    func updateTitleView(title: String, subtitle: String?, baseColor: UIColor = .darkText) {
         
         let titleLabel = UILabel(frame: CGRect(x: 0, y: -2, width: 0, height: 0))
         titleLabel.backgroundColor = UIColor.clear
         titleLabel.textColor = baseColor
-        titleLabel.font = UIFont.systemFont(ofSize: 15)
+        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         titleLabel.text = title
         titleLabel.textAlignment = .center
         titleLabel.adjustsFontSizeToFitWidth = true

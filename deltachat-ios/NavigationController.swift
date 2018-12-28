@@ -11,10 +11,6 @@ import UIKit
 final class NavigationController: UINavigationController {
     var stateChangedObserver: Any?
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return viewControllers.last?.preferredStatusBarStyle ?? .lightContent
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
        

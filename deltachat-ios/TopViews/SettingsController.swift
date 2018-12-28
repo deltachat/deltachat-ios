@@ -17,12 +17,7 @@ final internal class SettingsViewController: QuickTableViewController {
     var backupProgressObserver: Any?
     var backupHud: JGProgressHUD?
 
-    // MARK: - Properties
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
+  
     // MARK: - View lifecycle
 
     override func viewDidLoad() {

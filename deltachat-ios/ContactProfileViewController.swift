@@ -49,42 +49,31 @@ class ContactProfileViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if section == 0 {
+            return 3
+        }
+        
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        if row == 0 {
-            let contactCell = ContactCell()
-            contactCell.nameLabel.text = contact.name
-            contactCell.emailLabel.text = contact.email
-            contactCell.darkMode = true
-            contactCell.selectionStyle = .none
-            if let img = contact.profileImage {
-                contactCell.setImage(img)
-            } else {
-                contactCell.setBackupImage(name: contact.name, color: contact.color)
-            }
-            
-            return contactCell
-        }
+        
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
 
         let settingsImage = #imageLiteral(resourceName: "baseline_settings_black_18pt").withRenderingMode(.alwaysTemplate)
         cell.imageView?.image = settingsImage
         cell.imageView?.tintColor = UIColor.clear
 
-        if row == 1 {
+        if row == 0 {
             cell.textLabel?.text = "Settings"
             cell.imageView?.tintColor = UIColor.gray
         }
-        if row == 2 {
+        if row == 1 {
             cell.textLabel?.text = "Edit name"
         }
-        /*if row == 3 {
-            cell.textLabel?.text = "Encryption"
-        }*/
-        if row == 3 {
+
+        if row == 2 {
             cell.textLabel?.text = "New chat"
         }
         return cell
@@ -106,5 +95,33 @@ class ContactProfileViewController: UITableViewController {
         if row == 3 {
             displayNewChat(contactId: contactId)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 80
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let bg = UIColor(red: 248/255, green: 248/255, blue: 255/255, alpha: 1.0)
+        if section == 0 {
+            let contactCell = ContactCell()
+            contactCell.backgroundColor = bg
+            contactCell.nameLabel.text = contact.name
+            contactCell.emailLabel.text = contact.email
+            contactCell.darkMode = false
+            contactCell.selectionStyle = .none
+            if let img = contact.profileImage {
+                contactCell.setImage(img)
+            } else {
+                contactCell.setBackupImage(name: contact.name, color: contact.color)
+            }
+            
+            return contactCell
+        }
+        
+        let vw = UIView()
+        vw.backgroundColor = bg
+        
+        return vw
     }
 }

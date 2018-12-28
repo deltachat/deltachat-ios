@@ -64,6 +64,8 @@
 		78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */; };
 		78E45E4C21D404AE00D4B15E /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4B21D404AE00D4B15E /* CustomCell.swift */; };
 		78ED838321D5379000243125 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838221D5379000243125 /* TextFieldCell.swift */; };
+		78ED838D21D577D000243125 /* events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838C21D577D000243125 /* events.swift */; };
+		78ED838F21D5927A00243125 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838E21D5927A00243125 /* CameraViewController.swift */; };
 		7A0052A11FBC50C40048C3BF /* CredentialsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0052A01FBC50C40048C3BF /* CredentialsController.swift */; };
 		7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0052C71FBE6CB40048C3BF /* NewContactController.swift */; };
 		7A451D941FB1B1DB00177250 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A451D921FB1B1DB00177250 /* wrapper.c */; };
@@ -191,6 +193,8 @@
 		78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		78E45E4B21D404AE00D4B15E /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		78ED838221D5379000243125 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		78ED838C21D577D000243125 /* events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = events.swift; sourceTree = "<group>"; };
+		78ED838E21D5927A00243125 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		7A0052A01FBC50C40048C3BF /* CredentialsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsController.swift; sourceTree = "<group>"; };
 		7A0052C71FBE6CB40048C3BF /* NewContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactController.swift; sourceTree = "<group>"; };
 		7A451D921FB1B1DB00177250 /* wrapper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wrapper.c; sourceTree = "<group>"; };
@@ -275,14 +279,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		78ED838B21D56BAA00243125 /* TopViews */ = {
+		78ED839021D5929800243125 /* TopViews */ = {
 			isa = PBXGroup;
 			children = (
+				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
 				78E45E3F21D3D70700D4B15E /* ContactListController.swift */,
-				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
+				78ED838E21D5927A00243125 /* CameraViewController.swift */,
 				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
 			);
-			name = TopViews;
+			path = TopViews;
 			sourceTree = "<group>";
 		};
 		7A451D9B1FB1F4BF00177250 /* Products */ = {
@@ -413,10 +418,11 @@
 				7A451D931FB1B1DB00177250 /* wrapper.h */,
 				7A451DBD1FB4AD0700177250 /* Wrapper.swift */,
 				70B8882D2091B8550074812E /* ContactCell.swift */,
+				78ED838C21D577D000243125 /* events.swift */,
 				7032FF8E2149C1DB00B7EC83 /* BaseController.swift */,
-				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
-				78ED838B21D56BAA00243125 /* TopViews */,
+				78ED839021D5929800243125 /* TopViews */,
 				78E45E3221D3CBC000D4B15E /* AppTabBarController.swift */,
+				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
 				78E45E3D21D3D28C00D4B15E /* NavigationController.swift */,
 				7A0052A01FBC50C40048C3BF /* CredentialsController.swift */,
 				7092474020B3869500AF8799 /* ContactProfileViewController.swift */,
@@ -561,7 +567,7 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -716,6 +722,7 @@
 				7070FB6A20FF345F000DC258 /* dc_saxparser.c in Sources */,
 				7070FB8A20FF4118000DC258 /* dc_log.c in Sources */,
 				7070FB9020FF4118000DC258 /* dc_stock.c in Sources */,
+				78ED838D21D577D000243125 /* events.swift in Sources */,
 				7070FB8F20FF4118000DC258 /* dc_loginparam.c in Sources */,
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
 				78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */,
@@ -731,6 +738,7 @@
 				7070FB4020FF3421000DC258 /* dc_chat.c in Sources */,
 				7070FB7320FF345F000DC258 /* dc_aheader.c in Sources */,
 				7070FB6120FF345F000DC258 /* dc_securejoin.c in Sources */,
+				78ED838F21D5927A00243125 /* CameraViewController.swift in Sources */,
 				78E45E4221D3DB4000D4B15E /* UIViewController+Extension.swift in Sources */,
 				7A7923741FB0A2C800BC2DE5 /* symmetric.c in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,

@@ -22,7 +22,7 @@ struct Constants {
     }
     
     static let primaryColor = UIColor(red: 81/255, green: 73/255, blue: 255/255, alpha: 1)
-    static let messagePrimaryColor = UIColor(red: 234/255, green: 233/255, blue: 246/255, alpha: 1)
+    static let messagePrimaryColor = Constants.primaryColor.withAlphaComponent(0.5)
     static let messageSecondaryColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
     
     static let defaultShadow = UIImage(color: UIColor(hexString: "ff2b82"), size: CGSize(width: 1, height: 1))
