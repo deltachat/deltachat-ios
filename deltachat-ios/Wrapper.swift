@@ -31,7 +31,7 @@ class MRContact {
     }
 
     var isVerified: Bool {
-        return dc_contact_is_verified(contactPointer) == 1
+        return dc_contact_is_verified(contactPointer) > 0
     }
 
     var isBlocked: Bool {
@@ -200,7 +200,7 @@ class MRChat {
     }
 
     var isVerified: Bool {
-        return dc_chat_is_verified(chatPointer) == 1
+        return dc_chat_is_verified(chatPointer) > 0
     }
 
     lazy var profileImage: UIImage? = { [unowned self] in
