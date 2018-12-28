@@ -10,6 +10,7 @@ import MapKit
 import MessageInputBar
 import MessageKit
 import UIKit
+import ALCameraViewController
 
 class ChatViewController: MessagesViewController {
     let outgoingAvatarOverlap: CGFloat = 17.5
@@ -23,6 +24,8 @@ class ChatViewController: MessagesViewController {
     var incomingMsgObserver: Any?
 
     var disableWriting = false
+    
+    var previewView: UIView?
 
     init(chatId: Int) {
         self.chatId = chatId
@@ -534,18 +537,36 @@ extension ChatViewController: MessagesLayoutDelegate {
 
     @objc func didPressPhotoButton() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.sourceType = .camera
-            imagePicker.cameraDevice = .rear
-            imagePicker.delegate = self
-            imagePicker.allowsEditing = true
-            present(imagePicker, animated: true, completion: nil)
+            let cameraViewController = CameraViewController { [weak self] image, asset in
+                self?.dismiss(animated: true, completion: nil)
+                
+                DispatchQueue.global().async {
+                    if let pickedImage = image {
+                        let width = Int32(exactly: pickedImage.size.width)!
+                        let height = Int32(exactly: pickedImage.size.height)!
+                        let path = self?.saveImage(image: pickedImage)
+                        let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
+                        dc_msg_set_file(msg, path, "image/jpeg")
+                        dc_msg_set_dimension(msg, width, height)
+                        dc_send_msg(mailboxPointer, UInt32(self!.chatId), msg)
+                        
+                        // cleanup
+                        dc_msg_unref(msg)
+                    }
+                }
+            }
+            
+            present(cameraViewController, animated: true, completion: nil)
         } else {
-            logger.info("no camera available")
+            let alert = UIAlertController(title: "Camera is not available", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {_ in
+                self.dismiss(animated: true, completion: nil)
+            }))
+            present(alert, animated: true, completion: nil)
         }
     }
 
-    fileprivate func saveImage(image: UIImage) -> String? {
+    func saveImage(image: UIImage) -> String? {
         guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
             return nil
         }
@@ -577,27 +598,6 @@ extension ChatViewController: MessagesLayoutDelegate {
             logger.info(error.localizedDescription)
             return nil
         }
-    }
-}
-
-extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        DispatchQueue.global().async {
-            if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage,
-                let width = Int32(exactly: pickedImage.size.width),
-                let height = Int32(exactly: pickedImage.size.height),
-                let path = self.saveImage(image: pickedImage) {
-                let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
-                dc_msg_set_file(msg, path, "image/jpeg")
-                dc_msg_set_dimension(msg, width, height)
-                dc_send_msg(mailboxPointer, UInt32(self.chatId), msg)
-
-                // cleanup
-                dc_msg_unref(msg)
-            }
-        }
-
-        dismiss(animated: true, completion: nil)
     }
 }
 

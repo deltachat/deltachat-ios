@@ -1,4 +1,5 @@
 PODS:
+  - ALCameraViewController (3.0.3)
   - DBDebugToolkit (0.5.0)
   - JGProgressHUD (2.0.3)
   - MessageInputBar/Core (0.4.1)
@@ -10,6 +11,7 @@ PODS:
   - SwiftyBeaver (1.6.1)
 
 DEPENDENCIES:
+  - ALCameraViewController (from `https://github.com/dignifiedquire/ALCameraViewController`)
   - DBDebugToolkit
   - JGProgressHUD
   - MessageKit (= 2.0.0)
@@ -29,7 +31,17 @@ SPEC REPOS:
     - ReachabilitySwift
     - SwiftyBeaver
 
+EXTERNAL SOURCES:
+  ALCameraViewController:
+    :git: https://github.com/dignifiedquire/ALCameraViewController
+
+CHECKOUT OPTIONS:
+  ALCameraViewController:
+    :commit: e0fcc4338276e4fc6240e8726ecc77aa39ce1385
+    :git: https://github.com/dignifiedquire/ALCameraViewController
+
 SPEC CHECKSUMS:
+  ALCameraViewController: dd13cf0a5b44a4d542c73bbcbebd02bc09e929c7
   DBDebugToolkit: c04bb6f618051d3de447a4b4323f37826116cfed
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
@@ -39,6 +51,6 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
 
-PODFILE CHECKSUM: 68c148b02e1dc4050bbbf02257c1216b82641b16
+PODFILE CHECKSUM: 754ae089b2ba2b296811903f136cbcc4b8f52d5a
 
 COCOAPODS: 1.5.3

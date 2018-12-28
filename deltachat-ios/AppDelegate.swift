@@ -69,11 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         start()
         open()
 
-        let ud = UserDefaults.standard
-        if ud.bool(forKey: Constants.Keys.deltachatUserProvidedCredentialsKey) {
-            initCore(withCredentials: false)
-        }
-
         // registerForPushNotifications()
 
         return true
@@ -125,7 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         close()
     }
 
-    private func open() {
+    func open() {
         let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
         let documentsPath = paths[0]
         let dbfile = documentsPath + "/messenger.db"

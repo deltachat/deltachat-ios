@@ -46,6 +46,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
     // - 0 when online
     // - 1 when offline
     case DC_EVENT_CONFIGURE_PROGRESS:
+        logger.info("configure progress: \(Int(data1)) \(Int(data2))")
         let nc = NotificationCenter.default
         DispatchQueue.main.async {
             let done = Int(data1) == 1000
@@ -65,12 +66,16 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                 UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
                 UserDefaults.standard.synchronize()
                 AppDelegate.appCoordinator.setupInnerViewControllers()
+                AppDelegate.lastErrorDuringConfig = nil
             }
         }
     case DC_EVENT_ERROR_NETWORK:
-        logger.warning("network: \(String(cString: data2String))")
+        let msg = String(cString: data2String)
         if data1 == 1 {
-            // TODO: report to the user!
+            AppDelegate.lastErrorDuringConfig = msg
+            logger.error("network: \(msg)")
+        } else {
+            logger.warning("network: \(msg)")
         }
 
         let nc = NotificationCenter.default

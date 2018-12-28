@@ -77,7 +77,7 @@ internal final class SettingsViewController: QuickTableViewController {
                     }
                 )
 
-                hud.dismiss(afterDelay: 1.0)
+                hud.dismiss(afterDelay: 5.0)
             }
         }
     }
@@ -344,8 +344,6 @@ internal final class SettingsViewController: QuickTableViewController {
                     fatalError("Error: dc_context_new returned nil")
                 }
 
-                // TODO: open
-
                 let hud = JGProgressHUD(style: .dark)
                 hud.textLabel.text = "Restoring Backup"
                 hud.show(in: view)
@@ -355,21 +353,19 @@ internal final class SettingsViewController: QuickTableViewController {
                 hud.dismiss(afterDelay: 1.0)
             } else {
                 let alert = UIAlertController(title: "Can not restore", message: "No Backup found", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {_ in
+                    self.dismiss(animated: true, completion: nil)
+                }))
                 present(alert, animated: true, completion: nil)
             }
         }
     }
 
     private func configure(_: Row) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         showBackupHud("Configuring account")
-        appDelegate.stop()
         dc_configure(mailboxPointer)
-
         // refresh our view
         setTable()
         tableView.reloadData()
-
-        appDelegate.start()
     }
 }
