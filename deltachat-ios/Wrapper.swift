@@ -318,7 +318,11 @@ class MRConfig {
         let p = dc_get_config(mailboxPointer, key)
 
         if let pSafe = p {
-            return String(cString: pSafe)
+            let c = String(cString: pSafe)
+            if c == "" {
+                return nil
+            }
+            return c
         }
 
         return nil
@@ -577,5 +581,77 @@ class MRConfig {
         get {
             return getBool("save_mime_headers")
         }
+    }
+
+    class var configuredEmail: String {
+        get {
+            return getOptStr("configured_addr") ?? ""
+        }
+        set {}
+    }
+    class var configuredMailServer: String {
+        get {
+            return getOptStr("configured_mail_server") ?? ""
+        }
+        set {}
+    }
+    class var configuredMailUser: String {
+        get {
+            return getOptStr("configured_mail_user") ?? ""
+        }
+        set {}
+    }
+    class var configuredMailPw: String {
+        get {
+            return getOptStr("configured_mail_pw") ?? ""
+        }
+        set {}
+    }
+    class var configuredMailPort: String {
+        get {
+            return getOptStr("configured_mail_port") ?? ""
+        }
+        set {}
+    }
+    class var configuredSendServer: String {
+        get {
+            return getOptStr("configured_send_server") ?? ""
+        }
+        set {}
+    }
+    class var configuredSendUser: String {
+        get {
+            return getOptStr("configured_send_user") ?? ""
+        }
+        set {}
+    }
+    class var configuredSendPw: String {
+        get {
+            return getOptStr("configured_send_pw") ?? ""
+        }
+        set {}
+    }
+    class var configuredSendPort: String {
+        get {
+            return getOptStr("configured_send_port") ?? ""
+        }
+        set {}
+    }
+
+    class var configuredServerFlags: String {
+        get {
+            return getOptStr("configured_server_flags") ?? ""
+        }
+        set {}
+    }
+
+    /**
+     * Was configured executed beforeß
+     */
+    class var configured: Bool {
+        get {
+            return getBool("configured")
+        }
+        set {}
     }
 }

@@ -130,8 +130,8 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func setTable() {
-        var basicsRows: [Row & RowStyle] = [
-            NavigationRow(title: "Email", subtitle: .rightAligned(MRConfig.addr ?? ""), action: { _ in }),
+        let basicsRows: [Row & RowStyle] = [
+            NavigationRow(title: "Email", subtitle: .rightAligned(MRConfig.addr ?? ""), action: editCell()),
             NavigationRow(title: "Password", subtitle: .rightAligned("********"), action: editCell()),
             TapActionRow(title: "Configure", action: { [weak self] in self?.configure($0) }),
         ]
@@ -140,9 +140,7 @@ internal final class SettingsViewController: QuickTableViewController {
             TapActionRow(title: "Restore from backup", action: { [weak self] in self?.restoreBackup($0) }),
         ]
 
-        let ud = UserDefaults.standard
-        if ud.bool(forKey: Constants.Keys.deltachatUserProvidedCredentialsKey) {
-            basicsRows.removeLast()
+        if MRConfig.configured {
             backupRows.removeLast()
         }
 
@@ -163,13 +161,13 @@ internal final class SettingsViewController: QuickTableViewController {
             Section(
                 title: "Advanced",
                 rows: [
-                    NavigationRow(title: "IMAP Server", subtitle: .rightAligned(MRConfig.mailServer ?? ""), action: editCell()),
-                    NavigationRow(title: "IMAP User", subtitle: .rightAligned(MRConfig.mailUser ?? ""), action: editCell()),
-                    NavigationRow(title: "IMAP Port", subtitle: .rightAligned(MRConfig.mailPort ?? ""), action: editCell()),
+                    NavigationRow(title: "IMAP Server", subtitle: .rightAligned(MRConfig.mailServer ?? MRConfig.configuredMailServer), action: editCell()),
+                    NavigationRow(title: "IMAP User", subtitle: .rightAligned(MRConfig.mailUser ?? MRConfig.configuredMailUser), action: editCell()),
+                    NavigationRow(title: "IMAP Port", subtitle: .rightAligned(MRConfig.mailPort ?? MRConfig.configuredMailPort), action: editCell()),
 
-                    NavigationRow(title: "SMTP Server", subtitle: .rightAligned(MRConfig.sendServer ?? ""), action: editCell()),
-                    NavigationRow(title: "SMTP User", subtitle: .rightAligned(MRConfig.sendUser ?? ""), action: editCell()),
-                    NavigationRow(title: "SMTP Port", subtitle: .rightAligned(MRConfig.sendPort ?? ""), action: editCell()),
+                    NavigationRow(title: "SMTP Server", subtitle: .rightAligned(MRConfig.sendServer ?? MRConfig.configuredSendServer), action: editCell()),
+                    NavigationRow(title: "SMTP User", subtitle: .rightAligned(MRConfig.sendUser ?? MRConfig.configuredSendUser), action: editCell()),
+                    NavigationRow(title: "SMTP Port", subtitle: .rightAligned(MRConfig.sendPort ?? MRConfig.configuredSendPort), action: editCell()),
                     NavigationRow(title: "SMTP Password", subtitle: .rightAligned("********"), action: editCell()),
                 ]
             ),
@@ -204,6 +202,13 @@ internal final class SettingsViewController: QuickTableViewController {
             let subtitle: String = sender.subtitle?.text ?? ""
             let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
 
+            if title == "Email" {
+                if MRConfig.configured {
+                    // Don't change emails in the running system
+                    return
+                }
+            }
+            
             if let sender = sender as? SwitchRow {
                 logger.info("got bool switch")
                 let value = sender.switchValue
@@ -242,6 +247,8 @@ internal final class SettingsViewController: QuickTableViewController {
                 var needRefresh = false
 
                 switch title {
+                case "Email":
+                    MRConfig.addr = field.text
                 case "Password":
                     MRConfig.mailPw = field.text
                 case "Display Name":
@@ -304,8 +311,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func restoreBackup(_: Row) {
-        let ud = UserDefaults.standard
-        if ud.bool(forKey: Constants.Keys.deltachatUserProvidedCredentialsKey) {
+        if MRConfig.configured {
             return
         }
 
@@ -338,11 +344,6 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func configure(_: Row) {
-        let ud = UserDefaults.standard
-        if ud.bool(forKey: Constants.Keys.deltachatUserProvidedCredentialsKey) {
-            return
-        }
-
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         showBackupHud("Configuring account")
         appDelegate.stop()
