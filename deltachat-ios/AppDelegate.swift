@@ -6,14 +6,14 @@
 //  Copyright © 2017 Jonas Reinsch. All rights reserved.
 //
 
-import UIKit
 import AudioToolbox
-import UserNotifications
-import Reachability
 import DBDebugToolkit
+import Reachability
 import SwiftyBeaver
+import UIKit
+import UserNotifications
 
-var mailboxPointer:UnsafeMutablePointer<dc_context_t>!
+var mailboxPointer: UnsafeMutablePointer<dc_context_t>!
 let logger = SwiftyBeaver.self
 
 enum ApplicationState {
@@ -23,12 +23,11 @@ enum ApplicationState {
     case backgroundFetch
 }
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     static let appCoordinator = AppCoordinator()
-    static var progress:Float = 0
-    static var lastErrorDuringConfig:String? = nil
+    static var progress: Float = 0
+    static var lastErrorDuringConfig: String?
     static var cancellableCredentialsController = false
 
     var reachability = Reachability()!
@@ -36,14 +35,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var state = ApplicationState.stopped
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         DBDebugToolkit.setup()
-        
+
         let console = ConsoleDestination()
         logger.addDestination(console)
-        
-        logger.info( "launching")
-        
+
+        logger.info("launching")
+
         // Override point for customization after application launch.
 
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -67,8 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-       logger.info( "---- background-fetch ----")
+    func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        logger.info("---- background-fetch ----")
 
         if mailboxPointer == nil {
             //       - second param remains nil (user data for more than one mailbox)
@@ -94,22 +93,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func applicationWillEnterForeground(_ application: UIApplication) {
-       logger.info( "---- foreground ----")
+    func applicationWillEnterForeground(_: UIApplication) {
+        logger.info("---- foreground ----")
         start()
     }
 
-    func applicationDidEnterBackground(_ application: UIApplication) {
-       logger.info( "---- background ----")
-       
+    func applicationDidEnterBackground(_: UIApplication) {
+        logger.info("---- background ----")
+
         stop()
-        
+
         reachability.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
     }
 
-    func applicationWillTerminate(_ application: UIApplication) {
-       logger.info( "---- terminate ----")
+    func applicationWillTerminate(_: UIApplication) {
+        logger.info("---- terminate ----")
         close()
     }
 
@@ -119,12 +118,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dbfile = documentsPath + "/messenger.db"
         logger.info("open: \(dbfile)")
 
-        let _ = dc_open(mailboxPointer, dbfile, nil)
+        _ = dc_open(mailboxPointer, dbfile, nil)
     }
 
     func stop() {
         state = .background
-        
+
         dc_interrupt_imap_idle(mailboxPointer)
         dc_interrupt_smtp_idle(mailboxPointer)
         dc_interrupt_mvbox_idle(mailboxPointer)
@@ -133,7 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func close() {
         state = .stopped
-        
+
         dc_close(mailboxPointer)
         mailboxPointer = nil
 
@@ -142,7 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func start() {
-       logger.info( "---- start ----")
+        logger.info("---- start ----")
 
         if mailboxPointer == nil {
             //       - second param remains nil (user data for more than one mailbox)
@@ -187,7 +186,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             try reachability.startNotifier()
         } catch {
-           logger.info( "could not start reachability notifier")
+            logger.info("could not start reachability notifier")
         }
     }
 
@@ -219,13 +218,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func registerForPushNotifications() {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound, .badge]) {
-                granted, error in
+                granted, _ in
                 logger.info("permission granted: \(granted)")
-        }
+            }
     }
 }
 
-func initCore(withCredentials: Bool, advancedMode:Bool = false, model:CredentialsModel? = nil, cancellableCredentialsUponFailure: Bool = false) {
+func initCore(withCredentials: Bool, advancedMode: Bool = false, model: CredentialsModel? = nil, cancellableCredentialsUponFailure: Bool = false) {
     AppDelegate.cancellableCredentialsController = cancellableCredentialsUponFailure
 
     if withCredentials {
@@ -251,7 +250,6 @@ func initCore(withCredentials: Bool, advancedMode:Bool = false, model:Credential
                 dc_set_config(mailboxPointer, "mail_port", imapPort)
             }
 
-
             if let smtpLoginName = model.smtpLoginName {
                 dc_set_config(mailboxPointer, "send_user", smtpLoginName)
             }
@@ -265,8 +263,8 @@ func initCore(withCredentials: Bool, advancedMode:Bool = false, model:Credential
                 dc_set_config(mailboxPointer, "send_port", smtpPort)
             }
 
-            var flags:Int32 = 0
-            if (model.smtpSecurity == .automatic) && (model.imapSecurity == .automatic) {
+            var flags: Int32 = 0
+            if model.smtpSecurity == .automatic, (model.imapSecurity == .automatic) {
                 flags = DC_LP_AUTH_NORMAL
             } else {
                 if model.smtpSecurity == .off {
@@ -303,12 +301,11 @@ func initCore(withCredentials: Bool, advancedMode:Bool = false, model:Credential
     addVibrationOnIncomingMessage()
 }
 
-
 func addVibrationOnIncomingMessage() {
     let nc = NotificationCenter.default
-    nc.addObserver(forName:Notification.Name(rawValue:"MrEventIncomingMsg"),
-                   object:nil, queue:nil) {
-                    notification in
-                    AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
+    nc.addObserver(forName: Notification.Name(rawValue: "MrEventIncomingMsg"),
+                   object: nil, queue: nil) {
+        _ in
+        AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
     }
 }

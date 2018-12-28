@@ -42,7 +42,7 @@ class MRContact {
         let file = dc_contact_get_profile_image(contactPointer)
         if let cFile = file {
             let filename = String(cString: cFile)
-            let path: URL = URL.init(fileURLWithPath: filename, isDirectory: false)
+            let path: URL = URL(fileURLWithPath: filename, isDirectory: false)
             if path.isFileURL {
                 do {
                     let data = try Data(contentsOf: path)
@@ -76,7 +76,6 @@ class MRContact {
     }
 }
 
-
 class MRMessage {
     private var messagePointer: UnsafeMutablePointer<dc_msg_t>
 
@@ -89,7 +88,7 @@ class MRMessage {
     }
 
     lazy var fromContact: MRContact = {
-        return MRContact(id: fromContactId)
+        MRContact(id: fromContactId)
     }()
 
     var toContactId: Int {
@@ -114,14 +113,14 @@ class MRMessage {
         let file = dc_msg_get_file(messagePointer)
         if let cFile = file, filetype == DC_MSG_IMAGE {
             let filename = String(cString: cFile)
-            let path: URL = URL.init(fileURLWithPath: filename, isDirectory: false)
+            let path: URL = URL(fileURLWithPath: filename, isDirectory: false)
             if path.isFileURL {
                 do {
                     let data = try Data(contentsOf: path)
                     let image = UIImage(data: data)
                     return image
                 } catch {
-                    logger.warning( "failed to load image: \(filename), \(error)")
+                    logger.warning("failed to load image: \(filename), \(error)")
                     return nil
                 }
             }
@@ -144,9 +143,9 @@ class MRMessage {
     func stateOutDescription() -> String {
         switch Int32(state) {
         case DC_STATE_OUT_DRAFT:
-                return "Draft"
+            return "Draft"
         case DC_STATE_OUT_PENDING:
-                return "Pending"
+            return "Pending"
         case DC_STATE_OUT_DELIVERED:
             return "Sent"
         case DC_STATE_OUT_MDN_RCVD:
@@ -159,7 +158,7 @@ class MRMessage {
     var timestamp: Int64 {
         return Int64(messagePointer.pointee.timestamp)
     }
-    
+
     var isInfo: Bool {
         return dc_msg_is_info(messagePointer) == 1
     }
@@ -180,7 +179,6 @@ class MRMessage {
 }
 
 class MRChat {
-
     var chatPointer: UnsafeMutablePointer<dc_chat_t>
 
     var id: Int {
@@ -206,14 +204,14 @@ class MRChat {
         let file = dc_chat_get_profile_image(chatPointer)
         if let cFile = file {
             let filename = String(cString: cFile)
-            let path: URL = URL.init(fileURLWithPath: filename, isDirectory: false)
+            let path: URL = URL(fileURLWithPath: filename, isDirectory: false)
             if path.isFileURL {
                 do {
                     let data = try Data(contentsOf: path)
                     let image = UIImage(data: data)
                     return image
                 } catch {
-                    logger.warning( "failed to load image: \(filename), \(error)")
+                    logger.warning("failed to load image: \(filename), \(error)")
                     return nil
                 }
             }
@@ -233,7 +231,6 @@ class MRChat {
 }
 
 class MRPoorText {
-
     private var poorTextPointer: UnsafeMutablePointer<dc_lot_t>
 
     var text1: String? {
@@ -273,12 +270,11 @@ class MRPoorText {
 }
 
 class MRChatList {
-
     private var chatListPointer: UnsafeMutablePointer<dc_chatlist_t>
 
     var length: Int {
         return dc_chatlist_get_cnt(chatListPointer)
-        //return Int(chatListPointer.pointee.m_cnt)
+        // return Int(chatListPointer.pointee.m_cnt)
     }
 
     // takes ownership of specified pointer
@@ -287,11 +283,11 @@ class MRChatList {
     }
 
     func getChatId(index: Int) -> Int {
-        return Int(dc_chatlist_get_chat_id(self.chatListPointer, index))
+        return Int(dc_chatlist_get_chat_id(chatListPointer, index))
     }
 
     func getMessageId(index: Int) -> Int {
-        return Int(dc_chatlist_get_msg_id(self.chatListPointer, index))
+        return Int(dc_chatlist_get_msg_id(chatListPointer, index))
     }
 
     func summary(index: Int) -> MRPoorText {
@@ -318,7 +314,7 @@ func strToBool(_ value: String?) -> Bool {
 }
 
 class MRConfig {
-    class private func getOptStr(_ key: String) -> String? {
+    private class func getOptStr(_ key: String) -> String? {
         let p = dc_get_config(mailboxPointer, key)
 
         if let pSafe = p {
@@ -328,19 +324,19 @@ class MRConfig {
         return nil
     }
 
-    class private func setOptStr(_ key: String, _ value: String?) {
+    private class func setOptStr(_ key: String, _ value: String?) {
         if let v = value {
             dc_set_config(mailboxPointer, key, v)
         }
     }
 
-    class private func getBool(_ key: String) -> Bool {
-        return strToBool(self.getOptStr(key))
+    private class func getBool(_ key: String) -> Bool {
+        return strToBool(getOptStr(key))
     }
 
-    class private func setBool(_ key: String, _ value: Bool) {
+    private class func setBool(_ key: String, _ value: Bool) {
         let vStr = value ? "1" : "0"
-        self.setOptStr(key, vStr)
+        setOptStr(key, vStr)
     }
 
     /**
@@ -414,6 +410,7 @@ class MRConfig {
             return getOptStr("send_server")
         }
     }
+
     /**
      *  SMTP-user, guessed if left out
      */

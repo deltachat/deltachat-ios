@@ -10,30 +10,31 @@ import UIKit
 
 final class NavigationController: UINavigationController {
     var stateChangedObserver: Any?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+
         if #available(iOS 11.0, *) {
             navigationBar.prefersLargeTitles = true
         } else {
             navigationBar.setBackgroundImage(UIImage(), for: .default)
         }
 
-        self.setShadow(nil)
-        
+        setShadow(nil)
+
         let nc = NotificationCenter.default
         stateChangedObserver = nc.addObserver(
             forName: dc_notificationStateChanged,
             object: nil,
-            queue: nil) {
-                notification in
-                if let state = notification.userInfo?["state"] {
-                    self.setShadow(state as? String)
-                }
+            queue: nil
+        ) {
+            notification in
+            if let state = notification.userInfo?["state"] {
+                self.setShadow(state as? String)
+            }
         }
     }
-    
+
     private func setShadow(_ state: String?) {
         switch state {
         case "offline":
@@ -44,10 +45,10 @@ final class NavigationController: UINavigationController {
             navigationBar.shadowImage = Constants.defaultShadow
         }
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         let nc = NotificationCenter.default
         if let stateChangedObserver = self.stateChangedObserver {
             nc.removeObserver(stateChangedObserver)

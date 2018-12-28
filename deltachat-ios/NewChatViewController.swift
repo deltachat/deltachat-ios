@@ -17,21 +17,21 @@ class NewChatViewController: UITableViewController {
     weak var chatDisplayer: ChatDisplayer?
 
     override func viewDidLoad() {
-        //super.viewDidLoad()
+        // super.viewDidLoad()
 
         title = "New Chat"
         navigationController?.navigationBar.prefersLargeTitles = true
-        
+
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(NewChatViewController.cancelButtonPressed))
-        
+
         navigationItem.rightBarButtonItem = cancelButton
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
+
+    override func viewDidAppear(_: Bool) {
         contactIds = Utils.getContactIds()
         tableView.reloadData()
     }
-    
+
     @objc func cancelButtonPressed() {
         dismiss(animated: true, completion: nil)
     }
@@ -43,51 +43,50 @@ class NewChatViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.contactIds.count + 2
+    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        return contactIds.count + 2
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         if row == 0 {
             // new group row
-            let cell:UITableViewCell
+            let cell: UITableViewCell
             if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
                 cell = c
             } else {
                 cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
             }
             cell.textLabel?.text = "New Group"
-            cell.textLabel?.textColor = self.view.tintColor
-            
+            cell.textLabel?.textColor = view.tintColor
+
             return cell
         }
         if row == 1 {
             // new contact row
-            let cell:UITableViewCell
+            let cell: UITableViewCell
             if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
                 cell = c
             } else {
                 cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
             }
             cell.textLabel?.text = "New Contact"
-            cell.textLabel?.textColor = self.view.tintColor
-            
+            cell.textLabel?.textColor = view.tintColor
+
             return cell
         }
-        
-        let cell:ContactCell
+
+        let cell: ContactCell
         if let c = tableView.dequeueReusableCell(withIdentifier: "contactCell") as? ContactCell {
             cell = c
         } else {
             cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
         }
-        
+
         let contactRow = row - 2
 
         let contact = MRContact(id: contactIds[contactRow])
@@ -95,12 +94,12 @@ class NewChatViewController: UITableViewController {
         cell.emailLabel.text = contact.email
         cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
         cell.setColor(contact.color)
-        
+
         cell.accessoryType = .detailDisclosureButton
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         if row == 0 {
             let newGroupController = NewGroupViewController()
@@ -118,8 +117,8 @@ class NewChatViewController: UITableViewController {
             }
         }
     }
-    
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+
+    override func tableView(_: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         let row = indexPath.row
         if row > 1 {
             let contactIndex = row - 2

@@ -9,59 +9,56 @@
 import UIKit
 
 class AppTabBarController: UITabBarController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let contactListController = ContactListController()
         let contactNavigationController = NavigationController(rootViewController: contactListController)
         let contactImage = UIImage(named: "contacts")
-        contactNavigationController.tabBarItem = UITabBarItem.init(title: "Contacts", image: contactImage, tag: 0)
+        contactNavigationController.tabBarItem = UITabBarItem(title: "Contacts", image: contactImage, tag: 0)
 
         let mailboxController = ChatViewController(chatId: Int(DC_CHAT_ID_DEADDROP))
         mailboxController.disableWriting = true
         let mailboxNavigationController = NavigationController(rootViewController: mailboxController)
         let mailboxImage = UIImage(named: "message")
-        mailboxNavigationController.tabBarItem = UITabBarItem.init(title: "Mailbox", image: mailboxImage, tag: 1)
+        mailboxNavigationController.tabBarItem = UITabBarItem(title: "Mailbox", image: mailboxImage, tag: 1)
 
         let profileController = ProfileViewController()
         let profileNavigationController = NavigationController(rootViewController: profileController)
         let profileImage = UIImage(named: "report_card")
-        profileNavigationController.tabBarItem = UITabBarItem.init(title: "My Profile", image: profileImage, tag: 2)
+        profileNavigationController.tabBarItem = UITabBarItem(title: "My Profile", image: profileImage, tag: 2)
 
         let chatListController = ChatListController()
         let chatNavigationController = NavigationController(rootViewController: chatListController)
         let chatImage = UIImage(named: "chat")
-        chatNavigationController.tabBarItem = UITabBarItem.init(title: "Chats", image: chatImage, tag: 3)
+        chatNavigationController.tabBarItem = UITabBarItem(title: "Chats", image: chatImage, tag: 3)
 
         let settingsController = SettingsViewController()
         let settingsNavigationController = NavigationController(rootViewController: settingsController)
         let settingsImage = UIImage(named: "settings")
-        settingsNavigationController.tabBarItem = UITabBarItem.init(title: "Settings", image: settingsImage, tag: 4)
+        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: settingsImage, tag: 4)
 
         let tabBarList = [
-          contactNavigationController,
-          mailboxNavigationController,
-          profileNavigationController,
-          chatNavigationController,
-          settingsNavigationController
+            contactNavigationController,
+            mailboxNavigationController,
+            profileNavigationController,
+            chatNavigationController,
+            settingsNavigationController,
         ]
 
         viewControllers = tabBarList
-        self.selectedIndex = 3
+        selectedIndex = 3
 
         tabBar.tintColor = Constants.primaryColor
     }
 
-
     /*
-    // MARK: - Navigation
+     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }

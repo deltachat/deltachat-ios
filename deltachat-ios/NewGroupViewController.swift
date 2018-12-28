@@ -9,49 +9,46 @@
 import UIKit
 
 class NewGroupViewController: UITableViewController {
-
     let contactCellReuseIdentifier = "xyz"
     var contactIds: [Int] = Utils.getContactIds()
     var contactIdsForGroup: Set<Int> = [] {
         didSet {
             let c = contactIdsForGroup.count
-            self.navigationItem.prompt = "\(c) members and me"
+            navigationItem.prompt = "\(c) members and me"
         }
     }
-    
+
     @objc func didPressGroupCreationNextButton() {
         navigationController?.pushViewController(GroupNameController(contactIdsForGroup: contactIdsForGroup), animated: true)
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "New Group"
-        self.navigationItem.prompt = "0 members and me"
+        title = "New Group"
+        navigationItem.prompt = "0 members and me"
         tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
         navigationController?.navigationBar.prefersLargeTitles = false
         let groupCreationNextButton = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(didPressGroupCreationNextButton))
         navigationItem.rightBarButtonItem = groupCreationNextButton
     }
 
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return contactIds.count
     }
 
-  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell:ContactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as? ContactCell else {
+        guard let cell: ContactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as? ContactCell else {
             fatalError("shouldn't happen")
         }
-        
+
         let row = indexPath.row
         let contactRow = row
 
@@ -60,10 +57,10 @@ class NewGroupViewController: UITableViewController {
         cell.emailLabel.text = contact.email
         cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
         cell.setColor(contact.color)
-        
+
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         if let cell = tableView.cellForRow(at: indexPath) {
@@ -77,8 +74,5 @@ class NewGroupViewController: UITableViewController {
                 cell.accessoryType = .checkmark
             }
         }
-            
     }
- 
-
 }

@@ -14,29 +14,29 @@ class ContactProfileViewController: UITableViewController {
     var contact: MRContact {
         return MRContact(id: contactId)
     }
-    
+
     init(contactId: Int) {
         self.contactId = contactId
         super.init(style: .plain)
     }
-    
-    required init?(coder aDecoder: NSCoder) {
+
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
+
+    override func viewWillAppear(_: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = false
         tableView.reloadData()
     }
-    
+
     func displayNewChat(contactId: Int) {
         let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
         let chatVC = ChatViewController(chatId: Int(chatId))
-        
+
         chatVC.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(chatVC, animated: true)
+        navigationController?.pushViewController(chatVC, animated: true)
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,21 +44,21 @@ class ContactProfileViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 3
         }
-        
+
         return 0
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        
+
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
 
         let settingsImage = #imageLiteral(resourceName: "baseline_settings_black_18pt").withRenderingMode(.alwaysTemplate)
@@ -78,11 +78,10 @@ class ContactProfileViewController: UITableViewController {
         }
         return cell
     }
-    
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        
+
         if row == 1 {
             let alert = UIAlertController(title: "Not implemented", message: "Settings are not implemented yet.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -96,13 +95,13 @@ class ContactProfileViewController: UITableViewController {
             displayNewChat(contactId: contactId)
         }
     }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+
+    override func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
         return 80
     }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let bg = UIColor(red: 248/255, green: 248/255, blue: 255/255, alpha: 1.0)
+
+    override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let bg = UIColor(red: 248 / 255, green: 248 / 255, blue: 255 / 255, alpha: 1.0)
         if section == 0 {
             let contactCell = ContactCell()
             contactCell.backgroundColor = bg
@@ -115,13 +114,13 @@ class ContactProfileViewController: UITableViewController {
             } else {
                 contactCell.setBackupImage(name: contact.name, color: contact.color)
             }
-            
+
             return contactCell
         }
-        
+
         let vw = UIView()
         vw.backgroundColor = bg
-        
+
         return vw
     }
 }

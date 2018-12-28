@@ -8,11 +8,8 @@
 
 import UIKit
 
-
 extension UIViewController {
-    
     func updateTitleView(title: String, subtitle: String?, baseColor: UIColor = .darkText) {
-        
         let titleLabel = UILabel(frame: CGRect(x: 0, y: -2, width: 0, height: 0))
         titleLabel.backgroundColor = UIColor.clear
         titleLabel.textColor = baseColor
@@ -21,7 +18,7 @@ extension UIViewController {
         titleLabel.textAlignment = .center
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.sizeToFit()
-        
+
         let subtitleLabel = UILabel(frame: CGRect(x: 0, y: 18, width: 0, height: 0))
         subtitleLabel.textColor = baseColor.withAlphaComponent(0.95)
         subtitleLabel.font = UIFont.systemFont(ofSize: 12)
@@ -29,7 +26,7 @@ extension UIViewController {
         subtitleLabel.textAlignment = .center
         subtitleLabel.adjustsFontSizeToFitWidth = true
         subtitleLabel.sizeToFit()
-        
+
         let titleView = UIView(frame: CGRect(x: 0, y: 0, width: max(titleLabel.frame.size.width, subtitleLabel.frame.size.width), height: 30))
         titleView.addSubview(titleLabel)
         if subtitle != nil {
@@ -45,8 +42,7 @@ extension UIViewController {
             let newX = widthDiff / 2
             titleLabel.frame.origin.x = newX
         }
-        
+
         navigationItem.titleView = titleView
     }
-    
 }

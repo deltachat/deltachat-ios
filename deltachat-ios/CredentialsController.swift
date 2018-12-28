@@ -17,19 +17,18 @@ enum SecurityMode: String, CaseIterable {
 }
 
 typealias CredentialsModel = (
-    email:String,
-    password:String,
-    imapLoginName:String?,
-    imapServer:String?,
-    imapPort:String?,
-    imapSecurity:SecurityMode,
-    smtpLoginName:String?,
-    smtpPassword:String?,
-    smtpServer:String?,
-    smtpPort:String?,
-    smtpSecurity:SecurityMode
+    email: String,
+    password: String,
+    imapLoginName: String?,
+    imapServer: String?,
+    imapPort: String?,
+    imapSecurity: SecurityMode,
+    smtpLoginName: String?,
+    smtpPassword: String?,
+    smtpServer: String?,
+    smtpPort: String?,
+    smtpSecurity: SecurityMode
 )
-
 
 class CredentialsController: UITableViewController {
     let emailCell = TextFieldCell.makeEmailCell()
@@ -46,8 +45,8 @@ class CredentialsController: UITableViewController {
     let smtpCellPort = TextFieldCell.makeConfigCell(label: "SMTP Port", placeholder: "Automatic")
     let smtpCellSecurity = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: nil)
 
-    var doneButton:UIBarButtonItem?
-    var advancedButton:UIBarButtonItem?
+    var doneButton: UIBarButtonItem?
+    var advancedButton: UIBarButtonItem?
     let progressBar = UIProgressView(progressViewStyle: .default)
 
     func readyForLogin() -> Bool {
@@ -64,7 +63,8 @@ class CredentialsController: UITableViewController {
             tableView.reloadData()
         }
     }
-    var model:CredentialsModel = ("", "", nil, nil, nil, SecurityMode.automatic, nil, nil, nil, nil, SecurityMode.automatic) {
+
+    var model: CredentialsModel = ("", "", nil, nil, nil, SecurityMode.automatic, nil, nil, nil, nil, SecurityMode.automatic) {
         didSet {
             if readyForLogin() {
                 doneButton?.isEnabled = true
@@ -73,14 +73,14 @@ class CredentialsController: UITableViewController {
             }
             smtpCellSecurity.detailTextLabel?.text = model.smtpSecurity.rawValue
             imapCellSecurity.detailTextLabel?.text = model.imapSecurity.rawValue
-            logger.info( "model: \(model)")
+            logger.info("model: \(model)")
         }
     }
 
-    let cells:[UITableViewCell]
-    let isCancellable:Bool
+    let cells: [UITableViewCell]
+    let isCancellable: Bool
 
-    init(isCancellable:Bool = false) {
+    init(isCancellable: Bool = false) {
         cells = [emailCell, passwordCell]
         self.isCancellable = isCancellable
 
@@ -119,7 +119,7 @@ class CredentialsController: UITableViewController {
         passwordCell.textField.returnKeyType = .done
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_: Bool) {
         emailCell.textField.becomeFirstResponder()
     }
 
@@ -141,7 +141,7 @@ class CredentialsController: UITableViewController {
         advancedMode = !advancedMode
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -152,11 +152,11 @@ class CredentialsController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
         return advancedMode ? 3 : 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return cells.count
         }
@@ -169,7 +169,7 @@ class CredentialsController: UITableViewController {
         return 0 // should never happen
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
             return "IMAP"
         }
@@ -196,19 +196,18 @@ class CredentialsController: UITableViewController {
                     }
                 }))
             }
-            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {a in}))
+            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in }))
 
             if let popoverController = actionSheet.popoverPresentationController {
                 if let cell = tableView.cellForRow(at: indexPath) {
                     popoverController.sourceView = cell.detailTextLabel
                 }
             }
-            self.present(actionSheet, animated: true, completion: {})
+            present(actionSheet, animated: true, completion: {})
         }
     }
 
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
 
@@ -252,7 +251,6 @@ class CredentialsController: UITableViewController {
             }
         }
         return UITableViewCell()
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -273,7 +271,7 @@ extension CredentialsController: UITextFieldDelegate {
         }
         if textField == passwordCell.textField {
             if readyForLogin() {
-                self.didPressSaveAccountButton()
+                didPressSaveAccountButton()
             }
         }
 
@@ -287,29 +285,37 @@ extension CredentialsController {
 
         model.email = emailText
     }
+
     @objc func passwordTextChanged() {
         let passwordText = passwordCell.textField.text ?? ""
 
         model.password = passwordText
     }
+
     @objc func imapLoginNameChanged() {
         model.imapLoginName = imapCellLoginName.textField.text
     }
+
     @objc func imapServerChanged() {
         model.imapServer = imapCellServer.textField.text
     }
+
     @objc func imapPortChanged() {
         model.imapPort = imapCellPort.textField.text
     }
+
     @objc func smtpLoginNamedChanged() {
         model.smtpLoginName = smtpCellLoginName.textField.text
     }
+
     @objc func smtpPasswordChanged() {
         model.smtpPassword = smtpCellPassword.textField.text
     }
+
     @objc func smtpServerChanged() {
         model.smtpServer = smtpCellServer.textField.text
     }
+
     @objc func smtpPortChanged() {
         model.smtpPort = smtpCellPort.textField.text
     }
