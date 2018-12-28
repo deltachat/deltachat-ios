@@ -293,6 +293,23 @@ internal final class SettingsViewController: QuickTableViewController {
 
             alertController.addTextField { textField in
                 textField.placeholder = subtitle
+                if title.contains("Password") {
+                    textField.isSecureTextEntry = true
+                    textField.textContentType = .password
+                }
+
+                if title == "Email" {
+                    textField.keyboardType = .emailAddress
+                    textField.textContentType = .username
+                }
+
+                if title.contains("Server") {
+                    textField.keyboardType = .URL
+                }
+
+                if title.contains("Port") {
+                    textField.keyboardType = .numberPad
+                }
             }
 
             alertController.addAction(confirmAction)
