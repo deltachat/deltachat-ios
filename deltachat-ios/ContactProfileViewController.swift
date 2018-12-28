@@ -114,6 +114,7 @@ class ContactProfileViewController: UITableViewController {
             } else {
                 contactCell.setBackupImage(name: contact.name, color: contact.color)
             }
+            contactCell.setVerified(isVerified: contact.isVerified)
 
             return contactCell
         }

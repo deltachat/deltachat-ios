@@ -46,8 +46,7 @@ class MRContact {
             if path.isFileURL {
                 do {
                     let data = try Data(contentsOf: path)
-                    let image = UIImage(data: data)
-                    return image
+                    return UIImage(data: data)
                 } catch {
                     logger.warning("failed to load image: \(filename), \(error)")
                     return nil
@@ -198,6 +197,10 @@ class MRChat {
 
     var color: UIColor {
         return UIColor(netHex: Int(dc_chat_get_color(chatPointer)))
+    }
+
+    var isVerified: Bool {
+        return dc_chat_is_verified(chatPointer) == 1
     }
 
     lazy var profileImage: UIImage? = { [unowned self] in

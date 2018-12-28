@@ -58,7 +58,7 @@ class ContactListController: UITableViewController {
         } else {
             cell.setBackupImage(name: contact.name, color: contact.color)
         }
-
+        cell.setVerified(isVerified: contact.isVerified)
         return cell
     }
 

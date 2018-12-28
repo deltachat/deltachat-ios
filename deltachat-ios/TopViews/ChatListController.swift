@@ -166,6 +166,7 @@ class ChatTableDataSource: NSObject, UITableViewDataSource {
         } else {
             cell.setBackupImage(name: chat.name, color: chat.color)
         }
+        cell.setVerified(isVerified: chat.isVerified)
 
         let result1 = summary.text1 ?? ""
         let result2 = summary.text2 ?? ""
