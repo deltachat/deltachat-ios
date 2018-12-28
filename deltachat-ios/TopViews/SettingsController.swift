@@ -208,7 +208,7 @@ internal final class SettingsViewController: QuickTableViewController {
                     return
                 }
             }
-            
+
             if let sender = sender as? SwitchRow {
                 logger.info("got bool switch")
                 let value = sender.switchValue

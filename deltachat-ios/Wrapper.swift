@@ -589,48 +589,56 @@ class MRConfig {
         }
         set {}
     }
+
     class var configuredMailServer: String {
         get {
             return getOptStr("configured_mail_server") ?? ""
         }
         set {}
     }
+
     class var configuredMailUser: String {
         get {
             return getOptStr("configured_mail_user") ?? ""
         }
         set {}
     }
+
     class var configuredMailPw: String {
         get {
             return getOptStr("configured_mail_pw") ?? ""
         }
         set {}
     }
+
     class var configuredMailPort: String {
         get {
             return getOptStr("configured_mail_port") ?? ""
         }
         set {}
     }
+
     class var configuredSendServer: String {
         get {
             return getOptStr("configured_send_server") ?? ""
         }
         set {}
     }
+
     class var configuredSendUser: String {
         get {
             return getOptStr("configured_send_user") ?? ""
         }
         set {}
     }
+
     class var configuredSendPw: String {
         get {
             return getOptStr("configured_send_pw") ?? ""
         }
         set {}
     }
+
     class var configuredSendPort: String {
         get {
             return getOptStr("configured_send_port") ?? ""

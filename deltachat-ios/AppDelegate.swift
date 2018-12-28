@@ -35,8 +35,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var state = ApplicationState.stopped
 
+    private func getCoreInfo() -> [[String]] {
+        if let cInfo = dc_get_info(mailboxPointer) {
+            let info = String(cString: cInfo)
+            logger.info(info)
+            return info.components(separatedBy: "\n").map { val in
+                val.components(separatedBy: "=")
+            }
+        }
+
+        return []
+    }
+
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         DBDebugToolkit.setup()
+        DBDebugToolkit.setupCrashReporting()
 
         let console = ConsoleDestination()
         logger.addDestination(console)
@@ -188,6 +201,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             logger.info("could not start reachability notifier")
         }
+
+        let info: [DBCustomVariable] = getCoreInfo().map { kv in
+            let value = kv.count > 1 ? kv[1] : ""
+            return DBCustomVariable(name: kv[0], value: value)
+        }
+        DBDebugToolkit.add(info)
     }
 
     @objc func reachabilityChanged(note: Notification) {
