@@ -15,10 +15,10 @@ class GroupNameController: UIViewController {
     var groupName = "" {
         didSet {
             if groupName.isEmpty {
-                print("empty")
+              logger.info( "empty")
                 doneButton.isEnabled = false
             } else {
-                print("something")
+              logger.info( "something")
                 doneButton.isEnabled = true
             }
         }
@@ -54,12 +54,12 @@ class GroupNameController: UIViewController {
     }
     
     @objc func didPressDoneButton() {
-        print("Done Button pressed")
+      logger.info( "Done Button pressed")
         let groupChatId = dc_create_group_chat(mailboxPointer, 0, groupName)
         for contactId in contactIdsForGroup {
             let success = dc_add_contact_to_chat(mailboxPointer, groupChatId, UInt32(contactId))
             if success == 1 {
-                print("successfully added \(contactId) to group \(groupName)")
+              logger.info( "successfully added \(contactId) to group \(groupName)")
             } else {
                 // FIXME
                 fatalError("failed to add \(contactId) to group \(groupName)")

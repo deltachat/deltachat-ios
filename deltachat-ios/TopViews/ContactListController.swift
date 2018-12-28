@@ -65,7 +65,6 @@ class ContactListController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("view contact", indexPath.row)
         let contactId = contactIds[indexPath.row]
         let contactProfileController = ContactProfileViewController(contactId: contactId)
         navigationController?.pushViewController(contactProfileController, animated: true)

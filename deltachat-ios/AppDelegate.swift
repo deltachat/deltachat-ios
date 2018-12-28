@@ -10,8 +10,11 @@ import UIKit
 import AudioToolbox
 import UserNotifications
 import Reachability
+import DBDebugToolkit
+import SwiftyBeaver
 
 var mailboxPointer:UnsafeMutablePointer<dc_context_t>!
+let logger = SwiftyBeaver.self
 
 enum ApplicationState {
     case stopped
@@ -19,6 +22,7 @@ enum ApplicationState {
     case background
     case backgroundFetch
 }
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,7 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var state = ApplicationState.stopped
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        print("---- launch ----")
+        DBDebugToolkit.setup()
+        
+        let console = ConsoleDestination()
+        logger.addDestination(console)
+        
+        logger.info( "launching")
+        
         // Override point for customization after application launch.
 
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -58,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("---- background-fetch ----")
+       logger.info( "---- background-fetch ----")
 
         if mailboxPointer == nil {
             //       - second param remains nil (user data for more than one mailbox)
@@ -85,19 +95,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        print("---- foreground ----")
+       logger.info( "---- foreground ----")
         start()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        print("---- background ----")
-        state = .background
+       logger.info( "---- background ----")
+       
         stop()
+        
+        reachability.stopNotifier()
+        NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        print("---- terminate ----")
-        state = .stopped
+       logger.info( "---- terminate ----")
         close()
     }
 
@@ -105,22 +117,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
         let documentsPath = paths[0]
         let dbfile = documentsPath + "/messenger.db"
-        print(dbfile)
+        logger.info("open: \(dbfile)")
 
         let _ = dc_open(mailboxPointer, dbfile, nil)
     }
 
-    private func stop() {
+    func stop() {
+        state = .background
+        
         dc_interrupt_imap_idle(mailboxPointer)
         dc_interrupt_smtp_idle(mailboxPointer)
         dc_interrupt_mvbox_idle(mailboxPointer)
         dc_interrupt_sentbox_idle(mailboxPointer)
-
-        reachability.stopNotifier()
-        NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
     }
 
     private func close() {
+        state = .stopped
+        
         dc_close(mailboxPointer)
         mailboxPointer = nil
 
@@ -128,8 +141,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
     }
 
-    private func start() {
-        print("---- start ----")
+    func start() {
+       logger.info( "---- start ----")
 
         if mailboxPointer == nil {
             //       - second param remains nil (user data for more than one mailbox)
@@ -174,7 +187,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             try reachability.startNotifier()
         } catch {
-            print("could not start reachability notifier")
+           logger.info( "could not start reachability notifier")
         }
     }
 
@@ -183,7 +196,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         switch reachability.connection {
         case .wifi, .cellular:
-            print("Reachable", reachability.connection)
+            logger.info("network: reachable", reachability.connection.description)
             dc_maybe_network(mailboxPointer)
 
             let nc = NotificationCenter.default
@@ -193,7 +206,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         userInfo: ["state": "online"])
             }
         case .none:
-            print("Network not reachable")
+            logger.info("network: not reachable")
             let nc = NotificationCenter.default
             DispatchQueue.main.async {
                 nc.post(name: dc_notificationStateChanged,
@@ -207,7 +220,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound, .badge]) {
                 granted, error in
-                print("Permission granted: \(granted)")
+                logger.info("permission granted: \(granted)")
         }
     }
 }
@@ -296,7 +309,6 @@ func addVibrationOnIncomingMessage() {
     nc.addObserver(forName:Notification.Name(rawValue:"MrEventIncomingMsg"),
                    object:nil, queue:nil) {
                     notification in
-                    print("----------- MrEventIncomingMsg received --------")
                     AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
     }
 }

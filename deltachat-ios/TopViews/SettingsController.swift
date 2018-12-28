@@ -15,8 +15,8 @@ import JGProgressHUD
 final internal class SettingsViewController: QuickTableViewController {
     let documentInteractionController = UIDocumentInteractionController()
     var backupProgressObserver: Any?
+    var configureProgressObserver: Any?
     var backupHud: JGProgressHUD?
-
   
     // MARK: - View lifecycle
 
@@ -39,7 +39,7 @@ final internal class SettingsViewController: QuickTableViewController {
                 notification in
                 if let ui = notification.userInfo {
                     if ui["error"] as! Bool {
-                        self.setHudError()
+                        self.setHudError(ui["errorMessage"] as? String)
                     } else if ui["done"] as! Bool {
                         self.setHudDone()
                     } else {
@@ -47,13 +47,29 @@ final internal class SettingsViewController: QuickTableViewController {
                     }
                 }
             }
+        configureProgressObserver = nc.addObserver(
+            forName: dc_notificationConfigureProgress,
+            object: nil,
+            queue: nil) {
+                notification in
+                if let ui = notification.userInfo {
+                    if ui["error"] as! Bool {
+                        self.setHudError(ui["errorMessage"] as? String)
+                    } else if ui["done"] as! Bool {
+                        self.setHudDone()
+                    } else {
+                        self.setHudProgress(ui["progress"] as! Int)
+                    }
+                }
+        }
+        
     }
 
-    private func setHudError() {
+    private func setHudError(_ message: String?) {
         if let hud = self.backupHud {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
                 UIView.animate(withDuration: 0.1, animations: {
-                    hud.textLabel.text = "Error"
+                    hud.textLabel.text = message ?? "Error"
                     hud.detailTextLabel.text = nil
                     hud.indicatorView = JGProgressHUDErrorIndicatorView()
                 })
@@ -84,13 +100,13 @@ final internal class SettingsViewController: QuickTableViewController {
         }
     }
     
-    private func showBackupHud() {
+    private func showBackupHud(_ text: String) {
         let hud = JGProgressHUD(style: .dark)
         hud.vibrancyEnabled = true
         hud.indicatorView = JGProgressHUDPieIndicatorView()
 
         hud.detailTextLabel.text = "0% Complete"
-        hud.textLabel.text = "Creating Backup"
+        hud.textLabel.text = text
         hud.show(in: self.view)
         
         backupHud = hud
@@ -103,15 +119,32 @@ final internal class SettingsViewController: QuickTableViewController {
         if let backupProgressObserver = self.backupProgressObserver {
             nc.removeObserver(backupProgressObserver)
         }
+        if let configureProgressObserver = self.configureProgressObserver {
+            nc.removeObserver(configureProgressObserver)
+        }
     }
     private func setTable() {
+        var basicsRows: [Row & RowStyle] = [
+            NavigationRow(title: "Email", subtitle: .rightAligned(MRConfig.addr ?? ""), action: { _ in }),
+            NavigationRow(title: "Password", subtitle: .rightAligned("********"), action: editCell()),
+            TapActionRow(title: "Configure", action: { [weak self] in self?.configure($0) })
+        ]
+        var backupRows = [
+            TapActionRow(title: "Create backup", action: { [weak self] in self?.createBackup($0) }),
+            TapActionRow(title: "Restore from backup", action: { [weak self] in self?.restoreBackup($0) })
+        ]
+        
+        let ud = UserDefaults.standard
+        if ud.bool(forKey: Constants.Keys.deltachatUserProvidedCredentialsKey) {
+            basicsRows.removeLast()
+            backupRows.removeLast()
+        }
+        
         tableContents = [
           Section(
             title: "Basics",
-            rows: [
-              NavigationRow(title: "Email", subtitle: .rightAligned(MRConfig.addr ?? ""), action: editCell()),
-              NavigationRow(title: "Password", subtitle: .rightAligned("********"), action: editCell()),
-            ]),
+            rows: basicsRows
+          ),
 
           Section(
             title: "User Details",
@@ -146,11 +179,8 @@ final internal class SettingsViewController: QuickTableViewController {
             ]),
 
           Section(
-            title: "Backups",
-            rows: [
-              TapActionRow(title: "Create backup", action: { [weak self] in self?.createBackup($0) }),
-              TapActionRow(title: "Restore from backup", action: { [weak self] in self?.restoreBackup($0) })
-            ]),
+            title: "Backup",
+            rows: backupRows),
         ]
     }
 
@@ -158,14 +188,14 @@ final internal class SettingsViewController: QuickTableViewController {
 
     private func editCell() -> (Row) -> Void {
         return { [weak self] sender in
-            print("row edit", sender.title)
+          logger.info( "row edit", sender.title)
 
             let title = sender.title
             let subtitle: String = sender.subtitle?.text ?? ""
             let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
 
             if let sender = sender as? SwitchRow {
-                print("got bool switch")
+              logger.info( "got bool switch")
                 let value = sender.switchValue
                 
                 switch title {
@@ -184,7 +214,7 @@ final internal class SettingsViewController: QuickTableViewController {
                 case "Save Mime Headers":
                     MRConfig.saveMimeHeaders = value
                 default:
-                    print("unknown title", title)
+                  logger.info( "unknown title", title)
                 }
                 return
             }
@@ -202,9 +232,6 @@ final internal class SettingsViewController: QuickTableViewController {
                 var needRefresh = false
 
                 switch title {
-                case "Email":
-                    MRConfig.addr = field.text
-                    needRefresh = true
                 case "Password":
                     MRConfig.mailPw = field.text
                 case "Display Name":
@@ -234,7 +261,7 @@ final internal class SettingsViewController: QuickTableViewController {
                 case "SMTP Password":
                     MRConfig.sendPw = field.text
                 default:
-                    print("unknown title", title)
+                  logger.info( "unknown title", title)
                 }
 
                 if needRefresh {
@@ -244,7 +271,7 @@ final internal class SettingsViewController: QuickTableViewController {
             }
 
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
-                print("canceled")
+              logger.info( "canceled")
             }
 
             alertController.addTextField { (textField) in
@@ -260,15 +287,20 @@ final internal class SettingsViewController: QuickTableViewController {
 
     private func createBackup(_ sender: Row) {
         if let documents = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.delta.chat.ios")?.path {
-            print("create backup in", documents)
+            logger.info( "create backup in", documents)
             dc_imex(mailboxPointer, DC_IMEX_EXPORT_BACKUP, documents, nil)
-            showBackupHud()
+            showBackupHud("Creating Backup")
         }
     }
 
     private func restoreBackup(_ sender: Row) {
+        let ud = UserDefaults.standard
+        if ud.bool(forKey: Constants.Keys.deltachatUserProvidedCredentialsKey) {
+            return
+        }
+        
         if let documents = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.delta.chat.ios")?.path {
-            print("looking for backup in", documents)
+            logger.info( "looking for backup in", documents)
 
             if let file = dc_imex_has_backup(mailboxPointer, documents) {
                 // Close as we are resetting the world
@@ -278,6 +310,8 @@ final internal class SettingsViewController: QuickTableViewController {
                 guard mailboxPointer != nil else {
                     fatalError("Error: dc_context_new returned nil")
                 }
+
+                // TODO: open 
                 
                 let hud = JGProgressHUD(style: .dark)
                 hud.textLabel.text = "Restoring Backup"
@@ -291,5 +325,23 @@ final internal class SettingsViewController: QuickTableViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
+    }
+    
+    private func configure(_ sender: Row) {
+        let ud = UserDefaults.standard
+        if ud.bool(forKey: Constants.Keys.deltachatUserProvidedCredentialsKey) {
+            return
+        }
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        showBackupHud("Configuring account")
+        appDelegate.stop()
+        dc_configure(mailboxPointer)
+        
+        // refresh our view
+        self.setTable()
+        self.tableView.reloadData()
+        
+        appDelegate.start()
     }
 }

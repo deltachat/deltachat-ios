@@ -56,14 +56,12 @@ class ChatListController: UIViewController {
         msgChangedObserver = nc.addObserver(forName:dc_notificationChanged,
                                             object:nil, queue:nil) {
                                                 notification in
-                                                print("----------- MrEventMsgsChanged notification received --------")
                                                 self.getChatList()
         }
         
         incomingMsgObserver = nc.addObserver(forName:dc_notificationIncoming,
                                              object:nil, queue:nil) {
                                                 notification in
-                                                print("----------- MrEventIncomingMsg received --------")
                                                 self.getChatList()
         }
     }
@@ -147,8 +145,7 @@ class ChatTableDataSource: NSObject, UITableViewDataSource  {
         guard let chatList = self.chatList else {
             fatalError("chatList was nil in data source")
         }
-        print(chatList.length)
-        
+
         return chatList.length
     }
     

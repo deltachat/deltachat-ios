@@ -12,7 +12,6 @@ class ProgressViewContainer: UIView {
     
     let progressView = UIProgressView(progressViewStyle: .default)
     
-    
     init() {
         super.init(frame: .zero)
         self.backgroundColor = .lightGray
@@ -76,7 +75,7 @@ class BaseController: UIViewController {
         progressChangedObserver = nc.addObserver(forName:Notification.Name(rawValue:"ProgressUpdated"),
                                             object:nil, queue:nil) {
                                                 notification in
-                                                print("----------- ProgressUpdated notification received --------")
+                                              logger.info( "----------- ProgressUpdated notification received --------")
                                                 self.progressViewContainer.progressView.progress = AppDelegate.progress
         }
     }

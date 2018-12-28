@@ -34,7 +34,7 @@ class ChatViewController: MessagesViewController {
          let subtitle = dc_chat_get_subtitle(chat.chatPointer)!
 
         let s = String(validatingUTF8: subtitle)
-        print(s)
+      logger.info( s)
  */
 
     }
@@ -102,7 +102,13 @@ class ChatViewController: MessagesViewController {
     
     func getMessageIds() {
         let c_messageIds = dc_get_chat_msgs(mailboxPointer, UInt32(self.chatId), 0, 0)
-        self.messageIds = Utils.copyAndFreeArray(inputArray: c_messageIds)
+        messageIds = Utils.copyAndFreeArray(inputArray: c_messageIds)
+        
+        let ids: UnsafePointer = UnsafePointer(messageIds.map { id in
+            return UInt32(id)
+        })
+
+        dc_markseen_msgs(mailboxPointer, ids, Int32(messageIds.count))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -116,7 +122,6 @@ class ChatViewController: MessagesViewController {
         msgChangedObserver = nc.addObserver(forName:dc_notificationChanged,
                                             object:nil, queue: OperationQueue.main) {
                                                 notification in
-                                                print("----------- MrEventMsgsChanged notification received --------")
                                                 if let ui = notification.userInfo {
                                                     if self.chatId == ui["chat_id"] as! Int {
                                                         self.updateMessage(ui["message_id"] as! Int)
@@ -127,7 +132,6 @@ class ChatViewController: MessagesViewController {
         incomingMsgObserver = nc.addObserver(forName:dc_notificationIncoming,
                                              object:nil, queue: OperationQueue.main) {
                                                 notification in
-                                                print("----------- MrEventIncomingMsg received --------")
                                                 if let ui = notification.userInfo {
                                                     if self.chatId == ui["chat_id"] as! Int {
                                                         let id = ui["message_id"] as! Int
@@ -551,7 +555,7 @@ extension ChatViewController: MessagesLayoutDelegate {
             imagePicker.allowsEditing = true
             self.present(imagePicker, animated: true, completion: nil)
         } else {
-            print("no camera available")
+          logger.info( "no camera available")
         }
     }
     
@@ -584,7 +588,7 @@ extension ChatViewController: MessagesLayoutDelegate {
             try data.write(to: path!)
             return path?.relativePath
         } catch {
-            print(error.localizedDescription)
+          logger.info( error.localizedDescription)
             return nil
         }
     }
@@ -616,16 +620,16 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
 
 extension ChatViewController: MessageCellDelegate {
     func didTapMessage(in cell: MessageCollectionViewCell) {
-        print("Message tapped")
+      logger.info( "Message tapped")
     }
     
     func didTapAvatar(in cell: MessageCollectionViewCell) {
-        print("Avatar tapped")
+      logger.info( "Avatar tapped")
     
     }
     
     @objc(didTapCellTopLabelIn:) func didTapCellTopLabel(in cell: MessageCollectionViewCell) {
-        print("Top label tapped")
+      logger.info( "Top label tapped")
     }
 
     func didTapBottomLabel(in cell: MessageCollectionViewCell) {
@@ -655,7 +659,7 @@ extension ChatViewController: MessageLabelDelegate {
     }
     
     func didSelectPhoneNumber(_ phoneNumber: String) {
-        print("phone open", phoneNumber)
+      logger.info( "phone open", phoneNumber)
         if let escapedPhoneNumber = phoneNumber.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             if let url = NSURL(string: "tel:\(escapedPhoneNumber)") {
                 UIApplication.shared.open(url as URL)

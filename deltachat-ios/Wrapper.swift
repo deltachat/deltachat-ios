@@ -49,7 +49,7 @@ class MRContact {
                     let image = UIImage(data: data)
                     return image
                 } catch {
-                    print("failed to load image", error, filename)
+                    logger.warning("failed to load image: \(filename), \(error)")
                     return nil
                 }
             }
@@ -121,7 +121,7 @@ class MRMessage {
                     let image = UIImage(data: data)
                     return image
                 } catch {
-                    print("failed to load image", error, filename)
+                    logger.warning( "failed to load image: \(filename), \(error)")
                     return nil
                 }
             }
@@ -213,7 +213,7 @@ class MRChat {
                     let image = UIImage(data: data)
                     return image
                 } catch {
-                    print("failed to load image", error, filename)
+                    logger.warning( "failed to load image: \(filename), \(error)")
                     return nil
                 }
             }

@@ -4,6 +4,8 @@ target 'deltachat-ios' do
   pod 'ReachabilitySwift'
   pod 'QuickTableViewController'
   pod 'JGProgressHUD'
+  pod 'SwiftyBeaver'
+  pod 'DBDebugToolkit'
   pod 'MessageKit', '2.0.0'
   post_install do |installer|
       installer.pods_project.targets.each do |target|

@@ -24,10 +24,10 @@ class AppTabBarController: UITabBarController {
         let mailboxImage = UIImage(named: "message")
         mailboxNavigationController.tabBarItem = UITabBarItem.init(title: "Mailbox", image: mailboxImage, tag: 1)
 
-        let cameraController = CameraViewController()
-        let cameraNavigationController = NavigationController(rootViewController: cameraController)
-        let cameraImage = UIImage(named: "camera")
-        cameraNavigationController.tabBarItem = UITabBarItem.init(title: "Camera", image: cameraImage, tag: 2)
+        let profileController = ProfileViewController()
+        let profileNavigationController = NavigationController(rootViewController: profileController)
+        let profileImage = UIImage(named: "report_card")
+        profileNavigationController.tabBarItem = UITabBarItem.init(title: "My Profile", image: profileImage, tag: 2)
 
         let chatListController = ChatListController()
         let chatNavigationController = NavigationController(rootViewController: chatListController)
@@ -42,7 +42,7 @@ class AppTabBarController: UITabBarController {
         let tabBarList = [
           contactNavigationController,
           mailboxNavigationController,
-          cameraNavigationController,
+          profileNavigationController,
           chatNavigationController,
           settingsNavigationController
         ]

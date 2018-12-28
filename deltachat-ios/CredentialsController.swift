@@ -73,7 +73,7 @@ class CredentialsController: UITableViewController {
             }
             smtpCellSecurity.detailTextLabel?.text = model.smtpSecurity.rawValue
             imapCellSecurity.detailTextLabel?.text = model.imapSecurity.rawValue
-            print(model)
+            logger.info( "model: \(model)")
         }
     }
 
