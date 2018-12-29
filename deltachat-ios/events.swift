@@ -13,6 +13,8 @@ let dc_notificationStateChanged = Notification.Name(rawValue: "MrEventStateChang
 let dc_notificationIncoming = Notification.Name(rawValue: "MrEventIncomingMsg")
 let dc_notificationBackupProgress = Notification.Name(rawValue: "MrEventBackupProgress")
 let dc_notificationConfigureProgress = Notification.Name(rawValue: "MrEventConfigureProgress")
+let dc_notificationSecureJoinerProgress = Notification.Name(rawValue: "MrEventSecureJoinerProgress")
+let dc_notificationSecureInviterProgress = Notification.Name(rawValue: "MrEventSecureInviterProgress")
 
 @_silgen_name("callbackSwift")
 
@@ -142,6 +144,36 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         }
     case DC_EVENT_IMEX_FILE_WRITTEN:
         logger.info("backup file written: \(String(cString: data1String))")
+
+    case DC_EVENT_SECUREJOIN_INVITER_PROGRESS:
+        logger.info("securejoin inviter progress \(data1)")
+
+        let nc = NotificationCenter.default
+        DispatchQueue.main.async {
+            nc.post(
+                name: dc_notificationSecureInviterProgress,
+                object: nil,
+                userInfo: [
+                    "progress": Int(data2),
+                    "error": Int(data2) == 0,
+                    "done": Int(data2) == 1000,
+                ]
+            )
+        }
+    case DC_EVENT_SECUREJOIN_JOINER_PROGRESS:
+        logger.info("securejoin joiner progress \(data1)")
+        let nc = NotificationCenter.default
+        DispatchQueue.main.async {
+            nc.post(
+                name: dc_notificationSecureJoinerProgress,
+                object: nil,
+                userInfo: [
+                    "progress": Int(data2),
+                    "error": Int(data2) == 0,
+                    "done": Int(data2) == 1000,
+                ]
+            )
+        }
     case DC_EVENT_GET_STRING:
         // nothing to do for now
         break

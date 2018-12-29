@@ -125,7 +125,11 @@ extension ChatListController: ChatPresenter {
 extension ChatListController: ChatDisplayer {
     func displayNewChat(contactId: Int) {
         let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
-        let chatVC = ChatViewController(chatId: Int(chatId))
+        displayChatForId(chatId: Int(chatId))
+    }
+
+    func displayChatForId(chatId: Int) {
+        let chatVC = ChatViewController(chatId: chatId)
 
         chatVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(chatVC, animated: true)

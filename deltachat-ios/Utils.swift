@@ -30,6 +30,42 @@ struct Utils {
             acc.append(Int(e))
         }
         dc_array_unref(inputArray)
+
+        return acc
+    }
+
+    static func copyAndFreeArrayWithLen(inputArray: UnsafeMutablePointer<dc_array_t>?, len: Int = 0) -> [Int] {
+        var acc: [Int] = []
+        let arrayLen = dc_array_get_cnt(inputArray)
+        let start = max(0, arrayLen - len)
+        for i in start ..< arrayLen {
+            let e = dc_array_get_id(inputArray, i)
+            acc.append(Int(e))
+        }
+        dc_array_unref(inputArray)
+
+        return acc
+    }
+
+    static func copyAndFreeArrayWithOffset(inputArray: UnsafeMutablePointer<dc_array_t>?, len: Int = 0, from: Int = 0, skipEnd: Int = 0) -> [Int] {
+        let lenArray = dc_array_get_cnt(inputArray)
+        if lenArray <= skipEnd || lenArray == 0 {
+            dc_array_unref(inputArray)
+            return [] }
+
+        let start = lenArray - 1 - skipEnd
+        let end = max(0, start - len)
+        let finalLen = start - end + (len > 0 ? 0 : 1)
+        var acc: [Int] = [Int](repeating: 0, count: finalLen)
+
+        for i in stride(from: start, to: end, by: -1) {
+            let index = finalLen - (start - i) - 1
+            acc[index] = Int(dc_array_get_id(inputArray, i))
+        }
+
+        dc_array_unref(inputArray)
+        logger.info("got: \(from) \(len) \(lenArray) - \(acc)")
+
         return acc
     }
 
@@ -59,6 +95,40 @@ struct Utils {
         addAddressPart(address["Postcode"])
         addAddressPart(address["Country"])
         return addressParts.joined(separator: ", ")
+    }
+
+    static func saveImage(image: UIImage) -> String? {
+        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
+            return nil
+        }
+
+        let size = image.size.applying(CGAffineTransform(scaleX: 0.2, y: 0.2))
+        let hasAlpha = false
+        let scale: CGFloat = 0.0
+
+        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: size))
+
+        let _scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        guard let scaledImage = _scaledImage else {
+            return nil
+        }
+
+        guard let data = scaledImage.jpegData(compressionQuality: 0.9) else {
+            return nil
+        }
+
+        do {
+            let timestamp = Int(Date().timeIntervalSince1970)
+            let path = directory.appendingPathComponent("\(timestamp).jpg")
+            try data.write(to: path!)
+            return path?.relativePath
+        } catch {
+            logger.info(error.localizedDescription)
+            return nil
+        }
     }
 }
 

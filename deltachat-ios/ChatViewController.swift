@@ -6,47 +6,36 @@
 //  Copyright © 2017 Jonas Reinsch. All rights reserved.
 //
 
+import ALCameraViewController
 import MapKit
 import MessageInputBar
 import MessageKit
 import UIKit
-import ALCameraViewController
 
 class ChatViewController: MessagesViewController {
     let outgoingAvatarOverlap: CGFloat = 17.5
 
     let chatId: Int
     let refreshControl = UIRefreshControl()
-    var messageIds: [Int] = []
-    var messageList: [Message] = []
+    var messageList: [MRMessage] = []
 
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
 
     var disableWriting = false
-    
+
     var previewView: UIView?
 
     init(chatId: Int) {
         self.chatId = chatId
         super.init(nibName: nil, bundle: nil)
-        // self.getMessageIds()
-
-        /*
-         let chat = MRChat(id: chatId)
-         let subtitle = dc_chat_get_subtitle(chat.chatPointer)!
-
-         let s = String(validatingUTF8: subtitle)
-         logger.info( s)
-         */
     }
 
     @objc
     func loadMoreMessages() {
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
-            self.getMessageIds()
             DispatchQueue.main.async {
-                self.messageList = self.messageIds.map(self.idToMessage)
+                self.messageList = self.getMessageIds(30, from: self.messageList.count) + self.messageList
                 self.messagesCollectionView.reloadDataAndKeepOffset()
                 self.refreshControl.endRefreshing()
             }
@@ -55,39 +44,13 @@ class ChatViewController: MessagesViewController {
 
     func loadFirstMessages() {
         DispatchQueue.global(qos: .userInitiated).async {
-            self.getMessageIds()
             DispatchQueue.main.async {
-                self.messageList = self.messageIds.map(self.idToMessage)
+                self.messageList = self.getMessageIds(30)
                 self.messagesCollectionView.reloadData()
                 self.refreshControl.endRefreshing()
                 self.messagesCollectionView.scrollToBottom(animated: false)
             }
         }
-    }
-
-    private func idToMessage(messageId: Int) -> Message {
-        let message = MRMessage(id: messageId)
-        let contact = MRContact(id: message.fromContactId)
-        let messageId = "\(messageId)"
-        let date = Date(timeIntervalSince1970: Double(message.timestamp))
-        let sender = Sender(id: "\(contact.id)", displayName: contact.name)
-
-        if message.isInfo {
-            let text = NSAttributedString(string: message.text ?? "", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
-            return Message(attributedText: text, sender: sender, messageId: messageId, date: date)
-        } else if let image = message.image {
-            return Message(image: image, sender: sender, messageId: messageId, date: date)
-        } else {
-            return Message(text: message.text ?? "- empty -", sender: sender, messageId: messageId, date: date)
-        }
-    }
-
-    private func messageToMRMessage(message: Message) -> MRMessage? {
-        if let id = Int(message.messageId) {
-            return MRMessage(id: id)
-        }
-
-        return nil
     }
 
     var textDraft: String? {
@@ -102,15 +65,19 @@ class ChatViewController: MessagesViewController {
         return nil
     }
 
-    func getMessageIds() {
+    func getMessageIds(_ count: Int, from: Int? = nil) -> [MRMessage] {
         let c_messageIds = dc_get_chat_msgs(mailboxPointer, UInt32(chatId), 0, 0)
-        messageIds = Utils.copyAndFreeArray(inputArray: c_messageIds)
 
-        let ids: UnsafePointer = UnsafePointer(messageIds.map { id in
-            UInt32(id)
-        })
+        let ids: [Int]
+        if let from = from {
+            ids = Utils.copyAndFreeArrayWithOffset(inputArray: c_messageIds, len: count, skipEnd: from)
+        } else {
+            ids = Utils.copyAndFreeArrayWithLen(inputArray: c_messageIds, len: count)
+        }
 
-        dc_markseen_msgs(mailboxPointer, ids, Int32(messageIds.count))
+        return ids.map {
+            MRMessage(id: $0)
+        }
     }
 
     required init?(coder _: NSCoder) {
@@ -137,7 +104,7 @@ class ChatViewController: MessagesViewController {
             if let ui = notification.userInfo {
                 if self.chatId == ui["chat_id"] as! Int {
                     let id = ui["message_id"] as! Int
-                    self.insertMessage(self.idToMessage(messageId: id))
+                    self.insertMessage(MRMessage(id: id))
                 }
             }
         }
@@ -331,13 +298,9 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func avatar(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> Avatar {
-        if let id = Int(messageList[indexPath.section].messageId) {
-            let message = MRMessage(id: id)
-            let contact = message.fromContact
-            return Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.name))
-        }
-
-        return Avatar(image: nil, initials: "?")
+        let message = messageList[indexPath.section]
+        let contact = message.fromContact
+        return Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.name))
     }
 
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
@@ -363,36 +326,30 @@ extension ChatViewController: MessagesDataSource {
 
     func isPreviousMessageSameSender(at indexPath: IndexPath) -> Bool {
         guard indexPath.section - 1 >= 0 else { return false }
-        return messageList[indexPath.section].sender == messageList[indexPath.section - 1].sender
+        return messageList[indexPath.section].fromContactId == messageList[indexPath.section - 1].fromContactId
     }
 
     func isInfoMessage(at indexPath: IndexPath) -> Bool {
-        if let id = Int(messageList[indexPath.section].messageId) {
-            return MRMessage(id: id).isInfo
-        }
-
-        return false
+        return messageList[indexPath.section].isInfo
     }
 
     func isNextMessageSameSender(at indexPath: IndexPath) -> Bool {
         guard indexPath.section + 1 < messageList.count else { return false }
-        return messageList[indexPath.section].sender == messageList[indexPath.section + 1].sender
+        return messageList[indexPath.section].fromContactId == messageList[indexPath.section + 1].fromContactId
     }
 
     func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         guard indexPath.section < messageList.count else { return nil }
-        if let m = messageToMRMessage(message: messageList[indexPath.section]) {
-            if !isNextMessageSameSender(at: indexPath), isFromCurrentSender(message: message) {
-                return NSAttributedString(string: m.stateOutDescription(), attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
-            }
+        let m = messageList[indexPath.section]
+        if !isNextMessageSameSender(at: indexPath), isFromCurrentSender(message: message) {
+            return NSAttributedString(string: m.stateOutDescription(), attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
         }
         return nil
     }
 
     func updateMessage(_ messageId: Int) {
-        let messageIdStr = String(messageId)
-        if let index = messageList.firstIndex(where: { $0.messageId == messageIdStr }) {
-            messageList[index] = idToMessage(messageId: messageId)
+        if let index = messageList.firstIndex(where: { $0.id == messageId }) {
+            messageList[index] = MRMessage(id: messageId)
             // Reload section to update header/footer labels
             messagesCollectionView.performBatchUpdates({
                 messagesCollectionView.reloadSections([index])
@@ -408,11 +365,11 @@ extension ChatViewController: MessagesDataSource {
                 }
             })
         } else {
-            insertMessage(idToMessage(messageId: messageId))
+            insertMessage(MRMessage(id: messageId))
         }
     }
 
-    func insertMessage(_ message: Message) {
+    func insertMessage(_ message: MRMessage) {
         messageList.append(message)
         // Reload last section to update header/footer labels and insert a new one
         messagesCollectionView.performBatchUpdates({
@@ -491,13 +448,11 @@ extension ChatViewController: MessagesDisplayDelegate {
     }
 
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) {
-        if let id = Int(messageList[indexPath.section].messageId) {
-            let message = MRMessage(id: id)
-            let contact = message.fromContact
-            let avatar = Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.name))
-            avatarView.set(avatar: avatar)
-            avatarView.isHidden = isNextMessageSameSender(at: indexPath) || message.isInfo
-        }
+        let message = messageList[indexPath.section]
+        let contact = message.fromContact
+        let avatar = Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.name))
+        avatarView.set(avatar: avatar)
+        avatarView.isHidden = isNextMessageSameSender(at: indexPath) || message.isInfo
     }
 
     func enabledDetectors(for _: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> [DetectorType] {
@@ -537,66 +492,32 @@ extension ChatViewController: MessagesLayoutDelegate {
 
     @objc func didPressPhotoButton() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraViewController = CameraViewController { [weak self] image, asset in
+            let cameraViewController = CameraViewController { [weak self] image, _ in
                 self?.dismiss(animated: true, completion: nil)
-                
+
                 DispatchQueue.global().async {
                     if let pickedImage = image {
                         let width = Int32(exactly: pickedImage.size.width)!
                         let height = Int32(exactly: pickedImage.size.height)!
-                        let path = self?.saveImage(image: pickedImage)
+                        let path = Utils.saveImage(image: pickedImage)
                         let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
                         dc_msg_set_file(msg, path, "image/jpeg")
                         dc_msg_set_dimension(msg, width, height)
                         dc_send_msg(mailboxPointer, UInt32(self!.chatId), msg)
-                        
+
                         // cleanup
                         dc_msg_unref(msg)
                     }
                 }
             }
-            
+
             present(cameraViewController, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Camera is not available", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {_ in
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
                 self.dismiss(animated: true, completion: nil)
             }))
             present(alert, animated: true, completion: nil)
-        }
-    }
-
-    func saveImage(image: UIImage) -> String? {
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
-            return nil
-        }
-
-        let size = image.size.applying(CGAffineTransform(scaleX: 0.2, y: 0.2))
-        let hasAlpha = false
-        let scale: CGFloat = 0.0
-
-        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
-        image.draw(in: CGRect(origin: CGPoint.zero, size: size))
-
-        let _scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        guard let scaledImage = _scaledImage else {
-            return nil
-        }
-
-        guard let data = scaledImage.jpegData(compressionQuality: 0.9) else {
-            return nil
-        }
-
-        do {
-            let timestamp = Int(Date().timeIntervalSince1970)
-            let path = directory.appendingPathComponent("\(chatId)_\(timestamp).jpg")
-            try data.write(to: path!)
-            return path?.relativePath
-        } catch {
-            logger.info(error.localizedDescription)
-            return nil
         }
     }
 }

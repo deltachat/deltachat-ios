@@ -176,7 +176,7 @@ internal final class SettingsViewController: QuickTableViewController {
                 title: "Flags",
                 rows: [
                     SwitchRow(title: "E2EE enabled", switchValue: MRConfig.e2eeEnabled, action: editCell()),
-                    SwitchRow(title: "MDNS enabled", switchValue: MRConfig.mdnsEnabled, action: editCell()),
+                    SwitchRow(title: "Read Receipts", switchValue: MRConfig.mdnsEnabled, action: editCell()),
                     SwitchRow(title: "Watch Inbox", switchValue: MRConfig.inboxWatch, action: editCell()),
                     SwitchRow(title: "Watch Sentbox", switchValue: MRConfig.sentboxWatch, action: editCell()),
                     SwitchRow(title: "Watch Mvbox", switchValue: MRConfig.mvboxWatch, action: editCell()),
@@ -216,7 +216,7 @@ internal final class SettingsViewController: QuickTableViewController {
                 switch title {
                 case "E2EE enabled":
                     MRConfig.e2eeEnabled = value
-                case "MDNS enabled":
+                case "Read Receipts":
                     MRConfig.mdnsEnabled = value
                 case "Watch Inbox":
                     MRConfig.inboxWatch = value
@@ -353,7 +353,7 @@ internal final class SettingsViewController: QuickTableViewController {
                 hud.dismiss(afterDelay: 1.0)
             } else {
                 let alert = UIAlertController(title: "Can not restore", message: "No Backup found", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {_ in
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
                     self.dismiss(animated: true, completion: nil)
                 }))
                 present(alert, animated: true, completion: nil)

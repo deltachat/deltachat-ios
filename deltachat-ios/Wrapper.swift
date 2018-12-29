@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MessageKit
 import UIKit
 
 class MRContact {
@@ -75,8 +76,38 @@ class MRContact {
     }
 }
 
-class MRMessage {
+class MRMessage: MessageType {
     private var messagePointer: UnsafeMutablePointer<dc_msg_t>
+
+    lazy var sender: Sender = {
+        Sender(id: "\(fromContactId)", displayName: fromContact.name)
+    }()
+
+    lazy var sentDate: Date = {
+        Date(timeIntervalSince1970: Double(timestamp))
+    }()
+
+    lazy var kind: MessageKind = {
+        if isInfo {
+            let text = NSAttributedString(string: self.text ?? "", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+            return MessageKind.attributedText(text)
+        }
+
+        if let image = self.image {
+            return MessageKind.photo(Media(image: image))
+        }
+
+        if let filename = self.filename {
+            // TODO:
+            return MessageKind.text("File: \(self.filename ?? "") (\(self.filesize) bytes)")
+        }
+
+        return MessageKind.text(self.text ?? "- empty -")
+    }()
+
+    var messageId: String {
+        return "\(id)"
+    }
 
     var id: Int {
         return Int(messagePointer.pointee.id)
@@ -102,11 +133,6 @@ class MRMessage {
         return String(cString: messagePointer.pointee.text)
     }
 
-    var mimeType: String? {
-        guard let result = dc_msg_get_filemime(messagePointer) else { return nil }
-        return String(cString: result)
-    }
-
     lazy var image: UIImage? = { [unowned self] in
         let filetype = dc_msg_get_viewtype(messagePointer)
         let file = dc_msg_get_file(messagePointer)
@@ -128,6 +154,40 @@ class MRMessage {
             return nil
         }
     }()
+
+    var file: String? {
+        if let cStr = dc_msg_get_file(messagePointer) {
+            let str = String(cString: cStr)
+
+            return str == "" ? nil : str
+        }
+
+        return nil
+    }
+
+    var filemime: String? {
+        if let cStr = dc_msg_get_filemime(messagePointer) {
+            let str = String(cString: cStr)
+
+            return str == "" ? nil : str
+        }
+
+        return nil
+    }
+
+    var filename: String? {
+        if let cStr = dc_msg_get_filename(messagePointer) {
+            let str = String(cString: cStr)
+
+            return str == "" ? nil : str
+        }
+
+        return nil
+    }
+
+    var filesize: Int {
+        return Int(dc_msg_get_filebytes(messagePointer))
+    }
 
     // MR_MSG_*
     var type: Int {
@@ -164,6 +224,7 @@ class MRMessage {
 
     init(id: Int) {
         messagePointer = dc_get_msg(mailboxPointer, UInt32(id))
+        dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(id)]), 1)
     }
 
     func summary(chars: Int) -> String? {
