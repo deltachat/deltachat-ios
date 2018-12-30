@@ -14,6 +14,7 @@ import UIKit
 
 class ChatViewController: MessagesViewController {
     let outgoingAvatarOverlap: CGFloat = 17.5
+    let loadCount = 30
 
     let chatId: Int
     let refreshControl = UIRefreshControl()
@@ -26,16 +27,19 @@ class ChatViewController: MessagesViewController {
 
     var previewView: UIView?
 
-    init(chatId: Int) {
+    init(chatId: Int, title: String? = nil) {
         self.chatId = chatId
         super.init(nibName: nil, bundle: nil)
+        if let title = title {
+            updateTitleView(title: title, subtitle: nil)
+        }
     }
 
     @objc
     func loadMoreMessages() {
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
             DispatchQueue.main.async {
-                self.messageList = self.getMessageIds(30, from: self.messageList.count) + self.messageList
+                self.messageList = self.getMessageIds(self.loadCount, from: self.messageList.count) + self.messageList
                 self.messagesCollectionView.reloadDataAndKeepOffset()
                 self.refreshControl.endRefreshing()
             }
@@ -45,7 +49,7 @@ class ChatViewController: MessagesViewController {
     func loadFirstMessages() {
         DispatchQueue.global(qos: .userInitiated).async {
             DispatchQueue.main.async {
-                self.messageList = self.getMessageIds(30)
+                self.messageList = self.getMessageIds(self.loadCount)
                 self.messagesCollectionView.reloadData()
                 self.refreshControl.endRefreshing()
                 self.messagesCollectionView.scrollToBottom(animated: false)
@@ -75,6 +79,9 @@ class ChatViewController: MessagesViewController {
             ids = Utils.copyAndFreeArrayWithLen(inputArray: c_messageIds, len: count)
         }
 
+        let markIds: [UInt32] = ids.map { return UInt32($0) }
+        dc_markseen_msgs(mailboxPointer, UnsafePointer(markIds), Int32(ids.count))
+
         return ids.map {
             MRMessage(id: $0)
         }
@@ -86,6 +93,16 @@ class ChatViewController: MessagesViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        let cnt = Int(dc_get_fresh_msg_cnt(mailboxPointer, UInt32(chatId)))
+        logger.info("updating count for chat \(cnt)")
+        UIApplication.shared.applicationIconBadgeNumber = cnt
+
+        if #available(iOS 11.0, *) {
+            if disableWriting {
+                navigationController?.navigationBar.prefersLargeTitles = true
+            }
+        }
 
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(forName: dc_notificationChanged,
@@ -121,6 +138,16 @@ class ChatViewController: MessagesViewController {
         }
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if #available(iOS 11.0, *) {
+            if disableWriting {
+                navigationController?.navigationBar.prefersLargeTitles = false
+            }
+        }
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
@@ -145,8 +172,13 @@ class ChatViewController: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if !MRConfig.configured {
+            // TODO: display message about nothing being configured
+            return
+        }
+
         let chat = MRChat(id: chatId)
-        updateTitleView(title: chat.name, subtitle: nil)
+        updateTitleView(title: chat.name, subtitle: chat.subtitle)
 
         configureMessageCollectionView()
         if !disableWriting {
@@ -349,6 +381,8 @@ extension ChatViewController: MessagesDataSource {
 
     func updateMessage(_ messageId: Int) {
         if let index = messageList.firstIndex(where: { $0.id == messageId }) {
+            dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(messageId)]), 1)
+
             messageList[index] = MRMessage(id: messageId)
             // Reload section to update header/footer labels
             messagesCollectionView.performBatchUpdates({
@@ -370,6 +404,7 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func insertMessage(_ message: MRMessage) {
+        dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(message.id)]), 1)
         messageList.append(message)
         // Reload last section to update header/footer labels and insert a new one
         messagesCollectionView.performBatchUpdates({

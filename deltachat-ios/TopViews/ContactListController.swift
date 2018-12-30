@@ -18,10 +18,30 @@ class ContactListController: UITableViewController {
         title = "Contacts"
         navigationController?.navigationBar.prefersLargeTitles = true
 
-        contactIds = Utils.getContactIds()
-
         tableView.rowHeight = 80
         tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
+    }
+
+    private func getContactIds() {
+        contactIds = Utils.getContactIds()
+        tableView.reloadData()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
+
+        getContactIds()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,19 +66,21 @@ class ContactListController: UITableViewController {
         let row = indexPath.row
         let contactRow = row
 
-        let contact = MRContact(id: contactIds[contactRow])
-        cell.nameLabel.text = contact.name
-        cell.emailLabel.text = contact.email
+        if contactRow < contactIds.count {
+            let contact = MRContact(id: contactIds[contactRow])
+            cell.nameLabel.text = contact.name
+            cell.emailLabel.text = contact.email
 
-        // TODO: provider a nice selection
-        cell.selectionStyle = .none
+            // TODO: provider a nice selection
+            cell.selectionStyle = .none
 
-        if let img = contact.profileImage {
-            cell.setImage(img)
-        } else {
-            cell.setBackupImage(name: contact.name, color: contact.color)
+            if let img = contact.profileImage {
+                cell.setImage(img)
+            } else {
+                cell.setBackupImage(name: contact.name, color: contact.color)
+            }
+            cell.setVerified(isVerified: contact.isVerified)
         }
-        cell.setVerified(isVerified: contact.isVerified)
         return cell
     }
 

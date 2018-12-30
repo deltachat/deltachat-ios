@@ -17,7 +17,7 @@ class AppTabBarController: UITabBarController {
         let contactImage = UIImage(named: "contacts")
         contactNavigationController.tabBarItem = UITabBarItem(title: "Contacts", image: contactImage, tag: 0)
 
-        let mailboxController = ChatViewController(chatId: Int(DC_CHAT_ID_DEADDROP))
+        let mailboxController = ChatViewController(chatId: Int(DC_CHAT_ID_DEADDROP), title: "Mailbox")
         mailboxController.disableWriting = true
         let mailboxNavigationController = NavigationController(rootViewController: mailboxController)
         let mailboxImage = UIImage(named: "message")
@@ -51,14 +51,4 @@ class AppTabBarController: UITabBarController {
 
         tabBar.tintColor = Constants.primaryColor
     }
-
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
 }

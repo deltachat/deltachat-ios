@@ -9,8 +9,24 @@
 import UIKit
 
 class ProfileViewController: UITableViewController {
-    var contact: MRContact {
+    var contact: MRContact? {
+        // This is nil if we do not have an account setup yet
+        if !MRConfig.configured {
+            return nil
+        }
         return MRContact(id: Int(DC_CONTACT_ID_SELF))
+    }
+
+    var fingerprint: String? {
+        if !MRConfig.configured {
+            return nil
+        }
+
+        if let cString = dc_get_securejoin_qr(mailboxPointer, 0) {
+            return String(cString: cString)
+        }
+
+        return nil
     }
 
     init() {
@@ -64,19 +80,19 @@ class ProfileViewController: UITableViewController {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         if indexPath.section == 0 {
             if row == 0 {
-                if let fingerprint = dc_get_securejoin_qr(mailboxPointer, 0) {
+                if let fingerprint = self.fingerprint {
                     cell.textLabel?.text = "Fingerprint: \(fingerprint)"
                     cell.textLabel?.textAlignment = .center
                 }
             }
             if row == 1 {
-                if let fingerprint = dc_get_securejoin_qr(mailboxPointer, 0) {
+                if let fingerprint = self.fingerprint {
                     let width: CGFloat = 130
 
                     let frame = CGRect(origin: .zero, size: .init(width: width, height: width))
                     let imageView = QRCodeView(frame: frame)
                     imageView.generateCode(
-                        String(cString: fingerprint),
+                        fingerprint,
                         foregroundColor: .darkText,
                         backgroundColor: .white
                     )
@@ -121,18 +137,22 @@ class ProfileViewController: UITableViewController {
         let bg = UIColor(red: 248 / 255, green: 248 / 255, blue: 255 / 255, alpha: 1.0)
         if section == 0 {
             let contactCell = ContactCell()
-            let name = MRConfig.displayname ?? contact.name
-            contactCell.backgroundColor = bg
-            contactCell.nameLabel.text = name
-            contactCell.emailLabel.text = contact.email
-            contactCell.darkMode = false
-            contactCell.selectionStyle = .none
-            if let img = contact.profileImage {
-                contactCell.setImage(img)
+            if let contact = self.contact {
+                let name = MRConfig.displayname ?? contact.name
+                contactCell.backgroundColor = bg
+                contactCell.nameLabel.text = name
+                contactCell.emailLabel.text = contact.email
+                contactCell.darkMode = false
+                contactCell.selectionStyle = .none
+                if let img = contact.profileImage {
+                    contactCell.setImage(img)
+                } else {
+                    contactCell.setBackupImage(name: name, color: contact.color)
+                }
+                contactCell.setVerified(isVerified: contact.isVerified)
             } else {
-                contactCell.setBackupImage(name: name, color: contact.color)
+                contactCell.nameLabel.text = "No Account set up"
             }
-            contactCell.setVerified(isVerified: contact.isVerified)
             return contactCell
         }
 

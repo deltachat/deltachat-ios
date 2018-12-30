@@ -15,6 +15,7 @@ let dc_notificationBackupProgress = Notification.Name(rawValue: "MrEventBackupPr
 let dc_notificationConfigureProgress = Notification.Name(rawValue: "MrEventConfigureProgress")
 let dc_notificationSecureJoinerProgress = Notification.Name(rawValue: "MrEventSecureJoinerProgress")
 let dc_notificationSecureInviterProgress = Notification.Name(rawValue: "MrEventSecureInviterProgress")
+let dc_notificationViewChat = Notification.Name(rawValue: "MrEventViewChat")
 
 @_silgen_name("callbackSwift")
 
@@ -82,9 +83,11 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
 
         let nc = NotificationCenter.default
         DispatchQueue.main.async {
-            nc.post(name: dc_notificationStateChanged,
-                    object: nil,
-                    userInfo: ["state": "offline"])
+            DispatchQueue.main.async {
+                nc.post(name: dc_notificationStateChanged,
+                        object: nil,
+                        userInfo: ["state": "offline"])
+            }
         }
     case DC_EVENT_IMAP_CONNECTED, DC_EVENT_SMTP_CONNECTED:
         logger.warning("network: \(String(cString: data2String))")
@@ -114,15 +117,29 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         }
     case DC_EVENT_INCOMING_MSG:
         let nc = NotificationCenter.default
+        let userInfo = [
+            "message_id": Int(data2),
+            "chat_id": Int(data1),
+        ]
 
         DispatchQueue.main.async {
             nc.post(name: dc_notificationIncoming,
                     object: nil,
-                    userInfo: [
-                        "message_id": Int(data2),
-                        "chat_id": Int(data1),
-                        "date": Date(),
-            ])
+                    userInfo: userInfo)
+
+            let content = UNMutableNotificationContent()
+            let msg = MRMessage(id: Int(data2))
+            content.title = msg.fromContact.name
+            content.body = msg.summary(chars: 40) ?? ""
+            content.badge = 1
+            content.userInfo = userInfo
+            content.sound = .default
+
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
+
+            let request = UNNotificationRequest(identifier: Constants.notificationIdentifier, content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            logger.info("notifications: added \(content)")
         }
     case DC_EVENT_SMTP_MESSAGE_SENT:
         logger.info("network: \(String(cString: data2String))")

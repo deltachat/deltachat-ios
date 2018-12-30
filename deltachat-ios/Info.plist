@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Delta Chat</string>
+	<string>Delta Chat Beta</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -26,6 +26,10 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Allowing access to the camera lets you take photos and videos.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allowing access to the microphone lets you record audio.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allowing access to the photo library allows you to upload images from it.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -44,8 +48,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Allowing access to the microphone lets you record audio.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -53,7 +55,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allowing access to the photo library allows you to upload images from it.</string>
 </dict>
 </plist>

@@ -224,7 +224,6 @@ class MRMessage: MessageType {
 
     init(id: Int) {
         messagePointer = dc_get_msg(mailboxPointer, UInt32(id))
-        dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(id)]), 1)
     }
 
     func summary(chars: Int) -> String? {
@@ -285,8 +284,20 @@ class MRChat {
         return nil
     }()
 
+    var subtitle: String? {
+        if let cString = dc_chat_get_subtitle(chatPointer) {
+            let str = String(cString: cString)
+            return str == "" ? nil : str
+        }
+        return nil
+    }
+
     init(id: Int) {
-        chatPointer = dc_get_chat(mailboxPointer, UInt32(id))
+        if let p = dc_get_chat(mailboxPointer, UInt32(id)) {
+            chatPointer = p
+        } else {
+            fatalError("Invalid chatID opened \(id)")
+        }
     }
 
     deinit {

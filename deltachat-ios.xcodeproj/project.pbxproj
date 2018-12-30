@@ -69,7 +69,6 @@
 		78ED838D21D577D000243125 /* events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838C21D577D000243125 /* events.swift */; };
 		78ED838F21D5927A00243125 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838E21D5927A00243125 /* ProfileViewController.swift */; };
 		78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED839321D5AF8A00243125 /* QrCodeView.swift */; };
-		7A0052A11FBC50C40048C3BF /* CredentialsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0052A01FBC50C40048C3BF /* CredentialsController.swift */; };
 		7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0052C71FBE6CB40048C3BF /* NewContactController.swift */; };
 		7A451D941FB1B1DB00177250 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A451D921FB1B1DB00177250 /* wrapper.c */; };
 		7A451DAE1FB1F5A200177250 /* libetpan-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A451DA71FB1F4BF00177250 /* libetpan-ios.a */; };
@@ -201,7 +200,6 @@
 		78ED838C21D577D000243125 /* events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = events.swift; sourceTree = "<group>"; };
 		78ED838E21D5927A00243125 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		78ED839321D5AF8A00243125 /* QrCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeView.swift; sourceTree = "<group>"; };
-		7A0052A01FBC50C40048C3BF /* CredentialsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsController.swift; sourceTree = "<group>"; };
 		7A0052C71FBE6CB40048C3BF /* NewContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactController.swift; sourceTree = "<group>"; };
 		7A451D921FB1B1DB00177250 /* wrapper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wrapper.c; sourceTree = "<group>"; };
 		7A451D931FB1B1DB00177250 /* wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wrapper.h; sourceTree = "<group>"; };
@@ -432,7 +430,6 @@
 				78E45E3221D3CBC000D4B15E /* AppTabBarController.swift */,
 				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
 				78E45E3D21D3D28C00D4B15E /* NavigationController.swift */,
-				7A0052A01FBC50C40048C3BF /* CredentialsController.swift */,
 				7092474020B3869500AF8799 /* ContactProfileViewController.swift */,
 				7A0052C71FBE6CB40048C3BF /* NewContactController.swift */,
 				78ED838A21D5570700243125 /* Extensions */,
@@ -570,13 +567,16 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
 							};
 						};
 					};
@@ -707,7 +707,6 @@
 				78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */,
 				78E45E2921D176C400D4B15E /* dc_jobthread.h in Sources */,
 				7A79236E1FB0A2C800BC2DE5 /* misc.c in Sources */,
-				7A0052A11FBC50C40048C3BF /* CredentialsController.swift in Sources */,
 				7070FB6B20FF345F000DC258 /* dc_job.c in Sources */,
 				7070FB7520FF345F000DC258 /* dc_strbuilder.c in Sources */,
 				7070FB6220FF345F000DC258 /* dc_configure.c in Sources */,
@@ -921,6 +920,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EEQW58QXHC;
@@ -934,7 +934,7 @@
 					"-lcrypto",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jonasreinsch.deltachatios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.delta.chat.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "deltachat-ios/deltachat-ios-Bridging-Header.h";
@@ -950,6 +950,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EEQW58QXHC;
@@ -963,7 +964,7 @@
 					"-lcrypto",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jonasreinsch.deltachatios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.delta.chat.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "deltachat-ios/deltachat-ios-Bridging-Header.h";

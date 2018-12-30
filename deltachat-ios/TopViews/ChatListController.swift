@@ -18,6 +18,7 @@ class ChatListController: UIViewController {
 
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
+    var viewChatObserver: Any?
 
     var newButton: UIBarButtonItem!
 
@@ -63,6 +64,13 @@ class ChatListController: UIViewController {
             _ in
             self.getChatList()
         }
+
+        viewChatObserver = nc.addObserver(forName: dc_notificationViewChat, object: nil, queue: nil) {
+            notification in
+            if let chatId = notification.userInfo?["chat_id"] as? Int {
+                self.displayChatForId(chatId: chatId)
+            }
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -74,6 +82,9 @@ class ChatListController: UIViewController {
         }
         if let incomingMsgObserver = self.incomingMsgObserver {
             nc.removeObserver(incomingMsgObserver)
+        }
+        if let viewChatObserver = self.viewChatObserver {
+            nc.removeObserver(viewChatObserver)
         }
     }
 

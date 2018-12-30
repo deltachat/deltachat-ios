@@ -66,6 +66,21 @@ internal final class SettingsViewController: QuickTableViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = false
+        }
+    }
+
     private func setHudError(_ message: String?) {
         if let hud = self.backupHud {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
@@ -93,6 +108,9 @@ internal final class SettingsViewController: QuickTableViewController {
                     }
                 )
 
+                self.setTable()
+                self.tableView.reloadData()
+
                 hud.dismiss(afterDelay: 1.0)
             }
         }
@@ -106,15 +124,17 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func showBackupHud(_ text: String) {
-        let hud = JGProgressHUD(style: .dark)
-        hud.vibrancyEnabled = true
-        hud.indicatorView = JGProgressHUDPieIndicatorView()
+        DispatchQueue.main.async {
+            let hud = JGProgressHUD(style: .dark)
+            hud.vibrancyEnabled = true
+            hud.indicatorView = JGProgressHUDPieIndicatorView()
 
-        hud.detailTextLabel.text = "0% Complete"
-        hud.textLabel.text = text
-        hud.show(in: view)
+            hud.detailTextLabel.text = "0% Complete"
+            hud.textLabel.text = text
+            hud.show(in: self.view)
 
-        backupHud = hud
+            self.backupHud = hud
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -139,6 +159,8 @@ internal final class SettingsViewController: QuickTableViewController {
             TapActionRow(title: "Create backup", action: { [weak self] in self?.createBackup($0) }),
             TapActionRow(title: "Restore from backup", action: { [weak self] in self?.restoreBackup($0) }),
         ]
+
+        let deleteRow = TapActionRow(title: "Delete Account", action: { [weak self] in self?.deleteAccount($0) })
 
         if MRConfig.configured {
             backupRows.removeLast()
@@ -189,6 +211,10 @@ internal final class SettingsViewController: QuickTableViewController {
                 title: "Backup",
                 rows: backupRows
             ),
+
+            Section(title: "Danger", rows: [
+                deleteRow,
+            ]),
         ]
     }
 
@@ -320,52 +346,82 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func createBackup(_: Row) {
-        if let documents = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.delta.chat.ios")?.path {
-            logger.info("create backup in", documents)
-            dc_imex(mailboxPointer, DC_IMEX_EXPORT_BACKUP, documents, nil)
+        // if let documents = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.delta.chat.ios")?.path {
+
+        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if documents.count > 0 {
+            logger.info("create backup in \(documents)")
             showBackupHud("Creating Backup")
+            DispatchQueue.main.async {
+                dc_imex(mailboxPointer, DC_IMEX_EXPORT_BACKUP, documents[0], nil)
+            }
+        } else {
+            logger.error("document directory not found")
         }
     }
 
     private func restoreBackup(_: Row) {
+        logger.info("restoring backup")
         if MRConfig.configured {
             return
         }
+        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if documents.count > 0 {
+            logger.info("looking for backup in: \(documents[0])")
 
-        if let documents = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.delta.chat.ios")?.path {
-            logger.info("looking for backup in", documents)
+            if let file = dc_imex_has_backup(mailboxPointer, documents[0]) {
+                logger.info("restoring backup: \(String(cString: file))")
 
-            if let file = dc_imex_has_backup(mailboxPointer, documents) {
-                // Close as we are resetting the world
-                dc_close(mailboxPointer)
-
-                mailboxPointer = dc_context_new(callback_ios, nil, "iOS")
-                guard mailboxPointer != nil else {
-                    fatalError("Error: dc_context_new returned nil")
-                }
-
-                let hud = JGProgressHUD(style: .dark)
-                hud.textLabel.text = "Restoring Backup"
-                hud.show(in: view)
-
+                showBackupHud("Restoring Backup")
                 dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
 
-                hud.dismiss(afterDelay: 1.0)
-            } else {
-                let alert = UIAlertController(title: "Can not restore", message: "No Backup found", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
-                    self.dismiss(animated: true, completion: nil)
-                }))
-                present(alert, animated: true, completion: nil)
+                return
             }
+
+            let alert = UIAlertController(title: "Can not restore", message: "No Backup found", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+                self.dismiss(animated: true, completion: nil)
+            }))
+            present(alert, animated: true, completion: nil)
+            return
         }
+
+        logger.error("no documents directory found")
     }
 
     private func configure(_: Row) {
         showBackupHud("Configuring account")
         dc_configure(mailboxPointer)
-        // refresh our view
-        setTable()
-        tableView.reloadData()
+    }
+
+    private func deleteAccount(_: Row) {
+        logger.info("deleting account")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+        let dbfile = appDelegate.dbfile()
+        let dburl = URL(fileURLWithPath: dbfile, isDirectory: false)
+        let alert = UIAlertController(title: "Delete Account", message: "Are you sure you wante to delete your account data?", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+            appDelegate.stop()
+            appDelegate.close()
+            do {
+                try FileManager.default.removeItem(at: dburl)
+            } catch {
+                logger.error("failed to delete db: \(error)")
+            }
+
+            appDelegate.open()
+            appDelegate.start()
+
+            // refresh our view
+            self.setTable()
+            self.tableView.reloadData()
+
+            self.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        present(alert, animated: true, completion: nil)
     }
 }

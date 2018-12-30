@@ -27,4 +27,6 @@ struct Constants {
 
     static let defaultShadow = UIImage(color: UIColor(hexString: "ff2b82"), size: CGSize(width: 1, height: 1))
     static let onlineShadow = UIImage(color: UIColor(hexString: "3ed67e"), size: CGSize(width: 1, height: 1))
+
+    static let notificationIdentifier = "deltachat-ios-local-notifications"
 }

@@ -24,11 +24,11 @@ enum ApplicationState {
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     static let appCoordinator = AppCoordinator()
     static var progress: Float = 0
     static var lastErrorDuringConfig: String?
-    static var cancellableCredentialsController = false
+    var backgroundTask: UIBackgroundTaskIdentifier = .invalid
 
     var reachability = Reachability()!
     var window: UIWindow?
@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         start()
         open()
 
-        // registerForPushNotifications()
+        registerForPushNotifications()
 
         return true
     }
@@ -109,8 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_: UIApplication) {
         logger.info("---- background ----")
 
-        stop()
-
+        // stop()
         reachability.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
     }
@@ -118,15 +117,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_: UIApplication) {
         logger.info("---- terminate ----")
         close()
+
+        reachability.stopNotifier()
+        NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
+    }
+
+    func dbfile() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
+        let documentsPath = paths[0]
+
+        return documentsPath + "/messenger.db"
     }
 
     func open() {
-        let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
-        let documentsPath = paths[0]
-        let dbfile = documentsPath + "/messenger.db"
-        logger.info("open: \(dbfile)")
+        logger.info("open: \(dbfile())")
 
-        _ = dc_open(mailboxPointer, dbfile, nil)
+        _ = dc_open(mailboxPointer, dbfile(), nil)
     }
 
     func stop() {
@@ -138,18 +144,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dc_interrupt_sentbox_idle(mailboxPointer)
     }
 
-    private func close() {
+    func close() {
         state = .stopped
 
         dc_close(mailboxPointer)
         mailboxPointer = nil
-
-        reachability.stopNotifier()
-        NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
     }
 
     func start() {
         logger.info("---- start ----")
+
+        if state == .running {
+            return
+        }
 
         if mailboxPointer == nil {
             //       - second param remains nil (user data for more than one mailbox)
@@ -162,31 +169,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         state = .running
 
         DispatchQueue.global(qos: .background).async {
+            self.registerBackgroundTask()
             while self.state == .running {
+                DispatchQueue.main.async {
+                    switch UIApplication.shared.applicationState {
+                    case .active:
+                        logger.info("active - imap")
+                    case .background:
+                        logger.info("background - time remaining = " +
+                            "\(UIApplication.shared.backgroundTimeRemaining) seconds")
+                    case .inactive:
+                        break
+                    }
+                }
+
                 dc_perform_imap_jobs(mailboxPointer)
                 dc_perform_imap_fetch(mailboxPointer)
                 dc_perform_imap_idle(mailboxPointer)
             }
+            if self.backgroundTask != .invalid {
+                self.endBackgroundTask()
+            }
         }
 
         DispatchQueue.global(qos: .utility).async {
+            self.registerBackgroundTask()
             while self.state == .running {
                 dc_perform_smtp_jobs(mailboxPointer)
                 dc_perform_smtp_idle(mailboxPointer)
             }
-        }
-
-        DispatchQueue.global(qos: .background).async {
-            while self.state == .running {
-                dc_perform_sentbox_fetch(mailboxPointer)
-                dc_perform_sentbox_idle(mailboxPointer)
+            if self.backgroundTask != .invalid {
+                self.endBackgroundTask()
             }
         }
 
-        DispatchQueue.global(qos: .background).async {
-            while self.state == .running {
-                dc_perform_mvbox_fetch(mailboxPointer)
-                dc_perform_mvbox_idle(mailboxPointer)
+        if MRConfig.sentboxWatch {
+            DispatchQueue.global(qos: .background).async {
+                while self.state == .running {
+                    dc_perform_sentbox_fetch(mailboxPointer)
+                    dc_perform_sentbox_idle(mailboxPointer)
+                }
+            }
+        }
+
+        if MRConfig.mvboxWatch {
+            DispatchQueue.global(qos: .background).async {
+                while self.state == .running {
+                    dc_perform_mvbox_fetch(mailboxPointer)
+                    dc_perform_mvbox_idle(mailboxPointer)
+                }
             }
         }
 
@@ -201,6 +232,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let value = kv.count > 1 ? kv[1] : ""
             return DBCustomVariable(name: kv[0], value: value)
         }
+
         DBDebugToolkit.add(info)
     }
 
@@ -229,97 +261,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    // MARK: - BackgroundTask
+
+    func registerBackgroundTask() {
+        logger.info("background task registered")
+        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+            self?.endBackgroundTask()
+        }
+        assert(backgroundTask != .invalid)
+    }
+
+    func endBackgroundTask() {
+        logger.info("background task ended")
+        UIApplication.shared.endBackgroundTask(backgroundTask)
+        backgroundTask = .invalid
+    }
+
+    // MARK: - PushNotifications
+
     func registerForPushNotifications() {
+        UNUserNotificationCenter.current().delegate = self
+
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound, .badge]) {
                 granted, _ in
                 logger.info("permission granted: \(granted)")
+                guard granted else { return }
+                self.getNotificationSettings()
             }
     }
-}
 
-func initCore(withCredentials: Bool, advancedMode: Bool = false, model: CredentialsModel? = nil, cancellableCredentialsUponFailure: Bool = false) {
-    AppDelegate.cancellableCredentialsController = cancellableCredentialsUponFailure
-
-    if withCredentials {
-        guard let model = model else {
-            fatalError("withCredentials == true implies non-nil model")
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            logger.info("Notification settings: \(settings)")
         }
-        if !(model.email.contains("@") && (model.email.count >= 3)) {
-            fatalError("initCore called with withCredentials flag set to true, but email not valid")
-        }
-        if model.password.isEmpty {
-            fatalError("initCore called with withCredentials flag set to true, password is empty")
-        }
-        dc_set_config(mailboxPointer, "addr", model.email)
-        dc_set_config(mailboxPointer, "mail_pw", model.password)
-        if advancedMode {
-            if let imapLoginName = model.imapLoginName {
-                dc_set_config(mailboxPointer, "mail_user", imapLoginName)
-            }
-            if let imapServer = model.imapServer {
-                dc_set_config(mailboxPointer, "mail_server", imapServer)
-            }
-            if let imapPort = model.imapPort {
-                dc_set_config(mailboxPointer, "mail_port", imapPort)
-            }
-
-            if let smtpLoginName = model.smtpLoginName {
-                dc_set_config(mailboxPointer, "send_user", smtpLoginName)
-            }
-            if let smtpPassword = model.smtpPassword {
-                dc_set_config(mailboxPointer, "send_pw", smtpPassword)
-            }
-            if let smtpServer = model.smtpServer {
-                dc_set_config(mailboxPointer, "send_server", smtpServer)
-            }
-            if let smtpPort = model.smtpPort {
-                dc_set_config(mailboxPointer, "send_port", smtpPort)
-            }
-
-            var flags: Int32 = 0
-            if model.smtpSecurity == .automatic, (model.imapSecurity == .automatic) {
-                flags = DC_LP_AUTH_NORMAL
-            } else {
-                if model.smtpSecurity == .off {
-                    flags |= DC_LP_SMTP_SOCKET_PLAIN
-                } else if model.smtpSecurity == .ssltls {
-                    flags |= DC_LP_SMTP_SOCKET_SSL
-                } else if model.smtpSecurity == .starttls {
-                    flags |= DC_LP_SMTP_SOCKET_STARTTLS
-                }
-
-                if model.imapSecurity == .off {
-                    flags |= DC_LP_IMAP_SOCKET_PLAIN
-                } else if model.imapSecurity == .ssltls {
-                    flags |= DC_LP_IMAP_SOCKET_SSL
-                } else if model.imapSecurity == .starttls {
-                    flags |= DC_LP_IMAP_SOCKET_STARTTLS
-                }
-            }
-            let ptr: UnsafeMutablePointer<Int32> = UnsafeMutablePointer.allocate(capacity: 1)
-            ptr.pointee = flags
-            let rp = UnsafeRawPointer(ptr)
-            // rebind memory from Int32 to Int8
-            let up = rp.bindMemory(to: Int8.self, capacity: 1)
-            dc_set_config(mailboxPointer, "server_flags", up)
-        }
-
-        // TODO: - handle failure, need to show credentials screen again
-        dc_configure(mailboxPointer)
-        // TODO: next two lines should move here in success case
-        // UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
-        // UserDefaults.standard.synchronize()
     }
 
-    addVibrationOnIncomingMessage()
-}
+    func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        logger.info("forground notification")
+        completionHandler([.alert, .sound])
+    }
 
-func addVibrationOnIncomingMessage() {
-    let nc = NotificationCenter.default
-    nc.addObserver(forName: Notification.Name(rawValue: "MrEventIncomingMsg"),
-                   object: nil, queue: nil) {
-        _ in
-        AudioServicesPlaySystemSound(UInt32(kSystemSoundID_Vibrate))
+    func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if response.notification.request.identifier == Constants.notificationIdentifier {
+            logger.info("handling notifications")
+            let userInfo = response.notification.request.content.userInfo
+            let nc = NotificationCenter.default
+            DispatchQueue.main.async {
+                nc.post(
+                    name: dc_notificationViewChat,
+                    object: nil,
+                    userInfo: userInfo
+                )
+            }
+        }
+
+        completionHandler()
     }
 }
