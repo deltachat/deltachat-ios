@@ -33,11 +33,13 @@ class ChatViewController: MessagesViewController {
     }
     
     var textDraft:String? {
-        let chat = MRChat(id: chatId)
         // FIXME: need to free pointer
-        if let textDraft = dc_chat_get_text_draft(chat.chatPointer) {
-            let s = String(validatingUTF8: textDraft)!
-            return s
+        if let draft = dc_get_draft(mailboxPointer, UInt32(chatId)) {
+            if let text = dc_msg_get_text(draft) {
+                let s = String(validatingUTF8: text)!
+                return s
+            }
+            return nil
         }
         return nil
     }
@@ -84,7 +86,12 @@ class ChatViewController: MessagesViewController {
     
     func setTextDraft() {
         if let text = self.messageInputBar.inputTextView.text {
-            dc_set_text_draft(mailboxPointer, UInt32(chatId), text.cString(using: .utf8))
+            let draft = dc_msg_new(mailboxPointer, DC_MSG_TEXT)
+            dc_msg_set_text(draft, text.cString(using: .utf8))
+            dc_set_draft(mailboxPointer, UInt32(chatId), draft)
+            
+            // cleanup
+            dc_msg_unref(draft)
         }
     }
     
@@ -385,10 +392,12 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
     
     @objc func didPressPhotoButton() {
+        // TODO: don't panic in simulator, when the camera is not available
         let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
         imagePicker.sourceType = .camera
         imagePicker.cameraDevice = .rear
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
     }
     
@@ -434,7 +443,13 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
                 let width = Int32(exactly: pickedImage.size.width),
                 let height = Int32(exactly: pickedImage.size.height),
                 let path = self.saveImage(image: pickedImage) {
-                dc_send_image_msg(mailboxPointer, UInt32(self.chatId), path, "image/jpeg", width, height)
+                let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
+                dc_msg_set_file(msg, path, "image/jpeg")
+                dc_msg_set_dimension(msg, width, height)
+                dc_send_msg(mailboxPointer, UInt32(self.chatId), msg)
+                
+                // cleanup
+                dc_msg_unref(msg)
             }
         }
         
@@ -455,7 +470,7 @@ extension ChatViewController: MessageCellDelegate {
     
     }
     
-    func didTapTopLabel(in cell: MessageCollectionViewCell) {
+    @objc(didTapCellTopLabelIn:) func didTapCellTopLabel(in cell: MessageCollectionViewCell) {
         print("Top label tapped")
     }
 

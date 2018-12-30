@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 /* Parse MIME body; this is the text part of an IMF, see https://tools.ietf.org/html/rfc5322
 dc_mimeparser_t has no deep dependencies to dc_context_t or to the database
 (dc_context_t is used for logging only). */
@@ -95,7 +73,6 @@ void             dc_mimeparser_parse                  (dc_mimeparser_t*, const c
 /* the following functions can be used only after a call to dc_mimeparser_parse() */
 struct mailimf_field*          dc_mimeparser_lookup_field           (dc_mimeparser_t*, const char* field_name);
 struct mailimf_optional_field* dc_mimeparser_lookup_optional_field  (dc_mimeparser_t*, const char* field_name);
-struct mailimf_optional_field* dc_mimeparser_lookup_optional_field2 (dc_mimeparser_t*, const char* field_name, const char* or_field_name);
 dc_mimepart_t*                 dc_mimeparser_get_last_nonmeta       (dc_mimeparser_t*);
 #define                        dc_mimeparser_has_nonmeta(a)         (dc_mimeparser_get_last_nonmeta((a))!=NULL)
 int                            dc_mimeparser_is_mailinglist_message (dc_mimeparser_t*);

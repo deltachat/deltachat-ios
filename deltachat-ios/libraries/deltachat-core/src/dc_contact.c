@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include "dc_context.h"
 #include "dc_contact.h"
 #include "dc_apeerstate.h"
@@ -58,6 +36,7 @@ dc_contact_t* dc_contact_new(dc_context_t* context)
  *
  * @memberof dc_contact_t
  * @param contact The contact object as created eg. by dc_get_contact().
+ *     If NULL is given, nothing is done.
  * @return None.
  */
 void dc_contact_unref(dc_contact_t* contact)
@@ -108,7 +87,7 @@ void dc_contact_empty(dc_contact_t* contact)
  *
  * @memberof dc_contact_t
  * @param contact The contact object.
- * @return the ID of the contact, 0 on errors.
+ * @return The ID of the contact, 0 on errors.
  */
 uint32_t dc_contact_get_id(const dc_contact_t* contact)
 {
@@ -137,7 +116,7 @@ char* dc_contact_get_addr(const dc_contact_t* contact)
 
 
 /**
- * Get name. This is the name as defined by the contact himself or
+ * Get the contact name. This is the name as defined by the contact himself or
  * modified by the user.  May be an empty string.
  *
  * This name is typically used in a form where the user can edit the name of a contact.
@@ -233,6 +212,61 @@ char* dc_contact_get_first_name(const dc_contact_t* contact)
 
 
 /**
+ * Get the contact's profile image.
+ * This is the image set by each remote user on their own
+ * using dc_set_config(context, "selfavatar", image).
+ *
+ * @memberof dc_contact_t
+ * @param contact The contact object.
+ * @return Path and file if the profile image, if any.
+ *     NULL otherwise.
+ *     Must be free()'d after usage.
+ */
+char* dc_contact_get_profile_image(const dc_contact_t* contact)
+{
+	char* selfavatar = NULL;
+	char* image_abs = NULL;
+
+	if (contact==NULL || contact->magic!=DC_CONTACT_MAGIC) {
+		goto cleanup;
+	}
+
+	if (contact->id==DC_CONTACT_ID_SELF) {
+		selfavatar = dc_get_config(contact->context, "selfavatar");
+		if (selfavatar && selfavatar[0]) {
+			image_abs = dc_strdup(selfavatar);
+		}
+	}
+	// TODO: else get image_abs from contact param
+
+cleanup:
+	free(selfavatar);
+	return image_abs;
+}
+
+
+/**
+ * Get a color for the contact.
+ * The color is calculated from the contact's email address
+ * and can be used for an fallback avatar with white initials
+ * as well as for headlines in bubbles of group chats.
+ *
+ * @memberof dc_contact_t
+ * @param contact The contact object.
+ * @return Color as 0x00rrggbb with rr=red, gg=green, bb=blue
+ *     each in the range 0-255.
+ */
+uint32_t dc_contact_get_color(const dc_contact_t* contact)
+{
+	if (contact==NULL || contact->magic!=DC_CONTACT_MAGIC) {
+		return 0x000000;
+	}
+
+	return dc_str_to_color(contact->addr);
+}
+
+
+/**
  * Check if a contact is blocked.
  *
  * To block or unblock a contact, use dc_block_contact().
@@ -288,10 +322,10 @@ cleanup:
 
 
 /**
- * Check if a contact was verified eg. by a secure-join QR code scan
+ * Check if a contact was verified. E.g. by a secure-join QR code scan
  * and if the key has not changed since this verification.
  *
- * The UI may draw a checkbox or sth. like that beside verified contacts.
+ * The UI may draw a checkbox or something like that beside verified contacts.
  *
  * @memberof dc_contact_t
  * @param contact The contact object.
@@ -620,7 +654,7 @@ uint32_t dc_add_or_lookup_contact( dc_context_t* context,
 	addr = dc_addr_normalize(addr__);
 
 	/* rough check if email-address is valid */
-	if (strlen(addr) < 3 || strchr(addr, '@')==NULL || strchr(addr, '.')==NULL) {
+	if (!dc_may_be_valid_addr(addr)) {
 		dc_log_warning(context, 0, "Bad address \"%s\" for contact \"%s\".", addr, name?name:"<unset>");
 		goto cleanup;
 	}
@@ -829,6 +863,12 @@ cleanup:
  * Typically used to add the whole address book from the OS. As names here are typically not
  * well formatted, we call normalize() for each name given.
  *
+ * No email-address is added twice.
+ * Trying to add email-addresses that are already in the contact list,
+ * results in updating the name unless the name was changed manually by the user.
+ * If any email-address or any name is really updated,
+ * the event DC_EVENT_CONTACTS_CHANGED is sent.
+ *
  * To add a single contact entered by the user, you should prefer dc_create_contact(),
  * however, for adding a bunch of addresses, this function is _much_ faster.
  *
@@ -871,10 +911,97 @@ int dc_add_address_book(dc_context_t* context, const char* adr_book)
 
 	dc_sqlite3_commit(context->sql);
 
+	if (modify_cnt) {
+		context->cb(context, DC_EVENT_CONTACTS_CHANGED, 0, 0);
+	}
+
 cleanup:
 	dc_free_splitted_lines(lines);
 
 	return modify_cnt;
+}
+
+
+/**
+ * Rough check if a string may be a valid e-mail address.
+ * The function checks if the string contains a minimal amount of characters
+ * before and after the `@` and `.` characters.
+ *
+ * To check if a given address is a contact in the contact database
+ * use dc_lookup_contact_id_by_addr().
+ *
+ * @memberof dc_context_t
+ * @param addr The e-mail-address to check.
+ * @return 1=address may be a valid e-mail address,
+ *     0=address won't be a valid e-mail address
+ */
+int dc_may_be_valid_addr(const char* addr)
+{
+	if (addr==NULL) {
+		return 0;
+	}
+
+	const char* at = strchr(addr, '@');
+	if (at==NULL || (at-addr)<1) {
+		return 0;
+	}
+
+	const char* dot = strchr(at, '.');
+	if (dot==NULL || (dot-at)<2 || dot[1]==0 || dot[2]==0) {
+		return 0;
+	}
+
+	return 1;
+}
+
+
+/**
+ * Check if an e-mail address belongs to a known and unblocked contact.
+ * Known and unblocked contacts will be returned by dc_get_contacts().
+ *
+ * To validate an e-mail address independently of the contact database
+ * use dc_may_be_valid_addr().
+ *
+ * @memberof dc_context_t
+ * @param context The context object as created by dc_context_new().
+ * @param addr The e-mail-address to check.
+ * @return 1=address is a contact in use, 0=address is not a contact in use.
+ */
+uint32_t dc_lookup_contact_id_by_addr(dc_context_t* context, const char* addr)
+{
+	int           contact_id = 0;
+	char*         addr_normalized = NULL;
+	char*         addr_self = NULL;
+	sqlite3_stmt* stmt = NULL;
+
+	if (context==NULL || context->magic!=DC_CONTEXT_MAGIC || addr==NULL || addr[0]==0) {
+		goto cleanup;
+	}
+
+	addr_normalized = dc_addr_normalize(addr);
+
+	addr_self = dc_sqlite3_get_config(context->sql, "configured_addr", "");
+	if (strcasecmp(addr_normalized, addr_self)==0) {
+		contact_id = DC_CONTACT_ID_SELF;
+		goto cleanup;
+	}
+
+	stmt = dc_sqlite3_prepare(context->sql,
+		"SELECT id FROM contacts"
+		" WHERE addr=?1 COLLATE NOCASE"
+		" AND id>?2 AND origin>=?3 AND blocked=0;");
+	sqlite3_bind_text(stmt, 1, (const char*)addr_normalized, -1, SQLITE_STATIC);
+	sqlite3_bind_int (stmt, 2, DC_CONTACT_ID_LAST_SPECIAL);
+	sqlite3_bind_int (stmt, 3, DC_ORIGIN_MIN_CONTACT_LIST);
+	if (sqlite3_step(stmt)==SQLITE_ROW) {
+		contact_id = sqlite3_column_int(stmt, 0);
+	}
+
+cleanup:
+	sqlite3_finalize(stmt);
+	free(addr_normalized);
+	free(addr_self);
+	return contact_id;
 }
 
 
@@ -915,16 +1042,20 @@ dc_array_t* dc_get_contacts(dc_context_t* context, uint32_t listflags, const cha
 		if ((s3strLikeCmd=sqlite3_mprintf("%%%s%%", query? query : ""))==NULL) {
 			goto cleanup;
 		}
+		// see comments in dc_search_msgs() about the LIKE operator
 		stmt = dc_sqlite3_prepare(context->sql,
 			"SELECT c.id FROM contacts c"
 				" LEFT JOIN acpeerstates ps ON c.addr=ps.addr "
-				" WHERE c.addr!=? AND c.id>" DC_STRINGIFY(DC_CONTACT_ID_LAST_SPECIAL) " AND c.origin>=" DC_STRINGIFY(DC_ORIGIN_MIN_CONTACT_LIST) " AND c.blocked=0 AND (c.name LIKE ? OR c.addr LIKE ?)" /* see comments in dc_search_msgs() about the LIKE operator */
-				" AND (1=? OR LENGTH(ps.verified_key_fingerprint)!=0) "
+				" WHERE c.addr!=?1 AND c.id>?2 AND c.origin>=?3"
+				" AND c.blocked=0 AND (c.name LIKE ?4 OR c.addr LIKE ?5)"
+				" AND (1=?6 OR LENGTH(ps.verified_key_fingerprint)!=0) "
 				" ORDER BY LOWER(c.name||c.addr),c.id;");
 		sqlite3_bind_text(stmt, 1, self_addr, -1, SQLITE_STATIC);
-		sqlite3_bind_text(stmt, 2, s3strLikeCmd, -1, SQLITE_STATIC);
-		sqlite3_bind_text(stmt, 3, s3strLikeCmd, -1, SQLITE_STATIC);
-		sqlite3_bind_int (stmt, 4, (listflags&DC_GCL_VERIFIED_ONLY)? 0/*force checking for verified_key*/ : 1/*force statement being always true*/);
+		sqlite3_bind_int (stmt, 2, DC_CONTACT_ID_LAST_SPECIAL);
+		sqlite3_bind_int (stmt, 3, DC_ORIGIN_MIN_CONTACT_LIST);
+		sqlite3_bind_text(stmt, 4, s3strLikeCmd, -1, SQLITE_STATIC);
+		sqlite3_bind_text(stmt, 5, s3strLikeCmd, -1, SQLITE_STATIC);
+		sqlite3_bind_int (stmt, 6, (listflags&DC_GCL_VERIFIED_ONLY)? 0/*force checking for verified_key*/ : 1/*force statement being always true*/);
 
 		self_name  = dc_sqlite3_get_config(context->sql, "displayname", "");
 		self_name2 = dc_stock_str(context, DC_STR_SELF);
@@ -936,9 +1067,11 @@ dc_array_t* dc_get_contacts(dc_context_t* context, uint32_t listflags, const cha
 	{
 		stmt = dc_sqlite3_prepare(context->sql,
 			"SELECT id FROM contacts"
-				" WHERE addr!=? AND id>" DC_STRINGIFY(DC_CONTACT_ID_LAST_SPECIAL) " AND origin>=" DC_STRINGIFY(DC_ORIGIN_MIN_CONTACT_LIST) " AND blocked=0"
+				" WHERE addr!=?1 AND id>?2 AND origin>=?3 AND blocked=0"
 				" ORDER BY LOWER(name||addr),id;");
 		sqlite3_bind_text(stmt, 1, self_addr, -1, SQLITE_STATIC);
+		sqlite3_bind_int (stmt, 2, DC_CONTACT_ID_LAST_SPECIAL);
+		sqlite3_bind_int (stmt, 3, DC_ORIGIN_MIN_CONTACT_LIST);
 
 		add_self = 1;
 	}
@@ -1025,10 +1158,12 @@ dc_contact_t* dc_get_contact(dc_context_t* context, uint32_t contact_id)
  * as _noticed_.  See also dc_marknoticed_chat() and
  * dc_markseen_msgs()
  *
+ * Calling this function usually results in the event #DC_EVENT_MSGS_CHANGED.
+ *
  * @memberof dc_context_t
  * @param context The context object as created by dc_context_new()
  * @param contact_id The contact ID of which all messages should be marked as noticed.
- * @return none
+ * @return None.
  */
 void dc_marknoticed_contact(dc_context_t* context, uint32_t contact_id)
 {
@@ -1041,6 +1176,8 @@ void dc_marknoticed_contact(dc_context_t* context, uint32_t contact_id)
 	sqlite3_bind_int(stmt, 1, contact_id);
 	sqlite3_step(stmt);
 	sqlite3_finalize(stmt);
+
+	context->cb(context, DC_EVENT_MSGS_CHANGED, 0, 0);
 }
 
 
@@ -1165,7 +1302,7 @@ static void cat_fingerprint(dc_strbuilder_t* ret, const char* addr, const char* 
  * @memberof dc_context_t
  * @param context The context object as created by dc_context_new().
  * @param contact_id ID of the contact to get the encryption info for.
- * @return multi-line text, must be free()'d after usage.
+ * @return Multi-line text, must be free()'d after usage.
  */
 char* dc_get_contact_encrinfo(dc_context_t* context, uint32_t contact_id)
 {

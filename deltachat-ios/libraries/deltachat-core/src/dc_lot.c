@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include "dc_context.h"
 
 
@@ -44,12 +22,12 @@ dc_lot_t* dc_lot_new()
 /**
  * Frees an object containing a set of parameters.
  * If the set object contains strings, the strings are also freed with this function.
- * Set objects are created eg. by dc_chatlist_get_summary(), dc_msg_get_summary or by
- * dc_msg_get_mediainfo().
+ * Set objects are created eg. by dc_chatlist_get_summary() or dc_msg_get_summary().
  *
  * @memberof dc_lot_t
  * @param set The object to free.
- * @return None
+ *     If NULL is given, nothing is done.
+ * @return None.
  */
 void dc_lot_unref(dc_lot_t* set)
 {
@@ -178,7 +156,9 @@ uint32_t dc_lot_get_id(const dc_lot_t* lot)
 
 
 /**
- * Get the associated timestamp. The meaning of the timestamp is defined by the creator of the object.
+ * Get the associated timestamp.
+ * The timestamp is returned as a unix timestamp in seconds.
+ * The meaning of the timestamp is defined by the creator of the object.
  *
  * @memberof dc_lot_t
  *
@@ -201,7 +181,12 @@ void dc_lot_fill(dc_lot_t* lot, const dc_msg_t* msg, const dc_chat_t* chat, cons
 		return;
 	}
 
-	if (msg->from_id==DC_CONTACT_ID_SELF)
+	if (msg->state==DC_STATE_OUT_DRAFT)
+	{
+		lot->text1 = dc_stock_str(context, DC_STR_DRAFT);
+		lot->text1_meaning = DC_TEXT1_DRAFT;
+	}
+	else if (msg->from_id==DC_CONTACT_ID_SELF)
 	{
 		if (dc_msg_is_info(msg)) {
 			lot->text1 = NULL;

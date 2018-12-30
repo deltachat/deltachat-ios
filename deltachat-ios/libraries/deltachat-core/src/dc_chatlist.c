@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include "dc_context.h"
 
 
@@ -56,6 +34,7 @@ dc_chatlist_t* dc_chatlist_new(dc_context_t* context)
  *
  * @memberof dc_chatlist_t
  * @param chatlist The chatlist object to free, created eg. by dc_get_chatlist(), dc_search_msgs().
+ *     If NULL is given, nothing is done.
  * @return None.
  */
 void dc_chatlist_unref(dc_chatlist_t* chatlist)
@@ -206,7 +185,7 @@ dc_lot_t* dc_chatlist_get_summary(const dc_chatlist_t* chatlist, size_t index, d
 
 	if (lastmsg_id)
 	{
-		lastmsg = dc_msg_new(chatlist->context);
+		lastmsg = dc_msg_new_untyped(chatlist->context);
 		dc_msg_load_from_db(lastmsg, chatlist->context, lastmsg_id);
 
 		if (lastmsg->from_id!=DC_CONTACT_ID_SELF  &&  DC_CHAT_TYPE_IS_MULTI(chat->type))
@@ -219,19 +198,6 @@ dc_lot_t* dc_chatlist_get_summary(const dc_chatlist_t* chatlist, size_t index, d
 	if (chat->id==DC_CHAT_ID_ARCHIVED_LINK)
 	{
 		ret->text2 = dc_strdup(NULL);
-	}
-	else if (chat->draft_timestamp
-	      && chat->draft_text
-	      && (lastmsg==NULL || chat->draft_timestamp>lastmsg->timestamp))
-	{
-		/* show the draft as the last message */
-		ret->text1 = dc_stock_str(chatlist->context, DC_STR_DRAFT);
-		ret->text1_meaning = DC_TEXT1_DRAFT;
-
-		ret->text2 = dc_strdup(chat->draft_text);
-		dc_truncate_n_unwrap_str(ret->text2, DC_SUMMARY_CHARACTERS, 1/*unwrap*/);
-
-		ret->timestamp = chat->draft_timestamp;
 	}
 	else if (lastmsg==NULL || lastmsg->from_id==0)
 	{
@@ -299,7 +265,7 @@ cleanup:
  *
  * @private @memberof dc_chatlist_t
  */
-int dc_chatlist_load_from_db(dc_chatlist_t* chatlist, int listflags, const char* query__, uint32_t query_contact_id)
+static int dc_chatlist_load_from_db(dc_chatlist_t* chatlist, int listflags, const char* query__, uint32_t query_contact_id)
 {
 	//clock_t       start = clock();
 
@@ -315,12 +281,23 @@ int dc_chatlist_load_from_db(dc_chatlist_t* chatlist, int listflags, const char*
 
 	dc_chatlist_empty(chatlist);
 
-	/* select example with left join and minimum: http://stackoverflow.com/questions/7588142/mysql-left-join-min */
+	// select with left join and minimum:
+	// - the inner select must use `hidden` and _not_ `m.hidden`
+	//   which would refer the outer select and take a lot of time
+	// - `GROUP BY` is needed several messages may have the same timestamp
+	// - the list starts with the newest chats
 	#define QUR1 "SELECT c.id, m.id FROM chats c " \
-	                " LEFT JOIN msgs m ON (c.id=m.chat_id AND m.hidden=0 AND m.timestamp=(SELECT MAX(timestamp) FROM msgs WHERE chat_id=c.id AND hidden=0)) " /* not: `m.hidden` which would refer the outer select and takes lot of time*/ \
-	                " WHERE c.id>" DC_STRINGIFY(DC_CHAT_ID_LAST_SPECIAL) " AND c.blocked=0"
-	#define QUR2    " GROUP BY c.id " /* GROUP BY is needed as there may be several messages with the same timestamp */ \
-	                " ORDER BY MAX(c.draft_timestamp, IFNULL(m.timestamp,0)) DESC,m.id DESC;" /* the list starts with the newest chats */
+	             " LEFT JOIN msgs m " \
+	             "        ON c.id=m.chat_id " \
+	             "       AND m.timestamp=( " \
+	                         "SELECT MAX(timestamp) " \
+	                         "  FROM msgs " \
+	                         " WHERE chat_id=c.id " \
+	                         "   AND (hidden=0 OR (hidden=1 AND state=" DC_STRINGIFY(DC_STATE_OUT_DRAFT) ")))" \
+	             " WHERE c.id>" DC_STRINGIFY(DC_CHAT_ID_LAST_SPECIAL) \
+	             "   AND c.blocked=0"
+	#define QUR2 " GROUP BY c.id " \
+	             " ORDER BY IFNULL(m.timestamp,0) DESC, m.id DESC;"
 
 	// nb: the query currently shows messages from blocked contacts in groups.
 	// however, for normal-groups, this is okay as the message is also returned by dc_get_chat_msgs()
@@ -379,6 +356,10 @@ int dc_chatlist_load_from_db(dc_chatlist_t* chatlist, int listflags, const char*
 
     if (add_archived_link_item && dc_get_archived_cnt(chatlist->context)>0)
     {
+		if (dc_array_get_cnt(chatlist->chatNlastmsg_ids)==0 && (listflags & DC_GCL_ADD_ALLDONE_HINT)) {
+			dc_array_add_id(chatlist->chatNlastmsg_ids, DC_CHAT_ID_ALLDONE_HINT);
+			dc_array_add_id(chatlist->chatNlastmsg_ids, 0);
+		}
 		dc_array_add_id(chatlist->chatNlastmsg_ids, DC_CHAT_ID_ARCHIVED_LINK);
 		dc_array_add_id(chatlist->chatNlastmsg_ids, 0);
     }
@@ -414,8 +395,33 @@ int dc_get_archived_cnt(dc_context_t* context)
 
 
 /**
- * Get a list of chats. The list can be filtered by query parameters.
- * To get the chat messages, use dc_get_chat_msgs().
+ * Get a list of chats.
+ * The list can be filtered by query parameters.
+ *
+ * The list is already sorted and starts with the most recent chat in use.
+ * The sorting takes care of invalid sending dates, drafts and chats without messages.
+ * Clients should not try to re-sort the list as this would be an expensive action
+ * and would result in inconsistencies between clients.
+ *
+ * To get information about each entry, use eg. dc_chatlist_get_summary().
+ *
+ * By default, the function adds some special entries to the list.
+ * These special entries can be identified by the ID returned by dc_chatlist_get_chat_id():
+ * - DC_CHAT_ID_DEADDROP (1) - this special chat is present if there are
+ *   messages from addresses that have no relationship to the configured account.
+ *   The last of these messages is represented by DC_CHAT_ID_DEADDROP and you can retrieve details
+ *   about it with dc_chatlist_get_msg_id(). Typically, the UI asks the user "Do you want to chat with NAME?"
+ *   and offers the options "Yes" (call dc_create_chat_by_msg_id()), "Never" (call dc_block_contact())
+ *   or "Not now".
+ *   The UI can also offer a "Close" button that calls dc_marknoticed_contact() then.
+ * - DC_CHAT_ID_ARCHIVED_LINK (6) - this special chat is present if the user has
+ *   archived _any_ chat using dc_archive_chat(). The UI should show a link as
+ *   "Show archived chats", if the user clicks this item, the UI should show a
+ *   list of all archived chats that can be created by this function hen using
+ *   the DC_GCL_ARCHIVED_ONLY flag.
+ * - DC_CHAT_ID_ALLDONE_HINT (7) - this special chat is present
+ *   if DC_GCL_ADD_ALLDONE_HINT is added to listflags
+ *   and if there are only archived chats.
  *
  * @memberof dc_context_t
  * @param context The context object as returned by dc_context_new()
@@ -427,12 +433,17 @@ int dc_get_archived_cnt(dc_context_t* context)
  *     - if the flag DC_GCL_NO_SPECIALS is set, deaddrop and archive link are not added
  *       to the list (may be used eg. for selecting chats on forwarding, the flag is
  *       not needed when DC_GCL_ARCHIVED_ONLY is already set)
+ *     - if the flag DC_GCL_ADD_ALLDONE_HINT is set, DC_CHAT_ID_ALLDONE_HINT
+ *       is added as needed.
  * @param query_str An optional query for filtering the list.  Only chats matching this query
  *     are returned.  Give NULL for no filtering.
  * @param query_id An optional contact ID for filtering the list.  Only chats including this contact ID
  *     are returned.  Give 0 for no filtering.
- * @return A chatlist as an dc_chatlist_t object. Must be freed using
- *     dc_chatlist_unref() when no longer used
+ * @return A chatlist as an dc_chatlist_t object.
+ *     On errors, NULL is returned.
+ *     Must be freed using dc_chatlist_unref() when no longer used.
+ *
+ * See also: dc_get_chat_msgs() to get the messages of a single chat.
  */
 dc_chatlist_t* dc_get_chatlist(dc_context_t* context, int listflags, const char* query_str, uint32_t query_id)
 {

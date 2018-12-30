@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #ifndef __DC_CONTEXT_H__
 #define __DC_CONTEXT_H__
 #ifdef __cplusplus
@@ -45,6 +23,7 @@ extern "C" {
 #include "dc_lot.h"
 #include "dc_msg.h"
 #include "dc_contact.h"
+#include "dc_jobthread.h"
 
 
 typedef struct dc_imap_t       dc_imap_t;
@@ -69,35 +48,30 @@ struct _dc_context
 
 	dc_sqlite3_t*    sql;                   /**< Internal SQL object, never NULL */
 
-	dc_imap_t*       imap;                  /**< Internal IMAP object, never NULL */
-	pthread_mutex_t  imapidle_condmutex;
-	int              perform_imap_jobs_needed;
+	dc_imap_t*       inbox;                 /**< primary IMAP object watching the inbox, never NULL */
+	pthread_mutex_t  inboxidle_condmutex;
+	int              perform_inbox_jobs_needed;
+	int              probe_imap_network;    /**< if this flag is set, the imap-job timeouts are bypassed and messages are sent until they fail */
+
+	dc_jobthread_t   sentbox_thread;
+	dc_jobthread_t   mvbox_thread;
 
 	dc_smtp_t*       smtp;                  /**< Internal SMTP object, never NULL */
 	pthread_cond_t   smtpidle_cond;
 	pthread_mutex_t  smtpidle_condmutex;
 	int              smtpidle_condflag;
-	int              smtpidle_suspend;
-	int              smtpidle_in_idleing;
+	int              smtp_suspended;
+	int              smtp_doing_jobs;
 	#define          DC_JOBS_NEEDED_AT_ONCE   1
 	#define          DC_JOBS_NEEDED_AVOID_DOS 2
 	int              perform_smtp_jobs_needed;
+	int              probe_smtp_network;   /**< if this flag is set, the smtp-job timeouts are bypassed and messages are sent until they fail */
 
 	dc_callback_t    cb;                    /**< Internal */
 
 	char*            os_name;               /**< Internal, may be NULL */
 
 	uint32_t         cmdline_sel_chat_id;   /**< Internal */
-
-	int              e2ee_enabled;          /**< Internal */
-
-	#define          DC_LOG_RINGBUF_SIZE 200
-	pthread_mutex_t  log_ringbuf_critical;  /**< Internal */
-	char*            log_ringbuf[DC_LOG_RINGBUF_SIZE];
-	                                          /**< Internal */
-	time_t           log_ringbuf_times[DC_LOG_RINGBUF_SIZE];
-	                                          /**< Internal */
-	int              log_ringbuf_pos;       /**< Internal. The oldest position resp. the position that is overwritten next */
 
 	// QR code scanning (view from Bob, the joiner)
 	#define          DC_VC_AUTH_REQUIRED     2
@@ -118,11 +92,30 @@ struct _dc_context
 	int              shall_stop_ongoing;
 };
 
-void            dc_log_error         (dc_context_t*, int code, const char* msg, ...);
-void            dc_log_error_if      (int* condition, dc_context_t*, int code, const char* msg, ...);
-void            dc_log_warning       (dc_context_t*, int code, const char* msg, ...);
-void            dc_log_info          (dc_context_t*, int code, const char* msg, ...);
-void            dc_receive_imf                             (dc_context_t*, const char* imf_raw_not_terminated, size_t imf_raw_bytes, const char* server_folder, uint32_t server_uid, uint32_t flags);
+void            dc_log_event         (dc_context_t*, int event_code, int data1, const char* msg, ...);
+void            dc_log_event_seq     (dc_context_t*, int event_code, int* sequence_start, const char* msg, ...);
+void            dc_log_error         (dc_context_t*, int data1, const char* msg, ...);
+void            dc_log_warning       (dc_context_t*, int data1, const char* msg, ...);
+void            dc_log_info          (dc_context_t*, int data1, const char* msg, ...);
+
+void            dc_receive_imf       (dc_context_t*, const char* imf_raw_not_terminated, size_t imf_raw_bytes, const char* server_folder, uint32_t server_uid, uint32_t flags);
+
+#define         DC_NOT_CONNECTED     0
+#define         DC_ALREADY_CONNECTED 1
+#define         DC_JUST_CONNECTED    2
+int             dc_connect_to_configured_imap (dc_context_t*, dc_imap_t*);
+
+#define         DC_CREATE_MVBOX      0x01
+#define         DC_FOLDERS_CONFIGURED_VERSION 3
+void            dc_configure_folders (dc_context_t*, dc_imap_t*, int flags);
+
+
+void            dc_do_heuristics_moves(dc_context_t*, const char* folder, uint32_t msg_id);
+
+
+int             dc_is_inbox          (dc_context_t*, const char* folder);
+int             dc_is_sentbox        (dc_context_t*, const char* folder);
+int             dc_is_mvbox          (dc_context_t*, const char* folder);
 
 #define         DC_BAK_PREFIX                "delta-chat"
 #define         DC_BAK_SUFFIX                "bak"
@@ -136,10 +129,16 @@ void            dc_receive_imf                             (dc_context_t*, const
 #define DC_MSGSIZE_UPPER_LIMIT      ((49*1024*1024)/4*3)
 
 
-/* library private: end-to-end-encryption */
-#define DC_E2EE_DEFAULT_ENABLED  1
-#define DC_MDNS_DEFAULT_ENABLED  1
+// some defaults
+#define DC_E2EE_DEFAULT_ENABLED   1
+#define DC_MDNS_DEFAULT_ENABLED   1
+#define DC_INBOX_WATCH_DEFAULT    1
+#define DC_SENTBOX_WATCH_DEFAULT  0
+#define DC_MVBOX_WATCH_DEFAULT    0
+#define DC_MVBOX_MOVE_DEFAULT     0
 
+
+/* library private: end-to-end-encryption */
 typedef struct dc_e2ee_helper_t {
 	// encryption
 	int        encryption_successfull;
@@ -162,12 +161,9 @@ char*           dc_render_setup_file (dc_context_t*, const char* passphrase);
 char*           dc_decrypt_setup_file(dc_context_t*, const char* passphrase, const char* filecontent);
 
 extern int      dc_shall_stop_ongoing;
+int             dc_has_ongoing       (dc_context_t*);
 int             dc_alloc_ongoing     (dc_context_t*);
 void            dc_free_ongoing      (dc_context_t*);
-
-#define         dc_is_online(m)             ((m)->cb((m), DC_EVENT_IS_OFFLINE, 0, 0)==0)
-#define         dc_is_offline(m)            ((m)->cb((m), DC_EVENT_IS_OFFLINE, 0, 0)!=0)
-
 
 /* library private: secure-join */
 #define         DC_HANDSHAKE_CONTINUE_NORMAL_PROCESSING 0x01

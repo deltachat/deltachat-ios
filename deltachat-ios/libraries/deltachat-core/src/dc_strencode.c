@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include <ctype.h>
 #include <libetpan/libetpan.h>
 #include "dc_context.h"
@@ -351,7 +329,7 @@ static void get_word(const char* begin, const char** pend, int* pto_be_quoted)
  * We do not fold at position 72; this would result in empty words as `=?utf-8?Q??=` which are correct,
  * but cannot be displayed by some mail programs (eg. Android Stock Mail).
  * however, this is not needed, as long as _one_ word is not longer than 72 characters.
- * _if_ it is, the display may get weired.  This affects the subject only.
+ * _if_ it is, the display may get weird.  This affects the subject only.
  * the best solution wor all this would be if libetpan encodes the line as only libetpan knowns when a header line is full.
  *
  * @param to_encode Null-terminated UTF-8-string to encode.
@@ -444,7 +422,7 @@ cleanup:
  * Decode non-ascii-strings as `=?UTF-8?Q?Bj=c3=b6rn_Petersen?=`.
  * Belongs to RFC 2047: https://tools.ietf.org/html/rfc2047
  *
- * @param to_encode String to decode.
+ * @param in String to decode.
  * @return Returns the null-terminated decoded string as UTF-8. Must be free()'d when no longed needed.
  *     On errors, NULL is returned.
  */
@@ -829,7 +807,7 @@ char* dc_encode_ext_header(const char* to_encode)
 /**
  * Decode an extended-header-format strings to UTF-8.
  *
- * @param to_encode Null-terminated string to decode
+ * @param to_decode Null-terminated string to decode
  * @return Null-terminated decoded UTF-8 string. Must be free()'d after usage.
  *     Halts the program on memory allocation errors,
  *     for all other errors, an empty string is returned or just the given string is returned.

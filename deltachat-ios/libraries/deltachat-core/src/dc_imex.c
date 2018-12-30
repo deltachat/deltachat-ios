@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #include <assert.h>
 #include <dirent.h>
 #include <unistd.h> /* for sleep() */
@@ -143,7 +121,8 @@ char* dc_render_setup_file(dc_context_t* context, const char* passphrase)
 			self_addr = dc_sqlite3_get_config(context->sql, "configured_addr", NULL);
 			dc_key_load_self_private(curr_private_key, self_addr, context->sql);
 
-			char* payload_key_asc = dc_key_render_asc(curr_private_key, context->e2ee_enabled? "Autocrypt-Prefer-Encrypt: mutual\r\n" : NULL);
+			int e2ee_enabled = dc_sqlite3_get_config_int(context->sql, "e2ee_enabled", DC_E2EE_DEFAULT_ENABLED);
+			char* payload_key_asc = dc_key_render_asc(curr_private_key, e2ee_enabled? "Autocrypt-Prefer-Encrypt: mutual\r\n" : NULL);
 			if (payload_key_asc==NULL) {
 				goto cleanup;
 			}
@@ -421,10 +400,10 @@ char* dc_normalize_setup_code(dc_context_t* context, const char* in)
  * Initiate Autocrypt Setup Transfer.
  * Before starting the setup transfer with this function, the user should be asked:
  *
- * ```
+ * ~~~
  * "An 'Autocrypt Setup Message' securely shares your end-to-end setup with other Autocrypt-compliant apps.
  * The setup will be encrypted by a setup code which is displayed here and must be typed on the other device.
- * ```
+ * ~~~
  *
  * After that, this function should be called to send the Autocrypt Setup Message.
  * The function creates the setup message and waits until it is really sent.
@@ -433,13 +412,13 @@ char* dc_normalize_setup_code(dc_context_t* context, const char* in)
  *
  * After everything succeeded, the required setup code is returned in the following format:
  *
- * ```
+ * ~~~
  * 1234-1234-1234-1234-1234-1234-1234-1234-1234
- * ```
+ * ~~~
  *
  * The setup code should be shown to the user then:
  *
- * ```
+ * ~~~
  * "Your key has been sent to yourself. Switch to the other device and
  * open the setup message. You should be prompted for a setup code. Type
  * the following digits into the prompt:
@@ -449,7 +428,7 @@ char* dc_normalize_setup_code(dc_context_t* context, const char* in)
  * 1234 - 1234 - 1234
  *
  * Once you're done, your other device will be ready to use Autocrypt."
- * ```
+ * ~~~
  *
  * On the _other device_ you will call dc_continue_key_transfer() then
  * for setup messages identified by dc_msg_is_setupmessage().
@@ -489,8 +468,8 @@ char* dc_initiate_key_transfer(dc_context_t* context)
 
 	CHECK_EXIT
 
-	if ((setup_file_name=dc_get_fine_pathNfilename(context->blobdir, "autocrypt-setup-message.html"))==NULL
-	 || !dc_write_file(setup_file_name, setup_file_content, strlen(setup_file_content), context)) {
+	if ((setup_file_name=dc_get_fine_pathNfilename(context, "$BLOBDIR", "autocrypt-setup-message.html"))==NULL
+	 || !dc_write_file(context, setup_file_name, setup_file_content, strlen(setup_file_content))) {
 		goto cleanup;
 	}
 
@@ -498,7 +477,7 @@ char* dc_initiate_key_transfer(dc_context_t* context)
 		goto cleanup;
 	}
 
-	msg = dc_msg_new(context);
+	msg = dc_msg_new_untyped(context);
 	msg->type = DC_MSG_FILE;
 	dc_param_set    (msg->param, DC_PARAM_FILE,              setup_file_name);
 	dc_param_set    (msg->param, DC_PARAM_MIMETYPE,          "application/autocrypt-setup");
@@ -592,10 +571,10 @@ static int set_self_key(dc_context_t* context, const char* armored, int set_defa
 	/* if we also received an Autocrypt-Prefer-Encrypt header, handle this */
 	if (buf_preferencrypt) {
 		if (strcmp(buf_preferencrypt, "nopreference")==0) {
-			dc_set_config_int(context, "e2ee_enabled", 0); /* use the top-level function as this also resets cached values */
+			dc_sqlite3_set_config_int(context->sql, "e2ee_enabled", 0);
 		}
 		else if (strcmp(buf_preferencrypt, "mutual")==0) {
-			dc_set_config_int(context, "e2ee_enabled", 1); /* use the top-level function as this also resets cached values */
+			dc_sqlite3_set_config_int(context->sql, "e2ee_enabled", 1);
 		}
 	}
 
@@ -651,7 +630,7 @@ int dc_continue_key_transfer(dc_context_t* context, uint32_t msg_id, const char*
 		goto cleanup;
 	}
 
-	if (!dc_read_file(filename, (void**)&filecontent, &filebytes, msg->context) || filecontent==NULL || filebytes <= 0) {
+	if (!dc_read_file(context, filename, (void**)&filecontent, &filebytes) || filecontent==NULL || filebytes <= 0) {
 		dc_log_error(context, 0, "Cannot read Autocrypt Setup Message file.");
 		goto cleanup;
 	}
@@ -697,7 +676,7 @@ static void export_key_to_asc_file(dc_context_t* context, const char* dir, int i
 		file_name = dc_mprintf("%s/%s-key-%i.asc", dir, key->type==DC_KEY_PUBLIC? "public" : "private", id);
 	}
 	dc_log_info(context, 0, "Exporting key %s", file_name);
-	dc_delete_file(file_name, context);
+	dc_delete_file(context, file_name);
 	if (dc_key_render_asc_to_file(key, file_name, context)) {
 		context->cb(context, DC_EVENT_IMEX_FILE_WRITTEN, (uintptr_t)file_name, 0);
 		dc_log_error(context, 0, "Cannot write key to %s", file_name);
@@ -786,7 +765,7 @@ static int import_self_keys(dc_context_t* context, const char* dir_name)
 
 		free(buf);
 		buf = NULL;
-		if (!dc_read_file(path_plus_name, (void**)&buf, &buf_bytes, context)
+		if (!dc_read_file(context, path_plus_name, (void**)&buf, &buf_bytes)
 		 || buf_bytes < 50) {
 			continue;
 		}
@@ -874,7 +853,7 @@ static int export_backup(dc_context_t* context, const char* dir)
 		char buffer[256];
 		timeinfo = localtime(&now);
 		strftime(buffer, 256, DC_BAK_PREFIX "-%Y-%m-%d." DC_BAK_SUFFIX, timeinfo);
-		if ((dest_pathNfilename=dc_get_fine_pathNfilename(dir, buffer))==NULL) {
+		if ((dest_pathNfilename=dc_get_fine_pathNfilename(context, dir, buffer))==NULL) {
 			dc_log_error(context, 0, "Cannot get backup file name.");
 			goto cleanup;
 		}
@@ -885,7 +864,7 @@ static int export_backup(dc_context_t* context, const char* dir)
 	closed = 1;
 
 		dc_log_info(context, 0, "Backup \"%s\" to \"%s\".", context->dbfile, dest_pathNfilename);
-		if (!dc_copy_file(context->dbfile, dest_pathNfilename, context)) {
+		if (!dc_copy_file(context, context->dbfile, dest_pathNfilename)) {
 			goto cleanup; /* error already logged */
 		}
 
@@ -949,7 +928,7 @@ static int export_backup(dc_context_t* context, const char* dir)
 			free(curr_pathNfilename);
 			curr_pathNfilename = dc_mprintf("%s/%s", context->blobdir, name);
 			free(buf);
-			if (!dc_read_file(curr_pathNfilename, &buf, &buf_bytes, context) || buf==NULL || buf_bytes<=0) {
+			if (!dc_read_file(context, curr_pathNfilename, &buf, &buf_bytes) || buf==NULL || buf_bytes<=0) {
 				continue;
 			}
 
@@ -969,7 +948,6 @@ static int export_backup(dc_context_t* context, const char* dir)
 
 	/* done - set some special config values (do this last to avoid importing crashed backups) */
 	dc_sqlite3_set_config_int(dest_sql, "backup_time", now);
-	dc_sqlite3_set_config    (dest_sql, "backup_for", context->blobdir);
 
 	context->cb(context, DC_EVENT_IMEX_FILE_WRITTEN, (uintptr_t)dest_pathNfilename, 0);
 	success = 1;
@@ -981,7 +959,7 @@ cleanup:
 	sqlite3_finalize(stmt);
 	dc_sqlite3_close(dest_sql);
 	dc_sqlite3_unref(dest_sql);
-	if (delete_dest_file) { dc_delete_file(dest_pathNfilename, context); }
+	if (delete_dest_file) { dc_delete_file(context, dest_pathNfilename); }
 	free(dest_pathNfilename);
 
 	free(curr_pathNfilename);
@@ -995,24 +973,8 @@ cleanup:
  ******************************************************************************/
 
 
-static void ensure_no_slash(char* path)
-{
-	int path_len = strlen(path);
-	if (path_len > 0) {
-		if (path[path_len-1]=='/'
-		 || path[path_len-1]=='\\') {
-			path[path_len-1] = 0;
-		}
-	}
-}
-
-
 static int import_backup(dc_context_t* context, const char* backup_to_import)
 {
-	/* command for testing eg.
-	imex import-backup /home/bpetersen/temp/delta-chat-2017-11-14.bak
-	*/
-
 	int           success = 0;
 	int           processed_files_cnt = 0;
 	int           total_files_cnt = 0;
@@ -1030,22 +992,19 @@ static int import_backup(dc_context_t* context, const char* backup_to_import)
 
 	/* close and delete the original file - FIXME: we should import to a .bak file and rename it on success. however, currently it is not clear it the import exists in the long run (may be replaced by a restore-from-imap) */
 
-//dc_sqlite3_lock(context->sql);  // TODO: check if this works while threads running
-//locked = 1;
-
 	if (dc_sqlite3_is_open(context->sql)) {
 		dc_sqlite3_close(context->sql);
 	}
 
-	dc_delete_file(context->dbfile, context);
+	dc_delete_file(context, context->dbfile);
 
-	if (dc_file_exist(context->dbfile)) {
+	if (dc_file_exist(context, context->dbfile)) {
 		dc_log_error(context, 0, "Cannot import backups: Cannot delete the old file.");
 		goto cleanup;
 	}
 
 	/* copy the database file */
-	if (!dc_copy_file(backup_to_import, context->dbfile, context)) {
+	if (!dc_copy_file(context, backup_to_import, context->dbfile)) {
 		goto cleanup; /* error already logged */
 	}
 
@@ -1077,7 +1036,7 @@ static int import_backup(dc_context_t* context, const char* backup_to_import)
         if (file_bytes > 0 && file_content) {
 			free(pathNfilename);
 			pathNfilename = dc_mprintf("%s/%s", context->blobdir, file_name);
-			if (!dc_write_file(pathNfilename, file_content, file_bytes, context)) {
+			if (!dc_write_file(context, pathNfilename, file_content, file_bytes)) {
 				dc_log_error(context, 0, "Storage full? Cannot write file %s with %i bytes.", pathNfilename, file_bytes);
 				goto cleanup; /* otherwise the user may believe the stuff is imported correctly, but there are files missing ... */
 			}
@@ -1091,32 +1050,6 @@ static int import_backup(dc_context_t* context, const char* backup_to_import)
 	dc_sqlite3_execute(context->sql, "DROP TABLE backup_blobs;");
 	dc_sqlite3_execute(context->sql, "VACUUM;");
 
-	/* rewrite references to the blobs */
-	repl_from = dc_sqlite3_get_config(context->sql, "backup_for", NULL);
-	if (repl_from && strlen(repl_from)>1 && context->blobdir && strlen(context->blobdir)>1)
-	{
-		ensure_no_slash(repl_from);
-		repl_to = dc_strdup(context->blobdir);
-		ensure_no_slash(repl_to);
-
-		dc_log_info(context, 0, "Rewriting paths from '%s' to '%s' ...", repl_from, repl_to);
-
-		assert( 'f'==DC_PARAM_FILE);
-		assert( 'i'==DC_PARAM_PROFILE_IMAGE);
-
-		char* q3 = sqlite3_mprintf("UPDATE msgs SET param=replace(param, 'f=%q/', 'f=%q/');", repl_from, repl_to); /* cannot use dc_mprintf() because of "%q" */
-			dc_sqlite3_execute(context->sql, q3);
-		sqlite3_free(q3);
-
-		q3 = sqlite3_mprintf("UPDATE chats SET param=replace(param, 'i=%q/', 'i=%q/');", repl_from, repl_to);
-			dc_sqlite3_execute(context->sql, q3);
-		sqlite3_free(q3);
-
-		q3 = sqlite3_mprintf("UPDATE contacts SET param=replace(param, 'i=%q/', 'i=%q/');", repl_from, repl_to);
-			dc_sqlite3_execute(context->sql, q3);
-		sqlite3_free(q3);
-	}
-
 	success = 1;
 
 cleanup:
@@ -1124,8 +1057,6 @@ cleanup:
 	free(repl_from);
 	free(repl_to);
 	sqlite3_finalize(stmt);
-
-// if (locked) { dc_sqlite3_unlock(context->sql); }  // TODO: check if this works while threads running
 
 	return success;
 }
@@ -1139,7 +1070,7 @@ cleanup:
 /**
  * Import/export things.
  * For this purpose, the function creates a job that is executed in the IMAP-thread then;
- * this requires to call dc_perform_imap_jobs() regulary.
+ * this requires to call dc_perform_imap_jobs() regularly.
  *
  * What to do is defined by the _what_ parameter which may be one of the following:
  *
@@ -1237,7 +1168,7 @@ void dc_job_do_DC_JOB_IMEX_IMAP(dc_context_t* context, dc_job_t* job)
 			goto cleanup;
 		}
 		/* also make sure, the directory for exporting exists */
-		dc_create_folder(param1, context);
+		dc_create_folder(context, param1);
 	}
 
 	switch (what)
@@ -1290,7 +1221,7 @@ cleanup:
  *
  * Example:
  *
- * ```
+ * ~~~
  * char dir[] = "/dir/to/search/backups/in";
  *
  * void ask_user_for_credentials()
@@ -1324,7 +1255,7 @@ cleanup:
  *     }
  *     free(file);
  * }
- * ```
+ * ~~~
  *
  * @memberof dc_context_t
  * @param context The context as created by dc_context_new().
@@ -1389,7 +1320,7 @@ cleanup:
 
 /**
  * Check if the user is authorized by the given password in some way.
- * This is to promt for the password eg. before exporting keys/backup.
+ * This is to prompt for the password eg. before exporting keys/backup.
  *
  * @memberof dc_context_t
  * @param context The context as created by dc_context_new().

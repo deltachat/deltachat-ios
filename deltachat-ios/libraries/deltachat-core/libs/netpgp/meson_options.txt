@@ -1,0 +1,24 @@
+option(
+  'bzip2',
+  type: 'feature',
+  value: 'auto',
+  description: 'Include bzip2 support'
+)
+option(
+  'openssl-camellia',
+  type: 'feature',
+  value: 'auto',
+  description: 'Whether to compile in support for OpenSSL Camellia'
+)
+option(
+  'openssl-idea',
+  type: 'feature',
+  value: 'auto',
+  description: 'Whether to compile in support for OpenSSL IDEA'
+)
+option(
+  'static-pic-lib',
+  type: 'boolean',
+  value: false,
+  description: 'Build a static library with PIC support'
+)

@@ -74,7 +74,7 @@ class MRMessage {
     
     lazy var image: UIImage? = { [unowned self] in
         guard let documents = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else { return nil }
-        let filetype = dc_msg_get_type(messagePointer)
+        let filetype = dc_msg_get_viewtype(messagePointer)
         let file = dc_msg_get_filename(messagePointer)
         if let cFile = file, filetype == DC_MSG_IMAGE {
             let filename = String(cString: cFile)

@@ -1,24 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 #ifndef __DC_JOB_H__
 #define __DC_JOB_H__
 #ifdef __cplusplus
@@ -31,11 +10,11 @@ extern "C" {
 #define DC_SMTP_THREAD            5000
 
 
-// jobs in the IMAP-thread
+// jobs in the INBOX-thread
 #define DC_JOB_DELETE_MSG_ON_IMAP     110    // low priority ...
 #define DC_JOB_MARKSEEN_MDN_ON_IMAP   120
 #define DC_JOB_MARKSEEN_MSG_ON_IMAP   130
-#define DC_JOB_SEND_MSG_TO_IMAP       700
+#define DC_JOB_MOVE_MSG               200
 #define DC_JOB_CONFIGURE_IMAP         900
 #define DC_JOB_IMEX_IMAP              910    // ... high priority
 
@@ -52,12 +31,6 @@ extern "C" {
 #define DC_SMTP_TIMEOUT_SEC       10
 
 
-// this is the timeout after which dc_perform_smtp_idle() returns at latest.
-// this timeout should not be too large as this might be the only option to perform
-// jobs that failed on the first execution.
-#define DC_SMTP_IDLE_SEC          60
-
-
 /**
  * Library-internal.
  */
@@ -68,6 +41,9 @@ typedef struct dc_job_t
 	uint32_t    job_id;
 	int         action;
 	uint32_t    foreign_id;
+	time_t      desired_timestamp;
+	time_t      added_timestamp;
+	int         tries;
 	dc_param_t* param;
 
 	int         try_again;

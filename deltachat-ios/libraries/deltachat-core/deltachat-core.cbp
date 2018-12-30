@@ -34,7 +34,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add option="-fexceptions" />
+			<Add option="-fexceptions -Wno-unused-function -Wno-misleading-indentation -Wno-deprecated-declarations" />
 			<Add option="-DHAVE_CONFIG_H" />
 			<Add option="-DDC_USE_MIME_DEBUG" />
 			<Add option="-DHAVE_ICONV" />
@@ -464,6 +464,9 @@
 		<Unit filename="src/dc_job.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/dc_jobthread.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/dc_key.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -486,6 +489,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/dc_mimeparser.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/dc_move.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/dc_msg.c">
@@ -534,9 +540,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/dc_tools.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/dc_uudecode.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/deltachat.h" />

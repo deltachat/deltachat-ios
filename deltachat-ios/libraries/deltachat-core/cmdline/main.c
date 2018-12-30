@@ -1,25 +1,3 @@
-/*******************************************************************************
- *
- *                              Delta Chat Core
- *                      Copyright (C) 2017 Björn Petersen
- *                   Contact: r10s@b44t.com, http://b44t.com
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program.  If not, see http://www.gnu.org/licenses/ .
- *
- ******************************************************************************/
-
-
 /* This is a CLI program and a little testing frame.  This file must not be
 included when using Delta Chat Core as a library.
 
@@ -52,7 +30,6 @@ static uintptr_t receive_event(dc_context_t* context, int event, uintptr_t data1
 	switch (event)
 	{
 		case DC_EVENT_GET_STRING:
-		case DC_EVENT_GET_QUANTITY_STRING:
 			break; /* do not show the event as this would fill the screen */
 
 		case DC_EVENT_INFO:
@@ -61,23 +38,43 @@ static uintptr_t receive_event(dc_context_t* context, int event, uintptr_t data1
 			}
 			break;
 
+		case DC_EVENT_SMTP_CONNECTED:
+			printf("[DC_EVENT_SMTP_CONNECTED] %s\n", (char*)data2);
+			break;
+
+		case DC_EVENT_IMAP_CONNECTED:
+			printf("[DC_EVENT_IMAP_CONNECTED] %s\n", (char*)data2);
+			break;
+
+		case DC_EVENT_SMTP_MESSAGE_SENT:
+			printf("[DC_EVENT_SMTP_MESSAGE_SENT] %s\n", (char*)data2);
+			break;
+
 		case DC_EVENT_WARNING:
 			printf("[Warning] %s\n", (char*)data2);
 			break;
 
 		case DC_EVENT_ERROR:
-			printf(ANSI_RED "[ERROR #%i] %s" ANSI_NORMAL "\n", (int)data1, (char*)data2);
+			printf(ANSI_RED "[DC_EVENT_ERROR] %s" ANSI_NORMAL "\n", (char*)data2);
+			break;
+
+		case DC_EVENT_ERROR_NETWORK:
+			printf(ANSI_RED "[DC_EVENT_ERROR_NETWORK] first=%i, msg=%s" ANSI_NORMAL "\n", (int)data1, (char*)data2);
+			break;
+
+		case DC_EVENT_ERROR_SELF_NOT_IN_GROUP:
+			printf(ANSI_RED "[DC_EVENT_ERROR_SELF_NOT_IN_GROUP] %s" ANSI_NORMAL "\n", (char*)data2);
 			break;
 
 		case DC_EVENT_HTTP_GET:
 			{
 				char* ret = NULL;
-				char* tempFile = dc_get_fine_pathNfilename(context->blobdir, "curl.result");
+				char* tempFile = dc_get_fine_pathNfilename(context, context->blobdir, "curl.result");
 				char* cmd = dc_mprintf("curl --silent --location --fail --insecure %s > %s", (char*)data1, tempFile); /* --location = follow redirects */
 				int error = system(cmd);
 				if (error == 0) { /* -1=system() error, !0=curl errors forced by -f, 0=curl success */
 					size_t bytes = 0;
-					dc_read_file(tempFile, (void**)&ret, &bytes, context);
+					dc_read_file(context, tempFile, (void**)&ret, &bytes);
 				}
 				free(cmd);
 				free(tempFile);
@@ -108,6 +105,10 @@ static uintptr_t receive_event(dc_context_t* context, int event, uintptr_t data1
 			printf(ANSI_YELLOW "{{Received DC_EVENT_IMEX_FILE_WRITTEN(%s)}}\n" ANSI_NORMAL, (char*)data1);
 			break;
 
+		case DC_EVENT_FILE_COPIED:
+			printf(ANSI_YELLOW "{{Received DC_EVENT_FILE_COPIED(%s)}}\n" ANSI_NORMAL, (char*)data1);
+			break;
+
 		case DC_EVENT_CHAT_MODIFIED:
 			printf(ANSI_YELLOW "{{Received DC_EVENT_CHAT_MODIFIED(%i)}}\n" ANSI_NORMAL, (int)data1);
 			break;
@@ -125,21 +126,58 @@ static uintptr_t receive_event(dc_context_t* context, int event, uintptr_t data1
  ******************************************************************************/
 
 
-static pthread_t imap_thread = 0;
+static pthread_t inbox_thread = 0;
 static int       run_threads = 0;
-static void* imap_thread_entry_point (void* entry_arg)
+static void* inbox_thread_entry_point (void* entry_arg)
 {
 	dc_context_t* context = (dc_context_t*)entry_arg;
 
 	while (run_threads) {
-		// jobs(), fetch() and idle()
-		// MUST be called from the same single thread and MUST be called sequentially.
+		// jobs(), fetch() and idle() MUST be called from the same single thread
+		// and MUST be called sequentially.
 		dc_perform_imap_jobs(context);
 		dc_perform_imap_fetch(context);
-		dc_perform_imap_idle(context); // this may take hours ...
+		if (run_threads) {
+			dc_perform_imap_idle(context); // this may take hours ...
+		}
 	}
 
-	imap_thread = 0;
+	return NULL;
+}
+
+
+static pthread_t mvbox_thread = 0;
+static void* mvbox_thread_entry_point (void* entry_arg)
+{
+	dc_context_t* context = (dc_context_t*)entry_arg;
+
+	while (run_threads) {
+		// fetch() and idle() MUST be called from the same single thread
+		// and MUST be called sequentially.
+		dc_perform_mvbox_fetch(context);
+		if (run_threads) {
+			dc_perform_mvbox_idle(context); // this may take hours ...
+		}
+	}
+
+	return NULL;
+}
+
+
+static pthread_t sentbox_thread = 0;
+static void* sentbox_thread_entry_point (void* entry_arg)
+{
+	dc_context_t* context = (dc_context_t*)entry_arg;
+
+	while (run_threads) {
+		// fetch() and idle() MUST be called from the same single thread
+		// and MUST be called sequentially.
+		dc_perform_sentbox_fetch(context);
+		if (run_threads) {
+			dc_perform_sentbox_idle(context); // this may take hours ...
+		}
+	}
+
 	return NULL;
 }
 
@@ -150,11 +188,14 @@ static void* smtp_thread_entry_point (void* entry_arg)
 	dc_context_t* context = (dc_context_t*)entry_arg;
 
 	while (run_threads) {
+		// jobs() and idle() MUST be called from the same single thread
+		// and MUST be called sequentially.
 		dc_perform_smtp_jobs(context);
-		dc_perform_smtp_idle(context); // this may take hours ...
+		if (run_threads) {
+			dc_perform_smtp_idle(context); // this may take hours ...
+		}
 	}
 
-	smtp_thread = 0;
 	return NULL;
 }
 
@@ -162,8 +203,16 @@ static void* smtp_thread_entry_point (void* entry_arg)
 static void start_threads(dc_context_t* context)
 {
 	run_threads = 1;
-	if (!imap_thread) {
-		pthread_create(&imap_thread, NULL, imap_thread_entry_point, context);
+	if (!inbox_thread) {
+		pthread_create(&inbox_thread, NULL, inbox_thread_entry_point, context);
+	}
+
+	if (!mvbox_thread) {
+		pthread_create(&mvbox_thread, NULL, mvbox_thread_entry_point, context);
+	}
+
+	if (!sentbox_thread) {
+		pthread_create(&sentbox_thread, NULL, sentbox_thread_entry_point, context);
 	}
 
 	if (!smtp_thread) {
@@ -176,12 +225,19 @@ static void stop_threads(dc_context_t* context)
 {
 	run_threads = 0;
 	dc_interrupt_imap_idle(context);
+	dc_interrupt_mvbox_idle(context);
+	dc_interrupt_sentbox_idle(context);
 	dc_interrupt_smtp_idle(context);
 
-	// wait until the threads are finished
-	while (imap_thread || smtp_thread) {
-		usleep(100*1000);
-	}
+	pthread_join(inbox_thread, NULL);
+	pthread_join(mvbox_thread, NULL);
+	pthread_join(sentbox_thread, NULL);
+	pthread_join(smtp_thread, NULL);
+
+	inbox_thread = 0;
+	mvbox_thread = 0;
+	sentbox_thread = 0;
+	smtp_thread = 0;
 }
 
 
@@ -226,6 +282,14 @@ int main(int argc, char ** argv)
 	s_do_log_info = 0;
 	stress_functions(context);
 	s_do_log_info = 1;
+
+	#if 0
+	for(int i=0; i<10000;i++) {
+		printf("--%i--\n", i);
+		start_threads(context);
+		stop_threads(context);
+	}
+	#endif
 
 	printf("Delta Chat Core is awaiting your commands.\n");
 

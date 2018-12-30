@@ -1,6 +1,12 @@
 option(
-  'system-etpan',
+  'monolith',
   type: 'boolean',
   value: false,
-  description: 'Do not use vendored libetpan (uses libetpan-config)',
+  description: 'Build a libdeltachat.so with minimal external dependencies'
+)
+option(
+  'force-etpan-fallback',
+  type: 'boolean',
+  value: false,
+  description: 'Use bundled libetpan, as it ignores --wrap-mode=forcefallback'
 )

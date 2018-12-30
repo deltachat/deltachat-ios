@@ -968,6 +968,10 @@ cmd_get_passphrase_free(pgp_seckey_passphrase_t *skp)
 static void
 free_BN(BIGNUM **pp)
 {
+	if (pp==NULL || *pp==NULL) {
+		return;
+	}
+
 	BN_free(*pp);
 	*pp = NULL;
 }
@@ -1272,6 +1276,10 @@ pgp_pk_sesskey_free(pgp_pk_sesskey_t *sk)
 void
 pgp_pubkey_free(pgp_pubkey_t *p)
 {
+	if (p==NULL) {
+		return;
+	}
+
 	switch (p->alg) {
 	case PGP_PKA_RSA:
 	case PGP_PKA_RSA_ENCRYPT_ONLY:
