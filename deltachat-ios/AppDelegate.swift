@@ -77,27 +77,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("---- background-fetch ----")
 
-        if mailboxPointer == nil {
-            //       - second param remains nil (user data for more than one mailbox)
-            mailboxPointer = dc_context_new(callback_ios, nil, "iOS")
-            guard mailboxPointer != nil else {
-                fatalError("Error: dc_context_new returned nil")
-            }
-        }
-
-        if state == .background {
-            state = .backgroundFetch
-
-            dc_perform_imap_fetch(mailboxPointer)
-            dc_perform_mvbox_fetch(mailboxPointer)
-
+        start {
             // TODO: actually set the right value depending on if we found sth
             completionHandler(.newData)
-
-            state = .background
-        } else {
-            // only start a round of jobs if we are not already doing one
-            completionHandler(.noData)
         }
     }
 
@@ -109,9 +91,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationDidEnterBackground(_: UIApplication) {
         logger.info("---- background ----")
 
-        // stop()
         reachability.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
+
+        maybeStop()
+    }
+
+    func maybeStop() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            let app = UIApplication.shared
+            logger.info("state: \(app.applicationState) time remaining \(app.backgroundTimeRemaining)")
+
+            if app.applicationState != .background {
+                // only need to do sth in the background
+                return
+            } else if app.backgroundTimeRemaining < 10 {
+                self.stop()
+            } else {
+                self.maybeStop()
+            }
+        }
     }
 
     func applicationWillTerminate(_: UIApplication) {
@@ -151,7 +150,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         mailboxPointer = nil
     }
 
-    func start() {
+    func start(_ completion: (() -> Void)? = nil) {
         logger.info("---- start ----")
 
         if state == .running {
@@ -171,23 +170,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         DispatchQueue.global(qos: .background).async {
             self.registerBackgroundTask()
             while self.state == .running {
-                DispatchQueue.main.async {
-                    switch UIApplication.shared.applicationState {
-                    case .active:
-                        logger.info("active - imap")
-                    case .background:
-                        logger.info("background - time remaining = " +
-                            "\(UIApplication.shared.backgroundTimeRemaining) seconds")
-                    case .inactive:
-                        break
-                    }
-                }
-
                 dc_perform_imap_jobs(mailboxPointer)
                 dc_perform_imap_fetch(mailboxPointer)
                 dc_perform_imap_idle(mailboxPointer)
             }
             if self.backgroundTask != .invalid {
+                completion?()
                 self.endBackgroundTask()
             }
         }
