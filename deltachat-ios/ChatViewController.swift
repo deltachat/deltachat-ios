@@ -10,6 +10,7 @@ import ALCameraViewController
 import MapKit
 import MessageInputBar
 import MessageKit
+import QuickLook
 import UIKit
 
 class ChatViewController: MessagesViewController {
@@ -26,6 +27,7 @@ class ChatViewController: MessagesViewController {
     var disableWriting = false
 
     var previewView: UIView?
+    var previewController: PreviewController?
 
     init(chatId: Int, title: String? = nil) {
         self.chatId = chatId
@@ -94,10 +96,6 @@ class ChatViewController: MessagesViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        let cnt = Int(dc_get_fresh_msg_cnt(mailboxPointer, UInt32(chatId)))
-        logger.info("updating count for chat \(cnt)")
-        UIApplication.shared.applicationIconBadgeNumber = cnt
-
         if #available(iOS 11.0, *) {
             if disableWriting {
                 navigationController?.navigationBar.prefersLargeTitles = true
@@ -141,6 +139,10 @@ class ChatViewController: MessagesViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
+        let cnt = Int(dc_get_fresh_msg_cnt(mailboxPointer, UInt32(chatId)))
+        logger.info("updating count for chat \(cnt)")
+        UIApplication.shared.applicationIconBadgeNumber = cnt
+
         if #available(iOS 11.0, *) {
             if disableWriting {
                 navigationController?.navigationBar.prefersLargeTitles = false
@@ -170,6 +172,7 @@ class ChatViewController: MessagesViewController {
     }
 
     override func viewDidLoad() {
+        messagesCollectionView.register(CustomCell.self)
         super.viewDidLoad()
 
         if !MRConfig.configured {
@@ -211,7 +214,8 @@ class ChatViewController: MessagesViewController {
         // Set outgoing avatar to overlap with the message bubble
         layout?.setMessageIncomingMessageTopLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: 0, left: 18, bottom: outgoingAvatarOverlap, right: 0)))
         layout?.setMessageIncomingAvatarSize(CGSize(width: 30, height: 30))
-        layout?.setMessageIncomingMessagePadding(UIEdgeInsets(top: -outgoingAvatarOverlap, left: -18, bottom: outgoingAvatarOverlap, right: 18))
+        layout?.setMessageIncomingMessagePadding(UIEdgeInsets(top: -outgoingAvatarOverlap, left: -18, bottom: outgoingAvatarOverlap / 2, right: 18))
+        layout?.setMessageIncomingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: -7, left: 38, bottom: 0, right: 0)))
 
         layout?.setMessageIncomingAccessoryViewSize(CGSize(width: 30, height: 30))
         layout?.setMessageIncomingAccessoryViewPadding(HorizontalEdgeInsets(left: 8, right: 0))
@@ -220,6 +224,13 @@ class ChatViewController: MessagesViewController {
 
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
+
+        // Configures the UIMenu which is shown when selecting a message
+        let infoMenuItem = UIMenuItem(title: "Info", action: #selector(MessageCollectionViewCell.messageInfo(_:)))
+
+        UIMenuController.shared.menuItems = [
+            infoMenuItem,
+        ]
     }
 
     func configureMessageInputBar() {
@@ -295,21 +306,56 @@ class ChatViewController: MessagesViewController {
     // MARK: - UICollectionViewDataSource
 
     public override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let messagesDataSource = messagesCollectionView.messagesDataSource else {
-            fatalError("Ouch. nil data source for messages")
+        guard let messagesCollectionView = collectionView as? MessagesCollectionView else {
+            fatalError("notMessagesCollectionView")
         }
 
-        //        guard !isSectionReservedForTypingBubble(indexPath.section) else {
-        //            return super.collectionView(collectionView, cellForItemAt: indexPath)
-        //        }
+        guard let messagesDataSource = messagesCollectionView.messagesDataSource else {
+            fatalError("nilMessagesDataSource")
+        }
 
         let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
-        if case .custom = message.kind {
+
+        switch message.kind {
+        case .text, .attributedText, .emoji:
+            let cell = messagesCollectionView.dequeueReusableCell(TextMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
+        case .photo, .video:
+            let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
+        case .location:
+            let cell = messagesCollectionView.dequeueReusableCell(LocationMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
+        case .custom:
             let cell = messagesCollectionView.dequeueReusableCell(CustomCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
         }
-        return super.collectionView(collectionView, cellForItemAt: indexPath)
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        if action == NSSelectorFromString("messageInfo:") {
+            return true
+        } else {
+            return super.collectionView(collectionView, canPerformAction: action, forItemAt: indexPath, withSender: sender)
+        }
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+        if action == NSSelectorFromString("messageInfo:") {
+            let msg = messageList[indexPath.section]
+            logger.info("View info \(msg.messageId)")
+
+            let msgViewController = MessageInfoViewController(message: msg)
+            if let ctrl = navigationController {
+                ctrl.pushViewController(msgViewController, animated: true)
+            }
+        } else {
+            super.collectionView(collectionView, performAction: action, forItemAt: indexPath, withSender: sender)
+        }
     }
 }
 
@@ -336,6 +382,10 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        if isInfoMessage(at: indexPath) {
+            return nil
+        }
+
         if isTimeLabelVisible(at: indexPath) {
             return NSAttributedString(string: MessageKitDateFormatter.shared.string(from: message.sentDate), attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         }
@@ -346,19 +396,45 @@ extension ChatViewController: MessagesDataSource {
     func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         if !isPreviousMessageSameSender(at: indexPath) {
             let name = message.sender.displayName
-            return NSAttributedString(string: name, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+            let m = messageList[indexPath.section]
+            return NSAttributedString(string: name, attributes: [
+                .font: UIFont.systemFont(ofSize: 14),
+                .foregroundColor: m.fromContact.color,
+            ])
         }
         return nil
     }
 
     func isTimeLabelVisible(at indexPath: IndexPath) -> Bool {
-        // TODO: better heuristic when to show the time label
-        return indexPath.section % 3 == 0 && !isPreviousMessageSameSender(at: indexPath)
+        guard indexPath.section + 1 < messageList.count else { return false }
+
+        let messageA = messageList[indexPath.section]
+        let messageB = messageList[indexPath.section + 1]
+
+        if messageA.fromContactId == messageB.fromContactId {
+            return false
+        }
+
+        let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
+        let dateA = messageA.sentDate
+        let dateB = messageB.sentDate
+
+        let dayA = (calendar?.component(.day, from: dateA))
+        let dayB = (calendar?.component(.day, from: dateB))
+
+        return dayA != dayB
     }
 
     func isPreviousMessageSameSender(at indexPath: IndexPath) -> Bool {
         guard indexPath.section - 1 >= 0 else { return false }
-        return messageList[indexPath.section].fromContactId == messageList[indexPath.section - 1].fromContactId
+        let messageA = messageList[indexPath.section - 1]
+        let messageB = messageList[indexPath.section]
+
+        if messageA.isInfo {
+            return false
+        }
+
+        return messageA.fromContactId == messageB.fromContactId
     }
 
     func isInfoMessage(at indexPath: IndexPath) -> Bool {
@@ -367,16 +443,45 @@ extension ChatViewController: MessagesDataSource {
 
     func isNextMessageSameSender(at indexPath: IndexPath) -> Bool {
         guard indexPath.section + 1 < messageList.count else { return false }
-        return messageList[indexPath.section].fromContactId == messageList[indexPath.section + 1].fromContactId
+        let messageA = messageList[indexPath.section]
+        let messageB = messageList[indexPath.section + 1]
+
+        if messageA.isInfo {
+            return false
+        }
+
+        return messageA.fromContactId == messageB.fromContactId
     }
 
     func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         guard indexPath.section < messageList.count else { return nil }
         let m = messageList[indexPath.section]
-        if !isNextMessageSameSender(at: indexPath), isFromCurrentSender(message: message) {
-            return NSAttributedString(string: m.stateOutDescription(), attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+
+        if m.isInfo || isNextMessageSameSender(at: indexPath) {
+            return nil
         }
-        return nil
+
+        let timestampAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 12),
+            .foregroundColor: UIColor.lightGray,
+        ]
+
+        if isFromCurrentSender(message: message) {
+            let text = NSMutableAttributedString()
+            text.append(NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes))
+
+            text.append(NSAttributedString(
+                string: " - " + m.stateDescription(),
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 12),
+                    .foregroundColor: UIColor.darkText,
+                ]
+            ))
+
+            return text
+        }
+
+        return NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes)
     }
 
     func updateMessage(_ messageId: Int) {
@@ -446,7 +551,12 @@ extension ChatViewController: MessagesDisplayDelegate {
         if isInfoMessage(at: indexPath) {
             return .custom { view in
                 view.style = .none
-                view.backgroundColor = UIColor(alpha: 0, red: 0, green: 0, blue: 0)
+                view.backgroundColor = UIColor(alpha: 10, red: 0, green: 0, blue: 0)
+                let radius: CGFloat = 16
+                let path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: UIRectCorner.allCorners, cornerRadii: CGSize(width: radius, height: radius))
+                let mask = CAShapeLayer()
+                mask.path = path.cgPath
+                view.layer.mask = mask
                 view.center.x = self.view.center.x
             }
         }
@@ -506,15 +616,31 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
 
     func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
+        if isInfoMessage(at: indexPath) {
+            return 0
+        }
+
         if isFromCurrentSender(message: message) {
-            return !isPreviousMessageSameSender(at: indexPath) ? 20 : 0
+            return !isPreviousMessageSameSender(at: indexPath) ? 40 : 0
         } else {
-            return !isPreviousMessageSameSender(at: indexPath) ? (20 + outgoingAvatarOverlap) : 0
+            return !isPreviousMessageSameSender(at: indexPath) ? (40 + outgoingAvatarOverlap) : 0
         }
     }
 
     func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
-        return (!isNextMessageSameSender(at: indexPath) && isFromCurrentSender(message: message)) && !isInfoMessage(at: indexPath) ? 16 : 0
+        if isInfoMessage(at: indexPath) {
+            return 0
+        }
+
+        if !isNextMessageSameSender(at: indexPath) {
+            return 16
+        }
+
+        if isFromCurrentSender(message: message) {
+            return 0
+        }
+
+        return 9
     }
 
     func heightForLocation(message _: MessageType, at _: IndexPath, with _: CGFloat, in _: MessagesCollectionView) -> CGFloat {
@@ -522,7 +648,7 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
 
     func footerViewSize(for _: MessageType, at _: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
-        return CGSize(width: messagesCollectionView.bounds.width, height: 10)
+        return CGSize(width: messagesCollectionView.bounds.width, height: 20)
     }
 
     @objc func didPressPhotoButton() {
@@ -560,8 +686,15 @@ extension ChatViewController: MessagesLayoutDelegate {
 // MARK: - MessageCellDelegate
 
 extension ChatViewController: MessageCellDelegate {
-    func didTapMessage(in _: MessageCollectionViewCell) {
-        logger.info("Message tapped")
+    func didTapMessage(in cell: MessageCollectionViewCell) {
+        if let indexPath = messagesCollectionView.indexPath(for: cell) {
+            let message = messageList[indexPath.section]
+
+            if let url = message.fileURL {
+                previewController = PreviewController(urls: [url])
+                present(previewController!.qlController, animated: true)
+            }
+        }
     }
 
     func didTapAvatar(in _: MessageCollectionViewCell) {
@@ -574,6 +707,25 @@ extension ChatViewController: MessageCellDelegate {
 
     func didTapBottomLabel(in _: MessageCollectionViewCell) {
         print("Bottom label tapped")
+    }
+}
+
+class PreviewController: QLPreviewControllerDataSource {
+    var urls: [URL]
+    var qlController: QLPreviewController
+
+    init(urls: [URL]) {
+        self.urls = urls
+        qlController = QLPreviewController()
+        qlController.dataSource = self
+    }
+
+    func numberOfPreviewItems(in _: QLPreviewController) -> Int {
+        return urls.count
+    }
+
+    func previewController(_: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        return urls[index] as QLPreviewItem
     }
 }
 
@@ -644,5 +796,20 @@ extension ChatViewController: MessageInputBarDelegate {
             dc_send_text_msg(mailboxPointer, UInt32(self.chatId), text)
         }
         inputBar.inputTextView.text = String()
+    }
+}
+
+// MARK: - MessageCollectionViewCell
+
+extension MessageCollectionViewCell {
+    @objc func messageInfo(_ sender: Any?) {
+        // Get the collectionView
+        if let collectionView = self.superview as? UICollectionView {
+            // Get indexPath
+            if let indexPath = collectionView.indexPath(for: self) {
+                // Trigger action
+                collectionView.delegate?.collectionView?(collectionView, performAction: #selector(MessageCollectionViewCell.messageInfo(_:)), forItemAt: indexPath, withSender: sender)
+            }
+        }
     }
 }

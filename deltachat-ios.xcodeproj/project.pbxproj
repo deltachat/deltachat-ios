@@ -51,6 +51,7 @@
 		7092474120B3869500AF8799 /* ContactProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactProfileViewController.swift */; };
 		70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */; };
 		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
+		785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BE16721E247F1003BE98C /* MessageInfoViewController.swift */; };
 		789E879621D6CB58003ED1C5 /* QrCodeReaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */; };
 		789E879D21D6DF86003ED1C5 /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E879C21D6DF86003ED1C5 /* ProgressHud.swift */; };
 		78E45E2921D176C400D4B15E /* dc_jobthread.h in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2821D176C300D4B15E /* dc_jobthread.h */; };
@@ -179,6 +180,7 @@
 		7092474020B3869500AF8799 /* ContactProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactProfileViewController.swift; sourceTree = "<group>"; };
 		70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupMemberChoiceController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		785BE16721E247F1003BE98C /* MessageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfoViewController.swift; sourceTree = "<group>"; };
 		789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeReaderController.swift; sourceTree = "<group>"; };
 		789E879C21D6DF86003ED1C5 /* ProgressHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHud.swift; sourceTree = "<group>"; };
 		78C7036A21D46752005D4525 /* deltachat-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "deltachat-ios.entitlements"; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 				7A451D931FB1B1DB00177250 /* wrapper.h */,
 				7A451DBD1FB4AD0700177250 /* Wrapper.swift */,
 				789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */,
+				785BE16721E247F1003BE98C /* MessageInfoViewController.swift */,
 				70B8882D2091B8550074812E /* ContactCell.swift */,
 				78ED838C21D577D000243125 /* events.swift */,
 				789E879C21D6DF86003ED1C5 /* ProgressHud.swift */,
@@ -785,6 +788,7 @@
 				7070FB6C20FF345F000DC258 /* dc_keyring.c in Sources */,
 				7A79236A1FB0A2C800BC2DE5 /* compress.c in Sources */,
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
+				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
 				AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

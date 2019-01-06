@@ -10,6 +10,29 @@ import Foundation
 import MessageKit
 import UIKit
 
+enum MessageViewType: CustomStringConvertible {
+    case audio
+    case file
+    case gif
+    case image
+    case text
+    case video
+    case voice
+
+    var description: String {
+        switch self {
+        // Use Internationalization, as appropriate.
+        case .audio: return "Audio"
+        case .file: return "File"
+        case .gif: return "GIF"
+        case .image: return "Image"
+        case .text: return "Text"
+        case .video: return "Video"
+        case .voice: return "Voice"
+        }
+    }
+}
+
 class MRContact {
     private var contactPointer: UnsafeMutablePointer<dc_contact_t>
 
@@ -87,22 +110,41 @@ class MRMessage: MessageType {
         Date(timeIntervalSince1970: Double(timestamp))
     }()
 
+    let localDateFormatter: DateFormatter = {
+        let result = DateFormatter()
+        result.dateStyle = .none
+        result.timeStyle = .short
+        return result
+    }()
+
+    func formattedSentDate() -> String {
+        return localDateFormatter.string(from: sentDate)
+    }
+
     lazy var kind: MessageKind = {
         if isInfo {
             let text = NSAttributedString(string: self.text ?? "", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
             return MessageKind.attributedText(text)
         }
 
-        if let image = self.image {
+        let text = self.text ?? ""
+
+        if self.viewtype == nil {
+            return MessageKind.text(text)
+        }
+
+        switch self.viewtype! {
+        case .image:
             return MessageKind.photo(Media(image: image))
+        case .video:
+            return MessageKind.video(Media(url: fileURL))
+        default:
+            // TODO: custom views for audio, etc
+            if let filename = self.filename {
+                return MessageKind.text("File: \(self.filename ?? "") (\(self.filesize) bytes)")
+            }
+            return MessageKind.text(text)
         }
-
-        if let filename = self.filename {
-            // TODO:
-            return MessageKind.text("File: \(self.filename ?? "") (\(self.filesize) bytes)")
-        }
-
-        return MessageKind.text(self.text ?? "- empty -")
     }()
 
     var messageId: String {
@@ -121,6 +163,10 @@ class MRMessage: MessageType {
         MRContact(id: fromContactId)
     }()
 
+    lazy var toContact: MRContact = {
+        MRContact(id: toContactId)
+    }()
+
     var toContactId: Int {
         return Int(messagePointer.pointee.to_id)
     }
@@ -130,22 +176,51 @@ class MRMessage: MessageType {
     }
 
     var text: String? {
-        return String(cString: messagePointer.pointee.text)
+        guard let result = dc_msg_get_text(messagePointer) else { return nil }
+
+        return String(cString: result)
+    }
+
+    var viewtype: MessageViewType? {
+        switch dc_msg_get_viewtype(messagePointer) {
+        case 0:
+            return nil
+        case DC_MSG_AUDIO:
+            return .audio
+        case DC_MSG_FILE:
+            return .file
+        case DC_MSG_GIF:
+            return .gif
+        case DC_MSG_TEXT:
+            return .text
+        case DC_MSG_IMAGE:
+            return .image
+        case DC_MSG_VIDEO:
+            return .video
+        case DC_MSG_VOICE:
+            return .voice
+        default:
+            return nil
+        }
+    }
+
+    var fileURL: URL? {
+        if let file = self.file {
+            return URL(fileURLWithPath: file, isDirectory: false)
+        }
+        return nil
     }
 
     lazy var image: UIImage? = { [unowned self] in
         let filetype = dc_msg_get_viewtype(messagePointer)
-        let file = dc_msg_get_file(messagePointer)
-        if let cFile = file, filetype == DC_MSG_IMAGE {
-            let filename = String(cString: cFile)
-            let path: URL = URL(fileURLWithPath: filename, isDirectory: false)
+        if let path = fileURL, filetype == DC_MSG_IMAGE {
             if path.isFileURL {
                 do {
                     let data = try Data(contentsOf: path)
                     let image = UIImage(data: data)
                     return image
                 } catch {
-                    logger.warning("failed to load image: \(filename), \(error)")
+                    logger.warning("failed to load image: \(path), \(error)")
                     return nil
                 }
             }
@@ -196,11 +271,17 @@ class MRMessage: MessageType {
 
     // MR_STATE_*
     var state: Int {
-        return Int(messagePointer.pointee.state)
+        return Int(dc_msg_get_state(messagePointer))
     }
 
-    func stateOutDescription() -> String {
+    func stateDescription() -> String {
         switch Int32(state) {
+        case DC_STATE_IN_FRESH:
+            return "Fresh"
+        case DC_STATE_IN_NOTICED:
+            return "Noticed"
+        case DC_STATE_IN_SEEN:
+            return "Seen"
         case DC_STATE_OUT_DRAFT:
             return "Draft"
         case DC_STATE_OUT_PENDING:
@@ -209,6 +290,8 @@ class MRMessage: MessageType {
             return "Sent"
         case DC_STATE_OUT_MDN_RCVD:
             return "Read"
+        case DC_STATE_OUT_FAILED:
+            return "Failed"
         default:
             return "Unknown"
         }
