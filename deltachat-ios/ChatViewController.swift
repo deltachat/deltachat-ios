@@ -315,7 +315,6 @@ class ChatViewController: MessagesViewController {
         }
 
         let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
-
         switch message.kind {
         case .text, .attributedText, .emoji:
             let cell = messagesCollectionView.dequeueReusableCell(TextMessageCell.self, for: indexPath)
@@ -332,6 +331,7 @@ class ChatViewController: MessagesViewController {
         case .custom:
             let cell = messagesCollectionView.dequeueReusableCell(CustomCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+
             return cell
         }
     }
@@ -598,6 +598,7 @@ extension ChatViewController: MessagesDisplayDelegate {
         let avatar = Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.name))
         avatarView.set(avatar: avatar)
         avatarView.isHidden = isNextMessageSameSender(at: indexPath) || message.isInfo
+        avatarView.backgroundColor = contact.color
     }
 
     func enabledDetectors(for _: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> [DetectorType] {
