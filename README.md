@@ -4,9 +4,12 @@ Email-based instant messaging for iOS.
 
 ## How to build with Xcode
 
-    $ git clone git@github.com:deltachat/deltachat-ios.git
-    $ cd deltachat-ios
-    $ open deltachat-ios.xcworkspace # do not: open deltachat-ios.xcodeproj
+```bash
+$ git clone git@github.com:deltachat/deltachat-ios.git
+$ cd deltachat-ios
+$ git submodule update --init
+$ open deltachat-ios.xcworkspace # do not: open deltachat-ios.xcodeproj
+```
 
 This should open Xcode. Then make sure that at the top left in Xcode there is *deltachat-ios* selected as scheme (see screenshot below).
 
