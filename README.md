@@ -7,7 +7,7 @@ Email-based instant messaging for iOS.
     $ git clone git@github.com:deltachat/deltachat-ios.git
     $ cd deltachat-ios
     $ open deltachat-ios.xcworkspace # do not: open deltachat-ios.xcodeproj
-    
+
 This should open Xcode. Then make sure that at the top left in Xcode there is *deltachat-ios* selected as scheme (see screenshot below).
 
 ![Screenshot](supporting_images/screenshot_scheme_selection.png)
@@ -42,7 +42,7 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
       and taking+sending photos directly from the camera.
       (videos and voice messages
       and other attachments can be done in a later version)
-- [ ] reception of images
+- [x] reception of images
 - [ ] ui-polishing, eg.
   - [ ] improve group creation UI
   - [ ] smarter time/date display

@@ -51,11 +51,25 @@
 		7092474120B3869500AF8799 /* ContactProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactProfileViewController.swift */; };
 		70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */; };
 		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
+		785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BE16721E247F1003BE98C /* MessageInfoViewController.swift */; };
+		789E879621D6CB58003ED1C5 /* QrCodeReaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */; };
+		789E879D21D6DF86003ED1C5 /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E879C21D6DF86003ED1C5 /* ProgressHud.swift */; };
 		78E45E2921D176C400D4B15E /* dc_jobthread.h in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2821D176C300D4B15E /* dc_jobthread.h */; };
 		78E45E2B21D176FB00D4B15E /* dc_jobthread.c in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2A21D176FB00D4B15E /* dc_jobthread.c */; };
 		78E45E2F21D1774200D4B15E /* dc_context.h in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2D21D1774200D4B15E /* dc_context.h */; };
 		78E45E3021D1774200D4B15E /* dc_move.c in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2E21D1774200D4B15E /* dc_move.c */; };
-		7A0052A11FBC50C40048C3BF /* CredentialsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0052A01FBC50C40048C3BF /* CredentialsController.swift */; };
+		78E45E3321D3CBC000D4B15E /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3221D3CBC000D4B15E /* AppTabBarController.swift */; };
+		78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3921D3CFBC00D4B15E /* SettingsController.swift */; };
+		78E45E3C21D3D03700D4B15E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3B21D3D03700D4B15E /* TableViewCell.swift */; };
+		78E45E3E21D3D28C00D4B15E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3D21D3D28C00D4B15E /* NavigationController.swift */; };
+		78E45E4021D3D70700D4B15E /* ContactListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3F21D3D70700D4B15E /* ContactListController.swift */; };
+		78E45E4221D3DB4000D4B15E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4121D3DB4000D4B15E /* UIViewController+Extension.swift */; };
+		78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */; };
+		78E45E4C21D404AE00D4B15E /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4B21D404AE00D4B15E /* CustomCell.swift */; };
+		78ED838321D5379000243125 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838221D5379000243125 /* TextFieldCell.swift */; };
+		78ED838D21D577D000243125 /* events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838C21D577D000243125 /* events.swift */; };
+		78ED838F21D5927A00243125 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838E21D5927A00243125 /* ProfileViewController.swift */; };
+		78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED839321D5AF8A00243125 /* QrCodeView.swift */; };
 		7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0052C71FBE6CB40048C3BF /* NewContactController.swift */; };
 		7A451D941FB1B1DB00177250 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A451D921FB1B1DB00177250 /* wrapper.c */; };
 		7A451DAE1FB1F5A200177250 /* libetpan-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A451DA71FB1F4BF00177250 /* libetpan-ios.a */; };
@@ -83,10 +97,8 @@
 		AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */; };
 		AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */; };
 		AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DE1FB3246400DCDD78 /* Message.swift */; };
-		AEACE2E11FB3271700DCDD78 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E01FB3271700DCDD78 /* SampleData.swift */; };
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
 		AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E41FB32E1900DCDD78 /* Utils.swift */; };
-		AEACE2E91FB34D9100DCDD78 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E81FB34D9100DCDD78 /* ContactViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,13 +180,28 @@
 		7092474020B3869500AF8799 /* ContactProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactProfileViewController.swift; sourceTree = "<group>"; };
 		70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupMemberChoiceController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		785BE16721E247F1003BE98C /* MessageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfoViewController.swift; sourceTree = "<group>"; };
+		789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeReaderController.swift; sourceTree = "<group>"; };
+		789E879C21D6DF86003ED1C5 /* ProgressHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHud.swift; sourceTree = "<group>"; };
+		78C7036A21D46752005D4525 /* deltachat-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "deltachat-ios.entitlements"; sourceTree = "<group>"; };
 		78E45E2121D1768900D4B15E /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = "deltachat-ios/libraries/deltachat-core/src"; sourceTree = "<group>"; };
 		78E45E2821D176C300D4B15E /* dc_jobthread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dc_jobthread.h; path = "deltachat-ios/libraries/deltachat-core/src/dc_jobthread.h"; sourceTree = "<group>"; };
 		78E45E2A21D176FB00D4B15E /* dc_jobthread.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_jobthread.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_jobthread.c"; sourceTree = "<group>"; };
 		78E45E2C21D1774200D4B15E /* dc_context.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_context.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_context.c"; sourceTree = "<group>"; };
 		78E45E2D21D1774200D4B15E /* dc_context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dc_context.h; path = "deltachat-ios/libraries/deltachat-core/src/dc_context.h"; sourceTree = "<group>"; };
 		78E45E2E21D1774200D4B15E /* dc_move.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_move.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_move.c"; sourceTree = "<group>"; };
-		7A0052A01FBC50C40048C3BF /* CredentialsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsController.swift; sourceTree = "<group>"; };
+		78E45E3221D3CBC000D4B15E /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
+		78E45E3921D3CFBC00D4B15E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		78E45E3B21D3D03700D4B15E /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		78E45E3D21D3D28C00D4B15E /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		78E45E3F21D3D70700D4B15E /* ContactListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListController.swift; sourceTree = "<group>"; };
+		78E45E4121D3DB4000D4B15E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		78E45E4B21D404AE00D4B15E /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		78ED838221D5379000243125 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		78ED838C21D577D000243125 /* events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = events.swift; sourceTree = "<group>"; };
+		78ED838E21D5927A00243125 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		78ED839321D5AF8A00243125 /* QrCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeView.swift; sourceTree = "<group>"; };
 		7A0052C71FBE6CB40048C3BF /* NewContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactController.swift; sourceTree = "<group>"; };
 		7A451D921FB1B1DB00177250 /* wrapper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wrapper.c; sourceTree = "<group>"; };
 		7A451D931FB1B1DB00177250 /* wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wrapper.h; sourceTree = "<group>"; };
@@ -231,10 +258,8 @@
 		AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; };
 		AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		AEACE2DE1FB3246400DCDD78 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		AEACE2E01FB3271700DCDD78 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AEACE2E41FB32E1900DCDD78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		AEACE2E81FB34D9100DCDD78 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +276,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		78ED838A21D5570700243125 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */,
+				78E45E4121D3DB4000D4B15E /* UIViewController+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		78ED839021D5929800243125 /* TopViews */ = {
+			isa = PBXGroup;
+			children = (
+				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
+				78E45E3F21D3D70700D4B15E /* ContactListController.swift */,
+				78ED838E21D5927A00243125 /* ProfileViewController.swift */,
+				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
+			);
+			path = TopViews;
+			sourceTree = "<group>";
+		};
 		7A451D9B1FB1F4BF00177250 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,10 +410,12 @@
 		7A9FB1421FB061E2001FEA36 /* deltachat-ios */ = {
 			isa = PBXGroup;
 			children = (
+				78C7036A21D46752005D4525 /* deltachat-ios.entitlements */,
 				AEACE2DE1FB3246400DCDD78 /* Message.swift */,
 				7A9FB15B1FB07364001FEA36 /* libraries */,
 				7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */,
 				7A451DAF1FB1F84900177250 /* AppCoordinator.swift */,
+				78E45E4B21D404AE00D4B15E /* CustomCell.swift */,
 				7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */,
 				7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */,
 				7A9FB14F1FB061E2001FEA36 /* Info.plist */,
@@ -376,21 +423,28 @@
 				7A451D921FB1B1DB00177250 /* wrapper.c */,
 				7A451D931FB1B1DB00177250 /* wrapper.h */,
 				7A451DBD1FB4AD0700177250 /* Wrapper.swift */,
+				789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */,
+				785BE16721E247F1003BE98C /* MessageInfoViewController.swift */,
 				70B8882D2091B8550074812E /* ContactCell.swift */,
+				78ED838C21D577D000243125 /* events.swift */,
+				789E879C21D6DF86003ED1C5 /* ProgressHud.swift */,
 				7032FF8E2149C1DB00B7EC83 /* BaseController.swift */,
-				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
-				7A0052A01FBC50C40048C3BF /* CredentialsController.swift */,
+				78ED839021D5929800243125 /* TopViews */,
+				78E45E3221D3CBC000D4B15E /* AppTabBarController.swift */,
+				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
+				78E45E3D21D3D28C00D4B15E /* NavigationController.swift */,
 				7092474020B3869500AF8799 /* ContactProfileViewController.swift */,
 				7A0052C71FBE6CB40048C3BF /* NewContactController.swift */,
-				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
+				78ED838A21D5570700243125 /* Extensions */,
 				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
 				7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */,
 				70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */,
 				7070FB9A2101ECBB000DC258 /* GroupNameController.swift */,
-				AEACE2E01FB3271700DCDD78 /* SampleData.swift */,
 				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
+				78ED839321D5AF8A00243125 /* QrCodeView.swift */,
 				AEACE2E41FB32E1900DCDD78 /* Utils.swift */,
-				AEACE2E81FB34D9100DCDD78 /* ContactViewController.swift */,
+				78E45E3B21D3D03700D4B15E /* TableViewCell.swift */,
+				78ED838221D5379000243125 /* TextFieldCell.swift */,
 			);
 			path = "deltachat-ios";
 			sourceTree = "<group>";
@@ -514,6 +568,20 @@
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -585,11 +653,25 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ALCameraViewController/ALCameraViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/DBDebugToolkit/DBDebugToolkit.framework",
+				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageInputBar/MessageInputBar.framework",
 				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
+				"${BUILT_PRODUCTS_DIR}/QuickTableViewController/QuickTableViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ALCameraViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DBDebugToolkit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageInputBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickTableViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -625,15 +707,15 @@
 				78E45E2F21D1774200D4B15E /* dc_context.h in Sources */,
 				78E45E3021D1774200D4B15E /* dc_move.c in Sources */,
 				78E45E2B21D176FB00D4B15E /* dc_jobthread.c in Sources */,
+				78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */,
 				78E45E2921D176C400D4B15E /* dc_jobthread.h in Sources */,
 				7A79236E1FB0A2C800BC2DE5 /* misc.c in Sources */,
-				AEACE2E91FB34D9100DCDD78 /* ContactViewController.swift in Sources */,
-				7A0052A11FBC50C40048C3BF /* CredentialsController.swift in Sources */,
 				7070FB6B20FF345F000DC258 /* dc_job.c in Sources */,
 				7070FB7520FF345F000DC258 /* dc_strbuilder.c in Sources */,
 				7070FB6220FF345F000DC258 /* dc_configure.c in Sources */,
 				7A7923731FB0A2C800BC2DE5 /* signature.c in Sources */,
 				7070FB4120FF3421000DC258 /* dc_smtp.c in Sources */,
+				78E45E3321D3CBC000D4B15E /* AppTabBarController.swift in Sources */,
 				7070FB6E20FF345F000DC258 /* dc_openssl.c in Sources */,
 				7070FB6720FF345F000DC258 /* dc_simplify.c in Sources */,
 				7070FB7120FF345F000DC258 /* dc_receive_imf.c in Sources */,
@@ -649,15 +731,21 @@
 				7070FB9220FF4118000DC258 /* dc_imap.c in Sources */,
 				7070FB3D20FDD9FE000DC258 /* NewGroupViewController.swift in Sources */,
 				7070FB7720FF345F000DC258 /* dc_qr.c in Sources */,
+				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
 				7A7923701FB0A2C800BC2DE5 /* packet-parse.c in Sources */,
 				70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */,
+				78E45E3E21D3D28C00D4B15E /* NavigationController.swift in Sources */,
 				7A7923751FB0A2C800BC2DE5 /* validate.c in Sources */,
-				AEACE2E11FB3271700DCDD78 /* SampleData.swift in Sources */,
+				78E45E4021D3D70700D4B15E /* ContactListController.swift in Sources */,
 				7070FB6A20FF345F000DC258 /* dc_saxparser.c in Sources */,
 				7070FB8A20FF4118000DC258 /* dc_log.c in Sources */,
 				7070FB9020FF4118000DC258 /* dc_stock.c in Sources */,
+				78ED838D21D577D000243125 /* events.swift in Sources */,
 				7070FB8F20FF4118000DC258 /* dc_loginparam.c in Sources */,
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
+				78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */,
+				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
+				78E45E3C21D3D03700D4B15E /* TableViewCell.swift in Sources */,
 				7070FB7220FF345F000DC258 /* dc_key.c in Sources */,
 				7070FB7420FF345F000DC258 /* dc_e2ee.c in Sources */,
 				AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */,
@@ -668,6 +756,8 @@
 				7070FB4020FF3421000DC258 /* dc_chat.c in Sources */,
 				7070FB7320FF345F000DC258 /* dc_aheader.c in Sources */,
 				7070FB6120FF345F000DC258 /* dc_securejoin.c in Sources */,
+				78ED838F21D5927A00243125 /* ProfileViewController.swift in Sources */,
+				78E45E4221D3DB4000D4B15E /* UIViewController+Extension.swift in Sources */,
 				7A7923741FB0A2C800BC2DE5 /* symmetric.c in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
 				7032FF8F2149C1DB00B7EC83 /* BaseController.swift in Sources */,
@@ -679,8 +769,11 @@
 				AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */,
 				7070FB7620FF345F000DC258 /* dc_pgp.c in Sources */,
 				7070FB5D20FF345F000DC258 /* dc_mimefactory.c in Sources */,
+				789E879D21D6DF86003ED1C5 /* ProgressHud.swift in Sources */,
 				7070FB8C20FF4118000DC258 /* dc_contact.c in Sources */,
+				78E45E4C21D404AE00D4B15E /* CustomCell.swift in Sources */,
 				7070FB7020FF345F000DC258 /* dc_lot.c in Sources */,
+				789E879621D6CB58003ED1C5 /* QrCodeReaderController.swift in Sources */,
 				7A79236F1FB0A2C800BC2DE5 /* openssl_crypto.c in Sources */,
 				7A79236C1FB0A2C800BC2DE5 /* crypto.c in Sources */,
 				7070FB5F20FF345F000DC258 /* dc_tools.c in Sources */,
@@ -695,6 +788,7 @@
 				7070FB6C20FF345F000DC258 /* dc_keyring.c in Sources */,
 				7A79236A1FB0A2C800BC2DE5 /* compress.c in Sources */,
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
+				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
 				AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -830,6 +924,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EEQW58QXHC;
 				HEADER_SEARCH_PATHS = "deltachat-ios/libraries/deltachat-core/libs/netpgp/include";
@@ -840,9 +936,11 @@
 					"-lsasl2",
 					"-lz",
 					"-lcrypto",
+					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jonasreinsch.deltachatios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.delta.chat.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "deltachat-ios/deltachat-ios-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -856,6 +954,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EEQW58QXHC;
 				HEADER_SEARCH_PATHS = "deltachat-ios/libraries/deltachat-core/libs/netpgp/include";
@@ -866,9 +966,11 @@
 					"-lsasl2",
 					"-lz",
 					"-lcrypto",
+					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jonasreinsch.deltachatios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.delta.chat.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "deltachat-ios/deltachat-ios-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -1,0 +1,6 @@
+framework module ALCameraViewController {
+  umbrella header "ALCameraViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}

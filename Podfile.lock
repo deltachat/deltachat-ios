@@ -1,20 +1,56 @@
 PODS:
-  - MessageKit (1.0.0)
+  - ALCameraViewController (3.0.3)
+  - DBDebugToolkit (0.5.0)
+  - JGProgressHUD (2.0.3)
+  - MessageInputBar/Core (0.4.1)
+  - MessageKit (2.0.0):
+    - MessageInputBar/Core
   - openssl-ios-bitcode (1.0.210)
+  - QuickTableViewController (1.0.0)
+  - ReachabilitySwift (4.3.0)
+  - SwiftyBeaver (1.6.1)
 
 DEPENDENCIES:
-  - MessageKit (= 1.0.0)
+  - ALCameraViewController (from `https://github.com/dignifiedquire/ALCameraViewController`)
+  - DBDebugToolkit
+  - JGProgressHUD
+  - MessageKit (= 2.0.0)
   - openssl-ios-bitcode (= 1.0.210)
+  - QuickTableViewController
+  - ReachabilitySwift
+  - SwiftyBeaver
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - DBDebugToolkit
+    - JGProgressHUD
+    - MessageInputBar
     - MessageKit
     - openssl-ios-bitcode
+    - QuickTableViewController
+    - ReachabilitySwift
+    - SwiftyBeaver
+
+EXTERNAL SOURCES:
+  ALCameraViewController:
+    :git: https://github.com/dignifiedquire/ALCameraViewController
+
+CHECKOUT OPTIONS:
+  ALCameraViewController:
+    :commit: e0fcc4338276e4fc6240e8726ecc77aa39ce1385
+    :git: https://github.com/dignifiedquire/ALCameraViewController
 
 SPEC CHECKSUMS:
-  MessageKit: 16160036b16476b04bd0e9f2c7ce67e662e503e4
+  ALCameraViewController: dd13cf0a5b44a4d542c73bbcbebd02bc09e929c7
+  DBDebugToolkit: c04bb6f618051d3de447a4b4323f37826116cfed
+  JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
+  MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
+  MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
   openssl-ios-bitcode: c833701a4488bd43de0051db41cfa75f6fef8109
+  QuickTableViewController: a49fb6dc5623b9dbe301a03ac5c563099e234fbc
+  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
+  SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
 
-PODFILE CHECKSUM: dea2da329ab919c5c400d1fd104627f9904b3072
+PODFILE CHECKSUM: f1e841a85f483feff977aea1a006be4b735b4bf8
 
 COCOAPODS: 1.5.3
