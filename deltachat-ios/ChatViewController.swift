@@ -47,6 +47,20 @@ class ChatViewController: MessagesViewController {
             }
         }
     }
+    
+    @objc
+    func refreshMessages() {
+        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.async {
+                self.messageList = self.getMessageIds(self.messageList.count)
+                self.messagesCollectionView.reloadDataAndKeepOffset()
+                self.refreshControl.endRefreshing()
+                if self.isLastSectionVisible() {
+                    self.messagesCollectionView.scrollToBottom(animated: true)
+                }
+            }
+        }
+    }
 
     func loadFirstMessages() {
         DispatchQueue.global(qos: .userInitiated).async {
@@ -95,7 +109,8 @@ class ChatViewController: MessagesViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        configureMessageMenu()
+        
         if #available(iOS 11.0, *) {
             if disableWriting {
                 navigationController?.navigationBar.prefersLargeTitles = true
@@ -107,7 +122,10 @@ class ChatViewController: MessagesViewController {
                                             object: nil, queue: OperationQueue.main) {
             notification in
             if let ui = notification.userInfo {
-                if self.chatId == ui["chat_id"] as! Int {
+                if self.disableWriting {
+                    // always refresh, as we can't check currently
+                    self.refreshMessages()
+                } else {
                     self.updateMessage(ui["message_id"] as! Int)
                 }
             }
@@ -184,6 +202,7 @@ class ChatViewController: MessagesViewController {
         updateTitleView(title: chat.name, subtitle: chat.subtitle)
 
         configureMessageCollectionView()
+        
         if !disableWriting {
             configureMessageInputBar()
             messageInputBar.inputTextView.text = textDraft
@@ -191,6 +210,25 @@ class ChatViewController: MessagesViewController {
         }
 
         loadFirstMessages()
+    }
+    
+    func configureMessageMenu() {
+        var menuItems: [UIMenuItem]
+        
+        if disableWriting {
+            menuItems = [
+                UIMenuItem(title: "Start Chat", action: #selector(MessageCollectionViewCell.messageStartChat(_:))),
+                UIMenuItem(title: "Dismiss", action: #selector(MessageCollectionViewCell.messageDismiss(_:))),
+                UIMenuItem(title: "Block", action: #selector(MessageCollectionViewCell.messageBlock(_:))),
+            ]
+        } else {
+            // Configures the UIMenu which is shown when selecting a message
+            menuItems = [
+                UIMenuItem(title: "Info", action: #selector(MessageCollectionViewCell.messageInfo(_:)))
+            ]
+        }
+        
+        UIMenuController.shared.menuItems = menuItems
     }
 
     func configureMessageCollectionView() {
@@ -224,13 +262,6 @@ class ChatViewController: MessagesViewController {
 
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
-
-        // Configures the UIMenu which is shown when selecting a message
-        let infoMenuItem = UIMenuItem(title: "Info", action: #selector(MessageCollectionViewCell.messageInfo(_:)))
-
-        UIMenuController.shared.menuItems = [
-            infoMenuItem,
-        ]
     }
 
     func configureMessageInputBar() {
@@ -337,7 +368,10 @@ class ChatViewController: MessagesViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        if action == NSSelectorFromString("messageInfo:") {
+        if action == NSSelectorFromString("messageInfo:") ||
+            action == NSSelectorFromString("messageBlock:") ||
+            action == NSSelectorFromString("messageDismiss:") ||
+            action == NSSelectorFromString("messageStartChat:") {
             return true
         } else {
             return super.collectionView(collectionView, canPerformAction: action, forItemAt: indexPath, withSender: sender)
@@ -345,15 +379,35 @@ class ChatViewController: MessagesViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-        if action == NSSelectorFromString("messageInfo:") {
+        switch action {
+        case NSSelectorFromString("messageInfo:"):
             let msg = messageList[indexPath.section]
-            logger.info("View info \(msg.messageId)")
+            logger.info("message: View info \(msg.messageId)")
 
             let msgViewController = MessageInfoViewController(message: msg)
             if let ctrl = navigationController {
                 ctrl.pushViewController(msgViewController, animated: true)
             }
-        } else {
+        case NSSelectorFromString("messageStartChat:"):
+            let msg = messageList[indexPath.section]
+            logger.info("message: Start Chat \(msg.messageId)")
+            let _ = msg.createChat()
+            // TODO: figure out how to properly show the chat after creation
+            
+            self.refreshMessages()
+        case NSSelectorFromString("messageBlock:"):
+            let msg = messageList[indexPath.section]
+            logger.info("message: Block \(msg.messageId)")
+            msg.fromContact.block()
+            
+            self.refreshMessages()
+        case NSSelectorFromString("messageDismiss:"):
+            let msg = messageList[indexPath.section]
+            logger.info("message: Dismiss \(msg.messageId)")
+            msg.fromContact.marknoticed()
+            
+           self.refreshMessages()
+        default:
             super.collectionView(collectionView, performAction: action, forItemAt: indexPath, withSender: sender)
         }
     }
@@ -503,8 +557,6 @@ extension ChatViewController: MessagesDataSource {
                     self?.messagesCollectionView.scrollToBottom(animated: true)
                 }
             })
-        } else {
-            insertMessage(MRMessage(id: messageId))
         }
     }
 
@@ -810,6 +862,39 @@ extension MessageCollectionViewCell {
             if let indexPath = collectionView.indexPath(for: self) {
                 // Trigger action
                 collectionView.delegate?.collectionView?(collectionView, performAction: #selector(MessageCollectionViewCell.messageInfo(_:)), forItemAt: indexPath, withSender: sender)
+            }
+        }
+    }
+    
+    @objc func messageBlock(_ sender: Any?) {
+        // Get the collectionView
+        if let collectionView = self.superview as? UICollectionView {
+            // Get indexPath
+            if let indexPath = collectionView.indexPath(for: self) {
+                // Trigger action
+                collectionView.delegate?.collectionView?(collectionView, performAction: #selector(MessageCollectionViewCell.messageBlock(_:)), forItemAt: indexPath, withSender: sender)
+            }
+        }
+    }
+    
+    @objc func messageDismiss(_ sender: Any?) {
+        // Get the collectionView
+        if let collectionView = self.superview as? UICollectionView {
+            // Get indexPath
+            if let indexPath = collectionView.indexPath(for: self) {
+                // Trigger action
+                collectionView.delegate?.collectionView?(collectionView, performAction: #selector(MessageCollectionViewCell.messageDismiss(_:)), forItemAt: indexPath, withSender: sender)
+            }
+        }
+    }
+    
+    @objc func messageStartChat(_ sender: Any?) {
+        // Get the collectionView
+        if let collectionView = self.superview as? UICollectionView {
+            // Get indexPath
+            if let indexPath = collectionView.indexPath(for: self) {
+                // Trigger action
+                collectionView.delegate?.collectionView?(collectionView, performAction: #selector(MessageCollectionViewCell.messageStartChat(_:)), forItemAt: indexPath, withSender: sender)
             }
         }
     }
