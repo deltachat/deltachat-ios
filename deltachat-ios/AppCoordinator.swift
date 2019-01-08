@@ -9,21 +9,21 @@
 import UIKit
 
 protocol Coordinator {
-    func setupViewControllers(window: UIWindow)
+  func setupViewControllers(window: UIWindow)
 }
 
 class AppCoordinator: Coordinator {
-    let baseController = BaseController()
+  let baseController = BaseController()
 
-    func setupViewControllers(window: UIWindow) {
-        window.rootViewController = AppTabBarController()
-        window.makeKeyAndVisible()
-    }
+  func setupViewControllers(window: UIWindow) {
+    window.rootViewController = AppTabBarController()
+    window.makeKeyAndVisible()
+  }
 
-    func setupInnerViewControllers() {
-        let chatListController = ChatListController()
-        let chatNavigationController = UINavigationController(rootViewController: chatListController)
+  func setupInnerViewControllers() {
+    let chatListController = ChatListController()
+    let chatNavigationController = UINavigationController(rootViewController: chatListController)
 
-        baseController.present(chatNavigationController, animated: false, completion: nil)
-    }
+    baseController.present(chatNavigationController, animated: false, completion: nil)
+  }
 }
