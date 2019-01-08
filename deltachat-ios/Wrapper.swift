@@ -97,6 +97,18 @@ class MRContact {
     deinit {
         dc_contact_unref(contactPointer)
     }
+    
+    func block() {
+        dc_block_contact(mailboxPointer, UInt32(id), 1)
+    }
+    
+    func unblock() {
+        dc_block_contact(mailboxPointer, UInt32(id), 0)
+    }
+    
+    func marknoticed() {
+        dc_marknoticed_contact(mailboxPointer, UInt32(id))
+    }
 }
 
 class MRMessage: MessageType {
@@ -314,6 +326,12 @@ class MRMessage: MessageType {
 
         return String(cString: result)
     }
+    
+    func createChat() -> MRChat {
+        let chatId = dc_create_chat_by_msg_id(mailboxPointer, UInt32(id))
+        return MRChat(id: Int(chatId))
+    }
+    
 
     deinit {
         dc_msg_unref(messagePointer)

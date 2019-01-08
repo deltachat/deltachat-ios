@@ -99,9 +99,6 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                     userInfo: ["state": "online"])
         }
     case DC_EVENT_MSGS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED:
-        // TODO: reload all views
-        // e.g. when message appears that is not new, i.e. no need
-        // to set badge / notification
         logger.info("change: \(event)")
 
         let nc = NotificationCenter.default
