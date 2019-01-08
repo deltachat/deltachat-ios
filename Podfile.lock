@@ -6,8 +6,10 @@ PODS:
   - MessageKit (2.0.0):
     - MessageInputBar/Core
   - openssl-ios-bitcode (1.0.210)
-  - QuickTableViewController (1.0.0)
+  - QuickTableViewController (1.1.0)
   - ReachabilitySwift (4.3.0)
+  - SwiftFormat/CLI (0.37.2)
+  - SwiftLint (0.29.3)
   - SwiftyBeaver (1.6.1)
 
 DEPENDENCIES:
@@ -18,6 +20,8 @@ DEPENDENCIES:
   - openssl-ios-bitcode (= 1.0.210)
   - QuickTableViewController
   - ReachabilitySwift
+  - SwiftFormat/CLI
+  - SwiftLint
   - SwiftyBeaver
 
 SPEC REPOS:
@@ -29,6 +33,8 @@ SPEC REPOS:
     - openssl-ios-bitcode
     - QuickTableViewController
     - ReachabilitySwift
+    - SwiftFormat
+    - SwiftLint
     - SwiftyBeaver
 
 EXTERNAL SOURCES:
@@ -47,10 +53,12 @@ SPEC CHECKSUMS:
   MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
   MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
   openssl-ios-bitcode: c833701a4488bd43de0051db41cfa75f6fef8109
-  QuickTableViewController: a49fb6dc5623b9dbe301a03ac5c563099e234fbc
+  QuickTableViewController: 129e71fc37a69991aff02bc946723d51a13d6aa5
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
+  SwiftFormat: abbfb26dde4c6d683923cde153c88e10da9d7881
+  SwiftLint: bfa7ca7b4d170cfaf0d236ca3ffd969e88a2f002
   SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
 
-PODFILE CHECKSUM: f1e841a85f483feff977aea1a006be4b735b4bf8
+PODFILE CHECKSUM: 07c0360b910556b36e03f48076744fe0a090b161
 
 COCOAPODS: 1.5.3
