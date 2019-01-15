@@ -118,26 +118,33 @@ class ChatViewController: MessagesViewController {
     }
 
     let nc = NotificationCenter.default
-    msgChangedObserver = nc.addObserver(forName: dcNotificationChanged,
-                                        object: nil, queue: OperationQueue.main) {
-      notification in
+    msgChangedObserver = nc.addObserver(
+      forName: dcNotificationChanged,
+      object: nil,
+      queue: OperationQueue.main
+    ) { notification in
       if let ui = notification.userInfo {
         if self.disableWriting {
           // always refresh, as we can't check currently
           self.refreshMessages()
         } else if let id = ui["message_id"] as? Int {
-          self.updateMessage(id)
+          if id > 0 {
+            self.updateMessage(id)
+          }
         }
       }
     }
 
-    incomingMsgObserver = nc.addObserver(forName: dcNotificationIncoming,
-                                         object: nil, queue: OperationQueue.main) {
-      notification in
+    incomingMsgObserver = nc.addObserver(
+      forName: dcNotificationIncoming,
+      object: nil, queue: OperationQueue.main
+    ) { notification in
       if let ui = notification.userInfo {
         if self.chatId == ui["chat_id"] as! Int {
           let id = ui["message_id"] as! Int
-          self.insertMessage(MRMessage(id: id))
+          if id > 0 {
+            self.insertMessage(MRMessage(id: id))
+          }
         }
       }
     }
@@ -445,7 +452,7 @@ extension ChatViewController: MessagesDataSource {
         string: MessageKitDateFormatter.shared.string(from: message.sentDate),
         attributes: [
           NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10),
-          NSAttributedString.Key.foregroundColor: UIColor.darkGray
+          NSAttributedString.Key.foregroundColor: UIColor.darkGray,
         ]
       )
     }
@@ -563,6 +570,11 @@ extension ChatViewController: MessagesDataSource {
           self?.messagesCollectionView.scrollToBottom(animated: true)
         }
       })
+    } else {
+      let msg = MRMessage(id: messageId)
+      if msg.chatId == chatId {
+        insertMessage(msg)
+      }
     }
   }
 

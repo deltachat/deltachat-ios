@@ -104,13 +104,15 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
     let nc = NotificationCenter.default
 
     DispatchQueue.main.async {
-      nc.post(name: dcNotificationChanged,
-              object: nil,
-              userInfo: [
-                "message_id": Int(data2),
-                "chat_id": Int(data1),
-                "date": Date(),
-      ])
+      nc.post(
+        name: dcNotificationChanged,
+        object: nil,
+        userInfo: [
+          "message_id": Int(data2),
+          "chat_id": Int(data1),
+          "date": Date(),
+        ]
+      )
     }
   case DC_EVENT_INCOMING_MSG:
     let nc = NotificationCenter.default
