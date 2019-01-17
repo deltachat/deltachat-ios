@@ -213,8 +213,8 @@ internal final class SettingsViewController: QuickTableViewController {
       ),
 
       Section(title: "Danger", rows: [
-        deleteRow
-      ])
+        deleteRow,
+      ]),
     ]
   }
 

@@ -313,7 +313,7 @@ class MRMessage: MessageType {
   }
 
   var timestamp: Int64 {
-    return Int64(messagePointer.pointee.timestamp)
+    return Int64(dc_msg_get_timestamp(messagePointer))
   }
 
   var isInfo: Bool {

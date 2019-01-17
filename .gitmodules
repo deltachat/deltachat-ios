@@ -3,4 +3,4 @@
 	url = git@github.com:deltachat/deltachat-core.git
 [submodule "deltachat-ios/libraries/libetpan"]
 	path = deltachat-ios/libraries/libetpan
-	url = git@github.com:dignifiedquire/libetpan.git
+	url = git@github.com:dinhviethoa/libetpan.git
