@@ -4,7 +4,11 @@ Email-based instant messaging for iOS.
 
 ## Testing
 
-Betas are distributed via Testflight. Click on this link
+Betas are distributed via Testflight. Just scan this QR code with the camera app of your iPhone/iPad
+
+![QRCode](supporting_images/deltachat_testflight_qrcode.png)
+
+or open this link
 
 https://testflight.apple.com/join/WVoYFOZe
 
