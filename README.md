@@ -2,6 +2,16 @@
 
 Email-based instant messaging for iOS.
 
+## Testing
+
+Betas are distributed via Testflight. Click on this link
+
+https://testflight.apple.com/join/WVoYFOZe
+
+on your iPhone or iPad to try Deltachat iOS Beta.
+
+Check the Changelog (for TestFlight builds) at the bottom to see what's included.
+
 ## How to build with Xcode
 
 ```bash
@@ -62,15 +72,8 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
       be delayed to a later version
 - [ ] check how to solve this: new messages are only seen if a chat is closed and shown again (similar to that). No tune, no number at icon. https://github.com/deltachat/deltachat-ios/issues/9#issue-356157986
 
-## Testing
 
-Betas are distributed via Testflight. Click on this link
-
-https://testflight.apple.com/join/WVoYFOZe
-
-on your iPhone or iPad to try Deltachat iOS Beta.
-
-## Changelog
+## Changelog (for TestFlight builds)
 
 ### Beta 7
 2019-01-21
