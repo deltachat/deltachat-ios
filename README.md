@@ -72,6 +72,11 @@ on your iPhone or iPad to try Deltachat iOS Beta.
 
 ## Changelog
 
+### Beta 7
+2019-01-21
+
+- include everything up to https://github.com/deltachat/deltachat-ios/commit/9e558bae0b99a8204422f257ad3071f40c0b668e on master.
+
 ### Beta 6
 2019-01-08
 
