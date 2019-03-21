@@ -1,0 +1,4 @@
+include/
+dist/
+*.tar.gz
+openssl-*
