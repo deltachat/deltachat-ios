@@ -1,4 +1,4 @@
 include/
-dist/
+lib/
 *.tar.gz
 openssl-*
