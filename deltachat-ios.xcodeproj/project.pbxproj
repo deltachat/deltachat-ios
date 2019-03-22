@@ -56,6 +56,7 @@
 		782A85BE22439F410056249E /* dc_oauth2.c in Sources */ = {isa = PBXBuildFile; fileRef = 782A85B822439F410056249E /* dc_oauth2.c */; };
 		782A85C022439F6A0056249E /* dc_jsmn.c in Sources */ = {isa = PBXBuildFile; fileRef = 782A85BF22439F6A0056249E /* dc_jsmn.c */; };
 		7837B64021E54DC600CDE126 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7837B63F21E54DC600CDE126 /* .swiftlint.yml */; };
+		784C84EA224502FA0068BF48 /* librpgp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 784C84E82244FE0B0068BF48 /* librpgp.a */; };
 		785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BE16721E247F1003BE98C /* MessageInfoViewController.swift */; };
 		789E879621D6CB58003ED1C5 /* QrCodeReaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */; };
 		789E879D21D6DF86003ED1C5 /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E879C21D6DF86003ED1C5 /* ProgressHud.swift */; };
@@ -81,19 +82,6 @@
 		7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A451DAF1FB1F84900177250 /* AppCoordinator.swift */; };
 		7A451DBE1FB4AD0700177250 /* Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A451DBD1FB4AD0700177250 /* Wrapper.swift */; };
 		7A7923401FB0A14300BC2DE5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A79233F1FB0A14300BC2DE5 /* libiconv.tbd */; };
-		7A79236A1FB0A2C800BC2DE5 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A79235D1FB0A2C800BC2DE5 /* compress.c */; };
-		7A79236B1FB0A2C800BC2DE5 /* create.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A79235E1FB0A2C800BC2DE5 /* create.c */; };
-		7A79236C1FB0A2C800BC2DE5 /* crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A79235F1FB0A2C800BC2DE5 /* crypto.c */; };
-		7A79236D1FB0A2C800BC2DE5 /* keyring.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923601FB0A2C800BC2DE5 /* keyring.c */; };
-		7A79236E1FB0A2C800BC2DE5 /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923611FB0A2C800BC2DE5 /* misc.c */; };
-		7A79236F1FB0A2C800BC2DE5 /* openssl_crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923621FB0A2C800BC2DE5 /* openssl_crypto.c */; };
-		7A7923701FB0A2C800BC2DE5 /* packet-parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923631FB0A2C800BC2DE5 /* packet-parse.c */; };
-		7A7923711FB0A2C800BC2DE5 /* packet-show.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923641FB0A2C800BC2DE5 /* packet-show.c */; };
-		7A7923721FB0A2C800BC2DE5 /* reader.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923651FB0A2C800BC2DE5 /* reader.c */; };
-		7A7923731FB0A2C800BC2DE5 /* signature.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923661FB0A2C800BC2DE5 /* signature.c */; };
-		7A7923741FB0A2C800BC2DE5 /* symmetric.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923671FB0A2C800BC2DE5 /* symmetric.c */; };
-		7A7923751FB0A2C800BC2DE5 /* validate.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923681FB0A2C800BC2DE5 /* validate.c */; };
-		7A7923761FB0A2C800BC2DE5 /* writer.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A7923691FB0A2C800BC2DE5 /* writer.c */; };
 		7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */; };
 		7A9FB14B1FB061E2001FEA36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
 		7A9FB14E1FB061E2001FEA36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */; };
@@ -190,6 +178,10 @@
 		782A85B822439F410056249E /* dc_oauth2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_oauth2.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_oauth2.c"; sourceTree = "<group>"; };
 		782A85BF22439F6A0056249E /* dc_jsmn.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_jsmn.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_jsmn.c"; sourceTree = "<group>"; };
 		7837B63F21E54DC600CDE126 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		784C84E22244F89A0068BF48 /* libpgp_ffi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpgp_ffi.dylib; path = ../rpgp/target/release/libpgp_ffi.dylib; sourceTree = "<group>"; };
+		784C84E42244F8BF0068BF48 /* libpgp_ffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpgp_ffi.a; path = ../rpgp/target/release/libpgp_ffi.a; sourceTree = "<group>"; };
+		784C84E62244FBAB0068BF48 /* librpgp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = librpgp.dylib; path = "../rpgp/pgp-ffi/librpgp.dylib"; sourceTree = "<group>"; };
+		784C84E82244FE0B0068BF48 /* librpgp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librpgp.a; path = "deltachat-ios/libraries/rpgp/librpgp.a"; sourceTree = "<group>"; };
 		785BE16721E247F1003BE98C /* MessageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfoViewController.swift; sourceTree = "<group>"; };
 		789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeReaderController.swift; sourceTree = "<group>"; };
 		789E879C21D6DF86003ED1C5 /* ProgressHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHud.swift; sourceTree = "<group>"; };
@@ -277,6 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				784C84EA224502FA0068BF48 /* librpgp.a in Frameworks */,
 				78113B71224400F300BCA958 /* libssl.a in Frameworks */,
 				78113B72224400F300BCA958 /* libcrypto.a in Frameworks */,
 				7A451DAE1FB1F5A200177250 /* libetpan-ios.a in Frameworks */,
@@ -476,6 +469,10 @@
 		7A9FB4F81FB084E6001FEA36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				784C84E82244FE0B0068BF48 /* librpgp.a */,
+				784C84E62244FBAB0068BF48 /* librpgp.dylib */,
+				784C84E42244F8BF0068BF48 /* libpgp_ffi.a */,
+				784C84E22244F89A0068BF48 /* libpgp_ffi.dylib */,
 				78113B70224400F300BCA958 /* libcrypto.a */,
 				78113B6F224400F300BCA958 /* libssl.a */,
 				7A79233F1FB0A14300BC2DE5 /* libiconv.tbd */,
@@ -765,33 +762,26 @@
 				78E45E2B21D176FB00D4B15E /* dc_jobthread.c in Sources */,
 				78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */,
 				78E45E2921D176C400D4B15E /* dc_jobthread.h in Sources */,
-				7A79236E1FB0A2C800BC2DE5 /* misc.c in Sources */,
 				7070FB6B20FF345F000DC258 /* dc_job.c in Sources */,
 				7070FB7520FF345F000DC258 /* dc_strbuilder.c in Sources */,
 				7070FB6220FF345F000DC258 /* dc_configure.c in Sources */,
-				7A7923731FB0A2C800BC2DE5 /* signature.c in Sources */,
 				7070FB4120FF3421000DC258 /* dc_smtp.c in Sources */,
 				78E45E3321D3CBC000D4B15E /* AppTabBarController.swift in Sources */,
 				7070FB6E20FF345F000DC258 /* dc_openssl.c in Sources */,
 				7070FB6720FF345F000DC258 /* dc_simplify.c in Sources */,
 				7070FB7120FF345F000DC258 /* dc_receive_imf.c in Sources */,
-				7A79236B1FB0A2C800BC2DE5 /* create.c in Sources */,
 				7070FB8B20FF4118000DC258 /* dc_keyhistory.c in Sources */,
 				7070FB6520FF345F000DC258 /* dc_chatlist.c in Sources */,
 				AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */,
 				7070FB9B2101ECBB000DC258 /* GroupNameController.swift in Sources */,
 				7070FB6D20FF345F000DC258 /* dc_imex.c in Sources */,
-				7A79236D1FB0A2C800BC2DE5 /* keyring.c in Sources */,
 				7070FB6620FF345F000DC258 /* dc_param.c in Sources */,
-				7A7923721FB0A2C800BC2DE5 /* reader.c in Sources */,
 				7070FB9220FF4118000DC258 /* dc_imap.c in Sources */,
 				7070FB3D20FDD9FE000DC258 /* NewGroupViewController.swift in Sources */,
 				7070FB7720FF345F000DC258 /* dc_qr.c in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
-				7A7923701FB0A2C800BC2DE5 /* packet-parse.c in Sources */,
 				70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */,
 				78E45E3E21D3D28C00D4B15E /* NavigationController.swift in Sources */,
-				7A7923751FB0A2C800BC2DE5 /* validate.c in Sources */,
 				78E45E4021D3D70700D4B15E /* ContactListController.swift in Sources */,
 				7070FB6A20FF345F000DC258 /* dc_saxparser.c in Sources */,
 				7070FB8A20FF4118000DC258 /* dc_log.c in Sources */,
@@ -814,13 +804,10 @@
 				7070FB6120FF345F000DC258 /* dc_securejoin.c in Sources */,
 				78ED838F21D5927A00243125 /* ProfileViewController.swift in Sources */,
 				78E45E4221D3DB4000D4B15E /* UIViewController+Extension.swift in Sources */,
-				7A7923741FB0A2C800BC2DE5 /* symmetric.c in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
 				7032FF8F2149C1DB00B7EC83 /* BaseController.swift in Sources */,
 				7070FB9320FF4118000DC258 /* dc_msg.c in Sources */,
-				7A7923711FB0A2C800BC2DE5 /* packet-show.c in Sources */,
 				7070FB6820FF345F000DC258 /* dc_array.c in Sources */,
-				7A7923761FB0A2C800BC2DE5 /* writer.c in Sources */,
 				7070FB9120FF4118000DC258 /* dc_strencode.c in Sources */,
 				AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */,
 				7070FB7620FF345F000DC258 /* dc_pgp.c in Sources */,
@@ -830,8 +817,6 @@
 				78E45E4C21D404AE00D4B15E /* CustomCell.swift in Sources */,
 				7070FB7020FF345F000DC258 /* dc_lot.c in Sources */,
 				789E879621D6CB58003ED1C5 /* QrCodeReaderController.swift in Sources */,
-				7A79236F1FB0A2C800BC2DE5 /* openssl_crypto.c in Sources */,
-				7A79236C1FB0A2C800BC2DE5 /* crypto.c in Sources */,
 				7070FB5F20FF345F000DC258 /* dc_tools.c in Sources */,
 				7070FB8E20FF4118000DC258 /* dc_apeerstate.c in Sources */,
 				7A451DBE1FB4AD0700177250 /* Wrapper.swift in Sources */,
@@ -842,7 +827,6 @@
 				7092474120B3869500AF8799 /* ContactProfileViewController.swift in Sources */,
 				7070FB5E20FF345F000DC258 /* dc_token.c in Sources */,
 				7070FB6C20FF345F000DC258 /* dc_keyring.c in Sources */,
-				7A79236A1FB0A2C800BC2DE5 /* compress.c in Sources */,
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
 				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
 				AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */,
@@ -986,9 +970,9 @@
 				DEVELOPMENT_TEAM = EEQW58QXHC;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
-					"deltachat-ios/libraries/deltachat-core/libs/netpgp/include",
 					"$(inherited)",
 					"deltachat-ios/libraries/openssl/include",
+					/usr/local/include,
 				);
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -996,6 +980,43 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/deltachat-ios/libraries/openssl/lib",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/rpgp",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ALCameraViewController/ALCameraViewController.framework/Headers\"",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DBDebugToolkit/DBDebugToolkit.framework/Headers\"",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/JGProgressHUD/JGProgressHUD.framework/Headers\"",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MessageInputBar/MessageInputBar.framework/Headers\"",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MessageKit/MessageKit.framework/Headers\"",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/QuickTableViewController/QuickTableViewController.framework/Headers\"",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift/Reachability.framework/Headers\"",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyBeaver/SwiftyBeaver.framework/Headers\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ALCameraViewController\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DBDebugToolkit\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/JGProgressHUD\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MessageInputBar\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MessageKit\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/QuickTableViewController\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyBeaver\"",
+					"-DDC_USE_RPGP",
 				);
 				OTHER_LDFLAGS = (
 					"-lsasl2",
@@ -1003,6 +1024,7 @@
 					"-lcrypto",
 					"-lssl",
 					"$(inherited)",
+					"-lrpgp",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.delta.chat.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1026,9 +1048,9 @@
 				DEVELOPMENT_TEAM = EEQW58QXHC;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
-					"deltachat-ios/libraries/deltachat-core/libs/netpgp/include",
 					"$(inherited)",
 					"deltachat-ios/libraries/openssl/include",
+					/usr/local/include,
 				);
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1036,6 +1058,43 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/deltachat-ios/libraries/openssl/lib",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/rpgp",
+				);
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ALCameraViewController/ALCameraViewController.framework/Headers\"",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DBDebugToolkit/DBDebugToolkit.framework/Headers\"",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/JGProgressHUD/JGProgressHUD.framework/Headers\"",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MessageInputBar/MessageInputBar.framework/Headers\"",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MessageKit/MessageKit.framework/Headers\"",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/QuickTableViewController/QuickTableViewController.framework/Headers\"",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift/Reachability.framework/Headers\"",
+					"-isystem",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyBeaver/SwiftyBeaver.framework/Headers\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ALCameraViewController\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DBDebugToolkit\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/JGProgressHUD\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MessageInputBar\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MessageKit\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/QuickTableViewController\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift\"",
+					"-iframework",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyBeaver\"",
+					"-DDC_USE_RPGP",
 				);
 				OTHER_LDFLAGS = (
 					"-lsasl2",
@@ -1043,6 +1102,7 @@
 					"-lcrypto",
 					"-lssl",
 					"$(inherited)",
+					"-lrpgp",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.delta.chat.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
