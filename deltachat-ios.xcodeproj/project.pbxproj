@@ -60,6 +60,7 @@
 		785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BE16721E247F1003BE98C /* MessageInfoViewController.swift */; };
 		789E879621D6CB58003ED1C5 /* QrCodeReaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */; };
 		789E879D21D6DF86003ED1C5 /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E879C21D6DF86003ED1C5 /* ProgressHud.swift */; };
+		78B44173224F796700CE263C /* dc_location.c in Sources */ = {isa = PBXBuildFile; fileRef = 78B4416D224F796600CE263C /* dc_location.c */; };
 		78E45E2921D176C400D4B15E /* dc_jobthread.h in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2821D176C300D4B15E /* dc_jobthread.h */; };
 		78E45E2B21D176FB00D4B15E /* dc_jobthread.c in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2A21D176FB00D4B15E /* dc_jobthread.c */; };
 		78E45E2F21D1774200D4B15E /* dc_context.h in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2D21D1774200D4B15E /* dc_context.h */; };
@@ -185,6 +186,7 @@
 		785BE16721E247F1003BE98C /* MessageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfoViewController.swift; sourceTree = "<group>"; };
 		789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeReaderController.swift; sourceTree = "<group>"; };
 		789E879C21D6DF86003ED1C5 /* ProgressHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHud.swift; sourceTree = "<group>"; };
+		78B4416D224F796600CE263C /* dc_location.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_location.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_location.c"; sourceTree = "<group>"; };
 		78C7036A21D46752005D4525 /* deltachat-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "deltachat-ios.entitlements"; sourceTree = "<group>"; };
 		78E45E2121D1768900D4B15E /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = "deltachat-ios/libraries/deltachat-core/src"; sourceTree = "<group>"; };
 		78E45E2821D176C300D4B15E /* dc_jobthread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dc_jobthread.h; path = "deltachat-ios/libraries/deltachat-core/src/dc_jobthread.h"; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 		7A9FB1371FB061E2001FEA36 = {
 			isa = PBXGroup;
 			children = (
+				78B4416D224F796600CE263C /* dc_location.c */,
 				782A85BF22439F6A0056249E /* dc_jsmn.c */,
 				782A85B822439F410056249E /* dc_oauth2.c */,
 				7837B63F21E54DC600CDE126 /* .swiftlint.yml */,
@@ -754,6 +757,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78B44173224F796700CE263C /* dc_location.c in Sources */,
 				782A85C022439F6A0056249E /* dc_jsmn.c in Sources */,
 				782A85BE22439F410056249E /* dc_oauth2.c in Sources */,
 				7070FB6320FF345F000DC258 /* dc_context.c in Sources */,
