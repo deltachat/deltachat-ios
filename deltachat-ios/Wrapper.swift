@@ -497,7 +497,7 @@ class MRConfig {
 
     if let pSafe = p {
       let c = String(cString: pSafe)
-      if c == "" {
+      if c.isEmpty {
         return nil
       }
       return c
@@ -519,6 +519,22 @@ class MRConfig {
   private class func setBool(_ key: String, _ value: Bool) {
     let vStr = value ? "1" : "0"
     setOptStr(key, vStr)
+  }
+
+  private class func getInt(_ key: String) -> Int {
+    let vStr = getOptStr(key)
+    if vStr == nil {
+      return 0
+    }
+    let vInt = Int(vStr!)
+    if vInt == nil {
+      return 0
+    }
+    return vInt!
+  }
+
+  private class func setInt(_ key: String, _ value: Int) {
+    setOptStr(key, String(value))
   }
 
   /**
@@ -749,6 +765,20 @@ class MRConfig {
     }
   }
 
+  /**
+   *  DC_SHOW_EMAILS_OFF (0)= show direct replies to chats only (default),
+   *  DC_SHOW_EMAILS_ACCEPTED_CONTACTS (1)= also show all mails of confirmed contacts,
+   *  DC_SHOW_EMAILS_ALL (2)= also show mails of unconfirmed contacts in the deaddrop.
+   */
+  class var showEmails: Bool {
+    set {
+      setBool("show_emails", newValue)
+    }
+    get {
+      return getBool("show_emails")
+    }
+  }
+  
   /**
    * 1=save mime headers and make dc_get_mime_headers() work for subsequent calls, 0=do not save mime headers (default)
    */

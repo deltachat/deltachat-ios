@@ -175,35 +175,35 @@ internal final class SettingsViewController: QuickTableViewController {
       Section(
         title: "User Details",
         rows: [
-          NavigationRow(title: "Display Name", subtitle: .rightAligned(MRConfig.displayname ?? ""), action: editCell()),
-          NavigationRow(title: "Status", subtitle: .rightAligned(MRConfig.selfstatus ?? ""), action: editCell()),
+          NavigationRow(text: "Display Name", detailText: .value1(MRConfig.displayname ?? ""), action: editCell()),
+          NavigationRow(text: "Status", detailText: .value1(MRConfig.selfstatus ?? ""), action: editCell()),
         ]
       ),
 
       Section(
         title: "Advanced",
         rows: [
-          NavigationRow(title: "IMAP Server", subtitle: .rightAligned(MRConfig.mailServer ?? MRConfig.configuredMailServer), action: editCell()),
-          NavigationRow(title: "IMAP User", subtitle: .rightAligned(MRConfig.mailUser ?? MRConfig.configuredMailUser), action: editCell()),
-          NavigationRow(title: "IMAP Port", subtitle: .rightAligned(MRConfig.mailPort ?? MRConfig.configuredMailPort), action: editCell()),
+          NavigationRow(text: "IMAP Server", detailText: .value1(MRConfig.mailServer ?? MRConfig.configuredMailServer), action: editCell()),
+          NavigationRow(text: "IMAP User", detailText: .value1(MRConfig.mailUser ?? MRConfig.configuredMailUser), action: editCell()),
+          NavigationRow(text: "IMAP Port", detailText: .value1(MRConfig.mailPort ?? MRConfig.configuredMailPort), action: editCell()),
 
-          NavigationRow(title: "SMTP Server", subtitle: .rightAligned(MRConfig.sendServer ?? MRConfig.configuredSendServer), action: editCell()),
-          NavigationRow(title: "SMTP User", subtitle: .rightAligned(MRConfig.sendUser ?? MRConfig.configuredSendUser), action: editCell()),
-          NavigationRow(title: "SMTP Port", subtitle: .rightAligned(MRConfig.sendPort ?? MRConfig.configuredSendPort), action: editCell()),
-          NavigationRow(title: "SMTP Password", subtitle: .rightAligned("********"), action: editCell()),
+          NavigationRow(text: "SMTP Server", detailText: .value1(MRConfig.sendServer ?? MRConfig.configuredSendServer), action: editCell()),
+          NavigationRow(text: "SMTP User", detailText: .value1(MRConfig.sendUser ?? MRConfig.configuredSendUser), action: editCell()),
+          NavigationRow(text: "SMTP Port", detailText: .value1(MRConfig.sendPort ?? MRConfig.configuredSendPort), action: editCell()),
+          NavigationRow(text: "SMTP Password", detailText: .value1("********"), action: editCell())
         ]
       ),
 
       Section(
         title: "Flags",
         rows: [
-          SwitchRow(title: "E2EE enabled", switchValue: MRConfig.e2eeEnabled, action: editCell()),
-          SwitchRow(title: "Read Receipts", switchValue: MRConfig.mdnsEnabled, action: editCell()),
-          SwitchRow(title: "Watch Inbox", switchValue: MRConfig.inboxWatch, action: editCell()),
-          SwitchRow(title: "Watch Sentbox", switchValue: MRConfig.sentboxWatch, action: editCell()),
-          SwitchRow(title: "Watch Mvbox", switchValue: MRConfig.mvboxWatch, action: editCell()),
-          SwitchRow(title: "Move to Mvbox", switchValue: MRConfig.mvboxMove, action: editCell()),
-          SwitchRow(title: "Save Mime Headers", switchValue: MRConfig.saveMimeHeaders, action: editCell()),
+          SwitchRow(text: "E2EE enabled", switchValue: MRConfig.e2eeEnabled, action: editCell()),
+          SwitchRow(text: "Read Receipts", switchValue: MRConfig.mdnsEnabled, action: editCell()),
+          SwitchRow(text: "Watch Inbox", switchValue: MRConfig.inboxWatch, action: editCell()),
+          SwitchRow(text: "Watch Sentbox", switchValue: MRConfig.sentboxWatch, action: editCell()),
+          SwitchRow(text: "Watch Mvbox", switchValue: MRConfig.mvboxWatch, action: editCell()),
+          SwitchRow(text: "Move to Mvbox", switchValue: MRConfig.mvboxMove, action: editCell()),
+          SwitchRow(text: "Save Mime Headers", switchValue: MRConfig.saveMimeHeaders, action: editCell()),
         ]
       ),
 
@@ -213,7 +213,7 @@ internal final class SettingsViewController: QuickTableViewController {
       ),
 
       Section(title: "Danger", rows: [
-        deleteRow,
+        deleteRow
       ]),
     ]
   }

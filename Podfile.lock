@@ -5,7 +5,6 @@ PODS:
   - MessageInputBar/Core (0.4.1)
   - MessageKit (2.0.0):
     - MessageInputBar/Core
-  - openssl-ios-bitcode (1.0.210)
   - QuickTableViewController (1.1.0)
   - ReachabilitySwift (4.3.0)
   - SwiftFormat/CLI (0.37.2)
@@ -17,7 +16,6 @@ DEPENDENCIES:
   - DBDebugToolkit
   - JGProgressHUD
   - MessageKit (= 2.0.0)
-  - openssl-ios-bitcode (= 1.0.210)
   - QuickTableViewController
   - ReachabilitySwift
   - SwiftFormat/CLI
@@ -30,7 +28,6 @@ SPEC REPOS:
     - JGProgressHUD
     - MessageInputBar
     - MessageKit
-    - openssl-ios-bitcode
     - QuickTableViewController
     - ReachabilitySwift
     - SwiftFormat
@@ -52,13 +49,12 @@ SPEC CHECKSUMS:
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
   MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
-  openssl-ios-bitcode: c833701a4488bd43de0051db41cfa75f6fef8109
   QuickTableViewController: 129e71fc37a69991aff02bc946723d51a13d6aa5
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   SwiftFormat: abbfb26dde4c6d683923cde153c88e10da9d7881
   SwiftLint: bfa7ca7b4d170cfaf0d236ca3ffd969e88a2f002
   SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
 
-PODFILE CHECKSUM: 07c0360b910556b36e03f48076744fe0a090b161
+PODFILE CHECKSUM: 2d177bebe81197566a8a99670cf0bf66f44605f5
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1
