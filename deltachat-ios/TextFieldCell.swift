@@ -9,31 +9,45 @@
 import UIKit
 
 class TextFieldCell: UITableViewCell {
-  let textField = UITextField()
+
+    private let placeholder:String
+
+    lazy var textField: UITextField = {
+        let textField = UITextField()
+        textField.textAlignment = .right
+        textField.enablesReturnKeyAutomatically = true
+        textField.placeholder = self.placeholder
+        // textField.backgroundColor = UIColor.lightGray
+        return textField
+    }()
 
   init(description: String, placeholder: String) {
+    self.placeholder = placeholder
+
     super.init(style: .value1, reuseIdentifier: nil)
 
     textLabel?.text = "\(description):"
-    contentView.addSubview(textField)
-
-    textField.translatesAutoresizingMaskIntoConstraints = false
 
     // see: https://stackoverflow.com/a/35903650
     // this makes the textField respect the trailing margin of
     // the table view cell
-    let margins = contentView.layoutMarginsGuide
-    let trailing = margins.trailingAnchor
-    textField.trailingAnchor.constraint(equalTo: trailing).isActive = true
-    textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-    textField.textAlignment = .right
-
-    textField.placeholder = placeholder
-
     selectionStyle = .none
-
-    textField.enablesReturnKeyAutomatically = true
+    setupViews()
   }
+
+    private func setupViews() {
+        contentView.addSubview(textField)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        let margins = contentView.layoutMarginsGuide
+        let trailing = margins.trailingAnchor
+        textField.trailingAnchor.constraint(equalTo: trailing).isActive = true
+        textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        if let label = self.textLabel {
+            textField.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 20).isActive = true
+        } else {
+            textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        }
+    }
 
   override func setSelected(_ selected: Bool, animated _: Bool) {
     if selected {
