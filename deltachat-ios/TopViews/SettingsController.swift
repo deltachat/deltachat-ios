@@ -186,11 +186,14 @@ internal final class SettingsViewController: QuickTableViewController {
           NavigationRow(title: "IMAP Server", subtitle: .rightAligned(MRConfig.mailServer ?? MRConfig.configuredMailServer), action: editCell()),
           NavigationRow(title: "IMAP User", subtitle: .rightAligned(MRConfig.mailUser ?? MRConfig.configuredMailUser), action: editCell()),
           NavigationRow(title: "IMAP Port", subtitle: .rightAligned(MRConfig.mailPort ?? MRConfig.configuredMailPort), action: editCell()),
+          NavigationRow(title: "IMAP Security", subtitle: .rightAligned("TODO"), action: editCell()),
 
           NavigationRow(title: "SMTP Server", subtitle: .rightAligned(MRConfig.sendServer ?? MRConfig.configuredSendServer), action: editCell()),
           NavigationRow(title: "SMTP User", subtitle: .rightAligned(MRConfig.sendUser ?? MRConfig.configuredSendUser), action: editCell()),
           NavigationRow(title: "SMTP Port", subtitle: .rightAligned(MRConfig.sendPort ?? MRConfig.configuredSendPort), action: editCell()),
           NavigationRow(title: "SMTP Password", subtitle: .rightAligned("********"), action: editCell()),
+          NavigationRow(title: "SMTP Security", subtitle: .rightAligned("TODO"), action: editCell()),
+
         ]
       ),
 
@@ -217,6 +220,9 @@ internal final class SettingsViewController: QuickTableViewController {
       ]),
     ]
   }
+    
+    
+    
 
   // MARK: - Actions
 

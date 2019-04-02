@@ -520,6 +520,8 @@ class MRConfig {
     let vStr = value ? "1" : "0"
     setOptStr(key, vStr)
   }
+    
+
 
   /**
    *  Address to display (always needed)
