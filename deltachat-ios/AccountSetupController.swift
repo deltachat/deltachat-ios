@@ -30,7 +30,9 @@ class AccountSetupController: UITableViewController {
         return cell
     }()
 
+    
 
+    var advancedSectionShowing: Bool = false
 
 
 
@@ -266,6 +268,11 @@ class AdvancedSectionHeader: UIView {
         handleTap?(self.toggleButton)
     }
 }
+
+
+
+
+
 
 /*
  class InputTableViewCell: UITableViewCell {
