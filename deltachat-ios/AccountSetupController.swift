@@ -114,18 +114,25 @@ class AccountSetupController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // handle tap on password 
-        print(indexPath)
+        if indexPath.section == 0 && indexPath.row == 1 {
+            if let emailAdress = emailCell.getText() {
+               let _ = showOAuthAlertIfNeeded(emailAddress: emailAdress)
+            } else {
+                return 
+            }
+        }
     }
 
     @objc func loginButtonPressed() {
-/*
+
         guard let emailAddress = emailCell.getText() else {
             return // handle case when either email or pw fields are empty
         }
 
-        let oAuthStared = showOAuthAlertIfNeeded(emailAddress: emailAddress)
+        let oAuthStarted = showOAuthAlertIfNeeded(emailAddress: emailAddress)
 
-        if oAuthStared {
+        if oAuthStarted {
+            // the loginFlow will be handled by oAuth2
             return
         }
 
@@ -135,8 +142,10 @@ class AccountSetupController: UITableViewController {
         MRConfig.mailPw = passWord
         dc_configure(mailboxPointer)
         hudHandler.showBackupHud("Configuring account")
-        */
- }
+    }
+
+
+
 
     // returns true if needed
     private func showOAuthAlertIfNeeded(emailAddress: String) -> Bool {
@@ -194,6 +203,7 @@ class AccountSetupController: UITableViewController {
     }
 }
 
+/*
 class InputTableViewCell: UITableViewCell {
     lazy var inputField: UITextField = {
         let textField = UITextField()
@@ -261,4 +271,4 @@ class PasswordInputCell: UITableViewCell {
     }
 }
 
-
+*/
