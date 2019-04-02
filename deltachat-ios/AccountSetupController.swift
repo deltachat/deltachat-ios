@@ -18,17 +18,15 @@ class AccountSetupController: UITableViewController {
         return hudHandler
     }()
 
-    lazy var emailCell:InputTableViewCell = {
-        let cell = InputTableViewCell()
-        cell.textLabel?.text = "Email"
-        cell.inputField.placeholder = "user@example.com"
+    lazy var emailCell:TextFieldCell = {
+        let cell = TextFieldCell.makeEmailCell()
+        //cell.textLabel?.text = "Email"
+        //cell.inputField.placeholder = "user@example.com"
         return cell
     }()
 
-    lazy var passwordCell:PasswordInputCell = {
-        let cell = PasswordInputCell()
-        cell.textLabel?.text = "Password"
-        cell.inputField.placeholder = "Required"
+    lazy var passwordCell:TextFieldCell = {
+        let cell = TextFieldCell.makePasswordCell()
         return cell
     }()
 
@@ -120,6 +118,7 @@ class AccountSetupController: UITableViewController {
     }
 
     @objc func loginButtonPressed() {
+/*
         guard let emailAddress = emailCell.getText() else {
             return // handle case when either email or pw fields are empty
         }
@@ -136,7 +135,8 @@ class AccountSetupController: UITableViewController {
         MRConfig.mailPw = passWord
         dc_configure(mailboxPointer)
         hudHandler.showBackupHud("Configuring account")
-    }
+        */
+ }
 
     // returns true if needed
     private func showOAuthAlertIfNeeded(emailAddress: String) -> Bool {
