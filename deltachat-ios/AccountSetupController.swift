@@ -7,8 +7,29 @@
 //
 
 import UIKit
+import JGProgressHUD
+
 
 class AccountSetupController: UITableViewController {
+    
+    lazy var hudHandler: HudHandler = {
+        let hudHandler = HudHandler(parentView: self.tableView)
+        return hudHandler
+    }()
+    
+    lazy var emailCell:InputTableViewCell = {
+       let cell = InputTableViewCell()
+        cell.textLabel?.text = "Email"
+        cell.inputField.placeholder = "user@example.com"
+        return cell
+    }()
+    
+    lazy var passwordCell:PasswordInputCell = {
+        let cell = PasswordInputCell()
+        cell.textLabel?.text = "Password"
+        cell.inputField.placeholder = "Required"
+        return cell
+    }()
   
   init() {
     super.init(style: .grouped)
@@ -21,7 +42,7 @@ class AccountSetupController: UITableViewController {
   
   override func viewDidLoad() {
       super.viewDidLoad()
-
+    self.title = "Login to your server"
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
   }
 
@@ -29,37 +50,68 @@ class AccountSetupController: UITableViewController {
 
   override func numberOfSections(in tableView: UITableView) -> Int {
       // #warning Incomplete implementation, return the number of sections
-      return 1
+      return 2
   }
 
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       // #warning Incomplete implementation, return the number of rows
-    if section == 0 {
-      return 2
-    } else {
-      return 0
+        if section == 0 {
+            return 2
+        } else {
+            return 0
+        }
     }
-}
-  
-    @objc func loginButtonPressed() {
-        print("login button pressed")
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            return "Advanced"
+        } else {
+            return nil 
+        }
+    }
+    
+    
+    
+    /*
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            return nil 
+        } else {
+            let label = UILabel()
+            label.text = "Advanced"
+            return label
+        }
+    }
+    */
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == 0 {
+            return "There are no Delta Chat servers, your data stays on your device!"
+        } else {
+            return nil
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        let cell:UITableViewCell
         if row == 0 {
-            let inputCell = InputTableViewCell()
-            inputCell.textLabel?.text = "Email"
-            inputCell.inputField.placeholder = "user@example.com"
-            cell = inputCell
+            return emailCell
         } else {
-            let pwCell = PasswordInputCell()
-            pwCell.textLabel?.text = "Password"
-            pwCell.inputField.placeholder = "Required"
-            cell = pwCell
+            return passwordCell
         }
-        return cell
+    }
+    
+    @objc func loginButtonPressed() {
+        guard let emailAdress = emailCell.getText() else {
+            return // handle case when either email or pw fields are empty
+        }
+        
+        let passWord = passwordCell.getText()  ?? "" // empty passwords are ok -> for oauth there is no password needed
+        
+        MRConfig.addr = emailAdress
+        MRConfig.mailPw = passWord
+        dc_configure(mailboxPointer)
+        hudHandler.showBackupHud("Configuring account")
     }
 }
 
@@ -90,6 +142,10 @@ class InputTableViewCell: UITableViewCell {
         inputField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
         inputField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 100).isActive = true
         inputField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
+    }
+    
+    public func getText() -> String? {
+        return inputField.text 
     }
 }
 
@@ -127,5 +183,77 @@ class PasswordInputCell: UITableViewCell {
         inputField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
         inputField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 100).isActive = true
         inputField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
+    }
+    
+    public func getText() -> String? {
+        return inputField.text 
+    }
+}
+
+
+class HudHandler {
+    
+    var backupHud: JGProgressHUD?
+    var view:UIView
+    
+    init(parentView: UIView) {
+        self.view = parentView
+    }
+    
+    
+    
+    func setHudProgress(_ progress: Int) {
+        if let hud = self.backupHud {
+            hud.progress = Float(progress) / 1000.0
+            hud.detailTextLabel.text = "\(progress / 10)% Complete"
+        }
+    }
+    
+    func showBackupHud(_ text: String) {
+        DispatchQueue.main.async {
+            let hud = JGProgressHUD(style: .dark)
+            hud.vibrancyEnabled = true
+            hud.indicatorView = JGProgressHUDPieIndicatorView()
+            
+            hud.detailTextLabel.text = "0% Complete"
+            hud.textLabel.text = text
+            hud.show(in: self.view)
+            
+            self.backupHud = hud
+        }
+    }
+
+    
+    func setHudError(_ message: String?) {
+        if let hud = self.backupHud {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                UIView.animate(
+                    withDuration: 0.1, animations: {
+                        hud.textLabel.text = message ?? "Error"
+                        hud.detailTextLabel.text = nil
+                        hud.indicatorView = JGProgressHUDErrorIndicatorView()
+                }
+                )
+                
+                hud.dismiss(afterDelay: 5.0)
+            }
+        }
+    }
+    
+    func setHudDone(callback: (()->())?) {
+        if let hud = self.backupHud {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                UIView.animate(
+                    withDuration: 0.1, animations: {
+                        hud.textLabel.text = "Success"
+                        hud.detailTextLabel.text = nil
+                        hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+                }
+                )
+                
+                callback?()
+                hud.dismiss(afterDelay: 1.0)
+            }
+        }
     }
 }
