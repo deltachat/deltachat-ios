@@ -12,14 +12,13 @@ class AccountSetupController: UITableViewController {
   
   init() {
     super.init(style: .grouped)
-    self
+    tableView.allowsSelection = false
   }
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
-
   override func viewDidLoad() {
       super.viewDidLoad()
 
@@ -48,15 +47,17 @@ class AccountSetupController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        let cell:InputTableViewCell
+        let cell:UITableViewCell
         if row == 0 {
-            cell = InputTableViewCell()
-            cell.textLabel?.text = "Email"
-            cell.inputField.placeholder = "user@example.com"
+            let inputCell = InputTableViewCell()
+            inputCell.textLabel?.text = "Email"
+            inputCell.inputField.placeholder = "user@example.com"
+            cell = inputCell
         } else {
-            cell = InputTableViewCell()
-            cell.textLabel?.text = "Password"
-            cell.inputField.placeholder = "Required"
+            let pwCell = PasswordInputCell()
+            pwCell.textLabel?.text = "Password"
+            pwCell.inputField.placeholder = "Required"
+            cell = pwCell
         }
         return cell
     }
@@ -87,7 +88,43 @@ class InputTableViewCell: UITableViewCell {
         inputField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
         inputField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
         inputField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
-        //textField.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1).isActive = true
+        inputField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 100).isActive = true
+        inputField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
+    }
+}
+
+class PasswordInputCell: UITableViewCell {
+    
+    lazy var inputField: UITextField = {
+        let textField = UITextField()
+        textField.isSecureTextEntry = true
+        return textField
+    }()
+    
+    // TODO: to add Eye-icon -> uncomment -> add to inputField.rightView
+    /*
+    lazy var makeVisibleIcon: UIImageView = {
+       let view = UIImageView(image: )
+        return view
+    }()
+    */
+    
+    init() {
+        super.init(style: .default, reuseIdentifier: nil)
+        setupView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        contentView.addSubview(inputField)
+        inputField.translatesAutoresizingMaskIntoConstraints = false
+        
+        inputField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
+        inputField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        inputField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
         inputField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 100).isActive = true
         inputField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
     }
