@@ -30,6 +30,10 @@ class AccountSetupController: UITableViewController {
         return cell
     }()
 
+
+
+
+
     init() {
         super.init(style: .grouped)
     }
@@ -74,7 +78,7 @@ class AccountSetupController: UITableViewController {
             return 0
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
             return "Advanced"
@@ -83,17 +87,23 @@ class AccountSetupController: UITableViewController {
         }
     }
 
-    /*
-     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-     if section == 0 {
-     return nil
-     } else {
-     let label = UILabel()
-     label.text = "Advanced"
-     return label
-     }
-     }
-     */
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        if section == 1 {
+            // Advanced Header
+            let advancedView = AdvancedSectionHeader()
+            advancedView.handleTap = toggleAdvancedSection
+            // set tapHandler
+            return advancedView
+
+        } else {
+            return nil
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 36.0
+    }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 0 {
@@ -116,11 +126,16 @@ class AccountSetupController: UITableViewController {
         // handle tap on password 
         if indexPath.section == 0 && indexPath.row == 1 {
             if let emailAdress = emailCell.getText() {
-               let _ = showOAuthAlertIfNeeded(emailAddress: emailAdress)
+                let _ = showOAuthAlertIfNeeded(emailAddress: emailAdress)
             } else {
-                return 
+                return
             }
         }
+    }
+
+    private func toggleAdvancedSection(button: UIButton) {
+        print("Toggle")
+
     }
 
     @objc func loginButtonPressed() {
@@ -143,9 +158,6 @@ class AccountSetupController: UITableViewController {
         dc_configure(mailboxPointer)
         hudHandler.showBackupHud("Configuring account")
     }
-
-
-
 
     // returns true if needed
     private func showOAuthAlertIfNeeded(emailAddress: String) -> Bool {
@@ -179,7 +191,6 @@ class AccountSetupController: UITableViewController {
                     self.hudHandler.setHudDone(callback: nil)
                 } else {
                     self.hudHandler.setHudProgress(ui["progress"] as! Int)
-
                 }
             }
         }
@@ -196,79 +207,132 @@ class AccountSetupController: UITableViewController {
                     self.hudHandler.setHudDone(callback: nil)
                 } else {
                     self.hudHandler.setHudProgress(ui["progress"] as! Int)
-
                 }
             }
         }
     }
 }
 
+class AdvancedSectionHeader: UIView {
+
+    var handleTap:((UIButton) -> ())?
+
+    private var label:UILabel = {
+        let label = UILabel()
+        label.text = "ADVANCED"
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = UIColor.darkGray
+        return label
+    }()
+
+    private var toggleButton:UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Show", for: .normal)
+        button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside )
+        //button.target(forAction: #selector(buttonTapped(_:)), withSender: self)
+        return button
+    }()
+
+    init() {
+        super.init(frame: .zero)    // will be constraint from tableViewDelegate
+        setupSubviews()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped)) // use this if the whole header is supposed to be clickable
+        self.addGestureRecognizer(tap)
+
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func setupSubviews() {
+        self.addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant:  15).isActive = true
+        label.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
+        self.addSubview(toggleButton)
+        toggleButton.translatesAutoresizingMaskIntoConstraints = false
+
+        toggleButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        toggleButton.centerYAnchor.constraint(equalTo: label.centerYAnchor, constant: 0).isActive = true
+
+    }
+
+    @objc func buttonTapped(_ button: UIButton) {
+        handleTap?(button)
+    }
+
+    @objc func viewTapped() {
+        handleTap?(self.toggleButton)
+    }
+}
+
 /*
-class InputTableViewCell: UITableViewCell {
-    lazy var inputField: UITextField = {
-        let textField = UITextField()
-        return textField
-    }()
+ class InputTableViewCell: UITableViewCell {
+ lazy var inputField: UITextField = {
+ let textField = UITextField()
+ return textField
+ }()
 
-    init() {
-        super.init(style: .default, reuseIdentifier: nil)
-        setupView()
-    }
+ init() {
+ super.init(style: .default, reuseIdentifier: nil)
+ setupView()
+ }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+ required init?(coder aDecoder: NSCoder) {
+ fatalError("init(coder:) has not been implemented")
+ }
 
-    private func setupView() {
-        contentView.addSubview(inputField)
-        inputField.translatesAutoresizingMaskIntoConstraints = false
-        inputField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
-        inputField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
-        inputField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
-        inputField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 100).isActive = true
-        inputField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
-    }
-    public func getText() -> String? {
-        return inputField.text
-    }
-}
+ private func setupView() {
+ contentView.addSubview(inputField)
+ inputField.translatesAutoresizingMaskIntoConstraints = false
+ inputField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
+ inputField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+ inputField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
+ inputField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 100).isActive = true
+ inputField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
+ }
+ public func getText() -> String? {
+ return inputField.text
+ }
+ }
 
-class PasswordInputCell: UITableViewCell {
-    lazy var inputField: UITextField = {
-        let textField = UITextField()
-        textField.isSecureTextEntry = true
-        return textField
-    }()
+ class PasswordInputCell: UITableViewCell {
+ lazy var inputField: UITextField = {
+ let textField = UITextField()
+ textField.isSecureTextEntry = true
+ return textField
+ }()
 
-    // TODO: to add Eye-icon -> uncomment -> add to inputField.rightView
-    /*
-     lazy var makeVisibleIcon: UIImageView = {
-     let view = UIImageView(image: )
-     return view
-     }()
-     */
-    init() {
-        super.init(style: .default, reuseIdentifier: nil)
-        setupView()
-    }
+ // TODO: to add Eye-icon -> uncomment -> add to inputField.rightView
+ /*
+ lazy var makeVisibleIcon: UIImageView = {
+ let view = UIImageView(image: )
+ return view
+ }()
+ */
+ init() {
+ super.init(style: .default, reuseIdentifier: nil)
+ setupView()
+ }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+ required init?(coder aDecoder: NSCoder) {
+ fatalError("init(coder:) has not been implemented")
+ }
 
-    private func setupView() {
-        contentView.addSubview(inputField)
-        inputField.translatesAutoresizingMaskIntoConstraints = false
-        inputField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
-        inputField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
-        inputField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
-        inputField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 100).isActive = true
-        inputField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
-    }
+ private func setupView() {
+ contentView.addSubview(inputField)
+ inputField.translatesAutoresizingMaskIntoConstraints = false
+ inputField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
+ inputField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+ inputField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
+ inputField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 100).isActive = true
+ inputField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
+ }
 
-    public func getText() -> String? {
-        return inputField.text
-    }
-}
+ public func getText() -> String? {
+ return inputField.text
+ }
+ }
 
-*/
+ */
