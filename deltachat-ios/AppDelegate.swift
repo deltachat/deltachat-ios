@@ -62,15 +62,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     guard let window = window else {
       fatalError("window was nil in app delegate")
     }
-    AppDelegate.appCoordinator.setupViewControllers(window: window)
-
-    UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-
-    start()
+    
+    // setup deltachat core context
+      //       - second param remains nil (user data for more than one mailbox)
+    mailboxPointer = dc_context_new(callback_ios, nil, "iOS")
+    guard mailboxPointer != nil else {
+      fatalError("Error: dc_context_new returned nil")
+    }
+    
     open()
-
+    let isConfigured = dc_is_configured(mailboxPointer) != 0
+    
+    AppDelegate.appCoordinator.setupViewControllers(window: window)
+    
+    
+    UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+    
+    start()
+    
     registerForPushNotifications()
-
+    if !isConfigured {
+      AppDelegate.appCoordinator.presentAccountSetup()
+    }
     return true
   }
 
@@ -157,14 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
       return
     }
 
-    if mailboxPointer == nil {
-      //       - second param remains nil (user data for more than one mailbox)
-      mailboxPointer = dc_context_new(callback_ios, nil, "iOS")
-      guard mailboxPointer != nil else {
-        fatalError("Error: dc_context_new returned nil")
-      }
-    }
-
+    
     state = .running
 
     DispatchQueue.global(qos: .background).async {
