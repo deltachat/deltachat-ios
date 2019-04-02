@@ -12,6 +12,9 @@ import JGProgressHUD
 
 class AccountSetupController: UITableViewController {
     
+    var backupProgressObserver: Any?
+    var configureProgressObserver: Any?
+    
     lazy var hudHandler: HudHandler = {
         let hudHandler = HudHandler(parentView: self.tableView)
         return hudHandler
@@ -45,6 +48,21 @@ class AccountSetupController: UITableViewController {
     self.title = "Login to your server"
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
   }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addProgressHudEventListener()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        let nc = NotificationCenter.default
+        if let backupProgressObserver = self.backupProgressObserver {
+            nc.removeObserver(backupProgressObserver)
+        }
+        if let configureProgressObserver = self.configureProgressObserver {
+            nc.removeObserver(configureProgressObserver)
+        }
+    }
 
     // MARK: - Table view data source
 
@@ -112,6 +130,42 @@ class AccountSetupController: UITableViewController {
         MRConfig.mailPw = passWord
         dc_configure(mailboxPointer)
         hudHandler.showBackupHud("Configuring account")
+    }
+    
+    private func addProgressHudEventListener() {
+        let nc = NotificationCenter.default
+        backupProgressObserver = nc.addObserver(
+            forName: dcNotificationBackupProgress,
+            object: nil,
+            queue: nil
+        ) {
+            notification in
+            if let ui = notification.userInfo {
+                if ui["error"] as! Bool {
+                    self.hudHandler.setHudError(ui["errorMessage"] as? String)
+                } else if ui["done"] as! Bool {
+                    self.hudHandler.setHudDone(callback: nil)
+                } else {
+                    self.hudHandler.setHudProgress(ui["progress"] as! Int)
+                }
+            }
+        }
+        configureProgressObserver = nc.addObserver(
+            forName: dcNotificationConfigureProgress,
+            object: nil,
+            queue: nil
+        ) {
+            notification in
+            if let ui = notification.userInfo {
+                if ui["error"] as! Bool {
+                    self.hudHandler.setHudError(ui["errorMessage"] as? String)
+                } else if ui["done"] as! Bool {
+                    self.hudHandler.setHudDone(callback: nil)
+                } else {
+                    self.hudHandler.setHudProgress(ui["progress"] as! Int)
+                }
+            }
+        }
     }
 }
 
