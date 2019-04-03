@@ -22,13 +22,24 @@ class AccountSetupController: UITableViewController {
 
     private lazy var emailCell:TextFieldCell = {
         let cell = TextFieldCell.makeEmailCell()
+		cell.textField.tag = 0
+		cell.textField.delegate = self
         return cell
     }()
 
     private lazy var passwordCell:TextFieldCell = {
 		let cell = TextFieldCell.makePasswordCell()
-        return cell
+		cell.textField.tag = 1
+		cell.textField.delegate = self
+		return cell
     }()
+
+	/*
+	Advanced Cells:
+	IMAP Server, IMAP User, IMAP Port, IMAP Security, SMTP Server, SMTP User, SMTP Port, SMTP Password, SMTP Security
+	*/
+
+
 
 	lazy var imapServerCell = TextFieldCell(description: "IMAP Server", placeholder: MRConfig.mailServer ?? MRConfig.configuredMailServer)
 	lazy var imapUserCell = TextFieldCell(description: "IMAP User", placeholder: MRConfig.mailUser ?? MRConfig.configuredMailUser)
@@ -43,10 +54,9 @@ class AccountSetupController: UITableViewController {
 
 
 
-    /*
-    Advanced Cells:
-     IMAP Server, IMAP User, IMAP Port, IMAP Security, SMTP Server, SMTP User, SMTP Port, SMTP Password, SMTP Security
-    */
+	// this loginButton can be enabled and disabled
+	let loginButton:UIBarButtonItem = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
+
 
 	private lazy var basicSectionCells:[UITableViewCell] = [emailCell, passwordCell]
 	private lazy var advancedSectionCells:[UITableViewCell] = [imapServerCell,imapUserCell,imapPortCell,imapSecurityCell,smtpServerCell,smtpUserCell,smtpPortCell,smtpPasswordCell,smtpSecurityCell]
@@ -65,12 +75,13 @@ class AccountSetupController: UITableViewController {
         super.viewDidLoad()
         self.title = "Login to your server"
 		self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonPressed))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
+        self.navigationItem.rightBarButtonItem = loginButton
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         addProgressHudEventListener()
+		//loginButton.isEnabled = false
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -144,16 +155,13 @@ class AccountSetupController: UITableViewController {
             // advancedSection
             return advancedSectionCells[row]
         }
-
-
-
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // handle tap on password 
         if indexPath.section == 0 && indexPath.row == 1 {
             if let emailAdress = emailCell.getText() {
-                let _ = showOAuthAlertIfNeeded(emailAddress: emailAdress)
+				_ = showOAuthAlertIfNeeded(emailAddress: emailAdress, handleCancel: nil)
             } else {
                 return
             }
@@ -189,7 +197,7 @@ class AccountSetupController: UITableViewController {
             return // handle case when either email or pw fields are empty
         }
 
-        let oAuthStarted = showOAuthAlertIfNeeded(emailAddress: emailAddress)
+        let oAuthStarted = showOAuthAlertIfNeeded(emailAddress: emailAddress, handleCancel: nil)
 
         if oAuthStarted {
             // the loginFlow will be handled by oAuth2
@@ -209,7 +217,7 @@ class AccountSetupController: UITableViewController {
 	}
 
     // returns true if needed
-    private func showOAuthAlertIfNeeded(emailAddress: String) -> Bool {
+	private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (()->())?) -> Bool {
         if oAuthDenied {
             return false
         }
@@ -229,6 +237,7 @@ class AccountSetupController: UITableViewController {
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
                _ in
                 self.oAuthDenied = true
+				handleCancel?()
             })
             oAuthAlertController.addAction(confirm)
             oAuthAlertController.addAction(cancel)
@@ -281,6 +290,27 @@ class AccountSetupController: UITableViewController {
     }
 }
 
+extension AccountSetupController: UITextFieldDelegate {
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		let currentTag = textField.tag
+
+		if currentTag == 0 {
+			// special case: email field should check for potential oAuth
+			showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
+				self.passwordCell.textField.becomeFirstResponder()
+			})
+		}
+
+
+		if let nextField = tableView.viewWithTag(currentTag + 1) as? UITextField {
+			nextField.becomeFirstResponder()
+		}
+
+
+		return false
+	}
+}
+
 class AdvancedSectionHeader: UIView {
 
     var handleTap:((UIButton) -> ())?
@@ -321,7 +351,7 @@ class AdvancedSectionHeader: UIView {
         self.addSubview(toggleButton)
         toggleButton.translatesAutoresizingMaskIntoConstraints = false
 
-        toggleButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        toggleButton.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: -60).isActive = true	// since button will change title it should be left aligned
         toggleButton.centerYAnchor.constraint(equalTo: label.centerYAnchor, constant: 0).isActive = true
 
     }
