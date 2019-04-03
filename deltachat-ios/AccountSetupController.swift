@@ -10,8 +10,7 @@ import UIKit
 
 class AccountSetupController: UITableViewController {
 
-    private var oAuthDenied:Bool = false
-
+    private var oAuthDenied:Bool = false    // if true, this will block the oAuthSetupDialogue
 
     private var backupProgressObserver: Any?
     private var configureProgressObserver: Any?
@@ -23,8 +22,6 @@ class AccountSetupController: UITableViewController {
 
     private lazy var emailCell:TextFieldCell = {
         let cell = TextFieldCell.makeEmailCell()
-        //cell.textLabel?.text = "Email"
-        //cell.inputField.placeholder = "user@example.com"
         return cell
     }()
 
@@ -33,6 +30,10 @@ class AccountSetupController: UITableViewController {
         return cell
     }()
 
+    
+
+    private lazy var basicSectionCells:[UITableViewCell] = [emailCell, passwordCell]
+    private lazy var advancedSectionCells:[UITableViewCell] = [emailCell, passwordCell,emailCell, passwordCell,emailCell, passwordCell]
 
 
     private var advancedSectionShowing: Bool = false
@@ -76,9 +77,9 @@ class AccountSetupController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if section == 0 {
-            return 2
+            return basicSectionCells.count
         } else {
-            return 0
+            return advancedSectionShowing ? advancedSectionCells.count : 0
         }
     }
 
@@ -117,12 +118,19 @@ class AccountSetupController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = indexPath.section
         let row = indexPath.row
-        if row == 0 {
-            return emailCell
+
+        if section == 0 {
+            // basicSection
+           return basicSectionCells[row]
         } else {
-            return passwordCell
+            // advancedSection
+            return advancedSectionCells[row]
         }
+
+
+
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -164,27 +172,30 @@ class AccountSetupController: UITableViewController {
 
     // returns true if needed
     private func showOAuthAlertIfNeeded(emailAddress: String) -> Bool {
+        if oAuthDenied {
+            return false
+        }
+
         guard let oAuth2UrlPointer = dc_get_oauth2_url(mailboxPointer, emailAddress, "chat.delta:/auth") else {
             return false
         }
 
-
         let oAuth2Url = String(cString: oAuth2UrlPointer)
 
-        // TODO: open webView with url
-        if let url = URL.init(string: oAuth2Url) {
+        if let url = URL.init(string: oAuth2Url)  {
             let oAuthAlertController = UIAlertController(title: "You can use oAuth", message: "Click confirm if you want to use oAuth", preferredStyle: .alert)
             let confirm = UIAlertAction(title: "Confirm", style: .default, handler: {
                 _ in
                 self.launchOAuthBrowserWindow(url: url)
             })
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+               _ in
+                self.oAuthDenied = true
+            })
             oAuthAlertController.addAction(confirm)
             oAuthAlertController.addAction(cancel)
 
-            present(oAuthAlertController, animated: true, completion: {
-                return true}
-            )
+            present(oAuthAlertController, animated: true, completion: nil)
             return true
         } else {
             return false
