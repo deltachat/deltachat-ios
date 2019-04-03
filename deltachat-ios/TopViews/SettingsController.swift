@@ -150,6 +150,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func setTable() {
+
         let basicsRows: [Row & RowStyle] = [
             NavigationRow(title: "Email", subtitle: .rightAligned(MRConfig.addr ?? ""), action: editCell()),
             NavigationRow(title: "Password", subtitle: .rightAligned("********"), action: editCell()),
@@ -168,35 +169,13 @@ internal final class SettingsViewController: QuickTableViewController {
 
         tableContents = [
             Section(
-                title: "Basics",
-                rows: basicsRows
-            ),
-
-            Section(
                 title: "User Details",
                 rows: [
                     NavigationRow(title: "Display Name", subtitle: .rightAligned(MRConfig.displayname ?? ""), action: editCell()),
                     NavigationRow(title: "Status", subtitle: .rightAligned(MRConfig.selfstatus ?? ""), action: editCell()),
+					TapActionRow(title: "Change Account Settings", action: {[weak self] in self?.accountSettingsPressed($0)}),
                 ]
             ),
-
-            Section(
-                title: "Advanced",
-                rows: [
-                    NavigationRow(title: "IMAP Server", subtitle: .rightAligned(MRConfig.mailServer ?? MRConfig.configuredMailServer), action: editCell()),
-                    NavigationRow(title: "IMAP User", subtitle: .rightAligned(MRConfig.mailUser ?? MRConfig.configuredMailUser), action: editCell()),
-                    NavigationRow(title: "IMAP Port", subtitle: .rightAligned(MRConfig.mailPort ?? MRConfig.configuredMailPort), action: editCell()),
-                    NavigationRow(title: "IMAP Security", subtitle: .rightAligned("TODO"), action: editCell()),
-
-                    NavigationRow(title: "SMTP Server", subtitle: .rightAligned(MRConfig.sendServer ?? MRConfig.configuredSendServer), action: editCell()),
-                    NavigationRow(title: "SMTP User", subtitle: .rightAligned(MRConfig.sendUser ?? MRConfig.configuredSendUser), action: editCell()),
-                    NavigationRow(title: "SMTP Port", subtitle: .rightAligned(MRConfig.sendPort ?? MRConfig.configuredSendPort), action: editCell()),
-                    NavigationRow(title: "SMTP Password", subtitle: .rightAligned("********"), action: editCell()),
-                    NavigationRow(title: "SMTP Security", subtitle: .rightAligned("TODO"), action: editCell()),
-
-                    ]
-            ),
-
             Section(
                 title: "Flags",
                 rows: [
@@ -352,6 +331,10 @@ internal final class SettingsViewController: QuickTableViewController {
             self?.present(alertController, animated: true, completion: nil)
         }
     }
+
+	private func accountSettingsPressed(_: Row) {
+		AppDelegate.appCoordinator.presentAccountSetup(animated: true)
+	}
 
     private func createBackup(_: Row) {
         // if let documents = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.delta.chat.ios")?.path {

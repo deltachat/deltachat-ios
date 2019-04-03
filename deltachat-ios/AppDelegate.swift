@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     registerForPushNotifications()
     if !isConfigured {
-      AppDelegate.appCoordinator.presentAccountSetup()
+      AppDelegate.appCoordinator.presentAccountSetup(animated: false)
     }
     return true
   }
