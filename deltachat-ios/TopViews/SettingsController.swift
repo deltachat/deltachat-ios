@@ -333,7 +333,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
 	private func accountSettingsPressed(_: Row) {
-		AppDelegate.appCoordinator.presentAccountSetup(animated: true)
+		AppDelegate.appCoordinator.presentAccountSetup(animated: true	)
 	}
 
     private func createBackup(_: Row) {

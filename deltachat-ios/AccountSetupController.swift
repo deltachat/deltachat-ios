@@ -271,7 +271,7 @@ class AccountSetupController: UITableViewController {
 	}
 
 	@objc func closeButtonPressed() {
-		dismiss(animated: false, completion: nil)
+		dismiss(animated: true, completion: nil)
 	}
 
 	// returns true if needed
