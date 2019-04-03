@@ -51,8 +51,6 @@ class AccountSetupController: UITableViewController {
 	private lazy var basicSectionCells:[UITableViewCell] = [emailCell, passwordCell]
 	private lazy var advancedSectionCells:[UITableViewCell] = [imapServerCell,imapUserCell,imapPortCell,imapSecurityCell,smtpServerCell,smtpUserCell,smtpPortCell,smtpPasswordCell,smtpSecurityCell]
 
-
-
     private var advancedSectionShowing: Bool = false
 
     init() {
@@ -66,6 +64,7 @@ class AccountSetupController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Login to your server"
+		self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonPressed))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
     }
 
@@ -204,6 +203,10 @@ class AccountSetupController: UITableViewController {
         dc_configure(mailboxPointer)
         hudHandler.showBackupHud("Configuring account")
     }
+
+	@objc func closeButtonPressed() {
+		dismiss(animated: false, completion: nil)
+	}
 
     // returns true if needed
     private func showOAuthAlertIfNeeded(emailAddress: String) -> Bool {
