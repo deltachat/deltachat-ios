@@ -10,31 +10,32 @@ import UIKit
 
 class AccountSetupController: UITableViewController {
 
-    var backupProgressObserver: Any?
-    var configureProgressObserver: Any?
+    private var oAuthDenied:Bool = false
 
-    lazy var hudHandler: HudHandler = {
+
+    private var backupProgressObserver: Any?
+    private var configureProgressObserver: Any?
+
+    private lazy var hudHandler: HudHandler = {
         let hudHandler = HudHandler(parentView: self.tableView)
         return hudHandler
     }()
 
-    lazy var emailCell:TextFieldCell = {
+    private lazy var emailCell:TextFieldCell = {
         let cell = TextFieldCell.makeEmailCell()
         //cell.textLabel?.text = "Email"
         //cell.inputField.placeholder = "user@example.com"
         return cell
     }()
 
-    lazy var passwordCell:TextFieldCell = {
+    private lazy var passwordCell:TextFieldCell = {
         let cell = TextFieldCell.makePasswordCell()
         return cell
     }()
 
-    
-
-    var advancedSectionShowing: Bool = false
 
 
+    private var advancedSectionShowing: Bool = false
 
     init() {
         super.init(style: .grouped)
@@ -167,15 +168,31 @@ class AccountSetupController: UITableViewController {
             return false
         }
 
+
         let oAuth2Url = String(cString: oAuth2UrlPointer)
 
         // TODO: open webView with url
         if let url = URL.init(string: oAuth2Url) {
-            UIApplication.shared.open(url)
+            let oAuthAlertController = UIAlertController(title: "You can use oAuth", message: "Click confirm if you want to use oAuth", preferredStyle: .alert)
+            let confirm = UIAlertAction(title: "Confirm", style: .default, handler: {
+                _ in
+                self.launchOAuthBrowserWindow(url: url)
+            })
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            oAuthAlertController.addAction(confirm)
+            oAuthAlertController.addAction(cancel)
+
+            present(oAuthAlertController, animated: true, completion: {
+                return true}
+            )
             return true
         } else {
             return false
         }
+    }
+
+    private func launchOAuthBrowserWindow(url: URL) {
+        UIApplication.shared.open(url)
     }
 
     private func addProgressHudEventListener() {
