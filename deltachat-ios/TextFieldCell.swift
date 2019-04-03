@@ -15,7 +15,7 @@ class TextFieldCell: UITableViewCell {
     lazy var textField: UITextField = {
         let textField = UITextField()
         textField.textAlignment = .right
-        textField.enablesReturnKeyAutomatically = true
+       // textField.enablesReturnKeyAutomatically = true
         textField.placeholder = self.placeholder
         // textField.backgroundColor = UIColor.lightGray
         return textField
