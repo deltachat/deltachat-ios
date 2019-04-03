@@ -414,7 +414,6 @@ class AdvancedSectionHeader: UIView {
 
 		toggleButton.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: -60).isActive = true	// since button will change title it should be left aligned
 		toggleButton.centerYAnchor.constraint(equalTo: label.centerYAnchor, constant: 0).isActive = true
-
 	}
 
 	@objc func buttonTapped(_ button: UIButton) {

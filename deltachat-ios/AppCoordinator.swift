@@ -23,10 +23,10 @@ class AppCoordinator: Coordinator {
     
   }
   
-  func presentAccountSetup() {
+	func presentAccountSetup(animated: Bool) {
     let accountSetupController = AccountSetupController()
     let accountSetupNavigationController = UINavigationController(rootViewController: accountSetupController)
-    appTabBarController.present(accountSetupNavigationController, animated: false, completion: nil)
+    appTabBarController.present(accountSetupNavigationController, animated: animated, completion: nil)
   }
 
   func setupInnerViewControllers() {
