@@ -26,19 +26,32 @@ class AccountSetupController: UITableViewController {
     }()
 
     private lazy var passwordCell:TextFieldCell = {
-        let cell = TextFieldCell.makePasswordCell()
+		let cell = TextFieldCell.makePasswordCell()
         return cell
     }()
+
+	lazy var imapServerCell = TextFieldCell(description: "IMAP Server", placeholder: MRConfig.mailServer ?? MRConfig.configuredMailServer)
+	lazy var imapUserCell = TextFieldCell(description: "IMAP User", placeholder: MRConfig.mailUser ?? MRConfig.configuredMailUser)
+	lazy var imapPortCell = TextFieldCell(description: "IMAP Port", placeholder: MRConfig.mailPort ?? MRConfig.configuredMailPort)
+	lazy var imapSecurityCell = TextFieldCell(description: "IMAP Security", placeholder: "TODO")
+
+	lazy var smtpServerCell = TextFieldCell(description: "SMTP Server", placeholder: MRConfig.sendServer ?? MRConfig.configuredSendServer)
+	lazy var smtpUserCell = TextFieldCell(description: "SMTP User", placeholder: MRConfig.sendUser ?? MRConfig.configuredSendUser)
+	lazy var smtpPortCell = TextFieldCell(description: "SMTP Port", placeholder: MRConfig.sendPort ?? MRConfig.configuredSendPort)
+	lazy var smtpPasswordCell = TextFieldCell(description: "SMTP Password", placeholder: "*************")
+	lazy var smtpSecurityCell = TextFieldCell(description: "SMTP Security", placeholder: "TODO")
+
+
 
     /*
     Advanced Cells:
      IMAP Server, IMAP User, IMAP Port, IMAP Security, SMTP Server, SMTP User, SMTP Port, SMTP Password, SMTP Security
     */
 
+	private lazy var basicSectionCells:[UITableViewCell] = [emailCell, passwordCell]
+	private lazy var advancedSectionCells:[UITableViewCell] = [imapServerCell,imapUserCell,imapPortCell,imapSecurityCell,smtpServerCell,smtpUserCell,smtpPortCell,smtpPasswordCell,smtpSecurityCell]
 
 
-    private lazy var basicSectionCells:[UITableViewCell] = [emailCell, passwordCell]
-    private lazy var advancedSectionCells:[UITableViewCell] = [TextFieldCell(description: "IMAP Server", placeholder: MRConfig.mailServer ?? MRConfig.configuredMailServer)]
 
     private var advancedSectionShowing: Bool = false
 
@@ -117,8 +130,8 @@ class AccountSetupController: UITableViewController {
         if section == 0 {
             return "There are no Delta Chat servers, your data stays on your device!"
         } else {
-            return nil
-        }
+			return "For known email providers additional settings are setup automatically. Sometimes IMAP needs to be enabled in the web frontend. Consult your email provider or friends for help"
+		}
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
