@@ -30,11 +30,15 @@ class AccountSetupController: UITableViewController {
         return cell
     }()
 
-    
+    /*
+    Advanced Cells:
+     IMAP Server, IMAP User, IMAP Port, IMAP Security, SMTP Server, SMTP User, SMTP Port, SMTP Password, SMTP Security
+    */
+
+
 
     private lazy var basicSectionCells:[UITableViewCell] = [emailCell, passwordCell]
-    private lazy var advancedSectionCells:[UITableViewCell] = [emailCell, passwordCell,emailCell, passwordCell,emailCell, passwordCell]
-
+    private lazy var advancedSectionCells:[UITableViewCell] = [TextFieldCell(description: "IMAP Server", placeholder: MRConfig.mailServer ?? MRConfig.configuredMailServer)]
 
     private var advancedSectionShowing: Bool = false
 
@@ -145,7 +149,25 @@ class AccountSetupController: UITableViewController {
     }
 
     private func toggleAdvancedSection(button: UIButton) {
-        print("Toggle")
+
+        let willShow = !self.advancedSectionShowing
+
+        // extract indexPaths from advancedCells
+        let advancedIndexPaths:[IndexPath] = advancedSectionCells.indices.map({IndexPath(row: $0, section: 1)})
+
+        //advancedSectionCells.indices.map({indexPaths.append(IndexPath(row: $0, section: 1))}
+
+        // set flag before delete/insert operation, because cellForRowAt will be triggered and uses this flag
+        self.advancedSectionShowing = willShow
+
+        button.setTitle(willShow ? "Hide":"Show", for: .normal)
+
+        if willShow {
+            tableView.insertRows(at: advancedIndexPaths, with: .fade)
+        } else {
+            tableView.deleteRows(at: advancedIndexPaths, with: .fade)
+
+        }
 
     }
 
