@@ -686,6 +686,28 @@ class MRConfig {
         sf = sf | flags
         serverFlags = sf
     }
+
+	// returns one of DC_LP_IMAP_SOCKET_STARTTLS, DC_LP_IMAP_SOCKET_SSL,
+	class func getImapSecurity() -> Int {
+		var sf = serverFlags
+		sf = sf & 0x700
+		return sf
+	}
+
+	// returns one of DC_LP_SMTP_SOCKET_STARTTLS, DC_LP_SMTP_SOCKET_SSL,
+	class func getSmtpSecurity() -> Int {
+		var sf = serverFlags
+		sf = sf & 0x70000
+		return sf
+	}
+
+	// returns on of DC_LP_AUTH_OAUTH2 or 0
+	class func getAuthFlags() -> Int {
+		var sf = serverFlags
+		sf = sf & 0x6
+		serverFlags = sf
+		return sf
+	}
     
   /**
    * Own name to use when sending messages. MUAs are allowed to spread this way eg. using CC, defaults to empty
