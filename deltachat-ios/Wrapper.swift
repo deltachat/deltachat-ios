@@ -644,19 +644,47 @@ class MRConfig {
       return getOptStr("send_port")
     }
   }
-
-  /**
+    
+      /**
    * IMAP-/SMTP-flags as a combination of DC_LP flags, guessed if left out
    */
-  class var serverFlags: String? {
+    
+
+  private class var serverFlags: Int {
     set {
-      setOptStr("server_flags", newValue)
+      setOptStr("server_flags", "\(newValue)")
     }
     get {
-      return getOptStr("server_flags")
+        if let str = getOptStr("server_flags") {
+            return Int(str) ?? 0
+        } else {
+            return 0
+        }
     }
   }
-
+    
+    
+    class func setImapSecurity(imapFlags flags: Int) {
+        var sf = serverFlags
+        sf = sf & ~0x700 // TODO: should be DC_LP_IMAP_SOCKET_FLAGS - could not be found
+        sf = sf | flags
+        serverFlags = sf
+    }
+    
+    class func setSmtpSecurity(smptpFlags flags: Int) {
+        var sf = serverFlags
+        sf = sf & ~0x70000 // TODO: should be DC_LP_SMTP_SOCKET_FLAGS - could not be found
+        sf = sf | flags
+        serverFlags = sf
+    }
+    
+    class func setAuthFlags(flags: Int) {
+        var sf = serverFlags
+        sf = sf & ~0x6 // TODO: should be DC_LP_AUTH_FLAGS - could not be found
+        sf = sf | flags
+        serverFlags = sf
+    }
+    
   /**
    * Own name to use when sending messages. MUAs are allowed to spread this way eg. using CC, defaults to empty
    */
