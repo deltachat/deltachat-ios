@@ -6,11 +6,19 @@
 //  Copyright © 2019 Jonas Reinsch. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension String {
 
 	func containsCharacters() -> Bool {
 		return !self.trimmingCharacters(in: [" "]).isEmpty
 	}
+}
+
+extension UIColor {
+
+	static var systemBlue: UIColor {
+		return UIButton(type: .system).tintColor
+	}
+
 }

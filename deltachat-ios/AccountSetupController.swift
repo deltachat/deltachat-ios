@@ -229,6 +229,29 @@ class AccountSetupController: UITableViewController {
 		}
 	}
 
+	private func toggleAdvancedSection(button: UILabel) {
+
+		let willShow = !self.advancedSectionShowing
+
+		// extract indexPaths from advancedCells
+		let advancedIndexPaths:[IndexPath] = advancedSectionCells.indices.map({IndexPath(row: $0, section: 1)})
+
+		//advancedSectionCells.indices.map({indexPaths.append(IndexPath(row: $0, section: 1))}
+
+		// set flag before delete/insert operation, because cellForRowAt will be triggered and uses this flag
+		self.advancedSectionShowing = willShow
+
+		button.text = willShow ? "Hide":"Show"
+
+		if willShow {
+			tableView.insertRows(at: advancedIndexPaths, with: .fade)
+		} else {
+			tableView.deleteRows(at: advancedIndexPaths, with: .fade)
+
+		}
+
+	}
+	/*
 	private func toggleAdvancedSection(button: UIButton) {
 
 		let willShow = !self.advancedSectionShowing
@@ -251,7 +274,7 @@ class AccountSetupController: UITableViewController {
 		}
 
 	}
-
+	*/
 	@objc func loginButtonPressed() {
 
 		guard let emailAddress = emailCell.getText() else {
@@ -292,7 +315,14 @@ class AccountSetupController: UITableViewController {
 		let oAuth2Url = String(cString: oAuth2UrlPointer)
 
 		if let url = URL.init(string: oAuth2Url)  {
-			let oAuthAlertController = UIAlertController(title: "You can use oAuth", message: "Click confirm if you want to use oAuth", preferredStyle: .alert)
+
+			let title = "Continue with simplified setup"
+			//swiftlint:disable all
+			let message = "The entered e-mail address supports a simlified setup (oAuth2).\n\nIn the next step, please allow Delta Chat to act as your Chat with E-Mail app.\n\nThere are no Delta Chat servers, your data stays on your device."
+
+
+
+			let oAuthAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 			let confirm = UIAlertAction(title: "Confirm", style: .default, handler: {
 				_ in
 				self.launchOAuthBrowserWindow(url: url)
@@ -381,15 +411,9 @@ class AccountSetupController: UITableViewController {
 					MRConfig.setSmtpSecurity(smptpFlags: flag)
 				default:
 					logger.info("unknown identifier", cell.accessibilityIdentifier ?? "")
-
-
+				}
 			}
-
-			}
-
 		}
-
-
 	}
 }
 
@@ -420,7 +444,7 @@ extension AccountSetupController: UITextFieldDelegate {
 
 class AdvancedSectionHeader: UIView {
 
-	var handleTap:((UIButton) -> ())?
+	var handleTap:((UILabel) -> ())?
 
 	private var label:UILabel = {
 		let label = UILabel()
@@ -430,13 +454,25 @@ class AdvancedSectionHeader: UIView {
 		return label
 	}()
 
-	private var toggleButton:UIButton = {
-		let button = UIButton(type: .system)
-		button.setTitle("Show", for: .normal)
-		button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside )
-		//button.target(forAction: #selector(buttonTapped(_:)), withSender: self)
-		return button
+	/*
+	why UILabel, why no UIButton? For unknown reasons UIButton's target function was not triggered when one of the textfields in the tableview was active -> used label as workaround
+	*/
+	private lazy var toggleButton:UILabel = {
+		let label = UILabel()
+		label.text = "Show"
+		label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+		label.textColor = UIColor.systemBlue
+		return label
 	}()
+
+//
+//	private var toggleButton:UIButton = {
+//		let button = UIButton(type: .system)
+//		button.setTitle("Show", for: .normal)
+//		button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside )
+//		//button.target(forAction: #selector(buttonTapped(_:)), withSender: self)
+//		return button
+//	}()
 
 	init() {
 		super.init(frame: .zero)    // will be constraint from tableViewDelegate
@@ -463,7 +499,7 @@ class AdvancedSectionHeader: UIView {
 	}
 
 	@objc func buttonTapped(_ button: UIButton) {
-		handleTap?(button)
+		//handleTap?(button)
 	}
 
 	@objc func viewTapped() {
