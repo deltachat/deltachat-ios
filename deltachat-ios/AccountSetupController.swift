@@ -20,14 +20,14 @@ class AccountSetupController: UITableViewController {
 		return hudHandler
 	}()
 
-	private lazy var emailCell:TextFieldCell = {
+	private lazy var emailCell: TextFieldCell = {
 		let cell = TextFieldCell.makeEmailCell(delegate: self)
 		cell.textField.tag = 0
 		cell.textField.accessibilityIdentifier = "emailTextField"	// will be used to eventually show oAuth-Dialogue when pressing return key
 		return cell
 	}()
 
-	private lazy var passwordCell:TextFieldCell = {
+	private lazy var passwordCell: TextFieldCell = {
 		let cell = TextFieldCell.makePasswordCell(delegate: self)
 		cell.textField.tag = 1
 		cell.accessibilityIdentifier = "passwordCell"	// will be used to eventually show oAuth-Dialogue when selecting
@@ -42,73 +42,74 @@ class AccountSetupController: UITableViewController {
 	lazy var imapServerCell = TextFieldCell(description: "IMAP Server", placeholder: MRConfig.mailServer ?? MRConfig.configuredMailServer)
 	lazy var imapUserCell = TextFieldCell(description: "IMAP User", placeholder: MRConfig.mailUser ?? MRConfig.configuredMailUser)
 	lazy var imapPortCell = TextFieldCell(description: "IMAP Port", placeholder: MRConfig.mailPort ?? MRConfig.configuredMailPort)
-	lazy var imapSecurityCell = TextFieldCell(description: "IMAP Security", placeholder: "TODO")
+	lazy var imapSecurityCell = TextFieldCell(description: "IMAP Security", placeholder: "to do")
 
 	lazy var smtpServerCell = TextFieldCell(description: "SMTP Server", placeholder: MRConfig.sendServer ?? MRConfig.configuredSendServer)
 	lazy var smtpUserCell = TextFieldCell(description: "SMTP User", placeholder: MRConfig.sendUser ?? MRConfig.configuredSendUser)
 	lazy var smtpPortCell = TextFieldCell(description: "SMTP Port", placeholder: MRConfig.sendPort ?? MRConfig.configuredSendPort)
 	lazy var smtpPasswordCell = TextFieldCell(description: "SMTP Password", placeholder: "*************")
-	lazy var smtpSecurityCell = TextFieldCell(description: "SMTP Security", placeholder: "TODO")
+	lazy var smtpSecurityCell = TextFieldCell(description: "SMTP Security", placeholder: "to do")
 	*/
 
-
 	// TODO: consider adding delegates and tags by loop - leave for now like this
-	lazy var imapServerCell:TextFieldCell = {
+	lazy var imapServerCell: TextFieldCell = {
 		let cell = TextFieldCell(description: "IMAP Server", placeholder: MRConfig.mailServer ?? MRConfig.configuredMailServer, delegate: self)
 		cell.accessibilityIdentifier = "IMAPServerCell"
 		cell.textField.tag = 2
 		return cell
 	}()
 
-	lazy var imapUserCell:TextFieldCell = {
+	lazy var imapUserCell: TextFieldCell = {
 		let cell = TextFieldCell(description: "IMAP User", placeholder: MRConfig.mailUser ?? MRConfig.configuredMailUser, delegate: self)
 		cell.accessibilityIdentifier = "IMAPUserCell"
 		cell.textField.tag = 3
 		return cell
 	}()
 
-	lazy var imapPortCell:TextFieldCell = {
+	lazy var imapPortCell: TextFieldCell = {
 		let cell = TextFieldCell(description: "IMAP Port", placeholder: MRConfig.mailPort ?? MRConfig.configuredMailPort, delegate: self)
 		cell.accessibilityIdentifier = "IMAPPortCell"
 		cell.textField.tag = 4
 		return cell
 	}()
 
-	lazy var imapSecurityCell:TextFieldCell = {
-		let cell = TextFieldCell(description: "IMAP Security", placeholder: "TODO", delegate: self)
+	lazy var imapSecurityCell: TextFieldCell = {
+		let text = "\(MRConfig.getImapSecurity())"
+		let cell = TextFieldCell(description: "IMAP Security", placeholder: text, delegate: self)
 		cell.accessibilityIdentifier = "IMAPSecurityCell"
 		cell.textField.tag = 5
 		cell.textField.keyboardType = UIKeyboardType.numberPad
 		return cell
 	}()
 
-	lazy var smtpServerCell:TextFieldCell = {
+	lazy var smtpServerCell: TextFieldCell = {
 		let cell = TextFieldCell(description: "SMTP Server", placeholder: MRConfig.sendServer ?? MRConfig.configuredSendServer, delegate: self)
 		cell.accessibilityIdentifier = "SMTPServerCell"
 		cell.textField.tag = 6
 		return cell
 	}()
-	lazy var smtpUserCell:TextFieldCell = {
+	lazy var smtpUserCell: TextFieldCell = {
 		let cell = TextFieldCell(description: "SMTP User", placeholder: MRConfig.sendUser ?? MRConfig.configuredSendUser, delegate: self)
 		cell.accessibilityIdentifier = "SMTPUserCell"
 		cell.textField.tag = 7
 		return cell
 	}()
-	lazy var smtpPortCell:TextFieldCell = {
+	lazy var smtpPortCell: TextFieldCell = {
 		let cell = TextFieldCell(description: "SMTP Port", placeholder: MRConfig.sendPort ?? MRConfig.configuredSendPort, delegate: self)
 		cell.accessibilityIdentifier = "SMTPPortCell"
 		cell.textField.tag = 8
 		return cell
 	}()
-	lazy var smtpPasswordCell:TextFieldCell = {
+	lazy var smtpPasswordCell: TextFieldCell = {
 		let cell = TextFieldCell(description: "SMTP Password", placeholder: "*************", delegate: self)
 		cell.accessibilityIdentifier = "SMTPPasswordCell"
 		cell.textField.tag = 9
 		return cell
 	}()
 
-	lazy var smtpSecurityCell:TextFieldCell = {
-		let cell = TextFieldCell(description: "SMTP Security", placeholder: "TODO", delegate: self)
+	lazy var smtpSecurityCell: TextFieldCell = {
+		let text = "\(MRConfig.getSmtpSecurity())"
+		let cell = TextFieldCell(description: "SMTP Security", placeholder: text, delegate: self)
 		cell.accessibilityIdentifier = "SMTPSecurityCell"
 		cell.textField.tag = 10
 		cell.textField.keyboardType = UIKeyboardType.numberPad
@@ -116,11 +117,20 @@ class AccountSetupController: UITableViewController {
 	}()
 
 	// this loginButton can be enabled and disabled
-	let loginButton:UIBarButtonItem = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
+	let loginButton: UIBarButtonItem = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
 
-
-	private lazy var basicSectionCells:[UITableViewCell] = [emailCell, passwordCell]
-	private lazy var advancedSectionCells:[UITableViewCell] = [imapServerCell,imapUserCell,imapPortCell,imapSecurityCell,smtpServerCell,smtpUserCell,smtpPortCell,smtpPasswordCell,smtpSecurityCell]
+	private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
+	private lazy var advancedSectionCells: [UITableViewCell] = [
+		imapServerCell,
+		imapUserCell,
+		imapPortCell,
+		imapSecurityCell,
+		smtpServerCell,
+		smtpUserCell,
+		smtpPortCell,
+		smtpPasswordCell,
+		smtpSecurityCell
+	]
 
 	private var advancedSectionShowing: Bool = false
 
@@ -234,7 +244,7 @@ class AccountSetupController: UITableViewController {
 		let willShow = !self.advancedSectionShowing
 
 		// extract indexPaths from advancedCells
-		let advancedIndexPaths:[IndexPath] = advancedSectionCells.indices.map({IndexPath(row: $0, section: 1)})
+		let advancedIndexPaths: [IndexPath] = advancedSectionCells.indices.map({IndexPath(row: $0, section: 1)})
 
 		//advancedSectionCells.indices.map({indexPaths.append(IndexPath(row: $0, section: 1))}
 
@@ -251,30 +261,7 @@ class AccountSetupController: UITableViewController {
 		}
 
 	}
-	/*
-	private func toggleAdvancedSection(button: UIButton) {
 
-		let willShow = !self.advancedSectionShowing
-
-		// extract indexPaths from advancedCells
-		let advancedIndexPaths:[IndexPath] = advancedSectionCells.indices.map({IndexPath(row: $0, section: 1)})
-
-		//advancedSectionCells.indices.map({indexPaths.append(IndexPath(row: $0, section: 1))}
-
-		// set flag before delete/insert operation, because cellForRowAt will be triggered and uses this flag
-		self.advancedSectionShowing = willShow
-
-		button.setTitle(willShow ? "Hide":"Show", for: .normal)
-
-		if willShow {
-			tableView.insertRows(at: advancedIndexPaths, with: .fade)
-		} else {
-			tableView.deleteRows(at: advancedIndexPaths, with: .fade)
-
-		}
-
-	}
-	*/
 	@objc func loginButtonPressed() {
 
 		guard let emailAddress = emailCell.getText() else {
@@ -303,7 +290,7 @@ class AccountSetupController: UITableViewController {
 	}
 
 	// returns true if needed
-	private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (()->())?) -> Bool {
+	private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (() -> Void)?) -> Bool {
 		if oAuthDenied {
 			return false
 		}
@@ -314,8 +301,7 @@ class AccountSetupController: UITableViewController {
 
 		let oAuth2Url = String(cString: oAuth2UrlPointer)
 
-		if let url = URL.init(string: oAuth2Url)  {
-
+		if let url = URL.init(string: oAuth2Url) {
 			let title = "Continue with simplified setup"
 			//swiftlint:disable all
 			let message = "The entered e-mail address supports a simlified setup (oAuth2).\n\nIn the next step, please allow Delta Chat to act as your Chat with E-Mail app.\n\nThere are no Delta Chat servers, your data stays on your device."

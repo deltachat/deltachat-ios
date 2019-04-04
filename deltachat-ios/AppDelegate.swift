@@ -17,299 +17,296 @@ var mailboxPointer: UnsafeMutablePointer<dc_context_t>!
 let logger = SwiftyBeaver.self
 
 enum ApplicationState {
-  case stopped
-  case running
-  case background
-  case backgroundFetch
+	case stopped
+	case running
+	case background
+	case backgroundFetch
 }
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-  static let appCoordinator = AppCoordinator()
-  static var progress: Float = 0
-  static var lastErrorDuringConfig: String?
-  var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+	static let appCoordinator = AppCoordinator()
+	static var progress: Float = 0
+	static var lastErrorDuringConfig: String?
+	var backgroundTask: UIBackgroundTaskIdentifier = .invalid
 
-  var reachability = Reachability()!
-  var window: UIWindow?
+	var reachability = Reachability()!
+	var window: UIWindow?
 
-  var state = ApplicationState.stopped
+	var state = ApplicationState.stopped
 
-  private func getCoreInfo() -> [[String]] {
-    if let cInfo = dc_get_info(mailboxPointer) {
-      let info = String(cString: cInfo)
-      logger.info(info)
-      return info.components(separatedBy: "\n").map { val in
-        val.components(separatedBy: "=")
-      }
-    }
+	private func getCoreInfo() -> [[String]] {
+		if let cInfo = dc_get_info(mailboxPointer) {
+			let info = String(cString: cInfo)
+			logger.info(info)
+			return info.components(separatedBy: "\n").map { val in
+				val.components(separatedBy: "=")
+			}
+		}
 
-    return []
-  }
+		return []
+	}
 
-  func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    DBDebugToolkit.setup()
-    DBDebugToolkit.setupCrashReporting()
+	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+		print(url)
+		return true
+	}
 
-    let console = ConsoleDestination()
-    logger.addDestination(console)
+	func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+		DBDebugToolkit.setup()
+		DBDebugToolkit.setupCrashReporting()
 
-    logger.info("launching")
+		let console = ConsoleDestination()
+		logger.addDestination(console)
 
-    // Override point for customization after application launch.
+		logger.info("launching")
 
-    window = UIWindow(frame: UIScreen.main.bounds)
-    guard let window = window else {
-      fatalError("window was nil in app delegate")
-    }
-    
-    // setup deltachat core context
-      //       - second param remains nil (user data for more than one mailbox)
-    mailboxPointer = dc_context_new(callback_ios, nil, "iOS")
-    guard mailboxPointer != nil else {
-      fatalError("Error: dc_context_new returned nil")
-    }
-    
-    open()
-    let isConfigured = dc_is_configured(mailboxPointer) != 0
-    
-    AppDelegate.appCoordinator.setupViewControllers(window: window)
-    
-    
-    UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-    
-    start()
-    
-    registerForPushNotifications()
-    if !isConfigured {
-      AppDelegate.appCoordinator.presentAccountSetup(animated: false)
-    }
-    return true
-  }
+		// Override point for customization after application launch.
 
-  func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-    logger.info("---- background-fetch ----")
+		window = UIWindow(frame: UIScreen.main.bounds)
+		guard let window = window else {
+			fatalError("window was nil in app delegate")
+		}
+		// setup deltachat core context
+		//       - second param remains nil (user data for more than one mailbox)
+		mailboxPointer = dc_context_new(callback_ios, nil, "iOS")
+		guard mailboxPointer != nil else {
+			fatalError("Error: dc_context_new returned nil")
+		}
+		open()
+		let isConfigured = dc_is_configured(mailboxPointer) != 0
+		AppDelegate.appCoordinator.setupViewControllers(window: window)
+		UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+		start()
+		registerForPushNotifications()
+		if !isConfigured {
+			AppDelegate.appCoordinator.presentAccountSetup(animated: false)
+		}
+		return true
+	}
 
-    start {
-      // TODO: actually set the right value depending on if we found sth
-      completionHandler(.newData)
-    }
-  }
+	func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+		logger.info("---- background-fetch ----")
 
-  func applicationWillEnterForeground(_: UIApplication) {
-    logger.info("---- foreground ----")
-    start()
-  }
+		start {
+			// TODO: actually set the right value depending on if we found sth
+			completionHandler(.newData)
+		}
+	}
 
-  func applicationDidEnterBackground(_: UIApplication) {
-    logger.info("---- background ----")
+	func applicationWillEnterForeground(_: UIApplication) {
+		logger.info("---- foreground ----")
+		start()
+	}
 
-    reachability.stopNotifier()
-    NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
+	func applicationDidEnterBackground(_: UIApplication) {
+		logger.info("---- background ----")
 
-    maybeStop()
-  }
+		reachability.stopNotifier()
+		NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
 
-  func maybeStop() {
-    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-      let app = UIApplication.shared
-      logger.info("state: \(app.applicationState) time remaining \(app.backgroundTimeRemaining)")
+		maybeStop()
+	}
 
-      if app.applicationState != .background {
-        // only need to do sth in the background
-        return
-      } else if app.backgroundTimeRemaining < 10 {
-        self.stop()
-      } else {
-        self.maybeStop()
-      }
-    }
-  }
+	func maybeStop() {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+			let app = UIApplication.shared
+			logger.info("state: \(app.applicationState) time remaining \(app.backgroundTimeRemaining)")
 
-  func applicationWillTerminate(_: UIApplication) {
-    logger.info("---- terminate ----")
-    close()
+			if app.applicationState != .background {
+				// only need to do sth in the background
+				return
+			} else if app.backgroundTimeRemaining < 10 {
+				self.stop()
+			} else {
+				self.maybeStop()
+			}
+		}
+	}
 
-    reachability.stopNotifier()
-    NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
-  }
+	func applicationWillTerminate(_: UIApplication) {
+		logger.info("---- terminate ----")
+		close()
 
-  func dbfile() -> String {
-    let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
-    let documentsPath = paths[0]
+		reachability.stopNotifier()
+		NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
+	}
 
-    return documentsPath + "/messenger.db"
-  }
+	func dbfile() -> String {
+		let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
+		let documentsPath = paths[0]
 
-  func open() {
-    logger.info("open: \(dbfile())")
+		return documentsPath + "/messenger.db"
+	}
 
-    _ = dc_open(mailboxPointer, dbfile(), nil)
-  }
+	func open() {
+		logger.info("open: \(dbfile())")
 
-  func stop() {
-    state = .background
+		_ = dc_open(mailboxPointer, dbfile(), nil)
+	}
 
-    dc_interrupt_imap_idle(mailboxPointer)
-    dc_interrupt_smtp_idle(mailboxPointer)
-    dc_interrupt_mvbox_idle(mailboxPointer)
-    dc_interrupt_sentbox_idle(mailboxPointer)
-  }
+	func stop() {
+		state = .background
 
-  func close() {
-    state = .stopped
+		dc_interrupt_imap_idle(mailboxPointer)
+		dc_interrupt_smtp_idle(mailboxPointer)
+		dc_interrupt_mvbox_idle(mailboxPointer)
+		dc_interrupt_sentbox_idle(mailboxPointer)
+	}
 
-    dc_close(mailboxPointer)
-    mailboxPointer = nil
-  }
+	func close() {
+		state = .stopped
 
-  func start(_ completion: (() -> Void)? = nil) {
-    logger.info("---- start ----")
+		dc_close(mailboxPointer)
+		mailboxPointer = nil
+	}
 
-    if state == .running {
-      return
-    }
+	func start(_ completion: (() -> Void)? = nil) {
+		logger.info("---- start ----")
 
-    
-    state = .running
+		if state == .running {
+			return
+		}
 
-    DispatchQueue.global(qos: .background).async {
-      self.registerBackgroundTask()
-      while self.state == .running {
-        dc_perform_imap_jobs(mailboxPointer)
-        dc_perform_imap_fetch(mailboxPointer)
-        dc_perform_imap_idle(mailboxPointer)
-      }
-      if self.backgroundTask != .invalid {
-        completion?()
-        self.endBackgroundTask()
-      }
-    }
+		state = .running
 
-    DispatchQueue.global(qos: .utility).async {
-      self.registerBackgroundTask()
-      while self.state == .running {
-        dc_perform_smtp_jobs(mailboxPointer)
-        dc_perform_smtp_idle(mailboxPointer)
-      }
-      if self.backgroundTask != .invalid {
-        self.endBackgroundTask()
-      }
-    }
+		DispatchQueue.global(qos: .background).async {
+			self.registerBackgroundTask()
+			while self.state == .running {
+				dc_perform_imap_jobs(mailboxPointer)
+				dc_perform_imap_fetch(mailboxPointer)
+				dc_perform_imap_idle(mailboxPointer)
+			}
+			if self.backgroundTask != .invalid {
+				completion?()
+				self.endBackgroundTask()
+			}
+		}
 
-    if MRConfig.sentboxWatch {
-      DispatchQueue.global(qos: .background).async {
-        while self.state == .running {
-          dc_perform_sentbox_fetch(mailboxPointer)
-          dc_perform_sentbox_idle(mailboxPointer)
-        }
-      }
-    }
+		DispatchQueue.global(qos: .utility).async {
+			self.registerBackgroundTask()
+			while self.state == .running {
+				dc_perform_smtp_jobs(mailboxPointer)
+				dc_perform_smtp_idle(mailboxPointer)
+			}
+			if self.backgroundTask != .invalid {
+				self.endBackgroundTask()
+			}
+		}
 
-    if MRConfig.mvboxWatch {
-      DispatchQueue.global(qos: .background).async {
-        while self.state == .running {
-          dc_perform_mvbox_fetch(mailboxPointer)
-          dc_perform_mvbox_idle(mailboxPointer)
-        }
-      }
-    }
+		if MRConfig.sentboxWatch {
+			DispatchQueue.global(qos: .background).async {
+				while self.state == .running {
+					dc_perform_sentbox_fetch(mailboxPointer)
+					dc_perform_sentbox_idle(mailboxPointer)
+				}
+			}
+		}
 
-    NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
-    do {
-      try reachability.startNotifier()
-    } catch {
-      logger.info("could not start reachability notifier")
-    }
+		if MRConfig.mvboxWatch {
+			DispatchQueue.global(qos: .background).async {
+				while self.state == .running {
+					dc_perform_mvbox_fetch(mailboxPointer)
+					dc_perform_mvbox_idle(mailboxPointer)
+				}
+			}
+		}
 
-    let info: [DBCustomVariable] = getCoreInfo().map { kv in
-      let value = kv.count > 1 ? kv[1] : ""
-      return DBCustomVariable(name: kv[0], value: value)
-    }
+		NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
+		do {
+			try reachability.startNotifier()
+		} catch {
+			logger.info("could not start reachability notifier")
+		}
 
-    DBDebugToolkit.add(info)
-  }
+		let info: [DBCustomVariable] = getCoreInfo().map { kv in
+			let value = kv.count > 1 ? kv[1] : ""
+			return DBCustomVariable(name: kv[0], value: value)
+		}
 
-  @objc func reachabilityChanged(note: Notification) {
-    let reachability = note.object as! Reachability
+		DBDebugToolkit.add(info)
+	}
 
-    switch reachability.connection {
-    case .wifi, .cellular:
-      logger.info("network: reachable", reachability.connection.description)
-      dc_maybe_network(mailboxPointer)
+	@objc func reachabilityChanged(note: Notification) {
+		let reachability = note.object as! Reachability
 
-      let nc = NotificationCenter.default
-      DispatchQueue.main.async {
-        nc.post(name: dcNotificationStateChanged,
-                object: nil,
-                userInfo: ["state": "online"])
-      }
-    case .none:
-      logger.info("network: not reachable")
-      let nc = NotificationCenter.default
-      DispatchQueue.main.async {
-        nc.post(name: dcNotificationStateChanged,
-                object: nil,
-                userInfo: ["state": "offline"])
-      }
-    }
-  }
+		switch reachability.connection {
+		case .wifi, .cellular:
+			logger.info("network: reachable", reachability.connection.description)
+			dc_maybe_network(mailboxPointer)
 
-  // MARK: - BackgroundTask
+			let nc = NotificationCenter.default
+			DispatchQueue.main.async {
+				nc.post(name: dcNotificationStateChanged,
+						object: nil,
+						userInfo: ["state": "online"])
+			}
+		case .none:
+			logger.info("network: not reachable")
+			let nc = NotificationCenter.default
+			DispatchQueue.main.async {
+				nc.post(name: dcNotificationStateChanged,
+						object: nil,
+						userInfo: ["state": "offline"])
+			}
+		}
+	}
 
-  func registerBackgroundTask() {
-    logger.info("background task registered")
-    backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
-      self?.endBackgroundTask()
-    }
-    assert(backgroundTask != .invalid)
-  }
+	// MARK: - BackgroundTask
 
-  func endBackgroundTask() {
-    logger.info("background task ended")
-    UIApplication.shared.endBackgroundTask(backgroundTask)
-    backgroundTask = .invalid
-  }
+	func registerBackgroundTask() {
+		logger.info("background task registered")
+		backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+			self?.endBackgroundTask()
+		}
+		assert(backgroundTask != .invalid)
+	}
 
-  // MARK: - PushNotifications
+	func endBackgroundTask() {
+		logger.info("background task ended")
+		UIApplication.shared.endBackgroundTask(backgroundTask)
+		backgroundTask = .invalid
+	}
 
-  func registerForPushNotifications() {
-    UNUserNotificationCenter.current().delegate = self
+	// MARK: - PushNotifications
 
-    UNUserNotificationCenter.current()
-      .requestAuthorization(options: [.alert, .sound, .badge]) {
-        granted, _ in
-        logger.info("permission granted: \(granted)")
-        guard granted else { return }
-        self.getNotificationSettings()
-      }
-  }
+	func registerForPushNotifications() {
+		UNUserNotificationCenter.current().delegate = self
 
-  func getNotificationSettings() {
-    UNUserNotificationCenter.current().getNotificationSettings { settings in
-      logger.info("Notification settings: \(settings)")
-    }
-  }
+		UNUserNotificationCenter.current()
+			.requestAuthorization(options: [.alert, .sound, .badge]) {
+				granted, _ in
+				logger.info("permission granted: \(granted)")
+				guard granted else { return }
+				self.getNotificationSettings()
+		}
+	}
 
-  func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    logger.info("forground notification")
-    completionHandler([.alert, .sound])
-  }
+	func getNotificationSettings() {
+		UNUserNotificationCenter.current().getNotificationSettings { settings in
+			logger.info("Notification settings: \(settings)")
+		}
+	}
 
-  func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-    if response.notification.request.identifier == Constants.notificationIdentifier {
-      logger.info("handling notifications")
-      let userInfo = response.notification.request.content.userInfo
-      let nc = NotificationCenter.default
-      DispatchQueue.main.async {
-        nc.post(
-          name: dcNotificationViewChat,
-          object: nil,
-          userInfo: userInfo
-        )
-      }
-    }
+	func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+		logger.info("forground notification")
+		completionHandler([.alert, .sound])
+	}
 
-    completionHandler()
-  }
+	func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+		if response.notification.request.identifier == Constants.notificationIdentifier {
+			logger.info("handling notifications")
+			let userInfo = response.notification.request.content.userInfo
+			let nc = NotificationCenter.default
+			DispatchQueue.main.async {
+				nc.post(
+					name: dcNotificationViewChat,
+					object: nil,
+					userInfo: userInfo
+				)
+			}
+		}
+
+		completionHandler()
+	}
 }
