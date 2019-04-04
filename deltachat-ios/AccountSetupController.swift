@@ -23,6 +23,7 @@ class AccountSetupController: UITableViewController {
 	private lazy var emailCell:TextFieldCell = {
 		let cell = TextFieldCell.makeEmailCell()
 		cell.textField.tag = 0
+		cell.textField.accessibilityIdentifier = "emailTextField"	// will be used to eventually show oAuth-Dialogue when pressing return key
 		cell.textField.delegate = self
 		return cell
 	}()
@@ -30,6 +31,7 @@ class AccountSetupController: UITableViewController {
 	private lazy var passwordCell:TextFieldCell = {
 		let cell = TextFieldCell.makePasswordCell()
 		cell.textField.tag = 1
+		cell.accessibilityIdentifier = "passwordCell"	// will be used to eventually show oAuth-Dialogue when selecting
 		cell.textField.delegate = self
 		return cell
 	}()
@@ -52,7 +54,7 @@ class AccountSetupController: UITableViewController {
 	*/
 
 
-	// TODO: consider adding delegate and tag by loop - leave for now like this
+	// TODO: consider adding delegates and tags by loop - leave for now like this
 	lazy var imapServerCell:TextFieldCell = {
 		let cell = TextFieldCell(description: "IMAP Server", placeholder: MRConfig.mailServer ?? MRConfig.configuredMailServer)
 		cell.textField.tag = 2
@@ -216,12 +218,12 @@ class AccountSetupController: UITableViewController {
 	}
 
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		// handle tap on password
-		if indexPath.section == 0 && indexPath.row == 1 {
-			if let emailAdress = emailCell.getText() {
-				_ = showOAuthAlertIfNeeded(emailAddress: emailAdress, handleCancel: nil)
-			} else {
-				return
+		// handle tap on password -> show eventuall oAuthDialogue
+		if let cell = tableView.cellForRow(at: indexPath) as? TextFieldCell {
+			if cell.accessibilityIdentifier == "passwordCell" {
+				if let emailAdress = cell.getText() {
+					_ = showOAuthAlertIfNeeded(emailAddress: emailAdress, handleCancel: nil)
+				}
 			}
 		}
 	}
@@ -352,20 +354,20 @@ extension AccountSetupController: UITextFieldDelegate {
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		let currentTag = textField.tag
 
-		if currentTag == 0 {
+		if textField.accessibilityIdentifier == "emailTextField" {
 			// special case: email field should check for potential oAuth
 			showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
+				// this will activate passwordTextField if oAuth-Dialogue was canceled
 				self.passwordCell.textField.becomeFirstResponder()
 			})
-		}
-
-
-		if let nextField = tableView.viewWithTag(currentTag + 1) as? UITextField {
-			if nextField.tag > 1 && !advancedSectionShowing {
-				// gets here when trying to activate a collapsed cell
-				return false
+		} else {
+			if let nextField = tableView.viewWithTag(currentTag + 1) as? UITextField {
+				if nextField.tag > 1 && !advancedSectionShowing {
+					// gets here when trying to activate a collapsed cell
+					return false
+				}
+				nextField.becomeFirstResponder()
 			}
-			nextField.becomeFirstResponder()
 		}
 
 		return false
