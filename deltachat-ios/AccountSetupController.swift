@@ -21,18 +21,16 @@ class AccountSetupController: UITableViewController {
 	}()
 
 	private lazy var emailCell:TextFieldCell = {
-		let cell = TextFieldCell.makeEmailCell()
+		let cell = TextFieldCell.makeEmailCell(delegate: self)
 		cell.textField.tag = 0
 		cell.textField.accessibilityIdentifier = "emailTextField"	// will be used to eventually show oAuth-Dialogue when pressing return key
-		cell.textField.delegate = self
 		return cell
 	}()
 
 	private lazy var passwordCell:TextFieldCell = {
-		let cell = TextFieldCell.makePasswordCell()
+		let cell = TextFieldCell.makePasswordCell(delegate: self)
 		cell.textField.tag = 1
 		cell.accessibilityIdentifier = "passwordCell"	// will be used to eventually show oAuth-Dialogue when selecting
-		cell.textField.delegate = self
 		return cell
 	}()
 
@@ -56,61 +54,64 @@ class AccountSetupController: UITableViewController {
 
 	// TODO: consider adding delegates and tags by loop - leave for now like this
 	lazy var imapServerCell:TextFieldCell = {
-		let cell = TextFieldCell(description: "IMAP Server", placeholder: MRConfig.mailServer ?? MRConfig.configuredMailServer)
+		let cell = TextFieldCell(description: "IMAP Server", placeholder: MRConfig.mailServer ?? MRConfig.configuredMailServer, delegate: self)
+		cell.accessibilityIdentifier = "IMAPServerCell"
 		cell.textField.tag = 2
-		cell.textField.delegate = self
 		return cell
 	}()
 
 	lazy var imapUserCell:TextFieldCell = {
-		let cell = TextFieldCell(description: "IMAP User", placeholder: MRConfig.mailUser ?? MRConfig.configuredMailUser)
+		let cell = TextFieldCell(description: "IMAP User", placeholder: MRConfig.mailUser ?? MRConfig.configuredMailUser, delegate: self)
+		cell.accessibilityIdentifier = "IMAPUserCell"
 		cell.textField.tag = 3
-		cell.textField.delegate = self
 		return cell
 	}()
 
 	lazy var imapPortCell:TextFieldCell = {
-		let cell = TextFieldCell(description: "IMAP Port", placeholder: MRConfig.mailPort ?? MRConfig.configuredMailPort)
+		let cell = TextFieldCell(description: "IMAP Port", placeholder: MRConfig.mailPort ?? MRConfig.configuredMailPort, delegate: self)
+		cell.accessibilityIdentifier = "IMAPPortCell"
 		cell.textField.tag = 4
-		cell.textField.delegate = self
 		return cell
 	}()
 
 	lazy var imapSecurityCell:TextFieldCell = {
-		let cell = TextFieldCell(description: "IMAP Security", placeholder: "TODO")
+		let cell = TextFieldCell(description: "IMAP Security", placeholder: "TODO", delegate: self)
+		cell.accessibilityIdentifier = "IMAPSecurityCell"
 		cell.textField.tag = 5
-		cell.textField.delegate = self
+		cell.textField.keyboardType = UIKeyboardType.numberPad
 		return cell
 	}()
 
 	lazy var smtpServerCell:TextFieldCell = {
-		let cell = TextFieldCell(description: "SMTP Server", placeholder: MRConfig.sendServer ?? MRConfig.configuredSendServer)
+		let cell = TextFieldCell(description: "SMTP Server", placeholder: MRConfig.sendServer ?? MRConfig.configuredSendServer, delegate: self)
+		cell.accessibilityIdentifier = "SMTPServerCell"
 		cell.textField.tag = 6
-		cell.textField.delegate = self
 		return cell
 	}()
 	lazy var smtpUserCell:TextFieldCell = {
-		let cell = TextFieldCell(description: "SMTP User", placeholder: MRConfig.sendUser ?? MRConfig.configuredSendUser)
+		let cell = TextFieldCell(description: "SMTP User", placeholder: MRConfig.sendUser ?? MRConfig.configuredSendUser, delegate: self)
+		cell.accessibilityIdentifier = "SMTPUserCell"
 		cell.textField.tag = 7
-		cell.textField.delegate = self
 		return cell
 	}()
 	lazy var smtpPortCell:TextFieldCell = {
-		let cell = TextFieldCell(description: "SMTP Port", placeholder: MRConfig.sendPort ?? MRConfig.configuredSendPort)
+		let cell = TextFieldCell(description: "SMTP Port", placeholder: MRConfig.sendPort ?? MRConfig.configuredSendPort, delegate: self)
+		cell.accessibilityIdentifier = "SMTPPortCell"
 		cell.textField.tag = 8
-		cell.textField.delegate = self
 		return cell
 	}()
 	lazy var smtpPasswordCell:TextFieldCell = {
-		let cell = TextFieldCell(description: "SMTP Password", placeholder: "*************")
+		let cell = TextFieldCell(description: "SMTP Password", placeholder: "*************", delegate: self)
+		cell.accessibilityIdentifier = "SMTPPasswordCell"
 		cell.textField.tag = 9
-		cell.textField.delegate = self
 		return cell
 	}()
+
 	lazy var smtpSecurityCell:TextFieldCell = {
-		let cell = TextFieldCell(description: "SMTP Security", placeholder: "TODO")
+		let cell = TextFieldCell(description: "SMTP Security", placeholder: "TODO", delegate: self)
+		cell.accessibilityIdentifier = "SMTPSecurityCell"
 		cell.textField.tag = 10
-		cell.textField.delegate = self
+		cell.textField.keyboardType = UIKeyboardType.numberPad
 		return cell
 	}()
 
@@ -268,6 +269,8 @@ class AccountSetupController: UITableViewController {
 
 		MRConfig.addr = emailAddress
 		MRConfig.mailPw = passWord
+		evaluluateAdvancedSetup()	// this will set MRConfig related to advanced fields
+
 		dc_configure(mailboxPointer)
 		hudHandler.showBackupHud("Configuring account")
 	}
@@ -348,18 +351,59 @@ class AccountSetupController: UITableViewController {
 			}
 		}
 	}
+
+	private func evaluluateAdvancedSetup() {
+
+		for cell in advancedSectionCells {
+
+			if let textFieldCell = cell as? TextFieldCell, let text = textFieldCell.getText() {
+				switch cell.accessibilityIdentifier {
+				case "IMAPServerCell":
+					MRConfig.mailServer = text
+				case "IMAPUserCell":
+					MRConfig.mailUser = text
+				case "IMAPPortCell":
+					MRConfig.mailPort = text
+				case "IMAPSecurityCell":
+					let flag = 0
+					MRConfig.setImapSecurity(imapFlags: flag)
+					break;
+				case "SMTPServerCell":
+					MRConfig.sendServer = text
+				case "SMTPSUserCell":
+					MRConfig.sendUser = text
+				case "SMTPPortCell":
+					MRConfig.sendPort = text
+				case "SMTPPasswordCell":
+					MRConfig.sendPw = text
+				case "SMTPSecurityCell":
+					let flag = 0
+					MRConfig.setSmtpSecurity(smptpFlags: flag)
+				default:
+					logger.info("unknown identifier", cell.accessibilityIdentifier ?? "")
+
+
+			}
+
+			}
+
+		}
+
+
+	}
 }
 
 extension AccountSetupController: UITextFieldDelegate {
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		let currentTag = textField.tag
 
-		if textField.accessibilityIdentifier == "emailTextField" {
-			// special case: email field should check for potential oAuth
-			showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
+		if textField.accessibilityIdentifier == "emailTextField" && showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
+				// special case: email field should check for potential oAuth
+
 				// this will activate passwordTextField if oAuth-Dialogue was canceled
 				self.passwordCell.textField.becomeFirstResponder()
-			})
+		}) {
+			// all the action is defined in if condition
 		} else {
 			if let nextField = tableView.viewWithTag(currentTag + 1) as? UITextField {
 				if nextField.tag > 1 && !advancedSectionShowing {
