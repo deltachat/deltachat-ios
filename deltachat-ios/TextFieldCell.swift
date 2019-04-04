@@ -58,8 +58,16 @@ class TextFieldCell: UITableViewCell {
     }
 
     func getText() -> String? {
-        return self.textField.text 
-    }
+		if let text = textField.text {
+			if text.isEmpty {
+				return nil
+			} else {
+				return self.textField.text
+			}
+		} else {
+			return nil
+		}
+}
 
 
 	static func makeEmailCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
