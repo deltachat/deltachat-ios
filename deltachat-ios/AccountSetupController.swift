@@ -356,26 +356,26 @@ class AccountSetupController: UITableViewController {
 
 		for cell in advancedSectionCells {
 
-			if let textFieldCell = cell as? TextFieldCell, let text = textFieldCell.getText() {
+			if let textFieldCell = cell as? TextFieldCell {
 				switch cell.accessibilityIdentifier {
 				case "IMAPServerCell":
-					MRConfig.mailServer = text
+					MRConfig.mailServer = textFieldCell.getText() ?? nil
 				case "IMAPUserCell":
-					MRConfig.mailUser = text
+					MRConfig.mailUser = textFieldCell.getText() ?? nil
 				case "IMAPPortCell":
-					MRConfig.mailPort = text
+					MRConfig.mailPort = textFieldCell.getText() ?? nil
 				case "IMAPSecurityCell":
 					let flag = 0
 					MRConfig.setImapSecurity(imapFlags: flag)
 					break;
 				case "SMTPServerCell":
-					MRConfig.sendServer = text
+					MRConfig.sendServer = textFieldCell.getText() ?? nil
 				case "SMTPSUserCell":
-					MRConfig.sendUser = text
+					MRConfig.sendUser = textFieldCell.getText() ?? nil
 				case "SMTPPortCell":
-					MRConfig.sendPort = text
+					MRConfig.sendPort = textFieldCell.getText() ?? nil
 				case "SMTPPasswordCell":
-					MRConfig.sendPw = text
+					MRConfig.sendPw = textFieldCell.getText() ?? nil
 				case "SMTPSecurityCell":
 					let flag = 0
 					MRConfig.setSmtpSecurity(smptpFlags: flag)
