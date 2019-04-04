@@ -17,15 +17,12 @@ class TextFieldCell: UITableViewCell {
         textField.textAlignment = .right
        // textField.enablesReturnKeyAutomatically = true
         textField.placeholder = self.placeholder
-        // textField.backgroundColor = UIColor.lightGray
         return textField
     }()
 
-    init(description: String, placeholder: String) {
+	init(description: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {
         self.placeholder = placeholder
-
         super.init(style: .value1, reuseIdentifier: nil)
-
         textLabel?.text = "\(description):"
 
         // see: https://stackoverflow.com/a/35903650
@@ -33,6 +30,7 @@ class TextFieldCell: UITableViewCell {
         // the table view cell
         selectionStyle = .none
         setupViews()
+		textField.delegate = delegate
     }
 
     required init?(coder _: NSCoder) {
@@ -64,50 +62,50 @@ class TextFieldCell: UITableViewCell {
     }
 
 
+	static func makeEmailCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
+        let cell = TextFieldCell(description: "Email", placeholder: "you@example.com")
 
-    static func makeEmailCell() -> TextFieldCell {
-        let emailCell = TextFieldCell(description: "Email", placeholder: "you@example.com")
-
-        emailCell.textField.keyboardType = .emailAddress
+        cell.textField.keyboardType = .emailAddress
         // switch off quicktype
-        emailCell.textField.autocorrectionType = .no
-        emailCell.textField.autocapitalizationType = .none
-
-        return emailCell
+        cell.textField.autocorrectionType = .no
+        cell.textField.autocapitalizationType = .none
+		cell.textField.delegate = delegate
+        return cell
     }
 
-    static func makePasswordCell() -> TextFieldCell {
-        let passwordCell = TextFieldCell(description: "Password", placeholder: "your IMAP password")
+    static func makePasswordCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
+        let cell = TextFieldCell(description: "Password", placeholder: "your IMAP password")
 
-        passwordCell.textField.textContentType = UITextContentType.password
-        passwordCell.textField.isSecureTextEntry = true
+        cell.textField.textContentType = UITextContentType.password
+        cell.textField.isSecureTextEntry = true
 
-        return passwordCell
+        return cell
     }
 
-    static func makeNameCell() -> TextFieldCell {
-        let nameCell = TextFieldCell(description: "Name", placeholder: "new contacts nickname")
+    static func makeNameCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
+        let cell = TextFieldCell(description: "Name", placeholder: "new contacts nickname")
 
-        nameCell.textField.autocapitalizationType = .words
-        nameCell.textField.autocorrectionType = .no
+        cell.textField.autocapitalizationType = .words
+        cell.textField.autocorrectionType = .no
         // .namePhonePad doesn't support autocapitalization
         // see: https://stackoverflow.com/a/36365399
         // therefore we use .default to capitalize the first character of the name
-        nameCell.textField.keyboardType = .default
+        cell.textField.keyboardType = .default
+		cell.textField.delegate = delegate
 
-        return nameCell
+        return cell
     }
 
-    static func makeConfigCell(label: String, placeholder: String) -> TextFieldCell {
-        let nameCell = TextFieldCell(description: label, placeholder: placeholder)
+    static func makeConfigCell(label: String, placeholder: String, delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
+        let cell = TextFieldCell(description: label, placeholder: placeholder)
 
-        nameCell.textField.autocapitalizationType = .words
-        nameCell.textField.autocorrectionType = .no
+        cell.textField.autocapitalizationType = .words
+        cell.textField.autocorrectionType = .no
         // .namePhonePad doesn't support autocapitalization
         // see: https://stackoverflow.com/a/36365399
         // therefore we use .default to capitalize the first character of the name
-        nameCell.textField.keyboardType = .default
-
-        return nameCell
+        cell.textField.keyboardType = .default
+		cell.textField.delegate = delegate
+		return cell
     }
 }
