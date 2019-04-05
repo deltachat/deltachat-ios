@@ -11,7 +11,7 @@ import JGProgressHUD
 
 class HudHandler {
     var backupHud: JGProgressHUD?
-    var view:UIView
+    unowned var view:UIView
 
     init(parentView: UIView) {
         self.view = parentView
@@ -52,7 +52,9 @@ class HudHandler {
     }
 
     func setHudDone(callback: (() -> Void)?) {
-        if let hud = self.backupHud {
+		let delay = 1.0
+
+		if let hud = self.backupHud {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
                 UIView.animate(
                     withDuration: 0.1, animations: {
@@ -61,9 +63,12 @@ class HudHandler {
                         hud.indicatorView = JGProgressHUDSuccessIndicatorView()
 
                 })
-                callback?()
-                hud.dismiss(afterDelay: 1.0)
             }
+
+			DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
+				callback?()
+				hud.dismiss()
+			})
         }
     }
 }
