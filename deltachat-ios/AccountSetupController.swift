@@ -10,8 +10,6 @@ import UIKit
 
 class AccountSetupController: UITableViewController {
 
-	private var oAuthDenied:Bool = false    // if true, this will block the oAuthSetupDialogue
-
 	private var backupProgressObserver: Any?
 	private var configureProgressObserver: Any?
 
@@ -291,7 +289,9 @@ class AccountSetupController: UITableViewController {
 
 	// returns true if needed
 	private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (() -> Void)?) -> Bool {
-		if oAuthDenied {
+
+		if MRConfig.getAuthFlags() == 4 {
+			// user has previously denied oAuth2-setup
 			return false
 		}
 
@@ -315,7 +315,7 @@ class AccountSetupController: UITableViewController {
 			})
 			let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
 				_ in
-				self.oAuthDenied = true
+				MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL))
 				handleCancel?()
 			})
 			oAuthAlertController.addAction(confirm)
@@ -329,7 +329,9 @@ class AccountSetupController: UITableViewController {
 	}
 
 	private func launchOAuthBrowserWindow(url: URL) {
-		UIApplication.shared.open(url)
+//		let embeddedSafari = SFSafariViewController(url: url)
+//		self.navigationController?.pushViewController(embeddedSafari, animated: true)
+		UIApplication.shared.open(url) // this opens safari as seperate app
 	}
 
 	private func addProgressHudEventListener() {
@@ -344,7 +346,7 @@ class AccountSetupController: UITableViewController {
 				if ui["error"] as! Bool {
 					self.hudHandler.setHudError(ui["errorMessage"] as? String)
 				} else if ui["done"] as! Bool {
-					self.hudHandler.setHudDone(callback: nil)
+					self.hudHandler.setHudDone(callback: self.handleLoginSuccess )
 				} else {
 					self.hudHandler.setHudProgress(ui["progress"] as! Int)
 				}
@@ -360,7 +362,7 @@ class AccountSetupController: UITableViewController {
 				if ui["error"] as! Bool {
 					self.hudHandler.setHudError(ui["errorMessage"] as? String)
 				} else if ui["done"] as! Bool {
-					self.hudHandler.setHudDone(callback: nil)
+					self.hudHandler.setHudDone(callback: self.handleLoginSuccess)
 				} else {
 					self.hudHandler.setHudProgress(ui["progress"] as! Int)
 				}
@@ -400,6 +402,10 @@ class AccountSetupController: UITableViewController {
 				}
 			}
 		}
+	}
+
+	private func handleLoginSuccess() {
+		self.dismiss(animated: true, completion: nil)
 	}
 }
 
