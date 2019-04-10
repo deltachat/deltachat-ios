@@ -679,8 +679,8 @@ class MRConfig {
         sf = sf | flags
         serverFlags = sf
     }
-    
-    class func setAuthFlags(flags: Int) {
+
+	class func setAuthFlags(flags: Int) {
         var sf = serverFlags
         sf = sf & ~0x6 // TODO: should be DC_LP_AUTH_FLAGS - could not be found
         sf = sf | flags

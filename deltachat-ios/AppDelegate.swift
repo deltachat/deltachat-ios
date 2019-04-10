@@ -47,8 +47,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 		return []
 	}
 
-	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-		print(url)
+	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+		// gets here when app returns from oAuth2-Setup process - the url contains the provided token
+
+		if let params = url.queryParameters, let token = params["code"] {
+//			MRConfig.mailPw = authorizationCode
+//			MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_OAUTH2))
+//			dc_configure(mailboxPointer)
+			NotificationCenter.default.post(name: NSNotification.Name("oauthLoginApproved"), object: nil, userInfo: ["token":token])
+		}
+
+
 		return true
 	}
 
