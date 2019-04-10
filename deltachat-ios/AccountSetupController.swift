@@ -13,6 +13,7 @@ class AccountSetupController: UITableViewController {
 
 	private var backupProgressObserver: Any?
 	private var configureProgressObserver: Any?
+	private var oauth2Observer: Any?
 
 	private lazy var hudHandler: HudHandler = {
 		let hudHandler = HudHandler(parentView: self.tableView)
@@ -161,6 +162,9 @@ class AccountSetupController: UITableViewController {
 		}
 		if let configureProgressObserver = self.configureProgressObserver {
 			nc.removeObserver(configureProgressObserver)
+		}
+		if let oauth2Observer = self.oauth2Observer {
+			nc.removeObserver(oauth2Observer)
 		}
 	}
 
@@ -320,7 +324,7 @@ class AccountSetupController: UITableViewController {
 			let confirm = UIAlertAction(title: "Confirm", style: .default, handler: {
 				[unowned self] _ in
 				let nc = NotificationCenter.default
-				nc.addObserver(self, selector: #selector(self.oauthLoginApproved), name: NSNotification.Name.init("oauthLoginApproved"), object: nil)
+				self.oauth2Observer = nc.addObserver(self, selector: #selector(self.oauthLoginApproved), name: NSNotification.Name.init("oauthLoginApproved"), object: nil)
 				self.launchOAuthBrowserWindow(url: url)
 			})
 			let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -349,8 +353,6 @@ class AccountSetupController: UITableViewController {
 	}
 
 	private func launchOAuthBrowserWindow(url: URL) {
-//		let embeddedSafari = SFSafariViewController(url: url)
-//		self.navigationController?.pushViewController(embeddedSafari, animated: true)
 		UIApplication.shared.open(url) // this opens safari as seperate app
 	}
 
