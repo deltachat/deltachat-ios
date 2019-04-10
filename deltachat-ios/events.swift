@@ -31,11 +31,6 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
 		guard let baseUrl = URL(string: base), let url = URL(string: urlString) else {
 			return nil
 		}
-
-		var data: Data?
-		var repsonse: URLResponse?
-		var error: Error?
-
 		var request = URLRequest(url: baseUrl)
 		request.httpMethod = "POST"
 
@@ -43,23 +38,10 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
 			request.httpBody = params.percentEscaped().data(using: .utf8)
 		}
 
-		let semaphore = DispatchSemaphore(value: 0)
-
-		let task = URLSession.shared.dataTask(with: request) {
-			data = $0
-			repsonse = $1
-			error = $2
-
-			semaphore.signal()
-		}
-		task.resume()
-		_ = semaphore.wait(timeout: .distantFuture)
-
-
+		let (data, _, _) = URLSession.shared.synchronousDataTask(request: request) // returns (data, response, error)
 		guard let receivedData = data, let dataString = String(bytes: receivedData, encoding: .utf8) else {
 			return nil
 		}
-		print(dataString)
 		let p = UnsafePointer(strdup(dataString))
 		return p
 	case DC_EVENT_HTTP_GET:

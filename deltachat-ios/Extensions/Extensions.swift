@@ -57,21 +57,21 @@ extension CharacterSet {
 }
 
 extension URLSession {
-	func synchronousDataTask(with url: URL) -> (Data?, URLResponse?, Error?) {
+	func synchronousDataTask(request: URLRequest) -> (Data?, URLResponse?, Error?) {
 		var data: Data?
 		var response: URLResponse?
 		var error: Error?
 
 		let semaphore = DispatchSemaphore(value: 0)
 
-		let dataTask = self.dataTask(with: url) {
+		let task = self.dataTask(with: request) {
 			data = $0
 			response = $1
 			error = $2
 
 			semaphore.signal()
 		}
-		dataTask.resume()
+		task.resume()
 
 		_ = semaphore.wait(timeout: .distantFuture)
 
