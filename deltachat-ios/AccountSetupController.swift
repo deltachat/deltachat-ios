@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class AccountSetupController: UITableViewController {
 
@@ -260,28 +261,35 @@ class AccountSetupController: UITableViewController {
 
 	}
 
-	@objc func loginButtonPressed() {
+	@objc private func loginButtonPressed() {
 
 		guard let emailAddress = emailCell.getText() else {
 			return // handle case when either email or pw fields are empty
 		}
 
-		let oAuthStarted = showOAuthAlertIfNeeded(emailAddress: emailAddress, handleCancel: nil)
+		let oAuthStarted = showOAuthAlertIfNeeded(emailAddress: emailAddress, handleCancel: self.loginButtonPressed)	// if canceled we will run this method again but this time oAuthStarted will be false
 
 		if oAuthStarted {
 			// the loginFlow will be handled by oAuth2
 			return
 		}
 
-		let passWord = passwordCell.getText()  ?? "" // empty passwords are ok -> for oauth there is no password needed
+		let password = passwordCell.getText()  ?? "" // empty passwords are ok -> for oauth there is no password needed
+		login(emailAddress: emailAddress, password: password)
 
+	}
+
+	private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {
 		MRConfig.addr = emailAddress
-		MRConfig.mailPw = passWord
-		evaluluateAdvancedSetup()	// this will set MRConfig related to advanced fields
-
+		MRConfig.mailPw = password
+		if skipAdvanceSetup {
+			evaluluateAdvancedSetup()	// this will set MRConfig related to advanced fields
+		}
 		dc_configure(mailboxPointer)
 		hudHandler.showBackupHud("Configuring account")
 	}
+
+
 
 	@objc func closeButtonPressed() {
 		dismiss(animated: true, completion: nil)
@@ -310,7 +318,9 @@ class AccountSetupController: UITableViewController {
 
 			let oAuthAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 			let confirm = UIAlertAction(title: "Confirm", style: .default, handler: {
-				_ in
+				[unowned self] _ in
+				let nc = NotificationCenter.default
+				nc.addObserver(self, selector: #selector(self.oauthLoginApproved), name: NSNotification.Name.init("oauthLoginApproved"), object: nil)
 				self.launchOAuthBrowserWindow(url: url)
 			})
 			let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -326,6 +336,16 @@ class AccountSetupController: UITableViewController {
 		} else {
 			return false
 		}
+	}
+
+	@objc func oauthLoginApproved(notification: Notification) {
+
+		guard let userInfo = notification.userInfo, let token = userInfo["token"] as? String, let emailAddress = emailCell.getText() else {
+			return
+			
+		}
+		MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_OAUTH2))
+		login(emailAddress: emailAddress, password: token, skipAdvanceSetup: true)
 	}
 
 	private func launchOAuthBrowserWindow(url: URL) {
