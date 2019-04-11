@@ -521,8 +521,6 @@ class MRConfig {
     setOptStr(key, vStr)
   }
     
-
-
   private class func getInt(_ key: String) -> Int {
     let vStr = getOptStr(key)
     if vStr == nil {
