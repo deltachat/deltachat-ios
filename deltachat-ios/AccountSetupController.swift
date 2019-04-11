@@ -24,6 +24,7 @@ class AccountSetupController: UITableViewController {
 		let cell = TextFieldCell.makeEmailCell(delegate: self)
 		cell.textField.tag = 0
 		cell.textField.accessibilityIdentifier = "emailTextField"	// will be used to eventually show oAuth-Dialogue when pressing return key
+		cell.setText(text: MRConfig.addr ?? nil)
 		return cell
 	}()
 
@@ -31,6 +32,7 @@ class AccountSetupController: UITableViewController {
 		let cell = TextFieldCell.makePasswordCell(delegate: self)
 		cell.textField.tag = 1
 		cell.accessibilityIdentifier = "passwordCell"	// will be used to eventually show oAuth-Dialogue when selecting
+		cell.setText(text: MRConfig.mailPw ?? nil)
 		return cell
 	}()
 
@@ -153,6 +155,8 @@ class AccountSetupController: UITableViewController {
 		super.viewDidAppear(animated)
 		addProgressHudEventListener()
 		//loginButton.isEnabled = false
+		print(emailCell.getText())
+		print("account setup appeared")
 	}
 
 	override func viewDidDisappear(_ animated: Bool) {
@@ -348,6 +352,7 @@ class AccountSetupController: UITableViewController {
 			return
 			
 		}
+		passwordCell.setText(text: token)
 		MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_OAUTH2))
 		login(emailAddress: emailAddress, password: token, skipAdvanceSetup: true)
 	}
@@ -427,6 +432,7 @@ class AccountSetupController: UITableViewController {
 	}
 
 	private func handleLoginSuccess() {
+		// used when login hud successfully went trough
 		self.dismiss(animated: true, completion: nil)
 	}
 }

@@ -67,12 +67,16 @@ class TextFieldCell: UITableViewCell {
 		} else {
 			return nil
 		}
-}
+	}
 
+
+	func setText(text: String?) {
+		self.textField.text = text
+	}
+	
 
 	static func makeEmailCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
         let cell = TextFieldCell(description: "Email", placeholder: "you@example.com")
-
         cell.textField.keyboardType = .emailAddress
         // switch off quicktype
         cell.textField.autocorrectionType = .no
@@ -83,11 +87,9 @@ class TextFieldCell: UITableViewCell {
 
     static func makePasswordCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
         let cell = TextFieldCell(description: "Password", placeholder: "your IMAP password")
-
         cell.textField.textContentType = UITextContentType.password
         cell.textField.isSecureTextEntry = true
-
-        return cell
+		return cell
     }
 
     static func makeNameCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
