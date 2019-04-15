@@ -36,8 +36,7 @@ internal final class SettingsViewController: QuickTableViewController {
 			forName: dcNotificationBackupProgress,
 			object: nil,
 			queue: nil
-		) {
-			notification in
+		) { notification in
 			if let ui = notification.userInfo {
 				if ui["error"] as! Bool {
 					self.hudHandler.setHudError(ui["errorMessage"] as? String)
@@ -52,8 +51,7 @@ internal final class SettingsViewController: QuickTableViewController {
 			forName: dcNotificationConfigureProgress,
 			object: nil,
 			queue: nil
-		) {
-			notification in
+		) { notification in
 			if let ui = notification.userInfo {
 				if ui["error"] as! Bool {
 					self.hudHandler.setHudError(ui["errorMessage"] as? String)
@@ -94,17 +92,12 @@ internal final class SettingsViewController: QuickTableViewController {
 	}
 
 	private func setTable() {
-		let basicsRows: [Row & RowStyle] = [
-			NavigationRow(title: "Email", subtitle: .rightAligned(MRConfig.addr ?? ""), action: editCell()),
-			NavigationRow(title: "Password", subtitle: .rightAligned("********"), action: editCell()),
-			TapActionRow(title: "Create backup", action: { [weak self] in self?.createBackup($0) }),
-		]
 		var backupRows = [
-			TapActionRow(title: "Create backup", action: { [weak self] in self?.createBackup($0) }),
-			TapActionRow(title: "Restore from backup", action: { [weak self] in self?.restoreBackup($0) }),
+			TapActionRow(text: "Create backup", action: { [weak self] in self?.createBackup($0) }),
+			TapActionRow(text: "Restore from backup", action: { [weak self] in self?.restoreBackup($0)})
 		]
 
-		let deleteRow = TapActionRow(title: "Delete Account", action: { [weak self] in self?.deleteAccount($0) })
+		let deleteRow = TapActionRow(text: "Delete Account", action: { [weak self] in self?.deleteAccount($0)})
 
 		if MRConfig.configured {
 			backupRows.removeLast()
@@ -116,8 +109,7 @@ internal final class SettingsViewController: QuickTableViewController {
 				rows: [
 					NavigationRow(text: "Display Name", detailText: .value1(MRConfig.displayname ?? ""), action: editCell()),
 					NavigationRow(text: "Status", detailText: .value1(MRConfig.selfstatus ?? ""), action: editCell()),
-					TapActionRow(text: "Configure my Account", action:  { [weak self] in self?.presentAccountSetup($0) }),
-					TapActionRow(title: "Configure", action: { [weak self] in self?.configure($0) }),
+					TapActionRow(text: "Configure my Account", action: { [weak self] in self?.presentAccountSetup($0)})
 				]
 			),
 			Section(
@@ -129,7 +121,7 @@ internal final class SettingsViewController: QuickTableViewController {
 					SwitchRow(text: "Watch Sentbox", switchValue: MRConfig.sentboxWatch, action: editCell()),
 					SwitchRow(text: "Watch Mvbox", switchValue: MRConfig.mvboxWatch, action: editCell()),
 					SwitchRow(text: "Move to Mvbox", switchValue: MRConfig.mvboxMove, action: editCell()),
-					SwitchRow(text: "Save Mime Headers", switchValue: MRConfig.saveMimeHeaders, action: editCell()),
+					SwitchRow(text: "Save Mime Headers", switchValue: MRConfig.saveMimeHeaders, action: editCell())
 				]
 			),
 
@@ -140,14 +132,9 @@ internal final class SettingsViewController: QuickTableViewController {
 
 			Section(title: "Danger", rows: [
 				deleteRow
-				]),
+				])
 		]
 	}
-
-
-
-
-	// MARK: - Actions
 
 	// FIXME: simplify this method
 	// swiftlint:disable cyclomatic_complexity
@@ -188,6 +175,7 @@ internal final class SettingsViewController: QuickTableViewController {
 				default:
 					logger.info("unknown title", title)
 				}
+				dc_configure(mailboxPointer)
 				return
 			}
 
@@ -204,41 +192,18 @@ internal final class SettingsViewController: QuickTableViewController {
 				var needRefresh = false
 
 				switch title {
-				case "Email":
-					MRConfig.addr = field.text
-				case "Password":
-					MRConfig.mailPw = field.text
 				case "Display Name":
 					MRConfig.displayname = field.text
 					needRefresh = true
 				case "Status":
 					MRConfig.selfstatus = field.text
 					needRefresh = true
-				case "IMAP Server":
-					MRConfig.mailServer = field.text
-					needRefresh = true
-				case "IMAP User":
-					MRConfig.mailUser = field.text
-					needRefresh = true
-				case "IMAP Port":
-					MRConfig.mailPort = field.text
-					needRefresh = true
-				case "SMTP Server":
-					MRConfig.sendServer = field.text
-					needRefresh = true
-				case "SMTP User":
-					MRConfig.sendUser = field.text
-					needRefresh = true
-				case "SMTP Port":
-					MRConfig.sendPort = field.text
-					needRefresh = true
-				case "SMTP Password":
-					MRConfig.sendPw = field.text
 				default:
 					logger.info("unknown title", title)
 				}
 
 				if needRefresh {
+					dc_configure(mailboxPointer)
 					self?.setTable()
 					self?.tableView.reloadData()
 				}
@@ -250,23 +215,6 @@ internal final class SettingsViewController: QuickTableViewController {
 
 			alertController.addTextField { textField in
 				textField.placeholder = subtitle
-				if title.contains("Password") {
-					textField.isSecureTextEntry = true
-					textField.textContentType = .password
-				}
-
-				if title == "Email" {
-					textField.keyboardType = .emailAddress
-					textField.textContentType = .username
-				}
-
-				if title.contains("Server") {
-					textField.keyboardType = .URL
-				}
-
-				if title.contains("Port") {
-					textField.keyboardType = .numberPad
-				}
 			}
 
 			alertController.addAction(confirmAction)
@@ -275,8 +223,6 @@ internal final class SettingsViewController: QuickTableViewController {
 			self?.present(alertController, animated: true, completion: nil)
 		}
 	}
-
-
 
 	private func createBackup(_: Row) {
 		// if let documents = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.delta.chat.ios")?.path {
@@ -329,7 +275,9 @@ internal final class SettingsViewController: QuickTableViewController {
 
 	private func deleteAccount(_: Row) {
 		logger.info("deleting account")
-		let appDelegate = UIApplication.shared.delegate as! AppDelegate
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+			return
+		}
 
 		let dbfile = appDelegate.dbfile()
 		let dburl = URL(fileURLWithPath: dbfile, isDirectory: false)
