@@ -297,8 +297,6 @@ class AccountSetupController: UITableViewController {
 		hudHandler.showBackupHud("Configuring account")
 	}
 
-
-
 	@objc func closeButtonPressed() {
 		dismiss(animated: true, completion: nil)
 	}
@@ -320,9 +318,7 @@ class AccountSetupController: UITableViewController {
 		if let url = URL.init(string: oAuth2Url) {
 			let title = "Continue with simplified setup"
 			//swiftlint:disable all
-			let message = "The entered e-mail address supports a simlified setup (oAuth2).\n\nIn the next step, please allow Delta Chat to act as your Chat with E-Mail app.\n\nThere are no Delta Chat servers, your data stays on your device."
-
-
+			let message = "The entered e-mail address supports a simplified setup (oAuth2).\n\nIn the next step, please allow Delta Chat to act as your Chat with E-Mail app.\n\nThere are no Delta Chat servers, your data stays on your device."
 
 			let oAuthAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 			let confirm = UIAlertAction(title: "Confirm", style: .default, handler: {
