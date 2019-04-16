@@ -72,10 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     // setup deltachat core context
     //       - second param remains nil (user data for more than one mailbox)
-    mailboxPointer = dc_context_new(callback_ios, nil, "iOS")
-    guard mailboxPointer != nil else {
-      fatalError("Error: dc_context_new returned nil")
-    }
     open()
     let isConfigured = dc_is_configured(mailboxPointer) != 0
     AppDelegate.appCoordinator.setupViewControllers(window: window)
@@ -145,6 +141,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
   func open() {
     logger.info("open: \(dbfile())")
 
+    if mailboxPointer == nil {
+      mailboxPointer = dc_context_new(callback_ios, nil, "iOS")
+      guard mailboxPointer != nil else {
+        fatalError("Error: dc_context_new returned nil")
+      }
+    }
     _ = dc_open(mailboxPointer, dbfile(), nil)
   }
 
