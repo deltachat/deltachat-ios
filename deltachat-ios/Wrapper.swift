@@ -520,7 +520,7 @@ class MRConfig {
     let vStr = value ? "1" : "0"
     setOptStr(key, vStr)
   }
-    
+
   private class func getInt(_ key: String) -> Int {
     let vStr = getOptStr(key)
     if vStr == nil {
@@ -644,69 +644,67 @@ class MRConfig {
       return getOptStr("send_port")
     }
   }
-    
-      /**
+
+  /**
    * IMAP-/SMTP-flags as a combination of DC_LP flags, guessed if left out
    */
-    
 
   private class var serverFlags: Int {
     set {
       setOptStr("server_flags", "\(newValue)")
     }
     get {
-        if let str = getOptStr("server_flags") {
-            return Int(str) ?? 0
-        } else {
-            return 0
-        }
+      if let str = getOptStr("server_flags") {
+        return Int(str) ?? 0
+      } else {
+        return 0
+      }
     }
   }
-    
-    
-    class func setImapSecurity(imapFlags flags: Int) {
-        var sf = serverFlags
-        sf = sf & ~0x700 // TODO: should be DC_LP_IMAP_SOCKET_FLAGS - could not be found
-        sf = sf | flags
-        serverFlags = sf
-    }
-    
-    class func setSmtpSecurity(smptpFlags flags: Int) {
-        var sf = serverFlags
-        sf = sf & ~0x70000 // TODO: should be DC_LP_SMTP_SOCKET_FLAGS - could not be found
-        sf = sf | flags
-        serverFlags = sf
-    }
 
-	class func setAuthFlags(flags: Int) {
-        var sf = serverFlags
-        sf = sf & ~0x6 // TODO: should be DC_LP_AUTH_FLAGS - could not be found
-        sf = sf | flags
-        serverFlags = sf
-    }
+  class func setImapSecurity(imapFlags flags: Int) {
+    var sf = serverFlags
+    sf = sf & ~0x700 // TODO: should be DC_LP_IMAP_SOCKET_FLAGS - could not be found
+    sf = sf | flags
+    serverFlags = sf
+  }
 
-	// returns one of DC_LP_IMAP_SOCKET_STARTTLS, DC_LP_IMAP_SOCKET_SSL,
-	class func getImapSecurity() -> Int {
-		var sf = serverFlags
-		sf = sf & 0x700
-		return sf
-	}
+  class func setSmtpSecurity(smptpFlags flags: Int) {
+    var sf = serverFlags
+    sf = sf & ~0x70000 // TODO: should be DC_LP_SMTP_SOCKET_FLAGS - could not be found
+    sf = sf | flags
+    serverFlags = sf
+  }
 
-	// returns one of DC_LP_SMTP_SOCKET_STARTTLS, DC_LP_SMTP_SOCKET_SSL,
-	class func getSmtpSecurity() -> Int {
-		var sf = serverFlags
-		sf = sf & 0x70000
-		return sf
-	}
+  class func setAuthFlags(flags: Int) {
+    var sf = serverFlags
+    sf = sf & ~0x6 // TODO: should be DC_LP_AUTH_FLAGS - could not be found
+    sf = sf | flags
+    serverFlags = sf
+  }
 
-	// returns on of DC_LP_AUTH_OAUTH2 or 0
-	class func getAuthFlags() -> Int {
-		var sf = serverFlags
-		sf = sf & 0x6
-		serverFlags = sf
-		return sf
-	}
-    
+  // returns one of DC_LP_IMAP_SOCKET_STARTTLS, DC_LP_IMAP_SOCKET_SSL,
+  class func getImapSecurity() -> Int {
+    var sf = serverFlags
+    sf = sf & 0x700
+    return sf
+  }
+
+  // returns one of DC_LP_SMTP_SOCKET_STARTTLS, DC_LP_SMTP_SOCKET_SSL,
+  class func getSmtpSecurity() -> Int {
+    var sf = serverFlags
+    sf = sf & 0x70000
+    return sf
+  }
+
+  // returns on of DC_LP_AUTH_OAUTH2 or 0
+  class func getAuthFlags() -> Int {
+    var sf = serverFlags
+    sf = sf & 0x6
+    serverFlags = sf
+    return sf
+  }
+
   /**
    * Own name to use when sending messages. MUAs are allowed to spread this way eg. using CC, defaults to empty
    */
@@ -828,7 +826,7 @@ class MRConfig {
       return getBool("show_emails")
     }
   }
-  
+
   /**
    * 1=save mime headers and make dc_get_mime_headers() work for subsequent calls, 0=do not save mime headers (default)
    */
