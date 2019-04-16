@@ -157,9 +157,7 @@ class AccountSetupController: UITableViewController {
     super.viewDidAppear(animated)
     addProgressHudEventListener()
     // loginButton.isEnabled = false
-    print(emailCell.getText())
-    print("account setup appeared")
-  }
+	}
 
   override func viewDidDisappear(_: Bool) {
     let nc = NotificationCenter.default
