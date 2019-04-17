@@ -94,7 +94,6 @@ internal final class SettingsViewController: QuickTableViewController {
   private func setTable() {
     var backupRows = [
       TapActionRow(text: "Create backup", action: { [weak self] in self?.createBackup($0) }),
-      TapActionRow(text: "Restore from backup", action: { [weak self] in self?.restoreBackup($0) }),
     ]
 
     let deleteRow = TapActionRow(text: "Delete Account", action: { [weak self] in self?.deleteAccount($0) })
@@ -239,34 +238,6 @@ internal final class SettingsViewController: QuickTableViewController {
     }
   }
 
-  private func restoreBackup(_: Row) {
-    logger.info("restoring backup")
-    if MRConfig.configured {
-      return
-    }
-    let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-    if !documents.isEmpty {
-      logger.info("looking for backup in: \(documents[0])")
-
-      if let file = dc_imex_has_backup(mailboxPointer, documents[0]) {
-        logger.info("restoring backup: \(String(cString: file))")
-
-        hudHandler.showBackupHud("Restoring Backup")
-        dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
-
-        return
-      }
-
-      let alert = UIAlertController(title: "Can not restore", message: "No Backup found", preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
-        self.dismiss(animated: true, completion: nil)
-      }))
-      present(alert, animated: true, completion: nil)
-      return
-    }
-
-    logger.error("no documents directory found")
-  }
 
   private func configure(_: Row) {
     hudHandler.showBackupHud("Configuring account")
@@ -307,7 +278,8 @@ internal final class SettingsViewController: QuickTableViewController {
   }
 
   private func presentAccountSetup(_: Row) {
-    let nav = UINavigationController(rootViewController: AccountSetupController())
-    present(nav, animated: true, completion: nil)
+		if let nav = self.navigationController {
+			nav.pushViewController(AccountSetupController(), animated: true)
+		}
   }
 }
