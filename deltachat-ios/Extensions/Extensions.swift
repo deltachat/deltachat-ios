@@ -14,11 +14,7 @@ extension String {
   }
 }
 
-extension UIColor {
-  static var systemBlue: UIColor {
-    return UIButton(type: .system).tintColor
-  }
-}
+
 
 extension URL {
   public var queryParameters: [String: String]? {

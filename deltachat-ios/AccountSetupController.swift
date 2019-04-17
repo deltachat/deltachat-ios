@@ -35,24 +35,12 @@ class AccountSetupController: UITableViewController {
     return cell
   }()
 
-  /*
-   Advanced Cells:
-   IMAP Server, IMAP User, IMAP Port, IMAP Security, SMTP Server, SMTP User, SMTP Port, SMTP Password, SMTP Security
-   */
-  /*
-   lazy var imapServerCell = TextFieldCell(description: "IMAP Server", placeholder: MRConfig.mailServer ?? MRConfig.configuredMailServer)
-   lazy var imapUserCell = TextFieldCell(description: "IMAP User", placeholder: MRConfig.mailUser ?? MRConfig.configuredMailUser)
-   lazy var imapPortCell = TextFieldCell(description: "IMAP Port", placeholder: MRConfig.mailPort ?? MRConfig.configuredMailPort)
-   lazy var imapSecurityCell = TextFieldCell(description: "IMAP Security", placeholder: "to do")
+	private lazy var restoreCell: ActionCell = {
+		let cell = ActionCell(title: "Restore from backup")
+		cell.accessibilityIdentifier = "restoreCell"
+		return cell
+	}()
 
-   lazy var smtpServerCell = TextFieldCell(description: "SMTP Server", placeholder: MRConfig.sendServer ?? MRConfig.configuredSendServer)
-   lazy var smtpUserCell = TextFieldCell(description: "SMTP User", placeholder: MRConfig.sendUser ?? MRConfig.configuredSendUser)
-   lazy var smtpPortCell = TextFieldCell(description: "SMTP Port", placeholder: MRConfig.sendPort ?? MRConfig.configuredSendPort)
-   lazy var smtpPasswordCell = TextFieldCell(description: "SMTP Password", placeholder: "*************")
-   lazy var smtpSecurityCell = TextFieldCell(description: "SMTP Security", placeholder: "to do")
-   */
-
-  // TODO: consider adding delegates and tags by loop - leave for now like this
   lazy var imapServerCell: TextFieldCell = {
     let cell = TextFieldCell(description: "IMAP Server", placeholder: MRConfig.mailServer ?? MRConfig.configuredMailServer, delegate: self)
     cell.accessibilityIdentifier = "IMAPServerCell"
@@ -124,6 +112,7 @@ class AccountSetupController: UITableViewController {
   let loginButton: UIBarButtonItem = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
 
   private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
+	private lazy var restoreCells: [UITableViewCell] = [restoreCell]
   private lazy var advancedSectionCells: [UITableViewCell] = [
     imapServerCell,
     imapUserCell,
@@ -149,7 +138,7 @@ class AccountSetupController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Login to your server"
-    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonPressed))
+    // navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonPressed))
     navigationItem.rightBarButtonItem = loginButton
   }
 
@@ -176,20 +165,22 @@ class AccountSetupController: UITableViewController {
 
   override func numberOfSections(in _: UITableView) -> Int {
     // #warning Incomplete implementation, return the number of sections
-    return 2
+    return 3
   }
 
   override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
     // #warning Incomplete implementation, return the number of rows
     if section == 0 {
-      return basicSectionCells.count
+			return basicSectionCells.count
+		} else if section == 1 {
+			return restoreCells.count
     } else {
       return advancedSectionShowing ? advancedSectionCells.count : 0
     }
   }
 
   override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if section == 1 {
+    if section == 2 {
       return "Advanced"
     } else {
       return nil
@@ -197,7 +188,7 @@ class AccountSetupController: UITableViewController {
   }
 
   override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    if section == 1 {
+    if section == 2 {
       // Advanced Header
       let advancedView = AdvancedSectionHeader()
       advancedView.handleTap = toggleAdvancedSection
@@ -216,9 +207,12 @@ class AccountSetupController: UITableViewController {
   override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
     if section == 0 {
       return "There are no Delta Chat servers, your data stays on your device!"
-    } else {
+    } else if section == 2{
       return "For known email providers additional settings are setup automatically. Sometimes IMAP needs to be enabled in the web frontend. Consult your email provider or friends for help"
-    }
+		} else {
+			return nil
+		}
+
   }
 
   override func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -228,6 +222,8 @@ class AccountSetupController: UITableViewController {
     if section == 0 {
       // basicSection
       return basicSectionCells[row]
+		} else if section == 1 {
+			return restoreCells[row]
     } else {
       // advancedSection
       return advancedSectionCells[row]
@@ -235,21 +231,27 @@ class AccountSetupController: UITableViewController {
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    // handle tap on password -> show eventuall oAuthDialogue
-    if let cell = tableView.cellForRow(at: indexPath) as? TextFieldCell {
-      if cell.accessibilityIdentifier == "passwordCell" {
-        if let emailAdress = cell.getText() {
+
+		guard let tappedCell = tableView.cellForRow(at: indexPath) else { return }
+		// handle tap on password -> show oAuthDialogue
+    if let textFieldCell = tappedCell as? TextFieldCell {
+      if textFieldCell.accessibilityIdentifier == "passwordCell" {
+        if let emailAdress = textFieldCell.getText() {
           _ = showOAuthAlertIfNeeded(emailAddress: emailAdress, handleCancel: nil)
         }
       }
     }
+
+		if tappedCell.accessibilityIdentifier == "restoreCell" {
+				self.restoreBackup()
+		}
   }
 
   private func toggleAdvancedSection(button: UILabel) {
     let willShow = !advancedSectionShowing
 
     // extract indexPaths from advancedCells
-    let advancedIndexPaths: [IndexPath] = advancedSectionCells.indices.map { IndexPath(row: $0, section: 1) }
+    let advancedIndexPaths: [IndexPath] = advancedSectionCells.indices.map { IndexPath(row: $0, section: 2) }
 
     // advancedSectionCells.indices.map({indexPaths.append(IndexPath(row: $0, section: 1))}
 
@@ -284,7 +286,7 @@ class AccountSetupController: UITableViewController {
   private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {
     MRConfig.addr = emailAddress
     MRConfig.mailPw = password
-    if skipAdvanceSetup {
+    if !skipAdvanceSetup {
       evaluluateAdvancedSetup() // this will set MRConfig related to advanced fields
     }
     dc_configure(mailboxPointer)
@@ -414,6 +416,35 @@ class AccountSetupController: UITableViewController {
       }
     }
   }
+
+	private func restoreBackup() {
+		logger.info("restoring backup")
+		if MRConfig.configured {
+			return
+		}
+		let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+		if !documents.isEmpty {
+			logger.info("looking for backup in: \(documents[0])")
+
+			if let file = dc_imex_has_backup(mailboxPointer, documents[0]) {
+				logger.info("restoring backup: \(String(cString: file))")
+
+				hudHandler.showBackupHud("Restoring Backup")
+				dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
+
+				return
+			}
+
+			let alert = UIAlertController(title: "Can not restore", message: "No Backup found", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+
+			}))
+			present(alert, animated: true, completion: nil)
+			return
+		}
+
+		logger.error("no documents directory found")
+	}
 
   private func handleLoginSuccess() {
     // used when login hud successfully went trough
