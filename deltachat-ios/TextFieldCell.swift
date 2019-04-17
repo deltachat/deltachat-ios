@@ -1,6 +1,6 @@
 //
 //  TextFieldCell.swift
-//  deltachat-ios<
+//  deltachat-ios
 //
 //  Created by Friedel Ziegelmayer on 27.12.18.
 //  Copyright © 2018 Jonas Reinsch. All rights reserved.
@@ -91,7 +91,6 @@ class TextFieldCell: UITableViewCell {
 
   static func makeNameCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
     let cell = TextFieldCell(description: "Name", placeholder: "new contacts nickname")
-
     cell.textField.autocapitalizationType = .words
     cell.textField.autocorrectionType = .no
     // .namePhonePad doesn't support autocapitalization
@@ -105,7 +104,6 @@ class TextFieldCell: UITableViewCell {
 
   static func makeConfigCell(label: String, placeholder: String, delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
     let cell = TextFieldCell(description: label, placeholder: placeholder)
-
     cell.textField.autocapitalizationType = .words
     cell.textField.autocorrectionType = .no
     // .namePhonePad doesn't support autocapitalization
