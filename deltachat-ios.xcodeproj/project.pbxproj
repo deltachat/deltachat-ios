@@ -1001,6 +1001,7 @@
 					"$(inherited)",
 					"deltachat-ios/libraries/openssl/include",
 					/usr/local/include,
+					"deltachat-ios/libraries/rpgp",
 				);
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1079,6 +1080,7 @@
 					"$(inherited)",
 					"deltachat-ios/libraries/openssl/include",
 					/usr/local/include,
+					"deltachat-ios/libraries/rpgp",
 				);
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
