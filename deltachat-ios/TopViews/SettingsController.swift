@@ -98,10 +98,6 @@ internal final class SettingsViewController: QuickTableViewController {
 
     let deleteRow = TapActionRow(text: "Delete Account", action: { [weak self] in self?.deleteAccount($0) })
 
-    if MRConfig.configured {
-      backupRows.removeLast()
-    }
-
     tableContents = [
       Section(
         title: "User Details",
