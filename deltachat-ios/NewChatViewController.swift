@@ -53,10 +53,16 @@ class NewChatViewController: UITableViewController {
     deviceContactHandler.importDeviceContacts(delegate: self)
   }
 
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		self.deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
+		contactIds = Utils.getContactIds()
+
+	}
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
-    contactIds = Utils.getContactIds()
 
     let nc = NotificationCenter.default
     syncObserver = nc.addObserver(
@@ -201,34 +207,52 @@ class NewChatViewController: UITableViewController {
 
   override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
     let row = indexPath.row
-    if row == 0 {
-      let newGroupController = NewGroupViewController()
-      navigationController?.pushViewController(newGroupController, animated: true)
-    }
-    if row == 1 {
-      if UIImagePickerController.isSourceTypeAvailable(.camera) {
-        let controller = QrCodeReaderController()
-        controller.delegate = self
-        present(controller, animated: true, completion: nil)
+		let section = indexPath.section
 
-      } else {
-        let alert = UIAlertController(title: "Camera is not available", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
-          self.dismiss(animated: true, completion: nil)
-        }))
-        present(alert, animated: true, completion: nil)
-      }
-    }
-    if row == 2 {
-      let newContactController = NewContactController()
-      navigationController?.pushViewController(newContactController, animated: true)
-    }
+		if section == 0 {
+			if row == 0 {
+				let newGroupController = NewGroupViewController()
+				navigationController?.pushViewController(newGroupController, animated: true)
+			}
+			if row == 1 {
+				if UIImagePickerController.isSourceTypeAvailable(.camera) {
+					let controller = QrCodeReaderController()
+					controller.delegate = self
+					present(controller, animated: true, completion: nil)
+
+				} else {
+					let alert = UIAlertController(title: "Camera is not available", message: nil, preferredStyle: .alert)
+					alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+						self.dismiss(animated: true, completion: nil)
+					}))
+					present(alert, animated: true, completion: nil)
+				}
+			}
+			if row == 2 {
+				let newContactController = NewContactController()
+				navigationController?.pushViewController(newContactController, animated: true)
+			}
+		} else if section == 1 {
+			if deviceContactAccessGranted {
+				let contactIndex = row
+				let contactId = contactIds[contactIndex]
+				dismiss(animated: false) {
+					self.chatDisplayer?.displayNewChat(contactId: contactId)
+				}
+			} else {
+				showSettingsAlert()
+			}
+		} else {
+			let contactIndex = row
+			let contactId = contactIds[contactIndex]
+			dismiss(animated: false) {
+				self.chatDisplayer?.displayNewChat(contactId: contactId)
+			}
+		}
+
+
     if row > 2 {
-      let contactIndex = row - 3
-      let contactId = contactIds[contactIndex]
-      dismiss(animated: false) {
-        self.chatDisplayer?.displayNewChat(contactId: contactId)
-      }
+
     }
   }
 
@@ -295,14 +319,15 @@ extension NewChatViewController: DeviceContactsDelegate {
     deviceContactAccessGranted = false
   }
 
-  private func showSettingsAlert(_ completionHandler: @escaping (_ accessGranted: Bool) -> Void) {
-    let alert = UIAlertController(title: nil, message: "This app requires access to Contacts to proceed. Would you like to open settings and grant permission to contacts?", preferredStyle: .alert)
+  private func showSettingsAlert() {
+    let alert = UIAlertController(
+			title: "Import Contacts from to your device",
+			message: "To chat with contacts from your device open the settings menu and enable the Contacts option",
+			preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Open Settings", style: .default) { _ in
-      completionHandler(false)
       UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
     })
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
-      completionHandler(false)
     })
     present(alert, animated: true)
   }
