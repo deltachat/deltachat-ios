@@ -16,7 +16,11 @@ protocol ChatDisplayer: class {
 }
 
 class NewChatViewController: UITableViewController {
-  var contactIds: [Int] = Utils.getContactIds()
+	var contactIds: [Int] = Utils.getContactIds() {
+		didSet {
+			tableView.reloadData()
+		}
+	}
   weak var chatDisplayer: ChatDisplayer?
 
   var syncObserver: Any?
@@ -47,13 +51,15 @@ class NewChatViewController: UITableViewController {
     navigationItem.rightBarButtonItem = cancelButton
 
     deviceContactHandler.importDeviceContacts(delegate: self)
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "newChatCell")
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "importContactsCell")
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "contactCell")
   }
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
     contactIds = Utils.getContactIds()
-    tableView.reloadData()
 
     let nc = NotificationCenter.default
     syncObserver = nc.addObserver(
@@ -95,74 +101,87 @@ class NewChatViewController: UITableViewController {
   // MARK: - Table view data source
 
   override func numberOfSections(in _: UITableView) -> Int {
-    return 1
+		return deviceContactAccessGranted ? 2 : 3
   }
 
-  override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-    return contactIds.count + 3
+
+
+  override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if section == 0 {
+			return 3
+		} else if section == 1 {
+			if deviceContactAccessGranted {
+				return contactIds.count
+			} else {
+				return 1
+			}
+		} else {
+				return contactIds.count
+		}
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let section = indexPath.section
     let row = indexPath.row
-    if row == 0 {
-      // new group row
-      let cell: UITableViewCell
-      if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
-        cell = c
-      } else {
-        cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
-      }
-      cell.textLabel?.text = "New Group"
-      cell.textLabel?.textColor = view.tintColor
 
-      return cell
-    }
-    if row == 1 {
-      // new contact row
-      let cell: UITableViewCell
-      if let c = tableView.dequeueReusableCell(withIdentifier: "scanGroupCell") {
-        cell = c
-      } else {
-        cell = UITableViewCell(style: .default, reuseIdentifier: "scanGroupCell")
-      }
-      cell.textLabel?.text = "Scan Group QR Code"
-      cell.textLabel?.textColor = view.tintColor
+		if section == 0 {
+			if row == 0 {
+				// new group row
+				let cell: UITableViewCell
+				if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
+					cell = c
+				} else {
+					cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
+				}
+				cell.textLabel?.text = "New Group"
+				cell.textLabel?.textColor = view.tintColor
 
-      return cell
-    }
+				return cell
+			}
+			if row == 1 {
+				// new contact row
+				let cell: UITableViewCell
+				if let c = tableView.dequeueReusableCell(withIdentifier: "scanGroupCell") {
+					cell = c
+				} else {
+					cell = UITableViewCell(style: .default, reuseIdentifier: "scanGroupCell")
+				}
+				cell.textLabel?.text = "Scan Group QR Code"
+				cell.textLabel?.textColor = view.tintColor
 
-    if row == 2 {
-      // new contact row
-      let cell: UITableViewCell
-      if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
-        cell = c
-      } else {
-        cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
-      }
-      cell.textLabel?.text = "New Contact"
-      cell.textLabel?.textColor = view.tintColor
+				return cell
+			}
 
-      return cell
-    }
+			if row == 2 {
+				// new contact row
+				let cell: UITableViewCell
+				if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
+					cell = c
+				} else {
+					cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
+				}
+				cell.textLabel?.text = "New Contact"
+				cell.textLabel?.textColor = view.tintColor
 
-    let cell: ContactCell
-    if let c = tableView.dequeueReusableCell(withIdentifier: "contactCell") as? ContactCell {
-      cell = c
-    } else {
-      cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
-    }
+				return cell
+			}
+		} else if section == 1 {
+			if deviceContactAccessGranted {
+				let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
+				let contactId = contactIds[row]
+				updateContactCell(cell: cell, contactId: contactId)
+				return cell
+			} else {
 
-    let contactRow = row - 3
-
-    let contact = MRContact(id: contactIds[contactRow])
-    cell.nameLabel.text = contact.name
-    cell.emailLabel.text = contact.email
-    cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
-    cell.setColor(contact.color)
-
-    cell.accessoryType = .detailDisclosureButton
-    return cell
+			}
+		} else {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
+			let contactId = contactIds[row]
+			updateContactCell(cell: cell, contactId: contactId)
+			return cell
+		}
   }
+
 
   override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
     let row = indexPath.row
@@ -197,6 +216,7 @@ class NewChatViewController: UITableViewController {
     }
   }
 
+
   override func tableView(_: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
     let row = indexPath.row
     if row > 2 {
@@ -208,6 +228,16 @@ class NewChatViewController: UITableViewController {
       navigationController?.pushViewController(contactProfileController, animated: true)
     }
   }
+
+	private func updateContactCell(cell: ContactCell, contactId: Int) {
+		let contact = MRContact(id: contactId)
+		cell.nameLabel.text = contact.name
+		cell.emailLabel.text = contact.email
+		cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
+		cell.setColor(contact.color)
+		cell.accessoryType = .detailDisclosureButton
+	}
+
 }
 
 extension NewChatViewController: QrCodeReaderDelegate {
@@ -242,7 +272,7 @@ extension NewChatViewController: QrCodeReaderDelegate {
 
 extension NewChatViewController: DeviceContactsDelegate {
   func accessGranted() {
-    deviceContactAccessGranted = false
+    deviceContactAccessGranted = true
   }
 
   func accessDenied() {
