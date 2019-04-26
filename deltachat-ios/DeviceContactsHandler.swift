@@ -21,10 +21,21 @@ class DeviceContactsHandler {
 	private let store = CNContactStore()
 
 
-	public func getContacts() -> [DeviceContact] {
+	private func makeContactString(contacts: [CNContact]) -> String {
+		var contactString:String = ""
+		for contact in contacts {
+			let displayName: String = "\(contact.givenName) \(contact.familyName)"
+			// cnContact can have multiple email addresses -> create contact for each email address
+			for emailAddress in contact.emailAddresses {
+				contactString += "\(displayName)\n\(emailAddress.value)\n"
+			}
+		}
+		return contactString
+	}
+
+	private func getContacts() -> String {
 			let storedContacts = self.fetchContactsWithEmailFromDevice()
-			let contacts = storedContacts.map({self.makeContact(from: $0)})
-		return contacts
+			return makeContactString(contacts: storedContacts)
 	}
 
 
@@ -60,19 +71,19 @@ class DeviceContactsHandler {
 		return DeviceContact(displayName: displayName, emailAddresses: emailAdresses)
 	}
 
-	func requestDeviceContacts(delegate: DeviceContactsDelegate) {
+	func importDeviceContacts(delegate: DeviceContactsDelegate) {
 		switch CNContactStore.authorizationStatus(for: .contacts) {
 		case .authorized:
-			let contacts = getContacts()
-			delegate.setContacts(contacts: contacts)
+			let contactString = getContacts()
+			delegate.setContacts(contactString: contactString)
 		case .denied:
 			delegate.accessDenied()
 		case .restricted, .notDetermined:
 			store.requestAccess(for: .contacts) {[unowned self] granted, error in
 				if granted {
 					DispatchQueue.main.async {
-						let contacts = self.getContacts()
-						delegate.setContacts(contacts: contacts)
+						let contactString = self.getContacts()
+						delegate.setContacts(contactString: contactString)
 					}
 				} else {
 					DispatchQueue.main.async {

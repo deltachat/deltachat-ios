@@ -23,6 +23,11 @@ class NewChatViewController: UITableViewController {
   var hud: ProgressHud?
 
 	let deviceContactHandler = DeviceContactsHandler()
+	var deviceContactAccessGranted: Bool = false {
+		didSet {
+			tableView.reloadData()
+		}
+	}
 
 
   override func viewDidLoad() {
@@ -32,14 +37,14 @@ class NewChatViewController: UITableViewController {
     navigationController?.navigationBar.prefersLargeTitles = true
 
     let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(NewChatViewController.cancelButtonPressed))
-
     navigationItem.rightBarButtonItem = cancelButton
+
+		deviceContactHandler.importDeviceContacts(delegate: self)
   }
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
-		let contacts = deviceContactHandler.requestDeviceContacts(delegate: self)
 
     contactIds = Utils.getContactIds()
     tableView.reloadData()
@@ -230,12 +235,15 @@ extension NewChatViewController: QrCodeReaderDelegate {
 }
 
 extension NewChatViewController: DeviceContactsDelegate {
-	func setContacts(contacts: [DeviceContact]) {
-		print(contacts)
+	func setContacts(contactString: String) {
+		let number = dc_add_address_book(mailboxPointer, contactString)
+		self.deviceContactAccessGranted = true
+		print(number)
 	}
 
+
 	func accessDenied() {
-		
+		self.deviceContactAccessGranted = false
 	}
 
 	func requestAccess() {
@@ -258,7 +266,7 @@ extension NewChatViewController: DeviceContactsDelegate {
 }
 
 protocol DeviceContactsDelegate {
-	func setContacts(contacts: [DeviceContact])
+	func setContacts(contactString: String)
 	func accessDenied()
 	func requestAccess()
 }
