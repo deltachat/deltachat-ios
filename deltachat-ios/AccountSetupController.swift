@@ -458,7 +458,7 @@ extension AccountSetupController: UITextFieldDelegate {
       // special case: email field should check for potential oAuth
 
       // this will activate passwordTextField if oAuth-Dialogue was canceled
-      passwordCell.textField.becomeFirstResponder()
+      self.passwordCell.textField.becomeFirstResponder()
     }) {
       // all the action is defined in if condition
     } else {

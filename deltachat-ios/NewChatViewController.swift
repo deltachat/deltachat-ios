@@ -51,9 +51,6 @@ class NewChatViewController: UITableViewController {
     navigationItem.rightBarButtonItem = cancelButton
 
     deviceContactHandler.importDeviceContacts(delegate: self)
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "newChatCell")
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "importContactsCell")
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "contactCell")
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -167,19 +164,38 @@ class NewChatViewController: UITableViewController {
 			}
 		} else if section == 1 {
 			if deviceContactAccessGranted {
-				let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
+				let cell: ContactCell
+				if let c = tableView.dequeueReusableCell(withIdentifier: "contactCell") as? ContactCell {
+					cell = c
+				} else {
+					cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
+				}
 				let contactId = contactIds[row]
 				updateContactCell(cell: cell, contactId: contactId)
 				return cell
 			} else {
-
+				let cell: ActionCell
+				if let c = tableView.dequeueReusableCell(withIdentifier: "actionCell") as? ActionCell {
+					cell = c
+				} else {
+					cell = ActionCell(style: .default, reuseIdentifier: "actionCell")
+				}
+				cell.actionTitle = "Import Device Contacts"
+				return cell
 			}
 		} else {
-			let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
+			// section 2
+			let cell: ContactCell
+			if let c = tableView.dequeueReusableCell(withIdentifier: "contactCell") as? ContactCell {
+				cell = c
+			} else {
+				cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
+			}
 			let contactId = contactIds[row]
 			updateContactCell(cell: cell, contactId: contactId)
 			return cell
 		}
+		fatalError()
   }
 
 
