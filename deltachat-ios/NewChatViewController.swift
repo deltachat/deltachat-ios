@@ -7,8 +7,8 @@
 //
 
 import ALCameraViewController
-import UIKit
 import Contacts
+import UIKit
 
 protocol ChatDisplayer: class {
   func displayNewChat(contactId: Int)
@@ -22,13 +22,20 @@ class NewChatViewController: UITableViewController {
   var syncObserver: Any?
   var hud: ProgressHud?
 
-	let deviceContactHandler = DeviceContactsHandler()
-	var deviceContactAccessGranted: Bool = false {
-		didSet {
-			tableView.reloadData()
-		}
-	}
+  let deviceContactHandler = DeviceContactsHandler()
+  var deviceContactAccessGranted: Bool = false {
+    didSet {
+      tableView.reloadData()
+    }
+  }
 
+  init() {
+    super.init(style: .grouped)
+  }
+
+  required init?(coder _: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,12 +46,11 @@ class NewChatViewController: UITableViewController {
     let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(NewChatViewController.cancelButtonPressed))
     navigationItem.rightBarButtonItem = cancelButton
 
-		deviceContactHandler.importDeviceContacts(delegate: self)
+    deviceContactHandler.importDeviceContacts(delegate: self)
   }
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-
 
     contactIds = Utils.getContactIds()
     tableView.reloadData()
@@ -235,44 +241,28 @@ extension NewChatViewController: QrCodeReaderDelegate {
 }
 
 extension NewChatViewController: DeviceContactsDelegate {
-	func setContacts(contactString: String) {
-		let number = dc_add_address_book(mailboxPointer, contactString)
-		self.deviceContactAccessGranted = true
-		print(number)
-	}
+  func accessGranted() {
+    deviceContactAccessGranted = false
+  }
 
+  func accessDenied() {
+    deviceContactAccessGranted = false
+  }
 
-	func accessDenied() {
-		self.deviceContactAccessGranted = false
-	}
-
-	func requestAccess() {
-		// ignore for now
-	}
-
-
-
-	private func showSettingsAlert(_ completionHandler: @escaping (_ accessGranted: Bool) -> Void) {
-		let alert = UIAlertController(title: nil, message: "This app requires access to Contacts to proceed. Would you like to open settings and grant permission to contacts?", preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "Open Settings", style: .default) { action in
-			completionHandler(false)
-			UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-		})
-		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { action in
-			completionHandler(false)
-		})
-		present(alert, animated: true)
-	}
+  private func showSettingsAlert(_ completionHandler: @escaping (_ accessGranted: Bool) -> Void) {
+    let alert = UIAlertController(title: nil, message: "This app requires access to Contacts to proceed. Would you like to open settings and grant permission to contacts?", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Open Settings", style: .default) { _ in
+      completionHandler(false)
+      UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+    })
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+      completionHandler(false)
+    })
+    present(alert, animated: true)
+  }
 }
 
 protocol DeviceContactsDelegate {
-	func setContacts(contactString: String)
-	func accessDenied()
-	func requestAccess()
+  func accessGranted()
+  func accessDenied()
 }
-
-/*
-To Chat
-
-
-*/

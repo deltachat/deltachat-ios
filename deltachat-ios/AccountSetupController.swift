@@ -35,11 +35,11 @@ class AccountSetupController: UITableViewController {
     return cell
   }()
 
-	private lazy var restoreCell: ActionCell = {
-		let cell = ActionCell(title: "Restore from backup")
-		cell.accessibilityIdentifier = "restoreCell"
-		return cell
-	}()
+  private lazy var restoreCell: ActionCell = {
+    let cell = ActionCell(title: "Restore from backup")
+    cell.accessibilityIdentifier = "restoreCell"
+    return cell
+  }()
 
   lazy var imapServerCell: TextFieldCell = {
     let cell = TextFieldCell(description: "IMAP Server", placeholder: MRConfig.mailServer ?? MRConfig.configuredMailServer, delegate: self)
@@ -112,7 +112,7 @@ class AccountSetupController: UITableViewController {
   let loginButton: UIBarButtonItem = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
 
   private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
-	private lazy var restoreCells: [UITableViewCell] = [restoreCell]
+  private lazy var restoreCells: [UITableViewCell] = [restoreCell]
   private lazy var advancedSectionCells: [UITableViewCell] = [
     imapServerCell,
     imapUserCell,
@@ -146,7 +146,7 @@ class AccountSetupController: UITableViewController {
     super.viewDidAppear(animated)
     addProgressHudEventListener()
     // loginButton.isEnabled = false
-	}
+  }
 
   override func viewDidDisappear(_: Bool) {
     let nc = NotificationCenter.default
@@ -171,9 +171,9 @@ class AccountSetupController: UITableViewController {
   override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
     // #warning Incomplete implementation, return the number of rows
     if section == 0 {
-			return basicSectionCells.count
-		} else if section == 1 {
-			return restoreCells.count
+      return basicSectionCells.count
+    } else if section == 1 {
+      return restoreCells.count
     } else {
       return advancedSectionShowing ? advancedSectionCells.count : 0
     }
@@ -207,12 +207,11 @@ class AccountSetupController: UITableViewController {
   override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
     if section == 0 {
       return "There are no Delta Chat servers, your data stays on your device!"
-    } else if section == 2{
+    } else if section == 2 {
       return "For known email providers additional settings are setup automatically. Sometimes IMAP needs to be enabled in the web frontend. Consult your email provider or friends for help"
-		} else {
-			return nil
-		}
-
+    } else {
+      return nil
+    }
   }
 
   override func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -222,8 +221,8 @@ class AccountSetupController: UITableViewController {
     if section == 0 {
       // basicSection
       return basicSectionCells[row]
-		} else if section == 1 {
-			return restoreCells[row]
+    } else if section == 1 {
+      return restoreCells[row]
     } else {
       // advancedSection
       return advancedSectionCells[row]
@@ -231,9 +230,8 @@ class AccountSetupController: UITableViewController {
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-		guard let tappedCell = tableView.cellForRow(at: indexPath) else { return }
-		// handle tap on password -> show oAuthDialogue
+    guard let tappedCell = tableView.cellForRow(at: indexPath) else { return }
+    // handle tap on password -> show oAuthDialogue
     if let textFieldCell = tappedCell as? TextFieldCell {
       if textFieldCell.accessibilityIdentifier == "passwordCell" {
         if let emailAdress = textFieldCell.getText() {
@@ -242,9 +240,9 @@ class AccountSetupController: UITableViewController {
       }
     }
 
-		if tappedCell.accessibilityIdentifier == "restoreCell" {
-				self.restoreBackup()
-		}
+    if tappedCell.accessibilityIdentifier == "restoreCell" {
+      restoreBackup()
+    }
   }
 
   private func toggleAdvancedSection(button: UILabel) {
@@ -417,34 +415,34 @@ class AccountSetupController: UITableViewController {
     }
   }
 
-	private func restoreBackup() {
-		logger.info("restoring backup")
-		if MRConfig.configured {
-			return
-		}
-		let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-		if !documents.isEmpty {
-			logger.info("looking for backup in: \(documents[0])")
+  private func restoreBackup() {
+    logger.info("restoring backup")
+    if MRConfig.configured {
+      return
+    }
+    let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+    if !documents.isEmpty {
+      logger.info("looking for backup in: \(documents[0])")
 
-			if let file = dc_imex_has_backup(mailboxPointer, documents[0]) {
-				logger.info("restoring backup: \(String(cString: file))")
+      if let file = dc_imex_has_backup(mailboxPointer, documents[0]) {
+        logger.info("restoring backup: \(String(cString: file))")
 
-				hudHandler.showBackupHud("Restoring Backup")
-				dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
+        hudHandler.showBackupHud("Restoring Backup")
+        dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
 
-				return
-			}
+        return
+      }
 
-			let alert = UIAlertController(title: "Can not restore", message: "No Backup found", preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+      let alert = UIAlertController(title: "Can not restore", message: "No Backup found", preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
 
-			}))
-			present(alert, animated: true, completion: nil)
-			return
-		}
+      }))
+      present(alert, animated: true, completion: nil)
+      return
+    }
 
-		logger.error("no documents directory found")
-	}
+    logger.error("no documents directory found")
+  }
 
   private func handleLoginSuccess() {
     // used when login hud successfully went trough
@@ -460,7 +458,7 @@ extension AccountSetupController: UITextFieldDelegate {
       // special case: email field should check for potential oAuth
 
       // this will activate passwordTextField if oAuth-Dialogue was canceled
-      self.passwordCell.textField.becomeFirstResponder()
+      passwordCell.textField.becomeFirstResponder()
     }) {
       // all the action is defined in if condition
     } else {
@@ -579,10 +577,10 @@ class AdvancedSectionHeader: UIView {
 
  // TODO: to add Eye-icon -> uncomment -> add to inputField.rightView
  /*
-  lazy var makeVisibleIcon: UIImageView = {
-  let view = UIImageView(image: )
-  return view
-  }()
+   lazy var makeVisibleIcon: UIImageView = {
+   let view = UIImageView(image: )
+   return view
+   }()
   */
  init() {
  super.init(style: .default, reuseIdentifier: nil)

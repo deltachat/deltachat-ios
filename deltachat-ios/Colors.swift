@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIColor {
-	static var systemBlue: UIColor {
-		return UIButton(type: .system).tintColor
-	}
+  static var systemBlue: UIColor {
+    return UIButton(type: .system).tintColor
+  }
 }

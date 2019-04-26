@@ -14,8 +14,6 @@ extension String {
   }
 }
 
-
-
 extension URL {
   public var queryParameters: [String: String]? {
     guard
