@@ -51,7 +51,8 @@ struct Utils {
     let lenArray = dc_array_get_cnt(inputArray)
     if lenArray <= skipEnd || lenArray == 0 {
       dc_array_unref(inputArray)
-      return [] }
+      return []
+    }
 
     let start = lenArray - 1 - skipEnd
     let end = max(0, start - len)

@@ -16,16 +16,16 @@ internal final class SettingsViewController: QuickTableViewController {
   let documentInteractionController = UIDocumentInteractionController()
   var backupProgressObserver: Any?
   var configureProgressObserver: Any?
-  var backupHud: JGProgressHUD?
 
-  // MARK: - View lifecycle
+  private lazy var hudHandler: HudHandler = {
+    let hudHandler = HudHandler(parentView: self.tableView)
+    return hudHandler
+  }()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Settings"
-
     documentInteractionController.delegate = self as? UIDocumentInteractionControllerDelegate
-
     setTable()
   }
 
@@ -36,15 +36,14 @@ internal final class SettingsViewController: QuickTableViewController {
       forName: dcNotificationBackupProgress,
       object: nil,
       queue: nil
-    ) {
-      notification in
+    ) { notification in
       if let ui = notification.userInfo {
         if ui["error"] as! Bool {
-          self.setHudError(ui["errorMessage"] as? String)
+          self.hudHandler.setHudError(ui["errorMessage"] as? String)
         } else if ui["done"] as! Bool {
-          self.setHudDone()
+          self.hudHandler.setHudDone(callback: nil)
         } else {
-          self.setHudProgress(ui["progress"] as! Int)
+          self.hudHandler.setHudProgress(ui["progress"] as! Int)
         }
       }
     }
@@ -52,15 +51,14 @@ internal final class SettingsViewController: QuickTableViewController {
       forName: dcNotificationConfigureProgress,
       object: nil,
       queue: nil
-    ) {
-      notification in
+    ) { notification in
       if let ui = notification.userInfo {
         if ui["error"] as! Bool {
-          self.setHudError(ui["errorMessage"] as? String)
+          self.hudHandler.setHudError(ui["errorMessage"] as? String)
         } else if ui["done"] as! Bool {
-          self.setHudDone()
+          self.hudHandler.setHudDone(callback: nil)
         } else {
-          self.setHudProgress(ui["progress"] as! Int)
+          self.hudHandler.setHudProgress(ui["progress"] as! Int)
         }
       }
     }
@@ -81,62 +79,6 @@ internal final class SettingsViewController: QuickTableViewController {
     }
   }
 
-  private func setHudError(_ message: String?) {
-    if let hud = self.backupHud {
-      DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-        UIView.animate(
-          withDuration: 0.1, animations: {
-            hud.textLabel.text = message ?? "Error"
-            hud.detailTextLabel.text = nil
-            hud.indicatorView = JGProgressHUDErrorIndicatorView()
-          }
-        )
-
-        hud.dismiss(afterDelay: 5.0)
-      }
-    }
-  }
-
-  private func setHudDone() {
-    if let hud = self.backupHud {
-      DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-        UIView.animate(
-          withDuration: 0.1, animations: {
-            hud.textLabel.text = "Success"
-            hud.detailTextLabel.text = nil
-            hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-          }
-        )
-
-        self.setTable()
-        self.tableView.reloadData()
-
-        hud.dismiss(afterDelay: 1.0)
-      }
-    }
-  }
-
-  private func setHudProgress(_ progress: Int) {
-    if let hud = self.backupHud {
-      hud.progress = Float(progress) / 1000.0
-      hud.detailTextLabel.text = "\(progress / 10)% Complete"
-    }
-  }
-
-  private func showBackupHud(_ text: String) {
-    DispatchQueue.main.async {
-      let hud = JGProgressHUD(style: .dark)
-      hud.vibrancyEnabled = true
-      hud.indicatorView = JGProgressHUDPieIndicatorView()
-
-      hud.detailTextLabel.text = "0% Complete"
-      hud.textLabel.text = text
-      hud.show(in: self.view)
-
-      self.backupHud = hud
-    }
-  }
-
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
 
@@ -150,50 +92,21 @@ internal final class SettingsViewController: QuickTableViewController {
   }
 
   private func setTable() {
-    let basicsRows: [Row & RowStyle] = [
-      NavigationRow(title: "Email", subtitle: .rightAligned(MRConfig.addr ?? ""), action: editCell()),
-      NavigationRow(title: "Password", subtitle: .rightAligned("********"), action: editCell()),
-      TapActionRow(title: "Configure", action: { [weak self] in self?.configure($0) }),
-    ]
     var backupRows = [
-      TapActionRow(title: "Create backup", action: { [weak self] in self?.createBackup($0) }),
-      TapActionRow(title: "Restore from backup", action: { [weak self] in self?.restoreBackup($0) }),
+      TapActionRow(text: "Create backup", action: { [weak self] in self?.createBackup($0) }),
     ]
 
-    let deleteRow = TapActionRow(title: "Delete Account", action: { [weak self] in self?.deleteAccount($0) })
-
-    if MRConfig.configured {
-      backupRows.removeLast()
-    }
+    let deleteRow = TapActionRow(text: "Delete Account", action: { [weak self] in self?.deleteAccount($0) })
 
     tableContents = [
-      Section(
-        title: "Basics",
-        rows: basicsRows
-      ),
-
       Section(
         title: "User Details",
         rows: [
           NavigationRow(text: "Display Name", detailText: .value1(MRConfig.displayname ?? ""), action: editCell()),
           NavigationRow(text: "Status", detailText: .value1(MRConfig.selfstatus ?? ""), action: editCell()),
+          TapActionRow(text: "Configure my Account", action: { [weak self] in self?.presentAccountSetup($0) }),
         ]
       ),
-
-      Section(
-        title: "Advanced",
-        rows: [
-          NavigationRow(text: "IMAP Server", detailText: .value1(MRConfig.mailServer ?? MRConfig.configuredMailServer), action: editCell()),
-          NavigationRow(text: "IMAP User", detailText: .value1(MRConfig.mailUser ?? MRConfig.configuredMailUser), action: editCell()),
-          NavigationRow(text: "IMAP Port", detailText: .value1(MRConfig.mailPort ?? MRConfig.configuredMailPort), action: editCell()),
-
-          NavigationRow(text: "SMTP Server", detailText: .value1(MRConfig.sendServer ?? MRConfig.configuredSendServer), action: editCell()),
-          NavigationRow(text: "SMTP User", detailText: .value1(MRConfig.sendUser ?? MRConfig.configuredSendUser), action: editCell()),
-          NavigationRow(text: "SMTP Port", detailText: .value1(MRConfig.sendPort ?? MRConfig.configuredSendPort), action: editCell()),
-          NavigationRow(text: "SMTP Password", detailText: .value1("********"), action: editCell())
-        ]
-      ),
-
       Section(
         title: "Flags",
         rows: [
@@ -213,12 +126,10 @@ internal final class SettingsViewController: QuickTableViewController {
       ),
 
       Section(title: "Danger", rows: [
-        deleteRow
+        deleteRow,
       ]),
     ]
   }
-
-  // MARK: - Actions
 
   // FIXME: simplify this method
   // swiftlint:disable cyclomatic_complexity
@@ -259,6 +170,7 @@ internal final class SettingsViewController: QuickTableViewController {
         default:
           logger.info("unknown title", title)
         }
+        dc_configure(mailboxPointer)
         return
       }
 
@@ -275,41 +187,18 @@ internal final class SettingsViewController: QuickTableViewController {
         var needRefresh = false
 
         switch title {
-        case "Email":
-          MRConfig.addr = field.text
-        case "Password":
-          MRConfig.mailPw = field.text
         case "Display Name":
           MRConfig.displayname = field.text
           needRefresh = true
         case "Status":
           MRConfig.selfstatus = field.text
           needRefresh = true
-        case "IMAP Server":
-          MRConfig.mailServer = field.text
-          needRefresh = true
-        case "IMAP User":
-          MRConfig.mailUser = field.text
-          needRefresh = true
-        case "IMAP Port":
-          MRConfig.mailPort = field.text
-          needRefresh = true
-        case "SMTP Server":
-          MRConfig.sendServer = field.text
-          needRefresh = true
-        case "SMTP User":
-          MRConfig.sendUser = field.text
-          needRefresh = true
-        case "SMTP Port":
-          MRConfig.sendPort = field.text
-          needRefresh = true
-        case "SMTP Password":
-          MRConfig.sendPw = field.text
         default:
           logger.info("unknown title", title)
         }
 
         if needRefresh {
+          dc_configure(mailboxPointer)
           self?.setTable()
           self?.tableView.reloadData()
         }
@@ -321,23 +210,6 @@ internal final class SettingsViewController: QuickTableViewController {
 
       alertController.addTextField { textField in
         textField.placeholder = subtitle
-        if title.contains("Password") {
-          textField.isSecureTextEntry = true
-          textField.textContentType = .password
-        }
-
-        if title == "Email" {
-          textField.keyboardType = .emailAddress
-          textField.textContentType = .username
-        }
-
-        if title.contains("Server") {
-          textField.keyboardType = .URL
-        }
-
-        if title.contains("Port") {
-          textField.keyboardType = .numberPad
-        }
       }
 
       alertController.addAction(confirmAction)
@@ -353,7 +225,7 @@ internal final class SettingsViewController: QuickTableViewController {
     let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     if !documents.isEmpty {
       logger.info("create backup in \(documents)")
-      showBackupHud("Creating Backup")
+      hudHandler.showBackupHud("Creating Backup")
       DispatchQueue.main.async {
         dc_imex(mailboxPointer, DC_IMEX_EXPORT_BACKUP, documents[0], nil)
       }
@@ -362,43 +234,17 @@ internal final class SettingsViewController: QuickTableViewController {
     }
   }
 
-  private func restoreBackup(_: Row) {
-    logger.info("restoring backup")
-    if MRConfig.configured {
-      return
-    }
-    let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-    if !documents.isEmpty {
-      logger.info("looking for backup in: \(documents[0])")
-
-      if let file = dc_imex_has_backup(mailboxPointer, documents[0]) {
-        logger.info("restoring backup: \(String(cString: file))")
-
-        showBackupHud("Restoring Backup")
-        dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
-
-        return
-      }
-
-      let alert = UIAlertController(title: "Can not restore", message: "No Backup found", preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
-        self.dismiss(animated: true, completion: nil)
-      }))
-      present(alert, animated: true, completion: nil)
-      return
-    }
-
-    logger.error("no documents directory found")
-  }
 
   private func configure(_: Row) {
-    showBackupHud("Configuring account")
+    hudHandler.showBackupHud("Configuring account")
     dc_configure(mailboxPointer)
   }
 
   private func deleteAccount(_: Row) {
     logger.info("deleting account")
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+      return
+    }
 
     let dbfile = appDelegate.dbfile()
     let dburl = URL(fileURLWithPath: dbfile, isDirectory: false)
@@ -425,5 +271,11 @@ internal final class SettingsViewController: QuickTableViewController {
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
 
     present(alert, animated: true, completion: nil)
+  }
+
+  private func presentAccountSetup(_: Row) {
+		if let nav = self.navigationController {
+			nav.pushViewController(AccountSetupController(), animated: true)
+		}	
   }
 }

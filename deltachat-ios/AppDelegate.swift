@@ -47,6 +47,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     return []
   }
 
+  func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+    // gets here when app returns from oAuth2-Setup process - the url contains the provided token
+    if let params = url.queryParameters, let token = params["code"] {
+      NotificationCenter.default.post(name: NSNotification.Name("oauthLoginApproved"), object: nil, userInfo: ["token": token])
+    }
+    return true
+  }
+
   func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     DBDebugToolkit.setup()
     DBDebugToolkit.setupCrashReporting()
@@ -62,15 +70,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     guard let window = window else {
       fatalError("window was nil in app delegate")
     }
-    AppDelegate.appCoordinator.setupViewControllers(window: window)
-
-    UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-
-    start()
+    // setup deltachat core context
+    //       - second param remains nil (user data for more than one mailbox)
     open()
-
+    let isConfigured = dc_is_configured(mailboxPointer) != 0
+    AppDelegate.appCoordinator.setupViewControllers(window: window)
+    UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+    start()
     registerForPushNotifications()
-
+    if !isConfigured {
+      AppDelegate.appCoordinator.presentAccountSetup(animated: false)
+    }
     return true
   }
 
@@ -131,6 +141,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
   func open() {
     logger.info("open: \(dbfile())")
 
+    if mailboxPointer == nil {
+      mailboxPointer = dc_context_new(callback_ios, nil, "iOS")
+      guard mailboxPointer != nil else {
+        fatalError("Error: dc_context_new returned nil")
+      }
+    }
     _ = dc_open(mailboxPointer, dbfile(), nil)
   }
 
@@ -155,14 +171,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     if state == .running {
       return
-    }
-
-    if mailboxPointer == nil {
-      //       - second param remains nil (user data for more than one mailbox)
-      mailboxPointer = dc_context_new(callback_ios, nil, "iOS")
-      guard mailboxPointer != nil else {
-        fatalError("Error: dc_context_new returned nil")
-      }
     }
 
     state = .running

@@ -95,7 +95,7 @@ class ChatViewController: MessagesViewController {
       ids = Utils.copyAndFreeArrayWithLen(inputArray: cMessageIds, len: count)
     }
 
-    let markIds: [UInt32] = ids.map { return UInt32($0) }
+    let markIds: [UInt32] = ids.map { UInt32($0) }
     dc_markseen_msgs(mailboxPointer, UnsafePointer(markIds), Int32(ids.count))
 
     return ids.map {

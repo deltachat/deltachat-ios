@@ -67,7 +67,7 @@
 		78E45E3021D1774200D4B15E /* dc_move.c in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2E21D1774200D4B15E /* dc_move.c */; };
 		78E45E3321D3CBC000D4B15E /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3221D3CBC000D4B15E /* AppTabBarController.swift */; };
 		78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3921D3CFBC00D4B15E /* SettingsController.swift */; };
-		78E45E3C21D3D03700D4B15E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3B21D3D03700D4B15E /* TableViewCell.swift */; };
+		78E45E3C21D3D03700D4B15E /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */; };
 		78E45E3E21D3D28C00D4B15E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3D21D3D28C00D4B15E /* NavigationController.swift */; };
 		78E45E4021D3D70700D4B15E /* ContactListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3F21D3D70700D4B15E /* ContactListController.swift */; };
 		78E45E4221D3DB4000D4B15E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4121D3DB4000D4B15E /* UIViewController+Extension.swift */; };
@@ -89,10 +89,15 @@
 		7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */; };
 		8B6D425BC604F7C43B65D436 /* Pods_deltachat_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */; };
 		AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */; };
+		AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B31722672DFC00EC37A1 /* ActionCell.swift */; };
+		AE38B31A2267328200EC37A1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B3192267328200EC37A1 /* Colors.swift */; };
 		AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */; };
 		AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DE1FB3246400DCDD78 /* Message.swift */; };
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
 		AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E41FB32E1900DCDD78 /* Utils.swift */; };
+		AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D752253431E007DC082 /* AccountSetupController.swift */; };
+		AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7C2253ADB4007DC082 /* HudHandler.swift */; };
+		AEE56D80225504DB007DC082 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7F225504DB007DC082 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,7 +201,7 @@
 		78E45E2E21D1774200D4B15E /* dc_move.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_move.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_move.c"; sourceTree = "<group>"; };
 		78E45E3221D3CBC000D4B15E /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
 		78E45E3921D3CFBC00D4B15E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
-		78E45E3B21D3D03700D4B15E /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		78E45E3D21D3D28C00D4B15E /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		78E45E3F21D3D70700D4B15E /* ContactListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListController.swift; sourceTree = "<group>"; };
 		78E45E4121D3DB4000D4B15E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -260,10 +265,16 @@
 		8DE110C607A0E4485C43B5FA /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.release.xcconfig"; sourceTree = "<group>"; };
 		AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; };
+		AE38B31722672DFC00EC37A1 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
+		AE38B3192267328200EC37A1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		AEA9CC2F22522DA20061D113 /* librpgp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = librpgp.h; sourceTree = "<group>"; };
 		AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		AEACE2DE1FB3246400DCDD78 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AEACE2E41FB32E1900DCDD78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		AEE56D752253431E007DC082 /* AccountSetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupController.swift; sourceTree = "<group>"; };
+		AEE56D7C2253ADB4007DC082 /* HudHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudHandler.swift; sourceTree = "<group>"; };
+		AEE56D7F225504DB007DC082 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +299,7 @@
 			children = (
 				78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */,
 				78E45E4121D3DB4000D4B15E /* UIViewController+Extension.swift */,
+				AEE56D7F225504DB007DC082 /* Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -408,7 +420,9 @@
 				7A9FB4F81FB084E6001FEA36 /* Frameworks */,
 				7DB2DC4CCB84D323E5130F99 /* Pods */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		7A9FB1411FB061E2001FEA36 /* Products */ = {
 			isa = PBXGroup;
@@ -454,8 +468,12 @@
 				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
 				78ED839321D5AF8A00243125 /* QrCodeView.swift */,
 				AEACE2E41FB32E1900DCDD78 /* Utils.swift */,
-				78E45E3B21D3D03700D4B15E /* TableViewCell.swift */,
+				78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */,
 				78ED838221D5379000243125 /* TextFieldCell.swift */,
+				AEE56D752253431E007DC082 /* AccountSetupController.swift */,
+				AEE56D7C2253ADB4007DC082 /* HudHandler.swift */,
+				AE38B31722672DFC00EC37A1 /* ActionCell.swift */,
+				AE38B3192267328200EC37A1 /* Colors.swift */,
 			);
 			path = "deltachat-ios";
 			sourceTree = "<group>";
@@ -514,6 +532,7 @@
 				7070FB4920FF345B000DC258 /* dc_dehtml.c */,
 				7070FB5920FF345E000DC258 /* dc_e2ee.c */,
 				7070FB4520FF345B000DC258 /* dc_hash.c */,
+				AEA9CC2F22522DA20061D113 /* librpgp.h */,
 				7070FB5220FF345D000DC258 /* dc_imex.c */,
 				7070FB5020FF345C000DC258 /* dc_job.c */,
 				7070FB5720FF345E000DC258 /* dc_key.c */,
@@ -795,12 +814,14 @@
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
 				78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */,
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
-				78E45E3C21D3D03700D4B15E /* TableViewCell.swift in Sources */,
+				78E45E3C21D3D03700D4B15E /* TextFieldTableViewCell.swift in Sources */,
 				7070FB7220FF345F000DC258 /* dc_key.c in Sources */,
 				7070FB7420FF345F000DC258 /* dc_e2ee.c in Sources */,
 				AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */,
 				7070FB6920FF345F000DC258 /* dc_mimeparser.c in Sources */,
+				AEE56D80225504DB007DC082 /* Extensions.swift in Sources */,
 				7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */,
+				AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */,
 				7070FB6020FF345F000DC258 /* dc_hash.c in Sources */,
 				AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */,
 				7070FB4020FF3421000DC258 /* dc_chat.c in Sources */,
@@ -809,6 +830,7 @@
 				78ED838F21D5927A00243125 /* ProfileViewController.swift in Sources */,
 				78E45E4221D3DB4000D4B15E /* UIViewController+Extension.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
+				AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */,
 				7032FF8F2149C1DB00B7EC83 /* BaseController.swift in Sources */,
 				7070FB9320FF4118000DC258 /* dc_msg.c in Sources */,
 				7070FB6820FF345F000DC258 /* dc_array.c in Sources */,
@@ -819,6 +841,7 @@
 				789E879D21D6DF86003ED1C5 /* ProgressHud.swift in Sources */,
 				7070FB8C20FF4118000DC258 /* dc_contact.c in Sources */,
 				78E45E4C21D404AE00D4B15E /* CustomCell.swift in Sources */,
+				AE38B31A2267328200EC37A1 /* Colors.swift in Sources */,
 				7070FB7020FF345F000DC258 /* dc_lot.c in Sources */,
 				789E879621D6CB58003ED1C5 /* QrCodeReaderController.swift in Sources */,
 				7070FB5F20FF345F000DC258 /* dc_tools.c in Sources */,
@@ -832,6 +855,7 @@
 				7070FB5E20FF345F000DC258 /* dc_token.c in Sources */,
 				7070FB6C20FF345F000DC258 /* dc_keyring.c in Sources */,
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
+				AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */,
 				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
 				AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */,
 			);
@@ -977,6 +1001,7 @@
 					"$(inherited)",
 					"deltachat-ios/libraries/openssl/include",
 					/usr/local/include,
+					"deltachat-ios/libraries/rpgp",
 				);
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1055,6 +1080,7 @@
 					"$(inherited)",
 					"deltachat-ios/libraries/openssl/include",
 					/usr/local/include,
+					"deltachat-ios/libraries/rpgp",
 				);
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

@@ -21,6 +21,29 @@ let dcNotificationViewChat = Notification.Name(rawValue: "MrEventViewChat")
 
 public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLong, data1String: UnsafePointer<Int8>, data2String: UnsafePointer<Int8>) -> UnsafePointer<Int8>? {
   switch event {
+  case DC_EVENT_HTTP_POST:
+
+    let urlString = String(cString: data1String)
+    logger.info("network: http post: \(urlString)")
+
+    let base = String(urlString.split(separator: "?")[0])
+
+    guard let baseUrl = URL(string: base), let url = URL(string: urlString) else {
+      return nil
+    }
+    var request = URLRequest(url: baseUrl)
+    request.httpMethod = "POST"
+
+    if let params = url.queryParameters {
+      request.httpBody = params.percentEscaped().data(using: .utf8)
+    }
+
+    let (data, _, _) = URLSession.shared.synchronousDataTask(request: request) // returns (data, response, error)
+    guard let receivedData = data, let dataString = String(bytes: receivedData, encoding: .utf8) else {
+      return nil
+    }
+    let p = UnsafePointer(strdup(dataString))
+    return p
   case DC_EVENT_HTTP_GET:
     let urlString = String(cString: data1String)
     logger.info("network: http get: \(urlString)")
