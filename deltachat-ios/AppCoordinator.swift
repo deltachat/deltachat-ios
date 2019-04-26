@@ -33,12 +33,4 @@ class AppCoordinator: Coordinator {
     let chatNavigationController = UINavigationController(rootViewController: chatListController)
     baseController.present(chatNavigationController, animated: false, completion: nil)
   }
-
-  /*
-   func setupAccountSetup() {
-     let accountSetupController = AccountSetupController()
-     let accountSetupNavigationController = UINavigationController(rootViewController: accountSetupController)
-     baseController.present(accountSetupNavigationController, animated: false, completion: nil)
-   }
-   */
 }

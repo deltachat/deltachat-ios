@@ -22,16 +22,7 @@ class ChatListController: UIViewController {
 
   var newButton: UIBarButtonItem!
 
-  func getChatList() {
-    guard let chatlistPointer = dc_get_chatlist(mailboxPointer, DC_GCL_NO_SPECIALS, nil, 0) else {
-      fatalError("chatlistPointer was nil")
-    }
-    // ownership of chatlistPointer transferred here to ChatList object
-    chatList = MRChatList(chatListPointer: chatlistPointer)
 
-    chatTableDataSource.chatList = chatList
-    chatTable.reloadData()
-  }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -117,6 +108,17 @@ class ChatListController: UIViewController {
     let nav = UINavigationController(rootViewController: ncv)
     present(nav, animated: true, completion: nil)
   }
+
+	func getChatList() {
+		guard let chatlistPointer = dc_get_chatlist(mailboxPointer, DC_GCL_NO_SPECIALS, nil, 0) else {
+			fatalError("chatlistPointer was nil")
+		}
+		// ownership of chatlistPointer transferred here to ChatList object
+		chatList = MRChatList(chatListPointer: chatlistPointer)
+
+		chatTableDataSource.chatList = chatList
+		chatTable.reloadData()
+	}
 }
 
 extension ChatListController: ChatPresenter {
@@ -195,6 +197,8 @@ class ChatTableDataSource: NSObject, UITableViewDataSource {
     cell.emailLabel.text = result
     return cell
   }
+
+
 }
 
 protocol ChatPresenter: class {
