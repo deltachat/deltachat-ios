@@ -32,12 +32,13 @@ class NewChatViewController: UITableViewController {
 		}
 	}
 
-	var contacts:[ContactWithHighlight] {
-		return contactIds.map({ return ContactWithHighlight(contact: MRContact(id: $0), indexesToHighlight: [])})
+	// contactWithSearchResults.indexesToHightLight empty by default
+	var contacts:[ContactWithSearchResults] {
+		return contactIds.map({ return ContactWithSearchResults(contact: MRContact(id: $0), indexesToHighlight: [])})
 	}
 
 	// used when seachbar is active
-	var filteredContacts: [ContactWithHighlight] = []
+	var filteredContacts: [ContactWithSearchResults] = []
 
 
 	// searchBar active?
@@ -211,7 +212,7 @@ class NewChatViewController: UITableViewController {
 				} else {
 					cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
 				}
-				let contact: ContactWithHighlight = isFiltering() ? filteredContacts[row] : contacts[row]
+				let contact: ContactWithSearchResults = isFiltering() ? filteredContacts[row] : contacts[row]
 				updateContactCell(cell: cell, contactWithHighlight: contact)
 				return cell
 			} else {
@@ -233,7 +234,7 @@ class NewChatViewController: UITableViewController {
 				cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
 			}
 
-			let contact: ContactWithHighlight = isFiltering() ? filteredContacts[row] : contacts[row]
+			let contact: ContactWithSearchResults = isFiltering() ? filteredContacts[row] : contacts[row]
 			updateContactCell(cell: cell, contactWithHighlight: contact)
 			return cell
 		}
@@ -300,19 +301,18 @@ class NewChatViewController: UITableViewController {
     }
   }
 
-	private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithHighlight) {
+	private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {
 
 		let contact = contactWithHighlight.contact
 
-
 		if let nameHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({$0.contactDetail == .NAME}).first,
 			let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({$0.contactDetail == .EMAIL}).first {
-			// gets here when contact is a result of search -> highlights relevant indexes
+			// gets here when contact is a result of current search -> highlights relevant indexes
 			let nameLabelFontSize = cell.nameLabel.font.pointSize
 			let emailLabelFontSize = cell.emailLabel.font.pointSize
 
-			cell.nameLabel.attributedText = contact.name.bold(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
-			cell.emailLabel.attributedText = contact.email.bold(indexes: emailHighlightedIndexes.indexes, fontSize: emailLabelFontSize)
+			cell.nameLabel.attributedText = contact.name.boldAt(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
+			cell.emailLabel.attributedText = contact.email.boldAt(indexes: emailHighlightedIndexes.indexes, fontSize: emailLabelFontSize)
 		} else {
 			cell.nameLabel.text = contact.name
 			cell.emailLabel.text = contact.email
@@ -328,9 +328,9 @@ class NewChatViewController: UITableViewController {
 
 	private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
 
-		let contactsWithHighlights:[ContactWithHighlight] = contacts.map({contact in
+		let contactsWithHighlights:[ContactWithSearchResults] = contacts.map({contact in
 			let indexes = contact.contact.contains(searchText: searchText)
-			return ContactWithHighlight(contact: contact.contact, indexesToHighlight: indexes)
+			return ContactWithSearchResults(contact: contact.contact, indexesToHighlight: indexes)
 		})
 
 		filteredContacts = contactsWithHighlights.filter({!$0.indexesToHighlight.isEmpty})
@@ -416,7 +416,7 @@ enum ContactDetail {
 	case EMAIL
 }
 
-struct ContactWithHighlight {
+struct ContactWithSearchResults {
 	let contact: MRContact
 	let indexesToHighlight:[ContactHighlights]
 }

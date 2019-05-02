@@ -24,7 +24,7 @@ extension String {
 
 		var j = 0
 
-		var foundIndexes:[Int] = []
+		var foundIndexes: [Int] = []
 
 		for (index, char) in str.enumerated() {
 			if j == sub.count {
@@ -40,16 +40,18 @@ extension String {
 		return foundIndexes.count == sub.count ? foundIndexes : []
 	}
 
-
 	func subScript(_ i: Int) -> Character {
 		return self[index(startIndex, offsetBy: i)]
 	}
 
-	func bold(indexes: [Int], fontSize: CGFloat?) -> NSAttributedString {
+	func boldAt(indexes: [Int], fontSize: CGFloat) -> NSAttributedString {
 		let attributedText = NSMutableAttributedString.init(string: self)
 
 		for index in indexes {
-			attributedText.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: fontSize ?? 18), range: NSMakeRange(index, 1))
+			if index < 0 || self.count <= index {
+				break
+			}
+			attributedText.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: fontSize), range: NSMakeRange(index, 1))
 		}
 		return attributedText
 	}
