@@ -11,7 +11,14 @@ import UIKit
 class ChatListController: UIViewController {
   var chatList: MRChatList?
 
-  let chatTable = UITableView()
+	lazy var chatTable: UITableView = {
+		let chatTable = UITableView()
+		chatTable.dataSource = chatTableDataSource
+		chatTableDelegate.chatPresenter = self
+		chatTable.delegate = chatTableDelegate
+		chatTable.rowHeight = 80
+		return chatTable
+	}()
 
   let chatTableDataSource = ChatTableDataSource()
   let chatTableDelegate = ChatTableDelegate()
@@ -81,24 +88,22 @@ class ChatListController: UIViewController {
     super.viewDidLoad()
     title = "Chats"
     navigationController?.navigationBar.prefersLargeTitles = true
-    view.addSubview(chatTable)
-    chatTable.translatesAutoresizingMaskIntoConstraints = false
-    chatTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-    chatTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-    chatTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-    chatTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    chatTable.dataSource = chatTableDataSource
-    chatTableDelegate.chatPresenter = self
-    chatTable.delegate = chatTableDelegate
 
-    chatTable.rowHeight = 80
-
-    let newImage = UIImage(named: "create_new")!
-    newButton = UIBarButtonItem(image: newImage, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(didPressNewChat))
-
-    newButton.tintColor = Constants.primaryColor
+    newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
+    newButton.tintColor = DCColors.primary
     navigationItem.rightBarButtonItem = newButton
-  }
+
+		setupChatTable()
+	}
+
+	private func setupChatTable() {
+		view.addSubview(chatTable)
+		chatTable.translatesAutoresizingMaskIntoConstraints = false
+		chatTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+		chatTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+		chatTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+		chatTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+	}
 
   @objc func didPressNewChat() {
     let ncv = NewChatViewController()

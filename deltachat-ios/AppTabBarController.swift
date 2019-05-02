@@ -49,6 +49,6 @@ class AppTabBarController: UITabBarController {
     viewControllers = tabBarList
     selectedIndex = 3
 
-    tabBar.tintColor = Constants.primaryColor
+    tabBar.tintColor = DCColors.primary
   }
 }

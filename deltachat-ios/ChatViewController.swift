@@ -199,8 +199,9 @@ class ChatViewController: MessagesViewController {
   override func viewDidLoad() {
     messagesCollectionView.register(CustomCell.self)
     super.viewDidLoad()
+		self.view.backgroundColor = DCColors.chatBackgroundColor
 
-    if !MRConfig.configured {
+		if !MRConfig.configured {
       // TODO: display message about nothing being configured
       return
     }
@@ -273,12 +274,12 @@ class ChatViewController: MessagesViewController {
 
   func configureMessageInputBar() {
     messageInputBar.delegate = self
-    messageInputBar.inputTextView.tintColor = Constants.primaryColor
-    messageInputBar.sendButton.tintColor = Constants.primaryColor
+    messageInputBar.inputTextView.tintColor = DCColors.primary
+    messageInputBar.sendButton.tintColor = DCColors.primary
 
     messageInputBar.isTranslucent = true
     messageInputBar.separatorLine.isHidden = true
-    messageInputBar.inputTextView.tintColor = Constants.primaryColor
+    messageInputBar.inputTextView.tintColor = DCColors.primary
 
     messageInputBar.delegate = self
     scrollsToBottomOnKeyboardBeginsEditing = true
@@ -319,7 +320,7 @@ class ChatViewController: MessagesViewController {
           $0.setSize(CGSize(width: 36, height: 36), animated: false)
           $0.tintColor = UIColor(white: 0.8, alpha: 1)
         }.onSelected {
-          $0.tintColor = Constants.primaryColor
+          $0.tintColor = DCColors.primary
         }.onDeselected {
           $0.tintColor = UIColor(white: 0.8, alpha: 1)
         }.onTouchUpInside { _ in
@@ -332,7 +333,7 @@ class ChatViewController: MessagesViewController {
     messageInputBar.sendButton
       .onEnabled { item in
         UIView.animate(withDuration: 0.3, animations: {
-          item.backgroundColor = Constants.primaryColor
+          item.backgroundColor = DCColors.primary
         })
       }.onDisabled { item in
         UIView.animate(withDuration: 0.3, animations: {
@@ -614,7 +615,7 @@ extension ChatViewController: MessagesDisplayDelegate {
   // MARK: - All Messages
 
   func backgroundColor(for message: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> UIColor {
-    return isFromCurrentSender(message: message) ? Constants.messagePrimaryColor : Constants.messageSecondaryColor
+    return isFromCurrentSender(message: message) ? DCColors.messagePrimaryColor : DCColors.messageSecondaryColor
   }
 
   func messageStyle(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> MessageStyle {
