@@ -16,11 +16,28 @@ protocol ChatDisplayer: class {
 }
 
 class NewChatViewController: UITableViewController {
+
+	private lazy var searchController: UISearchController = {
+		let searchController = UISearchController(searchResultsController: nil)
+		searchController.searchResultsUpdater = self
+		searchController.obscuresBackgroundDuringPresentation = false
+		searchController.searchBar.placeholder = "Search Contact"
+		return searchController
+	}()
+
+
 	var contactIds: [Int] = Utils.getContactIds() {
 		didSet {
 			tableView.reloadData()
 		}
 	}
+
+	var contacts:[MRContact] {
+		return contactIds.map({MRContact(id: $0)})
+	}
+
+	var filteredContacts: [MRContact] = []
+
   weak var chatDisplayer: ChatDisplayer?
 
   var syncObserver: Any?
@@ -51,6 +68,8 @@ class NewChatViewController: UITableViewController {
     navigationItem.rightBarButtonItem = cancelButton
 
     deviceContactHandler.importDeviceContacts(delegate: self)
+		navigationItem.searchController = searchController
+		definesPresentationContext = true // to make sure searchbar will only be shown in this viewController
   }
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -58,11 +77,18 @@ class NewChatViewController: UITableViewController {
 		self.deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
 		contactIds = Utils.getContactIds()
 
+		// this will show the searchbar on launch -> will be set back to true on viewDidAppear
+		if #available(iOS 11.0, *) {
+			navigationItem.hidesSearchBarWhenScrolling = false
+		}
+
 	}
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-
+		if #available(iOS 11.0, *) {
+			navigationItem.hidesSearchBarWhenScrolling = true
+		}
 
     let nc = NotificationCenter.default
     syncObserver = nc.addObserver(
@@ -122,6 +148,8 @@ class NewChatViewController: UITableViewController {
 				return contactIds.count
 		}
   }
+
+
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let section = indexPath.section
@@ -201,7 +229,8 @@ class NewChatViewController: UITableViewController {
 			updateContactCell(cell: cell, contactId: contactId)
 			return cell
 		}
-		fatalError()
+		// will actually never get here but compiler not happy
+		return UITableViewCell(style: .default, reuseIdentifier: "cell")
   }
 
 
@@ -249,11 +278,6 @@ class NewChatViewController: UITableViewController {
 				self.chatDisplayer?.displayNewChat(contactId: contactId)
 			}
 		}
-
-
-    if row > 2 {
-
-    }
   }
 
 
@@ -276,6 +300,21 @@ class NewChatViewController: UITableViewController {
 		cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
 		cell.setColor(contact.color)
 		cell.accessoryType = .detailDisclosureButton
+	}
+
+	private func searchBarIsEmpty() -> Bool {
+		return searchController.searchBar.text?.isEmpty ?? true
+	}
+
+	private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+
+		filteredContacts = contacts.filter({ (contact: MRContact) -> Bool in
+			let matches = contact.name.lowercased().contains(searchText.lowercased()) || contact.email.lowercased().contains(searchText.lowercased())
+			return matches
+		})
+		tableView.reloadData()
+
+
 	}
 
 }
@@ -305,7 +344,6 @@ extension NewChatViewController: QrCodeReaderDelegate {
       }))
       present(alert, animated: true, completion: nil)
     }
-
     dc_lot_unref(check)
   }
 }
@@ -331,6 +369,12 @@ extension NewChatViewController: DeviceContactsDelegate {
     })
     present(alert, animated: true)
   }
+}
+
+extension NewChatViewController: UISearchResultsUpdating {
+	func updateSearchResults(for searchController: UISearchController) {
+		// TODO
+	}
 }
 
 protocol DeviceContactsDelegate {
