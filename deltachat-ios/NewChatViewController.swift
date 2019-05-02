@@ -25,7 +25,6 @@ class NewChatViewController: UITableViewController {
 		return searchController
 	}()
 
-
 	var contactIds: [Int] = Utils.getContactIds() {
 		didSet {
 			tableView.reloadData()
@@ -39,7 +38,6 @@ class NewChatViewController: UITableViewController {
 
 	// used when seachbar is active
 	var filteredContacts: [ContactWithSearchResults] = []
-
 
 	// searchBar active?
 	func isFiltering() -> Bool {
@@ -141,8 +139,6 @@ class NewChatViewController: UITableViewController {
 		return deviceContactAccessGranted ? 2 : 3
   }
 
-
-
   override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if section == 0 {
 			return 3
@@ -156,8 +152,6 @@ class NewChatViewController: UITableViewController {
 			return isFiltering() ? filteredContacts.count : contacts.count
 		}
   }
-
-
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let section = indexPath.section
@@ -242,7 +236,6 @@ class NewChatViewController: UITableViewController {
 		return UITableViewCell(style: .default, reuseIdentifier: "cell")
   }
 
-
   override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
     let row = indexPath.row
 		let section = indexPath.section
@@ -271,11 +264,21 @@ class NewChatViewController: UITableViewController {
 				navigationController?.pushViewController(newContactController, animated: true)
 			}
 		} else if section == 1 {
+
 			if deviceContactAccessGranted {
-				let contactIndex = row
-				let contactId = contactIds[contactIndex]
-				dismiss(animated: false) {
-					self.chatDisplayer?.displayNewChat(contactId: contactId)
+				if searchController.isActive {
+					// edge case: when searchController is active but searchBar is empty -> filteredContacts is empty, so we fallback to contactIds
+					let contactId = isFiltering() ? filteredContacts[row].contact.id : self.contactIds[row]
+					searchController.dismiss(animated: false, completion: {
+						self.dismiss(animated: false, completion: {
+							self.chatDisplayer?.displayNewChat(contactId: contactId)
+						})
+					})
+				} else {
+					let contactId = contactIds[row]
+					dismiss(animated: false) {
+						self.chatDisplayer?.displayNewChat(contactId: contactId)
+					}
 				}
 			} else {
 				showSettingsAlert()
