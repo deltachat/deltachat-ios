@@ -36,7 +36,13 @@ class NewChatViewController: UITableViewController {
 		return contactIds.map({MRContact(id: $0)})
 	}
 
+	// used when seachbar is active
 	var filteredContacts: [MRContact] = []
+
+	// searchBar active?
+	func isFiltering() -> Bool {
+		return searchController.isActive && !searchBarIsEmpty()
+	}
 
   weak var chatDisplayer: ChatDisplayer?
 
@@ -140,12 +146,12 @@ class NewChatViewController: UITableViewController {
 			return 3
 		} else if section == 1 {
 			if deviceContactAccessGranted {
-				return contactIds.count
+				return isFiltering() ? filteredContacts.count : contacts.count
 			} else {
 				return 1
 			}
 		} else {
-				return contactIds.count
+			return isFiltering() ? filteredContacts.count : contacts.count
 		}
   }
 
@@ -204,8 +210,8 @@ class NewChatViewController: UITableViewController {
 				} else {
 					cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
 				}
-				let contactId = contactIds[row]
-				updateContactCell(cell: cell, contactId: contactId)
+				let contact: MRContact = isFiltering() ? filteredContacts[row] : contacts[row]
+				updateContactCell(cell: cell, contact: contact)
 				return cell
 			} else {
 				let cell: ActionCell
@@ -225,8 +231,9 @@ class NewChatViewController: UITableViewController {
 			} else {
 				cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
 			}
-			let contactId = contactIds[row]
-			updateContactCell(cell: cell, contactId: contactId)
+
+			let contact: MRContact = isFiltering() ? filteredContacts[row] : contacts[row]
+			updateContactCell(cell: cell, contact: contact)
 			return cell
 		}
 		// will actually never get here but compiler not happy
@@ -280,7 +287,6 @@ class NewChatViewController: UITableViewController {
 		}
   }
 
-
   override func tableView(_: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
     let row = indexPath.row
     if row > 2 {
@@ -293,8 +299,7 @@ class NewChatViewController: UITableViewController {
     }
   }
 
-	private func updateContactCell(cell: ContactCell, contactId: Int) {
-		let contact = MRContact(id: contactId)
+	private func updateContactCell(cell: ContactCell, contact: MRContact) {
 		cell.nameLabel.text = contact.name
 		cell.emailLabel.text = contact.email
 		cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
@@ -309,11 +314,11 @@ class NewChatViewController: UITableViewController {
 	private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
 
 		filteredContacts = contacts.filter({ (contact: MRContact) -> Bool in
-			let matches = contact.name.lowercased().contains(searchText.lowercased()) || contact.email.lowercased().contains(searchText.lowercased())
-			return matches
+			// TODO: this should also find gapped patterns
+			let indexes = contact.contains(searchText: searchText)
+			return !indexes.isEmpty
 		})
 		tableView.reloadData()
-
 
 	}
 
@@ -372,12 +377,51 @@ extension NewChatViewController: DeviceContactsDelegate {
 }
 
 extension NewChatViewController: UISearchResultsUpdating {
+
 	func updateSearchResults(for searchController: UISearchController) {
-		// TODO
+		if let searchText = searchController.searchBar.text {
+			filterContentForSearchText(searchText)
+		}
+
 	}
 }
 
 protocol DeviceContactsDelegate {
   func accessGranted()
   func accessDenied()
+}
+
+extension MRContact {
+	func contains(searchText text: String) -> [ContactSubSequence] {
+
+		var nameIndexes = [Int]()
+		var emailIndexes = [Int]()
+
+		let contactString = name + email
+		let subsequenceIndexes = contactString.contains(subSequence: text)
+
+		if !subsequenceIndexes.isEmpty {
+			for index in subsequenceIndexes {
+				if index < name.count {
+					nameIndexes.append(index)
+				} else {
+					let emailIndex = index - name.count
+					emailIndexes.append(emailIndex)
+				}
+			}
+			return [ContactSubSequence(contactDetail: .NAME, indexes: nameIndexes), ContactSubSequence(contactDetail: .EMAIL, indexes: emailIndexes)]
+		} else {
+			return []
+		}
+	}
+}
+
+struct ContactSubSequence {
+	let contactDetail: ContactDetail
+	let indexes:[Int]
+}
+
+enum ContactDetail {
+	case NAME
+	case EMAIL
 }
