@@ -49,7 +49,11 @@ class NewChatViewController: UITableViewController {
   var syncObserver: Any?
   var hud: ProgressHud?
 
-  let deviceContactHandler = DeviceContactsHandler()
+	lazy var deviceContactHandler: DeviceContactsHandler = {
+		let handler = DeviceContactsHandler()
+		handler.contactListDelegate = self
+		return handler
+	}()
   var deviceContactAccessGranted: Bool = false {
     didSet {
       tableView.reloadData()
@@ -73,7 +77,7 @@ class NewChatViewController: UITableViewController {
     let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(NewChatViewController.cancelButtonPressed))
     navigationItem.rightBarButtonItem = cancelButton
 
-    deviceContactHandler.importDeviceContacts(delegate: self)
+    deviceContactHandler.importDeviceContacts()
 		navigationItem.searchController = searchController
 		definesPresentationContext = true // to make sure searchbar will only be shown in this viewController
   }
@@ -371,7 +375,12 @@ extension NewChatViewController: QrCodeReaderDelegate {
   }
 }
 
-extension NewChatViewController: DeviceContactsDelegate {
+extension NewChatViewController: ContactListDelegate {
+	func deviceContactsImported() {
+		self.contactIds = Utils.getContactIds()
+//		tableView.reloadData()
+	}
+
   func accessGranted() {
     deviceContactAccessGranted = true
   }
@@ -403,9 +412,10 @@ extension NewChatViewController: UISearchResultsUpdating {
 	}
 }
 
-protocol DeviceContactsDelegate {
+protocol ContactListDelegate: class {
   func accessGranted()
   func accessDenied()
+	func deviceContactsImported()
 }
 
 // TODO: find better name

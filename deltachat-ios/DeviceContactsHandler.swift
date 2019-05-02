@@ -11,6 +11,7 @@ import UIKit
 
 class DeviceContactsHandler {
   private let store = CNContactStore()
+	weak var contactListDelegate: ContactListDelegate?
 
   private func makeContactString(contacts: [CNContact]) -> String {
     var contactString: String = ""
@@ -28,6 +29,7 @@ class DeviceContactsHandler {
     let storedContacts = fetchContactsWithEmailFromDevice()
     let contactString = makeContactString(contacts: storedContacts)
     dc_add_address_book(mailboxPointer, contactString)
+		contactListDelegate?.deviceContactsImported()
   }
 
   private func fetchContactsWithEmailFromDevice() -> [CNContact] {
@@ -55,23 +57,23 @@ class DeviceContactsHandler {
     return fetchedContacts
   }
 
-  public func importDeviceContacts(delegate: DeviceContactsDelegate?) {
+  public func importDeviceContacts() {
     switch CNContactStore.authorizationStatus(for: .contacts) {
     case .authorized:
       addContactsToCore()
-      delegate?.accessGranted()
+      self.contactListDelegate?.accessGranted()
     case .denied:
-      delegate?.accessDenied()
+      self.contactListDelegate?.accessDenied()
     case .restricted, .notDetermined:
       store.requestAccess(for: .contacts) { [unowned self] granted, _ in
         if granted {
           DispatchQueue.main.async {
             self.addContactsToCore()
-            delegate?.accessGranted()
+            self.contactListDelegate?.accessGranted()
           }
         } else {
           DispatchQueue.main.async {
-            delegate?.accessDenied()
+            self.contactListDelegate?.accessDenied()
           }
         }
       }
