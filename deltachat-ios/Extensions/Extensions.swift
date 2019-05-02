@@ -110,3 +110,28 @@ extension URLSession {
 		return (data, response, error)
 	}
 }
+
+extension MRContact {
+	func contains(searchText text: String) -> [ContactHighlights] {
+
+		var nameIndexes = [Int]()
+		var emailIndexes = [Int]()
+
+		let contactString = name + email
+		let subsequenceIndexes = contactString.contains(subSequence: text)
+
+		if !subsequenceIndexes.isEmpty {
+			for index in subsequenceIndexes {
+				if index < name.count {
+					nameIndexes.append(index)
+				} else {
+					let emailIndex = index - name.count
+					emailIndexes.append(emailIndex)
+				}
+			}
+			return [ContactHighlights(contactDetail: .NAME, indexes: nameIndexes), ContactHighlights(contactDetail: .EMAIL, indexes: emailIndexes)]
+		} else {
+			return []
+		}
+	}
+}

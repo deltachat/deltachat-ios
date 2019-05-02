@@ -32,12 +32,13 @@ class NewChatViewController: UITableViewController {
 		}
 	}
 
-	var contacts:[MRContact] {
-		return contactIds.map({MRContact(id: $0)})
+	var contacts:[ContactWithHighlight] {
+		return contactIds.map({ return ContactWithHighlight(contact: MRContact(id: $0), indexesToHighlight: [])})
 	}
 
 	// used when seachbar is active
-	var filteredContacts: [MRContact] = []
+	var filteredContacts: [ContactWithHighlight] = []
+
 
 	// searchBar active?
 	func isFiltering() -> Bool {
@@ -210,8 +211,8 @@ class NewChatViewController: UITableViewController {
 				} else {
 					cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
 				}
-				let contact: MRContact = isFiltering() ? filteredContacts[row] : contacts[row]
-				updateContactCell(cell: cell, contact: contact)
+				let contact: ContactWithHighlight = isFiltering() ? filteredContacts[row] : contacts[row]
+				updateContactCell(cell: cell, contactWithHighlight: contact)
 				return cell
 			} else {
 				let cell: ActionCell
@@ -232,8 +233,8 @@ class NewChatViewController: UITableViewController {
 				cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
 			}
 
-			let contact: MRContact = isFiltering() ? filteredContacts[row] : contacts[row]
-			updateContactCell(cell: cell, contact: contact)
+			let contact: ContactWithHighlight = isFiltering() ? filteredContacts[row] : contacts[row]
+			updateContactCell(cell: cell, contactWithHighlight: contact)
 			return cell
 		}
 		// will actually never get here but compiler not happy
@@ -299,9 +300,23 @@ class NewChatViewController: UITableViewController {
     }
   }
 
-	private func updateContactCell(cell: ContactCell, contact: MRContact) {
-		cell.nameLabel.text = contact.name
-		cell.emailLabel.text = contact.email
+	private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithHighlight) {
+
+		let contact = contactWithHighlight.contact
+
+
+		if let nameHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({$0.contactDetail == .NAME}).first,
+			let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({$0.contactDetail == .EMAIL}).first {
+			// gets here when contact is a result of search -> highlights relevant indexes
+			let nameLabelFontSize = cell.nameLabel.font.pointSize
+			let emailLabelFontSize = cell.emailLabel.font.pointSize
+
+			cell.nameLabel.attributedText = contact.name.bold(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
+			cell.emailLabel.attributedText = contact.email.bold(indexes: emailHighlightedIndexes.indexes, fontSize: emailLabelFontSize)
+		} else {
+			cell.nameLabel.text = contact.name
+			cell.emailLabel.text = contact.email
+		}
 		cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
 		cell.setColor(contact.color)
 		cell.accessoryType = .detailDisclosureButton
@@ -313,13 +328,13 @@ class NewChatViewController: UITableViewController {
 
 	private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
 
-		filteredContacts = contacts.filter({ (contact: MRContact) -> Bool in
-			// TODO: this should also find gapped patterns
-			let indexes = contact.contains(searchText: searchText)
-			return !indexes.isEmpty
+		let contactsWithHighlights:[ContactWithHighlight] = contacts.map({contact in
+			let indexes = contact.contact.contains(searchText: searchText)
+			return ContactWithHighlight(contact: contact.contact, indexesToHighlight: indexes)
 		})
-		tableView.reloadData()
 
+		filteredContacts = contactsWithHighlights.filter({!$0.indexesToHighlight.isEmpty})
+		tableView.reloadData()
 	}
 
 }
@@ -382,7 +397,6 @@ extension NewChatViewController: UISearchResultsUpdating {
 		if let searchText = searchController.searchBar.text {
 			filterContentForSearchText(searchText)
 		}
-
 	}
 }
 
@@ -391,32 +405,8 @@ protocol DeviceContactsDelegate {
   func accessDenied()
 }
 
-extension MRContact {
-	func contains(searchText text: String) -> [ContactSubSequence] {
-
-		var nameIndexes = [Int]()
-		var emailIndexes = [Int]()
-
-		let contactString = name + email
-		let subsequenceIndexes = contactString.contains(subSequence: text)
-
-		if !subsequenceIndexes.isEmpty {
-			for index in subsequenceIndexes {
-				if index < name.count {
-					nameIndexes.append(index)
-				} else {
-					let emailIndex = index - name.count
-					emailIndexes.append(emailIndex)
-				}
-			}
-			return [ContactSubSequence(contactDetail: .NAME, indexes: nameIndexes), ContactSubSequence(contactDetail: .EMAIL, indexes: emailIndexes)]
-		} else {
-			return []
-		}
-	}
-}
-
-struct ContactSubSequence {
+// TODO: find better name
+struct ContactHighlights {
 	let contactDetail: ContactDetail
 	let indexes:[Int]
 }
@@ -424,4 +414,9 @@ struct ContactSubSequence {
 enum ContactDetail {
 	case NAME
 	case EMAIL
+}
+
+struct ContactWithHighlight {
+	let contact: MRContact
+	let indexesToHighlight:[ContactHighlights]
 }
