@@ -8,6 +8,7 @@
 
 import UIKit
 
+/*
 class ProgressViewContainer: UIView {
   let progressView = UIProgressView(progressViewStyle: .default)
 
@@ -48,7 +49,9 @@ class ProgressViewContainer: UIView {
     fatalError("init(coder:) has not been implemented")
   }
 }
+*/
 
+/*
 class BaseController: UIViewController {
   let progressViewContainer = ProgressViewContainer()
   var progressChangedObserver: Any?
@@ -78,3 +81,4 @@ class BaseController: UIViewController {
     }
   }
 }
+*/

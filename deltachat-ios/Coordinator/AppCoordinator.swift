@@ -8,40 +8,6 @@
 
 import UIKit
 
-/*
-protocol CoordinatorDeprecated {
-  func setupViewControllers(window: UIWindow)
-}
-
-class AppCoordinatorDeprecated: CoordinatorDeprecated {
-  let baseController = BaseController()
-
-  private var appTabBarController: AppTabBarController = AppTabBarController()
-
-  func setupViewControllers(window: UIWindow) {
-    window.rootViewController = appTabBarController
-    window.makeKeyAndVisible()
-  }
-
-  func presentAccountSetup(animated: Bool) {
-    let accountSetupController = AccountSetupController()
-    let accountSetupNavigationController = UINavigationController(rootViewController: accountSetupController)
-    appTabBarController.present(accountSetupNavigationController, animated: animated, completion: nil)
-  }
-
-  func setupInnerViewControllers() {
-    let chatListController = ChatListController()
-    let chatNavigationController = UINavigationController(rootViewController: chatListController)
-    baseController.present(chatNavigationController, animated: false, completion: nil)
-  }
-}
-
-*/
-
-protocol Coordinator: class {
-	var rootViewController: UIViewController { get }
-}
-
 class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 
 	private let window: UIWindow
@@ -113,7 +79,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		let nav = NavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "settings")
 		nav.tabBarItem = UITabBarItem(title: "Settings", image: settingsImage, tag: 4)
-		let coordinator = SettingsCoordinator(rootViewController: nav)
+		let coordinator = SettingsCoordinator(navigationController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
 		return nav
@@ -135,7 +101,9 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 	}
 
 	public func presentLoginController() {
-
+		let accountSetupController = AccountSetupController()
+		let accountSetupNavigationController = UINavigationController(rootViewController: accountSetupController)
+		rootViewController.present(accountSetupNavigationController, animated: false, completion: nil)
 	}
 
 
@@ -175,9 +143,15 @@ class ChatListCoordinator: Coordinator {
 
 class SettingsCoordinator: Coordinator {
 	var rootViewController: UIViewController
+	let navigationController: UINavigationController
 
-	init(rootViewController: UIViewController) {
-		self.rootViewController = rootViewController
+	init(navigationController: UINavigationController) {
+		self.rootViewController = navigationController.viewControllers.first!
+		self.navigationController = navigationController
+	}
+
+	func showAccountSetupController() {
+		navigationController.pushViewController(AccountSetupController(), animated: true)
 	}
 }
 

@@ -66,7 +66,6 @@
 		78E45E2B21D176FB00D4B15E /* dc_jobthread.c in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2A21D176FB00D4B15E /* dc_jobthread.c */; };
 		78E45E2F21D1774200D4B15E /* dc_context.h in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2D21D1774200D4B15E /* dc_context.h */; };
 		78E45E3021D1774200D4B15E /* dc_move.c in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2E21D1774200D4B15E /* dc_move.c */; };
-		78E45E3321D3CBC000D4B15E /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3221D3CBC000D4B15E /* AppTabBarController.swift */; };
 		78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3921D3CFBC00D4B15E /* SettingsController.swift */; };
 		78E45E3C21D3D03700D4B15E /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */; };
 		78E45E3E21D3D28C00D4B15E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3D21D3D28C00D4B15E /* NavigationController.swift */; };
@@ -94,6 +93,9 @@
 		AE38B31A2267328200EC37A1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B3192267328200EC37A1 /* Colors.swift */; };
 		AE8519EA2272FDCA00ED86F0 /* DeviceContactsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8519E92272FDCA00ED86F0 /* DeviceContactsHandler.swift */; };
 		AE851A04227AECDE00ED86F0 /* deltachat_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851A03227AECDE00ED86F0 /* deltachat_iosTests.swift */; };
+		AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC4227C755A00ED86F0 /* Protocols.swift */; };
+		AE851AC7227C776400ED86F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC6227C776400ED86F0 /* Location.swift */; };
+		AE851AC9227C77CF00ED86F0 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC8227C77CF00ED86F0 /* Media.swift */; };
 		AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */; };
 		AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DE1FB3246400DCDD78 /* Message.swift */; };
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
@@ -211,7 +213,6 @@
 		78E45E2C21D1774200D4B15E /* dc_context.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_context.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_context.c"; sourceTree = "<group>"; };
 		78E45E2D21D1774200D4B15E /* dc_context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dc_context.h; path = "deltachat-ios/libraries/deltachat-core/src/dc_context.h"; sourceTree = "<group>"; };
 		78E45E2E21D1774200D4B15E /* dc_move.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_move.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_move.c"; sourceTree = "<group>"; };
-		78E45E3221D3CBC000D4B15E /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
 		78E45E3921D3CFBC00D4B15E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		78E45E3D21D3D28C00D4B15E /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -283,6 +284,9 @@
 		AE851A01227AECDE00ED86F0 /* deltachat-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "deltachat-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE851A03227AECDE00ED86F0 /* deltachat_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deltachat_iosTests.swift; sourceTree = "<group>"; };
 		AE851A05227AECDF00ED86F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE851AC4227C755A00ED86F0 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		AE851AC6227C776400ED86F0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		AE851AC8227C77CF00ED86F0 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		AEA9CC2F22522DA20061D113 /* librpgp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = librpgp.h; sourceTree = "<group>"; };
 		AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		AEACE2DE1FB3246400DCDD78 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -319,27 +323,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		78ED838A21D5570700243125 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */,
-				78E45E4121D3DB4000D4B15E /* UIViewController+Extension.swift */,
-				AEE56D7F225504DB007DC082 /* Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		78ED839021D5929800243125 /* TopViews */ = {
-			isa = PBXGroup;
-			children = (
-				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
-				78E45E3F21D3D70700D4B15E /* ContactListController.swift */,
-				78ED838E21D5927A00243125 /* ProfileViewController.swift */,
-				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
-			);
-			path = TopViews;
-			sourceTree = "<group>";
-		};
 		7A451D9B1FB1F4BF00177250 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,50 +445,20 @@
 		7A9FB1421FB061E2001FEA36 /* deltachat-ios */ = {
 			isa = PBXGroup;
 			children = (
+				AE851ACC227C7D4C00ED86F0 /* App */,
+				7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */,
+				AE851ACA227C79CF00ED86F0 /* DC */,
 				AE851AC3227C695900ED86F0 /* View */,
 				AE851AC2227C695000ED86F0 /* Helper */,
 				AE851AC1227C694300ED86F0 /* Coordinator */,
 				AE851AC0227C693B00ED86F0 /* Controller */,
 				AE851ABA227C692600ED86F0 /* Model */,
-				78C7036A21D46752005D4525 /* deltachat-ios.entitlements */,
-				AEACE2DE1FB3246400DCDD78 /* Message.swift */,
+				AE851ACB227C7A5000ED86F0 /* Handler */,
 				7A9FB15B1FB07364001FEA36 /* libraries */,
-				7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */,
-				7A451DAF1FB1F84900177250 /* AppCoordinator.swift */,
-				78E45E4B21D404AE00D4B15E /* CustomCell.swift */,
-				7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */,
-				7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */,
-				7A9FB14F1FB061E2001FEA36 /* Info.plist */,
 				7A9FB1561FB06540001FEA36 /* deltachat-ios-Bridging-Header.h */,
-				7A451D921FB1B1DB00177250 /* wrapper.c */,
-				7A451D931FB1B1DB00177250 /* wrapper.h */,
-				7A451DBD1FB4AD0700177250 /* Wrapper.swift */,
-				789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */,
-				785BE16721E247F1003BE98C /* MessageInfoViewController.swift */,
-				70B8882D2091B8550074812E /* ContactCell.swift */,
-				78ED838C21D577D000243125 /* events.swift */,
-				789E879C21D6DF86003ED1C5 /* ProgressHud.swift */,
 				7032FF8E2149C1DB00B7EC83 /* BaseController.swift */,
-				78ED839021D5929800243125 /* TopViews */,
-				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
-				78E45E3D21D3D28C00D4B15E /* NavigationController.swift */,
-				7092474020B3869500AF8799 /* ContactProfileViewController.swift */,
-				7A0052C71FBE6CB40048C3BF /* NewContactController.swift */,
-				78ED838A21D5570700243125 /* Extensions */,
-				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
-				7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */,
+				7A9FB14F1FB061E2001FEA36 /* Info.plist */,
 				70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */,
-				7070FB9A2101ECBB000DC258 /* GroupNameController.swift */,
-				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
-				78ED839321D5AF8A00243125 /* QrCodeView.swift */,
-				AEACE2E41FB32E1900DCDD78 /* Utils.swift */,
-				78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */,
-				78ED838221D5379000243125 /* TextFieldCell.swift */,
-				AEE56D752253431E007DC082 /* AccountSetupController.swift */,
-				AEE56D7C2253ADB4007DC082 /* HudHandler.swift */,
-				AE38B31722672DFC00EC37A1 /* ActionCell.swift */,
-				AE38B3192267328200EC37A1 /* Colors.swift */,
-				AE8519E92272FDCA00ED86F0 /* DeviceContactsHandler.swift */,
 			);
 			path = "deltachat-ios";
 			sourceTree = "<group>";
@@ -615,6 +568,9 @@
 		AE851ABA227C692600ED86F0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AEACE2DE1FB3246400DCDD78 /* Message.swift */,
+				AE851AC6227C776400ED86F0 /* Location.swift */,
+				AE851AC8227C77CF00ED86F0 /* Media.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -622,7 +578,20 @@
 		AE851AC0227C693B00ED86F0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				78E45E3221D3CBC000D4B15E /* AppTabBarController.swift */,
+				785BE16721E247F1003BE98C /* MessageInfoViewController.swift */,
+				7A0052C71FBE6CB40048C3BF /* NewContactController.swift */,
+				AEE56D752253431E007DC082 /* AccountSetupController.swift */,
+				78E45E3D21D3D28C00D4B15E /* NavigationController.swift */,
+				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
+				789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */,
+				7092474020B3869500AF8799 /* ContactProfileViewController.swift */,
+				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
+				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
+				78E45E3F21D3D70700D4B15E /* ContactListController.swift */,
+				78ED838E21D5927A00243125 /* ProfileViewController.swift */,
+				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
+				7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */,
+				7070FB9A2101ECBB000DC258 /* GroupNameController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -630,6 +599,7 @@
 		AE851AC1227C694300ED86F0 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				7A451DAF1FB1F84900177250 /* AppCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -637,6 +607,13 @@
 		AE851AC2227C695000ED86F0 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
+				78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */,
+				78E45E4121D3DB4000D4B15E /* UIViewController+Extension.swift */,
+				AEACE2E41FB32E1900DCDD78 /* Utils.swift */,
+				AEE56D7F225504DB007DC082 /* Extensions.swift */,
+				AE38B3192267328200EC37A1 /* Colors.swift */,
+				AE851AC4227C755A00ED86F0 /* Protocols.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -644,8 +621,45 @@
 		AE851AC3227C695900ED86F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				78E45E4B21D404AE00D4B15E /* CustomCell.swift */,
+				70B8882D2091B8550074812E /* ContactCell.swift */,
+				78ED839321D5AF8A00243125 /* QrCodeView.swift */,
+				78ED838221D5379000243125 /* TextFieldCell.swift */,
+				78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */,
+				789E879C21D6DF86003ED1C5 /* ProgressHud.swift */,
+				AE38B31722672DFC00EC37A1 /* ActionCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		AE851ACA227C79CF00ED86F0 /* DC */ = {
+			isa = PBXGroup;
+			children = (
+				7A451D931FB1B1DB00177250 /* wrapper.h */,
+				7A451DBD1FB4AD0700177250 /* Wrapper.swift */,
+				78ED838C21D577D000243125 /* events.swift */,
+				7A451D921FB1B1DB00177250 /* wrapper.c */,
+			);
+			path = DC;
+			sourceTree = "<group>";
+		};
+		AE851ACB227C7A5000ED86F0 /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				AEE56D7C2253ADB4007DC082 /* HudHandler.swift */,
+				AE8519E92272FDCA00ED86F0 /* DeviceContactsHandler.swift */,
+			);
+			path = Handler;
+			sourceTree = "<group>";
+		};
+		AE851ACC227C7D4C00ED86F0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */,
+				7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */,
+				78C7036A21D46752005D4525 /* deltachat-ios.entitlements */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -923,8 +937,8 @@
 				7070FB7520FF345F000DC258 /* dc_strbuilder.c in Sources */,
 				7070FB6220FF345F000DC258 /* dc_configure.c in Sources */,
 				7070FB4120FF3421000DC258 /* dc_smtp.c in Sources */,
-				78E45E3321D3CBC000D4B15E /* AppTabBarController.swift in Sources */,
 				7070FB6E20FF345F000DC258 /* dc_openssl.c in Sources */,
+				AE851AC9227C77CF00ED86F0 /* Media.swift in Sources */,
 				7070FB6720FF345F000DC258 /* dc_simplify.c in Sources */,
 				7070FB7120FF345F000DC258 /* dc_receive_imf.c in Sources */,
 				7070FB8B20FF4118000DC258 /* dc_keyhistory.c in Sources */,
@@ -945,6 +959,7 @@
 				7070FB9020FF4118000DC258 /* dc_stock.c in Sources */,
 				78ED838D21D577D000243125 /* events.swift in Sources */,
 				7070FB8F20FF4118000DC258 /* dc_loginparam.c in Sources */,
+				AE851AC7227C776400ED86F0 /* Location.swift in Sources */,
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
 				78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */,
 				AE8519EA2272FDCA00ED86F0 /* DeviceContactsHandler.swift in Sources */,
@@ -992,6 +1007,7 @@
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
 				AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */,
 				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
+				AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */,
 				AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

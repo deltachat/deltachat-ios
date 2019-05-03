@@ -276,8 +276,6 @@ internal final class SettingsViewController: QuickTableViewController {
   }
 
   private func presentAccountSetup(_: Row) {
-    if let nav = self.navigationController {
-      nav.pushViewController(AccountSetupController(), animated: true)
-    }
+		coordinator?.showAccountSetupController()
   }
 }
