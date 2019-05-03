@@ -10,12 +10,11 @@ import ALCameraViewController
 import Contacts
 import UIKit
 
-protocol ChatDisplayer: class {
-  func displayNewChat(contactId: Int)
-  func displayChatForId(chatId: Int)
-}
+
 
 class NewChatViewController: UITableViewController {
+	weak var coordinator: NewChatCoordinator?
+
   private lazy var searchController: UISearchController = {
     let searchController = UISearchController(searchResultsController: nil)
     searchController.searchResultsUpdater = self
@@ -294,6 +293,7 @@ class NewChatViewController: UITableViewController {
     }
   }
 
+	/*
   override func tableView(_: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
     let row = indexPath.row
     if row > 2 {
@@ -305,6 +305,7 @@ class NewChatViewController: UITableViewController {
       navigationController?.pushViewController(contactProfileController, animated: true)
     }
   }
+	*/
 
   private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {
     let contact = contactWithHighlight.contact
@@ -407,13 +408,6 @@ extension NewChatViewController: UISearchResultsUpdating {
   }
 }
 
-protocol ContactListDelegate: class {
-  func accessGranted()
-  func accessDenied()
-  func deviceContactsImported()
-}
-
-// TODO: find better name
 struct ContactHighlights {
   let contactDetail: ContactDetail
   let indexes: [Int]

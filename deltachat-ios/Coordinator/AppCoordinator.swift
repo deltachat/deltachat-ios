@@ -46,7 +46,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		let nav = NavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "message")
 		nav.tabBarItem = UITabBarItem(title: "Mailbox", image: settingsImage, tag: 4)
-		let coordinator = ChatListCoordinator(rootViewController: nav)
+		let coordinator = ChatListCoordinator(navigationController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
 		return nav
@@ -68,7 +68,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		let nav = NavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "chat")
 		nav.tabBarItem = UITabBarItem(title: "Chats", image: settingsImage, tag: 4)
-		let coordinator = ChatListCoordinator(rootViewController: nav)
+		let coordinator = ChatListCoordinator(navigationController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
 		return nav
@@ -135,9 +135,21 @@ class ProfileCoordinator: Coordinator {
 
 class ChatListCoordinator: Coordinator {
 	var rootViewController: UIViewController
+	let navigationController: UINavigationController
 
-	init(rootViewController: UIViewController) {
-		self.rootViewController = rootViewController
+	var childCoordinators:[Coordinator] = []
+
+	init(navigationController: UINavigationController) {
+		self.rootViewController = navigationController.viewControllers.first!
+		self.navigationController = navigationController
+	}
+
+	func showNewChatController() {
+		let newChatVC = NewChatViewController()
+		let coordinator = NewChatCoordinator(navigationController: self.navigationController)
+		newChatVC.coordinator = coordinator
+		childCoordinators.append(coordinator)
+		navigationController.pushViewController(newChatVC, animated: true)
 	}
 }
 
@@ -153,6 +165,33 @@ class SettingsCoordinator: Coordinator {
 	func showAccountSetupController() {
 		navigationController.pushViewController(AccountSetupController(), animated: true)
 	}
+}
+
+class NewChatCoordinator: Coordinator {
+	var rootViewController: UIViewController
+	let navigationController: UINavigationController
+
+	init(navigationController: UINavigationController) {
+		self.rootViewController = navigationController.viewControllers.first!
+		self.navigationController = navigationController
+	}
+
+	func showNewGroupController() {
+
+	}
+
+	func showNewContactController() {
+
+	}
+
+	func showNewChat(contactId: Int) {
+
+	}
+
+	func showChat(chatId: Int) {
+
+	}
+
 }
 
 

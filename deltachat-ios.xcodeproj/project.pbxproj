@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6795F63A82E94FF7CD2CEC0F /* Pods_deltachat_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */; };
-		7032FF8F2149C1DB00B7EC83 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7032FF8E2149C1DB00B7EC83 /* BaseController.swift */; };
 		7070FB3D20FDD9FE000DC258 /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */; };
 		7070FB4020FF3421000DC258 /* dc_chat.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3E20FF3420000DC258 /* dc_chat.c */; };
 		7070FB4120FF3421000DC258 /* dc_smtp.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3F20FF3421000DC258 /* dc_smtp.c */; };
@@ -140,7 +139,6 @@
 		21EE28844E7A690D73BF5285 /* Pods-deltachat-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7032FF8E2149C1DB00B7EC83 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 		7070FB3E20FF3420000DC258 /* dc_chat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_chat.c; sourceTree = "<group>"; };
 		7070FB3F20FF3421000DC258 /* dc_smtp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_smtp.c; sourceTree = "<group>"; };
@@ -445,7 +443,6 @@
 		7A9FB1421FB061E2001FEA36 /* deltachat-ios */ = {
 			isa = PBXGroup;
 			children = (
-				AE851ACC227C7D4C00ED86F0 /* App */,
 				7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */,
 				AE851ACA227C79CF00ED86F0 /* DC */,
 				AE851AC3227C695900ED86F0 /* View */,
@@ -456,7 +453,9 @@
 				AE851ACB227C7A5000ED86F0 /* Handler */,
 				7A9FB15B1FB07364001FEA36 /* libraries */,
 				7A9FB1561FB06540001FEA36 /* deltachat-ios-Bridging-Header.h */,
-				7032FF8E2149C1DB00B7EC83 /* BaseController.swift */,
+				78C7036A21D46752005D4525 /* deltachat-ios.entitlements */,
+				7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */,
+				7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */,
 				7A9FB14F1FB061E2001FEA36 /* Info.plist */,
 				70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */,
 			);
@@ -650,16 +649,6 @@
 				AE8519E92272FDCA00ED86F0 /* DeviceContactsHandler.swift */,
 			);
 			path = Handler;
-			sourceTree = "<group>";
-		};
-		AE851ACC227C7D4C00ED86F0 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */,
-				7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */,
-				78C7036A21D46752005D4525 /* deltachat-ios.entitlements */,
-			);
-			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -981,7 +970,6 @@
 				78E45E4221D3DB4000D4B15E /* UIViewController+Extension.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
 				AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */,
-				7032FF8F2149C1DB00B7EC83 /* BaseController.swift in Sources */,
 				7070FB9320FF4118000DC258 /* dc_msg.c in Sources */,
 				7070FB6820FF345F000DC258 /* dc_array.c in Sources */,
 				7070FB9120FF4118000DC258 /* dc_strencode.c in Sources */,

@@ -34,6 +34,7 @@ class ChatListController: UIViewController {
     super.viewWillAppear(animated)
 
     if #available(iOS 11.0, *) {
+			// TODO: check if this is really nessesary - dc navigationController has large titles
       navigationController?.navigationBar.prefersLargeTitles = true
     }
 
@@ -107,11 +108,14 @@ class ChatListController: UIViewController {
   }
 
   @objc func didPressNewChat() {
+		coordinator?.showNewChatController()
+		/*
     let ncv = NewChatViewController()
     ncv.chatDisplayer = self
     let nav = UINavigationController(rootViewController: ncv)
     present(nav, animated: true, completion: nil)
-  }
+		*/
+	}
 
   func getChatList() {
     guard let chatlistPointer = dc_get_chatlist(mailboxPointer, DC_GCL_NO_SPECIALS, nil, 0) else {
