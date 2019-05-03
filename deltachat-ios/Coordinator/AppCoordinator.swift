@@ -147,8 +147,9 @@ class ChatListCoordinator: Coordinator {
 	func showNewChatController() {
 		let newChatVC = NewChatViewController()
 		let coordinator = NewChatCoordinator(navigationController: self.navigationController)
-		newChatVC.coordinator = coordinator
 		childCoordinators.append(coordinator)
+		newChatVC.coordinator = coordinator
+		newChatVC.hidesBottomBarWhenPushed = true
 		navigationController.pushViewController(newChatVC, animated: true)
 	}
 }
@@ -176,7 +177,15 @@ class NewChatCoordinator: Coordinator {
 		self.navigationController = navigationController
 	}
 
+
 	func showNewGroupController() {
+
+	}
+
+	func showQRCodeController() {
+		let controller = QrCodeReaderController()
+		// controller.delegate = self
+		//present(controller, animated: true, completion: nil)
 
 	}
 
@@ -185,11 +194,14 @@ class NewChatCoordinator: Coordinator {
 	}
 
 	func showNewChat(contactId: Int) {
-
+		let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+		showChat(chatId: Int(chatId))
 	}
 
 	func showChat(chatId: Int) {
-
+		let chatViewController = ChatViewController(chatId: chatId)
+		navigationController.popViewController(animated: false)
+		navigationController.pushViewController(chatViewController, animated: true)
 	}
 
 }

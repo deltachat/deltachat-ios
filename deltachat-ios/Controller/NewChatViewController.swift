@@ -42,7 +42,7 @@ class NewChatViewController: UITableViewController {
     return searchController.isActive && !searchBarIsEmpty()
   }
 
-  weak var chatDisplayer: ChatDisplayer?
+  // weak var chatDisplayer: ChatDisplayer?
 
   var syncObserver: Any?
   var hud: ProgressHud?
@@ -69,21 +69,17 @@ class NewChatViewController: UITableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
+		
     title = "New Chat"
-    navigationController?.navigationBar.prefersLargeTitles = true
 
-    let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(NewChatViewController.cancelButtonPressed))
-    navigationItem.rightBarButtonItem = cancelButton
-
-    deviceContactHandler.importDeviceContacts()
+		deviceContactHandler.importDeviceContacts()
     navigationItem.searchController = searchController
     definesPresentationContext = true // to make sure searchbar will only be shown in this viewController
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
+		deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
     contactIds = Utils.getContactIds()
 
     // this will show the searchbar on launch -> will be set back to true on viewDidAppear
@@ -116,6 +112,10 @@ class NewChatViewController: UITableViewController {
       }
     }
   }
+
+	override func viewWillDisappear(_ animated: Bool) {
+		hidesBottomBarWhenPushed = false
+	}
 
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
@@ -244,15 +244,13 @@ class NewChatViewController: UITableViewController {
 
     if section == 0 {
       if row == 0 {
-        let newGroupController = NewGroupViewController()
-        navigationController?.pushViewController(newGroupController, animated: true)
+				coordinator?.showNewGroupController()
+//        let newGroupController = NewGroupViewController()
+//        navigationController?.pushViewController(newGroupController, animated: true)
       }
       if row == 1 {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-          let controller = QrCodeReaderController()
-          controller.delegate = self
-          present(controller, animated: true, completion: nil)
-
+					coordinator?.showQRCodeController()
         } else {
           let alert = UIAlertController(title: "Camera is not available", message: nil, preferredStyle: .alert)
           alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
@@ -271,15 +269,15 @@ class NewChatViewController: UITableViewController {
           // edge case: when searchController is active but searchBar is empty -> filteredContacts is empty, so we fallback to contactIds
           let contactId = isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
           searchController.dismiss(animated: false, completion: {
-            self.dismiss(animated: false, completion: {
-              self.chatDisplayer?.displayNewChat(contactId: contactId)
-            })
+            //self.dismiss(animated: false, completion: {
+							self.coordinator?.showNewChat(contactId: contactId)
+            //})
           })
         } else {
           let contactId = contactIds[row]
-          dismiss(animated: false) {
-            self.chatDisplayer?.displayNewChat(contactId: contactId)
-          }
+          //dismiss(animated: false) {
+						self.coordinator?.showNewChat(contactId: contactId)
+          //}
         }
       } else {
         showSettingsAlert()
@@ -287,9 +285,9 @@ class NewChatViewController: UITableViewController {
     } else {
       let contactIndex = row
       let contactId = contactIds[contactIndex]
-      dismiss(animated: false) {
-        self.chatDisplayer?.displayNewChat(contactId: contactId)
-      }
+      //dismiss(animated: false) {
+				self.coordinator?.showNewChat(contactId: contactId)
+			//}
     }
   }
 
@@ -356,7 +354,8 @@ extension NewChatViewController: QrCodeReaderDelegate {
 
         DispatchQueue.main.async {
           self.dismiss(animated: true) {
-            self.chatDisplayer?.displayChatForId(chatId: Int(id))
+						self.coordinator?.showChat(chatId: Int(id))
+            // self.chatDisplayer?.displayChatForId(chatId: Int(id))
           }
         }
       }
