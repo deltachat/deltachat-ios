@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol Coordinator {
+protocol CoordinatorDeprecated {
   func setupViewControllers(window: UIWindow)
 }
 
-class AppCoordinator: Coordinator {
+class AppCoordinatorDeprecated: CoordinatorDeprecated {
   let baseController = BaseController()
 
   private var appTabBarController: AppTabBarController = AppTabBarController()
@@ -33,4 +33,72 @@ class AppCoordinator: Coordinator {
     let chatNavigationController = UINavigationController(rootViewController: chatListController)
     baseController.present(chatNavigationController, animated: false, completion: nil)
   }
+}
+
+protocol Coordinator: class {
+	var rootViewController: UIViewController { get }
+}
+
+class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
+
+	private let window: UIWindow
+
+	var rootViewController: UIViewController {
+		return tabBarController
+	}
+
+	private var childCoordinators:[Coordinator] = []
+
+	private lazy var tabBarController: UITabBarController = {
+		let tabBarController = UITabBarController()
+		tabBarController.viewControllers = [settingsController]
+		// put viewControllers here
+		tabBarController.delegate = self
+		tabBarController.tabBar.tintColor = DCColors.primary
+		// tabBarController.tabBar.isTranslucent = false
+		return tabBarController
+	}()
+
+	// MARK: viewControllers
+	private lazy var contactsController: ContactListController = {
+		let controller = ContactListController()
+		return controller
+	}()
+
+	private lazy var settingsController: UIViewController = {
+		let controller = SettingsViewController()
+		let nav = NavigationController(rootViewController: controller)
+		let settingsImage = UIImage(named: "settings")
+		nav.tabBarItem = UITabBarItem(title: "Settings", image: settingsImage, tag: 4)
+		let coordinator = SettingsCoordinator(rootViewController: nav)
+		self.childCoordinators.append(coordinator)
+		controller.coordinator = coordinator
+		return nav
+	}()
+
+	init(window: UIWindow) {
+		self.window = window
+		super.init()
+		window.rootViewController = rootViewController
+		window.makeKeyAndVisible()
+	}
+
+	public func start() {
+		tabBarController.selectedIndex = 0
+	}
+
+	public func presentLoginController() {
+
+	}
+
+
+}
+
+class SettingsCoordinator: Coordinator {
+	var rootViewController: UIViewController
+
+	init(rootViewController: UIViewController) {
+		self.rootViewController = rootViewController
+	}
+
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO: delete
 class AppTabBarController: UITabBarController {
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -25,7 +25,9 @@ enum ApplicationState {
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-  static let appCoordinator = AppCoordinator()
+
+	var appCoordinator: AppCoordinator!
+  static let appCoordinatorDeprecated = AppCoordinatorDeprecated()
 	static var progress: Float = 0	// TODO: delete
   static var lastErrorDuringConfig: String?
   private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
@@ -74,12 +76,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //       - second param remains nil (user data for more than one mailbox)
     open()
     let isConfigured = dc_is_configured(mailboxPointer) != 0
-    AppDelegate.appCoordinator.setupViewControllers(window: window)
+    // AppDelegate.appCoordinatorDeprecated.setupViewControllers(window: window)
+		self.appCoordinator = AppCoordinator(window: window)
+		appCoordinator.start()
     UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
     start()
     registerForPushNotifications()
     if !isConfigured {
-      AppDelegate.appCoordinator.presentAccountSetup(animated: false)
+			appCoordinator.presentLoginController()
+			//AppDelegate.appCoordinatorDeprecated.presentAccountSetup(animated: false)
     }
     return true
   }

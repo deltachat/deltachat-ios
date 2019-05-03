@@ -91,7 +91,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
       if done {
         UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
         UserDefaults.standard.synchronize()
-        AppDelegate.appCoordinator.setupInnerViewControllers()
+        AppDelegate.appCoordinatorDeprecated.setupInnerViewControllers()
         AppDelegate.lastErrorDuringConfig = nil
       }
     }

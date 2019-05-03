@@ -462,6 +462,11 @@
 		7A9FB1421FB061E2001FEA36 /* deltachat-ios */ = {
 			isa = PBXGroup;
 			children = (
+				AE851AC3227C695900ED86F0 /* View */,
+				AE851AC2227C695000ED86F0 /* Helper */,
+				AE851AC1227C694300ED86F0 /* Coordinator */,
+				AE851AC0227C693B00ED86F0 /* Controller */,
+				AE851ABA227C692600ED86F0 /* Model */,
 				78C7036A21D46752005D4525 /* deltachat-ios.entitlements */,
 				AEACE2DE1FB3246400DCDD78 /* Message.swift */,
 				7A9FB15B1FB07364001FEA36 /* libraries */,
@@ -482,7 +487,6 @@
 				789E879C21D6DF86003ED1C5 /* ProgressHud.swift */,
 				7032FF8E2149C1DB00B7EC83 /* BaseController.swift */,
 				78ED839021D5929800243125 /* TopViews */,
-				78E45E3221D3CBC000D4B15E /* AppTabBarController.swift */,
 				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
 				78E45E3D21D3D28C00D4B15E /* NavigationController.swift */,
 				7092474020B3869500AF8799 /* ContactProfileViewController.swift */,
@@ -606,6 +610,42 @@
 				AE851A05227AECDF00ED86F0 /* Info.plist */,
 			);
 			path = "deltachat-iosTests";
+			sourceTree = "<group>";
+		};
+		AE851ABA227C692600ED86F0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AE851AC0227C693B00ED86F0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				78E45E3221D3CBC000D4B15E /* AppTabBarController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AE851AC1227C694300ED86F0 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		AE851AC2227C695000ED86F0 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		AE851AC3227C695900ED86F0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
