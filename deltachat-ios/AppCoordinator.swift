@@ -8,6 +8,7 @@
 
 import UIKit
 
+/*
 protocol CoordinatorDeprecated {
   func setupViewControllers(window: UIWindow)
 }
@@ -35,6 +36,8 @@ class AppCoordinatorDeprecated: CoordinatorDeprecated {
   }
 }
 
+*/
+
 protocol Coordinator: class {
 	var rootViewController: UIViewController { get }
 }
@@ -51,7 +54,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 
 	private lazy var tabBarController: UITabBarController = {
 		let tabBarController = UITabBarController()
-		tabBarController.viewControllers = [settingsController]
+		tabBarController.viewControllers = [contactListController, mailboxController, profileController, chatListController, settingsController]
 		// put viewControllers here
 		tabBarController.delegate = self
 		tabBarController.tabBar.tintColor = DCColors.primary
@@ -60,9 +63,49 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 	}()
 
 	// MARK: viewControllers
-	private lazy var contactsController: ContactListController = {
+
+	private lazy var contactListController: UIViewController = {
 		let controller = ContactListController()
-		return controller
+		let nav = NavigationController(rootViewController: controller)
+		let settingsImage = UIImage(named: "contacts")
+		nav.tabBarItem = UITabBarItem(title: "Contacts", image: settingsImage, tag: 4)
+		let coordinator = ContactListCoordinator(rootViewController: nav)
+		self.childCoordinators.append(coordinator)
+		controller.coordinator = coordinator
+		return nav
+	}()
+
+	private lazy var mailboxController: UIViewController = {
+		let controller = ChatListController()
+		let nav = NavigationController(rootViewController: controller)
+		let settingsImage = UIImage(named: "message")
+		nav.tabBarItem = UITabBarItem(title: "Mailbox", image: settingsImage, tag: 4)
+		let coordinator = ChatListCoordinator(rootViewController: nav)
+		self.childCoordinators.append(coordinator)
+		controller.coordinator = coordinator
+		return nav
+	}()
+
+	private lazy var profileController: UIViewController = {
+		let controller = ProfileViewController()
+		let nav = NavigationController(rootViewController: controller)
+		let settingsImage = UIImage(named: "report_card")
+		nav.tabBarItem = UITabBarItem(title: "My Profile", image: settingsImage, tag: 4)
+		let coordinator = ProfileCoordinator(rootViewController: nav)
+		self.childCoordinators.append(coordinator)
+		controller.coordinator = coordinator
+		return nav
+	}()
+
+	private lazy var chatListController: UIViewController = {
+		let controller = ChatListController()
+		let nav = NavigationController(rootViewController: controller)
+		let settingsImage = UIImage(named: "chat")
+		nav.tabBarItem = UITabBarItem(title: "Chats", image: settingsImage, tag: 4)
+		let coordinator = ChatListCoordinator(rootViewController: nav)
+		self.childCoordinators.append(coordinator)
+		controller.coordinator = coordinator
+		return nav
 	}()
 
 	private lazy var settingsController: UIViewController = {
@@ -84,7 +127,11 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 	}
 
 	public func start() {
-		tabBarController.selectedIndex = 0
+		self.showTab(index: 3)
+	}
+
+	public func showTab(index: Int) {
+		tabBarController.selectedIndex = index
 	}
 
 	public func presentLoginController() {
@@ -94,11 +141,44 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 
 }
 
+class ContactListCoordinator: Coordinator {
+	var rootViewController: UIViewController
+
+	init(rootViewController: UIViewController) {
+		self.rootViewController = rootViewController
+	}
+}
+
+class ChatViewCoordinator: Coordinator {
+	var rootViewController: UIViewController
+
+	init(rootViewController: UIViewController) {
+		self.rootViewController = rootViewController
+	}
+}
+
+class ProfileCoordinator: Coordinator {
+	var rootViewController: UIViewController
+
+	init(rootViewController: UIViewController) {
+		self.rootViewController = rootViewController
+	}
+}
+
+class ChatListCoordinator: Coordinator {
+	var rootViewController: UIViewController
+
+	init(rootViewController: UIViewController) {
+		self.rootViewController = rootViewController
+	}
+}
+
 class SettingsCoordinator: Coordinator {
 	var rootViewController: UIViewController
 
 	init(rootViewController: UIViewController) {
 		self.rootViewController = rootViewController
 	}
-
 }
+
+

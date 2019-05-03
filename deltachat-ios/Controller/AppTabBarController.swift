@@ -8,6 +8,7 @@
 
 import UIKit
 
+/*
 // TODO: delete
 class AppTabBarController: UITabBarController {
   override func viewDidLoad() {
@@ -53,3 +54,4 @@ class AppTabBarController: UITabBarController {
     tabBar.tintColor = DCColors.primary
   }
 }
+*/

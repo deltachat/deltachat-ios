@@ -14,6 +14,9 @@ import QuickLook
 import UIKit
 
 class ChatViewController: MessagesViewController {
+
+	weak var coordinator: ChatViewCoordinator?
+
   let outgoingAvatarOverlap: CGFloat = 17.5
   let loadCount = 30
 

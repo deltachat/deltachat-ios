@@ -27,7 +27,7 @@ enum ApplicationState {
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
 	var appCoordinator: AppCoordinator!
-  static let appCoordinatorDeprecated = AppCoordinatorDeprecated()
+  // static let appCoordinatorDeprecated = AppCoordinatorDeprecated()
 	static var progress: Float = 0	// TODO: delete
   static var lastErrorDuringConfig: String?
   private var backgroundTask: UIBackgroundTaskIdentifier = .invalid

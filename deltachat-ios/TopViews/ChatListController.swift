@@ -9,6 +9,7 @@
 import UIKit
 
 class ChatListController: UIViewController {
+	weak var coordinator: ChatListCoordinator?
   var chatList: MRChatList?
 
   lazy var chatTable: UITableView = {
