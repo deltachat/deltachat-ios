@@ -199,9 +199,9 @@ class ChatViewController: MessagesViewController {
   override func viewDidLoad() {
     messagesCollectionView.register(CustomCell.self)
     super.viewDidLoad()
-		self.view.backgroundColor = DCColors.chatBackgroundColor
+    view.backgroundColor = DCColors.chatBackgroundColor
 
-		if !MRConfig.configured {
+    if !MRConfig.configured {
       // TODO: display message about nothing being configured
       return
     }

@@ -11,14 +11,14 @@ import UIKit
 class ChatListController: UIViewController {
   var chatList: MRChatList?
 
-	lazy var chatTable: UITableView = {
-		let chatTable = UITableView()
-		chatTable.dataSource = chatTableDataSource
-		chatTableDelegate.chatPresenter = self
-		chatTable.delegate = chatTableDelegate
-		chatTable.rowHeight = 80
-		return chatTable
-	}()
+  lazy var chatTable: UITableView = {
+    let chatTable = UITableView()
+    chatTable.dataSource = chatTableDataSource
+    chatTableDelegate.chatPresenter = self
+    chatTable.delegate = chatTableDelegate
+    chatTable.rowHeight = 80
+    return chatTable
+  }()
 
   let chatTableDataSource = ChatTableDataSource()
   let chatTableDelegate = ChatTableDelegate()
@@ -93,17 +93,17 @@ class ChatListController: UIViewController {
     newButton.tintColor = DCColors.primary
     navigationItem.rightBarButtonItem = newButton
 
-		setupChatTable()
-	}
+    setupChatTable()
+  }
 
-	private func setupChatTable() {
-		view.addSubview(chatTable)
-		chatTable.translatesAutoresizingMaskIntoConstraints = false
-		chatTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-		chatTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-		chatTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-		chatTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-	}
+  private func setupChatTable() {
+    view.addSubview(chatTable)
+    chatTable.translatesAutoresizingMaskIntoConstraints = false
+    chatTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    chatTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+    chatTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    chatTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+  }
 
   @objc func didPressNewChat() {
     let ncv = NewChatViewController()

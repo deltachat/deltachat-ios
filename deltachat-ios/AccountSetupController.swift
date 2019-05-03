@@ -455,9 +455,6 @@ extension AccountSetupController: UITextFieldDelegate {
     let currentTag = textField.tag
 
     if textField.accessibilityIdentifier == "emailTextField", showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
-      // special case: email field should check for potential oAuth
-
-      // this will activate passwordTextField if oAuth-Dialogue was canceled
       self.passwordCell.textField.becomeFirstResponder()
     }) {
       // all the action is defined in if condition
@@ -577,10 +574,10 @@ class AdvancedSectionHeader: UIView {
 
  // TODO: to add Eye-icon -> uncomment -> add to inputField.rightView
  /*
-   lazy var makeVisibleIcon: UIImageView = {
-   let view = UIImageView(image: )
-   return view
-   }()
+     lazy var makeVisibleIcon: UIImageView = {
+     let view = UIImageView(image: )
+     return view
+     }()
   */
  init() {
  super.init(style: .default, reuseIdentifier: nil)
