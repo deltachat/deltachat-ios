@@ -115,6 +115,8 @@ class NewChatViewController: UITableViewController {
 
 	override func viewWillDisappear(_ animated: Bool) {
 		hidesBottomBarWhenPushed = false
+		title = "Chats"	/* hack: when navigating to chatView (removing this viewController), there was a delayed backButton update (showing 'New Chat' for a moment) */
+
 	}
 
   override func viewDidDisappear(_ animated: Bool) {
@@ -245,8 +247,7 @@ class NewChatViewController: UITableViewController {
     if section == 0 {
       if row == 0 {
 				coordinator?.showNewGroupController()
-//        let newGroupController = NewGroupViewController()
-//        navigationController?.pushViewController(newGroupController, animated: true)
+
       }
       if row == 1 {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -260,8 +261,7 @@ class NewChatViewController: UITableViewController {
         }
       }
       if row == 2 {
-        let newContactController = NewContactController()
-        navigationController?.pushViewController(newContactController, animated: true)
+				coordinator?.showNewContactController()
       }
     } else if section == 1 {
       if deviceContactAccessGranted {
@@ -269,41 +269,21 @@ class NewChatViewController: UITableViewController {
           // edge case: when searchController is active but searchBar is empty -> filteredContacts is empty, so we fallback to contactIds
           let contactId = isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
           searchController.dismiss(animated: false, completion: {
-            //self.dismiss(animated: false, completion: {
-							self.coordinator?.showNewChat(contactId: contactId)
-            //})
-          })
+            	self.coordinator?.showNewChat(contactId: contactId)
+            })
         } else {
           let contactId = contactIds[row]
-          //dismiss(animated: false) {
-						self.coordinator?.showNewChat(contactId: contactId)
-          //}
-        }
+         	self.coordinator?.showNewChat(contactId: contactId)
+         }
       } else {
         showSettingsAlert()
       }
     } else {
       let contactIndex = row
       let contactId = contactIds[contactIndex]
-      //dismiss(animated: false) {
-				self.coordinator?.showNewChat(contactId: contactId)
-			//}
-    }
+     	self.coordinator?.showNewChat(contactId: contactId)
+		}
   }
-
-	/*
-  override func tableView(_: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-    let row = indexPath.row
-    if row > 2 {
-      let contactIndex = row - 3
-      let contactId = contactIds[contactIndex]
-      // let newContactController = NewContactController(contactIdForUpdate: contactId)
-      // navigationController?.pushViewController(newContactController, animated: true)
-      let contactProfileController = ContactProfileViewController(contactId: contactId)
-      navigationController?.pushViewController(contactProfileController, animated: true)
-    }
-  }
-	*/
 
   private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {
     let contact = contactWithHighlight.contact
@@ -322,7 +302,6 @@ class NewChatViewController: UITableViewController {
     }
     cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
     cell.setColor(contact.color)
-    cell.accessoryType = .detailDisclosureButton
   }
 
   private func searchBarIsEmpty() -> Bool {

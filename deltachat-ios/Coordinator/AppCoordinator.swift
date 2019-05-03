@@ -164,7 +164,10 @@ class SettingsCoordinator: Coordinator {
 	}
 
 	func showAccountSetupController() {
-		navigationController.pushViewController(AccountSetupController(), animated: true)
+		let accountSetupVC = AccountSetupController()
+		accountSetupVC.hidesBottomBarWhenPushed = true
+
+		navigationController.pushViewController(accountSetupVC, animated: true)
 	}
 }
 
@@ -179,7 +182,8 @@ class NewChatCoordinator: Coordinator {
 
 
 	func showNewGroupController() {
-
+		let newGroupController = NewGroupViewController()
+		navigationController.pushViewController(newGroupController, animated: true)
 	}
 
 	func showQRCodeController() {
@@ -190,7 +194,8 @@ class NewChatCoordinator: Coordinator {
 	}
 
 	func showNewContactController() {
-
+		let newContactController = NewContactController()
+		navigationController.pushViewController(newContactController, animated: true)
 	}
 
 	func showNewChat(contactId: Int) {
@@ -200,10 +205,9 @@ class NewChatCoordinator: Coordinator {
 
 	func showChat(chatId: Int) {
 		let chatViewController = ChatViewController(chatId: chatId)
-		navigationController.popViewController(animated: false)
-		navigationController.pushViewController(chatViewController, animated: true)
+		self.navigationController.pushViewController(chatViewController, animated: true)
+		navigationController.viewControllers.remove(at: 1)
 	}
-
 }
 
 
