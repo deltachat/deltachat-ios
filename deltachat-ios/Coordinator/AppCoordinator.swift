@@ -152,6 +152,13 @@ class ChatListCoordinator: Coordinator {
 		newChatVC.hidesBottomBarWhenPushed = true
 		navigationController.pushViewController(newChatVC, animated: true)
 	}
+
+	func showChat(chatId: Int) {
+		let chatVC = ChatViewController(chatId: chatId)
+		chatVC.hidesBottomBarWhenPushed = true
+		navigationController.pushViewController(chatVC, animated: true)
+
+	}
 }
 
 class SettingsCoordinator: Coordinator {

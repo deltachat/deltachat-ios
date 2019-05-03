@@ -10,8 +10,6 @@ import ALCameraViewController
 import Contacts
 import UIKit
 
-
-
 class NewChatViewController: UITableViewController {
 	weak var coordinator: NewChatCoordinator?
 
