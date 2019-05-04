@@ -122,7 +122,7 @@ class ChatViewCoordinator: Coordinator {
 	var rootViewController: UIViewController
 	let navigationController: UINavigationController
 
-	var childCoordinators:[Coordinator] = []
+	var childCoordinators: [Coordinator] = []
 
 	init(navigationController: UINavigationController) {
 		self.rootViewController = navigationController.viewControllers.first!
@@ -130,7 +130,9 @@ class ChatViewCoordinator: Coordinator {
 	}
 
 	func showChatDetail(chatId: Int) {
-		print("showChatDetail")
+		let chatDetailViewController = ChatDetailViewController(chatId: chatId)
+		// TODO: create + add chatDetailCoordinator
+		navigationController.pushViewController(chatDetailViewController, animated: true)
 	}
 }
 
@@ -146,7 +148,7 @@ class ChatListCoordinator: Coordinator {
 	var rootViewController: UIViewController
 	let navigationController: UINavigationController
 
-	var childCoordinators:[Coordinator] = []
+	var childCoordinators: [Coordinator] = []
 
 	init(navigationController: UINavigationController) {
 		self.rootViewController = navigationController.viewControllers.first!
