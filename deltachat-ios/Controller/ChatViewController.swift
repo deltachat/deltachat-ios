@@ -48,8 +48,8 @@ class ChatViewController: MessagesViewController {
 		messagesCollectionView.register(CustomCell.self)
 		super.viewDidLoad()
 		view.backgroundColor = DCColors.chatBackgroundColor
-
-
+		let navBarTap = UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
+		navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 		if !MRConfig.configured {
 			// TODO: display message about nothing being configured
 			return
@@ -361,7 +361,7 @@ class ChatViewController: MessagesViewController {
   }
 
 	@objc private func chatProfilePressed() {
-		print("Profile pressed")
+		coordinator?.showChatDetail(chatId: self.chatId)
 	}
 
   // MARK: - UICollectionViewDataSource

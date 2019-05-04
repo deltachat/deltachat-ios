@@ -128,6 +128,10 @@ class ChatViewCoordinator: Coordinator {
 		self.rootViewController = navigationController.viewControllers.first!
 		self.navigationController = navigationController
 	}
+
+	func showChatDetail(chatId: Int) {
+		print("showChatDetail")
+	}
 }
 
 class ProfileCoordinator: Coordinator {
@@ -160,6 +164,9 @@ class ChatListCoordinator: Coordinator {
 
 	func showChat(chatId: Int) {
 		let chatVC = ChatViewController(chatId: chatId)
+		let coordinator = ChatViewCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
+		chatVC.coordinator = coordinator
 		chatVC.hidesBottomBarWhenPushed = true
 		navigationController.pushViewController(chatVC, animated: true)
 
@@ -186,6 +193,8 @@ class SettingsCoordinator: Coordinator {
 class NewChatCoordinator: Coordinator {
 	var rootViewController: UIViewController
 	let navigationController: UINavigationController
+
+	private var childCoordinators:[Coordinator] = []
 
 	init(navigationController: UINavigationController) {
 		self.rootViewController = navigationController.viewControllers.first!
@@ -217,6 +226,9 @@ class NewChatCoordinator: Coordinator {
 
 	func showChat(chatId: Int) {
 		let chatViewController = ChatViewController(chatId: chatId)
+		let coordinator = ChatViewCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
+		chatViewController.coordinator = coordinator
 		self.navigationController.pushViewController(chatViewController, animated: true)
 		navigationController.viewControllers.remove(at: 1)
 	}
