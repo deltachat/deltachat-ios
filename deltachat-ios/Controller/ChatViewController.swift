@@ -61,7 +61,8 @@ class ChatViewController: MessagesViewController {
 		if let image = chat.profileImage {
 			navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(chatProfilePressed))
 		} else {
-			navigationItem.rightBarButtonItem = UIBarButtonItem(title: chat.name, style: .done, target: self, action: #selector(chatProfilePressed))
+			let initialsLabel = InitialsLabel(name: chat.name, color: chat.color, size: 28)
+			navigationItem.rightBarButtonItem = UIBarButtonItem(customView: initialsLabel)
 		}
 
 

@@ -10,10 +10,31 @@ import UIKit
 
 class InitialsLabel: UILabel {
 
-	init(name: String, size: CGFloat, color: UIColor) {
-		self.text = name.i
+	convenience init(name: String, color: UIColor, size: CGFloat) {
+		self.init(size: size)
+		set(name: name)
+		set(color: color)
 	}
 
+	init(size: CGFloat) {
+		super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
+		textAlignment = NSTextAlignment.center
+		textColor = UIColor.white
+		adjustsFontSizeToFitWidth = true
+		let initialsLabelCornerRadius = size / 2
+		layer.cornerRadius = initialsLabelCornerRadius
+		clipsToBounds = true
+	}
 
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 
+	func set(name: String) {
+		self.text = Utils.getInitials(inputName: name)
+	}
+
+	func set(color: UIColor) {
+		backgroundColor = color
+	}
 }
