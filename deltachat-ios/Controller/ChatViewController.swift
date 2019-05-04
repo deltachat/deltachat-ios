@@ -40,8 +40,114 @@ class ChatViewController: MessagesViewController {
     }
   }
 
+	required init?(coder _: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
+	override func viewDidLoad() {
+		messagesCollectionView.register(CustomCell.self)
+		super.viewDidLoad()
+		view.backgroundColor = DCColors.chatBackgroundColor
+
+
+		if !MRConfig.configured {
+			// TODO: display message about nothing being configured
+			return
+		}
+
+		let chat = MRChat(id: chatId)
+		updateTitleView(title: chat.name, subtitle: chat.subtitle)
+
+		if let image = chat.profileImage {
+			navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(chatProfilePressed))
+		} else {
+			navigationItem.rightBarButtonItem = UIBarButtonItem(title: chat.name, style: .done, target: self, action: #selector(chatProfilePressed))
+		}
+
+
+		configureMessageCollectionView()
+
+		if !disableWriting {
+			configureMessageInputBar()
+			messageInputBar.inputTextView.text = textDraft
+			messageInputBar.inputTextView.becomeFirstResponder()
+		}
+
+		loadFirstMessages()
+	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		configureMessageMenu()
+
+		if #available(iOS 11.0, *) {
+			if disableWriting {
+				navigationController?.navigationBar.prefersLargeTitles = true
+			}
+		}
+
+		let nc = NotificationCenter.default
+		msgChangedObserver = nc.addObserver(
+			forName: dcNotificationChanged,
+			object: nil,
+			queue: OperationQueue.main
+		) { notification in
+			if let ui = notification.userInfo {
+				if self.disableWriting {
+					// always refresh, as we can't check currently
+					self.refreshMessages()
+				} else if let id = ui["message_id"] as? Int {
+					if id > 0 {
+						self.updateMessage(id)
+					}
+				}
+			}
+		}
+
+		incomingMsgObserver = nc.addObserver(
+			forName: dcNotificationIncoming,
+			object: nil, queue: OperationQueue.main
+		) { notification in
+			if let ui = notification.userInfo {
+				if self.chatId == ui["chat_id"] as! Int {
+					let id = ui["message_id"] as! Int
+					if id > 0 {
+						self.insertMessage(MRMessage(id: id))
+					}
+				}
+			}
+		}
+	}
+
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+
+		let cnt = Int(dc_get_fresh_msg_cnt(mailboxPointer, UInt32(chatId)))
+		logger.info("updating count for chat \(cnt)")
+		UIApplication.shared.applicationIconBadgeNumber = cnt
+
+		if #available(iOS 11.0, *) {
+			if disableWriting {
+				navigationController?.navigationBar.prefersLargeTitles = false
+			}
+		}
+	}
+
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+
+		setTextDraft()
+		let nc = NotificationCenter.default
+		if let msgChangedObserver = self.msgChangedObserver {
+			nc.removeObserver(msgChangedObserver)
+		}
+		if let incomingMsgObserver = self.incomingMsgObserver {
+			nc.removeObserver(incomingMsgObserver)
+		}
+	}
+
   @objc
-  func loadMoreMessages() {
+  private func loadMoreMessages() {
     DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
       DispatchQueue.main.async {
         self.messageList = self.getMessageIds(self.loadCount, from: self.messageList.count) + self.messageList
@@ -52,7 +158,7 @@ class ChatViewController: MessagesViewController {
   }
 
   @objc
-  func refreshMessages() {
+  private func refreshMessages() {
     DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
       DispatchQueue.main.async {
         self.messageList = self.getMessageIds(self.messageList.count)
@@ -65,7 +171,7 @@ class ChatViewController: MessagesViewController {
     }
   }
 
-  func loadFirstMessages() {
+  private func loadFirstMessages() {
     DispatchQueue.global(qos: .userInitiated).async {
       DispatchQueue.main.async {
         self.messageList = self.getMessageIds(self.loadCount)
@@ -76,7 +182,7 @@ class ChatViewController: MessagesViewController {
     }
   }
 
-  var textDraft: String? {
+  private var textDraft: String? {
     // FIXME: need to free pointer
     if let draft = dc_get_draft(mailboxPointer, UInt32(chatId)) {
       if let text = dc_msg_get_text(draft) {
@@ -88,7 +194,7 @@ class ChatViewController: MessagesViewController {
     return nil
   }
 
-  func getMessageIds(_ count: Int, from: Int? = nil) -> [MRMessage] {
+  private func getMessageIds(_ count: Int, from: Int? = nil) -> [MRMessage] {
     let cMessageIds = dc_get_chat_msgs(mailboxPointer, UInt32(chatId), 0, 0)
 
     let ids: [Int]
@@ -106,54 +212,9 @@ class ChatViewController: MessagesViewController {
     }
   }
 
-  required init?(coder _: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
 
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    configureMessageMenu()
 
-    if #available(iOS 11.0, *) {
-      if disableWriting {
-        navigationController?.navigationBar.prefersLargeTitles = true
-      }
-    }
-
-    let nc = NotificationCenter.default
-    msgChangedObserver = nc.addObserver(
-      forName: dcNotificationChanged,
-      object: nil,
-      queue: OperationQueue.main
-    ) { notification in
-      if let ui = notification.userInfo {
-        if self.disableWriting {
-          // always refresh, as we can't check currently
-          self.refreshMessages()
-        } else if let id = ui["message_id"] as? Int {
-          if id > 0 {
-            self.updateMessage(id)
-          }
-        }
-      }
-    }
-
-    incomingMsgObserver = nc.addObserver(
-      forName: dcNotificationIncoming,
-      object: nil, queue: OperationQueue.main
-    ) { notification in
-      if let ui = notification.userInfo {
-        if self.chatId == ui["chat_id"] as! Int {
-          let id = ui["message_id"] as! Int
-          if id > 0 {
-            self.insertMessage(MRMessage(id: id))
-          }
-        }
-      }
-    }
-  }
-
-  func setTextDraft() {
+  private func setTextDraft() {
     if let text = self.messageInputBar.inputTextView.text {
       let draft = dc_msg_new(mailboxPointer, DC_MSG_TEXT)
       dc_msg_set_text(draft, text.cString(using: .utf8))
@@ -164,32 +225,7 @@ class ChatViewController: MessagesViewController {
     }
   }
 
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
 
-    let cnt = Int(dc_get_fresh_msg_cnt(mailboxPointer, UInt32(chatId)))
-    logger.info("updating count for chat \(cnt)")
-    UIApplication.shared.applicationIconBadgeNumber = cnt
-
-    if #available(iOS 11.0, *) {
-      if disableWriting {
-        navigationController?.navigationBar.prefersLargeTitles = false
-      }
-    }
-  }
-
-  override func viewDidDisappear(_ animated: Bool) {
-    super.viewDidDisappear(animated)
-
-    setTextDraft()
-    let nc = NotificationCenter.default
-    if let msgChangedObserver = self.msgChangedObserver {
-      nc.removeObserver(msgChangedObserver)
-    }
-    if let incomingMsgObserver = self.incomingMsgObserver {
-      nc.removeObserver(incomingMsgObserver)
-    }
-  }
 
   override var inputAccessoryView: UIView? {
     if disableWriting {
@@ -199,31 +235,9 @@ class ChatViewController: MessagesViewController {
     return messageInputBar
   }
 
-  override func viewDidLoad() {
-    messagesCollectionView.register(CustomCell.self)
-    super.viewDidLoad()
-    view.backgroundColor = DCColors.chatBackgroundColor
 
-    if !MRConfig.configured {
-      // TODO: display message about nothing being configured
-      return
-    }
 
-    let chat = MRChat(id: chatId)
-    updateTitleView(title: chat.name, subtitle: chat.subtitle)
-
-    configureMessageCollectionView()
-
-    if !disableWriting {
-      configureMessageInputBar()
-      messageInputBar.inputTextView.text = textDraft
-      messageInputBar.inputTextView.becomeFirstResponder()
-    }
-
-    loadFirstMessages()
-  }
-
-  func configureMessageMenu() {
+  private func configureMessageMenu() {
     var menuItems: [UIMenuItem]
 
     if disableWriting {
@@ -242,7 +256,7 @@ class ChatViewController: MessagesViewController {
     UIMenuController.shared.menuItems = menuItems
   }
 
-  func configureMessageCollectionView() {
+  private func configureMessageCollectionView() {
     messagesCollectionView.messagesDataSource = self
     messagesCollectionView.messageCellDelegate = self
 
@@ -275,7 +289,7 @@ class ChatViewController: MessagesViewController {
     messagesCollectionView.messagesDisplayDelegate = self
   }
 
-  func configureMessageInputBar() {
+  private func configureMessageInputBar() {
     messageInputBar.delegate = self
     messageInputBar.inputTextView.tintColor = DCColors.primary
     messageInputBar.sendButton.tintColor = DCColors.primary
@@ -301,17 +315,17 @@ class ChatViewController: MessagesViewController {
 
   private func configureInputBarItems() {
     messageInputBar.setLeftStackViewWidthConstant(to: 44, animated: false)
-    messageInputBar.setRightStackViewWidthConstant(to: 36, animated: false)
+    messageInputBar.setRightStackViewWidthConstant(to: 30, animated: false)
 
     let sendButtonImage = UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)
     messageInputBar.sendButton.image = sendButtonImage
     messageInputBar.sendButton.tintColor = UIColor(white: 1, alpha: 1)
     messageInputBar.sendButton.backgroundColor = UIColor(white: 0.9, alpha: 1)
     messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
-    messageInputBar.sendButton.setSize(CGSize(width: 34, height: 34), animated: false)
+    messageInputBar.sendButton.setSize(CGSize(width: 30, height: 30), animated: false)
 
     messageInputBar.sendButton.title = nil
-    messageInputBar.sendButton.layer.cornerRadius = 18
+    messageInputBar.sendButton.layer.cornerRadius = 15
 
     messageInputBar.textViewPadding.right = -40
 
@@ -344,6 +358,10 @@ class ChatViewController: MessagesViewController {
         })
       }
   }
+
+	@objc private func chatProfilePressed() {
+		print("Profile pressed")
+	}
 
   // MARK: - UICollectionViewDataSource
 
@@ -666,7 +684,7 @@ extension ChatViewController: MessagesDisplayDelegate {
     }
   }
 
-  func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) {
+	func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) {
     let message = messageList[indexPath.section]
     let contact = message.fromContact
     let avatar = Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.name))

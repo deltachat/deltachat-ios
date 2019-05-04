@@ -271,7 +271,7 @@ class NewChatViewController: UITableViewController {
             })
         } else {
           let contactId = contactIds[row]
-         	self.coordinator?.showNewChat(contactId: contactId)
+         		self.coordinator?.showNewChat(contactId: contactId)
          }
       } else {
         showSettingsAlert()

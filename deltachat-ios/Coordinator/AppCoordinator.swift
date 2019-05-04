@@ -42,11 +42,12 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 	}()
 
 	private lazy var mailboxController: UIViewController = {
-		let controller = ChatListController()
+		let controller = ChatViewController(chatId: Int(DC_CHAT_ID_DEADDROP), title: "Mailbox")
+		controller.disableWriting = true
 		let nav = NavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "message")
 		nav.tabBarItem = UITabBarItem(title: "Mailbox", image: settingsImage, tag: 4)
-		let coordinator = ChatListCoordinator(navigationController: nav)
+		let coordinator = ChatViewCoordinator(navigationController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
 		return nav
@@ -119,9 +120,13 @@ class ContactListCoordinator: Coordinator {
 
 class ChatViewCoordinator: Coordinator {
 	var rootViewController: UIViewController
+	let navigationController: UINavigationController
 
-	init(rootViewController: UIViewController) {
-		self.rootViewController = rootViewController
+	var childCoordinators:[Coordinator] = []
+
+	init(navigationController: UINavigationController) {
+		self.rootViewController = navigationController.viewControllers.first!
+		self.navigationController = navigationController
 	}
 }
 

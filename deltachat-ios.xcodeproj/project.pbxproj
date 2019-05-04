@@ -95,6 +95,7 @@
 		AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC4227C755A00ED86F0 /* Protocols.swift */; };
 		AE851AC7227C776400ED86F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC6227C776400ED86F0 /* Location.swift */; };
 		AE851AC9227C77CF00ED86F0 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC8227C77CF00ED86F0 /* Media.swift */; };
+		AE851ACE227CA54400ED86F0 /* InitialsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACD227CA54300ED86F0 /* InitialsLabel.swift */; };
 		AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */; };
 		AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DE1FB3246400DCDD78 /* Message.swift */; };
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
@@ -285,6 +286,7 @@
 		AE851AC4227C755A00ED86F0 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		AE851AC6227C776400ED86F0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		AE851AC8227C77CF00ED86F0 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		AE851ACD227CA54300ED86F0 /* InitialsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsLabel.swift; sourceTree = "<group>"; };
 		AEA9CC2F22522DA20061D113 /* librpgp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = librpgp.h; sourceTree = "<group>"; };
 		AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		AEACE2DE1FB3246400DCDD78 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -577,10 +579,10 @@
 		AE851AC0227C693B00ED86F0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				78E45E3D21D3D28C00D4B15E /* NavigationController.swift */,
 				785BE16721E247F1003BE98C /* MessageInfoViewController.swift */,
 				7A0052C71FBE6CB40048C3BF /* NewContactController.swift */,
 				AEE56D752253431E007DC082 /* AccountSetupController.swift */,
-				78E45E3D21D3D28C00D4B15E /* NavigationController.swift */,
 				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
 				789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */,
 				7092474020B3869500AF8799 /* ContactProfileViewController.swift */,
@@ -627,6 +629,7 @@
 				78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */,
 				789E879C21D6DF86003ED1C5 /* ProgressHud.swift */,
 				AE38B31722672DFC00EC37A1 /* ActionCell.swift */,
+				AE851ACD227CA54300ED86F0 /* InitialsLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -985,6 +988,7 @@
 				7070FB5F20FF345F000DC258 /* dc_tools.c in Sources */,
 				7070FB8E20FF4118000DC258 /* dc_apeerstate.c in Sources */,
 				7A451DBE1FB4AD0700177250 /* Wrapper.swift in Sources */,
+				AE851ACE227CA54400ED86F0 /* InitialsLabel.swift in Sources */,
 				7070FB6420FF345F000DC258 /* dc_dehtml.c in Sources */,
 				70B8882E2091B8550074812E /* ContactCell.swift in Sources */,
 				7070FB8D20FF4118000DC258 /* dc_sqlite3.c in Sources */,
