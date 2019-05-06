@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactProfileViewController: UITableViewController {
+class ContactDetailViewController: UITableViewController {
   let contactId: Int
 
   var contact: MRContact {

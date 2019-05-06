@@ -73,7 +73,6 @@ class ContactListController: UITableViewController {
       cell.nameLabel.text = contact.name
       cell.emailLabel.text = contact.email
 
-      // TODO: provider a nice selection
       cell.selectionStyle = .none
 
       if let img = contact.profileImage {
@@ -87,8 +86,7 @@ class ContactListController: UITableViewController {
   }
 
   override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let contactId = contactIds[indexPath.row]
-    let contactProfileController = ContactProfileViewController(contactId: contactId)
-    navigationController?.pushViewController(contactProfileController, animated: true)
-  }
+		let contactId = contactIds[indexPath.row]
+		coordinator?.showContactDetail(contactId: contactId)
+   }
 }

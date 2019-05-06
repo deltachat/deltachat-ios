@@ -48,7 +48,7 @@
 		7070FB9220FF4118000DC258 /* dc_imap.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8820FF4118000DC258 /* dc_imap.c */; };
 		7070FB9320FF4118000DC258 /* dc_msg.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8920FF4118000DC258 /* dc_msg.c */; };
 		7070FB9B2101ECBB000DC258 /* GroupNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* GroupNameController.swift */; };
-		7092474120B3869500AF8799 /* ContactProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactProfileViewController.swift */; };
+		7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactDetailViewController.swift */; };
 		70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */; };
 		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
 		78113B71224400F300BCA958 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78113B6F224400F300BCA958 /* libssl.a */; };
@@ -191,7 +191,7 @@
 		7070FB8820FF4118000DC258 /* dc_imap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_imap.c; sourceTree = "<group>"; };
 		7070FB8920FF4118000DC258 /* dc_msg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_msg.c; sourceTree = "<group>"; };
 		7070FB9A2101ECBB000DC258 /* GroupNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNameController.swift; sourceTree = "<group>"; };
-		7092474020B3869500AF8799 /* ContactProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactProfileViewController.swift; sourceTree = "<group>"; };
+		7092474020B3869500AF8799 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
 		70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupMemberChoiceController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		78113B6F224400F300BCA958 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "deltachat-ios/libraries/openssl/lib/libssl.a"; sourceTree = "<group>"; };
@@ -589,7 +589,7 @@
 				AEE56D752253431E007DC082 /* AccountSetupController.swift */,
 				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
 				789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */,
-				7092474020B3869500AF8799 /* ContactProfileViewController.swift */,
+				7092474020B3869500AF8799 /* ContactDetailViewController.swift */,
 				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
 				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
 				78E45E3F21D3D70700D4B15E /* ContactListController.swift */,
@@ -1000,7 +1000,7 @@
 				70B8882E2091B8550074812E /* ContactCell.swift in Sources */,
 				7070FB8D20FF4118000DC258 /* dc_sqlite3.c in Sources */,
 				7A451D941FB1B1DB00177250 /* wrapper.c in Sources */,
-				7092474120B3869500AF8799 /* ContactProfileViewController.swift in Sources */,
+				7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */,
 				7070FB5E20FF345F000DC258 /* dc_token.c in Sources */,
 				AE851AD0227DF50900ED86F0 /* ChatDetailViewController.swift in Sources */,
 				7070FB6C20FF345F000DC258 /* dc_keyring.c in Sources */,
