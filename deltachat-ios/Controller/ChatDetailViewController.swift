@@ -10,6 +10,9 @@ import UIKit
 
 class ChatDetailViewController: UIViewController {
 
+	weak var coordinator: ChatDetailCoordinator?
+
+
 	init(chatId: Int) {
 		super.init(nibName: nil, bundle: nil)
 	}
