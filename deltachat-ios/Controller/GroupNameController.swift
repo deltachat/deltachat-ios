@@ -12,20 +12,10 @@ class GroupNameController: UITableViewController {
 
 	weak var coordinator: GroupNameCoordinator?
 
+	var groupName: String = ""
+
   var doneButton: UIBarButtonItem!
-  let groupNameTextField = UITextField()
   let contactIdsForGroup: Set<Int>
-  var groupName = "" {
-    didSet {
-      if groupName.isEmpty {
-        logger.info("empty")
-        doneButton.isEnabled = false
-      } else {
-        logger.info("something")
-        doneButton.isEnabled = true
-      }
-    }
-  }
 
   init(contactIdsForGroup: Set<Int>) {
     self.contactIdsForGroup = contactIdsForGroup
@@ -39,18 +29,17 @@ class GroupNameController: UITableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "Group Name"
-		view.backgroundColor = UIColor.white
-    groupNameTextField.delegate = self
-    doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didPressDoneButton))
+    title = "New Group"
+		doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
     navigationItem.rightBarButtonItem = doneButton
+		tableView.bounces = false
     doneButton.isEnabled = false
-		setupSubviews()
+		tableView.register(GroupLabelCell.self, forCellReuseIdentifier: "groupLabelCell")
+		// setupSubviews()
 
 	}
 
-  @objc func didPressDoneButton() {
-    logger.info("Done Button pressed")
+  @objc func doneButtonPressed() {
     let groupChatId = dc_create_group_chat(mailboxPointer, 0, groupName)
     for contactId in contactIdsForGroup {
       let success = dc_add_contact_to_chat(mailboxPointer, groupChatId, UInt32(contactId))
@@ -61,7 +50,6 @@ class GroupNameController: UITableViewController {
         fatalError("failed to add \(contactId) to group \(groupName)")
       }
     }
-    groupNameTextField.resignFirstResponder()
     let root = navigationController?.presentingViewController
     navigationController?.dismiss(animated: true) {
       let chatVC = ChatViewController(chatId: Int(groupChatId))
@@ -76,32 +64,94 @@ class GroupNameController: UITableViewController {
     // Dispose of any resources that can be recreated.
   }
 
-	func setupSubviews() {
-		groupNameTextField.translatesAutoresizingMaskIntoConstraints = false
-		view.addSubview(groupNameTextField)
-		groupNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-		groupNameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-		groupNameTextField.placeholder = "Group Name"
-		groupNameTextField.becomeFirstResponder()
-	}
 
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return 2
+		return 1
+		
 	}
 
-	/*
+
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let section = indexPath.section
+		let row = indexPath.row
 
+		if section == 0 {
+		}
+
+		let cell = tableView.dequeueReusableCell(withIdentifier: "groupLabelCell", for: indexPath) as! GroupLabelCell
+		cell.groupNameUpdated = updateGroupNamae
+
+		return cell
 	}
-	*/
 
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return 1
+	}
+
+	private func updateGroupNamae(name: String) {
+		groupName = name
+		doneButton.isEnabled = name.containsCharacters()
+	}
 }
 
-extension GroupNameController: UITextFieldDelegate {
-  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-    groupName = text
 
-    return true
-  }
+
+class GroupLabelCell: UITableViewCell {
+
+	private let groupBadgeSize: CGFloat = 60
+	var groupNameUpdated: ((String) -> ())?
+
+	lazy var groupBadge: InitialsLabel = {
+		let badge = InitialsLabel(size: groupBadgeSize)
+		badge.set(color: UIColor.lightGray)
+		return badge
+	}()
+
+	lazy var inputField: UITextField = {
+		let textField = UITextField()
+		textField.placeholder = "Group Name"
+		textField.borderStyle = .none
+		textField.becomeFirstResponder()
+		textField.addTarget(self, action: #selector(nameFieldChanged), for: .editingChanged)
+		return textField
+	}()
+
+	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+		super.init(style: style, reuseIdentifier: reuseIdentifier)
+		setupSubviews()
+	}
+
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
+	private func setupSubviews() {
+
+		contentView.addSubview(groupBadge)
+		groupBadge.translatesAutoresizingMaskIntoConstraints = false
+
+		groupBadge.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 0).isActive = true
+		groupBadge.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 5).isActive = true
+		groupBadge.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor, constant: -5).isActive = true
+		groupBadge.widthAnchor.constraint(equalToConstant: groupBadgeSize).isActive = true
+		groupBadge.heightAnchor.constraint(equalToConstant: groupBadgeSize).isActive = true
+
+		contentView.addSubview(inputField)
+		inputField.translatesAutoresizingMaskIntoConstraints = false
+
+		inputField.leadingAnchor.constraint(equalTo: groupBadge.trailingAnchor, constant: 15).isActive = true
+		inputField.heightAnchor.constraint(equalToConstant: 45).isActive = true
+		inputField.centerYAnchor.constraint(equalTo: groupBadge.centerYAnchor, constant: 0).isActive = true
+		inputField.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: 0).isActive = true
+	}
+
+	@objc func nameFieldChanged() {
+		let groupName = inputField.text ?? ""
+		groupBadge.set(name: groupName)
+		groupNameUpdated?(groupName)
+	}
 }
+
+
+
+
