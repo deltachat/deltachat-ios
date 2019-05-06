@@ -11,7 +11,7 @@ import Contacts
 import UIKit
 
 class NewChatViewController: UITableViewController {
-	weak var coordinator: NewChatCoordinator?
+  weak var coordinator: NewChatCoordinator?
 
   private lazy var searchController: UISearchController = {
     let searchController = UISearchController(searchResultsController: nil)
@@ -67,17 +67,17 @@ class NewChatViewController: UITableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-		
+
     title = "New Chat"
 
-		deviceContactHandler.importDeviceContacts()
+    deviceContactHandler.importDeviceContacts()
     navigationItem.searchController = searchController
     definesPresentationContext = true // to make sure searchbar will only be shown in this viewController
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-		deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
+    deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
     contactIds = Utils.getContactIds()
 
     // this will show the searchbar on launch -> will be set back to true on viewDidAppear
@@ -111,11 +111,10 @@ class NewChatViewController: UITableViewController {
     }
   }
 
-	override func viewWillDisappear(_ animated: Bool) {
-		hidesBottomBarWhenPushed = false
-		title = "Chats"	/* hack: when navigating to chatView (removing this viewController), there was a delayed backButton update (showing 'New Chat' for a moment) */
-
-	}
+  override func viewWillDisappear(_: Bool) {
+    hidesBottomBarWhenPushed = false
+    title = "Chats" /* hack: when navigating to chatView (removing this viewController), there was a delayed backButton update (showing 'New Chat' for a moment) */
+  }
 
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
@@ -244,12 +243,11 @@ class NewChatViewController: UITableViewController {
 
     if section == 0 {
       if row == 0 {
-				coordinator?.showNewGroupController()
-
+        coordinator?.showNewGroupController()
       }
       if row == 1 {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-					coordinator?.showQRCodeController()
+          coordinator?.showQRCodeController()
         } else {
           let alert = UIAlertController(title: "Camera is not available", message: nil, preferredStyle: .alert)
           alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
@@ -259,7 +257,7 @@ class NewChatViewController: UITableViewController {
         }
       }
       if row == 2 {
-				coordinator?.showNewContactController()
+        coordinator?.showNewContactController()
       }
     } else if section == 1 {
       if deviceContactAccessGranted {
@@ -267,20 +265,20 @@ class NewChatViewController: UITableViewController {
           // edge case: when searchController is active but searchBar is empty -> filteredContacts is empty, so we fallback to contactIds
           let contactId = isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
           searchController.dismiss(animated: false, completion: {
-            	self.coordinator?.showNewChat(contactId: contactId)
-            })
+            self.coordinator?.showNewChat(contactId: contactId)
+          })
         } else {
           let contactId = contactIds[row]
-         		self.coordinator?.showNewChat(contactId: contactId)
-         }
+          coordinator?.showNewChat(contactId: contactId)
+        }
       } else {
         showSettingsAlert()
       }
     } else {
       let contactIndex = row
       let contactId = contactIds[contactIndex]
-     	self.coordinator?.showNewChat(contactId: contactId)
-		}
+      coordinator?.showNewChat(contactId: contactId)
+    }
   }
 
   private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {
@@ -331,7 +329,7 @@ extension NewChatViewController: QrCodeReaderDelegate {
 
         DispatchQueue.main.async {
           self.dismiss(animated: true) {
-						self.coordinator?.showChat(chatId: Int(id))
+            self.coordinator?.showChat(chatId: Int(id))
             // self.chatDisplayer?.displayChatForId(chatId: Int(id))
           }
         }

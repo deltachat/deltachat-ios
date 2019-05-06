@@ -9,7 +9,7 @@
 import UIKit
 
 class ChatListController: UIViewController {
-	weak var coordinator: ChatListCoordinator?
+  weak var coordinator: ChatListCoordinator?
   var chatList: MRChatList?
 
   lazy var chatTable: UITableView = {
@@ -30,7 +30,7 @@ class ChatListController: UIViewController {
     super.viewWillAppear(animated)
 
     if #available(iOS 11.0, *) {
-			// TODO: check if this is really nessesary - dc navigationController has large titles
+      // TODO: check if this is really nessesary - dc navigationController has large titles
       navigationController?.navigationBar.prefersLargeTitles = true
     }
 
@@ -62,8 +62,8 @@ class ChatListController: UIViewController {
     viewChatObserver = nc.addObserver(forName: dcNotificationViewChat, object: nil, queue: nil) {
       notification in
       if let chatId = notification.userInfo?["chat_id"] as? Int {
-				self.coordinator?.showChat(chatId: chatId)
-	    }
+        self.coordinator?.showChat(chatId: chatId)
+      }
     }
   }
 
@@ -104,8 +104,8 @@ class ChatListController: UIViewController {
   }
 
   @objc func didPressNewChat() {
-		coordinator?.showNewChatController()
-	}
+    coordinator?.showNewChatController()
+  }
 
   func getChatList() {
     guard let chatlistPointer = dc_get_chatlist(mailboxPointer, DC_GCL_NO_SPECIALS, nil, 0) else {
@@ -118,7 +118,6 @@ class ChatListController: UIViewController {
 }
 
 extension ChatListController: UITableViewDataSource, UITableViewDelegate {
-
   func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
     guard let chatList = self.chatList else {
       fatalError("chatList was nil in data source")
@@ -165,10 +164,10 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
     return cell
   }
 
-	func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+  func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
     let row = indexPath.row
-		if let chatId = chatList?.getChatId(index: row) {
-			coordinator?.showChat(chatId: chatId)
-		}
+    if let chatId = chatList?.getChatId(index: row) {
+      coordinator?.showChat(chatId: chatId)
+    }
   }
 }

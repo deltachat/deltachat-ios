@@ -14,8 +14,7 @@ import QuickLook
 import UIKit
 
 class ChatViewController: MessagesViewController {
-
-	weak var coordinator: ChatViewCoordinator?
+  weak var coordinator: ChatViewCoordinator?
 
   let outgoingAvatarOverlap: CGFloat = 17.5
   let loadCount = 30
@@ -40,112 +39,111 @@ class ChatViewController: MessagesViewController {
     }
   }
 
-	required init?(coder _: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
+  required init?(coder _: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
-	override func viewDidLoad() {
-		messagesCollectionView.register(CustomCell.self)
-		super.viewDidLoad()
-		view.backgroundColor = DCColors.chatBackgroundColor
-		let navBarTap = UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
-		navigationController?.navigationBar.addGestureRecognizer(navBarTap)
-		if !MRConfig.configured {
-			// TODO: display message about nothing being configured
-			return
-		}
+  override func viewDidLoad() {
+    messagesCollectionView.register(CustomCell.self)
+    super.viewDidLoad()
+    view.backgroundColor = DCColors.chatBackgroundColor
+    let navBarTap = UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
+    navigationController?.navigationBar.addGestureRecognizer(navBarTap)
+    if !MRConfig.configured {
+      // TODO: display message about nothing being configured
+      return
+    }
 
-		let chat = MRChat(id: chatId)
-		updateTitleView(title: chat.name, subtitle: chat.subtitle)
+    let chat = MRChat(id: chatId)
+    updateTitleView(title: chat.name, subtitle: chat.subtitle)
 
-		if let image = chat.profileImage {
-			navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(chatProfilePressed))
-		} else {
-			let initialsLabel = InitialsLabel(name: chat.name, color: chat.color, size: 28)
-			navigationItem.rightBarButtonItem = UIBarButtonItem(customView: initialsLabel)
-		}
+    if let image = chat.profileImage {
+      navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(chatProfilePressed))
+    } else {
+      let initialsLabel = InitialsLabel(name: chat.name, color: chat.color, size: 28)
+      navigationItem.rightBarButtonItem = UIBarButtonItem(customView: initialsLabel)
+    }
 
+    configureMessageCollectionView()
 
-		configureMessageCollectionView()
+    if !disableWriting {
+      configureMessageInputBar()
+      messageInputBar.inputTextView.text = textDraft
+      messageInputBar.inputTextView.becomeFirstResponder()
+    }
 
-		if !disableWriting {
-			configureMessageInputBar()
-			messageInputBar.inputTextView.text = textDraft
-			messageInputBar.inputTextView.becomeFirstResponder()
-		}
+    loadFirstMessages()
+  }
 
-		loadFirstMessages()
-	}
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    configureMessageMenu()
 
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		configureMessageMenu()
+    if #available(iOS 11.0, *) {
+      if disableWriting {
+        navigationController?.navigationBar.prefersLargeTitles = true
+      }
+    }
 
-		if #available(iOS 11.0, *) {
-			if disableWriting {
-				navigationController?.navigationBar.prefersLargeTitles = true
-			}
-		}
+    let nc = NotificationCenter.default
+    msgChangedObserver = nc.addObserver(
+      forName: dcNotificationChanged,
+      object: nil,
+      queue: OperationQueue.main
+    ) { notification in
+      if let ui = notification.userInfo {
+        if self.disableWriting {
+          // always refresh, as we can't check currently
+          self.refreshMessages()
+        } else if let id = ui["message_id"] as? Int {
+          if id > 0 {
+            self.updateMessage(id)
+          }
+        }
+      }
+    }
 
-		let nc = NotificationCenter.default
-		msgChangedObserver = nc.addObserver(
-			forName: dcNotificationChanged,
-			object: nil,
-			queue: OperationQueue.main
-		) { notification in
-			if let ui = notification.userInfo {
-				if self.disableWriting {
-					// always refresh, as we can't check currently
-					self.refreshMessages()
-				} else if let id = ui["message_id"] as? Int {
-					if id > 0 {
-						self.updateMessage(id)
-					}
-				}
-			}
-		}
+    incomingMsgObserver = nc.addObserver(
+      forName: dcNotificationIncoming,
+      object: nil, queue: OperationQueue.main
+    ) { notification in
+      if let ui = notification.userInfo {
+        if self.chatId == ui["chat_id"] as! Int {
+          let id = ui["message_id"] as! Int
+          if id > 0 {
+            self.insertMessage(MRMessage(id: id))
+          }
+        }
+      }
+    }
+  }
 
-		incomingMsgObserver = nc.addObserver(
-			forName: dcNotificationIncoming,
-			object: nil, queue: OperationQueue.main
-		) { notification in
-			if let ui = notification.userInfo {
-				if self.chatId == ui["chat_id"] as! Int {
-					let id = ui["message_id"] as! Int
-					if id > 0 {
-						self.insertMessage(MRMessage(id: id))
-					}
-				}
-			}
-		}
-	}
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
 
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
+    let cnt = Int(dc_get_fresh_msg_cnt(mailboxPointer, UInt32(chatId)))
+    logger.info("updating count for chat \(cnt)")
+    UIApplication.shared.applicationIconBadgeNumber = cnt
 
-		let cnt = Int(dc_get_fresh_msg_cnt(mailboxPointer, UInt32(chatId)))
-		logger.info("updating count for chat \(cnt)")
-		UIApplication.shared.applicationIconBadgeNumber = cnt
+    if #available(iOS 11.0, *) {
+      if disableWriting {
+        navigationController?.navigationBar.prefersLargeTitles = false
+      }
+    }
+  }
 
-		if #available(iOS 11.0, *) {
-			if disableWriting {
-				navigationController?.navigationBar.prefersLargeTitles = false
-			}
-		}
-	}
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
 
-	override func viewDidDisappear(_ animated: Bool) {
-		super.viewDidDisappear(animated)
-
-		setTextDraft()
-		let nc = NotificationCenter.default
-		if let msgChangedObserver = self.msgChangedObserver {
-			nc.removeObserver(msgChangedObserver)
-		}
-		if let incomingMsgObserver = self.incomingMsgObserver {
-			nc.removeObserver(incomingMsgObserver)
-		}
-	}
+    setTextDraft()
+    let nc = NotificationCenter.default
+    if let msgChangedObserver = self.msgChangedObserver {
+      nc.removeObserver(msgChangedObserver)
+    }
+    if let incomingMsgObserver = self.incomingMsgObserver {
+      nc.removeObserver(incomingMsgObserver)
+    }
+  }
 
   @objc
   private func loadMoreMessages() {
@@ -213,8 +211,6 @@ class ChatViewController: MessagesViewController {
     }
   }
 
-
-
   private func setTextDraft() {
     if let text = self.messageInputBar.inputTextView.text {
       let draft = dc_msg_new(mailboxPointer, DC_MSG_TEXT)
@@ -226,8 +222,6 @@ class ChatViewController: MessagesViewController {
     }
   }
 
-
-
   override var inputAccessoryView: UIView? {
     if disableWriting {
       return nil
@@ -235,8 +229,6 @@ class ChatViewController: MessagesViewController {
 
     return messageInputBar
   }
-
-
 
   private func configureMessageMenu() {
     var menuItems: [UIMenuItem]
@@ -360,9 +352,9 @@ class ChatViewController: MessagesViewController {
       }
   }
 
-	@objc private func chatProfilePressed() {
-		coordinator?.showChatDetail(chatId: self.chatId)
-	}
+  @objc private func chatProfilePressed() {
+    coordinator?.showChatDetail(chatId: chatId)
+  }
 
   // MARK: - UICollectionViewDataSource
 
@@ -685,7 +677,7 @@ extension ChatViewController: MessagesDisplayDelegate {
     }
   }
 
-	func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) {
+  func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) {
     let message = messageList[indexPath.section]
     let contact = message.fromContact
     let avatar = Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.name))

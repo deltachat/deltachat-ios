@@ -25,10 +25,9 @@ enum ApplicationState {
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
-	var appCoordinator: AppCoordinator!
+  var appCoordinator: AppCoordinator!
   // static let appCoordinatorDeprecated = AppCoordinatorDeprecated()
-	static var progress: Float = 0	// TODO: delete
+  static var progress: Float = 0 // TODO: delete
   static var lastErrorDuringConfig: String?
   private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
 
@@ -77,14 +76,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     open()
     let isConfigured = dc_is_configured(mailboxPointer) != 0
     // AppDelegate.appCoordinatorDeprecated.setupViewControllers(window: window)
-		self.appCoordinator = AppCoordinator(window: window)
-		appCoordinator.start()
+    appCoordinator = AppCoordinator(window: window)
+    appCoordinator.start()
     UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
     start()
     registerForPushNotifications()
     if !isConfigured {
-			appCoordinator.presentLoginController()
-			//AppDelegate.appCoordinatorDeprecated.presentAccountSetup(animated: false)
+      appCoordinator.presentLoginController()
+      // AppDelegate.appCoordinatorDeprecated.presentAccountSetup(animated: false)
     }
     return true
   }
@@ -143,7 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     return documentsPath + "/messenger.db"
   }
 
-	func open() {
+  func open() {
     logger.info("open: \(dbfile())")
 
     if mailboxPointer == nil {

@@ -9,7 +9,7 @@
 import UIKit
 
 class NewGroupViewController: UITableViewController {
-	weak var coordinator: NewGroupCoordinator?
+  weak var coordinator: NewGroupCoordinator?
 
   let contactCellReuseIdentifier = "xyz"
   var contactIds: [Int] = Utils.getContactIds()
@@ -19,8 +19,6 @@ class NewGroupViewController: UITableViewController {
       navigationItem.prompt = "\(c) members and me"
     }
   }
-
-
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -75,8 +73,8 @@ class NewGroupViewController: UITableViewController {
       }
     }
   }
-	
-	@objc func nextButtonPressed() {
-		coordinator?.showGroupNameController(contactIdsForGroup: contactIdsForGroup)
-	}
+
+  @objc func nextButtonPressed() {
+    coordinator?.showGroupNameController(contactIdsForGroup: contactIdsForGroup)
+  }
 }

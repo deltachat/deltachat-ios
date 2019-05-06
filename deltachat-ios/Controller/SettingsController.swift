@@ -13,8 +13,7 @@ import QuickTableViewController
 import UIKit
 
 internal final class SettingsViewController: QuickTableViewController {
-
-	weak var coordinator: SettingsCoordinator?
+  weak var coordinator: SettingsCoordinator?
 
   let documentInteractionController = UIDocumentInteractionController()
   var backupProgressObserver: Any?
@@ -276,6 +275,6 @@ internal final class SettingsViewController: QuickTableViewController {
   }
 
   private func presentAccountSetup(_: Row) {
-		coordinator?.showAccountSetupController()
+    coordinator?.showAccountSetupController()
   }
 }

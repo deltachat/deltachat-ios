@@ -9,18 +9,17 @@
 import UIKit
 
 class GroupNameController: UITableViewController {
+  weak var coordinator: GroupNameCoordinator?
 
-	weak var coordinator: GroupNameCoordinator?
-
-	var groupName: String = ""
+  var groupName: String = ""
 
   var doneButton: UIBarButtonItem!
-	let contactIdsForGroup: Set<Int>	// TODO: check if array is sufficient
-	let groupContactIds: [Int]
+  let contactIdsForGroup: Set<Int> // TODO: check if array is sufficient
+  let groupContactIds: [Int]
 
   init(contactIdsForGroup: Set<Int>) {
     self.contactIdsForGroup = contactIdsForGroup
-		self.groupContactIds = Array(contactIdsForGroup)
+    groupContactIds = Array(contactIdsForGroup)
     super.init(style: .grouped)
   }
 
@@ -28,19 +27,17 @@ class GroupNameController: UITableViewController {
     fatalError("init(coder:) has not been implemented")
   }
 
-
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "New Group"
-		doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
+    doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
     navigationItem.rightBarButtonItem = doneButton
-		tableView.bounces = false
+    tableView.bounces = false
     doneButton.isEnabled = false
-		tableView.register(GroupLabelCell.self, forCellReuseIdentifier: "groupLabelCell")
-		tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
-		// setupSubviews()
-
-	}
+    tableView.register(GroupLabelCell.self, forCellReuseIdentifier: "groupLabelCell")
+    tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
+    // setupSubviews()
+  }
 
   @objc func doneButtonPressed() {
     let groupChatId = dc_create_group_chat(mailboxPointer, 0, groupName)
@@ -54,7 +51,7 @@ class GroupNameController: UITableViewController {
       }
     }
 
-		coordinator?.showGroupChat(chatId: Int(groupChatId))
+    coordinator?.showGroupChat(chatId: Int(groupChatId))
   }
 
   override func didReceiveMemoryWarning() {
@@ -62,62 +59,51 @@ class GroupNameController: UITableViewController {
     // Dispose of any resources that can be recreated.
   }
 
+  override func numberOfSections(in _: UITableView) -> Int {
+    return 2
+  }
 
-	override func numberOfSections(in tableView: UITableView) -> Int {
-		return 2
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let section = indexPath.section
+    let row = indexPath.row
 
-	}
+    if section == 0 {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "groupLabelCell", for: indexPath) as! GroupLabelCell
+      cell.groupNameUpdated = updateGroupName
 
+      return cell
 
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let section = indexPath.section
-		let row = indexPath.row
+    } else {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
 
-		if section == 0 {
-			let cell = tableView.dequeueReusableCell(withIdentifier: "groupLabelCell", for: indexPath) as! GroupLabelCell
-			cell.groupNameUpdated = updateGroupName
+      let contact = MRContact(id: groupContactIds[row])
+      cell.nameLabel.text = contact.name
+      cell.emailLabel.text = contact.email
+      cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
+      cell.setColor(contact.color)
 
-			return cell
+      return cell
+    }
+  }
 
-		} else {
-			let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
+  override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if section == 0 {
+      return 1
+    } else {
+      return contactIdsForGroup.count
+    }
+  }
 
-			let contact = MRContact(id: groupContactIds[row])
-			cell.nameLabel.text = contact.name
-			cell.emailLabel.text = contact.email
-			cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
-			cell.setColor(contact.color)
+  override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
+    if section == 1 {
+      return "Group Members"
+    } else {
+      return nil
+    }
+  }
 
-			return cell
-		}
-
-	}
-
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if section == 0 {
-			return 1
-		} else {
-			return contactIdsForGroup.count
-		}
-	}
-
-	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		if section == 1 {
-			return "Group Members"
-		} else {
-			return nil
-		}
-	}
-
-	private func updateGroupName(name: String) {
-		groupName = name
-		doneButton.isEnabled = name.containsCharacters()
-	}
+  private func updateGroupName(name: String) {
+    groupName = name
+    doneButton.isEnabled = name.containsCharacters()
+  }
 }
-
-
-
-
-
-
-
