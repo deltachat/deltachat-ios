@@ -35,7 +35,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		let nav = NavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "contacts")
 		nav.tabBarItem = UITabBarItem(title: "Contacts", image: settingsImage, tag: 4)
-		let coordinator = ContactListCoordinator(rootViewController: nav)
+		let coordinator = ContactListCoordinator(navigationController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
 		return nav
@@ -47,7 +47,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		let nav = NavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "message")
 		nav.tabBarItem = UITabBarItem(title: "Mailbox", image: settingsImage, tag: 4)
-		let coordinator = ChatViewCoordinator(navigationController: nav)
+		let coordinator = MailboxCoordinator(navigationController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
 		return nav
@@ -106,35 +106,21 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		let accountSetupNavigationController = UINavigationController(rootViewController: accountSetupController)
 		rootViewController.present(accountSetupNavigationController, animated: false, completion: nil)
 	}
-
-
 }
 
 class ContactListCoordinator: Coordinator {
-	var rootViewController: UIViewController
+	let navigationController: UINavigationController
 
-	init(rootViewController: UIViewController) {
-		self.rootViewController = rootViewController
+	init(navigationController: UINavigationController) {
+		self.navigationController = navigationController
 	}
 }
 
-class ChatViewCoordinator: Coordinator {
-	var rootViewController: UIViewController
-	let navigationController: UINavigationController
+// since mailbox and chatView -tab both use ChatViewController we want to be able to assign different functionality via coordinators -> therefore we override unneeded functions such as showChatDetail -> maybe find better solution in longterm
+class MailboxCoordinator: ChatViewCoordinator {
 
-	var childCoordinators: [Coordinator] = []
-
-	init(navigationController: UINavigationController) {
-		self.rootViewController = navigationController.viewControllers.first!
-		self.navigationController = navigationController
-	}
-
-	func showChatDetail(chatId: Int) {
-		let chatDetailViewController = ChatDetailViewController(chatId: chatId)
-		let coordinator = ChatDetailCoordinator(navigationController: self.navigationController)
-		childCoordinators.append(coordinator)
-		chatDetailViewController.coordinator = coordinator 
-		navigationController.pushViewController(chatDetailViewController, animated: true)
+	override func showChatDetail(chatId: Int) {
+		// ignore for now
 	}
 }
 
@@ -147,13 +133,11 @@ class ProfileCoordinator: Coordinator {
 }
 
 class ChatListCoordinator: Coordinator {
-	var rootViewController: UIViewController
 	let navigationController: UINavigationController
 
 	var childCoordinators: [Coordinator] = []
 
 	init(navigationController: UINavigationController) {
-		self.rootViewController = navigationController.viewControllers.first!
 		self.navigationController = navigationController
 	}
 
@@ -178,11 +162,9 @@ class ChatListCoordinator: Coordinator {
 }
 
 class SettingsCoordinator: Coordinator {
-	var rootViewController: UIViewController
 	let navigationController: UINavigationController
 
 	init(navigationController: UINavigationController) {
-		self.rootViewController = navigationController.viewControllers.first!
 		self.navigationController = navigationController
 	}
 
@@ -195,19 +177,20 @@ class SettingsCoordinator: Coordinator {
 }
 
 class NewChatCoordinator: Coordinator {
-	var rootViewController: UIViewController
 	let navigationController: UINavigationController
 
 	private var childCoordinators:[Coordinator] = []
 
 	init(navigationController: UINavigationController) {
-		self.rootViewController = navigationController.viewControllers.first!
 		self.navigationController = navigationController
 	}
 
 
 	func showNewGroupController() {
 		let newGroupController = NewGroupViewController()
+		let coordinator = NewGroupCoordinator(navigationController: self.navigationController)
+		childCoordinators.append(coordinator)
+		newGroupController.coordinator = coordinator
 		navigationController.pushViewController(newGroupController, animated: true)
 	}
 
@@ -239,15 +222,65 @@ class NewChatCoordinator: Coordinator {
 }
 
 class ChatDetailCoordinator: Coordinator {
-	var rootViewController: UIViewController
 	let navigationController: UINavigationController
 
-	private var childCoordinators:[Coordinator] = []
+	private var childCoordinators: [Coordinator] = []
 
 	init(navigationController: UINavigationController) {
-		self.rootViewController = navigationController.viewControllers.first!
 		self.navigationController = navigationController
 	}
 }
 
+class ChatViewCoordinator: Coordinator {
+	let navigationController: UINavigationController
 
+	var childCoordinators: [Coordinator] = []
+
+	init(navigationController: UINavigationController) {
+		self.navigationController = navigationController
+	}
+
+	func showChatDetail(chatId: Int) {
+		let chatDetailViewController = ChatDetailViewController(chatId: chatId)
+		let coordinator = ChatDetailCoordinator(navigationController: self.navigationController)
+		childCoordinators.append(coordinator)
+		chatDetailViewController.coordinator = coordinator
+		navigationController.pushViewController(chatDetailViewController, animated: true)
+	}
+}
+
+class NewGroupCoordinator: Coordinator {
+
+	let navigationController: UINavigationController
+
+	private var childCoordinators: [Coordinator] = []
+
+	init(navigationController: UINavigationController) {
+		self.navigationController = navigationController
+	}
+
+	func showGroupNameController(contactIdsForGroup: Set<Int>) {
+		let groupNameController = GroupNameController(contactIdsForGroup: contactIdsForGroup)
+		let coordinator = GroupNameCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
+		groupNameController.coordinator = coordinator
+		navigationController.pushViewController(groupNameController, animated: true)
+	}
+
+}
+
+
+class GroupNameCoordinator: Coordinator {
+
+	let navigationController: UINavigationController
+
+	private var childCoordinators: [Coordinator] = []
+
+	init(navigationController: UINavigationController) {
+		self.navigationController = navigationController
+	}
+
+	func showGroupChat(chatId: Int) {
+
+	}
+}

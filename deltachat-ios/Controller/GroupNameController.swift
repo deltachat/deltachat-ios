@@ -8,7 +8,10 @@
 
 import UIKit
 
-class GroupNameController: UIViewController {
+class GroupNameController: UITableViewController {
+
+	weak var coordinator: GroupNameCoordinator?
+
   var doneButton: UIBarButtonItem!
   let groupNameTextField = UITextField()
   let contactIdsForGroup: Set<Int>
@@ -26,32 +29,25 @@ class GroupNameController: UIViewController {
 
   init(contactIdsForGroup: Set<Int>) {
     self.contactIdsForGroup = contactIdsForGroup
-    super.init(nibName: nil, bundle: nil)
+    super.init(style: .grouped)
   }
 
   required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func layoutTextField() {
-    groupNameTextField.translatesAutoresizingMaskIntoConstraints = false
-    view.addSubview(groupNameTextField)
-    groupNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    groupNameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-    groupNameTextField.placeholder = "Group Name"
-    groupNameTextField.becomeFirstResponder()
-  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Group Name"
+		view.backgroundColor = UIColor.white
     groupNameTextField.delegate = self
-    layoutTextField()
-
     doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didPressDoneButton))
     navigationItem.rightBarButtonItem = doneButton
     doneButton.isEnabled = false
-  }
+		setupSubviews()
+
+	}
 
   @objc func didPressDoneButton() {
     logger.info("Done Button pressed")
@@ -79,6 +75,26 @@ class GroupNameController: UIViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+
+	func setupSubviews() {
+		groupNameTextField.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(groupNameTextField)
+		groupNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+		groupNameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+		groupNameTextField.placeholder = "Group Name"
+		groupNameTextField.becomeFirstResponder()
+	}
+
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		return 2
+	}
+
+	/*
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+	}
+	*/
+
 }
 
 extension GroupNameController: UITextFieldDelegate {

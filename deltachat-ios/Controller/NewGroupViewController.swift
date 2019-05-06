@@ -9,6 +9,8 @@
 import UIKit
 
 class NewGroupViewController: UITableViewController {
+	weak var coordinator: NewGroupCoordinator?
+
   let contactCellReuseIdentifier = "xyz"
   var contactIds: [Int] = Utils.getContactIds()
   var contactIdsForGroup: Set<Int> = [] {
@@ -19,7 +21,7 @@ class NewGroupViewController: UITableViewController {
   }
 
   @objc func didPressGroupCreationNextButton() {
-    navigationController?.pushViewController(GroupNameController(contactIdsForGroup: contactIdsForGroup), animated: true)
+		coordinator?.showGroupNameController(contactIdsForGroup: contactIdsForGroup)
   }
 
   override func viewDidLoad() {
