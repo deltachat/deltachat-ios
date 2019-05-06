@@ -15,10 +15,12 @@ class GroupNameController: UITableViewController {
 	var groupName: String = ""
 
   var doneButton: UIBarButtonItem!
-  let contactIdsForGroup: Set<Int>
+	let contactIdsForGroup: Set<Int>	// TODO: check if array is sufficient
+	let groupContactIds: [Int]
 
   init(contactIdsForGroup: Set<Int>) {
     self.contactIdsForGroup = contactIdsForGroup
+		self.groupContactIds = Array(contactIdsForGroup)
     super.init(style: .grouped)
   }
 
@@ -35,6 +37,7 @@ class GroupNameController: UITableViewController {
 		tableView.bounces = false
     doneButton.isEnabled = false
 		tableView.register(GroupLabelCell.self, forCellReuseIdentifier: "groupLabelCell")
+		tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
 		// setupSubviews()
 
 	}
@@ -50,13 +53,8 @@ class GroupNameController: UITableViewController {
         fatalError("failed to add \(contactId) to group \(groupName)")
       }
     }
-    let root = navigationController?.presentingViewController
-    navigationController?.dismiss(animated: true) {
-      let chatVC = ChatViewController(chatId: Int(groupChatId))
-      if let navigationRoot = root as? UINavigationController {
-        navigationRoot.pushViewController(chatVC, animated: true)
-      }
-    }
+
+		coordinator?.showGroupChat(chatId: Int(groupChatId))
   }
 
   override func didReceiveMemoryWarning() {
@@ -66,8 +64,8 @@ class GroupNameController: UITableViewController {
 
 
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return 1
-		
+		return 2
+
 	}
 
 
@@ -76,19 +74,42 @@ class GroupNameController: UITableViewController {
 		let row = indexPath.row
 
 		if section == 0 {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "groupLabelCell", for: indexPath) as! GroupLabelCell
+			cell.groupNameUpdated = updateGroupName
+
+			return cell
+
+		} else {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
+
+			let contact = MRContact(id: groupContactIds[row])
+			cell.nameLabel.text = contact.name
+			cell.emailLabel.text = contact.email
+			cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
+			cell.setColor(contact.color)
+
+			return cell
 		}
 
-		let cell = tableView.dequeueReusableCell(withIdentifier: "groupLabelCell", for: indexPath) as! GroupLabelCell
-		cell.groupNameUpdated = updateGroupNamae
-
-		return cell
 	}
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 1
+		if section == 0 {
+			return 1
+		} else {
+			return contactIdsForGroup.count
+		}
 	}
 
-	private func updateGroupNamae(name: String) {
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		if section == 1 {
+			return "Group Members"
+		} else {
+			return nil
+		}
+	}
+
+	private func updateGroupName(name: String) {
 		groupName = name
 		doneButton.isEnabled = name.containsCharacters()
 	}
@@ -112,6 +133,7 @@ class GroupLabelCell: UITableViewCell {
 		textField.placeholder = "Group Name"
 		textField.borderStyle = .none
 		textField.becomeFirstResponder()
+		textField.autocorrectionType = .no
 		textField.addTarget(self, action: #selector(nameFieldChanged), for: .editingChanged)
 		return textField
 	}()

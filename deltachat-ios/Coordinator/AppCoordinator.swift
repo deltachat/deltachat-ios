@@ -281,6 +281,11 @@ class GroupNameCoordinator: Coordinator {
 	}
 
 	func showGroupChat(chatId: Int) {
-
+		let chatViewController = ChatViewController(chatId: chatId)
+		let coordinator = ChatViewCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
+		chatViewController.coordinator = coordinator
+		navigationController.popToRootViewController(animated: false)
+		navigationController.pushViewController(chatViewController, animated: true)
 	}
 }
