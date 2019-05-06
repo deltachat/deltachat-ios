@@ -185,7 +185,6 @@ class NewChatCoordinator: Coordinator {
 		self.navigationController = navigationController
 	}
 
-
 	func showNewGroupController() {
 		let newGroupController = NewGroupViewController()
 		let coordinator = NewGroupCoordinator(navigationController: self.navigationController)

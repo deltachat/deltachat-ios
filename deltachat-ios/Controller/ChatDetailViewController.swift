@@ -8,6 +8,8 @@
 
 import UIKit
 
+// TODO: checkout if it makes sense to  run group chats and single chats within this chatDetailViewController or maybe seperate these
+
 class ChatDetailViewController: UIViewController {
 
 	weak var coordinator: ChatDetailCoordinator?

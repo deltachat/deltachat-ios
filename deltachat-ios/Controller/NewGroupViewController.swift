@@ -20,9 +20,7 @@ class NewGroupViewController: UITableViewController {
     }
   }
 
-  @objc func didPressGroupCreationNextButton() {
-		coordinator?.showGroupNameController(contactIdsForGroup: contactIdsForGroup)
-  }
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,7 +28,7 @@ class NewGroupViewController: UITableViewController {
     navigationItem.prompt = "0 members and me"
     tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
     navigationController?.navigationBar.prefersLargeTitles = false
-    let groupCreationNextButton = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(didPressGroupCreationNextButton))
+    let groupCreationNextButton = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(nextButtonPressed))
     navigationItem.rightBarButtonItem = groupCreationNextButton
   }
 
@@ -77,4 +75,8 @@ class NewGroupViewController: UITableViewController {
       }
     }
   }
+	
+	@objc func nextButtonPressed() {
+		coordinator?.showGroupNameController(contactIdsForGroup: contactIdsForGroup)
+	}
 }
