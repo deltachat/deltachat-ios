@@ -110,13 +110,18 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 class ContactListCoordinator: Coordinator {
   let navigationController: UINavigationController
 
+	var childCoordinators: [Coordinator] = []
+
   init(navigationController: UINavigationController) {
     self.navigationController = navigationController
 	}
 
 	func showContactDetail(contactId: Int) {
-		let contactProfileController = ContactDetailViewController(contactId: contactId)
-		navigationController.pushViewController(contactProfileController, animated: true)
+		let contactDetailController = ContactDetailViewController(contactId: contactId)
+		let coordinator = ContactDetailCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
+		contactDetailController.coordinator = coordinator
+		navigationController.pushViewController(contactDetailController, animated: true)
 
 	}
 }
@@ -285,4 +290,24 @@ class GroupNameCoordinator: Coordinator {
     navigationController.popToRootViewController(animated: false)
     navigationController.pushViewController(chatViewController, animated: true)
   }
+}
+
+class ContactDetailCoordinator: Coordinator {
+	let navigationController: UINavigationController
+
+	private var childCoordinators: [Coordinator] = []
+
+	init(navigationController: UINavigationController) {
+		self.navigationController = navigationController
+	}
+
+	func showChat(chatId: Int) {
+		let chatViewController = ChatViewController(chatId: chatId)
+		let coordinator = ChatViewCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
+		chatViewController.coordinator = coordinator
+		navigationController.popToRootViewController(animated: false)
+		navigationController.pushViewController(chatViewController, animated: true)
+	}
+
 }
