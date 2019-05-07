@@ -55,17 +55,6 @@ class ChatViewController: MessagesViewController {
       // TODO: display message about nothing being configured
       return
     }
-
-    let chat = MRChat(id: chatId)
-    updateTitleView(title: chat.name, subtitle: chat.subtitle)
-
-    if let image = chat.profileImage {
-      navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(chatProfilePressed))
-    } else {
-      let initialsLabel = InitialsLabel(name: chat.name, color: chat.color, size: 28)
-      navigationItem.rightBarButtonItem = UIBarButtonItem(customView: initialsLabel)
-    }
-
     configureMessageCollectionView()
 
     if !disableWriting {
@@ -82,6 +71,17 @@ class ChatViewController: MessagesViewController {
 
 		// this will be removed in viewWillDisappear
 		navigationController?.navigationBar.addGestureRecognizer(navBarTap)
+
+		let chat = MRChat(id: chatId)
+		updateTitleView(title: chat.name, subtitle: chat.subtitle)
+
+		if let image = chat.profileImage {
+			navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(chatProfilePressed))
+		} else {
+			let initialsLabel = InitialsLabel(name: chat.name, color: chat.color, size: 28)
+			navigationItem.rightBarButtonItem = UIBarButtonItem(customView: initialsLabel)
+		}
+
 
     configureMessageMenu()
 
