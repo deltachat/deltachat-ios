@@ -12,12 +12,14 @@ class ChatDetailViewController: UIViewController {
 	weak var coordinator: ChatDetailCoordinator?
 
 	fileprivate var chat: MRChat
+
 	var chatDetailTable: UITableView = {
 		let table = UITableView(frame: .zero, style: .grouped)
 		table.bounces = false
 		table.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
 		table.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
 		table.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
+
 		return table
 	}()
 
@@ -70,7 +72,6 @@ class SingleChatDetailViewController: ChatDetailViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		title = "Info"
-		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
 		chatDetailTable.delegate = self
 		chatDetailTable.dataSource = self
 
@@ -125,6 +126,7 @@ extension SingleChatDetailViewController: UITableViewDelegate, UITableViewDataSo
 		if section == 0 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
 			cell.textLabel?.text = "Notifications"
+			cell.selectionStyle = .none
 			return cell
 		} else if section == 1 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as! ActionCell
@@ -160,14 +162,12 @@ class GroupChatDetailViewController: ChatDetailViewController {
 	let editGroupCell = GroupLabelCell()
 
 	var editingGroupName: Bool = false
+
 	lazy var editBarButtonItem: UIBarButtonItem = {
 		UIBarButtonItem(title: editingGroupName ? "Done" : "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
 	}()
 
-	var groupMembers: [MRContact] {
-		let ids = chat.contactIds
-		return ids.map({MRContact(id: $0)})
-	}
+	var groupMembers: [MRContact] = []
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -175,6 +175,17 @@ class GroupChatDetailViewController: ChatDetailViewController {
 		chatDetailTable.delegate = self
 		chatDetailTable.dataSource = self
 		navigationItem.rightBarButtonItem = editBarButtonItem
+	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		updateGroupMembers()
+		editBarButtonItem.isEnabled = currentUser != nil
+	}
+
+	private func updateGroupMembers() {
+		let ids = chat.contactIds
+		groupMembers = ids.map({MRContact(id: $0)})
+		chatDetailTable.reloadData()
 	}
 
 	@objc override func editButtonPressed() {
@@ -188,6 +199,15 @@ class GroupChatDetailViewController: ChatDetailViewController {
 		editBarButtonItem.title = editingGroupName ? "Save" : "Edit"
 		chatDetailTable.reloadData()
 	}
+
+	private func leaveGroup() {
+		if let userId = currentUser?.id {
+			dc_remove_contact_from_chat(mailboxPointer, UInt32(chat.id), UInt32(userId))
+			editBarButtonItem.isEnabled = false
+			updateGroupMembers()
+		}
+	}
+
 }
 
 extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -231,6 +251,12 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 	}
 
 	func numberOfSections(in tableView: UITableView) -> Int {
+		/*
+		section 0: config
+		section 1: members
+		section 2: leave group (optional - if user already left group this option will be hidden)
+		*/
+
 		if currentUser == nil {
 			return 2
 		}
@@ -256,6 +282,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 		if section == 0 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
 			cell.textLabel?.text = "Notifications"
+			cell.selectionStyle = .none
 			return cell
 		} else  if section == 1 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
@@ -275,6 +302,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 		return UITableViewCell(frame: .zero)
 	}
 
+
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let section = indexPath.section
 		let row = indexPath.row
@@ -283,12 +311,43 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 		} else if section == 1 {
 			// ignore for now - in Telegram tapping a contactCell leads into ContactDetail
 		} else if section == 2 {
-			// leave group
-			if let userId = currentUser?.id {
-				dc_remove_contact_from_chat(mailboxPointer, UInt32(chat.id), UInt32(userId))
-				tableView.reloadData()
-			}
+			leaveGroup()
+		}
+	}
 
+	func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+		let section = indexPath.section
+		let row = indexPath.row
+
+		if let currentUser = currentUser {
+			if section == 1 && groupMembers[row].id != currentUser.id {
+				return true
+			}
+		}
+		return false
+	}
+
+	func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+
+		let section = indexPath.section
+		let row = indexPath.row
+
+		// assigning swipe by delete to members (except for current user)
+		if section == 1 && groupMembers[row].id != currentUser?.id {
+			let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+
+				let memberId = self.groupMembers[row].id
+				let success = dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(memberId))
+				if success == 1 {
+					self.groupMembers.remove(at: row)
+					tableView.deleteRows(at: [indexPath], with: .fade)
+					tableView.reloadData()
+				}
+			}
+			delete.backgroundColor = UIColor.red
+			return [delete]
+		} else {
+			return nil
 		}
 	}
 }

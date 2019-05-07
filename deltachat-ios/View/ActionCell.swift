@@ -31,15 +31,16 @@ class ActionCell: UITableViewCell {
   }()
 
   // use this constructor if cell won't be reused
-  init(title: String) {
-    actionTitle = title
-    super.init(style: .default, reuseIdentifier: nil)
-    setupSubviews()
-  }
+  convenience init(title: String) {
+    self.init(style: .default, reuseIdentifier: nil)
+		actionTitle = title
+		selectionStyle = .none
+	}
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     setupSubviews()
+		selectionStyle = .none
   }
 
   required init?(coder _: NSCoder) {
@@ -49,10 +50,6 @@ class ActionCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
-  }
-
-  override func setSelected(_: Bool, animated _: Bool) {
-    // no selection style ...
   }
 
   private func setupSubviews() {

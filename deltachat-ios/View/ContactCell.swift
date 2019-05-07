@@ -58,8 +58,11 @@ class ContactCell: UITableViewCell {
   }
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-    setupSubviews()
+
+		super.init(style: style, reuseIdentifier: reuseIdentifier)
+		selectionStyle = .none
+		setupSubviews()
+
   }
 
   private func setupSubviews() {
@@ -115,10 +118,6 @@ class ContactCell: UITableViewCell {
     imgView.center.x = avatar.center.x + (avatar.frame.width / 2) + imgSize - 5
     imgView.center.y = avatar.center.y + (avatar.frame.height / 2) + imgSize - 5
   }
-
-	override func setSelected(_ selected: Bool, animated: Bool) {
-		// no animation please
-	}
 
   func setVerified(isVerified: Bool) {
     imgView.isHidden = !isVerified
