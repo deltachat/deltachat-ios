@@ -17,6 +17,7 @@ class ChatDetailViewController: UIViewController {
 		table.bounces = false
 		table.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
 		table.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
+		table.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
 		return table
 	}()
 
@@ -26,9 +27,6 @@ class ChatDetailViewController: UIViewController {
 		setupSubviews()
 	}
 
-	override func viewDidLoad() {
-		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
-	}
 
 	override func viewWillAppear(_ animated: Bool) {
 		chatDetailTable.reloadData()	// to display updates
@@ -52,7 +50,7 @@ class ChatDetailViewController: UIViewController {
 		// will be overwritten
 	}
 
-	func setupNotifications() {
+	func showNotificationSetup() {
 		let notificationSetupAlert = UIAlertController(title: "Notifications Setup is not implemented yet", message: "But you get an idea where this is going", preferredStyle: .actionSheet)
 		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 		notificationSetupAlert.addAction(cancelAction)
@@ -60,9 +58,6 @@ class ChatDetailViewController: UIViewController {
 	}
 
 }
-
-
-
 
 class SingleChatDetailViewController: ChatDetailViewController {
 
@@ -76,6 +71,7 @@ class SingleChatDetailViewController: ChatDetailViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		title = "Info"
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
 		chatDetailTable.delegate = self
 		chatDetailTable.dataSource = self
 
@@ -146,7 +142,7 @@ extension SingleChatDetailViewController: UITableViewDelegate, UITableViewDataSo
 		let section = indexPath.section
 
 		if section == 0 {
-			setupNotifications()
+			showNotificationSetup()
 		} else if section == 1 {
 			if let contact = contact {
 				contact.isBlocked ? contact.unblock() : contact.block()
@@ -158,6 +154,14 @@ extension SingleChatDetailViewController: UITableViewDelegate, UITableViewDataSo
 
 
 class GroupChatDetailViewController: ChatDetailViewController {
+
+//	var currentUserChatId:
+
+	var groupMembers: [MRContact] {
+		let ids = chat.contactIds
+		return ids.map({MRContact(id: $0)})
+	}
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		title = "Group Info"
@@ -167,15 +171,90 @@ class GroupChatDetailViewController: ChatDetailViewController {
 }
 
 extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSource {
+
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		if section == 1 {
+			return "Members:"
+		}
+		return nil
+	}
+
+	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		if section == 0 {
+			let bg = UIColor(red: 248 / 255, green: 248 / 255, blue: 255 / 255, alpha: 1.0)
+
+			let contactCell = ContactCell()
+			contactCell.backgroundColor = bg
+			contactCell.nameLabel.text = chat.name
+			contactCell.emailLabel.text = chat.subtitle
+			contactCell.darkMode = false
+			contactCell.selectionStyle = .none
+			if let img = chat.profileImage {
+				contactCell.setImage(img)
+			} else {
+				contactCell.setBackupImage(name: chat.name, color: chat.color)
+			}
+			contactCell.setVerified(isVerified: chat.isVerified)
+			return contactCell
+		} else {
+			return nil
+		}
+	}
+
+	func numberOfSections(in tableView: UITableView) -> Int {
+		return 3
+	}
+
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 0
+		if section == 0 {
+			return 1
+		} else if section == 1 {
+			return groupMembers.count
+		} else if section == 2 {
+			return 1
+		} else {
+			return 0
+		}
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let section = indexPath.section
+		let row = indexPath.row
+
+		if section == 0 {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
+			cell.textLabel?.text = "Notifications"
+			return cell
+		} else  if section == 1 {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
+			let contact = groupMembers[row]
+			cell.nameLabel.text = contact.name
+			cell.emailLabel.text = contact.email
+			cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
+			cell.setColor(contact.color)
+			return cell
+		} else if section == 2 {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as! ActionCell
+			cell.actionTitle = "Leave Group"
+			cell.actionColor = UIColor.red
+			return cell
+		}
+
 		return UITableViewCell(frame: .zero)
 	}
 
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let section = indexPath.section
+		let row = indexPath.row
+		if section == 0 {
+			showNotificationSetup()
+		} else if section == 1 {
+			// ignore for now - in Telegram tapping a contactCell leads into ContactDetail
+		} else if section == 2 {
+			// leave group
 
+		}
+	}
 }
 
 

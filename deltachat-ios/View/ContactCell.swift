@@ -114,6 +114,10 @@ class ContactCell: UITableViewCell {
     imgView.center.y = avatar.center.y + (avatar.frame.height / 2) + imgSize - 5
   }
 
+	override func setSelected(_ selected: Bool, animated: Bool) {
+		// no animation please
+	}
+
   func setVerified(isVerified: Bool) {
     imgView.isHidden = !isVerified
   }
