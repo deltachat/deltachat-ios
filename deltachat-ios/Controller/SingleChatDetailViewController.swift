@@ -27,7 +27,6 @@ class ChatDetailViewController: UIViewController {
 		setupSubviews()
 	}
 
-
 	override func viewWillAppear(_ animated: Bool) {
 		chatDetailTable.reloadData()	// to display updates
 	}
@@ -154,9 +153,11 @@ extension SingleChatDetailViewController: UITableViewDelegate, UITableViewDataSo
 
 class GroupChatDetailViewController: ChatDetailViewController {
 
-//	var currentUserChatId:
-	let editGroupCell = GroupLabelCell()
+	var currentUser: MRContact? {
+		return groupMembers.filter({$0.email == MRConfig.addr}).first
+	}
 
+	let editGroupCell = GroupLabelCell()
 
 	var editingGroupName: Bool = false
 	lazy var editBarButtonItem: UIBarButtonItem = {
@@ -230,6 +231,9 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 	}
 
 	func numberOfSections(in tableView: UITableView) -> Int {
+		if currentUser == nil {
+			return 2
+		}
 		return 3
 	}
 
@@ -280,6 +284,10 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 			// ignore for now - in Telegram tapping a contactCell leads into ContactDetail
 		} else if section == 2 {
 			// leave group
+			if let userId = currentUser?.id {
+				dc_remove_contact_from_chat(mailboxPointer, UInt32(chat.id), UInt32(userId))
+				tableView.reloadData()
+			}
 
 		}
 	}
