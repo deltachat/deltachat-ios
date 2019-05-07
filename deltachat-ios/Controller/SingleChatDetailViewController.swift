@@ -52,7 +52,13 @@ class ChatDetailViewController: UIViewController {
 		// will be overwritten
 	}
 
-	// put common actions here to avoid duplicity
+	func setupNotifications() {
+		let notificationSetupAlert = UIAlertController(title: "Notifications Setup is not implemented yet", message: "But you get an idea where this is going", preferredStyle: .actionSheet)
+		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+		notificationSetupAlert.addAction(cancelAction)
+		present(notificationSetupAlert, animated: true, completion: nil)
+	}
+
 }
 
 
@@ -81,7 +87,6 @@ class SingleChatDetailViewController: ChatDetailViewController {
 		}
 	}
 
-
 }
 
 extension SingleChatDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -101,7 +106,6 @@ extension SingleChatDetailViewController: UITableViewDelegate, UITableViewDataSo
 			}
 			let bg = UIColor(red: 248 / 255, green: 248 / 255, blue: 255 / 255, alpha: 1.0)
 
-
 			let contactCell = ContactCell()
 			contactCell.backgroundColor = bg
 			contactCell.nameLabel.text = contact.name
@@ -111,7 +115,7 @@ extension SingleChatDetailViewController: UITableViewDelegate, UITableViewDataSo
 			if let img = chat.profileImage {
 				contactCell.setImage(img)
 			} else {
-				contactCell.setBackupImage(name: chat.name, color: chat.color)
+				contactCell.setBackupImage(name: contact.name, color: contact.color)
 			}
 			contactCell.setVerified(isVerified: chat.isVerified)
 			return contactCell
@@ -120,9 +124,7 @@ extension SingleChatDetailViewController: UITableViewDelegate, UITableViewDataSo
 		}
 	}
 
-
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let row = indexPath.row
 		let section = indexPath.section
 
 		if section == 0 {
@@ -131,17 +133,28 @@ extension SingleChatDetailViewController: UITableViewDelegate, UITableViewDataSo
 			return cell
 		} else if section == 1 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as! ActionCell
-			cell.actionTitle = "Block User"
-			cell.actionColor = UIColor.red // SystemColor.red.uiColor
+			if let contact = contact {
+				cell.actionTitle =  contact.isBlocked ? "Unblock Contact" : "Block Contact"
+				cell.actionColor = contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red // SystemColor.red.uiColor
+			}
 			return cell
 		}
-
 		return UITableViewCell(frame: .zero)
 	}
 
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let section = indexPath.section
 
+		if section == 0 {
+			setupNotifications()
+		} else if section == 1 {
+			if let contact = contact {
+				contact.isBlocked ? contact.unblock() : contact.block()
+				tableView.reloadData()
+			}
+		}
+	}
 }
-
 
 
 class GroupChatDetailViewController: ChatDetailViewController {
