@@ -247,7 +247,14 @@ class ChatViewCoordinator: Coordinator {
   }
 
   func showChatDetail(chatId: Int) {
-    let chatDetailViewController = ChatDetailViewController(chatId: chatId)
+		let chat = MRChat(id: chatId)
+		let chatDetailViewController: ChatDetailViewController
+		switch chat.chatType  {
+		case .SINGLE:
+			chatDetailViewController = SingleChatDetailViewController(chatId: chatId)	// inherits from ChatDetailViewController
+		case .GROUP, .VERYFIEDGROUP:
+			chatDetailViewController = GroupChatDetailViewController(chatId: chatId) // inherits from ChatDetailViewController
+		}
     let coordinator = ChatDetailCoordinator(navigationController: navigationController)
     childCoordinators.append(coordinator)
     chatDetailViewController.coordinator = coordinator

@@ -17,6 +17,12 @@ class ActionCell: UITableViewCell {
     }
   }
 
+	var actionColor: UIColor? {
+		didSet {
+			actionLabel.textColor = actionColor ?? UIColor.systemBlue
+		}
+	}
+
   private lazy var actionLabel: UILabel = {
     let label = UILabel()
     label.text = actionTitle

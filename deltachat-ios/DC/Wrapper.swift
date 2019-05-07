@@ -340,6 +340,12 @@ class MRMessage: MessageType {
   }
 }
 
+enum ChatType: Int {
+	case SINGLE = 100
+	case GROUP = 120
+	case VERYFIEDGROUP = 130
+}
+
 class MRChat {
   var chatPointer: UnsafeMutablePointer<dc_chat_t>
 
@@ -357,6 +363,10 @@ class MRChat {
   var type: Int {
     return Int(chatPointer.pointee.type)
   }
+
+	var chatType: ChatType {
+		return ChatType(rawValue: type) ?? ChatType.GROUP // group as fallback - shouldn't get here
+	}
 
   var color: UIColor {
     return UIColor(netHex: Int(dc_chat_get_color(chatPointer)))
