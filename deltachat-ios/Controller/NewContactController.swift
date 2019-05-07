@@ -51,9 +51,6 @@ class NewContactController: UITableViewController {
     }
   }
 
-  override func viewWillAppear(_: Bool) {
-    navigationController?.setNavigationBarHidden(false, animated: false)
-  }
 
   // for creating a new contact
   init() {
@@ -88,15 +85,18 @@ class NewContactController: UITableViewController {
     }
   }
 
+	override func viewWillAppear(_: Bool) {
+		navigationController?.setNavigationBarHidden(false, animated: false)
+		navigationController?.navigationBar.prefersLargeTitles = false
+	}
+
   @objc func emailTextChanged() {
     let emailText = emailCell.textField.text ?? ""
-
     model.email = emailText
   }
 
   @objc func nameTextChanged() {
     let nameText = nameCell.textField.text ?? ""
-
     model.name = nameText
   }
 

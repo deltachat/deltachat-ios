@@ -15,6 +15,7 @@ struct Utils {
     return Utils.copyAndFreeArray(inputArray: cContacts)
   }
 
+
   static func getInitials(inputName: String) -> String {
     let nameParts = inputName.split(separator: " ")
     let initials: [Character] = nameParts.compactMap { part in part.capitalized.first }

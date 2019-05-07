@@ -8,11 +8,6 @@
 
 import UIKit
 
-// TODO: checkout if it makes sense to  run group chats and single chats within this chatDetailViewController or maybe seperate these
-
-
-
-
 class ChatDetailViewController: UIViewController {
 	weak var coordinator: ChatDetailCoordinator?
 
@@ -31,6 +26,14 @@ class ChatDetailViewController: UIViewController {
 		setupSubviews()
 	}
 
+	override func viewDidLoad() {
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
+	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		chatDetailTable.reloadData()	// to display updates
+	}
+
 	required init?(coder _: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -45,6 +48,10 @@ class ChatDetailViewController: UIViewController {
 		chatDetailTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 	}
 
+	@objc func editButtonPressed() {
+		// will be overwritten
+	}
+
 	// put common actions here to avoid duplicity
 }
 
@@ -53,6 +60,13 @@ class ChatDetailViewController: UIViewController {
 
 class SingleChatDetailViewController: ChatDetailViewController {
 
+	var contact: MRContact? {
+		if let id = chat.contactIds.first {
+			return MRContact(id: id)
+		}
+		return nil
+	}
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		title = "Info"
@@ -60,6 +74,13 @@ class SingleChatDetailViewController: ChatDetailViewController {
 		chatDetailTable.dataSource = self
 
 	}
+
+	@objc override func editButtonPressed() {
+		if let id = chat.contactIds.first {
+			coordinator?.showSingleChatEdit(contactId: id)
+		}
+	}
+
 
 }
 
@@ -75,11 +96,16 @@ extension SingleChatDetailViewController: UITableViewDelegate, UITableViewDataSo
 
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		if section == 0 {
+			guard let contact = contact else {
+				return nil
+			}
 			let bg = UIColor(red: 248 / 255, green: 248 / 255, blue: 255 / 255, alpha: 1.0)
+
+
 			let contactCell = ContactCell()
 			contactCell.backgroundColor = bg
-			contactCell.nameLabel.text = chat.name
-			contactCell.emailLabel.text = chat.subtitle
+			contactCell.nameLabel.text = contact.name
+			contactCell.emailLabel.text = contact.email
 			contactCell.darkMode = false
 			contactCell.selectionStyle = .none
 			if let img = chat.profileImage {

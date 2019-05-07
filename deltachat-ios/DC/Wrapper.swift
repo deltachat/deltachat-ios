@@ -376,6 +376,10 @@ class MRChat {
     return dc_chat_is_verified(chatPointer) > 0
   }
 
+	var contactIds: [Int] {
+		return Utils.copyAndFreeArray(inputArray: dc_get_chat_contacts(mailboxPointer, UInt32(id)))
+	}
+
   lazy var profileImage: UIImage? = { [unowned self] in
     let file = dc_chat_get_profile_image(chatPointer)
     if let cFile = file {
