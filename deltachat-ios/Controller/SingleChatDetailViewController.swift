@@ -11,7 +11,7 @@ import UIKit
 class ChatDetailViewController: UIViewController {
 	weak var coordinator: ChatDetailCoordinator?
 
-	fileprivate let chat: MRChat
+	fileprivate var chat: MRChat
 	var chatDetailTable: UITableView = {
 		let table = UITableView(frame: .zero, style: .grouped)
 		table.bounces = false
@@ -152,10 +152,16 @@ extension SingleChatDetailViewController: UITableViewDelegate, UITableViewDataSo
 	}
 }
 
-
 class GroupChatDetailViewController: ChatDetailViewController {
 
 //	var currentUserChatId:
+	let editGroupCell = GroupLabelCell()
+
+
+	var editingGroupName: Bool = false
+	lazy var editBarButtonItem: UIBarButtonItem = {
+		UIBarButtonItem(title: editingGroupName ? "Done" : "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
+	}()
 
 	var groupMembers: [MRContact] {
 		let ids = chat.contactIds
@@ -167,6 +173,19 @@ class GroupChatDetailViewController: ChatDetailViewController {
 		title = "Group Info"
 		chatDetailTable.delegate = self
 		chatDetailTable.dataSource = self
+		navigationItem.rightBarButtonItem = editBarButtonItem
+	}
+
+	@objc override func editButtonPressed() {
+		if editingGroupName {
+			let newName = editGroupCell.getGroupName()
+			dc_set_chat_name(mailboxPointer, UInt32(chat.id), newName)
+			self.chat = MRChat(id: chat.id) // reload
+		}
+
+		editingGroupName = !editingGroupName
+		editBarButtonItem.title = editingGroupName ? "Save" : "Edit"
+		chatDetailTable.reloadData()
 	}
 }
 
@@ -183,19 +202,28 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 		if section == 0 {
 			let bg = UIColor(red: 248 / 255, green: 248 / 255, blue: 255 / 255, alpha: 1.0)
 
-			let contactCell = ContactCell()
-			contactCell.backgroundColor = bg
-			contactCell.nameLabel.text = chat.name
-			contactCell.emailLabel.text = chat.subtitle
-			contactCell.darkMode = false
-			contactCell.selectionStyle = .none
-			if let img = chat.profileImage {
-				contactCell.setImage(img)
+			if editingGroupName {
+				editGroupCell.groupBadge.setColor(chat.color)
+				editGroupCell.backgroundColor = bg
+				editGroupCell.inputField.text = chat.name
+				editGroupCell.groupBadge.setText(chat.name)
+				return editGroupCell
 			} else {
-				contactCell.setBackupImage(name: chat.name, color: chat.color)
+
+				let contactCell = ContactCell()
+				contactCell.backgroundColor = bg
+				contactCell.nameLabel.text = chat.name
+				contactCell.emailLabel.text = chat.subtitle
+				contactCell.darkMode = false
+				contactCell.selectionStyle = .none
+				if let img = chat.profileImage {
+					contactCell.setImage(img)
+				} else {
+					contactCell.setBackupImage(name: chat.name, color: chat.color)
+				}
+				contactCell.setVerified(isVerified: chat.isVerified)
+				return contactCell
 			}
-			contactCell.setVerified(isVerified: chat.isVerified)
-			return contactCell
 		} else {
 			return nil
 		}

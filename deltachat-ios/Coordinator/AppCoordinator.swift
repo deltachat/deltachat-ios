@@ -229,7 +229,7 @@ class NewChatCoordinator: Coordinator {
 
 class ChatDetailCoordinator: Coordinator {
 	let navigationController: UINavigationController
-	
+
 	private var childCoordinators: [Coordinator] = []
 
 	init(navigationController: UINavigationController) {

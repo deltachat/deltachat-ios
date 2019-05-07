@@ -105,6 +105,7 @@
 		AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D752253431E007DC082 /* AccountSetupController.swift */; };
 		AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7C2253ADB4007DC082 /* HudHandler.swift */; };
 		AEE56D80225504DB007DC082 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7F225504DB007DC082 /* Extensions.swift */; };
+		AEE6EC382281AF2D00EDC689 /* InitialsBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC372281AF2D00EDC689 /* InitialsBadge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -299,6 +300,7 @@
 		AEE56D752253431E007DC082 /* AccountSetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupController.swift; sourceTree = "<group>"; };
 		AEE56D7C2253ADB4007DC082 /* HudHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudHandler.swift; sourceTree = "<group>"; };
 		AEE56D7F225504DB007DC082 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		AEE6EC372281AF2D00EDC689 /* InitialsBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsBadge.swift; sourceTree = "<group>"; };
 		FECB35E2B04CD5F5D02C157A /* Pods-deltachat-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -636,6 +638,7 @@
 				AE38B31722672DFC00EC37A1 /* ActionCell.swift */,
 				AE851ACD227CA54300ED86F0 /* InitialsLabel.swift */,
 				AE25F08F22807AD800CDEA66 /* GroupNameCell.swift */,
+				AEE6EC372281AF2D00EDC689 /* InitialsBadge.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -997,6 +1000,7 @@
 				7A451DBE1FB4AD0700177250 /* Wrapper.swift in Sources */,
 				AE851ACE227CA54400ED86F0 /* InitialsLabel.swift in Sources */,
 				7070FB6420FF345F000DC258 /* dc_dehtml.c in Sources */,
+				AEE6EC382281AF2D00EDC689 /* InitialsBadge.swift in Sources */,
 				70B8882E2091B8550074812E /* ContactCell.swift in Sources */,
 				7070FB8D20FF4118000DC258 /* dc_sqlite3.c in Sources */,
 				7A451D941FB1B1DB00177250 /* wrapper.c in Sources */,
