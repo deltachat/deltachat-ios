@@ -74,7 +74,6 @@ class SingleChatDetailViewController: ChatDetailViewController {
 		title = "Info"
 		chatDetailTable.delegate = self
 		chatDetailTable.dataSource = self
-
 	}
 
 	@objc override func editButtonPressed() {
@@ -351,8 +350,3 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 		}
 	}
 }
-
-
-
-
-

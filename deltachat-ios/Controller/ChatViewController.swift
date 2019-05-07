@@ -26,6 +26,10 @@ class ChatViewController: MessagesViewController {
   var msgChangedObserver: Any?
   var incomingMsgObserver: Any?
 
+	lazy var navBarTap: UITapGestureRecognizer = {
+		return UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
+	}()
+
   var disableWriting = false
 
   var previewView: UIView?
@@ -47,8 +51,6 @@ class ChatViewController: MessagesViewController {
     messagesCollectionView.register(CustomCell.self)
     super.viewDidLoad()
     view.backgroundColor = DCColors.chatBackgroundColor
-    let navBarTap = UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
-    navigationController?.navigationBar.addGestureRecognizer(navBarTap)
     if !MRConfig.configured {
       // TODO: display message about nothing being configured
       return
@@ -77,6 +79,10 @@ class ChatViewController: MessagesViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+
+		// this will be removed in viewWillDisappear
+		navigationController?.navigationBar.addGestureRecognizer(navBarTap)
+
     configureMessageMenu()
 
     if #available(iOS 11.0, *) {
@@ -120,6 +126,9 @@ class ChatViewController: MessagesViewController {
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
+
+		// the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
+		navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
 
     let cnt = Int(dc_get_fresh_msg_cnt(mailboxPointer, UInt32(chatId)))
     logger.info("updating count for chat \(cnt)")
