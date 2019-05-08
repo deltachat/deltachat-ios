@@ -163,7 +163,6 @@ class ChatListCoordinator: Coordinator {
 		let coordinator = ChatViewCoordinator(navigationController: navigationController)
 		childCoordinators.append(coordinator)
 		chatVC.coordinator = coordinator
-		chatVC.hidesBottomBarWhenPushed = true
 		navigationController.pushViewController(chatVC, animated: true)
 	}
 }
@@ -177,8 +176,6 @@ class SettingsCoordinator: Coordinator {
 
 	func showAccountSetupController() {
 		let accountSetupVC = AccountSetupController()
-		accountSetupVC.hidesBottomBarWhenPushed = true
-
 		navigationController.pushViewController(accountSetupVC, animated: true)
 	}
 }

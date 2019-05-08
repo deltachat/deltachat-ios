@@ -41,6 +41,7 @@ class ChatViewController: MessagesViewController {
     if let title = title {
       updateTitleView(title: title, subtitle: nil)
     }
+		hidesBottomBarWhenPushed = true
   }
 
   required init?(coder _: NSCoder) {

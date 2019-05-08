@@ -112,7 +112,6 @@ class NewChatViewController: UITableViewController {
   }
 
   override func viewWillDisappear(_: Bool) {
-    hidesBottomBarWhenPushed = false
     title = "Chats" /* hack: when navigating to chatView (removing this viewController), there was a delayed backButton update (showing 'New Chat' for a moment) */
   }
 

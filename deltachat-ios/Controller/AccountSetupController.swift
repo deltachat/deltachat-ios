@@ -129,6 +129,7 @@ class AccountSetupController: UITableViewController {
 
   init() {
     super.init(style: .grouped)
+		hidesBottomBarWhenPushed = true
   }
 
   required init?(coder _: NSCoder) {

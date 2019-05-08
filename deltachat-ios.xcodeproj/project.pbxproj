@@ -105,7 +105,7 @@
 		AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7C2253ADB4007DC082 /* HudHandler.swift */; };
 		AEE56D80225504DB007DC082 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7F225504DB007DC082 /* Extensions.swift */; };
 		AEE6EC382281AF2D00EDC689 /* InitialsBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC372281AF2D00EDC689 /* InitialsBadge.swift */; };
-		AEE6EC3F2282C59C00EDC689 /* AddGroupMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC3E2282C59C00EDC689 /* AddGroupMembersViewController.swift */; };
+		AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -300,7 +300,7 @@
 		AEE56D7C2253ADB4007DC082 /* HudHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudHandler.swift; sourceTree = "<group>"; };
 		AEE56D7F225504DB007DC082 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		AEE6EC372281AF2D00EDC689 /* InitialsBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsBadge.swift; sourceTree = "<group>"; };
-		AEE6EC3E2282C59C00EDC689 /* AddGroupMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupMembersViewController.swift; sourceTree = "<group>"; };
+		AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersViewController.swift; sourceTree = "<group>"; };
 		FECB35E2B04CD5F5D02C157A /* Pods-deltachat-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -599,7 +599,7 @@
 				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
 				7070FB9A2101ECBB000DC258 /* GroupNameController.swift */,
 				AE851ACF227DF50900ED86F0 /* SingleChatDetailViewController.swift */,
-				AEE6EC3E2282C59C00EDC689 /* AddGroupMembersViewController.swift */,
+				AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -962,7 +962,7 @@
 				AE851AC7227C776400ED86F0 /* Location.swift in Sources */,
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
 				AE25F09022807AD800CDEA66 /* GroupNameCell.swift in Sources */,
-				AEE6EC3F2282C59C00EDC689 /* AddGroupMembersViewController.swift in Sources */,
+				AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */,
 				78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */,
 				AE8519EA2272FDCA00ED86F0 /* DeviceContactsHandler.swift in Sources */,
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
