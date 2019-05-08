@@ -41,7 +41,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
   }()
 
   private lazy var mailboxController: UIViewController = {
-    let controller = ChatViewController(chatId: Int(DC_CHAT_ID_DEADDROP), title: "Mailbox")
+    let controller = MailboxViewController(chatId: Int(DC_CHAT_ID_DEADDROP), title: "Mailbox")
     controller.disableWriting = true
     let nav = NavigationController(rootViewController: controller)
     let settingsImage = UIImage(named: "message")
@@ -110,8 +110,18 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 class ContactListCoordinator: Coordinator {
   let navigationController: UINavigationController
 
+  var childCoordinators: [Coordinator] = []
+
   init(navigationController: UINavigationController) {
     self.navigationController = navigationController
+  }
+
+  func showContactDetail(contactId: Int) {
+    let contactDetailController = ContactDetailViewController(contactId: contactId)
+    let coordinator = ContactDetailCoordinator(navigationController: navigationController)
+    childCoordinators.append(coordinator)
+    contactDetailController.coordinator = coordinator
+    navigationController.pushViewController(contactDetailController, animated: true)
   }
 }
 
@@ -144,7 +154,6 @@ class ChatListCoordinator: Coordinator {
     let coordinator = NewChatCoordinator(navigationController: navigationController)
     childCoordinators.append(coordinator)
     newChatVC.coordinator = coordinator
-    newChatVC.hidesBottomBarWhenPushed = true
     navigationController.pushViewController(newChatVC, animated: true)
   }
 
@@ -153,7 +162,6 @@ class ChatListCoordinator: Coordinator {
     let coordinator = ChatViewCoordinator(navigationController: navigationController)
     childCoordinators.append(coordinator)
     chatVC.coordinator = coordinator
-    chatVC.hidesBottomBarWhenPushed = true
     navigationController.pushViewController(chatVC, animated: true)
   }
 }
@@ -167,8 +175,6 @@ class SettingsCoordinator: Coordinator {
 
   func showAccountSetupController() {
     let accountSetupVC = AccountSetupController()
-    accountSetupVC.hidesBottomBarWhenPushed = true
-
     navigationController.pushViewController(accountSetupVC, animated: true)
   }
 }
@@ -224,6 +230,16 @@ class ChatDetailCoordinator: Coordinator {
   init(navigationController: UINavigationController) {
     self.navigationController = navigationController
   }
+
+  func showSingleChatEdit(contactId: Int) {
+    let newContactController = NewContactController(contactIdForUpdate: contactId)
+    navigationController.pushViewController(newContactController, animated: true)
+  }
+
+  func showAddGroupMember(chatId: Int) {
+    let groupMemberViewController = AddGroupMembersViewController(chatId: chatId)
+    navigationController.pushViewController(groupMemberViewController, animated: true)
+  }
 }
 
 class ChatViewCoordinator: Coordinator {
@@ -236,7 +252,14 @@ class ChatViewCoordinator: Coordinator {
   }
 
   func showChatDetail(chatId: Int) {
-    let chatDetailViewController = ChatDetailViewController(chatId: chatId)
+    let chat = MRChat(id: chatId)
+    let chatDetailViewController: ChatDetailViewController
+    switch chat.chatType {
+    case .SINGLE:
+      chatDetailViewController = SingleChatDetailViewController(chatId: chatId) // inherits from ChatDetailViewController
+    case .GROUP, .VERYFIEDGROUP:
+      chatDetailViewController = GroupChatDetailViewController(chatId: chatId) // inherits from ChatDetailViewController
+    }
     let coordinator = ChatDetailCoordinator(navigationController: navigationController)
     childCoordinators.append(coordinator)
     chatDetailViewController.coordinator = coordinator
@@ -272,6 +295,25 @@ class GroupNameCoordinator: Coordinator {
   }
 
   func showGroupChat(chatId: Int) {
+    let chatViewController = ChatViewController(chatId: chatId)
+    let coordinator = ChatViewCoordinator(navigationController: navigationController)
+    childCoordinators.append(coordinator)
+    chatViewController.coordinator = coordinator
+    navigationController.popToRootViewController(animated: false)
+    navigationController.pushViewController(chatViewController, animated: true)
+  }
+}
+
+class ContactDetailCoordinator: Coordinator {
+  let navigationController: UINavigationController
+
+  private var childCoordinators: [Coordinator] = []
+
+  init(navigationController: UINavigationController) {
+    self.navigationController = navigationController
+  }
+
+  func showChat(chatId: Int) {
     let chatViewController = ChatViewController(chatId: chatId)
     let coordinator = ChatViewCoordinator(navigationController: navigationController)
     childCoordinators.append(coordinator)

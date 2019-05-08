@@ -59,6 +59,7 @@ class NewChatViewController: UITableViewController {
 
   init() {
     super.init(style: .grouped)
+    hidesBottomBarWhenPushed = true
   }
 
   required init?(coder _: NSCoder) {
@@ -79,7 +80,6 @@ class NewChatViewController: UITableViewController {
     super.viewWillAppear(animated)
     deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
     contactIds = Utils.getContactIds()
-
     // this will show the searchbar on launch -> will be set back to true on viewDidAppear
     if #available(iOS 11.0, *) {
       navigationItem.hidesSearchBarWhenScrolling = false
@@ -112,7 +112,6 @@ class NewChatViewController: UITableViewController {
   }
 
   override func viewWillDisappear(_: Bool) {
-    hidesBottomBarWhenPushed = false
     title = "Chats" /* hack: when navigating to chatView (removing this viewController), there was a delayed backButton update (showing 'New Chat' for a moment) */
   }
 

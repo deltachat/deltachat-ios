@@ -340,6 +340,12 @@ class MRMessage: MessageType {
   }
 }
 
+enum ChatType: Int {
+  case SINGLE = 100
+  case GROUP = 120
+  case VERYFIEDGROUP = 130
+}
+
 class MRChat {
   var chatPointer: UnsafeMutablePointer<dc_chat_t>
 
@@ -358,12 +364,20 @@ class MRChat {
     return Int(chatPointer.pointee.type)
   }
 
+  var chatType: ChatType {
+    return ChatType(rawValue: type) ?? ChatType.GROUP // group as fallback - shouldn't get here
+  }
+
   var color: UIColor {
     return UIColor(netHex: Int(dc_chat_get_color(chatPointer)))
   }
 
   var isVerified: Bool {
     return dc_chat_is_verified(chatPointer) > 0
+  }
+
+  var contactIds: [Int] {
+    return Utils.copyAndFreeArray(inputArray: dc_get_chat_contacts(mailboxPointer, UInt32(id)))
   }
 
   lazy var profileImage: UIImage? = { [unowned self] in

@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ContactProfileViewController: UITableViewController {
+class ContactDetailViewController: UITableViewController {
+  weak var coordinator: ContactDetailCoordinator?
+
   let contactId: Int
 
   var contact: MRContact {
@@ -24,17 +26,14 @@ class ContactProfileViewController: UITableViewController {
     fatalError("init(coder:) has not been implemented")
   }
 
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    title = "Info"
+  }
+
   override func viewWillAppear(_: Bool) {
     navigationController?.navigationBar.prefersLargeTitles = false
     tableView.reloadData()
-  }
-
-  func displayNewChat(contactId: Int) {
-    let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
-    let chatVC = ChatViewController(chatId: Int(chatId))
-
-    chatVC.hidesBottomBarWhenPushed = true
-    navigationController?.pushViewController(chatVC, animated: true)
   }
 
   override func didReceiveMemoryWarning() {
@@ -82,16 +81,16 @@ class ContactProfileViewController: UITableViewController {
   override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
     let row = indexPath.row
 
-    if row == 1 {
+    if row == 0 {
       let alert = UIAlertController(title: "Not implemented", message: "Settings are not implemented yet.", preferredStyle: .alert)
       alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
       present(alert, animated: true, completion: nil)
     }
-    if row == 2 {
+    if row == 1 {
       let newContactController = NewContactController(contactIdForUpdate: contactId)
       navigationController?.pushViewController(newContactController, animated: true)
     }
-    if row == 3 {
+    if row == 2 {
       displayNewChat(contactId: contactId)
     }
   }
@@ -114,9 +113,7 @@ class ContactProfileViewController: UITableViewController {
       } else {
         contactCell.setBackupImage(name: contact.name, color: contact.color)
       }
-
       contactCell.setVerified(isVerified: contact.isVerified)
-
       return contactCell
     }
 
@@ -124,5 +121,10 @@ class ContactProfileViewController: UITableViewController {
     vw.backgroundColor = bg
 
     return vw
+  }
+
+  private func displayNewChat(contactId: Int) {
+    let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+    coordinator?.showChat(chatId: Int(chatId))
   }
 }

@@ -8,6 +8,8 @@
 
 import UIKit
 
+// TODO: integrate InitialsBadge in here
+
 class ContactCell: UITableViewCell {
   private let initialsLabelSize: CGFloat = 54
   private let imgSize: CGFloat = 25
@@ -57,11 +59,12 @@ class ContactCell: UITableViewCell {
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
+    selectionStyle = .none
     setupSubviews()
   }
 
   private func setupSubviews() {
-    let margin: CGFloat = 15
+    let margin: CGFloat = 10
 
     initialsLabel.translatesAutoresizingMaskIntoConstraints = false
     avatar.translatesAutoresizingMaskIntoConstraints = false

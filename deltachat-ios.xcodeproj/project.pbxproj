@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6795F63A82E94FF7CD2CEC0F /* Pods_deltachat_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */; };
-		7070FB3D20FDD9FE000DC258 /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */; };
 		7070FB4020FF3421000DC258 /* dc_chat.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3E20FF3420000DC258 /* dc_chat.c */; };
 		7070FB4120FF3421000DC258 /* dc_smtp.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3F20FF3421000DC258 /* dc_smtp.c */; };
 		7070FB5D20FF345F000DC258 /* dc_mimefactory.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4220FF345B000DC258 /* dc_mimefactory.c */; };
@@ -48,7 +47,7 @@
 		7070FB9220FF4118000DC258 /* dc_imap.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8820FF4118000DC258 /* dc_imap.c */; };
 		7070FB9320FF4118000DC258 /* dc_msg.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8920FF4118000DC258 /* dc_msg.c */; };
 		7070FB9B2101ECBB000DC258 /* GroupNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* GroupNameController.swift */; };
-		7092474120B3869500AF8799 /* ContactProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactProfileViewController.swift */; };
+		7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactDetailViewController.swift */; };
 		70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */; };
 		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
 		78113B71224400F300BCA958 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78113B6F224400F300BCA958 /* libssl.a */; };
@@ -97,7 +96,7 @@
 		AE851AC7227C776400ED86F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC6227C776400ED86F0 /* Location.swift */; };
 		AE851AC9227C77CF00ED86F0 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC8227C77CF00ED86F0 /* Media.swift */; };
 		AE851ACE227CA54400ED86F0 /* InitialsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACD227CA54300ED86F0 /* InitialsLabel.swift */; };
-		AE851AD0227DF50900ED86F0 /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACF227DF50900ED86F0 /* ChatDetailViewController.swift */; };
+		AE851AD0227DF50900ED86F0 /* SingleChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACF227DF50900ED86F0 /* SingleChatDetailViewController.swift */; };
 		AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */; };
 		AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DE1FB3246400DCDD78 /* Message.swift */; };
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
@@ -105,6 +104,9 @@
 		AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D752253431E007DC082 /* AccountSetupController.swift */; };
 		AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7C2253ADB4007DC082 /* HudHandler.swift */; };
 		AEE56D80225504DB007DC082 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7F225504DB007DC082 /* Extensions.swift */; };
+		AEE6EC382281AF2D00EDC689 /* InitialsBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC372281AF2D00EDC689 /* InitialsBadge.swift */; };
+		AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */; };
+		AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,7 +144,6 @@
 		21EE28844E7A690D73BF5285 /* Pods-deltachat-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 		7070FB3E20FF3420000DC258 /* dc_chat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_chat.c; sourceTree = "<group>"; };
 		7070FB3F20FF3421000DC258 /* dc_smtp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_smtp.c; sourceTree = "<group>"; };
 		7070FB4220FF345B000DC258 /* dc_mimefactory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_mimefactory.c; sourceTree = "<group>"; };
@@ -191,7 +192,7 @@
 		7070FB8820FF4118000DC258 /* dc_imap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_imap.c; sourceTree = "<group>"; };
 		7070FB8920FF4118000DC258 /* dc_msg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_msg.c; sourceTree = "<group>"; };
 		7070FB9A2101ECBB000DC258 /* GroupNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNameController.swift; sourceTree = "<group>"; };
-		7092474020B3869500AF8799 /* ContactProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactProfileViewController.swift; sourceTree = "<group>"; };
+		7092474020B3869500AF8799 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
 		70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupMemberChoiceController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		78113B6F224400F300BCA958 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "deltachat-ios/libraries/openssl/lib/libssl.a"; sourceTree = "<group>"; };
@@ -290,7 +291,7 @@
 		AE851AC6227C776400ED86F0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		AE851AC8227C77CF00ED86F0 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		AE851ACD227CA54300ED86F0 /* InitialsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsLabel.swift; sourceTree = "<group>"; };
-		AE851ACF227DF50900ED86F0 /* ChatDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
+		AE851ACF227DF50900ED86F0 /* SingleChatDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleChatDetailViewController.swift; sourceTree = "<group>"; };
 		AEA9CC2F22522DA20061D113 /* librpgp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = librpgp.h; sourceTree = "<group>"; };
 		AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		AEACE2DE1FB3246400DCDD78 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -299,6 +300,9 @@
 		AEE56D752253431E007DC082 /* AccountSetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupController.swift; sourceTree = "<group>"; };
 		AEE56D7C2253ADB4007DC082 /* HudHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudHandler.swift; sourceTree = "<group>"; };
 		AEE56D7F225504DB007DC082 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		AEE6EC372281AF2D00EDC689 /* InitialsBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsBadge.swift; sourceTree = "<group>"; };
+		AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersViewController.swift; sourceTree = "<group>"; };
+		AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
 		FECB35E2B04CD5F5D02C157A /* Pods-deltachat-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -589,15 +593,16 @@
 				AEE56D752253431E007DC082 /* AccountSetupController.swift */,
 				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
 				789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */,
-				7092474020B3869500AF8799 /* ContactProfileViewController.swift */,
+				7092474020B3869500AF8799 /* ContactDetailViewController.swift */,
 				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
 				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
 				78E45E3F21D3D70700D4B15E /* ContactListController.swift */,
 				78ED838E21D5927A00243125 /* ProfileViewController.swift */,
 				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
-				7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */,
 				7070FB9A2101ECBB000DC258 /* GroupNameController.swift */,
-				AE851ACF227DF50900ED86F0 /* ChatDetailViewController.swift */,
+				AE851ACF227DF50900ED86F0 /* SingleChatDetailViewController.swift */,
+				AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */,
+				AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -636,6 +641,7 @@
 				AE38B31722672DFC00EC37A1 /* ActionCell.swift */,
 				AE851ACD227CA54300ED86F0 /* InitialsLabel.swift */,
 				AE25F08F22807AD800CDEA66 /* GroupNameCell.swift */,
+				AEE6EC372281AF2D00EDC689 /* InitialsBadge.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -946,7 +952,6 @@
 				7070FB6D20FF345F000DC258 /* dc_imex.c in Sources */,
 				7070FB6620FF345F000DC258 /* dc_param.c in Sources */,
 				7070FB9220FF4118000DC258 /* dc_imap.c in Sources */,
-				7070FB3D20FDD9FE000DC258 /* NewGroupViewController.swift in Sources */,
 				7070FB7720FF345F000DC258 /* dc_qr.c in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
 				70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */,
@@ -960,6 +965,7 @@
 				AE851AC7227C776400ED86F0 /* Location.swift in Sources */,
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
 				AE25F09022807AD800CDEA66 /* GroupNameCell.swift in Sources */,
+				AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */,
 				78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */,
 				AE8519EA2272FDCA00ED86F0 /* DeviceContactsHandler.swift in Sources */,
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
@@ -974,6 +980,7 @@
 				7070FB6020FF345F000DC258 /* dc_hash.c in Sources */,
 				AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */,
 				7070FB4020FF3421000DC258 /* dc_chat.c in Sources */,
+				AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */,
 				7070FB7320FF345F000DC258 /* dc_aheader.c in Sources */,
 				7070FB6120FF345F000DC258 /* dc_securejoin.c in Sources */,
 				78ED838F21D5927A00243125 /* ProfileViewController.swift in Sources */,
@@ -997,12 +1004,13 @@
 				7A451DBE1FB4AD0700177250 /* Wrapper.swift in Sources */,
 				AE851ACE227CA54400ED86F0 /* InitialsLabel.swift in Sources */,
 				7070FB6420FF345F000DC258 /* dc_dehtml.c in Sources */,
+				AEE6EC382281AF2D00EDC689 /* InitialsBadge.swift in Sources */,
 				70B8882E2091B8550074812E /* ContactCell.swift in Sources */,
 				7070FB8D20FF4118000DC258 /* dc_sqlite3.c in Sources */,
 				7A451D941FB1B1DB00177250 /* wrapper.c in Sources */,
-				7092474120B3869500AF8799 /* ContactProfileViewController.swift in Sources */,
+				7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */,
 				7070FB5E20FF345F000DC258 /* dc_token.c in Sources */,
-				AE851AD0227DF50900ED86F0 /* ChatDetailViewController.swift in Sources */,
+				AE851AD0227DF50900ED86F0 /* SingleChatDetailViewController.swift in Sources */,
 				7070FB6C20FF345F000DC258 /* dc_keyring.c in Sources */,
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
 				AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */,
