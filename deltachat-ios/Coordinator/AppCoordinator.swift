@@ -177,6 +177,12 @@ class SettingsCoordinator: Coordinator {
     let accountSetupVC = AccountSetupController()
     navigationController.pushViewController(accountSetupVC, animated: true)
   }
+
+	func showEditSettingsController(option: SettingsEditOption) {
+		let editController = EditSettingsController()
+		editController.activateField(option: option)
+		navigationController.pushViewController(editController, animated: true)
+	}
 }
 
 class NewChatCoordinator: Coordinator {

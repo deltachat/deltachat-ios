@@ -28,12 +28,13 @@ internal final class SettingsViewController: QuickTableViewController {
     super.viewDidLoad()
     title = "Settings"
     documentInteractionController.delegate = self as? UIDocumentInteractionControllerDelegate
-    setTable()
   }
 
+
   override func viewDidAppear(_ animated: Bool) {
+
     super.viewDidAppear(animated)
-    let nc = NotificationCenter.default
+		let nc = NotificationCenter.default
     backupProgressObserver = nc.addObserver(
       forName: dcNotificationBackupProgress,
       object: nil,
@@ -68,7 +69,7 @@ internal final class SettingsViewController: QuickTableViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
+		setTable()
     if #available(iOS 11.0, *) {
       navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -104,8 +105,8 @@ internal final class SettingsViewController: QuickTableViewController {
       Section(
         title: "User Details",
         rows: [
-          NavigationRow(text: "Display Name", detailText: .value1(MRConfig.displayname ?? ""), action: editCell()),
-          NavigationRow(text: "Status", detailText: .value1(MRConfig.selfstatus ?? ""), action: editCell()),
+					NavigationRow(text: "Display Name", detailText: .value1(MRConfig.displayname ?? ""), action: { [weak self] in self?.editNameAndStatus($0)}),
+          NavigationRow(text: "Status", detailText: .value1(MRConfig.selfstatus ?? ""), action: { [weak self] in self?.editNameAndStatus($0)}),
           TapActionRow(text: "Configure my Account", action: { [weak self] in self?.presentAccountSetup($0) }),
         ]
       ),
@@ -277,4 +278,14 @@ internal final class SettingsViewController: QuickTableViewController {
   private func presentAccountSetup(_: Row) {
     coordinator?.showAccountSetupController()
   }
+
+	private func editNameAndStatus(_ row: Row) {
+		guard let option = SettingsEditOption(rawValue: row.text) else { return }
+		coordinator?.showEditSettingsController(option: option)
+	}
+}
+
+enum SettingsEditOption: String {
+	case DISPLAYNAME = "Display Name"
+	case STATUS = "Status"
 }
