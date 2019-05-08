@@ -106,6 +106,7 @@
 		AEE56D80225504DB007DC082 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7F225504DB007DC082 /* Extensions.swift */; };
 		AEE6EC382281AF2D00EDC689 /* InitialsBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC372281AF2D00EDC689 /* InitialsBadge.swift */; };
 		AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */; };
+		AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -301,6 +302,7 @@
 		AEE56D7F225504DB007DC082 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		AEE6EC372281AF2D00EDC689 /* InitialsBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsBadge.swift; sourceTree = "<group>"; };
 		AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersViewController.swift; sourceTree = "<group>"; };
+		AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
 		FECB35E2B04CD5F5D02C157A /* Pods-deltachat-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -600,6 +602,7 @@
 				7070FB9A2101ECBB000DC258 /* GroupNameController.swift */,
 				AE851ACF227DF50900ED86F0 /* SingleChatDetailViewController.swift */,
 				AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */,
+				AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -977,6 +980,7 @@
 				7070FB6020FF345F000DC258 /* dc_hash.c in Sources */,
 				AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */,
 				7070FB4020FF3421000DC258 /* dc_chat.c in Sources */,
+				AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */,
 				7070FB7320FF345F000DC258 /* dc_aheader.c in Sources */,
 				7070FB6120FF345F000DC258 /* dc_securejoin.c in Sources */,
 				78ED838F21D5927A00243125 /* ProfileViewController.swift in Sources */,

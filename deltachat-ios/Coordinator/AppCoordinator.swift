@@ -41,7 +41,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 	}()
 
 	private lazy var mailboxController: UIViewController = {
-		let controller = ChatViewController(chatId: Int(DC_CHAT_ID_DEADDROP), title: "Mailbox")
+		let controller = MailboxViewController(chatId: Int(DC_CHAT_ID_DEADDROP), title: "Mailbox")
 		controller.disableWriting = true
 		let nav = NavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "message")
