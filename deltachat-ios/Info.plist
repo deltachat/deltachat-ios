@@ -30,6 +30,8 @@
 	<string>Allowing access to the microphone lets you record audio.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allowing access to the photo library allows you to upload images from it.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Allowing access to your address book lets you chat with contacts from your device</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

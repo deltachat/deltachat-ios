@@ -11,7 +11,14 @@ import UIKit
 class ChatListController: UIViewController {
   var chatList: MRChatList?
 
-  let chatTable = UITableView()
+  lazy var chatTable: UITableView = {
+    let chatTable = UITableView()
+    chatTable.dataSource = chatTableDataSource
+    chatTableDelegate.chatPresenter = self
+    chatTable.delegate = chatTableDelegate
+    chatTable.rowHeight = 80
+    return chatTable
+  }()
 
   let chatTableDataSource = ChatTableDataSource()
   let chatTableDelegate = ChatTableDelegate()
@@ -21,17 +28,6 @@ class ChatListController: UIViewController {
   var viewChatObserver: Any?
 
   var newButton: UIBarButtonItem!
-
-  func getChatList() {
-    guard let chatlistPointer = dc_get_chatlist(mailboxPointer, DC_GCL_NO_SPECIALS, nil, 0) else {
-      fatalError("chatlistPointer was nil")
-    }
-    // ownership of chatlistPointer transferred here to ChatList object
-    chatList = MRChatList(chatListPointer: chatlistPointer)
-
-    chatTableDataSource.chatList = chatList
-    chatTable.reloadData()
-  }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -92,23 +88,21 @@ class ChatListController: UIViewController {
     super.viewDidLoad()
     title = "Chats"
     navigationController?.navigationBar.prefersLargeTitles = true
+
+    newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
+    newButton.tintColor = DCColors.primary
+    navigationItem.rightBarButtonItem = newButton
+
+    setupChatTable()
+  }
+
+  private func setupChatTable() {
     view.addSubview(chatTable)
     chatTable.translatesAutoresizingMaskIntoConstraints = false
     chatTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     chatTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
     chatTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     chatTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    chatTable.dataSource = chatTableDataSource
-    chatTableDelegate.chatPresenter = self
-    chatTable.delegate = chatTableDelegate
-
-    chatTable.rowHeight = 80
-
-    let newImage = UIImage(named: "create_new")!
-    newButton = UIBarButtonItem(image: newImage, landscapeImagePhone: nil, style: .plain, target: self, action: #selector(didPressNewChat))
-
-    newButton.tintColor = Constants.primaryColor
-    navigationItem.rightBarButtonItem = newButton
   }
 
   @objc func didPressNewChat() {
@@ -116,6 +110,17 @@ class ChatListController: UIViewController {
     ncv.chatDisplayer = self
     let nav = UINavigationController(rootViewController: ncv)
     present(nav, animated: true, completion: nil)
+  }
+
+  func getChatList() {
+    guard let chatlistPointer = dc_get_chatlist(mailboxPointer, DC_GCL_NO_SPECIALS, nil, 0) else {
+      fatalError("chatlistPointer was nil")
+    }
+    // ownership of chatlistPointer transferred here to ChatList object
+    chatList = MRChatList(chatListPointer: chatlistPointer)
+
+    chatTableDataSource.chatList = chatList
+    chatTable.reloadData()
   }
 }
 

@@ -12,9 +12,49 @@ extension String {
   func containsCharacters() -> Bool {
     return !trimmingCharacters(in: [" "]).isEmpty
   }
+
+  // O(n) - returns indexes of subsequences -> can be used to highlight subsequence within string
+  func contains(subSequence: String) -> [Int] {
+    if subSequence.count > count {
+      return []
+    }
+
+    let str = lowercased()
+    let sub = subSequence.lowercased()
+
+    var j = 0
+
+    var foundIndexes: [Int] = []
+
+    for (index, char) in str.enumerated() {
+      if j == sub.count {
+        break
+      }
+
+      if char == sub.subScript(j) {
+        foundIndexes.append(index)
+        j += 1
+      }
+    }
+    return foundIndexes.count == sub.count ? foundIndexes : []
+  }
+
+  func subScript(_ i: Int) -> Character {
+    return self[index(startIndex, offsetBy: i)]
+  }
+
+  func boldAt(indexes: [Int], fontSize: CGFloat) -> NSAttributedString {
+    let attributedText = NSMutableAttributedString(string: self)
+
+    for index in indexes {
+      if index < 0 || count <= index {
+        break
+      }
+      attributedText.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: fontSize), range: NSMakeRange(index, 1))
+    }
+    return attributedText
+  }
 }
-
-
 
 extension URL {
   public var queryParameters: [String: String]? {
@@ -69,5 +109,29 @@ extension URLSession {
     _ = semaphore.wait(timeout: .distantFuture)
 
     return (data, response, error)
+  }
+}
+
+extension MRContact {
+  func contains(searchText text: String) -> [ContactHighlights] {
+    var nameIndexes = [Int]()
+    var emailIndexes = [Int]()
+
+    let contactString = name + email
+    let subsequenceIndexes = contactString.contains(subSequence: text)
+
+    if !subsequenceIndexes.isEmpty {
+      for index in subsequenceIndexes {
+        if index < name.count {
+          nameIndexes.append(index)
+        } else {
+          let emailIndex = index - name.count
+          emailIndexes.append(emailIndex)
+        }
+      }
+      return [ContactHighlights(contactDetail: .NAME, indexes: nameIndexes), ContactHighlights(contactDetail: .EMAIL, indexes: emailIndexes)]
+    } else {
+      return []
+    }
   }
 }

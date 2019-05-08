@@ -32,7 +32,7 @@
 		0183741FDEAAD6CB32ADA51F8758DD84 /* DBColorPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBF7CDFA3DA88494BC0CAF6C2AADA0 /* DBColorPickerTableViewCell.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		02046FB86D6A8C3740A7993E8598945D /* DBResourcesTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAFF475A52A1583D9C357CD9ECBF4BA0 /* DBResourcesTableViewController.storyboard */; };
 		04920A0A9ACC8BF2EAFF02FA5E3903F0 /* DBManagedObjectsListTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 46BB171FD635C5A23A89512CD8FA3A50 /* DBManagedObjectsListTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		049ABC4AC75BA269E3DD1B17C3A1D723 /* Pods-deltachat-ios-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C1B4421ABC62B9EC51B16D769B4B8 /* Pods-deltachat-ios-dummy.m */; };
+		049ABC4AC75BA269E3DD1B17C3A1D723 /* Pods-deltachat-ios-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F86AF286211889F467E38091E221BD5E /* Pods-deltachat-ios-dummy.m */; };
 		04ED6F1BC5AD6A625FBA60829C0DF065 /* DBNetworkToolkit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D513AFAF9060363567A89A518CFBFE2 /* DBNetworkToolkit.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		05F25790BC1C166E599A32F834DB9E46 /* DBMenuSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BDA3DE4CAD301B738993DEE06C11036 /* DBMenuSwitchTableViewCell.xib */; };
 		062DDB403AA135579935235336736041 /* DBOptionsListTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7881CB66B725A15F2DD4917FD01B213A /* DBOptionsListTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -186,7 +186,7 @@
 		602807FF5820D28D8667752628B9CA50 /* JGProgressHUDFadeZoomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F73EF1D59637D2ED6C5F827379E3ACD2 /* JGProgressHUDFadeZoomAnimation.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		60882F0F0B1736A196510C468ED19A78 /* BaseDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC951DA01CD0E09BFFF988D4C56AD520 /* BaseDestination.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		6164B686FE921991DB3938924484289F /* MediaMessageSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C6245C25D9B83C16E5E0DD51A4AD21 /* MediaMessageSizeCalculator.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		617510A938449295B6AB396FBA968AF5 /* Pods-deltachat-ios-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FD5DF1A66B82873BB9DB2695CD440E /* Pods-deltachat-ios-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		617510A938449295B6AB396FBA968AF5 /* Pods-deltachat-ios-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 632E47E8543CA5DA3ACD00787696B0BB /* Pods-deltachat-ios-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6246967B808EDAF81E1D80DF8608DF81 /* DBFileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A99B334D30CC8F0BA8D9C2168F0A727A /* DBFileTableViewCell.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		62537D2D6FB19C2008A67C55CD4A8505 /* InputItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9824746B8EC48D7B82D5AC90E87255 /* InputItem.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		625821F658E8C9F6FE2F475364645ED8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABC232E1B01A6266CA278D8BA3C0328 /* Foundation.framework */; };
@@ -195,6 +195,7 @@
 		65D84F54C53AAFFCD84ECD6F949FD027 /* DBDebugToolkit.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C509FD6E1F1F02CB5C2750E4DA87E5 /* DBDebugToolkit.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		67EFC1D8439F69DB6DDCD91B988FEDD9 /* JGProgressHUD-Defines.h in Headers */ = {isa = PBXBuildFile; fileRef = CCE3626B763363309E1505BC096616A3 /* JGProgressHUD-Defines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		68A0DD5A4442B8331168AA3FC6A18197 /* MessagesViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B24E66321D520DD824D25539A4E4A0 /* MessagesViewController+Keyboard.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		6990F55E90A56FF7010765B1CD5C4385 /* Pods-deltachat-iosTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BB0DC93E32F1DA5C0DDE40F677193 /* Pods-deltachat-iosTests-dummy.m */; };
 		6A8CED07C6307984268450FBB760DF51 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA1E6BE9C3904DED4A0990380DB4A93 /* QuartzCore.framework */; };
 		6BFB19D442C05362302B95179CADBE34 /* UIWindow+DBUserInterfaceToolkit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7631A3CA2B6BB45DA411E491E647479E /* UIWindow+DBUserInterfaceToolkit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6C8F79A08FC161CC10773A9658824625 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D513AD2CD7CC4D15DE8AD2A830C272BF /* Sender.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -214,9 +215,9 @@
 		77F15D309C2F2765157CEA508583384B /* MessageKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D65407253B2252FB88661BA3E610E7 /* MessageKind.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		793E9669228708968996EF641B4A6B4F /* DBShakeTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0240CF9767187B29D394374AC50EB03B /* DBShakeTrigger.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7A36BA703708359EDFB5654E318B01C6 /* DBBodyPreviewViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 266B2197A799CAC850A84054F1242C89 /* DBBodyPreviewViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7A97EFD493B5FADF8E7341C5DFDF29E1 /* JGProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1A19A4701D91E68C14D832FDB8D1FFB1 /* JGProgressHUD.bundle */; };
+		7A97EFD493B5FADF8E7341C5DFDF29E1 /* JGProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 37542F127279C0789F066C5B65E90305 /* JGProgressHUD.bundle */; };
 		7B6F79DB963161A8E9E216506D6C18A7 /* MessageLabelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B2F498837191B63F9C99E70C019DB /* MessageLabelDelegate.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		7BD72BE29A3E18A3040DE59C885CC1BF /* MessageKitAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D7E717FBEEBE0A23E3D50E9F16112C /* MessageKitAssets.bundle */; };
+		7BD72BE29A3E18A3040DE59C885CC1BF /* MessageKitAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADE4DD2614AD47F027163D014A590B09 /* MessageKitAssets.bundle */; };
 		7D6491B8C3E369C848FF6FC0380050AF /* DBFPSCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 06132071B808AA50ACAFA6B07E31BA68 /* DBFPSCalculator.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7DBF9BDED5CD8A8F95926F96E915CDD3 /* DBCrashReportsToolkit.m in Sources */ = {isa = PBXBuildFile; fileRef = C1783187B622A202D1D8A2ECD8D90A05 /* DBCrashReportsToolkit.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7ED45B36470265E44C63D6A2724FB110 /* UIWindow+DBUserInterfaceToolkit.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA58DFCDA8DE5A7AE1B8C38942D2786 /* UIWindow+DBUserInterfaceToolkit.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -244,7 +245,7 @@
 		8A896269483695ABCD1CE6BDE78E2397 /* DBCoreDataFilterTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9E5DC00020146E028EB8DEB3BD417F3 /* DBCoreDataFilterTableViewController.storyboard */; };
 		8AD7E52322FC518B83B75C1410612C44 /* DBPerformanceToolkit.h in Headers */ = {isa = PBXBuildFile; fileRef = F3C636F0D52AF6F0C84802CD12FD4C71 /* DBPerformanceToolkit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8B1E9101706D4212A3F6036E26A9831E /* UIView+Snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 0907F663D6316604C80F76F5005368F2 /* UIView+Snapshot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8B674D4D702690D71FED8FD8D13DCE9F /* DBDebugToolkit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 374A81FFCBDF2CCFEEE060DBC94F7DE5 /* DBDebugToolkit.bundle */; };
+		8B674D4D702690D71FED8FD8D13DCE9F /* DBDebugToolkit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F73499184864C2E9C9CDBD95FA71CDE3 /* DBDebugToolkit.bundle */; };
 		8B9D2C35F3155B07DE3C2440EF6D52DE /* DBLocationTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C5B1128D6579F02B89BF274C885E0C /* DBLocationTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8D6525D7DA645FA609DEB65B51BA2CF7 /* DBRequestDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F8753A8059622E7ACA2E5D3373AEBA /* DBRequestDataHandler.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		8DE347DBD1A2EA60DAA2C55A5040F7B9 /* InputStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A2375161E3A6399445A8A8E2443EFD /* InputStackView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -271,8 +272,10 @@
 		9E9891F2AE20A67E6DDCC4661AAD6B79 /* DBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B9E5F7999613A3B6D9C1644ADCDEA0 /* DBChartView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		9F6824895B81AC0EAB1738E4B33232AF /* MessageInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACB0B1542A3D6B90A12F8FF49D70CB8 /* MessageInputBar.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		9F903A6F103A70BD3CCBBFCF7E8AFCE3 /* DBFontPreviewViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A0345D35EF338D7E5E31757155DD04B /* DBFontPreviewViewController.storyboard */; };
+		A0006FFB32C402DC42D1D498EE03962E /* Pods-deltachat-iosTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D698220BB377C1788857C77A9469D67 /* Pods-deltachat-iosTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1170241B2EF8FA1EA2B4A601684D2E0 /* DBTitleValueListTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 34B56C68ED9B5A53A318C9157D6A312F /* DBTitleValueListTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A150E72DC1688E3F817584EDC90EFB73 /* DBColorCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD5355EDE2A1542EF65DC29BD088310 /* DBColorCheckbox.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		A1C860BE2A871E71BA91CFF8994B3FFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABC232E1B01A6266CA278D8BA3C0328 /* Foundation.framework */; };
 		A1D41C5BE74FB3278C737A37CBEB99EE /* DBUserInterfaceTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E3C82BCF5C1638021DFF3DEFE80159C0 /* DBUserInterfaceTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A226FC83672E3AF26BA5CF7118893CA3 /* MessageKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C22FCF618AEF9C53192AC2CD345B9 /* MessageKit-dummy.m */; };
 		A319766424C0240DC21E714DA4DC4C45 /* DBFileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F16FCE5A060FD60763F0E8D00E18A1C /* DBFileTableViewCell.xib */; };
@@ -486,6 +489,13 @@
 			remoteGlobalIDString = D73CE4D20C1559CE5586041DB209DAB1;
 			remoteInfo = ALCameraViewController;
 		};
+		527D90D7D418F2FF118CEF3394199DFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB99482433FD94845EA597A7C8CC954B;
+			remoteInfo = "Pods-deltachat-ios";
+		};
 		7725C701F77E007FA2E19F1FF3B4887C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -586,22 +596,18 @@
 		1236268975B75AF9B718790C78A8F456 /* MediaMessageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaMessageCell.swift; path = Sources/Views/Cells/MediaMessageCell.swift; sourceTree = "<group>"; };
 		1268F53CFF7A05BFDBF973E0CBD93C44 /* UIView+DBUserInterfaceToolkit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+DBUserInterfaceToolkit.h"; path = "DBDebugToolkit/Classes/UserInterface/Categories/UIView+DBUserInterfaceToolkit.h"; sourceTree = "<group>"; };
 		1321C7C950939346BB4F698C7E93207E /* DBMainQueueOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBMainQueueOperation.h; path = DBDebugToolkit/Classes/Network/MainQueueOperation/DBMainQueueOperation.h; sourceTree = "<group>"; };
-		134721300BD6667954C4A58ADD9920BA /* ALCameraViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ALCameraViewController.framework; path = ALCameraViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		134F6D7DDA07E8D5DCB9B40B709BAC7F /* DBCustomVariablesTableViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBCustomVariablesTableViewController.storyboard; path = DBDebugToolkit/Resources/DBCustomVariablesTableViewController.storyboard; sourceTree = "<group>"; };
 		14B24E66321D520DD824D25539A4E4A0 /* MessagesViewController+Keyboard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MessagesViewController+Keyboard.swift"; path = "Sources/Controllers/MessagesViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		14C7F1B4CA917591610CA3EED83746F4 /* DBImageViewViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBImageViewViewController.storyboard; path = DBDebugToolkit/Resources/DBImageViewViewController.storyboard; sourceTree = "<group>"; };
 		15666E64FBFA28641B3FEC81385C1948 /* JGProgressHUDFadeAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDFadeAnimation.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeAnimation.m; sourceTree = "<group>"; };
 		160439ACD1E06AEB850B7FA938EE8A2E /* DBCookiesTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBCookiesTableViewController.h; path = DBDebugToolkit/Classes/Resources/Cookies/DBCookiesTableViewController.h; sourceTree = "<group>"; };
-		16537CD937F1C5D92F6AAA7FF63ED6F9 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Reachability.framework; path = ReachabilitySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1678BBCFBDF7E5007649F71C7AF4A2B0 /* DBCrashReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBCrashReport.h; path = DBDebugToolkit/Classes/CrashReports/DBCrashReport.h; sourceTree = "<group>"; };
 		16954679C0672AAE2C29C805B9120544 /* ReachabilitySwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ReachabilitySwift-dummy.m"; sourceTree = "<group>"; };
 		16C8A76C54E25549FF6B93BFCC0045DF /* DBTitleValueListViewModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBTitleValueListViewModel.h; path = DBDebugToolkit/Classes/Resources/DBTitleValueListViewModel.h; sourceTree = "<group>"; };
 		16D3CAC013A50B609CA13AFED8A98675 /* Row.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Row.swift; path = Source/Protocol/Row.swift; sourceTree = "<group>"; };
 		179F760039B4878E31D84A9F8C414BD6 /* MessagesCollectionViewLayoutAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagesCollectionViewLayoutAttributes.swift; path = Sources/Layout/MessagesCollectionViewLayoutAttributes.swift; sourceTree = "<group>"; };
+		189F6EAC68ACD520F93302B32A6B8566 /* Pods-deltachat-ios-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-deltachat-ios-acknowledgements.markdown"; sourceTree = "<group>"; };
 		18B9E5F7999613A3B6D9C1644ADCDEA0 /* DBChartView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBChartView.m; path = DBDebugToolkit/Classes/Chart/DBChartView.m; sourceTree = "<group>"; };
-		18BCBECB2F31DEE6EB51A654005B1800 /* Pods-deltachat-ios-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-deltachat-ios-acknowledgements.plist"; sourceTree = "<group>"; };
-		18D7E717FBEEBE0A23E3D50E9F16112C /* MessageKitAssets.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MessageKitAssets.bundle; path = "MessageKit-MessageKitAssets.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A19A4701D91E68C14D832FDB8D1FFB1 /* JGProgressHUD.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = JGProgressHUD.bundle; path = "JGProgressHUD-JGProgressHUD.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A30CE0ECFC16D07A7F250AB93892854 /* UIButtonExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIButtonExtensions.swift; path = ALCameraViewController/Utilities/UIButtonExtensions.swift; sourceTree = "<group>"; };
 		1AF205BAE599378A6EE52BA140C134DD /* JGProgressHUDPieIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDPieIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDPieIndicatorView.h; sourceTree = "<group>"; };
 		1B3DB73C1F3C41E7863831FA1D3D9894 /* DBTouchIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBTouchIndicatorView.h; path = DBDebugToolkit/Classes/UserInterface/DBTouchIndicatorView.h; sourceTree = "<group>"; };
@@ -611,7 +617,6 @@
 		1D513AFAF9060363567A89A518CFBFE2 /* DBNetworkToolkit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBNetworkToolkit.m; path = DBDebugToolkit/Classes/Network/DBNetworkToolkit.m; sourceTree = "<group>"; };
 		1D97E3A3A7057727E4ACD328F9809991 /* DBTopLevelViewsWrapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBTopLevelViewsWrapper.m; path = DBDebugToolkit/Classes/TopLevelViews/DBTopLevelViewsWrapper.m; sourceTree = "<group>"; };
 		1E26ADCF94405BD57ED74E932190936B /* DBCrashReportsTableViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBCrashReportsTableViewController.storyboard; path = DBDebugToolkit/Resources/DBCrashReportsTableViewController.storyboard; sourceTree = "<group>"; };
-		1EF562132E32D06ABA616431F7813F52 /* MessageKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MessageKit.framework; path = MessageKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FD48ADD5FCC2AFF209A9BEB59DDA6EE /* CameraViewAssets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = CameraViewAssets.xcassets; path = ALCameraViewController/CameraViewAssets.xcassets; sourceTree = "<group>"; };
 		2043E7FC26CC40A9F6C0A8DEE79A8BDC /* MessageInputBar-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MessageInputBar-prefix.pch"; sourceTree = "<group>"; };
 		2074C5A54E8F48D53007E413583595AC /* ReachabilitySwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ReachabilitySwift.xcconfig; sourceTree = "<group>"; };
@@ -628,7 +633,6 @@
 		2704796E342B93EA0D1BE3936E66D6ED /* jg_hud_success.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = jg_hud_success.png; path = JGProgressHUD/Resources/jg_hud_success.png; sourceTree = "<group>"; };
 		273C41DF07840699EAC185F85506BB53 /* DBManagedObjectsListTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBManagedObjectsListTableViewController.m; path = DBDebugToolkit/Classes/Resources/CoreData/DBManagedObjectsListTableViewController.m; sourceTree = "<group>"; };
 		28C8991AD1D86B1EA54A39103815D5F0 /* DBRequestDetailsViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBRequestDetailsViewController.h; path = DBDebugToolkit/Classes/Network/DBRequestDetailsViewController.h; sourceTree = "<group>"; };
-		28DE6E8792CD23DCCC66D49D472DD31D /* Pods-deltachat-ios-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-deltachat-ios-Info.plist"; sourceTree = "<group>"; };
 		295449DA1A06CD31153D51B524E6AFE0 /* DBTitleValueTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBTitleValueTableViewCell.m; path = DBDebugToolkit/Classes/Cells/TitleValue/DBTitleValueTableViewCell.m; sourceTree = "<group>"; };
 		2A8B2F498837191B63F9C99E70C019DB /* MessageLabelDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageLabelDelegate.swift; path = Sources/Protocols/MessageLabelDelegate.swift; sourceTree = "<group>"; };
 		2AEC142A56BBA0C0FBA9214CD590BA88 /* MessageKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MessageKit-umbrella.h"; sourceTree = "<group>"; };
@@ -636,42 +640,45 @@
 		2B1ACD0121F6238439340D241EE034E2 /* UIColor+DBUserInterfaceToolkit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+DBUserInterfaceToolkit.m"; path = "DBDebugToolkit/Classes/UserInterface/Categories/UIColor+DBUserInterfaceToolkit.m"; sourceTree = "<group>"; };
 		2B5A5C1EEC6ABA09F5D7DADEF1B97D79 /* InsetLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InsetLabel.swift; path = Sources/Views/InsetLabel.swift; sourceTree = "<group>"; };
 		2C6653FDC468E6A63EE214C1669B213E /* JGProgressHUDRingIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDRingIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDRingIndicatorView.h; sourceTree = "<group>"; };
+		2C6869F51AFCC9D22E453F775818A2C1 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Reachability.framework; path = ReachabilitySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CDEA049112AC15767AC845A1B2FF953 /* DBTitleValueTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DBTitleValueTableViewCell.xib; path = DBDebugToolkit/Resources/DBTitleValueTableViewCell.xib; sourceTree = "<group>"; };
 		2CEF8DB1C4579AF49C60F3890B2BA984 /* DBNetworkSettingsTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBNetworkSettingsTableViewController.m; path = DBDebugToolkit/Classes/Network/DBNetworkSettingsTableViewController.m; sourceTree = "<group>"; };
 		2E5C421C477D40C019661E0834436463 /* TextMessageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextMessageCell.swift; path = Sources/Views/Cells/TextMessageCell.swift; sourceTree = "<group>"; };
 		2E9E781EAD1A1EE1BF861A51130739D2 /* LocationMessageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocationMessageCell.swift; path = Sources/Views/Cells/LocationMessageCell.swift; sourceTree = "<group>"; };
 		2EB1F90F7B72E3EAD5681D80E5A6559F /* DBFontFamiliesTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBFontFamiliesTableViewController.m; path = DBDebugToolkit/Classes/UserInterface/DBFontFamiliesTableViewController.m; sourceTree = "<group>"; };
 		2EDCBD63104B2C65664ED5290E9345A6 /* MessagesLayoutDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagesLayoutDelegate.swift; path = Sources/Protocols/MessagesLayoutDelegate.swift; sourceTree = "<group>"; };
+		2EF959C0DA508EB4738355DF29C45D74 /* MessageInputBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MessageInputBar.framework; path = MessageInputBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F901A751D4804F58A7D662A9533214B /* JGProgressHUDSuccessIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDSuccessIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDSuccessIndicatorView.m; sourceTree = "<group>"; };
 		31224B6078F47963C5A8F42ABA3FCED9 /* DBBuildInfoProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBBuildInfoProvider.h; path = DBDebugToolkit/Classes/BuildInfo/DBBuildInfoProvider.h; sourceTree = "<group>"; };
-		3368952C08BBBA99E86BBBD340CDF54D /* Pods-deltachat-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-deltachat-ios.release.xcconfig"; sourceTree = "<group>"; };
 		337CC2B1F3BA6962E97EE9A4CE0B0C12 /* NavigationRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavigationRow.swift; path = Source/Rows/NavigationRow.swift; sourceTree = "<group>"; };
 		33D25223DAF8F307AE2E3D1B181568F3 /* DBCoreDataFilterTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBCoreDataFilterTableViewController.m; path = DBDebugToolkit/Classes/Resources/CoreData/Filters/DBCoreDataFilterTableViewController.m; sourceTree = "<group>"; };
-		33F361D0CEB5BFFF0967A8E7117CC992 /* Pods-deltachat-ios-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-deltachat-ios-acknowledgements.markdown"; sourceTree = "<group>"; };
 		3411FB60F70A10E111DD0D03A042DBCB /* ReachabilitySwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ReachabilitySwift.modulemap; sourceTree = "<group>"; };
 		34B56C68ED9B5A53A318C9157D6A312F /* DBTitleValueListTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBTitleValueListTableViewController.h; path = DBDebugToolkit/Classes/Resources/DBTitleValueListTableViewController.h; sourceTree = "<group>"; };
 		34F329F0BFD8670F87C96861A4DDCE53 /* UIColor+DBUserInterfaceToolkit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+DBUserInterfaceToolkit.h"; path = "DBDebugToolkit/Classes/UserInterface/Categories/UIColor+DBUserInterfaceToolkit.h"; sourceTree = "<group>"; };
 		34F651AAB06571B0308FFEDCD3416088 /* DBPerformanceSection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBPerformanceSection.h; path = DBDebugToolkit/Classes/Performance/DBPerformanceSection.h; sourceTree = "<group>"; };
 		35A1CB1C8D1FC967862942EFFB7A3C9A /* JGProgressHUDErrorIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDErrorIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDErrorIndicatorView.m; sourceTree = "<group>"; };
+		35C8BD10ACF986404CDDC128C951FD64 /* Pods-deltachat-ios-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-deltachat-ios-Info.plist"; sourceTree = "<group>"; };
 		35FDC0D6747ACA7248F6123AEE0CC97D /* Deprecated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deprecated.swift; path = Source/Model/Deprecated.swift; sourceTree = "<group>"; };
 		362EB410DED90E8C1987C82C86ED0007 /* DBCoreDataFilterSettingsTableViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBCoreDataFilterSettingsTableViewController.storyboard; path = DBDebugToolkit/Resources/DBCoreDataFilterSettingsTableViewController.storyboard; sourceTree = "<group>"; };
 		3670CC31F983300BE5B652215E4C1AAC /* PhotoLibraryAuthorizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhotoLibraryAuthorizer.swift; path = ALCameraViewController/Utilities/PhotoLibraryAuthorizer.swift; sourceTree = "<group>"; };
-		374A81FFCBDF2CCFEEE060DBC94F7DE5 /* DBDebugToolkit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = DBDebugToolkit.bundle; path = "DBDebugToolkit-DBDebugToolkit.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		372A56C8DA2A945D9ADD4FA0A17134BE /* QuickTableViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = QuickTableViewController.framework; path = QuickTableViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37542F127279C0789F066C5B65E90305 /* JGProgressHUD.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = JGProgressHUD.bundle; path = "JGProgressHUD-JGProgressHUD.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3807B6814C4DECF2E7AAC9177A2F56FA /* JGProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUD.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUD.m; sourceTree = "<group>"; };
 		381E8EFBAABF74C4E7BD78A55942D08D /* MessagesViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagesViewController.swift; path = Sources/Controllers/MessagesViewController.swift; sourceTree = "<group>"; };
 		389C22FCF618AEF9C53192AC2CD345B9 /* MessageKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MessageKit-dummy.m"; sourceTree = "<group>"; };
 		38CD67B0BED6A168DF47EC20A101B632 /* NSObject+DBDebugToolkit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+DBDebugToolkit.h"; path = "DBDebugToolkit/Classes/Categories/NSObject+DBDebugToolkit.h"; sourceTree = "<group>"; };
 		39C69DF264B168EF8C39111909D70DE0 /* JGProgressHUDFadeZoomAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDFadeZoomAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeZoomAnimation.h; sourceTree = "<group>"; };
+		3A04DD461D6A85F1FC3B6945D8229F60 /* SwiftyBeaver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyBeaver.framework; path = SwiftyBeaver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A764EDEFBAEFDAE0DFE679BB069A120 /* DBConsoleOutputCaptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBConsoleOutputCaptor.h; path = DBDebugToolkit/Classes/Console/DBConsoleOutputCaptor.h; sourceTree = "<group>"; };
 		3AD930204DA48D2E5047D9767B0E86D0 /* DBRequestDataHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBRequestDataHandler.h; path = DBDebugToolkit/Classes/Network/RequestModel/DBRequestDataHandler.h; sourceTree = "<group>"; };
 		3B7D4B6A795CAC0AAA59FDE289F75854 /* jg_hud_success@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "jg_hud_success@2x.png"; path = "JGProgressHUD/Resources/jg_hud_success@2x.png"; sourceTree = "<group>"; };
 		3BB648A20A5272EE39778C90D9AD1500 /* MessageReusableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageReusableView.swift; path = "Sources/Views/Headers & Footers/MessageReusableView.swift"; sourceTree = "<group>"; };
 		3CCD6107817B8E5D66EB9CAC10580645 /* JGProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUD.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUD.h; sourceTree = "<group>"; };
 		3D41E0E4A3E1045CFB904E676492B92C /* DBKeychainToolkit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBKeychainToolkit.h; path = DBDebugToolkit/Classes/Resources/Keychain/DBKeychainToolkit.h; sourceTree = "<group>"; };
-		3DCBEB81E01A1131729FA58BDE7197C2 /* SwiftyBeaver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyBeaver.framework; path = SwiftyBeaver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E2CD09871DDD441C8F4E24B052FF000 /* AES256CBC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AES256CBC.swift; path = Sources/AES256CBC.swift; sourceTree = "<group>"; };
 		3E518BCE171B3419363BA2C4288A5E55 /* SwiftyBeaver.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftyBeaver.modulemap; sourceTree = "<group>"; };
 		3ED0D023EA38331CD634AE5A032BA6BF /* DBResourcesTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBResourcesTableViewController.h; path = DBDebugToolkit/Classes/Resources/DBResourcesTableViewController.h; sourceTree = "<group>"; };
+		3EDECF91CF783742DACEEADCC692F711 /* ALCameraViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ALCameraViewController.framework; path = ALCameraViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		414DA035FAE9E1BCE76E7F646099FAD3 /* ALCameraViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ALCameraViewController-umbrella.h"; sourceTree = "<group>"; };
 		414F9D59863DB02E57AB85A474DE58C7 /* DBCoreDataFilterSettings.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBCoreDataFilterSettings.m; path = DBDebugToolkit/Classes/Resources/CoreData/Filters/DBCoreDataFilterSettings.m; sourceTree = "<group>"; };
 		4166FFEC9B021B7F0FB6E018427BAD76 /* DBCrashReport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBCrashReport.m; path = DBDebugToolkit/Classes/CrashReports/DBCrashReport.m; sourceTree = "<group>"; };
@@ -679,6 +686,7 @@
 		42B3AABF0C2E9772298FA422983D271A /* DBDebugToolkit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DBDebugToolkit.xcconfig; sourceTree = "<group>"; };
 		43809CC1A8753D3602AF32F8252BD17E /* DBUserDefaultsToolkit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBUserDefaultsToolkit.h; path = DBDebugToolkit/Classes/Resources/UserDefaults/DBUserDefaultsToolkit.h; sourceTree = "<group>"; };
 		44776C538CC2ED8A1AE5F466F2B0C62F /* DBCookieTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBCookieTableViewCell.h; path = DBDebugToolkit/Classes/Resources/Cookies/DBCookieTableViewCell.h; sourceTree = "<group>"; };
+		44A589EFD5B2006FDE32902B1791549A /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_deltachat_iosTests.framework; path = "Pods-deltachat-iosTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		460A50B76674856A7B0754FFD79513D9 /* DBMenuSegmentedControlTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBMenuSegmentedControlTableViewCell.h; path = DBDebugToolkit/Classes/Cells/DBMenuSegmentedControlTableViewCell.h; sourceTree = "<group>"; };
 		46BB171FD635C5A23A89512CD8FA3A50 /* DBManagedObjectsListTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBManagedObjectsListTableViewController.h; path = DBDebugToolkit/Classes/Resources/CoreData/DBManagedObjectsListTableViewController.h; sourceTree = "<group>"; };
 		48965828C630A54296DA4E73CE431CFB /* NSObject+DBDebugToolkit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+DBDebugToolkit.m"; path = "DBDebugToolkit/Classes/Categories/NSObject+DBDebugToolkit.m"; sourceTree = "<group>"; };
@@ -706,7 +714,6 @@
 		54BE132D6B44B523A309A0F61CED3C6C /* JGProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = JGProgressHUD.modulemap; sourceTree = "<group>"; };
 		55632EA66F8FCC86E29E6D8D4939023E /* DBCookieTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DBCookieTableViewCell.xib; path = DBDebugToolkit/Resources/DBCookieTableViewCell.xib; sourceTree = "<group>"; };
 		55F7AB61BE9AED5ED9E4ABEAE9BA6D5B /* DBTextViewTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBTextViewTableViewCell.h; path = DBDebugToolkit/Classes/Cells/DBTextViewTableViewCell.h; sourceTree = "<group>"; };
-		563E32C2E00671B2131D728B988D576E /* DBDebugToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DBDebugToolkit.framework; path = DBDebugToolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		567EBE4A5D2CE33E258710EEFD3A872A /* DBPerformanceTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBPerformanceTableViewController.h; path = DBDebugToolkit/Classes/Performance/DBPerformanceTableViewController.h; sourceTree = "<group>"; };
 		5690D3F51A928363AE968382B0C6722E /* DBCoreDataFilterOperator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBCoreDataFilterOperator.h; path = DBDebugToolkit/Classes/Resources/CoreData/Filters/DBCoreDataFilterOperator.h; sourceTree = "<group>"; };
 		56E3567C6FF31FF2E50A0673A00C7751 /* DBCustomActionsTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBCustomActionsTableViewController.h; path = DBDebugToolkit/Classes/CustomActions/DBCustomActionsTableViewController.h; sourceTree = "<group>"; };
@@ -718,7 +725,6 @@
 		5A227808DA37852EB9A339F31F351306 /* JGProgressHUDErrorIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDErrorIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDErrorIndicatorView.h; sourceTree = "<group>"; };
 		5A231235412C67211FD5900EFB6B1FCD /* QuickTableViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "QuickTableViewController-prefix.pch"; sourceTree = "<group>"; };
 		5A8D9CFEB32D8C8905FBE7273A50DCA9 /* DBSliderTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DBSliderTableViewCell.xib; path = DBDebugToolkit/Resources/DBSliderTableViewCell.xib; sourceTree = "<group>"; };
-		5B141356AE432E97F8754A85AD48EF80 /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_deltachat_ios.framework; path = "Pods-deltachat-ios.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B34BC17566CF6E832F8CB08FC21D966 /* DBTitleValueTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBTitleValueTableViewCell.h; path = DBDebugToolkit/Classes/Cells/TitleValue/DBTitleValueTableViewCell.h; sourceTree = "<group>"; };
 		5B6A1DCE2D0EAABFC11CFEC84C1E692F /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageCollectionViewCell.swift; path = Sources/Views/Cells/MessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		5B86F6B14679666803765D42E117958E /* LocationMessageSizeCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocationMessageSizeCalculator.swift; path = Sources/Layout/LocationMessageSizeCalculator.swift; sourceTree = "<group>"; };
@@ -728,6 +734,7 @@
 		5FA00B0C912F6C9B97D796B103A1B513 /* DBCustomAction.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBCustomAction.m; path = DBDebugToolkit/Classes/CustomActions/DBCustomAction.m; sourceTree = "<group>"; };
 		61164A87620062CBC72FEEAC25D3AB5B /* DBCookiesTableViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBCookiesTableViewController.storyboard; path = DBDebugToolkit/Resources/DBCookiesTableViewController.storyboard; sourceTree = "<group>"; };
 		611CE93804117FC74275344266D6B3A4 /* MessageSizeCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageSizeCalculator.swift; path = Sources/Layout/MessageSizeCalculator.swift; sourceTree = "<group>"; };
+		632E47E8543CA5DA3ACD00787696B0BB /* Pods-deltachat-ios-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-deltachat-ios-umbrella.h"; sourceTree = "<group>"; };
 		64908319F1A96B49D46A37A11A76754C /* DBConsoleOutputCaptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBConsoleOutputCaptor.m; path = DBDebugToolkit/Classes/Console/DBConsoleOutputCaptor.m; sourceTree = "<group>"; };
 		6547525DA834537E4A8F289678D6FA41 /* DBCustomVariablesTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBCustomVariablesTableViewController.m; path = DBDebugToolkit/Classes/CustomVariables/DBCustomVariablesTableViewController.m; sourceTree = "<group>"; };
 		656E1D65C8D4A942E43BAA768549B686 /* DBLongPressTrigger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBLongPressTrigger.h; path = DBDebugToolkit/Classes/Triggers/LongPressTrigger/DBLongPressTrigger.h; sourceTree = "<group>"; };
@@ -735,22 +742,26 @@
 		66E4ECECD2EC91353CC12682F4B210BE /* LabelAlignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LabelAlignment.swift; path = Sources/Models/LabelAlignment.swift; sourceTree = "<group>"; };
 		67E851AF58CD3E5D9879E30B7DAE0F72 /* MessagesCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagesCollectionViewFlowLayout.swift; path = Sources/Layout/MessagesCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		67EDB68EBC04492851F3851A9AA1AA22 /* DBRequestTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBRequestTableViewCell.h; path = DBDebugToolkit/Classes/Cells/DBRequestTableViewCell.h; sourceTree = "<group>"; };
+		6868C650C83DFC59DA3D33A4103297CD /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		69C673C95AE56B53A7EF31CD0AF73458 /* DBDebugToolkit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DBDebugToolkit-prefix.pch"; sourceTree = "<group>"; };
 		6A8CD010E25D37AFB1C1977755D65BC2 /* MessageInputBar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MessageInputBar-dummy.m"; sourceTree = "<group>"; };
 		6A9824746B8EC48D7B82D5AC90E87255 /* InputItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InputItem.swift; path = Sources/Protocols/InputItem.swift; sourceTree = "<group>"; };
 		6AE2CA0A63FCD4A1FDCC0C38E3E4E463 /* MessageInputBarDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageInputBarDelegate.swift; path = Sources/Protocols/MessageInputBarDelegate.swift; sourceTree = "<group>"; };
 		6C2E9301F44182D5595529CA9EFC0839 /* Section.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Section.swift; path = Source/Model/Section.swift; sourceTree = "<group>"; };
-		6C4E3762D3BF6580397975A5BCB986C2 /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		6C5931429EDE443ADA9299926AD867CE /* DBCrashReportsToolkit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBCrashReportsToolkit.h; path = DBDebugToolkit/Classes/CrashReports/DBCrashReportsToolkit.h; sourceTree = "<group>"; };
+		6C5E32B882F0A6A278EF2B590BE362D1 /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JGProgressHUD.framework; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C8AAB766A7ECF7307D3B873786C29B8 /* DBTextViewViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBTextViewViewController.storyboard; path = DBDebugToolkit/Resources/DBTextViewViewController.storyboard; sourceTree = "<group>"; };
 		6CF9355D3C55ED9800ABAB214B69D2CA /* NSURLSessionConfiguration+DBURLProtocol.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURLSessionConfiguration+DBURLProtocol.m"; path = "DBDebugToolkit/Classes/Network/URLProtocol/NSURLSessionConfiguration+DBURLProtocol.m"; sourceTree = "<group>"; };
 		6D00DF5CA4C3BC8B6A1EF85693E6EEA4 /* PermissionsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PermissionsView.swift; path = ALCameraViewController/Views/PermissionsView.swift; sourceTree = "<group>"; };
 		6D603BB6EE891A637535A1CAA0DE67BF /* DBGridOverlayView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBGridOverlayView.h; path = DBDebugToolkit/Classes/UserInterface/GridOverlay/DBGridOverlayView.h; sourceTree = "<group>"; };
+		6D698220BB377C1788857C77A9469D67 /* Pods-deltachat-iosTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-deltachat-iosTests-umbrella.h"; sourceTree = "<group>"; };
+		6D914C10A196ACBBA7D43DC19CF2A988 /* Pods-deltachat-iosTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-deltachat-iosTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		6DC5514E69E324AFC413E349B10AC3DF /* NSOperationQueue+DBMainQueueOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSOperationQueue+DBMainQueueOperation.m"; path = "DBDebugToolkit/Classes/Network/MainQueueOperation/NSOperationQueue+DBMainQueueOperation.m"; sourceTree = "<group>"; };
 		6E06E1B0705E2F386E752937FC79F5E9 /* MessageInputBar-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MessageInputBar-Info.plist"; sourceTree = "<group>"; };
 		6E0FB5581469B33DD625473E561A3D9F /* MessageKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MessageKit.xcconfig; sourceTree = "<group>"; };
 		6F32E027CA42AB5BCCC16BCF2F8AEB9B /* DBLocationTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBLocationTableViewController.m; path = DBDebugToolkit/Classes/Location/DBLocationTableViewController.m; sourceTree = "<group>"; };
 		708C2A092D767874DFFC520BDCBCDBF0 /* SwitchCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwitchCell.swift; path = Source/Views/SwitchCell.swift; sourceTree = "<group>"; };
+		718BB0DC93E32F1DA5C0DDE40F677193 /* Pods-deltachat-iosTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-deltachat-iosTests-dummy.m"; sourceTree = "<group>"; };
 		74AAFB7F1BD7DB26D6EC184AC8641245 /* ReachabilitySwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ReachabilitySwift-Info.plist"; sourceTree = "<group>"; };
 		74B40C6D08CC88E948473A918AF0FE6B /* DBGridOverlaySettingsTableViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBGridOverlaySettingsTableViewController.storyboard; path = DBDebugToolkit/Resources/DBGridOverlaySettingsTableViewController.storyboard; sourceTree = "<group>"; };
 		756FE41AD609D726412DBE2EDBB1D4EE /* SeparatorLine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SeparatorLine.swift; path = Sources/Views/SeparatorLine.swift; sourceTree = "<group>"; };
@@ -774,6 +785,7 @@
 		7C0F64B2F5841BC3C81EDEEB95228216 /* DBTitleValueListTableViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBTitleValueListTableViewController.storyboard; path = DBDebugToolkit/Resources/DBTitleValueListTableViewController.storyboard; sourceTree = "<group>"; };
 		7C3A26C5CEF1FE32F48A9648D628FF83 /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Sources/Reachability.swift; sourceTree = "<group>"; };
 		7CB4BB019758B4488BFE7E3B20A2A712 /* DBLocationToolkit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBLocationToolkit.h; path = DBDebugToolkit/Classes/Location/DBLocationToolkit.h; sourceTree = "<group>"; };
+		7DE3D018FF874E6D567E18B21D25D2F9 /* Pods-deltachat-iosTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-deltachat-iosTests-Info.plist"; sourceTree = "<group>"; };
 		7F07E3F56563AF85511F4134DCBC70DF /* SwiftFormat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftFormat.xcconfig; sourceTree = "<group>"; };
 		7F2A8C606555FB884EBC1DE534C3FF6E /* JGProgressHUDAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDAnimation.h; sourceTree = "<group>"; };
 		7F6700C18ECE3DA880E1FFDE9EE120C0 /* MessageInputBar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MessageInputBar.modulemap; sourceTree = "<group>"; };
@@ -785,11 +797,11 @@
 		85909CCC00E1460CF801BFECCBA81594 /* ConfirmViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConfirmViewController.swift; path = ALCameraViewController/ViewController/ConfirmViewController.swift; sourceTree = "<group>"; };
 		860653E2573E228831B5ACD5E17FBAD3 /* ImageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageCell.swift; path = ALCameraViewController/Views/ImageCell.swift; sourceTree = "<group>"; };
 		862DE5BD4AED9F7EAFD40F4D69E54E0D /* DBTitleValueTableViewCellDataSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBTitleValueTableViewCellDataSource.h; path = DBDebugToolkit/Classes/Cells/TitleValue/DBTitleValueTableViewCellDataSource.h; sourceTree = "<group>"; };
+		8691C6B0DE24E73D7AEDF4324768C268 /* Pods-deltachat-ios-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-deltachat-ios-frameworks.sh"; sourceTree = "<group>"; };
 		87113635F08EE4CC40F11462E6C701CF /* DBSliderTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBSliderTableViewCell.m; path = DBDebugToolkit/Classes/Cells/DBSliderTableViewCell.m; sourceTree = "<group>"; };
 		87119B16E80667107A088EC57511B1AC /* DBRequestDetailsViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBRequestDetailsViewController.m; path = DBDebugToolkit/Classes/Network/DBRequestDetailsViewController.m; sourceTree = "<group>"; };
 		885115C2D781E0040A792A0B8FDD6459 /* DBCustomVariable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBCustomVariable.m; path = DBDebugToolkit/Classes/CustomVariables/DBCustomVariable.m; sourceTree = "<group>"; };
 		88EE2CD35A60508C28172DCA64B6758E /* InputTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InputTextView.swift; path = Sources/Views/InputTextView.swift; sourceTree = "<group>"; };
-		88FB32E0A816EBF23EA4D2E962A0B243 /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JGProgressHUD.framework; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89338F665B934124D7925A059BC3DED9 /* DBPerformanceTableViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBPerformanceTableViewController.storyboard; path = DBDebugToolkit/Resources/DBPerformanceTableViewController.storyboard; sourceTree = "<group>"; };
 		893CCF141F85B19B3BFEFADE0347B000 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIEdgeInsets+Extensions.swift"; path = "Sources/Extensions/UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		89910F4F85E032176C7FCBBA9902431E /* TextMessageSizeCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextMessageSizeCalculator.swift; path = Sources/Layout/TextMessageSizeCalculator.swift; sourceTree = "<group>"; };
@@ -797,7 +809,6 @@
 		8DA67CCFBC86D87F32F500456A174EC9 /* CameraGlobals.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CameraGlobals.swift; path = ALCameraViewController/Utilities/CameraGlobals.swift; sourceTree = "<group>"; };
 		8DE0B2C22495A2F30EAC1422199D93A1 /* DBEntitiesTableViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBEntitiesTableViewController.storyboard; path = DBDebugToolkit/Resources/DBEntitiesTableViewController.storyboard; sourceTree = "<group>"; };
 		8E1D0CF8F474729020FB4DFEAF8FA31E /* DBManagedObjectTableViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBManagedObjectTableViewController.storyboard; path = DBDebugToolkit/Resources/DBManagedObjectTableViewController.storyboard; sourceTree = "<group>"; };
-		8E7B9438A5EB7DC408B69FC65165174A /* Pods-deltachat-ios-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-deltachat-ios-frameworks.sh"; sourceTree = "<group>"; };
 		8EA0BD97967CF0F0711D98205574B34A /* DBTapTrigger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBTapTrigger.h; path = DBDebugToolkit/Classes/Triggers/TapTrigger/DBTapTrigger.h; sourceTree = "<group>"; };
 		8FA8AFBDA2841A1FAF55164D07AFB635 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIColor+Extensions.swift"; path = "Sources/Extensions/UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		91883593B7C66D573A3C6A79F1B581F2 /* UIApplication+DBDebugToolkit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+DBDebugToolkit.h"; path = "DBDebugToolkit/Classes/Categories/UIApplication+DBDebugToolkit.h"; sourceTree = "<group>"; };
@@ -806,7 +817,6 @@
 		92D1ADE93AC8F5F97B1B79676D300438 /* FileDestination.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FileDestination.swift; path = Sources/FileDestination.swift; sourceTree = "<group>"; };
 		930DB0A4A77963A80F592731F9C426D8 /* CameraView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CameraView.swift; path = ALCameraViewController/Views/CameraView.swift; sourceTree = "<group>"; };
 		930DC7C1F69FD366B2E20BAFA4FC1EA4 /* DBTitleValueTableViewCellDataSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBTitleValueTableViewCellDataSource.m; path = DBDebugToolkit/Classes/Cells/TitleValue/DBTitleValueTableViewCellDataSource.m; sourceTree = "<group>"; };
-		93927E4CA32C90227DFEE996A145BC5D /* Pods-deltachat-ios.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-deltachat-ios.modulemap"; sourceTree = "<group>"; };
 		93C932D4C5A8E7516131BC967991E0EF /* MessagesCollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagesCollectionView.swift; path = Sources/Views/MessagesCollectionView.swift; sourceTree = "<group>"; };
 		944E6C9F94CFC2A5FFE4A54B80F7A95D /* DBTapTrigger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBTapTrigger.m; path = DBDebugToolkit/Classes/Triggers/TapTrigger/DBTapTrigger.m; sourceTree = "<group>"; };
 		945781BBF9DAF3C071EEFE1D6AAA6117 /* DBCrashReportDetailsTableViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBCrashReportDetailsTableViewController.storyboard; path = DBDebugToolkit/Resources/DBCrashReportDetailsTableViewController.storyboard; sourceTree = "<group>"; };
@@ -814,6 +824,7 @@
 		957416DB8F37F2CB499CE06E4EAEE8D0 /* DBManagedObjectTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBManagedObjectTableViewController.m; path = DBDebugToolkit/Classes/Resources/CoreData/DBManagedObjectTableViewController.m; sourceTree = "<group>"; };
 		9625DE377DDA78A53523DE4ACCD39B7F /* DBNetworkViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBNetworkViewController.m; path = DBDebugToolkit/Classes/Network/DBNetworkViewController.m; sourceTree = "<group>"; };
 		962BB8E21A93D3D4661736D9A21BE2CB /* DBCoreDataFilterOperator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBCoreDataFilterOperator.m; path = DBDebugToolkit/Classes/Resources/CoreData/Filters/DBCoreDataFilterOperator.m; sourceTree = "<group>"; };
+		974588334E18D2382D9710EEA7BF4727 /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_deltachat_ios.framework; path = "Pods-deltachat-ios.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		996D2B09CA0AC1AC5D4F92955C3CF484 /* MessageInputBar.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MessageInputBar.xcconfig; sourceTree = "<group>"; };
 		997EE093939D83DCC86A79558E58C56B /* PlayButtonView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PlayButtonView.swift; path = Sources/Views/PlayButtonView.swift; sourceTree = "<group>"; };
 		9BDA3DE4CAD301B738993DEE06C11036 /* DBMenuSwitchTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DBMenuSwitchTableViewCell.xib; path = DBDebugToolkit/Resources/DBMenuSwitchTableViewCell.xib; sourceTree = "<group>"; };
@@ -829,7 +840,6 @@
 		A0084CABE2A1C4F7542C2B5632ED0B51 /* UIView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Extensions.swift"; path = "Sources/Extensions/UIView+Extensions.swift"; sourceTree = "<group>"; };
 		A0F8753A8059622E7ACA2E5D3373AEBA /* DBRequestDataHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBRequestDataHandler.m; path = DBDebugToolkit/Classes/Network/RequestModel/DBRequestDataHandler.m; sourceTree = "<group>"; };
 		A13ACB2BE9B6332CA3A72C009575BFBC /* ReachabilitySwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReachabilitySwift-prefix.pch"; sourceTree = "<group>"; };
-		A1EC7BB44E74D81086C2CFC60CE08076 /* MessageInputBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MessageInputBar.framework; path = MessageInputBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A262F7D1AA2F1B93D69937A81F6A398C /* MessagesDisplayDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagesDisplayDelegate.swift; path = Sources/Protocols/MessagesDisplayDelegate.swift; sourceTree = "<group>"; };
 		A3565593078DE979925FA783DCEC49EF /* DBTextViewViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBTextViewViewController.h; path = DBDebugToolkit/Classes/UserInterface/DBTextViewViewController.h; sourceTree = "<group>"; };
 		A35DFA936734AB6D37B60018CE0D0828 /* SwiftyBeaver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyBeaver.swift; path = Sources/SwiftyBeaver.swift; sourceTree = "<group>"; };
@@ -850,14 +860,15 @@
 		A9E5DC00020146E028EB8DEB3BD417F3 /* DBCoreDataFilterTableViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBCoreDataFilterTableViewController.storyboard; path = DBDebugToolkit/Resources/DBCoreDataFilterTableViewController.storyboard; sourceTree = "<group>"; };
 		AABC232E1B01A6266CA278D8BA3C0328 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		AAFF89066BC5CEA5F0D97A69B287DD2E /* DBPresetLocation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBPresetLocation.m; path = DBDebugToolkit/Classes/Location/DBPresetLocation.m; sourceTree = "<group>"; };
+		ADE4DD2614AD47F027163D014A590B09 /* MessageKitAssets.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MessageKitAssets.bundle; path = "MessageKit-MessageKitAssets.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADFB51C3CABA7052319FED1CB6E2EE79 /* UIApplication+DBDebugToolkit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+DBDebugToolkit.m"; path = "DBDebugToolkit/Classes/Categories/UIApplication+DBDebugToolkit.m"; sourceTree = "<group>"; };
 		AE15906F333983165AFF16443C6DFF44 /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Extensions.swift"; path = "Sources/Extensions/NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		AE325A0A5C73B3A0EAACD60E48BB0BA6 /* DBCustomVariablesTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBCustomVariablesTableViewController.h; path = DBDebugToolkit/Classes/CustomVariables/DBCustomVariablesTableViewController.h; sourceTree = "<group>"; };
 		AE3D65EB324E58DC49722A1A1461DCF9 /* jg_hud_error.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = jg_hud_error.png; path = JGProgressHUD/Resources/jg_hud_error.png; sourceTree = "<group>"; };
 		AE655EF3BE40BDEFE28ED638E3A0797B /* DBTitleValueListTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBTitleValueListTableViewController.m; path = DBDebugToolkit/Classes/Resources/DBTitleValueListTableViewController.m; sourceTree = "<group>"; };
 		AEA7659519B3A3EF76F16BEC8A2E7958 /* Base64.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Base64.swift; path = Sources/Base64.swift; sourceTree = "<group>"; };
-		AF80942A0E150EB0B398DCE3CE3651AD /* QuickTableViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = QuickTableViewController.framework; path = QuickTableViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00FF238C38AD975720E6BC72CB9A3B7 /* SingleImageSaver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SingleImageSaver.swift; path = ALCameraViewController/Utilities/SingleImageSaver.swift; sourceTree = "<group>"; };
+		B113749246DD3F84926CAA909B023141 /* Pods-deltachat-ios.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-deltachat-ios.modulemap"; sourceTree = "<group>"; };
 		B18996FF68FCEBA52B15FB88CD3DCC1A /* NSMutableAttributedString+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSMutableAttributedString+Extensions.swift"; path = "Sources/Extensions/NSMutableAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		B243FB4FC8E0AC212815D0B6D3123666 /* DBRequestModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBRequestModel.h; path = DBDebugToolkit/Classes/Network/RequestModel/DBRequestModel.h; sourceTree = "<group>"; };
 		B3D15A229CF14C28E0880B8615B53944 /* JGProgressHUDFadeAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDFadeAnimation.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeAnimation.h; sourceTree = "<group>"; };
@@ -866,6 +877,7 @@
 		B495FC6C914273E1784C1D85DB7FF380 /* UILabel+DBDebugToolkit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UILabel+DBDebugToolkit.m"; path = "DBDebugToolkit/Classes/Categories/UILabel+DBDebugToolkit.m"; sourceTree = "<group>"; };
 		B5782D618BC2751B21564E2E974C70A0 /* DBCrashReportDetailsTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBCrashReportDetailsTableViewController.m; path = DBDebugToolkit/Classes/CrashReports/DBCrashReportDetailsTableViewController.m; sourceTree = "<group>"; };
 		B66E24FCFC218B52EF6E7A64BEE72D79 /* DBShakeTrigger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBShakeTrigger.h; path = DBDebugToolkit/Classes/Triggers/ShakeTrigger/DBShakeTrigger.h; sourceTree = "<group>"; };
+		B6A8B696A090B5AE5285EA1CD860CF64 /* DBDebugToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DBDebugToolkit.framework; path = DBDebugToolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A916522D54A989179E0C01362330F2 /* DBBuildInfoProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBBuildInfoProvider.m; path = DBDebugToolkit/Classes/BuildInfo/DBBuildInfoProvider.m; sourceTree = "<group>"; };
 		B9FD9118A3D5D6F2F745BDC5D0499928 /* DBColorPickerTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DBColorPickerTableViewCell.xib; path = DBDebugToolkit/Resources/DBColorPickerTableViewCell.xib; sourceTree = "<group>"; };
 		BA659724AFFED37AA24A6B8B560FAF09 /* DBColorPickerTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBColorPickerTableViewCell.h; path = DBDebugToolkit/Classes/Cells/ColorPicker/DBColorPickerTableViewCell.h; sourceTree = "<group>"; };
@@ -888,6 +900,7 @@
 		C2DB7058BCF41780AE0F2D697B90075E /* DBChartView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBChartView.h; path = DBDebugToolkit/Classes/Chart/DBChartView.h; sourceTree = "<group>"; };
 		C3DCF8E2953D88AF226D73DD49C75D48 /* DBPerformanceWidgetView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBPerformanceWidgetView.m; path = DBDebugToolkit/Classes/Performance/Widget/DBPerformanceWidgetView.m; sourceTree = "<group>"; };
 		C4409BF94C1241D135E29CFEC9D0CC29 /* JGProgressHUDPieIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDPieIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDPieIndicatorView.m; sourceTree = "<group>"; };
+		C4598F68CD4EDA13A02B8D96AE8D20EA /* Pods-deltachat-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-deltachat-ios.release.xcconfig"; sourceTree = "<group>"; };
 		C4A31323CAA809933728EAD16E4DE661 /* RadioSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RadioSection.swift; path = Source/Model/RadioSection.swift; sourceTree = "<group>"; };
 		C4B2BB250C71CBC5161D86A1C7C18EB2 /* DBMenuTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBMenuTableViewController.h; path = DBDebugToolkit/Classes/Menu/DBMenuTableViewController.h; sourceTree = "<group>"; };
 		C57AC0E24C04ED8601EEC7A9CFD96E7F /* DBUserDefaultsToolkit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBUserDefaultsToolkit.m; path = DBDebugToolkit/Classes/Resources/UserDefaults/DBUserDefaultsToolkit.m; sourceTree = "<group>"; };
@@ -933,6 +946,7 @@
 		D4B61B65F25B1261EBFC01787F0846AF /* DBCoreDataFilter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBCoreDataFilter.m; path = DBDebugToolkit/Classes/Resources/CoreData/Filters/DBCoreDataFilter.m; sourceTree = "<group>"; };
 		D4FAE9AF0E2B7C30581CC5FCC68E2E88 /* DBCookieTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBCookieTableViewCell.m; path = DBDebugToolkit/Classes/Resources/Cookies/DBCookieTableViewCell.m; sourceTree = "<group>"; };
 		D513AD2CD7CC4D15DE8AD2A830C272BF /* Sender.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sender.swift; path = Sources/Models/Sender.swift; sourceTree = "<group>"; };
+		D553DE8E2B647F094266AC71CFEEF1B2 /* Pods-deltachat-iosTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-deltachat-iosTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		D5B651FB1BF0EFF7285F83B019A0B7DC /* DBDebugToolkitTriggerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBDebugToolkitTriggerDelegate.h; path = DBDebugToolkit/Classes/Triggers/DBDebugToolkitTriggerDelegate.h; sourceTree = "<group>"; };
 		D66F61153444F566E2259E79F9F61E25 /* DBMenuChartTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBMenuChartTableViewCell.h; path = DBDebugToolkit/Classes/Cells/DBMenuChartTableViewCell.h; sourceTree = "<group>"; };
 		D6C2E3E8C9A6A8ED39E2F4B23E43C31E /* DBGridOverlaySettingsTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBGridOverlaySettingsTableViewController.m; path = DBDebugToolkit/Classes/UserInterface/GridOverlay/DBGridOverlaySettingsTableViewController.m; sourceTree = "<group>"; };
@@ -944,11 +958,14 @@
 		D95696EA10CB3E902E7AE572248DE3F1 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CGRect+Extensions.swift"; path = "Sources/Extensions/CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		D97C1A6AEA543CBA8E36B8249398FB2D /* MessageCellDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageCellDelegate.swift; path = Sources/Protocols/MessageCellDelegate.swift; sourceTree = "<group>"; };
 		D9E1E4BED2506EE1DA272BBF7A3BF8C1 /* SwiftyBeaver-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyBeaver-umbrella.h"; sourceTree = "<group>"; };
+		DA941DAA577DBF05E2BBAFE9C2460D5E /* Pods-deltachat-ios-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-deltachat-ios-acknowledgements.plist"; sourceTree = "<group>"; };
+		DACA814709477552B20F76063A65930C /* Pods-deltachat-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-deltachat-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 		DAFF475A52A1583D9C357CD9ECBF4BA0 /* DBResourcesTableViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBResourcesTableViewController.storyboard; path = DBDebugToolkit/Resources/DBResourcesTableViewController.storyboard; sourceTree = "<group>"; };
 		DB04E03C2D9B8FF9ABF686C0677E9874 /* SwiftLint.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.xcconfig; sourceTree = "<group>"; };
 		DBCC6D166C4CD6130ADAFEA1D989D40D /* NSConstraintLayoutSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NSConstraintLayoutSet.swift; path = Sources/Models/NSConstraintLayoutSet.swift; sourceTree = "<group>"; };
 		DC49852FA68D8659CC1E70FB477A1F11 /* DBImageViewViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBImageViewViewController.h; path = DBDebugToolkit/Classes/CrashReports/DBImageViewViewController.h; sourceTree = "<group>"; };
 		DCBE54836E6504196F4DFD4D7E5147FE /* DBMainQueueOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBMainQueueOperation.m; path = DBDebugToolkit/Classes/Network/MainQueueOperation/DBMainQueueOperation.m; sourceTree = "<group>"; };
+		DEE08740570B83175CC6FFA491811F10 /* Pods-deltachat-iosTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-deltachat-iosTests.modulemap"; sourceTree = "<group>"; };
 		DF56D6397ACFBFCA523C38DD15B6A362 /* DBFontPreviewViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBFontPreviewViewController.h; path = DBDebugToolkit/Classes/UserInterface/DBFontPreviewViewController.h; sourceTree = "<group>"; };
 		DFDEB794819CB8453F9F70477F7AC2F8 /* DBDeviceInfoProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBDeviceInfoProvider.h; path = DBDebugToolkit/Classes/Device/DBDeviceInfoProvider.h; sourceTree = "<group>"; };
 		E007B564F7C3938EF3FC03ADC75C3CE0 /* DetectorType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DetectorType.swift; path = Sources/Models/DetectorType.swift; sourceTree = "<group>"; };
@@ -979,18 +996,20 @@
 		F108FD1C42937A58A79984EE85B28F87 /* DBMenuSwitchTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBMenuSwitchTableViewCell.h; path = DBDebugToolkit/Classes/Cells/DBMenuSwitchTableViewCell.h; sourceTree = "<group>"; };
 		F117C98045B2B615DADC7E8168F788AB /* DBConsoleViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBConsoleViewController.storyboard; path = DBDebugToolkit/Resources/DBConsoleViewController.storyboard; sourceTree = "<group>"; };
 		F1198274CA2BA76CFB4FD480FCC81429 /* DBMenuTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBMenuTableViewController.m; path = DBDebugToolkit/Classes/Menu/DBMenuTableViewController.m; sourceTree = "<group>"; };
+		F150DFA2E6F75F493D8B2C1F82462891 /* MessageKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MessageKit.framework; path = MessageKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3C636F0D52AF6F0C84802CD12FD4C71 /* DBPerformanceToolkit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBPerformanceToolkit.h; path = DBDebugToolkit/Classes/Performance/DBPerformanceToolkit.h; sourceTree = "<group>"; };
 		F40834843559F3A411F32EA20116EF30 /* DBPersistentStoreCoordinatorsTableViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBPersistentStoreCoordinatorsTableViewController.storyboard; path = DBDebugToolkit/Resources/DBPersistentStoreCoordinatorsTableViewController.storyboard; sourceTree = "<group>"; };
 		F4121B819E0036ECFB6DD5B8BFD66E07 /* DBCoreDataFilterSettings.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBCoreDataFilterSettings.h; path = DBDebugToolkit/Classes/Resources/CoreData/Filters/DBCoreDataFilterSettings.h; sourceTree = "<group>"; };
-		F44C1B4421ABC62B9EC51B16D769B4B8 /* Pods-deltachat-ios-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-deltachat-ios-dummy.m"; sourceTree = "<group>"; };
 		F4984CB7722B2C480596197F8F96041E /* Avatar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Avatar.swift; path = Sources/Models/Avatar.swift; sourceTree = "<group>"; };
 		F4CCC9B58431632B3A915EDFAB3D3BE1 /* JGProgressHUD-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "JGProgressHUD-Info.plist"; sourceTree = "<group>"; };
 		F5D3566FD2E6784A282D94B05EE4B0A5 /* ResourceBundle-MessageKitAssets-MessageKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-MessageKitAssets-MessageKit-Info.plist"; sourceTree = "<group>"; };
 		F60A7DAC639B91607BABEFE1D63BF869 /* MessageKit+Availability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MessageKit+Availability.swift"; path = "Sources/Supporting/MessageKit+Availability.swift"; sourceTree = "<group>"; };
 		F6E40CC7AA8F1E3CC3322C773BDB88C2 /* DBMenuSwitchTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBMenuSwitchTableViewCell.m; path = DBDebugToolkit/Classes/Cells/DBMenuSwitchTableViewCell.m; sourceTree = "<group>"; };
 		F6F0EFFFD7042F979974C0424E2CE225 /* jg_hud_error@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "jg_hud_error@2x.png"; path = "JGProgressHUD/Resources/jg_hud_error@2x.png"; sourceTree = "<group>"; };
+		F73499184864C2E9C9CDBD95FA71CDE3 /* DBDebugToolkit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = DBDebugToolkit.bundle; path = "DBDebugToolkit-DBDebugToolkit.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F73EF1D59637D2ED6C5F827379E3ACD2 /* JGProgressHUDFadeZoomAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDFadeZoomAnimation.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDFadeZoomAnimation.m; sourceTree = "<group>"; };
-		F8FD5DF1A66B82873BB9DB2695CD440E /* Pods-deltachat-ios-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-deltachat-ios-umbrella.h"; sourceTree = "<group>"; };
+		F7460FEFF225998CDD13FC6143645DF0 /* Pods-deltachat-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-deltachat-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F86AF286211889F467E38091E221BD5E /* Pods-deltachat-ios-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-deltachat-ios-dummy.m"; sourceTree = "<group>"; };
 		F931A91BF6B3EB2FE18C9BCFEEBEB111 /* JGProgressHUDRingIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDRingIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDRingIndicatorView.m; sourceTree = "<group>"; };
 		F96A5FE4A39667E88F1205BDC666174F /* UIViewExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIViewExtensions.swift; path = ALCameraViewController/Utilities/UIViewExtensions.swift; sourceTree = "<group>"; };
 		FA038AB64851C163F9C5B7C720DC6A9E /* CropOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CropOverlay.swift; path = ALCameraViewController/Views/CropOverlay.swift; sourceTree = "<group>"; };
@@ -1054,6 +1073,14 @@
 				5AA065F93A4C7B35B9B9A8F147CF4E37 /* Foundation.framework in Frameworks */,
 				6A8CED07C6307984268450FBB760DF51 /* QuartzCore.framework in Frameworks */,
 				10DAF3981A3800FE72E27626A55C327A /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADBBBBC358F3367361030934EFA009DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1C860BE2A871E71BA91CFF8994B3FFB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1126,21 +1153,24 @@
 			path = ReachabilitySwift;
 			sourceTree = "<group>";
 		};
-		034B51D721F7D312940940E233C255C6 /* Pods-deltachat-ios */ = {
+		0A5CA379ABB6D4D56539845DC85140A1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				93927E4CA32C90227DFEE996A145BC5D /* Pods-deltachat-ios.modulemap */,
-				33F361D0CEB5BFFF0967A8E7117CC992 /* Pods-deltachat-ios-acknowledgements.markdown */,
-				18BCBECB2F31DEE6EB51A654005B1800 /* Pods-deltachat-ios-acknowledgements.plist */,
-				F44C1B4421ABC62B9EC51B16D769B4B8 /* Pods-deltachat-ios-dummy.m */,
-				8E7B9438A5EB7DC408B69FC65165174A /* Pods-deltachat-ios-frameworks.sh */,
-				28DE6E8792CD23DCCC66D49D472DD31D /* Pods-deltachat-ios-Info.plist */,
-				F8FD5DF1A66B82873BB9DB2695CD440E /* Pods-deltachat-ios-umbrella.h */,
-				6C4E3762D3BF6580397975A5BCB986C2 /* Pods-deltachat-ios.debug.xcconfig */,
-				3368952C08BBBA99E86BBBD340CDF54D /* Pods-deltachat-ios.release.xcconfig */,
+				3EDECF91CF783742DACEEADCC692F711 /* ALCameraViewController.framework */,
+				F73499184864C2E9C9CDBD95FA71CDE3 /* DBDebugToolkit.bundle */,
+				B6A8B696A090B5AE5285EA1CD860CF64 /* DBDebugToolkit.framework */,
+				37542F127279C0789F066C5B65E90305 /* JGProgressHUD.bundle */,
+				6C5E32B882F0A6A278EF2B590BE362D1 /* JGProgressHUD.framework */,
+				2EF959C0DA508EB4738355DF29C45D74 /* MessageInputBar.framework */,
+				F150DFA2E6F75F493D8B2C1F82462891 /* MessageKit.framework */,
+				ADE4DD2614AD47F027163D014A590B09 /* MessageKitAssets.bundle */,
+				974588334E18D2382D9710EEA7BF4727 /* Pods_deltachat_ios.framework */,
+				44A589EFD5B2006FDE32902B1791549A /* Pods_deltachat_iosTests.framework */,
+				372A56C8DA2A945D9ADD4FA0A17134BE /* QuickTableViewController.framework */,
+				2C6869F51AFCC9D22E453F775818A2C1 /* Reachability.framework */,
+				3A04DD461D6A85F1FC3B6945D8229F60 /* SwiftyBeaver.framework */,
 			);
-			name = "Pods-deltachat-ios";
-			path = "Target Support Files/Pods-deltachat-ios";
+			name = Products;
 			sourceTree = "<group>";
 		};
 		0E650640F02602FC6FCDF43B6685FB38 /* Support Files */ = {
@@ -1176,6 +1206,22 @@
 			path = "../Target Support Files/SwiftFormat";
 			sourceTree = "<group>";
 		};
+		2A04BDD3FE51C8D1505431091FC455F7 /* Pods-deltachat-iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				DEE08740570B83175CC6FFA491811F10 /* Pods-deltachat-iosTests.modulemap */,
+				D553DE8E2B647F094266AC71CFEEF1B2 /* Pods-deltachat-iosTests-acknowledgements.markdown */,
+				6D914C10A196ACBBA7D43DC19CF2A988 /* Pods-deltachat-iosTests-acknowledgements.plist */,
+				718BB0DC93E32F1DA5C0DDE40F677193 /* Pods-deltachat-iosTests-dummy.m */,
+				7DE3D018FF874E6D567E18B21D25D2F9 /* Pods-deltachat-iosTests-Info.plist */,
+				6D698220BB377C1788857C77A9469D67 /* Pods-deltachat-iosTests-umbrella.h */,
+				F7460FEFF225998CDD13FC6143645DF0 /* Pods-deltachat-iosTests.debug.xcconfig */,
+				DACA814709477552B20F76063A65930C /* Pods-deltachat-iosTests.release.xcconfig */,
+			);
+			name = "Pods-deltachat-iosTests";
+			path = "Target Support Files/Pods-deltachat-iosTests";
+			sourceTree = "<group>";
+		};
 		2A76DF304DD76F73186C31C7D64E5C61 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1206,25 +1252,6 @@
 			);
 			name = SwiftyBeaver;
 			path = SwiftyBeaver;
-			sourceTree = "<group>";
-		};
-		39CC13796C95F65849F0C1D383F4C43C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				134721300BD6667954C4A58ADD9920BA /* ALCameraViewController.framework */,
-				374A81FFCBDF2CCFEEE060DBC94F7DE5 /* DBDebugToolkit.bundle */,
-				563E32C2E00671B2131D728B988D576E /* DBDebugToolkit.framework */,
-				1A19A4701D91E68C14D832FDB8D1FFB1 /* JGProgressHUD.bundle */,
-				88FB32E0A816EBF23EA4D2E962A0B243 /* JGProgressHUD.framework */,
-				A1EC7BB44E74D81086C2CFC60CE08076 /* MessageInputBar.framework */,
-				1EF562132E32D06ABA616431F7813F52 /* MessageKit.framework */,
-				18D7E717FBEEBE0A23E3D50E9F16112C /* MessageKitAssets.bundle */,
-				5B141356AE432E97F8754A85AD48EF80 /* Pods_deltachat_ios.framework */,
-				AF80942A0E150EB0B398DCE3CE3651AD /* QuickTableViewController.framework */,
-				16537CD937F1C5D92F6AAA7FF63ED6F9 /* Reachability.framework */,
-				3DCBEB81E01A1131729FA58BDE7197C2 /* SwiftyBeaver.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		41E78A316C3854FF16861A5259D3CE55 /* SwiftFormat */ = {
@@ -1298,14 +1325,6 @@
 				9F19C7F399340B1CC82CC971811CDC39 /* DBUserInterfaceViewController.storyboard */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		4F87E758278C6155BCC2AB273A0DBE66 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				034B51D721F7D312940940E233C255C6 /* Pods-deltachat-ios */,
-			);
-			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		51EBA0130BF6E042A8B321A38737FDE8 /* Pods */ = {
@@ -1725,8 +1744,8 @@
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				00371DD4327E1886B3570E6BC5F95E4E /* Frameworks */,
 				51EBA0130BF6E042A8B321A38737FDE8 /* Pods */,
-				39CC13796C95F65849F0C1D383F4C43C /* Products */,
-				4F87E758278C6155BCC2AB273A0DBE66 /* Targets Support Files */,
+				0A5CA379ABB6D4D56539845DC85140A1 /* Products */,
+				DFC718E69A23781D1A4E1E56679457EF /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1747,6 +1766,15 @@
 				057F9D604FFBD1293AE55FAFA6B21569 /* ConfirmViewController.xib */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		DFC718E69A23781D1A4E1E56679457EF /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F259A3718997FE36B65ACFA69CC8C112 /* Pods-deltachat-ios */,
+				2A04BDD3FE51C8D1505431091FC455F7 /* Pods-deltachat-iosTests */,
+			);
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		E380EBF45FC98046737BC57D3ED9BD70 /* Core */ = {
@@ -1780,6 +1808,23 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/MessageKit";
+			sourceTree = "<group>";
+		};
+		F259A3718997FE36B65ACFA69CC8C112 /* Pods-deltachat-ios */ = {
+			isa = PBXGroup;
+			children = (
+				B113749246DD3F84926CAA909B023141 /* Pods-deltachat-ios.modulemap */,
+				189F6EAC68ACD520F93302B32A6B8566 /* Pods-deltachat-ios-acknowledgements.markdown */,
+				DA941DAA577DBF05E2BBAFE9C2460D5E /* Pods-deltachat-ios-acknowledgements.plist */,
+				F86AF286211889F467E38091E221BD5E /* Pods-deltachat-ios-dummy.m */,
+				8691C6B0DE24E73D7AEDF4324768C268 /* Pods-deltachat-ios-frameworks.sh */,
+				35C8BD10ACF986404CDDC128C951FD64 /* Pods-deltachat-ios-Info.plist */,
+				632E47E8543CA5DA3ACD00787696B0BB /* Pods-deltachat-ios-umbrella.h */,
+				6868C650C83DFC59DA3D33A4103297CD /* Pods-deltachat-ios.debug.xcconfig */,
+				C4598F68CD4EDA13A02B8D96AE8D20EA /* Pods-deltachat-ios.release.xcconfig */,
+			);
+			name = "Pods-deltachat-ios";
+			path = "Target Support Files/Pods-deltachat-ios";
 			sourceTree = "<group>";
 		};
 		FE4FBD6E94D1A01920F3E952E16369FA /* MessageKit */ = {
@@ -2020,6 +2065,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C979473631EAE38A94324267F93709EB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0006FFB32C402DC42D1D498EE03962E /* Pods-deltachat-iosTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E6E26CE9674E6B4CBE71E6EA5E18A43E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -2031,6 +2084,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		21507CDD773A731EA5F9432F9BAF49D3 /* Pods-deltachat-iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C51610DD1A4B5AF52B7D154BCE959F9B /* Build configuration list for PBXNativeTarget "Pods-deltachat-iosTests" */;
+			buildPhases = (
+				C979473631EAE38A94324267F93709EB /* Headers */,
+				93BE078AAA8D2CBAF1016669627C3DD5 /* Sources */,
+				ADBBBBC358F3367361030934EFA009DA /* Frameworks */,
+				ADB858ABBF70E9582F71A1F7BB95C999 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A2A939CE5FCEE134709C9BF5F899E267 /* PBXTargetDependency */,
+			);
+			name = "Pods-deltachat-iosTests";
+			productName = "Pods-deltachat-iosTests";
+			productReference = 44A589EFD5B2006FDE32902B1791549A /* Pods_deltachat_iosTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		3F9E051F59BD648BC335EABC0FD0D42D /* QuickTableViewController */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46786B7CBE6E868ABCA88451BEABEDA8 /* Build configuration list for PBXNativeTarget "QuickTableViewController" */;
@@ -2046,7 +2118,7 @@
 			);
 			name = QuickTableViewController;
 			productName = QuickTableViewController;
-			productReference = AF80942A0E150EB0B398DCE3CE3651AD /* QuickTableViewController.framework */;
+			productReference = 372A56C8DA2A945D9ADD4FA0A17134BE /* QuickTableViewController.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		499B9FA09C9782C300C0E01DF061B520 /* MessageKit-MessageKitAssets */ = {
@@ -2063,7 +2135,7 @@
 			);
 			name = "MessageKit-MessageKitAssets";
 			productName = "MessageKit-MessageKitAssets";
-			productReference = 18D7E717FBEEBE0A23E3D50E9F16112C /* MessageKitAssets.bundle */;
+			productReference = ADE4DD2614AD47F027163D014A590B09 /* MessageKitAssets.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		716080A51E71A083C7303BC65E1342B2 /* MessageInputBar */ = {
@@ -2081,7 +2153,7 @@
 			);
 			name = MessageInputBar;
 			productName = MessageInputBar;
-			productReference = A1EC7BB44E74D81086C2CFC60CE08076 /* MessageInputBar.framework */;
+			productReference = 2EF959C0DA508EB4738355DF29C45D74 /* MessageInputBar.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		9284D1468C96A12C9530EF06A9DC20C6 /* ReachabilitySwift */ = {
@@ -2099,7 +2171,7 @@
 			);
 			name = ReachabilitySwift;
 			productName = ReachabilitySwift;
-			productReference = 16537CD937F1C5D92F6AAA7FF63ED6F9 /* Reachability.framework */;
+			productReference = 2C6869F51AFCC9D22E453F775818A2C1 /* Reachability.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		AFA34E9651FC762EBAC559FD80EFB1F9 /* SwiftyBeaver */ = {
@@ -2117,7 +2189,7 @@
 			);
 			name = SwiftyBeaver;
 			productName = SwiftyBeaver;
-			productReference = 3DCBEB81E01A1131729FA58BDE7197C2 /* SwiftyBeaver.framework */;
+			productReference = 3A04DD461D6A85F1FC3B6945D8229F60 /* SwiftyBeaver.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		AFD0B69E499DF10B4BFED5AAB7E64179 /* JGProgressHUD */ = {
@@ -2136,7 +2208,7 @@
 			);
 			name = JGProgressHUD;
 			productName = JGProgressHUD;
-			productReference = 88FB32E0A816EBF23EA4D2E962A0B243 /* JGProgressHUD.framework */;
+			productReference = 6C5E32B882F0A6A278EF2B590BE362D1 /* JGProgressHUD.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		B814903FB069E79AA2402BF34D9555DB /* DBDebugToolkit */ = {
@@ -2155,7 +2227,7 @@
 			);
 			name = DBDebugToolkit;
 			productName = DBDebugToolkit;
-			productReference = 563E32C2E00671B2131D728B988D576E /* DBDebugToolkit.framework */;
+			productReference = B6A8B696A090B5AE5285EA1CD860CF64 /* DBDebugToolkit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C432EC4F06930E2F8FB529936B43AFC9 /* DBDebugToolkit-DBDebugToolkit */ = {
@@ -2172,7 +2244,7 @@
 			);
 			name = "DBDebugToolkit-DBDebugToolkit";
 			productName = "DBDebugToolkit-DBDebugToolkit";
-			productReference = 374A81FFCBDF2CCFEEE060DBC94F7DE5 /* DBDebugToolkit.bundle */;
+			productReference = F73499184864C2E9C9CDBD95FA71CDE3 /* DBDebugToolkit.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		CB99482433FD94845EA597A7C8CC954B /* Pods-deltachat-ios */ = {
@@ -2200,7 +2272,7 @@
 			);
 			name = "Pods-deltachat-ios";
 			productName = "Pods-deltachat-ios";
-			productReference = 5B141356AE432E97F8754A85AD48EF80 /* Pods_deltachat_ios.framework */;
+			productReference = 974588334E18D2382D9710EEA7BF4727 /* Pods_deltachat_ios.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D73CE4D20C1559CE5586041DB209DAB1 /* ALCameraViewController */ = {
@@ -2218,7 +2290,7 @@
 			);
 			name = ALCameraViewController;
 			productName = ALCameraViewController;
-			productReference = 134721300BD6667954C4A58ADD9920BA /* ALCameraViewController.framework */;
+			productReference = 3EDECF91CF783742DACEEADCC692F711 /* ALCameraViewController.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		EC2370D7477491FA8FE4DBFF4F7BC502 /* MessageKit */ = {
@@ -2238,7 +2310,7 @@
 			);
 			name = MessageKit;
 			productName = MessageKit;
-			productReference = 1EF562132E32D06ABA616431F7813F52 /* MessageKit.framework */;
+			productReference = F150DFA2E6F75F493D8B2C1F82462891 /* MessageKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		FEF806502BEE6769704661F5678595A0 /* JGProgressHUD-JGProgressHUD */ = {
@@ -2255,7 +2327,7 @@
 			);
 			name = "JGProgressHUD-JGProgressHUD";
 			productName = "JGProgressHUD-JGProgressHUD";
-			productReference = 1A19A4701D91E68C14D832FDB8D1FFB1 /* JGProgressHUD.bundle */;
+			productReference = 37542F127279C0789F066C5B65E90305 /* JGProgressHUD.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -2268,14 +2340,14 @@
 				LastUpgradeCheck = 0930;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 39CC13796C95F65849F0C1D383F4C43C /* Products */;
+			productRefGroup = 0A5CA379ABB6D4D56539845DC85140A1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -2288,6 +2360,7 @@
 				EC2370D7477491FA8FE4DBFF4F7BC502 /* MessageKit */,
 				499B9FA09C9782C300C0E01DF061B520 /* MessageKit-MessageKitAssets */,
 				CB99482433FD94845EA597A7C8CC954B /* Pods-deltachat-ios */,
+				21507CDD773A731EA5F9432F9BAF49D3 /* Pods-deltachat-iosTests */,
 				3F9E051F59BD648BC335EABC0FD0D42D /* QuickTableViewController */,
 				9284D1468C96A12C9530EF06A9DC20C6 /* ReachabilitySwift */,
 				3727F3ADF493952E3062BF049032C27F /* SwiftFormat */,
@@ -2423,6 +2496,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ADB858ABBF70E9582F71A1F7BB95C999 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D14DE0E5507DA1D3BA7DDA3DDB7B7A7B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2492,6 +2572,14 @@
 			files = (
 				231C60C27FA9D178A3645132FCEC9D00 /* Reachability.swift in Sources */,
 				4A41896F0764445456FCA606DEE5FD85 /* ReachabilitySwift-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93BE078AAA8D2CBAF1016669627C3DD5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6990F55E90A56FF7010765B1CD5C4385 /* Pods-deltachat-iosTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2798,6 +2886,12 @@
 			name = MessageInputBar;
 			target = 716080A51E71A083C7303BC65E1342B2 /* MessageInputBar */;
 			targetProxy = 7725C701F77E007FA2E19F1FF3B4887C /* PBXContainerItemProxy */;
+		};
+		A2A939CE5FCEE134709C9BF5F899E267 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-deltachat-ios";
+			target = CB99482433FD94845EA597A7C8CC954B /* Pods-deltachat-ios */;
+			targetProxy = 527D90D7D418F2FF118CEF3394199DFF /* PBXContainerItemProxy */;
 		};
 		D7DAA8596F620082D1829F814BD6E040 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3432,7 +3526,7 @@
 		};
 		B3EDAD8F33B645975B7A36CBD13FABA5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3368952C08BBBA99E86BBBD340CDF54D /* Pods-deltachat-ios.release.xcconfig */;
+			baseConfigurationReference = C4598F68CD4EDA13A02B8D96AE8D20EA /* Pods-deltachat-ios.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -3531,7 +3625,7 @@
 		};
 		D30466E9FC4F3BEB05F9778A9EFCDE83 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C4E3762D3BF6580397975A5BCB986C2 /* Pods-deltachat-ios.debug.xcconfig */;
+			baseConfigurationReference = 6868C650C83DFC59DA3D33A4103297CD /* Pods-deltachat-ios.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -3577,6 +3671,40 @@
 			};
 			name = Release;
 		};
+		E239A59DEF1C67A9C5D8CD0BB01DB60F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7460FEFF225998CDD13FC6143645DF0 /* Pods-deltachat-iosTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		E44DAAE3C4741A479BF44D570BAB6502 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C6EE8B8A6B8390A9540B2630D2AC1935 /* JGProgressHUD.xcconfig */;
@@ -3602,6 +3730,41 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E747EE22706B484832A1A03F0838F8F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DACA814709477552B20F76063A65930C /* Pods-deltachat-iosTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -3801,6 +3964,15 @@
 			buildConfigurations = (
 				F84F89B19D5E93A9D221D86B87C580EF /* Debug */,
 				B7C29EA5DA888FA0AE405366EDB102E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C51610DD1A4B5AF52B7D154BCE959F9B /* Build configuration list for PBXNativeTarget "Pods-deltachat-iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E239A59DEF1C67A9C5D8CD0BB01DB60F /* Debug */,
+				E747EE22706B484832A1A03F0838F8F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

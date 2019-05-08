@@ -234,7 +234,6 @@ internal final class SettingsViewController: QuickTableViewController {
     }
   }
 
-
   private func configure(_: Row) {
     hudHandler.showBackupHud("Configuring account")
     dc_configure(mailboxPointer)
@@ -274,8 +273,8 @@ internal final class SettingsViewController: QuickTableViewController {
   }
 
   private func presentAccountSetup(_: Row) {
-		if let nav = self.navigationController {
-			nav.pushViewController(AccountSetupController(), animated: true)
-		}	
+    if let nav = self.navigationController {
+      nav.pushViewController(AccountSetupController(), animated: true)
+    }
   }
 }

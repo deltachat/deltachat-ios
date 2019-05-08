@@ -93,7 +93,7 @@ class ContactCell: UITableViewCell {
       y: 0,
       width: imgSize, height: imgSize
     )
-    imgView.tintColor = Constants.primaryColor
+    imgView.tintColor = DCColors.primary
 
     avatar.addSubview(imgView)
 
