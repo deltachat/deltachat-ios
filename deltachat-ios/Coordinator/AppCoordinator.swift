@@ -240,6 +240,11 @@ class ChatDetailCoordinator: Coordinator {
 		let newContactController = NewContactController(contactIdForUpdate: contactId)
 		navigationController.pushViewController(newContactController, animated: true)
 	}
+
+	func showAddGroupMember(chatId: Int) {
+		let groupMemberViewController = AddGroupMembersViewController(chatId: chatId)
+		navigationController.pushViewController(groupMemberViewController, animated: true)
+	}
 }
 
 class ChatViewCoordinator: Coordinator {

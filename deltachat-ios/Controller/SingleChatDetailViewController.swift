@@ -154,19 +154,21 @@ extension SingleChatDetailViewController: UITableViewDelegate, UITableViewDataSo
 
 class GroupChatDetailViewController: ChatDetailViewController {
 
-	var currentUser: MRContact? {
+	private var currentUser: MRContact? {
 		return groupMembers.filter({$0.email == MRConfig.addr}).first
 	}
 
-	let editGroupCell = GroupLabelCell()
+	private let editGroupCell = GroupLabelCell()
 
-	var editingGroupName: Bool = false
+	private var editingGroupName: Bool = false
 
-	lazy var editBarButtonItem: UIBarButtonItem = {
+	private lazy var editBarButtonItem: UIBarButtonItem = {
 		UIBarButtonItem(title: editingGroupName ? "Done" : "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
 	}()
 
-	var groupMembers: [MRContact] = []
+	private var groupMembers: [MRContact] = []
+
+	private let staticCellCountMemberSection = 1 //
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -266,7 +268,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 		if section == 0 {
 			return 1
 		} else if section == 1 {
-			return groupMembers.count
+			return groupMembers.count + staticCellCountMemberSection // first cell is addGroupMemberCell
 		} else if section == 2 {
 			return 1
 		} else {
@@ -284,13 +286,20 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 			cell.selectionStyle = .none
 			return cell
 		} else  if section == 1 {
-			let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
-			let contact = groupMembers[row]
-			cell.nameLabel.text = contact.name
-			cell.emailLabel.text = contact.email
-			cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
-			cell.setColor(contact.color)
-			return cell
+
+			if row == 0 {
+				let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as! ActionCell
+				cell.actionTitle = "Add Members"
+				return cell
+			} else {
+				let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
+				let contact = groupMembers[row - staticCellCountMemberSection]
+				cell.nameLabel.text = contact.name
+				cell.emailLabel.text = contact.email
+				cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
+				cell.setColor(contact.color)
+				return cell
+			}
 		} else if section == 2 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as! ActionCell
 			cell.actionTitle = "Leave Group"
@@ -308,6 +317,9 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 		if section == 0 {
 			showNotificationSetup()
 		} else if section == 1 {
+			if row == 0 {
+				coordinator?.showAddGroupMember(chatId: self.chat.id)
+			}
 			// ignore for now - in Telegram tapping a contactCell leads into ContactDetail
 		} else if section == 2 {
 			leaveGroup()
@@ -319,7 +331,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 		let row = indexPath.row
 
 		if let currentUser = currentUser {
-			if section == 1 && groupMembers[row].id != currentUser.id {
+			if section == 1 && row > 0 && groupMembers[row - staticCellCountMemberSection].id != currentUser.id {
 				return true
 			}
 		}
@@ -332,13 +344,13 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 		let row = indexPath.row
 
 		// assigning swipe by delete to members (except for current user)
-		if section == 1 && groupMembers[row].id != currentUser?.id {
-			let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+		if section == 1 && row >= staticCellCountMemberSection && groupMembers[row - staticCellCountMemberSection].id != currentUser?.id {
+			let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [unowned self] (action, indexPath) in
 
-				let memberId = self.groupMembers[row].id
+				let memberId = self.groupMembers[row - self.staticCellCountMemberSection].id
 				let success = dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(memberId))
 				if success == 1 {
-					self.groupMembers.remove(at: row)
+					self.groupMembers.remove(at: row - self.staticCellCountMemberSection)
 					tableView.deleteRows(at: [indexPath], with: .fade)
 					tableView.reloadData()
 				}

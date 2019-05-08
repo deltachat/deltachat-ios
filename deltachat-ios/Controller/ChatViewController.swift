@@ -82,7 +82,6 @@ class ChatViewController: MessagesViewController {
 			navigationItem.rightBarButtonItem = UIBarButtonItem(customView: initialsLabel)
 		}
 
-
     configureMessageMenu()
 
     if #available(iOS 11.0, *) {
