@@ -155,7 +155,6 @@ class ChatListCoordinator: Coordinator {
 		let coordinator = NewChatCoordinator(navigationController: navigationController)
 		childCoordinators.append(coordinator)
 		newChatVC.coordinator = coordinator
-		newChatVC.hidesBottomBarWhenPushed = true
 		navigationController.pushViewController(newChatVC, animated: true)
 	}
 

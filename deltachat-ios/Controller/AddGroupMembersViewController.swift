@@ -8,6 +8,28 @@
 
 import UIKit
 
+class NewGroupViewController: GroupMembersViewController {
+	weak var coordinator: NewGroupCoordinator?
+
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		title = "New Group"
+		navigationController?.navigationBar.prefersLargeTitles = false
+		let groupCreationNextButton = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(nextButtonPressed))
+		navigationItem.rightBarButtonItem = groupCreationNextButton
+		contactIds = Utils.getContactIds()
+	}
+
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
+
+	@objc func nextButtonPressed() {
+		coordinator?.showGroupNameController(contactIdsForGroup: selectedContactIds)
+	}
+}
+
 class AddGroupMembersViewController: GroupMembersViewController {
 
 	private var chatId: Int?
@@ -23,7 +45,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
 			resetButton.isEnabled = !selectedContactIds.isEmpty
 		}
 	}
-
 
 	private lazy var chat: MRChat? = {
 		if let chatId = chatId {
@@ -48,9 +69,13 @@ class AddGroupMembersViewController: GroupMembersViewController {
 	}()
 
 
-	convenience init(chatId: Int) {
-		self.init(nibName: nil, bundle: nil)
+	init(chatId: Int) {
+		super.init()
 		self.chatId = chatId
+	}
+
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
 	}
 
 	override func viewDidLoad() {
@@ -75,8 +100,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
 		tableView.reloadData()
 	}
 }
-
-
+ 	
 class GroupMembersViewController : UITableViewController {
 
 	let contactCellReuseIdentifier = "contactCell"
@@ -88,6 +112,15 @@ class GroupMembersViewController : UITableViewController {
 	}
 
 	var selectedContactIds: Set<Int> = []
+
+	init() {
+		super.init(nibName: nil, bundle: nil)
+		hidesBottomBarWhenPushed = true
+	}
+
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 
 	override func viewDidLoad() {
 		 tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)

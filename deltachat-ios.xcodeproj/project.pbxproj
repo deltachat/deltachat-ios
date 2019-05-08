@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6795F63A82E94FF7CD2CEC0F /* Pods_deltachat_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */; };
-		7070FB3D20FDD9FE000DC258 /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */; };
 		7070FB4020FF3421000DC258 /* dc_chat.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3E20FF3420000DC258 /* dc_chat.c */; };
 		7070FB4120FF3421000DC258 /* dc_smtp.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3F20FF3421000DC258 /* dc_smtp.c */; };
 		7070FB5D20FF345F000DC258 /* dc_mimefactory.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4220FF345B000DC258 /* dc_mimefactory.c */; };
@@ -144,7 +143,6 @@
 		21EE28844E7A690D73BF5285 /* Pods-deltachat-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 		7070FB3E20FF3420000DC258 /* dc_chat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_chat.c; sourceTree = "<group>"; };
 		7070FB3F20FF3421000DC258 /* dc_smtp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_smtp.c; sourceTree = "<group>"; };
 		7070FB4220FF345B000DC258 /* dc_mimefactory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_mimefactory.c; sourceTree = "<group>"; };
@@ -599,7 +597,6 @@
 				78E45E3F21D3D70700D4B15E /* ContactListController.swift */,
 				78ED838E21D5927A00243125 /* ProfileViewController.swift */,
 				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
-				7070FB3C20FDD9FE000DC258 /* NewGroupViewController.swift */,
 				7070FB9A2101ECBB000DC258 /* GroupNameController.swift */,
 				AE851ACF227DF50900ED86F0 /* SingleChatDetailViewController.swift */,
 				AEE6EC3E2282C59C00EDC689 /* AddGroupMembersViewController.swift */,
@@ -952,7 +949,6 @@
 				7070FB6D20FF345F000DC258 /* dc_imex.c in Sources */,
 				7070FB6620FF345F000DC258 /* dc_param.c in Sources */,
 				7070FB9220FF4118000DC258 /* dc_imap.c in Sources */,
-				7070FB3D20FDD9FE000DC258 /* NewGroupViewController.swift in Sources */,
 				7070FB7720FF345F000DC258 /* dc_qr.c in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
 				70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */,
