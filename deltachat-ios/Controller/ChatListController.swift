@@ -170,4 +170,23 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
       coordinator?.showChat(chatId: chatId)
     }
   }
+
+
+	func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+		let section = indexPath.section
+		let row = indexPath.row
+		guard let chatList = chatList else {
+			return nil
+		}
+
+		// assigning swipe by delete to chats
+		let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [unowned self] _, indexPath in
+			let chatId = chatList.getChatId(index: row)
+			dc_delete_chat(mailboxPointer, UInt32(chatId))
+			self.getChatList()
+
+		}
+		delete.backgroundColor = UIColor.red
+		return [delete]
+	}
 }
