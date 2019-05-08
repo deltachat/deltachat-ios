@@ -9,9 +9,39 @@
 import UIKit
 
 class ContactCell: UITableViewCell {
-  let avatar = UIView()
-  let imgView = UIImageView()
-  let initialsLabel = UILabel()
+  private let initialsLabelSize: CGFloat = 54
+  private let imgSize: CGFloat = 25
+
+  let avatar: UIView = {
+    let avatar = UIView()
+    return avatar
+  }()
+
+  lazy var imgView: UIImageView = {
+    let imgView = UIImageView()
+    let img = UIImage(named: "approval")!.withRenderingMode(.alwaysTemplate)
+    imgView.isHidden = true
+    imgView.image = img
+    imgView.bounds = CGRect(
+      x: 0,
+      y: 0,
+      width: imgSize, height: imgSize
+    )
+    return imgView
+  }()
+
+  lazy var initialsLabel: UILabel = {
+    let initialsLabel = UILabel()
+    initialsLabel.textAlignment = NSTextAlignment.center
+    initialsLabel.textColor = UIColor.white
+    initialsLabel.font = UIFont.systemFont(ofSize: 22)
+    initialsLabel.backgroundColor = UIColor.green
+    let initialsLabelCornerRadius = (initialsLabelSize - 6) / 2
+    initialsLabel.layer.cornerRadius = initialsLabelCornerRadius
+    initialsLabel.clipsToBounds = true
+    return initialsLabel
+  }()
+
   let nameLabel = UILabel()
   let emailLabel = UILabel()
 
@@ -27,15 +57,12 @@ class ContactCell: UITableViewCell {
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
+    setupSubviews()
+  }
 
-    // configure and layout initialsLabel
-    let initialsLabelSize: CGFloat = 54
-    let initialsLabelCornerRadius = (initialsLabelSize - 6) / 2
+  private func setupSubviews() {
     let margin: CGFloat = 15
 
-    initialsLabel.textAlignment = NSTextAlignment.center
-    initialsLabel.textColor = UIColor.white
-    initialsLabel.font = UIFont.systemFont(ofSize: 22)
     initialsLabel.translatesAutoresizingMaskIntoConstraints = false
     avatar.translatesAutoresizingMaskIntoConstraints = false
     initialsLabel.widthAnchor.constraint(equalToConstant: initialsLabelSize - 6).isActive = true
@@ -45,10 +72,6 @@ class ContactCell: UITableViewCell {
     avatar.widthAnchor.constraint(equalToConstant: initialsLabelSize).isActive = true
     avatar.heightAnchor.constraint(equalToConstant: initialsLabelSize).isActive = true
 
-    initialsLabel.backgroundColor = UIColor.green
-
-    initialsLabel.layer.cornerRadius = initialsLabelCornerRadius
-    initialsLabel.clipsToBounds = true
     avatar.addSubview(initialsLabel)
     contentView.addSubview(avatar)
 
@@ -83,16 +106,6 @@ class ContactCell: UITableViewCell {
     emailLabel.textColor = UIColor(hexString: "848ba7")
     emailLabel.lineBreakMode = .byTruncatingTail
 
-    let img = UIImage(named: "approval")!.withRenderingMode(.alwaysTemplate)
-    let imgSize: CGFloat = 25
-
-    imgView.isHidden = true
-    imgView.image = img
-    imgView.bounds = CGRect(
-      x: 0,
-      y: 0,
-      width: imgSize, height: imgSize
-    )
     imgView.tintColor = DCColors.primary
 
     avatar.addSubview(imgView)
@@ -108,7 +121,6 @@ class ContactCell: UITableViewCell {
   func setImage(_ img: UIImage) {
     let attachment = NSTextAttachment()
     attachment.image = img
-
     initialsLabel.attributedText = NSAttributedString(attachment: attachment)
   }
 

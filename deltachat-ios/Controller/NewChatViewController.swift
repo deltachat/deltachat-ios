@@ -10,12 +10,9 @@ import ALCameraViewController
 import Contacts
 import UIKit
 
-protocol ChatDisplayer: class {
-  func displayNewChat(contactId: Int)
-  func displayChatForId(chatId: Int)
-}
-
 class NewChatViewController: UITableViewController {
+  weak var coordinator: NewChatCoordinator?
+
   private lazy var searchController: UISearchController = {
     let searchController = UISearchController(searchResultsController: nil)
     searchController.searchResultsUpdater = self
@@ -43,7 +40,7 @@ class NewChatViewController: UITableViewController {
     return searchController.isActive && !searchBarIsEmpty()
   }
 
-  weak var chatDisplayer: ChatDisplayer?
+  // weak var chatDisplayer: ChatDisplayer?
 
   var syncObserver: Any?
   var hud: ProgressHud?
@@ -72,10 +69,6 @@ class NewChatViewController: UITableViewController {
     super.viewDidLoad()
 
     title = "New Chat"
-    navigationController?.navigationBar.prefersLargeTitles = true
-
-    let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(NewChatViewController.cancelButtonPressed))
-    navigationItem.rightBarButtonItem = cancelButton
 
     deviceContactHandler.importDeviceContacts()
     navigationItem.searchController = searchController
@@ -116,6 +109,11 @@ class NewChatViewController: UITableViewController {
         }
       }
     }
+  }
+
+  override func viewWillDisappear(_: Bool) {
+    hidesBottomBarWhenPushed = false
+    title = "Chats" /* hack: when navigating to chatView (removing this viewController), there was a delayed backButton update (showing 'New Chat' for a moment) */
   }
 
   override func viewDidDisappear(_ animated: Bool) {
@@ -245,15 +243,11 @@ class NewChatViewController: UITableViewController {
 
     if section == 0 {
       if row == 0 {
-        let newGroupController = NewGroupViewController()
-        navigationController?.pushViewController(newGroupController, animated: true)
+        coordinator?.showNewGroupController()
       }
       if row == 1 {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-          let controller = QrCodeReaderController()
-          controller.delegate = self
-          present(controller, animated: true, completion: nil)
-
+          coordinator?.showQRCodeController()
         } else {
           let alert = UIAlertController(title: "Camera is not available", message: nil, preferredStyle: .alert)
           alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
@@ -263,8 +257,7 @@ class NewChatViewController: UITableViewController {
         }
       }
       if row == 2 {
-        let newContactController = NewContactController()
-        navigationController?.pushViewController(newContactController, animated: true)
+        coordinator?.showNewContactController()
       }
     } else if section == 1 {
       if deviceContactAccessGranted {
@@ -272,15 +265,11 @@ class NewChatViewController: UITableViewController {
           // edge case: when searchController is active but searchBar is empty -> filteredContacts is empty, so we fallback to contactIds
           let contactId = isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
           searchController.dismiss(animated: false, completion: {
-            self.dismiss(animated: false, completion: {
-              self.chatDisplayer?.displayNewChat(contactId: contactId)
-            })
+            self.coordinator?.showNewChat(contactId: contactId)
           })
         } else {
           let contactId = contactIds[row]
-          dismiss(animated: false) {
-            self.chatDisplayer?.displayNewChat(contactId: contactId)
-          }
+          coordinator?.showNewChat(contactId: contactId)
         }
       } else {
         showSettingsAlert()
@@ -288,21 +277,7 @@ class NewChatViewController: UITableViewController {
     } else {
       let contactIndex = row
       let contactId = contactIds[contactIndex]
-      dismiss(animated: false) {
-        self.chatDisplayer?.displayNewChat(contactId: contactId)
-      }
-    }
-  }
-
-  override func tableView(_: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-    let row = indexPath.row
-    if row > 2 {
-      let contactIndex = row - 3
-      let contactId = contactIds[contactIndex]
-      // let newContactController = NewContactController(contactIdForUpdate: contactId)
-      // navigationController?.pushViewController(newContactController, animated: true)
-      let contactProfileController = ContactProfileViewController(contactId: contactId)
-      navigationController?.pushViewController(contactProfileController, animated: true)
+      coordinator?.showNewChat(contactId: contactId)
     }
   }
 
@@ -323,7 +298,6 @@ class NewChatViewController: UITableViewController {
     }
     cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
     cell.setColor(contact.color)
-    cell.accessoryType = .detailDisclosureButton
   }
 
   private func searchBarIsEmpty() -> Bool {
@@ -355,7 +329,8 @@ extension NewChatViewController: QrCodeReaderDelegate {
 
         DispatchQueue.main.async {
           self.dismiss(animated: true) {
-            self.chatDisplayer?.displayChatForId(chatId: Int(id))
+            self.coordinator?.showChat(chatId: Int(id))
+            // self.chatDisplayer?.displayChatForId(chatId: Int(id))
           }
         }
       }
@@ -407,13 +382,6 @@ extension NewChatViewController: UISearchResultsUpdating {
   }
 }
 
-protocol ContactListDelegate: class {
-  func accessGranted()
-  func accessDenied()
-  func deviceContactsImported()
-}
-
-// TODO: find better name
 struct ContactHighlights {
   let contactDetail: ContactDetail
   let indexes: [Int]

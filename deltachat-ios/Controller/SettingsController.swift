@@ -13,6 +13,8 @@ import QuickTableViewController
 import UIKit
 
 internal final class SettingsViewController: QuickTableViewController {
+  weak var coordinator: SettingsCoordinator?
+
   let documentInteractionController = UIDocumentInteractionController()
   var backupProgressObserver: Any?
   var configureProgressObserver: Any?
@@ -273,8 +275,6 @@ internal final class SettingsViewController: QuickTableViewController {
   }
 
   private func presentAccountSetup(_: Row) {
-    if let nav = self.navigationController {
-      nav.pushViewController(AccountSetupController(), animated: true)
-    }
+    coordinator?.showAccountSetupController()
   }
 }

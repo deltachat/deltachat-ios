@@ -6,6 +6,7 @@
 //  Copyright © 2018 Jonas Reinsch. All rights reserved.
 //
 
+import UIKit
 import UserNotifications
 
 let dcNotificationChanged = Notification.Name(rawValue: "MrEventMsgsChanged")
@@ -91,7 +92,8 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
       if done {
         UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
         UserDefaults.standard.synchronize()
-        AppDelegate.appCoordinator.setupInnerViewControllers()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.appCoordinator?.showTab(index: 3)
         AppDelegate.lastErrorDuringConfig = nil
       }
     }

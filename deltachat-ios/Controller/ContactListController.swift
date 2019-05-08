@@ -9,6 +9,8 @@
 import UIKit
 
 class ContactListController: UITableViewController {
+  weak var coordinator: ContactListCoordinator?
+
   let contactCellReuseIdentifier = "xyz"
   var contactIds: [Int] = Utils.getContactIds()
   var contactIdsForGroup: Set<Int> = []

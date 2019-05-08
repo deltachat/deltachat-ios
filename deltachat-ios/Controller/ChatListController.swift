@@ -9,19 +9,16 @@
 import UIKit
 
 class ChatListController: UIViewController {
+  weak var coordinator: ChatListCoordinator?
   var chatList: MRChatList?
 
   lazy var chatTable: UITableView = {
     let chatTable = UITableView()
-    chatTable.dataSource = chatTableDataSource
-    chatTableDelegate.chatPresenter = self
-    chatTable.delegate = chatTableDelegate
+    chatTable.dataSource = self
+    chatTable.delegate = self
     chatTable.rowHeight = 80
     return chatTable
   }()
-
-  let chatTableDataSource = ChatTableDataSource()
-  let chatTableDelegate = ChatTableDelegate()
 
   var msgChangedObserver: Any?
   var incomingMsgObserver: Any?
@@ -33,6 +30,7 @@ class ChatListController: UIViewController {
     super.viewWillAppear(animated)
 
     if #available(iOS 11.0, *) {
+      // TODO: check if this is really nessesary - dc navigationController has large titles
       navigationController?.navigationBar.prefersLargeTitles = true
     }
 
@@ -64,7 +62,7 @@ class ChatListController: UIViewController {
     viewChatObserver = nc.addObserver(forName: dcNotificationViewChat, object: nil, queue: nil) {
       notification in
       if let chatId = notification.userInfo?["chat_id"] as? Int {
-        self.displayChatForId(chatId: chatId)
+        self.coordinator?.showChat(chatId: chatId)
       }
     }
   }
@@ -106,10 +104,7 @@ class ChatListController: UIViewController {
   }
 
   @objc func didPressNewChat() {
-    let ncv = NewChatViewController()
-    ncv.chatDisplayer = self
-    let nav = UINavigationController(rootViewController: ncv)
-    present(nav, animated: true, completion: nil)
+    coordinator?.showNewChatController()
   }
 
   func getChatList() {
@@ -118,43 +113,11 @@ class ChatListController: UIViewController {
     }
     // ownership of chatlistPointer transferred here to ChatList object
     chatList = MRChatList(chatListPointer: chatlistPointer)
-
-    chatTableDataSource.chatList = chatList
     chatTable.reloadData()
   }
 }
 
-extension ChatListController: ChatPresenter {
-  func displayChat(index: Int) {
-    guard let chatList = self.chatList else {
-      fatalError("chatList was nil in ChatPresenter extension")
-    }
-
-    let chatId = chatList.getChatId(index: index)
-    let chatVC = ChatViewController(chatId: chatId)
-
-    chatVC.hidesBottomBarWhenPushed = true
-    navigationController?.pushViewController(chatVC, animated: true)
-  }
-}
-
-extension ChatListController: ChatDisplayer {
-  func displayNewChat(contactId: Int) {
-    let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
-    displayChatForId(chatId: Int(chatId))
-  }
-
-  func displayChatForId(chatId: Int) {
-    let chatVC = ChatViewController(chatId: chatId)
-
-    chatVC.hidesBottomBarWhenPushed = true
-    navigationController?.pushViewController(chatVC, animated: true)
-  }
-}
-
-class ChatTableDataSource: NSObject, UITableViewDataSource {
-  weak var chatList: MRChatList?
-
+extension ChatListController: UITableViewDataSource, UITableViewDelegate {
   func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
     guard let chatList = self.chatList else {
       fatalError("chatList was nil in data source")
@@ -200,17 +163,11 @@ class ChatTableDataSource: NSObject, UITableViewDataSource {
     cell.emailLabel.text = result
     return cell
   }
-}
-
-protocol ChatPresenter: class {
-  func displayChat(index: Int)
-}
-
-class ChatTableDelegate: NSObject, UITableViewDelegate {
-  weak var chatPresenter: ChatPresenter?
 
   func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
     let row = indexPath.row
-    chatPresenter?.displayChat(index: row)
+    if let chatId = chatList?.getChatId(index: row) {
+      coordinator?.showChat(chatId: chatId)
+    }
   }
 }

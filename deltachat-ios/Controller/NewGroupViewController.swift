@@ -9,6 +9,8 @@
 import UIKit
 
 class NewGroupViewController: UITableViewController {
+  weak var coordinator: NewGroupCoordinator?
+
   let contactCellReuseIdentifier = "xyz"
   var contactIds: [Int] = Utils.getContactIds()
   var contactIdsForGroup: Set<Int> = [] {
@@ -18,17 +20,13 @@ class NewGroupViewController: UITableViewController {
     }
   }
 
-  @objc func didPressGroupCreationNextButton() {
-    navigationController?.pushViewController(GroupNameController(contactIdsForGroup: contactIdsForGroup), animated: true)
-  }
-
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "New Group"
     navigationItem.prompt = "0 members and me"
     tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
     navigationController?.navigationBar.prefersLargeTitles = false
-    let groupCreationNextButton = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(didPressGroupCreationNextButton))
+    let groupCreationNextButton = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(nextButtonPressed))
     navigationItem.rightBarButtonItem = groupCreationNextButton
   }
 
@@ -74,5 +72,9 @@ class NewGroupViewController: UITableViewController {
         cell.accessoryType = .checkmark
       }
     }
+  }
+
+  @objc func nextButtonPressed() {
+    coordinator?.showGroupNameController(contactIdsForGroup: contactIdsForGroup)
   }
 }

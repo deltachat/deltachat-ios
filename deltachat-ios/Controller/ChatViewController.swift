@@ -14,6 +14,8 @@ import QuickLook
 import UIKit
 
 class ChatViewController: MessagesViewController {
+  weak var coordinator: ChatViewCoordinator?
+
   let outgoingAvatarOverlap: CGFloat = 17.5
   let loadCount = 30
 
@@ -37,74 +39,40 @@ class ChatViewController: MessagesViewController {
     }
   }
 
-  @objc
-  func loadMoreMessages() {
-    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
-      DispatchQueue.main.async {
-        self.messageList = self.getMessageIds(self.loadCount, from: self.messageList.count) + self.messageList
-        self.messagesCollectionView.reloadDataAndKeepOffset()
-        self.refreshControl.endRefreshing()
-      }
-    }
-  }
-
-  @objc
-  func refreshMessages() {
-    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
-      DispatchQueue.main.async {
-        self.messageList = self.getMessageIds(self.messageList.count)
-        self.messagesCollectionView.reloadDataAndKeepOffset()
-        self.refreshControl.endRefreshing()
-        if self.isLastSectionVisible() {
-          self.messagesCollectionView.scrollToBottom(animated: true)
-        }
-      }
-    }
-  }
-
-  func loadFirstMessages() {
-    DispatchQueue.global(qos: .userInitiated).async {
-      DispatchQueue.main.async {
-        self.messageList = self.getMessageIds(self.loadCount)
-        self.messagesCollectionView.reloadData()
-        self.refreshControl.endRefreshing()
-        self.messagesCollectionView.scrollToBottom(animated: false)
-      }
-    }
-  }
-
-  var textDraft: String? {
-    // FIXME: need to free pointer
-    if let draft = dc_get_draft(mailboxPointer, UInt32(chatId)) {
-      if let text = dc_msg_get_text(draft) {
-        let s = String(validatingUTF8: text)!
-        return s
-      }
-      return nil
-    }
-    return nil
-  }
-
-  func getMessageIds(_ count: Int, from: Int? = nil) -> [MRMessage] {
-    let cMessageIds = dc_get_chat_msgs(mailboxPointer, UInt32(chatId), 0, 0)
-
-    let ids: [Int]
-    if let from = from {
-      ids = Utils.copyAndFreeArrayWithOffset(inputArray: cMessageIds, len: count, skipEnd: from)
-    } else {
-      ids = Utils.copyAndFreeArrayWithLen(inputArray: cMessageIds, len: count)
-    }
-
-    let markIds: [UInt32] = ids.map { UInt32($0) }
-    dc_markseen_msgs(mailboxPointer, UnsafePointer(markIds), Int32(ids.count))
-
-    return ids.map {
-      MRMessage(id: $0)
-    }
-  }
-
   required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  override func viewDidLoad() {
+    messagesCollectionView.register(CustomCell.self)
+    super.viewDidLoad()
+    view.backgroundColor = DCColors.chatBackgroundColor
+    let navBarTap = UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
+    navigationController?.navigationBar.addGestureRecognizer(navBarTap)
+    if !MRConfig.configured {
+      // TODO: display message about nothing being configured
+      return
+    }
+
+    let chat = MRChat(id: chatId)
+    updateTitleView(title: chat.name, subtitle: chat.subtitle)
+
+    if let image = chat.profileImage {
+      navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(chatProfilePressed))
+    } else {
+      let initialsLabel = InitialsLabel(name: chat.name, color: chat.color, size: 28)
+      navigationItem.rightBarButtonItem = UIBarButtonItem(customView: initialsLabel)
+    }
+
+    configureMessageCollectionView()
+
+    if !disableWriting {
+      configureMessageInputBar()
+      messageInputBar.inputTextView.text = textDraft
+      messageInputBar.inputTextView.becomeFirstResponder()
+    }
+
+    loadFirstMessages()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -150,17 +118,6 @@ class ChatViewController: MessagesViewController {
     }
   }
 
-  func setTextDraft() {
-    if let text = self.messageInputBar.inputTextView.text {
-      let draft = dc_msg_new(mailboxPointer, DC_MSG_TEXT)
-      dc_msg_set_text(draft, text.cString(using: .utf8))
-      dc_set_draft(mailboxPointer, UInt32(chatId), draft)
-
-      // cleanup
-      dc_msg_unref(draft)
-    }
-  }
-
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
 
@@ -188,6 +145,83 @@ class ChatViewController: MessagesViewController {
     }
   }
 
+  @objc
+  private func loadMoreMessages() {
+    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
+      DispatchQueue.main.async {
+        self.messageList = self.getMessageIds(self.loadCount, from: self.messageList.count) + self.messageList
+        self.messagesCollectionView.reloadDataAndKeepOffset()
+        self.refreshControl.endRefreshing()
+      }
+    }
+  }
+
+  @objc
+  private func refreshMessages() {
+    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
+      DispatchQueue.main.async {
+        self.messageList = self.getMessageIds(self.messageList.count)
+        self.messagesCollectionView.reloadDataAndKeepOffset()
+        self.refreshControl.endRefreshing()
+        if self.isLastSectionVisible() {
+          self.messagesCollectionView.scrollToBottom(animated: true)
+        }
+      }
+    }
+  }
+
+  private func loadFirstMessages() {
+    DispatchQueue.global(qos: .userInitiated).async {
+      DispatchQueue.main.async {
+        self.messageList = self.getMessageIds(self.loadCount)
+        self.messagesCollectionView.reloadData()
+        self.refreshControl.endRefreshing()
+        self.messagesCollectionView.scrollToBottom(animated: false)
+      }
+    }
+  }
+
+  private var textDraft: String? {
+    // FIXME: need to free pointer
+    if let draft = dc_get_draft(mailboxPointer, UInt32(chatId)) {
+      if let text = dc_msg_get_text(draft) {
+        let s = String(validatingUTF8: text)!
+        return s
+      }
+      return nil
+    }
+    return nil
+  }
+
+  private func getMessageIds(_ count: Int, from: Int? = nil) -> [MRMessage] {
+    let cMessageIds = dc_get_chat_msgs(mailboxPointer, UInt32(chatId), 0, 0)
+
+    let ids: [Int]
+    if let from = from {
+      ids = Utils.copyAndFreeArrayWithOffset(inputArray: cMessageIds, len: count, skipEnd: from)
+    } else {
+      ids = Utils.copyAndFreeArrayWithLen(inputArray: cMessageIds, len: count)
+    }
+
+    let markIds: [UInt32] = ids.map { UInt32($0) }
+    dc_markseen_msgs(mailboxPointer, UnsafePointer(markIds), Int32(ids.count))
+
+    return ids.map {
+      MRMessage(id: $0)
+    }
+  }
+
+  private func setTextDraft() {
+    if let text = self.messageInputBar.inputTextView.text {
+      let draft = dc_msg_new(mailboxPointer, DC_MSG_TEXT)
+      dc_msg_set_text(draft, text.cString(using: .utf8))
+      dc_set_draft(mailboxPointer, UInt32(chatId), draft)
+
+      // cleanup
+      dc_msg_unref(draft)
+    }
+  }
+
   override var inputAccessoryView: UIView? {
     if disableWriting {
       return nil
@@ -196,31 +230,7 @@ class ChatViewController: MessagesViewController {
     return messageInputBar
   }
 
-  override func viewDidLoad() {
-    messagesCollectionView.register(CustomCell.self)
-    super.viewDidLoad()
-    view.backgroundColor = DCColors.chatBackgroundColor
-
-    if !MRConfig.configured {
-      // TODO: display message about nothing being configured
-      return
-    }
-
-    let chat = MRChat(id: chatId)
-    updateTitleView(title: chat.name, subtitle: chat.subtitle)
-
-    configureMessageCollectionView()
-
-    if !disableWriting {
-      configureMessageInputBar()
-      messageInputBar.inputTextView.text = textDraft
-      messageInputBar.inputTextView.becomeFirstResponder()
-    }
-
-    loadFirstMessages()
-  }
-
-  func configureMessageMenu() {
+  private func configureMessageMenu() {
     var menuItems: [UIMenuItem]
 
     if disableWriting {
@@ -239,7 +249,7 @@ class ChatViewController: MessagesViewController {
     UIMenuController.shared.menuItems = menuItems
   }
 
-  func configureMessageCollectionView() {
+  private func configureMessageCollectionView() {
     messagesCollectionView.messagesDataSource = self
     messagesCollectionView.messageCellDelegate = self
 
@@ -272,7 +282,7 @@ class ChatViewController: MessagesViewController {
     messagesCollectionView.messagesDisplayDelegate = self
   }
 
-  func configureMessageInputBar() {
+  private func configureMessageInputBar() {
     messageInputBar.delegate = self
     messageInputBar.inputTextView.tintColor = DCColors.primary
     messageInputBar.sendButton.tintColor = DCColors.primary
@@ -298,17 +308,17 @@ class ChatViewController: MessagesViewController {
 
   private func configureInputBarItems() {
     messageInputBar.setLeftStackViewWidthConstant(to: 44, animated: false)
-    messageInputBar.setRightStackViewWidthConstant(to: 36, animated: false)
+    messageInputBar.setRightStackViewWidthConstant(to: 30, animated: false)
 
     let sendButtonImage = UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)
     messageInputBar.sendButton.image = sendButtonImage
     messageInputBar.sendButton.tintColor = UIColor(white: 1, alpha: 1)
     messageInputBar.sendButton.backgroundColor = UIColor(white: 0.9, alpha: 1)
     messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
-    messageInputBar.sendButton.setSize(CGSize(width: 34, height: 34), animated: false)
+    messageInputBar.sendButton.setSize(CGSize(width: 30, height: 30), animated: false)
 
     messageInputBar.sendButton.title = nil
-    messageInputBar.sendButton.layer.cornerRadius = 18
+    messageInputBar.sendButton.layer.cornerRadius = 15
 
     messageInputBar.textViewPadding.right = -40
 
@@ -340,6 +350,10 @@ class ChatViewController: MessagesViewController {
           item.backgroundColor = UIColor(white: 0.9, alpha: 1)
         })
       }
+  }
+
+  @objc private func chatProfilePressed() {
+    coordinator?.showChatDetail(chatId: chatId)
   }
 
   // MARK: - UICollectionViewDataSource

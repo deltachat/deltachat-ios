@@ -9,6 +9,8 @@
 import UIKit
 
 class ProfileViewController: UITableViewController {
+  weak var coordinator: ProfileCoordinator?
+
   var contact: MRContact? {
     // This is nil if we do not have an account setup yet
     if !MRConfig.configured {

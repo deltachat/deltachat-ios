@@ -25,10 +25,11 @@ enum ApplicationState {
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-  static let appCoordinator = AppCoordinator()
-  static var progress: Float = 0
+  var appCoordinator: AppCoordinator!
+  // static let appCoordinatorDeprecated = AppCoordinatorDeprecated()
+  static var progress: Float = 0 // TODO: delete
   static var lastErrorDuringConfig: String?
-  var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+  private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
 
   var reachability = Reachability()!
   var window: UIWindow?
@@ -74,12 +75,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //       - second param remains nil (user data for more than one mailbox)
     open()
     let isConfigured = dc_is_configured(mailboxPointer) != 0
-    AppDelegate.appCoordinator.setupViewControllers(window: window)
+    // AppDelegate.appCoordinatorDeprecated.setupViewControllers(window: window)
+    appCoordinator = AppCoordinator(window: window)
+    appCoordinator.start()
     UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
     start()
     registerForPushNotifications()
     if !isConfigured {
-      AppDelegate.appCoordinator.presentAccountSetup(animated: false)
+      appCoordinator.presentLoginController()
+      // AppDelegate.appCoordinatorDeprecated.presentAccountSetup(animated: false)
     }
     return true
   }
@@ -107,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     maybeStop()
   }
 
-  func maybeStop() {
+  private func maybeStop() {
     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
       let app = UIApplication.shared
       logger.info("state: \(app.applicationState) time remaining \(app.backgroundTimeRemaining)")
@@ -232,7 +236,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     DBDebugToolkit.add(info)
   }
 
-  @objc func reachabilityChanged(note: Notification) {
+  @objc private func reachabilityChanged(note: Notification) {
     let reachability = note.object as! Reachability
 
     switch reachability.connection {
@@ -259,7 +263,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
   // MARK: - BackgroundTask
 
-  func registerBackgroundTask() {
+  private func registerBackgroundTask() {
     logger.info("background task registered")
     backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
       self?.endBackgroundTask()
@@ -267,7 +271,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     assert(backgroundTask != .invalid)
   }
 
-  func endBackgroundTask() {
+  private func endBackgroundTask() {
     logger.info("background task ended")
     UIApplication.shared.endBackgroundTask(backgroundTask)
     backgroundTask = .invalid
@@ -275,7 +279,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
   // MARK: - PushNotifications
 
-  func registerForPushNotifications() {
+  private func registerForPushNotifications() {
     UNUserNotificationCenter.current().delegate = self
 
     UNUserNotificationCenter.current()
@@ -287,18 +291,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
       }
   }
 
-  func getNotificationSettings() {
+  private func getNotificationSettings() {
     UNUserNotificationCenter.current().getNotificationSettings { settings in
       logger.info("Notification settings: \(settings)")
     }
   }
 
-  func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+  private func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
     logger.info("forground notification")
     completionHandler([.alert, .sound])
   }
 
-  func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+  private func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
     if response.notification.request.identifier == Constants.notificationIdentifier {
       logger.info("handling notifications")
       let userInfo = response.notification.request.content.userInfo

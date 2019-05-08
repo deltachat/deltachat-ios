@@ -9,10 +9,6 @@
 import AVFoundation
 import UIKit
 
-protocol QrCodeReaderDelegate: class {
-  func handleQrCode(_ code: String)
-}
-
 class QrCodeReaderController: UIViewController {
   var captureSession = AVCaptureSession()
 
