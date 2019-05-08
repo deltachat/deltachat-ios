@@ -59,7 +59,7 @@ class NewChatViewController: UITableViewController {
 
   init() {
     super.init(style: .grouped)
-		hidesBottomBarWhenPushed = true
+    hidesBottomBarWhenPushed = true
   }
 
   required init?(coder _: NSCoder) {
@@ -80,7 +80,7 @@ class NewChatViewController: UITableViewController {
     super.viewWillAppear(animated)
     deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
     contactIds = Utils.getContactIds()
-		// this will show the searchbar on launch -> will be set back to true on viewDidAppear
+    // this will show the searchbar on launch -> will be set back to true on viewDidAppear
     if #available(iOS 11.0, *) {
       navigationItem.hidesSearchBarWhenScrolling = false
     }

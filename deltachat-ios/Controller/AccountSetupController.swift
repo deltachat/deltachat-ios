@@ -129,7 +129,7 @@ class AccountSetupController: UITableViewController {
 
   init() {
     super.init(style: .grouped)
-		hidesBottomBarWhenPushed = true
+    hidesBottomBarWhenPushed = true
   }
 
   required init?(coder _: NSCoder) {
@@ -575,10 +575,10 @@ class AdvancedSectionHeader: UIView {
 
  // TODO: to add Eye-icon -> uncomment -> add to inputField.rightView
  /*
-      lazy var makeVisibleIcon: UIImageView = {
-      let view = UIImageView(image: )
-      return view
-      }()
+       lazy var makeVisibleIcon: UIImageView = {
+       let view = UIImageView(image: )
+       return view
+       }()
   */
  init() {
  super.init(style: .default, reuseIdentifier: nil)

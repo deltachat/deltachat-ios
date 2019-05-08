@@ -86,7 +86,7 @@ class ContactListController: UITableViewController {
   }
 
   override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let contactId = contactIds[indexPath.row]
-		coordinator?.showContactDetail(contactId: contactId)
-   }
+    let contactId = contactIds[indexPath.row]
+    coordinator?.showContactDetail(contactId: contactId)
+  }
 }

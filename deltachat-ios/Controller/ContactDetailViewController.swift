@@ -9,8 +9,7 @@
 import UIKit
 
 class ContactDetailViewController: UITableViewController {
-
-	weak var coordinator: ContactDetailCoordinator?
+  weak var coordinator: ContactDetailCoordinator?
 
   let contactId: Int
 
@@ -27,17 +26,15 @@ class ContactDetailViewController: UITableViewController {
     fatalError("init(coder:) has not been implemented")
   }
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		title = "Info"
-
-	}
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    title = "Info"
+  }
 
   override func viewWillAppear(_: Bool) {
     navigationController?.navigationBar.prefersLargeTitles = false
     tableView.reloadData()
   }
-
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -126,9 +123,8 @@ class ContactDetailViewController: UITableViewController {
     return vw
   }
 
-	private func displayNewChat(contactId: Int) {
-		let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
-		coordinator?.showChat(chatId: Int(chatId))
-}
-
+  private func displayNewChat(contactId: Int) {
+    let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+    coordinator?.showChat(chatId: Int(chatId))
+  }
 }

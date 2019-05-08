@@ -17,11 +17,11 @@ class ActionCell: UITableViewCell {
     }
   }
 
-	var actionColor: UIColor? {
-		didSet {
-			actionLabel.textColor = actionColor ?? UIColor.systemBlue
-		}
-	}
+  var actionColor: UIColor? {
+    didSet {
+      actionLabel.textColor = actionColor ?? UIColor.systemBlue
+    }
+  }
 
   private lazy var actionLabel: UILabel = {
     let label = UILabel()
@@ -33,14 +33,14 @@ class ActionCell: UITableViewCell {
   // use this constructor if cell won't be reused
   convenience init(title: String) {
     self.init(style: .default, reuseIdentifier: nil)
-		actionTitle = title
-		selectionStyle = .none
-	}
+    actionTitle = title
+    selectionStyle = .none
+  }
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     setupSubviews()
-		selectionStyle = .none
+    selectionStyle = .none
   }
 
   required init?(coder _: NSCoder) {

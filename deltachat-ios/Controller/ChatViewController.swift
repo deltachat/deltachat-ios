@@ -26,9 +26,9 @@ class ChatViewController: MessagesViewController {
   var msgChangedObserver: Any?
   var incomingMsgObserver: Any?
 
-	lazy var navBarTap: UITapGestureRecognizer = {
-		return UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
-	}()
+  lazy var navBarTap: UITapGestureRecognizer = {
+    UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
+  }()
 
   var disableWriting = false
 
@@ -41,7 +41,7 @@ class ChatViewController: MessagesViewController {
     if let title = title {
       updateTitleView(title: title, subtitle: nil)
     }
-		hidesBottomBarWhenPushed = true
+    hidesBottomBarWhenPushed = true
   }
 
   required init?(coder _: NSCoder) {
@@ -70,18 +70,18 @@ class ChatViewController: MessagesViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-		// this will be removed in viewWillDisappear
-		navigationController?.navigationBar.addGestureRecognizer(navBarTap)
+    // this will be removed in viewWillDisappear
+    navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 
-		let chat = MRChat(id: chatId)
-		updateTitleView(title: chat.name, subtitle: chat.subtitle)
+    let chat = MRChat(id: chatId)
+    updateTitleView(title: chat.name, subtitle: chat.subtitle)
 
-		if let image = chat.profileImage {
-			navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(chatProfilePressed))
-		} else {
-			let initialsLabel = InitialsLabel(name: chat.name, color: chat.color, size: 28)
-			navigationItem.rightBarButtonItem = UIBarButtonItem(customView: initialsLabel)
-		}
+    if let image = chat.profileImage {
+      navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(chatProfilePressed))
+    } else {
+      let initialsLabel = InitialsLabel(name: chat.name, color: chat.color, size: 28)
+      navigationItem.rightBarButtonItem = UIBarButtonItem(customView: initialsLabel)
+    }
 
     configureMessageMenu()
 
@@ -127,8 +127,8 @@ class ChatViewController: MessagesViewController {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
 
-		// the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
-		navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
+    // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
+    navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
 
     let cnt = Int(dc_get_fresh_msg_cnt(mailboxPointer, UInt32(chatId)))
     logger.info("updating count for chat \(cnt)")
