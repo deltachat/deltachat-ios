@@ -36,8 +36,9 @@ class AccountSetupController: UITableViewController {
   }()
 
   private lazy var restoreCell: ActionCell = {
-    let cell = ActionCell(title: "Restore from backup")
-    cell.accessibilityIdentifier = "restoreCell"
+		let cell = ActionCell(frame: .zero)
+		cell.actionTitle = "Restore from backup"
+		cell.accessibilityIdentifier = "restoreCell"
     return cell
   }()
 

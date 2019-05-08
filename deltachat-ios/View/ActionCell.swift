@@ -30,13 +30,6 @@ class ActionCell: UITableViewCell {
     return label
   }()
 
-  // use this constructor if cell won't be reused
-  convenience init(title: String) {
-    self.init(style: .default, reuseIdentifier: nil)
-    actionTitle = title
-    selectionStyle = .none
-  }
-
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     setupSubviews()
