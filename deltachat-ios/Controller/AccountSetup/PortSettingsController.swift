@@ -16,9 +16,11 @@ class PortSettingsController: UITableViewController {
 
 	var resetButton: UIBarButtonItem!
 
+	var onDismiss:((String)->Void)?
+
 	var currentPort: Int {
 		didSet {
-			// activate resetButton
+			// activate resetButton once something was changed
 			resetButton.isEnabled = true
 		}
 	}
@@ -67,6 +69,10 @@ class PortSettingsController: UITableViewController {
 		resetButton = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetButtonPressed))
 		navigationItem.rightBarButtonItem = resetButton
 		resetButton.isEnabled = false
+	}
+
+	override func viewWillDisappear(_ animated: Bool) {
+		onDismiss?("\(currentPort)")
 	}
 
 	// MARK: - Table view data source

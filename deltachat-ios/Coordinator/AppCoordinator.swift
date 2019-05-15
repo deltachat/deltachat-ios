@@ -212,6 +212,11 @@ class AccountSetupCoordinator: Coordinator {
 		let currentMailPort = MRConfig.mailPort ?? MRConfig.configuredMailPort
 		let currentPort = Int(currentMailPort)
 		let portSettingsController = PortSettingsController(sectionTitle: "IMAP Port", ports: [143, 993], currentPort: currentPort)
+		portSettingsController.onDismiss = {
+			port in
+			MRConfig.mailPort = port
+			dc_configure(mailboxPointer)
+		}
 		navigationController.pushViewController(portSettingsController, animated: true)
 	}
 
@@ -223,6 +228,11 @@ class AccountSetupCoordinator: Coordinator {
 		let currentMailPort = MRConfig.sendPort ?? MRConfig.configuredSendPort
 		let currentPort = Int(currentMailPort)
 		let portSettingsController = PortSettingsController(sectionTitle: "SMTP Port", ports: [25, 465, 587], currentPort: currentPort)
+		portSettingsController.onDismiss = {
+			port in
+			MRConfig.sendPort = port
+			dc_configure(mailboxPointer)
+		}
 		navigationController.pushViewController(portSettingsController, animated: true)
 	}
 
