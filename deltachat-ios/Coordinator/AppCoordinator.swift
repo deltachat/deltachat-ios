@@ -209,7 +209,10 @@ class AccountSetupCoordinator: Coordinator {
 	}
 
 	func showImapPortOptions() {
-
+		let currentMailPort = MRConfig.mailPort ?? MRConfig.configuredMailPort
+		let currentPort = Int(currentMailPort)
+		let portSettingsController = PortSettingsController(sectionTitle: "IMAP Port", ports: [143, 993], currentPort: currentPort)
+		navigationController.pushViewController(portSettingsController, animated: true)
 	}
 
 	func showImapSecurityOptions() {
@@ -217,7 +220,10 @@ class AccountSetupCoordinator: Coordinator {
 	}
 
 	func showSmtpPortsOptions() {
-
+		let currentMailPort = MRConfig.sendPort ?? MRConfig.configuredSendPort
+		let currentPort = Int(currentMailPort)
+		let portSettingsController = PortSettingsController(sectionTitle: "SMTP Port", ports: [25, 465, 587], currentPort: currentPort)
+		navigationController.pushViewController(portSettingsController, animated: true)
 	}
 
 	func showSmptpSecurityOptions() {

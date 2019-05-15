@@ -249,7 +249,19 @@ class AccountSetupController: UITableViewController {
 
     if tappedCell.accessibilityIdentifier == "restoreCell" {
       restoreBackup()
-    }
+		} else if tappedCell.accessibilityIdentifier == "IMAPPortCell" {
+			coordinator?.showImapPortOptions()
+		} else if tappedCell.accessibilityIdentifier == "SMTPPortCell" {
+			coordinator?.showSmtpPortsOptions()
+		} else if tappedCell.accessibilityIdentifier == "IMAPSecurity" {
+			coordinator?.showImapSecurityOptions()
+		} else if tappedCell.accessibilityIdentifier == "SMTPSecurity" {
+			coordinator?.showSmptpSecurityOptions()
+		}
+
+
+
+
   }
 
   private func toggleAdvancedSection(button: UILabel) {
