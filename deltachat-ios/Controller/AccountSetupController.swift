@@ -91,10 +91,12 @@ class AccountSetupController: UITableViewController {
     return cell
   }()
 
-  lazy var smtpPortCell: TextFieldCell = {
-    let cell = TextFieldCell(description: "SMTP Port", placeholder: MRConfig.sendPort ?? MRConfig.configuredSendPort, delegate: self)
-    cell.accessibilityIdentifier = "SMTPPortCell"
-    cell.textField.tag = 8
+  lazy var smtpPortCell: UITableViewCell = {
+		let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+		cell.textLabel?.text = "IMAP Port"
+		cell.accessoryType = .disclosureIndicator
+		cell.detailTextLabel?.text = MRConfig.sendPort ?? MRConfig.configuredSendPort
+		cell.accessibilityIdentifier = "SMTPPortCell"
     return cell
   }()
 
@@ -148,6 +150,13 @@ class AccountSetupController: UITableViewController {
     // navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonPressed))
     navigationItem.rightBarButtonItem = loginButton
   }
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		// needs to be changed if returning from portSettingsController
+		smtpPortCell.detailTextLabel?.text = MRConfig.sendPort ?? MRConfig.configuredSendPort
+		imapPortCell.detailTextLabel?.text = MRConfig.mailPort ?? MRConfig.configuredMailPort
+	}
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
