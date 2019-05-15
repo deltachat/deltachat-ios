@@ -65,16 +65,20 @@ class AccountSetupController: UITableViewController {
 		cell.accessoryType = .disclosureIndicator
 		cell.detailTextLabel?.text = MRConfig.mailPort ?? MRConfig.configuredMailPort
     cell.accessibilityIdentifier = "IMAPPortCell"
+		cell.selectionStyle = .none 
     return cell
   }()
 
-  lazy var imapSecurityCell: TextFieldCell = {
+  lazy var imapSecurityCell: UITableViewCell = {
     let text = "\(MRConfig.getImapSecurity())"
-    let cell = TextFieldCell(description: "IMAP Security", placeholder: text, delegate: self)
+		let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+		cell.textLabel?.text = "IMAP Security"
+		// let cell = TextFieldCell(description: "IMAP Security", placeholder: text, delegate: self)
     cell.accessibilityIdentifier = "IMAPSecurityCell"
-    cell.textField.tag = 5
-    cell.textField.keyboardType = UIKeyboardType.numberPad
-    return cell
+		cell.accessoryType = .disclosureIndicator
+		cell.detailTextLabel?.text = "\(MRConfig.getImapSecurity())"
+		cell.selectionStyle = .none
+		return cell
   }()
 
   lazy var smtpServerCell: TextFieldCell = {
@@ -93,10 +97,11 @@ class AccountSetupController: UITableViewController {
 
   lazy var smtpPortCell: UITableViewCell = {
 		let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-		cell.textLabel?.text = "IMAP Port"
+		cell.textLabel?.text = "SMTP Port"
 		cell.accessoryType = .disclosureIndicator
 		cell.detailTextLabel?.text = MRConfig.sendPort ?? MRConfig.configuredSendPort
 		cell.accessibilityIdentifier = "SMTPPortCell"
+		cell.selectionStyle = .none
     return cell
   }()
 
@@ -107,12 +112,14 @@ class AccountSetupController: UITableViewController {
     return cell
   }()
 
-  lazy var smtpSecurityCell: TextFieldCell = {
-    let text = "\(MRConfig.getSmtpSecurity())"
-    let cell = TextFieldCell(description: "SMTP Security", placeholder: text, delegate: self)
-    cell.accessibilityIdentifier = "SMTPSecurityCell"
-    cell.textField.tag = 10
-    cell.textField.keyboardType = UIKeyboardType.numberPad
+  lazy var smtpSecurityCell: UITableViewCell = {
+    let security = "\(MRConfig.getSmtpSecurity())"
+		let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+		cell.textLabel?.text = "SMTP Security"
+		cell.detailTextLabel?.text = security
+	  cell.accessibilityIdentifier = "SMTPSecurityCell"
+		cell.accessoryType = .disclosureIndicator
+		cell.selectionStyle = .none
     return cell
   }()
 
@@ -130,7 +137,7 @@ class AccountSetupController: UITableViewController {
     smtpUserCell,
     smtpPortCell,
     smtpPasswordCell,
-    smtpSecurityCell,
+    smtpSecurityCell
   ]
 
   private var advancedSectionShowing: Bool = false
@@ -262,15 +269,11 @@ class AccountSetupController: UITableViewController {
 			coordinator?.showImapPortOptions()
 		} else if tappedCell.accessibilityIdentifier == "SMTPPortCell" {
 			coordinator?.showSmtpPortsOptions()
-		} else if tappedCell.accessibilityIdentifier == "IMAPSecurity" {
+		} else if tappedCell.accessibilityIdentifier == "IMAPSecurityCell" {
 			coordinator?.showImapSecurityOptions()
-		} else if tappedCell.accessibilityIdentifier == "SMTPSecurity" {
+		} else if tappedCell.accessibilityIdentifier == "SMTPSecurityCell" {
 			coordinator?.showSmptpSecurityOptions()
 		}
-
-
-
-
   }
 
   private func toggleAdvancedSection(button: UILabel) {

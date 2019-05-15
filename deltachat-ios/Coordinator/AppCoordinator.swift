@@ -221,7 +221,14 @@ class AccountSetupCoordinator: Coordinator {
 	}
 
 	func showImapSecurityOptions() {
-
+		let currentSecurityOption = MRConfig.getImapSecurity()
+		print(currentSecurityOption)
+		let securitySettingsController = SecuritySettingsController(options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"], selectedOption: "OFF")
+		securitySettingsController.onDismiss = {
+			option in
+			MRConfig.setSmtpSecurity(smptpFlags: 0) // TODO: needs mapping from option to flag
+		}
+		navigationController.pushViewController(securitySettingsController, animated: true)
 	}
 
 	func showSmtpPortsOptions() {
@@ -237,6 +244,14 @@ class AccountSetupCoordinator: Coordinator {
 	}
 
 	func showSmptpSecurityOptions() {
+		let currentSecurityOption = MRConfig.getSmtpSecurity()
+		print(currentSecurityOption)
+		let securitySettingsController = SecuritySettingsController(options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"], selectedOption: "OFF")
+		securitySettingsController.onDismiss = {
+			option in
+			MRConfig.setSmtpSecurity(smptpFlags: 0) // TODO: needs mapping from option to flag
+		}
+		navigationController.pushViewController(securitySettingsController, animated: true)
 
 	}
 
