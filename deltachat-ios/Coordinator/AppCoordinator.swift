@@ -96,15 +96,26 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
     showTab(index: 3)
   }
 
-  public func showTab(index: Int) {
+  func showTab(index: Int) {
     tabBarController.selectedIndex = index
   }
 
-  public func presentLoginController() {
+	func presentLoginController() {
     let accountSetupController = AccountSetupController()
     let accountSetupNavigationController = UINavigationController(rootViewController: accountSetupController)
     rootViewController.present(accountSetupNavigationController, animated: false, completion: nil)
   }
+}
+
+extension AppCoordinator: UITabBarDelegate {
+	func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+		print("item selected")
+	}
+
+	func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+		print("shouldSelect")
+		return true 
+	}
 }
 
 class ContactListCoordinator: Coordinator {
