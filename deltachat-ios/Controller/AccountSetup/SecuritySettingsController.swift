@@ -11,7 +11,12 @@ import UIKit
 class SecuritySettingsController: UITableViewController {
 
 	private var options: [String]
-	private var selectedIndex: Int
+	private var selectedIndex: Int {
+		didSet {
+			print(selectedIndex)
+		}
+	}
+
 	private var backupIndex: Int
 
 	var onDismiss: ((String) -> Void)?
@@ -27,11 +32,12 @@ class SecuritySettingsController: UITableViewController {
 		}
 	}
 
-	init(options: [String], selectedOption: String) {
+	init(title: String, options: [String], selectedOption: String) {
 		self.options = options
 		selectedIndex = options.index(of: selectedOption)!
 		backupIndex = selectedIndex
 		super.init(style: .grouped)
+		self.title = title
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -88,4 +94,75 @@ class SecuritySettingsController: UITableViewController {
 		tableView.reloadData()
 	}
 
+}
+
+
+enum SecurityType {
+	case IMAPSecurity
+	case SMTPSecurity
+}
+
+enum SecurityValue: String {
+	case TLS = "SSL / TLS"
+	case STARTTLS = "STARTTLS"
+	case PLAIN = "OFF"
+}
+
+class SecurityConverter {
+
+	static func convert(type: SecurityType, test value: SecurityValue) -> Int {
+		switch type {
+		case .IMAPSecurity:
+			switch value {
+			case .STARTTLS:
+				return 0x100
+			case .TLS:
+				return 0x200
+			case .PLAIN:
+				return 0x400
+			}
+		case .SMTPSecurity:
+			switch value{
+			case .STARTTLS:
+				return 0x10000
+			case .TLS:
+				return 0x20000
+			case .PLAIN:
+				return 0x40000
+			}
+		}
+	}
+
+	static func convert(type: SecurityType, hex value: Int) -> String {
+		switch type {
+		case .IMAPSecurity:
+			switch value {
+			case 0:
+				return "Automatic"
+			case 0x100:
+				return "STARTTLS"
+			case 0x200:
+				return "SSL / TLS"
+			case 0x300:
+				return "OFF"
+			case  0x400:
+				return "OFF"
+			default:
+				return "Undefined"
+			}
+		case .SMTPSecurity:
+			switch value {
+			case 0:
+				return "Automatic"
+			case 0x10000:
+					return "STARTTLS"
+				case 0x20000:
+				return "SSL / TLS"
+				case  0x40000:
+				return "OFF"
+				default:
+				return "Undefined"
+			}
+		}
+	}
 }
