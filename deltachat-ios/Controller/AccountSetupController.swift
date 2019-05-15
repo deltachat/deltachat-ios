@@ -10,6 +10,9 @@ import SafariServices
 import UIKit
 
 class AccountSetupController: UITableViewController {
+
+	weak var coordinator: AccountSetupCoordinator?
+
   private var backupProgressObserver: Any?
   private var configureProgressObserver: Any?
   private var oauth2Observer: Any?
@@ -56,10 +59,12 @@ class AccountSetupController: UITableViewController {
     return cell
   }()
 
-  lazy var imapPortCell: TextFieldCell = {
-    let cell = TextFieldCell(description: "IMAP Port", placeholder: MRConfig.mailPort ?? MRConfig.configuredMailPort, delegate: self)
+  lazy var imapPortCell: UITableViewCell = {
+		let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+		cell.textLabel?.text = "IMAP Port"
+		cell.accessoryType = .disclosureIndicator
+		cell.detailTextLabel?.text = MRConfig.mailPort ?? MRConfig.configuredMailPort
     cell.accessibilityIdentifier = "IMAPPortCell"
-    cell.textField.tag = 4
     return cell
   }()
 

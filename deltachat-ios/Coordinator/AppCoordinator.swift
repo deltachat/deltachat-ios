@@ -180,12 +180,17 @@ class ChatListCoordinator: Coordinator {
 class SettingsCoordinator: Coordinator {
   let navigationController: UINavigationController
 
+	var childCoordinators:[Coordinator] = []
+
   init(navigationController: UINavigationController) {
     self.navigationController = navigationController
   }
 
   func showAccountSetupController() {
     let accountSetupVC = AccountSetupController()
+		let coordinator = AccountSetupCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
+		accountSetupVC.coordinator = coordinator
     navigationController.pushViewController(accountSetupVC, animated: true)
   }
 
@@ -194,6 +199,31 @@ class SettingsCoordinator: Coordinator {
 		editController.activateField(option: option)
 		navigationController.pushViewController(editController, animated: true)
 	}
+}
+
+class AccountSetupCoordinator: Coordinator {
+	let navigationController: UINavigationController
+
+	init(navigationController: UINavigationController) {
+		self.navigationController = navigationController
+	}
+
+	func showImapPortOptions() {
+
+	}
+
+	func showImapSecurityOptions() {
+
+	}
+
+	func showSmtpPortsOptions() {
+
+	}
+
+	func showSmptpSecurityOptions() {
+
+	}
+
 }
 
 class NewChatCoordinator: Coordinator {
