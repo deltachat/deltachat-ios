@@ -84,14 +84,14 @@ class AccountSetupController: UITableViewController {
   lazy var smtpServerCell: TextFieldCell = {
     let cell = TextFieldCell(description: "SMTP Server", placeholder: MRConfig.sendServer ?? MRConfig.configuredSendServer, delegate: self)
     cell.accessibilityIdentifier = "SMTPServerCell"
-    cell.textField.tag = 6
+    cell.textField.tag = 4
     return cell
   }()
 
   lazy var smtpUserCell: TextFieldCell = {
     let cell = TextFieldCell(description: "SMTP User", placeholder: MRConfig.sendUser ?? MRConfig.configuredSendUser, delegate: self)
     cell.accessibilityIdentifier = "SMTPUserCell"
-    cell.textField.tag = 7
+    cell.textField.tag = 5
     return cell
   }()
 
@@ -108,7 +108,7 @@ class AccountSetupController: UITableViewController {
   lazy var smtpPasswordCell: TextFieldCell = {
     let cell = TextFieldCell(description: "SMTP Password", placeholder: "*************", delegate: self)
     cell.accessibilityIdentifier = "SMTPPasswordCell"
-    cell.textField.tag = 9
+    cell.textField.tag = 6
     return cell
   }()
 
