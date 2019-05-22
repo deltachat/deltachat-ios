@@ -173,7 +173,13 @@ class AccountSetupController: UITableViewController {
     // loginButton.isEnabled = false
   }
 
+	override func viewWillDisappear(_ animated: Bool) {
+		resignFirstResponderOnAllCells()
+	}
+
   override func viewDidDisappear(_: Bool) {
+
+
     let nc = NotificationCenter.default
     if let backupProgressObserver = self.backupProgressObserver {
       nc.removeObserver(backupProgressObserver)
@@ -481,6 +487,26 @@ class AccountSetupController: UITableViewController {
     // used when login hud successfully went trough
     dismiss(animated: true, completion: nil)
   }
+
+	private func resignFirstResponderOnAllCells() {
+		basicSectionCells.map({
+			resignCell(cell: $0)
+		})
+
+		advancedSectionCells.map({
+			 resignCell(cell: $0)
+			}
+		)
+	}
+
+
+	func resignCell(cell: UITableViewCell) {
+		if let c = cell as? TextFieldCell {
+			c.textField.resignFirstResponder()
+		}
+	}
+
+
 }
 
 extension AccountSetupController: UITextFieldDelegate {
