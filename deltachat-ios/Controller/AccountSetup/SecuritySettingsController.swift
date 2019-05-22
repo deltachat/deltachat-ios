@@ -103,6 +103,7 @@ enum SecurityType {
 }
 
 enum SecurityValue: String {
+	case AUTO = "Automatic"
 	case TLS = "SSL / TLS"
 	case STARTTLS = "STARTTLS"
 	case PLAIN = "OFF"
@@ -110,10 +111,12 @@ enum SecurityValue: String {
 
 class SecurityConverter {
 
-	static func convert(type: SecurityType, test value: SecurityValue) -> Int {
+	static func convertValueToInt(type: SecurityType, value: SecurityValue) -> Int {
 		switch type {
 		case .IMAPSecurity:
 			switch value {
+			case .AUTO:
+				return 0x000
 			case .STARTTLS:
 				return 0x100
 			case .TLS:
@@ -123,6 +126,8 @@ class SecurityConverter {
 			}
 		case .SMTPSecurity:
 			switch value{
+			case .AUTO:
+				return 0x00000
 			case .STARTTLS:
 				return 0x10000
 			case .TLS:
@@ -133,18 +138,16 @@ class SecurityConverter {
 		}
 	}
 
-	static func convert(type: SecurityType, hex value: Int) -> String {
+	static func convertHexToString(type: SecurityType, hex value: Int) -> String {
 		switch type {
 		case .IMAPSecurity:
 			switch value {
-			case 0:
+			case 0x00:
 				return "Automatic"
 			case 0x100:
 				return "STARTTLS"
 			case 0x200:
 				return "SSL / TLS"
-			case 0x300:
-				return "OFF"
 			case  0x400:
 				return "OFF"
 			default:
@@ -152,15 +155,15 @@ class SecurityConverter {
 			}
 		case .SMTPSecurity:
 			switch value {
-			case 0:
+			case 0x00000:
 				return "Automatic"
 			case 0x10000:
 					return "STARTTLS"
-				case 0x20000:
+			case 0x20000:
 				return "SSL / TLS"
-				case  0x40000:
+			case  0x40000:
 				return "OFF"
-				default:
+			default:
 				return "Undefined"
 			}
 		}

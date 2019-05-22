@@ -163,8 +163,8 @@ class AccountSetupController: UITableViewController {
 		// needs to be changed if returning from portSettingsController
 		smtpPortCell.detailTextLabel?.text = MRConfig.sendPort ?? MRConfig.configuredSendPort
 		imapPortCell.detailTextLabel?.text = MRConfig.mailPort ?? MRConfig.configuredMailPort
-		smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convert(type: .SMTPSecurity, hex: MRConfig.getSmtpSecurity())
-		imapSecurityCell.detailTextLabel?.text  = SecurityConverter.convert(type: .IMAPSecurity, hex: MRConfig.getImapSecurity())
+		smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: MRConfig.getSmtpSecurity())
+		imapSecurityCell.detailTextLabel?.text  = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: MRConfig.getImapSecurity())
 	}
 
   override func viewDidAppear(_ animated: Bool) {

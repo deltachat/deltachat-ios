@@ -222,12 +222,12 @@ class AccountSetupCoordinator: Coordinator {
 
 	func showImapSecurityOptions() {
 		let currentSecurityOption = MRConfig.getImapSecurity()
-		let convertedOption = SecurityConverter.convert(type: .IMAPSecurity, hex: currentSecurityOption)
+		let convertedOption = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: currentSecurityOption)
 		let securitySettingsController = SecuritySettingsController(title: "IMAP Security", options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"], selectedOption: convertedOption)
 		securitySettingsController.onDismiss = {
 			option in
 			if let secValue = SecurityValue(rawValue: option) {
-				let value = SecurityConverter.convert(type: .IMAPSecurity, test: secValue)
+				let value = SecurityConverter.convertValueToInt(type: .IMAPSecurity, value: secValue)
 				MRConfig.setImapSecurity(imapFlags: value)
 				dc_configure(mailboxPointer)
 			}
@@ -249,12 +249,12 @@ class AccountSetupCoordinator: Coordinator {
 
 	func showSmptpSecurityOptions() {
 		let currentSecurityOption = MRConfig.getSmtpSecurity()
-		let convertedOption = SecurityConverter.convert(type: .SMTPSecurity, hex: currentSecurityOption)
+		let convertedOption = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: currentSecurityOption)
 		let securitySettingsController = SecuritySettingsController(title: "IMAP Security", options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"], selectedOption: convertedOption)
 		securitySettingsController.onDismiss = {
 			option in
 			if let secValue = SecurityValue(rawValue: option) {
-				let value = SecurityConverter.convert(type: .SMTPSecurity, test: secValue)
+				let value = SecurityConverter.convertValueToInt(type: .SMTPSecurity, value: secValue)
 				MRConfig.setSmtpSecurity(smptpFlags: value)
 				dc_configure(mailboxPointer)
 			}
