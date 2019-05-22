@@ -10,6 +10,9 @@ import SafariServices
 import UIKit
 
 class AccountSetupController: UITableViewController {
+
+	weak var coordinator: AccountSetupCoordinator?
+
   private var backupProgressObserver: Any?
   private var configureProgressObserver: Any?
   private var oauth2Observer: Any?
@@ -36,8 +39,9 @@ class AccountSetupController: UITableViewController {
   }()
 
   private lazy var restoreCell: ActionCell = {
-    let cell = ActionCell(title: "Restore from backup")
-    cell.accessibilityIdentifier = "restoreCell"
+		let cell = ActionCell(frame: .zero)
+		cell.actionTitle = "Restore from backup"
+		cell.accessibilityIdentifier = "restoreCell"
     return cell
   }()
 
@@ -55,56 +59,67 @@ class AccountSetupController: UITableViewController {
     return cell
   }()
 
-  lazy var imapPortCell: TextFieldCell = {
-    let cell = TextFieldCell(description: "IMAP Port", placeholder: MRConfig.mailPort ?? MRConfig.configuredMailPort, delegate: self)
+  lazy var imapPortCell: UITableViewCell = {
+		let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+		cell.textLabel?.text = "IMAP Port"
+		cell.accessoryType = .disclosureIndicator
+		cell.detailTextLabel?.text = MRConfig.mailPort ?? MRConfig.configuredMailPort
     cell.accessibilityIdentifier = "IMAPPortCell"
-    cell.textField.tag = 4
+		cell.selectionStyle = .none 
     return cell
   }()
 
-  lazy var imapSecurityCell: TextFieldCell = {
+  lazy var imapSecurityCell: UITableViewCell = {
     let text = "\(MRConfig.getImapSecurity())"
-    let cell = TextFieldCell(description: "IMAP Security", placeholder: text, delegate: self)
+		let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+		cell.textLabel?.text = "IMAP Security"
+		// let cell = TextFieldCell(description: "IMAP Security", placeholder: text, delegate: self)
     cell.accessibilityIdentifier = "IMAPSecurityCell"
-    cell.textField.tag = 5
-    cell.textField.keyboardType = UIKeyboardType.numberPad
-    return cell
+		cell.accessoryType = .disclosureIndicator
+		cell.detailTextLabel?.text = "\(MRConfig.getImapSecurity())"
+		cell.selectionStyle = .none
+		return cell
   }()
 
   lazy var smtpServerCell: TextFieldCell = {
     let cell = TextFieldCell(description: "SMTP Server", placeholder: MRConfig.sendServer ?? MRConfig.configuredSendServer, delegate: self)
     cell.accessibilityIdentifier = "SMTPServerCell"
-    cell.textField.tag = 6
+    cell.textField.tag = 4
     return cell
   }()
 
   lazy var smtpUserCell: TextFieldCell = {
     let cell = TextFieldCell(description: "SMTP User", placeholder: MRConfig.sendUser ?? MRConfig.configuredSendUser, delegate: self)
     cell.accessibilityIdentifier = "SMTPUserCell"
-    cell.textField.tag = 7
+    cell.textField.tag = 5
     return cell
   }()
 
-  lazy var smtpPortCell: TextFieldCell = {
-    let cell = TextFieldCell(description: "SMTP Port", placeholder: MRConfig.sendPort ?? MRConfig.configuredSendPort, delegate: self)
-    cell.accessibilityIdentifier = "SMTPPortCell"
-    cell.textField.tag = 8
+  lazy var smtpPortCell: UITableViewCell = {
+		let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+		cell.textLabel?.text = "SMTP Port"
+		cell.accessoryType = .disclosureIndicator
+		cell.detailTextLabel?.text = MRConfig.sendPort ?? MRConfig.configuredSendPort
+		cell.accessibilityIdentifier = "SMTPPortCell"
+		cell.selectionStyle = .none
     return cell
   }()
 
   lazy var smtpPasswordCell: TextFieldCell = {
     let cell = TextFieldCell(description: "SMTP Password", placeholder: "*************", delegate: self)
     cell.accessibilityIdentifier = "SMTPPasswordCell"
-    cell.textField.tag = 9
+    cell.textField.tag = 6
     return cell
   }()
 
-  lazy var smtpSecurityCell: TextFieldCell = {
-    let text = "\(MRConfig.getSmtpSecurity())"
-    let cell = TextFieldCell(description: "SMTP Security", placeholder: text, delegate: self)
-    cell.accessibilityIdentifier = "SMTPSecurityCell"
-    cell.textField.tag = 10
-    cell.textField.keyboardType = UIKeyboardType.numberPad
+  lazy var smtpSecurityCell: UITableViewCell = {
+    let security = "\(MRConfig.getSmtpSecurity())"
+		let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+		cell.textLabel?.text = "SMTP Security"
+		cell.detailTextLabel?.text = security
+	  cell.accessibilityIdentifier = "SMTPSecurityCell"
+		cell.accessoryType = .disclosureIndicator
+		cell.selectionStyle = .none
     return cell
   }()
 
@@ -122,7 +137,7 @@ class AccountSetupController: UITableViewController {
     smtpUserCell,
     smtpPortCell,
     smtpPasswordCell,
-    smtpSecurityCell,
+    smtpSecurityCell
   ]
 
   private var advancedSectionShowing: Bool = false
@@ -143,13 +158,28 @@ class AccountSetupController: UITableViewController {
     navigationItem.rightBarButtonItem = loginButton
   }
 
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		// needs to be changed if returning from portSettingsController
+		smtpPortCell.detailTextLabel?.text = MRConfig.sendPort ?? MRConfig.configuredSendPort
+		imapPortCell.detailTextLabel?.text = MRConfig.mailPort ?? MRConfig.configuredMailPort
+		smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: MRConfig.getSmtpSecurity())
+		imapSecurityCell.detailTextLabel?.text  = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: MRConfig.getImapSecurity())
+	}
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     addProgressHudEventListener()
     // loginButton.isEnabled = false
   }
 
+	override func viewWillDisappear(_ animated: Bool) {
+		resignFirstResponderOnAllCells()
+	}
+
   override func viewDidDisappear(_: Bool) {
+
+
     let nc = NotificationCenter.default
     if let backupProgressObserver = self.backupProgressObserver {
       nc.removeObserver(backupProgressObserver)
@@ -243,7 +273,15 @@ class AccountSetupController: UITableViewController {
 
     if tappedCell.accessibilityIdentifier == "restoreCell" {
       restoreBackup()
-    }
+		} else if tappedCell.accessibilityIdentifier == "IMAPPortCell" {
+			coordinator?.showImapPortOptions()
+		} else if tappedCell.accessibilityIdentifier == "SMTPPortCell" {
+			coordinator?.showSmtpPortsOptions()
+		} else if tappedCell.accessibilityIdentifier == "IMAPSecurityCell" {
+			coordinator?.showImapSecurityOptions()
+		} else if tappedCell.accessibilityIdentifier == "SMTPSecurityCell" {
+			coordinator?.showSmptpSecurityOptions()
+		}
   }
 
   private func toggleAdvancedSection(button: UILabel) {
@@ -449,6 +487,26 @@ class AccountSetupController: UITableViewController {
     // used when login hud successfully went trough
     dismiss(animated: true, completion: nil)
   }
+
+	private func resignFirstResponderOnAllCells() {
+		basicSectionCells.map({
+			resignCell(cell: $0)
+		})
+
+		advancedSectionCells.map({
+			 resignCell(cell: $0)
+			}
+		)
+	}
+
+
+	func resignCell(cell: UITableViewCell) {
+		if let c = cell as? TextFieldCell {
+			c.textField.resignFirstResponder()
+		}
+	}
+
+
 }
 
 extension AccountSetupController: UITextFieldDelegate {

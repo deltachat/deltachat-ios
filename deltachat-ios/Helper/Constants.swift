@@ -26,3 +26,4 @@ struct Constants {
 
   static let notificationIdentifier = "deltachat-ios-local-notifications"
 }
+

@@ -11,11 +11,14 @@ import UIKit
 class TextFieldCell: UITableViewCell {
   private let placeholder: String
 
+	var onTextFieldChange:((_:UITextField)->Void)?	// set this from outside to get notified about textfield changes
+
   lazy var textField: UITextField = {
     let textField = UITextField()
     textField.textAlignment = .right
     // textField.enablesReturnKeyAutomatically = true
     textField.placeholder = self.placeholder
+		textField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
     return textField
   }()
 
@@ -55,6 +58,10 @@ class TextFieldCell: UITableViewCell {
       textField.becomeFirstResponder()
     }
   }
+
+	@objc func textFieldChanged() {
+		onTextFieldChange?(self.textField)
+	}
 
   func getText() -> String? {
     if let text = textField.text {
