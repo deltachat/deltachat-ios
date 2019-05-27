@@ -20,7 +20,7 @@ internal final class SettingsViewController: QuickTableViewController {
 	var configureProgressObserver: Any?
 
 	private lazy var hudHandler: HudHandler = {
-		let hudHandler = HudHandler(parentView: self.tableView)
+		let hudHandler = HudHandler(parentView: self.view)
 		return hudHandler
 	}()
 
