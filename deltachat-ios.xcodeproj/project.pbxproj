@@ -1190,7 +1190,7 @@
 				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EEQW58QXHC;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1250,7 +1250,7 @@
 					"$(inherited)",
 					"-lrpgp",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.delta.chat.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "deltachat-ios/deltachat-ios-Bridging-Header.h";
@@ -1269,7 +1269,7 @@
 				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EEQW58QXHC;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1329,7 +1329,7 @@
 					"$(inherited)",
 					"-lrpgp",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.delta.chat.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "deltachat-ios/deltachat-ios-Bridging-Header.h";
