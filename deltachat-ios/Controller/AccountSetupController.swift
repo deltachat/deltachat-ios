@@ -350,7 +350,7 @@ class AccountSetupController: UITableViewController {
 			evaluluateAdvancedSetup() // this will set MRConfig related to advanced fields
 		}
 		dc_configure(mailboxPointer)
-		present(loginProgressHud, animated: true, completion: nil)
+		showProgressHud()
 	}
 
 	@objc func closeButtonPressed() {
@@ -619,6 +619,16 @@ class AdvancedSectionHeader: UIView {
 
 extension AccountSetupController {
 
+	func showProgressHud() {
+		loginProgressHud.actions[0].isEnabled = true
+		loginProgressHud.title = "Configuring Account"
+		loginProgressHud.message = "\n\n\n"
+		configurationProgress.alpha = 1
+		configurationProgress.value = 0
+		present(loginProgressHud, animated: true, completion: nil)
+
+	}
+
 	func updateProgressHud(error message: String?) {
 		loginProgressHud.title = "Unable to Login!"
 		loginProgressHud.message = message
@@ -626,10 +636,11 @@ extension AccountSetupController {
 	}
 
 	func updateProgressHudSuccess(callback: (()->())?) {
+		loginProgressHud.actions[0].isEnabled = false
 		configurationProgress.alpha = 0
 		loginProgressHud.title = "Login Successful!"
 		loginProgressHud.message = "You are ready to use Delta Chat."
-		DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
 			self.loginProgressHud.dismiss(animated: true) {
 				self.handleLoginSuccess()
 			}
@@ -646,7 +657,10 @@ extension AccountSetupController {
 	}
 
 	func loginCancelled(_ action: UIAlertAction) {
-		print("Login cancelled")
+		MRConfig.addr = nil
+		MRConfig.mailPw = nil
+		dc_stop_ongoing_process(mailboxPointer)
+		dc_configure(mailboxPointer)
 	}
 
 
