@@ -8,6 +8,7 @@
 
 import SafariServices
 import UIKit
+import UICircularProgressRing
 
 class AccountSetupController: UITableViewController {
 
@@ -17,10 +18,42 @@ class AccountSetupController: UITableViewController {
 	private var configureProgressObserver: Any?
 	private var oauth2Observer: Any?
 
+	lazy var configurationProgress: UICircularProgressRing = {
+		let progress = UICircularProgressRing()
+		progress.style = UICircularRingStyle.inside
+		//progress.backgroundColor = UIColor.white.withAlphaComponent(0)
+		progress.maxValue = 100
+		progress.outerRingColor = UIColor.init(white: 1, alpha: 0)
+		progress.innerRingColor = DCColors.primary
+		progress.innerRingWidth = 2
+		progress.startAngle = 270
+		progress.fontColor = UIColor.lightGray
+		progress.font = UIFont.systemFont(ofSize: 12)
+		return progress
+	}()
+
+
+	lazy var loginProgressHud: UIAlertController = {
+		let alert = UIAlertController(title: "Configuring Account", message: "\n\n\n", preferredStyle: .alert)
+		// temp workaround: add 3 newlines to let alertbox grow to fit progress indicator
+		let progressView = configurationProgress
+		progressView.translatesAutoresizingMaskIntoConstraints = false
+		alert.view.addSubview(progressView)
+		progressView.centerXAnchor.constraint(equalTo: alert.view.centerXAnchor).isActive = true
+		progressView.centerYAnchor.constraint(equalTo: alert.view.centerYAnchor, constant: 0).isActive = true
+		progressView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+		progressView.widthAnchor.constraint(equalToConstant: 70).isActive = true
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+		return alert
+	}()
+
+/*
 	private lazy var hudHandler: HudHandler = {
-		let hudHandler = HudHandler(parentView: self.tableView)
+		let hudHandler = HudHandler(parentView: self)
 		return hudHandler
 	}()
+*/
+
 
 	private lazy var emailCell: TextFieldCell = {
 		let cell = TextFieldCell.makeEmailCell(delegate: self)
@@ -327,7 +360,7 @@ class AccountSetupController: UITableViewController {
 			evaluluateAdvancedSetup() // this will set MRConfig related to advanced fields
 		}
 		dc_configure(mailboxPointer)
-		hudHandler.showBackupHud("Configuring account")
+		present(loginProgressHud, animated: true, completion: nil)
 	}
 
 	@objc func closeButtonPressed() {
@@ -363,6 +396,7 @@ class AccountSetupController: UITableViewController {
 				_ in
 				MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL))
 				handleCancel?()
+
 			})
 			oAuthAlertController.addAction(confirm)
 			oAuthAlertController.addAction(cancel)
@@ -397,11 +431,14 @@ class AccountSetupController: UITableViewController {
 			notification in
 			if let ui = notification.userInfo {
 				if ui["error"] as! Bool {
-					self.hudHandler.setHudError(ui["errorMessage"] as? String)
+					self.updateProgressHud(error: ui["errorMessage"] as? String)
+					// self.hudHandler.setHudError(ui["errorMessage"] as? String)
 				} else if ui["done"] as! Bool {
-					self.hudHandler.setHudDone(callback: self.handleLoginSuccess)
+					self.updateProgressHudSuccess(callback: self.handleLoginSuccess)
+					// self.hudHandler.setHudDone(callback: self.handleLoginSuccess)
 				} else {
-					self.hudHandler.setHudProgress(ui["progress"] as! Int)
+					self.updateProgressHudValue(value: ui["progress"] as! Int)
+					// self.hudHandler.setHudProgress(ui["progress"] as! Int)
 				}
 			}
 		}
@@ -413,11 +450,14 @@ class AccountSetupController: UITableViewController {
 			notification in
 			if let ui = notification.userInfo {
 				if ui["error"] as! Bool {
-					self.hudHandler.setHudError(ui["errorMessage"] as? String)
+					self.updateProgressHud(error: ui["errorMessage"] as? String)
+					// self.hudHandler.setHudError(ui["errorMessage"] as? String)
 				} else if ui["done"] as! Bool {
-					self.hudHandler.setHudDone(callback: self.handleLoginSuccess)
+					self.updateProgressHudSuccess(callback: self.handleLoginSuccess)
+					// self.hudHandler.setHudDone(callback: self.handleLoginSuccess)
 				} else {
-					self.hudHandler.setHudProgress(ui["progress"] as! Int)
+					self.updateProgressHudValue(value: ui["progress"] as! Int)
+					// self.hudHandler.setHudProgress(ui["progress"] as! Int)
 				}
 			}
 		}
@@ -466,7 +506,7 @@ class AccountSetupController: UITableViewController {
 			if let file = dc_imex_has_backup(mailboxPointer, documents[0]) {
 				logger.info("restoring backup: \(String(cString: file))")
 
-				hudHandler.showBackupHud("Restoring Backup")
+				// hudHandler.showBackupHud("Restoring Backup")
 				dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
 
 				return
@@ -596,4 +636,30 @@ class AdvancedSectionHeader: UIView {
 	@objc func viewTapped() {
 		handleTap?(toggleButton)
 	}
+}
+
+extension AccountSetupController {
+
+	func updateProgressHud(error message: String?) {
+
+	}
+
+	func updateProgressHudSuccess(callback: (()->())?) {
+
+	}
+
+	func updateProgressHudValue(value: Int?) {
+		if let value = value {
+			print(value)
+			configurationProgress.value = CGFloat(value / 10)
+		} else {
+			fatalError()
+		}
+	}
+
+
+
+
+
+
 }
