@@ -272,8 +272,6 @@ class AccountSetupController: UITableViewController {
 		}
 	}
 
-
-
 	override func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let section = indexPath.section
 		let row = indexPath.row
@@ -523,11 +521,11 @@ class AccountSetupController: UITableViewController {
 	}
 
 	private func resignFirstResponderOnAllCells() {
-		basicSectionCells.map({
+		let _ = basicSectionCells.map({
 			resignCell(cell: $0)
 		})
 
-		advancedSectionCells.map({
+		let _ = advancedSectionCells.map({
 			resignCell(cell: $0)
 			}
 		)
