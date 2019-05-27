@@ -10,6 +10,7 @@ PODS:
   - SwiftFormat/CLI (0.37.2)
   - SwiftLint (0.29.3)
   - SwiftyBeaver (1.6.1)
+  - UICircularProgressRing (6.1.0)
 
 DEPENDENCIES:
   - ALCameraViewController (from `https://github.com/dignifiedquire/ALCameraViewController`)
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - SwiftFormat/CLI
   - SwiftLint
   - SwiftyBeaver
+  - UICircularProgressRing
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -33,6 +35,7 @@ SPEC REPOS:
     - SwiftFormat
     - SwiftLint
     - SwiftyBeaver
+    - UICircularProgressRing
 
 EXTERNAL SOURCES:
   ALCameraViewController:
@@ -54,7 +57,8 @@ SPEC CHECKSUMS:
   SwiftFormat: abbfb26dde4c6d683923cde153c88e10da9d7881
   SwiftLint: bfa7ca7b4d170cfaf0d236ca3ffd969e88a2f002
   SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
+  UICircularProgressRing: b3eba859a515e4d9d38503eec913f09c28450785
 
-PODFILE CHECKSUM: f51b44cf60c27030785553602fb6db6d75489983
+PODFILE CHECKSUM: 8eb78a7985e96bf680a3423fa0fe74be1c95457e
 
 COCOAPODS: 1.6.1
