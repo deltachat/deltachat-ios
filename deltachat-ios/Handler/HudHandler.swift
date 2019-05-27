@@ -10,21 +10,33 @@ import JGProgressHUD
 import UIKit
 
 class HudHandler {
-  var backupHud: JGProgressHUD?
-  unowned var view: UIView
 
-  init(parentView: UIView) {
-    view = parentView
+	private lazy var alertView: UIAlertController = {
+		let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+		alertView.addAction(UIAlertAction(title: nil, style: .cancel, handler: nil))
+		return alertView
+	}()
+
+  // var backupHud: JGProgressHUD?
+	var viewController: UIViewController
+
+  init(parentView: UIViewController) {
+    viewController = parentView
   }
 
   func setHudProgress(_ progress: Int) {
-    if let hud = self.backupHud {
-      hud.progress = Float(progress) / 1000.0
-      hud.detailTextLabel.text = "\(progress / 10)% Complete"
-    }
+    //if let hud = self.alertView {
+      //hud.progress = Float(progress) / 1000.0
+      //hud.detailTextLabel.text = "\(progress / 10)% Complete"
+
   }
 
   func showBackupHud(_ text: String) {
+			viewController.present(alertView, animated: false, completion: nil)
+		
+
+
+		/*
     DispatchQueue.main.async {
       let hud = JGProgressHUD(style: .dark)
       hud.vibrancyEnabled = true
@@ -34,9 +46,11 @@ class HudHandler {
       hud.show(in: self.view)
       self.backupHud = hud
     }
+		*/
   }
 
   func setHudError(_ message: String?) {
+		/*
     if let hud = self.backupHud {
       DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
         UIView.animate(
@@ -49,9 +63,11 @@ class HudHandler {
         hud.dismiss(afterDelay: 5.0)
       }
     }
+		*/
   }
 
   func setHudDone(callback: (() -> Void)?) {
+		/*
     let delay = 1.0
 
     if let hud = self.backupHud {
@@ -70,5 +86,6 @@ class HudHandler {
         hud.dismiss()
       }
     }
+		*/
   }
 }
