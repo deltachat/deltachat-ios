@@ -18,7 +18,7 @@ class AccountSetupController: UITableViewController {
 	private var configureProgressObserver: Any?
 	private var oauth2Observer: Any?
 
-	lazy var configurationProgress: UICircularProgressRing = {
+	lazy var configProgressIndicator: UICircularProgressRing = {
 		let progress = UICircularProgressRing()
 		progress.style = UICircularRingStyle.inside
 		progress.outerRingColor = UIColor.clear
@@ -31,10 +31,10 @@ class AccountSetupController: UITableViewController {
 		return progress
 	}()
 
-	lazy var loginProgressHud: UIAlertController = {
+	lazy var configProgressAlert: UIAlertController = {
 		let alert = UIAlertController(title: "Configuring Account", message: "\n\n\n", preferredStyle: .alert)
-		// temp workaround: add 3 newlines to let alertbox grow to fit progress indicator
-		let progressView = configurationProgress
+		// temp workaround: add 3 newlines to let alertbox grow to fit progressview
+		let progressView = configProgressIndicator
 		progressView.translatesAutoresizingMaskIntoConstraints = false
 		alert.view.addSubview(progressView)
 		progressView.centerXAnchor.constraint(equalTo: alert.view.centerXAnchor).isActive = true
@@ -262,11 +262,17 @@ class AccountSetupController: UITableViewController {
 		if section == 0 {
 			return "There are no Delta Chat servers, your data stays on your device!"
 		} else if section == 2 {
-			return "For known email providers additional settings are setup automatically. Sometimes IMAP needs to be enabled in the web frontend. Consult your email provider or friends for help"
+			if advancedSectionShowing {
+				return "For known email providers additional settings are setup automatically. Sometimes IMAP needs to be enabled in the web frontend. Consult your email provider or friends for help"
+			} else {
+				return nil
+			}
 		} else {
 			return nil
 		}
 	}
+
+
 
 	override func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let section = indexPath.section
@@ -620,28 +626,28 @@ class AdvancedSectionHeader: UIView {
 extension AccountSetupController {
 
 	func showProgressHud() {
-		loginProgressHud.actions[0].isEnabled = true
-		loginProgressHud.title = "Configuring Account"
-		loginProgressHud.message = "\n\n\n"
-		configurationProgress.alpha = 1
-		configurationProgress.value = 0
-		present(loginProgressHud, animated: true, completion: nil)
+		configProgressAlert.actions[0].isEnabled = true
+		configProgressAlert.title = "Configuring Account"
+		configProgressAlert.message = "\n\n\n"
+		configProgressIndicator.alpha = 1
+		configProgressIndicator.value = 0
+		present(configProgressAlert, animated: true, completion: nil)
 
 	}
 
 	func updateProgressHud(error message: String?) {
-		loginProgressHud.title = "Unable to Login!"
-		loginProgressHud.message = message
-		configurationProgress.alpha = 0
+		configProgressAlert.title = "Unable to Login!"
+		configProgressAlert.message = message
+		configProgressIndicator.alpha = 0
 	}
 
 	func updateProgressHudSuccess(callback: (()->())?) {
-		loginProgressHud.actions[0].isEnabled = false
-		configurationProgress.alpha = 0
-		loginProgressHud.title = "Login Successful!"
-		loginProgressHud.message = "You are ready to use Delta Chat."
+		configProgressAlert.actions[0].isEnabled = false
+		configProgressIndicator.alpha = 0
+		configProgressAlert.title = "Login Successful!"
+		configProgressAlert.message = "You are ready to use Delta Chat."
 		DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-			self.loginProgressHud.dismiss(animated: true) {
+			self.configProgressAlert.dismiss(animated: true) {
 				self.handleLoginSuccess()
 			}
 		})
@@ -650,7 +656,7 @@ extension AccountSetupController {
 	func updateProgressHudValue(value: Int?) {
 		if let value = value {
 			print(value)
-			configurationProgress.value = CGFloat(value / 10)
+			configProgressIndicator.value = CGFloat(value / 10)
 		} else {
 			fatalError()
 		}
