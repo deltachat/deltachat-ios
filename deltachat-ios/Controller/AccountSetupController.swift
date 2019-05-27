@@ -641,11 +641,20 @@ class AdvancedSectionHeader: UIView {
 extension AccountSetupController {
 
 	func updateProgressHud(error message: String?) {
-
+		loginProgressHud.title = "Unable to Login!"
+		loginProgressHud.message = message
+		configurationProgress.alpha = 0
 	}
 
 	func updateProgressHudSuccess(callback: (()->())?) {
-
+		configurationProgress.alpha = 0
+		loginProgressHud.title = "Login Successful!"
+		loginProgressHud.message = "You are ready to use Delta Chat."
+		DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
+			self.loginProgressHud.dismiss(animated: true) {
+				self.handleLoginSuccess()
+			}
+		})
 	}
 
 	func updateProgressHudValue(value: Int?) {
