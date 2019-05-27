@@ -20,7 +20,7 @@ internal final class SettingsViewController: QuickTableViewController {
 	var configureProgressObserver: Any?
 
 	private lazy var hudHandler: HudHandler = {
-		let hudHandler = HudHandler(parentView: self)
+		let hudHandler = HudHandler(parentView: self.tableView)
 		return hudHandler
 	}()
 
@@ -29,7 +29,6 @@ internal final class SettingsViewController: QuickTableViewController {
 		title = "Settings"
 		documentInteractionController.delegate = self as? UIDocumentInteractionControllerDelegate
 	}
-
 
 	override func viewDidAppear(_ animated: Bool) {
 

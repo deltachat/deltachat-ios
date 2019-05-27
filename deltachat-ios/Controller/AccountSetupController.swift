@@ -21,9 +21,8 @@ class AccountSetupController: UITableViewController {
 	lazy var configurationProgress: UICircularProgressRing = {
 		let progress = UICircularProgressRing()
 		progress.style = UICircularRingStyle.inside
-		//progress.backgroundColor = UIColor.white.withAlphaComponent(0)
+		progress.outerRingColor = UIColor.clear
 		progress.maxValue = 100
-		progress.outerRingColor = UIColor.init(white: 1, alpha: 0)
 		progress.innerRingColor = DCColors.primary
 		progress.innerRingWidth = 2
 		progress.startAngle = 270
@@ -31,7 +30,6 @@ class AccountSetupController: UITableViewController {
 		progress.font = UIFont.systemFont(ofSize: 12)
 		return progress
 	}()
-
 
 	lazy var loginProgressHud: UIAlertController = {
 		let alert = UIAlertController(title: "Configuring Account", message: "\n\n\n", preferredStyle: .alert)
@@ -41,19 +39,11 @@ class AccountSetupController: UITableViewController {
 		alert.view.addSubview(progressView)
 		progressView.centerXAnchor.constraint(equalTo: alert.view.centerXAnchor).isActive = true
 		progressView.centerYAnchor.constraint(equalTo: alert.view.centerYAnchor, constant: 0).isActive = true
-		progressView.heightAnchor.constraint(equalToConstant: 70).isActive = true
-		progressView.widthAnchor.constraint(equalToConstant: 70).isActive = true
-		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+		progressView.heightAnchor.constraint(equalToConstant: 65).isActive = true
+		progressView.widthAnchor.constraint(equalToConstant: 65).isActive = true
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: loginCancelled(_:)))
 		return alert
 	}()
-
-/*
-	private lazy var hudHandler: HudHandler = {
-		let hudHandler = HudHandler(parentView: self)
-		return hudHandler
-	}()
-*/
-
 
 	private lazy var emailCell: TextFieldCell = {
 		let cell = TextFieldCell.makeEmailCell(delegate: self)
@@ -435,10 +425,8 @@ class AccountSetupController: UITableViewController {
 					// self.hudHandler.setHudError(ui["errorMessage"] as? String)
 				} else if ui["done"] as! Bool {
 					self.updateProgressHudSuccess(callback: self.handleLoginSuccess)
-					// self.hudHandler.setHudDone(callback: self.handleLoginSuccess)
 				} else {
 					self.updateProgressHudValue(value: ui["progress"] as! Int)
-					// self.hudHandler.setHudProgress(ui["progress"] as! Int)
 				}
 			}
 		}
@@ -597,15 +585,6 @@ class AdvancedSectionHeader: UIView {
 		return label
 	}()
 
-	//
-	//	private var toggleButton:UIButton = {
-	//		let button = UIButton(type: .system)
-	//		button.setTitle("Show", for: .normal)
-	//		button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside )
-	//		//button.target(forAction: #selector(buttonTapped(_:)), withSender: self)
-	//		return button
-	//	}()
-
 	init() {
 		super.init(frame: .zero) // will be constraint from tableViewDelegate
 		setupSubviews()
@@ -664,6 +643,10 @@ extension AccountSetupController {
 		} else {
 			fatalError()
 		}
+	}
+
+	func loginCancelled(_ action: UIAlertAction) {
+		print("Login cancelled")
 	}
 
 
