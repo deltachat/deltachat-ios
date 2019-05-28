@@ -25,7 +25,8 @@ Check the Changelog (for TestFlight builds) at the bottom to see what's included
 ```bash
 $ git clone git@github.com:deltachat/deltachat-ios.git
 $ cd deltachat-ios
-$ git submodule update --init
+$ git submodule update --init 
+$ ./deltachat-ios/libraries/openssl/build-openssl.sh 
 $ open deltachat-ios.xcworkspace # do not: open deltachat-ios.xcodeproj
 ```
 
@@ -65,15 +66,15 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
       and other attachments can be done in a later version)
 - [x] reception of images
 - [ ] ui-polishing, eg.
-  - [ ] improve group creation UI
+  - [x] improve group creation UI
   - [ ] smarter time/date display
     (time beside messages, date as headlines)
-  - [ ] adapt avatars (use the colored images from the chatlist
+  - [x] adapt avatars (use the colored images from the chatlist
     also in the chat, no avatars beside outgoing messages
-  - [ ] show e-mail-address in the chat-title and/or open profile
+  - [x] show e-mail-address in the chat-title and/or open profile
     when clicking on chat-title
     (subtitle) dc_chat_get_subtitle
-- [ ] read address book for contact suggestions
+- [x] read address book for contact suggestions
 - [ ] check notifications, currently there is only a vibrate,
       however, we should keep in mind that the first version
       may be a "foreground" app, so "system notifications" may
