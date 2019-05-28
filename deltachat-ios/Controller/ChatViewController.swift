@@ -521,6 +521,11 @@ extension ChatViewController: MessagesDataSource {
 	}
 
 	func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+
+		if !isGroupChat {
+			return nil
+		}
+
 		if !isPreviousMessageSameSender(at: indexPath) {
 			let name = message.sender.displayName
 			let m = messageList[indexPath.section]
@@ -739,7 +744,7 @@ extension ChatViewController: MessagesLayoutDelegate {
 		if isTimeLabelVisible(at: indexPath) {
 			return 18
 		}
-		return 0
+		return !isPreviousMessageSameSender(at: indexPath) ? 18 : 0
 	}
 
 	func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
@@ -748,9 +753,17 @@ extension ChatViewController: MessagesLayoutDelegate {
 		}
 
 		if isFromCurrentSender(message: message) {
-			return !isPreviousMessageSameSender(at: indexPath) ? 40 : 0
+			if !isGroupChat {
+				return !isPreviousMessageSameSender(at: indexPath) ? 20 : 0
+			} else {
+				return !isPreviousMessageSameSender(at: indexPath) ? 20 : 0
+			}
 		} else {
-			return !isPreviousMessageSameSender(at: indexPath) ? (40 + outgoingAvatarOverlap) : 0
+			if !isGroupChat {
+				return !isPreviousMessageSameSender(at: indexPath) ? 20 : 0
+			} else {
+				return !isPreviousMessageSameSender(at: indexPath) ? (20 + outgoingAvatarOverlap) : 0
+			}
 		}
 	}
 
@@ -766,8 +779,7 @@ extension ChatViewController: MessagesLayoutDelegate {
 		if isFromCurrentSender(message: message) {
 			return 0
 		}
-
-		return 9
+		return 0
 	}
 
 	func heightForLocation(message _: MessageType, at _: IndexPath, with _: CGFloat, in _: MessagesCollectionView) -> CGFloat {
@@ -775,7 +787,7 @@ extension ChatViewController: MessagesLayoutDelegate {
 	}
 
 	func footerViewSize(for _: MessageType, at _: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
-		return CGSize(width: messagesCollectionView.bounds.width, height: 20)
+		return CGSize(width: messagesCollectionView.bounds.width, height: 10)
 	}
 
 	@objc private func clipperButtonPressed() {
