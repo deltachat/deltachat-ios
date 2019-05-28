@@ -18,6 +18,10 @@ class ChatViewController: MessagesViewController {
 	let outgoingAvatarOverlap: CGFloat = 17.5
 	let loadCount = 30
 
+	private var isGroupChat: Bool {
+		return MRChat(id: chatId).chatType != .SINGLE
+	}
+
 	let chatId: Int
 	let refreshControl = UIRefreshControl()
 	var messageList: [MRMessage] = []
@@ -277,10 +281,18 @@ class ChatViewController: MessagesViewController {
 		layout?.setMessageOutgoingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)))
 
 		// Set outgoing avatar to overlap with the message bubble
-		layout?.setMessageIncomingMessageTopLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: 0, left: 18, bottom: outgoingAvatarOverlap, right: 0)))
-		layout?.setMessageIncomingAvatarSize(CGSize(width: 30, height: 30))
-		layout?.setMessageIncomingMessagePadding(UIEdgeInsets(top: -outgoingAvatarOverlap, left: -18, bottom: outgoingAvatarOverlap / 2, right: 18))
-		layout?.setMessageIncomingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: -7, left: 38, bottom: 0, right: 0)))
+		if isGroupChat {
+			layout?.setMessageIncomingMessageTopLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: 0, left: 18, bottom: outgoingAvatarOverlap, right: 0)))
+			layout?.setMessageIncomingAvatarSize(CGSize(width: 30, height: 30))
+			layout?.setMessageIncomingMessagePadding(UIEdgeInsets(top: -outgoingAvatarOverlap, left: -18, bottom: outgoingAvatarOverlap / 2, right: 18))
+			layout?.setMessageIncomingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: -7, left: 38, bottom: 0, right: 0)))
+
+		} else {
+			layout?.setMessageIncomingMessageTopLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)))
+			layout?.setMessageIncomingAvatarSize(CGSize.zero) // no batch displayed in singleChats
+			layout?.setMessageIncomingMessagePadding(UIEdgeInsets(top: -outgoingAvatarOverlap, left: 0, bottom: outgoingAvatarOverlap / 2, right: 18))
+			layout?.setMessageIncomingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: -7, left: 12, bottom: 0, right: 0)))
+		}
 
 		layout?.setMessageIncomingAccessoryViewSize(CGSize(width: 30, height: 30))
 		layout?.setMessageIncomingAccessoryViewPadding(HorizontalEdgeInsets(left: 8, right: 0))
@@ -327,7 +339,6 @@ class ChatViewController: MessagesViewController {
 		messageInputBar.middleContentViewPadding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 10)	// this adds a padding between textinputfield and send button
 		messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
 		messageInputBar.sendButton.setSize(CGSize(width: 30, height: 30), animated: false)
-
 
 		let leftItems = [
 			InputBarButtonItem()
