@@ -851,9 +851,13 @@ extension ChatViewController: MessageCellDelegate {
 		}
 	}
 
-	func didTapAvatar(in _: MessageCollectionViewCell) {
+	func didTapAvatar(in cell: MessageCollectionViewCell) {
 		logger.info("Avatar tapped")
-	}
+		if let indexPath = super.messagesCollectionView.indexPath(for: cell) {
+			let contactId = messageList[indexPath.row].fromContact.id
+			coordinator?.showContactDetail(of: contactId)
+		}
+}
 
 	@objc(didTapCellTopLabelIn:) func didTapCellTopLabel(in _: MessageCollectionViewCell) {
 		logger.info("Top label tapped")
