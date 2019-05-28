@@ -8,7 +8,7 @@
 
 import ALCameraViewController
 import MapKit
-import MessageInputBar
+import InputBarAccessoryView
 import MessageKit
 import QuickLook
 import UIKit
@@ -376,26 +376,33 @@ class ChatViewController: MessagesViewController {
       fatalError("nilMessagesDataSource")
     }
 
-    let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
-    switch message.kind {
-    case .text, .attributedText, .emoji:
-      let cell = messagesCollectionView.dequeueReusableCell(TextMessageCell.self, for: indexPath)
-      cell.configure(with: message, at: indexPath, and: messagesCollectionView)
-      return cell
-    case .photo, .video:
-      let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
-      cell.configure(with: message, at: indexPath, and: messagesCollectionView)
-      return cell
-    case .location:
-      let cell = messagesCollectionView.dequeueReusableCell(LocationMessageCell.self, for: indexPath)
-      cell.configure(with: message, at: indexPath, and: messagesCollectionView)
-      return cell
-    case .custom:
-      let cell = messagesCollectionView.dequeueReusableCell(CustomCell.self, for: indexPath)
-      cell.configure(with: message, at: indexPath, and: messagesCollectionView)
-
-      return cell
-    }
+		let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
+		switch message.kind {
+		case .text, .attributedText, .emoji:
+			let cell = messagesCollectionView.dequeueReusableCell(TextMessageCell.self, for: indexPath)
+			cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+			return cell
+		case .photo, .video:
+			let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
+			cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+			return cell
+		case .location:
+			let cell = messagesCollectionView.dequeueReusableCell(LocationMessageCell.self, for: indexPath)
+			cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+			return cell
+		case .contact:
+			let cell = messagesCollectionView.dequeueReusableCell(ContactMessageCell.self, for: indexPath)
+			cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+			return cell
+		case .custom:
+			let cell = messagesCollectionView.dequeueReusableCell(CustomCell.self, for: indexPath)
+			cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+			return cell
+		case .audio(_):
+			let cell = messagesCollectionView.dequeueReusableCell(AudioMessageCell.self, for: indexPath)
+			cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+			return cell
+		}
   }
 
   override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
@@ -447,183 +454,183 @@ class ChatViewController: MessagesViewController {
 // MARK: - MessagesDataSource
 
 extension ChatViewController: MessagesDataSource {
-  func numberOfSections(in _: MessagesCollectionView) -> Int {
-    return messageList.count
-  }
+	func numberOfSections(in _: MessagesCollectionView) -> Int {
+		return messageList.count
+	}
 
-  func currentSender() -> Sender {
-    let currentSender = Sender(id: "1", displayName: "Alice")
-    return currentSender
-  }
+	func currentSender() -> SenderType {
+		let currentSender = Sender(id: "1", displayName: "Alice")
+		return currentSender
+	}
 
-  func messageForItem(at indexPath: IndexPath, in _: MessagesCollectionView) -> MessageType {
-    return messageList[indexPath.section]
-  }
+	func messageForItem(at indexPath: IndexPath, in _: MessagesCollectionView) -> MessageType {
+		return messageList[indexPath.section]
+	}
 
-  func avatar(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> Avatar {
-    let message = messageList[indexPath.section]
-    let contact = message.fromContact
-    return Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.name))
-  }
+	func avatar(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> Avatar {
+		let message = messageList[indexPath.section]
+		let contact = message.fromContact
+		return Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.name))
+	}
 
-  func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-    if isInfoMessage(at: indexPath) {
-      return nil
-    }
+	func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+		if isInfoMessage(at: indexPath) {
+			return nil
+		}
 
-    if isTimeLabelVisible(at: indexPath) {
-      return NSAttributedString(
-        string: MessageKitDateFormatter.shared.string(from: message.sentDate),
-        attributes: [
-          NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10),
-          NSAttributedString.Key.foregroundColor: UIColor.darkGray,
-        ]
-      )
-    }
+		if isTimeLabelVisible(at: indexPath) {
+			return NSAttributedString(
+				string: MessageKitDateFormatter.shared.string(from: message.sentDate),
+				attributes: [
+					NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10),
+					NSAttributedString.Key.foregroundColor: UIColor.darkGray,
+				]
+			)
+		}
 
-    return nil
-  }
+		return nil
+	}
 
-  func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-    if !isPreviousMessageSameSender(at: indexPath) {
-      let name = message.sender.displayName
-      let m = messageList[indexPath.section]
-      return NSAttributedString(string: name, attributes: [
-        .font: UIFont.systemFont(ofSize: 14),
-        .foregroundColor: m.fromContact.color,
-      ])
-    }
-    return nil
-  }
+	func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+		if !isPreviousMessageSameSender(at: indexPath) {
+			let name = message.sender.displayName
+			let m = messageList[indexPath.section]
+			return NSAttributedString(string: name, attributes: [
+				.font: UIFont.systemFont(ofSize: 14),
+				.foregroundColor: m.fromContact.color,
+				])
+		}
+		return nil
+	}
 
-  func isTimeLabelVisible(at indexPath: IndexPath) -> Bool {
-    guard indexPath.section + 1 < messageList.count else { return false }
+	func isTimeLabelVisible(at indexPath: IndexPath) -> Bool {
+		guard indexPath.section + 1 < messageList.count else { return false }
 
-    let messageA = messageList[indexPath.section]
-    let messageB = messageList[indexPath.section + 1]
+		let messageA = messageList[indexPath.section]
+		let messageB = messageList[indexPath.section + 1]
 
-    if messageA.fromContactId == messageB.fromContactId {
-      return false
-    }
+		if messageA.fromContactId == messageB.fromContactId {
+			return false
+		}
 
-    let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
-    let dateA = messageA.sentDate
-    let dateB = messageB.sentDate
+		let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
+		let dateA = messageA.sentDate
+		let dateB = messageB.sentDate
 
-    let dayA = (calendar?.component(.day, from: dateA))
-    let dayB = (calendar?.component(.day, from: dateB))
+		let dayA = (calendar?.component(.day, from: dateA))
+		let dayB = (calendar?.component(.day, from: dateB))
 
-    return dayA != dayB
-  }
+		return dayA != dayB
+	}
 
-  func isPreviousMessageSameSender(at indexPath: IndexPath) -> Bool {
-    guard indexPath.section - 1 >= 0 else { return false }
-    let messageA = messageList[indexPath.section - 1]
-    let messageB = messageList[indexPath.section]
+	func isPreviousMessageSameSender(at indexPath: IndexPath) -> Bool {
+		guard indexPath.section - 1 >= 0 else { return false }
+		let messageA = messageList[indexPath.section - 1]
+		let messageB = messageList[indexPath.section]
 
-    if messageA.isInfo {
-      return false
-    }
+		if messageA.isInfo {
+			return false
+		}
 
-    return messageA.fromContactId == messageB.fromContactId
-  }
+		return messageA.fromContactId == messageB.fromContactId
+	}
 
-  func isInfoMessage(at indexPath: IndexPath) -> Bool {
-    return messageList[indexPath.section].isInfo
-  }
+	func isInfoMessage(at indexPath: IndexPath) -> Bool {
+		return messageList[indexPath.section].isInfo
+	}
 
-  func isNextMessageSameSender(at indexPath: IndexPath) -> Bool {
-    guard indexPath.section + 1 < messageList.count else { return false }
-    let messageA = messageList[indexPath.section]
-    let messageB = messageList[indexPath.section + 1]
+	func isNextMessageSameSender(at indexPath: IndexPath) -> Bool {
+		guard indexPath.section + 1 < messageList.count else { return false }
+		let messageA = messageList[indexPath.section]
+		let messageB = messageList[indexPath.section + 1]
 
-    if messageA.isInfo {
-      return false
-    }
+		if messageA.isInfo {
+			return false
+		}
 
-    return messageA.fromContactId == messageB.fromContactId
-  }
+		return messageA.fromContactId == messageB.fromContactId
+	}
 
-  func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-    guard indexPath.section < messageList.count else { return nil }
-    let m = messageList[indexPath.section]
+	func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+		guard indexPath.section < messageList.count else { return nil }
+		let m = messageList[indexPath.section]
 
-    if m.isInfo || isNextMessageSameSender(at: indexPath) {
-      return nil
-    }
+		if m.isInfo || isNextMessageSameSender(at: indexPath) {
+			return nil
+		}
 
-    let timestampAttributes: [NSAttributedString.Key: Any] = [
-      .font: UIFont.systemFont(ofSize: 12),
-      .foregroundColor: UIColor.lightGray,
-    ]
+		let timestampAttributes: [NSAttributedString.Key: Any] = [
+			.font: UIFont.systemFont(ofSize: 12),
+			.foregroundColor: UIColor.lightGray,
+		]
 
-    if isFromCurrentSender(message: message) {
-      let text = NSMutableAttributedString()
-      text.append(NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes))
+		if isFromCurrentSender(message: message) {
+			let text = NSMutableAttributedString()
+			text.append(NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes))
 
-      text.append(NSAttributedString(
-        string: " - " + m.stateDescription(),
-        attributes: [
-          .font: UIFont.systemFont(ofSize: 12),
-          .foregroundColor: UIColor.darkText,
-        ]
-      ))
+			text.append(NSAttributedString(
+				string: " - " + m.stateDescription(),
+				attributes: [
+					.font: UIFont.systemFont(ofSize: 12),
+					.foregroundColor: UIColor.darkText,
+				]
+			))
 
-      return text
-    }
+			return text
+		}
 
-    return NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes)
-  }
+		return NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes)
+	}
 
-  func updateMessage(_ messageId: Int) {
-    if let index = messageList.firstIndex(where: { $0.id == messageId }) {
-      dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(messageId)]), 1)
+	func updateMessage(_ messageId: Int) {
+		if let index = messageList.firstIndex(where: { $0.id == messageId }) {
+			dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(messageId)]), 1)
 
-      messageList[index] = MRMessage(id: messageId)
-      // Reload section to update header/footer labels
-      messagesCollectionView.performBatchUpdates({
-        messagesCollectionView.reloadSections([index])
-        if index > 0 {
-          messagesCollectionView.reloadSections([index - 1])
-        }
-        if index < messageList.count - 1 {
-          messagesCollectionView.reloadSections([index + 1])
-        }
-      }, completion: { [weak self] _ in
-        if self?.isLastSectionVisible() == true {
-          self?.messagesCollectionView.scrollToBottom(animated: true)
-        }
-      })
-    } else {
-      let msg = MRMessage(id: messageId)
-      if msg.chatId == chatId {
-        insertMessage(msg)
-      }
-    }
-  }
+			messageList[index] = MRMessage(id: messageId)
+			// Reload section to update header/footer labels
+			messagesCollectionView.performBatchUpdates({
+				messagesCollectionView.reloadSections([index])
+				if index > 0 {
+					messagesCollectionView.reloadSections([index - 1])
+				}
+				if index < messageList.count - 1 {
+					messagesCollectionView.reloadSections([index + 1])
+				}
+			}, completion: { [weak self] _ in
+				if self?.isLastSectionVisible() == true {
+					self?.messagesCollectionView.scrollToBottom(animated: true)
+				}
+			})
+		} else {
+			let msg = MRMessage(id: messageId)
+			if msg.chatId == chatId {
+				insertMessage(msg)
+			}
+		}
+	}
 
-  func insertMessage(_ message: MRMessage) {
-    dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(message.id)]), 1)
-    messageList.append(message)
-    // Reload last section to update header/footer labels and insert a new one
-    messagesCollectionView.performBatchUpdates({
-      messagesCollectionView.insertSections([messageList.count - 1])
-      if messageList.count >= 2 {
-        messagesCollectionView.reloadSections([messageList.count - 2])
-      }
-    }, completion: { [weak self] _ in
-      if self?.isLastSectionVisible() == true {
-        self?.messagesCollectionView.scrollToBottom(animated: true)
-      }
-    })
-  }
+	func insertMessage(_ message: MRMessage) {
+		dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(message.id)]), 1)
+		messageList.append(message)
+		// Reload last section to update header/footer labels and insert a new one
+		messagesCollectionView.performBatchUpdates({
+			messagesCollectionView.insertSections([messageList.count - 1])
+			if messageList.count >= 2 {
+				messagesCollectionView.reloadSections([messageList.count - 2])
+			}
+		}, completion: { [weak self] _ in
+			if self?.isLastSectionVisible() == true {
+				self?.messagesCollectionView.scrollToBottom(animated: true)
+			}
+		})
+	}
 
-  func isLastSectionVisible() -> Bool {
-    guard !messageList.isEmpty else { return false }
+	func isLastSectionVisible() -> Bool {
+		guard !messageList.isEmpty else { return false }
 
-    let lastIndexPath = IndexPath(item: 0, section: messageList.count - 1)
-    return messagesCollectionView.indexPathsForVisibleItems.contains(lastIndexPath)
-  }
+		let lastIndexPath = IndexPath(item: 0, section: messageList.count - 1)
+		return messagesCollectionView.indexPathsForVisibleItems.contains(lastIndexPath)
+	}
 }
 
 // MARK: - MessagesDisplayDelegate

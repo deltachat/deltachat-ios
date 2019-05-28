@@ -75,8 +75,16 @@ open class BaseDestination: Hashable, Equatable {
     let startDate = Date()
 
     // each destination class must have an own hashValue Int
+    #if swift(>=4.2)
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(defaultHashValue)
+    }
+    #else
     lazy public var hashValue: Int = self.defaultHashValue
+    #endif
+
     open var defaultHashValue: Int {return 0}
+
 
     // each destination instance must have an own serial queue to ensure serial output
     // GCD gives it a prioritization between User Initiated and Utility
@@ -264,16 +272,16 @@ open class BaseDestination: Hashable, Equatable {
         var str = ""
 
         switch level {
-        case SwiftyBeaver.Level.debug:
+        case .debug:
             str = levelString.debug
 
-        case SwiftyBeaver.Level.info:
+        case .info:
             str = levelString.info
 
-        case SwiftyBeaver.Level.warning:
+        case .warning:
             str = levelString.warning
 
-        case SwiftyBeaver.Level.error:
+        case .error:
             str = levelString.error
 
         default:
@@ -288,16 +296,16 @@ open class BaseDestination: Hashable, Equatable {
         var color = ""
 
         switch level {
-        case SwiftyBeaver.Level.debug:
+        case .debug:
             color = levelColor.debug
 
-        case SwiftyBeaver.Level.info:
+        case .info:
             color = levelColor.info
 
-        case SwiftyBeaver.Level.warning:
+        case .warning:
             color = levelColor.warning
 
-        case SwiftyBeaver.Level.error:
+        case .error:
             color = levelColor.error
 
         default:
@@ -396,9 +404,15 @@ open class BaseDestination: Hashable, Equatable {
 
     /// Remove a filter from the list of filters
     public func removeFilter(_ filter: FilterType) {
+        #if swift(>=5)
+        let index = filters.firstIndex {
+            return ObjectIdentifier($0) == ObjectIdentifier(filter)
+        }
+        #else
         let index = filters.index {
             return ObjectIdentifier($0) == ObjectIdentifier(filter)
         }
+        #endif
 
         guard let filterIndex = index else {
             return

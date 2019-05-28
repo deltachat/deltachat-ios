@@ -114,7 +114,7 @@ class MRContact {
 class MRMessage: MessageType {
   private var messagePointer: UnsafeMutablePointer<dc_msg_t>
 
-  lazy var sender: Sender = {
+  lazy var sender: SenderType = {
     Sender(id: "\(fromContactId)", displayName: fromContact.name)
   }()
 

@@ -16,7 +16,7 @@ target 'deltachat-ios' do
   pod 'JGProgressHUD'
   pod 'SwiftyBeaver'
   pod 'DBDebugToolkit'
-  pod 'MessageKit', '2.0.0'
+  pod 'MessageKit'
 
   target 'deltachat-iosTests' do
     inherit! :search_paths
