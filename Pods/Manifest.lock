@@ -1,22 +1,22 @@
 PODS:
   - ALCameraViewController (3.0.3)
   - DBDebugToolkit (0.5.0)
+  - InputBarAccessoryView (4.2.2)
   - JGProgressHUD (2.0.3)
-  - MessageInputBar/Core (0.4.1)
-  - MessageKit (2.0.0):
-    - MessageInputBar/Core
-  - QuickTableViewController (1.1.0)
-  - ReachabilitySwift (4.3.0)
-  - SwiftFormat/CLI (0.37.2)
-  - SwiftLint (0.29.3)
-  - SwiftyBeaver (1.6.1)
-  - UICircularProgressRing (6.1.0)
+  - MessageKit (3.0.0):
+    - InputBarAccessoryView (~> 4.2.2)
+  - QuickTableViewController (1.1.1)
+  - ReachabilitySwift (4.3.1)
+  - SwiftFormat/CLI (0.40.9)
+  - SwiftLint (0.32.0)
+  - SwiftyBeaver (1.7.0)
+  - UICircularProgressRing (6.2.0)
 
 DEPENDENCIES:
   - ALCameraViewController (from `https://github.com/dignifiedquire/ALCameraViewController`)
   - DBDebugToolkit
   - JGProgressHUD
-  - MessageKit (= 2.0.0)
+  - MessageKit
   - QuickTableViewController
   - ReachabilitySwift
   - SwiftFormat/CLI
@@ -27,8 +27,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - DBDebugToolkit
+    - InputBarAccessoryView
     - JGProgressHUD
-    - MessageInputBar
     - MessageKit
     - QuickTableViewController
     - ReachabilitySwift
@@ -49,16 +49,16 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ALCameraViewController: dd13cf0a5b44a4d542c73bbcbebd02bc09e929c7
   DBDebugToolkit: c04bb6f618051d3de447a4b4323f37826116cfed
+  InputBarAccessoryView: 2b937602598e2fab3149f37f51dd7ad795653812
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
-  MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
-  MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
-  QuickTableViewController: 129e71fc37a69991aff02bc946723d51a13d6aa5
-  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
-  SwiftFormat: abbfb26dde4c6d683923cde153c88e10da9d7881
-  SwiftLint: bfa7ca7b4d170cfaf0d236ca3ffd969e88a2f002
-  SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
-  UICircularProgressRing: b3eba859a515e4d9d38503eec913f09c28450785
+  MessageKit: e892a9ca49ebe6d82684d3a93ad84021fa23e2c6
+  QuickTableViewController: 30f689d314a7c1fb726c6dab6fa5ad53c6bc9e94
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  SwiftFormat: 6b67b6e7fe73d664f0cbb4f13721f130462c86a5
+  SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
+  SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
+  UICircularProgressRing: 0ff679b05a17f15ad6301a7886686837b8c301a9
 
-PODFILE CHECKSUM: 8eb78a7985e96bf680a3423fa0fe74be1c95457e
+PODFILE CHECKSUM: 46d42246ca1255cc4af799d1aa792d60033b9fb8
 
 COCOAPODS: 1.6.1
