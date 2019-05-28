@@ -26,7 +26,9 @@ Check the Changelog (for TestFlight builds) at the bottom to see what's included
 $ git clone git@github.com:deltachat/deltachat-ios.git
 $ cd deltachat-ios
 $ git submodule update --init 
-$ ./deltachat-ios/libraries/openssl/build-openssl.sh 
+$ cd deltachat-ios/libraries/openssl 
+$ ./build-openssl.sh # this will take a couple minutes
+$ cd ../../.. 
 $ open deltachat-ios.xcworkspace # do not: open deltachat-ios.xcodeproj
 ```
 
