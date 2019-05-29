@@ -69,7 +69,7 @@ class GroupNameController: UITableViewController {
 
     if section == 0 {
       let cell = tableView.dequeueReusableCell(withIdentifier: "groupLabelCell", for: indexPath) as! GroupLabelCell
-      cell.groupNameUpdated = updateGroupName
+      cell.onTextChanged = updateGroupName
 
       return cell
 

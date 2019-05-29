@@ -13,11 +13,7 @@ class GroupChatDetailViewController: UIViewController {
     return groupMembers.filter { $0.email == MRConfig.addr }.first
   }
 
-  private let editGroupCell = GroupLabelCell()
-
-  private var editingGroupName: Bool = false
-
-	weak var coordinator: ChatDetailCoordinator?
+	weak var coordinator: GroupChatDetailCoordinator?
 
 	fileprivate var chat: MRChat
 
@@ -51,7 +47,6 @@ class GroupChatDetailViewController: UIViewController {
 		chatDetailTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 	}
 
-
 	private func showNotificationSetup() {
 		let notificationSetupAlert = UIAlertController(title: "Notifications Setup is not implemented yet", message: "But you get an idea where this is going", preferredStyle: .actionSheet)
 		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -59,9 +54,8 @@ class GroupChatDetailViewController: UIViewController {
 		present(notificationSetupAlert, animated: true, completion: nil)
 	}
 
-
   private lazy var editBarButtonItem: UIBarButtonItem = {
-    UIBarButtonItem(title: editingGroupName ? "Done" : "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
+    UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
   }()
 
   private var groupMembers: [MRContact] = []
@@ -78,9 +72,9 @@ class GroupChatDetailViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		chatDetailTable.reloadData() // to display updates
 		updateGroupMembers()
-    editBarButtonItem.isEnabled = currentUser != nil
+		chatDetailTable.reloadData() // to display updates
+		editBarButtonItem.isEnabled = currentUser != nil
   }
 
   private func updateGroupMembers() {
@@ -90,15 +84,7 @@ class GroupChatDetailViewController: UIViewController {
   }
 
   @objc func editButtonPressed() {
-    if editingGroupName {
-      let newName = editGroupCell.getGroupName()
-      dc_set_chat_name(mailboxPointer, UInt32(chat.id), newName)
-      chat = MRChat(id: chat.id) // reload
-    }
-
-    editingGroupName = !editingGroupName
-    editBarButtonItem.title = editingGroupName ? "Save" : "Edit"
-    chatDetailTable.reloadData()
+		coordinator?.showGroupChatEdit(chat: chat)
   }
 
   private func leaveGroup() {
@@ -120,30 +106,16 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 
   func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     if section == 0 {
-      let bg = UIColor(red: 248 / 255, green: 248 / 255, blue: 255 / 255, alpha: 1.0)
-
-      if editingGroupName {
-        editGroupCell.groupBadge.setColor(chat.color)
-        editGroupCell.backgroundColor = bg
-        editGroupCell.inputField.text = chat.name
-        editGroupCell.groupBadge.setText(chat.name)
-        return editGroupCell
-      } else {
-        let contactCell = ContactCell()
-        contactCell.backgroundColor = bg
-        contactCell.nameLabel.text = chat.name
-        contactCell.emailLabel.text = chat.subtitle
-        contactCell.darkMode = false
-        contactCell.selectionStyle = .none
-        if let img = chat.profileImage {
-          contactCell.setImage(img)
-        } else {
-          contactCell.setBackupImage(name: chat.name, color: chat.color)
-        }
-        contactCell.setVerified(isVerified: chat.isVerified)
-        return contactCell
-      }
-    } else {
+			let header = ContactDetailHeader()
+			header.updateDetails(title: chat.name, subtitle: chat.subtitle)
+			if let img = chat.profileImage {
+				header.setImage(img)
+			} else {
+				header.setBackupImage(name: chat.name, color: chat.color)
+			}
+			header.setVerified(isVerified: chat.isVerified)
+			return header
+		} else {
       return nil
     }
   }

@@ -65,11 +65,11 @@ class NewContactController: UITableViewController {
     nameCell.textField.returnKeyType = .done
 
     title = "New Contact"
-    doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(NewContactController.saveContactButtonPressed))
+    doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveContactButtonPressed))
     doneButton?.isEnabled = false
     navigationItem.rightBarButtonItem = doneButton
 
-    cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(NewContactController.cancelButtonPressed))
+    cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
     navigationItem.leftBarButtonItem = cancelButton
 
     emailCell.textField.addTarget(self, action: #selector(NewContactController.emailTextChanged), for: UIControl.Event.editingChanged)

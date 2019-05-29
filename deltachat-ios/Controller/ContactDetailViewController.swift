@@ -120,21 +120,15 @@ class ContactDetailViewController: UITableViewController {
 	}
 
 	override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		let bg = UIColor(red: 248 / 255, green: 248 / 255, blue: 255 / 255, alpha: 1.0)
 		if section == 0 {
-			let contactCell = ContactCell()
-			contactCell.backgroundColor = bg
-			contactCell.nameLabel.text = contact.name
-			contactCell.emailLabel.text = contact.email
-			contactCell.darkMode = false
-			contactCell.selectionStyle = .none
+			let header = ContactDetailHeader()
+			header.updateDetails(title: contact.name, subtitle: contact.email)
 			if let img = contact.profileImage {
-				contactCell.setImage(img)
+				header.setImage(img)
 			} else {
-				contactCell.setBackupImage(name: contact.name, color: contact.color)
+				header.setBackupImage(name: contact.name, color: contact.color)
 			}
-			contactCell.setVerified(isVerified: contact.isVerified)
-			return contactCell
+			header.setVerified(isVerified: contact.isVerified)
 		}
 		return nil
 	}
@@ -160,3 +154,4 @@ class ContactDetailViewController: UITableViewController {
 		coordinator?.showEditContact(contactId: contactId)
 	}
 }
+
