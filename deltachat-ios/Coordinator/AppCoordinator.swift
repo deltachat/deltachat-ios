@@ -129,6 +129,7 @@ class ContactListCoordinator: Coordinator {
 
 	func showContactDetail(contactId: Int) {
 		let contactDetailController = ContactDetailViewController(contactId: contactId)
+		contactDetailController.showChatCell = true 
 		let coordinator = ContactDetailCoordinator(navigationController: navigationController)
 		childCoordinators.append(coordinator)
 		contactDetailController.coordinator = coordinator
