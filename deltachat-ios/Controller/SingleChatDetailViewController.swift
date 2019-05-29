@@ -8,60 +8,7 @@
 
 import UIKit
 
-class ChatDetailViewController: UIViewController {
-  weak var coordinator: ChatDetailCoordinator?
-
-  fileprivate var chat: MRChat
-
-  var chatDetailTable: UITableView = {
-    let table = UITableView(frame: .zero, style: .grouped)
-    table.bounces = false
-    table.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
-    table.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
-    table.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
-
-    return table
-  }()
-
-  init(chatId: Int) {
-    chat = MRChat(id: chatId)
-    super.init(nibName: nil, bundle: nil)
-    setupSubviews()
-  }
-
-  override func viewWillAppear(_: Bool) {
-    chatDetailTable.reloadData() // to display updates
-  }
-
-  required init?(coder _: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-
-  private func setupSubviews() {
-    view.addSubview(chatDetailTable)
-    chatDetailTable.translatesAutoresizingMaskIntoConstraints = false
-
-    chatDetailTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-    chatDetailTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-    chatDetailTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    chatDetailTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-  }
-
-  @objc func editButtonPressed() {
-    // will be overwritten
-  }
-
-  func showNotificationSetup() {
-    let notificationSetupAlert = UIAlertController(title: "Notifications Setup is not implemented yet", message: "But you get an idea where this is going", preferredStyle: .actionSheet)
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-    notificationSetupAlert.addAction(cancelAction)
-    present(notificationSetupAlert, animated: true, completion: nil)
-  }
-}
-
-
-
-class GroupChatDetailViewController: ChatDetailViewController {
+class GroupChatDetailViewController: UIViewController {
   private var currentUser: MRContact? {
     return groupMembers.filter { $0.email == MRConfig.addr }.first
   }
@@ -69,6 +16,49 @@ class GroupChatDetailViewController: ChatDetailViewController {
   private let editGroupCell = GroupLabelCell()
 
   private var editingGroupName: Bool = false
+
+	weak var coordinator: ChatDetailCoordinator?
+
+	fileprivate var chat: MRChat
+
+	var chatDetailTable: UITableView = {
+		let table = UITableView(frame: .zero, style: .grouped)
+		table.bounces = false
+		table.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
+		table.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
+		table.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
+
+		return table
+	}()
+
+	init(chatId: Int) {
+		chat = MRChat(id: chatId)
+		super.init(nibName: nil, bundle: nil)
+		setupSubviews()
+	}
+
+	required init?(coder _: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
+	private func setupSubviews() {
+		view.addSubview(chatDetailTable)
+		chatDetailTable.translatesAutoresizingMaskIntoConstraints = false
+
+		chatDetailTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+		chatDetailTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+		chatDetailTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+		chatDetailTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+	}
+
+
+	private func showNotificationSetup() {
+		let notificationSetupAlert = UIAlertController(title: "Notifications Setup is not implemented yet", message: "But you get an idea where this is going", preferredStyle: .actionSheet)
+		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+		notificationSetupAlert.addAction(cancelAction)
+		present(notificationSetupAlert, animated: true, completion: nil)
+	}
+
 
   private lazy var editBarButtonItem: UIBarButtonItem = {
     UIBarButtonItem(title: editingGroupName ? "Done" : "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
@@ -86,8 +76,10 @@ class GroupChatDetailViewController: ChatDetailViewController {
     navigationItem.rightBarButtonItem = editBarButtonItem
   }
 
-  override func viewWillAppear(_: Bool) {
-    updateGroupMembers()
+  override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		chatDetailTable.reloadData() // to display updates
+		updateGroupMembers()
     editBarButtonItem.isEnabled = currentUser != nil
   }
 
@@ -97,7 +89,7 @@ class GroupChatDetailViewController: ChatDetailViewController {
     chatDetailTable.reloadData()
   }
 
-  @objc override func editButtonPressed() {
+  @objc func editButtonPressed() {
     if editingGroupName {
       let newName = editGroupCell.getGroupName()
       dc_set_chat_name(mailboxPointer, UInt32(chat.id), newName)
