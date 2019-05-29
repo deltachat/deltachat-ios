@@ -1,6 +1,0 @@
-[submodule "deltachat-ios/libraries/deltachat-core"]
-	path = deltachat-ios/libraries/deltachat-core
-	url = git@github.com:deltachat/deltachat-core.git
-[submodule "deltachat-ios/libraries/libetpan"]
-	path = deltachat-ios/libraries/libetpan
-	url = git@github.com:dinhviethoa/libetpan.git
