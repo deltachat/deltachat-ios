@@ -8,7 +8,44 @@
 
 import UIKit
 
+class EditContactController: NewContactController {
+
+	// for editing existing contacts (only
+	// the name may be edited, therefore disable
+	// the email field)
+	init(contactIdForUpdate: Int) {
+		super.init()
+		title = "Edit Contact"
+
+		let contact = MRContact(id: contactIdForUpdate)
+		nameCell.textField.text = contact.name
+		emailCell.textField.text = contact.email
+		emailCell.textField.isEnabled = false
+		emailCell.contentView.alpha = 0.3
+
+		model.name = contact.name
+		model.email = contact.email
+
+		if contactIsValid() {
+			doneButton?.isEnabled = true
+		}
+	}
+
+	required init?(coder _: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
+	@objc override func saveContactButtonPressed() {
+		dc_create_contact(mailboxPointer, model.name, model.email)
+		coordinator?.navigateBack()
+	}
+
+}
+
 class NewContactController: UITableViewController {
+
+	weak var coordinator: EditContactCoordinatorProtocol?
+
   let emailCell = TextFieldCell.makeEmailCell()
   let nameCell = TextFieldCell.makeNameCell()
   var doneButton: UIBarButtonItem?
@@ -30,26 +67,7 @@ class NewContactController: UITableViewController {
 
   let cells: [UITableViewCell]
 
-  // for editing existing contacts (only
-  // the name may be edited, therefore disable
-  // the email field)
-  convenience init(contactIdForUpdate: Int) {
-    self.init()
-    title = "Edit Contact"
 
-    let contact = MRContact(id: contactIdForUpdate)
-    nameCell.textField.text = contact.name
-    emailCell.textField.text = contact.email
-    emailCell.textField.isEnabled = false
-    emailCell.contentView.alpha = 0.3
-
-    model.name = contact.name
-    model.email = contact.email
-
-    if contactIsValid() {
-      doneButton?.isEnabled = true
-    }
-  }
 
   // for creating a new contact
   init() {
@@ -65,11 +83,11 @@ class NewContactController: UITableViewController {
     nameCell.textField.returnKeyType = .done
 
     title = "New Contact"
-    doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(NewContactController.saveContactButtonPressed))
+    doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveContactButtonPressed))
     doneButton?.isEnabled = false
     navigationItem.rightBarButtonItem = doneButton
 
-    cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(NewContactController.cancelButtonPressed))
+    cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
     navigationItem.leftBarButtonItem = cancelButton
 
     emailCell.textField.addTarget(self, action: #selector(NewContactController.emailTextChanged), for: UIControl.Event.editingChanged)
@@ -100,12 +118,13 @@ class NewContactController: UITableViewController {
   }
 
   @objc func saveContactButtonPressed() {
-    dc_create_contact(mailboxPointer, model.name, model.email)
-    navigationController?.popViewController(animated: true)
-  }
+		let contactId = dc_create_contact(mailboxPointer, model.name, model.email)
+		let chatId = Int(dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId)))
+		coordinator?.showChat(chatId: chatId)
+	}
 
   @objc func cancelButtonPressed() {
-    navigationController?.popViewController(animated: true)
+		coordinator?.navigateBack()
   }
 
   required init?(coder _: NSCoder) {

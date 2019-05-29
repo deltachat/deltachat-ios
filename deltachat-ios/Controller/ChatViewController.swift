@@ -45,7 +45,6 @@ class ChatViewController: MessagesViewController {
 		return messageInputBar
 	}
 
-
 	init(chatId: Int, title: String? = nil) {
 		self.chatId = chatId
 		super.init(nibName: nil, bundle: nil)
@@ -387,11 +386,7 @@ class ChatViewController: MessagesViewController {
 		}
 	}
 
-	/*
-	let rightItems = [
-	let sendButtonImage = UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)
-	]
-	*/
+
 	@objc private func chatProfilePressed() {
 		coordinator?.showChatDetail(chatId: chatId)
 	}

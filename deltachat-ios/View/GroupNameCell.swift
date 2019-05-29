@@ -11,7 +11,7 @@ import UIKit
 class GroupLabelCell: UITableViewCell {
   var groupBadgeSize: CGFloat = 54
 
-  var groupNameUpdated: ((String) -> Void)? // use this callback to update editButton in navigationController
+  var onTextChanged: ((String) -> Void)? // use this callback to update editButton in navigationController
 
   lazy var groupBadge: InitialsBadge = {
     let badge = InitialsBadge(frame: .zero)
@@ -62,7 +62,7 @@ class GroupLabelCell: UITableViewCell {
   @objc func nameFieldChanged() {
     let groupName = inputField.text ?? ""
     groupBadge.setText(groupName)
-    groupNameUpdated?(groupName)
+    onTextChanged?(groupName)
   }
 
   func getGroupName() -> String {

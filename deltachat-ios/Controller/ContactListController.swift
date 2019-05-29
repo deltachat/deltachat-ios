@@ -87,6 +87,23 @@ class ContactListController: UITableViewController {
 
   override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
     let contactId = contactIds[indexPath.row]
-    coordinator?.showContactDetail(contactId: contactId)
+		let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+
+		coordinator?.showChat(chatId: Int(chatId))
+		// coordinator?.showContactDetail(contactId: contactId)
   }
+
+	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+		let row = indexPath.row
+
+		let contactId = contactIds[row]
+
+		// assigning swipe by delete to chats
+		let edit = UITableViewRowAction(style: .default, title: "Edit") {
+			[unowned self] _, indexPath in
+			self.coordinator?.showContactDetail(contactId: contactId)
+		}
+		edit.backgroundColor = DCColors.primary
+		return [edit]
+	}
 }
