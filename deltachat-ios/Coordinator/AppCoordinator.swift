@@ -374,6 +374,7 @@ class ChatViewCoordinator: Coordinator {
 
 	func showContactDetail(of contactId: Int) {
 		let contactDetailController = ContactDetailViewController(contactId: contactId)
+		contactDetailController.showChatCell = true
 		//let nav = UINavigationController(rootViewController: contactDetailController)
 		let coordinator = ContactDetailCoordinator(navigationController: navigationController)
 		childCoordinators.append(coordinator)
