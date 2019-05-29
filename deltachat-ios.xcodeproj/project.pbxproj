@@ -8,62 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		6795F63A82E94FF7CD2CEC0F /* Pods_deltachat_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */; };
-		7070FB4020FF3421000DC258 /* dc_chat.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3E20FF3420000DC258 /* dc_chat.c */; };
-		7070FB4120FF3421000DC258 /* dc_smtp.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB3F20FF3421000DC258 /* dc_smtp.c */; };
-		7070FB5D20FF345F000DC258 /* dc_mimefactory.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4220FF345B000DC258 /* dc_mimefactory.c */; };
-		7070FB5E20FF345F000DC258 /* dc_token.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4320FF345B000DC258 /* dc_token.c */; };
-		7070FB5F20FF345F000DC258 /* dc_tools.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4420FF345B000DC258 /* dc_tools.c */; };
-		7070FB6020FF345F000DC258 /* dc_hash.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4520FF345B000DC258 /* dc_hash.c */; };
-		7070FB6120FF345F000DC258 /* dc_securejoin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4620FF345B000DC258 /* dc_securejoin.c */; };
-		7070FB6220FF345F000DC258 /* dc_configure.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4720FF345B000DC258 /* dc_configure.c */; };
-		7070FB6320FF345F000DC258 /* dc_context.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4820FF345B000DC258 /* dc_context.c */; };
-		7070FB6420FF345F000DC258 /* dc_dehtml.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4920FF345B000DC258 /* dc_dehtml.c */; };
-		7070FB6520FF345F000DC258 /* dc_chatlist.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4A20FF345C000DC258 /* dc_chatlist.c */; };
-		7070FB6620FF345F000DC258 /* dc_param.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4B20FF345C000DC258 /* dc_param.c */; };
-		7070FB6720FF345F000DC258 /* dc_simplify.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4C20FF345C000DC258 /* dc_simplify.c */; };
-		7070FB6820FF345F000DC258 /* dc_array.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4D20FF345C000DC258 /* dc_array.c */; };
-		7070FB6920FF345F000DC258 /* dc_mimeparser.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4E20FF345C000DC258 /* dc_mimeparser.c */; };
-		7070FB6A20FF345F000DC258 /* dc_saxparser.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB4F20FF345C000DC258 /* dc_saxparser.c */; };
-		7070FB6B20FF345F000DC258 /* dc_job.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB5020FF345C000DC258 /* dc_job.c */; };
-		7070FB6C20FF345F000DC258 /* dc_keyring.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB5120FF345D000DC258 /* dc_keyring.c */; };
-		7070FB6D20FF345F000DC258 /* dc_imex.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB5220FF345D000DC258 /* dc_imex.c */; };
-		7070FB6E20FF345F000DC258 /* dc_openssl.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB5320FF345D000DC258 /* dc_openssl.c */; };
-		7070FB7020FF345F000DC258 /* dc_lot.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB5520FF345D000DC258 /* dc_lot.c */; };
-		7070FB7120FF345F000DC258 /* dc_receive_imf.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB5620FF345D000DC258 /* dc_receive_imf.c */; };
-		7070FB7220FF345F000DC258 /* dc_key.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB5720FF345E000DC258 /* dc_key.c */; };
-		7070FB7320FF345F000DC258 /* dc_aheader.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB5820FF345E000DC258 /* dc_aheader.c */; };
-		7070FB7420FF345F000DC258 /* dc_e2ee.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB5920FF345E000DC258 /* dc_e2ee.c */; };
-		7070FB7520FF345F000DC258 /* dc_strbuilder.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB5A20FF345E000DC258 /* dc_strbuilder.c */; };
-		7070FB7620FF345F000DC258 /* dc_pgp.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB5B20FF345E000DC258 /* dc_pgp.c */; };
-		7070FB7720FF345F000DC258 /* dc_qr.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB5C20FF345F000DC258 /* dc_qr.c */; };
-		7070FB8A20FF4118000DC258 /* dc_log.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8020FF4115000DC258 /* dc_log.c */; };
-		7070FB8B20FF4118000DC258 /* dc_keyhistory.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8120FF4116000DC258 /* dc_keyhistory.c */; };
-		7070FB8C20FF4118000DC258 /* dc_contact.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8220FF4116000DC258 /* dc_contact.c */; };
-		7070FB8D20FF4118000DC258 /* dc_sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8320FF4116000DC258 /* dc_sqlite3.c */; };
-		7070FB8E20FF4118000DC258 /* dc_apeerstate.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8420FF4116000DC258 /* dc_apeerstate.c */; };
-		7070FB8F20FF4118000DC258 /* dc_loginparam.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8520FF4117000DC258 /* dc_loginparam.c */; };
-		7070FB9020FF4118000DC258 /* dc_stock.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8620FF4117000DC258 /* dc_stock.c */; };
-		7070FB9120FF4118000DC258 /* dc_strencode.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8720FF4117000DC258 /* dc_strencode.c */; };
-		7070FB9220FF4118000DC258 /* dc_imap.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8820FF4118000DC258 /* dc_imap.c */; };
-		7070FB9320FF4118000DC258 /* dc_msg.c in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB8920FF4118000DC258 /* dc_msg.c */; };
 		7070FB9B2101ECBB000DC258 /* GroupNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* GroupNameController.swift */; };
 		7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactDetailViewController.swift */; };
 		70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */; };
 		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
-		78113B71224400F300BCA958 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78113B6F224400F300BCA958 /* libssl.a */; };
-		78113B72224400F300BCA958 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78113B70224400F300BCA958 /* libcrypto.a */; };
-		782A85BE22439F410056249E /* dc_oauth2.c in Sources */ = {isa = PBXBuildFile; fileRef = 782A85B822439F410056249E /* dc_oauth2.c */; };
-		782A85C022439F6A0056249E /* dc_jsmn.c in Sources */ = {isa = PBXBuildFile; fileRef = 782A85BF22439F6A0056249E /* dc_jsmn.c */; };
 		7837B64021E54DC600CDE126 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7837B63F21E54DC600CDE126 /* .swiftlint.yml */; };
-		784C84EA224502FA0068BF48 /* librpgp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 784C84E82244FE0B0068BF48 /* librpgp.a */; };
 		785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BE16721E247F1003BE98C /* MessageInfoViewController.swift */; };
+		787D669A229F2237000A7A9D /* libdeltachat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 787D6699229F2237000A7A9D /* libdeltachat.a */; };
 		789E879621D6CB58003ED1C5 /* QrCodeReaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */; };
 		789E879D21D6DF86003ED1C5 /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E879C21D6DF86003ED1C5 /* ProgressHud.swift */; };
-		78B44173224F796700CE263C /* dc_location.c in Sources */ = {isa = PBXBuildFile; fileRef = 78B4416D224F796600CE263C /* dc_location.c */; };
-		78E45E2921D176C400D4B15E /* dc_jobthread.h in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2821D176C300D4B15E /* dc_jobthread.h */; };
-		78E45E2B21D176FB00D4B15E /* dc_jobthread.c in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2A21D176FB00D4B15E /* dc_jobthread.c */; };
-		78E45E2F21D1774200D4B15E /* dc_context.h in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2D21D1774200D4B15E /* dc_context.h */; };
-		78E45E3021D1774200D4B15E /* dc_move.c in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E2E21D1774200D4B15E /* dc_move.c */; };
 		78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3921D3CFBC00D4B15E /* SettingsController.swift */; };
 		78E45E3C21D3D03700D4B15E /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */; };
 		78E45E3E21D3D28C00D4B15E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3D21D3D28C00D4B15E /* NavigationController.swift */; };
@@ -77,10 +30,8 @@
 		78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED839321D5AF8A00243125 /* QrCodeView.swift */; };
 		7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0052C71FBE6CB40048C3BF /* NewContactController.swift */; };
 		7A451D941FB1B1DB00177250 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A451D921FB1B1DB00177250 /* wrapper.c */; };
-		7A451DAE1FB1F5A200177250 /* libetpan-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A451DA71FB1F4BF00177250 /* libetpan-ios.a */; };
 		7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A451DAF1FB1F84900177250 /* AppCoordinator.swift */; };
 		7A451DBE1FB4AD0700177250 /* Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A451DBD1FB4AD0700177250 /* Wrapper.swift */; };
-		7A7923401FB0A14300BC2DE5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A79233F1FB0A14300BC2DE5 /* libiconv.tbd */; };
 		7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */; };
 		7A9FB14B1FB061E2001FEA36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
 		7A9FB14E1FB061E2001FEA36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */; };
@@ -116,27 +67,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7A451DA21FB1F4BF00177250 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7A451D9A1FB1F4BF00177250 /* libetpan.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
-			remoteInfo = libetpan;
-		};
-		7A451DA41FB1F4BF00177250 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7A451D9A1FB1F4BF00177250 /* libetpan.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C69AB10A10546FE500F32FBD;
-			remoteInfo = "static libetpan";
-		};
-		7A451DA61FB1F4BF00177250 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7A451D9A1FB1F4BF00177250 /* libetpan.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C682E2C015B315EF00BE9DA7;
-			remoteInfo = "libetpan ios";
-		};
 		AE851A06227AECDF00ED86F0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
@@ -150,77 +80,17 @@
 		21EE28844E7A690D73BF5285 /* Pods-deltachat-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7070FB3E20FF3420000DC258 /* dc_chat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_chat.c; sourceTree = "<group>"; };
-		7070FB3F20FF3421000DC258 /* dc_smtp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_smtp.c; sourceTree = "<group>"; };
-		7070FB4220FF345B000DC258 /* dc_mimefactory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_mimefactory.c; sourceTree = "<group>"; };
-		7070FB4320FF345B000DC258 /* dc_token.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_token.c; sourceTree = "<group>"; };
-		7070FB4420FF345B000DC258 /* dc_tools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_tools.c; sourceTree = "<group>"; };
-		7070FB4520FF345B000DC258 /* dc_hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_hash.c; sourceTree = "<group>"; };
-		7070FB4620FF345B000DC258 /* dc_securejoin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_securejoin.c; sourceTree = "<group>"; };
-		7070FB4720FF345B000DC258 /* dc_configure.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_configure.c; sourceTree = "<group>"; };
-		7070FB4820FF345B000DC258 /* dc_context.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_context.c; sourceTree = "<group>"; };
-		7070FB4920FF345B000DC258 /* dc_dehtml.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_dehtml.c; sourceTree = "<group>"; };
-		7070FB4A20FF345C000DC258 /* dc_chatlist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_chatlist.c; sourceTree = "<group>"; };
-		7070FB4B20FF345C000DC258 /* dc_param.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_param.c; sourceTree = "<group>"; };
-		7070FB4C20FF345C000DC258 /* dc_simplify.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_simplify.c; sourceTree = "<group>"; };
-		7070FB4D20FF345C000DC258 /* dc_array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_array.c; sourceTree = "<group>"; };
-		7070FB4E20FF345C000DC258 /* dc_mimeparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_mimeparser.c; sourceTree = "<group>"; };
-		7070FB4F20FF345C000DC258 /* dc_saxparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_saxparser.c; sourceTree = "<group>"; };
-		7070FB5020FF345C000DC258 /* dc_job.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_job.c; sourceTree = "<group>"; };
-		7070FB5120FF345D000DC258 /* dc_keyring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_keyring.c; sourceTree = "<group>"; };
-		7070FB5220FF345D000DC258 /* dc_imex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_imex.c; sourceTree = "<group>"; };
-		7070FB5320FF345D000DC258 /* dc_openssl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_openssl.c; sourceTree = "<group>"; };
-		7070FB5420FF345D000DC258 /* dc_uudecode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_uudecode.c; sourceTree = "<group>"; };
-		7070FB5520FF345D000DC258 /* dc_lot.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_lot.c; sourceTree = "<group>"; };
-		7070FB5620FF345D000DC258 /* dc_receive_imf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_receive_imf.c; sourceTree = "<group>"; };
-		7070FB5720FF345E000DC258 /* dc_key.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_key.c; sourceTree = "<group>"; };
-		7070FB5820FF345E000DC258 /* dc_aheader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_aheader.c; sourceTree = "<group>"; };
-		7070FB5920FF345E000DC258 /* dc_e2ee.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_e2ee.c; sourceTree = "<group>"; };
-		7070FB5A20FF345E000DC258 /* dc_strbuilder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_strbuilder.c; sourceTree = "<group>"; };
-		7070FB5B20FF345E000DC258 /* dc_pgp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_pgp.c; sourceTree = "<group>"; };
-		7070FB5C20FF345F000DC258 /* dc_qr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_qr.c; sourceTree = "<group>"; };
-		7070FB7820FF353E000DC258 /* deltachat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deltachat.h; sourceTree = "<group>"; };
-		7070FB7920FF36D8000DC258 /* dc_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dc_context.h; sourceTree = "<group>"; };
-		7070FB7A20FF3815000DC258 /* dc_chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dc_chat.h; sourceTree = "<group>"; };
-		7070FB7B20FF3815000DC258 /* dc_contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dc_contact.h; sourceTree = "<group>"; };
-		7070FB7C20FF3815000DC258 /* dc_chatlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dc_chatlist.h; sourceTree = "<group>"; };
-		7070FB7D20FF3815000DC258 /* dc_lot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dc_lot.h; sourceTree = "<group>"; };
-		7070FB7E20FF3833000DC258 /* dc_msg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dc_msg.h; sourceTree = "<group>"; };
-		7070FB7F20FF388B000DC258 /* dc_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dc_array.h; sourceTree = "<group>"; };
-		7070FB8020FF4115000DC258 /* dc_log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_log.c; sourceTree = "<group>"; };
-		7070FB8120FF4116000DC258 /* dc_keyhistory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_keyhistory.c; sourceTree = "<group>"; };
-		7070FB8220FF4116000DC258 /* dc_contact.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_contact.c; sourceTree = "<group>"; };
-		7070FB8320FF4116000DC258 /* dc_sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_sqlite3.c; sourceTree = "<group>"; };
-		7070FB8420FF4116000DC258 /* dc_apeerstate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_apeerstate.c; sourceTree = "<group>"; };
-		7070FB8520FF4117000DC258 /* dc_loginparam.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_loginparam.c; sourceTree = "<group>"; };
-		7070FB8620FF4117000DC258 /* dc_stock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_stock.c; sourceTree = "<group>"; };
-		7070FB8720FF4117000DC258 /* dc_strencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_strencode.c; sourceTree = "<group>"; };
-		7070FB8820FF4118000DC258 /* dc_imap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_imap.c; sourceTree = "<group>"; };
-		7070FB8920FF4118000DC258 /* dc_msg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dc_msg.c; sourceTree = "<group>"; };
 		7070FB9A2101ECBB000DC258 /* GroupNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNameController.swift; sourceTree = "<group>"; };
 		7092474020B3869500AF8799 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
 		70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupMemberChoiceController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
-		78113B6F224400F300BCA958 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "deltachat-ios/libraries/openssl/lib/libssl.a"; sourceTree = "<group>"; };
-		78113B70224400F300BCA958 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "deltachat-ios/libraries/openssl/lib/libcrypto.a"; sourceTree = "<group>"; };
-		782A85B822439F410056249E /* dc_oauth2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_oauth2.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_oauth2.c"; sourceTree = "<group>"; };
-		782A85BF22439F6A0056249E /* dc_jsmn.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_jsmn.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_jsmn.c"; sourceTree = "<group>"; };
 		7837B63F21E54DC600CDE126 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
-		784C84E22244F89A0068BF48 /* libpgp_ffi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpgp_ffi.dylib; path = ../rpgp/target/release/libpgp_ffi.dylib; sourceTree = "<group>"; };
-		784C84E42244F8BF0068BF48 /* libpgp_ffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpgp_ffi.a; path = ../rpgp/target/release/libpgp_ffi.a; sourceTree = "<group>"; };
-		784C84E62244FBAB0068BF48 /* librpgp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = librpgp.dylib; path = "../rpgp/pgp-ffi/librpgp.dylib"; sourceTree = "<group>"; };
-		784C84E82244FE0B0068BF48 /* librpgp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librpgp.a; path = "deltachat-ios/libraries/rpgp/librpgp.a"; sourceTree = "<group>"; };
 		785BE16721E247F1003BE98C /* MessageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfoViewController.swift; sourceTree = "<group>"; };
+		787D6699229F2237000A7A9D /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "deltachat-ios/libraries/deltachat-core-rust/target/universal/debug/libdeltachat.a"; sourceTree = "<group>"; };
 		789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeReaderController.swift; sourceTree = "<group>"; };
 		789E879C21D6DF86003ED1C5 /* ProgressHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHud.swift; sourceTree = "<group>"; };
-		78B4416D224F796600CE263C /* dc_location.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_location.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_location.c"; sourceTree = "<group>"; };
 		78C7036A21D46752005D4525 /* deltachat-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "deltachat-ios.entitlements"; sourceTree = "<group>"; };
 		78E45E2121D1768900D4B15E /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = "deltachat-ios/libraries/deltachat-core/src"; sourceTree = "<group>"; };
-		78E45E2821D176C300D4B15E /* dc_jobthread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dc_jobthread.h; path = "deltachat-ios/libraries/deltachat-core/src/dc_jobthread.h"; sourceTree = "<group>"; };
-		78E45E2A21D176FB00D4B15E /* dc_jobthread.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_jobthread.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_jobthread.c"; sourceTree = "<group>"; };
-		78E45E2C21D1774200D4B15E /* dc_context.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_context.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_context.c"; sourceTree = "<group>"; };
-		78E45E2D21D1774200D4B15E /* dc_context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dc_context.h; path = "deltachat-ios/libraries/deltachat-core/src/dc_context.h"; sourceTree = "<group>"; };
-		78E45E2E21D1774200D4B15E /* dc_move.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dc_move.c; path = "deltachat-ios/libraries/deltachat-core/src/dc_move.c"; sourceTree = "<group>"; };
 		78E45E3921D3CFBC00D4B15E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		78E45E3D21D3D28C00D4B15E /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -235,53 +105,14 @@
 		7A0052C71FBE6CB40048C3BF /* NewContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactController.swift; sourceTree = "<group>"; };
 		7A451D921FB1B1DB00177250 /* wrapper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wrapper.c; sourceTree = "<group>"; };
 		7A451D931FB1B1DB00177250 /* wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wrapper.h; sourceTree = "<group>"; };
-		7A451D9A1FB1F4BF00177250 /* libetpan.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libetpan.xcodeproj; path = "deltachat-ios/libraries/libetpan/build-mac/libetpan.xcodeproj"; sourceTree = "<group>"; };
 		7A451DAF1FB1F84900177250 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		7A451DBD1FB4AD0700177250 /* Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wrapper.swift; sourceTree = "<group>"; };
-		7A79233F1FB0A14300BC2DE5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
-		7A7923451FB0A2C800BC2DE5 /* config-netpgp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-netpgp.h"; sourceTree = "<group>"; };
-		7A7923461FB0A2C800BC2DE5 /* config-original-as-configured-for-ubuntu-16.04-64bit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-original-as-configured-for-ubuntu-16.04-64bit.h"; sourceTree = "<group>"; };
-		7A7923471FB0A2C800BC2DE5 /* config-pep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "config-pep.h"; sourceTree = "<group>"; };
-		7A7923481FB0A2C800BC2DE5 /* create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = create.h; sourceTree = "<group>"; };
-		7A7923491FB0A2C800BC2DE5 /* crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto.h; sourceTree = "<group>"; };
-		7A79234A1FB0A2C800BC2DE5 /* defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = defs.h; sourceTree = "<group>"; };
-		7A79234B1FB0A2C800BC2DE5 /* errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = errors.h; sourceTree = "<group>"; };
-		7A79234C1FB0A2C800BC2DE5 /* keyring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyring.h; sourceTree = "<group>"; };
-		7A79234D1FB0A2C800BC2DE5 /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory.h; sourceTree = "<group>"; };
-		7A79234E1FB0A2C800BC2DE5 /* netpgpdefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = netpgpdefs.h; sourceTree = "<group>"; };
-		7A79234F1FB0A2C800BC2DE5 /* netpgpdigest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = netpgpdigest.h; sourceTree = "<group>"; };
-		7A7923501FB0A2C800BC2DE5 /* netpgpsdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = netpgpsdk.h; sourceTree = "<group>"; };
-		7A7923511FB0A2C800BC2DE5 /* openssl11stub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openssl11stub.h; sourceTree = "<group>"; };
-		7A7923521FB0A2C800BC2DE5 /* packet-parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "packet-parse.h"; sourceTree = "<group>"; };
-		7A7923531FB0A2C800BC2DE5 /* packet-show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "packet-show.h"; sourceTree = "<group>"; };
-		7A7923541FB0A2C800BC2DE5 /* packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packet.h; sourceTree = "<group>"; };
-		7A7923551FB0A2C800BC2DE5 /* readerwriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = readerwriter.h; sourceTree = "<group>"; };
-		7A7923561FB0A2C800BC2DE5 /* signature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signature.h; sourceTree = "<group>"; };
-		7A7923571FB0A2C800BC2DE5 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
-		7A7923581FB0A2C800BC2DE5 /* validate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = validate.h; sourceTree = "<group>"; };
-		7A7923591FB0A2C800BC2DE5 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
-		7A79235A1FB0A2C800BC2DE5 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
-		7A79235B1FB0A2C800BC2DE5 /* netpgp-extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "netpgp-extra.h"; sourceTree = "<group>"; };
-		7A79235D1FB0A2C800BC2DE5 /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compress.c; sourceTree = "<group>"; };
-		7A79235E1FB0A2C800BC2DE5 /* create.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = create.c; sourceTree = "<group>"; };
-		7A79235F1FB0A2C800BC2DE5 /* crypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypto.c; sourceTree = "<group>"; };
-		7A7923601FB0A2C800BC2DE5 /* keyring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = keyring.c; sourceTree = "<group>"; };
-		7A7923611FB0A2C800BC2DE5 /* misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = misc.c; sourceTree = "<group>"; };
-		7A7923621FB0A2C800BC2DE5 /* openssl_crypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = openssl_crypto.c; sourceTree = "<group>"; };
-		7A7923631FB0A2C800BC2DE5 /* packet-parse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "packet-parse.c"; sourceTree = "<group>"; };
-		7A7923641FB0A2C800BC2DE5 /* packet-show.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "packet-show.c"; sourceTree = "<group>"; };
-		7A7923651FB0A2C800BC2DE5 /* reader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = reader.c; sourceTree = "<group>"; };
-		7A7923661FB0A2C800BC2DE5 /* signature.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = signature.c; sourceTree = "<group>"; };
-		7A7923671FB0A2C800BC2DE5 /* symmetric.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = symmetric.c; sourceTree = "<group>"; };
-		7A7923681FB0A2C800BC2DE5 /* validate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = validate.c; sourceTree = "<group>"; };
-		7A7923691FB0A2C800BC2DE5 /* writer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = writer.c; sourceTree = "<group>"; };
 		7A9FB1401FB061E2001FEA36 /* deltachat-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "deltachat-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A9FB14D1FB061E2001FEA36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A9FB14F1FB061E2001FEA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A9FB1561FB06540001FEA36 /* deltachat-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "deltachat-ios-Bridging-Header.h"; sourceTree = "<group>"; };
-		7ABE47E321617ACF002F5A67 /* dc_loginparam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dc_loginparam.h; sourceTree = "<group>"; };
 		7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		8DE110C607A0E4485C43B5FA /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -303,7 +134,6 @@
 		AE851AC8227C77CF00ED86F0 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		AE851ACD227CA54300ED86F0 /* InitialsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsLabel.swift; sourceTree = "<group>"; };
 		AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatDetailViewController.swift; sourceTree = "<group>"; };
-		AEA9CC2F22522DA20061D113 /* librpgp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = librpgp.h; sourceTree = "<group>"; };
 		AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		AEACE2DE1FB3246400DCDD78 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -323,11 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				784C84EA224502FA0068BF48 /* librpgp.a in Frameworks */,
-				78113B71224400F300BCA958 /* libssl.a in Frameworks */,
-				78113B72224400F300BCA958 /* libcrypto.a in Frameworks */,
-				7A451DAE1FB1F5A200177250 /* libetpan-ios.a in Frameworks */,
-				7A7923401FB0A14300BC2DE5 /* libiconv.tbd in Frameworks */,
+				787D669A229F2237000A7A9D /* libdeltachat.a in Frameworks */,
 				8B6D425BC604F7C43B65D436 /* Pods_deltachat_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,106 +169,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7A451D9B1FB1F4BF00177250 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7A451DA31FB1F4BF00177250 /* libetpan.framework */,
-				7A451DA51FB1F4BF00177250 /* libetpan.a */,
-				7A451DA71FB1F4BF00177250 /* libetpan-ios.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		7A7923411FB0A2B800BC2DE5 /* libs */ = {
-			isa = PBXGroup;
-			children = (
-				7A7923421FB0A2C800BC2DE5 /* netpgp */,
-			);
-			name = libs;
-			sourceTree = "<group>";
-		};
-		7A7923421FB0A2C800BC2DE5 /* netpgp */ = {
-			isa = PBXGroup;
-			children = (
-				7A7923431FB0A2C800BC2DE5 /* include */,
-				7A79235C1FB0A2C800BC2DE5 /* src */,
-			);
-			name = netpgp;
-			path = "libraries/deltachat-core/libs/netpgp";
-			sourceTree = "<group>";
-		};
-		7A7923431FB0A2C800BC2DE5 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				7A7923441FB0A2C800BC2DE5 /* netpgp */,
-				7A79235B1FB0A2C800BC2DE5 /* netpgp-extra.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		7A7923441FB0A2C800BC2DE5 /* netpgp */ = {
-			isa = PBXGroup;
-			children = (
-				7A7923451FB0A2C800BC2DE5 /* config-netpgp.h */,
-				7A7923461FB0A2C800BC2DE5 /* config-original-as-configured-for-ubuntu-16.04-64bit.h */,
-				7A7923471FB0A2C800BC2DE5 /* config-pep.h */,
-				7A7923481FB0A2C800BC2DE5 /* create.h */,
-				7A7923491FB0A2C800BC2DE5 /* crypto.h */,
-				7A79234A1FB0A2C800BC2DE5 /* defs.h */,
-				7A79234B1FB0A2C800BC2DE5 /* errors.h */,
-				7A79234C1FB0A2C800BC2DE5 /* keyring.h */,
-				7A79234D1FB0A2C800BC2DE5 /* memory.h */,
-				7A79234E1FB0A2C800BC2DE5 /* netpgpdefs.h */,
-				7A79234F1FB0A2C800BC2DE5 /* netpgpdigest.h */,
-				7A7923501FB0A2C800BC2DE5 /* netpgpsdk.h */,
-				7A7923511FB0A2C800BC2DE5 /* openssl11stub.h */,
-				7A7923521FB0A2C800BC2DE5 /* packet-parse.h */,
-				7A7923531FB0A2C800BC2DE5 /* packet-show.h */,
-				7A7923541FB0A2C800BC2DE5 /* packet.h */,
-				7A7923551FB0A2C800BC2DE5 /* readerwriter.h */,
-				7A7923561FB0A2C800BC2DE5 /* signature.h */,
-				7A7923571FB0A2C800BC2DE5 /* types.h */,
-				7A7923581FB0A2C800BC2DE5 /* validate.h */,
-				7A7923591FB0A2C800BC2DE5 /* version.h */,
-				7A79235A1FB0A2C800BC2DE5 /* writer.h */,
-			);
-			path = netpgp;
-			sourceTree = "<group>";
-		};
-		7A79235C1FB0A2C800BC2DE5 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				7A79235D1FB0A2C800BC2DE5 /* compress.c */,
-				7A79235E1FB0A2C800BC2DE5 /* create.c */,
-				7A79235F1FB0A2C800BC2DE5 /* crypto.c */,
-				7A7923601FB0A2C800BC2DE5 /* keyring.c */,
-				7A7923611FB0A2C800BC2DE5 /* misc.c */,
-				7A7923621FB0A2C800BC2DE5 /* openssl_crypto.c */,
-				7A7923631FB0A2C800BC2DE5 /* packet-parse.c */,
-				7A7923641FB0A2C800BC2DE5 /* packet-show.c */,
-				7A7923651FB0A2C800BC2DE5 /* reader.c */,
-				7A7923661FB0A2C800BC2DE5 /* signature.c */,
-				7A7923671FB0A2C800BC2DE5 /* symmetric.c */,
-				7A7923681FB0A2C800BC2DE5 /* validate.c */,
-				7A7923691FB0A2C800BC2DE5 /* writer.c */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
 		7A9FB1371FB061E2001FEA36 = {
 			isa = PBXGroup;
 			children = (
-				78B4416D224F796600CE263C /* dc_location.c */,
-				782A85BF22439F6A0056249E /* dc_jsmn.c */,
-				782A85B822439F410056249E /* dc_oauth2.c */,
 				7837B63F21E54DC600CDE126 /* .swiftlint.yml */,
-				78E45E2C21D1774200D4B15E /* dc_context.c */,
-				78E45E2D21D1774200D4B15E /* dc_context.h */,
-				78E45E2E21D1774200D4B15E /* dc_move.c */,
-				78E45E2A21D176FB00D4B15E /* dc_jobthread.c */,
-				78E45E2821D176C300D4B15E /* dc_jobthread.h */,
 				78E45E2121D1768900D4B15E /* src */,
-				7A451D9A1FB1F4BF00177250 /* libetpan.xcodeproj */,
 				7A9FB1421FB061E2001FEA36 /* deltachat-ios */,
 				AE851A02227AECDE00ED86F0 /* deltachat-iosTests */,
 				7A9FB1411FB061E2001FEA36 /* Products */,
@@ -487,8 +218,6 @@
 		7A9FB15B1FB07364001FEA36 /* libraries */ = {
 			isa = PBXGroup;
 			children = (
-				7A7923411FB0A2B800BC2DE5 /* libs */,
-				7A9FB4FA1FB08557001FEA36 /* src */,
 			);
 			name = libraries;
 			sourceTree = "<group>";
@@ -496,74 +225,11 @@
 		7A9FB4F81FB084E6001FEA36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				784C84E82244FE0B0068BF48 /* librpgp.a */,
-				784C84E62244FBAB0068BF48 /* librpgp.dylib */,
-				784C84E42244F8BF0068BF48 /* libpgp_ffi.a */,
-				784C84E22244F89A0068BF48 /* libpgp_ffi.dylib */,
-				78113B70224400F300BCA958 /* libcrypto.a */,
-				78113B6F224400F300BCA958 /* libssl.a */,
-				7A79233F1FB0A14300BC2DE5 /* libiconv.tbd */,
+				787D6699229F2237000A7A9D /* libdeltachat.a */,
 				6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */,
 				2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		7A9FB4FA1FB08557001FEA36 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				7070FB5820FF345E000DC258 /* dc_aheader.c */,
-				7070FB7F20FF388B000DC258 /* dc_array.h */,
-				7070FB7A20FF3815000DC258 /* dc_chat.h */,
-				7070FB7C20FF3815000DC258 /* dc_chatlist.h */,
-				7070FB7E20FF3833000DC258 /* dc_msg.h */,
-				7070FB7B20FF3815000DC258 /* dc_contact.h */,
-				7070FB7D20FF3815000DC258 /* dc_lot.h */,
-				7ABE47E321617ACF002F5A67 /* dc_loginparam.h */,
-				7070FB7820FF353E000DC258 /* deltachat.h */,
-				7070FB4D20FF345C000DC258 /* dc_array.c */,
-				7070FB4A20FF345C000DC258 /* dc_chatlist.c */,
-				7070FB7920FF36D8000DC258 /* dc_context.h */,
-				7070FB8420FF4116000DC258 /* dc_apeerstate.c */,
-				7070FB8220FF4116000DC258 /* dc_contact.c */,
-				7070FB8820FF4118000DC258 /* dc_imap.c */,
-				7070FB8120FF4116000DC258 /* dc_keyhistory.c */,
-				7070FB8020FF4115000DC258 /* dc_log.c */,
-				7070FB8520FF4117000DC258 /* dc_loginparam.c */,
-				7070FB8920FF4118000DC258 /* dc_msg.c */,
-				7070FB8320FF4116000DC258 /* dc_sqlite3.c */,
-				7070FB8620FF4117000DC258 /* dc_stock.c */,
-				7070FB8720FF4117000DC258 /* dc_strencode.c */,
-				7070FB4720FF345B000DC258 /* dc_configure.c */,
-				7070FB4820FF345B000DC258 /* dc_context.c */,
-				7070FB4920FF345B000DC258 /* dc_dehtml.c */,
-				7070FB5920FF345E000DC258 /* dc_e2ee.c */,
-				7070FB4520FF345B000DC258 /* dc_hash.c */,
-				AEA9CC2F22522DA20061D113 /* librpgp.h */,
-				7070FB5220FF345D000DC258 /* dc_imex.c */,
-				7070FB5020FF345C000DC258 /* dc_job.c */,
-				7070FB5720FF345E000DC258 /* dc_key.c */,
-				7070FB5120FF345D000DC258 /* dc_keyring.c */,
-				7070FB5520FF345D000DC258 /* dc_lot.c */,
-				7070FB4220FF345B000DC258 /* dc_mimefactory.c */,
-				7070FB4E20FF345C000DC258 /* dc_mimeparser.c */,
-				7070FB5320FF345D000DC258 /* dc_openssl.c */,
-				7070FB4B20FF345C000DC258 /* dc_param.c */,
-				7070FB5B20FF345E000DC258 /* dc_pgp.c */,
-				7070FB5C20FF345F000DC258 /* dc_qr.c */,
-				7070FB5620FF345D000DC258 /* dc_receive_imf.c */,
-				7070FB4F20FF345C000DC258 /* dc_saxparser.c */,
-				7070FB4620FF345B000DC258 /* dc_securejoin.c */,
-				7070FB4C20FF345C000DC258 /* dc_simplify.c */,
-				7070FB5A20FF345E000DC258 /* dc_strbuilder.c */,
-				7070FB4320FF345B000DC258 /* dc_token.c */,
-				7070FB4420FF345B000DC258 /* dc_tools.c */,
-				7070FB5420FF345D000DC258 /* dc_uudecode.c */,
-				7070FB3E20FF3420000DC258 /* dc_chat.c */,
-				7070FB3F20FF3421000DC258 /* dc_smtp.c */,
-			);
-			name = src;
-			path = "libraries/deltachat-core/src";
 			sourceTree = "<group>";
 		};
 		7DB2DC4CCB84D323E5130F99 /* Pods */ = {
@@ -700,11 +366,12 @@
 			buildConfigurationList = 7A9FB1521FB061E2001FEA36 /* Build configuration list for PBXNativeTarget "deltachat-ios" */;
 			buildPhases = (
 				58C9D79942D26B7F8F210DA1 /* [CP] Check Pods Manifest.lock */,
+				787D6698229F20B8000A7A9D /* ShellScript */,
 				7A9FB13C1FB061E2001FEA36 /* Sources */,
 				7A9FB13D1FB061E2001FEA36 /* Frameworks */,
 				7A9FB13E1FB061E2001FEA36 /* Resources */,
 				30C8FE37A924BE7AFF9661C1 /* [CP] Embed Pods Frameworks */,
-				7837B63821E54CB400CDE126 /* ShellScript */,
+				7837B63821E54CB400CDE126 /* Run Script */,
 				7837B64621E5532B00CDE126 /* ShellScript */,
 			);
 			buildRules = (
@@ -782,12 +449,6 @@
 			mainGroup = 7A9FB1371FB061E2001FEA36;
 			productRefGroup = 7A9FB1411FB061E2001FEA36 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 7A451D9B1FB1F4BF00177250 /* Products */;
-					ProjectRef = 7A451D9A1FB1F4BF00177250 /* libetpan.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				7A9FB13F1FB061E2001FEA36 /* deltachat-ios */,
@@ -795,30 +456,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		7A451DA31FB1F4BF00177250 /* libetpan.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = libetpan.framework;
-			remoteRef = 7A451DA21FB1F4BF00177250 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7A451DA51FB1F4BF00177250 /* libetpan.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libetpan.a;
-			remoteRef = 7A451DA41FB1F4BF00177250 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7A451DA71FB1F4BF00177250 /* libetpan-ios.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libetpan-ios.a";
-			remoteRef = 7A451DA61FB1F4BF00177250 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7A9FB13E1FB061E2001FEA36 /* Resources */ = {
@@ -915,7 +552,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7837B63821E54CB400CDE126 /* ShellScript */ = {
+		7837B63821E54CB400CDE126 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -924,6 +561,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -949,6 +587,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\"\n";
 		};
+		787D6698229F20B8000A7A9D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# The $PATH used by XCode likely won't contain Cargo, fix that.\n# This assumes a default `rustup` setup.\nexport PATH=\"$HOME/.cargo/bin:$PATH\"\n\n# --xcode-integ determines --release and --targets from XCode's env vars.\n# Depending your setup, specify the rustup toolchain explicitly.\ncargo lipo --xcode-integ --manifest-path deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi/Cargo.toml\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -956,43 +611,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78B44173224F796700CE263C /* dc_location.c in Sources */,
-				782A85C022439F6A0056249E /* dc_jsmn.c in Sources */,
-				782A85BE22439F410056249E /* dc_oauth2.c in Sources */,
-				7070FB6320FF345F000DC258 /* dc_context.c in Sources */,
-				78E45E2F21D1774200D4B15E /* dc_context.h in Sources */,
-				78E45E3021D1774200D4B15E /* dc_move.c in Sources */,
-				78E45E2B21D176FB00D4B15E /* dc_jobthread.c in Sources */,
 				78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */,
-				78E45E2921D176C400D4B15E /* dc_jobthread.h in Sources */,
-				7070FB6B20FF345F000DC258 /* dc_job.c in Sources */,
-				7070FB7520FF345F000DC258 /* dc_strbuilder.c in Sources */,
-				7070FB6220FF345F000DC258 /* dc_configure.c in Sources */,
-				7070FB4120FF3421000DC258 /* dc_smtp.c in Sources */,
-				7070FB6E20FF345F000DC258 /* dc_openssl.c in Sources */,
 				AE851AC9227C77CF00ED86F0 /* Media.swift in Sources */,
-				7070FB6720FF345F000DC258 /* dc_simplify.c in Sources */,
-				7070FB7120FF345F000DC258 /* dc_receive_imf.c in Sources */,
-				7070FB8B20FF4118000DC258 /* dc_keyhistory.c in Sources */,
-				7070FB6520FF345F000DC258 /* dc_chatlist.c in Sources */,
 				AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */,
 				7070FB9B2101ECBB000DC258 /* GroupNameController.swift in Sources */,
-				7070FB6D20FF345F000DC258 /* dc_imex.c in Sources */,
 				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
-				7070FB6620FF345F000DC258 /* dc_param.c in Sources */,
-				7070FB9220FF4118000DC258 /* dc_imap.c in Sources */,
-				7070FB7720FF345F000DC258 /* dc_qr.c in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
 				70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */,
 				78E45E3E21D3D28C00D4B15E /* NavigationController.swift in Sources */,
 				78E45E4021D3D70700D4B15E /* ContactListController.swift in Sources */,
-				7070FB6A20FF345F000DC258 /* dc_saxparser.c in Sources */,
-				7070FB8A20FF4118000DC258 /* dc_log.c in Sources */,
-				7070FB9020FF4118000DC258 /* dc_stock.c in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
 				78ED838D21D577D000243125 /* events.swift in Sources */,
-				7070FB8F20FF4118000DC258 /* dc_loginparam.c in Sources */,
 				AE851AC7227C776400ED86F0 /* Location.swift in Sources */,
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
 				AE25F09022807AD800CDEA66 /* GroupNameCell.swift in Sources */,
@@ -1001,50 +631,30 @@
 				AE8519EA2272FDCA00ED86F0 /* DeviceContactsHandler.swift in Sources */,
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
 				78E45E3C21D3D03700D4B15E /* TextFieldTableViewCell.swift in Sources */,
-				7070FB7220FF345F000DC258 /* dc_key.c in Sources */,
-				7070FB7420FF345F000DC258 /* dc_e2ee.c in Sources */,
 				AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */,
-				7070FB6920FF345F000DC258 /* dc_mimeparser.c in Sources */,
 				AEE56D80225504DB007DC082 /* Extensions.swift in Sources */,
 				7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */,
 				AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */,
-				7070FB6020FF345F000DC258 /* dc_hash.c in Sources */,
 				AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */,
-				7070FB4020FF3421000DC258 /* dc_chat.c in Sources */,
 				AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */,
-				7070FB7320FF345F000DC258 /* dc_aheader.c in Sources */,
-				7070FB6120FF345F000DC258 /* dc_securejoin.c in Sources */,
 				78ED838F21D5927A00243125 /* ProfileViewController.swift in Sources */,
 				AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */,
 				78E45E4221D3DB4000D4B15E /* UIViewController+Extension.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
 				AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */,
-				7070FB9320FF4118000DC258 /* dc_msg.c in Sources */,
-				7070FB6820FF345F000DC258 /* dc_array.c in Sources */,
-				7070FB9120FF4118000DC258 /* dc_strencode.c in Sources */,
 				AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */,
-				7070FB7620FF345F000DC258 /* dc_pgp.c in Sources */,
-				7070FB5D20FF345F000DC258 /* dc_mimefactory.c in Sources */,
 				789E879D21D6DF86003ED1C5 /* ProgressHud.swift in Sources */,
-				7070FB8C20FF4118000DC258 /* dc_contact.c in Sources */,
 				78E45E4C21D404AE00D4B15E /* CustomCell.swift in Sources */,
 				AE38B31A2267328200EC37A1 /* Colors.swift in Sources */,
-				7070FB7020FF345F000DC258 /* dc_lot.c in Sources */,
 				789E879621D6CB58003ED1C5 /* QrCodeReaderController.swift in Sources */,
-				7070FB5F20FF345F000DC258 /* dc_tools.c in Sources */,
-				7070FB8E20FF4118000DC258 /* dc_apeerstate.c in Sources */,
 				7A451DBE1FB4AD0700177250 /* Wrapper.swift in Sources */,
 				AE851ACE227CA54400ED86F0 /* InitialsLabel.swift in Sources */,
-				7070FB6420FF345F000DC258 /* dc_dehtml.c in Sources */,
 				AEE6EC382281AF2D00EDC689 /* InitialsBadge.swift in Sources */,
 				70B8882E2091B8550074812E /* ContactCell.swift in Sources */,
-				7070FB8D20FF4118000DC258 /* dc_sqlite3.c in Sources */,
 				7A451D941FB1B1DB00177250 /* wrapper.c in Sources */,
 				7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */,
-				7070FB5E20FF345F000DC258 /* dc_token.c in Sources */,
 				AE18F292228C17BC0007B1BE /* PortSettingsController.swift in Sources */,
 				AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */,
-				7070FB6C20FF345F000DC258 /* dc_keyring.c in Sources */,
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
 				AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */,
 				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
@@ -1208,17 +818,17 @@
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"deltachat-ios/libraries/openssl/include",
+					"deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
 					/usr/local/include,
-					"deltachat-ios/libraries/rpgp",
 				);
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/deltachat-ios/libraries/openssl/lib",
-					"$(PROJECT_DIR)/deltachat-ios/libraries/rpgp",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/release",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/debug",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -1254,16 +864,8 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift\"",
 					"-iframework",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyBeaver\"",
-					"-DDC_USE_RPGP",
 				);
-				OTHER_LDFLAGS = (
-					"-lsasl2",
-					"-lz",
-					"-lcrypto",
-					"-lssl",
-					"$(inherited)",
-					"-lrpgp",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = chat.delta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1287,17 +889,17 @@
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"deltachat-ios/libraries/openssl/include",
+					"deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
 					/usr/local/include,
-					"deltachat-ios/libraries/rpgp",
 				);
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/deltachat-ios/libraries/openssl/lib",
-					"$(PROJECT_DIR)/deltachat-ios/libraries/rpgp",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/release",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/debug",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -1333,16 +935,8 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift\"",
 					"-iframework",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyBeaver\"",
-					"-DDC_USE_RPGP",
 				);
-				OTHER_LDFLAGS = (
-					"-lsasl2",
-					"-lz",
-					"-lcrypto",
-					"-lssl",
-					"$(inherited)",
-					"-lrpgp",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = chat.delta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

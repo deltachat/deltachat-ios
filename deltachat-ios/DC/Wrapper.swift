@@ -34,24 +34,14 @@ enum MessageViewType: CustomStringConvertible {
 }
 
 class MRContact {
-  private var contactPointer: UnsafeMutablePointer<dc_contact_t>
+  private var contactPointer: OpaquePointer
 
   var name: String {
-    if contactPointer.pointee.name == nil {
-      return email
-    }
-    let name = String(cString: contactPointer.pointee.name)
-    if name.isEmpty {
-      return email
-    }
-    return name
+    return String(cString: dc_contact_get_name(contactPointer))
   }
 
   var email: String {
-    if contactPointer.pointee.addr == nil {
-      return "error: no email in contact"
-    }
-    return String(cString: contactPointer.pointee.addr)
+    return String(cString: dc_contact_get_addr(contactPointer))
   }
 
   var isVerified: Bool {
@@ -87,7 +77,7 @@ class MRContact {
   }
 
   var id: Int {
-    return Int(contactPointer.pointee.id)
+    return Int(dc_contact_get_id(contactPointer))
   }
 
   init(id: Int) {
@@ -112,7 +102,7 @@ class MRContact {
 }
 
 class MRMessage: MessageType {
-  private var messagePointer: UnsafeMutablePointer<dc_msg_t>
+  private var messagePointer: OpaquePointer
 
   lazy var sender: SenderType = {
     Sender(id: "\(fromContactId)", displayName: fromContact.name)
@@ -167,27 +157,19 @@ class MRMessage: MessageType {
   }
 
   var id: Int {
-    return Int(messagePointer.pointee.id)
+    return Int(dc_msg_get_id(messagePointer))
   }
 
   var fromContactId: Int {
-    return Int(messagePointer.pointee.from_id)
+    return Int(dc_msg_get_from_id(messagePointer))
   }
 
   lazy var fromContact: MRContact = {
     MRContact(id: fromContactId)
   }()
 
-  lazy var toContact: MRContact = {
-    MRContact(id: toContactId)
-  }()
-
-  var toContactId: Int {
-    return Int(messagePointer.pointee.to_id)
-  }
-
   var chatId: Int {
-    return Int(messagePointer.pointee.chat_id)
+    return Int(dc_msg_get_chat_id(messagePointer))
   }
 
   var text: String? {
@@ -281,7 +263,7 @@ class MRMessage: MessageType {
 
   // MR_MSG_*
   var type: Int {
-    return Int(messagePointer.pointee.type)
+    return Int(dc_msg_get_viewtype(messagePointer))
   }
 
   // MR_STATE_*
@@ -347,21 +329,18 @@ enum ChatType: Int {
 }
 
 class MRChat {
-  var chatPointer: UnsafeMutablePointer<dc_chat_t>
+  var chatPointer: OpaquePointer
 
   var id: Int {
-    return Int(chatPointer.pointee.id)
+    return Int(dc_chat_get_id(chatPointer))
   }
 
   var name: String {
-    if chatPointer.pointee.name == nil {
-      return "Error - no name"
-    }
-    return String(cString: chatPointer.pointee.name)
+    return String(cString: dc_chat_get_name(chatPointer))
   }
 
   var type: Int {
-    return Int(chatPointer.pointee.type)
+    return Int(dc_chat_get_type(chatPointer))
   }
 
   var chatType: ChatType {
@@ -423,36 +402,38 @@ class MRChat {
 }
 
 class MRPoorText {
-  private var poorTextPointer: UnsafeMutablePointer<dc_lot_t>
+  private var poorTextPointer: OpaquePointer
 
   var text1: String? {
-    if poorTextPointer.pointee.text1 == nil {
+    let text1 = dc_lot_get_text1(poorTextPointer)
+    if text1 == nil {
       return nil
     }
-    return String(cString: poorTextPointer.pointee.text1)
+    return String(cString: text1!)
   }
 
   var text2: String? {
-    if poorTextPointer.pointee.text2 == nil {
+    let text2 = dc_lot_get_text2(poorTextPointer)
+    if text2 == nil {
       return nil
     }
-    return String(cString: poorTextPointer.pointee.text2)
+    return String(cString: text2!)
   }
 
   var text1Meaning: Int {
-    return Int(poorTextPointer.pointee.text1_meaning)
+    return Int(dc_lot_get_text1_meaning(poorTextPointer))
   }
 
   var timeStamp: Int {
-    return Int(poorTextPointer.pointee.timestamp)
+    return Int(dc_lot_get_timestamp(poorTextPointer))
   }
 
   var state: Int {
-    return Int(poorTextPointer.pointee.state)
+    return Int(dc_lot_get_state(poorTextPointer))
   }
 
   // takes ownership of specified pointer
-  init(poorTextPointer: UnsafeMutablePointer<dc_lot_t>) {
+  init(poorTextPointer: OpaquePointer) {
     self.poorTextPointer = poorTextPointer
   }
 
@@ -462,7 +443,7 @@ class MRPoorText {
 }
 
 class MRChatList {
-  private var chatListPointer: UnsafeMutablePointer<dc_chatlist_t>
+  private var chatListPointer: OpaquePointer
 
   var length: Int {
     return dc_chatlist_get_cnt(chatListPointer)
@@ -470,7 +451,7 @@ class MRChatList {
   }
 
   // takes ownership of specified pointer
-  init(chatListPointer: UnsafeMutablePointer<dc_chatlist_t>) {
+  init(chatListPointer: OpaquePointer) {
     self.chatListPointer = chatListPointer
   }
 

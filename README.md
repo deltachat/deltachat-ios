@@ -22,13 +22,12 @@ Check the Changelog (for TestFlight builds) at the bottom to see what's included
 
 ## How to build with Xcode
 
+You need to install [rustup](https://rustup.rs/) with rust, as well as [cargo-lipo](https://github.com/TimNN/cargo-lipo#installation).
+
 ```bash
 $ git clone git@github.com:deltachat/deltachat-ios.git
 $ cd deltachat-ios
-$ git submodule update --init 
-$ cd deltachat-ios/libraries/openssl 
-$ ./build-openssl.sh # this will take a couple minutes
-$ cd ../../.. 
+$ git submodule update --init --recursive
 $ open deltachat-ios.xcworkspace # do not: open deltachat-ios.xcodeproj
 ```
 
@@ -94,7 +93,7 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
 ### Beta 6
 2019-01-08
 
-- include work from merged PRs: https://github.com/deltachat/deltachat-ios/pull/30 , https://github.com/deltachat/deltachat-ios/pull/17 , and https://github.com/deltachat/deltachat-ios/pull/16 
+- include work from merged PRs: https://github.com/deltachat/deltachat-ios/pull/30 , https://github.com/deltachat/deltachat-ios/pull/17 , and https://github.com/deltachat/deltachat-ios/pull/16
 
 ### Beta 5
 2018-10-01
