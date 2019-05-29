@@ -129,7 +129,7 @@ class ContactListCoordinator: Coordinator {
 
 	func showContactDetail(contactId: Int) {
 		let contactDetailController = ContactDetailViewController(contactId: contactId)
-		contactDetailController.showChatCell = true 
+		contactDetailController.showChatCell = true
 		let coordinator = ContactDetailCoordinator(navigationController: navigationController)
 		childCoordinators.append(coordinator)
 		contactDetailController.coordinator = coordinator
@@ -422,5 +422,10 @@ class ContactDetailCoordinator: Coordinator {
 		chatViewController.coordinator = coordinator
 		navigationController.popToRootViewController(animated: false)
 		navigationController.pushViewController(chatViewController, animated: true)
+	}
+
+	func showEditContact(contactId: Int) {
+		let newContactController = NewContactController(contactIdForUpdate: contactId)
+		navigationController.pushViewController(newContactController, animated: true)
 	}
 }

@@ -52,8 +52,6 @@ class ContactDetailViewController: UITableViewController {
 		return cell
 	}()
 
-
-
 	init(contactId: Int) {
 		self.contactId = contactId
 		super.init(style: .grouped)
@@ -61,6 +59,17 @@ class ContactDetailViewController: UITableViewController {
 
 	required init?(coder _: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
+		self.title = "Contact"
+	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		tableView.reloadData()
 	}
 
 	override func numberOfSections(in tableView: UITableView) -> Int {
@@ -145,6 +154,10 @@ class ContactDetailViewController: UITableViewController {
 		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 		notificationSetupAlert.addAction(cancelAction)
 		present(notificationSetupAlert, animated: true, completion: nil)
+	}
+
+	@objc private func editButtonPressed() {
+		coordinator?.showEditContact(contactId: contactId)
 	}
 
 
