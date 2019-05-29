@@ -387,11 +387,7 @@ class ChatViewController: MessagesViewController {
 		}
 	}
 
-	/*
-	let rightItems = [
-	let sendButtonImage = UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)
-	]
-	*/
+
 	@objc private func chatProfilePressed() {
 		coordinator?.showChatDetail(chatId: chatId)
 	}

@@ -102,7 +102,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 
 	func presentLoginController() {
 		let accountSetupController = AccountSetupController()
-		let accountSetupNavigationController = UINavigationController(rootViewController: accountSetupController)
+		let accountSetupNavigationController = NavigationController(rootViewController: accountSetupController)
 		rootViewController.present(accountSetupNavigationController, animated: false, completion: nil)
 	}
 }
@@ -376,6 +376,7 @@ class ChatViewCoordinator: Coordinator {
 		let contactDetailController = ContactDetailViewController(contactId: contactId)
 		//let nav = UINavigationController(rootViewController: contactDetailController)
 		let coordinator = ContactDetailCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
 		contactDetailController.coordinator = coordinator
 		navigationController.pushViewController(contactDetailController, animated: true)
 		// navigationController.present(nav, animated: true, completion: nil)

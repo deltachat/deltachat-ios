@@ -129,6 +129,7 @@ class ContactDetailViewController: UITableViewController {
 				header.setBackupImage(name: contact.name, color: contact.color)
 			}
 			header.setVerified(isVerified: contact.isVerified)
+			return header
 		}
 		return nil
 	}
