@@ -297,6 +297,9 @@ class NewChatCoordinator: Coordinator {
 
 	func showNewContactController() {
 		let newContactController = NewContactController()
+		let coordinator = EditContactCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
+		newContactController.coordinator = coordinator
 		navigationController.pushViewController(newContactController, animated: true)
 	}
 
@@ -325,8 +328,11 @@ class GroupChatDetailCoordinator: Coordinator {
 	}
 
 	func showSingleChatEdit(contactId: Int) {
-		let newContactController = NewContactController(contactIdForUpdate: contactId)
-		navigationController.pushViewController(newContactController, animated: true)
+		let editContactController = EditContactController(contactIdForUpdate: contactId)
+		let coordinator = EditContactCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
+		editContactController.coordinator = coordinator
+		navigationController.pushViewController(editContactController, animated: true)
 	}
 
 	func showAddGroupMember(chatId: Int) {
@@ -440,8 +446,11 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
 	}
 
 	func showEditContact(contactId: Int) {
-		let newContactController = NewContactController(contactIdForUpdate: contactId)
-		navigationController.pushViewController(newContactController, animated: true)
+		let editContactController = EditContactController(contactIdForUpdate: contactId)
+		let coordinator = EditContactCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
+		editContactController.coordinator = coordinator
+		navigationController.pushViewController(editContactController, animated: true)
 	}
 }
 
@@ -457,7 +466,31 @@ class EditGroupCoordinator: Coordinator {
 	}
 }
 
+class EditContactCoordinator: Coordinator, EditContactCoordinatorProtocol {
+
+	let navigationController: UINavigationController
+
+	init(navigationController: UINavigationController) {
+		self.navigationController = navigationController
+	}
+
+	func navigateBack() {
+		navigationController.popViewController(animated: true)
+	}
+
+	func showChat(chatId: Int) {
+
+	}
+
+
+}
+
 protocol ContactDetailCoordinatorProtocol: class {
 	func showEditContact(contactId: Int)
+	func showChat(chatId: Int)
+}
+
+protocol EditContactCoordinatorProtocol: class {
+	func navigateBack()
 	func showChat(chatId: Int)
 }
