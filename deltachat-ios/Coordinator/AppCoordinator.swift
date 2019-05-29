@@ -134,6 +134,14 @@ class ContactListCoordinator: Coordinator {
 		contactDetailController.coordinator = coordinator
 		navigationController.pushViewController(contactDetailController, animated: true)
 	}
+
+	func showChat(chatId: Int) {
+		let chatVC = ChatViewController(chatId: chatId)
+		let coordinator = ChatViewCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
+		chatVC.coordinator = coordinator
+		navigationController.pushViewController(chatVC, animated: true)
+	}
 }
 
 // since mailbox and chatView -tab both use ChatViewController we want to be able to assign different functionality via coordinators -> therefore we override unneeded functions such as showChatDetail -> maybe find better solution in longterm
