@@ -45,7 +45,6 @@ class ChatViewController: MessagesViewController {
 		return messageInputBar
 	}
 
-
 	init(chatId: Int, title: String? = nil) {
 		self.chatId = chatId
 		super.init(nibName: nil, bundle: nil)

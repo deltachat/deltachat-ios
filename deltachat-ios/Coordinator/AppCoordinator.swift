@@ -470,6 +470,8 @@ class EditContactCoordinator: Coordinator, EditContactCoordinatorProtocol {
 
 	let navigationController: UINavigationController
 
+	var childCoordinators: [Coordinator] = []
+
 	init(navigationController: UINavigationController) {
 		self.navigationController = navigationController
 	}
@@ -479,10 +481,13 @@ class EditContactCoordinator: Coordinator, EditContactCoordinatorProtocol {
 	}
 
 	func showChat(chatId: Int) {
-
+		let chatViewController = ChatViewController(chatId: chatId)
+		let coordinator = ChatViewCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
+		chatViewController.coordinator = coordinator
+		navigationController.popToRootViewController(animated: false)
+		navigationController.pushViewController(chatViewController, animated: true)
 	}
-
-
 }
 
 protocol ContactDetailCoordinatorProtocol: class {
