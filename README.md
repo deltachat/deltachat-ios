@@ -28,6 +28,8 @@ You need to install [rustup](https://rustup.rs/) with rust, as well as [cargo-li
 $ git clone git@github.com:deltachat/deltachat-ios.git
 $ cd deltachat-ios
 $ git submodule update --init --recursive
+# Make sure the correct rust version is installed
+$ rustup toolchain install `cat deltachat-ios/libraries/deltachat-core-rust/rust-toolchain``
 $ open deltachat-ios.xcworkspace # do not: open deltachat-ios.xcodeproj
 ```
 
