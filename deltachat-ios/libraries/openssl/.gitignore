@@ -1,4 +1,0 @@
-include/
-lib/
-*.tar.gz
-openssl-*

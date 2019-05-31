@@ -22,7 +22,7 @@ struct Utils {
     return initialsString
   }
 
-  static func copyAndFreeArray(inputArray: UnsafeMutablePointer<dc_array_t>?) -> [Int] {
+  static func copyAndFreeArray(inputArray: OpaquePointer?) -> [Int] {
     var acc: [Int] = []
     let len = dc_array_get_cnt(inputArray)
     for i in 0 ..< len {
@@ -34,7 +34,7 @@ struct Utils {
     return acc
   }
 
-  static func copyAndFreeArrayWithLen(inputArray: UnsafeMutablePointer<dc_array_t>?, len: Int = 0) -> [Int] {
+  static func copyAndFreeArrayWithLen(inputArray: OpaquePointer?, len: Int = 0) -> [Int] {
     var acc: [Int] = []
     let arrayLen = dc_array_get_cnt(inputArray)
     let start = max(0, arrayLen - len)
@@ -47,7 +47,7 @@ struct Utils {
     return acc
   }
 
-  static func copyAndFreeArrayWithOffset(inputArray: UnsafeMutablePointer<dc_array_t>?, len: Int = 0, from: Int = 0, skipEnd: Int = 0) -> [Int] {
+  static func copyAndFreeArrayWithOffset(inputArray: OpaquePointer?, len: Int = 0, from: Int = 0, skipEnd: Int = 0) -> [Int] {
     let lenArray = dc_array_get_cnt(inputArray)
     if lenArray <= skipEnd || lenArray == 0 {
       dc_array_unref(inputArray)

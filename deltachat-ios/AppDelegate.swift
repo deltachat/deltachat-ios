@@ -13,7 +13,7 @@ import SwiftyBeaver
 import UIKit
 import UserNotifications
 
-var mailboxPointer: UnsafeMutablePointer<dc_context_t>!
+var mailboxPointer: OpaquePointer!
 let logger = SwiftyBeaver.self
 
 enum ApplicationState {
