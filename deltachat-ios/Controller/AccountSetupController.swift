@@ -14,6 +14,9 @@ class AccountSetupController: UITableViewController {
 
 	weak var coordinator: AccountSetupCoordinator?
 
+	private var userHasCancelledOAuth = false
+	private var useCustomSettings = false
+
 	private var backupProgressObserver: Any?
 	private var configureProgressObserver: Any?
 	private var oauth2Observer: Any?
@@ -89,7 +92,7 @@ class AccountSetupController: UITableViewController {
 		cell.accessoryType = .disclosureIndicator
 		cell.detailTextLabel?.text = MRConfig.mailPort ?? MRConfig.configuredMailPort
 		cell.accessibilityIdentifier = "IMAPPortCell"
-		cell.selectionStyle = .none 
+		cell.selectionStyle = .none
 		return cell
 	}()
 
@@ -148,7 +151,7 @@ class AccountSetupController: UITableViewController {
 	}()
 
 	// this loginButton can be enabled and disabled
-	let loginButton: UIBarButtonItem = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
+	lazy var loginButton: UIBarButtonItem = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
 
 	private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
 	private lazy var restoreCells: [UITableViewCell] = [restoreCell]
@@ -336,7 +339,8 @@ class AccountSetupController: UITableViewController {
 			return // handle case when either email or pw fields are empty
 		}
 
-		let oAuthStarted = showOAuthAlertIfNeeded(emailAddress: emailAddress, handleCancel: loginButtonPressed) // if canceled we will run this method again but this time oAuthStarted will be false
+		let oAuthStarted = showOAuthAlertIfNeeded(emailAddress: emailAddress, handleCancel: loginButtonPressed)
+		// if canceled we will run this method again but this time oAuthStarted will be false
 
 		if oAuthStarted {
 			// the loginFlow will be handled by oAuth2
@@ -350,9 +354,12 @@ class AccountSetupController: UITableViewController {
 	private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {
 		MRConfig.addr = emailAddress
 		MRConfig.mailPw = password
-		if !skipAdvanceSetup {
+
+		if useCustomSettings && !skipAdvanceSetup {
 			evaluluateAdvancedSetup() // this will set MRConfig related to advanced fields
 		}
+
+		print("oAuth-Flag when loggin in: \(MRConfig.getAuthFlags())")
 		dc_configure(mailboxPointer)
 		showProgressHud()
 	}
@@ -363,12 +370,14 @@ class AccountSetupController: UITableViewController {
 
 	// returns true if needed
 	private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (() -> Void)?) -> Bool {
-		if MRConfig.getAuthFlags() == 4 {
+		if userHasCancelledOAuth {
+			assert(MRConfig.getAuthFlags() == Int(DC_LP_AUTH_NORMAL))
 			// user has previously denied oAuth2-setup
 			return false
 		}
 
 		guard let oAuth2UrlPointer = dc_get_oauth2_url(mailboxPointer, emailAddress, "chat.delta:/auth") else {
+			MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL))
 			return false
 		}
 
@@ -389,6 +398,7 @@ class AccountSetupController: UITableViewController {
 			let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
 				_ in
 				MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL))
+				self.userHasCancelledOAuth = true
 				handleCancel?()
 
 			})
@@ -554,14 +564,14 @@ extension AccountSetupController: UITextFieldDelegate {
 	func textFieldDidBeginEditing(_ textField: UITextField) {
 		if textField.accessibilityIdentifier == "emailTextField" {
 			// this will re-enable possible oAuth2-login
-			MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_OAUTH2))
+			userHasCancelledOAuth = false
 		}
 	}
 
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		if textField.accessibilityIdentifier == "emailTextField" {
-				let _ = showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
-					self.passwordCell.textField.becomeFirstResponder()
+			let _ = showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
+				self.passwordCell.textField.becomeFirstResponder()
 			})
 		}
 	}
@@ -607,7 +617,6 @@ class AdvancedSectionHeader: UIView {
 		label.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
 		addSubview(toggleButton)
 		toggleButton.translatesAutoresizingMaskIntoConstraints = false
-
 		toggleButton.leadingAnchor.constraint(equalTo: trailingAnchor, constant: -60).isActive = true // since button will change title it should be left aligned
 		toggleButton.centerYAnchor.constraint(equalTo: label.centerYAnchor, constant: 0).isActive = true
 	}
@@ -653,23 +662,16 @@ extension AccountSetupController {
 
 	func updateProgressHudValue(value: Int?) {
 		if let value = value {
-			print(value)
+			print("progress hud: \(value)")
 			configProgressIndicator.value = CGFloat(value / 10)
-		} else {
-			fatalError()
 		}
 	}
 
 	func loginCancelled(_ action: UIAlertAction) {
 		MRConfig.addr = nil
 		MRConfig.mailPw = nil
-		dc_stop_ongoing_process(mailboxPointer)
-		dc_configure(mailboxPointer)
+		DispatchQueue.global(qos: .background).async {
+			dc_stop_ongoing_process(mailboxPointer)		// this function freezes UI so execute in background thread
+		}
 	}
-
-
-
-
-
-
 }
