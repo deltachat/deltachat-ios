@@ -208,6 +208,15 @@ class SettingsCoordinator: Coordinator {
 		editController.activateField(option: option)
 		navigationController.pushViewController(editController, animated: true)
 	}
+
+	func showLoginController() {
+		let accountSetupVC = AccountSetupController()
+		let coordinator = AccountSetupCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
+		accountSetupVC.coordinator = coordinator
+		let accountSetupNavigationController = NavigationController(rootViewController: accountSetupVC)
+		navigationController.present(accountSetupNavigationController, animated: true, completion: nil)
+	}
 }
 
 class AccountSetupCoordinator: Coordinator {
