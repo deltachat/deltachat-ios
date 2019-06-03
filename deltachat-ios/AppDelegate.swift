@@ -165,7 +165,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
   func close() {
     state = .stopped
-
     dc_close(mailboxPointer)
     mailboxPointer = nil
   }

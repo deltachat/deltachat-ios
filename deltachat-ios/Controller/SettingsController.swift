@@ -197,7 +197,7 @@ internal final class SettingsViewController: QuickTableViewController {
 
 		let dbfile = appDelegate.dbfile()
 		let dburl = URL(fileURLWithPath: dbfile, isDirectory: false)
-		let alert = UIAlertController(title: "Delete Account", message: "Are you sure you wante to delete your account data?", preferredStyle: .alert)
+		let alert = UIAlertController(title: "Delete Account", message: "Are you sure you wante to delete your account data?", preferredStyle: .actionSheet)
 
 		alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
 			appDelegate.stop()
@@ -214,11 +214,10 @@ internal final class SettingsViewController: QuickTableViewController {
 			// refresh our view
 			self.setTable()
 			self.tableView.reloadData()
-
-			self.dismiss(animated: true, completion: nil)
+			self.dismiss(animated: false, completion: nil)
+			self.coordinator?.showLoginController()
 		}))
 		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-
 		present(alert, animated: true, completion: nil)
 	}
 
