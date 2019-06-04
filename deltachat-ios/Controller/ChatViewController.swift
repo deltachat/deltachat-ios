@@ -272,6 +272,12 @@ class ChatViewController: MessagesViewController {
 		refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
 
 		let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout
+		messagesCollectionView.messagesLayoutDelegate = self
+		messagesCollectionView.messagesDisplayDelegate = self
+
+
+		/*
+		let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout
 		layout?.sectionInset = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 8)
 
 		// Hide the outgoing avatar and adjust the label alignment to line up with the messages
@@ -300,6 +306,7 @@ class ChatViewController: MessagesViewController {
 
 		messagesCollectionView.messagesLayoutDelegate = self
 		messagesCollectionView.messagesDisplayDelegate = self
+		*/
 	}
 
 	private func configureMessageInputBar() {
@@ -663,6 +670,67 @@ extension ChatViewController: MessagesDataSource {
 }
 
 // MARK: - MessagesDisplayDelegate
+
+extension ChatViewController: MessagesDisplayDelegate {
+
+	func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) {
+		let message = messageList[indexPath.section]
+		let contact = message.fromContact
+		let avatar = Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.name))
+		avatarView.set(avatar: avatar)
+		avatarView.isHidden = isNextMessageSameSender(at: indexPath) || message.isInfo
+		avatarView.backgroundColor = contact.color
+	}
+
+
+	func messageStyle(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> MessageStyle {
+		if isInfoMessage(at: indexPath) {
+			return .custom { view in
+				view.style = .none
+				view.backgroundColor = UIColor(alpha: 10, red: 0, green: 0, blue: 0)
+				let radius: CGFloat = 16
+				let path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: UIRectCorner.allCorners, cornerRadii: CGSize(width: radius, height: radius))
+				let mask = CAShapeLayer()
+				mask.path = path.cgPath
+				view.layer.mask = mask
+				view.center.x = self.view.center.x
+			}
+		}
+
+		var corners: UIRectCorner = []
+
+		if isFromCurrentSender(message: message) {
+			corners.formUnion(.topLeft)
+			corners.formUnion(.bottomLeft)
+			if !isPreviousMessageSameSender(at: indexPath) {
+				corners.formUnion(.topRight)
+			}
+			if !isNextMessageSameSender(at: indexPath) {
+				corners.formUnion(.bottomRight)
+			}
+		} else {
+			corners.formUnion(.topRight)
+			corners.formUnion(.bottomRight)
+			if !isPreviousMessageSameSender(at: indexPath) {
+				corners.formUnion(.topLeft)
+			}
+			if !isNextMessageSameSender(at: indexPath) {
+				corners.formUnion(.bottomLeft)
+			}
+		}
+
+		return .custom { view in
+			let radius: CGFloat = 16
+			let path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+			let mask = CAShapeLayer()
+			mask.path = path.cgPath
+			view.layer.mask = mask
+		}
+	}
+}
+
+
+/*
 extension ChatViewController: MessagesDisplayDelegate {
 	// MARK: - Text Messages
 	func textColor(for _: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> UIColor {
@@ -732,8 +800,15 @@ extension ChatViewController: MessagesDisplayDelegate {
 		return [.url, .date, .phoneNumber, .address]
 	}
 }
+*/
 
 // MARK: - MessagesLayoutDelegate
+
+extension ChatViewController: MessagesLayoutDelegate {
+
+}
+
+/*
 extension ChatViewController: MessagesLayoutDelegate {
 	func cellTopLabelHeight(for _: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
 		if isTimeLabelVisible(at: indexPath) {
@@ -784,6 +859,9 @@ extension ChatViewController: MessagesLayoutDelegate {
 	func footerViewSize(for _: MessageType, at _: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
 		return CGSize(width: messagesCollectionView.bounds.width, height: 10)
 	}
+*/
+
+extension ChatViewController {
 
 	@objc private func clipperButtonPressed() {
 		showClipperOptions()
@@ -832,6 +910,7 @@ extension ChatViewController: MessagesLayoutDelegate {
 		photoButtonPressed()
 	}
 }
+
 
 // MARK: - MessageCellDelegate
 extension ChatViewController: MessageCellDelegate {
