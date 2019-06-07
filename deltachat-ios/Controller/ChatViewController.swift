@@ -769,7 +769,16 @@ extension ChatViewController: MessagesLayoutDelegate {
 		showClipperOptions()
 	}
 
-	private func photoButtonPressed() {
+	private func showClipperOptions() {
+		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+		let photoAction = PhotoPickerAlertAction(title: "Photo", style: .default, handler: photoButtonPressed(_:))
+		alert.addAction(photoAction)
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+		self.present(alert, animated: true, completion: nil)
+	}
+
+	private func photoButtonPressed(_ action: UIAlertAction) {
 		if UIImagePickerController.isSourceTypeAvailable(.camera) {
 			let cameraViewController = CameraViewController { [weak self] image, _ in
 				self?.dismiss(animated: true, completion: nil)
@@ -797,19 +806,6 @@ extension ChatViewController: MessagesLayoutDelegate {
 			}))
 			present(alert, animated: true, completion: nil)
 		}
-	}
-
-	private func showClipperOptions() {
-		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
-		let photoAction = PhotoPickerAlertAction(title: "Photo", style: .default, handler: photoActionPressed(_:))
-		alert.addAction(photoAction)
-		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-		self.present(alert, animated: true, completion: nil)
-	}
-
-	private func photoActionPressed(_ action: UIAlertAction) {
-		photoButtonPressed()
 	}
 }
 
