@@ -135,3 +135,54 @@ extension MRContact {
     }
   }
 }
+
+extension UIImage {
+
+	func dcCompress(toMax target: Float = 1280) -> UIImage? {
+		return resize(toMax: target)
+	}
+
+	func imageSizeInPixel() -> CGSize {
+		let heightInPoints = size.height
+		let heightInPixels = heightInPoints * scale
+		let widthInPoints = size.width
+		let widthInPixels = widthInPoints * scale
+		return CGSize(width: widthInPixels, height: heightInPixels)
+	}
+
+	// source: https://stackoverflow.com/questions/29137488/how-do-i-resize-the-uiimage-to-reduce-upload-image-size // slightly changed
+	func resize(toMax: Float) -> UIImage? {
+		var actualHeight = Float(size.height)
+		var actualWidth = Float(size.width)
+		let maxHeight: Float = toMax
+		let maxWidth: Float = toMax
+		var imgRatio: Float = actualWidth / actualHeight
+		let maxRatio: Float = maxWidth / maxHeight
+		let compressionQuality: Float = 0.5
+		//50 percent compression
+		if actualHeight > maxHeight || actualWidth > maxWidth {
+			if imgRatio < maxRatio {
+				//adjust width according to maxHeight
+				imgRatio = maxHeight / actualHeight
+				actualWidth = imgRatio * actualWidth
+				actualHeight = maxHeight
+			} else if imgRatio > maxRatio {
+				//adjust height according to maxWidth
+				imgRatio = maxWidth / actualWidth
+				actualHeight = imgRatio * actualHeight
+				actualWidth = maxWidth
+			} else {
+				actualHeight = maxHeight
+				actualWidth = maxWidth
+			}
+		}
+
+		let rect = CGRect(x: 0.0, y: 0.0, width: CGFloat(actualWidth), height: CGFloat(actualHeight))
+		UIGraphicsBeginImageContext(rect.size)
+		draw(in: rect)
+		let img = UIGraphicsGetImageFromCurrentImageContext()
+		let imageData = img?.jpegData(compressionQuality: CGFloat(compressionQuality))
+		UIGraphicsEndImageContext()
+		return UIImage(data: imageData!)
+	}
+}
