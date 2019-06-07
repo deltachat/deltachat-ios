@@ -137,28 +137,52 @@ extension MRContact {
 }
 
 extension UIImage {
-	// from: https://stackoverflow.com/questions/29726643/how-to-compress-of-reduce-the-size-of-an-image-before-uploading-to-parse-as-pffi
-	enum JPEGQuality: CGFloat {
-		case lowest  = 0
-		case low     = 0.25
-		case medium  = 0.5
-		case high    = 0.75
-		case dcDefault = 0.85
-		case highest = 1
+
+	func dcCompress(toMax target: Float = 1280) -> UIImage? {
+		return resize(toMax: target)
 	}
 
-	/// Returns the data for the specified image in JPEG format.
-	/// If the image object’s underlying image data has been purged, calling this function forces that data to be reloaded into memory.
-	/// - returns: A data object containing the JPEG data, or nil if there was a problem generating the data. This function may return nil if the image has no data or if the underlying CGImageRef contains data in an unsupported bitmap format.
-	func jpeg(_ jpegQuality: JPEGQuality) -> Data? {
-		return jpegData(compressionQuality: jpegQuality.rawValue)
+	func imageSizeInPixel() -> CGSize {
+		let heightInPoints = size.height
+		let heightInPixels = heightInPoints * scale
+		let widthInPoints = size.width
+		let widthInPixels = widthInPoints * scale
+		return CGSize(width: widthInPixels, height: heightInPixels)
 	}
 
-	func dcCompress() -> UIImage? {
-		guard let data = jpeg(.dcDefault) else {
-			return nil
+	// source: https://stackoverflow.com/questions/29137488/how-do-i-resize-the-uiimage-to-reduce-upload-image-size // slightly changed
+	func resize(toMax: Float) -> UIImage? {
+		var actualHeight = Float(size.height)
+		var actualWidth = Float(size.width)
+		let maxHeight: Float = toMax
+		let maxWidth: Float = toMax
+		var imgRatio: Float = actualWidth / actualHeight
+		let maxRatio: Float = maxWidth / maxHeight
+		let compressionQuality: Float = 0.5
+		//50 percent compression
+		if actualHeight > maxHeight || actualWidth > maxWidth {
+			if imgRatio < maxRatio {
+				//adjust width according to maxHeight
+				imgRatio = maxHeight / actualHeight
+				actualWidth = imgRatio * actualWidth
+				actualHeight = maxHeight
+			} else if imgRatio > maxRatio {
+				//adjust height according to maxWidth
+				imgRatio = maxWidth / actualWidth
+				actualHeight = imgRatio * actualHeight
+				actualWidth = maxWidth
+			} else {
+				actualHeight = maxHeight
+				actualWidth = maxWidth
+			}
 		}
-		return UIImage(data: data)
-	}
 
+		let rect = CGRect(x: 0.0, y: 0.0, width: CGFloat(actualWidth), height: CGFloat(actualHeight))
+		UIGraphicsBeginImageContext(rect.size)
+		draw(in: rect)
+		let img = UIGraphicsGetImageFromCurrentImageContext()
+		let imageData = img?.jpegData(compressionQuality: CGFloat(compressionQuality))
+		UIGraphicsEndImageContext()
+		return UIImage(data: imageData!)
+	}
 }
