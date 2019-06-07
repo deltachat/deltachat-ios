@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ALCameraViewController
+
 
 class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 	private let window: UIWindow
@@ -138,7 +140,7 @@ class ContactListCoordinator: Coordinator {
 
 	func showChat(chatId: Int) {
 		let chatVC = ChatViewController(chatId: chatId)
-		let coordinator = ChatViewCoordinator(navigationController: navigationController)
+		let coordinator = ChatViewCoordinator(navigationController: navigationController, chatId: chatId)
 		childCoordinators.append(coordinator)
 		chatVC.coordinator = coordinator
 		navigationController.pushViewController(chatVC, animated: true)
@@ -147,8 +149,17 @@ class ContactListCoordinator: Coordinator {
 
 // since mailbox and chatView -tab both use ChatViewController we want to be able to assign different functionality via coordinators -> therefore we override unneeded functions such as showChatDetail -> maybe find better solution in longterm
 class MailboxCoordinator: ChatViewCoordinator {
+
+	init(navigationController: UINavigationController) {
+		super.init(navigationController: navigationController, chatId: -1)
+	}
+
 	override func showChatDetail(chatId _: Int) {
 		// ignore for now
+	}
+
+	override func showCameraViewController() {
+		// ignore
 	}
 }
 
@@ -179,7 +190,7 @@ class ChatListCoordinator: Coordinator {
 
 	func showChat(chatId: Int) {
 		let chatVC = ChatViewController(chatId: chatId)
-		let coordinator = ChatViewCoordinator(navigationController: navigationController)
+		let coordinator = ChatViewCoordinator(navigationController: navigationController, chatId: chatId)
 		childCoordinators.append(coordinator)
 		chatVC.coordinator = coordinator
 		navigationController.pushViewController(chatVC, animated: true)
@@ -319,7 +330,7 @@ class NewChatCoordinator: Coordinator {
 
 	func showChat(chatId: Int) {
 		let chatViewController = ChatViewController(chatId: chatId)
-		let coordinator = ChatViewCoordinator(navigationController: navigationController)
+		let coordinator = ChatViewCoordinator(navigationController: navigationController, chatId: chatId)
 		childCoordinators.append(coordinator)
 		chatViewController.coordinator = coordinator
 		navigationController.pushViewController(chatViewController, animated: true)
@@ -360,11 +371,13 @@ class GroupChatDetailCoordinator: Coordinator {
 
 class ChatViewCoordinator: Coordinator {
 	let navigationController: UINavigationController
+	let chatId: Int
 
 	var childCoordinators: [Coordinator] = []
 
-	init(navigationController: UINavigationController) {
+	init(navigationController: UINavigationController, chatId: Int) {
 		self.navigationController = navigationController
+		self.chatId = chatId
 	}
 
 	func showChatDetail(chatId: Int) {
@@ -397,6 +410,37 @@ class ChatViewCoordinator: Coordinator {
 		navigationController.pushViewController(contactDetailController, animated: true)
 		// navigationController.present(nav, animated: true, completion: nil)
 	}
+
+	func showCameraViewController() {
+		if UIImagePickerController.isSourceTypeAvailable(.camera) {
+			let cameraViewController = CameraViewController { [weak self] image, _ in
+				self?.navigationController.dismiss(animated: true, completion: nil)
+
+				DispatchQueue.global().async {
+					if let pickedImage = image {
+						let width = Int32(exactly: pickedImage.size.width)!
+						let height = Int32(exactly: pickedImage.size.height)!
+						let path = Utils.saveImage(image: pickedImage)
+						let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
+						dc_msg_set_file(msg, path, "image/jpeg")
+						dc_msg_set_dimension(msg, width, height)
+						dc_send_msg(mailboxPointer, UInt32(self!.chatId), msg)
+						// cleanup
+						dc_msg_unref(msg)
+					}
+				}
+			}
+
+			navigationController.present(cameraViewController, animated: true, completion: nil)
+		} else {
+			let alert = UIAlertController(title: "Camera is not available", message: nil, preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+				self.navigationController.dismiss(animated: true, completion: nil)
+			}))
+			navigationController.present(alert, animated: true, completion: nil)
+		}
+
+	}
 }
 
 class NewGroupCoordinator: Coordinator {
@@ -428,7 +472,7 @@ class GroupNameCoordinator: Coordinator {
 
 	func showGroupChat(chatId: Int) {
 		let chatViewController = ChatViewController(chatId: chatId)
-		let coordinator = ChatViewCoordinator(navigationController: navigationController)
+		let coordinator = ChatViewCoordinator(navigationController: navigationController, chatId: chatId)
 		childCoordinators.append(coordinator)
 		chatViewController.coordinator = coordinator
 		navigationController.popToRootViewController(animated: false)
@@ -447,7 +491,7 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
 
 	func showChat(chatId: Int) {
 		let chatViewController = ChatViewController(chatId: chatId)
-		let coordinator = ChatViewCoordinator(navigationController: navigationController)
+		let coordinator = ChatViewCoordinator(navigationController: navigationController, chatId: chatId)
 		childCoordinators.append(coordinator)
 		chatViewController.coordinator = coordinator
 		navigationController.popToRootViewController(animated: false)
@@ -491,7 +535,7 @@ class EditContactCoordinator: Coordinator, EditContactCoordinatorProtocol {
 
 	func showChat(chatId: Int) {
 		let chatViewController = ChatViewController(chatId: chatId)
-		let coordinator = ChatViewCoordinator(navigationController: navigationController)
+		let coordinator = ChatViewCoordinator(navigationController: navigationController, chatId: chatId)
 		childCoordinators.append(coordinator)
 		chatViewController.coordinator = coordinator
 		navigationController.popToRootViewController(animated: false)

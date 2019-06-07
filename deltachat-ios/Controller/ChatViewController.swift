@@ -5,7 +5,6 @@
 //  Created by Bastian van de Wetering on 08.11.17.
 //  Copyright © 2017 Jonas Reinsch. All rights reserved.
 //
-import ALCameraViewController
 import MapKit
 import MessageKit
 import QuickLook
@@ -779,34 +778,9 @@ extension ChatViewController: MessagesLayoutDelegate {
 	}
 
 	private func photoButtonPressed(_ action: UIAlertAction) {
-		if UIImagePickerController.isSourceTypeAvailable(.camera) {
-			let cameraViewController = CameraViewController { [weak self] image, _ in
-				self?.dismiss(animated: true, completion: nil)
-
-				DispatchQueue.global().async {
-					if let pickedImage = image {
-						let width = Int32(exactly: pickedImage.size.width)!
-						let height = Int32(exactly: pickedImage.size.height)!
-						let path = Utils.saveImage(image: pickedImage)
-						let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
-						dc_msg_set_file(msg, path, "image/jpeg")
-						dc_msg_set_dimension(msg, width, height)
-						dc_send_msg(mailboxPointer, UInt32(self!.chatId), msg)
-						// cleanup
-						dc_msg_unref(msg)
-					}
-				}
-			}
-
-			present(cameraViewController, animated: true, completion: nil)
-		} else {
-			let alert = UIAlertController(title: "Camera is not available", message: nil, preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
-				self.dismiss(animated: true, completion: nil)
-			}))
-			present(alert, animated: true, completion: nil)
-		}
+		coordinator?.showCameraViewController()
 	}
+
 }
 
 // MARK: - MessageCellDelegate
