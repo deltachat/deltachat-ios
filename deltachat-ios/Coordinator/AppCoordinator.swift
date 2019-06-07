@@ -417,10 +417,11 @@ class ChatViewCoordinator: Coordinator {
 				self?.navigationController.dismiss(animated: true, completion: nil)
 
 				DispatchQueue.global().async {
-					if let pickedImage = image {
-						let width = Int32(exactly: pickedImage.size.width)!
-						let height = Int32(exactly: pickedImage.size.height)!
-						let path = Utils.saveImage(image: pickedImage)
+					if let compressedImage = image?.dcCompress() {
+						// at this point image is compressed by 85% by default
+						let width = Int32(exactly: compressedImage.size.width)!
+						let height = Int32(exactly: compressedImage.size.height)!
+						let path = Utils.saveImage(image: compressedImage)
 						let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
 						dc_msg_set_file(msg, path, "image/jpeg")
 						dc_msg_set_dimension(msg, width, height)
