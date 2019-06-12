@@ -186,3 +186,10 @@ extension UIImage {
 		return UIImage(data: imageData!)
 	}
 }
+
+extension UIView {
+	func makeBorder(color: UIColor = UIColor.red) {
+		self.layer.borderColor = color.cgColor
+		self.layer.borderWidth = 2
+	}
+}

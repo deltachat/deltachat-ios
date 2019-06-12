@@ -789,8 +789,33 @@ extension ChatViewController: MessageCellDelegate {
 		if let indexPath = messagesCollectionView.indexPath(for: cell) {
 			let message = messageList[indexPath.section]
 
+
+
 			if let url = message.fileURL {
-				previewController = PreviewController(urls: [url])
+				var previousUrls:[URL] = []
+				var nextUrls:[URL] = []
+
+				var prev:Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), -1, Int32(message.type), 0, 0))
+				while prev != 0 {
+					let prevMessage = MRMessage(id: prev)
+					if let url = prevMessage.fileURL {
+						previousUrls.insert(url, at: 0)
+					}
+					prev = Int(dc_get_next_media(mailboxPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
+				}
+
+				var next:Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), 1, Int32(message.type), 0, 0))
+				while next != 0 {
+					let nextMessage = MRMessage(id: next)
+					if let url = nextMessage.fileURL {
+						nextUrls.insert(url, at: 0)
+					}
+					next = Int(dc_get_next_media(mailboxPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
+				}
+
+				let mediaUrls:[URL] = previousUrls + [url] + nextUrls
+
+				previewController = PreviewController(currentIndex: previousUrls.count, urls: mediaUrls)
 				present(previewController!.qlController, animated: true)
 			}
 		}
@@ -809,24 +834,6 @@ extension ChatViewController: MessageCellDelegate {
 	}
 }
 
-class PreviewController: QLPreviewControllerDataSource {
-	var urls: [URL]
-	var qlController: QLPreviewController
-
-	init(urls: [URL]) {
-		self.urls = urls
-		qlController = QLPreviewController()
-		qlController.dataSource = self
-	}
-
-	func numberOfPreviewItems(in _: QLPreviewController) -> Int {
-		return urls.count
-	}
-
-	func previewController(_: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-		return urls[index] as QLPreviewItem
-	}
-}
 
 // MARK: - MessageLabelDelegate
 extension ChatViewController: MessageLabelDelegate {
