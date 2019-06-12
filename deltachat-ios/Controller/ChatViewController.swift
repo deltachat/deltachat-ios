@@ -789,13 +789,12 @@ extension ChatViewController: MessageCellDelegate {
 		if let indexPath = messagesCollectionView.indexPath(for: cell) {
 			let message = messageList[indexPath.section]
 
-
-
 			if let url = message.fileURL {
-				var previousUrls:[URL] = []
-				var nextUrls:[URL] = []
+				// find all other messages with same message type
+				var previousUrls: [URL] = []
+				var nextUrls: [URL] = []
 
-				var prev:Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), -1, Int32(message.type), 0, 0))
+				var prev: Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), -1, Int32(message.type), 0, 0))
 				while prev != 0 {
 					let prevMessage = MRMessage(id: prev)
 					if let url = prevMessage.fileURL {
@@ -804,7 +803,7 @@ extension ChatViewController: MessageCellDelegate {
 					prev = Int(dc_get_next_media(mailboxPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
 				}
 
-				var next:Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), 1, Int32(message.type), 0, 0))
+				var next: Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), 1, Int32(message.type), 0, 0))
 				while next != 0 {
 					let nextMessage = MRMessage(id: next)
 					if let url = nextMessage.fileURL {
@@ -813,7 +812,7 @@ extension ChatViewController: MessageCellDelegate {
 					next = Int(dc_get_next_media(mailboxPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
 				}
 
-				let mediaUrls:[URL] = previousUrls + [url] + nextUrls
+				let mediaUrls: [URL] = previousUrls + [url] + nextUrls
 
 				previewController = PreviewController(currentIndex: previousUrls.count, urls: mediaUrls)
 				present(previewController!.qlController, animated: true)
@@ -833,7 +832,6 @@ extension ChatViewController: MessageCellDelegate {
 		print("Bottom label tapped")
 	}
 }
-
 
 // MARK: - MessageLabelDelegate
 extension ChatViewController: MessageLabelDelegate {
