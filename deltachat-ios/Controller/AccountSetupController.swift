@@ -332,6 +332,7 @@ class AccountSetupController: UITableViewController {
 		} else {
 			tableView.deleteRows(at: advancedIndexPaths, with: .fade)
 		}
+		tableView.reloadData() // to re-organize footer view (without that sometimes advanced section footer is still visible)
 	}
 
 	@objc private func loginButtonPressed() {

@@ -419,11 +419,9 @@ class ChatViewCoordinator: Coordinator {
 				DispatchQueue.global().async {
 					if let compressedImage = image?.dcCompress() {
 						// at this point image is compressed by 85% by default
-//						let pixelSize = compressedImage.imageSizeInPixel()
-//						let width = Int32(exactly: pixelSize.width)!
-//						let height =  Int32(exactly: pixelSize.height)!
-						let width = Int32(exactly: compressedImage.size.width)!
-						let height = Int32(exactly: compressedImage.size.height)!
+						let pixelSize = compressedImage.imageSizeInPixel()
+						let width = Int32(exactly: pixelSize.width)!
+						let height =  Int32(exactly: pixelSize.height)!
 						let path = Utils.saveImage(image: compressedImage)
 						let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
 						dc_msg_set_file(msg, path, "image/jpeg")
