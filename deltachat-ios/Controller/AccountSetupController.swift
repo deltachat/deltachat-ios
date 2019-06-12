@@ -349,10 +349,12 @@ class AccountSetupController: UITableViewController {
 		}
 
 		let password = passwordCell.getText() ?? "" // empty passwords are ok -> for oauth there is no password needed
+
 		login(emailAddress: emailAddress, password: password)
 	}
 
 	private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {
+		resignFirstResponderOnAllCells()	// this will resign focus from all textFieldCells so the keyboard wont pop up anymore
 		MRConfig.addr = emailAddress
 		MRConfig.mailPw = password
 
@@ -457,10 +459,8 @@ class AccountSetupController: UITableViewController {
 					// self.hudHandler.setHudError(ui["errorMessage"] as? String)
 				} else if ui["done"] as! Bool {
 					self.updateProgressHudSuccess(callback: self.handleLoginSuccess)
-					// self.hudHandler.setHudDone(callback: self.handleLoginSuccess)
 				} else {
 					self.updateProgressHudValue(value: ui["progress"] as! Int)
-					// self.hudHandler.setHudProgress(ui["progress"] as! Int)
 				}
 			}
 		}
