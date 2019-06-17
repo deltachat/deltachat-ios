@@ -176,3 +176,32 @@ extension UIColor {
     self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
   }
 }
+
+class DateUtils {
+
+	static func getBriefRelativeTimeSpanString(timeStamp: Int) -> String {
+		let unixTime = Int(Date().timeIntervalSince1970)
+		let seconds = unixTime - timeStamp
+
+		if seconds < 60 {
+			return "Now"	// under one minute
+		} else if seconds < 3600 {
+			let mins = seconds / 60
+			let minTitle = mins > 1 ? "mins" : "min"
+			return "\(mins) \(minTitle)"
+		} else if seconds < 86400 {
+			let hours = seconds / 3600
+			let hoursTitle = hours > 1 ? "hours" : "hour"
+			return "\(hours) \(hoursTitle)"
+		} else {
+			let date = Date(timeIntervalSince1970: Double(timeStamp))
+			let dateFormatter = DateFormatter()
+			dateFormatter.timeStyle = DateFormatter.Style.medium //Set time style
+			dateFormatter.dateStyle = DateFormatter.Style.medium //Set date style
+			dateFormatter.timeZone = .current
+			let localDate = dateFormatter.string(from: date)
+			return localDate
+		}
+	}
+}
+

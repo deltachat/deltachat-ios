@@ -8,7 +8,8 @@ import MessageKit
 //
 import UIKit
 
-open class CustomCell: UICollectionViewCell {
+
+open class CustomMessageCell: UICollectionViewCell {
   let label = UILabel()
 
   public override init(frame: CGRect) {
@@ -43,3 +44,4 @@ open class CustomCell: UICollectionViewCell {
     }
   }
 }
+

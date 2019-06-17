@@ -54,7 +54,7 @@ class ChatViewController: MessagesViewController {
 	}
 
 	override func viewDidLoad() {
-		messagesCollectionView.register(CustomCell.self)
+		messagesCollectionView.register(CustomMessageCell.self)
 		super.viewDidLoad()
 		view.backgroundColor = DCColors.chatBackgroundColor
 		if !MRConfig.configured {
@@ -411,7 +411,7 @@ class ChatViewController: MessagesViewController {
 			cell.configure(with: message, at: indexPath, and: messagesCollectionView)
 			return cell
 		case .custom:
-			let cell = messagesCollectionView.dequeueReusableCell(CustomCell.self, for: indexPath)
+			let cell = messagesCollectionView.dequeueReusableCell(CustomMessageCell.self, for: indexPath)
 			cell.configure(with: message, at: indexPath, and: messagesCollectionView)
 			return cell
 		case .audio(_):

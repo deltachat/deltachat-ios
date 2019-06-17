@@ -182,7 +182,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
       self.registerBackgroundTask()
       while self.state == .running {
         dc_perform_imap_jobs(mailboxPointer)
-        dc_perform_imap_fetch(mailboxPointer)
+      	dc_perform_imap_fetch(mailboxPointer)
         dc_perform_imap_idle(mailboxPointer)
       }
       if self.backgroundTask != .invalid {
