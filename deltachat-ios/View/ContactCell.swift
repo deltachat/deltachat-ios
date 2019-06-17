@@ -10,6 +10,11 @@ import UIKit
 
 // TODO: integrate InitialsBadge in here
 
+
+
+
+
+
 class ContactCell: UITableViewCell {
   private let initialsLabelSize: CGFloat = 54
   private let imgSize: CGFloat = 25
@@ -44,10 +49,42 @@ class ContactCell: UITableViewCell {
     return initialsLabel
   }()
 
-  let nameLabel = UILabel()
-  let emailLabel = UILabel()
+	 let nameLabel: UILabel = {
+		let label = UILabel()
+		label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+		label.lineBreakMode = .byTruncatingTail
+		label.textColor = UIColor(hexString: "2f3944")
+		// label.makeBorder()
+		return label
 
-  var darkMode: Bool = false {
+	}()
+
+	let emailLabel: UILabel = {
+		let label = UILabel()
+		label.font = UIFont.systemFont(ofSize: 14)
+		label.textColor = UIColor(hexString: "848ba7")
+		label.lineBreakMode = .byTruncatingTail
+		return label
+	}()
+
+	private let timeLabel: UILabel = {
+		let label = UILabel()
+		label.font = UIFont.systemFont(ofSize: 14)
+		label.textColor = UIColor(hexString: "848ba7")
+		label.textAlignment = .right
+		// label.makeBorder()
+		return label
+	}()
+
+	private let statusIndicator: UIImageView = {
+		let image = #imageLiteral(resourceName: "ic_done_36pt").withRenderingMode(.alwaysTemplate)
+		let view = UIImageView(image: image)
+		view.tintColor = UIColor.green
+		view.isHidden = true 
+		return view
+	}()
+
+	var darkMode: Bool = false {
     didSet {
       if darkMode {
         contentView.backgroundColor = UIColor.darkGray
@@ -89,25 +126,33 @@ class ContactCell: UITableViewCell {
     avatar.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -margin).isActive = true
     initialsLabel.center = avatar.center
 
+		statusIndicator.translatesAutoresizingMaskIntoConstraints = false
+		statusIndicator.heightAnchor.constraint(equalToConstant: 25).isActive = true
+		statusIndicator.widthAnchor.constraint(equalToConstant: 25).isActive = true
+
     let myStackView = UIStackView()
     myStackView.translatesAutoresizingMaskIntoConstraints = false
     myStackView.clipsToBounds = true
+
+		let toplineStackView = UIStackView()
+		toplineStackView.axis = .horizontal
+
+		let bottomLineStackView = UIStackView()
+		bottomLineStackView.axis = .horizontal
+
+		toplineStackView.addArrangedSubview(nameLabel)
+		toplineStackView.addArrangedSubview(timeLabel)
+
+		bottomLineStackView.addArrangedSubview(emailLabel)
+		bottomLineStackView.addArrangedSubview(statusIndicator)
 
     contentView.addSubview(myStackView)
     myStackView.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: margin).isActive = true
     myStackView.centerYAnchor.constraint(equalTo: avatar.centerYAnchor).isActive = true
     myStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin).isActive = true
     myStackView.axis = .vertical
-    myStackView.addArrangedSubview(nameLabel)
-    myStackView.addArrangedSubview(emailLabel)
-
-    nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-    nameLabel.lineBreakMode = .byTruncatingTail
-    nameLabel.textColor = UIColor(hexString: "2f3944")
-
-    emailLabel.font = UIFont.systemFont(ofSize: 14)
-    emailLabel.textColor = UIColor(hexString: "848ba7")
-    emailLabel.lineBreakMode = .byTruncatingTail
+    myStackView.addArrangedSubview(toplineStackView)
+    myStackView.addArrangedSubview(bottomLineStackView)
 
     imgView.tintColor = DCColors.primary
 
@@ -135,6 +180,19 @@ class ContactCell: UITableViewCell {
 
     setColor(color)
   }
+
+	func setStatusIndicator(show: Bool) {
+		if show { statusIndicator.isHidden = false }
+		else { statusIndicator.isHidden = true }
+	}
+
+	func setTimeLabel(time: String?) {
+		if let time = time {
+			timeLabel.text = time
+		} else {
+			timeLabel.isHidden = true
+		}
+	}
 
   func setColor(_ color: UIColor) {
     initialsLabel.backgroundColor = color
