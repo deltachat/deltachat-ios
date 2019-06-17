@@ -33,7 +33,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 
 	private lazy var contactListController: UIViewController = {
 		let controller = ContactListController()
-		let nav = NavigationController(rootViewController: controller)
+		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "contacts")
 		nav.tabBarItem = UITabBarItem(title: "Contacts", image: settingsImage, tag: 4)
 		let coordinator = ContactListCoordinator(navigationController: nav)
@@ -45,7 +45,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 	private lazy var mailboxController: UIViewController = {
 		let controller = MailboxViewController(chatId: Int(DC_CHAT_ID_DEADDROP), title: "Mailbox")
 		controller.disableWriting = true
-		let nav = NavigationController(rootViewController: controller)
+		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "message")
 		nav.tabBarItem = UITabBarItem(title: "Mailbox", image: settingsImage, tag: 4)
 		let coordinator = MailboxCoordinator(navigationController: nav)
@@ -56,7 +56,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 
 	private lazy var profileController: UIViewController = {
 		let controller = ProfileViewController()
-		let nav = NavigationController(rootViewController: controller)
+		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "report_card")
 		nav.tabBarItem = UITabBarItem(title: "My Profile", image: settingsImage, tag: 4)
 		let coordinator = ProfileCoordinator(rootViewController: nav)
@@ -67,7 +67,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 
 	private lazy var chatListController: UIViewController = {
 		let controller = ChatListController()
-		let nav = NavigationController(rootViewController: controller)
+		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "chat")
 		nav.tabBarItem = UITabBarItem(title: "Chats", image: settingsImage, tag: 4)
 		let coordinator = ChatListCoordinator(navigationController: nav)
@@ -78,7 +78,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 
 	private lazy var settingsController: UIViewController = {
 		let controller = SettingsViewController()
-		let nav = NavigationController(rootViewController: controller)
+		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "settings")
 		nav.tabBarItem = UITabBarItem(title: "Settings", image: settingsImage, tag: 4)
 		let coordinator = SettingsCoordinator(navigationController: nav)
@@ -104,7 +104,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 
 	func presentLoginController() {
 		let accountSetupController = AccountSetupController()
-		let accountSetupNavigationController = NavigationController(rootViewController: accountSetupController)
+		let accountSetupNavigationController = DCNavigationController(rootViewController: accountSetupController)
 		rootViewController.present(accountSetupNavigationController, animated: false, completion: nil)
 	}
 }
@@ -225,7 +225,7 @@ class SettingsCoordinator: Coordinator {
 		let coordinator = AccountSetupCoordinator(navigationController: navigationController)
 		childCoordinators.append(coordinator)
 		accountSetupVC.coordinator = coordinator
-		let accountSetupNavigationController = NavigationController(rootViewController: accountSetupVC)
+		let accountSetupNavigationController = DCNavigationController(rootViewController: accountSetupVC)
 		navigationController.present(accountSetupNavigationController, animated: true, completion: nil)
 	}
 }

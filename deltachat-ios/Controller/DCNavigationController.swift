@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class NavigationController: UINavigationController {
+final class DCNavigationController: UINavigationController {
   var stateChangedObserver: Any?
 
   override func viewDidLoad() {
