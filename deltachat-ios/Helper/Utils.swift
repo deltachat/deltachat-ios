@@ -196,7 +196,7 @@ class DateUtils {
 		} else {
 			let date = Date(timeIntervalSince1970: Double(timeStamp))
 			let dateFormatter = DateFormatter()
-			dateFormatter.timeStyle = DateFormatter.Style.medium //Set time style
+			// dateFormatter.timeStyle = DateFormatter.Style.short //Set time style
 			dateFormatter.dateStyle = DateFormatter.Style.medium //Set date style
 			dateFormatter.timeZone = .current
 			let localDate = dateFormatter.string(from: date)
