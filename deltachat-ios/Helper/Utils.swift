@@ -205,21 +205,3 @@ class DateUtils {
 	}
 }
 
-/*
-if (isWithin(timestamp, 1, TimeUnit.MINUTES)) {
-return c.getString(R.string.now);
-} else if (isWithin(timestamp, 1, TimeUnit.HOURS)) {
-int mins = convertDelta(timestamp, TimeUnit.MINUTES);
-return c.getResources().getQuantityString(R.plurals.n_minutes, mins, mins);
-} else if (isWithin(timestamp, 1, TimeUnit.DAYS)) {
-int hours = convertDelta(timestamp, TimeUnit.HOURS);
-return c.getResources().getQuantityString(R.plurals.n_hours, hours, hours);
-} else if (isWithin(timestamp, 6, TimeUnit.DAYS)) {
-return getFormattedDateTime(timestamp, "EEE", locale);
-} else if (isWithin(timestamp, 365, TimeUnit.DAYS)) {
-return getFormattedDateTime(timestamp, "MMM d", locale);
-} else {
-return getFormattedDateTime(timestamp, "MMM d, yyyy", locale);
-}
-
-*/
