@@ -196,16 +196,26 @@ class ContactCell: UITableViewCell {
 		var indicatorImage:UIImage?
 		switch status {
 		case .OUTPENDING, .OUTPAIRING:
-			indicatorImage = #imageLiteral(resourceName: <#T##String#>)
+			indicatorImage = #imageLiteral(resourceName: "ic_delivery_status_sending").withRenderingMode(.alwaysTemplate)
 		case .OUTDELIVERED:
 			indicatorImage = #imageLiteral(resourceName: "ic_done_36pt").withRenderingMode(.alwaysTemplate)
+		case .OUTERROR:
+			indicatorImage = #imageLiteral(resourceName: "ic_error_36pt").withRenderingMode(.alwaysTemplate)
+		case .INSEEN:
+			indicatorImage = #imageLiteral(resourceName: "ic_done_all_36pt").withRenderingMode(.alwaysTemplate)
 		default: break
 		}
+		if indicatorImage != nil {
+			deliveryStatusIndicator.isHidden = false
+		} else {
+			deliveryStatusIndicator.isHidden = true
+		}
+
 		deliveryStatusIndicator.image = indicatorImage
 	}
 
 	func setTimeLabel(_ timestamp: Int) {
-
+		
 	}
 
 	func setColor(_ color: UIColor) {
