@@ -197,10 +197,12 @@ class ContactCell: UITableViewCell {
 		switch status {
 		case .OUTPENDING, .OUTPAIRING:
 			indicatorImage = #imageLiteral(resourceName: "ic_delivery_status_sending").withRenderingMode(.alwaysTemplate)
+			deliveryStatusIndicator.tintColor = UIColor.black
 		case .OUTDELIVERED:
 			indicatorImage = #imageLiteral(resourceName: "ic_done_36pt").withRenderingMode(.alwaysTemplate)
 		case .OUTERROR:
 			indicatorImage = #imageLiteral(resourceName: "ic_error_36pt").withRenderingMode(.alwaysTemplate)
+			deliveryStatusIndicator.tintColor = UIColor.red
 		case .INSEEN:
 			indicatorImage = #imageLiteral(resourceName: "ic_done_all_36pt").withRenderingMode(.alwaysTemplate)
 		default: break
@@ -214,8 +216,14 @@ class ContactCell: UITableViewCell {
 		deliveryStatusIndicator.image = indicatorImage
 	}
 
-	func setTimeLabel(_ timestamp: Int) {
-		
+	func setTimeLabel(_ timestamp: Int?) {
+		if let timestamp = timestamp {
+			timeLabel.isHidden = false
+			timeLabel.text = DateUtils.getBriefRelativeTimeSpanString(timeStamp: timestamp)
+		} else {
+			timeLabel.isHidden = true
+			timeLabel.text = nil
+		}
 	}
 
 	func setColor(_ color: UIColor) {
