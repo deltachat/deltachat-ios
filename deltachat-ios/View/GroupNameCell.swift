@@ -14,10 +14,10 @@ class GroupLabelCell: UITableViewCell {
   var onTextChanged: ((String) -> Void)? // use this callback to update editButton in navigationController
 
   lazy var groupBadge: InitialsBadge = {
-    let badge = InitialsBadge(frame: .zero)
+    let badge = InitialsBadge(size: groupBadgeSize)
     badge.layer.cornerRadius = groupBadgeSize / 2
     badge.clipsToBounds = true
-    badge.setColor(UIColor.lightGray)
+		badge.setColor(UIColor.lightGray)
     return badge
   }()
 
@@ -61,7 +61,7 @@ class GroupLabelCell: UITableViewCell {
 
   @objc func nameFieldChanged() {
     let groupName = inputField.text ?? ""
-    groupBadge.setText(groupName)
+    groupBadge.setName(groupName)
     onTextChanged?(groupName)
   }
 
