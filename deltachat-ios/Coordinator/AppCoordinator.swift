@@ -47,7 +47,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		controller.disableWriting = true
 		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "message")
-		nav.tabBarItem = UITabBarItem(title: "Mailbox", image: settingsImage, tag: 4)
+		nav.tabBarItem = UITabBarItem(title: "Mailbox", image: settingsImage, tag: 0)
 		let coordinator = MailboxCoordinator(navigationController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
@@ -58,7 +58,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		let controller = ProfileViewController()
 		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "report_card")
-		nav.tabBarItem = UITabBarItem(title: "My Profile", image: settingsImage, tag: 4)
+		nav.tabBarItem = UITabBarItem(title: "My Profile", image: settingsImage, tag: 1)
 		let coordinator = ProfileCoordinator(rootViewController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
@@ -69,7 +69,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		let controller = ChatListController()
 		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "chat")
-		nav.tabBarItem = UITabBarItem(title: "Chats", image: settingsImage, tag: 4)
+		nav.tabBarItem = UITabBarItem(title: "Chats", image: settingsImage, tag: 2)
 		let coordinator = ChatListCoordinator(navigationController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
@@ -80,7 +80,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		let controller = SettingsViewController()
 		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "settings")
-		nav.tabBarItem = UITabBarItem(title: "Settings", image: settingsImage, tag: 4)
+		nav.tabBarItem = UITabBarItem(title: "Settings", image: settingsImage, tag: 3)
 		let coordinator = SettingsCoordinator(navigationController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
@@ -95,6 +95,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 	}
 
 	public func start() {
+	print(tabBarController.selectedIndex)
 		showTab(index: 3)
 	}
 

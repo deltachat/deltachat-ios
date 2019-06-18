@@ -75,7 +75,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //       - second param remains nil (user data for more than one mailbox)
     open()
     let isConfigured = dc_is_configured(mailboxPointer) != 0
-    // AppDelegate.appCoordinatorDeprecated.setupViewControllers(window: window)
     appCoordinator = AppCoordinator(window: window)
     appCoordinator.start()
     UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
@@ -83,7 +82,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     registerForPushNotifications()
     if !isConfigured {
       appCoordinator.presentLoginController()
-      // AppDelegate.appCoordinatorDeprecated.presentAccountSetup(animated: false)
     }
     return true
   }

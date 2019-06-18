@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Reachability
 
 final class DCNavigationController: UINavigationController {
   var stateChangedObserver: Any?
@@ -21,18 +22,6 @@ final class DCNavigationController: UINavigationController {
     }
 
     setShadow(nil)
-
-    let nc = NotificationCenter.default
-    stateChangedObserver = nc.addObserver(
-      forName: dcNotificationStateChanged,
-      object: nil,
-      queue: nil
-    ) {
-      notification in
-      if let state = notification.userInfo?["state"] {
-        self.setShadow(state as? String)
-      }
-    }
   }
 
   private func setShadow(_ state: String?) {
@@ -46,6 +35,30 @@ final class DCNavigationController: UINavigationController {
     }
   }
 
+	override func viewWillAppear(_ animated: Bool) {
+
+		if let connection = Reachability()?.connection {
+			switch connection {
+			case Reachability.Connection.cellular, Reachability.Connection.wifi:
+				setShadow("online")
+			case Reachability.Connection.none:
+				setShadow("offline")
+			}
+		}
+
+		let nc = NotificationCenter.default
+		stateChangedObserver = nc.addObserver(
+			forName: dcNotificationStateChanged,
+			object: nil,
+			queue: nil
+		) {
+			notification in
+			if let state = notification.userInfo?["state"] {
+				self.setShadow(state as? String)
+			}
+		}
+	}
+
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
 
@@ -54,4 +67,5 @@ final class DCNavigationController: UINavigationController {
       nc.removeObserver(stateChangedObserver)
     }
   }
+
 }
