@@ -11,7 +11,7 @@ import UIKit
 class ContactListController: UITableViewController {
   weak var coordinator: ContactListCoordinator?
 
-  let contactCellReuseIdentifier = "xyz"
+  let contactCellReuseIdentifier = "ChatCell"
   var contactIds: [Int] = Utils.getContactIds()
   var contactIdsForGroup: Set<Int> = []
 
@@ -60,10 +60,10 @@ class ContactListController: UITableViewController {
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: ContactCell
-    if let c = tableView.dequeueReusableCell(withIdentifier: "ChatCell") as? ContactCell {
+    if let c = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier) as? ContactCell {
       cell = c
     } else {
-      cell = ContactCell(style: .subtitle, reuseIdentifier: "ChatCell")
+      cell = ContactCell(style: .subtitle, reuseIdentifier: contactCellReuseIdentifier)
     }
     let row = indexPath.row
     let contactRow = row
