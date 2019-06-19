@@ -8,6 +8,8 @@
 
 import UIKit
 import ALCameraViewController
+import Photos
+import MobileCoreServices
 
 
 class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
@@ -370,7 +372,7 @@ class GroupChatDetailCoordinator: Coordinator {
 	}
 }
 
-class ChatViewCoordinator: Coordinator {
+class ChatViewCoordinator: NSObject, Coordinator {
 	let navigationController: UINavigationController
 	let chatId: Int
 
@@ -445,8 +447,37 @@ class ChatViewCoordinator: Coordinator {
 
 	}
 	func showVideoPicker() {
-		
+		if PHPhotoLibrary.authorizationStatus() != .authorized {
+			PHPhotoLibrary.requestAuthorization{status in
+				DispatchQueue.main.async() { [weak self] in
+					switch status {
+					case  .denied,.notDetermined,.restricted:
+						print("denied")
+					case .authorized:
+						self?.presentVideoLibrary()
+					}
+				}
+			}
+		} else {
+			presentVideoLibrary()
+		}
 	}
+
+	private func presentVideoLibrary() {
+		if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+			let videoPicker = UIImagePickerController()
+			videoPicker.title = "Videos"
+			videoPicker.delegate = self
+			videoPicker.sourceType = .photoLibrary
+			videoPicker.mediaTypes = [kUTTypeMovie as String, kUTTypeVideo as String]
+			navigationController.present(videoPicker, animated: true, completion: nil)
+		}
+	}
+}
+
+extension ChatViewCoordinator: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+
 }
 
 class NewGroupCoordinator: Coordinator {
@@ -466,6 +497,8 @@ class NewGroupCoordinator: Coordinator {
 		navigationController.pushViewController(groupNameController, animated: true)
 	}
 }
+
+
 
 class GroupNameCoordinator: Coordinator {
 	let navigationController: UINavigationController
