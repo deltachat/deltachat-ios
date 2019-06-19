@@ -375,6 +375,7 @@ class GroupChatDetailCoordinator: Coordinator {
 class ChatViewCoordinator: NSObject, Coordinator {
 	let navigationController: UINavigationController
 	let chatId: Int
+	var chatViewController: ChatViewController!
 
 	var childCoordinators: [Coordinator] = []
 
@@ -477,7 +478,28 @@ class ChatViewCoordinator: NSObject, Coordinator {
 
 extension ChatViewCoordinator: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+		if let videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL{
+			print("videourl: ", videoUrl)
+			//trying compression of video
+			let data = NSData(contentsOf: videoUrl as URL)!
+			print("File size before compression: \(Double(data.length / 1048576)) mb")
+			let size = Double(data.length / 1048576)
+			print(size)
+			let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
+			let urlPointer = 
+			dc_msg_set_file(msg, videoUrl, "image/jpeg")
+			// dc_msg_set_dimension(msg, width, height)
+			dc_send_msg(mailboxPointer, UInt32(chatId), msg)
+			// cleanup
+			dc_msg_unref(msg)
+			// self.videoPickedBlock?(videoUrl, size)
+		}
+		else{
+			print("Something went wrong in  video")
+		}
+		navigationController.dismiss(animated: true, completion: nil)
+	}
 }
 
 class NewGroupCoordinator: Coordinator {
@@ -575,6 +597,7 @@ class EditContactCoordinator: Coordinator, EditContactCoordinatorProtocol {
 	func showChat(chatId: Int) {
 		let chatViewController = ChatViewController(chatId: chatId)
 		let coordinator = ChatViewCoordinator(navigationController: navigationController, chatId: chatId)
+		coordinator.chatViewController = chatViewController
 		childCoordinators.append(coordinator)
 		chatViewController.coordinator = coordinator
 		navigationController.popToRootViewController(animated: false)
