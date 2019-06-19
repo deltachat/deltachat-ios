@@ -770,15 +770,21 @@ extension ChatViewController: MessagesLayoutDelegate {
 
 	private func showClipperOptions() {
 		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
 		let photoAction = PhotoPickerAlertAction(title: "Photo", style: .default, handler: photoButtonPressed(_:))
+		let videoAction = PhotoPickerAlertAction(title: "Video", style: .default, handler: videoButtonPressed(_:))
+
 		alert.addAction(photoAction)
+		alert.addAction(videoAction)
 		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 		self.present(alert, animated: true, completion: nil)
 	}
 
 	private func photoButtonPressed(_ action: UIAlertAction) {
 		coordinator?.showCameraViewController()
+	}
+
+	private func videoButtonPressed(_ action: UIAlertAction) {
+		coordinator?.showVideoPicker()
 	}
 
 }

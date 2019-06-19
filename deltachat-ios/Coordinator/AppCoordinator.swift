@@ -444,6 +444,9 @@ class ChatViewCoordinator: Coordinator {
 		}
 
 	}
+	func showVideoPicker() {
+		
+	}
 }
 
 class NewGroupCoordinator: Coordinator {
