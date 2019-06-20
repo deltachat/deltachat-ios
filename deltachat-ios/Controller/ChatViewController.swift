@@ -784,7 +784,7 @@ extension ChatViewController: MessagesLayoutDelegate {
 	}
 
 	private func videoButtonPressed(_ action: UIAlertAction) {
-		coordinator?.showVideoPicker()
+		coordinator?.showVideoLibrary()
 	}
 
 }

@@ -447,7 +447,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
 		}
 
 	}
-	func showVideoPicker() {
+	func showVideoLibrary() {
 		if PHPhotoLibrary.authorizationStatus() != .authorized {
 			PHPhotoLibrary.requestAuthorization{status in
 				DispatchQueue.main.async() { [weak self] in
@@ -486,13 +486,12 @@ extension ChatViewCoordinator: UIImagePickerControllerDelegate, UINavigationCont
 			print("File size before compression: \(Double(data.length / 1048576)) mb")
 			let size = Double(data.length / 1048576)
 			print(size)
-			let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
-			let urlPointer = 
-			dc_msg_set_file(msg, videoUrl, "image/jpeg")
-			// dc_msg_set_dimension(msg, width, height)
-			dc_send_msg(mailboxPointer, UInt32(chatId), msg)
-			// cleanup
-			dc_msg_unref(msg)
+			let msg = dc_msg_new(mailboxPointer, DC_MSG_VIDEO)
+			if let path = videoUrl.relativePath?.cString(using: .utf8) { //absoluteString?.cString(using: .utf8) {
+				dc_msg_set_file(msg, path, nil)
+				dc_send_msg(mailboxPointer, UInt32(chatId), msg)
+				dc_msg_unref(msg)
+			}
 			// self.videoPickedBlock?(videoUrl, size)
 		}
 		else{
