@@ -436,7 +436,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
 	private func sendVideo(url: NSURL) {
 		let msg = dc_msg_new(mailboxPointer, DC_MSG_VIDEO)
 		if let path = url.relativePath?.cString(using: .utf8) { //absoluteString?.cString(using: .utf8) {
-			dc_msg_set_file(msg, path, nil)
+			dc_msg_set_file(msg, path, "video/mov")
 			dc_send_msg(mailboxPointer, UInt32(chatId), msg)
 			dc_msg_unref(msg)
 		}

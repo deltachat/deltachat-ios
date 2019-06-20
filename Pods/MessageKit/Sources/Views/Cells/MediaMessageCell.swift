@@ -67,12 +67,13 @@ open class MediaMessageCell: MessageContentCell {
         guard let displayDelegate = messagesCollectionView.messagesDisplayDelegate else {
             fatalError(MessageKitError.nilMessagesDisplayDelegate)
         }
-
         switch message.kind {
         case .photo(let mediaItem):
             imageView.image = mediaItem.image ?? mediaItem.placeholderImage
             playButtonView.isHidden = true
         case .video(let mediaItem):
+			print(mediaItem.image == nil)
+			print(mediaItem.placeholderImage == nil)
 			let image = mediaItem.image ?? mediaItem.placeholderImage
 			imageView.image = image //mediaItem.image ?? mediaItem.placeholderImage
             playButtonView.isHidden = false

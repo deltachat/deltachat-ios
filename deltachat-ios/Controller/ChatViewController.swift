@@ -809,7 +809,7 @@ extension ChatViewController: MessageCellDelegate {
 					next = Int(dc_get_next_media(mailboxPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
 				}
 
-				// these are the files user will be able to swip trough
+				// these are the files user will be able to swipe trough
 				let mediaUrls: [URL] = previousUrls + [url] + nextUrls
 				previewController = PreviewController(currentIndex: previousUrls.count, urls: mediaUrls)
 				present(previewController!.qlController, animated: true)

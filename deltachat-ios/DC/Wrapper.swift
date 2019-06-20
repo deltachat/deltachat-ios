@@ -208,7 +208,7 @@ class MRMessage: MessageType {
     return nil
   }
 
-  lazy var image: UIImage? = { [unowned self] in
+  private lazy var image: UIImage? = { [unowned self] in
     let filetype = dc_msg_get_viewtype(messagePointer)
     if let path = fileURL, filetype == DC_MSG_IMAGE {
       if path.isFileURL {
