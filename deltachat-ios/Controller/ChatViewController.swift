@@ -11,6 +11,16 @@ import QuickLook
 import UIKit
 import InputBarAccessoryView
 
+protocol MediaSendHandler {
+	func onSuccess()
+}
+
+extension ChatViewController: MediaSendHandler {
+	func onSuccess() {
+		refreshMessages()
+	}
+}
+
 class ChatViewController: MessagesViewController {
 	weak var coordinator: ChatViewCoordinator?
 
@@ -342,21 +352,6 @@ class ChatViewController: MessagesViewController {
 				}.onTouchUpInside { _ in
 					self.clipperButtonPressed()
 			}
-			/*
-			InputBarButtonItem()
-			.configure {
-			$0.spacing = .fixed(0)
-			$0.image = UIImage(named: "camera")?.withRenderingMode(.alwaysTemplate)
-			$0.setSize(CGSize(width: 36, height: 36), animated: false)
-			$0.tintColor = UIColor(white: 0.8, alpha: 1)
-			}.onSelected {
-			$0.tintColor = DCColors.primary
-			}.onDeselected {
-			$0.tintColor = UIColor(white: 0.8, alpha: 1)
-			}.onTouchUpInside { _ in
-			self.didPressPhotoButton()
-			},
-			*/
 		]
 
 		messageInputBar.setStackViewItems(leftItems, forStack: .left, animated: false)
@@ -373,11 +368,7 @@ class ChatViewController: MessagesViewController {
 				})
 		}
 	}
-	/*
-	let rightItems = [
-	let sendButtonImage = UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)
-	]
-	*/
+
 	@objc private func chatProfilePressed() {
 		coordinator?.showChatDetail(chatId: chatId)
 	}
@@ -818,8 +809,8 @@ extension ChatViewController: MessageCellDelegate {
 					next = Int(dc_get_next_media(mailboxPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
 				}
 
+				// these are the files user will be able to swip trough
 				let mediaUrls: [URL] = previousUrls + [url] + nextUrls
-
 				previewController = PreviewController(currentIndex: previousUrls.count, urls: mediaUrls)
 				present(previewController!.qlController, animated: true)
 			}
