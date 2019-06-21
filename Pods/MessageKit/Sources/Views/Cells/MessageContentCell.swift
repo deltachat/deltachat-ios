@@ -106,6 +106,7 @@ open class MessageContentCell: MessageCollectionViewCell {
 
     // MARK: - Configuration
 
+
     open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
         guard let attributes = layoutAttributes as? MessagesCollectionViewLayoutAttributes else { return }
@@ -260,8 +261,7 @@ open class MessageContentCell: MessageCollectionViewCell {
         case .natural:
             fatalError(MessageKitError.avatarPositionUnresolved)
         }
-
-        messageContainerView.frame = CGRect(origin: origin, size: attributes.messageContainerSize)
+		messageContainerView.frame = CGRect(origin: origin, size: attributes.messageContainerSize)
     }
 
     /// Positions the cell's top label.

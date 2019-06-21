@@ -72,11 +72,9 @@ open class MediaMessageCell: MessageContentCell {
             imageView.image = mediaItem.image ?? mediaItem.placeholderImage
             playButtonView.isHidden = true
         case .video(let mediaItem):
-			print(mediaItem.image == nil)
-			print(mediaItem.placeholderImage == nil)
 			let image = mediaItem.image ?? mediaItem.placeholderImage
 			imageView.image = image //mediaItem.image ?? mediaItem.placeholderImage
-            playButtonView.isHidden = false
+           // playButtonView.isHidden = false
         default:
             break
         }
