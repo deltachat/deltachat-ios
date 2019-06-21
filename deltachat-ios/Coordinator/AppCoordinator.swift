@@ -8,6 +8,8 @@
 
 import UIKit
 import ALCameraViewController
+import Photos
+import MobileCoreServices
 
 
 class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
@@ -105,8 +107,8 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 
 	func presentLoginController() {
 		let accountSetupController = AccountSetupController()
-		let accountSetupNavigationController = DCNavigationController(rootViewController: accountSetupController)
-		rootViewController.present(accountSetupNavigationController, animated: false, completion: nil)
+		let accountSetupNav = DCNavigationController(rootViewController: accountSetupController)
+		rootViewController.present(accountSetupNav, animated: false, completion: nil)
 	}
 }
 
@@ -117,7 +119,7 @@ extension AppCoordinator: UITabBarDelegate {
 
 	func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
 		print("shouldSelect")
-		return true 
+		return true
 	}
 }
 
@@ -370,9 +372,10 @@ class GroupChatDetailCoordinator: Coordinator {
 	}
 }
 
-class ChatViewCoordinator: Coordinator {
+class ChatViewCoordinator: NSObject, Coordinator {
 	let navigationController: UINavigationController
 	let chatId: Int
+	var chatViewController: ChatViewController!
 
 	var childCoordinators: [Coordinator] = []
 
@@ -412,25 +415,49 @@ class ChatViewCoordinator: Coordinator {
 		// navigationController.present(nav, animated: true, completion: nil)
 	}
 
+	private func sendImage(_ image:UIImage) {
+		DispatchQueue.global().async {
+			if let compressedImage = image.dcCompress() {
+				// at this point image is compressed by 85% by default
+				let pixelSize = compressedImage.imageSizeInPixel()
+				let width = Int32(exactly: pixelSize.width)!
+				let height =  Int32(exactly: pixelSize.height)!
+				let path = Utils.saveImage(image: compressedImage)
+				let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
+				dc_msg_set_file(msg, path, "image/jpeg")
+				dc_msg_set_dimension(msg, width, height)
+				dc_send_msg(mailboxPointer, UInt32(self.chatId), msg)
+				// cleanup
+				dc_msg_unref(msg)
+			}
+		}
+	}
+
+	private func sendVideo(url: NSURL) {
+		let msg = dc_msg_new(mailboxPointer, DC_MSG_VIDEO)
+		if let path = url.relativePath?.cString(using: .utf8) { //absoluteString?.cString(using: .utf8) {
+			dc_msg_set_file(msg, path, "video/mov")
+			dc_send_msg(mailboxPointer, UInt32(chatId), msg)
+			dc_msg_unref(msg)
+		}
+	}
+
+	private func handleMediaMessageSuccess() {
+		if let chatViewController = self.navigationController.visibleViewController as? MediaSendHandler {
+			DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+				chatViewController.onSuccess()
+			}
+		}
+	}
+
 	func showCameraViewController() {
 		if UIImagePickerController.isSourceTypeAvailable(.camera) {
 			let cameraViewController = CameraViewController { [weak self] image, _ in
-				self?.navigationController.dismiss(animated: true, completion: nil)
-
-				DispatchQueue.global().async {
-					if let compressedImage = image?.dcCompress() {
-						// at this point image is compressed by 85% by default
-						let pixelSize = compressedImage.imageSizeInPixel()
-						let width = Int32(exactly: pixelSize.width)!
-						let height =  Int32(exactly: pixelSize.height)!
-						let path = Utils.saveImage(image: compressedImage)
-						let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
-						dc_msg_set_file(msg, path, "image/jpeg")
-						dc_msg_set_dimension(msg, width, height)
-						dc_send_msg(mailboxPointer, UInt32(self!.chatId), msg)
-						// cleanup
-						dc_msg_unref(msg)
-					}
+				self?.navigationController.dismiss(animated: true, completion: {
+					self?.handleMediaMessageSuccess()
+				})
+				if let image = image {
+					self?.sendImage(image)
 				}
 			}
 
@@ -443,6 +470,46 @@ class ChatViewCoordinator: Coordinator {
 			navigationController.present(alert, animated: true, completion: nil)
 		}
 
+	}
+	func showVideoLibrary() {
+		if PHPhotoLibrary.authorizationStatus() != .authorized {
+			PHPhotoLibrary.requestAuthorization { status in
+				DispatchQueue.main.async {
+					[weak self] in
+					switch status {
+					case  .denied, .notDetermined, .restricted:
+						print("denied")
+					case .authorized:
+						self?.presentVideoLibrary()
+					}
+				}
+			}
+		} else {
+			presentVideoLibrary()
+		}
+	}
+
+	private func presentVideoLibrary() {
+		if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+			let videoPicker = UIImagePickerController()
+			videoPicker.title = "Videos"
+			videoPicker.delegate = self
+			videoPicker.sourceType = .photoLibrary
+			videoPicker.mediaTypes = [kUTTypeMovie as String, kUTTypeVideo as String]
+			navigationController.present(videoPicker, animated: true, completion: nil)
+		}
+	}
+}
+
+extension ChatViewCoordinator: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+		if let videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL {
+			sendVideo(url: videoUrl)
+		}
+		navigationController.dismiss(animated: true) {
+				self.handleMediaMessageSuccess()
+		}
 	}
 }
 
@@ -539,6 +606,7 @@ class EditContactCoordinator: Coordinator, EditContactCoordinatorProtocol {
 	func showChat(chatId: Int) {
 		let chatViewController = ChatViewController(chatId: chatId)
 		let coordinator = ChatViewCoordinator(navigationController: navigationController, chatId: chatId)
+		coordinator.chatViewController = chatViewController
 		childCoordinators.append(coordinator)
 		chatViewController.coordinator = coordinator
 		navigationController.popToRootViewController(animated: false)

@@ -11,6 +11,16 @@ import QuickLook
 import UIKit
 import InputBarAccessoryView
 
+protocol MediaSendHandler {
+	func onSuccess()
+}
+
+extension ChatViewController: MediaSendHandler {
+	func onSuccess() {
+		refreshMessages()
+	}
+}
+
 class ChatViewController: MessagesViewController {
 	weak var coordinator: ChatViewCoordinator?
 
@@ -84,7 +94,7 @@ class ChatViewController: MessagesViewController {
 		if let image = chat.profileImage {
 			navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(chatProfilePressed))
 		} else {
-			let initialsLabel = InitialsLabel(name: chat.name, color: chat.color, size: 28)
+			let initialsLabel =  InitialsBadge(name: chat.name, color: chat.color, size: 28)
 			navigationItem.rightBarButtonItem = UIBarButtonItem(customView: initialsLabel)
 		}
 
@@ -342,21 +352,6 @@ class ChatViewController: MessagesViewController {
 				}.onTouchUpInside { _ in
 					self.clipperButtonPressed()
 			}
-			/*
-			InputBarButtonItem()
-			.configure {
-			$0.spacing = .fixed(0)
-			$0.image = UIImage(named: "camera")?.withRenderingMode(.alwaysTemplate)
-			$0.setSize(CGSize(width: 36, height: 36), animated: false)
-			$0.tintColor = UIColor(white: 0.8, alpha: 1)
-			}.onSelected {
-			$0.tintColor = DCColors.primary
-			}.onDeselected {
-			$0.tintColor = UIColor(white: 0.8, alpha: 1)
-			}.onTouchUpInside { _ in
-			self.didPressPhotoButton()
-			},
-			*/
 		]
 
 		messageInputBar.setStackViewItems(leftItems, forStack: .left, animated: false)
@@ -373,11 +368,7 @@ class ChatViewController: MessagesViewController {
 				})
 		}
 	}
-	/*
-	let rightItems = [
-	let sendButtonImage = UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)
-	]
-	*/
+
 	@objc private func chatProfilePressed() {
 		coordinator?.showChatDetail(chatId: chatId)
 	}
@@ -770,15 +761,21 @@ extension ChatViewController: MessagesLayoutDelegate {
 
 	private func showClipperOptions() {
 		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
 		let photoAction = PhotoPickerAlertAction(title: "Photo", style: .default, handler: photoButtonPressed(_:))
+		let videoAction = PhotoPickerAlertAction(title: "Video", style: .default, handler: videoButtonPressed(_:))
+
 		alert.addAction(photoAction)
+		alert.addAction(videoAction)
 		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 		self.present(alert, animated: true, completion: nil)
 	}
 
 	private func photoButtonPressed(_ action: UIAlertAction) {
 		coordinator?.showCameraViewController()
+	}
+
+	private func videoButtonPressed(_ action: UIAlertAction) {
+		coordinator?.showVideoLibrary()
 	}
 
 }
@@ -812,8 +809,8 @@ extension ChatViewController: MessageCellDelegate {
 					next = Int(dc_get_next_media(mailboxPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
 				}
 
+				// these are the files user will be able to swipe trough
 				let mediaUrls: [URL] = previousUrls + [url] + nextUrls
-
 				previewController = PreviewController(currentIndex: previousUrls.count, urls: mediaUrls)
 				present(previewController!.qlController, animated: true)
 			}

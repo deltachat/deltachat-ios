@@ -35,7 +35,7 @@ class EditGroupViewController: UITableViewController {
 		self.chat = chat
 		super.init(style: .grouped)
 		groupNameCell.inputField.text = chat.name
-		groupNameCell.groupBadge.setText(chat.name)
+		groupNameCell.groupBadge.setName(chat.name)
 		groupNameCell.groupBadge.setColor(chat.color)
 	}
 
