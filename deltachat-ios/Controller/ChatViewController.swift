@@ -65,7 +65,6 @@ class ChatViewController: MessagesViewController {
 
 	override func viewDidLoad() {
 		messagesCollectionView.register(CustomMessageCell.self)
-		messagesCollectionView.register(VideoMessageCell.self)
 		super.viewDidLoad()
 		view.backgroundColor = DCColors.chatBackgroundColor
 		if !MRConfig.configured {
@@ -390,15 +389,9 @@ class ChatViewController: MessagesViewController {
 			let cell = messagesCollectionView.dequeueReusableCell(TextMessageCell.self, for: indexPath)
 			cell.configure(with: message, at: indexPath, and: messagesCollectionView)
 			return cell
-		case .photo:
+		case .photo, .video:
 			let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
 			cell.configure(with: message, at: indexPath, and: messagesCollectionView)
-			return cell
-		case .video:
-			let cell = messagesCollectionView.dequeueReusableCell(VideoMessageCell.self, for: indexPath)
-			let m: MRMessage = messageList[indexPath.section]
-			let url = m.fileURL
-			cell.configure(with: message, videoUrl: url, at: indexPath, and: messagesCollectionView)
 			return cell
 		case .location:
 			let cell = messagesCollectionView.dequeueReusableCell(LocationMessageCell.self, for: indexPath)
@@ -714,37 +707,6 @@ extension ChatViewController: MessagesDisplayDelegate {
 
 	func enabledDetectors(for _: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> [DetectorType] {
 		return [.url, .date, .phoneNumber, .address]
-	}
-
-	// MARK: - videoCell configuration
-	 func configureMediaMessageImageView(_ imageView: UIImageView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-
-
-		let message = self.messageForItem(at: indexPath, in: messagesCollectionView)
-
-		switch message.kind {
-			/*
-		case .video:
-			let m: MRMessage = messageList[indexPath.section]
-			if let url = m.fileURL {
-
-				let thumbnail = Utils.generateThumbnailFromVideo(url: url)
-				imageView.image = thumbnail
-
-				/*
-				let dummyImageView = UIImageView(image: thumbnail)
-				dummyImageView.translatesAutoresizingMaskIntoConstraints = false
-				view.addSubview(dummyImageView)
-				dummyImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-				dummyImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-				dummyImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-				dummyImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-				*/
-			}
-			*/
-		default:
-			break
-		}
 	}
 }
 
