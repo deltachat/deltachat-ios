@@ -22,6 +22,11 @@ class ContactListController: UITableViewController {
 		return handler
 	}()
 
+	lazy var newContactButton: UIBarButtonItem = {
+		let button = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_add").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(newContactButtonPressed))
+		return button
+	}()
+
 	var deviceContactAccessGranted: Bool = false {
 		didSet {
 			tableView.reloadData()
@@ -36,6 +41,8 @@ class ContactListController: UITableViewController {
    // tableView.rowHeight = 80
     tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
 		tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
+
+		navigationItem.rightBarButtonItem = newContactButton
   }
 
   private func getContactIds() {
@@ -140,6 +147,10 @@ class ContactListController: UITableViewController {
 		}
 		edit.backgroundColor = DCColors.primary
 		return [edit]
+	}
+
+	@objc func newContactButtonPressed() {
+		coordinator?.showNewContactController()
 	}
 }
 
