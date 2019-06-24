@@ -171,6 +171,7 @@ class ContactListCoordinator: Coordinator {
 		let coordinator = EditContactCoordinator(navigationController: navigationController)
 		childCoordinators.append(coordinator)
 		newContactController.coordinator = coordinator
+		newContactController.hidesBottomBarWhenPushed = true
 		navigationController.pushViewController(newContactController, animated: true)
 	}
 }
