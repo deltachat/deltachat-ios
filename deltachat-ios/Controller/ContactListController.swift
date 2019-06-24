@@ -10,7 +10,7 @@ import UIKit
 import Contacts
 
 class ContactListController: UITableViewController {
-  weak var coordinator: ContactListCoordinator?
+	weak var coordinator: ContactListCoordinator?
 
 	private lazy var searchController: UISearchController = {
 		let searchController = UISearchController(searchResultsController: nil)
@@ -33,9 +33,9 @@ class ContactListController: UITableViewController {
 		return searchController.isActive && !searchBarIsEmpty()
 	}
 
-  let contactCellReuseIdentifier = "ChatCell"
-  var contactIds: [Int] = Utils.getContactIds()
-  var contactIdsForGroup: Set<Int> = []
+	let contactCellReuseIdentifier = "ChatCell"
+	var contactIds: [Int] = Utils.getContactIds()
+	var contactIdsForGroup: Set<Int> = []
 
 	lazy var deviceContactHandler: DeviceContactsHandler = {
 		let handler = DeviceContactsHandler()
@@ -55,21 +55,21 @@ class ContactListController: UITableViewController {
 		}
 	}
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    title = "Contacts"
-    navigationController?.navigationBar.prefersLargeTitles = true
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		title = "Contacts"
+		navigationController?.navigationBar.prefersLargeTitles = true
 		navigationItem.searchController = searchController
-    tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
+		tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
 		tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
 
 		navigationItem.rightBarButtonItem = newContactButton
-  }
+	}
 
-  private func getContactIds() {
-    contactIds = Utils.getContactIds()
-    tableView.reloadData()
-  }
+	private func getContactIds() {
+		contactIds = Utils.getContactIds()
+		tableView.reloadData()
+	}
 
 	private func searchBarIsEmpty() -> Bool {
 		return searchController.searchBar.text?.isEmpty ?? true
@@ -85,39 +85,40 @@ class ContactListController: UITableViewController {
 		tableView.reloadData()
 	}
 
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    if #available(iOS 11.0, *) {
-      navigationController?.navigationBar.prefersLargeTitles = true
-    }
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		if #available(iOS 11.0, *) {
+			navigationController?.navigationBar.prefersLargeTitles = true
+		}
 		deviceContactHandler.importDeviceContacts()
 		deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
-    getContactIds()
-  }
+		searchController.searchBar.text = nil
+		getContactIds()
+	}
 
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    if #available(iOS 11.0, *) {
-      navigationController?.navigationBar.prefersLargeTitles = false
-    }
-  }
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		if #available(iOS 11.0, *) {
+			navigationController?.navigationBar.prefersLargeTitles = false
+		}
+	}
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-  }
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
 
-  override func numberOfSections(in _: UITableView) -> Int {
+	override func numberOfSections(in _: UITableView) -> Int {
 		return deviceContactAccessGranted ? 1 : 2
-  }
+	}
 
-  override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if !deviceContactAccessGranted && section == 0 {
 			return 1
 		}
-    return isFiltering() ? filteredContacts.count : contactIds.count
-  }
+		return isFiltering() ? filteredContacts.count : contactIds.count
+	}
 
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let section = indexPath.section
 
 		if !deviceContactAccessGranted && section == 0 {
@@ -131,35 +132,36 @@ class ContactListController: UITableViewController {
 			return cell
 		} else {
 
-		let cell: ContactCell
-    if let c = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier) as? ContactCell {
-      cell = c
-    } else {
-      cell = ContactCell(style: .subtitle, reuseIdentifier: contactCellReuseIdentifier)
-    }
-    let row = indexPath.row
-    let contactRow = row
+			let cell: ContactCell
+			if let c = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier) as? ContactCell {
+				cell = c
+			} else {
+				cell = ContactCell(style: .subtitle, reuseIdentifier: contactCellReuseIdentifier)
+			}
+			let row = indexPath.row
+			let contactRow = row
 
-    if contactRow < contactIds.count {
-			let contact: ContactWithSearchResults = isFiltering() ? filteredContacts[contactRow] : contacts[contactRow]
-			updateContactCell(cell: cell, contactWithHighlight: contact)
-      cell.selectionStyle = .none
+			if contactRow < contactIds.count {
+				let contact: ContactWithSearchResults = isFiltering() ? filteredContacts[contactRow] : contacts[contactRow]
+				updateContactCell(cell: cell, contactWithHighlight: contact)
+				cell.selectionStyle = .none
 
-      cell.setVerified(isVerified: contact.contact.isVerified)
-    }
-    return cell
+				cell.setVerified(isVerified: contact.contact.isVerified)
+			}
+			return cell
 		}
-  }
+	}
 
-  override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+	override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let row = indexPath.row
 		if !deviceContactAccessGranted && indexPath.section == 0 {
 			showSettingsAlert()
 		} else {
-			let contactId = contactIds[indexPath.row]
+			let contactId = isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
 			let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
-
-			coordinator?.showChat(chatId: Int(chatId))
-			// coordinator?.showContactDetail(contactId: contactId)
+			searchController.dismiss(animated: false) {
+				self.coordinator?.showChat(chatId: Int(chatId))
+			}
 		}
 	}
 
