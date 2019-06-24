@@ -12,6 +12,27 @@ import Contacts
 class ContactListController: UITableViewController {
   weak var coordinator: ContactListCoordinator?
 
+	private lazy var searchController: UISearchController = {
+		let searchController = UISearchController(searchResultsController: nil)
+		searchController.searchResultsUpdater = self
+		searchController.obscuresBackgroundDuringPresentation = false
+		searchController.searchBar.placeholder = "Search Contact"
+		return searchController
+	}()
+
+	// contactWithSearchResults.indexesToHightLight empty by default
+	var contacts: [ContactWithSearchResults] {
+		return contactIds.map { ContactWithSearchResults(contact: MRContact(id: $0), indexesToHighlight: []) }
+	}
+
+	// used when seachbar is active
+	var filteredContacts: [ContactWithSearchResults] = []
+
+	// searchBar active?
+	func isFiltering() -> Bool {
+		return searchController.isActive && !searchBarIsEmpty()
+	}
+
   let contactCellReuseIdentifier = "ChatCell"
   var contactIds: [Int] = Utils.getContactIds()
   var contactIdsForGroup: Set<Int> = []
@@ -23,7 +44,8 @@ class ContactListController: UITableViewController {
 	}()
 
 	lazy var newContactButton: UIBarButtonItem = {
-		let button = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_add").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(newContactButtonPressed))
+		let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newContactButtonPressed))
+		// UIBarButtonItem(image: #imageLiteral(resourceName: "ic_add").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(newContactButtonPressed))
 		return button
 	}()
 
@@ -37,8 +59,7 @@ class ContactListController: UITableViewController {
     super.viewDidLoad()
     title = "Contacts"
     navigationController?.navigationBar.prefersLargeTitles = true
-
-   // tableView.rowHeight = 80
+		navigationItem.searchController = searchController
     tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
 		tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
 
@@ -49,6 +70,20 @@ class ContactListController: UITableViewController {
     contactIds = Utils.getContactIds()
     tableView.reloadData()
   }
+
+	private func searchBarIsEmpty() -> Bool {
+		return searchController.searchBar.text?.isEmpty ?? true
+	}
+
+	private func filterContentForSearchText(_ searchText: String, scope _: String = "All") {
+		let contactsWithHighlights: [ContactWithSearchResults] = contacts.map { contact in
+			let indexes = contact.contact.contains(searchText: searchText)
+			return ContactWithSearchResults(contact: contact.contact, indexesToHighlight: indexes)
+		}
+
+		filteredContacts = contactsWithHighlights.filter { !$0.indexesToHighlight.isEmpty }
+		tableView.reloadData()
+	}
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -79,7 +114,7 @@ class ContactListController: UITableViewController {
 		if !deviceContactAccessGranted && section == 0 {
 			return 1
 		}
-    return contactIds.count
+    return isFiltering() ? filteredContacts.count : contactIds.count
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -106,18 +141,11 @@ class ContactListController: UITableViewController {
     let contactRow = row
 
     if contactRow < contactIds.count {
-      let contact = MRContact(id: contactIds[contactRow])
-      cell.nameLabel.text = contact.name
-      cell.emailLabel.text = contact.email
-
+			let contact: ContactWithSearchResults = isFiltering() ? filteredContacts[contactRow] : contacts[contactRow]
+			updateContactCell(cell: cell, contactWithHighlight: contact)
       cell.selectionStyle = .none
 
-      if let img = contact.profileImage {
-        cell.setImage(img)
-      } else {
-        cell.setBackupImage(name: contact.name, color: contact.color)
-      }
-      cell.setVerified(isVerified: contact.isVerified)
+      cell.setVerified(isVerified: contact.contact.isVerified)
     }
     return cell
 		}
@@ -152,6 +180,25 @@ class ContactListController: UITableViewController {
 	@objc func newContactButtonPressed() {
 		coordinator?.showNewContactController()
 	}
+
+	private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {
+		let contact = contactWithHighlight.contact
+
+		if let nameHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .NAME }).first,
+			let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {
+			// gets here when contact is a result of current search -> highlights relevant indexes
+			let nameLabelFontSize = cell.nameLabel.font.pointSize
+			let emailLabelFontSize = cell.emailLabel.font.pointSize
+
+			cell.nameLabel.attributedText = contact.name.boldAt(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
+			cell.emailLabel.attributedText = contact.email.boldAt(indexes: emailHighlightedIndexes.indexes, fontSize: emailLabelFontSize)
+		} else {
+			cell.nameLabel.text = contact.name
+			cell.emailLabel.text = contact.email
+		}
+		cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
+		cell.setColor(contact.color)
+	}
 }
 
 extension ContactListController: ContactListDelegate {
@@ -180,5 +227,13 @@ extension ContactListController: ContactListDelegate {
 		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
 		})
 		present(alert, animated: true)
+	}
+}
+
+extension ContactListController: UISearchResultsUpdating {
+	func updateSearchResults(for searchController: UISearchController) {
+		if let searchText = searchController.searchBar.text {
+			filterContentForSearchText(searchText)
+		}
 	}
 }

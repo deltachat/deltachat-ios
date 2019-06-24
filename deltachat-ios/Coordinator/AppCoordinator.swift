@@ -27,14 +27,13 @@ class AppCoordinator: NSObject, Coordinator {
 		// put viewControllers here
 		tabBarController.delegate = self
 		tabBarController.tabBar.tintColor = DCColors.primary
-		// tabBarController.tabBar.isTranslucent = false
 		return tabBarController
 	}()
 
 	// MARK: viewControllers
 
 	private lazy var contactListController: UIViewController = {
-		let controller = ContactListController(style: .grouped)
+		let controller = ContactListController()
 		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "contacts")
 		nav.tabBarItem = UITabBarItem(title: "Contacts", image: settingsImage, tag: 0)
