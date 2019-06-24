@@ -302,7 +302,7 @@ class ChatViewController: MessagesViewController {
 	private func configureMessageInputBar() {
 		messageInputBar.delegate = self
 		messageInputBar.inputTextView.tintColor = DCColors.primary
-
+		messageInputBar.inputTextView.placeholder = "Message"
 		messageInputBar.isTranslucent = true
 		messageInputBar.separatorLine.isHidden = true
 		messageInputBar.inputTextView.tintColor = DCColors.primary
