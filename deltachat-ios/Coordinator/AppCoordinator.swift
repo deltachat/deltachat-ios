@@ -34,7 +34,7 @@ class AppCoordinator: NSObject, Coordinator {
 	// MARK: viewControllers
 
 	private lazy var contactListController: UIViewController = {
-		let controller = ContactListController()
+		let controller = ContactListController(style: .grouped)
 		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "contacts")
 		nav.tabBarItem = UITabBarItem(title: "Contacts", image: settingsImage, tag: 0)

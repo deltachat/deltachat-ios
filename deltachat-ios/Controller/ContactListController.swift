@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Contacts
 
 class ContactListController: UITableViewController {
   weak var coordinator: ContactListCoordinator?
@@ -15,13 +16,26 @@ class ContactListController: UITableViewController {
   var contactIds: [Int] = Utils.getContactIds()
   var contactIdsForGroup: Set<Int> = []
 
+	lazy var deviceContactHandler: DeviceContactsHandler = {
+		let handler = DeviceContactsHandler()
+		handler.contactListDelegate = self
+		return handler
+	}()
+
+	var deviceContactAccessGranted: Bool = false {
+		didSet {
+			tableView.reloadData()
+		}
+	}
+
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Contacts"
     navigationController?.navigationBar.prefersLargeTitles = true
 
-    tableView.rowHeight = 80
+   // tableView.rowHeight = 80
     tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
+		tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
   }
 
   private func getContactIds() {
@@ -31,11 +45,11 @@ class ContactListController: UITableViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
     if #available(iOS 11.0, *) {
       navigationController?.navigationBar.prefersLargeTitles = true
     }
-
+		deviceContactHandler.importDeviceContacts()
+		deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
     getContactIds()
   }
 
@@ -51,15 +65,31 @@ class ContactListController: UITableViewController {
   }
 
   override func numberOfSections(in _: UITableView) -> Int {
-    return 1
+		return deviceContactAccessGranted ? 1 : 2
   }
 
-  override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+  override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if !deviceContactAccessGranted && section == 0 {
+			return 1
+		}
     return contactIds.count
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell: ContactCell
+		let section = indexPath.section
+
+		if !deviceContactAccessGranted && section == 0 {
+			let cell: ActionCell
+			if let c = tableView.dequeueReusableCell(withIdentifier: "actionCell") as? ActionCell {
+				cell = c
+			} else {
+				cell = ActionCell(style: .default, reuseIdentifier: "actionCell")
+			}
+			cell.actionTitle = "Import Device Contacts"
+			return cell
+		} else {
+
+		let cell: ContactCell
     if let c = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier) as? ContactCell {
       cell = c
     } else {
@@ -83,15 +113,20 @@ class ContactListController: UITableViewController {
       cell.setVerified(isVerified: contact.isVerified)
     }
     return cell
+		}
   }
 
   override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let contactId = contactIds[indexPath.row]
-		let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+		if !deviceContactAccessGranted && indexPath.section == 0 {
+			showSettingsAlert()
+		} else {
+			let contactId = contactIds[indexPath.row]
+			let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
 
-		coordinator?.showChat(chatId: Int(chatId))
-		// coordinator?.showContactDetail(contactId: contactId)
-  }
+			coordinator?.showChat(chatId: Int(chatId))
+			// coordinator?.showContactDetail(contactId: contactId)
+		}
+	}
 
 	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 		let row = indexPath.row
@@ -105,5 +140,34 @@ class ContactListController: UITableViewController {
 		}
 		edit.backgroundColor = DCColors.primary
 		return [edit]
+	}
+}
+
+extension ContactListController: ContactListDelegate {
+	func deviceContactsImported() {
+		contactIds = Utils.getContactIds()
+	}
+
+	func accessGranted() {
+		deviceContactAccessGranted = true
+	}
+
+	func accessDenied() {
+		deviceContactAccessGranted = false
+		getContactIds()
+	}
+
+	private func showSettingsAlert() {
+		let alert = UIAlertController(
+			title: "Import Contacts from to your device",
+			message: "To chat with contacts from your device open the settings menu and enable the Contacts option",
+			preferredStyle: .alert
+		)
+		alert.addAction(UIAlertAction(title: "Open Settings", style: .default) { _ in
+			UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+		})
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+		})
+		present(alert, animated: true)
 	}
 }

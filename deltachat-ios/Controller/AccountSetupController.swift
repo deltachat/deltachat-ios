@@ -15,7 +15,6 @@ class AccountSetupController: UITableViewController {
 	weak var coordinator: AccountSetupCoordinator?
 
 	private var skipOauth = false
-	private var useCustomSettings = false
 
 	private var backupProgressObserver: Any?
 	private var configureProgressObserver: Any?
@@ -358,7 +357,7 @@ class AccountSetupController: UITableViewController {
 		MRConfig.addr = emailAddress
 		MRConfig.mailPw = password
 
-		if useCustomSettings && !skipAdvanceSetup {
+		if !skipAdvanceSetup {
 			evaluluateAdvancedSetup() // this will set MRConfig related to advanced fields
 		}
 
