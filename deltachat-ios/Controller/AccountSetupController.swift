@@ -14,7 +14,7 @@ class AccountSetupController: UITableViewController {
 
 	weak var coordinator: AccountSetupCoordinator?
 
-	private var userHasCancelledOAuth = false
+	private var skipOauth = false
 	private var useCustomSettings = false
 
 	private var backupProgressObserver: Any?
@@ -373,7 +373,7 @@ class AccountSetupController: UITableViewController {
 
 	// returns true if needed
 	private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (() -> Void)?) -> Bool {
-		if userHasCancelledOAuth {
+		if skipOauth {
 			assert(MRConfig.getAuthFlags() == Int(DC_LP_AUTH_NORMAL))
 			// user has previously denied oAuth2-setup
 			return false
@@ -401,7 +401,7 @@ class AccountSetupController: UITableViewController {
 			let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
 				_ in
 				MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL))
-				self.userHasCancelledOAuth = true
+				self.skipOauth = true
 				handleCancel?()
 
 			})
@@ -565,7 +565,7 @@ extension AccountSetupController: UITextFieldDelegate {
 	func textFieldDidBeginEditing(_ textField: UITextField) {
 		if textField.accessibilityIdentifier == "emailTextField" {
 			// this will re-enable possible oAuth2-login
-			userHasCancelledOAuth = false
+			skipOauth = false
 		}
 	}
 
