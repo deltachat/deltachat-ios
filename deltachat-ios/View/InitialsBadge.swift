@@ -23,6 +23,9 @@ class InitialsBadge: UILabel {
     adjustsFontSizeToFitWidth = true
     let initialsLabelCornerRadius = size / 2
     layer.cornerRadius = initialsLabelCornerRadius
+		translatesAutoresizingMaskIntoConstraints = false
+		heightAnchor.constraint(equalToConstant: size).isActive = true
+		widthAnchor.constraint(equalToConstant: size).isActive = true
     clipsToBounds = true
   }
 

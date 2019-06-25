@@ -20,6 +20,8 @@ class ContactListController: UITableViewController {
 		return searchController
 	}()
 
+	var contactIds: [Int] = Utils.getContactIds()
+
 	// contactWithSearchResults.indexesToHightLight empty by default
 	var contacts: [ContactWithSearchResults] {
 		return contactIds.map { ContactWithSearchResults(contact: MRContact(id: $0), indexesToHighlight: []) }
@@ -34,8 +36,6 @@ class ContactListController: UITableViewController {
 	}
 
 	let contactCellReuseIdentifier = "ChatCell"
-	var contactIds: [Int] = Utils.getContactIds()
-	var contactIdsForGroup: Set<Int> = []
 
 	lazy var deviceContactHandler: DeviceContactsHandler = {
 		let handler = DeviceContactsHandler()
@@ -153,27 +153,36 @@ class ContactListController: UITableViewController {
 	}
 
 	override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let row = indexPath.row
 		if !deviceContactAccessGranted && indexPath.section == 0 {
 			showSettingsAlert()
 		} else {
-			let contactId = isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
+			let contact = contactByIndexPath(indexPath)
+			let contactId = contact.contact.id
 			let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
-			searchController.dismiss(animated: false) {
+
+			if searchController.isActive {
+				searchController.dismiss(animated: false) {
+					self.coordinator?.showChat(chatId: Int(chatId))
+				}
+			} else {
 				self.coordinator?.showChat(chatId: Int(chatId))
 			}
 		}
 	}
 
 	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-		let row = indexPath.row
-
-		let contactId = contactIds[row]
+		let contactId = contactByIndexPath(indexPath).contact.id
 
 		// assigning swipe by delete to chats
 		let edit = UITableViewRowAction(style: .default, title: "Edit") {
 			[unowned self] _, indexPath in
-			self.coordinator?.showContactDetail(contactId: contactId)
+			if self.searchController.isActive {
+				self.searchController.dismiss(animated: false) {
+					self.coordinator?.showContactDetail(contactId: contactId)
+				}
+			} else {
+				self.coordinator?.showContactDetail(contactId: contactId)
+			}
 		}
 		edit.backgroundColor = DCColors.primary
 		return [edit]
@@ -200,6 +209,10 @@ class ContactListController: UITableViewController {
 		}
 		cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
 		cell.setColor(contact.color)
+	}
+
+	private func contactByIndexPath(_ indexPath: IndexPath) -> ContactWithSearchResults {
+		return isFiltering() ? filteredContacts[indexPath.row] : contacts[indexPath.row]
 	}
 }
 
