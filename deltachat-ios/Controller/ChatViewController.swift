@@ -39,7 +39,6 @@ class ChatViewController: MessagesViewController {
 	}()
 
 	var disableWriting = false
-
 	var previewView: UIView?
 	var previewController: PreviewController?
 
@@ -50,11 +49,13 @@ class ChatViewController: MessagesViewController {
 		return messageInputBar
 	}
 
+	private var titleView = ChatTitleView()
+
 	init(chatId: Int, title: String? = nil) {
 		self.chatId = chatId
 		super.init(nibName: nil, bundle: nil)
 		if let title = title {
-			updateTitleView(title: title, subtitle: nil)
+			titleView.updateTitleView(title: title, subtitle: nil)
 		}
 		hidesBottomBarWhenPushed = true
 	}
@@ -66,6 +67,8 @@ class ChatViewController: MessagesViewController {
 	override func viewDidLoad() {
 		messagesCollectionView.register(CustomMessageCell.self)
 		super.viewDidLoad()
+		navigationItem.titleView = titleView
+
 		view.backgroundColor = DCColors.chatBackgroundColor
 		if !MRConfig.configured {
 			// TODO: display message about nothing being configured
@@ -89,7 +92,7 @@ class ChatViewController: MessagesViewController {
 		navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 
 		let chat = MRChat(id: chatId)
-		updateTitleView(title: chat.name, subtitle: chat.subtitle)
+		titleView.updateTitleView(title: chat.name, subtitle: chat.subtitle)
 
 		if let image = chat.profileImage {
 			navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(chatProfilePressed))

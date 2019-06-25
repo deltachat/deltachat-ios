@@ -21,7 +21,6 @@
 		78E45E3C21D3D03700D4B15E /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */; };
 		78E45E3E21D3D28C00D4B15E /* DCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3D21D3D28C00D4B15E /* DCNavigationController.swift */; };
 		78E45E4021D3D70700D4B15E /* ContactListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3F21D3D70700D4B15E /* ContactListController.swift */; };
-		78E45E4221D3DB4000D4B15E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4121D3DB4000D4B15E /* UIViewController+Extension.swift */; };
 		78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */; };
 		78E45E4C21D404AE00D4B15E /* CustomMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4B21D404AE00D4B15E /* CustomMessageCell.swift */; };
 		78ED838321D5379000243125 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838221D5379000243125 /* TextFieldCell.swift */; };
@@ -55,6 +54,7 @@
 		AE851ACE227CA54400ED86F0 /* InitialsBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACD227CA54300ED86F0 /* InitialsBadge.swift */; };
 		AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */; };
 		AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0C22C1215D004C9591 /* EditContactController.swift */; };
+		AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */; };
 		AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */; };
 		AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DE1FB3246400DCDD78 /* Message.swift */; };
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
@@ -96,7 +96,6 @@
 		78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		78E45E3D21D3D28C00D4B15E /* DCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCNavigationController.swift; sourceTree = "<group>"; };
 		78E45E3F21D3D70700D4B15E /* ContactListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListController.swift; sourceTree = "<group>"; };
-		78E45E4121D3DB4000D4B15E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		78E45E4B21D404AE00D4B15E /* CustomMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageCell.swift; sourceTree = "<group>"; };
 		78ED838221D5379000243125 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
@@ -137,6 +136,7 @@
 		AE851ACD227CA54300ED86F0 /* InitialsBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsBadge.swift; sourceTree = "<group>"; };
 		AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatDetailViewController.swift; sourceTree = "<group>"; };
 		AE9DAF0C22C1215D004C9591 /* EditContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactController.swift; sourceTree = "<group>"; };
+		AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTitleView.swift; sourceTree = "<group>"; };
 		AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		AEACE2DE1FB3246400DCDD78 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -314,7 +314,6 @@
 			children = (
 				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
 				78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */,
-				78E45E4121D3DB4000D4B15E /* UIViewController+Extension.swift */,
 				AEACE2E41FB32E1900DCDD78 /* Utils.swift */,
 				AEE56D7F225504DB007DC082 /* Extensions.swift */,
 				AE38B3192267328200EC37A1 /* Colors.swift */,
@@ -337,6 +336,7 @@
 				AE25F08F22807AD800CDEA66 /* GroupNameCell.swift */,
 				AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */,
 				AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */,
+				AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -617,6 +617,7 @@
 				78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */,
 				AE851AC9227C77CF00ED86F0 /* Media.swift in Sources */,
 				AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */,
+				AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */,
 				AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */,
 				7070FB9B2101ECBB000DC258 /* GroupNameController.swift in Sources */,
 				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
@@ -643,7 +644,6 @@
 				AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */,
 				78ED838F21D5927A00243125 /* ProfileViewController.swift in Sources */,
 				AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */,
-				78E45E4221D3DB4000D4B15E /* UIViewController+Extension.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
 				AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */,
 				AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */,
