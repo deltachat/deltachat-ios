@@ -6,39 +6,52 @@
 //  Copyright © 2019 Jonas Reinsch. All rights reserved.
 //
 
-
 import UIKit
 
-class InitialsBadge: UILabel {
-  convenience init(name: String, color: UIColor, size: CGFloat) {
-    self.init(size: size)
-    setName(name)
-    setColor(color)
-  }
+class InitialsBadge: UIView {
 
-  init(size: CGFloat) {
-    super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
-    textAlignment = NSTextAlignment.center
-    textColor = UIColor.white
-    adjustsFontSizeToFitWidth = true
-    let initialsLabelCornerRadius = size / 2
-    layer.cornerRadius = initialsLabelCornerRadius
+	private var label: UILabel = {
+		let label = UILabel()
+		label.adjustsFontSizeToFitWidth = true
+		label.textAlignment = NSTextAlignment.center
+		label.textColor = UIColor.white
+		return label
+	}()
+
+	convenience init(name: String, color: UIColor, size: CGFloat) {
+		self.init(size: size)
+		setName(name)
+		setColor(color)
+	}
+
+	init(size: CGFloat) {
+		super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
+		let initialsLabelCornerRadius = size / 2
+		layer.cornerRadius = initialsLabelCornerRadius
 		translatesAutoresizingMaskIntoConstraints = false
 		heightAnchor.constraint(equalToConstant: size).isActive = true
 		widthAnchor.constraint(equalToConstant: size).isActive = true
-    clipsToBounds = true
-  }
+		clipsToBounds = true
+		setupSubviews()
+	}
 
-  required init?(coder _: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+	private func setupSubviews() {
+		addSubview(label)
+		label.translatesAutoresizingMaskIntoConstraints = false
+		label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2).isActive = true
+		label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2).isActive = true
+		label.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
+	}
 
-  func setName(_ name: String) {
-    text = Utils.getInitials(inputName: name)
-  }
+	required init?(coder _: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 
-  func setColor(_ color: UIColor) {
-    backgroundColor = color
-  }
+	func setName(_ name: String) {
+		label.text = Utils.getInitials(inputName: name)
+	}
+
+	func setColor(_ color: UIColor) {
+		backgroundColor = color
+	}
 }
-
