@@ -36,7 +36,7 @@ final class DCNavigationController: UINavigationController {
   }
 
 	override func viewWillAppear(_ animated: Bool) {
-
+		super.viewWillAppear(animated)
 		if let connection = Reachability()?.connection {
 			switch connection {
 			case Reachability.Connection.cellular, Reachability.Connection.wifi:

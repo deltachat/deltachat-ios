@@ -30,10 +30,9 @@ class ChatListController: UIViewController {
 		super.viewWillAppear(animated)
 
 		if #available(iOS 11.0, *) {
-			// TODO: check if this is really nessesary - dc navigationController has large titles
 			navigationController?.navigationBar.prefersLargeTitles = true
+			navigationItem.largeTitleDisplayMode = .always
 		}
-
 		getChatList()
 	}
 
@@ -52,7 +51,6 @@ class ChatListController: UIViewController {
 																					_ in
 																					self.getChatList()
 		}
-
 		incomingMsgObserver = nc.addObserver(forName: dcNotificationIncoming,
 																				 object: nil, queue: nil) {
 																					_ in

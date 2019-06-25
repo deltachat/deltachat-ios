@@ -12,7 +12,7 @@ import Photos
 import MobileCoreServices
 
 
-class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
+class AppCoordinator: NSObject, Coordinator {
 	private let window: UIWindow
 
 	var rootViewController: UIViewController {
@@ -27,7 +27,6 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		// put viewControllers here
 		tabBarController.delegate = self
 		tabBarController.tabBar.tintColor = DCColors.primary
-		// tabBarController.tabBar.isTranslucent = false
 		return tabBarController
 	}()
 
@@ -37,7 +36,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		let controller = ContactListController()
 		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "contacts")
-		nav.tabBarItem = UITabBarItem(title: "Contacts", image: settingsImage, tag: 4)
+		nav.tabBarItem = UITabBarItem(title: "Contacts", image: settingsImage, tag: 0)
 		let coordinator = ContactListCoordinator(navigationController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
@@ -49,7 +48,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		controller.disableWriting = true
 		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "message")
-		nav.tabBarItem = UITabBarItem(title: "Mailbox", image: settingsImage, tag: 0)
+		nav.tabBarItem = UITabBarItem(title: "Mailbox", image: settingsImage, tag: 1)
 		let coordinator = MailboxCoordinator(navigationController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
@@ -60,7 +59,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		let controller = ProfileViewController()
 		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "report_card")
-		nav.tabBarItem = UITabBarItem(title: "My Profile", image: settingsImage, tag: 1)
+		nav.tabBarItem = UITabBarItem(title: "My Profile", image: settingsImage, tag: 2)
 		let coordinator = ProfileCoordinator(rootViewController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
@@ -71,7 +70,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		let controller = ChatListController()
 		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "chat")
-		nav.tabBarItem = UITabBarItem(title: "Chats", image: settingsImage, tag: 2)
+		nav.tabBarItem = UITabBarItem(title: "Chats", image: settingsImage, tag: 3)
 		let coordinator = ChatListCoordinator(navigationController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
@@ -82,7 +81,7 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 		let controller = SettingsViewController()
 		let nav = DCNavigationController(rootViewController: controller)
 		let settingsImage = UIImage(named: "settings")
-		nav.tabBarItem = UITabBarItem(title: "Settings", image: settingsImage, tag: 3)
+		nav.tabBarItem = UITabBarItem(title: "Settings", image: settingsImage, tag: 4)
 		let coordinator = SettingsCoordinator(navigationController: nav)
 		self.childCoordinators.append(coordinator)
 		controller.coordinator = coordinator
@@ -112,9 +111,26 @@ class AppCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
 	}
 }
 
+extension AppCoordinator: UITabBarControllerDelegate {
+	func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+		if let dcNav = viewController as? DCNavigationController {
+			switch tabBarController.selectedIndex {
+			case 0,3,4:
+				dcNav.navigationBar.prefersLargeTitles = true
+			case 1,2:
+				dcNav.navigationBar.prefersLargeTitles = false
+			default:
+				// should never get here
+				dcNav.navigationBar.prefersLargeTitles = false
+			}
+		}
+	}
+
+}
+
 extension AppCoordinator: UITabBarDelegate {
 	func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-		print("item selected")
+
 	}
 
 	func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -147,6 +163,15 @@ class ContactListCoordinator: Coordinator {
 		childCoordinators.append(coordinator)
 		chatVC.coordinator = coordinator
 		navigationController.pushViewController(chatVC, animated: true)
+	}
+
+	func showNewContactController() {
+		let newContactController = NewContactController()
+		let coordinator = EditContactCoordinator(navigationController: navigationController)
+		childCoordinators.append(coordinator)
+		newContactController.coordinator = coordinator
+		newContactController.hidesBottomBarWhenPushed = true
+		navigationController.pushViewController(newContactController, animated: true)
 	}
 }
 

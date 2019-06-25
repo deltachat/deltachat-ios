@@ -45,7 +45,7 @@ class ProfileViewController: UITableViewController {
   }
 
   override func viewWillAppear(_: Bool) {
-    navigationController?.navigationBar.prefersLargeTitles = false
+   navigationController?.navigationBar.prefersLargeTitles = false
     tableView.reloadData()
   }
 

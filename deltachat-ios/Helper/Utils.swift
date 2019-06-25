@@ -17,7 +17,11 @@ struct Utils {
   }
 
   static func getInitials(inputName: String) -> String {
-    let nameParts = inputName.split(separator: " ")
+    var nameParts = inputName.split(separator: " ")
+		// this limits initials to max 2, otherwise just takes first letter to avoid messy badges
+		if nameParts.count > 2 {
+			nameParts = [nameParts[0]]
+		}
     let initials: [Character] = nameParts.compactMap { part in part.capitalized.first }
     let initialsString: String = String(initials)
     return initialsString

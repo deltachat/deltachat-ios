@@ -14,8 +14,7 @@ class AccountSetupController: UITableViewController {
 
 	weak var coordinator: AccountSetupCoordinator?
 
-	private var userHasCancelledOAuth = false
-	private var useCustomSettings = false
+	private var skipOauth = false
 
 	private var backupProgressObserver: Any?
 	private var configureProgressObserver: Any?
@@ -151,7 +150,11 @@ class AccountSetupController: UITableViewController {
 	}()
 
 	// this loginButton can be enabled and disabled
-	lazy var loginButton: UIBarButtonItem = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
+	private lazy var loginButton: UIBarButtonItem = {
+		let button = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
+		button.isEnabled = dc_is_configured(mailboxPointer) == 0
+		return button
+	}()
 
 	private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
 	private lazy var restoreCells: [UITableViewCell] = [restoreCell]
@@ -358,7 +361,7 @@ class AccountSetupController: UITableViewController {
 		MRConfig.addr = emailAddress
 		MRConfig.mailPw = password
 
-		if useCustomSettings && !skipAdvanceSetup {
+		if !skipAdvanceSetup {
 			evaluluateAdvancedSetup() // this will set MRConfig related to advanced fields
 		}
 
@@ -373,7 +376,7 @@ class AccountSetupController: UITableViewController {
 
 	// returns true if needed
 	private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (() -> Void)?) -> Bool {
-		if userHasCancelledOAuth {
+		if skipOauth {
 			assert(MRConfig.getAuthFlags() == Int(DC_LP_AUTH_NORMAL))
 			// user has previously denied oAuth2-setup
 			return false
@@ -401,7 +404,7 @@ class AccountSetupController: UITableViewController {
 			let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
 				_ in
 				MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL))
-				self.userHasCancelledOAuth = true
+				self.skipOauth = true
 				handleCancel?()
 
 			})
@@ -564,8 +567,9 @@ extension AccountSetupController: UITextFieldDelegate {
 
 	func textFieldDidBeginEditing(_ textField: UITextField) {
 		if textField.accessibilityIdentifier == "emailTextField" {
+			loginButton.isEnabled = true
 			// this will re-enable possible oAuth2-login
-			userHasCancelledOAuth = false
+			skipOauth = false
 		}
 	}
 
@@ -636,7 +640,7 @@ extension AccountSetupController {
 	func showProgressHud() {
 		configProgressAlert.actions[0].isEnabled = true
 		configProgressAlert.title = "Configuring Account"
-		configProgressAlert.message = "\n\n\n"
+		configProgressAlert.message = "\n\n\n"	// workaround to create space for progress indicator
 		configProgressIndicator.alpha = 1
 		configProgressIndicator.value = 0
 		present(configProgressAlert, animated: true, completion: nil)
@@ -654,6 +658,7 @@ extension AccountSetupController {
 		configProgressIndicator.alpha = 0
 		configProgressAlert.title = "Login Successful!"
 		configProgressAlert.message = "You are ready to use Delta Chat."
+		loginButton.isEnabled = dc_is_configured(mailboxPointer) == 0
 		DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
 			self.configProgressAlert.dismiss(animated: true) {
 				self.handleLoginSuccess()
