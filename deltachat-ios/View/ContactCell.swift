@@ -10,7 +10,6 @@ import UIKit
 
 // TODO: integrate InitialsBadge in here
 
-
 enum MessageDeliveryState: Int {
 	case UNDEFINED =  0
 	case INNOTICED = 13
@@ -197,14 +196,16 @@ class ContactCell: UITableViewCell {
 		switch status {
 		case .OUTPENDING, .OUTPAIRING:
 			indicatorImage = #imageLiteral(resourceName: "ic_delivery_status_sending").withRenderingMode(.alwaysTemplate)
-			deliveryStatusIndicator.tintColor = UIColor.black
+			deliveryStatusIndicator.tintColor = UIColor.black.withAlphaComponent(0.5)
 		case .OUTDELIVERED:
 			indicatorImage = #imageLiteral(resourceName: "ic_done_36pt").withRenderingMode(.alwaysTemplate)
+			deliveryStatusIndicator.tintColor = UIColor.green
 		case .OUTERROR:
 			indicatorImage = #imageLiteral(resourceName: "ic_error_36pt").withRenderingMode(.alwaysTemplate)
 			deliveryStatusIndicator.tintColor = UIColor.red
 		case .INSEEN:
 			indicatorImage = #imageLiteral(resourceName: "ic_done_all_36pt").withRenderingMode(.alwaysTemplate)
+			deliveryStatusIndicator.tintColor = UIColor.green
 		default: break
 		}
 		if indicatorImage != nil {
