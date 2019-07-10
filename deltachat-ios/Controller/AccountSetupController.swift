@@ -488,7 +488,7 @@ class AccountSetupController: UITableViewController {
 					MRConfig.setImapSecurity(imapFlags: flag)
 				case "SMTPServerCell":
 					MRConfig.sendServer = textFieldCell.getText() ?? nil
-				case "SMTPSUserCell":
+				case "SMTPUserCell":
 					MRConfig.sendUser = textFieldCell.getText() ?? nil
 				case "SMTPPortCell":
 					MRConfig.sendPort = textFieldCell.getText() ?? nil
