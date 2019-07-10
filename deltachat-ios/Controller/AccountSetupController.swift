@@ -362,7 +362,7 @@ class AccountSetupController: UITableViewController {
 		MRConfig.mailPw = password
 
 		if !skipAdvanceSetup {
-			evaluluateAdvancedSetup() // this will set MRConfig related to advanced fields
+			evaluateAdvancedSetup() // this will set MRConfig related to advanced fields
 		}
 
 		print("oAuth-Flag when loggin in: \(MRConfig.getAuthFlags())")
@@ -469,7 +469,7 @@ class AccountSetupController: UITableViewController {
 		}
 	}
 
-	private func evaluluateAdvancedSetup() {
+	private func evaluateAdvancedSetup() {
 		for cell in advancedSectionCells {
 			if let textFieldCell = cell as? TextFieldCell {
 				switch cell.accessibilityIdentifier {
