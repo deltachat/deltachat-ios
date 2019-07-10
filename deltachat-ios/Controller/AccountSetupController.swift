@@ -377,13 +377,12 @@ class AccountSetupController: UITableViewController {
 	// returns true if needed
 	private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (() -> Void)?) -> Bool {
 		if skipOauth {
-			assert(MRConfig.getAuthFlags() == Int(DC_LP_AUTH_NORMAL))
 			// user has previously denied oAuth2-setup
 			return false
 		}
 
 		guard let oAuth2UrlPointer = dc_get_oauth2_url(mailboxPointer, emailAddress, "chat.delta:/auth") else {
-			MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL))
+			//MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL)) -- do not reset, there may be different values
 			return false
 		}
 
