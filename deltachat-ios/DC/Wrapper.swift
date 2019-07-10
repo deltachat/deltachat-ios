@@ -505,6 +505,9 @@ class MRConfig {
     if let v = value {
       dc_set_config(mailboxPointer, key, v)
     }
+    else {
+      dc_set_config(mailboxPointer, key, nil)
+    }
   }
 
   private class func getBool(_ key: String) -> Bool {

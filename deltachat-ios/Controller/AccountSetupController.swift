@@ -362,7 +362,7 @@ class AccountSetupController: UITableViewController {
 		MRConfig.mailPw = password
 
 		if !skipAdvanceSetup {
-			evaluluateAdvancedSetup() // this will set MRConfig related to advanced fields
+			evaluateAdvancedSetup() // this will set MRConfig related to advanced fields
 		}
 
 		print("oAuth-Flag when loggin in: \(MRConfig.getAuthFlags())")
@@ -376,14 +376,17 @@ class AccountSetupController: UITableViewController {
 
 	// returns true if needed
 	private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (() -> Void)?) -> Bool {
+		return false;
+
+		// disable oauth2 for now as not yet supported by deltachat-rust.
+		/*
 		if skipOauth {
-			assert(MRConfig.getAuthFlags() == Int(DC_LP_AUTH_NORMAL))
 			// user has previously denied oAuth2-setup
 			return false
 		}
 
 		guard let oAuth2UrlPointer = dc_get_oauth2_url(mailboxPointer, emailAddress, "chat.delta:/auth") else {
-			MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL))
+			//MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL)) -- do not reset, there may be different values
 			return false
 		}
 
@@ -416,6 +419,7 @@ class AccountSetupController: UITableViewController {
 		} else {
 			return false
 		}
+		*/
 	}
 
 	@objc func oauthLoginApproved(notification: Notification) {
@@ -469,7 +473,7 @@ class AccountSetupController: UITableViewController {
 		}
 	}
 
-	private func evaluluateAdvancedSetup() {
+	private func evaluateAdvancedSetup() {
 		for cell in advancedSectionCells {
 			if let textFieldCell = cell as? TextFieldCell {
 				switch cell.accessibilityIdentifier {
@@ -484,7 +488,7 @@ class AccountSetupController: UITableViewController {
 					MRConfig.setImapSecurity(imapFlags: flag)
 				case "SMTPServerCell":
 					MRConfig.sendServer = textFieldCell.getText() ?? nil
-				case "SMTPSUserCell":
+				case "SMTPUserCell":
 					MRConfig.sendUser = textFieldCell.getText() ?? nil
 				case "SMTPPortCell":
 					MRConfig.sendPort = textFieldCell.getText() ?? nil
