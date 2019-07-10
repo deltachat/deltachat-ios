@@ -376,6 +376,10 @@ class AccountSetupController: UITableViewController {
 
 	// returns true if needed
 	private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (() -> Void)?) -> Bool {
+		return false;
+
+		// disable oauth2 for now as not yet supported by deltachat-rust.
+		/*
 		if skipOauth {
 			// user has previously denied oAuth2-setup
 			return false
@@ -415,6 +419,7 @@ class AccountSetupController: UITableViewController {
 		} else {
 			return false
 		}
+		*/
 	}
 
 	@objc func oauthLoginApproved(notification: Notification) {
