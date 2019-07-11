@@ -107,6 +107,9 @@ class AppCoordinator: NSObject, Coordinator {
 	func presentLoginController() {
 		let accountSetupController = AccountSetupController()
 		let accountSetupNav = DCNavigationController(rootViewController: accountSetupController)
+    let coordinator = AccountSetupCoordinator(navigationController: accountSetupNav)
+    childCoordinators.append(coordinator)
+    accountSetupController.coordinator = coordinator
 		rootViewController.present(accountSetupNav, animated: false, completion: nil)
 	}
 }
@@ -125,19 +128,8 @@ extension AppCoordinator: UITabBarControllerDelegate {
 			}
 		}
 	}
-
 }
 
-extension AppCoordinator: UITabBarDelegate {
-	func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-
-	}
-
-	func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-		print("shouldSelect")
-		return true
-	}
-}
 
 class ContactListCoordinator: Coordinator {
 	let navigationController: UINavigationController
