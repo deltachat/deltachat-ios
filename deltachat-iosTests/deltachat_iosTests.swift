@@ -1,11 +1,3 @@
-//
-//  deltachat_iosTests.swift
-//  deltachat-iosTests
-//
-//  Created by Bastian van de Wetering on 02.05.19.
-//  Copyright © 2019 Jonas Reinsch. All rights reserved.
-//
-
 @testable import deltachat_ios
 import XCTest
 

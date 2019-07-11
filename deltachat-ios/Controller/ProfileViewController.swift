@@ -1,11 +1,3 @@
-//
-//  CameraViewController.swift
-//  deltachat-ios
-//
-//  Created by Friedel Ziegelmayer on 28.12.18.
-//  Copyright © 2018 Jonas Reinsch. All rights reserved.
-//
-
 import UIKit
 
 class ProfileViewController: UITableViewController {

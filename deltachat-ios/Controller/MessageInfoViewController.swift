@@ -1,11 +1,3 @@
-//
-//  MessageInfoViewController.swift
-//  deltachat-ios
-//
-//  Created by Friedel Ziegelmayer on 06.01.19.
-//  Copyright © 2019 Jonas Reinsch. All rights reserved.
-//
-
 import UIKit
 
 class MessageInfoViewController: UITableViewController {

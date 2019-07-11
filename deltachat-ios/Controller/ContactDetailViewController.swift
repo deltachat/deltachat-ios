@@ -1,11 +1,3 @@
-//
-//  TableViewController.swift
-//  deltachat-ios
-//
-//  Created by Alla Reinsch on 22.05.18.
-//  Copyright © 2018 Jonas Reinsch. All rights reserved.
-//
-
 import UIKit
 
 // this is also used as ChatDetail for SingleChats

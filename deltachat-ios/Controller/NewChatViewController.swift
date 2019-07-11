@@ -1,11 +1,3 @@
-//
-//  NewChatViewController.swift
-//  deltachat-ios
-//
-//  Created by Jonas Reinsch on 21.11.17.
-//  Copyright © 2017 Jonas Reinsch. All rights reserved.
-//
-
 import ALCameraViewController
 import Contacts
 import UIKit

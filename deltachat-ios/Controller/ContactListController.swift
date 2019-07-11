@@ -1,11 +1,3 @@
-//
-//  ContactListController.swift
-//  deltachat-ios
-//
-//  Created by Friedel Ziegelmayer on 26.12.18.
-//  Copyright © 2018 Jonas Reinsch. All rights reserved.
-//
-
 import UIKit
 import Contacts
 
