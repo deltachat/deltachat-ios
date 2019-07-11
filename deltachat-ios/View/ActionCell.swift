@@ -3,44 +3,44 @@ import UIKit
 // a cell with a centered label in system blue
 
 class ActionCell: UITableViewCell {
-  var actionTitle: String? {
-    didSet {
-      actionLabel.text = actionTitle
+    var actionTitle: String? {
+        didSet {
+            actionLabel.text = actionTitle
+        }
     }
-  }
 
-  var actionColor: UIColor? {
-    didSet {
-      actionLabel.textColor = actionColor ?? UIColor.systemBlue
+    var actionColor: UIColor? {
+        didSet {
+            actionLabel.textColor = actionColor ?? UIColor.systemBlue
+        }
     }
-  }
 
-  private lazy var actionLabel: UILabel = {
-    let label = UILabel()
-    label.text = actionTitle
-    label.textColor = UIColor.systemBlue
-    return label
-  }()
+    private lazy var actionLabel: UILabel = {
+        let label = UILabel()
+        label.text = actionTitle
+        label.textColor = UIColor.systemBlue
+        return label
+    }()
 
-  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-    setupSubviews()
-    selectionStyle = .none
-  }
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupSubviews()
+        selectionStyle = .none
+    }
 
-  required init?(coder _: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    // Initialization code
-  }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
 
-  private func setupSubviews() {
-    contentView.addSubview(actionLabel)
-    actionLabel.translatesAutoresizingMaskIntoConstraints = false
-    actionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0).isActive = true
-    actionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
-  }
+    private func setupSubviews() {
+        contentView.addSubview(actionLabel)
+        actionLabel.translatesAutoresizingMaskIntoConstraints = false
+        actionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0).isActive = true
+        actionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
+    }
 }

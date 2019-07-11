@@ -1,115 +1,115 @@
 import UIKit
 
 class TextFieldCell: UITableViewCell {
-  private let placeholder: String
+    private let placeholder: String
 
-	var onTextFieldChange:((_:UITextField)->Void)?	// set this from outside to get notified about textfield changes
+    var onTextFieldChange:((_:UITextField)->Void)?	// set this from outside to get notified about textfield changes
 
-  lazy var textField: UITextField = {
-    let textField = UITextField()
-    textField.textAlignment = .right
-    // textField.enablesReturnKeyAutomatically = true
-    textField.placeholder = self.placeholder
-		textField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-    return textField
-  }()
+    lazy var textField: UITextField = {
+        let textField = UITextField()
+        textField.textAlignment = .right
+        // textField.enablesReturnKeyAutomatically = true
+        textField.placeholder = self.placeholder
+        textField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        return textField
+    }()
 
-  init(description: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {
-    self.placeholder = placeholder
-    super.init(style: .value1, reuseIdentifier: nil)
-    textLabel?.text = "\(description):"
+    init(description: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {
+        self.placeholder = placeholder
+        super.init(style: .value1, reuseIdentifier: nil)
+        textLabel?.text = "\(description):"
 
-    // see: https://stackoverflow.com/a/35903650
-    // this makes the textField respect the trailing margin of
-    // the table view cell
-    selectionStyle = .none
-    setupViews()
-    textField.delegate = delegate
-  }
-
-  required init?(coder _: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-
-  private func setupViews() {
-    contentView.addSubview(textField)
-    textField.translatesAutoresizingMaskIntoConstraints = false
-    let margins = contentView.layoutMarginsGuide
-    let trailing = margins.trailingAnchor
-    textField.trailingAnchor.constraint(equalTo: trailing).isActive = true
-    textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-    if let label = self.textLabel {
-      textField.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 20).isActive = true // this will prevent the textfield from growing over the textLabel while typing
-    } else {
-      textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        // see: https://stackoverflow.com/a/35903650
+        // this makes the textField respect the trailing margin of
+        // the table view cell
+        selectionStyle = .none
+        setupViews()
+        textField.delegate = delegate
     }
-  }
 
-  override func setSelected(_ selected: Bool, animated _: Bool) {
-    if selected {
-      textField.becomeFirstResponder()
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-  }
 
-	@objc func textFieldChanged() {
-		onTextFieldChange?(self.textField)
-	}
-
-  func getText() -> String? {
-    if let text = textField.text {
-      if text.isEmpty {
-        return nil
-      } else {
-        return textField.text
-      }
-    } else {
-      return nil
+    private func setupViews() {
+        contentView.addSubview(textField)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        let margins = contentView.layoutMarginsGuide
+        let trailing = margins.trailingAnchor
+        textField.trailingAnchor.constraint(equalTo: trailing).isActive = true
+        textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        if let label = self.textLabel {
+            textField.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 20).isActive = true // this will prevent the textfield from growing over the textLabel while typing
+        } else {
+            textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        }
     }
-  }
 
-  func setText(text: String?) {
-    textField.text = text
-  }
+    override func setSelected(_ selected: Bool, animated _: Bool) {
+        if selected {
+            textField.becomeFirstResponder()
+        }
+    }
 
-  static func makeEmailCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
-    let cell = TextFieldCell(description: "Email", placeholder: "you@example.com")
-    cell.textField.keyboardType = .emailAddress
-    // switch off quicktype
-    cell.textField.autocorrectionType = .no
-    cell.textField.autocapitalizationType = .none
-    cell.textField.delegate = delegate
-    return cell
-  }
+    @objc func textFieldChanged() {
+        onTextFieldChange?(self.textField)
+    }
 
-  static func makePasswordCell(delegate _: UITextFieldDelegate? = nil) -> TextFieldCell {
-    let cell = TextFieldCell(description: "Password", placeholder: "your IMAP password")
-    cell.textField.textContentType = UITextContentType.password
-    cell.textField.isSecureTextEntry = true
-    return cell
-  }
+    func getText() -> String? {
+        if let text = textField.text {
+            if text.isEmpty {
+                return nil
+            } else {
+                return textField.text
+            }
+        } else {
+            return nil
+        }
+    }
 
-  static func makeNameCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
-    let cell = TextFieldCell(description: "Name", placeholder: "new contacts nickname")
-    cell.textField.autocapitalizationType = .words
-    cell.textField.autocorrectionType = .no
-    // .namePhonePad doesn't support autocapitalization
-    // see: https://stackoverflow.com/a/36365399
-    // therefore we use .default to capitalize the first character of the name
-    cell.textField.keyboardType = .default
-    cell.textField.delegate = delegate
+    func setText(text: String?) {
+        textField.text = text
+    }
 
-    return cell
-  }
+    static func makeEmailCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
+        let cell = TextFieldCell(description: "Email", placeholder: "you@example.com")
+        cell.textField.keyboardType = .emailAddress
+        // switch off quicktype
+        cell.textField.autocorrectionType = .no
+        cell.textField.autocapitalizationType = .none
+        cell.textField.delegate = delegate
+        return cell
+    }
 
-  static func makeConfigCell(label: String, placeholder: String, delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
-    let cell = TextFieldCell(description: label, placeholder: placeholder)
-    cell.textField.autocapitalizationType = .words
-    cell.textField.autocorrectionType = .no
-    // .namePhonePad doesn't support autocapitalization
-    // see: https://stackoverflow.com/a/36365399
-    // therefore we use .default to capitalize the first character of the name
-    cell.textField.keyboardType = .default
-    cell.textField.delegate = delegate
-    return cell
-  }
+    static func makePasswordCell(delegate _: UITextFieldDelegate? = nil) -> TextFieldCell {
+        let cell = TextFieldCell(description: "Password", placeholder: "your IMAP password")
+        cell.textField.textContentType = UITextContentType.password
+        cell.textField.isSecureTextEntry = true
+        return cell
+    }
+
+    static func makeNameCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
+        let cell = TextFieldCell(description: "Name", placeholder: "new contacts nickname")
+        cell.textField.autocapitalizationType = .words
+        cell.textField.autocorrectionType = .no
+        // .namePhonePad doesn't support autocapitalization
+        // see: https://stackoverflow.com/a/36365399
+        // therefore we use .default to capitalize the first character of the name
+        cell.textField.keyboardType = .default
+        cell.textField.delegate = delegate
+
+        return cell
+    }
+
+    static func makeConfigCell(label: String, placeholder: String, delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
+        let cell = TextFieldCell(description: label, placeholder: placeholder)
+        cell.textField.autocapitalizationType = .words
+        cell.textField.autocorrectionType = .no
+        // .namePhonePad doesn't support autocapitalization
+        // see: https://stackoverflow.com/a/36365399
+        // therefore we use .default to capitalize the first character of the name
+        cell.textField.keyboardType = .default
+        cell.textField.delegate = delegate
+        return cell
+    }
 }
