@@ -1,11 +1,3 @@
-//
-//  ChatDetailViewController.swift
-//  deltachat-ios
-//
-//  Created by Bastian van de Wetering on 04.05.19.
-//  Copyright © 2019 Jonas Reinsch. All rights reserved.
-//
-
 import UIKit
 
 class GroupChatDetailViewController: UIViewController {

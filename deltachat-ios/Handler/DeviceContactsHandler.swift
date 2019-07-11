@@ -1,11 +1,3 @@
-//
-//  DeviceContactsHandler.swift
-//  deltachat-ios
-//
-//  Created by Bastian van de Wetering on 26.04.19.
-//  Copyright © 2019 Jonas Reinsch. All rights reserved.
-//
-
 import Contacts
 import UIKit
 

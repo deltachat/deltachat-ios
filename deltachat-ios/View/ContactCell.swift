@@ -1,11 +1,3 @@
-//
-//  ContactCell.swift
-//  TableViewTest
-//
-//  Created by Alla Reinsch on 26.04.18.
-//  Copyright © 2018 Alla Reinsch. All rights reserved.
-//
-
 import UIKit
 
 // TODO: integrate InitialsBadge in here

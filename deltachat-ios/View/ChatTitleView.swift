@@ -1,11 +1,3 @@
-//
-//  ChatTitleView.swift
-//  deltachat-ios
-//
-//  Created by Bastian van de Wetering on 25.06.19.
-//  Copyright © 2019 Jonas Reinsch. All rights reserved.
-//
-
 import UIKit
 
 class ChatTitleView: UIView {

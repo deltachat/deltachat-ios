@@ -1,16 +1,7 @@
-//
-//  AppCoordinator.swift
-//  deltachat-ios
-//
-//  Created by Jonas Reinsch on 07.11.17.
-//  Copyright © 2017 Jonas Reinsch. All rights reserved.
-//
-
 import UIKit
 import ALCameraViewController
 import Photos
 import MobileCoreServices
-
 
 class AppCoordinator: NSObject, Coordinator {
 	private let window: UIWindow

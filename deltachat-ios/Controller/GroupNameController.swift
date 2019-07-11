@@ -1,11 +1,3 @@
-//
-//  GroupNameController.swift
-//  deltachat-ios
-//
-//  Created by Alla Reinsch on 20.07.18.
-//  Copyright © 2018 Jonas Reinsch. All rights reserved.
-//
-
 import UIKit
 
 class GroupNameController: UITableViewController {

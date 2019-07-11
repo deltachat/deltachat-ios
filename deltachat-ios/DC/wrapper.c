@@ -1,11 +1,3 @@
-//
-//  wrapper.c
-//  deltachat-ios
-//
-//  Created by Jonas Reinsch on 07.11.17.
-//  Copyright © 2017 Jonas Reinsch. All rights reserved.
-//
-
 #include "wrapper.h"
 
 long callbackSwift(int, long, long, const char*, const char*);

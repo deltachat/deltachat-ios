@@ -1,11 +1,3 @@
-//
-//  wrapper.h
-//  deltachat-ios
-//
-//  Created by Jonas Reinsch on 07.11.17.
-//  Copyright © 2017 Jonas Reinsch. All rights reserved.
-//
-
 #ifndef wrapper_h
 #define wrapper_h
 
