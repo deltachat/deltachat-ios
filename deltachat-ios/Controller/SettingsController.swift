@@ -163,7 +163,6 @@ internal final class SettingsViewController: QuickTableViewController {
 				default:
 					logger.info("unknown title", title)
 				}
-				dc_configure(mailboxPointer)
 				return
 			}
 		}

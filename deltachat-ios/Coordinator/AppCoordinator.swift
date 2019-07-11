@@ -264,7 +264,6 @@ class AccountSetupCoordinator: Coordinator {
 		portSettingsController.onDismiss = {
 			port in
 			MRConfig.mailPort = port
-			dc_configure(mailboxPointer)
 		}
 		navigationController.pushViewController(portSettingsController, animated: true)
 	}
@@ -278,7 +277,6 @@ class AccountSetupCoordinator: Coordinator {
 			if let secValue = SecurityValue(rawValue: option) {
 				let value = SecurityConverter.convertValueToInt(type: .IMAPSecurity, value: secValue)
 				MRConfig.setImapSecurity(imapFlags: value)
-				dc_configure(mailboxPointer)
 			}
 		}
 		navigationController.pushViewController(securitySettingsController, animated: true)
@@ -291,7 +289,6 @@ class AccountSetupCoordinator: Coordinator {
 		portSettingsController.onDismiss = {
 			port in
 			MRConfig.sendPort = port
-			dc_configure(mailboxPointer)
 		}
 		navigationController.pushViewController(portSettingsController, animated: true)
 	}
@@ -305,7 +302,6 @@ class AccountSetupCoordinator: Coordinator {
 			if let secValue = SecurityValue(rawValue: option) {
 				let value = SecurityConverter.convertValueToInt(type: .SMTPSecurity, value: secValue)
 				MRConfig.setSmtpSecurity(smptpFlags: value)
-				dc_configure(mailboxPointer)
 			}
 		}
 		navigationController.pushViewController(securitySettingsController, animated: true)
