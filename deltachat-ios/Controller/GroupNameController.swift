@@ -68,7 +68,7 @@ class GroupNameController: UITableViewController {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
 
-            let contact = MRContact(id: groupContactIds[row])
+            let contact = DCContact(id: groupContactIds[row])
             cell.nameLabel.text = contact.name
             cell.emailLabel.text = contact.email
             cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)

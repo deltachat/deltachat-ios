@@ -1,13 +1,13 @@
 import UIKit
 
 class GroupChatDetailViewController: UIViewController {
-    private var currentUser: MRContact? {
-        return groupMembers.filter { $0.email == MRConfig.addr }.first
+    private var currentUser: DCContact? {
+        return groupMembers.filter { $0.email == DCConfig.addr }.first
     }
 
     weak var coordinator: GroupChatDetailCoordinator?
 
-    fileprivate var chat: MRChat
+    fileprivate var chat: DCChat
 
     var chatDetailTable: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -20,7 +20,7 @@ class GroupChatDetailViewController: UIViewController {
     }()
 
     init(chatId: Int) {
-        chat = MRChat(id: chatId)
+        chat = DCChat(id: chatId)
         super.init(nibName: nil, bundle: nil)
         setupSubviews()
     }
@@ -50,7 +50,7 @@ class GroupChatDetailViewController: UIViewController {
         UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
     }()
 
-    private var groupMembers: [MRContact] = []
+    private var groupMembers: [DCContact] = []
 
     private let staticCellCountMemberSection = 1 //
 
@@ -71,7 +71,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private func updateGroupMembers() {
         let ids = chat.contactIds
-        groupMembers = ids.map { MRContact(id: $0) }
+        groupMembers = ids.map { DCContact(id: $0) }
         chatDetailTable.reloadData()
     }
 

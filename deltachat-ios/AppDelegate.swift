@@ -192,7 +192,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
 
-        if MRConfig.sentboxWatch {
+        if DCConfig.sentboxWatch {
             DispatchQueue.global(qos: .background).async {
                 while self.state == .running {
                     dc_perform_sentbox_fetch(mailboxPointer)
@@ -201,7 +201,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
 
-        if MRConfig.mvboxWatch {
+        if DCConfig.mvboxWatch {
             DispatchQueue.global(qos: .background).async {
                 while self.state == .running {
                     dc_perform_mvbox_fetch(mailboxPointer)

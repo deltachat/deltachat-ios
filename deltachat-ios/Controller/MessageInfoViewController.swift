@@ -1,9 +1,9 @@
 import UIKit
 
 class MessageInfoViewController: UITableViewController {
-    var message: MRMessage
+    var message: DCMessage
 
-    init(message: MRMessage) {
+    init(message: DCMessage) {
         self.message = message
 
         super.init(style: .plain)

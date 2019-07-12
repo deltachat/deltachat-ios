@@ -7,13 +7,13 @@ class EditSettingsController: UITableViewController {
 
     private lazy var displayNameCell: TextFieldCell = {
         let cell = TextFieldCell(description: "Display Name", placeholder: "Display Name")
-        cell.setText(text: MRConfig.displayname ?? nil)
+        cell.setText(text: DCConfig.displayname ?? nil)
         return cell
     }()
 
     private lazy var statusCell: TextFieldCell = {
         let cell = TextFieldCell(description: "Status", placeholder: "Your Status")
-        cell.setText(text: MRConfig.selfstatus ?? nil)
+        cell.setText(text: DCConfig.selfstatus ?? nil)
         return cell
     }()
 
@@ -35,14 +35,14 @@ class EditSettingsController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        displayNameBackup = MRConfig.displayname
-        statusCellBackup = MRConfig.selfstatus
+        displayNameBackup = DCConfig.displayname
+        statusCellBackup = DCConfig.selfstatus
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         if displayNameBackup != displayNameCell.getText() || statusCellBackup != displayNameCell.getText() {
-            MRConfig.selfstatus = statusCell.getText()
-            MRConfig.displayname = displayNameCell.getText()	
+            DCConfig.selfstatus = statusCell.getText()
+            DCConfig.displayname = displayNameCell.getText()	
             dc_configure(mailboxPointer)
         }
     }

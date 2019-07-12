@@ -104,7 +104,7 @@ extension URLSession {
     }
 }
 
-extension MRContact {
+extension DCContact {
     func contains(searchText text: String) -> [ContactHighlights] {
         var nameIndexes = [Int]()
         var emailIndexes = [Int]()

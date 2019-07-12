@@ -94,21 +94,21 @@ internal final class SettingsViewController: QuickTableViewController {
             Section(
                 title: "User Details",
                 rows: [
-                    NavigationRow(text: "Display Name", detailText: .value1(MRConfig.displayname ?? ""), action: { [weak self] in self?.editNameAndStatus($0)}),
-                    NavigationRow(text: "Status", detailText: .value1(MRConfig.selfstatus ?? ""), action: { [weak self] in self?.editNameAndStatus($0)}),
+                    NavigationRow(text: "Display Name", detailText: .value1(DCConfig.displayname ?? ""), action: { [weak self] in self?.editNameAndStatus($0)}),
+                    NavigationRow(text: "Status", detailText: .value1(DCConfig.selfstatus ?? ""), action: { [weak self] in self?.editNameAndStatus($0)}),
                     TapActionRow(text: "Configure my Account", action: { [weak self] in self?.presentAccountSetup($0) }),
                 ]
             ),
             Section(
                 title: "Flags",
                 rows: [
-                    SwitchRow(text: "E2EE enabled", switchValue: MRConfig.e2eeEnabled, action: editCell()),
-                    SwitchRow(text: "Read Receipts", switchValue: MRConfig.mdnsEnabled, action: editCell()),
-                    SwitchRow(text: "Watch Inbox", switchValue: MRConfig.inboxWatch, action: editCell()),
-                    SwitchRow(text: "Watch Sentbox", switchValue: MRConfig.sentboxWatch, action: editCell()),
-                    SwitchRow(text: "Watch Mvbox", switchValue: MRConfig.mvboxWatch, action: editCell()),
-                    SwitchRow(text: "Move to Mvbox", switchValue: MRConfig.mvboxMove, action: editCell()),
-                    SwitchRow(text: "Save Mime Headers", switchValue: MRConfig.saveMimeHeaders, action: editCell()),
+                    SwitchRow(text: "E2EE enabled", switchValue: DCConfig.e2eeEnabled, action: editCell()),
+                    SwitchRow(text: "Read Receipts", switchValue: DCConfig.mdnsEnabled, action: editCell()),
+                    SwitchRow(text: "Watch Inbox", switchValue: DCConfig.inboxWatch, action: editCell()),
+                    SwitchRow(text: "Watch Sentbox", switchValue: DCConfig.sentboxWatch, action: editCell()),
+                    SwitchRow(text: "Watch Mvbox", switchValue: DCConfig.mvboxWatch, action: editCell()),
+                    SwitchRow(text: "Move to Mvbox", switchValue: DCConfig.mvboxMove, action: editCell()),
+                    SwitchRow(text: "Save Mime Headers", switchValue: DCConfig.saveMimeHeaders, action: editCell()),
                 ]
             ),
 
@@ -139,19 +139,19 @@ internal final class SettingsViewController: QuickTableViewController {
 
                 switch title {
                 case "E2EE enabled":
-                    MRConfig.e2eeEnabled = value
+                    DCConfig.e2eeEnabled = value
                 case "Read Receipts":
-                    MRConfig.mdnsEnabled = value
+                    DCConfig.mdnsEnabled = value
                 case "Watch Inbox":
-                    MRConfig.inboxWatch = value
+                    DCConfig.inboxWatch = value
                 case "Watch Sentbox":
-                    MRConfig.sentboxWatch = value
+                    DCConfig.sentboxWatch = value
                 case "Watch Mvbox":
-                    MRConfig.mvboxWatch = value
+                    DCConfig.mvboxWatch = value
                 case "Move to Mvbox":
-                    MRConfig.mvboxMove = value
+                    DCConfig.mvboxMove = value
                 case "Save Mime Headers":
-                    MRConfig.saveMimeHeaders = value
+                    DCConfig.saveMimeHeaders = value
                 default:
                     logger.info("unknown title", title)
                 }

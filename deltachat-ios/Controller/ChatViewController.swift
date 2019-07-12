@@ -22,7 +22,7 @@ class ChatViewController: MessagesViewController {
 
     let chatId: Int
     let refreshControl = UIRefreshControl()
-    var messageList: [MRMessage] = []
+    var messageList: [DCMessage] = []
 
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
@@ -63,7 +63,7 @@ class ChatViewController: MessagesViewController {
         navigationItem.titleView = titleView
 
         view.backgroundColor = DCColors.chatBackgroundColor
-        if !MRConfig.configured {
+        if !DCConfig.configured {
             // TODO: display message about nothing being configured
             return
         }
@@ -84,7 +84,7 @@ class ChatViewController: MessagesViewController {
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 
-        let chat = MRChat(id: chatId)
+        let chat = DCChat(id: chatId)
         titleView.updateTitleView(title: chat.name, subtitle: chat.subtitle)
 
         if let image = chat.profileImage {
@@ -128,7 +128,7 @@ class ChatViewController: MessagesViewController {
                 if self.chatId == ui["chat_id"] as! Int {
                     let id = ui["message_id"] as! Int
                     if id > 0 {
-                        self.insertMessage(MRMessage(id: id))
+                        self.insertMessage(DCMessage(id: id))
                     }
                 }
             }
@@ -213,7 +213,7 @@ class ChatViewController: MessagesViewController {
         return nil
     }
 
-    private func getMessageIds(_ count: Int, from: Int? = nil) -> [MRMessage] {
+    private func getMessageIds(_ count: Int, from: Int? = nil) -> [DCMessage] {
         let cMessageIds = dc_get_chat_msgs(mailboxPointer, UInt32(chatId), 0, 0)
 
         let ids: [Int]
@@ -227,7 +227,7 @@ class ChatViewController: MessagesViewController {
         dc_markseen_msgs(mailboxPointer, UnsafePointer(markIds), Int32(ids.count))
 
         return ids.map {
-            MRMessage(id: $0)
+            DCMessage(id: $0)
         }
     }
 
@@ -588,7 +588,7 @@ extension ChatViewController: MessagesDataSource {
         if let index = messageList.firstIndex(where: { $0.id == messageId }) {
             dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(messageId)]), 1)
 
-            messageList[index] = MRMessage(id: messageId)
+            messageList[index] = DCMessage(id: messageId)
             // Reload section to update header/footer labels
             messagesCollectionView.performBatchUpdates({
                 messagesCollectionView.reloadSections([index])
@@ -604,14 +604,14 @@ extension ChatViewController: MessagesDataSource {
                 }
             })
         } else {
-            let msg = MRMessage(id: messageId)
+            let msg = DCMessage(id: messageId)
             if msg.chatId == chatId {
                 insertMessage(msg)
             }
         }
     }
 
-    func insertMessage(_ message: MRMessage) {
+    func insertMessage(_ message: DCMessage) {
         dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(message.id)]), 1)
         messageList.append(message)
         // Reload last section to update header/footer labels and insert a new one
@@ -789,7 +789,7 @@ extension ChatViewController: MessageCellDelegate {
 
                 var prev: Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), -1, Int32(message.type), 0, 0))
                 while prev != 0 {
-                    let prevMessage = MRMessage(id: prev)
+                    let prevMessage = DCMessage(id: prev)
                     if let url = prevMessage.fileURL {
                         previousUrls.insert(url, at: 0)
                     }
@@ -798,7 +798,7 @@ extension ChatViewController: MessageCellDelegate {
 
                 var next: Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), 1, Int32(message.type), 0, 0))
                 while next != 0 {
-                    let nextMessage = MRMessage(id: next)
+                    let nextMessage = DCMessage(id: next)
                     if let url = nextMessage.fileURL {
                         nextUrls.insert(url, at: 0)
                     }
