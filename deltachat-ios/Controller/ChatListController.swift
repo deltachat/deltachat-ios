@@ -183,7 +183,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 extension ChatListController {
 	private func showDeleteChatConfirmationAlert(chatId: Int) {
 		let alert = UIAlertController(
-			title: "Do you want to delete the chat",
+			title: "Do you want to delete the chat?",
 			message: nil,
 			preferredStyle: .alert
 		)
