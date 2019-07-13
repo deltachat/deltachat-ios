@@ -164,9 +164,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let section = indexPath.section
         let row = indexPath.row
         guard let chatList = chatList else {
             return nil
@@ -175,7 +173,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         // assigning swipe by delete to chats
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [unowned self] _, indexPath in
             let chatId = chatList.getChatId(index: row)
-			self.showDeleteChatPopup(chatId: chatId)
+			self.showDeleteChatConfirmationAlert(chatId: chatId)
         }
         delete.backgroundColor = UIColor.red
         return [delete]
@@ -183,18 +181,22 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension ChatListController {
-	private func showDeleteChatPopup(chatId: Int) {
+	private func showDeleteChatConfirmationAlert(chatId: Int) {
 		let alert = UIAlertController(
 			title: "Do you want to delete the chat",
 			message: nil,
 			preferredStyle: .alert
 		)
-		alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {
-			action in
-			dc_delete_chat(mailboxPointer, UInt32(chatId))
-			self.getChatList()
+		alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { action in
+			self.deleteChat(chatId: chatId)
 		}))
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+		self.present(alert, animated: true, completion: nil)
 	}
-  
-  
+	
+	private func deleteChat(chatId: Int) {
+		dc_delete_chat(mailboxPointer, UInt32(chatId))
+		self.getChatList()
+	}
+
 }
