@@ -125,6 +125,8 @@ class AccountSetupController: UITableViewController {
 
     lazy var smtpPasswordCell: TextFieldCell = {
         let cell = TextFieldCell(description: "SMTP Password", placeholder: "*************", delegate: self)
+		cell.textField.textContentType = UITextContentType.password
+		cell.textField.isSecureTextEntry = true
         cell.accessibilityIdentifier = "SMTPPasswordCell"
         cell.textField.tag = 6
         return cell
