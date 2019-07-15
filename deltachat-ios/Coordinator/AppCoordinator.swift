@@ -249,50 +249,50 @@ class AccountSetupCoordinator: Coordinator {
     }
 
     func showImapPortOptions() {
-        let currentMailPort = MRConfig.mailPort ?? MRConfig.configuredMailPort
+        let currentMailPort = DCConfig.mailPort ?? DCConfig.configuredMailPort
         let currentPort = Int(currentMailPort)
         let portSettingsController = PortSettingsController(sectionTitle: "IMAP Port", ports: [143, 993], currentPort: currentPort)
         portSettingsController.onDismiss = {
             port in
-            MRConfig.mailPort = port
+            DCConfig.mailPort = port
         }
         navigationController.pushViewController(portSettingsController, animated: true)
     }
 
     func showImapSecurityOptions() {
-        let currentSecurityOption = MRConfig.getImapSecurity()
+        let currentSecurityOption = DCConfig.getImapSecurity()
         let convertedOption = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: currentSecurityOption)
         let securitySettingsController = SecuritySettingsController(title: "IMAP Security", options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"], selectedOption: convertedOption)
         securitySettingsController.onDismiss = {
             option in
             if let secValue = SecurityValue(rawValue: option) {
                 let value = SecurityConverter.convertValueToInt(type: .IMAPSecurity, value: secValue)
-                MRConfig.setImapSecurity(imapFlags: value)
+                DCConfig.setImapSecurity(imapFlags: value)
             }
         }
         navigationController.pushViewController(securitySettingsController, animated: true)
     }
 
     func showSmtpPortsOptions() {
-        let currentMailPort = MRConfig.sendPort ?? MRConfig.configuredSendPort
+        let currentMailPort = DCConfig.sendPort ?? DCConfig.configuredSendPort
         let currentPort = Int(currentMailPort)
         let portSettingsController = PortSettingsController(sectionTitle: "SMTP Port", ports: [25, 465, 587], currentPort: currentPort)
         portSettingsController.onDismiss = {
             port in
-            MRConfig.sendPort = port
+            DCConfig.sendPort = port
         }
         navigationController.pushViewController(portSettingsController, animated: true)
     }
 
     func showSmptpSecurityOptions() {
-        let currentSecurityOption = MRConfig.getSmtpSecurity()
+        let currentSecurityOption = DCConfig.getSmtpSecurity()
         let convertedOption = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: currentSecurityOption)
         let securitySettingsController = SecuritySettingsController(title: "IMAP Security", options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"], selectedOption: convertedOption)
         securitySettingsController.onDismiss = {
             option in
             if let secValue = SecurityValue(rawValue: option) {
                 let value = SecurityConverter.convertValueToInt(type: .SMTPSecurity, value: secValue)
-                MRConfig.setSmtpSecurity(smptpFlags: value)
+                DCConfig.setSmtpSecurity(smptpFlags: value)
             }
         }
         navigationController.pushViewController(securitySettingsController, animated: true)
@@ -367,7 +367,7 @@ class GroupChatDetailCoordinator: Coordinator {
         navigationController.pushViewController(groupMemberViewController, animated: true)
     }
 
-    func showGroupChatEdit(chat: MRChat) {
+    func showGroupChatEdit(chat: DCChat) {
         let editGroupViewController = EditGroupViewController(chat: chat)
         let coordinator = EditGroupCoordinator(navigationController: navigationController)
         childCoordinators.append(coordinator)
@@ -389,7 +389,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
     }
 
     func showChatDetail(chatId: Int) {
-        let chat = MRChat(id: chatId)
+        let chat = DCChat(id: chatId)
         switch chat.chatType {
         case .SINGLE:
             if let contactId = chat.contactIds.first {

@@ -2,7 +2,7 @@ import UIKit
 
 class ChatListController: UIViewController {
     weak var coordinator: ChatListCoordinator?
-    var chatList: MRChatList?
+    var chatList: DCChatList?
 
     lazy var chatTable: UITableView = {
         let chatTable = UITableView()
@@ -102,7 +102,7 @@ class ChatListController: UIViewController {
             fatalError("chatlistPointer was nil")
         }
         // ownership of chatlistPointer transferred here to ChatList object
-        chatList = MRChatList(chatListPointer: chatlistPointer)
+        chatList = DCChatList(chatListPointer: chatlistPointer)
         chatTable.reloadData()
     }
 }
@@ -130,7 +130,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
 
         let chatId = chatList.getChatId(index: row)
-        let chat = MRChat(id: chatId)
+        let chat = DCChat(id: chatId)
         let summary = chatList.summary(index: row)
 
         cell.nameLabel.text = chat.name
@@ -164,9 +164,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let section = indexPath.section
         let row = indexPath.row
         guard let chatList = chatList else {
             return nil
@@ -175,11 +173,30 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         // assigning swipe by delete to chats
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [unowned self] _, indexPath in
             let chatId = chatList.getChatId(index: row)
-            dc_delete_chat(mailboxPointer, UInt32(chatId))
-            self.getChatList()
-
+			self.showDeleteChatConfirmationAlert(chatId: chatId)
         }
         delete.backgroundColor = UIColor.red
         return [delete]
     }
+}
+
+extension ChatListController {
+	private func showDeleteChatConfirmationAlert(chatId: Int) {
+		let alert = UIAlertController(
+			title: "Do you want to delete the chat?",
+			message: nil,
+			preferredStyle: .alert
+		)
+		alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { action in
+			self.deleteChat(chatId: chatId)
+		}))
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+		self.present(alert, animated: true, completion: nil)
+	}
+	
+	private func deleteChat(chatId: Int) {
+		dc_delete_chat(mailboxPointer, UInt32(chatId))
+		self.getChatList()
+	}
+
 }

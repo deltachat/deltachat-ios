@@ -108,7 +108,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                     userInfo: userInfo)
 
             let content = UNMutableNotificationContent()
-            let msg = MRMessage(id: Int(data2))
+            let msg = DCMessage(id: Int(data2))
             content.title = msg.fromContact.name
             content.body = msg.summary(chars: 40) ?? ""
             content.badge = 1

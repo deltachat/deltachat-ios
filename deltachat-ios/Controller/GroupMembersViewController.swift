@@ -36,9 +36,9 @@ class AddGroupMembersViewController: GroupMembersViewController {
         }
     }
 
-    private lazy var chat: MRChat? = {
+    private lazy var chat: DCChat? = {
         if let chatId = chatId {
-            return MRChat(id: chatId)
+            return DCChat(id: chatId)
         }
         return nil
     }()
@@ -130,7 +130,7 @@ class GroupMembersViewController: UITableViewController {
         let row = indexPath.row
         let contactRow = row
 
-        let contact = MRContact(id: contactIds[contactRow])
+        let contact = DCContact(id: contactIds[contactRow])
         cell.nameLabel.text = contact.name
         cell.emailLabel.text = contact.email
         cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)

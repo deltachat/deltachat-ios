@@ -4,7 +4,7 @@ class EditGroupViewController: UITableViewController {
 
     weak var coordinator: EditGroupCoordinator?
 
-    private let chat: MRChat
+    private let chat: DCChat
 
     lazy var groupNameCell: GroupLabelCell = {
         let cell = GroupLabelCell(style: .default, reuseIdentifier: nil)
@@ -23,7 +23,7 @@ class EditGroupViewController: UITableViewController {
         return button
     }()
 
-    init(chat: MRChat) {
+    init(chat: DCChat) {
         self.chat = chat
         super.init(style: .grouped)
         groupNameCell.inputField.text = chat.name

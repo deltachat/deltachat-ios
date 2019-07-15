@@ -3,16 +3,16 @@ import UIKit
 class ProfileViewController: UITableViewController {
     weak var coordinator: ProfileCoordinator?
 
-    var contact: MRContact? {
+    var contact: DCContact? {
         // This is nil if we do not have an account setup yet
-        if !MRConfig.configured {
+        if !DCConfig.configured {
             return nil
         }
-        return MRContact(id: Int(DC_CONTACT_ID_SELF))
+        return DCContact(id: Int(DC_CONTACT_ID_SELF))
     }
 
     var fingerprint: String? {
-        if !MRConfig.configured {
+        if !DCConfig.configured {
             return nil
         }
 
@@ -132,7 +132,7 @@ class ProfileViewController: UITableViewController {
         if section == 0 {
             let contactCell = ContactCell()
             if let contact = self.contact {
-                let name = MRConfig.displayname ?? contact.name
+                let name = DCConfig.displayname ?? contact.name
                 contactCell.backgroundColor = bg
                 contactCell.nameLabel.text = name
                 contactCell.emailLabel.text = contact.email

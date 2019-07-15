@@ -25,7 +25,7 @@ enum MessageViewType: CustomStringConvertible {
     }
 }
 
-class MRContact {
+class DCContact {
     private var contactPointer: OpaquePointer
 
     var name: String {
@@ -93,7 +93,7 @@ class MRContact {
     }
 }
 
-class MRMessage: MessageType {
+class DCMessage: MessageType {
     private var messagePointer: OpaquePointer
 
     lazy var sender: SenderType = {
@@ -156,8 +156,8 @@ class MRMessage: MessageType {
         return Int(dc_msg_get_from_id(messagePointer))
     }
 
-    lazy var fromContact: MRContact = {
-        MRContact(id: fromContactId)
+    lazy var fromContact: DCContact = {
+        DCContact(id: fromContactId)
     }()
 
     var chatId: Int {
@@ -253,12 +253,12 @@ class MRMessage: MessageType {
         return Int(dc_msg_get_filebytes(messagePointer))
     }
 
-    // MR_MSG_*
+    // DC_MSG_*
     var type: Int {
         return Int(dc_msg_get_viewtype(messagePointer))
     }
 
-    // MR_STATE_*
+    // DC_STATE_*
     var state: Int {
         return Int(dc_msg_get_state(messagePointer))
     }
@@ -304,9 +304,9 @@ class MRMessage: MessageType {
         return String(cString: result)
     }
 
-    func createChat() -> MRChat {
+    func createChat() -> DCChat {
         let chatId = dc_create_chat_by_msg_id(mailboxPointer, UInt32(id))
-        return MRChat(id: Int(chatId))
+        return DCChat(id: Int(chatId))
     }
 
     deinit {
@@ -320,7 +320,7 @@ enum ChatType: Int {
     case VERYFIEDGROUP = 130
 }
 
-class MRChat {
+class DCChat {
     var chatPointer: OpaquePointer
 
     var id: Int {
@@ -393,7 +393,7 @@ class MRChat {
     }
 }
 
-class MRPoorText {
+class DCPoorText {
     private var poorTextPointer: OpaquePointer
 
     var text1: String? {
@@ -434,7 +434,7 @@ class MRPoorText {
     }
 }
 
-class MRChatList {
+class DCChatList {
     private var chatListPointer: OpaquePointer
 
     var length: Int {
@@ -455,11 +455,11 @@ class MRChatList {
         return Int(dc_chatlist_get_msg_id(chatListPointer, index))
     }
 
-    func summary(index: Int) -> MRPoorText {
+    func summary(index: Int) -> DCPoorText {
         guard let poorTextPointer = dc_chatlist_get_summary(self.chatListPointer, index, nil) else {
             fatalError("poor text pointer was nil")
         }
-        return MRPoorText(poorTextPointer: poorTextPointer)
+        return DCPoorText(poorTextPointer: poorTextPointer)
     }
 
     deinit {
@@ -478,7 +478,7 @@ func strToBool(_ value: String?) -> Bool {
     return false
 }
 
-class MRConfig {
+class DCConfig {
     private class func getOptStr(_ key: String) -> String? {
         let p = dc_get_config(mailboxPointer, key)
 

@@ -43,7 +43,7 @@ class AccountSetupController: UITableViewController {
         let cell = TextFieldCell.makeEmailCell(delegate: self)
         cell.textField.tag = 0
         cell.textField.accessibilityIdentifier = "emailTextField" // will be used to eventually show oAuth-Dialogue when pressing return key
-        cell.setText(text: MRConfig.addr ?? nil)
+        cell.setText(text: DCConfig.addr ?? nil)
         cell.textField.delegate = self
         return cell
     }()
@@ -52,7 +52,7 @@ class AccountSetupController: UITableViewController {
         let cell = TextFieldCell.makePasswordCell(delegate: self)
         cell.textField.tag = 1
         cell.accessibilityIdentifier = "passwordCell" // will be used to eventually show oAuth-Dialogue when selecting
-        cell.setText(text: MRConfig.mailPw ?? nil)
+        cell.setText(text: DCConfig.mailPw ?? nil)
         return cell
     }()
 
@@ -64,14 +64,14 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var imapServerCell: TextFieldCell = {
-        let cell = TextFieldCell(description: "IMAP Server", placeholder: MRConfig.mailServer ?? MRConfig.configuredMailServer, delegate: self)
+        let cell = TextFieldCell(description: "IMAP Server", placeholder: DCConfig.mailServer ?? DCConfig.configuredMailServer, delegate: self)
         cell.accessibilityIdentifier = "IMAPServerCell"
         cell.textField.tag = 2
         return cell
     }()
 
     lazy var imapUserCell: TextFieldCell = {
-        let cell = TextFieldCell(description: "IMAP User", placeholder: MRConfig.mailUser ?? MRConfig.configuredMailUser, delegate: self)
+        let cell = TextFieldCell(description: "IMAP User", placeholder: DCConfig.mailUser ?? DCConfig.configuredMailUser, delegate: self)
         cell.accessibilityIdentifier = "IMAPUserCell"
         cell.textField.tag = 3
         return cell
@@ -81,33 +81,33 @@ class AccountSetupController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = "IMAP Port"
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = MRConfig.mailPort ?? MRConfig.configuredMailPort
+        cell.detailTextLabel?.text = DCConfig.mailPort ?? DCConfig.configuredMailPort
         cell.accessibilityIdentifier = "IMAPPortCell"
         cell.selectionStyle = .none
         return cell
     }()
 
     lazy var imapSecurityCell: UITableViewCell = {
-        let text = "\(MRConfig.getImapSecurity())"
+        let text = "\(DCConfig.getImapSecurity())"
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = "IMAP Security"
         // let cell = TextFieldCell(description: "IMAP Security", placeholder: text, delegate: self)
         cell.accessibilityIdentifier = "IMAPSecurityCell"
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = "\(MRConfig.getImapSecurity())"
+        cell.detailTextLabel?.text = "\(DCConfig.getImapSecurity())"
         cell.selectionStyle = .none
         return cell
     }()
 
     lazy var smtpServerCell: TextFieldCell = {
-        let cell = TextFieldCell(description: "SMTP Server", placeholder: MRConfig.sendServer ?? MRConfig.configuredSendServer, delegate: self)
+        let cell = TextFieldCell(description: "SMTP Server", placeholder: DCConfig.sendServer ?? DCConfig.configuredSendServer, delegate: self)
         cell.accessibilityIdentifier = "SMTPServerCell"
         cell.textField.tag = 4
         return cell
     }()
 
     lazy var smtpUserCell: TextFieldCell = {
-        let cell = TextFieldCell(description: "SMTP User", placeholder: MRConfig.sendUser ?? MRConfig.configuredSendUser, delegate: self)
+        let cell = TextFieldCell(description: "SMTP User", placeholder: DCConfig.sendUser ?? DCConfig.configuredSendUser, delegate: self)
         cell.accessibilityIdentifier = "SMTPUserCell"
         cell.textField.tag = 5
         return cell
@@ -117,7 +117,7 @@ class AccountSetupController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = "SMTP Port"
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = MRConfig.sendPort ?? MRConfig.configuredSendPort
+        cell.detailTextLabel?.text = DCConfig.sendPort ?? DCConfig.configuredSendPort
         cell.accessibilityIdentifier = "SMTPPortCell"
         cell.selectionStyle = .none
         return cell
@@ -125,13 +125,15 @@ class AccountSetupController: UITableViewController {
 
     lazy var smtpPasswordCell: TextFieldCell = {
         let cell = TextFieldCell(description: "SMTP Password", placeholder: "*************", delegate: self)
+		cell.textField.textContentType = UITextContentType.password
+		cell.textField.isSecureTextEntry = true
         cell.accessibilityIdentifier = "SMTPPasswordCell"
         cell.textField.tag = 6
         return cell
     }()
 
     lazy var smtpSecurityCell: UITableViewCell = {
-        let security = "\(MRConfig.getSmtpSecurity())"
+        let security = "\(DCConfig.getSmtpSecurity())"
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = "SMTP Security"
         cell.detailTextLabel?.text = security
@@ -183,10 +185,10 @@ class AccountSetupController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // needs to be changed if returning from portSettingsController
-        smtpPortCell.detailTextLabel?.text = MRConfig.sendPort ?? MRConfig.configuredSendPort
-        imapPortCell.detailTextLabel?.text = MRConfig.mailPort ?? MRConfig.configuredMailPort
-        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: MRConfig.getSmtpSecurity())
-        imapSecurityCell.detailTextLabel?.text  = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: MRConfig.getImapSecurity())
+        smtpPortCell.detailTextLabel?.text = DCConfig.sendPort ?? DCConfig.configuredSendPort
+        imapPortCell.detailTextLabel?.text = DCConfig.mailPort ?? DCConfig.configuredMailPort
+        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: DCConfig.getSmtpSecurity())
+        imapSecurityCell.detailTextLabel?.text  = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: DCConfig.getImapSecurity())
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -350,14 +352,14 @@ class AccountSetupController: UITableViewController {
 
     private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {
         resignFirstResponderOnAllCells()	// this will resign focus from all textFieldCells so the keyboard wont pop up anymore
-        MRConfig.addr = emailAddress
-        MRConfig.mailPw = password
+        DCConfig.addr = emailAddress
+        DCConfig.mailPw = password
 
         if !skipAdvanceSetup {
             evaluateAdvancedSetup() // this will set MRConfig related to advanced fields
         }
 
-        print("oAuth-Flag when loggin in: \(MRConfig.getAuthFlags())")
+        print("oAuth-Flag when loggin in: \(DCConfig.getAuthFlags())")
         dc_configure(mailboxPointer)
         showProgressHud()
     }
@@ -419,7 +421,7 @@ class AccountSetupController: UITableViewController {
             return
         }
         passwordCell.setText(text: token)
-        MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_OAUTH2))
+        DCConfig.setAuthFlags(flags: Int(DC_LP_AUTH_OAUTH2))
         login(emailAddress: emailAddress, password: token, skipAdvanceSetup: true)
     }
 
@@ -470,25 +472,25 @@ class AccountSetupController: UITableViewController {
             if let textFieldCell = cell as? TextFieldCell {
                 switch cell.accessibilityIdentifier {
                 case "IMAPServerCell":
-                    MRConfig.mailServer = textFieldCell.getText() ?? nil
+                    DCConfig.mailServer = textFieldCell.getText() ?? nil
                 case "IMAPUserCell":
-                    MRConfig.mailUser = textFieldCell.getText() ?? nil
+                    DCConfig.mailUser = textFieldCell.getText() ?? nil
                 case "IMAPPortCell":
-                    MRConfig.mailPort = textFieldCell.getText() ?? nil
+                    DCConfig.mailPort = textFieldCell.getText() ?? nil
                 case "IMAPSecurityCell":
                     let flag = 0
-                    MRConfig.setImapSecurity(imapFlags: flag)
+                    DCConfig.setImapSecurity(imapFlags: flag)
                 case "SMTPServerCell":
-                    MRConfig.sendServer = textFieldCell.getText() ?? nil
+                    DCConfig.sendServer = textFieldCell.getText() ?? nil
                 case "SMTPUserCell":
-                    MRConfig.sendUser = textFieldCell.getText() ?? nil
+                    DCConfig.sendUser = textFieldCell.getText() ?? nil
                 case "SMTPPortCell":
-                    MRConfig.sendPort = textFieldCell.getText() ?? nil
+                    DCConfig.sendPort = textFieldCell.getText() ?? nil
                 case "SMTPPasswordCell":
-                    MRConfig.sendPw = textFieldCell.getText() ?? nil
+                    DCConfig.sendPw = textFieldCell.getText() ?? nil
                 case "SMTPSecurityCell":
                     let flag = 0
-                    MRConfig.setSmtpSecurity(smptpFlags: flag)
+                    DCConfig.setSmtpSecurity(smptpFlags: flag)
                 default:
                     logger.info("unknown identifier", cell.accessibilityIdentifier ?? "")
                 }
@@ -498,7 +500,7 @@ class AccountSetupController: UITableViewController {
 
     private func restoreBackup() {
         logger.info("restoring backup")
-        if MRConfig.configured {
+        if DCConfig.configured {
             return
         }
         let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -670,8 +672,8 @@ extension AccountSetupController {
     }
 
     func loginCancelled(_ action: UIAlertAction) {
-        MRConfig.addr = nil
-        MRConfig.mailPw = nil
+        DCConfig.addr = nil
+        DCConfig.mailPw = nil
         DispatchQueue.global(qos: .background).async {
             dc_stop_ongoing_process(mailboxPointer)		// this function freezes UI so execute in background thread
         }
