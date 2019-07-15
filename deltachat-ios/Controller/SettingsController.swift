@@ -14,6 +14,15 @@ internal final class SettingsViewController: QuickTableViewController {
         return hudHandler
     }()
 
+	static let e2eeEnabled: Int = 1
+	static let readReceipts: Int = 2
+	static let watchInbox: Int = 3
+	static let watchSentbox: Int = 4
+	static let watchMvBox: Int = 5
+	static let MvToMvbox: Int = 6
+	static let SaveMimeHeaders: Int = 7
+	private typealias SVC = SettingsViewController
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Settings"
@@ -102,13 +111,13 @@ internal final class SettingsViewController: QuickTableViewController {
             Section(
                 title: "Flags",
                 rows: [
-                    SwitchRow(text: "E2EE enabled", switchValue: DCConfig.e2eeEnabled, action: editCell()),
-                    SwitchRow(text: "Read Receipts", switchValue: DCConfig.mdnsEnabled, action: editCell()),
-                    SwitchRow(text: "Watch Inbox", switchValue: DCConfig.inboxWatch, action: editCell()),
-                    SwitchRow(text: "Watch Sentbox", switchValue: DCConfig.sentboxWatch, action: editCell()),
-                    SwitchRow(text: "Watch Mvbox", switchValue: DCConfig.mvboxWatch, action: editCell()),
-                    SwitchRow(text: "Move to Mvbox", switchValue: DCConfig.mvboxMove, action: editCell()),
-                    SwitchRow(text: "Save Mime Headers", switchValue: DCConfig.saveMimeHeaders, action: editCell()),
+                    SwitchRow(text: "E2EE enabled", switchValue: DCConfig.e2eeEnabled, action: editCell(key: SVC.e2eeEnabled)),
+                    SwitchRow(text: "Read Receipts", switchValue: DCConfig.mdnsEnabled, action: editCell(key: SVC.readReceipts)),
+                    SwitchRow(text: "Watch Inbox", switchValue: DCConfig.inboxWatch, action: editCell(key: SVC.watchMvBox)),
+                    SwitchRow(text: "Watch Sentbox", switchValue: DCConfig.sentboxWatch, action: editCell(key: SVC.watchSentbox)),
+                    SwitchRow(text: "Watch Mvbox", switchValue: DCConfig.mvboxWatch, action: editCell(key: SVC.watchMvBox)),
+                    SwitchRow(text: "Move to Mvbox", switchValue: DCConfig.mvboxMove, action: editCell(key: SVC.MvToMvbox)),
+                    SwitchRow(text: "Save Mime Headers", switchValue: DCConfig.saveMimeHeaders, action: editCell(key: SVC.SaveMimeHeaders))
                 ]
             ),
 
@@ -124,36 +133,30 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     // FIXME: simplify this method
-    // swiftlint:disable cyclomatic_complexity
-    private func editCell() -> (Row) -> Void {
-        return { [weak self] sender in
+	private func editCell(key: Int) -> (Row) -> Void {
+        return { sender in
             logger.info("row edit", sender.text)
-
-            let title = sender.text
-            let subtitle: String = sender.detailText?.text ?? ""
-
 
             if let sender = sender as? SwitchRow {
                 logger.info("got bool switch")
                 let value = sender.switchValue
-
-                switch title {
-                case "E2EE enabled":
+                switch key {
+                case SVC.e2eeEnabled:
                     DCConfig.e2eeEnabled = value
-                case "Read Receipts":
+                case SVC.readReceipts:
                     DCConfig.mdnsEnabled = value
-                case "Watch Inbox":
+                case SVC.watchInbox:
                     DCConfig.inboxWatch = value
-                case "Watch Sentbox":
+                case SVC.watchSentbox:
                     DCConfig.sentboxWatch = value
-                case "Watch Mvbox":
+                case SVC.watchMvBox:
                     DCConfig.mvboxWatch = value
-                case "Move to Mvbox":
+                case SVC.MvToMvbox:
                     DCConfig.mvboxMove = value
-                case "Save Mime Headers":
+                case SVC.SaveMimeHeaders:
                     DCConfig.saveMimeHeaders = value
                 default:
-                    logger.info("unknown title", title)
+                    logger.info("unknown key", String(key))
                 }
                 return
             }
