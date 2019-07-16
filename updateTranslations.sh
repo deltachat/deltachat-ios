@@ -1,15 +1,8 @@
 #!/bin/bash
 
+# This script pulls android translations from transifex and converts them to apple strings files. 
+# Credits to Daniel Cohen Gindi.
 
-function quit {
-    echo "Task failed. Exit value: $?."
-    cleanUp
-    exit 1
-}
-
-function cleanUp {
-    echo ""
-}
 
 # ----Main-----
 
@@ -27,25 +20,6 @@ then
     echo "ERROR: You need to have tx installed. Exiting."
     exit 
 fi
-
-# init parameters
-for ((i=1;i<=$#;i++)); 
-do
-   if [[ ${!i} = "-h" || ${!i} = "-help" ]];
-    then 
-        echo -e "
-        This script pulls android translations from transifex and converts them to apple strings files. 
-        Credits to Daniel Cohen Gindi."
-        
-        exit
-
-    else
-        echo "Invalid argument: ${!i}"
-        exit
-    fi
-
-done;
-
 
 if [[ -d $TMP_ANDROID_TRANSLATIONS ]] 
 then 
