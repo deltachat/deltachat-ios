@@ -5,9 +5,9 @@ class NewGroupViewController: GroupMembersViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "New Group"
+        title = String.localized("menu_new_group")
         navigationController?.navigationBar.prefersLargeTitles = false
-        let groupCreationNextButton = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(nextButtonPressed))
+        let groupCreationNextButton = UIBarButtonItem(title: String.localized("next"), style: .done, target: self, action: #selector(nextButtonPressed))
         navigationItem.rightBarButtonItem = groupCreationNextButton
         contactIds = Utils.getContactIds()
     }
@@ -25,7 +25,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     private var chatId: Int?
 
     private lazy var resetButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetButtonPressed))
+        let button = UIBarButtonItem(title: String.localized("reset"), style: .plain, target: self, action: #selector(resetButtonPressed))
         button.isEnabled = false
         return button
     }()
@@ -71,7 +71,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         super.viewDidLoad()
         super.contactIds = memberCandidateIds
         super.navigationItem.rightBarButtonItem = resetButton
-        title = "Add Group Members"
+        title = String.localized("group_add_members")
         // Do any additional setup after loading the view.
     }
 

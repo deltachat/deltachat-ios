@@ -19,7 +19,7 @@ class ContactDetailViewController: UITableViewController {
 
     private var notificationsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = "Notifications"
+        cell.textLabel?.text = String.localized("pref_notifications")
         cell.accessibilityIdentifier = CellIdentifiers.notification.rawValue
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         cell.selectionStyle = .none
@@ -31,7 +31,7 @@ class ContactDetailViewController: UITableViewController {
         let cell = ActionCell()
         cell.accessibilityIdentifier = CellIdentifiers.chat.rawValue
         cell.actionColor = SystemColor.blue.uiColor
-        cell.actionTitle = "Chat with \(contact.name)"
+        cell.actionTitle = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), contact.name)
         cell.selectionStyle = .none
         return cell
     }()
@@ -39,7 +39,7 @@ class ContactDetailViewController: UITableViewController {
     private lazy var blockContactCell: ActionCell = {
         let cell = ActionCell()
         cell.accessibilityIdentifier = CellIdentifiers.block.rawValue
-        cell.actionTitle = contact.isBlocked ? "Unblock Contact" : "Block Contact"
+        cell.actionTitle = contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
         cell.actionColor = contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
         cell.selectionStyle = .none
         return cell
@@ -56,8 +56,8 @@ class ContactDetailViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
-        self.title = "Contact Info"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("global_menu_edit_desktop"), style: .plain, target: self, action: #selector(editButtonPressed))
+        self.title = String.localized("contact_detail_title_desktop")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -132,13 +132,13 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func updateBlockContactCell() {
-        blockContactCell.actionTitle = contact.isBlocked ? "Unblock Contact" : "Block Contact"
+        blockContactCell.actionTitle = contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
         blockContactCell.actionColor = contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
     }
 
     private func showNotificationSetup() {
         let notificationSetupAlert = UIAlertController(title: "Notifications Setup is not implemented yet", message: "But you get an idea where this is going", preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
         notificationSetupAlert.addAction(cancelAction)
         present(notificationSetupAlert, animated: true, completion: nil)
     }

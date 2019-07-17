@@ -15,7 +15,7 @@ class GroupLabelCell: UITableViewCell {
 
     lazy var inputField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Group Name"
+        textField.placeholder = String.localized("group_name")
         textField.borderStyle = .none
         textField.becomeFirstResponder()
         textField.autocorrectionType = .no

@@ -6,13 +6,13 @@ class EditSettingsController: UITableViewController {
     private var statusCellBackup: String?
 
     private lazy var displayNameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: "Display Name", placeholder: "Display Name")
+        let cell = TextFieldCell(description: String.localized("display_name"), placeholder: String.localized("display_name"))
         cell.setText(text: DCConfig.displayname ?? nil)
         return cell
     }()
 
     private lazy var statusCell: TextFieldCell = {
-        let cell = TextFieldCell(description: "Status", placeholder: "Your Status")
+        let cell = TextFieldCell(description: String.localized("status"), placeholder: String.localized("your_status"))
         cell.setText(text: DCConfig.selfstatus ?? nil)
         return cell
     }()

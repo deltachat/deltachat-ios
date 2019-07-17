@@ -74,7 +74,7 @@ class ChatListController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Chats"
+        title = String.localized("pref_chats")
         navigationController?.navigationBar.prefersLargeTitles = true
 
         newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
@@ -171,7 +171,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
 
         // assigning swipe by delete to chats
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [unowned self] _, indexPath in
+        let delete = UITableViewRowAction(style: .destructive, title: String.localized("global_menu_edit_delete_desktop")) { [unowned self] _, indexPath in
             let chatId = chatList.getChatId(index: row)
 			self.showDeleteChatConfirmationAlert(chatId: chatId)
         }
@@ -183,14 +183,14 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 extension ChatListController {
 	private func showDeleteChatConfirmationAlert(chatId: Int) {
 		let alert = UIAlertController(
-			title: "Do you want to delete the chat?",
+			title: String.localized("ask_delete_chat_desktop"),
 			message: nil,
 			preferredStyle: .alert
 		)
-		alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { action in
+		alert.addAction(UIAlertAction(title: String.localized("global_menu_edit_delete_desktop"), style: .default, handler: { action in
 			self.deleteChat(chatId: chatId)
 		}))
-		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+		alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
 		self.present(alert, animated: true, completion: nil)
 	}
 	

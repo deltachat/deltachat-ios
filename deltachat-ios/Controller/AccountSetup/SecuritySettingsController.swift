@@ -38,7 +38,7 @@ class SecuritySettingsController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        resetButton = UIBarButtonItem(title: "Reset", style: .done, target: self, action: #selector(resetButtonPressed))
+        resetButton = UIBarButtonItem(title: String.localized("reset"), style: .done, target: self, action: #selector(resetButtonPressed))
         resetButton.isEnabled = false
         navigationItem.rightBarButtonItem = resetButton
     }
@@ -130,6 +130,7 @@ class SecurityConverter {
         }
     }
 
+	// TODO: discuss if we want to internationalize OFF and Automatic
     static func convertHexToString(type: SecurityType, hex value: Int) -> String {
         switch type {
         case .IMAPSecurity:

@@ -46,6 +46,10 @@ extension String {
         }
         return attributedText
     }
+
+	static func localized(_ stringID: String) -> String {
+		return NSLocalizedString(stringID, comment: "")
+	}
 }
 
 extension URL {

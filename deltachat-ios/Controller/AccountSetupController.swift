@@ -26,7 +26,7 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var configProgressAlert: UIAlertController = {
-        let alert = UIAlertController(title: "Configuring Account", message: "\n\n\n", preferredStyle: .alert)
+        let alert = UIAlertController(title: String.localized("configuring_account"), message: "\n\n\n", preferredStyle: .alert)
         // temp workaround: add 3 newlines to let alertbox grow to fit progressview
         let progressView = configProgressIndicator
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +35,7 @@ class AccountSetupController: UITableViewController {
         progressView.centerYAnchor.constraint(equalTo: alert.view.centerYAnchor, constant: 0).isActive = true
         progressView.heightAnchor.constraint(equalToConstant: 65).isActive = true
         progressView.widthAnchor.constraint(equalToConstant: 65).isActive = true
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: loginCancelled(_:)))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: loginCancelled(_:)))
         return alert
     }()
 
@@ -58,20 +58,20 @@ class AccountSetupController: UITableViewController {
 
     private lazy var restoreCell: ActionCell = {
         let cell = ActionCell(frame: .zero)
-        cell.actionTitle = "Restore from backup"
+		cell.actionTitle = String.localized("import_backup_title");
         cell.accessibilityIdentifier = "restoreCell"
         return cell
     }()
 
     lazy var imapServerCell: TextFieldCell = {
-        let cell = TextFieldCell(description: "IMAP Server", placeholder: DCConfig.mailServer ?? DCConfig.configuredMailServer, delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_imap_server", placeholder: DCConfig.mailServer ?? DCConfig.configuredMailServer, delegate: self)
         cell.accessibilityIdentifier = "IMAPServerCell"
         cell.textField.tag = 2
         return cell
     }()
 
     lazy var imapUserCell: TextFieldCell = {
-        let cell = TextFieldCell(description: "IMAP User", placeholder: DCConfig.mailUser ?? DCConfig.configuredMailUser, delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_imap_login", placeholder: DCConfig.mailUser ?? DCConfig.configuredMailUser, delegate: self)
         cell.accessibilityIdentifier = "IMAPUserCell"
         cell.textField.tag = 3
         return cell
@@ -79,7 +79,7 @@ class AccountSetupController: UITableViewController {
 
     lazy var imapPortCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = "IMAP Port"
+        cell.textLabel?.text = String.localized("login_imap_port")
         cell.accessoryType = .disclosureIndicator
         cell.detailTextLabel?.text = DCConfig.mailPort ?? DCConfig.configuredMailPort
         cell.accessibilityIdentifier = "IMAPPortCell"
@@ -90,7 +90,7 @@ class AccountSetupController: UITableViewController {
     lazy var imapSecurityCell: UITableViewCell = {
         let text = "\(DCConfig.getImapSecurity())"
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = "IMAP Security"
+        cell.textLabel?.text = String.localized("login_imap_security")
         // let cell = TextFieldCell(description: "IMAP Security", placeholder: text, delegate: self)
         cell.accessibilityIdentifier = "IMAPSecurityCell"
         cell.accessoryType = .disclosureIndicator
@@ -100,14 +100,14 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var smtpServerCell: TextFieldCell = {
-        let cell = TextFieldCell(description: "SMTP Server", placeholder: DCConfig.sendServer ?? DCConfig.configuredSendServer, delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_smtp_server", placeholder: DCConfig.sendServer ?? DCConfig.configuredSendServer, delegate: self)
         cell.accessibilityIdentifier = "SMTPServerCell"
         cell.textField.tag = 4
         return cell
     }()
 
     lazy var smtpUserCell: TextFieldCell = {
-        let cell = TextFieldCell(description: "SMTP User", placeholder: DCConfig.sendUser ?? DCConfig.configuredSendUser, delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_smtp_login", placeholder: DCConfig.sendUser ?? DCConfig.configuredSendUser, delegate: self)
         cell.accessibilityIdentifier = "SMTPUserCell"
         cell.textField.tag = 5
         return cell
@@ -115,7 +115,7 @@ class AccountSetupController: UITableViewController {
 
     lazy var smtpPortCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = "SMTP Port"
+        cell.textLabel?.text = String.localized("login_smtp_port")
         cell.accessoryType = .disclosureIndicator
         cell.detailTextLabel?.text = DCConfig.sendPort ?? DCConfig.configuredSendPort
         cell.accessibilityIdentifier = "SMTPPortCell"
@@ -124,7 +124,7 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var smtpPasswordCell: TextFieldCell = {
-        let cell = TextFieldCell(description: "SMTP Password", placeholder: "*************", delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_smtp_password", placeholder: "*************", delegate: self)
 		cell.textField.textContentType = UITextContentType.password
 		cell.textField.isSecureTextEntry = true
         cell.accessibilityIdentifier = "SMTPPasswordCell"
@@ -135,7 +135,7 @@ class AccountSetupController: UITableViewController {
     lazy var smtpSecurityCell: UITableViewCell = {
         let security = "\(DCConfig.getSmtpSecurity())"
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = "SMTP Security"
+        cell.textLabel?.text = String.localized("login_smtp_security")
         cell.detailTextLabel?.text = security
         cell.accessibilityIdentifier = "SMTPSecurityCell"
         cell.accessoryType = .disclosureIndicator
@@ -145,7 +145,7 @@ class AccountSetupController: UITableViewController {
 
     // this loginButton can be enabled and disabled
     private lazy var loginButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
+        let button = UIBarButtonItem(title: String.localized("login_title"), style: .done, target: self, action: #selector(loginButtonPressed))
         button.isEnabled = dc_is_configured(mailboxPointer) == 0
         return button
     }()
@@ -177,7 +177,7 @@ class AccountSetupController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Login to your server"
+        title = String.localized("login_header")
         // navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonPressed))
         navigationItem.rightBarButtonItem = loginButton
     }
@@ -235,7 +235,7 @@ class AccountSetupController: UITableViewController {
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 2 {
-            return "Advanced"
+            return String.localized("menu_advanced")
         } else {
             return nil
         }
@@ -260,10 +260,10 @@ class AccountSetupController: UITableViewController {
 
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 0 {
-            return "There are no Delta Chat servers, your data stays on your device!"
+            return String.localized("login_no_servers_hint")
         } else if section == 2 {
             if advancedSectionShowing {
-                return "For known email providers additional settings are setup automatically. Sometimes IMAP needs to be enabled in the web frontend. Consult your email provider or friends for help"
+                return String.localized("login_subheader")
             } else {
                 return nil
             }
@@ -287,6 +287,7 @@ class AccountSetupController: UITableViewController {
         }
     }
 
+	// FIXME: replace if-else-if with switch-case
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let tappedCell = tableView.cellForRow(at: indexPath) else { return }
         // handle tap on password -> show oAuthDialogue
@@ -322,7 +323,7 @@ class AccountSetupController: UITableViewController {
         // set flag before delete/insert operation, because cellForRowAt will be triggered and uses this flag
         advancedSectionShowing = willShow
 
-        button.text = willShow ? "Hide" : "Show"
+		button.text = String.localized(willShow ? "hide" : "pref_notifications_show")
 
         if willShow {
             tableView.insertRows(at: advancedIndexPaths, with: .fade)
@@ -516,8 +517,8 @@ class AccountSetupController: UITableViewController {
                 return
             }
 
-            let alert = UIAlertController(title: "Can not restore", message: "No Backup found", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+            let alert = UIAlertController(title: String.localized("import_backup_title"), message: String.localizedStringWithFormat(String.localized("import_backup_no_backup_found"), "DUMMYPATH TBD"), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
 
             }))
             present(alert, animated: true, completion: nil)
@@ -585,7 +586,7 @@ class AdvancedSectionHeader: UIView {
 
     private var label: UILabel = {
         let label = UILabel()
-        label.text = "ADVANCED"
+        label.text = String.localized("menu_advanced").uppercased()
         label.font = UIFont.systemFont(ofSize: 15)
         label.textColor = UIColor.darkGray
         return label
@@ -596,7 +597,7 @@ class AdvancedSectionHeader: UIView {
      */
     private lazy var toggleButton: UILabel = {
         let label = UILabel()
-        label.text = "Show"
+        label.text = String.localized("pref_notifications_show")
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         label.textColor = UIColor.systemBlue
         return label
@@ -637,7 +638,7 @@ extension AccountSetupController {
 
     func showProgressHud() {
         configProgressAlert.actions[0].isEnabled = true
-        configProgressAlert.title = "Configuring Account"
+        configProgressAlert.title = String.localized("configuring_account")
         configProgressAlert.message = "\n\n\n"	// workaround to create space for progress indicator
         configProgressIndicator.alpha = 1
         configProgressIndicator.value = 0
@@ -646,7 +647,7 @@ extension AccountSetupController {
     }
 
     func updateProgressHud(error message: String?) {
-        configProgressAlert.title = "Unable to Login!"
+        configProgressAlert.title = String.localized("login_error_title")
         configProgressAlert.message = message
         configProgressIndicator.alpha = 0
     }
@@ -654,8 +655,8 @@ extension AccountSetupController {
     func updateProgressHudSuccess(callback: (()->())?) {
         configProgressAlert.actions[0].isEnabled = false
         configProgressIndicator.alpha = 0
-        configProgressAlert.title = "Login Successful!"
-        configProgressAlert.message = "You are ready to use Delta Chat."
+		configProgressAlert.title = String.localized("login_successful_title")
+        configProgressAlert.message = String.localized("login_successful_message")
         loginButton.isEnabled = dc_is_configured(mailboxPointer) == 0
         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
             self.configProgressAlert.dismiss(animated: true) {

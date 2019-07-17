@@ -120,7 +120,7 @@ class ContactListController: UITableViewController {
             } else {
                 cell = ActionCell(style: .default, reuseIdentifier: "actionCell")
             }
-            cell.actionTitle = "Import Device Contacts"
+            cell.actionTitle = String.localized("import_contacts")
             return cell
         } else {
 
@@ -166,7 +166,7 @@ class ContactListController: UITableViewController {
         let contactId = contactByIndexPath(indexPath).contact.id
 
         // assigning swipe by delete to chats
-        let edit = UITableViewRowAction(style: .default, title: "Edit") {
+        let edit = UITableViewRowAction(style: .default, title: String.localized("global_menu_edit_desktop")) {
             [unowned self] _, indexPath in
             if self.searchController.isActive {
                 self.searchController.dismiss(animated: false) {
@@ -224,14 +224,14 @@ extension ContactListController: ContactListDelegate {
 
     private func showSettingsAlert() {
         let alert = UIAlertController(
-            title: "Import Contacts from to your device",
-            message: "To chat with contacts from your device open the settings menu and enable the Contacts option",
+            title: String.localized("import_contacts"),
+            message: String.localized("import_contacts_message"),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "Open Settings", style: .default) { _ in
+        alert.addAction(UIAlertAction(title: String.localized("open_settings"), style: .default) { _ in
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel) { _ in
         })
         present(alert, animated: true)
     }

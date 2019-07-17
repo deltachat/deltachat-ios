@@ -25,7 +25,7 @@ internal final class SettingsViewController: QuickTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Settings"
+        title = String.localized("menu_settings")
         documentInteractionController.delegate = self as? UIDocumentInteractionControllerDelegate
     }
 
@@ -94,39 +94,44 @@ internal final class SettingsViewController: QuickTableViewController {
 
     private func setTable() {
         var backupRows = [
-            TapActionRow(text: "Create backup", action: { [weak self] in self?.createBackup($0) }),
+            TapActionRow(text: String.localized("create_backup"), action: { [weak self] in self?.createBackup($0) }),
         ]
 
-        let deleteRow = TapActionRow(text: "Delete Account", action: { [weak self] in self?.deleteAccount($0) })
+        let deleteRow = TapActionRow(text: String.localized("delete_account"), action: { [weak self] in self?.deleteAccount($0) })
 
         tableContents = [
             Section(
-                title: "User Details",
+                title: String.localized("user_details"),
                 rows: [
-                    NavigationRow(text: "Display Name", detailText: .value1(DCConfig.displayname ?? ""), action: { [weak self] in self?.editNameAndStatus($0)}),
-                    NavigationRow(text: "Status", detailText: .value1(DCConfig.selfstatus ?? ""), action: { [weak self] in self?.editNameAndStatus($0)}),
-                    TapActionRow(text: "Configure my Account", action: { [weak self] in self?.presentAccountSetup($0) }),
+					//FIXME: fix action callback!
+                    NavigationRow(text: String.localized("display_name"), detailText: .value1(DCConfig.displayname ?? ""), action: {
+						[weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.DISPLAYNAME)
+					}),
+					NavigationRow(text: String.localized("status"), detailText: .value1(DCConfig.selfstatus ?? ""), action: {
+						[weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.STATUS)
+					}),
+                    TapActionRow(text: String.localized("configure_my_account"), action: { [weak self] in self?.presentAccountSetup($0) }),
                 ]
             ),
             Section(
-                title: "Flags",
+                title: String.localized("flags"),
                 rows: [
-                    SwitchRow(text: "E2EE enabled", switchValue: DCConfig.e2eeEnabled, action: editCell(key: SVC.e2eeEnabled)),
-                    SwitchRow(text: "Read Receipts", switchValue: DCConfig.mdnsEnabled, action: editCell(key: SVC.readReceipts)),
-                    SwitchRow(text: "Watch Inbox", switchValue: DCConfig.inboxWatch, action: editCell(key: SVC.watchMvBox)),
-                    SwitchRow(text: "Watch Sentbox", switchValue: DCConfig.sentboxWatch, action: editCell(key: SVC.watchSentbox)),
-                    SwitchRow(text: "Watch Mvbox", switchValue: DCConfig.mvboxWatch, action: editCell(key: SVC.watchMvBox)),
-                    SwitchRow(text: "Move to Mvbox", switchValue: DCConfig.mvboxMove, action: editCell(key: SVC.MvToMvbox)),
-                    SwitchRow(text: "Save Mime Headers", switchValue: DCConfig.saveMimeHeaders, action: editCell(key: SVC.SaveMimeHeaders))
+                    SwitchRow(text: String.localized("autocrypt_prefer_e2ee"), switchValue: DCConfig.e2eeEnabled, action: editCell(key: SVC.e2eeEnabled)),
+                    SwitchRow(text: String.localized("pref_read_receipts"), switchValue: DCConfig.mdnsEnabled, action: editCell(key: SVC.readReceipts)),
+                    SwitchRow(text: String.localized("pref_watch_inbox_folder"), switchValue: DCConfig.inboxWatch, action: editCell(key: SVC.watchMvBox)),
+                    SwitchRow(text: String.localized("pref_watch_sent_folder"), switchValue: DCConfig.sentboxWatch, action: editCell(key: SVC.watchSentbox)),
+                    SwitchRow(text: String.localized("pref_watch_mvbox_folder"), switchValue: DCConfig.mvboxWatch, action: editCell(key: SVC.watchMvBox)),
+                    SwitchRow(text: String.localized("pref_auto_folder_moves"), switchValue: DCConfig.mvboxMove, action: editCell(key: SVC.MvToMvbox)),
+                    SwitchRow(text: String.localized("save_mime_headers"), switchValue: DCConfig.saveMimeHeaders, action: editCell(key: SVC.SaveMimeHeaders))
                 ]
             ),
 
             Section(
-                title: "Backup",
+                title: String.localized("pref_backup"),
                 rows: backupRows
             ),
 
-            Section(title: "Danger", rows: [
+            Section(title: String.localized("danger"), rows: [
                 deleteRow,
             ]),
         ]
@@ -169,7 +174,7 @@ internal final class SettingsViewController: QuickTableViewController {
         let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if !documents.isEmpty {
             logger.info("create backup in \(documents)")
-            hudHandler.showBackupHud("Creating Backup")
+            hudHandler.showBackupHud(String.localized("creating_backup"))
             DispatchQueue.main.async {
                 dc_imex(mailboxPointer, DC_IMEX_EXPORT_BACKUP, documents[0], nil)
             }
@@ -179,7 +184,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func configure(_: Row) {
-        hudHandler.showBackupHud("Configuring account")
+        hudHandler.showBackupHud(String.localized("configuring_account"))
         dc_configure(mailboxPointer)
     }
 
@@ -191,9 +196,9 @@ internal final class SettingsViewController: QuickTableViewController {
 
         let dbfile = appDelegate.dbfile()
         let dburl = URL(fileURLWithPath: dbfile, isDirectory: false)
-        let alert = UIAlertController(title: "Delete Account", message: "Are you sure you wante to delete your account data?", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: String.localized("delete_account"), message: String.localized("delete_account_message"), preferredStyle: .actionSheet)
 
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+        alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { _ in
             appDelegate.stop()
             appDelegate.close()
             do {
@@ -211,7 +216,7 @@ internal final class SettingsViewController: QuickTableViewController {
             self.dismiss(animated: false, completion: nil)
             self.coordinator?.showLoginController()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true, completion: nil)
     }
 
@@ -219,8 +224,7 @@ internal final class SettingsViewController: QuickTableViewController {
         coordinator?.showAccountSetupController()
     }
 
-    private func editNameAndStatus(_ row: Row) {
-        guard let option = SettingsEditOption(rawValue: row.text) else { return }
+	private func editNameAndStatus(_ row: Row, option: SettingsEditOption) {
         coordinator?.showEditSettingsController(option: option)
     }
 }

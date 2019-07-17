@@ -33,7 +33,7 @@ class ProfileViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "My Profile"
+        title = String.localized("my_profile")
     }
 
     override func viewWillAppear(_: Bool) {
@@ -75,7 +75,9 @@ class ProfileViewController: UITableViewController {
         if indexPath.section == 0 {
             if row == 0 {
                 if let fingerprint = self.fingerprint {
-                    cell.textLabel?.text = "Fingerprint: \(fingerprint)"
+					//FIXME: this formatting is not correct for r-t-l languages
+					//keeping it simple for now as it is not clear if we will show the FP this way
+                    cell.textLabel?.text = String.localized("qrscan_fingerprint_label") + ": \(fingerprint)"
                     cell.textLabel?.textAlignment = .center
                 }
             }
@@ -145,7 +147,7 @@ class ProfileViewController: UITableViewController {
                 }
                 contactCell.setVerified(isVerified: contact.isVerified)
             } else {
-                contactCell.nameLabel.text = "No Account set up"
+                contactCell.nameLabel.text = String.localized("no_account_setup")
             }
             return contactCell
         }

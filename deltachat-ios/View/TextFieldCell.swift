@@ -26,6 +26,10 @@ class TextFieldCell: UITableViewCell {
         setupViews()
         textField.delegate = delegate
     }
+	
+	convenience init(descriptionID: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {
+		self.init(description: String.localized(descriptionID), placeholder: placeholder, delegate: delegate)
+	}
 
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -72,7 +76,7 @@ class TextFieldCell: UITableViewCell {
     }
 
     static func makeEmailCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
-        let cell = TextFieldCell(description: "Email", placeholder: "you@example.com")
+		let cell = TextFieldCell(description: String.localized("email_address"), placeholder: "you@example.com")
         cell.textField.keyboardType = .emailAddress
         // switch off quicktype
         cell.textField.autocorrectionType = .no
@@ -82,14 +86,14 @@ class TextFieldCell: UITableViewCell {
     }
 
     static func makePasswordCell(delegate _: UITextFieldDelegate? = nil) -> TextFieldCell {
-        let cell = TextFieldCell(description: "Password", placeholder: "your IMAP password")
+		let cell = TextFieldCell(description: String.localized("password"), placeholder: String.localized("imap_password"))
         cell.textField.textContentType = UITextContentType.password
         cell.textField.isSecureTextEntry = true
         return cell
     }
 
     static func makeNameCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
-        let cell = TextFieldCell(description: "Name", placeholder: "new contacts nickname")
+        let cell = TextFieldCell(description: String.localized("name_desktop"), placeholder: String.localized("contact_nickname"))
         cell.textField.autocapitalizationType = .words
         cell.textField.autocorrectionType = .no
         // .namePhonePad doesn't support autocapitalization
@@ -101,8 +105,8 @@ class TextFieldCell: UITableViewCell {
         return cell
     }
 
-    static func makeConfigCell(label: String, placeholder: String, delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
-        let cell = TextFieldCell(description: label, placeholder: placeholder)
+    static func makeConfigCell(labelID: String, placeholderID: String, delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
+		let cell = TextFieldCell(description: String.localized(labelID), placeholder: String.localized(placeholderID))
         cell.textField.autocapitalizationType = .words
         cell.textField.autocorrectionType = .no
         // .namePhonePad doesn't support autocapitalization
