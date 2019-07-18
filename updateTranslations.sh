@@ -8,7 +8,6 @@
 
 TMP_ANDROID_TRANSLATIONS=tmpAndroidTranslations
 
-# check global vars
 if [[ -z `which node` ]] 
 then
     echo "ERROR: You need to have node installed. Exiting."
@@ -28,7 +27,6 @@ fi
 
 IOS_TRANSLATIONS=( $(find . -name Localizable.strings) )
 
-# create folders for each resource 
 mkdir $TMP_ANDROID_TRANSLATIONS
 cd $TMP_ANDROID_TRANSLATIONS
 tx pull --all --source
