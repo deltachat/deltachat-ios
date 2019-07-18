@@ -134,7 +134,6 @@ function parseJS(data) {
 
 function toIOS(lines) {
   let out = '';
-  
   for (let line of lines) {
                 if (typeof line === 'string') {
             if (line === '') {
@@ -246,36 +245,58 @@ function toJS(lines) {
   });
 }
 
-
-function convertAndroidToIOS(stringsXML, appleStrings) {
-  // Read the entire file asynchronously, with a callback to replace the r's and l's
-  // with w's then write the result to the new file.
-  fs.readFile(stringsXML, 'utf-8', function (err, text) {
-      if (err) {
-        console.error("Couuld not read file " + stringsXML);
-        throw err;
-      }
-  
-      let parsed = parseAndroid(text);
-      let iosFormatted = toIOS(parsed);
-      //var fuddified = text.replace(/[rl]/g, 'w').replace(/[RL]/g, 'W')
-      fs.writeFile(output, iosFormatted, function (err) {
-          if (err) {
-            console.error("Error converting " + stringsXML + " to " + appleStrings);
-            throw err;
-          }
-      });
+function merge(base, addendum){
+  var out = [].concat(base).filter(value => {
+    return value != null;
   });
-  
+  for(let i in addendum){
+    add = true;
+    for (let j in base) {
+      if (base[j][0] != undefined &&
+        addendum[i][0] != undefined &&
+        base[j][0] === addendum[i][0]) {
+        add = false;
+        break;
+      }
+    }
+    if (add) {
+      out.push(addendum[i]);
+    } else {
+      console.warn(addendum[i] + " is already included. Consider removing it from the additional string source!")
+    }
+  }
+  return out;
 }
 
-if (process.argv.length !== 4) {
-    console.error('Exactly two arguments required. \nExample:\n ' + 
-    " node convertTranslations.js stringsInputfile.xml stringsOutputfile.strings");
+function parseAndroidAndAppend(parsedItems, stringsXML) {
+  var text = fs.readFileSync(stringsXML, 'utf-8').toString();
+  let result = parseAndroid(text)
+  return merge(parsedItems, result);
+}
+
+function convertAndroidToIOS(stringsXMLArray, appleStrings) {
+  var parsedItems = [];
+  for (entry of stringsXMLArray) {
+    parsedItems = parseAndroidAndAppend(parsedItems, entry)
+    console.log("parsed " + parsedItems.length + " elements of " + entry)
+  }
+
+  let iosFormatted = toIOS(parsedItems);
+  fs.writeFile(output, iosFormatted, function (err) {
+    if (err) {
+      console.error("Error converting " + stringsXMLArray + " to " + appleStrings);
+      throw err;
+    }
+  });
+}
+
+if (process.argv.length < 4) {
+    console.error('Too less arguments provided. \nExample:\n ' + 
+    "node convertTranslations.js stringsInputfile1.xml stringsInputfile2.xml stringsInputfileN.xml stringsOutputfile.strings");
     process.exit(1);
 }
 
 
-var input = process.argv[2];
-var output = process.argv[3];
+var input = process.argv.slice(2, process.argv.length - 1)
+var output = process.argv[process.argv.length - 1];
 convertAndroidToIOS(input, output)
