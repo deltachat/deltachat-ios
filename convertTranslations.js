@@ -63,27 +63,34 @@ function parseAndroid(data) {
   const rgxCommentBlock = /<!-- ?(.*?) ?-->/;
   const rgxCommentStart = /<!-- ?(.*)/;
   const rgxCommentEnd = /(.*?) ?-->/;
+  const rgxPluralsStart = /<plurals name="(.*)">/;
+  const rgxPluralsEnd = /\s<\/plurals>/
 
   let lines = data.trim().split('\n');
-  let parsed = [];
+  let result = {
+    parsed: [],
+    parsedPlurals: new Map()
+  };
+
   let multilineComment = false;
+  let pluralsDefinitionKey = null;
 
   for (let line of lines) {
     let kv = line.match(rgxKeyValue);
     if (kv != null) {
-      parsed.push([kv[1], kv[2].replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/\\t/g, '\t').replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/\\\\/g, '\\')]);
+      result.parsed.push([kv[1], kv[2].replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/\\t/g, '\t').replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/\\\\/g, '\\')]);
       continue;
     }
 
     let blockComment = line.match(rgxCommentBlock);
     if (blockComment) {
-      parsed.push(blockComment[1]);
+      result.parsed.push(blockComment[1]);
       continue;
     } 
 
     let commentStart = line.match(rgxCommentStart);
-    if (commentStart) {
-      parsed.push(commentStart[1]);
+    if (commentStart && !pluralsDefinition) {
+      result.parsed.push(commentStart[1]);
       multilineComment = true;
       continue;
     }
@@ -91,19 +98,41 @@ function parseAndroid(data) {
     if (multilineComment) {
       let commentEnd = line.match(rgxCommentEnd);
       if (commentEnd) {
-        parsed[parsed.length - 1] += '\n' + commentEnd[1];
+        result.parsed[result.parsed.length - 1] += '\n' + commentEnd[1];
         multilineComment = false;
       } else {
-        parsed[parsed.length - 1] += '\n' + line;
+        result.parsed[result.parsed.length - 1] += '\n' + line;
       }
       continue;
     }
+
+    let pluralsStart = line.match(rgxPluralsStart);
+    if (pluralsStart) {
+      pluralsDefinitionKey = pluralsStart[1];
+      result.parsedPlurals.set(pluralsDefinitionKey, [ ]);
+      continue;
+    }
+
+    if (pluralsDefinitionKey) {
+      let pluralsEnd = line.match(rgxPluralsEnd) 
+      if (pluralsEnd) {
+        pluralsDefinitionKey = null
+        continue;
+      } else if (isEmpty(line)) {
+        continue;
+      } else {
+        result.parsedPlurals.get(pluralsDefinitionKey).push(line);
+      }
+    }
     
-    if (/^\s*$/.test(line))
-            parsed.push('');
+    if (isEmpty(line))
+            result.parsed.push('');
   }
   
-  return parsed;
+  return result;
+}
+function isEmpty(line) {
+  return /^\s*$/.test(line);
 }
 
 function parseJS(data) {
@@ -262,26 +291,44 @@ function merge(base, addendum){
     if (add) {
       out.push(addendum[i]);
     } else {
-      console.warn(addendum[i] + " is already included. Consider removing it from the additional string source!")
+      console.warn(addendum[i] + " is already included. Consider removing it from the additional string source!");
     }
   }
   return out;
 }
 
-function parseAndroidAndAppend(parsedItems, stringsXML) {
+function mergePlurals(base, appendum) {
+  for (keyValuePair of appendum) {
+    let key = keyValuePair[0];
+    if (base[key] === undefined) {
+      base.set(key, keyValuePair[1]);
+    }
+  }
+  return base;
+}
+
+function parseXMLAndAppend(allElements, stringsXML) {
   var text = fs.readFileSync(stringsXML, 'utf-8').toString();
   let result = parseAndroid(text)
-  return merge(parsedItems, result);
+  allElements.parsed = merge(allElements.parsed, result.parsed);
+  allElements.parsedPlurals = mergePlurals(allElements.parsedPlurals, result.parsedPlurals);
+  return allElements;
 }
 
 function convertAndroidToIOS(stringsXMLArray, appleStrings) {
-  var parsedItems = [];
+  let allElements = {
+    parsed: [],
+    parsedPlurals: new Map()
+  };
+
   for (entry of stringsXMLArray) {
-    parsedItems = parseAndroidAndAppend(parsedItems, entry)
-    console.log("parsed " + parsedItems.length + " elements of " + entry)
+    allElements = parseXMLAndAppend(allElements, entry)
+    console.log("parsed " + allElements.parsed.length + " elements of " + entry)
   }
 
-  let iosFormatted = toIOS(parsedItems);
+  console.log(allElements.parsedPlurals)
+
+  let iosFormatted = toIOS(allElements.parsed);
   fs.writeFile(output, iosFormatted, function (err) {
     if (err) {
       console.error("Error converting " + stringsXMLArray + " to " + appleStrings);
