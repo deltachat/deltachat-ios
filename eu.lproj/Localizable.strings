@@ -17,11 +17,11 @@
 "done" = "Egina";
 "undo" = "Desegin";
 "error" = "Errorea";
-"error_x" = "Errorea: %1$s";
+"error_x" = "Errorea: %1$@";
 "error_no_network" = "Sarea ez dago eskuragarri.";
 "no_app_to_handle_data" = "Ezin izan da datu mota hau kudeatzeko aplikaziorik.";
 "no_browser_installed" = "Ez dago nabigatzailerik instalatuta.";
-"file_not_found" = "Ezin izan da %1$s aurkitu.";
+"file_not_found" = "Ezin izan da %1$@ aurkitu.";
 "copied_to_clipboard" = "Arbelera kopiatuta.";
 "contacts_headline" = "Kontaktuak";
 "email_address" = "E-mail helbidea";
@@ -147,15 +147,15 @@
 
 // get confirmations
 "ask_leave_group" = "Ziur talde honetatik atera nahi duzula?";
-"ask_forward" = "Birbidali mezuak %1$s erabiltzaileari?";
+"ask_forward" = "Birbidali mezuak %1$@ erabiltzaileari?";
 "ask_export_attachment" = "Esportatu eranskina? Eranskinak esportatzeak zure beste gailuko beste aplikazioek atzitzea ahalbidetuko du.\n\nJarraitu?";
 "ask_block_contact" = "Blokeatu kontaktu hau? Ez dituzu kontaktu honen mezu gehiago jasoko.";
 "ask_unblock_contact" = "Desblokeatu kontaktu hau? Berriro jaso ahal izango dituzu kontaktu honen mezuak.";
 "ask_delete_contacts" = "Ezabatu kontaktuak? Honek behin betiko ezabatuko ditu hautatutako kontaktuak.\n\nTxaten bat abian duten eta sistemako helbide liburuan dauden kontaktuak ezin dira behin betiko ezabatu.";
 "cannot_delete_contacts_in_use" = "Ezin dira txatak abian dituzten kontaktuak ezabatu";
-"ask_start_chat_with" = "Txateatu %1$s erabiltzailearekin?";
+"ask_start_chat_with" = "Txateatu %1$@ erabiltzailearekin?";
 // Translators: %1$s will be replaces by a comma separated list of names
-"ask_remove_members" = "Kendu %1$s taldetik?";
+"ask_remove_members" = "Kendu %1$@ taldetik?";
 "info_outdated_app_title" = "Zure aplikazioaren bertsioa zaharkituta dago";
 "info_outdated_app_text" = "Badirudi eguneraketak automatikoki kudeatzen ez dituen iturri batetik instalatu duzula Delta Chat (esaterako GitHub). Aldatu aplikazio dendaren bateko bertsiora azken eguneraketak eta arazoen konponketak jasotzeko.";
 "info_outdated_app_dialog_title" = "Eguneratu iturriak";
@@ -174,7 +174,7 @@
 "chat_please_enter_message" = "Idatzi mezu bat.";
 "chat_camera_unavailable" = "Kamera ez dago eskuragarri.";
 "chat_unable_to_record_audio" = "Ezin izan da audioa grabatu.";
-"chat_no_messages_hint" = "Bidali mezuak %1$s erabiltzaileari:\n\n• Ez du axola %2$s(e)k ez badu Delta Chat erabiltzen.\n\n• Lehen mezua bidaltzeko denbora bat behar daiteke, eta agian ez da zifratuta egongo.";
+"chat_no_messages_hint" = "Bidali mezuak %1$@ erabiltzaileari:\n\n• Ez du axola %2$@(e)k ez badu Delta Chat erabiltzen.\n\n• Lehen mezua bidaltzeko denbora bat behar daiteke, eta agian ez da zifratuta egongo.";
 "chat_new_group_hint" = "Idatzi lehen mezua, besteek taldera erantzutea baimenduz\n\n• Ez du axola denek ez badute Delta Chat erabiltzen.\n\n• Lehen mezua bidaltzeko denbora bat behar daiteke.";
 "chat_record_slide_to_cancel" = "Irristatu ezeztatzeko";
 "chat_record_explain" = "Sakatu eta mantendu ahots-mezu bat grabatzeko, askatu bidaltzeko.";
@@ -207,7 +207,7 @@
 "group_create_button" = "Sortu taldea";
 "group_please_enter_group_name" = "Idatzi izen bat taldearentzat.";
 "group_add_members" = "Gehitu kideak";
-"group_hello_draft" = "Kaixo, \\\"%1$s\\\" taldea sortu berri dut guretzat. ";
+"group_hello_draft" = "Kaixo, \\\"%1$@\\\" taldea sortu berri dut guretzat. ";
 "group_self_not_in_group" = "Taldeko kidea izan behar zara ekintza hau burutzeko.";
 "profile_encryption" = "Zifratzea";
 "profile_shared_chats" = "Partekatutako txatak";
@@ -225,7 +225,7 @@
 
 // invite
 "invite_slogan" = "Lagun onek ez diete bere lagunei itxitako mezularitza guneetan giltzaperatzea.";
-"invite_default_text" = "Alda gaitezen Delta Chat-era %1$s - %2$s helbidera idatzi diezadakezu";
+"invite_default_text" = "Alda gaitezen Delta Chat-era %1$@ - %2$@ helbidera idatzi diezadakezu";
 
 
 // welcome and login
@@ -270,12 +270,12 @@
 "login_error_port" = "Sartu baliozko ataka bat  (1–65535)";
 "login_error_required_fields" = "Sartu baliozko e-mail helbidea eta pasahitza";
 "import_backup_title" = "Inportatu babes-kopia";
-"import_backup_ask" = "Babes-kopia aurkitu da:  \\\"%1$s\\\".\n\nInportatu nahi duzu eta bertako datu eta ezarpenak erabili?";
-"import_backup_no_backup_found" = "Ez da babes-kopiarik aurkitu.\n\nKopiatu babes-kopia \\\"%1$s\\\" karpetan eta saiatu berriro. Bestela, sakatu \\\"Hasi txateatzen\\\" ezarpen arruntarekin aurrera egiteko.";
+"import_backup_ask" = "Babes-kopia aurkitu da:  \\\"%1$@\\\".\n\nInportatu nahi duzu eta bertako datu eta ezarpenak erabili?";
+"import_backup_no_backup_found" = "Ez da babes-kopiarik aurkitu.\n\nKopiatu babes-kopia \\\"%1$@\\\" karpetan eta saiatu berriro. Bestela, sakatu \\\"Hasi txateatzen\\\" ezarpen arruntarekin aurrera egiteko.";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = "Ezin da \\\"%1$s\\\" bezala saioa hasi. Egiaztatu E-mail helbidea eta pasahitza zuzenak diren.";
+"login_error_cannot_login" = "Ezin da \\\"%1$@\\\" bezala saioa hasi. Egiaztatu E-mail helbidea eta pasahitza zuzenak diren.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "%1$s(r)en erantzuna: %2$s\n\nHornitzaile batzuk informazio gehigarria uzten dute zure sarrera ontzian; adibidez bere web interfazearen bidez egiaztatu dezakezu. Galdetu zure hornitzaileari edo lagunei arazoak badituzu.";
+"login_error_server_response" = "%1$@(r)en erantzuna: %2$@\n\nHornitzaile batzuk informazio gehigarria uzten dute zure sarrera ontzian; adibidez bere web interfazearen bidez egiaztatu dezakezu. Galdetu zure hornitzaileari edo lagunei arazoak badituzu.";
 
 
 // share and forward messages
@@ -363,15 +363,15 @@
 "pref_backup_explain" = "Egin txaten babes-kopia kanpo biltegian";
 "pref_backup_export_explain" = "Babes-kopia batek instalazio berri bat ezartzen laguntzen dizu, bai gailu honetan zein beste batean.\n\nBabes-kopiak mezu guztiak, kontaktuak eta txatak, eta zure Autocrypt ezarpena daramatza. Gorde babes-kopiaren fitxategia toki seguruan edo ezabatu ahalik eta lasterren.";
 "pref_backup_export_start_button" = "Hasi babes-kopia";
-"pref_backup_written_to_x" = "Babes-kopia ongi idatzi da hemen: %1$s";
+"pref_backup_written_to_x" = "Babes-kopia ongi idatzi da hemen: %1$@";
 "pref_managekeys_menu_title" = "Kudeatu gakoak";
 "pref_managekeys_ask_for_storage_permission" = "Delta Chat-ek zure fitxategiak atzitzeko baimena behar du gakoak inportatu/esportatu ahal izateko.";
 "pref_managekeys_export_secret_keys" = "Esportatu gako sekretuak";
-"pref_managekeys_export_explain" = "Esportatu gako sekretuak \\\"%1$s\\\"-ra?";
+"pref_managekeys_export_explain" = "Esportatu gako sekretuak \\\"%1$@\\\"-ra?";
 "pref_managekeys_import_secret_keys" = "Inportatu gako sekretuak";
-"pref_managekeys_import_explain" = "Inportatu gako sekretuak \\\"%1$s\\\"-tik?\n\n• Dauden gako sekretuak ez dira ezabatuko\n\n• Inportatutako azken gakoa lehenetsitako gako berri gisa erabiliko da fitxategiaren izenean \\\"legacy\\\" ez badu.";
-"pref_managekeys_secret_keys_exported_to_x" = "Gako sekretuak ongi idatzi dira hemen: \\\"%1$s\\\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Gako sekretuak hemendik inportatu dira: \\\"%1$s\\\".";
+"pref_managekeys_import_explain" = "Inportatu gako sekretuak \\\"%1$@\\\"-tik?\n\n• Dauden gako sekretuak ez dira ezabatuko\n\n• Inportatutako azken gakoa lehenetsitako gako berri gisa erabiliko da fitxategiaren izenean \\\"legacy\\\" ez badu.";
+"pref_managekeys_secret_keys_exported_to_x" = "Gako sekretuak ongi idatzi dira hemen: \\\"%1$@\\\".";
+"pref_managekeys_secret_keys_imported_from_x" = "Gako sekretuak hemendik inportatu dira: \\\"%1$@\\\".";
 "pref_background" = "Atzealdea";
 "pref_background_btn_default" = "Erabili lehenetsitako irudia";
 "pref_background_btn_gallery" = "Hautatu galeriatik";
@@ -400,7 +400,7 @@
 "autocrypt_send_asm_title" = "Bidali Autocrypt ezarpen mezua";
 "autocrypt_send_asm_explain_before" = "\\\"Autocrypt ezarpen mezua\\\" batek modu seguruan partekatzen du zure muturretik muturrerako ezarpena Autocryptekin bateragarriak diren beste aplikazioekin. Ezarpena hemen bistaratutako ezarpen kodearekin zifratuko  da, eta beste gailuan kode hau sartu beharko da.";
 "autocrypt_send_asm_button" = "Bidali Autocrypt ezarpen mezua";
-"autocrypt_send_asm_explain_after" = "Zure ezarpena zuri bidali zaizu. Aldatu beste gailura eta ireki ezarpen mezua. Ezarpen kode bat eskatuko zaizu, Idatzi honako zenbaki hauek han:\n\n%1$s\n\nBehin bukatuta, zure beste gailua Autocrypt erabiltzeko prest egongo da.";
+"autocrypt_send_asm_explain_after" = "Zure ezarpena zuri bidali zaizu. Aldatu beste gailura eta ireki ezarpen mezua. Ezarpen kode bat eskatuko zaizu, Idatzi honako zenbaki hauek han:\n\n%1$@\n\nBehin bukatuta, zure beste gailua Autocrypt erabiltzeko prest egongo da.";
 "autocrypt_prefer_e2ee" = "Hobetsi muturretik muturrerako zifratzea";
 "autocrypt_asm_subject" = "Autocrypt ezarpen mezua";
 "autocrypt_asm_general_body" = "Hau Autocrypt ezarpen mezua da, zure muturretik muturrerako ezarpena bezeroen artean pasatzeko erabilia.\n\n Zure ezarpena deszifratu eta erabiltzeko, ireki mezua Autocrypt onartzen duen bezero batean eta sartu gailu sortzailean agertutako ezarpen kodea.";
@@ -413,19 +413,19 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "Taldearen izena \\\"%1$s\\\" izatetik \\\"%2$s\\\" izatera aldatu da.";
+"systemmsg_group_name_changed" = "Taldearen izena \\\"%1$@\\\" izatetik \\\"%2$@\\\" izatera aldatu da.";
 "systemmsg_group_image_changed" = "Taldearen irudia aldatuta.";
 "systemmsg_group_image_deleted" = "Taldearen irudia ezabatuta.";
-"systemmsg_member_added" = "%1$s kidea gehituta.";
-"systemmsg_member_removed" = "%1$s kidea kenduta.";
+"systemmsg_member_added" = "%1$@ kidea gehituta.";
+"systemmsg_member_removed" = "%1$@ kidea kenduta.";
 "systemmsg_group_left" = "Taldetik aterata.";
 "systemmsg_read_receipt_subject" = "Irakurragiria";
-"systemmsg_read_receipt_body" = "Hau \\\"%1$s\\\" mezuaren irakurragiri bat da.\n\nHonek mezua jasotzailearen gailuan bistaratu dela esan nahi du, ez edukia irakurri dela.";
+"systemmsg_read_receipt_body" = "Hau \\\"%1$@\\\" mezuaren irakurragiri bat da.\n\nHonek mezua jasotzailearen gailuan bistaratu dela esan nahi du, ez edukia irakurri dela.";
 "systemmsg_cannot_decrypt" = "Ezin da mezu hau deszifratu.\n\n• Mezuari erantzun diezaiokezu eta berriro bidaltzea eskatu.\n\n• Delta Chat berrinstalatu baduzu edo beste posta programa bat instalatu baduzu gailu honetan edo beste batean, AutoCrypt ezarpen mezua handik hona birbidaltzen saiatu zaitezke.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
-"systemmsg_action_by_me" = "Nik: %1$s";
+"systemmsg_action_by_me" = "Nik: %1$@";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
-"systemmsg_action_by_user" = "%2$s(e)k: %1$s";
+"systemmsg_action_by_user" = "%2$@(e)k: %1$@";
 
 
 // screen lock
@@ -442,32 +442,32 @@
 // qr code stuff
 "qrscan_title" = "Eskaneatu QR kodea";
 "qrscan_hint" = "Kokatu zure kamera QR kodearen gainean";
-"qrscan_ask_join_group" = "\\\"%1$s\\\" taldera elkartu nahi duzu?";
-"qrscan_fingerprint_mismatch" = "Eskaneatutako hatz-marka eta %1$s erabiltzaileari ikusitako azken hatz-marka ez datoz bat.";
+"qrscan_ask_join_group" = "\\\"%1$@\\\" taldera elkartu nahi duzu?";
+"qrscan_fingerprint_mismatch" = "Eskaneatutako hatz-marka eta %1$@ erabiltzaileari ikusitako azken hatz-marka ez datoz bat.";
 "qrscan_no_addr_found" = "QR kode honek hatz-marka bat du baina ez e-mail helbidea.\n\nBandaz kanpoko egiaztaketa baterako, ezarri zifratutako konexio bat hartzailearekin aurretik.";
-"qrscan_contains_text" = "Eskaneatutako QR kodearen testua:\n\n%1$s";
-"qrscan_contains_url" = "Eskaneatutako QR kodearen URL-a:\n\n%1$s";
+"qrscan_contains_text" = "Eskaneatutako QR kodearen testua:\n\n%1$@";
+"qrscan_contains_url" = "Eskaneatutako QR kodearen URL-a:\n\n%1$@";
 "qrscan_fingerprint_label" = "Hatz-marka";
-"qrscan_x_verified_introduce_myself" = "%1$s egiaztatuta, nire burua aurkeztu ...";
+"qrscan_x_verified_introduce_myself" = "%1$@ egiaztatuta, nire burua aurkeztu ...";
 "qrshow_title" = "QR gonbidapen-kodea";
-"qrshow_x_joining" = "%1$s elkartu da.";
-"qrshow_x_verified" = "%1$s egiaztatuta.";
-"qrshow_x_has_joined_group" = "%1$s taldera elkartu da.";
+"qrshow_x_joining" = "%1$@ elkartu da.";
+"qrshow_x_verified" = "%1$@ egiaztatuta.";
+"qrshow_x_has_joined_group" = "%1$@ taldera elkartu da.";
 "qrshow_join_group_title" = "QR gonbidapen-kodea";
-"qrshow_join_group_hint" = "Eskaneatu hau \\\"%1$s\\\" taldera elkartzeko.";
+"qrshow_join_group_hint" = "Eskaneatu hau \\\"%1$@\\\" taldera elkartzeko.";
 "qrshow_join_contact_title" = "QR gonbidapen-kodea";
-"qrshow_join_contact_hint" = "Eskaneatu hau %1$s erabiltzailearen kontaktua ezartzeko";
+"qrshow_join_contact_hint" = "Eskaneatu hau %1$@ erabiltzailearen kontaktua ezartzeko";
 "qrshow_join_contact_no_connection_hint" = "Ezarpen QR kodeak Internet konexioa behar du. Konektatu sarera jarraitu aurretik";
 "qrshow_join_contact_no_connection_toast" = "Ez dago Internet konexiorik, ezin da QR kode bidezko ezarpena aplikatu";
-"contact_verified" = "%1$s egiaztatuta.";
-"contact_not_verified" = "Ezin da %1$s egiaztatu";
+"contact_verified" = "%1$@ egiaztatuta.";
+"contact_not_verified" = "Ezin da %1$@ egiaztatu";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
-"contact_setup_changed" = "Aldatu %1$s(r)en ezarpena";
+"contact_setup_changed" = "Aldatu %1$@(r)en ezarpena";
 
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d mezu berri %2$d txatetan";
-"notify_most_recent_from" = "%1$s(r)en azkena";
+"notify_most_recent_from" = "%1$@(r)en azkena";
 "notify_media_message_with_text" = "Multimedia mezua: %s";
 "notify_mark_all_read" = "Markatu denak irakurrita gisa";
 "notify_mark_read" = "Markatu irakurrita gisa";
@@ -579,15 +579,15 @@
 
 // deprecated on android, please remove if unused on desktop
 // see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "\\\"%1$s\\\" taldera elkartu nahi duzu?";
+"qrscan_ask_join_verified_group" = "\\\"%1$@\\\" taldera elkartu nahi duzu?";
 // see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "Txateatu %1$s(r)ekin?";
+"qrscan_ask_fingerprint_ask_oob" = "Txateatu %1$@(r)ekin?";
 // see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "Txateatu %1$s(r)ekin?";
+"qrscan_ask_chatting_fingerprint_ok" = "Txateatu %1$@(r)ekin?";
 // see qrshow_join_group_title
 "qrshow_join_verified_group_title" = "QR gonbidapen kodea";
 // see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "Eskaneatu hau \\\"%1$s\\\" taldera elkartzeko.";
+"qrshow_join_verified_group_hint" = "Eskaneatu hau \\\"%1$@\\\" taldera elkartzeko.";
 // see chat_all_archived
 "chat_all_done_hint" = "Sarrera ontzi hutsa";
 "chat_all_done_explain" = "Ezer ere ez.\n Egunean zaude!";

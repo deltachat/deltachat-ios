@@ -17,11 +17,11 @@
 "done" = "Færdig";
 "undo" = "Genskabe";
 "error" = "Fejl";
-"error_x" = "Fejl: %1$s";
+"error_x" = "Fejl: %1$@";
 "error_no_network" = "Netværk utilgængelig";
 "no_app_to_handle_data" = "Kan ikke finde et program til håndtering af denne type data.";
 "no_browser_installed" = "Ingen netlæser installeret.";
-"file_not_found" = "Kunne ikke finde %1$s.";
+"file_not_found" = "Kunne ikke finde %1$@.";
 "copied_to_clipboard" = "Kopieret til klippebord";
 "contacts_headline" = "Kontakter";
 "email_address" = "E-post adresse";
@@ -146,15 +146,15 @@
 
 // get confirmations
 "ask_leave_group" = "Forlade denne gruppe?";
-"ask_forward" = "Videresende beskeder til %1$s?";
+"ask_forward" = "Videresende beskeder til %1$@?";
 "ask_export_attachment" = "Eksportere vedhæftninger? Eksport af vedhæftninger vil tillade alle programmer på din enhed adgang til dem.\n\nFortsætte?";
 "ask_block_contact" = "Blokere kontakt? Du vil ikke modtage beskeder fra denne kontakt mere.";
 "ask_unblock_contact" = "Fjerne blokering af kontakt? Du vil igen kunne modtage beskeder fra denne kontakt.";
 "ask_delete_contacts" = "Slette kontakter? Dette vil slette valgte kontakter permanent.\n\nKontakter med igangværende samtaler og kontakter fra systemets adressebog kan ikke slette permanent.";
 "cannot_delete_contacts_in_use" = "Kan ikke slette kontakter med igangværende samtaler.";
-"ask_start_chat_with" = "Samtale med %1$s?";
+"ask_start_chat_with" = "Samtale med %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
-"ask_remove_members" = "Fjerne %1$s fra gruppe?";
+"ask_remove_members" = "Fjerne %1$@ fra gruppe?";
 "info_outdated_app_title" = "Program version er forældet.";
 "info_outdated_app_text" = "Det ser ud til at Delta Chat er installeret fra en kilde uden auto-opdatering (eks. GitHub). Skift til en butik version for at modtage seneste funktioner og fejlrettelser.";
 "info_outdated_app_dialog_title" = "Opdatere kilder";
@@ -173,7 +173,7 @@
 "chat_please_enter_message" = "Indtast besked";
 "chat_camera_unavailable" = "Kamera ikke tilgængelig";
 "chat_unable_to_record_audio" = "Kan ikke optage lyd.";
-"chat_no_messages_hint" = "Send besked til %1$s:\n\n• Det er o.k. hvis %2$s ikke bruger Delta Chat.\n\n• Levering af første besked kan tage nogen tid og kan være ukrypteret.";
+"chat_no_messages_hint" = "Send besked til %1$@:\n\n• Det er o.k. hvis %2$@ ikke bruger Delta Chat.\n\n• Levering af første besked kan tage nogen tid og kan være ukrypteret.";
 "chat_new_group_hint" = "Skriv første besked, tillader andre at svare i denne gruppe.\n\n• Det er o.k hvis ikke alle medlemmer bruger Delta Chat.\n\n• Levering af første besked kan tage nogen tid.";
 "chat_record_slide_to_cancel" = "Trække for at annullere";
 "chat_record_explain" = "Tryk og hold for at optage tale besked, slip for at sende.";
@@ -206,7 +206,7 @@
 "group_create_button" = "Oprette gruppe";
 "group_please_enter_group_name" = "Indtast et navn til gruppen.";
 "group_add_members" = "Tilføje medlemmer";
-"group_hello_draft" = "Hej, har lige oprettet gruppen  \\\"%1$s\\\" til os.";
+"group_hello_draft" = "Hej, har lige oprettet gruppen  \\\"%1$@\\\" til os.";
 "group_self_not_in_group" = "Man skal være medlem af gruppen fro at udføre denne handling.";
 "profile_encryption" = "Kryptering";
 "profile_shared_chats" = "Delte samtaler";
@@ -224,7 +224,7 @@
 
 // invite
 "invite_slogan" = "Venner lader ikke venner være låst i besked siloer.";
-"invite_default_text" = "Skift til Delta Chat - %1$s - skriv til mig på %2$s";
+"invite_default_text" = "Skift til Delta Chat - %1$@ - skriv til mig på %2$@";
 
 
 // welcome and login
@@ -269,12 +269,12 @@
 "login_error_port" = "Indtast gyldig port (1–65535)";
 "login_error_required_fields" = "Indtast gyldig e-post adresse og adgangskode";
 "import_backup_title" = "Importere sikkerhedskopi";
-"import_backup_ask" = "Sikkerhedskopi fundet hos \\\"%1$s\\\".\n\nImportere og bruge al data og opsætning fra den?";
-"import_backup_no_backup_found" = "Ingen sikkerhedskopi fundet.\n\nKopiere sikkerhedskopi til \\\"%1$s\\\" og prøv igen. Alternativt, klik \\\"Start samtale\\\" for at følge normal opsætning proces.";
+"import_backup_ask" = "Sikkerhedskopi fundet hos \\\"%1$@\\\".\n\nImportere og bruge al data og opsætning fra den?";
+"import_backup_no_backup_found" = "Ingen sikkerhedskopi fundet.\n\nKopiere sikkerhedskopi til \\\"%1$@\\\" og prøv igen. Alternativt, klik \\\"Start samtale\\\" for at følge normal opsætning proces.";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = "Kan ikke logge ind som  \\\"%1$s\\\". Kontrollere om e-post adresse og adgangskode er korrekt.";
+"login_error_cannot_login" = "Kan ikke logge ind som  \\\"%1$@\\\". Kontrollere om e-post adresse og adgangskode er korrekt.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Svar fra %1$s: %2$s\n\nNogle udbydere placerer ekstra information i indbakken; det kan kontrolleres f.eks. i net grænsefladen. Kontakt udbyder eller venner hvis disse problemer opstår.";
+"login_error_server_response" = "Svar fra %1$@: %2$@\n\nNogle udbydere placerer ekstra information i indbakken; det kan kontrolleres f.eks. i net grænsefladen. Kontakt udbyder eller venner hvis disse problemer opstår.";
 
 
 // share and forward messages
@@ -360,15 +360,15 @@
 "pref_backup_explain" = "Sikkerhedskopiere samtaler til eksternt lager";
 "pref_backup_export_explain" = "En sikkerhedskopi hjælper til at opsætte en ny installation på denne eller en anden enhed.\n\nSikkerhedskopien indeholder alle beskeder, kontakter og samtaler og ende-til-ende kryptering opsætning. Gem sikkerhedskopien et sikkert sted eller slet den så hurtigt som muligt.";
 "pref_backup_export_start_button" = "Starte sikkerhedskopiering";
-"pref_backup_written_to_x" = "Sikkerhedskopi skrevet til %1$s";
+"pref_backup_written_to_x" = "Sikkerhedskopi skrevet til %1$@";
 "pref_managekeys_menu_title" = "Håndtere nøgler";
 "pref_managekeys_ask_for_storage_permission" = "Delta Chat behøver fil adgang for importere/eksportere nøgler.";
 "pref_managekeys_export_secret_keys" = "Eksportere hemmelige nøgler";
-"pref_managekeys_export_explain" = "Eksportere hemmelige nøgler til \\\"%1$s\\\"?";
+"pref_managekeys_export_explain" = "Eksportere hemmelige nøgler til \\\"%1$@\\\"?";
 "pref_managekeys_import_secret_keys" = "Importere hemmelige nøgler";
-"pref_managekeys_import_explain" = "Importere hemmelige nøgler fra \\\"%1$s\\\"?\n\n• Eksisterende hemmelige nøgler bliver ikke slettet\n\n• Den seneste importerede nøgle bliver brugt som ny standard nøgle medmindre den har ordet \\\"legacy\\\" i dens filnavn";
-"pref_managekeys_secret_keys_exported_to_x" = "Hemmelige nøgler skrevet til \\\"%1$s\\\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Hemmelige nøgler importeret fra \\\"%1$s\\\".";
+"pref_managekeys_import_explain" = "Importere hemmelige nøgler fra \\\"%1$@\\\"?\n\n• Eksisterende hemmelige nøgler bliver ikke slettet\n\n• Den seneste importerede nøgle bliver brugt som ny standard nøgle medmindre den har ordet \\\"legacy\\\" i dens filnavn";
+"pref_managekeys_secret_keys_exported_to_x" = "Hemmelige nøgler skrevet til \\\"%1$@\\\".";
+"pref_managekeys_secret_keys_imported_from_x" = "Hemmelige nøgler importeret fra \\\"%1$@\\\".";
 "pref_background" = "Baggrund";
 "pref_background_btn_default" = "Brug standard billede";
 "pref_background_btn_gallery" = "Vælge fra galleri";
@@ -390,7 +390,7 @@
 "autocrypt_send_asm_title" = "Sende Autocrypt opsætning besked";
 "autocrypt_send_asm_explain_before" = "En \\\"Autocrypt opsætning besked\\\" deler sikkert ende-til-ende opsætning med andre Autocrypt kompatible programmer.\n\nOpsætning er krypteret med en kode som er vist her og skal indtastes på den anden enhed.";
 "autocrypt_send_asm_button" = "Sende autocrypt  opsætning besked";
-"autocrypt_send_asm_explain_after" = "Opsætning er sendt til undertegnet. Skift til den anden enhed og åben opsætning beskeden. Der skulle blive spurgt til opsætning kode. Indtast følgende cifre i prompt:\n\n%1$s\n\nNår færdig vil den anden enhed være klar til at bruge Autocrypt.";
+"autocrypt_send_asm_explain_after" = "Opsætning er sendt til undertegnet. Skift til den anden enhed og åben opsætning beskeden. Der skulle blive spurgt til opsætning kode. Indtast følgende cifre i prompt:\n\n%1$@\n\nNår færdig vil den anden enhed være klar til at bruge Autocrypt.";
 "autocrypt_prefer_e2ee" = "Foretrække ende-til-ende kryptering";
 "autocrypt_asm_subject" = "Autocrypt opsætning besked";
 "autocrypt_asm_general_body" = "Dette er Autocrypt opsætning besked brugt til at overføre ende-til-ende opsætning mellem klienter.\n\nFor at af kryptere og bruge opsætning åben beskeden i en Autocrypt kompatibel klient og indtast opsæt koden vist på den genererende enhed.";
@@ -403,19 +403,19 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "Gruppe navn ændret fra \\\"%1$s\\\" til \\\"%2$s\\\".";
+"systemmsg_group_name_changed" = "Gruppe navn ændret fra \\\"%1$@\\\" til \\\"%2$@\\\".";
 "systemmsg_group_image_changed" = "Gruppe billede ændret.";
 "systemmsg_group_image_deleted" = "Gruppe billede slettet.";
-"systemmsg_member_added" = "Medlem %1$s tilføjet.";
-"systemmsg_member_removed" = "Medlem %1$s fjernet.";
+"systemmsg_member_added" = "Medlem %1$@ tilføjet.";
+"systemmsg_member_removed" = "Medlem %1$@ fjernet.";
 "systemmsg_group_left" = "Gruppe forladt.";
 "systemmsg_read_receipt_subject" = "Læse modtagelse";
-"systemmsg_read_receipt_body" = "Dette er en læst kvittering for beskeden \\\"%1$s\\\".\n\nDet betyder beskeden blev vist på modtager enhed men ikke nødvendigvis at indholdet blev læst.";
+"systemmsg_read_receipt_body" = "Dette er en læst kvittering for beskeden \\\"%1$@\\\".\n\nDet betyder beskeden blev vist på modtager enhed men ikke nødvendigvis at indholdet blev læst.";
 "systemmsg_cannot_decrypt" = "Denne besked kan ikke dekrypteres.\n\n• Det kan måske hjælpe at svare på beskeden og bede afsender sende beskeden igen.\n\n• I tilfælde at Delta Chat eller andet e-post program på denne enhed eller en anden er blevet gen-installeret bør der sendes en Autocrypt opsætning besked derfra.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
-"systemmsg_action_by_me" = "%1$s af undertegnet.";
+"systemmsg_action_by_me" = "%1$@ af undertegnet.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
-"systemmsg_action_by_user" = "%1$s af %2$s.";
+"systemmsg_action_by_user" = "%1$@ af %2$@.";
 
 
 // screen lock
@@ -432,32 +432,32 @@
 // qr code stuff
 "qrscan_title" = "Skanne QR kode";
 "qrscan_hint" = "Placere kamera over QR kode";
-"qrscan_ask_join_group" = "Deltage i gruppen \\\"%1$s\\\"?";
-"qrscan_fingerprint_mismatch" = "Det aflæste fingeraftryk passer ikke til sidst set fingeraftryk for %1$s";
+"qrscan_ask_join_group" = "Deltage i gruppen \\\"%1$@\\\"?";
+"qrscan_fingerprint_mismatch" = "Det aflæste fingeraftryk passer ikke til sidst set fingeraftryk for %1$@";
 "qrscan_no_addr_found" = "Denne QR kode indeholder et fingeraftryk men ingen e-post adresse.\n\nFor en uden for område efterprøvning opret først en krypteret forbindelse til modtager.";
-"qrscan_contains_text" = "Skannet QR kode tekst:\n\n%1$s";
-"qrscan_contains_url" = "Skannet QR kode URL:\n\n%1$s";
+"qrscan_contains_text" = "Skannet QR kode tekst:\n\n%1$@";
+"qrscan_contains_url" = "Skannet QR kode URL:\n\n%1$@";
 "qrscan_fingerprint_label" = "Fingeraftryk";
-"qrscan_x_verified_introduce_myself" = "%1$s efterprøvet, introducere…";
+"qrscan_x_verified_introduce_myself" = "%1$@ efterprøvet, introducere…";
 "qrshow_title" = "QR invitere kode";
-"qrshow_x_joining" = "%1$s tilslutter.";
-"qrshow_x_verified" = "%1$s efterprøvet.";
-"qrshow_x_has_joined_group" = "%1$s tilsluttet gruppen.";
+"qrshow_x_joining" = "%1$@ tilslutter.";
+"qrshow_x_verified" = "%1$@ efterprøvet.";
+"qrshow_x_has_joined_group" = "%1$@ tilsluttet gruppen.";
 "qrshow_join_group_title" = "QR invitere kode";
-"qrshow_join_group_hint" = "Skanne dette for at deltage i gruppen \\\"%1$s\\\".";
+"qrshow_join_group_hint" = "Skanne dette for at deltage i gruppen \\\"%1$@\\\".";
 "qrshow_join_contact_title" = "QR invitere kode";
-"qrshow_join_contact_hint" = "Skanne dette for at indstille kontakt med %1$s";
+"qrshow_join_contact_hint" = "Skanne dette for at indstille kontakt med %1$@";
 "qrshow_join_contact_no_connection_hint" = "QR kode opsætning kræver en internet forbindelse. Forbind til et netværk inden der fortsættes.";
 "qrshow_join_contact_no_connection_toast" = "Ingen internet forbindelse, kan ikke udføre QR kode opsætning.";
-"contact_verified" = "%1$s efterprøvet.";
-"contact_not_verified" = "Kan ikke efterprøve %1$s";
+"contact_verified" = "%1$@ efterprøvet.";
+"contact_not_verified" = "Kan ikke efterprøve %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
-"contact_setup_changed" = "Ændret opsætning for %1$s";
+"contact_setup_changed" = "Ændret opsætning for %1$@";
 
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nye beskeder i %2$d samtaler";
-"notify_most_recent_from" = "Nylig fra: %1$s";
+"notify_most_recent_from" = "Nylig fra: %1$@";
 "notify_media_message_with_text" = "Medie besked: %s";
 "notify_mark_all_read" = "Vælge alle som læst";
 "notify_mark_read" = "Vælge læst";
@@ -569,15 +569,15 @@
 
 // deprecated on android, please remove if unused on desktop
 // see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "Tilslutte gruppe \\\"%1$s\\\"?";
+"qrscan_ask_join_verified_group" = "Tilslutte gruppe \\\"%1$@\\\"?";
 // see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "Samtale med %1$s?";
+"qrscan_ask_fingerprint_ask_oob" = "Samtale med %1$@?";
 // see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "Samtale med %1$s?";
+"qrscan_ask_chatting_fingerprint_ok" = "Samtale med %1$@?";
 // see qrshow_join_group_title
 "qrshow_join_verified_group_title" = "QR inviteringskode ";
 // see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "Skanne dette for at tilslutte gruppe \\\"%1$s\\\".";
+"qrshow_join_verified_group_hint" = "Skanne dette for at tilslutte gruppe \\\"%1$@\\\".";
 // see chat_all_archived
 "chat_all_done_hint" = "Indbakke tom";
 "chat_all_done_explain" = "Der er ikke mere!";

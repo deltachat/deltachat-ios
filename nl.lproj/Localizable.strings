@@ -17,11 +17,11 @@
 "done" = "Klaar";
 "undo" = "Ongedaan maken";
 "error" = "Fout";
-"error_x" = "Fout: %1$s";
+"error_x" = "Fout: %1$@";
 "error_no_network" = "Geen internetverbinding.";
 "no_app_to_handle_data" = "Je hebt geen app die deze inhoud kan openen.";
 "no_browser_installed" = "Geen webbrowser geïnstalleerd.";
-"file_not_found" = "Kan %1$s niet vinden.";
+"file_not_found" = "Kan %1$@ niet vinden.";
 "copied_to_clipboard" = "Gekopieerd naar klembord.";
 "contacts_headline" = "Contactpersonen";
 "email_address" = "E-mailadres";
@@ -147,15 +147,15 @@
 
 // get confirmations
 "ask_leave_group" = "Weet je zeker dat je deze groep wilt verlaten?";
-"ask_forward" = "Wil je de berichten doorsturen aan %1$s?";
+"ask_forward" = "Wil je de berichten doorsturen aan %1$@?";
 "ask_export_attachment" = "Als je de bijlage exporteert, geef je andere apps op je apparaat toegang om hem uit te lezen.\n\nWil je doorgaan?";
 "ask_block_contact" = "Wil je deze contactpersoon blokkeren? Hij/zij kan je geen berichten meer sturen.";
 "ask_unblock_contact" = "Wil je deze contactpersoon deblokkeren? Hij/zij kan je wederom berichten sturen.";
 "ask_delete_contacts" = "Wil je de geselecteerde contactpersonen permanent verwijderen?\n\nPersonen met actieve gesprekken en personen afkomstig uit je adresboek kunnen niet permanent worden verwijderd.";
 "cannot_delete_contacts_in_use" = "Contactpersonen waarmee je nog gesprekken voert kunnen niet worden verwijderd.";
-"ask_start_chat_with" = "Wil je een gesprek voeren met %1$s?";
+"ask_start_chat_with" = "Wil je een gesprek voeren met %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
-"ask_remove_members" = "Wil je %1$s verwijderen uit de groep?";
+"ask_remove_members" = "Wil je %1$@ verwijderen uit de groep?";
 "info_outdated_app_title" = "Je gebruikt een verouderde versie.";
 "info_outdated_app_text" = "Het lijkt erop dat je Delta Chat hebt geïnstalleerd uit een bron zonder automatische updates (bijv. GitHub). Installeer Delta Chat via een appwinkel om updates te ontvangen.";
 "info_outdated_app_dialog_title" = "Bronnen bijwerken";
@@ -174,7 +174,7 @@
 "chat_please_enter_message" = "Typ een bericht.";
 "chat_camera_unavailable" = "De camera is niet beschikbaar.";
 "chat_unable_to_record_audio" = "Kan geen audio opnemen.";
-"chat_no_messages_hint" = "Verstuur een bericht aan %1$s:\n\n• %2$s hoeft Delta Chat niet te gebruiken.\n\n• Het afleveren van het eerste bericht kan even duren en onversleuteld zijn.";
+"chat_no_messages_hint" = "Verstuur een bericht aan %1$@:\n\n• %2$@ hoeft Delta Chat niet te gebruiken.\n\n• Het afleveren van het eerste bericht kan even duren en onversleuteld zijn.";
 "chat_new_group_hint" = "Stel het eerste bericht op, zodat anderen binnen deze groep kunnen reageren.\n\n• Niet alle leden hoeven Delta Chat te gebruiken.\n\n• Het afleveren van het eerste bericht kan even duren.";
 "chat_record_slide_to_cancel" = "Veeg opzij om te annuleren";
 "chat_record_explain" = "Houdt ingedrukt om een spraakbericht op te nemen; laat los om te versturen";
@@ -207,7 +207,7 @@
 "group_create_button" = "Groep creëren";
 "group_please_enter_group_name" = "Voer een naam in voor de groep.";
 "group_add_members" = "Deelnemers toevoegen";
-"group_hello_draft" = "Hallo, ik heb zojuist de groep \\\"%1$s\\\" voor ons gemaakt.";
+"group_hello_draft" = "Hallo, ik heb zojuist de groep \\\"%1$@\\\" voor ons gemaakt.";
 "group_self_not_in_group" = "Om deze actie uit te kunnen voeren moet je deelnemen aan de groep.";
 "profile_encryption" = "Versleuteling";
 "profile_shared_chats" = "Gedeelde gesprekken";
@@ -225,7 +225,7 @@
 
 // invite
 "invite_slogan" = "Vrienden houden vrienden niet opgesloten in berichtkluizen.";
-"invite_default_text" = "Laten we overgaan op Delta Chat - %1$s - je kunt me een bericht sturen op %2$s";
+"invite_default_text" = "Laten we overgaan op Delta Chat - %1$@ - je kunt me een bericht sturen op %2$@";
 
 
 // welcome and login
@@ -270,12 +270,12 @@
 "login_error_port" = "Voer een geldige poort in (1-65535)";
 "login_error_required_fields" = "Voer een geldig e-mailadres en wachtwoord in";
 "import_backup_title" = "Back-up importeren";
-"import_backup_ask" = "Back-up aangetroffen in \\\"%1$s\\\".\n\nWil je de instellingen en gegevens daaruit importeren?";
-"import_backup_no_backup_found" = "Geen back-ups aangetroffen.\n\nKopieer de back-up naar \\\"%1$s\\\" en probeer het opnieuw of druk op \\\"Aan de slag\\\" om het normale instelproces te doorlopen.";
+"import_backup_ask" = "Back-up aangetroffen in \\\"%1$@\\\".\n\nWil je de instellingen en gegevens daaruit importeren?";
+"import_backup_no_backup_found" = "Geen back-ups aangetroffen.\n\nKopieer de back-up naar \\\"%1$@\\\" en probeer het opnieuw of druk op \\\"Aan de slag\\\" om het normale instelproces te doorlopen.";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = "Kan niet inloggen als \\\"%1$s\\\". Controleer het e-mailadres en wachtwoord.";
+"login_error_cannot_login" = "Kan niet inloggen als \\\"%1$@\\\". Controleer het e-mailadres en wachtwoord.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Antwoord van %1$s: %2$s\n\nSommige providers plaatsen extra informatie in je Postvak IN. Je kunt dit controleren in, bijv., de webversie. Neem contact op met je provider of vrienden als je problemen ervaart.";
+"login_error_server_response" = "Antwoord van %1$@: %2$@\n\nSommige providers plaatsen extra informatie in je Postvak IN. Je kunt dit controleren in, bijv., de webversie. Neem contact op met je provider of vrienden als je problemen ervaart.";
 
 
 // share and forward messages
@@ -363,15 +363,15 @@
 "pref_backup_explain" = "Gesprekken back-uppen naar externe opslag";
 "pref_backup_export_explain" = "Een back-up helpt je om een nieuwe installatie in te stellen op dit of een ander apparaat.\n\nDe back-up bevat alle berichten, contactpersonen, gesprekken en je end-to-end Autocrypt-instellingen. Bewaar het back-upbestand op een veilige plaats of verwijder het zo snel mogelijk.";
 "pref_backup_export_start_button" = "Nu back-uppen";
-"pref_backup_written_to_x" = "Back-up weggeschreven naar %1$s";
+"pref_backup_written_to_x" = "Back-up weggeschreven naar %1$@";
 "pref_managekeys_menu_title" = "Sleutels beheren";
 "pref_managekeys_ask_for_storage_permission" = "Delta Chat heeft toegang nodig tot je bestanden om sleutels te im- en exporteren.";
 "pref_managekeys_export_secret_keys" = "Geheime sleutels exporteren";
-"pref_managekeys_export_explain" = "Geheime sleutels exporteren naar \\\"%1$s\\\"?";
+"pref_managekeys_export_explain" = "Geheime sleutels exporteren naar \\\"%1$@\\\"?";
 "pref_managekeys_import_secret_keys" = "Geheime sleutels importeren";
-"pref_managekeys_import_explain" = "Wil je geheime sleutels importeren uit \\\"%1$s\\\"?\n\n• Bestaande sleutels worden niet verwijderd.\n\n• De laatst geïmporteerde sleutel wordt als standaard gebruikt tenzij de bestandsnaam \\\"legacy\\\" bevat.";
-"pref_managekeys_secret_keys_exported_to_x" = "Geheime sleutels weggeschreven naar \\\"%1$s\\\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Geheime sleutels geïmporteerd uit \\\"%1$s\\\".";
+"pref_managekeys_import_explain" = "Wil je geheime sleutels importeren uit \\\"%1$@\\\"?\n\n• Bestaande sleutels worden niet verwijderd.\n\n• De laatst geïmporteerde sleutel wordt als standaard gebruikt tenzij de bestandsnaam \\\"legacy\\\" bevat.";
+"pref_managekeys_secret_keys_exported_to_x" = "Geheime sleutels weggeschreven naar \\\"%1$@\\\".";
+"pref_managekeys_secret_keys_imported_from_x" = "Geheime sleutels geïmporteerd uit \\\"%1$@\\\".";
 "pref_background" = "Achtergrond";
 "pref_background_btn_default" = "Standaardafbeelding gebruiken";
 "pref_background_btn_gallery" = "Kiezen uit galerij";
@@ -400,7 +400,7 @@
 "autocrypt_send_asm_title" = "Autocrypt-instelbericht versturen";
 "autocrypt_send_asm_explain_before" = "Een \\'Autocrypt-instelbericht\\' deelt je end-to-end-instellingen veilig met andere Autocrypt-compatibele apps.\n\nDe instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
 "autocrypt_send_asm_button" = "Autocrypt-instelbericht versturen";
-"autocrypt_send_asm_explain_after" = "Je instellingen zijn aan jezelf verstuurd. Schakel over naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld:\n\n%1$s\n\nAls je klaar bent, is je andere apparaat klaar voor gebruik.";
+"autocrypt_send_asm_explain_after" = "Je instellingen zijn aan jezelf verstuurd. Schakel over naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld:\n\n%1$@\n\nAls je klaar bent, is je andere apparaat klaar voor gebruik.";
 "autocrypt_prefer_e2ee" = "Voorkeur voor end-to-end-versleuteling";
 "autocrypt_asm_subject" = "Autocrypt-instelbericht";
 "autocrypt_asm_general_body" = "Dit is het Autocrypt-instelbericht dat wordt gebruikt om je instellingen over te zetten naar andere clients.\n\nOm te ontsleutelen en te gebruiken, open je het bericht in een met Autocrypt compatibele app en voer je de code in die wordt getoond op het apparaat dat de code heeft gegenereerd.";
@@ -413,19 +413,19 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "Groepsnaam gewijzigd van \\\"%1$s\\\" in \\\"%2$s\\\".";
+"systemmsg_group_name_changed" = "Groepsnaam gewijzigd van \\\"%1$@\\\" in \\\"%2$@\\\".";
 "systemmsg_group_image_changed" = "Groepsafbeelding gewijzigd.";
 "systemmsg_group_image_deleted" = "Groepsafbeelding verwijderd.";
-"systemmsg_member_added" = "Deelnemer \\'%1$s\\' toegevoegd.";
-"systemmsg_member_removed" = "Deelnemer \\'%1$s\\' verwijderd.";
+"systemmsg_member_added" = "Deelnemer \\'%1$@\\' toegevoegd.";
+"systemmsg_member_removed" = "Deelnemer \\'%1$@\\' verwijderd.";
 "systemmsg_group_left" = "Groep verlaten.";
 "systemmsg_read_receipt_subject" = "Leesbevestiging";
-"systemmsg_read_receipt_body" = "Dit is een leesbevestiging voor het bericht \\'%1$s\\'.\n\nDit betekent dat het bericht getoond is op het apparaat van de ontvanger, maar niet dat het ook gelezen is.";
+"systemmsg_read_receipt_body" = "Dit is een leesbevestiging voor het bericht \\'%1$@\\'.\n\nDit betekent dat het bericht getoond is op het apparaat van de ontvanger, maar niet dat het ook gelezen is.";
 "systemmsg_cannot_decrypt" = "Dit bericht kan niet worden ontsleuteld.\n\n• Het kan helpen dit bericht te beantwoorden en de afzender te vragen het opnieuw te versturen.\n\n• Als je Delta Chat of een andere e-mailapp opnieuw hebt geïnstalleerd op dit of een ander apparaat, verstuur het instelbericht dan opnieuw.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
-"systemmsg_action_by_me" = "%1$s door mij.";
+"systemmsg_action_by_me" = "%1$@ door mij.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
-"systemmsg_action_by_user" = "%1$s door %2$s.";
+"systemmsg_action_by_user" = "%1$@ door %2$@.";
 
 
 // screen lock
@@ -442,32 +442,32 @@
 // qr code stuff
 "qrscan_title" = "QR-code scannen";
 "qrscan_hint" = "Plaatst je camera boven de QR-code";
-"qrscan_ask_join_group" = "Wil je deelnemen aan de groep \\\"%1$s\\\"?";
-"qrscan_fingerprint_mismatch" = "De gescande vingerafdruk komt niet overeen met de vorige voor %1$s";
+"qrscan_ask_join_group" = "Wil je deelnemen aan de groep \\\"%1$@\\\"?";
+"qrscan_fingerprint_mismatch" = "De gescande vingerafdruk komt niet overeen met de vorige voor %1$@";
 "qrscan_no_addr_found" = "Deze QR-code bevat een vingerafdruk, maar geen e-mailadres.\n\nVoor out-of-band-goedkeuring, moet je eerst een beveiligde verbinding opzetten met de ontvanger.";
-"qrscan_contains_text" = "Gescande QR-codetekst:\n\n %1$s";
-"qrscan_contains_url" = "Gescande QR-code-URL:\n\n %1$s";
+"qrscan_contains_text" = "Gescande QR-codetekst:\n\n %1$@";
+"qrscan_contains_url" = "Gescande QR-code-URL:\n\n %1$@";
 "qrscan_fingerprint_label" = "Vingerafdruk";
-"qrscan_x_verified_introduce_myself" = "%1$s goedgekeurd; vertel iets over jezelf...";
+"qrscan_x_verified_introduce_myself" = "%1$@ goedgekeurd; vertel iets over jezelf...";
 "qrshow_title" = "QR-uitnodigingscode";
-"qrshow_x_joining" = "%1$s heeft deelgenomen.";
-"qrshow_x_verified" = "%1$s is goedgekeurd.";
-"qrshow_x_has_joined_group" = "%1$s neemt nu deel aan de groep.";
+"qrshow_x_joining" = "%1$@ heeft deelgenomen.";
+"qrshow_x_verified" = "%1$@ is goedgekeurd.";
+"qrshow_x_has_joined_group" = "%1$@ neemt nu deel aan de groep.";
 "qrshow_join_group_title" = "QR-uitnodigingscode";
-"qrshow_join_group_hint" = "Scan dit om deel te nemen aan de groep \\'%1$s\\'.";
+"qrshow_join_group_hint" = "Scan dit om deel te nemen aan de groep \\'%1$@\\'.";
 "qrshow_join_contact_title" = "QR-uitnodigingscode";
-"qrshow_join_contact_hint" = "Scan dit om een contactpersoon in te stellen met %1$s";
+"qrshow_join_contact_hint" = "Scan dit om een contactpersoon in te stellen met %1$@";
 "qrshow_join_contact_no_connection_hint" = "Voor het instellen van QR-codes is een internetverbinding vereist. Maak verbinding en probeer het opnieuw.";
 "qrshow_join_contact_no_connection_toast" = "Geen internetverbinding; kan QR-codes niet instellen.";
-"contact_verified" = "%1$s is goedgekeurd.";
-"contact_not_verified" = "Kan %1$s niet goedkeuren";
+"contact_verified" = "%1$@ is goedgekeurd.";
+"contact_not_verified" = "Kan %1$@ niet goedkeuren";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
-"contact_setup_changed" = "Gewijzigde instellingen voor %1$s";
+"contact_setup_changed" = "Gewijzigde instellingen voor %1$@";
 
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nieuwe berichten in %2$d gesprekken";
-"notify_most_recent_from" = "Recentste van: %1$s";
+"notify_most_recent_from" = "Recentste van: %1$@";
 "notify_media_message_with_text" = "Mediabericht: %s";
 "notify_mark_all_read" = "Alles markeren als gelezen";
 "notify_mark_read" = "Markeren als gelezen";
@@ -579,15 +579,15 @@
 
 // deprecated on android, please remove if unused on desktop
 // see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "Wil je deelnemen aan de groep \\'%1$s\\'?";
+"qrscan_ask_join_verified_group" = "Wil je deelnemen aan de groep \\'%1$@\\'?";
 // see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "Wil je een gesprek voeren met %1$s?";
+"qrscan_ask_fingerprint_ask_oob" = "Wil je een gesprek voeren met %1$@?";
 // see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "Wil je een gesprek voeren met %1$s?";
+"qrscan_ask_chatting_fingerprint_ok" = "Wil je een gesprek voeren met %1$@?";
 // see qrshow_join_group_title
 "qrshow_join_verified_group_title" = "QR-uitnodigingscode";
 // see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "Scan dit om deel te nemen aan de groep \\'%1$s\\'.";
+"qrshow_join_verified_group_hint" = "Scan dit om deel te nemen aan de groep \\'%1$@\\'.";
 // see chat_all_archived
 "chat_all_done_hint" = "Postvak nullllll";
 "chat_all_done_explain" = "Niks. Noppes. Nakkes. Nada.\nJe bent volledig op de hoogte!";

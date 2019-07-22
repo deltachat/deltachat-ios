@@ -17,11 +17,11 @@
 "done" = "Bitti";
 "undo" = "Geri al";
 "error" = "Hata";
-"error_x" = "Hata: %1$s";
+"error_x" = "Hata: %1$@";
 "error_no_network" = "Ağ kullanım dışı.";
 "no_app_to_handle_data" = "Bu veri türünü işleyen bir uygulama bulunamıyor.";
 "no_browser_installed" = "Kurulu tarayıcı yok.";
-"file_not_found" = "%1$s bulunamadı.";
+"file_not_found" = "%1$@ bulunamadı.";
 "copied_to_clipboard" = "Panoya kopyalandı.";
 "contacts_headline" = "Kişiler";
 "email_address" = "E-posta adresi";
@@ -147,15 +147,15 @@
 
 // get confirmations
 "ask_leave_group" = "Bu gruptan ayrılmak istediğinizden emin misiniz?";
-"ask_forward" = "İletiler %1$s alıcısına iletilsin mi?";
+"ask_forward" = "İletiler %1$@ alıcısına iletilsin mi?";
 "ask_export_attachment" = "Ek dışa aktarılsın mı? Ekleri dışa aktarmak, aygıtınızdaki tüm diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
 "ask_block_contact" = "Bu kişi engellensin mi? Artık bu kişiden gelen iletileri almayacaksınız.";
 "ask_unblock_contact" = "Bu kişinin engellemesi kaldırılsın mı? Bir kez daha bu kişiden gelen iletileri alabileceksiniz.";
 "ask_delete_contacts" = "Kişiler silinsin mi? Bu, seçilen kişileri kalıcı olarak silecek.\n\nSohbetleri süren kişiler ve sistemin adres defterinden gelen kişiler kalıcı olarak silinemez.";
 "cannot_delete_contacts_in_use" = "Sohbetleri süren kişiler silinemez.";
-"ask_start_chat_with" = "%1$s ile sohbet edilsin mi?";
+"ask_start_chat_with" = "%1$@ ile sohbet edilsin mi?";
 // Translators: %1$s will be replaces by a comma separated list of names
-"ask_remove_members" = "%1$s gruptan kaldırılsın mı?";
+"ask_remove_members" = "%1$@ gruptan kaldırılsın mı?";
 "info_outdated_app_title" = "Uygulama sürümünüz eski.";
 "info_outdated_app_text" = "Delta Chat\\'i otomatik güncelleştirmeler olmadan bir kaynaktan (örn. GitHub) kurdunuz. En son özellikleri ve hata düzeltmelerini almak için lütfen bir mağaza sürümüne geçin.";
 "info_outdated_app_dialog_title" = "Güncelleştirme kaynakları";
@@ -174,7 +174,7 @@
 "chat_please_enter_message" = "Lütfen bir ileti girin.";
 "chat_camera_unavailable" = "Kamera kullanım dışı.";
 "chat_unable_to_record_audio" = "Ses kaydedilemedi.";
-"chat_no_messages_hint" = "%1$s alıcısına ileti gönder:\n\n• %2$s Delta Chat kullanmıyorsa tamam.\n\n• İlk iletinin teslim edilmesi biraz zaman alabilir ve şifrelenmeyebilir.";
+"chat_no_messages_hint" = "%1$@ alıcısına ileti gönder:\n\n• %2$@ Delta Chat kullanmıyorsa tamam.\n\n• İlk iletinin teslim edilmesi biraz zaman alabilir ve şifrelenmeyebilir.";
 "chat_new_group_hint" = "İlk iletiyi oluşturun, diğerlerinin bu grupta yanıtlamasına izin verin.\n\n• Tüm üyeler Delta Chat kullanmıyorsa tamam.\n\n• İlk iletinin teslim edilmesi biraz zaman alabilir.";
 "chat_record_slide_to_cancel" = "İptal etmek için kaydırın";
 "chat_record_explain" = "Bir sesli ileti kaydetmek için dokunun ve basılı tutun, göndermek için bırakın";
@@ -207,7 +207,7 @@
 "group_create_button" = "Grup oluştur";
 "group_please_enter_group_name" = "Lütfen grup için bir ad girin.";
 "group_add_members" = "Üyeler ekle";
-"group_hello_draft" = "Merhaba, bizim için az önce \\\"%1$s\\\" grubunu oluşturdum.";
+"group_hello_draft" = "Merhaba, bizim için az önce \\\"%1$@\\\" grubunu oluşturdum.";
 "group_self_not_in_group" = "Bu eylemi gerçekleştirmek için grubun bir üyesi olmalısınız.";
 "profile_encryption" = "Şifreleme";
 "profile_shared_chats" = "Paylaşılan sohbetler";
@@ -225,7 +225,7 @@
 
 // invite
 "invite_slogan" = "Arkadaşlar, arkadaşların iletileşme silolarına kilitlenmesine izin vermez.";
-"invite_default_text" = "Delta Chat\\'e geçelim - %1$s - %2$s üzerinden bana yazabilirsiniz";
+"invite_default_text" = "Delta Chat\\'e geçelim - %1$@ - %2$@ üzerinden bana yazabilirsiniz";
 
 
 // welcome and login
@@ -270,12 +270,12 @@
 "login_error_port" = "Lütfen geçerli bir bağlantı noktası (1–65535) girin";
 "login_error_required_fields" = "Lütfen geçerli bir e-posta adresi ve bir parola girin";
 "import_backup_title" = "Yedeği içe aktar";
-"import_backup_ask" = "\\\"%1$s\\\" üzerinde yedek bulundu.\n\nİçe aktarmak ve ondan gelen tüm verileri ve ayarları kullanmak istiyor musunuz?";
-"import_backup_no_backup_found" = "Yedek bulunamadı.\n\nYedeği \\\"%1$s\\\" üzerine kopyalayın ve yeniden deneyin. Ek olarak, normal ayarlama işlemine gitmek için \\\"İletileşmeye başla\\\"ya basın.";
+"import_backup_ask" = "\\\"%1$@\\\" üzerinde yedek bulundu.\n\nİçe aktarmak ve ondan gelen tüm verileri ve ayarları kullanmak istiyor musunuz?";
+"import_backup_no_backup_found" = "Yedek bulunamadı.\n\nYedeği \\\"%1$@\\\" üzerine kopyalayın ve yeniden deneyin. Ek olarak, normal ayarlama işlemine gitmek için \\\"İletileşmeye başla\\\"ya basın.";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = "\\\"%1$s\\\" olarak oturum açılamıyor. Lütfen e-posta adresinin ve parolanın doğru olup olmadığını denetleyin.";
+"login_error_cannot_login" = "\\\"%1$@\\\" olarak oturum açılamıyor. Lütfen e-posta adresinin ve parolanın doğru olup olmadığını denetleyin.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "%1$s yanıtı: %2$s\n\nBazı sağlayıcılar gelen kutunuza ek bilgiler yerleştirir; onları örn. web ön ucundan denetleyebilirsiniz. Sorun yaşarsanız sağlayıcınıza ya da arkadaşlarınıza danışın.";
+"login_error_server_response" = "%1$@ yanıtı: %2$@\n\nBazı sağlayıcılar gelen kutunuza ek bilgiler yerleştirir; onları örn. web ön ucundan denetleyebilirsiniz. Sorun yaşarsanız sağlayıcınıza ya da arkadaşlarınıza danışın.";
 
 
 // share and forward messages
@@ -363,15 +363,15 @@
 "pref_backup_explain" = "Sohbetleri dış depolamaya yedekle";
 "pref_backup_export_explain" = "Bir yedek, bu ya da başka bir aygıtta yeni bir kurulum ayarlamak için size yardım eder.\n\nYedek, tüm iletileri, kişileri ve sohbetleri ve uçtan uca Autocrypt ayarlamanızı içerecek. Yedek dosyasını güvenli bir yerde tutun ya da olanaklıysa en kısa sürede silin.";
 "pref_backup_export_start_button" = "Yedeklemeye başla";
-"pref_backup_written_to_x" = "Yedek %1$s üzerine başarıyla yazıldı";
+"pref_backup_written_to_x" = "Yedek %1$@ üzerine başarıyla yazıldı";
 "pref_managekeys_menu_title" = "Anahtarları yönet";
 "pref_managekeys_ask_for_storage_permission" = "Delta Chat\\'in anahtarları içe/dışa aktarmak için dosyalarınıza erişmesi gerekir.";
 "pref_managekeys_export_secret_keys" = "Sır anahtarları dışa aktar";
-"pref_managekeys_export_explain" = "Sır anahtarlar \\\"%1$s\\\" üzerine dışa aktarılsın mı?";
+"pref_managekeys_export_explain" = "Sır anahtarlar \\\"%1$@\\\" üzerine dışa aktarılsın mı?";
 "pref_managekeys_import_secret_keys" = "Sır anahtarları içe aktar";
-"pref_managekeys_import_explain" = "Sır anahtarlar \\\"%1$s\\\" üzerinden içe aktarılsın mı?\n\n• Varolan sır anahtarlar silinmeyecek\n\n• Son içe aktarılan anahtar, dosya adında \\\"legacy\\\" sözcüğü olmadıkça yeni varsayılan anahtar olarak kullanılacak";
-"pref_managekeys_secret_keys_exported_to_x" = "Sır anahtarlar \\\"%1$s\\\" üzerine başarıyla yazıldı.";
-"pref_managekeys_secret_keys_imported_from_x" = "Sır anahtarlar \\\"%1$s\\\" üzerinden içe aktarıldı.";
+"pref_managekeys_import_explain" = "Sır anahtarlar \\\"%1$@\\\" üzerinden içe aktarılsın mı?\n\n• Varolan sır anahtarlar silinmeyecek\n\n• Son içe aktarılan anahtar, dosya adında \\\"legacy\\\" sözcüğü olmadıkça yeni varsayılan anahtar olarak kullanılacak";
+"pref_managekeys_secret_keys_exported_to_x" = "Sır anahtarlar \\\"%1$@\\\" üzerine başarıyla yazıldı.";
+"pref_managekeys_secret_keys_imported_from_x" = "Sır anahtarlar \\\"%1$@\\\" üzerinden içe aktarıldı.";
 "pref_background" = "Artalan";
 "pref_background_btn_default" = "Varsayılan görseli kullan";
 "pref_background_btn_gallery" = "Galeriden seç";
@@ -400,7 +400,7 @@
 "autocrypt_send_asm_title" = "Autocrypt Ayarlama İletisi gönder";
 "autocrypt_send_asm_explain_before" = "Bir \\\"Autocrypt Ayarlama İletisi\\\", uçtan uca ayarlamanızı diğer Autocrypt uyumlu uygulamalarla güvenli olarak paylaşır.\n\nAyarlama, burada görüntülenen ve diğer aygıtta yazılması gereken bir ayarlama kodu tarafından şifrelenecek.";
 "autocrypt_send_asm_button" = "Autocrypt Ayarlama İletisi gönder";
-"autocrypt_send_asm_explain_after" = "Ayarlamanız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Bir ayarlama kodu girmeniz istenmeli. İsteme aşağıdaki sayıları yazın:\n\n%1$s\n\nBitirdiğinizde, diğer aygıtınız Autocrypt kullanmaya hazır olacak.";
+"autocrypt_send_asm_explain_after" = "Ayarlamanız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Bir ayarlama kodu girmeniz istenmeli. İsteme aşağıdaki sayıları yazın:\n\n%1$@\n\nBitirdiğinizde, diğer aygıtınız Autocrypt kullanmaya hazır olacak.";
 "autocrypt_prefer_e2ee" = "Uçtan uca şifrelemeyi yeğle";
 "autocrypt_asm_subject" = "Autocrypt Ayarlama İletisi";
 "autocrypt_asm_general_body" = "Bu, uçtan uca ayarlamanızı istemciler arasında aktarmak için kullanılan Autocrypt Ayarlama İletisi.\n\nŞifreyi çözmek ve ayarlamanızı kullanmak için iletiyi bir Autocrypt uyumlu istemcide açın ve oluşturan aygıtta sunulan ayarlama kodunu girin.";
@@ -413,19 +413,19 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "\\\"%1$s\\\" grup adı \\\"%2$s\\\" olarak değiştirildi.";
+"systemmsg_group_name_changed" = "\\\"%1$@\\\" grup adı \\\"%2$@\\\" olarak değiştirildi.";
 "systemmsg_group_image_changed" = "Grup görseli değiştirildi.";
 "systemmsg_group_image_deleted" = "Grup görseli silindi.";
-"systemmsg_member_added" = "%1$s üyesi eklendi.";
-"systemmsg_member_removed" = "%1$s üyesi kaldırıldı.";
+"systemmsg_member_added" = "%1$@ üyesi eklendi.";
+"systemmsg_member_removed" = "%1$@ üyesi kaldırıldı.";
 "systemmsg_group_left" = "Gruptan ayrılındı.";
 "systemmsg_read_receipt_subject" = "Okundu bilgisi";
-"systemmsg_read_receipt_body" = "Bu, \\\"%1$s\\\" iletisi için bir okundu bilgisi.\n\nBu, iletinin alıcının aygıtında görüntülendiği anlamına gelir, içeriğin okunması gerekmez.";
+"systemmsg_read_receipt_body" = "Bu, \\\"%1$@\\\" iletisi için bir okundu bilgisi.\n\nBu, iletinin alıcının aygıtında görüntülendiği anlamına gelir, içeriğin okunması gerekmez.";
 "systemmsg_cannot_decrypt" = "Bu ileti şifresi çözülemiyor.\n\n• Bu iletiye basitçe yanıt vermek ve gönderene iletiyi yeniden gönderip gönderemeyeceğini sormak zaten yardım edebilir.\n\n• Delta Chat\\'i ya da başka bir e-posta programını bu ya da başka bir aygıta yeniden kurduysanız, oradan bir Autocrypt Ayarlama İletisi göndermek isteyebilirsiniz.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
-"systemmsg_action_by_me" = "Benim tarafımdan %1$s.";
+"systemmsg_action_by_me" = "Benim tarafımdan %1$@.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
-"systemmsg_action_by_user" = "%2$s tarafından %1$s.";
+"systemmsg_action_by_user" = "%2$@ tarafından %1$@.";
 
 
 // screen lock
@@ -442,32 +442,32 @@
 // qr code stuff
 "qrscan_title" = "QR kodunu tara";
 "qrscan_hint" = "Kameranızı QR kodunun üzerine yerleştirin";
-"qrscan_ask_join_group" = "\\\"%1$s\\\" grubuna katılmak istiyor musunuz?";
-"qrscan_fingerprint_mismatch" = "Taranan parmak izi %1$s için son görülen parmak iziyle eşleşmiyor";
+"qrscan_ask_join_group" = "\\\"%1$@\\\" grubuna katılmak istiyor musunuz?";
+"qrscan_fingerprint_mismatch" = "Taranan parmak izi %1$@ için son görülen parmak iziyle eşleşmiyor";
 "qrscan_no_addr_found" = "Bu QR kodu bir parmak izi içeriyor ama e-posta adresi yok.\n\nBir bant dışı doğrulama için lütfen önce alıcıya şifrelenen bir bağlantı kurun.";
-"qrscan_contains_text" = "Taranan QR kodu metni:\n\n%1$s";
-"qrscan_contains_url" = "Taranan QR kodu URL\\'si:\n\n%1$s";
+"qrscan_contains_text" = "Taranan QR kodu metni:\n\n%1$@";
+"qrscan_contains_url" = "Taranan QR kodu URL\\'si:\n\n%1$@";
 "qrscan_fingerprint_label" = "Parmak izi";
-"qrscan_x_verified_introduce_myself" = "%1$s doğrulandı, kendimi tanıtıyorum …";
+"qrscan_x_verified_introduce_myself" = "%1$@ doğrulandı, kendimi tanıtıyorum …";
 "qrshow_title" = "QR davet kodu";
-"qrshow_x_joining" = "%1$s katılıyor.";
-"qrshow_x_verified" = "%1$s doğrulandı.";
-"qrshow_x_has_joined_group" = "%1$s gruba katıldı.";
+"qrshow_x_joining" = "%1$@ katılıyor.";
+"qrshow_x_verified" = "%1$@ doğrulandı.";
+"qrshow_x_has_joined_group" = "%1$@ gruba katıldı.";
 "qrshow_join_group_title" = "QR davet kodu";
-"qrshow_join_group_hint" = "\\\"%1$s\\\" grubuna katılmak için bunu tarayın.";
+"qrshow_join_group_hint" = "\\\"%1$@\\\" grubuna katılmak için bunu tarayın.";
 "qrshow_join_contact_title" = "QR davet kodu";
-"qrshow_join_contact_hint" = "%1$s ile bir iletişim ayarlamak için bunu tarayın";
+"qrshow_join_contact_hint" = "%1$@ ile bir iletişim ayarlamak için bunu tarayın";
 "qrshow_join_contact_no_connection_hint" = "QR kodu ayarlaması bir internet bağlantısı gerektirir. İşlemden önce lütfen bir ağa bağlanın.";
 "qrshow_join_contact_no_connection_toast" = "İnternet bağlantısı yok, QR kodu ayarlaması gerçekleştirilemiyor.";
-"contact_verified" = "%1$s doğrulandı.";
-"contact_not_verified" = "%1$s doğrulanamıyor";
+"contact_verified" = "%1$@ doğrulandı.";
+"contact_not_verified" = "%1$@ doğrulanamıyor";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
-"contact_setup_changed" = "%1$s için ayarlama değiştirildi";
+"contact_setup_changed" = "%1$@ için ayarlama değiştirildi";
 
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%2$d sohbette %1$d yeni ileti";
-"notify_most_recent_from" = "En son gönderen: %1$s";
+"notify_most_recent_from" = "En son gönderen: %1$@";
 "notify_media_message_with_text" = "Ortam iletisi: %s";
 "notify_mark_all_read" = "Tümünü okundu olarak imle";
 "notify_mark_read" = "Okundu imi";
@@ -579,15 +579,15 @@
 
 // deprecated on android, please remove if unused on desktop
 // see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "\\\"%1$s\\\" grubuna katılmak istiyor musunuz?";
+"qrscan_ask_join_verified_group" = "\\\"%1$@\\\" grubuna katılmak istiyor musunuz?";
 // see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "%1$s ile sohbet edilsin mi?";
+"qrscan_ask_fingerprint_ask_oob" = "%1$@ ile sohbet edilsin mi?";
 // see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "%1$s ile sohbet edilsin mi?";
+"qrscan_ask_chatting_fingerprint_ok" = "%1$@ ile sohbet edilsin mi?";
 // see qrshow_join_group_title
 "qrshow_join_verified_group_title" = "QR davet kodu";
 // see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "\\\"%1$s\\\" grubuna katılmak için bunu tarayın.";
+"qrshow_join_verified_group_hint" = "\\\"%1$@\\\" grubuna katılmak için bunu tarayın.";
 // see chat_all_archived
 "chat_all_done_hint" = "Gelen kutusu boş";
 "chat_all_done_explain" = "Sıfır öğe.\nBurada hiçbir şey yok!";

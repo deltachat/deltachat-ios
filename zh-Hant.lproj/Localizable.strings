@@ -17,11 +17,11 @@
 "done" = "已完成";
 "undo" = "撤销";
 "error" = "错误";
-"error_x" = "错误：%1$s";
+"error_x" = "错误：%1$@";
 "error_no_network" = "网络不可用。";
 "no_app_to_handle_data" = "无法找到用于处理此类数据的应用程序。";
 "no_browser_installed" = "没有安装浏览器。";
-"file_not_found" = "无法找到 %1$s。";
+"file_not_found" = "无法找到 %1$@。";
 "copied_to_clipboard" = "已复制到剪贴板。";
 "contacts_headline" = "联系人";
 "email_address" = "电子邮件地址";
@@ -147,15 +147,15 @@
 
 // get confirmations
 "ask_leave_group" = "您确定要离开此群组吗？";
-"ask_forward" = "将消息转发给%1$s？";
+"ask_forward" = "将消息转发给%1$@？";
 "ask_export_attachment" = "导出附件？导出附件将允许您设备上的任意应用程序访问它们。\n\n是否继续？";
 "ask_block_contact" = "屏蔽此联系人？您将不再收到此联系人的消息。";
 "ask_unblock_contact" = "取消屏蔽此联系人？您将再次能收到此联系人的消息。";
 "ask_delete_contacts" = "删除联系人？这将永久删除选中的联系人。\n\n仍有在进行中的聊天的联系人和在系统通讯录中的联系人无法被永久删除。";
 "cannot_delete_contacts_in_use" = "无法删除仍有在进行中的聊天的联系人。";
-"ask_start_chat_with" = "与 %1$s 聊天？";
+"ask_start_chat_with" = "与 %1$@ 聊天？";
 // Translators: %1$s will be replaces by a comma separated list of names
-"ask_remove_members" = "将 %1$s  从群组中移除？";
+"ask_remove_members" = "将 %1$@  从群组中移除？";
 "info_outdated_app_title" = "您的应用程序版本过时了。";
 "info_outdated_app_text" = "您似乎是从没有自动更新的源（例如GitHub）安装的Delta Chat。请切换到应用商店版本以接收最新功能和错误修复。";
 "info_outdated_app_dialog_title" = "更新源";
@@ -174,7 +174,7 @@
 "chat_please_enter_message" = "请输入消息。";
 "chat_camera_unavailable" = "相机不可用。";
 "chat_unable_to_record_audio" = "无法录制音频。";
-"chat_no_messages_hint" = "发消息给%1$s。\n\n即使%2$s不使用Delta Chat也没问题。发送第一条消息可能需要一些时间并且可能未经加密。";
+"chat_no_messages_hint" = "发消息给%1$@。\n\n即使%2$@不使用Delta Chat也没问题。发送第一条消息可能需要一些时间并且可能未经加密。";
 "chat_new_group_hint" = "撰写第一条消息以允许其他人在此群组内回复。\n\n• 即使有成员不使用Delta Chat也没问题。\n\n• 发送第一条消息可能需要一些时间。";
 "chat_record_slide_to_cancel" = "滑动来取消";
 "chat_record_explain" = "按住来录制语音消息，松开来发送";
@@ -207,7 +207,7 @@
 "group_create_button" = "创建群组";
 "group_please_enter_group_name" = "请为群组输入名称。";
 "group_add_members" = "添加成员";
-"group_hello_draft" = "你好，我刚刚为我们创建了群组“%1$s”。";
+"group_hello_draft" = "你好，我刚刚为我们创建了群组“%1$@”。";
 "group_self_not_in_group" = "为了执行此操作，您必须是群组成员。";
 "profile_encryption" = "加密";
 "profile_shared_chats" = "共有聊天";
@@ -225,7 +225,7 @@
 
 // invite
 "invite_slogan" = "朋友不会让朋友陷入消息孤岛。";
-"invite_default_text" = "让我们切换到Delta Chat-%1$s-你可以通过%2$s发消息给我。";
+"invite_default_text" = "让我们切换到Delta Chat-%1$@-你可以通过%2$@发消息给我。";
 
 
 // welcome and login
@@ -270,12 +270,12 @@
 "login_error_port" = "请输入有效的端口（1-65535）";
 "login_error_required_fields" = "请输入有效的电子邮件地址和密码";
 "import_backup_title" = "导入备份";
-"import_backup_ask" = "在“%1$s”找到备份。\n\n您想导入并使用备份中的全部数据与设置吗？";
-"import_backup_no_backup_found" = "没有找到备份。\n\n将备份复制到“%1$s”然后再试一次；或者按“开始发送消息”来进行常规设置流程。";
+"import_backup_ask" = "在“%1$@”找到备份。\n\n您想导入并使用备份中的全部数据与设置吗？";
+"import_backup_no_backup_found" = "没有找到备份。\n\n将备份复制到“%1$@”然后再试一次；或者按“开始发送消息”来进行常规设置流程。";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = "无法作为“%1$s”登录。请检查电子邮件地址和密码是否正确。";
+"login_error_cannot_login" = "无法作为“%1$@”登录。请检查电子邮件地址和密码是否正确。";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "来自%1$s的回应：%2$s\n\n某些提供商会在您的收件箱中放置额外信息; 您可以在Web端等处等查看它。 如遇到问题，请咨询您的提供商或朋友。";
+"login_error_server_response" = "来自%1$@的回应：%2$@\n\n某些提供商会在您的收件箱中放置额外信息; 您可以在Web端等处等查看它。 如遇到问题，请咨询您的提供商或朋友。";
 
 
 // share and forward messages
@@ -363,15 +363,15 @@
 "pref_backup_explain" = "将聊天备份至外部存储";
 "pref_backup_export_explain" = "备份可帮助您设置在此设备或其他设备上新安装的本应用。备份将包含所有消息、联系人、聊天以及端到端的Autocrypt设置。请将备份文件保存在安全的地方或尽快将其删除。";
 "pref_backup_export_start_button" = "开始备份";
-"pref_backup_written_to_x" = "备份已成功写入到%1$s";
+"pref_backup_written_to_x" = "备份已成功写入到%1$@";
 "pref_managekeys_menu_title" = "管理密钥";
 "pref_managekeys_ask_for_storage_permission" = "为了导入/导出密钥，Delta Chat需要访问您的文件。";
 "pref_managekeys_export_secret_keys" = "导出密钥";
-"pref_managekeys_export_explain" = "导出密钥到“%1$s”？";
+"pref_managekeys_export_explain" = "导出密钥到“%1$@”？";
 "pref_managekeys_import_secret_keys" = "导入密钥";
-"pref_managekeys_import_explain" = "从“%1$s”导入密钥？已经存在的密钥不会被删除。\n\n最后导入的密钥将被用作新的默认密钥除非它的文件名中含有单词\\\"legacy\\\".";
-"pref_managekeys_secret_keys_exported_to_x" = "密钥已成功写入至\\\"%1$s\\\"。";
-"pref_managekeys_secret_keys_imported_from_x" = "密钥已从\\\"%1$s\\\"导入。";
+"pref_managekeys_import_explain" = "从“%1$@”导入密钥？已经存在的密钥不会被删除。\n\n最后导入的密钥将被用作新的默认密钥除非它的文件名中含有单词\\\"legacy\\\".";
+"pref_managekeys_secret_keys_exported_to_x" = "密钥已成功写入至\\\"%1$@\\\"。";
+"pref_managekeys_secret_keys_imported_from_x" = "密钥已从\\\"%1$@\\\"导入。";
 "pref_background" = "背景";
 "pref_background_btn_default" = "使用默认图像";
 "pref_background_btn_gallery" = "从图库中选择";
@@ -400,7 +400,7 @@
 "autocrypt_send_asm_title" = "发送Autocrypt设置消息";
 "autocrypt_send_asm_explain_before" = "“Autocrypt设置消息”安全地共享您的端到端设置至其他兼容Autocrypt的应用程序。\n\n设置将通过在此显示的、必须在其他设备上输入的设置码进行加密。";
 "autocrypt_send_asm_button" = "发送Autocrypt设置消息";
-"autocrypt_send_asm_explain_after" = "您的设置已发送给您自己。切换到其他设备并打开该设置消息。 系统将提示您输入设置码。 在其中输入以下数字：\n\n%1$s\n\n一旦完成，您的其他设备就准备好使用Autocrypt了。";
+"autocrypt_send_asm_explain_after" = "您的设置已发送给您自己。切换到其他设备并打开该设置消息。 系统将提示您输入设置码。 在其中输入以下数字：\n\n%1$@\n\n一旦完成，您的其他设备就准备好使用Autocrypt了。";
 "autocrypt_prefer_e2ee" = "优先端到端加密";
 "autocrypt_asm_subject" = "Autocrypt设置消息";
 "autocrypt_asm_general_body" = "这是用于在客户端之间传输端到端设置的Autocrypt设置消息。\n\n要解密并使用您的设置，请在Autocrypt兼容的客户端中打开本消息，然后输入生成设备上显示的设置码。";
@@ -413,19 +413,19 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "已更改群组名称：从“%1$s”更改为\\\"%2$s\\\"";
+"systemmsg_group_name_changed" = "已更改群组名称：从“%1$@”更改为\\\"%2$@\\\"";
 "systemmsg_group_image_changed" = "已更改群组图像";
 "systemmsg_group_image_deleted" = "已删除群组图像";
-"systemmsg_member_added" = "已添加成员 %1$s";
-"systemmsg_member_removed" = "已移除成员 %1$s ";
+"systemmsg_member_added" = "已添加成员 %1$@";
+"systemmsg_member_removed" = "已移除成员 %1$@ ";
 "systemmsg_group_left" = "已离开群组";
 "systemmsg_read_receipt_subject" = "已读回执";
-"systemmsg_read_receipt_body" = "这是消息“%1$s”的已读回执。\n\n这意味着消息已显示在收件人的设备上，但内容却不一定被阅读。";
+"systemmsg_read_receipt_body" = "这是消息“%1$@”的已读回执。\n\n这意味着消息已显示在收件人的设备上，但内容却不一定被阅读。";
 "systemmsg_cannot_decrypt" = "此消息无法解密。\n\n•简单地回复此消息以要求发件人再次发送该消息可能会有所帮助。\n\n• 如果您在此设备或其他设备上重新安装了Delta Chat或其他电子邮件程序，则可能需要从别处发送Autocrypt设置消息。";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
-"systemmsg_action_by_me" = "我%1$s。";
+"systemmsg_action_by_me" = "我%1$@。";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
-"systemmsg_action_by_user" = "%2$s%1$s。";
+"systemmsg_action_by_user" = "%2$@%1$@。";
 
 
 // screen lock
@@ -442,32 +442,32 @@
 // qr code stuff
 "qrscan_title" = "扫描二维码";
 "qrscan_hint" = "将您的相机对准二维码";
-"qrscan_ask_join_group" = "您想加入群组“%1$s”吗？";
-"qrscan_fingerprint_mismatch" = "扫描到的指纹与上次见到的%1$s的指纹不匹配";
+"qrscan_ask_join_group" = "您想加入群组“%1$@”吗？";
+"qrscan_fingerprint_mismatch" = "扫描到的指纹与上次见到的%1$@的指纹不匹配";
 "qrscan_no_addr_found" = "此二维码包含指纹但没有电子邮件地址。\n\n对于带外验证，请先与收件人建立加密连接。";
-"qrscan_contains_text" = "已扫描的二维码文本：\n\n%1$s";
-"qrscan_contains_url" = "已扫描的二维码URL:\n\n%1$s";
+"qrscan_contains_text" = "已扫描的二维码文本：\n\n%1$@";
+"qrscan_contains_url" = "已扫描的二维码URL:\n\n%1$@";
 "qrscan_fingerprint_label" = "指纹";
-"qrscan_x_verified_introduce_myself" = "%1$s已验证， 介绍我自己…";
+"qrscan_x_verified_introduce_myself" = "%1$@已验证， 介绍我自己…";
 "qrshow_title" = "二维邀请码";
-"qrshow_x_joining" = "%1$s加入。";
-"qrshow_x_verified" = "%1$s已验证。";
-"qrshow_x_has_joined_group" = "%1$s已加入群组。";
+"qrshow_x_joining" = "%1$@加入。";
+"qrshow_x_verified" = "%1$@已验证。";
+"qrshow_x_has_joined_group" = "%1$@已加入群组。";
 "qrshow_join_group_title" = "二维邀请码";
-"qrshow_join_group_hint" = "扫描此处来加入群组\\\"%1$s\\\"。";
+"qrshow_join_group_hint" = "扫描此处来加入群组\\\"%1$@\\\"。";
 "qrshow_join_contact_title" = "二维邀请码";
-"qrshow_join_contact_hint" = "扫描此处来建立联系人\\\"%1$s\\\"。";
+"qrshow_join_contact_hint" = "扫描此处来建立联系人\\\"%1$@\\\"。";
 "qrshow_join_contact_no_connection_hint" = "二维码设置需要互联网连接。 要继续，请先连接到网络。";
 "qrshow_join_contact_no_connection_toast" = "没有互联网连接，无法进行二维码设置。";
-"contact_verified" = "%1$s已验证。";
-"contact_not_verified" = "无法验证%1$s。";
+"contact_verified" = "%1$@已验证。";
+"contact_not_verified" = "无法验证%1$@。";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
-"contact_setup_changed" = "更改了%1$s的设置";
+"contact_setup_changed" = "更改了%1$@的设置";
 
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%2$d个聊天中有%1$d条新消息";
-"notify_most_recent_from" = "最新消息来自：%1$s";
+"notify_most_recent_from" = "最新消息来自：%1$@";
 "notify_media_message_with_text" = "媒体消息：%s";
 "notify_mark_all_read" = "将所有标记为已读";
 "notify_mark_read" = "标记为已读";
@@ -579,15 +579,15 @@
 
 // deprecated on android, please remove if unused on desktop
 // see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "您想加入群组“%1$s”吗？";
+"qrscan_ask_join_verified_group" = "您想加入群组“%1$@”吗？";
 // see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "和 %1$s 聊天？";
+"qrscan_ask_fingerprint_ask_oob" = "和 %1$@ 聊天？";
 // see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "和 %1$s 聊天？";
+"qrscan_ask_chatting_fingerprint_ok" = "和 %1$@ 聊天？";
 // see qrshow_join_group_title
 "qrshow_join_verified_group_title" = "二维邀请码";
 // see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "扫描此处来加入群组\\\"%1$s\\\"。";
+"qrshow_join_verified_group_hint" = "扫描此处来加入群组\\\"%1$@\\\"。";
 // see chat_all_archived
 "chat_all_done_hint" = "收件箱为为……为空";
 "chat_all_done_explain" = "没了，没了，没了，没了。\n您全看过了！";

@@ -17,11 +17,11 @@
 "done" = "Atlikta";
 "undo" = "Atšaukti";
 "error" = "Klaida";
-"error_x" = "Klaida: %1$s";
+"error_x" = "Klaida: %1$@";
 "error_no_network" = "Tinklas neprieinamas.";
 "no_app_to_handle_data" = "Nepavyksta rasti programėlės, kuri apdorotų šį duomenų tipą.";
 "no_browser_installed" = "Neįdiegta jokia naršyklė.";
-"file_not_found" = "Nepavyko rasti %1$s.";
+"file_not_found" = "Nepavyko rasti %1$@.";
 "copied_to_clipboard" = "Nukopijuota į iškarpinę.";
 "contacts_headline" = "Adresatai";
 "email_address" = "El. pašto adresas";
@@ -138,13 +138,13 @@
 
 // get confirmations
 "ask_leave_group" = "Ar tikrai norite išeiti iš šios grupės?";
-"ask_forward" = "Persiųsti žinutes %1$s?";
+"ask_forward" = "Persiųsti žinutes %1$@?";
 "ask_export_attachment" = "Eksportuoti priedą? Priedų eksportavimas leis bet kurioms kitoms programėlėms jūsų įrenginyje turėti prieigą prie šių priedų.\n\nTęsti?";
 "ask_block_contact" = "Užblokuoti šį adresatą? Jūs daugiau nebegausite žinučių nuo šio adresato.";
 "ask_unblock_contact" = "Atblokuoti šį adresatą? Jūs ir vėl galėsite gauti žinutes nuo šio adresato.";
-"ask_start_chat_with" = "Pradėti pokalbį su %1$s?";
+"ask_start_chat_with" = "Pradėti pokalbį su %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
-"ask_remove_members" = "Pašalinti %1$s iš grupės?";
+"ask_remove_members" = "Pašalinti %1$@ iš grupės?";
 // contact list
 "contacts_title" = "Adresatai";
 "contacts_enter_name_or_email" = "Įveskite vardą ar el. pašto adresą";
@@ -157,7 +157,7 @@
 "chat_please_enter_message" = "Įveskite žinutę.";
 "chat_camera_unavailable" = "Kamera neprieinama.";
 "chat_unable_to_record_audio" = "Nepavyko įrašyti garso.";
-"chat_no_messages_hint" = "Siųskite žinutę %1$s:\n\n• Nieko tokio, jei %2$s nenaudoja Delta Chat.\n\n• Pirmosios žinutės pristatymas gali šiek tiek užtrukti ir gali būti nešifruotas.";
+"chat_no_messages_hint" = "Siųskite žinutę %1$@:\n\n• Nieko tokio, jei %2$@ nenaudoja Delta Chat.\n\n• Pirmosios žinutės pristatymas gali šiek tiek užtrukti ir gali būti nešifruotas.";
 "chat_new_group_hint" = "Rašykite pirmąją žinutę, taip leisdami kitiems atsakyti šioje grupėje..\n\n• Nieko tokio, jei ne visi dalyviai naudoja Delta Chat.\n\n• Pirmosios žinutės pristatymas gali šiek tiek užtrukti.";
 "chat_record_slide_to_cancel" = "Perbraukite, norėdami atsisakyti";
 "chat_record_explain" = "Bakstelėkite ir laikykite, norėdami įrašyti balso žinutę. Atleiskite, norėdami išsiųsti";
@@ -179,7 +179,7 @@
 "group_create_button" = "Sukurti grupę";
 "group_please_enter_group_name" = "Įveskite grupės pavadinimą.";
 "group_add_members" = "Pridėti dalyvius";
-"group_hello_draft" = "Sveiki, aš ką tik sukūriau mums grupę \\\"%1$s\\\".";
+"group_hello_draft" = "Sveiki, aš ką tik sukūriau mums grupę \\\"%1$@\\\".";
 "group_self_not_in_group" = "Norėdami atlikti šį veiksmą, privalote būti grupės dalyviu.";
 "profile_encryption" = "Šifravimas";
 "tab_gallery" = "Galerija";
@@ -193,7 +193,7 @@
 
 // invite
 "invite_slogan" = "Draugai nepalieka savo draugų susirašinėjimo šachtose.";
-"invite_default_text" = "Pradėkime naudoti Delta Chat - %1$s - gali man parašyti į %2$s";
+"invite_default_text" = "Pradėkime naudoti Delta Chat - %1$@ - gali man parašyti į %2$@";
 
 
 // welcome and login
@@ -235,12 +235,12 @@
 "login_error_port" = "Įveskite teisingą prievadą (1–65535)";
 "login_error_required_fields" = "Įveskite teisingą el. pašto adresą ir slaptažodį";
 "import_backup_title" = "Importuoti atsarginę kopjią";
-"import_backup_ask" = "Atsarginė kopija rasta ties \\\"%1$s\\\".\n\nAr norite iš jos importuoti ir naudoti visus duomenis ir nustatymus?";
-"import_backup_no_backup_found" = "Nerasta jokių atsarginių kopijų.\n\nNukopijuokite atsarginę kopiją į \\\"%1$s\\\" ir bandykite dar kartą. Priešingu atveju, paspauskite \\\"Pradėti susirašinėjimą\\\", kad pereitumėte į įprastą sąrankos procesą.";
+"import_backup_ask" = "Atsarginė kopija rasta ties \\\"%1$@\\\".\n\nAr norite iš jos importuoti ir naudoti visus duomenis ir nustatymus?";
+"import_backup_no_backup_found" = "Nerasta jokių atsarginių kopijų.\n\nNukopijuokite atsarginę kopiją į \\\"%1$@\\\" ir bandykite dar kartą. Priešingu atveju, paspauskite \\\"Pradėti susirašinėjimą\\\", kad pereitumėte į įprastą sąrankos procesą.";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = "Nepavyksta prisijungti kaip \\\"%1$s\\\". Patikrinkite ar el. pašto adresas ir slaptažodis yra teisingi.";
+"login_error_cannot_login" = "Nepavyksta prisijungti kaip \\\"%1$@\\\". Patikrinkite ar el. pašto adresas ir slaptažodis yra teisingi.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Atsakymas iš %1$s: %2$s\n\nKai kurie teikėjai patalpina papildomą informaciją į jūsų gautųjų laiškų aplanką; galite ją patikrinti, pvz., prisijungę per naršyklę. Jei susidursite su problema, pagalbos teiraukitės savo teikėjo ar draugų.";
+"login_error_server_response" = "Atsakymas iš %1$@: %2$@\n\nKai kurie teikėjai patalpina papildomą informaciją į jūsų gautųjų laiškų aplanką; galite ją patikrinti, pvz., prisijungę per naršyklę. Jei susidursite su problema, pagalbos teiraukitės savo teikėjo ar draugų.";
 
 
 // share and forward messages
@@ -317,15 +317,15 @@
 "pref_backup_explain" = "Padaro atsarginę pokalbių kopiją į išorinę saugyklą";
 "pref_backup_export_explain" = "Atsarginė kopija padeda jums nusistatyti naują diegimą šiame ar kitame įrenginyje.\n\nAtsarginėje kopijoje bus visos žinutės, adresatai ir pokalbiai bei jūsų ištisinė Autocrypt sąranka. Atsarginės kopijos failą laikykite saugioje vietoje arba kaip įmanoma greičiau jį ištrinkite.";
 "pref_backup_export_start_button" = "Pradėti daryti atsarginę kopiją";
-"pref_backup_written_to_x" = "Atsarginė kopija sėkmingai įrašyta į %1$s";
+"pref_backup_written_to_x" = "Atsarginė kopija sėkmingai įrašyta į %1$@";
 "pref_managekeys_menu_title" = "Tvarkykite raktus";
 "pref_managekeys_ask_for_storage_permission" = "Norint importuoti/eksportuoti raktus, Delta Chat reikia prieigos prie jūsų failų.";
 "pref_managekeys_export_secret_keys" = "Eksportuoti slaptus raktus";
-"pref_managekeys_export_explain" = "Eksportuoti slaptus raktus į \\\"%1$s\\\"?";
+"pref_managekeys_export_explain" = "Eksportuoti slaptus raktus į \\\"%1$@\\\"?";
 "pref_managekeys_import_secret_keys" = "Importuoti slaptus raktus";
-"pref_managekeys_import_explain" = "Importuoti slaptus raktus iš \\\"%1$s\\\"?\n\n• Esami raktai nebus ištrinti\n\n• Paskutinis importuotas raktas bus naudojamas kaip naujas numatytasis raktas, nebent jo failo pavadinime bus žodis \\\"legacy\\\"";
-"pref_managekeys_secret_keys_exported_to_x" = "Slapti raktai sėkmingai įrašyti į \\\"%1$s\\\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Slapti raktai importuoti iš \\\"%1$s\\\".";
+"pref_managekeys_import_explain" = "Importuoti slaptus raktus iš \\\"%1$@\\\"?\n\n• Esami raktai nebus ištrinti\n\n• Paskutinis importuotas raktas bus naudojamas kaip naujas numatytasis raktas, nebent jo failo pavadinime bus žodis \\\"legacy\\\"";
+"pref_managekeys_secret_keys_exported_to_x" = "Slapti raktai sėkmingai įrašyti į \\\"%1$@\\\".";
+"pref_managekeys_secret_keys_imported_from_x" = "Slapti raktai importuoti iš \\\"%1$@\\\".";
 "pref_background" = "Fonas";
 "pref_background_btn_default" = "Naudoti numatytąjį paveikslą";
 "pref_background_btn_gallery" = "Pasirinkti iš galerijos";
@@ -343,7 +343,7 @@
 "autocrypt_send_asm_title" = "Siųsti Autocrypt sąrankos žinutę";
 "autocrypt_send_asm_explain_before" = "\\\"Autocrypt sąrankos žinutė\\\" saugiai bendrina jūsų ištisinę sąranką su kitomis su Autocrypt suderinamomis programomis.\n\nSąranka bus užšifruota sąrankos kodu, kuris yra rodomas čia ir privalės būti įvestas kitame įrenginyje.";
 "autocrypt_send_asm_button" = "Siųsti Autocrypt sąrankos žinutę";
-"autocrypt_send_asm_explain_after" = "Jūsų sąranka buvo išsiųsta jums. Persijukite į kitą įrenginį ir atverkite sąrankos žinutę. Jūsų turėtų būti paprašyta sąrankos kodo. Į užklausą įrašykite šiuos skaitmenis:\n\n%1$s\n\nJums užbaigus, kitas įrenginys bus paruoštas naudoti Autocrypt.";
+"autocrypt_send_asm_explain_after" = "Jūsų sąranka buvo išsiųsta jums. Persijukite į kitą įrenginį ir atverkite sąrankos žinutę. Jūsų turėtų būti paprašyta sąrankos kodo. Į užklausą įrašykite šiuos skaitmenis:\n\n%1$@\n\nJums užbaigus, kitas įrenginys bus paruoštas naudoti Autocrypt.";
 "autocrypt_prefer_e2ee" = "Teikti pirmenybę ištisiniam šifravimui";
 "autocrypt_asm_subject" = "Autocrypt sąrankos žinutė";
 "autocrypt_asm_general_body" = "Tai yra Autocrypt sąrankos žinutė, kuri yra naudojama perduoti jūsų ištisinę sąranką tarp klientų.\n\nNorėdami iššifruoti ir naudoti savo sąranką, atverkite žinutę su Autocrypt suderinamame kliente ir įveskite generuojančiame įrenginyje rodomą sąrankos kodą.";
@@ -356,13 +356,13 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "Grupės pavadinimas pasikeitė iš \\\"%1$s\\\" į \\\"%2$s\\\".";
+"systemmsg_group_name_changed" = "Grupės pavadinimas pasikeitė iš \\\"%1$@\\\" į \\\"%2$@\\\".";
 "systemmsg_group_image_changed" = "Grupės paveikslas pakeistas.";
 "systemmsg_group_image_deleted" = "Grupės paveikslas ištrintas.";
-"systemmsg_member_added" = "Dalyvis %1$s pridėtas.";
-"systemmsg_member_removed" = "Dalyvis %1$s pašalintas.";
+"systemmsg_member_added" = "Dalyvis %1$@ pridėtas.";
+"systemmsg_member_removed" = "Dalyvis %1$@ pašalintas.";
 "systemmsg_read_receipt_subject" = "Pranešimas apie skaitymą";
-"systemmsg_read_receipt_body" = "Tai yra pranešimas apie žinutės \\\"%1$s\\\" skaitymą.\n\nTai reiškia, kad žinutė buvo atvaizduota gavėjo įrenginyje, tačiau neužtikrina, kad jos turinys buvo perskaitytas.";
+"systemmsg_read_receipt_body" = "Tai yra pranešimas apie žinutės \\\"%1$@\\\" skaitymą.\n\nTai reiškia, kad žinutė buvo atvaizduota gavėjo įrenginyje, tačiau neužtikrina, kad jos turinys buvo perskaitytas.";
 "systemmsg_cannot_decrypt" = "Nepavyksta iššifruoti šios žinutės.\n\n• Galima, tiesiog, atsakyti į šią žinutę ir paprašyti siuntėjo dar kartą išsiųsti šią žinutę.\n\n• Tuo atveju, jeigu iš naujo įdiegėte Delta Chat ar kitą el. pašto programą šiame ar kitame įrenginyje, jūs galite pageidauti išsiųsti Autocrypt sąrankos žinutę iš to įrenginio.";
 // screen lock
 "screenlock_title" = "Ekrano užraktas";
@@ -377,20 +377,20 @@
 // qr code stuff
 "qrscan_title" = "Nuskenuokite QR kodą";
 "qrscan_hint" = "Laikykite savo kamerą virš QR kodo";
-"qrscan_ask_join_group" = "Ar norite prisijungti prie grupės \\\"%1$s\\\"?";
-"qrscan_contains_text" = "Nuskenuoto QR kodo tekstas:\n\n%1$s";
-"qrscan_contains_url" = "Nuskenuoto QR kodo URL:\n\n%1$s";
+"qrscan_ask_join_group" = "Ar norite prisijungti prie grupės \\\"%1$@\\\"?";
+"qrscan_contains_text" = "Nuskenuoto QR kodo tekstas:\n\n%1$@";
+"qrscan_contains_url" = "Nuskenuoto QR kodo URL:\n\n%1$@";
 "qrscan_fingerprint_label" = "Kontrolinis kodas";
 "qrshow_title" = "QR pakvietimo kodas";
-"qrshow_x_has_joined_group" = "%1$s prisijungė prie grupės.";
+"qrshow_x_has_joined_group" = "%1$@ prisijungė prie grupės.";
 "qrshow_join_group_title" = "QR pakvietimo kodas";
-"qrshow_join_group_hint" = "Nuskenuokite tai, norėdami prisijungti prie \\\"%1$s\\\" grupės.";
+"qrshow_join_group_hint" = "Nuskenuokite tai, norėdami prisijungti prie \\\"%1$@\\\" grupės.";
 "qrshow_join_contact_title" = "QR pakvietimo kodas";
-"qrshow_join_contact_hint" = "Nuskenuokite tai, norėdami užmegzti kontaktą su %1$s";
+"qrshow_join_contact_hint" = "Nuskenuokite tai, norėdami užmegzti kontaktą su %1$@";
 "qrshow_join_contact_no_connection_hint" = "QR kodo sąranka reikalauja interneto ryšio. Prieš tęsdami, prisijunkite prie tinklo.";
 "qrshow_join_contact_no_connection_toast" = "Nėra interneto ryšio, nepavyksta atlikti QR kodo sąrankos.";
-"contact_not_verified" = "Nepavyksta patvirtinti %1$s";
-"notify_most_recent_from" = "Naujausia nuo: %1$s";
+"contact_not_verified" = "Nepavyksta patvirtinti %1$@";
+"notify_most_recent_from" = "Naujausia nuo: %1$@";
 "notify_media_message_with_text" = "Medijos žinutė: %s";
 "notify_mark_all_read" = "Žymėti visas kaip skaitytas";
 "notify_mark_read" = "Žymėti kaip skaitytą";
@@ -494,15 +494,15 @@
 
 // deprecated on android, please remove if unused on desktop
 // see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "Ar norite prisijungti prie grupės \\\"%1$s\\\"?";
+"qrscan_ask_join_verified_group" = "Ar norite prisijungti prie grupės \\\"%1$@\\\"?";
 // see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "Pradėti pokalbį su %1$s?";
+"qrscan_ask_fingerprint_ask_oob" = "Pradėti pokalbį su %1$@?";
 // see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "Pradėti pokalbį su %1$s?";
+"qrscan_ask_chatting_fingerprint_ok" = "Pradėti pokalbį su %1$@?";
 // see qrshow_join_group_title
 "qrshow_join_verified_group_title" = "QR pakvietimo kodas";
 // see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "Nuskenuokite tai, norėdami prisijungti prie \\\"%1$s\\\" grupės.";
+"qrshow_join_verified_group_hint" = "Nuskenuokite tai, norėdami prisijungti prie \\\"%1$@\\\" grupės.";
 // see chat_all_archived
 "chat_all_done_hint" = "Gautųjų aplanke tuščia";
 "chat_all_done_explain" = "Tuščia.\nNieko nepraleidote!";

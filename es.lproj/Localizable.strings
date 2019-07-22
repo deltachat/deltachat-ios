@@ -17,11 +17,11 @@
 "done" = "Hecho";
 "undo" = "Deshacer";
 "error" = "Error";
-"error_x" = "Error: %1$s";
+"error_x" = "Error: %1$@";
 "error_no_network" = "Red no disponible.";
 "no_app_to_handle_data" = "No se encontró una aplicación compatible con el tipo de archivo";
 "no_browser_installed" = "No hay ningún navegador instalado.";
-"file_not_found" = "No se pudo encontrar %1$s.";
+"file_not_found" = "No se pudo encontrar %1$@.";
 "copied_to_clipboard" = "Copiado al portapapeles.";
 "contacts_headline" = "Contactos";
 "email_address" = "Dirección de correo";
@@ -147,15 +147,15 @@
 
 // get confirmations
 "ask_leave_group" = "¿Seguro que deseas abandonar este grupo? ";
-"ask_forward" = "¿Reenviar mensajes a %1$s?";
+"ask_forward" = "¿Reenviar mensajes a %1$@?";
 "ask_export_attachment" = "¿Exportar adjuntos? Si exporta los adjuntos, serán accesibles desde cualquier otra aplicación en su dispositivo. ¿Desea continuar?";
 "ask_block_contact" = "¿Bloquear este contacto? Ya no recibirás mensajes de este contacto.";
 "ask_unblock_contact" = "¿Desbloquear este contacto? Una vez más podrá recibir mensajes de este contacto.";
 "ask_delete_contacts" = "¿Eliminar contactos? Esto eliminará de forma permanente los contactos seleccionados.\n\nContactos con un chat en curso y contactos de la libreta de direcciones del sistema no pueden ser eliminados de forma permanente.";
 "cannot_delete_contacts_in_use" = "No se puede eliminar contactos con chats en curso.";
-"ask_start_chat_with" = "¿Chatear con %1$s?";
+"ask_start_chat_with" = "¿Chatear con %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
-"ask_remove_members" = "¿Eliminar a %1$s del grupo?";
+"ask_remove_members" = "¿Eliminar a %1$@ del grupo?";
 "info_outdated_app_title" = "Tu versión de la aplicación está desactualizada.";
 "info_outdated_app_text" = "Parece que instaló Delta Chat desde una fuente sin actualizaciones automáticas (por ejemplo, GitHub). Cambie a una versión de tienda para recibir las últimas funciones y correcciones de errores.";
 "info_outdated_app_dialog_title" = "Actualizar las fuentes";
@@ -174,7 +174,7 @@
 "chat_please_enter_message" = "Por favor, introduzca un mensaje.";
 "chat_camera_unavailable" = "Cámara no disponible.";
 "chat_unable_to_record_audio" = "No es posible grabar audio.";
-"chat_no_messages_hint" = "Enviar mensaje a %1$s:\n\n• No hay problema si %2$s no usa Delta Chat.\n\n• La entrega del primer mensaje puede tardar un poco y puede estar sin cifrar.";
+"chat_no_messages_hint" = "Enviar mensaje a %1$@:\n\n• No hay problema si %2$@ no usa Delta Chat.\n\n• La entrega del primer mensaje puede tardar un poco y puede estar sin cifrar.";
 "chat_new_group_hint" = "Componga el primer mensaje, permitiendo que otros respondan dentro de este grupo.\n\n• No hay problema si no todos los miembros usan Delta Chat.\n\n• La entrega del primer mensaje puede tardar un poco y puede estar sin cifrar.";
 "chat_record_slide_to_cancel" = "Deslice para cancelar";
 "chat_record_explain" = "Mantenga pulsado para grabar un mensaje de voz, suelte para enviar";
@@ -207,7 +207,7 @@
 "group_create_button" = "Crear grupo";
 "group_please_enter_group_name" = "Por favor introduzca un nombre para el grupo.";
 "group_add_members" = "Añadir miembros";
-"group_hello_draft" = "Hola, acabo de crear el grupo \\\"%1$s\\\" para nosotros.";
+"group_hello_draft" = "Hola, acabo de crear el grupo \\\"%1$@\\\" para nosotros.";
 "group_self_not_in_group" = "Debes ser un miembro del grupo para realizar esta acción.";
 "profile_encryption" = "Cifrado";
 "profile_shared_chats" = "Chats compartidos";
@@ -225,7 +225,7 @@
 
 // invite
 "invite_slogan" = "Los amigos no dejan a los amigos encerrados en silos de mensajería.";
-"invite_default_text" = "Cambiémonos a Delta Chat - %1$s - puedes enviarme un mensaje a %2$s";
+"invite_default_text" = "Cambiémonos a Delta Chat - %1$@ - puedes enviarme un mensaje a %2$@";
 
 
 // welcome and login
@@ -270,12 +270,12 @@
 "login_error_port" = "Por favor, introduzca un puerto válido (1–65535)";
 "login_error_required_fields" = "Por favor, introduzca una dirección de correo válida y una contraseña";
 "import_backup_title" = "Importar copia de respaldo";
-"import_backup_ask" = "Copia de respaldo encontrada en \\\"%1$s\\\".\n\n¿Desea importar y utilizar todos los datos y configuraciones de ella?";
-"import_backup_no_backup_found" = "No se encontraron copias de seguridad.\n\nCopie el archivo de respaldo en \\\"%1$s\\\" e inténtelo de nuevo. Alternativamente, presione \\\"Empezar a Chatear\\\" para continuar con el proceso de configuración normal.";
+"import_backup_ask" = "Copia de respaldo encontrada en \\\"%1$@\\\".\n\n¿Desea importar y utilizar todos los datos y configuraciones de ella?";
+"import_backup_no_backup_found" = "No se encontraron copias de seguridad.\n\nCopie el archivo de respaldo en \\\"%1$@\\\" e inténtelo de nuevo. Alternativamente, presione \\\"Empezar a Chatear\\\" para continuar con el proceso de configuración normal.";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = "No se puede iniciar sesión como \\\"%1$s\\\". Por favor, compruebe si la dirección de correo y la contraseña son correctas.";
+"login_error_cannot_login" = "No se puede iniciar sesión como \\\"%1$@\\\". Por favor, compruebe si la dirección de correo y la contraseña son correctas.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Respuesta de %1$s: %2$s\n\nAlgunos proveedores colocan información adicional en su bandeja de entrada; Puedes comprobarlo por ej. en la interfaz web. Consulte a su proveedor o amigos si tiene problemas.";
+"login_error_server_response" = "Respuesta de %1$@: %2$@\n\nAlgunos proveedores colocan información adicional en su bandeja de entrada; Puedes comprobarlo por ej. en la interfaz web. Consulte a su proveedor o amigos si tiene problemas.";
 
 
 // share and forward messages
@@ -363,15 +363,15 @@
 "pref_backup_explain" = "Hacer copias de respaldo de chats en almacenamiento externo";
 "pref_backup_export_explain" = "Una copia de respaldo lo ayuda a configurar una nueva instalación en este u otro dispositivo.\n\nLa copia de respaldo contendrá todos los mensajes, contactos y chats, y su configuración Autocrypt de extremo a extremo. Guarde el archivo de respaldo en un lugar seguro o elimínelo lo antes posible.";
 "pref_backup_export_start_button" = "Iniciar copia de respaldo";
-"pref_backup_written_to_x" = "Copia de respaldo escrita correctamente en %1$s";
+"pref_backup_written_to_x" = "Copia de respaldo escrita correctamente en %1$@";
 "pref_managekeys_menu_title" = "Administrar claves";
 "pref_managekeys_ask_for_storage_permission" = "Delta Chat necesita acceso a tus archivos para importar/exportar claves";
 "pref_managekeys_export_secret_keys" = "Exportar claves secretas";
-"pref_managekeys_export_explain" = "¿Exportar claves secretas a \\\"%1$s\\\"?";
+"pref_managekeys_export_explain" = "¿Exportar claves secretas a \\\"%1$@\\\"?";
 "pref_managekeys_import_secret_keys" = "Importar claves secretas";
-"pref_managekeys_import_explain" = "Importar claves secretas de \\\"%1$s\\\"?\n\n• Las claves secretas existentes no se eliminarán\n\n• La última clave importada se usará como la nueva clave predeterminada a menos que tenga la palabra \\\"legacy\\\" en su nombre de archivo.";
-"pref_managekeys_secret_keys_exported_to_x" = "Claves secretas escritas exitosamente a \\\"%1$s\\\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Claves secretas importadas de \\\"%1$s\\\".";
+"pref_managekeys_import_explain" = "Importar claves secretas de \\\"%1$@\\\"?\n\n• Las claves secretas existentes no se eliminarán\n\n• La última clave importada se usará como la nueva clave predeterminada a menos que tenga la palabra \\\"legacy\\\" en su nombre de archivo.";
+"pref_managekeys_secret_keys_exported_to_x" = "Claves secretas escritas exitosamente a \\\"%1$@\\\".";
+"pref_managekeys_secret_keys_imported_from_x" = "Claves secretas importadas de \\\"%1$@\\\".";
 "pref_background" = "Fondo";
 "pref_background_btn_default" = "Usar imagen por defecto";
 "pref_background_btn_gallery" = "Seleccionar de la galería";
@@ -400,7 +400,7 @@
 "autocrypt_send_asm_title" = "Enviar Mensaje de Configuración de Autocrypt";
 "autocrypt_send_asm_explain_before" = "Un \\\"Mensaje de Configuración de Autocrypt\\\" comparte de forma segura su configuración de extremo a extremo con otras aplicaciones compatibles con Autocrypt.\n\nLa configuración se cifrará mediante un código de configuración que se muestra aquí y debe escribirse en el otro dispositivo.";
 "autocrypt_send_asm_button" = "Enviar Mensaje de Configuración de Autocrypt";
-"autocrypt_send_asm_explain_after" = "Se le ha enviado su configuración. Cambie al otro dispositivo y abra el mensaje de configuración. Se le debe solicitar un código de configuración. Escriba los siguientes dígitos:\n\n%1$s\n\nUna vez que haya terminado, su otro dispositivo estará listo para usar Autocrypt.";
+"autocrypt_send_asm_explain_after" = "Se le ha enviado su configuración. Cambie al otro dispositivo y abra el mensaje de configuración. Se le debe solicitar un código de configuración. Escriba los siguientes dígitos:\n\n%1$@\n\nUna vez que haya terminado, su otro dispositivo estará listo para usar Autocrypt.";
 "autocrypt_prefer_e2ee" = "Preferir el cifrado de extremo a extremo";
 "autocrypt_asm_subject" = "Mensaje de Configuración de Autocrypt";
 "autocrypt_asm_general_body" = "Este es el Mensaje de Configuración de Autocrypt utilizado para transferir su configuración de extremo a extremo entre clientes.\n\nPara descifrar y usar su configuración, abra el mensaje en un cliente compatible con Autocrypt e ingrese el código de configuración presentado en el dispositivo que lo generó.";
@@ -413,19 +413,19 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "Nombre de grupo cambiado de \\\"%1$s\\\" a \\\"%2$s\\\"";
+"systemmsg_group_name_changed" = "Nombre de grupo cambiado de \\\"%1$@\\\" a \\\"%2$@\\\"";
 "systemmsg_group_image_changed" = "Imagen de grupo cambiada.";
 "systemmsg_group_image_deleted" = "Imagen de grupo eliminada.";
-"systemmsg_member_added" = "Miembro %1$s añadido.";
-"systemmsg_member_removed" = "Miembro %1$s eliminado.";
+"systemmsg_member_added" = "Miembro %1$@ añadido.";
+"systemmsg_member_removed" = "Miembro %1$@ eliminado.";
 "systemmsg_group_left" = "Grupo abandonado.";
 "systemmsg_read_receipt_subject" = "Acuse de recibo";
-"systemmsg_read_receipt_body" = "Este es un acuse de recibo para el mensaje \\\"%1$s\\\".\n\nSignifica que el mensaje se mostró en el dispositivo del destinatario, pero no necesariamente que se leyó el contenido.";
+"systemmsg_read_receipt_body" = "Este es un acuse de recibo para el mensaje \\\"%1$@\\\".\n\nSignifica que el mensaje se mostró en el dispositivo del destinatario, pero no necesariamente que se leyó el contenido.";
 "systemmsg_cannot_decrypt" = "Este mensaje no puede ser descifrado.\n\n• Es posible que sea útil simplemente responderlo y pedirle al remitente que lo envíe nuevamente.\n\n• En caso de que haya reinstalado Delta Chat u otro programa de correo en este u otro dispositivo, puede que quiera enviar un Mensaje de Configuración de Autocrypt desde allí.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
-"systemmsg_action_by_me" = "%1$s por mi.";
+"systemmsg_action_by_me" = "%1$@ por mi.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
-"systemmsg_action_by_user" = "%1$s por %2$s.";
+"systemmsg_action_by_user" = "%1$@ por %2$@.";
 
 
 // screen lock
@@ -442,32 +442,32 @@
 // qr code stuff
 "qrscan_title" = "Escanear código QR";
 "qrscan_hint" = "Coloque su cámara sobre el código QR";
-"qrscan_ask_join_group" = "¿Quieres unirte al grupo \\\"%1$s\\\"?";
-"qrscan_fingerprint_mismatch" = "La huella digital escaneada no coincide con la última huella vista para \\\"%1$s\\\".";
+"qrscan_ask_join_group" = "¿Quieres unirte al grupo \\\"%1$@\\\"?";
+"qrscan_fingerprint_mismatch" = "La huella digital escaneada no coincide con la última huella vista para \\\"%1$@\\\".";
 "qrscan_no_addr_found" = "Este código QR contiene una huella digital pero no una dirección de correo electrónico.\n\nPara una verificación fuera de banda, establezca primero una conexión cifrada con el destinatario.";
-"qrscan_contains_text" = "Texto del código QR escaneado:\n\n%1$s";
-"qrscan_contains_url" = "URL del código QR escaneado:\n\n%1$s";
+"qrscan_contains_text" = "Texto del código QR escaneado:\n\n%1$@";
+"qrscan_contains_url" = "URL del código QR escaneado:\n\n%1$@";
 "qrscan_fingerprint_label" = "Huella digital";
-"qrscan_x_verified_introduce_myself" = "%1$s verificado, presentarme ...";
+"qrscan_x_verified_introduce_myself" = "%1$@ verificado, presentarme ...";
 "qrshow_title" = "Código de invitación QR";
-"qrshow_x_joining" = "%1$s se une.";
-"qrshow_x_verified" = "%1$s verificado.";
-"qrshow_x_has_joined_group" = "%1$s se unió al grupo.";
+"qrshow_x_joining" = "%1$@ se une.";
+"qrshow_x_verified" = "%1$@ verificado.";
+"qrshow_x_has_joined_group" = "%1$@ se unió al grupo.";
 "qrshow_join_group_title" = "Código de invitación QR";
-"qrshow_join_group_hint" = "Escanea esto para unirte al grupo verificado \\\"%1$s\\\".";
+"qrshow_join_group_hint" = "Escanea esto para unirte al grupo verificado \\\"%1$@\\\".";
 "qrshow_join_contact_title" = "Código de invitación QR";
-"qrshow_join_contact_hint" = "Escanea esto para configurar un contacto con %1$s";
+"qrshow_join_contact_hint" = "Escanea esto para configurar un contacto con %1$@";
 "qrshow_join_contact_no_connection_hint" = "La configuración con código QR requiere conexión a Internet. Por favor, conéctese a una red antes de continuar.";
 "qrshow_join_contact_no_connection_toast" = "No hay conexión a Internet, no se puede configurar con código QR.";
-"contact_verified" = "%1$s verificado.";
-"contact_not_verified" = "No se pudo verificar %1$s";
+"contact_verified" = "%1$@ verificado.";
+"contact_not_verified" = "No se pudo verificar %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
-"contact_setup_changed" = "Configuración cambiada para %1$s";
+"contact_setup_changed" = "Configuración cambiada para %1$@";
 
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nuevos mensajes en %2$d chats";
-"notify_most_recent_from" = "Más reciente de: %1$s";
+"notify_most_recent_from" = "Más reciente de: %1$@";
 "notify_media_message_with_text" = "Mensaje multimedia: %s";
 "notify_mark_all_read" = "Marcar todo como leído";
 "notify_mark_read" = "Marcar como leído";
@@ -579,15 +579,15 @@
 
 // deprecated on android, please remove if unused on desktop
 // see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "¿Quieres unirte al grupo \\\"%1$s\\\"?";
+"qrscan_ask_join_verified_group" = "¿Quieres unirte al grupo \\\"%1$@\\\"?";
 // see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "¿Chatear con %1$s?";
+"qrscan_ask_fingerprint_ask_oob" = "¿Chatear con %1$@?";
 // see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "¿Chatear con %1$s?";
+"qrscan_ask_chatting_fingerprint_ok" = "¿Chatear con %1$@?";
 // see qrshow_join_group_title
 "qrshow_join_verified_group_title" = "Código de invitación QR";
 // see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "Escanea esto para unirte al grupo \\\"%1$s\\\".";
+"qrshow_join_verified_group_hint" = "Escanea esto para unirte al grupo \\\"%1$@\\\".";
 // see chat_all_archived
 "chat_all_done_hint" = "Bandeja de entrada vacía";
 "chat_all_done_explain" = "No hay nada aquí!!!";

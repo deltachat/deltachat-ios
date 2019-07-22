@@ -17,11 +17,11 @@
 "done" = "U bë";
 "undo" = "Zhbëje";
 "error" = "Gabim";
-"error_x" = "Gabim: %1$s";
+"error_x" = "Gabim: %1$@";
 "error_no_network" = "Rrjet i pakapshëm.";
 "no_app_to_handle_data" = "S\\’gjendet dot një aplikacion për trajtimin e këtij lloji të dhënash.";
 "no_browser_installed" = "S\\’ka shfletues të instaluar.";
-"file_not_found" = "S\\’u gjet dot %1$s.";
+"file_not_found" = "S\\’u gjet dot %1$@.";
 "copied_to_clipboard" = "U kopjua në të papastër.";
 "contacts_headline" = "Kontakte";
 "email_address" = "Adresë email";
@@ -147,15 +147,15 @@
 
 // get confirmations
 "ask_leave_group" = "Jeni i sigurt se doni ta braktisni këtë grup?";
-"ask_forward" = "Të përcillen mesazhet te %1$s?";
+"ask_forward" = "Të përcillen mesazhet te %1$@?";
 "ask_export_attachment" = "Të eksportohet bashkëngjitja? Eksportimi i bashkëngjitjeve do t\\’i lejojë çfarëdo aplikacioni tjetër në pajisjen tuaj t\\’i përdorë ato.\n\nTë vazhdohet?";
 "ask_block_contact" = "Të bllokohet ky kontakt? S\\’do të merrni më mesazhe prej këtij kontakti.";
 "ask_unblock_contact" = "Të zhbllokohet ky kontakt? Do të jeni sërish në gjendje të merrni mesazhe prej këtij kontakti.";
 "ask_delete_contacts" = "Të fshihen kontaktet? Kjo do të bëjë të fshihen përgjithmonë kontaktet e përzgjedhur.\n\nKontaktet me fjalosje në zhvillim e sipër dhe kontaktet prej libri adresash të sistemit s\\’mund të fshihen përgjithmonë.";
 "cannot_delete_contacts_in_use" = "S\\’mund të fshihen kontakte me fjalosje në zhvillim e sipër.";
-"ask_start_chat_with" = "Të bisedohet me %1$s?";
+"ask_start_chat_with" = "Të bisedohet me %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
-"ask_remove_members" = "Të hiqet %1$s nga grupi?";
+"ask_remove_members" = "Të hiqet %1$@ nga grupi?";
 "info_outdated_app_title" = "Versioni juaj i aplikacionit është i vjetruar.";
 "info_outdated_app_text" = "Duket se e instaluat Delta Chat-in prej një burimi pa vetëpërditësim (p.sh. GitHub). Ju lutemi, që të merrni veçoritë më të reja dhe ndreqje të metash, hidhuni te një version shitoreje.";
 "info_outdated_app_dialog_title" = "Përditëso burime";
@@ -174,7 +174,7 @@
 "chat_please_enter_message" = "Ju lutemi, jepni një mesazh.";
 "chat_camera_unavailable" = "Kamerë jo gati.";
 "chat_unable_to_record_audio" = "S\\’arrihet të incizohet audio.";
-"chat_no_messages_hint" = "Dërgoni mesazh te %1$s:\n\n• S\\’ka problem nëse %2$s s\\’përdor Delta Chat.\n\n• Dërgimi i mesazhit të parë mund të zgjasë ca dhe mund të jetë i pafshehtëzuar.";
+"chat_no_messages_hint" = "Dërgoni mesazh te %1$@:\n\n• S\\’ka problem nëse %2$@ s\\’përdor Delta Chat.\n\n• Dërgimi i mesazhit të parë mund të zgjasë ca dhe mund të jetë i pafshehtëzuar.";
 "chat_new_group_hint" = "Hartoni mesazhin e parë, duke u lejuar të tjerëve të përgjigjen brenda këtij grupi.\n\n• S\\’ka problem nëse Delta Chat-in s\\’e përdorin  të tërë anëtarë.\n\n• Dërgimi i mesazhit të parë mund të zgjasë ca.";
 "chat_record_slide_to_cancel" = "Rrëshqiteni që të anulohet";
 "chat_record_explain" = "Prekeni dhe mbajeni të prekur që të incizoni një mesazh zanor; lëshojeni, që të dërgohet";
@@ -207,7 +207,7 @@
 "group_create_button" = "Krijoni grup";
 "group_please_enter_group_name" = "Ju lutemi, jepni një emër për grupin.";
 "group_add_members" = "Shtoni anëtarë";
-"group_hello_draft" = "Tungjatjeta, Sapo krijova për ne grupin \\\"%1$s\\\".";
+"group_hello_draft" = "Tungjatjeta, Sapo krijova për ne grupin \\\"%1$@\\\".";
 "group_self_not_in_group" = "Duhet të jeni anëtar i grupit që të kryeni këtë veprim.";
 "profile_encryption" = "Fshehtëzim";
 "profile_shared_chats" = "Fjalosje të përbashkëta";
@@ -225,7 +225,7 @@
 
 // invite
 "invite_slogan" = "Kush të ka shok, s\\’të lë kyçur në silos mesazhesh.";
-"invite_default_text" = "Le të hidhemi në Delta Chat - %1$s - mund të më dërgoni mesazhe tekst te %2$s";
+"invite_default_text" = "Le të hidhemi në Delta Chat - %1$@ - mund të më dërgoni mesazhe tekst te %2$@";
 
 
 // welcome and login
@@ -270,12 +270,12 @@
 "login_error_port" = "Ju lutemi, jepni një portë të vlefshme (1–65535)";
 "login_error_required_fields" = "Ju lutemi, jepni një adresë email dhe fjalëkalim të vlefshëm";
 "import_backup_title" = "Importo kopjeruajtje";
-"import_backup_ask" = "U gjet kopjeruajtje te \\\"%1$s\\\".\n\nDoni të importohen dhe përdoren krejt të dhënat dhe rregullimet prej atij?";
-"import_backup_no_backup_found" = "S\\’u gjetën kopjeruajtje.\n\nKopjojeni kopjeruajtjen te \\\"%1$s\\\" dhe riprovoni. Ndryshe, shtypni \\\"Filloni të shkëmbeni mesazhe\\\", që të vazhdoni me procesin normal të rregullimit.";
+"import_backup_ask" = "U gjet kopjeruajtje te \\\"%1$@\\\".\n\nDoni të importohen dhe përdoren krejt të dhënat dhe rregullimet prej atij?";
+"import_backup_no_backup_found" = "S\\’u gjetën kopjeruajtje.\n\nKopjojeni kopjeruajtjen te \\\"%1$@\\\" dhe riprovoni. Ndryshe, shtypni \\\"Filloni të shkëmbeni mesazhe\\\", që të vazhdoni me procesin normal të rregullimit.";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = "S\\’bëhet dot hyrja si %1$s. Ju lutemi, shihni nëse adresa email dhe fjalëkalimi janë të saktë.";
+"login_error_cannot_login" = "S\\’bëhet dot hyrja si %1$@. Ju lutemi, shihni nëse adresa email dhe fjalëkalimi janë të saktë.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Përgjigje nga %1$s: %2$s\n\nDisa shërbime vendosin të dhëna shtesë te kutia juaj e mesazheve të marrë; mund t\\’i shihni, për shembull, te pjesa e dukshme web. Nëse hasni probleme, këshillohuni me shërbimin tuaj ose shokë.";
+"login_error_server_response" = "Përgjigje nga %1$@: %2$@\n\nDisa shërbime vendosin të dhëna shtesë te kutia juaj e mesazheve të marrë; mund t\\’i shihni, për shembull, te pjesa e dukshme web. Nëse hasni probleme, këshillohuni me shërbimin tuaj ose shokë.";
 
 
 // share and forward messages
@@ -363,15 +363,15 @@
 "pref_backup_explain" = "Kopjeruaji fjalosjet në depozitim të jashtëm";
 "pref_backup_export_explain" = "Një kopjeruajtje ju lejon të rregulloni një instalim të ri në këtë apo në një tjetër pajisje.\n\nKopjeruajtja do të përmbajë krejt mesazhet, kontaktet dhe fjalosjet, si dhe rregullimin tuaj për Autocrypt skaj-më-skaj. Mbajeni kartelën e kopjeruajtjes diku të parrezikuar, përndryshe fshijeni as më shpejt që të jetë e mundur.";
 "pref_backup_export_start_button" = "Fillo kopjeruajtjen";
-"pref_backup_written_to_x" = "Kopjeruajtje e shkruar me sukses te %1$s";
+"pref_backup_written_to_x" = "Kopjeruajtje e shkruar me sukses te %1$@";
 "pref_managekeys_menu_title" = "Administroni kyçe";
 "pref_managekeys_ask_for_storage_permission" = "Delta Chat lyp hyrje në kartelat tuaja që të importojë/eksportojë kyçe.";
 "pref_managekeys_export_secret_keys" = "Eksportoni kyçe të fshehtë";
-"pref_managekeys_export_explain" = "Të eksportohen kyçet e fshehtë te \\\"%1$s\\\"?";
+"pref_managekeys_export_explain" = "Të eksportohen kyçet e fshehtë te \\\"%1$@\\\"?";
 "pref_managekeys_import_secret_keys" = "Importoni kyçe të fshehtë";
-"pref_managekeys_import_explain" = "Të importohen kyçe të fshehtë prej \\\"%1$s\\\"?\n\n• Kyçet e fshehtë ekzistues s\\’do të fshihen\n\n• Kyçi i fundit i importuar do të përdoret si kyçi i ri parazgjedhje, hiq rastin ku përmban te emri i kartelës fjalën \\\"legacy\\\"";
-"pref_managekeys_secret_keys_exported_to_x" = "Kyçe të fshehtë shkruar me sukses te \\\"%1$s\\\".";
-"pref_managekeys_secret_keys_imported_from_x" = "U importuan kyçe të fshehtë nga \\\"%1$s\\\".";
+"pref_managekeys_import_explain" = "Të importohen kyçe të fshehtë prej \\\"%1$@\\\"?\n\n• Kyçet e fshehtë ekzistues s\\’do të fshihen\n\n• Kyçi i fundit i importuar do të përdoret si kyçi i ri parazgjedhje, hiq rastin ku përmban te emri i kartelës fjalën \\\"legacy\\\"";
+"pref_managekeys_secret_keys_exported_to_x" = "Kyçe të fshehtë shkruar me sukses te \\\"%1$@\\\".";
+"pref_managekeys_secret_keys_imported_from_x" = "U importuan kyçe të fshehtë nga \\\"%1$@\\\".";
 "pref_background" = "Sfond";
 "pref_background_btn_default" = "Përdor figurën parazgjedhje";
 "pref_background_btn_gallery" = "Përzgjidhni nga galeri";
@@ -400,7 +400,7 @@
 "autocrypt_send_asm_title" = "Dërgo Mesazh Rregullimi Autocrypt-i";
 "autocrypt_send_asm_explain_before" = "Një \\\"Mesazh Rregullimi Autocrypt-i\\\" ua jep, në mënyrë të parrezikuar, rregullimin tuaj skaj-më-skaj pajisjeve të tjera që përdorin Autocrypt-in.\n\nRregullimi do të fshehtëzohet përmes një kodi rregullimi i cili shfaqet këtu dhe duhet dhënë te pajisja tjetër.";
 "autocrypt_send_asm_button" = "Dërgo Mesazh Rregullimi Autocrypt-i";
-"autocrypt_send_asm_explain_after" = "Rregullimi juaj u dërgua te ju. Kaloni te pajisja tjetër dhe hapni mesazhin e rregullimit. Do t\\’ju kërkohet një kod rregullimi. Shtypni atje shifrat vijuese:\n\n%1$s\n\nPasi të keni mbaruar, pajisja juaj tjetër do të jetë gati të përdorë Autocrypt-in.";
+"autocrypt_send_asm_explain_after" = "Rregullimi juaj u dërgua te ju. Kaloni te pajisja tjetër dhe hapni mesazhin e rregullimit. Do t\\’ju kërkohet një kod rregullimi. Shtypni atje shifrat vijuese:\n\n%1$@\n\nPasi të keni mbaruar, pajisja juaj tjetër do të jetë gati të përdorë Autocrypt-in.";
 "autocrypt_prefer_e2ee" = "Parapëlqe fshehtëzim skaj-më-skaj";
 "autocrypt_asm_subject" = "Mesazh Rregullimi Autocrypt-i";
 "autocrypt_asm_general_body" = "Ky është Mesazhi i Rregullimit të Autocrypt-it i përdorur për të shpërngulur rregullimin tuaj skaj-më-skaj në klientë të tjerë.\n\nQë ta shfshehtëzoni rregullimin tuaj, hapeni mesazhin te një klient që mund të përdorë Autocrypt-in dhe jepni kodin e rregullimit të treguar te pajisja që e prodhoi.";
@@ -413,19 +413,19 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "Emri i grupit u ndryshua nga \\\"%1$s\\\" në \\\"%2$s\\\".";
+"systemmsg_group_name_changed" = "Emri i grupit u ndryshua nga \\\"%1$@\\\" në \\\"%2$@\\\".";
 "systemmsg_group_image_changed" = "Figura e grupit ndryshoi.";
 "systemmsg_group_image_deleted" = "Figura e grupit u fshi.";
-"systemmsg_member_added" = "U shtua anëtari %1$s.";
-"systemmsg_member_removed" = "U hoq anëtari %1$s.";
+"systemmsg_member_added" = "U shtua anëtari %1$@.";
+"systemmsg_member_removed" = "U hoq anëtari %1$@.";
 "systemmsg_group_left" = "U braktis grupi.";
 "systemmsg_read_receipt_subject" = "Dëftesë leximi";
-"systemmsg_read_receipt_body" = "Kjo është dëftesë leximi për mesazhin \\\"%1$s\\\".\n\nDo të thotë që mesazhi u shfaq te pajisja e marrësit, jo domosdo që lënda u lexua.";
+"systemmsg_read_receipt_body" = "Kjo është dëftesë leximi për mesazhin \\\"%1$@\\\".\n\nDo të thotë që mesazhi u shfaq te pajisja e marrësit, jo domosdo që lënda u lexua.";
 "systemmsg_cannot_decrypt" = "Ky mesazh s\\’mund të shfshehtëzohet.\n\n• Mundet që të ndihmojë dërgimi thjesht i një përgjigjeje këtij mesazhi dhe t\\’i kërkohet dërguesit ta ridërgojë mesazhin.\n\n• Në rast se ri-instaluat Delta Chat-in apo një tjetër program email-esh në këtë apo në një tjetër pajisje, mund të donit të dërgonit një Mesazh Rregullimi Autocrypt-i që prej andej.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
-"systemmsg_action_by_me" = "%1$s nga unë.";
+"systemmsg_action_by_me" = "%1$@ nga unë.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
-"systemmsg_action_by_user" = "%1$s nga %2$s.";
+"systemmsg_action_by_user" = "%1$@ nga %2$@.";
 
 
 // screen lock
@@ -442,32 +442,32 @@
 // qr code stuff
 "qrscan_title" = "Skanoni kod QR";
 "qrscan_hint" = "Vendoseni kamerën tuaj përmbi kodin QR";
-"qrscan_ask_join_group" = "Doni të bëheni pjesë e grupit \\\"%1$s\\\"?";
-"qrscan_fingerprint_mismatch" = "Shenjat e gishtave të skanuar nuk përputhen me shenjat e gishtave parë së fundi për %1$s.";
+"qrscan_ask_join_group" = "Doni të bëheni pjesë e grupit \\\"%1$@\\\"?";
+"qrscan_fingerprint_mismatch" = "Shenjat e gishtave të skanuar nuk përputhen me shenjat e gishtave parë së fundi për %1$@.";
 "qrscan_no_addr_found" = "Ky kod QR përmban shenja gishtash, por jo adresë email.\n\nPër një verifikim out-of-band, ju lutemi, së pari vendosni me marrësin një lidhje të fshehtëzuar.";
-"qrscan_contains_text" = "Tekst kodi QR të skanuar:\n\n%1$s";
-"qrscan_contains_url" = "URL kodi QR të skanuar:\n\n%1$s";
+"qrscan_contains_text" = "Tekst kodi QR të skanuar:\n\n%1$@";
+"qrscan_contains_url" = "URL kodi QR të skanuar:\n\n%1$@";
 "qrscan_fingerprint_label" = "Shenja gishtash";
-"qrscan_x_verified_introduce_myself" = "%1$s u verifikua, po prezantoj veten…";
+"qrscan_x_verified_introduce_myself" = "%1$@ u verifikua, po prezantoj veten…";
 "qrshow_title" = "Kod QR ftese";
-"qrshow_x_joining" = "%1$s vjen.";
-"qrshow_x_verified" = "%1$s u verifikua.";
-"qrshow_x_has_joined_group" = "%1$s u bë pjesë e grupit në mënyrë të sigurt.";
+"qrshow_x_joining" = "%1$@ vjen.";
+"qrshow_x_verified" = "%1$@ u verifikua.";
+"qrshow_x_has_joined_group" = "%1$@ u bë pjesë e grupit në mënyrë të sigurt.";
 "qrshow_join_group_title" = "Kod QR ftese";
-"qrshow_join_group_hint" = "Që të bëheni pjesë e grupit \\\"%1$s\\\", skanoni këtë.";
+"qrshow_join_group_hint" = "Që të bëheni pjesë e grupit \\\"%1$@\\\", skanoni këtë.";
 "qrshow_join_contact_title" = "Kod QR ftese";
-"qrshow_join_contact_hint" = "Skanojeni këtë që të rregullohet një kontakt %1$s";
+"qrshow_join_contact_hint" = "Skanojeni këtë që të rregullohet një kontakt %1$@";
 "qrshow_join_contact_no_connection_hint" = "Ujdisja e kodit QR lyp lidhje në internet. Ju lutemi, përpara se të ecni më tej, lidhuni me një rrjet.";
 "qrshow_join_contact_no_connection_toast" = "S\\’ka lidhje në internet, s\\’bëhet dot ujdisja e kodit QR.";
-"contact_verified" = "%1$s u verifikua.";
-"contact_not_verified" = "S\\’verifikohet dot %1$s";
+"contact_verified" = "%1$@ u verifikua.";
+"contact_not_verified" = "S\\’verifikohet dot %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
-"contact_setup_changed" = "U ndryshua rregullimi për %1$s";
+"contact_setup_changed" = "U ndryshua rregullimi për %1$@";
 
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d mesazhe të rinj në %2$d fjalosje";
-"notify_most_recent_from" = "Më të rejat nga: %1$s";
+"notify_most_recent_from" = "Më të rejat nga: %1$@";
 "notify_media_message_with_text" = "Mesazh media: %s";
 "notify_mark_all_read" = "Vëru shenjë të tërave si të lexuar";
 "notify_mark_read" = "Vëri shenjë si i lexuar";
@@ -579,15 +579,15 @@
 
 // deprecated on android, please remove if unused on desktop
 // see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "Doni të bëheni pjesë e grupit \\\"%1$s\\\"?";
+"qrscan_ask_join_verified_group" = "Doni të bëheni pjesë e grupit \\\"%1$@\\\"?";
 // see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "Të bisedohet me %1$s?";
+"qrscan_ask_fingerprint_ask_oob" = "Të bisedohet me %1$@?";
 // see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "Të bisedohet me %1$s?";
+"qrscan_ask_chatting_fingerprint_ok" = "Të bisedohet me %1$@?";
 // see qrshow_join_group_title
 "qrshow_join_verified_group_title" = "Kod QR ftese";
 // see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "Që të bëheni pjesë e grupit \\\"%1$s\\\", skanoni këtë.";
+"qrshow_join_verified_group_hint" = "Që të bëheni pjesë e grupit \\\"%1$@\\\", skanoni këtë.";
 // see chat_all_archived
 "chat_all_done_hint" = "Zero të marrë";
 "chat_all_done_explain" = "Hiç. Fare. Zero.\nJanë qëruar!";

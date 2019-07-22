@@ -17,11 +17,11 @@
 "done" = "Fet";
 "undo" = "Desfés";
 "error" = "Error";
-"error_x" = "Error: %1$s";
+"error_x" = "Error: %1$@";
 "error_no_network" = "Xarxa no disponible.";
 "no_app_to_handle_data" = "No hi ha cap app per gestionar aquestes dades.";
 "no_browser_installed" = "Cap navegador instal·lat.";
-"file_not_found" = "No s\\'ha trobat %1$s.";
+"file_not_found" = "No s\\'ha trobat %1$@.";
 "copied_to_clipboard" = "Copiat al porta-retalls.";
 "contacts_headline" = "Contactes";
 "email_address" = "Adreça de correu electrònic";
@@ -136,13 +136,13 @@
 
 // get confirmations
 "ask_leave_group" = "Segur que voleu deixar aquest grup?";
-"ask_forward" = "Reenvia missatges a %1$s?";
+"ask_forward" = "Reenvia missatges a %1$@?";
 "ask_export_attachment" = "Exporto l\\'adjunt? En exportar els adjunts permetreu que altres apps del dispositiu hi puguin accedir.\n\nVoleu continuar endavant?";
 "ask_block_contact" = "Voleu blocar aquest contacte? En aquest cas ja no en rebreu més missatges.";
 "ask_unblock_contact" = "Voleu desblocar aquest contacte? Llavors podreu tornar a rebre\\'n missatges.";
 "ask_delete_contacts" = "Voleu esborrar els contactes? Això eliminarà definitivament els contactes seleccionats.\n\nEls contactes amb xats oberts i els que estiguin al vostre directori d\\'adreces no es poden eliminar definitivament. ";
 "cannot_delete_contacts_in_use" = "No es poden esborrar els contactes amb xats actius.";
-"ask_start_chat_with" = "Voleu xatejar amb %1$s?";
+"ask_start_chat_with" = "Voleu xatejar amb %1$@?";
 // contact list
 "contacts_title" = "Llista de contactes";
 "contacts_enter_name_or_email" = "Introduïu el vostre nom o la vostra adreça d\\'e-mail";
@@ -155,7 +155,7 @@
 "chat_please_enter_message" = "Si us plau, escriviu un missatge";
 "chat_camera_unavailable" = "Càmera no disponible.";
 "chat_unable_to_record_audio" = "No es pot gravar so.";
-"chat_no_messages_hint" = "Envia el missatge a %1$s:\n\n• No cal amoïnar-se si %2$s no usa Delta Chat.\n\n• El lliurament del primer missatge por trigar una estona i potser arriba sense encriptar.";
+"chat_no_messages_hint" = "Envia el missatge a %1$@:\n\n• No cal amoïnar-se si %2$@ no usa Delta Chat.\n\n• El lliurament del primer missatge por trigar una estona i potser arriba sense encriptar.";
 "chat_new_group_hint" = "Escriviu el primer missatge i així els altres podran respondre a tot el grup.\n\n• No patiu si hi ha membres que no fan servir Delta Chat.\n\n• El lliurament del primer missatge pot trigar una estona.";
 "chat_record_slide_to_cancel" = "Llisca per cancel·lar";
 "chat_record_explain" = "Mantingues premut per gravar un missatge de veu i deixa anar per enviar-lo";
@@ -185,7 +185,7 @@
 "group_create_button" = "Crea el grup";
 "group_please_enter_group_name" = "Si us plau, poseu nom al grup.";
 "group_add_members" = "Afegiu-hi membres";
-"group_hello_draft" = "Hola, acabo de crear el grup \\\"%1$s\\\" per naltros.";
+"group_hello_draft" = "Hola, acabo de crear el grup \\\"%1$@\\\" per naltros.";
 "group_self_not_in_group" = "Has de ser membre del grup per poder fer això.";
 "profile_encryption" = "Encriptació";
 "media_preview" = "Previsualització multimèdia";
@@ -193,7 +193,7 @@
 
 // invite
 "invite_slogan" = "Els amics no deixen els amics tancats en sitges de missatgeria.";
-"invite_default_text" = "Canviem a Delta Chat - %1$s - pots escriure\\'m a %2$s";
+"invite_default_text" = "Canviem a Delta Chat - %1$@ - pots escriure\\'m a %2$@";
 
 
 // welcome and login
@@ -238,12 +238,12 @@
 "login_error_port" = "Si us plau poseu un  port vàlid (1-65535)";
 "login_error_required_fields" = "Si us plau poseu una adreça i contrasenya vàlids";
 "import_backup_title" = "Importa una còpia de seguretat";
-"import_backup_ask" = "S\\'ha trobat una còpia de seguretat a \\\"%1$s\\\".\n\nVoleu importar-la i fer-ne servir les dades i els paràmetres de configuració?";
-"import_backup_no_backup_found" = "No s\\'han trobat còpies de seguretat.\n\nCopieu la còpia de seguretat a \\\"%1$s\\\" i torneu-ho a provar. Com a alternativa, premeu \\\"Comença a escriure\\\" per encetar el procés de configuració habitual.";
+"import_backup_ask" = "S\\'ha trobat una còpia de seguretat a \\\"%1$@\\\".\n\nVoleu importar-la i fer-ne servir les dades i els paràmetres de configuració?";
+"import_backup_no_backup_found" = "No s\\'han trobat còpies de seguretat.\n\nCopieu la còpia de seguretat a \\\"%1$@\\\" i torneu-ho a provar. Com a alternativa, premeu \\\"Comença a escriure\\\" per encetar el procés de configuració habitual.";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = "No es pot iniciar la sessió com a \\\"%1$s\\\". Comproveu que l\\'adreça electrònica i la contrasenya són correctes.";
+"login_error_cannot_login" = "No es pot iniciar la sessió com a \\\"%1$@\\\". Comproveu que l\\'adreça electrònica i la contrasenya són correctes.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "La resposta de%1$s ha sigut: %2$s\n\nHi ha proveïdors que posen informació addicional a la vostra safata d\\'entrada; podeu trobar-la allà p. ex. usant la interfície de correu web. Consulteu el vostre proveïdor o els vostres amics si teniu problemes.";
+"login_error_server_response" = "La resposta de%1$@ ha sigut: %2$@\n\nHi ha proveïdors que posen informació addicional a la vostra safata d\\'entrada; podeu trobar-la allà p. ex. usant la interfície de correu web. Consulteu el vostre proveïdor o els vostres amics si teniu problemes.";
 
 
 // share and forward messages
@@ -325,15 +325,15 @@
 "pref_backup_explain" = "Copia els xats a un magatzem extern";
 "pref_backup_export_explain" = "La còpia de seguretat és útil a l\\'hora de reinstal·lar l\\'aplicació en aquest dispositiu o en un altre.\n\nLa còpia tindrà tot els missatges, contactes i xats i la configuració d\\'extrem a extrem d\\'Autocrypt. Conserveu el fitxer de la còpia en un lloc segur o esborreu-lo tan aviat com pugueu.";
 "pref_backup_export_start_button" = "Inicia la còpia de seguretat";
-"pref_backup_written_to_x" = "La còpia de seguretat s\\'ha escrit correctament a %1$s";
+"pref_backup_written_to_x" = "La còpia de seguretat s\\'ha escrit correctament a %1$@";
 "pref_managekeys_menu_title" = "Gestiona les claus";
 "pref_managekeys_ask_for_storage_permission" = "Delta Chat necessita accedir als vostres arxius per poder importar/exportar les claus.";
 "pref_managekeys_export_secret_keys" = "Exporta les claus secretes";
-"pref_managekeys_export_explain" = "Exporto les claus secretes a \\\"%1$s\\\"?";
+"pref_managekeys_export_explain" = "Exporto les claus secretes a \\\"%1$@\\\"?";
 "pref_managekeys_import_secret_keys" = "Importa les claus secretes";
-"pref_managekeys_import_explain" = "Importo les claus secretes de \\\"%1$s\\\"?\n\n• Les claus secretes existents no s\\'esborraran\n\n• L\\'última clau importada s\\'usarà com la nova clau per defecte a menys que tingui la paraula \\\"legacy\\\" en el nom de l\\'arxiu";
-"pref_managekeys_secret_keys_exported_to_x" = "Les claus secretes s\\'han copiat correctament a \\\"%1$s\\\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Claus secretes importades de \\\"%1$s\\\".";
+"pref_managekeys_import_explain" = "Importo les claus secretes de \\\"%1$@\\\"?\n\n• Les claus secretes existents no s\\'esborraran\n\n• L\\'última clau importada s\\'usarà com la nova clau per defecte a menys que tingui la paraula \\\"legacy\\\" en el nom de l\\'arxiu";
+"pref_managekeys_secret_keys_exported_to_x" = "Les claus secretes s\\'han copiat correctament a \\\"%1$@\\\".";
+"pref_managekeys_secret_keys_imported_from_x" = "Claus secretes importades de \\\"%1$@\\\".";
 "pref_background" = "Fons";
 "pref_background_btn_default" = "Usa la imatge per defecte";
 "pref_background_btn_gallery" = "Tria de la galeria";
@@ -355,7 +355,7 @@
 "autocrypt_send_asm_title" = "Envia el missatge de configuració Autocrypt";
 "autocrypt_send_asm_explain_before" = "Un \\\"missatge de configuració Autocrypt\\\" comparteix de forma segura la vostra configuració d\\'extrem a extrem amb altres aplicacions compatibles amb Autocrypt.\n\nLa configuració es xifrarà amb un codi de configuració que es mostrarà aquí i que haureu d\\'escriure a l’altre dispositiu.";
 "autocrypt_send_asm_button" = "Envia el missatge de configuració Autocrypt";
-"autocrypt_send_asm_explain_after" = "Se us ha enviat la vostra configuració. Canvieu a l\\'altre dispositiu i obriu el missatge de configuració. Se us demanarà un codi de configuració. Introduïu els dígits següents a l\\'indicador:\n\n%1$s\n\nUn cop fet, l\\'altre dispositiu estarà llest per utilitzar Autocrypt.";
+"autocrypt_send_asm_explain_after" = "Se us ha enviat la vostra configuració. Canvieu a l\\'altre dispositiu i obriu el missatge de configuració. Se us demanarà un codi de configuració. Introduïu els dígits següents a l\\'indicador:\n\n%1$@\n\nUn cop fet, l\\'altre dispositiu estarà llest per utilitzar Autocrypt.";
 "autocrypt_prefer_e2ee" = "Prefereix l\\'encriptació d\\'extrem a extrem";
 "autocrypt_asm_subject" = "Missatge de configuració Autocrypt";
 "autocrypt_asm_general_body" = "Aquest és el missatge de configuració Autocrypt que s’utilitza per transferir la vostra configuració d\\'extrem a extrem entre dispositius.\n\nPer desxifrar i utilitzar aquesta configuració, obriu el missatge en un dispositiu compatible amb Autocript i introduïu el codi de configuració que apareix al dispositiu primari.";
@@ -368,19 +368,19 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "Nom del grup \\\"%1$s\\\" canviat a \\\"%2$s\\\".";
+"systemmsg_group_name_changed" = "Nom del grup \\\"%1$@\\\" canviat a \\\"%2$@\\\".";
 "systemmsg_group_image_changed" = "Imatge de grup canviada.";
 "systemmsg_group_image_deleted" = "Imatge de grup eliminada.";
-"systemmsg_member_added" = "Membre %1$s afegit.";
-"systemmsg_member_removed" = "Membre %1$s eliminat.";
+"systemmsg_member_added" = "Membre %1$@ afegit.";
+"systemmsg_member_removed" = "Membre %1$@ eliminat.";
 "systemmsg_group_left" = "Deixa el grup.";
 "systemmsg_read_receipt_subject" = "Confirmació de lectura";
-"systemmsg_read_receipt_body" = "Confirmació de lectura del missatge \\\"%1$s\\\".\n\nVol dir que el missatge s\\'ha mostrat al dispositiu del receptor, no necessàriament que s\\'hagi llegit.";
+"systemmsg_read_receipt_body" = "Confirmació de lectura del missatge \\\"%1$@\\\".\n\nVol dir que el missatge s\\'ha mostrat al dispositiu del receptor, no necessàriament que s\\'hagi llegit.";
 "systemmsg_cannot_decrypt" = "Aquest missatge no es pot desxifrar.\n\n• Proveu de respondre\\'l i demanar-li al remitent que us el torni a enviar.\n\n• Si heu reinstal·lat Delta Chat o un altre gestor de correu en aquest dispositiu o en algun altre, proveu d\\'enviar un missatge de configuració Autocrypt des d\\'allà.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
-"systemmsg_action_by_me" = "%1$s per mi.";
+"systemmsg_action_by_me" = "%1$@ per mi.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
-"systemmsg_action_by_user" = "%1$s per %2$s.";
+"systemmsg_action_by_user" = "%1$@ per %2$@.";
 
 
 // screen lock
@@ -397,30 +397,30 @@
 // qr code stuff
 "qrscan_title" = "Escaneja codi QR";
 "qrscan_hint" = "Poseu la càmera davant del codi QR";
-"qrscan_ask_join_group" = "Voleu unir-vos al grup \\\"%1$s\\\"?";
-"qrscan_fingerprint_mismatch" = "L\\'empremta escanejada no coincideix amb l\\'última empremta de %1$s";
+"qrscan_ask_join_group" = "Voleu unir-vos al grup \\\"%1$@\\\"?";
+"qrscan_fingerprint_mismatch" = "L\\'empremta escanejada no coincideix amb l\\'última empremta de %1$@";
 "qrscan_no_addr_found" = "Aquest codi QR conté una empremta digital, però no hi ha cap adreça de correu electrònic.\n\nPer a una verificació fora de banda, establiu primer una connexió xifrada amb el destinatari.";
-"qrscan_contains_text" = "Text del codi QR escanejat:\n\n%1$s";
-"qrscan_contains_url" = "URL del codi QR escanejat:\n\n%1$s";
+"qrscan_contains_text" = "Text del codi QR escanejat:\n\n%1$@";
+"qrscan_contains_url" = "URL del codi QR escanejat:\n\n%1$@";
 "qrscan_fingerprint_label" = "Empremta";
-"qrscan_x_verified_introduce_myself" = "%1$s verificat, presentar-me …";
+"qrscan_x_verified_introduce_myself" = "%1$@ verificat, presentar-me …";
 "qrshow_title" = "Codi QR d\\'invitació";
-"qrshow_x_joining" = "%1$s s\\'uneix.";
-"qrshow_x_verified" = "%1$s verificat.";
-"qrshow_x_has_joined_group" = "%1$s s\\'ha unit al grup.";
+"qrshow_x_joining" = "%1$@ s\\'uneix.";
+"qrshow_x_verified" = "%1$@ verificat.";
+"qrshow_x_has_joined_group" = "%1$@ s\\'ha unit al grup.";
 "qrshow_join_group_title" = "Codi QR d\\'invitació";
-"qrshow_join_group_hint" = "Escanegeu això per unir-vos al grup \\\"%1$s\\\".";
+"qrshow_join_group_hint" = "Escanegeu això per unir-vos al grup \\\"%1$@\\\".";
 "qrshow_join_contact_title" = "Codi QR d\\'invitació";
-"qrshow_join_contact_hint" = "Escanegeu això per establir contacte amb %1$s";
-"contact_verified" = "%1$s verificat.";
-"contact_not_verified" = "No es pot verificar%1$s";
+"qrshow_join_contact_hint" = "Escanegeu això per establir contacte amb %1$@";
+"contact_verified" = "%1$@ verificat.";
+"contact_not_verified" = "No es pot verificar%1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
-"contact_setup_changed" = "Configuració canviada per %1$s";
+"contact_setup_changed" = "Configuració canviada per %1$@";
 
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d missatges nous en %2$d xats";
-"notify_most_recent_from" = "El més nou des de : %1$s";
+"notify_most_recent_from" = "El més nou des de : %1$@";
 "notify_media_message_with_text" = "Missatge multimèdia: %s";
 "notify_mark_all_read" = "Marca\\'ls tots com a llegits";
 "notify_mark_read" = "Marca\\'l com a llegit";
@@ -532,15 +532,15 @@
 
 // deprecated on android, please remove if unused on desktop
 // see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "Voleu unir-vos al grup \\\"%1$s\\\"?";
+"qrscan_ask_join_verified_group" = "Voleu unir-vos al grup \\\"%1$@\\\"?";
 // see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "Xatejar amb %1$s?";
+"qrscan_ask_fingerprint_ask_oob" = "Xatejar amb %1$@?";
 // see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "Xatejar amb %1$s?";
+"qrscan_ask_chatting_fingerprint_ok" = "Xatejar amb %1$@?";
 // see qrshow_join_group_title
 "qrshow_join_verified_group_title" = "Codi QR d\\'invitació";
 // see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "Escanegeu això per unir-vos al grup \\\"%1$s\\\".";
+"qrshow_join_verified_group_hint" = "Escanegeu això per unir-vos al grup \\\"%1$@\\\".";
 // see chat_all_archived
 "chat_all_done_hint" = "Zeeeeeroo missatges a la safata d\\'entrada";
 "chat_all_done_explain" = "Res, niente, ezer, nihil, rien de rien\nJa heu acabat!";

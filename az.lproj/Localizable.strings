@@ -17,11 +17,11 @@
 "done" = "Hazır";
 "undo" = "Geri qaytar";
 "error" = "Xəta";
-"error_x" = "Xəta: %1$s";
+"error_x" = "Xəta: %1$@";
 "error_no_network" = "Şəbəkə əlçatmazdır.";
 "no_app_to_handle_data" = "Bu tip məlumatları idarə etmək üçün bir tətbiq tapılmadı.";
 "no_browser_installed" = "Heç bir brauzer quraşdırılıb.";
-"file_not_found" = "Tapa bilmədim %1$s.";
+"file_not_found" = "Tapa bilmədim %1$@.";
 "copied_to_clipboard" = "Panoya kopyalandı.";
 "contacts_headline" = "Kontaktlar";
 "email_address" = "Email ünvanı";
@@ -147,15 +147,15 @@
 
 // get confirmations
 "ask_leave_group" = "Bu qrupu tərk etmək istədiyinizə əminsiniz?";
-"ask_forward" = "Mesajları yönləndirin %1$sə-?";
+"ask_forward" = "Mesajları yönləndirin %1$@ə-?";
 "ask_export_attachment" = "Faylı ixrac etmək? Faylların ixracı cihazınızdakı hər hansı digər tətbiqlərə daxil olmağa imkan verəcəkdir. \n\n Razısan?";
 "ask_block_contact" = "Bu kontaktı bloklamaq? Bu kontaktdan artıq mesaj qəbul etməyəcəksiniz.";
 "ask_unblock_contact" = "Bu kontaktı blokdan çıxarmaq istəyirsiniz? Nəticədə kontaktdan mesajlar ala bilərsiniz.";
 "ask_delete_contacts" = "Kontaktları silmək? Bu əməliyyat seçilmiş kontaktları daimi olaraq silməyəcək. \n\n Sistem kontakt kitabından davam edən söhbətlər və kontaktlar ilə əlaqə saxlanıla bilməz.";
 "cannot_delete_contacts_in_use" = "Davam edən çatlarla kontakt silinmir.";
-"ask_start_chat_with" = "%1$s ilə çat? ";
+"ask_start_chat_with" = "%1$@ ilə çat? ";
 // Translators: %1$s will be replaces by a comma separated list of names
-"ask_remove_members" = "%1$s qrupdan silmək? ";
+"ask_remove_members" = "%1$@ qrupdan silmək? ";
 "info_outdated_app_title" = "Sizin tətbiq versiyanız köhnəlmişdir.";
 "info_outdated_app_text" = "Göründüyü kimi, Delta Chat avtomatik yeniləmələr olmadan (məsələn, GitHub) bir mənbədən quraşdırılmışdır. Ən son xüsusiyyətləri əldə etmək üçün mağaza versiyasına keçin.";
 "info_outdated_app_dialog_title" = "Resursların yenilənməsi";
@@ -206,7 +206,7 @@
 "group_create_button" = "Qrup yarat";
 "group_please_enter_group_name" = "Xahiş edirik qrup üçün bir ad daxil et.";
 "group_add_members" = "Üzv elavə et";
-"group_hello_draft" = "Salam! Mən  bizim üçün \\\"%1$s\\\" qrup düzəltdim.";
+"group_hello_draft" = "Salam! Mən  bizim üçün \\\"%1$@\\\" qrup düzəltdim.";
 "group_self_not_in_group" = "Bunu etmək üçün qrupun üzvü olmalısan.";
 "profile_encryption" = "Şifrələmə";
 "profile_shared_chats" = "Çatlar göndərildi";
@@ -266,9 +266,9 @@
 "login_error_port" = "Xahiş edirik, düzgün bir port (1-65535) daxil et";
 "login_error_required_fields" = "Xahiş edirik düzgün bir e-poçt ünvanı və parol daxil et";
 "import_backup_title" = "Nüsxənin importu";
-"import_backup_ask" = "\\\"%1$s\\\" - də ehtiyat nüsxəsi tapıldı.\n\nİndi bütün məlumatları və parametrləri idxal etmək və istifadə etmək istəyirsiniz?";
+"import_backup_ask" = "\\\"%1$@\\\" - də ehtiyat nüsxəsi tapıldı.\n\nİndi bütün məlumatları və parametrləri idxal etmək və istifadə etmək istəyirsiniz?";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = " \\\"%1$s\\\" kimi giriş alınmadı. E-poçt ünvanı və parolun düzgün olub olmadığını yoxlayın.";
+"login_error_cannot_login" = " \\\"%1$@\\\" kimi giriş alınmadı. E-poçt ünvanı və parolun düzgün olub olmadığını yoxlayın.";
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "İrəli ...";
@@ -354,14 +354,14 @@
 "pref_backup_explain" = "Daxili yaddaşa mesaj nüsxəsi";
 "pref_backup_export_explain" = "Ehtiyat nüsxəsi bu və ya digər bir cihazda yeni bir quraşdırma qurmağa kömək edir. \n\nNüsxədə bütün mesajlar, kontaktlar, çatlar və son ucdan uca avtoşifrələmə quraşdırmaınız olacaq. Nüsxə faylını təhlükəsiz yerdə saxlayın və ya mümkün qədər tez silin.";
 "pref_backup_export_start_button" = "Nüsxəyə başla";
-"pref_backup_written_to_x" = "Ehtiyat nüsxə %1$s- ə uğurla yazılmışdır";
+"pref_backup_written_to_x" = "Ehtiyat nüsxə %1$@- ə uğurla yazılmışdır";
 "pref_managekeys_menu_title" = "Açar idarəetməsi";
 "pref_managekeys_ask_for_storage_permission" = "Delta Chat, faylları idxal / ixrac etmək üçün girişə ehtiyac duyur.";
 "pref_managekeys_export_secret_keys" = "Gizli açar ixracı";
-"pref_managekeys_export_explain" = " \\\"%1$s\\\" - ə gizli açar ixracı?";
+"pref_managekeys_export_explain" = " \\\"%1$@\\\" - ə gizli açar ixracı?";
 "pref_managekeys_import_secret_keys" = "Gizli açar idxalı";
-"pref_managekeys_secret_keys_exported_to_x" = "Ehtiyat nüsxə %1$s- ə uğurla yazılmışdır";
-"pref_managekeys_secret_keys_imported_from_x" = " \\\"%1$s\\\" - dən gizli açar idxalı?";
+"pref_managekeys_secret_keys_exported_to_x" = "Ehtiyat nüsxə %1$@- ə uğurla yazılmışdır";
+"pref_managekeys_secret_keys_imported_from_x" = " \\\"%1$@\\\" - dən gizli açar idxalı?";
 "pref_background" = "Fon";
 "pref_background_btn_default" = "Hal hazırdaki şəkili istifadə edin";
 "pref_background_btn_gallery" = "Fotoalbomdan götürün";
@@ -402,18 +402,18 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "Qrupun adı \\\"%1$s\\\" - dən \\\"%2$s\\\" - yə deyişildi.";
+"systemmsg_group_name_changed" = "Qrupun adı \\\"%1$@\\\" - dən \\\"%2$@\\\" - yə deyişildi.";
 "systemmsg_group_image_changed" = "Qrup şəkili dəyişildi. ";
 "systemmsg_group_image_deleted" = "Qrupun şəkili silindi. ";
-"systemmsg_member_added" = "Üzv %1$s əlavə olundu. ";
-"systemmsg_member_removed" = "%1$s üzv silindi. ";
+"systemmsg_member_added" = "Üzv %1$@ əlavə olundu. ";
+"systemmsg_member_removed" = "%1$@ üzv silindi. ";
 "systemmsg_group_left" = "Qrup buraxdı.";
 "systemmsg_read_receipt_subject" = "Qəbul olunanları oxuyun";
 "systemmsg_cannot_decrypt" = "Bu mesaj şifresi çözülə bilməz. \n\n • Bu mesaja yalnız cavab vermək və göndərənin mesajı yenidən göndərməsini xahiş edə bilər. \n\n • Bu barədə Delta Chat və ya başqa bir e-poçt proqramını yenidən quraşdırdığınız halda oradan Autocrypt Kurulum Mesajı göndərmək istədiyiniz başqa bir qurğudan istifadə edə bilərsiniz.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
-"systemmsg_action_by_me" = "%1$s məndən. ";
+"systemmsg_action_by_me" = "%1$@ məndən. ";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
-"systemmsg_action_by_user" = "%1$s ilə %2$s.";
+"systemmsg_action_by_user" = "%1$@ ilə %2$@.";
 
 
 // screen lock
@@ -430,32 +430,32 @@
 // qr code stuff
 "qrscan_title" = "Qr kodu skan edin";
 "qrscan_hint" = "QR kodu kamera ilə izləyin";
-"qrscan_ask_join_group" = "\\\"%1$s\\\" qrupa qoşulmaq istəyirsinizmi?";
-"qrscan_fingerprint_mismatch" = "%1$süçün skan olunan barmaq izi son görüldüyü barmaq izinə uyğun deyil";
+"qrscan_ask_join_group" = "\\\"%1$@\\\" qrupa qoşulmaq istəyirsinizmi?";
+"qrscan_fingerprint_mismatch" = "%1$@üçün skan olunan barmaq izi son görüldüyü barmaq izinə uyğun deyil";
 "qrscan_no_addr_found" = "QR kodu iz ehtiva edir, lakin heç bir e-poçt ünvanı yoxdur.\n\nƏlaqə qurmaq üçün əvvəlcə abonentlə şifrəli bir əlaqə qurun.";
-"qrscan_contains_text" = "QR kod mətni skan olundu:\n\n%1$s";
-"qrscan_contains_url" = "QR kod linki skan olundu:\n\n%1$s";
+"qrscan_contains_text" = "QR kod mətni skan olundu:\n\n%1$@";
+"qrscan_contains_url" = "QR kod linki skan olundu:\n\n%1$@";
 "qrscan_fingerprint_label" = "İz";
-"qrscan_x_verified_introduce_myself" = "%1$s təsdiqləndi, özümü təqdim edirəm …";
+"qrscan_x_verified_introduce_myself" = "%1$@ təsdiqləndi, özümü təqdim edirəm …";
 "qrshow_title" = "QR dəvət kodu";
-"qrshow_x_joining" = "%1$s qoşulur.";
-"qrshow_x_verified" = "%1$s yoxlanıldı.";
-"qrshow_x_has_joined_group" = "%1$s qrupa qoşuldu.";
+"qrshow_x_joining" = "%1$@ qoşulur.";
+"qrshow_x_verified" = "%1$@ yoxlanıldı.";
+"qrshow_x_has_joined_group" = "%1$@ qrupa qoşuldu.";
 "qrshow_join_group_title" = "Dəvət QR-kodu";
-"qrshow_join_group_hint" = " \\\"%1$s\\\" qrupuna qoşulmaq üçün bunu skan edin. ";
+"qrshow_join_group_hint" = " \\\"%1$@\\\" qrupuna qoşulmaq üçün bunu skan edin. ";
 "qrshow_join_contact_title" = "Dəvət QR-kodu";
-"qrshow_join_contact_hint" = "%1$silə əlaqə qurmaq üçün bunu skan edin";
+"qrshow_join_contact_hint" = "%1$@ilə əlaqə qurmaq üçün bunu skan edin";
 "qrshow_join_contact_no_connection_hint" = "Qr kodu quraşdırma İnternet bağlantısı tələb edir. Davam etməyinizdən əvvəl şəbəkəyə qoşulun.";
 "qrshow_join_contact_no_connection_toast" = "İnternet bağlantısı yoxdur, QR kodunu qura bilmir.";
-"contact_verified" = "%1$s yoxlanıldı.";
-"contact_not_verified" = "%1$sDoğrula bilmir";
+"contact_verified" = "%1$@ yoxlanıldı.";
+"contact_not_verified" = "%1$@Doğrula bilmir";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
-"contact_setup_changed" = "%1$süçün quraşdırma dəyişdirildi";
+"contact_setup_changed" = "%1$@üçün quraşdırma dəyişdirildi";
 
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d yeni mesaj %2$d çatda";
-"notify_most_recent_from" = "Ən son olanlar: %1$s";
+"notify_most_recent_from" = "Ən son olanlar: %1$@";
 "notify_media_message_with_text" = "Media messaj: %s";
 "notify_mark_all_read" = "Hamısını oxunmuş olaraq işarələ";
 "notify_mark_read" = "Oxuma işarəsi";
@@ -567,15 +567,15 @@
 
 // deprecated on android, please remove if unused on desktop
 // see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "\\\"%1$s\\\" qrupa qoşulmaq istəyirsinizmi?";
+"qrscan_ask_join_verified_group" = "\\\"%1$@\\\" qrupa qoşulmaq istəyirsinizmi?";
 // see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "%1$s ilə çat? ";
+"qrscan_ask_fingerprint_ask_oob" = "%1$@ ilə çat? ";
 // see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "%1$s ilə çat? ";
+"qrscan_ask_chatting_fingerprint_ok" = "%1$@ ilə çat? ";
 // see qrshow_join_group_title
 "qrshow_join_verified_group_title" = "Dəvət QR-kodu";
 // see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = " \\\"%1$s\\\" qrupuna qoşulmaq üçün bunu skan edin. ";
+"qrshow_join_verified_group_hint" = " \\\"%1$@\\\" qrupuna qoşulmaq üçün bunu skan edin. ";
 // see chat_all_archived
 "chat_all_done_hint" = "Gələnlər qutusu zeeerrro";
 "chat_all_done_explain" = "Zip. Zilch. Zero. Nada.\nHamınız tutuldunuz!";

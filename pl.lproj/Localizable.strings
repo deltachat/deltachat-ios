@@ -17,11 +17,11 @@
 "done" = "Gotowe";
 "undo" = "Cofnij";
 "error" = "Błąd";
-"error_x" = "Błąd: %1$s";
+"error_x" = "Błąd: %1$@";
 "error_no_network" = "Sieć niedostępna.";
 "no_app_to_handle_data" = "Nie można znaleźć aplikacji do obsługi tego typu danych.";
 "no_browser_installed" = "Nie zainstalowano przeglądarki.";
-"file_not_found" = "Nie znaleziono pliku %1$s.";
+"file_not_found" = "Nie znaleziono pliku %1$@.";
 "copied_to_clipboard" = "Skopiowano do schowka";
 "contacts_headline" = "Kontakty";
 "email_address" = "Adres e-mail";
@@ -133,12 +133,12 @@
 
 // get confirmations
 "ask_leave_group" = "Czy na pewno chcesz opuścić tą grupę?";
-"ask_forward" = "Przekazać wiadomości do użytkownika %1$s?";
+"ask_forward" = "Przekazać wiadomości do użytkownika %1$@?";
 "ask_export_attachment" = "Eksportować załącznik? Eksportowanie załączników umożliwi dostęp do nich wszystkim aplikacjom na urządzeniu.\n\nKontynuować?";
 "ask_block_contact" = "Zablokować ten kontakt? Nie będziesz już odbierać wiadomości od tego kontaktu.";
 "ask_unblock_contact" = "Odblokować ten kontakt? Ponownie będzie można odbierać wiadomości od tego kontaktu.";
 "ask_delete_contacts" = "Usunąć kontakty? Spowoduje to trwałe usunięcie wybranych kontaktów.\n\nKontaktów z trwającymi rozmowami i kontaktów z książki adresowej systemu nie można trwale usunąć.";
-"ask_start_chat_with" = "Czat z %1$s?";
+"ask_start_chat_with" = "Czat z %1$@?";
 // contact list
 "contacts_title" = "Kontakty";
 "contacts_enter_name_or_email" = "Podaj nazwę lub adres e-mail";
@@ -151,7 +151,7 @@
 "chat_please_enter_message" = "Napisz wiadomość.";
 "chat_camera_unavailable" = "Aparat niedostępny.";
 "chat_unable_to_record_audio" = "Nie można nagrać dźwięku.";
-"chat_no_messages_hint" = "Wyślij wiadomość do %1$s:\n\n• Nie ma problemu, jeśli %2$s nie używa Delta Chat.\n\n• Dostarczenie pierwszej wiadomości może chwilę potrwać i może być niezaszyfrowane.";
+"chat_no_messages_hint" = "Wyślij wiadomość do %1$@:\n\n• Nie ma problemu, jeśli %2$@ nie używa Delta Chat.\n\n• Dostarczenie pierwszej wiadomości może chwilę potrwać i może być niezaszyfrowane.";
 "chat_new_group_hint" = "Napisz pierwszą wiadomość, by inni mogli odpowiedzieć w tej grupie.\n\n• Nie ma problemu, jeśli nie wszyscy członkowie korzystają z Delta Chat.\n\n• Dostarczenie pierwszej wiadomości może chwilę potrwać.";
 "chat_record_slide_to_cancel" = "PRZESUŃ, BY ANULOWAĆ";
 "chat_record_explain" = "Dotknij i przytrzymaj, aby nagrać wiadomość głosową, zwolnij, aby wysłać";
@@ -172,7 +172,7 @@
 "group_create_button" = "Utwórz grupę";
 "group_please_enter_group_name" = "Podaj nazwę dla grupy";
 "group_add_members" = "Dodaj członków";
-"group_hello_draft" = "Witam, właśnie utworzyłem dla nas grupę \\\"%1$s\\\".";
+"group_hello_draft" = "Witam, właśnie utworzyłem dla nas grupę \\\"%1$@\\\".";
 "group_self_not_in_group" = "Musisz być członkiem grupy, aby wykonać tę czynność.";
 "profile_encryption" = "Szyfrowanie";
 "media_preview" = "Podgląd multimediów";
@@ -180,7 +180,7 @@
 
 // invite
 "invite_slogan" = "Przyjaciele nie pozwalają przyjaciołom zamknąć się w silosach komunikacyjnych.";
-"invite_default_text" = "Przejdźmy na Delta Chat - %1$s - możesz pisać do mnie na %2$s";
+"invite_default_text" = "Przejdźmy na Delta Chat - %1$@ - możesz pisać do mnie na %2$@";
 
 
 // welcome and login
@@ -222,12 +222,12 @@
 "login_error_port" = "Podaj poprawny numer portu (1–65535)";
 "login_error_required_fields" = "Podaj ważny adres e-mail i hasło";
 "import_backup_title" = "Import kopii zapasowej";
-"import_backup_ask" = "Delta Chat znalazł kopię zapasową w katalogu „%1$s.\n\nCzy chcesz zaimportować i używać wszystkich danych i ustawień z tej kopii zapasowej?";
-"import_backup_no_backup_found" = "Nie znaleziono kopii zapasowej.\n\nSkopiuj kopię zapasową do katalogu „%1$s i spróbuj ponownie. Alternatywnie dotknij \\\"Uruchom komunikator\\\", aby rozpocząć normalny proces instalacji.";
+"import_backup_ask" = "Delta Chat znalazł kopię zapasową w katalogu „%1$@.\n\nCzy chcesz zaimportować i używać wszystkich danych i ustawień z tej kopii zapasowej?";
+"import_backup_no_backup_found" = "Nie znaleziono kopii zapasowej.\n\nSkopiuj kopię zapasową do katalogu „%1$@ i spróbuj ponownie. Alternatywnie dotknij \\\"Uruchom komunikator\\\", aby rozpocząć normalny proces instalacji.";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = "Nie można się zalogować jako „%1$s. Sprawdź, czy adres e-mail i hasło są poprawne.";
+"login_error_cannot_login" = "Nie można się zalogować jako „%1$@. Sprawdź, czy adres e-mail i hasło są poprawne.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Odpowiedź od %1$s: %2$s\n\nNiektórzy dostawcy umieszczają w skrzynce odbiorczej dodatkowe informacje, które można sprawdzić np. na stronie internetowej. W przypadku wystąpienia problemów należy skonsultować się z dostawcą lub znajomymi.";
+"login_error_server_response" = "Odpowiedź od %1$@: %2$@\n\nNiektórzy dostawcy umieszczają w skrzynce odbiorczej dodatkowe informacje, które można sprawdzić np. na stronie internetowej. W przypadku wystąpienia problemów należy skonsultować się z dostawcą lub znajomymi.";
 
 
 // share and forward messages
@@ -296,15 +296,15 @@
 "pref_backup_explain" = "Wykonaj kopię zapasową czatów na pamięci zewnętrznej";
 "pref_backup_export_explain" = "Kopia zapasowa pomaga skonfigurować nową instalację na tym lub na innym urządzeniu.\n\nKopia zapasowa będzie zawierała wszystkie wiadomości, kontakty i czaty oraz pełną konfigurację automatycznego szyfrowania (Autocrypt). Przechowuj plik kopii zapasowej w bezpiecznym miejscu lub usuń go jak najszybciej.";
 "pref_backup_export_start_button" = "Utwórz";
-"pref_backup_written_to_x" = "Kopia zapasowa została pomyślnie zapisana do %1$s";
+"pref_backup_written_to_x" = "Kopia zapasowa została pomyślnie zapisana do %1$@";
 "pref_managekeys_menu_title" = "Zarządzaj prywatnymi kluczami";
 "pref_managekeys_ask_for_storage_permission" = "Aby zaimportować/wyeksportować klucze Delta Chat musi mieć dostęp do twoich plików.";
 "pref_managekeys_export_secret_keys" = "Eksportuj prywatne klucze";
-"pref_managekeys_export_explain" = "Wyeksportować prywatne klucze do „%1$s”?";
+"pref_managekeys_export_explain" = "Wyeksportować prywatne klucze do „%1$@”?";
 "pref_managekeys_import_secret_keys" = "Importuj prywatne klucze";
-"pref_managekeys_import_explain" = "Zaimportować prywatne klucze z „%1$s”?\n\n• Istniejące prywatne klucze nie są usuwane\n\n• Ostatni zaimportowany klucz zostanie użyty jako nowy klucz domyślny, chyba że w nazwie pliku znajduje się słowo legacy”.";
-"pref_managekeys_secret_keys_exported_to_x" = "Prywatne klucze zapisano pomyślnie do „%1$s”.";
-"pref_managekeys_secret_keys_imported_from_x" = "Prywatne klucze zaimportowano z „%1$s”.";
+"pref_managekeys_import_explain" = "Zaimportować prywatne klucze z „%1$@”?\n\n• Istniejące prywatne klucze nie są usuwane\n\n• Ostatni zaimportowany klucz zostanie użyty jako nowy klucz domyślny, chyba że w nazwie pliku znajduje się słowo legacy”.";
+"pref_managekeys_secret_keys_exported_to_x" = "Prywatne klucze zapisano pomyślnie do „%1$@”.";
+"pref_managekeys_secret_keys_imported_from_x" = "Prywatne klucze zaimportowano z „%1$@”.";
 "pref_background" = "Tło";
 "pref_imap_folder_handling" = "Obsługa folderów IMAP";
 "pref_watch_inbox_folder" = "Oglądaj katalog Skrzynka odbiorcza";
@@ -322,7 +322,7 @@
 "autocrypt_send_asm_title" = "Wyślij wiadomość konfiguracyjną Autocrypt";
 "autocrypt_send_asm_explain_before" = "Wiadomość konfiguracyjna automatycznego szyfrowania” bezpiecznie udostępnia twoją konfigurację end-to-end innym aplikacjom zgodnym z Autocrypt. Klucz zostanie zaszyfrowany za pomocą wyświetlonego tutaj kodu konfiguracyjnego, który należy wpisać na drugim urządzeniu.";
 "autocrypt_send_asm_button" = "Wyślij wiadomość konfiguracyjną Autocrypt";
-"autocrypt_send_asm_explain_after" = "Klucz został wysłany do ciebie. Przejdź do innego urządzenia i otwórz wiadomość konfiguracyjną. Zostanie wyświetlona prośba o podanie kodu konfiguracyjnego. Wpisz następujące cyfry w podpowiedzi:\n\n%1$s\n\nGdy skończysz, drugie urządzenie będzie gotowe do użycia funkcji automatycznego szyfrowania.";
+"autocrypt_send_asm_explain_after" = "Klucz został wysłany do ciebie. Przejdź do innego urządzenia i otwórz wiadomość konfiguracyjną. Zostanie wyświetlona prośba o podanie kodu konfiguracyjnego. Wpisz następujące cyfry w podpowiedzi:\n\n%1$@\n\nGdy skończysz, drugie urządzenie będzie gotowe do użycia funkcji automatycznego szyfrowania.";
 "autocrypt_prefer_e2ee" = "Preferuj pełne szyfrowanie";
 "autocrypt_asm_subject" = "Wiadomość konfiguracyjna automatycznego szyfrowania";
 "autocrypt_asm_general_body" = "Jest to wiadomość konfiguracyjna automatycznego szyfrowania służąca do przesyłania klucza między klientami.\n\nAby odszyfrować i użyć klucza, otwórz wiadomość w kliencie zgodnym z automatycznym szyfrowaniem i wprowadź kod konfiguracyjny przedstawiony na urządzeniu generującym.";
@@ -335,19 +335,19 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "Zmieniono nazwę grupy z \\\"%1$s\\\" na \\\"%2$s\\\".";
+"systemmsg_group_name_changed" = "Zmieniono nazwę grupy z \\\"%1$@\\\" na \\\"%2$@\\\".";
 "systemmsg_group_image_changed" = "Zmieniono obraz grupy.";
 "systemmsg_group_image_deleted" = "Usunięto obraz grupy.";
-"systemmsg_member_added" = "Dodano członka %1$s";
-"systemmsg_member_removed" = "Usunięto członka %1$s";
+"systemmsg_member_added" = "Dodano członka %1$@";
+"systemmsg_member_removed" = "Usunięto członka %1$@";
 "systemmsg_group_left" = "Grupa opuszczona.";
 "systemmsg_read_receipt_subject" = "Potwierdzenie odczytu";
-"systemmsg_read_receipt_body" = "To jest potwierdzenie odczytu dla wiadomości ”%1$s„.\n\nTo potwierdzenie odczytu tylko informuje, że wiadomość została wyświetlona na urządzeniu odbiorcy. Nie ma gwarancji, że odbiorca przeczytał treść wiadomości.";
+"systemmsg_read_receipt_body" = "To jest potwierdzenie odczytu dla wiadomości ”%1$@„.\n\nTo potwierdzenie odczytu tylko informuje, że wiadomość została wyświetlona na urządzeniu odbiorcy. Nie ma gwarancji, że odbiorca przeczytał treść wiadomości.";
 "systemmsg_cannot_decrypt" = "Tej wiadomości nie można odszyfrować.\n\n• Możesz teraz pomóc odpowiadając po prostu na tą wiadomość i poprosić nadawcę o ponowne wysłanie wiadomości.\n\n• W przypadku ponownego zainstalowania Delta Chat lub innego programu mailowego na tym lub innym urządzeniu, może być konieczne wysłanie stąd klucza automatycznego szyfrowania.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
-"systemmsg_action_by_me" = "%1$s przeze mnie.";
+"systemmsg_action_by_me" = "%1$@ przeze mnie.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
-"systemmsg_action_by_user" = "%1$s przez %2$s.";
+"systemmsg_action_by_user" = "%1$@ przez %2$@.";
 
 
 // screen lock
@@ -363,23 +363,23 @@
 // qr code stuff
 "qrscan_title" = "Skanuj kod QR";
 "qrscan_hint" = "Umieść aparat nad kodem QR";
-"qrscan_ask_join_group" = "Czy chcesz dołączyć do grupy „%1$s?";
-"qrscan_fingerprint_mismatch" = "Zeskanowany odcisk palca nie pasuje do odcisku palca ostatnio widzianego u %1$s";
+"qrscan_ask_join_group" = "Czy chcesz dołączyć do grupy „%1$@?";
+"qrscan_fingerprint_mismatch" = "Zeskanowany odcisk palca nie pasuje do odcisku palca ostatnio widzianego u %1$@";
 "qrscan_no_addr_found" = "Ten kod QR zawiera odcisk palca, ale nie zawiera adresu e-mail.\n\nW celu weryfikacji poza zasadniczym pasmem należy najpierw nawiązać szyfrowane połączenie z odbiorcą.";
-"qrscan_contains_text" = "Zeskanowany kod QR zawiera następujący tekst:\n\n%1$s";
-"qrscan_contains_url" = "Zeskanowany kod QR zawiera następujący adres:\n\n%1$s";
+"qrscan_contains_text" = "Zeskanowany kod QR zawiera następujący tekst:\n\n%1$@";
+"qrscan_contains_url" = "Zeskanowany kod QR zawiera następujący adres:\n\n%1$@";
 "qrscan_fingerprint_label" = "Odciski palca";
-"qrscan_x_verified_introduce_myself" = "Zweryfikowano %1$s, przedstaw się…";
+"qrscan_x_verified_introduce_myself" = "Zweryfikowano %1$@, przedstaw się…";
 "qrshow_title" = "Kod QR zaproszenia";
-"qrshow_x_joining" = "%1$s dołącza.";
-"qrshow_x_verified" = "Zweryfikowano %1$s";
-"qrshow_x_has_joined_group" = "Użytkownik %1$s dołączył do grupy. ";
+"qrshow_x_joining" = "%1$@ dołącza.";
+"qrshow_x_verified" = "Zweryfikowano %1$@";
+"qrshow_x_has_joined_group" = "Użytkownik %1$@ dołączył do grupy. ";
 "qrshow_join_group_title" = "Kod QR zaproszenia";
-"qrshow_join_group_hint" = "Zeskanuj to, aby dołączyć do grupy „%1$s”.";
+"qrshow_join_group_hint" = "Zeskanuj to, aby dołączyć do grupy „%1$@”.";
 "qrshow_join_contact_title" = "Kod QR zaproszenia";
-"qrshow_join_contact_hint" = "Zeskanuj to w celu skonfigurowania kontaktu z %1$s";
-"contact_verified" = "Kontakt %1$s zweryfikowany.";
-"notify_most_recent_from" = "Najnowsze z: %1$s";
+"qrshow_join_contact_hint" = "Zeskanuj to w celu skonfigurowania kontaktu z %1$@";
+"contact_verified" = "Kontakt %1$@ zweryfikowany.";
+"notify_most_recent_from" = "Najnowsze z: %1$@";
 "notify_media_message_with_text" = "Wiadomość multimedialna: %s";
 "notify_mark_all_read" = "Oznacz wszystkie jako przeczytane";
 "notify_mark_read" = "Oznacz jako przeczytane";
@@ -469,11 +469,11 @@
 "message_detail_to_desktop" = "do";
 // deprecated on android, please remove if unused on desktop
 // see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "Czy chcesz dołączyć do grupy „%1$s?";
+"qrscan_ask_join_verified_group" = "Czy chcesz dołączyć do grupy „%1$@?";
 // see qrshow_join_group_title
 "qrshow_join_verified_group_title" = "Kod QR zaproszenia";
 // see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "Zeskanuj to, aby dołączyć do grupy „%1$s”.";
+"qrshow_join_verified_group_hint" = "Zeskanuj to, aby dołączyć do grupy „%1$@”.";
 // see chat_all_archived
 "chat_all_done_hint" = "Skrzynka odbiorcza zeeerrro";
 "chat_all_done_explain" = "Zip. Zilch. Zero. Nada.\nWszyscy jesteście złapani!";

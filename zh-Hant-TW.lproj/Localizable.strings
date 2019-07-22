@@ -17,11 +17,11 @@
 "done" = "完成";
 "undo" = "復原";
 "error" = "錯誤";
-"error_x" = "錯誤: %1$s";
+"error_x" = "錯誤: %1$@";
 "error_no_network" = "網路無法連線";
 "no_app_to_handle_data" = "沒有可以處理這種資料的應用程式";
 "no_browser_installed" = "沒有安裝瀏覽器";
-"file_not_found" = "找不到 %1$s";
+"file_not_found" = "找不到 %1$@";
 "copied_to_clipboard" = "已複製至剪貼簿";
 "contacts_headline" = "聯絡人";
 "email_address" = "電子郵件信箱";
@@ -146,15 +146,15 @@
 
 // get confirmations
 "ask_leave_group" = "確定要離開本群組？";
-"ask_forward" = "轉發訊息給%1$s？";
+"ask_forward" = "轉發訊息給%1$@？";
 "ask_export_attachment" = "要匯出附件嗎？匯出的附件可以用裝置上的其它 App 打開。\n\n繼續？";
 "ask_block_contact" = "要封鎖這個人嗎？你之後不會再收到這個人的訊息。";
 "ask_unblock_contact" = "要解除封鎖嗎？你之後可以繼續收到這個人的訊息。";
 "ask_delete_contacts" = "要刪除聯絡人嗎？選定的聯絡人將被永久刪除。\n\n正在進行對話的聯絡人、以及系統通訊錄中的聯絡人，無法被永久刪除。";
 "cannot_delete_contacts_in_use" = "正在對話的聯絡人不能刪除。";
-"ask_start_chat_with" = "要和%1$s開始對話嗎？";
+"ask_start_chat_with" = "要和%1$@開始對話嗎？";
 // Translators: %1$s will be replaces by a comma separated list of names
-"ask_remove_members" = "要把%1$s移出群組嗎？";
+"ask_remove_members" = "要把%1$@移出群組嗎？";
 "info_outdated_app_title" = "你的app太舊了。";
 "info_outdated_app_text" = "你似乎從原始碼(如 GitHub)安裝了 Delta Chat。建議使用各種商店的版本，以獲得最新功能、錯誤修正、以及自動更新。";
 "info_outdated_app_dialog_text" = "Delta Chat 可以在以下地方下載:";
@@ -172,7 +172,7 @@
 "chat_please_enter_message" = "請輸入訊息";
 "chat_camera_unavailable" = "無法開啟鏡頭";
 "chat_unable_to_record_audio" = "無法錄音";
-"chat_no_messages_hint" = "傳送訊息給%1$s:\n\n• 即使%2$s沒有使用 Delta Chat 也沒關係\n\n• 傳送的第一個訊息可能要一點時間，而且可能沒有加密";
+"chat_no_messages_hint" = "傳送訊息給%1$@:\n\n• 即使%2$@沒有使用 Delta Chat 也沒關係\n\n• 傳送的第一個訊息可能要一點時間，而且可能沒有加密";
 "chat_new_group_hint" = "請傳送第一條訊息，以便其它人在群組內回覆\n\n• 即使群組內有些人沒使用 Delta Chat 也沒關係(請注意在他們那端可能沒加密)\n\n• 傳送第一條訊息需要花一點時間。";
 "chat_record_slide_to_cancel" = "滑動以取消";
 "chat_record_explain" = "按住不放錄音，放開後傳送";
@@ -205,7 +205,7 @@
 "group_create_button" = "建立群組";
 "group_please_enter_group_name" = "請輸入群組的名稱";
 "group_add_members" = "新增成員";
-"group_hello_draft" = "嗨! 我剛建立了 %1$s 群組";
+"group_hello_draft" = "嗨! 我剛建立了 %1$@ 群組";
 "group_self_not_in_group" = "你必須先加入群組，才能執行本功能。";
 "profile_encryption" = "加密";
 "profile_shared_chats" = "共享的對話";
@@ -223,7 +223,7 @@
 
 // invite
 "invite_slogan" = "友情不應該被訊息的孤島分隔。";
-"invite_default_text" = "一起來用 Delta Chat 吧! %1$s -- 你可以傳訊息到 %2$s 給我";
+"invite_default_text" = "一起來用 Delta Chat 吧! %1$@ -- 你可以傳訊息到 %2$@ 給我";
 
 
 // welcome and login
@@ -268,12 +268,12 @@
 "login_error_port" = "請輸入合法的埠號 (1-65535)";
 "login_error_required_fields" = "請輸入合法的 email 地址和密碼";
 "import_backup_title" = "匯入備份";
-"import_backup_ask" = "在 %1$s 找到備份\n\n你要匯入備份，並使用原來的資料和設定嗎?";
-"import_backup_no_backup_found" = "找不到備份\n\n請把備份複製到 %1$s 然後再試一次，或是按「開始傳送訊息」進行標準設定。";
+"import_backup_ask" = "在 %1$@ 找到備份\n\n你要匯入備份，並使用原來的資料和設定嗎?";
+"import_backup_no_backup_found" = "找不到備份\n\n請把備份複製到 %1$@ 然後再試一次，或是按「開始傳送訊息」進行標準設定。";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = "無法登入 %1$s。請確定 email 帳號和密碼是否正確。 ";
+"login_error_cannot_login" = "無法登入 %1$@。請確定 email 帳號和密碼是否正確。 ";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "伺服器 %1$s 的回應: %2$s\n\n有些郵件服務商會在你的收件匣提供進一步的資訊，請檢查一下，並看看 web 介面上有沒有相關設定。還是不行的話，請洽詢郵件服務商，或是請朋友幫忙。";
+"login_error_server_response" = "伺服器 %1$@ 的回應: %2$@\n\n有些郵件服務商會在你的收件匣提供進一步的資訊，請檢查一下，並看看 web 介面上有沒有相關設定。還是不行的話，請洽詢郵件服務商，或是請朋友幫忙。";
 
 
 // share and forward messages
@@ -359,15 +359,15 @@
 "pref_backup_explain" = "將備份另存至外部儲存媒體";
 "pref_backup_export_explain" = "備份可以讓你把設定及對話紀錄轉移到這台或其它裝置上。\n\n備份內容包括所有的訊息、聯絡人、對話、端到端AutoCrypt設定。請務必將備份檔存放在安全的地方，並在轉移後儘快刪除。";
 "pref_backup_export_start_button" = "開始備份";
-"pref_backup_written_to_x" = "成功備份至 %1$s";
+"pref_backup_written_to_x" = "成功備份至 %1$@";
 "pref_managekeys_menu_title" = "管理金鑰";
 "pref_managekeys_ask_for_storage_permission" = "Delta Chat 需要存取檔案權限，以便匯入/匯出金鑰。";
 "pref_managekeys_export_secret_keys" = "匯出金鑰";
-"pref_managekeys_export_explain" = "將金鑰匯出至 %1$s ?";
+"pref_managekeys_export_explain" = "將金鑰匯出至 %1$@ ?";
 "pref_managekeys_import_secret_keys" = "匯入金鑰";
-"pref_managekeys_import_explain" = "從 %1$s 匯入金鑰?\n\n• 現存的金鑰不會被刪除\n\n• 最後一筆匯入的金鑰將被設為預設的加密金鑰，除非它的檔名內包含 legacy 字樣";
-"pref_managekeys_secret_keys_exported_to_x" = "成功匯出金鑰至 %1$s。";
-"pref_managekeys_secret_keys_imported_from_x" = "成功自 %1$s 匯入金鑰。";
+"pref_managekeys_import_explain" = "從 %1$@ 匯入金鑰?\n\n• 現存的金鑰不會被刪除\n\n• 最後一筆匯入的金鑰將被設為預設的加密金鑰，除非它的檔名內包含 legacy 字樣";
+"pref_managekeys_secret_keys_exported_to_x" = "成功匯出金鑰至 %1$@。";
+"pref_managekeys_secret_keys_imported_from_x" = "成功自 %1$@ 匯入金鑰。";
 "pref_background" = "背景";
 "pref_background_btn_default" = "使用預設圖案";
 "pref_background_btn_gallery" = "從相簿中挑選";
@@ -389,7 +389,7 @@
 "autocrypt_send_asm_title" = "傳送AutoCrypt設定訊息";
 "autocrypt_send_asm_explain_before" = "「AutoCrypt設定訊息」可以安全地和你使用的其它支援AutoCrypt的 app 共享端到端加密設定。\n\n本訊息含一組設定碼，請在其它支援的設備中輸入這組設定碼。";
 "autocrypt_send_asm_button" = "傳送AutoCrypt設定訊息";
-"autocrypt_send_asm_explain_after" = "你的設定已經傳送給你自己了。請到其它支援自動加密設定的裝置，開啟設定訊息，並輸入以下的設定碼:\n\n%1$s\n\n輸入完之後，你的其它裝置就可以使用AutoCrypt了。";
+"autocrypt_send_asm_explain_after" = "你的設定已經傳送給你自己了。請到其它支援自動加密設定的裝置，開啟設定訊息，並輸入以下的設定碼:\n\n%1$@\n\n輸入完之後，你的其它裝置就可以使用AutoCrypt了。";
 "autocrypt_prefer_e2ee" = "偏好端到端加密";
 "autocrypt_asm_subject" = "Autocrypt Setup Message";
 "autocrypt_asm_general_body" = "本信件包含AutoCrypt設定訊息。\n\n請使用其它裝置上支援AutoCrypt設定的應用程式開啟本訊息，並輸入設定碼，以便匯入自動加密設定。";
@@ -402,19 +402,19 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "群組名稱已從 %1$s 更改為 %2$s";
+"systemmsg_group_name_changed" = "群組名稱已從 %1$@ 更改為 %2$@";
 "systemmsg_group_image_changed" = "已更改群組圖片。";
 "systemmsg_group_image_deleted" = "已刪除群組圖片。";
-"systemmsg_member_added" = "已新增成員 %1$s";
-"systemmsg_member_removed" = "已移除成員 %1$s";
+"systemmsg_member_added" = "已新增成員 %1$@";
+"systemmsg_member_removed" = "已移除成員 %1$@";
 "systemmsg_group_left" = "已退出群組。";
 "systemmsg_read_receipt_subject" = "收執回條";
-"systemmsg_read_receipt_body" = "這是訊息 %1$s 的收執回條，表示本訊息已經顯示在收件人的裝置上了，但不代表收件人已讀。";
+"systemmsg_read_receipt_body" = "這是訊息 %1$@ 的收執回條，表示本訊息已經顯示在收件人的裝置上了，但不代表收件人已讀。";
 "systemmsg_cannot_decrypt" = "本訊息無法解密。\n\n請試著回覆本訊息，並請發送者重發一遍。\n\n如果你曾經在本裝置或其它裝置重新安裝 Delta Chat 或其它郵件軟體的話，請重新發送AutoCrypt設定訊息。";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
-"systemmsg_action_by_me" = "我%1$s";
+"systemmsg_action_by_me" = "我%1$@";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
-"systemmsg_action_by_user" = "%2$s%1$s";
+"systemmsg_action_by_user" = "%2$@%1$@";
 
 
 // screen lock
@@ -431,8 +431,8 @@
 // qr code stuff
 "qrscan_title" = "掃描QR Code";
 "qrscan_hint" = "請將相機對準 QR Code";
-"qrscan_ask_join_group" = "你要參加群組 %1$s 嗎?";
-"qrshow_join_contact_hint" = "掃描 QRCode 以新增 %1$s";
+"qrscan_ask_join_group" = "你要參加群組 %1$@ 嗎?";
+"qrshow_join_contact_hint" = "掃描 QRCode 以新增 %1$@";
 "contact_detail_title_desktop" = "聯絡人詳細資料";
 "contact_request_title_desktop" = "聯絡請求";
 "no_archived_chats_desktop" = "沒有封存的對話";
