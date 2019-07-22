@@ -33,12 +33,13 @@ tx pull --all --source
 cd ..
 for (( i=0; i<${#IOS_TRANSLATIONS[@]}; i++ )) {
     LANG_DIR=`echo ${IOS_TRANSLATIONS[i]} | cut -d "." -f2 | cut -c 2-`
-    echo "convertTranslations: $TMP_ANDROID_TRANSLATIONS/$LANG_DIR/strings.xml -> ${IOS_TRANSLATIONS[i]}"
+#    echo "convertTranslations: $TMP_ANDROID_TRANSLATIONS/$LANG_DIR/strings.xml -> ${IOS_TRANSLATIONS[i]}"
+    OUTPUT_DIR=`echo ${IOS_TRANSLATIONS[i]} | sed 's/\/Localizable.strings//g'`
     if [[ $LANG_DIR == "en" && -f untranslated.xml ]] 
     then
-        node convertTranslations.js $TMP_ANDROID_TRANSLATIONS/$LANG_DIR/strings.xml untranslated.xml ${IOS_TRANSLATIONS[i]}
+        node convertTranslations.js $TMP_ANDROID_TRANSLATIONS/$LANG_DIR/strings.xml untranslated.xml ${OUTPUT_DIR}
     else 
-        node convertTranslations.js $TMP_ANDROID_TRANSLATIONS/$LANG_DIR/strings.xml ${IOS_TRANSLATIONS[i]}
+        node convertTranslations.js $TMP_ANDROID_TRANSLATIONS/$LANG_DIR/strings.xml ${OUTPUT_DIR}
     fi
 }
 
