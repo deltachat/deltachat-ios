@@ -262,7 +262,9 @@ class AccountSetupCoordinator: Coordinator {
     func showImapSecurityOptions() {
         let currentSecurityOption = DCConfig.getImapSecurity()
         let convertedOption = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: currentSecurityOption)
-        let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"), options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"], selectedOption: convertedOption)
+        let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
+																	options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
+																	selectedOption: convertedOption)
         securitySettingsController.onDismiss = {
             option in
             if let secValue = SecurityValue(rawValue: option) {
@@ -287,7 +289,9 @@ class AccountSetupCoordinator: Coordinator {
     func showSmptpSecurityOptions() {
         let currentSecurityOption = DCConfig.getSmtpSecurity()
         let convertedOption = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: currentSecurityOption)
-        let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"), options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"], selectedOption: convertedOption)
+        let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
+																	options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
+																	selectedOption: convertedOption)
         securitySettingsController.onDismiss = {
             option in
             if let secValue = SecurityValue(rawValue: option) {
