@@ -1,0 +1,628 @@
+// common strings without special context
+"app_name" = "Delta Chat";
+"ok" = "Oké";
+"cancel" = "Annuleren";
+"yes" = "Ja";
+"no" = "Nee";
+"on" = "Aan";
+"off" = "Uit";
+"def" = "Standaard";
+"custom" = "Aangepast";
+"none" = "Geen";
+"open" = "Openen";
+"delete" = "Verwijderen";
+"not_now" = "Niet nu";
+"never" = "Nooit";
+"one_moment" = "Even geduld...";
+"done" = "Klaar";
+"undo" = "Ongedaan maken";
+"error" = "Fout";
+"error_x" = "Fout: %1$s";
+"error_no_network" = "Geen internetverbinding.";
+"no_app_to_handle_data" = "Je hebt geen app die deze inhoud kan openen.";
+"no_browser_installed" = "Geen webbrowser geïnstalleerd.";
+"file_not_found" = "Kan %1$s niet vinden.";
+"copied_to_clipboard" = "Gekopieerd naar klembord.";
+"contacts_headline" = "Contactpersonen";
+"email_address" = "E-mailadres";
+"bad_email_address" = "Ongeldig e-mailadres.";
+"password" = "Wachtwoord";
+"now" = "Nu";
+// n_min_ago is deprecated, use n_minutes instead
+"n_min_ago" = "%d min";
+"today" = "Vandaag";
+"yesterday" = "Gisteren";
+"this_week" = "Deze week";
+"this_month" = "Deze maand";
+"last_week" = "Vorige week";
+"last_month" = "Vorige maand";
+// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
+// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
+"self" = "Ik";
+"draft" = "Concept";
+"image" = "Afbeelding";
+"gif" = "GIF";
+"images" = "Afbeeldingen";
+"audio" = "Audio";
+"voice_message" = "Spraakbericht";
+"forwarded_message" = "Bericht doorgestuurd";
+"video" = "Video";
+"documents" = "Documenten";
+"contact" = "Contactpersoon";
+"verified_contact" = "Goedgekeurd contactpersoon";
+"camera" = "Camera";
+"location" = "Locatie";
+"gallery" = "Galerij";
+"file" = "Bestand";
+"unknown" = "Onbekend";
+
+"green" = "Groen";
+"red" = "Rood";
+"blue" = "Blauw";
+"orange" = "Oranje";
+"cyan" = "Groenblauw";
+"purple" = "Paars";
+"magenta" = "Magenta";
+"white" = "Wit";
+
+"small" = "Klein";
+"normal" = "Normaal";
+"large" = "Groot";
+"extra_large" = "Extra groot";
+
+"fast" = "Snel";
+"slow" = "Langzaam";
+
+"message_delivered" = "Bericht afgeleverd";
+"message_read" = "Bericht gelezen";
+
+
+// menu labels (or icon, buttons...)
+"menu_new_contact" = "Nieuw contactpersoon";
+"menu_new_chat" = "Nieuw gesprek";
+"menu_new_group" = "Nieuwe groep";
+"menu_new_verified_group" = "Nieuwe goedgekeurde groep (experimenteel)";
+"menu_send" = "Versturen";
+"menu_toggle_keyboard" = "Emoji-toetsenbord tonen/verbergen";
+"menu_edit_group" = "Groep aanpassen";
+"menu_group_name_and_image" = "Groepsnaam en -afbeelding";
+"menu_show_map" = "Kaart tonen";
+"menu_show_global_map" = "Alle locaties tonen";
+"menu_archive_chat" = "Gesprek archiveren";
+"menu_unarchive_chat" = "Gesprek de-archiveren";
+"menu_add_attachment" = "Bijlage toevoegen";
+"menu_leave_group" = "Groep verlaten";
+"menu_delete_chat" = "Gesprek verwijderen";
+"menu_delete_messages" = "Berichten verwijderen";
+"menu_delete_image" = "Afbeelding verwijderen";
+"menu_delete_locations" = "Wil je alle locaties verwijderen?";
+"menu_delete_location" = "Wil je deze locatie verwijderen?";
+"menu_message_details" = "Berichtinformatie";
+"menu_copy_to_clipboard" = "Kopiëren naar klembord";
+"menu_forward" = "Bericht doorsturen";
+"menu_resend" = "Bericht opnieuw versturen";
+"menu_reply" = "Bericht beantwoorden";
+"menu_mute" = "Meldingen uitschakelen";
+"menu_unmute" = "Meldingen inschakelen";
+"menu_export_attachment" = "Bijlage exporteren";
+"menu_all_media" = "Alle media";
+"menu_share" = "Delen";
+"menu_block_contact" = "Contactpersoon blokkeren";
+"menu_unblock_contact" = "Contactpersoon deblokkeren";
+"menu_play" = "Afspelen";
+"menu_pause" = "Pauzeren";
+"menu_scroll_to_bottom" = "Ga naar het einde";
+"menu_scroll_to_top" = "Ga naar het begin";
+"menu_invite" = "Vrienden uitnodigen";
+"menu_help" = "Hulp";
+"menu_select_all" = "Alles selecteren";
+"menu_expand" = "Uitvouwen";
+"menu_edit_name" = "Naam wijzigen";
+"menu_edit_group_name" = "Groepsnaam wijzigen";
+"menu_edit_group_image" = "Groepsafbeelding wijzigen";
+"menu_settings" = "Instellingen";
+"menu_advanced" = "Geavanceerd";
+"menu_deaddrop" = "Contactpersoonverzoeken";
+"menu_deaddrop_subtitle" = "Druk op een bericht om een gesprek te beginnen";
+"menu_view_profile" = "Profiel bekijken";
+"menu_zoom_in" = "Inzoomen";
+"menu_zoom_out" = "Uitzoomen";
+"menu_save_log" = "Logboek opslaan";
+"title_share_location" = "Locatie delen met alle groepsleden";
+
+"mute_for_one_hour" = "1 uur lang uitschakelen";
+"mute_for_two_hours" = "2 uur lang uitschakelen";
+"mute_for_one_day" = "1 dag lang uitschakelen";
+"mute_for_seven_days" = "7 dagen lang uitschakelen";
+"mute_forever" = "Permanent uitschakelen";
+
+"share_location_once" = "eenmalig";
+"share_location_for_5_minutes" = "5 minuten lang";
+"share_location_for_30_minutes" = "30 minuten lang";
+"share_location_for_one_hour" = "1 uur lang";
+"share_location_for_two_hours" = "2 uur lang";
+"share_location_for_six_hours" = "6 uur lang";
+
+
+// get confirmations
+"ask_leave_group" = "Weet je zeker dat je deze groep wilt verlaten?";
+"ask_forward" = "Wil je de berichten doorsturen aan %1$s?";
+"ask_export_attachment" = "Als je de bijlage exporteert, geef je andere apps op je apparaat toegang om hem uit te lezen.\n\nWil je doorgaan?";
+"ask_block_contact" = "Wil je deze contactpersoon blokkeren? Hij/zij kan je geen berichten meer sturen.";
+"ask_unblock_contact" = "Wil je deze contactpersoon deblokkeren? Hij/zij kan je wederom berichten sturen.";
+"ask_delete_contacts" = "Wil je de geselecteerde contactpersonen permanent verwijderen?\n\nPersonen met actieve gesprekken en personen afkomstig uit je adresboek kunnen niet permanent worden verwijderd.";
+"cannot_delete_contacts_in_use" = "Contactpersonen waarmee je nog gesprekken voert kunnen niet worden verwijderd.";
+"ask_start_chat_with" = "Wil je een gesprek voeren met %1$s?";
+// Translators: %1$s will be replaces by a comma separated list of names
+"ask_remove_members" = "Wil je %1$s verwijderen uit de groep?";
+"info_outdated_app_title" = "Je gebruikt een verouderde versie.";
+"info_outdated_app_text" = "Het lijkt erop dat je Delta Chat hebt geïnstalleerd uit een bron zonder automatische updates (bijv. GitHub). Installeer Delta Chat via een appwinkel om updates te ontvangen.";
+"info_outdated_app_dialog_title" = "Bronnen bijwerken";
+"info_outdated_app_dialog_text" = "Delta Chat is beschikbaar in:";
+
+
+// contact list
+"contacts_title" = "Contactpersonen";
+"contacts_enter_name_or_email" = "Voer een naam of e-mailadres in.";
+"contacts_type_email_above" = "Typ hierboven het e-mailadres";
+"contacts_empty_hint" = "Geen contactpersonen.";
+
+
+// chatlist and chat view
+"chat_archived_chats_title" = "Gearchiveerde gesprekken";
+"chat_please_enter_message" = "Typ een bericht.";
+"chat_camera_unavailable" = "De camera is niet beschikbaar.";
+"chat_unable_to_record_audio" = "Kan geen audio opnemen.";
+"chat_no_messages_hint" = "Verstuur een bericht aan %1$s:\n\n• %2$s hoeft Delta Chat niet te gebruiken.\n\n• Het afleveren van het eerste bericht kan even duren en onversleuteld zijn.";
+"chat_new_group_hint" = "Stel het eerste bericht op, zodat anderen binnen deze groep kunnen reageren.\n\n• Niet alle leden hoeven Delta Chat te gebruiken.\n\n• Het afleveren van het eerste bericht kan even duren.";
+"chat_record_slide_to_cancel" = "Veeg opzij om te annuleren";
+"chat_record_explain" = "Houdt ingedrukt om een spraakbericht op te nemen; laat los om te versturen";
+"chat_no_chats_yet_title" = "Je Postvak IN is leeg.\nDruk op \\\"+\\\" om een gesprek te beginnen.";
+"chat_no_chats_yet_hint" = "Je kunt een gesprek voeren met andere Delta Chat-gebruikers en via alle soorten e-mailadressen.";
+"chat_all_archived" = "Alle gesprekken zijn gearchiveerd.\nDruk op \\\"+\\\" om een gesprek te beginnen.";
+"chat_share_with_title" = "Delen met";
+"chat_input_placeholder" = "Bericht";
+"chat_archived_label" = "Gearchiveerd";
+"chat_no_messages" = "Geen berichten.";
+"chat_self_talk_subtitle" = "Aan mijzelf gestuurde berichten";
+"chat_contact_request" = "Contactpersoonverzoek";
+"chat_no_contact_requests" = "Geen contactpersoonverzoeken.\n\nAls je wilt dat klassieke e-mail hier verschijnt in de vorm van contactpersoonverzoeken, dan kun je dat aangeven in de app-instellingen.";
+
+// map
+"filter_map_on_time" = "Locaties tonen in tijdsbeeld";
+"show_location_traces" = "Sporen tonen";
+"add_poi" = "Afspraaklocatie versturen";
+
+
+// search
+"search" = "Zoeken";
+"search_explain" = "Zoek naar gesprekken, contactpersonen en berichten";
+"search_no_result_for_x" = "Geen resultaten gevonden voor \\\"%s\\\"";
+
+
+// create/edit groups, contact/group profile
+"group_name" = "Groepsnaam";
+"group_avatar" = "Groepsafbeelding";
+"group_create_button" = "Groep creëren";
+"group_please_enter_group_name" = "Voer een naam in voor de groep.";
+"group_add_members" = "Deelnemers toevoegen";
+"group_hello_draft" = "Hallo, ik heb zojuist de groep \\\"%1$s\\\" voor ons gemaakt.";
+"group_self_not_in_group" = "Om deze actie uit te kunnen voeren moet je deelnemen aan de groep.";
+"profile_encryption" = "Versleuteling";
+"profile_shared_chats" = "Gedeelde gesprekken";
+"tab_contact" = "Contactpersoon";
+"tab_group" = "Groep";
+"tab_members" = "Deelnemers";
+"tab_gallery" = "Galerij";
+"tab_docs" = "Documenten";
+"tab_links" = "Links";
+"tab_map" = "Kaart";
+"tab_gallery_empty_hint" = "De in dit gesprek gedeelde afbeeldingen en video\\'s verschijnen hier.";
+"tab_docs_empty_hint" = "De in dit gesprek gedeelde documenten, muziek en overige bestanden verschijnen hier.";
+"media_preview" = "Mediavoorbeeld";
+
+
+// invite
+"invite_slogan" = "Vrienden houden vrienden niet opgesloten in berichtkluizen.";
+"invite_default_text" = "Laten we overgaan op Delta Chat - %1$s - je kunt me een bericht sturen op %2$s";
+
+
+// welcome and login
+"welcome_intro1_headline" = "Delta Chat";
+"welcome_intro1_message" = "Dé berichtenapp met het breedste publiek ter wereld. Gratis en onafhankelijk.";
+"welcome_intro2_headline" = "Onafhankelijk";
+"welcome_intro2_message" = "Er is geen Delta Chat-server; de app gebruikt alleen je mailserver.";
+"welcome_intro3_headline" = "Snel";
+"welcome_intro3_message" = "Verstuur berichten binnen een paar seconden.\nSnelle gebruikersomgeving.";
+"welcome_intro4_headline" = "Krachtig";
+"welcome_intro4_message" = "Ongelimiteerd aantal gesprekken, afbeeldingen, video\\'s, spraakberichten en meer. Kan omgaan met meerdere clients.";
+// Translators: "free" as in freedom here, not "free" as in "free beer"
+"welcome_intro5_headline" = "Gratis";
+// Translators: "free" as in freedom here, not "free" as in "free beer"
+"welcome_intro5_message" = "Delta Chat zal altijd gratis blijven. Open source. Geen reclame. Geen abonnement. Onafhankelijk.";
+"welcome_intro6_headline" = "Versleuteld";
+"welcome_intro6_message" = "Versleuteld met alle bekende algoritmen. Berichten blijven op jouw server.";
+"welcome_intro7_headline" = "Betrouwbaar";
+"welcome_intro7_message" = "Delta Chat is veilig voor zakelijk gebruik, compatibel en gebaseerd op standaarden.";
+"welcome_start_messaging" = "Aan de slag";
+"login_title" = "Inloggen";
+"login_header" = "Inloggen op je server";
+"login_subheader" = "Bij bekende e-mailproviders gaat het instellen vrijwel geheel automatisch. Soms moet je IMAP inschakelen in de webversie van je e-mailclient. Vraag je e-mailprovider of vrienden om hulp.";
+"login_no_servers_hint" = "Er is geen Delta Chat-server; jóuw gegevens blijven op jóuw apparaat.";
+"login_inbox" = "Postvak IN";
+"login_imap_login" = "IMAP-inlognaam";
+"login_imap_server" = "IMAP-server";
+"login_imap_port" = "IMAP-poort";
+"login_imap_security" = "IMAP-beveiliging";
+"login_outbox" = "Postvak UIT";
+"login_smtp_login" = "SMTP-inlognaam";
+"login_smtp_password" = "SMTP-wachtwoord";
+"login_smtp_server" = "SMTP-server";
+"login_smtp_port" = "SMTP-poort";
+"login_smtp_security" = "SMTP-beveiliging";
+"login_auth_method" = "Autorisatiemethode";
+"login_info_oauth2_title" = "Wil je doorgaan met vereenvoudigd instellen?";
+"login_info_oauth2_text" = "Het ingevoerde e-mailadres ondersteunt vereenvoudigd instellen (OAuth2).\n\nTijdens de volgende stap moet je Delta Chat toestaan te fungeren als je e-mailapp.\n\nDelta Chat heeft geen eigen servers; jóuw gegevens blijven op jóuw apparaat!";
+"login_info_gmail_text" = "Bij Gmail-accounts moet je een app-wachtwoord creëren als je authenticatie in twee stappen hebt ingeschakeld. Als dit niet beschikbaar is, schakel dan \\'Minder veilige apps\\' in.";
+"login_error_mail" = "Voer een geldig e-mailadres in";
+"login_error_server" = "Voer een geldig(e) IP-adres/server in";
+"login_error_port" = "Voer een geldige poort in (1-65535)";
+"login_error_required_fields" = "Voer een geldig e-mailadres en wachtwoord in";
+"import_backup_title" = "Back-up importeren";
+"import_backup_ask" = "Back-up aangetroffen in \\\"%1$s\\\".\n\nWil je de instellingen en gegevens daaruit importeren?";
+"import_backup_no_backup_found" = "Geen back-ups aangetroffen.\n\nKopieer de back-up naar \\\"%1$s\\\" en probeer het opnieuw of druk op \\\"Aan de slag\\\" om het normale instelproces te doorlopen.";
+// Translators: %1$s will be replaced by the email address
+"login_error_cannot_login" = "Kan niet inloggen als \\\"%1$s\\\". Controleer het e-mailadres en wachtwoord.";
+// Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
+"login_error_server_response" = "Antwoord van %1$s: %2$s\n\nSommige providers plaatsen extra informatie in je Postvak IN. Je kunt dit controleren in, bijv., de webversie. Neem contact op met je provider of vrienden als je problemen ervaart.";
+
+
+// share and forward messages
+// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+"forward_to" = "Doorsturen naar...";
+"share_multiple_attachments" = "Wil je %1$d bestanden delen in het gekozen gesprek?\n\nDe bestanden worden ongewijzigd verstuurd in oorspronkelijke grootte.";
+"share_abort" = "Kan niet delen wegens ontbrekende machtigingen.";
+
+
+// preferences
+"pref_summary_on" = "aan";
+"pref_summary_off" = "uit";
+"pref_summary_default" = "standaard";
+"pref_summary_custom" = "aangepast";
+"pref_using_custom" = "Aangepast wordt gebruikt: %s";
+"pref_using_default" = "Standaard wordt gebruikt: %s";
+"pref_profile_info_headline" = "Mijn profiel";
+"pref_profile_photo" = "Profielfoto";
+"pref_trim_headline" = "Gespreksinkorting";
+"pref_trim_option" = "Oude berichten verwijderen";
+"pref_trim_option_explain" = "Oudere berichten automatisch verwijderen na het overschrijden van de opgegeven lengte";
+"pref_trim_length_limit" = "Lengtelimiet";
+"pref_trim_length_limit_summary" = "%d berichten per gesprek";
+"pref_trim_now_button" = "Alle gesprekken nu inkorten";
+"pref_trim_now_ask" = "Wil je alle oude berichten verwijderen? Alle gesprekken worden direct ingekort tot de %d recentste berichten.";
+"pref_blocked_contacts" = "Geblokkeerde contactpersonen";
+"pref_profile_photo_remove_ask" = "Profielfoto verwijderen?";
+"pref_help_url" = "https://delta.chat/en/help";
+"pref_password_and_account_settings" = "Wachtwoord en accountinstellingen";
+"pref_who_can_see_this_information" = "Wie kan deze informatie bekijken?";
+"pref_who_can_see_profile_explain" = "Je profielfoto en -naam worden getoond in gesprekken, naast je berichten. Reeds verstuurde informatie kan niet worden verwijderd of teruggehaald.";
+"pref_your_name" = "Je naam";
+// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+"pref_default_status_label" = "Handtekeningtekst";
+// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+"pref_default_status_text" = "Verstuurd met mijn Delta Chat-berichtenapp: https://delta.chat";
+"pref_enter_sends" = "Versturen met Enter-toets";
+"pref_enter_sends_explain" = "Druk op de Enter-toets om tekstberichten te versturen";
+"pref_outgoing_media_quality" = "Kwaliteit van verstuurde media";
+"pref_outgoing_balanced" = "Normaal";
+"pref_outgoing_worse" = "Lagere kwaliteit, kleinere bestanden";
+"pref_vibrate" = "Trillen";
+"pref_chat_settings" = "Gespreksinstellingen";
+"pref_change_secret" = "Toegangsmethode beheren";
+"pref_change_secret_explain" = "Wijzig je pincode/patroon/vingerafdruk via de systeeminstellingen";
+"pref_screen_security" = "Schermbeveiliging";
+// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+"pref_screen_security_explain" = "Geen schermafdrukken tonen in de \\'recent\\'-lijst en binnen de app";
+"pref_screen_security_please_restart_hint" = "Herstart de app om de wijzigingen toe te passen.";
+"pref_notifications" = "Meldingen";
+"pref_notifications_show" = "Tonen";
+"pref_notifications_priority" = "Prioriteit";
+"pref_led_color" = "LED-kleur";
+"pref_led_pattern" = "LED-knipperpatroon";
+"pref_sound" = "Geluid";
+"pref_silent" = "Stil";
+"pref_privacy" = "Privacy";
+"pref_chats_and_media" = "Gesprekken en media";
+// Translators: "light" in the meaning "opposite of dark"
+"pref_light_theme" = "Licht";
+"pref_dark_theme" = "Donker";
+"pref_appearance" = "Uiterlijk";
+"pref_theme" = "Thema";
+"pref_language" = "Taal";
+"pref_incognito_keyboard" = "Incognito-toetsenbord";
+// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+"pref_incognito_keyboard_explain" = "Verzoek het toetsenbord om geen persoonlijke woorden op te nemen";
+"pref_read_receipts" = "Leesbevestigingen";
+"pref_read_receipts_explain" = "Als je leesbevestigingen uitschakelt, dan zie je geen leesbevestigingen van anderen.";
+"pref_manage_keys" = "Sleutels beheren";
+"pref_use_system_emoji" = "Systeememoji gebruiken";
+"pref_use_system_emoji_explain" = "Schakel Delta Chat\\'s ingebouwde emoji-ondersteuning uit";
+"pref_app_access" = "App-toegang";
+"pref_communication" = "Communicatie";
+"pref_chats" = "Gesprekken";
+"pref_messages" = "Berichten";
+"pref_in_chat_sounds" = "Gespreksgeluiden";
+"pref_message_text_size" = "Tekstgrootte van berichten";
+"pref_view_log" = "Logboek bekijken";
+"pref_saved_log" = "Logboek opslaan in downloads-map";
+"pref_save_log_failed" = "Kan logboek niet opslaan";
+"pref_log_header" = "Logboek";
+"pref_other" = "Overig";
+"pref_backup" = "Back-up";
+"pref_backup_explain" = "Gesprekken back-uppen naar externe opslag";
+"pref_backup_export_explain" = "Een back-up helpt je om een nieuwe installatie in te stellen op dit of een ander apparaat.\n\nDe back-up bevat alle berichten, contactpersonen, gesprekken en je end-to-end Autocrypt-instellingen. Bewaar het back-upbestand op een veilige plaats of verwijder het zo snel mogelijk.";
+"pref_backup_export_start_button" = "Nu back-uppen";
+"pref_backup_written_to_x" = "Back-up weggeschreven naar %1$s";
+"pref_managekeys_menu_title" = "Sleutels beheren";
+"pref_managekeys_ask_for_storage_permission" = "Delta Chat heeft toegang nodig tot je bestanden om sleutels te im- en exporteren.";
+"pref_managekeys_export_secret_keys" = "Geheime sleutels exporteren";
+"pref_managekeys_export_explain" = "Geheime sleutels exporteren naar \\\"%1$s\\\"?";
+"pref_managekeys_import_secret_keys" = "Geheime sleutels importeren";
+"pref_managekeys_import_explain" = "Wil je geheime sleutels importeren uit \\\"%1$s\\\"?\n\n• Bestaande sleutels worden niet verwijderd.\n\n• De laatst geïmporteerde sleutel wordt als standaard gebruikt tenzij de bestandsnaam \\\"legacy\\\" bevat.";
+"pref_managekeys_secret_keys_exported_to_x" = "Geheime sleutels weggeschreven naar \\\"%1$s\\\".";
+"pref_managekeys_secret_keys_imported_from_x" = "Geheime sleutels geïmporteerd uit \\\"%1$s\\\".";
+"pref_background" = "Achtergrond";
+"pref_background_btn_default" = "Standaardafbeelding gebruiken";
+"pref_background_btn_gallery" = "Kiezen uit galerij";
+"pref_imap_folder_handling" = "Controleren in IMAP-mappen";
+"pref_imap_folder_warn_disable_defaults" = "Als je deze optie uitschakelt, zorg er dan voor dat je server en overige clients goed ingesteld zijn.\n\nAls dat niet zo is, dan werkt het misschien helemaal niet.";
+"pref_watch_inbox_folder" = "Postvak IN controleren op nieuwe berichten";
+"pref_watch_sent_folder" = "Map \\'Verzonden\\' controleren op nieuwe berichten";
+"pref_watch_mvbox_folder" = "DeltaChat-map controleren op nieuwe berichten";
+"pref_auto_folder_moves" = "Automatisch verplaatsen naar DeltaChat-map";
+"pref_auto_folder_moves_explain" = "Gesprekken worden verplaatst om je Postvak IN netjes te houden";
+"pref_email_interaction_title" = "E-mailinteractie";
+"pref_show_emails" = "Klassieke e-mails tonen";
+"pref_show_emails_no" = "Nee, alleen gesprekken";
+"pref_show_emails_accepted_contacts" = "Van goedgekeurde contactpersonen";
+"pref_show_emails_all" = "Alles";
+"pref_empty_server_title" = "GEVARENZONE: e-mails verwijderen van server";
+"pref_empty_server_msg" = "Deze optie helpt je ruimte vrij te maken op je IMAP-server door ALLE e-mails, inclusief gesprekken, te verwijderen uit de opgegeven mappen. Berichten op dit apparaat worden niet verwijderd. Deze actie kan niet ongedaan worden gemaakt!";
+"pref_empty_server_inbox" = "ALLE e-mails uit Postvak IN verwijderen";
+"pref_empty_server_mvbox" = "ALLE e-mails uit DeltaChat-map verwijderen";
+"pref_empty_server_do_button" = "E-mails verwijderen";
+
+
+// autocrypt
+"autocrypt" = "Autocrypt";
+"autocrypt_explain" = "Autocrypt is een nieuwe, open specificatie voor het automatisch instellen van end-to-end e-mailversleuteling.\n\nJe instellingen worden, indien nodig, automatisch gecreëerd en kunnen worden overgezet naar andere apparaten middels instelberichten.";
+"autocrypt_send_asm_title" = "Autocrypt-instelbericht versturen";
+"autocrypt_send_asm_explain_before" = "Een \\'Autocrypt-instelbericht\\' deelt je end-to-end-instellingen veilig met andere Autocrypt-compatibele apps.\n\nDe instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
+"autocrypt_send_asm_button" = "Autocrypt-instelbericht versturen";
+"autocrypt_send_asm_explain_after" = "Je instellingen zijn aan jezelf verstuurd. Schakel over naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld:\n\n%1$s\n\nAls je klaar bent, is je andere apparaat klaar voor gebruik.";
+"autocrypt_prefer_e2ee" = "Voorkeur voor end-to-end-versleuteling";
+"autocrypt_asm_subject" = "Autocrypt-instelbericht";
+"autocrypt_asm_general_body" = "Dit is het Autocrypt-instelbericht dat wordt gebruikt om je instellingen over te zetten naar andere clients.\n\nOm te ontsleutelen en te gebruiken, open je het bericht in een met Autocrypt compatibele app en voer je de code in die wordt getoond op het apparaat dat de code heeft gegenereerd.";
+"autocrypt_asm_click_body" = "Dit is het Autocrypt-instelbericht dat wordt gebruikt om je end-to-end-instellingen over te zetten naar andere clients.\n\nOm het te ontsleutelen en gebruiken, druk je op dit bericht.";
+"autocrypt_continue_transfer_title" = "Autocrypt-instelbericht";
+"autocrypt_continue_transfer_please_enter_code" = "Voer de code die wordt getoond op het andere apparaat.";
+"autocrypt_continue_transfer_succeeded" = "Je end-to-end-instellingen zijn overgezet. Dit apparaat kan nu worden gebruikt i.c.m. Autocrypt, met dezelfde instellingen als het andere apparaat.";
+"autocrypt_continue_transfer_retry" = "Opnieuw";
+"autocrypt_bad_setup_code" = "Onjuist; probeer het opnieuw.\n\nAls je je code niet meer weet, verstuur dan nóg een Autocrypt-instelbericht vanaf het andere apparaat.";
+
+
+// system messages
+"systemmsg_group_name_changed" = "Groepsnaam gewijzigd van \\\"%1$s\\\" in \\\"%2$s\\\".";
+"systemmsg_group_image_changed" = "Groepsafbeelding gewijzigd.";
+"systemmsg_group_image_deleted" = "Groepsafbeelding verwijderd.";
+"systemmsg_member_added" = "Deelnemer \\'%1$s\\' toegevoegd.";
+"systemmsg_member_removed" = "Deelnemer \\'%1$s\\' verwijderd.";
+"systemmsg_group_left" = "Groep verlaten.";
+"systemmsg_read_receipt_subject" = "Leesbevestiging";
+"systemmsg_read_receipt_body" = "Dit is een leesbevestiging voor het bericht \\'%1$s\\'.\n\nDit betekent dat het bericht getoond is op het apparaat van de ontvanger, maar niet dat het ook gelezen is.";
+"systemmsg_cannot_decrypt" = "Dit bericht kan niet worden ontsleuteld.\n\n• Het kan helpen dit bericht te beantwoorden en de afzender te vragen het opnieuw te versturen.\n\n• Als je Delta Chat of een andere e-mailapp opnieuw hebt geïnstalleerd op dit of een ander apparaat, verstuur het instelbericht dan opnieuw.";
+// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+"systemmsg_action_by_me" = "%1$s door mij.";
+// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+"systemmsg_action_by_user" = "%1$s door %2$s.";
+
+
+// screen lock
+"screenlock_title" = "Schermvergrendeling";
+"screenlock_explain" = "Vergendel de toegang middels het Android-vergrendelscherm of je vingerafdruk. Schakel daarnaast ook \\\"Schermbeveiliging\\\" in.";
+"screenlock_authentication_failed" = "Authenticatie mislukt.";
+"screenlock_unlock_title" = "Delta Chat ontgrendelen";
+"screenlock_unlock_description" = "Voer je op het systeem opgegeven toegangscode in om Delta Chat te ontgrendelen.";
+"screenlock_inactivity_timeout" = "Vergrendeling na inactiviteit";
+"screenlock_inactivity_timeout_explain" = "Delta Chat automatisch vergrendelen na een opgegeven periode van inactiviteit";
+"screenlock_inactivity_timeout_interval" = "Periode van inactiviteit";
+
+
+// qr code stuff
+"qrscan_title" = "QR-code scannen";
+"qrscan_hint" = "Plaatst je camera boven de QR-code";
+"qrscan_ask_join_group" = "Wil je deelnemen aan de groep \\\"%1$s\\\"?";
+"qrscan_fingerprint_mismatch" = "De gescande vingerafdruk komt niet overeen met de vorige voor %1$s";
+"qrscan_no_addr_found" = "Deze QR-code bevat een vingerafdruk, maar geen e-mailadres.\n\nVoor out-of-band-goedkeuring, moet je eerst een beveiligde verbinding opzetten met de ontvanger.";
+"qrscan_contains_text" = "Gescande QR-codetekst:\n\n %1$s";
+"qrscan_contains_url" = "Gescande QR-code-URL:\n\n %1$s";
+"qrscan_fingerprint_label" = "Vingerafdruk";
+"qrscan_x_verified_introduce_myself" = "%1$s goedgekeurd; vertel iets over jezelf...";
+"qrshow_title" = "QR-uitnodigingscode";
+"qrshow_x_joining" = "%1$s heeft deelgenomen.";
+"qrshow_x_verified" = "%1$s is goedgekeurd.";
+"qrshow_x_has_joined_group" = "%1$s neemt nu deel aan de groep.";
+"qrshow_join_group_title" = "QR-uitnodigingscode";
+"qrshow_join_group_hint" = "Scan dit om deel te nemen aan de groep \\'%1$s\\'.";
+"qrshow_join_contact_title" = "QR-uitnodigingscode";
+"qrshow_join_contact_hint" = "Scan dit om een contactpersoon in te stellen met %1$s";
+"qrshow_join_contact_no_connection_hint" = "Voor het instellen van QR-codes is een internetverbinding vereist. Maak verbinding en probeer het opnieuw.";
+"qrshow_join_contact_no_connection_toast" = "Geen internetverbinding; kan QR-codes niet instellen.";
+"contact_verified" = "%1$s is goedgekeurd.";
+"contact_not_verified" = "Kan %1$s niet goedkeuren";
+// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+"contact_setup_changed" = "Gewijzigde instellingen voor %1$s";
+
+
+// notifications 
+"notify_n_messages_in_m_chats" = "%1$d nieuwe berichten in %2$d gesprekken";
+"notify_most_recent_from" = "Recentste van: %1$s";
+"notify_media_message_with_text" = "Mediabericht: %s";
+"notify_mark_all_read" = "Alles markeren als gelezen";
+"notify_mark_read" = "Markeren als gelezen";
+"notify_media_message" = "Mediabericht";
+"notify_reply_button" = "Beantwoorden";
+"notify_new_message" = "Nieuw bericht";
+"notify_background_connection_enabled" = "Achtergrondverbinding ingeschakeld";
+"notify_priority_high" = "Hoog";
+"notify_priority_max" = "Maximaal";
+"notify_name_and_message" = "Naam en bericht";
+"notify_name_only" = "Alleen naam";
+"notify_no_name_or_message" = "Geen naam of bericht";
+
+
+// permissions
+"perm_required_title" = "Machtiging vereist";
+"perm_continue" = "Doorgaan";
+"perm_not_now" = "Niet nu";
+"perm_explain_need_for_camera_access" = "Delta Chat heeft toegang nodig tot de camera om foto\\'s en video\\'s te kunnen vastleggen.";
+"perm_explain_need_for_mic_access" = "Delta Chat heeft toegang nodig tot je microfoon om audioberichten te kunnen versturen.";
+"perm_explain_need_for_storage_access" = "Delta Chat heeft toegang nodig tot je bestanden om bestanden te kunnen exporteren of back-ups te kunnen maken.";
+"perm_explain_need_for_storage_access_share" = "Delta Chat heeft toegang nodig tot je bestanden om de geselecteerde bestanden te kunnen delen.";
+"perm_explain_access_to_camera_denied" = "Delta Chat vereist de cameramachtiging om foto\\'s en video\\'s te kunnen maken, maar je hebt dit permanent geweigerd. Ga naar de app-instellingen, kies \\\"Machtigingen\\\" en schakel \\\"Camera\\\" in.";
+"perm_explain_access_to_mic_denied" = "Delta Chat vereist de microfoonmachtiging om audioberichten te kunnen versturen, maar je hebt dit permanent geweigerd. Ga naar de app-instellingen, kies \\\"Machtigingen\\\" en schakel \\\"Microfoon\\\" in.";
+"perm_explain_access_to_storage_denied" = "Delta Chat vereist de opslagmachtiging om foto\\'s, video\\'s of audio te kunnen bijvoegen of exporteren, maar je hebt dit permanent geweigerd. Ga naar de app-instellingen, kies \\\"Machtigingen\\\" en schakel \\\"Opslag\\\" in.";
+"perm_explain_access_to_location_denied" = "Delta Chat vereist de locatiemachtiging om je locatie te kunnen delen, maar je hebt dit permanent geweigerd. Ga naar de app-instellingen, kies \\\"Machtigingen\\\" en schakel \\\"Locatie\\\" in.";
+"perm_enable_bg_reminder_title" = "Druk hier om berichten te ontvangen als Delta Chat niet geopend is.";
+"perm_enable_bg_reminder_text" = "Delta Chat\\'s accugebruik is laag omdat het slechts een minimaal aantal systeembronnen gebruikt.";
+
+// dc_str_* resources
+"encrypted_message" = "Versleuteld bericht";
+
+// desktop specific strings
+"welcome_desktop" = "Welkom bij Delta Chat";
+"login_known_accounts_title_desktop" = "Bekende accounts";
+"global_menu_preferences_desktop" = "Instellingen";
+"global_menu_preferences_language_desktop" = "Kies een taal...";
+"global_menu_file_desktop" = "Bestand";
+"global_menu_file_quit_desktop" = "Afsluiten";
+"global_menu_edit_desktop" = "Bewerken";
+"global_menu_edit_undo_desktop" = "Ongedaan maken";
+"global_menu_edit_redo_desktop" = "Opnieuw";
+"global_menu_edit_cut_desktop" = "Knippen";
+"global_menu_edit_copy_desktop" = "Kopiëren";
+"global_menu_edit_paste_desktop" = "Plakken";
+"global_menu_edit_delete_desktop" = "Verwijderen";
+"global_menu_edit_selectall_desktop" = "Alles selecteren";
+"global_menu_view_desktop" = "Bekijken";
+"global_menu_view_floatontop_desktop" = "Altijd bovenaan";
+"global_menu_view_developer_desktop" = "Ontwikkelaar";
+"global_menu_view_developer_tools_desktop" = "Ontwikkelaarshulpmiddelen";
+"global_menu_help_desktop" = "Hulp";
+"global_menu_help_learn_desktop" = "Meer informatie over Delta Chat";
+"global_menu_help_contribute_desktop" = "Draag bij op GitHub";
+"global_menu_help_report_desktop" = "Meld een probleem...";
+"global_menu_help_about_desktop" = "Over Delta Chat";
+"no_chat_selected_suggestion_desktop" = "Kies een gesprek of creëer een nieuw gesprek";
+"write_message_desktop" = "Schrijf een bericht";
+"about_deltachat_heading_desktop" = "Over Delta Chat";
+"encryption_info_title_desktop" = "Versleutelingsinformatie";
+"contact_detail_title_desktop" = "Contactpersoongegevens";
+"contact_request_title_desktop" = "Contactpersoonverzoek";
+"delete_message_desktop" = "Bericht verwijderen";
+"more_info_desktop" = "Meer informatie";
+"logout_desktop" = "Uitloggen";
+"timestamp_format_m_desktop" = "MMM D";
+"no_archived_chats_desktop" = "Geen gearchiveerde gesprekken";
+"no_chats_desktop" = "Geen gesprekken";
+"encryption_info_desktop" = "Versleutelingsinformatie tonen";
+"verified_desktop" = "goedgekeurd";
+"group_name_desktop" = "Groepsnaam";
+"remove_desktop" = "Verwijderen";
+"save_desktop" = "Opslaan";
+"show_qr_verify_code_desktop" = "QR-uitnodigingscode tonen";
+"show_qr_invite_code_desktop" = "QR-uitnodigingscode tonen";
+"add_contact_desktop" = "Contactpersoon toevoegen";
+"login_required_desktop" = "vereist";
+"name_desktop" = "Naam";
+"autocrypt_key_transfer_desktop" = "Autocrypt-sleuteloverdracht";
+"initiate_key_transfer_title_desktop" = "Sleuteloverdracht starten";
+"initiate_key_transfer_desktop" = "Een \\'Autocrypt-instelbericht\\' deelt je end-to-end-instellingen veilig met andere Autocrypt-compatibele apps. De instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
+"reply_to_message_desktop" = "Bericht beantwoorden";
+"select_group_image_desktop" = "Kies een groepsafbeelding";
+"imex_progress_title_desktop" = "Back-upvoortgang";
+"download_attachment_desktop" = "Bijlage downloaden";
+"export_backup_desktop" = "Back-up exporteren";
+"transfer_key_desktop" = "Sleuteloverdracht";
+"show_key_transfer_message_desktop" = "Je sleutel is aan jezelf verstuurd. Ga naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld. Als je klaar bent, is je andere apparaat klaar voor gebruik.";
+"new_message_from_desktop" = "Nieuw bericht van";
+"unblock_contacts_desktop" = "Contactpersonen deblokkeren";
+"none_blocked_desktop" = "Nog geen geblokkeerde contactpersonen";
+"autocrypt_correct_desktop" = "Autocrypt-instellingen overgedragen!";
+"autocrypt_incorrect_desktop" = "Onjuiste instelcode; probeer het opnieuw.";
+"create_chat_error_desktop" = "Kan gesprek niet creëren.";
+"ask_delete_chat_desktop" = "Weet je zeker dat je dit gesprek wilt verwijderen?";
+"email_validation_failed_desktop" = "E-mailadres vereist.";
+"forget_login_confirmation_desktop" = "Wil je dit account verwijderen? Alles wordt verwijderd, inclusief je end-to-end-instellingen, contactpersonen, gesprekken, berichten en media. Deze actie kan niet ongedaan worden gemaakt.";
+"me_desktop" = "ik";
+"in_this_group_desktop" = "Groepsleden";
+"not_in_this_group_desktop" = "Potentiële groepsleden (niet in de groep)";
+"message_detail_sent_desktop" = "verstuurd";
+"message_detail_received_desktop" = "ontvangen";
+"message_detail_from_desktop" = "van";
+"message_detail_to_desktop" = "aan";
+"menu.view.developer.open.log.folder" = "Map met logbestanden openen";
+"menu.view.developer.open.current.log.file" = "Huidig logbestand openen";
+
+"user_location_permission_explanation" = "Delta Chat heeft de locatiemachtiging nodig om je locatie te kunnen tonen en delen.";
+
+// deprecated on android, please remove if unused on desktop
+// see qrscan_ask_join_group
+"qrscan_ask_join_verified_group" = "Wil je deelnemen aan de groep \\'%1$s\\'?";
+// see ask_start_chat_with
+"qrscan_ask_fingerprint_ask_oob" = "Wil je een gesprek voeren met %1$s?";
+// see ask_start_chat_with
+"qrscan_ask_chatting_fingerprint_ok" = "Wil je een gesprek voeren met %1$s?";
+// see qrshow_join_group_title
+"qrshow_join_verified_group_title" = "QR-uitnodigingscode";
+// see qrshow_join_group_hint
+"qrshow_join_verified_group_hint" = "Scan dit om deel te nemen aan de groep \\'%1$s\\'.";
+// see chat_all_archived
+"chat_all_done_hint" = "Postvak nullllll";
+"chat_all_done_explain" = "Niks. Noppes. Nakkes. Nada.\nJe bent volledig op de hoogte!";
+"media_tab_media" = "Media";
+"media_tab_documents" = "Documenten";
+"media_no_media_hint" = "Geen media.";
+"media_no_documents_hint" = "Geen documenten.";
+"language_be" = "Vlaams";
+"language_ca" = "Catalaans";
+"language_da" = "Deens";
+"language_de" = "Duits";
+"language_en" = "Engels";
+"language_eo" = "Esperanto";
+"language_es" = "Spaans";
+"language_eu" = "Basks";
+"language_fr" = "Frans";
+"language_hr" = "Kroatisch";
+"language_hu" = "Hongaars";
+"language_it" = "Italiaans";
+"language_id" = "Indonesisch";
+"language_ja_JP" = "Japans";
+"language_ko" = "Koreaans";
+"language_nb_NO" = "Noors (Bokmål)";
+"language_nl" = "Nederlands";
+"language_nl_NL" = "Nederlands (Nederland)";
+"language_pl" = "Pools";
+"language_pt" = "Portugees";
+"language_ru" = "Russisch";
+"language_ru_RU" = "Russisch (Rusland)";
+"language_sq" = "Albanees";
+"language_sr" = "Servisch";
+"language_sv" = "Zweeds";
+"language_ta" = "Tamil";
+"language_te" = "Telugu";
+"language_tr" = "Turks";
+"language_uk" = "Oekraïens";
+"language_zh_CN" = "Chinees";
+
