@@ -1,164 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
+<dict>
+	<key>n_minutes</key>
 	<dict>
-		<key>n_minutes</key>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
 		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d min</string>
-				<key>few</key>
-				<string>%d min</string>
-				<key>many</key>
-				<string>%d min</string>
-				<key>other</key>
-				<string>%d min</string>
-			</dict>
-		<dict>
-		<key>n_hours</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d godzina</string>
-				<key>few</key>
-				<string>%d godziny</string>
-				<key>many</key>
-				<string>%d godzin</string>
-				<key>other</key>
-				<string>%d godziny</string>
-			</dict>
-		<dict>
-		<key>n_chats</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d czat</string>
-				<key>few</key>
-				<string>%d czaty</string>
-				<key>many</key>
-				<string>%d czatów</string>
-				<key>other</key>
-				<string>%d czatu</string>
-			</dict>
-		<dict>
-		<key>n_contacts</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d kontakt</string>
-				<key>few</key>
-				<string>%d kontakty</string>
-				<key>many</key>
-				<string>%d kontaktów</string>
-				<key>other</key>
-				<string>%d kontaktu</string>
-			</dict>
-		<dict>
-		<key>n_messages</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d wiadomość</string>
-				<key>few</key>
-				<string>%d wiadomości</string>
-				<key>many</key>
-				<string>%d wiadomości</string>
-				<key>other</key>
-				<string>%dwiadomości </string>
-			</dict>
-		<dict>
-		<key>n_members</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d członek</string>
-				<key>few</key>
-				<string>%dczłonków </string>
-				<key>many</key>
-				<string>%dczłonków</string>
-				<key>other</key>
-				<string>%dczłonka</string>
-			</dict>
-		<dict>
-		<key>chat_archived</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d czat zarchiwizowany</string>
-				<key>few</key>
-				<string>%dczaty zarchiwizowane</string>
-				<key>many</key>
-				<string>%dczatów zarchiwizowanych</string>
-				<key>other</key>
-				<string>%d czatu zarchiwizowanego</string>
-			</dict>
-		<dict>
-		<key>chat_unarchived</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>Przywrócono %dczat z archiwum</string>
-				<key>few</key>
-				<string>Przywrócono %d czaty z archiwum</string>
-				<key>many</key>
-				<string>Przywrócono %d czatów z archiwum</string>
-				<key>other</key>
-				<string>Przywrócono %d czatu z archiwum</string>
-			</dict>
-		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d min</string>
+			<key>few</key>
+			<string>%d min</string>
+			<key>many</key>
+			<string>%d min</string>
+			<key>other</key>
+			<string>%d min</string>
+		</dict>
 	</dict>
+	<key>n_hours</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d godzina</string>
+			<key>few</key>
+			<string>%d godziny</string>
+			<key>many</key>
+			<string>%d godzin</string>
+			<key>other</key>
+			<string>%d godziny</string>
+		</dict>
+	</dict>
+	<key>n_chats</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d czat</string>
+			<key>few</key>
+			<string>%d czaty</string>
+			<key>many</key>
+			<string>%d czatów</string>
+			<key>other</key>
+			<string>%d czatu</string>
+		</dict>
+	</dict>
+	<key>n_contacts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d kontakt</string>
+			<key>few</key>
+			<string>%d kontakty</string>
+			<key>many</key>
+			<string>%d kontaktów</string>
+			<key>other</key>
+			<string>%d kontaktu</string>
+		</dict>
+	</dict>
+	<key>n_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d wiadomość</string>
+			<key>few</key>
+			<string>%d wiadomości</string>
+			<key>many</key>
+			<string>%d wiadomości</string>
+			<key>other</key>
+			<string>%dwiadomości </string>
+		</dict>
+	</dict>
+	<key>n_members</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d członek</string>
+			<key>few</key>
+			<string>%dczłonków </string>
+			<key>many</key>
+			<string>%dczłonków</string>
+			<key>other</key>
+			<string>%dczłonka</string>
+		</dict>
+	</dict>
+	<key>chat_archived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d czat zarchiwizowany</string>
+			<key>few</key>
+			<string>%dczaty zarchiwizowane</string>
+			<key>many</key>
+			<string>%dczatów zarchiwizowanych</string>
+			<key>other</key>
+			<string>%d czatu zarchiwizowanego</string>
+		</dict>
+	</dict>
+	<key>chat_unarchived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Przywrócono %dczat z archiwum</string>
+			<key>few</key>
+			<string>Przywrócono %d czaty z archiwum</string>
+			<key>many</key>
+			<string>Przywrócono %d czatów z archiwum</string>
+			<key>other</key>
+			<string>Przywrócono %d czatu z archiwum</string>
+		</dict>
+	</dict>
+</dict>
 </plist>

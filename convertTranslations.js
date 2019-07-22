@@ -97,20 +97,22 @@ function toStringsDict(pluralsMap) {
     const rgxMany = /<item quantity="many">(.*)<\/item>/;
     const rgxOther = /<item quantity="other">(.*)<\/item>/;
 
-    let out = '<plist version="1.0">\n';
-    out += '\t<dict>\n';
+    let out = '\<?xml version=\"1.0\" encoding=\"UTF-8\"?\>\n';
+    out += '\<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\"\>\n';
+    out += '\<plist version="1.0"\>\n';
+    out += '\<dict\>\n';
     for (keyValuePair of pluralsMap) {
         let key = keyValuePair[0];
-        out += '\t\t<key>' + key + '</key>\n';
-        out += '\t\t<dict>\n';
-        out += '\t\t\t<key>NSStringLocalizedFormatKey</key>\n'
-        out += '\t\t\t<string>%#@localized_format_key@</string>\n'
-        out += '\t\t\t<key>localized_format_key</key>\n'
-        out += '\t\t\t<dict>\n'
-        out += '\t\t\t\t<key>NSStringFormatSpecTypeKey</key>\n'
-        out += '\t\t\t\t<string>NSStringPluralRuleType</string>\n'
-        out += '\t\t\t\t<key>NSStringFormatValueTypeKey</key>\n'
-        out += '\t\t\t\t<string>d</string>\n'
+        out += '\t\<key\>' + key + '\</key\>\n';
+        out += '\t\<dict\>\n';
+        out += '\t\t\<key\>NSStringLocalizedFormatKey\</key\>\n'
+        out += '\t\t\<string\>%#@localized_format_key@\</string\>\n'
+        out += '\t\t\<key\>localized_format_key\</key\>\n'
+        out += '\t\t\<dict\>\n'
+        out += '\t\t\t\<key\>NSStringFormatSpecTypeKey\</key\>\n'
+        out += '\t\t\t\<string\>NSStringPluralRuleType\</string\>\n'
+        out += '\t\t\t\<key\>NSStringFormatValueTypeKey\</key\>\n'
+        out += '\t\t\t\<string\>d\</string\>\n'
         let lines = keyValuePair[1];
         let zero = lines.filter( value => value.match(rgxZero));
         let one = lines.filter( value => value.match(rgxOne));
@@ -119,34 +121,34 @@ function toStringsDict(pluralsMap) {
         let many = lines.filter( value => value.match(rgxMany));
         let other = lines.filter( value => value.match(rgxOther))
         if (zero.length > 0) {
-          out += '\t\t\t\t<key>zero</key>\n';
-          out += '\t\t\t\t<string>'+zero[0].match(rgxZero)[1]+'</string>\n';
+          out += '\t\t\t\<key\>zero\</key\>\n';
+          out += '\t\t\t\<string\>'+zero[0].match(rgxZero)[1]+'\</string\>\n';
         }
         if (one.length > 0) {
-          out += '\t\t\t\t<key>one</key>\n';
-          out += '\t\t\t\t<string>'+one[0].match(rgxOne)[1]+'</string>\n';
+          out += '\t\t\t\<key\>one\</key\>\n';
+          out += '\t\t\t\<string\>'+one[0].match(rgxOne)[1]+'\</string\>\n';
         }
         if (two.length > 0) {
-          out += '\t\t\t\t<key>two</key>\n';
-          out += '\t\t\t\t<string>'+two[0].match(rgxTwo)[1]+'</string>\n';
+          out += '\t\t\t\<key\>two\</key\>\n';
+          out += '\t\t\t\<string\>'+two[0].match(rgxTwo)[1]+'\</string\>\n';
         }
         if (few.length > 0) {
-          out += '\t\t\t\t<key>few</key>\n';
-          out += '\t\t\t\t<string>'+few[0].match(rgxFew)[1]+'</string>\n';
+          out += '\t\t\t\<key\>few\</key\>\n';
+          out += '\t\t\t\<string\>'+few[0].match(rgxFew)[1]+'\</string\>\n';
         }
         if (many.length > 0) {
-          out += '\t\t\t\t<key>many</key>\n';
-          out += '\t\t\t\t<string>'+many[0].match(rgxMany)[1]+'</string>\n';
+          out += '\t\t\t\<key\>many\</key\>\n';
+          out += '\t\t\t\<string\>'+many[0].match(rgxMany)[1]+'\</string\>\n';
         }
         if (other.length > 0) {
-          out += '\t\t\t\t<key>other</key>\n';
-          out += '\t\t\t\t<string>'+other[0].match(rgxOther)[1]+'</string>\n';
+          out += '\t\t\t\<key\>other\</key\>\n';
+          out += '\t\t\t\<string\>'+other[0].match(rgxOther)[1]+'\</string\>\n';
         }
-        out += '\t\t\t</dict>\n'
-        out += '\t\t<dict>\n';
+        out += '\t\t\</dict\>\n'
+        out += '\t\</dict\>\n';
     }
-    out += '\t</dict>\n';
-    out += '</plist>\n';
+    out += '\</dict\>\n';
+    out += '\</plist\>\n';
 
     return out;
 }

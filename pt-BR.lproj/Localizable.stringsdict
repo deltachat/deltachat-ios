@@ -1,164 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
+<dict>
+	<key>n_minutes</key>
 	<dict>
-		<key>n_minutes</key>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
 		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d min</string>
-				<key>other</key>
-				<string>%d min</string>
-			</dict>
-		<dict>
-		<key>n_hours</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d horas</string>
-				<key>other</key>
-				<string>%d horas</string>
-			</dict>
-		<dict>
-		<key>n_chats</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d conversa</string>
-				<key>other</key>
-				<string>%d conversa</string>
-			</dict>
-		<dict>
-		<key>n_contacts</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d contatos</string>
-				<key>other</key>
-				<string>%d contatos</string>
-			</dict>
-		<dict>
-		<key>n_messages</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d message</string>
-				<key>other</key>
-				<string>%d mensagens</string>
-			</dict>
-		<dict>
-		<key>n_members</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d participantes</string>
-				<key>other</key>
-				<string>%d participantes</string>
-			</dict>
-		<dict>
-		<key>ask_delete_chat</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>Delete %d chat? It will no longer be shown in the chat list, its messages will remain on the server.</string>
-				<key>other</key>
-				<string>Apagar %d conversas? Elas não mais serão exibidas na lista, mas ficarão no servidor.</string>
-			</dict>
-		<dict>
-		<key>ask_delete_messages</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>Delete %d message here and on the server?</string>
-				<key>other</key>
-				<string>Apagar %d mensagens aqui e no servidor?</string>
-			</dict>
-		<dict>
-		<key>chat_archived</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d chat archived</string>
-				<key>other</key>
-				<string>%d conversas arquivadas</string>
-			</dict>
-		<dict>
-		<key>chat_unarchived</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d chat unarchived</string>
-				<key>other</key>
-				<string>%d conversas desarquivadas</string>
-			</dict>
-		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d min</string>
+			<key>other</key>
+			<string>%d min</string>
+		</dict>
 	</dict>
+	<key>n_hours</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d horas</string>
+			<key>other</key>
+			<string>%d horas</string>
+		</dict>
+	</dict>
+	<key>n_chats</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d conversa</string>
+			<key>other</key>
+			<string>%d conversa</string>
+		</dict>
+	</dict>
+	<key>n_contacts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d contatos</string>
+			<key>other</key>
+			<string>%d contatos</string>
+		</dict>
+	</dict>
+	<key>n_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d message</string>
+			<key>other</key>
+			<string>%d mensagens</string>
+		</dict>
+	</dict>
+	<key>n_members</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d participantes</string>
+			<key>other</key>
+			<string>%d participantes</string>
+		</dict>
+	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Delete %d chat? It will no longer be shown in the chat list, its messages will remain on the server.</string>
+			<key>other</key>
+			<string>Apagar %d conversas? Elas não mais serão exibidas na lista, mas ficarão no servidor.</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Delete %d message here and on the server?</string>
+			<key>other</key>
+			<string>Apagar %d mensagens aqui e no servidor?</string>
+		</dict>
+	</dict>
+	<key>chat_archived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d chat archived</string>
+			<key>other</key>
+			<string>%d conversas arquivadas</string>
+		</dict>
+	</dict>
+	<key>chat_unarchived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d chat unarchived</string>
+			<key>other</key>
+			<string>%d conversas desarquivadas</string>
+		</dict>
+	</dict>
+</dict>
 </plist>

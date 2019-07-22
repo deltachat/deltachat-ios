@@ -1,180 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
+<dict>
+	<key>n_minutes</key>
 	<dict>
-		<key>n_minutes</key>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
 		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d dəqiqə</string>
-				<key>other</key>
-				<string>%d dəqiqə</string>
-			</dict>
-		<dict>
-		<key>n_hours</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d saat</string>
-				<key>other</key>
-				<string>%d saat</string>
-			</dict>
-		<dict>
-		<key>n_chats</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d çat</string>
-				<key>other</key>
-				<string>%d çat</string>
-			</dict>
-		<dict>
-		<key>n_contacts</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d kontakt</string>
-				<key>other</key>
-				<string>%d kontakt</string>
-			</dict>
-		<dict>
-		<key>n_messages</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d mesaj</string>
-				<key>other</key>
-				<string>%d mesaj</string>
-			</dict>
-		<dict>
-		<key>n_members</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d üzv</string>
-				<key>other</key>
-				<string>%d üzv</string>
-			</dict>
-		<dict>
-		<key>ask_delete_chat</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d çat silmək? Artıq chat siyahısında göstərilməyəcək, mesajlar serverdə qalacaq.</string>
-				<key>other</key>
-				<string>%d çat silmək? Artıq chat siyahısında göstərilməyəcək, mesajlar serverdə qalacaq.</string>
-			</dict>
-		<dict>
-		<key>ask_delete_messages</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%dmesaj burada və serverdə silin?</string>
-				<key>other</key>
-				<string>%dmesaj burada və serverdə silin?</string>
-			</dict>
-		<dict>
-		<key>chat_archived</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d çat arxiv olundu</string>
-				<key>other</key>
-				<string>%d chats archived</string>
-			</dict>
-		<dict>
-		<key>chat_unarchived</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d çat arxivdən çıxarıldı</string>
-				<key>other</key>
-				<string>%d chats unarchived</string>
-			</dict>
-		<dict>
-		<key>chat_n_new_messages</key>
-		<dict>
-			<key>NSStringLocalizedFormatKey</key>
-			<string>%#@localized_format_key@</string>
-			<key>localized_format_key</key>
-			<dict>
-				<key>NSStringFormatSpecTypeKey</key>
-				<string>NSStringPluralRuleType</string>
-				<key>NSStringFormatValueTypeKey</key>
-				<string>d</string>
-				<key>one</key>
-				<string>%d yeni messaj</string>
-				<key>other</key>
-				<string>%d yeni messaj</string>
-			</dict>
-		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d dəqiqə</string>
+			<key>other</key>
+			<string>%d dəqiqə</string>
+		</dict>
 	</dict>
+	<key>n_hours</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d saat</string>
+			<key>other</key>
+			<string>%d saat</string>
+		</dict>
+	</dict>
+	<key>n_chats</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d çat</string>
+			<key>other</key>
+			<string>%d çat</string>
+		</dict>
+	</dict>
+	<key>n_contacts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d kontakt</string>
+			<key>other</key>
+			<string>%d kontakt</string>
+		</dict>
+	</dict>
+	<key>n_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d mesaj</string>
+			<key>other</key>
+			<string>%d mesaj</string>
+		</dict>
+	</dict>
+	<key>n_members</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d üzv</string>
+			<key>other</key>
+			<string>%d üzv</string>
+		</dict>
+	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d çat silmək? Artıq chat siyahısında göstərilməyəcək, mesajlar serverdə qalacaq.</string>
+			<key>other</key>
+			<string>%d çat silmək? Artıq chat siyahısında göstərilməyəcək, mesajlar serverdə qalacaq.</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%dmesaj burada və serverdə silin?</string>
+			<key>other</key>
+			<string>%dmesaj burada və serverdə silin?</string>
+		</dict>
+	</dict>
+	<key>chat_archived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d çat arxiv olundu</string>
+			<key>other</key>
+			<string>%d chats archived</string>
+		</dict>
+	</dict>
+	<key>chat_unarchived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d çat arxivdən çıxarıldı</string>
+			<key>other</key>
+			<string>%d chats unarchived</string>
+		</dict>
+	</dict>
+	<key>chat_n_new_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d yeni messaj</string>
+			<key>other</key>
+			<string>%d yeni messaj</string>
+		</dict>
+	</dict>
+</dict>
 </plist>
