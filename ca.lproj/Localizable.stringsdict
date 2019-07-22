@@ -1,0 +1,164 @@
+<plist version="1.0">
+	<dict>
+		<key>n_minutes</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d min</string>
+				<key>other</key>
+				<string>%d min</string>
+			</dict>
+		<dict>
+		<key>n_hours</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d hora</string>
+				<key>other</key>
+				<string>%d hores</string>
+			</dict>
+		<dict>
+		<key>n_chats</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d xat</string>
+				<key>other</key>
+				<string>%d xats</string>
+			</dict>
+		<dict>
+		<key>n_contacts</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d contacte</string>
+				<key>other</key>
+				<string>%d contactes</string>
+			</dict>
+		<dict>
+		<key>n_messages</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d missatge</string>
+				<key>other</key>
+				<string>%d missatges</string>
+			</dict>
+		<dict>
+		<key>n_members</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d membre</string>
+				<key>other</key>
+				<string>%d membres</string>
+			</dict>
+		<dict>
+		<key>ask_delete_chat</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>Esborra %d xat? Ja no es mostrarà al llistat de xats, i els seus missatges no romandran al servidor.</string>
+				<key>other</key>
+				<string>Esborra %d xats? Ja no es mostraran al llistat de xats i els missatges no quedaran al servidor.</string>
+			</dict>
+		<dict>
+		<key>ask_delete_messages</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>Esborra %d missatge aquí i al servidor?</string>
+				<key>other</key>
+				<string>Esborra %d missatges aquí i al servidor?</string>
+			</dict>
+		<dict>
+		<key>chat_archived</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d xat arxivat</string>
+				<key>other</key>
+				<string>%d xats arxivats</string>
+			</dict>
+		<dict>
+		<key>chat_unarchived</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d xat arxivat</string>
+				<key>other</key>
+				<string>%d xats desarxivats</string>
+			</dict>
+		<dict>
+	</dict>
+</plist>

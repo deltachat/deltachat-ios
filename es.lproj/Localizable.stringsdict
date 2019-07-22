@@ -1,0 +1,180 @@
+<plist version="1.0">
+	<dict>
+		<key>n_minutes</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d min</string>
+				<key>other</key>
+				<string>%d min</string>
+			</dict>
+		<dict>
+		<key>n_hours</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d hora</string>
+				<key>other</key>
+				<string>%d horas</string>
+			</dict>
+		<dict>
+		<key>n_chats</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d chat</string>
+				<key>other</key>
+				<string>%d chats</string>
+			</dict>
+		<dict>
+		<key>n_contacts</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d contacto</string>
+				<key>other</key>
+				<string>%d contactos</string>
+			</dict>
+		<dict>
+		<key>n_messages</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d mensaje</string>
+				<key>other</key>
+				<string>%d mensajes</string>
+			</dict>
+		<dict>
+		<key>n_members</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d miembro</string>
+				<key>other</key>
+				<string>%d miembros</string>
+			</dict>
+		<dict>
+		<key>ask_delete_chat</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>¿Eliminar %d chat? No volverá a ser mostrado en la lista de chats, pero sus mensajes permanecerán en el servidor.</string>
+				<key>other</key>
+				<string>¿Eliminar %d chats? No volverán a ser mostrados en la lista de chats, pero sus mensajes permanecerán en el servidor.</string>
+			</dict>
+		<dict>
+		<key>ask_delete_messages</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>¿Eliminar %d mensaje aquí y en el servidor?</string>
+				<key>other</key>
+				<string>¿Eliminar %d mensajes aquí y en el servidor?</string>
+			</dict>
+		<dict>
+		<key>chat_archived</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d chat archivado</string>
+				<key>other</key>
+				<string>%d chats archivados</string>
+			</dict>
+		<dict>
+		<key>chat_unarchived</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d chat des-archivado</string>
+				<key>other</key>
+				<string>%d chats des-archivados</string>
+			</dict>
+		<dict>
+		<key>chat_n_new_messages</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d nuevo mensaje</string>
+				<key>other</key>
+				<string>%d nuevos mensajes</string>
+			</dict>
+		<dict>
+	</dict>
+</plist>

@@ -1,0 +1,204 @@
+<plist version="1.0">
+	<dict>
+		<key>n_minutes</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d хвилину</string>
+				<key>few</key>
+				<string>%d хвилини</string>
+				<key>many</key>
+				<string>%d хвилин</string>
+				<key>other</key>
+				<string>%d хвилин</string>
+			</dict>
+		<dict>
+		<key>n_hours</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d годину</string>
+				<key>few</key>
+				<string>%d години</string>
+				<key>many</key>
+				<string>%d годин</string>
+				<key>other</key>
+				<string>%d годин</string>
+			</dict>
+		<dict>
+		<key>n_chats</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d чат</string>
+				<key>few</key>
+				<string>%d чати</string>
+				<key>many</key>
+				<string>%d чатів</string>
+				<key>other</key>
+				<string>%d чатів</string>
+			</dict>
+		<dict>
+		<key>n_contacts</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d контакт</string>
+				<key>few</key>
+				<string>%d контакти</string>
+				<key>many</key>
+				<string>%d контактів</string>
+				<key>other</key>
+				<string>%d контактів</string>
+			</dict>
+		<dict>
+		<key>n_messages</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d повідомлення</string>
+				<key>few</key>
+				<string>%d повідомлення</string>
+				<key>many</key>
+				<string>%d повідомлень</string>
+				<key>other</key>
+				<string>%d повідомлень</string>
+			</dict>
+		<dict>
+		<key>n_members</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d учасник</string>
+				<key>few</key>
+				<string>%d учасники</string>
+				<key>many</key>
+				<string>%d учасників</string>
+				<key>other</key>
+				<string>%d учасників</string>
+			</dict>
+		<dict>
+		<key>ask_delete_chat</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>Видалити %d чат? Він більше не буде відображатися у списку чатів, його повідомлення залишаться на сервері.</string>
+				<key>few</key>
+				<string>Видалити %d чати? Вони більше не будуть відображатися у списку чатів, їх повідомлення залишаться на сервері.</string>
+				<key>many</key>
+				<string>Видалити %d чатів? Вони більше не будуть відображатися у списку чатів, їх повідомлення залишаться на сервері.</string>
+				<key>other</key>
+				<string>Видалити %d чатів? Вони більше не будуть відображатися у списку чатів, їх повідомлення залишаться на сервері.</string>
+			</dict>
+		<dict>
+		<key>ask_delete_messages</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>Видалити %d повідомлення тут і на сервері?</string>
+				<key>few</key>
+				<string>Видалити %d повідомлення тут і на сервері?</string>
+				<key>many</key>
+				<string>Видалити %d повідомлень тут і на сервері?</string>
+				<key>other</key>
+				<string>Видалити %d повідомлень тут і на сервері?</string>
+			</dict>
+		<dict>
+		<key>chat_archived</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d чат заархівовано</string>
+				<key>few</key>
+				<string>%d чати заархівовано</string>
+				<key>many</key>
+				<string>%d чатів заархівовано</string>
+				<key>other</key>
+				<string>%d чатів заархівовано</string>
+			</dict>
+		<dict>
+		<key>chat_unarchived</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@localized_format_key@</string>
+			<key>localized_format_key</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>%d чат розпаковано</string>
+				<key>few</key>
+				<string>%d чати розпаковано</string>
+				<key>many</key>
+				<string>%d чатів розпаковано</string>
+				<key>other</key>
+				<string>%d чатів розпаковано</string>
+			</dict>
+		<dict>
+	</dict>
+</plist>
