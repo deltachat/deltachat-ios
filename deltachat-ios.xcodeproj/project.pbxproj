@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3022E6BE22E8768800763272 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3022E6C022E8768800763272 /* InfoPlist.strings */; };
+		3022E6D422E8788400763272 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14F1FB061E2001FEA36 /* Info.plist */; };
 		3060119C22DDE24000C1CE6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
 		306011B622E5E7FB00C1CE6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
 		6795F63A82E94FF7CD2CEC0F /* Pods_deltachat_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */; };
@@ -82,6 +84,26 @@
 /* Begin PBXFileReference section */
 		21EE28844E7A690D73BF5285 /* Pods-deltachat-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3022E6BF22E8768800763272 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6C122E8768C00763272 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6C222E8768E00763272 /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = sq.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6C322E8769000763272 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = az.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6C422E8769100763272 /* eu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = eu; path = eu.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6C522E8769200763272 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6C622E8769300763272 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3022E6C722E8769400763272 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6C822E8769500763272 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6C922E8769700763272 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6CA22E8769900763272 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6CB22E8769900763272 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6CC22E8769A00763272 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6CD22E8769B00763272 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6CE22E8769C00763272 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3022E6CF22E8769D00763272 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3022E6D022E8769D00763272 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6D122E8769E00763272 /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3022E6D222E8769F00763272 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3022E6D322E876A100763272 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3060119D22DDE24000C1CE6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3060119F22DDE24500C1CE6F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		306011A022DDE24700C1CE6F /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = sq.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -153,7 +175,7 @@
 		7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A9FB14D1FB061E2001FEA36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7A9FB14F1FB061E2001FEA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A9FB14F1FB061E2001FEA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 		7A9FB1561FB06540001FEA36 /* deltachat-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "deltachat-ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		8DE110C607A0E4485C43B5FA /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
@@ -216,6 +238,7 @@
 		7A9FB1371FB061E2001FEA36 = {
 			isa = PBXGroup;
 			children = (
+				3022E6C022E8768800763272 /* InfoPlist.strings */,
 				3060119E22DDE24000C1CE6F /* Localizable.strings */,
 				306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */,
 				7837B63F21E54DC600CDE126 /* .swiftlint.yml */,
@@ -530,10 +553,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7837B64021E54DC600CDE126 /* .swiftlint.yml in Resources */,
+				3022E6BE22E8768800763272 /* InfoPlist.strings in Resources */,
 				3060119C22DDE24000C1CE6F /* Localizable.strings in Resources */,
 				7A9FB14E1FB061E2001FEA36 /* LaunchScreen.storyboard in Resources */,
 				306011B622E5E7FB00C1CE6F /* Localizable.stringsdict in Resources */,
 				7A9FB14B1FB061E2001FEA36 /* Assets.xcassets in Resources */,
+				3022E6D422E8788400763272 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,6 +778,34 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3022E6C022E8768800763272 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3022E6BF22E8768800763272 /* en */,
+				3022E6C122E8768C00763272 /* de */,
+				3022E6C222E8768E00763272 /* sq */,
+				3022E6C322E8769000763272 /* az */,
+				3022E6C422E8769100763272 /* eu */,
+				3022E6C522E8769200763272 /* ca */,
+				3022E6C622E8769300763272 /* zh-Hant */,
+				3022E6C722E8769400763272 /* da */,
+				3022E6C822E8769500763272 /* nl */,
+				3022E6C922E8769700763272 /* fr */,
+				3022E6CA22E8769900763272 /* it */,
+				3022E6CB22E8769900763272 /* ru */,
+				3022E6CC22E8769A00763272 /* es */,
+				3022E6CD22E8769B00763272 /* tr */,
+				3022E6CE22E8769C00763272 /* pt-BR */,
+				3022E6CF22E8769D00763272 /* pt-PT */,
+				3022E6D022E8769D00763272 /* pl */,
+				3022E6D122E8769E00763272 /* lt */,
+				3022E6D222E8769F00763272 /* zh-Hant-TW */,
+				3022E6D322E876A100763272 /* uk */,
+			);
+			name = InfoPlist.strings;
+			path = "deltachat-ios";
+			sourceTree = "<group>";
+		};
 		3060119E22DDE24000C1CE6F /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

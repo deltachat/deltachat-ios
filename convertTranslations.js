@@ -153,6 +153,24 @@ function toStringsDict(pluralsMap) {
     return out;
 }
 
+function toInfoPlistStrings(lines) {
+    let out = '';
+    for (let line of lines) {
+      if (typeof line === 'string') {
+        continue;
+      } else {
+        let key = line[0];
+        if (!key.startsWith("INFOPLIST.")) {
+          continue;
+        }
+        key = key.replace('INFOPLIST.', '').replace(/\./gi, ' ').replace(/\_/gi, '-');
+        let value = line[1].replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t').replace(/"/g, '\\"');
+        out += `"${key}" = "${value}";\n`;
+      }
+    }
+    return out;
+}
+
 function toLocalizableStrings(lines) {
   let out = '';
   for (let line of lines) {
@@ -168,6 +186,9 @@ function toLocalizableStrings(lines) {
               out += '// ' + line;
     } else {
       let key = line[0];
+      if (key.startsWith("INFOPLIST.")) {
+        continue;
+      }
       let value = line[1].replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t').replace(/"/g, '\\"');
       out += `"${key}" = "${value}";`;
     }
@@ -228,20 +249,29 @@ function convertAndroidToIOS(stringsXMLArray, appleStrings) {
 
 
   let iosFormatted = toLocalizableStrings(allElements.parsed);
+  let iosFormattedInfoPlist = toInfoPlistStrings(allElements.parsed);
   let iosFormattedPlurals = toStringsDict(allElements.parsedPlurals);
 
   let localizableStrings = output + "/Localizable.strings";
+  let infoPlistStrings = output + "/InfoPlist.strings";
   let stringsDict = output + "/Localizable.stringsdict";
   fs.writeFile(localizableStrings, iosFormatted, function (err) {
     if (err) {
-      console.error("Error converting " + stringsXMLArray + " to " + appleStrings);
+      console.error("Error converting " + stringsXMLArray + " to " + localizableStrings);
+      throw err;
+    }
+  });
+
+  fs.writeFile(infoPlistStrings, iosFormattedInfoPlist, function (err) {
+    if (err) {
+      console.error("Error converting " + stringsXMLArray + " to " + infoPlistStrings);
       throw err;
     }
   });
 
   fs.writeFile(stringsDict, iosFormattedPlurals, function (err) {
     if (err) {
-      console.error("Error converting " + stringsXMLArray + " to " + appleStrings);
+      console.error("Error converting " + stringsXMLArray + " to " + stringsDict);
       throw err;
     }
   });
