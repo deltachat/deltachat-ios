@@ -778,6 +778,7 @@
 				306011B322DE2F0A00C1CE6F /* uk */,
 			);
 			name = Localizable.strings;
+			path = "deltachat-ios";
 			sourceTree = "<group>";
 		};
 		306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */ = {
@@ -805,6 +806,7 @@
 				306011C922E5E83500C1CE6F /* uk */,
 			);
 			name = Localizable.stringsdict;
+			path = "deltachat-ios";
 			sourceTree = "<group>";
 		};
 		7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */ = {
