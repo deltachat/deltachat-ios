@@ -59,6 +59,12 @@ extension String {
 			else { return value }
 		return NSLocalizedString(stringID, bundle: bundle, comment: "")
 	}
+
+	static func localized(stringID: String, count: Int) -> String {
+		let formatString: String = localized(stringID)
+		let resultString: String = String.localizedStringWithFormat(formatString, count)
+		return resultString;
+	}
 }
 
 extension URL {
