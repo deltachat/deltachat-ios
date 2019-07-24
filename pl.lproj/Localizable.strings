@@ -46,9 +46,11 @@
 "images" = "Obrazy";
 "audio" = "Audio";
 "voice_message" = "Wiadomość głosowa";
+"forwarded_message" = "Przekazano wiadomość";
 "video" = "Wideo";
 "documents" = "Dokumenty";
 "contact" = "Kontakt";
+"verified_contact" = "Zweryfikowany kontakt";
 "camera" = "Kamera";
 "location" = "Lokalizacja";
 "gallery" = "Galeria";
@@ -83,6 +85,7 @@
 "menu_new_verified_group" = "Nowa zweryfikowana grupa (eksperymentalna)";
 "menu_send" = "Wyślij";
 "menu_edit_group" = "Edytuj grupę";
+"menu_group_name_and_image" = "Nazwa grupy i obraz";
 "menu_show_map" = "Pokaż mapę";
 "menu_show_global_map" = "Pokaż wszystkie lokalizacje";
 "menu_archive_chat" = "Archiwizuj czat";
@@ -93,6 +96,7 @@
 "menu_delete_messages" = "Usuń wiadomości";
 "menu_delete_image" = "Usuń  obraz";
 "menu_delete_locations" = "Usunąć wszystkie lokalizacje?";
+"menu_delete_location" = "Usunąć tę lokalizację?";
 "menu_message_details" = "Szczegóły wiadomości";
 "menu_copy_to_clipboard" = "Kopiuj do schowka";
 "menu_forward" = "Przekaż wiadomość";
@@ -108,14 +112,18 @@
 "menu_play" = "Odtwarzaj";
 "menu_pause" = "Wstrzymaj";
 "menu_scroll_to_bottom" = "Przewiń do góry";
+"menu_scroll_to_top" = "Przesuń do góry";
 "menu_invite" = "Zaproś znajomych";
 "menu_help" = "Pomoc";
 "menu_select_all" = "Zaznacz wszystko";
 "menu_expand" = "Rozwiń";
 "menu_edit_name" = "Edytuj nazwę";
+"menu_edit_group_name" = "Edytuj nazwę grupy";
+"menu_edit_group_image" = "Edytuj obraz grupy";
 "menu_settings" = "Ustawienia";
 "menu_advanced" = "Zaawansowane";
 "menu_deaddrop" = "Prośba o kontakt";
+"menu_deaddrop_subtitle" = "Naciśnij wiadomość, aby rozpocząć rozmowę";
 "menu_view_profile" = "Pokaż profil";
 "title_share_location" = "Udostępnij lokalizację dla wszystki czlonków grup";
 
@@ -138,7 +146,9 @@
 "ask_block_contact" = "Zablokować ten kontakt? Nie będziesz już odbierać wiadomości od tego kontaktu.";
 "ask_unblock_contact" = "Odblokować ten kontakt? Ponownie będzie można odbierać wiadomości od tego kontaktu.";
 "ask_delete_contacts" = "Usunąć kontakty? Spowoduje to trwałe usunięcie wybranych kontaktów.\n\nKontaktów z trwającymi rozmowami i kontaktów z książki adresowej systemu nie można trwale usunąć.";
+"cannot_delete_contacts_in_use" = "Nie można usunąć kontaktów z trwającymi czatami.";
 "ask_start_chat_with" = "Czat z %1$@?";
+"info_outdated_app_title" = "Twoja wersja aplikacji jest nieaktualna.";
 // contact list
 "contacts_title" = "Kontakty";
 "contacts_enter_name_or_email" = "Podaj nazwę lub adres e-mail";
@@ -175,6 +185,7 @@
 "group_hello_draft" = "Witam, właśnie utworzyłem dla nas grupę \\\"%1$@\\\".";
 "group_self_not_in_group" = "Musisz być członkiem grupy, aby wykonać tę czynność.";
 "profile_encryption" = "Szyfrowanie";
+"tab_group" = "Grupa";
 "media_preview" = "Podgląd multimediów";
 
 
@@ -460,6 +471,7 @@
 "none_blocked_desktop" = "Tutaj nie ma zablokowanych kontaktów";
 "autocrypt_correct_desktop" = "Pomyślnie przetransferowano konfigurację Autocrypt!";
 "autocrypt_incorrect_desktop" = "Nieprawidłowy kod konfiguracji. Spróbuj ponownie.";
+"create_chat_error_desktop" = "Nie można utworzyć czatu.";
 "ask_delete_chat_desktop" = "Czy na pewno chcesz usunąć ten czat?";
 "email_validation_failed_desktop" = "Wymagany adres e-mail.";
 "me_desktop" = "ja";
@@ -480,6 +492,7 @@
 "media_tab_media" = "Multimedia";
 "media_tab_documents" = "Dokumenty";
 "media_no_media_hint" = "Nie ma multimediów";
+"media_no_documents_hint" = "Brak dokumentów.";
 "language_be" = "Belgijski";
 "language_ca" = "Kataloński";
 "language_da" = "Duński";
