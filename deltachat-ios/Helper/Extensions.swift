@@ -48,7 +48,16 @@ extension String {
     }
 
 	static func localized(_ stringID: String) -> String {
-		return NSLocalizedString(stringID, comment: "")
+		let value = NSLocalizedString(stringID, comment: "")
+		if value != stringID || NSLocale.preferredLanguages.first == "en" {
+			return value
+		}
+
+		guard
+			let path = Bundle.main.path(forResource: "en", ofType: "lproj"),
+			let bundle = Bundle(path: path)
+			else { return value }
+		return NSLocalizedString(stringID, bundle: bundle, comment: "")
 	}
 }
 
