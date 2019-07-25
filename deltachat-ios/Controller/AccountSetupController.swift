@@ -67,6 +67,9 @@ class AccountSetupController: UITableViewController {
         let cell = TextFieldCell(description: "IMAP Server", placeholder: DCConfig.mailServer ?? DCConfig.configuredMailServer, delegate: self)
         cell.accessibilityIdentifier = "IMAPServerCell"
         cell.textField.tag = 2
+        cell.textField.autocorrectionType = .no
+        cell.textField.spellCheckingType = .no
+        cell.textField.autocapitalizationType = .none
         return cell
     }()
 
@@ -103,6 +106,9 @@ class AccountSetupController: UITableViewController {
         let cell = TextFieldCell(description: "SMTP Server", placeholder: DCConfig.sendServer ?? DCConfig.configuredSendServer, delegate: self)
         cell.accessibilityIdentifier = "SMTPServerCell"
         cell.textField.tag = 4
+        cell.textField.autocorrectionType = .no
+        cell.textField.spellCheckingType = .no
+        cell.textField.autocapitalizationType = .none
         return cell
     }()
 
