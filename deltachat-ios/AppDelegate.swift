@@ -71,7 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         appCoordinator.start()
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         start()
-        registerForPushNotifications()
         if !isConfigured {
             appCoordinator.presentLoginController()
         }
@@ -268,7 +267,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - PushNotifications
 
-    private func registerForPushNotifications() {
+	func registerForPushNotifications() {
         UNUserNotificationCenter.current().delegate = self
 
         UNUserNotificationCenter.current()
