@@ -6,6 +6,8 @@
 
 # ----Main-----
 
+cd tools
+
 TMP_ANDROID_TRANSLATIONS=tmpAndroidTranslations
 
 if [[ -z `which node` ]] 
@@ -45,3 +47,5 @@ for (( i=0; i<${#IOS_TRANSLATIONS[@]}; i++ )) {
 }
 
 rm -rf $TMP_ANDROID_TRANSLATIONS
+
+cd ..
