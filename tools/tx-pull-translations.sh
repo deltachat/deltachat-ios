@@ -25,7 +25,7 @@ then
     rm -rf $TMP_ANDROID_TRANSLATIONS
 fi
 
-IOS_TRANSLATIONS=( $(find . -name Localizable.strings) )
+IOS_TRANSLATIONS=( $(find .. -name Localizable.strings) )
 
 mkdir $TMP_ANDROID_TRANSLATIONS
 cd $TMP_ANDROID_TRANSLATIONS
