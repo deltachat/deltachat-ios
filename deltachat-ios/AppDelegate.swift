@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         start()
         if !isConfigured {
             appCoordinator.presentLoginController()
-		}
+        }
         return true
     }
 
