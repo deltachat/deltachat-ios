@@ -537,6 +537,8 @@ class AccountSetupController: UITableViewController {
     private func handleLoginSuccess() {
         // used when login hud successfully went trough
         dismiss(animated: true, completion: nil)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.registerForPushNotifications()
     }
 
     private func resignFirstResponderOnAllCells() {
