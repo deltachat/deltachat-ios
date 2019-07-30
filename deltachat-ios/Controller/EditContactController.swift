@@ -7,7 +7,7 @@ class EditContactController: NewContactController {
     // the email field)
     init(contactIdForUpdate: Int) {
         super.init()
-        title = "Edit Contact"
+        title = String.localized("edit_contact")
 
         let contact = DCContact(id: contactIdForUpdate)
         nameCell.textField.text = contact.name

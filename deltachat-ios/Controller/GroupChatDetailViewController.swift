@@ -41,13 +41,13 @@ class GroupChatDetailViewController: UIViewController {
 
     private func showNotificationSetup() {
         let notificationSetupAlert = UIAlertController(title: "Notifications Setup is not implemented yet", message: "But you get an idea where this is going", preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
         notificationSetupAlert.addAction(cancelAction)
         present(notificationSetupAlert, animated: true, completion: nil)
     }
 
     private lazy var editBarButtonItem: UIBarButtonItem = {
-        UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
+        UIBarButtonItem(title: String.localized("global_menu_edit_desktop"), style: .plain, target: self, action: #selector(editButtonPressed))
     }()
 
     private var groupMembers: [DCContact] = []
@@ -56,7 +56,7 @@ class GroupChatDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Group Info"
+        title = String.localized("group_info")
         chatDetailTable.delegate = self
         chatDetailTable.dataSource = self
         navigationItem.rightBarButtonItem = editBarButtonItem
@@ -91,7 +91,7 @@ class GroupChatDetailViewController: UIViewController {
 extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
-            return "Members:"
+            return String.localized("tab_members")
         }
         return nil
     }
@@ -143,13 +143,13 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 
         if section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
-            cell.textLabel?.text = "Notifications"
+            cell.textLabel?.text = String.localized("pref_notifications")
             cell.selectionStyle = .none
             return cell
         } else if section == 1 {
             if row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as! ActionCell
-                cell.actionTitle = "Add Members"
+                cell.actionTitle = String.localized("group_add_members")
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
@@ -162,7 +162,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             }
         } else if section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as! ActionCell
-            cell.actionTitle = "Leave Group"
+            cell.actionTitle = String.localized("menu_leave_group")
             cell.actionColor = UIColor.red
             return cell
         }
@@ -203,7 +203,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 
         // assigning swipe by delete to members (except for current user)
         if section == 1, row >= staticCellCountMemberSection, groupMembers[row - staticCellCountMemberSection].id != currentUser?.id {
-            let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [unowned self] _, indexPath in
+            let delete = UITableViewRowAction(style: .destructive, title: String.localized("global_menu_edit_delete_desktop")) { [unowned self] _, indexPath in
 
                 let memberId = self.groupMembers[row - self.staticCellCountMemberSection].id
                 let success = dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(memberId))

@@ -9,7 +9,7 @@ class NewChatViewController: UITableViewController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Contact"
+        searchController.searchBar.placeholder = String.localized("search_contact")
         return searchController
     }()
 
@@ -61,7 +61,7 @@ class NewChatViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "New Chat"
+        title = String.localized("menu_new_chat")
 
         deviceContactHandler.importDeviceContacts()
         navigationItem.searchController = searchController
@@ -104,7 +104,7 @@ class NewChatViewController: UITableViewController {
     }
 
     override func viewWillDisappear(_: Bool) {
-        title = "Chats" /* hack: when navigating to chatView (removing this viewController), there was a delayed backButton update (showing 'New Chat' for a moment) */
+        title = String.localized("pref_chats") /* hack: when navigating to chatView (removing this viewController), there was a delayed backButton update (showing 'New Chat' for a moment) */
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -158,7 +158,7 @@ class NewChatViewController: UITableViewController {
                 } else {
                     cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
                 }
-                cell.textLabel?.text = "New Group"
+                cell.textLabel?.text = String.localized("menu_new_group")
                 cell.textLabel?.textColor = view.tintColor
 
                 return cell
@@ -171,7 +171,7 @@ class NewChatViewController: UITableViewController {
                 } else {
                     cell = UITableViewCell(style: .default, reuseIdentifier: "scanGroupCell")
                 }
-                cell.textLabel?.text = "Scan Group QR Code"
+                cell.textLabel?.text = String.localized("qrscan_title")
                 cell.textLabel?.textColor = view.tintColor
 
                 return cell
@@ -185,7 +185,7 @@ class NewChatViewController: UITableViewController {
                 } else {
                     cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
                 }
-                cell.textLabel?.text = "New Contact"
+                cell.textLabel?.text = String.localized("menu_new_contact")
                 cell.textLabel?.textColor = view.tintColor
 
                 return cell
@@ -208,7 +208,7 @@ class NewChatViewController: UITableViewController {
                 } else {
                     cell = ActionCell(style: .default, reuseIdentifier: "actionCell")
                 }
-                cell.actionTitle = "Import Device Contacts"
+                cell.actionTitle = String.localized("import_contacts")
                 return cell
             }
         } else {
@@ -240,8 +240,8 @@ class NewChatViewController: UITableViewController {
                 if UIImagePickerController.isSourceTypeAvailable(.camera) {
                     coordinator?.showQRCodeController()
                 } else {
-                    let alert = UIAlertController(title: "Camera is not available", message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+                    let alert = UIAlertController(title: String.localized("chat_camera_unavailable"), message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
                         self.dismiss(animated: true, completion: nil)
                     }))
                     present(alert, animated: true, completion: nil)
@@ -295,7 +295,7 @@ class NewChatViewController: UITableViewController {
         return searchController.searchBar.text?.isEmpty ?? true
     }
 
-    private func filterContentForSearchText(_ searchText: String, scope _: String = "All") {
+    private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
         let contactsWithHighlights: [ContactWithSearchResults] = contacts.map { contact in
             let indexes = contact.contact.contains(searchText: searchText)
             return ContactWithSearchResults(contact: contact.contact, indexesToHighlight: indexes)
@@ -314,7 +314,7 @@ extension NewChatViewController: QrCodeReaderDelegate {
         logger.info("got ver: \(check)")
 
         if dc_lot_get_state(check) == DC_QR_ASK_VERIFYGROUP {
-            hud = ProgressHud("Synchronizing Account", in: view)
+            hud = ProgressHud(String.localized("synchronizing_account"), in: view)
             DispatchQueue.global(qos: .userInitiated).async {
                 let id = dc_join_securejoin(mailboxPointer, code)
 
@@ -326,8 +326,8 @@ extension NewChatViewController: QrCodeReaderDelegate {
                 }
             }
         } else {
-            let alert = UIAlertController(title: "Not a valid group QR Code", message: code, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+            let alert = UIAlertController(title: String.localized("invalid_qr_code"), message: code, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("OK"), style: .cancel, handler: { _ in
                 self.dismiss(animated: true, completion: nil)
             }))
             present(alert, animated: true, completion: nil)
@@ -352,14 +352,14 @@ extension NewChatViewController: ContactListDelegate {
 
     private func showSettingsAlert() {
         let alert = UIAlertController(
-            title: "Import Contacts from to your device",
-            message: "To chat with contacts from your device open the settings menu and enable the Contacts option",
+            title: String.localized("import_contacts"),
+            message: String.localized("import_contacts_message"),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "Open Settings", style: .default) { _ in
+        alert.addAction(UIAlertAction(title: String.localized("open_settings"), style: .default) { _ in
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel) { _ in
         })
         present(alert, animated: true)
     }

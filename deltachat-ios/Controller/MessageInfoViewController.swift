@@ -15,7 +15,7 @@ class MessageInfoViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Message Info"
+        title = String.localized("menu_message_details")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

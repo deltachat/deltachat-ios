@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>n_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d min.</string>
+			<key>few</key>
+			<string>%d min.</string>
+			<key>many</key>
+			<string>%d min.</string>
+			<key>other</key>
+			<string>%d min.</string>
+		</dict>
+	</dict>
+	<key>n_hours</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d val.</string>
+			<key>few</key>
+			<string>%d val.</string>
+			<key>many</key>
+			<string>%d val.</string>
+			<key>other</key>
+			<string>%d val.</string>
+		</dict>
+	</dict>
+	<key>n_chats</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d pokalbis</string>
+			<key>few</key>
+			<string>%d pokalbiai</string>
+			<key>many</key>
+			<string>%d pokalbių</string>
+			<key>other</key>
+			<string>%d pokalbis</string>
+		</dict>
+	</dict>
+	<key>n_contacts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d adresatas</string>
+			<key>few</key>
+			<string>%d adresatai</string>
+			<key>many</key>
+			<string>%d adresatų</string>
+			<key>other</key>
+			<string>%d adresatas</string>
+		</dict>
+	</dict>
+	<key>n_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d žinutė</string>
+			<key>few</key>
+			<string>%d žinutės</string>
+			<key>many</key>
+			<string>%d žinučių</string>
+			<key>other</key>
+			<string>%d žinutė</string>
+		</dict>
+	</dict>
+	<key>n_members</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d dalyvis</string>
+			<key>few</key>
+			<string>%d dalyviai</string>
+			<key>many</key>
+			<string>%d dalyvių</string>
+			<key>other</key>
+			<string>%d dalyvis</string>
+		</dict>
+	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Ištrinti %d pokalbį? Jis daugiau nebebus rodomas pokalbių sąraše, jo žinutės liks serveryje.</string>
+			<key>few</key>
+			<string>Ištrinti %d pokalbius? Jie daugiau nebebus rodomi pokalbių sąraše, jų žinutės liks serveryje.</string>
+			<key>many</key>
+			<string>Ištrinti %d pokalbių? Jie daugiau nebebus rodomi pokalbių sąraše, jų žinutės liks serveryje.</string>
+			<key>other</key>
+			<string>Ištrinti %d pokalbį? Jis daugiau nebebus rodomas pokalbių sąraše, jo žinutės liks serveryje.</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Ištrinti %d žinutę čia ir serveryje?</string>
+			<key>few</key>
+			<string>Ištrinti %d žinutes čia ir serveryje?</string>
+			<key>many</key>
+			<string>Ištrinti %d žinučių čia ir serveryje?</string>
+			<key>other</key>
+			<string>Ištrinti %d žinutę čia ir serveryje?</string>
+		</dict>
+	</dict>
+	<key>chat_archived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Archyvuotas %d pokalbis</string>
+			<key>few</key>
+			<string>Archyvuoti %d pokalbiai</string>
+			<key>many</key>
+			<string>Archyvuota %d pokalbių</string>
+			<key>other</key>
+			<string>Archyvuotas %d pokalbis</string>
+		</dict>
+	</dict>
+	<key>chat_unarchived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Išarchyvuotas %d pokalbis</string>
+			<key>few</key>
+			<string>Išarchyvuoti %d pokalbiai</string>
+			<key>many</key>
+			<string>Išarchyvuota %d pokalbių</string>
+			<key>other</key>
+			<string>Išarchyvuotas %d pokalbis</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

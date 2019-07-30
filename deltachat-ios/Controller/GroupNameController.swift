@@ -21,7 +21,7 @@ class GroupNameController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "New Group"
+        title = String.localized("menu_new_group")
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
         navigationItem.rightBarButtonItem = doneButton
         tableView.bounces = false
@@ -88,7 +88,7 @@ class GroupNameController: UITableViewController {
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
-            return "Group Members"
+            return String.localized("in_this_group_desktop")
         } else {
             return nil
         }

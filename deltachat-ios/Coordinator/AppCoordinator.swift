@@ -27,7 +27,7 @@ class AppCoordinator: NSObject, Coordinator {
         let controller = ContactListController()
         let nav = DCNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "contacts")
-        nav.tabBarItem = UITabBarItem(title: "Contacts", image: settingsImage, tag: 0)
+        nav.tabBarItem = UITabBarItem(title: String.localized("contacts_title"), image: settingsImage, tag: 0)
         let coordinator = ContactListCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
@@ -35,11 +35,11 @@ class AppCoordinator: NSObject, Coordinator {
     }()
 
     private lazy var mailboxController: UIViewController = {
-        let controller = MailboxViewController(chatId: Int(DC_CHAT_ID_DEADDROP), title: "Mailbox")
+        let controller = MailboxViewController(chatId: Int(DC_CHAT_ID_DEADDROP), title: String.localized("mailbox"))
         controller.disableWriting = true
         let nav = DCNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "message")
-        nav.tabBarItem = UITabBarItem(title: "Mailbox", image: settingsImage, tag: 1)
+        nav.tabBarItem = UITabBarItem(title: String.localized("mailbox"), image: settingsImage, tag: 1)
         let coordinator = MailboxCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
@@ -50,7 +50,7 @@ class AppCoordinator: NSObject, Coordinator {
         let controller = ProfileViewController()
         let nav = DCNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "report_card")
-        nav.tabBarItem = UITabBarItem(title: "My Profile", image: settingsImage, tag: 2)
+        nav.tabBarItem = UITabBarItem(title: String.localized("my_profile"), image: settingsImage, tag: 2)
         let coordinator = ProfileCoordinator(rootViewController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
@@ -61,7 +61,7 @@ class AppCoordinator: NSObject, Coordinator {
         let controller = ChatListController()
         let nav = DCNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "chat")
-        nav.tabBarItem = UITabBarItem(title: "Chats", image: settingsImage, tag: 3)
+        nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: 3)
         let coordinator = ChatListCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
@@ -72,7 +72,7 @@ class AppCoordinator: NSObject, Coordinator {
         let controller = SettingsViewController()
         let nav = DCNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "settings")
-        nav.tabBarItem = UITabBarItem(title: "Settings", image: settingsImage, tag: 4)
+        nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: 4)
         let coordinator = SettingsCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
@@ -251,7 +251,7 @@ class AccountSetupCoordinator: Coordinator {
     func showImapPortOptions() {
         let currentMailPort = DCConfig.mailPort ?? DCConfig.configuredMailPort
         let currentPort = Int(currentMailPort)
-        let portSettingsController = PortSettingsController(sectionTitle: "IMAP Port", ports: [143, 993], currentPort: currentPort)
+        let portSettingsController = PortSettingsController(sectionTitle: String.localized("login_imap_port"), ports: [143, 993], currentPort: currentPort)
         portSettingsController.onDismiss = {
             port in
             DCConfig.mailPort = port
@@ -262,7 +262,9 @@ class AccountSetupCoordinator: Coordinator {
     func showImapSecurityOptions() {
         let currentSecurityOption = DCConfig.getImapSecurity()
         let convertedOption = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: currentSecurityOption)
-        let securitySettingsController = SecuritySettingsController(title: "IMAP Security", options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"], selectedOption: convertedOption)
+        let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
+																	options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
+																	selectedOption: convertedOption)
         securitySettingsController.onDismiss = {
             option in
             if let secValue = SecurityValue(rawValue: option) {
@@ -276,7 +278,7 @@ class AccountSetupCoordinator: Coordinator {
     func showSmtpPortsOptions() {
         let currentMailPort = DCConfig.sendPort ?? DCConfig.configuredSendPort
         let currentPort = Int(currentMailPort)
-        let portSettingsController = PortSettingsController(sectionTitle: "SMTP Port", ports: [25, 465, 587], currentPort: currentPort)
+        let portSettingsController = PortSettingsController(sectionTitle: String.localized("login_smtp_port"), ports: [25, 465, 587], currentPort: currentPort)
         portSettingsController.onDismiss = {
             port in
             DCConfig.sendPort = port
@@ -287,7 +289,9 @@ class AccountSetupCoordinator: Coordinator {
     func showSmptpSecurityOptions() {
         let currentSecurityOption = DCConfig.getSmtpSecurity()
         let convertedOption = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: currentSecurityOption)
-        let securitySettingsController = SecuritySettingsController(title: "IMAP Security", options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"], selectedOption: convertedOption)
+        let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
+																	options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
+																	selectedOption: convertedOption)
         securitySettingsController.onDismiss = {
             option in
             if let secValue = SecurityValue(rawValue: option) {
@@ -467,8 +471,8 @@ class ChatViewCoordinator: NSObject, Coordinator {
 
             navigationController.present(cameraViewController, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "Camera is not available", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+            let alert = UIAlertController(title: String.localized("chat_camera_unavailable"), message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
                 self.navigationController.dismiss(animated: true, completion: nil)
             }))
             navigationController.present(alert, animated: true, completion: nil)
@@ -496,7 +500,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
     private func presentVideoLibrary() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let videoPicker = UIImagePickerController()
-            videoPicker.title = "Videos"
+            videoPicker.title = String.localized("videos")
             videoPicker.delegate = self
             videoPicker.sourceType = .photoLibrary
             videoPicker.mediaTypes = [kUTTypeMovie as String, kUTTypeVideo as String]

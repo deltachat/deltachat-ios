@@ -7,7 +7,7 @@ class ProgressHud {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
             UIView.animate(
                 withDuration: 0.1, animations: {
-                    self.hud.textLabel.text = message ?? "Error"
+                    self.hud.textLabel.text = message ?? String.localized("error")
                     self.hud.detailTextLabel.text = nil
                     self.hud.indicatorView = JGProgressHUDErrorIndicatorView()
                 }
@@ -23,7 +23,7 @@ class ProgressHud {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
             UIView.animate(
                 withDuration: 0.1, animations: {
-                    self.hud.textLabel.text = message ?? "Success"
+                    self.hud.textLabel.text = message ?? String.localized("success")
                     self.hud.indicatorView = JGProgressHUDSuccessIndicatorView()
                 }
             )
@@ -34,15 +34,15 @@ class ProgressHud {
 
     func progress(_ progress: Int) {
         hud.progress = Float(progress) / 1000.0
-        hud.detailTextLabel.text = "\(progress / 10)% Complete"
-    }
+		hud.detailTextLabel.text = "\(progress / 10)% \(String.localized("complete"))"
+	}
 
     init(_ text: String, in view: UIView) {
         hud = JGProgressHUD(style: .dark)
         hud.vibrancyEnabled = true
         hud.indicatorView = JGProgressHUDPieIndicatorView()
 
-        hud.detailTextLabel.text = "0% Complete"
+        hud.detailTextLabel.text = "0% " + String.localized("complete")
         hud.textLabel.text = text
         hud.show(in: view)
     }

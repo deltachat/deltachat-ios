@@ -58,7 +58,7 @@ class PortSettingsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        resetButton = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetButtonPressed))
+        resetButton = UIBarButtonItem(title: String.localized("reset"), style: .plain, target: self, action: #selector(resetButtonPressed))
         navigationItem.rightBarButtonItem = resetButton
         resetButton.isEnabled = false
     }
@@ -111,7 +111,7 @@ class PortSettingsController: UITableViewController {
         if section == 0 {
             return sectionTitle
         } else {
-            return "Custom Port"
+            return String.localized("custom_port")
         }
     }
 

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>n_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d минуту</string>
+			<key>few</key>
+			<string>%d минуты</string>
+			<key>many</key>
+			<string>%d минут </string>
+			<key>other</key>
+			<string>%d мин</string>
+		</dict>
+	</dict>
+	<key>n_hours</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d час</string>
+			<key>few</key>
+			<string>%d часа</string>
+			<key>many</key>
+			<string>%d часов</string>
+			<key>other</key>
+			<string>%d часов</string>
+		</dict>
+	</dict>
+	<key>n_chats</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d  чатов</string>
+			<key>few</key>
+			<string>%d  чатов</string>
+			<key>many</key>
+			<string>%d  чатов</string>
+			<key>other</key>
+			<string>%d чатов</string>
+		</dict>
+	</dict>
+	<key>n_contacts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d </string>
+			<key>few</key>
+			<string>%d contact</string>
+			<key>many</key>
+			<string>%d  контактов</string>
+			<key>other</key>
+			<string>%d контактов</string>
+		</dict>
+	</dict>
+	<key>n_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d message</string>
+			<key>few</key>
+			<string>%d messages</string>
+			<key>many</key>
+			<string>%d messages</string>
+			<key>other</key>
+			<string>%d сообщений</string>
+		</dict>
+	</dict>
+	<key>n_members</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d  участников</string>
+			<key>few</key>
+			<string>%d member</string>
+			<key>many</key>
+			<string>%d member</string>
+			<key>other</key>
+			<string>%d участников</string>
+		</dict>
+	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Удалить %d чат? Он больше не будет отображаться в списке чатов, его сообщения останутся на сервере.</string>
+			<key>few</key>
+			<string>Удалить %d чата? Они больше не будут отображаться в списке чатов, их сообщения останутся на сервере.</string>
+			<key>many</key>
+			<string>Удалить %d чатов? Они больше не будут отображаться в списке чатов, их сообщения останутся на сервере.</string>
+			<key>other</key>
+			<string>Удалить %d чатов? Они больше не будут отображаться в списке чатов, их сообщения останутся на сервере.</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Delete %d message here and on the server?</string>
+			<key>few</key>
+			<string>Удалить %d сообщений здесь и на сервере?</string>
+			<key>many</key>
+			<string>Delete %d message here and on the server?</string>
+			<key>other</key>
+			<string>Удалить %d сообщений здесь и на сервере?</string>
+		</dict>
+	</dict>
+	<key>chat_archived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d chat archived</string>
+			<key>few</key>
+			<string>%d chat archived</string>
+			<key>many</key>
+			<string>%d чатов архивировано</string>
+			<key>other</key>
+			<string>%d архивированных чатов</string>
+		</dict>
+	</dict>
+	<key>chat_unarchived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d chat unarchived</string>
+			<key>few</key>
+			<string>%d chat unarchived</string>
+			<key>many</key>
+			<string>%d чатов разархивировано</string>
+			<key>other</key>
+			<string>%d чатов разархивировано</string>
+		</dict>
+	</dict>
+	<key>chat_n_new_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d новое сообщение</string>
+			<key>few</key>
+			<string>%d новых сообщения</string>
+			<key>many</key>
+			<string>%d новых сообщений</string>
+			<key>other</key>
+			<string>%d новых сообщений</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

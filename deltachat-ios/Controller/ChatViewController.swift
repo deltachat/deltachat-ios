@@ -249,14 +249,14 @@ class ChatViewController: MessagesViewController {
 
         if disableWriting {
             menuItems = [
-                UIMenuItem(title: "Start Chat", action: #selector(MessageCollectionViewCell.messageStartChat(_:))),
-                UIMenuItem(title: "Dismiss", action: #selector(MessageCollectionViewCell.messageDismiss(_:))),
-                UIMenuItem(title: "Block", action: #selector(MessageCollectionViewCell.messageBlock(_:))),
+				UIMenuItem(title: String.localized("start_chat"), action: #selector(MessageCollectionViewCell.messageStartChat(_:))),
+                UIMenuItem(title: String.localized("dismiss"), action: #selector(MessageCollectionViewCell.messageDismiss(_:))),
+                UIMenuItem(title: String.localized("menu_block_contact"), action: #selector(MessageCollectionViewCell.messageBlock(_:))),
             ]
         } else {
             // Configures the UIMenu which is shown when selecting a message
             menuItems = [
-                UIMenuItem(title: "Info", action: #selector(MessageCollectionViewCell.messageInfo(_:))),
+                UIMenuItem(title: String.localized("info"), action: #selector(MessageCollectionViewCell.messageInfo(_:))),
             ]
         }
 
@@ -298,7 +298,7 @@ class ChatViewController: MessagesViewController {
     private func configureMessageInputBar() {
         messageInputBar.delegate = self
         messageInputBar.inputTextView.tintColor = DCColors.primary
-        messageInputBar.inputTextView.placeholder = "Message"
+        messageInputBar.inputTextView.placeholder = String.localized("chat_input_placeholder")
         messageInputBar.isTranslucent = true
         messageInputBar.separatorLine.isHidden = true
         messageInputBar.inputTextView.tintColor = DCColors.primary
@@ -757,12 +757,12 @@ extension ChatViewController: MessagesLayoutDelegate {
 
     private func showClipperOptions() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let photoAction = PhotoPickerAlertAction(title: "Photo", style: .default, handler: photoButtonPressed(_:))
-        let videoAction = PhotoPickerAlertAction(title: "Video", style: .default, handler: videoButtonPressed(_:))
+        let photoAction = PhotoPickerAlertAction(title: String.localized("photo"), style: .default, handler: photoButtonPressed(_:))
+        let videoAction = PhotoPickerAlertAction(title: String.localized("video"), style: .default, handler: videoButtonPressed(_:))
 
         alert.addAction(photoAction)
         alert.addAction(videoAction)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 

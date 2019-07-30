@@ -155,21 +155,20 @@ struct Utils {
 }
 
 class DateUtils {
-
+	// TODO: refactor that, it's an improper way for localizations, use stringsdict instead
+	// blocked by: converting androids plurals xml entries to stringsdict
     static func getBriefRelativeTimeSpanString(timeStamp: Int) -> String {
         let unixTime = Int(Date().timeIntervalSince1970)
         let seconds = unixTime - timeStamp
 
         if seconds < 60 {
-            return "Now"	// under one minute
+            return String.localized("now")	// under one minute
         } else if seconds < 3600 {
             let mins = seconds / 60
-            let minTitle = mins > 1 ? "mins" : "min"
-            return "\(mins) \(minTitle)"
+            return String.localized(stringID: "n_minutes", count: mins);
         } else if seconds < 86400 {
             let hours = seconds / 3600
-            let hoursTitle = hours > 1 ? "hours" : "hour"
-            return "\(hours) \(hoursTitle)"
+            return String.localized(stringID: "n_hours", count: hours);
         } else {
             let date = Date(timeIntervalSince1970: Double(timeStamp))
             let dateFormatter = DateFormatter()
