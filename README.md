@@ -10,11 +10,11 @@
 
 Betas are distributed via Testflight. Just scan this QR code with the camera app of your iPhone/iPad
 
-![QRCode](supporting_images/deltachat_testflight_qrcode.png)
+<img src=https://delta.chat/assets/home/deltachat_testflight_qrcode.png width=160>
 
 or open this link
 
-https://testflight.apple.com/join/WVoYFOZe
+https://testflight.apple.com/join/uEMc1NxS
 
 on your iPhone or iPad to try Deltachat iOS Beta.
 
