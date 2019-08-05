@@ -18,6 +18,7 @@ class AppCoordinator: NSObject, Coordinator {
         // put viewControllers here
         tabBarController.delegate = self
         tabBarController.tabBar.tintColor = DCColors.primary
+		tabBarController.tabBar.backgroundColor = .white
         return tabBarController
     }()
 
