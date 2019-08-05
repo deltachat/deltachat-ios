@@ -1,8 +1,3 @@
-//
-//  NewProfileViewController.swift
-//  deltachat-ios
-//
-
 import Foundation
 import UIKit
 
