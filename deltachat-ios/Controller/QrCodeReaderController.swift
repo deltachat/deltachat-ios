@@ -10,22 +10,19 @@ class QrCodeReaderController: UIViewController {
     weak var delegate: QrCodeReaderDelegate?
 
     private let supportedCodeTypes = [
-        AVMetadataObject.ObjectType.qr,
+        AVMetadataObject.ObjectType.qr
     ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(
-            deviceTypes: [.builtInDualCamera],
-            mediaType: AVMediaType.video,
-            position: .back
-        )
-
-        guard let captureDevice = deviceDiscoverySession.devices.first else {
-            print("Failed to get the camera device")
-            return
-        }
+        guard let captureDevice = AVCaptureDevice.DiscoverySession.init(
+			deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera],
+			mediaType: .video,
+			position: .back).devices.first else {
+				print("Failed to get the camera device")
+				return
+		}
 
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice)
