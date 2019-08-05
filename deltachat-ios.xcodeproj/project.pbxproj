@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30149D9322F21129003C12B5 /* NewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30149D9222F21129003C12B5 /* NewProfileViewController.swift */; };
 		3022E6BE22E8768800763272 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3022E6C022E8768800763272 /* InfoPlist.strings */; };
 		3060119C22DDE24000C1CE6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
 		306011B622E5E7FB00C1CE6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
+		30BD261422F8679200F399DF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD261322F8679200F399DF /* ProfileView.swift */; };
+		30BD261622F8812700F399DF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD261522F8812700F399DF /* UIView+Extension.swift */; };
 		6795F63A82E94FF7CD2CEC0F /* Pods_deltachat_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */; };
 		7070FB9B2101ECBB000DC258 /* GroupNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* GroupNameController.swift */; };
 		7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactDetailViewController.swift */; };
@@ -83,6 +86,7 @@
 /* Begin PBXFileReference section */
 		21EE28844E7A690D73BF5285 /* Pods-deltachat-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		30149D9222F21129003C12B5 /* NewProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProfileViewController.swift; sourceTree = "<group>"; };
 		3022E6BF22E8768800763272 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3022E6C122E8768C00763272 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3022E6C222E8768E00763272 /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = sq.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 		306011C722E5E82E00C1CE6F /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = lt; path = lt.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		306011C822E5E83100C1CE6F /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		306011C922E5E83500C1CE6F /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = uk; path = uk.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		30BD261322F8679200F399DF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		30BD261522F8812700F399DF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7070FB9A2101ECBB000DC258 /* GroupNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNameController.swift; sourceTree = "<group>"; };
 		7092474020B3869500AF8799 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
@@ -355,6 +361,7 @@
 				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
 				78E45E3F21D3D70700D4B15E /* ContactListController.swift */,
 				78ED838E21D5927A00243125 /* ProfileViewController.swift */,
+				30149D9222F21129003C12B5 /* NewProfileViewController.swift */,
 				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
 				7070FB9A2101ECBB000DC258 /* GroupNameController.swift */,
 				AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */,
@@ -385,6 +392,7 @@
 				AEE56D7F225504DB007DC082 /* Extensions.swift */,
 				AE38B3192267328200EC37A1 /* Colors.swift */,
 				AE851AC4227C755A00ED86F0 /* Protocols.swift */,
+				30BD261522F8812700F399DF /* UIView+Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -404,6 +412,7 @@
 				AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */,
 				AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */,
 				AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */,
+				30BD261322F8679200F399DF /* ProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -713,6 +722,7 @@
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
 				70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */,
+				30BD261422F8679200F399DF /* ProfileView.swift in Sources */,
 				78E45E3E21D3D28C00D4B15E /* DCNavigationController.swift in Sources */,
 				78E45E4021D3D70700D4B15E /* ContactListController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
@@ -726,6 +736,7 @@
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
 				78E45E3C21D3D03700D4B15E /* TextFieldTableViewCell.swift in Sources */,
 				AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */,
+				30149D9322F21129003C12B5 /* NewProfileViewController.swift in Sources */,
 				AEE56D80225504DB007DC082 /* Extensions.swift in Sources */,
 				7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */,
 				AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */,
@@ -744,6 +755,7 @@
 				AE851ACE227CA54400ED86F0 /* InitialsBadge.swift in Sources */,
 				70B8882E2091B8550074812E /* ContactCell.swift in Sources */,
 				7A451D941FB1B1DB00177250 /* wrapper.c in Sources */,
+				30BD261622F8812700F399DF /* UIView+Extension.swift in Sources */,
 				7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */,
 				AE18F292228C17BC0007B1BE /* PortSettingsController.swift in Sources */,
 				AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */,
