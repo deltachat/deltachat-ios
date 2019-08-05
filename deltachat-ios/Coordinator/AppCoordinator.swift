@@ -48,11 +48,11 @@ class AppCoordinator: NSObject, Coordinator {
     }()
 
     private lazy var profileController: UIViewController = {
-        let controller = ProfileViewController()
+        let controller = NewProfileViewController()
         let nav = DCNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "report_card")
         nav.tabBarItem = UITabBarItem(title: String.localized("my_profile"), image: settingsImage, tag: 2)
-        let coordinator = ProfileCoordinator(rootViewController: nav)
+        let coordinator = ProfileCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
         return nav
@@ -176,10 +176,9 @@ class MailboxCoordinator: ChatViewCoordinator {
 }
 
 class ProfileCoordinator: Coordinator {
-    var rootViewController: UIViewController
-
-    init(rootViewController: UIViewController) {
-        self.rootViewController = rootViewController
+	var navigationController: UINavigationController
+	init(navigationController: UINavigationController) {
+		self.navigationController = navigationController
     }
 }
 
