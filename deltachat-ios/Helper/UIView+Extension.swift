@@ -13,7 +13,7 @@ extension UIView {
 		self.layer.borderColor = color.cgColor
 		self.layer.borderWidth = 2
 	}
-	
+
 	func constraintAlignTopTo(_ view: UIView) -> NSLayoutConstraint {
 		return constraintAlignTopTo(view, paddingTop: 0.0)
 	}
@@ -27,6 +27,21 @@ extension UIView {
 			attribute: .top,
 			multiplier: 1.0,
 			constant: paddingTop)
+	}
+
+	func constraintAlignBottomTo(_ view: UIView) -> NSLayoutConstraint {
+		return constraintAlignBottomTo(view, paddingBottom: 0.0)
+	}
+
+	func constraintAlignBottomTo(_ view: UIView, paddingBottom: CGFloat) -> NSLayoutConstraint {
+		return NSLayoutConstraint(
+			item: self,
+			attribute: .bottom,
+			relatedBy: .equal,
+			toItem: view,
+			attribute: .bottom,
+			multiplier: 1.0,
+			constant: -paddingBottom)
 	}
 
 	func constraintAlignLeadingTo(_ view: UIView) -> NSLayoutConstraint {
