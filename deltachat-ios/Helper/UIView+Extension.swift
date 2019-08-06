@@ -18,7 +18,7 @@ extension UIView {
 		return constraintAlignTopTo(view, paddingTop: 0.0)
 	}
 	
-	func constraintAlignTopTo(_ view: UIView, paddingTop: CGFloat) -> NSLayoutConstraint {
+	func constraintAlignTopTo(_ view: UIView, paddingTop: CGFloat = 0.0) -> NSLayoutConstraint {
 		return NSLayoutConstraint(
 			item: self,
 			attribute: .top,
@@ -29,11 +29,7 @@ extension UIView {
 			constant: paddingTop)
 	}
 
-	func constraintAlignBottomTo(_ view: UIView) -> NSLayoutConstraint {
-		return constraintAlignBottomTo(view, paddingBottom: 0.0)
-	}
-
-	func constraintAlignBottomTo(_ view: UIView, paddingBottom: CGFloat) -> NSLayoutConstraint {
+	func constraintAlignBottomTo(_ view: UIView, paddingBottom: CGFloat = 0.0) -> NSLayoutConstraint {
 		return NSLayoutConstraint(
 			item: self,
 			attribute: .bottom,
@@ -44,11 +40,7 @@ extension UIView {
 			constant: -paddingBottom)
 	}
 
-	func constraintAlignLeadingTo(_ view: UIView) -> NSLayoutConstraint {
-		return constraintAlignLeadingTo(view, paddingLeading: 0.0)
-	}
-
-	func constraintAlignLeadingTo(_ view: UIView, paddingLeading: CGFloat) -> NSLayoutConstraint {
+	func constraintAlignLeadingTo(_ view: UIView, paddingLeading: CGFloat = 0.0) -> NSLayoutConstraint {
 		return NSLayoutConstraint(
 			item: self,
 			attribute: .leading,
@@ -58,12 +50,8 @@ extension UIView {
 			multiplier: 1.0,
 			constant: paddingLeading)
 	}
-	
-	func constraintAlignTrailingTo(_ view: UIView) -> NSLayoutConstraint {
-		return constraintAlignTrailingTo(view, paddingTrailing: 0.0)
-	}
 
-	func constraintAlignTrailingTo(_ view: UIView, paddingTrailing: CGFloat) -> NSLayoutConstraint {
+	func constraintAlignTrailingTo(_ view: UIView, paddingTrailing: CGFloat = 0.0) -> NSLayoutConstraint {
 		return NSLayoutConstraint(
 			item: self,
 			attribute: .trailing,
@@ -73,12 +61,8 @@ extension UIView {
 			multiplier: 1.0,
 			constant: -paddingTrailing)
 	}
-
-	func constraintToBottomOf(_ view: UIView) -> NSLayoutConstraint {
-		return constraintToBottomOf(view, paddingTop: 8)
-	}
 	
-	func constraintToBottomOf(_ view: UIView, paddingTop: CGFloat) -> NSLayoutConstraint {
+	func constraintToBottomOf(_ view: UIView, paddingTop: CGFloat = 0.0) -> NSLayoutConstraint {
 		return NSLayoutConstraint(
 			item: self,
 			attribute: .top,
@@ -89,24 +73,24 @@ extension UIView {
 			constant: paddingTop)
 	}
 
-	func constraintCenterXTo(_ view: UIView) -> NSLayoutConstraint {
+	func constraintCenterXTo(_ view: UIView, paddingX: CGFloat = 0.0) -> NSLayoutConstraint {
 		return NSLayoutConstraint(item: self,
 								  attribute: .centerX,
 								  relatedBy: .equal,
 								  toItem: view,
 								  attribute: .centerX,
 								  multiplier: 1.0,
-								  constant: 0.0)
+								  constant: paddingX)
 	}
 
-	func constraintCenterYTo(_ view: UIView) -> NSLayoutConstraint {
+	func constraintCenterYTo(_ view: UIView, paddingY: CGFloat = 0.0) -> NSLayoutConstraint {
 		return NSLayoutConstraint(item: self,
 								  attribute: .centerY,
 								  relatedBy: .equal,
 								  toItem: view,
 								  attribute: .centerY,
 								  multiplier: 1.0,
-								  constant: 0.0)
+								  constant: paddingY)
 	}
 
 }
