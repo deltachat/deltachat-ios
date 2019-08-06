@@ -5,7 +5,6 @@ class QrCodeReaderController: UIViewController {
     var captureSession = AVCaptureSession()
 
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
-    var qrCodeFrameView: UIView?
 
     weak var delegate: QrCodeReaderDelegate?
 
@@ -44,16 +43,6 @@ class QrCodeReaderController: UIViewController {
         videoPreviewLayer?.frame = view.layer.bounds
         view.layer.addSublayer(videoPreviewLayer!)
 
-        captureSession.startRunning()
-
-        qrCodeFrameView = UIView()
-
-        if let qrCodeFrameView = qrCodeFrameView {
-            qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
-            qrCodeFrameView.layer.borderWidth = 2
-            view.addSubview(qrCodeFrameView)
-            view.bringSubviewToFront(qrCodeFrameView)
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,17 +53,11 @@ class QrCodeReaderController: UIViewController {
 
 extension QrCodeReaderController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from _: AVCaptureConnection) {
-        if metadataObjects.isEmpty {
-            qrCodeFrameView?.frame = CGRect.zero
-            return
-        }
 
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
 
         if supportedCodeTypes.contains(metadataObj.type) {
-            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
-            qrCodeFrameView?.frame = barCodeObject!.bounds
-
+			print("found qr code: " + metadataObj.stringValue!)
             if metadataObj.stringValue != nil {
                 DispatchQueue.main.async {
                     self.captureSession.stopRunning()
