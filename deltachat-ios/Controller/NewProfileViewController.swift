@@ -2,8 +2,11 @@ import Foundation
 import UIKit
 
 
-class NewProfileViewController: UIViewController {
+class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
+
 	weak var coordinator: ProfileCoordinator?
+	let qrCodeReaderController = QrCodeReaderController()
+
 
 	var contact: DCContact? {
 		// This is nil if we do not have an account setup yet
@@ -34,6 +37,7 @@ class NewProfileViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		title = String.localized("my_profile")
+		qrCodeReaderController.delegate = self
 		self.edgesForExtendedLayout = []
 
 		let contactCell = createContactCell()
@@ -52,6 +56,14 @@ class NewProfileViewController: UIViewController {
 		self.view.addConstraint(qrCodeScanner.constraintToBottomOf(qrCode, paddingTop: 25))
 		self.view.addConstraint(qrCodeScanner.constraintCenterXTo(self.view))
 	}
+
+	//QRCodeDelegate
+	func handleQrCode(_ code: String) {
+		print("handle qr code:" + code);
+		if let ctrl = navigationController {
+			ctrl.viewControllers.removeLast()
+		}
+	}
 	
 	private func createQRCodeScannerButton() -> UIView {
 		let btn = UIButton.init(type: UIButton.ButtonType.system)
@@ -62,7 +74,6 @@ class NewProfileViewController: UIViewController {
 	}
 
 	@objc func openQRCodeScanner() {
-		let qrCodeReaderController = QrCodeReaderController()
 		if let ctrl = navigationController {
 			ctrl.pushViewController(qrCodeReaderController, animated: true)
 		}
