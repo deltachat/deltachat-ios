@@ -45,6 +45,13 @@ class QrCodeReaderController: UIViewController {
 
     }
 
+	override func viewWillAppear(_ animated: Bool) {
+		captureSession.startRunning()
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		captureSession.stopRunning()
+	}
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -57,14 +64,8 @@ extension QrCodeReaderController: AVCaptureMetadataOutputObjectsDelegate {
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
 
         if supportedCodeTypes.contains(metadataObj.type) {
-			print("found qr code: " + metadataObj.stringValue!)
             if metadataObj.stringValue != nil {
-                DispatchQueue.main.async {
-                    self.captureSession.stopRunning()
-                    self.dismiss(animated: true) {
-                        self.delegate?.handleQrCode(metadataObj.stringValue!)
-                    }
-                }
+				self.delegate?.handleQrCode(metadataObj.stringValue!)
             }
         }
     }
