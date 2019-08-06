@@ -71,7 +71,7 @@ extension UIView {
 			toItem: view,
 			attribute: .trailing,
 			multiplier: 1.0,
-			constant: paddingTrailing)
+			constant: -paddingTrailing)
 	}
 
 	func constraintToBottomOf(_ view: UIView) -> NSLayoutConstraint {
