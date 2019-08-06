@@ -41,11 +41,13 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 		self.edgesForExtendedLayout = []
 
 		let contactCell = createContactCell()
+		let infoLabel = createInfoLabel()
 		let qrCode = createQRCodeView()
 		let qrCodeScanner = createQRCodeScannerButton()
 	
 		self.view.addSubview(contactCell)
 		self.view.addSubview(qrCode)
+		self.view.addSubview(infoLabel)
 		self.view.addSubview(qrCodeScanner)
 
 		self.view.addConstraint(contactCell.constraintAlignTopTo(self.view))
@@ -53,7 +55,10 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 		self.view.addConstraint(contactCell.constraintAlignTrailingTo(self.view))
 		self.view.addConstraint(qrCode.constraintCenterYTo(self.view))
 		self.view.addConstraint(qrCode.constraintCenterXTo(self.view))
-		self.view.addConstraint(qrCodeScanner.constraintToBottomOf(qrCode, paddingTop: 25))
+		self.view.addConstraint(infoLabel.constraintToBottomOf(qrCode, paddingTop: 25))
+		self.view.addConstraint(infoLabel.constraintAlignLeadingTo(self.view, paddingLeading: 8))
+		self.view.addConstraint(infoLabel.constraintAlignTrailingTo(self.view, paddingTrailing: 8))
+		self.view.addConstraint(qrCodeScanner.constraintAlignBottomTo(self.view, paddingBottom: 25))
 		self.view.addConstraint(qrCodeScanner.constraintCenterXTo(self.view))
 	}
 
@@ -64,7 +69,19 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 			ctrl.viewControllers.removeLast()
 		}
 	}
-	
+
+	private func createInfoLabel() -> UIView {
+		let label = UILabel.init()
+		label.translatesAutoresizingMaskIntoConstraints = false
+		if let contact = contact {
+			label.text = String.localizedStringWithFormat(String.localized("qrshow_join_contact_hint"), contact.email)
+		}
+		label.lineBreakMode = .byWordWrapping
+		label.numberOfLines = 0
+		label.textAlignment = .center
+		label.font = UIFont.systemFont(ofSize: 14)
+		return label
+	}
 	private func createQRCodeScannerButton() -> UIView {
 		let btn = UIButton.init(type: UIButton.ButtonType.system)
 		btn.translatesAutoresizingMaskIntoConstraints = false
