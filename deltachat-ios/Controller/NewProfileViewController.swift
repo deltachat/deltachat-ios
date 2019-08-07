@@ -27,6 +27,11 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private lazy var hudHandler: HudHandler = {
+        let hudHandler = HudHandler(parentView: self.view)
+        return hudHandler
+    }()
+
     var contact: DCContact? {
         // This is nil if we do not have an account setup yet
         if !DCConfig.configured {
@@ -129,6 +134,41 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        addProgressHudEventListener()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        let nc = NotificationCenter.default
+        if let secureJoinObserver = self.secureJoinObserver {
+            nc.removeObserver(secureJoinObserver)
+        }
+    }
+
+    private func addProgressHudEventListener() {
+        let nc = NotificationCenter.default
+        secureJoinObserver = nc.addObserver(
+            forName: dcNotificationSecureJoinerProgress,
+            object: nil,
+            queue: nil
+        ) { notification in
+            print("secure join: ", notification)
+            if let ui = notification.userInfo {
+                if ui["error"] as! Bool {
+                    self.hudHandler.setHudError(ui["errorMessage"] as? String)
+                } else if ui["done"] as! Bool {
+                    self.hudHandler.setHudDone(callback: self.handleSecureJoinerProgressDone)
+                } else {
+                    self.hudHandler.setHudProgress(ui["progress"] as! Int)
+                }
+            }
+        }
+    }
+
+    func handleSecureJoinerProgressDone() {
+        print("continue here")
+    }
+
     //QRCodeDelegate
     func handleQrCode(_ code: String) {
         print("handle qr code:" + code);
@@ -220,7 +260,5 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         chatVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(chatVC, animated: true)
     }
-
-
 }
 

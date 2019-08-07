@@ -16,7 +16,7 @@ class HudHandler {
         }
     }
 
-    func showBackupHud(_ text: String) {
+    func showHud(_ text: String) {
         DispatchQueue.main.async {
             let hud = JGProgressHUD(style: .dark)
             hud.vibrancyEnabled = true
