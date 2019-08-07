@@ -73,6 +73,18 @@ extension UIView {
 			constant: paddingTop)
 	}
 
+	func constraintToTrailingOf(_ view: UIView, paddingLeading: CGFloat = 0.0) -> NSLayoutConstraint {
+		return NSLayoutConstraint(
+			item: self,
+			attribute: .leading,
+			relatedBy: .equal,
+			toItem: view,
+			attribute: .trailing,
+			multiplier: 1.0,
+			constant: paddingLeading)
+	}
+
+
 	func constraintCenterXTo(_ view: UIView, paddingX: CGFloat = 0.0) -> NSLayoutConstraint {
 		return NSLayoutConstraint(item: self,
 								  attribute: .centerX,
