@@ -175,9 +175,20 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         if let ctrl = navigationController {
             ctrl.viewControllers.removeLast()
         }
-        DispatchQueue.main.async {
-            self.dcContext.joinSecurejoin(qrCode: code)
-        }
+
+        let qrParsed: DcLot = self.dcContext.checkQR(qrCode: code)
+        let nameAndAddress = DCContact(id: qrParsed.id).nameNAddr;
+
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("qrscan_ask_fingerprint_ask_oob"), nameAndAddress), message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+            DispatchQueue.main.async {
+                // TODO: write something useeeeful here :P
+
+                }
+            self.dismiss(animated: true, completion: nil)
+
+        }))
+        present(alert, animated: true, completion: nil)
     }
 
     private func createInfoLabel() -> UIView {
