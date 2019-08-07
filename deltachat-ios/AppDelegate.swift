@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     static var progress: Float = 0 // TODO: delete
     static var lastErrorDuringConfig: String?
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+    private let dcContext = DCContext()
 
     var reachability = Reachability()!
     var window: UIWindow?
@@ -136,7 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("open: \(dbfile())")
 
         if mailboxPointer == nil {
-            mailboxPointer = dc_context_new(callback_ios, nil, "iOS")
+            mailboxPointer = dcContext.contextPointer
             guard mailboxPointer != nil else {
                 fatalError("Error: dc_context_new returned nil")
             }
