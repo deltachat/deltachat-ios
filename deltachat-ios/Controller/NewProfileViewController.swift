@@ -1,12 +1,20 @@
 import Foundation
 import UIKit
 
-
 class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 
 	weak var coordinator: ProfileCoordinator?
 	let qrCodeReaderController = QrCodeReaderController()
+	var dcContext: DCContext 
 
+	init(dcContext: DCContext) {
+		self.dcContext = dcContext
+		super.init(nibName: nil, bundle: nil)
+	}
+
+	required init?(coder _: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 
 	var contact: DCContact? {
 		// This is nil if we do not have an account setup yet
@@ -20,12 +28,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 		if !DCConfig.configured {
 			return nil
 		}
-		
-		if let cString = dc_get_securejoin_qr(mailboxPointer, 0) {
-			return String(cString: cString)
-		}
-		
-		return nil
+		return dcContext.getSecurejoinQr(chatId: 0)
 	}
 
 	override func loadView() {
@@ -67,6 +70,9 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 		print("handle qr code:" + code);
 		if let ctrl = navigationController {
 			ctrl.viewControllers.removeLast()
+		}
+		DispatchQueue.main.async {
+			self.dcContext.joinSecurejoin(qrCode: code)
 		}
 	}
 

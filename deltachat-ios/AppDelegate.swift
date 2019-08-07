@@ -17,12 +17,12 @@ enum ApplicationState {
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+    private let dcContext = DCContext()
     var appCoordinator: AppCoordinator!
     // static let appCoordinatorDeprecated = AppCoordinatorDeprecated()
     static var progress: Float = 0 // TODO: delete
     static var lastErrorDuringConfig: String?
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
-    private let dcContext = DCContext()
 
     var reachability = Reachability()!
     var window: UIWindow?
@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //       - second param remains nil (user data for more than one mailbox)
         open()
         let isConfigured = dc_is_configured(mailboxPointer) != 0
-        appCoordinator = AppCoordinator(window: window)
+        appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
         appCoordinator.start()
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         start()

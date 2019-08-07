@@ -5,6 +5,7 @@ import MobileCoreServices
 
 class AppCoordinator: NSObject, Coordinator {
     private let window: UIWindow
+    private let dcContext: DCContext
 
     var rootViewController: UIViewController {
         return tabBarController
@@ -48,7 +49,7 @@ class AppCoordinator: NSObject, Coordinator {
     }()
 
     private lazy var profileController: UIViewController = {
-        let controller = NewProfileViewController()
+        let controller = NewProfileViewController(dcContext: dcContext)
         let nav = DCNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "report_card")
         nav.tabBarItem = UITabBarItem(title: String.localized("my_profile"), image: settingsImage, tag: 2)
@@ -80,8 +81,9 @@ class AppCoordinator: NSObject, Coordinator {
         return nav
     }()
 
-    init(window: UIWindow) {
+    init(window: UIWindow, dcContext: DCContext) {
         self.window = window
+        self.dcContext = dcContext
         super.init()
         window.rootViewController = rootViewController
         window.makeKeyAndVisible()
