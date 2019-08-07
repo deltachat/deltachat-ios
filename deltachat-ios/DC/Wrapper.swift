@@ -116,13 +116,17 @@ class DcContext {
 		return nil
 	}
 
-	func joinSecurejoin (qrCode: String) {
-		dc_join_securejoin(contextPointer, qrCode)
+	func joinSecurejoin (qrCode: String) -> Int {
+		return Int(dc_join_securejoin(contextPointer, qrCode))
 	}
 
 	func checkQR(qrCode: String) -> DcLot {
 		return DcLot(dc_check_qr(contextPointer, qrCode))
 	}
+
+    func stopOngoingProcess() {
+        dc_stop_ongoing_process(contextPointer)
+    }
 
 }
 

@@ -27,9 +27,19 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private lazy var hudHandler: HudHandler = {
-        let hudHandler = HudHandler(parentView: self.view)
-        return hudHandler
+    private lazy var progressAlert: UIAlertController = {
+        let alert = UIAlertController(title: String.localized("one_moment"), message: "TESTMESSAGE", preferredStyle: .alert)
+
+        let rect = CGRect(x: 0, y: 0, width: 25, height: 25)
+        let activityIndicator = UIActivityIndicatorView(frame: rect)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.style = .gray
+
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: { _ in
+            self.dcContext.stopOngoingProcess()
+            self.dismiss(animated: true, completion: nil)
+        }))
+        return alert
     }()
 
     var contact: DCContact? {
@@ -134,18 +144,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        addProgressHudEventListener()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        let nc = NotificationCenter.default
-        if let secureJoinObserver = self.secureJoinObserver {
-            nc.removeObserver(secureJoinObserver)
-        }
-    }
-
-    private func addProgressHudEventListener() {
+    private func addSecureJoinProgressListener() {
         let nc = NotificationCenter.default
         secureJoinObserver = nc.addObserver(
             forName: dcNotificationSecureJoinerProgress,
@@ -154,14 +153,20 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         ) { notification in
             print("secure join: ", notification)
             if let ui = notification.userInfo {
-                if ui["error"] as! Bool {
-                    self.hudHandler.setHudError(ui["errorMessage"] as? String)
-                } else if ui["done"] as! Bool {
-                    self.hudHandler.setHudDone(callback: self.handleSecureJoinerProgressDone)
-                } else {
-                    self.hudHandler.setHudProgress(ui["progress"] as! Int)
+                if ui["progress"] as! Int == 400 {
+                    let contactId = ui["contact_id"] as! Int
+                    self.progressAlert.message = String.localizedStringWithFormat(
+                        String.localized("qrscan_x_verified_introduce_myself"),
+                        DCContact(id: contactId).nameNAddr)
                 }
             }
+        }
+    }
+
+    private func removeSecureJoinProgressListener() {
+        let nc = NotificationCenter.default
+        if let secureJoinObserver = self.secureJoinObserver {
+            nc.removeObserver(secureJoinObserver)
         }
     }
 
@@ -181,11 +186,24 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("qrscan_ask_fingerprint_ask_oob"), nameAndAddress), message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
-            DispatchQueue.main.async {
-                // TODO: write something useeeeful here :P
+            self.addSecureJoinProgressListener()
+            alert.dismiss(animated: true, completion: nil)
 
+            self.present(self.progressAlert, animated: true, completion: {
+                let margin:CGFloat = 8.0
+                let rect = CGRect(x: 10, y: 10, width: 20, height: 20)
+                let progressView = UIActivityIndicatorView(frame: rect)
+                progressView.tintColor = .blue
+                progressView.startAnimating()
+                self.progressAlert.view.addSubview(progressView)
+            })
+
+            DispatchQueue.global(qos: .background).async {
+                let chatId = self.dcContext.joinSecurejoin(qrCode: code)
+                DispatchQueue.main.async {
+                    self.progressAlert.dismiss(animated: true, completion: nil)
                 }
-            self.dismiss(animated: true, completion: nil)
+            }
 
         }))
         present(alert, animated: true, completion: nil)
