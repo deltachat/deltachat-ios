@@ -115,6 +115,49 @@ class DCContext {
 	func joinSecurejoin (qrCode: String) {
 		dc_join_securejoin(contextPointer, qrCode)
 	}
+
+	func checkQR(qrCode: String) -> DcLot {
+		return DcLot(dc_check_qr(contextPointer, qrCode))
+	}
+
+}
+
+class DcLot {
+	private var dcLotPointer: OpaquePointer
+
+	init(_ dcLotPointer: OpaquePointer) {
+		self.dcLotPointer = dcLotPointer
+	}
+
+	deinit {
+		dc_lot_unref(dcLotPointer)
+	}
+
+	var text1: String {
+		guard let result = dc_lot_get_text1(dcLotPointer) else { return "" }
+		return String(cString: result)
+	}
+
+	var text1Meaning: Int {
+		return Int(dc_lot_get_text1_meaning(dcLotPointer))
+	}
+
+	var getText2: String {
+		guard let result = dc_lot_get_text2(dcLotPointer) else { return "" }
+		return String(cString: result)
+	}
+
+	var timestamp: Int64 {
+		return Int64(dc_lot_get_timestamp(dcLotPointer))
+	}
+
+	var state: Int {
+		return Int(dc_lot_get_state(dcLotPointer))
+	}
+
+	var id: Int {
+		return Int(dc_lot_get_id(dcLotPointer))
+	}
 }
 
 class DCMessage: MessageType {
