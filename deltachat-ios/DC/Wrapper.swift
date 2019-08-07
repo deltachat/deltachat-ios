@@ -93,6 +93,30 @@ class DCContact {
     }
 }
 
+class DCContext {
+	let contextPointer: OpaquePointer
+
+	init() {
+		contextPointer = dc_context_new(callback_ios, nil, "iOS")
+	}
+
+	deinit {
+		dc_context_unref(contextPointer)
+	}
+
+
+	func getSecurejoinQr (chatId: Int) -> String? {
+		if let cString = dc_get_securejoin_qr(self.contextPointer,  UInt32(chatId)) {
+			return String(cString: cString)
+		}
+		return nil
+	}
+
+	func joinSecurejoin (qrCode: String) {
+		dc_join_securejoin(contextPointer, qrCode)
+	}
+}
+
 class DCMessage: MessageType {
     private var messagePointer: OpaquePointer
 
