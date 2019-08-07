@@ -5,7 +5,18 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 
 	weak var coordinator: ProfileCoordinator?
 	let qrCodeReaderController = QrCodeReaderController()
-	var dcContext: DCContext 
+	var secureJoinObserver: Any?
+	var dcContext: DCContext
+
+	var contactCell: UIView?
+	var infoLabel: UIView?
+	var qrCode: UIView?
+	var qrCodeScanner: UIView?
+
+	var contactCellConstraints: [NSLayoutConstraint] = []
+	var infoLabelConstraints: [NSLayoutConstraint] = []
+	var qrCodeConstraints: [NSLayoutConstraint] = []
+	var qrCodeScannerConstraints: [NSLayoutConstraint] = []
 
 	init(dcContext: DCContext) {
 		self.dcContext = dcContext
@@ -43,26 +54,79 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 		qrCodeReaderController.delegate = self
 		self.edgesForExtendedLayout = []
 
-		let contactCell = createContactCell()
-		let infoLabel = createInfoLabel()
-		let qrCode = createQRCodeView()
-		let qrCodeScanner = createQRCodeScannerButton()
-	
-		self.view.addSubview(contactCell)
-		self.view.addSubview(qrCode)
-		self.view.addSubview(infoLabel)
-		self.view.addSubview(qrCodeScanner)
+		initViews()
 
-		self.view.addConstraint(contactCell.constraintAlignTopTo(self.view))
-		self.view.addConstraint(contactCell.constraintAlignLeadingTo(self.view))
-		self.view.addConstraint(contactCell.constraintAlignTrailingTo(self.view))
-		self.view.addConstraint(qrCode.constraintCenterYTo(self.view))
-		self.view.addConstraint(qrCode.constraintCenterXTo(self.view))
-		self.view.addConstraint(infoLabel.constraintToBottomOf(qrCode, paddingTop: 25))
-		self.view.addConstraint(infoLabel.constraintAlignLeadingTo(self.view, paddingLeading: 8))
-		self.view.addConstraint(infoLabel.constraintAlignTrailingTo(self.view, paddingTrailing: 8))
-		self.view.addConstraint(qrCodeScanner.constraintAlignBottomTo(self.view, paddingBottom: 25))
-		self.view.addConstraint(qrCodeScanner.constraintCenterXTo(self.view))
+		if UIDevice.current.orientation.isPortrait {
+			setupPortraitConstraints()
+		} else {
+			setupLandscapeConstraints()
+		}
+	}
+
+	private func initViews() {
+		contactCell = createContactCell()
+		infoLabel = createInfoLabel()
+		qrCode = createQRCodeView()
+		qrCodeScanner = createQRCodeScannerButton()
+		self.view.addSubview(contactCell!)
+		self.view.addSubview(qrCode!)
+		self.view.addSubview(infoLabel!)
+		self.view.addSubview(qrCodeScanner!)
+	}
+
+	private func applyConstraints() {
+		self.view.addConstraints(contactCellConstraints)
+		self.view.addConstraints(qrCodeConstraints)
+		self.view.addConstraints(infoLabelConstraints)
+		self.view.addConstraints(qrCodeScannerConstraints)
+	}
+
+	private func removeConstraints() {
+		self.view.removeConstraints(contactCellConstraints)
+		self.view.removeConstraints(qrCodeConstraints)
+		self.view.removeConstraints(infoLabelConstraints)
+		self.view.removeConstraints(qrCodeScannerConstraints)
+	}
+
+	func setupPortraitConstraints() {
+		removeConstraints()
+		contactCellConstraints = [contactCell!.constraintAlignTopTo(self.view),
+								  contactCell!.constraintAlignLeadingTo(self.view),
+								  contactCell!.constraintAlignTrailingTo(self.view)]
+		qrCodeScannerConstraints = [qrCodeScanner!.constraintAlignBottomTo(self.view, paddingBottom: 25),
+									qrCodeScanner!.constraintCenterXTo(self.view)]
+		qrCodeConstraints = [qrCode!.constraintCenterYTo(self.view),
+							 qrCode!.constraintCenterYTo(self.view, paddingY: -25),
+							 qrCode!.constraintCenterXTo(self.view)]
+		infoLabelConstraints = [infoLabel!.constraintToBottomOf(qrCode!, paddingTop: 25),
+								infoLabel!.constraintAlignLeadingTo(self.view, paddingLeading: 8),
+								infoLabel!.constraintAlignTrailingTo(self.view, paddingTrailing: 8)]
+		applyConstraints()
+	}
+
+	func setupLandscapeConstraints() {
+		removeConstraints()
+		contactCellConstraints = [contactCell!.constraintAlignTopTo(self.view),
+								  contactCell!.constraintAlignLeadingTo(self.view),
+								  contactCell!.constraintAlignTrailingTo(self.view)]
+		qrCodeScannerConstraints = [qrCodeScanner!.constraintToTrailingOf(qrCode!, paddingLeading: 50),
+									qrCodeScanner!.constraintAlignTrailingTo(self.view, paddingTrailing: 50),
+									qrCodeScanner!.constraintAlignBottomTo(qrCode!)]
+		qrCodeConstraints = [qrCode!.constraintToBottomOf(contactCell!, paddingTop: 25),
+							 qrCode!.constraintAlignLeadingTo(self.view, paddingLeading: 50)]
+		infoLabelConstraints = [infoLabel!.constraintToBottomOf(contactCell!, paddingTop: 25),
+								infoLabel!.constraintToTrailingOf(qrCode!, paddingLeading: 50),
+								infoLabel!.constraintAlignTrailingTo(self.view, paddingTrailing: 50)]
+		applyConstraints()
+	}
+
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+		super.viewWillTransition(to: size, with: coordinator)
+		if UIDevice.current.orientation.isLandscape {
+			setupLandscapeConstraints()
+		} else {
+			setupPortraitConstraints()
+		}
 	}
 
 	//QRCodeDelegate
