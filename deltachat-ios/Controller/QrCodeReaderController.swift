@@ -14,6 +14,8 @@ class QrCodeReaderController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.edgesForExtendedLayout = []
+        title = String.localized("qrscan_title")
 
         guard let captureDevice = AVCaptureDevice.DiscoverySession.init(
 			deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera],
@@ -43,7 +45,24 @@ class QrCodeReaderController: UIViewController {
         videoPreviewLayer?.frame = view.layer.bounds
         view.layer.addSublayer(videoPreviewLayer!)
 
+        let infoLabel = createInfoLabel()
+        view.addSubview(infoLabel)
+        view.addConstraint(infoLabel.constraintAlignBottomTo(view, paddingBottom: 8))
+        view.addConstraint(infoLabel.constraintCenterXTo(view))
+        view.bringSubviewToFront(infoLabel)
     }
+
+    private func createInfoLabel() -> UIView {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = String.localized("qrscan_hint")
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = .white
+        return label
+    }
+
 
 	override func viewWillAppear(_ animated: Bool) {
 		captureSession.startRunning()
