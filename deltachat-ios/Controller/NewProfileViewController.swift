@@ -6,7 +6,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 	weak var coordinator: ProfileCoordinator?
 	let qrCodeReaderController = QrCodeReaderController()
 	var secureJoinObserver: Any?
-	var dcContext: DCContext
+	var dcContext: DcContext
 
 	var contactCell: UIView?
 	var infoLabel: UIView?
@@ -18,7 +18,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 	var qrCodeConstraints: [NSLayoutConstraint] = []
 	var qrCodeScannerConstraints: [NSLayoutConstraint] = []
 
-	init(dcContext: DCContext) {
+	init(dcContext: DcContext) {
 		self.dcContext = dcContext
 		super.init(nibName: nil, bundle: nil)
 	}

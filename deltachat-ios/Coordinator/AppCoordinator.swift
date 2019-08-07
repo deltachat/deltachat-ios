@@ -5,7 +5,7 @@ import MobileCoreServices
 
 class AppCoordinator: NSObject, Coordinator {
     private let window: UIWindow
-    private let dcContext: DCContext
+    private let dcContext: DcContext
 
     var rootViewController: UIViewController {
         return tabBarController
@@ -81,7 +81,7 @@ class AppCoordinator: NSObject, Coordinator {
         return nav
     }()
 
-    init(window: UIWindow, dcContext: DCContext) {
+    init(window: UIWindow, dcContext: DcContext) {
         self.window = window
         self.dcContext = dcContext
         super.init()

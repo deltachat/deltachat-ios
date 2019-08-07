@@ -17,7 +17,7 @@ enum ApplicationState {
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-    private let dcContext = DCContext()
+    private let dcContext = DcContext()
     var appCoordinator: AppCoordinator!
     // static let appCoordinatorDeprecated = AppCoordinatorDeprecated()
     static var progress: Float = 0 // TODO: delete

@@ -93,7 +93,7 @@ class DCContact {
     }
 }
 
-class DCContext {
+class DcContext {
 	let contextPointer: OpaquePointer
 
 	init() {
