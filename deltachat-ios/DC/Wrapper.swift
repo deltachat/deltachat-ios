@@ -28,6 +28,10 @@ enum MessageViewType: CustomStringConvertible {
 class DCContact {
     private var contactPointer: OpaquePointer
 
+    var nameNAddr: String {
+        return String(cString: dc_contact_get_name_n_addr(contactPointer))
+    }
+
     var name: String {
         return String(cString: dc_contact_get_name(contactPointer))
     }
