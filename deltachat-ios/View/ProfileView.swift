@@ -63,22 +63,6 @@ class ProfileView: UIView {
         return label
     }()
 
-    /*private let timeLabel: UILabel = {
-     let label = UILabel()
-     label.font = UIFont.systemFont(ofSize: 14)
-     label.textColor = UIColor(hexString: "848ba7")
-     label.textAlignment = .right
-     // label.makeBorder()
-     return label
-     }()*/
-
-    /*private let deliveryStatusIndicator: UIImageView = {
-     let view = UIImageView()
-     view.tintColor = UIColor.green
-     view.isHidden = true
-     return view
-     }()*/
-
     var darkMode: Bool = false {
         didSet {
             if darkMode {
@@ -89,8 +73,6 @@ class ProfileView: UIView {
         }
     }
 
-
-
     private func setupSubviews() {
         let margin: CGFloat = 10
 
@@ -98,7 +80,6 @@ class ProfileView: UIView {
         avatar.translatesAutoresizingMaskIntoConstraints = false
         initialsLabel.widthAnchor.constraint(equalToConstant: initialsLabelSize - 6).isActive = true
         initialsLabel.heightAnchor.constraint(equalToConstant: initialsLabelSize - 6).isActive = true
-        // avatar.backgroundColor = .red
 
         avatar.widthAnchor.constraint(equalToConstant: initialsLabelSize).isActive = true
         avatar.heightAnchor.constraint(equalToConstant: initialsLabelSize).isActive = true
@@ -117,10 +98,6 @@ class ProfileView: UIView {
         avatar.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -margin).isActive = true
         initialsLabel.center = avatar.center
 
-        //deliveryStatusIndicator.translatesAutoresizingMaskIntoConstraints = false
-        //deliveryStatusIndicator.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        //deliveryStatusIndicator.widthAnchor.constraint(equalToConstant: 25).isActive = true
-
         let myStackView = UIStackView()
         myStackView.translatesAutoresizingMaskIntoConstraints = false
         myStackView.clipsToBounds = true
@@ -132,10 +109,7 @@ class ProfileView: UIView {
         bottomLineStackView.axis = .horizontal
 
         toplineStackView.addArrangedSubview(nameLabel)
-        //toplineStackView.addArrangedSubview(timeLabel)
-
         bottomLineStackView.addArrangedSubview(emailLabel)
-        //bottomLineStackView.addArrangedSubview(deliveryStatusIndicator)
 
         self.addSubview(myStackView)
         myStackView.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: margin).isActive = true
@@ -179,6 +153,4 @@ class ProfileView: UIView {
 
         setColor(color)
     }
-
-
 }
