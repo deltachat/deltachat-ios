@@ -286,7 +286,6 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
             } else {
                 profileView.setBackupImage(name: name, color: contact.color)
             }
-            profileView.setVerified(isVerified: contact.isVerified)
         } else {
             profileView.nameLabel.text = String.localized("no_account_setup")
         }
