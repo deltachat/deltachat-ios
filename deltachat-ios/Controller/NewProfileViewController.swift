@@ -42,6 +42,23 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         return alert
     }()
 
+    private func showProgressAlert() {
+        self.present(self.progressAlert, animated: true, completion: {
+            let rect = CGRect(x: 10, y: 10, width: 20, height: 20)
+            let progressView = UIActivityIndicatorView(frame: rect)
+            progressView.tintColor = .blue
+            progressView.startAnimating()
+            self.progressAlert.view.addSubview(progressView)
+        })
+    }
+
+    private func showErrorAlert(error: String) {
+        let alert = UIAlertController(title: String.localized("error"), message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+    }
+
     var contact: DCContact? {
         // This is nil if we do not have an account setup yet
         if !DCConfig.configured {
@@ -171,41 +188,39 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         }
     }
 
-    func handleSecureJoinerProgressDone() {
-        print("continue here")
-    }
-
     //QRCodeDelegate
     func handleQrCode(_ code: String) {
-        print("handle qr code:" + code);
+        //remove qr code scanner view
         if let ctrl = navigationController {
             ctrl.viewControllers.removeLast()
         }
 
         let qrParsed: DcLot = self.dcContext.checkQR(qrCode: code)
         let nameAndAddress = DCContact(id: qrParsed.id).nameNAddr;
-
-        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("qrscan_ask_fingerprint_ask_oob"), nameAndAddress), message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("qrscan_ask_fingerprint_ask_oob"), nameAndAddress),
+                                      message: nil,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
-            self.addSecureJoinProgressListener()
             alert.dismiss(animated: true, completion: nil)
-
-            self.present(self.progressAlert, animated: true, completion: {
-                let margin:CGFloat = 8.0
-                let rect = CGRect(x: 10, y: 10, width: 20, height: 20)
-                let progressView = UIActivityIndicatorView(frame: rect)
-                progressView.tintColor = .blue
-                progressView.startAnimating()
-                self.progressAlert.view.addSubview(progressView)
-            })
-
+            self.showProgressAlert()
+            // execute blocking secure join in background
             DispatchQueue.global(qos: .background).async {
+                self.addSecureJoinProgressListener()
+                AppDelegate.lastErrorDuringConfig = nil
                 let chatId = self.dcContext.joinSecurejoin(qrCode: code)
+                let errorString = AppDelegate.lastErrorDuringConfig
+                self.removeSecureJoinProgressListener()
+
                 DispatchQueue.main.async {
                     self.progressAlert.dismiss(animated: true, completion: nil)
+                    if chatId != 0 {
+                        self.coordinator?.showChat(chatId: chatId)
+                    } else if errorString != nil {
+                       self.showErrorAlert(error: errorString!)
+                    }
                 }
             }
-
         }))
         present(alert, animated: true, completion: nil)
     }
