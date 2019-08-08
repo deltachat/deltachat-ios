@@ -98,6 +98,15 @@ class AppCoordinator: NSObject, Coordinator {
         tabBarController.selectedIndex = index
     }
 
+    func showChat(chatId: Int) {
+        showTab(index: 3)
+        let navController = self.chatListController as! UINavigationController
+        let chatVC = ChatViewController(chatId: chatId)
+        let coordinator = ChatViewCoordinator(navigationController: navController, chatId: chatId)
+        chatVC.coordinator = coordinator
+        navController.pushViewController(chatVC, animated: true)
+    }
+
     func presentLoginController() {
         let accountSetupController = AccountSetupController()
         let accountSetupNav = DCNavigationController(rootViewController: accountSetupController)
@@ -181,6 +190,11 @@ class ProfileCoordinator: Coordinator {
 	var navigationController: UINavigationController
 	init(navigationController: UINavigationController) {
 		self.navigationController = navigationController
+    }
+
+    func showChat(chatId: Int) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.appCoordinator.showChat(chatId: chatId)
     }
 }
 
