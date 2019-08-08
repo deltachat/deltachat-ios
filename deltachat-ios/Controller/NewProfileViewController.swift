@@ -71,11 +71,12 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 
         initViews()
 
-        if UIDevice.current.orientation.isPortrait {
-            setupPortraitConstraints()
-        } else {
+        if UIDevice.current.orientation.isLandscape {
             setupLandscapeConstraints()
+        } else {
+            setupPortraitConstraints()
         }
+
     }
 
     private func initViews() {
