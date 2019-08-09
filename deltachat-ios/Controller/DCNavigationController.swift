@@ -12,7 +12,7 @@ final class DCNavigationController: UINavigationController {
         } else {
             navigationBar.setBackgroundImage(UIImage(), for: .default)
         }
-
+        navigationBar.backgroundColor = .white;
         setShadow(nil)
     }
 

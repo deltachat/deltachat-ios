@@ -17,6 +17,7 @@ enum ApplicationState {
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+    private let dcContext = DcContext()
     var appCoordinator: AppCoordinator!
     // static let appCoordinatorDeprecated = AppCoordinatorDeprecated()
     static var progress: Float = 0 // TODO: delete
@@ -67,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //       - second param remains nil (user data for more than one mailbox)
         open()
         let isConfigured = dc_is_configured(mailboxPointer) != 0
-        appCoordinator = AppCoordinator(window: window)
+        appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
         appCoordinator.start()
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         start()
@@ -135,7 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("open: \(dbfile())")
 
         if mailboxPointer == nil {
-            mailboxPointer = dc_context_new(callback_ios, nil, "iOS")
+            mailboxPointer = dcContext.contextPointer
             guard mailboxPointer != nil else {
                 fatalError("Error: dc_context_new returned nil")
             }

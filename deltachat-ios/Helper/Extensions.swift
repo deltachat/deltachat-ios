@@ -198,38 +198,6 @@ extension UIImage {
     }
 }
 
-extension UIView {
-    func makeBorder(color: UIColor = UIColor.red) {
-        self.layer.borderColor = color.cgColor
-        self.layer.borderWidth = 2
-    }
-}
-
-extension UIImage {
-    func resizeImage(targetSize: CGSize) -> UIImage {
-        let size = self.size
-
-        let widthRatio  = targetSize.width  / size.width
-        let heightRatio = targetSize.height / size.height
-
-        var newSize: CGSize
-        if(widthRatio > heightRatio) {
-            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
-        } else {
-            newSize = CGSize(width: size.width * widthRatio, height: size.height *      widthRatio)
-        }
-
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        return newImage!
-    }
-}
-
 
 extension UIColor {
     convenience init(alpha: Int, red: Int, green: Int, blue: Int) {

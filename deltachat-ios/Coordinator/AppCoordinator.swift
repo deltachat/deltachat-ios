@@ -5,6 +5,7 @@ import MobileCoreServices
 
 class AppCoordinator: NSObject, Coordinator {
     private let window: UIWindow
+    private let dcContext: DcContext
 
     var rootViewController: UIViewController {
         return tabBarController
@@ -18,6 +19,7 @@ class AppCoordinator: NSObject, Coordinator {
         // put viewControllers here
         tabBarController.delegate = self
         tabBarController.tabBar.tintColor = DCColors.primary
+		tabBarController.tabBar.backgroundColor = .white
         return tabBarController
     }()
 
@@ -47,11 +49,11 @@ class AppCoordinator: NSObject, Coordinator {
     }()
 
     private lazy var profileController: UIViewController = {
-        let controller = ProfileViewController()
+        let controller = NewProfileViewController(dcContext: dcContext)
         let nav = DCNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "report_card")
         nav.tabBarItem = UITabBarItem(title: String.localized("my_profile"), image: settingsImage, tag: 2)
-        let coordinator = ProfileCoordinator(rootViewController: nav)
+        let coordinator = ProfileCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
         return nav
@@ -79,8 +81,9 @@ class AppCoordinator: NSObject, Coordinator {
         return nav
     }()
 
-    init(window: UIWindow) {
+    init(window: UIWindow, dcContext: DcContext) {
         self.window = window
+        self.dcContext = dcContext
         super.init()
         window.rootViewController = rootViewController
         window.makeKeyAndVisible()
@@ -93,6 +96,15 @@ class AppCoordinator: NSObject, Coordinator {
 
     func showTab(index: Int) {
         tabBarController.selectedIndex = index
+    }
+
+    func showChat(chatId: Int) {
+        showTab(index: 3)
+        let navController = self.chatListController as! UINavigationController
+        let chatVC = ChatViewController(chatId: chatId)
+        let coordinator = ChatViewCoordinator(navigationController: navController, chatId: chatId)
+        chatVC.coordinator = coordinator
+        navController.pushViewController(chatVC, animated: true)
     }
 
     func presentLoginController() {
@@ -175,10 +187,14 @@ class MailboxCoordinator: ChatViewCoordinator {
 }
 
 class ProfileCoordinator: Coordinator {
-    var rootViewController: UIViewController
+	var navigationController: UINavigationController
+	init(navigationController: UINavigationController) {
+		self.navigationController = navigationController
+    }
 
-    init(rootViewController: UIViewController) {
-        self.rootViewController = rootViewController
+    func showChat(chatId: Int) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.appCoordinator.showChat(chatId: chatId)
     }
 }
 

@@ -174,7 +174,7 @@ internal final class SettingsViewController: QuickTableViewController {
         let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if !documents.isEmpty {
             logger.info("create backup in \(documents)")
-            hudHandler.showBackupHud(String.localized("creating_backup"))
+            hudHandler.showHud(String.localized("creating_backup"))
             DispatchQueue.main.async {
                 dc_imex(mailboxPointer, DC_IMEX_EXPORT_BACKUP, documents[0], nil)
             }
@@ -184,7 +184,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func configure(_: Row) {
-        hudHandler.showBackupHud(String.localized("configuring_account"))
+        hudHandler.showHud(String.localized("configuring_account"))
         dc_configure(mailboxPointer)
     }
 

@@ -165,6 +165,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                 name: dcNotificationSecureJoinerProgress,
                 object: nil,
                 userInfo: [
+                    "contact_id": Int(data1),
                     "progress": Int(data2),
                     "error": Int(data2) == 0,
                     "done": Int(data2) == 1000,

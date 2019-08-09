@@ -28,6 +28,10 @@ enum MessageViewType: CustomStringConvertible {
 class DCContact {
     private var contactPointer: OpaquePointer
 
+    var nameNAddr: String {
+        return String(cString: dc_contact_get_name_n_addr(contactPointer))
+    }
+
     var name: String {
         return String(cString: dc_contact_get_name(contactPointer))
     }
@@ -91,6 +95,77 @@ class DCContact {
     func marknoticed() {
         dc_marknoticed_contact(mailboxPointer, UInt32(id))
     }
+}
+
+class DcContext {
+	let contextPointer: OpaquePointer
+
+	init() {
+		contextPointer = dc_context_new(callback_ios, nil, "iOS")
+	}
+
+	deinit {
+		dc_context_unref(contextPointer)
+	}
+
+
+	func getSecurejoinQr (chatId: Int) -> String? {
+		if let cString = dc_get_securejoin_qr(self.contextPointer,  UInt32(chatId)) {
+			return String(cString: cString)
+		}
+		return nil
+	}
+
+	func joinSecurejoin (qrCode: String) -> Int {
+		return Int(dc_join_securejoin(contextPointer, qrCode))
+	}
+
+	func checkQR(qrCode: String) -> DcLot {
+		return DcLot(dc_check_qr(contextPointer, qrCode))
+	}
+
+    func stopOngoingProcess() {
+        dc_stop_ongoing_process(contextPointer)
+    }
+
+}
+
+class DcLot {
+	private var dcLotPointer: OpaquePointer
+
+	init(_ dcLotPointer: OpaquePointer) {
+		self.dcLotPointer = dcLotPointer
+	}
+
+	deinit {
+		dc_lot_unref(dcLotPointer)
+	}
+
+	var text1: String {
+		guard let result = dc_lot_get_text1(dcLotPointer) else { return "" }
+		return String(cString: result)
+	}
+
+	var text1Meaning: Int {
+		return Int(dc_lot_get_text1_meaning(dcLotPointer))
+	}
+
+	var getText2: String {
+		guard let result = dc_lot_get_text2(dcLotPointer) else { return "" }
+		return String(cString: result)
+	}
+
+	var timestamp: Int64 {
+		return Int64(dc_lot_get_timestamp(dcLotPointer))
+	}
+
+	var state: Int {
+		return Int(dc_lot_get_state(dcLotPointer))
+	}
+
+	var id: Int {
+		return Int(dc_lot_get_id(dcLotPointer))
+	}
 }
 
 class DCMessage: MessageType {
