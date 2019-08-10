@@ -5,7 +5,7 @@ class MessageInfoViewController: UITableViewController {
 
     init(message: DCMessage) {
         self.message = message
-        super.init(style: .plain)
+        super.init(style: .grouped)
     }
 
     required init?(coder _: NSCoder) {
