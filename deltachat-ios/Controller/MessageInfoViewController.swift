@@ -37,6 +37,8 @@ class MessageInfoViewController: UITableViewController {
 
         if indexPath.section == 0 {
             if indexPath.row == 0 {
+                cell.textLabel?.numberOfLines = 0
+                cell.textLabel?.lineBreakMode = .byWordWrapping
                 cell.textLabel?.text = message.text
             }
         }
