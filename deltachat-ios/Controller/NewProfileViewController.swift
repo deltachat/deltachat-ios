@@ -299,7 +299,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 
     func displayNewChat(contactId: Int) {
         let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
-        let chatVC = ChatViewController(chatId: Int(chatId))
+        let chatVC = ChatViewController(dcContext: dcContext, chatId: Int(chatId))
 
         chatVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(chatVC, animated: true)

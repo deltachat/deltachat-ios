@@ -1,6 +1,7 @@
 import UIKit
 
 class ProfileViewController: UITableViewController {
+    var dcContext: DcContext
     weak var coordinator: ProfileCoordinator?
 
     var contact: DCContact? {
@@ -23,7 +24,8 @@ class ProfileViewController: UITableViewController {
         return nil
     }
 
-    init() {
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
         super.init(style: .plain)
     }
 
@@ -43,7 +45,7 @@ class ProfileViewController: UITableViewController {
 
     func displayNewChat(contactId: Int) {
         let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
-        let chatVC = ChatViewController(chatId: Int(chatId))
+        let chatVC = ChatViewController(dcContext: dcContext, chatId: Int(chatId))
 
         chatVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(chatVC, animated: true)

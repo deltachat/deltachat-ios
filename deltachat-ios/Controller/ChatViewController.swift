@@ -15,6 +15,7 @@ extension ChatViewController: MediaSendHandler {
 }
 
 class ChatViewController: MessagesViewController {
+    var dcContext: DcContext
     weak var coordinator: ChatViewCoordinator?
 
     let outgoingAvatarOverlap: CGFloat = 17.5
@@ -44,7 +45,8 @@ class ChatViewController: MessagesViewController {
 
     private var titleView = ChatTitleView()
 
-    init(chatId: Int, title: String? = nil) {
+    init(dcContext: DcContext, chatId: Int, title: String? = nil) {
+        self.dcContext = dcContext
         self.chatId = chatId
         super.init(nibName: nil, bundle: nil)
         if let title = title {
@@ -425,7 +427,7 @@ class ChatViewController: MessagesViewController {
             let msg = messageList[indexPath.section]
             logger.info("message: View info \(msg.messageId)")
 
-            let msgViewController = MessageInfoViewController(message: msg)
+            let msgViewController = MessageInfoViewController(dcContext: dcContext, message: msg)
             if let ctrl = navigationController {
                 ctrl.pushViewController(msgViewController, animated: true)
             }
