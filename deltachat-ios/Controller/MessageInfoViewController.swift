@@ -41,7 +41,7 @@ class MessageInfoViewController: UITableViewController {
             if indexPath.row == 0 {
                 cell.textLabel?.numberOfLines = 0
                 cell.textLabel?.lineBreakMode = .byWordWrapping
-                cell.textLabel?.text = message.text
+                cell.textLabel?.text = dcContext.getMsgInfo(msgId: message.id)
             }
         }
 
