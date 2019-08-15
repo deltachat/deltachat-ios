@@ -455,7 +455,7 @@ class AccountSetupController: UITableViewController {
                 } else if ui["done"] as! Bool {
                     self.updateProgressHudSuccess(callback: self.handleLoginSuccess)
                 } else {
-                    self.updateProgressHudValue(value: ui["progress"] as! Int)
+                    self.updateProgressHudValue(value: ui["progress"] as? Int)
                 }
             }
         }
@@ -472,7 +472,7 @@ class AccountSetupController: UITableViewController {
                 } else if ui["done"] as! Bool {
                     self.updateProgressHudSuccess(callback: self.handleLoginSuccess)
                 } else {
-                    self.updateProgressHudValue(value: ui["progress"] as! Int)
+                    self.updateProgressHudValue(value: ui["progress"] as? Int)
                 }
             }
         }
@@ -677,7 +677,7 @@ extension AccountSetupController {
         })
     }
 
-    func updateProgressHudValue(value: Int?) {
+    private func updateProgressHudValue(value: Int?) {
         if let value = value {
             print("progress hud: \(value)")
             configProgressIndicator.value = CGFloat(value / 10)
