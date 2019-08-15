@@ -305,7 +305,7 @@ class DCMessage: MessageType {
         if let cStr = dc_msg_get_file(messagePointer) {
             let str = String(cString: cStr)
 
-            return str == "" ? nil : str
+            return str.isEmpty ? nil : str
         }
 
         return nil
@@ -315,7 +315,7 @@ class DCMessage: MessageType {
         if let cStr = dc_msg_get_filemime(messagePointer) {
             let str = String(cString: cStr)
 
-            return str == "" ? nil : str
+            return str.isEmpty ? nil : str
         }
 
         return nil
@@ -325,7 +325,7 @@ class DCMessage: MessageType {
         if let cStr = dc_msg_get_filename(messagePointer) {
             let str = String(cString: cStr)
 
-            return str == "" ? nil : str
+            return str.isEmpty ? nil : str
         }
 
         return nil
@@ -457,7 +457,7 @@ class DCChat {
     var subtitle: String? {
         if let cString = dc_chat_get_subtitle(chatPointer) {
             let str = String(cString: cString)
-            return str == "" ? nil : str
+            return str.isEmpty ? nil : str
         }
         return nil
     }
