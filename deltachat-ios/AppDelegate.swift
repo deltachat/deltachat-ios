@@ -276,8 +276,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UNUserNotificationCenter.current().delegate = self
 
         UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.alert, .sound, .badge]) {
-                granted, _ in
+            .requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
                 logger.info("permission granted: \(granted)")
                 guard granted else { return }
                 self.getNotificationSettings()

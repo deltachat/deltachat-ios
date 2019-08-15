@@ -22,7 +22,7 @@ identifier_name:
   max_length: 40
 
 line_length:
-  warning: 150
+  warning: 160
   error: 200
   ignores_function_declarations: true
   ignores_comments: true
