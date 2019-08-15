@@ -48,9 +48,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
             if done {
                 UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
                 UserDefaults.standard.synchronize()
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    AppDelegate.lastErrorDuringConfig = nil
-                }
+                AppDelegate.lastErrorDuringConfig = nil
             }
         }
     case DC_EVENT_ERROR_NETWORK:

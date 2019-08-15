@@ -100,12 +100,14 @@ class AppCoordinator: NSObject, Coordinator {
 
     func showChat(chatId: Int) {
         showTab(index: 3)
-        if let navController = self.chatListController as? UINavigationController {
-            let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
-            let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navController, chatId: chatId)
-            chatVC.coordinator = coordinator
-            navController.pushViewController(chatVC, animated: true)
+        guard let navController = self.chatListController as? UINavigationController else {
+            assertionFailure("huh? why no nav controller?")
+            return
         }
+        let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
+        let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navController, chatId: chatId)
+        chatVC.coordinator = coordinator
+        navController.pushViewController(chatVC, animated: true)
     }
 
     func presentLoginController() {
