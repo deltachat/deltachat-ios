@@ -227,26 +227,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     @objc private func reachabilityChanged(note: Notification) {
-        if let reachability = note.object as? Reachability {
-            switch reachability.connection {
-            case .wifi, .cellular:
-                logger.info("network: reachable", reachability.connection.description)
-                dc_maybe_network(mailboxPointer)
+        guard let reachability = note.object as? Reachability else {
+            logger.info("reachability object missing")
+            return
+        }
 
-                let nc = NotificationCenter.default
-                DispatchQueue.main.async {
-                    nc.post(name: dcNotificationStateChanged,
-                            object: nil,
-                            userInfo: ["state": "online"])
-                }
-            case .none:
-                logger.info("network: not reachable")
-                let nc = NotificationCenter.default
-                DispatchQueue.main.async {
-                    nc.post(name: dcNotificationStateChanged,
-                            object: nil,
-                            userInfo: ["state": "offline"])
-                }
+        switch reachability.connection {
+        case .wifi, .cellular:
+            logger.info("network: reachable", reachability.connection.description)
+            dc_maybe_network(mailboxPointer)
+
+            let nc = NotificationCenter.default
+            DispatchQueue.main.async {
+                nc.post(name: dcNotificationStateChanged,
+                        object: nil,
+                        userInfo: ["state": "online"])
+            }
+        case .none:
+            logger.info("network: not reachable")
+            let nc = NotificationCenter.default
+            DispatchQueue.main.async {
+                nc.post(name: dcNotificationStateChanged,
+                        object: nil,
+                        userInfo: ["state": "offline"])
             }
         }
     }
