@@ -158,7 +158,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
                 if let contactCell = cell as? ContactCell {
-                let contact = groupMembers[row - staticCellCountMemberSection]
+                    let contact = groupMembers[row - staticCellCountMemberSection]
                     contactCell.nameLabel.text = contact.name
                     contactCell.emailLabel.text = contact.email
                     contactCell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
