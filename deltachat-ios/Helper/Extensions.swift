@@ -42,7 +42,7 @@ extension String {
             if index < 0 || count <= index {
                 break
             }
-            attributedText.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: fontSize), range: NSMakeRange(index, 1))
+            attributedText.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: fontSize), range: NSRange(location: index, length: 1))
         }
         return attributedText
     }

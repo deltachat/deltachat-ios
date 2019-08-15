@@ -408,7 +408,7 @@ class ChatViewController: MessagesViewController {
             let cell = messagesCollectionView.dequeueReusableCell(CustomMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
-        case .audio(_):
+        case .audio:
             let cell = messagesCollectionView.dequeueReusableCell(AudioMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
@@ -830,7 +830,7 @@ extension ChatViewController: MessageCellDelegate {
         logger.info("Top label tapped")
     }
 
-    func didTapBottomLabel(in _: MessageCollectionViewCell) {
+    @objc(didTapCellBottomLabelIn:) func didTapCellBottomLabel(in _: MessageCollectionViewCell) {
         print("Bottom label tapped")
     }
 }

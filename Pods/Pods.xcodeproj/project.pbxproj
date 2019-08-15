@@ -15,6 +15,7 @@
 			dependencies = (
 			);
 			name = SwiftLint;
+			productName = SwiftLint;
 		};
 		384B71B4E45162B2211DA1E75700E9AC /* SwiftFormat */ = {
 			isa = PBXAggregateTarget;
@@ -24,6 +25,7 @@
 			dependencies = (
 			);
 			name = SwiftFormat;
+			productName = SwiftFormat;
 		};
 /* End PBXAggregateTarget section */
 
@@ -635,7 +637,7 @@
 		0A369B59179C46D4560465DD7D545D16 /* DBTapTrigger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBTapTrigger.h; path = DBDebugToolkit/Classes/Triggers/TapTrigger/DBTapTrigger.h; sourceTree = "<group>"; };
 		0BAB3329DC99B7CB2DBEBE6EACA13F70 /* NSURLSessionConfiguration+DBURLProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURLSessionConfiguration+DBURLProtocol.h"; path = "DBDebugToolkit/Classes/Network/URLProtocol/NSURLSessionConfiguration+DBURLProtocol.h"; sourceTree = "<group>"; };
 		0C3036D2CF3AB5DEE0E94864BE1C47D0 /* VolumeControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VolumeControl.swift; path = ALCameraViewController/Utilities/VolumeControl.swift; sourceTree = "<group>"; };
-		0C4BAD4692F46B7F6F4A73637335C858 /* InputBarAccessoryView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = InputBarAccessoryView.framework; path = InputBarAccessoryView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C4BAD4692F46B7F6F4A73637335C858 /* InputBarAccessoryView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InputBarAccessoryView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C75DE0A7F2EB40E65AE5D7DBDE83268 /* NSMutableAttributedString+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSMutableAttributedString+Extensions.swift"; path = "InputBarAccessoryView/Extensions/NSMutableAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		0C76FF79F4E7BBC5236B638BFA7954E8 /* DBLocationTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBLocationTableViewController.h; path = DBDebugToolkit/Classes/Location/DBLocationTableViewController.h; sourceTree = "<group>"; };
 		0D38E83B1DA46146CF85F73889D0C6DA /* DBUserInterfaceToolkit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBUserInterfaceToolkit.m; path = DBDebugToolkit/Classes/UserInterface/DBUserInterfaceToolkit.m; sourceTree = "<group>"; };
@@ -672,7 +674,7 @@
 		1959392B95C8E1C3AB4A80F19A945A69 /* MessageKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MessageKit-prefix.pch"; sourceTree = "<group>"; };
 		197C5EE43AC17B50543219E689DB19A1 /* DBDebugToolkit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DBDebugToolkit-prefix.pch"; sourceTree = "<group>"; };
 		19815D3A60F1B9DE12D9C3E32A8CF5A6 /* MessageKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MessageKit-Info.plist"; sourceTree = "<group>"; };
-		19F17B6F96054DD9D115C766203AA168 /* DBDebugToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DBDebugToolkit.framework; path = DBDebugToolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		19F17B6F96054DD9D115C766203AA168 /* DBDebugToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DBDebugToolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A0CD002C4EB47E7E949EE92221C9998 /* JGProgressHUDIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDIndicatorView.m; sourceTree = "<group>"; };
 		1AE16C693B55D5BD06992212C3AB5572 /* DBColorPickerTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DBColorPickerTableViewCell.xib; path = DBDebugToolkit/Resources/DBColorPickerTableViewCell.xib; sourceTree = "<group>"; };
 		1C0A31F766FF4B4521183952093A3AEE /* DBFileTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBFileTableViewCell.h; path = DBDebugToolkit/Classes/Resources/Files/DBFileTableViewCell.h; sourceTree = "<group>"; };
@@ -722,14 +724,14 @@
 		335C055E405D7226FE294B8EBE72B40D /* UICircularRingValueFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UICircularRingValueFormatter.swift; path = src/UICircularProgressRing/UICircularRingValueFormatter.swift; sourceTree = "<group>"; };
 		34218023539CACE2E2D27D10A107208D /* UICircularProgressRing-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UICircularProgressRing-prefix.pch"; sourceTree = "<group>"; };
 		342D4E169770AA17E74EBA6678C7200D /* DBCustomVariablesTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBCustomVariablesTableViewController.m; path = DBDebugToolkit/Classes/CustomVariables/DBCustomVariablesTableViewController.m; sourceTree = "<group>"; };
-		348B6EF8EDA55AB56FB916B7287EEE97 /* ALCameraViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ALCameraViewController.framework; path = ALCameraViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		348B6EF8EDA55AB56FB916B7287EEE97 /* ALCameraViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ALCameraViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3501C8D09579C8E89BF85BFACEF7D1AB /* DBNetworkToolkit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBNetworkToolkit.h; path = DBDebugToolkit/Classes/Network/DBNetworkToolkit.h; sourceTree = "<group>"; };
 		35C8BD10ACF986404CDDC128C951FD64 /* Pods-deltachat-ios-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-deltachat-ios-Info.plist"; sourceTree = "<group>"; };
 		36CC0D9A3AE2E92E9BA7D5C95493D00C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
 		36E00875C8776F9B3FB700D037808664 /* MessageLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageLabel.swift; path = Sources/Views/MessageLabel.swift; sourceTree = "<group>"; };
 		3759041888B11174063953214BB5B090 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CGRect+Extensions.swift"; path = "Sources/Extensions/CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		3775C6AB86022A9B45B5E7E89CCE9EAA /* SwiftyBeaver.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftyBeaver.modulemap; sourceTree = "<group>"; };
-		37EA9B3AFECA678C4E52475D77C05D79 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Reachability.framework; path = ReachabilitySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37EA9B3AFECA678C4E52475D77C05D79 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F0171AB3D69D4B941364A17B5107C8 /* TapActionRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TapActionRow.swift; path = Source/Rows/TapActionRow.swift; sourceTree = "<group>"; };
 		39AD99B3C7915D5D4972750568837BD3 /* QuickTableViewController-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "QuickTableViewController-Info.plist"; sourceTree = "<group>"; };
 		39F0B5BD5395BF0A80C586726BBE79A2 /* ResourceBundle-DBDebugToolkit-DBDebugToolkit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-DBDebugToolkit-DBDebugToolkit-Info.plist"; sourceTree = "<group>"; };
@@ -740,7 +742,7 @@
 		3D2051913F72BD45984AEA1B60E03406 /* DBTextViewViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBTextViewViewController.h; path = DBDebugToolkit/Classes/UserInterface/DBTextViewViewController.h; sourceTree = "<group>"; };
 		3D59B360ED2B07EDE514F07861780B96 /* DBBodyPreviewViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBBodyPreviewViewController.storyboard; path = DBDebugToolkit/Resources/DBBodyPreviewViewController.storyboard; sourceTree = "<group>"; };
 		3D5A7735878961CE33850135055D0224 /* DBPersistentStoreCoordinatorsTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBPersistentStoreCoordinatorsTableViewController.h; path = DBDebugToolkit/Classes/Resources/CoreData/DBPersistentStoreCoordinatorsTableViewController.h; sourceTree = "<group>"; };
-		3E09F64B3AB663C3D62E73D5A50D1175 /* MessageKitAssets.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MessageKitAssets.bundle; path = "MessageKit-MessageKitAssets.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E09F64B3AB663C3D62E73D5A50D1175 /* MessageKitAssets.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MessageKitAssets.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E9043748E4E5AFA63CB60886D30F3A5 /* InputTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InputTextView.swift; path = InputBarAccessoryView/Views/InputTextView.swift; sourceTree = "<group>"; };
 		3F8D7AB8CA6DC1BF1F118A09085BB1A6 /* DBCoreDataFilterTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBCoreDataFilterTableViewController.h; path = DBDebugToolkit/Classes/Resources/CoreData/Filters/DBCoreDataFilterTableViewController.h; sourceTree = "<group>"; };
 		408AEC021E18225342B0E25C32E572CF /* MessageKind.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageKind.swift; path = Sources/Models/MessageKind.swift; sourceTree = "<group>"; };
@@ -811,8 +813,8 @@
 		65E21B7F185F32E75EC2DE28C39D312D /* Base64.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Base64.swift; path = Sources/Base64.swift; sourceTree = "<group>"; };
 		663413FA4844519282D85A5C08BB0146 /* JGProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD-prefix.pch"; sourceTree = "<group>"; };
 		667F927597BC694EA02C67C8C927C29E /* SwitchCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwitchCell.swift; path = Source/Views/SwitchCell.swift; sourceTree = "<group>"; };
-		66A2FC4BA176D2891FE9363105FBEAC4 /* JGProgressHUD.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = JGProgressHUD.bundle; path = "JGProgressHUD-JGProgressHUD.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
-		673489517D5779985A4CDAE0ED73601C /* UICircularProgressRing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = UICircularProgressRing.framework; path = UICircularProgressRing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66A2FC4BA176D2891FE9363105FBEAC4 /* JGProgressHUD.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JGProgressHUD.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		673489517D5779985A4CDAE0ED73601C /* UICircularProgressRing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UICircularProgressRing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67EBE97463CCBF19A896D1639D6E6014 /* DBMenuChartTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DBMenuChartTableViewCell.xib; path = DBDebugToolkit/Resources/DBMenuChartTableViewCell.xib; sourceTree = "<group>"; };
 		682B2931E15A2C9513F2639A3C6FBD93 /* InputBarAccessoryView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = InputBarAccessoryView.modulemap; sourceTree = "<group>"; };
 		6868C650C83DFC59DA3D33A4103297CD /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
@@ -841,7 +843,7 @@
 		718E44B94F4806CE7AC495863ECEB9A8 /* AudioMessageSizeCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioMessageSizeCalculator.swift; path = Sources/Layout/AudioMessageSizeCalculator.swift; sourceTree = "<group>"; };
 		71B03CAB6A1ABA9F73CFF9262E766C46 /* DBCoreDataFilterSettings.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBCoreDataFilterSettings.h; path = DBDebugToolkit/Classes/Resources/CoreData/Filters/DBCoreDataFilterSettings.h; sourceTree = "<group>"; };
 		72BB49C3A6B1D8C21B2347A1AAD9BAEF /* MessagesViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagesViewController.swift; path = Sources/Controllers/MessagesViewController.swift; sourceTree = "<group>"; };
-		73C446E77FD95DDCE9E0C6281BDE4FBF /* QuickTableViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = QuickTableViewController.framework; path = QuickTableViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73C446E77FD95DDCE9E0C6281BDE4FBF /* QuickTableViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickTableViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74842ECC9B036526DC8FA2B73B5A262C /* UICircularProgressRing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UICircularProgressRing.h; path = src/UICircularProgressRing/UICircularProgressRing.h; sourceTree = "<group>"; };
 		74890CF366C32BBB69DE0D470270877A /* DBRequestDetailsViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBRequestDetailsViewController.m; path = DBDebugToolkit/Classes/Network/DBRequestDetailsViewController.m; sourceTree = "<group>"; };
 		74E0D2D8584A77234211F80DBFDF41DF /* DBPerformanceTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBPerformanceTableViewController.h; path = DBDebugToolkit/Classes/Performance/DBPerformanceTableViewController.h; sourceTree = "<group>"; };
@@ -869,7 +871,7 @@
 		7EE3F81AF26E5662730726E3B788703A /* DBCrashReportDetailsTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBCrashReportDetailsTableViewController.h; path = DBDebugToolkit/Classes/CrashReports/DBCrashReportDetailsTableViewController.h; sourceTree = "<group>"; };
 		7F1CDBE8B75C96381468BBA4DBD365E8 /* MessageKit+Availability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MessageKit+Availability.swift"; path = "Sources/Supporting/MessageKit+Availability.swift"; sourceTree = "<group>"; };
 		7F5C38227CDF98DE2BB468FB2969333C /* DBRequestDataHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBRequestDataHandler.h; path = DBDebugToolkit/Classes/Network/RequestModel/DBRequestDataHandler.h; sourceTree = "<group>"; };
-		7F9E725FBD32899034E2B54362D267BD /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_deltachat_iosTests.framework; path = "Pods-deltachat-iosTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F9E725FBD32899034E2B54362D267BD /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		800E9D0D598C9851DD1CF0418A5CAEDE /* NavigationRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavigationRow.swift; path = Source/Rows/NavigationRow.swift; sourceTree = "<group>"; };
 		8081EA22D68E3D30F87D83C65C538778 /* DBMenuChartTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBMenuChartTableViewCell.m; path = DBDebugToolkit/Classes/Cells/DBMenuChartTableViewCell.m; sourceTree = "<group>"; };
 		80B379F5ACC66F5BCA53DE1F3464B529 /* Reusable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reusable.swift; path = Source/Protocol/Reusable.swift; sourceTree = "<group>"; };
@@ -944,7 +946,7 @@
 		9BBC44EB0C6A8C6C82F66983DC316312 /* DBPerformanceWidgetView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBPerformanceWidgetView.m; path = DBDebugToolkit/Classes/Performance/Widget/DBPerformanceWidgetView.m; sourceTree = "<group>"; };
 		9C35E54B80B39F147C29D45EE1836C82 /* MessageKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MessageKit-umbrella.h"; sourceTree = "<group>"; };
 		9C7568767017F88DDBE0A19EA9313E5A /* UIApplication+DBDebugToolkit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+DBDebugToolkit.m"; path = "DBDebugToolkit/Classes/Categories/UIApplication+DBDebugToolkit.m"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E0D52DD19CBBFA5FEB9A0EEB416EE51 /* TypingIndicatorCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypingIndicatorCell.swift; path = Sources/Views/Cells/TypingIndicatorCell.swift; sourceTree = "<group>"; };
 		9F73841FA123F5745F1C7903F7562177 /* DBFontPreviewViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = DBFontPreviewViewController.storyboard; path = DBDebugToolkit/Resources/DBFontPreviewViewController.storyboard; sourceTree = "<group>"; };
 		9FA836AD2AD076A249E36D5C59E6A6CB /* KeyboardNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyboardNotification.swift; path = InputBarAccessoryView/KeyboardManager/KeyboardNotification.swift; sourceTree = "<group>"; };
@@ -958,7 +960,7 @@
 		A5471B7C3040EB43402B339B90320277 /* LocationMessageSnapshotOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocationMessageSnapshotOptions.swift; path = Sources/Models/LocationMessageSnapshotOptions.swift; sourceTree = "<group>"; };
 		A55F3CBCDC4CE375AE5DD5784BC28DD7 /* DBShakeTrigger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBShakeTrigger.m; path = DBDebugToolkit/Classes/Triggers/ShakeTrigger/DBShakeTrigger.m; sourceTree = "<group>"; };
 		A56A92278CC7A0C05A78DB9684FE11CF /* InputPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InputPlugin.swift; path = InputBarAccessoryView/Protocols/InputPlugin.swift; sourceTree = "<group>"; };
-		A59DA5CAE37B1ED8CB8D5A0FF24CB5FA /* DBDebugToolkit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = DBDebugToolkit.bundle; path = "DBDebugToolkit-DBDebugToolkit.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A59DA5CAE37B1ED8CB8D5A0FF24CB5FA /* DBDebugToolkit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DBDebugToolkit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6EA6A042BCB4B3370E467FB5A8C5495 /* DBDebugToolkit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DBDebugToolkit.modulemap; sourceTree = "<group>"; };
 		A701BD2389B4674D759384692CAD58E5 /* LocationMessageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocationMessageCell.swift; path = Sources/Views/Cells/LocationMessageCell.swift; sourceTree = "<group>"; };
 		A8D48A16E5E7AA5E93875DF923914726 /* DBOptionsListTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBOptionsListTableViewController.h; path = DBDebugToolkit/Classes/Resources/CoreData/Filters/DBOptionsListTableViewController.h; sourceTree = "<group>"; };
@@ -983,7 +985,7 @@
 		AF26DDAA681963B6F25005D2DE334593 /* DBTextViewTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBTextViewTableViewCell.m; path = DBDebugToolkit/Classes/Cells/DBTextViewTableViewCell.m; sourceTree = "<group>"; };
 		AF2CC289A97440C7EA6012F10F9888FC /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Extensions.swift"; path = "Sources/Extensions/NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		B006EB0AF5694C41B6EE9617A0AFA2AD /* DBCookiesTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBCookiesTableViewController.m; path = DBDebugToolkit/Classes/Resources/Cookies/DBCookiesTableViewController.m; sourceTree = "<group>"; };
-		B02AE7778F883524BE8E515AD2E5F262 /* SwiftyBeaver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyBeaver.framework; path = SwiftyBeaver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B02AE7778F883524BE8E515AD2E5F262 /* SwiftyBeaver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyBeaver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0774281609BF4091C35E17EBB11B95E /* DBSliderTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBSliderTableViewCell.h; path = DBDebugToolkit/Classes/Cells/DBSliderTableViewCell.h; sourceTree = "<group>"; };
 		B113749246DD3F84926CAA909B023141 /* Pods-deltachat-ios.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-deltachat-ios.modulemap"; sourceTree = "<group>"; };
 		B1D68AC074343A5225F932BD3AC195D3 /* DBPerformanceToolkit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBPerformanceToolkit.h; path = DBDebugToolkit/Classes/Performance/DBPerformanceToolkit.h; sourceTree = "<group>"; };
@@ -1047,7 +1049,7 @@
 		D11516866E4953DEDA198FAD74BE8839 /* ResourceBundle-JGProgressHUD-JGProgressHUD-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-JGProgressHUD-JGProgressHUD-Info.plist"; sourceTree = "<group>"; };
 		D1549F2EC494C92819C359DD75BB5DF9 /* SwiftyBeaver-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyBeaver-dummy.m"; sourceTree = "<group>"; };
 		D22D65ED32FC8DE6A6ED631CCD016712 /* DBDebugToolkit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBDebugToolkit.h; path = DBDebugToolkit/Classes/DBDebugToolkit.h; sourceTree = "<group>"; };
-		D27882E74F13E970710FF59B770D294D /* Images */ = {isa = PBXFileReference; includeInIndex = 1; name = Images; path = Assets/MessageKitAssets.bundle/Images; sourceTree = "<group>"; };
+		D27882E74F13E970710FF59B770D294D /* Images */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = Images; path = Assets/MessageKitAssets.bundle/Images; sourceTree = "<group>"; };
 		D28AFE674909E1275247AE9FA0062109 /* DBRequestOutcome.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBRequestOutcome.h; path = DBDebugToolkit/Classes/Network/RequestModel/DBRequestOutcome.h; sourceTree = "<group>"; };
 		D2F06ED627E5A8FED91D2F3142F703C3 /* DBConsoleOutputCaptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBConsoleOutputCaptor.m; path = DBDebugToolkit/Classes/Console/DBConsoleOutputCaptor.m; sourceTree = "<group>"; };
 		D320607DD3881D5CAD17FE9967920522 /* QuickTableViewController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = QuickTableViewController.modulemap; sourceTree = "<group>"; };
@@ -1081,7 +1083,7 @@
 		DCCDF751E46971364FFDE8B365E1F67F /* DBPerformanceWidgetView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBPerformanceWidgetView.h; path = DBDebugToolkit/Classes/Performance/Widget/DBPerformanceWidgetView.h; sourceTree = "<group>"; };
 		DDA7830365064A3C346DCAD2F06E5760 /* DBAuthenticationChallengeSender.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBAuthenticationChallengeSender.m; path = DBDebugToolkit/Classes/Network/URLProtocol/DBAuthenticationChallengeSender.m; sourceTree = "<group>"; };
 		DDF61DF344E148D163B13F12B825F12E /* DBRequestDetailsViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBRequestDetailsViewController.h; path = DBDebugToolkit/Classes/Network/DBRequestDetailsViewController.h; sourceTree = "<group>"; };
-		DED8C189F56BE3A2EB836951880C1FEB /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JGProgressHUD.framework; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DED8C189F56BE3A2EB836951880C1FEB /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE08740570B83175CC6FFA491811F10 /* Pods-deltachat-iosTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-deltachat-iosTests.modulemap"; sourceTree = "<group>"; };
 		DF513DE3C9D44492382B491527E2F64D /* MessageKitDateFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageKitDateFormatter.swift; path = Sources/Models/MessageKitDateFormatter.swift; sourceTree = "<group>"; };
 		E00E7C125EA4CFEC5B4830F32E3CD1EA /* UIView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Extensions.swift"; path = "Sources/Extensions/UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -1095,7 +1097,7 @@
 		E2C6CA7B51B48BFFADCCEE5AC177F382 /* SwiftLint.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.xcconfig; sourceTree = "<group>"; };
 		E2E47FB75E22FDA26B1906BDF647EC62 /* NSBundle+DBDebugToolkit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSBundle+DBDebugToolkit.h"; path = "DBDebugToolkit/Classes/Categories/NSBundle+DBDebugToolkit.h"; sourceTree = "<group>"; };
 		E3741BFD8C793DB441C71D01E7E68317 /* QuickTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuickTableViewController.swift; path = Source/QuickTableViewController.swift; sourceTree = "<group>"; };
-		E3C47BF2D1B6BF3E6BC6E608CDB9EDEF /* MessageKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MessageKit.framework; path = MessageKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3C47BF2D1B6BF3E6BC6E608CDB9EDEF /* MessageKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MessageKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4DB32E69DBEE567D2B41E4C51C70229 /* CameraShot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CameraShot.swift; path = ALCameraViewController/Utilities/CameraShot.swift; sourceTree = "<group>"; };
 		E4E77D726B20687EA9423A77BDA7F641 /* MessageKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MessageKit.xcconfig; sourceTree = "<group>"; };
 		E62BB3E79D3C03FFC61450481DB44BE6 /* DBTitleValueTableViewCellDataSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DBTitleValueTableViewCellDataSource.m; path = DBDebugToolkit/Classes/Cells/TitleValue/DBTitleValueTableViewCellDataSource.m; sourceTree = "<group>"; };
@@ -1131,7 +1133,7 @@
 		FAB526F8AFCB7EAE0043ADEE160D4AA9 /* DBCrashReportsToolkit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBCrashReportsToolkit.h; path = DBDebugToolkit/Classes/CrashReports/DBCrashReportsToolkit.h; sourceTree = "<group>"; };
 		FB05649400D1D9665E7394E8B0307FEC /* Icon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Icon.swift; path = Source/Model/Icon.swift; sourceTree = "<group>"; };
 		FB1F206928DC684B6836620579FBDC15 /* UIView+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+Snapshot.h"; path = "DBDebugToolkit/Classes/Categories/UIView+Snapshot.h"; sourceTree = "<group>"; };
-		FB6D48D8F511504ED99F0271051361ED /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_deltachat_ios.framework; path = "Pods-deltachat-ios.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB6D48D8F511504ED99F0271051361ED /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF6D613818A24C320A546D53871D00B /* DBRequestTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBRequestTableViewCell.h; path = DBDebugToolkit/Classes/Cells/DBRequestTableViewCell.h; sourceTree = "<group>"; };
 		FC1EBEC976B7A98420F713A2EF96021A /* DBNetworkSettingsTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DBNetworkSettingsTableViewController.h; path = DBDebugToolkit/Classes/Network/DBNetworkSettingsTableViewController.h; sourceTree = "<group>"; };
 		FCC3FCBBC7C2D118ABF831125BE2E760 /* MessagesLayoutDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagesLayoutDelegate.swift; path = Sources/Protocols/MessagesLayoutDelegate.swift; sourceTree = "<group>"; };
@@ -1484,7 +1486,6 @@
 				691D475C730689D1F43130BD2DD9BD7A /* Resources */,
 				4E35C1BD3767E857F4364C929F561FEC /* Support Files */,
 			);
-			name = DBDebugToolkit;
 			path = DBDebugToolkit;
 			sourceTree = "<group>";
 		};
@@ -1503,7 +1504,6 @@
 				F9B8722A7E89251D6A93138A061CE8E0 /* SwiftyBeaver.swift */,
 				66D9732A9F7ECD169C03940FC42A0147 /* Support Files */,
 			);
-			name = SwiftyBeaver;
 			path = SwiftyBeaver;
 			sourceTree = "<group>";
 		};
@@ -1577,7 +1577,6 @@
 				641C910E0107F563B935343D66893E99 /* Resources */,
 				9BF9532247A645A80EAC6F2C7FE32797 /* Support Files */,
 			);
-			name = MessageKit;
 			path = MessageKit;
 			sourceTree = "<group>";
 		};
@@ -1629,7 +1628,6 @@
 				05A75E8C7A95AC412BE7D2A03285BAD2 /* Resources */,
 				B29BFB5780F5C35797EC7837A27BDF12 /* Support Files */,
 			);
-			name = ALCameraViewController;
 			path = ALCameraViewController;
 			sourceTree = "<group>";
 		};
@@ -1664,7 +1662,6 @@
 				7047715E53AAE83838D6F0617640070E /* Reachability.swift */,
 				1AF1704A088755B3406E03649FCE7937 /* Support Files */,
 			);
-			name = ReachabilitySwift;
 			path = ReachabilitySwift;
 			sourceTree = "<group>";
 		};
@@ -1673,7 +1670,6 @@
 			children = (
 				457CAD854801CEA11AF31B80F709FFCE /* Support Files */,
 			);
-			name = SwiftFormat;
 			path = SwiftFormat;
 			sourceTree = "<group>";
 		};
@@ -1715,7 +1711,6 @@
 				37F0171AB3D69D4B941364A17B5107C8 /* TapActionRow.swift */,
 				C49B16E738EF3B2F86B733086380F354 /* Support Files */,
 			);
-			name = QuickTableViewController;
 			path = QuickTableViewController;
 			sourceTree = "<group>";
 		};
@@ -1849,7 +1844,6 @@
 				8F76078B2946346397CE0A315F35439B /* UIView+AutoLayout.swift */,
 				B2EBCA70490297A51EC809F9A519E644 /* Support Files */,
 			);
-			name = InputBarAccessoryView;
 			path = InputBarAccessoryView;
 			sourceTree = "<group>";
 		};
@@ -1936,7 +1930,6 @@
 			children = (
 				1943E02B01C18C75FC9864E3D5699384 /* Support Files */,
 			);
-			name = SwiftLint;
 			path = SwiftLint;
 			sourceTree = "<group>";
 		};
@@ -2009,7 +2002,6 @@
 				D091F82F7F03EA34D509E7BBAABA1265 /* Resources */,
 				02F2E58B1E4A7D93424E51D5355B2C35 /* Support Files */,
 			);
-			name = JGProgressHUD;
 			path = JGProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -2048,7 +2040,6 @@
 				2D3BDCB41CB3BB46889B2A32B306FDFD /* UICircularTimerRing.swift */,
 				C8AD182264E50B65A3F6BE08EB0132EB /* Support Files */,
 			);
-			name = UICircularProgressRing;
 			path = UICircularProgressRing;
 			sourceTree = "<group>";
 		};
@@ -2558,12 +2549,33 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
+				TargetAttributes = {
+					571D48138D13E2A712E3F4F8587AC655 = {
+						LastSwiftMigration = 1030;
+					};
+					8224EFD39BE7C470070127F0B77FBDC6 = {
+						LastSwiftMigration = 1030;
+					};
+					CEA048FA8FCAC4BCF974EAA46047A50C = {
+						LastSwiftMigration = 1030;
+					};
+					D07C2B94C9F7A82134ABAFD6EE2CAD11 = {
+						LastSwiftMigration = 1030;
+					};
+					D73CE4D20C1559CE5586041DB209DAB1 = {
+						LastSwiftMigration = 1030;
+					};
+					F3DB4B490CFB545F93C0E7CDBA669703 = {
+						LastSwiftMigration = 1030;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
@@ -3426,8 +3438,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 			};

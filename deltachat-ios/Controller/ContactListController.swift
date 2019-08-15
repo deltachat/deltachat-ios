@@ -166,8 +166,7 @@ class ContactListController: UITableViewController {
         let contactId = contactByIndexPath(indexPath).contact.id
 
         // assigning swipe by delete to chats
-        let edit = UITableViewRowAction(style: .default, title: String.localized("global_menu_edit_desktop")) {
-            [unowned self] _, indexPath in
+        let edit = UITableViewRowAction(style: .default, title: String.localized("global_menu_edit_desktop")) { [unowned self] _, _ in
             if self.searchController.isActive {
                 self.searchController.dismiss(animated: false) {
                     self.coordinator?.showContactDetail(contactId: contactId)

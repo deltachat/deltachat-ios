@@ -39,18 +39,15 @@ class ChatListController: UIViewController {
         super.viewDidAppear(animated)
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(forName: dcNotificationChanged,
-                                            object: nil, queue: nil) {
-            _ in
+                                            object: nil, queue: nil) { _ in
             self.getChatList()
         }
         incomingMsgObserver = nc.addObserver(forName: dcNotificationIncoming,
-                                             object: nil, queue: nil) {
-            _ in
+                                             object: nil, queue: nil) { _ in
             self.getChatList()
         }
 
-        viewChatObserver = nc.addObserver(forName: dcNotificationViewChat, object: nil, queue: nil) {
-            notification in
+        viewChatObserver = nc.addObserver(forName: dcNotificationViewChat, object: nil, queue: nil) { notification in
             if let chatId = notification.userInfo?["chat_id"] as? Int {
                 self.coordinator?.showChat(chatId: chatId)
             }
@@ -171,7 +168,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
 
         // assigning swipe by delete to chats
-        let delete = UITableViewRowAction(style: .destructive, title: String.localized("global_menu_edit_delete_desktop")) { [unowned self] _, indexPath in
+        let delete = UITableViewRowAction(style: .destructive, title: String.localized("global_menu_edit_delete_desktop")) { [unowned self] _, _ in
             let chatId = chatList.getChatId(index: row)
             self.showDeleteChatConfirmationAlert(chatId: chatId)
         }
@@ -187,7 +184,7 @@ extension ChatListController {
             message: nil,
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: String.localized("global_menu_edit_delete_desktop"), style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: String.localized("global_menu_edit_delete_desktop"), style: .default, handler: { _ in
             self.deleteChat(chatId: chatId)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))

@@ -43,8 +43,7 @@ final class DCNavigationController: UINavigationController {
             forName: dcNotificationStateChanged,
             object: nil,
             queue: nil
-        ) {
-            notification in
+        ) { notification in
             if let state = notification.userInfo?["state"] {
                 self.setShadow(state as? String)
             }
