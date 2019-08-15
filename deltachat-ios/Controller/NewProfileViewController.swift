@@ -217,7 +217,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
                     if chatId != 0 {
                         self.coordinator?.showChat(chatId: chatId)
                     } else if errorString != nil {
-                       self.showErrorAlert(error: errorString!)
+                        self.showErrorAlert(error: errorString!)
                     }
                 }
             }

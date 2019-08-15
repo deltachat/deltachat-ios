@@ -155,8 +155,8 @@ struct Utils {
 }
 
 class DateUtils {
-	// TODO: refactor that, it's an improper way for localizations, use stringsdict instead
-	// blocked by: converting androids plurals xml entries to stringsdict
+    // TODO: refactor that, it's an improper way for localizations, use stringsdict instead
+    // blocked by: converting androids plurals xml entries to stringsdict
     static func getBriefRelativeTimeSpanString(timeStamp: Int) -> String {
         let unixTime = Int(Date().timeIntervalSince1970)
         let seconds = unixTime - timeStamp

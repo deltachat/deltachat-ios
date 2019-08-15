@@ -58,7 +58,7 @@ class AccountSetupController: UITableViewController {
 
     private lazy var restoreCell: ActionCell = {
         let cell = ActionCell(frame: .zero)
-		cell.actionTitle = String.localized("import_backup_title");
+        cell.actionTitle = String.localized("import_backup_title");
         cell.accessibilityIdentifier = "restoreCell"
         return cell
     }()
@@ -131,8 +131,8 @@ class AccountSetupController: UITableViewController {
 
     lazy var smtpPasswordCell: TextFieldCell = {
         let cell = TextFieldCell(descriptionID: "login_smtp_password", placeholder: "*************", delegate: self)
-		cell.textField.textContentType = UITextContentType.password
-		cell.textField.isSecureTextEntry = true
+        cell.textField.textContentType = UITextContentType.password
+        cell.textField.isSecureTextEntry = true
         cell.accessibilityIdentifier = "SMTPPasswordCell"
         cell.textField.tag = 6
         return cell
@@ -293,7 +293,7 @@ class AccountSetupController: UITableViewController {
         }
     }
 
-	// FIXME: replace if-else-if with switch-case
+    // FIXME: replace if-else-if with switch-case
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let tappedCell = tableView.cellForRow(at: indexPath) else { return }
         // handle tap on password -> show oAuthDialogue
@@ -329,7 +329,7 @@ class AccountSetupController: UITableViewController {
         // set flag before delete/insert operation, because cellForRowAt will be triggered and uses this flag
         advancedSectionShowing = willShow
 
-		button.text = String.localized(willShow ? "hide" : "pref_notifications_show")
+        button.text = String.localized(willShow ? "hide" : "pref_notifications_show")
 
         if willShow {
             tableView.insertRows(at: advancedIndexPaths, with: .fade)
@@ -663,7 +663,7 @@ extension AccountSetupController {
     func updateProgressHudSuccess(callback: (()->())?) {
         configProgressAlert.actions[0].isEnabled = false
         configProgressIndicator.alpha = 0
-		configProgressAlert.title = String.localized("login_successful_title")
+        configProgressAlert.title = String.localized("login_successful_title")
         configProgressAlert.message = String.localized("login_successful_message")
         loginButton.isEnabled = dc_is_configured(mailboxPointer) == 0
         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {

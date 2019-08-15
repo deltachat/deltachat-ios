@@ -14,14 +14,14 @@ internal final class SettingsViewController: QuickTableViewController {
         return hudHandler
     }()
 
-	static let e2eeEnabled: Int = 1
-	static let readReceipts: Int = 2
-	static let watchInbox: Int = 3
-	static let watchSentbox: Int = 4
-	static let watchMvBox: Int = 5
-	static let MvToMvbox: Int = 6
-	static let SaveMimeHeaders: Int = 7
-	private typealias SVC = SettingsViewController
+    static let e2eeEnabled: Int = 1
+    static let readReceipts: Int = 2
+    static let watchInbox: Int = 3
+    static let watchSentbox: Int = 4
+    static let watchMvBox: Int = 5
+    static let MvToMvbox: Int = 6
+    static let SaveMimeHeaders: Int = 7
+    private typealias SVC = SettingsViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,13 +103,13 @@ internal final class SettingsViewController: QuickTableViewController {
             Section(
                 title: String.localized("user_details"),
                 rows: [
-					//FIXME: fix action callback!
+                    //FIXME: fix action callback!
                     NavigationRow(text: String.localized("display_name"), detailText: .value1(DCConfig.displayname ?? ""), action: {
-						[weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.DISPLAYNAME)
-					}),
-					NavigationRow(text: String.localized("status"), detailText: .value1(DCConfig.selfstatus ?? ""), action: {
-						[weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.STATUS)
-					}),
+                        [weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.DISPLAYNAME)
+                    }),
+                    NavigationRow(text: String.localized("status"), detailText: .value1(DCConfig.selfstatus ?? ""), action: {
+                        [weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.STATUS)
+                    }),
                     TapActionRow(text: String.localized("configure_my_account"), action: { [weak self] in self?.presentAccountSetup($0) }),
                 ]
             ),
@@ -138,7 +138,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     // FIXME: simplify this method
-	private func editCell(key: Int) -> (Row) -> Void {
+    private func editCell(key: Int) -> (Row) -> Void {
         return { sender in
             logger.info("row edit", sender.text)
 
@@ -224,7 +224,7 @@ internal final class SettingsViewController: QuickTableViewController {
         coordinator?.showAccountSetupController()
     }
 
-	private func editNameAndStatus(_ row: Row, option: SettingsEditOption) {
+    private func editNameAndStatus(_ row: Row, option: SettingsEditOption) {
         coordinator?.showEditSettingsController(option: option)
     }
 }

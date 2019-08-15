@@ -26,10 +26,10 @@ class TextFieldCell: UITableViewCell {
         setupViews()
         textField.delegate = delegate
     }
-	
-	convenience init(descriptionID: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {
-		self.init(description: String.localized(descriptionID), placeholder: placeholder, delegate: delegate)
-	}
+
+    convenience init(descriptionID: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {
+        self.init(description: String.localized(descriptionID), placeholder: placeholder, delegate: delegate)
+    }
 
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -76,7 +76,7 @@ class TextFieldCell: UITableViewCell {
     }
 
     static func makeEmailCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
-		let cell = TextFieldCell(description: String.localized("email_address"), placeholder: "you@example.com")
+        let cell = TextFieldCell(description: String.localized("email_address"), placeholder: "you@example.com")
         cell.textField.keyboardType = .emailAddress
         // switch off quicktype
         cell.textField.autocorrectionType = .no
@@ -86,7 +86,7 @@ class TextFieldCell: UITableViewCell {
     }
 
     static func makePasswordCell(delegate _: UITextFieldDelegate? = nil) -> TextFieldCell {
-		let cell = TextFieldCell(description: String.localized("password"), placeholder: String.localized("imap_password"))
+        let cell = TextFieldCell(description: String.localized("password"), placeholder: String.localized("imap_password"))
         cell.textField.textContentType = UITextContentType.password
         cell.textField.isSecureTextEntry = true
         return cell
@@ -106,7 +106,7 @@ class TextFieldCell: UITableViewCell {
     }
 
     static func makeConfigCell(labelID: String, placeholderID: String, delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
-		let cell = TextFieldCell(description: String.localized(labelID), placeholder: String.localized(placeholderID))
+        let cell = TextFieldCell(description: String.localized(labelID), placeholder: String.localized(placeholderID))
         cell.textField.autocapitalizationType = .words
         cell.textField.autocorrectionType = .no
         // .namePhonePad doesn't support autocapitalization

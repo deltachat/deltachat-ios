@@ -251,7 +251,7 @@ class ChatViewController: MessagesViewController {
 
         if disableWriting {
             menuItems = [
-				UIMenuItem(title: String.localized("start_chat"), action: #selector(MessageCollectionViewCell.messageStartChat(_:))),
+                UIMenuItem(title: String.localized("start_chat"), action: #selector(MessageCollectionViewCell.messageStartChat(_:))),
                 UIMenuItem(title: String.localized("dismiss"), action: #selector(MessageCollectionViewCell.messageDismiss(_:))),
                 UIMenuItem(title: String.localized("menu_block_contact"), action: #selector(MessageCollectionViewCell.messageBlock(_:))),
             ]
@@ -1212,35 +1212,35 @@ extension MessageCollectionViewCell {
 
 
  /*
-  	let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout
-  	layout?.sectionInset = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 8)
+   	let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout
+   	layout?.sectionInset = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 8)
 
-  	// Hide the outgoing avatar and adjust the label alignment to line up with the messages
-  	layout?.setMessageOutgoingAvatarSize(.zero)
-  	layout?.setMessageOutgoingMessageTopLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)))
-  	layout?.setMessageOutgoingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)))
+   	// Hide the outgoing avatar and adjust the label alignment to line up with the messages
+   	layout?.setMessageOutgoingAvatarSize(.zero)
+   	layout?.setMessageOutgoingMessageTopLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)))
+   	layout?.setMessageOutgoingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)))
 
-  	// Set outgoing avatar to overlap with the message bubble
-  	if isGroupChat {
-  		layout?.setMessageIncomingMessageTopLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: 0, left: 18, bottom: outgoingAvatarOverlap, right: 0)))
-  		layout?.setMessageIncomingAvatarSize(CGSize(width: 30, height: 30))
-  		layout?.setMessageIncomingMessagePadding(UIEdgeInsets(top: -outgoingAvatarOverlap, left: -18, bottom: outgoingAvatarOverlap / 2, right: 18))
-  		layout?.setMessageIncomingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: -7, left: 38, bottom: 0, right: 0)))
+   	// Set outgoing avatar to overlap with the message bubble
+   	if isGroupChat {
+   		layout?.setMessageIncomingMessageTopLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: 0, left: 18, bottom: outgoingAvatarOverlap, right: 0)))
+   		layout?.setMessageIncomingAvatarSize(CGSize(width: 30, height: 30))
+   		layout?.setMessageIncomingMessagePadding(UIEdgeInsets(top: -outgoingAvatarOverlap, left: -18, bottom: outgoingAvatarOverlap / 2, right: 18))
+   		layout?.setMessageIncomingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: -7, left: 38, bottom: 0, right: 0)))
 
-  	} else {
-  		layout?.setMessageIncomingMessageTopLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)))
-  		layout?.setMessageIncomingAvatarSize(CGSize.zero) // no batch displayed in singleChats
-  		layout?.setMessageIncomingMessagePadding(UIEdgeInsets(top: -outgoingAvatarOverlap, left: 0, bottom: outgoingAvatarOverlap / 2, right: 18))
-  		layout?.setMessageIncomingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: -7, left: 12, bottom: 0, right: 0)))
-  	}
+   	} else {
+   		layout?.setMessageIncomingMessageTopLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)))
+   		layout?.setMessageIncomingAvatarSize(CGSize.zero) // no batch displayed in singleChats
+   		layout?.setMessageIncomingMessagePadding(UIEdgeInsets(top: -outgoingAvatarOverlap, left: 0, bottom: outgoingAvatarOverlap / 2, right: 18))
+   		layout?.setMessageIncomingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: -7, left: 12, bottom: 0, right: 0)))
+   	}
 
-  	layout?.setMessageIncomingAccessoryViewSize(CGSize(width: 30, height: 30))
-  	layout?.setMessageIncomingAccessoryViewPadding(HorizontalEdgeInsets(left: 8, right: 0))
-  	layout?.setMessageOutgoingAccessoryViewSize(CGSize(width: 30, height: 30))
-  	layout?.setMessageOutgoingAccessoryViewPadding(HorizontalEdgeInsets(left: 0, right: 8))
+   	layout?.setMessageIncomingAccessoryViewSize(CGSize(width: 30, height: 30))
+   	layout?.setMessageIncomingAccessoryViewPadding(HorizontalEdgeInsets(left: 8, right: 0))
+   	layout?.setMessageOutgoingAccessoryViewSize(CGSize(width: 30, height: 30))
+   	layout?.setMessageOutgoingAccessoryViewPadding(HorizontalEdgeInsets(left: 0, right: 8))
 
-  	messagesCollectionView.messagesLayoutDelegate = self
-  	messagesCollectionView.messagesDisplayDelegate = self
+   	messagesCollectionView.messagesLayoutDelegate = self
+   	messagesCollectionView.messagesDisplayDelegate = self
   */
  }
 
@@ -1297,19 +1297,19 @@ extension MessageCollectionViewCell {
  				self.clipperButtonPressed()
  		}
  /*
-  		InputBarButtonItem()
-  		.configure {
-  		$0.spacing = .fixed(0)
-  		$0.image = UIImage(named: "camera")?.withRenderingMode(.alwaysTemplate)
-  		$0.setSize(CGSize(width: 36, height: 36), animated: false)
-  		$0.tintColor = UIColor(white: 0.8, alpha: 1)
-  		}.onSelected {
-  		$0.tintColor = DCColors.primary
-  		}.onDeselected {
-  		$0.tintColor = UIColor(white: 0.8, alpha: 1)
-  		}.onTouchUpInside { _ in
-  		self.didPressPhotoButton()
-  		},
+   		InputBarButtonItem()
+   		.configure {
+   		$0.spacing = .fixed(0)
+   		$0.image = UIImage(named: "camera")?.withRenderingMode(.alwaysTemplate)
+   		$0.setSize(CGSize(width: 36, height: 36), animated: false)
+   		$0.tintColor = UIColor(white: 0.8, alpha: 1)
+   		}.onSelected {
+   		$0.tintColor = DCColors.primary
+   		}.onDeselected {
+   		$0.tintColor = UIColor(white: 0.8, alpha: 1)
+   		}.onTouchUpInside { _ in
+   		self.didPressPhotoButton()
+   		},
   */
  	]
 
@@ -1666,23 +1666,23 @@ extension MessageCollectionViewCell {
 
 
  /*
-  extension ChatViewController: MessagesDisplayDelegate {
-  // MARK: - Text Messages
-  func textColor(for _: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> UIColor {
-  	return .darkText
-  }
+   extension ChatViewController: MessagesDisplayDelegate {
+   // MARK: - Text Messages
+   func textColor(for _: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> UIColor {
+   	return .darkText
+   }
 
-  // MARK: - All Messages
-  func backgroundColor(for message: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> UIColor {
-  	return isFromCurrentSender(message: message) ? DCColors.messagePrimaryColor : DCColors.messageSecondaryColor
-  }
+   // MARK: - All Messages
+   func backgroundColor(for message: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> UIColor {
+   	return isFromCurrentSender(message: message) ? DCColors.messagePrimaryColor : DCColors.messageSecondaryColor
+   }
 
 
 
-  func enabledDetectors(for _: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> [DetectorType] {
-  	return [.url, .date, .phoneNumber, .address]
-  }
-  }
+   func enabledDetectors(for _: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> [DetectorType] {
+   	return [.url, .date, .phoneNumber, .address]
+   }
+   }
   */
 
  // MARK: - MessagesLayoutDelegate
@@ -1700,56 +1700,56 @@ extension MessageCollectionViewCell {
  }
 
  /*
-  extension ChatViewController: MessagesLayoutDelegate {
-  func cellTopLabelHeight(for _: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
-  	if isTimeLabelVisible(at: indexPath) {
-  		return 18
-  	}
-  	return !isPreviousMessageSameSender(at: indexPath) ? 18 : 0
-  }
+   extension ChatViewController: MessagesLayoutDelegate {
+   func cellTopLabelHeight(for _: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
+   	if isTimeLabelVisible(at: indexPath) {
+   		return 18
+   	}
+   	return !isPreviousMessageSameSender(at: indexPath) ? 18 : 0
+   }
 
-  func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
-  	if isInfoMessage(at: indexPath) {
-  		return 0
-  	}
+   func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
+   	if isInfoMessage(at: indexPath) {
+   		return 0
+   	}
 
-  	if isFromCurrentSender(message: message) {
-  		if !isGroupChat {
-  			return !isPreviousMessageSameSender(at: indexPath) ? 20 : 0
-  		} else {
-  			return !isPreviousMessageSameSender(at: indexPath) ? 20 : 0
-  		}
-  	} else {
-  		if !isGroupChat {
-  			return !isPreviousMessageSameSender(at: indexPath) ? 20 : 0
-  		} else {
-  			return !isPreviousMessageSameSender(at: indexPath) ? (20 + outgoingAvatarOverlap) : 0
-  		}
-  	}
-  }
+   	if isFromCurrentSender(message: message) {
+   		if !isGroupChat {
+   			return !isPreviousMessageSameSender(at: indexPath) ? 20 : 0
+   		} else {
+   			return !isPreviousMessageSameSender(at: indexPath) ? 20 : 0
+   		}
+   	} else {
+   		if !isGroupChat {
+   			return !isPreviousMessageSameSender(at: indexPath) ? 20 : 0
+   		} else {
+   			return !isPreviousMessageSameSender(at: indexPath) ? (20 + outgoingAvatarOverlap) : 0
+   		}
+   	}
+   }
 
-  func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
-  	if isInfoMessage(at: indexPath) {
-  		return 0
-  	}
+   func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
+   	if isInfoMessage(at: indexPath) {
+   		return 0
+   	}
 
-  	if !isNextMessageSameSender(at: indexPath) {
-  		return 16
-  	}
+   	if !isNextMessageSameSender(at: indexPath) {
+   		return 16
+   	}
 
-  	if isFromCurrentSender(message: message) {
-  		return 0
-  	}
-  	return 0
-  }
+   	if isFromCurrentSender(message: message) {
+   		return 0
+   	}
+   	return 0
+   }
 
-  func heightForLocation(message _: MessageType, at _: IndexPath, with _: CGFloat, in _: MessagesCollectionView) -> CGFloat {
-  	return 40
-  }
+   func heightForLocation(message _: MessageType, at _: IndexPath, with _: CGFloat, in _: MessagesCollectionView) -> CGFloat {
+   	return 40
+   }
 
-  func footerViewSize(for _: MessageType, at _: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
-  	return CGSize(width: messagesCollectionView.bounds.width, height: 10)
-  }
+   func footerViewSize(for _: MessageType, at _: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+   	return CGSize(width: messagesCollectionView.bounds.width, height: 10)
+   }
   */
 
  extension ChatViewController {
@@ -1887,25 +1887,25 @@ extension MessageCollectionViewCell {
 
  // MARK: - LocationMessageDisplayDelegate
  /*
-  extension ChatViewController: LocationMessageDisplayDelegate {
-  func annotationViewForLocation(message: MessageType, at indexPath: IndexPath, in messageCollectionView: MessagesCollectionView) -> MKAnnotationView? {
-  let annotationView = MKAnnotationView(annotation: nil, reuseIdentifier: nil)
-  let pinImage = #imageLiteral(resourceName: "ic_block_36pt").withRenderingMode(.alwaysTemplate)
-  annotationView.image = pinImage
-  annotationView.centerOffset = CGPoint(x: 0, y: -pinImage.size.height / 2)
-  return annotationView
-  }
-  func animationBlockForLocation(message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> ((UIImageView) -> Void)? {
-  return { view in
-  view.layer.transform = CATransform3DMakeScale(0, 0, 0)
-  view.alpha = 0.0
-  UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: [], animations: {
-  view.layer.transform = CATransform3DIdentity
-  view.alpha = 1.0
-  }, completion: nil)
-  }
-  }
-  }
+   extension ChatViewController: LocationMessageDisplayDelegate {
+   func annotationViewForLocation(message: MessageType, at indexPath: IndexPath, in messageCollectionView: MessagesCollectionView) -> MKAnnotationView? {
+   let annotationView = MKAnnotationView(annotation: nil, reuseIdentifier: nil)
+   let pinImage = #imageLiteral(resourceName: "ic_block_36pt").withRenderingMode(.alwaysTemplate)
+   annotationView.image = pinImage
+   annotationView.centerOffset = CGPoint(x: 0, y: -pinImage.size.height / 2)
+   return annotationView
+   }
+   func animationBlockForLocation(message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> ((UIImageView) -> Void)? {
+   return { view in
+   view.layer.transform = CATransform3DMakeScale(0, 0, 0)
+   view.alpha = 0.0
+   UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: [], animations: {
+   view.layer.transform = CATransform3DIdentity
+   view.alpha = 1.0
+   }, completion: nil)
+   }
+   }
+   }
   */
 
  // MARK: - MessageInputBarDelegate
@@ -1919,8 +1919,8 @@ extension MessageCollectionViewCell {
  }
 
  /*
-  extension ChatViewController: MessageInputBarDelegate {
-  }
+   extension ChatViewController: MessageInputBarDelegate {
+   }
   */
 
  // MARK: - MessageCollectionViewCell

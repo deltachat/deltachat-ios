@@ -130,7 +130,7 @@ class SecurityConverter {
         }
     }
 
-	// TODO: discuss if we want to internationalize OFF and Automatic
+    // TODO: discuss if we want to internationalize OFF and Automatic
     static func convertHexToString(type: SecurityType, hex value: Int) -> String {
         switch type {
         case .IMAPSecurity:

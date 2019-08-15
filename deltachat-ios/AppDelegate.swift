@@ -268,7 +268,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - PushNotifications
 
-	func registerForPushNotifications() {
+    func registerForPushNotifications() {
         UNUserNotificationCenter.current().delegate = self
 
         UNUserNotificationCenter.current()

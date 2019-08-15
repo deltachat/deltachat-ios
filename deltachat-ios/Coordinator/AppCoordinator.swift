@@ -19,7 +19,7 @@ class AppCoordinator: NSObject, Coordinator {
         // put viewControllers here
         tabBarController.delegate = self
         tabBarController.tabBar.tintColor = DCColors.primary
-		tabBarController.tabBar.backgroundColor = .white
+        tabBarController.tabBar.backgroundColor = .white
         return tabBarController
     }()
 
@@ -189,9 +189,9 @@ class MailboxCoordinator: ChatViewCoordinator {
 }
 
 class ProfileCoordinator: Coordinator {
-	var navigationController: UINavigationController
-	init(navigationController: UINavigationController) {
-		self.navigationController = navigationController
+    var navigationController: UINavigationController
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
 
     func showChat(chatId: Int) {
@@ -283,8 +283,8 @@ class AccountSetupCoordinator: Coordinator {
         let currentSecurityOption = DCConfig.getImapSecurity()
         let convertedOption = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: currentSecurityOption)
         let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
-																	options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
-																	selectedOption: convertedOption)
+                                                                    options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
+                                                                    selectedOption: convertedOption)
         securitySettingsController.onDismiss = {
             option in
             if let secValue = SecurityValue(rawValue: option) {
@@ -310,8 +310,8 @@ class AccountSetupCoordinator: Coordinator {
         let currentSecurityOption = DCConfig.getSmtpSecurity()
         let convertedOption = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: currentSecurityOption)
         let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
-																	options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
-																	selectedOption: convertedOption)
+                                                                    options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
+                                                                    selectedOption: convertedOption)
         securitySettingsController.onDismiss = {
             option in
             if let secValue = SecurityValue(rawValue: option) {
