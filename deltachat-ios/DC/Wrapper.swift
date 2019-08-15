@@ -128,6 +128,13 @@ class DcContext {
         dc_stop_ongoing_process(contextPointer)
     }
 
+    func getMsgInfo(msgId: Int) -> String {
+        if let cString = dc_get_msg_info(self.contextPointer, UInt32(msgId)) {
+            return String(cString: cString)
+        }
+        return "ErrGetMsgInfo"
+    }
+
 }
 
 class DcLot {

@@ -1,8 +1,8 @@
 import UIKit
 
 class MailboxViewController: ChatViewController {
-    override init(chatId: Int, title: String? = nil) {
-        super.init(chatId: chatId, title: title)
+    override init(dcContext: DcContext, chatId: Int, title: String? = nil) {
+        super.init(dcContext: dcContext, chatId: chatId, title: title)
         hidesBottomBarWhenPushed = false
     }
 
