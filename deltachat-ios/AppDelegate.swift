@@ -227,26 +227,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     @objc private func reachabilityChanged(note: Notification) {
-        let reachability = note.object as! Reachability
+        if let reachability = note.object as? Reachability {
+            switch reachability.connection {
+            case .wifi, .cellular:
+                logger.info("network: reachable", reachability.connection.description)
+                dc_maybe_network(mailboxPointer)
 
-        switch reachability.connection {
-        case .wifi, .cellular:
-            logger.info("network: reachable", reachability.connection.description)
-            dc_maybe_network(mailboxPointer)
-
-            let nc = NotificationCenter.default
-            DispatchQueue.main.async {
-                nc.post(name: dcNotificationStateChanged,
-                        object: nil,
-                        userInfo: ["state": "online"])
-            }
-        case .none:
-            logger.info("network: not reachable")
-            let nc = NotificationCenter.default
-            DispatchQueue.main.async {
-                nc.post(name: dcNotificationStateChanged,
-                        object: nil,
-                        userInfo: ["state": "offline"])
+                let nc = NotificationCenter.default
+                DispatchQueue.main.async {
+                    nc.post(name: dcNotificationStateChanged,
+                            object: nil,
+                            userInfo: ["state": "online"])
+                }
+            case .none:
+                logger.info("network: not reachable")
+                let nc = NotificationCenter.default
+                DispatchQueue.main.async {
+                    nc.post(name: dcNotificationStateChanged,
+                            object: nil,
+                            userInfo: ["state": "offline"])
+                }
             }
         }
     }

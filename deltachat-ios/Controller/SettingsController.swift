@@ -39,12 +39,12 @@ internal final class SettingsViewController: QuickTableViewController {
             queue: nil
         ) { notification in
             if let ui = notification.userInfo {
-                if ui["error"] as! Bool {
+                if ui["error"] as? Bool ?? false {
                     self.hudHandler.setHudError(ui["errorMessage"] as? String)
-                } else if ui["done"] as! Bool {
+                } else if ui["done"] as? Bool ?? false {
                     self.hudHandler.setHudDone(callback: nil)
                 } else {
-                    self.hudHandler.setHudProgress(ui["progress"] as! Int)
+                    self.hudHandler.setHudProgress(ui["progress"] as? Int ?? 0)
                 }
             }
         }
@@ -54,12 +54,12 @@ internal final class SettingsViewController: QuickTableViewController {
             queue: nil
         ) { notification in
             if let ui = notification.userInfo {
-                if ui["error"] as! Bool {
+                if ui["error"] as? Bool ?? false {
                     self.hudHandler.setHudError(ui["errorMessage"] as? String)
-                } else if ui["done"] as! Bool {
+                } else if ui["done"] as? Bool ?? false {
                     self.hudHandler.setHudDone(callback: nil)
                 } else {
-                    self.hudHandler.setHudProgress(ui["progress"] as! Int)
+                    self.hudHandler.setHudProgress(ui["progress"] as? Int ?? 0)
                 }
             }
         }

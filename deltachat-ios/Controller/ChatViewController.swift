@@ -127,10 +127,11 @@ class ChatViewController: MessagesViewController {
             object: nil, queue: OperationQueue.main
         ) { notification in
             if let ui = notification.userInfo {
-                if self.chatId == ui["chat_id"] as! Int {
-                    let id = ui["message_id"] as! Int
-                    if id > 0 {
-                        self.insertMessage(DCMessage(id: id))
+                if self.chatId == ui["chat_id"] as? Int {
+                    if let id = ui["message_id"] as? Int {
+                        if id > 0 {
+                            self.insertMessage(DCMessage(id: id))
+                        }
                     }
                 }
             }

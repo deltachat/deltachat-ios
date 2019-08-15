@@ -80,11 +80,11 @@ class QrCodeReaderController: UIViewController {
 extension QrCodeReaderController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from _: AVCaptureConnection) {
 
-        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
-
-        if supportedCodeTypes.contains(metadataObj.type) {
-            if metadataObj.stringValue != nil {
-                self.delegate?.handleQrCode(metadataObj.stringValue!)
+        if let metadataObj = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
+            if supportedCodeTypes.contains(metadataObj.type) {
+                if metadataObj.stringValue != nil {
+                    self.delegate?.handleQrCode(metadataObj.stringValue!)
+                }
             }
         }
     }

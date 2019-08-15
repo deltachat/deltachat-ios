@@ -60,20 +60,20 @@ class GroupNameController: UITableViewController {
         let row = indexPath.row
 
         if section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "groupLabelCell", for: indexPath) as! GroupLabelCell
-            cell.onTextChanged = updateGroupName
-
+            let cell = tableView.dequeueReusableCell(withIdentifier: "groupLabelCell", for: indexPath)
+            if let groupLabelCell = cell as? GroupLabelCell {
+                groupLabelCell.onTextChanged = updateGroupName
+            }
             return cell
-
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
-
-            let contact = DCContact(id: groupContactIds[row])
-            cell.nameLabel.text = contact.name
-            cell.emailLabel.text = contact.email
-            cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
-            cell.setColor(contact.color)
-
+            let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
+            if let contactCell = cell as? ContactCell {
+                let contact = DCContact(id: groupContactIds[row])
+                contactCell.nameLabel.text = contact.name
+                contactCell.emailLabel.text = contact.email
+                contactCell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
+                contactCell.setColor(contact.color)
+            }
             return cell
         }
     }

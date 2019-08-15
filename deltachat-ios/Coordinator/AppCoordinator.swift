@@ -100,11 +100,12 @@ class AppCoordinator: NSObject, Coordinator {
 
     func showChat(chatId: Int) {
         showTab(index: 3)
-        let navController = self.chatListController as! UINavigationController
-        let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
-        let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navController, chatId: chatId)
-        chatVC.coordinator = coordinator
-        navController.pushViewController(chatVC, animated: true)
+        if let navController = self.chatListController as? UINavigationController {
+            let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
+            let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navController, chatId: chatId)
+            chatVC.coordinator = coordinator
+            navController.pushViewController(chatVC, animated: true)
+        }
     }
 
     func presentLoginController() {
@@ -195,8 +196,9 @@ class ProfileCoordinator: Coordinator {
     }
 
     func showChat(chatId: Int) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.appCoordinator.showChat(chatId: chatId)
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.appCoordinator.showChat(chatId: chatId)
+        }
     }
 }
 

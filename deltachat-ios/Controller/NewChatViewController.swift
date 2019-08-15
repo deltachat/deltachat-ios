@@ -92,12 +92,12 @@ class NewChatViewController: UITableViewController {
         ) {
             notification in
             if let ui = notification.userInfo {
-                if ui["error"] as! Bool {
+                if ui["error"] as? Bool ?? false {
                     self.hud?.error(ui["errorMessage"] as? String)
-                } else if ui["done"] as! Bool {
+                } else if ui["done"] as? Bool ?? false {
                     self.hud?.done()
                 } else {
-                    self.hud?.progress(ui["progress"] as! Int)
+                    self.hud?.progress(ui["progress"] as? Int ?? 0)
                 }
             }
         }
