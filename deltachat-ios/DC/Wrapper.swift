@@ -911,82 +911,46 @@ class DCConfig {
     }
 
     class var configuredEmail: String {
-        get {
-            return getOptStr("configured_addr") ?? ""
-        }
-        set {}
+        return getOptStr("configured_addr") ?? ""
     }
 
     class var configuredMailServer: String {
-        get {
-            return getOptStr("configured_mail_server") ?? ""
-        }
-        set {}
+        return getOptStr("configured_mail_server") ?? ""
     }
 
     class var configuredMailUser: String {
-        get {
-            return getOptStr("configured_mail_user") ?? ""
-        }
-        set {}
+        return getOptStr("configured_mail_user") ?? ""
     }
 
     class var configuredMailPw: String {
-        get {
-            return getOptStr("configured_mail_pw") ?? ""
-        }
-        set {}
+        return getOptStr("configured_mail_pw") ?? ""
     }
 
     class var configuredMailPort: String {
-        get {
-            return getOptStr("configured_mail_port") ?? ""
-        }
-        set {}
+        return getOptStr("configured_mail_port") ?? ""
     }
 
     class var configuredSendServer: String {
-        get {
-            return getOptStr("configured_send_server") ?? ""
-        }
-        set {}
+        return getOptStr("configured_send_server") ?? ""
     }
 
     class var configuredSendUser: String {
-        get {
-            return getOptStr("configured_send_user") ?? ""
-        }
-        set {}
+        return getOptStr("configured_send_user") ?? ""
     }
 
     class var configuredSendPw: String {
-        get {
-            return getOptStr("configured_send_pw") ?? ""
-        }
-        set {}
+        return getOptStr("configured_send_pw") ?? ""
     }
 
     class var configuredSendPort: String {
-        get {
-            return getOptStr("configured_send_port") ?? ""
-        }
-        set {}
+        return getOptStr("configured_send_port") ?? ""
     }
 
     class var configuredServerFlags: String {
-        get {
-            return getOptStr("configured_server_flags") ?? ""
-        }
-        set {}
+        return getOptStr("configured_server_flags") ?? ""
     }
 
-    /**
-     * Was configured executed beforeß
-     */
     class var configured: Bool {
-        get {
-            return getBool("configured")
-        }
-        set {}
+        return getBool("configured")
     }
 }
