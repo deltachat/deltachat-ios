@@ -351,7 +351,7 @@ class NewChatCoordinator: Coordinator {
     }
 
     func showQRCodeController() {
-        let controller = QrCodeReaderController()
+        _ = QrCodeReaderController()
         // controller.delegate = self
         // present(controller, animated: true, completion: nil)
     }
