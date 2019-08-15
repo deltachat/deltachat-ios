@@ -49,7 +49,7 @@ file_length:
   ignore_comment_only_lines: true
 
 cyclomatic_complexity:
-  warning: 15
+  warning: 20
   error: 25
 
 reporter: "xcode"
