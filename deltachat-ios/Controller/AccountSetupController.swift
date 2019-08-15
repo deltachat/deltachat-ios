@@ -64,7 +64,9 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var imapServerCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_imap_server", placeholder: DCConfig.mailServer ?? DCConfig.configuredMailServer, delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_imap_server",
+                                 placeholder: DCConfig.mailServer ?? DCConfig.configuredMailServer,
+                                 delegate: self)
         cell.accessibilityIdentifier = "IMAPServerCell"
         cell.textField.tag = 2
         cell.textField.autocorrectionType = .no
@@ -103,7 +105,9 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var smtpServerCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_smtp_server", placeholder: DCConfig.sendServer ?? DCConfig.configuredSendServer, delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_smtp_server",
+                                 placeholder: DCConfig.sendServer ?? DCConfig.configuredSendServer,
+                                 delegate: self)
         cell.accessibilityIdentifier = "SMTPServerCell"
         cell.textField.tag = 4
         cell.textField.autocorrectionType = .no

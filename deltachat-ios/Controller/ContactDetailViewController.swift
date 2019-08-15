@@ -147,4 +147,3 @@ class ContactDetailViewController: UITableViewController {
         coordinator?.showEditContact(contactId: contactId)
     }
 }
-

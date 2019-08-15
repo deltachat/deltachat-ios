@@ -279,14 +279,19 @@ class ChatViewController: MessagesViewController {
 
         // Hide the outgoing avatar and adjust the label alignment to line up with the messages
         layout?.setMessageOutgoingAvatarSize(.zero)
-        layout?.setMessageOutgoingMessageTopLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)))
-        layout?.setMessageOutgoingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)))
+        layout?.setMessageOutgoingMessageTopLabelAlignment(LabelAlignment(textAlignment: .right,
+            textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)))
+        layout?.setMessageOutgoingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .right,
+            textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)))
 
         // Set outgoing avatar to overlap with the message bubble
-        layout?.setMessageIncomingMessageTopLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: 0, left: 18, bottom: outgoingAvatarOverlap, right: 0)))
+        layout?.setMessageIncomingMessageTopLabelAlignment(LabelAlignment(textAlignment: .left,
+            textInsets: UIEdgeInsets(top: 0, left: 18, bottom: outgoingAvatarOverlap, right: 0)))
         layout?.setMessageIncomingAvatarSize(CGSize(width: 30, height: 30))
-        layout?.setMessageIncomingMessagePadding(UIEdgeInsets(top: -outgoingAvatarOverlap, left: -18, bottom: outgoingAvatarOverlap / 2, right: 18))
-        layout?.setMessageIncomingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: -7, left: 38, bottom: 0, right: 0)))
+        layout?.setMessageIncomingMessagePadding(UIEdgeInsets(
+            top: -outgoingAvatarOverlap, left: -18, bottom: outgoingAvatarOverlap / 2, right: 18))
+        layout?.setMessageIncomingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .left,
+            textInsets: UIEdgeInsets(top: -7, left: 38, bottom: 0, right: 0)))
 
         layout?.setMessageIncomingAccessoryViewSize(CGSize(width: 30, height: 30))
         layout?.setMessageIncomingAccessoryViewPadding(HorizontalEdgeInsets(left: 8, right: 0))
@@ -655,7 +660,9 @@ extension ChatViewController: MessagesDisplayDelegate {
                 view.style = .none
                 view.backgroundColor = UIColor(alpha: 10, red: 0, green: 0, blue: 0)
                 let radius: CGFloat = 16
-                let path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: UIRectCorner.allCorners, cornerRadii: CGSize(width: radius, height: radius))
+                let path = UIBezierPath(roundedRect: view.bounds,
+                                        byRoundingCorners: UIRectCorner.allCorners,
+                                        cornerRadii: CGSize(width: radius, height: radius))
                 let mask = CAShapeLayer()
                 mask.path = path.cgPath
                 view.layer.mask = mask

@@ -110,7 +110,7 @@ class DcContext {
 
 
     func getSecurejoinQr (chatId: Int) -> String? {
-        if let cString = dc_get_securejoin_qr(self.contextPointer,  UInt32(chatId)) {
+        if let cString = dc_get_securejoin_qr(self.contextPointer, UInt32(chatId)) {
             return String(cString: cString)
         }
         return nil
@@ -991,4 +991,3 @@ class DCConfig {
         set {}
     }
 }
-

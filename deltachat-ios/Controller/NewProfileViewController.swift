@@ -241,7 +241,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         let btn = UIButton.init(type: UIButton.ButtonType.system)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle(String.localized("qrscan_title"), for: .normal)
-        btn.addTarget(self, action:#selector(self.openQRCodeScanner), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(self.openQRCodeScanner), for: .touchUpInside)
         return btn
     }
 

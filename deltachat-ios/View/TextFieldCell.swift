@@ -3,7 +3,7 @@ import UIKit
 class TextFieldCell: UITableViewCell {
     private let placeholder: String
 
-    var onTextFieldChange:((_:UITextField)->Void)?	// set this from outside to get notified about textfield changes
+    var onTextFieldChange:((_:UITextField) -> Void)?	// set this from outside to get notified about textfield changes
 
     lazy var textField: UITextField = {
         let textField = UITextField()

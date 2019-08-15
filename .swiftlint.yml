@@ -5,6 +5,7 @@ opt_in_rules:
 disabled_rules:
 - trailing_comma
 - large_tuple
+- todo
 
 excluded:
 - Carthage

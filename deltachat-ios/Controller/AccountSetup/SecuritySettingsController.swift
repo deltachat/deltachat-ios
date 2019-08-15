@@ -117,7 +117,7 @@ class SecurityConverter {
                 return 0x400
             }
         case .SMTPSecurity:
-            switch value{
+            switch value {
             case .AUTO:
                 return 0x00000
             case .STARTTLS:

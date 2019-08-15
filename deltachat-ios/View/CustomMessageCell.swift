@@ -36,5 +36,3 @@ open class CustomMessageCell: UICollectionViewCell {
         }
     }
 }
-
-

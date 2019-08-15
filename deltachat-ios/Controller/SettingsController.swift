@@ -93,7 +93,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func setTable() {
-        var backupRows = [
+        let backupRows = [
             TapActionRow(text: String.localized("create_backup"), action: { [weak self] in self?.createBackup($0) }),
         ]
 
@@ -116,13 +116,27 @@ internal final class SettingsViewController: QuickTableViewController {
             Section(
                 title: String.localized("flags"),
                 rows: [
-                    SwitchRow(text: String.localized("autocrypt_prefer_e2ee"), switchValue: DCConfig.e2eeEnabled, action: editCell(key: SVC.e2eeEnabled)),
-                    SwitchRow(text: String.localized("pref_read_receipts"), switchValue: DCConfig.mdnsEnabled, action: editCell(key: SVC.readReceipts)),
-                    SwitchRow(text: String.localized("pref_watch_inbox_folder"), switchValue: DCConfig.inboxWatch, action: editCell(key: SVC.watchMvBox)),
-                    SwitchRow(text: String.localized("pref_watch_sent_folder"), switchValue: DCConfig.sentboxWatch, action: editCell(key: SVC.watchSentbox)),
-                    SwitchRow(text: String.localized("pref_watch_mvbox_folder"), switchValue: DCConfig.mvboxWatch, action: editCell(key: SVC.watchMvBox)),
-                    SwitchRow(text: String.localized("pref_auto_folder_moves"), switchValue: DCConfig.mvboxMove, action: editCell(key: SVC.MvToMvbox)),
-                    SwitchRow(text: String.localized("save_mime_headers"), switchValue: DCConfig.saveMimeHeaders, action: editCell(key: SVC.SaveMimeHeaders))
+                    SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),
+                              switchValue: DCConfig.e2eeEnabled,
+                              action: editCell(key: SVC.e2eeEnabled)),
+                    SwitchRow(text: String.localized("pref_read_receipts"),
+                              switchValue: DCConfig.mdnsEnabled,
+                              action: editCell(key: SVC.readReceipts)),
+                    SwitchRow(text: String.localized("pref_watch_inbox_folder"),
+                              switchValue: DCConfig.inboxWatch,
+                              action: editCell(key: SVC.watchMvBox)),
+                    SwitchRow(text: String.localized("pref_watch_sent_folder"),
+                              switchValue: DCConfig.sentboxWatch,
+                              action: editCell(key: SVC.watchSentbox)),
+                    SwitchRow(text: String.localized("pref_watch_mvbox_folder"),
+                              switchValue: DCConfig.mvboxWatch,
+                              action: editCell(key: SVC.watchMvBox)),
+                    SwitchRow(text: String.localized("pref_auto_folder_moves"),
+                              switchValue: DCConfig.mvboxMove,
+                              action: editCell(key: SVC.MvToMvbox)),
+                    SwitchRow(text: String.localized("save_mime_headers"),
+                              switchValue: DCConfig.saveMimeHeaders,
+                              action: editCell(key: SVC.SaveMimeHeaders))
                 ]
             ),
 

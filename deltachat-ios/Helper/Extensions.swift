@@ -63,7 +63,7 @@ extension String {
     static func localized(stringID: String, count: Int) -> String {
         let formatString: String = localized(stringID)
         let resultString: String = String.localizedStringWithFormat(formatString, count)
-        return resultString;
+        return resultString
     }
 }
 
@@ -238,4 +238,3 @@ extension UIColor {
 
 
 }
-
