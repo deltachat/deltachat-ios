@@ -18,12 +18,12 @@ class QrCodeReaderController: UIViewController {
         title = String.localized("qrscan_title")
 
         guard let captureDevice = AVCaptureDevice.DiscoverySession.init(
-			deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera],
-			mediaType: .video,
-			position: .back).devices.first else {
-				print("Failed to get the camera device")
-				return
-		}
+            deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera],
+            mediaType: .video,
+            position: .back).devices.first else {
+            print("Failed to get the camera device")
+            return
+        }
 
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice)
@@ -64,12 +64,12 @@ class QrCodeReaderController: UIViewController {
     }
 
 
-	override func viewWillAppear(_ animated: Bool) {
-		captureSession.startRunning()
-	}
-	override func viewWillDisappear(_ animated: Bool) {
-		captureSession.stopRunning()
-	}
+    override func viewWillAppear(_ animated: Bool) {
+        captureSession.startRunning()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        captureSession.stopRunning()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -84,7 +84,7 @@ extension QrCodeReaderController: AVCaptureMetadataOutputObjectsDelegate {
 
         if supportedCodeTypes.contains(metadataObj.type) {
             if metadataObj.stringValue != nil {
-				self.delegate?.handleQrCode(metadataObj.stringValue!)
+                self.delegate?.handleQrCode(metadataObj.stringValue!)
             }
         }
     }

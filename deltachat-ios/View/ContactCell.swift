@@ -184,7 +184,7 @@ class ContactCell: UITableViewCell {
             return
         }
 
-        var indicatorImage:UIImage?
+        var indicatorImage: UIImage?
         switch status {
         case .OUTPENDING, .OUTPAIRING:
             indicatorImage = #imageLiteral(resourceName: "ic_delivery_status_sending").withRenderingMode(.alwaysTemplate)

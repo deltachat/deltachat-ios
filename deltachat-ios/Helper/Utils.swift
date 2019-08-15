@@ -102,7 +102,8 @@ struct Utils {
     }
 
     static func saveImage(image: UIImage) -> String? {
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
+        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
+            appropriateFor: nil, create: false) as NSURL else {
             return nil
         }
 
@@ -155,8 +156,8 @@ struct Utils {
 }
 
 class DateUtils {
-	// TODO: refactor that, it's an improper way for localizations, use stringsdict instead
-	// blocked by: converting androids plurals xml entries to stringsdict
+    // TODO: refactor that, it's an improper way for localizations, use stringsdict instead
+    // blocked by: converting androids plurals xml entries to stringsdict
     static func getBriefRelativeTimeSpanString(timeStamp: Int) -> String {
         let unixTime = Int(Date().timeIntervalSince1970)
         let seconds = unixTime - timeStamp
@@ -165,10 +166,10 @@ class DateUtils {
             return String.localized("now")	// under one minute
         } else if seconds < 3600 {
             let mins = seconds / 60
-            return String.localized(stringID: "n_minutes", count: mins);
+            return String.localized(stringID: "n_minutes", count: mins)
         } else if seconds < 86400 {
             let hours = seconds / 3600
-            return String.localized(stringID: "n_hours", count: hours);
+            return String.localized(stringID: "n_hours", count: hours)
         } else {
             let date = Date(timeIntervalSince1970: Double(timeStamp))
             let dateFormatter = DateFormatter()
@@ -180,4 +181,3 @@ class DateUtils {
         }
     }
 }
-

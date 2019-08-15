@@ -58,13 +58,15 @@ class AccountSetupController: UITableViewController {
 
     private lazy var restoreCell: ActionCell = {
         let cell = ActionCell(frame: .zero)
-		cell.actionTitle = String.localized("import_backup_title");
+        cell.actionTitle = String.localized("import_backup_title")
         cell.accessibilityIdentifier = "restoreCell"
         return cell
     }()
 
     lazy var imapServerCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_imap_server", placeholder: DCConfig.mailServer ?? DCConfig.configuredMailServer, delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_imap_server",
+                                 placeholder: DCConfig.mailServer ?? DCConfig.configuredMailServer,
+                                 delegate: self)
         cell.accessibilityIdentifier = "IMAPServerCell"
         cell.textField.tag = 2
         cell.textField.autocorrectionType = .no
@@ -103,7 +105,9 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var smtpServerCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_smtp_server", placeholder: DCConfig.sendServer ?? DCConfig.configuredSendServer, delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_smtp_server",
+                                 placeholder: DCConfig.sendServer ?? DCConfig.configuredSendServer,
+                                 delegate: self)
         cell.accessibilityIdentifier = "SMTPServerCell"
         cell.textField.tag = 4
         cell.textField.autocorrectionType = .no
@@ -131,8 +135,8 @@ class AccountSetupController: UITableViewController {
 
     lazy var smtpPasswordCell: TextFieldCell = {
         let cell = TextFieldCell(descriptionID: "login_smtp_password", placeholder: "*************", delegate: self)
-		cell.textField.textContentType = UITextContentType.password
-		cell.textField.isSecureTextEntry = true
+        cell.textField.textContentType = UITextContentType.password
+        cell.textField.isSecureTextEntry = true
         cell.accessibilityIdentifier = "SMTPPasswordCell"
         cell.textField.tag = 6
         return cell
@@ -293,7 +297,7 @@ class AccountSetupController: UITableViewController {
         }
     }
 
-	// FIXME: replace if-else-if with switch-case
+    // FIXME: replace if-else-if with switch-case
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let tappedCell = tableView.cellForRow(at: indexPath) else { return }
         // handle tap on password -> show oAuthDialogue
@@ -329,7 +333,7 @@ class AccountSetupController: UITableViewController {
         // set flag before delete/insert operation, because cellForRowAt will be triggered and uses this flag
         advancedSectionShowing = willShow
 
-		button.text = String.localized(willShow ? "hide" : "pref_notifications_show")
+        button.text = String.localized(willShow ? "hide" : "pref_notifications_show")
 
         if willShow {
             tableView.insertRows(at: advancedIndexPaths, with: .fade)
@@ -377,7 +381,7 @@ class AccountSetupController: UITableViewController {
 
     // returns true if needed
     private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (() -> Void)?) -> Bool {
-        return false;
+        return false
 
         // disable oauth2 for now as not yet supported by deltachat-rust.
         /*
@@ -451,7 +455,7 @@ class AccountSetupController: UITableViewController {
                 } else if ui["done"] as! Bool {
                     self.updateProgressHudSuccess(callback: self.handleLoginSuccess)
                 } else {
-                    self.updateProgressHudValue(value: ui["progress"] as! Int)
+                    self.updateProgressHudValue(value: ui["progress"] as? Int)
                 }
             }
         }
@@ -468,7 +472,7 @@ class AccountSetupController: UITableViewController {
                 } else if ui["done"] as! Bool {
                     self.updateProgressHudSuccess(callback: self.handleLoginSuccess)
                 } else {
-                    self.updateProgressHudValue(value: ui["progress"] as! Int)
+                    self.updateProgressHudValue(value: ui["progress"] as? Int)
                 }
             }
         }
@@ -663,7 +667,7 @@ extension AccountSetupController {
     func updateProgressHudSuccess(callback: (()->())?) {
         configProgressAlert.actions[0].isEnabled = false
         configProgressIndicator.alpha = 0
-		configProgressAlert.title = String.localized("login_successful_title")
+        configProgressAlert.title = String.localized("login_successful_title")
         configProgressAlert.message = String.localized("login_successful_message")
         loginButton.isEnabled = dc_is_configured(mailboxPointer) == 0
         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
@@ -673,7 +677,7 @@ extension AccountSetupController {
         })
     }
 
-    func updateProgressHudValue(value: Int?) {
+    private func updateProgressHudValue(value: Int?) {
         if let value = value {
             print("progress hud: \(value)")
             configProgressIndicator.value = CGFloat(value / 10)

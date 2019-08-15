@@ -117,7 +117,7 @@ class SecurityConverter {
                 return 0x400
             }
         case .SMTPSecurity:
-            switch value{
+            switch value {
             case .AUTO:
                 return 0x00000
             case .STARTTLS:
@@ -130,7 +130,7 @@ class SecurityConverter {
         }
     }
 
-	// TODO: discuss if we want to internationalize OFF and Automatic
+    // TODO: discuss if we want to internationalize OFF and Automatic
     static func convertHexToString(type: SecurityType, hex value: Int) -> String {
         switch type {
         case .IMAPSecurity:

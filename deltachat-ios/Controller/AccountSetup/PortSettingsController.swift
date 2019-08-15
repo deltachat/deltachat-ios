@@ -8,7 +8,7 @@ class PortSettingsController: UITableViewController {
 
     var resetButton: UIBarButtonItem!
 
-    var onDismiss:((String)->Void)?
+    var onDismiss: ((String) -> Void)?
 
     var currentPort: Int {
         didSet {
@@ -159,5 +159,3 @@ class PortSettingsController: UITableViewController {
     }
 
 }
-
-

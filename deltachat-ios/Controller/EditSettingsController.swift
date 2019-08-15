@@ -42,7 +42,7 @@ class EditSettingsController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         if displayNameBackup != displayNameCell.getText() || statusCellBackup != displayNameCell.getText() {
             DCConfig.selfstatus = statusCell.getText()
-            DCConfig.displayname = displayNameCell.getText()	
+            DCConfig.displayname = displayNameCell.getText()
             dc_configure(mailboxPointer)
         }
     }

@@ -14,14 +14,14 @@ internal final class SettingsViewController: QuickTableViewController {
         return hudHandler
     }()
 
-	static let e2eeEnabled: Int = 1
-	static let readReceipts: Int = 2
-	static let watchInbox: Int = 3
-	static let watchSentbox: Int = 4
-	static let watchMvBox: Int = 5
-	static let MvToMvbox: Int = 6
-	static let SaveMimeHeaders: Int = 7
-	private typealias SVC = SettingsViewController
+    static let e2eeEnabled: Int = 1
+    static let readReceipts: Int = 2
+    static let watchInbox: Int = 3
+    static let watchSentbox: Int = 4
+    static let watchMvBox: Int = 5
+    static let MvToMvbox: Int = 6
+    static let SaveMimeHeaders: Int = 7
+    private typealias SVC = SettingsViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,7 +93,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func setTable() {
-        var backupRows = [
+        let backupRows = [
             TapActionRow(text: String.localized("create_backup"), action: { [weak self] in self?.createBackup($0) }),
         ]
 
@@ -103,26 +103,40 @@ internal final class SettingsViewController: QuickTableViewController {
             Section(
                 title: String.localized("user_details"),
                 rows: [
-					//FIXME: fix action callback!
+                    //FIXME: fix action callback!
                     NavigationRow(text: String.localized("display_name"), detailText: .value1(DCConfig.displayname ?? ""), action: {
-						[weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.DISPLAYNAME)
-					}),
-					NavigationRow(text: String.localized("status"), detailText: .value1(DCConfig.selfstatus ?? ""), action: {
-						[weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.STATUS)
-					}),
+                        [weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.DISPLAYNAME)
+                    }),
+                    NavigationRow(text: String.localized("status"), detailText: .value1(DCConfig.selfstatus ?? ""), action: {
+                        [weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.STATUS)
+                    }),
                     TapActionRow(text: String.localized("configure_my_account"), action: { [weak self] in self?.presentAccountSetup($0) }),
                 ]
             ),
             Section(
                 title: String.localized("flags"),
                 rows: [
-                    SwitchRow(text: String.localized("autocrypt_prefer_e2ee"), switchValue: DCConfig.e2eeEnabled, action: editCell(key: SVC.e2eeEnabled)),
-                    SwitchRow(text: String.localized("pref_read_receipts"), switchValue: DCConfig.mdnsEnabled, action: editCell(key: SVC.readReceipts)),
-                    SwitchRow(text: String.localized("pref_watch_inbox_folder"), switchValue: DCConfig.inboxWatch, action: editCell(key: SVC.watchMvBox)),
-                    SwitchRow(text: String.localized("pref_watch_sent_folder"), switchValue: DCConfig.sentboxWatch, action: editCell(key: SVC.watchSentbox)),
-                    SwitchRow(text: String.localized("pref_watch_mvbox_folder"), switchValue: DCConfig.mvboxWatch, action: editCell(key: SVC.watchMvBox)),
-                    SwitchRow(text: String.localized("pref_auto_folder_moves"), switchValue: DCConfig.mvboxMove, action: editCell(key: SVC.MvToMvbox)),
-                    SwitchRow(text: String.localized("save_mime_headers"), switchValue: DCConfig.saveMimeHeaders, action: editCell(key: SVC.SaveMimeHeaders))
+                    SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),
+                              switchValue: DCConfig.e2eeEnabled,
+                              action: editCell(key: SVC.e2eeEnabled)),
+                    SwitchRow(text: String.localized("pref_read_receipts"),
+                              switchValue: DCConfig.mdnsEnabled,
+                              action: editCell(key: SVC.readReceipts)),
+                    SwitchRow(text: String.localized("pref_watch_inbox_folder"),
+                              switchValue: DCConfig.inboxWatch,
+                              action: editCell(key: SVC.watchMvBox)),
+                    SwitchRow(text: String.localized("pref_watch_sent_folder"),
+                              switchValue: DCConfig.sentboxWatch,
+                              action: editCell(key: SVC.watchSentbox)),
+                    SwitchRow(text: String.localized("pref_watch_mvbox_folder"),
+                              switchValue: DCConfig.mvboxWatch,
+                              action: editCell(key: SVC.watchMvBox)),
+                    SwitchRow(text: String.localized("pref_auto_folder_moves"),
+                              switchValue: DCConfig.mvboxMove,
+                              action: editCell(key: SVC.MvToMvbox)),
+                    SwitchRow(text: String.localized("save_mime_headers"),
+                              switchValue: DCConfig.saveMimeHeaders,
+                              action: editCell(key: SVC.SaveMimeHeaders))
                 ]
             ),
 
@@ -138,7 +152,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     // FIXME: simplify this method
-	private func editCell(key: Int) -> (Row) -> Void {
+    private func editCell(key: Int) -> (Row) -> Void {
         return { sender in
             logger.info("row edit", sender.text)
 
@@ -196,7 +210,9 @@ internal final class SettingsViewController: QuickTableViewController {
 
         let dbfile = appDelegate.dbfile()
         let dburl = URL(fileURLWithPath: dbfile, isDirectory: false)
-        let alert = UIAlertController(title: String.localized("delete_account"), message: String.localized("delete_account_message"), preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: String.localized("delete_account"),
+                                      message: String.localized("delete_account_message"),
+                                      preferredStyle: .actionSheet)
 
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { _ in
             appDelegate.stop()
@@ -224,7 +240,7 @@ internal final class SettingsViewController: QuickTableViewController {
         coordinator?.showAccountSetupController()
     }
 
-	private func editNameAndStatus(_ row: Row, option: SettingsEditOption) {
+    private func editNameAndStatus(_ row: Row, option: SettingsEditOption) {
         coordinator?.showEditSettingsController(option: option)
     }
 }

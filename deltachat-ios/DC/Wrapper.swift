@@ -98,31 +98,31 @@ class DCContact {
 }
 
 class DcContext {
-	let contextPointer: OpaquePointer
+    let contextPointer: OpaquePointer
 
-	init() {
-		contextPointer = dc_context_new(callback_ios, nil, "iOS")
-	}
+    init() {
+        contextPointer = dc_context_new(callback_ios, nil, "iOS")
+    }
 
-	deinit {
-		dc_context_unref(contextPointer)
-	}
+    deinit {
+        dc_context_unref(contextPointer)
+    }
 
 
-	func getSecurejoinQr (chatId: Int) -> String? {
-		if let cString = dc_get_securejoin_qr(self.contextPointer,  UInt32(chatId)) {
-			return String(cString: cString)
-		}
-		return nil
-	}
+    func getSecurejoinQr (chatId: Int) -> String? {
+        if let cString = dc_get_securejoin_qr(self.contextPointer, UInt32(chatId)) {
+            return String(cString: cString)
+        }
+        return nil
+    }
 
-	func joinSecurejoin (qrCode: String) -> Int {
-		return Int(dc_join_securejoin(contextPointer, qrCode))
-	}
+    func joinSecurejoin (qrCode: String) -> Int {
+        return Int(dc_join_securejoin(contextPointer, qrCode))
+    }
 
-	func checkQR(qrCode: String) -> DcLot {
-		return DcLot(dc_check_qr(contextPointer, qrCode))
-	}
+    func checkQR(qrCode: String) -> DcLot {
+        return DcLot(dc_check_qr(contextPointer, qrCode))
+    }
 
     func stopOngoingProcess() {
         dc_stop_ongoing_process(contextPointer)
@@ -138,41 +138,41 @@ class DcContext {
 }
 
 class DcLot {
-	private var dcLotPointer: OpaquePointer
+    private var dcLotPointer: OpaquePointer
 
-	init(_ dcLotPointer: OpaquePointer) {
-		self.dcLotPointer = dcLotPointer
-	}
+    init(_ dcLotPointer: OpaquePointer) {
+        self.dcLotPointer = dcLotPointer
+    }
 
-	deinit {
-		dc_lot_unref(dcLotPointer)
-	}
+    deinit {
+        dc_lot_unref(dcLotPointer)
+    }
 
-	var text1: String {
-		guard let result = dc_lot_get_text1(dcLotPointer) else { return "" }
-		return String(cString: result)
-	}
+    var text1: String {
+        guard let result = dc_lot_get_text1(dcLotPointer) else { return "" }
+        return String(cString: result)
+    }
 
-	var text1Meaning: Int {
-		return Int(dc_lot_get_text1_meaning(dcLotPointer))
-	}
+    var text1Meaning: Int {
+        return Int(dc_lot_get_text1_meaning(dcLotPointer))
+    }
 
-	var getText2: String {
-		guard let result = dc_lot_get_text2(dcLotPointer) else { return "" }
-		return String(cString: result)
-	}
+    var getText2: String {
+        guard let result = dc_lot_get_text2(dcLotPointer) else { return "" }
+        return String(cString: result)
+    }
 
-	var timestamp: Int64 {
-		return Int64(dc_lot_get_timestamp(dcLotPointer))
-	}
+    var timestamp: Int64 {
+        return Int64(dc_lot_get_timestamp(dcLotPointer))
+    }
 
-	var state: Int {
-		return Int(dc_lot_get_state(dcLotPointer))
-	}
+    var state: Int {
+        return Int(dc_lot_get_state(dcLotPointer))
+    }
 
-	var id: Int {
-		return Int(dc_lot_get_id(dcLotPointer))
-	}
+    var id: Int {
+        return Int(dc_lot_get_id(dcLotPointer))
+    }
 }
 
 class DCMessage: MessageType {
@@ -305,7 +305,7 @@ class DCMessage: MessageType {
         if let cStr = dc_msg_get_file(messagePointer) {
             let str = String(cString: cStr)
 
-            return str == "" ? nil : str
+            return str.isEmpty ? nil : str
         }
 
         return nil
@@ -315,7 +315,7 @@ class DCMessage: MessageType {
         if let cStr = dc_msg_get_filemime(messagePointer) {
             let str = String(cString: cStr)
 
-            return str == "" ? nil : str
+            return str.isEmpty ? nil : str
         }
 
         return nil
@@ -325,7 +325,7 @@ class DCMessage: MessageType {
         if let cStr = dc_msg_get_filename(messagePointer) {
             let str = String(cString: cStr)
 
-            return str == "" ? nil : str
+            return str.isEmpty ? nil : str
         }
 
         return nil
@@ -457,7 +457,7 @@ class DCChat {
     var subtitle: String? {
         if let cString = dc_chat_get_subtitle(chatPointer) {
             let str = String(cString: cString)
-            return str == "" ? nil : str
+            return str.isEmpty ? nil : str
         }
         return nil
     }
@@ -578,8 +578,7 @@ class DCConfig {
     private class func setOptStr(_ key: String, _ value: String?) {
         if let v = value {
             dc_set_config(mailboxPointer, key, v)
-        }
-        else {
+        } else {
             dc_set_config(mailboxPointer, key, nil)
         }
     }
@@ -912,83 +911,46 @@ class DCConfig {
     }
 
     class var configuredEmail: String {
-        get {
-            return getOptStr("configured_addr") ?? ""
-        }
-        set {}
+        return getOptStr("configured_addr") ?? ""
     }
 
     class var configuredMailServer: String {
-        get {
-            return getOptStr("configured_mail_server") ?? ""
-        }
-        set {}
+        return getOptStr("configured_mail_server") ?? ""
     }
 
     class var configuredMailUser: String {
-        get {
-            return getOptStr("configured_mail_user") ?? ""
-        }
-        set {}
+        return getOptStr("configured_mail_user") ?? ""
     }
 
     class var configuredMailPw: String {
-        get {
-            return getOptStr("configured_mail_pw") ?? ""
-        }
-        set {}
+        return getOptStr("configured_mail_pw") ?? ""
     }
 
     class var configuredMailPort: String {
-        get {
-            return getOptStr("configured_mail_port") ?? ""
-        }
-        set {}
+        return getOptStr("configured_mail_port") ?? ""
     }
 
     class var configuredSendServer: String {
-        get {
-            return getOptStr("configured_send_server") ?? ""
-        }
-        set {}
+        return getOptStr("configured_send_server") ?? ""
     }
 
     class var configuredSendUser: String {
-        get {
-            return getOptStr("configured_send_user") ?? ""
-        }
-        set {}
+        return getOptStr("configured_send_user") ?? ""
     }
 
     class var configuredSendPw: String {
-        get {
-            return getOptStr("configured_send_pw") ?? ""
-        }
-        set {}
+        return getOptStr("configured_send_pw") ?? ""
     }
 
     class var configuredSendPort: String {
-        get {
-            return getOptStr("configured_send_port") ?? ""
-        }
-        set {}
+        return getOptStr("configured_send_port") ?? ""
     }
 
     class var configuredServerFlags: String {
-        get {
-            return getOptStr("configured_server_flags") ?? ""
-        }
-        set {}
+        return getOptStr("configured_server_flags") ?? ""
     }
 
-    /**
-     * Was configured executed beforeß
-     */
     class var configured: Bool {
-        get {
-            return getBool("configured")
-        }
-        set {}
+        return getBool("configured")
     }
 }
-

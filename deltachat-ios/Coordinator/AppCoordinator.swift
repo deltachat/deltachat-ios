@@ -19,7 +19,7 @@ class AppCoordinator: NSObject, Coordinator {
         // put viewControllers here
         tabBarController.delegate = self
         tabBarController.tabBar.tintColor = DCColors.primary
-		tabBarController.tabBar.backgroundColor = .white
+        tabBarController.tabBar.backgroundColor = .white
         return tabBarController
     }()
 
@@ -121,9 +121,9 @@ extension AppCoordinator: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if let dcNav = viewController as? DCNavigationController {
             switch tabBarController.selectedIndex {
-            case 0,3,4:
+            case 0, 3, 4:
                 dcNav.navigationBar.prefersLargeTitles = true
-            case 1,2:
+            case 1, 2:
                 dcNav.navigationBar.prefersLargeTitles = false
             default:
                 // should never get here
@@ -189,9 +189,9 @@ class MailboxCoordinator: ChatViewCoordinator {
 }
 
 class ProfileCoordinator: Coordinator {
-	var navigationController: UINavigationController
-	init(navigationController: UINavigationController) {
-		self.navigationController = navigationController
+    var navigationController: UINavigationController
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
 
     func showChat(chatId: Int) {
@@ -231,7 +231,7 @@ class ChatListCoordinator: Coordinator {
 class SettingsCoordinator: Coordinator {
     let navigationController: UINavigationController
 
-    var childCoordinators:[Coordinator] = []
+    var childCoordinators: [Coordinator] = []
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -271,7 +271,9 @@ class AccountSetupCoordinator: Coordinator {
     func showImapPortOptions() {
         let currentMailPort = DCConfig.mailPort ?? DCConfig.configuredMailPort
         let currentPort = Int(currentMailPort)
-        let portSettingsController = PortSettingsController(sectionTitle: String.localized("login_imap_port"), ports: [143, 993], currentPort: currentPort)
+        let portSettingsController = PortSettingsController(sectionTitle: String.localized("login_imap_port"),
+                                                            ports: [143, 993],
+                                                            currentPort: currentPort)
         portSettingsController.onDismiss = {
             port in
             DCConfig.mailPort = port
@@ -283,8 +285,8 @@ class AccountSetupCoordinator: Coordinator {
         let currentSecurityOption = DCConfig.getImapSecurity()
         let convertedOption = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: currentSecurityOption)
         let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
-																	options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
-																	selectedOption: convertedOption)
+                                                                    options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
+                                                                    selectedOption: convertedOption)
         securitySettingsController.onDismiss = {
             option in
             if let secValue = SecurityValue(rawValue: option) {
@@ -298,7 +300,9 @@ class AccountSetupCoordinator: Coordinator {
     func showSmtpPortsOptions() {
         let currentMailPort = DCConfig.sendPort ?? DCConfig.configuredSendPort
         let currentPort = Int(currentMailPort)
-        let portSettingsController = PortSettingsController(sectionTitle: String.localized("login_smtp_port"), ports: [25, 465, 587], currentPort: currentPort)
+        let portSettingsController = PortSettingsController(sectionTitle: String.localized("login_smtp_port"),
+                                                            ports: [25, 465, 587],
+                                                            currentPort: currentPort)
         portSettingsController.onDismiss = {
             port in
             DCConfig.sendPort = port
@@ -310,8 +314,8 @@ class AccountSetupCoordinator: Coordinator {
         let currentSecurityOption = DCConfig.getSmtpSecurity()
         let convertedOption = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: currentSecurityOption)
         let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
-																	options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
-																	selectedOption: convertedOption)
+                                                                    options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
+                                                                    selectedOption: convertedOption)
         securitySettingsController.onDismiss = {
             option in
             if let secValue = SecurityValue(rawValue: option) {
@@ -449,7 +453,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
         // navigationController.present(nav, animated: true, completion: nil)
     }
 
-    private func sendImage(_ image:UIImage) {
+    private func sendImage(_ image: UIImage) {
         DispatchQueue.global().async {
             if let compressedImage = image.dcCompress() {
                 // at this point image is compressed by 85% by default

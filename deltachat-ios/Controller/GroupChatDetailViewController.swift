@@ -40,7 +40,9 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func showNotificationSetup() {
-        let notificationSetupAlert = UIAlertController(title: "Notifications Setup is not implemented yet", message: "But you get an idea where this is going", preferredStyle: .actionSheet)
+        let notificationSetupAlert = UIAlertController(title: "Notifications Setup is not implemented yet",
+                                                       message: "But you get an idea where this is going",
+                                                       preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
         notificationSetupAlert.addAction(cancelAction)
         present(notificationSetupAlert, animated: true, completion: nil)

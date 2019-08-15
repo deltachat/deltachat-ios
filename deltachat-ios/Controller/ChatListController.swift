@@ -173,7 +173,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         // assigning swipe by delete to chats
         let delete = UITableViewRowAction(style: .destructive, title: String.localized("global_menu_edit_delete_desktop")) { [unowned self] _, indexPath in
             let chatId = chatList.getChatId(index: row)
-			self.showDeleteChatConfirmationAlert(chatId: chatId)
+            self.showDeleteChatConfirmationAlert(chatId: chatId)
         }
         delete.backgroundColor = UIColor.red
         return [delete]
@@ -181,22 +181,22 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension ChatListController {
-	private func showDeleteChatConfirmationAlert(chatId: Int) {
-		let alert = UIAlertController(
-			title: String.localized("ask_delete_chat_desktop"),
-			message: nil,
-			preferredStyle: .alert
-		)
-		alert.addAction(UIAlertAction(title: String.localized("global_menu_edit_delete_desktop"), style: .default, handler: { action in
-			self.deleteChat(chatId: chatId)
-		}))
-		alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-		self.present(alert, animated: true, completion: nil)
-	}
-	
-	private func deleteChat(chatId: Int) {
-		dc_delete_chat(mailboxPointer, UInt32(chatId))
-		self.getChatList()
-	}
+    private func showDeleteChatConfirmationAlert(chatId: Int) {
+        let alert = UIAlertController(
+            title: String.localized("ask_delete_chat_desktop"),
+            message: nil,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: String.localized("global_menu_edit_delete_desktop"), style: .default, handler: { action in
+            self.deleteChat(chatId: chatId)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func deleteChat(chatId: Int) {
+        dc_delete_chat(mailboxPointer, UInt32(chatId))
+        self.getChatList()
+    }
 
 }

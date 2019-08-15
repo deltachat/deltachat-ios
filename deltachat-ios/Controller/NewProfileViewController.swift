@@ -196,7 +196,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         }
 
         let qrParsed: DcLot = self.dcContext.checkQR(qrCode: code)
-        let nameAndAddress = DCContact(id: qrParsed.id).nameNAddr;
+        let nameAndAddress = DCContact(id: qrParsed.id).nameNAddr
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("qrscan_ask_fingerprint_ask_oob"), nameAndAddress),
                                       message: nil,
                                       preferredStyle: .alert)
@@ -217,7 +217,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
                     if chatId != 0 {
                         self.coordinator?.showChat(chatId: chatId)
                     } else if errorString != nil {
-                       self.showErrorAlert(error: errorString!)
+                        self.showErrorAlert(error: errorString!)
                     }
                 }
             }
@@ -241,7 +241,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         let btn = UIButton.init(type: UIButton.ButtonType.system)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle(String.localized("qrscan_title"), for: .normal)
-        btn.addTarget(self, action:#selector(self.openQRCodeScanner), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(self.openQRCodeScanner), for: .touchUpInside)
         return btn
     }
 
@@ -305,4 +305,3 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         navigationController?.pushViewController(chatVC, animated: true)
     }
 }
-
