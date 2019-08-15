@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include "deltachat.h"
 
-// typedef uintptr_t (*mrmailboxcb_t) (mrmailbox_t*, int event, uintptr_t data1, uintptr_t data2);
-
 // redeclare, so swift understands they are opaque types
 typedef dc_context_t dc_context_t;
 typedef dc_contact_t dc_contact_t;
