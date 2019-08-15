@@ -493,7 +493,7 @@
 				TargetAttributes = {
 					7A9FB13F1FB061E2001FEA36 = {
 						CreatedOnToolsVersion = 9.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1030;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
