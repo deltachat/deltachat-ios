@@ -210,7 +210,9 @@ internal final class SettingsViewController: QuickTableViewController {
 
         let dbfile = appDelegate.dbfile()
         let dburl = URL(fileURLWithPath: dbfile, isDirectory: false)
-        let alert = UIAlertController(title: String.localized("delete_account"), message: String.localized("delete_account_message"), preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: String.localized("delete_account"),
+                                      message: String.localized("delete_account_message"),
+                                      preferredStyle: .actionSheet)
 
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { _ in
             appDelegate.stop()

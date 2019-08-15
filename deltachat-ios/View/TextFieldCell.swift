@@ -43,7 +43,8 @@ class TextFieldCell: UITableViewCell {
         textField.trailingAnchor.constraint(equalTo: trailing).isActive = true
         textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         if let label = self.textLabel {
-            textField.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 20).isActive = true // this will prevent the textfield from growing over the textLabel while typing
+            textField.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 20).isActive = true
+            // this will prevent the textfield from growing over the textLabel while typing
         } else {
             textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         }

@@ -244,8 +244,6 @@ class ChatViewController: MessagesViewController {
         }
     }
 
-
-
     private func configureMessageMenu() {
         var menuItems: [UIMenuItem]
 
@@ -335,7 +333,8 @@ class ChatViewController: MessagesViewController {
         messageInputBar.sendButton.title = nil
         messageInputBar.sendButton.tintColor = UIColor(white: 1, alpha: 1)
         messageInputBar.sendButton.layer.cornerRadius = 15
-        messageInputBar.middleContentViewPadding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 10)	// this adds a padding between textinputfield and send button
+        messageInputBar.middleContentViewPadding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 10)
+        // this adds a padding between textinputfield and send button
         messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         messageInputBar.sendButton.setSize(CGSize(width: 30, height: 30), animated: false)
 
@@ -914,7 +913,9 @@ extension MessageCollectionViewCell {
             // Get indexPath
             if let indexPath = collectionView.indexPath(for: self) {
                 // Trigger action
-                collectionView.delegate?.collectionView?(collectionView, performAction: #selector(MessageCollectionViewCell.messageInfo(_:)), forItemAt: indexPath, withSender: sender)
+                collectionView.delegate?.collectionView?(collectionView,
+                    performAction: #selector(MessageCollectionViewCell.messageInfo(_:)),
+                    forItemAt: indexPath, withSender: sender)
             }
         }
     }
@@ -925,7 +926,9 @@ extension MessageCollectionViewCell {
             // Get indexPath
             if let indexPath = collectionView.indexPath(for: self) {
                 // Trigger action
-                collectionView.delegate?.collectionView?(collectionView, performAction: #selector(MessageCollectionViewCell.messageBlock(_:)), forItemAt: indexPath, withSender: sender)
+                collectionView.delegate?.collectionView?(collectionView,
+                    performAction: #selector(MessageCollectionViewCell.messageBlock(_:)),
+                    forItemAt: indexPath, withSender: sender)
             }
         }
     }
@@ -936,7 +939,9 @@ extension MessageCollectionViewCell {
             // Get indexPath
             if let indexPath = collectionView.indexPath(for: self) {
                 // Trigger action
-                collectionView.delegate?.collectionView?(collectionView, performAction: #selector(MessageCollectionViewCell.messageDismiss(_:)), forItemAt: indexPath, withSender: sender)
+                collectionView.delegate?.collectionView?(collectionView,
+                    performAction: #selector(MessageCollectionViewCell.messageDismiss(_:)),
+                    forItemAt: indexPath, withSender: sender)
             }
         }
     }
@@ -947,7 +952,9 @@ extension MessageCollectionViewCell {
             // Get indexPath
             if let indexPath = collectionView.indexPath(for: self) {
                 // Trigger action
-                collectionView.delegate?.collectionView?(collectionView, performAction: #selector(MessageCollectionViewCell.messageStartChat(_:)), forItemAt: indexPath, withSender: sender)
+                collectionView.delegate?.collectionView?(collectionView,
+                    performAction: #selector(MessageCollectionViewCell.messageStartChat(_:)),
+                    forItemAt: indexPath, withSender: sender)
             }
         }
     }

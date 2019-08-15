@@ -196,7 +196,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         }
 
         let qrParsed: DcLot = self.dcContext.checkQR(qrCode: code)
-        let nameAndAddress = DCContact(id: qrParsed.id).nameNAddr;
+        let nameAndAddress = DCContact(id: qrParsed.id).nameNAddr
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("qrscan_ask_fingerprint_ask_oob"), nameAndAddress),
                                       message: nil,
                                       preferredStyle: .alert)
@@ -305,4 +305,3 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         navigationController?.pushViewController(chatVC, animated: true)
     }
 }
-

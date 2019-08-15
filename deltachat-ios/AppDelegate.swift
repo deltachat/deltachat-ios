@@ -210,7 +210,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
 
-        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)),
+                                               name: .reachabilityChanged, object: reachability)
         do {
             try reachability.startNotifier()
         } catch {

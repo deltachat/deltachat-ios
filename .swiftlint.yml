@@ -40,8 +40,8 @@ function_parameter_count:
   error: 8
 
 type_body_length:
-  warning: 300
-  error: 500
+  warning: 600
+  error: 800
 
 file_length:
   warning: 1000

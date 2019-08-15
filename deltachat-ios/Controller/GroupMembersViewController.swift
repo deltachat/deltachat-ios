@@ -7,7 +7,10 @@ class NewGroupViewController: GroupMembersViewController {
         super.viewDidLoad()
         title = String.localized("menu_new_group")
         navigationController?.navigationBar.prefersLargeTitles = false
-        let groupCreationNextButton = UIBarButtonItem(title: String.localized("next"), style: .done, target: self, action: #selector(nextButtonPressed))
+        let groupCreationNextButton = UIBarButtonItem(title: String.localized("next"),
+                                                      style: .done,
+                                                      target: self,
+                                                      action: #selector(nextButtonPressed))
         navigationItem.rightBarButtonItem = groupCreationNextButton
         contactIds = Utils.getContactIds()
     }

@@ -56,7 +56,9 @@ class ContactDetailViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("global_menu_edit_desktop"), style: .plain, target: self, action: #selector(editButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: String.localized("global_menu_edit_desktop"),
+            style: .plain, target: self, action: #selector(editButtonPressed))
         self.title = String.localized("contact_detail_title_desktop")
     }
 
@@ -137,7 +139,9 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func showNotificationSetup() {
-        let notificationSetupAlert = UIAlertController(title: "Notifications Setup is not implemented yet", message: "But you get an idea where this is going", preferredStyle: .actionSheet)
+        let notificationSetupAlert = UIAlertController(title: "Notifications Setup is not implemented yet",
+                                                       message: "But you get an idea where this is going",
+                                                       preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
         notificationSetupAlert.addAction(cancelAction)
         present(notificationSetupAlert, animated: true, completion: nil)

@@ -578,8 +578,7 @@ class DCConfig {
     private class func setOptStr(_ key: String, _ value: String?) {
         if let v = value {
             dc_set_config(mailboxPointer, key, v)
-        }
-        else {
+        } else {
             dc_set_config(mailboxPointer, key, nil)
         }
     }

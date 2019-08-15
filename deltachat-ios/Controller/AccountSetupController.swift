@@ -58,7 +58,7 @@ class AccountSetupController: UITableViewController {
 
     private lazy var restoreCell: ActionCell = {
         let cell = ActionCell(frame: .zero)
-        cell.actionTitle = String.localized("import_backup_title");
+        cell.actionTitle = String.localized("import_backup_title")
         cell.accessibilityIdentifier = "restoreCell"
         return cell
     }()
@@ -381,7 +381,7 @@ class AccountSetupController: UITableViewController {
 
     // returns true if needed
     private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (() -> Void)?) -> Bool {
-        return false;
+        return false
 
         // disable oauth2 for now as not yet supported by deltachat-rust.
         /*
