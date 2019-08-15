@@ -830,7 +830,7 @@ extension ChatViewController: MessageCellDelegate {
         logger.info("Top label tapped")
     }
 
-    func didTapBottomLabel(in _: MessageCollectionViewCell) {
+    @objc(didTapCellBottomLabelIn:) func didTapCellBottomLabel(in _: MessageCollectionViewCell) {
         print("Bottom label tapped")
     }
 }
