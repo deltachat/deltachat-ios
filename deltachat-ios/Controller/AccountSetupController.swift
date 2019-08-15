@@ -451,7 +451,6 @@ class AccountSetupController: UITableViewController {
             if let ui = notification.userInfo {
                 if ui["error"] as! Bool {
                     self.updateProgressHud(error: ui["errorMessage"] as? String)
-                    // self.hudHandler.setHudError(ui["errorMessage"] as? String)
                 } else if ui["done"] as! Bool {
                     self.updateProgressHudSuccess(callback: self.handleLoginSuccess)
                 } else {
@@ -468,7 +467,6 @@ class AccountSetupController: UITableViewController {
             if let ui = notification.userInfo {
                 if ui["error"] as! Bool {
                     self.updateProgressHud(error: ui["errorMessage"] as? String)
-                    // self.hudHandler.setHudError(ui["errorMessage"] as? String)
                 } else if ui["done"] as! Bool {
                     self.updateProgressHudSuccess(callback: self.handleLoginSuccess)
                 } else {
