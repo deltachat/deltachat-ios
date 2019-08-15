@@ -41,15 +41,13 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                     "progress": Int(data1),
                     "error": Int(data1) == 0,
                     "done": done,
-                    "errorMessage": AppDelegate.lastErrorDuringConfig,
+                    "errorMessage": AppDelegate.lastErrorDuringConfig as Any,
                 ]
             )
 
             if done {
                 UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
                 UserDefaults.standard.synchronize()
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                // appDelegate.appCoordinator?.showTab(index: 3)
                 AppDelegate.lastErrorDuringConfig = nil
             }
         }
@@ -135,7 +133,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                     "progress": Int(data1),
                     "error": Int(data1) == 0,
                     "done": Int(data1) == 1000,
-                    "errorMessage": AppDelegate.lastErrorDuringConfig,
+                    "errorMessage": AppDelegate.lastErrorDuringConfig as Any,
                 ]
             )
         }

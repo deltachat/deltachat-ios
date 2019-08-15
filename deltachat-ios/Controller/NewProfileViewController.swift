@@ -171,11 +171,12 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         ) { notification in
             print("secure join: ", notification)
             if let ui = notification.userInfo {
-                if ui["progress"] as! Int == 400 {
-                    let contactId = ui["contact_id"] as! Int
-                    self.progressAlert.message = String.localizedStringWithFormat(
-                        String.localized("qrscan_x_verified_introduce_myself"),
-                        DCContact(id: contactId).nameNAddr)
+                if ui["progress"] as? Int == 400 {
+                    if let contactId = ui["contact_id"] as? Int {
+                        self.progressAlert.message = String.localizedStringWithFormat(
+                            String.localized("qrscan_x_verified_introduce_myself"),
+                            DCContact(id: contactId).nameNAddr)
+                    }
                 }
             }
         }

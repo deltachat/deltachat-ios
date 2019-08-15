@@ -150,22 +150,28 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             return cell
         } else if section == 1 {
             if row == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as! ActionCell
-                cell.actionTitle = String.localized("group_add_members")
+                let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
+                if let actionCell = cell as? ActionCell {
+                    actionCell.actionTitle = String.localized("group_add_members")
+                }
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
-                let contact = groupMembers[row - staticCellCountMemberSection]
-                cell.nameLabel.text = contact.name
-                cell.emailLabel.text = contact.email
-                cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
-                cell.setColor(contact.color)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
+                if let contactCell = cell as? ContactCell {
+                    let contact = groupMembers[row - staticCellCountMemberSection]
+                    contactCell.nameLabel.text = contact.name
+                    contactCell.emailLabel.text = contact.email
+                    contactCell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
+                    contactCell.setColor(contact.color)
+                }
                 return cell
             }
         } else if section == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as! ActionCell
-            cell.actionTitle = String.localized("menu_leave_group")
-            cell.actionColor = UIColor.red
+            let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
+            if let actionCell = cell as? ActionCell {
+                actionCell.actionTitle = String.localized("menu_leave_group")
+                actionCell.actionColor = UIColor.red
+            }
             return cell
         }
 

@@ -227,7 +227,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     @objc private func reachabilityChanged(note: Notification) {
-        let reachability = note.object as! Reachability
+        guard let reachability = note.object as? Reachability else {
+            logger.info("reachability object missing")
+            return
+        }
 
         switch reachability.connection {
         case .wifi, .cellular:
