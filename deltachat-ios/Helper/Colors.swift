@@ -1,6 +1,6 @@
 import UIKit
 
-struct DCColors {
+struct DcColors {
     static let primary = UIColor.systemBlue
     // static let accent =
 

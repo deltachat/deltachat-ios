@@ -123,7 +123,7 @@ extension URLSession {
     }
 }
 
-extension DCContact {
+extension DcContact {
     func contains(searchText text: String) -> [ContactHighlights] {
         var nameIndexes = [Int]()
         var emailIndexes = [Int]()

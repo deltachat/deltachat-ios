@@ -13,8 +13,8 @@ class ContactDetailViewController: UITableViewController {
 
     private let contactId: Int
 
-    private var contact: DCContact {
-        return DCContact(id: contactId)
+    private var contact: DcContact {
+        return DcContact(id: contactId)
     }
 
     private var notificationsCell: UITableViewCell = {

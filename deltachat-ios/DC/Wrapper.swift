@@ -25,7 +25,7 @@ enum MessageViewType: CustomStringConvertible {
     }
 }
 
-class DCContact {
+class DcContact {
     private var contactPointer: OpaquePointer
 
     var nameNAddr: String {
@@ -108,7 +108,6 @@ class DcContext {
         dc_context_unref(contextPointer)
     }
 
-
     func getSecurejoinQr (chatId: Int) -> String? {
         if let cString = dc_get_securejoin_qr(self.contextPointer, UInt32(chatId)) {
             return String(cString: cString)
@@ -175,7 +174,7 @@ class DcLot {
     }
 }
 
-class DCMessage: MessageType {
+class DcMsg: MessageType {
     private var messagePointer: OpaquePointer
 
     lazy var sender: SenderType = {
@@ -238,8 +237,8 @@ class DCMessage: MessageType {
         return Int(dc_msg_get_from_id(messagePointer))
     }
 
-    lazy var fromContact: DCContact = {
-        DCContact(id: fromContactId)
+    lazy var fromContact: DcContact = {
+        DcContact(id: fromContactId)
     }()
 
     var chatId: Int {
@@ -386,9 +385,9 @@ class DCMessage: MessageType {
         return String(cString: result)
     }
 
-    func createChat() -> DCChat {
+    func createChat() -> DcChat {
         let chatId = dc_create_chat_by_msg_id(mailboxPointer, UInt32(id))
-        return DCChat(id: Int(chatId))
+        return DcChat(id: Int(chatId))
     }
 
     deinit {
@@ -402,7 +401,7 @@ enum ChatType: Int {
     case VERYFIEDGROUP = 130
 }
 
-class DCChat {
+class DcChat {
     var chatPointer: OpaquePointer
 
     var id: Int {
@@ -475,7 +474,7 @@ class DCChat {
     }
 }
 
-class DCChatList {
+class DcChatlist {
     private var chatListPointer: OpaquePointer
 
     var length: Int {
@@ -519,7 +518,7 @@ func strToBool(_ value: String?) -> Bool {
     return false
 }
 
-class DCConfig {
+class DcConfig {
     private class func getOptStr(_ key: String) -> String? {
         let p = dc_get_config(mailboxPointer, key)
 

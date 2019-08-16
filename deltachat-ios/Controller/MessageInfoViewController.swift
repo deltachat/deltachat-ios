@@ -2,9 +2,9 @@ import UIKit
 
 class MessageInfoViewController: UITableViewController {
     var dcContext: DcContext
-    var message: DCMessage
+    var message: DcMsg
 
-    init(dcContext: DcContext, message: DCMessage) {
+    init(dcContext: DcContext, message: DcMsg) {
         self.dcContext = dcContext
         self.message = message
         super.init(style: .grouped)

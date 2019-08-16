@@ -21,7 +21,7 @@ class NewChatViewController: UITableViewController {
 
     // contactWithSearchResults.indexesToHightLight empty by default
     var contacts: [ContactWithSearchResults] {
-        return contactIds.map { ContactWithSearchResults(contact: DCContact(id: $0), indexesToHighlight: []) }
+        return contactIds.map { ContactWithSearchResults(contact: DcContact(id: $0), indexesToHighlight: []) }
     }
 
     // used when seachbar is active
@@ -385,6 +385,6 @@ enum ContactDetail {
 }
 
 struct ContactWithSearchResults {
-    let contact: DCContact
+    let contact: DcContact
     let indexesToHighlight: [ContactHighlights]
 }

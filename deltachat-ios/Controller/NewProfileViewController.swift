@@ -59,16 +59,16 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         }))
     }
 
-    var contact: DCContact? {
+    var contact: DcContact? {
         // This is nil if we do not have an account setup yet
-        if !DCConfig.configured {
+        if !DcConfig.configured {
             return nil
         }
-        return DCContact(id: Int(DC_CONTACT_ID_SELF))
+        return DcContact(id: Int(DC_CONTACT_ID_SELF))
     }
 
     var fingerprint: String? {
-        if !DCConfig.configured {
+        if !DcConfig.configured {
             return nil
         }
         return dcContext.getSecurejoinQr(chatId: 0)
@@ -175,7 +175,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
                     if let contactId = ui["contact_id"] as? Int {
                         self.progressAlert.message = String.localizedStringWithFormat(
                             String.localized("qrscan_x_verified_introduce_myself"),
-                            DCContact(id: contactId).nameNAddr)
+                            DcContact(id: contactId).nameNAddr)
                     }
                 }
             }
@@ -197,7 +197,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         }
 
         let qrParsed: DcLot = self.dcContext.checkQR(qrCode: code)
-        let nameAndAddress = DCContact(id: qrParsed.id).nameNAddr
+        let nameAndAddress = DcContact(id: qrParsed.id).nameNAddr
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("qrscan_ask_fingerprint_ask_oob"), nameAndAddress),
                                       message: nil,
                                       preferredStyle: .alert)
@@ -277,7 +277,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 
         let profileView = ProfileView(frame: CGRect())
         if let contact = self.contact {
-            let name = DCConfig.displayname ?? contact.name
+            let name = DcConfig.displayname ?? contact.name
             profileView.setBackgroundColor(bg)
             profileView.nameLabel.text = name
             profileView.emailLabel.text = contact.email

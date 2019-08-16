@@ -2,7 +2,7 @@ import UIKit
 
 class ChatListController: UIViewController {
     weak var coordinator: ChatListCoordinator?
-    var chatList: DCChatList?
+    var chatList: DcChatlist?
 
     lazy var chatTable: UITableView = {
         let chatTable = UITableView()
@@ -75,7 +75,7 @@ class ChatListController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
 
         newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
-        newButton.tintColor = DCColors.primary
+        newButton.tintColor = DcColors.primary
         navigationItem.rightBarButtonItem = newButton
 
         setupChatTable()
@@ -99,7 +99,7 @@ class ChatListController: UIViewController {
             fatalError("chatlistPointer was nil")
         }
         // ownership of chatlistPointer transferred here to ChatList object
-        chatList = DCChatList(chatListPointer: chatlistPointer)
+        chatList = DcChatlist(chatListPointer: chatlistPointer)
         chatTable.reloadData()
     }
 }
@@ -127,7 +127,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
 
         let chatId = chatList.getChatId(index: row)
-        let chat = DCChat(id: chatId)
+        let chat = DcChat(id: chatId)
         let summary = chatList.summary(index: row)
 
         cell.nameLabel.text = chat.name
