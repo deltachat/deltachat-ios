@@ -7,12 +7,14 @@ class AccountSetupController: UITableViewController {
     weak var coordinator: AccountSetupCoordinator?
 
     private var skipOauth = false
-
     private var backupProgressObserver: Any?
     private var configureProgressObserver: Any?
     private var oauth2Observer: Any?
 
-    lazy var configProgressIndicator: UICircularProgressRing = {
+
+    // the progress dialog
+
+    private lazy var configProgressIndicator: UICircularProgressRing = {
         let progress = UICircularProgressRing()
         progress.style = UICircularRingStyle.inside
         progress.outerRingColor = UIColor.clear
@@ -25,8 +27,8 @@ class AccountSetupController: UITableViewController {
         return progress
     }()
 
-    lazy var configProgressAlert: UIAlertController = {
-        let alert = UIAlertController(title: String.localized("configuring_account"), message: "\n\n\n", preferredStyle: .alert)
+    private lazy var configProgressAlert: UIAlertController = {
+        let alert = UIAlertController(title: String.localized("one_moment"), message: "\n\n\n", preferredStyle: .alert)
         // temp workaround: add 3 newlines to let alertbox grow to fit progressview
         let progressView = configProgressIndicator
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +40,50 @@ class AccountSetupController: UITableViewController {
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: loginCancelled(_:)))
         return alert
     }()
+
+    private func showProgressHud() {
+        configProgressAlert.actions[0].isEnabled = true
+        configProgressIndicator.alpha = 1
+        configProgressIndicator.value = 0
+        present(configProgressAlert, animated: true, completion: nil)
+    }
+
+    private func updateProgressHud(error message: String?) {
+        configProgressAlert.title = String.localized("login_error_title")
+        configProgressAlert.message = message
+        configProgressIndicator.alpha = 0
+    }
+
+    private func updateProgressHudSuccess(callback: (()->())?) {
+        configProgressAlert.actions[0].isEnabled = false
+        configProgressIndicator.alpha = 0
+        configProgressAlert.title = String.localized("login_successful_title")
+        configProgressAlert.message = String.localized("login_successful_message")
+        loginButton.isEnabled = dc_is_configured(mailboxPointer) == 0
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            self.configProgressAlert.dismiss(animated: true) {
+                self.handleLoginSuccess()
+            }
+        })
+    }
+
+    private func updateProgressHudValue(value: Int?) {
+        if let value = value {
+            print("progress hud: \(value)")
+            configProgressIndicator.value = CGFloat(value / 10)
+        }
+    }
+
+    private func loginCancelled(_ action: UIAlertAction) {
+        DcConfig.addr = nil
+        DcConfig.mailPw = nil
+        DispatchQueue.global(qos: .background).async {
+            dc_stop_ongoing_process(mailboxPointer)        // this function freezes UI so execute in background thread
+        }
+    }
+
+
+    // account setup
 
     private lazy var emailCell: TextFieldCell = {
         let cell = TextFieldCell.makeEmailCell(delegate: self)
@@ -639,52 +685,5 @@ class AdvancedSectionHeader: UIView {
 
     @objc func viewTapped() {
         handleTap?(toggleButton)
-    }
-}
-
-extension AccountSetupController {
-
-    func showProgressHud() {
-        configProgressAlert.actions[0].isEnabled = true
-        configProgressAlert.title = String.localized("configuring_account")
-        configProgressAlert.message = "\n\n\n"	// workaround to create space for progress indicator
-        configProgressIndicator.alpha = 1
-        configProgressIndicator.value = 0
-        present(configProgressAlert, animated: true, completion: nil)
-
-    }
-
-    func updateProgressHud(error message: String?) {
-        configProgressAlert.title = String.localized("login_error_title")
-        configProgressAlert.message = message
-        configProgressIndicator.alpha = 0
-    }
-
-    func updateProgressHudSuccess(callback: (()->())?) {
-        configProgressAlert.actions[0].isEnabled = false
-        configProgressIndicator.alpha = 0
-        configProgressAlert.title = String.localized("login_successful_title")
-        configProgressAlert.message = String.localized("login_successful_message")
-        loginButton.isEnabled = dc_is_configured(mailboxPointer) == 0
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-            self.configProgressAlert.dismiss(animated: true) {
-                self.handleLoginSuccess()
-            }
-        })
-    }
-
-    private func updateProgressHudValue(value: Int?) {
-        if let value = value {
-            print("progress hud: \(value)")
-            configProgressIndicator.value = CGFloat(value / 10)
-        }
-    }
-
-    func loginCancelled(_ action: UIAlertAction) {
-        DcConfig.addr = nil
-        DcConfig.mailPw = nil
-        DispatchQueue.global(qos: .background).async {
-            dc_stop_ongoing_process(mailboxPointer)		// this function freezes UI so execute in background thread
-        }
     }
 }

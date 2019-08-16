@@ -52,6 +52,21 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
             }
         }
 
+    case DC_EVENT_IMEX_PROGRESS:
+        let nc = NotificationCenter.default
+        DispatchQueue.main.async {
+            nc.post(
+                name: dcNotificationBackupProgress,
+                object: nil,
+                userInfo: [
+                    "progress": Int(data1),
+                    "error": Int(data1) == 0,
+                    "done": Int(data1) == 1000,
+                    "errorMessage": AppDelegate.lastErrorDuringConfig as Any,
+                ]
+            )
+        }
+
     case DC_EVENT_ERROR_NETWORK:
         let msg = String(cString: data2String)
         if data1 == 1 {
@@ -129,24 +144,6 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
 
     case DC_EVENT_MSG_DELIVERED:
         logger.info("message delivered: \(data1)-\(data2)")
-
-    case DC_EVENT_IMEX_PROGRESS:
-        let nc = NotificationCenter.default
-        DispatchQueue.main.async {
-            nc.post(
-                name: dcNotificationBackupProgress,
-                object: nil,
-                userInfo: [
-                    "progress": Int(data1),
-                    "error": Int(data1) == 0,
-                    "done": Int(data1) == 1000,
-                    "errorMessage": AppDelegate.lastErrorDuringConfig as Any,
-                ]
-            )
-        }
-
-    case DC_EVENT_IMEX_FILE_WRITTEN:
-        logger.info("backup file written: \(String(cString: data1String))")
 
     case DC_EVENT_SECUREJOIN_INVITER_PROGRESS:
         logger.info("securejoin inviter progress \(data1)")

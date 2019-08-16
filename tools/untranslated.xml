@@ -7,7 +7,6 @@
     <string name="imap_password">your IMAP password</string>
     <string name="success">Success</string>
     <string name="videos">Videos</string>
-    <string name="configuring_account">Configuring Account</string>
     <string name="hide">Hide</string>
     <string name="login_error_title">Unable to login!</string>
     <string name="login_successful_title">Login successful!</string>
