@@ -14,20 +14,20 @@ let dcNotificationViewChat = Notification.Name(rawValue: "MrEventViewChat")
 
 public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLong, data1String: UnsafePointer<Int8>, data2String: UnsafePointer<Int8>) -> UnsafePointer<Int8>? {
     switch event {
+
     case DC_EVENT_INFO:
         let s = String(cString: data2String)
         logger.info("event: \(s)")
+
     case DC_EVENT_WARNING:
         let s = String(cString: data2String)
         logger.warning("event: \(s)")
+
     case DC_EVENT_ERROR:
         let s = String(cString: data2String)
         AppDelegate.lastErrorDuringConfig = s
         logger.error("event: \(s)")
-    // TODO:
-    // check online state, return
-    // - 0 when online
-    // - 1 when offline
+
     case DC_EVENT_CONFIGURE_PROGRESS:
         logger.info("configure progress: \(Int(data1)) \(Int(data2))")
         let nc = NotificationCenter.default
@@ -51,6 +51,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                 AppDelegate.lastErrorDuringConfig = nil
             }
         }
+
     case DC_EVENT_ERROR_NETWORK:
         let msg = String(cString: data2String)
         if data1 == 1 {
@@ -68,6 +69,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                         userInfo: ["state": "offline"])
             }
         }
+
     case DC_EVENT_IMAP_CONNECTED, DC_EVENT_SMTP_CONNECTED:
         logger.warning("network: \(String(cString: data2String))")
 
@@ -77,6 +79,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                     object: nil,
                     userInfo: ["state": "online"])
         }
+
     case DC_EVENT_MSGS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED:
         logger.info("change: \(event)")
 
@@ -93,6 +96,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                 ]
             )
         }
+
     case DC_EVENT_INCOMING_MSG:
         let nc = NotificationCenter.default
         let userInfo = [
@@ -119,10 +123,13 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             logger.info("notifications: added \(content)")
         }
+
     case DC_EVENT_SMTP_MESSAGE_SENT:
         logger.info("network: \(String(cString: data2String))")
+
     case DC_EVENT_MSG_DELIVERED:
         logger.info("message delivered: \(data1)-\(data2)")
+
     case DC_EVENT_IMEX_PROGRESS:
         let nc = NotificationCenter.default
         DispatchQueue.main.async {
@@ -137,6 +144,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                 ]
             )
         }
+
     case DC_EVENT_IMEX_FILE_WRITTEN:
         logger.info("backup file written: \(String(cString: data1String))")
 
@@ -155,6 +163,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                 ]
             )
         }
+
     case DC_EVENT_SECUREJOIN_JOINER_PROGRESS:
         logger.info("securejoin joiner progress \(data1)")
         let nc = NotificationCenter.default
@@ -170,9 +179,10 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                 ]
             )
         }
+
     case DC_EVENT_GET_STRING:
-        // nothing to do for now
         break
+
     default:
         logger.warning("unknown event: \(event)")
     }
