@@ -104,10 +104,10 @@ internal final class SettingsViewController: QuickTableViewController {
                 title: String.localized("user_details"),
                 rows: [
                     //FIXME: fix action callback!
-                    NavigationRow(text: String.localized("display_name"), detailText: .value1(DCConfig.displayname ?? ""), action: {
+                    NavigationRow(text: String.localized("display_name"), detailText: .value1(DcConfig.displayname ?? ""), action: {
                         [weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.DISPLAYNAME)
                     }),
-                    NavigationRow(text: String.localized("status"), detailText: .value1(DCConfig.selfstatus ?? ""), action: {
+                    NavigationRow(text: String.localized("status"), detailText: .value1(DcConfig.selfstatus ?? ""), action: {
                         [weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.STATUS)
                     }),
                     TapActionRow(text: String.localized("configure_my_account"), action: { [weak self] in self?.presentAccountSetup($0) }),
@@ -117,25 +117,25 @@ internal final class SettingsViewController: QuickTableViewController {
                 title: String.localized("flags"),
                 rows: [
                     SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),
-                              switchValue: DCConfig.e2eeEnabled,
+                              switchValue: DcConfig.e2eeEnabled,
                               action: editCell(key: SVC.e2eeEnabled)),
                     SwitchRow(text: String.localized("pref_read_receipts"),
-                              switchValue: DCConfig.mdnsEnabled,
+                              switchValue: DcConfig.mdnsEnabled,
                               action: editCell(key: SVC.readReceipts)),
                     SwitchRow(text: String.localized("pref_watch_inbox_folder"),
-                              switchValue: DCConfig.inboxWatch,
+                              switchValue: DcConfig.inboxWatch,
                               action: editCell(key: SVC.watchMvBox)),
                     SwitchRow(text: String.localized("pref_watch_sent_folder"),
-                              switchValue: DCConfig.sentboxWatch,
+                              switchValue: DcConfig.sentboxWatch,
                               action: editCell(key: SVC.watchSentbox)),
                     SwitchRow(text: String.localized("pref_watch_mvbox_folder"),
-                              switchValue: DCConfig.mvboxWatch,
+                              switchValue: DcConfig.mvboxWatch,
                               action: editCell(key: SVC.watchMvBox)),
                     SwitchRow(text: String.localized("pref_auto_folder_moves"),
-                              switchValue: DCConfig.mvboxMove,
+                              switchValue: DcConfig.mvboxMove,
                               action: editCell(key: SVC.MvToMvbox)),
                     SwitchRow(text: String.localized("save_mime_headers"),
-                              switchValue: DCConfig.saveMimeHeaders,
+                              switchValue: DcConfig.saveMimeHeaders,
                               action: editCell(key: SVC.SaveMimeHeaders))
                 ]
             ),
@@ -161,19 +161,19 @@ internal final class SettingsViewController: QuickTableViewController {
                 let value = sender.switchValue
                 switch key {
                 case SVC.e2eeEnabled:
-                    DCConfig.e2eeEnabled = value
+                    DcConfig.e2eeEnabled = value
                 case SVC.readReceipts:
-                    DCConfig.mdnsEnabled = value
+                    DcConfig.mdnsEnabled = value
                 case SVC.watchInbox:
-                    DCConfig.inboxWatch = value
+                    DcConfig.inboxWatch = value
                 case SVC.watchSentbox:
-                    DCConfig.sentboxWatch = value
+                    DcConfig.sentboxWatch = value
                 case SVC.watchMvBox:
-                    DCConfig.mvboxWatch = value
+                    DcConfig.mvboxWatch = value
                 case SVC.MvToMvbox:
-                    DCConfig.mvboxMove = value
+                    DcConfig.mvboxMove = value
                 case SVC.SaveMimeHeaders:
-                    DCConfig.saveMimeHeaders = value
+                    DcConfig.saveMimeHeaders = value
                 default:
                     logger.info("unknown key", String(key))
                 }

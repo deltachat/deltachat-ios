@@ -119,7 +119,7 @@ class ProfileView: UIView {
         myStackView.addArrangedSubview(toplineStackView)
         myStackView.addArrangedSubview(bottomLineStackView)
 
-        imgView.tintColor = DCColors.primary
+        imgView.tintColor = DcColors.primary
 
         avatar.addSubview(imgView)
 

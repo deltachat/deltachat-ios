@@ -1,7 +1,7 @@
 import UIKit
 import Reachability
 
-final class DCNavigationController: UINavigationController {
+final class DcNavigationController: UINavigationController {
     var stateChangedObserver: Any?
 
     override func viewDidLoad() {

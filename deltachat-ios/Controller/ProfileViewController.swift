@@ -4,16 +4,16 @@ class ProfileViewController: UITableViewController {
     var dcContext: DcContext
     weak var coordinator: ProfileCoordinator?
 
-    var contact: DCContact? {
+    var contact: DcContact? {
         // This is nil if we do not have an account setup yet
-        if !DCConfig.configured {
+        if !DcConfig.configured {
             return nil
         }
-        return DCContact(id: Int(DC_CONTACT_ID_SELF))
+        return DcContact(id: Int(DC_CONTACT_ID_SELF))
     }
 
     var fingerprint: String? {
-        if !DCConfig.configured {
+        if !DcConfig.configured {
             return nil
         }
 
@@ -136,7 +136,7 @@ class ProfileViewController: UITableViewController {
         if section == 0 {
             let contactCell = ContactCell()
             if let contact = self.contact {
-                let name = DCConfig.displayname ?? contact.name
+                let name = DcConfig.displayname ?? contact.name
                 contactCell.backgroundColor = bg
                 contactCell.nameLabel.text = name
                 contactCell.emailLabel.text = contact.email

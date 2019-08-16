@@ -9,7 +9,7 @@ class EditContactController: NewContactController {
         super.init()
         title = String.localized("edit_contact")
 
-        let contact = DCContact(id: contactIdForUpdate)
+        let contact = DcContact(id: contactIdForUpdate)
         nameCell.textField.text = contact.name
         emailCell.textField.text = contact.email
         emailCell.textField.isEnabled = false

@@ -16,7 +16,7 @@ class ContactListController: UITableViewController {
 
     // contactWithSearchResults.indexesToHightLight empty by default
     var contacts: [ContactWithSearchResults] {
-        return contactIds.map { ContactWithSearchResults(contact: DCContact(id: $0), indexesToHighlight: []) }
+        return contactIds.map { ContactWithSearchResults(contact: DcContact(id: $0), indexesToHighlight: []) }
     }
 
     // used when seachbar is active
@@ -175,7 +175,7 @@ class ContactListController: UITableViewController {
                 self.coordinator?.showContactDetail(contactId: contactId)
             }
         }
-        edit.backgroundColor = DCColors.primary
+        edit.backgroundColor = DcColors.primary
         return [edit]
     }
 

@@ -23,7 +23,7 @@ class ChatViewController: MessagesViewController {
 
     let chatId: Int
     let refreshControl = UIRefreshControl()
-    var messageList: [DCMessage] = []
+    var messageList: [DcMsg] = []
 
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
@@ -64,8 +64,8 @@ class ChatViewController: MessagesViewController {
         super.viewDidLoad()
         navigationItem.titleView = titleView
 
-        view.backgroundColor = DCColors.chatBackgroundColor
-        if !DCConfig.configured {
+        view.backgroundColor = DcColors.chatBackgroundColor
+        if !DcConfig.configured {
             // TODO: display message about nothing being configured
             return
         }
@@ -86,7 +86,7 @@ class ChatViewController: MessagesViewController {
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 
-        let chat = DCChat(id: chatId)
+        let chat = DcChat(id: chatId)
         titleView.updateTitleView(title: chat.name, subtitle: chat.subtitle)
 
         if let image = chat.profileImage {
@@ -130,7 +130,7 @@ class ChatViewController: MessagesViewController {
                 if self.chatId == ui["chat_id"] as? Int {
                     if let id = ui["message_id"] as? Int {
                         if id > 0 {
-                            self.insertMessage(DCMessage(id: id))
+                            self.insertMessage(DcMsg(id: id))
                         }
                     }
                 }
@@ -216,7 +216,7 @@ class ChatViewController: MessagesViewController {
         return nil
     }
 
-    private func getMessageIds(_ count: Int, from: Int? = nil) -> [DCMessage] {
+    private func getMessageIds(_ count: Int, from: Int? = nil) -> [DcMsg] {
         let cMessageIds = dc_get_chat_msgs(mailboxPointer, UInt32(chatId), 0, 0)
 
         let ids: [Int]
@@ -230,7 +230,7 @@ class ChatViewController: MessagesViewController {
         dc_markseen_msgs(mailboxPointer, UnsafePointer(markIds), Int32(ids.count))
 
         return ids.map {
-            DCMessage(id: $0)
+            DcMsg(id: $0)
         }
     }
 
@@ -303,11 +303,11 @@ class ChatViewController: MessagesViewController {
 
     private func configureMessageInputBar() {
         messageInputBar.delegate = self
-        messageInputBar.inputTextView.tintColor = DCColors.primary
+        messageInputBar.inputTextView.tintColor = DcColors.primary
         messageInputBar.inputTextView.placeholder = String.localized("chat_input_placeholder")
         messageInputBar.isTranslucent = true
         messageInputBar.separatorLine.isHidden = true
-        messageInputBar.inputTextView.tintColor = DCColors.primary
+        messageInputBar.inputTextView.tintColor = DcColors.primary
 
         scrollsToBottomOnKeyboardBeginsEditing = true
 
@@ -349,7 +349,7 @@ class ChatViewController: MessagesViewController {
                     $0.tintColor = UIColor(white: 0.8, alpha: 1)
                     $0.setSize(CGSize(width: 30, height: 30), animated: false)
                 }.onSelected {
-                    $0.tintColor = DCColors.primary
+                    $0.tintColor = DcColors.primary
                 }.onDeselected {
                     $0.tintColor = UIColor(white: 0.8, alpha: 1)
                 }.onTouchUpInside { _ in
@@ -363,7 +363,7 @@ class ChatViewController: MessagesViewController {
         messageInputBar.sendButton
             .onEnabled { item in
                 UIView.animate(withDuration: 0.3, animations: {
-                    item.backgroundColor = DCColors.primary
+                    item.backgroundColor = DcColors.primary
                 })
             }.onDisabled { item in
                 UIView.animate(withDuration: 0.3, animations: {
@@ -595,7 +595,7 @@ extension ChatViewController: MessagesDataSource {
         if let index = messageList.firstIndex(where: { $0.id == messageId }) {
             dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(messageId)]), 1)
 
-            messageList[index] = DCMessage(id: messageId)
+            messageList[index] = DcMsg(id: messageId)
             // Reload section to update header/footer labels
             messagesCollectionView.performBatchUpdates({
                 messagesCollectionView.reloadSections([index])
@@ -611,14 +611,14 @@ extension ChatViewController: MessagesDataSource {
                 }
             })
         } else {
-            let msg = DCMessage(id: messageId)
+            let msg = DcMsg(id: messageId)
             if msg.chatId == chatId {
                 insertMessage(msg)
             }
         }
     }
 
-    func insertMessage(_ message: DCMessage) {
+    func insertMessage(_ message: DcMsg) {
         dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(message.id)]), 1)
         messageList.append(message)
         // Reload last section to update header/footer labels and insert a new one
@@ -651,7 +651,7 @@ extension ChatViewController: MessagesDisplayDelegate {
 
     // MARK: - All Messages
     func backgroundColor(for message: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? DCColors.messagePrimaryColor : DCColors.messageSecondaryColor
+        return isFromCurrentSender(message: message) ? DcColors.messagePrimaryColor : DcColors.messageSecondaryColor
     }
 
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> MessageStyle {
@@ -798,7 +798,7 @@ extension ChatViewController: MessageCellDelegate {
 
                 var prev: Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), -1, Int32(message.type), 0, 0))
                 while prev != 0 {
-                    let prevMessage = DCMessage(id: prev)
+                    let prevMessage = DcMsg(id: prev)
                     if let url = prevMessage.fileURL {
                         previousUrls.insert(url, at: 0)
                     }
@@ -807,7 +807,7 @@ extension ChatViewController: MessageCellDelegate {
 
                 var next: Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), 1, Int32(message.type), 0, 0))
                 while next != 0 {
-                    let nextMessage = DCMessage(id: next)
+                    let nextMessage = DcMsg(id: next)
                     if let url = nextMessage.fileURL {
                         nextUrls.insert(url, at: 0)
                     }

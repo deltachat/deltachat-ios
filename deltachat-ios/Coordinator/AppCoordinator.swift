@@ -18,7 +18,7 @@ class AppCoordinator: NSObject, Coordinator {
         tabBarController.viewControllers = [contactListController, mailboxController, profileController, chatListController, settingsController]
         // put viewControllers here
         tabBarController.delegate = self
-        tabBarController.tabBar.tintColor = DCColors.primary
+        tabBarController.tabBar.tintColor = DcColors.primary
         tabBarController.tabBar.backgroundColor = .white
         return tabBarController
     }()
@@ -27,7 +27,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     private lazy var contactListController: UIViewController = {
         let controller = ContactListController()
-        let nav = DCNavigationController(rootViewController: controller)
+        let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "contacts")
         nav.tabBarItem = UITabBarItem(title: String.localized("contacts_title"), image: settingsImage, tag: 0)
         let coordinator = ContactListCoordinator(dcContext: dcContext, navigationController: nav)
@@ -39,7 +39,7 @@ class AppCoordinator: NSObject, Coordinator {
     private lazy var mailboxController: UIViewController = {
         let controller = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP), title: String.localized("mailbox"))
         controller.disableWriting = true
-        let nav = DCNavigationController(rootViewController: controller)
+        let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "message")
         nav.tabBarItem = UITabBarItem(title: String.localized("mailbox"), image: settingsImage, tag: 1)
         let coordinator = MailboxCoordinator(dcContext: dcContext, navigationController: nav)
@@ -50,7 +50,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     private lazy var profileController: UIViewController = {
         let controller = NewProfileViewController(dcContext: dcContext)
-        let nav = DCNavigationController(rootViewController: controller)
+        let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "report_card")
         nav.tabBarItem = UITabBarItem(title: String.localized("my_profile"), image: settingsImage, tag: 2)
         let coordinator = ProfileCoordinator(navigationController: nav)
@@ -61,7 +61,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     private lazy var chatListController: UIViewController = {
         let controller = ChatListController()
-        let nav = DCNavigationController(rootViewController: controller)
+        let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "chat")
         nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: 3)
         let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: nav)
@@ -72,7 +72,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     private lazy var settingsController: UIViewController = {
         let controller = SettingsViewController()
-        let nav = DCNavigationController(rootViewController: controller)
+        let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "settings")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: 4)
         let coordinator = SettingsCoordinator(navigationController: nav)
@@ -112,7 +112,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     func presentLoginController() {
         let accountSetupController = AccountSetupController()
-        let accountSetupNav = DCNavigationController(rootViewController: accountSetupController)
+        let accountSetupNav = DcNavigationController(rootViewController: accountSetupController)
         let coordinator = AccountSetupCoordinator(navigationController: accountSetupNav)
         childCoordinators.append(coordinator)
         accountSetupController.coordinator = coordinator
@@ -122,7 +122,7 @@ class AppCoordinator: NSObject, Coordinator {
 
 extension AppCoordinator: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if let dcNav = viewController as? DCNavigationController {
+        if let dcNav = viewController as? DcNavigationController {
             switch tabBarController.selectedIndex {
             case 0, 3, 4:
                 dcNav.navigationBar.prefersLargeTitles = true
@@ -260,7 +260,7 @@ class SettingsCoordinator: Coordinator {
         let coordinator = AccountSetupCoordinator(navigationController: navigationController)
         childCoordinators.append(coordinator)
         accountSetupVC.coordinator = coordinator
-        let accountSetupNavigationController = DCNavigationController(rootViewController: accountSetupVC)
+        let accountSetupNavigationController = DcNavigationController(rootViewController: accountSetupVC)
         navigationController.present(accountSetupNavigationController, animated: true, completion: nil)
     }
 }
@@ -273,20 +273,20 @@ class AccountSetupCoordinator: Coordinator {
     }
 
     func showImapPortOptions() {
-        let currentMailPort = DCConfig.mailPort ?? DCConfig.configuredMailPort
+        let currentMailPort = DcConfig.mailPort ?? DcConfig.configuredMailPort
         let currentPort = Int(currentMailPort)
         let portSettingsController = PortSettingsController(sectionTitle: String.localized("login_imap_port"),
                                                             ports: [143, 993],
                                                             currentPort: currentPort)
         portSettingsController.onDismiss = {
             port in
-            DCConfig.mailPort = port
+            DcConfig.mailPort = port
         }
         navigationController.pushViewController(portSettingsController, animated: true)
     }
 
     func showImapSecurityOptions() {
-        let currentSecurityOption = DCConfig.getImapSecurity()
+        let currentSecurityOption = DcConfig.getImapSecurity()
         let convertedOption = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: currentSecurityOption)
         let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
                                                                     options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
@@ -295,27 +295,27 @@ class AccountSetupCoordinator: Coordinator {
             option in
             if let secValue = SecurityValue(rawValue: option) {
                 let value = SecurityConverter.convertValueToInt(type: .IMAPSecurity, value: secValue)
-                DCConfig.setImapSecurity(imapFlags: value)
+                DcConfig.setImapSecurity(imapFlags: value)
             }
         }
         navigationController.pushViewController(securitySettingsController, animated: true)
     }
 
     func showSmtpPortsOptions() {
-        let currentMailPort = DCConfig.sendPort ?? DCConfig.configuredSendPort
+        let currentMailPort = DcConfig.sendPort ?? DcConfig.configuredSendPort
         let currentPort = Int(currentMailPort)
         let portSettingsController = PortSettingsController(sectionTitle: String.localized("login_smtp_port"),
                                                             ports: [25, 465, 587],
                                                             currentPort: currentPort)
         portSettingsController.onDismiss = {
             port in
-            DCConfig.sendPort = port
+            DcConfig.sendPort = port
         }
         navigationController.pushViewController(portSettingsController, animated: true)
     }
 
     func showSmptpSecurityOptions() {
-        let currentSecurityOption = DCConfig.getSmtpSecurity()
+        let currentSecurityOption = DcConfig.getSmtpSecurity()
         let convertedOption = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: currentSecurityOption)
         let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
                                                                     options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
@@ -324,7 +324,7 @@ class AccountSetupCoordinator: Coordinator {
             option in
             if let secValue = SecurityValue(rawValue: option) {
                 let value = SecurityConverter.convertValueToInt(type: .SMTPSecurity, value: secValue)
-                DCConfig.setSmtpSecurity(smptpFlags: value)
+                DcConfig.setSmtpSecurity(smptpFlags: value)
             }
         }
         navigationController.pushViewController(securitySettingsController, animated: true)
@@ -403,7 +403,7 @@ class GroupChatDetailCoordinator: Coordinator {
         navigationController.pushViewController(groupMemberViewController, animated: true)
     }
 
-    func showGroupChatEdit(chat: DCChat) {
+    func showGroupChatEdit(chat: DcChat) {
         let editGroupViewController = EditGroupViewController(chat: chat)
         let coordinator = EditGroupCoordinator(navigationController: navigationController)
         childCoordinators.append(coordinator)
@@ -427,7 +427,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
     }
 
     func showChatDetail(chatId: Int) {
-        let chat = DCChat(id: chatId)
+        let chat = DcChat(id: chatId)
         switch chat.chatType {
         case .SINGLE:
             if let contactId = chat.contactIds.first {
