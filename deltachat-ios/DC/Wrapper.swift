@@ -148,8 +148,8 @@ class DcLot {
         dc_lot_unref(dcLotPointer)
     }
 
-    var text1: String {
-        guard let result = dc_lot_get_text1(dcLotPointer) else { return "" }
+    var text1: String? {
+        guard let result = dc_lot_get_text1(dcLotPointer) else { return nil }
         return String(cString: result)
     }
 
@@ -157,13 +157,13 @@ class DcLot {
         return Int(dc_lot_get_text1_meaning(dcLotPointer))
     }
 
-    var getText2: String {
-        guard let result = dc_lot_get_text2(dcLotPointer) else { return "" }
+    var text2: String? {
+        guard let result = dc_lot_get_text2(dcLotPointer) else { return nil }
         return String(cString: result)
     }
 
-    var timestamp: Int64 {
-        return Int64(dc_lot_get_timestamp(dcLotPointer))
+    var timestamp: Int {
+        return Int(dc_lot_get_timestamp(dcLotPointer))
     }
 
     var state: Int {
@@ -475,47 +475,6 @@ class DCChat {
     }
 }
 
-class DCPoorText {
-    private var poorTextPointer: OpaquePointer
-
-    var text1: String? {
-        let text1 = dc_lot_get_text1(poorTextPointer)
-        if text1 == nil {
-            return nil
-        }
-        return String(cString: text1!)
-    }
-
-    var text2: String? {
-        let text2 = dc_lot_get_text2(poorTextPointer)
-        if text2 == nil {
-            return nil
-        }
-        return String(cString: text2!)
-    }
-
-    var text1Meaning: Int {
-        return Int(dc_lot_get_text1_meaning(poorTextPointer))
-    }
-
-    var timeStamp: Int {
-        return Int(dc_lot_get_timestamp(poorTextPointer))
-    }
-
-    var state: Int {
-        return Int(dc_lot_get_state(poorTextPointer))
-    }
-
-    // takes ownership of specified pointer
-    init(poorTextPointer: OpaquePointer) {
-        self.poorTextPointer = poorTextPointer
-    }
-
-    deinit {
-        dc_lot_unref(poorTextPointer)
-    }
-}
-
 class DCChatList {
     private var chatListPointer: OpaquePointer
 
@@ -537,11 +496,11 @@ class DCChatList {
         return Int(dc_chatlist_get_msg_id(chatListPointer, index))
     }
 
-    func summary(index: Int) -> DCPoorText {
-        guard let poorTextPointer = dc_chatlist_get_summary(self.chatListPointer, index, nil) else {
-            fatalError("poor text pointer was nil")
+    func summary(index: Int) -> DcLot {
+        guard let lotPointer = dc_chatlist_get_summary(self.chatListPointer, index, nil) else {
+            fatalError("lot-pointer was nil")
         }
-        return DCPoorText(poorTextPointer: poorTextPointer)
+        return DcLot(lotPointer)
     }
 
     deinit {
