@@ -562,19 +562,17 @@ class AccountSetupController: UITableViewController {
 
             if let file = dc_imex_has_backup(mailboxPointer, documents[0]) {
                 logger.info("restoring backup: \(String(cString: file))")
-
-                // hudHandler.showBackupHud("Restoring Backup")
+                showProgressHud()
                 dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
-
-                return
             }
-
-            let alert = UIAlertController(title: String.localized("import_backup_title"), message: String.localizedStringWithFormat(String.localized("import_backup_no_backup_found"), "DUMMYPATH TBD"), preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
-
-            }))
-            present(alert, animated: true, completion: nil)
-            return
+            else {
+                let alert = UIAlertController(title: String.localized("import_backup_title"),
+                    message: String.localizedStringWithFormat(String.localized("import_backup_no_backup_found"),
+                        "iTunes / <Your Device> / File Sharing / Delta Chat"), // TOOD: maybe better use an iOS-specific string here
+                    preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
+                present(alert, animated: true)
+            }
         }
 
         logger.error("no documents directory found")
