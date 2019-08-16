@@ -148,7 +148,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
 
         cell.emailLabel.text = result
-        cell.setTimeLabel(summary.timeStamp)
+        cell.setTimeLabel(summary.timestamp)
         cell.setDeliveryStatusIndicator(summary.state)
 
         return cell
