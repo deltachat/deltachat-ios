@@ -250,7 +250,6 @@ class AccountSetupController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         addProgressHudEventListener()
-        // loginButton.isEnabled = false
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -487,7 +486,7 @@ class AccountSetupController: UITableViewController {
     private func addProgressHudEventListener() {
         let nc = NotificationCenter.default
         backupProgressObserver = nc.addObserver(
-            forName: dcNotificationBackupProgress,
+            forName: dcNotificationImexProgress,
             object: nil,
             queue: nil
         ) {

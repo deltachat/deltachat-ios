@@ -4,7 +4,7 @@ import UserNotifications
 let dcNotificationChanged = Notification.Name(rawValue: "MrEventMsgsChanged")
 let dcNotificationStateChanged = Notification.Name(rawValue: "MrEventStateChanged")
 let dcNotificationIncoming = Notification.Name(rawValue: "MrEventIncomingMsg")
-let dcNotificationBackupProgress = Notification.Name(rawValue: "MrEventBackupProgress")
+let dcNotificationImexProgress = Notification.Name(rawValue: "dcNotificationImexProgress")
 let dcNotificationConfigureProgress = Notification.Name(rawValue: "MrEventConfigureProgress")
 let dcNotificationSecureJoinerProgress = Notification.Name(rawValue: "MrEventSecureJoinerProgress")
 let dcNotificationSecureInviterProgress = Notification.Name(rawValue: "MrEventSecureInviterProgress")
@@ -56,7 +56,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         let nc = NotificationCenter.default
         DispatchQueue.main.async {
             nc.post(
-                name: dcNotificationBackupProgress,
+                name: dcNotificationImexProgress,
                 object: nil,
                 userInfo: [
                     "progress": Int(data1),

@@ -34,7 +34,7 @@ internal final class SettingsViewController: QuickTableViewController {
         super.viewDidAppear(animated)
         let nc = NotificationCenter.default
         backupProgressObserver = nc.addObserver(
-            forName: dcNotificationBackupProgress,
+            forName: dcNotificationImexProgress,
             object: nil,
             queue: nil
         ) { notification in
