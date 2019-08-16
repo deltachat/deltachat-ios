@@ -9,8 +9,6 @@
     <string name="videos">Videos</string>
     <string name="hide">Hide</string>
     <string name="login_error_title">Unable to login!</string>
-    <string name="login_successful_title">Login successful!</string>
-    <string name="login_successful_message">"You are ready to use Delta Chat."</string>
     <string name="start_chat">Start Chat</string>
     <string name="dismiss">Dismiss</string>
     <string name="photo">Photo</string>

@@ -29,7 +29,7 @@ class AccountSetupController: UITableViewController {
 
     private lazy var configProgressAlert: UIAlertController = {
         let alert = UIAlertController(title: String.localized("one_moment"), message: "\n\n\n", preferredStyle: .alert)
-        // temp workaround: add 3 newlines to let alertbox grow to fit progressview
+        // workaround: add 3 newlines to let alertbox grow to fit progressview
         let progressView = configProgressIndicator
         progressView.translatesAutoresizingMaskIntoConstraints = false
         alert.view.addSubview(progressView)
@@ -43,6 +43,8 @@ class AccountSetupController: UITableViewController {
 
     private func showProgressHud() {
         configProgressAlert.actions[0].isEnabled = true
+        configProgressAlert.title = String.localized("one_moment")
+        configProgressAlert.message = "\n\n\n" // workaround to create space for progress indicator
         configProgressIndicator.alpha = 1
         configProgressIndicator.value = 0
         present(configProgressAlert, animated: true, completion: nil)
@@ -54,13 +56,9 @@ class AccountSetupController: UITableViewController {
         configProgressIndicator.alpha = 0
     }
 
-    private func updateProgressHudSuccess(callback: (()->())?) {
-        configProgressAlert.actions[0].isEnabled = false
-        configProgressIndicator.alpha = 0
-        configProgressAlert.title = String.localized("login_successful_title")
-        configProgressAlert.message = String.localized("login_successful_message")
-        loginButton.isEnabled = dc_is_configured(mailboxPointer) == 0
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+    private func updateProgressHudSuccess() {
+        updateProgressHudValue(value: 1000)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             self.configProgressAlert.dismiss(animated: true) {
                 self.handleLoginSuccess()
             }
@@ -340,7 +338,6 @@ class AccountSetupController: UITableViewController {
         }
     }
 
-    // FIXME: replace if-else-if with switch-case
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let tappedCell = tableView.cellForRow(at: indexPath) else { return }
         // handle tap on password -> show oAuthDialogue
@@ -495,7 +492,7 @@ class AccountSetupController: UITableViewController {
                 if ui["error"] as! Bool {
                     self.updateProgressHud(error: ui["errorMessage"] as? String)
                 } else if ui["done"] as! Bool {
-                    self.updateProgressHudSuccess(callback: self.handleLoginSuccess)
+                    self.updateProgressHudSuccess()
                 } else {
                     self.updateProgressHudValue(value: ui["progress"] as? Int)
                 }
@@ -511,7 +508,7 @@ class AccountSetupController: UITableViewController {
                 if ui["error"] as! Bool {
                     self.updateProgressHud(error: ui["errorMessage"] as? String)
                 } else if ui["done"] as! Bool {
-                    self.updateProgressHudSuccess(callback: self.handleLoginSuccess)
+                    self.updateProgressHudSuccess()
                 } else {
                     self.updateProgressHudValue(value: ui["progress"] as? Int)
                 }
