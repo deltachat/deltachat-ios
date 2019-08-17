@@ -632,11 +632,8 @@
 "imap_password" = "your IMAP password";
 "success" = "Success";
 "videos" = "Videos";
-"configuring_account" = "Configuring Account";
 "hide" = "Hide";
 "login_error_title" = "Unable to login!";
-"login_successful_title" = "Login successful!";
-"login_successful_message" = "\"You are ready to use Delta Chat.\"";
 "start_chat" = "Start Chat";
 "dismiss" = "Dismiss";
 "photo" = "Photo";
