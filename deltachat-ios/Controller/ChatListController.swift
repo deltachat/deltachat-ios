@@ -167,13 +167,17 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             return nil
         }
 
-        // assigning swipe by delete to chats
-        let delete = UITableViewRowAction(style: .destructive, title: String.localized("global_menu_edit_delete_desktop")) { [unowned self] _, _ in
+        let archive = UITableViewRowAction(style: .destructive, title: String.localized("menu_archive_chat")) { [unowned self] _, _ in
+        }
+        archive.backgroundColor = UIColor.gray
+
+        let delete = UITableViewRowAction(style: .destructive, title: String.localized("menu_delete_chat")) { [unowned self] _, _ in
             let chatId = chatList.getChatId(index: row)
             self.showDeleteChatConfirmationAlert(chatId: chatId)
         }
         delete.backgroundColor = UIColor.red
-        return [delete]
+
+        return [archive, delete]
     }
 }
 
