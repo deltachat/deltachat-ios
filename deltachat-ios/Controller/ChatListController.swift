@@ -1,6 +1,7 @@
 import UIKit
 
 class ChatListController: UIViewController {
+    var dcContext: DcContext
     weak var coordinator: ChatListCoordinator?
     var chatList: DcChatlist?
 
@@ -17,6 +18,15 @@ class ChatListController: UIViewController {
     var viewChatObserver: Any?
 
     var newButton: UIBarButtonItem!
+
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
