@@ -13,6 +13,10 @@ class DcContext {
         dc_context_unref(contextPointer)
     }
 
+    func archiveChat(chatId: Int, archive: Bool) {
+        dc_archive_chat(self.contextPointer, UInt32(chatId), Int32(archive ? 1 : 0))
+    }
+
     func getSecurejoinQr (chatId: Int) -> String? {
         if let cString = dc_get_securejoin_qr(self.contextPointer, UInt32(chatId)) {
             return String(cString: cString)
