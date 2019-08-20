@@ -2,9 +2,11 @@ import UIKit
 
 class ChatListController: UIViewController {
     weak var coordinator: ChatListCoordinator?
-    var chatList: DcChatlist?
 
-    lazy var chatTable: UITableView = {
+    private var dcContext: DcContext
+    private var chatList: DcChatlist?
+
+    private lazy var chatTable: UITableView = {
         let chatTable = UITableView()
         chatTable.dataSource = self
         chatTable.delegate = self
@@ -12,11 +14,20 @@ class ChatListController: UIViewController {
         return chatTable
     }()
 
-    var msgChangedObserver: Any?
-    var incomingMsgObserver: Any?
-    var viewChatObserver: Any?
+    private var msgChangedObserver: Any?
+    private var incomingMsgObserver: Any?
+    private var viewChatObserver: Any?
 
-    var newButton: UIBarButtonItem!
+    private var newButton: UIBarButtonItem!
+
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -94,7 +105,7 @@ class ChatListController: UIViewController {
         coordinator?.showNewChatController()
     }
 
-    func getChatList() {
+    private func getChatList() {
         guard let chatlistPointer = dc_get_chatlist(mailboxPointer, DC_GCL_NO_SPECIALS, nil, 0) else {
             fatalError("chatlistPointer was nil")
         }
@@ -128,7 +139,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
         let chatId = chatList.getChatId(index: row)
         let chat = DcChat(id: chatId)
-        let summary = chatList.summary(index: row)
+        let summary = chatList.getSummary(index: row)
 
         cell.nameLabel.text = chat.name
         if let img = chat.profileImage {
@@ -167,13 +178,19 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             return nil
         }
 
-        // assigning swipe by delete to chats
-        let delete = UITableViewRowAction(style: .destructive, title: String.localized("global_menu_edit_delete_desktop")) { [unowned self] _, _ in
+        let archive = UITableViewRowAction(style: .destructive, title: String.localized("menu_archive_chat")) { [unowned self] _, _ in
+            let chatId = chatList.getChatId(index: row)
+            self.dcContext.archiveChat(chatId: chatId, archive: true)
+        }
+        archive.backgroundColor = UIColor.gray
+
+        let delete = UITableViewRowAction(style: .destructive, title: String.localized("menu_delete_chat")) { [unowned self] _, _ in
             let chatId = chatList.getChatId(index: row)
             self.showDeleteChatConfirmationAlert(chatId: chatId)
         }
         delete.backgroundColor = UIColor.red
-        return [delete]
+
+        return [archive, delete]
     }
 }
 

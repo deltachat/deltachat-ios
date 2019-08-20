@@ -13,6 +13,10 @@ class DcContext {
         dc_context_unref(contextPointer)
     }
 
+    func archiveChat(chatId: Int, archive: Bool) {
+        dc_archive_chat(self.contextPointer, UInt32(chatId), Int32(archive ? 1 : 0))
+    }
+
     func getSecurejoinQr (chatId: Int) -> String? {
         if let cString = dc_get_securejoin_qr(self.contextPointer, UInt32(chatId)) {
             return String(cString: cString)
@@ -306,11 +310,11 @@ class DcChatlist {
         return Int(dc_chatlist_get_chat_id(chatListPointer, index))
     }
 
-    func getMessageId(index: Int) -> Int {
+    func getMsgId(index: Int) -> Int {
         return Int(dc_chatlist_get_msg_id(chatListPointer, index))
     }
 
-    func summary(index: Int) -> DcLot {
+    func getSummary(index: Int) -> DcLot {
         guard let lotPointer = dc_chatlist_get_summary(self.chatListPointer, index, nil) else {
             fatalError("lot-pointer was nil")
         }
