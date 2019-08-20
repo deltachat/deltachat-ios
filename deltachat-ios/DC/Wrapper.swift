@@ -310,11 +310,11 @@ class DcChatlist {
         return Int(dc_chatlist_get_chat_id(chatListPointer, index))
     }
 
-    func getMessageId(index: Int) -> Int {
+    func getMsgId(index: Int) -> Int {
         return Int(dc_chatlist_get_msg_id(chatListPointer, index))
     }
 
-    func summary(index: Int) -> DcLot {
+    func getSummary(index: Int) -> DcLot {
         guard let lotPointer = dc_chatlist_get_summary(self.chatListPointer, index, nil) else {
             fatalError("lot-pointer was nil")
         }

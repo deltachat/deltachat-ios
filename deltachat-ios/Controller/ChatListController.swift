@@ -139,7 +139,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
         let chatId = chatList.getChatId(index: row)
         let chat = DcChat(id: chatId)
-        let summary = chatList.summary(index: row)
+        let summary = chatList.getSummary(index: row)
 
         cell.nameLabel.text = chat.name
         if let img = chat.profileImage {
