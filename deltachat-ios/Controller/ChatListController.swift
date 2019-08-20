@@ -1,11 +1,12 @@
 import UIKit
 
 class ChatListController: UIViewController {
-    var dcContext: DcContext
     weak var coordinator: ChatListCoordinator?
-    var chatList: DcChatlist?
 
-    lazy var chatTable: UITableView = {
+    private var dcContext: DcContext
+    private var chatList: DcChatlist?
+
+    private lazy var chatTable: UITableView = {
         let chatTable = UITableView()
         chatTable.dataSource = self
         chatTable.delegate = self
@@ -13,11 +14,11 @@ class ChatListController: UIViewController {
         return chatTable
     }()
 
-    var msgChangedObserver: Any?
-    var incomingMsgObserver: Any?
-    var viewChatObserver: Any?
+    private var msgChangedObserver: Any?
+    private var incomingMsgObserver: Any?
+    private var viewChatObserver: Any?
 
-    var newButton: UIBarButtonItem!
+    private var newButton: UIBarButtonItem!
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
@@ -104,7 +105,7 @@ class ChatListController: UIViewController {
         coordinator?.showNewChatController()
     }
 
-    func getChatList() {
+    private func getChatList() {
         guard let chatlistPointer = dc_get_chatlist(mailboxPointer, DC_GCL_NO_SPECIALS, nil, 0) else {
             fatalError("chatlistPointer was nil")
         }
