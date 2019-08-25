@@ -175,17 +175,22 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let row = indexPath.row
         guard let chatList = chatList else {
-            return nil
+            return []
+        }
+
+        let chatId = chatList.getChatId(index: row)
+        if chatId==DC_CHAT_ID_ARCHIVED_LINK {
+            return []
+            // returning nil may result in a default delete action,
+            // see https://forums.developer.apple.com/thread/115030
         }
 
         let archive = UITableViewRowAction(style: .destructive, title: String.localized("menu_archive_chat")) { [unowned self] _, _ in
-            let chatId = chatList.getChatId(index: row)
             self.dcContext.archiveChat(chatId: chatId, archive: true)
         }
         archive.backgroundColor = UIColor.gray
 
         let delete = UITableViewRowAction(style: .destructive, title: String.localized("menu_delete_chat")) { [unowned self] _, _ in
-            let chatId = chatList.getChatId(index: row)
             self.showDeleteChatConfirmationAlert(chatId: chatId)
         }
         delete.backgroundColor = UIColor.red
