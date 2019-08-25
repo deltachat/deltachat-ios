@@ -5,6 +5,7 @@ class ChatListController: UIViewController {
 
     private var dcContext: DcContext
     private var chatList: DcChatlist?
+    private var showArchive: Bool
 
     private lazy var chatTable: UITableView = {
         let chatTable = UITableView()
@@ -20,8 +21,9 @@ class ChatListController: UIViewController {
 
     private var newButton: UIBarButtonItem!
 
-    init(dcContext: DcContext) {
+    init(dcContext: DcContext, showArchive: Bool) {
         self.dcContext = dcContext
+        self.showArchive = showArchive
         super.init(nibName: nil, bundle: nil)
     }
 

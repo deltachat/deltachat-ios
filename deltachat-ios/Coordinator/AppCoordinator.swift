@@ -60,7 +60,7 @@ class AppCoordinator: NSObject, Coordinator {
     }()
 
     private lazy var chatListController: UIViewController = {
-        let controller = ChatListController(dcContext: dcContext)
+        let controller = ChatListController(dcContext: dcContext, showArchive: false)
         let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "chat")
         nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: 3)
