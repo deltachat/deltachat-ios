@@ -197,9 +197,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
         return [archive, delete]
     }
-}
 
-extension ChatListController {
     private func showDeleteChatConfirmationAlert(chatId: Int) {
         let alert = UIAlertController(
             title: String.localized("ask_delete_chat_desktop"),
@@ -207,15 +205,10 @@ extension ChatListController {
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: String.localized("global_menu_edit_delete_desktop"), style: .default, handler: { _ in
-            self.deleteChat(chatId: chatId)
+            self.dcContext.deleteChat(chatId: chatId)
+            self.getChatList()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-
-    private func deleteChat(chatId: Int) {
-        dc_delete_chat(mailboxPointer, UInt32(chatId))
-        self.getChatList()
-    }
-
 }

@@ -13,6 +13,10 @@ class DcContext {
         dc_context_unref(contextPointer)
     }
 
+    func deleteChat(chatId: Int) {
+        dc_delete_chat(self.contextPointer, UInt32(chatId))
+    }
+
     func archiveChat(chatId: Int, archive: Bool) {
         dc_archive_chat(self.contextPointer, UInt32(chatId), Int32(archive ? 1 : 0))
     }
