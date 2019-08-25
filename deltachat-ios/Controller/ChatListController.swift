@@ -108,11 +108,11 @@ class ChatListController: UIViewController {
     }
 
     private func getChatList() {
-        guard let chatlistPointer = dc_get_chatlist(mailboxPointer, 0, nil, 0) else {
-            fatalError("chatlistPointer was nil")
+        var gclFlags: Int32 = 0
+        if showArchive {
+            gclFlags |= DC_GCL_ARCHIVED_ONLY
         }
-        // ownership of chatlistPointer transferred here to ChatList object
-        chatList = DcChatlist(chatListPointer: chatlistPointer)
+        chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
         chatTable.reloadData()
     }
 }
@@ -170,7 +170,11 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         if let chatId = chatList?.getChatId(index: row) {
-            coordinator?.showChat(chatId: chatId)
+            if chatId==DC_CHAT_ID_ARCHIVED_LINK {
+                // TODO
+            } else {
+                coordinator?.showChat(chatId: chatId)
+            }
         }
     }
 
