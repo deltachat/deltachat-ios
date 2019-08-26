@@ -5,6 +5,7 @@ class ChatListController: UIViewController {
 
     private var dcContext: DcContext
     private var chatList: DcChatlist?
+    private var showArchive: Bool
 
     private lazy var chatTable: UITableView = {
         let chatTable = UITableView()
@@ -20,8 +21,9 @@ class ChatListController: UIViewController {
 
     private var newButton: UIBarButtonItem!
 
-    init(dcContext: DcContext) {
+    init(dcContext: DcContext, showArchive: Bool) {
         self.dcContext = dcContext
+        self.showArchive = showArchive
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -106,11 +108,11 @@ class ChatListController: UIViewController {
     }
 
     private func getChatList() {
-        guard let chatlistPointer = dc_get_chatlist(mailboxPointer, DC_GCL_NO_SPECIALS, nil, 0) else {
-            fatalError("chatlistPointer was nil")
+        var gclFlags: Int32 = 0
+        if showArchive {
+            gclFlags |= DC_GCL_ARCHIVED_ONLY
         }
-        // ownership of chatlistPointer transferred here to ChatList object
-        chatList = DcChatlist(chatListPointer: chatlistPointer)
+        chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
         chatTable.reloadData()
     }
 }
@@ -168,33 +170,40 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         if let chatId = chatList?.getChatId(index: row) {
-            coordinator?.showChat(chatId: chatId)
+            if chatId==DC_CHAT_ID_ARCHIVED_LINK {
+                // TODO
+            } else {
+                coordinator?.showChat(chatId: chatId)
+            }
         }
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let row = indexPath.row
         guard let chatList = chatList else {
-            return nil
+            return []
+        }
+
+        let chatId = chatList.getChatId(index: row)
+        if chatId==DC_CHAT_ID_ARCHIVED_LINK {
+            return []
+            // returning nil may result in a default delete action,
+            // see https://forums.developer.apple.com/thread/115030
         }
 
         let archive = UITableViewRowAction(style: .destructive, title: String.localized("menu_archive_chat")) { [unowned self] _, _ in
-            let chatId = chatList.getChatId(index: row)
             self.dcContext.archiveChat(chatId: chatId, archive: true)
         }
         archive.backgroundColor = UIColor.gray
 
         let delete = UITableViewRowAction(style: .destructive, title: String.localized("menu_delete_chat")) { [unowned self] _, _ in
-            let chatId = chatList.getChatId(index: row)
             self.showDeleteChatConfirmationAlert(chatId: chatId)
         }
         delete.backgroundColor = UIColor.red
 
         return [archive, delete]
     }
-}
 
-extension ChatListController {
     private func showDeleteChatConfirmationAlert(chatId: Int) {
         let alert = UIAlertController(
             title: String.localized("ask_delete_chat_desktop"),
@@ -202,15 +211,10 @@ extension ChatListController {
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: String.localized("global_menu_edit_delete_desktop"), style: .default, handler: { _ in
-            self.deleteChat(chatId: chatId)
+            self.dcContext.deleteChat(chatId: chatId)
+            self.getChatList()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-
-    private func deleteChat(chatId: Int) {
-        dc_delete_chat(mailboxPointer, UInt32(chatId))
-        self.getChatList()
-    }
-
 }

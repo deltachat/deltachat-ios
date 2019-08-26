@@ -13,6 +13,16 @@ class DcContext {
         dc_context_unref(contextPointer)
     }
 
+    func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
+        let chatlistPointer = dc_get_chatlist(mailboxPointer, flags, queryString, UInt32(queryId))
+        let chatlist = DcChatlist(chatListPointer: chatlistPointer)
+        return chatlist
+    }
+
+    func deleteChat(chatId: Int) {
+        dc_delete_chat(self.contextPointer, UInt32(chatId))
+    }
+
     func archiveChat(chatId: Int, archive: Bool) {
         dc_archive_chat(self.contextPointer, UInt32(chatId), Int32(archive ? 1 : 0))
     }
@@ -294,15 +304,14 @@ class DcConfig {
 }
 
 class DcChatlist {
-    private var chatListPointer: OpaquePointer
+    private var chatListPointer: OpaquePointer?
 
     var length: Int {
         return dc_chatlist_get_cnt(chatListPointer)
-        // return Int(chatListPointer.pointee.m_cnt)
     }
 
     // takes ownership of specified pointer
-    init(chatListPointer: OpaquePointer) {
+    init(chatListPointer: OpaquePointer?) {
         self.chatListPointer = chatListPointer
     }
 
