@@ -39,3 +39,9 @@ Now build and run - e.g. by pressing Cmd-r - or click on the triangle at the top
 
 ![Screenshot](docs/images/screenshot_build_and_run.png)
 
+If Xcode complains about missing header files (different mac versions may or may not install all headers),
+you can force-install them with the following command:
+
+```bash
+$ installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+```
