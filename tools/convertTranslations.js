@@ -21,15 +21,15 @@ function parseAndroid(data) {
   for (let line of lines) {
     let kv = line.match(rgxKeyValue);
     if (kv != null) {
-      result.parsed.push([kv[1], kv[2].replace(/&quot;/g, '"').
+      result.parsed.push([kv[1], kv[2].replace(/&quot;/g, '\"').
       replace(/&lt;/g, '<').
       replace(/&gt;/g, '>').
       replace(/&amp;/g, '&').
-      replace(/\\t/g, '\t').
-      replace(/\\r/g, '\r').
-      replace(/\\n/g, '\n').
-      replace(/\\\\/g, '\\').
-      replace(/\$s/ig, '$@')])
+      replace(/\t/g, '\t').
+      replace(/\r/g, '\r').
+      replace(/\n/g, '\n').
+      replace(/\\/g, '\\').
+      replace(/$s/ig, '$@')])
       continue;
     }
 
@@ -164,7 +164,7 @@ function toInfoPlistStrings(lines) {
           continue;
         }
         key = key.replace('INFOPLIST.', '').replace(/\./gi, ' ').replace(/\_/gi, '-');
-        let value = line[1].replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t').replace(/"/g, '\\"');
+        let value = line[1].replace(/\\/g, '\\').replace(/\n/g, '\n').replace(/\r/g, '\r').replace(/\t/g, '\t').replace(/"/g, '\"');
         out += `"${key}" = "${value}";\n`;
       }
     }
