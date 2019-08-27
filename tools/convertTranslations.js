@@ -29,7 +29,7 @@ function parseAndroid(data) {
       replace(/\r/g, '\r').
       replace(/\n/g, '\n').
       replace(/\\/g, '\\').
-      replace(/$s/ig, '$@')])
+      replace(/$s/ig, '%@')])
       continue;
     }
 
