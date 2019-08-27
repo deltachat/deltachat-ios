@@ -189,7 +189,7 @@ function toLocalizableStrings(lines) {
       if (key.startsWith("INFOPLIST.")) {
         continue;
       }
-      let value = line[1].replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t').replace(/"/g, '\\"');
+      let value = line[1].replace(/\\/g, '\\').replace(/\n/g, '\n').replace(/\r/g, '\r').replace(/\t/g, '\t').replace(/"/g, '\"');
       out += `"${key}" = "${value}";`;
     }
     out += '\n';
