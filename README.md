@@ -1,8 +1,9 @@
 # deltachat-ios
 
->  Email-based instant messaging for iOS.
+Email-based instant messaging for iOS.
 
 ![Screenshot Chat List](docs/images/screenshot_chat_list.png) ![Screenshot Chat View](docs/images/screenshot_chat_view.png)
+
 
 ## Testing
 
@@ -17,6 +18,7 @@ https://testflight.apple.com/join/uEMc1NxS
 on your iPhone or iPad to try Deltachat iOS Beta.
 
 Check the Changelog (for TestFlight builds) at the bottom to see what's included.
+
 
 ## How to build with Xcode
 
@@ -43,5 +45,5 @@ If Xcode complains about missing header files (different mac versions may or may
 you can force-install them with the following command:
 
 ```bash
-$ installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+$ sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
 ```
