@@ -3,7 +3,7 @@ import MessageKit
 import UIKit
 
 class DcContext {
-    let contextPointer: OpaquePointer
+    let contextPointer: OpaquePointer?
 
     init() {
         contextPointer = dc_context_new(callback_ios, nil, "iOS")
@@ -14,7 +14,7 @@ class DcContext {
     }
 
     func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
-        let chatlistPointer = dc_get_chatlist(mailboxPointer, flags, queryString, UInt32(queryId))
+        let chatlistPointer = dc_get_chatlist(contextPointer, flags, queryString, UInt32(queryId))
         let chatlist = DcChatlist(chatListPointer: chatlistPointer)
         return chatlist
     }
@@ -336,7 +336,7 @@ class DcChatlist {
 }
 
 class DcChat {
-    var chatPointer: OpaquePointer
+    var chatPointer: OpaquePointer?
 
     var id: Int {
         return Int(dc_chat_get_id(chatPointer))
@@ -409,7 +409,7 @@ class DcChat {
 }
 
 class DcMsg: MessageType {
-    private var messagePointer: OpaquePointer
+    private var messagePointer: OpaquePointer?
 
     lazy var sender: SenderType = {
         Sender(id: "\(fromContactId)", displayName: fromContact.name)
@@ -630,7 +630,7 @@ class DcMsg: MessageType {
 }
 
 class DcContact {
-    private var contactPointer: OpaquePointer
+    private var contactPointer: OpaquePointer?
 
     var nameNAddr: String {
         return String(cString: dc_contact_get_name_n_addr(contactPointer))
@@ -702,7 +702,7 @@ class DcContact {
 }
 
 class DcLot {
-    private var dcLotPointer: OpaquePointer
+    private var dcLotPointer: OpaquePointer?
 
     init(_ dcLotPointer: OpaquePointer) {
         self.dcLotPointer = dcLotPointer
