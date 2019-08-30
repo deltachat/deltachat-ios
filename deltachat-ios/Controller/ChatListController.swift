@@ -84,7 +84,12 @@ class ChatListController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         title = String.localized("pref_chats")
+        if showArchive {
+            title = String.localized("chat_archived_chats_title")
+        }
+
         navigationController?.navigationBar.prefersLargeTitles = true
 
         newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
