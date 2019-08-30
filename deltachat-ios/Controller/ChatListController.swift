@@ -194,7 +194,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         let archive = UITableViewRowAction(style: .destructive, title: String.localized("menu_archive_chat")) { [unowned self] _, _ in
             self.dcContext.archiveChat(chatId: chatId, archive: true)
         }
-        archive.backgroundColor = UIColor.gray
+        archive.backgroundColor = UIColor.lightGray
 
         let delete = UITableViewRowAction(style: .destructive, title: String.localized("menu_delete_chat")) { [unowned self] _, _ in
             self.showDeleteChatConfirmationAlert(chatId: chatId)
