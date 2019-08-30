@@ -209,8 +209,10 @@ class ChatViewController: MessagesViewController {
             if let cString = dc_msg_get_text(draft) {
                 let swiftString = String(cString: cString)
                 free(cString)
+                dc_msg_unref(draft)
                 return swiftString
             }
+            dc_msg_unref(draft)
             return nil
         }
         return nil
