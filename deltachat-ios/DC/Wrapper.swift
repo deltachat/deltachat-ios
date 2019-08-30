@@ -3,7 +3,7 @@ import MessageKit
 import UIKit
 
 class DcContext {
-    let contextPointer: OpaquePointer
+    let contextPointer: OpaquePointer?
 
     init() {
         contextPointer = dc_context_new(callback_ios, nil, "iOS")
@@ -14,7 +14,7 @@ class DcContext {
     }
 
     func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
-        let chatlistPointer = dc_get_chatlist(mailboxPointer, flags, queryString, UInt32(queryId))
+        let chatlistPointer = dc_get_chatlist(contextPointer, flags, queryString, UInt32(queryId))
         let chatlist = DcChatlist(chatListPointer: chatlistPointer)
         return chatlist
     }
@@ -306,13 +306,17 @@ class DcConfig {
 class DcChatlist {
     private var chatListPointer: OpaquePointer?
 
-    var length: Int {
-        return dc_chatlist_get_cnt(chatListPointer)
-    }
-
     // takes ownership of specified pointer
     init(chatListPointer: OpaquePointer?) {
         self.chatListPointer = chatListPointer
+    }
+
+    deinit {
+        dc_chatlist_unref(chatListPointer)
+    }
+
+    var length: Int {
+        return dc_chatlist_get_cnt(chatListPointer)
     }
 
     func getChatId(index: Int) -> Int {
@@ -329,14 +333,22 @@ class DcChatlist {
         }
         return DcLot(lotPointer)
     }
-
-    deinit {
-        dc_chatlist_unref(chatListPointer)
-    }
 }
 
 class DcChat {
-    var chatPointer: OpaquePointer
+    var chatPointer: OpaquePointer?
+
+    init(id: Int) {
+        if let p = dc_get_chat(mailboxPointer, UInt32(id)) {
+            chatPointer = p
+        } else {
+            fatalError("Invalid chatID opened \(id)")
+        }
+    }
+
+    deinit {
+        dc_chat_unref(chatPointer)
+    }
 
     var id: Int {
         return Int(dc_chat_get_id(chatPointer))
@@ -394,22 +406,18 @@ class DcChat {
         }
         return nil
     }
-
-    init(id: Int) {
-        if let p = dc_get_chat(mailboxPointer, UInt32(id)) {
-            chatPointer = p
-        } else {
-            fatalError("Invalid chatID opened \(id)")
-        }
-    }
-
-    deinit {
-        dc_chat_unref(chatPointer)
-    }
 }
 
 class DcMsg: MessageType {
-    private var messagePointer: OpaquePointer
+    private var messagePointer: OpaquePointer?
+
+    init(id: Int) {
+        messagePointer = dc_get_msg(mailboxPointer, UInt32(id))
+    }
+
+    deinit {
+        dc_msg_unref(messagePointer)
+    }
 
     lazy var sender: SenderType = {
         Sender(id: "\(fromContactId)", displayName: fromContact.name)
@@ -609,10 +617,6 @@ class DcMsg: MessageType {
         return dc_msg_is_info(messagePointer) == 1
     }
 
-    init(id: Int) {
-        messagePointer = dc_get_msg(mailboxPointer, UInt32(id))
-    }
-
     func summary(chars: Int) -> String? {
         guard let result = dc_msg_get_summarytext(messagePointer, Int32(chars)) else { return nil }
 
@@ -623,14 +627,18 @@ class DcMsg: MessageType {
         let chatId = dc_create_chat_by_msg_id(mailboxPointer, UInt32(id))
         return DcChat(id: Int(chatId))
     }
-
-    deinit {
-        dc_msg_unref(messagePointer)
-    }
 }
 
 class DcContact {
-    private var contactPointer: OpaquePointer
+    private var contactPointer: OpaquePointer?
+
+    init(id: Int) {
+        contactPointer = dc_get_contact(mailboxPointer, UInt32(id))
+    }
+
+    deinit {
+        dc_contact_unref(contactPointer)
+    }
 
     var nameNAddr: String {
         return String(cString: dc_contact_get_name_n_addr(contactPointer))
@@ -680,14 +688,6 @@ class DcContact {
         return Int(dc_contact_get_id(contactPointer))
     }
 
-    init(id: Int) {
-        contactPointer = dc_get_contact(mailboxPointer, UInt32(id))
-    }
-
-    deinit {
-        dc_contact_unref(contactPointer)
-    }
-
     func block() {
         dc_block_contact(mailboxPointer, UInt32(id), 1)
     }
@@ -702,8 +702,9 @@ class DcContact {
 }
 
 class DcLot {
-    private var dcLotPointer: OpaquePointer
+    private var dcLotPointer: OpaquePointer?
 
+    // takes ownership of specified pointer
     init(_ dcLotPointer: OpaquePointer) {
         self.dcLotPointer = dcLotPointer
     }
