@@ -207,9 +207,10 @@ class ChatViewController: MessagesViewController {
     private var textDraft: String? {
         // FIXME: need to free pointer
         if let draft = dc_get_draft(mailboxPointer, UInt32(chatId)) {
-            if let text = dc_msg_get_text(draft) {
-                let s = String(validatingUTF8: text)!
-                return s
+            if let cString = dc_msg_get_text(draft) {
+                let swiftString = String(cString: cString)
+                free(cString)
+                return swiftString
             }
             return nil
         }

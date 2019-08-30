@@ -18,7 +18,9 @@ class ProfileViewController: UITableViewController {
         }
 
         if let cString = dc_get_securejoin_qr(mailboxPointer, 0) {
-            return String(cString: cString)
+            let swiftString = String(cString: cString)
+            free(cString)
+            return swiftString
         }
 
         return nil

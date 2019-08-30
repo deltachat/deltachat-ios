@@ -556,8 +556,10 @@ class AccountSetupController: UITableViewController {
         if !documents.isEmpty {
             logger.info("looking for backup in: \(documents[0])")
 
-            if let file = dc_imex_has_backup(mailboxPointer, documents[0]) {
-                logger.info("restoring backup: \(String(cString: file))")
+            if let cString = dc_imex_has_backup(mailboxPointer, documents[0]) {
+                let file = String(cString: cString)
+                free(cString)
+                logger.info("restoring backup: \(file)")
                 showProgressHud()
                 dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
             }
