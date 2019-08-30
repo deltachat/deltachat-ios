@@ -171,7 +171,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         let row = indexPath.row
         if let chatId = chatList?.getChatId(index: row) {
             if chatId==DC_CHAT_ID_ARCHIVED_LINK {
-                // TODO
+                coordinator?.showArchive()
             } else {
                 coordinator?.showChat(chatId: chatId)
             }
