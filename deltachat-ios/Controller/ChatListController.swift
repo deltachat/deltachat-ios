@@ -191,8 +191,12 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             // see https://forums.developer.apple.com/thread/115030
         }
 
-        let archive = UITableViewRowAction(style: .destructive, title: String.localized("menu_archive_chat")) { [unowned self] _, _ in
-            self.dcContext.archiveChat(chatId: chatId, archive: true)
+        var title = String.localized("menu_archive_chat")
+        if showArchive {
+            title = String.localized("menu_unarchive_chat")
+        }
+        let archive = UITableViewRowAction(style: .destructive, title: title) { [unowned self] _, _ in
+            self.dcContext.archiveChat(chatId: chatId, archive: !self.showArchive)
         }
         archive.backgroundColor = UIColor.lightGray
 
