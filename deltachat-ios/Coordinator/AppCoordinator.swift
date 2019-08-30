@@ -230,6 +230,14 @@ class ChatListCoordinator: Coordinator {
         chatVC.coordinator = coordinator
         navigationController.pushViewController(chatVC, animated: true)
     }
+
+    func showArchive() {
+        let controller = ChatListController(dcContext: dcContext, showArchive: true)
+        let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        controller.coordinator = coordinator
+        navigationController.pushViewController(controller, animated: true)
+    }
 }
 
 class SettingsCoordinator: Coordinator {

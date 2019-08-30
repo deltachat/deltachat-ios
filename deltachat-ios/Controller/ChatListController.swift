@@ -84,7 +84,12 @@ class ChatListController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         title = String.localized("pref_chats")
+        if showArchive {
+            title = String.localized("chat_archived_chats_title")
+        }
+
         navigationController?.navigationBar.prefersLargeTitles = true
 
         newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
@@ -171,7 +176,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         let row = indexPath.row
         if let chatId = chatList?.getChatId(index: row) {
             if chatId==DC_CHAT_ID_ARCHIVED_LINK {
-                // TODO
+                coordinator?.showArchive()
             } else {
                 coordinator?.showChat(chatId: chatId)
             }
@@ -191,10 +196,14 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             // see https://forums.developer.apple.com/thread/115030
         }
 
-        let archive = UITableViewRowAction(style: .destructive, title: String.localized("menu_archive_chat")) { [unowned self] _, _ in
-            self.dcContext.archiveChat(chatId: chatId, archive: true)
+        var title = String.localized("menu_archive_chat")
+        if showArchive {
+            title = String.localized("menu_unarchive_chat")
         }
-        archive.backgroundColor = UIColor.gray
+        let archive = UITableViewRowAction(style: .destructive, title: title) { [unowned self] _, _ in
+            self.dcContext.archiveChat(chatId: chatId, archive: !self.showArchive)
+        }
+        archive.backgroundColor = UIColor.lightGray
 
         let delete = UITableViewRowAction(style: .destructive, title: String.localized("menu_delete_chat")) { [unowned self] _, _ in
             self.showDeleteChatConfirmationAlert(chatId: chatId)
