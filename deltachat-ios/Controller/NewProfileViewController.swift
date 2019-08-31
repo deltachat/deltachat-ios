@@ -277,7 +277,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 
         let profileView = ProfileView(frame: CGRect())
         if let contact = self.contact {
-            let name = DcConfig.displayname ?? contact.name
+            let name = DcConfig.displayname ?? contact.displayName
             profileView.setBackgroundColor(bg)
             profileView.nameLabel.text = name
             profileView.emailLabel.text = contact.email

@@ -31,7 +31,7 @@ class ContactDetailViewController: UITableViewController {
         let cell = ActionCell()
         cell.accessibilityIdentifier = CellIdentifiers.chat.rawValue
         cell.actionColor = SystemColor.blue.uiColor
-        cell.actionTitle = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), contact.name)
+        cell.actionTitle = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), contact.nameNAddr)
         cell.selectionStyle = .none
         return cell
     }()
@@ -116,11 +116,12 @@ class ContactDetailViewController: UITableViewController {
     override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let header = ContactDetailHeader()
-            header.updateDetails(title: contact.name, subtitle: contact.email)
+            let displayName = contact.displayName
+            header.updateDetails(title: displayName, subtitle: contact.email)
             if let img = contact.profileImage {
                 header.setImage(img)
             } else {
-                header.setBackupImage(name: contact.name, color: contact.color)
+                header.setBackupImage(name: displayName, color: contact.color)
             }
             header.setVerified(isVerified: contact.isVerified)
             return header

@@ -69,9 +69,10 @@ class GroupNameController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
             if let contactCell = cell as? ContactCell {
                 let contact = DcContact(id: groupContactIds[row])
-                contactCell.nameLabel.text = contact.name
+                let displayName = contact.displayName
+                contactCell.nameLabel.text = displayName
                 contactCell.emailLabel.text = contact.email
-                contactCell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
+                contactCell.initialsLabel.text = Utils.getInitials(inputName: displayName)
                 contactCell.setColor(contact.color)
             }
             return cell

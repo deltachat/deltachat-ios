@@ -421,7 +421,7 @@ class DcMsg: MessageType {
     }
 
     lazy var sender: SenderType = {
-        Sender(id: "\(fromContactId)", displayName: fromContact.name)
+        Sender(id: "\(fromContactId)", displayName: fromContact.displayName)
     }()
 
     lazy var sentDate: Date = {
@@ -641,6 +641,13 @@ class DcContact {
 
     deinit {
         dc_contact_unref(contactPointer)
+    }
+
+    var displayName: String {
+        guard let cString = dc_contact_get_display_name(contactPointer) else { return "" }
+        let swiftString = String(cString: cString)
+        free(cString)
+        return swiftString
     }
 
     var nameNAddr: String {
