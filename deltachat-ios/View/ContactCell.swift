@@ -209,10 +209,11 @@ class ContactCell: UITableViewCell {
         deliveryStatusIndicator.image = indicatorImage
     }
 
-    func setTimeLabel(_ timestamp: Int?) {
-        if let timestamp = timestamp {
+    func setTimeLabel(_ timestamp: Int64?) {
+        let timestamp = timestamp ?? 0
+        if timestamp != 0 {
             timeLabel.isHidden = false
-            timeLabel.text = DateUtils.getBriefRelativeTimeSpanString(timeStamp: timestamp)
+            timeLabel.text = DateUtils.getBriefRelativeTimeSpanString(timeStamp: Int(timestamp))
         } else {
             timeLabel.isHidden = true
             timeLabel.text = nil
