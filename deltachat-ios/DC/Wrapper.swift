@@ -643,6 +643,13 @@ class DcContact {
         dc_contact_unref(contactPointer)
     }
 
+    var displayName: String {
+        guard let cString = dc_contact_get_display_name(contactPointer) else { return "" }
+        let swiftString = String(cString: cString)
+        free(cString)
+        return swiftString
+    }
+
     var nameNAddr: String {
         guard let cString = dc_contact_get_name_n_addr(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
