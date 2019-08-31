@@ -30,8 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var state = ApplicationState.stopped
 
     private func getCoreInfo() -> [[String]] {
-        if let cInfo = dc_get_info(mailboxPointer) {
-            let info = String(cString: cInfo)
+        if let cString = dc_get_info(mailboxPointer) {
+            let info = String(cString: cString)
+            free(cString)
             logger.info(info)
             return info.components(separatedBy: "\n").map { val in
                 val.components(separatedBy: "=")

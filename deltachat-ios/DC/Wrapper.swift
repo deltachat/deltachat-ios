@@ -29,7 +29,9 @@ class DcContext {
 
     func getSecurejoinQr (chatId: Int) -> String? {
         if let cString = dc_get_securejoin_qr(self.contextPointer, UInt32(chatId)) {
-            return String(cString: cString)
+            let swiftString = String(cString: cString)
+            free(cString)
+            return swiftString
         }
         return nil
     }
@@ -48,7 +50,9 @@ class DcContext {
 
     func getMsgInfo(msgId: Int) -> String {
         if let cString = dc_get_msg_info(self.contextPointer, UInt32(msgId)) {
-            return String(cString: cString)
+            let swiftString = String(cString: cString)
+            free(cString)
+            return swiftString
         }
         return "ErrGetMsgInfo"
     }
@@ -57,17 +61,13 @@ class DcContext {
 
 class DcConfig {
     private class func getOptStr(_ key: String) -> String? {
-        let p = dc_get_config(mailboxPointer, key)
-
-        if let pSafe = p {
-            let c = String(cString: pSafe)
-            if c.isEmpty {
-                return nil
-            }
-            return c
+        guard let cString = dc_get_config(mailboxPointer, key) else { return nil }
+        let value = String(cString: cString)
+        free(cString)
+        if value.isEmpty {
+            return nil
         }
-
-        return nil
+        return value
     }
 
     private class func setOptStr(_ key: String, _ value: String?) {
@@ -355,7 +355,10 @@ class DcChat {
     }
 
     var name: String {
-        return String(cString: dc_chat_get_name(chatPointer))
+        guard let cString = dc_chat_get_name(chatPointer) else { return "" }
+        let swiftString = String(cString: cString)
+        free(cString)
+        return swiftString
     }
 
     var type: Int {
@@ -379,29 +382,27 @@ class DcChat {
     }
 
     lazy var profileImage: UIImage? = { [unowned self] in
-        let file = dc_chat_get_profile_image(chatPointer)
-        if let cFile = file {
-            let filename = String(cString: cFile)
-            let path: URL = URL(fileURLWithPath: filename, isDirectory: false)
-            if path.isFileURL {
-                do {
-                    let data = try Data(contentsOf: path)
-                    let image = UIImage(data: data)
-                    return image
-                } catch {
-                    logger.warning("failed to load image: \(filename), \(error)")
-                    return nil
-                }
+        guard let cString = dc_chat_get_profile_image(chatPointer) else { return nil }
+        let filename = String(cString: cString)
+        free(cString)
+        let path: URL = URL(fileURLWithPath: filename, isDirectory: false)
+        if path.isFileURL {
+            do {
+                let data = try Data(contentsOf: path)
+                let image = UIImage(data: data)
+                return image
+            } catch {
+                logger.warning("failed to load image: \(filename), \(error)")
+                return nil
             }
-            return nil
         }
-
         return nil
         }()
 
     var subtitle: String? {
         if let cString = dc_chat_get_subtitle(chatPointer) {
             let str = String(cString: cString)
+            free(cString)
             return str.isEmpty ? nil : str
         }
         return nil
@@ -488,9 +489,10 @@ class DcMsg: MessageType {
     }
 
     var text: String? {
-        guard let result = dc_msg_get_text(messagePointer) else { return nil }
-
-        return String(cString: result)
+        guard let cString = dc_msg_get_text(messagePointer) else { return nil }
+        let swiftString = String(cString: cString)
+        free(cString)
+        return swiftString
     }
 
     var viewtype: MessageViewType? {
@@ -543,9 +545,9 @@ class DcMsg: MessageType {
         }()
 
     var file: String? {
-        if let cStr = dc_msg_get_file(messagePointer) {
-            let str = String(cString: cStr)
-
+        if let cString = dc_msg_get_file(messagePointer) {
+            let str = String(cString: cString)
+            free(cString)
             return str.isEmpty ? nil : str
         }
 
@@ -553,9 +555,9 @@ class DcMsg: MessageType {
     }
 
     var filemime: String? {
-        if let cStr = dc_msg_get_filemime(messagePointer) {
-            let str = String(cString: cStr)
-
+        if let cString = dc_msg_get_filemime(messagePointer) {
+            let str = String(cString: cString)
+            free(cString)
             return str.isEmpty ? nil : str
         }
 
@@ -563,9 +565,9 @@ class DcMsg: MessageType {
     }
 
     var filename: String? {
-        if let cStr = dc_msg_get_filename(messagePointer) {
-            let str = String(cString: cStr)
-
+        if let cString = dc_msg_get_filename(messagePointer) {
+            let str = String(cString: cString)
+            free(cString)
             return str.isEmpty ? nil : str
         }
 
@@ -618,9 +620,10 @@ class DcMsg: MessageType {
     }
 
     func summary(chars: Int) -> String? {
-        guard let result = dc_msg_get_summarytext(messagePointer, Int32(chars)) else { return nil }
-
-        return String(cString: result)
+        guard let cString = dc_msg_get_summarytext(messagePointer, Int32(chars)) else { return nil }
+        let swiftString = String(cString: cString)
+        free(cString)
+        return swiftString
     }
 
     func createChat() -> DcChat {
@@ -641,15 +644,24 @@ class DcContact {
     }
 
     var nameNAddr: String {
-        return String(cString: dc_contact_get_name_n_addr(contactPointer))
+        guard let cString = dc_contact_get_name_n_addr(contactPointer) else { return "" }
+        let swiftString = String(cString: cString)
+        free(cString)
+        return swiftString
     }
 
     var name: String {
-        return String(cString: dc_contact_get_name(contactPointer))
+        guard let cString = dc_contact_get_name(contactPointer) else { return "" }
+        let swiftString = String(cString: cString)
+        free(cString)
+        return swiftString
     }
 
     var email: String {
-        return String(cString: dc_contact_get_addr(contactPointer))
+        guard let cString = dc_contact_get_addr(contactPointer) else { return "" }
+        let swiftString = String(cString: cString)
+        free(cString)
+        return swiftString
     }
 
     var isVerified: Bool {
@@ -661,22 +673,19 @@ class DcContact {
     }
 
     lazy var profileImage: UIImage? = { [unowned self] in
-        let file = dc_contact_get_profile_image(contactPointer)
-        if let cFile = file {
-            let filename = String(cString: cFile)
-            let path: URL = URL(fileURLWithPath: filename, isDirectory: false)
-            if path.isFileURL {
-                do {
-                    let data = try Data(contentsOf: path)
-                    return UIImage(data: data)
-                } catch {
-                    logger.warning("failed to load image: \(filename), \(error)")
-                    return nil
-                }
+        guard let cString = dc_contact_get_profile_image(contactPointer) else { return nil }
+        let filename = String(cString: cString)
+        free(cString)
+        let path: URL = URL(fileURLWithPath: filename, isDirectory: false)
+        if path.isFileURL {
+            do {
+                let data = try Data(contentsOf: path)
+                return UIImage(data: data)
+            } catch {
+                logger.warning("failed to load image: \(filename), \(error)")
+                return nil
             }
-            return nil
         }
-
         return nil
     }()
 
@@ -714,8 +723,10 @@ class DcLot {
     }
 
     var text1: String? {
-        guard let result = dc_lot_get_text1(dcLotPointer) else { return nil }
-        return String(cString: result)
+        guard let cString = dc_lot_get_text1(dcLotPointer) else { return nil }
+        let swiftString = String(cString: cString)
+        free(cString)
+        return swiftString
     }
 
     var text1Meaning: Int {
@@ -723,8 +734,10 @@ class DcLot {
     }
 
     var text2: String? {
-        guard let result = dc_lot_get_text2(dcLotPointer) else { return nil }
-        return String(cString: result)
+        guard let cString = dc_lot_get_text2(dcLotPointer) else { return nil }
+        let swiftString = String(cString: cString)
+        free(cString)
+        return swiftString
     }
 
     var timestamp: Int {
