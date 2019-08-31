@@ -421,7 +421,7 @@ class DcMsg: MessageType {
     }
 
     lazy var sender: SenderType = {
-        Sender(id: "\(fromContactId)", displayName: fromContact.name)
+        Sender(id: "\(fromContactId)", displayName: fromContact.displayName)
     }()
 
     lazy var sentDate: Date = {

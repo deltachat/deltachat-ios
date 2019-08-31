@@ -134,9 +134,10 @@ class GroupMembersViewController: UITableViewController {
         let contactRow = row
 
         let contact = DcContact(id: contactIds[contactRow])
-        cell.nameLabel.text = contact.name
+        let displayName = contact.displayName
+        cell.nameLabel.text = displayName
         cell.emailLabel.text = contact.email
-        cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
+        cell.initialsLabel.text = Utils.getInitials(inputName: displayName)
         cell.accessoryType = selectedContactIds.contains(contactIds[row]) ? .checkmark : .none
         cell.setColor(contact.color)
 

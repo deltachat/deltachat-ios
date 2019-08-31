@@ -138,7 +138,7 @@ class ProfileViewController: UITableViewController {
         if section == 0 {
             let contactCell = ContactCell()
             if let contact = self.contact {
-                let name = DcConfig.displayname ?? contact.name
+                let name = DcConfig.displayname ?? contact.displayName
                 contactCell.backgroundColor = bg
                 contactCell.nameLabel.text = name
                 contactCell.emailLabel.text = contact.email

@@ -275,6 +275,7 @@ class NewChatViewController: UITableViewController {
 
     private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {
         let contact = contactWithHighlight.contact
+        let displayName = contact.displayName
 
         if let nameHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .NAME }).first,
             let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {
@@ -282,13 +283,13 @@ class NewChatViewController: UITableViewController {
             let nameLabelFontSize = cell.nameLabel.font.pointSize
             let emailLabelFontSize = cell.emailLabel.font.pointSize
 
-            cell.nameLabel.attributedText = contact.name.boldAt(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
+            cell.nameLabel.attributedText = displayName.boldAt(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
             cell.emailLabel.attributedText = contact.email.boldAt(indexes: emailHighlightedIndexes.indexes, fontSize: emailLabelFontSize)
         } else {
-            cell.nameLabel.text = contact.name
+            cell.nameLabel.text = displayName
             cell.emailLabel.text = contact.email
         }
-        cell.initialsLabel.text = Utils.getInitials(inputName: contact.name)
+        cell.initialsLabel.text = Utils.getInitials(inputName: displayName)
         cell.setColor(contact.color)
     }
 
