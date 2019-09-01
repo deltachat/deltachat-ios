@@ -253,11 +253,6 @@ class DcConfig {
         get { return getInt("show_emails") }
     }
 
-    class var saveMimeHeaders: Bool {
-        set { setBool("save_mime_headers", newValue) }
-        get { return getBool("save_mime_headers") }
-    }
-
     class var configuredEmail: String {
         return getOptStr("configured_addr") ?? ""
     }

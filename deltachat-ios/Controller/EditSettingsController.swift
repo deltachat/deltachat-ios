@@ -6,13 +6,13 @@ class EditSettingsController: UITableViewController {
     private var statusCellBackup: String?
 
     private lazy var displayNameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized("display_name"), placeholder: String.localized("display_name"))
+        let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("pref_your_name"))
         cell.setText(text: DcConfig.displayname ?? nil)
         return cell
     }()
 
     private lazy var statusCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized("status"), placeholder: String.localized("your_status"))
+        let cell = TextFieldCell(description: String.localized("pref_default_status_label"), placeholder: String.localized("pref_default_status_label"))
         cell.setText(text: DcConfig.selfstatus ?? nil)
         return cell
     }()
@@ -27,6 +27,7 @@ class EditSettingsController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = String.localized("pref_profile_info_headline")
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -648,12 +648,6 @@
 "create_backup" = "Create backup";
 "delete_account" = "Delete Account";
 "delete_account_message" = "Are you sure you wante to delete your account data?";
-"display_name" = "Display Name";
-"status" = "Status";
-"configure_my_account" = "Configure my Account";
-"save_mime_headers" = "Save Mime Headers";
-"flags" = "Flags";
-"user_details" = "User Details";
 "danger" = "Danger";
 "creating_backup" = "Creating Backup";
 "group_info" = "Group Info";

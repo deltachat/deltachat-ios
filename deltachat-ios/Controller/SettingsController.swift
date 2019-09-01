@@ -20,7 +20,6 @@ internal final class SettingsViewController: QuickTableViewController {
     static let watchSentbox: Int = 4
     static let watchMvBox: Int = 5
     static let MvToMvbox: Int = 6
-    static let SaveMimeHeaders: Int = 7
     private typealias SVC = SettingsViewController
 
     override func viewDidLoad() {
@@ -101,30 +100,37 @@ internal final class SettingsViewController: QuickTableViewController {
 
         tableContents = [
             Section(
-                title: String.localized("user_details"),
+                title: String.localized("pref_profile_info_headline"),
                 rows: [
                     //FIXME: fix action callback!
-                    NavigationRow(text: String.localized("display_name"), detailText: .value1(DcConfig.displayname ?? ""), action: {
+                    NavigationRow(text: String.localized("pref_your_name"), detailText: .value1(DcConfig.displayname ?? ""), action: {
                         [weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.DISPLAYNAME)
                     }),
-                    NavigationRow(text: String.localized("status"), detailText: .value1(DcConfig.selfstatus ?? ""), action: {
+                    NavigationRow(text: String.localized("pref_default_status_label"), detailText: .value1(DcConfig.selfstatus ?? ""), action: {
                         [weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.STATUS)
                     }),
-                    TapActionRow(text: String.localized("configure_my_account"), action: { [weak self] in self?.presentAccountSetup($0) }),
+                    TapActionRow(text: String.localized("pref_password_and_account_settings"), action: { [weak self] in self?.presentAccountSetup($0) }),
                 ]
             ),
+
             Section(
-                title: String.localized("flags"),
+                title: String.localized("pref_privacy"),
                 rows: [
-                    SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),
-                              switchValue: DcConfig.e2eeEnabled,
-                              action: editCell(key: SVC.e2eeEnabled)),
                     SwitchRow(text: String.localized("pref_read_receipts"),
                               switchValue: DcConfig.mdnsEnabled,
                               action: editCell(key: SVC.readReceipts)),
+                    SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),
+                              switchValue: DcConfig.e2eeEnabled,
+                              action: editCell(key: SVC.e2eeEnabled)),
+                ]
+            ),
+
+            Section(
+                title: String.localized("menu_advanced"),
+                rows: [
                     SwitchRow(text: String.localized("pref_watch_inbox_folder"),
                               switchValue: DcConfig.inboxWatch,
-                              action: editCell(key: SVC.watchMvBox)),
+                              action: editCell(key: SVC.watchInbox)),
                     SwitchRow(text: String.localized("pref_watch_sent_folder"),
                               switchValue: DcConfig.sentboxWatch,
                               action: editCell(key: SVC.watchSentbox)),
@@ -134,9 +140,6 @@ internal final class SettingsViewController: QuickTableViewController {
                     SwitchRow(text: String.localized("pref_auto_folder_moves"),
                               switchValue: DcConfig.mvboxMove,
                               action: editCell(key: SVC.MvToMvbox)),
-                    SwitchRow(text: String.localized("save_mime_headers"),
-                              switchValue: DcConfig.saveMimeHeaders,
-                              action: editCell(key: SVC.SaveMimeHeaders))
                 ]
             ),
 
@@ -172,8 +175,6 @@ internal final class SettingsViewController: QuickTableViewController {
                     DcConfig.mvboxWatch = value
                 case SVC.MvToMvbox:
                     DcConfig.mvboxMove = value
-                case SVC.SaveMimeHeaders:
-                    DcConfig.saveMimeHeaders = value
                 default:
                     logger.info("unknown key", String(key))
                 }
