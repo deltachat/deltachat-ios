@@ -112,15 +112,22 @@ internal final class SettingsViewController: QuickTableViewController {
                     TapActionRow(text: String.localized("pref_password_and_account_settings"), action: { [weak self] in self?.presentAccountSetup($0) }),
                 ]
             ),
+
             Section(
-                title: String.localized("menu_advanced"),
+                title: String.localized("pref_privacy"),
                 rows: [
-                    SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),
-                              switchValue: DcConfig.e2eeEnabled,
-                              action: editCell(key: SVC.e2eeEnabled)),
                     SwitchRow(text: String.localized("pref_read_receipts"),
                               switchValue: DcConfig.mdnsEnabled,
                               action: editCell(key: SVC.readReceipts)),
+                    SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),
+                              switchValue: DcConfig.e2eeEnabled,
+                              action: editCell(key: SVC.e2eeEnabled)),
+                ]
+            ),
+
+            Section(
+                title: String.localized("menu_advanced"),
+                rows: [
                     SwitchRow(text: String.localized("pref_watch_inbox_folder"),
                               switchValue: DcConfig.inboxWatch,
                               action: editCell(key: SVC.watchInbox)),
