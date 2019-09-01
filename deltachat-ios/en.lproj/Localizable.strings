@@ -651,7 +651,6 @@
 "display_name" = "Display Name";
 "status" = "Status";
 "configure_my_account" = "Configure my Account";
-"save_mime_headers" = "Save Mime Headers";
 "flags" = "Flags";
 "user_details" = "User Details";
 "danger" = "Danger";

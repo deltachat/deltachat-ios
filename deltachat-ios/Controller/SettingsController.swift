@@ -20,7 +20,6 @@ internal final class SettingsViewController: QuickTableViewController {
     static let watchSentbox: Int = 4
     static let watchMvBox: Int = 5
     static let MvToMvbox: Int = 6
-    static let SaveMimeHeaders: Int = 7
     private typealias SVC = SettingsViewController
 
     override func viewDidLoad() {
@@ -134,9 +133,6 @@ internal final class SettingsViewController: QuickTableViewController {
                     SwitchRow(text: String.localized("pref_auto_folder_moves"),
                               switchValue: DcConfig.mvboxMove,
                               action: editCell(key: SVC.MvToMvbox)),
-                    SwitchRow(text: String.localized("save_mime_headers"),
-                              switchValue: DcConfig.saveMimeHeaders,
-                              action: editCell(key: SVC.SaveMimeHeaders))
                 ]
             ),
 
@@ -172,8 +168,6 @@ internal final class SettingsViewController: QuickTableViewController {
                     DcConfig.mvboxWatch = value
                 case SVC.MvToMvbox:
                     DcConfig.mvboxMove = value
-                case SVC.SaveMimeHeaders:
-                    DcConfig.saveMimeHeaders = value
                 default:
                     logger.info("unknown key", String(key))
                 }
