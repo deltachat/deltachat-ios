@@ -113,7 +113,7 @@ internal final class SettingsViewController: QuickTableViewController {
                 ]
             ),
             Section(
-                title: String.localized("flags"),
+                title: String.localized("menu_advanced"),
                 rows: [
                     SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),
                               switchValue: DcConfig.e2eeEnabled,
