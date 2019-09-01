@@ -5,6 +5,12 @@ class EditSettingsController: UITableViewController {
     private var displayNameBackup: String?
     private var statusCellBackup: String?
 
+    private let section1 = 0
+    private let section1Name = 0
+    private let section1Status = 1
+    private let section1RowCount = 2
+    private let sectionCount = 1
+
     private lazy var displayNameCell: TextFieldCell = {
         let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("pref_your_name"))
         cell.setText(text: DcConfig.displayname ?? nil)
@@ -46,19 +52,25 @@ class EditSettingsController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return sectionCount
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return section1RowCount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = indexPath.section
-        if section == 0 {
+        if indexPath.section == section1 && indexPath.row == section1Name {
             return displayNameCell
+        }
+        return statusCell
+    }
+
+    override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == section1 {
+            return String.localized("pref_who_can_see_profile_explain")
         } else {
-            return statusCell
+            return nil
         }
     }
 
