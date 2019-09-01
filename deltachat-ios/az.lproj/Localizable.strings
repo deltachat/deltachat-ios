@@ -174,6 +174,7 @@
 "chat_please_enter_message" = "Mesajı daxıl edin";
 "chat_camera_unavailable" = "Camera əlçatmazdır.";
 "chat_unable_to_record_audio" = "Səs yaza bilmir.";
+"chat_no_messages_hint" = "%1$@:\n\n• mesaj göndərin, bu normaldır əgər %2$@  Delta Chat istifadə etmirsə.\n\n• İlk mesajın çatması müəyyən qədər vaxta ehtiyacı var və mesaj şəfrələnməmiş ola bilir ";
 "chat_new_group_hint" = "Başqalarının bu qrup daxilində cavab verməsinə imkan verən ilk mesajı yaradın. \n\n• Bütün üzvlər Delta Chat istifadə etsələr daha yaxşıdır. \n\n• İlk mesajı çatdırmaq bir müddət ala bilər.";
 "chat_record_slide_to_cancel" = "Ləğv etmək üçün sürüşdürün";
 "chat_record_explain" = "Bir səsli mesajı yazmaq üçün toxunun və saxlayın, göndərmək üçün buraxın";
@@ -224,6 +225,9 @@
 
 // invite
 "invite_slogan" = "Dostlar dostlar mesaj bunkerində kilidlənməyə imkan vermirlər.";
+"invite_default_text" = "Gəl  Delta Chat-a keçək %1$@ - sən mənə mesaj yaza bilərsə %2$@- ə mesaj yaza bilərsən";
+
+
 // welcome and login
 "welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "Dünyanın ən böyük auditoriyasına sahib olan mesenjeri. Azad və müstəqil.";

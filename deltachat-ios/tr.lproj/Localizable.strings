@@ -91,7 +91,7 @@
 "menu_show_global_map" = "Tüm konumları göster";
 "menu_archive_chat" = "Sohbeti arşivle";
 "menu_unarchive_chat" = "Sohbeti arşivden çıkart";
-"menu_add_attachment" = "Ek ekle";
+"menu_add_attachment" = "İlişik ekle";
 "menu_leave_group" = "Gruptan ayrıl";
 "menu_delete_chat" = "Sohbeti sil";
 "menu_delete_messages" = "İletileri sil";
@@ -103,9 +103,9 @@
 "menu_forward" = "İletiyi ilet";
 "menu_resend" = "İletiyi yeniden gönder";
 "menu_reply" = "İletiye yanıt ver";
-"menu_mute" = "Bildirimlerin sesini kıs";
+"menu_mute" = "Bildirimleri sessize al";
 "menu_unmute" = "Sesini aç";
-"menu_export_attachment" = "Eki dışa aktar";
+"menu_export_attachment" = "İlişiği dışa aktar";
 "menu_all_media" = "Tüm ortamlar";
 "menu_share" = "Paylaş";
 "menu_block_contact" = "Kişiyi engelle";
@@ -131,11 +131,11 @@
 "menu_save_log" = "Günlüğü kaydet";
 "title_share_location" = "Tüm grup üyeleriyle konum paylaş";
 
-"mute_for_one_hour" = "1 saatliğine sesini kıs";
-"mute_for_two_hours" = "2 saatliğine sesini kıs";
-"mute_for_one_day" = "1 günlüğüne sesini kıs";
-"mute_for_seven_days" = "7 günlüğüne sesini kıs";
-"mute_forever" = "Sonsuza dek sesini kıs";
+"mute_for_one_hour" = "1 saatliğine sessize al";
+"mute_for_two_hours" = "2 saatliğine sessize al";
+"mute_for_one_day" = "1 günlüğüne sessize al";
+"mute_for_seven_days" = "7 günlüğüne sessize al";
+"mute_forever" = "Sonsuza dek sessize al";
 
 "share_location_once" = "bir kez";
 "share_location_for_5_minutes" = "5 dakikalığına";
@@ -148,7 +148,7 @@
 // get confirmations
 "ask_leave_group" = "Bu gruptan ayrılmak istediğinizden emin misiniz?";
 "ask_forward" = "İletiler %1$@ alıcısına iletilsin mi?";
-"ask_export_attachment" = "Ek dışa aktarılsın mı? Ekleri dışa aktarmak, aygıtınızdaki tüm diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
+"ask_export_attachment" = "İlişik dışa aktarılsın mı? İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
 "ask_block_contact" = "Bu kişi engellensin mi? Artık bu kişiden gelen iletileri almayacaksınız.";
 "ask_unblock_contact" = "Bu kişinin engellemesi kaldırılsın mı? Bir kez daha bu kişiden gelen iletileri alabileceksiniz.";
 "ask_delete_contacts" = "Kişiler silinsin mi? Bu, seçilen kişileri kalıcı olarak silecek.\n\nSohbetleri süren kişiler ve sistemin adres defterinden gelen kişiler kalıcı olarak silinemez.";
@@ -300,7 +300,7 @@
 "pref_trim_length_limit" = "Sohbet uzunluk sınırı";
 "pref_trim_length_limit_summary" = "Sohbet başına %d ileti";
 "pref_trim_now_button" = "Tüm sohbetleri şimdi kırp";
-"pref_trim_now_ask" = "Tüm eski iletiler şimdi silinsin mi? Bu, tüm sohbetleri hemen en son %d iletiye kırpacak.";
+"pref_trim_now_ask" = "Tüm eski iletiler şimdi silinsin mi? Bu, tüm sohbetleri hemen en son %d en yeni iletiye kırpacak.";
 "pref_blocked_contacts" = "Engellenen kişiler";
 "pref_profile_photo_remove_ask" = "Profil fotoğrafı kaldırılsın mı?";
 "pref_help_url" = "https://delta.chat/en/help";
@@ -323,7 +323,7 @@
 "pref_change_secret_explain" = "PIN / desen / parmak izinizi sistem ayarları üzerinden değiştirin";
 "pref_screen_security" = "Ekran güvenliği";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
-"pref_screen_security_explain" = "Son listesinde ve uygulamanın içinde ekran görüntülerinin engellenmesini iste";
+"pref_screen_security_explain" = "Yeni listesinde ve uygulamanın içinde ekran görüntülerinin engellenmesini iste";
 "pref_screen_security_please_restart_hint" = "Ekran güvenliği ayarını uygulamak için lütfen uygulamayı yeniden başlatın.";
 "pref_notifications" = "Bildirimler";
 "pref_notifications_show" = "Göster";
@@ -388,7 +388,7 @@
 "pref_show_emails_accepted_contacts" = "Onaylanan kişiler için";
 "pref_show_emails_all" = "Tümü";
 "pref_empty_server_title" = "TEHLİKELİ BÖLGE: E-postaları sunucudan sil";
-"pref_empty_server_msg" = "Bu işlev, verilen klasörlerdeki sohbet iletilerini kapsayıp TÜM e-postaları silerek IMAP sunucunuzda alan boşaltmanıza yardım eder. Bu aygıttaki iletiler silinmeyecek.  Silme geri alınamaz!";
+"pref_empty_server_msg" = "Bu işlev, sohbet iletilerini kapsayıp verilen klasörlerdeki TÜM e-postaları silerek IMAP sunucunuzda alan boşaltmanıza yardım eder. Bu aygıttaki iletiler silinmeyecek.  Silme geri alınamaz!";
 "pref_empty_server_inbox" = "Gelen Kutusu klasöründeki TÜM e-postaları sil";
 "pref_empty_server_mvbox" = "DeltaChat klasöründeki TÜM e-postaları sil";
 "pref_empty_server_do_button" = "E-postaları sil";
@@ -467,7 +467,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%2$d sohbette %1$d yeni ileti";
-"notify_most_recent_from" = "En son gönderen: %1$@";
+"notify_most_recent_from" = "En yeni: %1$@";
 "notify_media_message_with_text" = "Ortam iletisi: %s";
 "notify_mark_all_read" = "Tümünü okundu olarak imle";
 "notify_mark_read" = "Okundu imi";
@@ -492,8 +492,8 @@
 "perm_explain_need_for_storage_access_share" = "Delta Chat\\'in seçilen dosyaları paylaşmak için dosyalarınıza erişmesi gerekir.";
 "perm_explain_access_to_camera_denied" = "Delta Chat, fotoğraflar ya da videolar çekmek için kamera izni gerektirir ama kalıcı olarak reddedildi. Lütfen uygulama ayarları menüsüne gidin, \\\"İzinler\\\"i seçin ve \\\"Kamera\\\"yı etkinleştirin.";
 "perm_explain_access_to_mic_denied" = "Delta Chat, sesli iletiler göndermek için Mikrofon izni gerektirir ama kalıcı olarak reddedildi. Lütfen uygulama ayarlarına gidin, \\\"İzinler\\\"i seçin ve \\\"Mikrofon\\\"u etkinleştirin.";
-"perm_explain_access_to_storage_denied" = "Delta Chat, fotoğrafları, videoları ya da sesleri eklemek ya da dışa aktarmak için depolama izni gerektirir ama kalıcı olarak reddedildi. Lütfen uygulama ayarları menüsüne gidin, \\\"İzinler\\\"i seçin ve \\\"Depolama\\\"yı etkinleştirin.";
-"perm_explain_access_to_location_denied" = "Delta Chat, bir konum eklemek için Konum izni gerektirir ama kalıcı olarak reddedildi. Lütfen uygulama ayarları menüsüne gidin, \\\"İzinler\\\"i seçin ve \\\"Konum\\\"u etkinleştirin.";
+"perm_explain_access_to_storage_denied" = "Delta Chat, fotoğrafları, videoları ya da sesleri iliştirmek ya da dışa aktarmak için depolama izni gerektirir ama kalıcı olarak reddedildi. Lütfen uygulama ayarları menüsüne gidin, \\\"İzinler\\\"i seçin ve \\\"Depolama\\\"yı etkinleştirin.";
+"perm_explain_access_to_location_denied" = "Delta Chat, bir konum iliştirmek için Konum izni gerektirir ama kalıcı olarak reddedildi. Lütfen uygulama ayarları menüsüne gidin, \\\"İzinler\\\"i seçin ve \\\"Konum\\\"u etkinleştirin.";
 "perm_enable_bg_reminder_title" = "Delta Chat artalandayken iletileri almak için buraya dokunun.";
 "perm_enable_bg_reminder_text" = "Delta Chat, kaynakların en azını kullanır ve pilinizi boşaltmamaya özen gösterir.";
 
@@ -552,7 +552,7 @@
 "reply_to_message_desktop" = "İletiye yanıt ver";
 "select_group_image_desktop" = "Grup görseli seç";
 "imex_progress_title_desktop" = "Yedekleme ilerlemesi";
-"download_attachment_desktop" = "Eki indir";
+"download_attachment_desktop" = "İlişiği indir";
 "export_backup_desktop" = "Yedeği dışa aktar";
 "transfer_key_desktop" = "Anahtarı aktar";
 "show_key_transfer_message_desktop" = "Anahtarınız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Bir ayarlama kodu girmeniz istenmeli. İsteme aşağıdaki sayıları yazın. Bitirdiğinizde, diğer aygıtınız Autocrypt kullanmaya hazır olacak.";
@@ -595,7 +595,7 @@
 "media_tab_documents" = "Belgeler";
 "media_no_media_hint" = "Ortam yok.";
 "media_no_documents_hint" = "Belge yok.";
-"language_be" = "Belçika";
+"language_be" = "Belarusça";
 "language_ca" = "Katalanca";
 "language_da" = "Danca";
 "language_de" = "Almanca";
@@ -611,8 +611,8 @@
 "language_ja_JP" = "Japonca";
 "language_ko" = "Korece";
 "language_nb_NO" = "Norveççe Bokmål";
-"language_nl" = "Felemenkçe";
-"language_nl_NL" = "Felemenkçe (Hollanda)";
+"language_nl" = "Flemenkçe";
+"language_nl_NL" = "Flemenkçe (Hollanda)";
 "language_pl" = "Lehçe";
 "language_pt" = "Portekizce";
 "language_ru" = "Rusça";

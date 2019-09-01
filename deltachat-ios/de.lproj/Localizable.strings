@@ -254,7 +254,7 @@
 "login_imap_login" = "IMAP-Anmeldename";
 "login_imap_server" = "IMAP-Server";
 "login_imap_port" = "IMAP-Port";
-"login_imap_security" = "IMAP Sicherheit";
+"login_imap_security" = "IMAP-Sicherheit";
 "login_outbox" = "Postausgang";
 "login_smtp_login" = "SMTP-Anmeldename";
 "login_smtp_password" = "SMTP-Passwort";
