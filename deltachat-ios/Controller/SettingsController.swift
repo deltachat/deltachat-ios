@@ -100,16 +100,16 @@ internal final class SettingsViewController: QuickTableViewController {
 
         tableContents = [
             Section(
-                title: String.localized("user_details"),
+                title: String.localized("pref_profile_info_headline"),
                 rows: [
                     //FIXME: fix action callback!
-                    NavigationRow(text: String.localized("display_name"), detailText: .value1(DcConfig.displayname ?? ""), action: {
+                    NavigationRow(text: String.localized("pref_your_name"), detailText: .value1(DcConfig.displayname ?? ""), action: {
                         [weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.DISPLAYNAME)
                     }),
-                    NavigationRow(text: String.localized("status"), detailText: .value1(DcConfig.selfstatus ?? ""), action: {
+                    NavigationRow(text: String.localized("pref_default_status_label"), detailText: .value1(DcConfig.selfstatus ?? ""), action: {
                         [weak self] in self?.editNameAndStatus($0, option: SettingsEditOption.STATUS)
                     }),
-                    TapActionRow(text: String.localized("configure_my_account"), action: { [weak self] in self?.presentAccountSetup($0) }),
+                    TapActionRow(text: String.localized("pref_password_and_account_settings"), action: { [weak self] in self?.presentAccountSetup($0) }),
                 ]
             ),
             Section(
