@@ -193,21 +193,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
 
-        if DcConfig.sentboxWatch {
-            DispatchQueue.global(qos: .background).async {
-                while self.state == .running {
-                    dc_perform_sentbox_fetch(mailboxPointer)
-                    dc_perform_sentbox_idle(mailboxPointer)
-                }
+        DispatchQueue.global(qos: .background).async {
+            while self.state == .running {
+                dc_perform_sentbox_fetch(mailboxPointer)
+                dc_perform_sentbox_idle(mailboxPointer)
             }
         }
 
-        if DcConfig.mvboxWatch {
-            DispatchQueue.global(qos: .background).async {
-                while self.state == .running {
-                    dc_perform_mvbox_fetch(mailboxPointer)
-                    dc_perform_mvbox_idle(mailboxPointer)
-                }
+        DispatchQueue.global(qos: .background).async {
+            while self.state == .running {
+                dc_perform_mvbox_fetch(mailboxPointer)
+                dc_perform_mvbox_idle(mailboxPointer)
             }
         }
 
