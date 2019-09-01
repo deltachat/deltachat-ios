@@ -92,12 +92,6 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func setTable() {
-        let backupRows = [
-            TapActionRow(text: String.localized("create_backup"), action: { [weak self] in self?.createBackup($0) }),
-        ]
-
-        let deleteRow = TapActionRow(text: String.localized("delete_account"), action: { [weak self] in self?.deleteAccount($0) })
-
         tableContents = [
             Section(
                 title: String.localized("pref_profile_info_headline"),
@@ -114,19 +108,20 @@ internal final class SettingsViewController: QuickTableViewController {
             ),
 
             Section(
-                title: String.localized("pref_privacy"),
+                title: String.localized("pref_communication"),
                 rows: [
-                    SwitchRow(text: String.localized("pref_read_receipts"),
-                              switchValue: DcConfig.mdnsEnabled,
-                              action: editCell(key: SVC.readReceipts)),
                     SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),
                               switchValue: DcConfig.e2eeEnabled,
                               action: editCell(key: SVC.e2eeEnabled)),
-                ]
+                    SwitchRow(text: String.localized("pref_read_receipts"),
+                              switchValue: DcConfig.mdnsEnabled,
+                              action: editCell(key: SVC.readReceipts)),
+                ],
+                footer: String.localized("pref_read_receipts_explain")
             ),
 
             Section(
-                title: String.localized("menu_advanced"),
+                title: String.localized("pref_imap_folder_handling"),
                 rows: [
                     SwitchRow(text: String.localized("pref_watch_inbox_folder"),
                               switchValue: DcConfig.inboxWatch,
@@ -140,17 +135,24 @@ internal final class SettingsViewController: QuickTableViewController {
                     SwitchRow(text: String.localized("pref_auto_folder_moves"),
                               switchValue: DcConfig.mvboxMove,
                               action: editCell(key: SVC.MvToMvbox)),
-                ]
+                ],
+                footer: String.localized("pref_auto_folder_moves_explain")
             ),
 
             Section(
                 title: String.localized("pref_backup"),
-                rows: backupRows
+                rows: [
+                    TapActionRow(text: String.localized("create_backup"), action: { [weak self] in self?.createBackup($0) }),
+                ],
+                footer: String.localized("pref_backup_explain")
             ),
 
-            Section(title: String.localized("danger"), rows: [
-                deleteRow,
-            ]),
+            Section(
+                title: String.localized("danger"),
+                rows: [
+                    TapActionRow(text: String.localized("delete_account"), action: { [weak self] in self?.deleteAccount($0) }),
+                ]
+            ),
         ]
     }
 
