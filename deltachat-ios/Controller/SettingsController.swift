@@ -123,7 +123,7 @@ internal final class SettingsViewController: QuickTableViewController {
                               action: editCell(key: SVC.readReceipts)),
                     SwitchRow(text: String.localized("pref_watch_inbox_folder"),
                               switchValue: DcConfig.inboxWatch,
-                              action: editCell(key: SVC.watchMvBox)),
+                              action: editCell(key: SVC.watchInbox)),
                     SwitchRow(text: String.localized("pref_watch_sent_folder"),
                               switchValue: DcConfig.sentboxWatch,
                               action: editCell(key: SVC.watchSentbox)),
