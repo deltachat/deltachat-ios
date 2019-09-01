@@ -747,8 +747,8 @@ class DcLot {
         return swiftString
     }
 
-    var timestamp: Int {
-        return Int(dc_lot_get_timestamp(dcLotPointer))
+    var timestamp: Int64 {
+        return Int64(dc_lot_get_timestamp(dcLotPointer))
     }
 
     var state: Int {
