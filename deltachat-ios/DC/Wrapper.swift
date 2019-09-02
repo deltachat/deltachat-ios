@@ -60,7 +60,7 @@ class DcContext {
 }
 
 class DcConfig {
-    private class func getOptStr(_ key: String) -> String? {
+    private class func getConfig(_ key: String) -> String? {
         guard let cString = dc_get_config(mailboxPointer, key) else { return nil }
         let value = String(cString: cString)
         free(cString)
@@ -70,7 +70,7 @@ class DcConfig {
         return value
     }
 
-    private class func setOptStr(_ key: String, _ value: String?) {
+    private class func setConfig(_ key: String, _ value: String?) {
         if let v = value {
             dc_set_config(mailboxPointer, key, v)
         } else {
@@ -78,17 +78,17 @@ class DcConfig {
         }
     }
 
-    private class func getBool(_ key: String) -> Bool {
-        return strToBool(getOptStr(key))
+    private class func getConfigBool(_ key: String) -> Bool {
+        return strToBool(getConfig(key))
     }
 
-    private class func setBool(_ key: String, _ value: Bool) {
+    private class func setConfigBool(_ key: String, _ value: Bool) {
         let vStr = value ? "1" : "0"
-        setOptStr(key, vStr)
+        setConfig(key, vStr)
     }
 
-    private class func getInt(_ key: String) -> Int {
-        let vStr = getOptStr(key)
+    private class func getConfigInt(_ key: String) -> Int {
+        let vStr = getConfig(key)
         if vStr == nil {
             return 0
         }
@@ -99,77 +99,77 @@ class DcConfig {
         return vInt!
     }
 
-    private class func setInt(_ key: String, _ value: Int) {
-        setOptStr(key, String(value))
+    private class func setConfigInt(_ key: String, _ value: Int) {
+        setConfig(key, String(value))
     }
 
     class var displayname: String? {
-        set { setOptStr("displayname", newValue) }
-        get { return getOptStr("displayname") }
+        set { setConfig("displayname", newValue) }
+        get { return getConfig("displayname") }
     }
 
     class var selfstatus: String? {
-        set { setOptStr("selfstatus", newValue) }
-        get { return getOptStr("selfstatus") }
+        set { setConfig("selfstatus", newValue) }
+        get { return getConfig("selfstatus") }
     }
 
     class var selfavatar: String? {
-        set { setOptStr("selfavatar", newValue) }
-        get { return getOptStr("selfavatar") }
+        set { setConfig("selfavatar", newValue) }
+        get { return getConfig("selfavatar") }
     }
 
     class var addr: String? {
-        set { setOptStr("addr", newValue) }
-        get { return getOptStr("addr") }
+        set { setConfig("addr", newValue) }
+        get { return getConfig("addr") }
     }
 
     class var mailServer: String? {
-        set { setOptStr("mail_server", newValue) }
-        get { return getOptStr("mail_server") }
+        set { setConfig("mail_server", newValue) }
+        get { return getConfig("mail_server") }
     }
 
     class var mailUser: String? {
-        set { setOptStr("mail_user", newValue) }
-        get { return getOptStr("mail_user") }
+        set { setConfig("mail_user", newValue) }
+        get { return getConfig("mail_user") }
     }
 
     class var mailPw: String? {
-        set { setOptStr("mail_pw", newValue) }
-        get { return getOptStr("mail_pw") }
+        set { setConfig("mail_pw", newValue) }
+        get { return getConfig("mail_pw") }
     }
 
     class var mailPort: String? {
-        set { setOptStr("mail_port", newValue) }
-        get { return getOptStr("mail_port") }
+        set { setConfig("mail_port", newValue) }
+        get { return getConfig("mail_port") }
     }
 
     class var sendServer: String? {
-        set { setOptStr("send_server", newValue) }
-        get { return getOptStr("send_server") }
+        set { setConfig("send_server", newValue) }
+        get { return getConfig("send_server") }
     }
 
     class var sendUser: String? {
-        set { setOptStr("send_user", newValue) }
-        get { return getOptStr("send_user") }
+        set { setConfig("send_user", newValue) }
+        get { return getConfig("send_user") }
     }
 
     class var sendPw: String? {
-        set { setOptStr("send_pw", newValue) }
-        get { return getOptStr("send_pw") }
+        set { setConfig("send_pw", newValue) }
+        get { return getConfig("send_pw") }
     }
 
     class var sendPort: String? {
-        set { setOptStr("send_port", newValue) }
-        get { return getOptStr("send_port") }
+        set { setConfig("send_port", newValue) }
+        get { return getConfig("send_port") }
     }
 
     private class var serverFlags: Int {
         // IMAP-/SMTP-flags as a combination of DC_LP flags
         set {
-            setOptStr("server_flags", "\(newValue)")
+            setConfig("server_flags", "\(newValue)")
         }
         get {
-            if let str = getOptStr("server_flags") {
+            if let str = getConfig("server_flags") {
                 return Int(str) ?? 0
             } else {
                 return 0
@@ -218,83 +218,83 @@ class DcConfig {
     }
 
     class var e2eeEnabled: Bool {
-        set { setBool("e2ee_enabled", newValue) }
-        get { return getBool("e2ee_enabled") }
+        set { setConfigBool("e2ee_enabled", newValue) }
+        get { return getConfigBool("e2ee_enabled") }
     }
 
     class var mdnsEnabled: Bool {
-        set { setBool("mdns_enabled", newValue) }
-        get { return getBool("mdns_enabled") }
+        set { setConfigBool("mdns_enabled", newValue) }
+        get { return getConfigBool("mdns_enabled") }
     }
 
     class var inboxWatch: Bool {
-        set { setBool("inbox_watch", newValue) }
-        get { return getBool("inbox_watch") }
+        set { setConfigBool("inbox_watch", newValue) }
+        get { return getConfigBool("inbox_watch") }
     }
 
     class var sentboxWatch: Bool {
-        set { setBool("sentbox_watch", newValue) }
-        get { return getBool("sentbox_watch") }
+        set { setConfigBool("sentbox_watch", newValue) }
+        get { return getConfigBool("sentbox_watch") }
     }
 
     class var mvboxWatch: Bool {
-        set { setBool("mvbox_watch", newValue) }
-        get { return getBool("mvbox_watch") }
+        set { setConfigBool("mvbox_watch", newValue) }
+        get { return getConfigBool("mvbox_watch") }
     }
 
     class var mvboxMove: Bool {
-        set { setBool("mvbox_move", newValue) }
-        get { return getBool("mvbox_move") }
+        set { setConfigBool("mvbox_move", newValue) }
+        get { return getConfigBool("mvbox_move") }
     }
 
     class var showEmails: Int {
         // one of DC_SHOW_EMAILS_*
-        set { setInt("show_emails", newValue) }
-        get { return getInt("show_emails") }
+        set { setConfigInt("show_emails", newValue) }
+        get { return getConfigInt("show_emails") }
     }
 
     class var configuredEmail: String {
-        return getOptStr("configured_addr") ?? ""
+        return getConfig("configured_addr") ?? ""
     }
 
     class var configuredMailServer: String {
-        return getOptStr("configured_mail_server") ?? ""
+        return getConfig("configured_mail_server") ?? ""
     }
 
     class var configuredMailUser: String {
-        return getOptStr("configured_mail_user") ?? ""
+        return getConfig("configured_mail_user") ?? ""
     }
 
     class var configuredMailPw: String {
-        return getOptStr("configured_mail_pw") ?? ""
+        return getConfig("configured_mail_pw") ?? ""
     }
 
     class var configuredMailPort: String {
-        return getOptStr("configured_mail_port") ?? ""
+        return getConfig("configured_mail_port") ?? ""
     }
 
     class var configuredSendServer: String {
-        return getOptStr("configured_send_server") ?? ""
+        return getConfig("configured_send_server") ?? ""
     }
 
     class var configuredSendUser: String {
-        return getOptStr("configured_send_user") ?? ""
+        return getConfig("configured_send_user") ?? ""
     }
 
     class var configuredSendPw: String {
-        return getOptStr("configured_send_pw") ?? ""
+        return getConfig("configured_send_pw") ?? ""
     }
 
     class var configuredSendPort: String {
-        return getOptStr("configured_send_port") ?? ""
+        return getConfig("configured_send_port") ?? ""
     }
 
     class var configuredServerFlags: String {
-        return getOptStr("configured_server_flags") ?? ""
+        return getConfig("configured_server_flags") ?? ""
     }
 
     class var configured: Bool {
-        return getBool("configured")
+        return getConfigBool("configured")
     }
 }
 
