@@ -59,7 +59,7 @@ class ContactDetailViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: String.localized("global_menu_edit_desktop"),
             style: .plain, target: self, action: #selector(editButtonPressed))
-        self.title = String.localized("contact_detail_title_desktop")
+        self.title = String.localized("tab_contact")
     }
 
     override func viewWillAppear(_ animated: Bool) {

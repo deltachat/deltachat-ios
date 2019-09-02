@@ -228,7 +228,7 @@ extension ContactListController: ContactListDelegate {
             message: String.localized("import_contacts_message"),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: String.localized("open_settings"), style: .default) { _ in
+        alert.addAction(UIAlertAction(title: String.localized("menu_settings"), style: .default) { _ in
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
         })
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel) { _ in
