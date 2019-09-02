@@ -37,11 +37,11 @@ class AppCoordinator: NSObject, Coordinator {
     }()
 
     private lazy var mailboxController: UIViewController = {
-        let controller = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP), title: String.localized("mailbox"))
+        let controller = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP), title: String.localized("menu_deaddrop"))
         controller.disableWriting = true
         let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "message")
-        nav.tabBarItem = UITabBarItem(title: String.localized("mailbox"), image: settingsImage, tag: 1)
+        nav.tabBarItem = UITabBarItem(title: String.localized("menu_deaddrop"), image: settingsImage, tag: 1)
         let coordinator = MailboxCoordinator(dcContext: dcContext, navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
@@ -52,7 +52,7 @@ class AppCoordinator: NSObject, Coordinator {
         let controller = NewProfileViewController(dcContext: dcContext)
         let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "report_card")
-        nav.tabBarItem = UITabBarItem(title: String.localized("my_profile"), image: settingsImage, tag: 2)
+        nav.tabBarItem = UITabBarItem(title: String.localized("pref_profile_info_headline"), image: settingsImage, tag: 2)
         let coordinator = ProfileCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
@@ -542,7 +542,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
     private func presentVideoLibrary() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let videoPicker = UIImagePickerController()
-            videoPicker.title = String.localized("videos")
+            videoPicker.title = String.localized("video")
             videoPicker.delegate = self
             videoPicker.sourceType = .photoLibrary
             videoPicker.mediaTypes = [kUTTypeMovie as String, kUTTypeVideo as String]

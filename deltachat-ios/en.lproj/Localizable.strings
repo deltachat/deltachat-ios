@@ -626,37 +626,23 @@
 "language_uk" = "Ukrainian";
 "language_zh_CN" = "Chinese";
 
-
-"email" = "Email";
-"contact_nickname" = "new contacts nickname";
-"imap_password" = "your IMAP password";
-"success" = "Success";
-"videos" = "Videos";
 "hide" = "Hide";
 "login_error_title" = "Unable to login!";
 "start_chat" = "Start Chat";
 "dismiss" = "Dismiss";
 "photo" = "Photo";
-"search_contact" = "Search Contact";
 "import_contacts" = "Import Device Contacts";
 "import_contacts_message" = "To chat with contacts from your device open the settings menu and enable the Contacts option";
 "synchronizing_account" = "Synchronizing Account";
 "invalid_qr_code" = "Invalid group QR Code";
-"open_settings" = "Open Settings";
-"my_profile" = "My Profile";
 "no_account_setup" = "No Account set up";
-"create_backup" = "Create backup";
 "delete_account" = "Delete Account";
 "delete_account_message" = "Are you sure you wante to delete your account data?";
 "danger" = "Danger";
-"creating_backup" = "Creating Backup";
-"group_info" = "Group Info";
 "next" = "Next";
 "reset" = "Reset";
-"your_status" = "Your Status";
 "edit_contact" = "Edit contact";
 "custom_port" = "Custom Port";
 "automatic" = "Automatic";
 "complete" = "Complete";
-"mailbox" = "Mailbox";
 "info" = "Info";

@@ -149,7 +149,7 @@ internal final class SettingsViewController: QuickTableViewController {
             Section(
                 title: String.localized("pref_backup"),
                 rows: [
-                    TapActionRow(text: String.localized("create_backup"), action: { [weak self] in self?.createBackup($0) }),
+                    TapActionRow(text: String.localized("export_backup_desktop"), action: { [weak self] in self?.createBackup($0) }),
                 ],
                 footer: String.localized("pref_backup_explain")
             ),
@@ -198,7 +198,7 @@ internal final class SettingsViewController: QuickTableViewController {
         let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if !documents.isEmpty {
             logger.info("create backup in \(documents)")
-            hudHandler.showHud(String.localized("creating_backup"))
+            hudHandler.showHud(String.localized("one_moment"))
             DispatchQueue.main.async {
                 dc_imex(mailboxPointer, DC_IMEX_EXPORT_BACKUP, documents[0], nil)
             }

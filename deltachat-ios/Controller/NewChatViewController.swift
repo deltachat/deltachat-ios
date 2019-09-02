@@ -9,7 +9,7 @@ class NewChatViewController: UITableViewController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = String.localized("search_contact")
+        searchController.searchBar.placeholder = String.localized("search")
         return searchController
     }()
 
@@ -358,7 +358,7 @@ extension NewChatViewController: ContactListDelegate {
             message: String.localized("import_contacts_message"),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: String.localized("open_settings"), style: .default) { _ in
+        alert.addAction(UIAlertAction(title: String.localized("menu_settings"), style: .default) { _ in
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
         })
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel) { _ in

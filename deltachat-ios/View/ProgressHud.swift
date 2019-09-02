@@ -23,7 +23,7 @@ class ProgressHud {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
             UIView.animate(
                 withDuration: 0.1, animations: {
-                    self.hud.textLabel.text = message ?? String.localized("success")
+                    self.hud.textLabel.text = message ?? String.localized("done")
                     self.hud.indicatorView = JGProgressHUDSuccessIndicatorView()
                 }
             )

@@ -58,7 +58,7 @@ class GroupChatDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("group_info")
+        title = String.localized("tab_group")
         chatDetailTable.delegate = self
         chatDetailTable.dataSource = self
         navigationItem.rightBarButtonItem = editBarButtonItem

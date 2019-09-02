@@ -50,7 +50,7 @@ class HudHandler {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
                 UIView.animate(
                     withDuration: 0.1, animations: {
-                        hud.textLabel.text = String.localized("success")
+                        hud.textLabel.text = String.localized("done")
                         hud.detailTextLabel.text = nil
                         hud.indicatorView = JGProgressHUDSuccessIndicatorView()
                     }

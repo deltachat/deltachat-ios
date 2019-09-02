@@ -82,7 +82,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("my_profile")
+        title = String.localized("pref_profile_info_headline")
         qrCodeReaderController.delegate = self
         self.edgesForExtendedLayout = []
 

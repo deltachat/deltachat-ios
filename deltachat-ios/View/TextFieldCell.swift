@@ -87,14 +87,14 @@ class TextFieldCell: UITableViewCell {
     }
 
     static func makePasswordCell(delegate _: UITextFieldDelegate? = nil) -> TextFieldCell {
-        let cell = TextFieldCell(description: String.localized("password"), placeholder: String.localized("imap_password"))
+        let cell = TextFieldCell(description: String.localized("password"), placeholder: String.localized("password"))
         cell.textField.textContentType = UITextContentType.password
         cell.textField.isSecureTextEntry = true
         return cell
     }
 
     static func makeNameCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
-        let cell = TextFieldCell(description: String.localized("name_desktop"), placeholder: String.localized("contact_nickname"))
+        let cell = TextFieldCell(description: String.localized("name_desktop"), placeholder: String.localized("name_desktop"))
         cell.textField.autocapitalizationType = .words
         cell.textField.autocorrectionType = .no
         // .namePhonePad doesn't support autocapitalization
