@@ -257,9 +257,8 @@ class SettingsCoordinator: Coordinator {
         navigationController.pushViewController(accountSetupVC, animated: true)
     }
 
-    func showEditSettingsController(option: SettingsEditOption) {
+    func showEditSettingsController() {
         let editController = EditSettingsController()
-        editController.activateField(option: option)
         navigationController.pushViewController(editController, animated: true)
     }
 

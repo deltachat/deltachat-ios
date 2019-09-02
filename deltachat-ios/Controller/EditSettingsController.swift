@@ -73,13 +73,4 @@ class EditSettingsController: UITableViewController {
             return nil
         }
     }
-
-    func activateField(option: SettingsEditOption) {
-        switch option {
-        case .DISPLAYNAME:
-            displayNameCell.textField.becomeFirstResponder()
-        case .STATUS:
-            statusCell.textField.becomeFirstResponder()
-        }
-    }
 }

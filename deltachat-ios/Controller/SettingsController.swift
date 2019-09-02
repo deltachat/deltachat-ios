@@ -92,19 +92,17 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func setTable() {
+        let subtitle = String.localized("pref_default_status_label") + ": "
+            + (DcConfig.selfstatus ?? "-")
+
         tableContents = [
             Section(
                 title: String.localized("pref_profile_info_headline"),
                 rows: [
-                    NavigationRow(text: String.localized("pref_your_name"),
-                        detailText: .value1(DcConfig.displayname ?? ""),
+                    NavigationRow(text: DcConfig.displayname ?? String.localized("pref_your_name"),
+                        detailText: .subtitle(subtitle),
                         action: { [weak self] in
-                            self?.editNameAndStatus($0, option: SettingsEditOption.DISPLAYNAME)
-                    }),
-                    NavigationRow(text: String.localized("pref_default_status_label"),
-                        detailText: .value1(DcConfig.selfstatus ?? ""),
-                        action: { [weak self] in
-                            self?.editNameAndStatus($0, option: SettingsEditOption.STATUS)
+                            self?.editNameAndStatus($0)
                     }),
                     NavigationRow(text: String.localized("pref_password_and_account_settings"),
                         detailText: .none,
@@ -250,12 +248,7 @@ internal final class SettingsViewController: QuickTableViewController {
         coordinator?.showAccountSetupController()
     }
 
-    private func editNameAndStatus(_ row: Row, option: SettingsEditOption) {
-        coordinator?.showEditSettingsController(option: option)
+    private func editNameAndStatus(_ row: Row) {
+        coordinator?.showEditSettingsController()
     }
-}
-
-enum SettingsEditOption: String {
-    case DISPLAYNAME = "Display Name"
-    case STATUS = "Status"
 }
