@@ -77,7 +77,7 @@ class TextFieldCell: UITableViewCell {
     }
 
     static func makeEmailCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
-        let cell = TextFieldCell(description: String.localized("email_address"), placeholder: "you@example.com")
+        let cell = TextFieldCell(description: String.localized("email_address"), placeholder: "you@example.org")
         cell.textField.keyboardType = .emailAddress
         // switch off quicktype
         cell.textField.autocorrectionType = .no
