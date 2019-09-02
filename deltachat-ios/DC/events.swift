@@ -183,6 +183,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         case DC_STR_NOMESSAGES: string = String.localized("chat_no_messages")
         case DC_STR_SELF: string = String.localized("self")
         case DC_STR_DRAFT: string = String.localized("draft")
+        case DC_STR_MEMBER: return nil // we create this string in hackPluralsString()
         case DC_STR_VOICEMESSAGE: string = String.localized("voice_message")
         case DC_STR_DEADDROP: string = String.localized("chat_contact_request")
         case DC_STR_IMAGE: string = String.localized("image")
