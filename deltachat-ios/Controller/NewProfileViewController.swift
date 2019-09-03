@@ -67,13 +67,6 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         return DcContact(id: Int(DC_CONTACT_ID_SELF))
     }
 
-    var fingerprint: String? {
-        if !DcConfig.configured {
-            return nil
-        }
-        return dcContext.getSecurejoinQr(chatId: 0)
-    }
-
     override func loadView() {
         let view = UIView()
         view.backgroundColor = UIColor.white
@@ -256,16 +249,13 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
     private func createQRCodeView() -> UIView {
         let width: CGFloat = 130
         let frame = CGRect(origin: .zero, size: .init(width: width, height: width))
-        var imageView: UIView
-        if let fingerprint = self.fingerprint {
-            imageView = QRCodeView(frame: frame)
-            (imageView as! QRCodeView).generateCode(
-                fingerprint,
+        let imageView = QRCodeView(frame: frame)
+        if let qrCode = dcContext.getSecurejoinQr(chatId: 0) {
+            imageView.generateCode(
+                qrCode,
                 foregroundColor: .darkText,
                 backgroundColor: .white
             )
-        } else {
-            imageView = UIImageView()
         }
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
