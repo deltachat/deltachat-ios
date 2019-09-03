@@ -16,6 +16,11 @@ class InitialsBadge: UIView {
         setColor(color)
     }
 
+    convenience init (image: UIImage, size: CGFloat) {
+        self.init(size: size)
+        setImage(image)
+    }
+
     init(size: CGFloat) {
         super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
         let initialsLabelCornerRadius = size / 2
@@ -41,6 +46,12 @@ class InitialsBadge: UIView {
 
     func setName(_ name: String) {
         label.text = Utils.getInitials(inputName: name)
+    }
+
+    func setImage(_ image: UIImage) {
+        let attachment = NSTextAttachment()
+        attachment.image = image
+        label.attributedText = NSAttributedString(attachment: attachment)
     }
 
     func setColor(_ color: UIColor) {
