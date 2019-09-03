@@ -35,9 +35,9 @@ class InitialsBadge: UIView {
     private func setupSubviews() {
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2).isActive = true
-        label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2).isActive = true
-        label.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
+        label.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        label.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
 
     required init?(coder _: NSCoder) {
@@ -49,9 +49,11 @@ class InitialsBadge: UIView {
     }
 
     func setImage(_ image: UIImage) {
-        let attachment = NSTextAttachment()
-        attachment.image = image
-        label.attributedText = NSAttributedString(attachment: attachment)
+        if let resizedImg = image.resizeImage(targetSize: CGSize(width: self.frame.width, height: self.frame.height)) {
+            let attachment = NSTextAttachment()
+            attachment.image = resizedImg
+            label.attributedText = NSAttributedString(attachment: attachment)
+        }
     }
 
     func setColor(_ color: UIColor) {

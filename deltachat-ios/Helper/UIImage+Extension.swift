@@ -24,7 +24,7 @@ extension UIImage {
         self.init(cgImage: cgImage)
     }
 
-    func resizeImage(targetSize: CGSize) -> UIImage {
+    func resizeImage(targetSize: CGSize) -> UIImage? {
         let size = self.size
 
         let widthRatio  = targetSize.width  / size.width
@@ -44,6 +44,6 @@ extension UIImage {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        return newImage!
+        return newImage
     }
 }
