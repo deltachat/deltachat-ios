@@ -51,5 +51,6 @@ file_length:
 cyclomatic_complexity:
   warning: 20
   error: 25
+  ignores_case_statements: true
 
 reporter: "xcode"

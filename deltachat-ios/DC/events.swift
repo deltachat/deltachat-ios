@@ -178,7 +178,44 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         }
 
     case DC_EVENT_GET_STRING:
-        break
+        var string = ""
+        switch Int32(data1) {
+        case DC_STR_NOMESSAGES: string = String.localized("chat_no_messages")
+        case DC_STR_SELF: string = String.localized("self")
+        case DC_STR_DRAFT: string = String.localized("draft")
+        case DC_STR_MEMBER: return nil // we create this string in hackPluralsString()
+        case DC_STR_VOICEMESSAGE: string = String.localized("voice_message")
+        case DC_STR_DEADDROP: string = String.localized("chat_contact_request")
+        case DC_STR_IMAGE: string = String.localized("image")
+        case DC_STR_VIDEO: string = String.localized("video")
+        case DC_STR_AUDIO: string = String.localized("audio")
+        case DC_STR_FILE: string = String.localized("file")
+        case DC_STR_STATUSLINE: string = String.localized("pref_default_status_text")
+        case DC_STR_NEWGROUPDRAFT: string = String.localized("group_hello_draft")
+        case DC_STR_MSGGRPNAME: string = String.localized("systemmsg_group_name_changed")
+        case DC_STR_MSGGRPIMGCHANGED: string = String.localized("systemmsg_group_image_changed")
+        case DC_STR_MSGADDMEMBER: string = String.localized("systemmsg_member_added")
+        case DC_STR_MSGDELMEMBER: string = String.localized("systemmsg_member_removed")
+        case DC_STR_MSGGROUPLEFT: string = String.localized("systemmsg_group_left")
+        case DC_STR_GIF: string = String.localized("gif")
+        case DC_STR_CANTDECRYPT_MSG_BODY: string = String.localized("systemmsg_cannot_decrypt")
+        case DC_STR_READRCPT: string = String.localized("systemmsg_read_receipt_subject")
+        case DC_STR_READRCPT_MAILBODY: string = String.localized("systemmsg_read_receipt_body")
+        case DC_STR_MSGGRPIMGDELETED: string = String.localized("systemmsg_group_image_deleted")
+        case DC_STR_CONTACT_VERIFIED: string = String.localized("contact_verified")
+        case DC_STR_CONTACT_NOT_VERIFIED: string = String.localized("contact_not_verified")
+        case DC_STR_CONTACT_SETUP_CHANGED: string = String.localized("contact_setup_changed")
+        case DC_STR_ARCHIVEDCHATS: string = String.localized("chat_archived_chats_title")
+        case DC_STR_AC_SETUP_MSG_SUBJECT: string = String.localized("autocrypt_asm_subject")
+        case DC_STR_AC_SETUP_MSG_BODY: string = String.localized("autocrypt_asm_general_body")
+        case DC_STR_SELFTALK_SUBTITLE: string = String.localized("chat_self_talk_subtitle")
+        case DC_STR_CANNOT_LOGIN: string = String.localized("login_error_cannot_login")
+        case DC_STR_SERVER_RESPONSE: string = String.localized("login_error_server_response")
+        case DC_STR_MSGACTIONBYUSER: string = String.localized("systemmsg_action_by_user")
+        case DC_STR_MSGACTIONBYME: string = String.localized("systemmsg_action_by_me")
+        default: return nil
+        }
+        return UnsafePointer(strdup(string))
 
     default:
         logger.warning("unknown event: \(event)")
