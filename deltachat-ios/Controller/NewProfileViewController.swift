@@ -238,6 +238,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }
+    
     private func createQRCodeScannerButton() -> UIView {
         let btn = UIButton.init(type: UIButton.ButtonType.system)
         btn.translatesAutoresizingMaskIntoConstraints = false
@@ -253,23 +254,23 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
     }
 
     private func createQRCodeView() -> UIView {
+        let width: CGFloat = 130
+        let frame = CGRect(origin: .zero, size: .init(width: width, height: width))
+        var imageView: UIView
         if let fingerprint = self.fingerprint {
-            let width: CGFloat = 130
-
-            let frame = CGRect(origin: .zero, size: .init(width: width, height: width))
-            let imageView = QRCodeView(frame: frame)
-            imageView.generateCode(
+            imageView = QRCodeView(frame: frame)
+            (imageView as! QRCodeView).generateCode(
                 fingerprint,
                 foregroundColor: .darkText,
                 backgroundColor: .white
             )
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
-            imageView.heightAnchor.constraint(equalToConstant: width).isActive = true
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            return imageView
+        } else {
+            imageView = UIImageView()
         }
-        return UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: width).isActive = true
+        return imageView
     }
 
     private func createContactCell() -> UIView {
