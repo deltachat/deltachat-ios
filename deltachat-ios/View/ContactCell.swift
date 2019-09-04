@@ -165,7 +165,7 @@ class ContactCell: UITableViewCell {
     }
 
     func setImage(_ img: UIImage) {
-        if let resizedImg = img.resizeImage(targetSize: CGSize(width: initialsLabelSize, height: initialsLabelSize)) {
+        if let resizedImg = img.resizeImage(targetSize: CGSize(width: initialsLabelSize - 6, height: initialsLabelSize - 6)) {
             let attachment = NSTextAttachment()
             attachment.image = resizedImg
             initialsLabel.attributedText = NSAttributedString(attachment: attachment)
