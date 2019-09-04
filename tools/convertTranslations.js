@@ -22,7 +22,8 @@ function parseAndroid(data) {
     let kv = line.match(rgxKeyValue);
     if (kv != null) {
       result.parsed.push([kv[1], kv[2].
-        replace(/&quot;/g, '\"').
+        replace(/([^\\])(")/g, '$1\\$2').
+        replace(/&quot;/g, '\\"').
         replace(/&lt;/g, '<').
         replace(/&gt;/g, '>').
         replace(/&amp;/g, '&').
