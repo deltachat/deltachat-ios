@@ -21,15 +21,13 @@ function parseAndroid(data) {
   for (let line of lines) {
     let kv = line.match(rgxKeyValue);
     if (kv != null) {
-      result.parsed.push([kv[1], kv[2].replace(/&quot;/g, '"').
-      replace(/&lt;/g, '<').
-      replace(/&gt;/g, '>').
-      replace(/&amp;/g, '&').
-      replace(/\\t/g, '\t').
-      replace(/\\r/g, '\r').
-      replace(/\\n/g, '\n').
-      replace(/\\\\/g, '\\').
-      replace(/\$s/ig, '$@')])
+      result.parsed.push([kv[1], kv[2].
+        replace(/([^\\])(")/g, '$1\\$2').
+        replace(/&quot;/g, '\\"').
+        replace(/&lt;/g, '<').
+        replace(/&gt;/g, '>').
+        replace(/&amp;/g, '&').
+        replace(/\$s/ig, '$@')])
       continue;
     }
 
@@ -164,8 +162,7 @@ function toInfoPlistStrings(lines) {
           continue;
         }
         key = key.replace('INFOPLIST.', '').replace(/\./gi, ' ').replace(/\_/gi, '-');
-        let value = line[1].replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t').replace(/"/g, '\\"');
-        out += `"${key}" = "${value}";\n`;
+        out += `"${key}" = "${line[1]}";\n`;
       }
     }
     return out;
@@ -189,8 +186,7 @@ function toLocalizableStrings(lines) {
       if (key.startsWith("INFOPLIST.")) {
         continue;
       }
-      let value = line[1].replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t').replace(/"/g, '\\"');
-      out += `"${key}" = "${value}";`;
+      out += `"${key}" = "${line[1]}";`;
     }
     out += '\n';
   }
@@ -246,7 +242,6 @@ function convertAndroidToIOS(stringsXMLArray, appleStrings) {
     allElements = parseXMLAndAppend(allElements, entry)
     console.log("parsed " + allElements.parsed.length + " entries of " + entry + " for Localizable.strings and " + allElements.parsedPlurals.size + " entries for Localizable.stringsdict");
   }
-
 
   let iosFormatted = toLocalizableStrings(allElements.parsed);
   let iosFormattedInfoPlist = toInfoPlistStrings(allElements.parsed);

@@ -178,9 +178,9 @@
 "chat_new_group_hint" = "Başqalarının bu qrup daxilində cavab verməsinə imkan verən ilk mesajı yaradın. \n\n• Bütün üzvlər Delta Chat istifadə etsələr daha yaxşıdır. \n\n• İlk mesajı çatdırmaq bir müddət ala bilər.";
 "chat_record_slide_to_cancel" = "Ləğv etmək üçün sürüşdürün";
 "chat_record_explain" = "Bir səsli mesajı yazmaq üçün toxunun və saxlayın, göndərmək üçün buraxın";
-"chat_no_chats_yet_title" = "Qutu boşdur.\nYeni çata başlamaq üçün \\\"+\\\" işarəsinə toxunun. ";
+"chat_no_chats_yet_title" = "Qutu boşdur.\nYeni çata başlamaq üçün \"+\" işarəsinə toxunun. ";
 "chat_no_chats_yet_hint" = "Digər Delta Chat istifadəçiləri ilə və hər hansı bir e-poçt ünvanı ilə söhbət edə bilərsiniz.";
-"chat_all_archived" = "Bütün çatlar saxlanıldı.\nYeni çata başlamaq üçün \\\"+\\\" işarəsinə toxunun. ";
+"chat_all_archived" = "Bütün çatlar saxlanıldı.\nYeni çata başlamaq üçün \"+\" işarəsinə toxunun. ";
 "chat_share_with_title" = "Göndər ";
 "chat_input_placeholder" = "Mesaj";
 "chat_archived_label" = "Xəzinələndi";
@@ -198,7 +198,7 @@
 // search
 "search" = "Axtarış";
 "search_explain" = "Çatlar, kontaktlar və mesajlar axtar";
-"search_no_result_for_x" = "\\\"%s\\\" üçün heç bir nəticə tapılmadı";
+"search_no_result_for_x" = "\"%s\" üçün heç bir nəticə tapılmadı";
 
 
 // create/edit groups, contact/group profile
@@ -207,7 +207,7 @@
 "group_create_button" = "Qrup yarat";
 "group_please_enter_group_name" = "Xahiş edirik qrup üçün bir ad daxil et.";
 "group_add_members" = "Üzv elavə et";
-"group_hello_draft" = "Salam! Mən  bizim üçün \\\"%1$@\\\" qrup düzəltdim.";
+"group_hello_draft" = "Salam! Mən  bizim üçün \"%1$@\" qrup düzəltdim.";
 "group_self_not_in_group" = "Bunu etmək üçün qrupun üzvü olmalısan.";
 "profile_encryption" = "Şifrələmə";
 "profile_shared_chats" = "Çatlar göndərildi";
@@ -270,9 +270,9 @@
 "login_error_port" = "Xahiş edirik, düzgün bir port (1-65535) daxil et";
 "login_error_required_fields" = "Xahiş edirik düzgün bir e-poçt ünvanı və parol daxil et";
 "import_backup_title" = "Nüsxənin importu";
-"import_backup_ask" = "\\\"%1$@\\\" - də ehtiyat nüsxəsi tapıldı.\n\nİndi bütün məlumatları və parametrləri idxal etmək və istifadə etmək istəyirsiniz?";
+"import_backup_ask" = "\"%1$@\" - də ehtiyat nüsxəsi tapıldı.\n\nİndi bütün məlumatları və parametrləri idxal etmək və istifadə etmək istəyirsiniz?";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = " \\\"%1$@\\\" kimi giriş alınmadı. E-poçt ünvanı və parolun düzgün olub olmadığını yoxlayın.";
+"login_error_cannot_login" = " \"%1$@\" kimi giriş alınmadı. E-poçt ünvanı və parolun düzgün olub olmadığını yoxlayın.";
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "İrəli ...";
@@ -362,10 +362,10 @@
 "pref_managekeys_menu_title" = "Açar idarəetməsi";
 "pref_managekeys_ask_for_storage_permission" = "Delta Chat, faylları idxal / ixrac etmək üçün girişə ehtiyac duyur.";
 "pref_managekeys_export_secret_keys" = "Gizli açar ixracı";
-"pref_managekeys_export_explain" = " \\\"%1$@\\\" - ə gizli açar ixracı?";
+"pref_managekeys_export_explain" = " \"%1$@\" - ə gizli açar ixracı?";
 "pref_managekeys_import_secret_keys" = "Gizli açar idxalı";
 "pref_managekeys_secret_keys_exported_to_x" = "Ehtiyat nüsxə %1$@- ə uğurla yazılmışdır";
-"pref_managekeys_secret_keys_imported_from_x" = " \\\"%1$@\\\" - dən gizli açar idxalı?";
+"pref_managekeys_secret_keys_imported_from_x" = " \"%1$@\" - dən gizli açar idxalı?";
 "pref_background" = "Fon";
 "pref_background_btn_default" = "Hal hazırdaki şəkili istifadə edin";
 "pref_background_btn_gallery" = "Fotoalbomdan götürün";
@@ -406,7 +406,7 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "Qrupun adı \\\"%1$@\\\" - dən \\\"%2$@\\\" - yə deyişildi.";
+"systemmsg_group_name_changed" = "Qrupun adı \"%1$@\" - dən \"%2$@\" - yə deyişildi.";
 "systemmsg_group_image_changed" = "Qrup şəkili dəyişildi. ";
 "systemmsg_group_image_deleted" = "Qrupun şəkili silindi. ";
 "systemmsg_member_added" = "Üzv %1$@ əlavə olundu. ";
@@ -422,7 +422,7 @@
 
 // screen lock
 "screenlock_title" = "Ekran kilidi";
-"screenlock_explain" = "Android ekran kilidi və ya barmaq izi ilə daxil olmaq; əvvəlki məzmunun görünməməsi üçün \\\"Ekran təhlükəsizliyi\\\"";
+"screenlock_explain" = "Android ekran kilidi və ya barmaq izi ilə daxil olmaq; əvvəlki məzmunun görünməməsi üçün \"Ekran təhlükəsizliyi\"";
 "screenlock_authentication_failed" = "Daxilolma uğursuz oldu.";
 "screenlock_unlock_title" = "Delta Chat-ın kilidini aç";
 "screenlock_unlock_description" = "Delta Chat-ı blokdan açmaq üçün sistem parolunu daxil edin. ";
@@ -434,7 +434,7 @@
 // qr code stuff
 "qrscan_title" = "Qr kodu skan edin";
 "qrscan_hint" = "QR kodu kamera ilə izləyin";
-"qrscan_ask_join_group" = "\\\"%1$@\\\" qrupa qoşulmaq istəyirsinizmi?";
+"qrscan_ask_join_group" = "\"%1$@\" qrupa qoşulmaq istəyirsinizmi?";
 "qrscan_fingerprint_mismatch" = "%1$@üçün skan olunan barmaq izi son görüldüyü barmaq izinə uyğun deyil";
 "qrscan_no_addr_found" = "QR kodu iz ehtiva edir, lakin heç bir e-poçt ünvanı yoxdur.\n\nƏlaqə qurmaq üçün əvvəlcə abonentlə şifrəli bir əlaqə qurun.";
 "qrscan_contains_text" = "QR kod mətni skan olundu:\n\n%1$@";
@@ -446,7 +446,7 @@
 "qrshow_x_verified" = "%1$@ yoxlanıldı.";
 "qrshow_x_has_joined_group" = "%1$@ qrupa qoşuldu.";
 "qrshow_join_group_title" = "Dəvət QR-kodu";
-"qrshow_join_group_hint" = " \\\"%1$@\\\" qrupuna qoşulmaq üçün bunu skan edin. ";
+"qrshow_join_group_hint" = " \"%1$@\" qrupuna qoşulmaq üçün bunu skan edin. ";
 "qrshow_join_contact_title" = "Dəvət QR-kodu";
 "qrshow_join_contact_hint" = "%1$@ilə əlaqə qurmaq üçün bunu skan edin";
 "qrshow_join_contact_no_connection_hint" = "Qr kodu quraşdırma İnternet bağlantısı tələb edir. Davam etməyinizdən əvvəl şəbəkəyə qoşulun.";
@@ -482,10 +482,10 @@
 "perm_explain_need_for_mic_access" = "Səsli mesajları göndərmək üçün mikrofona izn verin. ";
 "perm_explain_need_for_storage_access" = "Delta Chat, faylları idxal / ixrac etmək üçün iznə ehtiyacı var.";
 "perm_explain_need_for_storage_access_share" = "Delta Chat-la seçilmiş faylları bölüşmək üçün icazə vermək lazımdır. ";
-"perm_explain_access_to_camera_denied" = "Delta Chat şəkillər və ya video çəkmək üçün kamera icazə tələb edir, lakin bu, əbədi imtina edilmişdir. Proqramın sistem ayarlarına gedib \\\"İcazələr\\\"-i seçin və \\\"kamera\\\" izni verin.";
-"perm_explain_access_to_mic_denied" = "Delta Chat yer əlavə etmək üçün yer icazə tələb edir, lakin daimi olaraq rədd edilmişdir. \\\"İcazələr\\\"-i seçin və\\\"Yerləşmə\\\" izni verin. ";
-"perm_explain_access_to_storage_denied" = "Delta Chat, fotoşəkilləri, videoları və ya səsləri əlavə etmək və ya ixrac etmək üçün saxlama icazəsini tələb edir, lakin bu daimi olaraq rədd edildi. Xahiş edirik tətbiq ayarları menyusuna davam edin, \\\"İzinlər\\\" seçin və \\\"Yaddaş\\\" funksiyasını aktivləşdirin.";
-"perm_explain_access_to_location_denied" = "Delta Chat yer əlavə etmək üçün yer icazə tələb edir, lakin daimi olaraq rədd edilmişdir. \\\"İcazələr\\\"-i seçin və\\\"Yerləşmə\\\" izni verin. ";
+"perm_explain_access_to_camera_denied" = "Delta Chat şəkillər və ya video çəkmək üçün kamera icazə tələb edir, lakin bu, əbədi imtina edilmişdir. Proqramın sistem ayarlarına gedib \"İcazələr\"-i seçin və \"kamera\" izni verin.";
+"perm_explain_access_to_mic_denied" = "Delta Chat yer əlavə etmək üçün yer icazə tələb edir, lakin daimi olaraq rədd edilmişdir. \"İcazələr\"-i seçin və\"Yerləşmə\" izni verin. ";
+"perm_explain_access_to_storage_denied" = "Delta Chat, fotoşəkilləri, videoları və ya səsləri əlavə etmək və ya ixrac etmək üçün saxlama icazəsini tələb edir, lakin bu daimi olaraq rədd edildi. Xahiş edirik tətbiq ayarları menyusuna davam edin, \"İzinlər\" seçin və \"Yaddaş\" funksiyasını aktivləşdirin.";
+"perm_explain_access_to_location_denied" = "Delta Chat yer əlavə etmək üçün yer icazə tələb edir, lakin daimi olaraq rədd edilmişdir. \"İcazələr\"-i seçin və\"Yerləşmə\" izni verin. ";
 "perm_enable_bg_reminder_title" = "Delta Chat arxa fonda mesajları almaq üçün bura toxunun.";
 "perm_enable_bg_reminder_text" = "Delta Chat minimum resurslardan istifadə edir və batareyanı boşaltmamaq üçün qayğı göstərir.";
 
@@ -540,7 +540,7 @@
 "name_desktop" = "Ad";
 "autocrypt_key_transfer_desktop" = "Avtoşifrələmə açarın ötürülməsi";
 "initiate_key_transfer_title_desktop" = "Açar ötürülməsinin təşəbbüsü";
-"initiate_key_transfer_desktop" = "Autocrypt konfiqurasiya mesajı təhlükəsiz olaraq \\\"sondan sona\\\" parametrinizi Autocrypt ilə uyğun olan digər tətbiqlərlə bölüşür. Quraşdırma burada göstərilir və başqa bir cihazda yığılmış olmalıdır. Bir quraşdırma kodu ilə şifrələ olunacaq.";
+"initiate_key_transfer_desktop" = "Autocrypt konfiqurasiya mesajı təhlükəsiz olaraq \"sondan sona\" parametrinizi Autocrypt ilə uyğun olan digər tətbiqlərlə bölüşür. Quraşdırma burada göstərilir və başqa bir cihazda yığılmış olmalıdır. Bir quraşdırma kodu ilə şifrələ olunacaq.";
 "reply_to_message_desktop" = "Mesaja cavab ver";
 "select_group_image_desktop" = "Qrup şəklini seç";
 "imex_progress_title_desktop" = "Ehtiyat nüsxəsinin yaradılması";
@@ -556,7 +556,7 @@
 "create_chat_error_desktop" = "Yeni çat yaratmaq alınmadı";
 "ask_delete_chat_desktop" = "Bu çatı silmək istədiyinizə əminsinizmi? ";
 "email_validation_failed_desktop" = "E-poçt ünvanı tələb olunur.";
-"forget_login_confirmation_desktop" = "Bu giriş silmək istəyirsiniz? Hər şey, sizin \\\"sondan sona\\\" quraşdırma, kontaktlar, söhbətlər, mesajlar və daşıyıcıları daxil olmaqla silinəcəkdir. Bu hərəkət son və ləğv edilə bilməz.";
+"forget_login_confirmation_desktop" = "Bu giriş silmək istəyirsiniz? Hər şey, sizin \"sondan sona\" quraşdırma, kontaktlar, söhbətlər, mesajlar və daşıyıcıları daxil olmaqla silinəcəkdir. Bu hərəkət son və ləğv edilə bilməz.";
 "me_desktop" = "Mənə";
 "in_this_group_desktop" = "Qrupun üzvləri";
 "not_in_this_group_desktop" = "Qrupun potensial üzvləri (qrupda deyil)";
@@ -571,7 +571,7 @@
 
 // deprecated on android, please remove if unused on desktop
 // see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "\\\"%1$@\\\" qrupa qoşulmaq istəyirsinizmi?";
+"qrscan_ask_join_verified_group" = "\"%1$@\" qrupa qoşulmaq istəyirsinizmi?";
 // see ask_start_chat_with
 "qrscan_ask_fingerprint_ask_oob" = "%1$@ ilə çat? ";
 // see ask_start_chat_with
@@ -579,7 +579,7 @@
 // see qrshow_join_group_title
 "qrshow_join_verified_group_title" = "Dəvət QR-kodu";
 // see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = " \\\"%1$@\\\" qrupuna qoşulmaq üçün bunu skan edin. ";
+"qrshow_join_verified_group_hint" = " \"%1$@\" qrupuna qoşulmaq üçün bunu skan edin. ";
 // see chat_all_archived
 "chat_all_done_hint" = "Gələnlər qutusu zeeerrro";
 "chat_all_done_explain" = "Zip. Zilch. Zero. Nada.\nHamınız tutuldunuz!";
