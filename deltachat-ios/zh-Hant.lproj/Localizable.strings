@@ -180,7 +180,7 @@
 "chat_record_explain" = "按住来录制语音消息，松开来发送";
 "chat_no_chats_yet_title" = "收件箱为空。\n按“+”来开始新聊天。";
 "chat_no_chats_yet_hint" = "您可以与其他Delta Chat用户以及任意电子邮件地址聊天。";
-"chat_all_archived" = "所有聊天已归档。按\\\"+\\\"来开始新聊天。";
+"chat_all_archived" = "所有聊天已归档。按\"+\"来开始新聊天。";
 "chat_share_with_title" = "分享给";
 "chat_input_placeholder" = "消息";
 "chat_archived_label" = "已归档";
@@ -198,7 +198,7 @@
 // search
 "search" = "搜索";
 "search_explain" = "搜索聊天、联系人和消息";
-"search_no_result_for_x" = "没有找到有关\\\"%s\\\"的结果";
+"search_no_result_for_x" = "没有找到有关\"%s\"的结果";
 
 
 // create/edit groups, contact/group profile
@@ -369,9 +369,9 @@
 "pref_managekeys_export_secret_keys" = "导出密钥";
 "pref_managekeys_export_explain" = "导出密钥到“%1$@”？";
 "pref_managekeys_import_secret_keys" = "导入密钥";
-"pref_managekeys_import_explain" = "从“%1$@”导入密钥？已经存在的密钥不会被删除。\n\n最后导入的密钥将被用作新的默认密钥除非它的文件名中含有单词\\\"legacy\\\".";
-"pref_managekeys_secret_keys_exported_to_x" = "密钥已成功写入至\\\"%1$@\\\"。";
-"pref_managekeys_secret_keys_imported_from_x" = "密钥已从\\\"%1$@\\\"导入。";
+"pref_managekeys_import_explain" = "从“%1$@”导入密钥？已经存在的密钥不会被删除。\n\n最后导入的密钥将被用作新的默认密钥除非它的文件名中含有单词\"legacy\".";
+"pref_managekeys_secret_keys_exported_to_x" = "密钥已成功写入至\"%1$@\"。";
+"pref_managekeys_secret_keys_imported_from_x" = "密钥已从\"%1$@\"导入。";
 "pref_background" = "背景";
 "pref_background_btn_default" = "使用默认图像";
 "pref_background_btn_gallery" = "从图库中选择";
@@ -413,7 +413,7 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "已更改群组名称：从“%1$@”更改为\\\"%2$@\\\"";
+"systemmsg_group_name_changed" = "已更改群组名称：从“%1$@”更改为\"%2$@\"";
 "systemmsg_group_image_changed" = "已更改群组图像";
 "systemmsg_group_image_deleted" = "已删除群组图像";
 "systemmsg_member_added" = "已添加成员 %1$@";
@@ -454,9 +454,9 @@
 "qrshow_x_verified" = "%1$@已验证。";
 "qrshow_x_has_joined_group" = "%1$@已加入群组。";
 "qrshow_join_group_title" = "二维邀请码";
-"qrshow_join_group_hint" = "扫描此处来加入群组\\\"%1$@\\\"。";
+"qrshow_join_group_hint" = "扫描此处来加入群组\"%1$@\"。";
 "qrshow_join_contact_title" = "二维邀请码";
-"qrshow_join_contact_hint" = "扫描此处来建立联系人\\\"%1$@\\\"。";
+"qrshow_join_contact_hint" = "扫描此处来建立联系人\"%1$@\"。";
 "qrshow_join_contact_no_connection_hint" = "二维码设置需要互联网连接。 要继续，请先连接到网络。";
 "qrshow_join_contact_no_connection_toast" = "没有互联网连接，无法进行二维码设置。";
 "contact_verified" = "%1$@已验证。";
@@ -587,7 +587,7 @@
 // see qrshow_join_group_title
 "qrshow_join_verified_group_title" = "二维邀请码";
 // see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "扫描此处来加入群组\\\"%1$@\\\"。";
+"qrshow_join_verified_group_hint" = "扫描此处来加入群组\"%1$@\"。";
 // see chat_all_archived
 "chat_all_done_hint" = "收件箱为为……为空";
 "chat_all_done_explain" = "没了，没了，没了，没了。\n您全看过了！";

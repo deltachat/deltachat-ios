@@ -178,9 +178,9 @@
 "chat_new_group_hint" = "Idatzi lehen mezua, besteek taldera erantzutea baimenduz\n\n• Ez du axola denek ez badute Delta Chat erabiltzen.\n\n• Lehen mezua bidaltzeko denbora bat behar daiteke.";
 "chat_record_slide_to_cancel" = "Irristatu ezeztatzeko";
 "chat_record_explain" = "Sakatu eta mantendu ahots-mezu bat grabatzeko, askatu bidaltzeko.";
-"chat_no_chats_yet_title" = "Sarrera-ontzi hutsa.\nSakatu \\\"+\\\" txat berria hasteko.";
+"chat_no_chats_yet_title" = "Sarrera-ontzi hutsa.\nSakatu \"+\" txat berria hasteko.";
 "chat_no_chats_yet_hint" = "Beste Delta Chat erabiltzaileekin txateatu dezakezu, edo edozein e-mail helbiderekin";
-"chat_all_archived" = "Txat guztiak artxibatuta.\nSakatu \\\"+\\\" txat berri bat hasteko.";
+"chat_all_archived" = "Txat guztiak artxibatuta.\nSakatu \"+\" txat berri bat hasteko.";
 "chat_share_with_title" = "Partekatu honekin";
 "chat_input_placeholder" = "Mezua";
 "chat_archived_label" = "Artxibatuta";
@@ -198,7 +198,7 @@
 // search
 "search" = "Bilatu";
 "search_explain" = "Bilatu txatak, kontaktuak, eta mezuak.";
-"search_no_result_for_x" = "Ez da emaitzarik aurkitu \\\"%s\\\" bilaketarentzat";
+"search_no_result_for_x" = "Ez da emaitzarik aurkitu \"%s\" bilaketarentzat";
 
 
 // create/edit groups, contact/group profile
@@ -207,7 +207,7 @@
 "group_create_button" = "Sortu taldea";
 "group_please_enter_group_name" = "Idatzi izen bat taldearentzat.";
 "group_add_members" = "Gehitu kideak";
-"group_hello_draft" = "Kaixo, \\\"%1$@\\\" taldea sortu berri dut guretzat. ";
+"group_hello_draft" = "Kaixo, \"%1$@\" taldea sortu berri dut guretzat. ";
 "group_self_not_in_group" = "Taldeko kidea izan behar zara ekintza hau burutzeko.";
 "profile_encryption" = "Zifratzea";
 "profile_shared_chats" = "Partekatutako txatak";
@@ -270,10 +270,10 @@
 "login_error_port" = "Sartu baliozko ataka bat  (1–65535)";
 "login_error_required_fields" = "Sartu baliozko e-mail helbidea eta pasahitza";
 "import_backup_title" = "Inportatu babes-kopia";
-"import_backup_ask" = "Babes-kopia aurkitu da:  \\\"%1$@\\\".\n\nInportatu nahi duzu eta bertako datu eta ezarpenak erabili?";
-"import_backup_no_backup_found" = "Ez da babes-kopiarik aurkitu.\n\nKopiatu babes-kopia \\\"%1$@\\\" karpetan eta saiatu berriro. Bestela, sakatu \\\"Hasi txateatzen\\\" ezarpen arruntarekin aurrera egiteko.";
+"import_backup_ask" = "Babes-kopia aurkitu da:  \"%1$@\".\n\nInportatu nahi duzu eta bertako datu eta ezarpenak erabili?";
+"import_backup_no_backup_found" = "Ez da babes-kopiarik aurkitu.\n\nKopiatu babes-kopia \"%1$@\" karpetan eta saiatu berriro. Bestela, sakatu \"Hasi txateatzen\" ezarpen arruntarekin aurrera egiteko.";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = "Ezin da \\\"%1$@\\\" bezala saioa hasi. Egiaztatu E-mail helbidea eta pasahitza zuzenak diren.";
+"login_error_cannot_login" = "Ezin da \"%1$@\" bezala saioa hasi. Egiaztatu E-mail helbidea eta pasahitza zuzenak diren.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "%1$@(r)en erantzuna: %2$@\n\nHornitzaile batzuk informazio gehigarria uzten dute zure sarrera ontzian; adibidez bere web interfazearen bidez egiaztatu dezakezu. Galdetu zure hornitzaileari edo lagunei arazoak badituzu.";
 
@@ -367,11 +367,11 @@
 "pref_managekeys_menu_title" = "Kudeatu gakoak";
 "pref_managekeys_ask_for_storage_permission" = "Delta Chat-ek zure fitxategiak atzitzeko baimena behar du gakoak inportatu/esportatu ahal izateko.";
 "pref_managekeys_export_secret_keys" = "Esportatu gako sekretuak";
-"pref_managekeys_export_explain" = "Esportatu gako sekretuak \\\"%1$@\\\"-ra?";
+"pref_managekeys_export_explain" = "Esportatu gako sekretuak \"%1$@\"-ra?";
 "pref_managekeys_import_secret_keys" = "Inportatu gako sekretuak";
-"pref_managekeys_import_explain" = "Inportatu gako sekretuak \\\"%1$@\\\"-tik?\n\n• Dauden gako sekretuak ez dira ezabatuko\n\n• Inportatutako azken gakoa lehenetsitako gako berri gisa erabiliko da fitxategiaren izenean \\\"legacy\\\" ez badu.";
-"pref_managekeys_secret_keys_exported_to_x" = "Gako sekretuak ongi idatzi dira hemen: \\\"%1$@\\\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Gako sekretuak hemendik inportatu dira: \\\"%1$@\\\".";
+"pref_managekeys_import_explain" = "Inportatu gako sekretuak \"%1$@\"-tik?\n\n• Dauden gako sekretuak ez dira ezabatuko\n\n• Inportatutako azken gakoa lehenetsitako gako berri gisa erabiliko da fitxategiaren izenean \"legacy\" ez badu.";
+"pref_managekeys_secret_keys_exported_to_x" = "Gako sekretuak ongi idatzi dira hemen: \"%1$@\".";
+"pref_managekeys_secret_keys_imported_from_x" = "Gako sekretuak hemendik inportatu dira: \"%1$@\".";
 "pref_background" = "Atzealdea";
 "pref_background_btn_default" = "Erabili lehenetsitako irudia";
 "pref_background_btn_gallery" = "Hautatu galeriatik";
@@ -398,7 +398,7 @@
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt e-maila muturretik muturrera zifratzeko espezifikazio berri eta ireki bat da.\n\nZure muturretik muturrerako ezarpena automatikoki sortzend a behar denean eta gailutik gailura eraman dezakezu Autocrypt ezarpen mezuekin.";
 "autocrypt_send_asm_title" = "Bidali Autocrypt ezarpen mezua";
-"autocrypt_send_asm_explain_before" = "\\\"Autocrypt ezarpen mezua\\\" batek modu seguruan partekatzen du zure muturretik muturrerako ezarpena Autocryptekin bateragarriak diren beste aplikazioekin. Ezarpena hemen bistaratutako ezarpen kodearekin zifratuko  da, eta beste gailuan kode hau sartu beharko da.";
+"autocrypt_send_asm_explain_before" = "\"Autocrypt ezarpen mezua\" batek modu seguruan partekatzen du zure muturretik muturrerako ezarpena Autocryptekin bateragarriak diren beste aplikazioekin. Ezarpena hemen bistaratutako ezarpen kodearekin zifratuko  da, eta beste gailuan kode hau sartu beharko da.";
 "autocrypt_send_asm_button" = "Bidali Autocrypt ezarpen mezua";
 "autocrypt_send_asm_explain_after" = "Zure ezarpena zuri bidali zaizu. Aldatu beste gailura eta ireki ezarpen mezua. Ezarpen kode bat eskatuko zaizu, Idatzi honako zenbaki hauek han:\n\n%1$@\n\nBehin bukatuta, zure beste gailua Autocrypt erabiltzeko prest egongo da.";
 "autocrypt_prefer_e2ee" = "Hobetsi muturretik muturrerako zifratzea";
@@ -413,14 +413,14 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "Taldearen izena \\\"%1$@\\\" izatetik \\\"%2$@\\\" izatera aldatu da.";
+"systemmsg_group_name_changed" = "Taldearen izena \"%1$@\" izatetik \"%2$@\" izatera aldatu da.";
 "systemmsg_group_image_changed" = "Taldearen irudia aldatuta.";
 "systemmsg_group_image_deleted" = "Taldearen irudia ezabatuta.";
 "systemmsg_member_added" = "%1$@ kidea gehituta.";
 "systemmsg_member_removed" = "%1$@ kidea kenduta.";
 "systemmsg_group_left" = "Taldetik aterata.";
 "systemmsg_read_receipt_subject" = "Irakurragiria";
-"systemmsg_read_receipt_body" = "Hau \\\"%1$@\\\" mezuaren irakurragiri bat da.\n\nHonek mezua jasotzailearen gailuan bistaratu dela esan nahi du, ez edukia irakurri dela.";
+"systemmsg_read_receipt_body" = "Hau \"%1$@\" mezuaren irakurragiri bat da.\n\nHonek mezua jasotzailearen gailuan bistaratu dela esan nahi du, ez edukia irakurri dela.";
 "systemmsg_cannot_decrypt" = "Ezin da mezu hau deszifratu.\n\n• Mezuari erantzun diezaiokezu eta berriro bidaltzea eskatu.\n\n• Delta Chat berrinstalatu baduzu edo beste posta programa bat instalatu baduzu gailu honetan edo beste batean, AutoCrypt ezarpen mezua handik hona birbidaltzen saiatu zaitezke.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
 "systemmsg_action_by_me" = "Nik: %1$@";
@@ -430,7 +430,7 @@
 
 // screen lock
 "screenlock_title" = "Pantila-blokeoa";
-"screenlock_explain" = "Blokeatu sarbidea Androideko blokeo-pantailarekin edo hatz-markarekin aurreko edukia agertzea ekiditeko, gaitu ere \\\"Pantaila-segurtasuna\\\"";
+"screenlock_explain" = "Blokeatu sarbidea Androideko blokeo-pantailarekin edo hatz-markarekin aurreko edukia agertzea ekiditeko, gaitu ere \"Pantaila-segurtasuna\"";
 "screenlock_authentication_failed" = "Autentifikazioak huts egin du.";
 "screenlock_unlock_title" = "Desblokeatu Delta Chat";
 "screenlock_unlock_description" = "Sartu sisteman zehaztutako sekretua Delta Chat desblokeatzeko.";
@@ -442,7 +442,7 @@
 // qr code stuff
 "qrscan_title" = "Eskaneatu QR kodea";
 "qrscan_hint" = "Kokatu zure kamera QR kodearen gainean";
-"qrscan_ask_join_group" = "\\\"%1$@\\\" taldera elkartu nahi duzu?";
+"qrscan_ask_join_group" = "\"%1$@\" taldera elkartu nahi duzu?";
 "qrscan_fingerprint_mismatch" = "Eskaneatutako hatz-marka eta %1$@ erabiltzaileari ikusitako azken hatz-marka ez datoz bat.";
 "qrscan_no_addr_found" = "QR kode honek hatz-marka bat du baina ez e-mail helbidea.\n\nBandaz kanpoko egiaztaketa baterako, ezarri zifratutako konexio bat hartzailearekin aurretik.";
 "qrscan_contains_text" = "Eskaneatutako QR kodearen testua:\n\n%1$@";
@@ -454,7 +454,7 @@
 "qrshow_x_verified" = "%1$@ egiaztatuta.";
 "qrshow_x_has_joined_group" = "%1$@ taldera elkartu da.";
 "qrshow_join_group_title" = "QR gonbidapen-kodea";
-"qrshow_join_group_hint" = "Eskaneatu hau \\\"%1$@\\\" taldera elkartzeko.";
+"qrshow_join_group_hint" = "Eskaneatu hau \"%1$@\" taldera elkartzeko.";
 "qrshow_join_contact_title" = "QR gonbidapen-kodea";
 "qrshow_join_contact_hint" = "Eskaneatu hau %1$@ erabiltzailearen kontaktua ezartzeko";
 "qrshow_join_contact_no_connection_hint" = "Ezarpen QR kodeak Internet konexioa behar du. Konektatu sarera jarraitu aurretik";
@@ -490,10 +490,10 @@
 "perm_explain_need_for_mic_access" = "Audio-mezuak bidaltzeko, baimendu DeltaChat-ek mikrofonoa atzitzea.";
 "perm_explain_need_for_storage_access" = "Delta Chat-ek zure fitxategiak atzitzeko baimena behar du fitxategiak esportatu ahal izateko edo babes-kopiak sortzeko.";
 "perm_explain_need_for_storage_access_share" = "Delta Chat-ek zure fitxategietara sarbidea behar du hautatutako fitxategiak partekatu ahal izateko.";
-"perm_explain_access_to_camera_denied" = "Delta Chat-ek kamerara sarbidea behar du argazkiak edo bideoak ateratzeko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \\\"Baimenak\\\" eta gaitu \\\"Kamera\\\".";
-"perm_explain_access_to_mic_denied" = "Delta Chat-ek mikrofonoa erabiltzeko baimena behar du ahots-mezuak bidali ahal izateko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpenetara, hautatu \\\"Baimenak\\\" eta gaitu \\\"Mikrofonoa\\\".";
-"perm_explain_access_to_storage_denied" = "Delta Chat-ek biltegiratze baimena behar du argazkiak, bideoak edo audioa erantsi edo esportatzeko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \\\"baimenak\\\", eta gaitu \\\"Biltegiratzea\\\"";
-"perm_explain_access_to_location_denied" = "Delta Chat-ek kokaleku aatzitzeko baimena behar du kokalekua eransteko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \\\"baimenak\\\", eta gaitu \\\"Kokalekua\\\".";
+"perm_explain_access_to_camera_denied" = "Delta Chat-ek kamerara sarbidea behar du argazkiak edo bideoak ateratzeko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"Baimenak\" eta gaitu \"Kamera\".";
+"perm_explain_access_to_mic_denied" = "Delta Chat-ek mikrofonoa erabiltzeko baimena behar du ahots-mezuak bidali ahal izateko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpenetara, hautatu \"Baimenak\" eta gaitu \"Mikrofonoa\".";
+"perm_explain_access_to_storage_denied" = "Delta Chat-ek biltegiratze baimena behar du argazkiak, bideoak edo audioa erantsi edo esportatzeko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"baimenak\", eta gaitu \"Biltegiratzea\"";
+"perm_explain_access_to_location_denied" = "Delta Chat-ek kokaleku aatzitzeko baimena behar du kokalekua eransteko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"baimenak\", eta gaitu \"Kokalekua\".";
 "perm_enable_bg_reminder_title" = "Sakatu hemen mezuak jasotzeko Delta Chat bigarren planoan dagoenean.";
 "perm_enable_bg_reminder_text" = "Delta Chat-ek baliabide gutxi erabiltzen ditu eta zure bateria ez agortzeaz arduratzen da.";
 
@@ -579,7 +579,7 @@
 
 // deprecated on android, please remove if unused on desktop
 // see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "\\\"%1$@\\\" taldera elkartu nahi duzu?";
+"qrscan_ask_join_verified_group" = "\"%1$@\" taldera elkartu nahi duzu?";
 // see ask_start_chat_with
 "qrscan_ask_fingerprint_ask_oob" = "Txateatu %1$@(r)ekin?";
 // see ask_start_chat_with
@@ -587,7 +587,7 @@
 // see qrshow_join_group_title
 "qrshow_join_verified_group_title" = "QR gonbidapen kodea";
 // see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "Eskaneatu hau \\\"%1$@\\\" taldera elkartzeko.";
+"qrshow_join_verified_group_hint" = "Eskaneatu hau \"%1$@\" taldera elkartzeko.";
 // see chat_all_archived
 "chat_all_done_hint" = "Sarrera ontzi hutsa";
 "chat_all_done_explain" = "Ezer ere ez.\n Egunean zaude!";

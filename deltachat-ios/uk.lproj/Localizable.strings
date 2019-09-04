@@ -111,7 +111,7 @@
 "menu_help" = "Допомога";
 "menu_select_all" = "Вибрати все";
 "menu_expand" = "Розширити";
-"menu_edit_name" = "Редагувати ім\\'я";
+"menu_edit_name" = "Редагувати ім\'я";
 "menu_settings" = "Налаштування";
 "menu_advanced" = "Додатково";
 "menu_deaddrop" = "Запити на спілкування";
@@ -132,7 +132,7 @@
 "ask_start_chat_with" = "Створити чат з %1$@?";
 // contact list
 "contacts_title" = "Контакти";
-"contacts_enter_name_or_email" = "Введіть ім\\'я або адресу електронної пошти";
+"contacts_enter_name_or_email" = "Введіть ім\'я або адресу електронної пошти";
 "contacts_type_email_above" = "Введіть адресу електронної пошти вище";
 "contacts_empty_hint" = "Немає контактів.";
 
@@ -152,7 +152,7 @@
 "chat_no_messages" = "Немає повідомлень.";
 "chat_self_talk_subtitle" = "Повідомлення, відправлені самому собі";
 "chat_contact_request" = "Запит контакту";
-"chat_no_contact_requests" = "Немає запитів контактів.\n\nЯкщо Ви бажаєте, щоб звичайна пошта з\\'являлася тут як запити контактів, Ви можете змінити відповідний параметр у налаштуваннях додатку.";
+"chat_no_contact_requests" = "Немає запитів контактів.\n\nЯкщо Ви бажаєте, щоб звичайна пошта з\'являлася тут як запити контактів, Ви можете змінити відповідний параметр у налаштуваннях додатку.";
 
 // search
 "search" = "Пошук";
@@ -189,7 +189,7 @@
 // Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_headline" = "Безкоштовний";
 // Translators: "free" as in freedom here, not "free" as in "free beer"
-"welcome_intro5_message" = "Delta Chat безкоштовний і так буде завжди. Має відкритий початковий код. Ніякої реклами. Ніяких платних підписок. Немає прив\\'язки до постачальника.";
+"welcome_intro5_message" = "Delta Chat безкоштовний і так буде завжди. Має відкритий початковий код. Ніякої реклами. Ніяких платних підписок. Немає прив\'язки до постачальника.";
 "welcome_intro6_headline" = "Зашифрований";
 "welcome_intro6_message" = "Зашифрований з використанням популярних алгоритмів. Повідомлення залишаються на ваших серверах.";
 "welcome_intro7_headline" = "Надійний";
@@ -251,8 +251,8 @@
 "pref_help_url" = "https://delta.chat/uk/help";
 "pref_password_and_account_settings" = "Налаштування паролю і облікового запису";
 "pref_who_can_see_this_information" = "Хто може бачити цю інформацію?";
-"pref_who_can_see_profile_explain" = "Зображення профілю та ім\\'я будуть відображатися в чатах з іншими користувачами. Відправлена інформація не може бути видалена або відкликана.";
-"pref_your_name" = "Ваше ім\\'я";
+"pref_who_can_see_profile_explain" = "Зображення профілю та ім\'я будуть відображатися в чатах з іншими користувачами. Відправлена інформація не може бути видалена або відкликана.";
+"pref_your_name" = "Ваше ім\'я";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
 "pref_default_status_label" = "Текст підпису";
 // Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
@@ -291,7 +291,7 @@
 "pref_use_system_emoji" = "Використовувати системні емодзі";
 "pref_use_system_emoji_explain" = "Вимкнути вбудовану підтримку емодзі";
 "pref_app_access" = "Доступ додатку";
-"pref_communication" = "Зв\\'язок";
+"pref_communication" = "Зв\'язок";
 "pref_chats" = "Чати";
 "pref_messages" = "Повідомлення";
 "pref_in_chat_sounds" = "Звуки у чаті";
@@ -374,7 +374,7 @@
 "qrscan_hint" = "Наведіть камеру на QR-код";
 "qrscan_ask_join_group" = "Приєднатися до групи «%1$@»?";
 "qrscan_fingerprint_mismatch" = "Відсканований відбиток не збігається з останнім відомим відбитком %1$@";
-"qrscan_no_addr_found" = "QR-код містить відбиток ключа, але не містить адресу електронної пошти.\n\nДля перевірки автентичності з використанням альтернативного каналу зв\\'язку слід спочатку встановити з одержувачем захищене з\\'єднання.";
+"qrscan_no_addr_found" = "QR-код містить відбиток ключа, але не містить адресу електронної пошти.\n\nДля перевірки автентичності з використанням альтернативного каналу зв\'язку слід спочатку встановити з одержувачем захищене з\'єднання.";
 "qrscan_contains_text" = "Текст з QR-коду:\n\n%1$@";
 "qrscan_contains_url" = "URL з QR-коду:\n\n%1$@";
 "qrscan_fingerprint_label" = "Відбиток";
@@ -402,11 +402,11 @@
 "notify_media_message" = "Медіа-повідомлення";
 "notify_reply_button" = "Відповісти";
 "notify_new_message" = "Нове повідомлення";
-"notify_background_connection_enabled" = "З\\'єднання у фоновому режимі увімкнено";
+"notify_background_connection_enabled" = "З\'єднання у фоновому режимі увімкнено";
 "notify_priority_high" = "Високий";
 "notify_priority_max" = "Максимальний";
-"notify_name_and_message" = "Ім\\'я та повідомлення";
-"notify_name_only" = "Тільки ім\\'я";
+"notify_name_and_message" = "Ім\'я та повідомлення";
+"notify_name_only" = "Тільки ім\'я";
 "notify_no_name_or_message" = "Без імені або повідомлення";
 
 
@@ -472,7 +472,7 @@
 "show_qr_invite_code_desktop" = "Показати QR-код запрошення";
 "add_contact_desktop" = "Додати контакт";
 "login_required_desktop" = "потрібний";
-"name_desktop" = "Ім\\'я";
+"name_desktop" = "Ім\'я";
 "autocrypt_key_transfer_desktop" = "Передавання ключів Autocrypt";
 "initiate_key_transfer_title_desktop" = "Ініціювати передачу ключа";
 "initiate_key_transfer_desktop" = "Повідомлення з параметрами Autocrypt слугує для безпечного передавання параметрів наскрізного шифрування між власними додатками для роботи з електронною поштою, що підтримують протокол Autocrypt. Ці параметри шифруються з використанням спеціального інсталяційного коду, що показаний тут і повинен бути введений у налаштовуємому додатку.";

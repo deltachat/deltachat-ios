@@ -178,7 +178,7 @@
 "chat_new_group_hint" = "Napisz pierwszą wiadomość, by inni mogli odpowiedzieć w tej grupie.\n\n• Nie ma problemu, jeśli nie wszyscy członkowie korzystają z Delta Chat.\n\n• Dostarczenie pierwszej wiadomości może chwilę potrwać.";
 "chat_record_slide_to_cancel" = "PRZESUŃ, BY ANULOWAĆ";
 "chat_record_explain" = "Dotknij i przytrzymaj, aby nagrać wiadomość głosową, zwolnij, aby wysłać";
-"chat_no_chats_yet_title" = "Pusta skrzynka odbiorcza.\nNaciśnij \\\"+\\\" aby rozpocząć nowy czat.";
+"chat_no_chats_yet_title" = "Pusta skrzynka odbiorcza.\nNaciśnij \"+\" aby rozpocząć nowy czat.";
 "chat_no_chats_yet_hint" = "Możesz rozmawiać z innymi użytkownikami Delta Chat i z dowolnym adresem e-mail.";
 "chat_all_archived" = "Wszystkie czaty zarchiwizowane.\nNaciśnij „+” aby rozpocząć nowy czat.";
 "chat_share_with_title" = "Udostępnij";
@@ -207,7 +207,7 @@
 "group_create_button" = "Utwórz grupę";
 "group_please_enter_group_name" = "Podaj nazwę dla grupy";
 "group_add_members" = "Dodaj członków";
-"group_hello_draft" = "Witam, właśnie utworzyłem dla nas grupę \\\"%1$@\\\".";
+"group_hello_draft" = "Witam, właśnie utworzyłem dla nas grupę \"%1$@\".";
 "group_self_not_in_group" = "Musisz być członkiem grupy, aby wykonać tę czynność.";
 "profile_encryption" = "Szyfrowanie";
 "profile_shared_chats" = "Wspólne czaty";
@@ -271,7 +271,7 @@
 "login_error_required_fields" = "Podaj ważny adres e-mail i hasło";
 "import_backup_title" = "Import kopii zapasowej";
 "import_backup_ask" = "Delta Chat znalazł kopię zapasową w katalogu „%1$@.\n\nCzy chcesz zaimportować i używać wszystkich danych i ustawień z tej kopii zapasowej?";
-"import_backup_no_backup_found" = "Nie znaleziono kopii zapasowej.\n\nSkopiuj kopię zapasową do katalogu „%1$@ i spróbuj ponownie. Alternatywnie dotknij \\\"Uruchom komunikator\\\", aby rozpocząć normalny proces instalacji.";
+"import_backup_no_backup_found" = "Nie znaleziono kopii zapasowej.\n\nSkopiuj kopię zapasową do katalogu „%1$@ i spróbuj ponownie. Alternatywnie dotknij \"Uruchom komunikator\", aby rozpocząć normalny proces instalacji.";
 // Translators: %1$s will be replaced by the email address
 "login_error_cannot_login" = "Nie można się zalogować jako „%1$@. Sprawdź, czy adres e-mail i hasło są poprawne.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
@@ -413,7 +413,7 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "Zmieniono nazwę grupy z \\\"%1$@\\\" na \\\"%2$@\\\".";
+"systemmsg_group_name_changed" = "Zmieniono nazwę grupy z \"%1$@\" na \"%2$@\".";
 "systemmsg_group_image_changed" = "Zmieniono obraz grupy.";
 "systemmsg_group_image_deleted" = "Usunięto obraz grupy.";
 "systemmsg_member_added" = "Dodano członka %1$@";
