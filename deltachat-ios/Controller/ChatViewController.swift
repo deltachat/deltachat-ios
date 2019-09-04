@@ -89,12 +89,13 @@ class ChatViewController: MessagesViewController {
         let chat = DcChat(id: chatId)
         titleView.updateTitleView(title: chat.name, subtitle: chat.subtitle)
 
+        let badge: InitialsBadge
         if let image = chat.profileImage {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(chatProfilePressed))
+            badge =  InitialsBadge(image: image, size: 28)
         } else {
-            let initialsLabel =  InitialsBadge(name: chat.name, color: chat.color, size: 28)
-            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: initialsLabel)
+            badge =  InitialsBadge(name: chat.name, color: chat.color, size: 28)
         }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: badge)
 
         configureMessageMenu()
 

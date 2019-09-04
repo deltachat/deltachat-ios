@@ -165,9 +165,11 @@ class ContactCell: UITableViewCell {
     }
 
     func setImage(_ img: UIImage) {
-        let attachment = NSTextAttachment()
-        attachment.image = img
-        initialsLabel.attributedText = NSAttributedString(attachment: attachment)
+        if let resizedImg = img.resizeImage(targetSize: CGSize(width: initialsLabelSize - 6, height: initialsLabelSize - 6)) {
+            let attachment = NSTextAttachment()
+            attachment.image = resizedImg
+            initialsLabel.attributedText = NSAttributedString(attachment: attachment)
+        }
     }
 
     func setBackupImage(name: String, color: UIColor) {
