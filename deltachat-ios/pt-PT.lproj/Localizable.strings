@@ -313,8 +313,8 @@
 "pref_managekeys_export_explain" = "Exportar chave secreta para \"%1$@\"?";
 "pref_managekeys_import_secret_keys" = "Importar chave secreta";
 "pref_managekeys_import_explain" = "Importar chaves secretas de \"%1$@\"?\n\n• As chaves secretas existentes não serão apagadas \n\n • A última chave importada será usada como a nova chave padrão, a menos que tenha a palavra \"legacy\" no nome do arquivo";
-"pref_managekeys_secret_keys_exported_to_x" = "Chaves secretas escritas com sucesso para "%1$@\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Chaves secretas importadas de "%1$@\".";
+"pref_managekeys_secret_keys_exported_to_x" = "Chaves secretas escritas com sucesso para \"%1$@\".";
+"pref_managekeys_secret_keys_imported_from_x" = "Chaves secretas importadas de \"%1$@\".";
 "pref_background" = "Fundo";
 "pref_imap_folder_handling" = "Manipulação da pasta do IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Se desabilitar esta opção, verifique se seu servidor e seus outros clientes estão configurados adequadamente. \n\ncaso contrário, as coisas podem não funcionar.";

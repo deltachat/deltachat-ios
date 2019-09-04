@@ -344,7 +344,7 @@
 // Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
 "pref_incognito_keyboard_explain" = "Kërkoji tastierës të çaktivizojë nxënie të personalizuar";
 "pref_read_receipts" = "Lexoni dëftesa";
-"pref_read_receipts_explain" = "Nëse leximi i dëftesave është i çaktivizuar, s\’do të jeni në gjendje të shihni mesazh "Lexoni dëftesa" prej të tjerësh";
+"pref_read_receipts_explain" = "Nëse leximi i dëftesave është i çaktivizuar, s\’do të jeni në gjendje të shihni mesazh \"Lexoni dëftesa\" prej të tjerësh";
 "pref_manage_keys" = "Administroni kyçe";
 "pref_use_system_emoji" = "Përdor emoji sistemi";
 "pref_use_system_emoji_explain" = "Çaktivizo mbulimin e brendshëm Delta Chat për emoji-t";
