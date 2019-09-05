@@ -1,0 +1,251 @@
+// common strings without special context
+"app_name" = "Delta Chat";
+"ok" = "OK";
+"cancel" = "Mégse";
+"yes" = "Igen";
+"no" = "Nem";
+"on" = "Be";
+"off" = "Ki";
+"def" = "Alapértelmezett";
+"custom" = "Egyéni";
+"open" = "Megnyitás";
+"delete" = "Törlés";
+"not_now" = "Most nem";
+"never" = "Soha";
+"one_moment" = "Egy pillanat...";
+"done" = "Kész";
+"undo" = "Visszavonás";
+"error" = "Hiba";
+"error_x" = "Hiba: %1$@";
+"error_no_network" = "A hálózat nem elérhető.";
+"no_browser_installed" = "Nincs böngésző telepítve.";
+"file_not_found" = "%1$@ nem található.";
+"copied_to_clipboard" = "Vágólapra másolva.";
+"contacts_headline" = "Partnerek";
+"email_address" = "E-mail cím";
+"bad_email_address" = "Rossz e-mail cím.";
+"password" = "Jelszó";
+"now" = "Most";
+// n_min_ago is deprecated, use n_minutes instead
+"n_min_ago" = "%d perce";
+"today" = "Ma";
+"yesterday" = "Tegnap";
+"this_week" = "Ezen a héten";
+"this_month" = "Ebben a hónapban";
+"last_week" = "Múlt héten";
+"last_month" = "Múlt hónapban";
+// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
+// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
+"self" = "Én";
+"draft" = "Piszkozat";
+"image" = "Kép";
+"gif" = "Gif";
+"images" = "Képek";
+"audio" = "Hang";
+"voice_message" = "Hangüzenet";
+"forwarded_message" = "Továbbított üzenet";
+"video" = "Videó";
+"documents" = "Dokumentumok";
+"camera" = "Kamera";
+"location" = "Hely";
+"gallery" = "Galéria";
+"file" = "Fájl";
+"unknown" = "Ismeretlen";
+
+"green" = "Zöld";
+"red" = "Piros";
+"blue" = "Kék";
+"orange" = "Narancs";
+"cyan" = "Cián";
+"purple" = "Lila";
+"magenta" = "Magenta";
+"white" = "Fehér";
+
+"small" = "Kicsi";
+"normal" = "Normál";
+"large" = "Nagy";
+"extra_large" = "Nagyon nagy";
+
+"fast" = "Gyors";
+"slow" = "Lassú";
+
+"message_delivered" = "Üzenet kézbesítve";
+"message_read" = "Üzenet elolvasva";
+
+
+// menu labels (or icon, buttons...)
+"menu_new_contact" = "Új partner";
+"menu_new_chat" = "Új beszélgetés";
+"menu_new_group" = "Új csoport";
+"menu_new_verified_group" = "Új ellenőrzött csoport (kísérleti)";
+"menu_send" = "Küldés";
+"menu_edit_group" = "Csoport szerkesztése";
+"menu_group_name_and_image" = "Csoportnév és -kép";
+"menu_show_map" = "Térkép megjelenítése";
+"menu_show_global_map" = "Minden hely megjelenítése";
+"menu_archive_chat" = "Beszélgetés archiválása";
+"menu_unarchive_chat" = "Archiválás visszavonása";
+"menu_add_attachment" = "Fájl csatolása";
+"menu_leave_group" = "Csoport elhagyása";
+"menu_delete_chat" = "Beszélgetés törlése";
+"menu_delete_messages" = "Üzenetek törlése";
+"menu_delete_image" = "Kép törlése";
+"menu_delete_locations" = "Minden helyszínt törölsz?";
+"menu_delete_location" = "Törlöd ezt a helyszínt?";
+"menu_copy_to_clipboard" = "Vágólapra másolás";
+"menu_forward" = "Üzenet továbbítása";
+"menu_resend" = "Üzenet újraküldése";
+"menu_reply" = "Válasz az üzenetre";
+"menu_mute" = "Értesítések némítása";
+"menu_unmute" = "Némítás kikapcsolása";
+"menu_export_attachment" = "Csatolmány exportálása";
+"menu_all_media" = "Minden média";
+"menu_share" = "Megosztás";
+"menu_block_contact" = "Partner letiltása";
+"menu_unblock_contact" = "Tiltás visszavonása";
+"menu_play" = "Lejátszás";
+"menu_pause" = "Szünet";
+"menu_scroll_to_bottom" = "Ugrás az aljára";
+"menu_scroll_to_top" = "Ugrás a tetejére";
+"menu_invite" = "Barátok meghívása";
+"menu_help" = "Segítség";
+"menu_edit_name" = "Név módosítása";
+"menu_edit_group_name" = "Csoportnév módosítása";
+"menu_edit_group_image" = "Csoportkép módosítása";
+"menu_settings" = "Beállítások";
+"menu_advanced" = "Haladó";
+"menu_view_profile" = "Profil megtekintése";
+"menu_save_log" = "Naplófájl mentése";
+"title_share_location" = "Hely megosztása a csoport összes tagjával";
+
+"mute_for_one_hour" = "Némítás 1 órára";
+"mute_for_two_hours" = "Némítás 2 órára";
+"mute_for_one_day" = "Némítás 1 napra";
+"mute_for_seven_days" = "Némítás 7 napra";
+"mute_forever" = "Némítás örökre";
+
+"share_location_once" = "egyszer";
+"share_location_for_5_minutes" = "5 percig";
+"share_location_for_30_minutes" = "30 percig";
+"share_location_for_one_hour" = "1 óráig";
+"share_location_for_two_hours" = "2 óráig";
+"share_location_for_six_hours" = "6 óráig";
+
+
+// get confirmations
+"ask_leave_group" = "Biztosan ki akarsz lépni a csoportból?";
+"ask_forward" = "Továbbítod az üzenetet %1$@ részére?";
+"info_outdated_app_dialog_text" = "A Delta Chat elérhető:";
+
+
+// chatlist and chat view
+"chat_archived_chats_title" = "Archivált beszélgetések";
+"chat_no_chats_yet_title" = "Üres a postaláda.\nNyomd meg a \"+\" gombot új beszélgetés indításához.";
+"chat_all_archived" = "Minden csevegés archiválva van.\nNyomd meg a \"+\" gombot új beszélgetés indításához.";
+"chat_self_talk_subtitle" = "Magamnak küldött üzenetek";
+// search
+"search" = "Keresés";
+// create/edit groups, contact/group profile
+"group_name" = "Csoportnév";
+"group_avatar" = "Csoportkép";
+"group_create_button" = "Csoport készítése";
+"group_add_members" = "Tagok felvétele";
+"group_hello_draft" = "Helló, indítottam magunknak egy csoportot „%1$@” néven.";
+"group_self_not_in_group" = "A csoport tagjának kell lenned, hogy ezt megtehesd.";
+"profile_encryption" = "Titkosítás";
+"tab_group" = "Csoport";
+"tab_members" = "Tagok";
+"tab_gallery" = "Galéria";
+"tab_docs" = "Dokumentumok";
+"tab_links" = "Linkek";
+"tab_map" = "Térkép";
+"media_preview" = "Média előnézete";
+
+
+// welcome and login
+"welcome_intro1_headline" = "Delta Chat";
+"welcome_intro6_headline" = "Titkosított";
+"login_imap_server" = "IMAP kiszolgáló";
+"login_imap_port" = "IMAP port";
+"login_imap_security" = "IMAP biztonság";
+"login_smtp_password" = "SMTP jelszó";
+"login_smtp_server" = "SMTP kiszolgáló";
+"login_smtp_port" = "SMTP port";
+"pref_profile_photo" = "Profilkép";
+"pref_trim_option" = "Régi üzenetek törlése";
+"systemmsg_group_image_changed" = "A csoportkép megváltozott.";
+"systemmsg_group_image_deleted" = "A csoportkép törölve.";
+// screen lock
+"screenlock_title" = "Képernyőzár";
+"qrscan_fingerprint_label" = "Ujjlenyomat.";
+"qrshow_x_joining" = "%1$@ csatlakozik.";
+"qrshow_x_verified" = "%1$@ ellenőrizve.";
+"qrshow_x_has_joined_group" = "%1$@ csatlakozott a csoporthoz.";
+"contact_verified" = "%1$@ ellenőrizve.";
+"contact_not_verified" = "%1$@ nem ellenőrizhető";
+// notifications 
+"notify_n_messages_in_m_chats" = "%1$dúj üzenet %2$d beszélgetésben";
+"notify_media_message_with_text" = "Médiaüzenet: %s";
+"notify_mark_all_read" = "Mindet olvasottnak jelöl";
+"notify_mark_read" = "Olvasottnak jelöl";
+"notify_media_message" = "Médiaüzenet";
+"notify_reply_button" = "Válasz";
+"notify_new_message" = "Új üzenet";
+"perm_not_now" = "Most nem";
+"global_menu_preferences_language_desktop" = "Válassz nyelvet...";
+"global_menu_file_desktop" = "Fájl";
+"global_menu_file_quit_desktop" = "Kilépés";
+"global_menu_edit_desktop" = "Szerkesztés";
+"global_menu_edit_undo_desktop" = "Visszavonás";
+"global_menu_edit_redo_desktop" = "Újra";
+"global_menu_edit_cut_desktop" = "Kivágás";
+"global_menu_edit_copy_desktop" = "Másolás";
+"global_menu_edit_paste_desktop" = "Beillesztés";
+"global_menu_edit_delete_desktop" = "Törlés";
+"global_menu_edit_selectall_desktop" = "Minden kijelölése";
+"global_menu_view_desktop" = "Nézet";
+"global_menu_help_desktop" = "Súgó";
+"no_chat_selected_suggestion_desktop" = "Válassz ki egy beszélgetést vagy indíts egy újat";
+"name_desktop" = "Név";
+"download_attachment_desktop" = "Csatolmány letöltése";
+"menu.view.developer.open.log.folder" = "Naplófájlok könyvtárának megnyitása";
+"menu.view.developer.open.current.log.file" = "Jelenlegi naplófájl megnyitása";
+
+// see chat_all_archived
+"chat_all_done_hint" = "A postaláda üreeeessss";
+"media_tab_media" = "Média";
+"media_tab_documents" = "Dokumentumok";
+"media_no_media_hint" = "Nincs média.";
+"media_no_documents_hint" = "Nincs dokumentum.";
+"language_be" = "Belga";
+"language_ca" = "Katalán";
+"language_da" = "Dán";
+"language_de" = "Német";
+"language_en" = "Angol";
+"language_eo" = "Eszperantó";
+"language_es" = "Spanyol";
+"language_eu" = "Baszk";
+"language_fr" = "Francia";
+"language_hr" = "Horvát";
+"language_hu" = "Magyar";
+"language_it" = "Olasz";
+"language_id" = "Indonéz";
+"language_ja_JP" = "Japán";
+"language_ko" = "Koreai";
+"language_nb_NO" = "Norvég Bokmål";
+"language_nl" = "Holland";
+"language_nl_NL" = "Holland (Hollandia)";
+"language_pl" = "Lengyel";
+"language_pt" = "Portugál";
+"language_ru" = "Orosz";
+"language_ru_RU" = "Orosz (Oroszország)";
+"language_sq" = "Albán";
+"language_sr" = "Szerb";
+"language_sv" = "Svéd";
+"language_ta" = "Tamil";
+"language_te" = "Telugu";
+"language_tr" = "Török";
+"language_uk" = "Ukrán";
+"language_zh_CN" = "Kínai";
+
