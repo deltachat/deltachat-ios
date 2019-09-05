@@ -145,6 +145,32 @@ extension DcContact {
             return []
         }
     }
+
+    func containsExact(searchText text: String) -> [ContactHighlights] {
+        var contactHighlights = [ContactHighlights]()
+
+        let nameString = name + ""
+        let emailString = email + ""
+        if let nameRange = nameString.range(of: text, options: .caseInsensitive) {
+            let index: Int = nameString.distance(from: nameString.startIndex, to: nameRange.lowerBound)
+            var nameIndexes = [Int]()
+            for i in index..<(index + text.count) {
+                nameIndexes.append(i)
+            }
+            contactHighlights.append(ContactHighlights(contactDetail: .NAME, indexes: nameIndexes))
+        }
+
+        if let emailRange = emailString.range(of: text, options: .caseInsensitive) {
+            let index: Int = emailString.distance(from: emailString.startIndex, to: emailRange.lowerBound)
+            var emailIndexes = [Int]()
+            for i in index..<(index + text.count) {
+                emailIndexes.append(i)
+            }
+            contactHighlights.append(ContactHighlights(contactDetail: .EMAIL, indexes: emailIndexes))
+        }
+
+        return contactHighlights
+    }
 }
 
 extension UIImage {
