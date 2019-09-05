@@ -276,19 +276,26 @@ class NewChatViewController: UITableViewController {
     private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {
         let contact = contactWithHighlight.contact
         let displayName = contact.displayName
+        var highlighted = false
 
-        if let nameHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .NAME }).first,
-            let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {
+        if let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {
             // gets here when contact is a result of current search -> highlights relevant indexes
-            let nameLabelFontSize = cell.nameLabel.font.pointSize
             let emailLabelFontSize = cell.emailLabel.font.pointSize
-
-            cell.nameLabel.attributedText = displayName.boldAt(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
             cell.emailLabel.attributedText = contact.email.boldAt(indexes: emailHighlightedIndexes.indexes, fontSize: emailLabelFontSize)
-        } else {
+            highlighted = true
+        }
+
+        if let nameHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .NAME }).first {
+            let nameLabelFontSize = cell.nameLabel.font.pointSize
+            cell.nameLabel.attributedText = displayName.boldAt(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
+            highlighted = true
+        }
+
+        if !highlighted {
             cell.nameLabel.text = displayName
             cell.emailLabel.text = contact.email
         }
+
         cell.initialsLabel.text = Utils.getInitials(inputName: displayName)
         cell.setColor(contact.color)
     }
@@ -299,7 +306,7 @@ class NewChatViewController: UITableViewController {
 
     private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
         let contactsWithHighlights: [ContactWithSearchResults] = contacts.map { contact in
-            let indexes = contact.contact.contains(searchText: searchText)
+            let indexes = contact.contact.containsExact(searchText: searchText)
             return ContactWithSearchResults(contact: contact.contact, indexesToHighlight: indexes)
         }
 
