@@ -277,28 +277,24 @@ class NewChatViewController: UITableViewController {
     private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {
         let contact = contactWithHighlight.contact
         let displayName = contact.displayName
-        var highlighted = false
+
+        cell.nameLabel.text = displayName
+        cell.emailLabel.text = contact.email
+
+        cell.initialsLabel.text = Utils.getInitials(inputName: displayName)
+        cell.setColor(contact.color)
 
         if let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {
             // gets here when contact is a result of current search -> highlights relevant indexes
             let emailLabelFontSize = cell.emailLabel.font.pointSize
             cell.emailLabel.attributedText = contact.email.boldAt(indexes: emailHighlightedIndexes.indexes, fontSize: emailLabelFontSize)
-            highlighted = true
         }
 
         if let nameHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .NAME }).first {
             let nameLabelFontSize = cell.nameLabel.font.pointSize
             cell.nameLabel.attributedText = displayName.boldAt(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
-            highlighted = true
         }
 
-        if !highlighted {
-            cell.nameLabel.text = displayName
-            cell.emailLabel.text = contact.email
-        }
-
-        cell.initialsLabel.text = Utils.getInitials(inputName: displayName)
-        cell.setColor(contact.color)
     }
 
     private func searchBarIsEmpty() -> Bool {
