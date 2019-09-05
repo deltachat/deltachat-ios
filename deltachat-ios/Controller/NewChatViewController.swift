@@ -254,22 +254,24 @@ class NewChatViewController: UITableViewController {
             }
         } else if section == 1 {
             if deviceContactAccessGranted {
-                if searchController.isActive {
-                    // edge case: when searchController is active but searchBar is empty -> filteredContacts is empty, so we fallback to contactIds
-                    let contactId = isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
-                    searchController.dismiss(animated: false, completion: {
-                        self.coordinator?.showNewChat(contactId: contactId)
-                    })
-                } else {
-                    let contactId = contactIds[row]
-                    coordinator?.showNewChat(contactId: contactId)
-                }
+                showChatAt(row: row)
             } else {
                 showSettingsAlert()
             }
         } else {
-            let contactIndex = row
-            let contactId = contactIds[contactIndex]
+            showChatAt(row: row)
+        }
+    }
+
+    private func showChatAt(row: Int) {
+        if searchController.isActive {
+            // edge case: when searchController is active but searchBar is empty -> filteredContacts is empty, so we fallback to contactIds
+            let contactId = isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
+            searchController.dismiss(animated: false, completion: {
+                self.coordinator?.showNewChat(contactId: contactId)
+            })
+        } else {
+            let contactId = contactIds[row]
             coordinator?.showNewChat(contactId: contactId)
         }
     }
