@@ -165,7 +165,7 @@ class NewChatViewController: UITableViewController {
                 return cell
             }
             if row == 1 {
-                // new contact row
+                // scan QR code row
                 let cell: UITableViewCell
                 if let c = tableView.dequeueReusableCell(withIdentifier: "scanGroupCell") {
                     cell = c
@@ -192,6 +192,7 @@ class NewChatViewController: UITableViewController {
                 return cell
             }
         } else if section == 1 {
+            // import device contacts section
             if deviceContactAccessGranted {
                 let cell: ContactCell
                 if let c = tableView.dequeueReusableCell(withIdentifier: "contactCell") as? ContactCell {
@@ -213,7 +214,7 @@ class NewChatViewController: UITableViewController {
                 return cell
             }
         } else {
-            // section 2
+            // contact list section
             let cell: ContactCell
             if let c = tableView.dequeueReusableCell(withIdentifier: "contactCell") as? ContactCell {
                 cell = c
