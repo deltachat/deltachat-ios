@@ -16,5 +16,4 @@ cp ./deltachat-ios/en.lproj/Untranslated.stringsdict ./deltachat-ios/$LANG.lproj
 
 echo "res/values-$LANG/strings.xml added:"
 echo "- if needed, language mappings can be added to tools/.tx/config"
-echo "- tx pull"
-echo "  (on problems, 'tx -d pull' gives verbose output)"
+echo "- then, call ./tools/tx-pull-translations"
