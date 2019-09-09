@@ -76,7 +76,22 @@ class NewContactController: UITableViewController {
     @objc func saveContactButtonPressed() {
         let contactId = dc_create_contact(mailboxPointer, model.name, model.email)
         let chatId = Int(dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId)))
-        coordinator?.showChat(chatId: chatId)
+        askToChatWith(contactId: Int(contactId), chatId: chatId)
+    }
+
+    private func askToChatWith(contactId: Int, chatId: Int) {
+        let dcContact = DcContact(id: contactId)
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
+                                      message: nil,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+            self.coordinator?.showChat(chatId: chatId)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
     }
 
     @objc func cancelButtonPressed() {
