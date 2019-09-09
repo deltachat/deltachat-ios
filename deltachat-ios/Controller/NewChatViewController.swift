@@ -5,6 +5,12 @@ import UIKit
 class NewChatViewController: UITableViewController {
     weak var coordinator: NewChatCoordinator?
 
+    private let sectionNew = 0
+    private let sectionImportedContacts = 1
+    private let sectionNewRowNewGroup = 0
+    private let sectionNewRowScanQrCode = 1
+    private let sectionNewRowNewContact = 2
+
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -133,9 +139,9 @@ class NewChatViewController: UITableViewController {
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        if section == sectionNew {
             return 3
-        } else if section == 1 {
+        } else if section == sectionImportedContacts {
             if deviceContactAccessGranted {
                 return isFiltering() ? filteredContacts.count : contacts.count
             } else {
@@ -150,8 +156,8 @@ class NewChatViewController: UITableViewController {
         let section = indexPath.section
         let row = indexPath.row
 
-        if section == 0 {
-            if row == 0 {
+        if section == sectionNew {
+            if row == sectionNewRowNewGroup {
                 // new group row
                 let cell: UITableViewCell
                 if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
@@ -164,7 +170,7 @@ class NewChatViewController: UITableViewController {
 
                 return cell
             }
-            if row == 1 {
+            if row == sectionNewRowScanQrCode {
                 // scan QR code row
                 let cell: UITableViewCell
                 if let c = tableView.dequeueReusableCell(withIdentifier: "scanGroupCell") {
@@ -178,7 +184,7 @@ class NewChatViewController: UITableViewController {
                 return cell
             }
 
-            if row == 2 {
+            if row == sectionNewRowNewContact {
                 // new contact row
                 let cell: UITableViewCell
                 if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
@@ -191,7 +197,7 @@ class NewChatViewController: UITableViewController {
 
                 return cell
             }
-        } else if section == 1 {
+        } else if section == sectionImportedContacts {
             // import device contacts section
             if deviceContactAccessGranted {
                 let cell: ContactCell
@@ -214,7 +220,7 @@ class NewChatViewController: UITableViewController {
                 return cell
             }
         } else {
-            // contact list section
+            // section contact list if device contacts are not imported
             let cell: ContactCell
             if let c = tableView.dequeueReusableCell(withIdentifier: "contactCell") as? ContactCell {
                 cell = c
@@ -234,11 +240,11 @@ class NewChatViewController: UITableViewController {
         let row = indexPath.row
         let section = indexPath.section
 
-        if section == 0 {
-            if row == 0 {
+        if section == sectionNew {
+            if row == sectionNewRowNewGroup {
                 coordinator?.showNewGroupController()
             }
-            if row == 1 {
+            if row == sectionNewRowScanQrCode {
                 if UIImagePickerController.isSourceTypeAvailable(.camera) {
                     coordinator?.showQRCodeController()
                 } else {
@@ -249,10 +255,10 @@ class NewChatViewController: UITableViewController {
                     present(alert, animated: true, completion: nil)
                 }
             }
-            if row == 2 {
+            if row == sectionNewRowNewContact {
                 coordinator?.showNewContactController()
             }
-        } else if section == 1 {
+        } else if section == sectionImportedContacts {
             if deviceContactAccessGranted {
                 showChatAt(row: row)
             } else {
