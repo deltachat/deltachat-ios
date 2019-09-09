@@ -150,6 +150,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
         cell.nameLabel.text = chat.name
         if let img = chat.profileImage {
+            cell.resetBackupImage()
             cell.setImage(img)
         } else {
             cell.setBackupImage(name: chat.name, color: chat.color)
