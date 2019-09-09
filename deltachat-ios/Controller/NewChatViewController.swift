@@ -5,6 +5,12 @@ import UIKit
 class NewChatViewController: UITableViewController {
     weak var coordinator: NewChatCoordinator?
 
+    private let sectionNew = 0
+    private let sectionImportedContacts = 1
+    private let sectionNewRowNewGroup = 0
+    private let sectionNewRowScanQrCode = 1
+    private let sectionNewRowNewContact = 2
+
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -133,9 +139,9 @@ class NewChatViewController: UITableViewController {
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        if section == sectionNew {
             return 3
-        } else if section == 1 {
+        } else if section == sectionImportedContacts {
             if deviceContactAccessGranted {
                 return isFiltering() ? filteredContacts.count : contacts.count
             } else {
@@ -150,8 +156,8 @@ class NewChatViewController: UITableViewController {
         let section = indexPath.section
         let row = indexPath.row
 
-        if section == 0 {
-            if row == 0 {
+        if section == sectionNew {
+            if row == sectionNewRowNewGroup {
                 // new group row
                 let cell: UITableViewCell
                 if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
@@ -164,8 +170,8 @@ class NewChatViewController: UITableViewController {
 
                 return cell
             }
-            if row == 1 {
-                // new contact row
+            if row == sectionNewRowScanQrCode {
+                // scan QR code row
                 let cell: UITableViewCell
                 if let c = tableView.dequeueReusableCell(withIdentifier: "scanGroupCell") {
                     cell = c
@@ -178,7 +184,7 @@ class NewChatViewController: UITableViewController {
                 return cell
             }
 
-            if row == 2 {
+            if row == sectionNewRowNewContact {
                 // new contact row
                 let cell: UITableViewCell
                 if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
@@ -191,7 +197,8 @@ class NewChatViewController: UITableViewController {
 
                 return cell
             }
-        } else if section == 1 {
+        } else if section == sectionImportedContacts {
+            // import device contacts section
             if deviceContactAccessGranted {
                 let cell: ContactCell
                 if let c = tableView.dequeueReusableCell(withIdentifier: "contactCell") as? ContactCell {
@@ -213,7 +220,7 @@ class NewChatViewController: UITableViewController {
                 return cell
             }
         } else {
-            // section 2
+            // section contact list if device contacts are not imported
             let cell: ContactCell
             if let c = tableView.dequeueReusableCell(withIdentifier: "contactCell") as? ContactCell {
                 cell = c
@@ -233,11 +240,11 @@ class NewChatViewController: UITableViewController {
         let row = indexPath.row
         let section = indexPath.section
 
-        if section == 0 {
-            if row == 0 {
+        if section == sectionNew {
+            if row == sectionNewRowNewGroup {
                 coordinator?.showNewGroupController()
             }
-            if row == 1 {
+            if row == sectionNewRowScanQrCode {
                 if UIImagePickerController.isSourceTypeAvailable(.camera) {
                     coordinator?.showQRCodeController()
                 } else {
@@ -248,27 +255,29 @@ class NewChatViewController: UITableViewController {
                     present(alert, animated: true, completion: nil)
                 }
             }
-            if row == 2 {
+            if row == sectionNewRowNewContact {
                 coordinator?.showNewContactController()
             }
-        } else if section == 1 {
+        } else if section == sectionImportedContacts {
             if deviceContactAccessGranted {
-                if searchController.isActive {
-                    // edge case: when searchController is active but searchBar is empty -> filteredContacts is empty, so we fallback to contactIds
-                    let contactId = isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
-                    searchController.dismiss(animated: false, completion: {
-                        self.coordinator?.showNewChat(contactId: contactId)
-                    })
-                } else {
-                    let contactId = contactIds[row]
-                    coordinator?.showNewChat(contactId: contactId)
-                }
+                showChatAt(row: row)
             } else {
                 showSettingsAlert()
             }
         } else {
-            let contactIndex = row
-            let contactId = contactIds[contactIndex]
+            showChatAt(row: row)
+        }
+    }
+
+    private func showChatAt(row: Int) {
+        if searchController.isActive {
+            // edge case: when searchController is active but searchBar is empty -> filteredContacts is empty, so we fallback to contactIds
+            let contactId = isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
+            searchController.dismiss(animated: false, completion: {
+                self.coordinator?.showNewChat(contactId: contactId)
+            })
+        } else {
+            let contactId = contactIds[row]
             coordinator?.showNewChat(contactId: contactId)
         }
     }
@@ -277,20 +286,24 @@ class NewChatViewController: UITableViewController {
         let contact = contactWithHighlight.contact
         let displayName = contact.displayName
 
-        if let nameHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .NAME }).first,
-            let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {
-            // gets here when contact is a result of current search -> highlights relevant indexes
-            let nameLabelFontSize = cell.nameLabel.font.pointSize
-            let emailLabelFontSize = cell.emailLabel.font.pointSize
+        let emailLabelFontSize = cell.emailLabel.font.pointSize
+        let nameLabelFontSize = cell.nameLabel.font.pointSize
 
-            cell.nameLabel.attributedText = displayName.boldAt(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
-            cell.emailLabel.attributedText = contact.email.boldAt(indexes: emailHighlightedIndexes.indexes, fontSize: emailLabelFontSize)
-        } else {
-            cell.nameLabel.text = displayName
-            cell.emailLabel.text = contact.email
-        }
         cell.initialsLabel.text = Utils.getInitials(inputName: displayName)
         cell.setColor(contact.color)
+
+        if let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {
+            // gets here when contact is a result of current search -> highlights relevant indexes
+            cell.emailLabel.attributedText = contact.email.boldAt(indexes: emailHighlightedIndexes.indexes, fontSize: emailLabelFontSize)
+        } else {
+            cell.emailLabel.attributedText = contact.email.boldAt(indexes: [], fontSize: emailLabelFontSize)
+        }
+
+        if let nameHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .NAME }).first {
+            cell.nameLabel.attributedText = displayName.boldAt(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
+        } else {
+            cell.nameLabel.attributedText = displayName.boldAt(indexes: [], fontSize: nameLabelFontSize)
+        }
     }
 
     private func searchBarIsEmpty() -> Bool {
@@ -299,7 +312,7 @@ class NewChatViewController: UITableViewController {
 
     private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
         let contactsWithHighlights: [ContactWithSearchResults] = contacts.map { contact in
-            let indexes = contact.contact.contains(searchText: searchText)
+            let indexes = contact.contact.containsExact(searchText: searchText)
             return ContactWithSearchResults(contact: contact.contact, indexesToHighlight: indexes)
         }
 
