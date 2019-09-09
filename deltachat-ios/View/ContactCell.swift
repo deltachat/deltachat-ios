@@ -172,6 +172,11 @@ class ContactCell: UITableViewCell {
         }
     }
 
+    func resetBackupImage() {
+        initialsLabel.text = ""
+        setColor(UIColor.clear)
+    }
+
     func setBackupImage(name: String, color: UIColor) {
         let text = Utils.getInitials(inputName: name)
 
