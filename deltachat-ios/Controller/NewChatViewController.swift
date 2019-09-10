@@ -200,7 +200,7 @@ class NewChatViewController: UITableViewController {
                 } else {
                     cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
                 }
-                let contact: ContactWithSearchResults = isFiltering() ? filteredContacts[row] : contacts[row]
+                let contact: ContactWithSearchResults = contactSearchResultByRow(row)
                 updateContactCell(cell: cell, contactWithHighlight: contact)
                 return cell
             } else {
@@ -222,7 +222,7 @@ class NewChatViewController: UITableViewController {
                 cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
             }
 
-            let contact: ContactWithSearchResults = isFiltering() ? filteredContacts[row] : contacts[row]
+            let contact: ContactWithSearchResults = contactSearchResultByRow(row)
             updateContactCell(cell: cell, contactWithHighlight: contact)
             return cell
         }
@@ -263,6 +263,61 @@ class NewChatViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let contactId = contactIdByRow(indexPath.row)
+
+        let edit = UITableViewRowAction(style: .normal, title: String.localized("global_menu_edit_desktop")) { [unowned self] _, _ in
+            if self.searchController.isActive {
+                self.searchController.dismiss(animated: false) {
+                    self.coordinator?.showContactDetail(contactId: contactId)
+                }
+            } else {
+                self.coordinator?.showContactDetail(contactId: contactId)
+            }
+        }
+
+        let delete = UITableViewRowAction(style: .destructive, title: String.localized("delete")) { [unowned self] _, _ in
+            //handle delete
+            if let dcContext = self.coordinator?.dcContext {
+                let contactId = self.contactIdByRow(indexPath.row)
+                self.askToDeleteContact(contactId: contactId, context: dcContext)
+            }
+        }
+
+        edit.backgroundColor = DcColors.primary
+        return [edit, delete]
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    private func contactIdByRow(_ row: Int) -> Int {
+        return isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
+    }
+
+    private func contactSearchResultByRow(_ row: Int) -> ContactWithSearchResults {
+        return isFiltering() ? filteredContacts[row] : contacts[row]
+    }
+
+    private func askToDeleteContact(contactId: Int, context: DcContext) {
+        let contact = DcContact(id: contactId)
+        let alert = UIAlertController(title: String.localized("delete"),
+                                      message: String.localizedStringWithFormat(String.localized("delete_contact"), contact.nameNAddr),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+            if context.deleteContact(contactId: contactId) {
+                self.contactIds = Utils.getContactIds()
+                self.tableView.reloadData()
+            }
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+
     private func askToChatWith(contactId: Int) {
         let dcContact = DcContact(id: contactId)
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
@@ -281,7 +336,7 @@ class NewChatViewController: UITableViewController {
     private func showChatAt(row: Int) {
         if searchController.isActive {
             // edge case: when searchController is active but searchBar is empty -> filteredContacts is empty, so we fallback to contactIds
-            let contactId = isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
+            let contactId = contactIdByRow(row)
             searchController.dismiss(animated: false, completion: {
                 self.askToChatWith(contactId: contactId)
             })
@@ -300,6 +355,7 @@ class NewChatViewController: UITableViewController {
 
         cell.initialsLabel.text = Utils.getInitials(inputName: displayName)
         cell.setColor(contact.color)
+        cell.setVerified(isVerified: contact.isVerified)
 
         if let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {
             // gets here when contact is a result of current search -> highlights relevant indexes

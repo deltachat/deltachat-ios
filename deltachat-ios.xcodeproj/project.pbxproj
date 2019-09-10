@@ -26,7 +26,6 @@
 		78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3921D3CFBC00D4B15E /* SettingsController.swift */; };
 		78E45E3C21D3D03700D4B15E /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */; };
 		78E45E3E21D3D28C00D4B15E /* DcNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3D21D3D28C00D4B15E /* DcNavigationController.swift */; };
-		78E45E4021D3D70700D4B15E /* ContactListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3F21D3D70700D4B15E /* ContactListController.swift */; };
 		78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */; };
 		78E45E4C21D404AE00D4B15E /* CustomMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4B21D404AE00D4B15E /* CustomMessageCell.swift */; };
 		78ED838321D5379000243125 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838221D5379000243125 /* TextFieldCell.swift */; };
@@ -164,7 +163,6 @@
 		78E45E3921D3CFBC00D4B15E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		78E45E3D21D3D28C00D4B15E /* DcNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcNavigationController.swift; sourceTree = "<group>"; };
-		78E45E3F21D3D70700D4B15E /* ContactListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListController.swift; sourceTree = "<group>"; };
 		78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		78E45E4B21D404AE00D4B15E /* CustomMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageCell.swift; sourceTree = "<group>"; };
 		78ED838221D5379000243125 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
@@ -359,7 +357,6 @@
 				7092474020B3869500AF8799 /* ContactDetailViewController.swift */,
 				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
 				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
-				78E45E3F21D3D70700D4B15E /* ContactListController.swift */,
 				78ED838E21D5927A00243125 /* ProfileViewController.swift */,
 				30149D9222F21129003C12B5 /* NewProfileViewController.swift */,
 				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
@@ -724,7 +721,6 @@
 				70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */,
 				30BD261422F8679200F399DF /* ProfileView.swift in Sources */,
 				78E45E3E21D3D28C00D4B15E /* DcNavigationController.swift in Sources */,
-				78E45E4021D3D70700D4B15E /* ContactListController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
 				78ED838D21D577D000243125 /* events.swift in Sources */,
 				AE851AC7227C776400ED86F0 /* Location.swift in Sources */,
