@@ -292,8 +292,6 @@ class NewChatViewController: UITableViewController {
         return true
     }
 
-
-
     private func contactIdByRow(_ row: Int) -> Int {
         return isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
     }
@@ -303,15 +301,16 @@ class NewChatViewController: UITableViewController {
     }
 
     private func askToDeleteContact(contactId: Int, context: DcContext) {
-        let alert = UIAlertController(title: String.localized("ask_delete_contacts"),
-                                      message: nil,
+        let contact = DcContact(id: contactId)
+        let alert = UIAlertController(title: String.localized("delete"),
+                                      message: String.localizedStringWithFormat(String.localized("delete_contact"), contact.nameNAddr),
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
-            context.deleteContact(contactId: contactId)
-            self.contactIds = Utils.getContactIds()
-            self.tableView.reloadData()
-
+            if context.deleteContact(contactId: contactId) {
+                self.contactIds = Utils.getContactIds()
+                self.tableView.reloadData()
+            }
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
             self.dismiss(animated: true, completion: nil)
