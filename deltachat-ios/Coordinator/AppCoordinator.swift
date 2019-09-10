@@ -6,10 +6,10 @@ import MobileCoreServices
 class AppCoordinator: NSObject, Coordinator {
     private let window: UIWindow
     private let dcContext: DcContext
-    private let mailboxTab = 0;
-    private let profileTab = 1;
-    private let chatsTab = 2;
-    private let settingsTab = 3;
+    private let mailboxTab = 0
+    private let profileTab = 1
+    private let chatsTab = 2
+    private let settingsTab = 3
 
     var rootViewController: UIViewController {
         return tabBarController
