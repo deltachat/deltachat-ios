@@ -216,11 +216,11 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
     private func showDeleteChatConfirmationAlert(chatId: Int) {
         let alert = UIAlertController(
-            title: String.localized("ask_delete_chat_desktop"),
-            message: nil,
-            preferredStyle: .alert
+            title: nil,
+            message: String.localized("ask_delete_chat_desktop"),
+            preferredStyle: .actionSheet
         )
-        alert.addAction(UIAlertAction(title: String.localized("global_menu_edit_delete_desktop"), style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
             self.dcContext.deleteChat(chatId: chatId)
             self.getChatList()
         }))
