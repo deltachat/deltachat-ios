@@ -6,6 +6,10 @@ import MobileCoreServices
 class AppCoordinator: NSObject, Coordinator {
     private let window: UIWindow
     private let dcContext: DcContext
+    private let mailboxTab = 0;
+    private let profileTab = 1;
+    private let chatsTab = 2;
+    private let settingsTab = 3;
 
     var rootViewController: UIViewController {
         return tabBarController
@@ -15,7 +19,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     private lazy var tabBarController: UITabBarController = {
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [contactListController, mailboxController, profileController, chatListController, settingsController]
+        tabBarController.viewControllers = [mailboxController, profileController, chatListController, settingsController]
         // put viewControllers here
         tabBarController.delegate = self
         tabBarController.tabBar.tintColor = DcColors.primary
@@ -25,23 +29,12 @@ class AppCoordinator: NSObject, Coordinator {
 
     // MARK: viewControllers
 
-    private lazy var contactListController: UIViewController = {
-        let controller = ContactListController()
-        let nav = DcNavigationController(rootViewController: controller)
-        let settingsImage = UIImage(named: "contacts")
-        nav.tabBarItem = UITabBarItem(title: String.localized("contacts_title"), image: settingsImage, tag: 0)
-        let coordinator = ContactListCoordinator(dcContext: dcContext, navigationController: nav)
-        self.childCoordinators.append(coordinator)
-        controller.coordinator = coordinator
-        return nav
-    }()
-
     private lazy var mailboxController: UIViewController = {
         let controller = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP), title: String.localized("menu_deaddrop"))
         controller.disableWriting = true
         let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "message")
-        nav.tabBarItem = UITabBarItem(title: String.localized("menu_deaddrop"), image: settingsImage, tag: 1)
+        nav.tabBarItem = UITabBarItem(title: String.localized("menu_deaddrop"), image: settingsImage, tag: mailboxTab)
         let coordinator = MailboxCoordinator(dcContext: dcContext, navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
@@ -52,7 +45,7 @@ class AppCoordinator: NSObject, Coordinator {
         let controller = NewProfileViewController(dcContext: dcContext)
         let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "report_card")
-        nav.tabBarItem = UITabBarItem(title: String.localized("pref_profile_info_headline"), image: settingsImage, tag: 2)
+        nav.tabBarItem = UITabBarItem(title: String.localized("pref_profile_info_headline"), image: settingsImage, tag: profileTab)
         let coordinator = ProfileCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
@@ -63,7 +56,7 @@ class AppCoordinator: NSObject, Coordinator {
         let controller = ChatListController(dcContext: dcContext, showArchive: false)
         let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "chat")
-        nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: 3)
+        nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: chatsTab)
         let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
@@ -74,7 +67,7 @@ class AppCoordinator: NSObject, Coordinator {
         let controller = SettingsViewController()
         let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "settings")
-        nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: 4)
+        nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: settingsTab)
         let coordinator = SettingsCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
@@ -91,7 +84,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     public func start() {
         print(tabBarController.selectedIndex)
-        showTab(index: 3)
+        showTab(index: chatsTab)
     }
 
     func showTab(index: Int) {
@@ -99,7 +92,7 @@ class AppCoordinator: NSObject, Coordinator {
     }
 
     func showChat(chatId: Int) {
-        showTab(index: 3)
+        showTab(index: chatsTab)
         guard let navController = self.chatListController as? UINavigationController else {
             assertionFailure("huh? why no nav controller?")
             return
@@ -124,54 +117,15 @@ extension AppCoordinator: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if let dcNav = viewController as? DcNavigationController {
             switch tabBarController.selectedIndex {
-            case 0, 3, 4:
+            case chatsTab, settingsTab:
                 dcNav.navigationBar.prefersLargeTitles = true
-            case 1, 2:
+            case mailboxTab, profileTab:
                 dcNav.navigationBar.prefersLargeTitles = false
             default:
                 // should never get here
                 dcNav.navigationBar.prefersLargeTitles = false
             }
         }
-    }
-}
-
-
-class ContactListCoordinator: Coordinator {
-    var dcContext: DcContext
-    let navigationController: UINavigationController
-
-    var childCoordinators: [Coordinator] = []
-
-    init(dcContext: DcContext, navigationController: UINavigationController) {
-        self.dcContext = dcContext
-        self.navigationController = navigationController
-    }
-
-    func showContactDetail(contactId: Int) {
-        let contactDetailController = ContactDetailViewController(contactId: contactId)
-        contactDetailController.showChatCell = true
-        let coordinator = ContactDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        contactDetailController.coordinator = coordinator
-        navigationController.pushViewController(contactDetailController, animated: true)
-    }
-
-    func showChat(chatId: Int) {
-        let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
-        let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
-        childCoordinators.append(coordinator)
-        chatVC.coordinator = coordinator
-        navigationController.pushViewController(chatVC, animated: true)
-    }
-
-    func showNewContactController() {
-        let newContactController = NewContactController()
-        let coordinator = EditContactCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        newContactController.coordinator = coordinator
-        newContactController.hidesBottomBarWhenPushed = true
-        navigationController.pushViewController(newContactController, animated: true)
     }
 }
 
