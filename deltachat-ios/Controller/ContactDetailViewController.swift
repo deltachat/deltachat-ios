@@ -104,12 +104,27 @@ class ContactDetailViewController: UITableViewController {
             case .block:
                 toggleBlockContact()
             case .chat:
-                let chatId = Int(dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId)))
-                coordinator?.showChat(chatId: chatId)
+                askToChatWith(contactId: contactId)
             case .notification:
                 showNotificationSetup()
             }
         }
+    }
+
+    private func askToChatWith(contactId: Int) {
+        let dcContact = DcContact(id: contactId)
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
+                                      message: nil,
+                                      preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+            let chatId = Int(dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId)))
+            self.coordinator?.showChat(chatId: chatId)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
     }
 
     override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
