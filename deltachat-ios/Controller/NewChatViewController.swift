@@ -266,7 +266,7 @@ class NewChatViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let contactId = contactIdByRow(indexPath.row)
 
-        let edit = UITableViewRowAction(style: .default, title: String.localized("global_menu_edit_desktop")) { [unowned self] _, _ in
+        let edit = UITableViewRowAction(style: .normal, title: String.localized("global_menu_edit_desktop")) { [unowned self] _, _ in
             if self.searchController.isActive {
                 self.searchController.dismiss(animated: false) {
                     self.coordinator?.showContactDetail(contactId: contactId)
@@ -275,9 +275,24 @@ class NewChatViewController: UITableViewController {
                 self.coordinator?.showContactDetail(contactId: contactId)
             }
         }
+
+        let delete = UITableViewRowAction(style: .destructive, title: String.localized("delete")) { [unowned self] _, _ in
+            //handle delete
+            if let dcContext = self.coordinator?.dcContext {
+                let contactId = self.contactIdByRow(indexPath.row)
+                self.askToDeleteContact(contactId: contactId, context: dcContext)
+            }
+        }
+
         edit.backgroundColor = DcColors.primary
-        return [edit]
+        return [edit, delete]
     }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+
 
     private func contactIdByRow(_ row: Int) -> Int {
         return isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
@@ -285,6 +300,23 @@ class NewChatViewController: UITableViewController {
 
     private func contactSearchResultByRow(_ row: Int) -> ContactWithSearchResults {
         return isFiltering() ? filteredContacts[row] : contacts[row]
+    }
+
+    private func askToDeleteContact(contactId: Int, context: DcContext) {
+        let alert = UIAlertController(title: String.localized("ask_delete_contacts"),
+                                      message: nil,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+            context.deleteContact(contactId: contactId)
+            self.contactIds = Utils.getContactIds()
+            self.tableView.reloadData()
+
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
     }
 
     private func askToChatWith(contactId: Int) {
