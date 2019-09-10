@@ -67,7 +67,7 @@ class ContactListController: UITableViewController {
         return searchController.searchBar.text?.isEmpty ?? true
     }
 
-    private func filterContentForSearchText(_ searchText: String, scope _: String = "All") {
+    private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
         let contactsWithHighlights: [ContactWithSearchResults] = contacts.map { contact in
             let indexes = contact.contact.contains(searchText: searchText)
             return ContactWithSearchResults(contact: contact.contact, indexesToHighlight: indexes)

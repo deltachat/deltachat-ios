@@ -250,6 +250,7 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }
+
     private func createQRCodeScannerButton() -> UIView {
         let btn = UIButton.init(type: UIButton.ButtonType.system)
         btn.translatesAutoresizingMaskIntoConstraints = false
