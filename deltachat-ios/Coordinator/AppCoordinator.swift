@@ -384,6 +384,15 @@ class NewChatCoordinator: Coordinator {
         navigationController.pushViewController(chatViewController, animated: true)
         navigationController.viewControllers.remove(at: 1)
     }
+
+    func showContactDetail(contactId: Int) {
+        let contactDetailController = ContactDetailViewController(contactId: contactId)
+        contactDetailController.showChatCell = true
+        let coordinator = ContactDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        contactDetailController.coordinator = coordinator
+        navigationController.pushViewController(contactDetailController, animated: true)
+    }
 }
 
 class GroupChatDetailCoordinator: Coordinator {
