@@ -3,7 +3,6 @@ import UIKit
 // this is also used as ChatDetail for SingleChats
 class ContactDetailViewController: UITableViewController {
     weak var coordinator: ContactDetailCoordinatorProtocol?
-    var showChatCell: Bool = false // if this is set to true it will show a "goToChat-cell"
 
     private enum CellIdentifiers: String {
         case notification = "notificationCell"
@@ -73,7 +72,7 @@ class ContactDetailViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return showChatCell ? 2 : 1
+            return 2
         } else if section == 1 {
             return 1
         }

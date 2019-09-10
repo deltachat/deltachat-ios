@@ -341,7 +341,6 @@ class NewChatCoordinator: Coordinator {
 
     func showContactDetail(contactId: Int) {
         let contactDetailController = ContactDetailViewController(contactId: contactId)
-        contactDetailController.showChatCell = true
         let coordinator = ContactDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         contactDetailController.coordinator = coordinator
@@ -418,7 +417,6 @@ class ChatViewCoordinator: NSObject, Coordinator {
 
     func showContactDetail(of contactId: Int) {
         let contactDetailController = ContactDetailViewController(contactId: contactId)
-        contactDetailController.showChatCell = true
         //let nav = UINavigationController(rootViewController: contactDetailController)
         let coordinator = ContactDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
