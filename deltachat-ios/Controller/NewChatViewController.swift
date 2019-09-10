@@ -269,16 +269,31 @@ class NewChatViewController: UITableViewController {
         }
     }
 
+    private func askToChatWith(contactId: Int) {
+        let dcContact = DcContact(id: contactId)
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
+                                      message: nil,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+            self.coordinator?.showNewChat(contactId: contactId)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+
     private func showChatAt(row: Int) {
         if searchController.isActive {
             // edge case: when searchController is active but searchBar is empty -> filteredContacts is empty, so we fallback to contactIds
             let contactId = isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
             searchController.dismiss(animated: false, completion: {
-                self.coordinator?.showNewChat(contactId: contactId)
+                self.askToChatWith(contactId: contactId)
             })
         } else {
             let contactId = contactIds[row]
-            coordinator?.showNewChat(contactId: contactId)
+            self.askToChatWith(contactId: contactId)
         }
     }
 
@@ -342,7 +357,7 @@ extension NewChatViewController: QrCodeReaderDelegate {
             }
         } else {
             let alert = UIAlertController(title: String.localized("invalid_qr_code"), message: code, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("OK"), style: .cancel, handler: { _ in
+            alert.addAction(UIAlertAction(title: String.localized("OK"), style: .default, handler: { _ in
                 self.dismiss(animated: true, completion: nil)
             }))
             present(alert, animated: true, completion: nil)
