@@ -13,6 +13,10 @@ class DcContext {
         dc_context_unref(contextPointer)
     }
 
+    func deleteContact(contactId: Int) {
+        dc_delete_contact(self.contextPointer, UInt32(contactId))
+    }
+
     func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
         let chatlistPointer = dc_get_chatlist(contextPointer, flags, queryString, UInt32(queryId))
         let chatlist = DcChatlist(chatListPointer: chatlistPointer)
