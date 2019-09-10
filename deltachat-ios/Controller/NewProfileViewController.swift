@@ -190,8 +190,27 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         }
 
         let qrParsed: DcLot = self.dcContext.checkQR(qrCode: code)
-        let nameAndAddress = DcContact(id: qrParsed.id).nameNAddr
-        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("qrscan_ask_fingerprint_ask_oob"), nameAndAddress),
+        let state = Int32(qrParsed.state)
+        switch state {
+        case DC_QR_ASK_VERIFYCONTACT:
+            let nameAndAddress = DcContact(id: qrParsed.id).nameNAddr
+            joinSecureJoin(alertMessage: String.localizedStringWithFormat(String.localized("qrscan_ask_fingerprint_ask_oob"), nameAndAddress), code: code)
+        case DC_QR_ASK_VERIFYGROUP:
+            if let group = qrParsed.text1?.replacingOccurrences(of: "+", with: " ") {
+                joinSecureJoin(alertMessage: String.localizedStringWithFormat(String.localized("qrscan_ask_join_verified_group"), group), code: code)
+            }
+        default:
+            let alertMessage = "QR code scanning for type " + String(state) + " is not yet implemented."
+            let alert = UIAlertController(title: alertMessage,
+                                          message: nil,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+        }
+
+    }
+
+    private func joinSecureJoin(alertMessage: String, code: String) {
+        let alert = UIAlertController(title: alertMessage,
                                       message: nil,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
