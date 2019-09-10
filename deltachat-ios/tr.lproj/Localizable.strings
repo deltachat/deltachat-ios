@@ -198,7 +198,7 @@
 // search
 "search" = "Ara";
 "search_explain" = "Sohbetleri, kişileri ve iletileri ara";
-"search_no_result_for_x" = "\"%s\" için sonuç bulunamadı";
+"search_no_result_for_x" = "\"%s\" için hiç sonuç bulunmadı";
 
 
 // create/edit groups, contact/group profile
@@ -361,7 +361,7 @@
 "pref_other" = "Diğer";
 "pref_backup" = "Yedekleme";
 "pref_backup_explain" = "Sohbetleri dış depolamaya yedekle";
-"pref_backup_export_explain" = "Bir yedek, bu ya da başka bir aygıtta yeni bir kurulum ayarlamak için size yardım eder.\n\nYedek, tüm iletileri, kişileri ve sohbetleri ve uçtan uca Autocrypt ayarlamanızı içerecek. Yedek dosyasını güvenli bir yerde tutun ya da olanaklıysa en kısa sürede silin.";
+"pref_backup_export_explain" = "Bir yedek, bu ya da başka bir aygıtta yeni bir kurulum ayarlamanıza yardım eder.\n\nYedek, tüm iletileri, kişileri ve sohbetleri ve uçtan uca Autocrypt ayarlamanızı içerecek. Yedek dosyasını güvenli bir yerde tutun ya da olanaklıysa en kısa sürede silin.";
 "pref_backup_export_start_button" = "Yedeklemeye başla";
 "pref_backup_written_to_x" = "Yedek %1$@ üzerine başarıyla yazıldı";
 "pref_managekeys_menu_title" = "Anahtarları yönet";
@@ -457,8 +457,8 @@
 "qrshow_join_group_hint" = "\"%1$@\" grubuna katılmak için bunu tarayın.";
 "qrshow_join_contact_title" = "QR davet kodu";
 "qrshow_join_contact_hint" = "%1$@ ile bir iletişim ayarlamak için bunu tarayın";
-"qrshow_join_contact_no_connection_hint" = "QR kodu ayarlaması bir internet bağlantısı gerektirir. İşlemden önce lütfen bir ağa bağlanın.";
-"qrshow_join_contact_no_connection_toast" = "İnternet bağlantısı yok, QR kodu ayarlaması gerçekleştirilemiyor.";
+"qrshow_join_contact_no_connection_hint" = "QR kodu ayarlaması bir Internet bağlantısı gerektirir. İşlemden önce lütfen bir ağa bağlanın.";
+"qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok, QR kodu ayarlaması gerçekleştirilemiyor.";
 "contact_verified" = "%1$@ doğrulandı.";
 "contact_not_verified" = "%1$@ doğrulanamıyor";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"

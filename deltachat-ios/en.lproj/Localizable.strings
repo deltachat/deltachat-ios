@@ -500,6 +500,9 @@
 // dc_str_* resources
 "encrypted_message" = "Encrypted message";
 
+// iOS specific strings
+"delete_contact" = "Permanently delete contact %1$@?\n\nContacts with ongoing chats and contacts from the system\'s address book cannot be deleted permanently.";
+
 // desktop specific strings
 "welcome_desktop" = "Welcome to DeltaChat";
 "login_known_accounts_title_desktop" = "Known accounts";
