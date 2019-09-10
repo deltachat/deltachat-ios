@@ -300,6 +300,7 @@ class NewChatViewController: UITableViewController {
 
         cell.initialsLabel.text = Utils.getInitials(inputName: displayName)
         cell.setColor(contact.color)
+        cell.setVerified(isVerified: contact.isVerified)
 
         if let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {
             // gets here when contact is a result of current search -> highlights relevant indexes
