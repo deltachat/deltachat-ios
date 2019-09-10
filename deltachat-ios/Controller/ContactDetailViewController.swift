@@ -30,7 +30,7 @@ class ContactDetailViewController: UITableViewController {
         let cell = ActionCell()
         cell.accessibilityIdentifier = CellIdentifiers.chat.rawValue
         cell.actionColor = SystemColor.blue.uiColor
-        cell.actionTitle = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), contact.nameNAddr)
+        cell.actionTitle = String.localizedStringWithFormat(String.localized("menu_new_chat"), contact.nameNAddr)
         cell.selectionStyle = .none
         return cell
     }()
