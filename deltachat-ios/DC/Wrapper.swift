@@ -13,8 +13,8 @@ class DcContext {
         dc_context_unref(contextPointer)
     }
 
-    func deleteContact(contactId: Int) {
-        dc_delete_contact(self.contextPointer, UInt32(contactId))
+    func deleteContact(contactId: Int) -> Bool {
+        return dc_delete_contact(self.contextPointer, UInt32(contactId)) == 1
     }
 
     func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
