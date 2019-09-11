@@ -302,10 +302,10 @@ class NewChatViewController: UITableViewController {
 
     private func askToDeleteContact(contactId: Int, context: DcContext) {
         let contact = DcContact(id: contactId)
-        let alert = UIAlertController(title: String.localized("delete"),
-                                      message: String.localizedStringWithFormat(String.localized("delete_contact"), contact.nameNAddr),
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("delete_contact"), contact.nameNAddr),
+                                      message: nil,
+                                      preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { _ in
             self.dismiss(animated: true, completion: nil)
             if context.deleteContact(contactId: contactId) {
                 self.contactIds = Utils.getContactIds()
@@ -322,8 +322,8 @@ class NewChatViewController: UITableViewController {
         let dcContact = DcContact(id: contactId)
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
                                       message: nil,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+                                      preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
             self.coordinator?.showNewChat(contactId: contactId)
         }))

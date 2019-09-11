@@ -3,7 +3,6 @@ import UIKit
 // this is also used as ChatDetail for SingleChats
 class ContactDetailViewController: UITableViewController {
     weak var coordinator: ContactDetailCoordinatorProtocol?
-    var showChatCell: Bool = false // if this is set to true it will show a "goToChat-cell"
 
     private enum CellIdentifiers: String {
         case notification = "notificationCell"
@@ -31,7 +30,7 @@ class ContactDetailViewController: UITableViewController {
         let cell = ActionCell()
         cell.accessibilityIdentifier = CellIdentifiers.chat.rawValue
         cell.actionColor = SystemColor.blue.uiColor
-        cell.actionTitle = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), contact.nameNAddr)
+        cell.actionTitle = String.localized("menu_new_chat")
         cell.selectionStyle = .none
         return cell
     }()
@@ -73,7 +72,7 @@ class ContactDetailViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return showChatCell ? 2 : 1
+            return 2
         } else if section == 1 {
             return 1
         }
@@ -105,12 +104,27 @@ class ContactDetailViewController: UITableViewController {
             case .block:
                 toggleBlockContact()
             case .chat:
-                let chatId = Int(dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId)))
-                coordinator?.showChat(chatId: chatId)
+                askToChatWith(contactId: contactId)
             case .notification:
                 showNotificationSetup()
             }
         }
+    }
+
+    private func askToChatWith(contactId: Int) {
+        let dcContact = DcContact(id: contactId)
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
+                                      message: nil,
+                                      preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+            let chatId = Int(dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId)))
+            self.coordinator?.showChat(chatId: chatId)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
     }
 
     override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
