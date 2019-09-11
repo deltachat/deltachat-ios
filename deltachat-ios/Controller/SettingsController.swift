@@ -117,9 +117,6 @@ internal final class SettingsViewController: QuickTableViewController {
             Section(
                 title: String.localized("pref_communication"),
                 rows: [
-                    SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),
-                              switchValue: DcConfig.e2eeEnabled,
-                              action: editCell(key: SVC.e2eeEnabled)),
                     SwitchRow(text: String.localized("pref_read_receipts"),
                               switchValue: DcConfig.mdnsEnabled,
                               action: editCell(key: SVC.readReceipts)),
@@ -144,6 +141,17 @@ internal final class SettingsViewController: QuickTableViewController {
                               action: editCell(key: SVC.MvToMvbox)),
                 ],
                 footer: String.localized("pref_auto_folder_moves_explain")
+            ),
+
+            Section(
+                title: String.localized("autocrypt"),
+                rows: [
+                    SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),
+                              switchValue: DcConfig.e2eeEnabled,
+                              action: editCell(key: SVC.e2eeEnabled)),
+                    TapActionRow(text: String.localized("autocrypt_send_asm_title"), action: { [weak self] in self?.sendAsm($0) }),
+                ],
+                footer: String.localized("autocrypt_explain")
             ),
 
             Section(
@@ -206,6 +214,16 @@ internal final class SettingsViewController: QuickTableViewController {
             } else {
                 logger.error("document directory not found")
             }
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func sendAsm(_: Row) {
+        let alert = UIAlertController(title: String.localized("autocrypt_send_asm_explain_before"), message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("autocrypt_send_asm_title"), style: .default, handler: { _ in
+            //dcContext.intiateKeyTransfer()
+            self.dismiss(animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
