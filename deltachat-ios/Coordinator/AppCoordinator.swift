@@ -62,7 +62,7 @@ class AppCoordinator: NSObject, Coordinator {
     }()
 
     private lazy var settingsController: UIViewController = {
-        let controller = SettingsViewController()
+        let controller = SettingsViewController(dcContext: dcContext)
         let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "settings")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: settingsTab)

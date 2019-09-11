@@ -5,6 +5,8 @@ import UIKit
 internal final class SettingsViewController: QuickTableViewController {
     weak var coordinator: SettingsCoordinator?
 
+    private var dcContext: DcContext
+
     let documentInteractionController = UIDocumentInteractionController()
     var backupProgressObserver: Any?
     var configureProgressObserver: Any?
@@ -21,6 +23,15 @@ internal final class SettingsViewController: QuickTableViewController {
     static let watchMvBox: Int = 5
     static let MvToMvbox: Int = 6
     private typealias SVC = SettingsViewController
+
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
