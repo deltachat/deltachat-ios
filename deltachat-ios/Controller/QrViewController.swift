@@ -1,12 +1,12 @@
 import Foundation
 import UIKit
 
-class NewProfileViewController: UITableViewController, QrCodeReaderDelegate {
+class QrViewController: UITableViewController, QrCodeReaderDelegate {
     private let rowContact = 0
     private let rowQRCode = 1
     private let rowScanQR = 2
 
-    weak var coordinator: ProfileCoordinator?
+    weak var coordinator: QRViewCoordinator?
     let qrCodeReaderController = QrCodeReaderController()
     var secureJoinObserver: Any?
     var dcContext: DcContext
@@ -29,7 +29,7 @@ class NewProfileViewController: UITableViewController, QrCodeReaderDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("pref_profile_info_headline")
+        title = String.localized("qr_code_title")
         qrCodeReaderController.delegate = self
         tableView.separatorStyle = .none
     }

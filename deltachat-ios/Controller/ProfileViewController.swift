@@ -2,7 +2,7 @@ import UIKit
 
 class ProfileViewController: UITableViewController {
     var dcContext: DcContext
-    weak var coordinator: ProfileCoordinator?
+    weak var coordinator: QRViewCoordinator?
 
     var contact: DcContact? {
         // This is nil if we do not have an account setup yet

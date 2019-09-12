@@ -7,7 +7,7 @@ class AppCoordinator: NSObject, Coordinator {
     private let window: UIWindow
     private let dcContext: DcContext
     private let mailboxTab = 0
-    private let profileTab = 1
+    private let qrTab = 1
     private let chatsTab = 2
     private let settingsTab = 3
 
@@ -19,7 +19,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     private lazy var tabBarController: UITabBarController = {
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [mailboxController, profileController, chatListController, settingsController]
+        tabBarController.viewControllers = [mailboxController, qrController, chatListController, settingsController]
         // put viewControllers here
         tabBarController.delegate = self
         tabBarController.tabBar.tintColor = DcColors.primary
@@ -40,12 +40,12 @@ class AppCoordinator: NSObject, Coordinator {
         return nav
     }()
 
-    private lazy var profileController: UIViewController = {
-        let controller = NewProfileViewController(dcContext: dcContext)
+    private lazy var qrController: UIViewController = {
+        let controller = QrViewController(dcContext: dcContext)
         let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "report_card")
-        nav.tabBarItem = UITabBarItem(title: String.localized("pref_profile_info_headline"), image: settingsImage, tag: profileTab)
-        let coordinator = ProfileCoordinator(navigationController: nav)
+        nav.tabBarItem = UITabBarItem(title: String.localized("qr_code_title"), image: settingsImage, tag: qrTab)
+        let coordinator = QRViewCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
         return nav
@@ -118,7 +118,7 @@ extension AppCoordinator: UITabBarControllerDelegate {
             switch tabBarController.selectedIndex {
             case chatsTab, settingsTab:
                 dcNav.navigationBar.prefersLargeTitles = true
-            case mailboxTab, profileTab:
+            case mailboxTab, qrTab:
                 dcNav.navigationBar.prefersLargeTitles = false
             default:
                 // should never get here
@@ -144,7 +144,7 @@ class MailboxCoordinator: ChatViewCoordinator {
     }
 }
 
-class ProfileCoordinator: Coordinator {
+class QRViewCoordinator: Coordinator {
     var navigationController: UINavigationController
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
