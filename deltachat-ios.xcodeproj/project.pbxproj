@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30149D9322F21129003C12B5 /* NewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30149D9222F21129003C12B5 /* NewProfileViewController.swift */; };
+		30149D9322F21129003C12B5 /* QrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30149D9222F21129003C12B5 /* QrViewController.swift */; };
 		3022E6BE22E8768800763272 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3022E6C022E8768800763272 /* InfoPlist.strings */; };
 		3060119C22DDE24000C1CE6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
 		306011B622E5E7FB00C1CE6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
@@ -30,7 +30,6 @@
 		78E45E4C21D404AE00D4B15E /* CustomMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4B21D404AE00D4B15E /* CustomMessageCell.swift */; };
 		78ED838321D5379000243125 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838221D5379000243125 /* TextFieldCell.swift */; };
 		78ED838D21D577D000243125 /* events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838C21D577D000243125 /* events.swift */; };
-		78ED838F21D5927A00243125 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838E21D5927A00243125 /* ProfileViewController.swift */; };
 		78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED839321D5AF8A00243125 /* QrCodeView.swift */; };
 		7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0052C71FBE6CB40048C3BF /* NewContactController.swift */; };
 		7A451D941FB1B1DB00177250 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A451D921FB1B1DB00177250 /* wrapper.c */; };
@@ -85,7 +84,7 @@
 /* Begin PBXFileReference section */
 		21EE28844E7A690D73BF5285 /* Pods-deltachat-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		30149D9222F21129003C12B5 /* NewProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProfileViewController.swift; sourceTree = "<group>"; };
+		30149D9222F21129003C12B5 /* QrViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrViewController.swift; sourceTree = "<group>"; };
 		3022E6BF22E8768800763272 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3022E6C122E8768C00763272 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3022E6C222E8768E00763272 /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = sq.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -167,7 +166,6 @@
 		78E45E4B21D404AE00D4B15E /* CustomMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageCell.swift; sourceTree = "<group>"; };
 		78ED838221D5379000243125 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		78ED838C21D577D000243125 /* events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = events.swift; sourceTree = "<group>"; };
-		78ED838E21D5927A00243125 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		78ED839321D5AF8A00243125 /* QrCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeView.swift; sourceTree = "<group>"; };
 		7A0052C71FBE6CB40048C3BF /* NewContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactController.swift; sourceTree = "<group>"; };
 		7A451D921FB1B1DB00177250 /* wrapper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wrapper.c; sourceTree = "<group>"; };
@@ -357,8 +355,7 @@
 				7092474020B3869500AF8799 /* ContactDetailViewController.swift */,
 				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
 				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
-				78ED838E21D5927A00243125 /* ProfileViewController.swift */,
-				30149D9222F21129003C12B5 /* NewProfileViewController.swift */,
+				30149D9222F21129003C12B5 /* QrViewController.swift */,
 				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
 				7070FB9A2101ECBB000DC258 /* GroupNameController.swift */,
 				AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */,
@@ -732,13 +729,12 @@
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
 				78E45E3C21D3D03700D4B15E /* TextFieldTableViewCell.swift in Sources */,
 				AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */,
-				30149D9322F21129003C12B5 /* NewProfileViewController.swift in Sources */,
+				30149D9322F21129003C12B5 /* QrViewController.swift in Sources */,
 				AEE56D80225504DB007DC082 /* Extensions.swift in Sources */,
 				7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */,
 				AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */,
 				AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */,
 				AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */,
-				78ED838F21D5927A00243125 /* ProfileViewController.swift in Sources */,
 				AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
 				AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */,

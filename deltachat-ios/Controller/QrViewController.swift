@@ -1,22 +1,22 @@
 import Foundation
 import UIKit
 
-class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
+class QrViewController: UITableViewController, QrCodeReaderDelegate {
+    private let rowContact = 0
+    private let rowQRCode = 1
+    private let rowScanQR = 2
 
-    weak var coordinator: ProfileCoordinator?
+    weak var coordinator: QrViewCoordinator?
     let qrCodeReaderController = QrCodeReaderController()
     var secureJoinObserver: Any?
     var dcContext: DcContext
-
-    var contactCell: UIView?
-    var infoLabel: UIView?
-    var qrCode: UIView?
-    var qrCodeScanner: UIView?
-
-    var contactCellConstraints: [NSLayoutConstraint] = []
-    var infoLabelConstraints: [NSLayoutConstraint] = []
-    var qrCodeConstraints: [NSLayoutConstraint] = []
-    var qrCodeScannerConstraints: [NSLayoutConstraint] = []
+    var contact: DcContact? {
+        // This is nil if we do not have an account setup yet
+        if !DcConfig.configured {
+            return nil
+        }
+        return DcContact(id: Int(DC_CONTACT_ID_SELF))
+    }
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
@@ -25,6 +25,54 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
 
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = String.localized("qr_code_title")
+        qrCodeReaderController.delegate = self
+        tableView.separatorStyle = .none
+    }
+
+    override func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
+        switch row {
+        case rowContact:
+            return createContactCell()
+        case rowQRCode:
+            return createQRCodeCell()
+        case rowScanQR:
+            return createQRCodeScanCell()
+        default:
+            return UITableViewCell(style: .default, reuseIdentifier: nil)
+        }
+    }
+
+    override func viewWillAppear(_: Bool) {
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
+    }
+
+    override func numberOfSections(in _: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+
+    override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case rowContact:
+            return 72
+        case rowQRCode:
+            return 225
+        case rowScanQR:
+            return 40
+        default:
+            return 10
+        }
     }
 
     private lazy var progressAlert: UIAlertController = {
@@ -57,102 +105,6 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
             alert.dismiss(animated: true, completion: nil)
         }))
-    }
-
-    var contact: DcContact? {
-        // This is nil if we do not have an account setup yet
-        if !DcConfig.configured {
-            return nil
-        }
-        return DcContact(id: Int(DC_CONTACT_ID_SELF))
-    }
-
-    override func loadView() {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
-        self.view = view
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = String.localized("pref_profile_info_headline")
-        qrCodeReaderController.delegate = self
-        self.edgesForExtendedLayout = []
-
-        initViews()
-
-        if UIDevice.current.orientation.isLandscape {
-            setupLandscapeConstraints()
-        } else {
-            setupPortraitConstraints()
-        }
-
-    }
-
-    private func initViews() {
-        contactCell = createContactCell()
-        infoLabel = createInfoLabel()
-        qrCode = createQRCodeView()
-        qrCodeScanner = createQRCodeScannerButton()
-        self.view.addSubview(contactCell!)
-        self.view.addSubview(qrCode!)
-        self.view.addSubview(infoLabel!)
-        self.view.addSubview(qrCodeScanner!)
-    }
-
-    private func applyConstraints() {
-        self.view.addConstraints(contactCellConstraints)
-        self.view.addConstraints(qrCodeConstraints)
-        self.view.addConstraints(infoLabelConstraints)
-        self.view.addConstraints(qrCodeScannerConstraints)
-    }
-
-    private func removeConstraints() {
-        self.view.removeConstraints(contactCellConstraints)
-        self.view.removeConstraints(qrCodeConstraints)
-        self.view.removeConstraints(infoLabelConstraints)
-        self.view.removeConstraints(qrCodeScannerConstraints)
-    }
-
-    func setupPortraitConstraints() {
-        removeConstraints()
-        contactCellConstraints = [contactCell!.constraintAlignTopTo(self.view),
-                                  contactCell!.constraintAlignLeadingTo(self.view),
-                                  contactCell!.constraintAlignTrailingTo(self.view)]
-        qrCodeScannerConstraints = [qrCodeScanner!.constraintAlignBottomTo(self.view, paddingBottom: 25),
-                                    qrCodeScanner!.constraintCenterXTo(self.view)]
-        qrCodeConstraints = [qrCode!.constraintCenterYTo(self.view),
-                             qrCode!.constraintCenterYTo(self.view, paddingY: -25),
-                             qrCode!.constraintCenterXTo(self.view)]
-        infoLabelConstraints = [infoLabel!.constraintToBottomOf(qrCode!, paddingTop: 25),
-                                infoLabel!.constraintAlignLeadingTo(self.view, paddingLeading: 8),
-                                infoLabel!.constraintAlignTrailingTo(self.view, paddingTrailing: 8)]
-        applyConstraints()
-    }
-
-    func setupLandscapeConstraints() {
-        removeConstraints()
-        contactCellConstraints = [contactCell!.constraintAlignTopTo(self.view),
-                                  contactCell!.constraintAlignLeadingTo(self.view),
-                                  contactCell!.constraintAlignTrailingTo(self.view)]
-        qrCodeScannerConstraints = [qrCodeScanner!.constraintToTrailingOf(qrCode!, paddingLeading: 50),
-                                    qrCodeScanner!.constraintAlignTrailingTo(self.view, paddingTrailing: 50),
-                                    qrCodeScanner!.constraintAlignBottomTo(qrCode!)]
-        qrCodeConstraints = [qrCode!.constraintToBottomOf(contactCell!, paddingTop: 25),
-                             qrCode!.constraintAlignLeadingTo(self.view, paddingLeading: 50)]
-        infoLabelConstraints = [infoLabel!.constraintToBottomOf(contactCell!, paddingTop: 25),
-                                infoLabel!.constraintToTrailingOf(qrCode!, paddingLeading: 50),
-                                infoLabel!.constraintAlignTrailingTo(self.view, paddingTrailing: 50)]
-        applyConstraints()
-    }
-
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        if UIDevice.current.orientation.isLandscape {
-            setupLandscapeConstraints()
-        } else {
-            setupPortraitConstraints()
-        }
     }
 
     private func addSecureJoinProgressListener() {
@@ -238,6 +190,57 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         present(alert, animated: true, completion: nil)
     }
 
+    private func createContactCell() -> UITableViewCell {
+        let cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
+        let bg = UIColor(red: 248 / 255, green: 248 / 255, blue: 255 / 255, alpha: 1.0)
+
+        if let contact = self.contact {
+            let name = DcConfig.displayname ?? contact.displayName
+            cell.backgroundColor = bg
+            cell.nameLabel.text = name
+            cell.emailLabel.text = contact.email
+            cell.darkMode = false
+            if let img = contact.profileImage {
+                cell.setImage(img)
+            } else {
+                cell.setBackupImage(name: name, color: contact.color)
+            }
+        } else {
+            cell.nameLabel.text = String.localized("no_account_setup")
+        }
+        return cell
+    }
+
+    private func createQRCodeCell() -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "qrCodeCell")
+        let qrCode = createQRCodeView()
+        let infolabel = createInfoLabel()
+
+        cell.contentView.addSubview(qrCode)
+        cell.contentView.addSubview(infolabel)
+        cell.selectionStyle = .none
+
+        let qrCodeConstraints = [qrCode.constraintAlignTopTo(cell.contentView, paddingTop: 25),
+                                 qrCode.constraintCenterXTo(cell.contentView)]
+        let infoLabelConstraints = [infolabel.constraintToBottomOf(qrCode, paddingTop: 25),
+                                    infolabel.constraintAlignLeadingTo(cell.contentView, paddingLeading: 8),
+                                    infolabel.constraintAlignTrailingTo(cell.contentView, paddingTrailing: 8)]
+        cell.contentView.addConstraints(qrCodeConstraints)
+        cell.contentView.addConstraints(infoLabelConstraints)
+        return cell
+    }
+
+    private func createQRCodeScanCell() -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "scanQR")
+        let scanButton = createQRCodeScannerButton()
+        cell.contentView.addSubview(scanButton)
+        cell.selectionStyle = .none
+        let scanButtonConstraints = [scanButton.constraintCenterXTo(cell.contentView),
+                                     scanButton.constraintCenterYTo(cell.contentView)]
+        cell.contentView.addConstraints(scanButtonConstraints)
+        return cell
+    }
+
     private func createInfoLabel() -> UIView {
         let label = UILabel.init()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -280,32 +283,6 @@ class NewProfileViewController: UIViewController, QrCodeReaderDelegate {
         imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: width).isActive = true
         return imageView
-    }
-
-    private func createContactCell() -> UIView {
-        let bg = UIColor(red: 248 / 255, green: 248 / 255, blue: 255 / 255, alpha: 1.0)
-
-        let profileView = ProfileView(frame: CGRect())
-        if let contact = self.contact {
-            let name = DcConfig.displayname ?? contact.displayName
-            profileView.setBackgroundColor(bg)
-            profileView.nameLabel.text = name
-            profileView.emailLabel.text = contact.email
-            profileView.darkMode = false
-            if let img = contact.profileImage {
-                profileView.setImage(img)
-            } else {
-                profileView.setBackupImage(name: name, color: contact.color)
-            }
-        } else {
-            profileView.nameLabel.text = String.localized("no_account_setup")
-        }
-
-        return profileView
-    }
-
-    override func viewWillAppear(_: Bool) {
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     func displayNewChat(contactId: Int) {
