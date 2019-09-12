@@ -7,6 +7,8 @@ struct DcColors {
     static let messagePrimaryColor = UIColor.rgb(red: 220, green: 248, blue: 198)
     static let messageSecondaryColor = UIColor.rgb(red: 245, green: 245, blue: 245)
     static let chatBackgroundColor = UIColor.rgb(red: 236, green: 229, blue: 221)
+    
+    static let checkmarkGreen = UIColor.rgb(red: 112, green: 177, blue: 92)
 }
 
 enum SystemColor {
