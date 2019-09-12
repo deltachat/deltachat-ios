@@ -125,8 +125,8 @@ class ContactCell: UITableViewCell {
         initialsLabel.center = avatar.center
 
         deliveryStatusIndicator.translatesAutoresizingMaskIntoConstraints = false
-        deliveryStatusIndicator.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        deliveryStatusIndicator.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        deliveryStatusIndicator.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        deliveryStatusIndicator.widthAnchor.constraint(equalToConstant: 15).isActive = true
 
         let myStackView = UIStackView()
         myStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -194,17 +194,17 @@ class ContactCell: UITableViewCell {
         var indicatorImage: UIImage?
         switch status {
         case .OUTPENDING, .OUTPAIRING:
-            indicatorImage = #imageLiteral(resourceName: "ic_delivery_status_sending").withRenderingMode(.alwaysTemplate)
+            indicatorImage = #imageLiteral(resourceName: "ic_hourglass_empty_36pt").withRenderingMode(.alwaysTemplate)
             deliveryStatusIndicator.tintColor = UIColor.black.withAlphaComponent(0.5)
         case .OUTDELIVERED:
             indicatorImage = #imageLiteral(resourceName: "ic_done_36pt").withRenderingMode(.alwaysTemplate)
-            deliveryStatusIndicator.tintColor = UIColor.green
+            deliveryStatusIndicator.tintColor = DcColors.checkmarkGreen
         case .OUTERROR:
             indicatorImage = #imageLiteral(resourceName: "ic_error_36pt").withRenderingMode(.alwaysTemplate)
             deliveryStatusIndicator.tintColor = UIColor.red
         case .INSEEN:
             indicatorImage = #imageLiteral(resourceName: "ic_done_all_36pt").withRenderingMode(.alwaysTemplate)
-            deliveryStatusIndicator.tintColor = UIColor.green
+            deliveryStatusIndicator.tintColor = DcColors.checkmarkGreen
         default: break
         }
         if indicatorImage != nil {
