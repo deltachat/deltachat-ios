@@ -1,9 +1,12 @@
 import UIKit
 
 class MailboxViewController: ChatViewController {
-    override init(dcContext: DcContext, chatId: Int, title: String? = nil) {
-        super.init(dcContext: dcContext, chatId: chatId, title: title)
+
+    override init(dcContext: DcContext, chatId: Int) {
+        super.init(dcContext: dcContext, chatId: chatId)
         hidesBottomBarWhenPushed = false
+        disableWriting = true
+        showCustomNavBar = false
     }
 
     required init?(coder _: NSCoder) {
@@ -12,7 +15,10 @@ class MailboxViewController: ChatViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        navigationItem.title = String.localized("menu_deaddrop")
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
     }
+
 }

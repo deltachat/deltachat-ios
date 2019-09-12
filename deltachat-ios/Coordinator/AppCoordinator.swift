@@ -30,8 +30,7 @@ class AppCoordinator: NSObject, Coordinator {
     // MARK: viewControllers
 
     private lazy var mailboxController: UIViewController = {
-        let controller = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP), title: String.localized("menu_deaddrop"))
-        controller.disableWriting = true
+        let controller = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
         let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "message")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_deaddrop"), image: settingsImage, tag: mailboxTab)

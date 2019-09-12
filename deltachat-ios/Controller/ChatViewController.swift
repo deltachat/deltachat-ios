@@ -33,6 +33,7 @@ class ChatViewController: MessagesViewController {
     }()
 
     var disableWriting = false
+    var showCustomNavBar = true
     var previewView: UIView?
     var previewController: PreviewController?
 
@@ -43,15 +44,10 @@ class ChatViewController: MessagesViewController {
         return messageInputBar
     }
 
-    private var titleView = ChatTitleView()
-
-    init(dcContext: DcContext, chatId: Int, title: String? = nil) {
+    init(dcContext: DcContext, chatId: Int) {
         self.dcContext = dcContext
         self.chatId = chatId
         super.init(nibName: nil, bundle: nil)
-        if let title = title {
-            titleView.updateTitleView(title: title, subtitle: nil)
-        }
         hidesBottomBarWhenPushed = true
     }
 
@@ -62,8 +58,6 @@ class ChatViewController: MessagesViewController {
     override func viewDidLoad() {
         messagesCollectionView.register(CustomMessageCell.self)
         super.viewDidLoad()
-        navigationItem.titleView = titleView
-
         view.backgroundColor = DcColors.chatBackgroundColor
         if !DcConfig.configured {
             // TODO: display message about nothing being configured
@@ -87,15 +81,19 @@ class ChatViewController: MessagesViewController {
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 
         let chat = DcChat(id: chatId)
-        titleView.updateTitleView(title: chat.name, subtitle: chat.subtitle)
+        if showCustomNavBar {
+            let titleView =  ChatTitleView()
+            titleView.updateTitleView(title: chat.name, subtitle: chat.subtitle)
+            navigationItem.titleView = titleView
 
-        let badge: InitialsBadge
-        if let image = chat.profileImage {
-            badge =  InitialsBadge(image: image, size: 28)
-        } else {
-            badge =  InitialsBadge(name: chat.name, color: chat.color, size: 28)
+            let badge: InitialsBadge
+            if let image = chat.profileImage {
+                badge =  InitialsBadge(image: image, size: 28)
+            } else {
+                badge =  InitialsBadge(name: chat.name, color: chat.color, size: 28)
+            }
+            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: badge)
         }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: badge)
 
         configureMessageMenu()
 
