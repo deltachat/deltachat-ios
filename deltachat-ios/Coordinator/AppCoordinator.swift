@@ -45,7 +45,7 @@ class AppCoordinator: NSObject, Coordinator {
         let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "report_card")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code_title"), image: settingsImage, tag: qrTab)
-        let coordinator = QRViewCoordinator(navigationController: nav)
+        let coordinator = QrViewCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
         return nav
@@ -144,7 +144,7 @@ class MailboxCoordinator: ChatViewCoordinator {
     }
 }
 
-class QRViewCoordinator: Coordinator {
+class QrViewCoordinator: Coordinator {
     var navigationController: UINavigationController
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController

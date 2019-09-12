@@ -6,7 +6,7 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
     private let rowQRCode = 1
     private let rowScanQR = 2
 
-    weak var coordinator: QRViewCoordinator?
+    weak var coordinator: QrViewCoordinator?
     let qrCodeReaderController = QrCodeReaderController()
     var secureJoinObserver: Any?
     var dcContext: DcContext
