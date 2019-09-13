@@ -125,8 +125,8 @@ class ContactCell: UITableViewCell {
         initialsLabel.center = avatar.center
 
         deliveryStatusIndicator.translatesAutoresizingMaskIntoConstraints = false
-        deliveryStatusIndicator.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        deliveryStatusIndicator.widthAnchor.constraint(equalToConstant: 15).isActive = true
+        deliveryStatusIndicator.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        deliveryStatusIndicator.widthAnchor.constraint(equalToConstant: 20).isActive = true
 
         let myStackView = UIStackView()
         myStackView.translatesAutoresizingMaskIntoConstraints = false
