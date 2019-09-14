@@ -191,18 +191,22 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func createBackup(_: Row) {
-        // if let documents = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.delta.chat.ios")?.path {
-
-        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        if !documents.isEmpty {
-            logger.info("create backup in \(documents)")
-            hudHandler.showHud(String.localized("one_moment"))
-            DispatchQueue.main.async {
-                dc_imex(mailboxPointer, DC_IMEX_EXPORT_BACKUP, documents[0], nil)
+        let alert = UIAlertController(title: String.localized("pref_backup_export_explain"), message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("pref_backup_export_start_button"), style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+            let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+            if !documents.isEmpty {
+                logger.info("create backup in \(documents)")
+                self.hudHandler.showHud(String.localized("one_moment"))
+                DispatchQueue.main.async {
+                    dc_imex(mailboxPointer, DC_IMEX_EXPORT_BACKUP, documents[0], nil)
+                }
+            } else {
+                logger.error("document directory not found")
             }
-        } else {
-            logger.error("document directory not found")
-        }
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 
     private func configure(_: Row) {
