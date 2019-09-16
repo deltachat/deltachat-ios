@@ -21,7 +21,6 @@ class AppCoordinator: NSObject, Coordinator {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [mailboxController, qrController, chatListController, settingsController]
         // put viewControllers here
-        tabBarController.delegate = self
         tabBarController.tabBar.tintColor = DcColors.primary
         tabBarController.tabBar.backgroundColor = .white
         return tabBarController
@@ -109,22 +108,6 @@ class AppCoordinator: NSObject, Coordinator {
         childCoordinators.append(coordinator)
         accountSetupController.coordinator = coordinator
         rootViewController.present(accountSetupNav, animated: false, completion: nil)
-    }
-}
-
-extension AppCoordinator: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if let dcNav = viewController as? DcNavigationController {
-            switch tabBarController.selectedIndex {
-            case chatsTab, settingsTab:
-                dcNav.navigationBar.prefersLargeTitles = true
-            case mailboxTab, qrTab:
-                dcNav.navigationBar.prefersLargeTitles = false
-            default:
-                // should never get here
-                dcNav.navigationBar.prefersLargeTitles = false
-            }
-        }
     }
 }
 
