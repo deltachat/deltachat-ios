@@ -67,16 +67,7 @@ internal final class SettingsViewController: QuickTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setTable()
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        }
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = false
-        }
+        NavBarUtils.setBigTitle(navigationController: navigationController)
     }
 
     override func viewDidDisappear(_ animated: Bool) {

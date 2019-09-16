@@ -76,7 +76,7 @@ class ChatViewController: MessagesViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        NavBarUtils.setSmallTitle(navigationController: navigationController)
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 
@@ -96,12 +96,6 @@ class ChatViewController: MessagesViewController {
         }
 
         configureMessageMenu()
-
-        if #available(iOS 11.0, *) {
-            if disableWriting {
-                navigationController?.navigationBar.prefersLargeTitles = true
-            }
-        }
 
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
@@ -146,12 +140,6 @@ class ChatViewController: MessagesViewController {
         let cnt = Int(dc_get_fresh_msg_cnt(mailboxPointer, UInt32(chatId)))
         logger.info("updating count for chat \(cnt)")
         UIApplication.shared.applicationIconBadgeNumber = cnt
-
-        if #available(iOS 11.0, *) {
-            if disableWriting {
-                navigationController?.navigationBar.prefersLargeTitles = false
-            }
-        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {

@@ -248,6 +248,7 @@ class AccountSetupController: UITableViewController {
         imapPortCell.detailTextLabel?.text = DcConfig.mailPort ?? DcConfig.configuredMailPort
         smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: DcConfig.getSmtpSecurity())
         imapSecurityCell.detailTextLabel?.text  = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: DcConfig.getImapSecurity())
+        NavBarUtils.setSmallTitle(navigationController: navigationController)
     }
 
     override func viewDidAppear(_ animated: Bool) {

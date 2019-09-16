@@ -43,6 +43,10 @@ class SecuritySettingsController: UITableViewController {
         navigationItem.rightBarButtonItem = resetButton
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        NavBarUtils.setSmallTitle(navigationController: navigationController)
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         let selectedOption = options[selectedIndex]
         onDismiss?(selectedOption)

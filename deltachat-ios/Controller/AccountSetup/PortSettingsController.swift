@@ -63,6 +63,10 @@ class PortSettingsController: UITableViewController {
         resetButton.isEnabled = false
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        NavBarUtils.setSmallTitle(navigationController: navigationController)
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         onDismiss?("\(currentPort)")
     }

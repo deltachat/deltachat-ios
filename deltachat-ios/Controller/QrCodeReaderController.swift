@@ -66,6 +66,7 @@ class QrCodeReaderController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         captureSession.startRunning()
+        NavBarUtils.setSmallTitle(navigationController: navigationController)
     }
     override func viewWillDisappear(_ animated: Bool) {
         captureSession.stopRunning()
