@@ -251,7 +251,7 @@ class ChatViewController: MessagesViewController {
 
         if disableWriting {
             menuItems = [
-                UIMenuItem(title: String.localized("start_chat"), action: #selector(MessageCollectionViewCell.messageStartChat(_:))),
+                UIMenuItem(title: String.localized("welcome_start_messaging"), action: #selector(MessageCollectionViewCell.messageStartChat(_:))),
                 UIMenuItem(title: String.localized("dismiss"), action: #selector(MessageCollectionViewCell.messageDismiss(_:))),
                 UIMenuItem(title: String.localized("menu_block_contact"), action: #selector(MessageCollectionViewCell.messageBlock(_:))),
             ]
