@@ -69,6 +69,7 @@ class GroupChatDetailViewController: UIViewController {
         updateGroupMembers()
         chatDetailTable.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
+        NavBarUtils.setSmallTitle(navigationController: navigationController)
     }
 
     private func updateGroupMembers() {

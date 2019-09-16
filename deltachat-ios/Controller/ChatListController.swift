@@ -33,19 +33,8 @@ class ChatListController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-            navigationItem.largeTitleDisplayMode = .always
-        }
+        NavBarUtils.setBigTitle(navigationController: navigationController)
         getChatList()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = false
-        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -89,8 +78,6 @@ class ChatListController: UIViewController {
         if showArchive {
             title = String.localized("chat_archived_chats_title")
         }
-
-        navigationController?.navigationBar.prefersLargeTitles = true
 
         newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
         newButton.tintColor = DcColors.primary

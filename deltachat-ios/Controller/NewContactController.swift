@@ -60,7 +60,7 @@ class NewContactController: UITableViewController {
 
     override func viewWillAppear(_: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: false)
-        navigationController?.navigationBar.prefersLargeTitles = false
+        NavBarUtils.setSmallTitle(navigationController: navigationController)
     }
 
     @objc func emailTextChanged() {
@@ -85,12 +85,6 @@ class NewContactController: UITableViewController {
 
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {

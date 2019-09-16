@@ -48,10 +48,8 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
         }
     }
 
-    override func viewWillAppear(_: Bool) {
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        NavBarUtils.setBigTitle(navigationController: navigationController)
     }
 
     override func numberOfSections(in _: UITableView) -> Int {

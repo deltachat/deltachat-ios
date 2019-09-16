@@ -6,13 +6,17 @@ class NewGroupViewController: GroupMembersViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("menu_new_group")
-        navigationController?.navigationBar.prefersLargeTitles = false
         let groupCreationNextButton = UIBarButtonItem(title: String.localized("next"),
                                                       style: .done,
                                                       target: self,
                                                       action: #selector(nextButtonPressed))
         navigationItem.rightBarButtonItem = groupCreationNextButton
         contactIds = Utils.getContactIds()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NavBarUtils.setSmallTitle(navigationController: navigationController)
     }
 
     override func didReceiveMemoryWarning() {

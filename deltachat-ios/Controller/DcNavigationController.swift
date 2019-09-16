@@ -8,7 +8,7 @@ final class DcNavigationController: UINavigationController {
         super.viewDidLoad()
 
         if #available(iOS 11.0, *) {
-            navigationBar.prefersLargeTitles = true
+            // preferred height of navigation bar title is configured in ViewControllers
         } else {
             navigationBar.setBackgroundImage(UIImage(), for: .default)
         }

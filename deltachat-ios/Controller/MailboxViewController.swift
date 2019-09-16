@@ -16,9 +16,12 @@ class MailboxViewController: ChatViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = String.localized("menu_deaddrop")
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        }
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NavBarUtils.setBigTitle(navigationController: navigationController)
     }
 
 }
