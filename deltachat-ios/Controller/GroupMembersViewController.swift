@@ -1,5 +1,4 @@
 import UIKit
-import Contacts
 
 class NewGroupViewController: GroupMembersViewController {
     weak var coordinator: NewGroupCoordinator?
