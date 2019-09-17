@@ -1,4 +1,5 @@
 import UIKit
+import Contacts
 
 class NewGroupViewController: GroupMembersViewController {
     weak var coordinator: NewGroupCoordinator?
@@ -97,7 +98,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 }
 
-class GroupMembersViewController: UITableViewController {
+class GroupMembersViewController: UITableViewController, UISearchResultsUpdating {
     let contactCellReuseIdentifier = "contactCell"
 
     var contactIds: [Int] = [] {
@@ -106,6 +107,41 @@ class GroupMembersViewController: UITableViewController {
         }
     }
 
+    // contactWithSearchResults.indexesToHightLight empty by default
+    var contacts: [ContactWithSearchResults] {
+        return contactIds.map { ContactWithSearchResults(contact: DcContact(id: $0), indexesToHighlight: []) }
+    }
+
+    // used when seachbar is active
+    var filteredContacts: [ContactWithSearchResults] = []
+
+    // searchBar active?
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+
+    private func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+
+    private func contactIdByRow(_ row: Int) -> Int {
+        return isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
+    }
+
+    private func contactSearchResultByRow(_ row: Int) -> ContactWithSearchResults {
+        return isFiltering() ? filteredContacts[row] : contacts[row]
+    }
+
+
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = String.localized("search")
+        searchController.hidesNavigationBarDuringPresentation = false
+        return searchController
+    }()
+    
     var selectedContactIds: Set<Int> = []
 
     init() {
@@ -119,6 +155,9 @@ class GroupMembersViewController: UITableViewController {
 
     override func viewDidLoad() {
         tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
     }
 
     override func numberOfSections(in _: UITableView) -> Int {
@@ -126,7 +165,7 @@ class GroupMembersViewController: UITableViewController {
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return contactIds.count
+        return isFiltering() ? filteredContacts.count : contacts.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -135,15 +174,9 @@ class GroupMembersViewController: UITableViewController {
         }
 
         let row = indexPath.row
-        let contactRow = row
-
-        let contact = DcContact(id: contactIds[contactRow])
-        let displayName = contact.displayName
-        cell.nameLabel.text = displayName
-        cell.emailLabel.text = contact.email
-        cell.initialsLabel.text = Utils.getInitials(inputName: displayName)
-        cell.accessoryType = selectedContactIds.contains(contactIds[row]) ? .checkmark : .none
-        cell.setColor(contact.color)
+        let contact: ContactWithSearchResults = contactSearchResultByRow(row)
+        updateContactCell(cell: cell, contactWithHighlight: contact)
+        cell.accessoryType = selectedContactIds.contains(contactIdByRow(row)) ? .checkmark : .none
 
         return cell
     }
@@ -152,7 +185,7 @@ class GroupMembersViewController: UITableViewController {
         let row = indexPath.row
         if let cell = tableView.cellForRow(at: indexPath) {
             tableView.deselectRow(at: indexPath, animated: true)
-            let contactId = contactIds[row]
+            let contactId = contactIdByRow(row)
             if selectedContactIds.contains(contactId) {
                 selectedContactIds.remove(contactId)
                 cell.accessoryType = .none
@@ -162,4 +195,49 @@ class GroupMembersViewController: UITableViewController {
             }
         }
     }
+
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContentForSearchText(searchText)
+        }
+    }
+
+    private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
+        let contactsWithHighlights: [ContactWithSearchResults] = contacts.map { contact in
+            let indexes = contact.contact.containsExact(searchText: searchText)
+            return ContactWithSearchResults(contact: contact.contact, indexesToHighlight: indexes)
+        }
+
+        filteredContacts = contactsWithHighlights.filter { !$0.indexesToHighlight.isEmpty }
+        tableView.reloadData()
+    }
+
+    private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {
+        let contact = contactWithHighlight.contact
+        let displayName = contact.displayName
+
+        let emailLabelFontSize = cell.emailLabel.font.pointSize
+        let nameLabelFontSize = cell.nameLabel.font.pointSize
+
+        cell.initialsLabel.text = Utils.getInitials(inputName: displayName)
+        cell.setColor(contact.color)
+        cell.setVerified(isVerified: contact.isVerified)
+
+        if let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {
+            // gets here when contact is a result of current search -> highlights relevant indexes
+            cell.emailLabel.attributedText = contact.email.boldAt(indexes: emailHighlightedIndexes.indexes, fontSize: emailLabelFontSize)
+        } else {
+            cell.emailLabel.attributedText = contact.email.boldAt(indexes: [], fontSize: emailLabelFontSize)
+        }
+
+        if let nameHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .NAME }).first {
+            cell.nameLabel.attributedText = displayName.boldAt(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
+        } else {
+            cell.nameLabel.attributedText = displayName.boldAt(indexes: [], fontSize: nameLabelFontSize)
+        }
+    }
+
+ 
+
+    
 }
