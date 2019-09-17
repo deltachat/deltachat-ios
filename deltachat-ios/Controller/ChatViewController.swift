@@ -440,9 +440,10 @@ class ChatViewController: MessagesViewController {
         case NSSelectorFromString("messageStartChat:"):
             let msg = messageList[indexPath.section]
             logger.info("message: Start Chat \(msg.messageId)")
-            _ = msg.createChat()
+            let chat = msg.createChat()
             // TODO: figure out how to properly show the chat after creation
             refreshMessages()
+            coordinator?.showChat(chatId: chat.id)
         case NSSelectorFromString("messageBlock:"):
             let msg = messageList[indexPath.section]
             logger.info("message: Block \(msg.messageId)")

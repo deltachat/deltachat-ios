@@ -424,6 +424,15 @@ class ChatViewCoordinator: NSObject, Coordinator {
         // navigationController.present(nav, animated: true, completion: nil)
     }
 
+    func showChat(chatId: Int) {
+        let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
+        let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
+        childCoordinators.append(coordinator)
+        chatViewController.coordinator = coordinator
+        navigationController.popToRootViewController(animated: false)
+        navigationController.pushViewController(chatViewController, animated: true)
+    }
+
     private func sendImage(_ image: UIImage) {
         DispatchQueue.global().async {
             if let compressedImage = image.dcCompress() {
