@@ -152,6 +152,7 @@
 "ask_block_contact" = "Diesen Kontakt blockieren? Sie werden keine Nachrichten mehr von diesem Kontakt erhalten.";
 "ask_unblock_contact" = "Diesen Kontakt nicht mehr blockieren? Nachrichten von diesem Kontakt werden dann wieder angezeigt.";
 "ask_delete_contacts" = "Kontakte löschen? Dadurch werden die ausgewählten Kontakte dauerhaft gelöscht.\n\nKontakte mit laufenden Chats und Kontakte aus dem Adressbuch des Systems können nicht dauerhaft gelöscht werden.";
+"ask_delete_contact" = "Kontakt %1$@ dauerhaft löschen?\n\nKontakte mit laufenden Chats und Kontakte aus dem Adressbuch des Systems können nicht dauerhaft gelöscht werden.";
 "cannot_delete_contacts_in_use" = "Kontakte mit laufenden Chats können nicht gelöscht werden.";
 "ask_start_chat_with" = "Chat mit %1$@ starten?";
 // Translators: %1$s will be replaces by a comma separated list of names
@@ -576,53 +577,4 @@
 "menu.view.developer.open.current.log.file" = "Aktuelle Logdatei öffnen";
 
 "user_location_permission_explanation" = "Delta Chat benötigt die Standortberechtigung, um Ihren Standort anzuzeigen und zu teilen.";
-
-// deprecated on android, please remove if unused on desktop
-// see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "Der Gruppe \"%1$@\" beitreten?";
-// see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "Chat mit %1$@ starten?";
-// see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "Chat mit %1$@ starten?";
-// see qrshow_join_group_title
-"qrshow_join_verified_group_title" = "QR-Einladungscode";
-// see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "Dies scannen, um der Gruppe \"%1$@\" beizutreten.";
-// see chat_all_archived
-"chat_all_done_hint" = "Posteingang leeeeer";
-"chat_all_done_explain" = "Zip. Zilch. Zero. Nada.\nAlle aufgeholt!";
-"media_tab_media" = "Media";
-"media_tab_documents" = "Dokumente";
-"media_no_media_hint" = "Keine Mediadateien";
-"media_no_documents_hint" = "Keine Dokumente.";
-"language_be" = "Belgisch";
-"language_ca" = "Katalanisch";
-"language_da" = "Dänisch";
-"language_de" = "Deutsch";
-"language_en" = "Englisch";
-"language_eo" = "Esperanto";
-"language_es" = "Spanisch";
-"language_eu" = "Baskisch";
-"language_fr" = "Französisch";
-"language_hr" = "Kroatisch";
-"language_hu" = "Ungarisch";
-"language_it" = "Italienisch";
-"language_id" = "Indonesisch";
-"language_ja_JP" = "Japanisch";
-"language_ko" = "Koreanisch";
-"language_nb_NO" = "Norwegian Bokmål";
-"language_nl" = "Niederländisch";
-"language_nl_NL" = "Niederländisch (Niederlande)";
-"language_pl" = "Polisch";
-"language_pt" = "Portugiesisch";
-"language_ru" = "Russisch";
-"language_ru_RU" = "Russisch (Russland)";
-"language_sq" = "Albanisch";
-"language_sr" = "Serbisch";
-"language_sv" = "Schwedisch";
-"language_ta" = "Tamil";
-"language_te" = "Telugu";
-"language_tr" = "Türkisch";
-"language_uk" = "Ukrainisch";
-"language_zh_CN" = "Chinesisch";
 

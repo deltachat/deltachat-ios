@@ -303,7 +303,7 @@ class NewChatViewController: UITableViewController {
 
     private func askToDeleteContact(contactId: Int, context: DcContext) {
         let contact = DcContact(id: contactId)
-        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("delete_contact"), contact.nameNAddr),
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_delete_contact"), contact.nameNAddr),
                                       message: nil,
                                       preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { _ in

@@ -152,6 +152,7 @@
 "ask_block_contact" = "Wil je deze contactpersoon blokkeren? Hij/zij kan je geen berichten meer sturen.";
 "ask_unblock_contact" = "Wil je deze contactpersoon deblokkeren? Hij/zij kan je wederom berichten sturen.";
 "ask_delete_contacts" = "Wil je de geselecteerde contactpersonen permanent verwijderen?\n\nPersonen met actieve gesprekken en personen afkomstig uit je adresboek kunnen niet permanent worden verwijderd.";
+"ask_delete_contact" = "Wil je de contactpersoon %1$@ permanent verwijderen?\n\nPersonen met actieve gesprekken en personen afkomstig uit je adresboek kunnen niet permanent worden verwijderd.";
 "cannot_delete_contacts_in_use" = "Contactpersonen waarmee je nog gesprekken voert kunnen niet worden verwijderd.";
 "ask_start_chat_with" = "Wil je een gesprek voeren met %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
@@ -576,53 +577,4 @@
 "menu.view.developer.open.current.log.file" = "Huidig logbestand openen";
 
 "user_location_permission_explanation" = "Delta Chat heeft de locatiemachtiging nodig om je locatie te kunnen tonen en delen.";
-
-// deprecated on android, please remove if unused on desktop
-// see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "Wil je deelnemen aan de groep \'%1$@\'?";
-// see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "Wil je een gesprek voeren met %1$@?";
-// see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "Wil je een gesprek voeren met %1$@?";
-// see qrshow_join_group_title
-"qrshow_join_verified_group_title" = "QR-uitnodigingscode";
-// see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "Scan dit om deel te nemen aan de groep \'%1$@\'.";
-// see chat_all_archived
-"chat_all_done_hint" = "Postvak nullllll";
-"chat_all_done_explain" = "Niks. Noppes. Nakkes. Nada.\nJe bent volledig op de hoogte!";
-"media_tab_media" = "Media";
-"media_tab_documents" = "Documenten";
-"media_no_media_hint" = "Geen media.";
-"media_no_documents_hint" = "Geen documenten.";
-"language_be" = "Vlaams";
-"language_ca" = "Catalaans";
-"language_da" = "Deens";
-"language_de" = "Duits";
-"language_en" = "Engels";
-"language_eo" = "Esperanto";
-"language_es" = "Spaans";
-"language_eu" = "Basks";
-"language_fr" = "Frans";
-"language_hr" = "Kroatisch";
-"language_hu" = "Hongaars";
-"language_it" = "Italiaans";
-"language_id" = "Indonesisch";
-"language_ja_JP" = "Japans";
-"language_ko" = "Koreaans";
-"language_nb_NO" = "Noors (Bokmål)";
-"language_nl" = "Nederlands";
-"language_nl_NL" = "Nederlands (Nederland)";
-"language_pl" = "Pools";
-"language_pt" = "Portugees";
-"language_ru" = "Russisch";
-"language_ru_RU" = "Russisch (Rusland)";
-"language_sq" = "Albanees";
-"language_sr" = "Servisch";
-"language_sv" = "Zweeds";
-"language_ta" = "Tamil";
-"language_te" = "Telugu";
-"language_tr" = "Turks";
-"language_uk" = "Oekraïens";
-"language_zh_CN" = "Chinees";
 

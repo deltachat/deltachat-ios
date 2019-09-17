@@ -151,8 +151,9 @@
 "ask_export_attachment" = "İlişik dışa aktarılsın mı? İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
 "ask_block_contact" = "Bu kişi engellensin mi? Artık bu kişiden gelen iletileri almayacaksınız.";
 "ask_unblock_contact" = "Bu kişinin engellemesi kaldırılsın mı? Bir kez daha bu kişiden gelen iletileri alabileceksiniz.";
-"ask_delete_contacts" = "Kişiler silinsin mi? Bu, seçilen kişileri kalıcı olarak silecek.\n\nSohbetleri süren kişiler ve sistemin adres defterinden gelen kişiler kalıcı olarak silinemez.";
-"cannot_delete_contacts_in_use" = "Sohbetleri süren kişiler silinemez.";
+"ask_delete_contacts" = "Kişiler silinsin mi? Bu, seçilen kişileri kalıcı olarak silecek.\n\nSohbetlerin sürdüğü kişiler ve sistemin adres defterinden gelen kişiler kalıcı olarak silinemez.";
+"ask_delete_contact" = "%1$@ kişisi kalıcı olarak silinsin mi?\n\nSohbetleri süren kişiler ve sistemin adres defterinden gelen kişiler kalıcı olarak silinemez.";
+"cannot_delete_contacts_in_use" = "Sohbetlerin sürdüğü kişiler silinemez.";
 "ask_start_chat_with" = "%1$@ ile sohbet edilsin mi?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "%1$@ gruptan kaldırılsın mı?";
@@ -198,7 +199,7 @@
 // search
 "search" = "Ara";
 "search_explain" = "Sohbetleri, kişileri ve iletileri ara";
-"search_no_result_for_x" = "\"%s\" için hiç sonuç bulunmadı";
+"search_no_result_for_x" = "\"%s\" için sonuç bulunamadı";
 
 
 // create/edit groups, contact/group profile
@@ -576,53 +577,4 @@
 "menu.view.developer.open.current.log.file" = "Geçerli Günlük Dosyasını Aç";
 
 "user_location_permission_explanation" = "Delta Chat\'in konumunuzu göstermesi ya da paylaşması için konum izni gerekir.";
-
-// deprecated on android, please remove if unused on desktop
-// see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "\"%1$@\" grubuna katılmak istiyor musunuz?";
-// see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "%1$@ ile sohbet edilsin mi?";
-// see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "%1$@ ile sohbet edilsin mi?";
-// see qrshow_join_group_title
-"qrshow_join_verified_group_title" = "QR davet kodu";
-// see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "\"%1$@\" grubuna katılmak için bunu tarayın.";
-// see chat_all_archived
-"chat_all_done_hint" = "Gelen kutusu boş";
-"chat_all_done_explain" = "Sıfır öğe.\nBurada hiçbir şey yok!";
-"media_tab_media" = "Ortam";
-"media_tab_documents" = "Belgeler";
-"media_no_media_hint" = "Ortam yok.";
-"media_no_documents_hint" = "Belge yok.";
-"language_be" = "Belarusça";
-"language_ca" = "Katalanca";
-"language_da" = "Danca";
-"language_de" = "Almanca";
-"language_en" = "İngilizce";
-"language_eo" = "Esperanto";
-"language_es" = "İspanyolca";
-"language_eu" = "Baskça";
-"language_fr" = "Fransızca";
-"language_hr" = "Hırvatça";
-"language_hu" = "Macarca";
-"language_it" = "İtalyanca";
-"language_id" = "Endonezce";
-"language_ja_JP" = "Japonca";
-"language_ko" = "Korece";
-"language_nb_NO" = "Norveççe Bokmål";
-"language_nl" = "Flemenkçe";
-"language_nl_NL" = "Flemenkçe (Hollanda)";
-"language_pl" = "Lehçe";
-"language_pt" = "Portekizce";
-"language_ru" = "Rusça";
-"language_ru_RU" = "Rusça (Rusya)";
-"language_sq" = "Arnavutça";
-"language_sr" = "Sırpça";
-"language_sv" = "İsveççe";
-"language_ta" = "Tamilce";
-"language_te" = "Teluguca";
-"language_tr" = "Türkçe";
-"language_uk" = "Ukraynaca";
-"language_zh_CN" = "Çince";
 

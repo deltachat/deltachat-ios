@@ -152,6 +152,7 @@
 "ask_block_contact" = "屏蔽此联系人？您将不再收到此联系人的消息。";
 "ask_unblock_contact" = "取消屏蔽此联系人？您将再次能收到此联系人的消息。";
 "ask_delete_contacts" = "删除联系人？这将永久删除选中的联系人。\n\n仍有在进行中的聊天的联系人和在系统通讯录中的联系人无法被永久删除。";
+"ask_delete_contact" = "永久删除联系人%1$@?\n\n仍有在进行中的聊天的联系人和在系统通讯录中的联系人无法被永久删除。";
 "cannot_delete_contacts_in_use" = "无法删除仍有在进行中的聊天的联系人。";
 "ask_start_chat_with" = "与 %1$@ 聊天？";
 // Translators: %1$s will be replaces by a comma separated list of names
@@ -576,53 +577,4 @@
 "menu.view.developer.open.current.log.file" = "打开当前日志文件";
 
 "user_location_permission_explanation" = "为了显示和分享您的位置，Delta Chat需要位置权限。";
-
-// deprecated on android, please remove if unused on desktop
-// see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "您想加入群组“%1$@”吗？";
-// see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "和 %1$@ 聊天？";
-// see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "和 %1$@ 聊天？";
-// see qrshow_join_group_title
-"qrshow_join_verified_group_title" = "二维邀请码";
-// see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "扫描此处来加入群组\"%1$@\"。";
-// see chat_all_archived
-"chat_all_done_hint" = "收件箱为为……为空";
-"chat_all_done_explain" = "没了，没了，没了，没了。\n您全看过了！";
-"media_tab_media" = "媒体";
-"media_tab_documents" = "文档";
-"media_no_media_hint" = "没有媒体。";
-"media_no_documents_hint" = "没有文档。";
-"language_be" = "比利时语";
-"language_ca" = "加泰罗尼亚语";
-"language_da" = "丹麦语";
-"language_de" = "德语";
-"language_en" = "英语";
-"language_eo" = "世界语";
-"language_es" = "西班牙语";
-"language_eu" = "巴斯克语";
-"language_fr" = "法语";
-"language_hr" = "克罗地亚语";
-"language_hu" = "匈牙利语 ";
-"language_it" = " 意大利语";
-"language_id" = " 印度尼西亚语";
-"language_ja_JP" = "日语";
-"language_ko" = "韩语";
-"language_nb_NO" = "挪威博克马尔语";
-"language_nl" = " 荷兰语";
-"language_nl_NL" = " 荷兰语 (Netherlands)";
-"language_pl" = "波兰语";
-"language_pt" = " 葡萄牙语";
-"language_ru" = " 俄语";
-"language_ru_RU" = " 俄语(Russia)";
-"language_sq" = "阿尔巴尼亚语";
-"language_sr" = "塞尔维亚语";
-"language_sv" = "瑞典语";
-"language_ta" = "泰米尔语";
-"language_te" = "泰卢固语";
-"language_tr" = "土耳其语";
-"language_uk" = "乌克兰语";
-"language_zh_CN" = "汉语";
 

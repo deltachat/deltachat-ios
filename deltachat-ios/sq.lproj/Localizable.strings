@@ -152,6 +152,7 @@
 "ask_block_contact" = "Të bllokohet ky kontakt? S\’do të merrni më mesazhe prej këtij kontakti.";
 "ask_unblock_contact" = "Të zhbllokohet ky kontakt? Do të jeni sërish në gjendje të merrni mesazhe prej këtij kontakti.";
 "ask_delete_contacts" = "Të fshihen kontaktet? Kjo do të bëjë të fshihen përgjithmonë kontaktet e përzgjedhur.\n\nKontaktet me fjalosje në zhvillim e sipër dhe kontaktet prej libri adresash të sistemit s\’mund të fshihen përgjithmonë.";
+"ask_delete_contact" = "Të fshihet përgjithmonë kontakti %1$@? \n\nKontaktet me fjalosje në zhvillim e sipër dhe kontaktet prej libri adresash të sistemit s\’mund të fshihen përgjithmonë.";
 "cannot_delete_contacts_in_use" = "S\’mund të fshihen kontakte me fjalosje në zhvillim e sipër.";
 "ask_start_chat_with" = "Të bisedohet me %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
@@ -576,53 +577,4 @@
 "menu.view.developer.open.current.log.file" = "Hap Kartelën Regjistër të Tanishme";
 
 "user_location_permission_explanation" = "Që të mund të shfaqë dhe ndajë me të tjerët vendndodhjen tuaj, Delta Chat lyp lejen vendore.";
-
-// deprecated on android, please remove if unused on desktop
-// see qrscan_ask_join_group
-"qrscan_ask_join_verified_group" = "Doni të bëheni pjesë e grupit \"%1$@\"?";
-// see ask_start_chat_with
-"qrscan_ask_fingerprint_ask_oob" = "Të bisedohet me %1$@?";
-// see ask_start_chat_with
-"qrscan_ask_chatting_fingerprint_ok" = "Të bisedohet me %1$@?";
-// see qrshow_join_group_title
-"qrshow_join_verified_group_title" = "Kod QR ftese";
-// see qrshow_join_group_hint
-"qrshow_join_verified_group_hint" = "Që të bëheni pjesë e grupit \"%1$@\", skanoni këtë.";
-// see chat_all_archived
-"chat_all_done_hint" = "Zero të marrë";
-"chat_all_done_explain" = "Hiç. Fare. Zero.\nJanë qëruar!";
-"media_tab_media" = "Media";
-"media_tab_documents" = "Dokumente";
-"media_no_media_hint" = "S\’ka media.";
-"media_no_documents_hint" = "S\’ka dokumente.";
-"language_be" = "Belge";
-"language_ca" = "Katalane";
-"language_da" = "Danisht";
-"language_de" = "Gjermanisht";
-"language_en" = "Anglisht";
-"language_eo" = "Esperanto";
-"language_es" = "Spanjisht";
-"language_eu" = "Baske";
-"language_fr" = "Frëngjisht";
-"language_hr" = "Kroatisht";
-"language_hu" = "Hungarisht";
-"language_it" = "Italisht";
-"language_id" = "Indonezisht";
-"language_ja_JP" = "Japonisht";
-"language_ko" = "Koreançe";
-"language_nb_NO" = "Norvegjishte Bokmal";
-"language_nl" = "Holandisht";
-"language_nl_NL" = "Holandisht(Holandë)";
-"language_pl" = "Polonisht";
-"language_pt" = "Portugalisht";
-"language_ru" = "Rusisht";
-"language_ru_RU" = "Rusisht (Rusi)";
-"language_sq" = "Shqip";
-"language_sr" = "Serbisht";
-"language_sv" = "Suedisht";
-"language_ta" = "Tamile";
-"language_te" = "Telugu";
-"language_tr" = "Turqisht";
-"language_uk" = "Ukrainase";
-"language_zh_CN" = "Kineze";
 
