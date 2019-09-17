@@ -293,12 +293,6 @@ class NewChatCoordinator: Coordinator {
         navigationController.pushViewController(newGroupController, animated: true)
     }
 
-    func showQRCodeController() {
-        _ = QrCodeReaderController()
-        // controller.delegate = self
-        // present(controller, animated: true, completion: nil)
-    }
-
     func showNewContactController() {
         let newContactController = NewContactController()
         let coordinator = EditContactCoordinator(dcContext: dcContext, navigationController: navigationController)

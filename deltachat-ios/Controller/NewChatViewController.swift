@@ -8,8 +8,8 @@ class NewChatViewController: UITableViewController {
     private let sectionNew = 0
     private let sectionImportedContacts = 1
     private let sectionNewRowNewGroup = 0
-    private let sectionNewRowScanQrCode = 1
-    private let sectionNewRowNewContact = 2
+    private let sectionNewRowNewContact = 1
+    private let sectionNewRowCount = 2
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -135,7 +135,7 @@ class NewChatViewController: UITableViewController {
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == sectionNew {
-            return 3
+            return sectionNewRowCount
         } else if section == sectionImportedContacts {
             if deviceContactAccessGranted {
                 return isFiltering() ? filteredContacts.count : contacts.count
@@ -161,19 +161,6 @@ class NewChatViewController: UITableViewController {
                     cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
                 }
                 cell.textLabel?.text = String.localized("menu_new_group")
-                cell.textLabel?.textColor = view.tintColor
-
-                return cell
-            }
-            if row == sectionNewRowScanQrCode {
-                // scan QR code row
-                let cell: UITableViewCell
-                if let c = tableView.dequeueReusableCell(withIdentifier: "scanGroupCell") {
-                    cell = c
-                } else {
-                    cell = UITableViewCell(style: .default, reuseIdentifier: "scanGroupCell")
-                }
-                cell.textLabel?.text = String.localized("qrscan_title")
                 cell.textLabel?.textColor = view.tintColor
 
                 return cell
@@ -238,17 +225,6 @@ class NewChatViewController: UITableViewController {
         if section == sectionNew {
             if row == sectionNewRowNewGroup {
                 coordinator?.showNewGroupController()
-            }
-            if row == sectionNewRowScanQrCode {
-                if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                    coordinator?.showQRCodeController()
-                } else {
-                    let alert = UIAlertController(title: String.localized("chat_camera_unavailable"), message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
-                        self.dismiss(animated: true, completion: nil)
-                    }))
-                    present(alert, animated: true, completion: nil)
-                }
             }
             if row == sectionNewRowNewContact {
                 coordinator?.showNewContactController()
