@@ -131,7 +131,6 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
         return isFiltering() ? filteredContacts[row] : contacts[row]
     }
 
-
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -140,7 +139,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
         searchController.hidesNavigationBarDuringPresentation = false
         return searchController
     }()
-    
+
     var selectedContactIds: Set<Int> = []
 
     init() {
@@ -236,7 +235,4 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
         }
     }
 
- 
-
-    
 }
