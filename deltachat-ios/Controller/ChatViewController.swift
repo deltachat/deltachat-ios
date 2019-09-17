@@ -428,9 +428,10 @@ class ChatViewController: MessagesViewController {
         case NSSelectorFromString("messageStartChat:"):
             let msg = messageList[indexPath.section]
             logger.info("message: Start Chat \(msg.messageId)")
-            _ = msg.createChat()
+            let chat = msg.createChat()
             // TODO: figure out how to properly show the chat after creation
             refreshMessages()
+            coordinator?.showChat(chatId: chat.id)
         case NSSelectorFromString("messageBlock:"):
             let msg = messageList[indexPath.section]
             logger.info("message: Block \(msg.messageId)")
@@ -776,7 +777,7 @@ extension ChatViewController: MessagesLayoutDelegate {
 
 // MARK: - MessageCellDelegate
 extension ChatViewController: MessageCellDelegate {
-    func didTapMessage(in cell: MessageCollectionViewCell) {
+    @objc func didTapMessage(in cell: MessageCollectionViewCell) {
         if let indexPath = messagesCollectionView.indexPath(for: cell) {
             let message = messageList[indexPath.section]
 
@@ -811,7 +812,7 @@ extension ChatViewController: MessageCellDelegate {
         }
     }
 
-    func didTapAvatar(in _: MessageCollectionViewCell) {
+    @objc func didTapAvatar(in _: MessageCollectionViewCell) {
         logger.info("Avatar tapped")
     }
 
@@ -821,6 +822,10 @@ extension ChatViewController: MessageCellDelegate {
 
     @objc(didTapCellBottomLabelIn:) func didTapCellBottomLabel(in _: MessageCollectionViewCell) {
         print("Bottom label tapped")
+    }
+
+    @objc func didTapBackground(in cell: MessageCollectionViewCell) {
+        print("background of message tapped")
     }
 }
 
