@@ -9,6 +9,7 @@ class NewChatViewController: UITableViewController {
     private let sectionImportedContacts = 1
     private let sectionNewRowNewGroup = 0
     private let sectionNewRowNewContact = 1
+    private let sectionNewRowCount = 2
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -134,7 +135,7 @@ class NewChatViewController: UITableViewController {
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == sectionNew {
-            return 2
+            return sectionNewRowCount
         } else if section == sectionImportedContacts {
             if deviceContactAccessGranted {
                 return isFiltering() ? filteredContacts.count : contacts.count
