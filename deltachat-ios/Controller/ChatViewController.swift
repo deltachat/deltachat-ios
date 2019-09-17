@@ -789,7 +789,7 @@ extension ChatViewController: MessagesLayoutDelegate {
 
 // MARK: - MessageCellDelegate
 extension ChatViewController: MessageCellDelegate {
-    func didTapMessage(in cell: MessageCollectionViewCell) {
+    @objc func didTapMessage(in cell: MessageCollectionViewCell) {
         if let indexPath = messagesCollectionView.indexPath(for: cell) {
             let message = messageList[indexPath.section]
 
@@ -824,7 +824,7 @@ extension ChatViewController: MessageCellDelegate {
         }
     }
 
-    func didTapAvatar(in _: MessageCollectionViewCell) {
+    @objc func didTapAvatar(in _: MessageCollectionViewCell) {
         logger.info("Avatar tapped")
     }
 
@@ -834,6 +834,10 @@ extension ChatViewController: MessageCellDelegate {
 
     @objc(didTapCellBottomLabelIn:) func didTapCellBottomLabel(in _: MessageCollectionViewCell) {
         print("Bottom label tapped")
+    }
+
+    @objc func didTapBackground(in cell: MessageCollectionViewCell) {
+        print("background of message tapped")
     }
 }
 
