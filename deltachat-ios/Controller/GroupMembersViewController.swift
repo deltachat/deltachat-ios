@@ -97,8 +97,48 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 }
 
+class BlockedContactsViewController: GroupMembersViewController, GroupMemberSelectionDelegate {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = String.localized("pref_blocked_contacts")
+        contactIds = Utils.getBlockedContactIds()
+        selectedContactIds = Set(contactIds)
+        navigationItem.searchController = nil
+        groupMemberSelectionDelegate = self
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NavBarUtils.setSmallTitle(navigationController: navigationController)
+    }
+
+    func selected(contactId: Int, selected: Bool) {
+        if !selected {
+            let alert = UIAlertController(title: nil, message: String.localized("ask_unblock_contact"), preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("menu_unblock_contact"), style: .default, handler: { _ in
+                let contact = DcContact(id: contactId)
+                contact.unblock()
+                self.contactIds = Utils.getBlockedContactIds()
+                self.selectedContactIds = Set(self.contactIds)
+                self.tableView.reloadData()
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+                self.selectedContactIds = Set(self.contactIds)
+                self.tableView.reloadData()
+            }))
+           present(alert, animated: true, completion: nil)
+        }
+    }
+}
+
+protocol GroupMemberSelectionDelegate: class {
+    func selected(contactId: Int, selected: Bool)
+}
+
 class GroupMembersViewController: UITableViewController, UISearchResultsUpdating {
     let contactCellReuseIdentifier = "contactCell"
+    weak var groupMemberSelectionDelegate: GroupMemberSelectionDelegate?
 
     var contactIds: [Int] = [] {
         didSet {
@@ -187,9 +227,11 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
             if selectedContactIds.contains(contactId) {
                 selectedContactIds.remove(contactId)
                 cell.accessoryType = .none
+                groupMemberSelectionDelegate?.selected(contactId: contactId, selected: false)
             } else {
                 selectedContactIds.insert(contactId)
                 cell.accessoryType = .checkmark
+                groupMemberSelectionDelegate?.selected(contactId: contactId, selected: true)
             }
         }
     }
