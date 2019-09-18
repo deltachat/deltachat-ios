@@ -457,6 +457,8 @@ class DcMsg: MessageType {
                 NSAttributedString.Key.foregroundColor: UIColor.darkGray,
                 ])
             return MessageKind.attributedText(text)
+        } else if isSetupMessage {
+            return MessageKind.text(String.localized("autocrypt_asm_click_body"))
         }
 
         let text = self.text ?? ""
