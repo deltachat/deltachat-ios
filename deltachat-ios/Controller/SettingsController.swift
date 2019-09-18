@@ -226,7 +226,7 @@ internal final class SettingsViewController: QuickTableViewController {
             waitAlert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: { _ in self.dcContext.stopOngoingProcess() }))
             self.present(waitAlert, animated: true, completion: nil)
             DispatchQueue.global(qos: .background).async {
-                let sc = self.dcContext.intiateKeyTransfer()
+                let sc = self.dcContext.initiateKeyTransfer()
                 DispatchQueue.main.async {
                     waitAlert.dismiss(animated: true, completion: nil)
                     guard var sc = sc else {
