@@ -848,6 +848,7 @@ extension ChatViewController: MessageCellDelegate {
         inputDlg.addTextField(configurationHandler: { (textField) in
             textField.placeholder = msg.setupCodeBegin + ".."
             textField.text = orgText
+            textField.keyboardType = UIKeyboardType.numbersAndPunctuation // allows entering spaces; decimalPad would require a mask to keep things readable
         })
         inputDlg.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
 
