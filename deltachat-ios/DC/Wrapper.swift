@@ -61,7 +61,7 @@ class DcContext {
         return "ErrGetMsgInfo"
     }
 
-    func intiateKeyTransfer() -> String? {
+    func initiateKeyTransfer() -> String? {
         if let cString = dc_initiate_key_transfer(self.contextPointer) {
             let swiftString = String(cString: cString)
             free(cString)
