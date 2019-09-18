@@ -807,8 +807,9 @@ extension ChatViewController: MessageCellDelegate {
     @objc func didTapMessage(in cell: MessageCollectionViewCell) {
         if let indexPath = messagesCollectionView.indexPath(for: cell) {
             let message = messageList[indexPath.section]
-
-            if let url = message.fileURL {
+            if message.isSetupMessage {
+                didTapAsm(msg: message, orgText: "")
+            } else if let url = message.fileURL {
                 // find all other messages with same message type
                 var previousUrls: [URL] = []
                 var nextUrls: [URL] = []
@@ -837,6 +838,44 @@ extension ChatViewController: MessageCellDelegate {
                 present(previewController!.qlController, animated: true)
             }
         }
+    }
+
+    private func didTapAsm(msg: DcMsg, orgText: String) {
+        let inputDlg = UIAlertController(
+            title: String.localized("autocrypt_continue_transfer_title"),
+            message: String.localized("autocrypt_continue_transfer_please_enter_code"),
+            preferredStyle: .alert)
+        inputDlg.addTextField(configurationHandler: { (textField) in
+            textField.placeholder = msg.setupCodeBegin + ".."
+            textField.text = orgText
+        })
+        inputDlg.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+
+        let okAction = UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+            let textField = inputDlg.textFields![0]
+            let modText = textField.text ?? ""
+            let success = self.dcContext.continueKeyTransfer(msgId: msg.id, setupCode: modText)
+
+            let alert = UIAlertController(
+                title: String.localized("autocrypt_continue_transfer_title"),
+                message: String.localized(success ? "autocrypt_continue_transfer_succeeded" : "autocrypt_bad_setup_code"),
+                preferredStyle: .alert)
+            if success {
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+            } else {
+                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+                let retryAction = UIAlertAction(title: String.localized("autocrypt_continue_transfer_retry"), style: .default, handler: { _ in
+                    self.didTapAsm(msg: msg, orgText: modText)
+                })
+                alert.addAction(retryAction)
+                alert.preferredAction = retryAction
+            }
+            self.navigationController?.present(alert, animated: true, completion: nil)
+        })
+
+        inputDlg.addAction(okAction)
+        inputDlg.preferredAction = okAction // without setting preferredAction, cancel become shown *bold* as the preferred action
+        navigationController?.present(inputDlg, animated: true, completion: nil)
     }
 
     @objc func didTapAvatar(in _: MessageCollectionViewCell) {
