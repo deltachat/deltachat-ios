@@ -109,7 +109,9 @@ internal final class SettingsViewController: QuickTableViewController {
             Section(
                 title: String.localized("pref_communication"),
                 rows: [
-                    TapActionRow(text: String.localized("pref_blocked_contacts"), action: { [weak self] in self?.showBlockedContacts($0) }),
+                    NavigationRow(text: String.localized("pref_blocked_contacts"),
+                              detailText: .none,
+                              action: { [weak self] in self?.showBlockedContacts($0) }),
                     SwitchRow(text: String.localized("pref_read_receipts"),
                               switchValue: DcConfig.mdnsEnabled,
                               action: { row in
