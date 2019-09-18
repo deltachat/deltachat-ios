@@ -7,13 +7,6 @@ class QrInviteViewController: UITableViewController {
 
     let dcContext: DcContext
     let chatId: Int
-    var contact: DcContact? {
-        // This is nil if we do not have an account setup yet
-        if !DcConfig.configured {
-            return nil
-        }
-        return DcContact(id: Int(DC_CONTACT_ID_SELF))
-    }
 
     init(dcContext: DcContext, chatId: Int) {
         self.dcContext = dcContext
@@ -111,8 +104,9 @@ class QrInviteViewController: UITableViewController {
     private func createDescriptionView() -> UIView {
         let label = UILabel.init()
         label.translatesAutoresizingMaskIntoConstraints = false
-        if let contact = contact {
-            label.text = String.localizedStringWithFormat(String.localized("qrshow_join_contact_hint"), contact.email)
+        let dcChat = DcChat(id: chatId)
+        if !dcChat.name.isEmpty {
+            label.text = String.localizedStringWithFormat(String.localized("qrshow_join_group_hint"), dcChat.name)
         }
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
