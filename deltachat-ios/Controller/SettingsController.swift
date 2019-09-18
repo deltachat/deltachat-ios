@@ -5,6 +5,8 @@ import UIKit
 internal final class SettingsViewController: QuickTableViewController {
     weak var coordinator: SettingsCoordinator?
 
+    private var dcContext: DcContext
+
     let documentInteractionController = UIDocumentInteractionController()
     var backupProgressObserver: Any?
     var configureProgressObserver: Any?
@@ -21,6 +23,15 @@ internal final class SettingsViewController: QuickTableViewController {
     static let watchMvBox: Int = 5
     static let MvToMvbox: Int = 6
     private typealias SVC = SettingsViewController
+
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,9 +117,6 @@ internal final class SettingsViewController: QuickTableViewController {
             Section(
                 title: String.localized("pref_communication"),
                 rows: [
-                    SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),
-                              switchValue: DcConfig.e2eeEnabled,
-                              action: editCell(key: SVC.e2eeEnabled)),
                     SwitchRow(text: String.localized("pref_read_receipts"),
                               switchValue: DcConfig.mdnsEnabled,
                               action: editCell(key: SVC.readReceipts)),
@@ -133,6 +141,17 @@ internal final class SettingsViewController: QuickTableViewController {
                               action: editCell(key: SVC.MvToMvbox)),
                 ],
                 footer: String.localized("pref_auto_folder_moves_explain")
+            ),
+
+            Section(
+                title: String.localized("autocrypt"),
+                rows: [
+                    SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),
+                              switchValue: DcConfig.e2eeEnabled,
+                              action: editCell(key: SVC.e2eeEnabled)),
+                    TapActionRow(text: String.localized("autocrypt_send_asm_title"), action: { [weak self] in self?.sendAsm($0) }),
+                ],
+                footer: String.localized("autocrypt_explain")
             ),
 
             Section(
@@ -198,6 +217,37 @@ internal final class SettingsViewController: QuickTableViewController {
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+
+    private func sendAsm(_: Row) {
+        let askAlert = UIAlertController(title: String.localized("autocrypt_send_asm_explain_before"), message: nil, preferredStyle: .actionSheet)
+        askAlert.addAction(UIAlertAction(title: String.localized("autocrypt_send_asm_title"), style: .default, handler: { _ in
+            let waitAlert = UIAlertController(title: String.localized("one_moment"), message: nil, preferredStyle: .alert)
+            waitAlert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: { _ in self.dcContext.stopOngoingProcess() }))
+            self.present(waitAlert, animated: true, completion: nil)
+            DispatchQueue.global(qos: .background).async {
+                let sc = self.dcContext.intiateKeyTransfer()
+                DispatchQueue.main.async {
+                    waitAlert.dismiss(animated: true, completion: nil)
+                    guard var sc = sc else {
+                        return
+                    }
+                    if sc.count == 44 {
+                        // format setup code to the typical 3 x 3 numbers
+                        sc = sc.substring(0, 4) + "  -  " + sc.substring(5, 9) + "  -  " + sc.substring(10, 14) + "  -\n\n" +
+                            sc.substring(15, 19) + "  -  " + sc.substring(20, 24) + "  -  " + sc.substring(25, 29) + "  -\n\n" +
+                            sc.substring(30, 34) + "  -  " + sc.substring(35, 39) + "  -  " + sc.substring(40, 44)
+                    }
+
+                    let text = String.localizedStringWithFormat(String.localized("autocrypt_send_asm_explain_after"), sc)
+                    let showAlert = UIAlertController(title: text, message: nil, preferredStyle: .alert)
+                    showAlert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                    self.present(showAlert, animated: true, completion: nil)
+                }
+            }
+        }))
+        askAlert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(askAlert, animated: true, completion: nil)
     }
 
     private func configure(_: Row) {

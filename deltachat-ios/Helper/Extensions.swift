@@ -1,6 +1,13 @@
 import UIKit
 
 extension String {
+
+    func substring(_ from: Int, _ to: Int) -> String {
+        let idx1 = index(startIndex, offsetBy: from)
+        let idx2 = index(startIndex, offsetBy: to)
+        return String(self[idx1..<idx2])
+    }
+
     func containsCharacters() -> Bool {
         return !trimmingCharacters(in: [" "]).isEmpty
     }
