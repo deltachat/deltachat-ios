@@ -69,6 +69,10 @@ class DcContext {
         }
         return nil
     }
+
+    func continueKeyTransfer(msgId: Int, setupCode: String) -> Bool {
+        return dc_continue_key_transfer(self.contextPointer, UInt32(msgId), setupCode) != 0
+    }
 }
 
 class DcConfig {
@@ -624,6 +628,17 @@ class DcMsg: MessageType {
 
     var isInfo: Bool {
         return dc_msg_is_info(messagePointer) == 1
+    }
+
+    var isSetupMessage: Bool {
+        return dc_msg_is_setupmessage(messagePointer) == 1
+    }
+
+    var setupCodeBegin: String {
+        guard let cString = dc_msg_get_setupcodebegin(messagePointer) else { return "" }
+        let swiftString = String(cString: cString)
+        free(cString)
+        return swiftString
     }
 
     func summary(chars: Int) -> String? {
