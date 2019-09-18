@@ -348,6 +348,11 @@ class GroupChatDetailCoordinator: Coordinator {
         navigationController.pushViewController(groupMemberViewController, animated: true)
     }
 
+    func showQrCodeInvite(chatId: Int) {
+        let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
+        navigationController.pushViewController(qrInviteCodeController, animated: true)
+    }
+
     func showGroupChatEdit(chat: DcChat) {
         let editGroupViewController = EditGroupViewController(chat: chat)
         let coordinator = EditGroupCoordinator(navigationController: navigationController)

@@ -1,6 +1,14 @@
 import UIKit
 
 class GroupChatDetailViewController: UIViewController {
+
+    private let sectionConfig = 0
+    private let sectionMembers = 1
+    private let sectionLeaveGroup = 2
+    private let sectionMembersRowAddMember = 0
+    private let sectionMembersRowJoinQR = 1
+
+
     private var currentUser: DcContact? {
         return groupMembers.filter { $0.email == DcConfig.addr }.first
     }
@@ -54,7 +62,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private var groupMembers: [DcContact] = []
 
-    private let staticCellCountMemberSection = 1 //
+    private let staticCellCountMemberSection = 2
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +108,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
+        if section == sectionConfig {
             let header = ContactDetailHeader()
             header.updateDetails(title: chat.name, subtitle: chat.subtitle)
             if let img = chat.profileImage {
@@ -129,13 +137,14 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        switch section {
+        case sectionConfig:
             return 1
-        } else if section == 1 {
-            return groupMembers.count + staticCellCountMemberSection // first cell is addGroupMemberCell
-        } else if section == 2 {
+        case sectionMembers:
+            return groupMembers.count + staticCellCountMemberSection
+        case sectionLeaveGroup:
             return 1
-        } else {
+        default:
             return 0
         }
     }
@@ -143,20 +152,27 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
-
-        if section == 0 {
+        switch section {
+        case sectionConfig:
             let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
             cell.textLabel?.text = String.localized("pref_notifications")
             cell.selectionStyle = .none
             return cell
-        } else if section == 1 {
-            if row == 0 {
+        case sectionMembers:
+            switch row {
+            case sectionMembersRowAddMember:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
                 if let actionCell = cell as? ActionCell {
                     actionCell.actionTitle = String.localized("group_add_members")
                 }
                 return cell
-            } else {
+            case sectionMembersRowJoinQR:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
+                if let actionCell = cell as? ActionCell {
+                    actionCell.actionTitle = String.localized("qrshow_join_group_title")
+                }
+                return cell
+            default:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
                 if let contactCell = cell as? ContactCell {
                     let contact = groupMembers[row - staticCellCountMemberSection]
@@ -168,29 +184,31 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 }
                 return cell
             }
-        } else if section == 2 {
+        case sectionLeaveGroup:
             let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
             if let actionCell = cell as? ActionCell {
                 actionCell.actionTitle = String.localized("menu_leave_group")
                 actionCell.actionColor = UIColor.red
             }
             return cell
+        default:
+            return UITableViewCell(frame: .zero)
         }
-
-        return UITableViewCell(frame: .zero)
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = indexPath.section
         let row = indexPath.row
-        if section == 0 {
+        if section == sectionConfig {
             showNotificationSetup()
-        } else if section == 1 {
-            if row == 0 {
+        } else if section == sectionMembers {
+            if row == sectionMembersRowAddMember {
                 coordinator?.showAddGroupMember(chatId: chat.id)
+            } else if row == sectionMembersRowJoinQR {
+                coordinator?.showQrCodeInvite(chatId: chat.id)
             }
             // ignore for now - in Telegram tapping a contactCell leads into ContactDetail
-        } else if section == 2 {
+        } else if section == sectionLeaveGroup {
             leaveGroup()
         }
     }
@@ -200,7 +218,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         let row = indexPath.row
 
         if let currentUser = currentUser {
-            if section == 1, row > 0, groupMembers[row - staticCellCountMemberSection].id != currentUser.id {
+            if section == sectionMembers, row >= staticCellCountMemberSection, groupMembers[row - staticCellCountMemberSection].id != currentUser.id {
                 return true
             }
         }
@@ -212,7 +230,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         let row = indexPath.row
 
         // assigning swipe by delete to members (except for current user)
-        if section == 1, row >= staticCellCountMemberSection, groupMembers[row - staticCellCountMemberSection].id != currentUser?.id {
+        if section == sectionMembers, row >= staticCellCountMemberSection, groupMembers[row - staticCellCountMemberSection].id != currentUser?.id {
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("global_menu_edit_delete_desktop")) { [unowned self] _, indexPath in
 
                 let memberId = self.groupMembers[row - self.staticCellCountMemberSection].id
