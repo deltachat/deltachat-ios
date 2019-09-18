@@ -263,7 +263,7 @@ class ChatViewController: MessagesViewController {
         refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
 
         let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout
-        layout?.sectionInset = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 8)
+        layout?.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 2, right: 8)
 
         // Hide the outgoing avatar and adjust the label alignment to line up with the messages
         layout?.setMessageOutgoingAvatarSize(.zero)
@@ -274,12 +274,12 @@ class ChatViewController: MessagesViewController {
 
         // Set outgoing avatar to overlap with the message bubble
         layout?.setMessageIncomingMessageTopLabelAlignment(LabelAlignment(textAlignment: .left,
-            textInsets: UIEdgeInsets(top: 0, left: 18, bottom: outgoingAvatarOverlap, right: 0)))
+            textInsets: UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 0)))
         layout?.setMessageIncomingAvatarSize(CGSize(width: 30, height: 30))
         layout?.setMessageIncomingMessagePadding(UIEdgeInsets(
-            top: -outgoingAvatarOverlap, left: -18, bottom: outgoingAvatarOverlap / 2, right: 18))
+            top: 0, left: -18, bottom: 0, right: 0))
         layout?.setMessageIncomingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .left,
-            textInsets: UIEdgeInsets(top: -7, left: 38, bottom: 0, right: 0)))
+            textInsets: UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0)))
 
         layout?.setMessageIncomingAccessoryViewSize(CGSize(width: 30, height: 30))
         layout?.setMessageIncomingAccessoryViewPadding(HorizontalEdgeInsets(left: 8, right: 0))
@@ -538,6 +538,34 @@ extension ChatViewController: MessagesDataSource {
         return messageList[indexPath.section].isInfo
     }
 
+    func isImmediateNextMessageSameSender(at indexPath: IndexPath) -> Bool {
+        guard indexPath.section + 1 < messageList.count else { return false }
+        let messageA = messageList[indexPath.section]
+        let messageB = messageList[indexPath.section + 1]
+
+        if messageA.isInfo {
+            return false
+        }
+
+        if let _ = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian) {
+            let dateA = messageA.sentDate
+            let dateB = messageB.sentDate
+
+            let timeinterval = dateB.timeIntervalSince(dateA)
+            let minute = 60.0
+
+            return messageA.fromContactId == messageB.fromContactId && timeinterval.isLessThanOrEqualTo(minute)
+        }
+
+        return false
+
+    }
+
+    func isAvatarHidden(at indexPath: IndexPath) -> Bool {
+        let message = messageList[indexPath.section]
+        return isNextMessageSameSender(at: indexPath) || message.isInfo
+    }
+
     func isNextMessageSameSender(at indexPath: IndexPath) -> Bool {
         guard indexPath.section + 1 < messageList.count else { return false }
         let messageA = messageList[indexPath.section]
@@ -554,7 +582,7 @@ extension ChatViewController: MessagesDataSource {
         guard indexPath.section < messageList.count else { return nil }
         let m = messageList[indexPath.section]
 
-        if m.isInfo || isNextMessageSameSender(at: indexPath) {
+        if m.isInfo || isImmediateNextMessageSameSender(at: indexPath) {
             return nil
         }
 
@@ -575,6 +603,13 @@ extension ChatViewController: MessagesDataSource {
                 ]
             ))
 
+            return text
+        }
+
+        if !isAvatarHidden(at: indexPath) {
+            let text = NSMutableAttributedString()
+            text.append(NSAttributedString(string: "     "))
+            text.append(NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes))
             return text
         }
 
@@ -696,7 +731,7 @@ extension ChatViewController: MessagesDisplayDelegate {
         let contact = message.fromContact
         let avatar = Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.displayName))
         avatarView.set(avatar: avatar)
-        avatarView.isHidden = isNextMessageSameSender(at: indexPath) || message.isInfo
+        avatarView.isHidden = isAvatarHidden(at: indexPath)
         avatarView.backgroundColor = contact.color
     }
 
@@ -719,11 +754,7 @@ extension ChatViewController: MessagesLayoutDelegate {
             return 0
         }
 
-        if isFromCurrentSender(message: message) {
-            return !isPreviousMessageSameSender(at: indexPath) ? 40 : 0
-        } else {
-            return !isPreviousMessageSameSender(at: indexPath) ? (40 + outgoingAvatarOverlap) : 0
-        }
+        return !isPreviousMessageSameSender(at: indexPath) ? 40 : 0
     }
 
     func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
@@ -731,15 +762,11 @@ extension ChatViewController: MessagesLayoutDelegate {
             return 0
         }
 
-        if !isNextMessageSameSender(at: indexPath) {
+        if !isImmediateNextMessageSameSender(at: indexPath) {
             return 16
         }
 
-        if isFromCurrentSender(message: message) {
-            return 0
-        }
-
-        return 9
+        return 0
     }
 
     func heightForLocation(message _: MessageType, at _: IndexPath, with _: CGFloat, in _: MessagesCollectionView) -> CGFloat {
