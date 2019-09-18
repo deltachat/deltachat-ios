@@ -16,14 +16,6 @@ internal final class SettingsViewController: QuickTableViewController {
         return hudHandler
     }()
 
-    static let e2eeEnabled: Int = 1
-    static let readReceipts: Int = 2
-    static let watchInbox: Int = 3
-    static let watchSentbox: Int = 4
-    static let watchMvBox: Int = 5
-    static let MvToMvbox: Int = 6
-    private typealias SVC = SettingsViewController
-
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
@@ -119,7 +111,11 @@ internal final class SettingsViewController: QuickTableViewController {
                 rows: [
                     SwitchRow(text: String.localized("pref_read_receipts"),
                               switchValue: DcConfig.mdnsEnabled,
-                              action: editCell(key: SVC.readReceipts)),
+                              action: { row in
+                                if let row = row as? SwitchRow {
+                                    DcConfig.mdnsEnabled = row.switchValue
+                                }
+                    }),
                 ],
                 footer: String.localized("pref_read_receipts_explain")
             ),
@@ -129,16 +125,32 @@ internal final class SettingsViewController: QuickTableViewController {
                 rows: [
                     SwitchRow(text: String.localized("pref_watch_inbox_folder"),
                               switchValue: DcConfig.inboxWatch,
-                              action: editCell(key: SVC.watchInbox)),
+                              action: { row in
+                                if let row = row as? SwitchRow {
+                                    DcConfig.inboxWatch = row.switchValue
+                                }
+                    }),
                     SwitchRow(text: String.localized("pref_watch_sent_folder"),
                               switchValue: DcConfig.sentboxWatch,
-                              action: editCell(key: SVC.watchSentbox)),
+                              action: { row in
+                                if let row = row as? SwitchRow {
+                                    DcConfig.sentboxWatch = row.switchValue
+                                }
+                    }),
                     SwitchRow(text: String.localized("pref_watch_mvbox_folder"),
                               switchValue: DcConfig.mvboxWatch,
-                              action: editCell(key: SVC.watchMvBox)),
+                              action: { row in
+                                if let row = row as? SwitchRow {
+                                    DcConfig.mvboxWatch = row.switchValue
+                                }
+                    }),
                     SwitchRow(text: String.localized("pref_auto_folder_moves"),
                               switchValue: DcConfig.mvboxMove,
-                              action: editCell(key: SVC.MvToMvbox)),
+                              action: { row in
+                                if let row = row as? SwitchRow {
+                                    DcConfig.mvboxMove = row.switchValue
+                                }
+                    }),
                 ],
                 footer: String.localized("pref_auto_folder_moves_explain")
             ),
@@ -148,7 +160,11 @@ internal final class SettingsViewController: QuickTableViewController {
                 rows: [
                     SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),
                               switchValue: DcConfig.e2eeEnabled,
-                              action: editCell(key: SVC.e2eeEnabled)),
+                              action: { row in
+                                if let row = row as? SwitchRow {
+                                    DcConfig.e2eeEnabled = row.switchValue
+                                }
+                    }),
                     TapActionRow(text: String.localized("autocrypt_send_asm_title"), action: { [weak self] in self?.sendAsm($0) }),
                 ],
                 footer: String.localized("autocrypt_explain")
@@ -169,35 +185,6 @@ internal final class SettingsViewController: QuickTableViewController {
                 ]
             ),
         ]
-    }
-
-    // FIXME: simplify this method
-    private func editCell(key: Int) -> (Row) -> Void {
-        return { sender in
-            logger.info("row edit", sender.text)
-
-            if let sender = sender as? SwitchRow {
-                logger.info("got bool switch")
-                let value = sender.switchValue
-                switch key {
-                case SVC.e2eeEnabled:
-                    DcConfig.e2eeEnabled = value
-                case SVC.readReceipts:
-                    DcConfig.mdnsEnabled = value
-                case SVC.watchInbox:
-                    DcConfig.inboxWatch = value
-                case SVC.watchSentbox:
-                    DcConfig.sentboxWatch = value
-                case SVC.watchMvBox:
-                    DcConfig.mvboxWatch = value
-                case SVC.MvToMvbox:
-                    DcConfig.mvboxMove = value
-                default:
-                    logger.info("unknown key", String(key))
-                }
-                return
-            }
-        }
     }
 
     private func createBackup(_: Row) {
