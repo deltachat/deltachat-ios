@@ -6,6 +6,7 @@ class AccountSetupController: UITableViewController {
 
     weak var coordinator: AccountSetupCoordinator?
 
+    private let dcContext: DcContext
     private var skipOauth = false
     private var backupProgressObserver: Any?
     private var configureProgressObserver: Any?
@@ -225,7 +226,8 @@ class AccountSetupController: UITableViewController {
 
     private var advancedSectionShowing: Bool = false
 
-    init() {
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
     }
