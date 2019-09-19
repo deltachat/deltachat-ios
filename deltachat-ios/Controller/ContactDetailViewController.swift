@@ -144,8 +144,23 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func toggleBlockContact() {
-        contact.isBlocked ? contact.unblock() : contact.block()
-        updateBlockContactCell()
+        if contact.isBlocked {
+            let alert = UIAlertController(title: String.localized("ask_unblock_contact"), message: nil, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("menu_unblock_contact"), style: .default, handler: { _ in
+                self.contact.unblock()
+                self.updateBlockContactCell()
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: String.localized("ask_block_contact"), message: nil, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
+                self.contact.block()
+                self.updateBlockContactCell()
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
 
     private func updateBlockContactCell() {
