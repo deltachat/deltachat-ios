@@ -28,6 +28,8 @@ internal final class SettingsViewController: QuickTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("menu_settings")
+        let backButton = UIBarButtonItem(title: String.localized("menu_settings"), style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
         documentInteractionController.delegate = self as? UIDocumentInteractionControllerDelegate
     }
 
