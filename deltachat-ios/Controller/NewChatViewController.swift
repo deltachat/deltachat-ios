@@ -243,7 +243,7 @@ class NewChatViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let contactId = contactIdByRow(indexPath.row)
 
-        let edit = UITableViewRowAction(style: .normal, title: String.localized("global_menu_edit_desktop")) { [unowned self] _, _ in
+        let edit = UITableViewRowAction(style: .normal, title: String.localized("info")) { [unowned self] _, _ in
             if self.searchController.isActive {
                 self.searchController.dismiss(animated: false) {
                     self.coordinator?.showContactDetail(contactId: contactId)
