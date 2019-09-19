@@ -8,6 +8,11 @@ struct Utils {
         return Utils.copyAndFreeArray(inputArray: cContacts)
     }
 
+    static func getBlockedContactIds() -> [Int] {
+        let cBlockedContacts = dc_get_blocked_contacts(mailboxPointer)
+        return Utils.copyAndFreeArray(inputArray: cBlockedContacts)
+    }
+
     static func getInitials(inputName: String) -> String {
         var nameParts = inputName.split(separator: " ")
         // this limits initials to max 2, otherwise just takes first letter to avoid messy badges

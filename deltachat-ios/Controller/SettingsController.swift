@@ -28,6 +28,8 @@ internal final class SettingsViewController: QuickTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("menu_settings")
+        let backButton = UIBarButtonItem(title: String.localized("menu_settings"), style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
         documentInteractionController.delegate = self as? UIDocumentInteractionControllerDelegate
     }
 
@@ -109,6 +111,9 @@ internal final class SettingsViewController: QuickTableViewController {
             Section(
                 title: String.localized("pref_communication"),
                 rows: [
+                    NavigationRow(text: String.localized("pref_blocked_contacts"),
+                              detailText: .none,
+                              action: { [weak self] in self?.showBlockedContacts($0) }),
                     SwitchRow(text: String.localized("pref_read_receipts"),
                               switchValue: DcConfig.mdnsEnabled,
                               action: { row in
@@ -204,6 +209,10 @@ internal final class SettingsViewController: QuickTableViewController {
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+
+    private func showBlockedContacts(_: Row) {
+        coordinator?.showBlockedContacts()
     }
 
     private func sendAsm(_: Row) {

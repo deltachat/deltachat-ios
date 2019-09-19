@@ -206,6 +206,11 @@ class SettingsCoordinator: Coordinator {
         let accountSetupNavigationController = DcNavigationController(rootViewController: accountSetupVC)
         navigationController.present(accountSetupNavigationController, animated: true, completion: nil)
     }
+
+    func showBlockedContacts() {
+        let blockedContactsController = BlockedContactsViewController()
+        navigationController.pushViewController(blockedContactsController, animated: true)
+    }
 }
 
 class AccountSetupCoordinator: Coordinator {

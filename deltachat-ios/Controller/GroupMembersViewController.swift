@@ -97,8 +97,60 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 }
 
+class BlockedContactsViewController: GroupMembersViewController, GroupMemberSelectionDelegate {
+
+    override init() {
+        super.init()
+        enableCheckmarks = false
+    }
+
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = String.localized("pref_blocked_contacts")
+        contactIds = Utils.getBlockedContactIds()
+        selectedContactIds = Set(contactIds)
+        navigationItem.searchController = nil
+        groupMemberSelectionDelegate = self
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NavBarUtils.setSmallTitle(navigationController: navigationController)
+    }
+
+    func selected(contactId: Int, selected: Bool) {
+        if !selected {
+            let dcContact = DcContact(id: contactId)
+            let title = dcContact.displayName.isEmpty ? dcContact.email : dcContact.displayName
+            let alert = UIAlertController(title: title, message: String.localized("ask_unblock_contact"), preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("menu_unblock_contact"), style: .default, handler: { _ in
+                let contact = DcContact(id: contactId)
+                contact.unblock()
+                self.contactIds = Utils.getBlockedContactIds()
+                self.selectedContactIds = Set(self.contactIds)
+                self.tableView.reloadData()
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+                self.selectedContactIds = Set(self.contactIds)
+                self.tableView.reloadData()
+            }))
+           present(alert, animated: true, completion: nil)
+        }
+    }
+}
+
+protocol GroupMemberSelectionDelegate: class {
+    func selected(contactId: Int, selected: Bool)
+}
+
 class GroupMembersViewController: UITableViewController, UISearchResultsUpdating {
     let contactCellReuseIdentifier = "contactCell"
+    weak var groupMemberSelectionDelegate: GroupMemberSelectionDelegate?
+    var enableCheckmarks = true
 
     var contactIds: [Int] = [] {
         didSet {
@@ -174,7 +226,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
         let row = indexPath.row
         let contact: ContactWithSearchResults = contactSearchResultByRow(row)
         updateContactCell(cell: cell, contactWithHighlight: contact)
-        cell.accessoryType = selectedContactIds.contains(contactIdByRow(row)) ? .checkmark : .none
+        cell.accessoryType = selectedContactIds.contains(contactIdByRow(row)) && enableCheckmarks ? .checkmark : .none
 
         return cell
     }
@@ -186,10 +238,16 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
             let contactId = contactIdByRow(row)
             if selectedContactIds.contains(contactId) {
                 selectedContactIds.remove(contactId)
-                cell.accessoryType = .none
+                if enableCheckmarks {
+                    cell.accessoryType = .none
+                }
+                groupMemberSelectionDelegate?.selected(contactId: contactId, selected: false)
             } else {
                 selectedContactIds.insert(contactId)
-                cell.accessoryType = .checkmark
+                if enableCheckmarks {
+                    cell.accessoryType = .checkmark
+                }
+                groupMemberSelectionDelegate?.selected(contactId: contactId, selected: true)
             }
         }
     }
