@@ -38,7 +38,9 @@ class AccountSetupController: UITableViewController {
         progressView.centerYAnchor.constraint(equalTo: alert.view.centerYAnchor, constant: 0).isActive = true
         progressView.heightAnchor.constraint(equalToConstant: 65).isActive = true
         progressView.widthAnchor.constraint(equalToConstant: 65).isActive = true
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: loginCancelled(_:)))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.dcContext.stopOngoingProcess()
+        }))
         return alert
     }()
 
@@ -72,15 +74,6 @@ class AccountSetupController: UITableViewController {
             configProgressIndicator.value = CGFloat(value / 10)
         }
     }
-
-    private func loginCancelled(_ action: UIAlertAction) {
-        DcConfig.addr = nil
-        DcConfig.mailPw = nil
-        DispatchQueue.global(qos: .background).async {
-            dc_stop_ongoing_process(mailboxPointer)        // this function freezes UI so execute in background thread
-        }
-    }
-
 
     // account setup
 
