@@ -66,7 +66,7 @@ class AppCoordinator: NSObject, Coordinator {
         let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "settings")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: settingsTab)
-        let coordinator = SettingsCoordinator(navigationController: nav)
+        let coordinator = SettingsCoordinator(dcContext: dcContext, navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator
         return nav
@@ -102,7 +102,7 @@ class AppCoordinator: NSObject, Coordinator {
     }
 
     func presentLoginController() {
-        let accountSetupController = AccountSetupController()
+        let accountSetupController = AccountSetupController(dcContext: dcContext)
         let accountSetupNav = DcNavigationController(rootViewController: accountSetupController)
         let coordinator = AccountSetupCoordinator(navigationController: accountSetupNav)
         childCoordinators.append(coordinator)
@@ -177,16 +177,18 @@ class ChatListCoordinator: Coordinator {
 }
 
 class SettingsCoordinator: Coordinator {
+    let dcContext: DcContext
     let navigationController: UINavigationController
 
     var childCoordinators: [Coordinator] = []
 
-    init(navigationController: UINavigationController) {
+    init(dcContext: DcContext, navigationController: UINavigationController) {
+        self.dcContext = dcContext
         self.navigationController = navigationController
     }
 
     func showAccountSetupController() {
-        let accountSetupVC = AccountSetupController()
+        let accountSetupVC = AccountSetupController(dcContext: dcContext)
         let coordinator = AccountSetupCoordinator(navigationController: navigationController)
         childCoordinators.append(coordinator)
         accountSetupVC.coordinator = coordinator
@@ -199,7 +201,7 @@ class SettingsCoordinator: Coordinator {
     }
 
     func showLoginController() {
-        let accountSetupVC = AccountSetupController()
+        let accountSetupVC = AccountSetupController(dcContext: dcContext)
         let coordinator = AccountSetupCoordinator(navigationController: navigationController)
         childCoordinators.append(coordinator)
         accountSetupVC.coordinator = coordinator
