@@ -39,7 +39,6 @@ class EditSettingsController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         displayNameBackup = DcConfig.displayname
         statusCellBackup = DcConfig.selfstatus
-        NavBarUtils.setSmallTitle(navigationController: navigationController)
     }
 
     override func viewWillDisappear(_ animated: Bool) {

@@ -41,10 +41,6 @@ class EditGroupViewController: UITableViewController {
         navigationItem.leftBarButtonItem = cancelButton
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        NavBarUtils.setSmallTitle(navigationController: navigationController)
-    }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return groupNameCell
     }

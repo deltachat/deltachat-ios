@@ -19,10 +19,6 @@ class MessageInfoViewController: UITableViewController {
         title = String.localized("menu_message_details")
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        NavBarUtils.setSmallTitle(navigationController: navigationController)
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in _: UITableView) -> Int {

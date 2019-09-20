@@ -76,7 +76,6 @@ class ChatViewController: MessagesViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NavBarUtils.setSmallTitle(navigationController: navigationController)
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 

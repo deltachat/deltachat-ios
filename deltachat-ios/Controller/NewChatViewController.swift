@@ -81,7 +81,6 @@ class NewChatViewController: UITableViewController {
         // this will show the searchbar on launch -> will be set back to true on viewDidAppear
         if #available(iOS 11.0, *) {
             navigationItem.hidesSearchBarWhenScrolling = false
-            navigationController?.navigationBar.prefersLargeTitles = false
         }
     }
 

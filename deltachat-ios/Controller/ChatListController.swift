@@ -33,7 +33,6 @@ class ChatListController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NavBarUtils.setBigTitle(navigationController: navigationController)
         getChatList()
     }
 
