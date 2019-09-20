@@ -36,10 +36,6 @@ class QrInviteViewController: UITableViewController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        NavBarUtils.setSmallTitle(navigationController: navigationController)
-    }
-
     override func numberOfSections(in _: UITableView) -> Int {
         return 1
     }

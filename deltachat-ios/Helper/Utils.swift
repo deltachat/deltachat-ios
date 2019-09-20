@@ -160,19 +160,6 @@ struct Utils {
     }
 }
 
-class NavBarUtils {
-    static func setBigTitle(navigationController: UINavigationController?) {
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        }
-    }
-    static func setSmallTitle(navigationController: UINavigationController?) {
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = false
-        }
-    }
-}
-
 class DateUtils {
     // TODO: refactor that, it's an improper way for localizations, use stringsdict instead
     // blocked by: converting androids plurals xml entries to stringsdict

@@ -60,7 +60,6 @@ class NewContactController: UITableViewController {
 
     override func viewWillAppear(_: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: false)
-        NavBarUtils.setSmallTitle(navigationController: navigationController)
     }
 
     @objc func emailTextChanged() {

@@ -31,10 +31,6 @@ class GroupNameController: UITableViewController {
         // setupSubviews()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        NavBarUtils.setSmallTitle(navigationController: navigationController)
-    }
-
     @objc func doneButtonPressed() {
         let groupChatId = dc_create_group_chat(mailboxPointer, 0, groupName)
         for contactId in contactIdsForGroup {

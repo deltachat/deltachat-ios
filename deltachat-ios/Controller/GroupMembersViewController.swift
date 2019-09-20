@@ -16,7 +16,6 @@ class NewGroupViewController: GroupMembersViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NavBarUtils.setSmallTitle(navigationController: navigationController)
     }
 
     override func didReceiveMemoryWarning() {
@@ -119,7 +118,6 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NavBarUtils.setSmallTitle(navigationController: navigationController)
     }
 
     func selected(contactId: Int, selected: Bool) {

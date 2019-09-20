@@ -22,7 +22,6 @@ class MailboxViewController: ChatViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NavBarUtils.setBigTitle(navigationController: navigationController)
     }
 
     override func didTapMessage(in cell: MessageCollectionViewCell) {
