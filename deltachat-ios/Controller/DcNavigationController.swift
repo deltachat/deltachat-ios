@@ -10,13 +10,14 @@ final class DcNavigationController: UINavigationController {
         if #available(iOS 11.0, *) {
             // preferred height of navigation bar title is configured in ViewControllers
         } else {
-            navigationBar.setBackgroundImage(UIImage(), for: .default)
+            //navigationBar.setBackgroundImage(UIImage(), for: .default)
         }
-        navigationBar.backgroundColor = .white
+        //navigationBar.backgroundColor = .white
         setShadow(nil)
     }
 
     private func setShadow(_ state: String?) {
+        /*
         switch state {
         case "offline":
             navigationBar.shadowImage = Constants.defaultShadow
@@ -25,6 +26,7 @@ final class DcNavigationController: UINavigationController {
         default:
             navigationBar.shadowImage = Constants.defaultShadow
         }
+        */
     }
 
     override func viewWillAppear(_ animated: Bool) {
