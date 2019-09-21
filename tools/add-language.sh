@@ -2,7 +2,7 @@
 
 if [ $# -eq 0 ]
 then
-  echo "Please specify the language to add as the first argument (dk, ru etc.)"
+  echo "Please specify the language to add as the first argument (dk, ru, pt-BR etc.)"
   exit
 fi
 
