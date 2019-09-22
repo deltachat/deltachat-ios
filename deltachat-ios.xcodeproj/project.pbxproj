@@ -214,6 +214,12 @@
 		AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersViewController.swift; sourceTree = "<group>"; };
 		AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
 		AEE6EC472283045D00EDC689 /* EditSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsController.swift; sourceTree = "<group>"; };
+		B253ED992336E759004DD215 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B253ED9A2336E759004DD215 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B253ED9B2336E759004DD215 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ja; path = ja.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		B253ED9C2336E79A004DD215 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B253ED9D2336E79A004DD215 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B253ED9E2336E79A004DD215 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = hu; path = hu.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		FECB35E2B04CD5F5D02C157A /* Pods-deltachat-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -540,6 +546,8 @@
 				lt,
 				"zh-Hant-TW",
 				uk,
+				ja,
+				hu,
 			);
 			mainGroup = 7A9FB1371FB061E2001FEA36;
 			productRefGroup = 7A9FB1411FB061E2001FEA36 /* Products */;
@@ -807,6 +815,8 @@
 				3022E6D122E8769E00763272 /* lt */,
 				3022E6D222E8769F00763272 /* zh-Hant-TW */,
 				3022E6D322E876A100763272 /* uk */,
+				B253ED992336E759004DD215 /* ja */,
+				B253ED9C2336E79A004DD215 /* hu */,
 			);
 			name = InfoPlist.strings;
 			path = "deltachat-ios";
@@ -835,6 +845,8 @@
 				306011AF22DDE25700C1CE6F /* lt */,
 				306011B122DE2E6900C1CE6F /* zh-Hant-TW */,
 				306011B322DE2F0A00C1CE6F /* uk */,
+				B253ED9A2336E759004DD215 /* ja */,
+				B253ED9D2336E79A004DD215 /* hu */,
 			);
 			name = Localizable.strings;
 			path = "deltachat-ios";
@@ -863,6 +875,8 @@
 				306011C722E5E82E00C1CE6F /* lt */,
 				306011C822E5E83100C1CE6F /* zh-Hant-TW */,
 				306011C922E5E83500C1CE6F /* uk */,
+				B253ED9B2336E759004DD215 /* ja */,
+				B253ED9E2336E79A004DD215 /* hu */,
 			);
 			name = Localizable.stringsdict;
 			path = "deltachat-ios";
