@@ -250,7 +250,7 @@
 "login_title" = "Oturum aç";
 "login_header" = "Sunucunuzda oturum açın";
 "login_subheader" = "Bilinen e-posta sağlayıcıları için ek ayarlar otomatik olarak ayarlanır. Bazen IMAP\'nin web ön ucundan etkinleştirilmesi gerekir. Yardım için e-posta sağlayıcınıza ya da arkadaşlarınıza danışın.";
-"login_no_servers_hint" = "Delta Chat sunucusu yoktur, verileriniz aygıtınızda kalır!";
+"login_no_servers_hint" = "Delta Chat sunucusu yoktur; verileriniz aygıtınızda kalır!";
 "login_inbox" = "Gelen Kutusu";
 "login_imap_login" = "IMAP oturum açma adı";
 "login_imap_server" = "IMAP sunucusu";
@@ -264,7 +264,7 @@
 "login_smtp_security" = "SMTP Güvenliği";
 "login_auth_method" = "Yetkilendirme yöntemi";
 "login_info_oauth2_title" = "Basitleştirilen ayarlamayla sürdürülsün mü?";
-"login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth2) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'in E-posta ile Sohbet uygulamanız olarak davranmasına izin verin.\n\nDelta Chat sunucusu yoktur, verileriniz aygıtınızda kalır!";
+"login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth2) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'in E-posta ile Sohbet uygulamanız olarak davranmasına izin verin.\n\nDelta Chat sunucusu yoktur; verileriniz aygıtınızda kalır!";
 "login_info_gmail_text" = "Gmail hesapları için 2FA\'yı etkinleştirdiyseniz, bir uygulama parolası oluşturmanız gerekir. Bu ayar kullanılabilir değilse, Güvenliği Düşük Uygulamalar\'ı etkinleştirmeniz gerekir.";
 "login_error_mail" = "Lütfen geçerli bir e-posta adresi girin";
 "login_error_server" = "Lütfen geçerli bir sunucu / IP adresi girin";
@@ -449,7 +449,7 @@
 "qrscan_contains_text" = "Taranan QR kodu metni:\n\n%1$@";
 "qrscan_contains_url" = "Taranan QR kodu URL\'si:\n\n%1$@";
 "qrscan_fingerprint_label" = "Parmak izi";
-"qrscan_x_verified_introduce_myself" = "%1$@ doğrulandı, kendimi tanıtıyorum …";
+"qrscan_x_verified_introduce_myself" = "%1$@ doğrulandı; kendimi tanıtıyorum …";
 "qrshow_title" = "QR davet kodu";
 "qrshow_x_joining" = "%1$@ katılıyor.";
 "qrshow_x_verified" = "%1$@ doğrulandı.";
@@ -459,7 +459,7 @@
 "qrshow_join_contact_title" = "QR davet kodu";
 "qrshow_join_contact_hint" = "%1$@ ile bir iletişim ayarlamak için bunu tarayın";
 "qrshow_join_contact_no_connection_hint" = "QR kodu ayarlaması bir Internet bağlantısı gerektirir. İşlemden önce lütfen bir ağa bağlanın.";
-"qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok, QR kodu ayarlaması gerçekleştirilemiyor.";
+"qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kodu ayarlaması gerçekleştirilemiyor.";
 "contact_verified" = "%1$@ doğrulandı.";
 "contact_not_verified" = "%1$@ doğrulanamıyor";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
