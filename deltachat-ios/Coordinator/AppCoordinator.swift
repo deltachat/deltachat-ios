@@ -209,6 +209,11 @@ class SettingsCoordinator: Coordinator {
         navigationController.present(accountSetupNavigationController, animated: true, completion: nil)
     }
 
+    func showClassicMail() {
+        let settingsClassicViewController = SettingsClassicViewController(dcContext: dcContext)
+        navigationController.pushViewController(settingsClassicViewController, animated: true)
+    }
+
     func showBlockedContacts() {
         let blockedContactsController = BlockedContactsViewController()
         navigationController.pushViewController(blockedContactsController, animated: true)
