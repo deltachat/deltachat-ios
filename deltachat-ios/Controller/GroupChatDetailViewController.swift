@@ -91,9 +91,14 @@ class GroupChatDetailViewController: UIViewController {
 
     private func leaveGroup() {
         if let userId = currentUser?.id {
-            dc_remove_contact_from_chat(mailboxPointer, UInt32(chat.id), UInt32(userId))
-            editBarButtonItem.isEnabled = false
-            updateGroupMembers()
+            let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { _ in
+                dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(userId))
+                self.editBarButtonItem.isEnabled = false
+                self.updateGroupMembers()
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
     }
 }
