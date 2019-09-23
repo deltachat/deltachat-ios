@@ -96,13 +96,13 @@ internal final class SettingsViewController: QuickTableViewController {
                 rows: [
                     NavigationRow(text: DcConfig.displayname ?? String.localized("pref_your_name"),
                         detailText: .subtitle(subtitle),
-                        action: { [weak self] in
-                            self?.editNameAndStatus($0)
+                        action: { _ in
+                            self.coordinator?.showEditSettingsController()
                     }),
                     NavigationRow(text: String.localized("pref_password_and_account_settings"),
                         detailText: .none,
-                        action: { [weak self] in
-                            self?.presentAccountSetup($0)
+                        action: { _ in
+                            self.coordinator?.showAccountSetupController()
                     }),
                 ]
             ),
@@ -289,13 +289,5 @@ internal final class SettingsViewController: QuickTableViewController {
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true, completion: nil)
-    }
-
-    private func presentAccountSetup(_: Row) {
-        coordinator?.showAccountSetupController()
-    }
-
-    private func editNameAndStatus(_ row: Row) {
-        coordinator?.showEditSettingsController()
     }
 }
