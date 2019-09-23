@@ -101,6 +101,14 @@ class AccountSetupController: UITableViewController {
         return cell
     }()
 
+    private lazy var deleteAccountCell: ActionCell = {
+        let cell = ActionCell(frame: .zero)
+        cell.actionTitle = String.localized("delete_account")
+        cell.actionColor = UIColor.red
+        cell.accessibilityIdentifier = "deleteAccountCell"
+        return cell
+    }()
+
     lazy var imapServerCell: TextFieldCell = {
         let cell = TextFieldCell(descriptionID: "login_imap_server",
                                  placeholder: DcConfig.mailServer ?? DcConfig.configuredMailServer,
@@ -201,6 +209,7 @@ class AccountSetupController: UITableViewController {
     let basicSection = 0
     let restoreSection = 1
     let advancedSection = 2
+    let dangerSection = 3
     private var sections = [Int]()
 
     private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
@@ -216,6 +225,7 @@ class AccountSetupController: UITableViewController {
         smtpPasswordCell,
         smtpSecurityCell
     ]
+    private lazy var dangerCells: [UITableViewCell] = [deleteAccountCell]
 
     private var advancedSectionShowing: Bool = false
 
@@ -227,6 +237,10 @@ class AccountSetupController: UITableViewController {
             self.sections.append(restoreSection)
         }
         self.sections.append(advancedSection)
+        if editView {
+            self.sections.append(dangerSection)
+        }
+
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
     }
@@ -284,6 +298,8 @@ class AccountSetupController: UITableViewController {
             return basicSectionCells.count
         } else if sections[section] == restoreSection {
             return restoreCells.count
+        } else if sections[section] == dangerSection {
+            return dangerCells.count
         } else {
             return advancedSectionShowing ? advancedSectionCells.count : 0
         }
@@ -292,6 +308,8 @@ class AccountSetupController: UITableViewController {
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         if sections[section] == advancedSection {
             return String.localized("menu_advanced")
+        } else if sections[section] == dangerSection {
+            return String.localized("danger")
         } else {
             return nil
         }
@@ -336,6 +354,8 @@ class AccountSetupController: UITableViewController {
             return basicSectionCells[row]
         } else if sections[section] == restoreSection {
             return restoreCells[row]
+        } else if sections[section] == dangerSection {
+            return dangerCells[row]
         } else {
             return advancedSectionCells[row]
         }
@@ -354,6 +374,8 @@ class AccountSetupController: UITableViewController {
 
         if tappedCell.accessibilityIdentifier == "restoreCell" {
             restoreBackup()
+        } else if tappedCell.accessibilityIdentifier == "deleteAccountCell" {
+            deleteAccount()
         } else if tappedCell.accessibilityIdentifier == "IMAPPortCell" {
             coordinator?.showImapPortOptions()
         } else if tappedCell.accessibilityIdentifier == "SMTPPortCell" {
@@ -578,6 +600,39 @@ class AccountSetupController: UITableViewController {
         }
 
         logger.error("no documents directory found")
+    }
+
+    private func deleteAccount() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+
+        let dbfile = appDelegate.dbfile()
+        let dburl = URL(fileURLWithPath: dbfile, isDirectory: false)
+        let alert = UIAlertController(title: String.localized("delete_account_message"),
+                                      message: nil,
+                                      preferredStyle: .actionSheet)
+
+        alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { _ in
+            appDelegate.stop()
+            appDelegate.close()
+            do {
+                try FileManager.default.removeItem(at: dburl)
+            } catch {
+                logger.error("failed to delete db: \(error)")
+            }
+
+            appDelegate.open()
+            appDelegate.start()
+
+            self.coordinator?.navigationController.popToRootViewController(animated: true)
+            appDelegate.appCoordinator.presentLoginController()
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+        present(alert, animated: true, completion: nil)
+
+
+        coordinator?.navigationController.popToRootViewController(animated: true)
     }
 
     private func handleLoginSuccess() {

@@ -200,15 +200,6 @@ class SettingsCoordinator: Coordinator {
         navigationController.pushViewController(editController, animated: true)
     }
 
-    func showLoginController() {
-        let accountSetupVC = AccountSetupController(dcContext: dcContext, editView: false)
-        let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        accountSetupVC.coordinator = coordinator
-        let accountSetupNavigationController = DcNavigationController(rootViewController: accountSetupVC)
-        navigationController.present(accountSetupNavigationController, animated: true, completion: nil)
-    }
-
     func showClassicMail() {
         let settingsClassicViewController = SettingsClassicViewController(dcContext: dcContext)
         navigationController.pushViewController(settingsClassicViewController, animated: true)
