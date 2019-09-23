@@ -94,9 +94,10 @@ class AccountSetupController: UITableViewController {
         return cell
     }()
 
-    private lazy var restoreCell: ActionCell = {
-        let cell = ActionCell(frame: .zero)
-        cell.actionTitle = String.localized("import_backup_title")
+    private lazy var restoreCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("import_backup_title")
+        cell.accessoryType = .disclosureIndicator
         cell.accessibilityIdentifier = "restoreCell"
         return cell
     }()
@@ -242,12 +243,11 @@ class AccountSetupController: UITableViewController {
         self.dcContext = dcContext
 
         self.sections.append(basicSection)
-        if !editView {
-            self.sections.append(restoreSection)
-        }
         self.sections.append(advancedSection)
         if editView {
             self.sections.append(dangerSection)
+        } else {
+            self.sections.append(restoreSection)
         }
 
         super.init(style: .grouped)
@@ -363,6 +363,7 @@ class AccountSetupController: UITableViewController {
         }
 
         if tappedCell.accessibilityIdentifier == "restoreCell" {
+            tableView.reloadData() // otherwise the disclosureIndicator may stay selected
             restoreBackup()
         } else if tappedCell.accessibilityIdentifier == "deleteAccountCell" {
             deleteAccount()
