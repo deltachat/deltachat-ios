@@ -70,6 +70,7 @@
 		AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */; };
 		AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */; };
 		AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC472283045D00EDC689 /* EditSettingsController.swift */; };
+		B21005DB23383664004C70C5 /* SettingsClassicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -214,6 +215,7 @@
 		AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersViewController.swift; sourceTree = "<group>"; };
 		AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
 		AEE6EC472283045D00EDC689 /* EditSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsController.swift; sourceTree = "<group>"; };
+		B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClassicViewController.swift; sourceTree = "<group>"; };
 		B253ED992336E759004DD215 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B253ED9A2336E759004DD215 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B253ED9B2336E759004DD215 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ja; path = ja.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -354,26 +356,27 @@
 			isa = PBXGroup;
 			children = (
 				AE18F28B228C17630007B1BE /* AccountSetup */,
-				78E45E3D21D3D28C00D4B15E /* DcNavigationController.swift */,
-				785BE16721E247F1003BE98C /* MessageInfoViewController.swift */,
-				7A0052C71FBE6CB40048C3BF /* NewContactController.swift */,
 				AEE56D752253431E007DC082 /* AccountSetupController.swift */,
-				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
-				789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */,
-				7092474020B3869500AF8799 /* ContactDetailViewController.swift */,
-				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
 				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
-				30149D9222F21129003C12B5 /* QrViewController.swift */,
-				30A4D9AD2332672600544344 /* QrInviteViewController.swift */,
-				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
-				7070FB9A2101ECBB000DC258 /* GroupNameController.swift */,
+				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
+				7092474020B3869500AF8799 /* ContactDetailViewController.swift */,
+				78E45E3D21D3D28C00D4B15E /* DcNavigationController.swift */,
+				AE9DAF0C22C1215D004C9591 /* EditContactController.swift */,
+				AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */,
+				AEE6EC472283045D00EDC689 /* EditSettingsController.swift */,
 				AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */,
 				AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */,
+				7070FB9A2101ECBB000DC258 /* GroupNameController.swift */,
 				AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */,
-				AEE6EC472283045D00EDC689 /* EditSettingsController.swift */,
-				AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */,
+				785BE16721E247F1003BE98C /* MessageInfoViewController.swift */,
+				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
+				7A0052C71FBE6CB40048C3BF /* NewContactController.swift */,
 				AE4AEE3422B1030D000AA495 /* PreviewController.swift */,
-				AE9DAF0C22C1215D004C9591 /* EditContactController.swift */,
+				789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */,
+				30A4D9AD2332672600544344 /* QrInviteViewController.swift */,
+				30149D9222F21129003C12B5 /* QrViewController.swift */,
+				B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */,
+				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				78E45E3E21D3D28C00D4B15E /* DcNavigationController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
 				78ED838D21D577D000243125 /* events.swift in Sources */,
+				B21005DB23383664004C70C5 /* SettingsClassicViewController.swift in Sources */,
 				30A4D9AE2332672700544344 /* QrInviteViewController.swift in Sources */,
 				AE851AC7227C776400ED86F0 /* Location.swift in Sources */,
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,

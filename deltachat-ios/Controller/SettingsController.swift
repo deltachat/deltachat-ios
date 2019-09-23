@@ -110,6 +110,9 @@ internal final class SettingsViewController: QuickTableViewController {
             Section(
                 title: String.localized("pref_communication"),
                 rows: [
+                    NavigationRow(text: String.localized("pref_show_emails"),
+                                  detailText: .value1(SettingsClassicViewController.getValString(val: DcConfig.showEmails)),
+                              action: { [weak self] in self?.showClassicMail($0) }),
                     NavigationRow(text: String.localized("pref_blocked_contacts"),
                               detailText: .none,
                               action: { [weak self] in self?.showBlockedContacts($0) }),
@@ -208,6 +211,10 @@ internal final class SettingsViewController: QuickTableViewController {
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+
+    private func showClassicMail(_: Row) {
+        coordinator?.showClassicMail()
     }
 
     private func showBlockedContacts(_: Row) {
