@@ -102,7 +102,7 @@ class AppCoordinator: NSObject, Coordinator {
     }
 
     func presentLoginController() {
-        let accountSetupController = AccountSetupController(dcContext: dcContext)
+        let accountSetupController = AccountSetupController(dcContext: dcContext, editView: false)
         let accountSetupNav = DcNavigationController(rootViewController: accountSetupController)
         let coordinator = AccountSetupCoordinator(navigationController: accountSetupNav)
         childCoordinators.append(coordinator)
@@ -188,7 +188,7 @@ class SettingsCoordinator: Coordinator {
     }
 
     func showAccountSetupController() {
-        let accountSetupVC = AccountSetupController(dcContext: dcContext)
+        let accountSetupVC = AccountSetupController(dcContext: dcContext, editView: true)
         let coordinator = AccountSetupCoordinator(navigationController: navigationController)
         childCoordinators.append(coordinator)
         accountSetupVC.coordinator = coordinator
@@ -201,7 +201,7 @@ class SettingsCoordinator: Coordinator {
     }
 
     func showLoginController() {
-        let accountSetupVC = AccountSetupController(dcContext: dcContext)
+        let accountSetupVC = AccountSetupController(dcContext: dcContext, editView: false)
         let coordinator = AccountSetupCoordinator(navigationController: navigationController)
         childCoordinators.append(coordinator)
         accountSetupVC.coordinator = coordinator

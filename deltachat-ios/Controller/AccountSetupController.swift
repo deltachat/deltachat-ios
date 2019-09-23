@@ -219,10 +219,13 @@ class AccountSetupController: UITableViewController {
 
     private var advancedSectionShowing: Bool = false
 
-    init(dcContext: DcContext) {
+    init(dcContext: DcContext, editView: Bool) {
         self.dcContext = dcContext
+
         self.sections.append(basicSection)
-        self.sections.append(restoreSection)
+        if !editView {
+            self.sections.append(restoreSection)
+        }
         self.sections.append(advancedSection)
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
