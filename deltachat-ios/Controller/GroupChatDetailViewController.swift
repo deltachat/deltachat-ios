@@ -91,9 +91,14 @@ class GroupChatDetailViewController: UIViewController {
 
     private func leaveGroup() {
         if let userId = currentUser?.id {
-            dc_remove_contact_from_chat(mailboxPointer, UInt32(chat.id), UInt32(userId))
-            editBarButtonItem.isEnabled = false
-            updateGroupMembers()
+            let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { _ in
+                dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(userId))
+                self.editBarButtonItem.isEnabled = false
+                self.updateGroupMembers()
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
     }
 }
@@ -230,15 +235,23 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 
         // assigning swipe by delete to members (except for current user)
         if section == sectionMembers, row >= staticCellCountMemberSection, groupMembers[row - staticCellCountMemberSection].id != currentUser?.id {
-            let delete = UITableViewRowAction(style: .destructive, title: String.localized("global_menu_edit_delete_desktop")) { [unowned self] _, indexPath in
+            let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [unowned self] _, indexPath in
 
                 let memberId = self.groupMembers[row - self.staticCellCountMemberSection].id
-                let success = dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(memberId))
-                if success == 1 {
-                    self.groupMembers.remove(at: row - self.staticCellCountMemberSection)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                    tableView.reloadData()
-                }
+                let contact = DcContact(id: memberId)
+
+                let title = String.localizedStringWithFormat(String.localized("ask_remove_members"), contact.nameNAddr)
+                let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { _ in
+                    let success = dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(memberId))
+                    if success == 1 {
+                        self.groupMembers.remove(at: row - self.staticCellCountMemberSection)
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                        tableView.reloadData()
+                    }
+                }))
+                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
             delete.backgroundColor = UIColor.red
             return [delete]
