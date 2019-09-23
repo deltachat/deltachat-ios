@@ -143,7 +143,7 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
             joinSecureJoin(alertMessage: String.localizedStringWithFormat(String.localized("qrscan_ask_fingerprint_ask_oob"), nameAndAddress), code: code)
         case DC_QR_ASK_VERIFYGROUP:
             if let group = qrParsed.text1?.replacingOccurrences(of: "+", with: " ") {
-                joinSecureJoin(alertMessage: String.localizedStringWithFormat(String.localized("qrscan_ask_join_verified_group"), group), code: code)
+                joinSecureJoin(alertMessage: String.localizedStringWithFormat(String.localized("qrscan_ask_join_group"), group), code: code)
             }
         default:
             let alertMessage = "QR code scanning for type " + String(state) + " is not yet implemented."
