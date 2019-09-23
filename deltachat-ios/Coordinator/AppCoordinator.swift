@@ -102,9 +102,9 @@ class AppCoordinator: NSObject, Coordinator {
     }
 
     func presentLoginController() {
-        let accountSetupController = AccountSetupController(dcContext: dcContext)
+        let accountSetupController = AccountSetupController(dcContext: dcContext, editView: false)
         let accountSetupNav = DcNavigationController(rootViewController: accountSetupController)
-        let coordinator = AccountSetupCoordinator(navigationController: accountSetupNav)
+        let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: accountSetupNav)
         childCoordinators.append(coordinator)
         accountSetupController.coordinator = coordinator
         rootViewController.present(accountSetupNav, animated: false, completion: nil)
@@ -188,8 +188,8 @@ class SettingsCoordinator: Coordinator {
     }
 
     func showAccountSetupController() {
-        let accountSetupVC = AccountSetupController(dcContext: dcContext)
-        let coordinator = AccountSetupCoordinator(navigationController: navigationController)
+        let accountSetupVC = AccountSetupController(dcContext: dcContext, editView: true)
+        let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         accountSetupVC.coordinator = coordinator
         navigationController.pushViewController(accountSetupVC, animated: true)
@@ -198,15 +198,6 @@ class SettingsCoordinator: Coordinator {
     func showEditSettingsController() {
         let editController = EditSettingsController()
         navigationController.pushViewController(editController, animated: true)
-    }
-
-    func showLoginController() {
-        let accountSetupVC = AccountSetupController(dcContext: dcContext)
-        let coordinator = AccountSetupCoordinator(navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        accountSetupVC.coordinator = coordinator
-        let accountSetupNavigationController = DcNavigationController(rootViewController: accountSetupVC)
-        navigationController.present(accountSetupNavigationController, animated: true, completion: nil)
     }
 
     func showClassicMail() {
@@ -221,9 +212,11 @@ class SettingsCoordinator: Coordinator {
 }
 
 class AccountSetupCoordinator: Coordinator {
+    var dcContext: DcContext
     let navigationController: UINavigationController
 
-    init(navigationController: UINavigationController) {
+    init(dcContext: DcContext, navigationController: UINavigationController) {
+        self.dcContext = dcContext
         self.navigationController = navigationController
     }
 

@@ -94,10 +94,27 @@ class AccountSetupController: UITableViewController {
         return cell
     }()
 
-    private lazy var restoreCell: ActionCell = {
-        let cell = ActionCell(frame: .zero)
-        cell.actionTitle = String.localized("import_backup_title")
+    private lazy var restoreCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("import_backup_title")
+        cell.accessoryType = .disclosureIndicator
         cell.accessibilityIdentifier = "restoreCell"
+        return cell
+    }()
+
+    private lazy var deleteAccountCell: ActionCell = {
+        let cell = ActionCell(frame: .zero)
+        cell.actionTitle = String.localized("delete_account")
+        cell.actionColor = UIColor.red
+        cell.accessibilityIdentifier = "deleteAccountCell"
+        return cell
+    }()
+
+    lazy var advancedShowCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("menu_advanced")
+        cell.accessoryType = .disclosureIndicator
+        cell.accessibilityIdentifier = "advancedShowCell"
         return cell
     }()
 
@@ -201,11 +218,13 @@ class AccountSetupController: UITableViewController {
     let basicSection = 0
     let restoreSection = 1
     let advancedSection = 2
-    let sectionCount = 3
+    let dangerSection = 3
+    private var sections = [Int]()
 
     private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
     private lazy var restoreCells: [UITableViewCell] = [restoreCell]
     private lazy var advancedSectionCells: [UITableViewCell] = [
+        advancedShowCell,
         imapServerCell,
         imapUserCell,
         imapPortCell,
@@ -216,11 +235,21 @@ class AccountSetupController: UITableViewController {
         smtpPasswordCell,
         smtpSecurityCell
     ]
+    private lazy var dangerCells: [UITableViewCell] = [deleteAccountCell]
 
     private var advancedSectionShowing: Bool = false
 
-    init(dcContext: DcContext) {
+    init(dcContext: DcContext, editView: Bool) {
         self.dcContext = dcContext
+
+        self.sections.append(basicSection)
+        self.sections.append(advancedSection)
+        if editView {
+            self.sections.append(dangerSection)
+        } else {
+            self.sections.append(restoreSection)
+        }
+
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
     }
@@ -232,7 +261,6 @@ class AccountSetupController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("login_header")
-        // navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonPressed))
         navigationItem.rightBarButtonItem = loginButton
     }
 
@@ -271,35 +299,24 @@ class AccountSetupController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return sectionCount
+        return sections.count
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == basicSection {
+        if sections[section] == basicSection {
             return basicSectionCells.count
-        } else if section == restoreSection {
+        } else if sections[section] == restoreSection {
             return restoreCells.count
+        } else if sections[section] == dangerSection {
+            return dangerCells.count
         } else {
-            return advancedSectionShowing ? advancedSectionCells.count : 0
+            return advancedSectionShowing ? advancedSectionCells.count : 1
         }
     }
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == advancedSection {
-            return String.localized("menu_advanced")
-        } else {
-            return nil
-        }
-    }
-
-    override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == advancedSection {
-            // Advanced Header
-            let advancedView = AdvancedSectionHeader()
-            advancedView.handleTap = toggleAdvancedSection
-            // set tapHandler
-            return advancedView
-
+        if sections[section] == dangerSection {
+            return String.localized("danger")
         } else {
             return nil
         }
@@ -310,14 +327,10 @@ class AccountSetupController: UITableViewController {
     }
 
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
-        if section == basicSection {
+        if sections[section] == basicSection {
             return String.localized("login_no_servers_hint")
-        } else if section == advancedSection {
-            if advancedSectionShowing {
-                return String.localized("login_subheader")
-            } else {
-                return nil
-            }
+        } else if sections[section] == advancedSection {
+            return String.localized("login_subheader")
         } else {
             return nil
         }
@@ -327,10 +340,12 @@ class AccountSetupController: UITableViewController {
         let section = indexPath.section
         let row = indexPath.row
 
-        if section == basicSection {
+        if sections[section] == basicSection {
             return basicSectionCells[row]
-        } else if section == restoreSection {
+        } else if sections[section] == restoreSection {
             return restoreCells[row]
+        } else if sections[section] == dangerSection {
+            return dangerCells[row]
         } else {
             return advancedSectionCells[row]
         }
@@ -348,7 +363,12 @@ class AccountSetupController: UITableViewController {
         }
 
         if tappedCell.accessibilityIdentifier == "restoreCell" {
+            tableView.reloadData() // otherwise the disclosureIndicator may stay selected
             restoreBackup()
+        } else if tappedCell.accessibilityIdentifier == "deleteAccountCell" {
+            deleteAccount()
+        } else if tappedCell.accessibilityIdentifier == "advancedShowCell" {
+            toggleAdvancedSection()
         } else if tappedCell.accessibilityIdentifier == "IMAPPortCell" {
             coordinator?.showImapPortOptions()
         } else if tappedCell.accessibilityIdentifier == "SMTPPortCell" {
@@ -360,25 +380,21 @@ class AccountSetupController: UITableViewController {
         }
     }
 
-    private func toggleAdvancedSection(button: UILabel) {
+    private func toggleAdvancedSection() {
         let willShow = !advancedSectionShowing
 
-        // extract indexPaths from advancedCells
-        let advancedIndexPaths: [IndexPath] = advancedSectionCells.indices.map { IndexPath(row: $0, section: advancedSection) }
+        guard let advancedSectionIndex = sections.firstIndex(of: advancedSection) else { return }
+        var advancedIndexPaths: [IndexPath] = advancedSectionCells.indices.map { IndexPath(row: $0, section: advancedSectionIndex) }
+        advancedIndexPaths.removeFirst() // do not touch the first item that is the switch itself
 
-        // advancedSectionCells.indices.map({indexPaths.append(IndexPath(row: $0, section: 1))}
-
-        // set flag before delete/insert operation, because cellForRowAt will be triggered and uses this flag
-        advancedSectionShowing = willShow
-
-        button.text = String.localized(willShow ? "hide" : "pref_notifications_show")
+        advancedSectionShowing = willShow // set flag before delete/insert, because cellForRowAt will be triggered and uses this flag
 
         if willShow {
             tableView.insertRows(at: advancedIndexPaths, with: .fade)
         } else {
             tableView.deleteRows(at: advancedIndexPaths, with: .fade)
         }
-        tableView.reloadData() // to re-organize footer view (without that sometimes advanced section footer is still visible)
+        tableView.reloadData() // needed to force a redraw
     }
 
     @objc private func loginButtonPressed() {
@@ -574,6 +590,39 @@ class AccountSetupController: UITableViewController {
         logger.error("no documents directory found")
     }
 
+    private func deleteAccount() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+
+        let dbfile = appDelegate.dbfile()
+        let dburl = URL(fileURLWithPath: dbfile, isDirectory: false)
+        let alert = UIAlertController(title: String.localized("delete_account_message"),
+                                      message: nil,
+                                      preferredStyle: .actionSheet)
+
+        alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { _ in
+            appDelegate.stop()
+            appDelegate.close()
+            do {
+                try FileManager.default.removeItem(at: dburl)
+            } catch {
+                logger.error("failed to delete db: \(error)")
+            }
+
+            appDelegate.open()
+            appDelegate.start()
+
+            self.coordinator?.navigationController.popToRootViewController(animated: true)
+            appDelegate.appCoordinator.presentLoginController()
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+        present(alert, animated: true, completion: nil)
+
+
+        coordinator?.navigationController.popToRootViewController(animated: true)
+    }
+
     private func handleLoginSuccess() {
         // used when login hud successfully went trough
         dismiss(animated: true, completion: nil)
@@ -626,58 +675,5 @@ extension AccountSetupController: UITextFieldDelegate {
                 self.passwordCell.textField.becomeFirstResponder()
             })
         }
-    }
-}
-
-class AdvancedSectionHeader: UIView {
-    var handleTap: ((UILabel) -> Void)?
-
-    private var label: UILabel = {
-        let label = UILabel()
-        label.text = String.localized("menu_advanced").uppercased()
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = UIColor.darkGray
-        return label
-    }()
-
-    /*
-     why UILabel, why no UIButton? For unknown reasons UIButton's target function was not triggered when one of the textfields in the tableview was active -> used label as workaround
-     */
-    private lazy var toggleButton: UILabel = {
-        let label = UILabel()
-        label.text = String.localized("pref_notifications_show")
-        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = UIColor.systemBlue
-        return label
-    }()
-
-    init() {
-        super.init(frame: .zero) // will be constraint from tableViewDelegate
-        setupSubviews()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped)) // use this if the whole header is supposed to be clickable
-        addGestureRecognizer(tap)
-    }
-
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func setupSubviews() {
-        addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
-        label.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
-        addSubview(toggleButton)
-        toggleButton.translatesAutoresizingMaskIntoConstraints = false
-        toggleButton.leadingAnchor.constraint(equalTo: trailingAnchor, constant: -60).isActive = true // since button will change title it should be left aligned
-        toggleButton.centerYAnchor.constraint(equalTo: label.centerYAnchor, constant: 0).isActive = true
-    }
-
-    @objc func buttonTapped(_: UIButton) {
-        // handleTap?(button)
-    }
-
-    @objc func viewTapped() {
-        handleTap?(toggleButton)
     }
 }

@@ -96,13 +96,13 @@ internal final class SettingsViewController: QuickTableViewController {
                 rows: [
                     NavigationRow(text: DcConfig.displayname ?? String.localized("pref_your_name"),
                         detailText: .subtitle(subtitle),
-                        action: { [weak self] in
-                            self?.editNameAndStatus($0)
+                        action: { _ in
+                            self.coordinator?.showEditSettingsController()
                     }),
                     NavigationRow(text: String.localized("pref_password_and_account_settings"),
                         detailText: .none,
-                        action: { [weak self] in
-                            self?.presentAccountSetup($0)
+                        action: { _ in
+                            self.coordinator?.showAccountSetupController()
                     }),
                 ]
             ),
@@ -184,13 +184,6 @@ internal final class SettingsViewController: QuickTableViewController {
                 ],
                 footer: String.localized("pref_backup_explain")
             ),
-
-            Section(
-                title: String.localized("danger"),
-                rows: [
-                    TapActionRow(text: String.localized("delete_account"), action: { [weak self] in self?.deleteAccount($0) }),
-                ]
-            ),
         ]
     }
 
@@ -255,47 +248,5 @@ internal final class SettingsViewController: QuickTableViewController {
     private func configure(_: Row) {
         hudHandler.showHud(String.localized("configuring_account"))
         dc_configure(mailboxPointer)
-    }
-
-    private func deleteAccount(_: Row) {
-        logger.info("deleting account")
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-
-        let dbfile = appDelegate.dbfile()
-        let dburl = URL(fileURLWithPath: dbfile, isDirectory: false)
-        let alert = UIAlertController(title: String.localized("delete_account_message"),
-                                      message: nil,
-                                      preferredStyle: .actionSheet)
-
-        alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { _ in
-            appDelegate.stop()
-            appDelegate.close()
-            do {
-                try FileManager.default.removeItem(at: dburl)
-            } catch {
-                logger.error("failed to delete db: \(error)")
-            }
-
-            appDelegate.open()
-            appDelegate.start()
-
-            // refresh our view
-            self.setTable()
-            self.tableView.reloadData()
-            self.dismiss(animated: false, completion: nil)
-            self.coordinator?.showLoginController()
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
-        present(alert, animated: true, completion: nil)
-    }
-
-    private func presentAccountSetup(_: Row) {
-        coordinator?.showAccountSetupController()
-    }
-
-    private func editNameAndStatus(_ row: Row) {
-        coordinator?.showEditSettingsController()
     }
 }
