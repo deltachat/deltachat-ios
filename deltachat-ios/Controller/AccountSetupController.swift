@@ -238,7 +238,6 @@ class AccountSetupController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("login_header")
-        // navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonPressed))
         navigationItem.rightBarButtonItem = loginButton
     }
 
