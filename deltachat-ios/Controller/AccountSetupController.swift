@@ -201,7 +201,7 @@ class AccountSetupController: UITableViewController {
     let basicSection = 0
     let restoreSection = 1
     let advancedSection = 2
-    let sectionCount = 3
+    private var sections = [Int]()
 
     private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
     private lazy var restoreCells: [UITableViewCell] = [restoreCell]
@@ -221,6 +221,9 @@ class AccountSetupController: UITableViewController {
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
+        self.sections.append(basicSection)
+        self.sections.append(restoreSection)
+        self.sections.append(advancedSection)
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
     }
@@ -271,13 +274,13 @@ class AccountSetupController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return sectionCount
+        return sections.count
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == basicSection {
+        if sections[section] == basicSection {
             return basicSectionCells.count
-        } else if section == restoreSection {
+        } else if sections[section] == restoreSection {
             return restoreCells.count
         } else {
             return advancedSectionShowing ? advancedSectionCells.count : 0
@@ -285,7 +288,7 @@ class AccountSetupController: UITableViewController {
     }
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == advancedSection {
+        if sections[section] == advancedSection {
             return String.localized("menu_advanced")
         } else {
             return nil
@@ -293,7 +296,7 @@ class AccountSetupController: UITableViewController {
     }
 
     override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == advancedSection {
+        if sections[section] == advancedSection {
             // Advanced Header
             let advancedView = AdvancedSectionHeader()
             advancedView.handleTap = toggleAdvancedSection
@@ -310,9 +313,9 @@ class AccountSetupController: UITableViewController {
     }
 
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
-        if section == basicSection {
+        if sections[section] == basicSection {
             return String.localized("login_no_servers_hint")
-        } else if section == advancedSection {
+        } else if sections[section] == advancedSection {
             if advancedSectionShowing {
                 return String.localized("login_subheader")
             } else {
@@ -327,9 +330,9 @@ class AccountSetupController: UITableViewController {
         let section = indexPath.section
         let row = indexPath.row
 
-        if section == basicSection {
+        if sections[section] == basicSection {
             return basicSectionCells[row]
-        } else if section == restoreSection {
+        } else if sections[section] == restoreSection {
             return restoreCells[row]
         } else {
             return advancedSectionCells[row]
@@ -364,7 +367,8 @@ class AccountSetupController: UITableViewController {
         let willShow = !advancedSectionShowing
 
         // extract indexPaths from advancedCells
-        let advancedIndexPaths: [IndexPath] = advancedSectionCells.indices.map { IndexPath(row: $0, section: advancedSection) }
+        guard let advancedSectionIndex = sections.firstIndex(of: advancedSection) else { return }
+        let advancedIndexPaths: [IndexPath] = advancedSectionCells.indices.map { IndexPath(row: $0, section: advancedSectionIndex) }
 
         // advancedSectionCells.indices.map({indexPaths.append(IndexPath(row: $0, section: 1))}
 
