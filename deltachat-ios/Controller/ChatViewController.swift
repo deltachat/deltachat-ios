@@ -546,17 +546,13 @@ extension ChatViewController: MessagesDataSource {
             return false
         }
 
-        if let _ = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian) {
-            let dateA = messageA.sentDate
-            let dateB = messageB.sentDate
+        let dateA = messageA.sentDate
+        let dateB = messageB.sentDate
 
-            let timeinterval = dateB.timeIntervalSince(dateA)
-            let minute = 60.0
+        let timeinterval = dateB.timeIntervalSince(dateA)
+        let minute = 60.0
 
-            return messageA.fromContactId == messageB.fromContactId && timeinterval.isLessThanOrEqualTo(minute)
-        }
-
-        return false
+        return messageA.fromContactId == messageB.fromContactId && timeinterval.isLessThanOrEqualTo(minute)
 
     }
 
