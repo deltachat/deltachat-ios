@@ -6,10 +6,9 @@ import MobileCoreServices
 class AppCoordinator: NSObject, Coordinator {
     private let window: UIWindow
     private let dcContext: DcContext
-    private let mailboxTab = 0
-    private let qrTab = 1
-    private let chatsTab = 2
-    private let settingsTab = 3
+    private let qrTab = 0
+    private let chatsTab = 1
+    private let settingsTab = 2
 
     var rootViewController: UIViewController {
         return tabBarController
@@ -19,25 +18,12 @@ class AppCoordinator: NSObject, Coordinator {
 
     private lazy var tabBarController: UITabBarController = {
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [mailboxController, qrController, chatListController, settingsController]
-        // put viewControllers here
+        tabBarController.viewControllers = [qrController, chatListController, settingsController]
         tabBarController.tabBar.tintColor = DcColors.primary
-        tabBarController.tabBar.backgroundColor = .white
         return tabBarController
     }()
 
     // MARK: viewControllers
-
-    private lazy var mailboxController: UIViewController = {
-        let controller = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
-        let nav = DcNavigationController(rootViewController: controller)
-        let settingsImage = UIImage(named: "message")
-        nav.tabBarItem = UITabBarItem(title: String.localized("menu_deaddrop"), image: settingsImage, tag: mailboxTab)
-        let coordinator = MailboxCoordinator(dcContext: dcContext, navigationController: nav)
-        self.childCoordinators.append(coordinator)
-        controller.coordinator = coordinator
-        return nav
-    }()
 
     private lazy var qrController: UIViewController = {
         let controller = QrViewController(dcContext: dcContext)
