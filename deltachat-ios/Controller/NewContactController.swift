@@ -3,6 +3,7 @@ import UIKit
 class NewContactController: UITableViewController {
 
     weak var coordinator: EditContactCoordinatorProtocol?
+    var openChatOnSave = true
 
     let emailCell = TextFieldCell.makeEmailCell()
     let nameCell = TextFieldCell.makeNameCell()
@@ -75,7 +76,11 @@ class NewContactController: UITableViewController {
     @objc func saveContactButtonPressed() {
         let contactId = dc_create_contact(mailboxPointer, model.name, model.email)
         let chatId = Int(dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId)))
-        coordinator?.showChat(chatId: chatId)
+        if openChatOnSave {
+            coordinator?.showChat(chatId: chatId)
+        } else {
+            coordinator?.navigateBack()
+        }
     }
 
     @objc func cancelButtonPressed() {
