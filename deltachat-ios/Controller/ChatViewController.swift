@@ -878,8 +878,12 @@ extension ChatViewController: MessageCellDelegate {
         navigationController?.present(inputDlg, animated: true, completion: nil)
     }
 
-    @objc func didTapAvatar(in _: MessageCollectionViewCell) {
-        logger.info("Avatar tapped")
+    @objc func didTapAvatar(in cell: MessageCollectionViewCell) {
+        if let indexPath = messagesCollectionView.indexPath(for: cell) {
+            let message = messageList[indexPath.section]
+            let chat = DcChat(id: chatId)
+            coordinator?.showContactDetail(of: message.fromContact.id, in: chat.chatType)
+        }
     }
 
     @objc(didTapCellTopLabelIn:) func didTapCellTopLabel(in _: MessageCollectionViewCell) {

@@ -401,9 +401,12 @@ class ChatViewCoordinator: NSObject, Coordinator {
         }
     }
 
-    func showContactDetail(of contactId: Int) {
+    func showContactDetail(of contactId: Int, in chatOfType: ChatType) {
         let contactDetailController = ContactDetailViewController(contactId: contactId)
         //let nav = UINavigationController(rootViewController: contactDetailController)
+        if (chatOfType == .SINGLE) {
+            contactDetailController.showStartChat = false
+        }
         let coordinator = ContactDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         contactDetailController.coordinator = coordinator
