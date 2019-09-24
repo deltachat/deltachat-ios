@@ -110,6 +110,9 @@ internal final class SettingsViewController: QuickTableViewController {
             Section(
                 title: String.localized("pref_communication"),
                 rows: [
+                    NavigationRow(text: String.localized("menu_deaddrop"),
+                              detailText: .none,
+                              action: { [weak self] in self?.showDeaddrop($0) }),
                     NavigationRow(text: String.localized("pref_show_emails"),
                                   detailText: .value1(SettingsClassicViewController.getValString(val: DcConfig.showEmails)),
                               action: { [weak self] in self?.showClassicMail($0) }),
@@ -204,6 +207,14 @@ internal final class SettingsViewController: QuickTableViewController {
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+
+    private func showDeaddrop(_: Row) {
+        let deaddropViewController = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
+        let deaddropNavigationController = DcNavigationController(rootViewController: deaddropViewController)
+        let deaddropCoordinator = MailboxCoordinator(dcContext: dcContext, navigationController: deaddropNavigationController)
+        deaddropViewController.coordinator = deaddropCoordinator
+        self.coordinator?.navigationController.pushViewController(deaddropViewController, animated: true)
     }
 
     private func showClassicMail(_: Row) {
