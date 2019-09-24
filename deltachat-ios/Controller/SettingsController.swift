@@ -90,6 +90,11 @@ internal final class SettingsViewController: QuickTableViewController {
         let subtitle = String.localized("pref_default_status_label") + ": "
             + (DcConfig.selfstatus ?? "-")
 
+        var appNameAndVersion = "Delta Chat"
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            appNameAndVersion += " v" + appVersion
+        }
+
         tableContents = [
             Section(
                 title: String.localized("pref_profile_info_headline"),
@@ -187,6 +192,14 @@ internal final class SettingsViewController: QuickTableViewController {
                 ],
                 footer: String.localized("pref_backup_explain")
             ),
+
+            Section(
+                title: nil,
+                rows: [
+                    TapActionRow(text: String.localized("menu_help"), action: { [weak self] in self?.openHelp($0) }),
+                ],
+                footer: appNameAndVersion
+            ),
         ]
     }
 
@@ -207,6 +220,12 @@ internal final class SettingsViewController: QuickTableViewController {
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+
+    private func openHelp(_: Row) {
+        if let url = URL(string: String.localized("pref_help_url")) {
+            UIApplication.shared.open(url)
+        }
     }
 
     private func showDeaddrop(_: Row) {
