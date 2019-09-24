@@ -387,6 +387,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
         case .SINGLE:
             if let contactId = chat.contactIds.first {
                 let contactDetailController = ContactDetailViewController(contactId: contactId)
+                contactDetailController.showStartChat = false
                 let coordinator = ContactDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
                 childCoordinators.append(coordinator)
                 contactDetailController.coordinator = coordinator
