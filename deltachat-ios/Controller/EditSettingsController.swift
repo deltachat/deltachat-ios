@@ -101,6 +101,12 @@ class EditSettingsController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         if cell.accessibilityIdentifier == "accountSettingsCell" {
+            tableView.deselectRow(at: indexPath, animated: true)
+            guard let nc = navigationController else { return }
+            let accountSetupVC = AccountSetupController(dcContext: dcContext, editView: true)
+            let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: nc)
+            accountSetupVC.coordinator = coordinator
+            nc.pushViewController(accountSetupVC, animated: true)
         }
     }
 }

@@ -104,11 +104,6 @@ internal final class SettingsViewController: QuickTableViewController {
                         action: { _ in
                             self.coordinator?.showEditSettingsController()
                     }),
-                    NavigationRow(text: String.localized("pref_password_and_account_settings"),
-                        detailText: .none,
-                        action: { _ in
-                            self.coordinator?.showAccountSetupController()
-                    }),
                 ]
             ),
 
