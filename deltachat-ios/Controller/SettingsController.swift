@@ -87,8 +87,13 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func setTable() {
-        let subtitle = String.localized("pref_default_status_label") + ": "
-            + (DcConfig.selfstatus ?? "-")
+        let addr = (DcConfig.addr ?? "")
+        let status = (DcConfig.selfstatus ?? "-")
+        var subtitle = addr
+        if !addr.isEmpty && !status.isEmpty {
+            subtitle += ", " + String.localized("pref_default_status_label") + ": "
+        }
+        subtitle += status
 
         var appNameAndVersion = "Delta Chat"
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
