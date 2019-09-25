@@ -182,7 +182,7 @@ class SettingsCoordinator: Coordinator {
     }
 
     func showEditSettingsController() {
-        let editController = EditSettingsController()
+        let editController = EditSettingsController(dcContext: dcContext)
         navigationController.pushViewController(editController, animated: true)
     }
 

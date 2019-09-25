@@ -2,6 +2,7 @@ import UIKit
 
 class EditSettingsController: UITableViewController {
 
+    private let dcContext: DcContext
     private var displayNameBackup: String?
     private var statusCellBackup: String?
 
@@ -23,7 +24,8 @@ class EditSettingsController: UITableViewController {
         return cell
     }()
 
-    init() {
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
         super.init(style: .grouped)
     }
 
