@@ -31,7 +31,7 @@ class ContactCell: UITableViewCell {
 
     lazy var imgView: UIImageView = {
         let imgView = UIImageView()
-        let img = UIImage(named: "approval")!.withRenderingMode(.alwaysTemplate)
+        let img = UIImage(named: "verified")
         imgView.isHidden = true
         imgView.image = img
         imgView.bounds = CGRect(
@@ -157,8 +157,6 @@ class ContactCell: UITableViewCell {
         myStackView.axis = .vertical
         myStackView.addArrangedSubview(toplineStackView)
         myStackView.addArrangedSubview(bottomLineStackView)
-
-        imgView.tintColor = DcColors.primary
 
         avatar.addSubview(imgView)
 
