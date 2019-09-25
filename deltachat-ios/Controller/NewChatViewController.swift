@@ -72,23 +72,19 @@ class NewChatViewController: UITableViewController {
         deviceContactHandler.importDeviceContacts()
         navigationItem.searchController = searchController
         definesPresentationContext = true // to make sure searchbar will only be shown in this viewController
+        if #available(iOS 11.0, *) {
+            navigationItem.hidesSearchBarWhenScrolling = false
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
         contactIds = Utils.getContactIds()
-        // this will show the searchbar on launch -> will be set back to true on viewDidAppear
-        if #available(iOS 11.0, *) {
-            navigationItem.hidesSearchBarWhenScrolling = false
-        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if #available(iOS 11.0, *) {
-            navigationItem.hidesSearchBarWhenScrolling = true
-        }
 
         let nc = NotificationCenter.default
         syncObserver = nc.addObserver(
