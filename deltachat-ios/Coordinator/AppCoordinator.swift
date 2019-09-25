@@ -173,16 +173,8 @@ class SettingsCoordinator: Coordinator {
         self.navigationController = navigationController
     }
 
-    func showAccountSetupController() {
-        let accountSetupVC = AccountSetupController(dcContext: dcContext, editView: true)
-        let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        accountSetupVC.coordinator = coordinator
-        navigationController.pushViewController(accountSetupVC, animated: true)
-    }
-
     func showEditSettingsController() {
-        let editController = EditSettingsController()
+        let editController = EditSettingsController(dcContext: dcContext)
         navigationController.pushViewController(editController, animated: true)
     }
 
