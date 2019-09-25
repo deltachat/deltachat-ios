@@ -165,8 +165,11 @@ class ContactCell: UITableViewCell {
         imgView.center.x = avatar.center.x + (avatar.frame.width / 2) + imgSize - 5
         imgView.center.y = avatar.center.y + (avatar.frame.height / 2) + imgSize - 5
 
-        let tap = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
-        avatar.addGestureRecognizer(tap)
+        if delegate != nil {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
+            avatar.addGestureRecognizer(tap)
+        }
+
     }
 
     func setVerified(isVerified: Bool) {

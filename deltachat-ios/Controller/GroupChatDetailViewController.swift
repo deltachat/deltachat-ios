@@ -1,6 +1,6 @@
 import UIKit
 
-class GroupChatDetailViewController: UIViewController, ContactCellDelegate {
+class GroupChatDetailViewController: UIViewController {
 
     private let sectionConfig = 0
     private let sectionMembers = 1
@@ -185,8 +185,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                     contactCell.emailLabel.text = contact.email
                     contactCell.initialsLabel.text = Utils.getInitials(inputName: displayName)
                     contactCell.setColor(contact.color)
-                    contactCell.rowIndex = indexPath.row
-                    contactCell.delegate = self
                 }
                 return cell
             }
@@ -212,6 +210,9 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 coordinator?.showAddGroupMember(chatId: chat.id)
             } else if row == sectionMembersRowJoinQR {
                 coordinator?.showQrCodeInvite(chatId: chat.id)
+            } else {
+                let contact = getGroupMember(at: row)
+                coordinator?.showContactDetail(of: contact.id)
             }
             // ignore for now - in Telegram tapping a contactCell leads into ContactDetail
         } else if section == sectionLeaveGroup {
@@ -263,11 +264,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     func getGroupMember(at row: Int) -> DcContact {
         let memberId = self.groupMembers[row - self.staticCellCountMemberSection].id
         return DcContact(id: memberId)
-    }
-
-    func onAvatarTapped(at index: Int) {
-        let contact = getGroupMember(at: index)
-        coordinator?.showContactDetail(of: contact.id)
     }
 
 }
