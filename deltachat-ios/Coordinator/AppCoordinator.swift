@@ -376,6 +376,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
         case .SINGLE:
             if let contactId = chat.contactIds.first {
                 let contactDetailController = ContactDetailViewController(contactId: contactId)
+                contactDetailController.showStartChat = false
                 let coordinator = ContactDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
                 childCoordinators.append(coordinator)
                 contactDetailController.coordinator = coordinator
@@ -390,14 +391,15 @@ class ChatViewCoordinator: NSObject, Coordinator {
         }
     }
 
-    func showContactDetail(of contactId: Int) {
+    func showContactDetail(of contactId: Int, in chatOfType: ChatType) {
         let contactDetailController = ContactDetailViewController(contactId: contactId)
-        //let nav = UINavigationController(rootViewController: contactDetailController)
+        if chatOfType == .SINGLE {
+            contactDetailController.showStartChat = false
+        }
         let coordinator = ContactDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         contactDetailController.coordinator = coordinator
         navigationController.pushViewController(contactDetailController, animated: true)
-        // navigationController.present(nav, animated: true, completion: nil)
     }
 
     func showChat(chatId: Int) {

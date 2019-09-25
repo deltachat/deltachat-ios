@@ -3,6 +3,11 @@ import UIKit
 // this is also used as ChatDetail for SingleChats
 class ContactDetailViewController: UITableViewController {
     weak var coordinator: ContactDetailCoordinatorProtocol?
+    let sectionOptions = 0
+    let sectionBlockContact = 1
+    let sectionOptionsRowNotifications = 0
+    var showStartChat = true
+    var optionCells: [UITableViewCell] = []
 
     private enum CellIdentifiers: String {
         case notification = "notificationCell"
@@ -59,6 +64,10 @@ class ContactDetailViewController: UITableViewController {
             title: String.localized("global_menu_edit_desktop"),
             style: .plain, target: self, action: #selector(editButtonPressed))
         self.title = String.localized("tab_contact")
+        optionCells.insert(notificationsCell, at: 0)
+        if showStartChat {
+            optionCells.insert(chatCell, at: 1)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -71,9 +80,9 @@ class ContactDetailViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 2
-        } else if section == 1 {
+        if section == sectionOptions {
+            return optionCells.count
+        } else if section == sectionBlockContact {
             return 1
         }
         return 0
@@ -83,8 +92,8 @@ class ContactDetailViewController: UITableViewController {
         let section = indexPath.section
         let row = indexPath.row
 
-        if section == 0 {
-            if row == 0 {
+        if section == sectionOptions {
+            if row == sectionOptionsRowNotifications {
                 return notificationsCell
             } else {
                 return chatCell

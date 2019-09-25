@@ -546,17 +546,13 @@ extension ChatViewController: MessagesDataSource {
             return false
         }
 
-        if let _ = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian) {
-            let dateA = messageA.sentDate
-            let dateB = messageB.sentDate
+        let dateA = messageA.sentDate
+        let dateB = messageB.sentDate
 
-            let timeinterval = dateB.timeIntervalSince(dateA)
-            let minute = 60.0
+        let timeinterval = dateB.timeIntervalSince(dateA)
+        let minute = 60.0
 
-            return messageA.fromContactId == messageB.fromContactId && timeinterval.isLessThanOrEqualTo(minute)
-        }
-
-        return false
+        return messageA.fromContactId == messageB.fromContactId && timeinterval.isLessThanOrEqualTo(minute)
 
     }
 
@@ -878,8 +874,12 @@ extension ChatViewController: MessageCellDelegate {
         navigationController?.present(inputDlg, animated: true, completion: nil)
     }
 
-    @objc func didTapAvatar(in _: MessageCollectionViewCell) {
-        logger.info("Avatar tapped")
+    @objc func didTapAvatar(in cell: MessageCollectionViewCell) {
+        if let indexPath = messagesCollectionView.indexPath(for: cell) {
+            let message = messageList[indexPath.section]
+            let chat = DcChat(id: chatId)
+            coordinator?.showContactDetail(of: message.fromContact.id, in: chat.chatType)
+        }
     }
 
     @objc(didTapCellTopLabelIn:) func didTapCellTopLabel(in _: MessageCollectionViewCell) {
