@@ -5,6 +5,8 @@ import UIKit
 internal final class SettingsViewController: QuickTableViewController {
     weak var coordinator: SettingsCoordinator?
 
+    private let sectionProfileInfo = 0
+    private let rowProfile = 0
     private var dcContext: DcContext
 
     let documentInteractionController = UIDocumentInteractionController()
@@ -86,7 +88,60 @@ internal final class SettingsViewController: QuickTableViewController {
         }
     }
 
-    private func setTable() {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == sectionProfileInfo && indexPath.row == rowProfile {
+            return customProfileCell(tableView, indexPath: indexPath)
+        } else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+    }
+
+    private func customProfileCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        let badge = createProfileBadge()
+        let nameLabel = createNameLabel()
+        let signatureLabel = createSubtitle()
+
+        cell.contentView.addSubview(badge)
+        cell.contentView.addSubview(nameLabel)
+        cell.contentView.addSubview(signatureLabel)
+
+        let badgeConstraints = [badge.constraintAlignLeadingTo(cell.contentView, paddingLeading: 12),
+                                badge.constraintCenterYTo(cell.contentView),
+                                badge.constraintAlignTopTo(cell.contentView, paddingTop: 8),
+                                badge.constraintAlignBottomTo(cell.contentView, paddingBottom: 8)]
+        let textViewConstraints = [nameLabel.constraintToTrailingOf(badge, paddingLeading: 8),
+                                   nameLabel.constraintAlignTrailingTo(cell.contentView, paddingTrailing: 16),
+                                   nameLabel.constraintAlignTopTo(cell.contentView, paddingTop: 8)]
+        let subtitleViewConstraints = [signatureLabel.constraintToTrailingOf(badge, paddingLeading: 8),
+                                       signatureLabel.constraintAlignTrailingTo(cell.contentView, paddingTrailing: 16),
+                                       signatureLabel.constraintToBottomOf(nameLabel, paddingTop: 2),
+                                       signatureLabel.constraintAlignBottomTo(cell.contentView, paddingBottom: 8)]
+
+        cell.contentView.addConstraints(badgeConstraints)
+        cell.contentView.addConstraints(textViewConstraints)
+        cell.contentView.addConstraints(subtitleViewConstraints)
+
+        return cell
+    }
+
+    private func createProfileBadge() -> InitialsBadge {
+        let selfContact = DcContact(id: Int(DC_CONTACT_ID_SELF))
+        if let image = selfContact.profileImage {
+            return  InitialsBadge(image: image, size: 35)
+        } else {
+            return  InitialsBadge(name: DcConfig.displayname ?? selfContact.email, color: selfContact.color, size: 35)
+        }
+    }
+
+    private func createNameLabel() -> UILabel {
+        let nameLabel = UILabel.init()
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.text = DcConfig.displayname ?? String.localized("pref_your_name")
+        return nameLabel
+    }
+
+    private func createSubtitle() -> UILabel {
         let addr = (DcConfig.addr ?? "")
         let status = (DcConfig.selfstatus ?? "-")
         var subtitle = addr
@@ -94,6 +149,15 @@ internal final class SettingsViewController: QuickTableViewController {
             subtitle += ", " + String.localized("pref_default_status_label") + ": "
         }
         subtitle += status
+        let subtitleView = UILabel.init()
+        subtitleView.translatesAutoresizingMaskIntoConstraints = false
+        subtitleView.text = subtitle
+        subtitleView.font = UIFont.systemFont(ofSize: 12)
+        subtitleView.lineBreakMode = .byTruncatingTail
+        return subtitleView
+    }
+
+    private func setTable() {
 
         var appNameAndVersion = "Delta Chat"
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
@@ -104,8 +168,10 @@ internal final class SettingsViewController: QuickTableViewController {
             Section(
                 title: String.localized("pref_profile_info_headline"),
                 rows: [
-                    NavigationRow(text: DcConfig.displayname ?? String.localized("pref_your_name"),
-                        detailText: .subtitle(subtitle),
+                    //The profile row has a custom view and is set in
+                    //tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
+                    NavigationRow(text: "",
+                        detailText: .none,
                         action: { _ in
                             self.coordinator?.showEditSettingsController()
                     }),
