@@ -210,6 +210,9 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 coordinator?.showAddGroupMember(chatId: chat.id)
             } else if row == sectionMembersRowJoinQR {
                 coordinator?.showQrCodeInvite(chatId: chat.id)
+            } else {
+                let contact = getGroupMember(at: row)
+                coordinator?.showContactDetail(of: contact.id)
             }
             // ignore for now - in Telegram tapping a contactCell leads into ContactDetail
         } else if section == sectionLeaveGroup {
@@ -237,13 +240,11 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         if section == sectionMembers, row >= staticCellCountMemberSection, groupMembers[row - staticCellCountMemberSection].id != currentUser?.id {
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [unowned self] _, indexPath in
 
-                let memberId = self.groupMembers[row - self.staticCellCountMemberSection].id
-                let contact = DcContact(id: memberId)
-
+                let contact = self.getGroupMember(at: row)
                 let title = String.localizedStringWithFormat(String.localized("ask_remove_members"), contact.nameNAddr)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { _ in
-                    let success = dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(memberId))
+                    let success = dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(contact.id))
                     if success == 1 {
                         self.groupMembers.remove(at: row - self.staticCellCountMemberSection)
                         tableView.deleteRows(at: [indexPath], with: .fade)
@@ -259,4 +260,10 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             return nil
         }
     }
+
+    func getGroupMember(at row: Int) -> DcContact {
+        let memberId = self.groupMembers[row - self.staticCellCountMemberSection].id
+        return DcContact(id: memberId)
+    }
+
 }

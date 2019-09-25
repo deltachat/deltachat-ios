@@ -354,6 +354,14 @@ class GroupChatDetailCoordinator: Coordinator {
         editGroupViewController.coordinator = coordinator
         navigationController.pushViewController(editGroupViewController, animated: true)
     }
+
+    func showContactDetail(of contactId: Int) {
+        let contactDetailController = ContactDetailViewController(contactId: contactId)
+        let coordinator = ContactDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        contactDetailController.coordinator = coordinator
+        navigationController.pushViewController(contactDetailController, animated: true)
+    }
 }
 
 class ChatViewCoordinator: NSObject, Coordinator {
