@@ -13,8 +13,14 @@ enum MessageDeliveryState: Int {
     case OUTMDNRCVD = 28
 }
 
+protocol ContactCellDelegate: class {
+    func onAvatarTapped(at index: Int)
+}
+
 class ContactCell: UITableViewCell {
 
+    weak var delegate: ContactCellDelegate?
+    var rowIndex = -1
     private let initialsLabelSize: CGFloat = 54
     private let imgSize: CGFloat = 25
 
@@ -158,6 +164,9 @@ class ContactCell: UITableViewCell {
 
         imgView.center.x = avatar.center.x + (avatar.frame.width / 2) + imgSize - 5
         imgView.center.y = avatar.center.y + (avatar.frame.height / 2) + imgSize - 5
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
+        avatar.addGestureRecognizer(tap)
     }
 
     func setVerified(isVerified: Bool) {
@@ -229,6 +238,15 @@ class ContactCell: UITableViewCell {
 
     func setColor(_ color: UIColor) {
         initialsLabel.backgroundColor = color
+    }
+
+    @objc func onAvatarTapped() {
+        if let delegate = delegate {
+            if rowIndex == -1 {
+                return
+            }
+            delegate.onAvatarTapped(at: rowIndex)
+        }
     }
 
     required init?(coder _: NSCoder) {
