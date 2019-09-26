@@ -91,6 +91,7 @@ class ChatViewController: MessagesViewController {
             } else {
                 badge =  InitialsBadge(name: chat.name, color: chat.color, size: 28)
             }
+            badge.setVerified(chat.isVerified)
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: badge)
         }
 
