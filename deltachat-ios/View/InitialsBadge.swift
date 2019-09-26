@@ -16,7 +16,7 @@ class InitialsBadge: UIView {
     private var verifiedView: UIImageView = {
            let imgView = UIImageView()
            let img = UIImage(named: "verified")
-           imgView.isHidden = false
+           imgView.isHidden = true
            imgView.image = img
            imgView.translatesAutoresizingMaskIntoConstraints = false
            return imgView
