@@ -106,7 +106,7 @@ internal final class SettingsViewController: QuickTableViewController {
         cell.contentView.addSubview(nameLabel)
         cell.contentView.addSubview(signatureLabel)
 
-        let badgeConstraints = [badge.constraintAlignLeadingTo(cell.contentView, paddingLeading: 12),
+        let badgeConstraints = [badge.constraintAlignLeadingTo(cell.contentView, paddingLeading: 16),
                                 badge.constraintCenterYTo(cell.contentView),
                                 badge.constraintAlignTopTo(cell.contentView, paddingTop: 8),
                                 badge.constraintAlignBottomTo(cell.contentView, paddingBottom: 8)]
