@@ -185,6 +185,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                     contactCell.emailLabel.text = contact.email
                     contactCell.initialsLabel.text = Utils.getInitials(inputName: displayName)
                     contactCell.setColor(contact.color)
+                    contactCell.setVerified(isVerified: chat.isVerified)
                 }
                 return cell
             }
