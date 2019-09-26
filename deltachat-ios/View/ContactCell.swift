@@ -22,7 +22,7 @@ class ContactCell: UITableViewCell {
     weak var delegate: ContactCellDelegate?
     var rowIndex = -1
     private let initialsLabelSize: CGFloat = 54
-    private let imgSize: CGFloat = 25
+    private let imgSize: CGFloat = 20
 
     let avatar: UIView = {
         let avatar = UIView()
@@ -31,7 +31,7 @@ class ContactCell: UITableViewCell {
 
     lazy var imgView: UIImageView = {
         let imgView = UIImageView()
-        let img = UIImage(named: "approval")!.withRenderingMode(.alwaysTemplate)
+        let img = UIImage(named: "verified")
         imgView.isHidden = true
         imgView.image = img
         imgView.bounds = CGRect(
@@ -158,12 +158,10 @@ class ContactCell: UITableViewCell {
         myStackView.addArrangedSubview(toplineStackView)
         myStackView.addArrangedSubview(bottomLineStackView)
 
-        imgView.tintColor = DcColors.primary
-
         avatar.addSubview(imgView)
 
-        imgView.center.x = avatar.center.x + (avatar.frame.width / 2) + imgSize - 5
-        imgView.center.y = avatar.center.y + (avatar.frame.height / 2) + imgSize - 5
+        imgView.center.x = avatar.center.x + (avatar.frame.width / 2) + imgSize
+        imgView.center.y = avatar.center.y + (avatar.frame.height / 2) + imgSize
 
         if delegate != nil {
             let tap = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
