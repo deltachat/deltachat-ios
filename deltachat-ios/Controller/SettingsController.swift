@@ -142,13 +142,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func createSubtitle() -> UILabel {
-        let addr = (DcConfig.addr ?? "")
-        let status = (DcConfig.selfstatus ?? "-")
-        var subtitle = addr
-        if !addr.isEmpty && !status.isEmpty {
-            subtitle += ", " + String.localized("pref_default_status_label") + ": "
-        }
-        subtitle += status
+        let subtitle = (DcConfig.addr ?? "")
         let subtitleView = UILabel.init()
         subtitleView.translatesAutoresizingMaskIntoConstraints = false
         subtitleView.text = subtitle
