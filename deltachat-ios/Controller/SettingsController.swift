@@ -98,6 +98,9 @@ internal final class SettingsViewController: QuickTableViewController {
 
     private func customProfileCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
+
+        cell.contentView.subviews.forEach({ $0.removeFromSuperview() })
+
         let badge = createProfileBadge()
         let nameLabel = createNameLabel()
         let signatureLabel = createSubtitle()
