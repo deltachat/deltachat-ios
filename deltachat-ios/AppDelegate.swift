@@ -233,23 +233,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         switch reachability.connection {
         case .wifi, .cellular:
-            logger.info("network: reachable", reachability.connection.description)
             dc_maybe_network(mailboxPointer)
 
-            let nc = NotificationCenter.default
-            DispatchQueue.main.async {
-                nc.post(name: dcNotificationStateChanged,
-                        object: nil,
-                        userInfo: ["state": "online"])
-            }
         case .none:
-            logger.info("network: not reachable")
-            let nc = NotificationCenter.default
-            DispatchQueue.main.async {
-                nc.post(name: dcNotificationStateChanged,
-                        object: nil,
-                        userInfo: ["state": "offline"])
-            }
+            break
         }
     }
 

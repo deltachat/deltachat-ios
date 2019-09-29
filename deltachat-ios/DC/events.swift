@@ -2,7 +2,6 @@ import UIKit
 import UserNotifications
 
 let dcNotificationChanged = Notification.Name(rawValue: "MrEventMsgsChanged")
-let dcNotificationStateChanged = Notification.Name(rawValue: "MrEventStateChanged")
 let dcNotificationIncoming = Notification.Name(rawValue: "MrEventIncomingMsg")
 let dcNotificationImexProgress = Notification.Name(rawValue: "dcNotificationImexProgress")
 let dcNotificationConfigureProgress = Notification.Name(rawValue: "MrEventConfigureProgress")
@@ -77,24 +76,8 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
             logger.warning("network: \(msg)")
         }
 
-        let nc = NotificationCenter.default
-        DispatchQueue.main.async {
-            DispatchQueue.main.async {
-                nc.post(name: dcNotificationStateChanged,
-                        object: nil,
-                        userInfo: ["state": "offline"])
-            }
-        }
-
     case DC_EVENT_IMAP_CONNECTED, DC_EVENT_SMTP_CONNECTED:
         logger.warning("network: \(String(cString: data2String))")
-
-        let nc = NotificationCenter.default
-        DispatchQueue.main.async {
-            nc.post(name: dcNotificationStateChanged,
-                    object: nil,
-                    userInfo: ["state": "online"])
-        }
 
     case DC_EVENT_MSGS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED:
         logger.info("change: \(event)")
