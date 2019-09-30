@@ -98,6 +98,9 @@ internal final class SettingsViewController: QuickTableViewController {
 
     private func customProfileCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
+
+        cell.contentView.subviews.forEach({ $0.removeFromSuperview() })
+
         let badge = createProfileBadge()
         let nameLabel = createNameLabel()
         let signatureLabel = createSubtitle()
@@ -110,13 +113,13 @@ internal final class SettingsViewController: QuickTableViewController {
                                 badge.constraintCenterYTo(cell.contentView),
                                 badge.constraintAlignTopTo(cell.contentView, paddingTop: 8),
                                 badge.constraintAlignBottomTo(cell.contentView, paddingBottom: 8)]
-        let textViewConstraints = [nameLabel.constraintToTrailingOf(badge, paddingLeading: 8),
+        let textViewConstraints = [nameLabel.constraintToTrailingOf(badge, paddingLeading: 12),
                                    nameLabel.constraintAlignTrailingTo(cell.contentView, paddingTrailing: 16),
-                                   nameLabel.constraintAlignTopTo(cell.contentView, paddingTop: 8)]
-        let subtitleViewConstraints = [signatureLabel.constraintToTrailingOf(badge, paddingLeading: 8),
+                                   nameLabel.constraintAlignTopTo(cell.contentView, paddingTop: 14)]
+        let subtitleViewConstraints = [signatureLabel.constraintToTrailingOf(badge, paddingLeading: 12),
                                        signatureLabel.constraintAlignTrailingTo(cell.contentView, paddingTrailing: 16),
-                                       signatureLabel.constraintToBottomOf(nameLabel, paddingTop: 2),
-                                       signatureLabel.constraintAlignBottomTo(cell.contentView, paddingBottom: 8)]
+                                       signatureLabel.constraintToBottomOf(nameLabel, paddingTop: 0),
+                                       signatureLabel.constraintAlignBottomTo(cell.contentView, paddingBottom: 12)]
 
         cell.contentView.addConstraints(badgeConstraints)
         cell.contentView.addConstraints(textViewConstraints)
@@ -127,10 +130,11 @@ internal final class SettingsViewController: QuickTableViewController {
 
     private func createProfileBadge() -> InitialsBadge {
         let selfContact = DcContact(id: Int(DC_CONTACT_ID_SELF))
+        let badgeSize: CGFloat = 48
         if let image = selfContact.profileImage {
-            return  InitialsBadge(image: image, size: 35)
+            return  InitialsBadge(image: image, size: badgeSize)
         } else {
-            return  InitialsBadge(name: DcConfig.displayname ?? selfContact.email, color: selfContact.color, size: 35)
+            return  InitialsBadge(name: DcConfig.displayname ?? selfContact.email, color: selfContact.color, size: badgeSize)
         }
     }
 
@@ -146,7 +150,7 @@ internal final class SettingsViewController: QuickTableViewController {
         let subtitleView = UILabel.init()
         subtitleView.translatesAutoresizingMaskIntoConstraints = false
         subtitleView.text = subtitle
-        subtitleView.font = UIFont.systemFont(ofSize: 12)
+        subtitleView.font = UIFont.systemFont(ofSize: 13)
         subtitleView.lineBreakMode = .byTruncatingTail
         return subtitleView
     }
