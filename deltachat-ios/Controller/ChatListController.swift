@@ -185,6 +185,9 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
                 dcContact.marknoticed()
             }))
+            alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
+                dcContact.block()
+            }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
             present(alert, animated: true, completion: nil)
         } else if chatId==DC_CHAT_ID_ARCHIVED_LINK {
