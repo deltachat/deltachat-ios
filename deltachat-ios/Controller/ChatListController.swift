@@ -172,7 +172,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         let row = indexPath.row
         guard let chatList = chatList else { return }
         let chatId = chatList.getChatId(index: row)
-        if chatId==DC_CHAT_ID_DEADDROP {
+        if chatId == DC_CHAT_ID_DEADDROP {
             let msgId = chatList.getMsgId(index: row)
             let dcMsg = DcMsg(id: msgId)
             let dcContact = DcContact(id: dcMsg.fromContactId)
@@ -190,7 +190,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
             present(alert, animated: true, completion: nil)
-        } else if chatId==DC_CHAT_ID_ARCHIVED_LINK {
+        } else if chatId == DC_CHAT_ID_ARCHIVED_LINK {
             coordinator?.showArchive()
         } else {
             coordinator?.showChat(chatId: chatId)
