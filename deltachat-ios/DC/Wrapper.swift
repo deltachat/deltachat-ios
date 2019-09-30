@@ -522,6 +522,8 @@ class DcMsg: MessageType {
             return .text
         case DC_MSG_IMAGE:
             return .image
+        case DC_MSG_STICKER:
+            return .image
         case DC_MSG_VIDEO:
             return .video
         case DC_MSG_VOICE:
