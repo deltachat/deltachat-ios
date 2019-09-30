@@ -182,6 +182,9 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
                 let chat = dcMsg.createChat()
                 self.coordinator?.showChat(chatId: chat.id)
             }))
+            alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
+                dcContact.marknoticed()
+            }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
             present(alert, animated: true, completion: nil)
         } else if chatId==DC_CHAT_ID_ARCHIVED_LINK {
