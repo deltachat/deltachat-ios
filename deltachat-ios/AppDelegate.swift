@@ -233,10 +233,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         switch reachability.connection {
         case .wifi, .cellular:
-            dc_maybe_network(mailboxPointer)
+            logger.info("network: reachable", reachability.connection.description)
 
+            // call dc_maybe_network() from a worker thread.
+            // normally, dc_maybe_network() can be called uncoditionally,
+            // however, in fact, it may halt things for some seconds.
+            // this pr is a workaround that make things usable for now.
+            DispatchQueue.global(qos: .background).async {
+                dc_maybe_network(mailboxPointer)
+            }
         case .none:
-            break
+            logger.info("network: not reachable")
         }
     }
 
