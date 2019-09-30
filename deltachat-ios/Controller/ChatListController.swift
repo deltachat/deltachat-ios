@@ -170,12 +170,30 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        if let chatId = chatList?.getChatId(index: row) {
-            if chatId==DC_CHAT_ID_ARCHIVED_LINK {
-                coordinator?.showArchive()
-            } else {
-                coordinator?.showChat(chatId: chatId)
-            }
+        guard let chatList = chatList else { return }
+        let chatId = chatList.getChatId(index: row)
+        if chatId == DC_CHAT_ID_DEADDROP {
+            let msgId = chatList.getMsgId(index: row)
+            let dcMsg = DcMsg(id: msgId)
+            let dcContact = DcContact(id: dcMsg.fromContactId)
+            let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
+            let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+                let chat = dcMsg.createChat()
+                self.coordinator?.showChat(chatId: chat.id)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
+                dcContact.marknoticed()
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
+                dcContact.block()
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+            present(alert, animated: true, completion: nil)
+        } else if chatId == DC_CHAT_ID_ARCHIVED_LINK {
+            coordinator?.showArchive()
+        } else {
+            coordinator?.showChat(chatId: chatId)
         }
     }
 

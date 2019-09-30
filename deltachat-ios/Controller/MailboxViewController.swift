@@ -52,6 +52,9 @@ class MailboxViewController: ChatViewController {
                 let chat = message.createChat()
                 self.coordinator?.showChat(chatId: chat.id)
             }))
+            alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
+                dcContact.block()
+            }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
             present(alert, animated: true, completion: nil)
         }
