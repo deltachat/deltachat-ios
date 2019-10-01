@@ -13,8 +13,14 @@
    - on success, a dialog with all releases on the machine is shown;
      click on the most recent and select "Distribute", then "iOS App Store",
 	 then "Upload", leave default options, in the summary, click "Upload" again
-   - deltachat-ios on Github: "Draft a new release" with the version form `v1.2.3`
 
 3. on https://appstoreconnect.apple.com :
-   - open "My Apps/Delta Chat/TestFlight/" 
+   - open "My Apps/Delta Chat/TestFlight/iOS"
+   - fill out compliance info, status should be "Ready to Submit" then
+   - select "open-testing-group" on the left, then "Builds" tab
+   - click "+" and select the version made "Ready to submit" above
+   - make sure the credentials shown on the next page are working
+     (the credentials are needed by apple for review)
 
+4. - deltachat-ios on Github: "Draft a new release"
+     with a version in the form `v1.2.3`
