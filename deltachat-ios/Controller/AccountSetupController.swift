@@ -237,9 +237,11 @@ class AccountSetupController: UITableViewController {
     ]
     private lazy var dangerCells: [UITableViewCell] = [deleteAccountCell]
 
+    private let editView: Bool
     private var advancedSectionShowing: Bool = false
 
     init(dcContext: DcContext, editView: Bool) {
+        self.editView = editView
         self.dcContext = dcContext
 
         self.sections.append(basicSection)
@@ -260,7 +262,11 @@ class AccountSetupController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("login_header")
+        if editView {
+            title = String.localized("pref_password_and_account_settings")
+        } else {
+            title = String.localized("login_header")
+        }
         navigationItem.rightBarButtonItem = loginButton
     }
 
@@ -315,7 +321,9 @@ class AccountSetupController: UITableViewController {
     }
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if sections[section] == dangerSection {
+        if sections[section] == basicSection && editView {
+            return String.localized("login_header")
+        } else if sections[section] == dangerSection {
             return String.localized("danger")
         } else {
             return nil
