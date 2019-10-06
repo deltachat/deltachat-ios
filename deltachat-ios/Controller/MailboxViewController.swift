@@ -5,7 +5,7 @@ class MailboxViewController: ChatViewController {
 
     override init(dcContext: DcContext, chatId: Int) {
         super.init(dcContext: dcContext, chatId: chatId)
-        hidesBottomBarWhenPushed = false
+        hidesBottomBarWhenPushed = true
         disableWriting = true
         showCustomNavBar = false
     }

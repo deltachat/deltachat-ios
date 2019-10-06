@@ -20,6 +20,7 @@ class SettingsClassicViewController: UITableViewController {
         self.options = [Int(DC_SHOW_EMAILS_OFF), Int(DC_SHOW_EMAILS_ACCEPTED_CONTACTS), Int(DC_SHOW_EMAILS_ALL)]
         super.init(style: .grouped)
         self.title = String.localized("pref_show_emails")
+        hidesBottomBarWhenPushed = true
     }
 
     required init?(coder aDecoder: NSCoder) {
