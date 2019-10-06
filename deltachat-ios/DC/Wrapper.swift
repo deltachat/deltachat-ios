@@ -6,7 +6,12 @@ class DcContext {
     let contextPointer: OpaquePointer?
 
     init() {
-        contextPointer = dc_context_new(callback_ios, nil, "iOS")
+        var version = ""
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            version += " " + appVersion
+        }
+
+        contextPointer = dc_context_new(callback_ios, nil, "iOS" + version)
     }
 
     deinit {
