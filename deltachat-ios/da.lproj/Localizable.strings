@@ -187,7 +187,6 @@
 "chat_self_talk_subtitle" = "Beskeder sendt til undertegnede";
 "chat_contact_request" = "Kontakt anmodning";
 "chat_no_contact_requests" = "Ingen kontakt anmodninger.\n\nØnskes klassisk e-post vist her som kontakt anmodninger,, kan den tilsvarende indstilling i program opsætning ændres.";
-
 // map
 "filter_map_on_time" = "Vise placeringer i tidsramme";
 "show_location_traces" = "Vise spor";
@@ -303,7 +302,6 @@
 "pref_blocked_contacts" = "Blokerede kontakter";
 "pref_profile_photo_remove_ask" = "Fjerne profil billede?";
 "pref_help_url" = "https://delta.chat/en/help";
-"pref_password_and_account_settings" = "Adgangskode og konto opsætning";
 "pref_who_can_see_this_information" = "Hvem kan se denne information?";
 "pref_who_can_see_profile_explain" = "Profilbillede og navn vises sammen med beskeder, når der kommunikeres med andre brugere. Allerede sendt information kan ikke slettes eller fjernes.";
 "pref_your_name" = "Nanv";
@@ -490,10 +488,7 @@
 // dc_str_* resources
 "encrypted_message" = "Krypteret besked";
 
-// desktop specific strings
-"welcome_desktop" = "Velkommen til DeltaChat";
 "login_known_accounts_title_desktop" = "Kendte konti";
-"global_menu_preferences_desktop" = "Indstillinger";
 "global_menu_preferences_language_desktop" = "Vælge sprog...";
 "global_menu_file_desktop" = "Fil";
 "global_menu_file_quit_desktop" = "Afslutte";
@@ -503,20 +498,15 @@
 "global_menu_edit_cut_desktop" = "Klippe";
 "global_menu_edit_copy_desktop" = "Kopiere";
 "global_menu_edit_paste_desktop" = "Indsætte";
-"global_menu_edit_delete_desktop" = "Slette";
-"global_menu_edit_selectall_desktop" = "Vælge alle";
 "global_menu_view_desktop" = "Vise";
 "global_menu_view_floatontop_desktop" = "Flyde øverst";
 "global_menu_view_developer_desktop" = "Udvikler";
 "global_menu_view_developer_tools_desktop" = "Udvikler værktøj";
 "global_menu_help_desktop" = "Hjælp";
-"global_menu_help_learn_desktop" = "Lære mere om DeltaChat";
 "global_menu_help_contribute_desktop" = "Bidrage på GitHub";
 "global_menu_help_report_desktop" = "Rapportere en sag...";
-"global_menu_help_about_desktop" = "Om DeltaChat";
 "no_chat_selected_suggestion_desktop" = "Vælg samtale eller opret en ny samtale";
 "write_message_desktop" = "Skrive en besked";
-"about_deltachat_heading_desktop" = "Om DeltaChat";
 "encryption_info_title_desktop" = "Kryptering information";
 "contact_detail_title_desktop" = "Kontakt detaljer";
 "contact_request_title_desktop" = "Kontakt anmodning";
@@ -528,7 +518,6 @@
 "no_chats_desktop" = "Ingen samtaler";
 "encryption_info_desktop" = "Vise kryptering information";
 "verified_desktop" = "efterprøvet";
-"group_name_desktop" = "Gruppe navn";
 "remove_desktop" = "Fjerne";
 "save_desktop" = "Gemme";
 "show_qr_verify_code_desktop" = "Vise QR invitere kode";
@@ -564,6 +553,6 @@
 "message_detail_to_desktop" = "til";
 "menu.view.developer.open.log.folder" = "Åbne log mappe";
 "menu.view.developer.open.current.log.file" = "Åbne nuværende log fil";
-
 "user_location_permission_explanation" = "Delta Chat behøver placering tilladelse for at vise og dele placering.";
+
 

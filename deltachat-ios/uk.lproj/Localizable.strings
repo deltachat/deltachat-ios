@@ -153,7 +153,6 @@
 "chat_self_talk_subtitle" = "Повідомлення, відправлені самому собі";
 "chat_contact_request" = "Запит контакту";
 "chat_no_contact_requests" = "Немає запитів контактів.\n\nЯкщо Ви бажаєте, щоб звичайна пошта з\'являлася тут як запити контактів, Ви можете змінити відповідний параметр у налаштуваннях додатку.";
-
 // search
 "search" = "Пошук";
 "search_explain" = "Пошук чатів, контактів і повідомлень";
@@ -249,7 +248,6 @@
 "pref_blocked_contacts" = "Заблоковані контакти";
 "pref_profile_photo_remove_ask" = "Видалити фото профілю?";
 "pref_help_url" = "https://delta.chat/uk/help";
-"pref_password_and_account_settings" = "Налаштування паролю і облікового запису";
 "pref_who_can_see_this_information" = "Хто може бачити цю інформацію?";
 "pref_who_can_see_profile_explain" = "Зображення профілю та ім\'я будуть відображатися в чатах з іншими користувачами. Відправлена інформація не може бути видалена або відкликана.";
 "pref_your_name" = "Ваше ім\'я";
@@ -427,10 +425,7 @@
 // dc_str_* resources
 "encrypted_message" = "Зашифроване повідомлення";
 
-// desktop specific strings
-"welcome_desktop" = "Ласкаво просимо до Delta Chat";
 "login_known_accounts_title_desktop" = "Відомі облікові записи";
-"global_menu_preferences_desktop" = "Уподобання";
 "global_menu_preferences_language_desktop" = "Вибір мови";
 "global_menu_file_desktop" = "Файл";
 "global_menu_file_quit_desktop" = "Вийти";
@@ -440,20 +435,15 @@
 "global_menu_edit_cut_desktop" = "Вирізати";
 "global_menu_edit_copy_desktop" = "Копіювати";
 "global_menu_edit_paste_desktop" = "Вставити";
-"global_menu_edit_delete_desktop" = "Видалити";
-"global_menu_edit_selectall_desktop" = "Вибрати все";
 "global_menu_view_desktop" = "Переглянути";
 "global_menu_view_floatontop_desktop" = "Поплавок зверху";
 "global_menu_view_developer_desktop" = "Розробник";
 "global_menu_view_developer_tools_desktop" = "Інструменти розробника";
 "global_menu_help_desktop" = "Допомога";
-"global_menu_help_learn_desktop" = "Дізнатися більше про Delta Chat";
 "global_menu_help_contribute_desktop" = "Приєднатися до розробки на GitHub";
 "global_menu_help_report_desktop" = "Повідомити про проблему...";
-"global_menu_help_about_desktop" = "Про Delta Chat";
 "no_chat_selected_suggestion_desktop" = "Виберіть чат або створіть новий";
 "write_message_desktop" = "Напишіть повідомлення";
-"about_deltachat_heading_desktop" = "Про Delta Chat";
 "encryption_info_title_desktop" = "Інформація про шифрування";
 "contact_detail_title_desktop" = "Деталі контакту";
 "contact_request_title_desktop" = "Запит на спілкування";
@@ -465,7 +455,6 @@
 "no_chats_desktop" = "Немає чатів";
 "encryption_info_desktop" = "Показати інформацію про шифрування";
 "verified_desktop" = "Перевірено";
-"group_name_desktop" = "Назва групи";
 "remove_desktop" = "Видалити";
 "save_desktop" = "Зберегти";
 "show_qr_verify_code_desktop" = "Показати QR-код запрошення";
@@ -500,4 +489,3 @@
 "message_detail_to_desktop" = " ";
 "menu.view.developer.open.log.folder" = "Відкрити папку журналів";
 "menu.view.developer.open.current.log.file" = "Відкрити поточний файл журналу";
-

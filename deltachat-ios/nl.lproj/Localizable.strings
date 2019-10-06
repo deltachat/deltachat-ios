@@ -11,6 +11,17 @@
 "none" = "Geen";
 "open" = "Openen";
 "delete" = "Verwijderen";
+"update" = "Bijwerken";
+"emoji" = "Emoji";
+"attachment" = "Bijlage";
+"back" = "Terug";
+"close" = "Sluiten";
+"save" = "Opslaan";
+"chat" = "Gesprek";
+"media" = "Media";
+"main_menu" = "Hoofdmenu";
+"show_password" = "Wachtwoord tonen";
+"hide_password" = "Wachtwoord verbergen";
 "not_now" = "Niet nu";
 "never" = "Nooit";
 "one_moment" = "Even geduld...";
@@ -189,6 +200,8 @@
 "chat_self_talk_subtitle" = "Aan mijzelf gestuurde berichten";
 "chat_contact_request" = "Contactpersoonverzoek";
 "chat_no_contact_requests" = "Geen contactpersoonverzoeken.\n\nAls je wilt dat klassieke e-mail hier verschijnt in de vorm van contactpersoonverzoeken, dan kun je dat aangeven in de app-instellingen.";
+"retry_send" = "Bericht opnieuw versturen";
+"send_failed" = "Kan bericht niet versturen";
 
 // map
 "filter_map_on_time" = "Locaties tonen in tijdsbeeld";
@@ -249,6 +262,7 @@
 "welcome_start_messaging" = "Aan de slag";
 "login_title" = "Inloggen";
 "login_header" = "Inloggen op je server";
+"login_explain" = "Log in met een bestaand e-mailaccount.";
 "login_subheader" = "Bij bekende e-mailproviders gaat het instellen vrijwel geheel automatisch. Soms moet je IMAP inschakelen in de webversie van je e-mailclient. Vraag je e-mailprovider of vrienden om hulp.";
 "login_no_servers_hint" = "Er is geen Delta Chat-server; jóuw gegevens blijven op jóuw apparaat.";
 "login_inbox" = "Postvak IN";
@@ -305,7 +319,6 @@
 "pref_blocked_contacts" = "Geblokkeerde contactpersonen";
 "pref_profile_photo_remove_ask" = "Profielfoto verwijderen?";
 "pref_help_url" = "https://delta.chat/en/help";
-"pref_password_and_account_settings" = "Wachtwoord en accountinstellingen";
 "pref_who_can_see_this_information" = "Wie kan deze informatie bekijken?";
 "pref_who_can_see_profile_explain" = "Je profielfoto en -naam worden getoond in gesprekken, naast je berichten. Reeds verstuurde informatie kan niet worden verwijderd of teruggehaald.";
 "pref_your_name" = "Je naam";
@@ -393,7 +406,12 @@
 "pref_empty_server_inbox" = "ALLE e-mails uit Postvak IN verwijderen";
 "pref_empty_server_mvbox" = "ALLE e-mails uit DeltaChat-map verwijderen";
 "pref_empty_server_do_button" = "E-mails verwijderen";
-
+"pref_experimental_features" = "Experimentele functies";
+"pref_on_demand_location_streaming" = "Locatie continue doorgeven (op verzoek)";
+"pref_background_default" = "Standaard achtergrond";
+"pref_background_default_color" = "Standaard kleur";
+"pref_background_custom_image" = "Eigen afbeelding";
+"pref_background_custom_color" = "Eigen kleur";
 
 // autocrypt
 "autocrypt" = "Autocrypt";
@@ -504,7 +522,6 @@
 // desktop specific strings
 "welcome_desktop" = "Welkom bij Delta Chat";
 "login_known_accounts_title_desktop" = "Bekende accounts";
-"global_menu_preferences_desktop" = "Instellingen";
 "global_menu_preferences_language_desktop" = "Kies een taal...";
 "global_menu_file_desktop" = "Bestand";
 "global_menu_file_quit_desktop" = "Afsluiten";
@@ -514,8 +531,6 @@
 "global_menu_edit_cut_desktop" = "Knippen";
 "global_menu_edit_copy_desktop" = "Kopiëren";
 "global_menu_edit_paste_desktop" = "Plakken";
-"global_menu_edit_delete_desktop" = "Verwijderen";
-"global_menu_edit_selectall_desktop" = "Alles selecteren";
 "global_menu_view_desktop" = "Bekijken";
 "global_menu_view_floatontop_desktop" = "Altijd bovenaan";
 "global_menu_view_developer_desktop" = "Ontwikkelaar";
@@ -527,7 +542,6 @@
 "global_menu_help_about_desktop" = "Over Delta Chat";
 "no_chat_selected_suggestion_desktop" = "Kies een gesprek of creëer een nieuw gesprek";
 "write_message_desktop" = "Schrijf een bericht";
-"about_deltachat_heading_desktop" = "Over Delta Chat";
 "encryption_info_title_desktop" = "Versleutelingsinformatie";
 "contact_detail_title_desktop" = "Contactpersoongegevens";
 "contact_request_title_desktop" = "Contactpersoonverzoek";
@@ -539,7 +553,6 @@
 "no_chats_desktop" = "Geen gesprekken";
 "encryption_info_desktop" = "Versleutelingsinformatie tonen";
 "verified_desktop" = "goedgekeurd";
-"group_name_desktop" = "Groepsnaam";
 "remove_desktop" = "Verwijderen";
 "save_desktop" = "Opslaan";
 "show_qr_verify_code_desktop" = "QR-uitnodigingscode tonen";
@@ -575,6 +588,17 @@
 "message_detail_to_desktop" = "aan";
 "menu.view.developer.open.log.folder" = "Map met logbestanden openen";
 "menu.view.developer.open.current.log.file" = "Huidig logbestand openen";
-
 "user_location_permission_explanation" = "Delta Chat heeft de locatiemachtiging nodig om je locatie te kunnen tonen en delen.";
 
+
+// accessibility
+"a11y_delivery_status_error" = "Bezorgstatus: afleveren mislukt";
+"a11y_encryption_padlock" = "Versleutelingsslot";
+"a11y_delivery_status_sending" = "Bezorgstatus: bezig met versturen";
+"a11y_delivery_status_draft" = "Bezorgstatus: concept";
+"a11y_delivery_status_delivered" = "Bezorgstatus: afgeleverd";
+"a11y_delivery_status_read" = "Bezorgstatus: gelezen";
+"a11y_delivery_status_invalid" = "Onbekende bezorgstatus";
+"a11y_remove_account_btn_label" = "Account verwijderen";
+"a11y_message_context_menu_btn_label" = "Berichtacties";
+"a11y_background_preview_label" = "Achtergrondvoorbeeld";

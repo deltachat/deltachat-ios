@@ -50,6 +50,7 @@
 "video" = "Vídeo";
 "documents" = "Documentos";
 "contact" = "Contato";
+"verified_contact" = "Contato verificado";
 "camera" = "Câmera";
 "location" = "Localização";
 "gallery" = "Galeria";
@@ -85,6 +86,7 @@
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Ativar teclado emoji";
 "menu_edit_group" = "Editar grupo";
+"menu_group_name_and_image" = "Nome e Imagem do grupo";
 "menu_show_map" = "Exibir mapa";
 "menu_show_global_map" = "Exibir todas as localizações";
 "menu_archive_chat" = "Arquivar conversa";
@@ -95,6 +97,7 @@
 "menu_delete_messages" = "Apagar mensagens";
 "menu_delete_image" = "Apagar imagem";
 "menu_delete_locations" = "Apagar todas as localizações?";
+"menu_delete_location" = "Deletar esta localização?";
 "menu_message_details" = "Detalhes da mensagem";
 "menu_copy_to_clipboard" = "Copiar para a área de transferência";
 "menu_forward" = "Encaminhar mensagem";
@@ -110,22 +113,30 @@
 "menu_play" = "Executar";
 "menu_pause" = "Pausar";
 "menu_scroll_to_bottom" = "Rolar até o fim";
+"menu_scroll_to_top" = "Rolar até o início";
 "menu_invite" = "Convidar amigos";
 "menu_help" = "Ajuda";
 "menu_select_all" = "Selecionar tudo";
 "menu_expand" = "Expandir";
 "menu_edit_name" = "Editar nome";
+"menu_edit_group_name" = "Editar nome do grupo";
+"menu_edit_group_image" = "Editar imagem do grupo";
 "menu_settings" = "Configurações";
 "menu_advanced" = "Avançado";
 "menu_deaddrop" = "Pedidos de contato";
 "menu_deaddrop_subtitle" = "Pressione na mensagem para conversar";
 "menu_view_profile" = "Ver perfil";
+"menu_zoom_in" = "Ampliar";
+"menu_zoom_out" = "Afastar";
+"menu_save_log" = "Salvar registro";
 "title_share_location" = "Compartilhar localização com o grupo";
 
 "mute_for_one_hour" = "Silenciar por 1 hora";
 "mute_for_two_hours" = "Silenciar por 2 horas";
 "mute_for_one_day" = "Silenciar por 1 dia";
 "mute_for_seven_days" = "Silenciar por 7 dias";
+"mute_forever" = "Silenciar eternamente";
+
 "share_location_once" = "uma vez";
 "share_location_for_5_minutes" = "por 5 minutos";
 "share_location_for_30_minutes" = "por 30 minutos";
@@ -141,8 +152,17 @@
 "ask_block_contact" = "Bloquear este contato? Você não mais receberá mensagens dele.";
 "ask_unblock_contact" = "Desbloquear este contato? Você voltará a receber mensagens dele.";
 "ask_delete_contacts" = "Apagar contatos? Eles serão permanentemente apagados.\n\nContatos com conversas ativas e contatos do livro de endereços do sistema não podem ser permanentemente apagados.";
+"ask_delete_contact" = "Apagar permanentemente contato %1$@?\n\nContatos com conversas em andamento e contatos da lista de contatos do sistema não podem ser apagados permanentemente.";
 "cannot_delete_contacts_in_use" = "Impossível apagar contatos com conversas em curso.";
 "ask_start_chat_with" = "Conversar com %1$@?";
+// Translators: %1$s will be replaces by a comma separated list of names
+"ask_remove_members" = "Remover %1$@ do grupo?";
+"info_outdated_app_title" = "Seu aplicativo está desatualizado.";
+"info_outdated_app_text" = "Parece que você instalou Delta Chat de uma fonte sem atualizações automáticas (ex: Github). Por favor altere para a versão de loja para receber as funções mais recentes e correções de bugs.";
+"info_outdated_app_dialog_title" = "Atualizar fontes";
+"info_outdated_app_dialog_text" = "Delta Chat está disponível em:";
+
+
 // contact list
 "contacts_title" = "Contatos";
 "contacts_enter_name_or_email" = "Insira um nome ou e-mail";
@@ -169,10 +189,12 @@
 "chat_self_talk_subtitle" = "Mensagens para mim mesmo";
 "chat_contact_request" = "Pedido de contato";
 "chat_no_contact_requests" = "Sem pedidos de contato.\n\nSe você quiser, e-mails normais podem ser exibidos como pedidos de contato. Basta habilitar nas configurações.";
-
 // map
 "filter_map_on_time" = "Exibir localização no tempo.";
 "show_location_traces" = "Exibir pegadas";
+"add_poi" = "Enviar ponto de interesse";
+
+
 // search
 "search" = "Procurar";
 "search_explain" = "Procurar conversas, contatos e mensagens";
@@ -188,6 +210,16 @@
 "group_hello_draft" = "Oi! Acabei de criar o grupo \"%1$@\" para conversarmos.";
 "group_self_not_in_group" = "É preciso ser um participante do grupo para fazer isso.";
 "profile_encryption" = "Criptografia";
+"profile_shared_chats" = "Conversas compartilhadas";
+"tab_contact" = "Contato";
+"tab_group" = "Grupo";
+"tab_members" = "Membros";
+"tab_gallery" = "Galeria";
+"tab_docs" = "Documentos";
+"tab_links" = "Links";
+"tab_map" = "Mapa";
+"tab_gallery_empty_hint" = "Imagens e vídeos compartilhados nesta conversa serão mostrados aqui.";
+"tab_docs_empty_hint" = "Documentos, músicas e outros arquivos compartilhados nesta conversa serão mostrados aqui.";
 "media_preview" = "Pré-visualização.";
 
 
@@ -272,7 +304,6 @@
 "pref_blocked_contacts" = "Contatos bloqueados";
 "pref_profile_photo_remove_ask" = "Remover foto de perfil?";
 "pref_help_url" = "https://delta.chat/pt/help";
-"pref_password_and_account_settings" = "Senha e configurações da conta";
 "pref_who_can_see_this_information" = "Quem pode ver essa informação?";
 "pref_who_can_see_profile_explain" = "Sua foto de perfil e nome serão exibidos com suas mensagens a outros usuários. Informações já enviadas não podem ser apagas ou removidas.";
 "pref_your_name" = "Seu nome";
@@ -282,6 +313,9 @@
 "pref_default_status_text" = "Enviado pelo meu Delta Chat Messenger: https://delta.chat";
 "pref_enter_sends" = "O botão enter envia";
 "pref_enter_sends_explain" = "As mensagens serão enviadas pressionando-se o enter";
+"pref_outgoing_media_quality" = "Qualidade de mídia de saída";
+"pref_outgoing_balanced" = "Equilibrado";
+"pref_outgoing_worse" = "Pior qualidade, tamanho pequeno";
 "pref_vibrate" = "Vibrar";
 "pref_chat_settings" = "Configurações das conversas";
 "pref_change_secret" = "Mudar senha";
@@ -320,6 +354,9 @@
 "pref_in_chat_sounds" = "Sons da conversa";
 "pref_message_text_size" = "Tamanho da fonte de mensagens";
 "pref_view_log" = "Ver relatório";
+"pref_saved_log" = "Registro salvo em pasta de Downloads";
+"pref_save_log_failed" = "Falha ao salvar registro";
+"pref_log_header" = "Registro";
 "pref_other" = "Outro";
 "pref_backup" = "Becape";
 "pref_backup_explain" = "Fazer becape das conversas para o armazenamento externo";
@@ -349,6 +386,11 @@
 "pref_show_emails_no" = "Não, somente conversas";
 "pref_show_emails_accepted_contacts" = "Para contatos aceitos";
 "pref_show_emails_all" = "Todos";
+"pref_empty_server_title" = "ZONA DE PERIGO: Apagar e-mails do servidor";
+"pref_empty_server_msg" = "Esta função ajuda a liberar espaço em seu servidor IMAP ao apagar TODOS os e-mails, incluindo conversas, em suas respectivas pastas. Mensagens neste dispositivo não serão apagadas. A remoção não pode ser desfeita!";
+"pref_empty_server_inbox" = "Deletar TODOS os e-mais na Caixa de Entrada.";
+"pref_empty_server_mvbox" = "Deletar TODOS os e-mails na pasta DeltaChat.";
+"pref_empty_server_do_button" = "Deletar e-mails";
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "A criptografia automática (Autocrypt) é um padrão novo e aberto para criptografia de e-mail de ponta a ponta. \n\n A sua configuração é feita automaticamente conforme necessário e pode ser compartilhada entre dispositivos diferentes com \"mensagens de configuração do Autocrypt\".";
@@ -412,6 +454,8 @@
 "qrshow_join_group_hint" = "Escanear para ingressar no grupo \"%1$@\".";
 "qrshow_join_contact_title" = "Código QR de convite";
 "qrshow_join_contact_hint" = "Escanear para estabelecer contato com %1$@";
+"qrshow_join_contact_no_connection_hint" = "A configuração por código QR necessita de uma conexão à rede. Por favor conecte-se à uma rede antes de continuar.";
+"qrshow_join_contact_no_connection_toast" = "Sem conexão à rede não é possível realizar configuração por código QR.";
 "contact_verified" = "%1$@ verificado.";
 "contact_not_verified" = "Impossível verificar %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
@@ -453,10 +497,7 @@
 // dc_str_* resources
 "encrypted_message" = "Mensagem criptografada";
 
-// desktop specific strings
-"welcome_desktop" = "Bem vindo(a) ao DeltaChat";
 "login_known_accounts_title_desktop" = "Contas conhecidas";
-"global_menu_preferences_desktop" = "Preferências";
 "global_menu_preferences_language_desktop" = "Escolher língua...";
 "global_menu_file_desktop" = "Arquivo";
 "global_menu_file_quit_desktop" = "Sair";
@@ -466,20 +507,15 @@
 "global_menu_edit_cut_desktop" = "Cortar";
 "global_menu_edit_copy_desktop" = "Copiar";
 "global_menu_edit_paste_desktop" = "Colar";
-"global_menu_edit_delete_desktop" = "Apagar";
-"global_menu_edit_selectall_desktop" = "Selecionar tudo";
 "global_menu_view_desktop" = "Ver";
 "global_menu_view_floatontop_desktop" = "Flutuar acima";
 "global_menu_view_developer_desktop" = "Desenvolvedor";
 "global_menu_view_developer_tools_desktop" = "Ferramentas de desenvolvedor";
 "global_menu_help_desktop" = "Ajuda";
-"global_menu_help_learn_desktop" = "Aprenda mais sobre o DeltaChat";
 "global_menu_help_contribute_desktop" = "Contribua no GitHub";
 "global_menu_help_report_desktop" = "Relatar um erro...";
-"global_menu_help_about_desktop" = "Sobre o DeltaChat";
 "no_chat_selected_suggestion_desktop" = "Selecione uma conversa ou crie uma nova";
 "write_message_desktop" = "Escrever uma mensagem";
-"about_deltachat_heading_desktop" = "Sobre o DeltaChat";
 "encryption_info_title_desktop" = "Informações da criptografia";
 "contact_detail_title_desktop" = "Detalhes do contato";
 "contact_request_title_desktop" = "Pedido de contato";
@@ -491,7 +527,6 @@
 "no_chats_desktop" = "Sem conversas";
 "encryption_info_desktop" = "Exibir informações de criptografia";
 "verified_desktop" = "verificado";
-"group_name_desktop" = "Nome do grupo";
 "remove_desktop" = "Remover";
 "save_desktop" = "Salvar";
 "show_qr_verify_code_desktop" = "Exibir código QR de convite";
@@ -527,6 +562,6 @@
 "message_detail_to_desktop" = "para";
 "menu.view.developer.open.log.folder" = "Abrir pasta de relatórios";
 "menu.view.developer.open.current.log.file" = "Abrir relatório atual";
-
 "user_location_permission_explanation" = "O Delta Chat precisa acessar sua localização para que você possa exibi-la e compartilhá-la.";
+
 

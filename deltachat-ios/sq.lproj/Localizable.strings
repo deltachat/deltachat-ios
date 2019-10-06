@@ -11,6 +11,17 @@
 "none" = "Asnjë";
 "open" = "Hap";
 "delete" = "Fshije";
+"update" = "Përditësoje";
+"emoji" = "Emoji";
+"attachment" = "Bashkëngjitje";
+"back" = "Mbrapsht";
+"close" = "Mbylle";
+"save" = "Ruaje";
+"chat" = "Fjalosje";
+"media" = "Media";
+"main_menu" = "Menuja kryesore";
+"show_password" = "Shfaqe fjalëkalimin";
+"hide_password" = "Fshihe fjalëkalimin";
 "not_now" = "Jo tani";
 "never" = "Kurrë";
 "one_moment" = "Një çast…";
@@ -189,6 +200,8 @@
 "chat_self_talk_subtitle" = "Mesazhe që i kam dërguar vetes";
 "chat_contact_request" = "Kërkesë kontakti";
 "chat_no_contact_requests" = "S\’ka kërkesa kontakti.\n\nNëse doni që email-e klasikë të shfaqen këtu si kërkesa kontakti, mund të ndryshoni rregullimin përkatës te rregullimet e aplikacionit.";
+"retry_send" = "Riprovo të dërgosh mesazhin";
+"send_failed" = "Dërgimi i mesazhit dështoi";
 
 // map
 "filter_map_on_time" = "Shfaq vendndodhje në rrjedhë kohore";
@@ -249,6 +262,7 @@
 "welcome_start_messaging" = "Filloni të Shkëmbeni Mesazhe";
 "login_title" = "Hyrje";
 "login_header" = "Hyrje te shërbyesi juaj";
+"login_explain" = "Hyrje me një llogari email ekzistuese.";
 "login_subheader" = "Për shërbime të njohura email-i, rregullimet shtesë caktohen automatikisht. Ndonjëherë shërbyesi IMAP lyp të aktivizohet te pjesa e dukshme web. Për ndihmë këshillohuni me shërbimin tuaj email ose shokë tuajt.";
 "login_no_servers_hint" = "S\’ka shërbyes Delta Chat, të dhënat tuaja rrinë në pajisjen tuaj!";
 "login_inbox" = "Të marrë";
@@ -305,7 +319,6 @@
 "pref_blocked_contacts" = "Kontakte të bllokuar";
 "pref_profile_photo_remove_ask" = "Të hiqet fotoja e profilit?";
 "pref_help_url" = "https://delta.chat/en/help";
-"pref_password_and_account_settings" = "Rregullime fjalëkalimi dhe llogarie";
 "pref_who_can_see_this_information" = "Kush mund ta shohë këtë informacion?";
 "pref_who_can_see_profile_explain" = "Fotoja dhe emri juaj i profilit do të shfaqen tok me mesazhet, kur komunikoni me përdorues të tjerë. Informacioni i dërguar tashmë s\’mund të fshihet apo të hiqet.";
 "pref_your_name" = "Emri juaj";
@@ -393,7 +406,11 @@
 "pref_empty_server_inbox" = "Fshiji KREJT email-et te dosja e të Marrëve";
 "pref_empty_server_mvbox" = "Fshiji KREJT email-et te dosja DeltaChat";
 "pref_empty_server_do_button" = "Fshiji email-et";
-
+"pref_experimental_features" = "Veçori eksperimentale";
+"pref_background_default" = "Sfond parazgjedhje";
+"pref_background_default_color" = "Ngjyrë parazgjedhje";
+"pref_background_custom_image" = "Figurë vetjake";
+"pref_background_custom_color" = "Ngjyrë vetjake";
 
 // autocrypt
 "autocrypt" = "Autocrypt";
@@ -502,9 +519,8 @@
 "encrypted_message" = "Mesazh i fshehtëzuar";
 
 // desktop specific strings
-"welcome_desktop" = "Mirë se vini te DeltaChat-i";
+"welcome_desktop" = "Mirë se vini në Delta Chat";
 "login_known_accounts_title_desktop" = "Llogari të njohura";
-"global_menu_preferences_desktop" = "Parapëlqime";
 "global_menu_preferences_language_desktop" = "Zgjidhni Gjuhë…";
 "global_menu_file_desktop" = "Kartelë";
 "global_menu_file_quit_desktop" = "Dilni";
@@ -514,20 +530,17 @@
 "global_menu_edit_cut_desktop" = "Prije";
 "global_menu_edit_copy_desktop" = "Kopjoje";
 "global_menu_edit_paste_desktop" = "Ngjite";
-"global_menu_edit_delete_desktop" = "Fshije";
-"global_menu_edit_selectall_desktop" = "Përzgjidhi Krejt";
 "global_menu_view_desktop" = "Shiheni";
 "global_menu_view_floatontop_desktop" = "Pezull Përsipër";
 "global_menu_view_developer_desktop" = "Zhvillues";
 "global_menu_view_developer_tools_desktop" = "Mjete Zhvilluesi";
 "global_menu_help_desktop" = "Ndihmë";
-"global_menu_help_learn_desktop" = "Mësoni më tepër rreth DeltaChat-it";
+"global_menu_help_learn_desktop" = "Mësoni më tepër rreth Delta Chat-it";
 "global_menu_help_contribute_desktop" = "Jepni ndihmesë në GitHub";
 "global_menu_help_report_desktop" = "Njoftoni një Problem…";
-"global_menu_help_about_desktop" = "Mbi DeltaChat-in";
+"global_menu_help_about_desktop" = "Rreth Delta Chat-it";
 "no_chat_selected_suggestion_desktop" = "Përzgjidhni një fjalosje ose krijoni një të tillë të re";
 "write_message_desktop" = "Shkruani një mesazh";
-"about_deltachat_heading_desktop" = "Mbi DeltaChat-in";
 "encryption_info_title_desktop" = "Të dhëna fshehtëzimi";
 "contact_detail_title_desktop" = "Hollësi kontakti";
 "contact_request_title_desktop" = "Kërkesë kontakti";
@@ -539,7 +552,6 @@
 "no_chats_desktop" = "S\’ka fjalosje";
 "encryption_info_desktop" = "Shfaq të dhëna fshehtëzimi";
 "verified_desktop" = "e verifikuar";
-"group_name_desktop" = "Emër grupi";
 "remove_desktop" = "Hiqe";
 "save_desktop" = "Ruaje";
 "show_qr_verify_code_desktop" = "Shfaq kod QR ftese";
@@ -575,6 +587,17 @@
 "message_detail_to_desktop" = "për";
 "menu.view.developer.open.log.folder" = "Hap Dosje Regjistrash";
 "menu.view.developer.open.current.log.file" = "Hap Kartelën Regjistër të Tanishme";
-
 "user_location_permission_explanation" = "Që të mund të shfaqë dhe ndajë me të tjerët vendndodhjen tuaj, Delta Chat lyp lejen vendore.";
 
+
+// accessibility
+"a11y_delivery_status_error" = "Gjendje dërgimi: Gabim";
+"a11y_encryption_padlock" = "Dry fshehtëzimi";
+"a11y_delivery_status_sending" = "Gjendje dërgimi: Po dërgohet";
+"a11y_delivery_status_draft" = "Gjendje dërgimi: Skicë";
+"a11y_delivery_status_delivered" = "Gjendje dërgimi: I dërguar";
+"a11y_delivery_status_read" = "Gjendje dërgimi: I lexuar";
+"a11y_delivery_status_invalid" = "Gjendje dërgimi e pavlefshme";
+"a11y_remove_account_btn_label" = "Hiqe llogarinë";
+"a11y_message_context_menu_btn_label" = "Veprime mesazhesh";
+"a11y_background_preview_label" = "Paraparje sfondi";

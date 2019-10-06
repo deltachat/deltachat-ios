@@ -186,7 +186,6 @@
 "chat_self_talk_subtitle" = "傳送給自己的訊息";
 "chat_contact_request" = "聯絡請求";
 "chat_no_contact_requests" = "沒有聯絡請求。\n\n如果你希望在這裡看到一般的 email 信件的話，請在「設定」中開啟相關設定。";
-
 // map
 "filter_map_on_time" = "顯示指定時間內的所在地";
 "show_location_traces" = "顯示移動足跡";
@@ -302,7 +301,6 @@
 "pref_blocked_contacts" = "已封鎖的聯絡人";
 "pref_profile_photo_remove_ask" = "移除大頭照?";
 "pref_help_url" = "https://delta.chat/tw/help";
-"pref_password_and_account_settings" = "帳號密碼設定";
 "pref_who_can_see_this_information" = "隱私權設定";
 "pref_who_can_see_profile_explain" = "你的名字和大頭照在通訊的過程中，會提供給對方看到。已傳送的資訊無法被刪除或移除。";
 "pref_your_name" = "你的名字";

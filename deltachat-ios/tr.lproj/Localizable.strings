@@ -11,6 +11,17 @@
 "none" = "Hiçbiri";
 "open" = "Aç";
 "delete" = "Sil";
+"update" = "Güncelleştir";
+"emoji" = "Emoji";
+"attachment" = "İlişik";
+"back" = "Geri";
+"close" = "Kapat";
+"save" = "Kaydet";
+"chat" = "Sohbet";
+"media" = "Ortam";
+"main_menu" = "Ana menü";
+"show_password" = "Parolayı göster";
+"hide_password" = "Parolayı gizle";
 "not_now" = "Şimdi değil";
 "never" = "Hiçbir zaman";
 "one_moment" = "Bir dakika…";
@@ -124,7 +135,7 @@
 "menu_settings" = "Ayarlar";
 "menu_advanced" = "Gelişmiş";
 "menu_deaddrop" = "İletişim istekleri";
-"menu_deaddrop_subtitle" = "Sohbete başlamak için iletiye basın";
+"menu_deaddrop_subtitle" = "Sohbet başlatmak için iletiye basın";
 "menu_view_profile" = "Profili görüntüle";
 "menu_zoom_in" = "Yakınlaştır";
 "menu_zoom_out" = "Uzaklaştır";
@@ -189,6 +200,8 @@
 "chat_self_talk_subtitle" = "Kendime gönderdiğim iletiler";
 "chat_contact_request" = "İletişim isteği";
 "chat_no_contact_requests" = "İletişim isteği yok.\n\nKlasik e-postaları burada iletişim isteği olarak görmek istiyorsanız, ilgili ayarı uygulama ayarlarında değiştirebilirsiniz.";
+"retry_send" = "İletiyi göndermeyi yeniden dene";
+"send_failed" = "İletiyi gönderme başarısız";
 
 // map
 "filter_map_on_time" = "Konumları zaman çerçevesinde göster";
@@ -246,9 +259,10 @@
 "welcome_intro6_message" = "Tüm yaygın algoritmalarla şifrelenir. İletiler sunucularınızda kalır.";
 "welcome_intro7_headline" = "Güvenilir";
 "welcome_intro7_message" = "Delta Chat, iş kullanımı için güvenli, uyumlu ve standartlar tabanlıdır.";
-"welcome_start_messaging" = "İletileşmeye Başla";
+"welcome_start_messaging" = "İletileşme Başlat";
 "login_title" = "Oturum aç";
 "login_header" = "Sunucunuzda oturum açın";
+"login_explain" = "Varolan bir e-posta hesabıyla oturum açın.";
 "login_subheader" = "Bilinen e-posta sağlayıcıları için ek ayarlar otomatik olarak ayarlanır. Bazen IMAP\'nin web ön ucundan etkinleştirilmesi gerekir. Yardım için e-posta sağlayıcınıza ya da arkadaşlarınıza danışın.";
 "login_no_servers_hint" = "Delta Chat sunucusu yoktur; verileriniz aygıtınızda kalır!";
 "login_inbox" = "Gelen Kutusu";
@@ -272,7 +286,7 @@
 "login_error_required_fields" = "Lütfen geçerli bir e-posta adresi ve bir parola girin";
 "import_backup_title" = "Yedeği içe aktar";
 "import_backup_ask" = "\"%1$@\" üzerinde yedek bulundu.\n\nİçe aktarmak ve ondan gelen tüm verileri ve ayarları kullanmak istiyor musunuz?";
-"import_backup_no_backup_found" = "Yedek bulunamadı.\n\nYedeği \"%1$@\" üzerine kopyalayın ve yeniden deneyin. Ek olarak, normal ayarlama işlemine gitmek için \"İletileşmeye başla\"ya basın.";
+"import_backup_no_backup_found" = "Yedek bulunamadı.\n\nYedeği \"%1$@\" üzerine kopyalayın ve yeniden deneyin. Ek olarak, normal ayarlama işlemiyle sürdürmek için \"İletileşme Başlat\"a basın.";
 // Translators: %1$s will be replaced by the email address
 "login_error_cannot_login" = "\"%1$@\" olarak oturum açılamıyor. Lütfen e-posta adresinin ve parolanın doğru olup olmadığını denetleyin.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
@@ -282,7 +296,7 @@
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "İlet …";
-"share_multiple_attachments" = "%1$d dosyayı seçilen sohbete göndermek istiyor musunuz?\n\nDosyalar, değiştirilmeden özgün boyutlarında gönderilir, örn. görseller ve videolar yeniden kodlanmaz.";
+"share_multiple_attachments" = "%1$d dosyayı seçilen sohbete göndermek istiyor musunuz?\n\nDosyalar, değiştirilmeden özgün boyutlarında gönderilir; örn. görseller ve videolar yeniden kodlanmaz.";
 "share_abort" = "Eksik izinlerden dolayı paylaşımdan vazgeçildi.";
 
 
@@ -305,7 +319,6 @@
 "pref_blocked_contacts" = "Engellenen kişiler";
 "pref_profile_photo_remove_ask" = "Profil fotoğrafı kaldırılsın mı?";
 "pref_help_url" = "https://delta.chat/en/help";
-"pref_password_and_account_settings" = "Parola ve hesap ayarları";
 "pref_who_can_see_this_information" = "Bu bilgileri kimler görebilir?";
 "pref_who_can_see_profile_explain" = "Profil resminiz ve adınız, diğer kullanıcılarla iletişim kurarken iletilerinizin yanında gösterilir. Zaten gönderilen bilgiler silinemeyebilir ya da kaldırılamayabilir.";
 "pref_your_name" = "Adınız";
@@ -363,7 +376,7 @@
 "pref_backup" = "Yedekleme";
 "pref_backup_explain" = "Sohbetleri dış depolamaya yedekle";
 "pref_backup_export_explain" = "Bir yedek, bu ya da başka bir aygıtta yeni bir kurulum ayarlamanıza yardım eder.\n\nYedek, tüm iletileri, kişileri ve sohbetleri ve uçtan uca Autocrypt ayarlamanızı içerecek. Yedek dosyasını güvenli bir yerde tutun ya da olanaklıysa en kısa sürede silin.";
-"pref_backup_export_start_button" = "Yedeklemeye başla";
+"pref_backup_export_start_button" = "Yedekleme başlat";
 "pref_backup_written_to_x" = "Yedek %1$@ üzerine başarıyla yazıldı";
 "pref_managekeys_menu_title" = "Anahtarları yönet";
 "pref_managekeys_ask_for_storage_permission" = "Delta Chat\'in anahtarları içe/dışa aktarmak için dosyalarınıza erişmesi gerekir.";
@@ -393,7 +406,12 @@
 "pref_empty_server_inbox" = "Gelen Kutusu klasöründeki TÜM e-postaları sil";
 "pref_empty_server_mvbox" = "DeltaChat klasöründeki TÜM e-postaları sil";
 "pref_empty_server_do_button" = "E-postaları sil";
-
+"pref_experimental_features" = "Deneysel özellikler";
+"pref_on_demand_location_streaming" = "İsteğe bağlı konum akışı";
+"pref_background_default" = "Varsayılan artalan";
+"pref_background_default_color" = "Varsayılan renk";
+"pref_background_custom_image" = "Özel görsel";
+"pref_background_custom_color" = "Özel renk";
 
 // autocrypt
 "autocrypt" = "Autocrypt";
@@ -441,13 +459,13 @@
 
 
 // qr code stuff
-"qrscan_title" = "QR kodunu tara";
-"qrscan_hint" = "Kameranızı QR kodunun üzerine yerleştirin";
+"qrscan_title" = "QR kodu tara";
+"qrscan_hint" = "Kameranızı QR kodun üzerine yerleştirin";
 "qrscan_ask_join_group" = "\"%1$@\" grubuna katılmak istiyor musunuz?";
 "qrscan_fingerprint_mismatch" = "Taranan parmak izi %1$@ için son görülen parmak iziyle eşleşmiyor";
-"qrscan_no_addr_found" = "Bu QR kodu bir parmak izi içeriyor ama e-posta adresi yok.\n\nBir bant dışı doğrulama için lütfen önce alıcıya şifrelenen bir bağlantı kurun.";
-"qrscan_contains_text" = "Taranan QR kodu metni:\n\n%1$@";
-"qrscan_contains_url" = "Taranan QR kodu URL\'si:\n\n%1$@";
+"qrscan_no_addr_found" = "Bu QR kod bir parmak izi içeriyor ama e-posta adresi yok.\n\nBir bant dışı doğrulama için lütfen önce alıcıya şifrelenen bir bağlantı kurun.";
+"qrscan_contains_text" = "Taranan QR kod metni:\n\n%1$@";
+"qrscan_contains_url" = "Taranan QR kod URL\'si:\n\n%1$@";
 "qrscan_fingerprint_label" = "Parmak izi";
 "qrscan_x_verified_introduce_myself" = "%1$@ doğrulandı; kendimi tanıtıyorum …";
 "qrshow_title" = "QR davet kodu";
@@ -458,8 +476,8 @@
 "qrshow_join_group_hint" = "\"%1$@\" grubuna katılmak için bunu tarayın.";
 "qrshow_join_contact_title" = "QR davet kodu";
 "qrshow_join_contact_hint" = "%1$@ ile bir iletişim ayarlamak için bunu tarayın";
-"qrshow_join_contact_no_connection_hint" = "QR kodu ayarlaması bir Internet bağlantısı gerektirir. İşlemden önce lütfen bir ağa bağlanın.";
-"qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kodu ayarlaması gerçekleştirilemiyor.";
+"qrshow_join_contact_no_connection_hint" = "QR kod ayarlaması bir Internet bağlantısı gerektirir. İşlemden önce lütfen bir ağa bağlanın.";
+"qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kod ayarlaması gerçekleştirilemiyor.";
 "contact_verified" = "%1$@ doğrulandı.";
 "contact_not_verified" = "%1$@ doğrulanamıyor";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
@@ -502,9 +520,8 @@
 "encrypted_message" = "Şifrelenen ileti";
 
 // desktop specific strings
-"welcome_desktop" = "DeltaChat\'e hoş geldiniz";
+"welcome_desktop" = "Delta Chat\'e hoş geldiniz";
 "login_known_accounts_title_desktop" = "Bilinen hesaplar";
-"global_menu_preferences_desktop" = "Tercihler";
 "global_menu_preferences_language_desktop" = "Dil Seç...";
 "global_menu_file_desktop" = "Dosya";
 "global_menu_file_quit_desktop" = "Çık";
@@ -514,20 +531,17 @@
 "global_menu_edit_cut_desktop" = "Kes";
 "global_menu_edit_copy_desktop" = "Kopyala";
 "global_menu_edit_paste_desktop" = "Yapıştır";
-"global_menu_edit_delete_desktop" = "Sil";
-"global_menu_edit_selectall_desktop" = "Tümünü Seç";
 "global_menu_view_desktop" = "Görünüm";
 "global_menu_view_floatontop_desktop" = "Üstte Yüzdür";
 "global_menu_view_developer_desktop" = "Geliştirici";
 "global_menu_view_developer_tools_desktop" = "Geliştirici Araçları";
 "global_menu_help_desktop" = "Yardım";
-"global_menu_help_learn_desktop" = "DeltaChat hakkında daha fazlasını öğrenin";
-"global_menu_help_contribute_desktop" = "GitHub\'da Katkıda Bulun";
+"global_menu_help_learn_desktop" = "Delta Chat hakkında daha fazlasını öğrenin";
+"global_menu_help_contribute_desktop" = "GitHub\'da katkıda bulunun";
 "global_menu_help_report_desktop" = "Bir Sorun Raporla...";
-"global_menu_help_about_desktop" = "DeltaChat Hakkında";
+"global_menu_help_about_desktop" = "Delta Chat hakkında";
 "no_chat_selected_suggestion_desktop" = "Bir sohbet seçin ya da yeni bir sohbet oluşturun";
 "write_message_desktop" = "Bir ileti yazın";
-"about_deltachat_heading_desktop" = "DeltaChat hakkında";
 "encryption_info_title_desktop" = "Şifreleme bilgileri";
 "contact_detail_title_desktop" = "Kişi ayrıntısı";
 "contact_request_title_desktop" = "İletişim isteği";
@@ -539,7 +553,6 @@
 "no_chats_desktop" = "Sohbet yok";
 "encryption_info_desktop" = "Şifreleme bilgisini göster";
 "verified_desktop" = "doğrulanan";
-"group_name_desktop" = "Grup adı";
 "remove_desktop" = "Kaldır";
 "save_desktop" = "Kaydet";
 "show_qr_verify_code_desktop" = "QR davet kodunu göster";
@@ -575,6 +588,17 @@
 "message_detail_to_desktop" = "kime";
 "menu.view.developer.open.log.folder" = "Günlük Klasörünü Aç";
 "menu.view.developer.open.current.log.file" = "Geçerli Günlük Dosyasını Aç";
-
 "user_location_permission_explanation" = "Delta Chat\'in konumunuzu göstermesi ya da paylaşması için konum izni gerekir.";
 
+
+// accessibility
+"a11y_delivery_status_error" = "Teslimat durumu: Hata";
+"a11y_encryption_padlock" = "Şifreleme asma kilidi";
+"a11y_delivery_status_sending" = "Teslimat durumu: Gönderiliyor";
+"a11y_delivery_status_draft" = "Teslimat durumu: Taslak";
+"a11y_delivery_status_delivered" = "Teslimat durumu: Teslim edildi";
+"a11y_delivery_status_read" = "Teslimat durumu: Okundu";
+"a11y_delivery_status_invalid" = "Geçersiz teslimat durumu";
+"a11y_remove_account_btn_label" = "Hesabı kaldır";
+"a11y_message_context_menu_btn_label" = "İleti eylemleri";
+"a11y_background_preview_label" = "Artalan önizlemesi";

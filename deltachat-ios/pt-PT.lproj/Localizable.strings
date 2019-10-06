@@ -253,7 +253,6 @@
 "pref_blocked_contacts" = "Bloquear contactos";
 "pref_profile_photo_remove_ask" = "Remover a foto do perfil";
 "pref_help_url" = "https://delta.chat/en/help";
-"pref_password_and_account_settings" = "Palavra-chave e definiçõs da conta";
 "pref_who_can_see_this_information" = "Quem pode ver esta informação?";
 "pref_who_can_see_profile_explain" = "A sua foto e nome de perfil serão mostrados ao lado das suas mensagens ao comunicar com outros utilizadores. As informações já enviadas não podem ser excluídas ou removidas";
 "pref_your_name" = "O seu nome";
@@ -429,10 +428,7 @@
 // dc_str_* resources
 "encrypted_message" = "Mensagem encriptada";
 
-// desktop specific strings
-"welcome_desktop" = "Bem vindo ao DeltaChat";
 "login_known_accounts_title_desktop" = "Contas Conhecidas";
-"global_menu_preferences_desktop" = "Preferências";
 "global_menu_preferences_language_desktop" = "Escolha o seu idioma...";
 "global_menu_file_desktop" = "Arquivo";
 "global_menu_file_quit_desktop" = "Sair";
@@ -442,20 +438,15 @@
 "global_menu_edit_cut_desktop" = "Cortar";
 "global_menu_edit_copy_desktop" = "Copiar";
 "global_menu_edit_paste_desktop" = "Colar";
-"global_menu_edit_delete_desktop" = "Apagar";
-"global_menu_edit_selectall_desktop" = "Seleccionar tudo";
 "global_menu_view_desktop" = "Ver";
 "global_menu_view_floatontop_desktop" = "Flutuar no topo";
 "global_menu_view_developer_desktop" = "Programador";
 "global_menu_view_developer_tools_desktop" = "Ferramentas do programador";
 "global_menu_help_desktop" = "Ajuda";
-"global_menu_help_learn_desktop" = "Saiba mais sobre o DeltaChat";
 "global_menu_help_contribute_desktop" = "Contribuir no GitHub";
 "global_menu_help_report_desktop" = "Comunicar um problema ...";
-"global_menu_help_about_desktop" = "Sobre o DeltaChat";
 "no_chat_selected_suggestion_desktop" = "Selecione um CHAT ou crie um novo";
 "write_message_desktop" = "Escreva uma mensagem";
-"about_deltachat_heading_desktop" = "Sobre o DeltaChat";
 "encryption_info_title_desktop" = "Informação sobre encriptação";
 "contact_detail_title_desktop" = "Detalhes do contacto";
 "contact_request_title_desktop" = "Pedido de contacto";
@@ -467,7 +458,6 @@
 "no_chats_desktop" = "Não existem CHATS";
 "encryption_info_desktop" = "Mostrar a informação de encriptação";
 "verified_desktop" = "verificado";
-"group_name_desktop" = "Nome do grupo";
 "remove_desktop" = "Apagar";
 "save_desktop" = "Guardar";
 "show_qr_verify_code_desktop" = "Mostrar código de convite do QR";
@@ -502,4 +492,3 @@
 "message_detail_to_desktop" = "para";
 "menu.view.developer.open.log.folder" = "Abrir pasta de Log";
 "menu.view.developer.open.current.log.file" = "Abrir o aqrquio do log actual";
-

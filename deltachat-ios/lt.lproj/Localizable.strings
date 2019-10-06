@@ -11,6 +11,14 @@
 "none" = "Nėra";
 "open" = "Atverti";
 "delete" = "Ištrinti";
+"attachment" = "Priedas";
+"back" = "Atgal";
+"close" = "Užverti";
+"save" = "Įrašyti";
+"media" = "Medija";
+"main_menu" = "Pagrindinis meniu";
+"show_password" = "Rodyti slaptažodį";
+"hide_password" = "Slėpti slaptažodį";
 "not_now" = "Ne dabar";
 "never" = "Niekada";
 "one_moment" = "Minutėlę…";
@@ -128,6 +136,7 @@
 "menu_view_profile" = "Rodyti profilį";
 "menu_zoom_in" = "Didinti";
 "menu_zoom_out" = "Mažinti";
+"menu_save_log" = "Įrašyti žurnalą";
 "title_share_location" = "Bendrinti savo vietą su visais grupės dalyviais";
 
 "mute_for_one_hour" = "Išjungti 1 valandai";
@@ -145,6 +154,10 @@
 "ask_start_chat_with" = "Pradėti pokalbį su %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Pašalinti %1$@ iš grupės?";
+"info_outdated_app_title" = "Atrodo, kad jūsų programėlės versija yra pasenusi.";
+"info_outdated_app_dialog_text" = "Delta Chat yra prieinama:";
+
+
 // contact list
 "contacts_title" = "Adresatai";
 "contacts_enter_name_or_email" = "Įveskite vardą ar el. pašto adresą";
@@ -264,7 +277,6 @@
 "pref_blocked_contacts" = "Užblokuoti adresatai";
 "pref_profile_photo_remove_ask" = "Šalinti profilio nuotrauką?";
 "pref_help_url" = "https://delta.chat/en/help";
-"pref_password_and_account_settings" = "Slaptažodis ir paskyros nustatymai";
 "pref_who_can_see_this_information" = "Kas gali matyti šią informaciją?";
 "pref_who_can_see_profile_explain" = "Bendraujant su kitais naudotojais, jūsų profilio paveikslas ir vardas bus rodomi kartu su jūsų žinutėmis. Jau išsiųsta informacija negalės būti ištrinta ar pašalinta.";
 "pref_your_name" = "Jūsų vardas";
@@ -312,6 +324,7 @@
 "pref_in_chat_sounds" = "Garsai pokalbiuose";
 "pref_message_text_size" = "Žinučių šrifto dydis";
 "pref_view_log" = "Rodyti žurnalą";
+"pref_save_log_failed" = "Nepavyko įrašyti žurnalo";
 "pref_other" = "Kita";
 "pref_backup" = "Atsarginė kopija";
 "pref_backup_explain" = "Padaro atsarginę pokalbių kopiją į išorinę saugyklą";
@@ -337,6 +350,13 @@
 "pref_auto_folder_moves" = "Automatiniai perkėlimai į DeltaChat aplanką";
 "pref_auto_folder_moves_explain" = "Pokalbiai yra perkeliami, kad nebūtų sujauktas Gautųjų aplankas";
 "pref_email_interaction_title" = "Sąveika su el. paštu";
+"pref_empty_server_title" = "PAVOJINGA ZONA: Ištrinti el. laiškus iš serverio";
+"pref_experimental_features" = "Eksperimentinės ypatybės";
+"pref_background_default" = "Numatytasis fonas";
+"pref_background_default_color" = "Numatytoji spalva";
+"pref_background_custom_image" = "Tinkintas paveikslas";
+"pref_background_custom_color" = "Tinkinta spalva";
+
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt yra naujoji ir atviroji specifikacija automatiniam ištisiniam el. pašto šifravui.\n\nPrireikus, jūsų ištisinė sąranka yra sukuriama automatiškai ir gali būti perduodama tarp įrenginių, naudojant Autocrypt sąrankos žinutes.";
@@ -420,9 +440,8 @@
 "encrypted_message" = "Šifruota žinutė";
 
 // desktop specific strings
-"welcome_desktop" = "Sveiki atvykę į DeltaChat";
+"welcome_desktop" = "Sveiki atvykę į Delta Chat";
 "login_known_accounts_title_desktop" = "Žinomos paskyros";
-"global_menu_preferences_desktop" = "Nuostatos";
 "global_menu_preferences_language_desktop" = "Pasirinkti kalbą...";
 "global_menu_file_desktop" = "Failas";
 "global_menu_file_quit_desktop" = "Išeiti";
@@ -432,20 +451,16 @@
 "global_menu_edit_cut_desktop" = "Iškirpti";
 "global_menu_edit_copy_desktop" = "Kopijuoti";
 "global_menu_edit_paste_desktop" = "Įdėti";
-"global_menu_edit_delete_desktop" = "Ištrinti";
-"global_menu_edit_selectall_desktop" = "Žymėti viską";
 "global_menu_view_desktop" = "Rodinys";
 "global_menu_view_floatontop_desktop" = "Plaukioti viršuje";
 "global_menu_view_developer_desktop" = "Plėtotojas";
 "global_menu_view_developer_tools_desktop" = "Plėtotojo įrankiai";
 "global_menu_help_desktop" = "Žinynas";
-"global_menu_help_learn_desktop" = "Sužinoti daugiau apie DeltaChat";
+"global_menu_help_learn_desktop" = "Sužinokite daugiau apie Delta Chat";
 "global_menu_help_contribute_desktop" = "Talkinti Github svetainėje";
 "global_menu_help_report_desktop" = "Pranešti apie klaidą...";
-"global_menu_help_about_desktop" = "Apie DeltaChat";
 "no_chat_selected_suggestion_desktop" = "Pasirinkite arba sukurkite naują pokalbį";
 "write_message_desktop" = "Rašykite žinutę";
-"about_deltachat_heading_desktop" = "Apie DeltaChat";
 "encryption_info_title_desktop" = "Šifravimo informacija";
 "contact_detail_title_desktop" = "Išsamesnė adresato informacija";
 "contact_request_title_desktop" = "Adresato užklausa";
@@ -456,7 +471,6 @@
 "no_archived_chats_desktop" = "Archyvuotų pokalbių nėra";
 "no_chats_desktop" = "Pokalbių nėra";
 "encryption_info_desktop" = "Rodyti šifravimo informaciją";
-"group_name_desktop" = "Grupės pavadinimas";
 "remove_desktop" = "Šalinti";
 "save_desktop" = "Išsaugoti";
 "show_qr_verify_code_desktop" = "Rodyti QR pakvietimo kodą";
@@ -491,4 +505,4 @@
 "message_detail_to_desktop" = "kam";
 "menu.view.developer.open.log.folder" = "Atverti žurnalų aplanką";
 "menu.view.developer.open.current.log.file" = "Atverti dabartinio žurnalo failą";
-
+"a11y_remove_account_btn_label" = "Šalinti paskyrą";

@@ -11,6 +11,17 @@
 "none" = "Keine";
 "open" = "Öffnen";
 "delete" = "Löschen";
+"update" = "Aktualisieren";
+"emoji" = "Emoji";
+"attachment" = "Anhang";
+"back" = "Zurück";
+"close" = "Schließen";
+"save" = "Speichern";
+"chat" = "Chat";
+"media" = "Medien";
+"main_menu" = "Hauptmenü";
+"show_password" = "Passwort anzeigen";
+"hide_password" = "Passwort verstecken";
 "not_now" = "Nicht jetzt";
 "never" = "Nie";
 "one_moment" = "Einen Moment…";
@@ -189,6 +200,8 @@
 "chat_self_talk_subtitle" = "Nachrichten, die ich mir selber geschickt habe";
 "chat_contact_request" = "Kontaktanfrage";
 "chat_no_contact_requests" = "Keine Kontaktanfragen.\n\nWenn normale E-Mails hier erscheinen sollen, müssen Sie die entsprechende erweiterte Einstellung ändern.";
+"retry_send" = "Nachricht erneut senden";
+"send_failed" = "Nachricht senden fehlgeschlagen";
 
 // map
 "filter_map_on_time" = "Standorte im Zeitrahmen anzeigen";
@@ -249,6 +262,7 @@
 "welcome_start_messaging" = "Jetzt beginnen";
 "login_title" = "Login";
 "login_header" = "Bei ihrem Server anmelden";
+"login_explain" = "Mit existierendem E-Mail-Konto einloggen";
 "login_subheader" = "Für bekannte E-Mail-Anbieter werden zusätzliche Einstellungen automatisch vorgenommen. Manchmal muss IMAP im Web-Frontend aktiviert werden. Bitten Sie Ihren Anbieter oder Freunde um Rat, wenn es Probleme gibt.";
 "login_no_servers_hint" = "Es gibt keine Delta Chat Server! Ihre Daten bleiben auf Ihrem Gerät!";
 "login_inbox" = "Posteingang";
@@ -305,7 +319,7 @@
 "pref_blocked_contacts" = "Blockierte Kontakte";
 "pref_profile_photo_remove_ask" = "Profilbild entfernen?";
 "pref_help_url" = "https://delta.chat/de/help";
-"pref_password_and_account_settings" = "Passwort und Kontoeinstellungen";
+"pref_password_and_account_settings" = "Passwort und E-Mail-Konto";
 "pref_who_can_see_this_information" = "Wer kann diese Informationen sehen?";
 "pref_who_can_see_profile_explain" = "Das Profilbild und der Name werden neben gesendeten Nachrichten angezeigt. Bereits gesendete Informationen können nicht mehr gelöscht oder entfernt werden.";
 "pref_your_name" = "Mein Name";
@@ -393,7 +407,12 @@
 "pref_empty_server_inbox" = "Löschen ALLER e-mails im Nachrichteneingangsordner (INBOX)";
 "pref_empty_server_mvbox" = "Löschen ALLER e-mails im DeltaChat Ordner.";
 "pref_empty_server_do_button" = "E-mails löschen. ";
-
+"pref_experimental_features" = "Experimentelle Features";
+"pref_on_demand_location_streaming" = "On-demand Standortübertragung";
+"pref_background_default" = "Voreingestellter Hintergrund";
+"pref_background_default_color" = "Voreingestellte Farbe";
+"pref_background_custom_image" = "Benutzerdefiniertes Hintergrundbild";
+"pref_background_custom_color" = "Benutzerdefinierte Farbe";
 
 // autocrypt
 "autocrypt" = "Autocrypt";
@@ -502,9 +521,8 @@
 "encrypted_message" = "Verschlüsselte Nachricht";
 
 // desktop specific strings
-"welcome_desktop" = "Willkommen zu Delta Chat";
+"welcome_desktop" = "Willkommen bei Delta Chat";
 "login_known_accounts_title_desktop" = "Bekannte Konten";
-"global_menu_preferences_desktop" = "Einstellungen";
 "global_menu_preferences_language_desktop" = "Wähle Sprache...";
 "global_menu_file_desktop" = "Datei";
 "global_menu_file_quit_desktop" = "Beenden";
@@ -514,8 +532,6 @@
 "global_menu_edit_cut_desktop" = "Ausschneiden";
 "global_menu_edit_copy_desktop" = "Kopieren";
 "global_menu_edit_paste_desktop" = "Einfügen";
-"global_menu_edit_delete_desktop" = "Löschen";
-"global_menu_edit_selectall_desktop" = "Alles auswählen";
 "global_menu_view_desktop" = "Ansicht";
 "global_menu_view_floatontop_desktop" = "Im Vordergrund halten";
 "global_menu_view_developer_desktop" = "Entwickler";
@@ -527,7 +543,6 @@
 "global_menu_help_about_desktop" = "Über Delta Chat";
 "no_chat_selected_suggestion_desktop" = "Wähle einen Chat aus oder erstelle einen neuen Chat.";
 "write_message_desktop" = "Schreibe eine Nachricht";
-"about_deltachat_heading_desktop" = "Über Delta Chat";
 "encryption_info_title_desktop" = "Verschlüsselungsinformationen";
 "contact_detail_title_desktop" = "Kontaktdetails";
 "contact_request_title_desktop" = "Kontaktanfrage";
@@ -539,7 +554,6 @@
 "no_chats_desktop" = "Keine Chats";
 "encryption_info_desktop" = "Zeige Verschlüsselungsinfo";
 "verified_desktop" = "Verifiziert";
-"group_name_desktop" = "Gruppenname";
 "remove_desktop" = "Entfernen";
 "save_desktop" = "Speichern";
 "show_qr_verify_code_desktop" = "QR-Einladungscode";
@@ -575,6 +589,17 @@
 "message_detail_to_desktop" = "an";
 "menu.view.developer.open.log.folder" = "Logdatei öffnen";
 "menu.view.developer.open.current.log.file" = "Aktuelle Logdatei öffnen";
-
 "user_location_permission_explanation" = "Delta Chat benötigt die Standortberechtigung, um Ihren Standort anzuzeigen und zu teilen.";
 
+
+// accessibility
+"a11y_delivery_status_error" = "Übertragungsstatus: Fehler";
+"a11y_encryption_padlock" = "Verschlüsselungsschloss";
+"a11y_delivery_status_sending" = "Übertragungsstatus: Versenden";
+"a11y_delivery_status_draft" = "Übertragungsstatus: Entwurf";
+"a11y_delivery_status_delivered" = "Übertragungsstatus: Versendet";
+"a11y_delivery_status_read" = "Übertragungsstatus: Gelesen";
+"a11y_delivery_status_invalid" = "Übertragungsstatus: Unzulässig";
+"a11y_remove_account_btn_label" = "E-Mail-Konto löschen";
+"a11y_message_context_menu_btn_label" = "Nachrichtaktionen";
+"a11y_background_preview_label" = "Vorschau für Hintergrundbild";

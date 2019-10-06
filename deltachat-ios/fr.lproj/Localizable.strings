@@ -188,7 +188,6 @@
 "chat_self_talk_subtitle" = "Messages envoyés à moi-même";
 "chat_contact_request" = "Demande de contact";
 "chat_no_contact_requests" = "Aucune demande de contact. Si vous voulez que les courriels classiques apparaissent ici comme demandes de contact, vous pouvez changer le paramètre correspondant dans les paramètres de l\'application.";
-
 // map
 "filter_map_on_time" = "Afficher les positions dans le temps";
 "show_location_traces" = "Afficher les traces";
@@ -304,7 +303,6 @@
 "pref_blocked_contacts" = "Contacts bloqués";
 "pref_profile_photo_remove_ask" = "Supprimer la photo de profil ?";
 "pref_help_url" = "https://delta.chat/en/help";
-"pref_password_and_account_settings" = "Configuration des comptes et mots de passe";
 "pref_who_can_see_this_information" = "Qui peut voir cette information ?";
 "pref_who_can_see_profile_explain" = "L\'image et le nom de votre profil seront affichés à côté de vos messages lorsque vous communiquez avec d\'autres utilisateurs. Les informations déjà envoyées ne peuvent pas être effacées ou supprimées.";
 "pref_your_name" = "Votre nom";
@@ -391,8 +389,6 @@
 "pref_empty_server_inbox" = "Effacer TOUS les courriels du dossier boîte de réception";
 "pref_empty_server_mvbox" = "Effacer TOUS les courriels du dossier DeltaChat";
 "pref_empty_server_do_button" = "Effacer les courriels";
-
-
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt est une nouvelle spécification ouverte pour le chiffrement automatique de bout en bout des courriels.\n\nVotre configuration de bout en bout est créée automatiquement si nécessaire et vous pouvez la transférer entre les périphériques avec les messages de configuration Autocrypt.";
@@ -499,10 +495,7 @@
 // dc_str_* resources
 "encrypted_message" = "Message chiffré";
 
-// desktop specific strings
-"welcome_desktop" = "Bienvenue sur DeltaChat";
 "login_known_accounts_title_desktop" = "Comptes connus";
-"global_menu_preferences_desktop" = "Préférences";
 "global_menu_preferences_language_desktop" = "Choisissez la langue...";
 "global_menu_file_desktop" = "Fichier";
 "global_menu_file_quit_desktop" = "Quittez";
@@ -512,20 +505,15 @@
 "global_menu_edit_cut_desktop" = "Couper";
 "global_menu_edit_copy_desktop" = "Copier";
 "global_menu_edit_paste_desktop" = "Coller";
-"global_menu_edit_delete_desktop" = "Effacer";
-"global_menu_edit_selectall_desktop" = "Tout sélectionner";
 "global_menu_view_desktop" = "Voir";
 "global_menu_view_floatontop_desktop" = "Flotter au dessus";
 "global_menu_view_developer_desktop" = "Développeur";
 "global_menu_view_developer_tools_desktop" = "Outils de développement";
 "global_menu_help_desktop" = "Aide";
-"global_menu_help_learn_desktop" = "En savoir plus sur DeltaChat";
 "global_menu_help_contribute_desktop" = "Contribuer sur Github";
 "global_menu_help_report_desktop" = "Signaler un problème....";
-"global_menu_help_about_desktop" = "A propos de DeltaChat";
 "no_chat_selected_suggestion_desktop" = "Sélectionner une discussion ou en créer une nouvelle";
 "write_message_desktop" = "Écrire un message";
-"about_deltachat_heading_desktop" = "A propos de DeltaChat";
 "encryption_info_title_desktop" = "Information de chiffrement";
 "contact_detail_title_desktop" = "Détail du contact";
 "contact_request_title_desktop" = "Demande de contact";
@@ -537,7 +525,6 @@
 "no_chats_desktop" = "Aucune discussion";
 "encryption_info_desktop" = "Afficher les informations de chiffrement";
 "verified_desktop" = "vérifié";
-"group_name_desktop" = "Nom de groupe";
 "remove_desktop" = "Retirer";
 "save_desktop" = "Sauvegardez";
 "show_qr_verify_code_desktop" = "Afficher le QR code d\'invitation";
@@ -573,6 +560,6 @@
 "message_detail_to_desktop" = "à";
 "menu.view.developer.open.log.folder" = "Ouvrir le dossier Journal";
 "menu.view.developer.open.current.log.file" = "Ouvrir le fichier Journal courant";
-
 "user_location_permission_explanation" = "DeltaChat a besoin de l\'autorisation de votre position pour l\'afficher et la partager.";
+
 
