@@ -17,6 +17,8 @@ class EditSettingsController: UITableViewController {
 
     private let sectionCount = 2
 
+    private var childCoordinators: Coordinator?
+
     private lazy var displayNameCell: TextFieldCell = {
         let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("pref_your_name"))
         cell.setText(text: DcConfig.displayname ?? nil)
@@ -106,6 +108,7 @@ class EditSettingsController: UITableViewController {
             guard let nc = navigationController else { return }
             let accountSetupVC = AccountSetupController(dcContext: dcContext, editView: true)
             let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: nc)
+            self.childCoordinators = coordinator
             accountSetupVC.coordinator = coordinator
             nc.pushViewController(accountSetupVC, animated: true)
         }
