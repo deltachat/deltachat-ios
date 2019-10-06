@@ -322,10 +322,6 @@ class AccountSetupController: UITableViewController {
         }
     }
 
-    override func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
-        return 36.0
-    }
-
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         if sections[section] == basicSection {
             return String.localized("login_no_servers_hint")
