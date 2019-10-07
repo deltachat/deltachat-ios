@@ -473,7 +473,10 @@ class DcMsg: MessageType {
 
         switch self.viewtype! {
         case .image:
-            return MessageKind.photo(Media(image: image))
+            if text.isEmpty {
+                return MessageKind.photo(Media(image: image))
+            }
+            return MessageKind.photoText(Media(image: image, text: NSAttributedString(string: text)))
         case .video:
             return MessageKind.video(Media(url: fileURL))
         default:

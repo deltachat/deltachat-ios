@@ -163,6 +163,7 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
         sizeCalculator.messageLabelFont = UIFont.systemFont(ofSize: sizeCalculator.messageLabelFont.pointSize * 2)
         return sizeCalculator
     }()
+    lazy open var photoTextMessageSizeCalculator = TextMediaMessageSizeCalculator(layout: self)
     lazy open var photoMessageSizeCalculator = MediaMessageSizeCalculator(layout: self)
     lazy open var videoMessageSizeCalculator = MediaMessageSizeCalculator(layout: self)
     lazy open var locationMessageSizeCalculator = LocationMessageSizeCalculator(layout: self)
@@ -189,6 +190,8 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
             return emojiMessageSizeCalculator
         case .photo:
             return photoMessageSizeCalculator
+        case .photoText:
+            return photoTextMessageSizeCalculator
         case .video:
             return videoMessageSizeCalculator
         case .location:
@@ -206,22 +209,22 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
         let calculator = cellSizeCalculatorForItem(at: indexPath)
         return calculator.sizeForItem(at: indexPath)
     }
-    
+
     /// Set `incomingAvatarSize` of all `MessageSizeCalculator`s
     public func setMessageIncomingAvatarSize(_ newSize: CGSize) {
         messageSizeCalculators().forEach { $0.incomingAvatarSize = newSize }
     }
-    
+
     /// Set `outgoingAvatarSize` of all `MessageSizeCalculator`s
     public func setMessageOutgoingAvatarSize(_ newSize: CGSize) {
         messageSizeCalculators().forEach { $0.outgoingAvatarSize = newSize }
     }
-    
+
     /// Set `incomingAvatarPosition` of all `MessageSizeCalculator`s
     public func setMessageIncomingAvatarPosition(_ newPosition: AvatarPosition) {
         messageSizeCalculators().forEach { $0.incomingAvatarPosition = newPosition }
     }
-    
+
     /// Set `outgoingAvatarPosition` of all `MessageSizeCalculator`s
     public func setMessageOutgoingAvatarPosition(_ newPosition: AvatarPosition) {
         messageSizeCalculators().forEach { $0.outgoingAvatarPosition = newPosition }
@@ -231,52 +234,52 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
     public func setAvatarLeadingTrailingPadding(_ newPadding: CGFloat) {
         messageSizeCalculators().forEach { $0.avatarLeadingTrailingPadding = newPadding }
     }
-    
+
     /// Set `incomingMessagePadding` of all `MessageSizeCalculator`s
     public func setMessageIncomingMessagePadding(_ newPadding: UIEdgeInsets) {
         messageSizeCalculators().forEach { $0.incomingMessagePadding = newPadding }
     }
-    
+
     /// Set `outgoingMessagePadding` of all `MessageSizeCalculator`s
     public func setMessageOutgoingMessagePadding(_ newPadding: UIEdgeInsets) {
         messageSizeCalculators().forEach { $0.outgoingMessagePadding = newPadding }
     }
-    
+
     /// Set `incomingCellTopLabelAlignment` of all `MessageSizeCalculator`s
     public func setMessageIncomingCellTopLabelAlignment(_ newAlignment: LabelAlignment) {
         messageSizeCalculators().forEach { $0.incomingCellTopLabelAlignment = newAlignment }
     }
-    
+
     /// Set `outgoingCellTopLabelAlignment` of all `MessageSizeCalculator`s
     public func setMessageOutgoingCellTopLabelAlignment(_ newAlignment: LabelAlignment) {
         messageSizeCalculators().forEach { $0.outgoingCellTopLabelAlignment = newAlignment }
     }
-    
+
     /// Set `incomingCellBottomLabelAlignment` of all `MessageSizeCalculator`s
     public func setMessageIncomingCellBottomLabelAlignment(_ newAlignment: LabelAlignment) {
         messageSizeCalculators().forEach { $0.incomingCellBottomLabelAlignment = newAlignment }
     }
-    
+
     /// Set `outgoingCellBottomLabelAlignment` of all `MessageSizeCalculator`s
     public func setMessageOutgoingCellBottomLabelAlignment(_ newAlignment: LabelAlignment) {
         messageSizeCalculators().forEach { $0.outgoingCellBottomLabelAlignment = newAlignment }
     }
-    
+
     /// Set `incomingMessageTopLabelAlignment` of all `MessageSizeCalculator`s
     public func setMessageIncomingMessageTopLabelAlignment(_ newAlignment: LabelAlignment) {
         messageSizeCalculators().forEach { $0.incomingMessageTopLabelAlignment = newAlignment }
     }
-    
+
     /// Set `outgoingMessageTopLabelAlignment` of all `MessageSizeCalculator`s
     public func setMessageOutgoingMessageTopLabelAlignment(_ newAlignment: LabelAlignment) {
         messageSizeCalculators().forEach { $0.outgoingMessageTopLabelAlignment = newAlignment }
     }
-    
+
     /// Set `incomingMessageBottomLabelAlignment` of all `MessageSizeCalculator`s
     public func setMessageIncomingMessageBottomLabelAlignment(_ newAlignment: LabelAlignment) {
         messageSizeCalculators().forEach { $0.incomingMessageBottomLabelAlignment = newAlignment }
     }
-    
+
     /// Set `outgoingMessageBottomLabelAlignment` of all `MessageSizeCalculator`s
     public func setMessageOutgoingMessageBottomLabelAlignment(_ newAlignment: LabelAlignment) {
         messageSizeCalculators().forEach { $0.outgoingMessageBottomLabelAlignment = newAlignment }
@@ -301,12 +304,12 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
     public func setMessageOutgoingAccessoryViewPadding(_ newPadding: HorizontalEdgeInsets) {
         messageSizeCalculators().forEach { $0.outgoingAccessoryViewPadding = newPadding }
     }
-    
+
     /// Set `incomingAccessoryViewPosition` of all `MessageSizeCalculator`s
     public func setMessageIncomingAccessoryViewPosition(_ newPosition: AccessoryPosition) {
         messageSizeCalculators().forEach { $0.incomingAccessoryViewPosition = newPosition }
     }
-    
+
     /// Set `outgoingAccessoryViewPosition` of all `MessageSizeCalculator`s
     public func setMessageOutgoingAccessoryViewPosition(_ newPosition: AccessoryPosition) {
         messageSizeCalculators().forEach { $0.outgoingAccessoryViewPosition = newPosition }
@@ -317,6 +320,7 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return [textMessageSizeCalculator,
                 attributedTextMessageSizeCalculator,
                 emojiMessageSizeCalculator,
+                photoTextMessageSizeCalculator,
                 photoMessageSizeCalculator,
                 videoMessageSizeCalculator,
                 locationMessageSizeCalculator,
@@ -324,5 +328,5 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 contactMessageSizeCalculator
         ]
     }
-    
+
 }

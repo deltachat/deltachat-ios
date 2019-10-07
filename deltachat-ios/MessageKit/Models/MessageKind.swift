@@ -35,12 +35,15 @@ public enum MessageKind {
     /// Using `MessageKind.attributedText(NSAttributedString)` doesn't require you
     /// to set this property and results in higher performance.
     case text(String)
-    
+
     /// A message with attributed text.
     case attributedText(NSAttributedString)
 
     /// A photo message.
     case photo(MediaItem)
+
+    /// A photo message with a textual description
+    case photoText(MediaItem)
 
     /// A video message.
     case video(MediaItem)

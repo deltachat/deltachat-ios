@@ -9,6 +9,8 @@ struct Media: MediaItem {
 
     var placeholderImage: UIImage = UIImage(named: "ic_attach_file_36pt")!
 
+    var text: NSAttributedString?
+
     var size: CGSize {
         if let image = image {
             return image.size
@@ -17,8 +19,9 @@ struct Media: MediaItem {
         }
     }
 
-    init(url: URL? = nil, image: UIImage? = nil) {
+    init(url: URL? = nil, image: UIImage? = nil, text: NSAttributedString? = nil) {
         self.url = url
         self.image = image
+        self.text = text
     }
 }

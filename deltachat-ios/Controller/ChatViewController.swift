@@ -390,6 +390,10 @@ class ChatViewController: MessagesViewController {
             let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
+        case .photoText:
+            let cell = messagesCollectionView.dequeueReusableCell(TextMediaMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
         case .location:
             let cell = messagesCollectionView.dequeueReusableCell(LocationMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
