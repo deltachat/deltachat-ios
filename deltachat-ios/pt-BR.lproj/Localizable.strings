@@ -482,7 +482,6 @@
 // permissions
 "perm_required_title" = "Permissão necessária";
 "perm_continue" = "Continuar";
-"perm_not_now" = "Agora não";
 "perm_explain_need_for_camera_access" = "Para capturar fotos e vídeos, autorize o Delta Chat a acessar sua câmera.";
 "perm_explain_need_for_mic_access" = "Para enviar mensagens de áudio, permita o Delta Chat acessar seu microfone.";
 "perm_explain_need_for_storage_access" = "O Delta Chat precisa acessar seu armazenamento para que você possa exportar arquivos e criar becapes.";

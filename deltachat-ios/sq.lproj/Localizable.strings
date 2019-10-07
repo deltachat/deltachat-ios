@@ -319,6 +319,7 @@
 "pref_blocked_contacts" = "Kontakte të bllokuar";
 "pref_profile_photo_remove_ask" = "Të hiqet fotoja e profilit?";
 "pref_help_url" = "https://delta.chat/en/help";
+"pref_password_and_account_settings" = "Fjalëkalim dhe llogari";
 "pref_who_can_see_this_information" = "Kush mund ta shohë këtë informacion?";
 "pref_who_can_see_profile_explain" = "Fotoja dhe emri juaj i profilit do të shfaqen tok me mesazhet, kur komunikoni me përdorues të tjerë. Informacioni i dërguar tashmë s\’mund të fshihet apo të hiqet.";
 "pref_your_name" = "Emri juaj";
@@ -503,7 +504,6 @@
 // permissions
 "perm_required_title" = "Lypset leje";
 "perm_continue" = "Vazhdo";
-"perm_not_now" = "Jo tani";
 "perm_explain_need_for_camera_access" = "Që të bëhen foto dhe video, lejojeni Delta Chat-in të përdorë kamerën.";
 "perm_explain_need_for_mic_access" = "Që të dërgoni mesazhe audio, lejojeni Delta Chat-in të përdorë mikrofonin tuaj.";
 "perm_explain_need_for_storage_access" = "Delta Chat-i lyp hyrje në kartelat tuaja që të mund të eksportojë të tilla apo të krijojë kopjeruajtje.";

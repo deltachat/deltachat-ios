@@ -480,7 +480,6 @@
 // permissions
 "perm_required_title" = "Autorisation requise";
 "perm_continue" = "Continuez";
-"perm_not_now" = "Pas maintenant";
 "perm_explain_need_for_camera_access" = "Pour prendre des photos et des vidéos, autorisez DeltaChat à accéder à la caméra.";
 "perm_explain_need_for_mic_access" = "Pour envoyer des messages audios, autorisez DeltaChat à accéder à votre micro.";
 "perm_explain_need_for_storage_access" = "DeltaChat a besoin d\'accéder à vos fichiers afin d\'exporter des fichiers ou de créer des sauvegardes.";

@@ -259,7 +259,7 @@
 "welcome_intro6_message" = "Encrypted with all common algorithms. Messages stay on your servers.";
 "welcome_intro7_headline" = "Trustworthy";
 "welcome_intro7_message" = "Delta Chat is safe for business use, compatible and standards-based.";
-"welcome_start_messaging" = "Start Messaging";
+"welcome_start_messaging" = "Start messaging";
 "login_title" = "Login";
 "login_header" = "Login to your server";
 "login_explain" = "Login with an existing e-mail account.";
@@ -395,7 +395,7 @@
 "pref_watch_inbox_folder" = "Watch Inbox folder";
 "pref_watch_sent_folder" = "Watch Sent folder";
 "pref_watch_mvbox_folder" = "Watch DeltaChat folder";
-"pref_auto_folder_moves" = "Automatic Moves to DeltaChat folder";
+"pref_auto_folder_moves" = "Automatic moves to DeltaChat folder";
 "pref_auto_folder_moves_explain" = "Chat conversations are moved to avoid cluttering the Inbox folder";
 "pref_email_interaction_title" = "Email interaction";
 "pref_show_emails" = "Show classic emails";
@@ -404,8 +404,8 @@
 "pref_show_emails_all" = "All";
 "pref_empty_server_title" = "DANGER ZONE: Delete e-mails from server";
 "pref_empty_server_msg" = "This function helps to free space on your IMAP server by deleting ALL e-mails, including chat-messages, in the given folders. Messages on this device will not be deleted.  The deletion cannot be undone!";
-"pref_empty_server_inbox" = "Delete ALL e-mails in Inbox folder";
-"pref_empty_server_mvbox" = "Delete ALL e-mails in DeltaChat folder";
+"pref_empty_server_inbox" = "Delete all e-mails in Inbox folder";
+"pref_empty_server_mvbox" = "Delete all e-mails in DeltaChat folder";
 "pref_empty_server_do_button" = "Delete e-mails";
 "pref_experimental_features" = "Experimental features";
 "pref_on_demand_location_streaming" = "On-demand location streaming";
@@ -505,7 +505,6 @@
 // permissions
 "perm_required_title" = "Permission required";
 "perm_continue" = "Continue";
-"perm_not_now" = "Not now";
 "perm_explain_need_for_camera_access" = "To capture photos and video, allow Delta Chat access to the camera.";
 "perm_explain_need_for_mic_access" = "To send audio messages, allow Delta Chat access to your microphone.";
 "perm_explain_need_for_storage_access" = "Delta Chat needs access to your files in order to export files or to create backups.";

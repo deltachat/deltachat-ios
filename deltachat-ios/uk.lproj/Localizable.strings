@@ -411,7 +411,6 @@
 // permissions
 "perm_required_title" = "Потрібен дозвіл";
 "perm_continue" = "Продовжити";
-"perm_not_now" = "Не зараз";
 "perm_explain_need_for_camera_access" = "Для захоплення фото і відео дозвольте доступ до камери.";
 "perm_explain_need_for_mic_access" = "Для відправки звукових повідомлень дозвольте доступ до мікрофону.";
 "perm_explain_need_for_storage_access" = "Додатку необхідний доступ до файлів для експорту та резервного копіювання.";

@@ -473,7 +473,6 @@
 // permissions
 "perm_required_title" = "Tilladelse påkrævet";
 "perm_continue" = "Fortsætte";
-"perm_not_now" = "Ikke nu";
 "perm_explain_need_for_camera_access" = "For at fange billeder og video, tillad Delta Chat adgang til kamera.";
 "perm_explain_need_for_mic_access" = "For at sende lyd beskeder, tillad Delta Chat mikrofon adgang.";
 "perm_explain_need_for_storage_access" = "Delta Chat behøver fil adgang for at kunne eksportere filer eller oprette sikkerhedskopier.";

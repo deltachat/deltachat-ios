@@ -428,7 +428,6 @@
 // permissions
 "perm_required_title" = "Reikalingas leidimas";
 "perm_continue" = "Tęsti";
-"perm_not_now" = "Ne dabar";
 "perm_explain_need_for_camera_access" = "Norėdami fotografuoti ir filmuoti, suteikite Delta Chat prieigą prie kameros.";
 "perm_explain_need_for_mic_access" = "Norėdami siųsti garso žinutes, suteikite Delta Chat prieigą prie mikrofono.";
 "perm_explain_need_for_storage_access" = "Norint eksportuoti failus ar daryti atsargines kopijas, Delta Chat reikia prieigos prie jūsų failų.";

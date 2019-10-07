@@ -473,7 +473,6 @@
 // permissions
 "perm_required_title" = "İzin tələb olunur";
 "perm_continue" = "Davam edin";
-"perm_not_now" = "İndi yox";
 "perm_explain_need_for_camera_access" = "Foto və video çəkmək üçün Delta Chat-ə kameraya giriş imkanı verin.";
 "perm_explain_need_for_mic_access" = "Səsli mesajları göndərmək üçün mikrofona izn verin. ";
 "perm_explain_need_for_storage_access" = "Delta Chat, faylları idxal / ixrac etmək üçün iznə ehtiyacı var.";
