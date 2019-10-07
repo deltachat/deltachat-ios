@@ -58,6 +58,12 @@ class ChatViewController: MessagesViewController {
     override func viewDidLoad() {
         messagesCollectionView.register(CustomMessageCell.self)
         super.viewDidLoad()
+
+        // TODO: support dark mode for this view, see https://github.com/deltachat/deltachat-ios/issues/163#issuecomment-533797080
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
+
         view.backgroundColor = DcColors.chatBackgroundColor
         if !DcConfig.configured {
             // TODO: display message about nothing being configured
