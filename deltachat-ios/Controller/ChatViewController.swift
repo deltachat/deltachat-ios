@@ -1,5 +1,4 @@
 import MapKit
-import MessageKit
 import QuickLook
 import UIKit
 import InputBarAccessoryView
@@ -744,6 +743,9 @@ extension ChatViewController: MessagesDisplayDelegate {
 
 // MARK: - MessagesLayoutDelegate
 extension ChatViewController: MessagesLayoutDelegate {
+
+
+
     func cellTopLabelHeight(for _: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
         if isTimeLabelVisible(at: indexPath) {
             return 18

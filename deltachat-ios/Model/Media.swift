@@ -1,6 +1,6 @@
 import CoreLocation
 import Foundation
-import MessageKit
+import UIKit
 
 struct Media: MediaItem {
     var url: URL?

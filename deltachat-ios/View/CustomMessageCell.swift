@@ -1,4 +1,3 @@
-import MessageKit
 import UIKit
 
 open class CustomMessageCell: UICollectionViewCell {

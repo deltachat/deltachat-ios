@@ -1,5 +1,4 @@
 import UIKit
-import MessageKit
 
 class MailboxViewController: ChatViewController {
 
