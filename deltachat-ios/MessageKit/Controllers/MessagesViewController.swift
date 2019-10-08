@@ -284,7 +284,7 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
             let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
-        case .photoText:
+        case .photoText, .videoText:
             let cell = messagesCollectionView.dequeueReusableCell(TextMediaMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
@@ -374,7 +374,7 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
         let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
 
         switch message.kind {
-        case .text, .attributedText, .emoji, .photo, .photoText:
+        case .text, .attributedText, .emoji, .photo, .photoText, .videoText:
             selectedIndexPathForMenu = indexPath
             return true
         default:
@@ -403,7 +403,7 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
             pasteBoard.string = attributedText.string
         case .photo(let mediaItem):
             pasteBoard.image = mediaItem.image ?? mediaItem.placeholderImage
-        case .photoText(let mediaItem):
+        case .photoText(let mediaItem), .videoText(let mediaItem):
             pasteBoard.image = mediaItem.image ?? mediaItem.placeholderImage
             pasteBoard.string = mediaItem.text?.string
         default:

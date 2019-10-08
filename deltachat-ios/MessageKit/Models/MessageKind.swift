@@ -48,6 +48,9 @@ public enum MessageKind {
     /// A video message.
     case video(MediaItem)
 
+    /// A video message with a textual description
+    case videoText(MediaItem)
+
     /// A location message.
     case location(LocationItem)
 

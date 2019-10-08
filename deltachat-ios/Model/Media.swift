@@ -7,8 +7,7 @@ struct Media: MediaItem {
 
     var image: UIImage?
 
-    var placeholderImage: UIImage = UIImage(named: "ic_attach_file_36pt")!
-
+    var placeholderImage: UIImage = UIImage(color: .gray, size: CGSize(width: 250, height: 100))!
     var text: NSAttributedString?
 
     var size: CGSize {

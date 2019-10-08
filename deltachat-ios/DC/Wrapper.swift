@@ -479,7 +479,11 @@ class DcMsg: MessageType {
             let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
             return MessageKind.photoText(Media(image: image, text: attributedString))
         case .video:
-            return MessageKind.video(Media(url: fileURL))
+            if text.isEmpty {
+                return MessageKind.video(Media(url: fileURL))
+            }
+            let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
+            return MessageKind.videoText(Media(url: fileURL, text: attributedString))
         default:
             // TODO: custom views for audio, etc
             if let filename = self.filename {
