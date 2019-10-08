@@ -44,7 +44,6 @@ open class TextMediaMessageCell: MessageContentCell {
                 messageContainerView.frame.width -
                     TextMediaMessageCell.insetHorizontalSmall -
                     TextMediaMessageCell.insetHorizontalBig))
-            print("height for message label: ", height)
             return height + TextMediaMessageCell.insetBottom + TextMediaMessageCell.insetTop
         }
         return 0

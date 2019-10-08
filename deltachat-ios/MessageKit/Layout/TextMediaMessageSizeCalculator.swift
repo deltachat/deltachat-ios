@@ -44,14 +44,11 @@ open class TextMediaMessageSizeCalculator: MessageSizeCalculator {
         return isFromCurrentSender ? outgoingMessageLabelInsets : incomingMessageLabelInsets
     }
 
-    open override func messageContainerMaxWidth(for message: MessageType) -> CGFloat {
-        let maxWidth = super.messageContainerMaxWidth(for: message)
-        return maxWidth - incomingMessageLabelInsets.left - incomingMessageLabelInsets.right
-    }
-
     open override func messageContainerSize(for message: MessageType) -> CGSize {
-        let maxWidth = messageContainerMaxWidth(for: message)
+        let maxImageWidth = messageContainerMaxWidth(for: message)
+
         let sizeForMediaItem = { (maxWidth: CGFloat, item: MediaItem) -> CGSize in
+            let maxTextWidth = maxWidth - self.messageLabelInsets(for: message).horizontal
             var imageHeight = item.size.height
             var itemWidth = item.size.width
 
@@ -65,10 +62,9 @@ open class TextMediaMessageSizeCalculator: MessageSizeCalculator {
             switch message.kind {
             case .photoText(let mediaItem):
                 if let text = mediaItem.text {
-                    let textHeight = text.height(withConstrainedWidth: maxWidth)
-                    //let messageInsets = self.messageLabelInsets(for: message)
+                    let textHeight = text.height(withConstrainedWidth: maxTextWidth)
                     messageContainerSize.height += textHeight
-                    //messageContainerSize.height += messageInsets.vertical
+                    messageContainerSize.height +=  self.messageLabelInsets(for: message).vertical
                 }
                 return messageContainerSize
             default:
@@ -78,7 +74,7 @@ open class TextMediaMessageSizeCalculator: MessageSizeCalculator {
 
         switch message.kind {
         case .photoText(let item):
-            return sizeForMediaItem(maxWidth, item)
+            return sizeForMediaItem(maxImageWidth, item)
         default:
             fatalError("messageContainerSize received unhandled MessageDataType: \(message.kind)")
         }
