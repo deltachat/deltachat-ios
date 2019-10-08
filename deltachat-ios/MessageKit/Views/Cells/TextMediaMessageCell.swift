@@ -28,6 +28,12 @@ open class TextMediaMessageCell: MessageContentCell {
         return imageView
     }()
 
+    /// The play button view to display on video messages.
+    open lazy var playButtonView: PlayButtonView = {
+        let playButtonView = PlayButtonView()
+        return playButtonView
+    }()
+
     // MARK: - Methods
 
     open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
@@ -62,6 +68,12 @@ open class TextMediaMessageCell: MessageContentCell {
                                     ]
 
         messageContainerView.addConstraints(imageViewConstraints)
+
+        playButtonView.constraint(equalTo: CGSize(width: 35, height: 35))
+        let playButtonViewConstraints = [ playButtonView.constraintCenterXTo(imageView),
+                                          playButtonView.constraintCenterYTo(imageView)]
+        messageContainerView.addConstraints(playButtonViewConstraints)
+
         messageLabel.frame = CGRect(x: 0,
                                     y: messageContainerView.frame.height - getMessageLabelHeight(),
                                     width: messageContainerView.frame.width,
@@ -78,6 +90,7 @@ open class TextMediaMessageCell: MessageContentCell {
     open override func setupSubviews() {
         super.setupSubviews()
         messageContainerView.addSubview(imageView)
+        messageContainerView.addSubview(playButtonView)
         messageContainerView.addSubview(messageLabel)
     }
 
@@ -88,28 +101,49 @@ open class TextMediaMessageCell: MessageContentCell {
             fatalError(MessageKitError.nilMessagesDisplayDelegate)
         }
 
-        let enabledDetectors = displayDelegate.enabledDetectors(for: message, at: indexPath, in: messagesCollectionView)
-
-
         switch message.kind {
         case .photoText(let mediaItem):
-            imageView.image = mediaItem.image ?? mediaItem.placeholderImage
-
-            messageLabel.configure {
-               messageLabel.enabledDetectors = enabledDetectors
-               for detector in enabledDetectors {
-                   let attributes = displayDelegate.detectorAttributes(for: detector, and: message, at: indexPath)
-                   messageLabel.setAttributes(attributes, detector: detector)
-               }
-                messageLabel.attributedText = mediaItem.text
-            }
-
-            setupConstraints()
+            configureImageView(for: mediaItem)
+            configureMessageLabel(for: mediaItem,
+                                  with: displayDelegate,
+                                  message: message,
+                                  at: indexPath,
+                                  in: messagesCollectionView)
+            playButtonView.isHidden = true
+        case .videoText(let mediaItem):
+            configureImageView(for: mediaItem)
+            configureMessageLabel(for: mediaItem,
+                                  with: displayDelegate,
+                                  message: message,
+                                  at: indexPath,
+                                  in: messagesCollectionView)
+            playButtonView.isHidden = false
         default:
             fatalError("Unexpected message kind in TextMediaMessageCell")
         }
+        setupConstraints()
 
         displayDelegate.configureMediaMessageImageView(imageView, for: message, at: indexPath, in: messagesCollectionView)
+    }
+
+
+    func configureImageView(for mediaItem: MediaItem) {
+        imageView.image = mediaItem.image ?? mediaItem.placeholderImage
+    }
+    func configureMessageLabel(for mediaItem: MediaItem,
+                               with displayDelegate: MessagesDisplayDelegate,
+                               message: MessageType,
+                               at indexPath: IndexPath,
+                               in messagesCollectionView: MessagesCollectionView) {
+        let enabledDetectors = displayDelegate.enabledDetectors(for: message, at: indexPath, in: messagesCollectionView)
+        messageLabel.configure {
+           messageLabel.enabledDetectors = enabledDetectors
+           for detector in enabledDetectors {
+               let attributes = displayDelegate.detectorAttributes(for: detector, and: message, at: indexPath)
+               messageLabel.setAttributes(attributes, detector: detector)
+           }
+            messageLabel.attributedText = mediaItem.text
+        }
     }
 
       /// Used to handle the cell's contentView's tap gesture.
