@@ -467,7 +467,7 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func currentSender() -> SenderType {
-        let currentSender = Sender(id: "1", displayName: "Alice")
+        let currentSender = Sender(senderId: "1", displayName: "Alice")
         return currentSender
     }
 
@@ -747,8 +747,6 @@ extension ChatViewController: MessagesDisplayDelegate {
 
 // MARK: - MessagesLayoutDelegate
 extension ChatViewController: MessagesLayoutDelegate {
-
-
 
     func cellTopLabelHeight(for _: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
         if isTimeLabelVisible(at: indexPath) {
