@@ -162,4 +162,3 @@ public extension MessagesLayoutDelegate {
         fatalError("Must return a CellSizeCalculator for MessageKind.custom(Any?)")
     }
 }
-

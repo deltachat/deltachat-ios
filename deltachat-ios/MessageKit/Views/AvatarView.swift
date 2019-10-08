@@ -122,7 +122,11 @@ open class AvatarView: UIImageView {
                                                             context: nil).height
         context.saveGState()
         context.clip(to: textRect)
-        initials.draw(in: CGRect(textRect.minX, textRect.minY + (textRect.height - textTextHeight) / 2, textRect.width, textTextHeight), withAttributes: textFontAttributes)
+        initials.draw(in: CGRect(textRect.minX,
+                                 textRect.minY + (textRect.height - textTextHeight) / 2,
+                                 textRect.width,
+                                 textTextHeight),
+                      withAttributes: textFontAttributes)
         context.restoreGState()
         guard let renderedImage = UIGraphicsGetImageFromCurrentImageContext() else { assertionFailure("Could not create image from context"); return UIImage()}
         return renderedImage

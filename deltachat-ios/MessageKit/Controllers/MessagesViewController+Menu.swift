@@ -29,11 +29,13 @@ internal extension MessagesViewController {
 
     // MARK: - Register / Unregister Observers
 
-    internal func addMenuControllerObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.menuControllerWillShow(_:)), name: UIMenuController.willShowMenuNotification, object: nil)
+    func addMenuControllerObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(MessagesViewController.menuControllerWillShow(_:)),
+                                               name: UIMenuController.willShowMenuNotification, object: nil)
     }
 
-    internal func removeMenuControllerObservers() {
+    func removeMenuControllerObservers() {
         NotificationCenter.default.removeObserver(self, name: UIMenuController.willShowMenuNotification, object: nil)
     }
 
@@ -81,8 +83,11 @@ internal extension MessagesViewController {
         currentMenuController.arrowDirection = .default
 
         /// Message bubble intersects with navigationBar and keyboard
-        if selectedCellMessageBubblePlusMenuFrame.intersects(topNavigationBarFrame) && selectedCellMessageBubblePlusMenuFrame.intersects(messageInputBarFrame) {
-            let centerY = (selectedCellMessageBubblePlusMenuFrame.intersection(messageInputBarFrame).minY + selectedCellMessageBubblePlusMenuFrame.intersection(topNavigationBarFrame).maxY) / 2
+        if selectedCellMessageBubblePlusMenuFrame.intersects(topNavigationBarFrame) &&
+            selectedCellMessageBubblePlusMenuFrame.intersects(messageInputBarFrame) {
+
+            let centerY = (selectedCellMessageBubblePlusMenuFrame.intersection(messageInputBarFrame).minY +
+                selectedCellMessageBubblePlusMenuFrame.intersection(topNavigationBarFrame).maxY) / 2
             targetRect = CGRect(selectedCellMessageBubblePlusMenuFrame.midX, centerY, 1, 1)
         } /// Message bubble only intersects with navigationBar
         else if selectedCellMessageBubblePlusMenuFrame.intersects(topNavigationBarFrame) {

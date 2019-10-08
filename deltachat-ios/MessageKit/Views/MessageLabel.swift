@@ -461,7 +461,7 @@ open class MessageLabel: UILabel {
         return false
     }
 
-    // swiftlint:disable cyclomatic_complexity
+    /// swiftlint:disable cyclomatic_complexity
     private func handleGesture(for detectorType: DetectorType, value: MessageTextCheckingType) {
         switch value {
         case let .addressComponents(addressComponents):

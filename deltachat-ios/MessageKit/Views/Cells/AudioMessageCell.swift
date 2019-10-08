@@ -60,7 +60,11 @@ open class AudioMessageCell: MessageContentCell {
         playButton.constraint(equalTo: CGSize(width: 25, height: 25))
         playButton.addConstraints(left: messageContainerView.leftAnchor, centerY: messageContainerView.centerYAnchor, leftConstant: 5)
         durationLabel.addConstraints(right: messageContainerView.rightAnchor, centerY: messageContainerView.centerYAnchor, rightConstant: 15)
-        progressView.addConstraints(left: playButton.rightAnchor, right: durationLabel.leftAnchor, centerY: messageContainerView.centerYAnchor, leftConstant: 5, rightConstant: 5)
+        progressView.addConstraints(left: playButton.rightAnchor,
+                                    right: durationLabel.leftAnchor,
+                                    centerY: messageContainerView.centerYAnchor,
+                                    leftConstant: 5,
+                                    rightConstant: 5)
     }
 
     open override func setupSubviews() {
@@ -83,7 +87,10 @@ open class AudioMessageCell: MessageContentCell {
         let touchLocation = gesture.location(in: self)
         // compute play button touch area, currently play button size is (25, 25) which is hardly touchable
         // add 10 px around current button frame and test the touch against this new frame
-        let playButtonTouchArea = CGRect(playButton.frame.origin.x - 10.0, playButton.frame.origin.y - 10, playButton.frame.size.width + 20, playButton.frame.size.height + 20)
+        let playButtonTouchArea = CGRect(playButton.frame.origin.x - 10.0,
+                                         playButton.frame.origin.y - 10,
+                                         playButton.frame.size.width + 20,
+                                         playButton.frame.size.height + 20)
         let translateTouchLocation = convert(touchLocation, to: messageContainerView)
         if playButtonTouchArea.contains(translateTouchLocation) {
             delegate?.didTapPlayButton(in: self)

@@ -23,7 +23,6 @@
  */
 
 import UIKit
-import UIKit
 
 /// A subclass of `UIView` that mimics the iMessage typing bubble
 open class TypingBubble: UIView {
