@@ -6,6 +6,7 @@ disabled_rules:
 - trailing_comma
 - large_tuple
 - todo
+- trailing_whitespace
 
 excluded:
 - Carthage

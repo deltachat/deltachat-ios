@@ -1,5 +1,4 @@
 import Foundation
-import MessageKit
 import UIKit
 
 class DcContext {
@@ -474,7 +473,11 @@ class DcMsg: MessageType {
 
         switch self.viewtype! {
         case .image:
-            return MessageKind.photo(Media(image: image))
+            if text.isEmpty {
+                return MessageKind.photo(Media(image: image))
+            }
+            let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
+            return MessageKind.photoText(Media(image: image, text: attributedString))
         case .video:
             return MessageKind.video(Media(url: fileURL))
         default:

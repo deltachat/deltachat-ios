@@ -1,5 +1,4 @@
 import MapKit
-import MessageKit
 import QuickLook
 import UIKit
 import InputBarAccessoryView
@@ -391,6 +390,10 @@ class ChatViewController: MessagesViewController {
             let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
+        case .photoText:
+            let cell = messagesCollectionView.dequeueReusableCell(TextMediaMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
         case .location:
             let cell = messagesCollectionView.dequeueReusableCell(LocationMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
@@ -464,7 +467,7 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func currentSender() -> SenderType {
-        let currentSender = Sender(id: "1", displayName: "Alice")
+        let currentSender = Sender(senderId: "1", displayName: "Alice")
         return currentSender
     }
 
@@ -744,6 +747,7 @@ extension ChatViewController: MessagesDisplayDelegate {
 
 // MARK: - MessagesLayoutDelegate
 extension ChatViewController: MessagesLayoutDelegate {
+
     func cellTopLabelHeight(for _: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
         if isTimeLabelVisible(at: indexPath) {
             return 18

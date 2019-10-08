@@ -1,6 +1,6 @@
 import CoreLocation
 import Foundation
-import MessageKit
+import UIKit
 
 struct Location: LocationItem {
     var location: CLLocation

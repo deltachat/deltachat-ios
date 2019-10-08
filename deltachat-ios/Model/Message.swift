@@ -1,6 +1,6 @@
 import CoreLocation
 import Foundation
-import MessageKit
+import UIKit
 
 struct Message: MessageType {
     var messageId: String
