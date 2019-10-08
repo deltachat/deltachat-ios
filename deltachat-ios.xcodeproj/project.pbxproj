@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		300C509D234B551900F8AE22 /* TextMediaMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300C509C234B551900F8AE22 /* TextMediaMessageCell.swift */; };
-		300C509F234B6D6C00F8AE22 /* TextMediaMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300C509E234B6D6C00F8AE22 /* TextMediaMessageCell.swift */; };
 		300C50A1234BDAB800F8AE22 /* TextMediaMessageSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300C50A0234BDAB800F8AE22 /* TextMediaMessageSizeCalculator.swift */; };
 		30149D9322F21129003C12B5 /* QrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30149D9222F21129003C12B5 /* QrViewController.swift */; };
 		3022E6BE22E8768800763272 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3022E6C022E8768800763272 /* InfoPlist.strings */; };
@@ -153,7 +152,6 @@
 		21EE28844E7A690D73BF5285 /* Pods-deltachat-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		300C509C234B551900F8AE22 /* TextMediaMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextMediaMessageCell.swift; sourceTree = "<group>"; };
-		300C509E234B6D6C00F8AE22 /* TextMediaMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMediaMessageCell.swift; path = "deltachat-ios/MessageKit/Views/Cells/TextMediaMessageCell.swift"; sourceTree = SOURCE_ROOT; };
 		300C50A0234BDAB800F8AE22 /* TextMediaMessageSizeCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextMediaMessageSizeCalculator.swift; sourceTree = "<group>"; };
 		30149D9222F21129003C12B5 /* QrViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrViewController.swift; sourceTree = "<group>"; };
 		3022E6BF22E8768800763272 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -512,7 +510,6 @@
 		305961C12346125100C80F33 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
-				300C509E234B6D6C00F8AE22 /* TextMediaMessageCell.swift */,
 				305961C22346125100C80F33 /* CellSizeCalculator.swift */,
 				305961C32346125100C80F33 /* MessagesCollectionViewLayoutAttributes.swift */,
 				305961C42346125100C80F33 /* ContactMessageSizeCalculator.swift */,
@@ -1108,7 +1105,6 @@
 				AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */,
 				305961D12346125100C80F33 /* Bundle+Extensions.swift in Sources */,
 				305962002346125100C80F33 /* MessagesCollectionView.swift in Sources */,
-				300C509F234B6D6C00F8AE22 /* TextMediaMessageCell.swift in Sources */,
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
 				AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */,
 				AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */,
