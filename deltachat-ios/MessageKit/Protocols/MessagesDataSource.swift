@@ -72,7 +72,7 @@ public protocol MessagesDataSource: AnyObject {
     ///
     /// The default value returned by this method is `nil`.
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString?
-    
+
     /// The attributed text to be used for cell's bottom label.
     ///
     /// - Parameters:
@@ -82,7 +82,7 @@ public protocol MessagesDataSource: AnyObject {
     ///
     /// The default value returned by this method is `nil`.
     func cellBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString?
-    
+
     /// The attributed text to be used for message bubble's top label.
     ///
     /// - Parameters:
@@ -136,11 +136,11 @@ public extension MessagesDataSource {
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         return nil
     }
-    
+
     func cellBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         return nil
     }
-    
+
     func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         return nil
     }
@@ -148,7 +148,7 @@ public extension MessagesDataSource {
     func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         return nil
     }
-    
+
     func customCell(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UICollectionViewCell {
         fatalError(MessageKitError.customDataUnresolvedCell)
     }

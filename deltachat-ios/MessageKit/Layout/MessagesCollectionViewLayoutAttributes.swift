@@ -40,10 +40,10 @@ open class MessagesCollectionViewLayoutAttributes: UICollectionViewLayoutAttribu
 
     public var cellTopLabelAlignment = LabelAlignment(textAlignment: .center, textInsets: .zero)
     public var cellTopLabelSize: CGSize = .zero
-    
+
     public var cellBottomLabelAlignment = LabelAlignment(textAlignment: .center, textInsets: .zero)
     public var cellBottomLabelSize: CGSize = .zero
-    
+
     public var messageTopLabelAlignment = LabelAlignment(textAlignment: .center, textInsets: .zero)
     public var messageTopLabelSize: CGSize = .zero
 
@@ -53,7 +53,7 @@ open class MessagesCollectionViewLayoutAttributes: UICollectionViewLayoutAttribu
     public var accessoryViewSize: CGSize = .zero
     public var accessoryViewPadding: HorizontalEdgeInsets = .zero
     public var accessoryViewPosition: AccessoryPosition = .messageCenter
-    
+
     // MARK: - Methods
 
     open override func copy(with zone: NSZone? = nil) -> Any {
