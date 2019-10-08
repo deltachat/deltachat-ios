@@ -89,12 +89,9 @@ open class TextMediaMessageSizeCalculator: MessageSizeCalculator {
         let message = dataSource.messageForItem(at: indexPath, in: messagesLayout.messagesCollectionView)
 
         switch message.kind {
-        case .photoText(let textMediaItem):
+        case .photoText:
             attributes.messageLabelInsets = messageLabelInsets(for: message)
             attributes.messageLabelFont = messageLabelFont
-            guard !textMediaItem.text!.string.isEmpty else { return }
-            guard let font = textMediaItem.text!.attribute(.font, at: 0, effectiveRange: nil) as? UIFont else { return }
-            attributes.messageLabelFont = font
         default:
             break
         }

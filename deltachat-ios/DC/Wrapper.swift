@@ -476,7 +476,8 @@ class DcMsg: MessageType {
             if text.isEmpty {
                 return MessageKind.photo(Media(image: image))
             }
-            return MessageKind.photoText(Media(image: image, text: NSAttributedString(string: text)))
+            let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
+            return MessageKind.photoText(Media(image: image, text: attributedString))
         case .video:
             return MessageKind.video(Media(url: fileURL))
         default:
