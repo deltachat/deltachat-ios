@@ -13,6 +13,13 @@ let dcNotificationContactChanged = Notification.Name(rawValue: "MrEventContactsC
 @_silgen_name("callbackSwift")
 
 public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLong, data1String: UnsafePointer<Int8>, data2String: UnsafePointer<Int8>) -> UnsafePointer<Int8>? {
+    if event >= DC_EVENT_ERROR && event <= 499 {
+        let s = String(cString: data2String)
+        AppDelegate.lastErrorString = s
+        logger.error("event: \(s)")
+        return nil
+    }
+
     switch event {
 
     case DC_EVENT_INFO:
@@ -22,11 +29,6 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
     case DC_EVENT_WARNING:
         let s = String(cString: data2String)
         logger.warning("event: \(s)")
-
-    case DC_EVENT_ERROR:
-        let s = String(cString: data2String)
-        AppDelegate.lastErrorDuringConfig = s
-        logger.error("event: \(s)")
 
     case DC_EVENT_CONFIGURE_PROGRESS:
         logger.info("configure progress: \(Int(data1)) \(Int(data2))")
@@ -41,14 +43,14 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                     "progress": Int(data1),
                     "error": Int(data1) == 0,
                     "done": done,
-                    "errorMessage": AppDelegate.lastErrorDuringConfig as Any,
+                    "errorMessage": AppDelegate.lastErrorString as Any,
                 ]
             )
 
             if done {
                 UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
                 UserDefaults.standard.synchronize()
-                AppDelegate.lastErrorDuringConfig = nil
+                AppDelegate.lastErrorString = nil
             }
         }
 
@@ -62,18 +64,9 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                     "progress": Int(data1),
                     "error": Int(data1) == 0,
                     "done": Int(data1) == 1000,
-                    "errorMessage": AppDelegate.lastErrorDuringConfig as Any,
+                    "errorMessage": AppDelegate.lastErrorString as Any,
                 ]
             )
-        }
-
-    case DC_EVENT_ERROR_NETWORK:
-        let msg = String(cString: data2String)
-        if data1 == 1 {
-            AppDelegate.lastErrorDuringConfig = msg
-            logger.error("network: \(msg)")
-        } else {
-            logger.warning("network: \(msg)")
         }
 
     case DC_EVENT_IMAP_CONNECTED, DC_EVENT_SMTP_CONNECTED:

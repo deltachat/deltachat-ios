@@ -166,9 +166,9 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
             // execute blocking secure join in background
             DispatchQueue.global(qos: .background).async {
                 self.addSecureJoinProgressListener()
-                AppDelegate.lastErrorDuringConfig = nil
+                AppDelegate.lastErrorString = nil
                 let chatId = self.dcContext.joinSecurejoin(qrCode: code)
-                let errorString = AppDelegate.lastErrorDuringConfig
+                let errorString = AppDelegate.lastErrorString
                 self.removeSecureJoinProgressListener()
 
                 DispatchQueue.main.async {
