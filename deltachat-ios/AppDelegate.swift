@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private func getCoreInfo() -> [[String]] {
         if let cString = dc_get_info(mailboxPointer) {
             let info = String(cString: cString)
-            free(cString)
+            dc_str_unref(cString)
             logger.info(info)
             return info.components(separatedBy: "\n").map { val in
                 val.components(separatedBy: "=")

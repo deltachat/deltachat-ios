@@ -200,7 +200,7 @@ class ChatViewController: MessagesViewController {
         if let draft = dc_get_draft(mailboxPointer, UInt32(chatId)) {
             if let cString = dc_msg_get_text(draft) {
                 let swiftString = String(cString: cString)
-                free(cString)
+                dc_str_unref(cString)
                 dc_msg_unref(draft)
                 return swiftString
             }
