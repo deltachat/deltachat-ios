@@ -1,5 +1,12 @@
 # Delta Chat iOS Changelog
 
+## v0.920.0
+2019-10-10
+
+* show text sent together with images or files
+* improve onboarding error messages
+* various bug fixes
+
 ## v0.910.0
 2019-10-07
 
