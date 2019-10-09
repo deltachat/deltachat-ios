@@ -487,7 +487,17 @@ class DcMsg: MessageType {
         default:
             // TODO: custom views for audio, etc
             if let filename = self.filename {
-                return MessageKind.text("File: \(self.filename ?? "") (\(self.filesize) bytes)")
+                let fileSize = self.filesize / 1024
+                let fileString = "\(self.filename ?? "???") (\(self.filesize / 1024) kB)"
+                let attributedFileString = NSMutableAttributedString(string: fileString,
+                                                                     attributes: [NSAttributedString.Key.font: UIFont.italicSystemFont(ofSize: 13.0)])
+                if !text.isEmpty {
+                    attributedFileString.append(NSAttributedString(string: "\n\n",
+                                                                   attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 7.0)]))
+                    attributedFileString.append(NSAttributedString(string: text,
+                                                                   attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)]))
+                }
+                return MessageKind.fileText(Media(text: attributedFileString))
             }
             return MessageKind.text(text)
         }
