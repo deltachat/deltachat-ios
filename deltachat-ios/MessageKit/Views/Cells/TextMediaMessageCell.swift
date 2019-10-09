@@ -34,6 +34,12 @@ open class TextMediaMessageCell: MessageContentCell {
         return playButtonView
     }()
 
+    open lazy var fileView: UIImageView = {
+        let fileView = UIImageView(image: UIImage(named: "ic_attach_file_36pt"))
+        fileView.translatesAutoresizingMaskIntoConstraints = false
+        return fileView
+    }()
+
     // MARK: - Methods
 
     open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
@@ -56,7 +62,7 @@ open class TextMediaMessageCell: MessageContentCell {
     }
 
     /// Responsible for setting up the constraints of the cell's subviews.
-    open func setupConstraints() {
+    open func setupConstraints(for messageKind: MessageKind) {
         messageContainerView.removeConstraints(messageContainerView.constraints)
         let imageViewHeight = messageContainerView.frame.height - getMessageLabelHeight()
 
@@ -66,18 +72,27 @@ open class TextMediaMessageCell: MessageContentCell {
                                     imageView.constraintAlignTopTo(messageContainerView),
                                     imageView.heightAnchor.constraint(equalToConstant: imageViewHeight)
                                     ]
-
         messageContainerView.addConstraints(imageViewConstraints)
-
-        playButtonView.constraint(equalTo: CGSize(width: 35, height: 35))
-        let playButtonViewConstraints = [ playButtonView.constraintCenterXTo(imageView),
-                                          playButtonView.constraintCenterYTo(imageView)]
-        messageContainerView.addConstraints(playButtonViewConstraints)
 
         messageLabel.frame = CGRect(x: 0,
                                     y: messageContainerView.frame.height - getMessageLabelHeight(),
                                     width: messageContainerView.frame.width,
                                     height: getMessageLabelHeight())
+
+        switch messageKind {
+        case .videoText:
+            playButtonView.constraint(equalTo: CGSize(width: 35, height: 35))
+            let playButtonViewConstraints = [ playButtonView.constraintCenterXTo(imageView),
+                                              playButtonView.constraintCenterYTo(imageView)]
+            messageContainerView.addConstraints(playButtonViewConstraints)
+        case .fileText:
+            fileView.constraint(equalTo: CGSize(width: 35, height: 35))
+            let fileViewConstraints = [ fileView.constraintCenterXTo(imageView),
+                                                         fileView.constraintCenterYTo(imageView)]
+            messageContainerView.addConstraints(fileViewConstraints)
+        default:
+            break
+        }
     }
 
     open override func prepareForReuse() {
@@ -91,6 +106,7 @@ open class TextMediaMessageCell: MessageContentCell {
         super.setupSubviews()
         messageContainerView.addSubview(imageView)
         messageContainerView.addSubview(playButtonView)
+        messageContainerView.addSubview(fileView)
         messageContainerView.addSubview(messageLabel)
     }
 
@@ -102,30 +118,43 @@ open class TextMediaMessageCell: MessageContentCell {
         }
 
         switch message.kind {
-        case .photoText(let mediaItem):
+        case .photoText(let mediaItem), .videoText(let mediaItem), .fileText(let mediaItem):
             configureImageView(for: mediaItem)
             configureMessageLabel(for: mediaItem,
                                   with: displayDelegate,
                                   message: message,
                                   at: indexPath,
                                   in: messagesCollectionView)
-            playButtonView.isHidden = true
-        case .videoText(let mediaItem):
-            configureImageView(for: mediaItem)
-            configureMessageLabel(for: mediaItem,
-                                  with: displayDelegate,
-                                  message: message,
-                                  at: indexPath,
-                                  in: messagesCollectionView)
-            playButtonView.isHidden = false
+
         default:
             fatalError("Unexpected message kind in TextMediaMessageCell")
         }
-        setupConstraints()
+
+        configurePlayButtonView(for: message.kind)
+        configureFileView(for: message.kind)
+        setupConstraints(for: message.kind)
 
         displayDelegate.configureMediaMessageImageView(imageView, for: message, at: indexPath, in: messagesCollectionView)
     }
 
+
+    func configurePlayButtonView(for messageKind: MessageKind) {
+        switch messageKind {
+        case .videoText:
+            playButtonView.isHidden = false
+        default:
+            playButtonView.isHidden = true
+        }
+    }
+
+    func configureFileView(for messageKind: MessageKind) {
+        switch messageKind {
+        case .fileText:
+            fileView.isHidden = false
+        default:
+            fileView.isHidden = true
+        }
+    }
 
     func configureImageView(for mediaItem: MediaItem) {
         imageView.image = mediaItem.image ?? mediaItem.placeholderImage

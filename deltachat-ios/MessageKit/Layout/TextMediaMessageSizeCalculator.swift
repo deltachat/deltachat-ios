@@ -60,7 +60,7 @@ open class TextMediaMessageSizeCalculator: MessageSizeCalculator {
 
             var messageContainerSize = CGSize(width: itemWidth, height: imageHeight)
             switch message.kind {
-            case .photoText(let mediaItem), .videoText(let mediaItem):
+            case .photoText(let mediaItem), .videoText(let mediaItem), .fileText(let mediaItem):
                 if let text = mediaItem.text {
                     let textHeight = text.height(withConstrainedWidth: maxTextWidth)
                     messageContainerSize.height += textHeight
@@ -73,7 +73,7 @@ open class TextMediaMessageSizeCalculator: MessageSizeCalculator {
         }
 
         switch message.kind {
-        case .photoText(let item), .videoText(let item):
+        case .photoText(let item), .videoText(let item), .fileText(let item):
             return sizeForMediaItem(maxImageWidth, item)
         default:
             fatalError("messageContainerSize received unhandled MessageDataType: \(message.kind)")
@@ -89,7 +89,7 @@ open class TextMediaMessageSizeCalculator: MessageSizeCalculator {
         let message = dataSource.messageForItem(at: indexPath, in: messagesLayout.messagesCollectionView)
 
         switch message.kind {
-        case .photoText, .videoText:
+        case .photoText, .videoText, .fileText:
             attributes.messageLabelInsets = messageLabelInsets(for: message)
             attributes.messageLabelFont = messageLabelFont
         default:
