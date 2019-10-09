@@ -54,9 +54,12 @@ class AccountSetupController: UITableViewController {
     }
 
     private func updateProgressHud(error message: String?) {
-        configProgressAlert.title = String.localized("login_error_title")
-        configProgressAlert.message = message
-        configProgressIndicator.alpha = 0
+        DispatchQueue.main.async(execute: {
+            self.configProgressAlert.dismiss(animated: false)
+            let errorAlert = UIAlertController(title: String.localized("error"), message: message, preferredStyle: .alert)
+            errorAlert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+            self.present(errorAlert, animated: true, completion: nil)
+        })
     }
 
     private func updateProgressHudSuccess() {
