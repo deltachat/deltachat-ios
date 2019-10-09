@@ -73,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         appCoordinator.start()
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         start()
+        setStockTranslations()
         if !isConfigured {
             appCoordinator.presentLoginController()
         }
@@ -143,6 +144,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         _ = dc_open(mailboxPointer, dbfile(), nil)
+    }
+
+    func setStockTranslations() {
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_NOMESSAGES), String.localized("chat_no_messages"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_SELF), String.localized("self"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_DRAFT), String.localized("draft"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_VOICEMESSAGE), String.localized("voice_message"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_DEADDROP), String.localized("chat_contact_request"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_IMAGE), String.localized("image"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_VIDEO), String.localized("video"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_AUDIO), String.localized("audio"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_FILE), String.localized("file"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_STATUSLINE), String.localized("pref_default_status_text"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_NEWGROUPDRAFT), String.localized("group_hello_draft"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGGRPNAME), String.localized("systemmsg_group_name_changed"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGGRPIMGCHANGED), String.localized("systemmsg_group_image_changed"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGADDMEMBER), String.localized("systemmsg_member_added"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGDELMEMBER), String.localized("systemmsg_member_removed"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGGROUPLEFT), String.localized("systemmsg_group_left"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_GIF), String.localized("gif"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_CANTDECRYPT_MSG_BODY), String.localized("systemmsg_cannot_decrypt"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_READRCPT), String.localized("systemmsg_read_receipt_subject"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_READRCPT_MAILBODY), String.localized("systemmsg_read_receipt_body"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGGRPIMGDELETED), String.localized("systemmsg_group_image_deleted"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_CONTACT_VERIFIED), String.localized("contact_verified"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_CONTACT_NOT_VERIFIED), String.localized("contact_not_verified"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_CONTACT_SETUP_CHANGED), String.localized("contact_setup_changed"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_ARCHIVEDCHATS), String.localized("chat_archived_chats_title"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_AC_SETUP_MSG_SUBJECT), String.localized("autocrypt_asm_subject"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_AC_SETUP_MSG_BODY), String.localized("autocrypt_asm_general_body"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_SELFTALK_SUBTITLE), String.localized("chat_self_talk_subtitle"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_CANNOT_LOGIN), String.localized("login_error_cannot_login"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_SERVER_RESPONSE), String.localized("login_error_server_response"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGACTIONBYUSER), String.localized("systemmsg_action_by_user"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGACTIONBYME), String.localized("systemmsg_action_by_me"))
     }
 
     func stop() {
