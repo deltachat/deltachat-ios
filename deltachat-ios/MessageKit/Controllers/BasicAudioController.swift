@@ -83,12 +83,14 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
     open func configureAudioCell(_ cell: AudioMessageCell, message: MessageType) {
         if playingMessage?.messageId == message.messageId, let collectionView = messageCollectionView, let player = audioPlayer {
             playingCell = cell
-            cell.progressView.progress = (player.duration == 0) ? 0 : Float(player.currentTime/player.duration)
-            cell.playButton.isSelected = (player.isPlaying == true) ? true : false
+            cell.audioPlayerView.setProgress((player.duration == 0) ? 0 : Float(player.currentTime/player.duration))
+            cell.audioPlayerView.showPlayLayout((player.isPlaying == true) ? true : false)
             guard let displayDelegate = collectionView.messagesDisplayDelegate else {
                 fatalError("MessagesDisplayDelegate has not been set.")
             }
-            cell.durationLabel.text = displayDelegate.audioProgressTextFormat(Float(player.currentTime), for: cell, in: collectionView)
+            cell.audioPlayerView.setDuration(formattedText: displayDelegate.audioProgressTextFormat(Float(player.currentTime),
+                                                                                                    for: cell,
+                                                                                                    in: collectionView))
         }
     }
 
@@ -111,7 +113,7 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
             audioPlayer?.delegate = self
             audioPlayer?.play()
             state = .playing
-            audioCell.playButton.isSelected = true  // show pause button on audio cell
+            audioCell.audioPlayerView.showPlayLayout(true)  // show pause button on audio cell
             startProgressTimer()
             audioCell.delegate?.didStartAudio(in: audioCell)
         default:
@@ -127,7 +129,7 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
     open func pauseSound(for message: MessageType, in audioCell: AudioMessageCell) {
         audioPlayer?.pause()
         state = .pause
-        audioCell.playButton.isSelected = false // show play button on audio cell
+        audioCell.audioPlayerView.showPlayLayout(false) // show play button on audio cell
         progressTimer?.invalidate()
         if let cell = playingCell {
             cell.delegate?.didPauseAudio(in: cell)
@@ -136,16 +138,19 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
 
     /// Stops any ongoing audio playing if exists
     open func stopAnyOngoingPlaying() {
-        guard let player = audioPlayer, let collectionView = messageCollectionView else { return } // If the audio player is nil then we don't need to go through the stopping logic
+        // If the audio player is nil then we don't need to go through the stopping logic
+        guard let player = audioPlayer, let collectionView = messageCollectionView else { return }
         player.stop()
         state = .stopped
         if let cell = playingCell {
-            cell.progressView.progress = 0.0
-            cell.playButton.isSelected = false
+            cell.audioPlayerView.setProgress(0.0)
+            cell.audioPlayerView.showPlayLayout(false)
             guard let displayDelegate = collectionView.messagesDisplayDelegate else {
                 fatalError("MessagesDisplayDelegate has not been set.")
             }
-            cell.durationLabel.text = displayDelegate.audioProgressTextFormat(Float(player.duration), for: cell, in: collectionView)
+            cell.audioPlayerView.setDuration(formattedText: displayDelegate.audioProgressTextFormat(Float(player.duration),
+                                                                                                    for: cell,
+                                                                                                    in: collectionView))
             cell.delegate?.didStopAudio(in: cell)
         }
         progressTimer?.invalidate()
@@ -165,7 +170,7 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
         player.play()
         state = .playing
         startProgressTimer()
-        cell.playButton.isSelected = true // show pause button on audio cell
+        cell.audioPlayerView.showPlayLayout(true) // show pause button on audio cell
         cell.delegate?.didStartAudio(in: cell)
     }
 
@@ -182,11 +187,13 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
             let currentMessage = collectionView.messagesDataSource?.messageForItem(at: playingCellIndexPath, in: collectionView)
             if currentMessage != nil && currentMessage?.messageId == playingMessage?.messageId {
                 // messages are the same update cell content
-                cell.progressView.progress = (player.duration == 0) ? 0 : Float(player.currentTime/player.duration)
+                cell.audioPlayerView.setProgress((player.duration == 0) ? 0 : Float(player.currentTime/player.duration))
                 guard let displayDelegate = collectionView.messagesDisplayDelegate else {
                     fatalError("MessagesDisplayDelegate has not been set.")
                 }
-                cell.durationLabel.text = displayDelegate.audioProgressTextFormat(Float(player.currentTime), for: cell, in: collectionView)
+                cell.audioPlayerView.setDuration(formattedText: displayDelegate.audioProgressTextFormat(Float(player.currentTime),
+                                                                                                        for: cell,
+                                                                                                        in: collectionView))
             } else {
                 // if the current message is not the same with playing message stop playing sound
                 stopAnyOngoingPlaying()
@@ -198,7 +205,11 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
     private func startProgressTimer() {
         progressTimer?.invalidate()
         progressTimer = nil
-        progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(BasicAudioController.didFireProgressTimer(_:)), userInfo: nil, repeats: true)
+        progressTimer = Timer.scheduledTimer(timeInterval: 0.1,
+                                             target: self,
+                                             selector: #selector(BasicAudioController.didFireProgressTimer(_:)),
+                                             userInfo: nil,
+                                             repeats: true)
     }
 
     // MARK: - AVAudioPlayerDelegate

@@ -3,7 +3,7 @@ import Foundation
 import UIKit
 
 struct Audio: AudioItem {
-    var size: CGSize = CGSize(width: 250, height: 100)
+    var size: CGSize = CGSize(width: 250, height: 50)
 
     var url: URL
 

@@ -27,18 +27,64 @@ import UIKit
 
 open class AudioMessageSizeCalculator: MessageSizeCalculator {
 
+    public var incomingMessageLabelInsets = UIEdgeInsets(top: AudioMessageCell.insetTop,
+                                                         left: AudioMessageCell.insetHorizontalBig,
+                                                         bottom: AudioMessageCell.insetBottom,
+                                                         right: AudioMessageCell.insetHorizontalSmall)
+   public var outgoingMessageLabelInsets = UIEdgeInsets(top: AudioMessageCell.insetTop,
+                                                        left: AudioMessageCell.insetHorizontalSmall,
+                                                        bottom: AudioMessageCell.insetBottom,
+                                                        right: AudioMessageCell.insetHorizontalBig)
+
+    public var messageLabelFont = UIFont.preferredFont(forTextStyle: .body)
+
+
+    internal func messageLabelInsets(for message: MessageType) -> UIEdgeInsets {
+        let dataSource = messagesLayout.messagesDataSource
+        let isFromCurrentSender = dataSource.isFromCurrentSender(message: message)
+        return isFromCurrentSender ? outgoingMessageLabelInsets : incomingMessageLabelInsets
+    }
+
     open override func messageContainerSize(for message: MessageType) -> CGSize {
         switch message.kind {
         case .audio(let item):
             let maxWidth = messageContainerMaxWidth(for: message)
-            if maxWidth < item.size.width {
+            var itemWidth = item.size.width
+            var itemHeight = item.size.height
+
+            if maxWidth < itemWidth {
                 // Maintain the ratio if width is too great
-                let height = maxWidth * item.size.height / item.size.width
-                return CGSize(width: maxWidth, height: height)
+                itemHeight = maxWidth * item.size.height / item.size.width
+                itemWidth = maxWidth
             }
-            return item.size
+
+            let maxTextWidth = itemWidth - self.messageLabelInsets(for: message).horizontal
+            var messageContainerSize = CGSize(width: itemWidth, height: itemHeight)
+            if let text = item.text {
+                let textHeight = text.height(withConstrainedWidth: maxTextWidth)
+                messageContainerSize.height += textHeight
+                messageContainerSize.height +=  self.messageLabelInsets(for: message).vertical
+            }
+            return messageContainerSize
         default:
             fatalError("messageContainerSize received unhandled MessageDataType: \(message.kind)")
+        }
+    }
+
+    open override func configure(attributes: UICollectionViewLayoutAttributes) {
+        super.configure(attributes: attributes)
+        guard let attributes = attributes as? MessagesCollectionViewLayoutAttributes else { return }
+
+        let dataSource = messagesLayout.messagesDataSource
+        let indexPath = attributes.indexPath
+        let message = dataSource.messageForItem(at: indexPath, in: messagesLayout.messagesCollectionView)
+
+        switch message.kind {
+        case .audio:
+            attributes.messageLabelInsets = messageLabelInsets(for: message)
+            attributes.messageLabelFont = messageLabelFont
+        default:
+            break
         }
     }
 }
