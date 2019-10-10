@@ -604,6 +604,7 @@
 "a11y_background_preview_label" = "Background preview";
 
 "hide" = "Hide";
+"login_error_title" = "Unable to login!";
 "start_chat" = "Start Chat";
 "dismiss" = "Dismiss";
 "photo" = "Photo";

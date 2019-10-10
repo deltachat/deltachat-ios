@@ -12,6 +12,7 @@
 "open" = "Открыть";
 "delete" = "Удалить";
 "update" = "Обновить";
+"emoji" = "Эмодзи";
 "attachment" = "Вложение";
 "back" = "Назад";
 "close" = "Закрыть";
@@ -199,6 +200,9 @@
 "chat_self_talk_subtitle" = "Сообщения отправленные себе";
 "chat_contact_request" = "Запрос контакта";
 "chat_no_contact_requests" = "Нет запросов контактов.\n\nЕсли Вы хотите, чтобы обычная почта появлялась здесь как запросы контактов, вы можете изменить соответствующий параметр в настройках приложения.";
+"retry_send" = "Попробовать послать сообщение заново";
+"send_failed" = "Отправка сообщения завершилась неуспешно";
+
 // map
 "filter_map_on_time" = "Показать местоположения с интервалом времени";
 "show_location_traces" = "Показывать маршруты";
@@ -402,6 +406,8 @@
 "pref_empty_server_inbox" = "Удалить ВСЕ сообщения электронной почты в папке «Входящие»";
 "pref_empty_server_mvbox" = "Удалить ВСЕ сообщения электронной почты в папке DeltaChat";
 "pref_empty_server_do_button" = "Удаление электронной почты";
+"pref_experimental_features" = "Экспериментальные функции";
+"pref_background_default" = "Фон по умолчанию";
 "pref_background_default_color" = "Цвет по умолчанию";
 // autocrypt
 "autocrypt" = "Autocrypt";
@@ -525,6 +531,7 @@
 "global_menu_view_developer_desktop" = "Разработчик";
 "global_menu_view_developer_tools_desktop" = "Инструменты разработчика";
 "global_menu_help_desktop" = "Помощь";
+"global_menu_help_learn_desktop" = "Узнать больше о Delta Chat";
 "global_menu_help_contribute_desktop" = "Присоединиться к разработке на GitHub";
 "global_menu_help_report_desktop" = "Сообщить о проблеме…";
 "global_menu_help_about_desktop" = "О Delta Chat";
