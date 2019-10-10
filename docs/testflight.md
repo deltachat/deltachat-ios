@@ -11,8 +11,9 @@
    - menu "Product/Archive" ... coffee ...
      (codesign may ask for a password, this _may_ be empty and "Enter" will do)
    - on success, a dialog with all releases on the machine is shown;
-     click on the most recent and select "Distribute", then "iOS App Store",
-	 then "Upload", leave default options, in the summary, click "Upload" again
+     select the most newest, then "Distribute" -> "App Store Connect" -> "Upload"
+     leave default options (strip symbols: yes, upload symbols: yes),
+     in the summary, click "Upload" again ... two coffees ...
 
 3. on https://appstoreconnect.apple.com :
    - open "My Apps/Delta Chat/TestFlight/iOS"
