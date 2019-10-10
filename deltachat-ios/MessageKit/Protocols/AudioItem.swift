@@ -37,4 +37,6 @@ public protocol AudioItem {
     /// The size of the audio item.
     var size: CGSize { get }
 
+    /// Additional text
+    var text: NSAttributedString? { get }
 }

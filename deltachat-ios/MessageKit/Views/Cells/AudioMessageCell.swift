@@ -28,71 +28,72 @@ import AVFoundation
 /// A subclass of `MessageContentCell` used to display video and audio messages.
 open class AudioMessageCell: MessageContentCell {
 
-    /// The play button view to display on audio messages.
-    public lazy var playButton: UIButton = {
-        let playButton = UIButton(type: .custom)
-        let playImage = UIImage.messageKitImageWith(type: .play)
-        let pauseImage = UIImage.messageKitImageWith(type: .pause)
-        playButton.setImage(playImage?.withRenderingMode(.alwaysTemplate), for: .normal)
-        playButton.setImage(pauseImage?.withRenderingMode(.alwaysTemplate), for: .selected)
-        return playButton
-    }()
+    public static let insetTop: CGFloat = 12
+    public static let insetBottom: CGFloat = 12
+    public static let insetHorizontalBig: CGFloat = 23
+    public static let insetHorizontalSmall: CGFloat = 12
 
-    /// The time duration lable to display on audio messages.
-    public lazy var durationLabel: UILabel = {
-        let durationLabel = UILabel(frame: CGRect.zero)
-        durationLabel.textAlignment = .right
-        durationLabel.font = UIFont.systemFont(ofSize: 14)
-        durationLabel.text = "0:00"
-        return durationLabel
-    }()
+    // MARK: - Properties
+    /// The `MessageCellDelegate` for the cell.
+    open override weak var delegate: MessageCellDelegate? {
+        didSet {
+            messageLabel.delegate = delegate
+        }
+    }
 
-    public lazy var progressView: UIProgressView = {
-        let progressView = UIProgressView(progressViewStyle: .default)
-        progressView.progress = 0.0
-        return progressView
+    /// The label used to display the message's text.
+    open var messageLabel = MessageLabel()
+
+    public lazy var audioPlayerView: AudioPlayerView = {
+        let audioPlayerView = AudioPlayerView()
+        audioPlayerView.translatesAutoresizingMaskIntoConstraints = false
+        return audioPlayerView
     }()
 
     // MARK: - Methods
-
     /// Responsible for setting up the constraints of the cell's subviews.
     open func setupConstraints() {
-        playButton.constraint(equalTo: CGSize(width: 25, height: 25))
-        playButton.addConstraints(left: messageContainerView.leftAnchor, centerY: messageContainerView.centerYAnchor, leftConstant: 5)
-        durationLabel.addConstraints(right: messageContainerView.rightAnchor, centerY: messageContainerView.centerYAnchor, rightConstant: 15)
-        progressView.addConstraints(left: playButton.rightAnchor,
-                                    right: durationLabel.leftAnchor,
-                                    centerY: messageContainerView.centerYAnchor,
-                                    leftConstant: 5,
-                                    rightConstant: 5)
+        messageContainerView.removeConstraints(messageContainerView.constraints)
+        let audioPlayerHeight = messageContainerView.frame.height - getMessageLabelHeight()
+        let audioPlayerConstraints = [ audioPlayerView.constraintHeightTo(audioPlayerHeight),
+                                       audioPlayerView.constraintAlignLeadingTo(messageContainerView),
+                                       audioPlayerView.constraintAlignTrailingTo(messageContainerView),
+                                       audioPlayerView.constraintAlignTopTo(messageContainerView)
+        ]
+        messageContainerView.addConstraints(audioPlayerConstraints)
+
+        messageLabel.frame = CGRect(x: 0,
+                                    y: messageContainerView.frame.height - getMessageLabelHeight(),
+                                    width: messageContainerView.frame.width,
+                                    height: getMessageLabelHeight())
+    }
+
+    func getMessageLabelHeight() -> CGFloat {
+        if let text = messageLabel.attributedText {
+            let height = (text.height(withConstrainedWidth:
+                messageContainerView.frame.width -
+                    TextMediaMessageCell.insetHorizontalSmall -
+                    TextMediaMessageCell.insetHorizontalBig))
+            return height + TextMediaMessageCell.insetBottom + TextMediaMessageCell.insetTop
+        }
+        return 0
     }
 
     open override func setupSubviews() {
         super.setupSubviews()
-        messageContainerView.addSubview(playButton)
-        messageContainerView.addSubview(durationLabel)
-        messageContainerView.addSubview(progressView)
-        setupConstraints()
+        messageContainerView.addSubview(audioPlayerView)
+        messageContainerView.addSubview(messageLabel)
     }
 
     open override func prepareForReuse() {
         super.prepareForReuse()
-        progressView.progress = 0
-        playButton.isSelected = false
-        durationLabel.text = "0:00"
+        audioPlayerView.reset()
+        messageLabel.attributedText = nil
     }
 
     /// Handle tap gesture on contentView and its subviews.
     open override func handleTapGesture(_ gesture: UIGestureRecognizer) {
-        let touchLocation = gesture.location(in: self)
-        // compute play button touch area, currently play button size is (25, 25) which is hardly touchable
-        // add 10 px around current button frame and test the touch against this new frame
-        let playButtonTouchArea = CGRect(playButton.frame.origin.x - 10.0,
-                                         playButton.frame.origin.y - 10,
-                                         playButton.frame.size.width + 20,
-                                         playButton.frame.size.height + 20)
-        let translateTouchLocation = convert(touchLocation, to: messageContainerView)
-        if playButtonTouchArea.contains(translateTouchLocation) {
+        if audioPlayerView.didTapPlayButton(gesture) {
             delegate?.didTapPlayButton(in: self)
         } else {
             super.handleTapGesture(gesture)
@@ -100,23 +101,19 @@ open class AudioMessageCell: MessageContentCell {
     }
 
     // MARK: - Configure Cell
+    open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+           super.apply(layoutAttributes)
+           if let attributes = layoutAttributes as? MessagesCollectionViewLayoutAttributes {
+               messageLabel.textInsets = attributes.messageLabelInsets
+               messageLabel.messageLabelFont = attributes.messageLabelFont
+           }
+       }
 
     open override func configure(with message: MessageType, at indexPath: IndexPath, and messagesCollectionView: MessagesCollectionView) {
         super.configure(with: message, at: indexPath, and: messagesCollectionView)
 
-        guard let dataSource = messagesCollectionView.messagesDataSource else {
+        guard messagesCollectionView.messagesDataSource != nil else {
             fatalError(MessageKitError.nilMessagesDataSource)
-        }
-
-        let playButtonLeftConstraint = messageContainerView.constraints.filter { $0.identifier == "left" }.first
-        let durationLabelRightConstraint = messageContainerView.constraints.filter { $0.identifier == "right" }.first
-
-        if !dataSource.isFromCurrentSender(message: message) {
-            playButtonLeftConstraint?.constant = 12
-            durationLabelRightConstraint?.constant = -8
-        } else {
-            playButtonLeftConstraint?.constant = 5
-            durationLabelRightConstraint?.constant = -15
         }
 
         guard let displayDelegate = messagesCollectionView.messagesDisplayDelegate else {
@@ -124,14 +121,41 @@ open class AudioMessageCell: MessageContentCell {
         }
 
         let tintColor = displayDelegate.audioTintColor(for: message, at: indexPath, in: messagesCollectionView)
-        playButton.imageView?.tintColor = tintColor
-        durationLabel.textColor = tintColor
-        progressView.tintColor = tintColor
-
-        displayDelegate.configureAudioCell(self, message: message)
+        audioPlayerView.setTintColor(tintColor)
 
         if case let .audio(audioItem) = message.kind {
-            durationLabel.text = displayDelegate.audioProgressTextFormat(audioItem.duration, for: self, in: messagesCollectionView)
+            audioPlayerView.setDuration(formattedText: displayDelegate.audioProgressTextFormat(audioItem.duration,
+                                                                                               for: self,
+                                                                                               in: messagesCollectionView))
+            configureMessageLabel(for: audioItem,
+                                  with: displayDelegate,
+                                  message: message,
+                                  at: indexPath, in: messagesCollectionView)
         }
+
+        setupConstraints()
+        displayDelegate.configureAudioCell(self, message: message)
+    }
+
+    func configureMessageLabel(for audioItem: AudioItem,
+                               with displayDelegate: MessagesDisplayDelegate,
+                               message: MessageType,
+                               at indexPath: IndexPath,
+                               in messagesCollectionView: MessagesCollectionView) {
+           let enabledDetectors = displayDelegate.enabledDetectors(for: message, at: indexPath, in: messagesCollectionView)
+           messageLabel.configure {
+              messageLabel.enabledDetectors = enabledDetectors
+              for detector in enabledDetectors {
+                  let attributes = displayDelegate.detectorAttributes(for: detector, and: message, at: indexPath)
+                  messageLabel.setAttributes(attributes, detector: detector)
+              }
+               messageLabel.attributedText = audioItem.text
+           }
+       }
+
+    /// Used to handle the cell's contentView's tap gesture.
+    /// Return false when the contentView does not need to handle the gesture.
+    open override func cellContentView(canHandle touchPoint: CGPoint) -> Bool {
+        return messageLabel.handleGesture(touchPoint)
     }
 }

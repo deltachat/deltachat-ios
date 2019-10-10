@@ -56,7 +56,7 @@ open class ContactMessageCell: MessageContentCell {
     
     /// The disclouser image view
     public lazy var disclosureImageView: UIImageView = {
-        let disclouserImage = UIImage.messageKitImageWith(type: .disclouser)?.withRenderingMode(.alwaysTemplate)
+        let disclouserImage = UIImage(named: "disclouser")?.withRenderingMode(.alwaysTemplate)
         let disclouser = UIImageView(image: disclouserImage)
         return disclouser
     }()

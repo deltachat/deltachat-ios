@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import AVFoundation
 
 class DcContext {
     let contextPointer: OpaquePointer?
@@ -473,35 +474,61 @@ class DcMsg: MessageType {
 
         switch self.viewtype! {
         case .image:
-            if text.isEmpty {
-                return MessageKind.photo(Media(image: image))
-            }
-            let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
-            return MessageKind.photoText(Media(image: image, text: attributedString))
+            return createImageMessage(text: text)
         case .video:
-            if text.isEmpty {
-                return MessageKind.video(Media(url: fileURL))
-            }
-            let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
-            return MessageKind.videoText(Media(url: fileURL, text: attributedString))
+            return createVideoMessage(text: text)
+        case .voice, .audio:
+            return createAudioMessage(text: text)
         default:
             // TODO: custom views for audio, etc
             if let filename = self.filename {
-                let fileSize = self.filesize / 1024
-                let fileString = "\(self.filename ?? "???") (\(self.filesize / 1024) kB)"
-                let attributedFileString = NSMutableAttributedString(string: fileString,
-                                                                     attributes: [NSAttributedString.Key.font: UIFont.italicSystemFont(ofSize: 13.0)])
-                if !text.isEmpty {
-                    attributedFileString.append(NSAttributedString(string: "\n\n",
-                                                                   attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 7.0)]))
-                    attributedFileString.append(NSAttributedString(string: text,
-                                                                   attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)]))
+                if Utils.hasAudioSuffix(url: fileURL!) {
+                   return createAudioMessage(text: text)
                 }
-                return MessageKind.fileText(Media(text: attributedFileString))
+                return createFileMessage(text: text)
             }
             return MessageKind.text(text)
         }
     }()
+
+    internal func createVideoMessage(text: String) -> MessageKind {
+        if text.isEmpty {
+                       return MessageKind.video(Media(url: fileURL))
+                   }
+                   let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
+                   return MessageKind.videoText(Media(url: fileURL, text: attributedString))
+    }
+
+    internal func createImageMessage(text: String) -> MessageKind {
+        if text.isEmpty {
+            return MessageKind.photo(Media(image: image))
+        }
+        let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
+        return MessageKind.photoText(Media(image: image, text: attributedString))
+    }
+
+    internal func createAudioMessage(text: String) -> MessageKind {
+        let audioAsset = AVURLAsset(url: fileURL!)
+        let seconds = Float(CMTimeGetSeconds(audioAsset.duration))
+        if !text.isEmpty {
+            let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
+            return MessageKind.audio(Audio(url: audioAsset.url, duration: seconds, text: attributedString))
+        }
+        return MessageKind.audio(Audio(url: fileURL!, duration: seconds))
+    }
+
+    internal func createFileMessage(text: String) -> MessageKind {
+        let fileString = "\(self.filename ?? "???") (\(self.filesize / 1024) kB)"
+        let attributedFileString = NSMutableAttributedString(string: fileString,
+                                                             attributes: [NSAttributedString.Key.font: UIFont.italicSystemFont(ofSize: 13.0)])
+        if !text.isEmpty {
+            attributedFileString.append(NSAttributedString(string: "\n\n",
+                                                           attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 7.0)]))
+            attributedFileString.append(NSAttributedString(string: text,
+                                                           attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)]))
+        }
+        return MessageKind.fileText(Media(text: attributedFileString))
+    }
 
     var messageId: String {
         return "\(id)"
