@@ -95,13 +95,6 @@ extension UIImage {
         return UIImage(data: imageData!)
     }
 
-    public class func messageKitImageWith(type: ImageType) -> UIImage? {
-        let assetBundle = Bundle.messageKitAssetBundle()
-        let imagePath = assetBundle.path(forResource: type.rawValue, ofType: "png", inDirectory: "Images")
-        let image = UIImage(contentsOfFile: imagePath ?? "")
-        return image
-    }
-
 }
 
 public enum ImageType: String {

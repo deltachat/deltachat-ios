@@ -2,6 +2,7 @@ import MapKit
 import QuickLook
 import UIKit
 import InputBarAccessoryView
+import AVFoundation
 
 protocol MediaSendHandler {
     func onSuccess()
@@ -30,6 +31,9 @@ class ChatViewController: MessagesViewController {
     lazy var navBarTap: UITapGestureRecognizer = {
         UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
     }()
+
+    /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and udpate audio cell UI accordingly.
+    open lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
 
     var disableWriting = false
     var showCustomNavBar = true
@@ -158,6 +162,7 @@ class ChatViewController: MessagesViewController {
         if let incomingMsgObserver = self.incomingMsgObserver {
             nc.removeObserver(incomingMsgObserver)
         }
+        audioController.stopAnyOngoingPlaying()
     }
 
     @objc
@@ -900,6 +905,45 @@ extension ChatViewController: MessageCellDelegate {
     @objc(didTapCellBottomLabelIn:) func didTapCellBottomLabel(in _: MessageCollectionViewCell) {
         print("Bottom label tapped")
     }
+
+    func didTapPlayButton(in cell: AudioMessageCell) {
+        guard let indexPath = messagesCollectionView.indexPath(for: cell),
+            let message = messagesCollectionView.messagesDataSource?.messageForItem(at: indexPath, in: messagesCollectionView) else {
+                print("Failed to identify message when audio cell receive tap gesture")
+                return
+        }
+        guard audioController.state != .stopped else {
+            // There is no audio sound playing - prepare to start playing for given audio message
+            audioController.playSound(for: message, in: cell)
+            return
+        }
+        if audioController.playingMessage?.messageId == message.messageId {
+            // tap occur in the current cell that is playing audio sound
+            if audioController.state == .playing {
+                audioController.pauseSound(for: message, in: cell)
+            } else {
+                audioController.resumeSound()
+            }
+        } else {
+            // tap occur in a difference cell that the one is currently playing sound. First stop currently playing and start the sound for given message
+            audioController.stopAnyOngoingPlaying()
+            audioController.playSound(for: message, in: cell)
+        }
+    }
+
+
+    func didStartAudio(in cell: AudioMessageCell) {
+        print("audio started")
+    }
+
+    func didStopAudio(in cell: AudioMessageCell) {
+        print("audio stopped")
+    }
+
+    func didPauseAudio(in cell: AudioMessageCell) {
+        print("audio paused")
+    }
+
 
     @objc func didTapBackground(in cell: MessageCollectionViewCell) {
         print("background of message tapped")

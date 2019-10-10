@@ -141,6 +141,11 @@ struct Utils {
         }
     }
 
+    static func hasAudioSuffix(url: URL) -> Bool {
+        ///TODO: add more file suffixes
+        return url.absoluteString.hasSuffix("wav")
+    }
+
     static func generateThumbnailFromVideo(url: URL) -> UIImage? {
         do {
             let asset = AVURLAsset(url: url)
