@@ -47,17 +47,6 @@ class ChatTitleView: UIView {
         subtitleLabel.textColor = baseColor.withAlphaComponent(0.95)
         titleLabel.textColor = baseColor
         titleLabel.text = title
-        subtitleLabel.text = hackPluralsString(string: subtitle)
+        subtitleLabel.text = subtitle
     }
-}
-
-func hackPluralsString(string: String?) -> String? {
-    // the rust-core does not care about plural forms (there is just once case that was not worth the effort up to now)
-    // therefore, we check if the returned string has the form "N member(s)" and localized the corrently to one/few/many/other
-    guard var string = string else { return nil }
-    if string.hasSuffix(" member(s)") {
-        guard let value = Int(string.components(separatedBy: " ")[0]) else { return string }
-        string = String.localizedStringWithFormat(NSLocalizedString("n_members", comment: ""), value)
-    }
-    return string
 }

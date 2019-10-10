@@ -174,7 +174,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_ARCHIVEDCHATS), String.localized("chat_archived_chats_title"))
         dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_AC_SETUP_MSG_SUBJECT), String.localized("autocrypt_asm_subject"))
         dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_AC_SETUP_MSG_BODY), String.localized("autocrypt_asm_general_body"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_SELFTALK_SUBTITLE), String.localized("chat_self_talk_subtitle"))
         dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_CANNOT_LOGIN), String.localized("login_error_cannot_login"))
         dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_SERVER_RESPONSE), String.localized("login_error_server_response"))
         dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGACTIONBYUSER), String.localized("systemmsg_action_by_user"))

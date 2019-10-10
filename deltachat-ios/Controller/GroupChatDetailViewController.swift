@@ -114,7 +114,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == sectionConfig {
             let header = ContactDetailHeader()
-            header.updateDetails(title: chat.name, subtitle: chat.subtitle)
+            header.updateDetails(title: chat.name, subtitle: String.localizedStringWithFormat(NSLocalizedString("n_members", comment: ""), chat.contactIds.count))
             if let img = chat.profileImage {
                 header.setImage(img)
             } else {

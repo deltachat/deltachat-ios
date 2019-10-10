@@ -87,7 +87,20 @@ class ChatViewController: MessagesViewController {
         let chat = DcChat(id: chatId)
         if showCustomNavBar {
             let titleView =  ChatTitleView()
-            titleView.updateTitleView(title: chat.name, subtitle: chat.subtitle)
+
+            var subtitle = "ErrSubtitle"
+            let chatContactIds = chat.contactIds
+            if chat.isGroup {
+                subtitle = String.localizedStringWithFormat(NSLocalizedString("n_members", comment: ""), chatContactIds.count)
+            } else if chatContactIds.count >= 1 {
+                if chat.isSelfTalk {
+                    subtitle = String.localized("chat_self_talk_subtitle")
+                } else {
+                    subtitle = DcContact(id: chatContactIds[0]).email
+                }
+            }
+
+            titleView.updateTitleView(title: chat.name, subtitle: subtitle)
             navigationItem.titleView = titleView
 
             let badge: InitialsBadge

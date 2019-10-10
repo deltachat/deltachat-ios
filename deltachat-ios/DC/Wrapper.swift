@@ -388,6 +388,15 @@ class DcChat {
         return UIColor(netHex: Int(dc_chat_get_color(chatPointer)))
     }
 
+    var isGroup: Bool {
+        let type = Int(dc_chat_get_type(chatPointer))
+        return type == DC_CHAT_TYPE_GROUP || type == DC_CHAT_TYPE_VERIFIED_GROUP
+    }
+
+    var isSelfTalk: Bool {
+        return Int(dc_chat_is_self_talk(chatPointer)) != 0
+    }
+
     var isVerified: Bool {
         return dc_chat_is_verified(chatPointer) > 0
     }
@@ -413,15 +422,6 @@ class DcChat {
         }
         return nil
         }()
-
-    var subtitle: String? {
-        if let cString = dc_chat_get_subtitle(chatPointer) {
-            let str = String(cString: cString)
-            dc_str_unref(cString)
-            return str.isEmpty ? nil : str
-        }
-        return nil
-    }
 }
 
 class DcMsg: MessageType {
