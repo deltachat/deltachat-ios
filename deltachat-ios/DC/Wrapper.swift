@@ -78,9 +78,47 @@ class DcContext {
     func continueKeyTransfer(msgId: Int, setupCode: String) -> Bool {
         return dc_continue_key_transfer(self.contextPointer, UInt32(msgId), setupCode) != 0
     }
+
+    func getConfig(_ key: String) -> String? {
+        guard let cString = dc_get_config(self.contextPointer, key) else { return nil }
+        let value = String(cString: cString)
+        dc_str_unref(cString)
+        if value.isEmpty {
+            return nil
+        }
+        return value
+    }
+
+    func setConfig(_ key: String, _ value: String?) {
+        if let v = value {
+            dc_set_config(self.contextPointer, key, v)
+        } else {
+            dc_set_config(self.contextPointer, key, nil)
+        }
+    }
+
+    func getConfigBool(_ key: String) -> Bool {
+        return strToBool(getConfig(key))
+    }
+
+    func setConfigBool(_ key: String, _ value: Bool) {
+        let vStr = value ? "1" : "0"
+        setConfig(key, vStr)
+    }
 }
 
 class DcConfig {
+
+    // it is fine to use existing functionality of DcConfig,
+    // however, as DcConfig uses a global pointer,
+    // new functionality should be added to DcContext.
+
+    // also, there is no much worth in adding a separate function or so
+    // for each config option - esp. if they are just forwarded to the core
+    // and set/get only at one line of code each.
+    // this adds a complexity that can be avoided -
+    // and makes grep harder as these names are typically named following different guidelines.
+
     private class func getConfig(_ key: String) -> String? {
         guard let cString = dc_get_config(mailboxPointer, key) else { return nil }
         let value = String(cString: cString)
