@@ -223,6 +223,13 @@ internal final class SettingsViewController: QuickTableViewController {
                                     DcConfig.mvboxWatch = row.switchValue
                                 }
                     }),
+                    SwitchRow(text: String.localized("pref_send_copy_to_self"),
+                              switchValue: dcContext.getConfigBool("bcc_self"),
+                              action: { row in
+                                if let row = row as? SwitchRow {
+                                    self.dcContext.setConfigBool("bcc_self", row.switchValue)
+                                }
+                    }),
                     SwitchRow(text: String.localized("pref_auto_folder_moves"),
                               switchValue: DcConfig.mvboxMove,
                               action: { row in
