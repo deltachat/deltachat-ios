@@ -6,10 +6,15 @@ class NewChatViewController: UITableViewController {
     weak var coordinator: NewChatCoordinator?
 
     private let sectionNew = 0
-    private let sectionImportedContacts = 1
     private let sectionNewRowNewGroup = 0
     private let sectionNewRowNewContact = 1
     private let sectionNewRowCount = 2
+
+    private let sectionImportedContacts = 1
+
+    private var sectionContacts: Int { return deviceContactAccessGranted ? 1 : 2 }
+
+    private var sectionsCount: Int { return deviceContactAccessGranted ? 2 : 3 }
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -125,7 +130,7 @@ class NewChatViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return deviceContactAccessGranted ? 2 : 3
+        return sectionsCount
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -236,28 +241,32 @@ class NewChatViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let contactId = contactIdByRow(indexPath.row)
+        if indexPath.section == sectionContacts {
+            let contactId = contactIdByRow(indexPath.row)
 
-        let edit = UITableViewRowAction(style: .normal, title: String.localized("info")) { [unowned self] _, _ in
-            if self.searchController.isActive {
-                self.searchController.dismiss(animated: false) {
+            let edit = UITableViewRowAction(style: .normal, title: String.localized("info")) { [unowned self] _, _ in
+                if self.searchController.isActive {
+                    self.searchController.dismiss(animated: false) {
+                        self.coordinator?.showContactDetail(contactId: contactId)
+                    }
+                } else {
                     self.coordinator?.showContactDetail(contactId: contactId)
                 }
-            } else {
-                self.coordinator?.showContactDetail(contactId: contactId)
             }
-        }
 
-        let delete = UITableViewRowAction(style: .destructive, title: String.localized("delete")) { [unowned self] _, _ in
-            //handle delete
-            if let dcContext = self.coordinator?.dcContext {
-                let contactId = self.contactIdByRow(indexPath.row)
-                self.askToDeleteContact(contactId: contactId, context: dcContext)
+            let delete = UITableViewRowAction(style: .destructive, title: String.localized("delete")) { [unowned self] _, _ in
+                //handle delete
+                if let dcContext = self.coordinator?.dcContext {
+                    let contactId = self.contactIdByRow(indexPath.row)
+                    self.askToDeleteContact(contactId: contactId, context: dcContext)
+                }
             }
-        }
 
-        edit.backgroundColor = DcColors.primary
-        return [edit, delete]
+            edit.backgroundColor = DcColors.primary
+            return [edit, delete]
+        } else {
+            return []
+        }
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
