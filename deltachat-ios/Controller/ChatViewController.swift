@@ -618,8 +618,24 @@ extension ChatViewController: MessagesDataSource {
             let text = NSMutableAttributedString()
             text.append(NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes))
 
+            // TODO: this should be replaced by the respective icons,
+            // for accessibility, the a11y strings should be added
+            var stateDescription: String
+            switch Int32(m.state) {
+            case DC_STATE_OUT_PENDING:
+                stateDescription = "Pending"
+            case DC_STATE_OUT_DELIVERED:
+                stateDescription = "Sent"
+            case DC_STATE_OUT_MDN_RCVD:
+                stateDescription = "Read"
+            case DC_STATE_OUT_FAILED:
+                stateDescription = "Failed"
+            default:
+                stateDescription = "Unknown"
+            }
+
             text.append(NSAttributedString(
-                string: " - " + m.stateDescription(),
+                string: " - " + stateDescription,
                 attributes: [
                     .font: UIFont.systemFont(ofSize: 12),
                     .foregroundColor: UIColor.darkText,

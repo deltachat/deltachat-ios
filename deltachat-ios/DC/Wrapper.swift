@@ -690,29 +690,6 @@ class DcMsg: MessageType {
         return Int(dc_msg_get_state(messagePointer))
     }
 
-    func stateDescription() -> String {
-        switch Int32(state) {
-        case DC_STATE_IN_FRESH:
-            return "Fresh"
-        case DC_STATE_IN_NOTICED:
-            return "Noticed"
-        case DC_STATE_IN_SEEN:
-            return "Seen"
-        case DC_STATE_OUT_DRAFT:
-            return "Draft"
-        case DC_STATE_OUT_PENDING:
-            return "Pending"
-        case DC_STATE_OUT_DELIVERED:
-            return "Sent"
-        case DC_STATE_OUT_MDN_RCVD:
-            return "Read"
-        case DC_STATE_OUT_FAILED:
-            return "Failed"
-        default:
-            return "Unknown"
-        }
-    }
-
     var timestamp: Int64 {
         return Int64(dc_msg_get_timestamp(messagePointer))
     }
