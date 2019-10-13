@@ -2,17 +2,6 @@ import UIKit
 
 // TODO: integrate InitialsBadge in here
 
-enum MessageDeliveryState: Int {
-    case UNDEFINED =  0
-    case INNOTICED = 13
-    case INSEEN = 16
-    case OUTPAIRING = 18
-    case OUTPENDING = 20
-    case OUTERROR = 24
-    case OUTDELIVERED = 26
-    case OUTMDNRCVD = 28
-}
-
 protocol ContactCellDelegate: class {
     func onAvatarTapped(at index: Int)
 }
@@ -197,32 +186,28 @@ class ContactCell: UITableViewCell {
     }
 
     func setDeliveryStatusIndicator(_ status: Int) {
-        guard let status = MessageDeliveryState(rawValue: status) else {
-            return
-        }
-
         var indicatorImage: UIImage?
-        switch status {
-        case .OUTPENDING, .OUTPAIRING:
+        switch Int32(status) {
+        case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
             indicatorImage = #imageLiteral(resourceName: "ic_hourglass_empty_36pt").withRenderingMode(.alwaysTemplate)
             deliveryStatusIndicator.tintColor = UIColor.black.withAlphaComponent(0.5)
-        case .OUTDELIVERED:
+        case DC_STATE_OUT_DELIVERED:
             indicatorImage = #imageLiteral(resourceName: "ic_done_36pt").withRenderingMode(.alwaysTemplate)
             deliveryStatusIndicator.tintColor = DcColors.checkmarkGreen
-        case .OUTERROR:
+        case DC_STATE_OUT_FAILED:
             indicatorImage = #imageLiteral(resourceName: "ic_error_36pt").withRenderingMode(.alwaysTemplate)
             deliveryStatusIndicator.tintColor = UIColor.red
-        case .INSEEN:
+        case DC_STATE_OUT_MDN_RCVD:
             indicatorImage = #imageLiteral(resourceName: "ic_done_all_36pt").withRenderingMode(.alwaysTemplate)
             deliveryStatusIndicator.tintColor = DcColors.checkmarkGreen
-        default: break
+        default:
+            break
         }
         if indicatorImage != nil {
             deliveryStatusIndicator.isHidden = false
         } else {
             deliveryStatusIndicator.isHidden = true
         }
-
         deliveryStatusIndicator.image = indicatorImage
     }
 
