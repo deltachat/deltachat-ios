@@ -169,7 +169,7 @@
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "%1$@ gruptan kaldırılsın mı?";
 "info_outdated_app_title" = "Uygulama sürümünüz eski.";
-"info_outdated_app_text" = "Delta Chat\'i otomatik güncelleştirmeler olmadan bir kaynaktan (örn. GitHub) kurdunuz. En son özellikleri ve hata düzeltmelerini almak için lütfen bir mağaza sürümüne geçin.";
+"info_outdated_app_text" = "Delta Chat\'i otomatik güncelleştirmeler olmayan bir kaynaktan (örn. GitHub) kurdunuz. En son özellikleri ve hata düzeltmelerini almak için lütfen bir mağaza sürümüne geçin.";
 "info_outdated_app_dialog_title" = "Güncelleştirme kaynakları";
 "info_outdated_app_dialog_text" = "Delta Chat şurada kullanılabilir:";
 
@@ -395,6 +395,7 @@
 "pref_watch_inbox_folder" = "Gelen Kutusu klasörünü izle";
 "pref_watch_sent_folder" = "Gönderilen klasörünü izle";
 "pref_watch_mvbox_folder" = "DeltaChat klasörünü izle";
+"pref_send_copy_to_self" = "Kendime kopya gönder";
 "pref_auto_folder_moves" = "DeltaChat klasörüne otomatik taşınsın";
 "pref_auto_folder_moves_explain" = "Sohbetler, Gelen Kutusu klasöründeki dağınıklığı önlemek için taşınır";
 "pref_email_interaction_title" = "E-posta etkileşimi";
@@ -460,7 +461,7 @@
 
 
 // qr code stuff
-"qrscan_title" = "QR kodu tara";
+"qrscan_title" = "QR kod tara";
 "qrscan_hint" = "Kameranızı QR kodun üzerine yerleştirin";
 "qrscan_ask_join_group" = "\"%1$@\" grubuna katılmak istiyor musunuz?";
 "qrscan_fingerprint_mismatch" = "Taranan parmak izi %1$@ için son görülen parmak iziyle eşleşmiyor";

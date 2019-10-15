@@ -458,6 +458,7 @@
 "global_menu_help_learn_desktop" = "Sužinokite daugiau apie Delta Chat";
 "global_menu_help_contribute_desktop" = "Talkinti Github svetainėje";
 "global_menu_help_report_desktop" = "Pranešti apie klaidą...";
+"global_menu_help_about_desktop" = "Apie Delta Chat";
 "no_chat_selected_suggestion_desktop" = "Pasirinkite arba sukurkite naują pokalbį";
 "write_message_desktop" = "Rašykite žinutę";
 "encryption_info_title_desktop" = "Šifravimo informacija";
@@ -505,3 +506,4 @@
 "menu.view.developer.open.log.folder" = "Atverti žurnalų aplanką";
 "menu.view.developer.open.current.log.file" = "Atverti dabartinio žurnalo failą";
 "a11y_remove_account_btn_label" = "Šalinti paskyrą";
+"a11y_background_preview_label" = "Fono peržiūra";

@@ -395,6 +395,7 @@
 "pref_watch_inbox_folder" = "Vëzhgo dosje Të marrësh";
 "pref_watch_sent_folder" = "Vëzhgo dosje Të dërguarish";
 "pref_watch_mvbox_folder" = "Vëzhgo dosje DeltaChat";
+"pref_send_copy_to_self" = "Dërgojini kopje vetes";
 "pref_auto_folder_moves" = "Lëvizje të Vetvetishme te dosja DeltaChat";
 "pref_auto_folder_moves_explain" = "Bisedat zhvendosen, që të shmanget rrëmuja te dosja Të marrë";
 "pref_email_interaction_title" = "Ndërveprim me email";
