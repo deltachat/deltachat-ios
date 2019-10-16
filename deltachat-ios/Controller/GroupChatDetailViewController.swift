@@ -77,6 +77,8 @@ class GroupChatDetailViewController: UIViewController {
         updateGroupMembers()
         chatDetailTable.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
+        //update chat object, maybe chat name was edited
+        chat = DcChat(id: chat.id)
     }
 
     private func updateGroupMembers() {
