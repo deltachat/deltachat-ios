@@ -9,6 +9,7 @@ class EditGroupViewController: UITableViewController {
     lazy var groupNameCell: GroupLabelCell = {
         let cell = GroupLabelCell(style: .default, reuseIdentifier: nil)
         cell.onTextChanged = groupNameEdited(_:)
+        cell.selectionStyle = .none
         return cell
     }()
 
