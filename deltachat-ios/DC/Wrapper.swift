@@ -568,6 +568,10 @@ class DcMsg: MessageType {
         return MessageKind.fileText(Media(text: attributedFileString))
     }
 
+    var isForwarded: Bool {
+        return dc_msg_is_forwarded(messagePointer) == 1
+    }
+
     var messageId: String {
         return "\(id)"
     }

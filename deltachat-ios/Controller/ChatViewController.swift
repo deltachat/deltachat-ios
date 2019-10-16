@@ -518,15 +518,33 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        var attributedString: NSMutableAttributedString?
         if !isPreviousMessageSameSender(at: indexPath) {
             let name = message.sender.displayName
             let m = messageList[indexPath.section]
-            return NSAttributedString(string: name, attributes: [
+            attributedString = NSMutableAttributedString(string: name, attributes: [
                 .font: UIFont.systemFont(ofSize: 14),
                 .foregroundColor: m.fromContact.color,
             ])
         }
-        return nil
+        if isMessageForwarded(at: indexPath) {
+            let forwardedString = NSMutableAttributedString(string: String.localized("forwarded_message"), attributes: [
+                .font: UIFont.systemFont(ofSize: 14),
+                .foregroundColor: UIColor.darkGray,
+            ])
+            if attributedString == nil {
+                attributedString = forwardedString
+            } else {
+                attributedString?.append(NSAttributedString(string: "\n", attributes: nil))
+                attributedString?.append(forwardedString)
+            }
+        }
+        return attributedString
+    }
+
+    func isMessageForwarded(at indexPath: IndexPath) -> Bool {
+        let m = messageList[indexPath.section]
+        return m.isForwarded
     }
 
     func isTimeLabelVisible(at indexPath: IndexPath) -> Bool {
@@ -794,7 +812,13 @@ extension ChatViewController: MessagesLayoutDelegate {
             return 0
         }
 
-        return !isPreviousMessageSameSender(at: indexPath) ? 40 : 0
+        if !isPreviousMessageSameSender(at: indexPath) {
+            return 40
+        } else if isMessageForwarded(at: indexPath) {
+            return 20
+        }
+
+        return 0
     }
 
     func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
