@@ -569,7 +569,7 @@ class DcMsg: MessageType {
     }
 
     var isForwarded: Bool {
-        return dc_msg_is_forwarded(messagePointer) == 1
+        return dc_msg_is_forwarded(messagePointer) != 0
     }
 
     var messageId: String {
