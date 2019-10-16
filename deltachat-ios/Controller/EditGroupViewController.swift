@@ -6,12 +6,7 @@ class EditGroupViewController: UITableViewController {
 
     private let chat: DcChat
 
-    lazy var groupNameCell: GroupLabelCell = {
-        let cell = GroupLabelCell(style: .default, reuseIdentifier: nil)
-        cell.onTextChanged = groupNameEdited(_:)
-        cell.selectionStyle = .none
-        return cell
-    }()
+    var groupNameCell: GroupLabelCell
 
     lazy var doneButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveContactButtonPressed))
@@ -26,10 +21,11 @@ class EditGroupViewController: UITableViewController {
 
     init(chat: DcChat) {
         self.chat = chat
+        self.groupNameCell = GroupLabelCell(chat: chat)
         super.init(style: .grouped)
         groupNameCell.inputField.text = chat.name
-        groupNameCell.groupBadge.setName(chat.name)
-        groupNameCell.groupBadge.setColor(chat.color)
+        self.groupNameCell.onTextChanged = groupNameEdited(_:)
+        self.groupNameCell.selectionStyle = .none
     }
 
     required init?(coder aDecoder: NSCoder) {
