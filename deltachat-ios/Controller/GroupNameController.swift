@@ -38,8 +38,7 @@ class GroupNameController: UITableViewController {
             if success == 1 {
                 logger.info("successfully added \(contactId) to group \(groupName)")
             } else {
-                // FIXME:
-                fatalError("failed to add \(contactId) to group \(groupName)")
+                logger.error("failed to add \(contactId) to group \(groupName)")
             }
         }
 
