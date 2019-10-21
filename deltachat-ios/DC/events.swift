@@ -105,7 +105,6 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
             let msg = DcMsg(id: Int(data2))
             content.title = msg.fromContact.displayName
             content.body = msg.summary(chars: 40) ?? ""
-            content.badge = 1
             content.userInfo = userInfo
             content.sound = .default
 
@@ -114,6 +113,9 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
             let request = UNNotificationRequest(identifier: Constants.notificationIdentifier, content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             logger.info("notifications: added \(content)")
+
+            let array = DcArray(arrayPointer: dc_get_fresh_msgs(mailboxPointer))
+            UIApplication.shared.applicationIconBadgeNumber = array.count
         }
 
     case DC_EVENT_SMTP_MESSAGE_SENT:

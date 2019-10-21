@@ -159,9 +159,8 @@ class ChatViewController: MessagesViewController {
         // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
         navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
 
-        let cnt = Int(dc_get_fresh_msg_cnt(mailboxPointer, UInt32(chatId)))
-        logger.info("updating count for chat \(cnt)")
-        UIApplication.shared.applicationIconBadgeNumber = cnt
+        let array = DcArray(arrayPointer: dc_get_fresh_msgs(mailboxPointer))
+        UIApplication.shared.applicationIconBadgeNumber = array.count
     }
 
     override func viewDidDisappear(_ animated: Bool) {
