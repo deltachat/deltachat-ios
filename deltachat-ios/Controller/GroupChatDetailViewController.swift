@@ -171,12 +171,14 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
                 if let actionCell = cell as? ActionCell {
                     actionCell.actionTitle = String.localized("group_add_members")
+                    actionCell.actionColor = UIColor.systemBlue
                 }
                 return cell
             case sectionMembersRowJoinQR:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
                 if let actionCell = cell as? ActionCell {
                     actionCell.actionTitle = String.localized("qrshow_join_group_title")
+                    actionCell.actionColor = UIColor.systemBlue
                 }
                 return cell
             default:
