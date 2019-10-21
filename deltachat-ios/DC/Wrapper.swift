@@ -470,6 +470,10 @@ class DcArray {
         dcArrayPointer = arrayPointer
     }
 
+    deinit {
+        dc_array_unref(dcArrayPointer)
+    }
+
     var count: Int {
        return Int(dc_array_get_cnt(dcArrayPointer))
     }
