@@ -463,6 +463,20 @@ class DcChat {
         }()
 }
 
+class DcArray {
+    private var dcArrayPointer: OpaquePointer?
+
+    init(arrayPointer: OpaquePointer) {
+        dcArrayPointer = arrayPointer
+    }
+
+    var count: Int {
+       return Int(dc_array_get_cnt(dcArrayPointer))
+    }
+
+    ///TODO: add missing methods here
+}
+
 class DcMsg: MessageType {
     private var messagePointer: OpaquePointer?
 
