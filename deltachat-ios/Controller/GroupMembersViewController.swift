@@ -147,10 +147,9 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 
     func loadMemberCandidates() -> [Int] {
-        var contactIds = Set(Utils.getContactIds()) // turn into set to speed up search
-        for member in chatMemberIds {
-            contactIds.remove(member)
-        }
+        var contactIds = Utils.getContactIds()
+        let memberSet = Set(chatMemberIds)
+        contactIds.removeAll(where: { memberSet.contains($0)})
         return Array(contactIds)
     }
 
