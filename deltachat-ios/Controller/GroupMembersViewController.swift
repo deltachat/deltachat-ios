@@ -35,17 +35,15 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     private var contactAddedObserver: NSObjectProtocol?
 
-    private lazy var resetButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: String.localized("reset"), style: .plain, target: self, action: #selector(resetButtonPressed))
-        button.isEnabled = false
+    private lazy var cancelButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
         return button
     }()
 
-    override var selectedContactIds: Set<Int> {
-        didSet {
-            resetButton.isEnabled = !selectedContactIds.isEmpty
-        }
-    }
+    lazy var doneButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
+        return button
+    }()
 
     private lazy var chat: DcChat? = {
         if let chatId = chatId {
@@ -75,7 +73,8 @@ class AddGroupMembersViewController: GroupMembersViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        super.navigationItem.rightBarButtonItem = resetButton
+        super.navigationItem.leftBarButtonItem = cancelButton
+        super.navigationItem.rightBarButtonItem = doneButton
         title = String.localized("group_add_members")
         super.contactIds = loadMemberCandidates()
         // Do any additional setup after loading the view.
@@ -105,12 +104,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
         if !isMovingFromParent {
             // a subview was added to the navigation stack, no action needed
             return
-        }
-        guard let chatId = chatId else {
-            return
-        }
-        for contactId in selectedContactIds {
-            dc_add_contact_to_chat(mailboxPointer, UInt32(chatId), UInt32(contactId))
         }
 
         let nc = NotificationCenter.default
@@ -161,9 +154,18 @@ class AddGroupMembersViewController: GroupMembersViewController {
         return Array(contactIds)
     }
 
-    @objc func resetButtonPressed() {
-        selectedContactIds = []
-        tableView.reloadData()
+    @objc func cancelButtonPressed() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    @objc func doneButtonPressed() {
+        guard let chatId = chatId else {
+            return
+        }
+        for contactId in selectedContactIds {
+            dc_add_contact_to_chat(mailboxPointer, UInt32(chatId), UInt32(contactId))
+        }
+        navigationController?.popViewController(animated: true)
     }
 
     func getNewContactCell() -> UITableViewCell {
