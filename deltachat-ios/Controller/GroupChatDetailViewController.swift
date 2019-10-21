@@ -77,6 +77,8 @@ class GroupChatDetailViewController: UIViewController {
         updateGroupMembers()
         chatDetailTable.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
+        //update chat object, maybe chat name was edited
+        chat = DcChat(id: chat.id)
     }
 
     private func updateGroupMembers() {
@@ -114,7 +116,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == sectionConfig {
             let header = ContactDetailHeader()
-            header.updateDetails(title: chat.name, subtitle: String.localizedStringWithFormat(NSLocalizedString("n_members", comment: ""), chat.contactIds.count))
+            header.updateDetails(title: chat.name,
+                                 subtitle: String.localizedStringWithFormat(String.localized("n_members"), chat.contactIds.count))
             if let img = chat.profileImage {
                 header.setImage(img)
             } else {

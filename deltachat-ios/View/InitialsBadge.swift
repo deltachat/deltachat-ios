@@ -76,12 +76,20 @@ class InitialsBadge: UIView {
 
     func setName(_ name: String) {
         label.text = Utils.getInitials(inputName: name)
+        label.isHidden = false
+        imageView.isHidden = true
     }
 
     func setImage(_ image: UIImage) {
         if let resizedImg = image.resizeImage(targetSize: CGSize(width: self.frame.width, height: self.frame.height)) {
             self.imageView.image = resizedImg
+            self.imageView.isHidden = false
+            self.label.isHidden = true
         }
+    }
+
+    func showsInitials() -> Bool {
+        return !label.isHidden
     }
 
     func setColor(_ color: UIColor) {

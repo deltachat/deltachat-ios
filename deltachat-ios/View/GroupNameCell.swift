@@ -23,6 +23,12 @@ class GroupLabelCell: UITableViewCell {
         return textField
     }()
 
+    init(chat: DcChat) {
+        super.init(style: .default, reuseIdentifier: nil)
+        setAvatar(for: chat)
+        setupSubviews()
+    }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupSubviews()
@@ -53,11 +59,22 @@ class GroupLabelCell: UITableViewCell {
 
     @objc func nameFieldChanged() {
         let groupName = inputField.text ?? ""
-        groupBadge.setName(groupName)
+        if groupBadge.showsInitials() {
+            groupBadge.setName(groupName)
+        }
         onTextChanged?(groupName)
     }
 
     func getGroupName() -> String {
         return inputField.text ?? ""
+    }
+
+    func setAvatar(for chat: DcChat) {
+        if let image = chat.profileImage {
+            groupBadge = InitialsBadge(image: image, size: groupBadgeSize)
+        } else {
+            groupBadge =  InitialsBadge(name: chat.name, color: chat.color, size: groupBadgeSize)
+        }
+        groupBadge.setVerified(chat.isVerified)
     }
 }
