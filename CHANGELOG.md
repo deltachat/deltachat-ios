@@ -1,5 +1,18 @@
 # Delta Chat iOS Changelog
 
+## v0.930.0
+2019-10-22
+
+* add "send copy to self" switch
+* play voice messages and other audio
+* show descriptions for images, video and other files
+* show correct delivery states
+* show forwarded messages as such
+* improve group editing
+* show number of unread messages
+* update translations
+* various bug fixes
+
 ## v0.920.0
 2019-10-10
 
