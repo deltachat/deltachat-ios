@@ -17,6 +17,7 @@
 "back" = "Atrás";
 "close" = "Cerrar";
 "save" = "Guardar";
+"chat" = "Chat";
 "main_menu" = "Menú principal";
 "show_password" = "Mostrar contraseña";
 "hide_password" = "Ocultar contraseña";
@@ -161,6 +162,7 @@
 "ask_block_contact" = "¿Bloquear este contacto? Ya no recibirás mensajes de este contacto.";
 "ask_unblock_contact" = "¿Desbloquear este contacto? Una vez más podrá recibir mensajes de este contacto.";
 "ask_delete_contacts" = "¿Eliminar contactos? Esto eliminará de forma permanente los contactos seleccionados.\n\nContactos con un chat en curso y contactos de la libreta de direcciones del sistema no pueden ser eliminados de forma permanente.";
+"ask_delete_contact" = "¿Eliminar de forma permanente a %1$@?\n\nContactos con chats en curso y contactos de la libreta de direcciones del sistema no pueden ser eliminados.";
 "cannot_delete_contacts_in_use" = "No se puede eliminar contactos con chats en curso.";
 "ask_start_chat_with" = "¿Chatear con %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names

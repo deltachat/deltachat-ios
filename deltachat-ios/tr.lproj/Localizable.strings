@@ -123,8 +123,8 @@
 "menu_unblock_contact" = "Kişinin engellemesini kaldır";
 "menu_play" = "Oynat";
 "menu_pause" = "Duraklat";
-"menu_scroll_to_bottom" = "Aşağıya kaydır";
-"menu_scroll_to_top" = "Yukarıya kaydır";
+"menu_scroll_to_bottom" = "Alta kaydır";
+"menu_scroll_to_top" = "Üste kaydır";
 "menu_invite" = "Arkadaşları davet et";
 "menu_help" = "Yardım";
 "menu_select_all" = "Tümünü seç";
