@@ -105,6 +105,10 @@ class DcContext {
         let vStr = value ? "1" : "0"
         setConfig(key, vStr)
     }
+
+    func getUnreadMessages(chatId: Int) -> Int {
+        return Int(dc_get_fresh_msg_cnt(contextPointer, UInt32(chatId)))
+    }
 }
 
 class DcConfig {

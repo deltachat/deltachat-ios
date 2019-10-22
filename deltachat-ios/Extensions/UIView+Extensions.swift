@@ -129,7 +129,7 @@ internal extension UIView {
         return heightAnchor.constraint(equalToConstant: height)
     }
 
-    func constraintWitdthTo(_ width: CGFloat) -> NSLayoutConstraint {
+    func constraintWidthTo(_ width: CGFloat) -> NSLayoutConstraint {
        return  widthAnchor.constraint(equalToConstant: width)
     }
 

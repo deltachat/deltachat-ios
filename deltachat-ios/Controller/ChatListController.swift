@@ -163,6 +163,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
         cell.emailLabel.text = result
         cell.setTimeLabel(summary.timestamp)
+        cell.setUnreadMessageCounter(dcContext.getUnreadMessages(chatId: chatId))
         cell.setDeliveryStatusIndicator(summary.state)
 
         return cell
