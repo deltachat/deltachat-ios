@@ -43,6 +43,7 @@ class MessageCounter: UIView {
                                  label.constraintAlignTrailingTo(self),
                                  label.constraintCenterYTo(self) ]
         self.addConstraints(labelConstraints)
+        isHidden = true
     }
 
     required init?(coder _: NSCoder) {
