@@ -77,6 +77,11 @@ class ContactCell: UITableViewCell {
         return view
     }()
 
+    private let unreadMessageCounter: MessageCounter = {
+        let view = MessageCounter(count: 0, size: 20)
+        return view
+    }()
+
     var darkMode: Bool = false {
         didSet {
             if darkMode {
@@ -138,6 +143,7 @@ class ContactCell: UITableViewCell {
 
         bottomLineStackView.addArrangedSubview(emailLabel)
         bottomLineStackView.addArrangedSubview(deliveryStatusIndicator)
+        bottomLineStackView.addArrangedSubview(unreadMessageCounter)
 
         contentView.addSubview(myStackView)
         myStackView.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: margin).isActive = true
@@ -185,6 +191,10 @@ class ContactCell: UITableViewCell {
         setColor(color)
     }
 
+    func setUnreadMessageCounter(_ count: Int) {
+        unreadMessageCounter.setCount(count)
+    }
+
     func setDeliveryStatusIndicator(_ status: Int) {
         var indicatorImage: UIImage?
         switch Int32(status) {
@@ -203,7 +213,7 @@ class ContactCell: UITableViewCell {
         default:
             break
         }
-        if indicatorImage != nil {
+        if indicatorImage != nil && unreadMessageCounter.isHidden {
             deliveryStatusIndicator.isHidden = false
         } else {
             deliveryStatusIndicator.isHidden = true
