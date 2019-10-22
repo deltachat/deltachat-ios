@@ -142,8 +142,13 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
         let chat = DcChat(id: chatId)
         let summary = chatList.getSummary(index: row)
+        let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
 
-        cell.nameLabel.text = chat.name
+        cell.nameLabel.attributedText = (unreadMessages > 0) ?
+            NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ]) :
+            NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .medium) ])
+
+
         if let img = chat.profileImage {
             cell.resetBackupImage()
             cell.setImage(img)
@@ -163,7 +168,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
         cell.emailLabel.text = result
         cell.setTimeLabel(summary.timestamp)
-        cell.setUnreadMessageCounter(dcContext.getUnreadMessages(chatId: chatId))
+        cell.setUnreadMessageCounter(unreadMessages)
         cell.setDeliveryStatusIndicator(summary.state)
 
         return cell
