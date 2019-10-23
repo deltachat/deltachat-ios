@@ -790,7 +790,7 @@ extension ChatViewController: MessagesDisplayDelegate {
     }
 
     func enabledDetectors(for _: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> [DetectorType] {
-        return [.url, .date, .phoneNumber, .address]
+        return [.url, .phoneNumber]
     }
 
     func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedString.Key: Any] {
@@ -1015,22 +1015,6 @@ extension ChatViewController: MessageCellDelegate {
 
 // MARK: - MessageLabelDelegate
 extension ChatViewController: MessageLabelDelegate {
-    func didSelectAddress(_ addressComponents: [String: String]) {
-        let mapAddress = Utils.formatAddressForQuery(address: addressComponents)
-        if let escapedMapAddress = mapAddress.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-            // Use query, to handle malformed addresses
-            if let url = URL(string: "http://maps.apple.com/?q=\(escapedMapAddress)") {
-                UIApplication.shared.open(url as URL)
-            }
-        }
-    }
-
-    func didSelectDate(_ date: Date) {
-        let interval = date.timeIntervalSinceReferenceDate
-        if let url = NSURL(string: "calshow:\(interval)") {
-            UIApplication.shared.open(url as URL)
-        }
-    }
 
     func didSelectPhoneNumber(_ phoneNumber: String) {
         logger.info("phone open", phoneNumber)
