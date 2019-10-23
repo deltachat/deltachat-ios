@@ -2,12 +2,20 @@ import UIKit
 
 struct DcColors {
     static let primary = UIColor.systemBlue
-    // static let accent =
-
-    static let messagePrimaryColor = UIColor.rgb(red: 220, green: 248, blue: 198)
-    static let messageSecondaryColor = UIColor.rgb(red: 245, green: 245, blue: 245)
-    static let chatBackgroundColor = UIColor.rgb(red: 236, green: 229, blue: 221)
-    static let checkmarkGreen = UIColor.rgb(red: 112, green: 177, blue: 92)
+    static let colorDisabled = UIColor.themeColor(light: UIColor(white: 0.9, alpha: 1), dark: UIColor(white: 0.2, alpha: 1))
+    static let messagePrimaryColor = UIColor.themeColor(light: UIColor.rgb(red: 220, green: 248, blue: 198),
+                                                        dark: UIColor.init(hexString: "224508"))
+    static let messageSecondaryColor = UIColor.themeColor(light: UIColor.rgb(red: 245, green: 245, blue: 245),
+                                                          dark: UIColor.init(hexString: "333333"))
+    static let chatBackgroundColor = UIColor.themeColor(light: UIColor(red: 255, green: 255, blue: 255, alpha: 0), dark: .black)
+    static let checkmarkGreen = UIColor.themeColor(light: UIColor.rgb(red: 112, green: 177, blue: 92))
+    static let defaultTextColor = UIColor.themeColor(light: .darkText, dark: .white)
+    static let grayTextColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
+    static let secondaryTextColor = UIColor.themeColor(lightHex: "848ba7", darkHex: "a5abc0")
+    static let inputFieldColor =  UIColor.themeColor(light: UIColor(red: 245 / 255, green: 245 / 255, blue: 245 / 255, alpha: 1),
+                                                     dark: UIColor(red: 10 / 255, green: 10 / 255, blue: 10 / 255, alpha: 1))
+    static let placeholderColor = UIColor.themeColor(light: UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1),
+                                                     dark: UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1))
 }
 
 enum SystemColor {
