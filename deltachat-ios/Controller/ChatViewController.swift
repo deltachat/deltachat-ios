@@ -737,7 +737,7 @@ extension ChatViewController: MessagesDisplayDelegate {
         if isInfoMessage(at: indexPath) {
             return .custom { view in
                 view.style = .none
-                view.backgroundColor = UIColor(alpha: 10, red: 0, green: 0, blue: 0)
+                view.backgroundColor = DcColors.systemMessageBackgroundColor
                 let radius: CGFloat = 16
                 let path = UIBezierPath(roundedRect: view.bounds,
                                         byRoundingCorners: UIRectCorner.allCorners,
