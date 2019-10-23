@@ -526,6 +526,7 @@ class DcMsg: MessageType {
                 NSAttributedString.Key.foregroundColor: DcColors.grayTextColor,
                 ])
             print("show info: ", text)
+            return MessageKind.attributedText(text)
         } else if isSetupMessage {
             return MessageKind.text(String.localized("autocrypt_asm_click_body"))
         }
