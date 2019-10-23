@@ -523,8 +523,9 @@ class DcMsg: MessageType {
         if isInfo {
             let text = NSAttributedString(string: self.text ?? "", attributes: [
                 NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12),
-                NSAttributedString.Key.foregroundColor: UIColor.darkGray,
+                NSAttributedString.Key.foregroundColor: DcColors.grayTextColor,
                 ])
+            print("show info: ", text)
             return MessageKind.attributedText(text)
         } else if isSetupMessage {
             return MessageKind.text(String.localized("autocrypt_asm_click_body"))
@@ -559,7 +560,8 @@ class DcMsg: MessageType {
         if text.isEmpty {
                        return MessageKind.video(Media(url: fileURL))
                    }
-                   let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
+        let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
+                                                                             NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor])
                    return MessageKind.videoText(Media(url: fileURL, text: attributedString))
     }
 
@@ -567,7 +569,8 @@ class DcMsg: MessageType {
         if text.isEmpty {
             return MessageKind.photo(Media(image: image))
         }
-        let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
+        let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
+                                                                             NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor])
         return MessageKind.photoText(Media(image: image, text: attributedString))
     }
 
@@ -575,7 +578,8 @@ class DcMsg: MessageType {
         let audioAsset = AVURLAsset(url: fileURL!)
         let seconds = Float(CMTimeGetSeconds(audioAsset.duration))
         if !text.isEmpty {
-            let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
+            let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
+                                                                                 NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor])
             return MessageKind.audio(Audio(url: audioAsset.url, duration: seconds, text: attributedString))
         }
         return MessageKind.audio(Audio(url: fileURL!, duration: seconds))
@@ -584,12 +588,14 @@ class DcMsg: MessageType {
     internal func createFileMessage(text: String) -> MessageKind {
         let fileString = "\(self.filename ?? "???") (\(self.filesize / 1024) kB)"
         let attributedFileString = NSMutableAttributedString(string: fileString,
-                                                             attributes: [NSAttributedString.Key.font: UIFont.italicSystemFont(ofSize: 13.0)])
+                                                             attributes: [NSAttributedString.Key.font: UIFont.italicSystemFont(ofSize: 13.0),
+                                                                          NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor])
         if !text.isEmpty {
             attributedFileString.append(NSAttributedString(string: "\n\n",
                                                            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 7.0)]))
             attributedFileString.append(NSAttributedString(string: text,
-                                                           attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)]))
+                                                           attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
+                                                                        NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor]))
         }
         return MessageKind.fileText(Media(text: attributedFileString))
     }

@@ -63,13 +63,6 @@ class ChatViewController: MessagesViewController {
 
         messagesCollectionView.register(CustomMessageCell.self)
         super.viewDidLoad()
-
-        // TODO: support dark mode for this view, see https://github.com/deltachat/deltachat-ios/issues/163#issuecomment-533797080
-        if #available(iOS 13.0, *) {
-            overrideUserInterfaceStyle = .light
-        }
-
-        view.backgroundColor = DcColors.chatBackgroundColor
         if !DcConfig.configured {
             // TODO: display message about nothing being configured
             return
@@ -283,6 +276,7 @@ class ChatViewController: MessagesViewController {
 
         scrollsToBottomOnKeyboardBeginsEditing = true // default false
         maintainPositionOnKeyboardFrameChanged = true // default false
+        messagesCollectionView.backgroundColor = DcColors.chatBackgroundColor
         messagesCollectionView.addSubview(refreshControl)
         refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
 
@@ -318,17 +312,19 @@ class ChatViewController: MessagesViewController {
         messageInputBar.delegate = self
         messageInputBar.inputTextView.tintColor = DcColors.primary
         messageInputBar.inputTextView.placeholder = String.localized("chat_input_placeholder")
-        messageInputBar.isTranslucent = true
         messageInputBar.separatorLine.isHidden = true
         messageInputBar.inputTextView.tintColor = DcColors.primary
+        messageInputBar.inputTextView.textColor = DcColors.defaultTextColor
+        messageInputBar.backgroundView.backgroundColor = DcColors.chatBackgroundColor
 
         scrollsToBottomOnKeyboardBeginsEditing = true
 
-        messageInputBar.inputTextView.backgroundColor = UIColor(red: 245 / 255, green: 245 / 255, blue: 245 / 255, alpha: 1)
-        messageInputBar.inputTextView.placeholderTextColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+        messageInputBar.inputTextView.backgroundColor = DcColors.inputFieldColor
+        messageInputBar.inputTextView.placeholderTextColor = DcColors.placeholderColor
         messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 38)
         messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 38)
-        messageInputBar.inputTextView.layer.borderColor = UIColor(red: 200 / 255, green: 200 / 255, blue: 200 / 255, alpha: 1).cgColor
+        messageInputBar.inputTextView.layer.borderColor = UIColor.themeColor(light: UIColor(red: 200 / 255, green: 200 / 255, blue: 200 / 255, alpha: 1),
+                                                                             dark: UIColor(red: 55 / 255, green: 55/255, blue: 55/255, alpha: 1)).cgColor
         messageInputBar.inputTextView.layer.borderWidth = 1.0
         messageInputBar.inputTextView.layer.cornerRadius = 16.0
         messageInputBar.inputTextView.layer.masksToBounds = true
@@ -359,12 +355,12 @@ class ChatViewController: MessagesViewController {
                     $0.spacing = .fixed(0)
                     let clipperIcon = #imageLiteral(resourceName: "ic_attach_file_36pt").withRenderingMode(.alwaysTemplate)
                     $0.image = clipperIcon
-                    $0.tintColor = UIColor(white: 0.8, alpha: 1)
+                    $0.tintColor = DcColors.colorDisabled
                     $0.setSize(CGSize(width: 30, height: 30), animated: false)
                 }.onSelected {
                     $0.tintColor = DcColors.primary
                 }.onDeselected {
-                    $0.tintColor = UIColor(white: 0.8, alpha: 1)
+                    $0.tintColor = DcColors.colorDisabled
                 }.onTouchUpInside { _ in
                     self.clipperButtonPressed()
                 }
@@ -380,7 +376,7 @@ class ChatViewController: MessagesViewController {
                 })
             }.onDisabled { item in
                 UIView.animate(withDuration: 0.3, animations: {
-                    item.backgroundColor = UIColor(white: 0.9, alpha: 1)
+                    item.backgroundColor = DcColors.colorDisabled
                 })
             }
     }
@@ -510,7 +506,7 @@ extension ChatViewController: MessagesDataSource {
                 string: MessageKitDateFormatter.shared.string(from: message.sentDate),
                 attributes: [
                     NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10),
-                    NSAttributedString.Key.foregroundColor: UIColor.darkGray,
+                    NSAttributedString.Key.foregroundColor: DcColors.grayTextColor,
                 ]
             )
         }
@@ -531,7 +527,7 @@ extension ChatViewController: MessagesDataSource {
         if isMessageForwarded(at: indexPath) {
             let forwardedString = NSMutableAttributedString(string: String.localized("forwarded_message"), attributes: [
                 .font: UIFont.systemFont(ofSize: 14),
-                .foregroundColor: UIColor.darkGray,
+                .foregroundColor: DcColors.grayTextColor,
             ])
             if attributedString == nil {
                 attributedString = forwardedString
@@ -657,7 +653,7 @@ extension ChatViewController: MessagesDataSource {
                 string: " - " + stateDescription,
                 attributes: [
                     .font: UIFont.systemFont(ofSize: 12),
-                    .foregroundColor: UIColor.darkText,
+                    .foregroundColor: DcColors.defaultTextColor,
                 ]
             ))
 
@@ -729,7 +725,7 @@ extension ChatViewController: MessagesDataSource {
 extension ChatViewController: MessagesDisplayDelegate {
     // MARK: - Text Messages
     func textColor(for _: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> UIColor {
-        return .darkText
+        return DcColors.defaultTextColor
     }
 
     // MARK: - All Messages
@@ -741,7 +737,7 @@ extension ChatViewController: MessagesDisplayDelegate {
         if isInfoMessage(at: indexPath) {
             return .custom { view in
                 view.style = .none
-                view.backgroundColor = UIColor(alpha: 10, red: 0, green: 0, blue: 0)
+                view.backgroundColor = DcColors.systemMessageBackgroundColor
                 let radius: CGFloat = 16
                 let path = UIBezierPath(roundedRect: view.bounds,
                                         byRoundingCorners: UIRectCorner.allCorners,
@@ -796,6 +792,19 @@ extension ChatViewController: MessagesDisplayDelegate {
     func enabledDetectors(for _: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> [DetectorType] {
         return [.url, .date, .phoneNumber, .address]
     }
+
+    func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedString.Key: Any] {
+        switch detector {
+        case .url:
+            return  [NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor,
+                     NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                     NSAttributedString.Key.underlineColor: DcColors.defaultTextColor]
+        default:
+            return MessageLabel.defaultAttributes
+        }
+
+    }
+
 }
 
 // MARK: - MessagesLayoutDelegate

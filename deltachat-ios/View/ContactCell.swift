@@ -47,7 +47,7 @@ class ContactCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.lineBreakMode = .byTruncatingTail
-        label.textColor = UIColor(hexString: "2f3944")
+        label.textColor = DcColors.defaultTextColor
         // label.makeBorder()
         return label
 
@@ -82,19 +82,10 @@ class ContactCell: UITableViewCell {
         return view
     }()
 
-    var darkMode: Bool = false {
-        didSet {
-            if darkMode {
-                contentView.backgroundColor = UIColor.darkGray
-                nameLabel.textColor = UIColor.white
-                emailLabel.textColor = UIColor.white
-            }
-        }
-    }
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
+        contentView.backgroundColor = DcColors.chatBackgroundColor
         setupSubviews()
     }
 
@@ -162,7 +153,6 @@ class ContactCell: UITableViewCell {
             let tap = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
             avatar.addGestureRecognizer(tap)
         }
-
     }
 
     func setVerified(isVerified: Bool) {

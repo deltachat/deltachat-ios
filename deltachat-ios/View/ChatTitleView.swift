@@ -43,7 +43,7 @@ class ChatTitleView: UIView {
         subtitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
     }
 
-    func updateTitleView(title: String, subtitle: String?, baseColor: UIColor = .darkText) {
+    func updateTitleView(title: String, subtitle: String?, baseColor: UIColor = DcColors.defaultTextColor) {
         subtitleLabel.textColor = baseColor.withAlphaComponent(0.95)
         titleLabel.textColor = baseColor
         titleLabel.text = title
