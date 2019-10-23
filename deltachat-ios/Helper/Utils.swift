@@ -8,6 +8,11 @@ struct Utils {
         return Utils.copyAndFreeArray(inputArray: cContacts)
     }
 
+    static func getContactIdByEmail(_ address: String) -> Int? {
+        let ids = getContactIds()
+        return ids.first(where: { DcContact(id: $0).email == address })
+    }
+
     static func getBlockedContactIds() -> [Int] {
         let cBlockedContacts = dc_get_blocked_contacts(mailboxPointer)
         return Utils.copyAndFreeArray(inputArray: cBlockedContacts)
@@ -92,6 +97,11 @@ struct Utils {
             return mailScheme == scheme && isValid(email: url.absoluteString.substring(mailScheme.count + 1, url.absoluteString.count))
         }
         return false
+    }
+
+    static func getEmailFrom(_ url: URL) -> String {
+        let mailScheme = "mailto"
+        return url.absoluteString.substring(mailScheme.count + 1, url.absoluteString.count)
     }
 
     static func formatAddressForQuery(address: [String: String]) -> String {

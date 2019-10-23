@@ -472,6 +472,25 @@ class ChatViewController: MessagesViewController {
             super.collectionView(collectionView, performAction: action, forItemAt: indexPath, withSender: sender)
         }
     }
+
+    private func askToChatWith(email: String) {
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), email),
+                                      message: nil,
+                                      preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+            var contactId = Utils.getContactIdByEmail(email)
+            if contactId == nil {
+                contactId = self.dcContext.createContact(name: "", email: email)
+            }
+            let chatId = self.dcContext.createChat(contactId: contactId!)
+            self.coordinator?.showChat(chatId: chatId)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - MessagesDataSource
@@ -1028,6 +1047,8 @@ extension ChatViewController: MessageLabelDelegate {
     func didSelectURL(_ url: URL) {
         if Utils.isEmail(url: url) {
             print("tapped on contact")
+            let email = Utils.getEmailFrom(url)
+            self.askToChatWith(email: email)
             ///TODO: implement handling
         } else {
             UIApplication.shared.open(url)
