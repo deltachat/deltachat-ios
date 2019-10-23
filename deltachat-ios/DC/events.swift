@@ -72,7 +72,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
     case DC_EVENT_IMAP_CONNECTED, DC_EVENT_SMTP_CONNECTED:
         logger.warning("network: \(String(cString: data2String))")
 
-    case DC_EVENT_MSGS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED:
+    case DC_EVENT_MSGS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED, DC_EVENT_MSG_FAILED:
         logger.info("change: \(event)")
 
         let nc = NotificationCenter.default
