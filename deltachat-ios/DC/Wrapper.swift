@@ -18,6 +18,10 @@ class DcContext {
         dc_context_unref(contextPointer)
     }
 
+    func createContact(name: String, email: String) -> Int {
+        return Int(dc_create_contact(contextPointer, name, email))
+    }
+
     func deleteContact(contactId: Int) -> Bool {
         return dc_delete_contact(self.contextPointer, UInt32(contactId)) == 1
     }
@@ -28,12 +32,16 @@ class DcContext {
         return chatlist
     }
 
+    func createChat(contactId: Int) -> Int {
+        return Int(dc_create_chat_by_contact_id(contextPointer, UInt32(contactId)))
+    }
+
     func deleteChat(chatId: Int) {
-        dc_delete_chat(self.contextPointer, UInt32(chatId))
+        dc_delete_chat(contextPointer, UInt32(chatId))
     }
 
     func archiveChat(chatId: Int, archive: Bool) {
-        dc_archive_chat(self.contextPointer, UInt32(chatId), Int32(archive ? 1 : 0))
+        dc_archive_chat(contextPointer, UInt32(chatId), Int32(archive ? 1 : 0))
     }
 
     func marknoticedChat(chatId: Int) {

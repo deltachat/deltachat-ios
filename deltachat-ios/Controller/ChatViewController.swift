@@ -472,6 +472,25 @@ class ChatViewController: MessagesViewController {
             super.collectionView(collectionView, performAction: action, forItemAt: indexPath, withSender: sender)
         }
     }
+
+    private func askToChatWith(email: String) {
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), email),
+                                      message: nil,
+                                      preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+            var contactId = Utils.getContactIdByEmail(email)
+            if contactId == nil {
+                contactId = self.dcContext.createContact(name: "", email: email)
+            }
+            let chatId = self.dcContext.createChat(contactId: contactId!)
+            self.coordinator?.showChat(chatId: chatId)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - MessagesDataSource
@@ -790,19 +809,13 @@ extension ChatViewController: MessagesDisplayDelegate {
     }
 
     func enabledDetectors(for _: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> [DetectorType] {
-        return [.url, .date, .phoneNumber, .address]
+        return [.url, .phoneNumber]
     }
 
     func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedString.Key: Any] {
-        switch detector {
-        case .url:
-            return  [NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor,
-                     NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-                     NSAttributedString.Key.underlineColor: DcColors.defaultTextColor]
-        default:
-            return MessageLabel.defaultAttributes
-        }
-
+        return  [ NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor,
+                  NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                  NSAttributedString.Key.underlineColor: DcColors.defaultTextColor ]
     }
 
 }
@@ -1015,22 +1028,6 @@ extension ChatViewController: MessageCellDelegate {
 
 // MARK: - MessageLabelDelegate
 extension ChatViewController: MessageLabelDelegate {
-    func didSelectAddress(_ addressComponents: [String: String]) {
-        let mapAddress = Utils.formatAddressForQuery(address: addressComponents)
-        if let escapedMapAddress = mapAddress.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-            // Use query, to handle malformed addresses
-            if let url = URL(string: "http://maps.apple.com/?q=\(escapedMapAddress)") {
-                UIApplication.shared.open(url as URL)
-            }
-        }
-    }
-
-    func didSelectDate(_ date: Date) {
-        let interval = date.timeIntervalSinceReferenceDate
-        if let url = NSURL(string: "calshow:\(interval)") {
-            UIApplication.shared.open(url as URL)
-        }
-    }
 
     func didSelectPhoneNumber(_ phoneNumber: String) {
         logger.info("phone open", phoneNumber)
@@ -1042,7 +1039,14 @@ extension ChatViewController: MessageLabelDelegate {
     }
 
     func didSelectURL(_ url: URL) {
-        UIApplication.shared.open(url)
+        if Utils.isEmail(url: url) {
+            print("tapped on contact")
+            let email = Utils.getEmailFrom(url)
+            self.askToChatWith(email: email)
+            ///TODO: implement handling
+        } else {
+            UIApplication.shared.open(url)
+        }
     }
 }
 

@@ -8,6 +8,11 @@ struct Utils {
         return Utils.copyAndFreeArray(inputArray: cContacts)
     }
 
+    static func getContactIdByEmail(_ address: String) -> Int? {
+        let ids = getContactIds()
+        return ids.first(where: { DcContact(id: $0).email == address })
+    }
+
     static func getBlockedContactIds() -> [Int] {
         let cBlockedContacts = dc_get_blocked_contacts(mailboxPointer)
         return Utils.copyAndFreeArray(inputArray: cBlockedContacts)
@@ -72,7 +77,7 @@ struct Utils {
         return acc
     }
 
-    static func isValid(_ email: String) -> Bool {
+    static func isValid(email: String) -> Bool {
         let emailRegEx = "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
             + "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"
             + "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"
@@ -83,6 +88,20 @@ struct Utils {
 
         let emailTest = NSPredicate(format: "SELF MATCHES[c] %@", emailRegEx)
         return emailTest.evaluate(with: email)
+    }
+
+
+    static func isEmail(url: URL) -> Bool {
+        let mailScheme = "mailto"
+        if let scheme = url.scheme {
+            return mailScheme == scheme && isValid(email: url.absoluteString.substring(mailScheme.count + 1, url.absoluteString.count))
+        }
+        return false
+    }
+
+    static func getEmailFrom(_ url: URL) -> String {
+        let mailScheme = "mailto"
+        return url.absoluteString.substring(mailScheme.count + 1, url.absoluteString.count)
     }
 
     static func formatAddressForQuery(address: [String: String]) -> String {
