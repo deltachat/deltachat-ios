@@ -11,7 +11,7 @@ class NewContactController: UITableViewController {
     var cancelButton: UIBarButtonItem?
 
     func contactIsValid() -> Bool {
-        return Utils.isValid(model.email)
+        return Utils.isValid(email: model.email)
     }
 
     var model: (name: String, email: String) = ("", "") {

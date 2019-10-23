@@ -1042,7 +1042,12 @@ extension ChatViewController: MessageLabelDelegate {
     }
 
     func didSelectURL(_ url: URL) {
-        UIApplication.shared.open(url)
+        if Utils.isEmail(url: url) {
+            print("tapped on contact")
+            ///TODO: implement handling
+        } else {
+            UIApplication.shared.open(url)
+        }
     }
 }
 
