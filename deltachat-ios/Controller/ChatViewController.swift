@@ -312,13 +312,10 @@ class ChatViewController: MessagesViewController {
         messageInputBar.delegate = self
         messageInputBar.inputTextView.tintColor = DcColors.primary
         messageInputBar.inputTextView.placeholder = String.localized("chat_input_placeholder")
-        messageInputBar.isTranslucent = true
         messageInputBar.separatorLine.isHidden = true
         messageInputBar.inputTextView.tintColor = DcColors.primary
         messageInputBar.inputTextView.textColor = DcColors.defaultTextColor
-        messageInputBar.backgroundView.backgroundColor = .black
-        messageInputBar.isTranslucent = false
-        //messageInputBar.backgroundColor = DcColors.chatBackgroundColor
+        messageInputBar.backgroundView.backgroundColor = DcColors.chatBackgroundColor
 
         scrollsToBottomOnKeyboardBeginsEditing = true
 
