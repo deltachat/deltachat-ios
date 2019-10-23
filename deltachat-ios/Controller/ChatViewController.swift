@@ -127,6 +127,9 @@ class ChatViewController: MessagesViewController {
                 } else if let id = ui["message_id"] as? Int {
                     if id > 0 {
                         self.updateMessage(id)
+                    } else {
+                        // change might be a deletion
+                        self.refreshMessages()
                     }
                 }
             }
@@ -264,6 +267,7 @@ class ChatViewController: MessagesViewController {
             // Configures the UIMenu which is shown when selecting a message
             menuItems = [
                 UIMenuItem(title: String.localized("info"), action: #selector(MessageCollectionViewCell.messageInfo(_:))),
+                UIMenuItem(title: String.localized("delete"), action: #selector(MessageCollectionViewCell.messageDelete(_:)))
             ]
         }
 
@@ -430,6 +434,7 @@ class ChatViewController: MessagesViewController {
 
     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         if action == NSSelectorFromString("messageInfo:") ||
+            action == NSSelectorFromString("messageDelete:") ||
             action == NSSelectorFromString("messageBlock:") ||
             action == NSSelectorFromString("messageDismiss:") ||
             action == NSSelectorFromString("messageStartChat:") {
@@ -449,6 +454,10 @@ class ChatViewController: MessagesViewController {
             if let ctrl = navigationController {
                 ctrl.pushViewController(msgViewController, animated: true)
             }
+        case NSSelectorFromString("messageDelete:"):
+            let msg = messageList[indexPath.section]
+            logger.info("message: delete \(msg.messageId)")
+            askToDeleteMessage(id: msg.id)
         case NSSelectorFromString("messageStartChat:"):
             let msg = messageList[indexPath.section]
             logger.info("message: Start Chat \(msg.messageId)")
@@ -485,6 +494,20 @@ class ChatViewController: MessagesViewController {
             }
             let chatId = self.dcContext.createChat(contactId: contactId!)
             self.coordinator?.showChat(chatId: chatId)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func askToDeleteMessage(id: Int) {
+        let alert = UIAlertController(title: String.localized("delete_message_ask"),
+                                         message: nil,
+                                         preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { _ in
+            self.dcContext.deleteMessage(msgId: id)
+            self.dismiss(animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
             self.dismiss(animated: true, completion: nil)
@@ -1090,6 +1113,21 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 
 // MARK: - MessageCollectionViewCell
 extension MessageCollectionViewCell {
+
+
+    @objc func messageDelete(_ sender: Any?) {
+        // Get the collectionView
+        if let collectionView = self.superview as? UICollectionView {
+            // Get indexPath
+            if let indexPath = collectionView.indexPath(for: self) {
+                // Trigger action
+                collectionView.delegate?.collectionView?(collectionView,
+                    performAction: #selector(MessageCollectionViewCell.messageDelete(_:)),
+                    forItemAt: indexPath, withSender: sender)
+            }
+        }
+    }
+
     @objc func messageInfo(_ sender: Any?) {
         // Get the collectionView
         if let collectionView = self.superview as? UICollectionView {

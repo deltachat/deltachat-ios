@@ -625,3 +625,4 @@
 "complete" = "Complete";
 "info" = "Info";
 "qr_code_title" = "QR scan/show";
+"delete_message_ask" = "Do you really want to delete this message from your phone?";

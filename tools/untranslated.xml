@@ -23,6 +23,7 @@
     <string name="complete">Complete</string>
     <string name="info">Info</string>
     <string name="qr_code_title">QR scan/show</string>
+    <string name="delete_message_ask">Do you really want to delete this message from your phone?</string>
     <!-- info plist keys need to pre prefixed with INFOPLIST., spaces need to be replaced with dots and dashes need to replaced with underscores -->
     <string name="INFOPLIST.Privacy._.Camera.Usage.Description">Allowing access to the camera lets you take photos and videos.</string>
     <string name="INFOPLIST.Privacy._.Contacts.Usage.Description">Allowing access to your address book lets you chat with contacts from your device.</string>
