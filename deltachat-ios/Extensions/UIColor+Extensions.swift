@@ -74,4 +74,30 @@ internal extension UIColor {
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
+
+
+    static func themeColor(light: UIColor, dark: UIColor? = nil) -> UIColor {
+        if let dark = dark {
+            if #available(iOS 13, *) {
+                return UIColor.init { (trait) -> UIColor in
+                    return trait.userInterfaceStyle == .dark ? dark : light
+                }
+            }
+        }
+        return light
+    }
+
+    static func themeColor(lightHex: String, darkHex: String? = nil) -> UIColor {
+        if let darkHex = darkHex {
+            if #available(iOS 13, *) {
+                return UIColor.init { (trait) -> UIColor in
+                    return trait.userInterfaceStyle == .dark ? UIColor(hexString: darkHex) :  UIColor(hexString: lightHex)
+                }
+            }
+        }
+        return UIColor(hexString: lightHex)
+    }
+
+
+
 }
