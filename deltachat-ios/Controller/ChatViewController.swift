@@ -59,6 +59,8 @@ class ChatViewController: MessagesViewController {
     }
 
     override func viewDidLoad() {
+        dcContext.marknoticedChat(chatId: chatId)
+
         messagesCollectionView.register(CustomMessageCell.self)
         super.viewDidLoad()
 

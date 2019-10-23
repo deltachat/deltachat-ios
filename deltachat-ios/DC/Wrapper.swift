@@ -36,6 +36,10 @@ class DcContext {
         dc_archive_chat(self.contextPointer, UInt32(chatId), Int32(archive ? 1 : 0))
     }
 
+    func marknoticedChat(chatId: Int) {
+        dc_marknoticed_chat(self.contextPointer, UInt32(chatId))
+    }
+
     func getSecurejoinQr (chatId: Int) -> String? {
         if let cString = dc_get_securejoin_qr(self.contextPointer, UInt32(chatId)) {
             let swiftString = String(cString: cString)
