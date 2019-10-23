@@ -193,7 +193,6 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
             cell.backgroundColor = bg
             cell.nameLabel.text = name
             cell.emailLabel.text = contact.email
-            cell.darkMode = false
             if let img = contact.profileImage {
                 cell.setImage(img)
             } else {
