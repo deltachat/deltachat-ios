@@ -502,7 +502,7 @@ class ChatViewController: MessagesViewController {
     }
 
     private func askToDeleteMessage(id: Int) {
-        let alert = UIAlertController(title: String.localized("delete_message_ask"),
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_delete_messages"), 1),
                                          message: nil,
                                          preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { _ in
