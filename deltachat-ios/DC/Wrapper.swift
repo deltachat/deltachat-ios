@@ -78,6 +78,10 @@ class DcContext {
         return "ErrGetMsgInfo"
     }
 
+    func deleteMessage(msgId: Int) {
+        dc_delete_msgs(contextPointer, [UInt32(msgId)], 1)
+    }
+
     func initiateKeyTransfer() -> String? {
         if let cString = dc_initiate_key_transfer(self.contextPointer) {
             let swiftString = String(cString: cString)
@@ -533,7 +537,6 @@ class DcMsg: MessageType {
                 NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12),
                 NSAttributedString.Key.foregroundColor: DcColors.grayTextColor,
                 ])
-            print("show info: ", text)
             return MessageKind.attributedText(text)
         } else if isSetupMessage {
             return MessageKind.text(String.localized("autocrypt_asm_click_body"))
