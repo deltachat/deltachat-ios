@@ -135,7 +135,7 @@
 "menu_settings" = "Ayarlar";
 "menu_advanced" = "Gelişmiş";
 "menu_deaddrop" = "İletişim istekleri";
-"menu_deaddrop_subtitle" = "Sohbet başlatmak için iletiye basın";
+"menu_deaddrop_subtitle" = "Sohbete başlamak için iletiye basın";
 "menu_view_profile" = "Profili görüntüle";
 "menu_zoom_in" = "Yakınlaştır";
 "menu_zoom_out" = "Uzaklaştır";
@@ -190,9 +190,9 @@
 "chat_new_group_hint" = "İlk iletiyi oluşturun, diğerlerinin bu grupta yanıtlamasına izin verin.\n\n• Tüm üyeler Delta Chat kullanmıyorsa tamam.\n\n• İlk iletinin teslim edilmesi biraz zaman alabilir.";
 "chat_record_slide_to_cancel" = "Vazgeçmek için kaydırın";
 "chat_record_explain" = "Bir sesli ileti kaydetmek için dokunun ve basılı tutun, göndermek için bırakın";
-"chat_no_chats_yet_title" = "Boş gelen kutusu.\nYeni bir sohbet başlatmak için \"+\" simgesine basın.";
+"chat_no_chats_yet_title" = "Boş gelen kutusu.\nYeni bir sohbete başlamak için \"+\" simgesine basın.";
 "chat_no_chats_yet_hint" = "Diğer Delta Chat kullanıcılarıyla ve herhangi bir e-posta adresiyle sohbet edebilirsiniz.";
-"chat_all_archived" = "Tüm sohbetler arşivlendi.\nYeni bir sohbet başlatmak için \"+\" simgesine basın.";
+"chat_all_archived" = "Tüm sohbetler arşivlendi.\nYeni bir sohbete başlamak için \"+\" simgesine basın.";
 "chat_share_with_title" = "Paylaş";
 "chat_input_placeholder" = "İleti";
 "chat_archived_label" = "Arşivlendi";
@@ -259,7 +259,7 @@
 "welcome_intro6_message" = "Tüm yaygın algoritmalarla şifrelenir. İletiler sunucularınızda kalır.";
 "welcome_intro7_headline" = "Güvenilir";
 "welcome_intro7_message" = "Delta Chat, iş kullanımı için güvenli, uyumlu ve standartlar tabanlıdır.";
-"welcome_start_messaging" = "İletileşme başlat";
+"welcome_start_messaging" = "İletileşmeye başla";
 "login_title" = "Oturum aç";
 "login_header" = "Sunucunuzda oturum açın";
 "login_explain" = "Varolan bir e-posta hesabıyla oturum açın.";
@@ -286,7 +286,7 @@
 "login_error_required_fields" = "Lütfen geçerli bir e-posta adresi ve bir parola girin";
 "import_backup_title" = "Yedeği içe aktar";
 "import_backup_ask" = "\"%1$@\" üzerinde yedek bulundu.\n\nİçe aktarmak ve ondan gelen tüm verileri ve ayarları kullanmak istiyor musunuz?";
-"import_backup_no_backup_found" = "Yedek bulunamadı.\n\nYedeği \"%1$@\" üzerine kopyalayın ve yeniden deneyin. Ek olarak, normal ayarlama işlemiyle sürdürmek için \"İletileşme başlat\"a basın.";
+"import_backup_no_backup_found" = "Yedek bulunamadı.\n\nYedeği \"%1$@\" üzerine kopyalayın ve yeniden deneyin. Ek olarak, normal ayarlama işlemiyle sürdürmek için \"İletileşmeye başla\"ya basın.";
 // Translators: %1$s will be replaced by the email address
 "login_error_cannot_login" = "\"%1$@\" olarak oturum açılamıyor. Lütfen e-posta adresinin ve parolanın doğru olup olmadığını denetleyin.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
@@ -377,7 +377,7 @@
 "pref_backup" = "Yedekleme";
 "pref_backup_explain" = "Sohbetleri dış depolamaya yedekle";
 "pref_backup_export_explain" = "Bir yedek, bu ya da başka bir aygıtta yeni bir kurulum ayarlamanıza yardım eder.\n\nYedek, tüm iletileri, kişileri ve sohbetleri ve uçtan uca Autocrypt ayarlamanızı içerecek. Yedek dosyasını güvenli bir yerde tutun ya da olanaklıysa en kısa sürede silin.";
-"pref_backup_export_start_button" = "Yedekleme başlat";
+"pref_backup_export_start_button" = "Yedeklemeye başla";
 "pref_backup_written_to_x" = "Yedek %1$@ üzerine başarıyla yazıldı";
 "pref_managekeys_menu_title" = "Anahtarları yönet";
 "pref_managekeys_ask_for_storage_permission" = "Delta Chat\'in anahtarları içe/dışa aktarmak için dosyalarınıza erişmesi gerekir.";
@@ -397,11 +397,11 @@
 "pref_watch_mvbox_folder" = "DeltaChat klasörünü izle";
 "pref_send_copy_to_self" = "Kendime kopya gönder";
 "pref_auto_folder_moves" = "DeltaChat klasörüne otomatik taşınsın";
-"pref_auto_folder_moves_explain" = "Sohbetler, Gelen Kutusu klasöründeki dağınıklığı önlemek için taşınır";
+"pref_auto_folder_moves_explain" = "Sohbet görüşmeleri, Gelen Kutusu klasöründeki dağınıklığı önlemek için taşınır";
 "pref_email_interaction_title" = "E-posta etkileşimi";
 "pref_show_emails" = "Klasik e-postaları göster";
 "pref_show_emails_no" = "Hayır, yalnızca sohbetler";
-"pref_show_emails_accepted_contacts" = "Onaylanan kişiler için";
+"pref_show_emails_accepted_contacts" = "Kabul edilen kişiler için";
 "pref_show_emails_all" = "Tümü";
 "pref_empty_server_title" = "TEHLİKELİ BÖLGE: E-postaları sunucudan sil";
 "pref_empty_server_msg" = "Bu işlev, verilen klasörlerdeki sohbet iletilerini kapsayıp TÜM e-postaları silerek IMAP sunucunuzda alan boşaltmanıza yardım eder. Bu aygıttaki iletiler silinmeyecek.  Silme geri alınamaz!";
@@ -510,10 +510,10 @@
 "perm_explain_need_for_mic_access" = "Sesli iletiler göndermek için Delta Chat\'in mikrofonunuza erişmesine izin verin.";
 "perm_explain_need_for_storage_access" = "Delta Chat\'in dosyaları dışa aktarmak ya da yedekler oluşturmak için dosyalarınıza erişmesi gerekir.";
 "perm_explain_need_for_storage_access_share" = "Delta Chat\'in seçilen dosyaları paylaşmak için dosyalarınıza erişmesi gerekir.";
-"perm_explain_access_to_camera_denied" = "Delta Chat, fotoğraflar ya da videolar çekmek için kamera izni gerektirir ama kalıcı olarak reddedildi. Lütfen uygulama ayarları menüsüne gidin, \"İzinler\"i seçin ve \"Kamera\"yı etkinleştirin.";
-"perm_explain_access_to_mic_denied" = "Delta Chat, sesli iletiler göndermek için Mikrofon izni gerektirir ama kalıcı olarak reddedildi. Lütfen uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Mikrofon\"u etkinleştirin.";
-"perm_explain_access_to_storage_denied" = "Delta Chat; fotoğrafları, videoları ya da sesleri iliştirmek ya da dışa aktarmak için depolama izni gerektirir ama kalıcı olarak reddedildi. Lütfen uygulama ayarları menüsüne gidin, \"İzinler\"i seçin ve \"Depolama\"yı etkinleştirin.";
-"perm_explain_access_to_location_denied" = "Delta Chat, bir konum iliştirmek için Konum izni gerektirir ama kalıcı olarak reddedildi. Lütfen uygulama ayarları menüsüne gidin, \"İzinler\"i seçin ve \"Konum\"u etkinleştirin.";
+"perm_explain_access_to_camera_denied" = "Delta Chat, fotoğraflar ya da videolar çekmek için kamera izni gerektirir ama kalıcı olarak reddedildi. Lütfen uygulama ayarları menüsüne sürdürün, \"İzinler\"i seçin ve \"Kamera\"yı etkinleştirin.";
+"perm_explain_access_to_mic_denied" = "Delta Chat, sesli iletiler göndermek için Mikrofon izni gerektirir ama kalıcı olarak reddedildi. Lütfen uygulama ayarlarına sürdürün, \"İzinler\"i seçin ve \"Mikrofon\"u etkinleştirin.";
+"perm_explain_access_to_storage_denied" = "Delta Chat; fotoğrafları, videoları ya da sesleri iliştirmek ya da dışa aktarmak için depolama izni gerektirir ama kalıcı olarak reddedildi. Lütfen uygulama ayarları menüsüne sürdürün, \"İzinler\"i seçin ve \"Depolama\"yı etkinleştirin.";
+"perm_explain_access_to_location_denied" = "Delta Chat, bir konum iliştirmek için Konum izni gerektirir ama kalıcı olarak reddedildi. Lütfen uygulama ayarları menüsüne sürdürün, \"İzinler\"i seçin ve \"Konum\"u etkinleştirin.";
 "perm_enable_bg_reminder_title" = "Delta Chat artalandayken iletileri almak için buraya dokunun.";
 "perm_enable_bg_reminder_text" = "Delta Chat, kaynakların en azını kullanır ve pilinizi boşaltmamaya özen gösterir.";
 
