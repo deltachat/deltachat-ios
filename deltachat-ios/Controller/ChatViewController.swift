@@ -59,8 +59,6 @@ class ChatViewController: MessagesViewController {
     }
 
     override func viewDidLoad() {
-        dcContext.marknoticedChat(chatId: chatId)
-
         messagesCollectionView.register(CustomMessageCell.self)
         super.viewDidLoad()
         if !DcConfig.configured {
@@ -151,14 +149,21 @@ class ChatViewController: MessagesViewController {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // things that do not affect the chatview
+        // and are delayed after the view is displayed
+        dcContext.marknoticedChat(chatId: chatId)
+        let array = DcArray(arrayPointer: dc_get_fresh_msgs(mailboxPointer))
+        UIApplication.shared.applicationIconBadgeNumber = array.count
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
         navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
-
-        let array = DcArray(arrayPointer: dc_get_fresh_msgs(mailboxPointer))
-        UIApplication.shared.applicationIconBadgeNumber = array.count
     }
 
     override func viewDidDisappear(_ animated: Bool) {
