@@ -367,36 +367,6 @@ class NewChatViewController: UITableViewController {
     }
 }
 
-extension NewChatViewController: QrCodeReaderDelegate {
-    func handleQrCode(_ code: String) {
-        logger.info("decoded: \(code)")
-
-        let check = dc_check_qr(mailboxPointer, code)!
-        logger.info("got ver: \(check)")
-
-        if dc_lot_get_state(check) == DC_QR_ASK_VERIFYGROUP {
-            hud = ProgressHud(String.localized("synchronizing_account"), in: view)
-            DispatchQueue.global(qos: .userInitiated).async {
-                let id = dc_join_securejoin(mailboxPointer, code)
-
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true) {
-                        self.coordinator?.showChat(chatId: Int(id))
-                        // self.chatDisplayer?.displayChatForId(chatId: Int(id))
-                    }
-                }
-            }
-        } else {
-            let alert = UIAlertController(title: String.localized("invalid_qr_code"), message: code, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("OK"), style: .default, handler: { _ in
-                self.dismiss(animated: true, completion: nil)
-            }))
-            present(alert, animated: true, completion: nil)
-        }
-        dc_lot_unref(check)
-    }
-}
-
 extension NewChatViewController: ContactListDelegate {
     func deviceContactsImported() {
         contactIds = Utils.getContactIds()
