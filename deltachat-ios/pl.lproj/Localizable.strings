@@ -277,7 +277,6 @@
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Odpowiedź od %1$@: %2$@\n\nNiektórzy dostawcy umieszczają w skrzynce odbiorczej dodatkowe informacje, które można sprawdzić np. na stronie internetowej. W przypadku wystąpienia problemów należy skonsultować się z dostawcą lub znajomymi.";
 
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Przekaż do…";
@@ -386,7 +385,7 @@
 "pref_show_emails_no" = "Nie, tylko czaty";
 "pref_show_emails_accepted_contacts" = "Dla zaakceptowanych kontaktów";
 "pref_show_emails_all" = "Wszystkie";
-"pref_empty_server_title" = "STREFA NIEBEZPIECZNA: Usuwanie e-maili z serwera";
+"pref_empty_server_title" = "Usuwanie e-maili z serwera";
 "pref_empty_server_msg" = "Ta funkcja pomaga zwolnić miejsce na serwerze IMAP, usuwając WSZYSTKIE wiadomości e-mail, w tym wiadomości czat, w podanych folderach. Wiadomości na tym urządzeniu nie zostaną usunięte. Usunięcia nie można cofnąć!";
 "pref_empty_server_inbox" = "Usuń WSZYSTKIE wiadomości e-mail w folderze Skrzynka odbiorcza";
 "pref_empty_server_mvbox" = " Usuń WSZYSTKIE wiadomości e-mail w folderze DeltaChat";

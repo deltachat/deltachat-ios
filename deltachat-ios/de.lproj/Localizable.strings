@@ -9,6 +9,8 @@
 "def" = "Standard";
 "custom" = "Benutzerdefiniert";
 "none" = "Keine";
+"automatic" = "Automatisch";
+"strict" = "Strikt";
 "open" = "Öffnen";
 "delete" = "Löschen";
 "update" = "Aktualisieren";
@@ -292,6 +294,10 @@
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 
 
+// TLS certificate checks
+"accept_invalid_hostnames" = "Ungültige Hostnamen akzeptieren";
+"accept_invalid_certificates" = "Ungültige Zertifikate akzeptieren";
+
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -403,7 +409,7 @@
 "pref_show_emails_no" = "Nein, nur Chats";
 "pref_show_emails_accepted_contacts" = "Akzeptierte Kontakte";
 "pref_show_emails_all" = "Alle";
-"pref_empty_server_title" = "ACHTUNG: E-Mails vom Server löschen!";
+"pref_empty_server_title" = "E-Mails vom Server löschen!";
 "pref_empty_server_msg" = "Mit dieser Funktion können Sie Speicherplatz auf Ihrem IMAP-Server freigeben, indem Sie ALLE E-Mails, einschließlich Chat-Nachrichten, in den angegebenen Ordnern löschen. Nachrichten auf diesem Gerät werden nicht gelöscht. Die Löschung kann nicht rückgängig gemacht werden!";
 "pref_empty_server_inbox" = "Löschen ALLER e-mails im Nachrichteneingangsordner (INBOX)";
 "pref_empty_server_mvbox" = "Löschen ALLER e-mails im DeltaChat Ordner.";
@@ -599,7 +605,7 @@
 "a11y_delivery_status_draft" = "Übertragungsstatus: Entwurf";
 "a11y_delivery_status_delivered" = "Übertragungsstatus: Versendet";
 "a11y_delivery_status_read" = "Übertragungsstatus: Gelesen";
-"a11y_delivery_status_invalid" = "Übertragungsstatus: Unzulässig";
+"a11y_delivery_status_invalid" = "Übertragungsstatus: Ungültig";
 "a11y_remove_account_btn_label" = "E-Mail-Konto löschen";
 "a11y_message_context_menu_btn_label" = "Nachrichtaktionen";
 "a11y_background_preview_label" = "Vorschau für Hintergrundbild";

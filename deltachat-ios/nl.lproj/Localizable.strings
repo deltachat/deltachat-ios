@@ -9,6 +9,8 @@
 "def" = "Standaard";
 "custom" = "Aangepast";
 "none" = "Geen";
+"automatic" = "Automatisch";
+"strict" = "Strikt";
 "open" = "Openen";
 "delete" = "Verwijderen";
 "update" = "Bijwerken";
@@ -292,6 +294,10 @@
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Antwoord van %1$@: %2$@\n\nSommige providers plaatsen extra informatie in je Postvak IN. Je kunt dit controleren in, bijv., de webversie. Neem contact op met je provider of vrienden als je problemen ervaart.";
 
+// TLS certificate checks
+"accept_invalid_hostnames" = "Ongeldige hostnamen accepteren";
+"accept_invalid_certificates" = "Ongeldige certificaten accepteren";
+
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -403,7 +409,7 @@
 "pref_show_emails_no" = "Nee, alleen gesprekken";
 "pref_show_emails_accepted_contacts" = "Van goedgekeurde contactpersonen";
 "pref_show_emails_all" = "Alles";
-"pref_empty_server_title" = "GEVARENZONE: e-mails verwijderen van server";
+"pref_empty_server_title" = "e-mails verwijderen van server";
 "pref_empty_server_msg" = "Deze optie helpt je ruimte vrij te maken op je IMAP-server door ALLE e-mails, inclusief gesprekken, te verwijderen uit de opgegeven mappen. Berichten op dit apparaat worden niet verwijderd. Deze actie kan niet ongedaan worden gemaakt!";
 "pref_empty_server_inbox" = "Alle e-mails verwijderen uit Postvak IN";
 "pref_empty_server_mvbox" = "Alle e-mails verwijderen uit DeltaChat-map";

@@ -379,7 +379,7 @@
 "pref_show_emails_no" = "Xeyir, ancaq çatlar";
 "pref_show_emails_accepted_contacts" = "Qəbul edilən kontaktlar üçün";
 "pref_show_emails_all" = "Hamısı";
-"pref_empty_server_title" = "Təhlükə zonası: serverdən e-poçtları silin";
+"pref_empty_server_title" = "serverdən e-poçtları silin";
 "pref_empty_server_msg" = "Bu funksiya, verilmiş qovluqlarda, söhbət mesajları da daxil olmaqla, bütün elektron poçtları silməklə IMAP serverinizdə olan yaddaşı boşaltmağa  kömək edir. Bu cihazdakı mesajlar silinməyəcək. Silinmə geri qaytarıla bilməz!";
 "pref_empty_server_inbox" = "Daxil olan qutusunda bütün elektron poçtları sil";
 "pref_empty_server_mvbox" = "DeltaChat qutusunda bütün elektron poçtları sil";

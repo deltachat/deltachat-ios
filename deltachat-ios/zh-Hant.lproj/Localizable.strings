@@ -9,6 +9,8 @@
 "def" = "默认";
 "custom" = "自定义";
 "none" = "无";
+"automatic" = "自动";
+"strict" = "严格";
 "open" = "打开";
 "delete" = "删除";
 "update" = "更新";
@@ -292,6 +294,10 @@
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "来自%1$@的回应：%2$@\n\n某些提供商会在您的收件箱中放置额外信息; 您可以在Web端等处等查看它。 如遇到问题，请咨询您的提供商或朋友。";
 
+// TLS certificate checks
+"accept_invalid_hostnames" = "接受无效的主机名";
+"accept_invalid_certificates" = "接受无效的证书";
+
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -403,7 +409,7 @@
 "pref_show_emails_no" = "不显示，仅聊天";
 "pref_show_emails_accepted_contacts" = "已接受的联系人";
 "pref_show_emails_all" = "全部";
-"pref_empty_server_title" = "危险区：删除服务器上的电子邮件";
+"pref_empty_server_title" = "删除服务器上的电子邮件";
 "pref_empty_server_msg" = "此功能通过删除给定文件夹中包括聊天消息在内的所有电子邮件来释放您IMAP服务器上的空间。 此设备上的消息不会被删除。 此删除无法撤消！";
 "pref_empty_server_inbox" = "删除收件箱中所有电子邮件";
 "pref_empty_server_mvbox" = "删除DeltaChat文件夹中所有电子邮件";

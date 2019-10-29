@@ -9,6 +9,8 @@
 "def" = "Varsayılan";
 "custom" = "Özel";
 "none" = "Hiçbiri";
+"automatic" = "Otomatik";
+"strict" = "Katı";
 "open" = "Aç";
 "delete" = "Sil";
 "update" = "Güncelleştir";
@@ -292,6 +294,10 @@
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "%1$@ yanıtı: %2$@\n\nBazı sağlayıcılar gelen kutunuza ek bilgiler yerleştirir; onları örn. web ön ucundan denetleyebilirsiniz. Sorun yaşarsanız sağlayıcınıza ya da arkadaşlarınıza danışın.";
 
+// TLS certificate checks
+"accept_invalid_hostnames" = "Geçersiz ana bilgisayar adlarını kabul et";
+"accept_invalid_certificates" = "Geçersiz sertifikaları kabul et";
+
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -403,7 +409,7 @@
 "pref_show_emails_no" = "Hayır, yalnızca sohbetler";
 "pref_show_emails_accepted_contacts" = "Kabul edilen kişiler için";
 "pref_show_emails_all" = "Tümü";
-"pref_empty_server_title" = "TEHLİKELİ BÖLGE: E-postaları sunucudan sil";
+"pref_empty_server_title" = "E-postaları sunucudan sil";
 "pref_empty_server_msg" = "Bu işlev, verilen klasörlerdeki sohbet iletilerini kapsayıp TÜM e-postaları silerek IMAP sunucunuzda alan boşaltmanıza yardım eder. Bu aygıttaki iletiler silinmeyecek.  Silme geri alınamaz!";
 "pref_empty_server_inbox" = "Gelen Kutusu klasöründeki tüm e-postaları sil";
 "pref_empty_server_mvbox" = "DeltaChat klasöründeki tüm e-postaları sil";

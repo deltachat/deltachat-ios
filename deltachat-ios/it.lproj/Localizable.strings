@@ -292,7 +292,6 @@
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Risposta da%1$@: %2$@\n\nAlcuni provider inseriscono altre informazioni nella tua casella; puoi controllarle ad es. dalla pagina web. Consulta il provider o i tuoi amici se riscontri problemi.";
 
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Inotra a...";
@@ -319,6 +318,7 @@
 "pref_blocked_contacts" = "Contatti bloccati";
 "pref_profile_photo_remove_ask" = "Rimuvere la foto profilo?";
 "pref_help_url" = "https://delta.chat/en/help";
+"pref_password_and_account_settings" = "Password e account";
 "pref_who_can_see_this_information" = "Chi può vedere queste informazioni?";
 "pref_who_can_see_profile_explain" = "L\'immagine del tuo profilo e il tuo nome saranno mostrati insieme ai tuoi messaggi quando comunichi con altri utenti. Le informazioni già inviate non possono essere cancellate o rimosse.";
 "pref_your_name" = "Il tuo nome";
@@ -401,7 +401,7 @@
 "pref_show_emails_no" = "No, solo chat";
 "pref_show_emails_accepted_contacts" = "Per i contatti accettati";
 "pref_show_emails_all" = "Tutte";
-"pref_empty_server_title" = "ATTENZIONE: Elimina email dal server";
+"pref_empty_server_title" = "Elimina email dal server";
 "pref_empty_server_msg" = "Questa funzione permette di liberare spazio sul server IMAP eliminando TUTTE le email, inclusi i messaggi di chat, nelle cartelle selezionate. I messaggi su questo dispositivo non saranno eliminati. L\'eliminazione non è annullabile!";
 "pref_empty_server_inbox" = "Elimina TUTTE le email nella cartella In Arrivo";
 "pref_empty_server_mvbox" = "Elimina TUTTE le email nella cartella DeltaChat";

@@ -9,6 +9,8 @@
 "def" = "Default";
 "custom" = "Custom";
 "none" = "None";
+"automatic" = "Automatic";
+"strict" = "Strict";
 "open" = "Open";
 "delete" = "Delete";
 "update" = "Update";
@@ -292,6 +294,10 @@
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Response from %1$@: %2$@\n\nSome providers place additional information in your inbox; you can check them it eg. in the web frontend. Consult your provider or friends if you run into problems.";
 
+// TLS certificate checks
+"accept_invalid_hostnames" = "Accept invalid hostnames";
+"accept_invalid_certificates" = "Accept invalid certificates";
+
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -403,7 +409,7 @@
 "pref_show_emails_no" = "No, chats only";
 "pref_show_emails_accepted_contacts" = "For accepted contacts";
 "pref_show_emails_all" = "All";
-"pref_empty_server_title" = "DANGER ZONE: Delete e-mails from server";
+"pref_empty_server_title" = "Delete e-mails from server";
 "pref_empty_server_msg" = "This function helps to free space on your IMAP server by deleting ALL e-mails, including chat-messages, in the given folders. Messages on this device will not be deleted.  The deletion cannot be undone!";
 "pref_empty_server_inbox" = "Delete all e-mails in Inbox folder";
 "pref_empty_server_mvbox" = "Delete all e-mails in DeltaChat folder";
@@ -620,7 +626,6 @@
 "reset" = "Reset";
 "edit_contact" = "Edit contact";
 "custom_port" = "Custom port";
-"automatic" = "Automatic";
 "complete" = "Complete";
 "info" = "Info";
 "qr_code_title" = "QR scan/show";
