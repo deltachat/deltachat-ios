@@ -125,6 +125,10 @@ class DcContext {
     func getUnreadMessages(chatId: Int) -> Int {
         return Int(dc_get_fresh_msg_cnt(contextPointer, UInt32(chatId)))
     }
+
+    func emptyServer(flags: Int) {
+        dc_empty_server(contextPointer, UInt32(flags))
+    }
 }
 
 class DcConfig {
