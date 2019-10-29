@@ -146,11 +146,15 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
                 joinSecureJoin(alertMessage: String.localizedStringWithFormat(String.localized("qrscan_ask_join_group"), group), code: code)
             }
         default:
-            let alertMessage = "QR code scanning for type " + String(state) + " is not yet implemented."
-            let alert = UIAlertController(title: alertMessage,
-                                          message: nil,
-                                          preferredStyle: .alert)
+            var msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), code)
+            if state == DC_QR_ERROR {
+                if let errorMsg = qrParsed.text1 {
+                    msg = errorMsg + "\n\n" + msg
+                }
+            }
+            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
 
     }
