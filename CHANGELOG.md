@@ -1,6 +1,6 @@
 # Delta Chat iOS Changelog
 
-## v0.940.0
+## v0.940.1
 2019-10-30
 
 * add "dark mode" for all views
@@ -12,6 +12,7 @@
   emails pop up as contact requests directly in the chatlist
 * update translations
 * various bug fixes
+
 
 ## v0.930.0
 2019-10-22
@@ -26,12 +27,14 @@
 * update translations
 * various bug fixes
 
+
 ## v0.920.0
 2019-10-10
 
 * show text sent together with images or files
 * improve onboarding error messages
 * various bug fixes
+
 
 ## v0.910.0
 2019-10-07
