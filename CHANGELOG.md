@@ -1,5 +1,18 @@
 # Delta Chat iOS Changelog
 
+## v0.940.0
+2019-10-30
+
+* add "dark mode" for all views
+* if a message contains an email, this can be used to start a chat directly
+* add "delete mails from server" options
+  to "your profile info / password and account"
+* add option to delete a single message
+* if "show classic emails" is set to "all",
+  emails pop up as contact requests directly in the chatlist
+* update translations
+* various bug fixes
+
 ## v0.930.0
 2019-10-22
 
