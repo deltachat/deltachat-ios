@@ -12,12 +12,12 @@ let dcNotificationContactChanged = Notification.Name(rawValue: "MrEventContactsC
 
 @_silgen_name("callbackSwift")
 
-public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLong, data1String: UnsafePointer<Int8>, data2String: UnsafePointer<Int8>) -> UnsafePointer<Int8>? {
+public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLong, data1String: UnsafePointer<Int8>, data2String: UnsafePointer<Int8>) {
     if event >= DC_EVENT_ERROR && event <= 499 {
         let s = String(cString: data2String)
         AppDelegate.lastErrorString = s
         logger.error("event: \(s)")
-        return nil
+        return
     }
 
     switch event {
@@ -171,6 +171,4 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
     default:
         logger.warning("unknown event: \(event)")
     }
-
-    return nil
 }
