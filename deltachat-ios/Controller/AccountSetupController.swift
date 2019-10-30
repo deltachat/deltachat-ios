@@ -105,6 +105,14 @@ class AccountSetupController: UITableViewController {
         return cell
     }()
 
+    private lazy var emptyServerCell: ActionCell = {
+        let cell = ActionCell(frame: .zero)
+        cell.actionTitle = String.localized("pref_empty_server_title")
+        cell.actionColor = UIColor.red
+        cell.accessibilityIdentifier = "emptyServerCell"
+        return cell
+    }()
+
     private lazy var deleteAccountCell: ActionCell = {
         let cell = ActionCell(frame: .zero)
         cell.actionTitle = String.localized("delete_account")
@@ -238,7 +246,7 @@ class AccountSetupController: UITableViewController {
         smtpPasswordCell,
         smtpSecurityCell
     ]
-    private lazy var dangerCells: [UITableViewCell] = [deleteAccountCell]
+    private lazy var dangerCells: [UITableViewCell] = [emptyServerCell, deleteAccountCell]
 
     private let editView: Bool
     private var advancedSectionShowing: Bool = false
@@ -372,6 +380,8 @@ class AccountSetupController: UITableViewController {
         if tappedCell.accessibilityIdentifier == "restoreCell" {
             tableView.reloadData() // otherwise the disclosureIndicator may stay selected
             restoreBackup()
+        } else if tappedCell.accessibilityIdentifier == "emptyServerCell" {
+            emptyServer()
         } else if tappedCell.accessibilityIdentifier == "deleteAccountCell" {
             deleteAccount()
         } else if tappedCell.accessibilityIdentifier == "advancedShowCell" {
@@ -595,6 +605,29 @@ class AccountSetupController: UITableViewController {
         }
 
         logger.error("no documents directory found")
+    }
+
+    private func emptyServer() {
+        let alert = UIAlertController(title: String.localized("pref_empty_server_title"),
+            message: String.localized("pref_empty_server_msg"), preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("pref_empty_server_inbox"), style: .destructive, handler: { _ in
+            self.emptyServer2ndConfirm(title: String.localized("pref_empty_server_inbox"), flags: Int(DC_EMPTY_INBOX))
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("pref_empty_server_mvbox"), style: .destructive, handler: { _ in
+            self.emptyServer2ndConfirm(title: String.localized("pref_empty_server_mvbox"), flags: Int(DC_EMPTY_MVBOX))
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func emptyServer2ndConfirm(title: String, flags: Int) {
+        let alert = UIAlertController(title: title,
+            message: String.localized("pref_empty_server_msg"), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("pref_empty_server_do_button"), style: .destructive, handler: { _ in
+            self.dcContext.emptyServer(flags: flags)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+        present(alert, animated: true, completion: nil)
     }
 
     private func deleteAccount() {
