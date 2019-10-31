@@ -1,7 +1,7 @@
 # Delta Chat iOS Changelog
 
-## v0.940.1
-2019-10-30
+## v0.940.2
+2019-10-31
 
 * add "dark mode" for all views
 * if a message contains an email, this can be used to start a chat directly
