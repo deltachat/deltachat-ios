@@ -200,48 +200,6 @@ internal final class SettingsViewController: QuickTableViewController {
             ),
 
             Section(
-                title: String.localized("pref_imap_folder_handling"),
-                rows: [
-                    SwitchRow(text: String.localized("pref_watch_inbox_folder"),
-                              switchValue: DcConfig.inboxWatch,
-                              action: { row in
-                                if let row = row as? SwitchRow {
-                                    DcConfig.inboxWatch = row.switchValue
-                                }
-                    }),
-                    SwitchRow(text: String.localized("pref_watch_sent_folder"),
-                              switchValue: DcConfig.sentboxWatch,
-                              action: { row in
-                                if let row = row as? SwitchRow {
-                                    DcConfig.sentboxWatch = row.switchValue
-                                }
-                    }),
-                    SwitchRow(text: String.localized("pref_watch_mvbox_folder"),
-                              switchValue: DcConfig.mvboxWatch,
-                              action: { row in
-                                if let row = row as? SwitchRow {
-                                    DcConfig.mvboxWatch = row.switchValue
-                                }
-                    }),
-                    SwitchRow(text: String.localized("pref_send_copy_to_self"),
-                              switchValue: dcContext.getConfigBool("bcc_self"),
-                              action: { row in
-                                if let row = row as? SwitchRow {
-                                    self.dcContext.setConfigBool("bcc_self", row.switchValue)
-                                }
-                    }),
-                    SwitchRow(text: String.localized("pref_auto_folder_moves"),
-                              switchValue: DcConfig.mvboxMove,
-                              action: { row in
-                                if let row = row as? SwitchRow {
-                                    DcConfig.mvboxMove = row.switchValue
-                                }
-                    }),
-                ],
-                footer: String.localized("pref_auto_folder_moves_explain")
-            ),
-
-            Section(
                 title: String.localized("autocrypt"),
                 rows: [
                     SwitchRow(text: String.localized("autocrypt_prefer_e2ee"),

@@ -78,7 +78,7 @@ class AccountSetupController: UITableViewController {
         }
     }
 
-    // account setup
+    // cells
 
     private lazy var emailCell: TextFieldCell = {
         let cell = TextFieldCell.makeEmailCell(delegate: self)
@@ -219,17 +219,60 @@ class AccountSetupController: UITableViewController {
         return cell
     }()
 
-    // this loginButton can be enabled and disabled
+    lazy var inboxWatchCell: SwitchCell = {
+        return SwitchCell(textLabel: String.localized("pref_watch_inbox_folder"),
+                          on: dcContext.getConfigBool("inbox_watch"),
+                          action: { cell in
+                              self.dcContext.setConfigBool("inbox_watch", cell.isOn)
+                          })
+    }()
+
+    lazy var sentboxWatchCell: SwitchCell = {
+        return SwitchCell(textLabel: String.localized("pref_watch_sent_folder"),
+                          on: dcContext.getConfigBool("sentbox_watch"),
+                          action: { cell in
+                              self.dcContext.setConfigBool("sentbox_watch", cell.isOn)
+                          })
+    }()
+
+    lazy var mvboxWatchCell: SwitchCell = {
+        return SwitchCell(textLabel: String.localized("pref_watch_mvbox_folder"),
+                          on: dcContext.getConfigBool("mvbox_watch"),
+                          action: { cell in
+                              self.dcContext.setConfigBool("mvbox_watch", cell.isOn)
+                          })
+    }()
+
+    lazy var sendCopyToSelfCell: SwitchCell = {
+        return SwitchCell(textLabel: String.localized("pref_send_copy_to_self"),
+                          on: dcContext.getConfigBool("bcc_self"),
+                          action: { cell in
+                              self.dcContext.setConfigBool("bcc_self", cell.isOn)
+                          })
+    }()
+
+    lazy var mvboxMoveCell: SwitchCell = {
+        return SwitchCell(textLabel: String.localized("pref_auto_folder_moves"),
+                          on: dcContext.getConfigBool("mvbox_move"),
+                          action: { cell in
+                              self.dcContext.setConfigBool("mvbox_move", cell.isOn)
+                          })
+    }()
+
     private lazy var loginButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: String.localized("login_title"), style: .done, target: self, action: #selector(loginButtonPressed))
         button.isEnabled = dc_is_configured(mailboxPointer) == 0
         return button
     }()
 
-    let basicSection = 0
-    let restoreSection = 1
-    let advancedSection = 2
-    let dangerSection = 3
+
+    // add cells to sections
+
+    let basicSection = 100
+    let advancedSection = 200
+    let restoreSection = 300
+    let folderSection = 400
+    let dangerSection = 500
     private var sections = [Int]()
 
     private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
@@ -246,6 +289,7 @@ class AccountSetupController: UITableViewController {
         smtpPasswordCell,
         smtpSecurityCell
     ]
+    private lazy var folderCells: [UITableViewCell] = [inboxWatchCell, sentboxWatchCell, mvboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
     private lazy var dangerCells: [UITableViewCell] = [emptyServerCell, deleteAccountCell]
 
     private let editView: Bool
@@ -258,6 +302,7 @@ class AccountSetupController: UITableViewController {
         self.sections.append(basicSection)
         self.sections.append(advancedSection)
         if editView {
+            self.sections.append(folderSection)
             self.sections.append(dangerSection)
         } else {
             self.sections.append(restoreSection)
@@ -324,6 +369,8 @@ class AccountSetupController: UITableViewController {
             return basicSectionCells.count
         } else if sections[section] == restoreSection {
             return restoreCells.count
+        } else if sections[section] == folderSection {
+            return folderCells.count
         } else if sections[section] == dangerSection {
             return dangerCells.count
         } else {
@@ -334,6 +381,8 @@ class AccountSetupController: UITableViewController {
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         if sections[section] == basicSection && editView {
             return String.localized("login_header")
+        } else if sections[section] == folderSection {
+            return String.localized("pref_imap_folder_handling")
         } else if sections[section] == dangerSection {
             return String.localized("danger")
         } else {
@@ -346,6 +395,8 @@ class AccountSetupController: UITableViewController {
             return String.localized("login_no_servers_hint")
         } else if sections[section] == advancedSection {
             return String.localized("login_subheader")
+        } else if sections[section] == folderSection {
+            return String.localized("pref_auto_folder_moves_explain")
         } else {
             return nil
         }
@@ -359,6 +410,8 @@ class AccountSetupController: UITableViewController {
             return basicSectionCells[row]
         } else if sections[section] == restoreSection {
             return restoreCells[row]
+        } else if sections[section] == folderSection {
+            return folderCells[row]
         } else if sections[section] == dangerSection {
             return dangerCells[row]
         } else {

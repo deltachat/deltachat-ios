@@ -309,27 +309,7 @@ class DcConfig {
         set { setConfigBool("mdns_enabled", newValue) }
         get { return getConfigBool("mdns_enabled") }
     }
-
-    class var inboxWatch: Bool {
-        set { setConfigBool("inbox_watch", newValue) }
-        get { return getConfigBool("inbox_watch") }
-    }
-
-    class var sentboxWatch: Bool {
-        set { setConfigBool("sentbox_watch", newValue) }
-        get { return getConfigBool("sentbox_watch") }
-    }
-
-    class var mvboxWatch: Bool {
-        set { setConfigBool("mvbox_watch", newValue) }
-        get { return getConfigBool("mvbox_watch") }
-    }
-
-    class var mvboxMove: Bool {
-        set { setConfigBool("mvbox_move", newValue) }
-        get { return getConfigBool("mvbox_move") }
-    }
-
+    
     class var showEmails: Int {
         // one of DC_SHOW_EMAILS_*
         set { setConfigInt("show_emails", newValue) }
