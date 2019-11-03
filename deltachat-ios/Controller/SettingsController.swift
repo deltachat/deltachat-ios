@@ -303,9 +303,4 @@ internal final class SettingsViewController: QuickTableViewController {
         askAlert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(askAlert, animated: true, completion: nil)
     }
-
-    private func configure(_: Row) {
-        hudHandler.showHud(String.localized("configuring_account"))
-        dc_configure(mailboxPointer)
-    }
 }
