@@ -136,7 +136,7 @@
 "menu_edit_group_image" = "Редактировать изображение группы";
 "menu_settings" = "Настройки";
 "menu_advanced" = "Дополнительные параметры";
-"menu_deaddrop" = "Запросы на общение";
+"menu_deaddrop" = "Запросы контактов";
 "menu_deaddrop_subtitle" = "Нажмите на сообщение, чтобы начать чат";
 "menu_view_profile" = "Просмотреть профиль";
 "menu_zoom_in" = "Увеличить масштаб";
@@ -277,11 +277,12 @@
 "login_smtp_password" = "SMTP пароль";
 "login_smtp_server" = "SMTP сервер";
 "login_smtp_port" = "SMTP порт";
-"login_smtp_security" = "Настройки безопасности SMTP";
+"login_smtp_security" = "Параметры безопасности SMTP";
 "login_auth_method" = "Метод авторизации";
 "login_info_oauth2_title" = "Продолжить упрощенную настройку?";
 "login_info_oauth2_text" = "Введённый адрес электронной почты поддерживает упрощённую настройку (OAuth2).\n\nНа следующем шаге разрешите, пожалуйста, Delta Chat выступать в качестве Вашего приложения для чата с помощью электронной почты.\n\nУ Delta Chat нет серверов, Ваши данные остаются на Вашем устройстве!";
 "login_info_gmail_text" = "Для аккаунтов GMail необходимо задать пароль для приложений - App-Password , если включена 2FA двухфакторная аутентификация. Если эти настройки недоступны, вам нужно активировать параметр Less Secure Apps.";
+"login_certificate_checks" = "Проверки сертификатов";
 "login_error_mail" = "Укажите действительный адрес эл. почты";
 "login_error_server" = "Укажите действительный сервер / IP адрес";
 "login_error_port" = "Укажите действительный порт (1-65535)";
@@ -445,7 +446,7 @@
 "systemmsg_group_image_deleted" = "Изображение группы удалено.";
 "systemmsg_member_added" = "Добавлен участник %1$@.";
 "systemmsg_member_removed" = "Участник %1$@ удалён.";
-"systemmsg_group_left" = "Вы покинули группу.";
+"systemmsg_group_left" = "Группа покинута.";
 "systemmsg_read_receipt_subject" = "Уведомление о прочтении";
 "systemmsg_read_receipt_body" = "Это подтверждение того, что сообщение \"%1$@\" было открыто на устройстве получателя. Данное подтверждение не означает, что сообщение было прочитано.";
 "systemmsg_cannot_decrypt" = "Это сообщение не может быть расшифровано.\n\n• Возможно, это уже поможет просто ответить на это сообщение и попросить отправителя отправить сообщение еще раз.\n\n • В случае, если вы переустановили Delta Chat или другую почтовую программу на этом или другом устройство, с которого вы, возможно, захотите отправить оттуда Сообщение с параметрами Autocrypt.";
@@ -551,7 +552,7 @@
 "write_message_desktop" = "Напишите сообщение";
 "encryption_info_title_desktop" = "Информация о шифровании";
 "contact_detail_title_desktop" = "Детали контакта";
-"contact_request_title_desktop" = "Запрос на общение";
+"contact_request_title_desktop" = "Запрос контакта";
 "delete_message_desktop" = "Удалить сообщение";
 "more_info_desktop" = "Больше информации";
 "logout_desktop" = "Выйти";

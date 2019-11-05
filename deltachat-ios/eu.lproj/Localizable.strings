@@ -9,6 +9,8 @@
 "def" = "Lehenetsita";
 "custom" = "Pertsonalizatua";
 "none" = "Bat ere ez";
+"automatic" = "Automatikoa";
+"strict" = "Zorrotza";
 "open" = "Ireki";
 "delete" = "Ezabatu";
 "update" = "Eguneratu";
@@ -280,6 +282,7 @@
 "login_info_oauth2_title" = "Jarraitu ezarpen sinplifikatuarekin";
 "login_info_oauth2_text" = "Sartu duzun e-mail helbideak ezarpen sinplifikatua onartzen du (OAuth2).\n\nHurrengo urratsean, baimendu Detla Chat zure e-mail bidezko txat aplikazio gisa erabili ahal izateko.\n\nEz dago Delta Chat zerbitzaririk, zure datuak zure gailuan mantentzen dira!";
 "login_info_gmail_text" = "GMail kontu bat erabiltzeko Aplikazio-pasahitza sortu behar duzu 2FA aktibatuta baduzu. Ezarpen hau eskuragarri ez baduzu, aplikazio ez hain seguruak gaitu behar dituzu.";
+"login_certificate_checks" = "Ziurtagiri-egiaztaketak";
 "login_error_mail" = "Sartu baliozko e-mail helbide bat";
 "login_error_server" = "Sartu baliozko zerbitzari / IP helbide bat";
 "login_error_port" = "Sartu baliozko ataka bat  (1–65535)";
@@ -291,6 +294,11 @@
 "login_error_cannot_login" = "Ezin da \"%1$@\" bezala saioa hasi. Egiaztatu E-mail helbidea eta pasahitza zuzenak diren.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "%1$@(r)en erantzuna: %2$@\n\nHornitzaile batzuk informazio gehigarria uzten dute zure sarrera ontzian; adibidez bere web interfazearen bidez egiaztatu dezakezu. Galdetu zure hornitzaileari edo lagunei arazoak badituzu.";
+
+// TLS certificate checks
+"accept_invalid_hostnames" = "Onartu ostalari izen baliogabeak";
+"accept_invalid_certificates" = "Onartu ziurtagiri baliogabeak";
+
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to

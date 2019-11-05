@@ -9,6 +9,8 @@
 "def" = "Parazgjedhje";
 "custom" = "Vetjake";
 "none" = "Asnjë";
+"automatic" = "Automatike";
+"strict" = "Strikt";
 "open" = "Hap";
 "delete" = "Fshije";
 "update" = "Përditësoje";
@@ -280,6 +282,7 @@
 "login_info_oauth2_title" = "Të vazhdohet me rregullimin e thjeshtuar?";
 "login_info_oauth2_text" = "Adresa email e dhënë mbulon një ujdisje të thjeshtuar (OAuth2).\n\nNë hapin pasues, ju lutemi, lejojeni Delta Chat-in të veprojë si aplikacioni juaj për Fjalosje Përmes Email-i.\n\nS\’ka shërbyes Delta Chat, të dhënat tuaja rrinë në pajisjen tuaj!";
 "login_info_gmail_text" = "Për llogari GMail lypset të krijoni një App-Password, nëse keni të aktivizuar mirëfilltësimin dyfaktorësh. Nëse ky rregullim s\’gjendet, lypset të aktivizoni Aplikacione Më Pak të Sigurta.";
+"login_certificate_checks" = "Kontrolle dëshmish";
 "login_error_mail" = "Ju lutemi, jepni një adresë email të vlefshme";
 "login_error_server" = "Ju lutemi, jepni një shërbyes / adresë IP të vlefshme";
 "login_error_port" = "Ju lutemi, jepni një portë të vlefshme (1–65535)";
@@ -291,6 +294,11 @@
 "login_error_cannot_login" = "S\’bëhet dot hyrja si %1$@. Ju lutemi, shihni nëse adresa email dhe fjalëkalimi janë të saktë.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Përgjigje nga %1$@: %2$@\n\nDisa shërbime vendosin të dhëna shtesë te kutia juaj e mesazheve të marrë; mund t\’i shihni, për shembull, te pjesa e dukshme web. Nëse hasni probleme, këshillohuni me shërbimin tuaj ose shokë.";
+
+// TLS certificate checks
+"accept_invalid_hostnames" = "Prano strehëemra të pavlefshëm";
+"accept_invalid_certificates" = "Prano dëshmi të pavlefshme";
+
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
