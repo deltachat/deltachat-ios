@@ -1,5 +1,14 @@
 # Delta Chat iOS Changelog
 
+## v0.950.0
+2019-11-05
+
+* move folder settings to account settings
+* improve scanning of qr-codes
+* update translations
+* various bug fixes
+
+
 ## v0.940.2
 2019-10-31
 

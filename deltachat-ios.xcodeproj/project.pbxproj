@@ -1382,7 +1382,7 @@
 				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 8Y86453UA8;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
@@ -1399,7 +1399,7 @@
 					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/release",
 					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/debug",
 				);
-				MARKETING_VERSION = 0.940.2;
+				MARKETING_VERSION = 0.950.0;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-isystem",
@@ -1456,7 +1456,7 @@
 				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 8Y86453UA8;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
@@ -1473,7 +1473,7 @@
 					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/release",
 					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/debug",
 				);
-				MARKETING_VERSION = 0.940.2;
+				MARKETING_VERSION = 0.950.0;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-isystem",
