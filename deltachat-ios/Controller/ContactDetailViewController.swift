@@ -3,17 +3,19 @@ import UIKit
 // this is also used as ChatDetail for SingleChats
 class ContactDetailViewController: UITableViewController {
     weak var coordinator: ContactDetailCoordinatorProtocol?
-    let sectionOptions = 0
-    let sectionBlockContact = 1
-    let sectionOptionsRowNotifications = 0
-    var showStartChat = true
-    var optionCells: [UITableViewCell] = []
 
-    private enum CellIdentifiers: String {
-        case notification = "notificationCell"
-        case block = "blockContactCell"
-        case chat = "chatCell"
-    }
+    let sectionOptions = 0
+    let sectionOptionsRowStartChat = 1
+    let sectionOptionsRowCount = 1
+
+    let sectionBlockContact = 1
+    let sectionBlockContactRowCount = 1
+
+    let sectionCount = 2
+
+    var showStartChat = true
+
+    var optionCells: [UITableViewCell] = []
 
     private let contactId: Int
 
@@ -21,19 +23,8 @@ class ContactDetailViewController: UITableViewController {
         return DcContact(id: contactId)
     }
 
-    private var notificationsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("pref_notifications")
-        cell.accessibilityIdentifier = CellIdentifiers.notification.rawValue
-        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-        cell.selectionStyle = .none
-        // TODO: add current notification status
-        return cell
-    }()
-
-    private lazy var chatCell: ActionCell = {
+    private lazy var startChatCell: ActionCell = {
         let cell = ActionCell()
-        cell.accessibilityIdentifier = CellIdentifiers.chat.rawValue
         cell.actionColor = SystemColor.blue.uiColor
         cell.actionTitle = String.localized("menu_new_chat")
         cell.selectionStyle = .none
@@ -42,7 +33,6 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var blockContactCell: ActionCell = {
         let cell = ActionCell()
-        cell.accessibilityIdentifier = CellIdentifiers.block.rawValue
         cell.actionTitle = contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
         cell.actionColor = contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
         cell.selectionStyle = .none
@@ -64,9 +54,8 @@ class ContactDetailViewController: UITableViewController {
             title: String.localized("global_menu_edit_desktop"),
             style: .plain, target: self, action: #selector(editButtonPressed))
         self.title = String.localized("tab_contact")
-        optionCells.insert(notificationsCell, at: 0)
         if showStartChat {
-            optionCells.insert(chatCell, at: 1)
+            optionCells.append(startChatCell)
         }
     }
 
@@ -76,47 +65,33 @@ class ContactDetailViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return sectionCount
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == sectionOptions {
             return optionCells.count
         } else if section == sectionBlockContact {
-            return 1
+            return sectionBlockContactRowCount
         }
         return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
-        let row = indexPath.row
-
         if section == sectionOptions {
-            if row == sectionOptionsRowNotifications {
-                return notificationsCell
-            } else {
-                return chatCell
-            }
+            return startChatCell
         } else {
             return blockContactCell
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) else {
-            return
-        }
-
-        if let identifier = CellIdentifiers(rawValue: cell.accessibilityIdentifier ?? "") {
-            switch identifier {
-            case .block:
-                toggleBlockContact()
-            case .chat:
-                askToChatWith(contactId: contactId)
-            case .notification:
-                showNotificationSetup()
-            }
+        let section = indexPath.section
+        if section == sectionOptions {
+            askToChatWith(contactId: contactId)
+        } else {
+            toggleBlockContact()
         }
     }
 

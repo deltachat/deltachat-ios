@@ -101,18 +101,20 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                     object: nil,
                     userInfo: userInfo)
 
-            let content = UNMutableNotificationContent()
-            let msg = DcMsg(id: Int(data2))
-            content.title = msg.fromContact.displayName
-            content.body = msg.summary(chars: 40) ?? ""
-            content.userInfo = userInfo
-            content.sound = .default
+            if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+                let content = UNMutableNotificationContent()
+                let msg = DcMsg(id: Int(data2))
+                content.title = msg.fromContact.displayName
+                content.body = msg.summary(chars: 40) ?? ""
+                content.userInfo = userInfo
+                content.sound = .default
 
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
 
-            let request = UNNotificationRequest(identifier: Constants.notificationIdentifier, content: content, trigger: trigger)
-            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-            logger.info("notifications: added \(content)")
+                let request = UNNotificationRequest(identifier: Constants.notificationIdentifier, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                logger.info("notifications: added \(content)")
+            }
 
             let array = DcArray(arrayPointer: dc_get_fresh_msgs(mailboxPointer))
             UIApplication.shared.applicationIconBadgeNumber = array.count

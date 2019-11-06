@@ -188,6 +188,13 @@ internal final class SettingsViewController: QuickTableViewController {
                     NavigationRow(text: String.localized("pref_blocked_contacts"),
                               detailText: .none,
                               action: { [weak self] in self?.showBlockedContacts($0) }),
+                    SwitchRow(text: String.localized("pref_notifications"),
+                              switchValue: !UserDefaults.standard.bool(forKey: "notifications_disabled"),
+                              action: { row in
+                                if let row = row as? SwitchRow {
+                                    UserDefaults.standard.set(!row.switchValue, forKey: "notifications_disabled")
+                                }
+                    }),
                     SwitchRow(text: String.localized("pref_read_receipts"),
                               switchValue: DcConfig.mdnsEnabled,
                               action: { row in
