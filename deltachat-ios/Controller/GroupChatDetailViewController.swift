@@ -2,12 +2,15 @@ import UIKit
 
 class GroupChatDetailViewController: UIViewController {
 
-    private let sectionConfig = 0
-    private let sectionMembers = 1
-    private let sectionLeaveGroup = 2
+    private let sectionMembers = 0
     private let sectionMembersRowAddMember = 0
     private let sectionMembersRowJoinQR = 1
+    private let sectionMembersStaticRowCount = 2 // followed by one row per member
 
+    private let sectionLeaveGroup = 1
+    private let sectionLeaveGroupRowCount = 1
+
+    private let sectionCount = 2
 
     private var currentUser: DcContact? {
         return groupMembers.filter { $0.email == DcConfig.addr }.first
@@ -47,22 +50,11 @@ class GroupChatDetailViewController: UIViewController {
         chatDetailTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
-    private func showNotificationSetup() {
-        let notificationSetupAlert = UIAlertController(title: "Notifications Setup is not implemented yet",
-                                                       message: "But you get an idea where this is going",
-                                                       preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
-        notificationSetupAlert.addAction(cancelAction)
-        present(notificationSetupAlert, animated: true, completion: nil)
-    }
-
     private lazy var editBarButtonItem: UIBarButtonItem = {
         UIBarButtonItem(title: String.localized("global_menu_edit_desktop"), style: .plain, target: self, action: #selector(editButtonPressed))
     }()
 
     private var groupMembers: [DcContact] = []
-
-    private let staticCellCountMemberSection = 2
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,15 +98,9 @@ class GroupChatDetailViewController: UIViewController {
 }
 
 extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 1 {
-            return String.localized("tab_members")
-        }
-        return nil
-    }
 
     func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == sectionConfig {
+        if section == sectionMembers {
             let header = ContactDetailHeader()
             header.updateDetails(title: chat.name,
                                  subtitle: String.localizedStringWithFormat(String.localized("n_members"), chat.contactIds.count))
@@ -131,26 +117,18 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func numberOfSections(in _: UITableView) -> Int {
-        /*
-         section 0: config
-         section 1: members
-         section 2: leave group (optional - if user already left group this option will be hidden)
-         */
-
         if currentUser == nil {
-            return 2
+            return sectionCount-1 // leave out last section (leaveSection)
         }
-        return 3
+        return sectionCount
     }
 
     func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case sectionConfig:
-            return 1
         case sectionMembers:
-            return groupMembers.count + staticCellCountMemberSection
+            return sectionMembersStaticRowCount + groupMembers.count
         case sectionLeaveGroup:
-            return 1
+            return sectionLeaveGroupRowCount
         default:
             return 0
         }
@@ -160,11 +138,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         let section = indexPath.section
         let row = indexPath.row
         switch section {
-        case sectionConfig:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
-            cell.textLabel?.text = String.localized("pref_notifications")
-            cell.selectionStyle = .none
-            return cell
         case sectionMembers:
             switch row {
             case sectionMembersRowAddMember:
@@ -184,7 +157,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             default:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
                 if let contactCell = cell as? ContactCell {
-                    let contact = groupMembers[row - staticCellCountMemberSection]
+                    let contact = groupMembers[row - sectionMembersStaticRowCount]
                     let displayName = contact.displayName
                     contactCell.nameLabel.text = displayName
                     contactCell.emailLabel.text = contact.email
@@ -209,9 +182,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = indexPath.section
         let row = indexPath.row
-        if section == sectionConfig {
-            showNotificationSetup()
-        } else if section == sectionMembers {
+        if section == sectionMembers {
             if row == sectionMembersRowAddMember {
                 coordinator?.showAddGroupMember(chatId: chat.id)
             } else if row == sectionMembersRowJoinQR {
@@ -220,7 +191,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 let contact = getGroupMember(at: row)
                 coordinator?.showContactDetail(of: contact.id)
             }
-            // ignore for now - in Telegram tapping a contactCell leads into ContactDetail
         } else if section == sectionLeaveGroup {
             leaveGroup()
         }
@@ -231,7 +201,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         let row = indexPath.row
 
         if let currentUser = currentUser {
-            if section == sectionMembers, row >= staticCellCountMemberSection, groupMembers[row - staticCellCountMemberSection].id != currentUser.id {
+            if section == sectionMembers, row >= sectionMembersStaticRowCount, groupMembers[row - sectionMembersStaticRowCount].id != currentUser.id {
                 return true
             }
         }
@@ -243,7 +213,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         let row = indexPath.row
 
         // assigning swipe by delete to members (except for current user)
-        if section == sectionMembers, row >= staticCellCountMemberSection, groupMembers[row - staticCellCountMemberSection].id != currentUser?.id {
+        if section == sectionMembers, row >= sectionMembersStaticRowCount, groupMembers[row - sectionMembersStaticRowCount].id != currentUser?.id {
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [unowned self] _, indexPath in
 
                 let contact = self.getGroupMember(at: row)
@@ -252,7 +222,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { _ in
                     let success = dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(contact.id))
                     if success == 1 {
-                        self.groupMembers.remove(at: row - self.staticCellCountMemberSection)
+                        self.groupMembers.remove(at: row - self.sectionMembersStaticRowCount)
                         tableView.deleteRows(at: [indexPath], with: .fade)
                         tableView.reloadData()
                     }
@@ -268,7 +238,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func getGroupMember(at row: Int) -> DcContact {
-        let memberId = self.groupMembers[row - self.staticCellCountMemberSection].id
+        let memberId = self.groupMembers[row - self.sectionMembersStaticRowCount].id
         return DcContact(id: memberId)
     }
 
