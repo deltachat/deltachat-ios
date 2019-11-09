@@ -143,6 +143,8 @@
 "menu_zoom_out" = "Zoom out";
 "menu_save_log" = "Save log";
 "title_share_location" = "Share location with all group members";
+"device_talk" = "Device Messages";
+"device_talk_subtitle" = "Locally generated messages";
 
 "mute_for_one_hour" = "Mute for 1 hour";
 "mute_for_two_hours" = "Mute for 2 hours";

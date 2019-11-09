@@ -143,6 +143,8 @@
 "menu_zoom_out" = "Ansicht verkleinern";
 "menu_save_log" = "Logdatei sichern";
 "title_share_location" = "Standort mit allen Gruppenmitgliedern teilen";
+"device_talk" = "Systemnachrichten";
+"device_talk_subtitle" = "Lokal erzeugte Nachrichten";
 
 "mute_for_one_hour" = "Stumm für 1 Stunde";
 "mute_for_two_hours" = "Stumm für 2 Stunden";
