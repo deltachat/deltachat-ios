@@ -143,6 +143,9 @@
 "menu_zoom_out" = "Уменьшить масштаб";
 "menu_save_log" = "Сохранить журнал";
 "title_share_location" = "Делиться местоположением со всеми участниками группы";
+"device_talk" = "Сообщения устройства";
+"device_talk_subtitle" = "Локально сгенерированные сообщения";
+
 "mute_for_one_hour" = "1 час";
 "mute_for_two_hours" = "На 2 часа";
 "mute_for_one_day" = "На 1 день";
@@ -448,7 +451,7 @@
 "systemmsg_group_left" = "Группа покинута.";
 "systemmsg_read_receipt_subject" = "Уведомление о прочтении";
 "systemmsg_read_receipt_body" = "Это подтверждение того, что сообщение \"%1$@\" было открыто на устройстве получателя. Данное подтверждение не означает, что сообщение было прочитано.";
-"systemmsg_cannot_decrypt" = "Это сообщение не может быть расшифровано.\n\n• Возможно, это уже поможет просто ответить на это сообщение и попросить отправителя отправить сообщение еще раз.\n\n • В случае, если вы переустановили Delta Chat или другую почтовую программу на этом или другом устройство, с которого вы, возможно, захотите отправить оттуда Сообщение с параметрами Autocrypt.";
+"systemmsg_cannot_decrypt" = "Это сообщение не может быть расшифровано.\n\n• Возможно, поможет просто ответить на это сообщение и попросить отправителя отправить сообщение еще раз.\n\n • В случае, если вы переустановили Delta Chat или другую почтовую программу на этом или другом устройстве, возможно, вы захотите отправить Сообщение с параметрами Autocrypt оттуда.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
 "systemmsg_action_by_me" = "%1$@ мной.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
@@ -489,7 +492,7 @@
 "contact_verified" = "%1$@ подтвержден.";
 "contact_not_verified" = "Невозможно подтвердить %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
-"contact_setup_changed" = "Изменённые параметры для %1$@";
+"contact_setup_changed" = "Изменены параметры для %1$@";
 
 
 // notifications 

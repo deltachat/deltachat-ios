@@ -143,6 +143,9 @@
 "menu_zoom_out" = "Uzaklaştır";
 "menu_save_log" = "Günlüğü kaydet";
 "title_share_location" = "Tüm grup üyeleriyle konum paylaş";
+"device_talk" = "Aygıt iletileri";
+"device_talk_subtitle" = "Yerel olarak oluşturulan iletiler";
+
 "mute_for_one_hour" = "1 saatliğine sessize al";
 "mute_for_two_hours" = "2 saatliğine sessize al";
 "mute_for_one_day" = "1 günlüğüne sessize al";
