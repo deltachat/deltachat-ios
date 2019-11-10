@@ -35,7 +35,7 @@ class ChatViewController: MessagesViewController {
     /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and udpate audio cell UI accordingly.
     open lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
 
-    var disableWriting = false
+    private var disableWriting: Bool
     var showCustomNavBar = true
     var previewView: UIView?
     var previewController: PreviewController?
@@ -50,6 +50,7 @@ class ChatViewController: MessagesViewController {
     init(dcContext: DcContext, chatId: Int) {
         self.dcContext = dcContext
         self.chatId = chatId
+        self.disableWriting = !DcChat(id: chatId).canSend
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
     }
@@ -90,7 +91,9 @@ class ChatViewController: MessagesViewController {
             if chat.isGroup {
                 subtitle = String.localizedStringWithFormat(NSLocalizedString("n_members", comment: ""), chatContactIds.count)
             } else if chatContactIds.count >= 1 {
-                if chat.isSelfTalk {
+                if chat.isDeviceTalk {
+                    subtitle = String.localized("device_talk_subtitle")
+                } else if chat.isSelfTalk {
                     subtitle = String.localized("chat_self_talk_subtitle")
                 } else {
                     subtitle = DcContact(id: chatContactIds[0]).email

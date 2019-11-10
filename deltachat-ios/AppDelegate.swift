@@ -178,6 +178,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_SERVER_RESPONSE), String.localized("login_error_server_response"))
         dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGACTIONBYUSER), String.localized("systemmsg_action_by_user"))
         dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGACTIONBYME), String.localized("systemmsg_action_by_me"))
+        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_DEVICE_MESSAGES), String.localized("device_talk"))
     }
 
     func stop() {
