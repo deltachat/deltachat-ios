@@ -440,6 +440,14 @@ class DcChat {
         return Int(dc_chat_is_self_talk(chatPointer)) != 0
     }
 
+    var isDeviceTalk: Bool {
+        return Int(dc_chat_is_device_talk(chatPointer)) != 0
+    }
+
+    var canSend: Bool {
+        return Int(dc_chat_can_send(chatPointer)) != 0
+    }
+
     var isVerified: Bool {
         return dc_chat_is_verified(chatPointer) > 0
     }
