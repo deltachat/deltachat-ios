@@ -631,24 +631,12 @@ class AccountSetupController: UITableViewController {
                     DcConfig.mailServer = textFieldCell.getText() ?? nil
                 case tagImapUserCell:
                     DcConfig.mailUser = textFieldCell.getText() ?? nil
-                case tagImapPortCell:
-                    DcConfig.mailPort = textFieldCell.getText() ?? nil
-                case tagImapSecurityCell:
-                    ///FIXME: set flags correctly
-                    let flag = 0
-                    DcConfig.setImapSecurity(imapFlags: flag)
                 case tagSmtpServerCell:
                     DcConfig.sendServer = textFieldCell.getText() ?? nil
                 case tagSmtpUserCell:
                     DcConfig.sendUser = textFieldCell.getText() ?? nil
-                case tagSmtpPortCell:
-                    DcConfig.sendPort = textFieldCell.getText() ?? nil
                 case tagSmtpPasswordCell:
                     DcConfig.sendPw = textFieldCell.getText() ?? nil
-                case tagSmtpSecurityCell:
-                    ///FIXME: set flags correctly
-                    let flag = 0
-                    DcConfig.setSmtpSecurity(smptpFlags: flag)
                 default:
                     logger.info("unknown identifier \(cell.tag)")
                 }
