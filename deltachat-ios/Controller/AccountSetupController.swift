@@ -328,11 +328,7 @@ class AccountSetupController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // needs to be changed if returning from portSettingsController
-        smtpPortCell.detailTextLabel?.text = DcConfig.sendPort ?? DcConfig.configuredSendPort
-        imapPortCell.detailTextLabel?.text = DcConfig.mailPort ?? DcConfig.configuredMailPort
-        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: DcConfig.getSmtpSecurity())
-        imapSecurityCell.detailTextLabel?.text  = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: DcConfig.getImapSecurity())
+        initSelectionCells()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -721,6 +717,26 @@ class AccountSetupController: UITableViewController {
         dismiss(animated: true, completion: nil)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.registerForPushNotifications()
+        if (!DcConfig.configuredMailPort.isEmpty) {
+            DcConfig.mailPort = DcConfig.configuredMailPort
+        }
+        if (!DcConfig.configuredMailServer.isEmpty) {
+            DcConfig.mailServer = DcConfig.configuredMailServer
+        }
+        if (!DcConfig.configuredSendPort.isEmpty) {
+            DcConfig.sendPort = DcConfig.configuredSendPort
+        }
+        if (!DcConfig.configuredSendServer.isEmpty) {
+            DcConfig.sendServer = DcConfig.configuredSendServer
+        }
+        initSelectionCells();
+    }
+
+    private func initSelectionCells() {
+        smtpPortCell.detailTextLabel?.text = DcConfig.sendPort ?? DcConfig.configuredSendPort
+        imapPortCell.detailTextLabel?.text = DcConfig.mailPort ?? DcConfig.configuredMailPort
+        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: DcConfig.getSmtpSecurity())
+        imapSecurityCell.detailTextLabel?.text  = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: DcConfig.getImapSecurity())
     }
 
     private func resignFirstResponderOnAllCells() {
