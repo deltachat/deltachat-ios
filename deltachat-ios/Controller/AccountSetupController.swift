@@ -36,6 +36,35 @@ class AccountSetupController: UITableViewController {
     private let tagTextFieldSmtpUser = 600
     private let tagTextFieldSmtpPassword = 700
 
+    // add cells to sections
+
+    let basicSection = 100
+    let advancedSection = 200
+    let restoreSection = 300
+    let folderSection = 400
+    let dangerSection = 500
+    private var sections = [Int]()
+
+    private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
+    private lazy var restoreCells: [UITableViewCell] = [restoreCell]
+    private lazy var advancedSectionCells: [UITableViewCell] = [
+        advancedShowCell,
+        imapServerCell,
+        imapUserCell,
+        imapPortCell,
+        imapSecurityCell,
+        smtpServerCell,
+        smtpUserCell,
+        smtpPortCell,
+        smtpPasswordCell,
+        smtpSecurityCell
+    ]
+    private lazy var folderCells: [UITableViewCell] = [inboxWatchCell, sentboxWatchCell, mvboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
+    private lazy var dangerCells: [UITableViewCell] = [emptyServerCell, deleteAccountCell]
+
+    private let editView: Bool
+    private var advancedSectionShowing: Bool = false
+
 
     // the progress dialog
 
@@ -290,36 +319,6 @@ class AccountSetupController: UITableViewController {
         button.isEnabled = dc_is_configured(mailboxPointer) == 0
         return button
     }()
-
-
-    // add cells to sections
-
-    let basicSection = 100
-    let advancedSection = 200
-    let restoreSection = 300
-    let folderSection = 400
-    let dangerSection = 500
-    private var sections = [Int]()
-
-    private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
-    private lazy var restoreCells: [UITableViewCell] = [restoreCell]
-    private lazy var advancedSectionCells: [UITableViewCell] = [
-        advancedShowCell,
-        imapServerCell,
-        imapUserCell,
-        imapPortCell,
-        imapSecurityCell,
-        smtpServerCell,
-        smtpUserCell,
-        smtpPortCell,
-        smtpPasswordCell,
-        smtpSecurityCell
-    ]
-    private lazy var folderCells: [UITableViewCell] = [inboxWatchCell, sentboxWatchCell, mvboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
-    private lazy var dangerCells: [UITableViewCell] = [emptyServerCell, deleteAccountCell]
-
-    private let editView: Bool
-    private var advancedSectionShowing: Bool = false
 
     init(dcContext: DcContext, editView: Bool) {
         self.editView = editView
