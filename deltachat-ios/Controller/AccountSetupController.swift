@@ -86,6 +86,7 @@ class AccountSetupController: UITableViewController {
         cell.textField.accessibilityIdentifier = "emailTextField" // will be used to eventually show oAuth-Dialogue when pressing return key
         cell.setText(text: DcConfig.addr ?? nil)
         cell.textField.delegate = self
+        cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return cell
     }()
 
@@ -93,6 +94,7 @@ class AccountSetupController: UITableViewController {
         let cell = TextFieldCell.makePasswordCell(delegate: self)
         cell.textField.tag = 1
         cell.accessibilityIdentifier = "passwordCell" // will be used to eventually show oAuth-Dialogue when selecting
+        cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         cell.setText(text: DcConfig.mailPw ?? nil)
         return cell
     }()
@@ -329,6 +331,7 @@ class AccountSetupController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initSelectionCells()
+        handleLoginButton()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -750,10 +753,18 @@ class AccountSetupController: UITableViewController {
         )
     }
 
+    private func handleLoginButton() {
+        loginButton.isEnabled = !(emailCell.getText() ?? "").isEmpty && !(passwordCell.getText() ?? "").isEmpty
+    }
+
     func resignCell(cell: UITableViewCell) {
         if let c = cell as? TextFieldCell {
             c.textField.resignFirstResponder()
         }
+    }
+
+    @objc private func textFieldDidChange() {
+        handleLoginButton()
     }
 }
 
@@ -772,7 +783,6 @@ extension AccountSetupController: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.accessibilityIdentifier == "emailTextField" {
-            loginButton.isEnabled = true
             // this will re-enable possible oAuth2-login
             skipOauth = false
         }
