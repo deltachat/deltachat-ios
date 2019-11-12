@@ -19,6 +19,10 @@
     <string name="complete">Complete</string>
     <string name="info">Info</string>
     <string name="qr_code_title">QR scan/show</string>
+    <string name="crtck_auto">Automatic</string>
+    <string name="crtck_starttls">STARTTLS</string>
+    <string name="crtck_ssltls">SSL / TLS</string>
+    <string name="crtck_off">Off</string>
     <!-- info plist keys need to pre prefixed with INFOPLIST., spaces need to be replaced with dots and dashes need to replaced with underscores -->
     <string name="INFOPLIST.Privacy._.Camera.Usage.Description">Allowing access to the camera lets you take photos and videos.</string>
     <string name="INFOPLIST.Privacy._.Contacts.Usage.Description">Allowing access to your address book lets you chat with contacts from your device.</string>
