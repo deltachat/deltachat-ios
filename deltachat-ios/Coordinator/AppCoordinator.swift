@@ -198,6 +198,11 @@ class AccountSetupCoordinator: Coordinator {
         self.navigationController = navigationController
     }
 
+    func showCertCheckOptions() {
+        let certificateCheckController = CertificateCheckController(sectionTitle: String.localized("login_certificate_checks"))
+        navigationController.pushViewController(certificateCheckController, animated: true)
+    }
+
     func showImapPortOptions() {
         let currentMailPort = DcConfig.mailPort ?? DcConfig.configuredMailPort
         let currentPort = Int(currentMailPort)

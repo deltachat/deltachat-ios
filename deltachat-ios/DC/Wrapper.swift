@@ -246,6 +246,20 @@ class DcConfig {
         get { return getConfig("send_port") }
     }
 
+    class var certificateChecks: Int {
+        set {
+            setConfig("smtp_certificate_checks", "\(newValue)")
+            setConfig("imap_certificate_checks", "\(newValue)")
+        }
+        get {
+            if let str = getConfig("imap_certificate_checks") {
+                return Int(str) ?? 0
+            } else {
+                return 0
+            }
+        }
+    }
+
     private class var serverFlags: Int {
         // IMAP-/SMTP-flags as a combination of DC_LP flags
         set {
