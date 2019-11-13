@@ -107,19 +107,19 @@ class SecurityConverter {
     static func convertHexToString(type: SecurityType, hex value: Int) -> String {
         switch value {
         case 0x00:
-            return String.localized("crtck_auto")
+            return String.localized("automatic")
         case 0x100:
-            return String.localized("crtck_starttls")
+            return "StartTLS"
         case 0x200:
-            return String.localized("crtck_ssltls")
+            return "SSL/TLS"
         case  0x400:
-            return String.localized("crtck_off")
+            return String.localized("off")
         case 0x10000:
-            return String.localized("crtck_starttls")
+            return "StartTLS"
         case 0x20000:
-            return String.localized("crtck_ssltls")
+            return "SSL/TLS"
         case  0x40000:
-            return String.localized("crtck_off")
+            return String.localized("off")
         default:
             return "Undefined"
         }

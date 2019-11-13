@@ -629,7 +629,3 @@
 "complete" = "Complete";
 "info" = "Info";
 "qr_code_title" = "QR scan/show";
-"crtck_auto" = "Automatic";
-"crtck_starttls" = "STARTTLS";
-"crtck_ssltls" = "SSL / TLS";
-"crtck_off" = "Off";
