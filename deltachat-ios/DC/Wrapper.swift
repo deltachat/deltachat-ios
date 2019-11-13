@@ -296,7 +296,6 @@ class DcConfig {
     class func getAuthFlags() -> Int {
         var sf = serverFlags
         sf = sf & 0x6 // DC_LP_AUTH_FLAGS
-        serverFlags = sf
         return sf
     }
 
