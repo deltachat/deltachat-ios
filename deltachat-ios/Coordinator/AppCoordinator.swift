@@ -204,7 +204,7 @@ class AccountSetupCoordinator: Coordinator {
         let portSettingsController = PortSettingsController(sectionTitle: String.localized("login_imap_port"),
                                                             ports: [143, 993],
                                                             currentPort: currentPort)
-        portSettingsController.onDismiss = {
+        portSettingsController.onSave = {
             port in
             DcConfig.mailPort = port
         }
@@ -223,7 +223,7 @@ class AccountSetupCoordinator: Coordinator {
         let portSettingsController = PortSettingsController(sectionTitle: String.localized("login_smtp_port"),
                                                             ports: [25, 465, 587],
                                                             currentPort: currentPort)
-        portSettingsController.onDismiss = {
+        portSettingsController.onSave = {
             port in
             DcConfig.sendPort = port
         }
