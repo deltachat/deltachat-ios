@@ -203,36 +203,10 @@ class AccountSetupCoordinator: Coordinator {
         navigationController.pushViewController(certificateCheckController, animated: true)
     }
 
-    func showImapPortOptions() {
-        let currentMailPort = DcConfig.mailPort ?? DcConfig.configuredMailPort
-        let currentPort = Int(currentMailPort)
-        let portSettingsController = PortSettingsController(sectionTitle: String.localized("login_imap_port"),
-                                                            ports: [143, 993],
-                                                            currentPort: currentPort)
-        portSettingsController.onSave = {
-            port in
-            DcConfig.mailPort = port
-        }
-        navigationController.pushViewController(portSettingsController, animated: true)
-    }
-
     func showImapSecurityOptions() {
         let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
                                                                     type: SecurityType.IMAPSecurity)
         navigationController.pushViewController(securitySettingsController, animated: true)
-    }
-
-    func showSmtpPortsOptions() {
-        let currentMailPort = DcConfig.sendPort ?? DcConfig.configuredSendPort
-        let currentPort = Int(currentMailPort)
-        let portSettingsController = PortSettingsController(sectionTitle: String.localized("login_smtp_port"),
-                                                            ports: [25, 465, 587],
-                                                            currentPort: currentPort)
-        portSettingsController.onSave = {
-            port in
-            DcConfig.sendPort = port
-        }
-        navigationController.pushViewController(portSettingsController, animated: true)
     }
 
     func showSmptpSecurityOptions() {

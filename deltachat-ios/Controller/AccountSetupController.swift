@@ -206,13 +206,25 @@ class AccountSetupController: UITableViewController {
         return cell
     }()
 
-    lazy var imapPortCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("login_imap_port")
-        cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = DcConfig.mailPort ?? DcConfig.configuredMailPort
+    func editablePort(port: String?) -> String {
+        if let port = port {
+            if Int(port) == 0 {
+                return ""
+            }
+            return port
+        } else {
+            return ""
+        }
+    }
+
+    lazy var imapPortCell: TextFieldCell = {
+        let cell = TextFieldCell(descriptionID: "login_imap_port",
+                                 placeholder: String.localized("automatic"),
+                                 delegate: self)
         cell.tag = tagImapPortCell
-        cell.selectionStyle = .none
+        cell.setText(text: editablePort(port: DcConfig.mailPort))
+        cell.textField.tag = tagImapPortCell
+        cell.textField.keyboardType = .numberPad
         return cell
     }()
 
@@ -246,13 +258,14 @@ class AccountSetupController: UITableViewController {
         return cell
     }()
 
-    lazy var smtpPortCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("login_smtp_port")
-        cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = DcConfig.sendPort ?? DcConfig.configuredSendPort
-        cell.selectionStyle = .none
+    lazy var smtpPortCell: TextFieldCell = {
+        let cell = TextFieldCell(descriptionID: "login_smtp_port",
+                                 placeholder: String.localized("automatic"),
+                                 delegate: self)
         cell.tag = tagSmtpPortCell
+        cell.setText(text: editablePort(port: DcConfig.sendPort))
+        cell.textField.tag = tagSmtpPortCell
+        cell.textField.keyboardType = .numberPad
         return cell
     }()
 
@@ -473,10 +486,6 @@ class AccountSetupController: UITableViewController {
             deleteAccount()
         case tagAdvancedCell:
             toggleAdvancedSection()
-        case tagImapPortCell:
-            coordinator?.showImapPortOptions()
-        case tagSmtpPortCell:
-            coordinator?.showSmtpPortsOptions()
         case tagImapSecurityCell:
             coordinator?.showImapSecurityOptions()
         case tagSmtpSecurityCell:
@@ -644,10 +653,14 @@ class AccountSetupController: UITableViewController {
                 switch  textFieldCell.tag {
                 case tagImapServerCell:
                     DcConfig.mailServer = textFieldCell.getText() ?? nil
+                case tagImapPortCell:
+                    DcConfig.mailPort = textFieldCell.getText() ?? nil
                 case tagImapUserCell:
                     DcConfig.mailUser = textFieldCell.getText() ?? nil
                 case tagSmtpServerCell:
                     DcConfig.sendServer = textFieldCell.getText() ?? nil
+                case tagSmtpPortCell:
+                    DcConfig.sendPort = textFieldCell.getText() ?? nil
                 case tagSmtpUserCell:
                     DcConfig.sendUser = textFieldCell.getText() ?? nil
                 case tagSmtpPasswordCell:
@@ -765,8 +778,6 @@ class AccountSetupController: UITableViewController {
     }
 
     private func initSelectionCells() {
-        smtpPortCell.detailTextLabel?.text = DcConfig.sendPort ?? DcConfig.configuredSendPort
-        imapPortCell.detailTextLabel?.text = DcConfig.mailPort ?? DcConfig.configuredMailPort
         smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: DcConfig.getSmtpSecurity())
         imapSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: DcConfig.getImapSecurity())
         certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: DcConfig.certificateChecks)
