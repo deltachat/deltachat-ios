@@ -2,32 +2,41 @@ import UIKit
 
 class SecuritySettingsController: UITableViewController {
 
-    private var options: [String]
-    private var selectedIndex: Int {
-        didSet {
-            print(selectedIndex)
-        }
+    private var options: [Int]
+
+    private var selectedIndex: Int
+
+    private var securityType: SecurityType
+
+    private var okButton: UIBarButtonItem {
+        let button =  UIBarButtonItem(title: String.localized("ok"), style: .done, target: self, action: #selector(okButtonPressed))
+        return button
     }
 
-    private var backupIndex: Int
-
-    var onDismiss: ((String) -> Void)?
-
-    private var resetButton: UIBarButtonItem!
+    private var cancelButton: UIBarButtonItem {
+        let button =  UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
+        return button
+    }
 
     private var staticCells: [UITableViewCell] {
         return options.map {
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = $0
+            cell.textLabel?.text = SecurityConverter.convertHexToString(type: self.securityType, hex: $0)
             cell.selectionStyle = .none
             return cell
         }
     }
 
-    init(title: String, options: [String], selectedOption: String) {
-        self.options = options
-        selectedIndex = options.index(of: selectedOption)!
-        backupIndex = selectedIndex
+    init(title: String, type: SecurityType) {
+        self.securityType = type
+        switch securityType {
+        case .IMAPSecurity:
+            options = [0x00, 0x100, 0x200, 0x400]
+            selectedIndex = options.index(of: DcConfig.getImapSecurity()) ?? 0
+        case .SMTPSecurity:
+            options = [0x00, 0x10000, 0x20000, 0x40000]
+            selectedIndex = options.index(of: DcConfig.getSmtpSecurity()) ?? 0
+        }
         super.init(style: .grouped)
         self.title = title
     }
@@ -38,14 +47,8 @@ class SecuritySettingsController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        resetButton = UIBarButtonItem(title: String.localized("reset"), style: .done, target: self, action: #selector(resetButtonPressed))
-        resetButton.isEnabled = false
-        navigationItem.rightBarButtonItem = resetButton
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        let selectedOption = options[selectedIndex]
-        onDismiss?(selectedOption)
+        navigationItem.rightBarButtonItem = okButton
+        navigationItem.leftBarButtonItem = cancelButton
     }
 
     // MARK: - Table view data source
@@ -78,87 +81,47 @@ class SecuritySettingsController: UITableViewController {
             cell.accessoryType = .checkmark
         }
         selectedIndex = indexPath.row
-        resetButton.isEnabled = true
     }
 
-    @objc func resetButtonPressed() {
-        selectedIndex = backupIndex
-        tableView.reloadData()
+    @objc func okButtonPressed() {
+        switch securityType {
+        case .IMAPSecurity:
+            DcConfig.setImapSecurity(imapFlags: options[selectedIndex])
+        case .SMTPSecurity:
+            DcConfig.setSmtpSecurity(smptpFlags: options[selectedIndex])
+        }
+        navigationController?.popViewController(animated: true)
     }
 
+    @objc func cancelButtonPressed() {
+        navigationController?.popViewController(animated: true)
+    }
 }
-
 
 enum SecurityType {
-    case IMAPSecurity
-    case SMTPSecurity
-}
-
-enum SecurityValue: String {
-    case AUTO = "Automatic"
-    case TLS = "SSL / TLS"
-    case STARTTLS = "STARTTLS"
-    case PLAIN = "OFF"
+     case IMAPSecurity
+     case SMTPSecurity
 }
 
 class SecurityConverter {
-
-    static func convertValueToInt(type: SecurityType, value: SecurityValue) -> Int {
-        switch type {
-        case .IMAPSecurity:
-            switch value {
-            case .AUTO:
-                return 0x000
-            case .STARTTLS:
-                return 0x100
-            case .TLS:
-                return 0x200
-            case .PLAIN:
-                return 0x400
-            }
-        case .SMTPSecurity:
-            switch value {
-            case .AUTO:
-                return 0x00000
-            case .STARTTLS:
-                return 0x10000
-            case .TLS:
-                return 0x20000
-            case .PLAIN:
-                return 0x40000
-            }
-        }
-    }
-
-    // TODO: discuss if we want to internationalize OFF and Automatic
     static func convertHexToString(type: SecurityType, hex value: Int) -> String {
-        switch type {
-        case .IMAPSecurity:
-            switch value {
-            case 0x00:
-                return "Automatic"
-            case 0x100:
-                return "STARTTLS"
-            case 0x200:
-                return "SSL / TLS"
-            case  0x400:
-                return "OFF"
-            default:
-                return "Undefined"
-            }
-        case .SMTPSecurity:
-            switch value {
-            case 0x00000:
-                return "Automatic"
-            case 0x10000:
-                return "STARTTLS"
-            case 0x20000:
-                return "SSL / TLS"
-            case  0x40000:
-                return "OFF"
-            default:
-                return "Undefined"
-            }
+        switch value {
+        case 0x00:
+            return String.localized("automatic")
+        case 0x100:
+            return "StartTLS"
+        case 0x200:
+            return "SSL/TLS"
+        case  0x400:
+            return String.localized("off")
+        case 0x10000:
+            return "StartTLS"
+        case 0x20000:
+            return "SSL/TLS"
+        case  0x40000:
+            return String.localized("off")
+        default:
+            return "Undefined"
         }
     }
 }

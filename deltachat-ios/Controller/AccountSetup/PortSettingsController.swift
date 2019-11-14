@@ -6,20 +6,20 @@ class PortSettingsController: UITableViewController {
 
     private var sectionTitle: String?
 
-    var resetButton: UIBarButtonItem!
+    var onSave: ((String) -> Void)?
 
-    var onDismiss: ((String) -> Void)?
-
-    var currentPort: Int {
-        didSet {
-            // activate resetButton once something was changed
-            resetButton.isEnabled = true
-        }
+    var okButton: UIBarButtonItem {
+        let button =  UIBarButtonItem(title: String.localized("ok"), style: .done, target: self, action: #selector(okButtonPressed))
+        return button
     }
 
-    var selectedIndex: Int?
+    var cancelButton: UIBarButtonItem {
+        let button =  UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
+        return button
+    }
 
-    let backupValue: Int
+    var currentPort: Int
+    var selectedIndex: Int?
 
     var staticCells: [UITableViewCell] {
         return ports.map({
@@ -46,7 +46,6 @@ class PortSettingsController: UITableViewController {
         for (index, port) in ports.enumerated() where currentPort == port {
             selectedIndex = index
         }
-        backupValue = self.currentPort
         super.init(style: .grouped)
         self.title = sectionTitle
     }
@@ -58,13 +57,8 @@ class PortSettingsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        resetButton = UIBarButtonItem(title: String.localized("reset"), style: .plain, target: self, action: #selector(resetButtonPressed))
-        navigationItem.rightBarButtonItem = resetButton
-        resetButton.isEnabled = false
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        onDismiss?("\(currentPort)")
+        navigationItem.rightBarButtonItem = okButton
+        navigationItem.leftBarButtonItem = cancelButton
     }
 
     // MARK: - Table view data source
@@ -142,19 +136,13 @@ class PortSettingsController: UITableViewController {
         selectedIndex = index
     }
 
-    @objc private func resetButtonPressed() {
+    @objc private func okButtonPressed() {
+           onSave?("\(currentPort)")
+           navigationController?.popViewController(animated: true)
+       }
 
-        if let index = ports.index(of: backupValue) {
-            selectItem(at: index)
-        } else {
-            selectItem(at: nil)
-        }
-        self.currentPort = backupValue
-        customCell.textField.placeholder = "\(currentPort)"
-        customCell.textField.resignFirstResponder()
-        customCell.textField.text = nil // will display currentValue as placeholder
-
-        tableView.reloadData()
+    @objc private func cancelButtonPressed() {
+        navigationController?.popViewController(animated: true)
     }
 
 }

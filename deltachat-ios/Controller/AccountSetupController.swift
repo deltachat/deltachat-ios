@@ -12,6 +12,59 @@ class AccountSetupController: UITableViewController {
     private var configureProgressObserver: Any?
     private var oauth2Observer: Any?
 
+    private let tagEmailCell = 0
+    private let tagPasswordCell = 1
+    private let tagAdvancedCell = 2
+    private let tagImapServerCell = 3
+    private let tagImapUserCell = 4
+    private let tagImapPortCell = 5
+    private let tagImapSecurityCell = 6
+    private let tagSmtpServerCell = 7
+    private let tagSmtpUserCell = 8
+    private let tagSmtpPortCell = 9
+    private let tagSmtpPasswordCell = 10
+    private let tagSmtpSecurityCell = 11
+    private let tagEmptyServerCell = 12
+    private let tagDeleteAccountCell = 13
+    private let tagRestoreCell = 14
+
+    private let tagTextFieldEmail = 100
+    private let tagTextFieldPassword = 200
+    private let tagTextFieldImapServer = 300
+    private let tagTextFieldImapLogin = 400
+    private let tagTextFieldSmtpServer = 500
+    private let tagTextFieldSmtpUser = 600
+    private let tagTextFieldSmtpPassword = 700
+
+    // add cells to sections
+
+    let basicSection = 100
+    let advancedSection = 200
+    let restoreSection = 300
+    let folderSection = 400
+    let dangerSection = 500
+    private var sections = [Int]()
+
+    private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
+    private lazy var restoreCells: [UITableViewCell] = [restoreCell]
+    private lazy var advancedSectionCells: [UITableViewCell] = [
+        advancedShowCell,
+        imapServerCell,
+        imapUserCell,
+        imapPortCell,
+        imapSecurityCell,
+        smtpServerCell,
+        smtpUserCell,
+        smtpPortCell,
+        smtpPasswordCell,
+        smtpSecurityCell
+    ]
+    private lazy var folderCells: [UITableViewCell] = [inboxWatchCell, sentboxWatchCell, mvboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
+    private lazy var dangerCells: [UITableViewCell] = [emptyServerCell, deleteAccountCell]
+
+    private let editView: Bool
+    private var advancedSectionShowing: Bool = false
+
 
     // the progress dialog
 
@@ -82,18 +135,21 @@ class AccountSetupController: UITableViewController {
 
     private lazy var emailCell: TextFieldCell = {
         let cell = TextFieldCell.makeEmailCell(delegate: self)
-        cell.textField.tag = 0
-        cell.textField.accessibilityIdentifier = "emailTextField" // will be used to eventually show oAuth-Dialogue when pressing return key
+        cell.tag = tagEmailCell
+        cell.textField.tag = tagTextFieldEmail // will be used to eventually show oAuth-Dialogue when pressing return key
         cell.setText(text: DcConfig.addr ?? nil)
         cell.textField.delegate = self
+        cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return cell
     }()
 
     private lazy var passwordCell: TextFieldCell = {
         let cell = TextFieldCell.makePasswordCell(delegate: self)
-        cell.textField.tag = 1
-        cell.accessibilityIdentifier = "passwordCell" // will be used to eventually show oAuth-Dialogue when selecting
+        cell.tag = tagPasswordCell
+        cell.textField.tag = tagTextFieldPassword  // will be used to eventually show oAuth-Dialogue when selecting
+        cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         cell.setText(text: DcConfig.mailPw ?? nil)
+        cell.textField.delegate = self
         return cell
     }()
 
@@ -101,7 +157,7 @@ class AccountSetupController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("import_backup_title")
         cell.accessoryType = .disclosureIndicator
-        cell.accessibilityIdentifier = "restoreCell"
+        cell.tag = tagRestoreCell
         return cell
     }()
 
@@ -109,7 +165,7 @@ class AccountSetupController: UITableViewController {
         let cell = ActionCell(frame: .zero)
         cell.actionTitle = String.localized("pref_empty_server_title")
         cell.actionColor = UIColor.red
-        cell.accessibilityIdentifier = "emptyServerCell"
+        cell.tag = tagEmptyServerCell
         return cell
     }()
 
@@ -117,7 +173,7 @@ class AccountSetupController: UITableViewController {
         let cell = ActionCell(frame: .zero)
         cell.actionTitle = String.localized("delete_account")
         cell.actionColor = UIColor.red
-        cell.accessibilityIdentifier = "deleteAccountCell"
+        cell.tag = tagDeleteAccountCell
         return cell
     }()
 
@@ -125,7 +181,7 @@ class AccountSetupController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("menu_advanced")
         cell.accessoryType = .disclosureIndicator
-        cell.accessibilityIdentifier = "advancedShowCell"
+        cell.tag = tagAdvancedCell
         return cell
     }()
 
@@ -133,8 +189,8 @@ class AccountSetupController: UITableViewController {
         let cell = TextFieldCell(descriptionID: "login_imap_server",
                                  placeholder: DcConfig.mailServer ?? DcConfig.configuredMailServer,
                                  delegate: self)
-        cell.accessibilityIdentifier = "IMAPServerCell"
-        cell.textField.tag = 2
+        cell.tag = tagImapServerCell
+        cell.textField.tag = tagTextFieldImapServer
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
         cell.textField.autocapitalizationType = .none
@@ -143,8 +199,8 @@ class AccountSetupController: UITableViewController {
 
     lazy var imapUserCell: TextFieldCell = {
         let cell = TextFieldCell(descriptionID: "login_imap_login", placeholder: DcConfig.mailUser ?? DcConfig.configuredMailUser, delegate: self)
-        cell.accessibilityIdentifier = "IMAPUserCell"
-        cell.textField.tag = 3
+        cell.textField.tag = tagTextFieldImapLogin
+        cell.tag = tagImapUserCell
         return cell
     }()
 
@@ -153,7 +209,7 @@ class AccountSetupController: UITableViewController {
         cell.textLabel?.text = String.localized("login_imap_port")
         cell.accessoryType = .disclosureIndicator
         cell.detailTextLabel?.text = DcConfig.mailPort ?? DcConfig.configuredMailPort
-        cell.accessibilityIdentifier = "IMAPPortCell"
+        cell.tag = tagImapPortCell
         cell.selectionStyle = .none
         return cell
     }()
@@ -162,11 +218,10 @@ class AccountSetupController: UITableViewController {
         let text = "\(DcConfig.getImapSecurity())"
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_imap_security")
-        // let cell = TextFieldCell(description: "IMAP Security", placeholder: text, delegate: self)
-        cell.accessibilityIdentifier = "IMAPSecurityCell"
         cell.accessoryType = .disclosureIndicator
         cell.detailTextLabel?.text = "\(DcConfig.getImapSecurity())"
         cell.selectionStyle = .none
+        cell.tag = tagImapSecurityCell
         return cell
     }()
 
@@ -174,8 +229,8 @@ class AccountSetupController: UITableViewController {
         let cell = TextFieldCell(descriptionID: "login_smtp_server",
                                  placeholder: DcConfig.sendServer ?? DcConfig.configuredSendServer,
                                  delegate: self)
-        cell.accessibilityIdentifier = "SMTPServerCell"
-        cell.textField.tag = 4
+        cell.textField.tag = tagTextFieldSmtpServer
+        cell.tag = tagSmtpServerCell
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
         cell.textField.autocapitalizationType = .none
@@ -184,8 +239,8 @@ class AccountSetupController: UITableViewController {
 
     lazy var smtpUserCell: TextFieldCell = {
         let cell = TextFieldCell(descriptionID: "login_smtp_login", placeholder: DcConfig.sendUser ?? DcConfig.configuredSendUser, delegate: self)
-        cell.accessibilityIdentifier = "SMTPUserCell"
-        cell.textField.tag = 5
+        cell.textField.tag = tagTextFieldSmtpUser
+        cell.tag = tagSmtpUserCell
         return cell
     }()
 
@@ -194,8 +249,8 @@ class AccountSetupController: UITableViewController {
         cell.textLabel?.text = String.localized("login_smtp_port")
         cell.accessoryType = .disclosureIndicator
         cell.detailTextLabel?.text = DcConfig.sendPort ?? DcConfig.configuredSendPort
-        cell.accessibilityIdentifier = "SMTPPortCell"
         cell.selectionStyle = .none
+        cell.tag = tagSmtpPortCell
         return cell
     }()
 
@@ -203,8 +258,8 @@ class AccountSetupController: UITableViewController {
         let cell = TextFieldCell(descriptionID: "login_smtp_password", placeholder: "*************", delegate: self)
         cell.textField.textContentType = UITextContentType.password
         cell.textField.isSecureTextEntry = true
-        cell.accessibilityIdentifier = "SMTPPasswordCell"
-        cell.textField.tag = 6
+        cell.textField.tag = tagTextFieldSmtpPassword
+        cell.tag = tagSmtpPasswordCell
         return cell
     }()
 
@@ -213,7 +268,7 @@ class AccountSetupController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_smtp_security")
         cell.detailTextLabel?.text = security
-        cell.accessibilityIdentifier = "SMTPSecurityCell"
+        cell.tag = tagSmtpSecurityCell
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
         return cell
@@ -265,36 +320,6 @@ class AccountSetupController: UITableViewController {
         return button
     }()
 
-
-    // add cells to sections
-
-    let basicSection = 100
-    let advancedSection = 200
-    let restoreSection = 300
-    let folderSection = 400
-    let dangerSection = 500
-    private var sections = [Int]()
-
-    private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
-    private lazy var restoreCells: [UITableViewCell] = [restoreCell]
-    private lazy var advancedSectionCells: [UITableViewCell] = [
-        advancedShowCell,
-        imapServerCell,
-        imapUserCell,
-        imapPortCell,
-        imapSecurityCell,
-        smtpServerCell,
-        smtpUserCell,
-        smtpPortCell,
-        smtpPasswordCell,
-        smtpSecurityCell
-    ]
-    private lazy var folderCells: [UITableViewCell] = [inboxWatchCell, sentboxWatchCell, mvboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
-    private lazy var dangerCells: [UITableViewCell] = [emptyServerCell, deleteAccountCell]
-
-    private let editView: Bool
-    private var advancedSectionShowing: Bool = false
-
     init(dcContext: DcContext, editView: Bool) {
         self.editView = editView
         self.dcContext = dcContext
@@ -328,11 +353,8 @@ class AccountSetupController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // needs to be changed if returning from portSettingsController
-        smtpPortCell.detailTextLabel?.text = DcConfig.sendPort ?? DcConfig.configuredSendPort
-        imapPortCell.detailTextLabel?.text = DcConfig.mailPort ?? DcConfig.configuredMailPort
-        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: DcConfig.getSmtpSecurity())
-        imapSecurityCell.detailTextLabel?.text  = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: DcConfig.getImapSecurity())
+        initSelectionCells()
+        handleLoginButton()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -422,31 +444,32 @@ class AccountSetupController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let tappedCell = tableView.cellForRow(at: indexPath) else { return }
         // handle tap on password -> show oAuthDialogue
-        if let textFieldCell = tappedCell as? TextFieldCell {
-            if textFieldCell.accessibilityIdentifier == "passwordCell" {
+        switch tappedCell.tag {
+        case tagPasswordCell:
+            if let textFieldCell = tappedCell as? TextFieldCell {
                 if let emailAdress = textFieldCell.getText() {
                     _ = showOAuthAlertIfNeeded(emailAddress: emailAdress, handleCancel: nil)
                 }
             }
-        }
-
-        if tappedCell.accessibilityIdentifier == "restoreCell" {
+        case tagRestoreCell:
             tableView.reloadData() // otherwise the disclosureIndicator may stay selected
             restoreBackup()
-        } else if tappedCell.accessibilityIdentifier == "emptyServerCell" {
+        case tagEmptyServerCell:
             emptyServer()
-        } else if tappedCell.accessibilityIdentifier == "deleteAccountCell" {
+        case tagDeleteAccountCell:
             deleteAccount()
-        } else if tappedCell.accessibilityIdentifier == "advancedShowCell" {
+        case tagAdvancedCell:
             toggleAdvancedSection()
-        } else if tappedCell.accessibilityIdentifier == "IMAPPortCell" {
+        case tagImapPortCell:
             coordinator?.showImapPortOptions()
-        } else if tappedCell.accessibilityIdentifier == "SMTPPortCell" {
+        case tagSmtpPortCell:
             coordinator?.showSmtpPortsOptions()
-        } else if tappedCell.accessibilityIdentifier == "IMAPSecurityCell" {
+        case tagImapSecurityCell:
             coordinator?.showImapSecurityOptions()
-        } else if tappedCell.accessibilityIdentifier == "SMTPSecurityCell" {
+        case tagSmtpSecurityCell:
             coordinator?.showSmptpSecurityOptions()
+        default:
+            break
         }
     }
 
@@ -603,29 +626,19 @@ class AccountSetupController: UITableViewController {
     private func evaluateAdvancedSetup() {
         for cell in advancedSectionCells {
             if let textFieldCell = cell as? TextFieldCell {
-                switch cell.accessibilityIdentifier {
-                case "IMAPServerCell":
+                switch  textFieldCell.tag {
+                case tagImapServerCell:
                     DcConfig.mailServer = textFieldCell.getText() ?? nil
-                case "IMAPUserCell":
+                case tagImapUserCell:
                     DcConfig.mailUser = textFieldCell.getText() ?? nil
-                case "IMAPPortCell":
-                    DcConfig.mailPort = textFieldCell.getText() ?? nil
-                case "IMAPSecurityCell":
-                    let flag = 0
-                    DcConfig.setImapSecurity(imapFlags: flag)
-                case "SMTPServerCell":
+                case tagSmtpServerCell:
                     DcConfig.sendServer = textFieldCell.getText() ?? nil
-                case "SMTPUserCell":
+                case tagSmtpUserCell:
                     DcConfig.sendUser = textFieldCell.getText() ?? nil
-                case "SMTPPortCell":
-                    DcConfig.sendPort = textFieldCell.getText() ?? nil
-                case "SMTPPasswordCell":
+                case tagSmtpPasswordCell:
                     DcConfig.sendPw = textFieldCell.getText() ?? nil
-                case "SMTPSecurityCell":
-                    let flag = 0
-                    DcConfig.setSmtpSecurity(smptpFlags: flag)
                 default:
-                    logger.info("unknown identifier", cell.accessibilityIdentifier ?? "")
+                    logger.info("unknown identifier \(cell.tag)")
                 }
             }
         }
@@ -721,6 +734,26 @@ class AccountSetupController: UITableViewController {
         dismiss(animated: true, completion: nil)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.registerForPushNotifications()
+        if (!DcConfig.configuredMailPort.isEmpty) {
+            DcConfig.mailPort = DcConfig.configuredMailPort
+        }
+        if (!DcConfig.configuredMailServer.isEmpty) {
+            DcConfig.mailServer = DcConfig.configuredMailServer
+        }
+        if (!DcConfig.configuredSendPort.isEmpty) {
+            DcConfig.sendPort = DcConfig.configuredSendPort
+        }
+        if (!DcConfig.configuredSendServer.isEmpty) {
+            DcConfig.sendServer = DcConfig.configuredSendServer
+        }
+        initSelectionCells();
+    }
+
+    private func initSelectionCells() {
+        smtpPortCell.detailTextLabel?.text = DcConfig.sendPort ?? DcConfig.configuredSendPort
+        imapPortCell.detailTextLabel?.text = DcConfig.mailPort ?? DcConfig.configuredMailPort
+        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: DcConfig.getSmtpSecurity())
+        imapSecurityCell.detailTextLabel?.text  = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: DcConfig.getImapSecurity())
     }
 
     private func resignFirstResponderOnAllCells() {
@@ -734,36 +767,49 @@ class AccountSetupController: UITableViewController {
         )
     }
 
+    private func handleLoginButton() {
+        loginButton.isEnabled = !(emailCell.getText() ?? "").isEmpty && !(passwordCell.getText() ?? "").isEmpty
+    }
+
     func resignCell(cell: UITableViewCell) {
         if let c = cell as? TextFieldCell {
             c.textField.resignFirstResponder()
         }
+    }
+
+    @objc private func textFieldDidChange() {
+        handleLoginButton()
     }
 }
 
 extension AccountSetupController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let currentTag = textField.tag
-        if let nextField = tableView.viewWithTag(currentTag + 1) as? UITextField {
-            if nextField.tag > 1, !advancedSectionShowing {
+        if let nextField = tableView.viewWithTag(currentTag + 100) as? UITextField {
+            if nextField.tag > tagTextFieldPassword, !advancedSectionShowing {
                 // gets here when trying to activate a collapsed cell
                 return false
             }
             nextField.becomeFirstResponder()
+            return true
+        } else {
+            textField.resignFirstResponder()
+            emailCell.textField.becomeFirstResponder()
+            let indexPath = IndexPath(row: 0, section: 0)
+            tableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.top, animated: true)
+            return true
         }
-        return false
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.accessibilityIdentifier == "emailTextField" {
-            loginButton.isEnabled = true
+        if textField.tag == tagTextFieldEmail {
             // this will re-enable possible oAuth2-login
             skipOauth = false
         }
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.accessibilityIdentifier == "emailTextField" {
+        if textField.tag == tagTextFieldEmail {
             let _ = showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
                 self.passwordCell.textField.becomeFirstResponder()
             })

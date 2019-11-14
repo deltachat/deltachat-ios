@@ -204,7 +204,7 @@ class AccountSetupCoordinator: Coordinator {
         let portSettingsController = PortSettingsController(sectionTitle: String.localized("login_imap_port"),
                                                             ports: [143, 993],
                                                             currentPort: currentPort)
-        portSettingsController.onDismiss = {
+        portSettingsController.onSave = {
             port in
             DcConfig.mailPort = port
         }
@@ -212,18 +212,8 @@ class AccountSetupCoordinator: Coordinator {
     }
 
     func showImapSecurityOptions() {
-        let currentSecurityOption = DcConfig.getImapSecurity()
-        let convertedOption = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: currentSecurityOption)
         let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
-                                                                    options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
-                                                                    selectedOption: convertedOption)
-        securitySettingsController.onDismiss = {
-            option in
-            if let secValue = SecurityValue(rawValue: option) {
-                let value = SecurityConverter.convertValueToInt(type: .IMAPSecurity, value: secValue)
-                DcConfig.setImapSecurity(imapFlags: value)
-            }
-        }
+                                                                    type: SecurityType.IMAPSecurity)
         navigationController.pushViewController(securitySettingsController, animated: true)
     }
 
@@ -233,7 +223,7 @@ class AccountSetupCoordinator: Coordinator {
         let portSettingsController = PortSettingsController(sectionTitle: String.localized("login_smtp_port"),
                                                             ports: [25, 465, 587],
                                                             currentPort: currentPort)
-        portSettingsController.onDismiss = {
+        portSettingsController.onSave = {
             port in
             DcConfig.sendPort = port
         }
@@ -241,18 +231,7 @@ class AccountSetupCoordinator: Coordinator {
     }
 
     func showSmptpSecurityOptions() {
-        let currentSecurityOption = DcConfig.getSmtpSecurity()
-        let convertedOption = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: currentSecurityOption)
-        let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
-                                                                    options: ["Automatic", "SSL / TLS", "STARTTLS", "OFF"],
-                                                                    selectedOption: convertedOption)
-        securitySettingsController.onDismiss = {
-            option in
-            if let secValue = SecurityValue(rawValue: option) {
-                let value = SecurityConverter.convertValueToInt(type: .SMTPSecurity, value: secValue)
-                DcConfig.setSmtpSecurity(smptpFlags: value)
-            }
-        }
+        let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"), type: SecurityType.SMTPSecurity)
         navigationController.pushViewController(securitySettingsController, animated: true)
     }
 }
