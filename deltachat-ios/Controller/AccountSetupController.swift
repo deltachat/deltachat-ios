@@ -24,9 +24,10 @@ class AccountSetupController: UITableViewController {
     private let tagSmtpPortCell = 9
     private let tagSmtpPasswordCell = 10
     private let tagSmtpSecurityCell = 11
-    private let tagEmptyServerCell = 12
-    private let tagDeleteAccountCell = 13
-    private let tagRestoreCell = 14
+    private let tagCertCheckCell = 12
+    private let tagEmptyServerCell = 13
+    private let tagDeleteAccountCell = 14
+    private let tagRestoreCell = 15
 
     private let tagTextFieldEmail = 100
     private let tagTextFieldPassword = 200
@@ -57,7 +58,8 @@ class AccountSetupController: UITableViewController {
         smtpUserCell,
         smtpPortCell,
         smtpPasswordCell,
-        smtpSecurityCell
+        smtpSecurityCell,
+        certCheckCell
     ]
     private lazy var folderCells: [UITableViewCell] = [inboxWatchCell, sentboxWatchCell, mvboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
     private lazy var dangerCells: [UITableViewCell] = [emptyServerCell, deleteAccountCell]
@@ -274,6 +276,17 @@ class AccountSetupController: UITableViewController {
         return cell
     }()
 
+    lazy var certCheckCell: UITableViewCell = {
+        let certCheckType = CertificateCheckController.ValueConverter.convertHexToString(value: DcConfig.certificateChecks)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("login_certificate_checks")
+        cell.detailTextLabel?.text = certCheckType
+        cell.tag = tagCertCheckCell
+        cell.accessoryType = .disclosureIndicator
+        cell.selectionStyle = .none
+        return cell
+    }()
+
     lazy var inboxWatchCell: SwitchCell = {
         return SwitchCell(textLabel: String.localized("pref_watch_inbox_folder"),
                           on: dcContext.getConfigBool("inbox_watch"),
@@ -468,6 +481,8 @@ class AccountSetupController: UITableViewController {
             coordinator?.showImapSecurityOptions()
         case tagSmtpSecurityCell:
             coordinator?.showSmptpSecurityOptions()
+        case tagCertCheckCell:
+            coordinator?.showCertCheckOptions()
         default:
             break
         }
@@ -753,7 +768,8 @@ class AccountSetupController: UITableViewController {
         smtpPortCell.detailTextLabel?.text = DcConfig.sendPort ?? DcConfig.configuredSendPort
         imapPortCell.detailTextLabel?.text = DcConfig.mailPort ?? DcConfig.configuredMailPort
         smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: DcConfig.getSmtpSecurity())
-        imapSecurityCell.detailTextLabel?.text  = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: DcConfig.getImapSecurity())
+        imapSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: DcConfig.getImapSecurity())
+        certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: DcConfig.certificateChecks)
     }
 
     private func resignFirstResponderOnAllCells() {
