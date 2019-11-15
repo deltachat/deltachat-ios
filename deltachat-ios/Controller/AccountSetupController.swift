@@ -189,7 +189,7 @@ class AccountSetupController: UITableViewController {
 
     lazy var imapServerCell: TextFieldCell = {
         let cell = TextFieldCell(descriptionID: "login_imap_server",
-                                 placeholder: DcConfig.mailServer ?? DcConfig.configuredMailServer,
+                                 placeholder: String.localized("automatic"),
                                  delegate: self)
         cell.tag = tagImapServerCell
         cell.textField.tag = tagTextFieldImapServer
@@ -200,7 +200,7 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var imapUserCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_imap_login", placeholder: DcConfig.mailUser ?? DcConfig.configuredMailUser, delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_imap_login", placeholder: String.localized("automatic"), delegate: self)
         cell.textField.tag = tagTextFieldImapLogin
         cell.tag = tagImapUserCell
         return cell
@@ -241,7 +241,7 @@ class AccountSetupController: UITableViewController {
 
     lazy var smtpServerCell: TextFieldCell = {
         let cell = TextFieldCell(descriptionID: "login_smtp_server",
-                                 placeholder: DcConfig.sendServer ?? DcConfig.configuredSendServer,
+                                 placeholder: String.localized("automatic"),
                                  delegate: self)
         cell.textField.tag = tagTextFieldSmtpServer
         cell.tag = tagSmtpServerCell
@@ -252,7 +252,7 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var smtpUserCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_smtp_login", placeholder: DcConfig.sendUser ?? DcConfig.configuredSendUser, delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_smtp_login", placeholder: String.localized("automatic"), delegate: self)
         cell.textField.tag = tagTextFieldSmtpUser
         cell.tag = tagSmtpUserCell
         return cell
@@ -270,7 +270,7 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var smtpPasswordCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_smtp_password", placeholder: "*************", delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_smtp_password", placeholder: String.localized("automatic"), delegate: self)
         cell.textField.textContentType = UITextContentType.password
         cell.textField.isSecureTextEntry = true
         cell.textField.tag = tagTextFieldSmtpPassword
@@ -762,18 +762,6 @@ class AccountSetupController: UITableViewController {
         dismiss(animated: true, completion: nil)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.registerForPushNotifications()
-        if (!DcConfig.configuredMailPort.isEmpty) {
-            DcConfig.mailPort = DcConfig.configuredMailPort
-        }
-        if (!DcConfig.configuredMailServer.isEmpty) {
-            DcConfig.mailServer = DcConfig.configuredMailServer
-        }
-        if (!DcConfig.configuredSendPort.isEmpty) {
-            DcConfig.sendPort = DcConfig.configuredSendPort
-        }
-        if (!DcConfig.configuredSendServer.isEmpty) {
-            DcConfig.sendServer = DcConfig.configuredSendServer
-        }
         initSelectionCells();
     }
 
