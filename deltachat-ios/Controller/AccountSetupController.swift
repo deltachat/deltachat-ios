@@ -509,6 +509,10 @@ class AccountSetupController: UITableViewController {
         var advancedIndexPaths: [IndexPath] = advancedSectionCells.indices.map { IndexPath(row: $0, section: advancedSectionIndex) }
         advancedIndexPaths.removeFirst() // do not touch the first item that is the switch itself
 
+        // on expansion, replace the disclosureIndicator by an n-dash
+        advancedShowCell.accessoryType = willShow ? .none : .disclosureIndicator
+        advancedShowCell.detailTextLabel?.text = willShow ? "\u{2013}" : nil
+
         advancedSectionShowing = willShow // set flag before delete/insert, because cellForRowAt will be triggered and uses this flag
 
         if willShow {
