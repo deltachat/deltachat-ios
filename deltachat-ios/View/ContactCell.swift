@@ -8,6 +8,7 @@ protocol ContactCellDelegate: class {
 
 class ContactCell: UITableViewCell {
 
+    public static let cellSize: CGFloat = 72
     weak var delegate: ContactCellDelegate?
     var rowIndex = -1
     private let initialsLabelSize: CGFloat = 54

@@ -31,7 +31,22 @@ internal extension UIView {
     func makeBorder(color: UIColor = UIColor.red) {
         self.layer.borderColor = color.cgColor
         self.layer.borderWidth = 2
-        print("hello")
+    }
+
+    func alignLeadingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingLeading: CGFloat = 0.0) {
+        self.leadingAnchor.constraint(equalTo: anchor, constant: paddingLeading).isActive = true
+    }
+
+    func alignTrailingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingTrailing: CGFloat = 0.0) {
+        self.trailingAnchor.constraint(equalTo: anchor, constant: -paddingTrailing).isActive = true
+    }
+
+    func alignTopToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingTop: CGFloat = 0.0) {
+        self.topAnchor.constraint(equalTo: anchor, constant: paddingTop).isActive = true
+    }
+
+    func alignBottomToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingBottom: CGFloat = 0.0) {
+        self.bottomAnchor.constraint(equalTo: anchor, constant: -paddingBottom).isActive = true
     }
 
     func constraintAlignTopTo(_ view: UIView) -> NSLayoutConstraint {

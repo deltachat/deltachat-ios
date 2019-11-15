@@ -1,13 +1,16 @@
 import UIKit
 
-class EditSettingsController: UITableViewController {
+class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
     private let dcContext: DcContext
+    weak var coordinator: EditSettingsCoordinator?
     private var displayNameBackup: String?
     private var statusCellBackup: String?
 
+    private let groupBadgeSize: CGFloat = 72
+
     private let section1 = 0
-    private let section1Name = 0
+    private let section1PictureAndName = 0
     private let section1Status = 1
     private let section1RowCount = 2
 
@@ -17,12 +20,15 @@ class EditSettingsController: UITableViewController {
 
     private let sectionCount = 2
 
+    private let tagAccountSettingsCell = 1
+
     private var childCoordinators: Coordinator?
 
-    private lazy var displayNameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("pref_your_name"))
-        cell.setText(text: DcConfig.displayname ?? nil)
-        return cell
+    private lazy var defaultImage: UIImage = {
+        if let image = UIImage(named: "camera") {
+            return image.invert()
+        }
+        return UIImage()
     }()
 
     private lazy var statusCell: TextFieldCell = {
@@ -31,13 +37,23 @@ class EditSettingsController: UITableViewController {
         return cell
     }()
 
-    lazy var accountSettingsCell: UITableViewCell = {
+    private lazy var accountSettingsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("pref_password_and_account_settings")
         cell.accessoryType = .disclosureIndicator
-        cell.accessibilityIdentifier = "accountSettingsCell"
+        cell.tag = tagAccountSettingsCell
         return cell
     }()
+
+
+    private lazy var pictureAndNameCell: AvatarEditTextCell = {
+        let contact = DcContact(id: Int(DC_CONTACT_ID_SELF))
+        let cell = AvatarEditTextCell(context: dcContext, defaultImage: defaultImage)
+        cell.inputField.text = contact.displayName
+        cell.selectionStyle = .none
+        return cell
+    }()
+
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
@@ -52,19 +68,16 @@ class EditSettingsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("pref_profile_info_headline")
-    }
 
-    override func viewWillAppear(_ animated: Bool) {
-        displayNameBackup = DcConfig.displayname
-        statusCellBackup = DcConfig.selfstatus
+        tableView.register(AvatarEditTextCell.self, forCellReuseIdentifier: "groupLabelCell")
+        tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
+        pictureAndNameCell.onAvatarTapped = onAvatarTapped
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        if displayNameBackup != displayNameCell.getText() || statusCellBackup != displayNameCell.getText() {
-            DcConfig.selfstatus = statusCell.getText()
-            DcConfig.displayname = displayNameCell.getText()
-            dc_configure(mailboxPointer)
-        }
+        DcConfig.selfstatus = statusCell.getText()
+        DcConfig.displayname = pictureAndNameCell.getText()
+        dc_configure(mailboxPointer)
     }
 
     // MARK: - Table view data source
@@ -83,13 +96,24 @@ class EditSettingsController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == section1 {
-            if indexPath.row == section1Name {
-                return displayNameCell
-            } else {
+            switch indexPath.row {
+            case section1PictureAndName:
+                return pictureAndNameCell
+            case section1Status:
                 return statusCell
+            default:
+               return UITableViewCell()
             }
         } else {
             return accountSettingsCell
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == section1 && indexPath.row == section1PictureAndName {
+            return AvatarEditTextCell.cellSize
+        } else {
+            return 48
         }
     }
 
@@ -103,7 +127,7 @@ class EditSettingsController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        if cell.accessibilityIdentifier == "accountSettingsCell" {
+        if cell.tag == tagAccountSettingsCell {
             tableView.deselectRow(at: indexPath, animated: true)
             guard let nc = navigationController else { return }
             let accountSetupVC = AccountSetupController(dcContext: dcContext, editView: true)
@@ -113,4 +137,34 @@ class EditSettingsController: UITableViewController {
             nc.pushViewController(accountSetupVC, animated: true)
         }
     }
+
+
+      private func photoButtonPressed(_ action: UIAlertAction) {
+        coordinator?.showPhotoPicker(delegate: self)
+      }
+
+      private func videoButtonPressed(_ action: UIAlertAction) {
+        ///TODO implement me!
+      }
+
+    private func onAvatarTapped() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                 let photoAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: photoButtonPressed(_:))
+                 let videoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: videoButtonPressed(_:))
+
+                 alert.addAction(photoAction)
+                 alert.addAction(videoAction)
+                 alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func onMediaSelected(url: NSURL) {
+        logger.info("onMediaSelected: \(url)")
+        DcConfig.selfavatar = "\(url)"
+        pictureAndNameCell.setSelfAvatar(context: dcContext, with: defaultImage)
+    }
+
+    func onDismiss() { }
+
 }

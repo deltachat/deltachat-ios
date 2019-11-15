@@ -40,6 +40,11 @@ class InitialsBadge: UIView {
         setImage(image)
     }
 
+    convenience init (image: UIImage, size: CGFloat, downscale: CGFloat) {
+        self.init(size: size)
+        setImage(image, downscale: downscale)
+    }
+
     init(size: CGFloat) {
         super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
         let radius = size / 2
@@ -83,6 +88,22 @@ class InitialsBadge: UIView {
     func setImage(_ image: UIImage) {
         if let resizedImg = image.resizeImage(targetSize: CGSize(width: self.frame.width, height: self.frame.height)) {
             self.imageView.image = resizedImg
+            self.imageView.isHidden = false
+            self.label.isHidden = true
+        }
+    }
+
+    func setImage(_ image: UIImage, downscale: CGFloat) {
+        var scale = downscale
+        if (scale > 1) {
+            scale = 1
+        } else if (scale < 0) {
+            scale = 0
+        }
+
+        if let resizedImg = image.resizeImage(targetSize: CGSize(width: self.frame.width * scale, height: self.frame.height * scale)) {
+            self.imageView.image = resizedImg
+            self.imageView.contentMode = UIView.ContentMode.center
             self.imageView.isHidden = false
             self.label.isHidden = true
         }

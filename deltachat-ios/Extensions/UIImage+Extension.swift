@@ -1,6 +1,16 @@
 import UIKit
 
 extension UIImage {
+
+    func invert() -> UIImage {
+        let beginImage = CIImage(image: self)
+        if let filter = CIFilter(name: "CIColorInvert") {
+            filter.setValue(beginImage, forKey: kCIInputImageKey)
+            return UIImage(ciImage: filter.outputImage!)
+        }
+        return self
+    }
+
     func imageResize(sizeChange: CGSize) -> UIImage {
         let hasAlpha = true
         let scale: CGFloat = 0.0 // Use scale factor of main screen

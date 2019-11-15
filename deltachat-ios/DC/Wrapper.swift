@@ -138,6 +138,21 @@ class DcContext {
     func isConfigured() -> Bool {
         return dc_is_configured(contextPointer) != 0
     }
+
+    func getSelfAvatarImage() -> UIImage? {
+       guard let fileName = DcConfig.selfavatar else { return nil }
+       let path: URL = URL(fileURLWithPath: fileName, isDirectory: false)
+       if path.isFileURL {
+           do {
+               let data = try Data(contentsOf: path)
+               return UIImage(data: data)
+           } catch {
+               logger.warning("failed to load image: \(fileName), \(error)")
+               return nil
+           }
+       }
+       return nil
+    }
 }
 
 class DcConfig {

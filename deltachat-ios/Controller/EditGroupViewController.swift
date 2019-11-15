@@ -6,7 +6,7 @@ class EditGroupViewController: UITableViewController {
 
     private let chat: DcChat
 
-    var groupNameCell: GroupLabelCell
+    var groupNameCell: AvatarEditTextCell
 
     lazy var doneButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveContactButtonPressed))
@@ -21,11 +21,12 @@ class EditGroupViewController: UITableViewController {
 
     init(chat: DcChat) {
         self.chat = chat
-        self.groupNameCell = GroupLabelCell(chat: chat)
+        self.groupNameCell = AvatarEditTextCell(chat: chat)
         super.init(style: .grouped)
-        groupNameCell.inputField.text = chat.name
+        self.groupNameCell.inputField.text = chat.name
         self.groupNameCell.onTextChanged = groupNameEdited(_:)
         self.groupNameCell.selectionStyle = .none
+        self.groupNameCell.hintLabel.text = String.localized("group_name")
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -50,8 +51,13 @@ class EditGroupViewController: UITableViewController {
         return 1
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return AvatarEditTextCell.cellSize
+    }
+
+    
     @objc func saveContactButtonPressed() {
-        let newName = groupNameCell.getGroupName()
+        let newName = groupNameCell.getText()
         dc_set_chat_name(mailboxPointer, UInt32(chat.id), newName)
         coordinator?.navigateBack()
     }

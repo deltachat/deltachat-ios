@@ -26,7 +26,7 @@ class GroupNameController: UITableViewController {
         navigationItem.rightBarButtonItem = doneButton
         tableView.bounces = false
         doneButton.isEnabled = false
-        tableView.register(GroupLabelCell.self, forCellReuseIdentifier: "groupLabelCell")
+        tableView.register(AvatarEditTextCell.self, forCellReuseIdentifier: "groupLabelCell")
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
         // setupSubviews()
     }
@@ -60,8 +60,9 @@ class GroupNameController: UITableViewController {
 
         if section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "groupLabelCell", for: indexPath)
-            if let groupLabelCell = cell as? GroupLabelCell {
+            if let groupLabelCell = cell as? AvatarEditTextCell {
                 groupLabelCell.onTextChanged = updateGroupName
+                groupLabelCell.hintLabel.text = String.localized("group_name")
             }
             return cell
         } else {
@@ -75,6 +76,15 @@ class GroupNameController: UITableViewController {
                 contactCell.setColor(contact.color)
             }
             return cell
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = indexPath.section
+        if section == 0 {
+            return AvatarEditTextCell.cellSize
+        } else {
+            return ContactCell.cellSize
         }
     }
 
