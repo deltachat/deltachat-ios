@@ -2,23 +2,9 @@
 <resources>
 
     <!-- iOS specific untranslated strings -->
-    <string name="start_chat">Start chat</string>
-    <string name="dismiss">Dismiss</string>
-    <string name="photo">Photo</string>
     <string name="import_contacts">Import device contacts</string>
     <string name="import_contacts_message">To chat with contacts from your device open the settings menu and enable the Contacts option</string>
     <string name="no_account_setup">No account set up</string>
-    <string name="delete_account">Delete account</string>
-    <string name="delete_account_message">Are you sure you want to delete your account data?</string>
-    <string name="danger">Danger</string>
-    <string name="next">Next</string>
-    <string name="reset">Reset</string>
-    <string name="edit_contact">Edit contact</string>
-    <string name="custom_port">Custom port</string>
-    <string name="automatic">Automatic</string>
-    <string name="complete">Complete</string>
-    <string name="info">Info</string>
-    <string name="qr_code_title">QR scan/show</string>
     <!-- info plist keys need to pre prefixed with INFOPLIST., spaces need to be replaced with dots and dashes need to replaced with underscores -->
     <string name="INFOPLIST.Privacy._.Camera.Usage.Description">Allowing access to the camera lets you take photos and videos.</string>
     <string name="INFOPLIST.Privacy._.Contacts.Usage.Description">Allowing access to your address book lets you chat with contacts from your device.</string>

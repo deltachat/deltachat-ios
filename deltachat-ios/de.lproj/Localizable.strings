@@ -13,6 +13,7 @@
 "strict" = "Strikt";
 "open" = "Öffnen";
 "delete" = "Löschen";
+"info" = "Info";
 "update" = "Aktualisieren";
 "emoji" = "Emoji";
 "attachment" = "Anhang";
@@ -22,6 +23,7 @@
 "chat" = "Chat";
 "media" = "Medien";
 "main_menu" = "Hauptmenü";
+"start_chat" = "Chat starten";
 "show_password" = "Passwort anzeigen";
 "hide_password" = "Passwort verstecken";
 "not_now" = "Nicht jetzt";
@@ -29,6 +31,8 @@
 "one_moment" = "Einen Moment…";
 "done" = "Fertig";
 "undo" = "Rückgängig";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Weiter";
 "error" = "Fehler";
 "error_x" = "Fehler: %1$@";
 "error_no_network" = "Kein Netzwerk.";
@@ -41,6 +45,8 @@
 "bad_email_address" = "Ungültige E-Mail-Adresse";
 "password" = "Passwort";
 "now" = "Jetzt";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Achtung";
 // n_min_ago is deprecated, use n_minutes instead
 "n_min_ago" = "%d Min.";
 "today" = "Heute";
@@ -145,6 +151,7 @@
 "title_share_location" = "Standort mit allen Gruppenmitgliedern teilen";
 "device_talk" = "Systemnachrichten";
 "device_talk_subtitle" = "Lokal erzeugte Nachrichten";
+"edit_contact" = "Kontakt bearbeiten";
 
 "mute_for_one_hour" = "Stumm für 1 Stunde";
 "mute_for_two_hours" = "Stumm für 2 Stunden";
@@ -301,6 +308,9 @@
 "accept_invalid_hostnames" = "Ungültige Hostnamen akzeptieren";
 "accept_invalid_certificates" = "Ungültige Zertifikate akzeptieren";
 
+"used_settings" = "Verwendete Einstellungen:";
+"delete_account" = "E-Mail-Konto löschen";
+"delete_account_ask" = "Das E-Mail-Konto und alle Daten wirklich von diesem Gerät löschen?";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -470,6 +480,7 @@
 
 
 // qr code stuff
+"qr_code" = "QR-Code";
 "qrscan_title" = "QR-Code scannen";
 "qrscan_hint" = "Kamera über den QR-Code halten";
 "qrscan_ask_join_group" = "Der Gruppe \"%1$@\" beitreten?";

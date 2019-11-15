@@ -12,7 +12,7 @@ class HudHandler {
     func setHudProgress(_ progress: Int) {
         if let hud = self.backupHud {
             hud.progress = Float(progress) / 1000.0
-            hud.detailTextLabel.text = "\(progress / 10)% \(String.localized("complete"))"
+            hud.detailTextLabel.text = "\(progress / 10)%"
         }
     }
 
@@ -21,7 +21,7 @@ class HudHandler {
             let hud = JGProgressHUD(style: .dark)
             hud.vibrancyEnabled = true
             hud.indicatorView = JGProgressHUDPieIndicatorView()
-            hud.detailTextLabel.text = "0% \(String.localized("complete"))"
+            hud.detailTextLabel.text = "0%"
             hud.textLabel.text = text
             hud.show(in: self.view)
             self.backupHud = hud

@@ -298,7 +298,6 @@
 "accept_invalid_hostnames" = "Onartu ostalari izen baliogabeak";
 "accept_invalid_certificates" = "Onartu ziurtagiri baliogabeak";
 
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Birbidali honi …";
@@ -466,7 +465,6 @@
 "screenlock_inactivity_timeout_interval" = "Jarduerarik gabeko denbora tartea";
 
 
-// qr code stuff
 "qrscan_title" = "Eskaneatu QR kodea";
 "qrscan_hint" = "Kokatu zure kamera QR kodearen gainean";
 "qrscan_ask_join_group" = "\"%1$@\" taldera elkartu nahi duzu?";

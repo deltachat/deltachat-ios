@@ -145,7 +145,6 @@
 "title_share_location" = "Делиться местоположением со всеми участниками группы";
 "device_talk" = "Сообщения устройства";
 "device_talk_subtitle" = "Локально сгенерированные сообщения";
-
 "mute_for_one_hour" = "1 час";
 "mute_for_two_hours" = "На 2 часа";
 "mute_for_one_day" = "На 1 день";
@@ -276,14 +275,14 @@
 "login_imap_security" = "Параметры безопасности IMAP";
 "login_outbox" = "Исходящие";
 "login_smtp_login" = "SMTP логин";
-"login_smtp_password" = "SMTP пароль";
+"login_smtp_password" = "Пароль SMTP";
 "login_smtp_server" = "SMTP сервер";
 "login_smtp_port" = "SMTP порт";
 "login_smtp_security" = "Параметры безопасности SMTP";
 "login_auth_method" = "Метод авторизации";
 "login_info_oauth2_title" = "Продолжить упрощенную настройку?";
 "login_info_oauth2_text" = "Введённый адрес электронной почты поддерживает упрощённую настройку (OAuth2).\n\nНа следующем шаге разрешите, пожалуйста, Delta Chat выступать в качестве Вашего приложения для чата с помощью электронной почты.\n\nУ Delta Chat нет серверов, Ваши данные остаются на Вашем устройстве!";
-"login_info_gmail_text" = "Для аккаунтов GMail необходимо задать пароль для приложений - App-Password , если включена 2FA двухфакторная аутентификация. Если эти настройки недоступны, вам нужно активировать параметр Less Secure Apps.";
+"login_info_gmail_text" = "Для учётных записей GMail необходимо задать пароль для приложений (App-Password), если включена двухфакторная аутентификация (2FA). Если эти настройки недоступны, вам нужно активировать параметр «Менее безопасные приложения» (Less Secure Apps).";
 "login_certificate_checks" = "Проверки сертификатов";
 "login_error_mail" = "Укажите действительный адрес эл. почты";
 "login_error_server" = "Укажите действительный сервер / IP адрес";
@@ -300,7 +299,6 @@
 // TLS certificate checks
 "accept_invalid_hostnames" = "Принимать сертификаты с недействительным именем хоста";
 "accept_invalid_certificates" = "Принимать недействительные сертификаты";
-
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -469,7 +467,6 @@
 "screenlock_inactivity_timeout_interval" = "Время неактивности";
 
 
-// qr code stuff
 "qrscan_title" = "Сканировать QR код";
 "qrscan_hint" = "Наведите камеру на QR код";
 "qrscan_ask_join_group" = "Присоединиться к группе «%1$@»?";

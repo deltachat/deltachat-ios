@@ -145,7 +145,6 @@
 "title_share_location" = "Locatie delen met alle groepsleden";
 "device_talk" = "Berichten op apparaat";
 "device_talk_subtitle" = "Lokaal gegenereerde berichten";
-
 "mute_for_one_hour" = "1 uur lang uitschakelen";
 "mute_for_two_hours" = "2 uur lang uitschakelen";
 "mute_for_one_day" = "1 dag lang uitschakelen";
@@ -300,7 +299,6 @@
 // TLS certificate checks
 "accept_invalid_hostnames" = "Ongeldige hostnamen accepteren";
 "accept_invalid_certificates" = "Ongeldige certificaten accepteren";
-
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -469,7 +467,6 @@
 "screenlock_inactivity_timeout_interval" = "Periode van inactiviteit";
 
 
-// qr code stuff
 "qrscan_title" = "QR-code scannen";
 "qrscan_hint" = "Plaatst je camera boven de QR-code";
 "qrscan_ask_join_group" = "Wil je deelnemen aan de groep \"%1$@\"?";

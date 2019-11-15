@@ -424,7 +424,6 @@
 "screenlock_inactivity_timeout_interval" = "閒置逾時時間";
 
 
-// qr code stuff
 "qrscan_title" = "掃描QR Code";
 "qrscan_hint" = "請將相機對準 QR Code";
 "qrscan_ask_join_group" = "你要參加群組 %1$@ 嗎?";

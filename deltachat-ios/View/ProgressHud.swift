@@ -34,7 +34,7 @@ class ProgressHud {
 
     func progress(_ progress: Int) {
         hud.progress = Float(progress) / 1000.0
-        hud.detailTextLabel.text = "\(progress / 10)% \(String.localized("complete"))"
+        hud.detailTextLabel.text = "\(progress / 10)%"
     }
 
     init(_ text: String, in view: UIView) {
@@ -42,7 +42,7 @@ class ProgressHud {
         hud.vibrancyEnabled = true
         hud.indicatorView = JGProgressHUDPieIndicatorView()
 
-        hud.detailTextLabel.text = "0% " + String.localized("complete")
+        hud.detailTextLabel.text = "0%"
         hud.textLabel.text = text
         hud.show(in: view)
     }

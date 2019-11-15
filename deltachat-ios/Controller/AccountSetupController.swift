@@ -448,7 +448,7 @@ class AccountSetupController: UITableViewController {
             return String.localized("login_no_servers_hint")
         } else if sections[section] == advancedSection {
             if advancedSectionShowing && dcContext.isConfigured() {
-                var info = "Current settings:\n"
+                var info = String.localized("used_settings") + "\n"
                 let serverFlags = Int(dcContext.getConfig("configured_server_flags") ?? "") ?? 0
                 info += "IMAP "
                 info += SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: serverFlags&0x700) + " "
@@ -757,7 +757,7 @@ class AccountSetupController: UITableViewController {
 
         let dbfile = appDelegate.dbfile()
         let dburl = URL(fileURLWithPath: dbfile, isDirectory: false)
-        let alert = UIAlertController(title: String.localized("delete_account_message"),
+        let alert = UIAlertController(title: String.localized("delete_account_ask"),
                                       message: nil,
                                       preferredStyle: .actionSheet)
 

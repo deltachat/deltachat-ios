@@ -29,7 +29,7 @@ class AppCoordinator: NSObject, Coordinator {
         let controller = QrViewController(dcContext: dcContext)
         let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "report_card")
-        nav.tabBarItem = UITabBarItem(title: String.localized("qr_code_title"), image: settingsImage, tag: qrTab)
+        nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
         let coordinator = QrViewCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)
         controller.coordinator = coordinator

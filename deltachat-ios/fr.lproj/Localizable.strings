@@ -432,7 +432,6 @@
 "screenlock_inactivity_timeout_interval" = "Intervalle de temps d\'inactivité";
 
 
-// qr code stuff
 "qrscan_title" = "Numériser le QR code";
 "qrscan_hint" = "Placez votre caméra au dessus du QR code";
 "qrscan_ask_join_group" = "Voulez-vous rejoindre le groupe \"%1$@\" ?";

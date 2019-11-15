@@ -145,7 +145,6 @@
 "title_share_location" = "Jepua vendndodhjen krejt anëtarëve të grupit";
 "device_talk" = "Mesazhe Pajisjeje";
 "device_talk_subtitle" = "Mesazhe të prodhuar lokalisht";
-
 "mute_for_one_hour" = "Heshtoji për 1 orë";
 "mute_for_two_hours" = "Heshtoji për 2 orë";
 "mute_for_one_day" = "Heshtoji për 1 ditë";
@@ -300,7 +299,6 @@
 // TLS certificate checks
 "accept_invalid_hostnames" = "Prano strehëemra të pavlefshëm";
 "accept_invalid_certificates" = "Prano dëshmi të pavlefshme";
-
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -468,7 +466,6 @@
 "screenlock_inactivity_timeout_interval" = "Interval afati mosveprimtarie";
 
 
-// qr code stuff
 "qrscan_title" = "Skanoni kod QR";
 "qrscan_hint" = "Vendoseni kamerën tuaj përmbi kodin QR";
 "qrscan_ask_join_group" = "Doni të bëheni pjesë e grupit \"%1$@\"?";

@@ -13,6 +13,7 @@
 "strict" = "Strict";
 "open" = "Open";
 "delete" = "Delete";
+"info" = "Info";
 "update" = "Update";
 "emoji" = "Emoji";
 "attachment" = "Attachment";
@@ -22,6 +23,7 @@
 "chat" = "Chat";
 "media" = "Media";
 "main_menu" = "Main menu";
+"start_chat" = "Start chat";
 "show_password" = "Show password";
 "hide_password" = "Hide password";
 "not_now" = "Not now";
@@ -29,6 +31,8 @@
 "one_moment" = "One moment…";
 "done" = "Done";
 "undo" = "Undo";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Next";
 "error" = "Error";
 "error_x" = "Error: %1$@";
 "error_no_network" = "Network unavailable.";
@@ -41,6 +45,8 @@
 "bad_email_address" = "Bad email address.";
 "password" = "Password";
 "now" = "Now";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Danger";
 // n_min_ago is deprecated, use n_minutes instead
 "n_min_ago" = "%d min";
 "today" = "Today";
@@ -145,6 +151,7 @@
 "title_share_location" = "Share location with all group members";
 "device_talk" = "Device messages";
 "device_talk_subtitle" = "Locally generated messages";
+"edit_contact" = "Edit contact";
 
 "mute_for_one_hour" = "Mute for 1 hour";
 "mute_for_two_hours" = "Mute for 2 hours";
@@ -301,6 +308,9 @@
 "accept_invalid_hostnames" = "Accept invalid hostnames";
 "accept_invalid_certificates" = "Accept invalid certificates";
 
+"used_settings" = "Used settings:";
+"delete_account" = "Delete account";
+"delete_account_ask" = "Are you sure you want to delete your account data?";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -470,6 +480,7 @@
 
 
 // qr code stuff
+"qr_code" = "QR code";
 "qrscan_title" = "Scan QR code";
 "qrscan_hint" = "Place your camera over the QR code";
 "qrscan_ask_join_group" = "Do you want to join the group \"%1$@\"?";
@@ -613,19 +624,6 @@
 "a11y_message_context_menu_btn_label" = "Message actions";
 "a11y_background_preview_label" = "Background preview";
 
-"start_chat" = "Start chat";
-"dismiss" = "Dismiss";
-"photo" = "Photo";
 "import_contacts" = "Import device contacts";
 "import_contacts_message" = "To chat with contacts from your device open the settings menu and enable the Contacts option";
 "no_account_setup" = "No account set up";
-"delete_account" = "Delete account";
-"delete_account_message" = "Are you sure you want to delete your account data?";
-"danger" = "Danger";
-"next" = "Next";
-"reset" = "Reset";
-"edit_contact" = "Edit contact";
-"custom_port" = "Custom port";
-"complete" = "Complete";
-"info" = "Info";
-"qr_code_title" = "QR scan/show";

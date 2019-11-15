@@ -9,6 +9,8 @@
 "def" = "Por defecto";
 "custom" = "Personalizado";
 "none" = "Ninguno";
+"automatic" = "Automático";
+"strict" = "Estricto";
 "open" = "Abrir";
 "delete" = "Eliminar";
 "update" = "Actualización";
@@ -18,6 +20,7 @@
 "close" = "Cerrar";
 "save" = "Guardar";
 "chat" = "Chat";
+"media" = "Multimedia";
 "main_menu" = "Menú principal";
 "show_password" = "Mostrar contraseña";
 "hide_password" = "Ocultar contraseña";
@@ -140,6 +143,8 @@
 "menu_zoom_out" = "Alejar";
 "menu_save_log" = "Salvar log";
 "title_share_location" = "Compartir ubicación con todos los miembros del grupo";
+"device_talk" = "Mensajes del dispositivo";
+"device_talk_subtitle" = "Mensajes generados localmente";
 "mute_for_one_hour" = "Silenciar por 1 hora";
 "mute_for_two_hours" = "Silenciar por 2 horas";
 "mute_for_one_day" = "Silenciar por 1 día";
@@ -278,6 +283,7 @@
 "login_info_oauth2_title" = "¿Continuar con la configuración simplificada?";
 "login_info_oauth2_text" = "La dirección de correo electrónico introducida admite una configuración simplificada (OAuth2).\n\nEn el próximo paso, permita que Delta Chat actúe como su aplicación de chat con correo electrónico.\n\nNo hay servidores de Delta Chat, tus datos permanecen en tu dispositivo!";
 "login_info_gmail_text" = "Para las cuentas de Gmail, debe crear una contraseña de aplicación si tiene habilitado la verificación en 2 pasos. Si esta opción no está disponible, debe habilitar la opción \"Acceso de aplicaciones poco seguras\".";
+"login_certificate_checks" = "Comprobaciones de certificados";
 "login_error_mail" = "Por favor, introduzca una dirección de correo válida";
 "login_error_server" = "Por favor, introduzca un servidor / dirección IP válido";
 "login_error_port" = "Por favor, introduzca un puerto válido (1–65535)";
@@ -289,6 +295,10 @@
 "login_error_cannot_login" = "No se puede iniciar sesión como \"%1$@\". Por favor, compruebe si la dirección de correo y la contraseña son correctas.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Respuesta de %1$@: %2$@\n\nAlgunos proveedores colocan información adicional en su bandeja de entrada; Puedes comprobarlo por ej. en la interfaz web. Consulte a su proveedor o amigos si tiene problemas.";
+
+// TLS certificate checks
+"accept_invalid_hostnames" = "Aceptar nombres de host no válidos";
+"accept_invalid_certificates" = "Aceptar certificados no válidos";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -457,7 +467,6 @@
 "screenlock_inactivity_timeout_interval" = "Tiempo de espera antes de bloquear por inactividad";
 
 
-// qr code stuff
 "qrscan_title" = "Escanear código QR";
 "qrscan_hint" = "Coloque su cámara sobre el código QR";
 "qrscan_ask_join_group" = "¿Quieres unirte al grupo \"%1$@\"?";

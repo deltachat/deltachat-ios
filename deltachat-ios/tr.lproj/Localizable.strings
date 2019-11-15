@@ -145,7 +145,6 @@
 "title_share_location" = "Tüm grup üyeleriyle konum paylaş";
 "device_talk" = "Aygıt iletileri";
 "device_talk_subtitle" = "Yerel olarak oluşturulan iletiler";
-
 "mute_for_one_hour" = "1 saatliğine sessize al";
 "mute_for_two_hours" = "2 saatliğine sessize al";
 "mute_for_one_day" = "1 günlüğüne sessize al";
@@ -273,17 +272,17 @@
 "login_imap_login" = "IMAP oturum açma adı";
 "login_imap_server" = "IMAP sunucusu";
 "login_imap_port" = "IMAP bağlantı noktası";
-"login_imap_security" = "IMAP Güvenliği";
+"login_imap_security" = "IMAP güvenliği";
 "login_outbox" = "Giden Kutusu";
 "login_smtp_login" = "SMTP oturum açma adı";
-"login_smtp_password" = "SMTP Parolası";
+"login_smtp_password" = "SMTP parolası";
 "login_smtp_server" = "SMTP sunucusu";
 "login_smtp_port" = "SMTP bağlantı noktası";
-"login_smtp_security" = "SMTP Güvenliği";
+"login_smtp_security" = "SMTP güvenliği";
 "login_auth_method" = "Yetkilendirme yöntemi";
 "login_info_oauth2_title" = "Basitleştirilen ayarlamayla sürdürülsün mü?";
 "login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth2) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'in E-posta ile Sohbet uygulamanız olarak davranmasına izin verin.\n\nDelta Chat sunucusu yoktur; verileriniz aygıtınızda kalır!";
-"login_info_gmail_text" = "Gmail hesapları için 2FA\'yı etkinleştirdiyseniz, bir uygulama parolası oluşturmanız gerekir. Bu ayar kullanılabilir değilse, Güvenliği Düşük Uygulamalar\'ı etkinleştirmeniz gerekir.";
+"login_info_gmail_text" = "Gmail Hesapları için \"2 Adımlı Doğrulama\"yı etkinleştirdiyseniz, bir uygulama parolası oluşturmanız gerekir. Bu ayar kullanılabilir değilse, \"Güvenliği düşük uygulamalar\"ı etkinleştirmeniz gerekir.";
 "login_certificate_checks" = "Sertifika denetimleri";
 "login_error_mail" = "Lütfen geçerli bir e-posta adresi girin";
 "login_error_server" = "Lütfen geçerli bir sunucu / IP adresi girin";
@@ -301,10 +300,9 @@
 "accept_invalid_hostnames" = "Geçersiz ana bilgisayar adlarını kabul et";
 "accept_invalid_certificates" = "Geçersiz sertifikaları kabul et";
 
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
-"forward_to" = "İlet …";
+"forward_to" = "İlet…";
 "share_multiple_attachments" = "%1$d dosyayı seçilen sohbete göndermek istiyor musunuz?\n\nDosyalar, değiştirilmeden özgün boyutlarında gönderilir; örn. görseller ve videolar yeniden kodlanmaz.";
 "share_abort" = "Eksik izinlerden dolayı paylaşımdan vazgeçildi.";
 
@@ -413,7 +411,7 @@
 "pref_show_emails_accepted_contacts" = "Kabul edilen kişiler için";
 "pref_show_emails_all" = "Tümü";
 "pref_empty_server_title" = "E-postaları sunucudan sil";
-"pref_empty_server_msg" = "Bu işlev, verilen klasörlerdeki sohbet iletilerini kapsayıp TÜM e-postaları silerek IMAP sunucunuzda alan boşaltmanıza yardım eder. Bu aygıttaki iletiler silinmeyecek.  Silme geri alınamaz!";
+"pref_empty_server_msg" = "Bu işlev, verilen klasörlerdeki sohbet iletilerini kapsayıp tüm e-postaları silerek IMAP sunucunuzda alan boşaltmanıza yardım eder. Bu aygıttaki iletiler silinmeyecek. Silme geri alınamaz!";
 "pref_empty_server_inbox" = "Gelen Kutusu klasöründeki tüm e-postaları sil";
 "pref_empty_server_mvbox" = "DeltaChat klasöründeki tüm e-postaları sil";
 "pref_empty_server_do_button" = "E-postaları sil";
@@ -469,7 +467,6 @@
 "screenlock_inactivity_timeout_interval" = "Etkisizlik zaman aşımı aralığı";
 
 
-// qr code stuff
 "qrscan_title" = "QR kod tara";
 "qrscan_hint" = "Kameranızı QR kodun üzerine yerleştirin";
 "qrscan_ask_join_group" = "\"%1$@\" grubuna katılmak istiyor musunuz?";
@@ -478,7 +475,7 @@
 "qrscan_contains_text" = "Taranan QR kod metni:\n\n%1$@";
 "qrscan_contains_url" = "Taranan QR kod URL\'si:\n\n%1$@";
 "qrscan_fingerprint_label" = "Parmak izi";
-"qrscan_x_verified_introduce_myself" = "%1$@ doğrulandı; kendimi tanıtıyorum …";
+"qrscan_x_verified_introduce_myself" = "%1$@ doğrulandı; kendimi tanıtıyorum…";
 "qrshow_title" = "QR davet kodu";
 "qrshow_x_joining" = "%1$@ katılıyor.";
 "qrshow_x_verified" = "%1$@ doğrulandı.";

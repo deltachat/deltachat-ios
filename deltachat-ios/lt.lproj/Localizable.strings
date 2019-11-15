@@ -393,7 +393,6 @@
 "screenlock_inactivity_timeout_interval" = "Neveiklumui skirtas laiko intervalas";
 
 
-// qr code stuff
 "qrscan_title" = "Nuskenuokite QR kodą";
 "qrscan_hint" = "Laikykite savo kamerą virš QR kodo";
 "qrscan_ask_join_group" = "Ar norite prisijungti prie grupės \"%1$@\"?";

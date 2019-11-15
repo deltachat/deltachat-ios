@@ -143,6 +143,8 @@
 "menu_zoom_out" = "缩小";
 "menu_save_log" = "保存日志";
 "title_share_location" = "与群组所有成员共享位置";
+"device_talk" = "设备消息";
+"device_talk_subtitle" = "本地生成的消息";
 "mute_for_one_hour" = "静音1小时";
 "mute_for_two_hours" = "静音2小时";
 "mute_for_one_day" = "静音1天";
@@ -297,7 +299,6 @@
 // TLS certificate checks
 "accept_invalid_hostnames" = "接受无效的主机名";
 "accept_invalid_certificates" = "接受无效的证书";
-
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -466,7 +467,6 @@
 "screenlock_inactivity_timeout_interval" = "闲置超时间隔";
 
 
-// qr code stuff
 "qrscan_title" = "扫描二维码";
 "qrscan_hint" = "将您的相机对准二维码";
 "qrscan_ask_join_group" = "您想加入群组“%1$@”吗？";

@@ -29,7 +29,7 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("qr_code_title")
+        title = String.localized("qr_code")
         qrCodeReaderController.delegate = self
         tableView.separatorStyle = .none
     }

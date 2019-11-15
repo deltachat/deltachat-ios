@@ -426,7 +426,6 @@
 "screenlock_inactivity_timeout_interval" = "Ğeyri aktiv gözləmə intervalı. ";
 
 
-// qr code stuff
 "qrscan_title" = "Qr kodu skan edin";
 "qrscan_hint" = "QR kodu kamera ilə izləyin";
 "qrscan_ask_join_group" = "\"%1$@\" qrupa qoşulmaq istəyirsinizmi?";

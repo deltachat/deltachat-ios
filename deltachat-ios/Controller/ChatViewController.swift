@@ -268,7 +268,7 @@ class ChatViewController: MessagesViewController {
         if disableWriting {
             menuItems = [
                 UIMenuItem(title: String.localized("start_chat"), action: #selector(MessageCollectionViewCell.messageStartChat(_:))),
-                UIMenuItem(title: String.localized("dismiss"), action: #selector(MessageCollectionViewCell.messageDismiss(_:))),
+                UIMenuItem(title: String.localized("cancel"), action: #selector(MessageCollectionViewCell.messageDismiss(_:))),
                 UIMenuItem(title: String.localized("menu_block_contact"), action: #selector(MessageCollectionViewCell.messageBlock(_:))),
             ]
         } else {
@@ -901,7 +901,7 @@ extension ChatViewController: MessagesLayoutDelegate {
 
     private func showClipperOptions() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let photoAction = PhotoPickerAlertAction(title: String.localized("photo"), style: .default, handler: photoButtonPressed(_:))
+        let photoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: photoButtonPressed(_:))
         let videoAction = PhotoPickerAlertAction(title: String.localized("video"), style: .default, handler: videoButtonPressed(_:))
 
         alert.addAction(photoAction)

@@ -434,7 +434,6 @@
 "screenlock_inactivity_timeout_interval" = "Limite de inatividade";
 
 
-// qr code stuff
 "qrscan_title" = "Escanear código QR";
 "qrscan_hint" = "Aponte sua câmera para o código QR";
 "qrscan_ask_join_group" = "Você quer ingressar no grupo \"%1$@\"?";
