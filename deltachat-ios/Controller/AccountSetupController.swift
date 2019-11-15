@@ -50,15 +50,15 @@ class AccountSetupController: UITableViewController {
     private lazy var restoreCells: [UITableViewCell] = [restoreCell]
     private lazy var advancedSectionCells: [UITableViewCell] = [
         advancedShowCell,
-        imapServerCell,
-        imapUserCell,
-        imapPortCell,
         imapSecurityCell,
-        smtpServerCell,
-        smtpUserCell,
-        smtpPortCell,
-        smtpPasswordCell,
+        imapUserCell,
+        imapServerCell,
+        imapPortCell,
         smtpSecurityCell,
+        smtpUserCell,
+        smtpPasswordCell,
+        smtpServerCell,
+        smtpPortCell,
         certCheckCell
     ]
     private lazy var folderCells: [UITableViewCell] = [inboxWatchCell, sentboxWatchCell, mvboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
@@ -189,9 +189,10 @@ class AccountSetupController: UITableViewController {
 
     lazy var imapServerCell: TextFieldCell = {
         let cell = TextFieldCell(descriptionID: "login_imap_server",
-                                 placeholder: DcConfig.mailServer ?? DcConfig.configuredMailServer,
+                                 placeholder: String.localized("automatic"),
                                  delegate: self)
         cell.tag = tagImapServerCell
+        cell.setText(text: DcConfig.mailServer ?? nil)
         cell.textField.tag = tagTextFieldImapServer
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
@@ -200,19 +201,32 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var imapUserCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_imap_login", placeholder: DcConfig.mailUser ?? DcConfig.configuredMailUser, delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_imap_login", placeholder: String.localized("automatic"), delegate: self)
+        cell.setText(text: DcConfig.mailUser ?? nil)
         cell.textField.tag = tagTextFieldImapLogin
         cell.tag = tagImapUserCell
         return cell
     }()
 
-    lazy var imapPortCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("login_imap_port")
-        cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = DcConfig.mailPort ?? DcConfig.configuredMailPort
+    func editablePort(port: String?) -> String {
+        if let port = port {
+            if Int(port) == 0 {
+                return ""
+            }
+            return port
+        } else {
+            return ""
+        }
+    }
+
+    lazy var imapPortCell: TextFieldCell = {
+        let cell = TextFieldCell(descriptionID: "login_imap_port",
+                                 placeholder: String.localized("automatic"),
+                                 delegate: self)
         cell.tag = tagImapPortCell
-        cell.selectionStyle = .none
+        cell.setText(text: editablePort(port: DcConfig.mailPort))
+        cell.textField.tag = tagImapPortCell
+        cell.textField.keyboardType = .numberPad
         return cell
     }()
 
@@ -229,9 +243,10 @@ class AccountSetupController: UITableViewController {
 
     lazy var smtpServerCell: TextFieldCell = {
         let cell = TextFieldCell(descriptionID: "login_smtp_server",
-                                 placeholder: DcConfig.sendServer ?? DcConfig.configuredSendServer,
+                                 placeholder: String.localized("automatic"),
                                  delegate: self)
         cell.textField.tag = tagTextFieldSmtpServer
+        cell.setText(text: DcConfig.sendServer ?? nil)
         cell.tag = tagSmtpServerCell
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
@@ -240,25 +255,28 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var smtpUserCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_smtp_login", placeholder: DcConfig.sendUser ?? DcConfig.configuredSendUser, delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_smtp_login", placeholder: String.localized("automatic"), delegate: self)
         cell.textField.tag = tagTextFieldSmtpUser
+        cell.setText(text: DcConfig.sendUser ?? nil)
         cell.tag = tagSmtpUserCell
         return cell
     }()
 
-    lazy var smtpPortCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("login_smtp_port")
-        cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = DcConfig.sendPort ?? DcConfig.configuredSendPort
-        cell.selectionStyle = .none
+    lazy var smtpPortCell: TextFieldCell = {
+        let cell = TextFieldCell(descriptionID: "login_smtp_port",
+                                 placeholder: String.localized("automatic"),
+                                 delegate: self)
         cell.tag = tagSmtpPortCell
+        cell.setText(text: editablePort(port: DcConfig.sendPort))
+        cell.textField.tag = tagSmtpPortCell
+        cell.textField.keyboardType = .numberPad
         return cell
     }()
 
     lazy var smtpPasswordCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_smtp_password", placeholder: "*************", delegate: self)
+        let cell = TextFieldCell(descriptionID: "login_smtp_password", placeholder: String.localized("automatic"), delegate: self)
         cell.textField.textContentType = UITextContentType.password
+        cell.setText(text: DcConfig.sendPw ?? nil)
         cell.textField.isSecureTextEntry = true
         cell.textField.tag = tagTextFieldSmtpPassword
         cell.tag = tagSmtpPasswordCell
@@ -429,7 +447,24 @@ class AccountSetupController: UITableViewController {
         if sections[section] == basicSection {
             return String.localized("login_no_servers_hint")
         } else if sections[section] == advancedSection {
-            return String.localized("login_subheader")
+            if advancedSectionShowing && dcContext.isConfigured() {
+                var info = "Current settings:\n"
+                let serverFlags = Int(dcContext.getConfig("configured_server_flags") ?? "") ?? 0
+                info += "IMAP "
+                info += SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: serverFlags&0x700) + " "
+                info += (dcContext.getConfig("configured_mail_user") ?? "unset") + ":***@"
+                info += (dcContext.getConfig("configured_mail_server") ?? "unset") + ":"
+                info += (dcContext.getConfig("configured_mail_port") ?? "unset") + "\n"
+                info += "SMTP "
+                info += SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: serverFlags&0x70000) + " "
+                info += (dcContext.getConfig("configured_send_user") ?? "unset") + ":***@"
+                info += (dcContext.getConfig("configured_send_server") ?? "unset") +  ":"
+                info += (dcContext.getConfig("configured_send_port") ?? "unset") + "\n\n"
+                info += String.localized("login_subheader")
+                return info
+            } else {
+                return String.localized("login_subheader")
+            }
         } else if sections[section] == folderSection {
             return String.localized("pref_auto_folder_moves_explain")
         } else {
@@ -473,10 +508,6 @@ class AccountSetupController: UITableViewController {
             deleteAccount()
         case tagAdvancedCell:
             toggleAdvancedSection()
-        case tagImapPortCell:
-            coordinator?.showImapPortOptions()
-        case tagSmtpPortCell:
-            coordinator?.showSmtpPortsOptions()
         case tagImapSecurityCell:
             coordinator?.showImapSecurityOptions()
         case tagSmtpSecurityCell:
@@ -494,6 +525,10 @@ class AccountSetupController: UITableViewController {
         guard let advancedSectionIndex = sections.firstIndex(of: advancedSection) else { return }
         var advancedIndexPaths: [IndexPath] = advancedSectionCells.indices.map { IndexPath(row: $0, section: advancedSectionIndex) }
         advancedIndexPaths.removeFirst() // do not touch the first item that is the switch itself
+
+        // on expansion, replace the disclosureIndicator by an n-dash
+        advancedShowCell.accessoryType = willShow ? .none : .disclosureIndicator
+        advancedShowCell.detailTextLabel?.text = willShow ? "\u{2013}" : nil
 
         advancedSectionShowing = willShow // set flag before delete/insert, because cellForRowAt will be triggered and uses this flag
 
@@ -644,10 +679,14 @@ class AccountSetupController: UITableViewController {
                 switch  textFieldCell.tag {
                 case tagImapServerCell:
                     DcConfig.mailServer = textFieldCell.getText() ?? nil
+                case tagImapPortCell:
+                    DcConfig.mailPort = textFieldCell.getText() ?? nil
                 case tagImapUserCell:
                     DcConfig.mailUser = textFieldCell.getText() ?? nil
                 case tagSmtpServerCell:
                     DcConfig.sendServer = textFieldCell.getText() ?? nil
+                case tagSmtpPortCell:
+                    DcConfig.sendPort = textFieldCell.getText() ?? nil
                 case tagSmtpUserCell:
                     DcConfig.sendUser = textFieldCell.getText() ?? nil
                 case tagSmtpPasswordCell:
@@ -749,24 +788,10 @@ class AccountSetupController: UITableViewController {
         dismiss(animated: true, completion: nil)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.registerForPushNotifications()
-        if (!DcConfig.configuredMailPort.isEmpty) {
-            DcConfig.mailPort = DcConfig.configuredMailPort
-        }
-        if (!DcConfig.configuredMailServer.isEmpty) {
-            DcConfig.mailServer = DcConfig.configuredMailServer
-        }
-        if (!DcConfig.configuredSendPort.isEmpty) {
-            DcConfig.sendPort = DcConfig.configuredSendPort
-        }
-        if (!DcConfig.configuredSendServer.isEmpty) {
-            DcConfig.sendServer = DcConfig.configuredSendServer
-        }
         initSelectionCells();
     }
 
     private func initSelectionCells() {
-        smtpPortCell.detailTextLabel?.text = DcConfig.sendPort ?? DcConfig.configuredSendPort
-        imapPortCell.detailTextLabel?.text = DcConfig.mailPort ?? DcConfig.configuredMailPort
         smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: DcConfig.getSmtpSecurity())
         imapSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: DcConfig.getImapSecurity())
         certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: DcConfig.certificateChecks)
