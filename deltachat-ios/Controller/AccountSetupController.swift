@@ -447,7 +447,24 @@ class AccountSetupController: UITableViewController {
         if sections[section] == basicSection {
             return String.localized("login_no_servers_hint")
         } else if sections[section] == advancedSection {
-            return String.localized("login_subheader")
+            if advancedSectionShowing && dcContext.isConfigured() {
+                var info = "Current settings:\n"
+                let serverFlags = Int(dcContext.getConfig("configured_server_flags") ?? "") ?? 0
+                info += "IMAP "
+                info += SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: serverFlags&0x700) + " "
+                info += (dcContext.getConfig("configured_mail_user") ?? "unset") + ":***@"
+                info += (dcContext.getConfig("configured_mail_server") ?? "unset") + ":"
+                info += (dcContext.getConfig("configured_mail_port") ?? "unset") + "\n"
+                info += "SMTP "
+                info += SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: serverFlags&0x70000) + " "
+                info += (dcContext.getConfig("configured_send_user") ?? "unset") + ":***@"
+                info += (dcContext.getConfig("configured_send_server") ?? "unset") +  ":"
+                info += (dcContext.getConfig("configured_send_port") ?? "unset") + "\n\n"
+                info += String.localized("login_subheader")
+                return info
+            } else {
+                return String.localized("login_subheader")
+            }
         } else if sections[section] == folderSection {
             return String.localized("pref_auto_folder_moves_explain")
         } else {

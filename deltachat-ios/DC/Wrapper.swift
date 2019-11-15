@@ -129,6 +129,10 @@ class DcContext {
     func emptyServer(flags: Int) {
         dc_empty_server(contextPointer, UInt32(flags))
     }
+
+    func isConfigured() -> Bool {
+        return dc_is_configured(contextPointer) != 0
+    }
 }
 
 class DcConfig {
@@ -329,6 +333,7 @@ class DcConfig {
         get { return getConfigInt("show_emails") }
     }
 
+    // do not use. use DcContext::isConfigured() instead
     class var configured: Bool {
         return getConfigBool("configured")
     }
