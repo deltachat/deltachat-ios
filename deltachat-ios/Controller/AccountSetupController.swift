@@ -50,15 +50,15 @@ class AccountSetupController: UITableViewController {
     private lazy var restoreCells: [UITableViewCell] = [restoreCell]
     private lazy var advancedSectionCells: [UITableViewCell] = [
         advancedShowCell,
-        imapServerCell,
-        imapUserCell,
-        imapPortCell,
         imapSecurityCell,
-        smtpServerCell,
-        smtpUserCell,
-        smtpPortCell,
-        smtpPasswordCell,
+        imapUserCell,
+        imapServerCell,
+        imapPortCell,
         smtpSecurityCell,
+        smtpUserCell,
+        smtpPasswordCell,
+        smtpServerCell,
+        smtpPortCell,
         certCheckCell
     ]
     private lazy var folderCells: [UITableViewCell] = [inboxWatchCell, sentboxWatchCell, mvboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
