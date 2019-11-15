@@ -192,6 +192,7 @@ class AccountSetupController: UITableViewController {
                                  placeholder: String.localized("automatic"),
                                  delegate: self)
         cell.tag = tagImapServerCell
+        cell.setText(text: DcConfig.mailServer ?? nil)
         cell.textField.tag = tagTextFieldImapServer
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
@@ -201,6 +202,7 @@ class AccountSetupController: UITableViewController {
 
     lazy var imapUserCell: TextFieldCell = {
         let cell = TextFieldCell(descriptionID: "login_imap_login", placeholder: String.localized("automatic"), delegate: self)
+        cell.setText(text: DcConfig.mailUser ?? nil)
         cell.textField.tag = tagTextFieldImapLogin
         cell.tag = tagImapUserCell
         return cell
@@ -244,6 +246,7 @@ class AccountSetupController: UITableViewController {
                                  placeholder: String.localized("automatic"),
                                  delegate: self)
         cell.textField.tag = tagTextFieldSmtpServer
+        cell.setText(text: DcConfig.sendServer ?? nil)
         cell.tag = tagSmtpServerCell
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
@@ -254,6 +257,7 @@ class AccountSetupController: UITableViewController {
     lazy var smtpUserCell: TextFieldCell = {
         let cell = TextFieldCell(descriptionID: "login_smtp_login", placeholder: String.localized("automatic"), delegate: self)
         cell.textField.tag = tagTextFieldSmtpUser
+        cell.setText(text: DcConfig.sendUser ?? nil)
         cell.tag = tagSmtpUserCell
         return cell
     }()
@@ -272,6 +276,7 @@ class AccountSetupController: UITableViewController {
     lazy var smtpPasswordCell: TextFieldCell = {
         let cell = TextFieldCell(descriptionID: "login_smtp_password", placeholder: String.localized("automatic"), delegate: self)
         cell.textField.textContentType = UITextContentType.password
+        cell.setText(text: DcConfig.sendPw ?? nil)
         cell.textField.isSecureTextEntry = true
         cell.textField.tag = tagTextFieldSmtpPassword
         cell.tag = tagSmtpPasswordCell
