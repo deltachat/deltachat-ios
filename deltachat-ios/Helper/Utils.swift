@@ -8,11 +8,6 @@ struct Utils {
         return Utils.copyAndFreeArray(inputArray: cContacts)
     }
 
-    static func getContactIdByEmail(_ address: String) -> Int? {
-        let ids = getContactIds()
-        return ids.first(where: { DcContact(id: $0).email == address })
-    }
-
     static func getBlockedContactIds() -> [Int] {
         let cBlockedContacts = dc_get_blocked_contacts(mailboxPointer)
         return Utils.copyAndFreeArray(inputArray: cBlockedContacts)
