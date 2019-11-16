@@ -163,7 +163,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         logger.info("onMediaSelected: \(url)")
 
         DispatchQueue.global(qos: .userInitiated).async {
-            [weak self] in
+            //[weak self] in
             AvatarHelper.setSelfAvatarFile(fileUrl: URL(fileURLWithPath: url.path ?? ""))
             /*if let image = self?.dcContext.getSelfAvatarImage() {
                 DispatchQueue.main.async {
