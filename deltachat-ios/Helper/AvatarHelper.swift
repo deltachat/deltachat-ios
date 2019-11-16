@@ -1,11 +1,3 @@
-//
-//  AvatarHelper.swift
-//  deltachat-ios
-//
-//  Created by Macci on 15.11.19.
-//  Copyright © 2019 Jonas Reinsch. All rights reserved.
-//
-
 import Foundation
 
 
