@@ -139,18 +139,18 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }
 
 
-      private func photoButtonPressed(_ action: UIAlertAction) {
+      private func galleryButtonPressed(_ action: UIAlertAction) {
         coordinator?.showPhotoPicker(delegate: self)
       }
 
-      private func videoButtonPressed(_ action: UIAlertAction) {
+      private func cameraButtonPressed(_ action: UIAlertAction) {
         ///TODO implement me!
       }
 
     private func onAvatarTapped() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                 let photoAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: photoButtonPressed(_:))
-                 let videoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: videoButtonPressed(_:))
+                 let photoAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
+                 let videoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
 
                  alert.addAction(photoAction)
                  alert.addAction(videoAction)
