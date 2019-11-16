@@ -69,7 +69,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         super.viewDidLoad()
         title = String.localized("pref_profile_info_headline")
 
-        tableView.register(AvatarEditTextCell.self, forCellReuseIdentifier: "groupLabelCell")
+        tableView.register(AvatarEditTextCell.self, forCellReuseIdentifier: "pictureAndNameCell")
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
         pictureAndNameCell.onAvatarTapped = onAvatarTapped
     }
