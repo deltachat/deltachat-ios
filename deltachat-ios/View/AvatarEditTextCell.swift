@@ -43,9 +43,9 @@ class AvatarEditTextCell: UITableViewCell {
     }
 
 
-    init(context: DcContext, defaultImage: UIImage) {
+    init(context: DcContext, defaultImage: UIImage, downscale: CGFloat? = nil) {
         super.init(style: .default, reuseIdentifier: nil)
-        setSelfAvatar(context: context, with: defaultImage)
+        setSelfAvatar(context: context, with: defaultImage, downscale: downscale)
         setupSubviews()
     }
 
@@ -115,11 +115,15 @@ class AvatarEditTextCell: UITableViewCell {
         badge.setVerified(chat.isVerified)
     }
 
-    func setSelfAvatar(context: DcContext, with defaultImage: UIImage) {
+    func setSelfAvatar(context: DcContext?, with defaultImage: UIImage?, downscale: CGFloat? = nil) {
+        guard let context = context else {
+            return
+        }
+        
         if let image = context.getSelfAvatarImage() {
             badge = InitialsBadge(image: image, size: badgeSize)
-        } else {
-            badge = InitialsBadge(image: defaultImage, size: badgeSize, downscale: 0.6)
+        } else if let defaultImage = defaultImage {
+            badge = InitialsBadge(image: defaultImage, size: badgeSize, downscale: downscale)
             badge.backgroundColor = DcColors.grayTextColor
         }
     }

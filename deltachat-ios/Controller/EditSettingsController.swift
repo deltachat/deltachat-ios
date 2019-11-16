@@ -48,7 +48,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
     private lazy var pictureAndNameCell: AvatarEditTextCell = {
         let contact = DcContact(id: Int(DC_CONTACT_ID_SELF))
-        let cell = AvatarEditTextCell(context: dcContext, defaultImage: defaultImage)
+        let cell = AvatarEditTextCell(context: dcContext, defaultImage: defaultImage, downscale: 0.6)
         cell.inputField.text = contact.displayName
         cell.selectionStyle = .none
         return cell
