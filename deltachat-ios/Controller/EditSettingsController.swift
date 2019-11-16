@@ -161,8 +161,16 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
     func onMediaSelected(url: NSURL) {
         logger.info("onMediaSelected: \(url)")
-        DcConfig.selfavatar = "\(url)"
-        pictureAndNameCell.setSelfAvatar(context: dcContext, with: defaultImage)
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            [weak self] in
+            AvatarHelper.setSelfAvatarFile(fileUrl: URL(fileURLWithPath: url.path ?? ""))
+            /*if let image = self?.dcContext.getSelfAvatarImage() {
+                DispatchQueue.main.async {
+                    self?.pictureAndNameCell.badge = InitialsBadge(image: image, size: 72)
+                }
+            }*/
+        }
     }
 
     func onDismiss() { }
