@@ -5,6 +5,8 @@ import UIKit
 class NewChatViewController: UITableViewController {
     weak var coordinator: NewChatCoordinator?
 
+    private let dcContext: DcContext
+
     private let sectionNew = 0
     private let sectionNewRowNewGroup = 0
     private let sectionNewRowNewContact = 1
@@ -24,11 +26,7 @@ class NewChatViewController: UITableViewController {
         return searchController
     }()
 
-    var contactIds: [Int] = Utils.getContactIds() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    private var contactIds: [Int]
 
     // contactWithSearchResults.indexesToHightLight empty by default
     var contacts: [ContactWithSearchResults] {
@@ -60,7 +58,9 @@ class NewChatViewController: UITableViewController {
         }
     }
 
-    init() {
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
+        self.contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
     }
@@ -85,7 +85,6 @@ class NewChatViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
-        contactIds = Utils.getContactIds()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -289,7 +288,7 @@ class NewChatViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { _ in
             self.dismiss(animated: true, completion: nil)
             if context.deleteContact(contactId: contactId) {
-                self.contactIds = Utils.getContactIds()
+                self.contactIds = self.dcContext.getContacts(flags: DC_GCL_ADD_SELF)
                 self.tableView.reloadData()
             }
         }))
@@ -369,8 +368,8 @@ class NewChatViewController: UITableViewController {
 
 extension NewChatViewController: ContactListDelegate {
     func deviceContactsImported() {
-        contactIds = Utils.getContactIds()
-        //		tableView.reloadData()
+        contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
+        tableView.reloadData()
     }
 
     func accessGranted() {

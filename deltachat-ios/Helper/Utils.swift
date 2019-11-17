@@ -3,6 +3,8 @@ import UIKit
 import AVFoundation
 
 struct Utils {
+
+    // do not use, use DcContext::getContacts() instead
     static func getContactIds() -> [Int] {
         let cContacts = dc_get_contacts(mailboxPointer, 0, nil)
         return Utils.copyAndFreeArray(inputArray: cContacts)
