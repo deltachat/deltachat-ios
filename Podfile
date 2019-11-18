@@ -16,6 +16,7 @@ target 'deltachat-ios' do
   pod 'JGProgressHUD'
   pod 'SwiftyBeaver'
   pod 'DBDebugToolkit'
+  pod 'InputBarAccessoryView'
 
   target 'deltachat-iosTests' do
     inherit! :search_paths

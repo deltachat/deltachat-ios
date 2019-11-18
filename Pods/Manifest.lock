@@ -1,10 +1,10 @@
 PODS:
   - ALCameraViewController (3.0.3)
   - DBDebugToolkit (0.5.0)
-  - InputBarAccessoryView (4.2.2)
+  - InputBarAccessoryView (4.3.1):
+    - InputBarAccessoryView/Core (= 4.3.1)
+  - InputBarAccessoryView/Core (4.3.1)
   - JGProgressHUD (2.0.3)
-  - MessageKit (3.0.0):
-    - InputBarAccessoryView (~> 4.2.2)
   - QuickTableViewController (1.1.1)
   - ReachabilitySwift (4.3.1)
   - SwiftFormat/CLI (0.40.9)
@@ -15,8 +15,8 @@ PODS:
 DEPENDENCIES:
   - ALCameraViewController (from `https://github.com/dignifiedquire/ALCameraViewController`)
   - DBDebugToolkit
+  - InputBarAccessoryView
   - JGProgressHUD
-  - MessageKit
   - QuickTableViewController
   - ReachabilitySwift
   - SwiftFormat/CLI
@@ -25,11 +25,10 @@ DEPENDENCIES:
   - UICircularProgressRing
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - DBDebugToolkit
     - InputBarAccessoryView
     - JGProgressHUD
-    - MessageKit
     - QuickTableViewController
     - ReachabilitySwift
     - SwiftFormat
@@ -49,9 +48,8 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ALCameraViewController: dd13cf0a5b44a4d542c73bbcbebd02bc09e929c7
   DBDebugToolkit: c04bb6f618051d3de447a4b4323f37826116cfed
-  InputBarAccessoryView: 2b937602598e2fab3149f37f51dd7ad795653812
+  InputBarAccessoryView: 58a348be7ea2736c7eec60e5c315511c2dbb39fd
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
-  MessageKit: e892a9ca49ebe6d82684d3a93ad84021fa23e2c6
   QuickTableViewController: 30f689d314a7c1fb726c6dab6fa5ad53c6bc9e94
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SwiftFormat: 6b67b6e7fe73d664f0cbb4f13721f130462c86a5
@@ -59,6 +57,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
   UICircularProgressRing: 0ff679b05a17f15ad6301a7886686837b8c301a9
 
-PODFILE CHECKSUM: 46d42246ca1255cc4af799d1aa792d60033b9fb8
+PODFILE CHECKSUM: 4ccd5fdf02ac6afab3d4113bde3777593b2ff412
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.4
