@@ -138,7 +138,7 @@ class ChatListCoordinator: Coordinator {
     }
 
     func showNewChatController() {
-        let newChatVC = NewChatViewController()
+        let newChatVC = NewChatViewController(dcContext: dcContext)
         let coordinator = NewChatCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         newChatVC.coordinator = coordinator

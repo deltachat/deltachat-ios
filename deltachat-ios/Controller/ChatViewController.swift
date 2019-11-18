@@ -496,11 +496,8 @@ class ChatViewController: MessagesViewController {
                                       preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
-            var contactId = Utils.getContactIdByEmail(email)
-            if contactId == nil {
-                contactId = self.dcContext.createContact(name: "", email: email)
-            }
-            let chatId = self.dcContext.createChat(contactId: contactId!)
+            let contactId = self.dcContext.createContact(name: "", email: email)
+            let chatId = self.dcContext.createChat(contactId: contactId)
             self.coordinator?.showChat(chatId: chatId)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
