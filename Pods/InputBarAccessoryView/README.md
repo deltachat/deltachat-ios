@@ -10,7 +10,7 @@
 - [x] Autocomplete attributed text highlighting
 - [x] Reactive components that respond to given events
 - [x] Top/Bottom/Left/Right `InputStackView`s that act as toolbars to place buttons
-- [x] `RxSwift`/`RxCocoa` Support
+- [x] `RxSwift`/`RxCocoa` Support with `RxExtensions` Cocoapod subspec
 - [x] Drop in attachment view for file/photo management
 - [x] Plugin support for your own `InputPlugin`s
 - [x] Compatible with all iPhones and iPads
@@ -19,20 +19,27 @@
 ### Installation via CocoaPods
 
 ```ruby
+# Swift 5.0
 pod 'InputBarAccessoryView'
+# Swift 4.2
+pod 'InputBarAccessoryView', '4.2.2'
 ```
 
 ### Installation via Carthage
 
 ```ruby
+# Swift 5.0
 github "nathantannar4/InputBarAccessoryView"
+# Swift 4.2
+github "nathantannar4/InputBarAccessoryView" "4.2.2"
 ```
 
 ### Requirements
 
 iOS 9.0+
-Swift 4.2+
-XCode 9.0+
+Swift 5.0
+
+> The latest Swift 4.2 release is v4.2.2 
 
 ### Documentation
 
@@ -63,14 +70,18 @@ Add your app to the list of apps using this library and make a pull request.
 iMessage style [TypingIndicator](https://github.com/nathantannar4/TypingIndicator) for chat apps
 
 ## Latest Releases
-
+- 4.3.1
+    - Add `RxSwift`/`RxCocoa` support through extensions and delegate proxies, requires Cocoapods installation of  `InputBarAccessoryView/RxExtensions`
+- 4.3.0
+    - Swift 5 support
+- 4.2.2
+    - Fixed image paste orientation issue in `InputTextView`
 - 4.2.1
     - Fixed autocompletes of completions that contain spaces
     - Depricated `isCaseSensitive` in favor of a function asignment to pre-process autocompletions
 - 4.2.0
     - Added new API for overriding the main middle view, normally the `InputTextView` so it can be replaced with views such as a "Join" button", `setMiddleContentView(_ view: UIView?, animated: Bool)`
 - 4.1.2
-        - Add RxSwift/RxCocoa support through extensions and delegate proxies in `RxInputBarAccessoryView`, requires `RxSwift` and `RxCocoa`
         - Add `InputBarViewController` which contains an `InputBarAccessoryView` as the `inputAccessoryView` by default with a convenient `isInputBarHidden: Bool` property to show/hide it 
 - 4.1.1
         - Add `frameInsets: HorizontalEdgePadding` property to `InputBarAccessoryView` to inset the view to be compatible with `UISplitViewController` or other custom containers where the view should not be the full width
