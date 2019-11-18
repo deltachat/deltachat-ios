@@ -54,7 +54,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     private func presentPhotoLibrary(delegate: MediaPickerDelegate) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let photoPicker = UIImagePickerController()
-            photoPicker.title = String.localized("photo")
+            photoPicker.title = String.localized("gallery")
             photoPicker.delegate = self
             photoPicker.sourceType = .photoLibrary
             photoPicker.allowsEditing = true
