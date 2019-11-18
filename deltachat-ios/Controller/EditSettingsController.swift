@@ -161,16 +161,16 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
     func onMediaSelected(url: NSURL) {
         logger.info("onMediaSelected: \(url)")
+    }
 
-        DispatchQueue.global(qos: .userInitiated).async {
-            //[weak self] in
-            AvatarHelper.setSelfAvatarFile(fileUrl: URL(fileURLWithPath: url.path ?? ""))
-            /*if let image = self?.dcContext.getSelfAvatarImage() {
-                DispatchQueue.main.async {
-                    self?.pictureAndNameCell.badge = InitialsBadge(image: image, size: 72)
-                }
-            }*/
-        }
+    func onImageSelected(image: UIImage) {
+        AvatarHelper.saveSelfAvatarImage(image: image)
+
+        self.tableView.beginUpdates()
+        let indexPath = IndexPath(row: section1PictureAndName, section: section1)
+        self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
+        self.tableView.endUpdates()
+
     }
 
     func onDismiss() { }

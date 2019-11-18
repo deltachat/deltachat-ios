@@ -204,7 +204,7 @@ class EditSettingsCoordinator: Coordinator {
     }
 
     func showPhotoPicker(delegate: MediaPickerDelegate) {
-        mediaPicker.showPhotoLibrary(delegate: delegate)
+        mediaPicker.showImageCropper(delegate: delegate)
     }
 }
 
