@@ -1,5 +1,5 @@
 PODS:
-  - ALCameraViewController (3.0.3)
+  - ALCameraViewController (3.1)
   - DBDebugToolkit (0.5.0)
   - InputBarAccessoryView (4.3.1):
     - InputBarAccessoryView/Core (= 4.3.1)
@@ -13,7 +13,7 @@ PODS:
   - UICircularProgressRing (6.2.0)
 
 DEPENDENCIES:
-  - ALCameraViewController (from `https://github.com/dignifiedquire/ALCameraViewController`)
+  - ALCameraViewController
   - DBDebugToolkit
   - InputBarAccessoryView
   - JGProgressHUD
@@ -26,6 +26,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - ALCameraViewController
     - DBDebugToolkit
     - InputBarAccessoryView
     - JGProgressHUD
@@ -36,17 +37,8 @@ SPEC REPOS:
     - SwiftyBeaver
     - UICircularProgressRing
 
-EXTERNAL SOURCES:
-  ALCameraViewController:
-    :git: https://github.com/dignifiedquire/ALCameraViewController
-
-CHECKOUT OPTIONS:
-  ALCameraViewController:
-    :commit: e0fcc4338276e4fc6240e8726ecc77aa39ce1385
-    :git: https://github.com/dignifiedquire/ALCameraViewController
-
 SPEC CHECKSUMS:
-  ALCameraViewController: dd13cf0a5b44a4d542c73bbcbebd02bc09e929c7
+  ALCameraViewController: 144dea45fd749a623aafd8cb7b10cea88499fcc3
   DBDebugToolkit: c04bb6f618051d3de447a4b4323f37826116cfed
   InputBarAccessoryView: 58a348be7ea2736c7eec60e5c315511c2dbb39fd
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
@@ -57,6 +49,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
   UICircularProgressRing: 0ff679b05a17f15ad6301a7886686837b8c301a9
 
-PODFILE CHECKSUM: 4ccd5fdf02ac6afab3d4113bde3777593b2ff412
+PODFILE CHECKSUM: 37ab88c96ba5352ae1d3f997dc2615856fbd7e4c
 
 COCOAPODS: 1.8.4

@@ -69,7 +69,7 @@ internal class PermissionsView: UIView {
         let icon = UIImage(named: "permissionsIcon", in: CameraGlobals.shared.bundle, compatibleWith: nil)!
         iconView.image = icon
         
-        settingsButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
+        settingsButton.contentEdgeInsets = UIEdgeInsets.init(top: 6, left: 12, bottom: 6, right: 12)
         settingsButton.setTitle(localizedString("permissions.settings"), for: UIControl.State())
         settingsButton.setTitleColor(UIColor.white, for: UIControl.State())
         settingsButton.layer.cornerRadius = 4
