@@ -24,14 +24,6 @@ class AvatarHelper {
                 return
             }
 
-            if filemanager.fileExists(atPath: avatarFile.path) {
-                do {
-                    try filemanager.removeItem(atPath: avatarFile.path)
-                } catch let error {
-                    logger.warning("Error: \(error.localizedDescription)")
-                }
-            }
-
             do {
                 try data.write(to: avatarFile)
             } catch let error {
