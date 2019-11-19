@@ -3,8 +3,6 @@ import UIKit
 
 class AvatarHelper {
 
-    static let groupTemplate = "group_chat_avatar_%s_.jpg"
-    static let contactTemplate = "contact_avatar_%s.jpg"
     static let selfAvatarFile = "contact_avatar_self.jpg"
     private static let avatarPath = "avatars"
 
