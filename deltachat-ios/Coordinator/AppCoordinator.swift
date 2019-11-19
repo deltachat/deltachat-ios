@@ -206,6 +206,10 @@ class EditSettingsCoordinator: Coordinator {
     func showPhotoPicker(delegate: MediaPickerDelegate) {
         mediaPicker.showImageCropper(delegate: delegate)
     }
+
+    func showCamera(delegate: MediaPickerDelegate) {
+        mediaPicker.showCamera(delegate: delegate)
+    }
 }
 
 

@@ -144,7 +144,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
       }
 
       private func cameraButtonPressed(_ action: UIAlertAction) {
-        ///TODO implement me!
+        coordinator?.showCamera(delegate: self)
       }
 
     private func onAvatarTapped() {
