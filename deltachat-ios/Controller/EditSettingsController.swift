@@ -47,11 +47,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
 
     private lazy var pictureAndNameCell: AvatarEditTextCell = {
-        let contact = DcContact(id: Int(DC_CONTACT_ID_SELF))
-        let cell = AvatarEditTextCell(context: dcContext, defaultImage: defaultImage, downscale: 0.6)
-        cell.inputField.text = DcConfig.displayname
-        cell.selectionStyle = .none
-        return cell
+        return createPictureAndNameCell()
     }()
 
 
@@ -162,6 +158,9 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     func onImageSelected(image: UIImage) {
         AvatarHelper.saveSelfAvatarImage(image: image)
 
+        self.pictureAndNameCell = createPictureAndNameCell()
+        self.pictureAndNameCell.onAvatarTapped = onAvatarTapped
+
         self.tableView.beginUpdates()
         let indexPath = IndexPath(row: section1PictureAndName, section: section1)
         self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
@@ -169,5 +168,12 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }
 
     func onDismiss() { }
+
+    private func createPictureAndNameCell() -> AvatarEditTextCell {
+        let cell = AvatarEditTextCell(context: dcContext, defaultImage: defaultImage, downscale: 0.6)
+        cell.inputField.text = DcConfig.displayname
+        cell.selectionStyle = .none
+        return cell
+    }
 
 }
