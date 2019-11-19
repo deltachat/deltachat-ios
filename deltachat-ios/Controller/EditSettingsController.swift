@@ -159,10 +159,6 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         self.present(alert, animated: true, completion: nil)
     }
 
-    func onMediaSelected(url: NSURL) {
-        logger.info("onMediaSelected: \(url)")
-    }
-
     func onImageSelected(image: UIImage) {
         AvatarHelper.saveSelfAvatarImage(image: image)
 
@@ -170,7 +166,6 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         let indexPath = IndexPath(row: section1PictureAndName, section: section1)
         self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
         self.tableView.endUpdates()
-
     }
 
     func onDismiss() { }

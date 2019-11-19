@@ -4,7 +4,7 @@ import MobileCoreServices
 import ALCameraViewController
 
 protocol MediaPickerDelegate: class {
-    func onMediaSelected(url: NSURL)
+    //func onMediaSelected(url: NSURL)
     func onImageSelected(image: UIImage)
     func onDismiss()
 }
