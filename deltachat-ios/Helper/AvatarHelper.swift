@@ -7,7 +7,7 @@ class AvatarHelper {
     private static let avatarPath = "avatars"
 
     static func saveSelfAvatarImage(image: UIImage) {
-        if let data = image.jpegData(compressionQuality: 0.8) {
+        if let data = image.jpegData(compressionQuality: 1.0) {
             let filemanager = FileManager.default
             let docDir = filemanager.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let avatarDir = docDir.appendingPathComponent(avatarPath)
