@@ -68,15 +68,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // setup deltachat core context
         //       - second param remains nil (user data for more than one mailbox)
         open()
-        let isConfigured = dc_is_configured(mailboxPointer) != 0
         appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
         appCoordinator.start()
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         start()
         setStockTranslations()
-        if !isConfigured {
-            appCoordinator.presentLoginController()
-        }
         return true
     }
 

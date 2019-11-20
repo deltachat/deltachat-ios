@@ -10,10 +10,6 @@ class AppCoordinator: NSObject, Coordinator {
     private let chatsTab = 1
     private let settingsTab = 2
 
-    var rootViewController: UIViewController {
-        return tabBarController
-    }
-
     private var childCoordinators: [Coordinator] = []
 
     private lazy var tabBarController: UITabBarController = {
@@ -21,6 +17,16 @@ class AppCoordinator: NSObject, Coordinator {
         tabBarController.viewControllers = [qrController, chatListController, settingsController]
         tabBarController.tabBar.tintColor = DcColors.primary
         return tabBarController
+    }()
+
+    private lazy var loginController: UIViewController = {
+        let accountSetupController = AccountSetupController(dcContext: dcContext, editView: false)
+        let accountSetupNav = DcNavigationController(rootViewController: accountSetupController)
+        let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: accountSetupNav)
+        coordinator.onLoginSuccess = presentTabBarController
+        childCoordinators.append(coordinator)
+        accountSetupController.coordinator = coordinator
+        return accountSetupNav
     }()
 
     // MARK: viewControllers
@@ -62,8 +68,12 @@ class AppCoordinator: NSObject, Coordinator {
         self.window = window
         self.dcContext = dcContext
         super.init()
-        window.rootViewController = rootViewController
-        window.makeKeyAndVisible()
+
+        if dcContext.isConfigured() {
+            presentTabBarController()
+        } else {
+            presentLoginController()
+        }
     }
 
     public func start() {
@@ -88,12 +98,14 @@ class AppCoordinator: NSObject, Coordinator {
     }
 
     func presentLoginController() {
-        let accountSetupController = AccountSetupController(dcContext: dcContext, editView: false)
-        let accountSetupNav = DcNavigationController(rootViewController: accountSetupController)
-        let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: accountSetupNav)
-        childCoordinators.append(coordinator)
-        accountSetupController.coordinator = coordinator
-        rootViewController.present(accountSetupNav, animated: false, completion: nil)
+        window.rootViewController = loginController
+        window.makeKeyAndVisible()
+    }
+
+    func presentTabBarController() {
+        window.rootViewController = tabBarController
+        window.makeKeyAndVisible()
+        showTab(index: chatsTab)
     }
 }
 
@@ -216,6 +228,7 @@ class EditSettingsCoordinator: Coordinator {
 class AccountSetupCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
+    var onLoginSuccess: (() -> Void)?
 
     init(dcContext: DcContext, navigationController: UINavigationController) {
         self.dcContext = dcContext
@@ -236,6 +249,10 @@ class AccountSetupCoordinator: Coordinator {
     func showSmptpSecurityOptions() {
         let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"), type: SecurityType.SMTPSecurity)
         navigationController.pushViewController(securitySettingsController, animated: true)
+    }
+
+    func navigateBack() {
+        navigationController.popViewController(animated: true)
     }
 }
 
