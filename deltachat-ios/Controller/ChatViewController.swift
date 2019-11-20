@@ -268,7 +268,7 @@ class ChatViewController: MessagesViewController {
         if disableWriting {
             menuItems = [
                 UIMenuItem(title: String.localized("start_chat"), action: #selector(MessageCollectionViewCell.messageStartChat(_:))),
-                UIMenuItem(title: String.localized("cancel"), action: #selector(MessageCollectionViewCell.messageDismiss(_:))),
+                UIMenuItem(title: String.localized("delete"), action: #selector(MessageCollectionViewCell.messageDelete(_:))),
                 UIMenuItem(title: String.localized("menu_block_contact"), action: #selector(MessageCollectionViewCell.messageBlock(_:))),
             ]
         } else {
@@ -444,7 +444,6 @@ class ChatViewController: MessagesViewController {
         if action == NSSelectorFromString("messageInfo:") ||
             action == NSSelectorFromString("messageDelete:") ||
             action == NSSelectorFromString("messageBlock:") ||
-            action == NSSelectorFromString("messageDismiss:") ||
             action == NSSelectorFromString("messageStartChat:") {
             return true
         } else {
@@ -477,12 +476,6 @@ class ChatViewController: MessagesViewController {
             let msg = messageList[indexPath.section]
             logger.info("message: Block \(msg.messageId)")
             msg.fromContact.block()
-
-            refreshMessages()
-        case NSSelectorFromString("messageDismiss:"):
-            let msg = messageList[indexPath.section]
-            logger.info("message: Dismiss \(msg.messageId)")
-            msg.fromContact.marknoticed()
 
             refreshMessages()
         default:
@@ -1154,19 +1147,6 @@ extension MessageCollectionViewCell {
                 // Trigger action
                 collectionView.delegate?.collectionView?(collectionView,
                     performAction: #selector(MessageCollectionViewCell.messageBlock(_:)),
-                    forItemAt: indexPath, withSender: sender)
-            }
-        }
-    }
-
-    @objc func messageDismiss(_ sender: Any?) {
-        // Get the collectionView
-        if let collectionView = self.superview as? UICollectionView {
-            // Get indexPath
-            if let indexPath = collectionView.indexPath(for: self) {
-                // Trigger action
-                collectionView.delegate?.collectionView?(collectionView,
-                    performAction: #selector(MessageCollectionViewCell.messageDismiss(_:)),
                     forItemAt: indexPath, withSender: sender)
             }
         }
