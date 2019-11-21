@@ -35,6 +35,7 @@ class EditGroupViewController: UITableViewController {
         super.init(style: .grouped)
         self.avatarSelectionCell.selectionStyle = .none
         self.avatarSelectionCell.hintLabel.text = String.localized("group_avatar")
+        title = String.localized("menu_edit_group")
     }
 
     required init?(coder aDecoder: NSCoder) {
