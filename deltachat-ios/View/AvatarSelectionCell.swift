@@ -1,11 +1,18 @@
 import UIKit
 
-class AvatarEditTextCell: UITableViewCell {
+class AvatarSelectionCell: UITableViewCell {
     let badgeSize: CGFloat = 72
     static let cellSize: CGFloat = 98
+    let downscaleDefaultImage: CGFloat = 0.6
 
-    var onTextChanged: ((String) -> Void)? // use this callback to update editButton in navigationController
     var onAvatarTapped: (() -> Void)?
+
+    lazy var defaultImage: UIImage = {
+        if let image = UIImage(named: "camera") {
+            return image.invert()
+        }
+        return UIImage()
+    }()
 
     lazy var badge: InitialsBadge = {
         let badge = InitialsBadge(size: badgeSize)
@@ -15,24 +22,11 @@ class AvatarEditTextCell: UITableViewCell {
         return badge
     }()
 
-    lazy var inputField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .none
-        textField.becomeFirstResponder()
-        textField.autocorrectionType = .no
-        textField.addTarget(self, action: #selector(inputFieldChanged), for: .editingChanged)
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.textAlignment = .right
-        return textField
-    }()
-
     lazy var hintLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = DcColors.defaultTextColor
-        label.font = UIFont.preferredFont(forTextStyle: .footnote)
-        label.text = String.localized("pref_your_name")
-        label.textAlignment = .right
+        label.text = String.localized("pref_profile_photo")
         return label
     }()
 
@@ -42,10 +36,9 @@ class AvatarEditTextCell: UITableViewCell {
         setupSubviews()
     }
 
-
-    init(context: DcContext, defaultImage: UIImage, downscale: CGFloat? = nil) {
+    init(context: DcContext?) {
         super.init(style: .default, reuseIdentifier: nil)
-        setSelfAvatar(context: context, with: defaultImage, downscale: downscale)
+        setAvatar(image: context?.getSelfAvatarImage(), with: self.defaultImage, downscale: downscaleDefaultImage)
         setupSubviews()
     }
 
@@ -60,32 +53,24 @@ class AvatarEditTextCell: UITableViewCell {
 
     private func setupSubviews() {
         contentView.addSubview(badge)
-
-        badge.alignLeadingToAnchor(contentView.layoutMarginsGuide.leadingAnchor)
+        badge.alignTrailingToAnchor(contentView.layoutMarginsGuide.trailingAnchor)
         badge.alignTopToAnchor(contentView.layoutMarginsGuide.topAnchor)
-        contentView.addSubview(inputField)
 
-        inputField.alignLeadingToAnchor(badge.trailingAnchor, paddingLeading: 15)
-        inputField.addConstraints(heightConstant: CGFloat(20))
-        inputField.alignTrailingToAnchor(contentView.layoutMarginsGuide.trailingAnchor)
-        inputField.alignBottomToAnchor(contentView.layoutMarginsGuide.bottomAnchor, paddingBottom: 15)
         contentView.addSubview(hintLabel)
-
+        hintLabel.alignLeadingToAnchor(contentView.layoutMarginsGuide.leadingAnchor)
         hintLabel.alignTopToAnchor(contentView.layoutMarginsGuide.topAnchor)
-        hintLabel.alignTrailingToAnchor(contentView.layoutMarginsGuide.trailingAnchor)
-        hintLabel.addConstraints(heightConstant: CGFloat(20))
+        hintLabel.alignTrailingToAnchor(badge.leadingAnchor)
+        hintLabel.alignBottomToAnchor(contentView.layoutMarginsGuide.bottomAnchor)
 
         let touchListener = UILongPressGestureRecognizer(target: self, action: #selector(onBadgeTouched))
         touchListener.minimumPressDuration = 0
         badge.addGestureRecognizer(touchListener)
     }
 
-    @objc func inputFieldChanged() {
-        let groupName = inputField.text ?? ""
+    func onInitialsChanged(text: String?) {
         if badge.showsInitials() {
-            badge.setName(groupName)
+            badge.setName(text ?? "")
         }
-        onTextChanged?(groupName)
     }
 
     @objc func onBadgeTouched(gesture: UILongPressGestureRecognizer) {
@@ -102,10 +87,6 @@ class AvatarEditTextCell: UITableViewCell {
         }
     }
 
-    func getText() -> String {
-        return inputField.text ?? ""
-    }
-
     func setAvatar(for chat: DcChat) {
         if let image = chat.profileImage {
             badge = InitialsBadge(image: image, size: badgeSize)
@@ -115,12 +96,8 @@ class AvatarEditTextCell: UITableViewCell {
         badge.setVerified(chat.isVerified)
     }
 
-    func setSelfAvatar(context: DcContext?, with defaultImage: UIImage?, downscale: CGFloat? = nil) {
-        guard let context = context else {
-            return
-        }
-        
-        if let image = context.getSelfAvatarImage() {
+    func setAvatar(image: UIImage?, with defaultImage: UIImage?, downscale: CGFloat? = nil) {
+        if let image = image {
             badge = InitialsBadge(image: image, size: badgeSize)
         } else if let defaultImage = defaultImage {
             badge = InitialsBadge(image: defaultImage, size: badgeSize, downscale: downscale)

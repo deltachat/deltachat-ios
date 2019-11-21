@@ -115,7 +115,7 @@
 		8B6D425BC604F7C43B65D436 /* Pods_deltachat_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */; };
 		AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */; };
 		AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */; };
-		AE25F09022807AD800CDEA66 /* AvatarEditTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25F08F22807AD800CDEA66 /* AvatarEditTextCell.swift */; };
+		AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */; };
 		AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B31722672DFC00EC37A1 /* ActionCell.swift */; };
 		AE38B31A2267328200EC37A1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B3192267328200EC37A1 /* Colors.swift */; };
 		AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4AEE3422B1030D000AA495 /* PreviewController.swift */; };
@@ -331,7 +331,7 @@
 		A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.release.xcconfig"; sourceTree = "<group>"; };
 		AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuritySettingsController.swift; sourceTree = "<group>"; };
-		AE25F08F22807AD800CDEA66 /* AvatarEditTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarEditTextCell.swift; sourceTree = "<group>"; };
+		AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionCell.swift; sourceTree = "<group>"; };
 		AE38B31722672DFC00EC37A1 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		AE38B3192267328200EC37A1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		AE4AEE3422B1030D000AA495 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
@@ -712,7 +712,7 @@
 				789E879C21D6DF86003ED1C5 /* ProgressHud.swift */,
 				AE38B31722672DFC00EC37A1 /* ActionCell.swift */,
 				AE851ACD227CA54300ED86F0 /* InitialsBadge.swift */,
-				AE25F08F22807AD800CDEA66 /* AvatarEditTextCell.swift */,
+				AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */,
 				AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */,
 				AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */,
 				AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */,
@@ -1060,7 +1060,7 @@
 				305961E52346125100C80F33 /* LabelAlignment.swift in Sources */,
 				305961E82346125100C80F33 /* Sender.swift in Sources */,
 				305961EE2346125100C80F33 /* AvatarPosition.swift in Sources */,
-				AE25F09022807AD800CDEA66 /* AvatarEditTextCell.swift in Sources */,
+				AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */,
 				305961E62346125100C80F33 /* LocationMessageSnapshotOptions.swift in Sources */,
 				AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */,
 				B26B3BC7236DC3DC008ED35A /* SwitchCell.swift in Sources */,

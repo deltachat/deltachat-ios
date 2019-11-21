@@ -10,9 +10,10 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     private let groupBadgeSize: CGFloat = 72
 
     private let section1 = 0
-    private let section1PictureAndName = 0
-    private let section1Status = 1
-    private let section1RowCount = 2
+    private let section1Avatar = 0
+    private let section1Name = 1
+    private let section1Status = 2
+    private let section1RowCount = 3
 
     private let section2 = 1
     private let section2AccountSettings = 0
@@ -23,13 +24,6 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     private let tagAccountSettingsCell = 1
 
     private var childCoordinators: Coordinator?
-
-    private lazy var defaultImage: UIImage = {
-        if let image = UIImage(named: "camera") {
-            return image.invert()
-        }
-        return UIImage()
-    }()
 
     private lazy var statusCell: TextFieldCell = {
         let cell = TextFieldCell(description: String.localized("pref_default_status_label"), placeholder: String.localized("pref_default_status_label"))
@@ -46,10 +40,15 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }()
 
 
-    private lazy var pictureAndNameCell: AvatarEditTextCell = {
+    private lazy var avatarSelectionCell: AvatarSelectionCell = {
         return createPictureAndNameCell()
     }()
 
+    private lazy var nameCell: TextFieldCell = {
+        let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("pref_your_name"))
+        cell.setText(text: DcConfig.displayname)
+        return cell
+    }()
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
@@ -64,15 +63,12 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("pref_profile_info_headline")
-
-        tableView.register(AvatarEditTextCell.self, forCellReuseIdentifier: "pictureAndNameCell")
-        tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
-        pictureAndNameCell.onAvatarTapped = onAvatarTapped
+        avatarSelectionCell.onAvatarTapped = onAvatarTapped
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         DcConfig.selfstatus = statusCell.getText()
-        DcConfig.displayname = pictureAndNameCell.getText()
+        DcConfig.displayname = nameCell.getText()
         dc_configure(mailboxPointer)
     }
 
@@ -93,8 +89,10 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == section1 {
             switch indexPath.row {
-            case section1PictureAndName:
-                return pictureAndNameCell
+            case section1Avatar:
+                return avatarSelectionCell
+            case section1Name:
+                return nameCell
             case section1Status:
                 return statusCell
             default:
@@ -106,10 +104,10 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == section1 && indexPath.row == section1PictureAndName {
-            return AvatarEditTextCell.cellSize
+        if indexPath.section == section1 && indexPath.row == section1Avatar {
+            return AvatarSelectionCell.cellSize
         } else {
-            return 48
+            return Constants.stdCellHeight
         }
     }
 
@@ -158,20 +156,19 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     func onImageSelected(image: UIImage) {
         AvatarHelper.saveSelfAvatarImage(image: image)
 
-        self.pictureAndNameCell = createPictureAndNameCell()
-        self.pictureAndNameCell.onAvatarTapped = onAvatarTapped
+        self.avatarSelectionCell = createPictureAndNameCell()
+        self.avatarSelectionCell.onAvatarTapped = onAvatarTapped
 
         self.tableView.beginUpdates()
-        let indexPath = IndexPath(row: section1PictureAndName, section: section1)
+        let indexPath = IndexPath(row: section1Avatar, section: section1)
         self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
         self.tableView.endUpdates()
     }
 
     func onDismiss() { }
 
-    private func createPictureAndNameCell() -> AvatarEditTextCell {
-        let cell = AvatarEditTextCell(context: dcContext, defaultImage: defaultImage, downscale: 0.6)
-        cell.inputField.text = DcConfig.displayname
+    private func createPictureAndNameCell() -> AvatarSelectionCell {
+        let cell = AvatarSelectionCell(context: dcContext)
         cell.selectionStyle = .none
         return cell
     }
