@@ -8,6 +8,7 @@ protocol ContactCellDelegate: class {
 
 class ContactCell: UITableViewCell {
 
+    public static let cellSize: CGFloat = 72
     weak var delegate: ContactCellDelegate?
     var rowIndex = -1
     private let initialsLabelSize: CGFloat = 54
@@ -36,7 +37,6 @@ class ContactCell: UITableViewCell {
         initialsLabel.textAlignment = NSTextAlignment.center
         initialsLabel.textColor = UIColor.white
         initialsLabel.font = UIFont.systemFont(ofSize: 22)
-        initialsLabel.backgroundColor = UIColor.green
         let initialsLabelCornerRadius = (initialsLabelSize - 6) / 2
         initialsLabel.layer.cornerRadius = initialsLabelCornerRadius
         initialsLabel.clipsToBounds = true
@@ -160,7 +160,7 @@ class ContactCell: UITableViewCell {
     }
 
     func setImage(_ img: UIImage) {
-        if let resizedImg = img.resizeImage(targetSize: CGSize(width: initialsLabelSize - 6, height: initialsLabelSize - 6)) {
+        if let resizedImg = img.scaleDownImage(toMax: initialsLabelSize - 6) {
             let attachment = NSTextAttachment()
             attachment.image = resizedImg
             initialsLabel.attributedText = NSAttributedString(attachment: attachment)

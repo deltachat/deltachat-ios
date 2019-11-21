@@ -8,7 +8,7 @@ target 'deltachat-ios' do
 
   pod 'SwiftLint'
   pod 'SwiftFormat/CLI'
-  pod 'ALCameraViewController', :git => 'https://github.com/dignifiedquire/ALCameraViewController'
+  pod 'ALCameraViewController'
   # pod 'openssl-ios-bitcode'
   pod 'ReachabilitySwift'
   pod 'QuickTableViewController'

@@ -34,6 +34,13 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
         tableView.separatorStyle = .none
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        let indexPath = IndexPath(row: rowContact, section: 0)
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
+        tableView.endUpdates()
+    }
+    
     override func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         switch row {

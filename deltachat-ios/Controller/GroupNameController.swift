@@ -9,6 +9,24 @@ class GroupNameController: UITableViewController {
     let contactIdsForGroup: Set<Int> // TODO: check if array is sufficient
     let groupContactIds: [Int]
 
+    private let sectionGroupDetails = 0
+    private let sectionGroupDetailsRowAvatar = 0
+    private let sectionGroupDetailsRowName = 1
+    private let countSectionGroupDetails = 2
+
+    lazy var groupNameCell: TextFieldCell = {
+        let cell = TextFieldCell(description: String.localized("group_name"), placeholder: String.localized("menu_edit_group_name"))
+        cell.onTextFieldChange = self.updateGroupName
+        return cell
+    }()
+
+    lazy var avatarSelectionCell: AvatarSelectionCell = {
+        let cell = AvatarSelectionCell(context: nil)
+        cell.selectionStyle = .none
+        cell.hintLabel.text = String.localized("group_avatar")
+        return cell
+    }()    
+
     init(contactIdsForGroup: Set<Int>) {
         self.contactIdsForGroup = contactIdsForGroup
         groupContactIds = Array(contactIdsForGroup)
@@ -26,9 +44,7 @@ class GroupNameController: UITableViewController {
         navigationItem.rightBarButtonItem = doneButton
         tableView.bounces = false
         doneButton.isEnabled = false
-        tableView.register(GroupLabelCell.self, forCellReuseIdentifier: "groupLabelCell")
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
-        // setupSubviews()
     }
 
     @objc func doneButtonPressed() {
@@ -58,12 +74,12 @@ class GroupNameController: UITableViewController {
         let section = indexPath.section
         let row = indexPath.row
 
-        if section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "groupLabelCell", for: indexPath)
-            if let groupLabelCell = cell as? GroupLabelCell {
-                groupLabelCell.onTextChanged = updateGroupName
+        if section == sectionGroupDetails {
+            if row == sectionGroupDetailsRowAvatar {
+                return avatarSelectionCell
+            } else {
+                return groupNameCell
             }
-            return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
             if let contactCell = cell as? ContactCell {
@@ -78,9 +94,23 @@ class GroupNameController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = indexPath.section
+        let row = indexPath.row
+        if section == sectionGroupDetails {
+            if row == sectionGroupDetailsRowAvatar {
+                return AvatarSelectionCell.cellSize
+            } else {
+                return Constants.stdCellHeight
+            }
+        } else {
+            return ContactCell.cellSize
+        }
+    }
+
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
+        if section == sectionGroupDetails {
+            return countSectionGroupDetails
         } else {
             return contactIdsForGroup.count
         }
@@ -94,7 +124,8 @@ class GroupNameController: UITableViewController {
         }
     }
 
-    private func updateGroupName(name: String) {
+    private func updateGroupName(textView: UITextField) {
+        let name = textView.text ?? ""
         groupName = name
         doneButton.isEnabled = name.containsCharacters()
     }

@@ -175,6 +175,9 @@ class SettingsCoordinator: Coordinator {
 
     func showEditSettingsController() {
         let editController = EditSettingsController(dcContext: dcContext)
+        let coordinator = EditSettingsCoordinator(dcContext: dcContext, navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        editController.coordinator = coordinator
         navigationController.pushViewController(editController, animated: true)
     }
 
@@ -188,6 +191,27 @@ class SettingsCoordinator: Coordinator {
         navigationController.pushViewController(blockedContactsController, animated: true)
     }
 }
+
+class EditSettingsCoordinator: Coordinator {
+    var dcContext: DcContext
+    let navigationController: UINavigationController
+    let mediaPicker: MediaPicker
+
+    init(dcContext: DcContext, navigationController: UINavigationController) {
+        self.dcContext = dcContext
+        self.navigationController = navigationController
+        self.mediaPicker = MediaPicker(navigationController: navigationController)
+    }
+
+    func showPhotoPicker(delegate: MediaPickerDelegate) {
+        mediaPicker.showImageCropper(delegate: delegate)
+    }
+
+    func showCamera(delegate: MediaPickerDelegate) {
+        mediaPicker.showCamera(delegate: delegate)
+    }
+}
+
 
 class AccountSetupCoordinator: Coordinator {
     var dcContext: DcContext

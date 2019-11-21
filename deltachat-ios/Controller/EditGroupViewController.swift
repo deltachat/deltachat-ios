@@ -6,7 +6,17 @@ class EditGroupViewController: UITableViewController {
 
     private let chat: DcChat
 
-    var groupNameCell: GroupLabelCell
+    private let rowAvatar = 0
+    private let rowGroupName = 1
+
+    var avatarSelectionCell: AvatarSelectionCell
+
+    lazy var groupNameCell: TextFieldCell = {
+        let cell = TextFieldCell(description: String.localized("group_name"), placeholder: self.chat.name)
+        cell.setText(text: self.chat.name)
+        cell.onTextFieldChange = self.groupNameEdited(_:)
+        return cell
+    }()
 
     lazy var doneButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveContactButtonPressed))
@@ -21,11 +31,11 @@ class EditGroupViewController: UITableViewController {
 
     init(chat: DcChat) {
         self.chat = chat
-        self.groupNameCell = GroupLabelCell(chat: chat)
+        self.avatarSelectionCell = AvatarSelectionCell(chat: chat)
         super.init(style: .grouped)
-        groupNameCell.inputField.text = chat.name
-        self.groupNameCell.onTextChanged = groupNameEdited(_:)
-        self.groupNameCell.selectionStyle = .none
+        self.avatarSelectionCell.selectionStyle = .none
+        self.avatarSelectionCell.hintLabel.text = String.localized("group_avatar")
+        title = String.localized("menu_edit_group")
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -39,7 +49,11 @@ class EditGroupViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return groupNameCell
+        if indexPath.row == rowAvatar {
+            return avatarSelectionCell
+        } else {
+            return groupNameCell
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -47,11 +61,18 @@ class EditGroupViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == rowAvatar {
+            return AvatarSelectionCell.cellSize
+        }
+        return Constants.stdCellHeight
+    }
+    
     @objc func saveContactButtonPressed() {
-        let newName = groupNameCell.getGroupName()
+        let newName = groupNameCell.getText()
         dc_set_chat_name(mailboxPointer, UInt32(chat.id), newName)
         coordinator?.navigateBack()
     }
@@ -60,7 +81,8 @@ class EditGroupViewController: UITableViewController {
         coordinator?.navigateBack()
     }
 
-    private func groupNameEdited(_ newName: String) {
+    private func groupNameEdited(_ textField: UITextField) {
+        avatarSelectionCell.onInitialsChanged(text: textField.text)
         doneButton.isEnabled = true
     }
 }

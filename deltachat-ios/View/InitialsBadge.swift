@@ -2,7 +2,8 @@ import UIKit
 
 class InitialsBadge: UIView {
 
-    private let verificationViewPadding = CGFloat(2)
+    private let verificationViewPadding: CGFloat = 2
+    private let size: CGFloat
 
     private var label: UILabel = {
         let label = UILabel()
@@ -35,12 +36,13 @@ class InitialsBadge: UIView {
         setColor(color)
     }
 
-    convenience init (image: UIImage, size: CGFloat) {
+    convenience init (image: UIImage, size: CGFloat, downscale: CGFloat? = nil) {
         self.init(size: size)
-        setImage(image)
+        setImage(image, downscale: downscale)
     }
 
     init(size: CGFloat) {
+        self.size = size
         super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
         let radius = size / 2
         layer.cornerRadius = radius
@@ -55,7 +57,8 @@ class InitialsBadge: UIView {
         imageView.layer.cornerRadius = radius
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        imageView.alignTopToAnchor(topAnchor)
+        imageView.alignBottomToAnchor(bottomAnchor)
 
         addSubview(label)
         label.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -80,9 +83,17 @@ class InitialsBadge: UIView {
         imageView.isHidden = true
     }
 
-    func setImage(_ image: UIImage) {
-        if let resizedImg = image.resizeImage(targetSize: CGSize(width: self.frame.width, height: self.frame.height)) {
+    func setImage(_ image: UIImage, downscale: CGFloat? = nil) {
+        var scale = downscale ?? 1
+        if scale > 1 {
+            scale = 1
+        } else if scale < 0 {
+            scale = 0
+        }
+
+        if let resizedImg = image.scaleDownImage(toMax: self.size * scale) {
             self.imageView.image = resizedImg
+            self.imageView.contentMode = (downscale == nil) ? UIView.ContentMode.scaleAspectFill : UIView.ContentMode.center
             self.imageView.isHidden = false
             self.label.isHidden = true
         }
