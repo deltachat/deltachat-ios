@@ -265,19 +265,10 @@ class ChatViewController: MessagesViewController {
     private func configureMessageMenu() {
         var menuItems: [UIMenuItem]
 
-        if disableWriting {
-            menuItems = [
-                UIMenuItem(title: String.localized("start_chat"), action: #selector(MessageCollectionViewCell.messageStartChat(_:))),
-                UIMenuItem(title: String.localized("delete"), action: #selector(MessageCollectionViewCell.messageDelete(_:))),
-                UIMenuItem(title: String.localized("menu_block_contact"), action: #selector(MessageCollectionViewCell.messageBlock(_:))),
-            ]
-        } else {
-            // Configures the UIMenu which is shown when selecting a message
-            menuItems = [
-                UIMenuItem(title: String.localized("info"), action: #selector(MessageCollectionViewCell.messageInfo(_:))),
-                UIMenuItem(title: String.localized("delete"), action: #selector(MessageCollectionViewCell.messageDelete(_:)))
-            ]
-        }
+        menuItems = [
+            UIMenuItem(title: String.localized("info"), action: #selector(MessageCollectionViewCell.messageInfo(_:))),
+            UIMenuItem(title: String.localized("delete"), action: #selector(MessageCollectionViewCell.messageDelete(_:)))
+        ]
 
         UIMenuController.shared.menuItems = menuItems
     }
@@ -442,9 +433,7 @@ class ChatViewController: MessagesViewController {
 
     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         if action == NSSelectorFromString("messageInfo:") ||
-            action == NSSelectorFromString("messageDelete:") ||
-            action == NSSelectorFromString("messageBlock:") ||
-            action == NSSelectorFromString("messageStartChat:") {
+            action == NSSelectorFromString("messageDelete:") {
             return true
         } else {
             return super.collectionView(collectionView, canPerformAction: action, forItemAt: indexPath, withSender: sender)
@@ -465,19 +454,6 @@ class ChatViewController: MessagesViewController {
             let msg = messageList[indexPath.section]
             logger.info("message: delete \(msg.messageId)")
             askToDeleteMessage(id: msg.id)
-        case NSSelectorFromString("messageStartChat:"):
-            let msg = messageList[indexPath.section]
-            logger.info("message: Start Chat \(msg.messageId)")
-            let chat = msg.createChat()
-            // TODO: figure out how to properly show the chat after creation
-            refreshMessages()
-            coordinator?.showChat(chatId: chat.id)
-        case NSSelectorFromString("messageBlock:"):
-            let msg = messageList[indexPath.section]
-            logger.info("message: Block \(msg.messageId)")
-            msg.fromContact.block()
-
-            refreshMessages()
         default:
             super.collectionView(collectionView, performAction: action, forItemAt: indexPath, withSender: sender)
         }
@@ -1134,32 +1110,6 @@ extension MessageCollectionViewCell {
                 // Trigger action
                 collectionView.delegate?.collectionView?(collectionView,
                     performAction: #selector(MessageCollectionViewCell.messageInfo(_:)),
-                    forItemAt: indexPath, withSender: sender)
-            }
-        }
-    }
-
-    @objc func messageBlock(_ sender: Any?) {
-        // Get the collectionView
-        if let collectionView = self.superview as? UICollectionView {
-            // Get indexPath
-            if let indexPath = collectionView.indexPath(for: self) {
-                // Trigger action
-                collectionView.delegate?.collectionView?(collectionView,
-                    performAction: #selector(MessageCollectionViewCell.messageBlock(_:)),
-                    forItemAt: indexPath, withSender: sender)
-            }
-        }
-    }
-
-    @objc func messageStartChat(_ sender: Any?) {
-        // Get the collectionView
-        if let collectionView = self.superview as? UICollectionView {
-            // Get indexPath
-            if let indexPath = collectionView.indexPath(for: self) {
-                // Trigger action
-                collectionView.delegate?.collectionView?(collectionView,
-                    performAction: #selector(MessageCollectionViewCell.messageStartChat(_:)),
                     forItemAt: indexPath, withSender: sender)
             }
         }
