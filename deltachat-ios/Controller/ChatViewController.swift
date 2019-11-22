@@ -647,10 +647,6 @@ extension ChatViewController: MessagesDataSource {
 
         let text = NSMutableAttributedString()
 
-        if !isAvatarHidden(at: indexPath) {
-            text.append(NSAttributedString(string: "     "))
-        }
-
         text.append(NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes))
 
         // TOOD: Use SVG files from deltachat/interface here. 
@@ -662,7 +658,11 @@ extension ChatViewController: MessagesDataSource {
         }
         text.append(NSAttributedString(string: padlock))
 
-        if isFromCurrentSender(message: message) {
+        if !isFromCurrentSender(message: message) {
+            if !isAvatarHidden(at: indexPath) {
+                text.insert(NSAttributedString(string: "     "), 0)
+            }
+        } else {
             // TODO: this should be replaced by the respective icons,
             // for accessibility, the a11y strings should be added
             var stateDescription: String
