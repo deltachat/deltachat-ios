@@ -727,6 +727,10 @@ class DcMsg: MessageType {
         return Int(dc_msg_get_state(messagePointer))
     }
 
+    var showpadlock: Bool {
+        return dc_msg_get_showpadlock(messagePointer) == 1
+    }
+
     var timestamp: Int64 {
         return Int64(dc_msg_get_timestamp(messagePointer))
     }

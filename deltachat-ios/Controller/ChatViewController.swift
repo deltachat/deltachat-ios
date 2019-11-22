@@ -645,10 +645,24 @@ extension ChatViewController: MessagesDataSource {
             .foregroundColor: UIColor.lightGray,
         ]
 
-        if isFromCurrentSender(message: message) {
-            let text = NSMutableAttributedString()
-            text.append(NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes))
+        let text = NSMutableAttributedString()
 
+        if !isAvatarHidden(at: indexPath) {
+            text.append(NSAttributedString(string: "     "))
+        }
+
+        text.append(NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes))
+
+        // TOOD: Use SVG files from deltachat/interface here. 
+        var padlock: String
+        if m.showpadlock {
+            padlock = "🔒"
+        } else {
+            padlock = "🔓"
+        }
+        text.append(NSAttributedString(string: padlock))
+
+        if isFromCurrentSender(message: message) {
             // TODO: this should be replaced by the respective icons,
             // for accessibility, the a11y strings should be added
             var stateDescription: String
@@ -672,18 +686,9 @@ extension ChatViewController: MessagesDataSource {
                     .foregroundColor: DcColors.defaultTextColor,
                 ]
             ))
-
-            return text
         }
 
-        if !isAvatarHidden(at: indexPath) {
-            let text = NSMutableAttributedString()
-            text.append(NSAttributedString(string: "     "))
-            text.append(NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes))
-            return text
-        }
-
-        return NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes)
+        return text
     }
 
     func updateMessage(_ messageId: Int) {
