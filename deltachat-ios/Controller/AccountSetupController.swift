@@ -117,11 +117,13 @@ class AccountSetupController: UITableViewController {
         })
     }
 
-    private func updateProgressHudSuccess() {
+    private func updateProgressHudSuccess(isLogin: Bool) {
         updateProgressHudValue(value: 1000)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             self.configProgressAlert.dismiss(animated: true) {
-                self.handleLoginSuccess()
+                if isLogin {
+                    self.handleLoginSuccess()
+                }
             }
         })
     }
@@ -390,7 +392,6 @@ class AccountSetupController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        addProgressHudEventListener()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -559,6 +560,7 @@ class AccountSetupController: UITableViewController {
     }
 
     private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {
+        addProgressHudLoginListener()
         resignFirstResponderOnAllCells()	// this will resign focus from all textFieldCells so the keyboard wont pop up anymore
         DcConfig.addr = emailAddress
         DcConfig.mailPw = password
@@ -637,7 +639,27 @@ class AccountSetupController: UITableViewController {
         UIApplication.shared.open(url) // this opens safari as seperate app
     }
 
-    private func addProgressHudEventListener() {
+    private func addProgressHudLoginListener() {
+        let nc = NotificationCenter.default
+        configureProgressObserver = nc.addObserver(
+            forName: dcNotificationConfigureProgress,
+            object: nil,
+            queue: nil
+        ) {
+            notification in
+            if let ui = notification.userInfo {
+                if ui["error"] as! Bool {
+                    self.updateProgressHud(error: ui["errorMessage"] as? String)
+                } else if ui["done"] as! Bool {
+                    self.updateProgressHudSuccess(isLogin: true)
+                } else {
+                    self.updateProgressHudValue(value: ui["progress"] as? Int)
+                }
+            }
+        }
+    }
+
+    private func addProgressHudBackupListener() {
         let nc = NotificationCenter.default
         backupProgressObserver = nc.addObserver(
             forName: dcNotificationImexProgress,
@@ -649,23 +671,7 @@ class AccountSetupController: UITableViewController {
                 if ui["error"] as! Bool {
                     self.updateProgressHud(error: ui["errorMessage"] as? String)
                 } else if ui["done"] as! Bool {
-                    self.updateProgressHudSuccess()
-                } else {
-                    self.updateProgressHudValue(value: ui["progress"] as? Int)
-                }
-            }
-        }
-        configureProgressObserver = nc.addObserver(
-            forName: dcNotificationConfigureProgress,
-            object: nil,
-            queue: nil
-        ) {
-            notification in
-            if let ui = notification.userInfo {
-                if ui["error"] as! Bool {
-                    self.updateProgressHud(error: ui["errorMessage"] as? String)
-                } else if ui["done"] as! Bool {
-                    self.updateProgressHudSuccess()
+                    self.updateProgressHudSuccess(isLogin: false)
                 } else {
                     self.updateProgressHudValue(value: ui["progress"] as? Int)
                 }
@@ -703,6 +709,7 @@ class AccountSetupController: UITableViewController {
         if DcConfig.configured {
             return
         }
+        addProgressHudBackupListener()
         let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if !documents.isEmpty {
             logger.info("looking for backup in: \(documents[0])")
@@ -773,14 +780,10 @@ class AccountSetupController: UITableViewController {
             appDelegate.open()
             appDelegate.start()
 
-            self.coordinator?.navigationController.popToRootViewController(animated: true)
             appDelegate.appCoordinator.presentLoginController()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true, completion: nil)
-
-
-        coordinator?.navigationController.popToRootViewController(animated: true)
     }
 
     private func handleLoginSuccess() {
@@ -789,6 +792,11 @@ class AccountSetupController: UITableViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.registerForPushNotifications()
         initSelectionCells();
+        if let onLoginSuccess = self.coordinator?.onLoginSuccess {
+            onLoginSuccess()
+        } else {
+            self.coordinator?.navigateBack()
+        }
     }
 
     private func initSelectionCells() {
