@@ -13,6 +13,7 @@
 "strict" = "Katı";
 "open" = "Aç";
 "delete" = "Sil";
+"info" = "Bilgi";
 "update" = "Güncelleştir";
 "emoji" = "Emoji";
 "attachment" = "İlişik";
@@ -22,6 +23,7 @@
 "chat" = "Sohbet";
 "media" = "Ortam";
 "main_menu" = "Ana menü";
+"start_chat" = "Sohbete başla";
 "show_password" = "Parolayı göster";
 "hide_password" = "Parolayı gizle";
 "not_now" = "Şimdi değil";
@@ -29,6 +31,8 @@
 "one_moment" = "Bir dakika…";
 "done" = "Bitti";
 "undo" = "Geri al";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Sonraki";
 "error" = "Hata";
 "error_x" = "Hata: %1$@";
 "error_no_network" = "Ağ kullanım dışı.";
@@ -41,6 +45,8 @@
 "bad_email_address" = "Yanlış e-posta adresi.";
 "password" = "Parola";
 "now" = "Şimdi";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Tehlike";
 // n_min_ago is deprecated, use n_minutes instead
 "n_min_ago" = "%d dk";
 "today" = "Bugün";
@@ -145,6 +151,8 @@
 "title_share_location" = "Tüm grup üyeleriyle konum paylaş";
 "device_talk" = "Aygıt iletileri";
 "device_talk_subtitle" = "Yerel olarak oluşturulan iletiler";
+"edit_contact" = "Kişiyi düzenle";
+
 "mute_for_one_hour" = "1 saatliğine sessize al";
 "mute_for_two_hours" = "2 saatliğine sessize al";
 "mute_for_one_day" = "1 günlüğüne sessize al";
@@ -299,6 +307,10 @@
 // TLS certificate checks
 "accept_invalid_hostnames" = "Geçersiz ana bilgisayar adlarını kabul et";
 "accept_invalid_certificates" = "Geçersiz sertifikaları kabul et";
+
+"used_settings" = "Kullanılan ayarlar:";
+"delete_account" = "Hesabı sil";
+"delete_account_ask" = "Hesap verilerinizi silmek istediğinizden emin misiniz?";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -467,6 +479,8 @@
 "screenlock_inactivity_timeout_interval" = "Etkisizlik zaman aşımı aralığı";
 
 
+// qr code stuff
+"qr_code" = "QR kod";
 "qrscan_title" = "QR kod tara";
 "qrscan_hint" = "Kameranızı QR kodun üzerine yerleştirin";
 "qrscan_ask_join_group" = "\"%1$@\" grubuna katılmak istiyor musunuz?";
@@ -568,7 +582,7 @@
 "login_required_desktop" = "gerekli";
 "name_desktop" = "Ad";
 "autocrypt_key_transfer_desktop" = "Autocrypt anahtar aktarımı";
-"initiate_key_transfer_title_desktop" = "Anahtar aktarımını başlat";
+"initiate_key_transfer_title_desktop" = "Anahtar aktarımına başla";
 "initiate_key_transfer_desktop" = "Bir Autocrypt Ayarlama İletisi, uçtan uca ayarlamanızı diğer Autocrypt uyumlu uygulamalarla güvenli olarak paylaşır. Ayarlama, burada görüntülenen ve diğer aygıtta yazılması gereken bir ayarlama kodu tarafından şifrelenecek.";
 "reply_to_message_desktop" = "İletiye yanıt ver";
 "select_group_image_desktop" = "Grup görseli seç";

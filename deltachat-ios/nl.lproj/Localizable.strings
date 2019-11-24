@@ -13,6 +13,7 @@
 "strict" = "Strikt";
 "open" = "Openen";
 "delete" = "Verwijderen";
+"info" = "Informatie";
 "update" = "Bijwerken";
 "emoji" = "Emoji";
 "attachment" = "Bijlage";
@@ -22,6 +23,7 @@
 "chat" = "Gesprek";
 "media" = "Media";
 "main_menu" = "Hoofdmenu";
+"start_chat" = "Gesprek beginnen";
 "show_password" = "Wachtwoord tonen";
 "hide_password" = "Wachtwoord verbergen";
 "not_now" = "Niet nu";
@@ -29,6 +31,8 @@
 "one_moment" = "Even geduld...";
 "done" = "Klaar";
 "undo" = "Ongedaan maken";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Volgende";
 "error" = "Fout";
 "error_x" = "Fout: %1$@";
 "error_no_network" = "Geen internetverbinding.";
@@ -41,6 +45,8 @@
 "bad_email_address" = "Ongeldig e-mailadres.";
 "password" = "Wachtwoord";
 "now" = "Nu";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Gevarenzone";
 // n_min_ago is deprecated, use n_minutes instead
 "n_min_ago" = "%d min";
 "today" = "Vandaag";
@@ -145,6 +151,8 @@
 "title_share_location" = "Locatie delen met alle groepsleden";
 "device_talk" = "Berichten op apparaat";
 "device_talk_subtitle" = "Lokaal gegenereerde berichten";
+"edit_contact" = "Contactpersoon bewerken";
+
 "mute_for_one_hour" = "1 uur lang uitschakelen";
 "mute_for_two_hours" = "2 uur lang uitschakelen";
 "mute_for_one_day" = "1 dag lang uitschakelen";
@@ -299,6 +307,10 @@
 // TLS certificate checks
 "accept_invalid_hostnames" = "Ongeldige hostnamen accepteren";
 "accept_invalid_certificates" = "Ongeldige certificaten accepteren";
+
+"used_settings" = "Gebruikte instellingen:";
+"delete_account" = "Account verwijderen";
+"delete_account_ask" = "Weet je zeker dat je je accountgegevens wilt verwijderen?";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -467,6 +479,8 @@
 "screenlock_inactivity_timeout_interval" = "Periode van inactiviteit";
 
 
+// qr code stuff
+"qr_code" = "QR-code";
 "qrscan_title" = "QR-code scannen";
 "qrscan_hint" = "Plaatst je camera boven de QR-code";
 "qrscan_ask_join_group" = "Wil je deelnemen aan de groep \"%1$@\"?";

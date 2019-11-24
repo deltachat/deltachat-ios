@@ -13,6 +13,7 @@
 "strict" = "Zorrotza";
 "open" = "Ireki";
 "delete" = "Ezabatu";
+"info" = "Informazioa";
 "update" = "Eguneratu";
 "emoji" = "Emojia";
 "attachment" = "Eranskina";
@@ -22,6 +23,7 @@
 "chat" = "Txata";
 "media" = "Multimedia";
 "main_menu" = "Menu nagusia";
+"start_chat" = "Hasi txata";
 "show_password" = "Erakutsi pasahitza";
 "hide_password" = "Ezkutatu pasahitza";
 "not_now" = "Orain ez";
@@ -29,6 +31,8 @@
 "one_moment" = "Unetxo bat...";
 "done" = "Egina";
 "undo" = "Desegin";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Hurrengoa";
 "error" = "Errorea";
 "error_x" = "Errorea: %1$@";
 "error_no_network" = "Sarea ez dago eskuragarri.";
@@ -41,6 +45,8 @@
 "bad_email_address" = "E-mail helbide okerra.";
 "password" = "Pasahitza";
 "now" = "Orain";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Arriskua";
 // n_min_ago is deprecated, use n_minutes instead
 "n_min_ago" = "%d min";
 "today" = "Gaur";
@@ -143,6 +149,10 @@
 "menu_zoom_out" = "Urrundu zooma";
 "menu_save_log" = "Gorde egunkaria";
 "title_share_location" = "Partekatu kokalekua taldeko kide guztiak";
+"device_talk" = "Gailuaren mezuak";
+"device_talk_subtitle" = "Lokalki sortutako mezuak";
+"edit_contact" = "Editatu kontaktua";
+
 "mute_for_one_hour" = "Mututu ordubete";
 "mute_for_two_hours" = "Mututu 2 ordu";
 "mute_for_one_day" = "Mututu egun bat";
@@ -297,6 +307,10 @@
 // TLS certificate checks
 "accept_invalid_hostnames" = "Onartu ostalari izen baliogabeak";
 "accept_invalid_certificates" = "Onartu ziurtagiri baliogabeak";
+
+"used_settings" = "Erabilitako ezarpenak:";
+"delete_account" = "Ezabatu kontua";
+"delete_account_ask" = "Ziur al zaude zure kontuaren datuak ezabatu nahi dituzula?";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -465,6 +479,8 @@
 "screenlock_inactivity_timeout_interval" = "Jarduerarik gabeko denbora tartea";
 
 
+// qr code stuff
+"qr_code" = "QR kodea";
 "qrscan_title" = "Eskaneatu QR kodea";
 "qrscan_hint" = "Kokatu zure kamera QR kodearen gainean";
 "qrscan_ask_join_group" = "\"%1$@\" taldera elkartu nahi duzu?";

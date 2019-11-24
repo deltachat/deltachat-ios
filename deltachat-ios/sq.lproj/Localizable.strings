@@ -13,6 +13,7 @@
 "strict" = "Strikt";
 "open" = "Hap";
 "delete" = "Fshije";
+"info" = "Të dhëna";
 "update" = "Përditësoje";
 "emoji" = "Emoji";
 "attachment" = "Bashkëngjitje";
@@ -22,6 +23,7 @@
 "chat" = "Fjalosje";
 "media" = "Media";
 "main_menu" = "Menuja kryesore";
+"start_chat" = "Nisni fjalosje";
 "show_password" = "Shfaqe fjalëkalimin";
 "hide_password" = "Fshihe fjalëkalimin";
 "not_now" = "Jo tani";
@@ -29,6 +31,8 @@
 "one_moment" = "Një çast…";
 "done" = "U bë";
 "undo" = "Zhbëje";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Pasuesja";
 "error" = "Gabim";
 "error_x" = "Gabim: %1$@";
 "error_no_network" = "Rrjet i pakapshëm.";
@@ -41,6 +45,8 @@
 "bad_email_address" = "Adresë email e keqe.";
 "password" = "Fjalëkalim";
 "now" = "Tani";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Rrezik";
 // n_min_ago is deprecated, use n_minutes instead
 "n_min_ago" = "%d min.";
 "today" = "Sot";
@@ -145,6 +151,8 @@
 "title_share_location" = "Jepua vendndodhjen krejt anëtarëve të grupit";
 "device_talk" = "Mesazhe Pajisjeje";
 "device_talk_subtitle" = "Mesazhe të prodhuar lokalisht";
+"edit_contact" = "Përpunoni kontaktin";
+
 "mute_for_one_hour" = "Heshtoji për 1 orë";
 "mute_for_two_hours" = "Heshtoji për 2 orë";
 "mute_for_one_day" = "Heshtoji për 1 ditë";
@@ -299,6 +307,10 @@
 // TLS certificate checks
 "accept_invalid_hostnames" = "Prano strehëemra të pavlefshëm";
 "accept_invalid_certificates" = "Prano dëshmi të pavlefshme";
+
+"used_settings" = "Rregullime të përdorura";
+"delete_account" = "Fshije llogarinë";
+"delete_account_ask" = "Jeni i sigurt se doni të fshihen të dhënat e llogarisë tuaj?";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -466,6 +478,8 @@
 "screenlock_inactivity_timeout_interval" = "Interval afati mosveprimtarie";
 
 
+// qr code stuff
+"qr_code" = "Kod QR";
 "qrscan_title" = "Skanoni kod QR";
 "qrscan_hint" = "Vendoseni kamerën tuaj përmbi kodin QR";
 "qrscan_ask_join_group" = "Doni të bëheni pjesë e grupit \"%1$@\"?";

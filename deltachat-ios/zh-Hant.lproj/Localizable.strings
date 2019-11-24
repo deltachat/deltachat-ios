@@ -13,6 +13,7 @@
 "strict" = "严格";
 "open" = "打开";
 "delete" = "删除";
+"info" = "信息";
 "update" = "更新";
 "emoji" = "Emoji";
 "attachment" = "附件";
@@ -22,6 +23,7 @@
 "chat" = "聊天";
 "media" = "媒体";
 "main_menu" = "主菜单";
+"start_chat" = "开始聊天";
 "show_password" = "显示密码";
 "hide_password" = "隐藏密码";
 "not_now" = "现在不";
@@ -29,6 +31,8 @@
 "one_moment" = "稍等片刻…";
 "done" = "已完成";
 "undo" = "撤销";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "下一步";
 "error" = "错误";
 "error_x" = "错误：%1$@";
 "error_no_network" = "网络不可用。";
@@ -41,6 +45,8 @@
 "bad_email_address" = "错误的电子邮件地址。";
 "password" = "密码";
 "now" = "现在";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "危险!";
 // n_min_ago is deprecated, use n_minutes instead
 "n_min_ago" = "%d 分钟前";
 "today" = "今天";
@@ -145,6 +151,8 @@
 "title_share_location" = "与群组所有成员共享位置";
 "device_talk" = "设备消息";
 "device_talk_subtitle" = "本地生成的消息";
+"edit_contact" = "编辑联系人";
+
 "mute_for_one_hour" = "静音1小时";
 "mute_for_two_hours" = "静音2小时";
 "mute_for_one_day" = "静音1天";
@@ -299,6 +307,10 @@
 // TLS certificate checks
 "accept_invalid_hostnames" = "接受无效的主机名";
 "accept_invalid_certificates" = "接受无效的证书";
+
+"used_settings" = "使用的设置：";
+"delete_account" = "删除账户";
+"delete_account_ask" = "您确定要删除您的账户数据吗？";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -467,6 +479,8 @@
 "screenlock_inactivity_timeout_interval" = "闲置超时间隔";
 
 
+// qr code stuff
+"qr_code" = "二维码";
 "qrscan_title" = "扫描二维码";
 "qrscan_hint" = "将您的相机对准二维码";
 "qrscan_ask_join_group" = "您想加入群组“%1$@”吗？";

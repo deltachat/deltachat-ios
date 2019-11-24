@@ -9,8 +9,11 @@
 "def" = "Predefinito";
 "custom" = "Personalizzato";
 "none" = "Nessuno";
+"automatic" = "Automatico";
+"strict" = "Stringente";
 "open" = "Apri";
 "delete" = "Elimina";
+"info" = "Info";
 "update" = "Aggiorna";
 "emoji" = "Emoji";
 "attachment" = "Allegato";
@@ -20,6 +23,7 @@
 "chat" = "Chat";
 "media" = "Media";
 "main_menu" = "Menu principale";
+"start_chat" = "Inizia una chat";
 "show_password" = "Mostra password";
 "hide_password" = "Nascondi password";
 "not_now" = "Non ora";
@@ -27,6 +31,8 @@
 "one_moment" = "Un momento...";
 "done" = "Fatto";
 "undo" = "Annulla";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Avanti";
 "error" = "Errore";
 "error_x" = "Errore: %1$@";
 "error_no_network" = "Rete non disponibile.";
@@ -39,6 +45,8 @@
 "bad_email_address" = "Indirizzo non valido";
 "password" = "Password";
 "now" = "Ora";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Attenzione";
 // n_min_ago is deprecated, use n_minutes instead
 "n_min_ago" = "%d min";
 "today" = "Oggi";
@@ -141,6 +149,10 @@
 "menu_zoom_out" = "Zoom out";
 "menu_save_log" = "Salva log";
 "title_share_location" = "Condividi posizione con tutti i membri";
+"device_talk" = "Messaggi del dispositivo";
+"device_talk_subtitle" = "Messaggi generati localmente";
+"edit_contact" = "Modifica contatto";
+
 "mute_for_one_hour" = "Silenzia per 1 ora";
 "mute_for_two_hours" = "Silenzia per 2 ore";
 "mute_for_one_day" = "Silenzia per 1 giorno";
@@ -279,6 +291,7 @@
 "login_info_oauth2_title" = "Usare il setup semplificato?";
 "login_info_oauth2_text" = "L\'indirizzo email inserito supporta l\'autenticazione semplificata (OAuth2).\n\nContinuando, puoi autorizzare Delta Chat ad operare come app di messaggistica via e-mail.\n\nNon esistono server di Delta Chat, i tuoi dati restano nel tuo dispositivo!";
 "login_info_gmail_text" = "Per gli account GMail è necessario creare una password per le app se è attiva la verifica in 2 passaggi. Se queste impostazioni non sono disponibili, è necessario abilitare le app meno sicure.";
+"login_certificate_checks" = "Controlli certificato";
 "login_error_mail" = "Inserisci un indirizzo email valido";
 "login_error_server" = "Inserisci un server / indirizzo IP valido";
 "login_error_port" = "Inserisci una porta valida (1-65535)";
@@ -290,6 +303,14 @@
 "login_error_cannot_login" = "Impossibile accedere come \"%1$@\". Verifica che l\'indirizzo email e la password siano corretti.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Risposta da%1$@: %2$@\n\nAlcuni provider inseriscono altre informazioni nella tua casella; puoi controllarle ad es. dalla pagina web. Consulta il provider o i tuoi amici se riscontri problemi.";
+
+// TLS certificate checks
+"accept_invalid_hostnames" = "Accetta hostname non validi";
+"accept_invalid_certificates" = "Accetta certificati non validi";
+
+"used_settings" = "Impostazioni in uso:";
+"delete_account" = "Elimina account";
+"delete_account_ask" = "Sei certo di voler eliminare i dati dell\'account?";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -393,6 +414,7 @@
 "pref_watch_inbox_folder" = "Vedi cartella In Arrivo";
 "pref_watch_sent_folder" = "Vedi cartella Inviati";
 "pref_watch_mvbox_folder" = "Vedi cartella DeltaChat";
+"pref_send_copy_to_self" = "Auto-invia una copia";
 "pref_auto_folder_moves" = "Sposta automaticamente nella cartella DeltaChat";
 "pref_auto_folder_moves_explain" = "Le chat vengono spostate per evitare di riempire la cartella In Arrivo";
 "pref_email_interaction_title" = "Interazione email";
@@ -457,6 +479,8 @@
 "screenlock_inactivity_timeout_interval" = "Tempo di inattività";
 
 
+// qr code stuff
+"qr_code" = "Codic QR";
 "qrscan_title" = "Scansiona codice QR";
 "qrscan_hint" = "Posiziona la camera sopra il codice QR";
 "qrscan_ask_join_group" = "Vuoi entrare nel gruppo \"%1$@\"?";

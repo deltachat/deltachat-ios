@@ -13,6 +13,7 @@
 "strict" = "Estricto";
 "open" = "Abrir";
 "delete" = "Eliminar";
+"info" = "Información";
 "update" = "Actualización";
 "emoji" = "Emoji";
 "attachment" = "Adjunto";
@@ -22,6 +23,7 @@
 "chat" = "Chat";
 "media" = "Multimedia";
 "main_menu" = "Menú principal";
+"start_chat" = "Comienza un chat";
 "show_password" = "Mostrar contraseña";
 "hide_password" = "Ocultar contraseña";
 "not_now" = "Ahora no";
@@ -29,6 +31,8 @@
 "one_moment" = "Un momento...";
 "done" = "Hecho";
 "undo" = "Deshacer";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Siguiente";
 "error" = "Error";
 "error_x" = "Error: %1$@";
 "error_no_network" = "Red no disponible.";
@@ -41,6 +45,8 @@
 "bad_email_address" = "Dirección de correo no válida.";
 "password" = "Contraseña";
 "now" = "Ahora";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Sea cuidadoso";
 // n_min_ago is deprecated, use n_minutes instead
 "n_min_ago" = "%d min";
 "today" = "Hoy";
@@ -145,6 +151,8 @@
 "title_share_location" = "Compartir ubicación con todos los miembros del grupo";
 "device_talk" = "Mensajes del dispositivo";
 "device_talk_subtitle" = "Mensajes generados localmente";
+"edit_contact" = "Editar contacto";
+
 "mute_for_one_hour" = "Silenciar por 1 hora";
 "mute_for_two_hours" = "Silenciar por 2 horas";
 "mute_for_one_day" = "Silenciar por 1 día";
@@ -299,6 +307,10 @@
 // TLS certificate checks
 "accept_invalid_hostnames" = "Aceptar nombres de host no válidos";
 "accept_invalid_certificates" = "Aceptar certificados no válidos";
+
+"used_settings" = "Ajustes usados:";
+"delete_account" = "Eliminar cuenta";
+"delete_account_ask" = "Estás seguro de que quieres eliminar los datos de tu cuenta?";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -467,6 +479,8 @@
 "screenlock_inactivity_timeout_interval" = "Tiempo de espera antes de bloquear por inactividad";
 
 
+// qr code stuff
+"qr_code" = "Código QR";
 "qrscan_title" = "Escanear código QR";
 "qrscan_hint" = "Coloque su cámara sobre el código QR";
 "qrscan_ask_join_group" = "¿Quieres unirte al grupo \"%1$@\"?";
