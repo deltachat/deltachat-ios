@@ -1,5 +1,17 @@
 # Delta Chat iOS Changelog
 
+## v0.960.0
+2019-11-24
+
+* allow picking a profile-image for yourself;
+  the image will be sent to recipients in one of the next updates:
+* streamline group-profile and advanced-loging-settings
+* show 'Automatic' for unset advanced-login-settings
+* show used settings below advanced-login-setting
+* add global option to disable notifications
+* update translations
+* various bug fixes
+
 ## v0.950.0
 2019-11-05
 
