@@ -123,6 +123,13 @@ class MailboxCoordinator: ChatViewCoordinator {
     override func showCameraViewController() {
         // ignore
     }
+
+    override func showChat(chatId: Int) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            navigationController.popToRootViewController(animated: false)
+            appDelegate.appCoordinator.showChat(chatId: chatId)
+        }
+    }
 }
 
 class QrViewCoordinator: Coordinator {
@@ -201,6 +208,14 @@ class SettingsCoordinator: Coordinator {
     func showBlockedContacts() {
         let blockedContactsController = BlockedContactsViewController()
         navigationController.pushViewController(blockedContactsController, animated: true)
+    }
+
+    func showContactRequests() {
+        let deaddropViewController = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
+        let deaddropCoordinator = MailboxCoordinator(dcContext: dcContext, navigationController: navigationController)
+        deaddropViewController.coordinator = deaddropCoordinator
+        childCoordinators.append(deaddropCoordinator)
+        navigationController.pushViewController(deaddropViewController, animated: true)
     }
 }
 

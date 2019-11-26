@@ -265,11 +265,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func showDeaddrop(_: Row) {
-        let deaddropViewController = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
-        let deaddropNavigationController = DcNavigationController(rootViewController: deaddropViewController)
-        let deaddropCoordinator = MailboxCoordinator(dcContext: dcContext, navigationController: deaddropNavigationController)
-        deaddropViewController.coordinator = deaddropCoordinator
-        self.coordinator?.navigationController.pushViewController(deaddropViewController, animated: true)
+        coordinator?.showContactRequests()
     }
 
     private func showClassicMail(_: Row) {
