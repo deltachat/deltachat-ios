@@ -168,8 +168,4 @@ class GroupNameController: UITableViewController, MediaPickerDelegate {
         self.tableView.endUpdates()
     }
 
-    func onDismiss() {
-        
-    }
-
 }

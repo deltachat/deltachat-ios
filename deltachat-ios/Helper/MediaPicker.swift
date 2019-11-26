@@ -4,9 +4,7 @@ import MobileCoreServices
 import ALCameraViewController
 
 protocol MediaPickerDelegate: class {
-    //func onMediaSelected(url: NSURL)
     func onImageSelected(image: UIImage)
-    func onDismiss()
 }
 
 class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -28,7 +26,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                                                                             if let image = image {
                                                                                 self?.delegate?.onImageSelected(image: image)
                                                                             }
-                                                                            self?.navigationController.dismiss(animated: true, completion: delegate.onDismiss)})
+                                                                            self?.navigationController.dismiss(animated: true, completion: nil)})
         self.delegate = delegate
         navigationController.present(controller, animated: true, completion: nil)
     }
@@ -47,7 +45,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                                                                 if let image = image {
                                                                     self?.delegate?.onImageSelected(image: image)
                                                                 }
-                                                                self?.navigationController.dismiss(animated: true, completion: self?.delegate?.onDismiss)})
+                                                                self?.navigationController.dismiss(animated: true, completion: nil)})
             self.delegate = delegate
             navigationController.present(cameraViewController, animated: true, completion: nil)
         } else {
