@@ -65,6 +65,7 @@ class AvatarSelectionCell: UITableViewCell {
         let touchListener = UILongPressGestureRecognizer(target: self, action: #selector(onBadgeTouched))
         touchListener.minimumPressDuration = 0
         badge.addGestureRecognizer(touchListener)
+        selectionStyle = .none
     }
 
     func onInitialsChanged(text: String?) {

@@ -33,7 +33,6 @@ class EditGroupViewController: UITableViewController {
         self.chat = chat
         self.avatarSelectionCell = AvatarSelectionCell(chat: chat)
         super.init(style: .grouped)
-        self.avatarSelectionCell.selectionStyle = .none
         self.avatarSelectionCell.hintLabel.text = String.localized("group_avatar")
         title = String.localized("menu_edit_group")
     }

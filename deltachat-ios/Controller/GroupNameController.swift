@@ -22,7 +22,6 @@ class GroupNameController: UITableViewController {
 
     lazy var avatarSelectionCell: AvatarSelectionCell = {
         let cell = AvatarSelectionCell(context: nil)
-        cell.selectionStyle = .none
         cell.hintLabel.text = String.localized("group_avatar")
         return cell
     }()    
