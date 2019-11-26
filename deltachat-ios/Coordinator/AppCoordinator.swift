@@ -368,6 +368,9 @@ class GroupChatDetailCoordinator: Coordinator {
         contactDetailController.coordinator = coordinator
         navigationController.pushViewController(contactDetailController, animated: true)
     }
+
+
+
 }
 
 class ChatViewCoordinator: NSObject, Coordinator {
@@ -567,12 +570,15 @@ class AddGroupMembersCoordinator: Coordinator {
 class GroupNameCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
+    let mediaPicker: MediaPicker
+
 
     private var childCoordinators: [Coordinator] = []
 
     init(dcContext: DcContext, navigationController: UINavigationController) {
         self.dcContext = dcContext
         self.navigationController = navigationController
+        self.mediaPicker = MediaPicker(navigationController: self.navigationController)
     }
 
     func showGroupChat(chatId: Int) {
@@ -583,6 +589,15 @@ class GroupNameCoordinator: Coordinator {
         navigationController.popToRootViewController(animated: false)
         navigationController.pushViewController(chatViewController, animated: true)
     }
+
+    func showPhotoPicker(delegate: MediaPickerDelegate) {
+          mediaPicker.showImageCropper(delegate: delegate)
+      }
+
+      func showCamera(delegate: MediaPickerDelegate) {
+          mediaPicker.showCamera(delegate: delegate)
+      }
+
 }
 
 class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
