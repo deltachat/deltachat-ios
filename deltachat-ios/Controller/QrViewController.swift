@@ -138,8 +138,11 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
     //QRCodeDelegate
     func handleQrCode(_ code: String) {
         //remove qr code scanner view
-        if let ctrl = navigationController {
-            ctrl.viewControllers.removeLast()
+        if let ctrl = navigationController,
+            let lastController = ctrl.viewControllers.last {
+                if type(of: lastController) === QrCodeReaderController.self {
+                    ctrl.viewControllers.removeLast()
+                }
         }
 
         let qrParsed: DcLot = self.dcContext.checkQR(qrCode: code)

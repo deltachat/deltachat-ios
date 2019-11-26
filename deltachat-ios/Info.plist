@@ -21,9 +21,14 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>chat.delta.qr</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>chat.delta</string>
+				<string>openpgp4fpr</string>
 			</array>
 		</dict>
 	</array>
