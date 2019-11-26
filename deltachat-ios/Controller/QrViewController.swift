@@ -77,7 +77,7 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
     }
 
     private lazy var progressAlert: UIAlertController = {
-        let alert = UIAlertController(title: String.localized("one_moment"), message: "TESTMESSAGE", preferredStyle: .alert)
+        let alert = UIAlertController(title: String.localized("one_moment"), message: nil, preferredStyle: .alert)
 
         let rect = CGRect(x: 0, y: 0, width: 25, height: 25)
         let activityIndicator = UIActivityIndicatorView(frame: rect)
