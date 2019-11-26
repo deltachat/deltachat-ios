@@ -15,7 +15,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         self.navigationController = navigationController
     }
 
-    func showImageCropper(delegate: MediaPickerDelegate) {
+    func showGallery(delegate: MediaPickerDelegate) {
         let croppingParameters = CroppingParameters(isEnabled: true,
                                                     allowResizing: true,
                                                     allowMoving: true,
