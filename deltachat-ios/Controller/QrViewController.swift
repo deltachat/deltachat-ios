@@ -77,7 +77,8 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
     }
 
     private lazy var progressAlert: UIAlertController = {
-        let alert = UIAlertController(title: String.localized("one_moment"), message: nil, preferredStyle: .alert)
+        var title = String.localized("one_moment")+"\n\n"
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
 
         let rect = CGRect(x: 0, y: 0, width: 25, height: 25)
         let activityIndicator = UIActivityIndicatorView(frame: rect)
@@ -97,7 +98,12 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
             let progressView = UIActivityIndicatorView(frame: rect)
             progressView.tintColor = .blue
             progressView.startAnimating()
+            progressView.translatesAutoresizingMaskIntoConstraints = false
             self.progressAlert.view.addSubview(progressView)
+            self.progressAlert.view.addConstraints([
+                progressView.constraintCenterXTo(self.progressAlert.view),
+                progressView.constraintAlignTopTo(self.progressAlert.view, paddingTop: 45)
+            ])
         })
     }
 
