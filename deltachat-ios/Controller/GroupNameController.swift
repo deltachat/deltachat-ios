@@ -1,6 +1,7 @@
 import UIKit
 
-class GroupNameController: UITableViewController {
+class GroupNameController: UITableViewController, MediaPickerDelegate {
+
     weak var coordinator: GroupNameCoordinator?
 
     var groupName: String = ""
@@ -8,6 +9,7 @@ class GroupNameController: UITableViewController {
     var doneButton: UIBarButtonItem!
     let contactIdsForGroup: Set<Int> // TODO: check if array is sufficient
     let groupContactIds: [Int]
+    var groupImage: UIImage?
 
     private let sectionGroupDetails = 0
     private let sectionGroupDetailsRowAvatar = 0
@@ -22,8 +24,8 @@ class GroupNameController: UITableViewController {
 
     lazy var avatarSelectionCell: AvatarSelectionCell = {
         let cell = AvatarSelectionCell(context: nil)
-        cell.selectionStyle = .none
         cell.hintLabel.text = String.localized("group_avatar")
+        cell.onAvatarTapped = onAvatarTapped
         return cell
     }()    
 
@@ -51,6 +53,11 @@ class GroupNameController: UITableViewController {
         let groupChatId = dc_create_group_chat(mailboxPointer, 0, groupName)
         for contactId in contactIdsForGroup {
             let success = dc_add_contact_to_chat(mailboxPointer, groupChatId, UInt32(contactId))
+
+            if let groupImage = groupImage, let dcContext = coordinator?.dcContext {
+                    AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: Int(groupChatId))
+            }
+
             if success == 1 {
                 logger.info("successfully added \(contactId) to group \(groupName)")
             } else {
@@ -129,4 +136,36 @@ class GroupNameController: UITableViewController {
         groupName = name
         doneButton.isEnabled = name.containsCharacters()
     }
+
+    private func onAvatarTapped() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let photoAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
+            let videoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
+            alert.addAction(photoAction)
+            alert.addAction(videoAction)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func galleryButtonPressed(_ action: UIAlertAction) {
+        coordinator?.showPhotoPicker(delegate: self)
+    }
+
+    private func cameraButtonPressed(_ action: UIAlertAction) {
+        coordinator?.showCamera(delegate: self)
+    }
+
+    func onImageSelected(image: UIImage) {
+        groupImage = image
+
+        avatarSelectionCell = AvatarSelectionCell(context: nil, with: groupImage)
+        avatarSelectionCell.hintLabel.text = String.localized("group_avatar")
+        avatarSelectionCell.onAvatarTapped = onAvatarTapped
+
+        self.tableView.beginUpdates()
+        let indexPath = IndexPath(row: sectionGroupDetailsRowAvatar, section: sectionGroupDetails)
+        self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
+        self.tableView.endUpdates()
+    }
+
 }

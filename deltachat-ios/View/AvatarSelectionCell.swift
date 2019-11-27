@@ -36,9 +36,11 @@ class AvatarSelectionCell: UITableViewCell {
         setupSubviews()
     }
 
-    init(context: DcContext?) {
+    init(context: DcContext?, with defaultImage: UIImage? = nil) {
         super.init(style: .default, reuseIdentifier: nil)
-        setAvatar(image: context?.getSelfAvatarImage(), with: self.defaultImage, downscale: downscaleDefaultImage)
+        setAvatar(image: context?.getSelfAvatarImage(),
+                  with: defaultImage ?? self.defaultImage,
+                  downscale: (defaultImage != nil) ? 1 : downscaleDefaultImage)
         setupSubviews()
     }
 
@@ -65,6 +67,7 @@ class AvatarSelectionCell: UITableViewCell {
         let touchListener = UILongPressGestureRecognizer(target: self, action: #selector(onBadgeTouched))
         touchListener.minimumPressDuration = 0
         badge.addGestureRecognizer(touchListener)
+        selectionStyle = .none
     }
 
     func onInitialsChanged(text: String?) {

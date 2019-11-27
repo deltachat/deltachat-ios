@@ -165,11 +165,8 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         self.tableView.endUpdates()
     }
 
-    func onDismiss() { }
-
     private func createPictureAndNameCell() -> AvatarSelectionCell {
         let cell = AvatarSelectionCell(context: dcContext)
-        cell.selectionStyle = .none
         return cell
     }
 
