@@ -69,7 +69,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         if indexPath.row == rowAvatar {
             return AvatarSelectionCell.cellSize
         }
-        return Constants.stdCellHeight
+        return Constants.defaultCellHeight
     }
     
     @objc func saveContactButtonPressed() {

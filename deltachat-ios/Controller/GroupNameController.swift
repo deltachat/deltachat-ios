@@ -94,8 +94,12 @@ class GroupNameController: UITableViewController, MediaPickerDelegate {
                 let displayName = contact.displayName
                 contactCell.nameLabel.text = displayName
                 contactCell.emailLabel.text = contact.email
-                contactCell.initialsLabel.text = Utils.getInitials(inputName: displayName)
-                contactCell.setColor(contact.color)
+                contactCell.avatar.setName(displayName)
+                contactCell.avatar.setColor(contact.color)
+                if let profileImage = contact.profileImage {
+                    contactCell.avatar.setImage(profileImage)
+                }
+                contactCell.setVerified(isVerified: contact.isVerified)
             }
             return cell
         }
@@ -108,10 +112,10 @@ class GroupNameController: UITableViewController, MediaPickerDelegate {
             if row == sectionGroupDetailsRowAvatar {
                 return AvatarSelectionCell.cellSize
             } else {
-                return Constants.stdCellHeight
+                return Constants.defaultCellHeight
             }
         } else {
-            return ContactCell.cellSize
+            return ContactCell.cellHeight
         }
     }
 

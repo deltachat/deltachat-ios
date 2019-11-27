@@ -16,8 +16,6 @@ class AvatarSelectionCell: UITableViewCell {
 
     lazy var badge: InitialsBadge = {
         let badge = InitialsBadge(size: badgeSize)
-        badge.layer.cornerRadius = badgeSize / 2
-        badge.clipsToBounds = true
         badge.setColor(UIColor.lightGray)
         return badge
     }()
@@ -40,7 +38,7 @@ class AvatarSelectionCell: UITableViewCell {
         super.init(style: .default, reuseIdentifier: nil)
         setAvatar(image: context?.getSelfAvatarImage(),
                   with: defaultImage ?? self.defaultImage,
-                  downscale: (defaultImage != nil) ? 1 : downscaleDefaultImage)
+                  downscale: (defaultImage != nil) ? nil : downscaleDefaultImage)
         setupSubviews()
     }
 

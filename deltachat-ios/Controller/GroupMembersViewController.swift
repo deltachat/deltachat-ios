@@ -123,6 +123,17 @@ class AddGroupMembersViewController: GroupMembersViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case sectionNewContact:
+            return Constants.defaultCellHeight
+        case sectionMemberList:
+            return ContactCell.cellHeight
+        default:
+            return Constants.defaultCellHeight
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case sectionNewContact:
@@ -305,6 +316,9 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
         return getNumberOfRowsForContactList()
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return ContactCell.cellHeight
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return getContactCell(cellForRowAt: indexPath)
@@ -375,8 +389,13 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
         let emailLabelFontSize = cell.emailLabel.font.pointSize
         let nameLabelFontSize = cell.nameLabel.font.pointSize
 
-        cell.initialsLabel.text = Utils.getInitials(inputName: displayName)
-        cell.setColor(contact.color)
+        cell.nameLabel.text = displayName
+        cell.emailLabel.text = contact.email
+        cell.avatar.setName(displayName)
+        cell.avatar.setColor(contact.color)
+        if let profileImage = contact.profileImage {
+            cell.avatar.setImage(profileImage)
+        }
         cell.setVerified(isVerified: contact.isVerified)
 
         if let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {

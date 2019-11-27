@@ -1,46 +1,21 @@
 import UIKit
 
-// TODO: integrate InitialsBadge in here
-
 protocol ContactCellDelegate: class {
     func onAvatarTapped(at index: Int)
 }
 
 class ContactCell: UITableViewCell {
 
-    public static let cellSize: CGFloat = 72
+    public static let cellHeight: CGFloat = 74.5
     weak var delegate: ContactCellDelegate?
     var rowIndex = -1
-    private let initialsLabelSize: CGFloat = 54
+    private let badgeSize: CGFloat = 54
     private let imgSize: CGFloat = 20
 
-    let avatar: UIView = {
-        let avatar = UIView()
-        return avatar
-    }()
-
-    lazy var imgView: UIImageView = {
-        let imgView = UIImageView()
-        let img = UIImage(named: "verified")
-        imgView.isHidden = true
-        imgView.image = img
-        imgView.bounds = CGRect(
-            x: 0,
-            y: 0,
-            width: imgSize, height: imgSize
-        )
-        return imgView
-    }()
-
-    lazy var initialsLabel: UILabel = {
-        let initialsLabel = UILabel()
-        initialsLabel.textAlignment = NSTextAlignment.center
-        initialsLabel.textColor = UIColor.white
-        initialsLabel.font = UIFont.systemFont(ofSize: 22)
-        let initialsLabelCornerRadius = (initialsLabelSize - 6) / 2
-        initialsLabel.layer.cornerRadius = initialsLabelCornerRadius
-        initialsLabel.clipsToBounds = true
-        return initialsLabel
+    lazy var avatar: InitialsBadge = {
+        let badge = InitialsBadge(size: badgeSize)
+        badge.setColor(UIColor.lightGray)
+        return badge
     }()
 
     let nameLabel: UILabel = {
@@ -92,28 +67,15 @@ class ContactCell: UITableViewCell {
     private func setupSubviews() {
         let margin: CGFloat = 10
 
-        initialsLabel.translatesAutoresizingMaskIntoConstraints = false
         avatar.translatesAutoresizingMaskIntoConstraints = false
-        initialsLabel.widthAnchor.constraint(equalToConstant: initialsLabelSize - 6).isActive = true
-        initialsLabel.heightAnchor.constraint(equalToConstant: initialsLabelSize - 6).isActive = true
-        // avatar.backgroundColor = .red
-
-        avatar.widthAnchor.constraint(equalToConstant: initialsLabelSize).isActive = true
-        avatar.heightAnchor.constraint(equalToConstant: initialsLabelSize).isActive = true
-
-        avatar.addSubview(initialsLabel)
         contentView.addSubview(avatar)
 
-        initialsLabel.topAnchor.constraint(equalTo: avatar.topAnchor, constant: 3).isActive = true
-        initialsLabel.leadingAnchor.constraint(equalTo: avatar.leadingAnchor, constant: 3).isActive = true
-        initialsLabel.trailingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: -3).isActive = true
-
-        avatar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: margin).isActive = true
-        avatar.center.y = contentView.center.y
-        avatar.center.x += initialsLabelSize / 2
-        avatar.topAnchor.constraint(equalTo: contentView.topAnchor, constant: margin).isActive = true
-        avatar.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -margin).isActive = true
-        initialsLabel.center = avatar.center
+        contentView.addConstraints([
+            avatar.constraintWidthTo(badgeSize),
+            avatar.constraintHeightTo(badgeSize),
+            avatar.constraintAlignLeadingTo(contentView, paddingLeading: badgeSize / 4),
+            avatar.constraintCenterYTo(contentView),
+        ])
 
         deliveryStatusIndicator.translatesAutoresizingMaskIntoConstraints = false
         deliveryStatusIndicator.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -144,11 +106,6 @@ class ContactCell: UITableViewCell {
         myStackView.addArrangedSubview(toplineStackView)
         myStackView.addArrangedSubview(bottomLineStackView)
 
-        avatar.addSubview(imgView)
-
-        imgView.center.x = avatar.center.x + (avatar.frame.width / 2) + imgSize
-        imgView.center.y = avatar.center.y + (avatar.frame.height / 2) + imgSize
-
         if delegate != nil {
             let tap = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
             avatar.addGestureRecognizer(tap)
@@ -156,29 +113,22 @@ class ContactCell: UITableViewCell {
     }
 
     func setVerified(isVerified: Bool) {
-        imgView.isHidden = !isVerified
+        avatar.setVerified(isVerified)
     }
 
     func setImage(_ img: UIImage) {
-        if let resizedImg = img.scaleDownImage(toMax: initialsLabelSize - 6) {
-            let attachment = NSTextAttachment()
-            attachment.image = resizedImg
-            initialsLabel.attributedText = NSAttributedString(attachment: attachment)
-        }
+        avatar.setImage(img)
     }
 
     func resetBackupImage() {
-        initialsLabel.text = ""
-        setColor(UIColor.clear)
+        avatar.setColor(UIColor.clear)
+        avatar.setName("")
     }
 
     func setBackupImage(name: String, color: UIColor) {
         let text = Utils.getInitials(inputName: name)
-
-        initialsLabel.textAlignment = .center
-        initialsLabel.text = text
-
-        setColor(color)
+        avatar.setColor(color)
+        avatar.setName(text)
     }
 
     func setUnreadMessageCounter(_ count: Int) {
@@ -223,7 +173,7 @@ class ContactCell: UITableViewCell {
     }
 
     func setColor(_ color: UIColor) {
-        initialsLabel.backgroundColor = color
+        avatar.setColor(color)
     }
 
     @objc func onAvatarTapped() {

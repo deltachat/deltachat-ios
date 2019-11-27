@@ -99,6 +99,13 @@ class GroupChatDetailViewController: UIViewController {
 
 extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == sectionMembers {
+            return ContactDetailHeader.cellHeight
+        }
+        return 0
+    }
+    
     func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == sectionMembers {
             let header = ContactDetailHeader()
@@ -134,6 +141,26 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         }
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = indexPath.section
+        let row = indexPath.row
+        switch section {
+        case sectionMembers:
+            switch row {
+            case sectionMembersRowAddMember:
+                return Constants.defaultCellHeight
+            case sectionMembersRowJoinQR:
+                return Constants.defaultCellHeight
+            default:
+                return ContactCell.cellHeight
+            }
+        case sectionLeaveGroup:
+            return Constants.defaultCellHeight
+        default:
+            return 0
+        }
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
@@ -161,9 +188,12 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                     let displayName = contact.displayName
                     contactCell.nameLabel.text = displayName
                     contactCell.emailLabel.text = contact.email
-                    contactCell.initialsLabel.text = Utils.getInitials(inputName: displayName)
-                    contactCell.setColor(contact.color)
-                    contactCell.setVerified(isVerified: chat.isVerified)
+                    contactCell.avatar.setName(displayName)
+                    contactCell.avatar.setColor(contact.color)
+                    if let profileImage = contact.profileImage {
+                        contactCell.avatar.setImage(profileImage)
+                    }
+                    contactCell.setVerified(isVerified: contact.isVerified)
                 }
                 return cell
             }
