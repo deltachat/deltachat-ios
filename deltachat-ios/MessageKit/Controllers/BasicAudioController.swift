@@ -65,6 +65,18 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
     public init(messageCollectionView: MessagesCollectionView) {
         self.messageCollectionView = messageCollectionView
         super.init()
+        let audioSession = AVAudioSession.sharedInstance()
+        _ = try? audioSession.setCategory(AVAudioSession.Category.playback, options: [.duckOthers, .defaultToSpeaker])
+        _ = try? audioSession.setActive(true)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(audioRouteChanged),
+                                               name: AVAudioSession.routeChangeNotification,
+                                               object: AVAudioSession.sharedInstance())
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: - Methods
@@ -221,4 +233,15 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
         stopAnyOngoingPlaying()
     }
 
+    // MARK: - AVAudioSessionRouteChange handler
+    @objc func audioRouteChanged(note: Notification) {
+      if let userInfo = note.userInfo {
+        if let reason = userInfo[AVAudioSessionRouteChangeReasonKey] as? Int {
+            if reason == AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue {
+            // headphones plugged out
+            resumeSound()
+          }
+        }
+      }
+    }
 }
