@@ -47,6 +47,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if let params = url.queryParameters, let token = params["code"] {
             NotificationCenter.default.post(name: NSNotification.Name("oauthLoginApproved"), object: nil, userInfo: ["token": token])
         }
+
+        // Hack to format url properly
+        let urlString = url.absoluteString
+                       .replacingOccurrences(of: "openpgp4fpr", with: "OPENPGP4FPR", options: .literal, range: nil)
+                       .replacingOccurrences(of: "%23", with: "#", options: .literal, range: nil)
+
+        self.appCoordinator.handleQRCode(urlString)
         return true
     }
 

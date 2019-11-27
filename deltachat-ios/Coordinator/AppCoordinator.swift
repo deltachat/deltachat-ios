@@ -97,6 +97,15 @@ class AppCoordinator: NSObject, Coordinator {
         navController.pushViewController(chatVC, animated: true)
     }
 
+    func handleQRCode(_ code: String) {
+        showTab(index: qrTab)
+        if let navController = qrController as? UINavigationController,
+            let topViewController = navController.topViewController,
+            let qrViewController = topViewController as? QrViewController {
+            qrViewController.handleQrCode(code)
+        }
+    }
+
     func presentLoginController() {
         window.rootViewController = loginController
         window.makeKeyAndVisible()
