@@ -233,7 +233,7 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
         stopAnyOngoingPlaying()
     }
 
-    // MARK: - AVAudioSessionRouteChange handler
+    // MARK: - AVAudioSession.routeChangeNotification handler
     @objc func audioRouteChanged(note: Notification) {
       if let userInfo = note.userInfo {
         if let reason = userInfo[AVAudioSessionRouteChangeReasonKey] as? Int {
