@@ -146,6 +146,21 @@ class NewChatViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = indexPath.section
+        if section == sectionNew {
+           return Constants.defaultCellHeight
+        } else if section == sectionImportedContacts {
+            if deviceContactAccessGranted {
+                return ContactCell.cellHeight
+            } else {
+                return Constants.defaultCellHeight
+            }
+        } else {
+            return ContactCell.cellHeight
+        }
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
@@ -333,8 +348,13 @@ class NewChatViewController: UITableViewController {
         let emailLabelFontSize = cell.emailLabel.font.pointSize
         let nameLabelFontSize = cell.nameLabel.font.pointSize
 
-        cell.initialsLabel.text = Utils.getInitials(inputName: displayName)
-        cell.setColor(contact.color)
+        cell.nameLabel.text = displayName
+        cell.emailLabel.text = contact.email
+        cell.avatar.setName(displayName)
+        cell.avatar.setColor(contact.color)
+        if let profileImage = contact.profileImage {
+            cell.avatar.setImage(profileImage)
+        }
         cell.setVerified(isVerified: contact.isVerified)
 
         if let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {

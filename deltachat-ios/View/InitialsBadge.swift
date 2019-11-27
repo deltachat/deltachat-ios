@@ -79,8 +79,8 @@ class InitialsBadge: UIView {
 
     func setName(_ name: String) {
         label.text = Utils.getInitials(inputName: name)
-        label.isHidden = false
-        imageView.isHidden = true
+        label.isHidden = name.isEmpty
+        imageView.isHidden = !name.isEmpty
     }
 
     func setImage(_ image: UIImage, downscale: CGFloat? = nil) {

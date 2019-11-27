@@ -111,6 +111,13 @@ class ContactDetailViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return ContactDetailHeader.cellHeight
+        }
+        return 0
+    }
+    
     override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let header = ContactDetailHeader()
