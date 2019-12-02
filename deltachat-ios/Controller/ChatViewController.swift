@@ -893,7 +893,7 @@ extension ChatViewController: MessagesLayoutDelegate {
     private func showClipperOptions() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let photoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: photoButtonPressed(_:))
-        let videoAction = PhotoPickerAlertAction(title: String.localized("video"), style: .default, handler: videoButtonPressed(_:))
+        let videoAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: videoButtonPressed(_:))
 
         alert.addAction(photoAction)
         alert.addAction(videoAction)
