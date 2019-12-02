@@ -14,7 +14,14 @@ extension ChatViewController: MediaSendHandler {
     }
 }
 
+extension ChatViewController: MediaPickerDelegate {
+    func onImageSelected(image: UIImage) {
+        sendImage(image)
+    }
+}
+
 class ChatViewController: MessagesViewController {
+
     var dcContext: DcContext
     weak var coordinator: ChatViewCoordinator?
 
@@ -729,6 +736,24 @@ extension ChatViewController: MessagesDataSource {
         })
     }
 
+    private func sendImage(_ image: UIImage) {
+        DispatchQueue.global().async {
+            if let compressedImage = image.dcCompress() {
+                // at this point image is compressed by 85% by default
+                let pixelSize = compressedImage.imageSizeInPixel()
+                let width = Int32(exactly: pixelSize.width)!
+                let height =  Int32(exactly: pixelSize.height)!
+                let path = Utils.saveImage(image: compressedImage)
+                let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
+                dc_msg_set_file(msg, path, "image/jpeg")
+                dc_msg_set_dimension(msg, width, height)
+                dc_send_msg(mailboxPointer, UInt32(self.chatId), msg)
+                // cleanup
+                dc_msg_unref(msg)
+            }
+        }
+    }
+
     func isLastSectionVisible() -> Bool {
         guard !messageList.isEmpty else { return false }
 
@@ -877,7 +902,7 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
 
     private func photoButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showCameraViewController()
+        coordinator?.showCameraViewController(delegate: self)
     }
 
     private func videoButtonPressed(_ action: UIAlertAction) {

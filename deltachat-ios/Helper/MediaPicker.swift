@@ -31,12 +31,16 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         navigationController.present(controller, animated: true, completion: nil)
     }
 
-    func showCamera(delegate: MediaPickerDelegate) {
+    func showCamera(delegate: MediaPickerDelegate, allowCropping: Bool) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let croppingParameters = CroppingParameters(isEnabled: true,
-            allowResizing: true,
-            allowMoving: true,
-            minimumSize: CGSize(width: 70, height: 70))
+            var croppingParameters: CroppingParameters = CroppingParameters()
+            if allowCropping {
+                croppingParameters = CroppingParameters(isEnabled: true,
+                allowResizing: true,
+                allowMoving: true,
+                minimumSize: CGSize(width: 70, height: 70))
+            }
+
             let cameraViewController = CameraViewController(croppingParameters: croppingParameters,
                                                             allowsLibraryAccess: false,
                                                             allowsSwapCameraOrientation: true,
@@ -55,6 +59,10 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
             }))
             navigationController.present(alert, animated: true, completion: nil)
         }
+    }
+
+    func showCamera(delegate: MediaPickerDelegate) {
+        showCamera(delegate: delegate, allowCropping: true)
     }
 
 }

@@ -129,7 +129,7 @@ class MailboxCoordinator: ChatViewCoordinator {
         // ignore for now
     }
 
-    override func showCameraViewController() {
+    override func showCameraViewController(delegate: MediaPickerDelegate) {
         // ignore
     }
 
@@ -389,11 +389,13 @@ class ChatViewCoordinator: NSObject, Coordinator {
     var chatViewController: ChatViewController!
 
     var childCoordinators: [Coordinator] = []
+    let mediaPicker: MediaPicker
 
     init(dcContext: DcContext, navigationController: UINavigationController, chatId: Int) {
         self.dcContext = dcContext
         self.navigationController = navigationController
         self.chatId = chatId
+        self.mediaPicker = MediaPicker(navigationController: self.navigationController)
     }
 
     func showChatDetail(chatId: Int) {
@@ -437,24 +439,6 @@ class ChatViewCoordinator: NSObject, Coordinator {
         navigationController.pushViewController(chatViewController, animated: true)
     }
 
-    private func sendImage(_ image: UIImage) {
-        DispatchQueue.global().async {
-            if let compressedImage = image.dcCompress() {
-                // at this point image is compressed by 85% by default
-                let pixelSize = compressedImage.imageSizeInPixel()
-                let width = Int32(exactly: pixelSize.width)!
-                let height =  Int32(exactly: pixelSize.height)!
-                let path = Utils.saveImage(image: compressedImage)
-                let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
-                dc_msg_set_file(msg, path, "image/jpeg")
-                dc_msg_set_dimension(msg, width, height)
-                dc_send_msg(mailboxPointer, UInt32(self.chatId), msg)
-                // cleanup
-                dc_msg_unref(msg)
-            }
-        }
-    }
-
     private func sendVideo(url: NSURL) {
         let msg = dc_msg_new(mailboxPointer, DC_MSG_VIDEO)
         if let path = url.relativePath?.cString(using: .utf8) { //absoluteString?.cString(using: .utf8) {
@@ -472,27 +456,10 @@ class ChatViewCoordinator: NSObject, Coordinator {
         }
     }
 
-    func showCameraViewController() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraViewController = CameraViewController { [weak self] image, _ in
-                self?.navigationController.dismiss(animated: true, completion: {
-                    self?.handleMediaMessageSuccess()
-                })
-                if let image = image {
-                    self?.sendImage(image)
-                }
-            }
-
-            navigationController.present(cameraViewController, animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: String.localized("chat_camera_unavailable"), message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
-                self.navigationController.dismiss(animated: true, completion: nil)
-            }))
-            navigationController.present(alert, animated: true, completion: nil)
-        }
-
+    func showCameraViewController(delegate: MediaPickerDelegate) {
+        mediaPicker.showCamera(delegate: delegate, allowCropping: false)
     }
+
     func showVideoLibrary() {
         if PHPhotoLibrary.authorizationStatus() != .authorized {
             PHPhotoLibrary.requestAuthorization { status in
