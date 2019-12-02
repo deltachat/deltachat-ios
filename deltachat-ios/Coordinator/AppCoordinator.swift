@@ -437,14 +437,6 @@ class ChatViewCoordinator: NSObject, Coordinator {
         navigationController.pushViewController(chatViewController, animated: true)
     }
 
-    private func handleMediaMessageSuccess() {
-        if let chatViewController = self.navigationController.visibleViewController as? MediaSendHandler {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                chatViewController.onSuccess()
-            }
-        }
-    }
-
     func showCameraViewController(delegate: MediaPickerDelegate) {
         mediaPicker.showCamera(delegate: delegate, allowCropping: false)
     }
