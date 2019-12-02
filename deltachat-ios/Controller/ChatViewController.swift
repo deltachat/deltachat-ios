@@ -892,11 +892,11 @@ extension ChatViewController: MessagesLayoutDelegate {
 
     private func showClipperOptions() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: videoButtonPressed(_:))
         let photoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: photoButtonPressed(_:))
-        let videoAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: videoButtonPressed(_:))
 
         alert.addAction(photoAction)
-        alert.addAction(videoAction)
+        alert.addAction(galleryAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
