@@ -5,6 +5,17 @@ import ALCameraViewController
 
 protocol MediaPickerDelegate: class {
     func onImageSelected(image: UIImage)
+    func onImageSelected(url: NSURL)
+    func onVideoSelected(url: NSURL)
+}
+
+extension MediaPickerDelegate {
+    func onImageSelected(url: NSURL) {
+        logger.debug("image selected: ", url.path ?? "unknown")
+    }
+    func onVideoSelected(url: NSURL) {
+        logger.debug("video selected: ", url.path ?? "unknown")
+    }
 }
 
 class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -15,7 +26,40 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         self.navigationController = navigationController
     }
 
-    func showGallery(delegate: MediaPickerDelegate) {
+
+    func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
+        if PHPhotoLibrary.authorizationStatus() != .authorized {
+            PHPhotoLibrary.requestAuthorization { status in
+                DispatchQueue.main.async {
+                    [weak self] in
+                    switch status {
+                    case  .denied, .notDetermined, .restricted:
+                        print("denied")
+                    case .authorized:
+                        self?.presentPhotoVideoLibrary(delegate: delegate)
+                    }
+                }
+            }
+        } else {
+            presentPhotoVideoLibrary(delegate: delegate)
+        }
+    }
+
+    private func presentPhotoVideoLibrary(delegate: MediaPickerDelegate) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let videoPicker = UIImagePickerController()
+            videoPicker.title = String.localized("gallery")
+            videoPicker.delegate = self
+            videoPicker.sourceType = .photoLibrary
+            videoPicker.mediaTypes = [kUTTypeMovie as String,
+                                      kUTTypeVideo as String,
+                                      kUTTypeImage as String]
+            self.delegate = delegate
+            navigationController.present(videoPicker, animated: true, completion: nil)
+        }
+    }
+
+    func showPhotoGallery(delegate: MediaPickerDelegate) {
         let croppingParameters = CroppingParameters(isEnabled: true,
                                                     allowResizing: true,
                                                     allowMoving: true,
@@ -63,6 +107,15 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
 
     func showCamera(delegate: MediaPickerDelegate) {
         showCamera(delegate: delegate, allowCropping: true)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL {
+            self.delegate?.onVideoSelected(url: videoUrl)
+        } else if let imageUrl = info[UIImagePickerController.InfoKey.imageURL] as? NSURL {
+            self.delegate?.onImageSelected(url: imageUrl)
+        }
+        navigationController.dismiss(animated: true, completion: nil)
     }
 
 }

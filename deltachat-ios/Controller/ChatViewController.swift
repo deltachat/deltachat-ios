@@ -15,6 +15,14 @@ extension ChatViewController: MediaSendHandler {
 }
 
 extension ChatViewController: MediaPickerDelegate {
+    func onVideoSelected(url: NSURL) {
+        sendVideo(url: url)
+    }
+
+    func onImageSelected(url: NSURL) {
+        sendImage(url: url)
+    }
+
     func onImageSelected(image: UIImage) {
         sendImage(image)
     }
@@ -754,6 +762,23 @@ extension ChatViewController: MessagesDataSource {
         }
     }
 
+    private func sendVideo(url: NSURL) {
+        let msg = dc_msg_new(mailboxPointer, DC_MSG_VIDEO)
+        if let path = url.relativePath?.cString(using: .utf8) { //absoluteString?.cString(using: .utf8) {
+            dc_msg_set_file(msg, path, "video/mov")
+            dc_send_msg(mailboxPointer, UInt32(chatId), msg)
+            dc_msg_unref(msg)
+        }
+    }
+
+    private func sendImage(url: NSURL) {
+        if let data = try? Data(contentsOf: url as URL) {
+            if let image = UIImage(data: data) {
+                sendImage(image)
+            }
+        }
+    }
+
     func isLastSectionVisible() -> Bool {
         guard !messageList.isEmpty else { return false }
 
@@ -892,8 +917,8 @@ extension ChatViewController: MessagesLayoutDelegate {
 
     private func showClipperOptions() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: videoButtonPressed(_:))
-        let photoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: photoButtonPressed(_:))
+        let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
+        let photoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
 
         alert.addAction(photoAction)
         alert.addAction(galleryAction)
@@ -901,12 +926,12 @@ extension ChatViewController: MessagesLayoutDelegate {
         self.present(alert, animated: true, completion: nil)
     }
 
-    private func photoButtonPressed(_ action: UIAlertAction) {
+    private func cameraButtonPressed(_ action: UIAlertAction) {
         coordinator?.showCameraViewController(delegate: self)
     }
 
-    private func videoButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showVideoLibrary()
+    private func galleryButtonPressed(_ action: UIAlertAction) {
+        coordinator?.showPhotoVideoLibrary(delegate: self)
     }
 
 }
