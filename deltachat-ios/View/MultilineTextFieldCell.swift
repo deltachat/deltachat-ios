@@ -18,6 +18,7 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 16)
+        textField.backgroundColor = .none
         return textField
     }()
 
