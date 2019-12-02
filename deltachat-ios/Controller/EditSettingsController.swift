@@ -25,9 +25,10 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
     private var childCoordinators: Coordinator?
 
-    private lazy var statusCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized("pref_default_status_label"), placeholder: String.localized("pref_default_status_label"))
-        cell.setText(text: DcConfig.selfstatus ?? nil)
+    private lazy var statusCell: MultilineTextFieldCell = {
+        let cell = MultilineTextFieldCell(description: String.localized("pref_default_status_label"),
+                                          multilineText: DcConfig.selfstatus,
+                                          placeholder: String.localized("pref_default_status_label"))
         return cell
     }()
 
@@ -104,8 +105,15 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == section1 && indexPath.row == section1Avatar {
-            return AvatarSelectionCell.cellSize
+        if indexPath.section == section1 {
+            switch indexPath.row {
+            case section1Avatar:
+                return AvatarSelectionCell.cellSize
+            case section1Status:
+                return MultilineTextFieldCell.cellHeight
+            default:
+                 return Constants.defaultCellHeight
+            }
         } else {
             return Constants.defaultCellHeight
         }

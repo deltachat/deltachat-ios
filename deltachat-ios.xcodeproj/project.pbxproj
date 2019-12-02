@@ -11,6 +11,7 @@
 		300C50A1234BDAB800F8AE22 /* TextMediaMessageSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300C50A0234BDAB800F8AE22 /* TextMediaMessageSizeCalculator.swift */; };
 		30149D9322F21129003C12B5 /* QrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30149D9222F21129003C12B5 /* QrViewController.swift */; };
 		3022E6BE22E8768800763272 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3022E6C022E8768800763272 /* InfoPlist.strings */; };
+		30260CA7238F02F700D8D52C /* MultilineTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */; };
 		3040F45E234DFBC000FA34D5 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040F45D234DFBC000FA34D5 /* Audio.swift */; };
 		3040F460234F419400FA34D5 /* BasicAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040F45F234F419300FA34D5 /* BasicAudioController.swift */; };
 		3040F462234F550300FA34D5 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040F461234F550300FA34D5 /* AudioPlayerView.swift */; };
@@ -181,6 +182,7 @@
 		3022E6D122E8769E00763272 /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3022E6D222E8769F00763272 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3022E6D322E876A100763272 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextFieldCell.swift; sourceTree = "<group>"; };
 		3040F45D234DFBC000FA34D5 /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		3040F45F234F419300FA34D5 /* BasicAudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAudioController.swift; sourceTree = "<group>"; };
 		3040F461234F550300FA34D5 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
@@ -708,6 +710,7 @@
 				70B8882D2091B8550074812E /* ContactCell.swift */,
 				78ED839321D5AF8A00243125 /* QrCodeView.swift */,
 				78ED838221D5379000243125 /* TextFieldCell.swift */,
+				30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */,
 				78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */,
 				789E879C21D6DF86003ED1C5 /* ProgressHud.swift */,
 				AE38B31722672DFC00EC37A1 /* ActionCell.swift */,
@@ -1110,6 +1113,7 @@
 				305961E12346125100C80F33 /* LocationItem.swift in Sources */,
 				305961E72346125100C80F33 /* AccessoryPosition.swift in Sources */,
 				7A451DBE1FB4AD0700177250 /* Wrapper.swift in Sources */,
+				30260CA7238F02F700D8D52C /* MultilineTextFieldCell.swift in Sources */,
 				305961DE2346125100C80F33 /* MessageType.swift in Sources */,
 				AE851ACE227CA54400ED86F0 /* InitialsBadge.swift in Sources */,
 				305961DA2346125100C80F33 /* MediaItem.swift in Sources */,
