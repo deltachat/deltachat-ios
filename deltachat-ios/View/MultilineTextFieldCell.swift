@@ -26,21 +26,17 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
         placeholderLabel.font = self.textField.font
         placeholderLabel.textColor = UIColor.lightGray
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
-        placeholderLabel.isHidden = !textField.text.isEmpty
         return placeholderLabel
     }()
 
-
-    init(description: String, placeholder: String) {
+    init(description: String, multilineText: String?, placeholder: String) {
         super.init(style: .value1, reuseIdentifier: nil)
         self.descriptionField.text = "\(description):"
+        self.textField.text = multilineText
         self.placeholder.text = placeholder
+        self.placeholder.isHidden = !textField.text.isEmpty
         selectionStyle = .none
         setupViews()
-    }
-
-    convenience init(descriptionID: String, placeholder: String) {
-        self.init(description: String.localized(descriptionID), placeholder: placeholder)
     }
 
     required init?(coder _: NSCoder) {

@@ -27,8 +27,8 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
     private lazy var statusCell: MultilineTextFieldCell = {
         let cell = MultilineTextFieldCell(description: String.localized("pref_default_status_label"),
+                                          multilineText: DcConfig.selfstatus,
                                           placeholder: String.localized("pref_default_status_label"))
-        cell.setText(text: DcConfig.selfstatus ?? nil)
         return cell
     }()
 
