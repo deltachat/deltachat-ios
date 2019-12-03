@@ -759,11 +759,10 @@ extension ChatViewController: MessagesDataSource {
     }
 
     private func sendVideo(url: NSURL) {
-        let msg = dc_msg_new(mailboxPointer, DC_MSG_VIDEO)
-        if let path = url.relativePath?.cString(using: .utf8) { //absoluteString?.cString(using: .utf8) {
-            dc_msg_set_file(msg, path, "video/mov")
-            dc_send_msg(mailboxPointer, UInt32(chatId), msg)
-            dc_msg_unref(msg)
+        DispatchQueue.global().async {
+            let msg = DcMsg(viewType: DC_MSG_VIDEO)
+            msg.setFile(filepath: url.relativePath, mimeType: "video/mov")
+            msg.sendInChat(id: self.chatId)
         }
     }
 
