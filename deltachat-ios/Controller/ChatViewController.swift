@@ -913,9 +913,9 @@ extension ChatViewController: MessagesLayoutDelegate {
     private func showClipperOptions() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
-        let photoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
+        let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
 
-        alert.addAction(photoAction)
+        alert.addAction(cameraAction)
         alert.addAction(galleryAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
