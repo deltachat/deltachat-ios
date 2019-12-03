@@ -749,15 +749,11 @@ extension ChatViewController: MessagesDataSource {
             if let compressedImage = image.dcCompress() {
                 // at this point image is compressed by 85% by default
                 let pixelSize = compressedImage.imageSizeInPixel()
-                let width = Int32(exactly: pixelSize.width)!
-                let height =  Int32(exactly: pixelSize.height)!
                 let path = Utils.saveImage(image: compressedImage)
-                let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
-                dc_msg_set_file(msg, path, "image/jpeg")
-                dc_msg_set_dimension(msg, width, height)
-                dc_send_msg(mailboxPointer, UInt32(self.chatId), msg)
-                // cleanup
-                dc_msg_unref(msg)
+                let msg = DcMsg(viewType: DC_MSG_IMAGE)
+                msg.setFile(filepath: path, mimeType: "image/jpeg")
+                msg.setDimension(width: pixelSize.width, height: pixelSize.height)
+                msg.sendInChat(id: self.chatId)
             }
         }
     }
