@@ -40,7 +40,6 @@ class ChatListController: UIViewController {
         super.viewWillAppear(animated)
         getChatList()
         updateTitle()
-
     }
 
     override func viewDidAppear(_ animated: Bool) {

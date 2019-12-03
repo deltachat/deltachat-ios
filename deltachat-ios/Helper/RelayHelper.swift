@@ -7,7 +7,7 @@ class RelayHelper {
 
     private init() {
         guard RelayHelper.dcContext != nil else {
-            fatalError("Error - you must call setContext before accessing RelayHelper.shared")
+            fatalError("Error - you must call RelayHelper.setup() before accessing RelayHelper.shared")
         }
     }
 
