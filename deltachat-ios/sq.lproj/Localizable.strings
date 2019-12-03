@@ -262,9 +262,7 @@
 "welcome_intro3_message" = "Dërgoni mesazhe brenda sekondash.\nNdërfaqe e shpejtë.";
 "welcome_intro4_headline" = "I fuqishëm";
 "welcome_intro4_message" = "Fjalosje, figura, video, mesazhe audio të pakufizuara, dhe më tepër. I aftë për multi-klient.";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_headline" = "I lirë";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_message" = "Delta Chat është përgjithmonë i lirë.\nMe burim të hapur. Pa reklama. Pa pajtime. Pa kyçje nga tregtues.";
 "welcome_intro6_headline" = "I fshehtëzuar";
 "welcome_intro6_message" = "Fshehtëzuar me krejt algoritmet e zakonshëm. Mesazhet mbeten në shërbyesit tuaj.";
@@ -622,3 +620,5 @@
 "a11y_remove_account_btn_label" = "Hiqe llogarinë";
 "a11y_message_context_menu_btn_label" = "Veprime mesazhesh";
 "a11y_background_preview_label" = "Paraparje sfondi";
+
+// Translators: These strings are only used on iOS

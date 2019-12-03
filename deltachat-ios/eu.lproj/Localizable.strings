@@ -262,9 +262,7 @@
 "welcome_intro3_message" = "Bidali mezuak segundotan.\nInterfaze azkarra";
 "welcome_intro4_headline" = "Ahaltsua";
 "welcome_intro4_message" = "Txatak, irudiak, bideoak, audio-mezuak eta gehiago mugarik gabe. Hainbat bezeroekin bateragarria.";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_headline" = "Librea";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_message" = "Delta Txat doan da betirako. Librea. Iragarkirik gabe. Harpidetzarik gabe. Hornitzaile bakarrera lotu gabe.";
 "welcome_intro6_headline" = "Zifratua";
 "welcome_intro6_message" = "Zifratuta ohiko algoritmoekin. Mezuak zure zerbitzarian gordetzen dira.";
@@ -623,3 +621,5 @@
 "a11y_remove_account_btn_label" = "Kendu kontua";
 "a11y_message_context_menu_btn_label" = "Mezu-ekintzak";
 "a11y_background_preview_label" = "Atzealdearen aurrebista";
+
+// Translators: These strings are only used on iOS

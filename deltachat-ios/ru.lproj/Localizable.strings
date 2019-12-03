@@ -13,6 +13,7 @@
 "strict" = "Строгий";
 "open" = "Открыть";
 "delete" = "Удалить";
+"info" = "Информация";
 "update" = "Обновить";
 "emoji" = "Эмодзи";
 "attachment" = "Вложение";
@@ -22,6 +23,7 @@
 "chat" = "Чат";
 "media" = "Медиафайлы";
 "main_menu" = "Главное меню";
+"start_chat" = "Начать чат";
 "show_password" = "Показать пароль";
 "hide_password" = "Скрыть пароль";
 "not_now" = "Не сейчас";
@@ -29,6 +31,8 @@
 "one_moment" = "Один момент…";
 "done" = "Выполнено";
 "undo" = "Отмена";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Дальше";
 "error" = "Ошибка";
 "error_x" = "Ошибка: %1$@";
 "error_no_network" = "Сеть недоступна.";
@@ -41,6 +45,8 @@
 "bad_email_address" = "Неправильный адрес эл.почты.";
 "password" = "Пароль";
 "now" = "Сейчас";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Внимание";
 // n_min_ago is deprecated, use n_minutes instead
 "n_min_ago" = "%d мин";
 "today" = "Сегодня";
@@ -145,6 +151,8 @@
 "title_share_location" = "Делиться местоположением со всеми участниками группы";
 "device_talk" = "Сообщения устройства";
 "device_talk_subtitle" = "Локально сгенерированные сообщения";
+"edit_contact" = "Изменить контакт";
+
 "mute_for_one_hour" = "1 час";
 "mute_for_two_hours" = "На 2 часа";
 "mute_for_one_day" = "На 1 день";
@@ -254,9 +262,7 @@
 "welcome_intro3_message" = "Доставляет сообщения за секунды.\nБыстрый интерфейс.";
 "welcome_intro4_headline" = "Мощный";
 "welcome_intro4_message" = "Безлимитные чаты, отправка фотографий, видео, голосовых сообщений и многое другое. Поддерживает множество устройств.";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_headline" = "Бесплатный";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_message" = "Delta Chat бесплатен навсегда. С открытым исходным кодом. Без рекламы. Без платных подписок. Без привязки к поставщику услуг.";
 "welcome_intro6_headline" = "Зашифрованный";
 "welcome_intro6_message" = "Шифровка общераспространёнными алгоритмами. Сообщения остаются на ваших серверах.";
@@ -299,6 +305,10 @@
 // TLS certificate checks
 "accept_invalid_hostnames" = "Принимать сертификаты с недействительным именем хоста";
 "accept_invalid_certificates" = "Принимать недействительные сертификаты";
+
+"used_settings" = "Используемые настройки:";
+"delete_account" = "Удалить аккаунт";
+"delete_account_ask" = "Вы уверены, что хотите удалить данные учётной записи?";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -467,6 +477,8 @@
 "screenlock_inactivity_timeout_interval" = "Время неактивности";
 
 
+// qr code stuff
+"qr_code" = "QR-код";
 "qrscan_title" = "Сканировать QR код";
 "qrscan_hint" = "Наведите камеру на QR код";
 "qrscan_ask_join_group" = "Присоединиться к группе «%1$@»?";
@@ -609,3 +621,5 @@
 "a11y_remove_account_btn_label" = "Удалить аккаунт";
 "a11y_message_context_menu_btn_label" = "Действия с сообщением";
 "a11y_background_preview_label" = "Предпросмотр фона";
+
+// Translators: These strings are only used on iOS

@@ -165,9 +165,7 @@
 "welcome_intro2_message" = "Delta Chatは自分のﾒｰﾙｻｰﾊﾞｰを設定して使用します｡つまりはﾁｬｯﾄ風のﾒｰﾙｸﾗｲｱﾝﾄｱﾌﾟﾘｹｰｼｮﾝであると謂う事です｡";
 "welcome_intro3_headline" = "高速";
 "welcome_intro4_headline" = "強力";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_headline" = "自由で";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_message" = "Delta Chatはあの世の終わりまで無料です｡またｿﾌﾄｳｪｱのｿｰｽｺｰﾄﾞを公開しています｡寄付によって開発されているため広告等は混入していません｡";
 "welcome_intro6_headline" = "暗号通信";
 "welcome_intro6_message" = "ﾒｯｾｰｼﾞは一般的な方式で暗号化され自分のｻｰﾊﾞｰに保存されます｡";

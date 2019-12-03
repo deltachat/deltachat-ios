@@ -191,9 +191,7 @@
 "welcome_intro3_message" = "Envie mensagens em segundos. \n Interface rápida.";
 "welcome_intro4_headline" = "Potente";
 "welcome_intro4_message" = "chats, imagens, vídeos, mensagens de áudio e muito mais. Capacidade multi-cliente.";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_headline" = "Grátis";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_message" = "O Delta Chat é gratuito para sempre. Código aberto. Sem anúncios. Nenhuma assinatura Nenhum bloqueio de fornecedor.";
 "welcome_intro6_headline" = "Encriptado";
 "welcome_intro6_message" = "Encriptado com todos os algoritmos comuns. Mensagens ficam no seu servidor.";

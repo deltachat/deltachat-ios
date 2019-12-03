@@ -203,9 +203,7 @@
 "welcome_intro3_message" = "Envia missatges en segons.\nInterfície ràpida.";
 "welcome_intro4_headline" = "Potent";
 "welcome_intro4_message" = "Xats il·limitats, imatges, vídeos, missatges de so i més coses. Capacitat de multi-client.";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_headline" = "Lliure";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_message" = "Delta Chat serà sempre lliure. Sense anuncis. Sense subscripció. Sense bloqueig de proveïdor.";
 "welcome_intro6_headline" = "Encriptat";
 "welcome_intro6_message" = "Encriptat amb els algoritmes habituals. Els missatges només es guarden al vostres servidors.";

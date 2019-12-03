@@ -234,9 +234,7 @@
 "welcome_intro3_message" = "Skubbe beskeder på sekunder.\nHurtig grænseflade.";
 "welcome_intro4_headline" = "Kraftfuld";
 "welcome_intro4_message" = "Ubegrænsede samtaler, billeder, video, tale beskeder med mere. Multi klient stand.";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_headline" = "Fri";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_message" = "Delta Chat er fri for altid. Åben kildekode. Ingen reklamer. Intet abonnement. Ingen leverandør låsning.";
 "welcome_intro6_headline" = "Krypteret";
 "welcome_intro6_message" = "Krypteret med alle almindelige algoritmer. Beskeder bliver på  serveren.";

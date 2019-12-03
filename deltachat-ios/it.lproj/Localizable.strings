@@ -262,9 +262,7 @@
 "welcome_intro3_message" = "Messaggi “push” in pochi secondi. Interfaccia immediata.";
 "welcome_intro4_headline" = "Potente";
 "welcome_intro4_message" = "Conversazioni illimitate, immagini, video, messaggi audio e altro ancora. Possibilità di utilizzo con più client.";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_headline" = "Libera";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_message" = "Delta Chat sarà gratuita per sempre. Open source. Senza annunci. Nessuna registrazione. Nessun vincolo.";
 "welcome_intro6_headline" = "Sicura";
 "welcome_intro6_message" = "Cifratura con tutti gli algoritmi più usati. I messaggi rimangono sui vostri server.";
@@ -623,3 +621,4 @@
 "a11y_remove_account_btn_label" = "Rimuovi account";
 "a11y_message_context_menu_btn_label" = "Azioni messaggio";
 "a11y_background_preview_label" = "Anteprima sfondo";
+

@@ -185,9 +185,7 @@
 "welcome_intro3_message" = "Доставляє повідомлення за лічені секунди.\nШвидкий інтерфейс.";
 "welcome_intro4_headline" = "Потужний";
 "welcome_intro4_message" = "Безлімітні чати, відправка фотографій, відео, голосових повідомлень і багато іншого. Підтримує безліч клієнтів.";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_headline" = "Безкоштовний";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_message" = "Delta Chat безкоштовний і так буде завжди. Має відкритий початковий код. Ніякої реклами. Ніяких платних підписок. Немає прив\'язки до постачальника.";
 "welcome_intro6_headline" = "Зашифрований";
 "welcome_intro6_message" = "Зашифрований з використанням популярних алгоритмів. Повідомлення залишаються на ваших серверах.";

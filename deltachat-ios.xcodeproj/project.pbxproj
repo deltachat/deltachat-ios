@@ -852,6 +852,7 @@
 				uk,
 				ja,
 				hu,
+				gl,
 			);
 			mainGroup = 7A9FB1371FB061E2001FEA36;
 			productRefGroup = 7A9FB1411FB061E2001FEA36 /* Products */;

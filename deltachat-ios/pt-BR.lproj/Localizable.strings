@@ -236,9 +236,7 @@
 "welcome_intro3_message" = "Envie mensagens em segundos.\nInterface rápida.";
 "welcome_intro4_headline" = "Potente";
 "welcome_intro4_message" = "Sem limites de conversas, imagens, vídeos, áudios, mensagens, etc. Multicliente.";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_headline" = "Livre";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_message" = "O Delta Chat será livre para sempre. Código aberto. Sem publicidade. Sem conta própria. Sem bloqueio do fornecedor.";
 "welcome_intro6_headline" = "Criptografado";
 "welcome_intro6_message" = "Criptografia com algoritmos padrão. As mensagens ficam no servidor de e-mail.";

@@ -235,9 +235,7 @@
 "welcome_intro3_message" = "Push-mesajlar saniyədə. \nSabit interfeys.";
 "welcome_intro4_headline" = "Güclü";
 "welcome_intro4_message" = "Limitsiz çatlar, şəkillər, videolar, audio mesajlar və daha çox. Multi-müştəri qabiliyyətlidir.";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_headline" = "Свободное";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_message" = "Delta Chat əbədi olaraq azaddır. Açıq mənbə. Reklam yoxdur. Abunə haqqı yoxdur. Satıcı kilidi yox.";
 "welcome_intro6_headline" = "Şifrələndi";
 "welcome_intro6_message" = "Bütün ümumi alqoritmlər ilə şifrələnmişdir. Mesajlarınız serverlərinizdə qalır.";

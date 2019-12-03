@@ -262,9 +262,7 @@
 "welcome_intro3_message" = "Push-Nachrichten in Sekunden.\nSchnelles Interface.";
 "welcome_intro4_headline" = "Leistungsstark";
 "welcome_intro4_message" = "Unbegrenzte Chats, Bilder, Videos, Sprachnachrichten und mehr. Multi-Client-fähig.";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_headline" = "Frei";
-// Translators: "free" as in freedom here, not "free" as in "free beer"
 "welcome_intro5_message" = "Open Source. Keine Werbung. Kein Abo. Keine Bindung an die Mobilfunknummer.";
 "welcome_intro6_headline" = "Verschlüsselt";
 "welcome_intro6_message" = "Verschlüsselung mit allen gängigen Verfahren. Die Nachrichten bleiben auf Ihren Servern.";
@@ -623,3 +621,4 @@
 "a11y_remove_account_btn_label" = "E-Mail-Konto löschen";
 "a11y_message_context_menu_btn_label" = "Nachrichtaktionen";
 "a11y_background_preview_label" = "Vorschau für Hintergrundbild";
+
