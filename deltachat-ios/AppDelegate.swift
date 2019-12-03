@@ -19,6 +19,7 @@ enum ApplicationState {
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     private let dcContext = DcContext()
     var appCoordinator: AppCoordinator!
+    var relayHelper: RelayHelper!
     // static let appCoordinatorDeprecated = AppCoordinatorDeprecated()
     static var progress: Float = 0 // TODO: delete
     static var lastErrorString: String?
@@ -77,6 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         open()
         appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
         appCoordinator.start()
+        RelayHelper.setup(dcContext)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         start()
         setStockTranslations()
