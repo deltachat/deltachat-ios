@@ -505,9 +505,6 @@ class ChatViewController: MessagesViewController {
                           actionTitle: String.localized("menu_forward"),
                           actionHandler: { _ in
                             RelayHelper.sharedInstance.forward(to: self.chatId)
-                            self.dismiss(animated: true, completion: nil)},
-                          cancelHandler: { _ in
-                            RelayHelper.sharedInstance.cancel()
                             self.dismiss(animated: true, completion: nil)})
     }
 }
