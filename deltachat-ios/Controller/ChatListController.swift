@@ -24,6 +24,7 @@ class ChatListController: UIViewController {
     init(dcContext: DcContext, showArchive: Bool) {
         self.dcContext = dcContext
         self.showArchive = showArchive
+        dcContext.updateDeviceChats()
         super.init(nibName: nil, bundle: nil)
     }
 

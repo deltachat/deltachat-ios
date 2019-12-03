@@ -37,6 +37,7 @@ class DcContext {
         return chatlist
     }
 
+    @discardableResult
     func createChat(contactId: Int) -> Int {
         return Int(dc_create_chat_by_contact_id(contextPointer, UInt32(contactId)))
     }
@@ -156,6 +157,15 @@ class DcContext {
 
     func saveChatAvatarImage(chatId: Int, path: String) {
         dc_set_chat_profile_image(contextPointer, UInt32(chatId), path)
+    }
+
+    @discardableResult
+    func addDeviceMessage(label: String, msg: DcMsg) -> Int {
+        return Int(dc_add_device_msg(contextPointer, label.cString(using: .utf8), msg.cptr))
+    }
+
+    func updateDeviceChats() {
+        dc_update_device_chats(contextPointer)
     }
 }
 
@@ -502,8 +512,16 @@ class DcMsg: MessageType {
         messagePointer = dc_get_msg(mailboxPointer, UInt32(id))
     }
 
+    init(type: Int32) {
+        messagePointer = dc_msg_new(mailboxPointer, type)
+    }
+
     deinit {
         dc_msg_unref(messagePointer)
+    }
+
+    var cptr: OpaquePointer? {
+        return messagePointer
     }
 
     lazy var sender: SenderType = {
@@ -630,10 +648,19 @@ class DcMsg: MessageType {
     }
 
     var text: String? {
-        guard let cString = dc_msg_get_text(messagePointer) else { return nil }
-        let swiftString = String(cString: cString)
-        dc_str_unref(cString)
-        return swiftString
+        set {
+            if let newValue = newValue {
+                dc_msg_set_text(messagePointer, newValue.cString(using: .utf8))
+            } else {
+                dc_msg_set_text(messagePointer, nil)
+            }
+        }
+        get {
+            guard let cString = dc_msg_get_text(messagePointer) else { return nil }
+            let swiftString = String(cString: cString)
+            dc_str_unref(cString)
+            return swiftString
+        }
     }
 
     var viewtype: MessageViewType? {
