@@ -34,6 +34,14 @@ class ChatListController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getChatList()
+
+        if RelayHelper.sharedInstance.isForwarding() {
+            title = String.localized("forward_to")
+        } else {
+            title = showArchive ? String.localized("chat_archived_chats_title") :
+                String.localized("pref_chats")
+        }
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -72,11 +80,6 @@ class ChatListController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = String.localized("pref_chats")
-        if showArchive {
-            title = String.localized("chat_archived_chats_title")
-        }
 
         newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
         newButton.tintColor = DcColors.primary
