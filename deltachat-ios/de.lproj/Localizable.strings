@@ -19,6 +19,10 @@
 "attachment" = "Anhang";
 "back" = "Zurück";
 "close" = "Schließen";
+"forward" = "Weiterleiten";
+"archive" = "Archivieren";
+"unarchive" = "Dearchivieren";
+"mute" = "Stumm";
 "save" = "Speichern";
 "chat" = "Chat";
 "media" = "Medien";
@@ -209,6 +213,7 @@
 "chat_archived_label" = "Archiviert";
 "chat_no_messages" = "Keine Nachrichten.";
 "chat_self_talk_subtitle" = "Nachrichten, die ich mir selber geschickt habe";
+"saved_messages" = "Gespeichertes";
 "chat_contact_request" = "Kontaktanfrage";
 "chat_no_contact_requests" = "Keine Kontaktanfragen.\n\nWenn normale E-Mails hier erscheinen sollen, müssen Sie die entsprechende erweiterte Einstellung ändern.";
 "retry_send" = "Nachricht erneut senden";

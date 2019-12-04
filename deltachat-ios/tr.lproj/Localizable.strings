@@ -19,6 +19,9 @@
 "attachment" = "İlişik";
 "back" = "Geri";
 "close" = "Kapat";
+"forward" = "İlet";
+"archive" = "Arşivle";
+"mute" = "Sessize al";
 "save" = "Kaydet";
 "chat" = "Sohbet";
 "media" = "Ortam";
@@ -46,7 +49,7 @@
 "password" = "Parola";
 "now" = "Şimdi";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
-"danger" = "Tehlike";
+"danger" = "Tehlikeli";
 // n_min_ago is deprecated, use n_minutes instead
 "n_min_ago" = "%d dk";
 "today" = "Bugün";
@@ -151,6 +154,7 @@
 "title_share_location" = "Tüm grup üyeleriyle konum paylaş";
 "device_talk" = "Aygıt iletileri";
 "device_talk_subtitle" = "Yerel olarak oluşturulan iletiler";
+"device_talk_explain" = "Bu sohbetteki iletiler, Delta Chat uygulamanız tarafından yerel olarak oluşturulur. Üreticiler, uygulama güncelleştirmeleri ve kullanım sırasındaki sorunlar hakkında bilgilendirmek için onu kullanır.";
 "edit_contact" = "Kişiyi düzenle";
 
 "mute_for_one_hour" = "1 saatliğine sessize al";
@@ -209,6 +213,8 @@
 "chat_archived_label" = "Arşivlendi";
 "chat_no_messages" = "İleti yok.";
 "chat_self_talk_subtitle" = "Kendime gönderdiğim iletiler";
+"saved_messages" = "Kaydedilen iletiler";
+"saved_messages_explain" = "• Kolay erişim için iletileri buraya iletin\n\n• Notlar ya da sesli notlar alın\n\n• Onları kaydetmek için ortamlar iliştirin";
 "chat_contact_request" = "İletişim isteği";
 "chat_no_contact_requests" = "İletişim isteği yok.\n\nKlasik e-postaları burada iletişim isteği olarak görmek istiyorsanız, ilgili ayarı uygulama ayarlarında değiştirebilirsiniz.";
 "retry_send" = "İletiyi göndermeyi yeniden dene";

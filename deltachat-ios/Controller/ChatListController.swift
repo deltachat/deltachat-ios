@@ -236,16 +236,16 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             // see https://forums.developer.apple.com/thread/115030
         }
 
-        var title = String.localized("menu_archive_chat")
+        var title = String.localized("archive")
         if showArchive {
-            title = String.localized("menu_unarchive_chat")
+            title = String.localized("unarchive")
         }
         let archive = UITableViewRowAction(style: .destructive, title: title) { [unowned self] _, _ in
             self.dcContext.archiveChat(chatId: chatId, archive: !self.showArchive)
         }
         archive.backgroundColor = UIColor.lightGray
 
-        let delete = UITableViewRowAction(style: .destructive, title: String.localized("menu_delete_chat")) { [unowned self] _, _ in
+        let delete = UITableViewRowAction(style: .destructive, title: String.localized("delete")) { [unowned self] _, _ in
             self.showDeleteChatConfirmationAlert(chatId: chatId)
         }
         delete.backgroundColor = UIColor.red

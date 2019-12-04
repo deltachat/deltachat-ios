@@ -287,7 +287,7 @@ class ChatViewController: MessagesViewController {
         menuItems = [
             UIMenuItem(title: String.localized("info"), action: #selector(MessageCollectionViewCell.messageInfo(_:))),
             UIMenuItem(title: String.localized("delete"), action: #selector(MessageCollectionViewCell.messageDelete(_:))),
-            UIMenuItem(title: String.localized("menu_forward"), action: #selector(MessageCollectionViewCell.messageForward(_:)))
+            UIMenuItem(title: String.localized("forward"), action: #selector(MessageCollectionViewCell.messageForward(_:)))
         ]
 
         UIMenuController.shared.menuItems = menuItems

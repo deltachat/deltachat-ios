@@ -151,6 +151,8 @@
 "title_share_location" = "Jepua vendndodhjen krejt anëtarëve të grupit";
 "device_talk" = "Mesazhe Pajisjeje";
 "device_talk_subtitle" = "Mesazhe të prodhuar lokalisht";
+"device_talk_explain" = "Mesazhet në këtë fjalosje prodhohen lokalisht nga aplikacioni juaj Delta Chat. Krijuesit e tij e përdorin për t’ju bërë të ditur përditësime dhe probleme gjatë përdorimit.";
+"device_talk_welcome_message" = "Mirë se vini te Delta Chat! – Delta Chat duket si aplikacione të tjerë popullorë për shkëmbim mesazhesh, por nuk përmban kontroll të centralizuar, s’ju gjurmon apo shet te ente të mëdha ju, shokët tuaj, kolegët apo familjen tuaj.\n\nTeknikisht, Delta Chat është një aplikacion email me një ndërfaqe moderne. Email me rroba të reja, nëse doni kështu 👻\n\nPërdoreni Delta Chat-in me cilindo prej miliarda vetash: thjesht përdorni adresat e tyre email. Marrësit s’ka nevojë të instalojnë Delta Chat-in, të vizitojnë sajte apo të regjistrohen diku - por sigurisht, nëse duan, mund t’i drejtoni te 👉 https://get.delta.chat";
 "edit_contact" = "Përpunoni kontaktin";
 
 "mute_for_one_hour" = "Heshtoji për 1 orë";
@@ -209,6 +211,8 @@
 "chat_archived_label" = "Arkivuar";
 "chat_no_messages" = "S\’ka mesazhe.";
 "chat_self_talk_subtitle" = "Mesazhe që i kam dërguar vetes";
+"saved_messages" = "Mesazhe të ruajtur";
+"saved_messages_explain" = "• Përcillini mesazhet këtu për përdorim të lehtë\n\n• Mbani shënime ose kujtesa zanore\n\n• Bashkëngjitni media për t’i ruajtur";
 "chat_contact_request" = "Kërkesë kontakti";
 "chat_no_contact_requests" = "S\’ka kërkesa kontakti.\n\nNëse doni që email-e klasikë të shfaqen këtu si kërkesa kontakti, mund të ndryshoni rregullimin përkatës te rregullimet e aplikacionit.";
 "retry_send" = "Riprovo të dërgosh mesazhin";
