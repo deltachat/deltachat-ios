@@ -374,7 +374,7 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
         let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
 
         switch message.kind {
-        case .text, .attributedText, .emoji, .photo, .photoText, .videoText, .fileText:
+        case .text, .attributedText, .emoji, .photo, .photoText, .videoText, .fileText, .audio, .video:
             selectedIndexPathForMenu = indexPath
             return true
         default:
@@ -386,7 +386,18 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
         if isSectionReservedForTypingIndicator(indexPath.section) {
             return false
         }
-        return (action == NSSelectorFromString("copy:"))
+
+        guard let messagesDataSource = messagesCollectionView.messagesDataSource else {
+            fatalError(MessageKitError.nilMessagesDataSource)
+        }
+        let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
+
+        switch message.kind {
+        case .text, .emoji, .attributedText, .fileText, .photoText, .videoText:
+            return (action == NSSelectorFromString("copy:"))
+        default:
+            return false
+        }
     }
 
     open func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
@@ -401,14 +412,9 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
             pasteBoard.string = text
         case .attributedText(let attributedText):
             pasteBoard.string = attributedText.string
-        case .photo(let mediaItem):
-            pasteBoard.image = mediaItem.image ?? mediaItem.placeholderImage
         case .photoText(let mediaItem), .videoText(let mediaItem):
-            pasteBoard.image = mediaItem.image ?? mediaItem.placeholderImage
             pasteBoard.string = mediaItem.text?.string
-            pasteBoard.url = mediaItem.url
         case .fileText(let mediaItem):
-            pasteBoard.url = mediaItem.url
             pasteBoard.string = mediaItem.text?.string
         default:
             break

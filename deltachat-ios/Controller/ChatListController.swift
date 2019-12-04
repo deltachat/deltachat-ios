@@ -21,6 +21,11 @@ class ChatListController: UIViewController {
 
     private var newButton: UIBarButtonItem!
 
+    lazy var cancelButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
+        return button
+    }()
+
     init(dcContext: DcContext, showArchive: Bool) {
         self.dcContext = dcContext
         self.showArchive = showArchive
@@ -35,6 +40,7 @@ class ChatListController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getChatList()
+        updateTitle()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -74,11 +80,6 @@ class ChatListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = String.localized("pref_chats")
-        if showArchive {
-            title = String.localized("chat_archived_chats_title")
-        }
-
         newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
         newButton.tintColor = DcColors.primary
         navigationItem.rightBarButtonItem = newButton
@@ -99,6 +100,11 @@ class ChatListController: UIViewController {
         coordinator?.showNewChatController()
     }
 
+    @objc func cancelButtonPressed() {
+        RelayHelper.sharedInstance.cancel()
+        updateTitle()
+    }
+
     private func getNumberOfArchivedChats() -> Int {
         let chatList = dcContext.getChatlist(flags: DC_GCL_ARCHIVED_ONLY, queryString: nil, queryId: 0)
         return chatList.length
@@ -111,6 +117,19 @@ class ChatListController: UIViewController {
         }
         chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
         chatTable.reloadData()
+    }
+
+    private func updateTitle() {
+        if RelayHelper.sharedInstance.isForwarding() {
+            title = String.localized("forward_to")
+            if !showArchive {
+                navigationItem.setLeftBarButton(cancelButton, animated: true)
+            }
+        } else {
+            title = showArchive ? String.localized("chat_archived_chats_title") :
+                String.localized("pref_chats")
+            navigationItem.setLeftBarButton(nil, animated: true)
+        }
     }
 }
 

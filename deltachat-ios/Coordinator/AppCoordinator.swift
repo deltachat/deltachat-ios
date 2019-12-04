@@ -396,6 +396,10 @@ class ChatViewCoordinator: NSObject, Coordinator {
         self.chatId = chatId
     }
 
+    func navigateBack() {
+        navigationController.popViewController(animated: true)
+    }
+
     func showChatDetail(chatId: Int) {
         let chat = DcChat(id: chatId)
         switch chat.chatType {

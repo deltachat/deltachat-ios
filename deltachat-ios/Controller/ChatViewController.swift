@@ -150,6 +150,10 @@ class ChatViewController: MessagesViewController {
                 }
             }
         }
+
+        if RelayHelper.sharedInstance.isForwarding() {
+            askToForwardMessage()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -267,7 +271,8 @@ class ChatViewController: MessagesViewController {
 
         menuItems = [
             UIMenuItem(title: String.localized("info"), action: #selector(MessageCollectionViewCell.messageInfo(_:))),
-            UIMenuItem(title: String.localized("delete"), action: #selector(MessageCollectionViewCell.messageDelete(_:)))
+            UIMenuItem(title: String.localized("delete"), action: #selector(MessageCollectionViewCell.messageDelete(_:))),
+            UIMenuItem(title: String.localized("menu_forward"), action: #selector(MessageCollectionViewCell.messageForward(_:)))
         ]
 
         UIMenuController.shared.menuItems = menuItems
@@ -433,7 +438,8 @@ class ChatViewController: MessagesViewController {
 
     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         if action == NSSelectorFromString("messageInfo:") ||
-            action == NSSelectorFromString("messageDelete:") {
+            action == NSSelectorFromString("messageDelete:") ||
+            action == NSSelectorFromString("messageForward:") {
             return true
         } else {
             return super.collectionView(collectionView, canPerformAction: action, forItemAt: indexPath, withSender: sender)
@@ -454,39 +460,55 @@ class ChatViewController: MessagesViewController {
             let msg = messageList[indexPath.section]
             logger.info("message: delete \(msg.messageId)")
             askToDeleteMessage(id: msg.id)
+
+        case NSSelectorFromString("messageForward:"):
+            let msg = messageList[indexPath.section]
+            RelayHelper.sharedInstance.setForwardMessage(messageId: msg.id)
+            coordinator?.navigateBack()
         default:
             super.collectionView(collectionView, performAction: action, forItemAt: indexPath, withSender: sender)
         }
     }
 
+    private func confirmationAlert(title: String, actionTitle: String, actionStyle: UIAlertAction.Style = .default, actionHandler: @escaping ((UIAlertAction) -> Void), cancelHandler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title,
+                                             message: nil,
+                                             preferredStyle: .actionSheet)
+               alert.addAction(UIAlertAction(title: actionTitle, style: actionStyle, handler: actionHandler))
+
+               alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: cancelHandler ?? { _ in
+                   self.dismiss(animated: true, completion: nil)
+               }))
+               present(alert, animated: true, completion: nil)
+    }
+
     private func askToChatWith(email: String) {
-        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), email),
-                                      message: nil,
-                                      preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-            let contactId = self.dcContext.createContact(name: "", email: email)
-            let chatId = self.dcContext.createChat(contactId: contactId)
-            self.coordinator?.showChat(chatId: chatId)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        present(alert, animated: true, completion: nil)
+        confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), email),
+                          actionTitle: String.localized("start_chat"),
+                          actionHandler: { _ in
+                            self.dismiss(animated: true, completion: nil)
+                            let contactId = self.dcContext.createContact(name: "", email: email)
+                            let chatId = self.dcContext.createChat(contactId: contactId)
+                            self.coordinator?.showChat(chatId: chatId)})
     }
 
     private func askToDeleteMessage(id: Int) {
-        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_delete_messages"), 1),
-                                         message: nil,
-                                         preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { _ in
-            self.dcContext.deleteMessage(msgId: id)
-            self.dismiss(animated: true, completion: nil)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        present(alert, animated: true, completion: nil)
+        confirmationAlert(title: String.localized("delete"), actionTitle: String.localized("delete"), actionStyle: .destructive,
+                          actionHandler: { _ in
+                            self.dcContext.deleteMessage(msgId: id)
+                            self.dismiss(animated: true, completion: nil)})
+    }
+
+    private func askToForwardMessage() {
+        let chat = DcChat(id: self.chatId)
+        confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
+                          actionTitle: String.localized("menu_forward"),
+                          actionHandler: { _ in
+                            RelayHelper.sharedInstance.forward(to: self.chatId)
+                            self.dismiss(animated: true, completion: nil)},
+                          cancelHandler: { _ in
+                            self.dismiss(animated: false, completion: nil)
+                            self.coordinator?.navigateBack()})
     }
 }
 
@@ -1087,6 +1109,19 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 
 // MARK: - MessageCollectionViewCell
 extension MessageCollectionViewCell {
+
+    @objc func messageForward(_ sender: Any?) {
+        // Get the collectionView
+       if let collectionView = self.superview as? UICollectionView {
+           // Get indexPath
+           if let indexPath = collectionView.indexPath(for: self) {
+               // Trigger action
+               collectionView.delegate?.collectionView?(collectionView,
+                   performAction: #selector(MessageCollectionViewCell.messageForward(_:)),
+                   forItemAt: indexPath, withSender: sender)
+            }
+        }
+    }
 
 
     @objc func messageDelete(_ sender: Any?) {

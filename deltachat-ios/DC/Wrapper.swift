@@ -88,6 +88,10 @@ class DcContext {
         dc_delete_msgs(contextPointer, [UInt32(msgId)], 1)
     }
 
+    func forwardMessage(with msgId: Int, to chat: Int) {
+        dc_forward_msgs(contextPointer, [UInt32(msgId)], 1, UInt32(chat))
+    }
+
     func initiateKeyTransfer() -> String? {
         if let cString = dc_initiate_key_transfer(self.contextPointer) {
             let swiftString = String(cString: cString)
