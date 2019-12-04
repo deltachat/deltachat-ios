@@ -512,6 +512,21 @@ class DcArray {
 class DcMsg: MessageType {
     private var messagePointer: OpaquePointer?
 
+    /**
+        viewType: one of
+            DC_MSG_TEXT,
+            DC_MSG_IMAGE,
+            DC_MSG_GIF,
+            DC_MSG_STICKER,
+            DC_MSG_AUDIO,
+            DC_MSG_VOICE,
+            DC_MSG_VIDEO,
+            DC_MSG_FILE
+     */
+    init(viewType: Int32) {
+        messagePointer = dc_msg_new(mailboxPointer, viewType)
+    }
+
     init(id: Int) {
         messagePointer = dc_get_msg(mailboxPointer, UInt32(id))
     }
@@ -748,6 +763,14 @@ class DcMsg: MessageType {
         return nil
     }
 
+    func setFile(filepath: String?, mimeType: String?) {
+        dc_msg_set_file(messagePointer, filepath, mimeType)
+    }
+
+    func setDimension(width: CGFloat, height: CGFloat) {
+        dc_msg_set_dimension(messagePointer, Int32(exactly: width)!, Int32(exactly: height)!)
+    }
+
     var filesize: Int {
         return Int(dc_msg_get_filebytes(messagePointer))
     }
@@ -791,6 +814,10 @@ class DcMsg: MessageType {
     func createChat() -> DcChat {
         let chatId = dc_create_chat_by_msg_id(mailboxPointer, UInt32(id))
         return DcChat(id: Int(chatId))
+    }
+
+    func sendInChat(id: Int) {
+        dc_send_msg(mailboxPointer, UInt32(id), messagePointer)
     }
 }
 

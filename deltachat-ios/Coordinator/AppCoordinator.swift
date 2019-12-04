@@ -129,7 +129,7 @@ class MailboxCoordinator: ChatViewCoordinator {
         // ignore for now
     }
 
-    override func showCameraViewController() {
+    override func showCameraViewController(delegate: MediaPickerDelegate) {
         // ignore
     }
 
@@ -240,7 +240,7 @@ class EditSettingsCoordinator: Coordinator {
     }
 
     func showPhotoPicker(delegate: MediaPickerDelegate) {
-        mediaPicker.showGallery(delegate: delegate)
+        mediaPicker.showPhotoGallery(delegate: delegate)
     }
 
     func showCamera(delegate: MediaPickerDelegate) {
@@ -378,8 +378,6 @@ class GroupChatDetailCoordinator: Coordinator {
         navigationController.pushViewController(contactDetailController, animated: true)
     }
 
-
-
 }
 
 class ChatViewCoordinator: NSObject, Coordinator {
@@ -389,11 +387,13 @@ class ChatViewCoordinator: NSObject, Coordinator {
     var chatViewController: ChatViewController!
 
     var childCoordinators: [Coordinator] = []
+    let mediaPicker: MediaPicker
 
     init(dcContext: DcContext, navigationController: UINavigationController, chatId: Int) {
         self.dcContext = dcContext
         self.navigationController = navigationController
         self.chatId = chatId
+        self.mediaPicker = MediaPicker(navigationController: self.navigationController)
     }
 
     func navigateBack() {
@@ -441,101 +441,12 @@ class ChatViewCoordinator: NSObject, Coordinator {
         navigationController.pushViewController(chatViewController, animated: true)
     }
 
-    private func sendImage(_ image: UIImage) {
-        DispatchQueue.global().async {
-            if let compressedImage = image.dcCompress() {
-                // at this point image is compressed by 85% by default
-                let pixelSize = compressedImage.imageSizeInPixel()
-                let width = Int32(exactly: pixelSize.width)!
-                let height =  Int32(exactly: pixelSize.height)!
-                let path = Utils.saveImage(image: compressedImage)
-                let msg = dc_msg_new(mailboxPointer, DC_MSG_IMAGE)
-                dc_msg_set_file(msg, path, "image/jpeg")
-                dc_msg_set_dimension(msg, width, height)
-                dc_send_msg(mailboxPointer, UInt32(self.chatId), msg)
-                // cleanup
-                dc_msg_unref(msg)
-            }
-        }
+    func showCameraViewController(delegate: MediaPickerDelegate) {
+        mediaPicker.showCamera(delegate: delegate, allowCropping: false)
     }
 
-    private func sendVideo(url: NSURL) {
-        let msg = dc_msg_new(mailboxPointer, DC_MSG_VIDEO)
-        if let path = url.relativePath?.cString(using: .utf8) { //absoluteString?.cString(using: .utf8) {
-            dc_msg_set_file(msg, path, "video/mov")
-            dc_send_msg(mailboxPointer, UInt32(chatId), msg)
-            dc_msg_unref(msg)
-        }
-    }
-
-    private func handleMediaMessageSuccess() {
-        if let chatViewController = self.navigationController.visibleViewController as? MediaSendHandler {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                chatViewController.onSuccess()
-            }
-        }
-    }
-
-    func showCameraViewController() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraViewController = CameraViewController { [weak self] image, _ in
-                self?.navigationController.dismiss(animated: true, completion: {
-                    self?.handleMediaMessageSuccess()
-                })
-                if let image = image {
-                    self?.sendImage(image)
-                }
-            }
-
-            navigationController.present(cameraViewController, animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: String.localized("chat_camera_unavailable"), message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
-                self.navigationController.dismiss(animated: true, completion: nil)
-            }))
-            navigationController.present(alert, animated: true, completion: nil)
-        }
-
-    }
-    func showVideoLibrary() {
-        if PHPhotoLibrary.authorizationStatus() != .authorized {
-            PHPhotoLibrary.requestAuthorization { status in
-                DispatchQueue.main.async {
-                    [weak self] in
-                    switch status {
-                    case  .denied, .notDetermined, .restricted:
-                        print("denied")
-                    case .authorized:
-                        self?.presentVideoLibrary()
-                    }
-                }
-            }
-        } else {
-            presentVideoLibrary()
-        }
-    }
-
-    private func presentVideoLibrary() {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let videoPicker = UIImagePickerController()
-            videoPicker.title = String.localized("video")
-            videoPicker.delegate = self
-            videoPicker.sourceType = .photoLibrary
-            videoPicker.mediaTypes = [kUTTypeMovie as String, kUTTypeVideo as String]
-            navigationController.present(videoPicker, animated: true, completion: nil)
-        }
-    }
-}
-
-extension ChatViewCoordinator: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL {
-            sendVideo(url: videoUrl)
-        }
-        navigationController.dismiss(animated: true) {
-            self.handleMediaMessageSuccess()
-        }
+    func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
+        mediaPicker.showPhotoVideoLibrary(delegate: delegate)
     }
 }
 
@@ -604,7 +515,7 @@ class GroupNameCoordinator: Coordinator {
     }
 
     func showPhotoPicker(delegate: MediaPickerDelegate) {
-          mediaPicker.showGallery(delegate: delegate)
+          mediaPicker.showPhotoGallery(delegate: delegate)
       }
 
       func showCamera(delegate: MediaPickerDelegate) {
@@ -654,7 +565,7 @@ class EditGroupCoordinator: Coordinator {
     }
 
     func showPhotoPicker(delegate: MediaPickerDelegate) {
-        mediaPicker.showGallery(delegate: delegate)
+        mediaPicker.showPhotoGallery(delegate: delegate)
     }
 
     func showCamera(delegate: MediaPickerDelegate) {

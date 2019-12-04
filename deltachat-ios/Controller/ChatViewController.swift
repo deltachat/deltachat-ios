@@ -14,7 +14,22 @@ extension ChatViewController: MediaSendHandler {
     }
 }
 
+extension ChatViewController: MediaPickerDelegate {
+    func onVideoSelected(url: NSURL) {
+        sendVideo(url: url)
+    }
+
+    func onImageSelected(url: NSURL) {
+        sendImage(url: url)
+    }
+
+    func onImageSelected(image: UIImage) {
+        sendImage(image)
+    }
+}
+
 class ChatViewController: MessagesViewController {
+
     var dcContext: DcContext
     weak var coordinator: ChatViewCoordinator?
 
@@ -751,6 +766,36 @@ extension ChatViewController: MessagesDataSource {
         })
     }
 
+    private func sendImage(_ image: UIImage) {
+        DispatchQueue.global().async {
+            if let compressedImage = image.dcCompress() {
+                // at this point image is compressed by 85% by default
+                let pixelSize = compressedImage.imageSizeInPixel()
+                let path = Utils.saveImage(image: compressedImage)
+                let msg = DcMsg(viewType: DC_MSG_IMAGE)
+                msg.setFile(filepath: path, mimeType: "image/jpeg")
+                msg.setDimension(width: pixelSize.width, height: pixelSize.height)
+                msg.sendInChat(id: self.chatId)
+            }
+        }
+    }
+
+    private func sendVideo(url: NSURL) {
+        DispatchQueue.global().async {
+            let msg = DcMsg(viewType: DC_MSG_VIDEO)
+            msg.setFile(filepath: url.relativePath, mimeType: "video/mov")
+            msg.sendInChat(id: self.chatId)
+        }
+    }
+
+    private func sendImage(url: NSURL) {
+        if let data = try? Data(contentsOf: url as URL) {
+            if let image = UIImage(data: data) {
+                sendImage(image)
+            }
+        }
+    }
+
     func isLastSectionVisible() -> Bool {
         guard !messageList.isEmpty else { return false }
 
@@ -889,21 +934,21 @@ extension ChatViewController: MessagesLayoutDelegate {
 
     private func showClipperOptions() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let photoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: photoButtonPressed(_:))
-        let videoAction = PhotoPickerAlertAction(title: String.localized("video"), style: .default, handler: videoButtonPressed(_:))
+        let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
+        let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
 
-        alert.addAction(photoAction)
-        alert.addAction(videoAction)
+        alert.addAction(cameraAction)
+        alert.addAction(galleryAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 
-    private func photoButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showCameraViewController()
+    private func cameraButtonPressed(_ action: UIAlertAction) {
+        coordinator?.showCameraViewController(delegate: self)
     }
 
-    private func videoButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showVideoLibrary()
+    private func galleryButtonPressed(_ action: UIAlertAction) {
+        coordinator?.showPhotoVideoLibrary(delegate: self)
     }
 
 }
