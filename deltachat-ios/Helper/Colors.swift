@@ -5,7 +5,7 @@ struct DcColors {
     static let colorDisabled = UIColor.themeColor(light: UIColor(white: 0.9, alpha: 1), dark: UIColor(white: 0.2, alpha: 1))
     static let messagePrimaryColor = UIColor.themeColor(light: UIColor.rgb(red: 220, green: 248, blue: 198),
                                                         dark: UIColor.init(hexString: "224508"))
-    static let messageSecondaryColor = UIColor.themeColor(light: UIColor.rgb(red: 245, green: 245, blue: 245),
+    static let messageSecondaryColor = UIColor.themeColor(light: UIColor.init(hexString: "ebebed"),
                                                           dark: UIColor.init(hexString: "333333"))
     static let chatBackgroundColor = UIColor.themeColor(light: UIColor(red: 255, green: 255, blue: 255, alpha: 0), dark: .black)
     static let checkmarkGreen = UIColor.themeColor(light: UIColor.rgb(red: 112, green: 177, blue: 92))
