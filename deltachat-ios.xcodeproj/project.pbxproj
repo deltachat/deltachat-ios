@@ -14,6 +14,7 @@
 		30260CA7238F02F700D8D52C /* MultilineTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */; };
 		302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AC265E237F1807002A943F /* AvatarHelper.swift */; };
 		302B84C72396770B001C261F /* RelayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B84C42396627F001C261F /* RelayHelper.swift */; };
+		302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B84CD2397F6CD001C261F /* URL+Extension.swift */; };
 		3040F45E234DFBC000FA34D5 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040F45D234DFBC000FA34D5 /* Audio.swift */; };
 		3040F460234F419400FA34D5 /* BasicAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040F45F234F419300FA34D5 /* BasicAudioController.swift */; };
 		3040F462234F550300FA34D5 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040F461234F550300FA34D5 /* AudioPlayerView.swift */; };
@@ -185,6 +186,7 @@
 		3022E6D322E876A100763272 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextFieldCell.swift; sourceTree = "<group>"; };
 		302B84C42396627F001C261F /* RelayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayHelper.swift; sourceTree = "<group>"; };
+		302B84CD2397F6CD001C261F /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		3040F45D234DFBC000FA34D5 /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		3040F45F234F419300FA34D5 /* BasicAudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAudioController.swift; sourceTree = "<group>"; };
 		3040F461234F550300FA34D5 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 				305961882346125000C80F33 /* CGRect+Extensions.swift */,
 				3059620D234614E700C80F33 /* DcContact+Extension.swift */,
 				3059620F2346154D00C80F33 /* String+Extension.swift */,
+				302B84CD2397F6CD001C261F /* URL+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1088,6 +1091,7 @@
 				AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */,
 				AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */,
 				305961DF2346125100C80F33 /* MessageCellDelegate.swift in Sources */,
+				302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */,
 				305961CC2346125100C80F33 /* UIView+Extensions.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
 				305961F52346125100C80F33 /* TypingIndicatorCell.swift in Sources */,
