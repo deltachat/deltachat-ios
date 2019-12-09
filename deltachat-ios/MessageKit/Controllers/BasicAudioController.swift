@@ -42,6 +42,12 @@ public enum PlayerState {
 /// and also creates and manage an `AVAudioPlayer` states, play, pause and stop.
 open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
 
+    lazy var audioSession: AVAudioSession = {
+        let audioSession = AVAudioSession.sharedInstance()
+        _ = try? audioSession.setCategory(AVAudioSession.Category.playback, options: [.defaultToSpeaker])
+        return audioSession
+    }()
+
     /// The `AVAudioPlayer` that is playing the sound
     open var audioPlayer: AVAudioPlayer?
 
@@ -65,10 +71,6 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
     public init(messageCollectionView: MessagesCollectionView) {
         self.messageCollectionView = messageCollectionView
         super.init()
-        let audioSession = AVAudioSession.sharedInstance()
-        _ = try? audioSession.setCategory(AVAudioSession.Category.playback, options: [.duckOthers, .defaultToSpeaker])
-        _ = try? audioSession.setActive(true)
-
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(audioRouteChanged),
                                                name: AVAudioSession.routeChangeNotification,
@@ -114,6 +116,7 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
     open func playSound(for message: MessageType, in audioCell: AudioMessageCell) {
         switch message.kind {
         case .audio(let item):
+            _ = try? audioSession.setActive(true)
             playingCell = audioCell
             playingMessage = message
             guard let player = try? AVAudioPlayer(contentsOf: item.url) else {
@@ -170,6 +173,7 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
         audioPlayer = nil
         playingMessage = nil
         playingCell = nil
+        try? audioSession.setActive(false)
     }
 
     /// Resume a currently pause audio sound
