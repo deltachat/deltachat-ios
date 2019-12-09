@@ -51,6 +51,7 @@ class ChatViewController: MessagesViewController {
     open lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
 
     private var disableWriting: Bool
+    private var showNamesAboveMessage: Bool
     var showCustomNavBar = true
     var previewView: UIView?
     var previewController: PreviewController?
@@ -63,9 +64,11 @@ class ChatViewController: MessagesViewController {
     }
 
     init(dcContext: DcContext, chatId: Int) {
+        let dcChat = DcChat(id: chatId);
         self.dcContext = dcContext
         self.chatId = chatId
-        self.disableWriting = !DcChat(id: chatId).canSend
+        self.disableWriting = !dcChat.canSend
+        self.showNamesAboveMessage = dcChat.isGroup
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
     }
@@ -569,7 +572,8 @@ extension ChatViewController: MessagesDataSource {
 
     func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         var attributedString: NSMutableAttributedString?
-        if !isPreviousMessageSameSender(at: indexPath) {
+
+        if showNamesAboveMessage && !isPreviousMessageSameSender(at: indexPath) {
             let name = message.sender.displayName
             let m = messageList[indexPath.section]
             attributedString = NSMutableAttributedString(string: name, attributes: [
@@ -577,6 +581,7 @@ extension ChatViewController: MessagesDataSource {
                 .foregroundColor: m.fromContact.color,
             ])
         }
+
         if isMessageForwarded(at: indexPath) {
             let forwardedString = NSMutableAttributedString(string: String.localized("forwarded_message"), attributes: [
                 .font: UIFont.systemFont(ofSize: 14),
@@ -589,6 +594,7 @@ extension ChatViewController: MessagesDataSource {
                 attributedString?.append(forwardedString)
             }
         }
+
         return attributedString
     }
 
