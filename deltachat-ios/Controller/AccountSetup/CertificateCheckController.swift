@@ -4,7 +4,6 @@ class CertificateCheckController: UITableViewController {
 
     var options = [Int(DC_CERTCK_AUTO),
                    Int(DC_CERTCK_STRICT),
-                   Int(DC_CERTCK_ACCEPT_INVALID_HOSTNAMES),
                    Int(DC_CERTCK_ACCEPT_INVALID_CERTIFICATES)]
 
     var currentValue: Int
@@ -110,8 +109,6 @@ class CertificateCheckController: UITableViewController {
                 return String.localized("automatic")
             case Int(DC_CERTCK_STRICT):
                 return String.localized("strict")
-            case Int(DC_CERTCK_ACCEPT_INVALID_HOSTNAMES):
-                return String.localized("accept_invalid_hostnames")
             case Int(DC_CERTCK_ACCEPT_INVALID_CERTIFICATES):
                 return String.localized("accept_invalid_certificates")
             default:
