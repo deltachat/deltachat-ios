@@ -244,6 +244,7 @@
         _stopPlayButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"stop_playing" inBundle:resourcesBundle compatibleWithTraitCollection:nil] style:UIBarButtonItemStylePlain target:self action:@selector(stopPlayingButtonAction:)];
         _stopPlayButton.tintColor = [self _normalTintColor];
         _playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(playAction:)];
+
         _playButton.tintColor = [self _normalTintColor];
 
         _pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pausePlayingAction:)];
@@ -259,10 +260,14 @@
         {
             _cropOrDeleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteAction:)];
         }
-        
+
         _cropOrDeleteButton.tintColor = [self _normalTintColor];
-        
-        [self setToolbarItems:@[_playButton,_flexItem, _startRecordingButton,_flexItem, _cropOrDeleteButton] animated:NO];
+
+        if (self.allowPlayback) {
+            [self setToolbarItems:@[_playButton,_flexItem, _startRecordingButton,_flexItem, _cropOrDeleteButton] animated:NO];
+        } else {
+            [self setToolbarItems:@[_startRecordingButton] animated:NO];
+        }
 
         _playButton.enabled = NO;
         _cropOrDeleteButton.enabled = NO;
@@ -334,7 +339,9 @@
         _cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelAction:)];
         self.navigationItem.leftBarButtonItem = _cancelButton;
         _doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction:)];
-        _doneButton.enabled = NO;
+        if (!self.recordOnCreation) {
+            _doneButton.enabled = NO;
+        }
         self.navigationItem.rightBarButtonItem = _doneButton;
     }
     
@@ -345,6 +352,10 @@
         _viewPlayerDuration.tintColor = [self _highlightedTintColor];
         _viewPlayerDuration.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         _viewPlayerDuration.backgroundColor = [UIColor clearColor];
+    }
+
+    if (self.recordOnCreation) {
+        [self recordingButtonAction: nil];
     }
 }
 
@@ -621,10 +632,14 @@
 {
     //UI Update
     {
-        [self setToolbarItems:@[_stopRecordingButton,_flexItem, _pauseRecordingButton,_flexItem, _cropOrDeleteButton] animated:YES];
+        if (self.allowPlayback) {
+            [self setToolbarItems:@[_stopRecordingButton,_flexItem, _pauseRecordingButton,_flexItem, _cropOrDeleteButton] animated:YES];
+            _doneButton.enabled = NO;
+        } else {
+            [self setToolbarItems:@[_flexItem, _pauseRecordingButton, _flexItem] animated:YES];
+        }
         _cropOrDeleteButton.enabled = NO;
         [self.navigationItem setLeftBarButtonItem:_cancelRecordingButton animated:YES];
-        _doneButton.enabled = NO;
     }
     
     /*
@@ -656,7 +671,11 @@
 {
     //UI Update
     {
-        [self setToolbarItems:@[_stopRecordingButton,_flexItem, _pauseRecordingButton,_flexItem, _cropOrDeleteButton] animated:YES];
+        if (self.allowPlayback) {
+            [self setToolbarItems:@[_stopRecordingButton,_flexItem, _pauseRecordingButton,_flexItem, _cropOrDeleteButton] animated:YES];
+        } else {
+            [self setToolbarItems:@[_flexItem, _pauseRecordingButton, _flexItem] animated:YES];
+        }
     }
 
     _isRecordingPaused = NO;
@@ -667,7 +686,11 @@
 {
     _isRecordingPaused = YES;
     [_audioRecorder pause];
-    [self setToolbarItems:@[_stopRecordingButton,_flexItem, _continueRecordingButton,_flexItem, _cropOrDeleteButton] animated:YES];
+    if (self.allowPlayback) {
+        [self setToolbarItems:@[_stopRecordingButton,_flexItem, _continueRecordingButton,_flexItem, _cropOrDeleteButton] animated:YES];
+    } else {
+        [self setToolbarItems:@[_flexItem, _continueRecordingButton, _flexItem] animated:YES];
+    }
 }
 
 -(void)stopRecordingButtonAction:(UIBarButtonItem*)item
@@ -693,7 +716,12 @@
     {
         //UI Update
         {
-            [self setToolbarItems:@[_playButton,_flexItem, _startRecordingButton,_flexItem, _cropOrDeleteButton] animated:YES];
+            if (self.allowPlayback) {
+                [self setToolbarItems:@[_playButton,_flexItem, _startRecordingButton,_flexItem, _cropOrDeleteButton] animated:YES];
+            } else {
+                [self setToolbarItems:@[_flexItem, _startRecordingButton, _flexItem] animated:YES];
+            }
+
             [self.navigationItem setLeftBarButtonItem:_cancelButton animated:YES];
             
             if ([[NSFileManager defaultManager] fileExistsAtPath:_recordingFilePath])
@@ -706,7 +734,7 @@
             {
                 _playButton.enabled = NO;
                 _cropOrDeleteButton.enabled = NO;
-                _doneButton.enabled = NO;
+                _doneButton.enabled = !self.allowPlayback;
             }
         }
 
@@ -734,6 +762,9 @@
 
 -(void)doneAction:(UIBarButtonItem*)item
 {
+    if (!self.allowPlayback) {
+        [self stopRecordingButtonAction:nil];
+    }
     [self notifySuccessDelegate];
 }
 

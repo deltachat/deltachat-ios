@@ -88,6 +88,10 @@
  */
 @property (nonatomic, assign) BOOL allowCropping;
 
+/**
+ Show record button to switch between recording and playing media layout
+ */
+@property (nonatomic, assign) BOOL allowPlayback;
 
 ///--------------------------
 /// @name Audio Settings
@@ -123,6 +127,11 @@
  bitRate.
  */
 @property(nonatomic,assign) NSInteger bitRate;
+
+/**
+ Immediately start recording on presenting IQAudioRecorderViewController
+*/
+@property(nonatomic,assign) BOOL recordOnCreation;
 
 @end
 

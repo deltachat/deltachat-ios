@@ -39,6 +39,8 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         audioRecorderController.delegate = self
         audioRecorderController.title = String.localized("voice_message")
         audioRecorderController.allowCropping = false
+        audioRecorderController.allowPlayback = false
+        audioRecorderController.recordOnCreation = true
 
         audioRecorderController.maximumRecordDuration = 1200
         audioRecorderController.barStyle = .default
