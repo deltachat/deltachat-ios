@@ -110,8 +110,19 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL {
-            self.delegate?.onVideoSelected(url: videoUrl)
+        if let videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
+            videoUrl.convertToMp4(completionHandler: { url, error in
+                if let url = url {
+                    self.delegate?.onVideoSelected(url: (url as NSURL))
+                } else if let error = error {
+                    logger.error(error.localizedDescription)
+                    let alert = UIAlertController(title: String.localized("error"), message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
+                        self.navigationController.dismiss(animated: true, completion: nil)
+                    }))
+                    self.navigationController.present(alert, animated: true, completion: nil)
+                }
+            })
         } else if let imageUrl = info[UIImagePickerController.InfoKey.imageURL] as? NSURL {
             self.delegate?.onImageSelected(url: imageUrl)
         }

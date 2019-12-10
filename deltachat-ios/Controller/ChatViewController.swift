@@ -789,7 +789,7 @@ extension ChatViewController: MessagesDataSource {
     private func sendVideo(url: NSURL) {
         DispatchQueue.global().async {
             let msg = DcMsg(viewType: DC_MSG_VIDEO)
-            msg.setFile(filepath: url.relativePath, mimeType: "video/mov")
+            msg.setFile(filepath: url.relativePath, mimeType: "video/mp4")
             msg.sendInChat(id: self.chatId)
         }
     }
