@@ -2,11 +2,13 @@ import UIKit
 import Photos
 import MobileCoreServices
 import ALCameraViewController
+import IQAudioRecorderController
 
 protocol MediaPickerDelegate: class {
     func onImageSelected(image: UIImage)
     func onImageSelected(url: NSURL)
     func onVideoSelected(url: NSURL)
+    func onVoiceMessageRecorded(url: NSURL)
 }
 
 extension MediaPickerDelegate {
@@ -16,9 +18,13 @@ extension MediaPickerDelegate {
     func onVideoSelected(url: NSURL) {
         logger.debug("video selected: ", url.path ?? "unknown")
     }
+    func onVoiceMessageRecorded(url: NSURL) {
+        logger.debug("voice message recorded: \(url)")
+    }
 }
 
-class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IQAudioRecorderViewControllerDelegate {
+
     private let navigationController: UINavigationController
     private weak var delegate: MediaPickerDelegate?
 
@@ -26,6 +32,18 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         self.navigationController = navigationController
     }
 
+
+    func showVoiceRecorder(delegate: MediaPickerDelegate) {
+        self.delegate = delegate
+        let audioRecorderController = IQAudioRecorderViewController()
+        audioRecorderController.delegate = self
+        audioRecorderController.title = String.localized("voice_message")
+        audioRecorderController.allowCropping = false
+
+        audioRecorderController.maximumRecordDuration = 1200
+        audioRecorderController.barStyle = .default
+        navigationController.presentAudioRecorderViewControllerAnimated(audioRecorderController)
+    }
 
     func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
         if PHPhotoLibrary.authorizationStatus() != .authorized {
@@ -116,6 +134,16 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
             self.delegate?.onImageSelected(url: imageUrl)
         }
         navigationController.dismiss(animated: true, completion: nil)
+    }
+
+    func audioRecorderController(_ controller: IQAudioRecorderViewController, didFinishWithAudioAtPath filePath: String) {
+        let url = NSURL(fileURLWithPath: filePath)
+        self.delegate?.onVoiceMessageRecorded(url: url)
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    func audioRecorderControllerDidCancel(_ controller: IQAudioRecorderViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 
 }

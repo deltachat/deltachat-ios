@@ -26,6 +26,10 @@ extension ChatViewController: MediaPickerDelegate {
     func onImageSelected(image: UIImage) {
         sendImage(image)
     }
+
+    func onVoiceMessageRecorded(url: NSURL) {
+        sendVoiceMessage(url: url)
+    }
 }
 
 class ChatViewController: MessagesViewController {
@@ -786,6 +790,14 @@ extension ChatViewController: MessagesDataSource {
         }
     }
 
+    private func sendVoiceMessage(url: NSURL) {
+        DispatchQueue.global().async {
+            let msg = DcMsg(viewType: DC_MSG_AUDIO)
+            msg.setFile(filepath: url.relativePath, mimeType: "audio/m4a")
+            msg.sendInChat(id: self.chatId)
+        }
+    }
+
     private func sendVideo(url: NSURL) {
         DispatchQueue.global().async {
             let msg = DcMsg(viewType: DC_MSG_VIDEO)
@@ -942,11 +954,17 @@ extension ChatViewController: MessagesLayoutDelegate {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
         let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
+        let voiceMessageAction = UIAlertAction(title: String.localized("voice_message"), style: .default, handler: voiceMessageButtonPressed(_:))
 
         alert.addAction(cameraAction)
         alert.addAction(galleryAction)
+        alert.addAction(voiceMessageAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+
+    private func voiceMessageButtonPressed(_ action: UIAlertAction) {
+        coordinator?.showVoiceMessageRecorder(delegate: self)
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {

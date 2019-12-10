@@ -2,6 +2,7 @@ import UIKit
 import ALCameraViewController
 import Photos
 import MobileCoreServices
+import IQAudioRecorderController
 
 class AppCoordinator: NSObject, Coordinator {
     private let window: UIWindow
@@ -439,6 +440,10 @@ class ChatViewCoordinator: NSObject, Coordinator {
         chatViewController.coordinator = coordinator
         navigationController.popToRootViewController(animated: false)
         navigationController.pushViewController(chatViewController, animated: true)
+    }
+
+    func showVoiceMessageRecorder(delegate: MediaPickerDelegate) {
+        mediaPicker.showVoiceRecorder(delegate: delegate)
     }
 
     func showCameraViewController(delegate: MediaPickerDelegate) {
