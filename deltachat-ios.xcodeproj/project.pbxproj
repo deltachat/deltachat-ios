@@ -10,6 +10,8 @@
 		300C509D234B551900F8AE22 /* TextMediaMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300C509C234B551900F8AE22 /* TextMediaMessageCell.swift */; };
 		300C50A1234BDAB800F8AE22 /* TextMediaMessageSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300C50A0234BDAB800F8AE22 /* TextMediaMessageSizeCalculator.swift */; };
 		30149D9322F21129003C12B5 /* QrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30149D9222F21129003C12B5 /* QrViewController.swift */; };
+		3015634423A003BA00E9DEF4 /* AudioRecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */; };
+		3015634723A0040200E9DEF4 /* AudioRecorderConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015634623A0040200E9DEF4 /* AudioRecorderConstants.swift */; };
 		3022E6BE22E8768800763272 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3022E6C022E8768800763272 /* InfoPlist.strings */; };
 		30260CA7238F02F700D8D52C /* MultilineTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */; };
 		302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AC265E237F1807002A943F /* AvatarHelper.swift */; };
@@ -163,6 +165,8 @@
 		300C509C234B551900F8AE22 /* TextMediaMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextMediaMessageCell.swift; sourceTree = "<group>"; };
 		300C50A0234BDAB800F8AE22 /* TextMediaMessageSizeCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextMediaMessageSizeCalculator.swift; sourceTree = "<group>"; };
 		30149D9222F21129003C12B5 /* QrViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrViewController.swift; sourceTree = "<group>"; };
+		3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderController.swift; sourceTree = "<group>"; };
+		3015634623A0040200E9DEF4 /* AudioRecorderConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderConstants.swift; sourceTree = "<group>"; };
 		3022E6BF22E8768800763272 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3022E6C122E8768C00763272 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3022E6C222E8768E00763272 /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = sq.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -395,6 +399,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3015634523A003D300E9DEF4 /* AudioRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */,
+				3015634623A0040200E9DEF4 /* AudioRecorderConstants.swift */,
+			);
+			path = AudioRecorder;
+			sourceTree = "<group>";
+		};
 		3059617E234610A800C80F33 /* MessageKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -657,6 +670,7 @@
 		AE851AC0227C693B00ED86F0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3015634523A003D300E9DEF4 /* AudioRecorder */,
 				AE18F28B228C17630007B1BE /* AccountSetup */,
 				AEE56D752253431E007DC082 /* AccountSetupController.swift */,
 				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
@@ -1033,6 +1047,7 @@
 				305961F02346125100C80F33 /* NSConstraintLayoutSet.swift in Sources */,
 				3059620E234614E700C80F33 /* DcContact+Extension.swift in Sources */,
 				305961F72346125100C80F33 /* MessageCollectionViewCell.swift in Sources */,
+				3015634723A0040200E9DEF4 /* AudioRecorderConstants.swift in Sources */,
 				AE851AC9227C77CF00ED86F0 /* Media.swift in Sources */,
 				AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */,
 				AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */,
@@ -1070,6 +1085,7 @@
 				305961E52346125100C80F33 /* LabelAlignment.swift in Sources */,
 				305961E82346125100C80F33 /* Sender.swift in Sources */,
 				305961EE2346125100C80F33 /* AvatarPosition.swift in Sources */,
+				3015634423A003BA00E9DEF4 /* AudioRecorderController.swift in Sources */,
 				AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */,
 				302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */,
 				305961E62346125100C80F33 /* LocationMessageSnapshotOptions.swift in Sources */,
