@@ -7,6 +7,7 @@ protocol MediaPickerDelegate: class {
     func onImageSelected(image: UIImage)
     func onImageSelected(url: NSURL)
     func onVideoSelected(url: NSURL)
+    func onVoiceMessageRecorded(url: NSURL)
 }
 
 extension MediaPickerDelegate {
@@ -16,9 +17,13 @@ extension MediaPickerDelegate {
     func onVideoSelected(url: NSURL) {
         logger.debug("video selected: ", url.path ?? "unknown")
     }
+    func onVoiceMessageRecorded(url: NSURL) {
+        logger.debug("voice message recorded: \(url)")
+    }
 }
 
-class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AudioRecorderControllerDelegate {
+
     private let navigationController: UINavigationController
     private weak var delegate: MediaPickerDelegate?
 
@@ -26,6 +31,16 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         self.navigationController = navigationController
     }
 
+
+    func showVoiceRecorder(delegate: MediaPickerDelegate) {
+        self.delegate = delegate
+        let audioRecorderController = AudioRecorderController()
+        audioRecorderController.delegate = self
+        //audioRecorderController.maximumRecordDuration = 1200
+        let audioRecorderNavController = UINavigationController(rootViewController: audioRecorderController)
+
+        navigationController.present(audioRecorderNavController, animated: true, completion: nil)
+ }
 
     func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
         if PHPhotoLibrary.authorizationStatus() != .authorized {
@@ -127,6 +142,11 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
             self.delegate?.onImageSelected(url: imageUrl)
         }
         navigationController.dismiss(animated: true, completion: nil)
+    }
+
+    func didFinishAudioAtPath(path: String) {
+        let url = NSURL(fileURLWithPath: path)
+        self.delegate?.onVoiceMessageRecorded(url: url)
     }
 
 }

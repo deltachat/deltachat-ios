@@ -441,6 +441,10 @@ class ChatViewCoordinator: NSObject, Coordinator {
         navigationController.pushViewController(chatViewController, animated: true)
     }
 
+    func showVoiceMessageRecorder(delegate: MediaPickerDelegate) {
+        mediaPicker.showVoiceRecorder(delegate: delegate)
+    }
+
     func showCameraViewController(delegate: MediaPickerDelegate) {
         mediaPicker.showCamera(delegate: delegate, allowCropping: false)
     }

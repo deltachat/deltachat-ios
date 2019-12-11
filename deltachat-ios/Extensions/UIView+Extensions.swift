@@ -49,6 +49,13 @@ internal extension UIView {
         self.bottomAnchor.constraint(equalTo: anchor, constant: -paddingBottom).isActive = true
     }
 
+    func fill(view: UIView, paddingLeading: CGFloat? = 0.0, paddingTrailing: CGFloat? = 0.0, paddingTop: CGFloat? = 0.0, paddingBottom: CGFloat? = 0.0) {
+        alignLeadingToAnchor(view.leadingAnchor, paddingLeading: paddingLeading ??  0.0)
+        alignTrailingToAnchor(view.trailingAnchor, paddingTrailing: paddingTrailing ?? 0.0)
+        alignTopToAnchor(view.topAnchor, paddingTop: paddingTop ?? 0.0)
+        alignBottomToAnchor(view.bottomAnchor, paddingBottom: paddingBottom ?? 0.0)
+    }
+
     func constraintAlignTopTo(_ view: UIView) -> NSLayoutConstraint {
         return constraintAlignTopTo(view, paddingTop: 0.0)
     }

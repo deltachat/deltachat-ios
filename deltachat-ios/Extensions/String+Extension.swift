@@ -73,4 +73,17 @@ extension String {
         let resultString: String = String.localizedStringWithFormat(formatString, count)
         return resultString
     }
+
+    static func timeStringForInterval(_ interval: TimeInterval) -> String {
+        let time = NSInteger(interval)
+        let seconds = time % 60
+        let minutes = (time / 60) % 60
+        let hours = time / 3600
+
+        if hours > 0 {
+            return NSString.localizedStringWithFormat("%02li:%02li:%02li", hours, minutes, seconds) as String
+        } else {
+            return NSString.localizedStringWithFormat("%02li:%02li", minutes, seconds) as String
+        }
+    }
 }
