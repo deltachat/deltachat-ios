@@ -792,7 +792,7 @@ extension ChatViewController: MessagesDataSource {
 
     private func sendVoiceMessage(url: NSURL) {
         DispatchQueue.global().async {
-            let msg = DcMsg(viewType: DC_MSG_AUDIO)
+            let msg = DcMsg(viewType: DC_MSG_VOICE)
             msg.setFile(filepath: url.relativePath, mimeType: "audio/m4a")
             msg.sendInChat(id: self.chatId)
         }
