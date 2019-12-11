@@ -29,7 +29,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     var isFirstUsage: Bool = true
 
-    lazy var musicFlowView: SCSiriWaveformView = {
+    lazy var waveFormView: SCSiriWaveformView = {
         let view = SCSiriWaveformView()
         view.alpha = 1.0
         view.backgroundColor = .clear
@@ -39,9 +39,12 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         return view
     }()
 
-    //Access
-    var viewMicrophoneDenied: UIView = {
-        return UIView()
+    lazy var noRecordingPermissionView: UIImageView = {
+        let view = UIImageView(image: UIImage(named: "microphone_access"))
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alpha = 0.0
+        view.contentMode = UIView.ContentMode.scaleAspectFit
+        return view
     }()
 
     var navigationTitle: NSString?
@@ -108,17 +111,12 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         self.navigationItem.title = String.localized("voice_message")
         self.navigationItem.leftBarButtonItem = cancelButton
         self.navigationItem.rightBarButtonItem = doneButton
-        musicFlowView.frame = self.view.bounds
-        self.view.addSubview(musicFlowView)
+        waveFormView.frame = self.view.bounds
+        self.view.addSubview(waveFormView)
+        self.view.addSubview(noRecordingPermissionView)
 
-        self.view.addConstraints([
-            musicFlowView.constraintCenterXTo(view),
-            musicFlowView.constraintCenterYTo(view),
-            musicFlowView.constraintAlignTopTo(view),
-            musicFlowView.constraintAlignBottomTo(view),
-            musicFlowView.constraintAlignLeadingTo(view),
-            musicFlowView.constraintAlignTrailingTo(view)
-        ])
+        waveFormView.fill(view: view)
+        noRecordingPermissionView.fill(view: view, paddingLeading: 100, paddingTrailing: 100, paddingTop: 200, paddingBottom: 200)
 
         self.navigationController?.toolbar.tintColor = normalTintColor
         self.navigationController?.navigationBar.tintColor = normalTintColor
@@ -177,12 +175,12 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
             if audioRecorder.isRecording || isRecordingPaused {
                 audioRecorder.updateMeters()
                 let normalizedValue: Float = pow(10, audioRecorder.averagePower(forChannel: 0) / 20)
-                musicFlowView.waveColor = highlightedTintColor
-                musicFlowView.update(withLevel: CGFloat(normalizedValue))
+                waveFormView.waveColor = highlightedTintColor
+                waveFormView.update(withLevel: CGFloat(normalizedValue))
                 self.navigationItem.title = String.timeStringForInterval(audioRecorder.currentTime)
             } else {
-                musicFlowView.waveColor = normalTintColor
-                musicFlowView.update(withLevel: 0)
+                waveFormView.waveColor = normalTintColor
+                waveFormView.update(withLevel: 0)
             }
         }
     }
@@ -269,25 +267,24 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     func validateMicrophoneAccess() {
         let audioSession = AVAudioSession.sharedInstance()
         audioSession.requestRecordPermission({(granted: Bool) -> Void in
-            if granted {
+            DispatchQueue.main.async { [weak self] in
+                if let self = self {
+                    self.noRecordingPermissionView.alpha = granted ? 0.0 : 1.0
+                    self.waveFormView.alpha = granted ? 1.0 : 0.0
+                    self.doneButton.isEnabled = granted
 
-                DispatchQueue.main.async { [weak self] in
-                    //self?.viewMicrophoneDenied.alpha =
-                    //self?.musicFlowView.alpha = granted ? 1.0 : 0.0
-                    if let self = self {
-                        if self.isFirstUsage {
-                            if !granted {
-                                self.setToolbarItems([self.flexItem, self.startRecordingButton, self.flexItem], animated: true)
-                                self.startRecordingButton.isEnabled = false
-                            } else {
-                                self.pauseButton.isEnabled = granted
-                                self.recordingButtonAction()
-                            }
-
-                            self.isFirstUsage = false
+                    if self.isFirstUsage {
+                        if !granted {
+                            self.setToolbarItems([self.flexItem, self.startRecordingButton, self.flexItem], animated: true)
+                            self.startRecordingButton.isEnabled = false
                         } else {
-                            self.startRecordingButton.isEnabled = granted
+                            self.pauseButton.isEnabled = granted
+                            self.recordingButtonAction()
                         }
+
+                        self.isFirstUsage = false
+                    } else {
+                        self.startRecordingButton.isEnabled = granted
                     }
                 }
             }
