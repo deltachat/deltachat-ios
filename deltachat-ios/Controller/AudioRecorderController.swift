@@ -31,7 +31,8 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     lazy var waveFormView: SCSiriWaveformView = {
         let view = SCSiriWaveformView()
-        view.alpha = 1.0
+        view.alpha = 0.0
+        view.waveColor = .clear
         view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         view.primaryWaveLineWidth = 3.0
