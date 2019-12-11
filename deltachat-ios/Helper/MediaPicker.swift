@@ -2,7 +2,6 @@ import UIKit
 import Photos
 import MobileCoreServices
 import ALCameraViewController
-import IQAudioRecorderController
 
 protocol MediaPickerDelegate: class {
     func onImageSelected(image: UIImage)

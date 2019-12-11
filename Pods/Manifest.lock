@@ -4,8 +4,6 @@ PODS:
   - InputBarAccessoryView (4.3.1):
     - InputBarAccessoryView/Core (= 4.3.1)
   - InputBarAccessoryView/Core (4.3.1)
-  - IQAudioRecorderController (1.2.3):
-    - SCSiriWaveformView
   - JGProgressHUD (2.0.3)
   - QuickTableViewController (1.1.1)
   - ReachabilitySwift (4.3.1)
@@ -19,10 +17,10 @@ DEPENDENCIES:
   - ALCameraViewController
   - DBDebugToolkit
   - InputBarAccessoryView
-  - IQAudioRecorderController
   - JGProgressHUD
   - QuickTableViewController
   - ReachabilitySwift
+  - SCSiriWaveformView
   - SwiftFormat/CLI
   - SwiftLint
   - SwiftyBeaver
@@ -33,7 +31,6 @@ SPEC REPOS:
     - ALCameraViewController
     - DBDebugToolkit
     - InputBarAccessoryView
-    - IQAudioRecorderController
     - JGProgressHUD
     - QuickTableViewController
     - ReachabilitySwift
@@ -47,7 +44,6 @@ SPEC CHECKSUMS:
   ALCameraViewController: 144dea45fd749a623aafd8cb7b10cea88499fcc3
   DBDebugToolkit: c04bb6f618051d3de447a4b4323f37826116cfed
   InputBarAccessoryView: 58a348be7ea2736c7eec60e5c315511c2dbb39fd
-  IQAudioRecorderController: 69a67c2e0b87bd8746cbb4de175fd7a0bf820009
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   QuickTableViewController: 30f689d314a7c1fb726c6dab6fa5ad53c6bc9e94
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
@@ -57,6 +53,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
   UICircularProgressRing: 0ff679b05a17f15ad6301a7886686837b8c301a9
 
-PODFILE CHECKSUM: 2d97506b02f500bd221608e13dd23a927dc62aec
+PODFILE CHECKSUM: 4fb877c35817d6aa88e7199c2635c724cfdcf87a
 
 COCOAPODS: 1.8.4

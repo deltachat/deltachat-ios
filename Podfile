@@ -17,8 +17,7 @@ target 'deltachat-ios' do
   pod 'SwiftyBeaver'
   pod 'DBDebugToolkit'
   pod 'InputBarAccessoryView'
-  pod 'IQAudioRecorderController'
-
+  pod 'SCSiriWaveformView'
   target 'deltachat-iosTests' do
     inherit! :search_paths
     # Pods for testing

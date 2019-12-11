@@ -2,7 +2,6 @@ import UIKit
 import ALCameraViewController
 import Photos
 import MobileCoreServices
-import IQAudioRecorderController
 
 class AppCoordinator: NSObject, Coordinator {
     private let window: UIWindow
