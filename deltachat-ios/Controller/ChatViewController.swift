@@ -68,7 +68,7 @@ class ChatViewController: MessagesViewController {
     }
 
     init(dcContext: DcContext, chatId: Int) {
-        let dcChat = DcChat(id: chatId);
+        let dcChat = DcChat(id: chatId)
         self.dcContext = dcContext
         self.chatId = chatId
         self.disableWriting = !dcChat.canSend
