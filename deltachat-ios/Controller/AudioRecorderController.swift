@@ -58,17 +58,18 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }()
 
     lazy var doneButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.done,
+        let button = UIBarButtonItem.init(title: String.localized("menu_send"),
+                                          style: UIBarButtonItem.Style.done,
                                           target: self,
                                           action: #selector(doneAction))
         return button
     }()
 
     lazy var cancelRecordingButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
+        let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.trash,
                                                  target: self,
                                                  action: #selector(cancelRecordingAction))
-        button.tintColor = highlightedTintColor
+        button.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
         return button
     }()
 
@@ -76,7 +77,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.pause,
                                           target: self,
                                           action: #selector(pauseRecordingButtonAction))
-        button.tintColor = highlightedTintColor
+        button.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
         return button
     }()
 
@@ -85,7 +86,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
                                            style: UIBarButtonItem.Style.plain,
                                            target: self,
                                            action: #selector(recordingButtonAction))
-        button.tintColor = normalTintColor
+        button.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
         return button
     }()
 
@@ -94,7 +95,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
                                           style: UIBarButtonItem.Style.plain,
                                           target: self,
                                           action: #selector(continueRecordingButtonAction))
-        button.tintColor = highlightedTintColor
+        button.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
         return button
     }()
 
@@ -188,8 +189,9 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     @objc func recordingButtonAction() {
         logger.debug("start recording")
-        self.setToolbarItems([flexItem, pauseButton, flexItem], animated: true)
-        self.navigationItem.setLeftBarButton(cancelRecordingButton, animated: true)
+        self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, pauseButton, flexItem], animated: true)
+        cancelRecordingButton.isEnabled = true
+        doneButton.isEnabled = true
         if FileManager.default.fileExists(atPath: recordingFilePath) {
             _ = try? FileManager.default.removeItem(atPath: recordingFilePath)
         }
@@ -209,7 +211,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     @objc func continueRecordingButtonAction() {
         logger.debug("continue recording")
-        self.setToolbarItems([flexItem, pauseButton, flexItem], animated: true)
+        self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, pauseButton, flexItem], animated: true)
         isRecordingPaused = false
         audioRecorder?.record()
     }
@@ -218,12 +220,14 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         logger.debug("pause")
         isRecordingPaused = true
         audioRecorder?.pause()
-        self.setToolbarItems([flexItem, continueRecordingButton, flexItem], animated: true)
+        self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, continueRecordingButton, flexItem], animated: true)
     }
 
     @objc func cancelRecordingAction() {
         logger.debug("cancel recording")
         isRecordingPaused = false
+        cancelRecordingButton.isEnabled = false
+        doneButton.isEnabled = false
         audioRecorder?.stop()
         _ = try? FileManager.default.removeItem(atPath: recordingFilePath)
         self.navigationItem.title = String.localized("voice_message")
@@ -231,6 +235,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     @objc func cancelAction() {
         logger.debug("cancel Action")
+        cancelRecordingAction()
         dismiss(animated: true, completion: nil)
     }
 
@@ -250,7 +255,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
-            self.setToolbarItems([flexItem, startRecordingButton, flexItem], animated: true)
+            self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, startRecordingButton, flexItem], animated: true)
             if let oldSessionCategory = oldSessionCategory {
                _ = try? AVAudioSession.sharedInstance().setCategory(oldSessionCategory)
                UIApplication.shared.isIdleTimerDisabled = wasIdleTimerDisabled
@@ -258,7 +263,6 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         } else {
             try? FileManager.default.removeItem(at: URL(fileURLWithPath: recordingFilePath))
         }
-         self.navigationItem.setLeftBarButton(cancelButton, animated: true)
     }
 
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
