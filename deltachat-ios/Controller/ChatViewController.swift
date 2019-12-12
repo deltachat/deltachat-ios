@@ -410,7 +410,7 @@ class ChatViewController: MessagesViewController {
         messageInputBar.inputTextView.backgroundColor = DcColors.inputFieldColor
         messageInputBar.inputTextView.placeholderTextColor = DcColors.placeholderColor
         messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 38)
-        messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 38)
+        messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 38)
         messageInputBar.inputTextView.layer.borderColor = UIColor.themeColor(light: UIColor(red: 200 / 255, green: 200 / 255, blue: 200 / 255, alpha: 1),
                                                                              dark: UIColor(red: 55 / 255, green: 55/255, blue: 55/255, alpha: 1)).cgColor
         messageInputBar.inputTextView.layer.borderWidth = 1.0
