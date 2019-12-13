@@ -47,3 +47,9 @@ you can force-install them with the following command:
 ```bash
 $ sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
 ```
+
+If you get an error about that file not existing, you probably simply don't have the Xcode command line tools installed which can be remedied simply as follows:
+
+```bash
+$ xcode-select --install
+```
