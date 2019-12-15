@@ -19,6 +19,10 @@
 "attachment" = "Bashkëngjitje";
 "back" = "Mbrapsht";
 "close" = "Mbylle";
+"forward" = "Përpara";
+"archive" = "Arkivoje";
+"unarchive" = "Çarkivoje";
+"mute" = "Heshtoje";
 "save" = "Ruaje";
 "chat" = "Fjalosje";
 "media" = "Media";
@@ -258,20 +262,7 @@
 
 
 // welcome and login
-"welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "Shkëmbyesi i mesazheve me publikun më të gjerë në botë. I lirë dhe i pavarur.";
-"welcome_intro2_headline" = "I pavarur";
-"welcome_intro2_message" = "S\’ka shërbyes Delta Chat. Aplikacioni përdor vetëm shërbyesin tuaj të email-eve.";
-"welcome_intro3_headline" = "I shpejtë";
-"welcome_intro3_message" = "Dërgoni mesazhe brenda sekondash.\nNdërfaqe e shpejtë.";
-"welcome_intro4_headline" = "I fuqishëm";
-"welcome_intro4_message" = "Fjalosje, figura, video, mesazhe audio të pakufizuara, dhe më tepër. I aftë për multi-klient.";
-"welcome_intro5_headline" = "I lirë";
-"welcome_intro5_message" = "Delta Chat është përgjithmonë i lirë.\nMe burim të hapur. Pa reklama. Pa pajtime. Pa kyçje nga tregtues.";
-"welcome_intro6_headline" = "I fshehtëzuar";
-"welcome_intro6_message" = "Fshehtëzuar me krejt algoritmet e zakonshëm. Mesazhet mbeten në shërbyesit tuaj.";
-"welcome_intro7_headline" = "I besueshëm";
-"welcome_intro7_message" = "Delta Chat-i është i parrezik për përdorim nga bizneset, i përputhshëm dhe i bazuar në standarde.";
 "welcome_start_messaging" = "Filloni të Shkëmbeni Mesazhe";
 "login_title" = "Hyrje";
 "login_header" = "Hyrje te shërbyesi juaj";

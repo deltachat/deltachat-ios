@@ -19,6 +19,10 @@
 "attachment" = "Bijlage";
 "back" = "Terug";
 "close" = "Sluiten";
+"forward" = "Doorsturen";
+"archive" = "Archiveren";
+"unarchive" = "De-archiveren";
+"mute" = "Dempen";
 "save" = "Opslaan";
 "chat" = "Gesprek";
 "media" = "Media";
@@ -151,6 +155,8 @@
 "title_share_location" = "Locatie delen met alle groepsleden";
 "device_talk" = "Berichten op apparaat";
 "device_talk_subtitle" = "Lokaal gegenereerde berichten";
+"device_talk_explain" = "Berichten in dit gesprek worden geplaatst door de app zelf. Zo blijf je op de hoogte van app-updates en gebruiksproblemen.";
+"device_talk_welcome_message" = "Welkom bij Delta Chat! Delta Chat lijkt heel erg op andere chatapps, maar is toch écht anders! Zo is er geen centraal beheer, wordt je niet gevolgd en worden jouw gegevens of die van je vrienden/familie niet verkocht aan bedrijven.\n\nTechnisch gesproken is het een e-mailapp in een modern jasje (of moderne jurk 👻).\n\nGebruik Delta Chat om te communiceren met iedereen die een e-mailadres heeft. Ontvangers hoeven het niet te installeren, naar een website te gaan of ergens te registreren. Maar als ze dat willen, kun je ze natuurlijk altíjd doorverwijzen naar 👉 https://get.delta.chat";
 "edit_contact" = "Contactpersoon bewerken";
 
 "mute_for_one_hour" = "1 uur lang uitschakelen";
@@ -209,6 +215,8 @@
 "chat_archived_label" = "Gearchiveerd";
 "chat_no_messages" = "Geen berichten.";
 "chat_self_talk_subtitle" = "Aan mijzelf gestuurde berichten";
+"saved_messages" = "Opgeslagen berichten";
+"saved_messages_explain" = "• Stuur berichten door naar hier om ze snel terug te kunnen lezen\n\n• Maak aantekeningen of spraakopnamen\n\n• Voeg media toe om deze op te slaan";
 "chat_contact_request" = "Contactpersoonverzoek";
 "chat_no_contact_requests" = "Geen contactpersoonverzoeken.\n\nAls je wilt dat klassieke e-mail hier verschijnt in de vorm van contactpersoonverzoeken, dan kun je dat aangeven in de app-instellingen.";
 "retry_send" = "Bericht opnieuw versturen";
@@ -254,20 +262,7 @@
 
 
 // welcome and login
-"welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "Dé berichtenapp met het breedste publiek ter wereld. Gratis en onafhankelijk.";
-"welcome_intro2_headline" = "Onafhankelijk";
-"welcome_intro2_message" = "Er is geen Delta Chat-server; de app gebruikt alleen je mailserver.";
-"welcome_intro3_headline" = "Snel";
-"welcome_intro3_message" = "Verstuur berichten binnen een paar seconden.\nSnelle gebruikersomgeving.";
-"welcome_intro4_headline" = "Krachtig";
-"welcome_intro4_message" = "Ongelimiteerd aantal gesprekken, afbeeldingen, video\'s, spraakberichten en meer. Kan omgaan met meerdere clients.";
-"welcome_intro5_headline" = "Gratis";
-"welcome_intro5_message" = "Delta Chat zal altijd gratis blijven. Open source. Geen reclame. Geen abonnement. Onafhankelijk.";
-"welcome_intro6_headline" = "Versleuteld";
-"welcome_intro6_message" = "Versleuteld met alle bekende algoritmen. Berichten blijven op jouw server.";
-"welcome_intro7_headline" = "Betrouwbaar";
-"welcome_intro7_message" = "Delta Chat is veilig voor zakelijk gebruik, compatibel en gebaseerd op standaarden.";
 "welcome_start_messaging" = "Aan de slag";
 "login_title" = "Inloggen";
 "login_header" = "Inloggen op je server";

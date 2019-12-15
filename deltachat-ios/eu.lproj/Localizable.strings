@@ -19,6 +19,10 @@
 "attachment" = "Eranskina";
 "back" = "Atzera";
 "close" = "Itxi";
+"forward" = "Birbidali";
+"archive" = "Artxibatu";
+"unarchive" = "Berreskuratu artxibotik";
+"mute" = "Isilarazi";
 "save" = "Gorde";
 "chat" = "Txata";
 "media" = "Multimedia";
@@ -151,6 +155,8 @@
 "title_share_location" = "Partekatu kokalekua taldeko kide guztiak";
 "device_talk" = "Gailuaren mezuak";
 "device_talk_subtitle" = "Lokalki sortutako mezuak";
+"device_talk_explain" = "Txat honetako mezuak zure Delta Chat aplikazioak sortu ditu lokalki. Egileek aplikazioaren eguneraketei buruz eta erabileran arazoei buruz informatzeko erabiltzen dute.";
+"device_talk_welcome_message" = "Ongi etorri Delta Chat-era! Delta Chat beste bat bateko mezularitza aplikazioen itxura du, baina ez du kontrol zentralizaturik, ez dizu jarraitzen edo saltzen, ez zu ez zure lagunak, lankideak edo familia elkarte handi bati.\n\nTeknikoki, Delta Chat e-mail aplikazio bat da interfaze berri batekin. E-maila jantzi berri batekin esan genezake 👻\n\nErabili Delta Chat milaka miloika pertsonekin,  erabili bere e-mail helbidea eta kitto. Hartzaileek ez dute zertan Delta Chat instalatu behar, ez webguneak bisitatu edo izena eman inon. Hala ere, jakina, instalatu nahi badute hona bideratu ditzakezu 👉 https://get.delta.chat";
 "edit_contact" = "Editatu kontaktua";
 
 "mute_for_one_hour" = "Mututu ordubete";
@@ -209,6 +215,8 @@
 "chat_archived_label" = "Artxibatuta";
 "chat_no_messages" = "Mezurik ez.";
 "chat_self_talk_subtitle" = "Nire buruari bidalitako mezuak";
+"saved_messages" = "Gordetako mezuak";
+"saved_messages_explain" = "• Birbidali mezuak hona eskura izateko\n\n• Hartu oharrak edo ahots mezuak\n\n• Gehitu multimedia horietara";
 "chat_contact_request" = "Kontaktua eskatuta";
 "chat_no_contact_requests" = "Kontaktu eskaerarik ez.\n\nE-mail klasikoak hemen kontaktu eskari gisa agertzea nahi baduzu, aplikazioaren ezarpenetan aldatu dezakezu.";
 "retry_send" = "Saiatu berriro mezua bidaltzen";
@@ -254,20 +262,7 @@
 
 
 // welcome and login
-"welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "Munduan erabiltzaile gehien dituen mezularitza aplikazioa. Librea eta independentea.";
-"welcome_intro2_headline" = "Independientea";
-"welcome_intro2_message" = "Ez dago Delta Chat zerbitzaririk. Aplikazioak zure e-mail zerbitzaria darabil.";
-"welcome_intro3_headline" = "Azkarra";
-"welcome_intro3_message" = "Bidali mezuak segundotan.\nInterfaze azkarra";
-"welcome_intro4_headline" = "Ahaltsua";
-"welcome_intro4_message" = "Txatak, irudiak, bideoak, audio-mezuak eta gehiago mugarik gabe. Hainbat bezeroekin bateragarria.";
-"welcome_intro5_headline" = "Librea";
-"welcome_intro5_message" = "Delta Txat doan da betirako. Librea. Iragarkirik gabe. Harpidetzarik gabe. Hornitzaile bakarrera lotu gabe.";
-"welcome_intro6_headline" = "Zifratua";
-"welcome_intro6_message" = "Zifratuta ohiko algoritmoekin. Mezuak zure zerbitzarian gordetzen dira.";
-"welcome_intro7_headline" = "Fidagarria";
-"welcome_intro7_message" = "Delta Chat segurua da negozioetarako, bateragarria eta estandarretan oinarritua.";
 "welcome_start_messaging" = "Hasi txateatzen";
 "login_title" = "Hasi saioa";
 "login_header" = "Hasi saioa zure zerbitzarian";

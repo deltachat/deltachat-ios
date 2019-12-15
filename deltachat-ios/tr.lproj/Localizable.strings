@@ -21,6 +21,7 @@
 "close" = "Kapat";
 "forward" = "İlet";
 "archive" = "Arşivle";
+"unarchive" = "Arşivden çıkart";
 "mute" = "Sessize al";
 "save" = "Kaydet";
 "chat" = "Sohbet";
@@ -155,6 +156,7 @@
 "device_talk" = "Aygıt iletileri";
 "device_talk_subtitle" = "Yerel olarak oluşturulan iletiler";
 "device_talk_explain" = "Bu sohbetteki iletiler, Delta Chat uygulamanız tarafından yerel olarak oluşturulur. Üreticiler, uygulama güncelleştirmeleri ve kullanım sırasındaki sorunlar hakkında bilgilendirmek için onu kullanır.";
+"device_talk_welcome_message" = "Delta Chat\'e hoş geldiniz! – Delta Chat, diğer yaygın ulak uygulamaları gibi görünür ve hissettirir ama merkezi denetim, izleme içermez ya da sizi, arkadaşlarınızı, iş arkadaşlarınızı ya da ailenizi büyük kuruluşlara satmaz.\n\nTeknik olarak Delta Chat, çağdaş bir sohbet arabirimli bir e-posta uygulamasıdır. 👻 olacaksanız, e-posta yeni bir elbisedir\n\nMilyarlarca insanın herhangi biriyle Delta Chat kullanın: Yalnızca onların e-posta adresini kullanın. Alıcıların Delta Chat\'i kurması, web sitelerini ziyaret etmesi ya da herhangi bir yere kaydolması gerekmez - ancak, elbette isterlerse, onlara 👉 https://get.delta.chat adresini işaret edebilirsiniz";
 "edit_contact" = "Kişiyi düzenle";
 
 "mute_for_one_hour" = "1 saatliğine sessize al";
@@ -260,20 +262,7 @@
 
 
 // welcome and login
-"welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "Dünyanın en geniş kitleli ulağı. Özgür ve bağımsızdır.";
-"welcome_intro2_headline" = "Bağımsız";
-"welcome_intro2_message" = "Delta Chat sunucusu yoktur. Uygulama, yalnızca posta sunucunuzu kullanır.";
-"welcome_intro3_headline" = "Hızlı";
-"welcome_intro3_message" = "İletileri saniyeler içinde gönderin.\nHızlı arabirim.";
-"welcome_intro4_headline" = "Güçlü";
-"welcome_intro4_message" = "Sınırsız sohbetler, görseller, videolar, sesli iletiler ve daha fazlası. Çoklu istemci yetenekli.";
-"welcome_intro5_headline" = "Özgür";
-"welcome_intro5_message" = "Delta Chat özgür bir yazılımdır. Reklam ya da abonelik yoktur. Satıcı kilidi yoktur.";
-"welcome_intro6_headline" = "Şifreli";
-"welcome_intro6_message" = "Tüm yaygın algoritmalarla şifrelenir. İletiler sunucularınızda kalır.";
-"welcome_intro7_headline" = "Güvenilir";
-"welcome_intro7_message" = "Delta Chat, iş kullanımı için güvenli, uyumlu ve standartlar tabanlıdır.";
 "welcome_start_messaging" = "İletileşmeye başla";
 "login_title" = "Oturum aç";
 "login_header" = "Sunucunuzda oturum açın";
@@ -385,7 +374,7 @@
 "pref_read_receipts_explain" = "Okundu bilgileri etkisizleştirilirse, diğerlerinden gelen okundu bilgilerini göremeyeceksiniz.";
 "pref_manage_keys" = "Anahtarları yönet";
 "pref_use_system_emoji" = "Sistem emojisini kullan";
-"pref_use_system_emoji_explain" = "Delta Chat\'in gömülü emoji desteğini etkisizleştir";
+"pref_use_system_emoji_explain" = "Delta Chat\'in gömülü emoji desteğini kapat";
 "pref_app_access" = "Uygulama erişimi";
 "pref_communication" = "İletişim";
 "pref_chats" = "Sohbetler";
@@ -533,7 +522,7 @@
 "perm_explain_need_for_camera_access" = "Fotoğraflar ve videolar yakalamak için Delta Chat\'in kameraya erişmesine izin verin.";
 "perm_explain_need_for_mic_access" = "Sesli iletiler göndermek için Delta Chat\'in mikrofona erişmesine izin verin.";
 "perm_explain_need_for_storage_access" = "Delta Chat\'in dosyaları dışa aktarmak ya da yedekler oluşturmak için dosyalarınıza erişmesi gerekir.";
-"perm_explain_need_for_storage_access_share" = "Delta Chat\'in dosyalarınızı paylaşmak için onlara erişmesi gerekir.";
+"perm_explain_need_for_storage_access_share" = "Delta Chat\'in paylaşmak için dosyalarınıza erişmesi gerekir.";
 "perm_explain_access_to_camera_denied" = "Fotoğraflar çekmek ya da videolar yakalamak için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Kamera\"yı etkinleştirin.";
 "perm_explain_access_to_mic_denied" = "Sesli iletiler göndermek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Mikrofon\"u etkinleştirin.";
 "perm_explain_access_to_storage_denied" = "Dosyaları almak ya da göndermek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Depolama\"yı etkinleştirin.";

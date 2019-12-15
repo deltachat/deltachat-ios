@@ -9,8 +9,25 @@
 "def" = "Cari olan";
 "custom" = "Xüsusi";
 "none" = "Yoxdur";
+"automatic" = "Avtomatik";
+"strict" = "Mıtin";
 "open" = "Açıq";
 "delete" = "Sil";
+"info" = "məlumat";
+"update" = "Yeniləmə";
+"emoji" = "Emojilər";
+"attachment" = "Fayllar";
+"back" = "Geri";
+"close" = "Bağla";
+"forward" = "Başqasına göndərmə";
+"archive" = "Arxivləşmə";
+"unarchive" = "Arxivdən çıxarma";
+"mute" = "Səssiz";
+"save" = "Saxla";
+"chat" = "Çat";
+"media" = "Mediafayllar";
+"main_menu" = "Əsas menyu";
+"start_chat" = "Çata başla";
 "not_now" = "İndi deyil";
 "never" = "Heç vaxt";
 "one_moment" = "Gözləyin...";
@@ -130,6 +147,8 @@
 "menu_zoom_out" = "Uzaqlaşdırmaq";
 "menu_save_log" = "Loqu saxlamaq";
 "title_share_location" = "Qrup üzvlərinə yerləşdiyin yerini göndər";
+"edit_contact" = "Kontakta dəyişiklik";
+
 "mute_for_one_hour" = "1 saatlıq söndür";
 "mute_for_two_hours" = "2 saatlıq söndür";
 "mute_for_one_day" = "1 günlük söndür";
@@ -185,8 +204,12 @@
 "chat_archived_label" = "Xəzinələndi";
 "chat_no_messages" = "Mesaj yoxdur";
 "chat_self_talk_subtitle" = "Özümə göndərdiyim mesajlar";
+"saved_messages" = "Saxlanılmış mesajlar";
 "chat_contact_request" = "Kontakt sorğusu";
 "chat_no_contact_requests" = "Əlaqə sorğuları yoxdur. \n\nƏgər klassik e-poçtların burada əlaqə istəkləri kimi görünməsini istəyirsinizsə, tətbiq parametrlərindəki müvafiq parametrləri dəyişə bilərsiniz.";
+"retry_send" = "Mesaji yenidən göndərməyə cəht et";
+"send_failed" = "Mesaj göndərilmədi";
+
 // map
 "filter_map_on_time" = "Vaxt məhdudiyyəti ilə yerləşmə yerləri göstərin";
 "show_location_traces" = "İzləri göstərmək";
@@ -227,23 +250,11 @@
 
 
 // welcome and login
-"welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "Dünyanın ən böyük auditoriyasına sahib olan mesenjeri. Azad və müstəqil.";
-"welcome_intro2_headline" = "Müstəqil";
-"welcome_intro2_message" = "Delta Chat-ın serveri yoxdur. Proqram yalnız poçt serverinizi istifadə edir.";
-"welcome_intro3_headline" = "Sürətli";
-"welcome_intro3_message" = "Push-mesajlar saniyədə. \nSabit interfeys.";
-"welcome_intro4_headline" = "Güclü";
-"welcome_intro4_message" = "Limitsiz çatlar, şəkillər, videolar, audio mesajlar və daha çox. Multi-müştəri qabiliyyətlidir.";
-"welcome_intro5_headline" = "Свободное";
-"welcome_intro5_message" = "Delta Chat əbədi olaraq azaddır. Açıq mənbə. Reklam yoxdur. Abunə haqqı yoxdur. Satıcı kilidi yox.";
-"welcome_intro6_headline" = "Şifrələndi";
-"welcome_intro6_message" = "Bütün ümumi alqoritmlər ilə şifrələnmişdir. Mesajlarınız serverlərinizdə qalır.";
-"welcome_intro7_headline" = "Etibarlı";
-"welcome_intro7_message" = "Delta Chat biznes istifadəsi üçün uyğun və standartlara uyğun olaraq təhlükəsizdir.";
 "welcome_start_messaging" = "Mesajlaşmağa başla";
 "login_title" = "Daxil ol";
 "login_header" = "Serverinə daxil ol";
+"login_explain" = "Mövcud e-mail hesabı ilə daxil olun";
 "login_subheader" = "Məlum elektron poçt provayderləri üçün əlavə parametrlər avtomatik olaraq quraşdırılır. Bəzən IMAP-ın web məkanında aktiv olması lazımdır. Yardım üçün e-poçt provayderinizə və ya dostlarınıza müraciət edin.";
 "login_no_servers_hint" = "Delta Chat serverləri yoxdur, məlumatlarınız cihazınızda qalır!";
 "login_inbox" = "Gələn";
@@ -261,6 +272,7 @@
 "login_info_oauth2_title" = "Sadələşdirilmiş tənzimləmə ilə davam edirsiniz?";
 "login_info_oauth2_text" = "Daxil edilmiş e-poçt ünvanı sadələşdirilmiş bir quraşdırma (OAuth2) dəstəkləyir. \n\nNövbəti addımda Delta Chat e-poçt tətbiqinizlə söhbət etməyə icazə verin. \n\n Delta Chat serverləri, cihazınızda qalır!";
 "login_info_gmail_text" = "2FA aktiv olduqda, GMail hesabları üçün proqramşifrəsi yaratmalısınız. Bu tənzimləmə mövcud deyilsə daha az təhlükəsiz tətbiqləri işə salmalısınız. ";
+"login_certificate_checks" = "Sertifikat yoxlanmaları";
 "login_error_mail" = "Xahiş edirik düzgün bir e-poçt ünvanı daxil et";
 "login_error_server" = "Xahiş edirik, düzgün bir server / IP ünvanı daxil et";
 "login_error_port" = "Xahiş edirik, düzgün bir port (1-65535) daxil et";
@@ -369,6 +381,7 @@
 "pref_watch_inbox_folder" = "Daxil olanla qovluğunu izləyin";
 "pref_watch_sent_folder" = "Göndərilmişlərin qovluğunu izləyin";
 "pref_watch_mvbox_folder" = "DeltaChat qovluğunu izləyin";
+"pref_send_copy_to_self" = "Özünə kopya göndər";
 "pref_auto_folder_moves" = "DeltaChat qovluğuna avtomatik keçid";
 "pref_auto_folder_moves_explain" = "Çat söhbətləri Daxil olanlar qovluğunun yığılmaması üçün taşınır";
 "pref_email_interaction_title" = "Email qarşılıqlı əlaqə";
@@ -381,6 +394,11 @@
 "pref_empty_server_inbox" = "Daxil olan qutusunda bütün elektron poçtları sil";
 "pref_empty_server_mvbox" = "DeltaChat qutusunda bütün elektron poçtları sil";
 "pref_empty_server_do_button" = "Elektron poçtunu sil";
+"pref_background_default" = "Özünəməxsus arxa fon";
+"pref_background_default_color" = "Özünəməxsus rəng";
+"pref_background_custom_image" = "Şəkil";
+"pref_background_custom_color" = "Rəng";
+
 // autocrypt
 "autocrypt" = "Avtomatik şifrələmə";
 "autocrypt_explain" = "Avtoşifrələmə, avtomatik ucdan uca e-poçt şifrələməsi üçün yeni və açıq bir spesifikasiyadır. \n\nTədbirdən sonrakı qurulum avtomatik olaraq yaradılıb və Autocrypt Setup Messages ilə cihazlar arasında köçürə bilərsiniz.";

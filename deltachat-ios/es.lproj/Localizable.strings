@@ -19,6 +19,10 @@
 "attachment" = "Adjunto";
 "back" = "Atrás";
 "close" = "Cerrar";
+"forward" = "Reenviar";
+"archive" = "Archivar";
+"unarchive" = "Des-archivar";
+"mute" = "Silenciar";
 "save" = "Guardar";
 "chat" = "Chat";
 "media" = "Multimedia";
@@ -151,6 +155,8 @@
 "title_share_location" = "Compartir ubicación con todos los miembros del grupo";
 "device_talk" = "Mensajes del dispositivo";
 "device_talk_subtitle" = "Mensajes generados localmente";
+"device_talk_explain" = "Los mensajes en este chat son generados localmente por tu aplicación Delta Chat. Los creadores lo usan para informar sobre actualizaciones y problemas durante el uso de la aplicación.";
+"device_talk_welcome_message" = "¡Bienvenido a Delta Chat! – Delta Chat luce como otras aplicaciones de mensajería populares, pero sin control centralizado, seguimiento ni venta de tus datos, o los de tus amigos, colegas o familiares a grandes organizaciones.\n\nTécnicamente, Delta Chat es una aplicación de correo electrónico con una interfaz de chat moderna. Correo electrónico en un nuevo vestido si quieres 👻\n\nUsa Delta Chat con cualquiera de miles de millones de personas: solo necesitas su dirección de correo electrónico. Los destinatarios no necesitan instalar Delta Chat, visitar sitios web o registrarse en ningún lugar - sin embargo, por supuesto, si lo desean, puedes indicarles 👉 https://get.delta.chat";
 "edit_contact" = "Editar contacto";
 
 "mute_for_one_hour" = "Silenciar por 1 hora";
@@ -209,6 +215,8 @@
 "chat_archived_label" = "Archivado";
 "chat_no_messages" = "No hay mensajes.";
 "chat_self_talk_subtitle" = "Mensajes que envié a mí mismo";
+"saved_messages" = "Mensajes guardados";
+"saved_messages_explain" = "• Reenvía mensajes aquí para accederlos fácilmente luego\n\n• Toma notas o mensajes de voz\n\n• Adjunta archivos para guardarlos";
 "chat_contact_request" = "Solicitud de contacto";
 "chat_no_contact_requests" = "No hay solicitudes de contacto.\n\nSi desea que los correos electrónicos clásicos aparezcan aquí como solicitudes de contacto, puede cambiar la configuración correspondiente en la configuración de la aplicación.";
 "retry_send" = "Reintentar enviar mensaje";
@@ -254,20 +262,7 @@
 
 
 // welcome and login
-"welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "La aplicación de mensajería instantánea con la audiencia más amplia del mundo. Libre e independiente. ";
-"welcome_intro2_headline" = "Independiente";
-"welcome_intro2_message" = "No hay un servidor de Delta Chat. La aplicación solo utiliza tu servidor de correo.";
-"welcome_intro3_headline" = "Rápida";
-"welcome_intro3_message" = "Envíe mensajes en segundos.\nInterfaz rápida.";
-"welcome_intro4_headline" = "Poderosa";
-"welcome_intro4_message" = "Chats ilimitados, imágenes, videos, mensajes de audio y más. Capacidad multi-cliente.";
-"welcome_intro5_headline" = "Libre";
-"welcome_intro5_message" = "Delta Chat es gratis y libre para siempre. De código libre. Sin publicidad. Sin suscripción. Sin limitaciones de otras empresas.";
-"welcome_intro6_headline" = "Cifrada";
-"welcome_intro6_message" = "Cifrada con todos los algoritmos comunes. Los mensajes se guardan solo en tu servidor de correo.";
-"welcome_intro7_headline" = "Confiable";
-"welcome_intro7_message" = "Delta Chat es seguro para usos comerciales y de negocio, compatible y basado en estándares abiertos.";
 "welcome_start_messaging" = "Empezar a Chatear";
 "login_title" = "Iniciar sesión";
 "login_header" = "Inicie sesión en su servidor";

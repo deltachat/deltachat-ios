@@ -195,20 +195,7 @@
 
 
 // welcome and login
-"welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "El programa de missatgeria amb més ususaris del món. Gratuït i independent.";
-"welcome_intro2_headline" = "Independent";
-"welcome_intro2_message" = "No hi ha servidor de Delta Chat. L\'app només fa servir el teu servidor de correu electrònic.";
-"welcome_intro3_headline" = "Ràpid";
-"welcome_intro3_message" = "Envia missatges en segons.\nInterfície ràpida.";
-"welcome_intro4_headline" = "Potent";
-"welcome_intro4_message" = "Xats il·limitats, imatges, vídeos, missatges de so i més coses. Capacitat de multi-client.";
-"welcome_intro5_headline" = "Lliure";
-"welcome_intro5_message" = "Delta Chat serà sempre lliure. Sense anuncis. Sense subscripció. Sense bloqueig de proveïdor.";
-"welcome_intro6_headline" = "Encriptat";
-"welcome_intro6_message" = "Encriptat amb els algoritmes habituals. Els missatges només es guarden al vostres servidors.";
-"welcome_intro7_headline" = "Fiable";
-"welcome_intro7_message" = "Delta Chat és segur per l\'ús empresarial, compatible i basat en estàndards.";
 "welcome_start_messaging" = "Comenceu a comunicar-vos";
 "login_title" = "Identifiqueu-vos";
 "login_header" = "Identifiqueu-vos al vostre servidor";

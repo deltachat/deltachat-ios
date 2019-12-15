@@ -228,20 +228,7 @@
 
 
 // welcome and login
-"welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "O aplicativo com a maior base de usuários do mundo. Livre e independente.";
-"welcome_intro2_headline" = "Independente";
-"welcome_intro2_message" = "O Delta Chat não tem servidor. O aplicativo usa o seu e-mail.";
-"welcome_intro3_headline" = "Rápido";
-"welcome_intro3_message" = "Envie mensagens em segundos.\nInterface rápida.";
-"welcome_intro4_headline" = "Potente";
-"welcome_intro4_message" = "Sem limites de conversas, imagens, vídeos, áudios, mensagens, etc. Multicliente.";
-"welcome_intro5_headline" = "Livre";
-"welcome_intro5_message" = "O Delta Chat será livre para sempre. Código aberto. Sem publicidade. Sem conta própria. Sem bloqueio do fornecedor.";
-"welcome_intro6_headline" = "Criptografado";
-"welcome_intro6_message" = "Criptografia com algoritmos padrão. As mensagens ficam no servidor de e-mail.";
-"welcome_intro7_headline" = "Confiável";
-"welcome_intro7_message" = "O Delta Chat é confiável para usar nos seus negócios e é baseado em padrões abertos.";
 "welcome_start_messaging" = "Comece a conversar";
 "login_title" = "Login";
 "login_header" = "Acesse seu servidor";

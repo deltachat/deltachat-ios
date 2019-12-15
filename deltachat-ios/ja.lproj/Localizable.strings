@@ -159,18 +159,6 @@
 "tab_docs" = "文章";
 "tab_links" = "ﾘﾝｸ";
 "tab_map" = "地図";
-// welcome and login
-"welcome_intro1_headline" = "Delta Chat";
-"welcome_intro2_headline" = "独立";
-"welcome_intro2_message" = "Delta Chatは自分のﾒｰﾙｻｰﾊﾞｰを設定して使用します｡つまりはﾁｬｯﾄ風のﾒｰﾙｸﾗｲｱﾝﾄｱﾌﾟﾘｹｰｼｮﾝであると謂う事です｡";
-"welcome_intro3_headline" = "高速";
-"welcome_intro4_headline" = "強力";
-"welcome_intro5_headline" = "自由で";
-"welcome_intro5_message" = "Delta Chatはあの世の終わりまで無料です｡またｿﾌﾄｳｪｱのｿｰｽｺｰﾄﾞを公開しています｡寄付によって開発されているため広告等は混入していません｡";
-"welcome_intro6_headline" = "暗号通信";
-"welcome_intro6_message" = "ﾒｯｾｰｼﾞは一般的な方式で暗号化され自分のｻｰﾊﾞｰに保存されます｡";
-"welcome_intro7_headline" = "信頼";
-"welcome_intro7_message" = "Delta Chatは商用としても安全に使用できます｡標準規格のﾒｰﾙｻｰﾊﾞｰに対応し､PGPを使用しています｡";
 "welcome_start_messaging" = "開始する";
 "login_title" = "ﾛｸﾞｲﾝ";
 "login_header" = "自分のﾒｰﾙｻｰﾊﾞｰにﾛｸﾞｲﾝする";

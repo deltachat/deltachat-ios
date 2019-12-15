@@ -177,20 +177,7 @@
 
 
 // welcome and login
-"welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "Мессенджер з найширшою аудиторією у світі. Безкоштовний і незалежний.";
-"welcome_intro2_headline" = "Незалежний";
-"welcome_intro2_message" = "Delta Chat не має централізованого сервера. Використовується ваш поштовий сервер.";
-"welcome_intro3_headline" = "Швидкий";
-"welcome_intro3_message" = "Доставляє повідомлення за лічені секунди.\nШвидкий інтерфейс.";
-"welcome_intro4_headline" = "Потужний";
-"welcome_intro4_message" = "Безлімітні чати, відправка фотографій, відео, голосових повідомлень і багато іншого. Підтримує безліч клієнтів.";
-"welcome_intro5_headline" = "Безкоштовний";
-"welcome_intro5_message" = "Delta Chat безкоштовний і так буде завжди. Має відкритий початковий код. Ніякої реклами. Ніяких платних підписок. Немає прив\'язки до постачальника.";
-"welcome_intro6_headline" = "Зашифрований";
-"welcome_intro6_message" = "Зашифрований з використанням популярних алгоритмів. Повідомлення залишаються на ваших серверах.";
-"welcome_intro7_headline" = "Надійний";
-"welcome_intro7_message" = "Delta Chat безпечний для бізнесу, поєднується з іншими технологіями і грунтується на стандартах.";
 "welcome_start_messaging" = "Почати спілкування";
 "login_title" = "Увійти";
 "login_header" = "Увійти на свій сервер";

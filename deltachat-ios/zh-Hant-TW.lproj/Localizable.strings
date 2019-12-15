@@ -225,20 +225,7 @@
 
 
 // welcome and login
-"welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "免費、獨立的通訊軟體，我們有全世界最廣的受眾。";
-"welcome_intro2_headline" = "獨立!";
-"welcome_intro2_message" = "Delta Chat 沒有中心化伺服器，我們只使用你的郵件伺服器。";
-"welcome_intro3_headline" = "快速!";
-"welcome_intro3_message" = "快速反應的介面\n傳送訊息只要幾秒鐘";
-"welcome_intro4_headline" = "強大!";
-"welcome_intro4_message" = "無限的對話、圖片、視訊、語音訊息。不受限於本通訊軟體。";
-"welcome_intro5_headline" = "免費!";
-"welcome_intro5_message" = "Delta Chat 永遠都免費。開放原始碼，沒有廣告，無需訂閱，不綁電信商。";
-"welcome_intro6_headline" = "保密!";
-"welcome_intro6_message" = "使用常見的演算法加密訊息，而且密文存在你自己的伺服器上。";
-"welcome_intro7_headline" = "值得信賴!";
-"welcome_intro7_message" = "Delta Chat 可以安心在商業環境使用，基於業界標準，相容度高。";
 "welcome_start_messaging" = "開始傳送訊息";
 "login_title" = "登入";
 "login_header" = "登入你的伺服器";

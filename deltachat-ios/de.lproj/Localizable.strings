@@ -155,6 +155,8 @@
 "title_share_location" = "Standort mit allen Gruppenmitgliedern teilen";
 "device_talk" = "Systemnachrichten";
 "device_talk_subtitle" = "Lokal erzeugte Nachrichten";
+"device_talk_explain" = "Nachrichten in diesem Chat werden lokal von der Delta Chat App erzeugt. Der Chat wird von den Entwicklern verwendet, um auf Neuigkeiten und Probleme hinzuweisen.";
+"device_talk_welcome_message" = "Willkommen – Delta Chat sieht aus und funktioniert wie andere populäre Messenger - aber ohne zentrale Überwachung, ohne Tracking, ohne die Daten von Ihnen, Freunden, Kollegen oder Familienmitgliedern an irgendwelche Firmen zu verkaufen.\n\nTechnisch ist Delta Chat ein E-Mail-Programm mit einer modernen Chat-Oberfläche - E-Mail in neuen Kleidern 👻\n\nMit Delta Chat haben Sie Milliarden potentieller Chatpartner: Verwenden Sie einfach deren E-Mail-Adresse - die Empfänger selbst müssen Delta Chat dazu nicht installiert haben oder sich irgendwo anmelden. Aber natürlich, wenn Sie mögen, können Sie sie auf 👉 https://get.delta.chat hinweisen";
 "edit_contact" = "Kontakt bearbeiten";
 
 "mute_for_one_hour" = "Stumm für 1 Stunde";
@@ -259,20 +261,7 @@
 
 
 // welcome and login
-"welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "Der Messenger mit der größten Reichweite der Welt. Frei und unabhängig.";
-"welcome_intro2_headline" = "Unabhängig";
-"welcome_intro2_message" = "Es gibt keinen Delta Chat Server. Die App verwendet nur Ihren E-Mail-Server.";
-"welcome_intro3_headline" = "Schnell";
-"welcome_intro3_message" = "Push-Nachrichten in Sekunden.\nSchnelles Interface.";
-"welcome_intro4_headline" = "Leistungsstark";
-"welcome_intro4_message" = "Unbegrenzte Chats, Bilder, Videos, Sprachnachrichten und mehr. Multi-Client-fähig.";
-"welcome_intro5_headline" = "Frei";
-"welcome_intro5_message" = "Open Source. Keine Werbung. Kein Abo. Keine Bindung an die Mobilfunknummer.";
-"welcome_intro6_headline" = "Verschlüsselt";
-"welcome_intro6_message" = "Verschlüsselung mit allen gängigen Verfahren. Die Nachrichten bleiben auf Ihren Servern.";
-"welcome_intro7_headline" = "Vertraulich";
-"welcome_intro7_message" = "Delta Chat ist für die geschäftliche Kommunikation geeignet, kompatibel und auf Standards basierend.";
 "welcome_start_messaging" = "Jetzt beginnen";
 "login_title" = "Login";
 "login_header" = "Bei ihrem Server anmelden";

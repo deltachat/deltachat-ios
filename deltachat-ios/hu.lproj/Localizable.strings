@@ -162,9 +162,6 @@
 "media_preview" = "Média előnézete";
 
 
-// welcome and login
-"welcome_intro1_headline" = "Delta Chat";
-"welcome_intro6_headline" = "Titkosított";
 "login_imap_server" = "IMAP kiszolgáló";
 "login_imap_port" = "IMAP port";
 "login_imap_security" = "IMAP biztonság";

@@ -249,20 +249,7 @@
 
 
 // welcome and login
-"welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "Le messager avec le plus large public au monde. Libre et indépendant.";
-"welcome_intro2_headline" = "Indépendant";
-"welcome_intro2_message" = "Il n\'y a pas de serveur Delta Chat. L\'application utilise uniquement votre serveur de mails.";
-"welcome_intro3_headline" = "Rapide";
-"welcome_intro3_message" = "Envoi des messages en quelques secondes.\nInterface rapide.";
-"welcome_intro4_headline" = "Puissant";
-"welcome_intro4_message" = "Tchats illimités, images, vidéos, messages audio et plus encore. Capacité multi-clients.";
-"welcome_intro5_headline" = "Libre";
-"welcome_intro5_message" = "Delta Chat est gratuit pour toujours. Logiciel à code source ouvert. Pas de publicité. Pas d\'inscription. Aucun fournisseur captif.";
-"welcome_intro6_headline" = "Chiffré";
-"welcome_intro6_message" = "Chiffré avec tous les algorithmes courants. Les messages restent sur vos serveurs.";
-"welcome_intro7_headline" = "Digne de confiance";
-"welcome_intro7_message" = "Delta Chat est sûr pour une utilisation professionnelle, compatible et basé sur des standards.";
 "welcome_start_messaging" = "Démarrage la communication";
 "login_title" = "Connexion";
 "login_header" = "Connexion vers votre serveur";

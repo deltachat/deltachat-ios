@@ -21,6 +21,7 @@
 "close" = "关闭";
 "forward" = "转发";
 "archive" = "归档";
+"unarchive" = "解档";
 "mute" = "静音";
 "save" = "保存";
 "chat" = "聊天";
@@ -261,20 +262,7 @@
 
 
 // welcome and login
-"welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "本通讯软件有着世界上最广泛的受众。自由且自主。";
-"welcome_intro2_headline" = "自主";
-"welcome_intro2_message" = "不存在Delta Chat服务器。 本应用仅使用您的邮件服务器。";
-"welcome_intro3_headline" = "快速";
-"welcome_intro3_message" = "在几秒钟内推送消息。\n快速的接口。";
-"welcome_intro4_headline" = "强大";
-"welcome_intro4_message" = "无限制的聊天、图像、视频、音频消息以及更多。 支持多客户端。";
-"welcome_intro5_headline" = "自由";
-"welcome_intro5_message" = "Delta Chat是自由软件。没有广告。 没有订阅。 没有供应商锁定。";
-"welcome_intro6_headline" = "加密";
-"welcome_intro6_message" = "使用所有常见算法加密。 消息保留于您的服务器。";
-"welcome_intro7_headline" = "可信赖";
-"welcome_intro7_message" = "Delta Chat是可以安全地用于商业用途、兼容且基于标准的。";
 "welcome_start_messaging" = "开始发送消息";
 "login_title" = "登录";
 "login_header" = "登录至您的服务器";

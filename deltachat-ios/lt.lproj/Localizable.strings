@@ -14,6 +14,9 @@
 "attachment" = "Priedas";
 "back" = "Atgal";
 "close" = "Užverti";
+"forward" = "Persiųsti";
+"archive" = "Archyvuoti";
+"unarchive" = "Išarchyvuoti";
 "save" = "Įrašyti";
 "media" = "Medija";
 "main_menu" = "Pagrindinis meniu";
@@ -215,20 +218,7 @@
 
 
 // welcome and login
-"welcome_intro1_headline" = "Delta Chat";
 "welcome_intro1_message" = "Pokalbių programa su plačiausia auditorija pasaulyje. Nemokama ir nepriklausoma.";
-"welcome_intro2_headline" = "Nepriklausoma";
-"welcome_intro2_message" = "Nėra jokio Delta Chat serverio. Programėlė naudoja tik jūsų pašto serverį.";
-"welcome_intro3_headline" = "Greita";
-"welcome_intro3_message" = "Perduokite žinutes akimirksniu.\nSparti sąsaja.";
-"welcome_intro4_headline" = "Galinga";
-"welcome_intro4_message" = "Neriboti pokalbiai, paveikslai, vaizdo įrašai, garso žinutės ir daugiau. Kelių klientų palaikymas.";
-"welcome_intro5_headline" = "Laisva";
-"welcome_intro5_message" = "Delta Chat yra laisva visiems laikams. Atvirojo kodo. Jokių reklamų. Jokios prenumeratos. Jokios priklausomybės nuo tiekėjo.";
-"welcome_intro6_headline" = "Šifruota";
-"welcome_intro6_message" = "Šifruota visais paplitusiais algoritmais. Žinutės lieka jūsų serveriuose.";
-"welcome_intro7_headline" = "Patikima";
-"welcome_intro7_message" = "Delta Chat yra saugi naudoti versle, suderinama ir pagrįsta standartais.";
 "welcome_start_messaging" = "Pradėti susirašinėjimą";
 "login_title" = "Prisijungti";
 "login_header" = "Prisijunkite prie savo serverio";
