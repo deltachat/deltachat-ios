@@ -34,7 +34,7 @@ class AppCoordinator: NSObject, Coordinator {
     private lazy var qrController: UIViewController = {
         let controller = QrViewController(dcContext: dcContext)
         let nav = DcNavigationController(rootViewController: controller)
-        let settingsImage = UIImage(named: "report_card")
+        let settingsImage = UIImage(named: "qr_code")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
         let coordinator = QrViewCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)
@@ -45,7 +45,7 @@ class AppCoordinator: NSObject, Coordinator {
     private lazy var chatListController: UIViewController = {
         let controller = ChatListController(dcContext: dcContext, showArchive: false)
         let nav = DcNavigationController(rootViewController: controller)
-        let settingsImage = UIImage(named: "chat")
+        let settingsImage = UIImage(named: "ic_chat")
         nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: chatsTab)
         let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: nav)
         self.childCoordinators.append(coordinator)
