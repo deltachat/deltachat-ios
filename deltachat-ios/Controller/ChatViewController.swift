@@ -428,6 +428,8 @@ class ChatViewController: MessagesViewController {
 
         let sendButtonImage = UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)
         messageInputBar.sendButton.image = sendButtonImage
+        messageInputBar.sendButton.accessibilityLabel = String.localized("menu_send")
+        messageInputBar.sendButton.accessibilityTraits = .button
         messageInputBar.sendButton.title = nil
         messageInputBar.sendButton.tintColor = UIColor(white: 1, alpha: 1)
         messageInputBar.sendButton.layer.cornerRadius = 20
@@ -445,6 +447,8 @@ class ChatViewController: MessagesViewController {
                     $0.image = clipperIcon
                     $0.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
                     $0.setSize(CGSize(width: 40, height: 40), animated: false)
+                    $0.accessibilityLabel = String.localized("menu_add_attachment")
+                    $0.accessibilityTraits = .button
                 }.onSelected {
                     $0.tintColor = DcColors.primary
                 }.onDeselected {
