@@ -2,9 +2,8 @@ import Foundation
 import UIKit
 
 class QrViewController: UITableViewController, QrCodeReaderDelegate {
-    private let rowContact = 0
-    private let rowQRCode = 1
-    private let rowScanQR = 2
+    private let rowQRCode = 0
+    private let rowScanQR = 1
 
     weak var coordinator: QrViewCoordinator?
     let qrCodeReaderController = QrCodeReaderController()
@@ -33,19 +32,10 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
         qrCodeReaderController.delegate = self
         tableView.separatorStyle = .none
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        let indexPath = IndexPath(row: rowContact, section: 0)
-        tableView.beginUpdates()
-        tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
-        tableView.endUpdates()
-    }
     
     override func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         switch row {
-        case rowContact:
-            return createContactCell()
         case rowQRCode:
             return createQRCodeCell()
         case rowScanQR:
@@ -60,17 +50,15 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
 
     override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
-        case rowContact:
-            return 72
         case rowQRCode:
-            return 225
+            return 325
         case rowScanQR:
-            return 40
+            return 48
         default:
             return 10
         }
@@ -211,26 +199,6 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
         present(alert, animated: true, completion: nil)
     }
 
-    private func createContactCell() -> UITableViewCell {
-        let cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
-        let bg = UIColor(red: 248 / 255, green: 248 / 255, blue: 255 / 255, alpha: 1.0)
-
-        if let contact = self.contact {
-            let name = DcConfig.displayname ?? contact.displayName
-            cell.backgroundColor = bg
-            cell.nameLabel.text = name
-            cell.emailLabel.text = contact.email
-            if let img = contact.profileImage {
-                cell.setImage(img)
-            } else {
-                cell.setBackupImage(name: name, color: contact.color)
-            }
-        } else {
-            cell.nameLabel.text = String.localized("no_account_setup")
-        }
-        return cell
-    }
-
     private func createQRCodeCell() -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "qrCodeCell")
         let qrCode = createQRCodeView()
@@ -289,7 +257,7 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
     }
 
     private func createQRCodeView() -> UIView {
-        let width: CGFloat = 130
+        let width: CGFloat = 230
         let frame = CGRect(origin: .zero, size: .init(width: width, height: width))
         let imageView = QRCodeView(frame: frame)
         if let qrCode = dcContext.getSecurejoinQr(chatId: 0) {
