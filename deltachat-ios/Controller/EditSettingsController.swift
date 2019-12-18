@@ -140,30 +140,38 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         }
     }
 
-
-      private func galleryButtonPressed(_ action: UIAlertAction) {
+    private func galleryButtonPressed(_ action: UIAlertAction) {
         coordinator?.showPhotoPicker(delegate: self)
-      }
+    }
 
-      private func cameraButtonPressed(_ action: UIAlertAction) {
+    private func cameraButtonPressed(_ action: UIAlertAction) {
         coordinator?.showCamera(delegate: self)
-      }
+    }
+
+    private func deleteProfileIconPressed(_ action: UIAlertAction) {
+        DcConfig.selfavatar = nil
+        updateAvatarAndNameCell()
+    }
 
     private func onAvatarTapped() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                 let photoAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
-                 let videoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
-
-                 alert.addAction(photoAction)
-                 alert.addAction(videoAction)
-                 alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        let photoAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
+        let videoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
+        let deleteAction = UIAlertAction(title: String.localized("delete"), style: .destructive, handler: deleteProfileIconPressed(_:))
+        alert.addAction(photoAction)
+        alert.addAction(videoAction)
+        alert.addAction(deleteAction)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
 
         self.present(alert, animated: true, completion: nil)
     }
 
     func onImageSelected(image: UIImage) {
         AvatarHelper.saveSelfAvatarImage(image: image)
+        updateAvatarAndNameCell()
+    }
 
+    private func updateAvatarAndNameCell() {
         self.avatarSelectionCell = createPictureAndNameCell()
         self.avatarSelectionCell.onAvatarTapped = onAvatarTapped
 
