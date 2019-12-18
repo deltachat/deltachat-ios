@@ -15,6 +15,7 @@ class ContactCell: UITableViewCell {
     lazy var avatar: InitialsBadge = {
         let badge = InitialsBadge(size: badgeSize)
         badge.setColor(UIColor.lightGray)
+        badge.isAccessibilityElement = false
         return badge
     }()
 
