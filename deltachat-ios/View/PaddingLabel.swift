@@ -2,17 +2,12 @@ import UIKit
 
 class PaddingLabel: UILabel {
 
-    var topInset: CGFloat = 16
-    var bottomInset: CGFloat = 16
-    var leftInset: CGFloat = 16
-    var rightInset: CGFloat = 16
+    var contentInsets = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
 
     required init() {
         super.init(frame: CGRect.zero)
         numberOfLines = 0
-
-        sizeToFit()
-        layer.cornerRadius = 16
+        layer.cornerRadius = 12
         clipsToBounds = true
         self.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -21,17 +16,42 @@ class PaddingLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override var text: String? {
+        set {
+            guard let newValue = newValue else {
+                attributedText = nil
+                return
+            }
+
+            guard let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle else {
+                attributedText = NSAttributedString(string: newValue)
+                return
+            }
+
+            style.alignment = NSTextAlignment.natural
+            style.firstLineHeadIndent = 12.0
+            style.headIndent = 12.0
+            style.tailIndent = -12.0
+            style.lineBreakMode = .byWordWrapping
+            attributedText = NSAttributedString(string: newValue, attributes: [.paragraphStyle: style])
+        }
+
+        get {
+            return self.attributedText?.string
+        }
+    }
+
     override func drawText(in rect: CGRect) {
-        let insets = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
-        super.drawText(in: rect.inset(by: insets))
+        super.drawText(in: rect.inset(by: contentInsets))
     }
 
     override var intrinsicContentSize: CGSize {
-        get {
-            var contentSize = super.intrinsicContentSize
-            contentSize.height += topInset + bottomInset
-            contentSize.width += leftInset + rightInset
-            return contentSize
-        }
+        return addInsets(to: super.intrinsicContentSize)
+    }
+
+    private func addInsets(to size: CGSize) -> CGSize {
+        let width = size.width + contentInsets.left + contentInsets.right
+        let height = size.height + contentInsets.top + contentInsets.bottom
+        return CGSize(width: width, height: height)
     }
 }
