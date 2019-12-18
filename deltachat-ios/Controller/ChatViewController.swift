@@ -60,6 +60,13 @@ class ChatViewController: MessagesViewController {
     var previewView: UIView?
     var previewController: PreviewController?
 
+    var emptyStateView: PaddingLabel = {
+        let view =  PaddingLabel()
+        view.backgroundColor = DcColors.systemMessageBackgroundColor
+        view.textColor = DcColors.defaultTextColor
+        return view
+    }()
+
     override var inputAccessoryView: UIView? {
         if disableWriting {
             return nil
@@ -89,6 +96,7 @@ class ChatViewController: MessagesViewController {
             return
         }
         configureMessageCollectionView()
+        configureEmptyStateView()
 
         if !disableWriting {
             configureMessageInputBar()
@@ -103,6 +111,14 @@ class ChatViewController: MessagesViewController {
                                        selector: #selector(setTextDraft),
                                        name: UIApplication.willResignActiveNotification,
                                        object: nil)
+    }
+
+    private func configureEmptyStateView() {
+        view.addSubview(emptyStateView)
+        view.addConstraints([emptyStateView.constraintCenterYTo(view),
+                             emptyStateView.constraintCenterXTo(view),
+                             emptyStateView.constraintAlignLeadingTo(view, paddingLeading: 40),
+                             emptyStateView.constraintAlignTrailingTo(view, paddingTrailing: 40)])
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -242,6 +258,7 @@ class ChatViewController: MessagesViewController {
                 if self.isLastSectionVisible() {
                     self.messagesCollectionView.scrollToBottom(animated: true)
                 }
+                self.showEmptyStateView(self.messageList.isEmpty)
             }
         }
     }
@@ -253,7 +270,36 @@ class ChatViewController: MessagesViewController {
                 self.messagesCollectionView.reloadData()
                 self.refreshControl.endRefreshing()
                 self.messagesCollectionView.scrollToBottom(animated: false)
+                self.showEmptyStateView(self.messageList.isEmpty)
             }
+        }
+    }
+
+    private func showEmptyStateView(_ show: Bool) {
+        if show {
+            let dcChat = DcChat(id: chatId)
+            if chatId == DC_CHAT_ID_DEADDROP {
+                if DcConfig.showEmails != DC_SHOW_EMAILS_ALL {
+                    emptyStateView.text = String.localized("chat_no_contact_requests")
+                } else {
+                    emptyStateView.text = String.localized("chat_no_messages")
+                }
+            } else if dcChat.isGroup {
+                if dcChat.isUnpromoted {
+                    emptyStateView.text = String.localized("chat_new_group_hint")
+                } else {
+                    emptyStateView.text = String.localized("chat_no_messages")
+                }
+            } else if dcChat.isSelfTalk {
+                emptyStateView.text = String.localized("saved_messages_explain")
+            } else if dcChat.isDeviceTalk {
+                emptyStateView.text = String.localized("device_talk_explain")
+            } else {
+                emptyStateView.text = String.localizedStringWithFormat(String.localized("chat_no_messages_hint"), dcChat.name, dcChat.name)
+            }
+            emptyStateView.isHidden = false
+        } else {
+            emptyStateView.isHidden = true
         }
     }
 
@@ -775,6 +821,7 @@ extension ChatViewController: MessagesDataSource {
     func insertMessage(_ message: DcMsg) {
         dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(message.id)]), 1)
         messageList.append(message)
+        emptyStateView.isHidden = true
         // Reload last section to update header/footer labels and insert a new one
         messagesCollectionView.performBatchUpdates({
             messagesCollectionView.insertSections([messageList.count - 1])

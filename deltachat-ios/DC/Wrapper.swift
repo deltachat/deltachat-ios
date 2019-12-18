@@ -447,6 +447,10 @@ class DcChat {
         return UIColor(netHex: Int(dc_chat_get_color(chatPointer)))
     }
 
+    var isUnpromoted: Bool {
+        return Int(dc_chat_is_unpromoted(chatPointer)) != 0
+    }
+
     var isGroup: Bool {
         let type = Int(dc_chat_get_type(chatPointer))
         return type == DC_CHAT_TYPE_GROUP || type == DC_CHAT_TYPE_VERIFIED_GROUP
