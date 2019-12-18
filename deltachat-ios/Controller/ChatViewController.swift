@@ -106,24 +106,7 @@ class ChatViewController: MessagesViewController {
 
         let chat = DcChat(id: chatId)
         if showCustomNavBar {
-            let titleView =  ChatTitleView()
-
-            var subtitle = "ErrSubtitle"
-            let chatContactIds = chat.contactIds
-            if chat.isGroup {
-                subtitle = String.localizedStringWithFormat(NSLocalizedString("n_members", comment: ""), chatContactIds.count)
-            } else if chatContactIds.count >= 1 {
-                if chat.isDeviceTalk {
-                    subtitle = String.localized("device_talk_subtitle")
-                } else if chat.isSelfTalk {
-                    subtitle = String.localized("chat_self_talk_subtitle")
-                } else {
-                    subtitle = DcContact(id: chatContactIds[0]).email
-                }
-            }
-
-            titleView.updateTitleView(title: chat.name, subtitle: subtitle)
-            navigationItem.titleView = titleView
+            updateTitle(chat: chat)
 
             let badge: InitialsBadge
             if let image = chat.profileImage {
@@ -154,6 +137,9 @@ class ChatViewController: MessagesViewController {
                         // change might be a deletion
                         self.refreshMessages()
                     }
+                }
+                if (self.showCustomNavBar) {
+                    self.updateTitle(chat: chat)
                 }
             }
         }
@@ -207,6 +193,26 @@ class ChatViewController: MessagesViewController {
             nc.removeObserver(incomingMsgObserver)
         }
         audioController.stopAnyOngoingPlaying()
+    }
+
+    private func updateTitle(chat: DcChat) {
+        let titleView =  ChatTitleView()
+
+        var subtitle = "ErrSubtitle"
+        let chatContactIds = chat.contactIds
+        if chat.isGroup {
+            subtitle = String.localizedStringWithFormat(NSLocalizedString("n_members", comment: ""), chatContactIds.count)
+        } else if chatContactIds.count >= 1 {
+            if chat.isDeviceTalk {
+                subtitle = String.localized("device_talk_subtitle")
+            } else if chat.isSelfTalk {
+                subtitle = String.localized("chat_self_talk_subtitle")
+            } else {
+                subtitle = DcContact(id: chatContactIds[0]).email
+            }
+        }
+        titleView.updateTitleView(title: chat.name, subtitle: subtitle)
+        navigationItem.titleView = titleView
     }
 
     @objc
