@@ -5,7 +5,7 @@ class NewGroupViewController: GroupMembersViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("menu_new_group")
+        title = String.localized("group_add_members")
         let groupCreationNextButton = UIBarButtonItem(title: String.localized("next"),
                                                       style: .done,
                                                       target: self,
