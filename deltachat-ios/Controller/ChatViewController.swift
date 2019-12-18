@@ -97,6 +97,12 @@ class ChatViewController: MessagesViewController {
         }
 
         loadFirstMessages()
+
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self,
+                                       selector: #selector(setTextDraft),
+                                       name: UIApplication.willResignActiveNotification,
+                                       object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -277,7 +283,7 @@ class ChatViewController: MessagesViewController {
         }
     }
 
-    private func setTextDraft() {
+    @objc private func setTextDraft() {
         if let text = self.messageInputBar.inputTextView.text {
             let draft = dc_msg_new(mailboxPointer, DC_MSG_TEXT)
             dc_msg_set_text(draft, text.cString(using: .utf8))
