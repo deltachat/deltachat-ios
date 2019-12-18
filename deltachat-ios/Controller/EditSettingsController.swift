@@ -158,9 +158,12 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         let photoAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
         let videoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
         let deleteAction = UIAlertAction(title: String.localized("delete"), style: .destructive, handler: deleteProfileIconPressed(_:))
+
         alert.addAction(photoAction)
         alert.addAction(videoAction)
-        alert.addAction(deleteAction)
+        if dcContext.getSelfAvatarImage() != nil {
+            alert.addAction(deleteAction)
+        }
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
 
         self.present(alert, animated: true, completion: nil)
