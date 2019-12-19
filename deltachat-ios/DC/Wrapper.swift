@@ -555,15 +555,8 @@ class DcMsg: MessageType {
         Date(timeIntervalSince1970: Double(timestamp))
     }()
 
-    let localDateFormatter: DateFormatter = {
-        let result = DateFormatter()
-        result.dateStyle = .none
-        result.timeStyle = .short
-        return result
-    }()
-
     func formattedSentDate() -> String {
-        return localDateFormatter.string(from: sentDate)
+        return DateUtils.getBriefRelativeTimeSpanString(timeStamp: Double(sentDate.timeIntervalSince1970))
     }
 
     lazy var kind: MessageKind = {

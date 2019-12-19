@@ -179,27 +179,39 @@ struct Utils {
 }
 
 class DateUtils {
-    // TODO: refactor that, it's an improper way for localizations, use stringsdict instead
-    // blocked by: converting androids plurals xml entries to stringsdict
-    static func getBriefRelativeTimeSpanString(timeStamp: Int) -> String {
-        let unixTime = Int(Date().timeIntervalSince1970)
-        let seconds = unixTime - timeStamp
+    typealias DtU = DateUtils
+    static let minute: Double = 60
+    static let hour: Double = 3600
+    static let day: Double = 86400
+    static let year: Double = 365 * day
 
-        if seconds < 60 {
+    static func getBriefRelativeTimeSpanString(timeStamp: Double) -> String {
+        let unixTime = Double(Date().timeIntervalSince1970)
+        let seconds = unixTime - timeStamp
+        let date = Date(timeIntervalSince1970: timeStamp)
+        let formatter = DateFormatter()
+        formatter.timeZone = .current
+        formatter.locale = .current
+        let dateString: String = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: Locale.current) ?? ""
+        let is24h = !dateString.contains("a")
+
+        if seconds < DtU.minute {
             return String.localized("now")	// under one minute
-        } else if seconds < 3600 {
-            let mins = seconds / 60
-            return String.localized(stringID: "n_minutes", count: mins)
-        } else if seconds < 86400 {
-            let hours = seconds / 3600
-            return String.localized(stringID: "n_hours", count: hours)
+        } else if seconds < DtU.hour {
+            let mins = seconds / DtU.minute
+            return String.localized(stringID: "n_minutes", count: Int(mins))
+        } else if seconds < DtU.day {
+            let hours = seconds / DtU.hour
+            return String.localized(stringID: "n_hours", count: Int(hours))
+        } else if seconds < DtU.day * 6 {
+            formatter.dateFormat = is24h ?  "EEE, HH:mm" : "EEE, h:mm a"
+            return formatter.string(from: date)
+        } else if seconds < DtU.year {
+            formatter.dateFormat = is24h ? "MMM d, HH:mm" : "MMM d, h:mm a"
+            return formatter.string(from: date)
         } else {
-            let date = Date(timeIntervalSince1970: Double(timeStamp))
-            let dateFormatter = DateFormatter()
-            // dateFormatter.timeStyle = DateFormatter.Style.short //Set time style
-            dateFormatter.dateStyle = DateFormatter.Style.medium //Set date style
-            dateFormatter.timeZone = .current
-            let localDate = dateFormatter.string(from: date)
+            formatter.timeStyle = DateFormatter.Style.short //Set time style
+            let localDate = formatter.string(from: date)
             return localDate
         }
     }
