@@ -128,9 +128,8 @@ class ContactCell: UITableViewCell {
     }
 
     func setBackupImage(name: String, color: UIColor) {
-        let text = Utils.getInitials(inputName: name)
         avatar.setColor(color)
-        avatar.setName(text)
+        avatar.setName(name)
     }
 
     func setUnreadMessageCounter(_ count: Int) {
