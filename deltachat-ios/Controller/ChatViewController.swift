@@ -233,6 +233,7 @@ class ChatViewController: MessagesViewController {
             badge =  InitialsBadge(image: image, size: 28)
         } else {
             badge =  InitialsBadge(name: chat.name, color: chat.color, size: 28)
+            badge.setLabelFont(UIFont.systemFont(ofSize: 14))
         }
         badge.setVerified(chat.isVerified)
         badge.accessibilityTraits = .button

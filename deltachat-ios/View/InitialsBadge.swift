@@ -7,7 +7,7 @@ class InitialsBadge: UIView {
 
     private var label: UILabel = {
         let label = UILabel()
-        label.adjustsFontSizeToFitWidth = true
+        label.font = UIFont.systemFont(ofSize: 18)
         label.textAlignment = NSTextAlignment.center
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -84,6 +84,10 @@ class InitialsBadge: UIView {
         label.isHidden = name.isEmpty
         imageView.isHidden = !name.isEmpty
         accessibilityLabel = "avatar \(name)"
+    }
+
+    func setLabelFont(_ font: UIFont) {
+        label.font = font
     }
 
     func setImage(_ image: UIImage, downscale: CGFloat? = nil) {
