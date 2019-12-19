@@ -410,12 +410,12 @@ class ChatViewController: MessagesViewController {
 
         messageInputBar.inputTextView.backgroundColor = DcColors.inputFieldColor
         messageInputBar.inputTextView.placeholderTextColor = DcColors.placeholderColor
-        messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 38)
-        messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 38)
+        messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 38)
+        messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 38)
         messageInputBar.inputTextView.layer.borderColor = UIColor.themeColor(light: UIColor(red: 200 / 255, green: 200 / 255, blue: 200 / 255, alpha: 1),
                                                                              dark: UIColor(red: 55 / 255, green: 55/255, blue: 55/255, alpha: 1)).cgColor
         messageInputBar.inputTextView.layer.borderWidth = 1.0
-        messageInputBar.inputTextView.layer.cornerRadius = 20.0
+        messageInputBar.inputTextView.layer.cornerRadius = 13.0
         messageInputBar.inputTextView.layer.masksToBounds = true
         messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         configureInputBarItems()
@@ -446,14 +446,14 @@ class ChatViewController: MessagesViewController {
                     $0.spacing = .fixed(0)
                     let clipperIcon = #imageLiteral(resourceName: "ic_attach_file_36pt").withRenderingMode(.alwaysTemplate)
                     $0.image = clipperIcon
-                    $0.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
+                    $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
                     $0.setSize(CGSize(width: 40, height: 40), animated: false)
                     $0.accessibilityLabel = String.localized("menu_add_attachment")
                     $0.accessibilityTraits = .button
                 }.onSelected {
                     $0.tintColor = DcColors.primary
                 }.onDeselected {
-                    $0.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
+                    $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
                 }.onTouchUpInside { _ in
                     self.clipperButtonPressed()
                 }
