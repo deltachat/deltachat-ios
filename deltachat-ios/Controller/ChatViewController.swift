@@ -137,6 +137,7 @@ class ChatViewController: MessagesViewController {
                 badge =  InitialsBadge(name: chat.name, color: chat.color, size: 28)
             }
             badge.setVerified(chat.isVerified)
+            badge.accessibilityTraits = .button
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: badge)
         }
 
@@ -414,7 +415,7 @@ class ChatViewController: MessagesViewController {
         messageInputBar.inputTextView.layer.borderColor = UIColor.themeColor(light: UIColor(red: 200 / 255, green: 200 / 255, blue: 200 / 255, alpha: 1),
                                                                              dark: UIColor(red: 55 / 255, green: 55/255, blue: 55/255, alpha: 1)).cgColor
         messageInputBar.inputTextView.layer.borderWidth = 1.0
-        messageInputBar.inputTextView.layer.cornerRadius = 16.0
+        messageInputBar.inputTextView.layer.cornerRadius = 13.0
         messageInputBar.inputTextView.layer.masksToBounds = true
         messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         configureInputBarItems()
@@ -422,20 +423,22 @@ class ChatViewController: MessagesViewController {
 
     private func configureInputBarItems() {
 
-        messageInputBar.setLeftStackViewWidthConstant(to: 30, animated: false)
-        messageInputBar.setRightStackViewWidthConstant(to: 30, animated: false)
+        messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
+        messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
 
 
         let sendButtonImage = UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)
         messageInputBar.sendButton.image = sendButtonImage
+        messageInputBar.sendButton.accessibilityLabel = String.localized("menu_send")
+        messageInputBar.sendButton.accessibilityTraits = .button
         messageInputBar.sendButton.title = nil
         messageInputBar.sendButton.tintColor = UIColor(white: 1, alpha: 1)
-        messageInputBar.sendButton.layer.cornerRadius = 15
-        messageInputBar.middleContentViewPadding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 10)
+        messageInputBar.sendButton.layer.cornerRadius = 20
+        messageInputBar.middleContentViewPadding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         // this adds a padding between textinputfield and send button
         messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        messageInputBar.sendButton.setSize(CGSize(width: 30, height: 30), animated: false)
-
+        messageInputBar.sendButton.setSize(CGSize(width: 40, height: 40), animated: false)
+        messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
 
         let leftItems = [
             InputBarButtonItem()
@@ -443,12 +446,14 @@ class ChatViewController: MessagesViewController {
                     $0.spacing = .fixed(0)
                     let clipperIcon = #imageLiteral(resourceName: "ic_attach_file_36pt").withRenderingMode(.alwaysTemplate)
                     $0.image = clipperIcon
-                    $0.tintColor = DcColors.colorDisabled
-                    $0.setSize(CGSize(width: 30, height: 30), animated: false)
+                    $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
+                    $0.setSize(CGSize(width: 40, height: 40), animated: false)
+                    $0.accessibilityLabel = String.localized("menu_add_attachment")
+                    $0.accessibilityTraits = .button
                 }.onSelected {
                     $0.tintColor = DcColors.primary
                 }.onDeselected {
-                    $0.tintColor = DcColors.colorDisabled
+                    $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
                 }.onTouchUpInside { _ in
                     self.clipperButtonPressed()
                 }

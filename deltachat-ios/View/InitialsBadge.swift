@@ -11,6 +11,7 @@ class InitialsBadge: UIView {
         label.textAlignment = NSTextAlignment.center
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.isAccessibilityElement = false
         return label
     }()
 
@@ -50,6 +51,7 @@ class InitialsBadge: UIView {
         heightAnchor.constraint(equalToConstant: size).isActive = true
         widthAnchor.constraint(equalToConstant: size).isActive = true
         setupSubviews(with: radius)
+        isAccessibilityElement = true
     }
 
     private func setupSubviews(with radius: CGFloat) {
@@ -81,6 +83,7 @@ class InitialsBadge: UIView {
         label.text = Utils.getInitials(inputName: name)
         label.isHidden = name.isEmpty
         imageView.isHidden = !name.isEmpty
+        accessibilityLabel = "avatar \(name)"
     }
 
     func setImage(_ image: UIImage, downscale: CGFloat? = nil) {

@@ -21,6 +21,7 @@ class ChatTitleView: UIView {
     init() {
         super.init(frame: .zero)
         setupSubviews()
+        isAccessibilityElement = true
     }
 
     required init?(coder aDecoder: NSCoder) {
