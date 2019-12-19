@@ -47,6 +47,8 @@ class ChatViewController: MessagesViewController {
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
 
+    weak var timer: Timer?
+
     lazy var navBarTap: UITapGestureRecognizer = {
         UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
     }()
@@ -111,6 +113,23 @@ class ChatViewController: MessagesViewController {
                                        selector: #selector(setTextDraft),
                                        name: UIApplication.willResignActiveNotification,
                                        object: nil)
+    }
+
+    private func startTimer() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+            //reload table
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                self.messageList = self.getMessageIds(self.messageList.count)
+                self.messagesCollectionView.reloadDataAndKeepOffset()
+                self.refreshControl.endRefreshing()
+            }
+        }
+    }
+
+    private func stopTimer() {
+        timer?.invalidate()
     }
 
     private func configureEmptyStateView() {
@@ -185,6 +204,7 @@ class ChatViewController: MessagesViewController {
         dcContext.marknoticedChat(chatId: chatId)
         let array = DcArray(arrayPointer: dc_get_fresh_msgs(mailboxPointer))
         UIApplication.shared.applicationIconBadgeNumber = array.count
+        startTimer()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -206,6 +226,7 @@ class ChatViewController: MessagesViewController {
             nc.removeObserver(incomingMsgObserver)
         }
         audioController.stopAnyOngoingPlaying()
+        stopTimer()
     }
 
     private func updateTitle(chat: DcChat) {
