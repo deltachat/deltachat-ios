@@ -231,7 +231,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
 
         let chatId = chatList.getChatId(index: row)
-        if chatId==DC_CHAT_ID_ARCHIVED_LINK {
+        if chatId==DC_CHAT_ID_ARCHIVED_LINK || chatId==DC_CHAT_ID_DEADDROP {
             return []
             // returning nil may result in a default delete action,
             // see https://forums.developer.apple.com/thread/115030
