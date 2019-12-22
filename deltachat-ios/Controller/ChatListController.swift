@@ -154,7 +154,9 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
 
         let cell: ContactCell
-        if let c = tableView.dequeueReusableCell(withIdentifier: "ChatCell") as? ContactCell {
+        if chatId == DC_CHAT_ID_DEADDROP {
+            cell = getDeaddropCell(tableView)
+        } else if let c = tableView.dequeueReusableCell(withIdentifier: "ChatCell") as? ContactCell {
             cell = c
         } else {
             cell = ContactCell(style: .default, reuseIdentifier: "ChatCell")
@@ -167,7 +169,6 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         cell.nameLabel.attributedText = (unreadMessages > 0) ?
             NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ]) :
             NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .medium) ])
-
 
         if let img = chat.profileImage {
             cell.resetBackupImage()
@@ -251,6 +252,17 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         delete.backgroundColor = UIColor.red
 
         return [archive, delete]
+    }
+
+    func getDeaddropCell(_ tableView: UITableView) -> ContactCell {
+        let deaddropCell: ContactCell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "DeaddropCell") as? ContactCell {
+            deaddropCell = cell
+        } else {
+            deaddropCell = ContactCell(style: .default, reuseIdentifier: "DeaddropCell")
+        }
+        deaddropCell.backgroundColor = DcColors.deaddropBackground // TODO: why is the color not changed in darkmode?
+        return deaddropCell
     }
 
     func getArchiveCell(_ tableView: UITableView) -> UITableViewCell {
