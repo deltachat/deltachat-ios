@@ -7,7 +7,7 @@ class InitialsBadge: UIView {
 
     private var label: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 26)
         label.textAlignment = NSTextAlignment.center
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
