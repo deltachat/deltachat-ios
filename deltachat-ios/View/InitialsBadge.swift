@@ -37,9 +37,9 @@ class InitialsBadge: UIView {
         setColor(color)
     }
 
-    convenience init (image: UIImage, size: CGFloat, downscale: CGFloat? = nil) {
+    convenience init (image: UIImage, size: CGFloat) {
         self.init(size: size)
-        setImage(image, downscale: downscale)
+        setImage(image)
     }
 
     init(size: CGFloat) {
@@ -90,20 +90,11 @@ class InitialsBadge: UIView {
         label.font = font
     }
 
-    func setImage(_ image: UIImage, downscale: CGFloat? = nil) {
-        var scale = downscale ?? 1
-        if scale > 1 {
-            scale = 1
-        } else if scale < 0 {
-            scale = 0
-        }
-
-        if let resizedImg = image.scaleDownImage(toMax: self.size * scale) {
-            self.imageView.image = resizedImg
-            self.imageView.contentMode = (downscale == nil) ? UIView.ContentMode.scaleAspectFill : UIView.ContentMode.center
-            self.imageView.isHidden = false
-            self.label.isHidden = true
-        }
+    func setImage(_ image: UIImage) {
+        self.imageView.image = image
+        self.imageView.contentMode = UIView.ContentMode.scaleAspectFill
+        self.imageView.isHidden = false
+        self.label.isHidden = true
     }
 
     func showsInitials() -> Bool {
