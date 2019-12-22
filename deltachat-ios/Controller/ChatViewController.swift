@@ -129,16 +129,6 @@ class ChatViewController: MessagesViewController {
         let chat = DcChat(id: chatId)
         if showCustomNavBar {
             updateTitle(chat: chat)
-
-            let badge: InitialsBadge
-            if let image = chat.profileImage {
-                badge =  InitialsBadge(image: image, size: 28)
-            } else {
-                badge =  InitialsBadge(name: chat.name, color: chat.color, size: 28)
-            }
-            badge.setVerified(chat.isVerified)
-            badge.accessibilityTraits = .button
-            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: badge)
         }
 
         configureMessageMenu()
@@ -161,7 +151,7 @@ class ChatViewController: MessagesViewController {
                         self.refreshMessages()
                     }
                 }
-                if (self.showCustomNavBar) {
+                if self.showCustomNavBar {
                     self.updateTitle(chat: chat)
                 }
             }
@@ -234,8 +224,20 @@ class ChatViewController: MessagesViewController {
                 subtitle = DcContact(id: chatContactIds[0]).email
             }
         }
+        
         titleView.updateTitleView(title: chat.name, subtitle: subtitle)
         navigationItem.titleView = titleView
+
+        let badge: InitialsBadge
+        if let image = chat.profileImage {
+            badge =  InitialsBadge(image: image, size: 28)
+        } else {
+            badge =  InitialsBadge(name: chat.name, color: chat.color, size: 28)
+            badge.setLabelFont(UIFont.systemFont(ofSize: 14))
+        }
+        badge.setVerified(chat.isVerified)
+        badge.accessibilityTraits = .button
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: badge)
     }
 
     @objc
