@@ -166,7 +166,7 @@ class ContactCell: UITableViewCell {
         let timestamp = timestamp ?? 0
         if timestamp != 0 {
             timeLabel.isHidden = false
-            timeLabel.text = DateUtils.getBriefRelativeTimeSpanString(timeStamp: Int(timestamp))
+            timeLabel.text = DateUtils.getBriefRelativeTimeSpanString(timeStamp: Double(timestamp))
         } else {
             timeLabel.isHidden = true
             timeLabel.text = nil
