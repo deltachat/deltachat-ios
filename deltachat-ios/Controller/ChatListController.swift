@@ -170,12 +170,23 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ]) :
             NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .medium) ])
 
-        if let img = chat.profileImage {
-            cell.resetBackupImage()
-            cell.setImage(img)
+        if chatId == DC_CHAT_ID_DEADDROP {
+            let contact = DcContact(id: DcMsg(id: chatList.getMsgId(index: row)).fromContactId)
+            if let img = contact.profileImage {
+                cell.resetBackupImage()
+                cell.setImage(img)
+            } else {
+                cell.setBackupImage(name: contact.name, color: contact.color)
+            }
         } else {
-            cell.setBackupImage(name: chat.name, color: chat.color)
+            if let img = chat.profileImage {
+                cell.resetBackupImage()
+                cell.setImage(img)
+            } else {
+                cell.setBackupImage(name: chat.name, color: chat.color)
+            }
         }
+
         cell.setVerified(isVerified: chat.isVerified)
 
         let result1 = summary.text1 ?? ""
