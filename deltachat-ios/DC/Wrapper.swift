@@ -556,7 +556,7 @@ class DcMsg: MessageType {
     }()
 
     func formattedSentDate() -> String {
-        return DateUtils.getBriefRelativeTimeSpanString(timeStamp: Double(timestamp))
+        return DateUtils.getExtendedRelativeTimeSpanString(timeStamp: Double(timestamp))
     }
 
     lazy var kind: MessageKind = {

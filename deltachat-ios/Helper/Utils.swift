@@ -185,15 +185,54 @@ class DateUtils {
     static let day: Double = 86400
     static let year: Double = 365 * day
 
-    static func getBriefRelativeTimeSpanString(timeStamp: Double) -> String {
+    private static func getRelativeTimeInSeconds(timeStamp: Double) -> Double {
         let unixTime = Double(Date().timeIntervalSince1970)
-        let seconds = unixTime - timeStamp
-        let date = Date(timeIntervalSince1970: timeStamp)
+        return unixTime - timeStamp
+    }
+
+    private static func is24hDefault() -> Bool {
+        let dateString: String = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: Locale.current) ?? ""
+        return !dateString.contains("a")
+    }
+
+    private static func getLocalDateFormatter() -> DateFormatter {
         let formatter = DateFormatter()
         formatter.timeZone = .current
         formatter.locale = .current
-        let dateString: String = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: Locale.current) ?? ""
-        let is24h = !dateString.contains("a")
+        return formatter
+    }
+
+    static func getExtendedRelativeTimeSpanString(timeStamp: Double) -> String {
+        let seconds = getRelativeTimeInSeconds(timeStamp: timeStamp)
+        let date = Date(timeIntervalSince1970: timeStamp)
+        let formatter = getLocalDateFormatter()
+        let is24h = is24hDefault()
+
+        if seconds < DtU.minute {
+            return String.localized("now")
+        } else if seconds < DtU.hour {
+            let mins = seconds / DtU.minute
+            return String.localized(stringID: "n_minutes", count: Int(mins))
+        } else if seconds < DtU.day {
+            formatter.dateFormat = is24h ?  "HH:mm" : "hh:mm a"
+            return formatter.string(from: date)
+        } else if seconds < 6 * DtU.day {
+            formatter.dateFormat = is24h ?  "EEE, HH:mm" : "EEE, hh:mm a"
+            return formatter.string(from: date)
+        } else if seconds < DtU.year {
+            formatter.dateFormat = is24h ? "MMM d, HH:mm" : "MMM d, hh:mm a"
+            return formatter.string(from: date)
+        } else {
+            formatter.dateFormat = is24h ? "MMM d, yyyy, HH:mm" : "MMM d, yyyy, hh:mm a"
+            return formatter.string(from: date)
+        }
+    }
+
+    static func getBriefRelativeTimeSpanString(timeStamp: Double) -> String {
+        let seconds = getRelativeTimeInSeconds(timeStamp: timeStamp)
+        let date = Date(timeIntervalSince1970: timeStamp)
+        let formatter = getLocalDateFormatter()
+        let is24h = is24hDefault()
 
         if seconds < DtU.minute {
             return String.localized("now")	// under one minute
