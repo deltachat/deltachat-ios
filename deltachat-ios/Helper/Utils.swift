@@ -232,7 +232,6 @@ class DateUtils {
         let seconds = getRelativeTimeInSeconds(timeStamp: timeStamp)
         let date = Date(timeIntervalSince1970: timeStamp)
         let formatter = getLocalDateFormatter()
-        let is24h = is24hDefault()
 
         if seconds < DtU.minute {
             return String.localized("now")	// under one minute
@@ -243,13 +242,13 @@ class DateUtils {
             let hours = seconds / DtU.hour
             return String.localized(stringID: "n_hours", count: Int(hours))
         } else if seconds < DtU.day * 6 {
-            formatter.dateFormat = is24h ?  "EEE, HH:mm" : "EEE, h:mm a"
+            formatter.dateFormat = "EEE"
             return formatter.string(from: date)
         } else if seconds < DtU.year {
-            formatter.dateFormat = is24h ? "MMM d, HH:mm" : "MMM d, h:mm a"
+            formatter.dateFormat = "MMM d"
             return formatter.string(from: date)
         } else {
-            formatter.timeStyle = DateFormatter.Style.short //Set time style
+            formatter.dateFormat = "MMM d, yyyy"
             let localDate = formatter.string(from: date)
             return localDate
         }
