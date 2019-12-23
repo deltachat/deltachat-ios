@@ -1,5 +1,33 @@
 # Delta Chat iOS Changelog
 
+## v1.0.0
+2019-12-23
+
+Finally, after months of coding and fixing bugs, here it is:
+Delta Chat for iOS 1.0 :)
+
+* support for user avatars: select your profile image
+  at "settings / my profile info"
+  and it will be sent out to people you write to
+* previously selected avatars will not be used automatically,
+  you have to select a new avatar
+* introduce a new "Device Chat" that informs the user about app changes
+  and, in the future, problems on the device
+* rename the "Me"-chat to "Saved messages",
+  add a fresh icon and make it visible by default
+* update translations
+* bug fixes
+
+The changes of this verison and the last beta versions have been done by
+Alexander Krotov, Allan Nordhøy, Ampli-fier, Andrei Guliaikin,
+Asiel Díaz Benítez, Besnik, Björn Petersen, ButterflyOfFire, Calbasi, cyBerta,
+Daniel Boehrsi, Dmitry Bogatov, dorheim, Emil Lefherz, Enrico B., Ferhad Necef,
+Florian Bruhin, Floris Bruynooghe, Friedel Ziegelmayer, Heimen Stoffels, Hocuri,
+Holger Krekel, Jikstra, Lars-Magnus Skog, Lin Miaoski, Moo, Nico de Haen,
+Ole Carlsen, Osoitz, Ozancan Karataş, Pablo, Pedro Portela, polo lancien,
+Racer1, Simon Laux, solokot, Waldemar Stoczkowski, Xosé M. Lamas, Zkdc
+
+
 ## v0.960.0
 2019-11-24
 
@@ -11,6 +39,7 @@
 * add global option to disable notifications
 * update translations
 * various bug fixes
+
 
 ## v0.950.0
 2019-11-05
