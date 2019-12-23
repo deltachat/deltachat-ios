@@ -154,7 +154,9 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
 
         let cell: ContactCell
-        if let c = tableView.dequeueReusableCell(withIdentifier: "ChatCell") as? ContactCell {
+        if chatId == DC_CHAT_ID_DEADDROP {
+            cell = getDeaddropCell(tableView)
+        } else if let c = tableView.dequeueReusableCell(withIdentifier: "ChatCell") as? ContactCell {
             cell = c
         } else {
             cell = ContactCell(style: .default, reuseIdentifier: "ChatCell")
@@ -168,13 +170,23 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ]) :
             NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .medium) ])
 
-
-        if let img = chat.profileImage {
-            cell.resetBackupImage()
-            cell.setImage(img)
+        if chatId == DC_CHAT_ID_DEADDROP {
+            let contact = DcContact(id: DcMsg(id: chatList.getMsgId(index: row)).fromContactId)
+            if let img = contact.profileImage {
+                cell.resetBackupImage()
+                cell.setImage(img)
+            } else {
+                cell.setBackupImage(name: contact.name, color: contact.color)
+            }
         } else {
-            cell.setBackupImage(name: chat.name, color: chat.color)
+            if let img = chat.profileImage {
+                cell.resetBackupImage()
+                cell.setImage(img)
+            } else {
+                cell.setBackupImage(name: chat.name, color: chat.color)
+            }
         }
+
         cell.setVerified(isVerified: chat.isVerified)
 
         let result1 = summary.text1 ?? ""
@@ -230,7 +242,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
 
         let chatId = chatList.getChatId(index: row)
-        if chatId==DC_CHAT_ID_ARCHIVED_LINK {
+        if chatId==DC_CHAT_ID_ARCHIVED_LINK || chatId==DC_CHAT_ID_DEADDROP {
             return []
             // returning nil may result in a default delete action,
             // see https://forums.developer.apple.com/thread/115030
@@ -251,6 +263,18 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         delete.backgroundColor = UIColor.red
 
         return [archive, delete]
+    }
+
+    func getDeaddropCell(_ tableView: UITableView) -> ContactCell {
+        let deaddropCell: ContactCell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "DeaddropCell") as? ContactCell {
+            deaddropCell = cell
+        } else {
+            deaddropCell = ContactCell(style: .default, reuseIdentifier: "DeaddropCell")
+        }
+        deaddropCell.backgroundColor = DcColors.deaddropBackground
+        deaddropCell.contentView.backgroundColor = DcColors.deaddropBackground
+        return deaddropCell
     }
 
     func getArchiveCell(_ tableView: UITableView) -> UITableViewCell {
