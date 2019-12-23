@@ -272,7 +272,8 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         } else {
             deaddropCell = ContactCell(style: .default, reuseIdentifier: "DeaddropCell")
         }
-        deaddropCell.backgroundColor = DcColors.deaddropBackground // TODO: why is the color not changed in darkmode?
+        deaddropCell.backgroundColor = DcColors.deaddropBackground
+        deaddropCell.contentView.backgroundColor = DcColors.deaddropBackground
         return deaddropCell
     }
 
