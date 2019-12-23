@@ -773,13 +773,19 @@ extension ChatViewController: MessagesDataSource {
             return nil
         }
 
-        let timestampAttributes: [NSAttributedString.Key: Any] = [
+        var timestampAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 12),
             .foregroundColor: UIColor.lightGray,
+            .paragraphStyle: NSParagraphStyle()
         ]
 
         if isFromCurrentSender(message: message) {
             let text = NSMutableAttributedString()
+            if let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle {
+                style.alignment = .right
+                timestampAttributes[.paragraphStyle] = style
+            }
+
             text.append(NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes))
 
             // TODO: this should be replaced by the respective icons,
@@ -810,10 +816,10 @@ extension ChatViewController: MessagesDataSource {
         }
 
         if !isAvatarHidden(at: indexPath) {
-            let text = NSMutableAttributedString()
-            text.append(NSAttributedString(string: "     "))
-            text.append(NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes))
-            return text
+            if let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle {
+                style.firstLineHeadIndent = 22
+                timestampAttributes[.paragraphStyle] = style
+            }
         }
 
         return NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes)
