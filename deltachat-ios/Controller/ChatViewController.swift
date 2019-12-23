@@ -469,14 +469,14 @@ class ChatViewController: MessagesViewController {
                     $0.spacing = .fixed(0)
                     let clipperIcon = #imageLiteral(resourceName: "ic_attach_file_36pt").withRenderingMode(.alwaysTemplate)
                     $0.image = clipperIcon
-                    $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
+                    $0.tintColor = DcColors.primary
                     $0.setSize(CGSize(width: 40, height: 40), animated: false)
                     $0.accessibilityLabel = String.localized("menu_add_attachment")
                     $0.accessibilityTraits = .button
                 }.onSelected {
-                    $0.tintColor = DcColors.primary
-                }.onDeselected {
                     $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
+                }.onDeselected {
+                    $0.tintColor = DcColors.primary
                 }.onTouchUpInside { _ in
                     self.clipperButtonPressed()
                 }
