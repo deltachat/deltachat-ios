@@ -41,7 +41,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Allowing access to the camera lets you take photos and videos.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Allowing access to your address book lets you chat with contacts from your device</string>
+	<string>Allowing access to your address book lets you chat with contacts from your device.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Allowing access to the microphone lets you record audio.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
