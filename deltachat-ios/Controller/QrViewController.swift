@@ -156,6 +156,18 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
 
+        case DC_QR_URL:
+            let url = qrParsed.text1 ?? ""
+            let msg = String.localizedStringWithFormat(String.localized("qrscan_contains_url"), url)
+            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("open"), style: .default, handler: { _ in
+                if let url = URL(string: url) {
+                    UIApplication.shared.open(url)
+                }
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+
         default:
             var msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), code)
             if state == DC_QR_ERROR {
