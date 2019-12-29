@@ -616,9 +616,3 @@
 "a11y_remove_account_btn_label" = "Remove account";
 "a11y_message_context_menu_btn_label" = "Message actions";
 "a11y_background_preview_label" = "Background preview";
-
-// Translators: These strings are only used on iOS
-
-"import_contacts" = "Import device contacts";
-"import_contacts_message" = "To chat with contacts from your device open the settings menu and enable the Contacts option";
-"no_account_setup" = "No account set up";
