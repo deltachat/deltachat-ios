@@ -150,6 +150,13 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
             let groupName = qrParsed.text1 ?? "ErrGroupName"
             joinSecureJoin(alertMessage: String.localizedStringWithFormat(String.localized("qrscan_ask_join_group"), groupName), code: code)
 
+        case DC_QR_FPR_WITHOUT_ADDR:
+            let msg = String.localized("qrscan_no_addr_found") + "\n\n" +
+                String.localized("qrscan_fingerprint_label") + ":\n" + (qrParsed.text1 ?? "")
+            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+
         case DC_QR_TEXT:
             let msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), qrParsed.text1 ?? "")
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
