@@ -1,0 +1,4 @@
+NSCameraUsageDescription = "Allowing access to the camera lets you take photos and videos.";
+NSContactsUsageDescription = "Allowing access to your address book lets you chat with contacts from your device.";
+NSMicrophoneUsageDescription = "Allowing access to the microphone lets you record audio.";
+NSPhotoLibraryUsageDescription = "Allowing access to the photo library allows you to upload images from it.";
