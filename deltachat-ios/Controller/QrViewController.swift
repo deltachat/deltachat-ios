@@ -164,6 +164,18 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
 
+        case DC_QR_ADDR:
+            let nameAndAddress = DcContact(id: qrParsed.id).nameNAddr
+            let msg = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), nameAndAddress)
+            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+                let chatId = self.dcContext.createChat(contactId: qrParsed.id)
+                self.coordinator?.showChat(chatId: chatId)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+
+
         case DC_QR_TEXT:
             let msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), qrParsed.text1 ?? "")
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
