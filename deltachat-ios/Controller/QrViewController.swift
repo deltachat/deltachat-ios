@@ -157,6 +157,13 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
 
+        case DC_QR_FPR_MISMATCH:
+            let nameAndAddress = DcContact(id: qrParsed.id).nameNAddr
+            let msg = String.localizedStringWithFormat(String.localized("qrscan_fingerprint_mismatch"), nameAndAddress)
+            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+
         case DC_QR_TEXT:
             let msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), qrParsed.text1 ?? "")
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
