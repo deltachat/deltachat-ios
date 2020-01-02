@@ -9,8 +9,9 @@ class NewChatViewController: UITableViewController {
 
     private let sectionNew = 0
     private let sectionNewRowNewGroup = 0
-    private let sectionNewRowNewContact = 1
-    private let sectionNewRowCount = 2
+    private let sectionNewRowNewVerifiedGroup = 1
+    private let sectionNewRowNewContact = 2
+    private let sectionNewRowCount = 3
 
     private let sectionImportedContacts = 1
 
@@ -180,6 +181,20 @@ class NewChatViewController: UITableViewController {
                 return cell
             }
 
+            if row == sectionNewRowNewVerifiedGroup {
+                // new verified group row
+                let cell: UITableViewCell
+                if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
+                    cell = c
+                } else {
+                    cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
+                }
+                cell.textLabel?.text = String.localized("menu_new_verified_group")
+                cell.textLabel?.textColor = view.tintColor
+
+                return cell
+            }
+
             if row == sectionNewRowNewContact {
                 // new contact row
                 let cell: UITableViewCell
@@ -238,9 +253,10 @@ class NewChatViewController: UITableViewController {
 
         if section == sectionNew {
             if row == sectionNewRowNewGroup {
-                coordinator?.showNewGroupController()
-            }
-            if row == sectionNewRowNewContact {
+                coordinator?.showNewGroupController(isVerified: false)
+            } else if row == sectionNewRowNewVerifiedGroup {
+                coordinator?.showNewGroupController(isVerified: true)
+            } else if row == sectionNewRowNewContact {
                 coordinator?.showNewContactController()
             }
         } else if section == sectionImportedContacts {

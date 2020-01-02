@@ -1,16 +1,36 @@
 import UIKit
 
-class NewGroupViewController: GroupMembersViewController {
-    weak var coordinator: NewGroupCoordinator?
+class NewGroupAddMembersViewController: GroupMembersViewController {
+    weak var coordinator: NewGroupAddMembersCoordinator?
+
+    var onMembersSelected: ((Set<Int>) -> Void)?
+    let isVerifiedGroup: Bool
+
+    private lazy var cancelButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
+        return button
+    }()
+
+   lazy var doneButton: UIBarButtonItem = {
+       let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
+       return button
+   }()
+
+    init(preselected: Set<Int>, isVerified: Bool) {
+        isVerifiedGroup = isVerified
+        super.init()
+        selectedContactIds = preselected
+    }
+
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("group_add_members")
-        let groupCreationNextButton = UIBarButtonItem(title: String.localized("next"),
-                                                      style: .done,
-                                                      target: self,
-                                                      action: #selector(nextButtonPressed))
-        navigationItem.rightBarButtonItem = groupCreationNextButton
+        navigationItem.rightBarButtonItem = doneButton
+        navigationItem.leftBarButtonItem = cancelButton
         contactIds = Utils.getContactIds()
     }
 
@@ -22,9 +42,19 @@ class NewGroupViewController: GroupMembersViewController {
         super.didReceiveMemoryWarning()
     }
 
-    @objc func nextButtonPressed() {
-        coordinator?.showGroupNameController(contactIdsForGroup: selectedContactIds)
+    @objc func cancelButtonPressed() {
+        navigationController?.popViewController(animated: true)
     }
+
+    @objc func doneButtonPressed() {
+        if let onMembersSelected = onMembersSelected {
+            selectedContactIds.insert(Int(DC_CONTACT_ID_SELF))
+            onMembersSelected(selectedContactIds)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+
 }
 
 class AddGroupMembersViewController: GroupMembersViewController {
