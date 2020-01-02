@@ -1,8 +1,8 @@
 import UIKit
 
-class GroupNameController: UITableViewController, MediaPickerDelegate {
+class NewGroupController: UITableViewController, MediaPickerDelegate {
 
-    weak var coordinator: GroupNameCoordinator?
+    weak var coordinator: NewGroupCoordinator?
 
     var groupName: String = ""
 

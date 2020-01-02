@@ -92,7 +92,7 @@
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
 		30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9B9EB235F2116006E7ACF /* MessageCounter.swift */; };
 		6795F63A82E94FF7CD2CEC0F /* Pods_deltachat_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */; };
-		7070FB9B2101ECBB000DC258 /* GroupNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* GroupNameController.swift */; };
+		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
 		7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactDetailViewController.swift */; };
 		70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */; };
 		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
@@ -306,7 +306,7 @@
 		30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateCheckController.swift; sourceTree = "<group>"; };
 		30F9B9EB235F2116006E7ACF /* MessageCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCounter.swift; sourceTree = "<group>"; };
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7070FB9A2101ECBB000DC258 /* GroupNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNameController.swift; sourceTree = "<group>"; };
+		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
 		7092474020B3869500AF8799 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
 		70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupMemberChoiceController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
@@ -676,7 +676,7 @@
 				AEE6EC472283045D00EDC689 /* EditSettingsController.swift */,
 				AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */,
 				AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */,
-				7070FB9A2101ECBB000DC258 /* GroupNameController.swift */,
+				7070FB9A2101ECBB000DC258 /* NewGroupController.swift */,
 				AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */,
 				785BE16721E247F1003BE98C /* MessageInfoViewController.swift */,
 				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
@@ -1044,7 +1044,7 @@
 				AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */,
 				AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */,
 				AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */,
-				7070FB9B2101ECBB000DC258 /* GroupNameController.swift in Sources */,
+				7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */,
 				305961EA2346125100C80F33 /* MessageStyle.swift in Sources */,
 				305961F92346125100C80F33 /* MessageLabel.swift in Sources */,
 				305961FA2346125100C80F33 /* MessageReusableView.swift in Sources */,

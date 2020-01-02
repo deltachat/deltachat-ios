@@ -292,8 +292,8 @@ class NewChatCoordinator: Coordinator {
     }
 
     func showNewGroupController(isVerified: Bool) {
-        let newGroupController = GroupNameController(isVerified: isVerified)
-        let coordinator = GroupNameCoordinator(dcContext: dcContext, navigationController: navigationController)
+        let newGroupController = NewGroupController(isVerified: isVerified)
+        let coordinator = NewGroupCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         newGroupController.coordinator = coordinator
         navigationController.pushViewController(newGroupController, animated: true)
@@ -487,7 +487,7 @@ class AddGroupMembersCoordinator: Coordinator {
     }
 }
 
-class GroupNameCoordinator: Coordinator {
+class NewGroupCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
     let mediaPicker: MediaPicker
@@ -528,7 +528,7 @@ class GroupNameCoordinator: Coordinator {
 
     func onGroupMembersSelected(_ memberIds: Set<Int>) {
         navigationController.popViewController(animated: true)
-        if let groupNameController = navigationController.topViewController as? GroupNameController {
+        if let groupNameController = navigationController.topViewController as? NewGroupController {
             groupNameController.updateGroupContactIds(memberIds)
         }
     }
