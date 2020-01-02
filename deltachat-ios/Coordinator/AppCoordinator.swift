@@ -518,7 +518,9 @@ class NewGroupCoordinator: Coordinator {
     }
 
     func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
-        let newGroupController = NewGroupAddMembersViewController(preselected: preselectedMembers, isVerified: isVerified)
+        let newGroupController = NewGroupAddMembersViewController(dcContext: dcContext,
+                                                                  preselected: preselectedMembers,
+                                                                  isVerified: isVerified)
         let coordinator = NewGroupAddMembersCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         newGroupController.coordinator = coordinator

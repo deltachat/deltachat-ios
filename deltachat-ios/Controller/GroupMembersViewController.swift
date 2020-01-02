@@ -2,6 +2,7 @@ import UIKit
 
 class NewGroupAddMembersViewController: GroupMembersViewController {
     weak var coordinator: NewGroupAddMembersCoordinator?
+    let dcContext: DcContext;
 
     var onMembersSelected: ((Set<Int>) -> Void)?
     let isVerifiedGroup: Bool
@@ -16,7 +17,8 @@ class NewGroupAddMembersViewController: GroupMembersViewController {
        return button
    }()
 
-    init(preselected: Set<Int>, isVerified: Bool) {
+    init(dcContext: DcContext, preselected: Set<Int>, isVerified: Bool) {
+        self.dcContext = dcContext
         isVerifiedGroup = isVerified
         super.init()
         selectedContactIds = preselected
@@ -31,7 +33,9 @@ class NewGroupAddMembersViewController: GroupMembersViewController {
         title = String.localized("group_add_members")
         navigationItem.rightBarButtonItem = doneButton
         navigationItem.leftBarButtonItem = cancelButton
-        contactIds = Utils.getContactIds()
+        contactIds = isVerifiedGroup ?
+            dcContext.getContacts(flags: DC_GCL_VERIFIED_ONLY) :
+            dcContext.getContacts(flags: 0)
     }
 
     override func viewWillAppear(_ animated: Bool) {
