@@ -5,12 +5,14 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     weak var coordinator: NewGroupCoordinator?
 
     var groupName: String = ""
+    var groupChatId: Int = 0
 
     var doneButton: UIBarButtonItem!
     var contactIdsForGroup: Set<Int> // TODO: check if array is sufficient
     var groupContactIds: [Int]
     var groupImage: UIImage?
     let isVerifiedGroup: Bool
+    let dcContext: DcContext
 
     private let sectionGroupDetails = 0
     private let sectionGroupDetailsRowAvatar = 0
@@ -37,14 +39,13 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         return cell
     }()
 
-    convenience init(isVerified: Bool) {
-        self.init(contactIdsForGroup: [Int(DC_CONTACT_ID_SELF)], isVerified: isVerified)
-    }
+    var qrInviteCodeCell: ActionCell?
 
-    init(contactIdsForGroup: Set<Int>, isVerified: Bool) {
-        self.contactIdsForGroup = contactIdsForGroup
+    init(dcContext: DcContext, isVerified: Bool) {
+        self.contactIdsForGroup = [Int(DC_CONTACT_ID_SELF)]
         self.groupContactIds = Array(contactIdsForGroup)
         self.isVerifiedGroup = isVerified
+        self.dcContext = dcContext
         super.init(style: .grouped)
     }
 
@@ -64,15 +65,20 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     @objc func doneButtonPressed() {
-        let groupChatId = dc_create_group_chat(mailboxPointer, 0, groupName)
+        if groupChatId == 0 {
+            groupChatId = dcContext.createGroupChat(name: groupName)
+        } else {
+            _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
+        }
+
         for contactId in contactIdsForGroup {
-            let success = dc_add_contact_to_chat(mailboxPointer, groupChatId, UInt32(contactId))
+            let success = dcContext.addContactToChat(chatId: groupChatId, contactId: contactId)
 
             if let groupImage = groupImage, let dcContext = coordinator?.dcContext {
                     AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: Int(groupChatId))
             }
 
-            if success == 1 {
+            if success {
                 logger.info("successfully added \(contactId) to group \(groupName)")
             } else {
                 logger.error("failed to add \(contactId) to group \(groupName)")
@@ -108,13 +114,16 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
                 if let actionCell = cell as? ActionCell {
                     actionCell.actionTitle = String.localized("group_add_members")
                     actionCell.actionColor = UIColor.systemBlue
+                    actionCell.isUserInteractionEnabled = true
                 }
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
                 if let actionCell = cell as? ActionCell {
                     actionCell.actionTitle = String.localized("qrshow_join_group_title")
-                    actionCell.actionColor = UIColor.systemBlue
+                    actionCell.actionColor = groupName.isEmpty ? DcColors.colorDisabled : UIColor.systemBlue
+                    actionCell.isUserInteractionEnabled = !groupName.isEmpty
+                    qrInviteCodeCell = actionCell
                 }
                 return cell
             }
@@ -181,7 +190,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
                 contactsWithoutSelf.remove(Int(DC_CONTACT_ID_SELF))
                 coordinator?.showAddMembers(preselectedMembers: contactsWithoutSelf, isVerified: self.isVerifiedGroup)
             } else {
-                logger.debug("todo: implement me")
+                self.groupChatId = dcContext.createGroupChat(name: groupName)
+                coordinator?.showQrCodeInvite(chatId: Int(self.groupChatId))
             }
         }
     }
@@ -190,6 +200,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         let name = textView.text ?? ""
         groupName = name
         doneButton.isEnabled = name.containsCharacters()
+        qrInviteCodeCell?.isUserInteractionEnabled = name.containsCharacters()
+        qrInviteCodeCell?.actionColor = groupName.isEmpty ? DcColors.colorDisabled : UIColor.systemBlue
     }
 
     private func onAvatarTapped() {

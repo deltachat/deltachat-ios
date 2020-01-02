@@ -292,7 +292,7 @@ class NewChatCoordinator: Coordinator {
     }
 
     func showNewGroupController(isVerified: Bool) {
-        let newGroupController = NewGroupController(isVerified: isVerified)
+        let newGroupController = NewGroupController(dcContext: dcContext, isVerified: isVerified)
         let coordinator = NewGroupCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         newGroupController.coordinator = coordinator
@@ -515,6 +515,11 @@ class NewGroupCoordinator: Coordinator {
 
     func showCamera(delegate: MediaPickerDelegate) {
         mediaPicker.showCamera(delegate: delegate)
+    }
+
+    func showQrCodeInvite(chatId: Int) {
+        let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
+        navigationController.pushViewController(qrInviteCodeController, animated: true)
     }
 
     func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
