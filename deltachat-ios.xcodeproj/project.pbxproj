@@ -87,6 +87,9 @@
 		305FE03623A81B4C0053BE90 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305FE03523A81B4C0053BE90 /* PaddingLabel.swift */; };
 		3060119C22DDE24000C1CE6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
 		306011B622E5E7FB00C1CE6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
+		30851BFF23BE15AE0036A7B7 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30851BFE23BE15AE0036A7B7 /* ShareViewController.swift */; };
+		30851C0223BE15AE0036A7B7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30851C0023BE15AE0036A7B7 /* MainInterface.storyboard */; };
+		30851C0623BE15AE0036A7B7 /* DeltaChatShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30851BFC23BE15AE0036A7B7 /* DeltaChatShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
 		30A4D9AE2332672700544344 /* QrInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4D9AD2332672600544344 /* QrInviteViewController.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
@@ -151,6 +154,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		30851C0423BE15AE0036A7B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30851BFB23BE15AE0036A7B7;
+			remoteInfo = DeltaChatShare;
+		};
 		AE851A06227AECDF00ED86F0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
@@ -159,6 +169,20 @@
 			remoteInfo = "deltachat-ios";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		30851C0723BE15AE0036A7B7 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				30851C0623BE15AE0036A7B7 /* DeltaChatShare.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		21EE28844E7A690D73BF5285 /* Pods-deltachat-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -300,6 +324,11 @@
 		306011C722E5E82E00C1CE6F /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = lt; path = lt.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		306011C822E5E83100C1CE6F /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		306011C922E5E83500C1CE6F /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = uk; path = uk.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		30851BFC23BE15AE0036A7B7 /* DeltaChatShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeltaChatShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		30851BFE23BE15AE0036A7B7 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		30851C0123BE15AE0036A7B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		30851C0323BE15AE0036A7B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30851C0B23BE16A60036A7B7 /* DeltaChatShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeltaChatShare.entitlements; sourceTree = "<group>"; };
 		3095A350237DD1F700AB07F7 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
 		30A4D9AD2332672600544344 /* QrInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrInviteViewController.swift; sourceTree = "<group>"; };
 		30AC265E237F1807002A943F /* AvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarHelper.swift; sourceTree = "<group>"; };
@@ -381,6 +410,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		30851BF923BE15AE0036A7B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7A9FB13D1FB061E2001FEA36 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -552,6 +588,17 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
+		30851BFD23BE15AE0036A7B7 /* DeltaChatShare */ = {
+			isa = PBXGroup;
+			children = (
+				30851C0B23BE16A60036A7B7 /* DeltaChatShare.entitlements */,
+				30851BFE23BE15AE0036A7B7 /* ShareViewController.swift */,
+				30851C0023BE15AE0036A7B7 /* MainInterface.storyboard */,
+				30851C0323BE15AE0036A7B7 /* Info.plist */,
+			);
+			path = DeltaChatShare;
+			sourceTree = "<group>";
+		};
 		7A9FB1371FB061E2001FEA36 = {
 			isa = PBXGroup;
 			children = (
@@ -562,6 +609,7 @@
 				78E45E2121D1768900D4B15E /* src */,
 				7A9FB1421FB061E2001FEA36 /* deltachat-ios */,
 				AE851A02227AECDE00ED86F0 /* deltachat-iosTests */,
+				30851BFD23BE15AE0036A7B7 /* DeltaChatShare */,
 				7A9FB1411FB061E2001FEA36 /* Products */,
 				7A9FB4F81FB084E6001FEA36 /* Frameworks */,
 				7DB2DC4CCB84D323E5130F99 /* Pods */,
@@ -576,6 +624,7 @@
 			children = (
 				7A9FB1401FB061E2001FEA36 /* deltachat-ios.app */,
 				AE851A01227AECDE00ED86F0 /* deltachat-iosTests.xctest */,
+				30851BFC23BE15AE0036A7B7 /* DeltaChatShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -759,6 +808,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		30851BFB23BE15AE0036A7B7 /* DeltaChatShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30851C0A23BE15AE0036A7B7 /* Build configuration list for PBXNativeTarget "DeltaChatShare" */;
+			buildPhases = (
+				30851BF823BE15AE0036A7B7 /* Sources */,
+				30851BF923BE15AE0036A7B7 /* Frameworks */,
+				30851BFA23BE15AE0036A7B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeltaChatShare;
+			productName = DeltaChatShare;
+			productReference = 30851BFC23BE15AE0036A7B7 /* DeltaChatShare.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		7A9FB13F1FB061E2001FEA36 /* deltachat-ios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A9FB1521FB061E2001FEA36 /* Build configuration list for PBXNativeTarget "deltachat-ios" */;
@@ -771,10 +837,12 @@
 				30C8FE37A924BE7AFF9661C1 /* [CP] Embed Pods Frameworks */,
 				7837B63821E54CB400CDE126 /* Run Script */,
 				7837B64621E5532B00CDE126 /* ShellScript */,
+				30851C0723BE15AE0036A7B7 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				30851C0523BE15AE0036A7B7 /* PBXTargetDependency */,
 			);
 			name = "deltachat-ios";
 			productName = "deltachat-ios";
@@ -806,10 +874,14 @@
 		7A9FB1381FB061E2001FEA36 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Jonas Reinsch";
 				TargetAttributes = {
+					30851BFB23BE15AE0036A7B7 = {
+						CreatedOnToolsVersion = 11.3;
+						ProvisioningStyle = Automatic;
+					};
 					7A9FB13F1FB061E2001FEA36 = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 1030;
@@ -873,11 +945,20 @@
 			targets = (
 				7A9FB13F1FB061E2001FEA36 /* deltachat-ios */,
 				AE851A00227AECDE00ED86F0 /* deltachat-iosTests */,
+				30851BFB23BE15AE0036A7B7 /* DeltaChatShare */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		30851BFA23BE15AE0036A7B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30851C0223BE15AE0036A7B7 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7A9FB13E1FB061E2001FEA36 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1030,6 +1111,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		30851BF823BE15AE0036A7B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30851BFF23BE15AE0036A7B7 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7A9FB13C1FB061E2001FEA36 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1179,6 +1268,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		30851C0523BE15AE0036A7B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30851BFB23BE15AE0036A7B7 /* DeltaChatShare */;
+			targetProxy = 30851C0423BE15AE0036A7B7 /* PBXContainerItemProxy */;
+		};
 		AE851A07227AECDF00ED86F0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7A9FB13F1FB061E2001FEA36 /* deltachat-ios */;
@@ -1277,6 +1371,14 @@
 			path = "deltachat-ios";
 			sourceTree = "<group>";
 		};
+		30851C0023BE15AE0036A7B7 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30851C0123BE15AE0036A7B7 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1288,6 +1390,47 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		30851C0823BE15AE0036A7B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = DeltaChatShare/DeltaChatShare.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
+				INFOPLIST_FILE = DeltaChatShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DeltaChatShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		30851C0923BE15AE0036A7B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = DeltaChatShare/DeltaChatShare.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
+				INFOPLIST_FILE = DeltaChatShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DeltaChatShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		7A9FB1501FB061E2001FEA36 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1405,6 +1548,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8DE110C607A0E4485C43B5FA /* Pods-deltachat-ios.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -1479,6 +1623,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -1590,6 +1735,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		30851C0A23BE15AE0036A7B7 /* Build configuration list for PBXNativeTarget "DeltaChatShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30851C0823BE15AE0036A7B7 /* Debug */,
+				30851C0923BE15AE0036A7B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7A9FB13B1FB061E2001FEA36 /* Build configuration list for PBXProject "deltachat-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
