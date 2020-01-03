@@ -55,7 +55,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("menu_new_group")
+        title = isVerifiedGroup ? String.localized("menu_new_verified_group") : String.localized("menu_new_group")
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
         navigationItem.rightBarButtonItem = doneButton
         tableView.bounces = false
