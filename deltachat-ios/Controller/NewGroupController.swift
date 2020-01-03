@@ -145,6 +145,13 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         }
     }
 
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == sectionGroupDetails && isVerifiedGroup {
+            return String.localized("verified_group_explain")
+        }
+        return nil
+    }
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = indexPath.section
         let row = indexPath.row
