@@ -62,6 +62,13 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        if groupChatId != 0 {
+            let chat = DcChat.init(id: groupChatId)
+            updateGroupContactIds(Set(chat.contactIds))
+        }
+    }
+
     @objc func doneButtonPressed() {
         if groupChatId == 0 {
             groupChatId = dcContext.createGroupChat(verified: isVerifiedGroup, name: groupName)
