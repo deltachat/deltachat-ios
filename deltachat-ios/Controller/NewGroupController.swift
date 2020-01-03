@@ -66,7 +66,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     @objc func doneButtonPressed() {
         if groupChatId == 0 {
-            groupChatId = dcContext.createGroupChat(name: groupName)
+            groupChatId = dcContext.createGroupChat(verified: isVerifiedGroup, name: groupName)
         } else {
             _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
         }
@@ -190,7 +190,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
                 contactsWithoutSelf.remove(Int(DC_CONTACT_ID_SELF))
                 coordinator?.showAddMembers(preselectedMembers: contactsWithoutSelf, isVerified: self.isVerifiedGroup)
             } else {
-                self.groupChatId = dcContext.createGroupChat(name: groupName)
+                self.groupChatId = dcContext.createGroupChat(verified: isVerifiedGroup, name: groupName)
                 coordinator?.showQrCodeInvite(chatId: Int(self.groupChatId))
             }
         }

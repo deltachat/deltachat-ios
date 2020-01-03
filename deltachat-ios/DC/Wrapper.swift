@@ -42,8 +42,8 @@ class DcContext {
         return Int(dc_create_chat_by_contact_id(contextPointer, UInt32(contactId)))
     }
 
-    func createGroupChat(name: String) -> Int {
-         return Int(dc_create_group_chat(contextPointer, 0, name))
+    func createGroupChat(verified: Bool, name: String) -> Int {
+        return Int(dc_create_group_chat(contextPointer, verified ? 1 : 0, name))
     }
 
     func addContactToChat(chatId: Int, contactId: Int) -> Bool {
