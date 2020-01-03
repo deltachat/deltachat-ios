@@ -105,7 +105,7 @@
 "menu_new_contact" = "Yeni kişi";
 "menu_new_chat" = "Yeni sohbet";
 "menu_new_group" = "Yeni grup";
-"menu_new_verified_group" = "Yeni doğrulanan grup (deneysel)";
+"menu_new_verified_group" = "Yeni doğrulanan grup";
 "menu_send" = "Gönder";
 "menu_toggle_keyboard" = "Emoji klavyesine geç";
 "menu_edit_group" = "Grubu düzenle";
@@ -155,7 +155,7 @@
 "title_share_location" = "Tüm grup üyeleriyle konum paylaş";
 "device_talk" = "Aygıt iletileri";
 "device_talk_subtitle" = "Yerel olarak oluşturulan iletiler";
-"device_talk_explain" = "Bu sohbetteki iletiler, Delta Chat uygulamanız tarafından yerel olarak oluşturulur. Üreticiler, uygulama güncelleştirmeleri ve kullanım sırasındaki sorunlar hakkında bilgilendirmek için onu kullanır.";
+"device_talk_explain" = "Bu sohbetteki iletiler, Delta Chat uygulamanız tarafından yerel olarak oluşturulur. Oluşturucuları onu uygulama güncelleştirmeleri ve kullanım sırasındaki sorunlar hakkında bilgilendirmek için kullanır.";
 "device_talk_welcome_message" = "Delta Chat\'e hoş geldiniz! – Delta Chat, diğer yaygın ulak uygulamaları gibi görünür ve hissettirir ama merkezi denetim, izleme içermez ya da sizi, arkadaşlarınızı, iş arkadaşlarınızı ya da ailenizi büyük kuruluşlara satmaz.\n\nTeknik olarak Delta Chat, çağdaş bir sohbet arabirimli bir e-posta uygulamasıdır. 👻 olacaksanız, e-posta yeni bir elbisedir\n\nMilyarlarca insanın herhangi biriyle Delta Chat kullanın: Yalnızca onların e-posta adresini kullanın. Alıcıların Delta Chat\'i kurması, web sitelerini ziyaret etmesi ya da herhangi bir yere kaydolması gerekmez - ancak, elbette isterlerse, onlara 👉 https://get.delta.chat adresini işaret edebilirsiniz";
 "edit_contact" = "Kişiyi düzenle";
 
@@ -468,7 +468,7 @@
 "screenlock_unlock_title" = "Delta Chat kilidini aç";
 "screenlock_unlock_description" = "Delta Chat kilidini açmak için lütfen sistem tanımlı sırrınızı girin.";
 "screenlock_inactivity_timeout" = "Etkisizlik zaman aşımı kilidi";
-"screenlock_inactivity_timeout_explain" = "Belirtilen bir etkisizlik zaman aralığından sonra Delta Chat\'i otomatik kilitle";
+"screenlock_inactivity_timeout_explain" = "Belirtilen bir etkisizlik zaman diliminden sonra Delta Chat\'i otomatik kilitle";
 "screenlock_inactivity_timeout_interval" = "Etkin kalma zamanı";
 
 
@@ -497,11 +497,9 @@
 "contact_not_verified" = "%1$@ doğrulanamıyor.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "%1$@ için ayarlama değiştirildi.";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%2$d sohbette %1$d yeni ileti";
-"notify_most_recent_from" = "En yeni: %1$@";
+"notify_most_recent_from" = "Şundan en yeni: %1$@";
 "notify_media_message_with_text" = "Ortam iletisi: %s";
 "notify_mark_all_read" = "Tümünü okundu olarak imle";
 "notify_mark_read" = "Okundu imi";
@@ -529,6 +527,7 @@
 "perm_explain_access_to_location_denied" = "Bir konum iliştirmek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Konum\"u etkinleştirin.";
 "perm_enable_bg_reminder_title" = "Delta Chat artalandayken iletileri almak için buraya dokunun.";
 "perm_enable_bg_reminder_text" = "Delta Chat, kaynakların en azını kullanır ve pilinizi boşaltmamaya özen gösterir.";
+"perm_enable_bg_already_done" = "Delta Chat\'in iletileri artalanda almasına zaten izin verdiniz.\n\nArtalanda iletiler hâlâ gelmiyorsa, lütfen sistem ayarlarınızı da denetleyin.";
 
 // dc_str_* resources
 "encrypted_message" = "Şifrelenen ileti";
@@ -584,7 +583,7 @@
 "export_backup_desktop" = "Yedeği dışa aktar";
 "transfer_key_desktop" = "Anahtarı aktar";
 "show_key_transfer_message_desktop" = "Anahtarınız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Size bir ayarlama kodu sorulmalı. Aşağıdaki sayıları girin:";
-"new_message_from_desktop" = "Yeni iletiyi gönderen";
+"new_message_from_desktop" = "Şundan yeni ileti";
 "unblock_contacts_desktop" = "Kişilerin engellemesini kaldır";
 "none_blocked_desktop" = "Henüz engellenen kişi yok";
 "autocrypt_correct_desktop" = "Autocrypt ayarlaması aktarıldı.";

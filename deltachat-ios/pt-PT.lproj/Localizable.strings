@@ -81,7 +81,7 @@
 "menu_new_contact" = "Novo contacto";
 "menu_new_chat" = "Nova chat";
 "menu_new_group" = "Novo grupo";
-"menu_new_verified_group" = "Novo grupo verificado (experimental)";
+"menu_new_verified_group" = "Novo grupo verificado";
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Alternar teclado emoji";
 "menu_edit_group" = "Editar grupo";
@@ -375,8 +375,6 @@
 "contact_not_verified" = "Não é possível verificar %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Configuração alterada para %1$@";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d novas mensagens em %2$d chats";
 "notify_most_recent_from" = "Mais recentes de: %1$@";
@@ -406,7 +404,6 @@
 "perm_explain_access_to_location_denied" = "O Delta Chat necessita permissão de acesso à localização para anexar um local, mas ele negado. Por favor, continue no menu de configurações do aplicativo, selecione \"Permissões \"e ative \"Localização\".";
 "perm_enable_bg_reminder_title" = "Toque aqui para receber mensagens mesmo que o Delta Chat esteja em segundo plano.";
 "perm_enable_bg_reminder_text" = "O Delta Chat usa pouquíssimos recursos e busca não consumir muito a bateria.";
-
 // dc_str_* resources
 "encrypted_message" = "Mensagem encriptada";
 

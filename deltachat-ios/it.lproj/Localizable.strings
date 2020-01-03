@@ -19,6 +19,10 @@
 "attachment" = "Allegato";
 "back" = "Indietro";
 "close" = "Chiudi";
+"forward" = "Inoltra";
+"archive" = "Archivia";
+"unarchive" = "Ripristina";
+"mute" = "Silenzia";
 "save" = "Salva";
 "chat" = "Chat";
 "media" = "Media";
@@ -101,7 +105,7 @@
 "menu_new_contact" = "Nuovo contatto";
 "menu_new_chat" = "Nuova chat";
 "menu_new_group" = "Nuovo gruppo";
-"menu_new_verified_group" = "Nuovo gruppo verificato (sperimentale)";
+"menu_new_verified_group" = "Nuovo gruppo verificato";
 "menu_send" = "Inviato";
 "menu_toggle_keyboard" = "Alterna tastiera emoji";
 "menu_edit_group" = "Modifica grupp";
@@ -151,6 +155,8 @@
 "title_share_location" = "Condividi posizione con tutti i membri";
 "device_talk" = "Messaggi del dispositivo";
 "device_talk_subtitle" = "Messaggi generati localmente";
+"device_talk_explain" = "I messaggio in questa chat vengono generati localmente da Delta Chat. Gli sviluppatori li usano per informarti sugli aggiornamenti o sui problemi d\'utilizzo.";
+"device_talk_welcome_message" = "Benvenuto in Delta Chat! - Delta Chat ha l\'aspetto e lo stile di altre popolari applicazioni di messaggistica, ma non costringe ad un controllo centralizzato, al tracciamento o alla vendita tua,  dei tuoi amici, colleghi o familiari a grandi organizzazioni.\n \n Tecnicamente, Delta Chat è un\'applicazione di posta elettronica con un\'interfaccia moderna. L\'email sotto una nuova vesta 👻 \n \nUtilizza Delta Chat con chiunque: basta conoscere il loro indirizzo e-mail. I destinatari non hanno bisogno di installare Delta Chat, visitare siti web o iscriversi da nessuna parte -  ma, naturalmente se lo desiderano, puoi suggerirgli 👉 https://get.delta.chat";
 "edit_contact" = "Modifica contatto";
 
 "mute_for_one_hour" = "Silenzia per 1 ora";
@@ -209,6 +215,8 @@
 "chat_archived_label" = "Archiviato";
 "chat_no_messages" = "Nessun messaggio.";
 "chat_self_talk_subtitle" = "Messaggi inviati a me stesso";
+"saved_messages" = "Messaggi salvati";
+"saved_messages_explain" = "• Inoltra i messaggi per trovarli facilmente\n\n• Memorizza note scritte o vocali\n\n• Allega oggetti per salvarli";
 "chat_contact_request" = "Richiesta di contatto";
 "chat_no_contact_requests" = "Nessuna richiesta di contatto.\n\nSe vuoi che le email tradizionali appaiano qui come richieste di contatto puoi selezionare la relativa opzione nelle impostazioni.";
 "retry_send" = "Riprova l\'invio del messaggio";
@@ -489,8 +497,6 @@
 "contact_not_verified" = "Impossibile verificare %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Impostazioni modificate per %1$@";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nuovi messaggi in %2$d chat";
 "notify_most_recent_from" = "Più recente da: %1$@";
@@ -521,7 +527,6 @@
 "perm_explain_access_to_location_denied" = "Delta Chat richiede l\'autorizzazione per allegare la posizione, ma è stata bloccata permanentemente. Vai nelle impostazioni delle App, seleziona \"Autorizzazioni\" e abilita \"Posizione\".";
 "perm_enable_bg_reminder_title" = "Premi qui per ricevere i messaggi anche quando Delta Chat è in background.";
 "perm_enable_bg_reminder_text" = "Delta Chat usa poche risorse ed è progettata per consumare meno batteria possibile.";
-
 // dc_str_* resources
 "encrypted_message" = "Messaggio cifrato";
 
@@ -609,3 +614,4 @@
 "a11y_message_context_menu_btn_label" = "Azioni messaggio";
 "a11y_background_preview_label" = "Anteprima sfondo";
 
+// Translators: These strings are only used on iOS

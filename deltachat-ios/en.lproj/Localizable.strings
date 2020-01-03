@@ -105,7 +105,7 @@
 "menu_new_contact" = "New contact";
 "menu_new_chat" = "New chat";
 "menu_new_group" = "New group";
-"menu_new_verified_group" = "New verified group (experimental)";
+"menu_new_verified_group" = "New verified group";
 "menu_send" = "Send";
 "menu_toggle_keyboard" = "Toggle emoji keyboard";
 "menu_edit_group" = "Edit group";
@@ -497,6 +497,7 @@
 "contact_not_verified" = "Cannot verify %1$@.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Changed setup for %1$@.";
+"verified_group_explain" = "Verified groups (experimental) provide safety against active attacks. Members are verified with a second factor by other members and messages are always end-to-end-encrypted.";
 
 
 // notifications 
@@ -529,6 +530,7 @@
 "perm_explain_access_to_location_denied" = "To attach a location, go to the app settings, select \"Permissions\", and enable \"Location\".";
 "perm_enable_bg_reminder_title" = "Tap here to receive messages while Delta Chat is in the background.";
 "perm_enable_bg_reminder_text" = "Delta Chat uses few resources and takes care not to drain your battery.";
+"perm_enable_bg_already_done" = "You already allowed Delta Chat to receive messages in the background.\n\nIf messages still do not arrive in background, please also check your system settings.";
 
 // dc_str_* resources
 "encrypted_message" = "Encrypted message";

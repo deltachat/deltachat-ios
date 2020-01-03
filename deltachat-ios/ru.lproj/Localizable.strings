@@ -50,7 +50,7 @@
 "password" = "Пароль";
 "now" = "Сейчас";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
-"danger" = "Внимание";
+"danger" = "Опасность";
 // n_min_ago is deprecated, use n_minutes instead
 "n_min_ago" = "%d мин";
 "today" = "Сегодня";
@@ -105,7 +105,7 @@
 "menu_new_contact" = "Новый контакт";
 "menu_new_chat" = "Новый чат";
 "menu_new_group" = "Новая группа";
-"menu_new_verified_group" = "Новая проверенная группа (экспериментальная функция)";
+"menu_new_verified_group" = "Новая проверенная группа";
 "menu_send" = "Отправить";
 "menu_toggle_keyboard" = "Включить эмодзи клавиатуру";
 "menu_edit_group" = "Редактировать группу";
@@ -497,8 +497,6 @@
 "contact_not_verified" = "Невозможно подтвердить %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Изменены параметры для %1$@";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d новых сообщений в %2$d чатах.";
 "notify_most_recent_from" = "Последнее от: %1$@";
@@ -529,7 +527,6 @@
 "perm_explain_access_to_location_denied" = "Чтобы передать местоположение приложению Delta Chat нужно разрешить доступ к нему, но сейчас он заблокирован. Перейдите в меню настроек приложения, выберите \"Разрешения приложений\" и включите \"Местоположение\".";
 "perm_enable_bg_reminder_title" = "Нажмите здесь, чтобы получать сообщения, когда Delta Chat находится в фоновом режиме.";
 "perm_enable_bg_reminder_text" = "Delta Chat использует минимальные ресурсы и старается не разряжать батарею.";
-
 // dc_str_* resources
 "encrypted_message" = "Зашифрованное сообщение";
 

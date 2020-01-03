@@ -100,7 +100,7 @@
 "menu_new_contact" = "Nouveau contact";
 "menu_new_chat" = "Nouvelle discussion";
 "menu_new_group" = "Nouveau groupe";
-"menu_new_verified_group" = "Nouveau groupe vérifié (expérimental)";
+"menu_new_verified_group" = "Nouveau groupe vérifié";
 "menu_send" = "Envoyer";
 "menu_toggle_keyboard" = "Basculer le clavier emoji";
 "menu_edit_group" = "Modifier le groupe";
@@ -480,8 +480,6 @@
 "contact_not_verified" = "Ne peut pas vérifier %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Configuration modifiée pour %1$@";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nouveaux messages dans %2$d tchats";
 "notify_most_recent_from" = "Plus récents depuis : %1$@";
@@ -512,7 +510,6 @@
 "perm_explain_access_to_location_denied" = "DeltaChat nécessite l\'autorisation de la position pour attacher une position, mais elle a été définitivement refusée. Continuez jusqu\'au menu des paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Position\".";
 "perm_enable_bg_reminder_title" = "Touchez ici pour recevoir des messages pendant que DeltaChat est en arrière-plan.";
 "perm_enable_bg_reminder_text" = "DeltaChat utilise un minimum de ressources et veille à ne pas vider votre batterie.";
-
 // dc_str_* resources
 "encrypted_message" = "Message chiffré";
 

@@ -9,6 +9,8 @@
 "def" = "Domyślne";
 "custom" = "Własne";
 "none" = "Brak";
+"automatic" = "Automatyczne";
+"strict" = "Dokładne";
 "open" = "Otwórz";
 "delete" = "Usuń";
 "emoji" = "Emoji";
@@ -100,7 +102,7 @@
 "menu_new_contact" = "Nowy kontakt";
 "menu_new_chat" = "Nowy czat";
 "menu_new_group" = "Nowa grupa";
-"menu_new_verified_group" = "Nowa zweryfikowana grupa (eksperymentalne)";
+"menu_new_verified_group" = "Nowa zweryfikowana grupa";
 "menu_send" = "Wyślij";
 "menu_toggle_keyboard" = "Przełącz klawiaturę emoji";
 "menu_edit_group" = "Edytuj grupę";
@@ -130,8 +132,8 @@
 "menu_unblock_contact" = "Odblokuj kontakt";
 "menu_play" = "Odtwarzaj";
 "menu_pause" = "Wstrzymaj";
-"menu_scroll_to_bottom" = "Przewiń do dołu";
-"menu_scroll_to_top" = "Przesuń do góry";
+"menu_scroll_to_bottom" = "Przewiń na dołu";
+"menu_scroll_to_top" = "Przewiń na górę";
 "menu_invite" = "Zaproś znajomych";
 "menu_help" = "Pomoc";
 "menu_select_all" = "Zaznacz wszystko";
@@ -148,13 +150,17 @@
 "menu_zoom_out" = "Pomniejsz";
 "menu_save_log" = "Zapisz log";
 "title_share_location" = "Udostępnij lokalizację dla wszystki czlonków grup";
+"device_talk" = "Komunikaty urządzenia";
+"device_talk_subtitle" = "Wiadomości generowane lokalnie";
+"device_talk_explain" = "Wiadomości w tym czacie są generowane lokalnie przez twoją aplikację Delta Chat. Twórcy używają go do informowania o aktualizacjach aplikacji i problemach podczas użytkowania.";
+"device_talk_welcome_message" = "Witamy w Delta Chat! - Delta Chat wygląda i działa podobnie jak inne popularne komunikatory, ale nie miesza się w scentralizowaną kontrolę, śledzenie ani sprzedaż ciebie, przyjaciół, kolegów lub rodziny dużym organizacjom.\n\nTechnicznie Delta Chat jest aplikacją e-mail z nowoczesnym interfejsem czatu. Jeśli chcesz, wyślij e-mail w nowej sukience 👻.\n\nKorzystaj z Delta Chat z każdym spośród miliardów ludzi: po prostu użyj ich adresu e-mail. Odbiorcy nie muszą instalować Delta Chat, odwiedzać stron internetowych ani rejestrować się gdziekolwiek - oczywiście, jeśli im się spodoba, możesz ich skierować na 👉 https://get.delta.chat.";
 "edit_contact" = "Edytuj kontakt";
 
 "mute_for_one_hour" = "Wyłącz na 1 godzinę";
 "mute_for_two_hours" = "Wyłącz na 2 godziny";
 "mute_for_one_day" = "Wyłącz na 1 dzień";
 "mute_for_seven_days" = "Wyłącz na 7 dni";
-"mute_forever" = "Wycisz na zawsze";
+"mute_forever" = "Wyłącz na zawsze";
 
 "share_location_once" = "raz";
 "share_location_for_5_minutes" = "na 5 minut";
@@ -173,7 +179,7 @@
 "ask_delete_contacts" = "Usunąć kontakty? Spowoduje to trwałe usunięcie wybranych kontaktów.\n\nKontaktów z trwającymi rozmowami i kontaktów z książki adresowej systemu nie można trwale usunąć.";
 "ask_delete_contact" = "Usunąć trwale kontakt %1$@?\n\nKontaktów z trwającymi czatami i kontaktów z książki adresowej systemu nie można trwale usunąć.";
 "cannot_delete_contacts_in_use" = "Nie można usunąć kontaktów z trwającymi czatami.";
-"ask_start_chat_with" = "Czat z %1$@?";
+"ask_start_chat_with" = "Rozpocząć czat z %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Usunąć %1$@ z grupy?";
 "info_outdated_app_title" = "Twoja wersja aplikacji jest nieaktualna.";
@@ -207,6 +213,7 @@
 "chat_no_messages" = "Brak wiadomości.";
 "chat_self_talk_subtitle" = "Wiadomości wysłane do siebie";
 "saved_messages" = "Zapisane wiadomości";
+"saved_messages_explain" = "• Przesyłaj tu wiadomości, aby mieć je pod ręką\n\n• Rób notatki lub notatki głosowe\n\n• Dołączaj media, aby je zachować";
 "chat_contact_request" = "Prośba o kontakt";
 "chat_no_contact_requests" = "Brak zaproszenia do kontaktów.\n\nJeśli chcesz, aby klasyczne wiadomości e-mail pojawiały się tutaj jako prośby o kontakt, możesz zmienić odpowiednie ustawienia w ustawieniach aplikacji.";
 "retry_send" = "Spróbuj ponownie wysłać wiadomość";
@@ -241,8 +248,8 @@
 "tab_docs" = "Dokumenty";
 "tab_links" = "Linki";
 "tab_map" = "Mapa";
-"tab_gallery_empty_hint" = "Wyświetlone zostaną tutaj zdjęcia i filmy udostępnione na tym czacie.";
-"tab_docs_empty_hint" = "Wyświetlone zostaną tutaj dokumenty, muzyka i inne pliki udostępnione na tym czacie.";
+"tab_gallery_empty_hint" = "Tutaj zostaną wyświetlone zdjęcia i filmy udostępnione na tym czacie.";
+"tab_docs_empty_hint" = "Tutaj zostaną wyświetlone dokumenty, muzyka i inne pliki udostępnione na tym czacie.";
 "media_preview" = "Podgląd multimediów";
 
 
@@ -260,20 +267,21 @@
 "login_subheader" = "Dla znanych dostawców usług poczty elektronicznej poniższe ustawienia są ustawiane automatycznie. Czasami IMAP musi być włączony w interfejsie WWW. O pomoc należy zwrócić się do usługodawcy e-mail lub znajomych.";
 "login_no_servers_hint" = "Nie ma serwerów Delta Chat, Twoje dane pozostają na Twoim urządzeniu!";
 "login_inbox" = "Skrzynka odbiorcza";
-"login_imap_login" = "nazwa użytkownika IMAP";
-"login_imap_server" = "serwer IMAP";
-"login_imap_port" = "port IMAP";
+"login_imap_login" = "Nazwa użytkownika IMAP";
+"login_imap_server" = "Serwer IMAP";
+"login_imap_port" = "Port IMAP";
 "login_imap_security" = "Bezpieczeństwo IMAP";
 "login_outbox" = "Skrzynka nadawcza";
-"login_smtp_login" = "nazwa użytkownika SMTP";
-"login_smtp_password" = "hasło SMTP";
-"login_smtp_server" = "serwer SMTP";
-"login_smtp_port" = "port SMTP";
+"login_smtp_login" = "Nazwa użytkownika SMTP";
+"login_smtp_password" = "Hasło SMTP";
+"login_smtp_server" = "Serwer SMTP";
+"login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Bezpieczeństwo SMTP";
 "login_auth_method" = "Metoda autoryzacji";
 "login_info_oauth2_title" = "Kontynuuj w uproszczonej konfiguracji?";
-"login_info_oauth2_text" = "Wprowadzony adres e-mail obsługuje uproszczoną konfigurację (OAuth2).\n\nW następnym kroku pozwól, aby Delta Chat działał jako czat z aplikacją e-mail.\n\nNie ma serwerów Delta Chat, Twoje dane pozostają na Twoim urządzeniu!";
+"login_info_oauth2_text" = "Wprowadzony adres e-mail obsługuje uproszczoną konfigurację (OAuth2.0).\n\nW następnym kroku pozwól, aby Delta Chat działał jako czat z aplikacją e-mail.\n\nNie ma serwerów Delta Chat, Twoje dane pozostają na Twoim urządzeniu!";
 "login_info_gmail_text" = "W przypadku kont GMail, jeśli masz włączone 2FA, musisz utworzyć hasło aplikacji. Jeśli to ustawienie nie jest dostępne, musisz włączyć mniej bezpieczne aplikacje.";
+"login_certificate_checks" = "Sprawdzanie certyfikatów";
 "login_error_mail" = "Podaj ważny adres e-mail";
 "login_error_server" = "Wprowadź poprawny adres serwera / IP";
 "login_error_port" = "Podaj poprawny numer portu (1–65535)";
@@ -410,6 +418,7 @@
 "pref_empty_server_mvbox" = " Usuń WSZYSTKIE wiadomości e-mail w folderze DeltaChat";
 "pref_empty_server_do_button" = "Usuń e-maile";
 "pref_experimental_features" = "Funkcje eksperymentalne";
+"pref_on_demand_location_streaming" = "Przesyłanie strumieniowe lokalizacji na żądanie";
 "pref_background_default" = "Domyślne tło";
 "pref_background_default_color" = "Domyślny kolor";
 "pref_background_custom_image" = "Własny obraz";
@@ -485,8 +494,6 @@
 "contact_not_verified" = "Nie można zweryfikować %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Zmieniono konfigurację dla %1$@";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nowe wiadomości w %2$d czatach";
 "notify_most_recent_from" = "Najnowsze z: %1$@";
@@ -517,7 +524,6 @@
 "perm_explain_access_to_location_denied" = "Delta Chat wymaga zezwolenia na lokalizację, aby dołączyć lokalizację, ale zostało ono trwale odrzucone. Przejdź do menu ustawień aplikacji, wybierz „Uprawnienia” i włącz „Lokalizacja”.";
 "perm_enable_bg_reminder_title" = "Dotknij tutaj, aby odbierać wiadomości, podczas gdy Delta Chat działa w tle.";
 "perm_enable_bg_reminder_text" = "Delta Chat wykorzystuje minimalne zasoby i dba o to, aby nie rozładować baterii.";
-
 // dc_str_* resources
 "encrypted_message" = "Zaszyfrowana wiadomość";
 
@@ -603,3 +609,4 @@
 "a11y_remove_account_btn_label" = "Usuń konto";
 "a11y_background_preview_label" = "Podgląd tła";
 
+// Translators: These strings are only used on iOS
