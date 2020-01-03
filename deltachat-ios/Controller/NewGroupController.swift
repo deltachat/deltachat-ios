@@ -21,9 +21,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private let sectionInvite = 1
     private let sectionInviteRowAddMembers = 0
     private let sectionInviteRowShowQrCode = 1
-    private lazy var countSectionInvite: Int = {
-        return isVerifiedGroup ? 2 : 1
-    }()
+    private lazy var countSectionInvite: Int = 2
     private let sectionGroupMembers = 2
 
     lazy var groupNameCell: TextFieldCell = {
