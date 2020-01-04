@@ -1,6 +1,5 @@
 import SafariServices
 import UIKit
-import UICircularProgressRing
 
 class AccountSetupController: UITableViewController {
 
@@ -70,29 +69,8 @@ class AccountSetupController: UITableViewController {
 
     // the progress dialog
 
-    private lazy var configProgressIndicator: UICircularProgressRing = {
-        let progress = UICircularProgressRing()
-        progress.style = UICircularRingStyle.inside
-        progress.outerRingColor = UIColor.clear
-        progress.maxValue = 100
-        progress.innerRingColor = DcColors.primary
-        progress.innerRingWidth = 2
-        progress.startAngle = 270
-        progress.fontColor = UIColor.lightGray
-        progress.font = UIFont.systemFont(ofSize: 12)
-        return progress
-    }()
-
     private lazy var configProgressAlert: UIAlertController = {
-        let alert = UIAlertController(title: String.localized("one_moment"), message: "\n\n\n", preferredStyle: .alert)
-        // workaround: add 3 newlines to let alertbox grow to fit progressview
-        let progressView = configProgressIndicator
-        progressView.translatesAutoresizingMaskIntoConstraints = false
-        alert.view.addSubview(progressView)
-        progressView.centerXAnchor.constraint(equalTo: alert.view.centerXAnchor).isActive = true
-        progressView.centerYAnchor.constraint(equalTo: alert.view.centerYAnchor, constant: 0).isActive = true
-        progressView.heightAnchor.constraint(equalToConstant: 65).isActive = true
-        progressView.widthAnchor.constraint(equalToConstant: 65).isActive = true
+        let alert = UIAlertController(title: String.localized("login_header"), message: String.localized("one_moment"), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
             self.dcContext.stopOngoingProcess()
         }))
@@ -101,10 +79,7 @@ class AccountSetupController: UITableViewController {
 
     private func showProgressHud() {
         configProgressAlert.actions[0].isEnabled = true
-        configProgressAlert.title = String.localized("one_moment")
-        configProgressAlert.message = "\n\n\n" // workaround to create space for progress indicator
-        configProgressIndicator.alpha = 1
-        configProgressIndicator.value = 0
+        configProgressAlert.message = String.localized("one_moment")
         present(configProgressAlert, animated: true, completion: nil)
     }
 
@@ -130,8 +105,7 @@ class AccountSetupController: UITableViewController {
 
     private func updateProgressHudValue(value: Int?) {
         if let value = value {
-            print("progress hud: \(value)")
-            configProgressIndicator.value = CGFloat(value / 10)
+            configProgressAlert.message = String.localized("one_moment") + " " + String(value/10) + "%"
         }
     }
 
