@@ -39,11 +39,11 @@
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>This is used to take photos and videos during chats or scan QR codes.</string>
+	<string>This is used to take photos and videos or scan QR codes.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>This is used to import email addresses of your contacts.</string>
+	<string>This is used to find your contacts using Delta Chat.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This is used to record voice messages during chats.</string>
+	<string>This is used to send your voice.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This is used to share your photos and videos or set up a profile picture.</string>
 	<key>UIBackgroundModes</key>
