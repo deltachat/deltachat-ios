@@ -105,7 +105,7 @@
 "menu_new_contact" = "Nieuw contactpersoon";
 "menu_new_chat" = "Nieuw gesprek";
 "menu_new_group" = "Nieuwe groep";
-"menu_new_verified_group" = "Nieuwe goedgekeurde groep (experimenteel)";
+"menu_new_verified_group" = "Nieuwe goedgekeurde groep";
 "menu_send" = "Versturen";
 "menu_toggle_keyboard" = "Emoji-toetsenbord tonen/verbergen";
 "menu_edit_group" = "Groep aanpassen";
@@ -497,8 +497,6 @@
 "contact_not_verified" = "Kan %1$@ niet goedkeuren";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Gewijzigde instellingen voor %1$@";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nieuwe berichten in %2$d gesprekken";
 "notify_most_recent_from" = "Recentste van: %1$@";
@@ -529,6 +527,7 @@
 "perm_explain_access_to_location_denied" = "Delta Chat vereist de locatiemachtiging om je locatie te kunnen delen, maar je hebt dit permanent geweigerd. Ga naar de app-instellingen, kies \"Machtigingen\" en schakel \"Locatie\" in.";
 "perm_enable_bg_reminder_title" = "Druk hier om berichten te ontvangen als Delta Chat niet geopend is.";
 "perm_enable_bg_reminder_text" = "Delta Chat\'s accugebruik is laag omdat het slechts een minimaal aantal systeembronnen gebruikt.";
+"perm_enable_bg_already_done" = "Je hebt al toestemming gegeven voor het ophalen van berichten op de achtergrond.\n\nAls het nog steeds niet werkt, controleer dan de systeeminstellingen.";
 
 // dc_str_* resources
 "encrypted_message" = "Versleuteld bericht";

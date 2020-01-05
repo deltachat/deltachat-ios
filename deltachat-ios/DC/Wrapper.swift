@@ -42,6 +42,18 @@ class DcContext {
         return Int(dc_create_chat_by_contact_id(contextPointer, UInt32(contactId)))
     }
 
+    func createGroupChat(verified: Bool, name: String) -> Int {
+        return Int(dc_create_group_chat(contextPointer, verified ? 1 : 0, name))
+    }
+
+    func addContactToChat(chatId: Int, contactId: Int) -> Bool {
+        return dc_add_contact_to_chat(contextPointer, UInt32(chatId), UInt32(contactId)) == 1
+    }
+
+    func setChatName(chatId: Int, name: String) -> Bool {
+        return dc_set_chat_name(contextPointer, UInt32(chatId), name) == 1
+    }
+
     func deleteChat(chatId: Int) {
         dc_delete_chat(contextPointer, UInt32(chatId))
     }

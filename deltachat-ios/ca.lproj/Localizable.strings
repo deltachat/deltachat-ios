@@ -81,7 +81,7 @@
 "menu_new_contact" = "Contacte nou";
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Grup nou";
-"menu_new_verified_group" = "Nou grup verificat (experimental)";
+"menu_new_verified_group" = "Nou grup verificat";
 "menu_send" = "Envia";
 "menu_toggle_keyboard" = "Canvia al teclat d\'emoticones";
 "menu_edit_group" = "Modifica el grup";
@@ -396,8 +396,6 @@
 "contact_not_verified" = "No es pot verificar%1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Configuració canviada per %1$@";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d missatges nous en %2$d xats";
 "notify_most_recent_from" = "El més nou des de : %1$@";
@@ -428,7 +426,6 @@
 "perm_explain_access_to_location_denied" = "Delta Chat necessita accedir a la ubicació per poder-la adjuntar, però li ha estat denegada de forma permanent. Vés a les preferències del menú de l\'aplicació, tria \"Permisos i activa-hi la \"Ubicació\".";
 "perm_enable_bg_reminder_title" = "Prem aquí per rebre missatges mentre Delta Chat és en segon pla.";
 "perm_enable_bg_reminder_text" = "Delta Chat fa servir els recursos mínims i procura no gastar gaire bateria.";
-
 // dc_str_* resources
 "encrypted_message" = "Missatge encriptat";
 

@@ -105,7 +105,7 @@
 "menu_new_contact" = "Kontakt i ri";
 "menu_new_chat" = "Fjalosje e re";
 "menu_new_group" = "Grup i ri";
-"menu_new_verified_group" = "Grup i ri i verifikuar (eksperimentale)";
+"menu_new_verified_group" = "Grup i ri i verifikuar";
 "menu_send" = "Dërgoje";
 "menu_toggle_keyboard" = "Shfaq/fshih tastierë emoji";
 "menu_edit_group" = "Përpunoni grup";
@@ -496,8 +496,6 @@
 "contact_not_verified" = "S\’verifikohet dot %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "U ndryshua rregullimi për %1$@";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d mesazhe të rinj në %2$d fjalosje";
 "notify_most_recent_from" = "Më të rejat nga: %1$@";
@@ -528,6 +526,7 @@
 "perm_explain_access_to_location_denied" = "Delta Chat lyp leje mbi Vendndodhjen që të mund të bashkëngjisë një vendndodhje, por kjo i është mohuar. Ju lutemi, vazhdoni te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizojini për \"Vendndodhjen\".";
 "perm_enable_bg_reminder_title" = "Prekeni këtu që të merrni mesazhe, teksa Delta Chat rri në prapaskenë.";
 "perm_enable_bg_reminder_text" = "Delta Chat-i përdor burime minimale dhe kujdeset të mos thajë baterinë.";
+"perm_enable_bg_already_done" = "E keni lejuar tashmë Delta Chat-in të marrë mesazhe në prapaskenë.\n\nNëse mesazhet prapë nuk mbërrijnë në prapaskenë, ju lutemi, kontrolloni edhe rregullimet e sistemit tuaj.";
 
 // dc_str_* resources
 "encrypted_message" = "Mesazh i fshehtëzuar";

@@ -99,7 +99,7 @@
 "menu_new_contact" = "Yeni kontakt";
 "menu_new_chat" = "Yeni çat";
 "menu_new_group" = "Yeni qrup";
-"menu_new_verified_group" = "Yeni yoxlanılmış qrup (eksperimental)";
+"menu_new_verified_group" = "Yeni yoxlanılmış qrup";
 "menu_send" = "Göndər";
 "menu_toggle_keyboard" = "Emoji klaviatura keçidi";
 "menu_edit_group" = "Qrupu dəyiş";
@@ -465,8 +465,6 @@
 "contact_not_verified" = "%1$@Doğrula bilmir";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "%1$@üçün quraşdırma dəyişdirildi";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d yeni mesaj %2$d çatda";
 "notify_most_recent_from" = "Ən son olanlar: %1$@";
@@ -497,7 +495,6 @@
 "perm_explain_access_to_location_denied" = "Delta Chat yer əlavə etmək üçün yer icazə tələb edir, lakin daimi olaraq rədd edilmişdir. \"İcazələr\"-i seçin və\"Yerləşmə\" izni verin. ";
 "perm_enable_bg_reminder_title" = "Delta Chat arxa fonda mesajları almaq üçün bura toxunun.";
 "perm_enable_bg_reminder_text" = "Delta Chat minimum resurslardan istifadə edir və batareyanı boşaltmamaq üçün qayğı göstərir.";
-
 // dc_str_* resources
 "encrypted_message" = "Şifrələnmiş mesaj";
 

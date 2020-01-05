@@ -9,8 +9,9 @@ class NewChatViewController: UITableViewController {
 
     private let sectionNew = 0
     private let sectionNewRowNewGroup = 0
-    private let sectionNewRowNewContact = 1
-    private let sectionNewRowCount = 2
+    private let sectionNewRowNewVerifiedGroup = 1
+    private let sectionNewRowNewContact = 2
+    private let sectionNewRowCount = 3
 
     private let sectionImportedContacts = 1
 
@@ -80,6 +81,8 @@ class NewChatViewController: UITableViewController {
         if #available(iOS 11.0, *) {
             navigationItem.hidesSearchBarWhenScrolling = false
         }
+        tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
+        tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -166,70 +169,43 @@ class NewChatViewController: UITableViewController {
         let row = indexPath.row
 
         if section == sectionNew {
-            if row == sectionNewRowNewGroup {
-                // new group row
-                let cell: UITableViewCell
-                if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
-                    cell = c
-                } else {
-                    cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
+            if let actionCell = cell as? ActionCell {
+                switch row {
+                case sectionNewRowNewGroup:
+                    actionCell.actionTitle = String.localized("menu_new_group")
+                case sectionNewRowNewVerifiedGroup:
+                    actionCell.actionTitle = String.localized("menu_new_verified_group")
+                default:
+                    actionCell.actionTitle = String.localized("menu_new_contact")
                 }
-                cell.textLabel?.text = String.localized("menu_new_group")
-                cell.textLabel?.textColor = view.tintColor
-
-                return cell
             }
-
-            if row == sectionNewRowNewContact {
-                // new contact row
-                let cell: UITableViewCell
-                if let c = tableView.dequeueReusableCell(withIdentifier: "newContactCell") {
-                    cell = c
-                } else {
-                    cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
-                }
-                cell.textLabel?.text = String.localized("menu_new_contact")
-                cell.textLabel?.textColor = view.tintColor
-
-                return cell
-            }
+            return cell
         } else if section == sectionImportedContacts {
             // import device contacts section
             if deviceContactAccessGranted {
-                let cell: ContactCell
-                if let c = tableView.dequeueReusableCell(withIdentifier: "contactCell") as? ContactCell {
-                    cell = c
-                } else {
-                    cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
+                let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
+                if let contactCell = cell as? ContactCell {
+                    let contact: ContactWithSearchResults = contactSearchResultByRow(row)
+                    updateContactCell(cell: contactCell, contactWithHighlight: contact)
                 }
-                let contact: ContactWithSearchResults = contactSearchResultByRow(row)
-                updateContactCell(cell: cell, contactWithHighlight: contact)
                 return cell
             } else {
-                let cell: ActionCell
-                if let c = tableView.dequeueReusableCell(withIdentifier: "actionCell") as? ActionCell {
-                    cell = c
-                } else {
-                    cell = ActionCell(style: .default, reuseIdentifier: "actionCell")
+                let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
+                if let actionCell = cell as? ActionCell {
+                    actionCell.actionTitle = String.localized("import_contacts")
                 }
-                cell.actionTitle = String.localized("import_contacts")
                 return cell
             }
         } else {
             // section contact list if device contacts are not imported
-            let cell: ContactCell
-            if let c = tableView.dequeueReusableCell(withIdentifier: "contactCell") as? ContactCell {
-                cell = c
-            } else {
-                cell = ContactCell(style: .default, reuseIdentifier: "contactCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
+            if let contactCell = cell as? ContactCell {
+                let contact: ContactWithSearchResults = contactSearchResultByRow(row)
+                updateContactCell(cell: contactCell, contactWithHighlight: contact)
             }
-
-            let contact: ContactWithSearchResults = contactSearchResultByRow(row)
-            updateContactCell(cell: cell, contactWithHighlight: contact)
             return cell
         }
-        // will actually never get here but compiler not happy
-        return UITableViewCell(style: .default, reuseIdentifier: "cell")
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -238,9 +214,10 @@ class NewChatViewController: UITableViewController {
 
         if section == sectionNew {
             if row == sectionNewRowNewGroup {
-                coordinator?.showNewGroupController()
-            }
-            if row == sectionNewRowNewContact {
+                coordinator?.showNewGroupController(isVerified: false)
+            } else if row == sectionNewRowNewVerifiedGroup {
+                coordinator?.showNewGroupController(isVerified: true)
+            } else if row == sectionNewRowNewContact {
                 coordinator?.showNewContactController()
             }
         } else if section == sectionImportedContacts {

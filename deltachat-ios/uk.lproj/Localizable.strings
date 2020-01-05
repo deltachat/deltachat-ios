@@ -81,7 +81,7 @@
 "menu_new_contact" = "Новий контакт";
 "menu_new_chat" = "Новий чат";
 "menu_new_group" = "Нова група";
-"menu_new_verified_group" = "Нова перевірена група (експериментальна функція)";
+"menu_new_verified_group" = "Нова перевірена група";
 "menu_send" = "Відправити";
 "menu_toggle_keyboard" = "Увімкнути емодзі-клавіатуру";
 "menu_edit_group" = "Редагувати групу";
@@ -372,8 +372,6 @@
 "contact_not_verified" = "Неможливо підтвердити %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Змінені параметри для %1$@";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d нових повідомлень з %2$d чатів";
 "notify_most_recent_from" = "Останнє від: %1$@";
@@ -403,7 +401,6 @@
 "perm_explain_access_to_location_denied" = "Щоб передати місцезнаходження, додатку потрібен доступ до геоданих пристрою, але зараз його не надано. Для надання доступу перейдіть у системне меню налаштувань, у розділі «Додатки» знайдіть Delta Chat, виберіть пункт «Права доступу» і дозвольте доступ до місцезнаходження пристрою.";
 "perm_enable_bg_reminder_title" = "Натисніть тут, щоб отримувати повідомлення, коли Delta Chat знаходиться у фоновому режимі.";
 "perm_enable_bg_reminder_text" = "Delta Chat використовує мінімальні ресурси і дбає про те, щоб не розрядити батарею.";
-
 // dc_str_* resources
 "encrypted_message" = "Зашифроване повідомлення";
 

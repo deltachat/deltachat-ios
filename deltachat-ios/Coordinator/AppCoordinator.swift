@@ -291,8 +291,8 @@ class NewChatCoordinator: Coordinator {
         self.navigationController = navigationController
     }
 
-    func showNewGroupController() {
-        let newGroupController = NewGroupViewController()
+    func showNewGroupController(isVerified: Bool) {
+        let newGroupController = NewGroupController(dcContext: dcContext, isVerified: isVerified)
         let coordinator = NewGroupCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         newGroupController.coordinator = coordinator
@@ -454,7 +454,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
     }
 }
 
-class NewGroupCoordinator: Coordinator {
+class NewGroupAddMembersCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
 
@@ -463,14 +463,6 @@ class NewGroupCoordinator: Coordinator {
     init(dcContext: DcContext, navigationController: UINavigationController) {
         self.dcContext = dcContext
         self.navigationController = navigationController
-    }
-
-    func showGroupNameController(contactIdsForGroup: Set<Int>) {
-        let groupNameController = GroupNameController(contactIdsForGroup: contactIdsForGroup)
-        let coordinator = GroupNameCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        groupNameController.coordinator = coordinator
-        navigationController.pushViewController(groupNameController, animated: true)
     }
 }
 
@@ -495,11 +487,10 @@ class AddGroupMembersCoordinator: Coordinator {
     }
 }
 
-class GroupNameCoordinator: Coordinator {
+class NewGroupCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
     let mediaPicker: MediaPicker
-
 
     private var childCoordinators: [Coordinator] = []
 
@@ -519,13 +510,35 @@ class GroupNameCoordinator: Coordinator {
     }
 
     func showPhotoPicker(delegate: MediaPickerDelegate) {
-          mediaPicker.showPhotoGallery(delegate: delegate)
-      }
+        mediaPicker.showPhotoGallery(delegate: delegate)
+    }
 
-      func showCamera(delegate: MediaPickerDelegate) {
-          mediaPicker.showCamera(delegate: delegate)
-      }
+    func showCamera(delegate: MediaPickerDelegate) {
+        mediaPicker.showCamera(delegate: delegate)
+    }
 
+    func showQrCodeInvite(chatId: Int) {
+        let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
+        navigationController.pushViewController(qrInviteCodeController, animated: true)
+    }
+
+    func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
+        let newGroupController = NewGroupAddMembersViewController(dcContext: dcContext,
+                                                                  preselected: preselectedMembers,
+                                                                  isVerified: isVerified)
+        let coordinator = NewGroupAddMembersCoordinator(dcContext: dcContext, navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        newGroupController.coordinator = coordinator
+        newGroupController.onMembersSelected = onGroupMembersSelected
+        navigationController.pushViewController(newGroupController, animated: true)
+    }
+
+    func onGroupMembersSelected(_ memberIds: Set<Int>) {
+        navigationController.popViewController(animated: true)
+        if let groupNameController = navigationController.topViewController as? NewGroupController {
+            groupNameController.updateGroupContactIds(memberIds)
+        }
+    }
 }
 
 class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {

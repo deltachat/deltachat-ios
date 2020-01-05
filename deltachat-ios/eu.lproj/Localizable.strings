@@ -105,7 +105,7 @@
 "menu_new_contact" = "Kontaktu berria";
 "menu_new_chat" = "Txat berria";
 "menu_new_group" = "Talde berria";
-"menu_new_verified_group" = "Egiaztatutako talde berria (esperimentala)";
+"menu_new_verified_group" = "Egiaztatutako talde berria";
 "menu_send" = "Bidali";
 "menu_toggle_keyboard" = "Txandakatu emoji teklatua";
 "menu_edit_group" = "Editatu taldea";
@@ -497,8 +497,6 @@
 "contact_not_verified" = "Ezin da %1$@ egiaztatu";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Aldatu %1$@(r)en ezarpena";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d mezu berri %2$d txatetan";
 "notify_most_recent_from" = "%1$@(r)en azkena";
@@ -529,7 +527,6 @@
 "perm_explain_access_to_location_denied" = "Delta Chat-ek kokaleku aatzitzeko baimena behar du kokalekua eransteko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"baimenak\", eta gaitu \"Kokalekua\".";
 "perm_enable_bg_reminder_title" = "Sakatu hemen mezuak jasotzeko Delta Chat bigarren planoan dagoenean.";
 "perm_enable_bg_reminder_text" = "Delta Chat-ek baliabide gutxi erabiltzen ditu eta zure bateria ez agortzeaz arduratzen da.";
-
 // dc_str_* resources
 "encrypted_message" = "Zifratutako mezua";
 

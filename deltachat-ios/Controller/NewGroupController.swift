@@ -1,23 +1,31 @@
 import UIKit
 
-class GroupNameController: UITableViewController, MediaPickerDelegate {
+class NewGroupController: UITableViewController, MediaPickerDelegate {
 
-    weak var coordinator: GroupNameCoordinator?
+    weak var coordinator: NewGroupCoordinator?
 
     var groupName: String = ""
+    var groupChatId: Int = 0
 
     var doneButton: UIBarButtonItem!
-    let contactIdsForGroup: Set<Int> // TODO: check if array is sufficient
-    let groupContactIds: [Int]
+    var contactIdsForGroup: Set<Int> // TODO: check if array is sufficient
+    var groupContactIds: [Int]
     var groupImage: UIImage?
+    let isVerifiedGroup: Bool
+    let dcContext: DcContext
 
     private let sectionGroupDetails = 0
     private let sectionGroupDetailsRowAvatar = 0
     private let sectionGroupDetailsRowName = 1
     private let countSectionGroupDetails = 2
+    private let sectionInvite = 1
+    private let sectionInviteRowAddMembers = 0
+    private let sectionInviteRowShowQrCode = 1
+    private lazy var countSectionInvite: Int = 2
+    private let sectionGroupMembers = 2
 
     lazy var groupNameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized("group_name"), placeholder: String.localized("menu_edit_group_name"))
+        let cell = TextFieldCell(description: String.localized("group_name"), placeholder: String.localized("group_name"))
         cell.onTextFieldChange = self.updateGroupName
         return cell
     }()
@@ -27,11 +35,15 @@ class GroupNameController: UITableViewController, MediaPickerDelegate {
         cell.hintLabel.text = String.localized("group_avatar")
         cell.onAvatarTapped = onAvatarTapped
         return cell
-    }()    
+    }()
 
-    init(contactIdsForGroup: Set<Int>) {
-        self.contactIdsForGroup = contactIdsForGroup
-        groupContactIds = Array(contactIdsForGroup)
+    var qrInviteCodeCell: ActionCell?
+
+    init(dcContext: DcContext, isVerified: Bool) {
+        self.contactIdsForGroup = [Int(DC_CONTACT_ID_SELF)]
+        self.groupContactIds = Array(contactIdsForGroup)
+        self.isVerifiedGroup = isVerified
+        self.dcContext = dcContext
         super.init(style: .grouped)
     }
 
@@ -41,24 +53,38 @@ class GroupNameController: UITableViewController, MediaPickerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("menu_new_group")
+        title = isVerifiedGroup ? String.localized("menu_new_verified_group") : String.localized("menu_new_group")
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
         navigationItem.rightBarButtonItem = doneButton
         tableView.bounces = false
         doneButton.isEnabled = false
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
+        tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
+        self.hideKeyboardOnTap() 
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        if groupChatId != 0 {
+            let chat = DcChat.init(id: groupChatId)
+            updateGroupContactIds(Set(chat.contactIds))
+        }
     }
 
     @objc func doneButtonPressed() {
-        let groupChatId = dc_create_group_chat(mailboxPointer, 0, groupName)
+        if groupChatId == 0 {
+            groupChatId = dcContext.createGroupChat(verified: isVerifiedGroup, name: groupName)
+        } else {
+            _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
+        }
+
         for contactId in contactIdsForGroup {
-            let success = dc_add_contact_to_chat(mailboxPointer, groupChatId, UInt32(contactId))
+            let success = dcContext.addContactToChat(chatId: groupChatId, contactId: contactId)
 
             if let groupImage = groupImage, let dcContext = coordinator?.dcContext {
                     AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: Int(groupChatId))
             }
 
-            if success == 1 {
+            if success {
                 logger.info("successfully added \(contactId) to group \(groupName)")
             } else {
                 logger.error("failed to add \(contactId) to group \(groupName)")
@@ -74,20 +100,40 @@ class GroupNameController: UITableViewController, MediaPickerDelegate {
     }
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
 
-        if section == sectionGroupDetails {
-            if row == sectionGroupDetailsRowAvatar {
+        switch section {
+        case sectionGroupDetails:
+             if row == sectionGroupDetailsRowAvatar {
                 return avatarSelectionCell
             } else {
                 return groupNameCell
             }
-        } else {
+        case sectionInvite:
+            if row == sectionInviteRowAddMembers {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
+                if let actionCell = cell as? ActionCell {
+                    actionCell.actionTitle = String.localized("group_add_members")
+                    actionCell.actionColor = UIColor.systemBlue
+                    actionCell.isUserInteractionEnabled = true
+                }
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
+                if let actionCell = cell as? ActionCell {
+                    actionCell.actionTitle = String.localized("qrshow_join_group_title")
+                    actionCell.actionColor = groupName.isEmpty ? DcColors.colorDisabled : UIColor.systemBlue
+                    actionCell.isUserInteractionEnabled = !groupName.isEmpty
+                    qrInviteCodeCell = actionCell
+                }
+                return cell
+            }
+        default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
             if let contactCell = cell as? ContactCell {
                 let contact = DcContact(id: groupContactIds[row])
@@ -105,33 +151,61 @@ class GroupNameController: UITableViewController, MediaPickerDelegate {
         }
     }
 
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == sectionGroupDetails && isVerifiedGroup {
+            return String.localized("verified_group_explain")
+        }
+        return nil
+    }
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = indexPath.section
         let row = indexPath.row
-        if section == sectionGroupDetails {
+        switch section {
+        case sectionGroupDetails:
             if row == sectionGroupDetailsRowAvatar {
                 return AvatarSelectionCell.cellSize
             } else {
                 return Constants.defaultCellHeight
             }
-        } else {
+        case sectionInvite:
+            return Constants.defaultCellHeight
+        default:
             return ContactCell.cellHeight
         }
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == sectionGroupDetails {
+        switch section {
+        case sectionGroupDetails:
             return countSectionGroupDetails
-        } else {
+        case sectionInvite:
+            return countSectionInvite
+        default:
             return contactIdsForGroup.count
         }
     }
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 1 {
+        if section == sectionGroupMembers {
             return String.localized("in_this_group_desktop")
         } else {
             return nil
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let section = indexPath.section
+        let row = indexPath.row
+        if section == sectionInvite {
+            if row == sectionInviteRowAddMembers {
+                var contactsWithoutSelf = contactIdsForGroup
+                contactsWithoutSelf.remove(Int(DC_CONTACT_ID_SELF))
+                coordinator?.showAddMembers(preselectedMembers: contactsWithoutSelf, isVerified: self.isVerifiedGroup)
+            } else {
+                self.groupChatId = dcContext.createGroupChat(verified: isVerifiedGroup, name: groupName)
+                coordinator?.showQrCodeInvite(chatId: Int(self.groupChatId))
+            }
         }
     }
 
@@ -139,6 +213,8 @@ class GroupNameController: UITableViewController, MediaPickerDelegate {
         let name = textView.text ?? ""
         groupName = name
         doneButton.isEnabled = name.containsCharacters()
+        qrInviteCodeCell?.isUserInteractionEnabled = name.containsCharacters()
+        qrInviteCodeCell?.actionColor = groupName.isEmpty ? DcColors.colorDisabled : UIColor.systemBlue
     }
 
     private func onAvatarTapped() {
@@ -172,4 +248,9 @@ class GroupNameController: UITableViewController, MediaPickerDelegate {
         self.tableView.endUpdates()
     }
 
+    func updateGroupContactIds(_ members: Set<Int>) {
+        contactIdsForGroup = members
+        groupContactIds = Array(members)
+        self.tableView.reloadData()
+    }
 }
