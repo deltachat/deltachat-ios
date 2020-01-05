@@ -9,6 +9,7 @@ let dcNotificationSecureJoinerProgress = Notification.Name(rawValue: "MrEventSec
 let dcNotificationSecureInviterProgress = Notification.Name(rawValue: "MrEventSecureInviterProgress")
 let dcNotificationViewChat = Notification.Name(rawValue: "MrEventViewChat")
 let dcNotificationContactChanged = Notification.Name(rawValue: "MrEventContactsChanged")
+let dcNotificationChatModified = Notification.Name(rawValue: "DC_EVENT_CHAT_MODIFIED")
 
 @_silgen_name("callbackSwift")
 
@@ -166,6 +167,18 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                 object: nil,
                 userInfo: [
                     "contact_id": Int(data1)
+                ]
+            )
+        }
+
+    case DC_EVENT_CHAT_MODIFIED:
+        let nc = NotificationCenter.default
+        DispatchQueue.main.async {
+            nc.post(
+                name: dcNotificationChatModified,
+                object: nil,
+                userInfo: [
+                    "chat_id": Int(data1)
                 ]
             )
         }

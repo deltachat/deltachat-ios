@@ -24,6 +24,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private lazy var countSectionInvite: Int = 2
     private let sectionGroupMembers = 2
 
+    private var chatModifiedObserver: Any?
+
     lazy var groupNameCell: TextFieldCell = {
         let cell = TextFieldCell(description: String.localized("group_name"), placeholder: String.localized("group_name"))
         cell.onTextFieldChange = self.updateGroupName
@@ -67,6 +69,25 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         if groupChatId != 0 {
             let chat = DcChat.init(id: groupChatId)
             updateGroupContactIds(Set(chat.contactIds))
+        }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let nc = NotificationCenter.default
+        chatModifiedObserver = nc.addObserver(forName: dcNotificationChatModified, object: nil, queue: nil) { _ in
+            if self.groupChatId != 0 {
+                let chat = DcChat.init(id: self.groupChatId)
+                self.updateGroupContactIds(Set(chat.contactIds))
+            }
+        }
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        let nc = NotificationCenter.default
+        if let chatModifiedObserver = self.chatModifiedObserver {
+            nc.removeObserver(chatModifiedObserver)
         }
     }
 
