@@ -60,6 +60,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         doneButton.isEnabled = false
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
+        self.hideKeyboardOnTap() 
     }
 
     override func viewWillAppear(_ animated: Bool) {
