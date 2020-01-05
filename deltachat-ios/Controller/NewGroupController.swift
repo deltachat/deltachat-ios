@@ -25,7 +25,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private let sectionGroupMembers = 2
 
     lazy var groupNameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized("group_name"), placeholder: String.localized("menu_edit_group_name"))
+        let cell = TextFieldCell(description: String.localized("group_name"), placeholder: String.localized("group_name"))
         cell.onTextFieldChange = self.updateGroupName
         return cell
     }()
