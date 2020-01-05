@@ -8,9 +8,9 @@ class NewChatViewController: UITableViewController {
     private let dcContext: DcContext
 
     private let sectionNew = 0
-    private let sectionNewRowNewGroup = 0
-    private let sectionNewRowNewVerifiedGroup = 1
-    private let sectionNewRowNewContact = 2
+    private let sectionNewRowNewContact = 0
+    private let sectionNewRowNewGroup = 1
+    private let sectionNewRowNewVerifiedGroup = 2
     private let sectionNewRowCount = 3
 
     private let sectionImportedContacts = 1
