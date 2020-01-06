@@ -519,6 +519,7 @@ class NewGroupCoordinator: Coordinator {
 
     func showQrCodeInvite(chatId: Int) {
         let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
+        qrInviteCodeController.onDismissed = onQRInviteCodeControllerDismissed
         navigationController.pushViewController(qrInviteCodeController, animated: true)
     }
 
@@ -529,14 +530,20 @@ class NewGroupCoordinator: Coordinator {
         let coordinator = NewGroupAddMembersCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         newGroupController.coordinator = coordinator
-        newGroupController.onMembersSelected = onGroupMembersSelected
+        newGroupController.onMembersSelected = onGroupMembersSelected(_:)
         navigationController.pushViewController(newGroupController, animated: true)
+    }
+
+    func onQRInviteCodeControllerDismissed() {
+        if let groupNameController = navigationController.topViewController as? NewGroupController {
+            groupNameController.updateGroupContactIdsOnQRCodeInvite()
+        }
     }
 
     func onGroupMembersSelected(_ memberIds: Set<Int>) {
         navigationController.popViewController(animated: true)
         if let groupNameController = navigationController.topViewController as? NewGroupController {
-            groupNameController.updateGroupContactIds(memberIds)
+            groupNameController.updateGroupContactIdsOnListSelection(memberIds)
         }
     }
 }

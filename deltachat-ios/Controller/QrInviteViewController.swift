@@ -8,6 +8,8 @@ class QrInviteViewController: UITableViewController {
     let dcContext: DcContext
     let chatId: Int
 
+    var onDismissed: (() -> Void)?
+
     init(dcContext: DcContext, chatId: Int) {
         self.dcContext = dcContext
         self.chatId = chatId
@@ -22,6 +24,10 @@ class QrInviteViewController: UITableViewController {
         super.viewDidLoad()
         title = String.localized("qrshow_join_contact_title")
         tableView.separatorStyle = .none
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        onDismissed?()
     }
 
     override func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
