@@ -41,7 +41,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>This is used to take photos and videos or scan QR codes.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>This is used to find your contacts using Delta Chat.</string>
+	<string>This is used to find your contacts who using Delta Chat.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This is used to send your voice.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
