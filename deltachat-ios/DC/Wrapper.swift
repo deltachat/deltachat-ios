@@ -50,6 +50,10 @@ class DcContext {
         return dc_add_contact_to_chat(contextPointer, UInt32(chatId), UInt32(contactId)) == 1
     }
 
+    func removeContactFromChat(chatId: Int, contactId: Int) -> Bool {
+        return dc_remove_contact_from_chat(contextPointer, UInt32(chatId), UInt32(contactId)) == 1
+    }
+
     func setChatName(chatId: Int, name: String) -> Bool {
         return dc_set_chat_name(contextPointer, UInt32(chatId), name) == 1
     }
