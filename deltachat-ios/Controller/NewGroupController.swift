@@ -27,6 +27,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     lazy var groupNameCell: TextFieldCell = {
         let cell = TextFieldCell(description: String.localized("group_name"), placeholder: String.localized("group_name"))
         cell.onTextFieldChange = self.updateGroupName
+        cell.textField.autocorrectionType = UITextAutocorrectionType.no
         return cell
     }()
 
@@ -61,13 +62,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
         self.hideKeyboardOnTap() 
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        if groupChatId != 0 {
-            let chat = DcChat.init(id: groupChatId)
-            updateGroupContactIds(Set(chat.contactIds))
-        }
     }
 
     @objc func doneButtonPressed() {
@@ -209,6 +203,30 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         }
     }
 
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let section = indexPath.section
+        let row = indexPath.row
+
+        //swipe by delete
+        if section == sectionGroupMembers, groupContactIds[row] != DC_CONTACT_ID_SELF {
+            let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [unowned self] _, indexPath in
+                if self.groupChatId != 0, DcChat(id: self.groupChatId).contactIds.contains(self.groupContactIds[row]) {
+                    let success = self.dcContext.removeContactFromChat(chatId: self.groupChatId, contactId: self.groupContactIds[row])
+                    if success {
+                        self.removeGroupContactFromList(at: indexPath)
+                    }
+                } else {
+                    self.removeGroupContactFromList(at: indexPath)
+                }
+            }
+            delete.backgroundColor = UIColor.red
+            return [delete]
+        } else {
+            return nil
+        }
+    }
+
+
     private func updateGroupName(textView: UITextField) {
         let name = textView.text ?? ""
         groupName = name
@@ -248,9 +266,30 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         self.tableView.endUpdates()
     }
 
-    func updateGroupContactIds(_ members: Set<Int>) {
+    func updateGroupContactIdsOnQRCodeInvite() {
+        for contactId in DcChat(id: groupChatId).contactIds {
+            contactIdsForGroup.insert(contactId)
+        }
+        groupContactIds = Array(contactIdsForGroup)
+        self.tableView.reloadData()
+    }
+
+    func updateGroupContactIdsOnListSelection(_ members: Set<Int>) {
+        if groupChatId != 0 {
+            var members = members
+            for contactId in DcChat(id: groupChatId).contactIds {
+                members.insert(contactId)
+            }
+        }
         contactIdsForGroup = members
         groupContactIds = Array(members)
         self.tableView.reloadData()
+    }
+
+    func removeGroupContactFromList(at indexPath: IndexPath) {
+        let row = indexPath.row
+        self.contactIdsForGroup.remove(self.groupContactIds[row])
+        self.groupContactIds.remove(at: row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
     }
 }
