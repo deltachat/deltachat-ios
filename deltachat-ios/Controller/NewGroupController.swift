@@ -13,6 +13,9 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     var groupImage: UIImage?
     let isVerifiedGroup: Bool
     let dcContext: DcContext
+    private var contactAddedObserver: NSObjectProtocol?
+    ///TODO: remove the the line below as soon as deltachat-core 4b7b6d6cb3c26d817e3f3eeb6a20d8e8c66a4578 was released
+    private var workaroundObserver: NSObjectProtocol?
 
     private let sectionGroupDetails = 0
     private let sectionGroupDetailsRowAvatar = 0
@@ -61,8 +64,54 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         doneButton.isEnabled = false
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
-        self.hideKeyboardOnTap() 
+        self.hideKeyboardOnTap()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        let nc = NotificationCenter.default
+        contactAddedObserver = nc.addObserver(
+            forName: dcNotificationChatModified,
+            object: nil,
+            queue: nil
+        ) { notification in
+            if let ui = notification.userInfo {
+                if let chatId = ui["chat_id"] as? Int {
+                    if self.groupChatId == 0 || chatId != self.groupChatId {
+                        return
+                    }
+                    self.updateGroupContactIdsOnQRCodeInvite()
+                }
+            }
+        }
+
+        ///TODO: remove the the lines below as soon as deltachat-core 4b7b6d6cb3c26d817e3f3eeb6a20d8e8c66a4578 was released
+        workaroundObserver = nc.addObserver(
+            forName: dcNotificationChanged,
+            object: nil,
+            queue: nil
+        ) { notification in
+            if let ui = notification.userInfo {
+                if let chatId = ui["chat_id"] as? Int {
+                    if self.groupChatId == 0 || chatId != self.groupChatId {
+                        return
+                    }
+                    self.updateGroupContactIdsOnQRCodeInvite()
+                }
+            }
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        if let observer = self.contactAddedObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+
+        ///TODO: remove the the lines below as soon as deltachat-core 4b7b6d6cb3c26d817e3f3eeb6a20d8e8c66a4578 was released
+        if let workaroundObserver = self.workaroundObserver {
+            NotificationCenter.default.removeObserver(workaroundObserver)
+        }
+    }
+
 
     @objc func doneButtonPressed() {
         if groupChatId == 0 {
