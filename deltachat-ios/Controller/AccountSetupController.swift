@@ -70,15 +70,16 @@ class AccountSetupController: UITableViewController {
     // the progress dialog
 
     private lazy var configProgressAlert: UIAlertController = {
-        let alert = UIAlertController(title: String.localized("login_header"), message: String.localized("one_moment"), preferredStyle: .alert)
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
             self.dcContext.stopOngoingProcess()
         }))
         return alert
     }()
 
-    private func showProgressHud() {
+    private func showProgressHud(title: String) {
         configProgressAlert.actions[0].isEnabled = true
+        configProgressAlert.title = title;
         configProgressAlert.message = String.localized("one_moment")
         present(configProgressAlert, animated: true, completion: nil)
     }
@@ -545,7 +546,7 @@ class AccountSetupController: UITableViewController {
 
         print("oAuth-Flag when loggin in: \(DcConfig.getAuthFlags())")
         dc_configure(mailboxPointer)
-        showProgressHud()
+        showProgressHud(title: String.localized("login_header"))
     }
 
     @objc func closeButtonPressed() {
@@ -692,7 +693,7 @@ class AccountSetupController: UITableViewController {
                 let file = String(cString: cString)
                 dc_str_unref(cString)
                 logger.info("restoring backup: \(file)")
-                showProgressHud()
+                showProgressHud(title: String.localized("import_backup_title"))
                 dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
             }
             else {
