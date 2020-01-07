@@ -1,5 +1,14 @@
 # Delta Chat iOS Changelog
 
+## v1.0.1
+2020-01-07
+
+- handle various qr-code formats
+- allow creation of verified groups
+- improve wordings on requesting permissions
+- bug fixes
+
+
 ## v1.0.0
 2019-12-23
 
