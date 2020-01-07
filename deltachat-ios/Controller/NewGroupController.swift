@@ -74,8 +74,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         ) { notification in
             if let ui = notification.userInfo {
                 if let chatId = ui["chat_id"] as? Int {
-                    logger.warning("new created group chat id: \(self.groupChatId) vs. DC_EVENT_CHAT_MODIFIED chat Id: \(chatId)")
-                    if self.groupChatId == 0 /*|| chatId != self.groupChatId*/ {
+                    if self.groupChatId == 0 || chatId != self.groupChatId {
                         return
                     }
                     self.updateGroupContactIdsOnQRCodeInvite()
