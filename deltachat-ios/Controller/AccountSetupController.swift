@@ -93,13 +93,11 @@ class AccountSetupController: UITableViewController {
         })
     }
 
-    private func updateProgressHudSuccess(isLogin: Bool) {
+    private func updateProgressHudSuccess() {
         updateProgressHudValue(value: 1000)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             self.configProgressAlert.dismiss(animated: true) {
-                if isLogin {
-                    self.handleLoginSuccess()
-                }
+                self.handleLoginSuccess()
             }
         })
     }
@@ -626,7 +624,7 @@ class AccountSetupController: UITableViewController {
                 if ui["error"] as! Bool {
                     self.updateProgressHud(error: ui["errorMessage"] as? String)
                 } else if ui["done"] as! Bool {
-                    self.updateProgressHudSuccess(isLogin: true)
+                    self.updateProgressHudSuccess()
                 } else {
                     self.updateProgressHudValue(value: ui["progress"] as? Int)
                 }
@@ -646,7 +644,7 @@ class AccountSetupController: UITableViewController {
                 if ui["error"] as! Bool {
                     self.updateProgressHud(error: ui["errorMessage"] as? String)
                 } else if ui["done"] as! Bool {
-                    self.updateProgressHudSuccess(isLogin: false)
+                    self.updateProgressHudSuccess()
                 } else {
                     self.updateProgressHudValue(value: ui["progress"] as? Int)
                 }
