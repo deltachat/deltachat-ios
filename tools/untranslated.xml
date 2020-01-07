@@ -3,11 +3,9 @@
 
     <!-- iOS specific untranslated strings -->
     <string name="import_contacts">Import device contacts</string>
-    <string name="import_contacts_message">To chat with contacts from your device open the settings menu and enable the Contacts option</string>
-    <string name="no_account_setup">No account set up</string>
-    <!-- info plist keys need to pre prefixed with INFOPLIST., spaces need to be replaced with dots and dashes need to replaced with underscores -->
-    <string name="INFOPLIST.Privacy._.Camera.Usage.Description">Allowing access to the camera lets you take photos and videos.</string>
-    <string name="INFOPLIST.Privacy._.Contacts.Usage.Description">Allowing access to your address book lets you chat with contacts from your device.</string>
-    <string name="INFOPLIST.Privacy.-.Microphone.Usage.Description">Allowing access to the microphone lets you record audio.</string>
-    <string name="INFOPLIST.Privacy.-.Photo.Library.Usage.Description">Allowing access to the photo library allows you to upload images from it.</string>
+    <string name="import_contacts_message">To chat with contacts from your device open Settings and enable Contacts.</string>
+    <string name="INFOPLIST.NSCameraUsageDescription">This is used to take photos and videos or scan QR codes.</string>
+    <string name="INFOPLIST.NSContactsUsageDescription">This is used to find your contacts who using Delta Chat.</string>
+    <string name="INFOPLIST.NSMicrophoneUsageDescription">This is used to send your voice.</string>
+    <string name="INFOPLIST.NSPhotoLibraryUsageDescription">This is used to share your photos and videos or set up a profile picture.</string>
 </resources>

@@ -161,8 +161,8 @@ function toInfoPlistStrings(lines) {
         if (!key.startsWith("INFOPLIST.")) {
           continue;
         }
-        key = key.replace('INFOPLIST.', '').replace(/\./gi, ' ').replace(/\_/gi, '-');
-        out += `"${key}" = "${line[1]}";\n`;
+        key = key.replace('INFOPLIST.', '');
+        out += `${key} = "${line[1]}";\n`;
       }
     }
     return out;
