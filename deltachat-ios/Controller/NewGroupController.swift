@@ -65,7 +65,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         if groupChatId != 0 {
-            let chat = DcChat.init(id: groupChatId)
+            let chat = DcChat(id: groupChatId)
             updateGroupContactIds(Set(chat.contactIds))
         }
     }

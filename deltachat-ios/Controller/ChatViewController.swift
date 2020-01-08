@@ -346,9 +346,9 @@ class ChatViewController: MessagesViewController {
 
         let ids: [Int]
         if let from = from {
-            ids = Utils.copyAndFreeArrayWithOffset(inputArray: cMessageIds, len: count, skipEnd: from)
+            ids = DcUtils.copyAndFreeArrayWithOffset(inputArray: cMessageIds, len: count, skipEnd: from)
         } else {
-            ids = Utils.copyAndFreeArrayWithLen(inputArray: cMessageIds, len: count)
+            ids = DcUtils.copyAndFreeArrayWithLen(inputArray: cMessageIds, len: count)
         }
 
         let markIds: [UInt32] = ids.map { UInt32($0) }

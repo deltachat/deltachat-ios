@@ -87,6 +87,17 @@
 		305FE03623A81B4C0053BE90 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305FE03523A81B4C0053BE90 /* PaddingLabel.swift */; };
 		3060119C22DDE24000C1CE6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
 		306011B622E5E7FB00C1CE6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
+		3079FB6123C50213005663A3 /* Pods_deltachat_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */; };
+		3079FB6623C50317005663A3 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A451D921FB1B1DB00177250 /* wrapper.c */; };
+		3079FB6923C509AE005663A3 /* libdeltachat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 787D6699229F2237000A7A9D /* libdeltachat.a */; };
+		3079FBB523C51454005663A3 /* DcChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079FBB423C51454005663A3 /* DcChat.swift */; };
+		3079FBB623C51454005663A3 /* DcChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079FBB423C51454005663A3 /* DcChat.swift */; };
+		3079FBB823C5159A005663A3 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961852346125000C80F33 /* UIColor+Extensions.swift */; };
+		3079FBBA23C51613005663A3 /* ChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079FBB923C51613005663A3 /* ChatType.swift */; };
+		3079FBBB23C51613005663A3 /* ChatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079FBB923C51613005663A3 /* ChatType.swift */; };
+		3079FBBE23C52A3E005663A3 /* DcUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079FBBD23C52A3E005663A3 /* DcUtils.swift */; };
+		3079FBBF23C52A3E005663A3 /* DcUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079FBBD23C52A3E005663A3 /* DcUtils.swift */; };
+		3079FBC123C52E76005663A3 /* DcChat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079FBC023C52E76005663A3 /* DcChat+Extensions.swift */; };
 		30851BFF23BE15AE0036A7B7 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30851BFE23BE15AE0036A7B7 /* ShareViewController.swift */; };
 		30851C0223BE15AE0036A7B7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30851C0023BE15AE0036A7B7 /* MainInterface.storyboard */; };
 		30851C0623BE15AE0036A7B7 /* DeltaChatShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30851BFC23BE15AE0036A7B7 /* DeltaChatShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -154,6 +165,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3079FBC523C55B65005663A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30851BFB23BE15AE0036A7B7;
+			remoteInfo = DeltaChatShare;
+		};
 		30851C0423BE15AE0036A7B7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
@@ -324,6 +342,12 @@
 		306011C722E5E82E00C1CE6F /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = lt; path = lt.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		306011C822E5E83100C1CE6F /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		306011C922E5E83500C1CE6F /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = uk; path = uk.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		3079FB6223C502D4005663A3 /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "deltachat-ios/libraries/deltachat-core-rust/target/universal/release/libdeltachat.a"; sourceTree = "<group>"; };
+		3079FB6723C50350005663A3 /* deltachat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = deltachat.h; path = "deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi/deltachat.h"; sourceTree = "<group>"; };
+		3079FBB423C51454005663A3 /* DcChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcChat.swift; sourceTree = "<group>"; };
+		3079FBB923C51613005663A3 /* ChatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatType.swift; sourceTree = "<group>"; };
+		3079FBBD23C52A3E005663A3 /* DcUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcUtils.swift; sourceTree = "<group>"; };
+		3079FBC023C52E76005663A3 /* DcChat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DcChat+Extensions.swift"; sourceTree = "<group>"; };
 		30851BFC23BE15AE0036A7B7 /* DeltaChatShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeltaChatShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		30851BFE23BE15AE0036A7B7 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		30851C0123BE15AE0036A7B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -414,6 +438,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3079FB6923C509AE005663A3 /* libdeltachat.a in Frameworks */,
+				3079FB6123C50213005663A3 /* Pods_deltachat_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +488,7 @@
 				305961872346125000C80F33 /* Bundle+Extensions.swift */,
 				305961882346125000C80F33 /* CGRect+Extensions.swift */,
 				3059620D234614E700C80F33 /* DcContact+Extension.swift */,
+				3079FBC023C52E76005663A3 /* DcChat+Extensions.swift */,
 				3059620F2346154D00C80F33 /* String+Extension.swift */,
 				302B84CD2397F6CD001C261F /* URL+Extension.swift */,
 			);
@@ -602,6 +629,7 @@
 		7A9FB1371FB061E2001FEA36 = {
 			isa = PBXGroup;
 			children = (
+				3079FB6723C50350005663A3 /* deltachat.h */,
 				3022E6C022E8768800763272 /* InfoPlist.strings */,
 				3060119E22DDE24000C1CE6F /* Localizable.strings */,
 				306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */,
@@ -664,6 +692,7 @@
 			isa = PBXGroup;
 			children = (
 				787D6699229F2237000A7A9D /* libdeltachat.a */,
+				3079FB6223C502D4005663A3 /* libdeltachat.a */,
 				6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */,
 				2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */,
 			);
@@ -792,6 +821,9 @@
 				7A451DBD1FB4AD0700177250 /* Wrapper.swift */,
 				78ED838C21D577D000243125 /* events.swift */,
 				7A451D921FB1B1DB00177250 /* wrapper.c */,
+				3079FBB423C51454005663A3 /* DcChat.swift */,
+				3079FBB923C51613005663A3 /* ChatType.swift */,
+				3079FBBD23C52A3E005663A3 /* DcUtils.swift */,
 			);
 			path = DC;
 			sourceTree = "<group>";
@@ -807,11 +839,30 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		3079FB5823C4FA07005663A3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3079FBC223C5497A005663A3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		30851BFB23BE15AE0036A7B7 /* DeltaChatShare */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30851C0A23BE15AE0036A7B7 /* Build configuration list for PBXNativeTarget "DeltaChatShare" */;
 			buildPhases = (
+				3079FB6023C4FB7A005663A3 /* ShellScript */,
+				3079FB5823C4FA07005663A3 /* Headers */,
 				30851BF823BE15AE0036A7B7 /* Sources */,
 				30851BF923BE15AE0036A7B7 /* Frameworks */,
 				30851BFA23BE15AE0036A7B7 /* Resources */,
@@ -831,6 +882,7 @@
 			buildPhases = (
 				58C9D79942D26B7F8F210DA1 /* [CP] Check Pods Manifest.lock */,
 				787D6698229F20B8000A7A9D /* ShellScript */,
+				3079FBC223C5497A005663A3 /* Headers */,
 				7A9FB13C1FB061E2001FEA36 /* Sources */,
 				7A9FB13D1FB061E2001FEA36 /* Frameworks */,
 				7A9FB13E1FB061E2001FEA36 /* Resources */,
@@ -843,6 +895,7 @@
 			);
 			dependencies = (
 				30851C0523BE15AE0036A7B7 /* PBXTargetDependency */,
+				3079FBC623C55B65005663A3 /* PBXTargetDependency */,
 			);
 			name = "deltachat-ios";
 			productName = "deltachat-ios";
@@ -982,6 +1035,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3079FB6023C4FB7A005663A3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# The $PATH used by XCode likely won't contain Cargo, fix that.\n# This assumes a default `rustup` setup.\nexport PATH=\"$HOME/.cargo/bin:$PATH\"\n\nexport CFLAGS_x86_64_apple_darwin=\"-I /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include\"\n\n# ensure all targets are installed\nrustup target add aarch64-apple-ios x86_64-apple-ios --toolchain `cat deltachat-ios/libraries/deltachat-core-rust/rust-toolchain`\n\n# --xcode-integ determines --release and --targets from XCode's env vars.\n# Depending your setup, specify the rustup toolchain explicitly.\ncargo +`cat deltachat-ios/libraries/deltachat-core-rust/rust-toolchain` lipo --release --manifest-path deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi/Cargo.toml --no-default-features --features nightly\n";
+		};
 		30C8FE37A924BE7AFF9661C1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1115,7 +1185,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3079FBBF23C52A3E005663A3 /* DcUtils.swift in Sources */,
 				30851BFF23BE15AE0036A7B7 /* ShareViewController.swift in Sources */,
+				3079FB6623C50317005663A3 /* wrapper.c in Sources */,
+				3079FBB623C51454005663A3 /* DcChat.swift in Sources */,
+				3079FBB823C5159A005663A3 /* UIColor+Extensions.swift in Sources */,
+				3079FBBB23C51613005663A3 /* ChatType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1137,6 +1212,7 @@
 				305961EA2346125100C80F33 /* MessageStyle.swift in Sources */,
 				305961F92346125100C80F33 /* MessageLabel.swift in Sources */,
 				305961FA2346125100C80F33 /* MessageReusableView.swift in Sources */,
+				3079FBBE23C52A3E005663A3 /* DcUtils.swift in Sources */,
 				3040F462234F550300FA34D5 /* AudioPlayerView.swift in Sources */,
 				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
@@ -1172,6 +1248,7 @@
 				305961E62346125100C80F33 /* LocationMessageSnapshotOptions.swift in Sources */,
 				AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */,
 				B26B3BC7236DC3DC008ED35A /* SwitchCell.swift in Sources */,
+				3079FBBA23C51613005663A3 /* ChatType.swift in Sources */,
 				78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */,
 				AE8519EA2272FDCA00ED86F0 /* DeviceContactsHandler.swift in Sources */,
 				3059620B2346125100C80F33 /* LocationMessageSizeCalculator.swift in Sources */,
@@ -1183,8 +1260,10 @@
 				AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */,
 				30149D9322F21129003C12B5 /* QrViewController.swift in Sources */,
 				AEE56D80225504DB007DC082 /* Extensions.swift in Sources */,
+				3079FBC123C52E76005663A3 /* DcChat+Extensions.swift in Sources */,
 				7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */,
 				AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */,
+				3079FBB523C51454005663A3 /* DcChat.swift in Sources */,
 				305FE03623A81B4C0053BE90 /* PaddingLabel.swift in Sources */,
 				AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */,
 				AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */,
@@ -1268,6 +1347,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3079FBC623C55B65005663A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30851BFB23BE15AE0036A7B7 /* DeltaChatShare */;
+			targetProxy = 3079FBC523C55B65005663A3 /* PBXContainerItemProxy */;
+		};
 		30851C0523BE15AE0036A7B7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 30851BFB23BE15AE0036A7B7 /* DeltaChatShare */;
@@ -1395,19 +1479,35 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = DeltaChatShare/DeltaChatShare.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8Y86453UA8;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
+				);
 				INFOPLIST_FILE = DeltaChatShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/debug",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/release",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DeltaChatShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "deltachat-ios/deltachat-ios-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -1416,18 +1516,34 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = DeltaChatShare/DeltaChatShare.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8Y86453UA8;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
+				);
 				INFOPLIST_FILE = DeltaChatShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/debug",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/release",
+				);
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DeltaChatShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "deltachat-ios/deltachat-ios-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -1553,7 +1669,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = 8Y86453UA8;
@@ -1628,7 +1744,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = 8Y86453UA8;
