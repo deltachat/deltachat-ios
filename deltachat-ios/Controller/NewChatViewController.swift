@@ -276,7 +276,7 @@ class NewChatViewController: UITableViewController {
         let contact = DcContact(id: contactId)
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_delete_contact"), contact.nameNAddr),
                                       message: nil,
-                                      preferredStyle: .actionSheet)
+                                      preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { _ in
             self.dismiss(animated: true, completion: nil)
             if context.deleteContact(contactId: contactId) {
@@ -294,7 +294,7 @@ class NewChatViewController: UITableViewController {
         let dcContact = DcContact(id: contactId)
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
                                       message: nil,
-                                      preferredStyle: .actionSheet)
+                                      preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
             self.coordinator?.showNewChat(contactId: contactId)

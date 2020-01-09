@@ -45,7 +45,7 @@ class MailboxViewController: ChatViewController {
             let message = messageList[indexPath.section]
             let dcContact = message.fromContact
             let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
-            let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
                 let chat = message.createChat()
                 self.coordinator?.showChat(chatId: chat.id)

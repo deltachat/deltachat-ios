@@ -57,3 +57,17 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
+
+extension UIAlertController.Style {
+    // ipad allow .actionSheet only presented for some concrete controls (and cashes otherwise!)
+    // whereas iphone can present .actionSheet unconditionally.
+    // .safeActionSheet returns .alert for systems that do not support .actionSheet unconditionally.
+    // if in doubt, always prefer .safeActionSheet over .actionSheet
+    static var safeActionSheet: UIAlertController.Style {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return .alert
+        } else {
+            return .actionSheet
+        }
+    }
+}

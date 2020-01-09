@@ -255,7 +255,7 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
         if !selected {
             let dcContact = DcContact(id: contactId)
             let title = dcContact.displayName.isEmpty ? dcContact.email : dcContact.displayName
-            let alert = UIAlertController(title: title, message: String.localized("ask_unblock_contact"), preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: title, message: String.localized("ask_unblock_contact"), preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("menu_unblock_contact"), style: .default, handler: { _ in
                 let contact = DcContact(id: contactId)
                 contact.unblock()

@@ -91,7 +91,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func onAvatarTapped() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
             let photoAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
             let videoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
             alert.addAction(photoAction)
