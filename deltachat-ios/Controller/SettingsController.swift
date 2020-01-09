@@ -240,7 +240,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func createBackup(_: Row) {
-        let alert = UIAlertController(title: String.localized("pref_backup_export_explain"), message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: String.localized("pref_backup_export_explain"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("pref_backup_export_start_button"), style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
             let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -277,7 +277,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func sendAsm(_: Row) {
-        let askAlert = UIAlertController(title: String.localized("autocrypt_send_asm_explain_before"), message: nil, preferredStyle: .actionSheet)
+        let askAlert = UIAlertController(title: String.localized("autocrypt_send_asm_explain_before"), message: nil, preferredStyle: .safeActionSheet)
         askAlert.addAction(UIAlertAction(title: String.localized("autocrypt_send_asm_title"), style: .default, handler: { _ in
             let waitAlert = UIAlertController(title: String.localized("one_moment"), message: nil, preferredStyle: .alert)
             waitAlert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: { _ in self.dcContext.stopOngoingProcess() }))

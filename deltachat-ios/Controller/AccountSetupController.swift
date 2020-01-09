@@ -709,7 +709,7 @@ class AccountSetupController: UITableViewController {
 
     private func emptyServer() {
         let alert = UIAlertController(title: String.localized("pref_empty_server_title"),
-            message: String.localized("pref_empty_server_msg"), preferredStyle: .actionSheet)
+            message: String.localized("pref_empty_server_msg"), preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("pref_empty_server_inbox"), style: .destructive, handler: { _ in
             self.emptyServer2ndConfirm(title: String.localized("pref_empty_server_inbox"), flags: Int(DC_EMPTY_INBOX))
         }))
@@ -739,7 +739,7 @@ class AccountSetupController: UITableViewController {
         let dburl = URL(fileURLWithPath: dbfile, isDirectory: false)
         let alert = UIAlertController(title: String.localized("delete_account_ask"),
                                       message: nil,
-                                      preferredStyle: .actionSheet)
+                                      preferredStyle: .safeActionSheet)
 
         alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { _ in
             appDelegate.stop()

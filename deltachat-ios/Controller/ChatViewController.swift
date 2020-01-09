@@ -581,7 +581,7 @@ class ChatViewController: MessagesViewController {
     private func confirmationAlert(title: String, actionTitle: String, actionStyle: UIAlertAction.Style = .default, actionHandler: @escaping ((UIAlertAction) -> Void), cancelHandler: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: title,
                                              message: nil,
-                                             preferredStyle: .actionSheet)
+                                             preferredStyle: .safeActionSheet)
                alert.addAction(UIAlertAction(title: actionTitle, style: actionStyle, handler: actionHandler))
 
                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: cancelHandler ?? { _ in
@@ -1044,7 +1044,7 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
 
     private func showClipperOptions() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
         let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
         let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
         let voiceMessageAction = UIAlertAction(title: String.localized("voice_message"), style: .default, handler: voiceMessageButtonPressed(_:))

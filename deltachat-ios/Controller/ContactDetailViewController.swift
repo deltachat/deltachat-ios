@@ -99,7 +99,7 @@ class ContactDetailViewController: UITableViewController {
         let dcContact = DcContact(id: contactId)
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
                                       message: nil,
-                                      preferredStyle: .actionSheet)
+                                      preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
             let chatId = Int(dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId)))
@@ -136,7 +136,7 @@ class ContactDetailViewController: UITableViewController {
 
     private func toggleBlockContact() {
         if contact.isBlocked {
-            let alert = UIAlertController(title: String.localized("ask_unblock_contact"), message: nil, preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: String.localized("ask_unblock_contact"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("menu_unblock_contact"), style: .default, handler: { _ in
                 self.contact.unblock()
                 self.updateBlockContactCell()
@@ -144,7 +144,7 @@ class ContactDetailViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             present(alert, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: String.localized("ask_block_contact"), message: nil, preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: String.localized("ask_block_contact"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
                 self.contact.block()
                 self.updateBlockContactCell()
@@ -162,7 +162,7 @@ class ContactDetailViewController: UITableViewController {
     private func showNotificationSetup() {
         let notificationSetupAlert = UIAlertController(title: "Notifications Setup is not implemented yet",
                                                        message: "But you get an idea where this is going",
-                                                       preferredStyle: .actionSheet)
+                                                       preferredStyle: .safeActionSheet)
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
         notificationSetupAlert.addAction(cancelAction)
         present(notificationSetupAlert, animated: true, completion: nil)

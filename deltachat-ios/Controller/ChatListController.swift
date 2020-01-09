@@ -215,7 +215,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             let dcMsg = DcMsg(id: msgId)
             let dcContact = DcContact(id: dcMsg.fromContactId)
             let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
-            let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
                 let chat = dcMsg.createChat()
                 self.coordinator?.showChat(chatId: chat.id)
@@ -297,7 +297,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         let alert = UIAlertController(
             title: nil,
             message: String.localized("ask_delete_chat_desktop"),
-            preferredStyle: .actionSheet
+            preferredStyle: .safeActionSheet
         )
         alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
             self.dcContext.deleteChat(chatId: chatId)
