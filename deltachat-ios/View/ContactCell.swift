@@ -24,6 +24,7 @@ class ContactCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultTextColor
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
         // label.makeBorder()
         return label
 
@@ -42,6 +43,7 @@ class ContactCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(hexString: "848ba7")
         label.textAlignment = .right
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 2), for: NSLayoutConstraint.Axis.horizontal)
         // label.makeBorder()
         return label
     }()
