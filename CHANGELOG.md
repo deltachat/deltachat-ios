@@ -1,5 +1,11 @@
 # Delta Chat iOS Changelog
 
+## v1.0.2
+2020-01-09
+
+- fix crashes on iPad
+
+
 ## v1.0.1
 2020-01-07
 
