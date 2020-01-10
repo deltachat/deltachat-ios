@@ -79,7 +79,7 @@ class AccountSetupController: UITableViewController {
 
     private func showProgressHud(title: String) {
         configProgressAlert.actions[0].isEnabled = true
-        configProgressAlert.title = title;
+        configProgressAlert.title = title
         configProgressAlert.message = String.localized("one_moment")
         present(configProgressAlert, animated: true, completion: nil)
     }
