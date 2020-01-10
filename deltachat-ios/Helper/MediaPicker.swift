@@ -79,10 +79,6 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         self.delegate?.onDocumentSelected(url: url)
     }
 
-    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        logger.debug("documentPicker was cancelled")
-    }
-
     private func presentPhotoVideoLibrary(delegate: MediaPickerDelegate) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let videoPicker = UIImagePickerController()
