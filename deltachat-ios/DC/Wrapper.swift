@@ -612,12 +612,13 @@ class DcMsg: MessageType {
     }()
 
     internal func createVideoMessage(text: String) -> MessageKind {
+        let thumbnail = Utils.generateThumbnailFromVideo(url: fileURL)
         if text.isEmpty {
-                       return MessageKind.video(Media(url: fileURL))
-                   }
+            return MessageKind.video(Media(url: fileURL, image: thumbnail))
+        }
         let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
                                                                              NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor])
-                   return MessageKind.videoText(Media(url: fileURL, text: attributedString))
+        return MessageKind.videoText(Media(url: fileURL, image: thumbnail, text: attributedString))
     }
 
     internal func createImageMessage(text: String) -> MessageKind {
