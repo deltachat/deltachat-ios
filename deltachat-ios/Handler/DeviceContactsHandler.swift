@@ -4,6 +4,11 @@ import UIKit
 class DeviceContactsHandler {
     private let store = CNContactStore()
     weak var contactListDelegate: ContactListDelegate?
+    let dcContext: DcContext
+
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
+    }
 
     private func makeContactString(contacts: [CNContact]) -> String {
         var contactString: String = ""
@@ -21,7 +26,7 @@ class DeviceContactsHandler {
         fetchContactsWithEmailFromDevice() { contacts in
             DispatchQueue.main.async {
                 let contactString = self.makeContactString(contacts: contacts)
-                dc_add_address_book(mailboxPointer, contactString)
+                self.dcContext.addContacts(contactString: contactString)
                 self.contactListDelegate?.deviceContactsImported()
             }
         }
