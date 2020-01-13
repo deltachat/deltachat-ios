@@ -19,33 +19,45 @@ class DeviceContactsHandler {
 
     private func addContactsToCore() {
         let storedContacts = fetchContactsWithEmailFromDevice()
+        assert(Thread.isMainThread)
         let contactString = makeContactString(contacts: storedContacts)
         dc_add_address_book(mailboxPointer, contactString)
         contactListDelegate?.deviceContactsImported()
     }
 
     private func fetchContactsWithEmailFromDevice() -> [CNContact] {
+        let keys = [CNContactFamilyNameKey, CNContactGivenNameKey, CNContactEmailAddressesKey]
+
         var fetchedContacts: [CNContact] = []
 
-        // takes id from userDefaults (system settings)
-        let defaultContainerId = store.defaultContainerIdentifier()
-        let predicates = CNContact.predicateForContactsInContainer(withIdentifier: defaultContainerId)
-        let keys = [CNContactFamilyNameKey, CNContactGivenNameKey, CNContactEmailAddressesKey]
-        let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
-        request.mutableObjects = true
-        request.unifyResults = true
-        request.sortOrder = .userDefault
-        request.predicate = predicates
-
+        var allContainers: [CNContainer] = []
         do {
-            try store.enumerateContacts(with: request) { contact, _ in
-                if !contact.emailAddresses.isEmpty {
-                    fetchedContacts.append(contact)
-                }
-            }
+            allContainers = try store.containers(matching: nil)
         } catch {
-            print(error)
+            return []
         }
+
+        for container in allContainers {
+            let predicates = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
+            let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+            request.mutableObjects = true
+            request.unifyResults = true
+            request.sortOrder = .userDefault
+            request.predicate = predicates
+            do {
+                try store.enumerateContacts(with: request) { contact, _ in
+                    if !contact.emailAddresses.isEmpty {
+                        fetchedContacts.append(contact)
+                    } else {
+                        print(contact)
+                    }
+                }
+            } catch {
+                print(error)
+            }
+        }
+
+
         return fetchedContacts
     }
 
@@ -63,7 +75,7 @@ class DeviceContactsHandler {
                         self.addContactsToCore()
                         self.contactListDelegate?.accessGranted()
                     }
-                } else {
+                cts are} else {
                     DispatchQueue.main.async {
                         self.contactListDelegate?.accessDenied()
                     }
