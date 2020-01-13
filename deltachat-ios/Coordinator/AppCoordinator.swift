@@ -441,6 +441,10 @@ class ChatViewCoordinator: NSObject, Coordinator {
         navigationController.pushViewController(chatViewController, animated: true)
     }
 
+    func showDocumentLibrary(delegate: MediaPickerDelegate) {
+        mediaPicker.showDocumentLibrary(delegate: delegate)
+    }
+
     func showVoiceMessageRecorder(delegate: MediaPickerDelegate) {
         mediaPicker.showVoiceRecorder(delegate: delegate)
     }

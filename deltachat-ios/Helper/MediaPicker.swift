@@ -8,6 +8,7 @@ protocol MediaPickerDelegate: class {
     func onImageSelected(url: NSURL)
     func onVideoSelected(url: NSURL)
     func onVoiceMessageRecorded(url: NSURL)
+    func onDocumentSelected(url: NSURL)
 }
 
 extension MediaPickerDelegate {
@@ -20,9 +21,12 @@ extension MediaPickerDelegate {
     func onVoiceMessageRecorded(url: NSURL) {
         logger.debug("voice message recorded: \(url)")
     }
+    func onDocumentSelected(url: NSURL) {
+        logger.debug("document selected: \(url)")
+    }
 }
 
-class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AudioRecorderControllerDelegate {
+class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AudioRecorderControllerDelegate, UIDocumentPickerDelegate {
 
     private let navigationController: UINavigationController
     private weak var delegate: MediaPickerDelegate?
@@ -58,6 +62,21 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         } else {
             presentPhotoVideoLibrary(delegate: delegate)
         }
+    }
+
+    func showDocumentLibrary(delegate: MediaPickerDelegate) {
+        let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet, kUTTypeVCard, kUTTypeZipArchive]
+        let documentPicker = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
+        documentPicker.delegate = self
+        documentPicker.allowsMultipleSelection = false
+        documentPicker.modalPresentationStyle = .formSheet
+        self.delegate = delegate
+        navigationController.present(documentPicker, animated: true, completion: nil)
+    }
+
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        let url = urls[0] as NSURL
+        self.delegate?.onDocumentSelected(url: url)
     }
 
     private func presentPhotoVideoLibrary(delegate: MediaPickerDelegate) {
