@@ -27,15 +27,14 @@ class DeviceContactsHandler {
         }
     }
 
-
     private func fetchContactsWithEmailFromDevice(completionHandler: @escaping ([CNContact])->Void) {
 
         DispatchQueue.global(qos: .background).async {
             let keys = [CNContactFamilyNameKey, CNContactGivenNameKey, CNContactEmailAddressesKey]
 
             var fetchedContacts: [CNContact] = []
-
             var allContainers: [CNContainer] = []
+
             do {
                 allContainers = try self.store.containers(matching: nil)
             } catch {
