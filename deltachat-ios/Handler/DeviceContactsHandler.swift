@@ -18,47 +18,51 @@ class DeviceContactsHandler {
     }
 
     private func addContactsToCore() {
-        let storedContacts = fetchContactsWithEmailFromDevice()
-        assert(Thread.isMainThread)
-        let contactString = makeContactString(contacts: storedContacts)
-        dc_add_address_book(mailboxPointer, contactString)
-        contactListDelegate?.deviceContactsImported()
-    }
-
-    private func fetchContactsWithEmailFromDevice() -> [CNContact] {
-        let keys = [CNContactFamilyNameKey, CNContactGivenNameKey, CNContactEmailAddressesKey]
-
-        var fetchedContacts: [CNContact] = []
-
-        var allContainers: [CNContainer] = []
-        do {
-            allContainers = try store.containers(matching: nil)
-        } catch {
-            return []
-        }
-
-        for container in allContainers {
-            let predicates = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
-            let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
-            request.mutableObjects = true
-            request.unifyResults = true
-            request.sortOrder = .userDefault
-            request.predicate = predicates
-            do {
-                try store.enumerateContacts(with: request) { contact, _ in
-                    if !contact.emailAddresses.isEmpty {
-                        fetchedContacts.append(contact)
-                    } else {
-                        print(contact)
-                    }
-                }
-            } catch {
-                print(error)
+        fetchContactsWithEmailFromDevice() { contacts in
+            DispatchQueue.main.async {
+                let contactString = self.makeContactString(contacts: contacts)
+                dc_add_address_book(mailboxPointer, contactString)
+                self.contactListDelegate?.deviceContactsImported()
             }
         }
+    }
 
 
-        return fetchedContacts
+    private func fetchContactsWithEmailFromDevice(completionHandler: @escaping ([CNContact])->Void) {
+
+        DispatchQueue.global(qos: .background).async {
+            let keys = [CNContactFamilyNameKey, CNContactGivenNameKey, CNContactEmailAddressesKey]
+
+            var fetchedContacts: [CNContact] = []
+
+            var allContainers: [CNContainer] = []
+            do {
+                allContainers = try self.store.containers(matching: nil)
+            } catch {
+                return
+            }
+
+            for container in allContainers {
+                let predicates = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
+                let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+                request.mutableObjects = true
+                request.unifyResults = true
+                request.sortOrder = .userDefault
+                request.predicate = predicates
+                do {
+                    try self.store.enumerateContacts(with: request) { contact, _ in
+                        if !contact.emailAddresses.isEmpty {
+                            fetchedContacts.append(contact)
+                        } else {
+                            print(contact)
+                        }
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+            return completionHandler(fetchedContacts)
+        }
     }
 
     public func importDeviceContacts() {
