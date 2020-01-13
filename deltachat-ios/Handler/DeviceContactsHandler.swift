@@ -75,7 +75,7 @@ class DeviceContactsHandler {
                         self.addContactsToCore()
                         self.contactListDelegate?.accessGranted()
                     }
-                cts are} else {
+                } else {
                     DispatchQueue.main.async {
                         self.contactListDelegate?.accessDenied()
                     }
