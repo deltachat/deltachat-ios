@@ -71,7 +71,7 @@ open class PlayButtonView: UIView {
     private func setupView() {
         triangleView.clipsToBounds = true
         triangleView.backgroundColor = .black
-        
+
         backgroundColor = .playButtonLightGray
     }
 
@@ -93,7 +93,7 @@ open class PlayButtonView: UIView {
         let trianglePath = UIBezierPath()
 
         let point1 = CGPoint(x: frame.minX, y: frame.minY)
-        let point2 = CGPoint(x: frame.maxX, y: frame.maxY/2)
+        let point2 = CGPoint(x: (frame.maxX/5) * 4, y: frame.maxY/2)
         let point3 = CGPoint(x: frame.minX, y: frame.maxY)
 
         trianglePath .move(to: point1)
