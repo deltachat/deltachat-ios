@@ -81,7 +81,7 @@ open class TextMediaMessageCell: MessageContentCell {
 
         switch messageKind {
         case .videoText:
-            playButtonView.constraint(equalTo: CGSize(width: 35, height: 35))
+            playButtonView.constraint(equalTo: CGSize(width: 50, height: 50))
             let playButtonViewConstraints = [ playButtonView.constraintCenterXTo(imageView),
                                               playButtonView.constraintCenterYTo(imageView)]
             messageContainerView.addConstraints(playButtonViewConstraints)
