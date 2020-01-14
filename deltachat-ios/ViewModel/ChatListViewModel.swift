@@ -14,6 +14,8 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     func deleteChat(chatId: Int)
     func archieveChat(chatId: Int)
     func getUnreadMessages(chatId: Int) -> Int
+    func beginFiltering()
+    func endFiltering()
 }
 
 protocol ChatListCellViewModelProtocol {
@@ -25,6 +27,7 @@ class ChatListCellViewModel: ChatListCellViewModelProtocol {
 }
 
 class ChatListViewModel: NSObject, ChatListViewModelProtocol {
+
     func msgIdFor(indexPath: IndexPath) -> Int? {
         return chatList.getMsgId(index: indexPath.row)
     }
@@ -52,7 +55,10 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         return dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
     }
 
-    private var searchActive: Bool = false
+    private var unfilteredSearchResults: [SearchResult<DcChat>] = []
+    private var filteredSearchResults: [SearchResult<DcChat>] = []
+    private var searchResults: [SearchResult<DcChat>] = []
+
     private var dcContext: DcContext
     let showArchive: Bool
 
@@ -84,6 +90,21 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         let msg = dcContext.getUnreadMessages(chatId: chatId)
         return msg
     }
+
+    func beginFiltering() {
+        let chatList = self.chatList
+        // do this once
+        self.unfilteredSearchResults = (0..<chatsCount).map {
+            let id = chatList.getChatId(index: $0)
+            return SearchResult<DcChat>(entity: DcChat(id: id), indexesToHighlight: [])
+        }
+    }
+
+    func endFiltering() {
+
+    }
+
+
 }
 
 // MARK: UISearchResultUpdating
@@ -95,6 +116,20 @@ extension ChatListViewModel: UISearchResultsUpdating {
     }
 
     private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
+
+        let filteredChats = dc_search_msgs(dcContext, 0, searchText)
+
+        let chatsWithHighlight: [SearchResult<DcChat>] = unfilteredSearchResults.map {
+            chat in
+            let indexes = chat.entity.containsExact(searchText: searchText)
+            return SearchResult<DcChat>(entity: chat.entity, indexesToHighlight: indexes)
+        }
+
+
+
+
+
+
         /*
         let contactsWithHighlights: [ContactWithSearchResults] = contacts.map { contact in
             let indexes = contact.contact.containsExact(searchText: searchText)

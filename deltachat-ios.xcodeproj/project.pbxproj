@@ -141,6 +141,7 @@
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
 		AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E41FB32E1900DCDD78 /* Utils.swift */; };
 		AEB7068D23CC9C3800504AB3 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB7068C23CC9C3800504AB3 /* ChatListViewModel.swift */; };
+		AEB7068F23CDE0C800504AB3 /* DcChat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB7068E23CDE0C800504AB3 /* DcChat+Extension.swift */; };
 		AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D752253431E007DC082 /* AccountSetupController.swift */; };
 		AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7C2253ADB4007DC082 /* HudHandler.swift */; };
 		AEE56D80225504DB007DC082 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7F225504DB007DC082 /* Extensions.swift */; };
@@ -365,6 +366,7 @@
 		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AEACE2E41FB32E1900DCDD78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		AEB7068C23CC9C3800504AB3 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
+		AEB7068E23CDE0C800504AB3 /* DcChat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DcChat+Extension.swift"; sourceTree = "<group>"; };
 		AEE56D752253431E007DC082 /* AccountSetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AEE56D7C2253ADB4007DC082 /* HudHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudHandler.swift; sourceTree = "<group>"; };
 		AEE56D7F225504DB007DC082 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 				3059620D234614E700C80F33 /* DcContact+Extension.swift */,
 				3059620F2346154D00C80F33 /* String+Extension.swift */,
 				302B84CD2397F6CD001C261F /* URL+Extension.swift */,
+				AEB7068E23CDE0C800504AB3 /* DcChat+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1146,6 +1149,7 @@
 				30260CA7238F02F700D8D52C /* MultilineTextFieldCell.swift in Sources */,
 				305961DE2346125100C80F33 /* MessageType.swift in Sources */,
 				AE851ACE227CA54400ED86F0 /* InitialsBadge.swift in Sources */,
+				AEB7068F23CDE0C800504AB3 /* DcChat+Extension.swift in Sources */,
 				305961DA2346125100C80F33 /* MediaItem.swift in Sources */,
 				305961EB2346125100C80F33 /* MessageKitError.swift in Sources */,
 				70B8882E2091B8550074812E /* ContactCell.swift in Sources */,
