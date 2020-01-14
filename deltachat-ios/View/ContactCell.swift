@@ -7,7 +7,7 @@ protocol ContactCellDelegate: class {
 class ContactCell: UITableViewCell {
 
     static let cellHeight: CGFloat = 74.5
-   
+
     weak var delegate: ContactCellDelegate?
     var rowIndex = -1
     private let badgeSize: CGFloat = 54

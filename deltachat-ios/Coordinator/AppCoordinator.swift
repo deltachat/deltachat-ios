@@ -43,7 +43,8 @@ class AppCoordinator: NSObject, Coordinator {
     }()
 
     private lazy var chatListController: UIViewController = {
-        let controller = ChatListController(dcContext: dcContext, showArchive: false)
+        let viewModel = ChatListViewModel(dcContext: dcContext, showArchive: false)
+        let controller = ChatListController(viewModel: viewModel)
         let nav = DcNavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "ic_chat")
         nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: chatsTab)
@@ -182,7 +183,8 @@ class ChatListCoordinator: Coordinator {
     }
 
     func showArchive() {
-        let controller = ChatListController(dcContext: dcContext, showArchive: true)
+        let viewModel = ChatListViewModel(dcContext: dcContext, showArchive: true)
+        let controller = ChatListController(viewModel: viewModel)
         let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         controller.coordinator = coordinator
