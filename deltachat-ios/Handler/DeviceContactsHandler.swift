@@ -4,6 +4,11 @@ import UIKit
 class DeviceContactsHandler {
     private let store = CNContactStore()
     weak var contactListDelegate: ContactListDelegate?
+    let dcContext: DcContext
+
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
+    }
 
     private func makeContactString(contacts: [CNContact]) -> String {
         var contactString: String = ""
@@ -18,35 +23,50 @@ class DeviceContactsHandler {
     }
 
     private func addContactsToCore() {
-        let storedContacts = fetchContactsWithEmailFromDevice()
-        let contactString = makeContactString(contacts: storedContacts)
-        dc_add_address_book(mailboxPointer, contactString)
-        contactListDelegate?.deviceContactsImported()
+        fetchContactsWithEmailFromDevice() { contacts in
+            DispatchQueue.main.async {
+                let contactString = self.makeContactString(contacts: contacts)
+                self.dcContext.addContacts(contactString: contactString)
+                self.contactListDelegate?.deviceContactsImported()
+            }
+        }
     }
 
-    private func fetchContactsWithEmailFromDevice() -> [CNContact] {
-        var fetchedContacts: [CNContact] = []
+    private func fetchContactsWithEmailFromDevice(completionHandler: @escaping ([CNContact])->Void) {
 
-        // takes id from userDefaults (system settings)
-        let defaultContainerId = store.defaultContainerIdentifier()
-        let predicates = CNContact.predicateForContactsInContainer(withIdentifier: defaultContainerId)
-        let keys = [CNContactFamilyNameKey, CNContactGivenNameKey, CNContactEmailAddressesKey]
-        let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
-        request.mutableObjects = true
-        request.unifyResults = true
-        request.sortOrder = .userDefault
-        request.predicate = predicates
+        DispatchQueue.global(qos: .background).async {
+            let keys = [CNContactFamilyNameKey, CNContactGivenNameKey, CNContactEmailAddressesKey]
 
-        do {
-            try store.enumerateContacts(with: request) { contact, _ in
-                if !contact.emailAddresses.isEmpty {
-                    fetchedContacts.append(contact)
+            var fetchedContacts: [CNContact] = []
+            var allContainers: [CNContainer] = []
+
+            do {
+                allContainers = try self.store.containers(matching: nil)
+            } catch {
+                return
+            }
+
+            for container in allContainers {
+                let predicates = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
+                let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+                request.mutableObjects = true
+                request.unifyResults = true
+                request.sortOrder = .userDefault
+                request.predicate = predicates
+                do {
+                    try self.store.enumerateContacts(with: request) { contact, _ in
+                        if !contact.emailAddresses.isEmpty {
+                            fetchedContacts.append(contact)
+                        } else {
+                            print(contact)
+                        }
+                    }
+                } catch {
+                    print(error)
                 }
             }
-        } catch {
-            print(error)
+            return completionHandler(fetchedContacts)
         }
-        return fetchedContacts
     }
 
     public func importDeviceContacts() {

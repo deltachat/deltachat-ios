@@ -31,6 +31,10 @@ class DcContext {
         return Utils.copyAndFreeArray(inputArray: cContacts)
     }
 
+    func addContacts(contactString: String) {
+        dc_add_address_book(mailboxPointer, contactString)
+    }
+
     func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
         let chatlistPointer = dc_get_chatlist(contextPointer, flags, queryString, UInt32(queryId))
         let chatlist = DcChatlist(chatListPointer: chatlistPointer)
