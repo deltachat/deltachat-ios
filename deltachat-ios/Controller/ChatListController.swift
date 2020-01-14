@@ -13,6 +13,7 @@ class ChatListController: UIViewController {
         searchController.searchResultsUpdater = viewModel
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = String.localized("search")
+        searchController.searchBar.delegate = self
         return searchController
     }()
 
@@ -141,7 +142,7 @@ class ChatListController: UIViewController {
 // MARK: uiTableViewDatasource, uiTabelViewDelegate
 extension ChatListController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-       return viewModel.chatsCount
+        return viewModel.chatsCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -300,3 +301,13 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 }
 
 
+extension ChatListController: UISearchBarDelegate {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        viewModel.beginFiltering()
+        return true
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        viewModel.endFiltering()
+    }
+}

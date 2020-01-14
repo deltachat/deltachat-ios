@@ -3,9 +3,9 @@ import UIKit
 typealias VoidFunction = () -> Void
 
 protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
+    var chatsCount: Int { get }
     var showArchive: Bool { get }
     var onChatListUpdate: VoidFunction? { get set }
-    var chatsCount: Int { get }
     var archivedChatsCount: Int { get }
     func chatIdFor(indexPath: IndexPath) -> Int?
     func msgIdFor(indexPath: IndexPath) -> Int?
@@ -28,22 +28,20 @@ class ChatListCellViewModel: ChatListCellViewModelProtocol {
 
 class ChatListViewModel: NSObject, ChatListViewModelProtocol {
 
-    func msgIdFor(indexPath: IndexPath) -> Int? {
-        return chatList.getMsgId(index: indexPath.row)
-    }
-
-    func chatIdFor(indexPath: IndexPath) -> Int? {
-        return chatList.getChatId(index: indexPath.row)
-    }
+    var onChatListUpdate: VoidFunction? // callback that will reload chatListTable
 
     var archivedChatsCount: Int {
         let chatList = dcContext.getChatlist(flags: DC_GCL_ARCHIVED_ONLY, queryString: nil, queryId: 0)
         return chatList.length
     }
 
-    var onChatListUpdate: VoidFunction?
-
     var chatsCount: Int {
+        if showArchive {
+            return archivedChatsCount
+        }
+        if searchActive {
+            return filteredSearchResults.count
+        }
         return chatList.length
     }
 
@@ -57,10 +55,12 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
 
     private var unfilteredSearchResults: [SearchResult<DcChat>] = []
     private var filteredSearchResults: [SearchResult<DcChat>] = []
-    private var searchResults: [SearchResult<DcChat>] = []
+    // private var searchResults: [SearchResult<DcChat>] = []
 
     private var dcContext: DcContext
     let showArchive: Bool
+
+    var searchActive: Bool = false
 
     init(dcContext: DcContext, showArchive: Bool) {
         self.dcContext = dcContext
@@ -72,7 +72,8 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         return ChatListCellViewModel()
     }
 
-    func chatSummaryFor(indexPath: IndexPath) -> DcLot{
+    func chatSummaryFor(indexPath: IndexPath) -> DcLot {
+
         return chatList.getSummary(index: indexPath.row)
     }
 
@@ -92,6 +93,7 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     }
 
     func beginFiltering() {
+        searchActive = true
         let chatList = self.chatList
         // do this once
         self.unfilteredSearchResults = (0..<chatsCount).map {
@@ -101,10 +103,16 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     }
 
     func endFiltering() {
-
+        searchActive = false
     }
 
+    func msgIdFor(indexPath: IndexPath) -> Int? {
+        return chatList.getMsgId(index: indexPath.row)
+    }
 
+    func chatIdFor(indexPath: IndexPath) -> Int? {
+        return chatList.getChatId(index: indexPath.row)
+    }
 }
 
 // MARK: UISearchResultUpdating
@@ -117,27 +125,19 @@ extension ChatListViewModel: UISearchResultsUpdating {
 
     private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
 
-        let filteredChats = dc_search_msgs(dcContext, 0, searchText)
+        if !searchText.isEmpty {
+            let msgIds = dcContext.searchMessages(searchText: searchText)
+            let chatIds = msgIds.map { return DcMsg(id: $0).chatId }
 
-        let chatsWithHighlight: [SearchResult<DcChat>] = unfilteredSearchResults.map {
-            chat in
-            let indexes = chat.entity.containsExact(searchText: searchText)
-            return SearchResult<DcChat>(entity: chat.entity, indexesToHighlight: indexes)
+            filteredSearchResults = chatIds.map {
+                return SearchResult<DcChat>(entity: DcChat(id: $0), indexesToHighlight: [])
+            }
+        } else {
+            // if no
+            filteredSearchResults = (0..<chatList.length).map {
+                return SearchResult<DcChat>(entity: DcChat(id: chatList.getChatId(index: $0)), indexesToHighlight: [])
+            }
         }
-
-
-
-
-
-
-        /*
-        let contactsWithHighlights: [ContactWithSearchResults] = contacts.map { contact in
-            let indexes = contact.contact.containsExact(searchText: searchText)
-            return ContactWithSearchResults(contact: contact.contact, indexesToHighlight: indexes)
-        }
-
-        filteredContacts = contactsWithHighlights.filter { !$0.indexesToHighlight.isEmpty }
-        tableView.reloadData()
-        */
+        onChatListUpdate?()
     }
 }

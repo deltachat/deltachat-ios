@@ -187,6 +187,14 @@ class DcContext {
     func updateDeviceChats() {
         dc_update_device_chats(contextPointer)
     }
+
+    func searchMessages(chatId: Int = 0, searchText: String) -> [Int] {
+        guard let arrayPointer = dc_search_msgs(contextPointer, UInt32(chatId), searchText) else {
+            return []
+        }
+        let messageIds = Utils.copyAndFreeArray(inputArray: arrayPointer)
+        return messageIds
+    }
 }
 
 class DcConfig {
@@ -524,11 +532,6 @@ class DcArray {
 
     var count: Int {
        return Int(dc_array_get_cnt(dcArrayPointer))
-    }
-
-    func searchMessages(chatId: Int = 0, searchText: String) -> DcChatlist {
-        let chatListPointer = dc_search_msgs(dcArrayPointer, UInt32(chatId), searchText)
-        return DcChatlist(chatListPointer: chatListPointer)
     }
 
     ///TODO: add missing methods here
