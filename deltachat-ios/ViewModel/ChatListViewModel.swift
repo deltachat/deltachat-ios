@@ -2,7 +2,7 @@ import UIKit
 
 typealias VoidFunction = ()->Void
 
-protocol ChatListViewModelProtocol {
+protocol ChatListViewModelProtocol: class {
     var showArchive: Bool { get }
     var onChatListUpdate: VoidFunction? { get set }
     var chatsCount: Int { get }
@@ -41,7 +41,7 @@ class ChatListViewModel: ChatListViewModelProtocol {
     var onChatListUpdate: VoidFunction?
 
     var chatsCount: Int {
-        return 0
+        return chatList.length
     }
 
     private var chatList: DcChatlist {

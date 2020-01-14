@@ -34,6 +34,10 @@ class ChatListController: UIViewController {
     init(viewModel: ChatListViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        viewModel.onChatListUpdate = {
+            [unowned self] in
+            self.chatTable.reloadData()
+        }
     }
 
     required init?(coder _: NSCoder) {
@@ -266,8 +270,6 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         chatCell.setUnreadMessageCounter(unreadMessages)
         chatCell.setDeliveryStatusIndicator(summary.state)
     }
-
-
 
     private func showDeleteChatConfirmationAlert(chatId: Int) {
         let alert = UIAlertController(
