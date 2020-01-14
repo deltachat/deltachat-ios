@@ -789,7 +789,7 @@ class DcMsg: MessageType {
     }
 
     func setDimension(width: CGFloat, height: CGFloat) {
-        dc_msg_set_dimension(messagePointer, Int32(exactly: width)!, Int32(exactly: height)!)
+        dc_msg_set_dimension(messagePointer, Int32(width), Int32(height))
     }
 
     var filesize: Int {
