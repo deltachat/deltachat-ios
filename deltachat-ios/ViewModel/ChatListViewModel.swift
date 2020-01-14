@@ -3,6 +3,7 @@ import UIKit
 typealias VoidFunction = ()->Void
 
 protocol ChatListViewModelProtocol {
+    var showArchive: Bool { get }
     var onChatListUpdate: VoidFunction? { get set }
     var chatsCount: Int { get }
     var archivedChatsCount: Int { get }
@@ -12,7 +13,7 @@ protocol ChatListViewModelProtocol {
     func chatDetailFor(indexPath: IndexPath) -> ChatListCellViewModelProtocol
     func deleteChat(chatId: Int)
     func archieveChat(chatId: Int)
-
+    func getUnreadMessages(chatId: Int) -> Int
 }
 
 protocol ChatListCellViewModelProtocol {
@@ -53,7 +54,7 @@ class ChatListViewModel: ChatListViewModelProtocol {
 
     private var searchActive: Bool = false
     private var dcContext: DcContext
-    private var showArchive: Bool
+    let showArchive: Bool
 
     init(dcContext: DcContext, showArchive: Bool) {
         self.dcContext = dcContext
@@ -70,14 +71,23 @@ class ChatListViewModel: ChatListViewModelProtocol {
     }
 
     func deleteChat(chatId: Int) {
-        self.dcContext.deleteChat(chatId: chatId)
+        dcContext.deleteChat(chatId: chatId)
         onChatListUpdate?()
     }
 
     func archieveChat(chatId: Int) {
-        self.dcContext.archiveChat(chatId: chatId, archive: !self.showArchive)
+        dcContext.archiveChat(chatId: chatId, archive: !self.showArchive)
         onChatListUpdate?()
     }
+
+    func getUnreadMessages(chatId: Int) -> Int {
+        let msg = dcContext.getUnreadMessages(chatId: chatId)
+        return msg
+    }
+
+
+
+
 
 
 
