@@ -534,6 +534,11 @@ class DcArray {
        return Int(dc_array_get_cnt(dcArrayPointer))
     }
 
+    func searchMessages(chatId: Int = 0, searchText: String) -> DcChatlist {
+        let chatListPointer = dc_search_msgs(dcArrayPointer, UInt32(chatId), searchText)
+        return DcChatlist(chatListPointer: chatListPointer)
+    }
+
     ///TODO: add missing methods here
 }
 

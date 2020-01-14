@@ -152,7 +152,7 @@ class NewChatViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = indexPath.section
         if section == sectionNew {
-           return Constants.defaultCellHeight
+            return Constants.defaultCellHeight
         } else if section == sectionImportedContacts {
             if deviceContactAccessGranted {
                 return ContactCell.cellHeight
@@ -416,4 +416,19 @@ enum ContactDetail {
 struct ContactWithSearchResults {
     let contact: DcContact
     let indexesToHighlight: [ContactHighlights]
+}
+
+struct SearchResult<Searchable> {
+    let entity: Searchable
+    let indexesToHighlight: [ResultIndexes]
+}
+
+struct ResultIndexes {
+    let detail: EntityDetail
+    let indexes: [Int]
+}
+
+enum EntityDetail {
+    case TITLE
+    case SUBTITLE
 }
