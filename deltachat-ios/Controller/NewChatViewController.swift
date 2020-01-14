@@ -352,17 +352,9 @@ class NewChatViewController: UITableViewController {
         return searchController.searchBar.text?.isEmpty ?? true
     }
 
-    private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
-        let contactsWithHighlights: [ContactWithSearchResults] = contacts.map { contact in
-            let indexes = contact.contact.containsExact(searchText: searchText)
-            return ContactWithSearchResults(contact: contact.contact, indexesToHighlight: indexes)
-        }
-
-        filteredContacts = contactsWithHighlights.filter { !$0.indexesToHighlight.isEmpty }
-        tableView.reloadData()
-    }
 }
 
+// MARK: - ContactListDelegate
 extension NewChatViewController: ContactListDelegate {
     func deviceContactsImported() {
         contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
@@ -392,11 +384,22 @@ extension NewChatViewController: ContactListDelegate {
     }
 }
 
+// MARK: UISearchResultUpdating
 extension NewChatViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             filterContentForSearchText(searchText)
         }
+    }
+
+    private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
+        let contactsWithHighlights: [ContactWithSearchResults] = contacts.map { contact in
+            let indexes = contact.contact.containsExact(searchText: searchText)
+            return ContactWithSearchResults(contact: contact.contact, indexesToHighlight: indexes)
+        }
+
+        filteredContacts = contactsWithHighlights.filter { !$0.indexesToHighlight.isEmpty }
+        tableView.reloadData()
     }
 }
 

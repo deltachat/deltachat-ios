@@ -8,6 +8,13 @@ class ChatListController: UIViewController {
     private let deadDropCellReuseIdentifier = "DeaddropCell"
     private let contactCellReuseIdentifier = "ContactCell"
 
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = viewModel
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = String.localized("search")
+        return searchController
+    }()
 
     private lazy var chatTable: UITableView = {
         let chatTable = UITableView()
@@ -51,6 +58,7 @@ class ChatListController: UIViewController {
         newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
         newButton.tintColor = DcColors.primary
         navigationItem.rightBarButtonItem = newButton
+        navigationItem.searchController = searchController
 
         setupChatTable()
     }
@@ -219,6 +227,8 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         return [archive, delete]
     }
 
+    // MARK: cell updates
+
     private func update(deaddropCell: ContactCell, msgId: Int) {
         deaddropCell.backgroundColor = DcColors.deaddropBackground
         deaddropCell.contentView.backgroundColor = DcColors.deaddropBackground
@@ -271,6 +281,10 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         chatCell.setDeliveryStatusIndicator(summary.state)
     }
 
+    private func showStartChatConfirmationAlert(chatId: Int) {
+
+    }
+
     private func showDeleteChatConfirmationAlert(chatId: Int) {
         let alert = UIAlertController(
             title: nil,
@@ -284,3 +298,5 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         self.present(alert, animated: true, completion: nil)
     }
 }
+
+
