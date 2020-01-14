@@ -76,13 +76,19 @@ extension UIImage {
         let rect = getResizedRectangle(toMax: toMax)
         //50 percent compression
         let compressionQuality: Float = 0.5
-        UIGraphicsBeginImageContext(rect.size)
+        UIGraphicsBeginImageContextWithOptions(rect.size, self.isTransparent(), 0.0)
         draw(in: rect)
         let img = UIGraphicsGetImageFromCurrentImageContext()
         let imageData = img?.jpegData(compressionQuality: CGFloat(compressionQuality))
         UIGraphicsEndImageContext()
         return UIImage(data: imageData!)
     }
+
+    public func isTransparent() -> Bool {
+        guard let alpha: CGImageAlphaInfo = self.cgImage?.alphaInfo else { return false }
+        return alpha == .first || alpha == .last || alpha == .premultipliedFirst || alpha == .premultipliedLast
+      }
+
 }
 
 public enum ImageType: String {

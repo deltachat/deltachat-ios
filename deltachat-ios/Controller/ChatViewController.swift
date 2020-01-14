@@ -883,7 +883,7 @@ extension ChatViewController: MessagesDataSource {
     private func sendImage(_ image: UIImage, message: String? = nil) {
         DispatchQueue.global().async {
             if let compressedImage = image.dcCompress() {
-                // at this point image is compressed by 85% by default
+                // at this point image is compressed by 50% by default
                 let pixelSize = compressedImage.imageSizeInPixel()
                 let path = Utils.saveImage(image: compressedImage)
                 let msg = DcMsg(viewType: DC_MSG_IMAGE)
