@@ -143,9 +143,7 @@ class ChatListController: UIViewController {
 extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var title = viewModel.titleForHeaderIn(section: section)
-        print(title)
-        return title
+        return viewModel.titleForHeaderIn(section: section)
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
