@@ -174,7 +174,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
         // default chatCells
         let chatCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as! ContactCell
-        let cellViewModel = viewModel.chatCellViewModel(indexPath: indexPath)
+        let cellViewModel = viewModel.getCellViewModelFor(indexPath: indexPath)
 
         update(chatCell: chatCell, cellViewModel: cellViewModel)
         return chatCell
@@ -262,8 +262,12 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         archiveCell.textLabel?.textColor = .systemBlue
     }
 
-    private func update(chatCell: ContactCell, cellViewModel: ChatListCellViewModel) {
-        if let chatId = cellViewModel.chatId, let summary = cellViewModel.summary, let unreadMessages = cellViewModel.unreadMessages {
+    private func update(chatCell: ContactCell, cellViewModel: AvatarCellViewModel) {
+        switch cellViewModel.type {
+        case .CHAT(let chatData):
+            let chatId = chatData.chatId
+            let summary = chatData.summary
+            let unreadMessages = chatData.unreadMessages
             let chat = DcChat(id: chatId)
             chatCell.nameLabel.attributedText = (unreadMessages > 0) ?
                 NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ]) :
@@ -290,8 +294,8 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             chatCell.setTimeLabel(summary.timestamp)
             chatCell.setUnreadMessageCounter(unreadMessages)
             chatCell.setDeliveryStatusIndicator(summary.state)
-        } else {
-            fatalError()
+        case .CONTACT(let contactData):
+            let contactId = contactData.contactId
         }
     }
 
