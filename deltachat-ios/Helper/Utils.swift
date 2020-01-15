@@ -119,27 +119,14 @@ struct Utils {
         return addressParts.joined(separator: ", ")
     }
 
+    // compression needs to be done before in UIImage.dcCompress()
     static func saveImage(image: UIImage) -> String? {
         guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
             appropriateFor: nil, create: false) as NSURL else {
             return nil
         }
 
-        let size = image.size.applying(CGAffineTransform(scaleX: 0.2, y: 0.2))
-        let hasAlpha = false
-        let scale: CGFloat = 0.0
-
-        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
-        image.draw(in: CGRect(origin: CGPoint.zero, size: size))
-
-        let scaledImageI = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        guard let scaledImage = scaledImageI else {
-            return nil
-        }
-
-        guard let data = scaledImage.jpegData(compressionQuality: 0.9) else {
+        guard let data = image.isTransparent() ? image.pngData() : image.jpegData(compressionQuality: 1.0) else {
             return nil
         }
 

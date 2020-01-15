@@ -874,7 +874,13 @@ extension ChatViewController: MessagesDataSource {
         })
     }
 
-    private func sendImage(_ image: UIImage) {
+    private func sendTextMessage(message: String) {
+        DispatchQueue.global().async {
+            self.dcContext.sendTextInChat(id: self.chatId, message: message)
+        }
+    }
+
+    private func sendImage(_ image: UIImage, message: String? = nil) {
         DispatchQueue.global().async {
             if let compressedImage = image.dcCompress() {
                 // at this point image is compressed by 85% by default
@@ -883,6 +889,7 @@ extension ChatViewController: MessagesDataSource {
                 let msg = DcMsg(viewType: DC_MSG_IMAGE)
                 msg.setFile(filepath: path, mimeType: "image/jpeg")
                 msg.setDimension(width: pixelSize.width, height: pixelSize.height)
+                msg.text = (message ?? "").isEmpty ? nil : message
                 msg.sendInChat(id: self.chatId)
             }
         }
@@ -1276,10 +1283,16 @@ extension ChatViewController: MessageLabelDelegate {
 // MARK: - MessageInputBarDelegate
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        DispatchQueue.global().async {
-            dc_send_text_msg(mailboxPointer, UInt32(self.chatId), text)
+        if inputBar.inputTextView.images.isEmpty {
+            self.sendTextMessage(message: text.trimmingCharacters(in: .whitespacesAndNewlines))
+        } else {
+            let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+            // only 1 attachment allowed for now, thus it takes the first one
+            self.sendImage(inputBar.inputTextView.images[0], message: trimmedText)
         }
         inputBar.inputTextView.text = String()
+        inputBar.inputTextView.attributedText = nil
     }
 }
 

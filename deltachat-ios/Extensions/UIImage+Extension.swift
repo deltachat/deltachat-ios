@@ -71,18 +71,31 @@ extension UIImage {
         return newImage
     }
 
-    // source: https://stackoverflow.com/questions/29137488/how-do-i-resize-the-uiimage-to-reduce-upload-image-size // slightly changed
+    // if an image has an alpha channel we try to keep it, using PNG formatting instead of JPEG
+    // PNGs are less compressed than JPEGs - to keep the message sizes small,
+    // the size of PNG imgaes will be scaled down
     func scaleDownAndCompress(toMax: Float) -> UIImage? {
-        let rect = getResizedRectangle(toMax: toMax)
-        //50 percent compression
-        let compressionQuality: Float = 0.5
-        UIGraphicsBeginImageContext(rect.size)
+        let rect = getResizedRectangle(toMax: self.isTransparent() ?
+            min(Float(self.size.width) / 2, toMax / 2) :
+            toMax)
+
+        UIGraphicsBeginImageContextWithOptions(rect.size, !self.isTransparent(), 0.0)
         draw(in: rect)
         let img = UIGraphicsGetImageFromCurrentImageContext()
-        let imageData = img?.jpegData(compressionQuality: CGFloat(compressionQuality))
+
+        let imageData = self.isTransparent() ?
+            img?.pngData() :
+            img?.jpegData(compressionQuality: 0.85)
+
         UIGraphicsEndImageContext()
         return UIImage(data: imageData!)
     }
+
+    public func isTransparent() -> Bool {
+        guard let alpha: CGImageAlphaInfo = self.cgImage?.alphaInfo else { return false }
+        return alpha == .first || alpha == .last || alpha == .premultipliedFirst || alpha == .premultipliedLast
+      }
+
 }
 
 public enum ImageType: String {

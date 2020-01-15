@@ -112,6 +112,10 @@ class DcContext {
         dc_forward_msgs(contextPointer, [UInt32(msgId)], 1, UInt32(chat))
     }
 
+    func sendTextInChat(id: Int, message: String) {
+        dc_send_text_msg(contextPointer, UInt32(id), message)
+    }
+
     func initiateKeyTransfer() -> String? {
         if let cString = dc_initiate_key_transfer(self.contextPointer) {
             let swiftString = String(cString: cString)
@@ -785,7 +789,7 @@ class DcMsg: MessageType {
     }
 
     func setDimension(width: CGFloat, height: CGFloat) {
-        dc_msg_set_dimension(messagePointer, Int32(exactly: width)!, Int32(exactly: height)!)
+        dc_msg_set_dimension(messagePointer, Int32(width), Int32(height))
     }
 
     var filesize: Int {
