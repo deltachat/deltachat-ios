@@ -164,9 +164,9 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
         // default chatCells
         let chatCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as! ContactCell
-        let unreadMessages = viewModel.getUnreadMessages(chatId: chatId)
-        let summary = viewModel.chatSummaryFor(indexPath: indexPath)
-        update(chatCell: chatCell, chatId: chatId, summary: summary, unreadMessages: unreadMessages)
+        let cellViewModel = viewModel.chatCellViewModel(indexPath: indexPath)
+
+        update(chatCell: chatCell, cellViewModel: cellViewModel)
         return chatCell
     }
 
@@ -252,6 +252,36 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         archiveCell.textLabel?.textColor = .systemBlue
     }
 
+    private func update(chatCell: ContactCell, cellViewModel: ChatListCellViewModel) {
+        let chat = DcChat(id: cellViewModel.chatId)
+        chatCell.nameLabel.attributedText = (cellViewModel.unreadMessages > 0) ?
+            NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ]) :
+            NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .medium) ])
+        if let img = chat.profileImage {
+            chatCell.resetBackupImage()
+            chatCell.setImage(img)
+        } else {
+            chatCell.setBackupImage(name: chat.name, color: chat.color)
+        }
+
+        chatCell.setVerified(isVerified: chat.isVerified)
+
+        let result1 = cellViewModel.summary.text1 ?? ""
+        let result2 = cellViewModel.summary.text2 ?? ""
+        let result: String
+        if !result1.isEmpty, !result2.isEmpty {
+            result = "\(result1): \(result2)"
+        } else {
+            result = "\(result1)\(result2)"
+        }
+
+        chatCell.emailLabel.text = result
+        chatCell.setTimeLabel(cellViewModel.summary.timestamp)
+        chatCell.setUnreadMessageCounter(cellViewModel.unreadMessages)
+        chatCell.setDeliveryStatusIndicator(cellViewModel.summary.state)
+    }
+
+    /*
     private func update(chatCell: ContactCell, chatId: Int, summary: DcLot, unreadMessages: Int) {
         let chat = DcChat(id: chatId)
 
@@ -281,6 +311,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         chatCell.setUnreadMessageCounter(unreadMessages)
         chatCell.setDeliveryStatusIndicator(summary.state)
     }
+    */
 
     private func showStartChatConfirmationAlert(chatId: Int) {
 
