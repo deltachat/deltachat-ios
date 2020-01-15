@@ -1,6 +1,35 @@
 import UIKit
 
-typealias VoidFunction = () -> Void
+protocol AvatarTextCellViewModel {
+    var type: CellType { get }
+    var metaData: CellMetaData { get }
+    var title: String { get }
+    var subtitle: String { get }
+    var avartarTitle: String { get }
+    var avatarColor: String { get }
+    // add highlighting search results
+}
+
+enum CellType: CellMetaData {
+    case CONTACT
+    case CHAT
+}
+
+struct ContactCellMetaData: CellMetaData {
+    let contactId: Int
+}
+
+struct ChatCellMetaData: CellMetaData {
+    let chatId: Int
+    let summary: DcLot
+    let unreadMessages: Int
+}
+
+
+protocol CellMetaData {
+    // empty
+}
+
 
 protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     var numberOfSections: Int { get }
@@ -248,7 +277,7 @@ extension ChatListViewModel: UISearchResultsUpdating {
 
         // #1 chats with searchPattern in title bar
         var filteredChatCellViewModels: [ChatListCellViewModel] = []
-        let _ = (0..<chatList.length).map {
+        _ = (0..<chatList.length).map {
             let chatId = chatList.getChatId(index: $0)
             let chat = DcChat(id: chatId)
             let chatName = chat.name

@@ -190,6 +190,11 @@ class ChatListCoordinator: Coordinator {
         controller.coordinator = coordinator
         navigationController.pushViewController(controller, animated: true)
     }
+
+    func showNewChat(contactId: Int) {
+        let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+        showChat(chatId: Int(chatId))
+    }
 }
 
 class SettingsCoordinator: Coordinator {

@@ -141,6 +141,7 @@
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
 		AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E41FB32E1900DCDD78 /* Utils.swift */; };
 		AEB7068D23CC9C3800504AB3 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB7068C23CC9C3800504AB3 /* ChatListViewModel.swift */; };
+		AEB7069123CF618D00504AB3 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB7069023CF618D00504AB3 /* TypeAlias.swift */; };
 		AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D752253431E007DC082 /* AccountSetupController.swift */; };
 		AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7C2253ADB4007DC082 /* HudHandler.swift */; };
 		AEE56D80225504DB007DC082 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7F225504DB007DC082 /* Extensions.swift */; };
@@ -365,6 +366,7 @@
 		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AEACE2E41FB32E1900DCDD78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		AEB7068C23CC9C3800504AB3 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
+		AEB7069023CF618D00504AB3 /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		AEE56D752253431E007DC082 /* AccountSetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AEE56D7C2253ADB4007DC082 /* HudHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudHandler.swift; sourceTree = "<group>"; };
 		AEE56D7F225504DB007DC082 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -712,6 +714,7 @@
 				3095A350237DD1F700AB07F7 /* MediaPicker.swift */,
 				30AC265E237F1807002A943F /* AvatarHelper.swift */,
 				302B84C42396627F001C261F /* RelayHelper.swift */,
+				AEB7069023CF618D00504AB3 /* TypeAlias.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1166,6 +1169,7 @@
 				AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */,
 				305961D12346125100C80F33 /* Bundle+Extensions.swift in Sources */,
 				305962002346125100C80F33 /* MessagesCollectionView.swift in Sources */,
+				AEB7069123CF618D00504AB3 /* TypeAlias.swift in Sources */,
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
 				AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */,
 				AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */,
