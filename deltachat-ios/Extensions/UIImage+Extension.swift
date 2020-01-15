@@ -76,7 +76,7 @@ extension UIImage {
     // the size of PNG imgaes will be scaled down
     func scaleDownAndCompress(toMax: Float) -> UIImage? {
         let rect = getResizedRectangle(toMax: self.isTransparent() ?
-            Float(min(self.size.width / 2, CGFloat(toMax / 2))) :
+            min(Float(self.size.width) / 2, toMax / 2) :
             toMax)
 
         UIGraphicsBeginImageContextWithOptions(rect.size, !self.isTransparent(), 0.0)
