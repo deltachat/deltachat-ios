@@ -126,7 +126,7 @@ struct Utils {
             return nil
         }
 
-        guard let data = image.jpegData(compressionQuality: 1.0) else {
+        guard let data = image.isTransparent() ? image.pngData() : image.jpegData(compressionQuality: 1.0) else {
             return nil
         }
 

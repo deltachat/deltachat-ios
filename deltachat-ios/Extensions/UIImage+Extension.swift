@@ -71,15 +71,22 @@ extension UIImage {
         return newImage
     }
 
-    // source: https://stackoverflow.com/questions/29137488/how-do-i-resize-the-uiimage-to-reduce-upload-image-size // slightly changed
+    // if an image has an alpha channel we try to keep it, using PNG formatting instead of JPEG
+    // PNGs are less compressed than JPEGs - to keep the message sizes small,
+    // the size of PNG imgaes will be scaled down
     func scaleDownAndCompress(toMax: Float) -> UIImage? {
-        let rect = getResizedRectangle(toMax: toMax)
-        //50 percent compression
-        let compressionQuality: Float = 0.5
-        UIGraphicsBeginImageContextWithOptions(rect.size, self.isTransparent(), 0.0)
+        let rect = getResizedRectangle(toMax: self.isTransparent() ?
+            Float(min(self.size.width / 2, CGFloat(toMax / 2))) :
+            toMax)
+
+        UIGraphicsBeginImageContextWithOptions(rect.size, !self.isTransparent(), 0.0)
         draw(in: rect)
         let img = UIGraphicsGetImageFromCurrentImageContext()
-        let imageData = img?.jpegData(compressionQuality: CGFloat(compressionQuality))
+
+        let imageData = self.isTransparent() ?
+            img?.pngData() :
+            img?.jpegData(compressionQuality: 0.5)
+
         UIGraphicsEndImageContext()
         return UIImage(data: imageData!)
     }
