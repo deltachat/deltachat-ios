@@ -18,7 +18,7 @@ class ChatListController: UIViewController {
     }()
 
     private lazy var chatTable: UITableView = {
-        let chatTable = UITableView()
+        let chatTable = UITableView(frame: .zero, style: .grouped)
         chatTable.register(UITableViewCell.self, forCellReuseIdentifier: archivedCellReuseIdentifier)
         chatTable.register(ContactCell.self, forCellReuseIdentifier: deadDropCellReuseIdentifier)
         chatTable.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
@@ -141,9 +141,27 @@ class ChatListController: UIViewController {
 
 // MARK: uiTableViewDatasource, uiTabelViewDelegate
 extension ChatListController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return viewModel.chatsCount
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var title = viewModel.titleForHeaderIn(section: section)
+        print(title)
+        return title
     }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections
+    }
+
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+          return viewModel.numberOfRowsIn(section: section)
+    }
+
+    /*
+    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.numberOfRowsIn(section: section)
+    }
+    */
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let chatId = viewModel.chatIdFor(indexPath: indexPath) else {
@@ -280,38 +298,6 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         chatCell.setUnreadMessageCounter(cellViewModel.unreadMessages)
         chatCell.setDeliveryStatusIndicator(cellViewModel.summary.state)
     }
-
-    /*
-    private func update(chatCell: ContactCell, chatId: Int, summary: DcLot, unreadMessages: Int) {
-        let chat = DcChat(id: chatId)
-
-        chatCell.nameLabel.attributedText = (unreadMessages > 0) ?
-            NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ]) :
-            NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .medium) ])
-        if let img = chat.profileImage {
-            chatCell.resetBackupImage()
-            chatCell.setImage(img)
-        } else {
-            chatCell.setBackupImage(name: chat.name, color: chat.color)
-        }
-
-        chatCell.setVerified(isVerified: chat.isVerified)
-
-        let result1 = summary.text1 ?? ""
-        let result2 = summary.text2 ?? ""
-        let result: String
-        if !result1.isEmpty, !result2.isEmpty {
-            result = "\(result1): \(result2)"
-        } else {
-            result = "\(result1)\(result2)"
-        }
-
-        chatCell.emailLabel.text = result
-        chatCell.setTimeLabel(summary.timestamp)
-        chatCell.setUnreadMessageCounter(unreadMessages)
-        chatCell.setDeliveryStatusIndicator(summary.state)
-    }
-    */
 
     private func showStartChatConfirmationAlert(chatId: Int) {
 
