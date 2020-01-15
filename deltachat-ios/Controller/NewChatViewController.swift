@@ -351,7 +351,6 @@ class NewChatViewController: UITableViewController {
     private func searchBarIsEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-
 }
 
 // MARK: - ContactListDelegate
@@ -416,19 +415,4 @@ enum ContactDetail {
 struct ContactWithSearchResults {
     let contact: DcContact
     let indexesToHighlight: [ContactHighlights]
-}
-
-struct SearchResult<Searchable> {
-    let entity: Searchable
-    let indexesToHighlight: [ResultIndexes]
-}
-
-struct ResultIndexes {
-    let detail: EntityDetail
-    let indexes: [Int]
-}
-
-enum EntityDetail {
-    case TITLE
-    case SUBTITLE
 }
