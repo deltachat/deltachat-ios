@@ -155,12 +155,6 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
           return viewModel.numberOfRowsIn(section: section)
     }
 
-    /*
-    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRowsIn(section: section)
-    }
-    */
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let chatId = viewModel.chatIdFor(indexPath: indexPath) else {
             fatalError("No chatId for given IndexPath")
