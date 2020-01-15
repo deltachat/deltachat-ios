@@ -14,21 +14,15 @@ enum CellModel {
     case CHAT(ChatCellData)
 }
 
-struct ContactCellData: CellData {
+struct ContactCellData {
     let contactId: Int
 }
 
-struct ChatCellData: CellData {
+struct ChatCellData {
     let chatId: Int
     let summary: DcLot
     let unreadMessages: Int
 }
-
-
-protocol CellData {
-    // empty
-}
-
 
 protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     var numberOfSections: Int { get }
@@ -203,17 +197,29 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         var viewModels: [ChatCellViewModel] = []
         let _ = (0..<chatList.length).map {
             let chatId = chatList.getChatId(index: $0)
-            let msgId = chatList.getMsgId(index: $0)
+            // let msgId = chatList.getMsgId(index: $0)
             let summary = chatList.getSummary(index: $0)
             let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
-            // viewModels.append(ChatListCellViewModel(chatId: chatId, msgId: msgId, summary: summary, unreadMessages: unreadMessages))
+            let viewModel = ChatCellViewModel(
+                chatData: ChatCellData(
+                    chatId: chatId,
+                    summary: summary,
+                    unreadMessages: unreadMessages
+                )
+            )
+            viewModels.append(viewModel)
         }
         return viewModels
     }
 
     func chatIdFor(indexPath: IndexPath) -> Int? {
-        return nil
-       // return getCellViewModelFor(indexPath: indexPath).cellData
+        let cellViewModel = getCellViewModelFor(indexPath: indexPath)
+        switch cellViewModel.type {
+        case .CHAT(let data):
+            return data.chatId
+        case .CONTACT:
+            return nil
+        }
     }
 
     func msgIdFor(indexPath: IndexPath) -> Int? {
@@ -285,17 +291,13 @@ extension ChatListViewModel: UISearchResultsUpdating {
             let indexes = chatName.contains(subSequence: searchText)
             let titleHighLight = ContactHighlights(contactDetail: .NAME, indexes: indexes)
             if !indexes.isEmpty {
-                /*
-                let viewModel = ChatListCellViewModel(
-                    chatId: chatId,
-                    msgId: nil,
-                    summary: summary,
-                    unreadMessages: unreadMessages,
-                    searchHighlights: [titleHighLight],
-                    msgIdSearchResult: []
+                let viewModel = ChatCellViewModel(
+                    chatData: ChatCellData(
+                        chatId: chatId,
+                        summary: summary,
+                        unreadMessages: unreadMessages
+                    )
                 )
-                filteredChatCellViewModels.append(viewModel)
-                */
             }
         }
 
@@ -318,18 +320,12 @@ extension ChatListViewModel: UISearchResultsUpdating {
         let contactResults = contactsWithHighlights.filter { !$0.indexesToHighlight.isEmpty }
 
         for contact in contactResults {
-            /*
-            let viewModel = ChatListCellViewModel(
-                chatId: nil,
-                msgId: nil,
-                summary: nil,
-                unreadMessages: nil,
-                searchHighlights: contact.indexesToHighlight,
-                msgIdSearchResult: []
+            let viewModel = ContactCellViewModel(contactData:
+                ContactCellData(
+                    contactId: contact.contact.id
+                )
             )
-
             filteredContactCellViewModels.append(viewModel)
-            */
         }
         filteredContacts.cellData = filteredContactCellViewModels
 
@@ -337,17 +333,24 @@ extension ChatListViewModel: UISearchResultsUpdating {
         let msgIds = dcContext.searchMessages(searchText: searchText)
         var filteredMessageCellViewModels: [ChatCellViewModel] = []
 
-        /*
+
         for msgId in msgIds {
             let msg: DcMsg = DcMsg(id: msgId)
             let chatId: Int = msg.chatId
             let chat: DcChat = DcChat(id: chatId)
             let summary: DcLot = msg.summary(chat: chat)
             let unreadMessages = getUnreadMessages(chatId: chatId)
-            let viewModel = ChatListCellViewModel(chatId: chatId, msgId: msgId, summary: summary, unreadMessages: unreadMessages, searchHighlights: [], msgIdSearchResult: [])
+
+            let viewModel = ChatCellViewModel(
+                chatData: ChatCellData(
+                    chatId: chatId,
+                    summary: summary,
+                    unreadMessages: unreadMessages
+                )
+            )
             filteredMessageCellViewModels.append(viewModel)
         }
-        */
+
         filteredMessages.cellData = filteredMessageCellViewModels
     }
 

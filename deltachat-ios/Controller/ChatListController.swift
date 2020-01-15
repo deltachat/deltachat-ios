@@ -156,28 +156,35 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let chatId = viewModel.chatIdFor(indexPath: indexPath) else {
-            fatalError("No chatId for given IndexPath")
-        }
 
-        if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-            let archiveCell = tableView.dequeueReusableCell(withIdentifier: archivedCellReuseIdentifier, for: indexPath)
-            update(archiveCell: archiveCell)
-            return archiveCell
-        }
-
-        if chatId == DC_CHAT_ID_DEADDROP, let msgId = viewModel.msgIdFor(indexPath: indexPath) {
-            let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as! ContactCell
-            update(deaddropCell: deaddropCell, msgId: msgId)
-            return deaddropCell
-        }
-
-        // default chatCells
-        let chatCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as! ContactCell
         let cellViewModel = viewModel.getCellViewModelFor(indexPath: indexPath)
 
-        update(chatCell: chatCell, cellViewModel: cellViewModel)
-        return chatCell
+        switch cellViewModel.type {
+        case .CHAT(let chatData):
+            let chatId = chatData.chatId
+            if chatId == DC_CHAT_ID_ARCHIVED_LINK {
+                let archiveCell = tableView.dequeueReusableCell(withIdentifier: archivedCellReuseIdentifier, for: indexPath)
+                update(archiveCell: archiveCell)
+                return archiveCell
+            }
+
+            if chatId == DC_CHAT_ID_DEADDROP, let msgId = viewModel.msgIdFor(indexPath: indexPath) {
+                let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as! ContactCell
+                update(deaddropCell: deaddropCell, msgId: msgId)
+                return deaddropCell
+            }
+
+            // default chatCells
+            let chatCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as! ContactCell
+            let cellViewModel = viewModel.getCellViewModelFor(indexPath: indexPath)
+
+            update(avatarCell: chatCell, cellViewModel: cellViewModel)
+            return chatCell
+        case .CONTACT(let contactData):
+            let contactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as! ContactCell
+            update(avatarCell: contactCell, cellViewModel: cellViewModel)
+            return contactCell
+        }
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -262,24 +269,24 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         archiveCell.textLabel?.textColor = .systemBlue
     }
 
-    private func update(chatCell: ContactCell, cellViewModel: AvatarCellViewModel) {
+    private func update(avatarCell cell: ContactCell, cellViewModel: AvatarCellViewModel) {
         switch cellViewModel.type {
         case .CHAT(let chatData):
             let chatId = chatData.chatId
             let summary = chatData.summary
             let unreadMessages = chatData.unreadMessages
             let chat = DcChat(id: chatId)
-            chatCell.nameLabel.attributedText = (unreadMessages > 0) ?
+            cell.nameLabel.attributedText = (unreadMessages > 0) ?
                 NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ]) :
                 NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .medium) ])
             if let img = chat.profileImage {
-                chatCell.resetBackupImage()
-                chatCell.setImage(img)
+                cell.resetBackupImage()
+                cell.setImage(img)
             } else {
-                chatCell.setBackupImage(name: chat.name, color: chat.color)
+                cell.setBackupImage(name: chat.name, color: chat.color)
             }
 
-            chatCell.setVerified(isVerified: chat.isVerified)
+            cell.setVerified(isVerified: chat.isVerified)
 
             let result1 = summary.text1 ?? ""
             let result2 = summary.text2 ?? ""
@@ -290,10 +297,10 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
                 result = "\(result1)\(result2)"
             }
 
-            chatCell.emailLabel.text = result
-            chatCell.setTimeLabel(summary.timestamp)
-            chatCell.setUnreadMessageCounter(unreadMessages)
-            chatCell.setDeliveryStatusIndicator(summary.state)
+            cell.emailLabel.text = result
+            cell.setTimeLabel(summary.timestamp)
+            cell.setUnreadMessageCounter(unreadMessages)
+            cell.setDeliveryStatusIndicator(summary.state)
         case .CONTACT(let contactData):
             let contactId = contactData.contactId
         }
