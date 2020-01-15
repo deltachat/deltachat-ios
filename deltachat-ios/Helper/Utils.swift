@@ -146,20 +146,18 @@ struct Utils {
         return url.absoluteString.hasSuffix("wav")
     }
 
-    static func generateThumbnailFromVideo(url: URL) -> UIImage? {
+    static func generateThumbnailFromVideo(url: URL?) -> UIImage? {
+        guard let url = url else {
+            return nil
+        }
         do {
             let asset = AVURLAsset(url: url)
             let imageGenerator = AVAssetImageGenerator(asset: asset)
             imageGenerator.appliesPreferredTrackTransform = true
-            // Select the right one based on which version you are using
-            // Swift 4.2
-            //let cgImage = try imageGenerator.copyCGImage(at: .zero, actualTime: nil)
-            // Swift 4.0
-            let cgImage = try imageGenerator.copyCGImage(at: CMTime.zero, actualTime: nil)
+            let cgImage = try imageGenerator.copyCGImage(at: .zero, actualTime: nil)
             return UIImage(cgImage: cgImage)
         } catch {
             print(error.localizedDescription)
-
             return nil
         }
     }
