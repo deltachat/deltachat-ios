@@ -832,6 +832,16 @@ class DcMsg: MessageType {
         return swiftString
     }
 
+    func summary(chat: DcChat) -> DcLot {
+        guard let chatPointer = chat.chatPointer else {
+            fatalError()
+        }
+        guard let dcLotPointer = dc_msg_get_summary(messagePointer, chatPointer) else {
+            fatalError()
+        }
+        return DcLot(dcLotPointer)
+    }
+
     func createChat() -> DcChat {
         let chatId = dc_create_chat_by_msg_id(mailboxPointer, UInt32(id))
         return DcChat(id: Int(chatId))
