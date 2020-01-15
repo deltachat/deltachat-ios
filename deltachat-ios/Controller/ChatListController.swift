@@ -188,33 +188,38 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let chatId = viewModel.chatIdFor(indexPath: indexPath) else {
-            return
-        }
-        if chatId == DC_CHAT_ID_DEADDROP {
-            guard let msgId = viewModel.msgIdFor(indexPath: indexPath) else {
-                return
+        let cellViewModel = viewModel.getCellViewModelFor(indexPath: indexPath)
+        switch cellViewModel.type {
+        case .CHAT(let chatData):
+            let chatId = chatData.chatId
+            if chatId == DC_CHAT_ID_DEADDROP {
+                guard let msgId = viewModel.msgIdFor(indexPath: indexPath) else {
+                    return
+                }
+                let dcMsg = DcMsg(id: msgId)
+                let dcContact = DcContact(id: dcMsg.fromContactId)
+                let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
+                let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
+                alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+                    let chat = dcMsg.createChat()
+                    self.coordinator?.showChat(chatId: chat.id)
+                }))
+                alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
+                    dcContact.marknoticed()
+                }))
+                alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
+                    dcContact.block()
+                }))
+                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+                present(alert, animated: true, completion: nil)
+            } else if chatId == DC_CHAT_ID_ARCHIVED_LINK {
+                coordinator?.showArchive()
+            } else {
+                coordinator?.showChat(chatId: chatId)
             }
-            let dcMsg = DcMsg(id: msgId)
-            let dcContact = DcContact(id: dcMsg.fromContactId)
-            let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
-            let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
-            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-                let chat = dcMsg.createChat()
-                self.coordinator?.showChat(chatId: chat.id)
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
-                dcContact.marknoticed()
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
-                dcContact.block()
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
-            present(alert, animated: true, completion: nil)
-        } else if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-            coordinator?.showArchive()
-        } else {
-            coordinator?.showChat(chatId: chatId)
+        case .CONTACT(let contactData):
+            let contactId = contactData.contactId
+            self.askToChatWith(contactId: contactId)
         }
     }
 
@@ -322,6 +327,26 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+
+    private func askToChatWith(contactId: Int) {
+        assert(searchController.isActive)
+        searchController.searchBar.text = nil
+        searchController.dismiss(animated: false) {
+            let dcContact = DcContact(id: contactId)
+            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
+                                          message: nil,
+                                          preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+                self.dismiss(animated: true, completion: nil)
+                self.coordinator?.showNewChat(contactId: contactId)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+                self.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
 }
 
 

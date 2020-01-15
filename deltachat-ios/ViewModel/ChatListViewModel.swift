@@ -80,27 +80,6 @@ class ChatCellViewModel: AvatarCellViewModel{
     }
 }
 
-/*
-class ChatListCellViewModel {
-    let chatId: Int?
-    let msgId: Int?
-    let summary: DcLot?
-    let unreadMessages: Int?
-    let searchHighlights: [ContactHighlights]
-    let msgIdSearchResult: [Int]
-
-    init(chatId: Int?, msgId: Int?, summary: DcLot?, unreadMessages: Int?, searchHighlights: [ContactHighlights] = [], msgIdSearchResult: [Int] = []) {
-        self.chatId = chatId
-        self.msgId = msgId
-        self.summary = summary
-        self.unreadMessages = unreadMessages
-        self.searchHighlights = searchHighlights
-        self.msgIdSearchResult = msgIdSearchResult
-    }
-}
- */
-
-
 class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     func titleForHeaderIn(section: Int) -> String? {
         if searchActive {
@@ -108,7 +87,6 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         }
         return nil
     }
-
 
     var onChatListUpdate: VoidFunction? // callback that will reload chatListTable
 
@@ -226,15 +204,6 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         return nil
        // return getCellViewModelFor(indexPath: indexPath).msgId
     }
-
-    /*
-    func chatSummaryFor(indexPath: IndexPath) -> DcLot {
-        if searchActive {
-            return filteredSearchResults[indexPath.row].entity.
-        }
-        return chatList.getSummary(index: indexPath.row)
-    }
-    */
 
     func deleteChat(chatId: Int) {
         dcContext.deleteChat(chatId: chatId)
