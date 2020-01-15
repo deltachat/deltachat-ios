@@ -6,10 +6,11 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     var onChatListUpdate: VoidFunction? { get set }
     var showArchive: Bool { get }
     var chatsCount: Int { get }
-    func chatIdFor(indexPath: IndexPath) -> Int? // to differentiate betweeen deaddrop / archive / default
 
     var archivedChatsCount: Int { get }
     func msgIdFor(indexPath: IndexPath) -> Int?
+    func chatIdFor(indexPath: IndexPath) -> Int? // to differentiate betweeen deaddrop / archive / default
+
     func chatCellViewModel(indexPath: IndexPath) -> ChatListCellViewModel
 //    func chatSummaryFor(indexPath: IndexPath) -> DcLot
 //    func chatDetailFor(indexPath: IndexPath) -> ChatListCellViewModelProtocol
@@ -26,13 +27,12 @@ class ChatListCellViewModel {
     let chatId: Int
     let msgId: Int
     let summary: DcLot
-    let unreadMessages: [Int]
+    let unreadMessages: Int
     let indexesToHighlight: [Int]
     let msgIdSearchResult: [Int]
 
-    init(chatId: Int, msgId: Int, summary: DcLot, unreadMessages: [Int], indexesToHighlight: [Int] = [], msgIdSearchResult: [Int] = []) {
+    init(chatId: Int, msgId: Int, summary: DcLot, unreadMessages: Int, indexesToHighlight: [Int] = [], msgIdSearchResult: [Int] = []) {
         self.chatId = chatId
-        
         self.msgId = msgId
         self.summary = summary
         self.unreadMessages = unreadMessages
@@ -57,8 +57,8 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         return cellViewModels.count
     }
 
-    private let cellViewModelsComplete: [ChatListCellViewModel]
-    private var cellViewModels: [ChatListCellViewModel]
+
+    private var cellViewModels: [ChatListCellViewModel] = []
 
     func chatCellViewModel(indexPath: IndexPath) -> ChatListCellViewModel {
         return cellViewModels[indexPath.row]
@@ -72,10 +72,6 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         return dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
     }
 
-   //  private var unfilteredSearchResults: [SearchResult<DcChat>] = []
-   // private var filteredSearchResults: [SearchResult<DcChat>] = []
-    // private var searchResults: [SearchResult<DcChat>] = []
-
     private var dcContext: DcContext
     let showArchive: Bool
 
@@ -85,11 +81,30 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         self.dcContext = dcContext
         self.showArchive = showArchive
         dcContext.updateDeviceChats()
-        self.cellViewModelsComplete = (0..<chatList.length).map {
+        super.init()
+        cellViewModels = makeUnfilteredCellViewModels()
+    }
+
+    private func makeUnfilteredCellViewModels() -> [ChatListCellViewModel]  {
+        var viewModels: [ChatListCellViewModel] = []
+        let _ = (0..<chatList.length).map {
             let chatId = chatList.getChatId(index: $0)
             let msgId = chatList.getMsgId(index: $0)
+            let summary = chatList.getSummary(index: $0)
+            let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
+            viewModels.append(ChatListCellViewModel(chatId: chatId, msgId: msgId, summary: summary, unreadMessages: unreadMessages))
         }
+        return viewModels
     }
+
+    func chatIdFor(indexPath: IndexPath) -> Int? {
+        return chatCellViewModel(indexPath: indexPath).chatId
+    }
+
+    func msgIdFor(indexPath: IndexPath) -> Int? {
+        return chatCellViewModel(indexPath: indexPath).msgId
+    }
+
 
 
     /*
@@ -136,19 +151,32 @@ extension ChatListViewModel: UISearchResultsUpdating {
     private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
 
         if !searchText.isEmpty {
+
+            var filteredCellViewModels: [ChatListCellViewModel] = []
+
             let msgIds = dcContext.searchMessages(searchText: searchText)
-            let chatIds = msgIds.map { return DcMsg(id: $0).chatId }
+            var filteredChatIds: Set<Int> = []
 
-
-
-            filteredSearchResults = chatIds.map {
-                return SearchResult<DcChat>(entity: DcChat(id: $0), indexesToHighlight: [])
+            let _ = msgIds.map {
+                let chatId = DcMsg(id: $0).chatId
+                filteredChatIds.insert(chatId)
             }
+
+            // filter through chatList
+            let _ = (0..<chatList.length).map {
+                let chatId = chatList.getChatId(index: $0)
+                if filteredChatIds.contains(chatId) {
+                    let chatId = chatList.getChatId(index: $0)
+                    let msgId = chatList.getMsgId(index: $0)
+                    let summary = chatList.getSummary(index: $0)
+                    let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
+                    filteredCellViewModels.append(ChatListCellViewModel(chatId: chatId, msgId: msgId, summary: summary, unreadMessages: unreadMessages))
+                }
+            }
+            self.cellViewModels = filteredCellViewModels
         } else {
-            // if no
-            filteredSearchResults = (0..<chatList.length).map {
-                return SearchResult<DcChat>(entity: DcChat(id: chatList.getChatId(index: $0)), indexesToHighlight: [])
-            }
+            // reset cellViewModels
+            self.cellViewModels = makeUnfilteredCellViewModels()
         }
         onChatListUpdate?()
     }
