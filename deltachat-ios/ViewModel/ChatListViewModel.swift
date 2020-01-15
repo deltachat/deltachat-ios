@@ -22,13 +22,13 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
 
 class ChatListCellViewModel {
     let chatId: Int
-    let msgId: Int
+    let msgId: Int?
     let summary: DcLot
     let unreadMessages: Int
     let searchHighlights: [ContactHighlights]
     let msgIdSearchResult: [Int]
 
-    init(chatId: Int, msgId: Int, summary: DcLot, unreadMessages: Int, searchHighlights: [ContactHighlights] = [], msgIdSearchResult: [Int] = []) {
+    init(chatId: Int, msgId: Int?, summary: DcLot, unreadMessages: Int, searchHighlights: [ContactHighlights] = [], msgIdSearchResult: [Int] = []) {
         self.chatId = chatId
         self.msgId = msgId
         self.summary = summary
@@ -247,9 +247,32 @@ extension ChatListViewModel: UISearchResultsUpdating {
     private func filterAndUpdateList(searchText: String) {
 
         // #1 chats with searchPattern in title bar
+        var filteredChatCellViewModels: [ChatListCellViewModel] = []
+        (0..<chatList.length).map {
+            let chatId = chatList.getChatId(index: $0)
+            let chat = DcChat(id: chatId)
+            let chatName = chat.name
+            let summary = chatList.getSummary(index: $0)
+            let unreadMessages = getUnreadMessages(chatId: chatId)
 
+            let indexes = chatName.contains(subSequence: searchText)
+            let titleHighLight = ContactHighlights(contactDetail: .NAME, indexes: indexes)
+            if !indexes.isEmpty {
+                let viewModel = ChatListCellViewModel(chatId: chatId, msgId: nil, summary: summary, unreadMessages: unreadMessages, searchHighlights: [titleHighLight], msgIdSearchResult: [])
+                filteredChatCellViewModels.append(viewModel)
+            }
+
+
+        }
+
+
+        filteredChats.cellData = filteredChatCellViewModels
 
         // #2 contacts with searchPattern in name
+        var filteredContactCellViewModels: [ChatListCellViewModel] = []
+
+
+        filteredContacts.cellData = filteredContactCellViewModels
 
         // #3 messages with searchPattern
         let msgIds = dcContext.searchMessages(searchText: searchText)
