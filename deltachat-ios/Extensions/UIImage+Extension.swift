@@ -85,7 +85,7 @@ extension UIImage {
 
         let imageData = self.isTransparent() ?
             img?.pngData() :
-            img?.jpegData(compressionQuality: 0.5)
+            img?.jpegData(compressionQuality: 0.85)
 
         UIGraphicsEndImageContext()
         return UIImage(data: imageData!)
