@@ -269,32 +269,36 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
     }
 
     private func update(chatCell: ContactCell, cellViewModel: ChatListCellViewModel) {
-        let chat = DcChat(id: cellViewModel.chatId)
-        chatCell.nameLabel.attributedText = (cellViewModel.unreadMessages > 0) ?
-            NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ]) :
-            NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .medium) ])
-        if let img = chat.profileImage {
-            chatCell.resetBackupImage()
-            chatCell.setImage(img)
+        if let chatId = cellViewModel.chatId, let summary = cellViewModel.summary, let unreadMessages = cellViewModel.unreadMessages {
+            let chat = DcChat(id: chatId)
+            chatCell.nameLabel.attributedText = (unreadMessages > 0) ?
+                NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ]) :
+                NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .medium) ])
+            if let img = chat.profileImage {
+                chatCell.resetBackupImage()
+                chatCell.setImage(img)
+            } else {
+                chatCell.setBackupImage(name: chat.name, color: chat.color)
+            }
+
+            chatCell.setVerified(isVerified: chat.isVerified)
+
+            let result1 = summary.text1 ?? ""
+            let result2 = summary.text2 ?? ""
+            let result: String
+            if !result1.isEmpty, !result2.isEmpty {
+                result = "\(result1): \(result2)"
+            } else {
+                result = "\(result1)\(result2)"
+            }
+
+            chatCell.emailLabel.text = result
+            chatCell.setTimeLabel(summary.timestamp)
+            chatCell.setUnreadMessageCounter(unreadMessages)
+            chatCell.setDeliveryStatusIndicator(summary.state)
         } else {
-            chatCell.setBackupImage(name: chat.name, color: chat.color)
+            fatalError()
         }
-
-        chatCell.setVerified(isVerified: chat.isVerified)
-
-        let result1 = cellViewModel.summary.text1 ?? ""
-        let result2 = cellViewModel.summary.text2 ?? ""
-        let result: String
-        if !result1.isEmpty, !result2.isEmpty {
-            result = "\(result1): \(result2)"
-        } else {
-            result = "\(result1)\(result2)"
-        }
-
-        chatCell.emailLabel.text = result
-        chatCell.setTimeLabel(cellViewModel.summary.timestamp)
-        chatCell.setUnreadMessageCounter(cellViewModel.unreadMessages)
-        chatCell.setDeliveryStatusIndicator(cellViewModel.summary.state)
     }
 
     private func showStartChatConfirmationAlert(chatId: Int) {
