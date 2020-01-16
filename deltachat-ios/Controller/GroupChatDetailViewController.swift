@@ -186,8 +186,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 if let contactCell = cell as? AvatarTextCell {
                     let contact = groupMembers[row - sectionMembersStaticRowCount]
                     let displayName = contact.displayName
-                    contactCell.nameLabel.text = displayName
-                    contactCell.emailLabel.text = contact.email
+                    contactCell.titleLabel.text = displayName
+                    contactCell.subtitleLabel.text = contact.email
                     contactCell.avatar.setName(displayName)
                     contactCell.avatar.setColor(contact.color)
                     if let profileImage = contact.profileImage {

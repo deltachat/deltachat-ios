@@ -322,11 +322,11 @@ class NewChatViewController: UITableViewController {
         let contact = contactWithHighlight.contact
         let displayName = contact.displayName
 
-        let emailLabelFontSize = cell.emailLabel.font.pointSize
-        let nameLabelFontSize = cell.nameLabel.font.pointSize
+        let emailLabelFontSize = cell.subtitleLabel.font.pointSize
+        let nameLabelFontSize = cell.titleLabel.font.pointSize
 
-        cell.nameLabel.text = displayName
-        cell.emailLabel.text = contact.email
+        cell.titleLabel.text = displayName
+        cell.subtitleLabel.text = contact.email
         cell.avatar.setName(displayName)
         cell.avatar.setColor(contact.color)
         if let profileImage = contact.profileImage {
@@ -336,15 +336,15 @@ class NewChatViewController: UITableViewController {
 
         if let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {
             // gets here when contact is a result of current search -> highlights relevant indexes
-            cell.emailLabel.attributedText = contact.email.boldAt(indexes: emailHighlightedIndexes.indexes, fontSize: emailLabelFontSize)
+            cell.subtitleLabel.attributedText = contact.email.boldAt(indexes: emailHighlightedIndexes.indexes, fontSize: emailLabelFontSize)
         } else {
-            cell.emailLabel.attributedText = contact.email.boldAt(indexes: [], fontSize: emailLabelFontSize)
+            cell.subtitleLabel.attributedText = contact.email.boldAt(indexes: [], fontSize: emailLabelFontSize)
         }
 
         if let nameHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .NAME }).first {
-            cell.nameLabel.attributedText = displayName.boldAt(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
+            cell.titleLabel.attributedText = displayName.boldAt(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
         } else {
-            cell.nameLabel.attributedText = displayName.boldAt(indexes: [], fontSize: nameLabelFontSize)
+            cell.titleLabel.attributedText = displayName.boldAt(indexes: [], fontSize: nameLabelFontSize)
         }
     }
 
