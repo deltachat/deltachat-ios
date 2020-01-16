@@ -63,14 +63,12 @@ class ChatListController: UIViewController {
         newButton.tintColor = DcColors.primary
         navigationItem.rightBarButtonItem = newButton
         navigationItem.searchController = searchController
-
         setupChatTable()
+        chatTable.reloadData()
     }
-
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        chatTable.reloadData()
         updateTitle()
     }
 
