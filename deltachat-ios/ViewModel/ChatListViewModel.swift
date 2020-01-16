@@ -39,7 +39,8 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     func getCellViewModelFor(indexPath: IndexPath) -> AvatarCellViewModel
     func beginFiltering()
     func endFiltering()
-
+    var searchActive: Bool { get }
+    
     func archieveChat(chatId: Int)
     func deleteChat(chatId: Int)
 }
