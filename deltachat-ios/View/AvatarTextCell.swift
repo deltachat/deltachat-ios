@@ -21,7 +21,7 @@ class AvatarTextCell: UITableViewCell {
         return badge
     }()
 
-    let nameLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.lineBreakMode = .byTruncatingTail
@@ -29,7 +29,7 @@ class AvatarTextCell: UITableViewCell {
         return label
     }()
 
-    let emailLabel: UILabel = {
+    let subtitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(hexString: "848ba7")
@@ -42,7 +42,6 @@ class AvatarTextCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(hexString: "848ba7")
         label.textAlignment = .right
-        // label.makeBorder()
         return label
     }()
 
@@ -93,10 +92,10 @@ class AvatarTextCell: UITableViewCell {
         let bottomLineStackView = UIStackView()
         bottomLineStackView.axis = .horizontal
 
-        toplineStackView.addArrangedSubview(nameLabel)
+        toplineStackView.addArrangedSubview(titleLabel)
         toplineStackView.addArrangedSubview(timeLabel)
 
-        bottomLineStackView.addArrangedSubview(emailLabel)
+        bottomLineStackView.addArrangedSubview(subtitleLabel)
         bottomLineStackView.addArrangedSubview(deliveryStatusIndicator)
         bottomLineStackView.addArrangedSubview(unreadMessageCounter)
 
@@ -190,11 +189,11 @@ class AvatarTextCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // use this to update cells in cellForRowAt -
+    // use this to update cells in cellForRowAt
     func updateCell(cellViewModel: AvatarCellViewModel) {
 
         // subtitle
-        emailLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: emailLabel.font.pointSize)
+        subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: subtitleLabel.font.pointSize)
 
         switch cellViewModel.type {
         case .CHAT(let chatData):
@@ -202,9 +201,9 @@ class AvatarTextCell: UITableViewCell {
 
             // text bold if chat contains unread messages - otherwise hightlight search results if needed
             if chatData.unreadMessages > 0 {
-                nameLabel.attributedText = NSAttributedString(string: cellViewModel.title, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ])
+                titleLabel.attributedText = NSAttributedString(string: cellViewModel.title, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ])
             } else {
-                nameLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: nameLabel.font.pointSize)
+                titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             }
 
             if let img = chat.profileImage {
@@ -219,7 +218,10 @@ class AvatarTextCell: UITableViewCell {
             setDeliveryStatusIndicator(chatData.summary.state)
 
         case .CONTACT(let contactData):
-            nameLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: nameLabel.font.pointSize)
+            let contact = DcContact(id: contactData.contactId)
+            titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
+            avatar.setName(cellViewModel.title)
+            avatar.setColor(contact.color)
         }
     }
 
