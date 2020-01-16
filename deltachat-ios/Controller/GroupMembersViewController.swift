@@ -417,33 +417,25 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
     }
 
     private func updateContactCell(cell: AvatarTextCell, contactWithHighlight: ContactWithSearchResults) {
-        let contact = contactWithHighlight.contact
-        let displayName = contact.displayName
 
-        let emailLabelFontSize = cell.subtitleLabel.font.pointSize
-        let nameLabelFontSize = cell.titleLabel.font.pointSize
+        var nameIndexes: [Int] = []
+        var emailIndexes: [Int] = []
 
-        cell.titleLabel.text = displayName
-        cell.subtitleLabel.text = contact.email
-        cell.avatar.setName(displayName)
-        cell.avatar.setColor(contact.color)
-        if let profileImage = contact.profileImage {
-            cell.avatar.setImage(profileImage)
-        }
-        cell.setVerified(isVerified: contact.isVerified)
-
-        if let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {
-            // gets here when contact is a result of current search -> highlights relevant indexes
-            cell.subtitleLabel.attributedText = contact.email.boldAt(indexes: emailHighlightedIndexes.indexes, fontSize: emailLabelFontSize)
-        } else {
-            cell.subtitleLabel.attributedText = contact.email.boldAt(indexes: [], fontSize: emailLabelFontSize)
+        for detail in contactWithHighlight.indexesToHighlight {
+            if detail.contactDetail == .NAME {
+                nameIndexes = detail.indexes
+            } else if detail.contactDetail == .EMAIL {
+                emailIndexes = detail.indexes
+            }
         }
 
-        if let nameHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .NAME }).first {
-            cell.titleLabel.attributedText = displayName.boldAt(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
-        } else {
-            cell.titleLabel.attributedText = displayName.boldAt(indexes: [], fontSize: nameLabelFontSize)
-        }
+        let cellViewModel = ContactCellViewModel(
+            contactData: ContactCellData(
+                contactId: contactWithHighlight.contact.id
+        ),
+            titleHighlightIndexes: nameIndexes,
+            subtitleHighlightIndexes: emailIndexes)
+        cell.updateCell(cellViewModel: cellViewModel)
     }
 
 }
