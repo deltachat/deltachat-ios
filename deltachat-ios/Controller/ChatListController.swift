@@ -70,6 +70,7 @@ class ChatListController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateTitle()
+        print("ViewWillAppear: \(viewModel.searchActive)")
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -83,7 +84,6 @@ class ChatListController: UIViewController {
                                              object: nil, queue: nil) { _ in
                                                 self.chatTable.reloadData()
         }
-
         viewChatObserver = nc.addObserver(forName: dcNotificationViewChat, object: nil, queue: nil) { notification in
             if let chatId = notification.userInfo?["chat_id"] as? Int {
                 self.coordinator?.showChat(chatId: chatId)
@@ -294,21 +294,14 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
     }
 
     private func askToChatWith(contactId: Int) {
-        assert(searchController.isActive)
-        searchController.searchBar.text = nil
-
         let dcContact = DcContact(id: contactId)
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-            self.searchController.dismiss(animated: false) {
-                self.dismiss(animated: true, completion: nil)
-                self.coordinator?.showNewChat(contactId: contactId)
-            }
+            self.coordinator?.showNewChat(contactId: contactId)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
     }
