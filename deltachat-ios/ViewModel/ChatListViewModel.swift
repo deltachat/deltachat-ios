@@ -259,6 +259,7 @@ extension ChatListViewModel: UISearchResultsUpdating {
         if !searchText.isEmpty {
             filterAndUpdateList(searchText: searchText)
         } else {
+            // when search input field empty we show default chatList
             resetSearch()
         }
         onChatListUpdate?()
@@ -341,7 +342,6 @@ extension ChatListViewModel: UISearchResultsUpdating {
             )
             filteredMessageCellViewModels.append(viewModel)
         }
-
         filteredMessages.cellData = filteredMessageCellViewModels
     }
 
