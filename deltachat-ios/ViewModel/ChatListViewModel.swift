@@ -45,16 +45,19 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
 }
 
 class ContactCellViewModel: AvatarCellViewModel {
+
+    private let contact: DcContact
+
     var type: CellModel
     var title: String {
-        return "Contact Title"
+        return contact.displayName
     }
     var subtitle: String {
-        return "Contact Email"
+        return contact.email
     }
 
     var avartarTitle: String {
-        return "CON"
+        return Utils.getInitials(inputName: title)
     }
 
     var titleHighlightIndexes: [Int]
@@ -64,18 +67,20 @@ class ContactCellViewModel: AvatarCellViewModel {
         type = CellModel.CONTACT(contactData)
         self.titleHighlightIndexes = titleHighlightIndexes
         self.subtitleHighlightIndexes = subtitleHighlightIndexes
+        self.contact = DcContact(id: contactData.contactId)
     }
 }
 
 class ChatCellViewModel: AvatarCellViewModel{
 
+    private let summary: DcLot
+
     var type: CellModel
     var title: String {
-        return "title" // metaData.summary.text1 ?? ""
+        return summary.text1 ?? ""
     }
-
     var subtitle: String {
-        return "subtitle" //  metaData.summary.text2 ?? ""
+        return summary.text2 ?? ""
     }
 
     var avartarTitle: String {
@@ -89,6 +94,7 @@ class ChatCellViewModel: AvatarCellViewModel{
         self.type = CellModel.CHAT(chatData)
         self.titleHighlightIndexes = titleHighlightIndexes
         self.subtitleHighlightIndexes = subtitleHighlightIndexes
+        self.summary = chatData.summary
     }
 }
 
