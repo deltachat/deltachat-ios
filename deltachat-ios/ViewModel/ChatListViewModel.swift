@@ -294,39 +294,23 @@ extension ChatListViewModel: UISearchResultsUpdating {
         var filteredContactCellViewModels: [ContactCellViewModel] = []
         let contactIds: [Int] = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
 
-        // contactWithSearchResults.indexesToHightLight empty by default
-        var contacts: [ContactWithSearchResults] {
-            return contactIds.map { ContactWithSearchResults(contact: DcContact(id: $0), indexesToHighlight: []) }
-        }
+        let contacts = contactIds.map { return DcContact(id: $0) }
 
-        let contactsWithHighlights: [ContactWithSearchResults] = contacts.map { contact in
-            let indexes = contact.contact.containsExact(searchText: searchText)
-            return ContactWithSearchResults(contact: contact.contact, indexesToHighlight: indexes)
-        }
+        for contact in contacts {
+            let nameIndexes = contact.displayName.containsExact(subSequence: searchText)
+            let emailIndexes = contact.email.containsExact(subSequence: searchText)
 
-        let contactResults = contactsWithHighlights.filter { !$0.indexesToHighlight.isEmpty }
-
-        for contact in contactResults {
-            var nameIndexes: [Int] = []
-            var emailIndexes: [Int] = []
-
-            for indexes in contact.indexesToHighlight {
-                switch indexes.contactDetail {
-                case .NAME:
-                    nameIndexes = indexes.indexes
-                case .EMAIL:
-                    emailIndexes = indexes.indexes
-                }
+            if !nameIndexes.isEmpty || !emailIndexes.isEmpty {
+                // contact contains searchText
+                let viewModel = ContactCellViewModel(
+                    contactData: ContactCellData(
+                        contactId: contact.id
+                    ),
+                    titleHighlightIndexes: nameIndexes,
+                    subtitleHighlightIndexes: emailIndexes
+                )
+                filteredContactCellViewModels.append(viewModel)
             }
-            
-            let viewModel = ContactCellViewModel(
-                contactData: ContactCellData(
-                    contactId: contact.contact.id
-                ),
-                titleHighlightIndexes: nameIndexes,
-                subtitleHighlightIndexes: emailIndexes
-            )
-            filteredContactCellViewModels.append(viewModel)
         }
         filteredContacts.cellData = filteredContactCellViewModels
 
