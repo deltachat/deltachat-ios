@@ -193,16 +193,34 @@ class ContactCell: UITableViewCell {
 
     func updateCell(cellViewModel: AvatarCellViewModel) {
 
-        // title
-        nameLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: nameLabel.font.pointSize)
         // subtitle
         emailLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: emailLabel.font.pointSize)
 
         switch cellViewModel.type {
         case .CHAT(let chatData):
-            break
+            let chat = DcChat(id: chatData.chatId)
+
+            // text bold if chat contains unread messages - otherwise hightlight search results if needed
+            if chatData.unreadMessages > 0 {
+                nameLabel.attributedText = NSAttributedString(string: cellViewModel.title, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ])
+            } else {
+                nameLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: nameLabel.font.pointSize)
+            }
+
+            if let img = chat.profileImage {
+                resetBackupImage()
+                setImage(img)
+            } else {
+              setBackupImage(name: chat.name, color: chat.color)
+            }
+            setVerified(isVerified: chat.isVerified)
+            setTimeLabel(chatData.summary.timestamp)
+            setUnreadMessageCounter(chatData.unreadMessages)
+            setDeliveryStatusIndicator(chatData.summary.state)
+
         case .CONTACT(let contactData):
-            break
+            nameLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: nameLabel.font.pointSize)
+
         }
     }
 
