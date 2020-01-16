@@ -274,23 +274,24 @@ extension ChatListViewModel: UISearchResultsUpdating {
             let chatName = chat.name
             let summary = chatList.getSummary(index: $0)
             let unreadMessages = getUnreadMessages(chatId: chatId)
+            let chatTitleIndexes = chatName.containsExact(subSequence: searchText)
 
-            let indexes = chatName.contains(subSequence: searchText)
-            let titleHighLight = ContactHighlights(contactDetail: .NAME, indexes: indexes)
-            if !indexes.isEmpty {
+            if !chatTitleIndexes.isEmpty {
                 let viewModel = ChatCellViewModel(
                     chatData: ChatCellData(
                         chatId: chatId,
                         summary: summary,
                         unreadMessages: unreadMessages
-                    )
+                    ),
+                    titleHighlightIndexes: chatTitleIndexes
                 )
+                filteredChatCellViewModels.append(viewModel)
             }
         }
 
         filteredChats.cellData = filteredChatCellViewModels
 
-        // #2 contacts with searchPattern in name
+        // #2 contacts with searchPattern in name or in email
         var filteredContactCellViewModels: [ContactCellViewModel] = []
         let contactIds: [Int] = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
 
@@ -314,7 +315,7 @@ extension ChatListViewModel: UISearchResultsUpdating {
         }
         filteredContacts.cellData = filteredContactCellViewModels
 
-        // #3 messages with searchPattern
+        // #3 messages with searchPattern (filtered by dc_core)
         let msgIds = dcContext.searchMessages(searchText: searchText)
         var filteredMessageCellViewModels: [ChatCellViewModel] = []
 
@@ -336,7 +337,7 @@ extension ChatListViewModel: UISearchResultsUpdating {
                     unreadMessages: unreadMessages
                 ),
                 titleHighlightIndexes: messageTitleHighlights,
-                subtitleHighlightIndexes: messageHighlights 
+                subtitleHighlightIndexes: messageHighlights
             )
             filteredMessageCellViewModels.append(viewModel)
         }
