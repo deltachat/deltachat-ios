@@ -73,14 +73,23 @@ class ContactCellViewModel: AvatarCellViewModel {
 
 class ChatCellViewModel: AvatarCellViewModel{
 
+    private let chat: DcChat
     private let summary: DcLot
 
     var type: CellModel
     var title: String {
-        return summary.text1 ?? ""
+        return chat.name
     }
     var subtitle: String {
-        return summary.text2 ?? ""
+        let result1 = summary.text1 ?? ""
+        let result2 = summary.text2 ?? ""
+        let result: String
+        if !result1.isEmpty, !result2.isEmpty {
+            result = "\(result1): \(result2)"
+        } else {
+            result = "\(result1)\(result2)"
+        }
+        return result
     }
 
     var avartarTitle: String {
@@ -95,6 +104,7 @@ class ChatCellViewModel: AvatarCellViewModel{
         self.titleHighlightIndexes = titleHighlightIndexes
         self.subtitleHighlightIndexes = subtitleHighlightIndexes
         self.summary = chatData.summary
+        self.chat = DcChat(id: chatData.chatId)
     }
 }
 

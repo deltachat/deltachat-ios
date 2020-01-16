@@ -275,45 +275,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
     }
 
     private func update(avatarCell cell: ContactCell, cellViewModel: AvatarCellViewModel) {
-        switch cellViewModel.type {
-        case .CHAT(let chatData):
-            let chatId = chatData.chatId
-            let summary = chatData.summary
-            let unreadMessages = chatData.unreadMessages
-            let chat = DcChat(id: chatId)
-            cell.nameLabel.attributedText = (unreadMessages > 0) ?
-                NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ]) :
-                NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .medium) ])
-            if let img = chat.profileImage {
-                cell.resetBackupImage()
-                cell.setImage(img)
-            } else {
-                cell.setBackupImage(name: chat.name, color: chat.color)
-            }
-
-            cell.setVerified(isVerified: chat.isVerified)
-
-            let result1 = summary.text1 ?? ""
-            let result2 = summary.text2 ?? ""
-            let result: String
-            if !result1.isEmpty, !result2.isEmpty {
-                result = "\(result1): \(result2)"
-            } else {
-                result = "\(result1)\(result2)"
-            }
-
-            cell.emailLabel.text = result
-            cell.setTimeLabel(summary.timestamp)
-            cell.setUnreadMessageCounter(unreadMessages)
-            cell.setDeliveryStatusIndicator(summary.state)
-        case .CONTACT(let contactData):
-            let contactId = contactData.contactId
-            cell.updateCell(cellViewModel: cellViewModel)
-        }
-    }
-
-    private func showStartChatConfirmationAlert(chatId: Int) {
-
+        cell.updateCell(cellViewModel: cellViewModel)
     }
 
     private func showDeleteChatConfirmationAlert(chatId: Int) {
