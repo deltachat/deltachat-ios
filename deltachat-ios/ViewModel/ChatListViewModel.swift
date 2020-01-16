@@ -307,10 +307,24 @@ extension ChatListViewModel: UISearchResultsUpdating {
         let contactResults = contactsWithHighlights.filter { !$0.indexesToHighlight.isEmpty }
 
         for contact in contactResults {
-            let viewModel = ContactCellViewModel(contactData:
-                ContactCellData(
+            var nameIndexes: [Int] = []
+            var emailIndexes: [Int] = []
+
+            for indexes in contact.indexesToHighlight {
+                switch indexes.contactDetail {
+                case .NAME:
+                    nameIndexes = indexes.indexes
+                case .EMAIL:
+                    emailIndexes = indexes.indexes
+                }
+            }
+            
+            let viewModel = ContactCellViewModel(
+                contactData: ContactCellData(
                     contactId: contact.contact.id
-                )
+                ),
+                titleHighlightIndexes: nameIndexes,
+                subtitleHighlightIndexes: emailIndexes
             )
             filteredContactCellViewModels.append(viewModel)
         }
@@ -333,7 +347,8 @@ extension ChatListViewModel: UISearchResultsUpdating {
                     chatId: chatId,
                     summary: summary,
                     unreadMessages: unreadMessages
-                )
+                ),
+                subtitleHighlightIndexes: [0, 1] // TODO
             )
             filteredMessageCellViewModels.append(viewModel)
         }
