@@ -136,10 +136,14 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         }
     }
 
+
     func msgIdFor(indexPath: IndexPath) -> Int? {
-        return nil
-       // return getCellViewModelFor(indexPath: indexPath).msgId
+        if searchActive {
+            return nil
+        }
+        return chatList.getMsgId(index: indexPath.row)
     }
+
 
     func deleteChat(chatId: Int) {
         dcContext.deleteChat(chatId: chatId)
