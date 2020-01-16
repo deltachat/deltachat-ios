@@ -70,7 +70,6 @@ class ChatListController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateTitle()
-        print("ViewWillAppear: \(viewModel.searchActive)")
     }
 
     override func viewDidAppear(_ animated: Bool) {
