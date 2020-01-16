@@ -4,9 +4,11 @@ class ChatListController: UIViewController {
     weak var coordinator: ChatListCoordinator?
     private let viewModel: ChatListViewModelProtocol
 
+    private let chatCellReuseIdentifier = "ChatCell"
     private let archivedCellReuseIdentifier = "ArchiveCell"
     private let deadDropCellReuseIdentifier = "DeaddropCell"
     private let contactCellReuseIdentifier = "ContactCell"
+
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -20,6 +22,7 @@ class ChatListController: UIViewController {
     private lazy var chatTable: UITableView = {
         let chatTable = UITableView(frame: .zero, style: .grouped)
         chatTable.register(UITableViewCell.self, forCellReuseIdentifier: archivedCellReuseIdentifier)
+        chatTable.register(AvatarTextCell.self, forCellReuseIdentifier: chatCellReuseIdentifier)
         chatTable.register(AvatarTextCell.self, forCellReuseIdentifier: deadDropCellReuseIdentifier)
         chatTable.register(AvatarTextCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
         chatTable.dataSource = self
@@ -175,12 +178,13 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             }
 
             // default chatCells
-            let chatCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as! AvatarTextCell
+            let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as! AvatarTextCell
             let cellViewModel = viewModel.getCellViewModelFor(indexPath: indexPath)
 
             update(avatarCell: chatCell, cellViewModel: cellViewModel)
             return chatCell
         case .CONTACT(let contactData):
+            // will be shown when search is active
             let contactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as! AvatarTextCell
             update(avatarCell: contactCell, cellViewModel: cellViewModel)
             return contactCell
