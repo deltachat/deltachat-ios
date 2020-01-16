@@ -308,6 +308,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             cell.setDeliveryStatusIndicator(summary.state)
         case .CONTACT(let contactData):
             let contactId = contactData.contactId
+            cell.updateCell(cellViewModel: cellViewModel)
         }
     }
 
