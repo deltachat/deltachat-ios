@@ -162,7 +162,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         case sectionNewContact:
             return Constants.defaultCellHeight
         case sectionMemberList:
-            return ContactCell.cellHeight
+            return AvatarTextCell.cellHeight
         default:
             return Constants.defaultCellHeight
         }
@@ -334,7 +334,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
     }
 
     override func viewDidLoad() {
-        tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
+        tableView.register(AvatarTextCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
         navigationItem.searchController = searchController
         if #available(iOS 11.0, *) {
             navigationItem.hidesSearchBarWhenScrolling = false
@@ -351,7 +351,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ContactCell.cellHeight
+        return AvatarTextCell.cellHeight
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -367,7 +367,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
     }
 
     func getContactCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: ContactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as? ContactCell else {
+        guard let cell: AvatarTextCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as? AvatarTextCell else {
             fatalError("shouldn't happen")
         }
 
@@ -416,7 +416,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
         tableView.reloadData()
     }
 
-    private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {
+    private func updateContactCell(cell: AvatarTextCell, contactWithHighlight: ContactWithSearchResults) {
         let contact = contactWithHighlight.contact
         let displayName = contact.displayName
 

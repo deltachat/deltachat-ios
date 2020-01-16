@@ -20,8 +20,8 @@ class ChatListController: UIViewController {
     private lazy var chatTable: UITableView = {
         let chatTable = UITableView(frame: .zero, style: .grouped)
         chatTable.register(UITableViewCell.self, forCellReuseIdentifier: archivedCellReuseIdentifier)
-        chatTable.register(ContactCell.self, forCellReuseIdentifier: deadDropCellReuseIdentifier)
-        chatTable.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
+        chatTable.register(AvatarTextCell.self, forCellReuseIdentifier: deadDropCellReuseIdentifier)
+        chatTable.register(AvatarTextCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
         chatTable.dataSource = self
         chatTable.delegate = self
         chatTable.rowHeight = 80
@@ -169,19 +169,19 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             }
 
             if chatId == DC_CHAT_ID_DEADDROP, let msgId = viewModel.msgIdFor(indexPath: indexPath) {
-                let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as! ContactCell
+                let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as! AvatarTextCell
                 update(deaddropCell: deaddropCell, msgId: msgId)
                 return deaddropCell
             }
 
             // default chatCells
-            let chatCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as! ContactCell
+            let chatCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as! AvatarTextCell
             let cellViewModel = viewModel.getCellViewModelFor(indexPath: indexPath)
 
             update(avatarCell: chatCell, cellViewModel: cellViewModel)
             return chatCell
         case .CONTACT(let contactData):
-            let contactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as! ContactCell
+            let contactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as! AvatarTextCell
             update(avatarCell: contactCell, cellViewModel: cellViewModel)
             return contactCell
         }
@@ -252,7 +252,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
     // MARK: cell updates
 
-    private func update(deaddropCell: ContactCell, msgId: Int) {
+    private func update(deaddropCell: AvatarTextCell, msgId: Int) {
         deaddropCell.backgroundColor = DcColors.deaddropBackground
         deaddropCell.contentView.backgroundColor = DcColors.deaddropBackground
 
@@ -274,7 +274,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         archiveCell.textLabel?.textColor = .systemBlue
     }
 
-    private func update(avatarCell cell: ContactCell, cellViewModel: AvatarCellViewModel) {
+    private func update(avatarCell cell: AvatarTextCell, cellViewModel: AvatarCellViewModel) {
         cell.updateCell(cellViewModel: cellViewModel)
     }
 

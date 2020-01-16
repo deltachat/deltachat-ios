@@ -25,7 +25,7 @@ class GroupChatDetailViewController: UIViewController {
         table.bounces = false
         table.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
         table.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
-        table.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
+        table.register(AvatarTextCell.self, forCellReuseIdentifier: "contactCell")
 
         return table
     }()
@@ -152,7 +152,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             case sectionMembersRowJoinQR:
                 return Constants.defaultCellHeight
             default:
-                return ContactCell.cellHeight
+                return AvatarTextCell.cellHeight
             }
         case sectionLeaveGroup:
             return Constants.defaultCellHeight
@@ -183,7 +183,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 return cell
             default:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
-                if let contactCell = cell as? ContactCell {
+                if let contactCell = cell as? AvatarTextCell {
                     let contact = groupMembers[row - sectionMembersStaticRowCount]
                     let displayName = contact.displayName
                     contactCell.nameLabel.text = displayName

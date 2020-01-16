@@ -4,7 +4,8 @@ protocol ContactCellDelegate: class {
     func onAvatarTapped(at index: Int)
 }
 
-class ContactCell: UITableViewCell {
+// cell is used for displaying chats and contacts
+class AvatarTextCell: UITableViewCell {
 
     static let cellHeight: CGFloat = 74.5
 
@@ -25,10 +26,12 @@ class ContactCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultTextColor
+<<<<<<< HEAD:deltachat-ios/View/ContactCell.swift
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
         // label.makeBorder()
+=======
+>>>>>>> renamed contactCell into AvatarTextCell:deltachat-ios/View/AvatarTextCell.swift
         return label
-
     }()
 
     let emailLabel: UILabel = {
