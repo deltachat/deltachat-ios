@@ -192,4 +192,20 @@ class ContactCell: UITableViewCell {
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    func updateCell(cellViewModel: AvatarCellViewModel) {
+
+        // title
+        nameLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: nameLabel.font.pointSize)
+        // subtitle
+        emailLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: emailLabel.font.pointSize)
+
+        switch cellViewModel.type {
+        case .CHAT(let chatData):
+            break
+        case .CONTACT(let contactData):
+            break
+        }
+    }
+
 }

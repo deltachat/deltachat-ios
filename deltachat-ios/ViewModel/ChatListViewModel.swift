@@ -3,7 +3,9 @@ import UIKit
 protocol AvatarCellViewModel {
     var type: CellModel { get }
     var title: String { get }
+    var titleHighlightIndexes: [Int] { get }
     var subtitle: String { get }
+    var subtitleHighlightIndexes: [Int] { get }
     var avartarTitle: String { get }
     // var avatarColor: String { get }
     // add highlighting search results
@@ -55,8 +57,13 @@ class ContactCellViewModel: AvatarCellViewModel {
         return "CON"
     }
 
-    init(contactData: ContactCellData) {
+    var titleHighlightIndexes: [Int]
+    var subtitleHighlightIndexes: [Int]
+
+    init(contactData: ContactCellData, titleHighlightIndexes: [Int] = [], subtitleHighlightIndexes: [Int] = []) {
         type = CellModel.CONTACT(contactData)
+        self.titleHighlightIndexes = titleHighlightIndexes
+        self.subtitleHighlightIndexes = subtitleHighlightIndexes
     }
 }
 
@@ -75,8 +82,13 @@ class ChatCellViewModel: AvatarCellViewModel{
         return "ABC"
     }
 
-    init(chatData: ChatCellData) {
+    var titleHighlightIndexes: [Int]
+    var subtitleHighlightIndexes: [Int]
+
+    init(chatData: ChatCellData, titleHighlightIndexes: [Int] = [], subtitleHighlightIndexes: [Int] = []) {
         self.type = CellModel.CHAT(chatData)
+        self.titleHighlightIndexes = titleHighlightIndexes
+        self.subtitleHighlightIndexes = subtitleHighlightIndexes
     }
 }
 
