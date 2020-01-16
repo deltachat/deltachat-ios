@@ -82,7 +82,7 @@ class NewChatViewController: UITableViewController {
             navigationItem.hidesSearchBarWhenScrolling = false
         }
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
-        tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
+        tableView.register(AvatarTextCell.self, forCellReuseIdentifier: "contactCell")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -155,12 +155,12 @@ class NewChatViewController: UITableViewController {
             return Constants.defaultCellHeight
         } else if section == sectionImportedContacts {
             if deviceContactAccessGranted {
-                return ContactCell.cellHeight
+                return AvatarTextCell.cellHeight
             } else {
                 return Constants.defaultCellHeight
             }
         } else {
-            return ContactCell.cellHeight
+            return AvatarTextCell.cellHeight
         }
     }
 
@@ -185,7 +185,7 @@ class NewChatViewController: UITableViewController {
             // import device contacts section
             if deviceContactAccessGranted {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
-                if let contactCell = cell as? ContactCell {
+                if let contactCell = cell as? AvatarTextCell {
                     let contact: ContactWithSearchResults = contactSearchResultByRow(row)
                     updateContactCell(cell: contactCell, contactWithHighlight: contact)
                 }
@@ -200,7 +200,7 @@ class NewChatViewController: UITableViewController {
         } else {
             // section contact list if device contacts are not imported
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
-            if let contactCell = cell as? ContactCell {
+            if let contactCell = cell as? AvatarTextCell {
                 let contact: ContactWithSearchResults = contactSearchResultByRow(row)
                 updateContactCell(cell: contactCell, contactWithHighlight: contact)
             }
@@ -318,7 +318,7 @@ class NewChatViewController: UITableViewController {
         }
     }
 
-    private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {
+    private func updateContactCell(cell: AvatarTextCell, contactWithHighlight: ContactWithSearchResults) {
         let contact = contactWithHighlight.contact
         let displayName = contact.displayName
 

@@ -95,7 +95,7 @@
 		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
 		7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactDetailViewController.swift */; };
 		70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */; };
-		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
+		70B8882E2091B8550074812E /* AvatarTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* AvatarTextCell.swift */; };
 		7837B64021E54DC600CDE126 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7837B63F21E54DC600CDE126 /* .swiftlint.yml */; };
 		785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BE16721E247F1003BE98C /* MessageInfoViewController.swift */; };
 		787D669A229F2237000A7A9D /* libdeltachat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 787D6699229F2237000A7A9D /* libdeltachat.a */; };
@@ -311,7 +311,7 @@
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
 		7092474020B3869500AF8799 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
 		70B08FCC21073B910097D3EA /* NewGroupMemberChoiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupMemberChoiceController.swift; sourceTree = "<group>"; };
-		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		70B8882D2091B8550074812E /* AvatarTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarTextCell.swift; sourceTree = "<group>"; };
 		7837B63F21E54DC600CDE126 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		785BE16721E247F1003BE98C /* MessageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfoViewController.swift; sourceTree = "<group>"; };
 		787D6699229F2237000A7A9D /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "deltachat-ios/libraries/deltachat-core-rust/target/universal/debug/libdeltachat.a"; sourceTree = "<group>"; };
@@ -724,7 +724,7 @@
 			children = (
 				B26B3BC6236DC3DC008ED35A /* SwitchCell.swift */,
 				78E45E4B21D404AE00D4B15E /* CustomMessageCell.swift */,
-				70B8882D2091B8550074812E /* ContactCell.swift */,
+				70B8882D2091B8550074812E /* AvatarTextCell.swift */,
 				78ED839321D5AF8A00243125 /* QrCodeView.swift */,
 				78ED838221D5379000243125 /* TextFieldCell.swift */,
 				30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */,
@@ -1151,7 +1151,7 @@
 				AE851ACE227CA54400ED86F0 /* InitialsBadge.swift in Sources */,
 				305961DA2346125100C80F33 /* MediaItem.swift in Sources */,
 				305961EB2346125100C80F33 /* MessageKitError.swift in Sources */,
-				70B8882E2091B8550074812E /* ContactCell.swift in Sources */,
+				70B8882E2091B8550074812E /* AvatarTextCell.swift in Sources */,
 				305961F82346125100C80F33 /* AudioMessageCell.swift in Sources */,
 				7A451D941FB1B1DB00177250 /* wrapper.c in Sources */,
 				305961EC2346125100C80F33 /* Avatar.swift in Sources */,

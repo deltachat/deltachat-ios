@@ -62,7 +62,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         navigationItem.rightBarButtonItem = doneButton
         tableView.bounces = false
         doneButton.isEnabled = false
-        tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
+        tableView.register(AvatarTextCell.self, forCellReuseIdentifier: "contactCell")
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
         self.hideKeyboardOnTap()
     }
@@ -178,7 +178,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             }
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
-            if let contactCell = cell as? ContactCell {
+            if let contactCell = cell as? AvatarTextCell {
                 let contact = DcContact(id: groupContactIds[row])
                 let displayName = contact.displayName
                 contactCell.nameLabel.text = displayName
@@ -214,7 +214,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         case sectionInvite:
             return Constants.defaultCellHeight
         default:
-            return ContactCell.cellHeight
+            return AvatarTextCell.cellHeight
         }
     }
 

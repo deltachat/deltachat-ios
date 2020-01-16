@@ -4,7 +4,8 @@ protocol ContactCellDelegate: class {
     func onAvatarTapped(at index: Int)
 }
 
-class ContactCell: UITableViewCell {
+// cell is used for displaying chats and contacts
+class AvatarTextCell: UITableViewCell {
 
     static let cellHeight: CGFloat = 74.5
 
@@ -25,9 +26,7 @@ class ContactCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultTextColor
-        // label.makeBorder()
         return label
-
     }()
 
     let emailLabel: UILabel = {
