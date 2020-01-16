@@ -1,6 +1,6 @@
 import UIKit
 
-protocol ContactCellDelegate: class {
+protocol AvatarTextCellDelegate: class {
     func onAvatarTapped(at index: Int)
 }
 
@@ -9,7 +9,7 @@ class AvatarTextCell: UITableViewCell {
 
     static let cellHeight: CGFloat = 74.5
 
-    weak var delegate: ContactCellDelegate?
+    weak var delegate: AvatarTextCellDelegate?
     var rowIndex = -1
     private let badgeSize: CGFloat = 54
     private let imgSize: CGFloat = 20
@@ -190,6 +190,7 @@ class AvatarTextCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // use this to update cells in cellForRowAt -
     func updateCell(cellViewModel: AvatarCellViewModel) {
 
         // subtitle
@@ -219,7 +220,6 @@ class AvatarTextCell: UITableViewCell {
 
         case .CONTACT(let contactData):
             nameLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: nameLabel.font.pointSize)
-
         }
     }
 
