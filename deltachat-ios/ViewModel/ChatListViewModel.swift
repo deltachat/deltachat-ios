@@ -6,9 +6,6 @@ protocol AvatarCellViewModel {
     var titleHighlightIndexes: [Int] { get }
     var subtitle: String { get }
     var subtitleHighlightIndexes: [Int] { get }
-    var avartarTitle: String { get }
-    // var avatarColor: String { get }
-    // add highlighting search results
 }
 
 enum CellModel {
@@ -39,8 +36,7 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     func getCellViewModelFor(indexPath: IndexPath) -> AvatarCellViewModel
     func beginFiltering()
     func endFiltering()
-    var searchActive: Bool { get }
-    
+
     func archieveChat(chatId: Int)
     func deleteChat(chatId: Int)
 }
@@ -91,10 +87,6 @@ class ChatCellViewModel: AvatarCellViewModel{
             result = "\(result1)\(result2)"
         }
         return result
-    }
-
-    var avartarTitle: String {
-        return "ABC"
     }
 
     var titleHighlightIndexes: [Int]
