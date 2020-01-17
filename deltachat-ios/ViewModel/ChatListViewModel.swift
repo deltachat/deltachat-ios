@@ -63,7 +63,9 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
             .filter { !$0.cellData.isEmpty } //
     }
 
-    private var cellViewModels: [AvatarCellViewModel] = []
+    private var cellViewModels: [AvatarCellViewModel] {
+        return makeUnfilteredCellViewModels()
+    }
 
     func getCellViewModelFor(indexPath: IndexPath) -> AvatarCellViewModel {
         if searchActive {
@@ -91,7 +93,6 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         self.showArchive = showArchive
         dcContext.updateDeviceChats()
         super.init()
-        cellViewModels = makeUnfilteredCellViewModels()
     }
 
     var numberOfSections: Int {

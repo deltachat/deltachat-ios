@@ -70,6 +70,10 @@ class ChatListController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateTitle()
+        // reloading when search active caused a UI-glitch and is actually not needed as long swipe actions are
+        if !viewModel.searchActive {
+            chatTable.reloadData()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -177,7 +181,6 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             // default chatCells
             let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as! AvatarTextCell
             let cellViewModel = viewModel.getCellViewModelFor(indexPath: indexPath)
-
             update(avatarCell: chatCell, cellViewModel: cellViewModel)
             return chatCell
         case .CONTACT(let contactData):
