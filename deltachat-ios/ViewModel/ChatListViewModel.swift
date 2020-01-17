@@ -248,18 +248,16 @@ extension ChatListViewModel: UISearchResultsUpdating {
             let summary: DcLot = msg.summary(chat: chat)
             let unreadMessages = getUnreadMessages(chatId: chatId)
 
-            let messageTitleHighlights = summary.text1?.containsExact(subSequence: searchText) ?? []
-            let messageHighlights = summary.text2?.containsExact(subSequence: searchText) ?? []
-
             let viewModel = ChatCellViewModel(
                 chatData: ChatCellData(
                     chatId: chatId,
                     summary: summary,
                     unreadMessages: unreadMessages
-                ),
-                titleHighlightIndexes: messageTitleHighlights,
-                subtitleHighlightIndexes: messageHighlights
+                )
             )
+            let subtitle = viewModel.subtitle
+            viewModel.subtitleHighlightIndexes = subtitle.containsExact(subSequence: searchText)
+
             filteredMessageCellViewModels.append(viewModel)
         }
         filteredMessages.cellData = filteredMessageCellViewModels
