@@ -67,6 +67,7 @@ class ChatCellViewModel: AvatarCellViewModel{
     var title: String {
         return chat.name
     }
+
     var subtitle: String {
         let result1 = summary.text1 ?? ""
         let result2 = summary.text2 ?? ""

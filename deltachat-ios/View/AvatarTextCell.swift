@@ -26,11 +26,7 @@ class AvatarTextCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultTextColor
-<<<<<<< HEAD:deltachat-ios/View/ContactCell.swift
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
-        // label.makeBorder()
-=======
->>>>>>> renamed contactCell into AvatarTextCell:deltachat-ios/View/AvatarTextCell.swift
         return label
     }()
 
@@ -47,11 +43,7 @@ class AvatarTextCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(hexString: "848ba7")
         label.textAlignment = .right
-<<<<<<< HEAD
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 2), for: NSLayoutConstraint.Axis.horizontal)
-        // label.makeBorder()
-=======
->>>>>>> avatar now updated for contact cell on search
         return label
     }()
 
