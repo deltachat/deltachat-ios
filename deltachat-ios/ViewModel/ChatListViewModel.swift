@@ -1,6 +1,7 @@
 import UIKit
 
 protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
+    var searchActive: Bool { get }
     var numberOfSections: Int { get }
     var onChatListUpdate: VoidFunction? { get set }
     var showArchive: Bool { get }

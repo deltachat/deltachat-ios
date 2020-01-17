@@ -225,9 +225,15 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if viewModel.searchActive {
+            // no actions when search active
+            return []
+        }
+
         guard let chatId = viewModel.chatIdFor(indexPath: indexPath) else {
             return []
         }
+
         if chatId==DC_CHAT_ID_ARCHIVED_LINK || chatId==DC_CHAT_ID_DEADDROP {
             return []
             // returning nil may result in a default delete action,
