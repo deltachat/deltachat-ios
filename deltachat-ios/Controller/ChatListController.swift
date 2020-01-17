@@ -79,15 +79,18 @@ class ChatListController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let nc = NotificationCenter.default
-        msgChangedObserver = nc.addObserver(forName: dcNotificationChanged,
-                                            object: nil, queue: nil) { _ in
-                                                self.chatTable.reloadData()
+        msgChangedObserver = nc.addObserver(
+            forName: dcNotificationChanged,
+            object: nil, queue: nil) { _ in
+                self.chatTable.reloadData()
         }
-        incomingMsgObserver = nc.addObserver(forName: dcNotificationIncoming,
-                                             object: nil, queue: nil) { _ in
-                                                self.chatTable.reloadData()
+        incomingMsgObserver = nc.addObserver(
+            forName: dcNotificationIncoming,
+            object: nil, queue: nil) { _ in
+                self.chatTable.reloadData()
         }
-        viewChatObserver = nc.addObserver(forName: dcNotificationViewChat, object: nil, queue: nil) { notification in
+        viewChatObserver = nc.addObserver(
+        forName: dcNotificationViewChat, object: nil, queue: nil) { notification in
             if let chatId = notification.userInfo?["chat_id"] as? Int {
                 self.coordinator?.showChat(chatId: chatId)
             }
@@ -153,7 +156,6 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
-
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
           return viewModel.numberOfRowsIn(section: section)
