@@ -1,6 +1,6 @@
 import UIKit
 
-class ChatListController: UIViewController {
+class ChatListController: UITableViewController {
     weak var coordinator: ChatListCoordinator?
     private let viewModel: ChatListViewModelProtocol
 
@@ -19,18 +19,6 @@ class ChatListController: UIViewController {
         return searchController
     }()
 
-    private lazy var chatTable: UITableView = {
-        let chatTable = UITableView(frame: .zero, style: .grouped)
-        chatTable.register(UITableViewCell.self, forCellReuseIdentifier: archivedCellReuseIdentifier)
-        chatTable.register(AvatarTextCell.self, forCellReuseIdentifier: chatCellReuseIdentifier)
-        chatTable.register(AvatarTextCell.self, forCellReuseIdentifier: deadDropCellReuseIdentifier)
-        chatTable.register(AvatarTextCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
-        chatTable.dataSource = self
-        chatTable.delegate = self
-        chatTable.rowHeight = 80
-        return chatTable
-    }()
-
     private var msgChangedObserver: Any?
     private var incomingMsgObserver: Any?
     private var viewChatObserver: Any?
@@ -44,11 +32,12 @@ class ChatListController: UIViewController {
 
     init(viewModel: ChatListViewModelProtocol) {
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: .grouped)
         viewModel.onChatListUpdate = {
             [unowned self] in
-            self.chatTable.reloadData()
+            self.tableView.reloadData()
         }
+        configureTableView()
     }
 
     required init?(coder _: NSCoder) {
@@ -63,8 +52,7 @@ class ChatListController: UIViewController {
         newButton.tintColor = DcColors.primary
         navigationItem.rightBarButtonItem = newButton
         navigationItem.searchController = searchController
-        setupChatTable()
-        chatTable.reloadData()
+        tableView.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -72,7 +60,7 @@ class ChatListController: UIViewController {
         updateTitle()
         // reloading when search active caused a UI-glitch and is actually not needed as long swipe actions are
         if !viewModel.searchActive {
-            chatTable.reloadData()
+            tableView.reloadData()
         }
     }
 
@@ -82,12 +70,12 @@ class ChatListController: UIViewController {
         msgChangedObserver = nc.addObserver(
             forName: dcNotificationChanged,
             object: nil, queue: nil) { _ in
-                self.chatTable.reloadData()
+                self.tableView.reloadData()
         }
         incomingMsgObserver = nc.addObserver(
             forName: dcNotificationIncoming,
             object: nil, queue: nil) { _ in
-                self.chatTable.reloadData()
+                self.tableView.reloadData()
         }
         viewChatObserver = nc.addObserver(
         forName: dcNotificationViewChat, object: nil, queue: nil) { notification in
@@ -113,13 +101,12 @@ class ChatListController: UIViewController {
     }
 
     // MARK: setup
-    private func setupChatTable() {
-        view.addSubview(chatTable)
-        chatTable.translatesAutoresizingMaskIntoConstraints = false
-        chatTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        chatTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        chatTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        chatTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    private func configureTableView() {
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: archivedCellReuseIdentifier)
+        tableView.register(AvatarTextCell.self, forCellReuseIdentifier: chatCellReuseIdentifier)
+        tableView.register(AvatarTextCell.self, forCellReuseIdentifier: deadDropCellReuseIdentifier)
+        tableView.register(AvatarTextCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
+        tableView.rowHeight = 80
     }
 
     // MARK: actions
@@ -144,24 +131,23 @@ class ChatListController: UIViewController {
             navigationItem.setLeftBarButton(nil, animated: true)
         }
     }
-}
+
 
 // MARK: uiTableViewDatasource, uiTabelViewDelegate
-extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.titleForHeaderIn(section: section)
     }
 
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
           return viewModel.numberOfRowsIn(section: section)
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cellViewModel = viewModel.getCellViewModelFor(indexPath: indexPath)
 
@@ -193,7 +179,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellViewModel = viewModel.getCellViewModelFor(indexPath: indexPath)
         switch cellViewModel.type {
         case .CHAT(let chatData):
@@ -229,7 +215,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if viewModel.searchActive {
             // no actions when search active
             return []

@@ -6,7 +6,7 @@ class DcContext {
     let contextPointer: OpaquePointer?
 
     init() {
-        var version = ""
+        var version = ""< 
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             version += " " + appVersion
         }
