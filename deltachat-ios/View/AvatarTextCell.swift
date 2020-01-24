@@ -62,8 +62,7 @@ class AvatarTextCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
-        backgroundColor = DcColors.chatBackgroundColor
-        contentView.backgroundColor = DcColors.chatBackgroundColor
+        backgroundColor = DcColors.avatarCellBackgroundColor
         setupSubviews()
     }
 
@@ -193,7 +192,6 @@ class AvatarTextCell: UITableViewCell {
 
     // use this to update cells in cellForRowAt
     func updateCell(cellViewModel: AvatarCellViewModel) {
-
         // subtitle
         subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: subtitleLabel.font.pointSize)
 

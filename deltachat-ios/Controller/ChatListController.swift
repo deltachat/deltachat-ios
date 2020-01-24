@@ -305,13 +305,20 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
     private func askToChatWith(contactId: Int) {
         let dcContact = DcContact(id: contactId)
-        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
-                                      message: nil,
-                                      preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-            self.coordinator?.showNewChat(contactId: contactId)
+        let alert = UIAlertController(
+            title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
+            message: nil,
+            preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(
+            title: String.localized("start_chat"),
+            style: .default,
+            handler: { _ in
+                self.coordinator?.showNewChat(contactId: contactId)
         }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+        alert.addAction(UIAlertAction(
+            title: String.localized("cancel"),
+            style: .cancel,
+            handler: { _ in
         }))
         self.present(alert, animated: true, completion: nil)
     }
