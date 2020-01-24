@@ -191,7 +191,10 @@ extension ChatListViewModel: UISearchResultsUpdating {
 
         // #1 chats with searchPattern in title bar
         var filteredChatCellViewModels: [ChatCellViewModel] = []
-        _ = (0..<chatList.length).map {
+        var flags: Int32 = 0
+        flags |= DC_GCL_NO_SPECIALS
+        let filteredChatList = dcContext.getChatlist(flags: flags, queryString: searchText, queryId: 0)
+        _ = (0..<filteredChatList.length).map {
             let chatId = chatList.getChatId(index: $0)
             let chat = DcChat(id: chatId)
             let chatName = chat.name
@@ -199,17 +202,16 @@ extension ChatListViewModel: UISearchResultsUpdating {
             let unreadMessages = getUnreadMessages(chatId: chatId)
             let chatTitleIndexes = chatName.containsExact(subSequence: searchText)
 
-            if !chatTitleIndexes.isEmpty {
-                let viewModel = ChatCellViewModel(
-                    chatData: ChatCellData(
-                        chatId: chatId,
-                        summary: summary,
-                        unreadMessages: unreadMessages
-                    ),
-                    titleHighlightIndexes: chatTitleIndexes
-                )
-                filteredChatCellViewModels.append(viewModel)
-            }
+            let viewModel = ChatCellViewModel(
+                chatData: ChatCellData(
+                    chatId: chatId,
+                    summary: summary,
+                    unreadMessages: unreadMessages
+                ),
+                titleHighlightIndexes: chatTitleIndexes
+            )
+            filteredChatCellViewModels.append(viewModel)
+            
         }
 
         filteredChats.cellData = filteredChatCellViewModels
