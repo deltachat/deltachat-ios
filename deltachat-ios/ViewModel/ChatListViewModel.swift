@@ -211,14 +211,14 @@ extension ChatListViewModel: UISearchResultsUpdating {
                 titleHighlightIndexes: chatTitleIndexes
             )
             filteredChatCellViewModels.append(viewModel)
-            
+
         }
 
         filteredChats.cellData = filteredChatCellViewModels
 
         // #2 contacts with searchPattern in name or in email
         var filteredContactCellViewModels: [ContactCellViewModel] = []
-        let contactIds: [Int] = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
+        let contactIds: [Int] = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
 
         let contacts = contactIds.map { return DcContact(id: $0) }
 
@@ -226,17 +226,15 @@ extension ChatListViewModel: UISearchResultsUpdating {
             let nameIndexes = contact.displayName.containsExact(subSequence: searchText)
             let emailIndexes = contact.email.containsExact(subSequence: searchText)
 
-            if !nameIndexes.isEmpty || !emailIndexes.isEmpty {
-                // contact contains searchText
-                let viewModel = ContactCellViewModel(
-                    contactData: ContactCellData(
-                        contactId: contact.id
-                    ),
-                    titleHighlightIndexes: nameIndexes,
-                    subtitleHighlightIndexes: emailIndexes
-                )
-                filteredContactCellViewModels.append(viewModel)
-            }
+            // contact contains searchText
+            let viewModel = ContactCellViewModel(
+                contactData: ContactCellData(
+                    contactId: contact.id
+                ),
+                titleHighlightIndexes: nameIndexes,
+                subtitleHighlightIndexes: emailIndexes
+            )
+            filteredContactCellViewModels.append(viewModel)
         }
         filteredContacts.cellData = filteredContactCellViewModels
 
