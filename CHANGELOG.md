@@ -1,18 +1,31 @@
 # Delta Chat iOS Changelog
 
+## v1.1.0
+2020-01-29
+
+* add a document picker to allow sending files
+* show video thumbnails
+* support memoji and other images pasted from the clipboard
+* improve image quality
+* reduce traffic by combining read receipts and some other tweaks
+* fix deleting messages from server
+* add Korean, Serbian, Tamil, Telugu, Svedish and Bokmål translations
+* several bug fixes
+
+
 ## v1.0.2
 2020-01-09
 
-- fix crashes on iPad
+* fix crashes on iPad
 
 
 ## v1.0.1
 2020-01-07
 
-- handle various qr-code formats
-- allow creation of verified groups
-- improve wordings on requesting permissions
-- bug fixes
+* handle various qr-code formats
+* allow creation of verified groups
+* improve wordings on requesting permissions
+* bug fixes
 
 
 ## v1.0.0
