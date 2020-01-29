@@ -13,7 +13,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d min</string>
+			<string>%dmin</string>
 			<key>other</key>
 			<string>%d min</string>
 		</dict>
@@ -29,9 +29,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d hour</string>
+			<string>%d hora</string>
 			<key>other</key>
-			<string>%d hours</string>
+			<string>%d horas</string>
 		</dict>
 	</dict>
 	<key>n_chats</key>
@@ -45,9 +45,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d chat</string>
+			<string>%d conversa</string>
 			<key>other</key>
-			<string>%d chats</string>
+			<string>%d conversas</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -61,9 +61,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d contact</string>
+			<string>%d contacto</string>
 			<key>other</key>
-			<string>%d contacts</string>
+			<string>%d contactos</string>
 		</dict>
 	</dict>
 	<key>n_messages</key>
@@ -77,9 +77,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d message</string>
+			<string>%d mensaxe</string>
 			<key>other</key>
-			<string>%d messages</string>
+			<string>%d mensaxes</string>
 		</dict>
 	</dict>
 	<key>n_members</key>
@@ -93,9 +93,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d member</string>
+			<string>%d membro</string>
 			<key>other</key>
-			<string>%d members</string>
+			<string>%d membros</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>
@@ -109,9 +109,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Delete %d chat? It will no longer be shown in the chat list, its messages will remain on the server.</string>
+			<string>Eliminar %d conversa? Non se mostrará na lista de conversas, as súas mensaxes permanecerán no servidor.</string>
 			<key>other</key>
-			<string>Delete %d chats? They will no longer be shown in the chat list, their messages will remain on the server.</string>
+			<string>Eliminar %d conversas? Non se mostrarán máis na listas de conversas, as mensaxes permanecerán no servidor.</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -125,9 +125,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Delete %d message here and on the server?</string>
+			<string>Eliminar %d mensaxe aquí e no servidor?</string>
 			<key>other</key>
-			<string>Delete %d messages here and on the server?</string>
+			<string>Eliminar %d mensaxes aquí e no servidor?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>
@@ -141,9 +141,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d chat archived</string>
+			<string>%d conversa arquivada</string>
 			<key>other</key>
-			<string>%d chats archived</string>
+			<string>%d conversas arquivadas</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -157,9 +157,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d chat unarchived</string>
+			<string>%d conversa desarquivada</string>
 			<key>other</key>
-			<string>%d chats unarchived</string>
+			<string>%d conversas desarquivadas</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>
@@ -173,9 +173,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d new message</string>
+			<string>%d nova mensaxe</string>
 			<key>other</key>
-			<string>%d new messages</string>
+			<string>%d novas mensaxes</string>
 		</dict>
 	</dict>
 </dict>

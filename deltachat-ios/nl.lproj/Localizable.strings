@@ -137,7 +137,6 @@
 "menu_pause" = "Pauzeren";
 "menu_scroll_to_bottom" = "Ga naar het einde";
 "menu_scroll_to_top" = "Ga naar het begin";
-"menu_invite" = "Vrienden uitnodigen";
 "menu_help" = "Hulp";
 "menu_select_all" = "Alles selecteren";
 "menu_expand" = "Uitvouwen";
@@ -172,6 +171,7 @@
 "share_location_for_two_hours" = "2 uur lang";
 "share_location_for_six_hours" = "6 uur lang";
 
+"file_saved_to" = "Het bestand is opgeslagen in \'%1$@\'.";
 
 // get confirmations
 "ask_leave_group" = "Weet je zeker dat je deze groep wilt verlaten?";
@@ -256,11 +256,6 @@
 "media_preview" = "Mediavoorbeeld";
 
 
-// invite
-"invite_slogan" = "Vrienden houden vrienden niet opgesloten in berichtkluizen.";
-"invite_default_text" = "Laten we overgaan op Delta Chat - %1$@ - je kunt me een bericht sturen op %2$@";
-
-
 // welcome and login
 "welcome_intro1_message" = "Dé berichtenapp met het breedste publiek ter wereld. Gratis en onafhankelijk.";
 "welcome_start_messaging" = "Aan de slag";
@@ -313,10 +308,6 @@
 
 
 // preferences
-"pref_summary_on" = "aan";
-"pref_summary_off" = "uit";
-"pref_summary_default" = "standaard";
-"pref_summary_custom" = "aangepast";
 "pref_using_custom" = "Aangepast wordt gebruikt: %s";
 "pref_using_default" = "Standaard wordt gebruikt: %s";
 "pref_profile_info_headline" = "Mijn profiel";
@@ -497,6 +488,9 @@
 "contact_not_verified" = "Kan %1$@ niet goedkeuren";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Gewijzigde instellingen voor %1$@";
+"verified_group_explain" = "Goedgekeurde groepen (experimenteel) zijn exta beveiligd tegen aanvallen van buitenaf. Leden worden goedgekeurd door andere leden en berichten zijn altijd end-to-end versleuteld.";
+
+
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nieuwe berichten in %2$d gesprekken";
 "notify_most_recent_from" = "Recentste van: %1$@";
@@ -532,7 +526,7 @@
 // dc_str_* resources
 "encrypted_message" = "Versleuteld bericht";
 
-// desktop specific strings
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Welkom bij Delta Chat";
 "login_known_accounts_title_desktop" = "Bekende accounts";
 "global_menu_preferences_language_desktop" = "Kies een taal...";
@@ -551,7 +545,7 @@
 "global_menu_help_desktop" = "Hulp";
 "global_menu_help_learn_desktop" = "Meer informatie over Delta Chat";
 "global_menu_help_contribute_desktop" = "Draag bij op GitHub";
-"global_menu_help_report_desktop" = "Meld een probleem...";
+"global_menu_help_report_desktop" = "Meld een probleem";
 "global_menu_help_about_desktop" = "Over Delta Chat";
 "no_chat_selected_suggestion_desktop" = "Kies een gesprek of creëer een nieuw gesprek";
 "write_message_desktop" = "Schrijf een bericht";
@@ -568,13 +562,10 @@
 "verified_desktop" = "goedgekeurd";
 "remove_desktop" = "Verwijderen";
 "save_desktop" = "Opslaan";
-"show_qr_verify_code_desktop" = "QR-uitnodigingscode tonen";
-"show_qr_invite_code_desktop" = "QR-uitnodigingscode tonen";
 "add_contact_desktop" = "Contactpersoon toevoegen";
 "login_required_desktop" = "vereist";
 "name_desktop" = "Naam";
 "autocrypt_key_transfer_desktop" = "Autocrypt-sleuteloverdracht";
-"initiate_key_transfer_title_desktop" = "Sleuteloverdracht starten";
 "initiate_key_transfer_desktop" = "Een \'Autocrypt-instelbericht\' deelt je end-to-end-instellingen veilig met andere Autocrypt-compatibele apps. De instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
 "reply_to_message_desktop" = "Bericht beantwoorden";
 "select_group_image_desktop" = "Kies een groepsafbeelding";

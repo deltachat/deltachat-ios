@@ -137,7 +137,6 @@
 "menu_pause" = "Pushoje";
 "menu_scroll_to_bottom" = "Rrëshqit drejt fundit";
 "menu_scroll_to_top" = "Rrëshqit sipër në krye";
-"menu_invite" = "Ftoni shokë";
 "menu_help" = "Nidhmë";
 "menu_select_all" = "Përzgjidhi krejt";
 "menu_expand" = "Zgjeroje";
@@ -172,6 +171,7 @@
 "share_location_for_two_hours" = "për 2 orë";
 "share_location_for_six_hours" = "për 6 orë";
 
+"file_saved_to" = "Kartela u ruajt te \"%1$@\".";
 
 // get confirmations
 "ask_leave_group" = "Jeni i sigurt se doni ta braktisni këtë grup?";
@@ -256,11 +256,6 @@
 "media_preview" = "Paraparje media";
 
 
-// invite
-"invite_slogan" = "Kush të ka shok, s\’të lë kyçur në silos mesazhesh.";
-"invite_default_text" = "Le të hidhemi në Delta Chat - %1$@ - mund të më dërgoni mesazhe tekst te %2$@";
-
-
 // welcome and login
 "welcome_intro1_message" = "Shkëmbyesi i mesazheve me publikun më të gjerë në botë. I lirë dhe i pavarur.";
 "welcome_start_messaging" = "Filloni të Shkëmbeni Mesazhe";
@@ -313,10 +308,6 @@
 
 
 // preferences
-"pref_summary_on" = "on";
-"pref_summary_off" = "off";
-"pref_summary_default" = "parazgjedhje";
-"pref_summary_custom" = "vetjake";
 "pref_using_custom" = "Po përdoret vetjak: %s";
 "pref_using_default" = "Po përdoret parazgjedhje: %s";
 "pref_profile_info_headline" = "Të dhëna tuajat të profilit";
@@ -496,6 +487,9 @@
 "contact_not_verified" = "S\’verifikohet dot %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "U ndryshua rregullimi për %1$@";
+"verified_group_explain" = "Grupet e verifikuara (eksperimentale) furnizojnë siguri kundër sulmesh aktive. Anëtarët janë të verifikuar me një faktor të dytë nga anëtarë të tjerë dhe mesazhet janë përherë të fshehtëzuara skaj më skaj.";
+
+
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d mesazhe të rinj në %2$d fjalosje";
 "notify_most_recent_from" = "Më të rejat nga: %1$@";
@@ -531,7 +525,7 @@
 // dc_str_* resources
 "encrypted_message" = "Mesazh i fshehtëzuar";
 
-// desktop specific strings
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Mirë se vini në Delta Chat";
 "login_known_accounts_title_desktop" = "Llogari të njohura";
 "global_menu_preferences_language_desktop" = "Zgjidhni Gjuhë…";
@@ -550,7 +544,7 @@
 "global_menu_help_desktop" = "Ndihmë";
 "global_menu_help_learn_desktop" = "Mësoni më tepër rreth Delta Chat-it";
 "global_menu_help_contribute_desktop" = "Jepni ndihmesë në GitHub";
-"global_menu_help_report_desktop" = "Njoftoni një Problem…";
+"global_menu_help_report_desktop" = "Njoftoni një Problem";
 "global_menu_help_about_desktop" = "Rreth Delta Chat-it";
 "no_chat_selected_suggestion_desktop" = "Përzgjidhni një fjalosje ose krijoni një të tillë të re";
 "write_message_desktop" = "Shkruani një mesazh";
@@ -567,13 +561,10 @@
 "verified_desktop" = "e verifikuar";
 "remove_desktop" = "Hiqe";
 "save_desktop" = "Ruaje";
-"show_qr_verify_code_desktop" = "Shfaq kod QR ftese";
-"show_qr_invite_code_desktop" = "Shfaq kod QR ftese";
 "add_contact_desktop" = "Shtoni kontakt";
 "login_required_desktop" = "e domosdoshme";
 "name_desktop" = "Emër";
 "autocrypt_key_transfer_desktop" = "Shpërngulje kyçi Autocrypt";
-"initiate_key_transfer_title_desktop" = "Nis shpërngulje kyçi";
 "initiate_key_transfer_desktop" = "Një Mesazh Rregullimi Autocrypt-i ndan në mënyrë të sigurt formësimin tuaj skaj-më-skaj me aplikacione të tjera të përputhshme me Autocrypt-in. Formësimi do të fshehtëzohet përmes një kodi rregullimi, i cili shfaqet këtu dhe duhet dhënë në pajisjen tjetër.";
 "reply_to_message_desktop" = "Përgjigjuni mesazhit";
 "select_group_image_desktop" = "Përzgjidhni figurë grupi";

@@ -1,4 +1,4 @@
-NSCameraUsageDescription = "Delta Chat uses your camera to take and send photos and videos and to scan QR-codes.";
-NSContactsUsageDescription = "Delta Chat uses your contacts to show a list of email addresses you can write to. Delta Chat has no server, your contacts are not sent anywhere.";
-NSMicrophoneUsageDescription = "Delta Chat uses your microphone to record and send voice messages and videos with sound.";
-NSPhotoLibraryUsageDescription = "Delta Chat will let you choose which photos from your library to send.";
+Privacy._.Camera.Usage.Description = "Conceder acceso a cámara permíteche tomar fotos e vídeos.";
+Privacy._.Contacts.Usage.Description = "Permitir o acceso a libreta de enderezos permíteche conversar con contactos do dispositivo.";
+Privacy._.Microphone.Usage.Description = "Permitindo o acceso ao micrófono poderás gravar audio.";
+Privacy._.Photo.Library.Usage.Description = "Permitindo o acceso a galería de fotos poderás subir imaxes desde ela.";

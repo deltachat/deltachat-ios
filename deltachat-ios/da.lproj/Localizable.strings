@@ -11,11 +11,17 @@
 "none" = "Ingen";
 "open" = "Åbne";
 "delete" = "Slette";
+"forward" = "Videresend";
+"mute" = "Udsæt";
+"save" = "Gem";
+"media" = "Medie";
 "not_now" = "Ikke nu";
 "never" = "Aldrig";
 "one_moment" = "Et øjeblik…";
 "done" = "Færdig";
 "undo" = "Genskabe";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Næste";
 "error" = "Fejl";
 "error_x" = "Fejl: %1$@";
 "error_no_network" = "Netværk utilgængelig";
@@ -28,6 +34,8 @@
 "bad_email_address" = "Ugyldig e-post adresse.";
 "password" = "Adgangskode";
 "now" = "Nu";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Fare";
 // n_min_ago is deprecated, use n_minutes instead
 "n_min_ago" = "%d min.";
 "today" = "I dag";
@@ -114,7 +122,6 @@
 "menu_pause" = "Pause";
 "menu_scroll_to_bottom" = "Rulle til bunden";
 "menu_scroll_to_top" = "Rulle til toppen";
-"menu_invite" = "Invitere venner";
 "menu_help" = "Hjælp";
 "menu_select_all" = "Vælge alle";
 "menu_expand" = "Udvide";
@@ -141,7 +148,6 @@
 "share_location_for_one_hour" = "for 1 time";
 "share_location_for_two_hours" = "for 2 timer";
 "share_location_for_six_hours" = "for 6 timer";
-
 
 // get confirmations
 "ask_leave_group" = "Forlade denne gruppe?";
@@ -220,11 +226,6 @@
 "media_preview" = "Medie forhåndvisning";
 
 
-// invite
-"invite_slogan" = "Venner lader ikke venner være låst i besked siloer.";
-"invite_default_text" = "Skift til Delta Chat - %1$@ - skriv til mig på %2$@";
-
-
 // welcome and login
 "welcome_intro1_message" = "Budbringeren med verdens bredeste publikum. Fri og uafhængig.";
 "welcome_start_messaging" = "Start skrivning";
@@ -267,10 +268,6 @@
 
 
 // preferences
-"pref_summary_on" = "til";
-"pref_summary_off" = "fra";
-"pref_summary_default" = "standard";
-"pref_summary_custom" = "tilpasset";
 "pref_using_custom" = "Bruger tilpasset: %s";
 "pref_using_default" = "Bruger standard: %s";
 "pref_profile_info_headline" = "Profil information";
@@ -466,6 +463,8 @@
 // dc_str_* resources
 "encrypted_message" = "Krypteret besked";
 
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"welcome_desktop" = "Velkommen til Delta Chat";
 "login_known_accounts_title_desktop" = "Kendte konti";
 "global_menu_preferences_language_desktop" = "Vælge sprog...";
 "global_menu_file_desktop" = "Fil";
@@ -482,7 +481,7 @@
 "global_menu_view_developer_tools_desktop" = "Udvikler værktøj";
 "global_menu_help_desktop" = "Hjælp";
 "global_menu_help_contribute_desktop" = "Bidrage på GitHub";
-"global_menu_help_report_desktop" = "Rapportere en sag...";
+"global_menu_help_report_desktop" = "Rapportere en sag";
 "no_chat_selected_suggestion_desktop" = "Vælg samtale eller opret en ny samtale";
 "write_message_desktop" = "Skrive en besked";
 "encryption_info_title_desktop" = "Kryptering information";
@@ -498,13 +497,10 @@
 "verified_desktop" = "efterprøvet";
 "remove_desktop" = "Fjerne";
 "save_desktop" = "Gemme";
-"show_qr_verify_code_desktop" = "Vise QR invitere kode";
-"show_qr_invite_code_desktop" = "Vise QR invitere kode";
 "add_contact_desktop" = "Tilføje kontakt";
 "login_required_desktop" = "påkrævet";
 "name_desktop" = "Navn";
 "autocrypt_key_transfer_desktop" = "Autocrypt nøgle overførsel";
-"initiate_key_transfer_title_desktop" = "Starte nøgle overførsel";
 "initiate_key_transfer_desktop" = "En Autocrypt opsætning beskeddeler sikkert ende-til-ende opsætning med andre Autocrypt kompatible programmer. Opsætninger er krypteret med en opsætning kode som er vist her og skal indtastes på de andre enheder.";
 "reply_to_message_desktop" = "Svare besked";
 "select_group_image_desktop" = "Vælge gruppe billede";

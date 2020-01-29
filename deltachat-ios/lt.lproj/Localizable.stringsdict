@@ -202,5 +202,25 @@
 			<string>Išarchyvuotas %d pokalbis</string>
 		</dict>
 	</dict>
+	<key>chat_n_new_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d nauja žinutė</string>
+			<key>few</key>
+			<string>%d naujos žinutės</string>
+			<key>many</key>
+			<string>%d naujų žinučių</string>
+			<key>other</key>
+			<string>%d nauja žinutė</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

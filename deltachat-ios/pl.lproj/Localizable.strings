@@ -134,7 +134,6 @@
 "menu_pause" = "Wstrzymaj";
 "menu_scroll_to_bottom" = "Przewiń na dołu";
 "menu_scroll_to_top" = "Przewiń na górę";
-"menu_invite" = "Zaproś znajomych";
 "menu_help" = "Pomoc";
 "menu_select_all" = "Zaznacz wszystko";
 "menu_expand" = "Rozwiń";
@@ -168,7 +167,6 @@
 "share_location_for_one_hour" = "na 1 godzinę";
 "share_location_for_two_hours" = "na 2 godziny";
 "share_location_for_six_hours" = "na 6 godzin";
-
 
 // get confirmations
 "ask_leave_group" = "Czy na pewno chcesz opuścić tą grupę?";
@@ -253,11 +251,6 @@
 "media_preview" = "Podgląd multimediów";
 
 
-// invite
-"invite_slogan" = "Przyjaciele nie pozwalają przyjaciołom zamknąć się w silosach komunikacyjnych.";
-"invite_default_text" = "Przejdźmy na Delta Chat - %1$@ - możesz pisać do mnie na %2$@";
-
-
 // welcome and login
 "welcome_intro1_message" = "Komunikator o największym zasięgu na świecie. Darmowy i bezpieczny.";
 "welcome_start_messaging" = "Uruchom komunikator";
@@ -310,10 +303,6 @@
 
 
 // preferences
-"pref_summary_on" = "na";
-"pref_summary_off" = "Wyłączone";
-"pref_summary_default" = "domyślne";
-"pref_summary_custom" = "niestandardowe";
 "pref_using_custom" = "Używanie niestandardowe: %s";
 "pref_using_default" = "Użyj domyślne: %s";
 "pref_profile_info_headline" = "Twój profil";
@@ -527,7 +516,7 @@
 // dc_str_* resources
 "encrypted_message" = "Zaszyfrowana wiadomość";
 
-// desktop specific strings
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Witaj w Delta Chat";
 "login_known_accounts_title_desktop" = "Znane konta";
 "global_menu_preferences_language_desktop" = "Wybierz język";
@@ -546,7 +535,7 @@
 "global_menu_help_desktop" = "Pomoc";
 "global_menu_help_learn_desktop" = "Dowiedz się więcej o Delta Chat";
 "global_menu_help_contribute_desktop" = "Przyczyń się do rozwoju na GitHub";
-"global_menu_help_report_desktop" = "Zgłoś problem…";
+"global_menu_help_report_desktop" = "Zgłoś problem";
 "global_menu_help_about_desktop" = "O Delta Chat";
 "no_chat_selected_suggestion_desktop" = "Wybierz czat lub utwórz nowy czat";
 "write_message_desktop" = "Napisz wiadomość";
@@ -563,13 +552,10 @@
 "verified_desktop" = "zweryfikowano";
 "remove_desktop" = "Usuń";
 "save_desktop" = "Zapisz";
-"show_qr_verify_code_desktop" = "Pokaż kod QR zaproszenia";
-"show_qr_invite_code_desktop" = "Pokaż kod QR zaproszenia";
 "add_contact_desktop" = "Dodaj kontakt";
 "login_required_desktop" = "wymagany";
 "name_desktop" = "Nazwa";
 "autocrypt_key_transfer_desktop" = "Transfer klucza Autocrypt";
-"initiate_key_transfer_title_desktop" = "Rozpocznij transfer klucza";
 "initiate_key_transfer_desktop" = "Wiadomość konfiguracyjna automatycznego szyfrowania bezpiecznie udostępnia twoją konfigurację end-to-end innym aplikacjom zgodnym z Autocrypt. Klucz zostanie zaszyfrowany za pomocą wyświetlonego tutaj kodu konfiguracyjnego, który należy wpisać na drugim urządzeniu.";
 "reply_to_message_desktop" = "Odpowiedz na wiadomość";
 "select_group_image_desktop" = "Wybierz zdjęcie grupy";
@@ -601,6 +587,7 @@
 
 // accessibility
 "a11y_delivery_status_error" = "Status dostawy: Błąd";
+"a11y_encryption_padlock" = "Kłódka szyfrowania";
 "a11y_delivery_status_sending" = "Status dostawy: Wysyłanie";
 "a11y_delivery_status_draft" = "Status dostawy: Szkic";
 "a11y_delivery_status_delivered" = "Status dostawy: Dostarczone";

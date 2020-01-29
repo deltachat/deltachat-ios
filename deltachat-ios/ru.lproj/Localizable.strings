@@ -137,7 +137,6 @@
 "menu_pause" = "Пауза";
 "menu_scroll_to_bottom" = "Прокрутить вниз";
 "menu_scroll_to_top" = "Прокрутить вверх";
-"menu_invite" = "Пригласить друзей";
 "menu_help" = "Помощь";
 "menu_select_all" = "Выбрать всё";
 "menu_expand" = "Расширить";
@@ -171,7 +170,6 @@
 "share_location_for_one_hour" = "1 час";
 "share_location_for_two_hours" = "2 часа";
 "share_location_for_six_hours" = "6 часов";
-
 
 // get confirmations
 "ask_leave_group" = "Вы уверены, что хотите покинуть эту группу?";
@@ -256,11 +254,6 @@
 "media_preview" = "Предварительный просмотр медиафайлов";
 
 
-// invite
-"invite_slogan" = "Друзья, не позволяйте другим, быть запертыми с залежалыми сообщениями.";
-"invite_default_text" = "Давайте перейдём на Delta Chat %1$@ -  вы можете написать мне на %2$@";
-
-
 // welcome and login
 "welcome_intro1_message" = "Мессенджер с самой широкой аудиторией в мире. Бесплатный и независимый.";
 "welcome_start_messaging" = "Начать общение";
@@ -313,10 +306,6 @@
 
 
 // preferences
-"pref_summary_on" = "вкл.";
-"pref_summary_off" = "выкл.";
-"pref_summary_default" = "по умолчанию";
-"pref_summary_custom" = "персонализованно";
 "pref_using_custom" = "Использовать персонализованно: %s";
 "pref_using_default" = "Использовать по умолчанию: %s";
 "pref_profile_info_headline" = "Личный профиль";
@@ -497,6 +486,9 @@
 "contact_not_verified" = "Невозможно подтвердить %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Изменены параметры для %1$@";
+"verified_group_explain" = "Проверенные группы (экспериментальные) защищают от активных атак. Участники проверяются с помощью второго фактора другими участниками и сообщения всегда зашифрованы.";
+
+
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d новых сообщений в %2$d чатах.";
 "notify_most_recent_from" = "Последнее от: %1$@";
@@ -527,10 +519,12 @@
 "perm_explain_access_to_location_denied" = "Чтобы передать местоположение приложению Delta Chat нужно разрешить доступ к нему, но сейчас он заблокирован. Перейдите в меню настроек приложения, выберите \"Разрешения приложений\" и включите \"Местоположение\".";
 "perm_enable_bg_reminder_title" = "Нажмите здесь, чтобы получать сообщения, когда Delta Chat находится в фоновом режиме.";
 "perm_enable_bg_reminder_text" = "Delta Chat использует минимальные ресурсы и старается не разряжать батарею.";
+
+
 // dc_str_* resources
 "encrypted_message" = "Зашифрованное сообщение";
 
-// desktop specific strings
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Добро пожаловать в DeltaChat";
 "login_known_accounts_title_desktop" = "Известные аккаунты";
 "global_menu_preferences_language_desktop" = "Выбор языка";
@@ -549,7 +543,7 @@
 "global_menu_help_desktop" = "Помощь";
 "global_menu_help_learn_desktop" = "Узнать больше о Delta Chat";
 "global_menu_help_contribute_desktop" = "Присоединиться к разработке на GitHub";
-"global_menu_help_report_desktop" = "Сообщить о проблеме…";
+"global_menu_help_report_desktop" = "Сообщить о проблеме";
 "global_menu_help_about_desktop" = "О Delta Chat";
 "no_chat_selected_suggestion_desktop" = "Выберите чат или создайте новый";
 "write_message_desktop" = "Напишите сообщение";
@@ -566,13 +560,10 @@
 "verified_desktop" = "Проверенный";
 "remove_desktop" = "Удалить";
 "save_desktop" = "Сохранить";
-"show_qr_verify_code_desktop" = "Показать QR код приглашения";
-"show_qr_invite_code_desktop" = "Показать QR код приглашения";
 "add_contact_desktop" = "Добавить контакт";
 "login_required_desktop" = "требуется";
 "name_desktop" = "Имя";
 "autocrypt_key_transfer_desktop" = "Передача ключей Autocrypt";
-"initiate_key_transfer_title_desktop" = "Инициировать передачу ключа";
 "initiate_key_transfer_desktop" = "Сообщение с параметрами Autocrypt служит для безопасной передачи параметров шифрования между собственными приложениями для работы с электронной почтой, поддерживающими протокол Autocrypt.\n\nЭти параметры шифруются с использованием специального кода, который показан здесь и должен быть введён в настраиваемом приложении.  ";
 "reply_to_message_desktop" = "Ответить на сообщение";
 "select_group_image_desktop" = "Выбрать изображение группы";

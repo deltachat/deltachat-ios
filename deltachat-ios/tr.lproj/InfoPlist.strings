@@ -1,0 +1,4 @@
+Privacy._.Camera.Usage.Description = "Kameraya erişime izin vermek, fotoğraflar ve videolar çekmenize izin verir.";
+Privacy._.Contacts.Usage.Description = "Adres defterinize erişime izin vermek, aygıtınızdan gelen kişilerle sohbet etmenize izin verir.";
+Privacy._.Microphone.Usage.Description = "Mikrofona erişime izin vermek, ses kaydetmenize izin verir.";
+Privacy._.Photo.Library.Usage.Description = "Fotoğraf kitaplığına erişime izin vermek, ondan gelen görselleri karşıya yüklemenize izin verir.";

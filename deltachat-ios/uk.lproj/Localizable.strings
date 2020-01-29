@@ -107,7 +107,6 @@
 "menu_play" = "Грати";
 "menu_pause" = "Пауза";
 "menu_scroll_to_bottom" = "Перейти в кінець";
-"menu_invite" = "Запросити друзів";
 "menu_help" = "Допомога";
 "menu_select_all" = "Вибрати все";
 "menu_expand" = "Розширити";
@@ -171,11 +170,6 @@
 "media_preview" = "Попередній перегляд медіа";
 
 
-// invite
-"invite_slogan" = "Друзі не залишають друзів без спілкування.";
-"invite_default_text" = "Пропоную перейти на Delta Chat – %1$@– Ви можете написати мені на %2$@";
-
-
 // welcome and login
 "welcome_intro1_message" = "Мессенджер з найширшою аудиторією у світі. Безкоштовний і незалежний.";
 "welcome_start_messaging" = "Почати спілкування";
@@ -214,10 +208,6 @@
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Переслати...";
 // preferences
-"pref_summary_on" = "увімкн.";
-"pref_summary_off" = "вимкн.";
-"pref_summary_default" = "за замовчуванням";
-"pref_summary_custom" = "персоналізовано";
 "pref_using_custom" = "Використовувати персоналізовано: %s";
 "pref_using_default" = "Використовувати за замовчуванням: %s";
 "pref_profile_info_headline" = "Ваш профіль";
@@ -420,7 +410,7 @@
 "global_menu_view_developer_tools_desktop" = "Інструменти розробника";
 "global_menu_help_desktop" = "Допомога";
 "global_menu_help_contribute_desktop" = "Приєднатися до розробки на GitHub";
-"global_menu_help_report_desktop" = "Повідомити про проблему...";
+"global_menu_help_report_desktop" = "Повідомити про проблему";
 "no_chat_selected_suggestion_desktop" = "Виберіть чат або створіть новий";
 "write_message_desktop" = "Напишіть повідомлення";
 "encryption_info_title_desktop" = "Інформація про шифрування";
@@ -436,13 +426,10 @@
 "verified_desktop" = "Перевірено";
 "remove_desktop" = "Видалити";
 "save_desktop" = "Зберегти";
-"show_qr_verify_code_desktop" = "Показати QR-код запрошення";
-"show_qr_invite_code_desktop" = "Показати QR-код запрошення";
 "add_contact_desktop" = "Додати контакт";
 "login_required_desktop" = "потрібний";
 "name_desktop" = "Ім\'я";
 "autocrypt_key_transfer_desktop" = "Передавання ключів Autocrypt";
-"initiate_key_transfer_title_desktop" = "Ініціювати передачу ключа";
 "initiate_key_transfer_desktop" = "Повідомлення з параметрами Autocrypt слугує для безпечного передавання параметрів наскрізного шифрування між власними додатками для роботи з електронною поштою, що підтримують протокол Autocrypt. Ці параметри шифруються з використанням спеціального інсталяційного коду, що показаний тут і повинен бути введений у налаштовуємому додатку.";
 "reply_to_message_desktop" = "Відповісти на повідомлення";
 "select_group_image_desktop" = "Вибрати зображення групи";

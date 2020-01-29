@@ -8,13 +8,24 @@
 "off" = "Ki";
 "def" = "Alapértelmezett";
 "custom" = "Egyéni";
+"none" = "Egyik sem";
+"automatic" = "Automatikus";
+"strict" = "Szigorú";
 "open" = "Megnyitás";
 "delete" = "Törlés";
+"info" = "Infó";
+"emoji" = "Emoji";
+"forward" = "Továbbítás";
+"mute" = "Némítás";
+"save" = "Mentés";
+"media" = "Média";
 "not_now" = "Most nem";
 "never" = "Soha";
 "one_moment" = "Egy pillanat...";
 "done" = "Kész";
 "undo" = "Visszavonás";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Tovább";
 "error" = "Hiba";
 "error_x" = "Hiba: %1$@";
 "error_no_network" = "A hálózat nem elérhető.";
@@ -47,6 +58,7 @@
 "forwarded_message" = "Továbbított üzenet";
 "video" = "Videó";
 "documents" = "Dokumentumok";
+"contact" = "Névjegy";
 "camera" = "Kamera";
 "location" = "Hely";
 "gallery" = "Galéria";
@@ -80,6 +92,7 @@
 "menu_new_group" = "Új csoport";
 "menu_new_verified_group" = "Új ellenőrzött csoport";
 "menu_send" = "Küldés";
+"menu_toggle_keyboard" = "Emoji billentyűzet kapcsoló";
 "menu_edit_group" = "Csoport szerkesztése";
 "menu_group_name_and_image" = "Csoportnév és -kép";
 "menu_show_map" = "Térkép megjelenítése";
@@ -93,6 +106,7 @@
 "menu_delete_image" = "Kép törlése";
 "menu_delete_locations" = "Minden helyszínt törölsz?";
 "menu_delete_location" = "Törlöd ezt a helyszínt?";
+"menu_message_details" = "Üzenet részletei";
 "menu_copy_to_clipboard" = "Vágólapra másolás";
 "menu_forward" = "Üzenet továbbítása";
 "menu_resend" = "Üzenet újraküldése";
@@ -108,13 +122,14 @@
 "menu_pause" = "Szünet";
 "menu_scroll_to_bottom" = "Ugrás az aljára";
 "menu_scroll_to_top" = "Ugrás a tetejére";
-"menu_invite" = "Barátok meghívása";
 "menu_help" = "Segítség";
+"menu_select_all" = "Összes kiválasztása";
 "menu_edit_name" = "Név módosítása";
 "menu_edit_group_name" = "Csoportnév módosítása";
 "menu_edit_group_image" = "Csoportkép módosítása";
 "menu_settings" = "Beállítások";
 "menu_advanced" = "Haladó";
+"menu_deaddrop" = "Levelesláda";
 "menu_view_profile" = "Profil megtekintése";
 "menu_save_log" = "Naplófájl mentése";
 "title_share_location" = "Hely megosztása a csoport összes tagjával";
@@ -131,28 +146,45 @@
 "share_location_for_two_hours" = "2 óráig";
 "share_location_for_six_hours" = "6 óráig";
 
-
 // get confirmations
 "ask_leave_group" = "Biztosan ki akarsz lépni a csoportból?";
 "ask_forward" = "Továbbítod az üzenetet %1$@ részére?";
+"ask_start_chat_with" = "Beszélgetést indítasz %1$@ partnerrel?";
+// Translators: %1$s will be replaces by a comma separated list of names
+"ask_remove_members" = "Kiveszed a csoportból %1$@ partnert?";
 "info_outdated_app_dialog_text" = "A Delta Chat elérhető:";
+
+
+// contact list
+"contacts_title" = "Kontaktok";
+"contacts_empty_hint" = "Még nincs partner.";
 
 
 // chatlist and chat view
 "chat_archived_chats_title" = "Archivált beszélgetések";
+"chat_no_messages_hint" = "Üzenetküldés %1$@ partnernek:\n\n• Nincs gond, ha %2$@ nem használja a Delta Chatet.\n\n• Az első üzenet kézbesítése kicsit lassabb lehet.";
+"chat_new_group_hint" = "Írj egy kezdőüzenetet, hogy a többiek válaszolhassanak a csoportban.\n\n• Nincs gond, ha nem használja minden tag a Delta Chatet.\n\n• Az első üzenet kézbesítése kicsit lassabb lehet.";
+"chat_record_slide_to_cancel" = "Visszavonás csúsztatással";
 "chat_no_chats_yet_title" = "Üres a postaláda.\nNyomd meg a \"+\" gombot új beszélgetés indításához.";
 "chat_all_archived" = "Minden csevegés archiválva van.\nNyomd meg a \"+\" gombot új beszélgetés indításához.";
+"chat_share_with_title" = "Megosztás";
+"chat_input_placeholder" = "Üzenet";
+"chat_archived_label" = "Archivált";
+"chat_no_messages" = "Nincs üzenet.";
 "chat_self_talk_subtitle" = "Magamnak küldött üzenetek";
+"chat_contact_request" = "Levelesláda";
 // search
 "search" = "Keresés";
 // create/edit groups, contact/group profile
 "group_name" = "Csoportnév";
 "group_avatar" = "Csoportkép";
 "group_create_button" = "Csoport készítése";
+"group_please_enter_group_name" = "Nevezd el a csoportot.";
 "group_add_members" = "Tagok felvétele";
 "group_hello_draft" = "Helló, indítottam magunknak egy csoportot „%1$@” néven.";
 "group_self_not_in_group" = "A csoport tagjának kell lenned, hogy ezt megtehesd.";
 "profile_encryption" = "Titkosítás";
+"tab_contact" = "Névjegy";
 "tab_group" = "Csoport";
 "tab_members" = "Tagok";
 "tab_gallery" = "Galéria";
@@ -162,18 +194,85 @@
 "media_preview" = "Média előnézete";
 
 
+"welcome_start_messaging" = "Kezdj csevegni!";
+"login_subheader" = "Ismert e-mail szolgáltató esetén az alábbi beállításokat automatikusan meghatározzuk. Előfordulhat, hogy az IMAP/SMTP szolgáltatást az email fiókod webes felületén engedélyezni kell.\n\nHa nem megy, kérj segítséget a szolgáltatótól vagy a barátaidtól.";
+"login_inbox" = "Bejövő";
+"login_imap_login" = "IMAP bejelentkezési név";
 "login_imap_server" = "IMAP kiszolgáló";
 "login_imap_port" = "IMAP port";
 "login_imap_security" = "IMAP biztonság";
+"login_outbox" = "Kimenő";
+"login_smtp_login" = "SMTP bejelentkezési név";
 "login_smtp_password" = "SMTP jelszó";
 "login_smtp_server" = "SMTP kiszolgáló";
 "login_smtp_port" = "SMTP port";
+"import_backup_title" = "Biztonsági mentés importálása";
+// share and forward messages
+// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+"forward_to" = "Továbbítás…";
+"pref_profile_info_headline" = "Profilod adatai";
 "pref_profile_photo" = "Profilkép";
+"pref_trim_headline" = "Üzenetek csonkítása";
 "pref_trim_option" = "Régi üzenetek törlése";
+"pref_blocked_contacts" = "Letiltott partnerek";
+"pref_who_can_see_this_information" = "Ki láthatja ezt az információt?";
+"pref_your_name" = "Neved";
+// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+"pref_default_status_text" = "A Delta Chat Messengeremmel küldtem: https://delta.chat";
+"pref_enter_sends" = "Küldés \"enterrel\"";
+"pref_vibrate" = "Rezgés";
+"pref_chat_settings" = "Csevegés beállításai";
+"pref_screen_security" = "Képernyőbiztonság";
+// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+"pref_screen_security_explain" = "Képernyőképek készítésének blokkolása a futó alkalmazások listájában és az alkalmazáson belül";
+"pref_notifications" = "Értesítések";
+"pref_notifications_show" = "Megjelenítés";
+"pref_notifications_priority" = "Prioritás";
+"pref_led_color" = "LED színe";
+"pref_led_pattern" = "LED villogás mintázata";
+"pref_sound" = "Hang";
+"pref_silent" = "Csendes";
+"pref_privacy" = "Privacy";
+"pref_chats_and_media" = "Csevegések és média";
+// Translators: "light" in the meaning "opposite of dark"
+"pref_light_theme" = "Világos";
+"pref_dark_theme" = "Sötét";
+"pref_appearance" = "Megjelenés";
+"pref_theme" = "Sötét";
+"pref_language" = "Nyelv";
+"pref_incognito_keyboard" = "Inkognitó billentyűzet";
+// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+"pref_incognito_keyboard_explain" = "Tanulás letiltásának kérése a billentyűzettől (személyre szabás kikapcsolása)";
+"pref_read_receipts" = "Olvasási nyugták";
+"pref_read_receipts_explain" = "Ha az olvasási nyugták le vannak tiltva, te sem fogod látni mások olvasási nyugtáit.";
+"pref_manage_keys" = "Privát kulcsok kezelése";
+"pref_use_system_emoji" = "Rendszer emojik használata";
+"pref_use_system_emoji_explain" = "A Delta Chat beépített emoji-támogatásának letiltása";
+"pref_app_access" = "Alkalmazás hozzáférés";
+"pref_communication" = "Kommunikáció";
+"pref_chats" = "Csevegések";
+"pref_messages" = "Üzenetek";
+"pref_in_chat_sounds" = "Csevegésen belüli hangok";
+"pref_message_text_size" = "Üzenetek betűmérete";
+"pref_other" = "Egyéb";
+"pref_backup" = "Biztonsági mentés";
+"pref_managekeys_menu_title" = "Privát kulcsok kezelése";
+"pref_managekeys_export_secret_keys" = "Privát kulcsok exportálása";
+"pref_managekeys_import_secret_keys" = "Privát kulcsok importálása";
+"pref_background" = "Beszélgetés háttere";
+"pref_background_btn_gallery" = "Galériából";
+"pref_show_emails_all" = "Mind";
+"autocrypt_continue_transfer_retry" = "Újra";
 "systemmsg_group_image_changed" = "A csoportkép megváltozott.";
 "systemmsg_group_image_deleted" = "A csoportkép törölve.";
+"systemmsg_member_added" = "%1$@ hozzáadva a csoporthoz.";
+"systemmsg_member_removed" = "%1$@ eltávolítva a csoportból.";
+"systemmsg_group_left" = "Kiléptél a csoportból.";
 // screen lock
 "screenlock_title" = "Képernyőzár";
+// qr code stuff
+"qr_code" = "QR-kód";
+"qrscan_title" = "QR-kód olvasása";
 "qrscan_fingerprint_label" = "Ujjlenyomat.";
 "qrshow_x_joining" = "%1$@ csatlakozik.";
 "qrshow_x_verified" = "%1$@ ellenőrizve.";
@@ -188,6 +287,21 @@
 "notify_media_message" = "Médiaüzenet";
 "notify_reply_button" = "Válasz";
 "notify_new_message" = "Új üzenet";
+"notify_priority_high" = "Magas";
+"notify_priority_max" = "Hangjelzés legfeljebb";
+"notify_name_and_message" = "Név és üzenet";
+"notify_name_only" = "Csak név";
+"notify_no_name_or_message" = "Se név, se üzenet";
+
+
+// permissions
+"perm_required_title" = "Engedély szükséges";
+"perm_continue" = "Folytatás";
+// dc_str_* resources
+"encrypted_message" = "Titkosított üzenet";
+
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"welcome_desktop" = "Üdvözöl a Delta Chat!";
 "global_menu_preferences_language_desktop" = "Válassz nyelvet...";
 "global_menu_file_desktop" = "Fájl";
 "global_menu_file_quit_desktop" = "Kilépés";
@@ -200,7 +314,18 @@
 "global_menu_view_desktop" = "Nézet";
 "global_menu_help_desktop" = "Súgó";
 "no_chat_selected_suggestion_desktop" = "Válassz ki egy beszélgetést vagy indíts egy újat";
+"contact_request_title_desktop" = "Levelesláda";
+"more_info_desktop" = "További információ";
+"no_chats_desktop" = "Még nincs beszélgetés.";
+"remove_desktop" = "Eltávolítás";
+"save_desktop" = "Mentés";
+"add_contact_desktop" = "Új partner";
 "name_desktop" = "Név";
 "download_attachment_desktop" = "Csatolmány letöltése";
+"export_backup_desktop" = "Biztonsági mentés exportálása";
+"unblock_contacts_desktop" = "Tiltás feloldása";
+"none_blocked_desktop" = "Nincs letiltott partner";
+"me_desktop" = "Én";
+"message_detail_from_desktop" = "feladó";
 "menu.view.developer.open.log.folder" = "Naplófájlok könyvtárának megnyitása";
 "menu.view.developer.open.current.log.file" = "Jelenlegi naplófájl megnyitása";

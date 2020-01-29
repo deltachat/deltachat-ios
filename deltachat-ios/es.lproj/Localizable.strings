@@ -137,7 +137,6 @@
 "menu_pause" = "Pausar";
 "menu_scroll_to_bottom" = "Desplazarse al final";
 "menu_scroll_to_top" = "Desplazarse al inicio";
-"menu_invite" = "Invitar amigos";
 "menu_help" = "Ayuda";
 "menu_select_all" = "Seleccionar todo";
 "menu_expand" = "Expandir";
@@ -172,6 +171,7 @@
 "share_location_for_two_hours" = "por 2 horas";
 "share_location_for_six_hours" = "por 6 horas";
 
+"file_saved_to" = "Archivo guardado en \"%1$@\".";
 
 // get confirmations
 "ask_leave_group" = "¿Seguro que deseas abandonar este grupo? ";
@@ -256,11 +256,6 @@
 "media_preview" = "Vista previa de multimedia";
 
 
-// invite
-"invite_slogan" = "Los amigos no dejan a los amigos encerrados en silos de mensajería.";
-"invite_default_text" = "Cambiémonos a Delta Chat - %1$@ - puedes enviarme un mensaje a %2$@";
-
-
 // welcome and login
 "welcome_intro1_message" = "La aplicación de mensajería instantánea con la audiencia más amplia del mundo. Libre e independiente. ";
 "welcome_start_messaging" = "Empezar a Chatear";
@@ -313,10 +308,6 @@
 
 
 // preferences
-"pref_summary_on" = "activado";
-"pref_summary_off" = "desactivado";
-"pref_summary_default" = "por defecto";
-"pref_summary_custom" = "personalizado";
 "pref_using_custom" = "Usando valor personalizado: %s";
 "pref_using_default" = "Usando valor por defecto: %s";
 "pref_profile_info_headline" = "Información de perfil ";
@@ -497,6 +488,9 @@
 "contact_not_verified" = "No se pudo verificar %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Configuración cambiada para %1$@";
+"verified_group_explain" = "Los grupos verificados (experimentales) brindan seguridad contra ataques activos. Los miembros son verificados con un segundo factor por otros miembros y los mensajes siempre están encriptados de extremo a extremo.";
+
+
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nuevos mensajes en %2$d chats";
 "notify_most_recent_from" = "Más reciente de: %1$@";
@@ -527,10 +521,12 @@
 "perm_explain_access_to_location_denied" = "Delta Chat requiere el permiso de Ubicación para adjuntar una ubicación, pero ha sido denegado de forma permanente. Por favor, vaya al menú de configuración de aplicaciones, seleccione \"Permisos\" y habilite \"Ubicación\".";
 "perm_enable_bg_reminder_title" = "Toque aquí para recibir mensajes mientras Delta Chat está en segundo plano.";
 "perm_enable_bg_reminder_text" = "Delta Chat utiliza los recursos al mínimo y tiene cuidado de no drenar tu batería.";
+"perm_enable_bg_already_done" = "Ya has permitido que Delta Chat reciba mensajes en segundo plano.\n\nSi los mensajes aún no llegan en segundo plano, compruebe también la configuración de su sistema.";
+
 // dc_str_* resources
 "encrypted_message" = "Mensaje cifrado";
 
-// desktop specific strings
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Bienvenido a Delta Chat";
 "login_known_accounts_title_desktop" = "Cuentas conocidas";
 "global_menu_preferences_language_desktop" = "Seleccione Idioma...";
@@ -549,7 +545,7 @@
 "global_menu_help_desktop" = "Ayuda";
 "global_menu_help_learn_desktop" = "Aprender más sobre Delta Chat";
 "global_menu_help_contribute_desktop" = "Contribuir en GitHub";
-"global_menu_help_report_desktop" = "Reportar un Problema...";
+"global_menu_help_report_desktop" = "Reportar un Problema";
 "global_menu_help_about_desktop" = "Sobre Delta Chat";
 "no_chat_selected_suggestion_desktop" = "Selecciona un chat o crea uno nuevo";
 "write_message_desktop" = "Escribe un mensaje";
@@ -566,13 +562,10 @@
 "verified_desktop" = "verificado";
 "remove_desktop" = "Eliminar";
 "save_desktop" = "Guardar";
-"show_qr_verify_code_desktop" = "Mostrar código de invitación QR";
-"show_qr_invite_code_desktop" = "Mostrar código de invitación QR";
 "add_contact_desktop" = "Añadir contacto";
 "login_required_desktop" = "requerido";
 "name_desktop" = "Nombre";
 "autocrypt_key_transfer_desktop" = "Transferencia de clave Autocrypt";
-"initiate_key_transfer_title_desktop" = "Iniciar transferencia de clave";
 "initiate_key_transfer_desktop" = "Un Mensaje de Configuración Autocrypt comparte de forma segura su configuración de extremo a extremo con otras aplicaciones compatibles con Autocrypt. La configuración se cifrará mediante un código de configuración que se muestra aquí y debe escribirse en el otro dispositivo.";
 "reply_to_message_desktop" = "Responder al mensaje";
 "select_group_image_desktop" = "Seleccionar imagen de grupo";

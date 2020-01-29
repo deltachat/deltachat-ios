@@ -1,4 +1,4 @@
-"Privacy - Camera Usage Description" = "Zugriff auf die Kamera ermöglicht das Aufnehmen von Fotos und Videos.";
-"Privacy - Contacts Usage Description" = "Wenn Du Zugriff auf das Adressbuch zulässt, kannst du von Deinem Gerät aus mit Kontakten chatten.";
-"Privacy - Microphone Usage Description" = "Wenn Du den Zugriff auf das Mikrofon zulässt, kannst Du Audio aufnehmen.";
-"Privacy - Photo Library Usage Description" = "Wenn Du Zugriff auf die Fotobibliothek erlaubst, kannst Du Bilder aus der Bibliothek hochladen.";
+Privacy._.Camera.Usage.Description = "Zugriff auf die Kamera ermöglicht das Aufnehmen von Fotos und Videos.";
+Privacy._.Contacts.Usage.Description = "Wenn Du Zugriff auf das Adressbuch zulässt, kannst du von Deinem Gerät aus mit Kontakten chatten.";
+Privacy._.Microphone.Usage.Description = "Wenn Du den Zugriff auf das Mikrofon zulässt, kannst Du Audio aufnehmen.";
+Privacy._.Photo.Library.Usage.Description = "Wenn Du Zugriff auf die Fotobibliothek erlaubst, kannst Du Bilder aus der Bibliothek hochladen.";

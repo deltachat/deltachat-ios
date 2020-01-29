@@ -137,7 +137,6 @@
 "menu_pause" = "Pausa";
 "menu_scroll_to_bottom" = "Scorri alla fine";
 "menu_scroll_to_top" = "Scorri in cima";
-"menu_invite" = "Invita amici";
 "menu_help" = "Aiuto";
 "menu_select_all" = "Seleziona tutto";
 "menu_expand" = "Espandi";
@@ -172,6 +171,7 @@
 "share_location_for_two_hours" = "per 2 ore";
 "share_location_for_six_hours" = "per 6 ore";
 
+"file_saved_to" = "File salvato su \"%1$@\".";
 
 // get confirmations
 "ask_leave_group" = "Sei sicuro di voler abbandonare il gruppo?";
@@ -256,11 +256,6 @@
 "media_preview" = "Anteprima dei Media";
 
 
-// invite
-"invite_slogan" = "Non lasciare i tuoi amici bloccati nelle app di messaggistica che li tengono prigionieri.";
-"invite_default_text" = "Passiamo a Delta Chat - %1$@ - puoi scrivermi a %2$@";
-
-
 // welcome and login
 "welcome_intro1_message" = "L’applicazione di messaggistica con la maggiore utenza al mondo. Libera e indipendente.";
 "welcome_start_messaging" = "Inizia a messaggiare";
@@ -313,10 +308,6 @@
 
 
 // preferences
-"pref_summary_on" = "o";
-"pref_summary_off" = "off";
-"pref_summary_default" = "predefinito";
-"pref_summary_custom" = "personalizzato";
 "pref_using_custom" = "Personalizzato in uso: %s";
 "pref_using_default" = "Predefinito in uso: %s";
 "pref_profile_info_headline" = "Le tue info profilo";
@@ -387,7 +378,7 @@
 "pref_log_header" = "Log";
 "pref_other" = "Altro";
 "pref_backup" = "Backup";
-"pref_backup_explain" = "Backup chat su memoria estera";
+"pref_backup_explain" = "Backup chat su memoria esterna";
 "pref_backup_export_explain" = "Un backup ti aiuta a impostare una nuova installazione su questo o un altro dispositivo.\n\nIl backup conterrà tutti i messaggi, i contatti, le chat e le impostazioni Autocrypt. Tienilo al sicuro o eliminalo il prima possibile. ";
 "pref_backup_export_start_button" = "Avvia backup";
 "pref_backup_written_to_x" = "Backup scritto con successo in %1$@";
@@ -404,9 +395,9 @@
 "pref_background_btn_gallery" = "Seleziona dalla galleria";
 "pref_imap_folder_handling" = "Gestione cartella IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Se disabiliti questa opzione assicurati che il tuo server e gli altri client siano configurati allo stesso modo.\n\nAltrimenti le cose potrebbero non funzionare affatto.";
-"pref_watch_inbox_folder" = "Vedi cartella In Arrivo";
-"pref_watch_sent_folder" = "Vedi cartella Inviati";
-"pref_watch_mvbox_folder" = "Vedi cartella DeltaChat";
+"pref_watch_inbox_folder" = "Controlla cartella In Arrivo";
+"pref_watch_sent_folder" = "Controlla cartella Inviata";
+"pref_watch_mvbox_folder" = "Controlla cartella DeltaChat";
 "pref_send_copy_to_self" = "Auto-invia una copia";
 "pref_auto_folder_moves" = "Sposta automaticamente nella cartella DeltaChat";
 "pref_auto_folder_moves_explain" = "Le chat vengono spostate per evitare di riempire la cartella In Arrivo";
@@ -497,6 +488,9 @@
 "contact_not_verified" = "Impossibile verificare %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Impostazioni modificate per %1$@";
+"verified_group_explain" = "I gruppi verificati (sperimentali) garantiscono sicurezza dagli attacchi. I membri vengono verificati con un secondo fattore dagli altri membri e i messaggi sono sempre cifrati end-to-end. ";
+
+
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nuovi messaggi in %2$d chat";
 "notify_most_recent_from" = "Più recente da: %1$@";
@@ -527,10 +521,12 @@
 "perm_explain_access_to_location_denied" = "Delta Chat richiede l\'autorizzazione per allegare la posizione, ma è stata bloccata permanentemente. Vai nelle impostazioni delle App, seleziona \"Autorizzazioni\" e abilita \"Posizione\".";
 "perm_enable_bg_reminder_title" = "Premi qui per ricevere i messaggi anche quando Delta Chat è in background.";
 "perm_enable_bg_reminder_text" = "Delta Chat usa poche risorse ed è progettata per consumare meno batteria possibile.";
+"perm_enable_bg_already_done" = "Hai già autorizzato Delta Chat a ricevere messaggi in background.\n\nSe i messaggi non arrivano in background controlla le impostazioni di sistema.";
+
 // dc_str_* resources
 "encrypted_message" = "Messaggio cifrato";
 
-// desktop specific strings
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Benvenuto in Delta Chat";
 "login_known_accounts_title_desktop" = "Account conosciuti";
 "global_menu_preferences_language_desktop" = "Scegli la lingua...";
@@ -549,7 +545,7 @@
 "global_menu_help_desktop" = "Aiuto";
 "global_menu_help_learn_desktop" = "Scopri di più su Delta Chat";
 "global_menu_help_contribute_desktop" = "Contribuisci su GitHub";
-"global_menu_help_report_desktop" = "Segnala un problema...";
+"global_menu_help_report_desktop" = "Segnala un problema";
 "global_menu_help_about_desktop" = "Informazioni su Delta Chat";
 "no_chat_selected_suggestion_desktop" = "Seleziona o crea una nuova chat";
 "write_message_desktop" = "Scrivi un messaggio";
@@ -566,13 +562,10 @@
 "verified_desktop" = "verificato";
 "remove_desktop" = "Rimuovi";
 "save_desktop" = "Salva";
-"show_qr_verify_code_desktop" = "Mostra codice QR di invito";
-"show_qr_invite_code_desktop" = "Mostra codice QR di invito";
 "add_contact_desktop" = "Aggiungi contatto";
 "login_required_desktop" = "richiesto";
 "name_desktop" = "Nome";
 "autocrypt_key_transfer_desktop" = "Trasferimento chiave Autocrypt";
-"initiate_key_transfer_title_desktop" = "Inizia trasferimento chiave";
 "initiate_key_transfer_desktop" = "Un \'Messaggio di configurazione Autocrypt\' condivide in sicurezza le tue impostazioni end-to-end con altre app compatibili. Le impostazioni sono criptate con un codice mostrato qui che deve essere inserito nell\'altro dispositivo.";
 "reply_to_message_desktop" = "Rispondi al messaggio";
 "select_group_image_desktop" = "Seleziona immagine grupp";

@@ -137,7 +137,6 @@
 "menu_pause" = "Duraklat";
 "menu_scroll_to_bottom" = "Alta kaydır";
 "menu_scroll_to_top" = "Üste kaydır";
-"menu_invite" = "Arkadaşları davet et";
 "menu_help" = "Yardım";
 "menu_select_all" = "Tümünü seç";
 "menu_expand" = "Genişlet";
@@ -155,7 +154,7 @@
 "title_share_location" = "Tüm grup üyeleriyle konum paylaş";
 "device_talk" = "Aygıt iletileri";
 "device_talk_subtitle" = "Yerel olarak oluşturulan iletiler";
-"device_talk_explain" = "Bu sohbetteki iletiler, Delta Chat uygulamanız tarafından yerel olarak oluşturulur. Oluşturucuları onu uygulama güncelleştirmeleri ve kullanım sırasındaki sorunlar hakkında bilgilendirmek için kullanır.";
+"device_talk_explain" = "Bu sohbetteki iletiler, Delta Chat uygulamanız tarafından yerel olarak oluşturulur. Oluşturucuları, uygulama güncelleştirmeleri ve kullanım sırasındaki sorunlar hakkında bilgilendirmek için onu kullanır.";
 "device_talk_welcome_message" = "Delta Chat\'e hoş geldiniz! – Delta Chat, diğer yaygın ulak uygulamaları gibi görünür ve hissettirir ama merkezi denetim, izleme içermez ya da sizi, arkadaşlarınızı, iş arkadaşlarınızı ya da ailenizi büyük kuruluşlara satmaz.\n\nTeknik olarak Delta Chat, çağdaş bir sohbet arabirimli bir e-posta uygulamasıdır. 👻 olacaksanız, e-posta yeni bir elbisedir\n\nMilyarlarca insanın herhangi biriyle Delta Chat kullanın: Yalnızca onların e-posta adresini kullanın. Alıcıların Delta Chat\'i kurması, web sitelerini ziyaret etmesi ya da herhangi bir yere kaydolması gerekmez - ancak, elbette isterlerse, onlara 👉 https://get.delta.chat adresini işaret edebilirsiniz";
 "edit_contact" = "Kişiyi düzenle";
 
@@ -172,6 +171,7 @@
 "share_location_for_two_hours" = "2 saatliğine";
 "share_location_for_six_hours" = "6 saatliğine";
 
+"file_saved_to" = "Dosya \"%1$@\" üzerine kaydedildi.";
 
 // get confirmations
 "ask_leave_group" = "Bu gruptan ayrılmak istediğinizden emin misiniz?";
@@ -256,11 +256,6 @@
 "media_preview" = "Ortam önizlemesi";
 
 
-// invite
-"invite_slogan" = "Arkadaşlar, arkadaşların iletileşme silolarına kilitlenmesine izin vermez.";
-"invite_default_text" = "Delta Chat\'e geçelim - %1$@ - %2$@ üzerinden bana yazabilirsiniz";
-
-
 // welcome and login
 "welcome_intro1_message" = "Dünyanın en geniş kitleli ulağı. Özgür ve bağımsızdır.";
 "welcome_start_messaging" = "İletileşmeye başla";
@@ -313,10 +308,6 @@
 
 
 // preferences
-"pref_summary_on" = "açık";
-"pref_summary_off" = "kapalı";
-"pref_summary_default" = "varsayılan";
-"pref_summary_custom" = "özel";
 "pref_using_custom" = "Özel kullanılıyor: %s";
 "pref_using_default" = "Varsayılan kullanılıyor: %s";
 "pref_profile_info_headline" = "Profil bilginiz";
@@ -497,6 +488,9 @@
 "contact_not_verified" = "%1$@ doğrulanamıyor.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "%1$@ için ayarlama değiştirildi.";
+"verified_group_explain" = "Doğrulanan gruplar (deneysel), etkin saldırılar karşısında güvenlik sağlar. Üyeler, diğer üyeler tarafından ikinci bir etkenle doğrulanır ve iletiler her zaman uçtan uca şifrelenir.";
+
+
 // notifications 
 "notify_n_messages_in_m_chats" = "%2$d sohbette %1$d yeni ileti";
 "notify_most_recent_from" = "Şundan en yeni: %1$@";
@@ -527,12 +521,12 @@
 "perm_explain_access_to_location_denied" = "Bir konum iliştirmek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Konum\"u etkinleştirin.";
 "perm_enable_bg_reminder_title" = "Delta Chat artalandayken iletileri almak için buraya dokunun.";
 "perm_enable_bg_reminder_text" = "Delta Chat, kaynakların en azını kullanır ve pilinizi boşaltmamaya özen gösterir.";
-"perm_enable_bg_already_done" = "Delta Chat\'in iletileri artalanda almasına zaten izin verdiniz.\n\nArtalanda iletiler hâlâ gelmiyorsa, lütfen sistem ayarlarınızı da denetleyin.";
+"perm_enable_bg_already_done" = "Delta Chat\'in iletileri artalanda almasına zaten izin verdiniz.\n\nİletiler artalanda hâlâ gelmiyorsa, lütfen sistem ayarlarınızı da denetleyin.";
 
 // dc_str_* resources
 "encrypted_message" = "Şifrelenen ileti";
 
-// desktop specific strings
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Delta Chat\'e hoş geldiniz";
 "login_known_accounts_title_desktop" = "Bilinen hesaplar";
 "global_menu_preferences_language_desktop" = "Dil";
@@ -551,7 +545,7 @@
 "global_menu_help_desktop" = "Yardım";
 "global_menu_help_learn_desktop" = "Delta Chat hakkında daha fazlasını öğrenin";
 "global_menu_help_contribute_desktop" = "GitHub\'da katkıda bulunun";
-"global_menu_help_report_desktop" = "Bir sorun raporla…";
+"global_menu_help_report_desktop" = "Bir sorun raporla";
 "global_menu_help_about_desktop" = "Delta Chat hakkında";
 "no_chat_selected_suggestion_desktop" = "Bir sohbet seçin ya da yeni bir sohbet oluşturun";
 "write_message_desktop" = "Bir ileti yazın";
@@ -568,13 +562,10 @@
 "verified_desktop" = "doğrulanan";
 "remove_desktop" = "Kaldır";
 "save_desktop" = "Kaydet";
-"show_qr_verify_code_desktop" = "QR davet kodunu göster";
-"show_qr_invite_code_desktop" = "QR davet kodunu göster";
 "add_contact_desktop" = "Kişi ekle";
 "login_required_desktop" = "gerekli";
 "name_desktop" = "Ad";
 "autocrypt_key_transfer_desktop" = "Autocrypt anahtar aktarımı";
-"initiate_key_transfer_title_desktop" = "Anahtar aktarımına başla";
 "initiate_key_transfer_desktop" = "Bir Autocrypt Ayarlama İletisi, uçtan uca ayarlamanızı diğer Autocrypt uyumlu uygulamalarla güvenli olarak paylaşır. Ayarlama, burada görüntülenen ve diğer aygıtta yazılması gereken bir ayarlama kodu tarafından şifrelenecek.";
 "reply_to_message_desktop" = "İletiye yanıt ver";
 "select_group_image_desktop" = "Grup görseli seç";
