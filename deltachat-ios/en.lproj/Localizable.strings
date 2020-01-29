@@ -137,7 +137,6 @@
 "menu_pause" = "Pause";
 "menu_scroll_to_bottom" = "Scroll to the bottom";
 "menu_scroll_to_top" = "Scroll to the top";
-"menu_invite" = "Invite friends";
 "menu_help" = "Help";
 "menu_select_all" = "Select all";
 "menu_expand" = "Expand";
@@ -172,6 +171,7 @@
 "share_location_for_two_hours" = "for 2 hours";
 "share_location_for_six_hours" = "for 6 hours";
 
+"file_saved_to" = "File saved to \"%1$@\".";
 
 // get confirmations
 "ask_leave_group" = "Are you sure you want to leave this group?";
@@ -256,11 +256,6 @@
 "media_preview" = "Media preview";
 
 
-// invite
-"invite_slogan" = "Friends don\'t let friends locked in messaging silos.";
-"invite_default_text" = "Let\'s switch to Delta Chat - %1$@ - you can text me at %2$@";
-
-
 // welcome and login
 "welcome_intro1_message" = "The messenger with the broadest audience in the world. Free and independent.";
 "welcome_start_messaging" = "Start messaging";
@@ -313,10 +308,6 @@
 
 
 // preferences
-"pref_summary_on" = "on";
-"pref_summary_off" = "off";
-"pref_summary_default" = "default";
-"pref_summary_custom" = "custom";
 "pref_using_custom" = "Using custom: %s";
 "pref_using_default" = "Using default: %s";
 "pref_profile_info_headline" = "Your profile info";
@@ -535,7 +526,7 @@
 // dc_str_* resources
 "encrypted_message" = "Encrypted message";
 
-// desktop specific strings
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Welcome to Delta Chat";
 "login_known_accounts_title_desktop" = "Known accounts";
 "global_menu_preferences_language_desktop" = "Language";
@@ -554,7 +545,7 @@
 "global_menu_help_desktop" = "Help";
 "global_menu_help_learn_desktop" = "Learn more about Delta Chat";
 "global_menu_help_contribute_desktop" = "Contribute on GitHub";
-"global_menu_help_report_desktop" = "Report an issue…";
+"global_menu_help_report_desktop" = "Report an issue";
 "global_menu_help_about_desktop" = "About Delta Chat";
 "no_chat_selected_suggestion_desktop" = "Select a chat or create a new chat";
 "write_message_desktop" = "Write a message";
@@ -571,13 +562,10 @@
 "verified_desktop" = "verified";
 "remove_desktop" = "Remove";
 "save_desktop" = "Save";
-"show_qr_verify_code_desktop" = "Show QR invite code";
-"show_qr_invite_code_desktop" = "Show QR invite code";
 "add_contact_desktop" = "Add contact";
 "login_required_desktop" = "required";
 "name_desktop" = "Name";
 "autocrypt_key_transfer_desktop" = "Autocrypt key transfer";
-"initiate_key_transfer_title_desktop" = "Initiate key transfer";
 "initiate_key_transfer_desktop" = "An Autocrypt Setup Message securely shares your end-to-end setup with other Autocrypt-compliant apps. The setup will be encrypted by a setup code displayed here and must be typed on the other device.";
 "reply_to_message_desktop" = "Reply to message";
 "select_group_image_desktop" = "Select group image";
@@ -618,5 +606,9 @@
 "a11y_remove_account_btn_label" = "Remove account";
 "a11y_message_context_menu_btn_label" = "Message actions";
 "a11y_background_preview_label" = "Background preview";
+
+// Translators: These strings are only used on iOS
+
+// iOS specific untranslated strings
 "import_contacts" = "Import device contacts";
 "import_contacts_message" = "To chat with contacts from your device open Settings and enable Contacts.";

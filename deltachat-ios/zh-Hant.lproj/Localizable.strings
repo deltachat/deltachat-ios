@@ -137,7 +137,6 @@
 "menu_pause" = "暂停";
 "menu_scroll_to_bottom" = "滚动至底部";
 "menu_scroll_to_top" = "滚动至顶部";
-"menu_invite" = "邀请朋友";
 "menu_help" = "帮助";
 "menu_select_all" = "全选";
 "menu_expand" = "展开";
@@ -172,6 +171,7 @@
 "share_location_for_two_hours" = "2小时";
 "share_location_for_six_hours" = "6小时";
 
+"file_saved_to" = "文件已保存到“%1$@”。";
 
 // get confirmations
 "ask_leave_group" = "您确定要离开此群组吗？";
@@ -256,11 +256,6 @@
 "media_preview" = "媒体预览";
 
 
-// invite
-"invite_slogan" = "朋友不会让朋友陷入消息孤岛。";
-"invite_default_text" = "让我们切换到Delta Chat - %1$@ - 你可以通过%2$@发消息给我";
-
-
 // welcome and login
 "welcome_intro1_message" = "本通讯软件有着世界上最广泛的受众。自由且自主。";
 "welcome_start_messaging" = "开始发送消息";
@@ -313,10 +308,6 @@
 
 
 // preferences
-"pref_summary_on" = "开";
-"pref_summary_off" = "关";
-"pref_summary_default" = "默认";
-"pref_summary_custom" = "自定义";
 "pref_using_custom" = "使用自定义：%s";
 "pref_using_default" = "使用默认：%s";
 "pref_profile_info_headline" = "您的个人资料";
@@ -497,6 +488,9 @@
 "contact_not_verified" = "无法验证%1$@。";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "更改了%1$@的设置";
+"verified_group_explain" = "已验证群组（实验性）可提供针对主动攻击的安全性。其中的成员被其他成员用第二个因素进行了验证，并且消息始终是端到端加密的。";
+
+
 // notifications 
 "notify_n_messages_in_m_chats" = "%2$d个聊天中有%1$d条新消息";
 "notify_most_recent_from" = "最新来自：%1$@";
@@ -527,10 +521,12 @@
 "perm_explain_access_to_location_denied" = "要附加位置，请转至应用设置，选择“权限”，然后启用“位置”。";
 "perm_enable_bg_reminder_title" = "点击此处以在Delta Chat处于后台时接收消息。";
 "perm_enable_bg_reminder_text" = "Delta Chat 仅使用少量的资源并且会注意不去耗尽电池电量。";
+"perm_enable_bg_already_done" = "您已允许Delta Chat在后台接收消息。\n\n如果在后台时消息仍没到达，请同时检查系统设置。";
+
 // dc_str_* resources
 "encrypted_message" = "加密消息";
 
-// desktop specific strings
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "欢迎使用Delta Chat";
 "login_known_accounts_title_desktop" = "已知账户";
 "global_menu_preferences_language_desktop" = "语言";
@@ -549,7 +545,7 @@
 "global_menu_help_desktop" = "帮助";
 "global_menu_help_learn_desktop" = "了解有关Delta Chat的更多信息";
 "global_menu_help_contribute_desktop" = "在GitHub上做贡献";
-"global_menu_help_report_desktop" = "报告一个问题…";
+"global_menu_help_report_desktop" = "报告一个问题";
 "global_menu_help_about_desktop" = "关于Delta Chat";
 "no_chat_selected_suggestion_desktop" = "选择一个聊天或创建新聊天";
 "write_message_desktop" = "写消息";
@@ -566,13 +562,10 @@
 "verified_desktop" = "已验证";
 "remove_desktop" = "移除";
 "save_desktop" = "保存";
-"show_qr_verify_code_desktop" = "显示邀请二维码";
-"show_qr_invite_code_desktop" = "显示邀请二维码";
 "add_contact_desktop" = "添加联系人";
 "login_required_desktop" = "必需";
 "name_desktop" = "名称";
 "autocrypt_key_transfer_desktop" = "Autocrypt密钥传输";
-"initiate_key_transfer_title_desktop" = "启动密钥传输";
 "initiate_key_transfer_desktop" = "“Autocrypt设置消息”安全地共享您的端到端设置至其他兼容Autocrypt的应用程序。该设置将通过在此显示的、必须在另一台设备上输入的设置码进行加密。";
 "reply_to_message_desktop" = "回复消息";
 "select_group_image_desktop" = "选择群组图像";

@@ -137,7 +137,6 @@
 "menu_pause" = "Pausatu";
 "menu_scroll_to_bottom" = "Korritu behealdera";
 "menu_scroll_to_top" = "Korritu goialdera";
-"menu_invite" = "Gonbidatu lagunak";
 "menu_help" = "Laguntza";
 "menu_select_all" = "Hautatu guztiak";
 "menu_expand" = "Hedatu";
@@ -171,7 +170,6 @@
 "share_location_for_one_hour" = "Ordu 1";
 "share_location_for_two_hours" = "2 orduz";
 "share_location_for_six_hours" = "6 orduz";
-
 
 // get confirmations
 "ask_leave_group" = "Ziur talde honetatik atera nahi duzula?";
@@ -256,11 +254,6 @@
 "media_preview" = "Multimediaren aurrebista";
 
 
-// invite
-"invite_slogan" = "Lagun onek ez diete bere lagunei itxitako mezularitza guneetan giltzaperatzea.";
-"invite_default_text" = "Alda gaitezen Delta Chat-era %1$@ - %2$@ helbidera idatzi diezadakezu";
-
-
 // welcome and login
 "welcome_intro1_message" = "Munduan erabiltzaile gehien dituen mezularitza aplikazioa. Librea eta independentea.";
 "welcome_start_messaging" = "Hasi txateatzen";
@@ -313,10 +306,6 @@
 
 
 // preferences
-"pref_summary_on" = "bai";
-"pref_summary_off" = "ez";
-"pref_summary_default" = "lehenetsia";
-"pref_summary_custom" = "pertsonalizatua";
 "pref_using_custom" = "Pertsonalizatua erabiltzen: %s";
 "pref_using_default" = "Lehenetsia erabiltzen: %s";
 "pref_profile_info_headline" = "Zure profileko informazioa";
@@ -497,6 +486,8 @@
 "contact_not_verified" = "Ezin da %1$@ egiaztatu";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Aldatu %1$@(r)en ezarpena";
+
+
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d mezu berri %2$d txatetan";
 "notify_most_recent_from" = "%1$@(r)en azkena";
@@ -527,10 +518,12 @@
 "perm_explain_access_to_location_denied" = "Delta Chat-ek kokaleku aatzitzeko baimena behar du kokalekua eransteko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"baimenak\", eta gaitu \"Kokalekua\".";
 "perm_enable_bg_reminder_title" = "Sakatu hemen mezuak jasotzeko Delta Chat bigarren planoan dagoenean.";
 "perm_enable_bg_reminder_text" = "Delta Chat-ek baliabide gutxi erabiltzen ditu eta zure bateria ez agortzeaz arduratzen da.";
+"perm_enable_bg_already_done" = "Dagoeneko baimendu diozu Delta Chat aplikazioari bigarren planoan mezuak jasotzea,\n\nOraindik ere mezuak heltzen ez badira, egiaztatu ere zure sistemaren ezarpenak.";
+
 // dc_str_* resources
 "encrypted_message" = "Zifratutako mezua";
 
-// desktop specific strings
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Ongi etorri Delta Chat-era";
 "login_known_accounts_title_desktop" = "Kontu ezagunak";
 "global_menu_preferences_language_desktop" = "Hautatu hizkuntza...";
@@ -549,7 +542,7 @@
 "global_menu_help_desktop" = "Laguntza";
 "global_menu_help_learn_desktop" = "Ikasi gehiago Delta Chat-i buruz";
 "global_menu_help_contribute_desktop" = "Hartu parte GitHub-en";
-"global_menu_help_report_desktop" = "Eman arazo baten berri...";
+"global_menu_help_report_desktop" = "Eman arazo baten berri";
 "global_menu_help_about_desktop" = "Delta Chat-i buruz";
 "no_chat_selected_suggestion_desktop" = "Hautatu txat bat edo sortu txat berri bat";
 "write_message_desktop" = "Idatzi mezu bat";
@@ -566,13 +559,10 @@
 "verified_desktop" = "egiaztatuta";
 "remove_desktop" = "Kendu";
 "save_desktop" = "Gorde";
-"show_qr_verify_code_desktop" = "Erakutsi gonbidapenerako QR kodea";
-"show_qr_invite_code_desktop" = "Erakutsi gonbidapenerako QR kodea";
 "add_contact_desktop" = "Gehitu kontaktua";
 "login_required_desktop" = "derrigorrezkoa";
 "name_desktop" = "Izena";
 "autocrypt_key_transfer_desktop" = "Autocrypt gakoaren transferentzia";
-"initiate_key_transfer_title_desktop" = "Hasi gakoaren transferentzia";
 "initiate_key_transfer_desktop" = "Autocrypt ezarpen mezu batek modu seguruan partekatzen du zure muturretik muturrerako ezarpena Autocryptekin bateragarriak diren beste aplikazioekin. Ezarpena hemen bistaratutako ezarpen kodearekin zifratuko  da, eta beste gailuan kode hau sartu beharko da.";
 "reply_to_message_desktop" = "Erantzun mezuari";
 "select_group_image_desktop" = "Hautatu taldearen irudia";

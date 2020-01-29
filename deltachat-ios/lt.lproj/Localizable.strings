@@ -129,7 +129,6 @@
 "menu_pause" = "Pristabdyti";
 "menu_scroll_to_bottom" = "Slinkti į apačią";
 "menu_scroll_to_top" = "Slinkti į viršų";
-"menu_invite" = "Pakviesti draugus";
 "menu_help" = "Žinynas";
 "menu_select_all" = "Žymėti viską";
 "menu_expand" = "Išplėsti";
@@ -203,6 +202,10 @@
 "group_hello_draft" = "Sveiki, aš ką tik sukūriau mums grupę \"%1$@\".";
 "group_self_not_in_group" = "Norėdami atlikti šį veiksmą, privalote būti grupės dalyviu.";
 "profile_encryption" = "Šifravimas";
+"profile_shared_chats" = "Bendrinami pokalbiai";
+"tab_contact" = "Adresatas";
+"tab_group" = "Grupė";
+"tab_members" = "Dalyviai";
 "tab_gallery" = "Galerija";
 "tab_docs" = "Dokumentai";
 "tab_links" = "Nuorodos";
@@ -210,11 +213,6 @@
 "tab_gallery_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami paveikslai ir vaizdo įrašai.";
 "tab_docs_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami dokumentai, muzika ir kiti failai.";
 "media_preview" = "Medijos peržiūra";
-
-
-// invite
-"invite_slogan" = "Draugai nepalieka savo draugų susirašinėjimo šachtose.";
-"invite_default_text" = "Pradėkime naudoti Delta Chat - %1$@ - gali man parašyti į %2$@";
 
 
 // welcome and login
@@ -257,9 +255,6 @@
 "share_abort" = "Bendrinimas nutrauktas dėl trūkstamų leidimų.";
 
 
-// preferences
-"pref_summary_on" = "įjungta";
-"pref_summary_off" = "išjungta";
 "pref_profile_info_headline" = "Jūsų profilio informacija";
 "pref_profile_photo" = "Profilio nuotrauka";
 "pref_trim_headline" = "Žinučių apkarpymas";
@@ -434,7 +429,7 @@
 // dc_str_* resources
 "encrypted_message" = "Šifruota žinutė";
 
-// desktop specific strings
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Sveiki atvykę į Delta Chat";
 "login_known_accounts_title_desktop" = "Žinomos paskyros";
 "global_menu_preferences_language_desktop" = "Pasirinkti kalbą...";
@@ -453,7 +448,7 @@
 "global_menu_help_desktop" = "Žinynas";
 "global_menu_help_learn_desktop" = "Sužinokite daugiau apie Delta Chat";
 "global_menu_help_contribute_desktop" = "Talkinti Github svetainėje";
-"global_menu_help_report_desktop" = "Pranešti apie klaidą...";
+"global_menu_help_report_desktop" = "Pranešti apie klaidą";
 "global_menu_help_about_desktop" = "Apie Delta Chat";
 "no_chat_selected_suggestion_desktop" = "Pasirinkite arba sukurkite naują pokalbį";
 "write_message_desktop" = "Rašykite žinutę";
@@ -469,13 +464,10 @@
 "encryption_info_desktop" = "Rodyti šifravimo informaciją";
 "remove_desktop" = "Šalinti";
 "save_desktop" = "Išsaugoti";
-"show_qr_verify_code_desktop" = "Rodyti QR pakvietimo kodą";
-"show_qr_invite_code_desktop" = "Rodyti QR pakvietimo kodą";
 "add_contact_desktop" = "Pridėti adresatą";
 "login_required_desktop" = "būtina";
 "name_desktop" = "Vardas";
 "autocrypt_key_transfer_desktop" = "Autocrypt rakto perdavimas";
-"initiate_key_transfer_title_desktop" = "Inicijuoti rakto perdavimą";
 "initiate_key_transfer_desktop" = "Autocrypt sąrankos žinutė saugiai bendrina jūsų ištisinę sąranką su kitomis su Autocrypt suderinamomis programomis. Sąranka bus užšifruota sąrankos kodu, kuris yra rodomas čia ir privalės būti įvestas kitame įrenginyje.";
 "reply_to_message_desktop" = "Atsakyti į žinutę";
 "select_group_image_desktop" = "Pasirinkti grupės paveikslą";

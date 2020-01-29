@@ -1,0 +1,243 @@
+// common strings without special context
+"app_name" = "Delta Chat";
+"ok" = "సరే";
+"cancel" = "రద్దు";
+"yes" = "అవును";
+"no" = "కాదు";
+"on" = "ఆన్";
+"off" = "ఆఫ్";
+"def" = "డీఫాల్ట్";
+"custom" = "కస్టమ్";
+"none" = "ఏదీ కాదు";
+"automatic" = "స్వయంచాలక";
+"strict" = "కఠినమైన";
+"open" = "తెరువు";
+"delete" = "తొలగించు";
+"info" = "సమాచారం";
+"update" = "నవీకరణ";
+"emoji" = "ఎమోజి";
+"attachment" = "అటాచ్మెంట్";
+"back" = "తిరిగి";
+"close" = "దగ్గరగా";
+"forward" = "ఫార్వర్డ్";
+"archive" = "ఆర్కైవ్";
+"unarchive" = "ఆర్కైవ్ రద్దు";
+"mute" = "నిశబ్ధం";
+"save" = "భద్రపరుచు";
+"chat" = "చాట్";
+"media" = "మాధ్యమం";
+"main_menu" = "ప్రధాన మెనూ";
+"start_chat" = "చాట్ ప్రారంభించండి";
+"not_now" = "ఇప్పుడు కాదు";
+"never" = "ఎప్పుడూ";
+"one_moment" = "ఒక్క క్షణం ...";
+"done" = "పూర్తయింది";
+"undo" = "దిద్దుబాటు రద్దుచెయ్యి";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "తరువాత";
+"error" = "లోపం";
+"contacts_headline" = "కాంటాక్ట్స్";
+"email_address" = "ఈమెయిల్ చిరునామా";
+"password" = "పాస్వర్డ్";
+"now" = "ఇప్పుడు";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "డేంజర్";
+"today" = "నేడు";
+"yesterday" = "నిన్న";
+"this_week" = "ఈ వారం";
+"this_month" = "ఈ నెల";
+"last_week" = "గత వారం";
+"last_month" = "పోయిన నెల";
+"self" = "నేను";
+"draft" = "డ్రాఫ్ట్";
+"image" = "చిత్రం";
+"gif" = "Gif";
+"images" = "చిత్రాలు";
+"audio" = "ఆడియో";
+"voice_message" = "మాట సందేశం";
+"forwarded_message" = "ఫార్వర్డ్ చేయబడిన సందేసం";
+"video" = "వీడియో";
+"documents" = "పత్రాలు";
+"contact" = "పరిచయం";
+"camera" = "కెమేరా";
+"location" = "స్థానం";
+"gallery" = "గ్యాలరీ";
+"file" = "ఫైల్";
+"unknown" = "తెలియని";
+
+"green" = "ఆకు పచ్చ";
+"red" = "ఎరుపు";
+"blue" = "నీలం";
+"orange" = "నారింజ";
+"cyan" = "సియన్";
+"purple" = "ఊదా";
+"magenta" = "మజెంటా";
+"white" = "తెలుపు";
+
+"small" = "చిన్న";
+"normal" = "సాధారణంగా";
+"large" = "పెద్ద";
+"extra_large" = "చాలా పెద్దది";
+
+"fast" = "త్వరగా";
+"slow" = "మెల్లిగా";
+
+"message_read" = "సందేశం చదవబడింది";
+
+
+// menu labels (or icon, buttons...)
+"menu_new_contact" = "కొత్త పరిచయం";
+"menu_new_chat" = "క్రొత్త చాట్";
+"menu_new_group" = "కొత్త సమూహము";
+"menu_send" = "పంపు";
+"menu_toggle_keyboard" = "టోగుల్ ఎమోజి కీబోర్డు";
+"menu_edit_group" = "సమూహాన్ని మార్చు";
+"menu_archive_chat" = "చాట్ ఆర్చివ్";
+"menu_add_attachment" = "జతచెసిన‌ ఫైళ్ళు";
+"menu_leave_group" = "సమూహాన్ని వదులు";
+"menu_delete_chat" = "చాట్ తొలగించు";
+"menu_message_details" = "సందేశం వివరాలు";
+"menu_copy_to_clipboard" = "క్లిప్బోర్డ్ కు కాపీ చేయి";
+"menu_forward" = "సందేశాన్ని బదలాయించు";
+"menu_resend" = "సందేశాన్ని తిరిగి పంపు";
+"menu_reply" = "సందేశానికి ప్రత్యుత్తరం ఇవ్వండి";
+"menu_mute" = "నోటిఫికేషన్ల ను నిలిపివేయి";
+"menu_unmute" = "మ్యూట్ తీసివేయి";
+"menu_all_media" = "అన్ని మీడియా";
+"menu_share" = "పంచుకో";
+"menu_block_contact" = "పరిచయాన్ని నిరోధించు";
+"menu_play" = "ప్లే";
+"menu_pause" = "పాజ్";
+"menu_help" = "సహాయం";
+"menu_select_all" = "అన్నీ ఎంచుకో";
+"menu_edit_name" = "పేరును మార్చు";
+"menu_settings" = "సెట్టింగులు";
+"menu_advanced" = "ఆధునిక";
+"menu_deaddrop" = "పరిచయ అభ్యర్ధనలు";
+"menu_zoom_in" = "పెద్దదిగా చూపు";
+"menu_zoom_out" = "పెద్దది చెయ్యి";
+"mute_for_one_hour" = "1 గంట నిశబ్దంగా ఉంచు";
+"mute_for_two_hours" = "2 గంటలు నిశబ్దంగా ఉంచు";
+"mute_for_one_day" = "1 రోజు నిశబ్దంగా ఉంచు";
+"mute_for_seven_days" = "7 రోజులు నిశబ్దంగా ఉంచు";
+// get confirmations
+"ask_leave_group" = "మీరు ఈ సమూహాన్ని వదిలిపెట్టాలనుకుంటున్నారా?";
+"ask_forward" = "సందేశాలు %1$@ ఫార్వర్డ్ చేయాలా?";
+"ask_block_contact" = "మీరు ఈ పరిచయాన్ని రద్దుచేయాలని నిర్ణయించుకున్నారా?";
+// contact list
+"contacts_title" = "కాంటాక్ట్స్";
+"contacts_empty_hint" = "ఇంకా ఏ పరిచయాలూ లేవు.";
+
+
+"chat_archived_chats_title" = "ఆర్కైవ్ చేసిన చాట్స్";
+"chat_record_slide_to_cancel" = "రద్దు చేయడానికి స్లైడ్ చేయి";
+"chat_share_with_title" = "తో పంచు";
+"chat_input_placeholder" = "సందేశం";
+"chat_archived_label" = "ఆర్చివ్ అయినది";
+"chat_no_messages" = "సందేశాలు లేవు";
+"chat_contact_request" = "పరిచయ అభ్యర్ధనలు";
+// search
+"search" = "వెతుకు";
+// create/edit groups, contact/group profile
+"group_name" = "సమూహం పేరు";
+"group_please_enter_group_name" = "సమూహానికి పేరు పెట్టు";
+"group_add_members" = "సభ్యుడిని జత చేయి";
+"profile_encryption" = "ఎన్క్రిప్షన్";
+"profile_shared_chats" = "భాగస్వామ్య చాట్‌లు";
+"tab_contact" = "పరిచయం";
+"tab_group" = "సమూహము";
+"tab_gallery" = "గ్యాలరీ";
+"media_preview" = "మీడియా పూర్వప్రదర్శన";
+
+
+"pref_profile_info_headline" = "మీ రూప సమాచారం";
+"pref_profile_photo" = "రూపచిత్రం";
+"pref_trim_option" = "పాత సందేశాలను తొలగించు";
+"pref_blocked_contacts" = "నిరోధించిన పరిచయాలు";
+"pref_profile_photo_remove_ask" = "రూపచిత్రం తీసివేయాలా?";
+"pref_password_and_account_settings" = "ఖాతా సెట్టింగులు";
+"pref_your_name" = "మీ పేరు";
+// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+"pref_default_status_text" = "నా Delta Chat మెసెంజర్ ద్వారా పంపబడినది: https://delta.chat";
+"pref_enter_sends" = "\"ఎంటర్\" నొక్కితే పంపు";
+"pref_vibrate" = "వైబ్రేషన్";
+"pref_chat_settings" = "చాట్స్ సెట్టింగులు";
+"pref_screen_security" = "స్క్రీన్ భద్రత";
+// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+"pref_screen_security_explain" = "నిరోధించు స్క్రీన్షాట్లు లో ది ఇటీవలి జాబితా మరియు లోపల ది అనువర్తనం";
+"pref_notifications" = "నోటిఫికేషన్లు";
+"pref_notifications_show" = "కనబర్చు";
+"pref_notifications_priority" = "ప్రాధాన్యత";
+"pref_led_color" = "LED రంగు";
+"pref_led_pattern" = "ఎల్ఇడి రెప్పపాటు నమూనా";
+"pref_sound" = "శబ్ధం";
+"pref_silent" = "మౌనం";
+"pref_privacy" = "గోప్యత";
+"pref_chats_and_media" = "ముచ్చట్లు మరియు ప్రసార మాధ్యమం";
+// Translators: "light" in the meaning "opposite of dark"
+"pref_light_theme" = "లైటు";
+"pref_dark_theme" = "గుప్తమైన";
+"pref_appearance" = "స్వరూపం";
+"pref_theme" = "వ్యవస్థ";
+"pref_language" = "భాష";
+"pref_incognito_keyboard" = "అజ్ఞాత కీబోర్డ్";
+// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+"pref_incognito_keyboard_explain" = "వ్యక్తిగతీకరించిన అభ్యాసను ఆపివేయడానికి కీబోర్డ్ని అభ్యర్థించండి";
+"pref_read_receipts" = "చదివిన రసీదులు";
+"pref_read_receipts_explain" = "చదివే రసీదులను నిలిపివేస్తే, మీరు ఇతరుల నుండి చదివే రసీదులను చూడలేరు.";
+"pref_use_system_emoji" = "యంత్రము యొక్క  ఎమొజిలను  ఉపయొగించు";
+"pref_use_system_emoji_explain" = "Delta Chat యొక్క అంతర్నిర్మిత ఎమోజి మద్దతును నిలిపివేయి";
+"pref_app_access" = "అనువర్తన ప్రాప్యత";
+"pref_communication" = "సమాచారం";
+"pref_chats" = "చాట్లు";
+"pref_messages" = "సందేశాలు";
+"pref_in_chat_sounds" = "యాప్-లోపల నోటిఫికేషన్లు";
+"pref_message_text_size" = "సందేశం ఫాంట్ పరిమాణం";
+"pref_other" = "ఇతర";
+"pref_backup" = "బ్యాకప్";
+"pref_managekeys_export_secret_keys" = "రహస్య కీలను ఎగుమతి చెయి";
+"pref_background" = "చాట్ నేపధ్యం";
+// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+"systemmsg_action_by_me" = "%1$@ నా‌ ద్వరా";
+// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+"systemmsg_action_by_user" = "%1$@ చే %2$@.";
+
+
+// screen lock
+"screenlock_title" = "స్క్రీన్ తాళం";
+"screenlock_explain" = "Android స్క్రీన్ లాక్ లేదా వేలిముద్రతో Signal యాక్సెస్ను లాక్ చేయండి";
+"screenlock_unlock_title" = "అన్లాక్ Delta Chat";
+"qrscan_fingerprint_label" = "ఫింగర్‌ప్రింట్స్";
+"notify_media_message" = "మల్టీమీడియా సందేశం";
+"notify_reply_button" = "జవాబు";
+"notify_new_message" = "కొత్త సందేశం";
+"notify_priority_high" = "అధికం";
+"notify_priority_max" = "చాలా శబ్ధం";
+"notify_name_and_message" = "పేరు మరియు సందేశం";
+"notify_name_only" = "పేరు మాత్రమే";
+"notify_no_name_or_message" = "పేరు లేదా సందేశం";
+
+
+// permissions
+"perm_required_title" = "అనుమతి అవసరం";
+"perm_continue" = "కొనసాగించు";
+// dc_str_* resources
+"encrypted_message" = "ఎంక్రిప్ట్ చెసిన సందేశం";
+
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"welcome_desktop" = "Delta Chat కి స్వాగతం.";
+"global_menu_file_desktop" = "ఫైల్";
+"global_menu_edit_desktop" = "మార్చు";
+"global_menu_view_desktop" = "చూడు";
+"global_menu_help_desktop" = "సహాయం";
+"global_menu_help_about_desktop" = "Delta Chat గురించి";
+"contact_request_title_desktop" = "పరిచయ అభ్యర్ధనలు";
+"more_info_desktop" = "మరింత సమాచారం";
+"no_chats_desktop" = "ఏ చాట్లు లేవు";
+"remove_desktop" = "తొలగించు";
+"save_desktop" = "భద్రపరుచు";
+"reply_to_message_desktop" = "సందేశానికి ప్రత్యుత్తరం ఇవ్వండి";
+"export_backup_desktop" = "బ్యాకప్ ఎగుమతి చెయి";
+"unblock_contacts_desktop" = "పరిచయం నిరోధాన్ని నిలిపివేయి";
+"me_desktop" = "నేను";
+"message_detail_from_desktop" = "నుండీ";

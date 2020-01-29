@@ -1,0 +1,381 @@
+// common strings without special context
+"app_name" = "Delta Chat";
+"ok" = "OK";
+"cancel" = "Avbryt";
+"yes" = "Ja";
+"no" = "Nei";
+"on" = "På";
+"off" = "Av";
+"def" = "Forvalg";
+"custom" = "Egendefinert";
+"none" = "Ingen";
+"automatic" = "Automatisk";
+"strict" = "Streng";
+"open" = "Åpne";
+"delete" = "Slett";
+"info" = "Info";
+"update" = "Oppdater";
+"emoji" = "Emoji";
+"attachment" = "Vedlegg";
+"back" = "Forrige";
+"close" = "Lukk";
+"forward" = "Videresend";
+"archive" = "Arkiver";
+"unarchive" = "Fjern fra arkiv";
+"mute" = "Demp";
+"save" = "Lagre";
+"chat" = "Sludring";
+"media" = "Media";
+"main_menu" = "Hovedmeny";
+"start_chat" = "Start sludring";
+"show_password" = "Vis passord";
+"hide_password" = "Skjul passord";
+"not_now" = "Ikke nå";
+"never" = "Aldri";
+"one_moment" = "Et øyeblikk…";
+"done" = "Ferdig";
+"undo" = "Angre";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Neste";
+"error" = "Feil";
+"error_x" = "Feil: %1$@";
+"error_no_network" = "Nettverk utilgjengelig.";
+"file_not_found" = "Filen %1$@ ble ikke funnet.";
+"copied_to_clipboard" = "Kopiert til utklippstavle";
+"contacts_headline" = "Kontakter";
+"email_address" = "E-postadresse";
+"bad_email_address" = "Feilaktig e-postadresse.";
+"password" = "Passord";
+"now" = "Nå";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Fare";
+// n_min_ago is deprecated, use n_minutes instead
+"n_min_ago" = "%d minutt";
+"today" = "I dag";
+"yesterday" = "I går";
+"this_week" = "Denne uken";
+"this_month" = "Denne måneden";
+"last_week" = "Forrige uken";
+"last_month" = "Forrige måneden";
+// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
+// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
+"self" = "Meg";
+"draft" = "Kladd";
+"image" = "Bilde";
+"gif" = "Gif";
+"images" = "Bilder";
+"audio" = "Lyd";
+"voice_message" = "Stemmemelding";
+"forwarded_message" = "Videresendt melding";
+"video" = "Video";
+"documents" = "Dokumenter";
+"contact" = "Kontakt";
+"verified_contact" = "Bekreftet kontakt";
+"camera" = "Kamera";
+"location" = "Posisjon";
+"gallery" = "Galleri";
+"file" = "Fil";
+"unknown" = "Ukjent";
+
+"green" = "Grønn";
+"red" = "Rød";
+"blue" = "Blå";
+"orange" = "Oransje";
+"cyan" = "Cyan";
+"purple" = "Purple";
+"magenta" = "Magenta";
+"white" = "Hvit";
+
+"small" = "Liten";
+"normal" = "Normal";
+"large" = "Stor";
+"extra_large" = "Ekstra stor";
+
+"fast" = "Raskt";
+"slow" = "Langsomt";
+
+"message_delivered" = "Melding levert";
+"message_read" = "Melding lest";
+
+
+// menu labels (or icon, buttons...)
+"menu_new_contact" = "Ny kontakt";
+"menu_new_chat" = "Ny sludring";
+"menu_new_group" = "Ny gruppe";
+"menu_new_verified_group" = "Ny bekreftet gruppe";
+"menu_send" = "Send";
+"menu_toggle_keyboard" = "Slå på/av emoji-tastatur";
+"menu_edit_group" = "Rediger gruppe";
+"menu_group_name_and_image" = "Gruppenavn og bilde";
+"menu_show_map" = "Vis kart";
+"menu_show_global_map" = "Vis alle posisjoner";
+"menu_archive_chat" = "Arkiver sludring";
+"menu_unarchive_chat" = "Fjern sludring fra arkiv";
+"menu_add_attachment" = "Legg ved filer";
+"menu_leave_group" = "Forlat gruppe";
+"menu_delete_chat" = "Slett sludring";
+"menu_delete_messages" = "Slett meldinger";
+"menu_delete_image" = "Slett bilde";
+"menu_message_details" = "Meldingsdetaljer";
+"menu_copy_to_clipboard" = "Kopier til utklippstavle";
+"menu_forward" = "Videresend melding";
+"menu_resend" = "Send melding på nytt";
+"menu_reply" = "Svar på melding";
+"menu_mute" = "Demp merknader";
+"menu_unmute" = "Fjern demping";
+"menu_export_attachment" = "Eksporter vedlegg";
+"menu_all_media" = "Alle medier";
+"menu_share" = "Del";
+"menu_block_contact" = "Blokker kontakt";
+"menu_unblock_contact" = "Fjern blokkering av kontakt";
+"menu_play" = "Spill av";
+"menu_pause" = "Pause";
+"menu_scroll_to_bottom" = "Rull til bunnen";
+"menu_scroll_to_top" = "Rull til toppen";
+"menu_help" = "Hjelp";
+"menu_select_all" = "Velg alle";
+"menu_expand" = "Utvid";
+"menu_edit_name" = "Rediger navn";
+"menu_edit_group_name" = "Rediger gruppenavn";
+"menu_edit_group_image" = "Rediger gruppebilde";
+"menu_settings" = "Innstillinger";
+"menu_advanced" = "Avanserte innstillinger";
+"menu_deaddrop" = "Kontaktforespørsler";
+"menu_deaddrop_subtitle" = "Trykk på melding for å begynne å chatte";
+"menu_view_profile" = "Vis profil";
+"menu_zoom_in" = "Zoome in";
+"menu_zoom_out" = "Zoome ut";
+"menu_save_log" = "Lagre logg";
+"title_share_location" = "Del beliggenhet med alle gruppemedlemmer";
+"device_talk" = "Enhetsmeldinger";
+"device_talk_subtitle" = "Lokalt genererte meldinger";
+"edit_contact" = "Rediger kontakt";
+
+"mute_for_one_hour" = "Demp i 1 time";
+"mute_for_two_hours" = "Demp i 2 timer";
+"mute_for_one_day" = "Demp i 1 dag";
+"mute_for_seven_days" = "Demp i 7 dager";
+"mute_forever" = "Alltid dempet";
+
+"share_location_once" = "en gang";
+"share_location_for_5_minutes" = "i 5 minutter";
+"share_location_for_30_minutes" = "i 30 minutter";
+"share_location_for_one_hour" = "i 1 time";
+"share_location_for_two_hours" = "i 2 timer";
+"share_location_for_six_hours" = "i 6 timer";
+
+// get confirmations
+"ask_leave_group" = "Er du sikker på at du vil forlate denne gruppen?";
+"ask_forward" = "Videresend meldinger til %1$@?";
+"ask_start_chat_with" = "Begynn å sludre med %1$@?";
+// contact list
+"contacts_title" = "Kontakter";
+"contacts_empty_hint" = "Ingen kontakter.";
+
+
+"chat_archived_chats_title" = "Arkiverte sludringer";
+"chat_no_messages_hint" = "Send melding til %1$@:\n\n• Det er greit hvis %2$@ ikke bruker Delta Chat.\n\n• Levering av den første meldingen kan ta sin tid.";
+"chat_new_group_hint" = "Forfatt den første meldingen, noe som lar andre svare i gruppen.\n\n• Det er greit at ikke alle medlemmer bruker Delta Chat.\n\n• Levering av den første meldingen kan ta sin tid.";
+"chat_record_slide_to_cancel" = "Dra for å avbryte";
+"chat_share_with_title" = "Del med";
+"chat_input_placeholder" = "Melding";
+"chat_archived_label" = "Arkivert";
+"chat_no_messages" = "Ingen meldinger.";
+"chat_self_talk_subtitle" = "Meldinger jeg har sendt til meg selv";
+"saved_messages" = "Lagrede meldinger";
+"chat_contact_request" = "Kontaktforespørsel";
+// search
+"search" = "Søk";
+// create/edit groups, contact/group profile
+"group_name" = "Gruppenavn";
+"group_create_button" = "Lag gruppe";
+"group_add_members" = "Legg til medlem";
+"group_hello_draft" = "Hei, jeg har akkurat opprettet gruppen \"%1$@\" for oss.";
+"profile_encryption" = "Kryptering";
+"profile_shared_chats" = "Delte sludringer";
+"tab_contact" = "Kontakt";
+"tab_group" = "Gruppe";
+"tab_members" = "Medlemmer";
+"tab_gallery" = "Galleri";
+"tab_docs" = "Dokumenter";
+"media_preview" = "Forhåndsvisning av medier";
+
+
+"welcome_start_messaging" = "Start meldingsutveksling";
+"login_title" = "Logg inn";
+"login_inbox" = "Innboks";
+"login_imap_login" = "IMAP-innloggingsnavn";
+"login_imap_server" = "IMAP-tjener";
+"login_imap_port" = "IMAP-port";
+"login_imap_security" = "IMAP-sikkerhet";
+"login_outbox" = "Utboks";
+"login_smtp_login" = "SMTP-innloggingsnavn";
+"login_smtp_password" = "SMTP-passord";
+"login_smtp_server" = "SMTP-tjener";
+"login_smtp_port" = "SMTP-port";
+"login_smtp_security" = "SMTP-sikkerhet";
+"login_auth_method" = "Autoriseringsmetode";
+"login_certificate_checks" = "Sertifikat sjekker";
+"import_backup_title" = "Importer sikkerhetskopi";
+"import_backup_no_backup_found" = "Fant ingen sikkerhetskopier.\n\nKopier sikkerhetskopien til %1$@ og prøv igjen. Alternativt, trykk \"Start meldingsforsendelse\" for normal oppsettsprosess.";
+// share and forward messages
+// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+"forward_to" = "Videresend til…";
+"pref_profile_info_headline" = "Din profilinfo";
+"pref_profile_photo" = "Profilbilde";
+"pref_trim_headline" = "Automatisk sletting";
+"pref_trim_option" = "Slett gamle meldinger";
+"pref_trim_option_explain" = "Automatically delete older messages once a conversation exceeds a specified length";
+"pref_trim_now_button" = "Rydd opp i alle samtaler nå";
+"pref_blocked_contacts" = "Blokkerte kontakter";
+"pref_password_and_account_settings" = "Kontoinnstillinger";
+"pref_who_can_see_this_information" = "Hvem kan se denne informasjonen?";
+"pref_your_name" = "Mitt navn";
+// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+"pref_default_status_label" = "Signaturtekst";
+// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+"pref_default_status_text" = "Sendt med Delta Chat: https://delta.chat";
+"pref_enter_sends" = "Send med \"Enter\"";
+"pref_vibrate" = "Vibrer";
+"pref_chat_settings" = "Samtale-innstillinger";
+"pref_screen_security" = "Skjermsikkerhet";
+// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+"pref_screen_security_explain" = "Blokker skjermbilder i sist brukte-liste og i programmet";
+"pref_notifications" = "Merknader";
+"pref_notifications_show" = "Vis";
+"pref_notifications_priority" = "Prioritet";
+"pref_led_color" = "LED-farge";
+"pref_led_pattern" = "LED-blinkemønster";
+"pref_sound" = "Lyd";
+"pref_silent" = "Stille";
+"pref_privacy" = "Personvern";
+"pref_chats_and_media" = "Sludringer og medier";
+// Translators: "light" in the meaning "opposite of dark"
+"pref_light_theme" = "Lys";
+"pref_dark_theme" = "Mørk";
+"pref_appearance" = "Utseende";
+"pref_theme" = "Tema";
+"pref_language" = "Språk";
+"pref_incognito_keyboard" = "Inkognito-tastatur";
+// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+"pref_incognito_keyboard_explain" = "Be tastatur om å slå av lærefunksjon";
+"pref_read_receipts" = "Meldingskvitteringer";
+"pref_read_receipts_explain" = "Hvis du slår av lesebekreftelser, får du heller ikke se lesebekreftelser fra andre.";
+"pref_manage_keys" = "Behandle nøkler";
+"pref_use_system_emoji" = "Bruk systemets emoji";
+"pref_use_system_emoji_explain" = "Slå av innebygd emoji-støtte i Delta Chat";
+"pref_app_access" = "Programtilgang";
+"pref_communication" = "Kommunikasjon";
+"pref_chats" = "Sludringer";
+"pref_messages" = "Meldinger";
+"pref_in_chat_sounds" = "Merknader i programmet";
+"pref_message_text_size" = "Skriftstørrelse i meldinger";
+"pref_view_log" = "Vis logg";
+"pref_log_header" = "Logg";
+"pref_other" = "Annet";
+"pref_backup" = "Sikkerhetskopi";
+"pref_managekeys_menu_title" = "Behandle nøkler";
+"pref_managekeys_export_secret_keys" = "Eksporter private nøkler";
+"pref_managekeys_import_secret_keys" = "Importer private nøkler";
+"pref_managekeys_import_explain" = "Importer private nøkler fra %1$@?\n\n• Eksisterende private nøkler blir ikke slettet\n\n• Den sist importerte nøkkelen vil bli brukt som ny forvalgt nøkkel";
+"pref_background" = "Sludrebakgrunn";
+// autocrypt
+"autocrypt" = "Autocrypt";
+"autocrypt_explain" = "Autocrypt er en ny og åpen spesifikasjon for ende-til-ende-kryptert e-post.\n\nDitt ende-til-ende -oppsett blir opprettet automatisk ved bruk, og du kan overføre det mellom enheter med Autocrypt-oppsettsmeldinger.";
+"autocrypt_send_asm_title" = "Igangsett Autocrypt-nøkkeloverføring";
+"autocrypt_send_asm_explain_before" = "The Autocrypt-nøkkeloverføring krever at e-postklienten på den andre enheten er Autocrypt-kompatibel.\n\nDu kan så sende din hemmelige nøkkel til deg selv. Nøkkelen vil bli kryptert av en oppsettskode som vises her og må skrives inn på den andre enheten.";
+"autocrypt_send_asm_button" = "Igangsett Autocrypt-nøkkeloverføring";
+"autocrypt_send_asm_explain_after" = "Nøkkelen din har blitt sendt til deg selv. Bytt til den andre enheten og åpne oppsettsmeldingen. Du bør bli forespurt om å oppgi en oppsettskode. Skriv in følgende siffer:\n\n%1$@\n\nNår du er ferdig, vil din andre enhet også kunne bruke Autocrypt.";
+"autocrypt_prefer_e2ee" = "Foretrekk ende-til-ende -kryptering";
+"autocrypt_asm_subject" = "Autocrypt-nøkkeloverføring";
+"autocrypt_asm_general_body" = "Dette er Autocrypt-oppsettsmeldingen brukt til å overføre nøkkelen din mellom klienter.\n\nFor å dekryptere å bruke din nøkkel, åpne meldingen i en Autocrypt-kompatibel klient og skriv inn oppsettskoden som vises på enheten som genererer den.";
+"autocrypt_asm_click_body" = "Dette er Autocrypt-oppsettsmeldingen brukt til å overføre nøkkelen din mellom klienter.\n\nFor å dekryptere å bruke din nøkkel, trykk på denne meldingen.";
+"autocrypt_continue_transfer_title" = "Autocrypt-nøkkeloverføring";
+"autocrypt_continue_transfer_please_enter_code" = "Skriv inn oppsettskoden som vises på den andre enheten.";
+"autocrypt_continue_transfer_succeeded" = "Nøkkel overført. Denne enheten er nå klar til å bruke Autocrypt med samme nøkkel som den andre enheten.";
+"autocrypt_continue_transfer_retry" = "Prøv igjen";
+"autocrypt_bad_setup_code" = "Feil oppsettskode. Prøv igjen.\n\nHvis du ikke husker den, sett igang nøkkeloverføringen på en andre enheten igjen.";
+
+
+// system messages
+"systemmsg_group_name_changed" = "Gruppenavn endret fra \"%1$@\" til \"%2$@\".";
+"systemmsg_group_image_changed" = "Gruppebilde endret.";
+"systemmsg_group_image_deleted" = "Gruppebilde slettet.";
+"systemmsg_member_added" = "Medlem %1$@ lagt til.";
+"systemmsg_member_removed" = "Medlem %1$@ fjernet.";
+"systemmsg_group_left" = "Gruppe oppløst.";
+"systemmsg_read_receipt_subject" = "Meldingskvittering";
+"systemmsg_read_receipt_body" = "Dette er en meldingskvittering for meldingen \"%1$@\".\n\nDenne meldingskvitteringen bekrefter bare at meldingen ble vist på mottakerens enhet. Det finnes ingen garanti for at mottakeren har lest meldingsinnholdet.";
+"systemmsg_cannot_decrypt" = "Denne meldingen kan ikke dekrypteres.\n\n• Det kan hjelpe å svare på denne meldingen og spørre avsenderen om å sende den igjen.\n\n• I fall du har reinstallert Delta Chat eller et annet e-postprogram på denne eller en annen enhet, kan du sende en Autocrypt-oppsettsmelding derfra.";
+// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+"systemmsg_action_by_me" = "%1$@ av meg.";
+// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+"systemmsg_action_by_user" = "%1$@ av %2$@.";
+
+
+// screen lock
+"screenlock_title" = "Skjermlås";
+"screenlock_explain" = "Lås Signal tilgang med Android-skjermlås eller fingeravtrykk";
+"screenlock_unlock_title" = "Lås opp Delta Chat";
+// qr code stuff
+"qr_code" = "QR-kode";
+"qrscan_title" = "Skann QR-kode";
+"qrscan_hint" = "Beveg kameraet over QR-koden.";
+"qrscan_fingerprint_mismatch" = "Det skannede fingeravtrykket stemmer ikke overens med sist sette fingeravtrukk for %1$@.";
+"qrscan_no_addr_found" = "QR-koden inneholder et fingeravtrykk, men ingen e-postadresse.\n\nFor bekreftelse utenfor programmet, etabler en kryptert tilkobling til mottakeren først.";
+"qrscan_contains_text" = "Den skannede QR-koden inneholder følgende tekst:\n\n%1$@";
+"qrscan_contains_url" = "Den skannede QR-koden inneholder følgende lenke:\n\n%1$@";
+"qrscan_fingerprint_label" = "Fingeravtrykk";
+"qrscan_x_verified_introduce_myself" = "%1$@ bekreftet, sender introduksjonstekst …";
+"qrshow_title" = "QR-invitasjonskode";
+"qrshow_x_joining" = "%1$@ tar del.";
+"qrshow_x_verified" = "%1$@ bekreftet.";
+"qrshow_join_group_title" = "QR-invitasjonskode";
+"qrshow_join_group_hint" = "Skann denne for å ta del i den gruppen %1$@.";
+"qrshow_join_contact_title" = "QR-invitasjonskode";
+"qrshow_join_contact_hint" = "Skann dette for å bekrefte en kontakt med %1$@.";
+"contact_verified" = "%1$@ bekreftet.";
+"notify_mark_all_read" = "Merk alle som lest";
+"notify_mark_read" = "Merk som lest";
+"notify_media_message" = "Mediemelding";
+"notify_reply_button" = "Svar";
+"notify_new_message" = "Ny meldin";
+"notify_priority_high" = "Høy";
+"notify_priority_max" = "Maks";
+"notify_name_and_message" = "Navn og melding";
+"notify_name_only" = "Bare navn";
+"notify_no_name_or_message" = "Ingen navn eller melding";
+
+
+// permissions
+"perm_required_title" = "Tillatelse kreves";
+"perm_continue" = "Fortsett";
+// dc_str_* resources
+"encrypted_message" = "Kryptert melding";
+
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"welcome_desktop" = "Velkommen til Delta Chat";
+"global_menu_preferences_language_desktop" = "Språk";
+"global_menu_edit_desktop" = "Rediger";
+"global_menu_edit_copy_desktop" = "Kopier";
+"global_menu_view_desktop" = "Vis";
+"global_menu_help_desktop" = "Hjelp";
+"global_menu_help_about_desktop" = "Om Delta Chat";
+"encryption_info_title_desktop" = "Krypteringsinfo";
+"contact_request_title_desktop" = "Kontaktforespørsel";
+"delete_message_desktop" = "Slett melding";
+"more_info_desktop" = "Mer informasjon";
+"no_chats_desktop" = "Ingen sladder.";
+"encryption_info_desktop" = "Krypteringsinfo";
+"verified_desktop" = "bekreftet";
+"remove_desktop" = "Fjerne";
+"save_desktop" = "Lagre";
+"name_desktop" = "Navn";
+"autocrypt_key_transfer_desktop" = "Autocrypt-nøkkeloverføring";
+"initiate_key_transfer_desktop" = "The Autocrypt-nøkkeloverføring krever at e-postklienten på den andre enheten er Autocrypt-kompatibel.\n\nDu kan så sende din hemmelige nøkkel til deg selv. Nøkkelen vil bli kryptert av en oppsettskode som vises her og må skrives inn på den andre enheten.";
+"export_backup_desktop" = "Eksporter sikkerhetskopi";
+"unblock_contacts_desktop" = "Fjern blokkering av kontakter";
+"none_blocked_desktop" = "Ingen blokkerte kontakter enda";
+"me_desktop" = "Meg";
+"message_detail_from_desktop" = "Fra";

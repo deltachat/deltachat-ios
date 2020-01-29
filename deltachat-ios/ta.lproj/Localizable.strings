@@ -1,0 +1,254 @@
+// common strings without special context
+"app_name" = "Delta Chat";
+"ok" = "சரி";
+"cancel" = "ரத்து செய்";
+"yes" = "ஆம்";
+"no" = "இல்லை";
+"on" = "இயக்கு";
+"off" = "நிறுத்தவும்";
+"def" = "இயல்புநிலை";
+"custom" = "விருப்ப";
+"none" = "எதுவும் இல்லை";
+"automatic" = "தானியங்கி";
+"strict" = "கண்டிப்பான";
+"open" = "திற";
+"delete" = "நீக்கவும் ";
+"info" = "தகவல்";
+"update" = "புதுப்பிக்கப்பட்டது";
+"emoji" = "ஈமோஜியைப்";
+"attachment" = "இணைப்பு";
+"back" = "மீண்டும்";
+"close" = "நெருக்கமான";
+"forward" = "முன்னோக்கு";
+"archive" = "காப்பகத்தை";
+"unarchive" = "மீட்டெடுக்கலாம்";
+"mute" = "ஓசையற்ற";
+"save" = "சேமி";
+"chat" = "அரட்டை";
+"media" = "ஊடகம்";
+"main_menu" = "முதன்மை பட்டியல்";
+"start_chat" = "அரட்டை தொடங்கவும்";
+"not_now" = "இப்போது இல்லை";
+"never" = "எப்போதும் இல்லை";
+"one_moment" = "ஒரு நிமிடம் காத்திருக்கவும் ...";
+"done" = "முடிந்தது";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "அடுத்தது";
+"error" = "பிழை";
+"error_x" = "பிழை: %1$@";
+"contacts_headline" = "தொடர்புகள்";
+"email_address" = "மின் அஞ்சல் முகவரி";
+"bad_email_address" = "தவறான மின் அஞ்சல் முகவரி";
+"password" = "கடவுச்சொல்";
+"now" = "இப்போது";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "ஆபத்து";
+"today" = "இன்று";
+"yesterday" = "நேற்று";
+"this_week" = "இந்த வாரம்";
+"this_month" = "இந்த மாதம்";
+// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
+"self" = "நான்";
+"draft" = "வரைவு";
+"image" = "படம்";
+"gif" = "GIF";
+"images" = "புகைப்படங்கள்";
+"audio" = "ஒலி";
+"voice_message" = "குரல் செய்தி";
+"forwarded_message" = "மேல அனுப்பப்பட்ட சேதி";
+"video" = "காணொளி";
+"documents" = "ஆவணங்கள்";
+"contact" = "தொடர்பு";
+"camera" = "புகைப்படக்கருவி";
+"location" = "இடம்";
+"gallery" = "காட்சி கூடம்";
+"file" = "கோப்பு";
+"unknown" = "முன் தெரிந்திராத";
+
+"green" = "பச்சை";
+"red" = "சிவப்பு";
+"blue" = "நீலம்";
+"orange" = "ஆரஞ்சு";
+"cyan" = "சியான்";
+"purple" = "ஊதா";
+"magenta" = "கருநீலம்";
+"white" = "வெள்ளை";
+
+"small" = "சிறிய";
+"normal" = "சாதாரணமாக";
+"large" = "பெரிய";
+"extra_large" = "கூடுதல் பெரியது";
+
+"fast" = "வேகமாக";
+"slow" = "மெதுவாக";
+
+"message_read" = "செய்தி வாசிக்கப்பட்டது";
+
+
+// menu labels (or icon, buttons...)
+"menu_new_contact" = "புதிய தொடர்பு";
+"menu_new_chat" = "புது அரட்டை";
+"menu_new_group" = "புதிய குழு";
+"menu_send" = "அனுப்பு";
+"menu_edit_group" = "குழுவைத் திருத்து";
+"menu_add_attachment" = "கோப்புகளை இணைக்கவும்";
+"menu_leave_group" = "குழுவில் இருந்து வெளியேறு";
+"menu_delete_chat" = "அரட்டையை நீக்கு";
+"menu_message_details" = "செய்தி விவரங்கள்";
+"menu_copy_to_clipboard" = "பிடிப்பு பலகை";
+"menu_forward" = "செய்தியை முன்னோக்கியனுப்பு";
+"menu_resend" = "செய்தியை மீண்டும் அனுப்பு";
+"menu_reply" = "செய்திக்கு பதில்";
+"menu_mute" = "அறிவிப்புகளை ஊமையாக்கு";
+"menu_unmute" = "ஊமையாக்குதலை தவிர்க்கவும்";
+"menu_all_media" = "அனைத்து ஊடகங்களும்";
+"menu_share" = "பகிர்";
+"menu_block_contact" = "தொடர்பை தடுக்கவும்";
+"menu_unblock_contact" = "தொடர்பு தடுப்பினை நீக்கவும்";
+"menu_help" = "உதவி";
+"menu_select_all" = "அனைத்தையும்  தேர்வுசெய்";
+"menu_edit_name" = "பெயரை திருத்தவும்";
+"menu_settings" = "அமைப்புகள்";
+"menu_advanced" = "மேம்பட்ட அமைப்புகள்";
+"menu_deaddrop" = "தொடர்பு கோரிக்கை";
+"menu_view_profile" = "சுயவிவரத்தை காண்பி";
+"mute_for_one_hour" = "1 மணி இதற்காக ஊமையாக்கு";
+"mute_for_two_hours" = "2 மணிகள் இதற்காக ஊமையாக்கு";
+"mute_for_one_day" = "1 நாள் இதற்காக ஊமையாக்கு";
+"mute_for_seven_days" = "7 நாட்கள் இதற்காக ஊமையாக்கு";
+"mute_forever" = "எப்போதுமே ஊமையாக்கு";
+
+"share_location_for_5_minutes" = "5 நிமிடங்கள் ";
+"share_location_for_30_minutes" = "30 நிமிடங்கள் ";
+"share_location_for_one_hour" = "1 மணி";
+"share_location_for_two_hours" = "2 மணிகள்";
+"share_location_for_six_hours" = "6 மணிகள்";
+
+// get confirmations
+"ask_leave_group" = "இந்த குழுவில் இருந்து வெளியேறவா ?";
+"ask_forward" = "தேர்வு செய்யப்பட்ட செய்திகளை இவற்றுக்கு %1$@ முன்னோக்கி அனுப்பவா ?";
+"ask_block_contact" = "இந்த தொடர்பை முடக்கவா ?";
+// contact list
+"contacts_title" = "தொடர்புகள்";
+"contacts_empty_hint" = "எந்த தொடர்புகளும் இல்லை";
+
+
+"chat_record_slide_to_cancel" = "ரத்து செய்ய திரையில் சறுக்கவும்";
+"chat_share_with_title" = "பகிர்";
+"chat_input_placeholder" = "சேதி";
+"chat_archived_label" = "ஆவண காக்கப்படுத்தப்பட்டது";
+"chat_no_messages" = "சேதிகள் இல்லை";
+"chat_self_talk_subtitle" = "தங்களுக்கே அனுப்பி கொண்ட செய்திகள்";
+"chat_contact_request" = "தொடர்பு கோரிக்கை";
+// search
+"search" = "தேடு";
+// create/edit groups, contact/group profile
+"group_name" = "குழுவின் பெயர்";
+"group_please_enter_group_name" = "குழுவிற்கு ஒரு பெயரை சூட்டவும்";
+"group_add_members" = "உறுப்பினர்களை சேர்க்க";
+"group_hello_draft" = "வணக்கம் , நான் நமக்கு \"%1$@\" என்ற பெயரில் குழுவை உருவாக்கி உள்ளேன்";
+"profile_encryption" = "மறைகுறியாக்கம்";
+"tab_contact" = "தொடர்பு";
+"tab_gallery" = "காட்சி கூடம்";
+"welcome_start_messaging" = "செய்திகளை அனுப்ப தொடங்குங்கள்";
+"login_subheader" = "அறியப்பட்ட மின் அஞ்சல் வழங்குநர்களுக்கு மற்ற அமைப்புகள் தானாக தீர்மானிக்கப்படும் ";
+"login_inbox" = "உட்பெட்டி";
+"login_outbox" = "வெளிப்பெட்டி";
+"login_smtp_login" = "SMTP க் கான உள் நுழைவு பெயர்";
+"login_smtp_password" = "SMTP க்கான கடவுச்சொல்";
+"login_smtp_server" = "SMTP க்கான சேவகன்";
+"login_smtp_port" = "SMTP போர்ட்";
+"pref_profile_info_headline" = "உங்கள் சுயவிவரத் தகவல்";
+"pref_trim_headline" = "செய்தி ஒழுங்கமைத்தல்";
+"pref_trim_option" = "பழைய செய்திகளை நீக்க";
+"pref_trim_option_explain" = "உரையாடல் ஒரு குறிப்பிட்ட நீளத்தை தாண்டியவுடன் பழைய செய்திகளை தானாக நீக்கு";
+"pref_blocked_contacts" = "தடுக்கபட்ட தொடர்புகள்";
+"pref_password_and_account_settings" = "கணக்கு அமைப்புகள்";
+"pref_your_name" = "எனது பெயர்";
+// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+"pref_default_status_text" = "என்னுடைய Delta Chat செயலியில் இருந்து அனுப்பி உள்ளேன் : https://delta.chat";
+"pref_enter_sends" = "\"enter\" மூலம் அனுப்பவும்";
+"pref_vibrate" = "அதிர்வு உண்டாக்கு";
+"pref_chat_settings" = "அரட்டை அமைப்புகள்";
+"pref_screen_security" = "திரை பாதுகாப்பு";
+// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+"pref_screen_security_explain" = "அண்மை பட்டியல் மற்றும் மென்பொருளுக்கு உள்ளே திரையை படம் எடுப்பதை தடுக்கவும்";
+"pref_notifications" = "அறிவிப்புகள்";
+"pref_notifications_show" = "காட்டு";
+"pref_notifications_priority" = "முன்னுரிமை";
+"pref_led_color" = "LED நிறம்";
+"pref_led_pattern" = "LED மிளிரும் முறை";
+"pref_sound" = "ஓசை";
+"pref_silent" = "அமைதி";
+"pref_privacy" = "தனியுரிமை";
+"pref_chats_and_media" = "அரட்டைகள் மற்றும் ஊடகங்கள்";
+// Translators: "light" in the meaning "opposite of dark"
+"pref_light_theme" = "வெளிச்சமிக்க";
+"pref_dark_theme" = "இருள்கொண்ட";
+"pref_appearance" = "தோற்றம்";
+"pref_theme" = "நிறவடிவமைப்பு";
+"pref_language" = "மொழி";
+"pref_incognito_keyboard" = "மறைநிலை விசைப்பலகை";
+// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+"pref_incognito_keyboard_explain" = "தனிப்பயனாக்கப்பட்ட கற்றலை முடக்க விசைப்பலகை கோருங்கள்";
+"pref_read_receipts" = "ரசீதுகளைப் படியுங்கள்";
+"pref_read_receipts_explain" = "வாசிப்பு ரசீதுகள் முடக்கப்பட்டிருந்தால், மற்றவர்களிடமிருந்து வாசிப்பு ரசீதுகளை நீங்கள் ";
+"pref_use_system_emoji" = "கணினி ஈமோஜியைப் பயன்படுத்தவும்";
+"pref_use_system_emoji_explain" = "Delta Chat உள்ளமைக்கப்பட்ட ஈமோஜி ஆதரவை முடக்கு";
+"pref_app_access" = "பயன்பாடு அணுகல்";
+"pref_communication" = "தொடர்பாடல்";
+"pref_chats" = "அரட்டைகள்";
+"pref_messages" = "செய்திகள்";
+"pref_in_chat_sounds" = "௨ள்ளார்ந்த செயலி அறிவிப்புகள்";
+"pref_message_text_size" = "சேதிகளின் எழுத்துரு அளவு";
+"pref_other" = "மற்றவை";
+"pref_backup" = "காப்பு நகல்";
+"pref_background" = "அரட்டை பின்புலம்";
+"autocrypt_continue_transfer_please_enter_code" = "மற்ற சாதனத்தில் காணப்படும் அமைப்பு குறியீடை தயவு செய்து உள்ளீடவும்";
+"autocrypt_continue_transfer_retry" = "மீண்டும் முயற்சி செய்யவும்";
+"systemmsg_group_image_changed" = "குழு படம் மாற்றப்பட்டது.";
+"systemmsg_group_image_deleted" = "குழு படம் நீக்கப்பட்டது";
+"systemmsg_member_added" = " %1$@ உறுப்பினராக சேர்க்கப்பட்டார்";
+"systemmsg_member_removed" = "உறுப்பினர் %1$@ நீக்கப்பட்டார்";
+"systemmsg_group_left" = "குழுவில் இருந்து வெளியேறினது";
+// screen lock
+"screenlock_title" = "திரை பூட்டி";
+"screenlock_explain" = "அண்ட்ராய்டு திரை பூட்டு அல்லது கைரேகையுடன் Signal அணுகலைப் பூட்டு";
+"screenlock_unlock_title" = "Delta Chat லைத் திற";
+"qrscan_fingerprint_label" = "கைரேகைகள்";
+"notify_media_message" = "மல்டிமீடியா செய்தி";
+"notify_reply_button" = "மறுமொழி";
+"notify_new_message" = "புதிய செய்தி";
+"notify_priority_high" = "உயர்";
+"notify_priority_max" = "மேக்ஸ்";
+"notify_name_and_message" = "பெயரும் செய்தியும்";
+"notify_name_only" = "பெயர் மட்டும்";
+"notify_no_name_or_message" = "பெயர் அல்லது செய்தி இல்லை";
+
+
+// permissions
+"perm_required_title" = "அனுமதி தேவை";
+"perm_continue" = "தொடர்";
+// dc_str_* resources
+"encrypted_message" = "மறைகுறியாக்கப்பட்ட செய்தி";
+
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"welcome_desktop" = "Delta Chat க்கு வரவேற்கிறது.";
+"global_menu_preferences_language_desktop" = "நிறவடிவமைப்பு";
+"global_menu_file_desktop" = "கோப்பு";
+"global_menu_edit_desktop" = "திருத்து";
+"global_menu_view_desktop" = "பார்வை";
+"global_menu_help_desktop" = "உதவி";
+"global_menu_help_about_desktop" = "Delta Chat பற்றி";
+"contact_request_title_desktop" = "தொடர்பு கோரிக்கை";
+"more_info_desktop" = "மேலும் தகவல்";
+"no_chats_desktop" = "இதுவரையில் எந்த அரட்டைகளும் இல்லை";
+"remove_desktop" = "நீக்கு";
+"save_desktop" = "சேமி";
+"add_contact_desktop" = "புதிய தொடர்பு";
+"name_desktop" = "பெயர்";
+"unblock_contacts_desktop" = "தொடர்பு தடுப்பினை நீக்கவும்";
+"none_blocked_desktop" = "இதுவரையில் எந்த தொடர்பும் தடுக்கப்படவில்லை";
+"me_desktop" = "நான்";
+"message_detail_from_desktop" = "அனுப்புதல்";

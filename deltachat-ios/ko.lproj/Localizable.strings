@@ -1,0 +1,237 @@
+// common strings without special context
+"app_name" = "Delta Chat";
+"ok" = "확인";
+"cancel" = "취소";
+"yes" = "예";
+"no" = "아니요";
+"on" = "켜기";
+"off" = "끔";
+"def" = "기본값";
+"custom" = "커스텀";
+"none" = "없음";
+"automatic" = "자동";
+"strict" = "엄격한";
+"open" = "열기";
+"delete" = "삭제";
+"info" = "정보";
+"update" = "최신 정보";
+"emoji" = "이모티콘";
+"attachment" = "부착";
+"back" = "뒤";
+"close" = "닫기";
+"forward" = "전달";
+"archive" = "아카이브";
+"unarchive" = "보관 취소";
+"mute" = "알림 음소거";
+"save" = "저장";
+"chat" = "잡담";
+"media" = "매체";
+"main_menu" = "메인 메뉴";
+"start_chat" = "채팅 시작";
+"not_now" = "나중에";
+"never" = "안함";
+"one_moment" = "잠시만 기다려 주세요…";
+"done" = "완료";
+"undo" = "실행취소";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "확인";
+"error" = "오류";
+"contacts_headline" = "연락처";
+"password" = "잠금번호";
+"now" = "방금 전";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "위험";
+"today" = "오늘";
+"yesterday" = "어제";
+"this_week" = "이번주";
+"this_month" = "이번달";
+// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
+"self" = "나";
+"draft" = "임시저장";
+"image" = "사진";
+"gif" = "GIF파일";
+"images" = "이미지";
+"audio" = "음악";
+"voice_message" = "음성 메시지";
+"forwarded_message" = "전달된 메시지";
+"video" = "동영상";
+"documents" = "문서들";
+"contact" = "연락처";
+"camera" = "카메라";
+"location" = "위치";
+"gallery" = "앨범";
+"file" = "파일";
+"unknown" = "알 수 없음";
+
+"green" = "초록";
+"red" = "빨강";
+"blue" = "초록";
+"orange" = "주황색";
+"cyan" = "청록색";
+"purple" = "보라색";
+"magenta" = "자홍색";
+"white" = "흰색";
+
+"small" = "작게";
+"normal" = "보통";
+"large" = "크게";
+"extra_large" = "더욱 크게";
+
+"fast" = "빠르게";
+"slow" = "느리게";
+
+"message_read" = "메시지 읽기";
+
+
+// menu labels (or icon, buttons...)
+"menu_new_contact" = "대화상대 추가";
+"menu_new_chat" = "채팅 시작";
+"menu_new_group" = "새 그룹";
+"menu_new_verified_group" = "새로 확인 된 그룹";
+"menu_send" = "보내기";
+"menu_toggle_keyboard" = "이모티콘 키보드 전환";
+"menu_edit_group" = "그룹 편집";
+"menu_archive_chat" = "보관 채팅";
+"menu_unarchive_chat" = "보관 처리되지 않은 채팅";
+"menu_leave_group" = "그룹 나가기";
+"menu_delete_chat" = "채팅방 나가기";
+"menu_delete_messages" = "메시지 삭제";
+"menu_message_details" = "메시지 세부정보";
+"menu_copy_to_clipboard" = "복사";
+"menu_forward" = "메시지 전달";
+"menu_resend" = "메시지 다시 보내기";
+"menu_reply" = "메시지 답장";
+"menu_mute" = "알림 음소거";
+"menu_unmute" = "음소거 해제";
+"menu_all_media" = "모든 미디어";
+"menu_share" = "공유";
+"menu_block_contact" = "차단";
+"menu_unblock_contact" = "차단 해제";
+"menu_help" = "자주 묻는 질문";
+"menu_select_all" = "모두 선택";
+"menu_edit_name" = "이름 편집";
+"menu_settings" = "설정";
+"menu_advanced" = "고급 설정";
+"menu_deaddrop" = "사서함";
+"menu_zoom_in" = "확대";
+"menu_zoom_out" = "축소";
+"device_talk" = "장치 메시지";
+"mute_for_one_hour" = "1시간 동안 알림 일시 끄기";
+"mute_for_two_hours" = "2시간 동안 알림 일시 끄기";
+"mute_for_one_day" = "하루 동안 알림 일시 끄기";
+"mute_for_seven_days" = "7일 동안 알림 일시 끄기";
+"mute_forever" = "영원히";
+
+// get confirmations
+"ask_leave_group" = "이 그룹에서 나가시겠습니까?";
+"ask_forward" = "%1$@님에게 메시지를 전달할까요?";
+"ask_block_contact" = "대화상대를 차단할까요?";
+// contact list
+"contacts_title" = "연락처";
+"contacts_empty_hint" = "대화상대가 없습니다";
+
+
+"chat_archived_chats_title" = "보관 된 채팅";
+"chat_record_slide_to_cancel" = "밀어서 취소";
+"chat_share_with_title" = "공유 대상";
+"chat_input_placeholder" = "메시지";
+"chat_archived_label" = "보관됨";
+"chat_no_messages" = "메시지가 없습니다…";
+"chat_contact_request" = "사서함";
+// search
+"search" = "검색";
+// create/edit groups, contact/group profile
+"group_name" = "그룹 이름";
+"group_create_button" = "그룹 만들기";
+"group_add_members" = "대화상대 추가";
+"profile_shared_chats" = "공유 채팅";
+"tab_contact" = "연락처";
+"tab_group" = "그룹";
+"tab_gallery" = "앨범";
+"media_preview" = "미디어 미리보기";
+
+
+"welcome_start_messaging" = "시작하기";
+// share and forward messages
+// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+"forward_to" = "채팅방 선택";
+"pref_profile_info_headline" = "내 프로필";
+"pref_profile_photo" = "프로필 사진";
+"pref_trim_headline" = "대화 줄이기";
+"pref_trim_option" = "이전 메시지 삭제";
+"pref_blocked_contacts" = "차단 목록";
+"pref_password_and_account_settings" = "계정 설정";
+"pref_who_can_see_this_information" = "이 정보는 누가 볼 수 있나요?";
+"pref_your_name" = "내 이름";
+"pref_enter_sends" = "엔터키로 메시지 전송";
+"pref_vibrate" = "진동";
+"pref_chat_settings" = "대화 설정";
+"pref_screen_security" = "화면 보안";
+// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+"pref_screen_security_explain" = "최근 사용 목록/개요 및 앱 안에서 스크린샷 차단";
+"pref_notifications" = "알림";
+"pref_notifications_show" = "보이기";
+"pref_notifications_priority" = "우선순위";
+"pref_led_color" = "LED 색상";
+"pref_led_pattern" = "알림등 반복 패턴";
+"pref_sound" = ">알림음";
+"pref_silent" = "무음";
+"pref_privacy" = "개인정보 보호";
+"pref_chats_and_media" = "대화 및 미디어";
+// Translators: "light" in the meaning "opposite of dark"
+"pref_light_theme" = "밝게";
+"pref_dark_theme" = "어둡게";
+"pref_appearance" = "모양";
+"pref_theme" = "테마";
+"pref_language" = "언어";
+"pref_incognito_keyboard" = "사생활 보호 키보드";
+// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+"pref_incognito_keyboard_explain" = "개인 맞춤화를 사용하지 않도록 키보드에 요청합니다";
+"pref_read_receipts" = "열람 안내";
+"pref_read_receipts_explain" = "열람 안내 기능이 꺼져 있다면, 다른 사람이 메시지를 열람했는지의 여부 또한 볼 수 없습니다.";
+"pref_use_system_emoji" = "시스템 이모티콘 사용";
+"pref_use_system_emoji_explain" = "Delta Chat 이모티콘 사용 중지";
+"pref_app_access" = "앱 접근";
+"pref_communication" = "연결";
+"pref_chats" = "대화";
+"pref_messages" = "메시지";
+"pref_in_chat_sounds" = "앱 내 알림";
+"pref_message_text_size" = "메시지 폰트 크기";
+"pref_other" = "기타";
+"pref_background" = "채팅방 배경화면";
+"systemmsg_group_left" = "그룹이 남았습니다.";
+// screen lock
+"screenlock_title" = "화면 잠금";
+"screenlock_explain" = "안드로이드 화면 잠금 또는 지문으로 Delta Chat을 잠급니다";
+"notify_mark_all_read" = "모두 읽음으로 표시";
+"notify_mark_read" = "읽음으로 표시";
+"notify_media_message" = "미디어 메시지";
+"notify_reply_button" = "답장";
+"notify_new_message" = "새 메시지";
+"notify_priority_high" = "높게";
+"notify_priority_max" = "최대";
+"notify_name_and_message" = "이름과 메시지";
+"notify_name_only" = "이름";
+"notify_no_name_or_message" = "이름이나 메시지 표시하지 않음";
+
+
+// permissions
+"perm_required_title" = "권한 필요";
+"perm_continue" = "확인";
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"welcome_desktop" = "Delta Chat에 오신 것을 환영합니다.";
+"global_menu_preferences_language_desktop" = "언어";
+"global_menu_file_desktop" = "파일";
+"global_menu_edit_desktop" = "편집";
+"global_menu_view_desktop" = "우선순위";
+"global_menu_help_desktop" = "도움말";
+"contact_request_title_desktop" = "사서함";
+"more_info_desktop" = "더 많은 정보";
+"no_chats_desktop" = "채팅방이 없습니다…";
+"remove_desktop" = "삭제";
+"save_desktop" = "저장";
+"add_contact_desktop" = "대화상대 추가";
+"none_blocked_desktop" = "차단한 친구가 없습니다";
+"me_desktop" = "나";
+"message_detail_from_desktop" = "보낸 사람";

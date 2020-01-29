@@ -1,0 +1,4 @@
+Privacy._.Camera.Usage.Description = "Geef Delta Chat toegang tot je camera om foto\'s en video\'s te maken.";
+Privacy._.Contacts.Usage.Description = "Geef Delta Chat toegang tot je adresboek om gesprekken te voeren met contactpersonen.";
+Privacy._.Microphone.Usage.Description = "Geet Delta Chat toegang tot je microfoon om audio op te nemen.";
+Privacy._.Photo.Library.Usage.Description = "Geef Delta Chat toegang tot je foto\'s om afbeeldingen te versturen.";

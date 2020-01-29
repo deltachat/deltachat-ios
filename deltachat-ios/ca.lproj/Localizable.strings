@@ -9,8 +9,11 @@
 "def" = "Per defecte";
 "custom" = "Personalitzat";
 "none" = "Cap";
+"automatic" = "Automàtic";
 "open" = "Obre";
 "delete" = "Esborra";
+"info" = "Info";
+"forward" = "Reenvia";
 "not_now" = "Ara no";
 "never" = "Mai";
 "one_moment" = "Espereu...";
@@ -110,7 +113,6 @@
 "menu_play" = "Reprodueix";
 "menu_pause" = "Pausa";
 "menu_scroll_to_bottom" = "Vés al final";
-"menu_invite" = "Convida-hi amics";
 "menu_help" = "Ajuda";
 "menu_select_all" = "Selecciona-ho tot";
 "menu_expand" = "Desplega";
@@ -125,13 +127,14 @@
 "mute_for_two_hours" = "Silencia 2 hores";
 "mute_for_one_day" = "Silencia 1 dia";
 "mute_for_seven_days" = "Silencia 7 dies";
+"mute_forever" = "Sempre silenciat";
+
 "share_location_once" = "Un cop";
 "share_location_for_5_minutes" = "durant 5 minuts";
 "share_location_for_30_minutes" = "durant 30 minuts";
 "share_location_for_one_hour" = "durant 1 hora";
 "share_location_for_two_hours" = "durant 2 hores";
 "share_location_for_six_hours" = "durant 6 hores";
-
 
 // get confirmations
 "ask_leave_group" = "Segur que voleu deixar aquest grup?";
@@ -186,12 +189,9 @@
 "group_hello_draft" = "Hola, acabo de crear el grup \"%1$@\" per naltros.";
 "group_self_not_in_group" = "Has de ser membre del grup per poder fer això.";
 "profile_encryption" = "Encriptació";
+"tab_contact" = "Contacte";
+"tab_gallery" = "Galeria";
 "media_preview" = "Previsualització multimèdia";
-
-
-// invite
-"invite_slogan" = "Els amics no deixen els amics tancats en sitges de missatgeria.";
-"invite_default_text" = "Canviem a Delta Chat - %1$@ - pots escriure\'m a %2$@";
 
 
 // welcome and login
@@ -236,10 +236,6 @@
 
 
 // preferences
-"pref_summary_on" = "on";
-"pref_summary_off" = "off";
-"pref_summary_default" = "per defecte";
-"pref_summary_custom" = "personalitza";
 "pref_using_custom" = "Ús personalitzat: %s";
 "pref_using_default" = "Ús per defecte: %s";
 "pref_profile_info_headline" = "Informació del vostre perfil";
@@ -445,7 +441,7 @@
 "global_menu_view_developer_tools_desktop" = "Eines de desenvolupador";
 "global_menu_help_desktop" = "Ajuda";
 "global_menu_help_contribute_desktop" = "Col·labora a GitHub";
-"global_menu_help_report_desktop" = "Informa d\'un problema...";
+"global_menu_help_report_desktop" = "Informa d\'un problema";
 "no_chat_selected_suggestion_desktop" = "Tria un xat o crea\'n un de nou";
 "write_message_desktop" = "Escriu un missatge";
 "encryption_info_title_desktop" = "Informació de xifratge";
@@ -461,13 +457,10 @@
 "verified_desktop" = "Verificat";
 "remove_desktop" = "Elimina";
 "save_desktop" = "Desa";
-"show_qr_verify_code_desktop" = "Mostra el codi QR d\'invitació";
-"show_qr_invite_code_desktop" = "Mostra el codi QR d\'invitació";
 "add_contact_desktop" = "Afegeix contacte";
 "login_required_desktop" = "necessari";
 "name_desktop" = "Nom";
 "autocrypt_key_transfer_desktop" = "Transfereix la clau d\'Autocrypt";
-"initiate_key_transfer_title_desktop" = "Inicia la transferència de claus";
 "initiate_key_transfer_desktop" = "Un missatge de configuració Autocrypt comparteix de manera segura la vostra configuració d\'extrem a extrem amb altres aplicacions compatibles. La configuració es xifrarà mitjançant un codi de configuració que es mostrarà aquí i que s\'ha d’escriure a l’altre dispositiu.";
 "reply_to_message_desktop" = "Respon el missatge";
 "select_group_image_desktop" = "Tria una imatge de grup";

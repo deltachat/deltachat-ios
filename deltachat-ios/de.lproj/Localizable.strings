@@ -137,7 +137,6 @@
 "menu_pause" = "Pause";
 "menu_scroll_to_bottom" = "Zum Ende scrollen";
 "menu_scroll_to_top" = "Zum Anfang scrollen";
-"menu_invite" = "Freunde einladen";
 "menu_help" = "Hilfe";
 "menu_select_all" = "Alles auswählen";
 "menu_expand" = "Erweitern";
@@ -171,7 +170,6 @@
 "share_location_for_one_hour" = "für 1 Stunde";
 "share_location_for_two_hours" = "für 2 Stunden";
 "share_location_for_six_hours" = "für 6 Stunden";
-
 
 // get confirmations
 "ask_leave_group" = "Diese Gruppe verlassen?";
@@ -256,11 +254,6 @@
 "media_preview" = "Media-Vorschau";
 
 
-// invite
-"invite_slogan" = "Freunde lassen Freunde nicht in Messenger-Silos zurück. ";
-"invite_default_text" = "Ich verwende nun auch den Delta Chat Messenger - %1$@ - und bin dort unter %2$@ erreichbar.";
-
-
 // welcome and login
 "welcome_intro1_message" = "Der Messenger mit der größten Reichweite der Welt. Frei und unabhängig.";
 "welcome_start_messaging" = "Jetzt beginnen";
@@ -313,10 +306,6 @@
 
 
 // preferences
-"pref_summary_on" = "an";
-"pref_summary_off" = "aus";
-"pref_summary_default" = "standard";
-"pref_summary_custom" = "benutzerdefiniert";
 "pref_using_custom" = "Benutzerdefiniert verwenden: %s";
 "pref_using_default" = "Standard verwenden: %s";
 "pref_profile_info_headline" = "Mein Profil";
@@ -497,6 +486,9 @@
 "contact_not_verified" = "Kann %1$@ nicht verifizieren";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Geändertes Setup für %1$@";
+"verified_group_explain" = "Verifizierte Gruppen (experimentell) bieten Schutz gegen aktive Angriffe mittels Zwei-Faktor-Authentifizierung aller Mitglieder und immer aktiver Ende-zu-Ende-Verschlüsselung.";
+
+
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d neue Nachrichten in %2$d Chats";
 "notify_most_recent_from" = "Letzter Stand von: %1$@";
@@ -527,10 +519,12 @@
 "perm_explain_access_to_location_denied" = "Delta Chat benötigt eine Standortberechtigung, um einen Standort anzuhängen, aber er wurde dauerhaft abgelehnt. Bitte fahre mit dem Menü App-Einstellungen fort, wähle \"Berechtigungen\" und aktiviere \"Standort\".";
 "perm_enable_bg_reminder_title" = "Tippen Sie hier, um Nachrichten zu empfangen, während Delta Chat im Hintergrund läuft.";
 "perm_enable_bg_reminder_text" = "Delta Chat verbraucht nur minimale Ressourcen und achtet darauf, den Akku zu schonen.";
+"perm_enable_bg_already_done" = "Sie haben Delta Chat bereits erlaubt, Nachrichten im Hintergrund zu empfangen.\n\nFalls Nachrichten immer noch nicht im Hintergrund eingehen, überprüfen Sie bitte auch Ihre Systemeinstellungen.";
+
 // dc_str_* resources
 "encrypted_message" = "Verschlüsselte Nachricht";
 
-// desktop specific strings
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Willkommen bei Delta Chat";
 "login_known_accounts_title_desktop" = "Bekannte Konten";
 "global_menu_preferences_language_desktop" = "Wähle Sprache...";
@@ -549,7 +543,7 @@
 "global_menu_help_desktop" = "Hilfe";
 "global_menu_help_learn_desktop" = "Lerne mehr über Delta Chat";
 "global_menu_help_contribute_desktop" = "Auf GitHub mitwirken";
-"global_menu_help_report_desktop" = "Melde ein Problem...";
+"global_menu_help_report_desktop" = "Melde ein Problem";
 "global_menu_help_about_desktop" = "Über Delta Chat";
 "no_chat_selected_suggestion_desktop" = "Wähle einen Chat aus oder erstelle einen neuen Chat.";
 "write_message_desktop" = "Schreibe eine Nachricht";
@@ -566,13 +560,10 @@
 "verified_desktop" = "Verifiziert";
 "remove_desktop" = "Entfernen";
 "save_desktop" = "Speichern";
-"show_qr_verify_code_desktop" = "QR-Einladungscode";
-"show_qr_invite_code_desktop" = "QR-Einladungscode anzeigen";
 "add_contact_desktop" = "Füge Kontakt hinzu";
 "login_required_desktop" = "Benötigt";
 "name_desktop" = "Name";
 "autocrypt_key_transfer_desktop" = "Autocrypt-Schlüsselübertragung";
-"initiate_key_transfer_title_desktop" = "Schlüsselübertragung einleiten";
 "initiate_key_transfer_desktop" = "Eine \"Autocrypt-Setup-Nachricht\" überträgt das Ende-zu-Ende-Setup sicher auf ein anderes Autocrypt-kompatibles Gerät. Das Setup wird mit einem Setup-Code geschützt; dieser wird hier angezeigt und muss auf dem anderen Gerät eingetippt werden.";
 "reply_to_message_desktop" = "Antworten";
 "select_group_image_desktop" = "Gruppenbild auswählen";

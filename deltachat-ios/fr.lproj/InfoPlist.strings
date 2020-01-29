@@ -1,0 +1,4 @@
+Privacy._.Camera.Usage.Description = "Autoriser l\'accès à l\'appareil photo. Vous permet de prendre photos et vidéos.";
+Privacy._.Contacts.Usage.Description = "Autoriser l\'accès au carnet d\'adresses. Vous permet de discuter avec les contacts de votre appareil.";
+Privacy._.Microphone.Usage.Description = "Autoriser l\'accès au micro. Vous permet d\'enregistrer des fichiers audio.";
+Privacy._.Photo.Library.Usage.Description = "Autoriser l\'accès à la photothèque. Vous permet de téléverser des images depuis cette celle-ci.";

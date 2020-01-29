@@ -107,7 +107,6 @@
 "menu_play" = "Tocar";
 "menu_pause" = "Pausar";
 "menu_scroll_to_bottom" = "Ir para o fim";
-"menu_invite" = "Convidar amigos";
 "menu_help" = "Ajuda";
 "menu_select_all" = "Selecionar tudo";
 "menu_expand" = "Expandir";
@@ -126,7 +125,6 @@
 "share_location_for_one_hour" = "por 1 hora";
 "share_location_for_two_hours" = "por 2 horas";
 "share_location_for_six_hours" = "por 6 horas";
-
 
 // get confirmations
 "ask_leave_group" = "Tem certeza que deseja deixar este grupo?";
@@ -177,11 +175,6 @@
 "media_preview" = "Visualização de mídia";
 
 
-// invite
-"invite_slogan" = "Amigos não deixam amigos fechados em silos de mensagens.";
-"invite_default_text" = "Vamos mudar para o Delta Chat -%1$@ -  pode enviar-me um texto em %2$@";
-
-
 // welcome and login
 "welcome_intro1_message" = "O mensageiro com o público mais amplo do mundo. Livre e independente.";
 "welcome_start_messaging" = "Comece a chatr";
@@ -219,10 +212,6 @@
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Reencaminhar ...";
 // preferences
-"pref_summary_on" = "ligado";
-"pref_summary_off" = "desligado";
-"pref_summary_default" = "padrão";
-"pref_summary_custom" = "personalizado";
 "pref_using_custom" = "Utilizando personalizado %s";
 "pref_using_default" = "Utilizando padrão: %s";
 "pref_profile_info_headline" = "O seu perfil";
@@ -423,7 +412,7 @@
 "global_menu_view_developer_tools_desktop" = "Ferramentas do programador";
 "global_menu_help_desktop" = "Ajuda";
 "global_menu_help_contribute_desktop" = "Contribuir no GitHub";
-"global_menu_help_report_desktop" = "Comunicar um problema ...";
+"global_menu_help_report_desktop" = "Comunicar um problema";
 "no_chat_selected_suggestion_desktop" = "Selecione um CHAT ou crie um novo";
 "write_message_desktop" = "Escreva uma mensagem";
 "encryption_info_title_desktop" = "Informação sobre encriptação";
@@ -439,13 +428,10 @@
 "verified_desktop" = "verificado";
 "remove_desktop" = "Apagar";
 "save_desktop" = "Guardar";
-"show_qr_verify_code_desktop" = "Mostrar código de convite do QR";
-"show_qr_invite_code_desktop" = "Mostrar código de convite do QR";
 "add_contact_desktop" = "Adicionar um contacto";
 "login_required_desktop" = "necessário";
 "name_desktop" = "Nome";
 "autocrypt_key_transfer_desktop" = "Transferência da chave de Autocrypt";
-"initiate_key_transfer_title_desktop" = "Iniciar a transferência da chave";
 "initiate_key_transfer_desktop" = "Uma Mensagem de Configuração Autocrypt compartilha de forma segura sua configuração de ponta a ponta com outros aplicativos compatíveis com Autocrypt. A configuração será encriptada por um código de configuração que é exibido aqui e deve ser digitado no outro dispositivo.";
 "reply_to_message_desktop" = "Responder à mensagem";
 "select_group_image_desktop" = "Seleccionar a imagem para o grupo";

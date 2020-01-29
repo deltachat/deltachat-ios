@@ -1,0 +1,346 @@
+// common strings without special context
+"app_name" = "Delta Chat";
+"ok" = "У реду";
+"cancel" = "Откажи";
+"yes" = "Да";
+"no" = "Не";
+"on" = "Укључено";
+"off" = "Искључено";
+"def" = "Подразумевано";
+"custom" = "Посебно";
+"none" = "Ништа";
+"automatic" = "Аутоматски";
+"strict" = "Строга";
+"open" = "Отвори";
+"delete" = "Обриши";
+"info" = "Инфо";
+"emoji" = "Емоји";
+"attachment" = "Прилог";
+"back" = "Назад";
+"close" = "Близу";
+"forward" = "Проследи";
+"archive" = "Архивирај ћаскање";
+"unarchive" = "Деархивирај ћаскање";
+"mute" = "Искључи обавештења";
+"save" = "Сачувај";
+"chat" = "Ћаскање";
+"media" = "Медији";
+"main_menu" = "Главни мени";
+"start_chat" = "Започните ћаскање";
+"not_now" = "Не сада";
+"never" = "Никад";
+"one_moment" = "Тренутак...";
+"done" = "Завршено";
+"undo" = "Опозови";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Следећи";
+"error" = "Грешка";
+"error_x" = "Грешка: %1$@";
+"error_no_network" = "Мрежа није доступна.";
+"no_app_to_handle_data" = "Нема апликације која обрађује ову врсту података.";
+"no_browser_installed" = "Прегледач није инсталиран.";
+"file_not_found" = "Не могу да нађем %1$@.";
+"copied_to_clipboard" = "Копирано у клипборд.";
+"contacts_headline" = "Контакти";
+"email_address" = "Е-адреса";
+"bad_email_address" = "Лоша е-адреса.";
+"password" = "Лозинка";
+"now" = "Сада";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Опасност";
+// n_min_ago is deprecated, use n_minutes instead
+"n_min_ago" = "%dмин";
+"today" = "Данас";
+"yesterday" = "Јуче";
+"this_week" = "Ове недеље";
+"this_month" = "Овог месеца";
+"last_week" = "Прошле недеље";
+"last_month" = "Прошлог месеца";
+// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
+// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
+"self" = "Ја";
+"draft" = "Нацрт";
+"image" = "Слика";
+"gif" = "ГИФ";
+"images" = "Слике";
+"audio" = "Звук";
+"voice_message" = "Гласовна порука";
+"forwarded_message" = "Прослеђена порука";
+"video" = "Видео";
+"documents" = "Документи";
+"contact" = "Особа";
+"verified_contact" = "Потврђен контакт";
+"camera" = "Камера";
+"location" = "Локација";
+"gallery" = "Галерија";
+"file" = "Фајл";
+"unknown" = "Непозната";
+
+"green" = "Зелена";
+"red" = "Црвена";
+"blue" = "Плава";
+"orange" = "Наранџасте";
+"cyan" = "Цијан";
+"purple" = "Љубичаста";
+"magenta" = "Магента";
+"white" = "бео";
+
+"small" = "Мала";
+"normal" = "Нормално";
+"large" = "Велики";
+"extra_large" = "Екстра велики";
+
+"fast" = "Брзо";
+"slow" = "Спор";
+
+"message_read" = "Порука прочитана";
+
+
+// menu labels (or icon, buttons...)
+"menu_new_contact" = "Нови контакт";
+"menu_new_chat" = "Ново ћаскање";
+"menu_new_group" = "Нова група";
+"menu_new_verified_group" = "Нова потврђена група";
+"menu_send" = "Пошаљи";
+"menu_toggle_keyboard" = "Емоџи тастатура";
+"menu_edit_group" = "Уреди групу";
+"menu_group_name_and_image" = "Назив и слика групе";
+"menu_archive_chat" = "Архивирај ћаскање";
+"menu_unarchive_chat" = "Деархивирај ћаскање";
+"menu_add_attachment" = "Додај прилог";
+"menu_leave_group" = "Напусти групу";
+"menu_delete_chat" = "Обриши ћаскање";
+"menu_delete_messages" = "Избришите поруке";
+"menu_delete_image" = "Избриши слику";
+"menu_message_details" = "Детаљи поруке";
+"menu_copy_to_clipboard" = "Копирај у клипборд";
+"menu_forward" = "Прослеђена порука";
+"menu_resend" = "Понови слање";
+"menu_reply" = "Одговори на поруку";
+"menu_mute" = "Искључи обавештења";
+"menu_unmute" = "Укључи";
+"menu_export_attachment" = "извозни прилог";
+"menu_all_media" = "Сви медији";
+"menu_share" = "Дели";
+"menu_block_contact" = "Блокирај контакт";
+"menu_unblock_contact" = "Деблокирај контакт";
+"menu_play" = "Игра";
+"menu_pause" = "Паузирај";
+"menu_scroll_to_bottom" = "Дођите до дна";
+"menu_scroll_to_top" = "Дођите до врха";
+"menu_help" = "Помоћ";
+"menu_select_all" = "Изабери све";
+"menu_edit_name" = "Уреди назив";
+"menu_edit_group_name" = "уреди назив групе";
+"menu_edit_group_image" = "уреди слику групе";
+"menu_settings" = "Поставке";
+"menu_advanced" = "Напредно";
+"menu_deaddrop" = "Захтеви за контакт";
+"menu_view_profile" = "Прикажи профил";
+"menu_zoom_in" = "Увеличати";
+"menu_zoom_out" = "Умањи умањивање";
+"device_talk" = "Поруке уређаја";
+"edit_contact" = "измени контакт";
+
+"mute_for_one_hour" = "Утишај 1 сат";
+"mute_for_two_hours" = "Утишај 2 сата";
+"mute_for_one_day" = "Утишај 1 дан";
+"mute_for_seven_days" = "Утишај 7 сати";
+"mute_forever" = "Увек утишан";
+
+"share_location_once" = "једном";
+// get confirmations
+"ask_leave_group" = "Желите ли заиста да напустите ову групу?";
+"ask_forward" = "Да проследим изабране поруке за %1$@?";
+"ask_start_chat_with" = "Ћаскати са %1$@?";
+// Translators: %1$s will be replaces by a comma separated list of names
+"ask_remove_members" = "Уклонити %1$@ из групе?";
+// contact list
+"contacts_title" = "Контакти";
+"contacts_empty_hint" = "Још нема контаката.";
+
+
+"chat_archived_chats_title" = "Архивирана ћаскања";
+"chat_no_messages_hint" = "Пошаљи поруку за %1$@:\n\n• У реду је ако %2$@ не користи Делта ћаскање.\n\n• Испорука прве поруке ће можда да потраје.";
+"chat_new_group_hint" = "Саставите прву поруку и тиме омогућите осталима да пишу у групи.\n\n• У реду је ако сви чланови не користе Делта ћаскање.\n\n• Испорука прве поруке ће можда да потраје.";
+"chat_record_slide_to_cancel" = "Превуците за отказивање";
+"chat_record_explain" = "Тапните и држите за снимање гласовне поруке, пустите за слање";
+"chat_share_with_title" = "Дели";
+"chat_input_placeholder" = "Порука";
+"chat_archived_label" = "Архивирано";
+"chat_no_messages" = "Нема порука.";
+"chat_self_talk_subtitle" = "Поруке које сам слао себи";
+"saved_messages" = "Сачуване поруке";
+"chat_contact_request" = "Захтеви за контакт";
+// search
+"search" = "Претрага";
+// create/edit groups, contact/group profile
+"group_name" = "назив групе";
+"group_avatar" = "групна слика";
+"group_create_button" = "Створити групу";
+"group_please_enter_group_name" = "Унесите назив групе";
+"group_add_members" = "Додајте чланове";
+"group_hello_draft" = "Здраво, управо направих групу „%1$@“ за нас.";
+"group_self_not_in_group" = "Морате бити члан групе да бисте извршили ову радњу.";
+"profile_encryption" = "Шифровање";
+"profile_shared_chats" = "Дељена ћаскања";
+"tab_contact" = "Контакт";
+"tab_group" = "Група";
+"tab_members" = "Чланови";
+"tab_gallery" = "Галерија";
+"tab_docs" = "Документи";
+"media_preview" = "Преглед медијума";
+
+
+"welcome_start_messaging" = "Почните ћаскање";
+"login_subheader" = "За познате пружаоце услуге е-поште, додатне поставке се одређују аутоматски. Каткад, морате омогућити ИМАП у поставкама на веб сучељу ваше е-поште.\n\nПосаветујте се са пружаоцем услуге е-поште или пријатељима ако наиђете на проблеме.";
+"login_no_servers_hint" = "Не постоји сервер Делта ћаскања. Апликација користи само сервер ваше е-поште.";
+"login_inbox" = "Пријем";
+"login_imap_login" = "Корисничко име за ИМАП";
+"login_imap_server" = "ИМАП сервер";
+"login_imap_port" = "ИМАП сервер";
+"login_imap_security" = "ИМАП безбедност";
+"login_outbox" = "Отпрем";
+"login_smtp_login" = "Корисничко име за СМТП";
+"login_smtp_password" = "Лозинка за СМТП";
+"login_smtp_server" = "СМТП сервер";
+"login_smtp_port" = "СМТП порт";
+"login_smtp_security" = "СМТП безбедност";
+"login_auth_method" = "Начин ауторизације";
+"login_certificate_checks" = "Чекове сертификата";
+"import_backup_title" = "Увези резервну копију";
+"import_backup_ask" = "Резервна копија нађена у %1$@.\n\nЖелите ли да увезете и користите све њене податке и поставке?";
+"import_backup_no_backup_found" = "Нема резервних копија.\n\nКопирајте резервну копију у %1$@ и покушајте поново. Ако не желите, тапните \"Почни ћаскање\" да бисте почели уобичајени процес поставке.";
+// Translators: %1$s will be replaced by the email address
+"login_error_cannot_login" = "Не могу да се пријавим као %1$@. Проверите да ли су е-адреса и лозинка тачни.";
+// Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
+"login_error_server_response" = "Одговор од %1$@: %2$@\n\nНеки пружаоци услуга остављају додатне информације у ваше пријемно сандуче; можете да проверите ово нпр. користећи веб сучеље ваше е-поште. Посаветујте се са пружаоцем услуге или пријатељима ако налетите на проблеме.";
+
+// share and forward messages
+// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+"forward_to" = "Проследи за…";
+"pref_profile_info_headline" = "Подаци вашег профила";
+"pref_trim_headline" = "Скраћивање порука";
+"pref_trim_option" = "Бриши старе поруке";
+"pref_blocked_contacts" = "Блокирани контакти";
+"pref_who_can_see_this_information" = "Ко може да види ове податке?";
+"pref_your_name" = "Ваше име";
+// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+"pref_default_status_text" = "Послато Делта ћаскањем: https://delta.chat";
+"pref_enter_sends" = "Шаљи ЕНТЕР тастером";
+"pref_vibrate" = "Вибрирање";
+"pref_chat_settings" = "Поставке ћаскања";
+"pref_screen_security" = "Безбедност екрана";
+// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+"pref_screen_security_explain" = "Блокирање снимка екрана у списку недавних апликација и унутар апликације";
+"pref_notifications" = "Обавештења";
+"pref_notifications_show" = "Прикажи";
+"pref_notifications_priority" = "Приоритет";
+"pref_led_color" = "Боја ЛЕД светла";
+"pref_led_pattern" = "Трептање ЛЕД светла";
+"pref_sound" = "Звук";
+"pref_silent" = "Без звука";
+"pref_privacy" = "Приватност";
+"pref_chats_and_media" = "Ћаскања и медији";
+// Translators: "light" in the meaning "opposite of dark"
+"pref_light_theme" = "Светла";
+"pref_dark_theme" = "Тамна";
+"pref_appearance" = "Изглед";
+"pref_theme" = "Тема";
+"pref_language" = "Језик";
+"pref_incognito_keyboard" = "Тајна тастатура";
+"pref_read_receipts" = "Примај и шаљи поруке читања";
+"pref_read_receipts_explain" = "Уколико су извештаји читања онемогућени, нећете видети када неко прочита ваше поруке.";
+"pref_manage_keys" = "Управљај кључевима";
+"pref_use_system_emoji" = "Користи системски емоџи";
+"pref_use_system_emoji_explain" = "Искључи уграђене Delta Chat-ове емоџије";
+"pref_app_access" = "Приступ апликацији";
+"pref_communication" = "Комуникација";
+"pref_chats" = "Ћаскања";
+"pref_messages" = "Поруке";
+"pref_in_chat_sounds" = "Звуци ћаскања";
+"pref_message_text_size" = "Величина фонта поруке";
+"pref_other" = "Остало";
+"pref_backup" = "Резервна копија";
+"pref_managekeys_menu_title" = "Управљај кључевима";
+"pref_managekeys_export_secret_keys" = "Извези тајне кључеве";
+"pref_managekeys_import_secret_keys" = "Увези тајне кључеве";
+"pref_managekeys_import_explain" = "Да увезем тајне кључеве из %1$@?\n\n• Постојећи тајни кључеви неће бити обрисани\n\n• Последње увезени кључ ће бити коришћен као нови подразумевани кључ";
+"pref_background" = "Позадина ћаскања";
+"pref_background_btn_gallery" = "Из галерије";
+// autocrypt
+"autocrypt" = "Аутошифровање";
+"autocrypt_explain" = "Аутошифровање је нова и отворена спецификација за аутоматско с-краја-на-крај шифровање е-поште.\n\nПостаке се стварају аутоматски по потреби и можете да их преносите између уређаја помоћу Порука поставки за аутошифровање.";
+"autocrypt_send_asm_title" = "Пошаљите поруку поставки за аутошифровање";
+"autocrypt_send_asm_button" = "Пошаљите поруку поставки за аутошифровање";
+"autocrypt_prefer_e2ee" = "Преферирај с-краја-на-крај шифровање";
+"autocrypt_asm_subject" = "Порука поставки за аутошфровање";
+"autocrypt_continue_transfer_title" = "Порука поставки за аутошфровање";
+"autocrypt_continue_transfer_retry" = "Покушај поново";
+// system messages
+"systemmsg_group_name_changed" = "Назив групе је измењен из „%1$@“ у „%2$@“.";
+"systemmsg_group_image_changed" = "Слика групе је промењена.";
+"systemmsg_group_image_deleted" = "Слика групе је обрисана.";
+"systemmsg_member_added" = "Члан %1$@ је додат.";
+"systemmsg_member_removed" = "Члан %1$@ је уклоњен.";
+"systemmsg_group_left" = "Група напуштена.";
+// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+"systemmsg_action_by_me" = "%1$@ од мене.";
+// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+"systemmsg_action_by_user" = "%1$@ од стране %2$@.";
+
+
+// screen lock
+"screenlock_title" = "Закључавање екрана";
+"screenlock_explain" = "Ограничите приступ Сигналу помоћу Андроид екрана за закључавање или отиском прста";
+"screenlock_unlock_title" = "Откључај Delta Chat";
+// qr code stuff
+"qr_code" = "Бар-кôд";
+"qrscan_title" = "Очитај бар-кôд";
+"qrscan_hint" = "Поставите камеру изнад бар-кôда";
+"qrscan_fingerprint_mismatch" = "Очитани отисак не одговара последње виђеном отиску за %1$@.";
+"qrscan_no_addr_found" = "Овај бар-кôд садржи отисак али нема е-адресу.\n\nЗа потврду преко других канала, најпре установите шифровану везу са примаоцем.";
+"qrscan_contains_text" = "Очитани текст бар-кôда:\n\n%1$@";
+"qrscan_contains_url" = "Очитани УРЛ бар-кôда:\n\n%1$@";
+"qrscan_fingerprint_label" = "Отисак";
+"qrscan_x_verified_introduce_myself" = "%1$@ потврђен, представљам се…";
+"qrshow_title" = "Бар-кôд за потврду";
+"qrshow_x_joining" = "%1$@ се придружи.";
+"qrshow_x_verified" = "%1$@ потврђен.";
+"qrshow_x_has_joined_group" = "%1$@ се безбедно придружи групи.";
+"qrshow_join_group_title" = "Бар-кôд за потврду";
+"qrshow_join_contact_title" = "Бар-кôд за потврду";
+"contact_verified" = "%1$@ потврђен.";
+"notify_mark_all_read" = "Означи све прочитаним";
+"notify_mark_read" = "Означи прочитаним";
+"notify_media_message" = "Мултимедијална порука";
+"notify_reply_button" = "Одговори";
+"notify_new_message" = "Нова порука";
+"notify_priority_high" = "Висок";
+"notify_priority_max" = "Највиши";
+"notify_name_and_message" = "Име и поруку";
+"notify_name_only" = "Само име";
+"notify_no_name_or_message" = "Ни име ни поруку";
+
+
+// permissions
+"perm_required_title" = "Дозвола је потребна";
+"perm_continue" = "Настави";
+// dc_str_* resources
+"encrypted_message" = "Шифрована порука";
+
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"welcome_desktop" = "Добро дошли у Delta Chat.";
+"global_menu_preferences_language_desktop" = "Језик";
+"global_menu_file_desktop" = "Фајл";
+"global_menu_help_desktop" = "Помоћ";
+"contact_request_title_desktop" = "Захтеви за контакт";
+"more_info_desktop" = "Више података";
+"no_chats_desktop" = "Још нема ћаскања.";
+"remove_desktop" = "Уклони";
+"save_desktop" = "Сачувај";
+"add_contact_desktop" = "Нови контакт";
+"name_desktop" = "Име";
+"export_backup_desktop" = "Извези резервну копију";
+"me_desktop" = "Ја";

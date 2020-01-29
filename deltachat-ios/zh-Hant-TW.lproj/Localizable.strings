@@ -114,7 +114,6 @@
 "menu_pause" = "暫停";
 "menu_scroll_to_bottom" = "捲動到底端";
 "menu_scroll_to_top" = "捲動到頂端";
-"menu_invite" = "邀請朋友";
 "menu_help" = "求助";
 "menu_select_all" = "全選";
 "menu_expand" = "展開";
@@ -141,7 +140,6 @@
 "share_location_for_one_hour" = "1小時";
 "share_location_for_two_hours" = "2小時";
 "share_location_for_six_hours" = "6小時";
-
 
 // get confirmations
 "ask_leave_group" = "確定要離開本群組？";
@@ -219,11 +217,6 @@
 "media_preview" = "媒體預覽";
 
 
-// invite
-"invite_slogan" = "友情不應該被訊息的孤島分隔。";
-"invite_default_text" = "一起來用 Delta Chat 吧! %1$@ -- 你可以傳訊息到 %2$@ 給我";
-
-
 // welcome and login
 "welcome_intro1_message" = "免費、獨立的通訊軟體，我們有全世界最廣的受眾。";
 "welcome_start_messaging" = "開始傳送訊息";
@@ -266,10 +259,6 @@
 
 
 // preferences
-"pref_summary_on" = "開";
-"pref_summary_off" = "關";
-"pref_summary_default" = "預設";
-"pref_summary_custom" = "自訂";
 "pref_using_custom" = "使用自訂值: %s";
 "pref_using_default" = "使用預設值: %s";
 "pref_profile_info_headline" = "你的個人資料";
