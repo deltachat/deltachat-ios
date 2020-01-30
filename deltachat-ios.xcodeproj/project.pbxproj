@@ -135,6 +135,7 @@
 		AE851AC9227C77CF00ED86F0 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC8227C77CF00ED86F0 /* Media.swift */; };
 		AE851ACE227CA54400ED86F0 /* InitialsBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACD227CA54300ED86F0 /* InitialsBadge.swift */; };
 		AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */; };
+		AE9B7DFB23E2EB4F0086344F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9B7DFA23E2EB4F0086344F /* Error.swift */; };
 		AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0C22C1215D004C9591 /* EditContactController.swift */; };
 		AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */; };
 		AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */; };
@@ -361,6 +362,7 @@
 		AE851AC8227C77CF00ED86F0 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		AE851ACD227CA54300ED86F0 /* InitialsBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsBadge.swift; sourceTree = "<group>"; };
 		AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatDetailViewController.swift; sourceTree = "<group>"; };
+		AE9B7DFA23E2EB4F0086344F /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		AE9DAF0C22C1215D004C9591 /* EditContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactController.swift; sourceTree = "<group>"; };
 		AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTitleView.swift; sourceTree = "<group>"; };
 		AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -717,6 +719,7 @@
 				30AC265E237F1807002A943F /* AvatarHelper.swift */,
 				302B84C42396627F001C261F /* RelayHelper.swift */,
 				AEB7069023CF618D00504AB3 /* TypeAlias.swift */,
+				AE9B7DFA23E2EB4F0086344F /* Error.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1139,6 +1142,7 @@
 				305961E22346125100C80F33 /* MessagesDisplayDelegate.swift in Sources */,
 				305962092346125100C80F33 /* AudioMessageSizeCalculator.swift in Sources */,
 				305961DB2346125100C80F33 /* AudioItem.swift in Sources */,
+				AE9B7DFB23E2EB4F0086344F /* Error.swift in Sources */,
 				305962012346125100C80F33 /* PlayButtonView.swift in Sources */,
 				789E879D21D6DF86003ED1C5 /* ProgressHud.swift in Sources */,
 				305961F32346125100C80F33 /* MediaMessageCell.swift in Sources */,

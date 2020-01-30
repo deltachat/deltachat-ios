@@ -148,7 +148,6 @@ class ChatListController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cellViewModel = viewModel.getCellViewModelFor(indexPath: indexPath)
 
         switch cellViewModel.type {
@@ -158,25 +157,27 @@ class ChatListController: UITableViewController {
                 let archiveCell = tableView.dequeueReusableCell(withIdentifier: archivedCellReuseIdentifier, for: indexPath)
                 update(archiveCell: archiveCell)
                 return archiveCell
-            }
-
-            if chatId == DC_CHAT_ID_DEADDROP, let msgId = viewModel.msgIdFor(indexPath: indexPath) {
-                let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as! AvatarTextCell
+            } else if
+                chatId == DC_CHAT_ID_DEADDROP,
+                let msgId = viewModel.msgIdFor(indexPath: indexPath),
+                let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as? AvatarTextCell {
                 update(deaddropCell: deaddropCell, msgId: msgId)
                 return deaddropCell
+            } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? AvatarTextCell {
+            // default chatCell
+                let cellViewModel = viewModel.getCellViewModelFor(indexPath: indexPath)
+                update(avatarCell: chatCell, cellViewModel: cellViewModel)
+                return chatCell
             }
-
-            // default chatCells
-            let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as! AvatarTextCell
-            let cellViewModel = viewModel.getCellViewModelFor(indexPath: indexPath)
-            update(avatarCell: chatCell, cellViewModel: cellViewModel)
-            return chatCell
-        case .CONTACT(let contactData):
+        case .CONTACT:
             // will be shown when search is active
-            let contactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as! AvatarTextCell
-            update(avatarCell: contactCell, cellViewModel: cellViewModel)
-            return contactCell
+            if let contactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as? AvatarTextCell {
+                update(avatarCell: contactCell, cellViewModel: cellViewModel)
+                return contactCell
+            }
         }
+        safe_fatalError("Could not find/dequeue or recycle UITableViewCell.")
+        return UITableViewCell()
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
