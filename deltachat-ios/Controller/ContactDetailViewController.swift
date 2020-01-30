@@ -58,6 +58,8 @@ class ContactDetailViewController: UITableViewController {
         self.title = String.localized("tab_contact")
         if showStartChat {
             optionCells.append(startChatCell)
+        } else {
+            fatalError()
         }
     }
 
