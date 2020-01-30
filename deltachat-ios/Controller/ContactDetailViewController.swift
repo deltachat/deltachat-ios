@@ -3,6 +3,7 @@ import UIKit
 // this is also used as ChatDetail for SingleChats
 class ContactDetailViewController: UITableViewController {
     weak var coordinator: ContactDetailCoordinatorProtocol?
+    private let viewModel: ContactDetailViewModelProtocol
 
     let sectionOptions = 0
     let sectionOptionsRowStartChat = 1
@@ -39,8 +40,9 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
-    init(contactId: Int) {
-        self.contactId = contactId
+    init(viewModel: ContactDetailViewModelProtocol) {
+        self.viewModel = viewModel
+        self.contactId = viewModel.contactId
         super.init(style: .grouped)
     }
 

@@ -327,7 +327,8 @@ class NewChatCoordinator: Coordinator {
     }
 
     func showContactDetail(contactId: Int) {
-        let contactDetailController = ContactDetailViewController(contactId: contactId)
+        let viewModel = ContactDetailViewModel(contactId: contactId, context: dcContext)
+        let contactDetailController = ContactDetailViewController(viewModel: viewModel)
         let coordinator = ContactDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         contactDetailController.coordinator = coordinator
@@ -376,7 +377,8 @@ class GroupChatDetailCoordinator: Coordinator {
     }
 
     func showContactDetail(of contactId: Int) {
-        let contactDetailController = ContactDetailViewController(contactId: contactId)
+        let viewModel = ContactDetailViewModel(contactId: contactId, context: dcContext)
+        let contactDetailController = ContactDetailViewController(viewModel: viewModel)
         let coordinator = ContactDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         contactDetailController.coordinator = coordinator
@@ -410,7 +412,8 @@ class ChatViewCoordinator: NSObject, Coordinator {
         switch chat.chatType {
         case .SINGLE:
             if let contactId = chat.contactIds.first {
-                let contactDetailController = ContactDetailViewController(contactId: contactId)
+                let viewModel = ContactDetailViewModel(contactId: contactId, context: dcContext)
+                let contactDetailController = ContactDetailViewController(viewModel: viewModel)
                 contactDetailController.showStartChat = false
                 let coordinator = ContactDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
                 childCoordinators.append(coordinator)
@@ -427,7 +430,8 @@ class ChatViewCoordinator: NSObject, Coordinator {
     }
 
     func showContactDetail(of contactId: Int, in chatOfType: ChatType) {
-        let contactDetailController = ContactDetailViewController(contactId: contactId)
+        let viewModel = ContactDetailViewModel(contactId: contactId, context: dcContext )
+        let contactDetailController = ContactDetailViewController(viewModel: viewModel)
         if chatOfType == .SINGLE {
             contactDetailController.showStartChat = false
         }
