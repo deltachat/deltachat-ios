@@ -10,10 +10,11 @@ protocol ContactDetailViewModelProtocol {
 
 class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
+    let context: DcContext
     private enum SectionType {
-        case START_CHAT
-        case SHARED_CHATS
-        case BLOCK_CONTACT
+        case startChat
+        case sharedChats
+        case blockContact
     }
 
     var contactId: Int
@@ -28,44 +29,43 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
     private var sections: [SectionType] = []
 
     init(contactId: Int, startChatOption: Bool, context: DcContext) {
+        self.context = context
         self.contactId = contactId
         self.startChatOption = startChatOption
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
         if startChatOption {
-            sections.append(.START_CHAT)
+            sections.append(.startChat)
         }
         if sharedChats.length > 0 {
-            sections.append(.SHARED_CHATS)
+            sections.append(.sharedChats)
         }
-        sections.append(.BLOCK_CONTACT)
-
+        sections.append(.blockContact)
     }
 
     var numberOfSections: Int {
-
         return sections.count
     }
 
-    func numberOfRowsInSection(_ section:  Int) -> Int {
+    func numberOfRowsInSection(_ section: Int) -> Int {
         switch sections[section] {
-        case .SHARED_CHATS: return sharedChats.length
-        case .BLOCK_CONTACT, .START_CHAT: return 1
+        case .sharedChats: return sharedChats.length
+        case .blockContact, .startChat: return 1
         }
     }
 
     func update(cell: UITableViewCell, at indexPath: IndexPath) {
         let type = sections[indexPath.section]
         switch type {
-        case .START_CHAT:
+        case .startChat:
             if let actionCell = cell as? ActionCell {
                 update(startChatCell: actionCell)
             }
-        case .BLOCK_CONTACT:
+        case .blockContact:
             if let actionCell = cell as? ActionCell {
                 update(blockContactCell: actionCell)
             }
-        case .SHARED_CHATS:
+        case .sharedChats:
             if let contactCell = cell as? ContactCell {
                 update(sharedChatCell: contactCell, row: indexPath.row)
             }
@@ -74,7 +74,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
     func getSharedChatIdAt(indexPath: IndexPath) -> Int {
         let index = indexPath.row
-        assert(sections[indexPath.section] == .SHARED_CHATS)
+        assert(sections[indexPath.section] == .sharedChats)
         return sharedChats.getChatId(index: index)
     }
 
@@ -91,8 +91,14 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         cell.selectionStyle = .none
     }
 
-    private func update(sharedChatCell cell: ContactCell, row: Int) {
-        
+    private func update(sharedChatCell cell: ContactCell, row index: Int) {
+        let chatId = sharedChats.getChatId(index: index)
+        let summary = sharedChats.getSummary(index: index)
+        let unreadMessages = context.getUnreadMessages(chatId: chatId)
+
+        let cellData = ChatCellData(chatId: chatId, summary: summary, unreadMessages: unreadMessages)
+        let cellViewModel = ChatCellViewModel(chatData: cellData)
+        cell.updateCell(cellViewModel: cellViewModel)
     }
 
 }
