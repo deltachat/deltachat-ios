@@ -97,6 +97,16 @@ class ContactDetailViewController: UITableViewController {
         }
         return 0
     }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let type = viewModel.typeFor(section: indexPath.section)
+        switch type {
+        case .blockContact, .startChat:
+            return 44
+        case .sharedChats:
+            return ContactCell.cellHeight
+        }
+    }
     
     override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
