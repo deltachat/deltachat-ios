@@ -95,7 +95,7 @@ class ContactDetailViewController: UITableViewController {
         if section == 0 {
             return ContactDetailHeader.cellHeight
         }
-        return 0
+        return 20
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -106,6 +106,10 @@ class ContactDetailViewController: UITableViewController {
         case .sharedChats:
             return ContactCell.cellHeight
         }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.titleFor(section: section)
     }
     
     override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {

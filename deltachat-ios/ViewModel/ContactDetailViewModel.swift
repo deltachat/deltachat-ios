@@ -9,13 +9,14 @@ protocol ContactDetailViewModelProtocol {
     func update(actionCell: ActionCell, section: Int)
     func update(sharedChatCell: ContactCell, row index: Int)
     func getSharedChatIdAt(indexPath: IndexPath) -> Int
+    func titleFor(section: Int) -> String?
 }
 
 class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
-
     let context: DcContext
     enum SectionType {
+        case contact
         case startChat
         case sharedChats
         case blockContact
@@ -56,7 +57,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
     func numberOfRowsInSection(_ section: Int) -> Int {
         switch sections[section] {
         case .sharedChats: return sharedChats.length
-        case .blockContact, .startChat: return 1
+        case .contact, .blockContact, .startChat: return 1
         }
     }
 
@@ -102,4 +103,10 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         cell.updateCell(cellViewModel: cellViewModel)
     }
 
+    func titleFor(section: Int) -> String? {
+        if sections[section] == .sharedChats {
+            String.localized("menu_shared_chats")
+        }
+        return nil
+      }
 }
