@@ -6,7 +6,6 @@ protocol ContactDetailViewModelProtocol {
     var numberOfSections: Int { get }
     func numberOfRowsInSection(_ : Int) -> Int
     func typeFor(section: Int) -> ContactDetailViewModel.SectionType
-    func update(actionCell: ActionCell, section: Int)
     func update(sharedChatCell: ContactCell, row index: Int)
     func getSharedChatIdAt(indexPath: IndexPath) -> Int
     func titleFor(section: Int) -> String?
@@ -28,7 +27,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
     private let sharedChats: DcChatlist
     private let startChatOption: Bool
 
-    private var sections: [SectionType] = []
+    private var sections: [SectionType] = [.contact]
 
     init(contactId: Int, startChatOption: Bool, context: DcContext) {
         self.context = context
@@ -61,36 +60,10 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         }
     }
 
-    func update(actionCell: ActionCell, section: Int) {
-        let type = sections[section]
-        switch type {
-        case .startChat:
-            update(startChatCell: actionCell)
-        case .blockContact:
-            update(blockContactCell: actionCell)
-        case .sharedChats:
-            break
-        }
-
-    }
-
     func getSharedChatIdAt(indexPath: IndexPath) -> Int {
         let index = indexPath.row
-        assert(sections[indexPath.section] == .sharedChats)
+        // assert(sections[indexPath.section] == .sharedChats)
         return sharedChats.getChatId(index: index)
-    }
-
-    private func update(startChatCell cell: ActionCell) {
-        cell.actionColor = SystemColor.blue.uiColor
-        cell.actionTitle = String.localized("menu_new_chat")
-        cell.selectionStyle = .none
-    }
-
-    private func update(blockContactCell cell: ActionCell) {
-        let cell = ActionCell()
-        cell.actionTitle = contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
-        cell.actionColor = contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
-        cell.selectionStyle = .none
     }
 
     func update(sharedChatCell cell: ContactCell, row index: Int) {
@@ -105,7 +78,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
     func titleFor(section: Int) -> String? {
         if sections[section] == .sharedChats {
-            String.localized("menu_shared_chats")
+           return String.localized("menu_shared_chats")
         }
         return nil
       }

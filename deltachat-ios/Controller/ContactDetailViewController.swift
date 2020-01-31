@@ -5,6 +5,18 @@ class ContactDetailViewController: UITableViewController {
     weak var coordinator: ContactDetailCoordinatorProtocol?
     private let viewModel: ContactDetailViewModelProtocol
 
+    private lazy var headerCell: ContactDetailHeader = {
+        let cell = ContactDetailHeader()
+        cell.updateDetails(title: viewModel.contact.displayName, subtitle: viewModel.contact.email)
+        if let img = viewModel.contact.profileImage {
+            cell.setImage(img)
+        } else {
+            cell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
+        }
+        cell.setVerified(isVerified: viewModel.contact.isVerified)
+        return cell
+    }()
+
     private lazy var startChatCell: ActionCell = {
         let cell = ActionCell()
         cell.actionColor = SystemColor.blue.uiColor
@@ -47,6 +59,9 @@ class ContactDetailViewController: UITableViewController {
 
     // MARK: - setup and configuration
     private func configureTableView() {
+        tableView.estimatedSectionHeaderHeight = 20 // needed to trigger heighForHeaderInSection
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
+        // tableView.estimatedSectionFooterHeight = 0 // needed to trigger heighForFooterInSection
         tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
         tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
     }
@@ -63,6 +78,8 @@ class ContactDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellType = viewModel.typeFor(section: indexPath.section)
         switch cellType {
+        case .contact:
+            return headerCell
         case .blockContact:
             return blockContactCell
         case .startChat:
@@ -74,7 +91,6 @@ class ContactDetailViewController: UITableViewController {
             }
         }
         return UITableViewCell() // should never get here
-
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -88,14 +104,9 @@ class ContactDetailViewController: UITableViewController {
         case .sharedChats:
             let chatId = viewModel.getSharedChatIdAt(indexPath: indexPath)
             coordinator?.showChat(chatId: chatId)
+        case .contact:
+            break
         }
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return ContactDetailHeader.cellHeight
-        }
-        return 20
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -103,29 +114,38 @@ class ContactDetailViewController: UITableViewController {
         switch type {
         case .blockContact, .startChat:
             return 44
-        case .sharedChats:
+        case .sharedChats, .contact:
             return ContactCell.cellHeight
         }
     }
 
+    /*
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        let type = viewModel.typeFor(section: section)
+        switch type {
+        case .startChat:
+            return CGFloat.leastNonzeroMagnitude
+        default:
+            return CGFloat.leastNonzeroMagnitude
+        }
+    }
+     */
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let type = viewModel.typeFor(section: section)
+        switch type {
+        case .contact:
+            return 0
+//        case .blockContact:
+//            return 20
+        default:
+            return 20
+        }
+    }
+
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.titleFor(section: section)
-    }
-    
-    override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            let header = ContactDetailHeader()
-            let displayName = viewModel.contact.displayName
-            header.updateDetails(title: displayName, subtitle: viewModel.contact.email)
-            if let img = viewModel.contact.profileImage {
-                header.setImage(img)
-            } else {
-                header.setBackupImage(name: displayName, color: viewModel.contact.color)
-            }
-            header.setVerified(isVerified: viewModel.contact.isVerified)
-            return header
-        }
-        return nil
     }
 
     // MARK: -actions
@@ -144,7 +164,6 @@ class ContactDetailViewController: UITableViewController {
         }))
         present(alert, animated: true, completion: nil)
     }
-
 
     private func toggleBlockContact() {
         if viewModel.contact.isBlocked {
