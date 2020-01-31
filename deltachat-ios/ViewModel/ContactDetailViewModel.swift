@@ -1,10 +1,10 @@
-import Foundation
+import UIKit
 
 protocol ContactDetailViewModelProtocol {
     var contactId: Int { get }
     var numberOfSections: Int { get }
     func numberOfRowsInSection(_ : Int) -> Int
-    func updateCellAt(indexPath: IndexPath)
+    func update(cell: UITableViewCell, at indexPath: IndexPath)
     func getSharedChatIdAt(indexPath: IndexPath) -> Int
 }
 
@@ -17,6 +17,10 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
     }
 
     var contactId: Int
+
+    private lazy var contact: DcContact = {
+        return DcContact(id: contactId)
+    }()
 
     private let sharedChats: DcChatlist
     private let startChatOption: Bool
@@ -50,8 +54,22 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         }
     }
 
-    func updateCellAt(indexPath: IndexPath) {
-        return
+    func update(cell: UITableViewCell, at indexPath: IndexPath) {
+        let type = sections[indexPath.section]
+        switch type {
+        case .START_CHAT:
+            if let actionCell = cell as? ActionCell {
+                update(startChatCell: actionCell)
+            }
+        case .BLOCK_CONTACT:
+            if let actionCell = cell as? ActionCell {
+                update(blockContactCell: actionCell)
+            }
+        case .SHARED_CHATS:
+            if let contactCell = cell as? ContactCell {
+                update(sharedChatCell: contactCell, row: indexPath.row)
+            }
+        }
     }
 
     func getSharedChatIdAt(indexPath: IndexPath) -> Int {
@@ -60,5 +78,21 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         return sharedChats.getChatId(index: index)
     }
 
+    private func update(startChatCell cell: ActionCell) {
+        cell.actionColor = SystemColor.blue.uiColor
+        cell.actionTitle = String.localized("menu_new_chat")
+        cell.selectionStyle = .none
+    }
+
+    private func update(blockContactCell cell: ActionCell) {
+        let cell = ActionCell()
+        cell.actionTitle = contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
+        cell.actionColor = contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
+        cell.selectionStyle = .none
+    }
+
+    private func update(sharedChatCell cell: ContactCell, row: Int) {
+        
+    }
 
 }
