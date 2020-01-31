@@ -191,4 +191,43 @@ class ContactCell: UITableViewCell {
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+
+    /*
+     this method can be deleted after searchBarContactList-branch was merged into master
+     */
+
+    func updateCell(cellViewModel: AvatarCellViewModel) {
+        // subtitle
+        emailLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: emailLabel.font.pointSize)
+
+        switch cellViewModel.type {
+        case .CHAT(let chatData):
+            let chat = DcChat(id: chatData.chatId)
+
+            // text bold if chat contains unread messages - otherwise hightlight search results if needed
+            if chatData.unreadMessages > 0 {
+                nameLabel.attributedText = NSAttributedString(string: cellViewModel.title, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ])
+            } else {
+                nameLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: nameLabel.font.pointSize)
+            }
+
+            if let img = chat.profileImage {
+                resetBackupImage()
+                setImage(img)
+            } else {
+              setBackupImage(name: chat.name, color: chat.color)
+            }
+            setVerified(isVerified: chat.isVerified)
+            setTimeLabel(chatData.summary.timestamp)
+            setUnreadMessageCounter(chatData.unreadMessages)
+            setDeliveryStatusIndicator(chatData.summary.state)
+
+        case .CONTACT(let contactData):
+            let contact = DcContact(id: contactData.contactId)
+            nameLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: nameLabel.font.pointSize)
+            avatar.setName(cellViewModel.title)
+            avatar.setColor(contact.color)
+        }
+    }
 }
