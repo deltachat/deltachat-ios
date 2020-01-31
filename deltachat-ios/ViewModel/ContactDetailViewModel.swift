@@ -15,7 +15,6 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
     let context: DcContext
     enum SectionType {
-        case contact
         case startChat
         case sharedChats
         case blockContact
@@ -27,7 +26,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
     private let sharedChats: DcChatlist
     private let startChatOption: Bool
 
-    private var sections: [SectionType] = [.contact]
+    private var sections: [SectionType] = []
 
     init(contactId: Int, startChatOption: Bool, context: DcContext) {
         self.context = context
@@ -56,7 +55,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
     func numberOfRowsInSection(_ section: Int) -> Int {
         switch sections[section] {
         case .sharedChats: return sharedChats.length
-        case .contact, .blockContact, .startChat: return 1
+        case .blockContact, .startChat: return 1
         }
     }
 

@@ -59,11 +59,11 @@ class ContactDetailViewController: UITableViewController {
 
     // MARK: - setup and configuration
     private func configureTableView() {
-        tableView.estimatedSectionHeaderHeight = 20 // needed to trigger heighForHeaderInSection
-        tableView.sectionHeaderHeight = UITableView.automaticDimension
-        // tableView.estimatedSectionFooterHeight = 0 // needed to trigger heighForFooterInSection
         tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
         tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
+        headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
+        tableView.tableHeaderView = headerCell
+
     }
 
     // MARK: - UITableViewDatasource, UITableViewDelegate
@@ -78,8 +78,6 @@ class ContactDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellType = viewModel.typeFor(section: indexPath.section)
         switch cellType {
-        case .contact:
-            return headerCell
         case .blockContact:
             return blockContactCell
         case .startChat:
@@ -104,8 +102,6 @@ class ContactDetailViewController: UITableViewController {
         case .sharedChats:
             let chatId = viewModel.getSharedChatIdAt(indexPath: indexPath)
             coordinator?.showChat(chatId: chatId)
-        case .contact:
-            break
         }
     }
 
@@ -114,35 +110,10 @@ class ContactDetailViewController: UITableViewController {
         switch type {
         case .blockContact, .startChat:
             return 44
-        case .sharedChats, .contact:
+        case .sharedChats:
             return ContactCell.cellHeight
         }
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        let type = viewModel.typeFor(section: section)
-        switch type {
-        case .startChat:
-            return CGFloat.leastNonzeroMagnitude
-        default:
-            return CGFloat.leastNonzeroMagnitude
-        }
-    }
-     */
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let type = viewModel.typeFor(section: section)
-        switch type {
-        case .contact:
-            return 0
-//        case .blockContact:
-//            return 20
-        default:
-            return 20
-        }
-    }
-
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.titleFor(section: section)
