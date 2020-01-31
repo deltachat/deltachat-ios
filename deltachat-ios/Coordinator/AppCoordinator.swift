@@ -416,7 +416,6 @@ class ChatViewCoordinator: NSObject, Coordinator {
             if let contactId = chat.contactIds.first {
                 let viewModel = ContactDetailViewModel(contactId: contactId, startChatOption: false, context: dcContext)
                 let contactDetailController = ContactDetailViewController(viewModel: viewModel)
-                contactDetailController.showStartChat = false
                 let coordinator = ContactDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
                 childCoordinators.append(coordinator)
                 contactDetailController.coordinator = coordinator
@@ -441,9 +440,6 @@ class ChatViewCoordinator: NSObject, Coordinator {
         }
         let viewModel = ContactDetailViewModel(contactId: contactId, startChatOption: startChatOption, context: dcContext )
         let contactDetailController = ContactDetailViewController(viewModel: viewModel)
-        if chatOfType == .SINGLE {
-            contactDetailController.showStartChat = false
-        }
         let coordinator = ContactDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         contactDetailController.coordinator = coordinator

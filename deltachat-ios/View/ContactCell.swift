@@ -6,6 +6,8 @@ protocol ContactCellDelegate: class {
 
 class ContactCell: UITableViewCell {
 
+    static let reuseIdentifier = "contact_cell_reuse_identifier"
+
     public static let cellHeight: CGFloat = 74.5
     weak var delegate: ContactCellDelegate?
     var rowIndex = -1

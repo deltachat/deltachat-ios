@@ -2,16 +2,20 @@ import UIKit
 
 protocol ContactDetailViewModelProtocol {
     var contactId: Int { get }
+    var contact: DcContact { get }
     var numberOfSections: Int { get }
     func numberOfRowsInSection(_ : Int) -> Int
-    func update(cell: UITableViewCell, at indexPath: IndexPath)
+    func typeFor(section: Int) -> ContactDetailViewModel.SectionType
+    func update(actionCell: ActionCell, section: Int)
+    func update(sharedChatCell: ContactCell, row index: Int)
     func getSharedChatIdAt(indexPath: IndexPath) -> Int
 }
 
 class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
+
     let context: DcContext
-    private enum SectionType {
+    enum SectionType {
         case startChat
         case sharedChats
         case blockContact
@@ -19,10 +23,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
     var contactId: Int
 
-    private lazy var contact: DcContact = {
-        return DcContact(id: contactId)
-    }()
-
+    var contact: DcContact
     private let sharedChats: DcChatlist
     private let startChatOption: Bool
 
@@ -31,6 +32,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
     init(contactId: Int, startChatOption: Bool, context: DcContext) {
         self.context = context
         self.contactId = contactId
+        self.contact = DcContact(id: contactId)
         self.startChatOption = startChatOption
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
@@ -41,6 +43,10 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
             sections.append(.sharedChats)
         }
         sections.append(.blockContact)
+    }
+
+    func typeFor(section: Int) -> ContactDetailViewModel.SectionType {
+        return sections[section]
     }
 
     var numberOfSections: Int {
@@ -54,22 +60,17 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         }
     }
 
-    func update(cell: UITableViewCell, at indexPath: IndexPath) {
-        let type = sections[indexPath.section]
+    func update(actionCell: ActionCell, section: Int) {
+        let type = sections[section]
         switch type {
         case .startChat:
-            if let actionCell = cell as? ActionCell {
-                update(startChatCell: actionCell)
-            }
+            update(startChatCell: actionCell)
         case .blockContact:
-            if let actionCell = cell as? ActionCell {
-                update(blockContactCell: actionCell)
-            }
+            update(blockContactCell: actionCell)
         case .sharedChats:
-            if let contactCell = cell as? ContactCell {
-                update(sharedChatCell: contactCell, row: indexPath.row)
-            }
+            break
         }
+
     }
 
     func getSharedChatIdAt(indexPath: IndexPath) -> Int {
@@ -91,7 +92,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         cell.selectionStyle = .none
     }
 
-    private func update(sharedChatCell cell: ContactCell, row index: Int) {
+    func update(sharedChatCell cell: ContactCell, row index: Int) {
         let chatId = sharedChats.getChatId(index: index)
         let summary = sharedChats.getSummary(index: index)
         let unreadMessages = context.getUnreadMessages(chatId: chatId)
