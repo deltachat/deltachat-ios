@@ -77,7 +77,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
     func titleFor(section: Int) -> String? {
         if sections[section] == .sharedChats {
-           return String.localized("menu_shared_chats")
+           return String.localized("profile_shared_chats")
         }
         return nil
       }
