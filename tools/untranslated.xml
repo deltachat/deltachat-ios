@@ -4,8 +4,4 @@
     <!-- iOS specific untranslated strings -->
     <string name="import_contacts">Import device contacts</string>
     <string name="import_contacts_message">To chat with contacts from your device open Settings and enable Contacts.</string>
-    <string name="INFOPLIST.NSCameraUsageDescription">This is used to take photos and videos or scan QR codes.</string>
-    <string name="INFOPLIST.NSContactsUsageDescription">This is used to find your contacts who using Delta Chat.</string>
-    <string name="INFOPLIST.NSMicrophoneUsageDescription">This is used to send your voice.</string>
-    <string name="INFOPLIST.NSPhotoLibraryUsageDescription">This is used to share your photos and videos or set up a profile picture.</string>
 </resources>

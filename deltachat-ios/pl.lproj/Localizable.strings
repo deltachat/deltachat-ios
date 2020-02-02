@@ -596,4 +596,4 @@
 "a11y_remove_account_btn_label" = "Usuń konto";
 "a11y_background_preview_label" = "Podgląd tła";
 
-// Translators: These strings are only used on iOS
+// iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"

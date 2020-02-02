@@ -1,4 +1,4 @@
-Privacy._.Camera.Usage.Description = "Zezwolenie na dostęp do aparatu pozwala robić zdjęcia i nagrywać filmy.";
-Privacy._.Contacts.Usage.Description = "Zezwolenie na dostęp do książki adresowej pozwala czatować z kontaktami z urządzenia.";
-Privacy._.Microphone.Usage.Description = "Zezwolenie na dostęp do mikrofonu pozwala nagrywać dźwięk.";
-Privacy._.Photo.Library.Usage.Description = "Zezwolenie na dostęp do biblioteki zdjęć umożliwia przesyłanie z niej zdjęć.";
+NSCameraUsageDescription = "Zezwolenie na dostęp do aparatu pozwala robić zdjęcia i nagrywać filmy.";
+NSContactsUsageDescription = "Zezwolenie na dostęp do książki adresowej pozwala czatować z kontaktami z urządzenia.";
+NSMicrophoneUsageDescription = "Zezwolenie na dostęp do mikrofonu pozwala nagrywać dźwięk.";
+NSPhotoLibraryUsageDescription = "Zezwolenie na dostęp do biblioteki zdjęć umożliwia przesyłanie z niej zdjęć.";

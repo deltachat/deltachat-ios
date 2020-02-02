@@ -39,7 +39,7 @@
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Delta Chat uses your camera to take and send photos and videos and to scan QR-codes.</string>
+	<string>Delta Chat uses your camera to take and send photos and videos and to scan QR codes.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Delta Chat uses your contacts to show a list of email addresses you can write to. Delta Chat has no server, your contacts are not sent anywhere.</string>
 	<key>NSMicrophoneUsageDescription</key>

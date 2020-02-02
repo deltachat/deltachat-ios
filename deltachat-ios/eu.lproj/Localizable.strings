@@ -604,4 +604,4 @@
 "a11y_message_context_menu_btn_label" = "Mezu-ekintzak";
 "a11y_background_preview_label" = "Atzealdearen aurrebista";
 
-// Translators: These strings are only used on iOS
+// iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"

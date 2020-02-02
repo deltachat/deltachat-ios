@@ -605,4 +605,4 @@
 "a11y_message_context_menu_btn_label" = "Действия с сообщением";
 "a11y_background_preview_label" = "Предпросмотр фона";
 
-// Translators: These strings are only used on iOS
+// iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
