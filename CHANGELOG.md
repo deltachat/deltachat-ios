@@ -1,5 +1,11 @@
 # Delta Chat iOS Changelog
 
+## v1.1.1
+2020-02-02
+
+* fix string shown on requesting permissions
+
+
 ## v1.1.0
 2020-01-29
 
