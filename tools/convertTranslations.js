@@ -158,10 +158,10 @@ function toInfoPlistStrings(lines) {
         continue;
       } else {
         let key = line[0];
-        if (!key.startsWith("INFOPLIST.")) {
+        if (!key.startsWith("InfoPlist_")) {
           continue;
         }
-        key = key.replace('INFOPLIST.', '');
+        key = key.replace('InfoPlist_', '');
         out += `${key} = "${line[1]}";\n`;
       }
     }
@@ -183,7 +183,7 @@ function toLocalizableStrings(lines) {
               out += '// ' + line;
     } else {
       let key = line[0];
-      if (key.startsWith("INFOPLIST.")) {
+      if (key.startsWith("InfoPlist_")) {
         continue;
       }
       out += `"${key}" = "${line[1]}";`;
