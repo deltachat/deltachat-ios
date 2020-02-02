@@ -1,4 +1,4 @@
-Privacy._.Camera.Usage.Description = "Conceder acceso a cámara permíteche tomar fotos e vídeos.";
-Privacy._.Contacts.Usage.Description = "Permitir o acceso a libreta de enderezos permíteche conversar con contactos do dispositivo.";
-Privacy._.Microphone.Usage.Description = "Permitindo o acceso ao micrófono poderás gravar audio.";
-Privacy._.Photo.Library.Usage.Description = "Permitindo o acceso a galería de fotos poderás subir imaxes desde ela.";
+NSCameraUsageDescription = "Conceder acceso a cámara permíteche tomar fotos e vídeos.";
+NSContactsUsageDescription = "Permitir o acceso a libreta de enderezos permíteche conversar con contactos do dispositivo.";
+NSMicrophoneUsageDescription = "Permitindo o acceso ao micrófono poderás gravar audio.";
+NSPhotoLibraryUsageDescription = "Permitindo o acceso a galería de fotos poderás subir imaxes desde ela.";

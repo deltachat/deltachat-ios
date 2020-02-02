@@ -278,6 +278,7 @@
 "login_auth_method" = "Yetkilendirme yöntemi";
 "login_info_oauth2_title" = "Basitleştirilen ayarlamayla sürdürülsün mü?";
 "login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth 2.0) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'in E-posta ile Sohbet uygulamanız olarak davranmasına izin verin.\n\nDelta Chat sunucuları yoktur; verileriniz aygıtınızda kalır.";
+"login_manually" = "Elle oturum aç";
 "login_info_gmail_text" = "Gmail Hesapları için \"2 Adımlı Doğrulama\"yı etkinleştirdiyseniz, bir uygulama parolası oluşturmanız gerekir. Bu ayar kullanılabilir değilse, \"Güvenliği düşük uygulamalar\"ı etkinleştirmeniz gerekir.";
 "login_certificate_checks" = "Sertifika denetimleri";
 "login_error_mail" = "Lütfen geçerli bir e-posta adresi girin";
@@ -607,4 +608,4 @@
 "a11y_message_context_menu_btn_label" = "İleti eylemleri";
 "a11y_background_preview_label" = "Artalan önizlemesi";
 
-// Translators: These strings are only used on iOS
+// iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"

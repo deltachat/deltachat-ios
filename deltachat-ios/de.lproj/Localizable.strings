@@ -171,6 +171,8 @@
 "share_location_for_two_hours" = "für 2 Stunden";
 "share_location_for_six_hours" = "für 6 Stunden";
 
+"file_saved_to" = "Datei gespeichert unter \"%1$@\".";
+
 // get confirmations
 "ask_leave_group" = "Diese Gruppe verlassen?";
 "ask_forward" = "Nachricht weiterleiten an %1$@?";
@@ -274,8 +276,9 @@
 "login_smtp_port" = "SMTP-Port";
 "login_smtp_security" = "SMTP-Sicherheit";
 "login_auth_method" = "Autorisierungsmethode";
-"login_info_oauth2_title" = "Mit vereinfachter Einrichtung fortfahren?";
+"login_info_oauth2_title" = "Weiter mit vereinfachter Einrichtung?";
 "login_info_oauth2_text" = "Die eingegebene E-Mail-Adresse unterstützt eine vereinfachte Einrichtung (OAuth2).\n\nBitte erlauben Sie Delta Chat im nächsten Schritt als Chat-Über-E-Mail-App zu arbeiten.\n\nEs gibt keine Delta Chat Server! Ihre Daten bleiben auf Ihrem Gerät!";
+"login_manually" = "Manuell anmelden";
 "login_info_gmail_text" = "Für GMail-Konten muss ein App-Passwort erstellt werden, wenn die 2FA (Zwei-Faktor-Authentifizierung) aktiviert ist. Wenn diese Einstellung nicht verfügbar ist, muss \"Zugriff durch weniger sichere Anwendungen\" aktiviert werden.";
 "login_certificate_checks" = "Zertifikatsüberprüfung";
 "login_error_mail" = "Bitte eine gültige E-Mail-Adresse eingeben";
@@ -508,7 +511,7 @@
 
 // permissions
 "perm_required_title" = "Berechtigung erforderlich";
-"perm_continue" = "Fortsetzen";
+"perm_continue" = "Weiter";
 "perm_explain_need_for_camera_access" = "Delta Chat den Zugriff auf die Kamera erlauben, um Fotos und Videos aufzunehmen.";
 "perm_explain_need_for_mic_access" = "Delta Chat den Zugriff auf das Mikrofon erlauben, um Audionachrichten aufzunehmen.";
 "perm_explain_need_for_storage_access" = "Delta Chat benötigt Zugriff auf das Dateisystem, um Dateien zu exportieren oder Backups zu erstellen.";
@@ -605,4 +608,4 @@
 "a11y_message_context_menu_btn_label" = "Nachrichtaktionen";
 "a11y_background_preview_label" = "Vorschau für Hintergrundbild";
 
-// Translators: These strings are only used on iOS
+// iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"

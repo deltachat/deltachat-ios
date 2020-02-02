@@ -1,4 +1,4 @@
-Privacy._.Camera.Usage.Description = "Autorizzare l\'accesso alla camera ti permette di fare foto e video";
-Privacy._.Contacts.Usage.Description = "Autorizzare l\'accesso alla rubrica ti permette di chattare con i contatti nel tuo dispositivo.";
-Privacy._.Microphone.Usage.Description = "Autorizzare l\'accesso al microfono ti permette di registrare audio.";
-Privacy._.Photo.Library.Usage.Description = "Autorizzare l\'accesso alla galleria ti permette di caricare foto da essa.";
+NSCameraUsageDescription = "Autorizzare l\'accesso alla camera ti permette di fare foto e video";
+NSContactsUsageDescription = "Autorizzare l\'accesso alla rubrica ti permette di chattare con i contatti nel tuo dispositivo.";
+NSMicrophoneUsageDescription = "Autorizzare l\'accesso al microfono ti permette di registrare audio.";
+NSPhotoLibraryUsageDescription = "Autorizzare l\'accesso alla galleria ti permette di caricare foto da essa.";
