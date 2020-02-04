@@ -194,11 +194,6 @@ class ContactCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-
-    /*
-     this method can be deleted after searchBarContactList-branch was merged into master
-     */
-
     func updateCell(cellViewModel: AvatarCellViewModel) {
         // subtitle
         emailLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: emailLabel.font.pointSize)
