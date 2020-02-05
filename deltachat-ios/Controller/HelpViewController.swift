@@ -20,6 +20,7 @@ class HelpViewController: UIViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         self.title = String.localized("menu_help")
         setupSubviews()
         loadHtmlContent()
@@ -40,29 +41,18 @@ class HelpViewController: UIViewController {
     }
 
     private func loadHtmlContent() {
-        let lang = "de"
 
-        if let url = Bundle.main.url(forResource: "de_help", withExtension: "html", subdirectory: "Assets/Help")  {
-            safe_fatalError("Failed to load resource from bundle")
+        let lang = Utils.getDeviceLanguage() ?? "en" // en is backup
+
+        var fileURL: URL?
+
+        fileURL = Bundle.main.url(forResource: "\(lang)_help", withExtension: "html", subdirectory: "Assets/Help/\(lang)") ??
+            Bundle.main.url(forResource: "en_help", withExtension: "html", subdirectory: "Assets/Help/en")
+
+        guard let url = fileURL else {
+            safe_fatalError("could not find help asset")
             return
         }
-
-
-        if let url = Bundle.main.url(forResource: "de_help", withExtension: "html", subdirectory: "Help")  {
-            safe_fatalError("Failed to load resource from bundle")
-            return
-        }
-
-        if let url = Bundle.main.path(forResource: "de_help", ofType: "html")  {
-            safe_fatalError("Failed to load resource from bundle")
-            return
-        }
-
-        guard let url = Bundle.main.url(forResource: "de_help", withExtension: "html", subdirectory: "Assets/Help/de")  else {
-                        safe_fatalError("Failed to load resource from bundle")
-                        return
-                    }
-
         webView.loadFileURL(url, allowingReadAccessTo: url)
         let request = URLRequest(url: url)
         webView.load(request)
