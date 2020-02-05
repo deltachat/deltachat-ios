@@ -226,6 +226,11 @@ class SettingsCoordinator: Coordinator {
         childCoordinators.append(deaddropCoordinator)
         navigationController.pushViewController(deaddropViewController, animated: true)
     }
+
+    func showHelp() {
+        let helpViewController = HelpViewController()
+        navigationController.pushViewController(helpViewController, animated: true)
+    }
 }
 
 class EditSettingsCoordinator: Coordinator {
