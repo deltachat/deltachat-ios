@@ -5,6 +5,7 @@ class HelpViewController: UIViewController {
 
     private lazy var webView: WKWebView = {
         let view = WKWebView()
+        view.backgroundColor = .clear
         return view
     }()
 
@@ -20,10 +21,14 @@ class HelpViewController: UIViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = DcColors.chatBackgroundColor
         self.title = String.localized("menu_help")
         setupSubviews()
-        loadHtmlContent()
+        loadHtmlContent { [unowned self] url in
+            DispatchQueue.main.async {
+                self.webView.loadFileURL(url, allowingReadAccessTo: url)
+            }
+        }
     }
 
     // MARK: - setup + configuration
@@ -40,19 +45,21 @@ class HelpViewController: UIViewController {
         webView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
     }
 
-    private func loadHtmlContent() {
+    private func loadHtmlContent(completionHandler: ((URL) -> Void)?) {
+        // execute in background thread because file loading would blockui for a few milliseconds
+        DispatchQueue.global(qos: .background).async {
+            let lang = Utils.getDeviceLanguage() ?? "en" // en is backup
+            var fileURL: URL?
 
-        let lang = Utils.getDeviceLanguage() ?? "en" // en is backup
-        var fileURL: URL?
+            fileURL = Bundle.main.url(forResource: "help", withExtension: "html", subdirectory: "Assets/Help/\(lang)") ??
+                Bundle.main.url(forResource: "en_help", withExtension: "html", subdirectory: "Assets/Help/en")
 
-        fileURL = Bundle.main.url(forResource: "help", withExtension: "html", subdirectory: "Assets/Help/\(lang)") ??
-            Bundle.main.url(forResource: "en_help", withExtension: "html", subdirectory: "Assets/Help/en")
-
-        guard let url = fileURL else {
-            safe_fatalError("could not find help asset")
-            return
+            guard let url = fileURL else {
+                safe_fatalError("could not find help asset")
+                return
+            }
+            completionHandler?(url)
         }
-        webView.loadFileURL(url, allowingReadAccessTo: url)
     }
 
 
