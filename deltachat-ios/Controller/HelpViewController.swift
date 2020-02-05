@@ -61,6 +61,4 @@ class HelpViewController: UIViewController {
             completionHandler?(url)
         }
     }
-
-
 }
