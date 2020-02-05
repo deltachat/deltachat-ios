@@ -17,13 +17,15 @@ class HelpViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = String.localized("menu_help")
-        view.backgroundColor = .yellow
         setupSubviews()
+        loadHtmlContent()
     }
 
+    // MARK: - setup + configuration
     private func setupSubviews() {
         view.addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +37,16 @@ class HelpViewController: UIViewController {
         }
         webView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         webView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+    }
+
+    private func loadHtmlContent() {
+        let lang = "de"
+        guard let url = Bundle.main.url(forResource: "de_help", withExtension: "html") else {
+            safe_fatalError("Failed to load resource from bundle")
+            return
+        }
+        let request = URLRequest(url: url)
+        webView.load(request)
 
     }
 
