@@ -5,7 +5,6 @@ class HelpViewController: UIViewController {
 
     private lazy var webView: WKWebView = {
         let view = WKWebView()
-        view.backgroundColor = .clear
         return view
     }()
 
@@ -25,6 +24,7 @@ class HelpViewController: UIViewController {
         self.title = String.localized("menu_help")
         setupSubviews()
         loadHtmlContent { [unowned self] url in
+            // return to main thread
             DispatchQueue.main.async {
                 self.webView.loadFileURL(url, allowingReadAccessTo: url)
             }
