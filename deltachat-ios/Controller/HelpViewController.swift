@@ -41,10 +41,29 @@ class HelpViewController: UIViewController {
 
     private func loadHtmlContent() {
         let lang = "de"
-        guard let url = Bundle.main.url(forResource: "de_help", withExtension: "html") else {
+
+        if let url = Bundle.main.url(forResource: "de_help", withExtension: "html", subdirectory: "Assets/Help")  {
             safe_fatalError("Failed to load resource from bundle")
             return
         }
+
+
+        if let url = Bundle.main.url(forResource: "de_help", withExtension: "html", subdirectory: "Help")  {
+            safe_fatalError("Failed to load resource from bundle")
+            return
+        }
+
+        if let url = Bundle.main.path(forResource: "de_help", ofType: "html")  {
+            safe_fatalError("Failed to load resource from bundle")
+            return
+        }
+
+        guard let url = Bundle.main.url(forResource: "de_help", withExtension: "html", subdirectory: "Assets/Help/de")  else {
+                        safe_fatalError("Failed to load resource from bundle")
+                        return
+                    }
+
+        webView.loadFileURL(url, allowingReadAccessTo: url)
         let request = URLRequest(url: url)
         webView.load(request)
 
