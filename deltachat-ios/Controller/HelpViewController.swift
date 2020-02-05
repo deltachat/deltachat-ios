@@ -43,7 +43,6 @@ class HelpViewController: UIViewController {
     private func loadHtmlContent() {
 
         let lang = Utils.getDeviceLanguage() ?? "en" // en is backup
-
         var fileURL: URL?
 
         fileURL = Bundle.main.url(forResource: "help", withExtension: "html", subdirectory: "Assets/Help/\(lang)") ??
@@ -54,9 +53,6 @@ class HelpViewController: UIViewController {
             return
         }
         webView.loadFileURL(url, allowingReadAccessTo: url)
-        let request = URLRequest(url: url)
-        webView.load(request)
-
     }
 
 
