@@ -20,7 +20,7 @@ class HelpViewController: UIViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = DcColors.chatBackgroundColor
+        view.backgroundColor = .white
         self.title = String.localized("menu_help")
         setupSubviews()
         loadHtmlContent { [unowned self] url in
