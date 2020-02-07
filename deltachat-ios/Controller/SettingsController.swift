@@ -259,9 +259,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func openHelp(_: Row) {
-        if let url = URL(string: String.localized("pref_help_url")) {
-            UIApplication.shared.open(url)
-        }
+        coordinator?.showHelp()
     }
 
     private func showDeaddrop(_: Row) {

@@ -120,6 +120,10 @@
 		8B6D425BC604F7C43B65D436 /* Pods_deltachat_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */; };
 		AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */; };
 		AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */; };
+		AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19887423EB264000B4CD5F /* HelpViewController.swift */; };
+		AE1988A523EB2FBA00B4CD5F /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1988A423EB2FBA00B4CD5F /* Errors.swift */; };
+		AE1988A723EB382A00B4CD5F /* Help in Resources */ = {isa = PBXBuildFile; fileRef = AE1988A623EB382A00B4CD5F /* Help */; };
+		AE1988AB23EB3C7600B4CD5F /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = AE1988AA23EB3C7600B4CD5F /* Assets */; };
 		AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */; };
 		AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B31722672DFC00EC37A1 /* ActionCell.swift */; };
 		AE38B31A2267328200EC37A1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B3192267328200EC37A1 /* Colors.swift */; };
@@ -341,6 +345,10 @@
 		A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.release.xcconfig"; sourceTree = "<group>"; };
 		AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuritySettingsController.swift; sourceTree = "<group>"; };
+		AE19887423EB264000B4CD5F /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		AE1988A423EB2FBA00B4CD5F /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		AE1988A623EB382A00B4CD5F /* Help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Help; sourceTree = "<group>"; };
+		AE1988AA23EB3C7600B4CD5F /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = Assets; sourceTree = "<group>"; };
 		AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionCell.swift; sourceTree = "<group>"; };
 		AE38B31722672DFC00EC37A1 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		AE38B3192267328200EC37A1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -604,6 +612,8 @@
 		7A9FB1421FB061E2001FEA36 /* deltachat-ios */ = {
 			isa = PBXGroup;
 			children = (
+				AE1988AA23EB3C7600B4CD5F /* Assets */,
+				AE19887623EB2BDA00B4CD5F /* Assets */,
 				305961812346125000C80F33 /* Extensions */,
 				3059617E234610A800C80F33 /* MessageKit */,
 				7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */,
@@ -662,6 +672,14 @@
 			path = AccountSetup;
 			sourceTree = "<group>";
 		};
+		AE19887623EB2BDA00B4CD5F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				AE1988A623EB382A00B4CD5F /* Help */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		AE851A02227AECDE00ED86F0 /* deltachat-iosTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -708,6 +726,7 @@
 				30149D9222F21129003C12B5 /* QrViewController.swift */,
 				B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */,
 				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
+				AE19887423EB264000B4CD5F /* HelpViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -730,6 +749,7 @@
 				3095A350237DD1F700AB07F7 /* MediaPicker.swift */,
 				30AC265E237F1807002A943F /* AvatarHelper.swift */,
 				302B84C42396627F001C261F /* RelayHelper.swift */,
+				AE1988A423EB2FBA00B4CD5F /* Errors.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -910,7 +930,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7837B64021E54DC600CDE126 /* .swiftlint.yml in Resources */,
+				AE1988AB23EB3C7600B4CD5F /* Assets in Resources */,
 				3022E6BE22E8768800763272 /* InfoPlist.strings in Resources */,
+				AE1988A723EB382A00B4CD5F /* Help in Resources */,
 				3060119C22DDE24000C1CE6F /* Localizable.strings in Resources */,
 				7A9FB14E1FB061E2001FEA36 /* LaunchScreen.storyboard in Resources */,
 				306011B622E5E7FB00C1CE6F /* Localizable.stringsdict in Resources */,
@@ -1116,6 +1138,7 @@
 				305962072346125100C80F33 /* MessagesCollectionViewFlowLayout.swift in Sources */,
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
 				78E45E3C21D3D03700D4B15E /* TextFieldTableViewCell.swift in Sources */,
+				AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */,
 				305961D52346125100C80F33 /* MessagesViewController+Menu.swift in Sources */,
 				305961F22346125100C80F33 /* LocationMessageCell.swift in Sources */,
 				AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */,
@@ -1143,6 +1166,7 @@
 				300C509D234B551900F8AE22 /* TextMediaMessageCell.swift in Sources */,
 				305961E92346125100C80F33 /* MessageKind.swift in Sources */,
 				305962022346125100C80F33 /* BubbleCircle.swift in Sources */,
+				AE1988A523EB2FBA00B4CD5F /* Errors.swift in Sources */,
 				305961DD2346125100C80F33 /* SenderType.swift in Sources */,
 				305961E32346125100C80F33 /* MessagesDataSource.swift in Sources */,
 				305961E22346125100C80F33 /* MessagesDisplayDelegate.swift in Sources */,

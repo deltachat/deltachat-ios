@@ -8,6 +8,7 @@ struct DcColors {
     static let messageSecondaryColor = UIColor.themeColor(light: UIColor.init(hexString: "ebebed"),
                                                           dark: UIColor.init(hexString: "333333"))
     static let contactCellBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
+    static let defaultBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
     static let chatBackgroundColor = UIColor.themeColor(light: UIColor(red: 255, green: 255, blue: 255, alpha: 0), dark: .black)
     static let checkmarkGreen = UIColor.themeColor(light: UIColor.rgb(red: 112, green: 177, blue: 92))
     static let defaultTextColor = UIColor.themeColor(light: .darkText, dark: .white)
