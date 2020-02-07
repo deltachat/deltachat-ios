@@ -252,8 +252,6 @@
 "tab_gallery_empty_hint" = "Txat honetan partekatutako irudi eta bideoak agertuko dira hemen";
 "tab_docs_empty_hint" = "Txat honetan partekatutako dokumentuak, musika, eta bestelako fitxategiak agertuko dira hemen";
 "media_preview" = "Multimediaren aurrebista";
-
-
 // welcome and login
 "welcome_intro1_message" = "Munduan erabiltzaile gehien dituen mezularitza aplikazioa. Librea eta independentea.";
 "welcome_start_messaging" = "Hasi txateatzen";

@@ -192,8 +192,6 @@
 "tab_links" = "Linkek";
 "tab_map" = "Térkép";
 "media_preview" = "Média előnézete";
-
-
 "welcome_start_messaging" = "Kezdj csevegni!";
 "login_subheader" = "Ismert e-mail szolgáltató esetén az alábbi beállításokat automatikusan meghatározzuk. Előfordulhat, hogy az IMAP/SMTP szolgáltatást az email fiókod webes felületén engedélyezni kell.\n\nHa nem megy, kérj segítséget a szolgáltatótól vagy a barátaidtól.";
 "login_inbox" = "Bejövő";

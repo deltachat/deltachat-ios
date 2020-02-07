@@ -213,8 +213,6 @@
 "tab_gallery_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami paveikslai ir vaizdo įrašai.";
 "tab_docs_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami dokumentai, muzika ir kiti failai.";
 "media_preview" = "Medijos peržiūra";
-
-
 // welcome and login
 "welcome_intro1_message" = "Pokalbių programa su plačiausia auditorija pasaulyje. Nemokama ir nepriklausoma.";
 "welcome_start_messaging" = "Pradėti susirašinėjimą";

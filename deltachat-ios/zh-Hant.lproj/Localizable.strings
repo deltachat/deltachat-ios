@@ -254,8 +254,6 @@
 "tab_gallery_empty_hint" = "在此聊天中分享的图像和视频将显示于此。";
 "tab_docs_empty_hint" = "在此聊天中分享的文档、音乐和其他文件将显示于此。";
 "media_preview" = "媒体预览";
-
-
 // welcome and login
 "welcome_intro1_message" = "本通讯软件有着世界上最广泛的受众。自由且自主。";
 "welcome_start_messaging" = "开始发送消息";

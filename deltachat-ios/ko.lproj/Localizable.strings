@@ -150,8 +150,6 @@
 "tab_group" = "그룹";
 "tab_gallery" = "앨범";
 "media_preview" = "미디어 미리보기";
-
-
 "welcome_start_messaging" = "시작하기";
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to

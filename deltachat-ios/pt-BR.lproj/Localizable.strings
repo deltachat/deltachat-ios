@@ -244,8 +244,6 @@
 "tab_gallery_empty_hint" = "Imagens e vídeos compartilhados nesta conversa serão mostrados aqui.";
 "tab_docs_empty_hint" = "Documentos, músicas e outros arquivos compartilhados nesta conversa serão mostrados aqui.";
 "media_preview" = "Pré-visualização.";
-
-
 // welcome and login
 "welcome_intro1_message" = "O aplicativo com a maior base de usuários do mundo. Livre e independente.";
 "welcome_start_messaging" = "Comece a conversar";

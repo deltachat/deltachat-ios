@@ -254,6 +254,7 @@
 "tab_gallery_empty_hint" = "Images and videos shared in this chat will be displayed here.";
 "tab_docs_empty_hint" = "Documents, music and other files shared in this chat will be displayed here.";
 "media_preview" = "Media preview";
+"send_message" = "Send message";
 
 
 // welcome and login

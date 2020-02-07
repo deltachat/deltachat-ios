@@ -173,8 +173,6 @@
 "group_self_not_in_group" = "Você deve ser um membro do grupo para executar essa ação.";
 "profile_encryption" = "Encriptação";
 "media_preview" = "Visualização de mídia";
-
-
 // welcome and login
 "welcome_intro1_message" = "O mensageiro com o público mais amplo do mundo. Livre e independente.";
 "welcome_start_messaging" = "Comece a chatr";

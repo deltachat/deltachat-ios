@@ -168,8 +168,6 @@
 "group_self_not_in_group" = "Щоб виконати цю дію, Ви повинні бути учасником групи.";
 "profile_encryption" = "Шифрування";
 "media_preview" = "Попередній перегляд медіа";
-
-
 // welcome and login
 "welcome_intro1_message" = "Мессенджер з найширшою аудиторією у світі. Безкоштовний і незалежний.";
 "welcome_start_messaging" = "Почати спілкування";

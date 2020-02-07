@@ -254,8 +254,6 @@
 "tab_gallery_empty_hint" = "Bu sohbette paylaşılan görseller ve videolar burada görüntülenecek.";
 "tab_docs_empty_hint" = "Bu sohbette paylaşılan belgeler, müzik ve diğer dosyalar burada görüntülenecek.";
 "media_preview" = "Ortam önizlemesi";
-
-
 // welcome and login
 "welcome_intro1_message" = "Dünyanın en geniş kitleli ulağı. Özgür ve bağımsızdır.";
 "welcome_start_messaging" = "İletileşmeye başla";

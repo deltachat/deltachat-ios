@@ -224,8 +224,6 @@
 "tab_gallery_empty_hint" = "Billder og video delt i denne samtale vises her.";
 "tab_docs_empty_hint" = "Dokumenter, musik og andre filer delt i denne samtale vises her.";
 "media_preview" = "Medie forhåndvisning";
-
-
 // welcome and login
 "welcome_intro1_message" = "Budbringeren med verdens bredeste publikum. Fri og uafhængig.";
 "welcome_start_messaging" = "Start skrivning";

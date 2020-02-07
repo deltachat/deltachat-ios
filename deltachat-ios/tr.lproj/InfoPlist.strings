@@ -1,4 +1,4 @@
-NSCameraUsageDescription = "Kameraya erişime izin vermek, fotoğraflar ve videolar çekmenize izin verir.";
-NSContactsUsageDescription = "Adres defterinize erişime izin vermek, aygıtınızdan gelen kişilerle sohbet etmenize izin verir.";
-NSMicrophoneUsageDescription = "Mikrofona erişime izin vermek, ses kaydetmenize izin verir.";
-NSPhotoLibraryUsageDescription = "Fotoğraf kitaplığına erişime izin vermek, ondan gelen görselleri karşıya yüklemenize izin verir.";
+NSCameraUsageDescription = "Delta Chat, fotoğraflar ve videolar çekmek ve göndermek için ve QR kodları taramak için kameranızı kullanır.";
+NSContactsUsageDescription = "Delta Chat, yazabileceğiniz e-posta adreslerinin bir listesini göstermek için kişilerinizi kullanır. Delta Chat\'in sunucusu yoktur; kişileriniz hiçbir yere gönderilmez.";
+NSMicrophoneUsageDescription = "Delta Chat, sesli iletiler ve sesli videolar kaydetmek ve göndermek için mikrofonunuzu kullanır.";
+NSPhotoLibraryUsageDescription = "Delta Chat, göndermek için kitaplığınızdan fotoğraflar seçmenizi sağlayacak.";

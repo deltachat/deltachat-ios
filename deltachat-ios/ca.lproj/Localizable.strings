@@ -192,8 +192,6 @@
 "tab_contact" = "Contacte";
 "tab_gallery" = "Galeria";
 "media_preview" = "Previsualització multimèdia";
-
-
 // welcome and login
 "welcome_intro1_message" = "El programa de missatgeria amb més ususaris del món. Gratuït i independent.";
 "welcome_start_messaging" = "Comenceu a comunicar-vos";

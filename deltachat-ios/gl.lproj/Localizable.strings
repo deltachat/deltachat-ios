@@ -254,8 +254,6 @@
 "tab_gallery_empty_hint" = "As imaxes e vídeos compartidos nesta conversa móstranse aquí.";
 "tab_docs_empty_hint" = "Aquí están os documentos, música e outros ficheiros compartidos na conversa.";
 "media_preview" = "Vista previa dos medios";
-
-
 // welcome and login
 "welcome_intro1_message" = "O sistema de conversa con maior audiencia no mundo. Libre e independente.";
 "welcome_start_messaging" = "Inicia a conversa";

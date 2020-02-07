@@ -253,8 +253,6 @@
 "tab_gallery_empty_hint" = "Les images et vidéos partagées dans ce tchat seront affichées ici.";
 "tab_docs_empty_hint" = "Les documents, musiques et autres fichiers partagés dans ce chat seront affichés ici.";
 "media_preview" = "Prévisualiser le fichier multimédia";
-
-
 // welcome and login
 "welcome_intro1_message" = "Le messager avec le plus large public au monde. Libre et indépendant.";
 "welcome_start_messaging" = "Démarrage la communication";
