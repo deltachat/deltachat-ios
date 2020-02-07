@@ -1,3 +1,8 @@
+body {
+    font-family: serif;
+    font-size: 300%;
+}
+
 a {
   text-decoration: none;
 }
@@ -14,12 +19,10 @@ ul#top {
 
 ul#top > li {
   font-weight: bold !important;
-  font-size: 1.2rem !important;
 }
 
 ul#top li {
   margin-top: .7rem;
   margin-bottom: .7rem;
   font-weight: normal;
-  font-size: 1rem;
 }
