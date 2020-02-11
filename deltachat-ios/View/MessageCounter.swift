@@ -1,11 +1,3 @@
-//
-//  MessageCounter.swift
-//  deltachat-ios
-//
-//  Created by Macci on 22.10.19.
-//  Copyright © 2019 Jonas Reinsch. All rights reserved.
-//
-
 import Foundation
 import UIKit
 

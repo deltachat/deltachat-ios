@@ -1,11 +1,3 @@
-//
-//  ContactCellViewModel.swift
-//  deltachat-ios
-//
-//  Created by Bastian van de Wetering on 31.01.20.
-//  Copyright © 2020 Jonas Reinsch. All rights reserved.
-//
-
 /*
  this file and the containing classes are manually imported from searchBarContactList-branch which has not been merged into master at this time. Once it has been merged, this file can be deleted.
  */
