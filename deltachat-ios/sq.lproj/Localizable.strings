@@ -254,6 +254,9 @@
 "tab_gallery_empty_hint" = "Figurat dhe videot e dhëna në këtë fjalosje do të shfaqen këtu.";
 "tab_docs_empty_hint" = "Dokumentet, muzika dhe kartela të tjera të dhëna në këtë fjalosje do të shfaqen këtu.";
 "media_preview" = "Paraparje media";
+"send_message" = "Dërgo mesazh";
+
+
 // welcome and login
 "welcome_intro1_message" = "Shkëmbyesi i mesazheve me publikun më të gjerë në botë. I lirë dhe i pavarur.";
 "welcome_start_messaging" = "Filloni të Shkëmbeni Mesazhe";

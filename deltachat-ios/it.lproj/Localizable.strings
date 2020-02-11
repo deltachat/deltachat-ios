@@ -254,6 +254,9 @@
 "tab_gallery_empty_hint" = "Immagini e video condivisi in questa chat vengono mostrati qui.";
 "tab_docs_empty_hint" = "Documenti, musica e altri file condivisi in questa chat vengono mostrati qui.";
 "media_preview" = "Anteprima dei Media";
+"send_message" = "Invia messaggio";
+
+
 // welcome and login
 "welcome_intro1_message" = "L’applicazione di messaggistica con la maggiore utenza al mondo. Libera e indipendente.";
 "welcome_start_messaging" = "Inizia a messaggiare";

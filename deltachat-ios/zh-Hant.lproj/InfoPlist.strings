@@ -1,4 +1,4 @@
-NSCameraUsageDescription = "允许访问相机可让您拍摄照片和视频。";
-NSContactsUsageDescription = "允许访问您的地址簿可让您与设备上的联系人聊天。";
-NSMicrophoneUsageDescription = "允许使用麦克风可让您录制音频。";
-NSPhotoLibraryUsageDescription = "允许访问照片库可让您从中上传图像。";
+NSCameraUsageDescription = "Delta Chat 使用您的相机来拍摄、发送照片和视频以及扫描二维码。";
+NSContactsUsageDescription = "Delta Chat 使用您的联系人来显示您可以写信到的电子邮件地址列表。 Delta Chat 没有服务器，您的联系人不会被发送到任何地方。";
+NSMicrophoneUsageDescription = "Delta Chat 使用您的麦克风来录制、发送语音消息和带有声音的视频。";
+NSPhotoLibraryUsageDescription = "Delta Chat 将让您选择要从图库中发送哪些照片。";

@@ -254,6 +254,9 @@
 "tab_gallery_empty_hint" = "De in dit gesprek gedeelde afbeeldingen en video\'s verschijnen hier.";
 "tab_docs_empty_hint" = "De in dit gesprek gedeelde documenten, muziek en overige bestanden verschijnen hier.";
 "media_preview" = "Mediavoorbeeld";
+"send_message" = "Bericht versturen";
+
+
 // welcome and login
 "welcome_intro1_message" = "Dé berichtenapp met het breedste publiek ter wereld. Gratis en onafhankelijk.";
 "welcome_start_messaging" = "Aan de slag";
