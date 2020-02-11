@@ -3,6 +3,9 @@ import UIKit
 // a cell with a centered label in system blue
 
 class ActionCell: UITableViewCell {
+
+    static let reuseIdentifier = "action_cell_reuse_identifier"
+
     var actionTitle: String? {
         didSet {
             actionLabel.text = actionTitle

@@ -3,25 +3,19 @@ import UIKit
 // this is also used as ChatDetail for SingleChats
 class ContactDetailViewController: UITableViewController {
     weak var coordinator: ContactDetailCoordinatorProtocol?
+    private let viewModel: ContactDetailViewModelProtocol
 
-    let sectionOptions = 0
-    let sectionOptionsRowStartChat = 1
-    let sectionOptionsRowCount = 1
-
-    let sectionBlockContact = 1
-    let sectionBlockContactRowCount = 1
-
-    let sectionCount = 2
-
-    var showStartChat = true
-
-    var optionCells: [UITableViewCell] = []
-
-    private let contactId: Int
-
-    private var contact: DcContact {
-        return DcContact(id: contactId)
-    }
+    private lazy var headerCell: ContactDetailHeader = {
+        let cell = ContactDetailHeader()
+        cell.updateDetails(title: viewModel.contact.displayName, subtitle: viewModel.contact.email)
+        if let img = viewModel.contact.profileImage {
+            cell.setImage(img)
+        } else {
+            cell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
+        }
+        cell.setVerified(isVerified: viewModel.contact.isVerified)
+        return cell
+    }()
 
     private lazy var startChatCell: ActionCell = {
         let cell = ActionCell()
@@ -33,14 +27,14 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var blockContactCell: ActionCell = {
         let cell = ActionCell()
-        cell.actionTitle = contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
-        cell.actionColor = contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
+        cell.actionTitle = viewModel.contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
+        cell.actionColor = viewModel.contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
         cell.selectionStyle = .none
         return cell
     }()
 
-    init(contactId: Int) {
-        self.contactId = contactId
+    init(viewModel: ContactDetailViewModelProtocol) {
+        self.viewModel = viewModel
         super.init(style: .grouped)
     }
 
@@ -48,15 +42,14 @@ class ContactDetailViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: String.localized("global_menu_edit_desktop"),
             style: .plain, target: self, action: #selector(editButtonPressed))
         self.title = String.localized("tab_contact")
-        if showStartChat {
-            optionCells.append(startChatCell)
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -64,37 +57,69 @@ class ContactDetailViewController: UITableViewController {
         tableView.reloadData()
     }
 
+    // MARK: - setup and configuration
+    private func configureTableView() {
+        tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
+        tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
+        headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
+        tableView.tableHeaderView = headerCell
+
+    }
+
+    // MARK: - UITableViewDatasource, UITableViewDelegate
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionCount
+        return viewModel.numberOfSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == sectionOptions {
-            return optionCells.count
-        } else if section == sectionBlockContact {
-            return sectionBlockContactRowCount
-        }
-        return 0
+        return viewModel.numberOfRowsInSection(section)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = indexPath.section
-        if section == sectionOptions {
-            return startChatCell
-        } else {
+        let cellType = viewModel.typeFor(section: indexPath.section)
+        switch cellType {
+        case .blockContact:
             return blockContactCell
+        case .startChat:
+            return startChatCell
+        case .sharedChats:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell {
+                viewModel.update(sharedChatCell: cell, row: indexPath.row)
+                return cell
+            }
         }
+        return UITableViewCell() // should never get here
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = indexPath.section
-        if section == sectionOptions {
-            askToChatWith(contactId: contactId)
-        } else {
+        let type = viewModel.typeFor(section: indexPath.section)
+        switch type {
+        case .blockContact:
             toggleBlockContact()
+        case .startChat:
+            let contactId = viewModel.contactId
+            askToChatWith(contactId: contactId)
+        case .sharedChats:
+            let chatId = viewModel.getSharedChatIdAt(indexPath: indexPath)
+            coordinator?.showChat(chatId: chatId)
         }
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let type = viewModel.typeFor(section: indexPath.section)
+        switch type {
+        case .blockContact, .startChat:
+            return 44
+        case .sharedChats:
+            return ContactCell.cellHeight
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.titleFor(section: section)
+    }
+
+    // MARK: -actions
     private func askToChatWith(contactId: Int) {
         let dcContact = DcContact(id: contactId)
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
@@ -111,34 +136,11 @@ class ContactDetailViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return ContactDetailHeader.cellHeight
-        }
-        return 0
-    }
-    
-    override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            let header = ContactDetailHeader()
-            let displayName = contact.displayName
-            header.updateDetails(title: displayName, subtitle: contact.email)
-            if let img = contact.profileImage {
-                header.setImage(img)
-            } else {
-                header.setBackupImage(name: displayName, color: contact.color)
-            }
-            header.setVerified(isVerified: contact.isVerified)
-            return header
-        }
-        return nil
-    }
-
     private func toggleBlockContact() {
-        if contact.isBlocked {
+        if viewModel.contact.isBlocked {
             let alert = UIAlertController(title: String.localized("ask_unblock_contact"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("menu_unblock_contact"), style: .default, handler: { _ in
-                self.contact.unblock()
+                self.viewModel.contact.unblock()
                 self.updateBlockContactCell()
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -146,7 +148,7 @@ class ContactDetailViewController: UITableViewController {
         } else {
             let alert = UIAlertController(title: String.localized("ask_block_contact"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
-                self.contact.block()
+                self.viewModel.contact.block()
                 self.updateBlockContactCell()
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -155,8 +157,8 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func updateBlockContactCell() {
-        blockContactCell.actionTitle = contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
-        blockContactCell.actionColor = contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
+        blockContactCell.actionTitle = viewModel.contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
+        blockContactCell.actionColor = viewModel.contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
     }
 
     private func showNotificationSetup() {
@@ -169,6 +171,6 @@ class ContactDetailViewController: UITableViewController {
     }
 
     @objc private func editButtonPressed() {
-        coordinator?.showEditContact(contactId: contactId)
+        coordinator?.showEditContact(contactId: viewModel.contactId)
     }
 }
