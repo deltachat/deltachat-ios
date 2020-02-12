@@ -496,6 +496,10 @@ class DcChat {
         return dc_chat_is_verified(chatPointer) > 0
     }
 
+    var isArchived: Bool {
+        return Int(dc_chat_get_archived(chatPointer)) == 1
+    }
+
     var contactIds: [Int] {
         return Utils.copyAndFreeArray(inputArray: dc_get_chat_contacts(mailboxPointer, UInt32(id)))
     }

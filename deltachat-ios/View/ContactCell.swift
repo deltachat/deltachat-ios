@@ -242,7 +242,7 @@ class ContactCell: UITableViewCell {
             setTimeLabel(chatData.summary.timestamp)
             setUnreadMessageCounter(chatData.unreadMessages)
             setDeliveryStatusIndicator(chatData.summary.state)
-            setIsArchived(chatData.isArchived)
+            setIsArchived(chat.isArchived)
 
         case .CONTACT(let contactData):
             let contact = DcContact(id: contactData.contactId)
