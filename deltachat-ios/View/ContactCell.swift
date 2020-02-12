@@ -15,13 +15,13 @@ class ContactCell: UITableViewCell {
     private let imgSize: CGFloat = 20
 
     lazy var toplineStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [nameLabel, timeLabel])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, timeLabel])
         stackView.axis = .horizontal
         return stackView
     }()
 
     lazy var bottomlineStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [emailLabel, deliveryStatusIndicator])
+        let stackView = UIStackView(arrangedSubviews: [subtitleLabel, deliveryStatusIndicator])
         stackView.axis = .horizontal
         stackView.spacing = 10
         return stackView
@@ -36,21 +36,12 @@ class ContactCell: UITableViewCell {
         return badge
     }()
 
-    let nameLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultTextColor
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
-        return label
-
-    }()
-
-    let emailLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(hexString: "848ba7")
-        label.lineBreakMode = .byTruncatingTail
         return label
     }()
 
@@ -60,6 +51,14 @@ class ContactCell: UITableViewCell {
         label.textColor = UIColor(hexString: "848ba7")
         label.textAlignment = .right
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 2), for: NSLayoutConstraint.Axis.horizontal)
+        return label
+    }()
+
+    let subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor(hexString: "848ba7")
+        label.lineBreakMode = .byTruncatingTail
         return label
     }()
 
@@ -220,7 +219,7 @@ class ContactCell: UITableViewCell {
 
     func updateCell(cellViewModel: AvatarCellViewModel) {
         // subtitle
-        emailLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: emailLabel.font.pointSize)
+        subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: subtitleLabel.font.pointSize)
 
         switch cellViewModel.type {
         case .CHAT(let chatData):
@@ -228,9 +227,9 @@ class ContactCell: UITableViewCell {
 
             // text bold if chat contains unread messages - otherwise hightlight search results if needed
             if chatData.unreadMessages > 0 {
-                nameLabel.attributedText = NSAttributedString(string: cellViewModel.title, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ])
+                titleLabel.attributedText = NSAttributedString(string: cellViewModel.title, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ])
             } else {
-                nameLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: nameLabel.font.pointSize)
+                titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             }
 
             if let img = chat.profileImage {
@@ -247,7 +246,7 @@ class ContactCell: UITableViewCell {
 
         case .CONTACT(let contactData):
             let contact = DcContact(id: contactData.contactId)
-            nameLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: nameLabel.font.pointSize)
+            titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             avatar.setName(cellViewModel.title)
             avatar.setColor(contact.color)
         }
