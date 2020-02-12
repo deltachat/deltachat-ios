@@ -570,10 +570,12 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
 
     var dcContext: DcContext
     let navigationController: UINavigationController
+    let chatId: Int?
 
     private var childCoordinators: [Coordinator] = []
 
     init(dcContext: DcContext, chatId: Int?, navigationController: UINavigationController) {
+        self.chatId = chatId
         self.dcContext = dcContext
         self.navigationController = navigationController
     }
@@ -596,7 +598,19 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
     }
 
     func deleteChat() {
-        print("delete chat")
+        guard let chatId = chatId else {
+            return
+        }
+
+        func notifyToDeleteChat() {
+            NotificationCenter.default.post(name: dcNotificationChatDeletedInChatDetail, object: nil, userInfo: ["chat_id": chatId])
+        }
+
+        // we want to notify chatList to delete chat AFTER is is visible
+        CATransaction.begin()
+        CATransaction.setCompletionBlock(notifyToDeleteChat)
+        self.navigationController.popToRootViewController(animated: true)
+        CATransaction.commit()
     }
 
     func archiveChat() {
