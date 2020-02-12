@@ -608,6 +608,7 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
 
         // we want to notify chatList to delete chat AFTER is is visible
         CATransaction.begin()
+        CATransaction.setAnimationDuration(2)
         CATransaction.setCompletionBlock(notifyToDeleteChat)
         self.navigationController.popToRootViewController(animated: true)
         CATransaction.commit()
