@@ -471,6 +471,10 @@ class DcChat {
         return UIColor(netHex: Int(dc_chat_get_color(chatPointer)))
     }
 
+    var isArchived: Bool {
+        return Int(dc_chat_get_archived(chatPointer)) == 1
+    }
+
     var isUnpromoted: Bool {
         return Int(dc_chat_is_unpromoted(chatPointer)) != 0
     }
