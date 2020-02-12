@@ -152,7 +152,7 @@ class ContactDetailViewController: UITableViewController {
             toggleBlockContact()
         } else {
             safe_assert(index == 2)
-            coordinator?.deleteChat()
+            showDeleteChatConfirmationAlert()
         }
 
     }
@@ -209,4 +209,18 @@ class ContactDetailViewController: UITableViewController {
     @objc private func editButtonPressed() {
         coordinator?.showEditContact(contactId: viewModel.contactId)
     }
+
+    private func showDeleteChatConfirmationAlert() {
+        let alert = UIAlertController(
+            title: nil,
+            message: String.localized("ask_delete_chat_desktop"),
+            preferredStyle: .safeActionSheet
+        )
+        alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
+            self.coordinator?.deleteChat()
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
 }
