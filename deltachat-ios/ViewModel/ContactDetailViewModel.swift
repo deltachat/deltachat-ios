@@ -4,6 +4,7 @@ protocol ContactDetailViewModelProtocol {
     var contactId: Int { get }
     var contact: DcContact { get }
     var numberOfSections: Int { get }
+    var chatIsArchived: Bool { get }
     func numberOfRowsInSection(_ : Int) -> Int
     func typeFor(section: Int) -> ContactDetailViewModel.SectionType
     func update(sharedChatCell: ContactCell, row index: Int)
@@ -17,22 +18,24 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
     enum SectionType {
         case startChat
         case sharedChats
-        case blockContact
+        case chatActions //  archive chat, block chat, delete chats
     }
 
     var contactId: Int
 
     var contact: DcContact
+    private let chatId: Int?
     private let sharedChats: DcChatlist
     private let startChatOption: Bool
-
     private var sections: [SectionType] = []
 
-    init(contactId: Int, startChatOption: Bool, context: DcContext) {
+    /// if chatId is nil this is a contact detail with 'start chat'-option
+    init(contactId: Int, chatId: Int?, context: DcContext) {
         self.context = context
         self.contactId = contactId
+        self.chatId = chatId
         self.contact = DcContact(id: contactId)
-        self.startChatOption = startChatOption
+        self.startChatOption = chatId == nil
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
         if startChatOption {
@@ -41,11 +44,19 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         if sharedChats.length > 0 {
             sections.append(.sharedChats)
         }
-        sections.append(.blockContact)
+        sections.append(.chatActions)
     }
 
     func typeFor(section: Int) -> ContactDetailViewModel.SectionType {
         return sections[section]
+    }
+
+    var chatIsArchived: Bool {
+        guard let chatId = chatId else {
+            safe_fatalError("This is a ContactDetail view with no chat id")
+            return false
+        }
+        return DcChat(id: chatId).isArchived
     }
 
     var numberOfSections: Int {
@@ -55,7 +66,8 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
     func numberOfRowsInSection(_ section: Int) -> Int {
         switch sections[section] {
         case .sharedChats: return sharedChats.length
-        case .blockContact, .startChat: return 1
+        case .startChat: return 1
+        case .chatActions: return 3
         }
     }
 
