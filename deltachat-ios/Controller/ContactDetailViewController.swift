@@ -33,6 +33,14 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var archiveCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = viewModel.chatIsArchived ?? String.localized("menu_unarchive_chat") : "menu_archive_chat"
+        cell.actionColor = SystemColor.blue.uiColor
+        cell.selectionStyle = .none
+        return cell
+    }()
+
     init(viewModel: ContactDetailViewModelProtocol) {
         self.viewModel = viewModel
         super.init(style: .grouped)
