@@ -25,6 +25,7 @@ struct ChatCellData {
     let chatId: Int
     let summary: DcLot
     let unreadMessages: Int
+    let isArchived: Bool
 }
 
 class ContactCellViewModel: AvatarCellViewModel {

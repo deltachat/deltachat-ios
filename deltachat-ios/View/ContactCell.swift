@@ -10,14 +10,29 @@ class ContactCell: UITableViewCell {
 
     public static let cellHeight: CGFloat = 74.5
     weak var delegate: ContactCellDelegate?
-    var rowIndex = -1
+    var rowIndex = -1 // TODO: is this still needed?
     private let badgeSize: CGFloat = 54
     private let imgSize: CGFloat = 20
+
+    lazy var toplineStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [nameLabel, timeLabel])
+        stackView.axis = .horizontal
+        return stackView
+    }()
+
+    lazy var bottomlineStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [emailLabel, deliveryStatusIndicator])
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
 
     lazy var avatar: InitialsBadge = {
         let badge = InitialsBadge(size: badgeSize)
         badge.setColor(UIColor.lightGray)
         badge.isAccessibilityElement = false
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
+        badge.addGestureRecognizer(tap)
         return badge
     }()
 
@@ -27,7 +42,6 @@ class ContactCell: UITableViewCell {
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultTextColor
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
-        // label.makeBorder()
         return label
 
     }()
@@ -46,7 +60,6 @@ class ContactCell: UITableViewCell {
         label.textColor = UIColor(hexString: "848ba7")
         label.textAlignment = .right
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 2), for: NSLayoutConstraint.Axis.horizontal)
-        // label.makeBorder()
         return label
     }()
 
@@ -54,6 +67,27 @@ class ContactCell: UITableViewCell {
         let view = UIImageView()
         view.tintColor = UIColor.green
         view.isHidden = true
+        return view
+    }()
+
+    private let archivedIndicator: UIView = {
+        let tintColor = UIColor(hexString: "848ba7")
+        let label = UILabel()
+        label.font = label.font.withSize(14)
+        label.text = String.localized("chat_archived_label")
+        label.textColor = tintColor
+        label.setContentHuggingPriority(.defaultHigh, for: NSLayoutConstraint.Axis.horizontal) // needed so label does not expand to available space
+        let view = UIView()
+        view.layer.borderColor = tintColor.cgColor
+        view.layer.borderWidth = 1
+        view.layer.cornerRadius = 4
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 4).isActive = true
+        label.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -4).isActive = true
+        label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         return view
     }()
 
@@ -68,6 +102,10 @@ class ContactCell: UITableViewCell {
         backgroundColor = DcColors.contactCellBackgroundColor
         contentView.backgroundColor = DcColors.contactCellBackgroundColor
         setupSubviews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     private func setupSubviews() {
@@ -87,35 +125,17 @@ class ContactCell: UITableViewCell {
         deliveryStatusIndicator.heightAnchor.constraint(equalToConstant: 20).isActive = true
         deliveryStatusIndicator.widthAnchor.constraint(equalToConstant: 20).isActive = true
 
-        let myStackView = UIStackView()
-        myStackView.translatesAutoresizingMaskIntoConstraints = false
-        myStackView.clipsToBounds = true
+        let verticalStackView = UIStackView()
+        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        verticalStackView.clipsToBounds = true
 
-        let toplineStackView = UIStackView()
-        toplineStackView.axis = .horizontal
-
-        let bottomLineStackView = UIStackView()
-        bottomLineStackView.axis = .horizontal
-
-        toplineStackView.addArrangedSubview(nameLabel)
-        toplineStackView.addArrangedSubview(timeLabel)
-
-        bottomLineStackView.addArrangedSubview(emailLabel)
-        bottomLineStackView.addArrangedSubview(deliveryStatusIndicator)
-        bottomLineStackView.addArrangedSubview(unreadMessageCounter)
-
-        contentView.addSubview(myStackView)
-        myStackView.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: margin).isActive = true
-        myStackView.centerYAnchor.constraint(equalTo: avatar.centerYAnchor).isActive = true
-        myStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin).isActive = true
-        myStackView.axis = .vertical
-        myStackView.addArrangedSubview(toplineStackView)
-        myStackView.addArrangedSubview(bottomLineStackView)
-
-        if delegate != nil {
-            let tap = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
-            avatar.addGestureRecognizer(tap)
-        }
+        contentView.addSubview(verticalStackView)
+        verticalStackView.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: margin).isActive = true
+        verticalStackView.centerYAnchor.constraint(equalTo: avatar.centerYAnchor).isActive = true
+        verticalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin).isActive = true
+        verticalStackView.axis = .vertical
+        verticalStackView.addArrangedSubview(toplineStackView)
+        verticalStackView.addArrangedSubview(bottomlineStackView)
     }
 
     func setVerified(isVerified: Bool) {
@@ -138,6 +158,16 @@ class ContactCell: UITableViewCell {
 
     func setUnreadMessageCounter(_ count: Int) {
         unreadMessageCounter.setCount(count)
+    }
+
+    func setIsArchived(_ isArchived: Bool) {
+        if isArchived {
+            bottomlineStackView.removeArrangedSubview(deliveryStatusIndicator)
+            bottomlineStackView.addArrangedSubview(archivedIndicator)
+        } else {
+            bottomlineStackView.removeArrangedSubview(archivedIndicator)
+            bottomlineStackView.addArrangedSubview(deliveryStatusIndicator)
+        }
     }
 
     func setDeliveryStatusIndicator(_ status: Int) {
@@ -182,16 +212,10 @@ class ContactCell: UITableViewCell {
     }
 
     @objc func onAvatarTapped() {
-        if let delegate = delegate {
-            if rowIndex == -1 {
-                return
-            }
-            delegate.onAvatarTapped(at: rowIndex)
+        if rowIndex == -1 {
+            return
         }
-    }
-
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        delegate?.onAvatarTapped(at: rowIndex)
     }
 
     func updateCell(cellViewModel: AvatarCellViewModel) {
@@ -219,6 +243,7 @@ class ContactCell: UITableViewCell {
             setTimeLabel(chatData.summary.timestamp)
             setUnreadMessageCounter(chatData.unreadMessages)
             setDeliveryStatusIndicator(chatData.summary.state)
+            setIsArchived(chatData.isArchived)
 
         case .CONTACT(let contactData):
             let contact = DcContact(id: contactData.contactId)

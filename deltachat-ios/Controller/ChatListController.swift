@@ -202,7 +202,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         cell.setTimeLabel(summary.timestamp)
         cell.setUnreadMessageCounter(unreadMessages)
         cell.setDeliveryStatusIndicator(summary.state)
-
+        cell.setIsArchived(showArchive)
         return cell
     }
 
