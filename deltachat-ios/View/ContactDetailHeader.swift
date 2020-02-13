@@ -13,7 +13,7 @@ class ContactDetailHeader: ContactCell {
     }
 
     func updateDetails(title: String?, subtitle: String?) {
-        nameLabel.text = title
-        emailLabel.text = subtitle
+        titleLabel.text = title
+        subtitleLabel.text = subtitle
     }
 }

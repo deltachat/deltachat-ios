@@ -166,7 +166,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         let summary = chatList.getSummary(index: row)
         let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
 
-        cell.nameLabel.attributedText = (unreadMessages > 0) ?
+        cell.titleLabel.attributedText = (unreadMessages > 0) ?
             NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ]) :
             NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .medium) ])
 
@@ -198,11 +198,11 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             result = "\(result1)\(result2)"
         }
 
-        cell.emailLabel.text = result
+        cell.subtitleLabel.text = result
         cell.setTimeLabel(summary.timestamp)
         cell.setUnreadMessageCounter(unreadMessages)
         cell.setDeliveryStatusIndicator(summary.state)
-
+        cell.setIsArchived(showArchive)
         return cell
     }
 
