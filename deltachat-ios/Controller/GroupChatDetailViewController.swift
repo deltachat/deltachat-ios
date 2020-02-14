@@ -20,7 +20,8 @@ class GroupChatDetailViewController: UIViewController {
 
     fileprivate var chat: DcChat
 
-    lazy var chatDetailTable: UITableView = {
+    // MARK: -subviews
+    lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.bounces = false
         table.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
@@ -28,7 +29,23 @@ class GroupChatDetailViewController: UIViewController {
         table.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
         table.delegate = self
         table.dataSource = self
+        table.tableHeaderView = headerCell
         return table
+    }()
+
+    private lazy var headerCell: ContactDetailHeader = {
+        let header = ContactDetailHeader()
+        header.updateDetails(
+            title: chat.name,
+            subtitle: String.localizedStringWithFormat(String.localized("n_members"), chat.contactIds.count)
+        )
+        if let img = chat.profileImage {
+            header.setImage(img)
+        } else {
+            header.setBackupImage(name: chat.name, color: chat.color)
+        }
+        header.setVerified(isVerified: chat.isVerified)
+        return header
     }()
 
     private lazy var archiveChatCell: ActionCell = {
@@ -58,13 +75,13 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func setupSubviews() {
-        view.addSubview(chatDetailTable)
-        chatDetailTable.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
 
-        chatDetailTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        chatDetailTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        chatDetailTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        chatDetailTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
     private lazy var editBarButtonItem: UIBarButtonItem = {
@@ -78,12 +95,13 @@ class GroupChatDetailViewController: UIViewController {
         super.viewDidLoad()
         title = String.localized("tab_group")
         navigationItem.rightBarButtonItem = editBarButtonItem
+        headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateGroupMembers()
-        chatDetailTable.reloadData() // to display updates
+        tableView.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
         //update chat object, maybe chat name was edited
         chat = DcChat(id: chat.id)
@@ -93,7 +111,7 @@ class GroupChatDetailViewController: UIViewController {
     private func updateGroupMembers() {
         let ids = chat.contactIds
         groupMembers = ids.map { DcContact(id: $0) }
-        chatDetailTable.reloadData()
+        tableView.reloadData()
     }
 
     // MARK: -actions
@@ -123,23 +141,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             return ContactDetailHeader.cellHeight
         }
         return 0
-    }
-    
-    func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == sectionMembers {
-            let header = ContactDetailHeader()
-            header.updateDetails(title: chat.name,
-                                 subtitle: String.localizedStringWithFormat(String.localized("n_members"), chat.contactIds.count))
-            if let img = chat.profileImage {
-                header.setImage(img)
-            } else {
-                header.setBackupImage(name: chat.name, color: chat.color)
-            }
-            header.setVerified(isVerified: chat.isVerified)
-            return header
-        } else {
-            return nil
-        }
     }
 
     func numberOfSections(in _: UITableView) -> Int {
