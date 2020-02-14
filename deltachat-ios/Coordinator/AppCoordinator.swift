@@ -341,11 +341,13 @@ class NewChatCoordinator: Coordinator {
 class GroupChatDetailCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
+    let chatId: Int
 
     private var childCoordinators: [Coordinator] = []
 
-    init(dcContext: DcContext, navigationController: UINavigationController) {
+    init(dcContext: DcContext, chatId: Int, navigationController: UINavigationController) {
         self.dcContext = dcContext
+        self.chatId = chatId
         self.navigationController = navigationController
     }
 
@@ -387,6 +389,19 @@ class GroupChatDetailCoordinator: Coordinator {
         navigationController.pushViewController(contactDetailController, animated: true)
     }
 
+    func deleteChat() {
+        func notifyToDeleteChat() {
+            NotificationCenter.default.post(name: dcNotificationChatDeletedInChatDetail, object: nil, userInfo: ["chat_id": chatId])
+        }
+
+        // we want to notify chatList to delete chat AFTER is is visible
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(2)
+        CATransaction.setCompletionBlock(notifyToDeleteChat)
+        self.navigationController.popToRootViewController(animated: true)
+        CATransaction.commit()
+    }
+
 }
 
 class ChatViewCoordinator: NSObject, Coordinator {
@@ -423,7 +438,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
             }
         case .GROUP, .VERYFIEDGROUP:
             let groupChatDetailViewController = GroupChatDetailViewController(chatId: chatId) // inherits from ChatDetailViewController
-            let coordinator = GroupChatDetailCoordinator(dcContext: dcContext, navigationController: navigationController)
+            let coordinator = GroupChatDetailCoordinator(dcContext: dcContext, chatId: chatId, navigationController: navigationController)
             childCoordinators.append(coordinator)
             groupChatDetailViewController.coordinator = coordinator
             navigationController.pushViewController(groupChatDetailViewController, animated: true)

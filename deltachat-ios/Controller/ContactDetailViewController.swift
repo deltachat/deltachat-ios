@@ -222,5 +222,4 @@ class ContactDetailViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-
 }

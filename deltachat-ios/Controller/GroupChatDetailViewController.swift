@@ -129,6 +129,10 @@ class GroupChatDetailViewController: UIViewController {
         coordinator?.showGroupChatEdit(chat: chat)
     }
 
+    func archiveChat() {
+
+    }
+
     private func leaveGroup() {
         if let userId = currentUser?.id {
             let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
@@ -232,13 +236,12 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             coordinator?.showContactDetail(of: contact.id)
         case .chatActions:
             if row == 0 {
-
+                archiveChat()
             } else if row == 1 {
                 leaveGroup()
             } else if row == 2 {
-
+                showDeleteChatConfirmationAlert()
             }
-
         }
     }
 
@@ -288,4 +291,20 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         return DcContact(id: groupMemberIds[row])
     }
 
+}
+
+// MARK: -alerts
+extension GroupChatDetailViewController {
+    private func showDeleteChatConfirmationAlert() {
+        let alert = UIAlertController(
+            title: nil,
+            message: String.localized("ask_delete_chat_desktop"),
+            preferredStyle: .safeActionSheet
+        )
+        alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
+            self.coordinator?.deleteChat()
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
