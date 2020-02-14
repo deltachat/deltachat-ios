@@ -437,7 +437,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
                 navigationController.pushViewController(contactDetailController, animated: true)
             }
         case .GROUP, .VERYFIEDGROUP:
-            let groupChatDetailViewController = GroupChatDetailViewController(chatId: chatId) // inherits from ChatDetailViewController
+            let groupChatDetailViewController = GroupChatDetailViewController(chatId: chatId, context: dcContext) // inherits from ChatDetailViewController
             let coordinator = GroupChatDetailCoordinator(dcContext: dcContext, chatId: chatId, navigationController: navigationController)
             childCoordinators.append(coordinator)
             groupChatDetailViewController.coordinator = coordinator

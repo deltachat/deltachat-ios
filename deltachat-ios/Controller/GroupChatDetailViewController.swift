@@ -8,9 +8,10 @@ class GroupChatDetailViewController: UIViewController {
         case chatActions // archive, leave, delete
     }
 
+    private let context: DcContext
     weak var coordinator: GroupChatDetailCoordinator?
 
-    let sections: [ProfileSections] = [.memberManagement, .members, .chatActions]
+    private let sections: [ProfileSections] = [.memberManagement, .members, .chatActions]
 
     private var currentUser: DcContact? {
         let myId = groupMemberIds.filter { DcContact(id: $0).email == DcConfig.addr }.first
@@ -74,7 +75,8 @@ class GroupChatDetailViewController: UIViewController {
         return cell
     }()
 
-    init(chatId: Int) {
+    init(chatId: Int, context: DcContext) {
+        self.context = context
         chat = DcChat(id: chatId)
         super.init(nibName: nil, bundle: nil)
         setupSubviews()
@@ -129,10 +131,10 @@ class GroupChatDetailViewController: UIViewController {
         coordinator?.showGroupChatEdit(chat: chat)
     }
 
-
     private func toggleArchiveChat() {
-        let archived = false
-         updateArchiveChatCell(archived: archived)
+        let archivedBefore = chat.isArchived
+         context.archiveChat(chatId: chat.id, archive: !archivedBefore)
+        updateArchiveChatCell(archived: chat.isArchived)
      }
 
      private func updateArchiveChatCell(archived: Bool) {
@@ -200,7 +202,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             } else {
                 actionCell.actionTitle = String.localized("qrshow_join_group_title")
                 actionCell.actionColor = UIColor.systemBlue
-
             }
             return actionCell
         case .members:
