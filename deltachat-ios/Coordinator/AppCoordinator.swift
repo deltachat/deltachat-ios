@@ -390,18 +390,34 @@ class GroupChatDetailCoordinator: Coordinator {
     }
 
     func deleteChat() {
+        /*
+        app will navigate to chatlist or archive and delete the chat there
+        notify chatList/archiveList to delete chat AFTER is is visible
+        */
         func notifyToDeleteChat() {
-            NotificationCenter.default.post(name: dcNotificationChatDeletedInChatDetail, object: nil, userInfo: ["chat_id": chatId])
+            NotificationCenter.default.post(name: dcNotificationChatDeletedInChatDetail, object: nil, userInfo: ["chat_id": self.chatId])
         }
 
-        // we want to notify chatList to delete chat AFTER is is visible
+        func showArchive() {
+            self.navigationController.popToRootViewController(animated: false) // in main ChatList now
+            let controller = ChatListController(dcContext: dcContext, showArchive: true)
+            let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: navigationController)
+            childCoordinators.append(coordinator)
+            controller.coordinator = coordinator
+            navigationController.pushViewController(controller, animated: false)
+        }
+
         CATransaction.begin()
-        CATransaction.setAnimationDuration(2)
         CATransaction.setCompletionBlock(notifyToDeleteChat)
-        self.navigationController.popToRootViewController(animated: true)
+
+        let chat = DcChat(id: chatId)
+        if chat.isArchived {
+            showArchive()
+        } else {
+            self.navigationController.popToRootViewController(animated: true) // in main ChatList now
+        }
         CATransaction.commit()
     }
-
 }
 
 class ChatViewCoordinator: NSObject, Coordinator {
@@ -617,17 +633,37 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
             return
         }
 
+        /*
+        app will navigate to chatlist or archive and delete the chat there
+        notify chatList/archiveList to delete chat AFTER is is visible
+        */
         func notifyToDeleteChat() {
-            NotificationCenter.default.post(name: dcNotificationChatDeletedInChatDetail, object: nil, userInfo: ["chat_id": chatId])
+            NotificationCenter.default.post(name: dcNotificationChatDeletedInChatDetail, object: nil, userInfo: ["chat_id": self.chatId])
         }
 
-        // we want to notify chatList to delete chat AFTER is is visible
+        func showArchive() {
+            self.navigationController.popToRootViewController(animated: false) // in main ChatList now
+            let controller = ChatListController(dcContext: dcContext, showArchive: true)
+            let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: navigationController)
+            childCoordinators.append(coordinator)
+            controller.coordinator = coordinator
+            navigationController.pushViewController(controller, animated: false)
+        }
+
         CATransaction.begin()
-        CATransaction.setAnimationDuration(2)
         CATransaction.setCompletionBlock(notifyToDeleteChat)
-        self.navigationController.popToRootViewController(animated: true)
+
+        let chat = DcChat(id: chatId)
+        if chat.isArchived {
+            showArchive()
+        } else {
+            self.navigationController.popToRootViewController(animated: true) // in main ChatList now
+        }
         CATransaction.commit()
     }
+
+
+
 }
 
 class EditGroupCoordinator: Coordinator {
