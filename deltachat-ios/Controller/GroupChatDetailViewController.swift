@@ -116,6 +116,7 @@ class GroupChatDetailViewController: UIViewController {
         updateGroupMembers()
         tableView.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
+        updateHeader()
         //update chat object, maybe chat name was edited
         chat = DcChat(id: chat.id)
     }
@@ -124,6 +125,13 @@ class GroupChatDetailViewController: UIViewController {
     private func updateGroupMembers() {
         groupMemberIds = chat.contactIds
         tableView.reloadData()
+    }
+
+    private func updateHeader() {
+        headerCell.updateDetails(
+            title: chat.name,
+            subtitle: String.localizedStringWithFormat(String.localized("n_members"), chat.contactIds.count)
+        )
     }
 
     // MARK: -actions
@@ -227,8 +235,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 coordinator?.showQrCodeInvite(chatId: chat.id)
             }
         case .members:
-            let contact = getGroupMember(at: row)
-            coordinator?.showContactDetail(of: contact.id)
+            let member = getGroupMember(at: row)
+            coordinator?.showContactDetail(of: member.id)
         case .chatActions:
             if row == 0 {
                 toggleArchiveChat()
@@ -268,14 +276,13 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { _ in
                     let success = dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(contact.id))
                     if success == 1 {
-                        self.groupMemberIds.remove(at: row)
-                        tableView.deleteRows(at: [indexPath], with: .fade)
-                        tableView.reloadData()
+                        self.removeGroupeMemberFromTableAt(indexPath)
                     }
                 }))
                 alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-            }
+
+ }
             delete.backgroundColor = UIColor.red
             return [delete]
         }
@@ -286,6 +293,11 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         return DcContact(id: groupMemberIds[row])
     }
 
+    func removeGroupeMemberFromTableAt(_ indexPath: IndexPath) {
+        self.groupMemberIds.remove(at: indexPath.row)
+        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        updateHeader()  // to display correct group size
+    }
 }
 
 // MARK: -alerts

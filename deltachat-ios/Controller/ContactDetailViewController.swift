@@ -96,12 +96,12 @@ class ContactDetailViewController: UITableViewController {
         let cellType = viewModel.typeFor(section: indexPath.section)
         switch cellType {
         case .chatActions:
-            if row == 0 {
+            switch viewModel.actionFor(row: row) {
+            case .archiveChat:
                 return archiveChatCell
-            } else if row == 1 {
+            case .blockChat:
                 return blockContactCell
-            } else {
-                safe_assert(row == 2)
+            case .deleteChat:
                 return deleteChatCell
             }
         case .startChat:
@@ -146,12 +146,13 @@ class ContactDetailViewController: UITableViewController {
     // MARK: -actions
 
     private func handleCellAction(for index: Int) {
-        if index == 0 {
+        let action = viewModel.actionFor(row: index)
+        switch action {
+        case .archiveChat:
             toggleArchiveChat()
-        } else if index == 1 {
+        case .blockChat:
             toggleBlockContact()
-        } else {
-            safe_assert(index == 2)
+        case .deleteChat:
             showDeleteChatConfirmationAlert()
         }
     }
