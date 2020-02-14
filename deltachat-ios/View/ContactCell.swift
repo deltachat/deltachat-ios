@@ -161,9 +161,11 @@ class ContactCell: UITableViewCell {
 
     func setIsArchived(_ isArchived: Bool) {
         if isArchived {
+            deliveryStatusIndicator.isHidden = true
             bottomlineStackView.removeArrangedSubview(deliveryStatusIndicator)
             bottomlineStackView.addArrangedSubview(archivedIndicator)
         } else {
+            deliveryStatusIndicator.isHidden = false
             bottomlineStackView.removeArrangedSubview(archivedIndicator)
             bottomlineStackView.addArrangedSubview(deliveryStatusIndicator)
         }
