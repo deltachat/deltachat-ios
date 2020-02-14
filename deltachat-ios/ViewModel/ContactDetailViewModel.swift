@@ -6,7 +6,7 @@ protocol ContactDetailViewModelProtocol {
     var numberOfSections: Int { get }
     var chatIsArchived: Bool { get }
     func numberOfRowsInSection(_ : Int) -> Int
-    func typeFor(section: Int) -> ContactDetailViewModel.SectionType
+    func typeFor(section: Int) -> ContactDetailViewModel.ProfileSections
     func update(sharedChatCell: ContactCell, row index: Int)
     func getSharedChatIdAt(indexPath: IndexPath) -> Int
     func titleFor(section: Int) -> String?
@@ -15,7 +15,7 @@ protocol ContactDetailViewModelProtocol {
 class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
     let context: DcContext
-    enum SectionType {
+    enum ProfileSections {
         case startChat
         case sharedChats
         case chatActions //  archive chat, block chat, delete chats
@@ -27,7 +27,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
     private let chatId: Int?
     private let sharedChats: DcChatlist
     private let startChatOption: Bool
-    private var sections: [SectionType] = []
+    private var sections: [ProfileSections] = []
 
     /// if chatId is nil this is a contact detail with 'start chat'-option
     init(contactId: Int, chatId: Int?, context: DcContext) {
@@ -47,7 +47,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         sections.append(.chatActions)
     }
 
-    func typeFor(section: Int) -> ContactDetailViewModel.SectionType {
+    func typeFor(section: Int) -> ContactDetailViewModel.ProfileSections {
         return sections[section]
     }
 
