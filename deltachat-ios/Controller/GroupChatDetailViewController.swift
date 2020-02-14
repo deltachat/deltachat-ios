@@ -129,9 +129,15 @@ class GroupChatDetailViewController: UIViewController {
         coordinator?.showGroupChatEdit(chat: chat)
     }
 
-    func archiveChat() {
 
-    }
+    private func toggleArchiveChat() {
+        let archived = false
+         updateArchiveChatCell(archived: archived)
+     }
+
+     private func updateArchiveChatCell(archived: Bool) {
+         archiveChatCell.actionTitle = archived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
+     }
 
     private func leaveGroup() {
         if let userId = currentUser?.id {
@@ -236,7 +242,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             coordinator?.showContactDetail(of: contact.id)
         case .chatActions:
             if row == 0 {
-                archiveChat()
+                toggleArchiveChat()
             } else if row == 1 {
                 leaveGroup()
             } else if row == 2 {

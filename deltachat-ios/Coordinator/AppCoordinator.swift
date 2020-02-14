@@ -628,11 +628,6 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
         self.navigationController.popToRootViewController(animated: true)
         CATransaction.commit()
     }
-
-    func archiveChat() {
-        print("archive chat")
-    }
-
 }
 
 class EditGroupCoordinator: Coordinator {
@@ -689,7 +684,6 @@ protocol ContactDetailCoordinatorProtocol: class {
     func showEditContact(contactId: Int)
     func showChat(chatId: Int)
     func deleteChat()
-    func archiveChat()
 }
 
 protocol EditContactCoordinatorProtocol: class {

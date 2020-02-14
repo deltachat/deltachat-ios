@@ -10,6 +10,7 @@ protocol ContactDetailViewModelProtocol {
     func update(sharedChatCell: ContactCell, row index: Int)
     func getSharedChatIdAt(indexPath: IndexPath) -> Int
     func titleFor(section: Int) -> String?
+    func toggleArchiveChat() -> Bool // returns true if chat is archived after action
 }
 
 class ContactDetailViewModel: ContactDetailViewModelProtocol {
@@ -89,8 +90,17 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
     func titleFor(section: Int) -> String? {
         if sections[section] == .sharedChats {
-           return String.localized("profile_shared_chats")
+            return String.localized("profile_shared_chats")
         }
         return nil
-      }
+    }
+
+    func toggleArchiveChat() -> Bool {
+        guard let chatId = chatId else {
+            safe_fatalError("there is now chatId- you are probably are calling this from ContactDetail - this should be only called from ChatDetail")
+            return false
+        }
+        context.archiveChat(chatId: chatId, archive: !chatIsArchived)
+        return chatIsArchived
+    }
 }
