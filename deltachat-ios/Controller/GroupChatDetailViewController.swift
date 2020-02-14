@@ -2,6 +2,8 @@ import UIKit
 
 class GroupChatDetailViewController: UIViewController {
 
+    weak var coordinator: GroupChatDetailCoordinator?
+
     private let sectionMembers = 0
     private let sectionMembersRowAddMember = 0
     private let sectionMembersRowJoinQR = 1
@@ -16,18 +18,33 @@ class GroupChatDetailViewController: UIViewController {
         return groupMembers.filter { $0.email == DcConfig.addr }.first
     }
 
-    weak var coordinator: GroupChatDetailCoordinator?
-
     fileprivate var chat: DcChat
 
-    var chatDetailTable: UITableView = {
+    lazy var chatDetailTable: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.bounces = false
         table.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
         table.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
         table.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
-
+        table.delegate = self
+        table.dataSource = self
         return table
+    }()
+
+    private lazy var archiveChatCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = chat.isArchived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
+        cell.actionColor = SystemColor.blue.uiColor
+        cell.selectionStyle = .none
+        return cell
+    }()
+
+    private lazy var deleteChatCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = String.localized("menu_delete_chat")
+        cell.actionColor = UIColor.red
+        cell.selectionStyle = .none
+        return cell
     }()
 
     init(chatId: Int) {
@@ -56,11 +73,10 @@ class GroupChatDetailViewController: UIViewController {
 
     private var groupMembers: [DcContact] = []
 
+    // MARK: -lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("tab_group")
-        chatDetailTable.delegate = self
-        chatDetailTable.dataSource = self
         navigationItem.rightBarButtonItem = editBarButtonItem
     }
 
@@ -73,12 +89,14 @@ class GroupChatDetailViewController: UIViewController {
         chat = DcChat(id: chat.id)
     }
 
+    // MARK: -update
     private func updateGroupMembers() {
         let ids = chat.contactIds
         groupMembers = ids.map { DcContact(id: $0) }
         chatDetailTable.reloadData()
     }
 
+    // MARK: -actions
     @objc func editButtonPressed() {
         coordinator?.showGroupChatEdit(chat: chat)
     }
@@ -97,6 +115,7 @@ class GroupChatDetailViewController: UIViewController {
     }
 }
 
+// MARK: -UITableViewDelegate, UITableViewDataSource
 extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
