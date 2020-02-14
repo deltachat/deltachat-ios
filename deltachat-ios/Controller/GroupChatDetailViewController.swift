@@ -12,16 +12,6 @@ class GroupChatDetailViewController: UIViewController {
 
     let sections: [ProfileSections] = [.memberManagement, .members, .chatActions]
 
-    private let sectionMembers = 0
-    private let sectionMembersRowAddMember = 0
-    private let sectionMembersRowJoinQR = 1
-    private let sectionMembersStaticRowCount = 2 // followed by one row per member
-
-    private let sectionLeaveGroup = 1
-    private let sectionLeaveGroupRowCount = 1
-
-    private let sectionCount = 2
-
     private var currentUser: DcContact? {
         let myId = groupMemberIds.filter { DcContact(id: $0).email == DcConfig.addr }.first
         guard let currentUserId = myId else {
@@ -156,13 +146,6 @@ class GroupChatDetailViewController: UIViewController {
 // MARK: -UITableViewDelegate, UITableViewDataSource
 extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == sectionMembers {
-            return ContactDetailHeader.cellHeight
-        }
-        return 0
-    }
-
     func numberOfSections(in _: UITableView) -> Int {
         return sections.count
     }
@@ -231,69 +214,31 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         }
         // should never get here
         return UITableViewCell(frame: .zero)
-        /*
-         let section = indexPath.section
-         let row = indexPath.row
-         switch section {
-         case sectionMembers:
-         switch row {
-         case sectionMembersRowAddMember:
-         let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
-         if let actionCell = cell as? ActionCell {
-         actionCell.actionTitle = String.localized("group_add_members")
-         actionCell.actionColor = UIColor.systemBlue
-         }
-         return cell
-         case sectionMembersRowJoinQR:
-         let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
-         if let actionCell = cell as? ActionCell {
-         actionCell.actionTitle = String.localized("qrshow_join_group_title")
-         actionCell.actionColor = UIColor.systemBlue
-         }
-         return cell
-         default:
-         let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
-         if let contactCell = cell as? ContactCell {
-         let contact = groupMembers[row - sectionMembersStaticRowCount]
-         let displayName = contact.displayName
-         contactCell.titleLabel.text = displayName
-         contactCell.subtitleLabel.text = contact.email
-         contactCell.avatar.setName(displayName)
-         contactCell.avatar.setColor(contact.color)
-         if let profileImage = contact.profileImage {
-         contactCell.avatar.setImage(profileImage)
-         }
-         contactCell.setVerified(isVerified: contact.isVerified)
-         }
-         return cell
-         }
-         case sectionLeaveGroup:
-         let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
-         if let actionCell = cell as? ActionCell {
-         actionCell.actionTitle = String.localized("menu_leave_group")
-         actionCell.actionColor = UIColor.red
-         }
-         return cell
-         default:
-         return UITableViewCell(frame: .zero)
-         }
-         */
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = indexPath.section
+        let sectionType = sections[indexPath.section]
         let row = indexPath.row
-        if section == sectionMembers {
-            if row == sectionMembersRowAddMember {
+
+        switch sectionType {
+        case .memberManagement:
+            if row == 0 {
                 coordinator?.showAddGroupMember(chatId: chat.id)
-            } else if row == sectionMembersRowJoinQR {
+            } else if row == 1 {
                 coordinator?.showQrCodeInvite(chatId: chat.id)
-            } else {
-                let contact = getGroupMember(at: row)
-                coordinator?.showContactDetail(of: contact.id)
             }
-        } else if section == sectionLeaveGroup {
-            leaveGroup()
+        case .members:
+            let contact = getGroupMember(at: row)
+            coordinator?.showContactDetail(of: contact.id)
+        case .chatActions:
+            if row == 0 {
+
+            } else if row == 1 {
+                leaveGroup()
+            } else if row == 2 {
+
+            }
+
         }
     }
 
@@ -337,34 +282,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             return [delete]
         }
         return nil
-
-        /*
-
-
-        // assigning swipe by delete to members (except for current user)
-        if section == sectionMembers, row >= sectionMembersStaticRowCount, groupMembers[row - sectionMembersStaticRowCount].id != currentUser?.id {
-            let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [unowned self] _, indexPath in
-
-                let contact = self.getGroupMember(at: row)
-                let title = String.localizedStringWithFormat(String.localized("ask_remove_members"), contact.nameNAddr)
-                let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
-                alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { _ in
-                    let success = dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(contact.id))
-                    if success == 1 {
-                        self.groupMemberIds.remove(at: row - self.sectionMembersStaticRowCount)
-                        tableView.deleteRows(at: [indexPath], with: .fade)
-                        tableView.reloadData()
-                    }
-                }))
-                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-            delete.backgroundColor = UIColor.red
-            return [delete]
-        } else {
-            return nil
-        }
-        */
     }
 
     func getGroupMember(at row: Int) -> DcContact {
