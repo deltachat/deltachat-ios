@@ -1177,7 +1177,7 @@ extension ChatViewController: MessageCellDelegate {
         if let indexPath = messagesCollectionView.indexPath(for: cell) {
             let message = messageList[indexPath.section]
             let chat = DcChat(id: chatId)
-            coordinator?.showContactDetail(of: message.fromContact.id, in: chat.chatType)
+            coordinator?.showContactDetail(of: message.fromContact.id, in: chat.chatType, chatId: chatId)
         }
     }
 

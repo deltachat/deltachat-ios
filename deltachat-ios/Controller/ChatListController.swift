@@ -18,6 +18,7 @@ class ChatListController: UIViewController {
     private var msgChangedObserver: Any?
     private var incomingMsgObserver: Any?
     private var viewChatObserver: Any?
+    private var deleteChatObserver: Any?
 
     private var newButton: UIBarButtonItem!
 
@@ -58,6 +59,12 @@ class ChatListController: UIViewController {
         viewChatObserver = nc.addObserver(forName: dcNotificationViewChat, object: nil, queue: nil) { notification in
             if let chatId = notification.userInfo?["chat_id"] as? Int {
                 self.coordinator?.showChat(chatId: chatId)
+            }
+        }
+
+        deleteChatObserver = nc.addObserver(forName: dcNotificationChatDeletedInChatDetail, object: nil, queue: nil) { notification in
+            if let chatId = notification.userInfo?["chat_id"] as? Int {
+                self.deleteChat(chatId: chatId, animated: true)
             }
         }
     }
@@ -300,10 +307,35 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             preferredStyle: .safeActionSheet
         )
         alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
-            self.dcContext.deleteChat(chatId: chatId)
-            self.getChatList()
+            self.deleteChat(chatId: chatId, animated: true)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+
+    private func deleteChat(chatId: Int, animated: Bool) {
+        self.dcContext.deleteChat(chatId: chatId)
+        if !animated {
+            self.getChatList()
+            return
+        }
+
+        guard let chatList = chatList else {
+            return
+        }
+
+        // find index of chatId
+        let index = Array(0..<chatList.length).filter { chatList.getChatId(index: $0) == chatId }.first
+
+        guard let row = index else {
+            return
+        }
+
+        var gclFlags: Int32 = 0
+        if showArchive {
+            gclFlags |= DC_GCL_ARCHIVED_ONLY
+        }
+        self.chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
+        chatTable.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade)    
     }
 }

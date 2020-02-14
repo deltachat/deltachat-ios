@@ -33,6 +33,22 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var archiveChatCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = viewModel.chatIsArchived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
+        cell.actionColor = SystemColor.blue.uiColor
+        cell.selectionStyle = .none
+        return cell
+    }()
+
+    private lazy var deleteChatCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = String.localized("menu_delete_chat")
+        cell.actionColor = UIColor.red
+        cell.selectionStyle = .none
+        return cell
+    }()
+
     init(viewModel: ContactDetailViewModelProtocol) {
         self.viewModel = viewModel
         super.init(style: .grouped)
@@ -76,15 +92,23 @@ class ContactDetailViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
         let cellType = viewModel.typeFor(section: indexPath.section)
         switch cellType {
-        case .blockContact:
-            return blockContactCell
+        case .chatActions:
+            if row == 0 {
+                return archiveChatCell
+            } else if row == 1 {
+                return blockContactCell
+            } else {
+                safe_assert(row == 2)
+                return deleteChatCell
+            }
         case .startChat:
             return startChatCell
         case .sharedChats:
             if let cell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell {
-                viewModel.update(sharedChatCell: cell, row: indexPath.row)
+                viewModel.update(sharedChatCell: cell, row: row)
                 return cell
             }
         }
@@ -94,8 +118,8 @@ class ContactDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let type = viewModel.typeFor(section: indexPath.section)
         switch type {
-        case .blockContact:
-            toggleBlockContact()
+        case .chatActions:
+            handleCellAction(for: indexPath.row)
         case .startChat:
             let contactId = viewModel.contactId
             askToChatWith(contactId: contactId)
@@ -108,7 +132,7 @@ class ContactDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let type = viewModel.typeFor(section: indexPath.section)
         switch type {
-        case .blockContact, .startChat:
+        case .chatActions, .startChat:
             return 44
         case .sharedChats:
             return ContactCell.cellHeight
@@ -120,6 +144,18 @@ class ContactDetailViewController: UITableViewController {
     }
 
     // MARK: -actions
+
+    private func handleCellAction(for index: Int) {
+        if index == 0 {
+            coordinator?.archiveChat()
+        } else if index == 1 {
+            toggleBlockContact()
+        } else {
+            safe_assert(index == 2)
+            showDeleteChatConfirmationAlert()
+        }
+
+    }
     private func askToChatWith(contactId: Int) {
         let dcContact = DcContact(id: contactId)
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
@@ -173,4 +209,18 @@ class ContactDetailViewController: UITableViewController {
     @objc private func editButtonPressed() {
         coordinator?.showEditContact(contactId: viewModel.contactId)
     }
+
+    private func showDeleteChatConfirmationAlert() {
+        let alert = UIAlertController(
+            title: nil,
+            message: String.localized("ask_delete_chat_desktop"),
+            preferredStyle: .safeActionSheet
+        )
+        alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
+            self.coordinator?.deleteChat()
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
 }
