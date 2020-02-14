@@ -23,7 +23,15 @@ class GroupChatDetailViewController: UIViewController {
 
     fileprivate var chat: DcChat
 
+    // stores contactIds
+    private var groupMemberIds: [Int] = []
+
     // MARK: -subviews
+
+    private lazy var editBarButtonItem: UIBarButtonItem = {
+        UIBarButtonItem(title: String.localized("global_menu_edit_desktop"), style: .plain, target: self, action: #selector(editButtonPressed))
+    }()
+
     lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.bounces = false
@@ -32,11 +40,11 @@ class GroupChatDetailViewController: UIViewController {
         table.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
         table.delegate = self
         table.dataSource = self
-        table.tableHeaderView = headerCell
+        table.tableHeaderView = groupHeader
         return table
     }()
 
-    private lazy var headerCell: ContactDetailHeader = {
+    private lazy var groupHeader: ContactDetailHeader = {
         let header = ContactDetailHeader()
         header.updateDetails(
             title: chat.name,
@@ -96,19 +104,12 @@ class GroupChatDetailViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
-    private lazy var editBarButtonItem: UIBarButtonItem = {
-        UIBarButtonItem(title: String.localized("global_menu_edit_desktop"), style: .plain, target: self, action: #selector(editButtonPressed))
-    }()
-
-    // stores contactIds
-    private var groupMemberIds: [Int] = []
-
     // MARK: -lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("tab_group")
         navigationItem.rightBarButtonItem = editBarButtonItem
-        headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
+        groupHeader.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -128,7 +129,7 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func updateHeader() {
-        headerCell.updateDetails(
+        groupHeader.updateDetails(
             title: chat.name,
             subtitle: String.localizedStringWithFormat(String.localized("n_members"), chat.contactIds.count)
         )
@@ -248,6 +249,13 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         }
     }
 
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if sections[section] == .members {
+            return String.localized("tab_members")
+        }
+        return nil
+    }
+
     func tableView(_: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         guard let currentUser = self.currentUser else {
             return false
@@ -289,11 +297,11 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         return nil
     }
 
-    func getGroupMember(at row: Int) -> DcContact {
+    private func getGroupMember(at row: Int) -> DcContact {
         return DcContact(id: groupMemberIds[row])
     }
 
-    func removeGroupeMemberFromTableAt(_ indexPath: IndexPath) {
+    private func removeGroupeMemberFromTableAt(_ indexPath: IndexPath) {
         self.groupMemberIds.remove(at: indexPath.row)
         self.tableView.deleteRows(at: [indexPath], with: .automatic)
         updateHeader()  // to display correct group size
