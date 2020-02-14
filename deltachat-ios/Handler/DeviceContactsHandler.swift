@@ -23,7 +23,7 @@ class DeviceContactsHandler {
     }
 
     private func addContactsToCore() {
-        fetchContactsWithEmailFromDevice() { contacts in
+        fetchContactsWithEmailFromDevice { contacts in
             DispatchQueue.main.async {
                 let contactString = self.makeContactString(contacts: contacts)
                 self.dcContext.addContacts(contactString: contactString)
@@ -32,7 +32,7 @@ class DeviceContactsHandler {
         }
     }
 
-    private func fetchContactsWithEmailFromDevice(completionHandler: @escaping ([CNContact])->Void) {
+    private func fetchContactsWithEmailFromDevice(completionHandler: @escaping ([CNContact]) -> Void) {
 
         DispatchQueue.global(qos: .background).async {
             let keys = [CNContactFamilyNameKey, CNContactGivenNameKey, CNContactEmailAddressesKey]

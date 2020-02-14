@@ -638,7 +638,7 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
         notify chatList/archiveList to delete chat AFTER is is visible
         */
         func notifyToDeleteChat() {
-            NotificationCenter.default.post(name: dcNotificationChatDeletedInChatDetail, object: nil, userInfo: ["chat_id": self.chatId])
+            NotificationCenter.default.post(name: dcNotificationChatDeletedInChatDetail, object: nil, userInfo: ["chat_id": chatId])
         }
 
         func showArchive() {
@@ -661,8 +661,6 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
         }
         CATransaction.commit()
     }
-
-
 
 }
 
