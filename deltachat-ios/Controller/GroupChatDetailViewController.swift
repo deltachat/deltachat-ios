@@ -134,25 +134,13 @@ class GroupChatDetailViewController: UIViewController {
     private func toggleArchiveChat() {
         let archivedBefore = chat.isArchived
          context.archiveChat(chatId: chat.id, archive: !archivedBefore)
-        updateArchiveChatCell(archived: chat.isArchived)
+        updateArchiveChatCell(archived: !archivedBefore)
+        self.chat = DcChat(id: chat.id)
      }
 
      private func updateArchiveChatCell(archived: Bool) {
          archiveChatCell.actionTitle = archived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
      }
-
-    private func leaveGroup() {
-        if let userId = currentUser?.id {
-            let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
-            alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { _ in
-                dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(userId))
-                self.editBarButtonItem.isEnabled = false
-                self.updateGroupMembers()
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
-    }
 }
 
 // MARK: -UITableViewDelegate, UITableViewDataSource
@@ -245,7 +233,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             if row == 0 {
                 toggleArchiveChat()
             } else if row == 1 {
-                leaveGroup()
+                showLeaveGroupConfirmationAlert()
             } else if row == 2 {
                 showDeleteChatConfirmationAlert()
             }
@@ -313,5 +301,18 @@ extension GroupChatDetailViewController {
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+
+    private func showLeaveGroupConfirmationAlert() {
+        if let userId = currentUser?.id {
+            let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { _ in
+                dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(userId))
+                self.editBarButtonItem.isEnabled = false
+                self.updateGroupMembers()
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
 }
