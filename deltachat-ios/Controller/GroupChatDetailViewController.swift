@@ -104,7 +104,7 @@ class GroupChatDetailViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
-    // MARK: -lifecycle
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("tab_group")
@@ -122,7 +122,7 @@ class GroupChatDetailViewController: UIViewController {
         chat = DcChat(id: chat.id)
     }
 
-    // MARK: -update
+    // MARK: - update
     private func updateGroupMembers() {
         groupMemberIds = chat.contactIds
         tableView.reloadData()
@@ -135,7 +135,7 @@ class GroupChatDetailViewController: UIViewController {
         )
     }
 
-    // MARK: -actions
+    // MARK: - actions
     @objc func editButtonPressed() {
         coordinator?.showGroupChatEdit(chat: chat)
     }
@@ -152,7 +152,7 @@ class GroupChatDetailViewController: UIViewController {
      }
 }
 
-// MARK: -UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in _: UITableView) -> Int {

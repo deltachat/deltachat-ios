@@ -143,7 +143,7 @@ class ContactDetailViewController: UITableViewController {
         return viewModel.titleFor(section: section)
     }
 
-    // MARK: -actions
+    // MARK: - actions
 
     private func handleCellAction(for index: Int) {
         let action = viewModel.actionFor(row: index)

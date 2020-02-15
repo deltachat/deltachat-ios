@@ -116,7 +116,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
     func toggleArchiveChat() -> Bool {
         guard let chatId = chatId else {
-            safe_fatalError("there is now chatId- you are probably are calling this from ContactDetail - this should be only called from ChatDetail")
+            safe_fatalError("there is no chatId - you are probably are calling this from ContactDetail - this should be only called from ChatDetail")
             return false
         }
         context.archiveChat(chatId: chatId, archive: !chatIsArchived)
