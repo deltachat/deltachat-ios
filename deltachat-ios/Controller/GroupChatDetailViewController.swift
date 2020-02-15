@@ -142,13 +142,13 @@ class GroupChatDetailViewController: UIViewController {
 
     private func toggleArchiveChat() {
         let archivedBefore = chat.isArchived
-         context.archiveChat(chatId: chat.id, archive: !archivedBefore)
-        updateArchiveChatCell(archived: !archivedBefore)
+        context.archiveChat(chatId: chat.id, archive: !archivedBefore)
+        if archivedBefore {
+            archiveChatCell.actionTitle = String.localized("menu_archive_chat")
+        } else {
+            self.navigationController?.popToRootViewController(animated: false)
+        }
         self.chat = DcChat(id: chat.id)
-     }
-
-     private func updateArchiveChatCell(archived: Bool) {
-         archiveChatCell.actionTitle = archived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
      }
 }
 

@@ -159,11 +159,11 @@ class ContactDetailViewController: UITableViewController {
 
     private func toggleArchiveChat() {
         let archived = viewModel.toggleArchiveChat()
-        updateArchiveChatCell(archived: archived)
-    }
-
-    private func updateArchiveChatCell(archived: Bool) {
-        archiveChatCell.actionTitle = archived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
+        if archived {
+            self.navigationController?.popToRootViewController(animated: false)
+        } else {
+            archiveChatCell.actionTitle = String.localized("menu_archive_chat")
+        }
     }
 
     private func updateBlockContactCell() {
