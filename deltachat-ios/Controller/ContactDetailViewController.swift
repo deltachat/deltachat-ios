@@ -96,12 +96,12 @@ class ContactDetailViewController: UITableViewController {
         let cellType = viewModel.typeFor(section: indexPath.section)
         switch cellType {
         case .chatActions:
-            if row == 0 {
+            switch viewModel.actionFor(row: row) {
+            case .archiveChat:
                 return archiveChatCell
-            } else if row == 1 {
+            case .blockChat:
                 return blockContactCell
-            } else {
-                safe_assert(row == 2)
+            case .deleteChat:
                 return deleteChatCell
             }
         case .startChat:
@@ -143,33 +143,63 @@ class ContactDetailViewController: UITableViewController {
         return viewModel.titleFor(section: section)
     }
 
-    // MARK: -actions
+    // MARK: - actions
 
     private func handleCellAction(for index: Int) {
-        if index == 0 {
-            coordinator?.archiveChat()
-        } else if index == 1 {
+        let action = viewModel.actionFor(row: index)
+        switch action {
+        case .archiveChat:
+            toggleArchiveChat()
+        case .blockChat:
             toggleBlockContact()
-        } else {
-            safe_assert(index == 2)
+        case .deleteChat:
             showDeleteChatConfirmationAlert()
         }
-
     }
-    private func askToChatWith(contactId: Int) {
-        let dcContact = DcContact(id: contactId)
-        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
-                                      message: nil,
-                                      preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-            let chatId = Int(dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId)))
-            self.coordinator?.showChat(chatId: chatId)
+
+    private func toggleArchiveChat() {
+        let archived = viewModel.toggleArchiveChat()
+        if archived {
+            self.navigationController?.popToRootViewController(animated: false)
+        } else {
+            archiveChatCell.actionTitle = String.localized("menu_archive_chat")
+        }
+    }
+
+    private func updateBlockContactCell() {
+        blockContactCell.actionTitle = viewModel.contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
+        blockContactCell.actionColor = viewModel.contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
+    }
+
+
+    @objc private func editButtonPressed() {
+        coordinator?.showEditContact(contactId: viewModel.contactId)
+    }
+}
+
+// MARK: alerts
+extension ContactDetailViewController {
+    private func showDeleteChatConfirmationAlert() {
+        let alert = UIAlertController(
+            title: nil,
+            message: String.localized("ask_delete_chat_desktop"),
+            preferredStyle: .safeActionSheet
+        )
+        alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
+            self.coordinator?.deleteChat()
         }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        present(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func showNotificationSetup() {
+        let notificationSetupAlert = UIAlertController(
+            title: "Notifications Setup is not implemented yet",
+            message: "But you get an idea where this is going",
+            preferredStyle: .safeActionSheet)
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
+        notificationSetupAlert.addAction(cancelAction)
+        present(notificationSetupAlert, animated: true, completion: nil)
     }
 
     private func toggleBlockContact() {
@@ -192,35 +222,21 @@ class ContactDetailViewController: UITableViewController {
         }
     }
 
-    private func updateBlockContactCell() {
-        blockContactCell.actionTitle = viewModel.contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
-        blockContactCell.actionColor = viewModel.contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
-    }
-
-    private func showNotificationSetup() {
-        let notificationSetupAlert = UIAlertController(title: "Notifications Setup is not implemented yet",
-                                                       message: "But you get an idea where this is going",
-                                                       preferredStyle: .safeActionSheet)
-        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
-        notificationSetupAlert.addAction(cancelAction)
-        present(notificationSetupAlert, animated: true, completion: nil)
-    }
-
-    @objc private func editButtonPressed() {
-        coordinator?.showEditContact(contactId: viewModel.contactId)
-    }
-
-    private func showDeleteChatConfirmationAlert() {
-        let alert = UIAlertController(
-            title: nil,
-            message: String.localized("ask_delete_chat_desktop"),
-            preferredStyle: .safeActionSheet
-        )
-        alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
-            self.coordinator?.deleteChat()
+    private func askToChatWith(contactId: Int) {
+        let dcContact = DcContact(id: contactId)
+        let alert = UIAlertController(title: String.localizedStringWithFormat(
+            String.localized("ask_start_chat_with"), dcContact.nameNAddr),
+                                      message: nil,
+                                      preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+            let chatId = Int(dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId)))
+            self.coordinator?.showChat(chatId: chatId)
         }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
     }
 
 }

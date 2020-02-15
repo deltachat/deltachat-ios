@@ -54,7 +54,7 @@ class ContactCellViewModel: AvatarCellViewModel {
     }
 }
 
-class ChatCellViewModel: AvatarCellViewModel{
+class ChatCellViewModel: AvatarCellViewModel {
 
     private let chat: DcChat
     private let summary: DcLot

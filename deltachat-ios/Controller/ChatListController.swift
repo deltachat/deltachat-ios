@@ -5,7 +5,7 @@ class ChatListController: UIViewController {
 
     private var dcContext: DcContext
     private var chatList: DcChatlist?
-    private var showArchive: Bool
+    private let showArchive: Bool
 
     private lazy var chatTable: UITableView = {
         let chatTable = UITableView()
@@ -42,31 +42,28 @@ class ChatListController: UIViewController {
         super.viewWillAppear(animated)
         getChatList()
         updateTitle()
-    }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         let nc = NotificationCenter.default
-        msgChangedObserver = nc.addObserver(forName: dcNotificationChanged,
-                                            object: nil, queue: nil) { _ in
-            self.getChatList()
-        }
-        incomingMsgObserver = nc.addObserver(forName: dcNotificationIncoming,
-                                             object: nil, queue: nil) { _ in
-            self.getChatList()
-        }
+          msgChangedObserver = nc.addObserver(forName: dcNotificationChanged,
+                                              object: nil, queue: nil) { _ in
+              self.getChatList()
+          }
+          incomingMsgObserver = nc.addObserver(forName: dcNotificationIncoming,
+                                               object: nil, queue: nil) { _ in
+              self.getChatList()
+          }
 
-        viewChatObserver = nc.addObserver(forName: dcNotificationViewChat, object: nil, queue: nil) { notification in
-            if let chatId = notification.userInfo?["chat_id"] as? Int {
-                self.coordinator?.showChat(chatId: chatId)
-            }
-        }
+          viewChatObserver = nc.addObserver(forName: dcNotificationViewChat, object: nil, queue: nil) { notification in
+              if let chatId = notification.userInfo?["chat_id"] as? Int {
+                  self.coordinator?.showChat(chatId: chatId)
+              }
+          }
 
-        deleteChatObserver = nc.addObserver(forName: dcNotificationChatDeletedInChatDetail, object: nil, queue: nil) { notification in
-            if let chatId = notification.userInfo?["chat_id"] as? Int {
-                self.deleteChat(chatId: chatId, animated: true)
-            }
-        }
+          deleteChatObserver = nc.addObserver(forName: dcNotificationChatDeletedInChatDetail, object: nil, queue: nil) { notification in
+              if let chatId = notification.userInfo?["chat_id"] as? Int {
+                  self.deleteChat(chatId: chatId, animated: true)
+              }
+          }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -81,6 +78,10 @@ class ChatListController: UIViewController {
         }
         if let viewChatObserver = self.viewChatObserver {
             nc.removeObserver(viewChatObserver)
+        }
+
+        if let deleteChatObserver = self.deleteChatObserver {
+            nc.removeObserver(deleteChatObserver)
         }
     }
 
@@ -314,8 +315,9 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
     }
 
     private func deleteChat(chatId: Int, animated: Bool) {
-        self.dcContext.deleteChat(chatId: chatId)
+
         if !animated {
+            dcContext.deleteChat(chatId: chatId)
             self.getChatList()
             return
         }
@@ -325,9 +327,9 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
 
         // find index of chatId
-        let index = Array(0..<chatList.length).filter { chatList.getChatId(index: $0) == chatId }.first
+        let indexToDelete = Array(0..<chatList.length).filter { chatList.getChatId(index: $0) == chatId }.first
 
-        guard let row = index else {
+        guard let row = indexToDelete else {
             return
         }
 
@@ -335,7 +337,9 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         if showArchive {
             gclFlags |= DC_GCL_ARCHIVED_ONLY
         }
+
+        dcContext.deleteChat(chatId: chatId)
         self.chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
-        chatTable.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade)    
+        chatTable.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade)
     }
 }
