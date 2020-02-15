@@ -67,7 +67,7 @@ class DcContext {
     }
 
     func archiveChat(chatId: Int, archive: Bool) {
-        dc_archive_chat(contextPointer, UInt32(chatId), Int32(archive ? 1 : 0))
+        dc_set_chat_visibility(contextPointer, UInt32(chatId), Int32(archive ? DC_CHAT_VISIBILITY_ARCHIVED : DC_CHAT_VISIBILITY_NORMAL))
     }
 
     func marknoticedChat(chatId: Int) {
@@ -472,7 +472,7 @@ class DcChat {
     }
 
     var isArchived: Bool {
-        return Int(dc_chat_get_archived(chatPointer)) == 1
+        return Int(dc_chat_get_visibility(chatPointer)) == DC_CHAT_VISIBILITY_ARCHIVED
     }
 
     var isUnpromoted: Bool {
