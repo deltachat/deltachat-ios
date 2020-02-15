@@ -26,7 +26,7 @@ class GroupChatDetailViewController: UIViewController {
     // stores contactIds
     private var groupMemberIds: [Int] = []
 
-    // MARK: -subviews
+    // MARK: - subviews
 
     private lazy var editBarButtonItem: UIBarButtonItem = {
         UIBarButtonItem(title: String.localized("global_menu_edit_desktop"), style: .plain, target: self, action: #selector(editButtonPressed))
@@ -308,7 +308,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
 }
 
-// MARK: -alerts
+// MARK: - alerts
 extension GroupChatDetailViewController {
     private func showDeleteChatConfirmationAlert() {
         let alert = UIAlertController(
