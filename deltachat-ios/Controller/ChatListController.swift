@@ -256,21 +256,24 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             // see https://forums.developer.apple.com/thread/115030
         }
 
-        var title = String.localized("archive")
-        if showArchive {
-            title = String.localized("unarchive")
-        }
-        let archive = UITableViewRowAction(style: .destructive, title: title) { [unowned self] _, _ in
+        let archive = UITableViewRowAction(style: .destructive, title: String.localized(showArchive ? "unarchive" : "archive")) { [unowned self] _, _ in
             self.dcContext.archiveChat(chatId: chatId, archive: !self.showArchive)
         }
         archive.backgroundColor = UIColor.lightGray
 
-        let delete = UITableViewRowAction(style: .destructive, title: String.localized("delete")) { [unowned self] _, _ in
+        let chat = dcContext.getChat(chatId: chatId)
+        let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
+        let pin = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [unowned self] _, _ in
+            self.dcContext.setChatVisibility(chatId: chatId, visibility: pinned ? DC_CHAT_VISIBILITY_NORMAL : DC_CHAT_VISIBILITY_PINNED)
+        }
+        pin.backgroundColor = UIColor.systemGreen
+
+        let delete = UITableViewRowAction(style: .normal, title: String.localized("delete")) { [unowned self] _, _ in
             self.showDeleteChatConfirmationAlert(chatId: chatId)
         }
-        delete.backgroundColor = UIColor.red
+        delete.backgroundColor = UIColor.systemRed
 
-        return [archive, delete]
+        return [archive, pin, delete]
     }
 
     func getDeaddropCell(_ tableView: UITableView) -> ContactCell {
