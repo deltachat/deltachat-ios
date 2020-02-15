@@ -193,6 +193,14 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             } else {
                 cell.setBackupImage(name: chat.name, color: chat.color)
             }
+
+            if chat.visibility == DC_CHAT_VISIBILITY_PINNED {
+                cell.backgroundColor = DcColors.deaddropBackground
+                cell.contentView.backgroundColor = DcColors.deaddropBackground
+            } else {
+                cell.backgroundColor = DcColors.contactCellBackgroundColor
+                cell.contentView.backgroundColor = DcColors.contactCellBackgroundColor
+            }
         }
 
         cell.setVerified(isVerified: chat.isVerified)
