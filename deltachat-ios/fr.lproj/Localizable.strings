@@ -156,7 +156,6 @@
 "device_talk_subtitle" = "Messages générés localement";
 "device_talk_explain" = "Les messages dans cette discussion sont générés localement par votre application Delta Chat. Ils vous informerons des nouveautés après les mis à jour et des éventuels problèmes rencontrés lors de l\'utilisation.";
 "edit_contact" = "Éditer le contact";
-
 "mute_for_one_hour" = "Déactiver pour 1 heure";
 "mute_for_two_hours" = "Déactiver pour 2 heures";
 "mute_for_one_day" = "Déactiver pour 1 jour";

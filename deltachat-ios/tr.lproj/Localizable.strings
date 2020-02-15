@@ -21,7 +21,7 @@
 "close" = "Kapat";
 "forward" = "İlet";
 "archive" = "Arşivle";
-"unarchive" = "Arşivden çıkart";
+"unarchive" = "Arşivleme";
 "mute" = "Sessize al";
 "save" = "Kaydet";
 "chat" = "Sohbet";
@@ -113,7 +113,7 @@
 "menu_show_map" = "Haritayı göster";
 "menu_show_global_map" = "Tüm konumları göster";
 "menu_archive_chat" = "Sohbeti arşivle";
-"menu_unarchive_chat" = "Sohbeti arşivden çıkart";
+"menu_unarchive_chat" = "Sohbeti arşivleme";
 "menu_add_attachment" = "İlişik ekle";
 "menu_leave_group" = "Gruptan ayrıl";
 "menu_delete_chat" = "Sohbeti sil";
@@ -132,7 +132,7 @@
 "menu_all_media" = "Tüm ortamlar";
 "menu_share" = "Paylaş";
 "menu_block_contact" = "Kişiyi engelle";
-"menu_unblock_contact" = "Kişinin engellemesini kaldır";
+"menu_unblock_contact" = "Kişiyi engelleme";
 "menu_play" = "Oynat";
 "menu_pause" = "Duraklat";
 "menu_scroll_to_bottom" = "Alta kaydır";
@@ -157,6 +157,14 @@
 "device_talk_explain" = "Bu sohbetteki iletiler, Delta Chat uygulamanız tarafından yerel olarak oluşturulur. Oluşturucuları, uygulama güncelleştirmeleri ve kullanım sırasındaki sorunlar hakkında bilgilendirmek için onu kullanır.";
 "device_talk_welcome_message" = "Delta Chat\'e hoş geldiniz! – Delta Chat, diğer yaygın ulak uygulamaları gibi görünür ve hissettirir ama merkezi denetim, izleme içermez ya da sizi, arkadaşlarınızı, iş arkadaşlarınızı ya da ailenizi büyük kuruluşlara satmaz.\n\nTeknik olarak Delta Chat, çağdaş bir sohbet arabirimli bir e-posta uygulamasıdır. 👻 olacaksanız, e-posta yeni bir elbisedir\n\nMilyarlarca insanın herhangi biriyle Delta Chat kullanın: Yalnızca onların e-posta adresini kullanın. Alıcıların Delta Chat\'i kurması, web sitelerini ziyaret etmesi ya da herhangi bir yere kaydolması gerekmez - ancak, elbette isterlerse, onlara 👉 https://get.delta.chat adresini işaret edebilirsiniz";
 "edit_contact" = "Kişiyi düzenle";
+// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin_chat" = "Sohbeti sabitle";
+// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+"unpin_chat" = "Sohbeti sabitleme";
+// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin" = "Sabitle";
+// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+"unpin" = "Sabitleme";
 
 "mute_for_one_hour" = "1 saatliğine sessize al";
 "mute_for_two_hours" = "2 saatliğine sessize al";
@@ -178,7 +186,7 @@
 "ask_forward" = "İletiler %1$@ alıcısına iletilsin mi?";
 "ask_export_attachment" = "İlişik dışa aktarılsın mı? İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
 "ask_block_contact" = "Bu kişi engellensin mi? Artık bu kişiden gelen iletileri almayacaksınız.";
-"ask_unblock_contact" = "Bu kişinin engellemesi kaldırılsın mı? Bir kez daha bu kişiden gelen iletileri alabileceksiniz.";
+"ask_unblock_contact" = "Bu kişi engellenmesin mi? Bir kez daha bu kişiden gelen iletileri alabileceksiniz.";
 "ask_delete_contacts" = "Kişiler silinsin mi?\n\nSohbetlerin sürdüğü kişiler ve sistemin adres defterinden gelen kişiler kalıcı olarak silinemez.";
 "ask_delete_contact" = "%1$@ kişisi silinsin mi?\n\nSohbetlerin sürdüğü kişiler ve sistemin adres defterinden gelen kişiler kalıcı olarak silinemez.";
 "cannot_delete_contacts_in_use" = "Sohbetlerin sürdüğü kişiler silinemez.";
@@ -392,7 +400,7 @@
 "pref_managekeys_import_explain" = "Sır anahtarlar \"%1$@\" üzerinden içe aktarılsın mı?\n\n• Varolan sır anahtarlar silinmeyecek\n\n• Son içe aktarılan anahtar, dosya adında \"legacy\" sözcüğü olmadıkça yeni varsayılan anahtar olarak kullanılacak.";
 "pref_managekeys_secret_keys_exported_to_x" = "Sır anahtarlar \"%1$@\" üzerine başarıyla yazıldı.";
 "pref_managekeys_secret_keys_imported_from_x" = "Sır anahtarlar \"%1$@\" üzerinden içe aktarıldı.";
-"pref_background" = "Artalan";
+"pref_background" = "Arka plan";
 "pref_background_btn_default" = "Varsayılan görseli kullan";
 "pref_background_btn_gallery" = "Galeriden seç";
 "pref_imap_folder_handling" = "IMAP klasör işleme";
@@ -415,7 +423,7 @@
 "pref_empty_server_do_button" = "E-postaları sil";
 "pref_experimental_features" = "Deneysel özellikler";
 "pref_on_demand_location_streaming" = "İsteğe bağlı konum akışı";
-"pref_background_default" = "Varsayılan artalan";
+"pref_background_default" = "Varsayılan arka plan";
 "pref_background_default_color" = "Varsayılan renk";
 "pref_background_custom_image" = "Özel görsel";
 "pref_background_custom_color" = "Özel renk";
@@ -502,7 +510,7 @@
 "notify_media_message" = "Ortam iletisi";
 "notify_reply_button" = "Yanıtla";
 "notify_new_message" = "Yeni ileti";
-"notify_background_connection_enabled" = "Artalan bağlantısı etkinleştirildi";
+"notify_background_connection_enabled" = "Arka plan bağlantısı etkinleştirildi";
 "notify_priority_high" = "Yüksek";
 "notify_priority_max" = "En yüksek";
 "notify_name_and_message" = "Ad ve ileti";
@@ -521,9 +529,9 @@
 "perm_explain_access_to_mic_denied" = "Sesli iletiler göndermek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Mikrofon\"u etkinleştirin.";
 "perm_explain_access_to_storage_denied" = "Dosyaları almak ya da göndermek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Depolama\"yı etkinleştirin.";
 "perm_explain_access_to_location_denied" = "Bir konum iliştirmek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Konum\"u etkinleştirin.";
-"perm_enable_bg_reminder_title" = "Delta Chat artalandayken iletileri almak için buraya dokunun.";
+"perm_enable_bg_reminder_title" = "Delta Chat arka plandayken iletileri almak için buraya dokunun.";
 "perm_enable_bg_reminder_text" = "Delta Chat, kaynakların en azını kullanır ve pilinizi boşaltmamaya özen gösterir.";
-"perm_enable_bg_already_done" = "Delta Chat\'in iletileri artalanda almasına zaten izin verdiniz.\n\nİletiler artalanda hâlâ gelmiyorsa, lütfen sistem ayarlarınızı da denetleyin.";
+"perm_enable_bg_already_done" = "Delta Chat\'in iletileri arka planda almasına zaten izin verdiniz.\n\nİletiler arka planda hâlâ gelmiyorsa, lütfen sistem ayarlarınızı da denetleyin.";
 
 // dc_str_* resources
 "encrypted_message" = "Şifrelenen ileti";
@@ -577,7 +585,7 @@
 "transfer_key_desktop" = "Anahtarı aktar";
 "show_key_transfer_message_desktop" = "Anahtarınız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Size bir ayarlama kodu sorulmalı. Aşağıdaki sayıları girin:";
 "new_message_from_desktop" = "Şundan yeni ileti";
-"unblock_contacts_desktop" = "Kişilerin engellemesini kaldır";
+"unblock_contacts_desktop" = "Kişileri engelleme";
 "none_blocked_desktop" = "Henüz engellenen kişi yok";
 "autocrypt_correct_desktop" = "Autocrypt ayarlaması aktarıldı.";
 "autocrypt_incorrect_desktop" = "Yanlış ayarlama kodu. Lütfen yeniden deneyin.";
@@ -607,6 +615,6 @@
 "a11y_delivery_status_invalid" = "Geçersiz teslimat durumu";
 "a11y_remove_account_btn_label" = "Hesabı kaldır";
 "a11y_message_context_menu_btn_label" = "İleti eylemleri";
-"a11y_background_preview_label" = "Artalan önizlemesi";
+"a11y_background_preview_label" = "Arka plan önizlemesi";
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"

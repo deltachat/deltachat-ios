@@ -157,7 +157,6 @@
 "device_talk_explain" = "Berichten in dit gesprek worden geplaatst door de app zelf. Zo blijf je op de hoogte van app-updates en gebruiksproblemen.";
 "device_talk_welcome_message" = "Welkom bij Delta Chat! Delta Chat lijkt heel erg op andere chatapps, maar is toch écht anders! Zo is er geen centraal beheer, wordt je niet gevolgd en worden jouw gegevens of die van je vrienden/familie niet verkocht aan bedrijven.\n\nTechnisch gesproken is het een e-mailapp in een modern jasje (of moderne jurk 👻).\n\nGebruik Delta Chat om te communiceren met iedereen die een e-mailadres heeft. Ontvangers hoeven het niet te installeren, naar een website te gaan of ergens te registreren. Maar als ze dat willen, kun je ze natuurlijk altíjd doorverwijzen naar 👉 https://get.delta.chat";
 "edit_contact" = "Contactpersoon bewerken";
-
 "mute_for_one_hour" = "1 uur lang uitschakelen";
 "mute_for_two_hours" = "2 uur lang uitschakelen";
 "mute_for_one_day" = "1 dag lang uitschakelen";
