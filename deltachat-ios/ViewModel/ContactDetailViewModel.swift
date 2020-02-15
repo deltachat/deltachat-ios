@@ -34,7 +34,6 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
     var contact: DcContact
     private let chatId: Int?
     private let sharedChats: DcChatlist
-    private let startChatOption: Bool
     private var sections: [ProfileSections] = []
     private var actions: [ChatAction] = [] // chatDetail: archive, block, delete - else: block
 
@@ -44,12 +43,9 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         self.contactId = contactId
         self.chatId = chatId
         self.contact = DcContact(id: contactId)
-        self.startChatOption = chatId == nil
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
-        if startChatOption {
-            sections.append(.startChat)
-        }
+        sections.append(.startChat)
         if sharedChats.length > 0 {
             sections.append(.sharedChats)
         }
@@ -60,7 +56,6 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         } else {
             actions = [.blockChat]
         }
-
     }
 
     func typeFor(section: Int) -> ContactDetailViewModel.ProfileSections {

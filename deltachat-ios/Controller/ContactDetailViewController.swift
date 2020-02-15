@@ -20,7 +20,7 @@ class ContactDetailViewController: UITableViewController {
     private lazy var startChatCell: ActionCell = {
         let cell = ActionCell()
         cell.actionColor = SystemColor.blue.uiColor
-        cell.actionTitle = String.localized("menu_new_chat")
+        cell.actionTitle = String.localized("send_message")
         cell.selectionStyle = .none
         return cell
     }()

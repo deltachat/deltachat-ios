@@ -452,7 +452,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
                 contactDetailController.coordinator = coordinator
                 navigationController.pushViewController(contactDetailController, animated: true)
             }
-        case .GROUP, .VERYFIEDGROUP:
+        case .GROUP, .VERIFIEDGROUP:
             let groupChatDetailViewController = GroupChatDetailViewController(chatId: chatId, context: dcContext) // inherits from ChatDetailViewController
             let coordinator = GroupChatDetailCoordinator(dcContext: dcContext, chatId: chatId, navigationController: navigationController)
             childCoordinators.append(coordinator)
@@ -462,13 +462,6 @@ class ChatViewCoordinator: NSObject, Coordinator {
     }
 
     func showContactDetail(of contactId: Int, in chatOfType: ChatType, chatId: Int?) {
-        let startChatOption: Bool
-        switch chatOfType {
-        case .GROUP, .VERYFIEDGROUP:
-            startChatOption = true
-        case .SINGLE:
-            startChatOption = false
-        }
         let viewModel = ContactDetailViewModel(contactId: contactId, chatId: chatId, context: dcContext )
         let contactDetailController = ContactDetailViewController(viewModel: viewModel)
         let coordinator = ContactDetailCoordinator(dcContext: dcContext, chatId: chatId, navigationController: navigationController)
