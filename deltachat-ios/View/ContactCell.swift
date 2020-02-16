@@ -59,6 +59,7 @@ class ContactCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(hexString: "848ba7")
         label.lineBreakMode = .byTruncatingTail
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
         return label
     }()
 
@@ -76,10 +77,11 @@ class ContactCell: UITableViewCell {
         label.text = String.localized("chat_archived_label")
         label.textColor = tintColor
         label.setContentHuggingPriority(.defaultHigh, for: NSLayoutConstraint.Axis.horizontal) // needed so label does not expand to available space
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 2), for: NSLayoutConstraint.Axis.horizontal)
         let view = UIView()
         view.layer.borderColor = tintColor.cgColor
         view.layer.borderWidth = 1
-        view.layer.cornerRadius = 4
+        view.layer.cornerRadius = 2
         view.isHidden = true
 
         label.translatesAutoresizingMaskIntoConstraints = false
