@@ -66,6 +66,8 @@ class AccountSetupController: UITableViewController {
     private let editView: Bool
     private var advancedSectionShowing: Bool = false
 
+    private var provider: DcProvider?
+
 
     // the progress dialog
 
@@ -419,7 +421,11 @@ class AccountSetupController: UITableViewController {
 
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         if sections[section] == basicSection {
-            return String.localized("login_no_servers_hint")
+            if provider != nil && (provider?.status==DC_PROVIDER_STATUS_PREPARATION || provider?.status==DC_PROVIDER_STATUS_BROKEN) {
+                return provider?.beforeLoginHint
+            } else {
+                return String.localized("login_no_servers_hint")
+            }
         } else if sections[section] == advancedSection {
             if advancedSectionShowing && dcContext.isConfigured() {
                 var info = String.localized("used_settings") + "\n"
@@ -802,6 +808,11 @@ class AccountSetupController: UITableViewController {
     @objc private func textFieldDidChange() {
         handleLoginButton()
     }
+
+    func updateProviderInfo() {
+        provider = dcContext.getProviderFromEmail(addr: emailCell.getText() ?? "")
+        tableView.reloadData()
+    }
 }
 
 extension AccountSetupController: UITextFieldDelegate {
@@ -835,6 +846,8 @@ extension AccountSetupController: UITextFieldDelegate {
             let _ = showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
                 self.passwordCell.textField.becomeFirstResponder()
             })
+
+            updateProviderInfo()
         }
     }
 }
