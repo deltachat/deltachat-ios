@@ -35,6 +35,10 @@ class DcContext {
         dc_add_address_book(mailboxPointer, contactString)
     }
 
+    func getChat(chatId: Int) -> DcChat {
+        return DcChat(id: chatId)
+    }
+
     func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
         let chatlistPointer = dc_get_chatlist(contextPointer, flags, queryString, UInt32(queryId))
         let chatlist = DcChatlist(chatListPointer: chatlistPointer)
@@ -68,6 +72,10 @@ class DcContext {
 
     func archiveChat(chatId: Int, archive: Bool) {
         dc_set_chat_visibility(contextPointer, UInt32(chatId), Int32(archive ? DC_CHAT_VISIBILITY_ARCHIVED : DC_CHAT_VISIBILITY_NORMAL))
+    }
+
+    func setChatVisibility(chatId: Int, visibility: Int32) {
+        dc_set_chat_visibility(contextPointer, UInt32(chatId), visibility)
     }
 
     func marknoticedChat(chatId: Int) {
@@ -436,6 +444,7 @@ class DcChatlist {
 class DcChat {
     var chatPointer: OpaquePointer?
 
+    // use DcContext.getChat() instead of calling the constructor directly
     init(id: Int) {
         if let p = dc_get_chat(mailboxPointer, UInt32(id)) {
             chatPointer = p
@@ -473,6 +482,10 @@ class DcChat {
 
     var isArchived: Bool {
         return Int(dc_chat_get_visibility(chatPointer)) == DC_CHAT_VISIBILITY_ARCHIVED
+    }
+
+    var visibility: Int32 {
+        return dc_chat_get_visibility(chatPointer)
     }
 
     var isUnpromoted: Bool {
