@@ -137,6 +137,10 @@ class AccountSetupController: UITableViewController {
 
     private lazy var providerInfoCell: ProviderInfoCell = {
         let cell = ProviderInfoCell()
+        cell.onInfoButtonPressed = {
+            [unowned self] in
+            self.handleProviderInfoButton()
+        }
         return cell
     }()
     
@@ -452,11 +456,7 @@ class AccountSetupController: UITableViewController {
     
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         if sections[section] == basicSection {
-            if provider != nil && (provider?.status==DC_PROVIDER_STATUS_PREPARATION || provider?.status==DC_PROVIDER_STATUS_BROKEN) {
-                return provider?.beforeLoginHint
-            } else {
-                return String.localized("login_no_servers_hint")
-            }
+            return String.localized("login_no_servers_hint")
         } else if sections[section] == advancedSection {
             if advancedSectionShowing && dcContext.isConfigured() {
                 var info = String.localized("used_settings") + "\n"
@@ -572,8 +572,12 @@ class AccountSetupController: UITableViewController {
 
     func updateProviderInfo() {
         provider = dcContext.getProviderFromEmail(addr: emailCell.getText() ?? "")
-        if let hint = provider?.beforeLoginHint, let status = provider?.status, !hint.isEmpty {
-            showProviderInfo(with: hint, hintType: .preparation)
+        if
+            let hint = provider?.beforeLoginHint,
+            let status = provider?.status,
+            let statusType = ProviderInfoStatus(rawValue: status),
+            !hint.isEmpty {
+            showProviderInfo(with: hint, hintType: statusType)
         } else {
             hideProviderInfo()
         }
@@ -581,7 +585,7 @@ class AccountSetupController: UITableViewController {
 
     func showProviderInfo(with hint: String, hintType: ProviderInfoStatus) {
         providerInfoCell.updateInfo(hint: hint, hintType: hintType)
-        basicSectionCells = [emailCell, passwordCell, providerInfoCell]
+        basicSectionCells.append(providerInfoCell)
         let providerInfoCellIndexPath = IndexPath(row: 2, section: 0)
         tableView.insertRows(at: [providerInfoCellIndexPath], with: .automatic)
     }
@@ -857,6 +861,10 @@ class AccountSetupController: UITableViewController {
     private func handleLoginButton() {
         loginButton.isEnabled = !(emailCell.getText() ?? "").isEmpty && !(passwordCell.getText() ?? "").isEmpty
     }
+
+    private func handleProviderInfoButton() {
+        print("handle provider info button")
+    }
     
     func resignCell(cell: UITableViewCell) {
         if let c = cell as? TextFieldCell {
@@ -901,7 +909,6 @@ extension AccountSetupController: UITextFieldDelegate {
             let _ = showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
                 self.passwordCell.textField.becomeFirstResponder()
             })
-            
             updateProviderInfo()
         }
     }

@@ -1005,8 +1005,8 @@ class DcProvider {
         dc_provider_unref(dcProviderPointer)
     }
 
-    var status: Int32 {
-        return dc_provider_get_status(dcProviderPointer)
+    var status: Int {
+        return Int(dc_provider_get_status(dcProviderPointer))
     }
 
     var beforeLoginHint: String {

@@ -8,27 +8,35 @@
 
 import UIKit
 
-enum ProviderInfoStatus {
-     case preparation
-     case broken
-     case ok
+enum ProviderInfoStatus: Int {
+     case preparation = 2
+     case broken = 1
  }
 
 class ProviderInfoCell: UITableViewCell {
+
+    let fontSize: CGFloat = 13
+
+    var onInfoButtonPressed: VoidFunction?
 
     private var hintBackgroundView: UIView = {
         let view = UIView()
         return view
     }()
 
-    private var hintLabel: UILabel = {
+    private lazy var hintLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: fontSize)
         return label
     }()
 
-    private var infoButton: UIButton = {
+    private lazy var infoButton: UIButton = {
         let button = UIButton()
-        button.setTitle("more_info_desktop".lowercased(), for: .normal)
+        let title = String.localized("more_info_desktop")
+        button.setTitle(title, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: fontSize)
+        button.addTarget(self, action: #selector(infoButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
 
@@ -41,43 +49,57 @@ class ProviderInfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        // ... no highlight
+    }
+
     private func setupSubviews() {
 
-        let margin: CGFloat = 20
+        let margin: CGFloat = 15
 
         contentView.addSubview(hintBackgroundView)
         hintBackgroundView.addSubview(hintLabel)
         hintBackgroundView.addSubview(infoButton)
 
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+        hintBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        hintLabel.translatesAutoresizingMaskIntoConstraints = false
+        infoButton.translatesAutoresizingMaskIntoConstraints = false
 
         hintBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: margin).isActive = true
-        hintBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        hintBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15).isActive = true
         hintBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin).isActive = true
-        hintBackgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
+        hintBackgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15).isActive = true
 
-        hintLabel.leadingAnchor.constraint(equalTo: hintBackgroundView.leadingAnchor, constant: 5).isActive = true
+        hintLabel.leadingAnchor.constraint(equalTo: hintBackgroundView.leadingAnchor, constant: 10).isActive = true
         hintLabel.topAnchor.constraint(equalTo: hintBackgroundView.topAnchor, constant: 5).isActive = true
-        hintLabel.trailingAnchor.constraint(equalTo: hintBackgroundView.trailingAnchor, constant: -5).isActive = true
+        hintLabel.trailingAnchor.constraint(equalTo: hintBackgroundView.trailingAnchor, constant: -10).isActive = true
 
         infoButton.topAnchor.constraint(equalTo: hintLabel.bottomAnchor, constant: 10).isActive = true
-        infoButton.leadingAnchor.constraint(equalTo: hintBackgroundView.leadingAnchor, constant: 5).isActive = true
+        infoButton.leadingAnchor.constraint(equalTo: hintBackgroundView.leadingAnchor, constant: 10).isActive = true
         infoButton.bottomAnchor.constraint(equalTo: hintBackgroundView.bottomAnchor, constant: -5).isActive = true
     }
 
+    // MARK: -update
     func updateInfo(hint text: String?, hintType: ProviderInfoStatus?) {
         hintLabel.text = text
         switch hintType {
         case .preparation:
-            hintBackgroundView.backgroundColor = SystemColor.yellow.uiColor
+            hintBackgroundView.backgroundColor = SystemColor.yellow.uiColor.withAlphaComponent(0.5)
+            let textColor = DcColors.grayTextColor
+            hintLabel.textColor = textColor
+            infoButton.setTitleColor(textColor, for: .normal)
         case .broken:
-            hintBackgroundView.backgroundColor = SystemColor.red.uiColor
-        case .ok:
-            hintBackgroundView.backgroundColor = .clear
+            hintBackgroundView.backgroundColor = SystemColor.red.uiColor.withAlphaComponent(0.5)
+            let textColor = UIColor.white
+            hintLabel.textColor = textColor
+            infoButton.setTitleColor(textColor, for: .normal)
         case .none:
             break
         }
+    }
+
+    // MARK: -actions
+    @objc func infoButtonPressed(_:UIButton) {
+        onInfoButtonPressed?()
     }
 }
