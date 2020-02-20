@@ -15,13 +15,14 @@ class ContactCell: UITableViewCell {
     private let imgSize: CGFloat = 20
 
     lazy var toplineStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, timeLabel])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, pinnedIndicator, timeLabel])
         stackView.axis = .horizontal
+        stackView.spacing = 4
         return stackView
     }()
 
     lazy var bottomlineStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [subtitleLabel, deliveryStatusIndicator])
+        let stackView = UIStackView(arrangedSubviews: [subtitleLabel, deliveryStatusIndicator, archivedIndicator, unreadMessageCounter])
         stackView.axis = .horizontal
         stackView.spacing = 10
         return stackView
@@ -45,6 +46,17 @@ class ContactCell: UITableViewCell {
         return label
     }()
 
+    private let pinnedIndicator: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        view.widthAnchor.constraint(equalToConstant: 16).isActive = true
+        view.tintColor = UIColor(hexString: "848ba7")
+        view.image = #imageLiteral(resourceName: "pinned_chatlist").withRenderingMode(.alwaysTemplate)
+        view.isHidden = true
+        return view
+    }()
+
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
@@ -59,6 +71,7 @@ class ContactCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(hexString: "848ba7")
         label.lineBreakMode = .byTruncatingTail
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
         return label
     }()
 
@@ -76,10 +89,12 @@ class ContactCell: UITableViewCell {
         label.text = String.localized("chat_archived_label")
         label.textColor = tintColor
         label.setContentHuggingPriority(.defaultHigh, for: NSLayoutConstraint.Axis.horizontal) // needed so label does not expand to available space
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 2), for: NSLayoutConstraint.Axis.horizontal)
         let view = UIView()
         view.layer.borderColor = tintColor.cgColor
         view.layer.borderWidth = 1
-        view.layer.cornerRadius = 4
+        view.layer.cornerRadius = 2
+        view.isHidden = true
 
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
@@ -92,6 +107,7 @@ class ContactCell: UITableViewCell {
 
     private let unreadMessageCounter: MessageCounter = {
         let view = MessageCounter(count: 0, size: 20)
+        view.isHidden = true
         return view
     }()
 
@@ -155,46 +171,42 @@ class ContactCell: UITableViewCell {
         avatar.setName(name)
     }
 
-    func setUnreadMessageCounter(_ count: Int) {
-        unreadMessageCounter.setCount(count)
-    }
-
-    func setIsArchived(_ isArchived: Bool) {
-        if isArchived {
+    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32) {
+        if visibility==DC_CHAT_VISIBILITY_ARCHIVED {
+            pinnedIndicator.isHidden = true
+            unreadMessageCounter.isHidden = true
             deliveryStatusIndicator.isHidden = true
-            bottomlineStackView.removeArrangedSubview(deliveryStatusIndicator)
-            bottomlineStackView.addArrangedSubview(archivedIndicator)
-        } else {
-            deliveryStatusIndicator.isHidden = false
-            bottomlineStackView.removeArrangedSubview(archivedIndicator)
-            bottomlineStackView.addArrangedSubview(deliveryStatusIndicator)
-        }
-    }
+            archivedIndicator.isHidden = false
+        } else if unreadCount > 0 {
+            unreadMessageCounter.setCount(unreadCount)
 
-    func setDeliveryStatusIndicator(_ status: Int) {
-        var indicatorImage: UIImage?
-        switch Int32(status) {
-        case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
-            indicatorImage = #imageLiteral(resourceName: "ic_hourglass_empty_36pt").withRenderingMode(.alwaysTemplate)
-            deliveryStatusIndicator.tintColor = UIColor.black.withAlphaComponent(0.5)
-        case DC_STATE_OUT_DELIVERED:
-            indicatorImage = #imageLiteral(resourceName: "ic_done_36pt").withRenderingMode(.alwaysTemplate)
-            deliveryStatusIndicator.tintColor = DcColors.checkmarkGreen
-        case DC_STATE_OUT_FAILED:
-            indicatorImage = #imageLiteral(resourceName: "ic_error_36pt").withRenderingMode(.alwaysTemplate)
-            deliveryStatusIndicator.tintColor = UIColor.red
-        case DC_STATE_OUT_MDN_RCVD:
-            indicatorImage = #imageLiteral(resourceName: "ic_done_all_36pt").withRenderingMode(.alwaysTemplate)
-            deliveryStatusIndicator.tintColor = DcColors.checkmarkGreen
-        default:
-            break
-        }
-        if indicatorImage != nil && unreadMessageCounter.isHidden {
-            deliveryStatusIndicator.isHidden = false
-        } else {
+            pinnedIndicator.isHidden = !(visibility==DC_CHAT_VISIBILITY_PINNED)
+            unreadMessageCounter.isHidden = false
             deliveryStatusIndicator.isHidden = true
+            archivedIndicator.isHidden = true
+        } else {
+            switch Int32(status) {
+            case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
+                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_hourglass_empty_36pt").withRenderingMode(.alwaysTemplate)
+                deliveryStatusIndicator.tintColor = UIColor.black.withAlphaComponent(0.5)
+            case DC_STATE_OUT_DELIVERED:
+                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_done_36pt").withRenderingMode(.alwaysTemplate)
+                deliveryStatusIndicator.tintColor = DcColors.checkmarkGreen
+            case DC_STATE_OUT_FAILED:
+                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_error_36pt").withRenderingMode(.alwaysTemplate)
+                deliveryStatusIndicator.tintColor = UIColor.red
+            case DC_STATE_OUT_MDN_RCVD:
+                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_done_all_36pt").withRenderingMode(.alwaysTemplate)
+                deliveryStatusIndicator.tintColor = DcColors.checkmarkGreen
+            default:
+                deliveryStatusIndicator.image = nil
+            }
+
+            pinnedIndicator.isHidden = !(visibility==DC_CHAT_VISIBILITY_PINNED)
+            unreadMessageCounter.isHidden = true
+            deliveryStatusIndicator.isHidden = deliveryStatusIndicator.image == nil ? true : false
+            archivedIndicator.isHidden = true
         }
-        deliveryStatusIndicator.image = indicatorImage
     }
 
     func setTimeLabel(_ timestamp: Int64?) {
@@ -242,15 +254,14 @@ class ContactCell: UITableViewCell {
             }
             setVerified(isVerified: chat.isVerified)
             setTimeLabel(chatData.summary.timestamp)
-            setUnreadMessageCounter(chatData.unreadMessages)
-            setDeliveryStatusIndicator(chatData.summary.state)
-            setIsArchived(chat.isArchived)
+            setStatusIndicators(unreadCount: chatData.unreadMessages, status: chatData.summary.state, visibility: chat.visibility)
 
         case .CONTACT(let contactData):
             let contact = DcContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             avatar.setName(cellViewModel.title)
             avatar.setColor(contact.color)
+            setStatusIndicators(unreadCount: 0, status: 0, visibility: 0)
         }
     }
 }
