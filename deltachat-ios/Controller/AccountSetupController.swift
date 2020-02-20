@@ -572,22 +572,24 @@ class AccountSetupController: UITableViewController {
 
     func updateProviderInfo() {
         provider = dcContext.getProviderFromEmail(addr: emailCell.getText() ?? "")
-        if
-            let hint = provider?.beforeLoginHint,
+        if let hint = provider?.beforeLoginHint,
             let status = provider?.status,
             let statusType = ProviderInfoStatus(rawValue: status),
             !hint.isEmpty {
-            showProviderInfo(with: hint, hintType: statusType)
-        } else {
+            providerInfoCell.updateInfo(hint: hint, hintType: statusType)
+            if !providerInfoShowing {
+                showProviderInfo()
+            }
+        } else if providerInfoShowing {
             hideProviderInfo()
         }
     }
 
-    func showProviderInfo(with hint: String, hintType: ProviderInfoStatus) {
-        providerInfoCell.updateInfo(hint: hint, hintType: hintType)
-        basicSectionCells.append(providerInfoCell)
+    func showProviderInfo() {
+        basicSectionCells = [emailCell, passwordCell, providerInfoCell]
         let providerInfoCellIndexPath = IndexPath(row: 2, section: 0)
-        tableView.insertRows(at: [providerInfoCellIndexPath], with: .automatic)
+        tableView.insertRows(at: [providerInfoCellIndexPath], with: .fade)
+        providerInfoShowing = true
     }
 
     func hideProviderInfo() {
@@ -595,6 +597,7 @@ class AccountSetupController: UITableViewController {
         basicSectionCells = [emailCell, passwordCell]
         let providerInfoCellIndexPath = IndexPath(row: 2, section: 0)
         tableView.deleteRows(at: [providerInfoCellIndexPath], with: .automatic)
+        providerInfoShowing = false
     }
     
     private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {

@@ -9,8 +9,8 @@
 import UIKit
 
 enum ProviderInfoStatus: Int {
-     case preparation = 2
-     case broken = 1
+    case preparation = 2
+    case broken = 3
  }
 
 class ProviderInfoCell: UITableViewCell {
@@ -89,7 +89,7 @@ class ProviderInfoCell: UITableViewCell {
             hintLabel.textColor = textColor
             infoButton.setTitleColor(textColor, for: .normal)
         case .broken:
-            hintBackgroundView.backgroundColor = SystemColor.red.uiColor.withAlphaComponent(0.5)
+            hintBackgroundView.backgroundColor = SystemColor.red.uiColor
             let textColor = UIColor.white
             hintLabel.textColor = textColor
             infoButton.setTitleColor(textColor, for: .normal)
