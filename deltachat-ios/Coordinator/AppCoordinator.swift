@@ -280,6 +280,11 @@ class AccountSetupCoordinator: Coordinator {
         navigationController.pushViewController(securitySettingsController, animated: true)
     }
 
+    func openProviderInfo(provider: DcProvider) {
+        guard let url = URL(string: provider.getOverviewPage) else { return }
+        UIApplication.shared.open(url)
+    }
+
     func navigateBack() {
         navigationController.popViewController(animated: true)
     }

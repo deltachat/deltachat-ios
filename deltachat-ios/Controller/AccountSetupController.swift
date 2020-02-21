@@ -866,7 +866,10 @@ class AccountSetupController: UITableViewController {
     }
 
     private func handleProviderInfoButton() {
-        print("handle provider info button")
+        guard let provider = provider else {
+            return
+        }
+        coordinator?.openProviderInfo(provider: provider)
     }
     
     func resignCell(cell: UITableViewCell) {
@@ -881,6 +884,7 @@ class AccountSetupController: UITableViewController {
 
 }
 
+// MARK: -
 extension AccountSetupController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let currentTag = textField.tag
