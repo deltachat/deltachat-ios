@@ -271,7 +271,7 @@ class AccountSetupCoordinator: Coordinator {
 
     func showImapSecurityOptions() {
         let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
-                                                                    type: SecurityType.IMAPSecurity)
+                                                                      type: SecurityType.IMAPSecurity)
         navigationController.pushViewController(securitySettingsController, animated: true)
     }
 

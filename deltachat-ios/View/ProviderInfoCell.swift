@@ -1,11 +1,3 @@
-//
-//  ProviderInfoCell.swift
-//  deltachat-ios
-//
-//  Created by Bastian van de Wetering on 20.02.20.
-//  Copyright © 2020 Jonas Reinsch. All rights reserved.
-//
-
 import UIKit
 
 enum ProviderInfoStatus: Int {
@@ -15,7 +7,22 @@ enum ProviderInfoStatus: Int {
 
 class ProviderInfoCell: UITableViewCell {
 
-    let fontSize: CGFloat = 13
+    private struct ColorSet {
+        let backgroundColor: UIColor
+        let tintColor: UIColor
+    }
+
+    private let fontSize: CGFloat = 13
+
+    private let brokenColorSet: ColorSet = ColorSet(
+        backgroundColor: SystemColor.red.uiColor,
+        tintColor: UIColor.white
+    )
+
+    private let preparationColorSet: ColorSet = ColorSet(
+        backgroundColor: SystemColor.yellow.uiColor.withAlphaComponent(0.5),
+        tintColor: DcColors.grayTextColor
+    )
 
     var onInfoButtonPressed: VoidFunction?
 
@@ -56,6 +63,7 @@ class ProviderInfoCell: UITableViewCell {
     private func setupSubviews() {
 
         let margin: CGFloat = 15
+        let padding: CGFloat = 10
 
         contentView.addSubview(hintBackgroundView)
         hintBackgroundView.addSubview(hintLabel)
@@ -66,16 +74,16 @@ class ProviderInfoCell: UITableViewCell {
         infoButton.translatesAutoresizingMaskIntoConstraints = false
 
         hintBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: margin).isActive = true
-        hintBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15).isActive = true
+        hintBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: margin).isActive = true
         hintBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin).isActive = true
-        hintBackgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15).isActive = true
+        hintBackgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -margin).isActive = true
 
-        hintLabel.leadingAnchor.constraint(equalTo: hintBackgroundView.leadingAnchor, constant: 10).isActive = true
+        hintLabel.leadingAnchor.constraint(equalTo: hintBackgroundView.leadingAnchor, constant: padding).isActive = true
         hintLabel.topAnchor.constraint(equalTo: hintBackgroundView.topAnchor, constant: 5).isActive = true
-        hintLabel.trailingAnchor.constraint(equalTo: hintBackgroundView.trailingAnchor, constant: -10).isActive = true
+        hintLabel.trailingAnchor.constraint(equalTo: hintBackgroundView.trailingAnchor, constant: -padding).isActive = true
 
-        infoButton.topAnchor.constraint(equalTo: hintLabel.bottomAnchor, constant: 10).isActive = true
-        infoButton.leadingAnchor.constraint(equalTo: hintBackgroundView.leadingAnchor, constant: 10).isActive = true
+        infoButton.topAnchor.constraint(equalTo: hintLabel.bottomAnchor, constant: padding).isActive = true
+        infoButton.leadingAnchor.constraint(equalTo: hintBackgroundView.leadingAnchor, constant: padding).isActive = true
         infoButton.bottomAnchor.constraint(equalTo: hintBackgroundView.bottomAnchor, constant: -5).isActive = true
     }
 
@@ -84,15 +92,13 @@ class ProviderInfoCell: UITableViewCell {
         hintLabel.text = text
         switch hintType {
         case .preparation:
-            hintBackgroundView.backgroundColor = SystemColor.yellow.uiColor.withAlphaComponent(0.5)
-            let textColor = DcColors.grayTextColor
-            hintLabel.textColor = textColor
-            infoButton.setTitleColor(textColor, for: .normal)
+            hintBackgroundView.backgroundColor = preparationColorSet.backgroundColor
+            hintLabel.textColor = preparationColorSet.tintColor
+            infoButton.setTitleColor(preparationColorSet.tintColor, for: .normal)
         case .broken:
-            hintBackgroundView.backgroundColor = SystemColor.red.uiColor
-            let textColor = UIColor.white
-            hintLabel.textColor = textColor
-            infoButton.setTitleColor(textColor, for: .normal)
+            hintBackgroundView.backgroundColor = brokenColorSet.backgroundColor
+            hintLabel.textColor = brokenColorSet.tintColor
+            infoButton.setTitleColor(brokenColorSet.tintColor, for: .normal)
         case .none:
             break
         }
