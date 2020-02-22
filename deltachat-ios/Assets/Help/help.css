@@ -1,6 +1,7 @@
 body {
-    font-family: serif;
+    font-family: sans-serif;
     font-size: 300%;
+	padding: 2rem;
 }
 
 a {
@@ -22,7 +23,31 @@ ul#top > li {
 }
 
 ul#top li {
-  margin-top: .7rem;
-  margin-bottom: .7rem;
+  margin-top: 1.7rem;
+  margin-bottom: 1.7rem;
   font-weight: normal;
 }
+
+p.back {
+  font-size: 3rem;
+  padding: 0 1rem 0 0;
+}
+
+
+/* ---------- colors, dark mode ---------- */
+
+a {
+  color: #0984ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black !important;
+	color: #eee;
+  }
+
+  img {
+    filter: invert(100%);
+  }
+}
+
