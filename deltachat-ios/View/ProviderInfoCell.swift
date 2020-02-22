@@ -12,7 +12,7 @@ class ProviderInfoCell: UITableViewCell {
         let tintColor: UIColor
     }
 
-    private let fontSize: CGFloat = 13
+    private let fontSize: CGFloat = 14
 
     private let brokenColorSet: ColorSet = ColorSet(
         backgroundColor: DcColors.providerBrokenBackground,
@@ -79,12 +79,12 @@ class ProviderInfoCell: UITableViewCell {
         hintBackgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -margin).isActive = true
 
         hintLabel.leadingAnchor.constraint(equalTo: hintBackgroundView.leadingAnchor, constant: padding).isActive = true
-        hintLabel.topAnchor.constraint(equalTo: hintBackgroundView.topAnchor, constant: 5).isActive = true
+        hintLabel.topAnchor.constraint(equalTo: hintBackgroundView.topAnchor, constant: padding).isActive = true
         hintLabel.trailingAnchor.constraint(equalTo: hintBackgroundView.trailingAnchor, constant: -padding).isActive = true
 
         infoButton.topAnchor.constraint(equalTo: hintLabel.bottomAnchor, constant: padding).isActive = true
         infoButton.leadingAnchor.constraint(equalTo: hintBackgroundView.leadingAnchor, constant: padding).isActive = true
-        infoButton.bottomAnchor.constraint(equalTo: hintBackgroundView.bottomAnchor, constant: -5).isActive = true
+        infoButton.bottomAnchor.constraint(equalTo: hintBackgroundView.bottomAnchor, constant: -padding).isActive = true
     }
 
     // MARK: -update
