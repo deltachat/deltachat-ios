@@ -118,6 +118,7 @@ class AccountSetupController: UITableViewController {
     private lazy var emailCell: TextFieldCell = {
         let cell = TextFieldCell.makeEmailCell(delegate: self)
         cell.tag = tagEmailCell
+        cell.textField.addTarget(self, action: #selector(emailCellEdited), for: .editingChanged)
         cell.textField.tag = tagTextFieldEmail // will be used to eventually show oAuth-Dialogue when pressing return key
         cell.setText(text: DcConfig.addr ?? nil)
         cell.textField.delegate = self
@@ -571,7 +572,7 @@ class AccountSetupController: UITableViewController {
     }
 
     func updateProviderInfo() {
-        provider = dcContext.getProviderFromEmail(addr: emailCell.getText() ?? "")
+            provider = dcContext.getProviderFromEmail(addr: emailCell.getText() ?? "")
         if let hint = provider?.beforeLoginHint,
             let status = provider?.status,
             let statusType = ProviderInfoStatus(rawValue: status),
@@ -882,6 +883,12 @@ class AccountSetupController: UITableViewController {
         handleLoginButton()
     }
 
+    @objc private func emailCellEdited() {
+        if providerInfoShowing {
+            updateProviderInfo()
+        }
+    }
+
 }
 
 // MARK: -
@@ -903,7 +910,7 @@ extension AccountSetupController: UITextFieldDelegate {
             return true
         }
     }
-    
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.tag == tagTextFieldEmail {
             // this will re-enable possible oAuth2-login
