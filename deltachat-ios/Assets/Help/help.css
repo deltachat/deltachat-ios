@@ -32,3 +32,22 @@ p.back {
   font-size: 3rem;
   padding: 0 1rem 0 0;
 }
+
+
+/* ---------- colors, dark mode ---------- */
+
+a {
+  color: #0984ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black !important;
+	color: #eee;
+  }
+
+  img {
+    filter: invert(100%);
+  }
+}
+
