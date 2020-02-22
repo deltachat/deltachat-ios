@@ -15,12 +15,12 @@ class ProviderInfoCell: UITableViewCell {
     private let fontSize: CGFloat = 13
 
     private let brokenColorSet: ColorSet = ColorSet(
-        backgroundColor: SystemColor.red.uiColor,
+        backgroundColor: DcColors.providerBrokenBackground,
         tintColor: UIColor.white
     )
 
     private let preparationColorSet: ColorSet = ColorSet(
-        backgroundColor: SystemColor.yellow.uiColor.withAlphaComponent(0.5),
+        backgroundColor: DcColors.providerPreparationBackground,
         tintColor: DcColors.grayTextColor
     )
 
