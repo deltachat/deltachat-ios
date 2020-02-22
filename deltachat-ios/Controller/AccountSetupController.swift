@@ -69,7 +69,7 @@ class AccountSetupController: UITableViewController {
     
     private var provider: DcProvider?
     
-    //MARK: -the progress dialog
+    // MARK: - the progress dialog
     
     private lazy var configProgressAlert: UIAlertController = {
         let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
@@ -113,7 +113,7 @@ class AccountSetupController: UITableViewController {
         }
     }
     
-    // MARK: -cells
+    // MARK: - cells
     
     private lazy var emailCell: TextFieldCell = {
         let cell = TextFieldCell.makeEmailCell(delegate: self)
@@ -385,7 +385,7 @@ class AccountSetupController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: -lifecycle
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         if editView {
@@ -531,7 +531,7 @@ class AccountSetupController: UITableViewController {
         }
     }
 
-    // MARK: -actions
+    // MARK: - actions
     private func toggleAdvancedSection() {
         let willShow = !advancedSectionShowing
         

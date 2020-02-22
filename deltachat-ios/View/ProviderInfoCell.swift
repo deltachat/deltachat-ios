@@ -87,7 +87,7 @@ class ProviderInfoCell: UITableViewCell {
         infoButton.bottomAnchor.constraint(equalTo: hintBackgroundView.bottomAnchor, constant: -padding).isActive = true
     }
 
-    // MARK: -update
+    // MARK: - update
     func updateInfo(hint text: String?, hintType: ProviderInfoStatus?) {
         hintLabel.text = text
         switch hintType {
@@ -104,7 +104,7 @@ class ProviderInfoCell: UITableViewCell {
         }
     }
 
-    // MARK: -actions
+    // MARK: - actions
     @objc func infoButtonPressed(_:UIButton) {
         onInfoButtonPressed?()
     }
