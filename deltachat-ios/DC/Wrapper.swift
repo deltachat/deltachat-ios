@@ -203,6 +203,11 @@ class DcContext {
     func updateDeviceChats() {
         dc_update_device_chats(contextPointer)
     }
+
+    func getProviderFromEmail(addr: String) -> DcProvider? {
+        guard let dcProviderPointer = dc_provider_new_from_email(contextPointer, addr) else { return nil }
+        return DcProvider(dcProviderPointer)
+    }
 }
 
 class DcConfig {
@@ -985,6 +990,37 @@ class DcLot {
 
     var id: Int {
         return Int(dc_lot_get_id(dcLotPointer))
+    }
+}
+
+class DcProvider {
+    private var dcProviderPointer: OpaquePointer?
+
+    // takes ownership of specified pointer
+    init(_ dcProviderPointer: OpaquePointer) {
+        self.dcProviderPointer = dcProviderPointer
+    }
+
+    deinit {
+        dc_provider_unref(dcProviderPointer)
+    }
+
+    var status: Int {
+        return Int(dc_provider_get_status(dcProviderPointer))
+    }
+
+    var beforeLoginHint: String {
+        guard let cString = dc_provider_get_before_login_hint(dcProviderPointer) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
+    var getOverviewPage: String {
+        guard let cString = dc_provider_get_overview_page(dcProviderPointer) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
     }
 }
 

@@ -18,6 +18,8 @@ struct DcColors {
                                                      dark: UIColor(red: 10 / 255, green: 10 / 255, blue: 10 / 255, alpha: 1))
     static let placeholderColor = UIColor.themeColor(light: UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1),
                                                      dark: UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1))
+    static let providerPreparationBackground = UIColor.themeColor(lightHex: "#fffdf7b2", darkHex: "##fffdf7b2")
+    static let providerBrokenBackground = UIColor.themeColor(light: SystemColor.red.uiColor, dark: SystemColor.red.uiColor)
     static let systemMessageBackgroundColor = UIColor.themeColor(light: UIColor.rgb(red: 248, green: 248, blue: 248), dark: UIColor(white: 0.2, alpha: 0.5))
     static let deaddropBackground = UIColor.themeColor(light: UIColor.init(hexString: "ebebec"), dark: UIColor.init(hexString: "1a1a1c"))
 }

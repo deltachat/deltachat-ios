@@ -62,17 +62,21 @@ class AccountSetupController: UITableViewController {
     ]
     private lazy var folderCells: [UITableViewCell] = [inboxWatchCell, sentboxWatchCell, mvboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
     private lazy var dangerCells: [UITableViewCell] = [emptyServerCell, deleteAccountCell]
-
     private let editView: Bool
     private var advancedSectionShowing: Bool = false
+    private var providerInfoShowing: Bool = false
 
+    private var provider: DcProvider?
 
-    // the progress dialog
+    // MARK: - the progress dialog
 
     private lazy var configProgressAlert: UIAlertController = {
         let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            self.dcContext.stopOngoingProcess()
+        alert.addAction(UIAlertAction(
+            title: String.localized("cancel"),
+            style: .cancel,
+            handler: { _ in
+                self.dcContext.stopOngoingProcess()
         }))
         return alert
     }()
@@ -108,11 +112,12 @@ class AccountSetupController: UITableViewController {
         }
     }
 
-    // cells
+    // MARK: - cells
 
     private lazy var emailCell: TextFieldCell = {
         let cell = TextFieldCell.makeEmailCell(delegate: self)
         cell.tag = tagEmailCell
+        cell.textField.addTarget(self, action: #selector(emailCellEdited), for: .editingChanged)
         cell.textField.tag = tagTextFieldEmail // will be used to eventually show oAuth-Dialogue when pressing return key
         cell.setText(text: DcConfig.addr ?? nil)
         cell.textField.delegate = self
@@ -127,6 +132,15 @@ class AccountSetupController: UITableViewController {
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         cell.setText(text: DcConfig.mailPw ?? nil)
         cell.textField.delegate = self
+        return cell
+    }()
+
+    private lazy var providerInfoCell: ProviderInfoCell = {
+        let cell = ProviderInfoCell()
+        cell.onInfoButtonPressed = {
+            [unowned self] in
+            self.handleProviderInfoButton()
+        }
         return cell
     }()
 
@@ -163,9 +177,10 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var imapServerCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_imap_server",
-                                 placeholder: String.localized("automatic"),
-                                 delegate: self)
+        let cell = TextFieldCell(
+            descriptionID: "login_imap_server",
+            placeholder: String.localized("automatic"),
+            delegate: self)
         cell.tag = tagImapServerCell
         cell.setText(text: DcConfig.mailServer ?? nil)
         cell.textField.tag = tagTextFieldImapServer
@@ -176,7 +191,10 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var imapUserCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_imap_login", placeholder: String.localized("automatic"), delegate: self)
+        let cell = TextFieldCell(
+            descriptionID: "login_imap_login",
+            placeholder: String.localized("automatic"),
+            delegate: self)
         cell.setText(text: DcConfig.mailUser ?? nil)
         cell.textField.tag = tagTextFieldImapLogin
         cell.tag = tagImapUserCell
@@ -195,9 +213,10 @@ class AccountSetupController: UITableViewController {
     }
 
     lazy var imapPortCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_imap_port",
-                                 placeholder: String.localized("automatic"),
-                                 delegate: self)
+        let cell = TextFieldCell(
+            descriptionID: "login_imap_port",
+            placeholder: String.localized("automatic"),
+            delegate: self)
         cell.tag = tagImapPortCell
         cell.setText(text: editablePort(port: DcConfig.mailPort))
         cell.textField.tag = tagImapPortCell
@@ -217,9 +236,10 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var smtpServerCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_smtp_server",
-                                 placeholder: String.localized("automatic"),
-                                 delegate: self)
+        let cell = TextFieldCell(
+            descriptionID: "login_smtp_server",
+            placeholder: String.localized("automatic"),
+            delegate: self)
         cell.textField.tag = tagTextFieldSmtpServer
         cell.setText(text: DcConfig.sendServer ?? nil)
         cell.tag = tagSmtpServerCell
@@ -230,7 +250,10 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var smtpUserCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_smtp_login", placeholder: String.localized("automatic"), delegate: self)
+        let cell = TextFieldCell(
+            descriptionID: "login_smtp_login",
+            placeholder: String.localized("automatic"),
+            delegate: self)
         cell.textField.tag = tagTextFieldSmtpUser
         cell.setText(text: DcConfig.sendUser ?? nil)
         cell.tag = tagSmtpUserCell
@@ -238,9 +261,10 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var smtpPortCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_smtp_port",
-                                 placeholder: String.localized("automatic"),
-                                 delegate: self)
+        let cell = TextFieldCell(
+            descriptionID: "login_smtp_port",
+            placeholder: String.localized("automatic"),
+            delegate: self)
         cell.tag = tagSmtpPortCell
         cell.setText(text: editablePort(port: DcConfig.sendPort))
         cell.textField.tag = tagSmtpPortCell
@@ -249,7 +273,10 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var smtpPasswordCell: TextFieldCell = {
-        let cell = TextFieldCell(descriptionID: "login_smtp_password", placeholder: String.localized("automatic"), delegate: self)
+        let cell = TextFieldCell(
+            descriptionID: "login_smtp_password",
+            placeholder: String.localized("automatic"),
+            delegate: self)
         cell.textField.textContentType = UITextContentType.password
         cell.setText(text: DcConfig.sendPw ?? nil)
         cell.textField.isSecureTextEntry = true
@@ -281,51 +308,61 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var inboxWatchCell: SwitchCell = {
-        return SwitchCell(textLabel: String.localized("pref_watch_inbox_folder"),
-                          on: dcContext.getConfigBool("inbox_watch"),
-                          action: { cell in
-                              self.dcContext.setConfigBool("inbox_watch", cell.isOn)
-                          })
+        return SwitchCell(
+            textLabel: String.localized("pref_watch_inbox_folder"),
+            on: dcContext.getConfigBool("inbox_watch"),
+            action: { cell in
+                self.dcContext.setConfigBool("inbox_watch", cell.isOn)
+        })
     }()
 
     lazy var sentboxWatchCell: SwitchCell = {
-        return SwitchCell(textLabel: String.localized("pref_watch_sent_folder"),
-                          on: dcContext.getConfigBool("sentbox_watch"),
-                          action: { cell in
-                              self.dcContext.setConfigBool("sentbox_watch", cell.isOn)
-                          })
+        return SwitchCell(
+            textLabel: String.localized("pref_watch_sent_folder"),
+            on: dcContext.getConfigBool("sentbox_watch"),
+            action: { cell in
+                self.dcContext.setConfigBool("sentbox_watch", cell.isOn)
+        })
     }()
 
     lazy var mvboxWatchCell: SwitchCell = {
-        return SwitchCell(textLabel: String.localized("pref_watch_mvbox_folder"),
-                          on: dcContext.getConfigBool("mvbox_watch"),
-                          action: { cell in
-                              self.dcContext.setConfigBool("mvbox_watch", cell.isOn)
-                          })
+        return SwitchCell(
+            textLabel: String.localized("pref_watch_mvbox_folder"),
+            on: dcContext.getConfigBool("mvbox_watch"),
+            action: { cell in
+                self.dcContext.setConfigBool("mvbox_watch", cell.isOn)
+        })
     }()
 
     lazy var sendCopyToSelfCell: SwitchCell = {
-        return SwitchCell(textLabel: String.localized("pref_send_copy_to_self"),
-                          on: dcContext.getConfigBool("bcc_self"),
-                          action: { cell in
-                              self.dcContext.setConfigBool("bcc_self", cell.isOn)
-                          })
+        return SwitchCell(
+            textLabel: String.localized("pref_send_copy_to_self"),
+            on: dcContext.getConfigBool("bcc_self"),
+            action: { cell in
+                self.dcContext.setConfigBool("bcc_self", cell.isOn)
+        })
     }()
 
     lazy var mvboxMoveCell: SwitchCell = {
-        return SwitchCell(textLabel: String.localized("pref_auto_folder_moves"),
-                          on: dcContext.getConfigBool("mvbox_move"),
-                          action: { cell in
-                              self.dcContext.setConfigBool("mvbox_move", cell.isOn)
-                          })
+        return SwitchCell(
+            textLabel: String.localized("pref_auto_folder_moves"),
+            on: dcContext.getConfigBool("mvbox_move"),
+            action: { cell in
+                self.dcContext.setConfigBool("mvbox_move", cell.isOn)
+        })
     }()
 
     private lazy var loginButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: String.localized("login_title"), style: .done, target: self, action: #selector(loginButtonPressed))
+        let button = UIBarButtonItem(
+            title: String.localized("login_title"),
+            style: .done,
+            target: self,
+            action: #selector(loginButtonPressed))
         button.isEnabled = dc_is_configured(mailboxPointer) == 0
         return button
     }()
 
+    // MARK: - constructor
     init(dcContext: DcContext, editView: Bool) {
         self.editView = editView
         self.dcContext = dcContext
@@ -347,6 +384,7 @@ class AccountSetupController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         if editView {
@@ -386,7 +424,6 @@ class AccountSetupController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in _: UITableView) -> Int {
         return sections.count
     }
@@ -493,6 +530,7 @@ class AccountSetupController: UITableViewController {
         }
     }
 
+    // MARK: - actions
     private func toggleAdvancedSection() {
         let willShow = !advancedSectionShowing
 
@@ -532,6 +570,36 @@ class AccountSetupController: UITableViewController {
         login(emailAddress: emailAddress, password: password)
     }
 
+    func updateProviderInfo() {
+            provider = dcContext.getProviderFromEmail(addr: emailCell.getText() ?? "")
+        if let hint = provider?.beforeLoginHint,
+            let status = provider?.status,
+            let statusType = ProviderInfoStatus(rawValue: status),
+            !hint.isEmpty {
+            providerInfoCell.updateInfo(hint: hint, hintType: statusType)
+            if !providerInfoShowing {
+                showProviderInfo()
+            }
+        } else if providerInfoShowing {
+            hideProviderInfo()
+        }
+    }
+
+    func showProviderInfo() {
+        basicSectionCells = [emailCell, passwordCell, providerInfoCell]
+        let providerInfoCellIndexPath = IndexPath(row: 2, section: 0)
+        tableView.insertRows(at: [providerInfoCellIndexPath], with: .fade)
+        providerInfoShowing = true
+    }
+
+    func hideProviderInfo() {
+        providerInfoCell.updateInfo(hint: nil, hintType: .none)
+        basicSectionCells = [emailCell, passwordCell]
+        let providerInfoCellIndexPath = IndexPath(row: 2, section: 0)
+        tableView.deleteRows(at: [providerInfoCellIndexPath], with: .automatic)
+        providerInfoShowing = false
+    }
+
     private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {
         addProgressHudLoginListener()
         resignFirstResponderOnAllCells()	// this will resign focus from all textFieldCells so the keyboard wont pop up anymore
@@ -558,43 +626,43 @@ class AccountSetupController: UITableViewController {
         // disable oauth2 for now as not yet supported by deltachat-rust.
         /*
          if skipOauth {
-         	// user has previously denied oAuth2-setup
-         	return false
+             // user has previously denied oAuth2-setup
+             return false
          }
 
          guard let oAuth2UrlPointer = dc_get_oauth2_url(mailboxPointer, emailAddress, "chat.delta:/auth") else {
-         	//MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL)) -- do not reset, there may be different values
-         	return false
+             //MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL)) -- do not reset, there may be different values
+             return false
          }
 
          let oAuth2Url = String(cString: oAuth2UrlPointer)
 
          if let url = URL(string: oAuth2Url) {
-         	let title = "Continue with simplified setup"
-         	// swiftlint:disable all
-         	let message = "The entered e-mail address supports a simplified setup (oAuth2).\n\nIn the next step, please allow Delta Chat to act as your Chat with E-Mail app.\n\nThere are no Delta Chat servers, your data stays on your device."
+             let title = "Continue with simplified setup"
+             // swiftlint:disable all
+             let message = "The entered e-mail address supports a simplified setup (oAuth2).\n\nIn the next step, please allow Delta Chat to act as your Chat with E-Mail app.\n\nThere are no Delta Chat servers, your data stays on your device."
 
-         	let oAuthAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-         	let confirm = UIAlertAction(title: "Confirm", style: .default, handler: {
-         		[unowned self] _ in
-         		let nc = NotificationCenter.default
-         		self.oauth2Observer = nc.addObserver(self, selector: #selector(self.oauthLoginApproved), name: NSNotification.Name("oauthLoginApproved"), object: nil)
-         		self.launchOAuthBrowserWindow(url: url)
-         	})
-         	let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
-         		_ in
-         		MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL))
-         		self.skipOauth = true
-         		handleCancel?()
+             let oAuthAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+             let confirm = UIAlertAction(title: "Confirm", style: .default, handler: {
+                 [unowned self] _ in
+                 let nc = NotificationCenter.default
+                 self.oauth2Observer = nc.addObserver(self, selector: #selector(self.oauthLoginApproved), name: NSNotification.Name("oauthLoginApproved"), object: nil)
+                 self.launchOAuthBrowserWindow(url: url)
+             })
+             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+                 _ in
+                 MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL))
+                 self.skipOauth = true
+                 handleCancel?()
 
-         	})
-         	oAuthAlertController.addAction(confirm)
-         	oAuthAlertController.addAction(cancel)
+             })
+             oAuthAlertController.addAction(confirm)
+             oAuthAlertController.addAction(cancel)
 
-         	present(oAuthAlertController, animated: true, completion: nil)
-         	return true
+             present(oAuthAlertController, animated: true, completion: nil)
+             return true
          } else {
-         	return false
+             return false
          }
          */
     }
@@ -695,8 +763,10 @@ class AccountSetupController: UITableViewController {
                 dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
             }
             else {
-                let alert = UIAlertController(title: String.localized("import_backup_title"),
-                    message: String.localizedStringWithFormat(String.localized("import_backup_no_backup_found"),
+                let alert = UIAlertController(
+                    title: String.localized("import_backup_title"),
+                    message: String.localizedStringWithFormat(
+                        String.localized("import_backup_no_backup_found"),
                         "iTunes / <Your Device> / File Sharing / Delta Chat"), // TOOD: maybe better use an iOS-specific string here
                     preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
@@ -709,7 +779,7 @@ class AccountSetupController: UITableViewController {
 
     private func emptyServer() {
         let alert = UIAlertController(title: String.localized("pref_empty_server_title"),
-            message: String.localized("pref_empty_server_msg"), preferredStyle: .safeActionSheet)
+                                      message: String.localized("pref_empty_server_msg"), preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("pref_empty_server_inbox"), style: .destructive, handler: { _ in
             self.emptyServer2ndConfirm(title: String.localized("pref_empty_server_inbox"), flags: Int(DC_EMPTY_INBOX))
         }))
@@ -721,7 +791,8 @@ class AccountSetupController: UITableViewController {
     }
 
     private func emptyServer2ndConfirm(title: String, flags: Int) {
-        let alert = UIAlertController(title: title,
+        let alert = UIAlertController(
+            title: title,
             message: String.localized("pref_empty_server_msg"), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("pref_empty_server_do_button"), style: .destructive, handler: { _ in
             self.dcContext.emptyServer(flags: flags)
@@ -737,9 +808,10 @@ class AccountSetupController: UITableViewController {
 
         let dbfile = appDelegate.dbfile()
         let dburl = URL(fileURLWithPath: dbfile, isDirectory: false)
-        let alert = UIAlertController(title: String.localized("delete_account_ask"),
-                                      message: nil,
-                                      preferredStyle: .safeActionSheet)
+        let alert = UIAlertController(
+            title: String.localized("delete_account_ask"),
+            message: nil,
+            preferredStyle: .safeActionSheet)
 
         alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { _ in
             appDelegate.stop()
@@ -785,12 +857,18 @@ class AccountSetupController: UITableViewController {
 
         let _ = advancedSectionCells.map({
             resignCell(cell: $0)
-        }
-        )
+        })
     }
 
     private func handleLoginButton() {
         loginButton.isEnabled = !(emailCell.getText() ?? "").isEmpty && !(passwordCell.getText() ?? "").isEmpty
+    }
+
+    private func handleProviderInfoButton() {
+        guard let provider = provider else {
+            return
+        }
+        coordinator?.openProviderInfo(provider: provider)
     }
 
     func resignCell(cell: UITableViewCell) {
@@ -802,8 +880,16 @@ class AccountSetupController: UITableViewController {
     @objc private func textFieldDidChange() {
         handleLoginButton()
     }
+
+    @objc private func emailCellEdited() {
+        if providerInfoShowing {
+            updateProviderInfo()
+        }
+    }
+
 }
 
+// MARK: -
 extension AccountSetupController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let currentTag = textField.tag
@@ -835,6 +921,7 @@ extension AccountSetupController: UITextFieldDelegate {
             let _ = showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
                 self.passwordCell.textField.becomeFirstResponder()
             })
+            updateProviderInfo()
         }
     }
 }

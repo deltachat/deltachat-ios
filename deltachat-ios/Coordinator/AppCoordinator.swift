@@ -271,13 +271,18 @@ class AccountSetupCoordinator: Coordinator {
 
     func showImapSecurityOptions() {
         let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
-                                                                    type: SecurityType.IMAPSecurity)
+                                                                      type: SecurityType.IMAPSecurity)
         navigationController.pushViewController(securitySettingsController, animated: true)
     }
 
     func showSmptpSecurityOptions() {
         let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"), type: SecurityType.SMTPSecurity)
         navigationController.pushViewController(securitySettingsController, animated: true)
+    }
+
+    func openProviderInfo(provider: DcProvider) {
+        guard let url = URL(string: provider.getOverviewPage) else { return }
+        UIApplication.shared.open(url)
     }
 
     func navigateBack() {
