@@ -62,7 +62,6 @@ class AccountSetupController: UITableViewController {
     ]
     private lazy var folderCells: [UITableViewCell] = [inboxWatchCell, sentboxWatchCell, mvboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
     private lazy var dangerCells: [UITableViewCell] = [emptyServerCell, deleteAccountCell]
-    
     private let editView: Bool
     private var advancedSectionShowing: Bool = false
     private var providerInfoShowing: Bool = false
