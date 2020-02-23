@@ -62,7 +62,7 @@ class HelpViewController: UIViewController {
             var fileURL: URL?
 
             fileURL = Bundle.main.url(forResource: "help", withExtension: "html", subdirectory: "Assets/Help/\(lang)") ??
-                Bundle.main.url(forResource: "en_help", withExtension: "html", subdirectory: "Assets/Help/en")
+                Bundle.main.url(forResource: "help", withExtension: "html", subdirectory: "Assets/Help/en")
 
             guard let url = fileURL else {
                 safe_fatalError("could not find help asset")
