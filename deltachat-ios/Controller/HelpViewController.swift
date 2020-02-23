@@ -1,10 +1,11 @@
 import UIKit
 import WebKit
 
-class HelpViewController: UIViewController {
+class HelpViewController: UIViewController, WKNavigationDelegate {
 
     private lazy var webView: WKWebView = {
         let view = WKWebView()
+        view.navigationDelegate = self
         return view
     }()
 
@@ -15,6 +16,19 @@ class HelpViewController: UIViewController {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated {
+            if let url = navigationAction.request.url,
+                url.host != nil,
+                UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+                decisionHandler(.cancel)
+                return
+            }
+        }
+        decisionHandler(.allow)
     }
 
     // MARK: - lifecycle
