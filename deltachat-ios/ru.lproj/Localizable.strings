@@ -483,7 +483,7 @@
 "qrscan_contains_text" = "Текст из QR кода:\n\n%1$@";
 "qrscan_contains_url" = "URL из QR кода:\n\n%1$@";
 "qrscan_fingerprint_label" = "Отпечаток";
-"qrscan_x_verified_introduce_myself" = "Подлинность %1$@ проверена, передается личная информация…";
+"qrscan_x_verified_introduce_myself" = "Подлинность %1$@ проверена, представляемся…";
 "qrshow_title" = "QR код приглашения";
 "qrshow_x_joining" = "%1$@ присоединилось.";
 "qrshow_x_verified" = "%1$@ проверен.";

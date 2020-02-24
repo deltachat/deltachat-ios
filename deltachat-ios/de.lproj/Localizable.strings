@@ -216,7 +216,7 @@
 "chat_record_slide_to_cancel" = "Schieben um abzubrechen";
 "chat_record_explain" = "Tippen und halten, um eine Sprachnachricht aufzunehmen, loslassen um zu senden. ";
 "chat_no_chats_yet_title" = "Posteingang ist leer.\n\"+\" drücken, um einen neuen Chat zu starten.";
-"chat_no_chats_yet_hint" = "Es kann mit anderen Delta Chat Benutzern und mit jeder E-Mail-Adresse gechattet werden,";
+"chat_no_chats_yet_hint" = "Es kann mit anderen Delta Chat BenutzerInnen und mit jeder E-Mail-Adresse gechattet werden,";
 "chat_all_archived" = "Alle Chats archiviert.\n\"+\" drücken, um einen neuen Chat zu starten.";
 "chat_share_with_title" = "Teilen mit";
 "chat_input_placeholder" = "Nachricht";
@@ -375,7 +375,7 @@
 "pref_read_receipts_explain" = "Wenn Lesebestätigungen deaktiviert sind, werden auch keine Lesebestätigungen von anderen angezeigt. ";
 "pref_manage_keys" = "Schlüssel verwalten";
 "pref_use_system_emoji" = "System-Emoji benutzen";
-"pref_use_system_emoji_explain" = "Deaktivieung der integrierten Emoji-Unterstützung von Delta Chat.";
+"pref_use_system_emoji_explain" = "Deaktivierung der integrierten Emoji-Unterstützung von Delta Chat.";
 "pref_app_access" = "App-Zugriff";
 "pref_communication" = "Kommunikation";
 "pref_chats" = "Chats";
