@@ -1,7 +1,8 @@
 body {
-    font-family: sans-serif;
-    font-size: 300%;
-	padding: 2rem;
+    font-size: 13pt;
+    font-family: -apple-system, sans-serif;
+	padding: 0 .5rem .5rem .5rem;
+    -webkit-text-size-adjust: none;
 }
 
 a {
@@ -23,14 +24,14 @@ ul#top > li {
 }
 
 ul#top li {
-  margin-top: 1.7rem;
-  margin-bottom: 1.7rem;
+  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
   font-weight: normal;
 }
 
 p.back {
-  font-size: 3rem;
-  padding: 0 1rem 0 0;
+  font-size: 1.5rem;
+  padding: 0 2rem 0 0;
 }
 
 
