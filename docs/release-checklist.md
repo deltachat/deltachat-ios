@@ -29,9 +29,9 @@ in Xcode:
    b) select menu "Product/Archive"
       (codesign may ask for a password, this _may_ be empty and "Enter" will do)
    c) on success, a dialog with all releases on the machine is shown;
-      select the most recent, then "Distribute/App Store Connect/Upload"
-      leave default options (strip symbols: yes, upload symbols: yes),
-      in the summary, click "Upload" again ... coffees ...
+      select the most recent, then "Distribute/App Store Connect/Next/Upload",
+      leave default options (strip symbols: yes, upload symbols: yes,
+      automatically manage signing: yes), in the summary, click "Upload" again
 
 on https://appstoreconnect.apple.com :
 
@@ -46,6 +46,8 @@ on https://appstoreconnect.apple.com :
 
 8. for a **Reguar release**, open "My Apps/Delta Chat/+Version or Platform"
    and follow the dialogs
+
+in both cases, make sure, the provided test-email-address is working.
 
 finally, back on command line:
 
