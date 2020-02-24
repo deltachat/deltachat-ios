@@ -48,8 +48,7 @@ on https://appstoreconnect.apple.com :
    and follow the dialogs
 
 in both cases, make sure, the provided test-email-address is working.
-
 finally, back on command line:
 
-9. commit changes from 1.-4.
-   and on Github: "Draft a new release" with a version in the form `v1.2.3`
+9. commit changes from 1.-4. add add a tag:
+   $ git tag v1.2.3; git push --tags
