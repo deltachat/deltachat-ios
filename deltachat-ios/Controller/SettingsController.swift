@@ -177,6 +177,13 @@ internal final class SettingsViewController: QuickTableViewController {
             ),
 
             Section(
+                title: nil,
+                rows: [
+                    NavigationRow(text: String.localized("menu_help"), detailText: .none, action: { [weak self] in self?.openHelp($0) }),
+                ]
+            ),
+
+            Section(
                 title: String.localized("pref_communication"),
                 rows: [
                     NavigationRow(text: String.localized("menu_deaddrop"),
@@ -226,15 +233,7 @@ internal final class SettingsViewController: QuickTableViewController {
                 rows: [
                     TapActionRow(text: String.localized("export_backup_desktop"), action: { [weak self] in self?.createBackup($0) }),
                 ],
-                footer: String.localized("pref_backup_explain")
-            ),
-
-            Section(
-                title: nil,
-                rows: [
-                    TapActionRow(text: String.localized("menu_help"), action: { [weak self] in self?.openHelp($0) }),
-                ],
-                footer: appNameAndVersion
+                footer: String.localized("pref_backup_explain") + "\n\n\n" + appNameAndVersion
             ),
         ]
     }
