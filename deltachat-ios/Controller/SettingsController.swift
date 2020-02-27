@@ -177,7 +177,7 @@ internal final class SettingsViewController: QuickTableViewController {
             ),
 
             Section(
-                title: String.localized("pref_communication"),
+                title: nil,
                 rows: [
                     NavigationRow(text: String.localized("menu_deaddrop"),
                               detailText: .none,
