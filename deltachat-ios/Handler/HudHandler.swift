@@ -47,6 +47,8 @@ class HudHandler {
         let delay = 1.0
 
         if let hud = self.backupHud {
+            hud.setProgress(1.0, animated: true)
+            hud.detailTextLabel.text = "100%"
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
                 UIView.animate(
                     withDuration: 0.1, animations: {
