@@ -228,6 +228,13 @@ internal final class SettingsViewController: QuickTableViewController {
                 ],
                 footer: String.localized("pref_backup_explain")
             ),
+            Section(
+                title: String.localized("pref_other"),
+                rows: [
+                    TapActionRow(text: String.localized("pref_manage_keys"), action: { [weak self] in self?.showKeyManagementDialog($0) }),
+                ],
+                footer: String.localized("pref_backup_explain")
+            ),
 
             Section(
                 title: nil,
@@ -239,20 +246,37 @@ internal final class SettingsViewController: QuickTableViewController {
         ]
     }
 
+    private func startImex(what: Int32) {
+        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if !documents.isEmpty {
+            self.hudHandler.showHud(String.localized("one_moment"))
+            DispatchQueue.main.async {
+                self.dcContext.imex(what: what, directory: documents[0])
+            }
+        } else {
+            logger.error("document directory not found")
+        }
+    }
+
     private func createBackup(_: Row) {
         let alert = UIAlertController(title: String.localized("pref_backup_export_explain"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("pref_backup_export_start_button"), style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
-            let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-            if !documents.isEmpty {
-                logger.info("create backup in \(documents)")
-                self.hudHandler.showHud(String.localized("one_moment"))
-                DispatchQueue.main.async {
-                    dc_imex(mailboxPointer, DC_IMEX_EXPORT_BACKUP, documents[0], nil)
-                }
-            } else {
-                logger.error("document directory not found")
-            }
+            self.startImex(what: DC_IMEX_EXPORT_BACKUP)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func showKeyManagementDialog(_: Row) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_export_secret_keys"), style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+            self.startImex(what: DC_IMEX_EXPORT_SELF_KEYS)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_import_secret_keys"), style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+            self.startImex(what: DC_IMEX_IMPORT_SELF_KEYS)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
