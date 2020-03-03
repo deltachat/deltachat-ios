@@ -784,8 +784,8 @@ extension ChatViewController: MessagesDataSource {
             .paragraphStyle: NSParagraphStyle()
         ]
 
+        let text = NSMutableAttributedString()
         if isFromCurrentSender(message: message) {
-            let text = NSMutableAttributedString()
             if let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle {
                 style.alignment = .right
                 timestampAttributes[.paragraphStyle] = style
@@ -817,6 +817,10 @@ extension ChatViewController: MessagesDataSource {
                 ]
             ))
 
+            if m.showPadlock() {
+                attachPadlock(to: text)
+            }
+
             return text
         }
 
@@ -827,7 +831,29 @@ extension ChatViewController: MessagesDataSource {
             }
         }
 
-        return NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes)
+        text.append(NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes))
+        if m.showPadlock() {
+            attachPadlock(to: text)
+        }
+        return text
+    }
+
+    private func attachPadlock(to text: NSMutableAttributedString) { let imageAttachment = NSTextAttachment()
+        imageAttachment.image = UIImage(named: "ic_lock.png")
+        imageAttachment.image?.accessibilityIdentifier = String.localized("encrypted_message")
+        let imageString = NSMutableAttributedString(attachment: imageAttachment)
+        imageString.addAttributes([NSAttributedString.Key.baselineOffset: -1], range: NSRange(location: 0, length: 1))
+        text.append(NSAttributedString(string: " "))
+        text.append(imageString)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if #available(iOS 13.0, *) {
+            if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+                refreshMessages()
+            }
+        }
     }
 
     func updateMessage(_ messageId: Int) {
