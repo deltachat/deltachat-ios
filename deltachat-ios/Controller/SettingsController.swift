@@ -18,14 +18,13 @@ internal final class SettingsViewController: UITableViewController {
         case receiptConfirmation = 5
         case autocryptPreferences = 6
         case sendAutocryptMessage = 7
-        case exportBackup
-        case help
+        case exportBackup = 8
+        case exportKey = 9
+        case help = 10
     }
 
     weak var coordinator: SettingsCoordinator?
 
-    private let sectionProfileInfo = 0
-    private let rowProfile = 0
     private var dcContext: DcContext
 
     private let externalPathDescr = "File Sharing/Delta Chat"
@@ -33,6 +32,7 @@ internal final class SettingsViewController: UITableViewController {
     let documentInteractionController = UIDocumentInteractionController()
     var backupProgressObserver: Any?
     var configureProgressObserver: Any?
+    private let externalPathDescr = "File Sharing/Delta Chat"
 
     private lazy var hudHandler: HudHandler = {
         let hudHandler = HudHandler(parentView: self.view)
@@ -138,6 +138,14 @@ internal final class SettingsViewController: UITableViewController {
         return cell
     }()
 
+    private var exportKeyCell: ActionCell = {
+        let cell = ActionCell()
+        cell.tag = CellTags.exportKey.rawValue
+        cell.actionTitle = String.localized("menu_advanced")
+        cell.selectionStyle = .default
+        return cell
+    }()
+
     private var helpCell: ActionCell = {
         let cell = ActionCell()
         cell.tag = CellTags.help.rawValue
@@ -164,7 +172,7 @@ internal final class SettingsViewController: UITableViewController {
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
             footerTitle: String.localized("autocrypt_explain"),
-            cells: [autocryptPreferencesCell, sendAutocryptMessageCell]
+            cells: [autocryptPreferencesCell, sendAutocryptMessageCell, exportKeyCell]
         )
         let backupSection = SectionConfigs(
             headerTitle: String.localized("pref_backup"),
@@ -280,6 +288,7 @@ internal final class SettingsViewController: UITableViewController {
         case .autocryptPreferences: handleAutocryptPreferencesToggle()
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .exportBackup: createBackup()
+        case .exportKey: showKeyManagementDialog()
         case .help: coordinator?.showHelp()
         }
     }
@@ -535,6 +544,42 @@ internal final class SettingsViewController: UITableViewController {
         }))
         askAlert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(askAlert, animated: true, completion: nil)
+    }
+
+    private func showKeyManagementDialog() {
+        let alert = UIAlertController(title: String.localized("pref_manage_keys"), message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_export_secret_keys"), style: .default, handler: { _ in
+            let msg = String.localizedStringWithFormat(String.localized("pref_managekeys_export_explain"), self.externalPathDescr)
+            let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+                self.startImex(what: DC_IMEX_EXPORT_SELF_KEYS)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_import_secret_keys"), style: .default, handler: { _ in
+            let msg = String.localizedStringWithFormat(String.localized("pref_managekeys_import_explain"), self.externalPathDescr)
+            let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+                self.startImex(what: DC_IMEX_IMPORT_SELF_KEYS)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func startImex(what: Int32) {
+        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if !documents.isEmpty {
+            self.hudHandler.showHud(String.localized("one_moment"))
+            DispatchQueue.main.async {
+                self.dcContext.imex(what: what, directory: documents[0])
+            }
+        } else {
+            logger.error("document directory not found")
+        }
     }
 
     // MARK: - updates
