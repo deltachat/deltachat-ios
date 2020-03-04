@@ -127,6 +127,7 @@
 		AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */; };
 		AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B31722672DFC00EC37A1 /* ActionCell.swift */; };
 		AE38B31A2267328200EC37A1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B3192267328200EC37A1 /* Colors.swift */; };
+		AE406EF0240FF8FF005F7022 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE406EEF240FF8FF005F7022 /* ProfileCell.swift */; };
 		AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4AEE3422B1030D000AA495 /* PreviewController.swift */; };
 		AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */; };
 		AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */; };
@@ -356,6 +357,7 @@
 		AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionCell.swift; sourceTree = "<group>"; };
 		AE38B31722672DFC00EC37A1 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		AE38B3192267328200EC37A1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		AE406EEF240FF8FF005F7022 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		AE4AEE3422B1030D000AA495 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailHeader.swift; sourceTree = "<group>"; };
 		AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupViewController.swift; sourceTree = "<group>"; };
@@ -692,6 +694,7 @@
 		AE406EEE240FA454005F7022 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				AE406EEF240FF8FF005F7022 /* ProfileCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1112,6 +1115,7 @@
 				305961DC2346125100C80F33 /* MessagesLayoutDelegate.swift in Sources */,
 				3059620A2346125100C80F33 /* TextMessageSizeCalculator.swift in Sources */,
 				78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */,
+				AE406EF0240FF8FF005F7022 /* ProfileCell.swift in Sources */,
 				305961F02346125100C80F33 /* NSConstraintLayoutSet.swift in Sources */,
 				3059620E234614E700C80F33 /* DcContact+Extension.swift in Sources */,
 				305961F72346125100C80F33 /* MessageCollectionViewCell.swift in Sources */,

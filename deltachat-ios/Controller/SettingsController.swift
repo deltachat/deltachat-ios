@@ -43,9 +43,11 @@ internal final class SettingsViewController: UITableViewController {
 
     private let profileHeader = ContactDetailHeader()
 
-    private lazy var profileCell: UITableViewCell = {
-        let cell = customProfileCell()
-        cell.accessoryType = .disclosureIndicator
+    private lazy var profileCell: ProfileCell = {
+        let displayName = DcConfig.displayname ?? String.localized("pref_your_name")
+        let email = (DcConfig.addr ?? "")
+        let selfContact = DcContact(id: Int(DC_CONTACT_ID_SELF))
+        let cell = ProfileCell(contact: selfContact)
         cell.tag = CellTags.profile.rawValue
         return cell
     }()
@@ -194,6 +196,11 @@ internal final class SettingsViewController: UITableViewController {
         documentInteractionController.delegate = self as? UIDocumentInteractionControllerDelegate
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateCells()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
 
         super.viewDidAppear(animated)
@@ -228,11 +235,6 @@ internal final class SettingsViewController: UITableViewController {
                 }
             }
         }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // setTable()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -488,17 +490,20 @@ internal final class SettingsViewController: UITableViewController {
 
     private func handleNotificationToggle() {
         notificationSwitch.isOn = !notificationSwitch.isOn
-        UserDefaults.standard.set(notificationSwitch.isOn, forKey: "notifications_disabled")
+        UserDefaults.standard.set(!notificationSwitch.isOn, forKey: "notifications_disabled")
+        UserDefaults.standard.synchronize()
     }
 
     private func handleReceiptConfirmationToggle() {
         receiptConfirmationSwitch.isOn = !receiptConfirmationSwitch.isOn
-        UserDefaults.standard.set(receiptConfirmationSwitch.isOn, forKey: "notifications_disabled")
+        DcConfig.mdnsEnabled = receiptConfirmationSwitch.isOn
+        dc_configure(mailboxPointer)
     }
 
     private func handleAutocryptPreferencesToggle() {
         autocryptSwitch.isOn = !autocryptSwitch.isOn
         DcConfig.e2eeEnabled = autocryptSwitch.isOn
+        dc_configure(mailboxPointer)
     }
 
     private func sendAutocryptSetupMessage() {
@@ -530,5 +535,14 @@ internal final class SettingsViewController: UITableViewController {
         }))
         askAlert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(askAlert, animated: true, completion: nil)
+    }
+
+    // MARK: - updates
+    private func updateCells() {
+        let selfContact = DcContact(id: Int(DC_CONTACT_ID_SELF))
+        profileCell.update(contact: selfContact)
+
+        chatPreferenceCell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: DcConfig.showEmails)
+
     }
 }
