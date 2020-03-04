@@ -1,14 +1,12 @@
 # Delta Chat iOS Changelog
 
-## v1.2.0
-2020-02-24
+## v1.2.1
+2020-03-04
 
 * on log in, for known providers, detailed information are shown if needed;
 * in these cases, also the log in is faster
   as needed settings are available in-app
 * save traffic: messages are downloaded only if really needed,
-* keys are 2/3rd smaller in size by the move to Ed25519 keys;
-  this saves traffic and also has speed advantages
 * chats can now be pinned so that they stay sticky atop of the chat list
 * integrate the help to the app
   so that it is also available when the device is offline
@@ -16,11 +14,13 @@
   the verification is done in background
 * unified 'send message' option in all user profiles
 * rework user and group profiles
+* add options to manage keys at "Settings/Autocrypt/Advanced"
 * fix updating names from incoming mails
+* fix encryption to Ed25519 keys that will be used in one of the next releases
 * several bug fixes, eg. on sending and receivind messages, see
   https://github.com/deltachat/deltachat-core-rust/blob/master/CHANGELOG.md#1250
   for details on that
-* update translations
+* add Croatian and Esperanto translations, update other translations
 
 The changes have been done by Alexander Krotov, Allan Nordhøy, Ampli-fier,
 Angelo Fuchs, Andrei Guliaikin, Asiel Díaz Benítez, Besnik, Björn Petersen,
