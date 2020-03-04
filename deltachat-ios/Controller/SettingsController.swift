@@ -217,21 +217,16 @@ internal final class SettingsViewController: QuickTableViewController {
                                 }
                     }),
                     TapActionRow(text: String.localized("autocrypt_send_asm_title"), action: { [weak self] in self?.sendAsm($0) }),
+                    TapActionRow(text: String.localized("menu_advanced"),
+                                  action: { [weak self] in self?.showKeyManagementDialog($0) }),
                 ],
                 footer: String.localized("autocrypt_explain")
             ),
 
             Section(
-                title: String.localized("pref_backup"),
+                title: nil,
                 rows: [
-                    TapActionRow(text: String.localized("export_backup_desktop"), action: { [weak self] in self?.createBackup($0) }),
-                ],
-                footer: String.localized("pref_backup_explain")
-            ),
-            Section(
-                title: String.localized("pref_other"),
-                rows: [
-                    TapActionRow(text: String.localized("pref_manage_keys"), action: { [weak self] in self?.showKeyManagementDialog($0) }),
+                    TapActionRow(text: String.localized("pref_backup"), action: { [weak self] in self?.createBackup($0) }),
                 ],
                 footer: String.localized("pref_backup_explain")
             ),
@@ -269,7 +264,7 @@ internal final class SettingsViewController: QuickTableViewController {
     }
 
     private func showKeyManagementDialog(_: Row) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+        let alert = UIAlertController(title: String.localized("pref_manage_keys"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_export_secret_keys"), style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
             self.startImex(what: DC_IMEX_EXPORT_SELF_KEYS)
