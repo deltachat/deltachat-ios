@@ -210,7 +210,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             }
         case .memberManagement:
             guard let actionCell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as? ActionCell else {
-                safe_fatalError("could not dequeu action cell")
+                safe_fatalError("could not dequeue action cell")
                 break
             }
             if row == memberManagementRowAddMembers {
@@ -224,7 +224,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             return actionCell
         case .members:
             guard let contactCell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as? ContactCell else {
-                safe_fatalError("could not dequeu contactCell cell")
+                safe_fatalError("could not dequeue contactCell cell")
                 break
 
             }
@@ -311,7 +311,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { _ in
                     let success = dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(contact.id))
                     if success == 1 {
-                        self.removeGroupeMemberFromTableAt(indexPath)
+                        self.removeGroupMemberFromTableAt(indexPath)
                     }
                 }))
                 alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -328,7 +328,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         return DcContact(id: groupMemberIds[row])
     }
 
-    private func removeGroupeMemberFromTableAt(_ indexPath: IndexPath) {
+    private func removeGroupMemberFromTableAt(_ indexPath: IndexPath) {
         self.groupMemberIds.remove(at: indexPath.row)
         self.tableView.deleteRows(at: [indexPath], with: .automatic)
         updateHeader()  // to display correct group size
