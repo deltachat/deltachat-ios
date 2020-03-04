@@ -3,11 +3,14 @@ import UIKit
 class GroupChatDetailViewController: UIViewController {
 
     enum ProfileSections {
+        case attachments
         case memberManagement // add member, qr invideCode
         case members // contactCells
         case chatActions // archive, leave, delete
     }
 
+    private let attachmentsRowGallery = 0
+    private let attachmentsRowDocuments = 1
     private let memberManagementRowAddMembers = 0
     private let memberManagementRowQrInvite = 1
     private let chatActionsRowArchiveChat = 0
@@ -17,7 +20,7 @@ class GroupChatDetailViewController: UIViewController {
     private let context: DcContext
     weak var coordinator: GroupChatDetailCoordinator?
 
-    private let sections: [ProfileSections] = [.memberManagement, .members, .chatActions]
+    private let sections: [ProfileSections] = [.attachments, .memberManagement, .members, .chatActions]
 
     private var currentUser: DcContact? {
         let myId = groupMemberIds.filter { DcContact(id: $0).email == DcConfig.addr }.first
@@ -168,6 +171,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionType = sections[section]
         switch sectionType {
+        case .attachments:
+            return 2
         case .memberManagement:
             return 2
         case .members:
@@ -180,12 +185,10 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let sectionType = sections[indexPath.section]
         switch sectionType {
-        case .memberManagement:
+        case .attachments, .memberManagement, .chatActions:
             return Constants.defaultCellHeight
         case .members:
             return ContactCell.cellHeight
-        case .chatActions:
-            return Constants.defaultCellHeight
         }
     }
 
@@ -193,6 +196,18 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         let row = indexPath.row
         let sectionType = sections[indexPath.section]
         switch sectionType {
+        case .attachments:
+            guard let actionCell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as? ActionCell else {
+                safe_fatalError("could not dequeue action cell")
+                break
+            }
+            if row == attachmentsRowGallery {
+                actionCell.actionTitle = String.localized("gallery")
+                actionCell.actionColor = UIColor.systemBlue
+            } else if row == attachmentsRowDocuments {
+                actionCell.actionTitle = String.localized("documents")
+                actionCell.actionColor = UIColor.systemBlue
+            }
         case .memberManagement:
             guard let actionCell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as? ActionCell else {
                 safe_fatalError("could not dequeu action cell")
@@ -235,6 +250,12 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         let row = indexPath.row
 
         switch sectionType {
+        case .attachments:
+            if row == attachmentsRowGallery {
+                coordinator?.showGallery(chatId: chat.id)
+            } else if row == attachmentsRowDocuments {
+                coordinator?.showDocuments(chatId: chat.id)
+            }
         case .memberManagement:
             if row == memberManagementRowAddMembers {
                 coordinator?.showAddGroupMember(chatId: chat.id)

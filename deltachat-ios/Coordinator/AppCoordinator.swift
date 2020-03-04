@@ -394,6 +394,35 @@ class GroupChatDetailCoordinator: Coordinator {
         navigationController.pushViewController(contactDetailController, animated: true)
     }
 
+    func showDocuments(chatId: Int) {
+        let messageIds = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_FILE, messageType2: DC_MSG_AUDIO, messageType3: 0)
+        var mediaUrls: [URL] = []
+        for messageId in messageIds {
+            let message = DcMsg.init(id: messageId)
+            if let url = message.fileURL {
+                logger.debug("add file url: \(url.absoluteString)")
+                mediaUrls.insert(url, at: 0)
+            }
+        }
+        // these are the files user will be able to swipe trough
+        let previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
+        navigationController.present(previewController.qlController, animated: true, completion: nil)
+    }
+
+    func showGallery(chatId: Int) {
+        let messageIds = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_GIF, messageType2: DC_MSG_IMAGE, messageType3: DC_MSG_VIDEO)
+        var mediaUrls: [URL] = []
+        for messageId in messageIds {
+            let message = DcMsg.init(id: messageId)
+            if let url = message.fileURL {
+                mediaUrls.insert(url, at: 0)
+            }
+        }
+        // these are the files user will be able to swipe trough
+        let previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
+        navigationController.present(previewController.qlController, animated: true, completion: nil)
+    }
+
     func deleteChat() {
         /*
         app will navigate to chatlist or archive and delete the chat there
