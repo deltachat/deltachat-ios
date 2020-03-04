@@ -208,6 +208,10 @@ class DcContext {
         guard let dcProviderPointer = dc_provider_new_from_email(contextPointer, addr) else { return nil }
         return DcProvider(dcProviderPointer)
     }
+
+    func imex(what: Int32, directory: String) {
+        dc_imex(contextPointer, what, directory, nil)
+    }
 }
 
 class DcConfig {

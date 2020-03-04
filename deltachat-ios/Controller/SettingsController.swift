@@ -9,6 +9,8 @@ internal final class SettingsViewController: QuickTableViewController {
     private let rowProfile = 0
     private var dcContext: DcContext
 
+    private let externalPathDescr = "File Sharing/Delta Chat"
+
     let documentInteractionController = UIDocumentInteractionController()
     var backupProgressObserver: Any?
     var configureProgressObserver: Any?
@@ -217,14 +219,16 @@ internal final class SettingsViewController: QuickTableViewController {
                                 }
                     }),
                     TapActionRow(text: String.localized("autocrypt_send_asm_title"), action: { [weak self] in self?.sendAsm($0) }),
+                    TapActionRow(text: String.localized("menu_advanced"),
+                                  action: { [weak self] in self?.showKeyManagementDialog($0) }),
                 ],
                 footer: String.localized("autocrypt_explain")
             ),
 
             Section(
-                title: String.localized("pref_backup"),
+                title: nil,
                 rows: [
-                    TapActionRow(text: String.localized("export_backup_desktop"), action: { [weak self] in self?.createBackup($0) }),
+                    TapActionRow(text: String.localized("pref_backup"), action: { [weak self] in self?.createBackup($0) }),
                 ],
                 footer: String.localized("pref_backup_explain")
             ),
@@ -239,20 +243,47 @@ internal final class SettingsViewController: QuickTableViewController {
         ]
     }
 
+    private func startImex(what: Int32) {
+        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if !documents.isEmpty {
+            self.hudHandler.showHud(String.localized("one_moment"))
+            DispatchQueue.main.async {
+                self.dcContext.imex(what: what, directory: documents[0])
+            }
+        } else {
+            logger.error("document directory not found")
+        }
+    }
+
     private func createBackup(_: Row) {
         let alert = UIAlertController(title: String.localized("pref_backup_export_explain"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("pref_backup_export_start_button"), style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
-            let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-            if !documents.isEmpty {
-                logger.info("create backup in \(documents)")
-                self.hudHandler.showHud(String.localized("one_moment"))
-                DispatchQueue.main.async {
-                    dc_imex(mailboxPointer, DC_IMEX_EXPORT_BACKUP, documents[0], nil)
-                }
-            } else {
-                logger.error("document directory not found")
-            }
+            self.startImex(what: DC_IMEX_EXPORT_BACKUP)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func showKeyManagementDialog(_: Row) {
+        let alert = UIAlertController(title: String.localized("pref_manage_keys"), message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_export_secret_keys"), style: .default, handler: { _ in
+            let msg = String.localizedStringWithFormat(String.localized("pref_managekeys_export_explain"), self.externalPathDescr)
+            let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+              self.startImex(what: DC_IMEX_EXPORT_SELF_KEYS)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_import_secret_keys"), style: .default, handler: { _ in
+            let msg = String.localizedStringWithFormat(String.localized("pref_managekeys_import_explain"), self.externalPathDescr)
+            let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+                self.startImex(what: DC_IMEX_IMPORT_SELF_KEYS)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
