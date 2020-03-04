@@ -2,7 +2,19 @@ import JGProgressHUD
 import QuickTableViewController
 import UIKit
 
-internal final class SettingsViewController: QuickTableViewController {
+internal final class SettingsViewController: UITableViewController {
+
+    private struct SettingsSection {
+        let headerTitle: String?
+        let footerTitle: String?
+        let cells: [UITableViewCell]
+    }
+
+    private enum CellTags: Int {
+        case profileCell = 0
+    }
+
+
     weak var coordinator: SettingsCoordinator?
 
     private let sectionProfileInfo = 0
@@ -20,9 +32,30 @@ internal final class SettingsViewController: QuickTableViewController {
         return hudHandler
     }()
 
+    // MARK: - cells
+
+    private let profileHeader = ContactDetailHeader()
+
+    private lazy var profileCell: UITableViewCell = {
+        let cell = customProfileCell()
+        cell.accessoryType = .disclosureIndicator
+        cell.tag = CellTags.profileCell.rawValue
+        return cell
+    }()
+
+    private lazy var sections: [SettingsSection] = {
+        let profileSection = SettingsSection(
+            headerTitle: String.localized("pref_profile_info_headline"),
+            footerTitle: nil,
+            cells: [profileCell]
+        )
+        return [profileSection]
+    }()
+
+
     init(dcContext: DcContext) {
         self.dcContext = dcContext
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: .grouped)
     }
 
     required init?(coder _: NSCoder) {
@@ -75,7 +108,7 @@ internal final class SettingsViewController: QuickTableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setTable()
+        // setTable()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -90,16 +123,39 @@ internal final class SettingsViewController: QuickTableViewController {
         }
     }
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sections[section].cells.count
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == sectionProfileInfo && indexPath.row == rowProfile {
-            return customProfileCell(tableView, indexPath: indexPath)
-        } else {
-            return super.tableView(tableView, cellForRowAt: indexPath)
+        return sections[indexPath.section].cells[indexPath.row]
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath), let cellTag = CellTags(rawValue: cell.tag) else {
+            safe_fatalError()
+            return
+        }
+
+        switch cellTag {
+        case .profileCell: self.coordinator?.showEditSettingsController()
         }
     }
 
-    private func customProfileCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section].headerTitle
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return sections[section].footerTitle
+    }
+
+    private func customProfileCell() -> UITableViewCell {
+        let cell = UITableViewCell()
 
         cell.contentView.subviews.forEach({ $0.removeFromSuperview() })
 
@@ -157,6 +213,7 @@ internal final class SettingsViewController: QuickTableViewController {
         return subtitleView
     }
 
+    /*
     private func setTable() {
 
         var appNameAndVersion = "Delta Chat"
@@ -242,6 +299,7 @@ internal final class SettingsViewController: QuickTableViewController {
             ),
         ]
     }
+    */
 
     private func startImex(what: Int32) {
         let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)

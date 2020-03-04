@@ -689,6 +689,13 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		AE406EEE240FA454005F7022 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		AE77838B23E32EAA0093EABD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -776,6 +783,7 @@
 		AE851AC3227C695900ED86F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AE406EEE240FA454005F7022 /* Cell */,
 				B26B3BC6236DC3DC008ED35A /* SwitchCell.swift */,
 				78E45E4B21D404AE00D4B15E /* CustomMessageCell.swift */,
 				70B8882D2091B8550074812E /* ContactCell.swift */,
