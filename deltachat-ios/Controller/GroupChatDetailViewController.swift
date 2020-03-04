@@ -252,9 +252,9 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         switch sectionType {
         case .attachments:
             if row == attachmentsRowGallery {
-                coordinator?.showGallery(chatId: chat.id)
+                coordinator?.showGallery()
             } else if row == attachmentsRowDocuments {
-                coordinator?.showDocuments(chatId: chat.id)
+                coordinator?.showDocuments()
             }
         case .memberManagement:
             if row == memberManagementRowAddMembers {

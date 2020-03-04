@@ -349,6 +349,7 @@ class GroupChatDetailCoordinator: Coordinator {
     let chatId: Int
 
     private var childCoordinators: [Coordinator] = []
+    private var previewController: PreviewController?
 
     init(dcContext: DcContext, chatId: Int, navigationController: UINavigationController) {
         self.dcContext = dcContext
@@ -394,23 +395,16 @@ class GroupChatDetailCoordinator: Coordinator {
         navigationController.pushViewController(contactDetailController, animated: true)
     }
 
-    func showDocuments(chatId: Int) {
-        let messageIds = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_FILE, messageType2: DC_MSG_AUDIO, messageType3: 0)
-        var mediaUrls: [URL] = []
-        for messageId in messageIds {
-            let message = DcMsg.init(id: messageId)
-            if let url = message.fileURL {
-                logger.debug("add file url: \(url.absoluteString)")
-                mediaUrls.insert(url, at: 0)
-            }
-        }
-        // these are the files user will be able to swipe trough
-        let previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
-        navigationController.present(previewController.qlController, animated: true, completion: nil)
+    func showDocuments() {
+        presentPreview(for: DC_MSG_FILE, messageType2: DC_MSG_AUDIO, messageType3: 0)
     }
 
-    func showGallery(chatId: Int) {
-        let messageIds = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_GIF, messageType2: DC_MSG_IMAGE, messageType3: DC_MSG_VIDEO)
+    func showGallery() {
+        presentPreview(for: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
+    }
+
+    private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {
+        let messageIds = dcContext.getChatMedia(chatId: chatId, messageType: messageType, messageType2: messageType2, messageType3: messageType3)
         var mediaUrls: [URL] = []
         for messageId in messageIds {
             let message = DcMsg.init(id: messageId)
@@ -418,9 +412,10 @@ class GroupChatDetailCoordinator: Coordinator {
                 mediaUrls.insert(url, at: 0)
             }
         }
-        // these are the files user will be able to swipe trough
-        let previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
-        navigationController.present(previewController.qlController, animated: true, completion: nil)
+        previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
+        if let previewController = previewController {
+            navigationController.pushViewController(previewController.qlController, animated: true)
+        }
     }
 
     func deleteChat() {
