@@ -344,7 +344,7 @@
 "pref_enter_sends_explain" = "Нажатие клавиши Enter отправит текстовые сообщения";
 "pref_outgoing_media_quality" = "Качество отправляемого медиа-контента";
 "pref_outgoing_balanced" = "Сбалансированное";
-"pref_outgoing_worse" = "Низкого качество, с меньшим размером";
+"pref_outgoing_worse" = "Низкого качества, с меньшим размером";
 "pref_vibrate" = "Вибрация";
 "pref_chat_settings" = "Настройки чата";
 "pref_change_secret" = "Изменение метода блокировки";

@@ -14,6 +14,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d min</string>
+			<key>few</key>
+			<string>%d min</string>
 			<key>other</key>
 			<string>%d min</string>
 		</dict>
@@ -29,25 +31,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d timme</string>
+			<string>%d sat</string>
+			<key>few</key>
+			<string>%d sata</string>
 			<key>other</key>
-			<string>%d timmar</string>
-		</dict>
-	</dict>
-	<key>n_chats</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>%d chatt</string>
-			<key>other</key>
-			<string>%d chattar</string>
+			<string>%d sati</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -62,8 +50,10 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d kontakt</string>
+			<key>few</key>
+			<string>%d kontakta</string>
 			<key>other</key>
-			<string>%d kontakter</string>
+			<string>%d kontakata</string>
 		</dict>
 	</dict>
 	<key>n_messages</key>
@@ -77,9 +67,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d meddelande</string>
+			<string>%d poruka</string>
+			<key>few</key>
+			<string>%d poruke</string>
 			<key>other</key>
-			<string>%d meddelanden</string>
+			<string>%d poruka</string>
 		</dict>
 	</dict>
 	<key>n_members</key>
@@ -93,41 +85,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d medlem</string>
+			<string>%d član</string>
+			<key>few</key>
+			<string>%d člana</string>
 			<key>other</key>
-			<string>%d medlemmar</string>
-		</dict>
-	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Radera %d chatt? Det kommer inte längre synas i chattlistan, meddelanden kommer att finnas kvar på servern.</string>
-			<key>other</key>
-			<string>Radera %d chatt? De kommer inte visas i chattlistan, deras meddelanden kommer finns kvar på servern.</string>
-		</dict>
-	</dict>
-	<key>ask_delete_messages</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Radera %d meddelande här och på servern.</string>
-			<key>other</key>
-			<string>Radera %d meddelanden här och på servern?</string>
+			<string>%d članova</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>
@@ -141,9 +103,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d nytt meddelande</string>
+			<string>%d nova poruka</string>
+			<key>few</key>
+			<string>%d nove poruke</string>
 			<key>other</key>
-			<string>%d nya meddelanden</string>
+			<string>%d novih poruka</string>
 		</dict>
 	</dict>
 </dict>

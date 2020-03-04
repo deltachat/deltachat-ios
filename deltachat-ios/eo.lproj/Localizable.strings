@@ -1,0 +1,278 @@
+// common strings without special context
+"app_name" = "Delta Chat";
+"ok" = "Bone";
+"cancel" = "Nuligi";
+"yes" = "Jes";
+"no" = "Ne";
+"on" = "Ŝaltita";
+"off" = "Malŝaltita";
+"def" = "Defaŭlta";
+"custom" = "Propran";
+"none" = "Neniu";
+"automatic" = "Aŭtomata";
+"strict" = "Strikta";
+"open" = "Malferma";
+"delete" = "Forigi";
+"info" = "Informoj";
+"update" = "Ĝisdatigi";
+"emoji" = "Emoji";
+"close" = "Fermi";
+"forward" = "Plusendi";
+"mute" = "Muta sciigoj";
+"save" = "Konservi";
+"chat" = "Babilo";
+"show_password" = "Montri pasvorton";
+"hide_password" = "Kaŝi pasvorton";
+"not_now" = "Ne nun";
+"never" = "Neniam";
+"one_moment" = "Unu momenton…";
+"done" = "Farita";
+"undo" = "Malfari";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Sekva";
+"error" = "Eraro";
+"error_x" = "Eraro: %1$@";
+"error_no_network" = "Reto neatingebla.";
+"no_browser_installed" = "Neniu retumilo instalita.";
+"file_not_found" = "Ne povis trovi %1$@.";
+"copied_to_clipboard" = "Kopiita al tondujo";
+"contacts_headline" = "Kontaktoj";
+"email_address" = "Retadreso";
+"bad_email_address" = "Malbona retadreso.";
+"password" = "Pasvorto";
+"now" = "Nun";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Danĝero";
+// n_min_ago is deprecated, use n_minutes instead
+"n_min_ago" = "%dmin";
+"today" = "Hodiaŭ";
+"yesterday" = "Hieraŭ";
+"this_week" = "Ĉi-semajne";
+"this_month" = "Ĉi-monate";
+"last_week" = "Pasint-semajne";
+"last_month" = "Pasint-monate";
+// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
+// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
+"self" = "Mi";
+"draft" = "Malneto";
+"image" = "Bildo";
+"gif" = "Gif";
+"images" = "Bildoj";
+"audio" = "Sonaĵo";
+"voice_message" = "Voĉmesaĝo";
+"forwarded_message" = "Plusendita mesaĝo";
+"video" = "Filmo";
+"documents" = "Dokumentoj";
+"contact" = "Kontakto";
+"verified_contact" = "Kontrolita kontakto";
+"camera" = "Fotilo";
+"location" = "Loko";
+"gallery" = "Galerio";
+"file" = "Dosiero";
+"unknown" = "Nekonata";
+
+"green" = "Verda";
+"red" = "Ruĝa";
+"blue" = "Blua";
+"orange" = "Oranĝkolora";
+"cyan" = "Cejana";
+"magenta" = "Malva";
+"white" = "Blanka";
+
+"small" = "Malgranda";
+"normal" = "Normala";
+"large" = "Granda";
+"extra_large" = "Tre granda";
+
+"fast" = "Rapida";
+"slow" = "Malrapida";
+
+"message_delivered" = "Mesaĝo sendita";
+"message_read" = "Mesaĝo legita";
+
+
+// menu labels (or icon, buttons...)
+"menu_new_contact" = "Nova kontakto";
+"menu_new_chat" = "Nova babilo";
+"menu_new_group" = "Nova grupo";
+"menu_new_verified_group" = "Nova kontrolita grupo.";
+"menu_send" = "Sendi";
+"menu_toggle_keyboard" = "Baskuligi emoĝian klavaron";
+"menu_edit_group" = "Redakti grupon";
+"menu_group_name_and_image" = "Grup-nomo kaj bildo";
+"menu_show_map" = "Montri mapon";
+"menu_show_global_map" = "Montri ĉiujn lokojn";
+"menu_add_attachment" = "Aldoni kunsendaĵon";
+"menu_leave_group" = "Forlasi grupon";
+"menu_delete_chat" = "Forigi babilon";
+"menu_delete_messages" = "Forigi mesaĝojn";
+"menu_delete_image" = "Forigi bildon";
+"menu_delete_locations" = "Ĉu forigi ĉiujn lokojn?";
+"menu_delete_location" = "Ĉu forigi tiun ĉi lokon?";
+"menu_message_details" = "Mesaĝ-detaloj";
+"menu_copy_to_clipboard" = "Kopii al tondujo";
+"menu_forward" = "Plusendi mesaĝon";
+"menu_resend" = "Resendi mesaĝon";
+"menu_reply" = "Respondi al mesaĝo";
+"menu_mute" = "Silentigi sciigojn";
+"menu_unmute" = "Malsilentigi";
+"menu_all_media" = "Ĉiuj aŭvidaĵoj";
+"menu_share" = "Kunhavigi";
+"menu_block_contact" = "Bloki kontakton";
+"menu_unblock_contact" = "Malbloki kontakton";
+"menu_help" = "Helpo";
+"menu_select_all" = "Elekti ĉion";
+"menu_edit_name" = "Redakti nomon";
+"menu_edit_group_name" = "Redakti grup-nomon";
+"menu_edit_group_image" = "Redakti grup-bildon";
+"menu_settings" = "Agordoj";
+"menu_advanced" = "Speciala";
+"menu_deaddrop" = "Kontakt-petoj";
+"edit_contact" = "Redakti kontakton";
+"mute_for_one_hour" = "Silentigi por 1 horo";
+"mute_for_two_hours" = "Silentigi por 2 horoj";
+"mute_for_one_day" = "Silentigi por 1 tago";
+"mute_for_seven_days" = "Silentigi por 7 tagoj";
+"share_location_once" = "unufoje";
+"share_location_for_5_minutes" = "por 5 minutoj";
+"share_location_for_30_minutes" = "por 30 minutoj";
+"share_location_for_one_hour" = "por 1 horo";
+"share_location_for_two_hours" = "por 2 horoj";
+"share_location_for_six_hours" = "por 6 horoj";
+
+// get confirmations
+"ask_leave_group" = "Ĉu vi estas certa, ke vi volas forlasi tiun ĉi grupon?";
+"ask_forward" = "Plusendi mesaĝojn al %1$@?";
+"ask_start_chat_with" = "Babili kun %1$@?";
+// Translators: %1$s will be replaces by a comma separated list of names
+"ask_remove_members" = "Forigi %1$@el la grupo?";
+// contact list
+"contacts_title" = "Kontaktoj";
+"contacts_enter_name_or_email" = "Enigi nomon aŭ retadreson";
+"contacts_empty_hint" = "Neniu kontakto.";
+
+
+"chat_please_enter_message" = "Bonvolu enigi mesaĝon.";
+"chat_camera_unavailable" = "Fotilo neatingebla.";
+"chat_record_slide_to_cancel" = "Gliti por nuligi";
+"chat_record_explain" = "Tuŝadi por registri voĉan mesaĝon, maltuŝadi por sendi";
+"chat_input_placeholder" = "Mesaĝo";
+"chat_archived_label" = "Enarĥivigitaj";
+"chat_no_messages" = "Neniu mesaĝo.";
+"chat_self_talk_subtitle" = "Mesaĝoj senditaj al mi mem";
+"chat_contact_request" = "Kontakt-peto";
+"retry_send" = "Reprovi sendi mesaĝon";
+"send_failed" = "Ne povis sendi mesaĝon";
+
+// search
+"search" = "Serĉi";
+// create/edit groups, contact/group profile
+"group_name" = "Grup-nomo";
+"group_avatar" = "Bildo de la grupo";
+"group_create_button" = "Krei grupon";
+"group_please_enter_group_name" = "Bonvolu enigi nomon por la grupo.";
+"group_add_members" = "Aldoni anojn";
+"group_hello_draft" = "Saluton, mi ĵus kreis la grupon \"%1$@\" por ni.";
+"group_self_not_in_group" = "Vi devas esti grupano por fari tion.";
+"profile_encryption" = "Ĉifrado";
+"tab_contact" = "Kontakto";
+"tab_group" = "Grupo";
+"tab_members" = "Anoj";
+"tab_gallery" = "Galerio";
+"tab_docs" = "Dokumentoj";
+"tab_links" = "Ligiloj";
+"tab_map" = "Mapo";
+"media_preview" = "Aŭdvida antaŭrigardo";
+"send_message" = "Sendi mesaĝon";
+
+
+"welcome_start_messaging" = "Komenci mesaĝadon";
+"login_title" = "Ensaluti";
+"login_header" = "Ensaluti al via servilo";
+"login_manually" = "Ensaltui neaŭtomate";
+"delete_account" = "Forigi konton";
+// share and forward messages
+// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+"forward_to" = "Plusendi al…";
+"pref_trim_option" = "Forigi malnovajn mesaĝojn";
+"pref_trim_length_limit_summary" = "Po %d mesaĝoj en babilo";
+"pref_blocked_contacts" = "Blokitaj kontaktoj";
+"pref_help_url" = "https://delta.chat/help";
+"pref_password_and_account_settings" = "Pasvorto kaj konto";
+"pref_who_can_see_this_information" = "Kiu povas vidi ĉi tion?";
+"pref_your_name" = "Via nomo";
+// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+"pref_default_status_text" = "Sendita per mia Delta Chat mesaĝilo: https://delta.chat";
+"pref_enter_sends" = "La Eniga klavo kaŭzas sendon";
+"pref_enter_sends_explain" = "Premado de la Eniga klavo sendos mesaĝojn";
+"pref_vibrate" = "Vibrado";
+"pref_chat_settings" = "Babilaj agordoj";
+"pref_change_secret" = "Ŝanĝi sekreton";
+"pref_screen_security" = "Ekrana sekureco";
+// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+"pref_screen_security_explain" = "Neebligi ekrankopiojn en la listo de ĵus uzitaj aplikaĵoj kaj ene de la aplikaĵo mem";
+"pref_notifications" = "Sciigoj";
+"pref_notifications_show" = "Montri";
+"pref_notifications_priority" = "Prioritato";
+"pref_led_color" = "LED-a koloro";
+"pref_led_pattern" = "LED-a pulsa modelo";
+"pref_sound" = "Sono";
+"pref_silent" = "Silenta";
+"pref_privacy" = "Privateco";
+"pref_chats_and_media" = "Interparoloj kaj aŭdvidaĵoj";
+// Translators: "light" in the meaning "opposite of dark"
+"pref_light_theme" = "Hela";
+"pref_dark_theme" = "Malhela";
+"pref_appearance" = "Aspekto";
+"pref_theme" = "Etoso";
+"pref_language" = "Lingvo";
+"pref_incognito_keyboard" = "Inkognita klavaro";
+// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+"pref_incognito_keyboard_explain" = "Peti al la klavaro malŝalti personan lernadon";
+"pref_read_receipts" = "Legokonfirmoj";
+"pref_read_receipts_explain" = "Se legokonfirmoj ne estas ŝaltitaj, vi ne vidos aliulajn legokonfirmojn.";
+"pref_use_system_emoji" = "Uzi sisteman emoĝiaron";
+"pref_use_system_emoji_explain" = "Malebligi emoĝiaron de Delta Chat";
+"pref_app_access" = "Aliro al aplikaĵo";
+"pref_communication" = "Komunikado";
+"pref_chats" = "Interparoloj";
+"pref_messages" = "Mesaĝoj";
+"pref_in_chat_sounds" = "Sonoj dum interparolado";
+"pref_message_text_size" = "Mesaĝa tipargrando";
+"pref_other" = "Alia";
+"pref_show_emails_all" = "Ĉiuj";
+// screen lock
+"screenlock_title" = "Ekranŝloso";
+"screenlock_explain" = "Lock Delta Chat access with Android screen lock or fingerprint";
+"screenlock_unlock_title" = "Malŝlosi Delta Chat-on";
+"screenlock_inactivity_timeout_explain" = "Aŭtomate ŝlosi Signal-on post specifa templimo de neaktiveco";
+"notify_mark_all_read" = "Marki ĉiujn legitaj";
+"notify_mark_read" = "Marki legita";
+"notify_media_message" = "Aŭdvida mesaĝo";
+"notify_reply_button" = "Respondi";
+"notify_new_message" = "Nova mesaĝo";
+"notify_priority_high" = "Alta";
+"notify_priority_max" = "Maksimuma";
+"notify_name_and_message" = "Nomon kaj mesaĝon";
+"notify_name_only" = "Nur nomon";
+"notify_no_name_or_message" = "Nek nomon aŭ mesaĝon";
+
+
+// permissions
+"perm_required_title" = "Permeso bezonata";
+"perm_continue" = "Daŭrigi";
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"welcome_desktop" = "Bonvenon al Delta Chat";
+"global_menu_preferences_language_desktop" = "Lingvo";
+"global_menu_file_desktop" = "Dosiero";
+"global_menu_edit_desktop" = "Modifi";
+"global_menu_edit_undo_desktop" = "Malfari";
+"global_menu_help_desktop" = "Helpo";
+"more_info_desktop" = "Plia informo";
+"timestamp_format_m_desktop" = "MMM D";
+"no_chats_desktop" = "Neniu parolado ankoraŭ.";
+"remove_desktop" = "Forviŝi";
+"save_desktop" = "Konservi";
+"me_desktop" = "mi";
+"message_detail_from_desktop" = "De";

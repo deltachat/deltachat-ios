@@ -193,7 +193,7 @@
 "ask_start_chat_with" = "Chat mit %1$@ starten?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "%1$@ aus der Gruppe löschen?";
-"info_outdated_app_title" = "Ihre App-version ist veraltet. ";
+"info_outdated_app_title" = "Ihre App-Version ist veraltet.";
 "info_outdated_app_text" = "Anscheinend haben Sie Delta Chat von einer Quelle ohne automatische Updates (z. B. GitHub) installiert. Bitte wechseln Sie zu einer Store-Version, um die neuesten Funktionen und Fehlerbehebungen zu erhalten.";
 "info_outdated_app_dialog_title" = "Quellen updaten";
 "info_outdated_app_dialog_text" = "Delta Chat ist verfügbar bei:";
@@ -216,14 +216,14 @@
 "chat_record_slide_to_cancel" = "Schieben um abzubrechen";
 "chat_record_explain" = "Tippen und halten, um eine Sprachnachricht aufzunehmen, loslassen um zu senden. ";
 "chat_no_chats_yet_title" = "Posteingang ist leer.\n\"+\" drücken, um einen neuen Chat zu starten.";
-"chat_no_chats_yet_hint" = "Es kann mit anderen Delta Chat BenutzerInnen und mit jeder E-Mail-Adresse gechattet werden,";
+"chat_no_chats_yet_hint" = "Es kann mit anderen Delta Chat BenutzerInnen und mit jeder E-Mail-Adresse gechattet werden.";
 "chat_all_archived" = "Alle Chats archiviert.\n\"+\" drücken, um einen neuen Chat zu starten.";
 "chat_share_with_title" = "Teilen mit";
 "chat_input_placeholder" = "Nachricht";
 "chat_archived_label" = "Archiviert";
 "chat_no_messages" = "Keine Nachrichten.";
 "chat_self_talk_subtitle" = "Nachrichten, die ich mir selber geschickt habe";
-"saved_messages" = "Gespeichertes";
+"saved_messages" = "Gespeicherte Nachrichten";
 "saved_messages_explain" = "• Nachrichten zum Merken hierher weiterleiten\n\n• Notizen oder Sprachmemos machen\n\n• Medien zum Speichern einfügen";
 "chat_contact_request" = "Kontaktanfrage";
 "chat_no_contact_requests" = "Keine Kontaktanfragen.\n\nWenn normale E-Mails hier erscheinen sollen, müssen Sie die entsprechende erweiterte Einstellung ändern.";
@@ -269,9 +269,9 @@
 "welcome_intro1_message" = "Der Messenger mit der größten Reichweite der Welt. Frei und unabhängig.";
 "welcome_start_messaging" = "Jetzt beginnen";
 "login_title" = "Login";
-"login_header" = "Bei ihrem Server anmelden";
+"login_header" = "Bei Ihrem Server anmelden";
 "login_explain" = "Mit existierendem E-Mail-Konto einloggen";
-"login_subheader" = "Für bekannte E-Mail-Anbieter werden zusätzliche Einstellungen automatisch vorgenommen. Manchmal muss IMAP im Web-Frontend aktiviert werden. Bitten Sie Ihren Anbieter oder Freunde um Rat, wenn es Probleme gibt.";
+"login_subheader" = "Für bekannte E-Mail-Anbieter werden zusätzliche Einstellungen automatisch vorgenommen. Manchmal muss IMAP im Web-Frontend aktiviert werden. Bitten Sie Ihren Anbieter oder FreundInnen um Rat, wenn es Probleme gibt.";
 "login_no_servers_hint" = "Es gibt keine Delta Chat Server! Ihre Daten bleiben auf Ihrem Gerät!";
 "login_inbox" = "Posteingang";
 "login_imap_login" = "IMAP-Anmeldename";
@@ -286,7 +286,7 @@
 "login_smtp_security" = "SMTP-Sicherheit";
 "login_auth_method" = "Autorisierungsmethode";
 "login_info_oauth2_title" = "Weiter mit vereinfachter Einrichtung?";
-"login_info_oauth2_text" = "Die eingegebene E-Mail-Adresse unterstützt eine vereinfachte Einrichtung (OAuth2).\n\nBitte erlauben Sie Delta Chat im nächsten Schritt als Chat-Über-E-Mail-App zu arbeiten.\n\nEs gibt keine Delta Chat Server! Ihre Daten bleiben auf Ihrem Gerät!";
+"login_info_oauth2_text" = "Die eingegebene E-Mail-Adresse unterstützt eine vereinfachte Einrichtung (OAuth2).\n\nBitte erlauben Sie Delta Chat im nächsten Schritt als Chat-über-E-Mail-App zu arbeiten.\n\nEs gibt keine Delta Chat Server! Ihre Daten bleiben auf Ihrem Gerät!";
 "login_manually" = "Manuell anmelden";
 "login_info_gmail_text" = "Für GMail-Konten muss ein App-Passwort erstellt werden, wenn die 2FA (Zwei-Faktor-Authentifizierung) aktiviert ist. Wenn diese Einstellung nicht verfügbar ist, muss \"Zugriff durch weniger sichere Anwendungen\" aktiviert werden.";
 "login_certificate_checks" = "Zertifikatsüberprüfung";
@@ -383,12 +383,12 @@
 "pref_in_chat_sounds" = "In-Chat Klänge";
 "pref_message_text_size" = "Schriftgröße";
 "pref_view_log" = "Protokoll anzeigen";
-"pref_saved_log" = "Die Logdatei wurde im Downloads Ordner gesichert. ";
-"pref_save_log_failed" = "Logdatei konnte nicht gesichert werden. ";
+"pref_saved_log" = "Die Logdatei wurde im Downloads Ordner gespeichert.";
+"pref_save_log_failed" = "Logdatei konnte nicht gespeichert werden.";
 "pref_log_header" = "Protokoll";
 "pref_other" = "Sonstiges";
 "pref_backup" = "Backup";
-"pref_backup_explain" = "Chats auf externem Speicher sichern";
+"pref_backup_explain" = "Chats auf externem Speicher speichern";
 "pref_backup_export_explain" = "Ein Backup hilft bei einer Neuinstallation auf diesem oder einem anderen Gerät.\n\nDas Backup enthält alle Nachrichten, Kontakte und Chats sowie die Ende-zu-Ende Autocrypt-Einstellungen. Das Backup bitte an einem sicheren Ort aufbewahren oder es so bald wie möglich löschen.";
 "pref_backup_export_start_button" = "Backup starten";
 "pref_backup_written_to_x" = "Backup nach %1$@ erfolgreich";
@@ -397,7 +397,7 @@
 "pref_managekeys_export_secret_keys" = "Exportiere geheime Schlüssel";
 "pref_managekeys_export_explain" = "Geheime Schlüssel nach \"%1$@\" exportieren?";
 "pref_managekeys_import_secret_keys" = "Importiere geheime Schlüssel";
-"pref_managekeys_import_explain" = "Geheime Schlüssel von \"%1$@\" importieren?\n\n\"• Bereits vorhandene Schlüssel werden nicht gelöscht\n\n• Der zuletzt importierte Schlüssel wird als neuer Standardschlüssel verwendet, außer der Dateiname beinhaltet das Wort \"legacy\"";
+"pref_managekeys_import_explain" = "Geheime Schlüssel von \"%1$@\" importieren?\n\n• Bereits vorhandene Schlüssel werden nicht gelöscht\n\n• Der zuletzt importierte Schlüssel wird als neuer Standardschlüssel verwendet, außer der Dateiname beinhaltet das Wort \"legacy\"";
 "pref_managekeys_secret_keys_exported_to_x" = "Geheime Schlüssel erfolgreich nach \"%1$@\" geschrieben.";
 "pref_managekeys_secret_keys_imported_from_x" = "Geheime Schlüssel von \"%1$@\" importiert.";
 "pref_background" = "Hintergrund";
@@ -420,7 +420,7 @@
 "pref_empty_server_msg" = "Mit dieser Funktion können Sie Speicherplatz auf Ihrem IMAP-Server freigeben, indem Sie ALLE E-Mails, einschließlich Chat-Nachrichten, in den angegebenen Ordnern löschen. Nachrichten auf diesem Gerät werden nicht gelöscht. Die Löschung kann nicht rückgängig gemacht werden!";
 "pref_empty_server_inbox" = "Löschen ALLER e-mails im Nachrichteneingangsordner (INBOX)";
 "pref_empty_server_mvbox" = "Löschen ALLER e-mails im DeltaChat Ordner.";
-"pref_empty_server_do_button" = "E-mails löschen. ";
+"pref_empty_server_do_button" = "E-Mails löschen";
 "pref_experimental_features" = "Experimentelle Features";
 "pref_on_demand_location_streaming" = "On-demand Standortübertragung";
 "pref_background_default" = "Voreingestellter Hintergrund";
@@ -454,8 +454,8 @@
 "systemmsg_member_removed" = "%1$@ entfernt.";
 "systemmsg_group_left" = "Gruppe verlassen.";
 "systemmsg_read_receipt_subject" = "Empfangsbestätigung";
-"systemmsg_read_receipt_body" = "Dies ist eine Empfangsbestätigung für die Nachricht \"%1$@\".\n\nEs bedeutet, dass die Nachricht auf dem Gerät des Empfängers angezeigt wurde, nicht unbedingt, dass der Inhalt gelesen wurde.";
-"systemmsg_cannot_decrypt" = "Diese Nachricht kann nicht entschlüsselt werden.\n\n• Es könnte bereits helfen, einfach auf diese Nachricht zu antworten und den Absender zu bitten, die Nachricht erneut zu senden.\n\n• Falls Delta Chat oder ein anderes E-Mail-Programm auf diesem oder einem anderen Gerät neu installiert wurde, kann von dort aus eine Autocrypt Setup-Nachricht gesendet werden.";
+"systemmsg_read_receipt_body" = "Dies ist eine Empfangsbestätigung für die Nachricht \"%1$@\".\n\nEs bedeutet, dass die Nachricht auf dem Gerät des/r EmpfängerIn angezeigt wurde, nicht unbedingt, dass der Inhalt gelesen wurde.";
+"systemmsg_cannot_decrypt" = "Diese Nachricht kann nicht entschlüsselt werden.\n\n• Es könnte bereits helfen, einfach auf diese Nachricht zu antworten und die/den AbsenderIn zu bitten, die Nachricht erneut zu senden.\n\n• Falls Delta Chat oder ein anderes E-Mail-Programm auf diesem oder einem anderen Gerät neu installiert wurde, kann von dort aus eine Autocrypt Setup-Nachricht gesendet werden.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
 "systemmsg_action_by_me" = "%1$@ von mir.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
@@ -464,7 +464,7 @@
 
 // screen lock
 "screenlock_title" = "Bildschirmsperre";
-"screenlock_explain" = "Zugriff sichern mittels Android-Bildschirmsperre oder Fingerabdruck. Um vorherige Inhalte zu verbergen bitte außerdem \"Bildschirmsicherheit\" aktivieren.";
+"screenlock_explain" = "Zugriff sichern mittels Android-Bildschirmsperre oder Fingerabdruck. Um vorherige Inhalte zu verbergen, bitte außerdem \"Bildschirmsicherheit\" aktivieren.";
 "screenlock_authentication_failed" = "Die Authentifizierung ist fehlgeschlagen.";
 "screenlock_unlock_title" = "Delta Chat entsperren";
 "screenlock_unlock_description" = "Den System-Entsperrcode eingeben, um Delta Chat freizuschalten.";

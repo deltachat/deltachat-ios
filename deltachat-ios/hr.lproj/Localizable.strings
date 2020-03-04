@@ -1,0 +1,265 @@
+// common strings without special context
+"app_name" = "Delta Chat";
+"ok" = "OK";
+"cancel" = "Otkaži";
+"yes" = "Da";
+"no" = "Ne";
+"on" = "Uključeno";
+"off" = "Isključeno";
+"def" = "Zadano";
+"custom" = "Prilagođeno";
+"none" = "Ništa";
+"automatic" = "Automatski";
+"strict" = "Strog";
+"open" = "Otvori";
+"delete" = "Obriši";
+"info" = "Info";
+"update" = "Ažuriranje";
+"attachment" = "Privitak";
+"back" = "Nazad";
+"close" = "Zatvori";
+"forward" = "Proslijedi";
+"archive" = "Arhiviraj";
+"unarchive" = "Dearhiviraj";
+"mute" = "Prigušiti";
+"save" = "Spremi";
+"media" = "Medij";
+"main_menu" = "Glavni izbornik";
+"show_password" = "Prikaži lozinku";
+"hide_password" = "Sakrij lozinku";
+"not_now" = "Ne sada";
+"never" = "Nikada";
+"one_moment" = "Samo trenutak...";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Dalje";
+"error" = "Greška";
+"error_x" = "Greška: %1$@";
+"error_no_network" = "Mreža nije dostupna.";
+"file_not_found" = "%1$@ nije pronađeno.";
+"copied_to_clipboard" = "Kopirano u međuspremnik.";
+"contacts_headline" = "Kontakti";
+"password" = "Lozinka";
+"now" = "Sada";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Oprez";
+// n_min_ago is deprecated, use n_minutes instead
+"n_min_ago" = "%d min";
+"today" = "Danas";
+"yesterday" = "Jučer";
+"this_week" = "Ovaj tjedan";
+"this_month" = "Ovog mjeseca";
+"last_week" = "Prošli tjedan";
+"last_month" = "Prošlog mjeseca";
+// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
+// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
+"self" = "Ja";
+"draft" = "Skica";
+"image" = "Slika";
+"gif" = "Gif";
+"images" = "Slike";
+"video" = "Video";
+"documents" = "Dokumenti";
+"contact" = "Kontakt";
+"camera" = "Kamera";
+"location" = "Lokacija";
+"gallery" = "Galerija";
+"file" = "Datoteka";
+"unknown" = "Nepoznato";
+
+"green" = "Zeleno";
+"red" = "Crveno";
+"blue" = "Plavo";
+"orange" = "Narančasta";
+"cyan" = "Cijan";
+"magenta" = "Magenta";
+"white" = "Bijelo";
+
+"small" = "Mala";
+"normal" = "Normalna";
+"large" = "Velika";
+"extra_large" = "Ekstra velika";
+
+"fast" = "Brzo";
+"slow" = "Sporo";
+
+"message_delivered" = "Poruka isporučena";
+"message_read" = "Poruka pročitana";
+
+
+// menu labels (or icon, buttons...)
+"menu_new_contact" = "Novi kontakt";
+"menu_new_group" = "Nova grupa";
+"menu_send" = "Pošalji";
+"menu_edit_group" = "Uredi grupu";
+"menu_show_map" = "Prikaži mapu";
+"menu_show_global_map" = "Prikaži sve lokacije";
+"menu_add_attachment" = "Dodaj privitak";
+"menu_leave_group" = "Napusti grupu";
+"menu_delete_messages" = "Obriši poruke";
+"menu_delete_image" = "Obriši sliku";
+"menu_delete_locations" = "Obrisati sve lokacije?";
+"menu_delete_location" = "Obrisati ovu lokaciju?";
+"menu_message_details" = "Detalji poruke";
+"menu_copy_to_clipboard" = "Kopiraj u međuspremnik";
+"menu_forward" = "Proslijedi poruku";
+"menu_resend" = "Ponovno pošalji poruku";
+"menu_reply" = "Odgovori na poruku";
+"menu_mute" = "Utišaj obavijesti";
+"menu_unmute" = "Ukloni utišanje";
+"menu_all_media" = "Svi mediji";
+"menu_share" = "Podijeli";
+"menu_help" = "Pomoć";
+"menu_select_all" = "Označi sve";
+"menu_settings" = "Postavke";
+"menu_advanced" = "Napredno";
+"mute_for_one_hour" = "Utišaj na 1 sat";
+"mute_for_two_hours" = "Utišaj na 2 sata";
+"mute_for_one_day" = "Utišaj na 1 dan";
+"mute_for_seven_days" = "Utišaj na 7 dana";
+// contact list
+"contacts_title" = "Kontakti";
+"contacts_empty_hint" = "Nema kontakata.";
+
+
+"chat_please_enter_message" = "Molimo unesite poruku.";
+"chat_camera_unavailable" = "Kamera nije dostupna.";
+"chat_record_slide_to_cancel" = "Kliznite za otkazivanje";
+"chat_record_explain" = "Pritisnite i držite kako biste snimili glasovnu poruku, pustite za slanje";
+"chat_share_with_title" = "Podijeli sa";
+"chat_input_placeholder" = "Poruka";
+"chat_archived_label" = "Arhivirano";
+"chat_no_messages" = "Nema poruka.";
+"saved_messages" = "Sačuvane poruke";
+// search
+"search" = "Traži";
+"search_no_result_for_x" = "Nema pronađenih rezultata za \"%s\"";
+
+
+// create/edit groups, contact/group profile
+"group_name" = "Naziv grupe";
+"group_avatar" = "Grupni avatar";
+"group_add_members" = "Dodaj članove";
+"profile_encryption" = "Šifriranje";
+"tab_contact" = "Kontakt";
+"tab_group" = "Grupa";
+"tab_members" = "Članovi";
+"tab_gallery" = "Galerija";
+"tab_map" = "Mapa";
+"media_preview" = "Prikaz medija";
+"login_imap_server" = "IMAP server";
+"login_smtp_password" = "SMTP lozinka";
+"login_smtp_server" = "SMTP server";
+"login_error_server" = "Molimo unesite valjan server / IP adresu";
+"delete_account" = "Obriši račun";
+// share and forward messages
+// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+"forward_to" = "Proslijedi do...";
+"pref_profile_photo" = "Profilna slika";
+"pref_blocked_contacts" = "Blokirani kontakti";
+"pref_profile_photo_remove_ask" = "Ukloniti profilnu sliku?";
+"pref_help_url" = "https://delta.chat/help";
+"pref_password_and_account_settings" = "Lozinka i račun";
+"pref_who_can_see_this_information" = "Tko može ovo vidjeti?";
+"pref_your_name" = "Vaše ime";
+"pref_enter_sends" = "Enter šalje poruku";
+"pref_enter_sends_explain" = "Pritisak na Enter će poslati tekst poruku";
+"pref_vibrate" = "Vibracija";
+"pref_chat_settings" = "Postavke razgovora";
+"pref_screen_security" = "Sigurnost ekrana";
+// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+"pref_screen_security_explain" = "Onemogući snimanje ekrana na popisu nedavnih i unutar aplikacije";
+"pref_notifications" = "Obavijesti";
+"pref_notifications_show" = "Prikaži";
+"pref_notifications_priority" = "Prioritet";
+"pref_led_color" = "Boja LED";
+"pref_led_pattern" = "LED uzorak treptanja";
+"pref_sound" = "Zvuk";
+"pref_silent" = "Tiho";
+"pref_privacy" = "Privatnost";
+"pref_chats_and_media" = "Razgovori i media";
+// Translators: "light" in the meaning "opposite of dark"
+"pref_light_theme" = "Svijetlo";
+"pref_dark_theme" = "Tamno";
+"pref_appearance" = "Izgled";
+"pref_theme" = "Tema";
+"pref_language" = "Jezik";
+"pref_incognito_keyboard" = "Inkognito tipkovnica";
+// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+"pref_incognito_keyboard_explain" = "Zahtijevaj od tipkovnice da onemogući personalizirano učenje";
+"pref_read_receipts" = "Potvrde čitanja";
+"pref_read_receipts_explain" = "Ukoliko ste onemogućili potvrdu čitanja kod sebe, nećete moći vidjeti potvrde čitanja od drugih.";
+"pref_use_system_emoji" = "Koristi emotikone sustava";
+"pref_use_system_emoji_explain" = "Onemogući ugrađenu Delta Chat podršku za emotikone";
+"pref_app_access" = "Pristup aplikaciji";
+"pref_communication" = "Komunikacija";
+"pref_chats" = "Razgovori";
+"pref_messages" = "Poruke";
+"pref_in_chat_sounds" = "Zvuk unutar razgovora";
+"pref_message_text_size" = "Veličina fonta poruke";
+"pref_other" = "Ostalo";
+"pref_backup" = "Sigurnosna kopija";
+"pref_background" = "Pozadina";
+"pref_background_btn_gallery" = "Odaberi iz galerije";
+"pref_show_emails_all" = "Sve";
+"pref_background_default" = "Zadana pozadina";
+"pref_background_default_color" = "Zadana boja";
+"systemmsg_member_added" = "Član %1$@ dodan.";
+"systemmsg_member_removed" = "Član %1$@ uklonjen.";
+// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+"systemmsg_action_by_user" = "%1$@ od %2$@.";
+
+
+// screen lock
+"screenlock_title" = "Zaključavanje zaslona";
+"screenlock_explain" = "Zaključi pristup Delta Chat-u putem zaključavanjem ekrana Androida ili otiska prsta.";
+"screenlock_unlock_title" = "Otključaj Delta Chat";
+"screenlock_inactivity_timeout_explain" = "Automatski zaključaj Delta Chat nakon određenog vremenskog intervala neaktivnosti";
+// qr code stuff
+"qr_code" = "QR kod";
+"qrscan_fingerprint_label" = "Otisak prsta";
+"notify_mark_all_read" = "Označi sve kao pročitane";
+"notify_mark_read" = "Označi pročitano";
+"notify_media_message" = "Multimedijalna poruka";
+"notify_reply_button" = "Odgovori";
+"notify_new_message" = "Nova poruka";
+"notify_priority_high" = "Visoko";
+"notify_priority_max" = "Maks";
+"notify_name_and_message" = "Ime i poruka";
+"notify_name_only" = "Samo ime";
+"notify_no_name_or_message" = "Bez imena ili poruke";
+
+
+// permissions
+"perm_required_title" = "Potrebna je dozvola";
+"perm_continue" = "Nastavi";
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"welcome_desktop" = "Dobro došli u Delta Chat";
+"global_menu_preferences_language_desktop" = "Jezik";
+"global_menu_file_desktop" = "Datoteka";
+"global_menu_file_quit_desktop" = "Izlaz";
+"global_menu_edit_desktop" = "Uredi";
+"global_menu_edit_undo_desktop" = "Vrati";
+"global_menu_edit_copy_desktop" = "Kopiraj";
+"global_menu_edit_paste_desktop" = "Zalijepi";
+"global_menu_view_desktop" = "Pogledaj";
+"global_menu_help_desktop" = "Pomoć";
+"global_menu_help_report_desktop" = "Prijavite problem";
+"delete_message_desktop" = "Obriši poruku";
+"more_info_desktop" = "Više informacija";
+"timestamp_format_m_desktop" = "MMM D";
+"remove_desktop" = "Ukloni";
+"save_desktop" = "Spremi";
+"add_contact_desktop" = "Dodaj kontakt";
+"login_required_desktop" = "zahtjevano";
+"name_desktop" = "Ime";
+"reply_to_message_desktop" = "Odgovori na poruku";
+"download_attachment_desktop" = "Preuzmi privitak";
+"new_message_from_desktop" = "Nova poruka od";
+"me_desktop" = "ja";
+"in_this_group_desktop" = "Članovi grupe";
+"message_detail_sent_desktop" = "poslano";
+"message_detail_received_desktop" = "primljeno";
+"message_detail_from_desktop" = "od";
+"message_detail_to_desktop" = "za";
+"a11y_remove_account_btn_label" = "Ukloni račun";

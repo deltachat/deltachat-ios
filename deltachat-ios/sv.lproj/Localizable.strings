@@ -17,6 +17,8 @@
 "update" = "Uppdatering";
 "emoji" = "Emoji";
 "attachment" = "Bifogad fil";
+"back" = "Tillbaka";
+"close" = "Stäng";
 "forward" = "Vidarebefordra";
 "archive" = "Arkiv";
 "unarchive" = "Avarkivera";
@@ -26,6 +28,8 @@
 "media" = "Media";
 "main_menu" = "Huvudmeny";
 "start_chat" = "Starta chatt";
+"show_password" = "Visa lösenord";
+"hide_password" = "Dölj lösenord";
 "not_now" = "Inte nu";
 "never" = "Nyare";
 "one_moment" = "Ett ögonblick...";
@@ -69,6 +73,7 @@
 "video" = "Video";
 "documents" = "Dokument";
 "contact" = "Kontakt";
+"verified_contact" = "Verifierad kontakt";
 "camera" = "Kamera";
 "location" = "Plats";
 "gallery" = "Galleri";
@@ -104,6 +109,9 @@
 "menu_send" = "Skicka";
 "menu_toggle_keyboard" = "Byt emoji-tangentbord";
 "menu_edit_group" = "Redigera grupp";
+"menu_group_name_and_image" = "Gruppnamn och bild";
+"menu_show_map" = "Visa karta";
+"menu_show_global_map" = "Visa alla platser";
 "menu_archive_chat" = "Arkivera chatt";
 "menu_unarchive_chat" = "Oarkivera chatt";
 "menu_add_attachment" = "Bifoga fil";
@@ -111,6 +119,8 @@
 "menu_delete_chat" = "Radera chatt";
 "menu_delete_messages" = "Radera meddelanden";
 "menu_delete_image" = "Radera bild";
+"menu_delete_locations" = "Radera alla platser?";
+"menu_delete_location" = "Radera denna plats?";
 "menu_message_details" = "Meddelandedetaljer";
 "menu_copy_to_clipboard" = "Kopierad till Urklipp";
 "menu_forward" = "Vidarebefordran";
@@ -131,6 +141,8 @@
 "menu_select_all" = "Markera alla";
 "menu_expand" = "Expandera";
 "menu_edit_name" = "Redigera namn";
+"menu_edit_group_name" = "Redigera gruppnamn";
+"menu_edit_group_image" = "Redigera gruppbild";
 "menu_settings" = "Inställningar";
 "menu_advanced" = "Avancerad";
 "menu_deaddrop" = "Kontaktförfrågningar";
@@ -139,9 +151,19 @@
 "menu_zoom_in" = "Zooma in";
 "menu_zoom_out" = "Zooma ut";
 "menu_save_log" = "Spara logg";
+"title_share_location" = "Dela plats med alla gruppmedlemmar";
 "device_talk" = "Enhetsmeddelanden";
 "device_talk_subtitle" = "Lokalt genererade meddelanden";
 "edit_contact" = "Redigera kontakt";
+// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin_chat" = "Nåla chatt";
+// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+"unpin_chat" = "Ta bort nål";
+// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin" = "Nåla";
+// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+"unpin" = "Ta bort nål";
+
 "mute_for_one_hour" = "Ljud av 1 timma";
 "mute_for_two_hours" = "Ljud av 2 timma";
 "mute_for_one_day" = "Ljud av 1 dag";
@@ -154,6 +176,8 @@
 "share_location_for_one_hour" = "i 1 timme";
 "share_location_for_two_hours" = "i 2 timmar";
 "share_location_for_six_hours" = "i 6 timmar";
+
+"file_saved_to" = "Filen är sparad till \"%1$@\".";
 
 // get confirmations
 "ask_leave_group" = "Är du säker på att du vill lämna den här gruppen?";
