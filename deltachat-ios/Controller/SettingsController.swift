@@ -9,6 +9,8 @@ internal final class SettingsViewController: QuickTableViewController {
     private let rowProfile = 0
     private var dcContext: DcContext
 
+    private let externalPathDescr = "File Sharing/Delta Chat"
+
     let documentInteractionController = UIDocumentInteractionController()
     var backupProgressObserver: Any?
     var configureProgressObserver: Any?
@@ -266,12 +268,22 @@ internal final class SettingsViewController: QuickTableViewController {
     private func showKeyManagementDialog(_: Row) {
         let alert = UIAlertController(title: String.localized("pref_manage_keys"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_export_secret_keys"), style: .default, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-            self.startImex(what: DC_IMEX_EXPORT_SELF_KEYS)
+            let msg = String.localizedStringWithFormat(String.localized("pref_managekeys_export_explain"), self.externalPathDescr)
+            let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+              self.startImex(what: DC_IMEX_EXPORT_SELF_KEYS)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_import_secret_keys"), style: .default, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-            self.startImex(what: DC_IMEX_IMPORT_SELF_KEYS)
+            let msg = String.localizedStringWithFormat(String.localized("pref_managekeys_import_explain"), self.externalPathDescr)
+            let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+                self.startImex(what: DC_IMEX_IMPORT_SELF_KEYS)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
