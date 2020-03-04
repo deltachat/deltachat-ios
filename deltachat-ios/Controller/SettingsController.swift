@@ -1,5 +1,4 @@
 import JGProgressHUD
-import QuickTableViewController
 import UIKit
 
 internal final class SettingsViewController: UITableViewController {
