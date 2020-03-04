@@ -11,7 +11,16 @@ internal final class SettingsViewController: UITableViewController {
     }
 
     private enum CellTags: Int {
-        case profileCell = 0
+        case profile = 0
+        case contactRequest = 1
+        case preferences = 2
+        case blockedContacts = 3
+        case notifications = 4
+        case confirmation = 5
+        case autocryptPreferences = 6
+        case sendAutocryptMessage = 7
+        case exportBackup
+        case help
     }
 
 
@@ -39,29 +48,147 @@ internal final class SettingsViewController: UITableViewController {
     private lazy var profileCell: UITableViewCell = {
         let cell = customProfileCell()
         cell.accessoryType = .disclosureIndicator
-        cell.tag = CellTags.profileCell.rawValue
+        cell.tag = CellTags.profile.rawValue
+        return cell
+    }()
+
+    private var contactRequestCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.tag = CellTags.contactRequest.rawValue
+        cell.textLabel?.text = String.localized("menu_deaddrop")
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
+    private var chatPreferenceCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.preferences.rawValue
+        cell.textLabel?.text = String.localized("pref_show_emails")
+        cell.accessoryType = .disclosureIndicator
+        cell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: DcConfig.showEmails)
+        return cell
+    }()
+
+    private var blockedContactsCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.tag = CellTags.blockedContacts.rawValue
+        cell.textLabel?.text = String.localized("pref_blocked_contacts")
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
+    private lazy var notificationSwitch: UISwitch = {
+        let switchControl = UISwitch()
+        switchControl.isUserInteractionEnabled = false // toggled by cell tap
+        switchControl.isOn = !UserDefaults.standard.bool(forKey: "notifications_disabled")
+        return switchControl
+    }()
+
+    private lazy var notificationCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.tag = CellTags.notifications.rawValue
+        cell.textLabel?.text = String.localized("pref_notifications")
+        cell.accessoryView = notificationSwitch
+        return cell
+    }()
+
+    private lazy var confirmationSwitch: UISwitch = {
+        let switchControl = UISwitch()
+        switchControl.isUserInteractionEnabled = false // toggled by cell tap
+        switchControl.isOn = DcConfig.mdnsEnabled
+        return switchControl
+    }()
+
+    private lazy var confirmationCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.tag = CellTags.confirmation.rawValue
+        cell.textLabel?.text = String.localized("pref_read_receipts")
+        cell.accessoryView = confirmationSwitch
+        return cell
+    }()
+
+    private lazy var autocryptSwitch: UISwitch = {
+        let switchControl = UISwitch()
+        switchControl.isUserInteractionEnabled = false // toggled by cell tap
+        switchControl.isOn = DcConfig.e2eeEnabled
+        return switchControl
+    }()
+
+    private lazy var autocryptPreferencesCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.tag = CellTags.autocryptPreferences.rawValue
+        cell.textLabel?.text = String.localized("autocrypt_prefer_e2ee")
+        cell.accessoryView = autocryptSwitch
+        return cell
+    }()
+
+    private var sendAutocryptMessageCell: ActionCell = {
+        let cell = ActionCell()
+        cell.tag = CellTags.sendAutocryptMessage.rawValue
+        cell.actionTitle = String.localized("autocrypt_send_asm_title")
+        cell.selectionStyle = .default
+        return cell
+    }()
+
+    private var exportBackupCell: ActionCell = {
+        let cell = ActionCell()
+        cell.tag = CellTags.exportBackup.rawValue
+        cell.actionTitle = String.localized("export_backup_desktop")
+        cell.selectionStyle = .default
+        return cell
+    }()
+
+    private var helpCell: ActionCell = {
+        let cell = ActionCell()
+        cell.tag = CellTags.help.rawValue
+        cell.actionTitle = String.localized("menu_help")
+        cell.selectionStyle = .default
         return cell
     }()
 
     private lazy var sections: [SettingsSection] = {
+        var appNameAndVersion = "Delta Chat"
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            appNameAndVersion += " v" + appVersion
+        }
         let profileSection = SettingsSection(
             headerTitle: String.localized("pref_profile_info_headline"),
             footerTitle: nil,
             cells: [profileCell]
         )
-        return [profileSection]
+        let preferencesSection = SettingsSection(
+            headerTitle: nil,
+            footerTitle: String.localized("pref_read_receipts_explain"),
+            cells: [contactRequestCell, chatPreferenceCell, blockedContactsCell, notificationCell, confirmationCell]
+        )
+        let autocryptSection = SettingsSection(
+            headerTitle: String.localized("autocrypt"),
+            footerTitle: String.localized("autocrypt_explain"),
+            cells: [autocryptPreferencesCell, sendAutocryptMessageCell]
+        )
+        let backupSection = SettingsSection(
+            headerTitle: String.localized("pref_backup"),
+            footerTitle: String.localized("pref_backup_explain"),
+            cells: [exportBackupCell])
+        let helpSection = SettingsSection(
+            headerTitle: nil,
+            footerTitle: appNameAndVersion,
+            cells: [helpCell]
+        )
+        return [profileSection, preferencesSection, autocryptSection, backupSection, helpSection]
     }()
-
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(style: .grouped)
+        //UITableViewCell(style: ., reuseIdentifier: <#T##String?#>)
     }
 
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("menu_settings")
@@ -123,6 +250,8 @@ internal final class SettingsViewController: UITableViewController {
         }
     }
 
+    // MARK: - UITableViewDelegate + UITableViewDatasource
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
@@ -140,9 +269,19 @@ internal final class SettingsViewController: UITableViewController {
             safe_fatalError()
             return
         }
+        tableView.deselectRow(at: indexPath, animated: false) // to achieve highlight effect
 
         switch cellTag {
-        case .profileCell: self.coordinator?.showEditSettingsController()
+        case .profile: self.coordinator?.showEditSettingsController()
+        case .contactRequest: self.coordinator?.showContactRequests()
+        case .preferences: coordinator?.showClassicMail()
+        case .blockedContacts: coordinator?.showBlockedContacts()
+        case .notifications: handleNotificationToggle()
+        case .confirmation: handleReceiptConfirmationToggle()
+        case .autocryptPreferences: handleAutocryptPreferencesToggle()
+        case .sendAutocryptMessage: sendAutocryptSetupMessage()
+        case .exportBackup: createBackup()
+        case .help: coordinator?.showHelp()
         }
     }
 
@@ -167,17 +306,20 @@ internal final class SettingsViewController: UITableViewController {
         cell.contentView.addSubview(nameLabel)
         cell.contentView.addSubview(signatureLabel)
 
-        let badgeConstraints = [badge.constraintAlignLeadingTo(cell.contentView, paddingLeading: 16),
-                                badge.constraintCenterYTo(cell.contentView),
-                                badge.constraintAlignTopTo(cell.contentView, paddingTop: 8),
-                                badge.constraintAlignBottomTo(cell.contentView, paddingBottom: 8)]
-        let textViewConstraints = [nameLabel.constraintToTrailingOf(badge, paddingLeading: 12),
-                                   nameLabel.constraintAlignTrailingTo(cell.contentView, paddingTrailing: 16),
-                                   nameLabel.constraintAlignTopTo(cell.contentView, paddingTop: 14)]
-        let subtitleViewConstraints = [signatureLabel.constraintToTrailingOf(badge, paddingLeading: 12),
-                                       signatureLabel.constraintAlignTrailingTo(cell.contentView, paddingTrailing: 16),
-                                       signatureLabel.constraintToBottomOf(nameLabel, paddingTop: 0),
-                                       signatureLabel.constraintAlignBottomTo(cell.contentView, paddingBottom: 12)]
+        let badgeConstraints = [
+            badge.constraintAlignLeadingTo(cell.contentView, paddingLeading: 16),
+            badge.constraintCenterYTo(cell.contentView),
+            badge.constraintAlignTopTo(cell.contentView, paddingTop: 8),
+            badge.constraintAlignBottomTo(cell.contentView, paddingBottom: 8)]
+        let textViewConstraints = [
+            nameLabel.constraintToTrailingOf(badge, paddingLeading: 12),
+            nameLabel.constraintAlignTrailingTo(cell.contentView, paddingTrailing: 16),
+            nameLabel.constraintAlignTopTo(cell.contentView, paddingTop: 14)]
+        let subtitleViewConstraints = [
+            signatureLabel.constraintToTrailingOf(badge, paddingLeading: 12),
+            signatureLabel.constraintAlignTrailingTo(cell.contentView, paddingTrailing: 16),
+            signatureLabel.constraintToBottomOf(nameLabel, paddingTop: 0),
+            signatureLabel.constraintAlignBottomTo(cell.contentView, paddingBottom: 12)]
 
         cell.contentView.addConstraints(badgeConstraints)
         cell.contentView.addConstraints(textViewConstraints)
@@ -347,23 +489,22 @@ internal final class SettingsViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    private func openHelp(_: Row) {
-        coordinator?.showHelp()
+    private func handleNotificationToggle() {
+        notificationSwitch.isOn = !notificationSwitch.isOn
+        UserDefaults.standard.set(notificationSwitch.isOn, forKey: "notifications_disabled")
     }
 
-    private func showDeaddrop(_: Row) {
-        coordinator?.showContactRequests()
+    private func handleReceiptConfirmationToggle() {
+        confirmationSwitch.isOn = !confirmationSwitch.isOn
+        UserDefaults.standard.set(confirmationSwitch.isOn, forKey: "notifications_disabled")
     }
 
-    private func showClassicMail(_: Row) {
-        coordinator?.showClassicMail()
+    private func handleAutocryptPreferencesToggle() {
+        autocryptSwitch.isOn = !autocryptSwitch.isOn
+        DcConfig.e2eeEnabled = autocryptSwitch.isOn
     }
 
-    private func showBlockedContacts(_: Row) {
-        coordinator?.showBlockedContacts()
-    }
-
-    private func sendAsm(_: Row) {
+    private func sendAutocryptSetupMessage() {
         let askAlert = UIAlertController(title: String.localized("autocrypt_send_asm_explain_before"), message: nil, preferredStyle: .safeActionSheet)
         askAlert.addAction(UIAlertAction(title: String.localized("autocrypt_send_asm_title"), style: .default, handler: { _ in
             let waitAlert = UIAlertController(title: String.localized("one_moment"), message: nil, preferredStyle: .alert)
