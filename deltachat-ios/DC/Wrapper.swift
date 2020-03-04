@@ -45,6 +45,18 @@ class DcContext {
         return chatlist
     }
 
+    func getChatMedia(chatId: Int, messageType: Int32, messageType2: Int32, messageType3: Int32) -> [Int] {
+        guard let messagesPointer = dc_get_chat_media(contextPointer, UInt32(chatId), messageType, messageType2, messageType3) else {
+            return []
+        }
+        let array = DcArray(arrayPointer: messagesPointer)
+        var messageIds: [Int] = []
+        for index in 0..<array.count {
+            messageIds.append(array.getId(at: index))
+        }
+        return messageIds
+    }
+
     @discardableResult
     func createChat(contactId: Int) -> Int {
         return Int(dc_create_chat_by_contact_id(contextPointer, UInt32(contactId)))
@@ -554,6 +566,10 @@ class DcArray {
 
     var count: Int {
        return Int(dc_array_get_cnt(dcArrayPointer))
+    }
+
+    func getId(at index: Int) -> Int {
+        return Int(dc_array_get_id(dcArrayPointer, index))
     }
 
     ///TODO: add missing methods here
