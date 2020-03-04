@@ -4,7 +4,7 @@ import UIKit
 
 internal final class SettingsViewController: UITableViewController {
 
-    private struct SettingsSection {
+    private struct SectionConfigs {
         let headerTitle: String?
         let footerTitle: String?
         let cells: [UITableViewCell]
@@ -16,13 +16,12 @@ internal final class SettingsViewController: UITableViewController {
         case preferences = 2
         case blockedContacts = 3
         case notifications = 4
-        case confirmation = 5
+        case receiptConfirmation = 5
         case autocryptPreferences = 6
         case sendAutocryptMessage = 7
         case exportBackup
         case help
     }
-
 
     weak var coordinator: SettingsCoordinator?
 
@@ -92,18 +91,18 @@ internal final class SettingsViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var confirmationSwitch: UISwitch = {
+    private lazy var receiptConfirmationSwitch: UISwitch = {
         let switchControl = UISwitch()
         switchControl.isUserInteractionEnabled = false // toggled by cell tap
         switchControl.isOn = DcConfig.mdnsEnabled
         return switchControl
     }()
 
-    private lazy var confirmationCell: UITableViewCell = {
+    private lazy var receiptConfirmationCell: UITableViewCell = {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.tag = CellTags.confirmation.rawValue
+        cell.tag = CellTags.receiptConfirmation.rawValue
         cell.textLabel?.text = String.localized("pref_read_receipts")
-        cell.accessoryView = confirmationSwitch
+        cell.accessoryView = receiptConfirmationSwitch
         return cell
     }()
 
@@ -146,31 +145,31 @@ internal final class SettingsViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var sections: [SettingsSection] = {
+    private lazy var sections: [SectionConfigs] = {
         var appNameAndVersion = "Delta Chat"
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             appNameAndVersion += " v" + appVersion
         }
-        let profileSection = SettingsSection(
+        let profileSection = SectionConfigs(
             headerTitle: String.localized("pref_profile_info_headline"),
             footerTitle: nil,
             cells: [profileCell]
         )
-        let preferencesSection = SettingsSection(
+        let preferencesSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: String.localized("pref_read_receipts_explain"),
-            cells: [contactRequestCell, chatPreferenceCell, blockedContactsCell, notificationCell, confirmationCell]
+            cells: [contactRequestCell, chatPreferenceCell, blockedContactsCell, notificationCell, receiptConfirmationCell]
         )
-        let autocryptSection = SettingsSection(
+        let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
             footerTitle: String.localized("autocrypt_explain"),
             cells: [autocryptPreferencesCell, sendAutocryptMessageCell]
         )
-        let backupSection = SettingsSection(
+        let backupSection = SectionConfigs(
             headerTitle: String.localized("pref_backup"),
             footerTitle: String.localized("pref_backup_explain"),
             cells: [exportBackupCell])
-        let helpSection = SettingsSection(
+        let helpSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: appNameAndVersion,
             cells: [helpCell]
@@ -181,7 +180,6 @@ internal final class SettingsViewController: UITableViewController {
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(style: .grouped)
-        //UITableViewCell(style: ., reuseIdentifier: <#T##String?#>)
     }
 
     required init?(coder _: NSCoder) {
@@ -277,7 +275,7 @@ internal final class SettingsViewController: UITableViewController {
         case .preferences: coordinator?.showClassicMail()
         case .blockedContacts: coordinator?.showBlockedContacts()
         case .notifications: handleNotificationToggle()
-        case .confirmation: handleReceiptConfirmationToggle()
+        case .receiptConfirmation: handleReceiptConfirmationToggle()
         case .autocryptPreferences: handleAutocryptPreferencesToggle()
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .exportBackup: createBackup()
@@ -495,8 +493,8 @@ internal final class SettingsViewController: UITableViewController {
     }
 
     private func handleReceiptConfirmationToggle() {
-        confirmationSwitch.isOn = !confirmationSwitch.isOn
-        UserDefaults.standard.set(confirmationSwitch.isOn, forKey: "notifications_disabled")
+        receiptConfirmationSwitch.isOn = !receiptConfirmationSwitch.isOn
+        UserDefaults.standard.set(receiptConfirmationSwitch.isOn, forKey: "notifications_disabled")
     }
 
     private func handleAutocryptPreferencesToggle() {
