@@ -8,6 +8,12 @@ class GroupChatDetailViewController: UIViewController {
         case chatActions // archive, leave, delete
     }
 
+    private let memberManagementRowAddMembers = 0
+    private let memberManagementRowQrInvite = 1
+    private let chatActionsRowArchiveChat = 0
+    private let chatActionsRowLeaveGroup = 1
+    private let chatActionsRowDeleteChat = 2
+
     private let context: DcContext
     weak var coordinator: GroupChatDetailCoordinator?
 
@@ -192,11 +198,11 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 safe_fatalError("could not dequeu action cell")
                 break
             }
-            if row == 0 {
+            if row == memberManagementRowAddMembers {
                 actionCell.actionTitle = String.localized("group_add_members")
                 actionCell.actionColor = UIColor.systemBlue
 
-            } else {
+            } else if row == memberManagementRowQrInvite {
                 actionCell.actionTitle = String.localized("qrshow_join_group_title")
                 actionCell.actionColor = UIColor.systemBlue
             }
@@ -212,11 +218,11 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             contactCell.updateCell(cellViewModel: cellViewModel)
             return contactCell
         case .chatActions:
-            if row == 0 {
+            if row == chatActionsRowArchiveChat {
                 return archiveChatCell
-            } else if row == 1 {
+            } else if row == chatActionsRowLeaveGroup {
                 return leaveGroupCell
-            } else if row == 2 {
+            } else if row == chatActionsRowDeleteChat {
                 return deleteChatCell
             }
         }
@@ -230,20 +236,20 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 
         switch sectionType {
         case .memberManagement:
-            if row == 0 {
+            if row == memberManagementRowAddMembers {
                 coordinator?.showAddGroupMember(chatId: chat.id)
-            } else if row == 1 {
+            } else if row == memberManagementRowQrInvite {
                 coordinator?.showQrCodeInvite(chatId: chat.id)
             }
         case .members:
             let member = getGroupMember(at: row)
             coordinator?.showContactDetail(of: member.id)
         case .chatActions:
-            if row == 0 {
+            if row == chatActionsRowArchiveChat {
                 toggleArchiveChat()
-            } else if row == 1 {
+            } else if row == chatActionsRowLeaveGroup {
                 showLeaveGroupConfirmationAlert()
-            } else if row == 2 {
+            } else if row == chatActionsRowDeleteChat {
                 showDeleteChatConfirmationAlert()
             }
         }
