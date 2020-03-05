@@ -859,6 +859,10 @@ class DcMsg: MessageType {
         return swiftString
     }
 
+    func showPadlock() -> Bool {
+        return dc_msg_get_showpadlock(messagePointer) == 1
+    }
+
     func createChat() -> DcChat {
         let chatId = dc_create_chat_by_msg_id(mailboxPointer, UInt32(id))
         return DcChat(id: Int(chatId))
