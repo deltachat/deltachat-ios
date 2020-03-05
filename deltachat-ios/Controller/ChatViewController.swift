@@ -780,7 +780,7 @@ extension ChatViewController: MessagesDataSource {
 
         var timestampAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 12),
-            .foregroundColor: UIColor.lightGray,
+            .foregroundColor: DcColors.grayDateColor,
             .paragraphStyle: NSParagraphStyle()
         ]
 
@@ -792,6 +792,10 @@ extension ChatViewController: MessagesDataSource {
             }
 
             text.append(NSAttributedString(string: m.formattedSentDate(), attributes: timestampAttributes))
+
+            if m.showPadlock() {
+                attachPadlock(to: text)
+            }
 
             // TODO: this should be replaced by the respective icons,
             // for accessibility, the a11y strings should be added
@@ -817,10 +821,6 @@ extension ChatViewController: MessagesDataSource {
                 ]
             ))
 
-            if m.showPadlock() {
-                attachPadlock(to: text)
-            }
-
             return text
         }
 
@@ -840,7 +840,7 @@ extension ChatViewController: MessagesDataSource {
 
     private func attachPadlock(to text: NSMutableAttributedString) {
         let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(named: "ic_lock.png")
+        imageAttachment.image = UIImage(named: "ic_lock")
         imageAttachment.image?.accessibilityIdentifier = String.localized("encrypted_message")
         let imageString = NSMutableAttributedString(attachment: imageAttachment)
         imageString.addAttributes([NSAttributedString.Key.baselineOffset: -1], range: NSRange(location: 0, length: 1))
