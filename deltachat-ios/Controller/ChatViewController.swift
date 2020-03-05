@@ -847,15 +847,6 @@ extension ChatViewController: MessagesDataSource {
         text.append(imageString)
     }
 
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if #available(iOS 13.0, *) {
-            if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-                refreshMessages()
-            }
-        }
-    }
-
     func updateMessage(_ messageId: Int) {
         if let index = messageList.firstIndex(where: { $0.id == messageId }) {
             dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(messageId)]), 1)

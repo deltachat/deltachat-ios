@@ -2,50 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ic_lock_dark_18dp-2.png",
+      "filename" : "ic_lock_lightergrey_1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ic_lock_white_18dp-2.png",
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "ic_lock_dark_18dp.png",
+      "filename" : "ic_lock_lightergrey_2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ic_lock_white_18dp.png",
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "ic_lock_dark_18dp-1.png",
-      "scale" : "3x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "ic_lock_white_18dp-1.png",
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
+      "filename" : "ic_lock_lighergrey_3x.png",
       "scale" : "3x"
     }
   ],
