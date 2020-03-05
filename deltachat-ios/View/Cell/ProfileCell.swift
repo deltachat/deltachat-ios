@@ -9,6 +9,7 @@ class ProfileCell: UITableViewCell {
         accessoryType = .disclosureIndicator
         setupSubviews()
         update(contact: contact)
+        detailView.backgroundColor = .clear
     }
 
     required init?(coder: NSCoder) {

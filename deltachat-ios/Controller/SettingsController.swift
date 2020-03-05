@@ -301,7 +301,7 @@ internal final class SettingsViewController: UITableViewController {
     }
 
     // MARK: - actions
-    
+
     private func createBackup() {
         let alert = UIAlertController(title: String.localized("pref_backup_export_explain"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("pref_backup_export_start_button"), style: .default, handler: { _ in
