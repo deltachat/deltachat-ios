@@ -7,7 +7,8 @@ protocol ContactDetailViewModelProtocol {
     var chatIsArchived: Bool { get }
     func numberOfRowsInSection(_ : Int) -> Int
     func typeFor(section: Int) -> ContactDetailViewModel.ProfileSections
-    func actionFor(row: Int) -> ContactDetailViewModel.ChatAction
+    func chatActionFor(row: Int) -> ContactDetailViewModel.ChatAction
+    func attachmentActionFor(row: Int) -> ContactDetailViewModel.AttachmentAction
     func update(sharedChatCell: ContactCell, row index: Int)
     func getSharedChatIdAt(indexPath: IndexPath) -> Int
     func titleFor(section: Int) -> String?
@@ -19,6 +20,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
     let context: DcContext
     enum ProfileSections {
         case startChat
+        case attachments
         case sharedChats
         case chatActions //  archive chat, block chat, delete chats
     }
@@ -29,13 +31,19 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         case deleteChat
     }
 
+    enum AttachmentAction {
+        case gallery
+        case documents
+    }
+
     var contactId: Int
 
     var contact: DcContact
     private let chatId: Int?
     private let sharedChats: DcChatlist
     private var sections: [ProfileSections] = []
-    private var actions: [ChatAction] = [] // chatDetail: archive, block, delete - else: block
+    private var chatActions: [ChatAction] = [] // chatDetail: archive, block, delete - else: block
+    private var attachmentActions: [AttachmentAction] = [.gallery, .documents]
 
     /// if chatId is nil this is a contact detail with 'start chat'-option
     init(contactId: Int, chatId: Int?, context: DcContext) {
@@ -46,15 +54,16 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
         sections.append(.startChat)
+        sections.append(.attachments)
         if sharedChats.length > 0 {
             sections.append(.sharedChats)
         }
         sections.append(.chatActions)
 
         if chatId != nil {
-            actions = [.archiveChat, .blockChat, .deleteChat]
+            chatActions = [.archiveChat, .blockChat, .deleteChat]
         } else {
-            actions = [.blockChat]
+            chatActions = [.blockChat]
         }
     }
 
@@ -62,8 +71,12 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         return sections[section]
     }
 
-    func actionFor(row: Int) -> ContactDetailViewModel.ChatAction {
-        return actions[row]
+    func chatActionFor(row: Int) -> ContactDetailViewModel.ChatAction {
+        return chatActions[row]
+    }
+
+    func attachmentActionFor(row: Int) -> ContactDetailViewModel.AttachmentAction {
+        return attachmentActions[row]
     }
 
     var chatIsArchived: Bool {
@@ -80,9 +93,10 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
     func numberOfRowsInSection(_ section: Int) -> Int {
         switch sections[section] {
+        case .attachments: return 2
         case .sharedChats: return sharedChats.length
         case .startChat: return 1
-        case .chatActions: return actions.count
+        case .chatActions: return chatActions.count
         }
     }
 
@@ -105,6 +119,8 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
     func titleFor(section: Int) -> String? {
         if sections[section] == .sharedChats {
             return String.localized("profile_shared_chats")
+        } else if sections[section] == .attachments {
+            return String.localized("media")
         }
         return nil
     }
