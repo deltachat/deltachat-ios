@@ -838,7 +838,8 @@ extension ChatViewController: MessagesDataSource {
         return text
     }
 
-    private func attachPadlock(to text: NSMutableAttributedString) { let imageAttachment = NSTextAttachment()
+    private func attachPadlock(to text: NSMutableAttributedString) {
+        let imageAttachment = NSTextAttachment()
         imageAttachment.image = UIImage(named: "ic_lock.png")
         imageAttachment.image?.accessibilityIdentifier = String.localized("encrypted_message")
         let imageString = NSMutableAttributedString(attachment: imageAttachment)
