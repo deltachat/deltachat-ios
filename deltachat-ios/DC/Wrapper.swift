@@ -856,7 +856,7 @@ class DcMsg: MessageType {
     }
 
     func showPadlock() -> Bool {
-        return dc_msg_get_showpadlock(messagePointer) == 1;
+        return dc_msg_get_showpadlock(messagePointer) == 1
     }
 
     func createChat() -> DcChat {
