@@ -20,7 +20,7 @@ class GroupChatDetailViewController: UIViewController {
     private let context: DcContext
     weak var coordinator: GroupChatDetailCoordinator?
 
-    private let sections: [ProfileSections] = [.attachments, .memberManagement, .members, .chatActions]
+    private let sections: [ProfileSections] = [.memberManagement, .attachments, .members, .chatActions]
 
     private var currentUser: DcContact? {
         let myId = groupMemberIds.filter { DcContact(id: $0).email == DcConfig.addr }.first
@@ -71,7 +71,7 @@ class GroupChatDetailViewController: UIViewController {
     private lazy var archiveChatCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = chat.isArchived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
-        cell.actionColor = SystemColor.blue.uiColor
+        cell.actionColor = UIColor.systemBlue
         cell.selectionStyle = .none
         return cell
     }()
@@ -88,6 +88,22 @@ class GroupChatDetailViewController: UIViewController {
         let cell = ActionCell()
         cell.actionTitle = String.localized("menu_delete_chat")
         cell.actionColor = UIColor.red
+        cell.selectionStyle = .none
+        return cell
+    }()
+
+    private lazy var galleryCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = String.localized("gallery")
+        cell.actionColor = UIColor.systemBlue
+        cell.selectionStyle = .none
+        return cell
+    }()
+
+    private lazy var documentsCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = String.localized("documents")
+        cell.actionColor = UIColor.systemBlue
         cell.selectionStyle = .none
         return cell
     }()
@@ -197,16 +213,10 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         let sectionType = sections[indexPath.section]
         switch sectionType {
         case .attachments:
-            guard let actionCell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as? ActionCell else {
-                safe_fatalError("could not dequeue action cell")
-                break
-            }
             if row == attachmentsRowGallery {
-                actionCell.actionTitle = String.localized("gallery")
-                actionCell.actionColor = UIColor.systemBlue
+                return galleryCell
             } else if row == attachmentsRowDocuments {
-                actionCell.actionTitle = String.localized("documents")
-                actionCell.actionColor = UIColor.systemBlue
+                return documentsCell
             }
         case .memberManagement:
             guard let actionCell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as? ActionCell else {
@@ -279,8 +289,14 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if sections[section] == .members {
             return String.localized("tab_members")
+        } else if sections[section] == .attachments {
+            return String.localized("media")
         }
         return nil
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return Constants.defaultHeaderHeight
     }
 
     func tableView(_: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
