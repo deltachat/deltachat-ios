@@ -53,8 +53,8 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         self.contact = DcContact(id: contactId)
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
-        sections.append(.startChat)
         sections.append(.attachments)
+        sections.append(.startChat)
         if sharedChats.length > 0 {
             sections.append(.sharedChats)
         }
@@ -119,8 +119,6 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
     func titleFor(section: Int) -> String? {
         if sections[section] == .sharedChats {
             return String.localized("profile_shared_chats")
-        } else if sections[section] == .attachments {
-            return String.localized("media")
         }
         return nil
     }

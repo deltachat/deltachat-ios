@@ -4,15 +4,16 @@ class GroupChatDetailViewController: UIViewController {
 
     enum ProfileSections {
         case attachments
-        case memberManagement // add member, qr invideCode
+        //case memberManagement // add member, qr invideCode
         case members // contactCells
         case chatActions // archive, leave, delete
     }
 
     private let attachmentsRowGallery = 0
     private let attachmentsRowDocuments = 1
-    private let memberManagementRowAddMembers = 0
-    private let memberManagementRowQrInvite = 1
+    private let membersRowAddMembers = 0
+    private let membersRowQrInvite = 1
+    private let memberManagementRows = 2
     private let chatActionsRowArchiveChat = 0
     private let chatActionsRowLeaveGroup = 1
     private let chatActionsRowDeleteChat = 2
@@ -20,7 +21,7 @@ class GroupChatDetailViewController: UIViewController {
     private let context: DcContext
     weak var coordinator: GroupChatDetailCoordinator?
 
-    private let sections: [ProfileSections] = [.memberManagement, .attachments, .members, .chatActions]
+    private let sections: [ProfileSections] = [.attachments, .members, .chatActions]
 
     private var currentUser: DcContact? {
         let myId = groupMemberIds.filter { DcContact(id: $0).email == DcConfig.addr }.first
@@ -175,6 +176,14 @@ class GroupChatDetailViewController: UIViewController {
         }
         self.chat = DcChat(id: chat.id)
      }
+
+    private func getGroupMemberIdFor(_ row: Int) -> Int {
+        return groupMemberIds[row - memberManagementRows]
+    }
+
+    private func isMemberManagementRow(row: Int) -> Bool {
+        return row < memberManagementRows
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -189,10 +198,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         switch sectionType {
         case .attachments:
             return 2
-        case .memberManagement:
-            return 2
         case .members:
-            return groupMemberIds.count
+            return groupMemberIds.count + memberManagementRows
         case .chatActions:
             return 3
         }
@@ -200,11 +207,17 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let sectionType = sections[indexPath.section]
+        let row = indexPath.row
         switch sectionType {
-        case .attachments, .memberManagement, .chatActions:
+        case .attachments, .chatActions:
             return Constants.defaultCellHeight
         case .members:
-            return ContactCell.cellHeight
+            switch row {
+            case membersRowAddMembers, membersRowQrInvite:
+                return Constants.defaultCellHeight
+            default:
+                return ContactCell.cellHeight
+            }
         }
     }
 
@@ -218,27 +231,27 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             } else if row == attachmentsRowDocuments {
                 return documentsCell
             }
-        case .memberManagement:
-            guard let actionCell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as? ActionCell else {
+        case .members:
+            if row == membersRowAddMembers || row == membersRowQrInvite {
+                guard let actionCell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as? ActionCell else {
                 safe_fatalError("could not dequeue action cell")
                 break
+                }
+                if row == membersRowAddMembers {
+                    actionCell.actionTitle = String.localized("group_add_members")
+                    actionCell.actionColor = UIColor.systemBlue
+                } else if row == membersRowQrInvite {
+                    actionCell.actionTitle = String.localized("qrshow_join_group_title")
+                    actionCell.actionColor = UIColor.systemBlue
+                }
+                return actionCell
             }
-            if row == memberManagementRowAddMembers {
-                actionCell.actionTitle = String.localized("group_add_members")
-                actionCell.actionColor = UIColor.systemBlue
 
-            } else if row == memberManagementRowQrInvite {
-                actionCell.actionTitle = String.localized("qrshow_join_group_title")
-                actionCell.actionColor = UIColor.systemBlue
-            }
-            return actionCell
-        case .members:
             guard let contactCell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as? ContactCell else {
                 safe_fatalError("could not dequeue contactCell cell")
                 break
-
             }
-            let cellData = ContactCellData(contactId: groupMemberIds[row])
+            let cellData = ContactCellData(contactId: getGroupMemberIdFor(row))
             let cellViewModel = ContactCellViewModel(contactData: cellData)
             contactCell.updateCell(cellViewModel: cellViewModel)
             return contactCell
@@ -266,15 +279,15 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             } else if row == attachmentsRowDocuments {
                 coordinator?.showDocuments()
             }
-        case .memberManagement:
-            if row == memberManagementRowAddMembers {
-                coordinator?.showAddGroupMember(chatId: chat.id)
-            } else if row == memberManagementRowQrInvite {
-                coordinator?.showQrCodeInvite(chatId: chat.id)
-            }
         case .members:
-            let member = getGroupMember(at: row)
-            coordinator?.showContactDetail(of: member.id)
+            if row == membersRowAddMembers {
+                coordinator?.showAddGroupMember(chatId: chat.id)
+            } else if row == membersRowQrInvite {
+                coordinator?.showQrCodeInvite(chatId: chat.id)
+            } else {
+                let member = getGroupMember(at: row)
+                coordinator?.showContactDetail(of: member.id)
+            }
         case .chatActions:
             if row == chatActionsRowArchiveChat {
                 toggleArchiveChat()
@@ -289,8 +302,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if sections[section] == .members {
             return String.localized("tab_members")
-        } else if sections[section] == .attachments {
-            return String.localized("media")
         }
         return nil
     }
@@ -305,7 +316,9 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         }
         let row = indexPath.row
         let sectionType = sections[indexPath.section]
-        if sectionType == .members && groupMemberIds[row] != currentUser.id {
+        if sectionType == .members &&
+            !isMemberManagementRow(row: row) &&
+            getGroupMemberIdFor(row) != currentUser.id {
             return true
         }
         return false
@@ -317,7 +330,9 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         }
         let row = indexPath.row
         let sectionType = sections[indexPath.section]
-        if sectionType == .members && groupMemberIds[row] != currentUser.id {
+        if sectionType == .members &&
+            !isMemberManagementRow(row: row) &&
+            getGroupMemberIdFor(row) != currentUser.id {
             // action set for members except for current user
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [unowned self] _, indexPath in
 
@@ -341,11 +356,11 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     private func getGroupMember(at row: Int) -> DcContact {
-        return DcContact(id: groupMemberIds[row])
+        return DcContact(id: getGroupMemberIdFor(row))
     }
 
     private func removeGroupMemberFromTableAt(_ indexPath: IndexPath) {
-        self.groupMemberIds.remove(at: indexPath.row)
+        self.groupMemberIds.remove(at: indexPath.row - memberManagementRows)
         self.tableView.deleteRows(at: [indexPath], with: .automatic)
         updateHeader()  // to display correct group size
     }
