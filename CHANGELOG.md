@@ -17,7 +17,7 @@
 * add options to manage keys at "Settings/Autocrypt/Advanced"
 * fix updating names from incoming mails
 * fix encryption to Ed25519 keys that will be used in one of the next releases
-* several bug fixes, eg. on sending and receivind messages, see
+* several bug fixes, eg. on sending and receiving messages, see
   https://github.com/deltachat/deltachat-core-rust/blob/master/CHANGELOG.md#1250
   for details on that
 * add Croatian and Esperanto translations, update other translations
