@@ -187,17 +187,13 @@ class ContactCell: UITableViewCell {
         } else {
             switch Int32(status) {
             case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
-                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_hourglass_empty_36pt").withRenderingMode(.alwaysTemplate)
-                deliveryStatusIndicator.tintColor = UIColor.black.withAlphaComponent(0.5)
+                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_hourglass_empty_36pt")
             case DC_STATE_OUT_DELIVERED:
-                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_done_36pt").withRenderingMode(.alwaysTemplate)
-                deliveryStatusIndicator.tintColor = DcColors.checkmarkGreen
+                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_done_36pt")
             case DC_STATE_OUT_FAILED:
-                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_error_36pt").withRenderingMode(.alwaysTemplate)
-                deliveryStatusIndicator.tintColor = UIColor.red
+                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_error_36pt")
             case DC_STATE_OUT_MDN_RCVD:
-                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_done_all_36pt").withRenderingMode(.alwaysTemplate)
-                deliveryStatusIndicator.tintColor = DcColors.checkmarkGreen
+                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_done_all_36pt")
             default:
                 deliveryStatusIndicator.image = nil
             }
