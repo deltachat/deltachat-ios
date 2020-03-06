@@ -49,19 +49,17 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var galleryCell: ActionCell = {
-        let cell = ActionCell()
-        cell.actionTitle = String.localized("gallery")
-        cell.actionColor = SystemColor.blue.uiColor
-        cell.selectionStyle = .none
+    private lazy var galleryCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("gallery")
+        cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
-    private lazy var documentsCell: ActionCell = {
-        let cell = ActionCell()
-        cell.actionTitle = String.localized("documents")
-        cell.actionColor = SystemColor.blue.uiColor
-        cell.selectionStyle = .none
+    private lazy var documentsCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("documents")
+        cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
