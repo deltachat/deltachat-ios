@@ -4,9 +4,8 @@ class GroupChatDetailViewController: UIViewController {
 
     enum ProfileSections {
         case attachments
-        //case memberManagement // add member, qr invideCode
-        case members // contactCells
-        case chatActions // archive, leave, delete
+        case members
+        case chatActions
     }
 
     private let attachmentsRowGallery = 0
