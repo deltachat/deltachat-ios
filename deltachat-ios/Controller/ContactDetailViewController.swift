@@ -49,6 +49,21 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var galleryCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("gallery")
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
+    private lazy var documentsCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("documents")
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
+
     init(viewModel: ContactDetailViewModelProtocol) {
         self.viewModel = viewModel
         super.init(style: .grouped)
@@ -95,8 +110,15 @@ class ContactDetailViewController: UITableViewController {
         let row = indexPath.row
         let cellType = viewModel.typeFor(section: indexPath.section)
         switch cellType {
+        case .attachments:
+            switch viewModel.attachmentActionFor(row: row) {
+            case .documents:
+                return documentsCell
+            case .gallery:
+                return galleryCell
+            }
         case .chatActions:
-            switch viewModel.actionFor(row: row) {
+            switch viewModel.chatActionFor(row: row) {
             case .archiveChat:
                 return archiveChatCell
             case .blockChat:
@@ -118,6 +140,8 @@ class ContactDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let type = viewModel.typeFor(section: indexPath.section)
         switch type {
+        case .attachments:
+            handleAttachmentAction(for: indexPath.row)
         case .chatActions:
             handleCellAction(for: indexPath.row)
         case .startChat:
@@ -132,8 +156,8 @@ class ContactDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let type = viewModel.typeFor(section: indexPath.section)
         switch type {
-        case .chatActions, .startChat:
-            return 44
+        case .chatActions, .startChat, .attachments:
+            return Constants.defaultCellHeight
         case .sharedChats:
             return ContactCell.cellHeight
         }
@@ -143,10 +167,14 @@ class ContactDetailViewController: UITableViewController {
         return viewModel.titleFor(section: section)
     }
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return Constants.defaultHeaderHeight
+    }
+
     // MARK: - actions
 
     private func handleCellAction(for index: Int) {
-        let action = viewModel.actionFor(row: index)
+        let action = viewModel.chatActionFor(row: index)
         switch action {
         case .archiveChat:
             toggleArchiveChat()
@@ -154,6 +182,16 @@ class ContactDetailViewController: UITableViewController {
             toggleBlockContact()
         case .deleteChat:
             showDeleteChatConfirmationAlert()
+        }
+    }
+
+    private func handleAttachmentAction(for index: Int) {
+        let action = viewModel.attachmentActionFor(row: index)
+        switch action {
+        case .documents:
+            coordinator?.showDocuments()
+        case .gallery:
+            coordinator?.showGallery()
         }
     }
 

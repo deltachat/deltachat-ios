@@ -45,6 +45,15 @@ class DcContext {
         return chatlist
     }
 
+    func getChatMedia(chatId: Int, messageType: Int32, messageType2: Int32, messageType3: Int32) -> [Int] {
+        guard let messagesPointer = dc_get_chat_media(contextPointer, UInt32(chatId), messageType, messageType2, messageType3) else {
+            return []
+        }
+
+        let messageIds: [Int] =  Utils.copyAndFreeArray(inputArray: messagesPointer)
+        return messageIds
+    }
+
     @discardableResult
     func createChat(contactId: Int) -> Int {
         return Int(dc_create_chat_by_contact_id(contextPointer, UInt32(contactId)))

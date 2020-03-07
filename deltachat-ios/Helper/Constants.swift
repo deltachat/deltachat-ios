@@ -17,4 +17,5 @@ struct Constants {
     static let notificationIdentifier = "deltachat-ios-local-notifications"
 
     static let defaultCellHeight: CGFloat = 48
+    static let defaultHeaderHeight: CGFloat = 20
 }
