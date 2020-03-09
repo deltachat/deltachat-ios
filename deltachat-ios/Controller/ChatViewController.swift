@@ -797,30 +797,7 @@ extension ChatViewController: MessagesDataSource {
                 attachPadlock(to: text)
             }
 
-            // TODO: this should be replaced by the respective icons,
-            // for accessibility, the a11y strings should be added
-            var stateDescription: String
-            switch Int32(m.state) {
-            case DC_STATE_OUT_PENDING:
-                stateDescription = "Pending"
-            case DC_STATE_OUT_DELIVERED:
-                stateDescription = "Sent"
-            case DC_STATE_OUT_MDN_RCVD:
-                stateDescription = "Read"
-            case DC_STATE_OUT_FAILED:
-                stateDescription = "Failed"
-            default:
-                stateDescription = "Unknown"
-            }
-
-            text.append(NSAttributedString(
-                string: " - " + stateDescription,
-                attributes: [
-                    .font: UIFont.systemFont(ofSize: 12),
-                    .foregroundColor: DcColors.defaultTextColor,
-                ]
-            ))
-
+            attachSendingState(m.state, to: text)
             return text
         }
 
@@ -845,6 +822,37 @@ extension ChatViewController: MessagesDataSource {
         let imageString = NSMutableAttributedString(attachment: imageAttachment)
         imageString.addAttributes([NSAttributedString.Key.baselineOffset: -1], range: NSRange(location: 0, length: 1))
         text.append(NSAttributedString(string: " "))
+        text.append(imageString)
+    }
+
+    private func attachSendingState(_ state: Int, to text: NSMutableAttributedString) {
+        let imageAttachment = NSTextAttachment()
+        var offset = -4
+
+
+        switch Int32(state) {
+        case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
+            imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_36pt").scaleDownImage(toMax: 16)
+            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_sending")
+            offset = -2
+        case DC_STATE_OUT_DELIVERED:
+            imageAttachment.image = #imageLiteral(resourceName: "ic_done_36pt").scaleDownImage(toMax: 18)
+            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_delivered")
+        case DC_STATE_OUT_MDN_RCVD:
+            imageAttachment.image = #imageLiteral(resourceName: "ic_done_all_36pt").scaleDownImage(toMax: 18)
+            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_read")
+            text.append(NSAttributedString(string: " "))
+        case DC_STATE_OUT_FAILED:
+            imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 16)
+            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_error")
+            offset = -2
+        default:
+            imageAttachment.image = nil
+        }
+
+        let imageString = NSMutableAttributedString(attachment: imageAttachment)
+        imageString.addAttributes([.baselineOffset: offset],
+                                  range: NSRange(location: 0, length: 1))
         text.append(imageString)
     }
 
