@@ -64,7 +64,7 @@ extension UIImage {
 
     func scaleDownImage(toMax: CGFloat) -> UIImage? {
         let rect = getResizedRectangle(toMax: Float(toMax))
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, 1.0)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
         draw(in: rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
