@@ -113,11 +113,6 @@ class ChatListController: UIViewController {
         updateTitle()
     }
 
-    private func getNumberOfArchivedChats() -> Int {
-        let chatList = dcContext.getChatlist(flags: DC_GCL_ARCHIVED_ONLY, queryString: nil, queryId: 0)
-        return chatList.length
-    }
-
     private func getChatList() {
         var gclFlags: Int32 = 0
         if showArchive {
@@ -157,8 +152,9 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
 
         let chatId = chatList.getChatId(index: row)
+        let chat = DcChat(id: chatId)
         if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-            return getArchiveCell(tableView)
+            return getArchiveCell(tableView, title: chat.name)
         }
 
         let cell: ContactCell
@@ -170,7 +166,6 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             cell = ContactCell(style: .default, reuseIdentifier: "ChatCell")
         }
 
-        let chat = DcChat(id: chatId)
         let summary = chatList.getSummary(index: row)
         let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
 
@@ -294,7 +289,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         return deaddropCell
     }
 
-    func getArchiveCell(_ tableView: UITableView) -> UITableViewCell {
+    func getArchiveCell(_ tableView: UITableView, title: String) -> UITableViewCell {
         let archiveCell: UITableViewCell
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ArchiveCell") {
             archiveCell = cell
@@ -302,9 +297,6 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
             archiveCell = UITableViewCell(style: .default, reuseIdentifier: "ArchiveCell")
         }
         archiveCell.textLabel?.textAlignment = .center
-        var title = String.localized("chat_archived_chats_title")
-        let count = getNumberOfArchivedChats()
-        title.append(" (\(count))")
         archiveCell.textLabel?.text = title
         archiveCell.textLabel?.textColor = .systemBlue
         return archiveCell
