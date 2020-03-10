@@ -306,16 +306,7 @@ internal final class SettingsViewController: UITableViewController {
         let alert = UIAlertController(title: String.localized("pref_backup_export_explain"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("pref_backup_export_start_button"), style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
-            let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-            if !documents.isEmpty {
-                logger.info("create backup in \(documents)")
-                self.hudHandler.showHud(String.localized("one_moment"))
-                DispatchQueue.main.async {
-                    dc_imex(mailboxPointer, DC_IMEX_EXPORT_BACKUP, documents[0], nil)
-                }
-            } else {
-                logger.error("document directory not found")
-            }
+            self.startImex(what: DC_IMEX_EXPORT_BACKUP)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
