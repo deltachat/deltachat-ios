@@ -11,7 +11,6 @@ target 'deltachat-ios' do
   pod 'ALCameraViewController'
   # pod 'openssl-ios-bitcode'
   pod 'ReachabilitySwift'
-  pod 'QuickTableViewController'
   pod 'UICircularProgressRing'
   pod 'JGProgressHUD'
   pod 'SwiftyBeaver'
