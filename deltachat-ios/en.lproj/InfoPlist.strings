@@ -2,3 +2,5 @@ NSCameraUsageDescription = "Delta Chat uses your camera to take and send photos 
 NSContactsUsageDescription = "Delta Chat uses your contacts to show a list of email addresses you can write to. Delta Chat has no server, your contacts are not sent anywhere.";
 NSMicrophoneUsageDescription = "Delta Chat uses your microphone to record and send voice messages and videos with sound.";
 NSPhotoLibraryUsageDescription = "Delta Chat will let you choose which photos from your library to send.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat needs the location permission in order to share your location for the timespan you have enabled location sharing.";
+NSLocationWhenInUseUsageDescription = "Delta Chat needs the location permission in order to share your location for the timespan you have enabled location sharing.";
