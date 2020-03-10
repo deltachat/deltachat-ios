@@ -109,7 +109,9 @@ class ChatListController: UIViewController {
     }
 
     @objc func cancelButtonPressed() {
+        // cancel forwarding
         RelayHelper.sharedInstance.cancel()
+        getChatList()
         updateTitle()
     }
 
