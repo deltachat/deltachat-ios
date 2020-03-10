@@ -41,6 +41,11 @@ class ChatListController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getChatList()
+
+        if RelayHelper.sharedInstance.isForwarding() {
+            chatTable.scrollToTop()
+        }
+
         updateTitle()
 
         let nc = NotificationCenter.default
