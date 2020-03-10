@@ -1148,8 +1148,8 @@ extension ChatViewController: MessagesLayoutDelegate {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 return
             }
-            appDelegate.locationManager.shareLocation(chatId: self.chatId, duration: seconds)
             self.dcContext.sendLocationsToChat(chatId: self.chatId, seconds: seconds)
+            appDelegate.locationManager.shareLocation(chatId: self.chatId, duration: seconds)
     }
 
 }

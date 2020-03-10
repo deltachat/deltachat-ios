@@ -12,10 +12,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager = CLLocationManager()
         locationManager.distanceFilter = 50
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager.pausesLocationUpdatesAutomatically = true
         locationManager.allowsBackgroundLocationUpdates = true
-        //TODO: check which activity Type is needed
-        locationManager.activityType = CLActivityType.other
+        //locationManager.pausesLocationUpdatesAutomatically = true
+        locationManager.activityType = CLActivityType.fitness
         super.init()
         locationManager.delegate = self
 
@@ -24,21 +23,12 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     func shareLocation(chatId: Int, duration: Int) {
         dcContext.sendLocationsToChat(chatId: chatId, seconds: duration)
         if duration > 0 {
-            startLocationTracking()
+            locationManager.requestAlwaysAuthorization()
         } else {
-            stopLocationTracking()
+            if !dcContext.isSendingLocationsToChat(chatId: 0) {
+                locationManager.stopUpdatingLocation()
+            }
         }
-    }
-
-    func startLocationTracking() {
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-
-    }
-
-    func stopLocationTracking() {
-        locationManager.stopUpdatingLocation()
-
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -52,10 +42,62 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         let isBetter = isBetterLocation(newLocation: newLocation, lastLocation: lastLocation)
         logger.debug("LOCATION: isBetterLocation: \(isBetter)")
         if isBetter {
-            dcContext.setLocation(latitude: newLocation.coordinate.latitude, longitude: newLocation.coordinate.longitude, accuracy: newLocation.horizontalAccuracy)
-            lastLocation = newLocation
+            if dcContext.isSendingLocationsToChat(chatId: 0) {
+                dcContext.setLocation(latitude: newLocation.coordinate.latitude,
+                                      longitude: newLocation.coordinate.longitude,
+                                      accuracy: newLocation.horizontalAccuracy)
+                lastLocation = newLocation
+            } else {
+                locationManager.stopUpdatingLocation()
+            }
         }
     }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        if let error = error as? CLError, error.code == .denied {
+            logger.warning("LOCATION MANAGER: didFailWithError: \(error.localizedDescription)")
+           // Location updates are not authorized.
+           disableLocationStreamingInAllChats()
+           return
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        logger.debug("LOCATION MANAGER: didChangeAuthorization: \(status)")
+        switch status {
+        case .denied, .restricted:
+            disableLocationStreamingInAllChats()
+        case .authorizedWhenInUse:
+            logger.warning("Location streaming will only work as long as the app is in foreground.")
+            locationManager.startUpdatingLocation()
+        case .authorizedAlways:
+            locationManager.startUpdatingLocation()
+        default:
+            break
+        }
+    }
+
+    func disableLocationStreamingInAllChats() {
+        if (dcContext.isSendingLocationsToChat(chatId: 0)) {
+            let dcChatlist = dcContext.getChatlist(flags: 0, queryString: nil, queryId: 0)
+            for i in 0...dcChatlist.length {
+                let chatId = dcChatlist.getChatId(index: i)
+                if dcContext.isSendingLocationsToChat(chatId: chatId) {
+                    dcContext.sendLocationsToChat(chatId: chatId, seconds: 0)
+                }
+            }
+            locationManager.stopUpdatingLocation()
+        }
+    }
+
+    func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
+        logger.debug("LOCATION: location manager did pause location updates")
+    }
+
+    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
+        logger.debug("LOCATION: location manager did resume location updates")
+    }
+
 
     func isBetterLocation(newLocation: CLLocation, lastLocation: CLLocation?) -> Bool {
         guard let lastLocation = lastLocation else {
@@ -70,27 +112,27 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func hasValidAccuracy(newLocation: CLLocation) -> Bool {
-        logger.debug("LOCATION: hasValidAccuracy: \(newLocation.horizontalAccuracy > 0)")
+//        logger.debug("LOCATION: hasValidAccuracy: \(newLocation.horizontalAccuracy > 0)")
         return newLocation.horizontalAccuracy > 0
     }
 
     func isSignificantlyMoreAccurate(newLocation: CLLocation, lastLocation: CLLocation) -> Bool {
-        logger.debug("LOCATION isSignificantlyMoreAccurate: \(lastLocation.horizontalAccuracy - newLocation.horizontalAccuracy > 25)")
+//        logger.debug("LOCATION isSignificantlyMoreAccurate: \(lastLocation.horizontalAccuracy - newLocation.horizontalAccuracy > 25)")
         return lastLocation.horizontalAccuracy - newLocation.horizontalAccuracy > 25
     }
 
     func isMoreAccurate(newLocation: CLLocation, lastLocation: CLLocation) -> Bool {
-        logger.debug("LOCATION: isMoreAccurate \(lastLocation.horizontalAccuracy - newLocation.horizontalAccuracy > 0)")
+//        logger.debug("LOCATION: isMoreAccurate \(lastLocation.horizontalAccuracy - newLocation.horizontalAccuracy > 0)")
         return lastLocation.horizontalAccuracy - newLocation.horizontalAccuracy > 0
     }
 
     func hasLocationChanged(newLocation: CLLocation, lastLocation: CLLocation) -> Bool {
-        logger.debug("LOCATION: hasLocationChanged \(newLocation.distance(from: lastLocation) > 10)")
+//        logger.debug("LOCATION: hasLocationChanged \(newLocation.distance(from: lastLocation) > 10)")
         return newLocation.distance(from: lastLocation) > 10
     }
 
     func hasLocationSignificantlyChanged(newLocation: CLLocation, lastLocation: CLLocation) -> Bool {
-        logger.debug("LOCATION: hasLocationSignificantlyChanged \(newLocation.distance(from: lastLocation) > 30)")
+//        logger.debug("LOCATION: hasLocationSignificantlyChanged \(newLocation.distance(from: lastLocation) > 30)")
         return newLocation.distance(from: lastLocation) > 30
     }
 
@@ -99,6 +141,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
      */
     func isNewLocationOutdated(newLocation: CLLocation) -> Bool {
         let timeDelta = DateUtils.getRelativeTimeInSeconds(timeStamp: Double(newLocation.timestamp.timeIntervalSince1970))
+ //       logger.debug("LOCATION: isLocationOutdated timeDelta: \(timeDelta) -> \(Double(Time.fiveMinutes)) -> \(timeDelta < Double(Time.fiveMinutes))")
         return timeDelta > Double(Time.fiveMinutes)
     }
     
