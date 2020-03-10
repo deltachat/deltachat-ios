@@ -1087,11 +1087,16 @@ extension ChatViewController: MessagesLayoutDelegate {
         let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
         let documentAction = UIAlertAction(title: String.localized("documents"), style: .default, handler: documentActionPressed(_:))
         let voiceMessageAction = UIAlertAction(title: String.localized("voice_message"), style: .default, handler: voiceMessageButtonPressed(_:))
+        let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
+        let locationStreamingAction = UIAlertAction(title: isLocationStreaming ? String.localized("stop_sharing_location") : String.localized("location"),
+                                                    style: isLocationStreaming ? .destructive : .default,
+                                                    handler: locationStreamingButtonPressed(_:))
 
         alert.addAction(cameraAction)
         alert.addAction(galleryAction)
         alert.addAction(documentAction)
         alert.addAction(voiceMessageAction)
+        alert.addAction(locationStreamingAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -1110,6 +1115,41 @@ extension ChatViewController: MessagesLayoutDelegate {
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
         coordinator?.showPhotoVideoLibrary(delegate: self)
+    }
+
+    private func locationStreamingButtonPressed(_ action: UIAlertAction) {
+        let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
+        if isLocationStreaming {
+            locationStreamingFor(seconds: 0)
+        } else {
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+            let select5min = UIAlertAction(title: String.localized("share_location_for_5_minutes"), style: .default, handler: locationStreamingAction(duration: Time.fiveMinutes))
+            let select30min = UIAlertAction(title: String.localized("share_location_for_30_minutes"), style: .default, handler: locationStreamingAction(duration: Time.thirtyMinutes))
+            let select1hour = UIAlertAction(title: String.localized("share_location_for_one_hour"), style: .default, handler: locationStreamingAction(duration: Time.oneHour))
+            let select2hours = UIAlertAction(title: String.localized("share_location_for_two_hours"), style: .default, handler: locationStreamingAction(duration: Time.twoHours))
+            let select6hours = UIAlertAction(title: String.localized("share_location_for_six_hours"), style: .default, handler: locationStreamingAction(duration: Time.sixHours))
+            alert.addAction(select5min)
+            alert.addAction(select30min)
+            alert.addAction(select1hour)
+            alert.addAction(select2hours)
+            alert.addAction(select6hours)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
+    private func locationStreamingAction(duration: Int) -> (_ alertAction: UIAlertAction) -> () {
+        return { _ in
+            self.locationStreamingFor(seconds: duration)
+        }
+    }
+
+    private func locationStreamingFor(seconds: Int) {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            appDelegate.locationManager.shareLocation(chatId: self.chatId, duration: seconds)
+            self.dcContext.sendLocationsToChat(chatId: self.chatId, seconds: seconds)
     }
 
 }
