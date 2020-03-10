@@ -42,7 +42,7 @@ internal final class SettingsViewController: UITableViewController {
 
     private let profileHeader = ContactDetailHeader()
 
-    private lazy var profileCell: ProfileCell = {
+    private var profileCell: ProfileCell = {
         let displayName = DcConfig.displayname ?? String.localized("pref_your_name")
         let email = (DcConfig.addr ?? "")
         let selfContact = DcContact(id: Int(DC_CONTACT_ID_SELF))
@@ -76,7 +76,7 @@ internal final class SettingsViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var notificationSwitch: UISwitch = {
+    private var notificationSwitch: UISwitch = {
         let switchControl = UISwitch()
         switchControl.isUserInteractionEnabled = false // toggled by cell tap
         switchControl.isOn = !UserDefaults.standard.bool(forKey: "notifications_disabled")
@@ -106,7 +106,7 @@ internal final class SettingsViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var autocryptSwitch: UISwitch = {
+    private var autocryptSwitch: UISwitch = {
         let switchControl = UISwitch()
         switchControl.isUserInteractionEnabled = false // toggled by cell tap
         switchControl.isOn = DcConfig.e2eeEnabled
