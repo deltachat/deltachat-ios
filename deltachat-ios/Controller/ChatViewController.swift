@@ -614,7 +614,10 @@ class ChatViewController: MessagesViewController {
 
     private func askToForwardMessage() {
         let chat = DcChat(id: self.chatId)
-        confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
+        if chat.isSelfTalk {
+            RelayHelper.sharedInstance.forward(to: self.chatId)
+        } else {
+            confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
                           actionTitle: String.localized("menu_forward"),
                           actionHandler: { _ in
                             RelayHelper.sharedInstance.forward(to: self.chatId)
@@ -622,6 +625,7 @@ class ChatViewController: MessagesViewController {
                           cancelHandler: { _ in
                             self.dismiss(animated: false, completion: nil)
                             self.coordinator?.navigateBack()})
+        }
     }
 }
 

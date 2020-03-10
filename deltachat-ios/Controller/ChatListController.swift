@@ -117,6 +117,8 @@ class ChatListController: UIViewController {
         var gclFlags: Int32 = 0
         if showArchive {
             gclFlags |= DC_GCL_ARCHIVED_ONLY
+        } else if RelayHelper.sharedInstance.isForwarding() {
+            gclFlags |= DC_GCL_FOR_FORWARDING
         }
         chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
         chatTable.reloadData()
