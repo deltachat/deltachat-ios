@@ -97,9 +97,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     /**
         Locations can be cached by iOS, timestamp comparison checks if the location has been tracked within the last 5 minutes
      */
-    func isNewLocationOutdated(newLocation: CLLocation) -> Bool{
+    func isNewLocationOutdated(newLocation: CLLocation) -> Bool {
         let timeDelta = DateUtils.getRelativeTimeInSeconds(timeStamp: Double(newLocation.timestamp.timeIntervalSince1970))
-        return timeDelta < Double(Time.fiveMinutes)
+        return timeDelta > Double(Time.fiveMinutes)
     }
     
 }
