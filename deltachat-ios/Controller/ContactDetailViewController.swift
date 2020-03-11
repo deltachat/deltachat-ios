@@ -146,7 +146,7 @@ class ContactDetailViewController: UITableViewController {
             handleCellAction(for: indexPath.row)
         case .startChat:
             let contactId = viewModel.contactId
-            askToChatWith(contactId: contactId)
+            chatWith(contactId: contactId)
         case .sharedChats:
             let chatId = viewModel.getSharedChatIdAt(indexPath: indexPath)
             coordinator?.showChat(chatId: chatId)
@@ -260,21 +260,9 @@ extension ContactDetailViewController {
         }
     }
 
-    private func askToChatWith(contactId: Int) {
-        let dcContact = DcContact(id: contactId)
-        let alert = UIAlertController(title: String.localizedStringWithFormat(
-            String.localized("ask_start_chat_with"), dcContact.nameNAddr),
-                                      message: nil,
-                                      preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-            let chatId = self.viewModel.context.createChatByContactId(contactId: contactId)
-            self.coordinator?.showChat(chatId: chatId)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        present(alert, animated: true, completion: nil)
+    private func chatWith(contactId: Int) {
+        let chatId = self.viewModel.context.createChatByContactId(contactId: contactId)
+        self.coordinator?.showChat(chatId: chatId)
     }
 
 }
