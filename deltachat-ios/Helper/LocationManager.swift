@@ -90,15 +90,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
-        logger.debug("LOCATION: location manager did pause location updates")
-    }
-
-    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
-        logger.debug("LOCATION: location manager did resume location updates")
-    }
-
-
     func isBetterLocation(newLocation: CLLocation, lastLocation: CLLocation?) -> Bool {
         guard let lastLocation = lastLocation else {
             return !isNewLocationOutdated(newLocation: newLocation) && hasValidAccuracy(newLocation: newLocation)
