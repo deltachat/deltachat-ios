@@ -1123,25 +1123,21 @@ extension ChatViewController: MessagesLayoutDelegate {
             locationStreamingFor(seconds: 0)
         } else {
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
-            let select5min = UIAlertAction(title: String.localized("share_location_for_5_minutes"), style: .default, handler: locationStreamingAction(duration: Time.fiveMinutes))
-            let select30min = UIAlertAction(title: String.localized("share_location_for_30_minutes"), style: .default, handler: locationStreamingAction(duration: Time.thirtyMinutes))
-            let select1hour = UIAlertAction(title: String.localized("share_location_for_one_hour"), style: .default, handler: locationStreamingAction(duration: Time.oneHour))
-            let select2hours = UIAlertAction(title: String.localized("share_location_for_two_hours"), style: .default, handler: locationStreamingAction(duration: Time.twoHours))
-            let select6hours = UIAlertAction(title: String.localized("share_location_for_six_hours"), style: .default, handler: locationStreamingAction(duration: Time.sixHours))
-            alert.addAction(select5min)
-            alert.addAction(select30min)
-            alert.addAction(select1hour)
-            alert.addAction(select2hours)
-            alert.addAction(select6hours)
+            addDurationSelectionAction(to: alert, key: "share_location_for_5_minutes", duration: Time.fiveMinutes)
+            addDurationSelectionAction(to: alert, key: "share_location_for_30_minutes", duration: Time.thirtyMinutes)
+            addDurationSelectionAction(to: alert, key: "share_location_for_one_hour", duration: Time.oneHour)
+            addDurationSelectionAction(to: alert, key: "share_location_for_two_hours", duration: Time.twoHours)
+            addDurationSelectionAction(to: alert, key: "share_location_for_six_hours", duration: Time.sixHours)
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
 
-    private func locationStreamingAction(duration: Int) -> (_ alertAction: UIAlertAction) -> () {
-        return { _ in
+    private func addDurationSelectionAction(to alert: UIAlertController, key: String, duration: Int) {
+        let action = UIAlertAction(title: String.localized(key), style: .default, handler: { _ in
             self.locationStreamingFor(seconds: duration)
-        }
+        })
+        alert.addAction(action)
     }
 
     private func locationStreamingFor(seconds: Int) {
