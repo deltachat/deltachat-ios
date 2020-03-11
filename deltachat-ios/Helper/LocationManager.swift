@@ -112,8 +112,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func hasValidAccuracy(newLocation: CLLocation) -> Bool {
-//        logger.debug("LOCATION: hasValidAccuracy: \(newLocation.horizontalAccuracy > 0)")
-        return newLocation.horizontalAccuracy > 0
+        return newLocation.horizontalAccuracy >= 0
     }
 
     func isSignificantlyMoreAccurate(newLocation: CLLocation, lastLocation: CLLocation) -> Bool {
