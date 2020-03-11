@@ -10,10 +10,10 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     init(context: DcContext) {
         dcContext = context
         locationManager = CLLocationManager()
-        locationManager.distanceFilter = 50
+        locationManager.distanceFilter = 25
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.allowsBackgroundLocationUpdates = true
-        //locationManager.pausesLocationUpdatesAutomatically = true
+        locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.activityType = CLActivityType.fitness
         super.init()
         locationManager.delegate = self
@@ -106,18 +106,12 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 
         return !isNewLocationOutdated(newLocation: newLocation) &&
             hasValidAccuracy(newLocation: newLocation) &&
-            (isSignificantlyMoreAccurate(newLocation: newLocation, lastLocation: lastLocation) ||
-            isMoreAccurate(newLocation: newLocation, lastLocation: lastLocation) && hasLocationChanged(newLocation: newLocation, lastLocation: lastLocation) ||
+            (isMoreAccurate(newLocation: newLocation, lastLocation: lastLocation) && hasLocationChanged(newLocation: newLocation, lastLocation: lastLocation) ||
             hasLocationSignificantlyChanged(newLocation: newLocation, lastLocation: lastLocation))
     }
 
     func hasValidAccuracy(newLocation: CLLocation) -> Bool {
         return newLocation.horizontalAccuracy >= 0
-    }
-
-    func isSignificantlyMoreAccurate(newLocation: CLLocation, lastLocation: CLLocation) -> Bool {
-//        logger.debug("LOCATION isSignificantlyMoreAccurate: \(lastLocation.horizontalAccuracy - newLocation.horizontalAccuracy > 25)")
-        return lastLocation.horizontalAccuracy - newLocation.horizontalAccuracy > 25
     }
 
     func isMoreAccurate(newLocation: CLLocation, lastLocation: CLLocation) -> Bool {
