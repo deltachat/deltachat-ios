@@ -216,7 +216,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
         cell.subtitleLabel.text = result
         cell.setTimeLabel(summary.timestamp)
-        cell.setStatusIndicators(unreadCount: unreadMessages, status: summary.state, visibility: chat.visibility)
+        cell.setStatusIndicators(unreadCount: unreadMessages, status: summary.state, visibility: chat.visibility, isLocationStreaming: chat.isSendingLocations)
         return cell
     }
 

@@ -15,7 +15,7 @@ class ContactCell: UITableViewCell {
     private let imgSize: CGFloat = 20
 
     lazy var toplineStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, pinnedIndicator, timeLabel])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, pinnedIndicator, timeLabel, locationStreamingIndicator])
         stackView.axis = .horizontal
         stackView.spacing = 4
         return stackView
@@ -64,6 +64,17 @@ class ContactCell: UITableViewCell {
         label.textAlignment = .right
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 2), for: NSLayoutConstraint.Axis.horizontal)
         return label
+    }()
+
+    private let locationStreamingIndicator: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        view.widthAnchor.constraint(equalToConstant: 16).isActive = true
+        view.tintColor = DcColors.checkmarkGreen
+        view.image = #imageLiteral(resourceName: "ic_location").withRenderingMode(.alwaysTemplate)
+        view.isHidden = true
+        return view
     }()
 
     let subtitleLabel: UILabel = {
@@ -171,7 +182,7 @@ class ContactCell: UITableViewCell {
         avatar.setName(name)
     }
 
-    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32) {
+    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool) {
         if visibility==DC_CHAT_VISIBILITY_ARCHIVED {
             pinnedIndicator.isHidden = true
             unreadMessageCounter.isHidden = true
@@ -207,6 +218,8 @@ class ContactCell: UITableViewCell {
             deliveryStatusIndicator.isHidden = deliveryStatusIndicator.image == nil ? true : false
             archivedIndicator.isHidden = true
         }
+
+        locationStreamingIndicator.isHidden = !isLocationStreaming
     }
 
     func setTimeLabel(_ timestamp: Int64?) {
@@ -254,14 +267,14 @@ class ContactCell: UITableViewCell {
             }
             setVerified(isVerified: chat.isVerified)
             setTimeLabel(chatData.summary.timestamp)
-            setStatusIndicators(unreadCount: chatData.unreadMessages, status: chatData.summary.state, visibility: chat.visibility)
+            setStatusIndicators(unreadCount: chatData.unreadMessages, status: chatData.summary.state, visibility: chat.visibility, isLocationStreaming: chat.isSendingLocations)
 
         case .CONTACT(let contactData):
             let contact = DcContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             avatar.setName(cellViewModel.title)
             avatar.setColor(contact.color)
-            setStatusIndicators(unreadCount: 0, status: 0, visibility: 0)
+            setStatusIndicators(unreadCount: 0, status: 0, visibility: 0, isLocationStreaming: false)
         }
     }
 }

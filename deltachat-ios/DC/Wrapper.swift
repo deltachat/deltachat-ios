@@ -564,6 +564,10 @@ class DcChat {
         }
         return nil
         }()
+
+    var isSendingLocations: Bool {
+        return dc_chat_is_sending_locations(chatPointer) == 1
+    }
 }
 
 class DcArray {
