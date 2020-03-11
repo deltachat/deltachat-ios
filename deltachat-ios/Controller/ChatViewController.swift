@@ -601,7 +601,7 @@ class ChatViewController: MessagesViewController {
                           actionHandler: { _ in
                             self.dismiss(animated: true, completion: nil)
                             let contactId = self.dcContext.createContact(name: "", email: email)
-                            let chatId = self.dcContext.createChat(contactId: contactId)
+                            let chatId = self.dcContext.createChatByContactId(contactId: contactId)
                             self.coordinator?.showChat(chatId: chatId)})
     }
 

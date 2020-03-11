@@ -169,7 +169,7 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
             let msg = String.localizedStringWithFormat(String.localized(state==DC_QR_ADDR ? "ask_start_chat_with" : "qrshow_x_verified"), nameAndAddress)
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-                let chatId = self.dcContext.createChat(contactId: qrParsed.id)
+                let chatId = self.dcContext.createChatByContactId(contactId: qrParsed.id)
                 self.coordinator?.showChat(chatId: chatId)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
@@ -311,7 +311,7 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
     }
 
     func displayNewChat(contactId: Int) {
-        let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+        let chatId = dcContext.createChatByContactId(contactId: contactId)
         let chatVC = ChatViewController(dcContext: dcContext, chatId: Int(chatId))
 
         chatVC.hidesBottomBarWhenPushed = true

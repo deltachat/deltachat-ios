@@ -268,7 +268,7 @@ extension ContactDetailViewController {
                                       preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
-            let chatId = Int(dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId)))
+            let chatId = self.viewModel.context.createChatByContactId(contactId: contactId)
             self.coordinator?.showChat(chatId: chatId)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in

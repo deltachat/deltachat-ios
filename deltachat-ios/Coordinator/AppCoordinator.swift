@@ -310,7 +310,7 @@ class NewChatCoordinator: Coordinator {
     }
 
     func showNewContactController() {
-        let newContactController = NewContactController()
+        let newContactController = NewContactController(dcContext: dcContext)
         let coordinator = EditContactCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         newContactController.coordinator = coordinator
@@ -318,7 +318,7 @@ class NewChatCoordinator: Coordinator {
     }
 
     func showNewChat(contactId: Int) {
-        let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+        let chatId = dcContext.createChatByContactId(contactId: contactId)
         showChat(chatId: Int(chatId))
     }
 
@@ -358,7 +358,7 @@ class GroupChatDetailCoordinator: Coordinator {
     }
 
     func showSingleChatEdit(contactId: Int) {
-        let editContactController = EditContactController(contactIdForUpdate: contactId)
+        let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
         let coordinator = EditContactCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         editContactController.coordinator = coordinator
@@ -549,7 +549,7 @@ class AddGroupMembersCoordinator: Coordinator {
     }
 
     func showNewContactController() {
-        let newContactController = NewContactController()
+        let newContactController = NewContactController(dcContext: dcContext)
         newContactController.openChatOnSave = false
         let coordinator = EditContactCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
@@ -643,7 +643,7 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
     }
 
     func showEditContact(contactId: Int) {
-        let editContactController = EditContactController(contactIdForUpdate: contactId)
+        let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
         let coordinator = EditContactCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         editContactController.coordinator = coordinator

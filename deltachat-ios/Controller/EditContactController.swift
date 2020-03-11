@@ -5,8 +5,8 @@ class EditContactController: NewContactController {
     // for editing existing contacts (only
     // the name may be edited, therefore disable
     // the email field)
-    init(contactIdForUpdate: Int) {
-        super.init()
+    init(dcContext: DcContext, contactIdForUpdate: Int) {
+        super.init(dcContext: dcContext)
         title = String.localized("edit_contact")
 
         let contact = DcContact(id: contactIdForUpdate)
