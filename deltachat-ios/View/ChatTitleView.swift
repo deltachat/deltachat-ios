@@ -31,6 +31,9 @@ class ChatTitleView: UIView {
         return view
     }()
 
+    private let paddingNaviationButtons = 120
+    private let sizeStreamingIndicator = 28
+
     init() {
         super.init(frame: .zero)
         setupSubviews()
@@ -47,7 +50,8 @@ class ChatTitleView: UIView {
         addSubview(containerView)
         addConstraints([ containerView.constraintAlignTopTo(self),
                          containerView.constraintAlignBottomTo(self),
-                         containerView.constraintCenterXTo(self)])
+                         containerView.constraintCenterXTo(self),
+                         containerView.constraintWidthTo(UIScreen.main.bounds.width - CGFloat(paddingNaviationButtons + sizeStreamingIndicator)) ])
 
         containerView.addSubview(titleLabel)
         containerView.addConstraints([ titleLabel.constraintAlignLeadingTo(containerView),
@@ -72,5 +76,9 @@ class ChatTitleView: UIView {
         titleLabel.text = title
         subtitleLabel.text = subtitle
         locationStreamingIndicator.isHidden = !isLocationStreaming
+    }
+
+    func hideLocationStreamingIndicator() {
+        locationStreamingIndicator.isHidden = true
     }
 }

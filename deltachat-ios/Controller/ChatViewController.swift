@@ -233,6 +233,15 @@ class ChatViewController: MessagesViewController {
         stopTimer()
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { (_) -> Void in
+            if self.showCustomNavBar, let titleView = self.navigationItem.titleView as? ChatTitleView {
+                titleView.hideLocationStreamingIndicator() }},
+                            completion: { (_) -> Void in
+                                self.updateTitle(chat: DcChat(id: self.chatId)) })
+        super.viewWillTransition(to: size, with: coordinator)
+    }
+
     private func updateTitle(chat: DcChat) {
         let titleView =  ChatTitleView()
 
