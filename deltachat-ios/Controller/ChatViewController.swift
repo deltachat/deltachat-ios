@@ -251,7 +251,7 @@ class ChatViewController: MessagesViewController {
             }
         }
         
-        titleView.updateTitleView(title: chat.name, subtitle: subtitle)
+        titleView.updateTitleView(title: chat.name, subtitle: subtitle, isLocationStreaming: chat.isSendingLocations)
         navigationItem.titleView = titleView
 
         let badge: InitialsBadge

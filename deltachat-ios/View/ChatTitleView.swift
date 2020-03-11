@@ -4,6 +4,7 @@ class ChatTitleView: UIView {
 
     private var titleLabel: UILabel = {
         let titleLabel = UILabel()
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.backgroundColor = UIColor.clear
         titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         titleLabel.textAlignment = .center
@@ -13,9 +14,21 @@ class ChatTitleView: UIView {
 
     private var subtitleLabel: UILabel = {
         let subtitleLabel = UILabel()
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.font = UIFont.systemFont(ofSize: 12)
         subtitleLabel.textAlignment = .center
         return subtitleLabel
+    }()
+
+    private let locationStreamingIndicator: UIImageView = {
+        let view = UIImageView()
+        view.tintColor = DcColors.checkmarkGreen
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.constraintHeightTo(28).isActive = true
+        view.constraintWidthTo(28).isActive = true
+        view.image = #imageLiteral(resourceName: "ic_location").withRenderingMode(.alwaysTemplate)
+        view.isHidden = true
+        return view
     }()
 
     init() {
@@ -29,25 +42,35 @@ class ChatTitleView: UIView {
     }
 
     private func setupSubviews() {
-        addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(containerView)
+        addConstraints([ containerView.constraintAlignTopTo(self),
+                         containerView.constraintAlignBottomTo(self),
+                         containerView.constraintCenterXTo(self)])
 
-        addSubview(subtitleLabel)
-        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0).isActive = true
-        subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-        subtitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+        containerView.addSubview(titleLabel)
+        containerView.addConstraints([ titleLabel.constraintAlignLeadingTo(containerView),
+                                       titleLabel.constraintAlignTrailingTo(containerView),
+                                       titleLabel.constraintAlignTopTo(containerView) ])
+
+        containerView.addSubview(subtitleLabel)
+        containerView.addConstraints([ subtitleLabel.constraintToBottomOf(titleLabel),
+                                       subtitleLabel.constraintAlignLeadingTo(containerView),
+                                       subtitleLabel.constraintAlignTrailingTo(containerView),
+                                       subtitleLabel.constraintAlignBottomTo(containerView)])
+        addSubview(locationStreamingIndicator)
+        addConstraints([
+                         locationStreamingIndicator.constraintCenterYTo(self),
+                         locationStreamingIndicator.constraintAlignTrailingTo(self),
+                         locationStreamingIndicator.constraintToTrailingOf(containerView)])
     }
 
-    func updateTitleView(title: String, subtitle: String?, baseColor: UIColor = DcColors.defaultTextColor) {
+    func updateTitleView(title: String, subtitle: String?, baseColor: UIColor = DcColors.defaultTextColor, isLocationStreaming: Bool) {
         subtitleLabel.textColor = baseColor.withAlphaComponent(0.95)
         titleLabel.textColor = baseColor
         titleLabel.text = title
         subtitleLabel.text = subtitle
+        locationStreamingIndicator.isHidden = !isLocationStreaming
     }
 }
