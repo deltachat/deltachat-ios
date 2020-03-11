@@ -150,9 +150,8 @@ class ChatViewController: MessagesViewController {
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 
-        let chat = DcChat(id: chatId)
         if showCustomNavBar {
-            updateTitle(chat: chat)
+            updateTitle(chat: DcChat(id: chatId))
         }
 
         configureMessageMenu()
@@ -176,7 +175,7 @@ class ChatViewController: MessagesViewController {
                     }
                 }
                 if self.showCustomNavBar {
-                    self.updateTitle(chat: chat)
+                    self.updateTitle(chat: DcChat(id: self.chatId))
                 }
             }
         }
