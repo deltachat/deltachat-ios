@@ -1121,7 +1121,7 @@ extension ChatViewController: MessagesLayoutDelegate {
         if isLocationStreaming {
             locationStreamingFor(seconds: 0)
         } else {
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+            let alert = UIAlertController(title: String.localized("title_share_location"), message: nil, preferredStyle: .safeActionSheet)
             addDurationSelectionAction(to: alert, key: "share_location_for_5_minutes", duration: Time.fiveMinutes)
             addDurationSelectionAction(to: alert, key: "share_location_for_30_minutes", duration: Time.thirtyMinutes)
             addDurationSelectionAction(to: alert, key: "share_location_for_one_hour", duration: Time.oneHour)
