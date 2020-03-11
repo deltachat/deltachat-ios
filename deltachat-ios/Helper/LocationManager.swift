@@ -11,7 +11,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         dcContext = context
         locationManager = CLLocationManager()
         locationManager.distanceFilter = 50
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.allowsBackgroundLocationUpdates = true
         //locationManager.pausesLocationUpdatesAutomatically = true
         locationManager.activityType = CLActivityType.fitness
@@ -78,7 +78,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func disableLocationStreamingInAllChats() {
-        if (dcContext.isSendingLocationsToChat(chatId: 0)) {
+        if dcContext.isSendingLocationsToChat(chatId: 0) {
             let dcChatlist = dcContext.getChatlist(flags: 0, queryString: nil, queryId: 0)
             for i in 0...dcChatlist.length {
                 let chatId = dcChatlist.getChatId(index: i)
