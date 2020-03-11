@@ -14,6 +14,7 @@ struct DcColors {
     static let defaultTextColor = UIColor.themeColor(light: .darkText, dark: .white)
     static let grayTextColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
     static let grayDateColor = UIColor.themeColor(lightHex: "999999", darkHex: "bbbbbb") // slight variations of lightGray (#aaaaaa)
+    static let middleGray = UIColor(hexString: "848ba7")
     static let secondaryTextColor = UIColor.themeColor(lightHex: "848ba7", darkHex: "a5abc0")
     static let inputFieldColor =  UIColor.themeColor(light: UIColor(red: 245 / 255, green: 245 / 255, blue: 245 / 255, alpha: 1),
                                                      dark: UIColor(red: 10 / 255, green: 10 / 255, blue: 10 / 255, alpha: 1))

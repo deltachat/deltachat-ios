@@ -51,7 +51,7 @@ class ContactCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalToConstant: 16).isActive = true
         view.widthAnchor.constraint(equalToConstant: 16).isActive = true
-        view.tintColor = UIColor(hexString: "848ba7")
+        view.tintColor = DcColors.middleGray
         view.image = #imageLiteral(resourceName: "pinned_chatlist").withRenderingMode(.alwaysTemplate)
         view.isHidden = true
         return view
@@ -60,7 +60,7 @@ class ContactCell: UITableViewCell {
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(hexString: "848ba7")
+        label.textColor = DcColors.middleGray
         label.textAlignment = .right
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 2), for: NSLayoutConstraint.Axis.horizontal)
         return label
@@ -80,7 +80,7 @@ class ContactCell: UITableViewCell {
     let subtitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(hexString: "848ba7")
+        label.textColor = DcColors.middleGray
         label.lineBreakMode = .byTruncatingTail
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
         return label
@@ -88,7 +88,6 @@ class ContactCell: UITableViewCell {
 
     private let deliveryStatusIndicator: UIImageView = {
         let view = UIImageView()
-        view.tintColor = UIColor.green
         view.isHidden = true
         return view
     }()
