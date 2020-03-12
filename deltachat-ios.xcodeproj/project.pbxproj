@@ -103,7 +103,6 @@
 		789E879D21D6DF86003ED1C5 /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E879C21D6DF86003ED1C5 /* ProgressHud.swift */; };
 		78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3921D3CFBC00D4B15E /* SettingsController.swift */; };
 		78E45E3C21D3D03700D4B15E /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */; };
-		78E45E3E21D3D28C00D4B15E /* DcNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3D21D3D28C00D4B15E /* DcNavigationController.swift */; };
 		78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */; };
 		78E45E4C21D404AE00D4B15E /* CustomMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4B21D404AE00D4B15E /* CustomMessageCell.swift */; };
 		78ED838321D5379000243125 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838221D5379000243125 /* TextFieldCell.swift */; };
@@ -147,6 +146,7 @@
 		AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DE1FB3246400DCDD78 /* Message.swift */; };
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
 		AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E41FB32E1900DCDD78 /* Utils.swift */; };
+		AEC679EA241A906C007DDBE1 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC679E9241A906C007DDBE1 /* UINavigationController+Extension.swift */; };
 		AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D752253431E007DC082 /* AccountSetupController.swift */; };
 		AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7C2253ADB4007DC082 /* HudHandler.swift */; };
 		AEE56D80225504DB007DC082 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7F225504DB007DC082 /* Extensions.swift */; };
@@ -328,7 +328,6 @@
 		78E45E2121D1768900D4B15E /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = "deltachat-ios/libraries/deltachat-core/src"; sourceTree = "<group>"; };
 		78E45E3921D3CFBC00D4B15E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
-		78E45E3D21D3D28C00D4B15E /* DcNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcNavigationController.swift; sourceTree = "<group>"; };
 		78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		78E45E4B21D404AE00D4B15E /* CustomMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageCell.swift; sourceTree = "<group>"; };
 		78ED838221D5379000243125 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
@@ -379,6 +378,7 @@
 		AEACE2DE1FB3246400DCDD78 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AEACE2E41FB32E1900DCDD78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		AEC679E9241A906C007DDBE1 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		AEE56D752253431E007DC082 /* AccountSetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AEE56D7C2253ADB4007DC082 /* HudHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudHandler.swift; sourceTree = "<group>"; };
 		AEE56D7F225504DB007DC082 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -473,6 +473,7 @@
 				3059620D234614E700C80F33 /* DcContact+Extension.swift */,
 				3059620F2346154D00C80F33 /* String+Extension.swift */,
 				302B84CD2397F6CD001C261F /* URL+Extension.swift */,
+				AEC679E9241A906C007DDBE1 /* UINavigationController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -743,7 +744,6 @@
 				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
 				AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */,
 				7092474020B3869500AF8799 /* ContactDetailViewController.swift */,
-				78E45E3D21D3D28C00D4B15E /* DcNavigationController.swift */,
 				AE9DAF0C22C1215D004C9591 /* EditContactController.swift */,
 				AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */,
 				AEE6EC472283045D00EDC689 /* EditSettingsController.swift */,
@@ -1137,12 +1137,12 @@
 				305961FA2346125100C80F33 /* MessageReusableView.swift in Sources */,
 				3040F462234F550300FA34D5 /* AudioPlayerView.swift in Sources */,
 				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
+				AEC679EA241A906C007DDBE1 /* UINavigationController+Extension.swift in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
 				3040F460234F419400FA34D5 /* BasicAudioController.swift in Sources */,
 				305962082346125100C80F33 /* MediaMessageSizeCalculator.swift in Sources */,
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
 				70B08FCD21073B910097D3EA /* NewGroupMemberChoiceController.swift in Sources */,
-				78E45E3E21D3D28C00D4B15E /* DcNavigationController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
 				78ED838D21D577D000243125 /* events.swift in Sources */,
 				305961FD2346125100C80F33 /* TypingBubble.swift in Sources */,
