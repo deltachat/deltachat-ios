@@ -527,6 +527,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
     func showMediaGallery(currentIndex: Int, mediaUrls urls: [URL]) {
         let betterPreviewController = BetterPreviewController(currentIndex: currentIndex, urls: urls)
         let nav = UINavigationController(rootViewController: betterPreviewController)
+        let previewController = PreviewController.init(currentIndex: currentIndex, urls: urls)
 
         navigationController.present(nav, animated: true)
     }

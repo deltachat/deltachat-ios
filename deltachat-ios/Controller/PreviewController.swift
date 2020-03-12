@@ -2,6 +2,9 @@ import QuickLook
 import UIKit
 
 class PreviewController: QLPreviewControllerDataSource {
+
+    var onDismiss: VoidFunction?
+
     var urls: [URL]
     var qlController: QLPreviewController
 
@@ -21,8 +24,9 @@ class PreviewController: QLPreviewControllerDataSource {
     }
 }
 
-class BetterPreviewController: QLPreviewController {
 
+class BetterPreviewController: QLPreviewController {
+    var onDismiss: VoidFunction?
     var urls: [URL]
 
     private lazy var doneButtonItem: UIBarButtonItem = {
@@ -34,6 +38,7 @@ class BetterPreviewController: QLPreviewController {
         self.urls = urls
         super.init(nibName: nil, bundle: nil)
         dataSource = self
+        delegate = self
         currentPreviewItemIndex = currentIndex
     }
 
@@ -44,6 +49,7 @@ class BetterPreviewController: QLPreviewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = doneButtonItem
+        navigationController?.presentationController?.delegate = self
     }
 
     // MARK: - actions
@@ -51,6 +57,14 @@ class BetterPreviewController: QLPreviewController {
         self.dismiss(animated: true, completion: nil)
     }
 }
+
+extension BetterPreviewController: QLPreviewControllerDelegate {
+    func previewControllerDidDismiss(_ controller: QLPreviewController) {
+        print("Preview dismissed")
+        onDismiss?()
+    }
+}
+
 
 extension BetterPreviewController: QLPreviewControllerDataSource {
 
@@ -60,5 +74,12 @@ extension BetterPreviewController: QLPreviewControllerDataSource {
 
     func previewController(_: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
         return urls[index] as QLPreviewItem
+    }
+}
+
+extension BetterPreviewController: UIAdaptivePresentationControllerDelegate {
+
+    func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
+
     }
 }

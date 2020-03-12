@@ -655,7 +655,7 @@ open class InputBarAccessoryView: UIView {
     }
     
     /// Activates the NSLayoutConstraintSet's
-    private func activateConstraints() {
+	public func activateConstraints() {
         backgroundViewLayoutSet?.activate()
         contentViewLayoutSet?.activate()
         middleContentViewLayoutSet?.activate()
@@ -666,7 +666,7 @@ open class InputBarAccessoryView: UIView {
     }
     
     /// Deactivates the NSLayoutConstraintSet's
-    private func deactivateConstraints() {
+	public func deactivateConstraints() {
         backgroundViewLayoutSet?.deactivate()
         contentViewLayoutSet?.deactivate()
         middleContentViewLayoutSet?.deactivate()

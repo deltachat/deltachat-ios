@@ -42,6 +42,17 @@ class ChatViewController: MessagesViewController {
     var dcContext: DcContext
     weak var coordinator: ChatViewCoordinator?
 
+    var previewContorller: BetterPreviewController? {
+        didSet {
+            previewContorller?.onDismiss = {
+                [unowned self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+
+                }
+            }
+        }
+    }
+
     let outgoingAvatarOverlap: CGFloat = 17.5
     let loadCount = 30
 
@@ -1153,7 +1164,11 @@ extension ChatViewController: MessageCellDelegate {
 
                 // these are the files user will be able to swipe trough
                 let mediaUrls: [URL] = previousUrls + [url] + nextUrls
-                coordinator?.showMediaGallery(currentIndex: previousUrls.count, mediaUrls: mediaUrls)
+
+
+                previewContorller = BetterPreviewController(currentIndex: previousUrls.count, urls: mediaUrls)
+               // present(previewContorller!, animated: true, completion: nil)
+             coordinator?.showMediaGallery(currentIndex: previousUrls.count, mediaUrls: mediaUrls)
             }
         }
     }
