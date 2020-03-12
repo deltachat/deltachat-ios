@@ -523,6 +523,13 @@ class ChatViewCoordinator: NSObject, Coordinator {
     func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
         mediaPicker.showPhotoVideoLibrary(delegate: delegate)
     }
+
+    func showMediaGallery(currentIndex: Int, mediaUrls urls: [URL]) {
+        let betterPreviewController = BetterPreviewController(currentIndex: currentIndex, urls: urls)
+        let nav = UINavigationController(rootViewController: betterPreviewController)
+
+        navigationController.present(nav, animated: true)
+    }
 }
 
 class NewGroupAddMembersCoordinator: Coordinator {

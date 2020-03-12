@@ -65,7 +65,6 @@ class ChatViewController: MessagesViewController {
     private var showNamesAboveMessage: Bool
     var showCustomNavBar = true
     var previewView: UIView?
-    var previewController: PreviewController?
 
     var emptyStateView: PaddingLabel = {
         let view =  PaddingLabel()
@@ -1154,8 +1153,7 @@ extension ChatViewController: MessageCellDelegate {
 
                 // these are the files user will be able to swipe trough
                 let mediaUrls: [URL] = previousUrls + [url] + nextUrls
-                previewController = PreviewController(currentIndex: previousUrls.count, urls: mediaUrls)
-                present(previewController!.qlController, animated: true)
+                coordinator?.showMediaGallery(currentIndex: previousUrls.count, mediaUrls: mediaUrls)
             }
         }
     }
