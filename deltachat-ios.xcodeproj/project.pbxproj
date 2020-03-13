@@ -146,7 +146,6 @@
 		AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DE1FB3246400DCDD78 /* Message.swift */; };
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
 		AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E41FB32E1900DCDD78 /* Utils.swift */; };
-		AEC679EA241A906C007DDBE1 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC679E9241A906C007DDBE1 /* UINavigationController+Extension.swift */; };
 		AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D752253431E007DC082 /* AccountSetupController.swift */; };
 		AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7C2253ADB4007DC082 /* HudHandler.swift */; };
 		AEE56D80225504DB007DC082 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7F225504DB007DC082 /* Extensions.swift */; };
@@ -378,7 +377,6 @@
 		AEACE2DE1FB3246400DCDD78 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AEACE2E41FB32E1900DCDD78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		AEC679E9241A906C007DDBE1 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		AEE56D752253431E007DC082 /* AccountSetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AEE56D7C2253ADB4007DC082 /* HudHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudHandler.swift; sourceTree = "<group>"; };
 		AEE56D7F225504DB007DC082 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -473,7 +471,6 @@
 				3059620D234614E700C80F33 /* DcContact+Extension.swift */,
 				3059620F2346154D00C80F33 /* String+Extension.swift */,
 				302B84CD2397F6CD001C261F /* URL+Extension.swift */,
-				AEC679E9241A906C007DDBE1 /* UINavigationController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1137,7 +1134,6 @@
 				305961FA2346125100C80F33 /* MessageReusableView.swift in Sources */,
 				3040F462234F550300FA34D5 /* AudioPlayerView.swift in Sources */,
 				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
-				AEC679EA241A906C007DDBE1 /* UINavigationController+Extension.swift in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
 				3040F460234F419400FA34D5 /* BasicAudioController.swift in Sources */,
 				305962082346125100C80F33 /* MediaMessageSizeCalculator.swift in Sources */,
