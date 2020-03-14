@@ -137,12 +137,12 @@ class GroupChatDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //update chat object, maybe chat name was edited
+        chat = DcChat(id: chat.id)
         updateGroupMembers()
         tableView.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
         updateHeader()
-        //update chat object, maybe chat name was edited
-        chat = DcChat(id: chat.id)
     }
 
     // MARK: - update
