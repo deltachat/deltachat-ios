@@ -81,7 +81,12 @@ class AppCoordinator: NSObject, Coordinator {
 
     public func start() {
         let lastActiveTab = tabBarRestorer.restoreLastActiveTab()
-        showTab(index: lastActiveTab)
+        if lastActiveTab == -1 {
+            // no stored tab
+            showTab(index: chatsTab)
+        } else {
+            showTab(index: lastActiveTab)
+        }
     }
 
     func showTab(index: Int) {
