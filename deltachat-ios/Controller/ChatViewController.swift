@@ -1130,26 +1130,8 @@ extension ChatViewController: MessageCellDelegate {
                 didTapAsm(msg: message, orgText: "")
             } else if let url = message.fileURL {
                 // find all other messages with same message type
-                var previousUrls: [URL] = []
-                var nextUrls: [URL] = []
-
-                var prev: Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), -1, Int32(message.type), 0, 0))
-                while prev != 0 {
-                    let prevMessage = DcMsg(id: prev)
-                    if let url = prevMessage.fileURL {
-                        previousUrls.insert(url, at: 0)
-                    }
-                    prev = Int(dc_get_next_media(mailboxPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
-                }
-
-                var next: Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), 1, Int32(message.type), 0, 0))
-                while next != 0 {
-                    let nextMessage = DcMsg(id: next)
-                    if let url = nextMessage.fileURL {
-                        nextUrls.insert(url, at: 0)
-                    }
-                    next = Int(dc_get_next_media(mailboxPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
-                }
+                let previousUrls: [URL] = message.previousMediaURLs()
+                let nextUrls: [URL] = message.nextMediaURLs()
 
                 // these are the files user will be able to swipe trough
                 let mediaUrls: [URL] = previousUrls + [url] + nextUrls
