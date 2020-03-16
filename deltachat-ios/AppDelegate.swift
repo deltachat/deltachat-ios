@@ -73,6 +73,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         guard let window = window else {
             fatalError("window was nil in app delegate")
         }
+        if #available(iOS 13.0, *) {
+            window.backgroundColor = UIColor.systemBackground
+        } else {
+            window.backgroundColor = UIColor.white
+        }
         // setup deltachat core context
         //       - second param remains nil (user data for more than one mailbox)
         open()
