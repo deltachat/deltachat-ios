@@ -237,6 +237,14 @@ class DcContext {
     func setLocation(latitude: Double, longitude: Double, accuracy: Double) {
         dc_set_location(contextPointer, latitude, longitude, accuracy)
     }
+
+    func searchMessages(chatId: Int = 0, searchText: String) -> [Int] {
+        guard let arrayPointer = dc_search_msgs(contextPointer, UInt32(chatId), searchText) else {
+            return []
+        }
+        let messageIds = Utils.copyAndFreeArray(inputArray: arrayPointer)
+        return messageIds
+    }
 }
 
 class DcConfig {
@@ -886,6 +894,16 @@ class DcMsg: MessageType {
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
+    }
+
+    func summary(chat: DcChat) -> DcLot {
+        guard let chatPointer = chat.chatPointer else {
+            fatalError()
+        }
+        guard let dcLotPointer = dc_msg_get_summary(messagePointer, chatPointer) else {
+            fatalError()
+        }
+        return DcLot(dcLotPointer)
     }
 
     func showPadlock() -> Bool {
