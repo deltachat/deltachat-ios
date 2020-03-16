@@ -60,7 +60,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         title = isVerifiedGroup ? String.localized("menu_new_verified_group") : String.localized("menu_new_group")
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
         navigationItem.rightBarButtonItem = doneButton
-        tableView.bounces = false
         doneButton.isEnabled = false
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")

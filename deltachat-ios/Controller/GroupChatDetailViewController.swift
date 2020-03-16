@@ -43,7 +43,6 @@ class GroupChatDetailViewController: UIViewController {
 
     lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
-        table.bounces = false
         table.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
         table.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
         table.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
