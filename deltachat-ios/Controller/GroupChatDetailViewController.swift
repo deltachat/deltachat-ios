@@ -156,6 +156,12 @@ class GroupChatDetailViewController: UIViewController {
             title: chat.name,
             subtitle: String.localizedStringWithFormat(String.localized("n_members"), chat.contactIds.count)
         )
+        if let img = chat.profileImage {
+            groupHeader.setImage(img)
+        } else {
+            groupHeader.setBackupImage(name: chat.name, color: chat.color)
+        }
+        groupHeader.setVerified(isVerified: chat.isVerified)
     }
 
     // MARK: - actions
