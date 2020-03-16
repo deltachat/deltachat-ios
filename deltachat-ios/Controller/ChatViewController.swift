@@ -195,6 +195,9 @@ class ChatViewController: MessagesViewController {
             }
         }
 
+        // maybe a message was added while the user was in the contact / chat profile
+        refreshMessages()
+
         if RelayHelper.sharedInstance.isForwarding() {
             askToForwardMessage()
         }
