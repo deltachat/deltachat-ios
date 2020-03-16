@@ -175,6 +175,12 @@ class ContactDetailViewController: UITableViewController {
     // MARK: - updates
     private func updateHeader() {
         headerCell.updateDetails(title: viewModel.contact.displayName, subtitle: viewModel.contact.email)
+        if let img = viewModel.contact.profileImage {
+            headerCell.setImage(img)
+        } else {
+            headerCell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
+        }
+        headerCell.setVerified(isVerified: viewModel.contact.isVerified)
     }
 
     // MARK: - actions
