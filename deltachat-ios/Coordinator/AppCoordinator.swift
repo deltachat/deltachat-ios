@@ -10,10 +10,13 @@ class AppCoordinator: NSObject, Coordinator {
     private let chatsTab = 1
     private let settingsTab = 2
 
+    private let tabBarRestorer = TabBarRestorer()
+
     private var childCoordinators: [Coordinator] = []
 
     private lazy var tabBarController: UITabBarController = {
         let tabBarController = UITabBarController()
+        tabBarController.delegate = tabBarRestorer
         tabBarController.viewControllers = [qrController, chatListController, settingsController]
         tabBarController.tabBar.tintColor = DcColors.primary
         return tabBarController
@@ -77,8 +80,13 @@ class AppCoordinator: NSObject, Coordinator {
     }
 
     public func start() {
-        print(tabBarController.selectedIndex)
-        showTab(index: chatsTab)
+        let lastActiveTab = tabBarRestorer.restoreLastActiveTab()
+        if lastActiveTab == -1 {
+            // no stored tab
+            showTab(index: chatsTab)
+        } else {
+            showTab(index: lastActiveTab)
+        }
     }
 
     func showTab(index: Int) {
