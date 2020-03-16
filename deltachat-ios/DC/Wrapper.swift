@@ -895,8 +895,8 @@ class DcMsg: MessageType {
     }
 
     func nextMediaURLs() -> [URL] {
-        let urls: [URL] = []
-        var next: Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), 1, Int32(message.type), 0, 0))
+        var urls: [URL] = []
+        var next: Int = Int(dc_get_next_media(mailboxPointer, UInt32(id), 1, Int32(type), 0, 0))
         while next != 0 {
             let nextMessage = DcMsg(id: next)
             if let url = nextMessage.fileURL {
