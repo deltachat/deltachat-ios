@@ -17,10 +17,6 @@ class ChatListController: UITableViewController {
         return searchController
     }()
 
-    private var dcContext: DcContext
-    private var chatList: DcChatlist?
-    private let showArchive: Bool
-
     private var msgChangedObserver: Any?
     private var incomingMsgObserver: Any?
     private var viewChatObserver: Any?
@@ -43,11 +39,8 @@ class ChatListController: UITableViewController {
         return cell
     }()
 
-    init(viewModel: ChatListViewModelProtocol, dcContext: DcContext, showArchive: Bool) {
-        self.dcContext = dcContext
+    init(viewModel: ChatListViewModelProtocol) {
         self.viewModel = viewModel
-        self.showArchive = showArchive
-        dcContext.updateDeviceChats()
         super.init(nibName: nil, bundle: nil)
         viewModel.onChatListUpdate = handleChatListUpdate // register listener
     }
@@ -58,10 +51,11 @@ class ChatListController: UITableViewController {
 
     // MARK: - lifecycle
     override func viewDidLoad() {
-         super.viewDidLoad()
-         navigationItem.rightBarButtonItem = newButton
-         configureTableView()
-     }
+        super.viewDidLoad()
+        navigationItem.rightBarButtonItem = newButton
+        navigationItem.searchController = searchController
+        configureTableView()
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -136,192 +130,120 @@ class ChatListController: UITableViewController {
         updateTitle()
     }
 
-    private func getNumberOfArchivedChats() -> Int {
-        let chatList = dcContext.getChatlist(flags: DC_GCL_ARCHIVED_ONLY, queryString: nil, queryId: 0)
-        return chatList.length
-    }
-
-    private func getChatList() {
-        var gclFlags: Int32 = 0
-        if showArchive {
-            gclFlags |= DC_GCL_ARCHIVED_ONLY
-        }
-        chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
-        tableView.reloadData()
-    }
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
 
-override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return viewModel.numberOfRowsIn(section: section)
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.numberOfRowsIn(section: section)
     }
 
-override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-    let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
+        let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
 
-    switch cellData.type {
-    case .CHAT(let chatData):
-        let chatId = chatData.chatId
-        if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-            updateArchivedCell() // to make sure archived chats count is always right
-            return archiveCell
-        } else if
-            chatId == DC_CHAT_ID_DEADDROP,
-            let msgId = viewModel.msgIdFor(row: indexPath.row),
-            let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as? ContactCell {
-            updateDeaddropCell(deaddropCell, msgId: msgId, cellData: cellData)
-            return deaddropCell
-        } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
-        // default chatCell
-            chatCell.updateCell(cellViewModel: cellData)
-            return chatCell
-        }
-    case .CONTACT:
-        safe_assert(viewModel.searchActive)
-        if let contactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as? ContactCell {
-            contactCell.updateCell(cellViewModel: cellData)
-            return contactCell
-        }
-    }
-    safe_fatalError("Could not find/dequeue or recycle UITableViewCell.")
-    return UITableViewCell()
-
-
-    /*
-        let row = indexPath.row
-        guard let chatList = self.chatList else {
-            fatalError("chatList was nil in data source")
-        }
-
-        let chatId = chatList.getChatId(index: row)
-        if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-            return getArchiveCell(tableView)
-        }
-
-        let cell: ContactCell
-        if chatId == DC_CHAT_ID_DEADDROP {
-            cell = getDeaddropCell(tableView)
-        } else if let c = tableView.dequeueReusableCell(withIdentifier: "ChatCell") as? ContactCell {
-            cell = c
-        } else {
-            cell = ContactCell(style: .default, reuseIdentifier: "ChatCell")
-        }
-
-        let chat = DcChat(id: chatId)
-        let summary = chatList.getSummary(index: row)
-        let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
-
-        cell.titleLabel.attributedText = (unreadMessages > 0) ?
-            NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ]) :
-            NSAttributedString(string: chat.name, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .medium) ])
-
-        if chatId == DC_CHAT_ID_DEADDROP {
-            let contact = DcContact(id: DcMsg(id: chatList.getMsgId(index: row)).fromContactId)
-            if let img = contact.profileImage {
-                cell.resetBackupImage()
-                cell.setImage(img)
-            } else {
-                cell.setBackupImage(name: contact.name, color: contact.color)
+        switch cellData.type {
+        case .CHAT(let chatData):
+            let chatId = chatData.chatId
+            if chatId == DC_CHAT_ID_ARCHIVED_LINK {
+                updateArchivedCell() // to make sure archived chats count is always right
+                return archiveCell
+            } else if
+                chatId == DC_CHAT_ID_DEADDROP,
+                let msgId = viewModel.msgIdFor(row: indexPath.row),
+                let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as? ContactCell {
+                deaddropCell.updateCell(cellViewModel: cellData)
+                deaddropCell.backgroundColor = DcColors.deaddropBackground
+                deaddropCell.contentView.backgroundColor = DcColors.deaddropBackground
+                let contact = DcContact(id: DcMsg(id: msgId).fromContactId)
+                if let img = contact.profileImage {
+                    deaddropCell.resetBackupImage()
+                    deaddropCell.setImage(img)
+                } else {
+                    deaddropCell.setBackupImage(name: contact.name, color: contact.color)
+                }
+                return deaddropCell
+            } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
+                // default chatCell
+                chatCell.updateCell(cellViewModel: cellData)
+                return chatCell
             }
-        } else {
-            if let img = chat.profileImage {
-                cell.resetBackupImage()
-                cell.setImage(img)
-            } else {
-                cell.setBackupImage(name: chat.name, color: chat.color)
-            }
-
-            if chat.visibility == DC_CHAT_VISIBILITY_PINNED {
-                cell.backgroundColor = DcColors.deaddropBackground
-                cell.contentView.backgroundColor = DcColors.deaddropBackground
-            } else {
-                cell.backgroundColor = DcColors.contactCellBackgroundColor
-                cell.contentView.backgroundColor = DcColors.contactCellBackgroundColor
+        case .CONTACT:
+            safe_assert(viewModel.searchActive)
+            if let contactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as? ContactCell {
+                contactCell.updateCell(cellViewModel: cellData)
+                return contactCell
             }
         }
-
-        cell.setVerified(isVerified: chat.isVerified)
-
-        let result1 = summary.text1 ?? ""
-        let result2 = summary.text2 ?? ""
-        let result: String
-        if !result1.isEmpty, !result2.isEmpty {
-            result = "\(result1): \(result2)"
-        } else {
-            result = "\(result1)\(result2)"
-        }
-
-        cell.subtitleLabel.text = result
-        cell.setTimeLabel(summary.timestamp)
-        cell.setStatusIndicators(unreadCount: unreadMessages, status: summary.state, visibility: chat.visibility)
-      return cell
-    */
-
+        safe_fatalError("Could not find/dequeue or recycle UITableViewCell.")
+        return UITableViewCell()
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = indexPath.row
-        guard let chatList = chatList else { return }
-        let chatId = chatList.getChatId(index: row)
-        if chatId == DC_CHAT_ID_DEADDROP {
-            let msgId = chatList.getMsgId(index: row)
-            let dcMsg = DcMsg(id: msgId)
-            let dcContact = DcContact(id: dcMsg.fromContactId)
-            let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
-            let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
-            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-                let chat = dcMsg.createChat()
-                self.coordinator?.showChat(chatId: chat.id)
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
-                dcContact.marknoticed()
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
-                dcContact.block()
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
-            present(alert, animated: true, completion: nil)
-        } else if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-            coordinator?.showArchive()
-        } else {
-            coordinator?.showChat(chatId: chatId)
-        }
+        /*
+         let row = indexPath.row
+         guard let chatList = chatList else { return }
+         let chatId = chatList.getChatId(index: row)
+         if chatId == DC_CHAT_ID_DEADDROP {
+         let msgId = chatList.getMsgId(index: row)
+         let dcMsg = DcMsg(id: msgId)
+         let dcContact = DcContact(id: dcMsg.fromContactId)
+         let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
+         let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
+         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+         let chat = dcMsg.createChat()
+         self.coordinator?.showChat(chatId: chat.id)
+         }))
+         alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
+         dcContact.marknoticed()
+         }))
+         alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
+         dcContact.block()
+         }))
+         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+         present(alert, animated: true, completion: nil)
+         } else if chatId == DC_CHAT_ID_ARCHIVED_LINK {
+         coordinator?.showArchive()
+         } else {
+         coordinator?.showChat(chatId: chatId)
+         }
+         */
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let row = indexPath.row
-        guard let chatList = chatList else {
-            return []
-        }
+        /*
+         let row = indexPath.row
+         guard let chatList = chatList else {
+         return []
+         }
 
-        let chatId = chatList.getChatId(index: row)
-        if chatId==DC_CHAT_ID_ARCHIVED_LINK || chatId==DC_CHAT_ID_DEADDROP {
-            return []
-            // returning nil may result in a default delete action,
-            // see https://forums.developer.apple.com/thread/115030
-        }
+         let chatId = chatList.getChatId(index: row)
+         if chatId==DC_CHAT_ID_ARCHIVED_LINK || chatId==DC_CHAT_ID_DEADDROP {
+         return []
+         // returning nil may result in a default delete action,
+         // see https://forums.developer.apple.com/thread/115030
+         }
 
-        let archive = UITableViewRowAction(style: .destructive, title: String.localized(showArchive ? "unarchive" : "archive")) { [unowned self] _, _ in
-            self.dcContext.archiveChat(chatId: chatId, archive: !self.showArchive)
-        }
-        archive.backgroundColor = UIColor.lightGray
+         let archive = UITableViewRowAction(style: .destructive, title: String.localized(showArchive ? "unarchive" : "archive")) { [unowned self] _, _ in
+         self.dcContext.archiveChat(chatId: chatId, archive: !self.showArchive)
+         }
+         archive.backgroundColor = UIColor.lightGray
 
-        let chat = dcContext.getChat(chatId: chatId)
-        let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
-        let pin = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [unowned self] _, _ in
-            self.dcContext.setChatVisibility(chatId: chatId, visibility: pinned ? DC_CHAT_VISIBILITY_NORMAL : DC_CHAT_VISIBILITY_PINNED)
-        }
-        pin.backgroundColor = UIColor.systemGreen
+         let chat = dcContext.getChat(chatId: chatId)
+         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
+         let pin = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [unowned self] _, _ in
+         self.dcContext.setChatVisibility(chatId: chatId, visibility: pinned ? DC_CHAT_VISIBILITY_NORMAL : DC_CHAT_VISIBILITY_PINNED)
+         }
+         pin.backgroundColor = UIColor.systemGreen
 
-        let delete = UITableViewRowAction(style: .normal, title: String.localized("delete")) { [unowned self] _, _ in
-            self.showDeleteChatConfirmationAlert(chatId: chatId)
-        }
-        delete.backgroundColor = UIColor.systemRed
+         let delete = UITableViewRowAction(style: .normal, title: String.localized("delete")) { [unowned self] _, _ in
+         self.showDeleteChatConfirmationAlert(chatId: chatId)
+         }
+         delete.backgroundColor = UIColor.systemRed
 
-        return [archive, pin, delete]
+         return [archive, pin, delete]
+         */
+        return []
     }
 
     // MARK: updates
@@ -329,11 +251,11 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     private func updateTitle() {
         if RelayHelper.sharedInstance.isForwarding() {
             title = String.localized("forward_to")
-            if !showArchive {
+            if !viewModel.isArchive {
                 navigationItem.setLeftBarButton(cancelButton, animated: true)
             }
         } else {
-            title = showArchive ? String.localized("chat_archived_chats_title") :
+            title = viewModel.isArchive ? String.localized("chat_archived_chats_title") :
                 String.localized("pref_chats")
             navigationItem.setLeftBarButton(nil, animated: true)
         }
@@ -350,23 +272,6 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         archiveCell.textLabel?.text = title
     }
 
-    func updateDeaddropCell(_ cell: ContactCell, msgId: Int, cellData: AvatarCellViewModel) {
-        cell.backgroundColor = DcColors.deaddropBackground
-        cell.contentView.backgroundColor = DcColors.deaddropBackground
-
-        cell.updateCell(cellViewModel: cellData)
-/*
-        let contact = DcContact(id: DcMsg(id: msgId).fromContactId)
-        if let img = contact.profileImage {
-            cell.resetBackupImage()
-            cell.setImage(img)
-        } else {
-            cell.setBackupImage(name: contact.name, color: contact.color)
-        }
-
- */
-    }
-
     func getArchiveCell(_ tableView: UITableView) -> UITableViewCell {
         let archiveCell: UITableViewCell
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ArchiveCell") {
@@ -376,7 +281,7 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         }
         archiveCell.textLabel?.textAlignment = .center
         var title = String.localized("chat_archived_chats_title")
-        let count = getNumberOfArchivedChats()
+        let count = viewModel.numberOfArchivedChats
         title.append(" (\(count))")
         archiveCell.textLabel?.text = title
         archiveCell.textLabel?.textColor = .systemBlue
@@ -399,7 +304,7 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     private func deleteChat(chatId: Int, animated: Bool) {
 
         if !animated {
-            viewModel.deleteChat(chatId: chatId)
+            _ = viewModel.deleteChat(chatId: chatId)
             viewModel.refreshData()
             return
         }
