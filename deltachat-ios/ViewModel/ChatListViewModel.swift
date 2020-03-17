@@ -37,6 +37,7 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     private var chatList: DcChatlist!
 
     init(dcContext: DcContext, isArchive: Bool) {
+        dcContext.updateDeviceChats()
         self.isArchive = isArchive
         self.dcContext = dcContext
         super.init()
