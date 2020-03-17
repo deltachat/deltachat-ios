@@ -1,42 +1,67 @@
 import UIKit
 
-class ChatListController: UIViewController {
+class ChatListController: UITableViewController {
     weak var coordinator: ChatListCoordinator?
+    let viewModel: ChatListViewModelProtocol
+
+    private let chatCellReuseIdentifier = "chat_cell"
+    private let deadDropCellReuseIdentifier = "deaddrop_cell"
+    private let contactCellReuseIdentifier = "contact_cell"
+
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = viewModel
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = String.localized("search")
+        searchController.searchBar.delegate = self
+        return searchController
+    }()
 
     private var dcContext: DcContext
     private var chatList: DcChatlist?
     private let showArchive: Bool
-
-    private lazy var chatTable: UITableView = {
-        let chatTable = UITableView()
-        chatTable.dataSource = self
-        chatTable.delegate = self
-        chatTable.rowHeight = 80
-        return chatTable
-    }()
 
     private var msgChangedObserver: Any?
     private var incomingMsgObserver: Any?
     private var viewChatObserver: Any?
     private var deleteChatObserver: Any?
 
-    private var newButton: UIBarButtonItem!
+    private lazy var newButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
+        button.tintColor = DcColors.primary
+        return button
+    }()
 
-    lazy var cancelButton: UIBarButtonItem = {
+    private lazy var cancelButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
         return button
     }()
 
-    init(dcContext: DcContext, showArchive: Bool) {
+    private lazy var archiveCell: UITableViewCell = {
+        let cell = UITableViewCell()
+        cell.textLabel?.textColor = .systemBlue
+        return cell
+    }()
+
+    init(viewModel: ChatListViewModelProtocol, dcContext: DcContext, showArchive: Bool) {
         self.dcContext = dcContext
+        self.viewModel = viewModel
         self.showArchive = showArchive
         dcContext.updateDeviceChats()
         super.init(nibName: nil, bundle: nil)
+        viewModel.onChatListUpdate = handleChatListUpdate
     }
 
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - lifecycle
+    override func viewDidLoad() {
+         super.viewDidLoad()
+         navigationItem.rightBarButtonItem = newButton
+         configureTableView()
+     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -44,26 +69,35 @@ class ChatListController: UIViewController {
         updateTitle()
 
         let nc = NotificationCenter.default
-          msgChangedObserver = nc.addObserver(forName: dcNotificationChanged,
-                                              object: nil, queue: nil) { _ in
-              self.getChatList()
-          }
-          incomingMsgObserver = nc.addObserver(forName: dcNotificationIncoming,
-                                               object: nil, queue: nil) { _ in
-              self.getChatList()
-          }
+        msgChangedObserver = nc.addObserver(
+            forName: dcNotificationChanged,
+            object: nil,
+            queue: nil) { _ in
+                self.viewModel.refreshData()
 
-          viewChatObserver = nc.addObserver(forName: dcNotificationViewChat, object: nil, queue: nil) { notification in
-              if let chatId = notification.userInfo?["chat_id"] as? Int {
-                  self.coordinator?.showChat(chatId: chatId)
-              }
-          }
-
-          deleteChatObserver = nc.addObserver(forName: dcNotificationChatDeletedInChatDetail, object: nil, queue: nil) { notification in
-              if let chatId = notification.userInfo?["chat_id"] as? Int {
-                  self.deleteChat(chatId: chatId, animated: true)
-              }
-          }
+        }
+        incomingMsgObserver = nc.addObserver(
+            forName: dcNotificationIncoming,
+            object: nil,
+            queue: nil) { _ in
+                self.viewModel.refreshData()
+        }
+        viewChatObserver = nc.addObserver(
+            forName: dcNotificationViewChat,
+            object: nil,
+            queue: nil) { notification in
+                if let chatId = notification.userInfo?["chat_id"] as? Int {
+                    self.coordinator?.showChat(chatId: chatId)
+                }
+        }
+        deleteChatObserver = nc.addObserver(
+            forName: dcNotificationChatDeletedInChatDetail,
+            object: nil,
+            queue: nil) { notification in
+                if let chatId = notification.userInfo?["chat_id"] as? Int {
+                    self.deleteChat(chatId: chatId, animated: true)
+                }
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -85,23 +119,12 @@ class ChatListController: UIViewController {
         }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
-        newButton.tintColor = DcColors.primary
-        navigationItem.rightBarButtonItem = newButton
-
-        setupChatTable()
-    }
-
-    private func setupChatTable() {
-        view.addSubview(chatTable)
-        chatTable.translatesAutoresizingMaskIntoConstraints = false
-        chatTable.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        chatTable.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        chatTable.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        chatTable.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    // Mark: - configuration
+    private func configureTableView() {
+        tableView.register(ContactCell.self, forCellReuseIdentifier: chatCellReuseIdentifier)
+        tableView.register(ContactCell.self, forCellReuseIdentifier: deadDropCellReuseIdentifier)
+        tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
+        tableView.rowHeight = 80
     }
 
     @objc func didPressNewChat() {
@@ -124,7 +147,7 @@ class ChatListController: UIViewController {
             gclFlags |= DC_GCL_ARCHIVED_ONLY
         }
         chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
-        chatTable.reloadData()
+        tableView.reloadData()
     }
 
     private func updateTitle() {
@@ -139,18 +162,45 @@ class ChatListController: UIViewController {
             navigationItem.setLeftBarButton(nil, animated: true)
         }
     }
-}
 
-extension ChatListController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        guard let chatList = self.chatList else {
-            fatalError("chatList was nil in data source")
-        }
-
-        return chatList.length
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return viewModel.numberOfRowsIn(section: section)
+    }
+
+override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+    let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
+
+    switch cellData.type {
+    case .CHAT(let chatData):
+        let chatId = chatData.chatId
+        if chatId == DC_CHAT_ID_ARCHIVED_LINK {
+            updateArchivedCell() // to make sure archived chats count is always right
+            return archiveCell
+        } else if chatId == DC_CHAT_ID_DEADDROP, let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as? ContactCell {
+            // TODO update
+            return deaddropCell
+        } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
+        // default chatCell
+            chatCell.updateCell(cellViewModel: cellData)
+            return chatCell
+        }
+    case .CONTACT:
+        safe_assert(viewModel.searchActive)
+        if let contactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as? ContactCell {
+            contactCell.updateCell(cellViewModel: cellData)
+            return contactCell
+        }
+    }
+    safe_fatalError("Could not find/dequeue or recycle UITableViewCell.")
+    return UITableViewCell()
+
+
+    /*
         let row = indexPath.row
         guard let chatList = self.chatList else {
             fatalError("chatList was nil in data source")
@@ -217,10 +267,12 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         cell.subtitleLabel.text = result
         cell.setTimeLabel(summary.timestamp)
         cell.setStatusIndicators(unreadCount: unreadMessages, status: summary.state, visibility: chat.visibility)
-        return cell
+      return cell
+    */
+
     }
 
-    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         guard let chatList = chatList else { return }
         let chatId = chatList.getChatId(index: row)
@@ -249,7 +301,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let row = indexPath.row
         guard let chatList = chatList else {
             return []
@@ -280,6 +332,19 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         delete.backgroundColor = UIColor.systemRed
 
         return [archive, pin, delete]
+    }
+
+    // MARK: updates
+
+    func handleChatListUpdate() {
+        tableView.reloadData()
+    }
+
+    func updateArchivedCell() {
+        var title = String.localized("chat_archived_chats_title")
+        let count = viewModel.numberOfArchivedChats
+        title.append(" (\(count))")
+        archiveCell.textLabel?.text = title
     }
 
     func getDeaddropCell(_ tableView: UITableView) -> ContactCell {
@@ -349,6 +414,17 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 
         dcContext.deleteChat(chatId: chatId)
         self.chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
-        chatTable.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade)
+        tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade)
+    }
+}
+
+extension ChatListController: UISearchBarDelegate {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        viewModel.beginFiltering()
+        return true
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.endFiltering()
     }
 }
