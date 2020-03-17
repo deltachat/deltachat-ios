@@ -26,8 +26,8 @@ class DcContext {
         return dc_delete_contact(self.contextPointer, UInt32(contactId)) == 1
     }
 
-    func getContacts(flags: Int32) -> [Int] {
-        let cContacts = dc_get_contacts(self.contextPointer, UInt32(flags), nil)
+    func getContacts(flags: Int32, queryString: String? = nil) -> [Int] {
+        let cContacts = dc_get_contacts(self.contextPointer, UInt32(flags), queryString)
         return Utils.copyAndFreeArray(inputArray: cContacts)
     }
 
