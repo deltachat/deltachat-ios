@@ -10,12 +10,15 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     func numberOfRowsIn(section: Int) -> Int
     func cellDataFor(section: Int, row: Int) -> AvatarCellViewModel
 
+    func msgIdFor(row: Int) -> Int?
+
     // search related
     var searchActive: Bool { get }
     func beginFiltering()
     func endFiltering()
 
-    func deleteChat(chatId: Int)
+    /// returns ROW of table
+    func deleteChat(chatId: Int) -> Int
     func archiveChat(chatId: Int)
     func refreshData()
 
@@ -37,16 +40,18 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         self.isArchive = isArchive
         self.dcContext = dcContext
         super.init()
-        updateChatList()
+        updateChatList(notifyListener: true)
     }
 
-    private func updateChatList() {
+    private func updateChatList(notifyListener: Bool) {
         var gclFlags: Int32 = 0
         if isArchive {
             gclFlags |= DC_GCL_ARCHIVED_ONLY
         }
         self.chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
-        onChatListUpdate?()
+        if notifyListener {
+            onChatListUpdate?()
+        }
     }
 
     var numberOfSections: Int {
@@ -71,24 +76,38 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         return viewModel
     }
 
+    func msgIdFor(row: Int) -> Int? {
+        if searchActive {
+            return nil
+        }
+        return chatList.getMsgId(index: row)
+    }
+
     func refreshData() {
-        updateChatList()
+        updateChatList(notifyListener: true)
     }
 
     func beginFiltering() {
-
+        searchActive = true
     }
 
     func endFiltering() {
-
+        searchActive = false
     }
 
-    func deleteChat(chatId: Int) {
+    func deleteChat(chatId: Int) -> Int {
 
+        // find index of chatId
+        let indexToDelete = Array(0..<chatList.length).filter { chatList.getChatId(index: $0) == chatId }.first
+        dcContext.deleteChat(chatId: chatId)
+        updateChatList(notifyListener: false)
+        safe_assert(indexToDelete != nil)
+        return indexToDelete ?? -1
     }
 
     func archiveChat(chatId: Int) {
-
+        dcContext.archiveChat(chatId: chatId, archive: !self.isArchive)
+        updateChatList(notifyListener: false)
     }
 
     var numberOfArchivedChats: Int {
