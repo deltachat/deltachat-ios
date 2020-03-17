@@ -49,7 +49,7 @@ class ChatListController: UITableViewController {
         self.showArchive = showArchive
         dcContext.updateDeviceChats()
         super.init(nibName: nil, bundle: nil)
-        viewModel.onChatListUpdate = handleChatListUpdate
+        viewModel.onChatListUpdate = handleChatListUpdate // register listener
     }
 
     required init?(coder _: NSCoder) {
@@ -65,9 +65,8 @@ class ChatListController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getChatList()
         updateTitle()
-
+        viewModel.refreshData()
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
             forName: dcNotificationChanged,
@@ -119,7 +118,7 @@ class ChatListController: UITableViewController {
         }
     }
 
-    // Mark: - configuration
+    // MARK: - configuration
     private func configureTableView() {
         tableView.register(ContactCell.self, forCellReuseIdentifier: chatCellReuseIdentifier)
         tableView.register(ContactCell.self, forCellReuseIdentifier: deadDropCellReuseIdentifier)
@@ -127,6 +126,7 @@ class ChatListController: UITableViewController {
         tableView.rowHeight = 80
     }
 
+    // MARK: - actions
     @objc func didPressNewChat() {
         coordinator?.showNewChatController()
     }
@@ -150,19 +150,6 @@ class ChatListController: UITableViewController {
         tableView.reloadData()
     }
 
-    private func updateTitle() {
-        if RelayHelper.sharedInstance.isForwarding() {
-            title = String.localized("forward_to")
-            if !showArchive {
-                navigationItem.setLeftBarButton(cancelButton, animated: true)
-            }
-        } else {
-            title = showArchive ? String.localized("chat_archived_chats_title") :
-                String.localized("pref_chats")
-            navigationItem.setLeftBarButton(nil, animated: true)
-        }
-    }
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
@@ -181,8 +168,11 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         if chatId == DC_CHAT_ID_ARCHIVED_LINK {
             updateArchivedCell() // to make sure archived chats count is always right
             return archiveCell
-        } else if chatId == DC_CHAT_ID_DEADDROP, let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as? ContactCell {
-            // TODO update
+        } else if
+            chatId == DC_CHAT_ID_DEADDROP,
+            let msgId = viewModel.msgIdFor(row: indexPath.row),
+            let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as? ContactCell {
+            updateDeaddropCell(deaddropCell, msgId: msgId, cellData: cellData)
             return deaddropCell
         } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
         // default chatCell
@@ -336,6 +326,19 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
 
     // MARK: updates
 
+    private func updateTitle() {
+        if RelayHelper.sharedInstance.isForwarding() {
+            title = String.localized("forward_to")
+            if !showArchive {
+                navigationItem.setLeftBarButton(cancelButton, animated: true)
+            }
+        } else {
+            title = showArchive ? String.localized("chat_archived_chats_title") :
+                String.localized("pref_chats")
+            navigationItem.setLeftBarButton(nil, animated: true)
+        }
+    }
+
     func handleChatListUpdate() {
         tableView.reloadData()
     }
@@ -347,16 +350,21 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         archiveCell.textLabel?.text = title
     }
 
-    func getDeaddropCell(_ tableView: UITableView) -> ContactCell {
-        let deaddropCell: ContactCell
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "DeaddropCell") as? ContactCell {
-            deaddropCell = cell
+    func updateDeaddropCell(_ cell: ContactCell, msgId: Int, cellData: AvatarCellViewModel) {
+        cell.backgroundColor = DcColors.deaddropBackground
+        cell.contentView.backgroundColor = DcColors.deaddropBackground
+
+        cell.updateCell(cellViewModel: cellData)
+/*
+        let contact = DcContact(id: DcMsg(id: msgId).fromContactId)
+        if let img = contact.profileImage {
+            cell.resetBackupImage()
+            cell.setImage(img)
         } else {
-            deaddropCell = ContactCell(style: .default, reuseIdentifier: "DeaddropCell")
+            cell.setBackupImage(name: contact.name, color: contact.color)
         }
-        deaddropCell.backgroundColor = DcColors.deaddropBackground
-        deaddropCell.contentView.backgroundColor = DcColors.deaddropBackground
-        return deaddropCell
+
+ */
     }
 
     func getArchiveCell(_ tableView: UITableView) -> UITableViewCell {
@@ -391,29 +399,12 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     private func deleteChat(chatId: Int, animated: Bool) {
 
         if !animated {
-            dcContext.deleteChat(chatId: chatId)
-            self.getChatList()
+            viewModel.deleteChat(chatId: chatId)
+            viewModel.refreshData()
             return
         }
 
-        guard let chatList = chatList else {
-            return
-        }
-
-        // find index of chatId
-        let indexToDelete = Array(0..<chatList.length).filter { chatList.getChatId(index: $0) == chatId }.first
-
-        guard let row = indexToDelete else {
-            return
-        }
-
-        var gclFlags: Int32 = 0
-        if showArchive {
-            gclFlags |= DC_GCL_ARCHIVED_ONLY
-        }
-
-        dcContext.deleteChat(chatId: chatId)
-        self.chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
+        let row = viewModel.deleteChat(chatId: chatId)
         tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade)
     }
 }
