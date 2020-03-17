@@ -16,6 +16,7 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     var searchActive: Bool { get }
     func beginFiltering()
     func endFiltering()
+    func titleForHeaderIn(section: Int) -> String?
 
     /// returns ROW of table
     func deleteChat(chatId: Int) -> Int
@@ -30,12 +31,46 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
 
     var onChatListUpdate: VoidFunction?
 
+    enum ChatListSectionType {
+        case chats
+        case contacts
+        case messages
+    }
+
+    class ChatListSection {
+        let type: ChatListSectionType
+        var title: String {
+            switch type {
+            case .chats:
+                return String.localized("pref_chats")
+            case .contacts:
+                return String.localized("contacts_headline")
+            case .messages:
+                return String.localized("pref_messages")
+            }
+        }
+        var cellData: [AvatarCellViewModel] = []
+        init(type: ChatListSectionType) {
+            self.type = type
+        }
+    }
+
     var isArchive: Bool
     private let dcContext: DcContext
 
     var searchActive: Bool = false
 
     private var chatList: DcChatlist!
+
+    // for search filtering
+    var filteredChats: ChatListSection = ChatListSection(type: .chats)
+    var filteredContacts: ChatListSection = ChatListSection(type: .contacts)
+    var filteredMessages: ChatListSection = ChatListSection(type: .messages)
+
+    private var searchResultSections: [ChatListSection] {
+        return [filteredChats, filteredContacts, filteredMessages]
+            .filter { !$0.cellData.isEmpty } //
+    }
 
     init(dcContext: DcContext, isArchive: Bool) {
         dcContext.updateDeviceChats()
@@ -76,6 +111,13 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
             )
         )
         return viewModel
+    }
+
+    func titleForHeaderIn(section: Int) -> String? {
+        if searchActive {
+            return searchResultSections[section].title
+        }
+        return nil
     }
 
     func chatIdFor(section: Int, row: Int) -> Int? {
