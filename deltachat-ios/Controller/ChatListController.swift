@@ -130,6 +130,8 @@ class ChatListController: UITableViewController {
         updateTitle()
     }
 
+    // MARK: - uitableviewdelegate, uitableviewdatasource
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
@@ -180,70 +182,62 @@ class ChatListController: UITableViewController {
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*
-         let row = indexPath.row
-         guard let chatList = chatList else { return }
-         let chatId = chatList.getChatId(index: row)
-         if chatId == DC_CHAT_ID_DEADDROP {
-         let msgId = chatList.getMsgId(index: row)
-         let dcMsg = DcMsg(id: msgId)
-         let dcContact = DcContact(id: dcMsg.fromContactId)
-         let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
-         let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
-         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-         let chat = dcMsg.createChat()
-         self.coordinator?.showChat(chatId: chat.id)
-         }))
-         alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
-         dcContact.marknoticed()
-         }))
-         alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
-         dcContact.block()
-         }))
-         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
-         present(alert, animated: true, completion: nil)
-         } else if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-         coordinator?.showArchive()
-         } else {
-         coordinator?.showChat(chatId: chatId)
-         }
-         */
+        let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
+        switch cellData.type {
+        case .CHAT(let chatData):
+            let chatId = chatData.chatId
+            if chatId == DC_CHAT_ID_DEADDROP {
+                guard let msgId = viewModel.msgIdFor(row: indexPath.row) else {
+                    return
+                }
+                showDeaddropRequestAlert(msgId: msgId)
+            } else if chatId == DC_CHAT_ID_ARCHIVED_LINK {
+                coordinator?.showArchive()
+            } else {
+                coordinator?.showChat(chatId: chatId)
+            }
+        case .CONTACT(let contactData):
+            let contactId = contactData.contactId
+            self.askToChatWith(contactId: contactId)
+        }
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        /*
-         let row = indexPath.row
-         guard let chatList = chatList else {
-         return []
-         }
 
-         let chatId = chatList.getChatId(index: row)
-         if chatId==DC_CHAT_ID_ARCHIVED_LINK || chatId==DC_CHAT_ID_DEADDROP {
-         return []
-         // returning nil may result in a default delete action,
-         // see https://forums.developer.apple.com/thread/115030
-         }
+        if viewModel.searchActive {
+            return []
+        }
 
-         let archive = UITableViewRowAction(style: .destructive, title: String.localized(showArchive ? "unarchive" : "archive")) { [unowned self] _, _ in
-         self.dcContext.archiveChat(chatId: chatId, archive: !self.showArchive)
-         }
-         archive.backgroundColor = UIColor.lightGray
+        guard let chatId = viewModel.chatIdFor(section: indexPath.section, row: indexPath.row) else {
+            return []
+        }
 
-         let chat = dcContext.getChat(chatId: chatId)
-         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
-         let pin = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [unowned self] _, _ in
-         self.dcContext.setChatVisibility(chatId: chatId, visibility: pinned ? DC_CHAT_VISIBILITY_NORMAL : DC_CHAT_VISIBILITY_PINNED)
-         }
-         pin.backgroundColor = UIColor.systemGreen
+        if chatId==DC_CHAT_ID_ARCHIVED_LINK || chatId==DC_CHAT_ID_DEADDROP {
+            return []
+            // returning nil may result in a default delete action,
+            // see https://forums.developer.apple.com/thread/115030
+        }
+        let archiveActionTitle: String = String.localized(viewModel.isArchive ? "unarchive" : "archive")
 
-         let delete = UITableViewRowAction(style: .normal, title: String.localized("delete")) { [unowned self] _, _ in
-         self.showDeleteChatConfirmationAlert(chatId: chatId)
-         }
-         delete.backgroundColor = UIColor.systemRed
+        let archive = UITableViewRowAction(style: .destructive, title: archiveActionTitle) { [unowned self] _, _ in
+            self.viewModel.archiveChat(chatId: chatId)
+            self.updateArchivedCell()
+        }
+        archive.backgroundColor = UIColor.lightGray
 
-         return [archive, pin, delete]
-         */
-        return []
+        let chat = DcChat(id: chatId)
+        let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
+        let pin = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [unowned self] _, _ in
+            self.viewModel.pinChat(chatId: chat.id)
+        }
+        pin.backgroundColor = UIColor.systemGreen
+
+        let delete = UITableViewRowAction(style: .normal, title: String.localized("delete")) { [unowned self] _, _ in
+            self.showDeleteChatConfirmationAlert(chatId: chatId)
+        }
+        delete.backgroundColor = UIColor.systemRed
+
+        return [archive, pin, delete]
     }
 
     // MARK: updates
@@ -272,22 +266,7 @@ class ChatListController: UITableViewController {
         archiveCell.textLabel?.text = title
     }
 
-    func getArchiveCell(_ tableView: UITableView) -> UITableViewCell {
-        let archiveCell: UITableViewCell
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "ArchiveCell") {
-            archiveCell = cell
-        } else {
-            archiveCell = UITableViewCell(style: .default, reuseIdentifier: "ArchiveCell")
-        }
-        archiveCell.textLabel?.textAlignment = .center
-        var title = String.localized("chat_archived_chats_title")
-        let count = viewModel.numberOfArchivedChats
-        title.append(" (\(count))")
-        archiveCell.textLabel?.text = title
-        archiveCell.textLabel?.textColor = .systemBlue
-        return archiveCell
-    }
-
+    // MARK: - alerts
     private func showDeleteChatConfirmationAlert(chatId: Int) {
         let alert = UIAlertController(
             title: nil,
@@ -298,6 +277,45 @@ class ChatListController: UITableViewController {
             self.deleteChat(chatId: chatId, animated: true)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func showDeaddropRequestAlert(msgId: Int) {
+        let dcMsg = DcMsg(id: msgId)
+        let dcContact = DcContact(id: dcMsg.fromContactId)
+        let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+            let chat = dcMsg.createChat()
+            self.coordinator?.showChat(chatId: chat.id)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
+            dcContact.marknoticed()
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
+            dcContact.block()
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func askToChatWith(contactId: Int) {
+        let dcContact = DcContact(id: contactId)
+        let alert = UIAlertController(
+            title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
+            message: nil,
+            preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(
+            title: String.localized("start_chat"),
+            style: .default,
+            handler: { _ in
+                self.coordinator?.showNewChat(contactId: contactId)
+        }))
+        alert.addAction(UIAlertAction(
+            title: String.localized("cancel"),
+            style: .cancel,
+            handler: { _ in
+        }))
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -314,6 +332,8 @@ class ChatListController: UITableViewController {
     }
 }
 
+
+// MARK
 extension ChatListController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         viewModel.beginFiltering()

@@ -11,7 +11,7 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     func cellDataFor(section: Int, row: Int) -> AvatarCellViewModel
 
     func msgIdFor(row: Int) -> Int?
-
+    func chatIdFor(section: Int, row: Int) -> Int? // to differentiate betweeen deaddrop / archive / default
     // search related
     var searchActive: Bool { get }
     func beginFiltering()
@@ -20,6 +20,7 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     /// returns ROW of table
     func deleteChat(chatId: Int) -> Int
     func archiveChat(chatId: Int)
+    func pinChat(chatId: Int)
     func refreshData()
 
     var numberOfArchivedChats: Int { get }
@@ -77,6 +78,16 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         return viewModel
     }
 
+    func chatIdFor(section: Int, row: Int) -> Int? {
+        let cellData = cellDataFor(section: section, row: row)
+        switch cellData.type {
+        case .CHAT(let data):
+            return data.chatId
+        case .CONTACT:
+            return nil
+        }
+    }
+
     func msgIdFor(row: Int) -> Int? {
         if searchActive {
             return nil
@@ -111,8 +122,16 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         updateChatList(notifyListener: false)
     }
 
+    func pinChat(chatId: Int) {
+        let chat = DcChat(id: chatId)
+        let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
+        self.dcContext.setChatVisibility(chatId: chatId, visibility: pinned ? DC_CHAT_VISIBILITY_NORMAL : DC_CHAT_VISIBILITY_PINNED)
+        updateChatList(notifyListener: false)
+    }
+
     var numberOfArchivedChats: Int {
-        return 0
+        let chatList = dcContext.getChatlist(flags: DC_GCL_ARCHIVED_ONLY, queryString: nil, queryId: 0)
+        return chatList.length
     }
 
 }
