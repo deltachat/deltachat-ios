@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private let dcContext = DcContext()
     var appCoordinator: AppCoordinator!
     var relayHelper: RelayHelper!
+    var locationManager: LocationManager!
     // static let appCoordinatorDeprecated = AppCoordinatorDeprecated()
     static var progress: Float = 0 // TODO: delete
     static var lastErrorString: String?
@@ -73,12 +74,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         guard let window = window else {
             fatalError("window was nil in app delegate")
         }
+        if #available(iOS 13.0, *) {
+            window.backgroundColor = UIColor.systemBackground
+        } else {
+            window.backgroundColor = UIColor.white
+        }
         // setup deltachat core context
         //       - second param remains nil (user data for more than one mailbox)
         open()
         appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
         appCoordinator.start()
         RelayHelper.setup(dcContext)
+        locationManager = LocationManager(context: dcContext)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         start()
         setStockTranslations()

@@ -65,7 +65,6 @@ class ChatViewController: MessagesViewController {
     private var showNamesAboveMessage: Bool
     var showCustomNavBar = true
     var previewView: UIView?
-    var previewController: PreviewController?
 
     var emptyStateView: PaddingLabel = {
         let view =  PaddingLabel()
@@ -150,9 +149,8 @@ class ChatViewController: MessagesViewController {
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 
-        let chat = DcChat(id: chatId)
         if showCustomNavBar {
-            updateTitle(chat: chat)
+            updateTitle(chat: DcChat(id: chatId))
         }
 
         configureMessageMenu()
@@ -176,7 +174,7 @@ class ChatViewController: MessagesViewController {
                     }
                 }
                 if self.showCustomNavBar {
-                    self.updateTitle(chat: chat)
+                    self.updateTitle(chat: DcChat(id: self.chatId))
                 }
             }
         }
@@ -234,6 +232,15 @@ class ChatViewController: MessagesViewController {
         stopTimer()
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { (_) -> Void in
+            if self.showCustomNavBar, let titleView = self.navigationItem.titleView as? ChatTitleView {
+                titleView.hideLocationStreamingIndicator() }},
+                            completion: { (_) -> Void in
+                                self.updateTitle(chat: DcChat(id: self.chatId)) })
+        super.viewWillTransition(to: size, with: coordinator)
+    }
+
     private func updateTitle(chat: DcChat) {
         let titleView =  ChatTitleView()
 
@@ -251,7 +258,7 @@ class ChatViewController: MessagesViewController {
             }
         }
         
-        titleView.updateTitleView(title: chat.name, subtitle: subtitle)
+        titleView.updateTitleView(title: chat.name, subtitle: subtitle, isLocationStreaming: chat.isSendingLocations)
         navigationItem.titleView = titleView
 
         let badge: InitialsBadge
@@ -1105,11 +1112,16 @@ extension ChatViewController: MessagesLayoutDelegate {
         let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
         let documentAction = UIAlertAction(title: String.localized("documents"), style: .default, handler: documentActionPressed(_:))
         let voiceMessageAction = UIAlertAction(title: String.localized("voice_message"), style: .default, handler: voiceMessageButtonPressed(_:))
+        let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
+        let locationStreamingAction = UIAlertAction(title: isLocationStreaming ? String.localized("stop_sharing_location") : String.localized("location"),
+                                                    style: isLocationStreaming ? .destructive : .default,
+                                                    handler: locationStreamingButtonPressed(_:))
 
         alert.addAction(cameraAction)
         alert.addAction(galleryAction)
         alert.addAction(documentAction)
         alert.addAction(voiceMessageAction)
+        alert.addAction(locationStreamingAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -1130,6 +1142,37 @@ extension ChatViewController: MessagesLayoutDelegate {
         coordinator?.showPhotoVideoLibrary(delegate: self)
     }
 
+    private func locationStreamingButtonPressed(_ action: UIAlertAction) {
+        let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
+        if isLocationStreaming {
+            locationStreamingFor(seconds: 0)
+        } else {
+            let alert = UIAlertController(title: String.localized("title_share_location"), message: nil, preferredStyle: .safeActionSheet)
+            addDurationSelectionAction(to: alert, key: "share_location_for_5_minutes", duration: Time.fiveMinutes)
+            addDurationSelectionAction(to: alert, key: "share_location_for_30_minutes", duration: Time.thirtyMinutes)
+            addDurationSelectionAction(to: alert, key: "share_location_for_one_hour", duration: Time.oneHour)
+            addDurationSelectionAction(to: alert, key: "share_location_for_two_hours", duration: Time.twoHours)
+            addDurationSelectionAction(to: alert, key: "share_location_for_six_hours", duration: Time.sixHours)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
+    private func addDurationSelectionAction(to alert: UIAlertController, key: String, duration: Int) {
+        let action = UIAlertAction(title: String.localized(key), style: .default, handler: { _ in
+            self.locationStreamingFor(seconds: duration)
+        })
+        alert.addAction(action)
+    }
+
+    private func locationStreamingFor(seconds: Int) {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            self.dcContext.sendLocationsToChat(chatId: self.chatId, seconds: seconds)
+            appDelegate.locationManager.shareLocation(chatId: self.chatId, duration: seconds)
+    }
+
 }
 
 // MARK: - MessageCellDelegate
@@ -1141,31 +1184,12 @@ extension ChatViewController: MessageCellDelegate {
                 didTapAsm(msg: message, orgText: "")
             } else if let url = message.fileURL {
                 // find all other messages with same message type
-                var previousUrls: [URL] = []
-                var nextUrls: [URL] = []
-
-                var prev: Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), -1, Int32(message.type), 0, 0))
-                while prev != 0 {
-                    let prevMessage = DcMsg(id: prev)
-                    if let url = prevMessage.fileURL {
-                        previousUrls.insert(url, at: 0)
-                    }
-                    prev = Int(dc_get_next_media(mailboxPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
-                }
-
-                var next: Int = Int(dc_get_next_media(mailboxPointer, UInt32(message.id), 1, Int32(message.type), 0, 0))
-                while next != 0 {
-                    let nextMessage = DcMsg(id: next)
-                    if let url = nextMessage.fileURL {
-                        nextUrls.insert(url, at: 0)
-                    }
-                    next = Int(dc_get_next_media(mailboxPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
-                }
+                let previousUrls: [URL] = message.previousMediaURLs()
+                let nextUrls: [URL] = message.nextMediaURLs()
 
                 // these are the files user will be able to swipe trough
                 let mediaUrls: [URL] = previousUrls + [url] + nextUrls
-                previewController = PreviewController(currentIndex: previousUrls.count, urls: mediaUrls)
-                present(previewController!.qlController, animated: true)
+                coordinator?.showMediaGallery(currentIndex: previousUrls.count, mediaUrls: mediaUrls)
             }
         }
     }

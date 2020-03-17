@@ -39,7 +39,7 @@ class NewChatViewController: UITableViewController {
 
     // searchBar active?
     func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty()
+        return !searchBarIsEmpty()
     }
 
     // weak var chatDisplayer: ChatDisplayer?
@@ -304,9 +304,15 @@ class NewChatViewController: UITableViewController {
                 self.coordinator?.showNewChat(contactId: contactId)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-                self.dismiss(animated: true, completion: nil)
+                self.reactivateSearchBarIfNeeded()
             }))
             present(alert, animated: true, completion: nil)
+        }
+    }
+
+    private func reactivateSearchBarIfNeeded() {
+        if !searchBarIsEmpty() {
+            searchController.isActive = true
         }
     }
 

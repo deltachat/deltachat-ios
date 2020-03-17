@@ -85,6 +85,7 @@ class ContactDetailViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        updateHeader() // maybe contact name has been edited
         tableView.reloadData()
     }
 
@@ -94,10 +95,10 @@ class ContactDetailViewController: UITableViewController {
         tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
         headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
         tableView.tableHeaderView = headerCell
-
     }
 
     // MARK: - UITableViewDatasource, UITableViewDelegate
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
@@ -171,8 +172,18 @@ class ContactDetailViewController: UITableViewController {
         return Constants.defaultHeaderHeight
     }
 
-    // MARK: - actions
+    // MARK: - updates
+    private func updateHeader() {
+        headerCell.updateDetails(title: viewModel.contact.displayName, subtitle: viewModel.contact.email)
+        if let img = viewModel.contact.profileImage {
+            headerCell.setImage(img)
+        } else {
+            headerCell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
+        }
+        headerCell.setVerified(isVerified: viewModel.contact.isVerified)
+    }
 
+    // MARK: - actions
     private func handleCellAction(for index: Int) {
         let action = viewModel.chatActionFor(row: index)
         switch action {

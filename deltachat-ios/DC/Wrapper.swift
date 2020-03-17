@@ -225,6 +225,18 @@ class DcContext {
     func imex(what: Int32, directory: String) {
         dc_imex(contextPointer, what, directory, nil)
     }
+
+    func isSendingLocationsToChat(chatId: Int) -> Bool {
+        return dc_is_sending_locations_to_chat(contextPointer, UInt32(chatId)) == 1
+    }
+
+    func sendLocationsToChat(chatId: Int, seconds: Int) {
+        dc_send_locations_to_chat(contextPointer, UInt32(chatId), Int32(seconds))
+    }
+
+    func setLocation(latitude: Double, longitude: Double, accuracy: Double) {
+        dc_set_location(contextPointer, latitude, longitude, accuracy)
+    }
 }
 
 class DcConfig {
@@ -556,6 +568,10 @@ class DcChat {
         }
         return nil
         }()
+
+    var isSendingLocations: Bool {
+        return dc_chat_is_sending_locations(chatPointer) == 1
+    }
 }
 
 class DcArray {
@@ -883,6 +899,32 @@ class DcMsg: MessageType {
 
     func sendInChat(id: Int) {
         dc_send_msg(mailboxPointer, UInt32(id), messagePointer)
+    }
+
+    func previousMediaURLs() -> [URL] {
+        var urls: [URL] = []
+        var prev: Int = Int(dc_get_next_media(mailboxPointer, UInt32(id), -1, Int32(type), 0, 0))
+        while prev != 0 {
+            let prevMessage = DcMsg(id: prev)
+            if let url = prevMessage.fileURL {
+                urls.insert(url, at: 0)
+            }
+            prev = Int(dc_get_next_media(mailboxPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
+        }
+        return urls
+    }
+
+    func nextMediaURLs() -> [URL] {
+        var urls: [URL] = []
+        var next: Int = Int(dc_get_next_media(mailboxPointer, UInt32(id), 1, Int32(type), 0, 0))
+        while next != 0 {
+            let nextMessage = DcMsg(id: next)
+            if let url = nextMessage.fileURL {
+                urls.append(url)
+            }
+            next = Int(dc_get_next_media(mailboxPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
+        }
+        return urls
     }
 }
 

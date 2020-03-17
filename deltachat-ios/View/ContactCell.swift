@@ -15,7 +15,7 @@ class ContactCell: UITableViewCell {
     private let imgSize: CGFloat = 20
 
     lazy var toplineStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, pinnedIndicator, timeLabel])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, pinnedIndicator, timeLabel, locationStreamingIndicator])
         stackView.axis = .horizontal
         stackView.spacing = 4
         return stackView
@@ -51,7 +51,7 @@ class ContactCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalToConstant: 16).isActive = true
         view.widthAnchor.constraint(equalToConstant: 16).isActive = true
-        view.tintColor = UIColor(hexString: "848ba7")
+        view.tintColor = DcColors.middleGray
         view.image = #imageLiteral(resourceName: "pinned_chatlist").withRenderingMode(.alwaysTemplate)
         view.isHidden = true
         return view
@@ -60,16 +60,27 @@ class ContactCell: UITableViewCell {
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(hexString: "848ba7")
+        label.textColor = DcColors.middleGray
         label.textAlignment = .right
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 2), for: NSLayoutConstraint.Axis.horizontal)
         return label
     }()
 
+    private let locationStreamingIndicator: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        view.widthAnchor.constraint(equalToConstant: 16).isActive = true
+        view.tintColor = DcColors.checkmarkGreen
+        view.image = #imageLiteral(resourceName: "ic_location").withRenderingMode(.alwaysTemplate)
+        view.isHidden = true
+        return view
+    }()
+
     let subtitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(hexString: "848ba7")
+        label.textColor = DcColors.middleGray
         label.lineBreakMode = .byTruncatingTail
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
         return label
@@ -77,7 +88,6 @@ class ContactCell: UITableViewCell {
 
     private let deliveryStatusIndicator: UIImageView = {
         let view = UIImageView()
-        view.tintColor = UIColor.green
         view.isHidden = true
         return view
     }()
@@ -171,7 +181,7 @@ class ContactCell: UITableViewCell {
         avatar.setName(name)
     }
 
-    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32) {
+    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool) {
         if visibility==DC_CHAT_VISIBILITY_ARCHIVED {
             pinnedIndicator.isHidden = true
             unreadMessageCounter.isHidden = true
@@ -203,6 +213,8 @@ class ContactCell: UITableViewCell {
             deliveryStatusIndicator.isHidden = deliveryStatusIndicator.image == nil ? true : false
             archivedIndicator.isHidden = true
         }
+
+        locationStreamingIndicator.isHidden = !isLocationStreaming
     }
 
     func setTimeLabel(_ timestamp: Int64?) {
@@ -250,14 +262,14 @@ class ContactCell: UITableViewCell {
             }
             setVerified(isVerified: chat.isVerified)
             setTimeLabel(chatData.summary.timestamp)
-            setStatusIndicators(unreadCount: chatData.unreadMessages, status: chatData.summary.state, visibility: chat.visibility)
+            setStatusIndicators(unreadCount: chatData.unreadMessages, status: chatData.summary.state, visibility: chat.visibility, isLocationStreaming: chat.isSendingLocations)
 
         case .CONTACT(let contactData):
             let contact = DcContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             avatar.setName(cellViewModel.title)
             avatar.setColor(contact.color)
-            setStatusIndicators(unreadCount: 0, status: 0, visibility: 0)
+            setStatusIndicators(unreadCount: 0, status: 0, visibility: 0, isLocationStreaming: false)
         }
     }
 }

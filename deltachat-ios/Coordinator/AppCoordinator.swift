@@ -10,10 +10,13 @@ class AppCoordinator: NSObject, Coordinator {
     private let chatsTab = 1
     private let settingsTab = 2
 
+    private let tabBarRestorer = TabBarRestorer()
+
     private var childCoordinators: [Coordinator] = []
 
     private lazy var tabBarController: UITabBarController = {
         let tabBarController = UITabBarController()
+        tabBarController.delegate = tabBarRestorer
         tabBarController.viewControllers = [qrController, chatListController, settingsController]
         tabBarController.tabBar.tintColor = DcColors.primary
         return tabBarController
@@ -21,19 +24,19 @@ class AppCoordinator: NSObject, Coordinator {
 
     private lazy var loginController: UIViewController = {
         let accountSetupController = AccountSetupController(dcContext: dcContext, editView: false)
-        let accountSetupNav = DcNavigationController(rootViewController: accountSetupController)
-        let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: accountSetupNav)
+        let nav = UINavigationController(rootViewController: accountSetupController)
+        let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: nav)
         coordinator.onLoginSuccess = presentTabBarController
         childCoordinators.append(coordinator)
         accountSetupController.coordinator = coordinator
-        return accountSetupNav
+        return nav
     }()
 
     // MARK: viewControllers
 
     private lazy var qrController: UIViewController = {
         let controller = QrViewController(dcContext: dcContext)
-        let nav = DcNavigationController(rootViewController: controller)
+        let nav = UINavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "qr_code")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
         let coordinator = QrViewCoordinator(navigationController: nav)
@@ -44,7 +47,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     private lazy var chatListController: UIViewController = {
         let controller = ChatListController(dcContext: dcContext, showArchive: false)
-        let nav = DcNavigationController(rootViewController: controller)
+        let nav = UINavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "ic_chat")
         nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: chatsTab)
         let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: nav)
@@ -55,7 +58,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     private lazy var settingsController: UIViewController = {
         let controller = SettingsViewController(dcContext: dcContext)
-        let nav = DcNavigationController(rootViewController: controller)
+        let nav = UINavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "settings")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: settingsTab)
         let coordinator = SettingsCoordinator(dcContext: dcContext, navigationController: nav)
@@ -77,8 +80,13 @@ class AppCoordinator: NSObject, Coordinator {
     }
 
     public func start() {
-        print(tabBarController.selectedIndex)
-        showTab(index: chatsTab)
+        let lastActiveTab = tabBarRestorer.restoreLastActiveTab()
+        if lastActiveTab == -1 {
+            // no stored tab
+            showTab(index: chatsTab)
+        } else {
+            showTab(index: lastActiveTab)
+        }
     }
 
     func showTab(index: Int) {
@@ -414,7 +422,7 @@ class GroupChatDetailCoordinator: Coordinator {
         }
         previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
         if let previewController = previewController {
-            navigationController.pushViewController(previewController.qlController, animated: true)
+            navigationController.pushViewController(previewController, animated: true)
         }
     }
 
@@ -522,6 +530,13 @@ class ChatViewCoordinator: NSObject, Coordinator {
 
     func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
         mediaPicker.showPhotoVideoLibrary(delegate: delegate)
+    }
+
+    func showMediaGallery(currentIndex: Int, mediaUrls urls: [URL]) {
+        let betterPreviewController = PreviewController(currentIndex: currentIndex, urls: urls)
+        let nav = UINavigationController(rootViewController: betterPreviewController)
+
+        navigationController.present(nav, animated: true)
     }
 }
 
@@ -670,7 +685,7 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
         }
         previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
         if let previewController = previewController {
-            navigationController.pushViewController(previewController.qlController, animated: true)
+            navigationController.pushViewController(previewController, animated: true)
         }
     }
 
