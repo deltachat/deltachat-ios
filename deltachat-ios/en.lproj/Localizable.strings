@@ -621,3 +621,4 @@
 
 "import_contacts" = "Import device contacts";
 "import_contacts_message" = "To chat with contacts from your device open Settings and enable Contacts.";
+"stop_sharing_location" = "Stop sharing location";

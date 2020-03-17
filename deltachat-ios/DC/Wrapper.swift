@@ -221,6 +221,18 @@ class DcContext {
     func imex(what: Int32, directory: String) {
         dc_imex(contextPointer, what, directory, nil)
     }
+
+    func isSendingLocationsToChat(chatId: Int) -> Bool {
+        return dc_is_sending_locations_to_chat(contextPointer, UInt32(chatId)) == 1
+    }
+
+    func sendLocationsToChat(chatId: Int, seconds: Int) {
+        dc_send_locations_to_chat(contextPointer, UInt32(chatId), Int32(seconds))
+    }
+
+    func setLocation(latitude: Double, longitude: Double, accuracy: Double) {
+        dc_set_location(contextPointer, latitude, longitude, accuracy)
+    }
 }
 
 class DcConfig {
@@ -552,6 +564,10 @@ class DcChat {
         }
         return nil
         }()
+
+    var isSendingLocations: Bool {
+        return dc_chat_is_sending_locations(chatPointer) == 1
+    }
 }
 
 class DcArray {
