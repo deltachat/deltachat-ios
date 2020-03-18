@@ -66,7 +66,7 @@ class ChatListController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateTitle()
-        viewModel.refreshData()
+        // viewModel.refreshData()
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
             forName: dcNotificationChanged,
