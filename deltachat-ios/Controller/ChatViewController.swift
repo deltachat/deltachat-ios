@@ -110,8 +110,6 @@ class ChatViewController: MessagesViewController {
             messageInputBar.inputTextView.becomeFirstResponder()
         }
 
-        loadFirstMessages()
-
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
                                        selector: #selector(setTextDraft),
@@ -195,8 +193,7 @@ class ChatViewController: MessagesViewController {
             }
         }
 
-        // maybe a message was added while the user was in the contact / chat profile
-        refreshMessages()
+        loadFirstMessages()
 
         if RelayHelper.sharedInstance.isForwarding() {
             askToForwardMessage()
