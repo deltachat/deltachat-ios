@@ -15,14 +15,14 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
 
     // search related
     var searchActive: Bool { get }
-    func beginFiltering()
-    func endFiltering()
-    func titleForHeaderIn(section: Int) -> String?
+    func beginSearch()
+    func endSearch()
+    func titleForHeaderIn(section: Int) -> String? // only visible on search results
 
     /// returns ROW of table
     func deleteChat(chatId: Int) -> Int
-    func archiveChat(chatId: Int)
-    func pinChat(chatId: Int)
+    func archiveChatToggle(chatId: Int)
+    func pinChatToggle(chatId: Int)
     func refreshData()
 
     var numberOfArchivedChats: Int { get }
@@ -62,6 +62,7 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     var searchActive: Bool = false
     private var searchTextEmpty: Bool = true
 
+    // if searchfield is empty we show default chat list
     private var showSearchResults: Bool {
         return searchActive && !searchTextEmpty
     }
@@ -69,13 +70,13 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     private var chatList: DcChatlist!
 
     // for search filtering
-    var filteredChats: ChatListSection = ChatListSection(type: .chats)
-    var filteredContacts: ChatListSection = ChatListSection(type: .contacts)
-    var filteredMessages: ChatListSection = ChatListSection(type: .messages)
+    private var searchResultsChats: ChatListSection = ChatListSection(type: .chats)
+    private var searchResultsContacts: ChatListSection = ChatListSection(type: .contacts)
+    private var searchResultsMessages: ChatListSection = ChatListSection(type: .messages)
 
     private var searchResultSections: [ChatListSection] {
-        return [filteredChats, filteredContacts, filteredMessages]
-            .filter { !$0.cellData.isEmpty } //
+        return [searchResultsChats, searchResultsContacts, searchResultsMessages]
+            .filter { !$0.cellData.isEmpty }
     }
 
     init(dcContext: DcContext, isArchive: Bool) {
@@ -157,17 +158,16 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         updateChatList(notifyListener: true)
     }
 
-    func beginFiltering() {
+    func beginSearch() {
         searchActive = true
     }
 
-    func endFiltering() {
+    func endSearch() {
         searchTextEmpty = true
         searchActive = false
     }
 
     func deleteChat(chatId: Int) -> Int {
-
         // find index of chatId
         let indexToDelete = Array(0..<chatList.length).filter { chatList.getChatId(index: $0) == chatId }.first
         dcContext.deleteChat(chatId: chatId)
@@ -176,12 +176,12 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         return indexToDelete ?? -1
     }
 
-    func archiveChat(chatId: Int) {
+    func archiveChatToggle(chatId: Int) {
         dcContext.archiveChat(chatId: chatId, archive: !self.isArchive)
         updateChatList(notifyListener: false)
     }
 
-    func pinChat(chatId: Int) {
+    func pinChatToggle(chatId: Int) {
         let chat = DcChat(id: chatId)
         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
         self.dcContext.setChatVisibility(chatId: chatId, visibility: pinned ? DC_CHAT_VISIBILITY_NORMAL : DC_CHAT_VISIBILITY_PINNED)
@@ -192,7 +192,6 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         let chatList = dcContext.getChatlist(flags: DC_GCL_ARCHIVED_ONLY, queryString: nil, queryId: 0)
         return chatList.length
     }
-
 }
 
 // MARK: UISearchResultUpdating
@@ -241,7 +240,7 @@ extension ChatListViewModel: UISearchResultsUpdating {
             )
             filteredChatCellViewModels.append(viewModel)
         }
-        filteredChats.cellData = filteredChatCellViewModels
+        searchResultsChats.cellData = filteredChatCellViewModels
 
         // #2 contacts with searchPattern in name or in email
         var filteredContactCellViewModels: [ContactCellViewModel] = []
@@ -263,7 +262,7 @@ extension ChatListViewModel: UISearchResultsUpdating {
             )
             filteredContactCellViewModels.append(viewModel)
         }
-        filteredContacts.cellData = filteredContactCellViewModels
+        searchResultsContacts.cellData = filteredContactCellViewModels
 
         // #3 messages with searchPattern (filtered by dc_core)
         let msgIds = dcContext.searchMessages(searchText: searchText)
@@ -289,16 +288,12 @@ extension ChatListViewModel: UISearchResultsUpdating {
 
             filteredMessageCellViewModels.append(viewModel)
         }
-        filteredMessages.cellData = filteredMessageCellViewModels
+        searchResultsMessages.cellData = filteredMessageCellViewModels
     }
-
 
     private func resetSearch() {
-        filteredChats.cellData = []
-        filteredContacts.cellData = []
-        filteredMessages.cellData = []
+        searchResultsChats.cellData = []
+        searchResultsContacts.cellData = []
+        searchResultsMessages.cellData = []
     }
-
-
 }
-
