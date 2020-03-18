@@ -59,13 +59,10 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     private let dcContext: DcContext
 
     var searchActive: Bool = false
-    private var searchTextEmpty: Bool {
-        return !searchText.containsCharacters()
-    }
 
     // if searchfield is empty we show default chat list
     private var showSearchResults: Bool {
-        return searchActive && !searchTextEmpty
+        return searchActive && searchText.containsCharacters()
     }
 
     private var chatList: DcChatlist!
@@ -213,29 +210,19 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     }
 
     private func makeChatCellViewModel(index: Int, searchText: String) -> AvatarCellViewModel {
-        if let chatList = searchResultChatList, searchText.containsCharacters() {
-            safe_assert(searchActive)
-            let chatId = chatList.getChatId(index: index)
-            let chat = DcChat(id: chatId)
-            let chatName = chat.name
-            let summary = chatList.getSummary(index: index)
-            let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
-            let chatTitleIndexes = chatName.containsExact(subSequence: searchText)
 
-            let viewModel = ChatCellViewModel(
-                chatData: ChatCellData(
-                    chatId: chatId,
-                    summary: summary,
-                    unreadMessages: unreadMessages
-                ),
-                titleHighlightIndexes: chatTitleIndexes
-            )
-            return viewModel
-        }
+        let list: DcChatlist = searchResultChatList ?? chatList
 
-        let chatId = chatList.getChatId(index: index)
+        let chatId = list.getChatId(index: index)
+        let chat = DcChat(id: chatId)
         let summary = chatList.getSummary(index: index)
         let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
+
+        var chatTitleIndexes: [Int] = []
+        if searchText.containsCharacters() {
+            let chatName = chat.name
+            chatTitleIndexes = chatName.containsExact(subSequence: searchText)
+        }
 
         let viewModel = ChatCellViewModel(
             chatData: ChatCellData(
@@ -243,10 +230,11 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
                 summary: summary,
                 unreadMessages: unreadMessages
             ),
-            titleHighlightIndexes: []
+            titleHighlightIndexes: chatTitleIndexes
         )
         return viewModel
     }
+
 
     private func makeContactCellViewModel(contactId: Int) -> AvatarCellViewModel {
         let contact = DcContact(id: contactId)
