@@ -1,6 +1,7 @@
 import UIKit
 
 protocol ContactDetailViewModelProtocol {
+    var context: DcContext { get }
     var contactId: Int { get }
     var contact: DcContact { get }
     var numberOfSections: Int { get }

@@ -291,18 +291,23 @@ class NewChatViewController: UITableViewController {
     }
 
     private func askToChatWith(contactId: Int) {
-        let dcContact = DcContact(id: contactId)
-        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
-                                      message: nil,
-                                      preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+        if dcContext.getChatIdByContactId(contactId: contactId) != 0 {
             self.dismiss(animated: true, completion: nil)
             self.coordinator?.showNewChat(contactId: contactId)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            self.reactivateSearchBarIfNeeded()
-        }))
-        present(alert, animated: true, completion: nil)
+        } else {
+            let dcContact = DcContact(id: contactId)
+            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
+                                          message: nil,
+                                          preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+                self.dismiss(animated: true, completion: nil)
+                self.coordinator?.showNewChat(contactId: contactId)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+                self.reactivateSearchBarIfNeeded()
+            }))
+            present(alert, animated: true, completion: nil)
+        }
     }
 
     private func reactivateSearchBarIfNeeded() {

@@ -55,8 +55,12 @@ class DcContext {
     }
 
     @discardableResult
-    func createChat(contactId: Int) -> Int {
+    func createChatByContactId(contactId: Int) -> Int {
         return Int(dc_create_chat_by_contact_id(contextPointer, UInt32(contactId)))
+    }
+
+    func getChatIdByContactId(contactId: Int) -> Int {
+        return Int(dc_get_chat_id_by_contact_id(contextPointer, UInt32(contactId)))
     }
 
     func createGroupChat(verified: Bool, name: String) -> Int {

@@ -2,6 +2,7 @@ import UIKit
 
 class NewContactController: UITableViewController {
 
+    private let dcContext: DcContext
     weak var coordinator: EditContactCoordinatorProtocol?
     var openChatOnSave = true
 
@@ -27,7 +28,8 @@ class NewContactController: UITableViewController {
     let cells: [UITableViewCell]
 
     // for creating a new contact
-    init() {
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
         cells = [emailCell, nameCell]
         super.init(style: .grouped)
         emailCell.textField.delegate = self
@@ -74,8 +76,8 @@ class NewContactController: UITableViewController {
     }
 
     @objc func saveContactButtonPressed() {
-        let contactId = dc_create_contact(mailboxPointer, model.name, model.email)
-        let chatId = Int(dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId)))
+        let contactId = dcContext.createContact(name: model.name, email: model.email)
+        let chatId = dcContext.createChatByContactId(contactId: contactId)
         if openChatOnSave {
             coordinator?.showChat(chatId: chatId)
         } else {
