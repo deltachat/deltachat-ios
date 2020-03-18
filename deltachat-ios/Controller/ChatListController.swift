@@ -41,7 +41,11 @@ class ChatListController: UITableViewController {
 
     init(viewModel: ChatListViewModelProtocol) {
         self.viewModel = viewModel
-        super.init(style: .grouped)
+        if viewModel.isArchive {
+            super.init(nibName: nil, bundle: nil)
+        } else {
+            super.init(style: .grouped)
+        }
         viewModel.onChatListUpdate = handleChatListUpdate // register listener
     }
 
@@ -53,7 +57,9 @@ class ChatListController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = newButton
-        navigationItem.searchController = searchController
+        if !viewModel.isArchive {
+            navigationItem.searchController = searchController
+        }
         configureTableView()
     }
 

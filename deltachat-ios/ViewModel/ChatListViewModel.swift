@@ -11,7 +11,8 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     func cellDataFor(section: Int, row: Int) -> AvatarCellViewModel
 
     func msgIdFor(row: Int) -> Int?
-    func chatIdFor(section: Int, row: Int) -> Int? // to differentiate betweeen deaddrop / archive / default
+    func chatIdFor(section: Int, row: Int) -> Int? // needed to differentiate betweeen deaddrop / archive / default
+
     // search related
     var searchActive: Bool { get }
     func beginFiltering()
