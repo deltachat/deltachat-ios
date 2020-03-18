@@ -50,7 +50,6 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
                 return String.localized("pref_messages")
             }
         }
-        var cellData: [AvatarCellViewModel] = []
         init(type: ChatListSectionType) {
             self.type = type
         }
@@ -60,7 +59,9 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     private let dcContext: DcContext
 
     var searchActive: Bool = false
-    private var searchTextEmpty: Bool = true
+    private var searchTextEmpty: Bool {
+        return !searchText.containsCharacters()
+    }
 
     // if searchfield is empty we show default chat list
     private var showSearchResults: Bool {
@@ -70,13 +71,28 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     private var chatList: DcChatlist!
 
     // for search filtering
-    private var searchResultsChats: ChatListSection = ChatListSection(type: .chats)
-    private var searchResultsContacts: ChatListSection = ChatListSection(type: .contacts)
-    private var searchResultsMessages: ChatListSection = ChatListSection(type: .messages)
+
+    private var searchText: String = ""
+    private var searchResultChatList: DcChatlist?
+    private var searchResultContactIds: [Int] = []
+    private var searchResultMessageIds: [Int] = []
+
+    private var searchResultsChatsSection: ChatListSection = ChatListSection(type: .chats)
+    private var searchResultsContactsSection: ChatListSection = ChatListSection(type: .contacts)
+    private var searchResultsMessagesSection: ChatListSection = ChatListSection(type: .messages)
 
     private var searchResultSections: [ChatListSection] {
-        return [searchResultsChats, searchResultsContacts, searchResultsMessages]
-            .filter { !$0.cellData.isEmpty }
+        var sections: [ChatListSection] = []
+        if let chatList = searchResultChatList, chatList.length > 0 {
+            sections.append(searchResultsChatsSection)
+        }
+        if !searchResultContactIds.isEmpty {
+            sections.append(searchResultsContactsSection)
+        }
+        if !searchResultMessageIds.isEmpty {
+            sections.append(searchResultsMessagesSection)
+        }
+        return sections
     }
 
     init(dcContext: DcContext, isArchive: Bool) {
@@ -107,27 +123,30 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
 
     func numberOfRowsIn(section: Int) -> Int {
         if showSearchResults {
-            return searchResultSections[section].cellData.count
+            switch searchResultSections[section].type {
+            case .chats:
+                return searchResultChatList?.length ?? 0
+            case .contacts:
+                return searchResultContactIds.count
+            case .messages:
+                return searchResultMessageIds.count
+            }
         }
         return chatList.length
     }
 
     func cellDataFor(section: Int, row: Int) -> AvatarCellViewModel {
         if showSearchResults {
-            return searchResultSections[section].cellData[row]
+            switch searchResultSections[section].type {
+            case .chats:
+                break
+            case .contacts:
+                return makeContactCellViewModel(contactId: searchResultContactIds[row])
+            case .messages:
+                return makeMessageCellViewModel(msgId: searchResultMessageIds[row])
+            }
         }
-
-        let chatId = chatList.getChatId(index: row)
-        let summary = chatList.getSummary(index: row)
-        let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
-        let viewModel = ChatCellViewModel(
-            chatData: ChatCellData(
-                chatId: chatId,
-                summary: summary,
-                unreadMessages: unreadMessages
-            )
-        )
-        return viewModel
+        return makeChatCellViewModel(index: row, searchText: searchText)
     }
 
     func titleForHeaderIn(section: Int) -> String? {
@@ -163,7 +182,7 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     }
 
     func endSearch() {
-        searchTextEmpty = true
+        searchText = ""
         searchActive = false
     }
 
@@ -192,17 +211,87 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         let chatList = dcContext.getChatlist(flags: DC_GCL_ARCHIVED_ONLY, queryString: nil, queryId: 0)
         return chatList.length
     }
+
+    private func makeChatCellViewModel(index: Int, searchText: String) -> AvatarCellViewModel {
+        if let chatList = searchResultChatList, searchText.containsCharacters() {
+            safe_assert(searchActive)
+            let chatId = chatList.getChatId(index: index)
+            let chat = DcChat(id: chatId)
+            let chatName = chat.name
+            let summary = chatList.getSummary(index: index)
+            let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
+            let chatTitleIndexes = chatName.containsExact(subSequence: searchText)
+
+            let viewModel = ChatCellViewModel(
+                chatData: ChatCellData(
+                    chatId: chatId,
+                    summary: summary,
+                    unreadMessages: unreadMessages
+                ),
+                titleHighlightIndexes: chatTitleIndexes
+            )
+            return viewModel
+        }
+
+        let chatId = chatList.getChatId(index: index)
+        let summary = chatList.getSummary(index: index)
+        let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
+
+        let viewModel = ChatCellViewModel(
+            chatData: ChatCellData(
+                chatId: chatId,
+                summary: summary,
+                unreadMessages: unreadMessages
+            ),
+            titleHighlightIndexes: []
+        )
+        return viewModel
+    }
+
+    private func makeContactCellViewModel(contactId: Int) -> AvatarCellViewModel {
+        let contact = DcContact(id: contactId)
+        let nameIndexes = contact.displayName.containsExact(subSequence: searchText)
+        let emailIndexes = contact.email.containsExact(subSequence: searchText)
+
+        // contact contains searchText
+        let viewModel = ContactCellViewModel(
+            contactData: ContactCellData(
+                contactId: contact.id
+            ),
+            titleHighlightIndexes: nameIndexes,
+            subtitleHighlightIndexes: emailIndexes
+        )
+        return viewModel
+    }
+
+    private func makeMessageCellViewModel(msgId: Int) -> AvatarCellViewModel {
+        let msg: DcMsg = DcMsg(id: msgId)
+        let chatId: Int = msg.chatId
+        let chat: DcChat = DcChat(id: chatId)
+        let summary: DcLot = msg.summary(chat: chat)
+        let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
+
+        let viewModel = ChatCellViewModel(
+            chatData: ChatCellData(
+                chatId: chatId,
+                summary: summary,
+                unreadMessages: unreadMessages
+            )
+        )
+        let subtitle = viewModel.subtitle
+        viewModel.subtitleHighlightIndexes = subtitle.containsExact(subSequence: searchText)
+        return viewModel
+    }
 }
 
 // MARK: UISearchResultUpdating
 extension ChatListViewModel: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+        self.searchText = searchController.searchBar.text ?? ""
         if let searchText = searchController.searchBar.text {
-            self.searchTextEmpty = searchText.isEmpty
             filterContentForSearchText(searchText)
             return
         }
-        searchTextEmpty = true
     }
 
     private func filterContentForSearchText(_ searchText: String) {
@@ -218,82 +307,20 @@ extension ChatListViewModel: UISearchResultsUpdating {
     private func filterAndUpdateList(searchText: String) {
 
         // #1 chats with searchPattern in title bar
-        var filteredChatCellViewModels: [ChatCellViewModel] = []
         var flags: Int32 = 0
         flags |= DC_GCL_NO_SPECIALS
-        let filteredChatList = dcContext.getChatlist(flags: flags, queryString: searchText, queryId: 0)
-        _ = (0..<filteredChatList.length).map {
-            let chatId = chatList.getChatId(index: $0)
-            let chat = DcChat(id: chatId)
-            let chatName = chat.name
-            let summary = chatList.getSummary(index: $0)
-            let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
-            let chatTitleIndexes = chatName.containsExact(subSequence: searchText)
-
-            let viewModel = ChatCellViewModel(
-                chatData: ChatCellData(
-                    chatId: chatId,
-                    summary: summary,
-                    unreadMessages: unreadMessages
-                ),
-                titleHighlightIndexes: chatTitleIndexes
-            )
-            filteredChatCellViewModels.append(viewModel)
-        }
-        searchResultsChats.cellData = filteredChatCellViewModels
+        searchResultChatList = dcContext.getChatlist(flags: flags, queryString: searchText, queryId: 0)
 
         // #2 contacts with searchPattern in name or in email
-        var filteredContactCellViewModels: [ContactCellViewModel] = []
-        let contactIds: [Int] = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
-
-        let contacts = contactIds.map { return DcContact(id: $0) }
-
-        for contact in contacts {
-            let nameIndexes = contact.displayName.containsExact(subSequence: searchText)
-            let emailIndexes = contact.email.containsExact(subSequence: searchText)
-
-            // contact contains searchText
-            let viewModel = ContactCellViewModel(
-                contactData: ContactCellData(
-                    contactId: contact.id
-                ),
-                titleHighlightIndexes: nameIndexes,
-                subtitleHighlightIndexes: emailIndexes
-            )
-            filteredContactCellViewModels.append(viewModel)
-        }
-        searchResultsContacts.cellData = filteredContactCellViewModels
+        searchResultContactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
 
         // #3 messages with searchPattern (filtered by dc_core)
-        let msgIds = dcContext.searchMessages(searchText: searchText)
-        var filteredMessageCellViewModels: [ChatCellViewModel] = []
-
-
-        for msgId in msgIds {
-            let msg: DcMsg = DcMsg(id: msgId)
-            let chatId: Int = msg.chatId
-            let chat: DcChat = DcChat(id: chatId)
-            let summary: DcLot = msg.summary(chat: chat)
-            let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
-
-            let viewModel = ChatCellViewModel(
-                chatData: ChatCellData(
-                    chatId: chatId,
-                    summary: summary,
-                    unreadMessages: unreadMessages
-                )
-            )
-            let subtitle = viewModel.subtitle
-            viewModel.subtitleHighlightIndexes = subtitle.containsExact(subSequence: searchText)
-
-            filteredMessageCellViewModels.append(viewModel)
-        }
-        searchResultsMessages.cellData = filteredMessageCellViewModels
+        searchResultMessageIds = dcContext.searchMessages(searchText: searchText)
     }
 
     private func resetSearch() {
-        searchResultsChats.cellData = []
-        searchResultsContacts.cellData = []
-        searchResultsMessages.cellData = []
+        searchResultChatList = nil
+        searchResultContactIds = []
+        searchResultMessageIds = []
     }
 }
