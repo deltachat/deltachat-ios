@@ -41,7 +41,7 @@ class ChatListController: UITableViewController {
 
     init(viewModel: ChatListViewModelProtocol) {
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: .grouped)
         viewModel.onChatListUpdate = handleChatListUpdate // register listener
     }
 
@@ -197,6 +197,10 @@ class ChatListController: UITableViewController {
         }
         safe_fatalError("Could not find/dequeue or recycle UITableViewCell.")
         return UITableViewCell()
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.titleForHeaderIn(section: section)
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
