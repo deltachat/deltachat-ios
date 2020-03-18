@@ -8,6 +8,11 @@ class ChatListController: UITableViewController {
     private let deadDropCellReuseIdentifier = "deaddrop_cell"
     private let contactCellReuseIdentifier = "contact_cell"
 
+    private var msgChangedObserver: Any?
+    private var incomingMsgObserver: Any?
+    private var viewChatObserver: Any?
+    private var deleteChatObserver: Any?
+
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = viewModel
@@ -16,11 +21,6 @@ class ChatListController: UITableViewController {
         searchController.searchBar.delegate = self
         return searchController
     }()
-
-    private var msgChangedObserver: Any?
-    private var incomingMsgObserver: Any?
-    private var viewChatObserver: Any?
-    private var deleteChatObserver: Any?
 
     private lazy var newButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
@@ -126,18 +126,7 @@ class ChatListController: UITableViewController {
         tableView.rowHeight = 80
     }
 
-    // MARK: - actions
-    @objc func didPressNewChat() {
-        coordinator?.showNewChatController()
-    }
-
-    @objc func cancelButtonPressed() {
-        RelayHelper.sharedInstance.cancel()
-        updateTitle()
-    }
-
     // MARK: - uitableviewdelegate, uitableviewdatasource
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
@@ -215,6 +204,7 @@ class ChatListController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
         if viewModel.searchActive {
+            // no swipe actions during search
             return []
         }
 
@@ -230,7 +220,7 @@ class ChatListController: UITableViewController {
         let archiveActionTitle: String = String.localized(viewModel.isArchive ? "unarchive" : "archive")
 
         let archiveAction = UITableViewRowAction(style: .destructive, title: archiveActionTitle) { [unowned self] _, _ in
-            self.viewModel.archiveChat(chatId: chatId)
+            self.viewModel.archiveChatToggle(chatId: chatId)
             self.updateArchivedCell()
         }
         archiveAction.backgroundColor = UIColor.lightGray
@@ -238,7 +228,7 @@ class ChatListController: UITableViewController {
         let chat = DcChat(id: chatId)
         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
         let pinAction = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [unowned self] _, _ in
-            self.viewModel.pinChat(chatId: chat.id)
+            self.viewModel.pinChatToggle(chatId: chat.id)
         }
         pinAction.backgroundColor = UIColor.systemGreen
 
@@ -251,7 +241,6 @@ class ChatListController: UITableViewController {
     }
 
     // MARK: updates
-
     private func updateTitle() {
         if RelayHelper.sharedInstance.isForwarding() {
             title = String.localized("forward_to")
@@ -329,8 +318,17 @@ class ChatListController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
-    private func deleteChat(chatId: Int, animated: Bool) {
+    // MARK: - actions
+    @objc func didPressNewChat() {
+        coordinator?.showNewChatController()
+    }
 
+    @objc func cancelButtonPressed() {
+        RelayHelper.sharedInstance.cancel()
+        updateTitle()
+    }
+
+    private func deleteChat(chatId: Int, animated: Bool) {
         if !animated {
             _ = viewModel.deleteChat(chatId: chatId)
             viewModel.refreshData()
@@ -342,15 +340,14 @@ class ChatListController: UITableViewController {
     }
 }
 
-
-// MARK
+// MARK: - uisearchbardelegate
 extension ChatListController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        viewModel.beginFiltering()
+        viewModel.beginSearch()
         return true
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        viewModel.endFiltering()
+        viewModel.endSearch()
     }
 }
