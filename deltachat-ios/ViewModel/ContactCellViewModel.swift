@@ -1,7 +1,3 @@
-/*
- this file and the containing classes are manually imported from searchBarContactList-branch which has not been merged into master at this time. Once it has been merged, this file can be deleted.
- */
-
 import Foundation
 
 protocol AvatarCellViewModel {
@@ -13,8 +9,9 @@ protocol AvatarCellViewModel {
 }
 
 enum CellModel {
-    case CONTACT(ContactCellData)
-    case CHAT(ChatCellData)
+    case contact(ContactCellData)
+    case chat(ChatCellData)
+    case deaddrop(DeaddropCellData)
 }
 
 struct ContactCellData {
@@ -26,6 +23,12 @@ struct ChatCellData {
     let chatId: Int
     let summary: DcLot
     let unreadMessages: Int
+}
+
+struct DeaddropCellData {
+    let chatId: Int
+    let msgId: Int
+    let summary: DcLot
 }
 
 class ContactCellViewModel: AvatarCellViewModel {
@@ -48,7 +51,7 @@ class ContactCellViewModel: AvatarCellViewModel {
     var subtitleHighlightIndexes: [Int]
 
     init(contactData: ContactCellData, titleHighlightIndexes: [Int] = [], subtitleHighlightIndexes: [Int] = []) {
-        type = CellModel.CONTACT(contactData)
+        type = CellModel.contact(contactData)
         self.titleHighlightIndexes = titleHighlightIndexes
         self.subtitleHighlightIndexes = subtitleHighlightIndexes
         self.contact = DcContact(id: contactData.contactId)
@@ -58,7 +61,8 @@ class ContactCellViewModel: AvatarCellViewModel {
 class ChatCellViewModel: AvatarCellViewModel {
 
     private let chat: DcChat
-    private let summary: DcLot
+
+    private var summary: DcLot
 
     var type: CellModel
     var title: String {
@@ -81,10 +85,18 @@ class ChatCellViewModel: AvatarCellViewModel {
     var subtitleHighlightIndexes: [Int]
 
     init(chatData: ChatCellData, titleHighlightIndexes: [Int] = [], subtitleHighlightIndexes: [Int] = []) {
-        self.type = CellModel.CHAT(chatData)
+        self.type = CellModel.chat(chatData)
         self.titleHighlightIndexes = titleHighlightIndexes
         self.subtitleHighlightIndexes = subtitleHighlightIndexes
         self.summary = chatData.summary
         self.chat = DcChat(id: chatData.chatId)
+    }
+
+    init(dearddropCellData cellData: DeaddropCellData) {
+        self.type = CellModel.deaddrop(cellData)
+        self.titleHighlightIndexes = []
+        self.subtitleHighlightIndexes = []
+        self.chat = DcChat(id: cellData.chatId)
+        self.summary = cellData.summary
     }
 }
