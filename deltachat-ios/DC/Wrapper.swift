@@ -39,6 +39,15 @@ class DcContext {
         return DcChat(id: chatId)
     }
 
+    func getChatIdByContactId(_ contactId: Int) -> Int? {
+        let chatId = dc_get_chat_id_by_contact_id(self.contextPointer, UInt32(contactId))
+        if chatId == 0 {
+            return nil
+        } else {
+            return Int(chatId)
+        }
+    }
+
     func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
         let chatlistPointer = dc_get_chatlist(contextPointer, flags, queryString, UInt32(queryId))
         let chatlist = DcChatlist(chatListPointer: chatlistPointer)
