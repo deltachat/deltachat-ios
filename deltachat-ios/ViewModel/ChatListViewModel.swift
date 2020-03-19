@@ -153,7 +153,7 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     }
 
     func msgIdFor(row: Int) -> Int? {
-        if searchActive {
+        if showSearchResults {
             return nil
         }
         return chatList.getMsgId(index: row)
