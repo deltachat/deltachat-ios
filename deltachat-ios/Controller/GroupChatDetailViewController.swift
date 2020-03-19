@@ -253,7 +253,11 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 safe_fatalError("could not dequeue contactCell cell")
                 break
             }
-            let cellData = ContactCellData(contactId: getGroupMemberIdFor(row))
+            let contactId: Int = getGroupMemberIdFor(row)
+            let cellData = ContactCellData(
+                contactId: contactId,
+                chatId: context.getChatIdByContactId(contactId)
+            )
             let cellViewModel = ContactCellViewModel(contactData: cellData)
             contactCell.updateCell(cellViewModel: cellViewModel)
             return contactCell

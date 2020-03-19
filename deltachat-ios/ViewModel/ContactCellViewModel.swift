@@ -19,6 +19,7 @@ enum CellModel {
 
 struct ContactCellData {
     let contactId: Int
+    let chatId: Int?
 }
 
 struct ChatCellData {
