@@ -110,8 +110,6 @@ class ChatViewController: MessagesViewController {
             messageInputBar.inputTextView.becomeFirstResponder()
         }
 
-        loadFirstMessages()
-
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
                                        selector: #selector(setTextDraft),
@@ -193,6 +191,8 @@ class ChatViewController: MessagesViewController {
                 }
             }
         }
+
+        loadFirstMessages()
 
         if RelayHelper.sharedInstance.isForwarding() {
             askToForwardMessage()
