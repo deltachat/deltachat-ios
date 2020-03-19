@@ -147,17 +147,18 @@ class ChatListController: UITableViewController {
                 return archiveCell
             } else if
                 chatId == DC_CHAT_ID_DEADDROP,
-                let msgId = viewModel.msgIdFor(row: indexPath.row),
                 let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as? ContactCell {
                 deaddropCell.updateCell(cellViewModel: cellData)
                 deaddropCell.backgroundColor = DcColors.deaddropBackground
                 deaddropCell.contentView.backgroundColor = DcColors.deaddropBackground
-                let contact = DcContact(id: DcMsg(id: msgId).fromContactId)
-                if let img = contact.profileImage {
-                    deaddropCell.resetBackupImage()
-                    deaddropCell.setImage(img)
-                } else {
-                    deaddropCell.setBackupImage(name: contact.name, color: contact.color)
+                if let msgId = viewModel.msgIdFor(row: indexPath.row) {
+                    let contact = DcContact(id: DcMsg(id: msgId).fromContactId)
+                    if let img = contact.profileImage {
+                        deaddropCell.resetBackupImage()
+                        deaddropCell.setImage(img)
+                    } else {
+                        deaddropCell.setBackupImage(name: contact.nameNAddr, color: contact.color)
+                    }
                 }
                 return deaddropCell
             } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
