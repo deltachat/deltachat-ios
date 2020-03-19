@@ -145,9 +145,11 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     func chatIdFor(section: Int, row: Int) -> Int? {
         let cellData = cellDataFor(section: section, row: row)
         switch cellData.type {
-        case .CHAT(let data):
+        case .deaddrop(let data):
             return data.chatId
-        case .CONTACT:
+        case .chat(let data):
+            return data.chatId
+        case .contact:
             return nil
         }
     }
@@ -206,10 +208,15 @@ private extension ChatListViewModel {
     func makeChatCellViewModel(index: Int, searchText: String) -> AvatarCellViewModel {
 
         let list: DcChatlist = searchResultChatList ?? chatList
-
         let chatId = list.getChatId(index: index)
+        let summary = list.getSummary(index: index)
+
+
+        if let msgId = msgIdFor(row: index), chatId == DC_CHAT_ID_DEADDROP {
+            return ChatCellViewModel(dearddropCellData: DeaddropCellData(chatId: chatId, msgId: msgId, summary: summary))
+        }
+
         let chat = dcContext.getChat(chatId: chatId)
-        let summary = chatList.getSummary(index: index)
         let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
 
         var chatTitleIndexes: [Int] = []
