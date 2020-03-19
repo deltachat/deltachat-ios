@@ -188,7 +188,7 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     }
 
     func pinChatToggle(chatId: Int) {
-        let chat = DcChat(id: chatId)
+        let chat: DcChat = dcContext.getChat(chatId: chatId)
         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
         self.dcContext.setChatVisibility(chatId: chatId, visibility: pinned ? DC_CHAT_VISIBILITY_NORMAL : DC_CHAT_VISIBILITY_PINNED)
         updateChatList(notifyListener: false)
@@ -208,7 +208,7 @@ private extension ChatListViewModel {
         let list: DcChatlist = searchResultChatList ?? chatList
 
         let chatId = list.getChatId(index: index)
-        let chat = DcChat(id: chatId)
+        let chat = dcContext.getChat(chatId: chatId)
         let summary = chatList.getSummary(index: index)
         let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
 
