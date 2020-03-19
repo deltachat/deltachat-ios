@@ -140,33 +140,23 @@ class ChatListController: UITableViewController {
         let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
 
         switch cellData.type {
-        case .CHAT(let chatData):
+        case .deaddrop(let deaddropData):
+            guard let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as? ContactCell else {
+                break
+            }
+            deaddropCell.updateCell(cellViewModel: cellData)
+            return deaddropCell
+        case .chat(let chatData):
             let chatId = chatData.chatId
             if chatId == DC_CHAT_ID_ARCHIVED_LINK {
                 updateArchivedCell() // to make sure archived chats count is always right
                 return archiveCell
-            } else if
-                chatId == DC_CHAT_ID_DEADDROP,
-                let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as? ContactCell {
-                deaddropCell.updateCell(cellViewModel: cellData)
-                deaddropCell.backgroundColor = DcColors.deaddropBackground
-                deaddropCell.contentView.backgroundColor = DcColors.deaddropBackground
-                if let msgId = viewModel.msgIdFor(row: indexPath.row) {
-                    let contact = DcContact(id: DcMsg(id: msgId).fromContactId)
-                    if let img = contact.profileImage {
-                        deaddropCell.resetBackupImage()
-                        deaddropCell.setImage(img)
-                    } else {
-                        deaddropCell.setBackupImage(name: contact.nameNAddr, color: contact.color)
-                    }
-                }
-                return deaddropCell
             } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
                 // default chatCell
                 chatCell.updateCell(cellViewModel: cellData)
                 return chatCell
             }
-        case .CONTACT:
+        case .contact:
             safe_assert(viewModel.searchActive)
             if let contactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as? ContactCell {
                 contactCell.updateCell(cellViewModel: cellData)
@@ -184,19 +174,17 @@ class ChatListController: UITableViewController {
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
         switch cellData.type {
-        case .CHAT(let chatData):
+        case .deaddrop(let deaddropData):
+            safe_assert(deaddropData.chatId == DC_CHAT_ID_DEADDROP)
+            showDeaddropRequestAlert(msgId: deaddropData.msgId)
+        case .chat(let chatData):
             let chatId = chatData.chatId
-            if chatId == DC_CHAT_ID_DEADDROP {
-                guard let msgId = viewModel.msgIdFor(row: indexPath.row) else {
-                    return
-                }
-                showDeaddropRequestAlert(msgId: msgId)
-            } else if chatId == DC_CHAT_ID_ARCHIVED_LINK {
+            if chatId == DC_CHAT_ID_ARCHIVED_LINK {
                 coordinator?.showArchive()
             } else {
                 coordinator?.showChat(chatId: chatId)
             }
-        case .CONTACT(let contactData):
+        case .contact(let contactData):
             let contactId = contactData.contactId
             if let chatId = contactData.chatId {
                 coordinator?.showChat(chatId: chatId)

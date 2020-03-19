@@ -7,10 +7,9 @@ protocol ContactCellDelegate: class {
 class ContactCell: UITableViewCell {
 
     static let reuseIdentifier = "contact_cell_reuse_identifier"
+    static let cellHeight: CGFloat = 74.5
 
-    public static let cellHeight: CGFloat = 74.5
     weak var delegate: ContactCellDelegate?
-    var rowIndex = -1 // TODO: is this still needed?
     private let badgeSize: CGFloat = 54
     private let imgSize: CGFloat = 20
 
@@ -32,8 +31,6 @@ class ContactCell: UITableViewCell {
         let badge = InitialsBadge(size: badgeSize)
         badge.setColor(UIColor.lightGray)
         badge.isAccessibilityElement = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
-        badge.addGestureRecognizer(tap)
         return badge
     }()
 
@@ -220,19 +217,27 @@ class ContactCell: UITableViewCell {
         avatar.setColor(color)
     }
 
-    @objc func onAvatarTapped() {
-        if rowIndex == -1 {
-            return
-        }
-        delegate?.onAvatarTapped(at: rowIndex)
-    }
-
+    // use this update-method to update cell in cellForRowAt whenever it is possible - other set-methods will be set private in progress
     func updateCell(cellViewModel: AvatarCellViewModel) {
+
         // subtitle
         subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: subtitleLabel.font.pointSize)
 
         switch cellViewModel.type {
-        case .CHAT(let chatData):
+        case .deaddrop(let deaddropData):
+            safe_assert(deaddropData.chatId == DC_CHAT_ID_DEADDROP)
+            backgroundColor = DcColors.deaddropBackground
+            contentView.backgroundColor = DcColors.deaddropBackground
+            let contact = DcContact(id: DcMsg(id: deaddropData.msgId).fromContactId)
+            if let img = contact.profileImage {
+                resetBackupImage()
+                setImage(img)
+            } else {
+                setBackupImage(name: contact.nameNAddr, color: contact.color)
+            }
+            titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
+
+        case .chat(let chatData):
             let chat = DcChat(id: chatData.chatId)
 
             // text bold if chat contains unread messages - otherwise hightlight search results if needed
@@ -241,18 +246,16 @@ class ContactCell: UITableViewCell {
             } else {
                 titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             }
-
+            setVerified(isVerified: chat.isVerified)
+            setTimeLabel(chatData.summary.timestamp)
+            setStatusIndicators(unreadCount: chatData.unreadMessages, status: chatData.summary.state, visibility: chat.visibility)
             if let img = chat.profileImage {
                 resetBackupImage()
                 setImage(img)
             } else {
-              setBackupImage(name: chat.name, color: chat.color)
+                setBackupImage(name: chat.name, color: chat.color)
             }
-            setVerified(isVerified: chat.isVerified)
-            setTimeLabel(chatData.summary.timestamp)
-            setStatusIndicators(unreadCount: chatData.unreadMessages, status: chatData.summary.state, visibility: chat.visibility)
-
-        case .CONTACT(let contactData):
+        case .contact(let contactData):
             let contact = DcContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             avatar.setName(cellViewModel.title)
