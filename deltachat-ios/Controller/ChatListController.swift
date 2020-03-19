@@ -197,7 +197,11 @@ class ChatListController: UITableViewController {
             }
         case .CONTACT(let contactData):
             let contactId = contactData.contactId
-            self.askToChatWith(contactId: contactId)
+            if let chatId = contactData.chatId {
+                coordinator?.showChat(chatId: chatId)
+            } else {
+                self.askToChatWith(contactId: contactId)
+            }
         }
     }
 

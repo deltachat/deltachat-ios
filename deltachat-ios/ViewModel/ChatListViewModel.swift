@@ -19,7 +19,7 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     func beginSearch()
     func endSearch()
     func titleForHeaderIn(section: Int) -> String? // only visible on search results
-
+    
     /// returns ROW of table
     func deleteChat(chatId: Int) -> Int
     func archiveChatToggle(chatId: Int)
@@ -233,11 +233,12 @@ private extension ChatListViewModel {
         let contact = DcContact(id: contactId)
         let nameIndexes = contact.displayName.containsExact(subSequence: searchText)
         let emailIndexes = contact.email.containsExact(subSequence: searchText)
-
+        let chatId: Int? = dcContext.getChatIdByContactId(contactId)
         // contact contains searchText
         let viewModel = ContactCellViewModel(
             contactData: ContactCellData(
-                contactId: contact.id
+                contactId: contact.id,
+                chatId: chatId
             ),
             titleHighlightIndexes: nameIndexes,
             subtitleHighlightIndexes: emailIndexes
