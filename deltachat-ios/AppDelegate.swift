@@ -82,9 +82,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // setup deltachat core context
         //       - second param remains nil (user data for more than one mailbox)
         open()
+        RelayHelper.setup(dcContext)
         appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
         appCoordinator.start()
-        RelayHelper.setup(dcContext)
         locationManager = LocationManager(context: dcContext)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         start()
