@@ -26,8 +26,8 @@ class DcContext {
         return dc_delete_contact(self.contextPointer, UInt32(contactId)) == 1
     }
 
-    func getContacts(flags: Int32) -> [Int] {
-        let cContacts = dc_get_contacts(self.contextPointer, UInt32(flags), nil)
+    func getContacts(flags: Int32, queryString: String? = nil) -> [Int] {
+        let cContacts = dc_get_contacts(self.contextPointer, UInt32(flags), queryString)
         return Utils.copyAndFreeArray(inputArray: cContacts)
     }
 
@@ -37,6 +37,15 @@ class DcContext {
 
     func getChat(chatId: Int) -> DcChat {
         return DcChat(id: chatId)
+    }
+
+    func getChatIdByContactId(_ contactId: Int) -> Int? {
+        let chatId = dc_get_chat_id_by_contact_id(self.contextPointer, UInt32(contactId))
+        if chatId == 0 {
+            return nil
+        } else {
+            return Int(chatId)
+        }
     }
 
     func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
@@ -236,6 +245,14 @@ class DcContext {
 
     func setLocation(latitude: Double, longitude: Double, accuracy: Double) {
         dc_set_location(contextPointer, latitude, longitude, accuracy)
+    }
+
+    func searchMessages(chatId: Int = 0, searchText: String) -> [Int] {
+        guard let arrayPointer = dc_search_msgs(contextPointer, UInt32(chatId), searchText) else {
+            return []
+        }
+        let messageIds = Utils.copyAndFreeArray(inputArray: arrayPointer)
+        return messageIds
     }
 }
 
@@ -886,6 +903,16 @@ class DcMsg: MessageType {
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
+    }
+
+    func summary(chat: DcChat) -> DcLot {
+        guard let chatPointer = chat.chatPointer else {
+            fatalError()
+        }
+        guard let dcLotPointer = dc_msg_get_summary(messagePointer, chatPointer) else {
+            fatalError()
+        }
+        return DcLot(dcLotPointer)
     }
 
     func showPadlock() -> Bool {

@@ -13,6 +13,22 @@ extension String {
         return !trimmingCharacters(in: [" "]).isEmpty
     }
 
+    func containsExact(subSequence: String) -> [Int] {
+        if subSequence.count > count {
+            return []
+        }
+
+        if let range = range(of: subSequence, options: .caseInsensitive) {
+            let index: Int = distance(from: startIndex, to: range.lowerBound)
+            var indexes: [Int] = []
+            for i in index..<(index + subSequence.count) {
+                indexes.append(i)
+            }
+            return indexes
+        }
+        return []
+    }
+
     // O(n) - returns indexes of subsequences -> can be used to highlight subsequence within string
     func contains(subSequence: String) -> [Int] {
         if subSequence.count > count {
