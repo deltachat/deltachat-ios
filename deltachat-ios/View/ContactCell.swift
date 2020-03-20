@@ -5,35 +5,35 @@ protocol ContactCellDelegate: class {
 }
 
 class ContactCell: UITableViewCell {
-    
+
     static let reuseIdentifier = "contact_cell_reuse_identifier"
     static let cellHeight: CGFloat = 74.5
-    
+
     weak var delegate: ContactCellDelegate?
     private let badgeSize: CGFloat = 54
     private let imgSize: CGFloat = 20
-    
+
     lazy var toplineStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, pinnedIndicator, timeLabel, locationStreamingIndicator])
         stackView.axis = .horizontal
         stackView.spacing = 4
         return stackView
     }()
-    
+
     lazy var bottomlineStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [subtitleLabel, deliveryStatusIndicator, archivedIndicator, unreadMessageCounter])
         stackView.axis = .horizontal
         stackView.spacing = 10
         return stackView
     }()
-    
+
     lazy var avatar: InitialsBadge = {
         let badge = InitialsBadge(size: badgeSize)
         badge.setColor(UIColor.lightGray)
         badge.isAccessibilityElement = false
         return badge
     }()
-    
+
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
@@ -42,7 +42,7 @@ class ContactCell: UITableViewCell {
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
         return label
     }()
-    
+
     private let pinnedIndicator: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +53,7 @@ class ContactCell: UITableViewCell {
         view.isHidden = true
         return view
     }()
-    
+
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
@@ -82,13 +82,13 @@ class ContactCell: UITableViewCell {
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
         return label
     }()
-    
+
     private let deliveryStatusIndicator: UIImageView = {
         let view = UIImageView()
         view.isHidden = true
         return view
     }()
-    
+
     private let archivedIndicator: UIView = {
         let tintColor = UIColor(hexString: "848ba7")
         let label = UILabel()
@@ -102,7 +102,7 @@ class ContactCell: UITableViewCell {
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 2
         view.isHidden = true
-        
+
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 4).isActive = true
@@ -111,13 +111,13 @@ class ContactCell: UITableViewCell {
         label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         return view
     }()
-    
+
     private let unreadMessageCounter: MessageCounter = {
         let view = MessageCounter(count: 0, size: 20)
         view.isHidden = true
         return view
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -125,32 +125,32 @@ class ContactCell: UITableViewCell {
         contentView.backgroundColor = DcColors.contactCellBackgroundColor
         setupSubviews()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupSubviews() {
         let margin: CGFloat = 10
-        
+
         avatar.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(avatar)
-        
+
         contentView.addConstraints([
             avatar.constraintWidthTo(badgeSize),
             avatar.constraintHeightTo(badgeSize),
             avatar.constraintAlignLeadingTo(contentView, paddingLeading: badgeSize / 4),
             avatar.constraintCenterYTo(contentView),
         ])
-        
+
         deliveryStatusIndicator.translatesAutoresizingMaskIntoConstraints = false
         deliveryStatusIndicator.heightAnchor.constraint(equalToConstant: 20).isActive = true
         deliveryStatusIndicator.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        
+
         let verticalStackView = UIStackView()
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         verticalStackView.clipsToBounds = true
-        
+
         contentView.addSubview(verticalStackView)
         verticalStackView.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: margin).isActive = true
         verticalStackView.centerYAnchor.constraint(equalTo: avatar.centerYAnchor).isActive = true
@@ -159,20 +159,20 @@ class ContactCell: UITableViewCell {
         verticalStackView.addArrangedSubview(toplineStackView)
         verticalStackView.addArrangedSubview(bottomlineStackView)
     }
-    
+
     func setVerified(isVerified: Bool) {
         avatar.setVerified(isVerified)
     }
-    
+
     func setImage(_ img: UIImage) {
         avatar.setImage(img)
     }
-    
+
     func resetBackupImage() {
         avatar.setColor(UIColor.clear)
         avatar.setName("")
     }
-    
+
     func setBackupImage(name: String, color: UIColor) {
         avatar.setColor(color)
         avatar.setName(name)
@@ -186,7 +186,7 @@ class ContactCell: UITableViewCell {
             archivedIndicator.isHidden = false
         } else if unreadCount > 0 {
             unreadMessageCounter.setCount(unreadCount)
-            
+
             pinnedIndicator.isHidden = !(visibility==DC_CHAT_VISIBILITY_PINNED)
             unreadMessageCounter.isHidden = false
             deliveryStatusIndicator.isHidden = true
@@ -204,7 +204,7 @@ class ContactCell: UITableViewCell {
             default:
                 deliveryStatusIndicator.image = nil
             }
-            
+
             pinnedIndicator.isHidden = !(visibility==DC_CHAT_VISIBILITY_PINNED)
             unreadMessageCounter.isHidden = true
             deliveryStatusIndicator.isHidden = deliveryStatusIndicator.image == nil ? true : false
@@ -213,7 +213,7 @@ class ContactCell: UITableViewCell {
 
         locationStreamingIndicator.isHidden = !isLocationStreaming
     }
-    
+
     func setTimeLabel(_ timestamp: Int64?) {
         let timestamp = timestamp ?? 0
         if timestamp != 0 {
@@ -224,17 +224,17 @@ class ContactCell: UITableViewCell {
             timeLabel.text = nil
         }
     }
-    
+
     func setColor(_ color: UIColor) {
         avatar.setColor(color)
     }
-    
+
     // use this update-method to update cell in cellForRowAt whenever it is possible - other set-methods will be set private in progress
     func updateCell(cellViewModel: AvatarCellViewModel) {
-        
+
         // subtitle
         subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: subtitleLabel.font.pointSize)
-        
+
         switch cellViewModel.type {
         case .deaddrop(let deaddropData):
             safe_assert(deaddropData.chatId == DC_CHAT_ID_DEADDROP)
@@ -248,10 +248,10 @@ class ContactCell: UITableViewCell {
                 setBackupImage(name: contact.nameNAddr, color: contact.color)
             }
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
-            
+
         case .chat(let chatData):
             let chat = DcChat(id: chatData.chatId)
-            
+
             // text bold if chat contains unread messages - otherwise hightlight search results if needed
             if chatData.unreadMessages > 0 {
                 titleLabel.attributedText = NSAttributedString(string: cellViewModel.title, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ])
