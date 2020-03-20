@@ -25,8 +25,6 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     func archiveChatToggle(chatId: Int)
     func pinChatToggle(chatId: Int)
     func refreshData()
-
-    var numberOfArchivedChats: Int { get }
 }
 
 // MARK: - ChatListViewModel
@@ -194,11 +192,6 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
         self.dcContext.setChatVisibility(chatId: chatId, visibility: pinned ? DC_CHAT_VISIBILITY_NORMAL : DC_CHAT_VISIBILITY_PINNED)
         updateChatList(notifyListener: false)
-    }
-
-    var numberOfArchivedChats: Int {
-        let chatList = dcContext.getChatlist(flags: DC_GCL_ARCHIVED_ONLY, queryString: nil, queryId: 0)
-        return chatList.length
     }
 }
 

@@ -33,12 +33,13 @@ class ChatListController: UITableViewController {
         return button
     }()
 
-    private lazy var archiveCell: UITableViewCell = {
+    func getArchiveCell(title: String) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.textLabel?.textColor = .systemBlue
+        cell.textLabel?.text = title
         cell.textLabel?.textAlignment = .center
         return cell
-    }()
+    }
 
     init(viewModel: ChatListViewModelProtocol) {
         self.viewModel = viewModel
@@ -66,10 +67,9 @@ class ChatListController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getChatList()
 
         if RelayHelper.sharedInstance.isForwarding() {
-            chatTable.scrollToTop()
+            tableView.scrollToTop()
         }
 
         updateTitle()
@@ -141,19 +141,7 @@ class ChatListController: UITableViewController {
     @objc func cancelButtonPressed() {
         // cancel forwarding
         RelayHelper.sharedInstance.cancel()
-        getChatList()
         updateTitle()
-    }
-
-    private func getChatList() {
-        var gclFlags: Int32 = 0
-        if showArchive {
-            gclFlags |= DC_GCL_ARCHIVED_ONLY
-        } else if RelayHelper.sharedInstance.isForwarding() {
-            gclFlags |= DC_GCL_FOR_FORWARDING
-        }
-        chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
-        tableView.reloadData()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -179,8 +167,7 @@ class ChatListController: UITableViewController {
         case .chat(let chatData):
             let chatId = chatData.chatId
             if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-                updateArchivedCell() // to make sure archived chats count is always right
-                return archiveCell
+                return getArchiveCell(title: DcChat(id: chatId).name)
             } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
                 // default chatCell
                 chatCell.updateCell(cellViewModel: cellData)
@@ -244,7 +231,6 @@ class ChatListController: UITableViewController {
 
         let archiveAction = UITableViewRowAction(style: .destructive, title: archiveActionTitle) { [unowned self] _, _ in
             self.viewModel.archiveChatToggle(chatId: chatId)
-            self.updateArchivedCell()
         }
         archiveAction.backgroundColor = UIColor.lightGray
 
@@ -279,13 +265,6 @@ class ChatListController: UITableViewController {
 
     func handleChatListUpdate() {
         tableView.reloadData()
-    }
-
-    func updateArchivedCell() {
-        var title = String.localized("chat_archived_chats_title")
-        let count = viewModel.numberOfArchivedChats
-        title.append(" (\(count))")
-        archiveCell.textLabel?.text = title
     }
 
     func updateDeaddropCell(_ cell: ContactCell, msgId: Int, cellData: AvatarCellViewModel) {
@@ -369,16 +348,6 @@ class ChatListController: UITableViewController {
             handler: { _ in
         }))
         self.present(alert, animated: true, completion: nil)
-    }
-
-    // MARK: - actions
-    @objc func didPressNewChat() {
-        coordinator?.showNewChatController()
-    }
-
-    @objc func cancelButtonPressed() {
-        RelayHelper.sharedInstance.cancel()
-        updateTitle()
     }
 
     private func deleteChat(chatId: Int, animated: Bool) {

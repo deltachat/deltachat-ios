@@ -265,9 +265,6 @@ class ContactCell: UITableViewCell {
                 backgroundColor = DcColors.contactCellBackgroundColor
                 contentView.backgroundColor = DcColors.contactCellBackgroundColor
             }
-            setVerified(isVerified: chat.isVerified)
-            setTimeLabel(chatData.summary.timestamp)
-            setStatusIndicators(unreadCount: chatData.unreadMessages, status: chatData.summary.state, visibility: chat.visibility)
             if let img = chat.profileImage {
                 resetBackupImage()
                 setImage(img)
@@ -276,7 +273,8 @@ class ContactCell: UITableViewCell {
             }
             setVerified(isVerified: chat.isVerified)
             setTimeLabel(chatData.summary.timestamp)
-            setStatusIndicators(unreadCount: chatData.unreadMessages, status: chatData.summary.state, visibility: chat.visibility, isLocationStreaming: chat.isSendingLocations)
+            setStatusIndicators(unreadCount: chatData.unreadMessages, status: chatData.summary.state,
+                                visibility: chat.visibility, isLocationStreaming: chat.isSendingLocations)
 
         case .contact(let contactData):
             let contact = DcContact(id: contactData.contactId)
