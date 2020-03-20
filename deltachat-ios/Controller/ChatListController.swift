@@ -68,12 +68,13 @@ class ChatListController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        updateTitle()
+        viewModel.refreshData()
+
         if RelayHelper.sharedInstance.isForwarding() {
             tableView.scrollToTop()
         }
 
-        updateTitle()
-        viewModel.refreshData()
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
             forName: dcNotificationChanged,
@@ -141,6 +142,7 @@ class ChatListController: UITableViewController {
     @objc func cancelButtonPressed() {
         // cancel forwarding
         RelayHelper.sharedInstance.cancel()
+        viewModel.refreshData()
         updateTitle()
     }
 
