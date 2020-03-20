@@ -36,6 +36,7 @@ class ChatListController: UITableViewController {
     private lazy var archiveCell: UITableViewCell = {
         let cell = UITableViewCell()
         cell.textLabel?.textColor = .systemBlue
+        cell.textLabel?.textAlignment = .center
         return cell
     }()
 
