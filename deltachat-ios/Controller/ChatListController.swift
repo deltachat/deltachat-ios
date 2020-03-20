@@ -269,23 +269,6 @@ class ChatListController: UITableViewController {
         tableView.reloadData()
     }
 
-    func updateDeaddropCell(_ cell: ContactCell, msgId: Int, cellData: AvatarCellViewModel) {
-        cell.backgroundColor = DcColors.deaddropBackground
-        cell.contentView.backgroundColor = DcColors.deaddropBackground
-
-        cell.updateCell(cellViewModel: cellData)
-/*
-        let contact = DcContact(id: DcMsg(id: msgId).fromContactId)
-        if let img = contact.profileImage {
-            cell.resetBackupImage()
-            cell.setImage(img)
-        } else {
-            cell.setBackupImage(name: contact.name, color: contact.color)
-        }
-
- */
-    }
-
     func getArchiveCell(_ tableView: UITableView, title: String) -> UITableViewCell {
         let archiveCell: UITableViewCell
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ArchiveCell") {
