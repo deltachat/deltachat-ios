@@ -23,7 +23,7 @@ class PreviewController: QLPreviewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if navigationController != nil && isBeingPresented {
+        if navigationController?.isBeingPresented ?? false {
             /* QLPreviewController comes with a done-button by default. But if is embedded in UINavigationContrller we need to set a done-button manually.
             */
             navigationItem.leftBarButtonItem = doneButtonItem
