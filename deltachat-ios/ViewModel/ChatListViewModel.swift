@@ -19,7 +19,7 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     func beginSearch()
     func endSearch()
     func titleForHeaderIn(section: Int) -> String? // only visible on search results
-    
+
     /// returns ROW of table
     func deleteChat(chatId: Int) -> Int
     func archiveChatToggle(chatId: Int)
@@ -317,3 +317,4 @@ extension ChatListViewModel: UISearchResultsUpdating {
         }
     }
 }
+
