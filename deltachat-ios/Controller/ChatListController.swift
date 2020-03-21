@@ -150,7 +150,9 @@ class ChatListController: UITableViewController {
     private func quitSearch(animated: Bool) {
         searchController.searchBar.text = nil
         self.viewModel.endSearch()
-        searchController.dismiss(animated: animated)
+        searchController.dismiss(animated: animated) {
+            self.tableView.scrollToTop()
+        }
     }
 
     // MARK: - UITableViewDelegate + UITableViewDatasource
