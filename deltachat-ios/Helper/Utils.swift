@@ -131,7 +131,7 @@ struct Utils {
         }
 
         do {
-            let timestamp = Int(Date().timeIntervalSince1970)
+            let timestamp = Double(Date().timeIntervalSince1970)
             let path = directory.appendingPathComponent("\(timestamp).jpg")
             try data.write(to: path!)
             return path?.relativePath
@@ -178,7 +178,7 @@ class DateUtils {
     static let day: Double = 86400
     static let year: Double = 365 * day
 
-    private static func getRelativeTimeInSeconds(timeStamp: Double) -> Double {
+    static func getRelativeTimeInSeconds(timeStamp: Double) -> Double {
         let unixTime = Double(Date().timeIntervalSince1970)
         return unixTime - timeStamp
     }

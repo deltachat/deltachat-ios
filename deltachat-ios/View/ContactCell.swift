@@ -7,15 +7,14 @@ protocol ContactCellDelegate: class {
 class ContactCell: UITableViewCell {
 
     static let reuseIdentifier = "contact_cell_reuse_identifier"
+    static let cellHeight: CGFloat = 74.5
 
-    public static let cellHeight: CGFloat = 74.5
     weak var delegate: ContactCellDelegate?
-    var rowIndex = -1 // TODO: is this still needed?
     private let badgeSize: CGFloat = 54
     private let imgSize: CGFloat = 20
 
     lazy var toplineStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, pinnedIndicator, timeLabel])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, pinnedIndicator, timeLabel, locationStreamingIndicator])
         stackView.axis = .horizontal
         stackView.spacing = 4
         return stackView
@@ -32,8 +31,6 @@ class ContactCell: UITableViewCell {
         let badge = InitialsBadge(size: badgeSize)
         badge.setColor(UIColor.lightGray)
         badge.isAccessibilityElement = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
-        badge.addGestureRecognizer(tap)
         return badge
     }()
 
@@ -51,7 +48,7 @@ class ContactCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalToConstant: 16).isActive = true
         view.widthAnchor.constraint(equalToConstant: 16).isActive = true
-        view.tintColor = UIColor(hexString: "848ba7")
+        view.tintColor = DcColors.middleGray
         view.image = #imageLiteral(resourceName: "pinned_chatlist").withRenderingMode(.alwaysTemplate)
         view.isHidden = true
         return view
@@ -60,16 +57,27 @@ class ContactCell: UITableViewCell {
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(hexString: "848ba7")
+        label.textColor = DcColors.middleGray
         label.textAlignment = .right
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 2), for: NSLayoutConstraint.Axis.horizontal)
         return label
     }()
 
+    private let locationStreamingIndicator: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        view.widthAnchor.constraint(equalToConstant: 16).isActive = true
+        view.tintColor = DcColors.checkmarkGreen
+        view.image = #imageLiteral(resourceName: "ic_location").withRenderingMode(.alwaysTemplate)
+        view.isHidden = true
+        return view
+    }()
+
     let subtitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(hexString: "848ba7")
+        label.textColor = DcColors.middleGray
         label.lineBreakMode = .byTruncatingTail
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
         return label
@@ -77,7 +85,6 @@ class ContactCell: UITableViewCell {
 
     private let deliveryStatusIndicator: UIImageView = {
         let view = UIImageView()
-        view.tintColor = UIColor.green
         view.isHidden = true
         return view
     }()
@@ -171,7 +178,7 @@ class ContactCell: UITableViewCell {
         avatar.setName(name)
     }
 
-    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32) {
+    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool) {
         if visibility==DC_CHAT_VISIBILITY_ARCHIVED {
             pinnedIndicator.isHidden = true
             unreadMessageCounter.isHidden = true
@@ -203,6 +210,8 @@ class ContactCell: UITableViewCell {
             deliveryStatusIndicator.isHidden = deliveryStatusIndicator.image == nil ? true : false
             archivedIndicator.isHidden = true
         }
+
+        locationStreamingIndicator.isHidden = !isLocationStreaming
     }
 
     func setTimeLabel(_ timestamp: Int64?) {
@@ -220,19 +229,27 @@ class ContactCell: UITableViewCell {
         avatar.setColor(color)
     }
 
-    @objc func onAvatarTapped() {
-        if rowIndex == -1 {
-            return
-        }
-        delegate?.onAvatarTapped(at: rowIndex)
-    }
-
+    // use this update-method to update cell in cellForRowAt whenever it is possible - other set-methods will be set private in progress
     func updateCell(cellViewModel: AvatarCellViewModel) {
+
         // subtitle
         subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: subtitleLabel.font.pointSize)
 
         switch cellViewModel.type {
-        case .CHAT(let chatData):
+        case .deaddrop(let deaddropData):
+            safe_assert(deaddropData.chatId == DC_CHAT_ID_DEADDROP)
+            backgroundColor = DcColors.deaddropBackground
+            contentView.backgroundColor = DcColors.deaddropBackground
+            let contact = DcContact(id: DcMsg(id: deaddropData.msgId).fromContactId)
+            if let img = contact.profileImage {
+                resetBackupImage()
+                setImage(img)
+            } else {
+                setBackupImage(name: contact.nameNAddr, color: contact.color)
+            }
+            titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
+
+        case .chat(let chatData):
             let chat = DcChat(id: chatData.chatId)
 
             // text bold if chat contains unread messages - otherwise hightlight search results if needed
@@ -241,23 +258,30 @@ class ContactCell: UITableViewCell {
             } else {
                 titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             }
-
+            if chat.visibility == DC_CHAT_VISIBILITY_PINNED {
+                backgroundColor = DcColors.deaddropBackground
+                contentView.backgroundColor = DcColors.deaddropBackground
+            } else {
+                backgroundColor = DcColors.contactCellBackgroundColor
+                contentView.backgroundColor = DcColors.contactCellBackgroundColor
+            }
             if let img = chat.profileImage {
                 resetBackupImage()
                 setImage(img)
             } else {
-              setBackupImage(name: chat.name, color: chat.color)
+                setBackupImage(name: chat.name, color: chat.color)
             }
             setVerified(isVerified: chat.isVerified)
             setTimeLabel(chatData.summary.timestamp)
-            setStatusIndicators(unreadCount: chatData.unreadMessages, status: chatData.summary.state, visibility: chat.visibility)
+            setStatusIndicators(unreadCount: chatData.unreadMessages, status: chatData.summary.state,
+                                visibility: chat.visibility, isLocationStreaming: chat.isSendingLocations)
 
-        case .CONTACT(let contactData):
+        case .contact(let contactData):
             let contact = DcContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             avatar.setName(cellViewModel.title)
             avatar.setColor(contact.color)
-            setStatusIndicators(unreadCount: 0, status: 0, visibility: 0)
+            setStatusIndicators(unreadCount: 0, status: 0, visibility: 0, isLocationStreaming: false)
         }
     }
 }

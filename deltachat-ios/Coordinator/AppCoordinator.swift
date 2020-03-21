@@ -46,7 +46,8 @@ class AppCoordinator: NSObject, Coordinator {
     }()
 
     private lazy var chatListController: UIViewController = {
-        let controller = ChatListController(dcContext: dcContext, showArchive: false)
+        let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: false)
+        let controller = ChatListController(viewModel: viewModel)
         let nav = UINavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "ic_chat")
         nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: chatsTab)
@@ -190,11 +191,17 @@ class ChatListCoordinator: Coordinator {
     }
 
     func showArchive() {
-        let controller = ChatListController(dcContext: dcContext, showArchive: true)
+        let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
+        let controller = ChatListController(viewModel: viewModel)
         let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         controller.coordinator = coordinator
         navigationController.pushViewController(controller, animated: true)
+    }
+
+    func showNewChat(contactId: Int) {
+        let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+        showChat(chatId: Int(chatId))
     }
 }
 
@@ -318,7 +325,7 @@ class NewChatCoordinator: Coordinator {
     }
 
     func showNewContactController() {
-        let newContactController = NewContactController()
+        let newContactController = NewContactController(dcContext: dcContext)
         let coordinator = EditContactCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         newContactController.coordinator = coordinator
@@ -326,7 +333,7 @@ class NewChatCoordinator: Coordinator {
     }
 
     func showNewChat(contactId: Int) {
-        let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+        let chatId = dcContext.createChatByContactId(contactId: contactId)
         showChat(chatId: Int(chatId))
     }
 
@@ -366,7 +373,7 @@ class GroupChatDetailCoordinator: Coordinator {
     }
 
     func showSingleChatEdit(contactId: Int) {
-        let editContactController = EditContactController(contactIdForUpdate: contactId)
+        let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
         let coordinator = EditContactCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         editContactController.coordinator = coordinator
@@ -437,7 +444,8 @@ class GroupChatDetailCoordinator: Coordinator {
 
         func showArchive() {
             self.navigationController.popToRootViewController(animated: false) // in main ChatList now
-            let controller = ChatListController(dcContext: dcContext, showArchive: true)
+            let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
+            let controller = ChatListController(viewModel: viewModel)
             let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: navigationController)
             childCoordinators.append(coordinator)
             controller.coordinator = coordinator
@@ -564,7 +572,7 @@ class AddGroupMembersCoordinator: Coordinator {
     }
 
     func showNewContactController() {
-        let newContactController = NewContactController()
+        let newContactController = NewContactController(dcContext: dcContext)
         newContactController.openChatOnSave = false
         let coordinator = EditContactCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
@@ -658,7 +666,7 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
     }
 
     func showEditContact(contactId: Int) {
-        let editContactController = EditContactController(contactIdForUpdate: contactId)
+        let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
         let coordinator = EditContactCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         editContactController.coordinator = coordinator
@@ -705,7 +713,8 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
 
         func showArchive() {
             self.navigationController.popToRootViewController(animated: false) // in main ChatList now
-            let controller = ChatListController(dcContext: dcContext, showArchive: true)
+            let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
+            let controller = ChatListController(viewModel: viewModel)
             let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: navigationController)
             childCoordinators.append(coordinator)
             controller.coordinator = coordinator

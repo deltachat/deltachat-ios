@@ -87,6 +87,7 @@
 		305FE03623A81B4C0053BE90 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305FE03523A81B4C0053BE90 /* PaddingLabel.swift */; };
 		3060119C22DDE24000C1CE6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
 		306011B622E5E7FB00C1CE6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
+		307D822E241669C7006D2490 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307D822D241669C7006D2490 /* LocationManager.swift */; };
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
 		30A4D9AE2332672700544344 /* QrInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4D9AD2332672600544344 /* QrInviteViewController.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
@@ -147,6 +148,7 @@
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
 		AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E41FB32E1900DCDD78 /* Utils.swift */; };
 		AEC67A1C241CE9E4007DDBE1 /* TabBarRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC67A1B241CE9E4007DDBE1 /* TabBarRestorer.swift */; };
+		AEC67A1E241FCFE0007DDBE1 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC67A1D241FCFE0007DDBE1 /* ChatListViewModel.swift */; };
 		AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D752253431E007DC082 /* AccountSetupController.swift */; };
 		AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7C2253ADB4007DC082 /* HudHandler.swift */; };
 		AEE56D80225504DB007DC082 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7F225504DB007DC082 /* Extensions.swift */; };
@@ -309,6 +311,7 @@
 		306011C722E5E82E00C1CE6F /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = lt; path = lt.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		306011C822E5E83100C1CE6F /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		306011C922E5E83500C1CE6F /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = uk; path = uk.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		307D822D241669C7006D2490 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		3095A350237DD1F700AB07F7 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
 		30A4D9AD2332672600544344 /* QrInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrInviteViewController.swift; sourceTree = "<group>"; };
 		30AC265E237F1807002A943F /* AvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarHelper.swift; sourceTree = "<group>"; };
@@ -379,6 +382,7 @@
 		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AEACE2E41FB32E1900DCDD78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		AEC67A1B241CE9E4007DDBE1 /* TabBarRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRestorer.swift; sourceTree = "<group>"; };
+		AEC67A1D241FCFE0007DDBE1 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		AEE56D752253431E007DC082 /* AccountSetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AEE56D7C2253ADB4007DC082 /* HudHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudHandler.swift; sourceTree = "<group>"; };
 		AEE56D7F225504DB007DC082 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -710,6 +714,7 @@
 			children = (
 				AE77838C23E32ED20093EABD /* ContactDetailViewModel.swift */,
 				AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */,
+				AEC67A1D241FCFE0007DDBE1 /* ChatListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -784,6 +789,7 @@
 				302B84C42396627F001C261F /* RelayHelper.swift */,
 				AE1988A423EB2FBA00B4CD5F /* Errors.swift */,
 				AEFBE23023FF09B20045327A /* TypeAlias.swift */,
+				307D822D241669C7006D2490 /* LocationManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1204,6 +1210,7 @@
 				302B84C72396770B001C261F /* RelayHelper.swift in Sources */,
 				305961CF2346125100C80F33 /* UIColor+Extensions.swift in Sources */,
 				AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */,
+				AEC67A1E241FCFE0007DDBE1 /* ChatListViewModel.swift in Sources */,
 				300C509D234B551900F8AE22 /* TextMediaMessageCell.swift in Sources */,
 				305961E92346125100C80F33 /* MessageKind.swift in Sources */,
 				305962022346125100C80F33 /* BubbleCircle.swift in Sources */,
@@ -1243,6 +1250,7 @@
 				7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */,
 				300C50A1234BDAB800F8AE22 /* TextMediaMessageSizeCalculator.swift in Sources */,
 				30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */,
+				307D822E241669C7006D2490 /* LocationManager.swift in Sources */,
 				305961F12346125100C80F33 /* ContactMessageCell.swift in Sources */,
 				AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */,
 				305961D12346125100C80F33 /* Bundle+Extensions.swift in Sources */,

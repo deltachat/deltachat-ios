@@ -1,6 +1,7 @@
 import UIKit
 
 protocol ContactDetailViewModelProtocol {
+    var context: DcContext { get }
     var contactId: Int { get }
     var contact: DcContact { get }
     var numberOfSections: Int { get }
@@ -18,6 +19,7 @@ protocol ContactDetailViewModelProtocol {
 class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
     let context: DcContext
+
     enum ProfileSections {
         case startChat
         case attachments
@@ -38,7 +40,10 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
     var contactId: Int
 
-    var contact: DcContact
+    var contact: DcContact {
+        return DcContact(id: contactId)
+    }
+
     private let chatId: Int?
     private let sharedChats: DcChatlist
     private var sections: [ProfileSections] = []
@@ -50,7 +55,6 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         self.context = context
         self.contactId = contactId
         self.chatId = chatId
-        self.contact = DcContact(id: contactId)
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
         sections.append(.attachments)

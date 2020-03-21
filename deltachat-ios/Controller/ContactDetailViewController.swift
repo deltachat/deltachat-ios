@@ -85,6 +85,7 @@ class ContactDetailViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        updateHeader() // maybe contact name has been edited
         tableView.reloadData()
     }
 
@@ -94,10 +95,10 @@ class ContactDetailViewController: UITableViewController {
         tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
         headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
         tableView.tableHeaderView = headerCell
-
     }
 
     // MARK: - UITableViewDatasource, UITableViewDelegate
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
@@ -146,7 +147,7 @@ class ContactDetailViewController: UITableViewController {
             handleCellAction(for: indexPath.row)
         case .startChat:
             let contactId = viewModel.contactId
-            askToChatWith(contactId: contactId)
+            chatWith(contactId: contactId)
         case .sharedChats:
             let chatId = viewModel.getSharedChatIdAt(indexPath: indexPath)
             coordinator?.showChat(chatId: chatId)
@@ -171,8 +172,18 @@ class ContactDetailViewController: UITableViewController {
         return Constants.defaultHeaderHeight
     }
 
-    // MARK: - actions
+    // MARK: - updates
+    private func updateHeader() {
+        headerCell.updateDetails(title: viewModel.contact.displayName, subtitle: viewModel.contact.email)
+        if let img = viewModel.contact.profileImage {
+            headerCell.setImage(img)
+        } else {
+            headerCell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
+        }
+        headerCell.setVerified(isVerified: viewModel.contact.isVerified)
+    }
 
+    // MARK: - actions
     private func handleCellAction(for index: Int) {
         let action = viewModel.chatActionFor(row: index)
         switch action {
@@ -260,21 +271,9 @@ extension ContactDetailViewController {
         }
     }
 
-    private func askToChatWith(contactId: Int) {
-        let dcContact = DcContact(id: contactId)
-        let alert = UIAlertController(title: String.localizedStringWithFormat(
-            String.localized("ask_start_chat_with"), dcContact.nameNAddr),
-                                      message: nil,
-                                      preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-            let chatId = Int(dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId)))
-            self.coordinator?.showChat(chatId: chatId)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        present(alert, animated: true, completion: nil)
+    private func chatWith(contactId: Int) {
+        let chatId = self.viewModel.context.createChatByContactId(contactId: contactId)
+        self.coordinator?.showChat(chatId: chatId)
     }
 
 }

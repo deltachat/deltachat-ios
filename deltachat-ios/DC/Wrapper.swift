@@ -26,8 +26,8 @@ class DcContext {
         return dc_delete_contact(self.contextPointer, UInt32(contactId)) == 1
     }
 
-    func getContacts(flags: Int32) -> [Int] {
-        let cContacts = dc_get_contacts(self.contextPointer, UInt32(flags), nil)
+    func getContacts(flags: Int32, queryString: String? = nil) -> [Int] {
+        let cContacts = dc_get_contacts(self.contextPointer, UInt32(flags), queryString)
         return Utils.copyAndFreeArray(inputArray: cContacts)
     }
 
@@ -37,6 +37,15 @@ class DcContext {
 
     func getChat(chatId: Int) -> DcChat {
         return DcChat(id: chatId)
+    }
+
+    func getChatIdByContactId(_ contactId: Int) -> Int? {
+        let chatId = dc_get_chat_id_by_contact_id(self.contextPointer, UInt32(contactId))
+        if chatId == 0 {
+            return nil
+        } else {
+            return Int(chatId)
+        }
     }
 
     func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
@@ -55,8 +64,12 @@ class DcContext {
     }
 
     @discardableResult
-    func createChat(contactId: Int) -> Int {
+    func createChatByContactId(contactId: Int) -> Int {
         return Int(dc_create_chat_by_contact_id(contextPointer, UInt32(contactId)))
+    }
+
+    func getChatIdByContactId(contactId: Int) -> Int {
+        return Int(dc_get_chat_id_by_contact_id(contextPointer, UInt32(contactId)))
     }
 
     func createGroupChat(verified: Bool, name: String) -> Int {
@@ -220,6 +233,26 @@ class DcContext {
 
     func imex(what: Int32, directory: String) {
         dc_imex(contextPointer, what, directory, nil)
+    }
+
+    func isSendingLocationsToChat(chatId: Int) -> Bool {
+        return dc_is_sending_locations_to_chat(contextPointer, UInt32(chatId)) == 1
+    }
+
+    func sendLocationsToChat(chatId: Int, seconds: Int) {
+        dc_send_locations_to_chat(contextPointer, UInt32(chatId), Int32(seconds))
+    }
+
+    func setLocation(latitude: Double, longitude: Double, accuracy: Double) {
+        dc_set_location(contextPointer, latitude, longitude, accuracy)
+    }
+
+    func searchMessages(chatId: Int = 0, searchText: String) -> [Int] {
+        guard let arrayPointer = dc_search_msgs(contextPointer, UInt32(chatId), searchText) else {
+            return []
+        }
+        let messageIds = Utils.copyAndFreeArray(inputArray: arrayPointer)
+        return messageIds
     }
 }
 
@@ -552,6 +585,10 @@ class DcChat {
         }
         return nil
         }()
+
+    var isSendingLocations: Bool {
+        return dc_chat_is_sending_locations(chatPointer) == 1
+    }
 }
 
 class DcArray {
@@ -868,6 +905,16 @@ class DcMsg: MessageType {
         return swiftString
     }
 
+    func summary(chat: DcChat) -> DcLot {
+        guard let chatPointer = chat.chatPointer else {
+            fatalError()
+        }
+        guard let dcLotPointer = dc_msg_get_summary(messagePointer, chatPointer) else {
+            fatalError()
+        }
+        return DcLot(dcLotPointer)
+    }
+
     func showPadlock() -> Bool {
         return dc_msg_get_showpadlock(messagePointer) == 1
     }
@@ -879,6 +926,32 @@ class DcMsg: MessageType {
 
     func sendInChat(id: Int) {
         dc_send_msg(mailboxPointer, UInt32(id), messagePointer)
+    }
+
+    func previousMediaURLs() -> [URL] {
+        var urls: [URL] = []
+        var prev: Int = Int(dc_get_next_media(mailboxPointer, UInt32(id), -1, Int32(type), 0, 0))
+        while prev != 0 {
+            let prevMessage = DcMsg(id: prev)
+            if let url = prevMessage.fileURL {
+                urls.insert(url, at: 0)
+            }
+            prev = Int(dc_get_next_media(mailboxPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
+        }
+        return urls
+    }
+
+    func nextMediaURLs() -> [URL] {
+        var urls: [URL] = []
+        var next: Int = Int(dc_get_next_media(mailboxPointer, UInt32(id), 1, Int32(type), 0, 0))
+        while next != 0 {
+            let nextMessage = DcMsg(id: next)
+            if let url = nextMessage.fileURL {
+                urls.append(url)
+            }
+            next = Int(dc_get_next_media(mailboxPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
+        }
+        return urls
     }
 }
 

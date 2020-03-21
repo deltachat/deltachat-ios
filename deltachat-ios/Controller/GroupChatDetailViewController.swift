@@ -43,7 +43,6 @@ class GroupChatDetailViewController: UIViewController {
 
     lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
-        table.bounces = false
         table.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
         table.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
         table.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
@@ -137,12 +136,12 @@ class GroupChatDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //update chat object, maybe chat name was edited
+        chat = DcChat(id: chat.id)
         updateGroupMembers()
         tableView.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
         updateHeader()
-        //update chat object, maybe chat name was edited
-        chat = DcChat(id: chat.id)
     }
 
     // MARK: - update
@@ -156,6 +155,12 @@ class GroupChatDetailViewController: UIViewController {
             title: chat.name,
             subtitle: String.localizedStringWithFormat(String.localized("n_members"), chat.contactIds.count)
         )
+        if let img = chat.profileImage {
+            groupHeader.setImage(img)
+        } else {
+            groupHeader.setBackupImage(name: chat.name, color: chat.color)
+        }
+        groupHeader.setVerified(isVerified: chat.isVerified)
     }
 
     // MARK: - actions
@@ -248,7 +253,11 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 safe_fatalError("could not dequeue contactCell cell")
                 break
             }
-            let cellData = ContactCellData(contactId: getGroupMemberIdFor(row))
+            let contactId: Int = getGroupMemberIdFor(row)
+            let cellData = ContactCellData(
+                contactId: contactId,
+                chatId: context.getChatIdByContactId(contactId)
+            )
             let cellViewModel = ContactCellViewModel(contactData: cellData)
             contactCell.updateCell(cellViewModel: cellViewModel)
             return contactCell
