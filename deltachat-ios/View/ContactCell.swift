@@ -247,6 +247,7 @@ class ContactCell: UITableViewCell {
             } else {
                 setBackupImage(name: contact.nameNAddr, color: contact.color)
             }
+            setTimeLabel(deaddropData.summary.timestamp)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
 
         case .chat(let chatData):
