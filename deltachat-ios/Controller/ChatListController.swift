@@ -356,5 +356,13 @@ extension ChatListController: UISearchBarDelegate {
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         viewModel.endSearch()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+           self.tableView.scrollToTop()
+        }
+    }
+
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        tableView.scrollToTop()
+        return true
     }
 }
