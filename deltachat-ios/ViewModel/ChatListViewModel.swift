@@ -38,23 +38,6 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         case messages
     }
 
-    class ChatListSection {
-        let type: ChatListSectionType
-        var headerTitle: String {
-            switch type {
-            case .chats:
-                return String.localized("pref_chats")
-            case .contacts:
-                return String.localized("contacts_headline")
-            case .messages:
-                return String.localized("pref_messages")
-            }
-        }
-        init(type: ChatListSectionType) {
-            self.type = type
-        }
-    }
-
     var isArchive: Bool
     private let dcContext: DcContext
 
@@ -74,10 +57,10 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     private var searchResultMessageIds: [Int] = []
 
     // to manage sections dynamically
-    private var searchResultsChatsSection: ChatListSection = ChatListSection(type: .chats)
-    private var searchResultsContactsSection: ChatListSection = ChatListSection(type: .contacts)
-    private var searchResultsMessagesSection: ChatListSection = ChatListSection(type: .messages)
-    private var searchResultSections: [ChatListSection] = []
+    private var searchResultsChatsSection: ChatListSectionType = .chats
+    private var searchResultsContactsSection: ChatListSectionType = .contacts
+    private var searchResultsMessagesSection: ChatListSectionType = .messages
+    private var searchResultSections: [ChatListSectionType] = []
 
     init(dcContext: DcContext, isArchive: Bool) {
         dcContext.updateDeviceChats()
@@ -109,7 +92,7 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
 
     func numberOfRowsIn(section: Int) -> Int {
         if showSearchResults {
-            switch searchResultSections[section].type {
+            switch searchResultSections[section] {
             case .chats:
                 return searchResultChatList?.length ?? 0
             case .contacts:
@@ -123,7 +106,7 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
 
     func cellDataFor(section: Int, row: Int) -> AvatarCellViewModel {
         if showSearchResults {
-            switch searchResultSections[section].type {
+            switch searchResultSections[section] {
             case .chats:
                 break
             case .contacts:
@@ -137,7 +120,16 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
 
     func titleForHeaderIn(section: Int) -> String? {
         if showSearchResults {
-            return searchResultSections[section].headerTitle
+            let title: String
+            switch searchResultSections[section] {
+            case .chats:
+                title = "n_chats"
+            case .contacts:
+                title = "n_contacts"
+            case .messages:
+                title = "n_messages"
+            }
+            return String.localizedStringWithFormat(NSLocalizedString(title, comment: ""), numberOfRowsIn(section: section))
         }
         return nil
     }
@@ -269,7 +261,7 @@ private extension ChatListViewModel {
 
     // MARK: - search
     func updateSearchResultSections() {
-        var sections: [ChatListSection] = []
+        var sections: [ChatListSectionType] = []
         if let chatList = searchResultChatList, chatList.length > 0 {
             sections.append(searchResultsChatsSection)
         }
