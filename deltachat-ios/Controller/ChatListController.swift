@@ -72,6 +72,7 @@ class ChatListController: UITableViewController {
         viewModel.refreshData()
 
         if RelayHelper.sharedInstance.isForwarding() {
+            quitSearch(animated: false)
             tableView.scrollToTop()
         }
 
@@ -146,6 +147,14 @@ class ChatListController: UITableViewController {
         updateTitle()
     }
 
+    private func quitSearch(animated: Bool) {
+        searchController.searchBar.text = nil
+        self.viewModel.endSearch()
+        searchController.dismiss(animated: animated)
+    }
+
+    // MARK: - UITableViewDelegate + UITableViewDatasource
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
@@ -160,7 +169,7 @@ class ChatListController: UITableViewController {
         let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
 
         switch cellData.type {
-        case .deaddrop(let deaddropData):
+        case .deaddrop:
             guard let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as? ContactCell else {
                 break
             }
@@ -355,6 +364,7 @@ extension ChatListController: UISearchBarDelegate {
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        // searchBar will be set to "" by system
         viewModel.endSearch()
     }
 }
