@@ -88,7 +88,7 @@ class AppCoordinator: NSObject, Coordinator {
         } else {
             showTab(index: lastActiveTab)
             if let lastActiveChatId = appStateRestorer.restoreLastActiveChatId(), lastActiveTab == 1 {
-                showChat(chatId: lastActiveChatId)
+                showChat(chatId: lastActiveChatId, animated: false)
             }
         }
     }
@@ -97,7 +97,7 @@ class AppCoordinator: NSObject, Coordinator {
         tabBarController.selectedIndex = index
     }
 
-    func showChat(chatId: Int) {
+    func showChat(chatId: Int, animated: Bool = true) {
         showTab(index: chatsTab)
         guard let navController = self.chatListController as? UINavigationController else {
             assertionFailure("huh? why no nav controller?")
@@ -106,7 +106,7 @@ class AppCoordinator: NSObject, Coordinator {
         let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
         let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navController, chatId: chatId)
         chatVC.coordinator = coordinator
-        navController.pushViewController(chatVC, animated: true)
+        navController.pushViewController(chatVC, animated: animated)
     }
 
     func handleQRCode(_ code: String) {

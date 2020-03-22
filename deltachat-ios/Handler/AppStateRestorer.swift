@@ -40,10 +40,8 @@ class AppStateRestorer: NSObject, UITabBarControllerDelegate {
         let activeTab = tabBarController.selectedIndex + offsetKey
 
         if let tab = Tab(rawValue: activeTab), tab != .chatTab {
-            // reset last active chat
             resetLastActiveChat()
         }
-
 
         UserDefaults.standard.set(activeTab, forKey: lastActiveTabKey)
         UserDefaults.standard.synchronize()
