@@ -1,8 +1,9 @@
 import UIKit
 
-class TabBarRestorer: NSObject, UITabBarControllerDelegate {
+class AppStateRestorer: NSObject, UITabBarControllerDelegate {
 
     private let lastActiveTabKey = "last_active_tab"
+    private let lastActiveChatId = "last_active_chat_id"
     private let offsetKey = 10
 
     // UserDefaults returns 0 by default which conflicts with tab 0 -> therefore we map our tab indexes by adding an offsetKey
@@ -13,6 +14,10 @@ class TabBarRestorer: NSObject, UITabBarControllerDelegate {
         case settingsTab = 12
         case firstLaunch = 0
     }
+
+    private override init() {}
+
+    static let shared: AppStateRestorer = AppStateRestorer()
 
     func restoreLastActiveTab() -> Int {
 
@@ -33,9 +38,36 @@ class TabBarRestorer: NSObject, UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let activeTab = tabBarController.selectedIndex + offsetKey
+
+        if let tab = Tab(rawValue: activeTab), tab != .chatTab {
+            // reset last active chat
+            resetLastActiveChat()
+        }
+
+
         UserDefaults.standard.set(activeTab, forKey: lastActiveTabKey)
         UserDefaults.standard.synchronize()
     }
 
+    private func storeChat(chatId: Int?) {
+        let value = chatId ?? -1
+        UserDefaults.standard.set(value, forKey: lastActiveChatId)
+        UserDefaults.standard.synchronize()
+    }
 
+    func storeLastActiveChat(chatId: Int) {
+        storeChat(chatId: chatId)
+    }
+
+    func resetLastActiveChat() {
+        storeChat(chatId: nil)
+    }
+
+    func restoreLastActiveChatId() -> Int? {
+        let restoredChatId = UserDefaults.standard.integer(forKey: lastActiveChatId)
+        if restoredChatId == -1 || restoredChatId == 0 {
+            return nil
+        }
+        return restoredChatId
+    }
 }

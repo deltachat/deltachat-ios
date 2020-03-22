@@ -201,7 +201,7 @@ class ChatViewController: MessagesViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         dcContext.marknoticedChat(chatId: chatId)
@@ -219,7 +219,7 @@ class ChatViewController: MessagesViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-
+        AppStateRestorer.shared.resetLastActiveChat()
         setTextDraft()
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
