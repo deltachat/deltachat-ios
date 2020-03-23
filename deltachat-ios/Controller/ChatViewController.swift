@@ -233,16 +233,20 @@ class ChatViewController: MessagesViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animate(alongsideTransition: { (_) -> Void in
-            if self.showCustomNavBar, let titleView = self.navigationItem.titleView as? ChatTitleView {
-                titleView.hideLocationStreamingIndicator() }},
-                            completion: { (_) -> Void in
-                                self.updateTitle(chat: DcChat(id: self.chatId))
-                                self.messagesCollectionView.reloadDataAndKeepOffset()
-                                if self.isLastSectionVisible() {
-                                    self.messagesCollectionView.scrollToBottom(animated: true)
-                                }
-        })
+        coordinator.animate(
+            alongsideTransition: { _ in
+                if self.showCustomNavBar, let titleView = self.navigationItem.titleView as? ChatTitleView {
+                    titleView.hideLocationStreamingIndicator()
+                }
+            },
+            completion: { _ in
+                self.updateTitle(chat: DcChat(id: self.chatId))
+                self.messagesCollectionView.reloadDataAndKeepOffset()
+                if self.isLastSectionVisible() {
+                    self.messagesCollectionView.scrollToBottom(animated: true)
+                }
+            }
+        )
         super.viewWillTransition(to: size, with: coordinator)
     }
 
