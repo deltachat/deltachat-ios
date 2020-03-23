@@ -110,7 +110,7 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
             case .chats:
                 break
             case .contacts:
-                return makeContactCellViewModel(contactId: searchResultContactIds[row])
+                return ContactCellViewModel.make(contactId: searchResultContactIds[row], searchText: searchText, dcContext: dcContext)
             case .messages:
                 return makeMessageCellViewModel(msgId: searchResultMessageIds[row])
             }
@@ -223,6 +223,7 @@ private extension ChatListViewModel {
         return viewModel
     }
 
+    /*
     func makeContactCellViewModel(contactId: Int) -> AvatarCellViewModel {
         let contact = DcContact(id: contactId)
         let nameIndexes = contact.displayName.containsExact(subSequence: searchText)
@@ -239,6 +240,7 @@ private extension ChatListViewModel {
         )
         return viewModel
     }
+    */
 
     func makeMessageCellViewModel(msgId: Int) -> AvatarCellViewModel {
         let msg: DcMsg = DcMsg(id: msgId)
