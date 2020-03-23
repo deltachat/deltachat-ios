@@ -44,13 +44,11 @@ class AppStateRestorer: NSObject, UITabBarControllerDelegate {
         }
 
         UserDefaults.standard.set(activeTab, forKey: lastActiveTabKey)
-        UserDefaults.standard.synchronize()
     }
 
     private func storeChat(chatId: Int?) {
         let value = chatId ?? -1
         UserDefaults.standard.set(value, forKey: lastActiveChatId)
-        UserDefaults.standard.synchronize()
     }
 
     func storeLastActiveChat(chatId: Int) {
