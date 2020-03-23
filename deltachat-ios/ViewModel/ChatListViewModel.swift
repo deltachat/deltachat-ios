@@ -108,14 +108,14 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         if showSearchResults {
             switch searchResultSections[section] {
             case .chats:
-                break
+                return makeChatCellViewModel(index: row, searchText: searchText)
             case .contacts:
                 return makeContactCellViewModel(contactId: searchResultContactIds[row])
             case .messages:
                 return makeMessageCellViewModel(msgId: searchResultMessageIds[row])
             }
         }
-        return makeChatCellViewModel(index: row, searchText: searchText)
+        return makeChatCellViewModel(index: row, searchText: "")
     }
 
     func titleForHeaderIn(section: Int) -> String? {
@@ -162,8 +162,8 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     }
 
     func endSearch() {
-        searchText = ""
         searchActive = false
+        searchText = ""
         resetSearch()
     }
 
