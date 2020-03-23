@@ -115,13 +115,6 @@ class ChatViewController: MessagesViewController {
                                        selector: #selector(setTextDraft),
                                        name: UIApplication.willResignActiveNotification,
                                        object: nil)
-        notificationCenter.addObserver(self, selector: #selector(rotated),
-                                       name: UIDevice.orientationDidChangeNotification,
-                                       object: nil)
-    }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 
     private func startTimer() {
@@ -244,7 +237,12 @@ class ChatViewController: MessagesViewController {
             if self.showCustomNavBar, let titleView = self.navigationItem.titleView as? ChatTitleView {
                 titleView.hideLocationStreamingIndicator() }},
                             completion: { (_) -> Void in
-                                self.updateTitle(chat: DcChat(id: self.chatId)) })
+                                self.updateTitle(chat: DcChat(id: self.chatId))
+                                self.messagesCollectionView.reloadDataAndKeepOffset()
+                                if self.isLastSectionVisible() {
+                                    self.messagesCollectionView.scrollToBottom(animated: true)
+                                }
+        })
         super.viewWillTransition(to: size, with: coordinator)
     }
 
@@ -386,13 +384,6 @@ class ChatViewController: MessagesViewController {
 
             // cleanup
             dc_msg_unref(draft)
-        }
-    }
-
-    @objc private func rotated() {
-        self.messagesCollectionView.reloadDataAndKeepOffset()
-        if self.isLastSectionVisible() {
-            self.messagesCollectionView.scrollToBottom(animated: true)
         }
     }
 
