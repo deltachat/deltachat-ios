@@ -16,6 +16,7 @@ class ContactCell: UITableViewCell {
     lazy var toplineStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, pinnedIndicator, timeLabel, locationStreamingIndicator])
         stackView.axis = .horizontal
+        stackView.alignment = .firstBaseline
         stackView.spacing = 4
         return stackView
     }()
