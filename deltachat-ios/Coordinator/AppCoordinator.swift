@@ -543,7 +543,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
     func showMediaGallery(currentIndex: Int, mediaUrls urls: [URL]) {
         let betterPreviewController = PreviewController(currentIndex: currentIndex, urls: urls)
         let nav = UINavigationController(rootViewController: betterPreviewController)
-
+        nav.modalPresentationStyle = .fullScreen
         navigationController.present(nav, animated: true)
     }
 }
