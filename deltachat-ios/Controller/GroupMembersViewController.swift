@@ -414,6 +414,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
 
         filteredContacts = contactsWithHighlights.filter { !$0.indexesToHighlight.isEmpty }
         tableView.reloadData()
+        tableView.scrollToTop()
     }
 
     private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {
