@@ -36,10 +36,12 @@ class NewChatViewController: UITableViewController {
 
     // searchBar active?
     var isFiltering: Bool {
-        return !searchBarIsEmpty()
+        return !searchBarIsEmpty
     }
 
-    // weak var chatDisplayer: ChatDisplayer?
+    private var searchBarIsEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
 
     var syncObserver: Any?
     var hud: ProgressHud?
@@ -183,7 +185,7 @@ class NewChatViewController: UITableViewController {
             if deviceContactAccessGranted {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
                 if let contactCell = cell as? ContactCell {
-                    let contactCellViewModel = self.contactSearchResultByRow(indexPath.row)
+                    let contactCellViewModel = self.contactViewModelBy(row: indexPath.row)
                     contactCell.updateCell(cellViewModel: contactCellViewModel)
                 }
                 return cell
@@ -198,7 +200,7 @@ class NewChatViewController: UITableViewController {
             // section contact list if device contacts are not imported
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
             if let contactCell = cell as? ContactCell {
-                let contactCellViewModel = self.contactSearchResultByRow(indexPath.row)
+                let contactCellViewModel = self.contactViewModelBy(row: indexPath.row)
                 contactCell.updateCell(cellViewModel: contactCellViewModel)
             }
             return cell
@@ -265,7 +267,7 @@ class NewChatViewController: UITableViewController {
         return isFiltering ? filteredContactIds[row] : contactIds[row]
     }
 
-    private func contactSearchResultByRow(_ row: Int) -> ContactCellViewModel {
+    private func contactViewModelBy(row: Int) -> ContactCellViewModel {
         let id = contactIdByRow(row)
 
         return ContactCellViewModel.make(contactId: id, searchText: searchText, dcContext: dcContext)
@@ -310,7 +312,7 @@ class NewChatViewController: UITableViewController {
     }
 
     private func reactivateSearchBarIfNeeded() {
-        if !searchBarIsEmpty() {
+        if !searchBarIsEmpty {
             searchController.isActive = true
         }
     }
@@ -326,10 +328,6 @@ class NewChatViewController: UITableViewController {
             let contactId = contactIds[row]
             self.askToChatWith(contactId: contactId)
         }
-    }
-
-    private func searchBarIsEmpty() -> Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
     }
 
     private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
