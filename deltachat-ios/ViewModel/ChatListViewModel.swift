@@ -223,25 +223,6 @@ private extension ChatListViewModel {
         return viewModel
     }
 
-    /*
-    func makeContactCellViewModel(contactId: Int) -> AvatarCellViewModel {
-        let contact = DcContact(id: contactId)
-        let nameIndexes = contact.displayName.containsExact(subSequence: searchText)
-        let emailIndexes = contact.email.containsExact(subSequence: searchText)
-        let chatId: Int? = dcContext.getChatIdByContactId(contactId)
-        // contact contains searchText
-        let viewModel = ContactCellViewModel(
-            contactData: ContactCellData(
-                contactId: contact.id,
-                chatId: chatId
-            ),
-            titleHighlightIndexes: nameIndexes,
-            subtitleHighlightIndexes: emailIndexes
-        )
-        return viewModel
-    }
-    */
-
     func makeMessageCellViewModel(msgId: Int) -> AvatarCellViewModel {
         let msg: DcMsg = DcMsg(id: msgId)
         let chatId: Int = msg.chatId

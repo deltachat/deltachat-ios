@@ -28,17 +28,14 @@ class NewChatViewController: UITableViewController {
     }()
 
     private var contactIds: [Int]
+    private var filteredContactIds: [Int] = []
 
-    // contactWithSearchResults.indexesToHightLight empty by default
-    var contacts: [ContactWithSearchResults] {
-        return contactIds.map { ContactWithSearchResults(contact: DcContact(id: $0), indexesToHighlight: []) }
+    private var searchText: String? {
+        return searchController.searchBar.text
     }
 
-    // used when seachbar is active
-    var filteredContacts: [ContactWithSearchResults] = []
-
     // searchBar active?
-    func isFiltering() -> Bool {
+    var isFiltering: Bool {
         return !searchBarIsEmpty()
     }
 
@@ -140,12 +137,12 @@ class NewChatViewController: UITableViewController {
             return sectionNewRowCount
         } else if section == sectionImportedContacts {
             if deviceContactAccessGranted {
-                return isFiltering() ? filteredContacts.count : contacts.count
+                return isFiltering ? filteredContactIds.count : contactIds.count
             } else {
                 return 1
             }
         } else {
-            return isFiltering() ? filteredContacts.count : contacts.count
+            return isFiltering ? filteredContactIds.count : contactIds.count
         }
     }
 
@@ -186,8 +183,8 @@ class NewChatViewController: UITableViewController {
             if deviceContactAccessGranted {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
                 if let contactCell = cell as? ContactCell {
-                    let contact: ContactWithSearchResults = contactSearchResultByRow(row)
-                    updateContactCell(cell: contactCell, contactWithHighlight: contact)
+                    let contactCellViewModel = self.contactSearchResultByRow(indexPath.row)
+                    contactCell.updateCell(cellViewModel: contactCellViewModel)
                 }
                 return cell
             } else {
@@ -201,8 +198,8 @@ class NewChatViewController: UITableViewController {
             // section contact list if device contacts are not imported
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
             if let contactCell = cell as? ContactCell {
-                let contact: ContactWithSearchResults = contactSearchResultByRow(row)
-                updateContactCell(cell: contactCell, contactWithHighlight: contact)
+                let contactCellViewModel = self.contactSearchResultByRow(indexPath.row)
+                contactCell.updateCell(cellViewModel: contactCellViewModel)
             }
             return cell
         }
@@ -265,12 +262,14 @@ class NewChatViewController: UITableViewController {
     }
 
     private func contactIdByRow(_ row: Int) -> Int {
-        return isFiltering() ? filteredContacts[row].contact.id : contactIds[row]
+        return isFiltering ? filteredContactIds[row] : contactIds[row]
     }
 
-    private func contactSearchResultByRow(_ row: Int) -> ContactWithSearchResults {
-        return isFiltering() ? filteredContacts[row] : contacts[row]
-    }
+    private func contactSearchResultByRow(_ row: Int) -> ContactCellViewModel {
+        let id = contactIdByRow(row)
+
+        return ContactCellViewModel.make(contactId: id, searchText: searchText, dcContext: dcContext)
+  }
 
     private func askToDeleteContact(contactId: Int, context: DcContext) {
         let contact = DcContact(id: contactId)
@@ -329,47 +328,12 @@ class NewChatViewController: UITableViewController {
         }
     }
 
-    private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {
-        let contact = contactWithHighlight.contact
-        let displayName = contact.displayName
-
-        let emailLabelFontSize = cell.subtitleLabel.font.pointSize
-        let nameLabelFontSize = cell.titleLabel.font.pointSize
-
-        cell.titleLabel.text = displayName
-        cell.subtitleLabel.text = contact.email
-        cell.avatar.setName(displayName)
-        cell.avatar.setColor(contact.color)
-        if let profileImage = contact.profileImage {
-            cell.avatar.setImage(profileImage)
-        }
-        cell.setVerified(isVerified: contact.isVerified)
-
-        if let emailHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .EMAIL }).first {
-            // gets here when contact is a result of current search -> highlights relevant indexes
-            cell.subtitleLabel.attributedText = contact.email.boldAt(indexes: emailHighlightedIndexes.indexes, fontSize: emailLabelFontSize)
-        } else {
-            cell.subtitleLabel.attributedText = contact.email.boldAt(indexes: [], fontSize: emailLabelFontSize)
-        }
-
-        if let nameHighlightedIndexes = contactWithHighlight.indexesToHighlight.filter({ $0.contactDetail == .NAME }).first {
-            cell.titleLabel.attributedText = displayName.boldAt(indexes: nameHighlightedIndexes.indexes, fontSize: nameLabelFontSize)
-        } else {
-            cell.titleLabel.attributedText = displayName.boldAt(indexes: [], fontSize: nameLabelFontSize)
-        }
-    }
-
     private func searchBarIsEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
 
     private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
-        let contactsWithHighlights: [ContactWithSearchResults] = contacts.map { contact in
-            let indexes = contact.contact.containsExact(searchText: searchText)
-            return ContactWithSearchResults(contact: contact.contact, indexesToHighlight: indexes)
-        }
-
-        filteredContacts = contactsWithHighlights.filter { !$0.indexesToHighlight.isEmpty }
+        filteredContactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
         tableView.reloadData()
     }
 }
