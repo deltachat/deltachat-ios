@@ -22,6 +22,11 @@ class AppCoordinator: NSObject, Coordinator {
         return tabBarController
     }()
 
+    private lazy var welcomeController: UIViewController = {
+        let welcomeController = WelcomeViewController()
+        return welcomeController
+    }()
+
     private lazy var loginController: UIViewController = {
         let accountSetupController = AccountSetupController(dcContext: dcContext, editView: false)
         let nav = UINavigationController(rootViewController: accountSetupController)
@@ -76,7 +81,8 @@ class AppCoordinator: NSObject, Coordinator {
         if dcContext.isConfigured() {
             presentTabBarController()
         } else {
-            presentLoginController()
+            presentWelcomeController()
+            // presentLoginController()
         }
     }
 
@@ -116,6 +122,11 @@ class AppCoordinator: NSObject, Coordinator {
             let qrViewController = topViewController as? QrViewController {
             qrViewController.handleQrCode(code)
         }
+    }
+
+    func presentWelcomeController() {
+        window.rootViewController = welcomeController
+        window.makeKeyAndVisible()
     }
 
     func presentLoginController() {

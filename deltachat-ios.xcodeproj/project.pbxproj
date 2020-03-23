@@ -155,6 +155,7 @@
 		AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */; };
 		AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */; };
 		AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC472283045D00EDC689 /* EditSettingsController.swift */; };
+		AEFA301C2428DA7300152C24 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFA301B2428DA7300152C24 /* WelcomeViewController.swift */; };
 		AEFBE22F23FEF23D0045327A /* ProviderInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */; };
 		AEFBE23123FF09B20045327A /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBE23023FF09B20045327A /* TypeAlias.swift */; };
 		B21005DB23383664004C70C5 /* SettingsClassicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */; };
@@ -389,6 +390,7 @@
 		AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersViewController.swift; sourceTree = "<group>"; };
 		AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
 		AEE6EC472283045D00EDC689 /* EditSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsController.swift; sourceTree = "<group>"; };
+		AEFA301B2428DA7300152C24 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderInfoCell.swift; sourceTree = "<group>"; };
 		AEFBE23023FF09B20045327A /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClassicViewController.swift; sourceTree = "<group>"; };
@@ -765,6 +767,7 @@
 				B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */,
 				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
 				AE19887423EB264000B4CD5F /* HelpViewController.swift */,
+				AEFA301B2428DA7300152C24 /* WelcomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1201,6 +1204,7 @@
 				302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */,
 				305961CC2346125100C80F33 /* UIView+Extensions.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
+				AEFA301C2428DA7300152C24 /* WelcomeViewController.swift in Sources */,
 				305961F52346125100C80F33 /* TypingIndicatorCell.swift in Sources */,
 				AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */,
 				305961FF2346125100C80F33 /* AvatarView.swift in Sources */,
