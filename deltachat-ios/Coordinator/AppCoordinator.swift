@@ -10,13 +10,13 @@ class AppCoordinator: NSObject, Coordinator {
     private let chatsTab = 1
     private let settingsTab = 2
 
-    private let tabBarRestorer = TabBarRestorer()
+    private let appStateRestorer = AppStateRestorer.shared
 
     private var childCoordinators: [Coordinator] = []
 
     private lazy var tabBarController: UITabBarController = {
         let tabBarController = UITabBarController()
-        tabBarController.delegate = tabBarRestorer
+        tabBarController.delegate = appStateRestorer
         tabBarController.viewControllers = [qrController, chatListController, settingsController]
         tabBarController.tabBar.tintColor = DcColors.primary
         return tabBarController
@@ -81,12 +81,15 @@ class AppCoordinator: NSObject, Coordinator {
     }
 
     public func start() {
-        let lastActiveTab = tabBarRestorer.restoreLastActiveTab()
+        let lastActiveTab = appStateRestorer.restoreLastActiveTab()
         if lastActiveTab == -1 {
             // no stored tab
             showTab(index: chatsTab)
         } else {
             showTab(index: lastActiveTab)
+            if let lastActiveChatId = appStateRestorer.restoreLastActiveChatId(), lastActiveTab == 1 {
+                showChat(chatId: lastActiveChatId, animated: false)
+            }
         }
     }
 
@@ -94,7 +97,7 @@ class AppCoordinator: NSObject, Coordinator {
         tabBarController.selectedIndex = index
     }
 
-    func showChat(chatId: Int) {
+    func showChat(chatId: Int, animated: Bool = true) {
         showTab(index: chatsTab)
         guard let navController = self.chatListController as? UINavigationController else {
             assertionFailure("huh? why no nav controller?")
@@ -103,7 +106,7 @@ class AppCoordinator: NSObject, Coordinator {
         let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
         let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navController, chatId: chatId)
         chatVC.coordinator = coordinator
-        navController.pushViewController(chatVC, animated: true)
+        navController.pushViewController(chatVC, animated: animated)
     }
 
     func handleQRCode(_ code: String) {
