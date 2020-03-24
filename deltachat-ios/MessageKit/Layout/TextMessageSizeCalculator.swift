@@ -29,13 +29,19 @@ open class TextMessageSizeCalculator: MessageSizeCalculator {
 
     public var incomingMessageLabelInsets = UIEdgeInsets(top: 7, left: 18, bottom: 7, right: 14)
     public var outgoingMessageLabelInsets = UIEdgeInsets(top: 7, left: 14, bottom: 7, right: 18)
+    public var centeredMessageLabelInsets = UIEdgeInsets(top: 7, left: 16, bottom: 7, right: 16)
 
     public var messageLabelFont = UIFont.preferredFont(forTextStyle: .body)
 
     internal func messageLabelInsets(for message: MessageType) -> UIEdgeInsets {
-        let dataSource = messagesLayout.messagesDataSource
-        let isFromCurrentSender = dataSource.isFromCurrentSender(message: message)
-        return isFromCurrentSender ? outgoingMessageLabelInsets : incomingMessageLabelInsets
+        switch message.kind {
+        case .info:
+            return centeredMessageLabelInsets
+        default:
+            let dataSource = messagesLayout.messagesDataSource
+            let isFromCurrentSender = dataSource.isFromCurrentSender(message: message)
+            return isFromCurrentSender ? outgoingMessageLabelInsets : incomingMessageLabelInsets
+        }
     }
 
     open override func messageContainerMaxWidth(for message: MessageType) -> CGFloat {
@@ -51,7 +57,7 @@ open class TextMessageSizeCalculator: MessageSizeCalculator {
         let attributedText: NSAttributedString
 
         switch message.kind {
-        case .attributedText(let text):
+        case .attributedText(let text), .info(let text):
             attributedText = text
         case .text(let text), .emoji(let text):
             attributedText = NSAttributedString(string: text, attributes: [.font: messageLabelFont])

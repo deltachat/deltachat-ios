@@ -39,6 +39,8 @@ public enum MessageKind {
     /// A message with attributed text.
     case attributedText(NSAttributedString)
 
+    case info(NSAttributedString)
+
     /// A photo message.
     case photo(MediaItem)
 

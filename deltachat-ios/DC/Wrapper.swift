@@ -661,7 +661,7 @@ class DcMsg: MessageType {
                 NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12),
                 NSAttributedString.Key.foregroundColor: DcColors.grayTextColor,
                 ])
-            return MessageKind.attributedText(text)
+            return MessageKind.info(text)
         } else if isSetupMessage {
             return MessageKind.text(String.localized("autocrypt_asm_click_body"))
         }
