@@ -44,6 +44,10 @@ class WelcomeViewController: UIViewController, UITableViewDataSource {
 
 class WelcomeCell: UITableViewCell {
 
+    var onLogin: VoidFunction?
+    var onScanQRCode: VoidFunction?
+    var onImportBackup: VoidFunction?
+
     private let fontSize: CGFloat = 24 // probably better to make larger for ipad
 
     private var logoView: UIImageView = {
@@ -68,12 +72,48 @@ class WelcomeCell: UITableViewCell {
         label.textColor = DcColors.grayTextColor
         label.numberOfLines = 0
         label.textAlignment = .center
+        label.makeBorder()
         return label
     }()
+
+    private lazy var loginButton: UIButton = {
+        let button = UIButton(type: .roundedRect)
+        let title = "log in to your server".uppercased()
+        button.setTitle(title, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = DcColors.primary
+        let insets = button.contentEdgeInsets
+        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 15, bottom: 8, right: 15)
+        button.layer.cornerRadius = 5
+        button.clipsToBounds = true
+        button.addTarget(self, action: #selector(loginButtonPressed(_:)), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var qrCodeButton: UIButton = {
+        let button = UIButton()
+        let title = "Scan QR code"
+        button.setTitleColor(UIColor.systemBlue, for: .normal)
+        button.setTitle(title, for: .normal)
+        button.addTarget(self, action: #selector(qrCodeButtonPressed(_:)), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var importBackupButton: UIButton = {
+        let button = UIButton()
+        let title = "Import backup"
+        button.setTitleColor(UIColor.systemBlue, for: .normal)
+        button.setTitle(title, for: .normal)
+        button.addTarget(self, action: #selector(importBackupButtonPressed(_:)), for: .touchUpInside)
+        return button
+    }()
+
 
     init() {
         super.init(style: .default, reuseIdentifier: nil)
         setupSubviews()
+        contentView.makeBorder()
     }
 
     required init?(coder: NSCoder) {
@@ -81,28 +121,44 @@ class WelcomeCell: UITableViewCell {
     }
 
     private func setupSubviews() {
-        _ = [subtitleLabel, titleLabel, logoView].map {
-            contentView.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        }
 
-        // subtitleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        subtitleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        subtitleLabel.widthAnchor.constraint(lessThanOrEqualTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
+        let verticalStackview = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        verticalStackview.axis = .vertical
+        verticalStackview.spacing = 20
+        contentView.addSubview(verticalStackview)
+        verticalStackview.translatesAutoresizingMaskIntoConstraints = false
+        verticalStackview.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
+        verticalStackview.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        verticalStackview.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.75).isActive = true
 
-        titleLabel.bottomAnchor.constraint(equalTo: subtitleLabel.topAnchor, constant: -20).isActive = true
-
-        let layoutGuide = UILayoutGuide()
-        contentView.addLayoutGuide(layoutGuide)
-
-        layoutGuide.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
-        layoutGuide.bottomAnchor.constraint(equalTo: titleLabel.topAnchor).isActive = true
-
-        logoView.heightAnchor.constraint(equalTo: layoutGuide.heightAnchor, multiplier: 0.3).isActive = true
+        contentView.addSubview(logoView)
+        logoView.translatesAutoresizingMaskIntoConstraints = false
+        logoView.heightAnchor.constraint(equalTo: verticalStackview.heightAnchor, multiplier: 0.75).isActive = true
         logoView.widthAnchor.constraint(equalTo: logoView.heightAnchor).isActive = true
-        logoView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -20).isActive = true
+        logoView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        logoView.bottomAnchor.constraint(equalTo: verticalStackview.topAnchor, constant: -20).isActive = true
+        let logoTopAnchor = logoView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20) // this will allow the cell to grow if needed
+        logoTopAnchor.priority = UILayoutPriority.defaultLow
+        logoTopAnchor.isActive = true
+
+        contentView.addSubview(loginButton)
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        loginButton.topAnchor.constraint(equalTo: verticalStackview.bottomAnchor, constant: 20).isActive = true
+        loginButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
 
 
+    }
+
+    // MARK: - actions
+    @objc private func loginButtonPressed(_ sender: UIButton) {
+        onLogin?()
+    }
+
+    @objc private func qrCodeButtonPressed(_ sender: UIButton) {
+        onScanQRCode?()
+    }
+
+    @objc private func importBackupButtonPressed(_ sender: UIButton) {
+        onImportBackup?()
     }
 }
