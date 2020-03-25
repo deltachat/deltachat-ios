@@ -285,6 +285,7 @@ class ContactCell: UITableViewCell {
                 avatar.setName(cellViewModel.title)
                 avatar.setColor(contact.color)
             }
+            setVerified(isVerified: contact.isVerified)
             setStatusIndicators(unreadCount: 0, status: 0, visibility: 0, isLocationStreaming: false)
         }
     }
