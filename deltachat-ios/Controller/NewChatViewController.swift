@@ -371,6 +371,7 @@ class NewChatViewController: UITableViewController {
 
         filteredContacts = contactsWithHighlights.filter { !$0.indexesToHighlight.isEmpty }
         tableView.reloadData()
+        tableView.scrollToTop()
     }
 }
 
