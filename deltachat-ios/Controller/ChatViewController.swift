@@ -233,6 +233,7 @@ class ChatViewController: MessagesViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let lastSectionVisibleBeforeTransition = self.isLastSectionVisible()
         coordinator.animate(
             alongsideTransition: { _ in
                 if self.showCustomNavBar, let titleView = self.navigationItem.titleView as? ChatTitleView {
@@ -242,8 +243,8 @@ class ChatViewController: MessagesViewController {
             completion: { _ in
                 self.updateTitle(chat: DcChat(id: self.chatId))
                 self.messagesCollectionView.reloadDataAndKeepOffset()
-                if self.isLastSectionVisible() {
-                    self.messagesCollectionView.scrollToBottom(animated: true)
+                if lastSectionVisibleBeforeTransition {
+                    self.messagesCollectionView.scrollToBottom(animated: false)
                 }
             }
         )
