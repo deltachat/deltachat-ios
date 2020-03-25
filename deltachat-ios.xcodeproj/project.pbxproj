@@ -105,7 +105,7 @@
 		78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3921D3CFBC00D4B15E /* SettingsController.swift */; };
 		78E45E3C21D3D03700D4B15E /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */; };
 		78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */; };
-		78E45E4C21D404AE00D4B15E /* CustomMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4B21D404AE00D4B15E /* CustomMessageCell.swift */; };
+		78E45E4C21D404AE00D4B15E /* InfoMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4B21D404AE00D4B15E /* InfoMessageCell.swift */; };
 		78ED838321D5379000243125 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838221D5379000243125 /* TextFieldCell.swift */; };
 		78ED838D21D577D000243125 /* events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838C21D577D000243125 /* events.swift */; };
 		78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED839321D5AF8A00243125 /* QrCodeView.swift */; };
@@ -332,7 +332,7 @@
 		78E45E3921D3CFBC00D4B15E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
-		78E45E4B21D404AE00D4B15E /* CustomMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageCell.swift; sourceTree = "<group>"; };
+		78E45E4B21D404AE00D4B15E /* InfoMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMessageCell.swift; sourceTree = "<group>"; };
 		78ED838221D5379000243125 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		78ED838C21D577D000243125 /* events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = events.swift; sourceTree = "<group>"; };
 		78ED839321D5AF8A00243125 /* QrCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeView.swift; sourceTree = "<group>"; };
@@ -564,6 +564,7 @@
 			children = (
 				300C509C234B551900F8AE22 /* TextMediaMessageCell.swift */,
 				305961AE2346125100C80F33 /* ContactMessageCell.swift */,
+				78E45E4B21D404AE00D4B15E /* InfoMessageCell.swift */,
 				305961AF2346125100C80F33 /* LocationMessageCell.swift */,
 				305961B02346125100C80F33 /* MediaMessageCell.swift */,
 				305961B12346125100C80F33 /* TextMessageCell.swift */,
@@ -799,7 +800,6 @@
 			children = (
 				AE406EEE240FA454005F7022 /* Cell */,
 				B26B3BC6236DC3DC008ED35A /* SwitchCell.swift */,
-				78E45E4B21D404AE00D4B15E /* CustomMessageCell.swift */,
 				70B8882D2091B8550074812E /* ContactCell.swift */,
 				78ED839321D5AF8A00243125 /* QrCodeView.swift */,
 				78ED838221D5379000243125 /* TextFieldCell.swift */,
@@ -1225,7 +1225,7 @@
 				789E879D21D6DF86003ED1C5 /* ProgressHud.swift in Sources */,
 				305961F32346125100C80F33 /* MediaMessageCell.swift in Sources */,
 				305962102346154D00C80F33 /* String+Extension.swift in Sources */,
-				78E45E4C21D404AE00D4B15E /* CustomMessageCell.swift in Sources */,
+				78E45E4C21D404AE00D4B15E /* InfoMessageCell.swift in Sources */,
 				AE38B31A2267328200EC37A1 /* Colors.swift in Sources */,
 				789E879621D6CB58003ED1C5 /* QrCodeReaderController.swift in Sources */,
 				305961D22346125100C80F33 /* CGRect+Extensions.swift in Sources */,

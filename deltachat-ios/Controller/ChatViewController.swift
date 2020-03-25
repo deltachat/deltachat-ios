@@ -95,7 +95,7 @@ class ChatViewController: MessagesViewController {
     }
 
     override func viewDidLoad() {
-        messagesCollectionView.register(CustomMessageCell.self)
+        messagesCollectionView.register(InfoMessageCell.self)
         super.viewDidLoad()
         if !DcConfig.configured {
             // TODO: display message about nothing being configured
@@ -233,11 +233,21 @@ class ChatViewController: MessagesViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animate(alongsideTransition: { (_) -> Void in
-            if self.showCustomNavBar, let titleView = self.navigationItem.titleView as? ChatTitleView {
-                titleView.hideLocationStreamingIndicator() }},
-                            completion: { (_) -> Void in
-                                self.updateTitle(chat: DcChat(id: self.chatId)) })
+        let lastSectionVisibleBeforeTransition = self.isLastSectionVisible()
+        coordinator.animate(
+            alongsideTransition: { _ in
+                if self.showCustomNavBar, let titleView = self.navigationItem.titleView as? ChatTitleView {
+                    titleView.hideLocationStreamingIndicator()
+                }
+            },
+            completion: { _ in
+                self.updateTitle(chat: DcChat(id: self.chatId))
+                self.messagesCollectionView.reloadDataAndKeepOffset()
+                if lastSectionVisibleBeforeTransition {
+                    self.messagesCollectionView.scrollToBottom(animated: false)
+                }
+            }
+        )
         super.viewWillTransition(to: size, with: coordinator)
     }
 
@@ -529,6 +539,10 @@ class ChatViewController: MessagesViewController {
             let cell = messagesCollectionView.dequeueReusableCell(TextMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
+        case .info:
+            let cell = messagesCollectionView.dequeueReusableCell(InfoMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
         case .photo, .video:
             let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
@@ -546,7 +560,7 @@ class ChatViewController: MessagesViewController {
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
         case .custom:
-            let cell = messagesCollectionView.dequeueReusableCell(CustomMessageCell.self, for: indexPath)
+            let cell = messagesCollectionView.dequeueReusableCell(InfoMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
         case .audio:
@@ -992,18 +1006,8 @@ extension ChatViewController: MessagesDisplayDelegate {
 
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> MessageStyle {
         if isInfoMessage(at: indexPath) {
-            return .custom { view in
-                view.style = .none
-                view.backgroundColor = DcColors.systemMessageBackgroundColor
-                let radius: CGFloat = 16
-                let path = UIBezierPath(roundedRect: view.bounds,
-                                        byRoundingCorners: UIRectCorner.allCorners,
-                                        cornerRadii: CGSize(width: radius, height: radius))
-                let mask = CAShapeLayer()
-                mask.path = path.cgPath
-                view.layer.mask = mask
-                view.center.x = self.view.center.x
-            }
+            //styling is hard-coded in info cell
+            return .none
         }
 
         var corners: UIRectCorner = []
