@@ -281,8 +281,13 @@ class ContactCell: UITableViewCell {
         case .contact(let contactData):
             let contact = DcContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
-            avatar.setName(cellViewModel.title)
-            avatar.setColor(contact.color)
+            if let profileImage = contact.profileImage {
+                avatar.setImage(profileImage)
+            } else {
+                avatar.setName(cellViewModel.title)
+                avatar.setColor(contact.color)
+            }
+            setVerified(isVerified: contact.isVerified)
             setStatusIndicators(unreadCount: 0, status: 0, visibility: 0, isLocationStreaming: false)
         }
     }

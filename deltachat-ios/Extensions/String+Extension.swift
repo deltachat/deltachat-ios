@@ -13,15 +13,18 @@ extension String {
         return !trimmingCharacters(in: [" "]).isEmpty
     }
 
-    func containsExact(subSequence: String) -> [Int] {
-        if subSequence.count > count {
+    func containsExact(subSequence: String?) -> [Int] {
+        guard let searchText = subSequence else {
+            return []
+        }
+        if searchText.count > count {
             return []
         }
 
-        if let range = range(of: subSequence, options: .caseInsensitive) {
+        if let range = range(of: searchText, options: .caseInsensitive) {
             let index: Int = distance(from: startIndex, to: range.lowerBound)
             var indexes: [Int] = []
-            for i in index..<(index + subSequence.count) {
+            for i in index..<(index + searchText.count) {
                 indexes.append(i)
             }
             return indexes

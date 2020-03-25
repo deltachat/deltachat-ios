@@ -100,3 +100,22 @@ class ChatCellViewModel: AvatarCellViewModel {
         self.summary = cellData.summary
     }
 }
+
+extension ContactCellViewModel {
+    static func make(contactId: Int, searchText: String?, dcContext: DcContext) -> ContactCellViewModel {
+        let contact = DcContact(id: contactId)
+        let nameIndexes = contact.displayName.containsExact(subSequence: searchText)
+        let emailIndexes = contact.email.containsExact(subSequence: searchText)
+        let chatId: Int? = dcContext.getChatIdByContactId(contactId)
+            // contact contains searchText
+        let viewModel = ContactCellViewModel(
+            contactData: ContactCellData(
+                contactId: contact.id,
+                chatId: chatId
+            ),
+            titleHighlightIndexes: nameIndexes,
+            subtitleHighlightIndexes: emailIndexes
+        )
+        return viewModel
+    }
+}

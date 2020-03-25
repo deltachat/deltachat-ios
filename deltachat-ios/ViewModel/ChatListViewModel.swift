@@ -110,7 +110,7 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
             case .chats:
                 return makeChatCellViewModel(index: row, searchText: searchText)
             case .contacts:
-                return makeContactCellViewModel(contactId: searchResultContactIds[row])
+                return ContactCellViewModel.make(contactId: searchResultContactIds[row], searchText: searchText, dcContext: dcContext)
             case .messages:
                 return makeMessageCellViewModel(msgId: searchResultMessageIds[row])
             }
@@ -219,23 +219,6 @@ private extension ChatListViewModel {
                 unreadMessages: unreadMessages
             ),
             titleHighlightIndexes: chatTitleIndexes
-        )
-        return viewModel
-    }
-
-    func makeContactCellViewModel(contactId: Int) -> AvatarCellViewModel {
-        let contact = DcContact(id: contactId)
-        let nameIndexes = contact.displayName.containsExact(subSequence: searchText)
-        let emailIndexes = contact.email.containsExact(subSequence: searchText)
-        let chatId: Int? = dcContext.getChatIdByContactId(contactId)
-        // contact contains searchText
-        let viewModel = ContactCellViewModel(
-            contactData: ContactCellData(
-                contactId: contact.id,
-                chatId: chatId
-            ),
-            titleHighlightIndexes: nameIndexes,
-            subtitleHighlightIndexes: emailIndexes
         )
         return viewModel
     }
