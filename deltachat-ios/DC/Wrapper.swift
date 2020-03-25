@@ -186,6 +186,22 @@ class DcContext {
         setConfig(key, vStr)
     }
 
+    func getConfigInt(_ key: String) -> Int {
+        let vStr = getConfig(key)
+        if vStr == nil {
+            return 0
+        }
+        let vInt = Int(vStr!)
+        if vInt == nil {
+            return 0
+        }
+        return vInt!
+    }
+
+    private func setConfigInt(_ key: String, _ value: Int) {
+        setConfig(key, String(value))
+    }
+
     func getUnreadMessages(chatId: Int) -> Int {
         return Int(dc_get_fresh_msg_cnt(contextPointer, UInt32(chatId)))
     }
@@ -199,7 +215,7 @@ class DcContext {
     }
 
     func getSelfAvatarImage() -> UIImage? {
-       guard let fileName = DcConfig.selfavatar else { return nil }
+       guard let fileName = selfavatar else { return nil }
        let path: URL = URL(fileURLWithPath: fileName, isDirectory: false)
        if path.isFileURL {
            do {
@@ -254,9 +270,6 @@ class DcContext {
         let messageIds = Utils.copyAndFreeArray(inputArray: arrayPointer)
         return messageIds
     }
-}
-
-class DcConfig {
 
     // it is fine to use existing functionality of DcConfig,
     // however, as DcConfig uses a global pointer,
@@ -268,110 +281,69 @@ class DcConfig {
     // this adds a complexity that can be avoided -
     // and makes grep harder as these names are typically named following different guidelines.
 
-    private class func getConfig(_ key: String) -> String? {
-        guard let cString = dc_get_config(mailboxPointer, key) else { return nil }
-        let value = String(cString: cString)
-        dc_str_unref(cString)
-        if value.isEmpty {
-            return nil
-        }
-        return value
-    }
 
-    private class func setConfig(_ key: String, _ value: String?) {
-        if let v = value {
-            dc_set_config(mailboxPointer, key, v)
-        } else {
-            dc_set_config(mailboxPointer, key, nil)
-        }
-    }
 
-    private class func getConfigBool(_ key: String) -> Bool {
-        return strToBool(getConfig(key))
-    }
-
-    private class func setConfigBool(_ key: String, _ value: Bool) {
-        let vStr = value ? "1" : "0"
-        setConfig(key, vStr)
-    }
-
-    private class func getConfigInt(_ key: String) -> Int {
-        let vStr = getConfig(key)
-        if vStr == nil {
-            return 0
-        }
-        let vInt = Int(vStr!)
-        if vInt == nil {
-            return 0
-        }
-        return vInt!
-    }
-
-    private class func setConfigInt(_ key: String, _ value: Int) {
-        setConfig(key, String(value))
-    }
-
-    class var displayname: String? {
+    var displayname: String? {
         set { setConfig("displayname", newValue) }
         get { return getConfig("displayname") }
     }
 
-    class var selfstatus: String? {
+    var selfstatus: String? {
         set { setConfig("selfstatus", newValue) }
         get { return getConfig("selfstatus") }
     }
 
-    class var selfavatar: String? {
+    var selfavatar: String? {
         set { setConfig("selfavatar", newValue) }
         get { return getConfig("selfavatar") }
     }
 
-    class var addr: String? {
+    var addr: String? {
         set { setConfig("addr", newValue) }
         get { return getConfig("addr") }
     }
 
-    class var mailServer: String? {
+    var mailServer: String? {
         set { setConfig("mail_server", newValue) }
         get { return getConfig("mail_server") }
     }
 
-    class var mailUser: String? {
+    var mailUser: String? {
         set { setConfig("mail_user", newValue) }
         get { return getConfig("mail_user") }
     }
 
-    class var mailPw: String? {
+    var mailPw: String? {
         set { setConfig("mail_pw", newValue) }
         get { return getConfig("mail_pw") }
     }
 
-    class var mailPort: String? {
+    var mailPort: String? {
         set { setConfig("mail_port", newValue) }
         get { return getConfig("mail_port") }
     }
 
-    class var sendServer: String? {
+    var sendServer: String? {
         set { setConfig("send_server", newValue) }
         get { return getConfig("send_server") }
     }
 
-    class var sendUser: String? {
+    var sendUser: String? {
         set { setConfig("send_user", newValue) }
         get { return getConfig("send_user") }
     }
 
-    class var sendPw: String? {
+    var sendPw: String? {
         set { setConfig("send_pw", newValue) }
         get { return getConfig("send_pw") }
     }
 
-    class var sendPort: String? {
+    var sendPort: String? {
         set { setConfig("send_port", newValue) }
         get { return getConfig("send_port") }
     }
 
-    class var certificateChecks: Int {
+    var certificateChecks: Int {
         set {
             setConfig("smtp_certificate_checks", "\(newValue)")
             setConfig("imap_certificate_checks", "\(newValue)")
@@ -385,7 +357,7 @@ class DcConfig {
         }
     }
 
-    private class var serverFlags: Int {
+    private var serverFlags: Int {
         // IMAP-/SMTP-flags as a combination of DC_LP flags
         set {
             setConfig("server_flags", "\(newValue)")
@@ -399,63 +371,63 @@ class DcConfig {
         }
     }
 
-    class func setImapSecurity(imapFlags flags: Int) {
+    func setImapSecurity(imapFlags flags: Int) {
         var sf = serverFlags
         sf = sf & ~0x700 // DC_LP_IMAP_SOCKET_FLAGS
         sf = sf | flags
         serverFlags = sf
     }
 
-    class func setSmtpSecurity(smptpFlags flags: Int) {
+    func setSmtpSecurity(smptpFlags flags: Int) {
         var sf = serverFlags
         sf = sf & ~0x70000 // DC_LP_SMTP_SOCKET_FLAGS
         sf = sf | flags
         serverFlags = sf
     }
 
-    class func setAuthFlags(flags: Int) {
+    func setAuthFlags(flags: Int) {
         var sf = serverFlags
         sf = sf & ~0x6 // DC_LP_AUTH_FLAGS
         sf = sf | flags
         serverFlags = sf
     }
 
-    class func getImapSecurity() -> Int {
+    func getImapSecurity() -> Int {
         var sf = serverFlags
         sf = sf & 0x700 // DC_LP_IMAP_SOCKET_FLAGS
         return sf
     }
 
-    class func getSmtpSecurity() -> Int {
+    func getSmtpSecurity() -> Int {
         var sf = serverFlags
         sf = sf & 0x70000  // DC_LP_SMTP_SOCKET_FLAGS
         return sf
     }
 
-    class func getAuthFlags() -> Int {
+    func getAuthFlags() -> Int {
         var sf = serverFlags
         sf = sf & 0x6 // DC_LP_AUTH_FLAGS
         return sf
     }
 
-    class var e2eeEnabled: Bool {
+    var e2eeEnabled: Bool {
         set { setConfigBool("e2ee_enabled", newValue) }
         get { return getConfigBool("e2ee_enabled") }
     }
 
-    class var mdnsEnabled: Bool {
+    var mdnsEnabled: Bool {
         set { setConfigBool("mdns_enabled", newValue) }
         get { return getConfigBool("mdns_enabled") }
     }
-    
-    class var showEmails: Int {
+
+    var showEmails: Int {
         // one of DC_SHOW_EMAILS_*
         set { setConfigInt("show_emails", newValue) }
         get { return getConfigInt("show_emails") }
     }
 
     // do not use. use DcContext::isConfigured() instead
-    class var configured: Bool {
+    var configured: Bool {
         return getConfigBool("configured")
     }
 }

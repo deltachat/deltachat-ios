@@ -8,6 +8,7 @@ class CertificateCheckController: UITableViewController {
 
     var currentValue: Int
     var selectedIndex: Int?
+    let dcContext: DcContext
 
     var okButton: UIBarButtonItem {
         let button =  UIBarButtonItem(title: String.localized("ok"), style: .done, target: self, action: #selector(okButtonPressed))
@@ -28,8 +29,9 @@ class CertificateCheckController: UITableViewController {
         })
     }
 
-    init(sectionTitle: String?) {
-        self.currentValue = DcConfig.certificateChecks
+    init(dcContext: DcContext, sectionTitle: String?) {
+        self.dcContext = dcContext
+        self.currentValue = dcContext.certificateChecks
         for (index, value) in options.enumerated() where currentValue == value {
             selectedIndex = index
         }
@@ -94,7 +96,7 @@ class CertificateCheckController: UITableViewController {
     }
 
     @objc private func okButtonPressed() {
-        DcConfig.certificateChecks = currentValue
+        dcContext.certificateChecks = currentValue
         navigationController?.popViewController(animated: true)
     }
 

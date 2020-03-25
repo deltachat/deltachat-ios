@@ -23,7 +23,7 @@ class GroupChatDetailViewController: UIViewController {
     private let sections: [ProfileSections] = [.attachments, .members, .chatActions]
 
     private var currentUser: DcContact? {
-        let myId = groupMemberIds.filter { DcContact(id: $0).email == DcConfig.addr }.first
+        let myId = groupMemberIds.filter { DcContact(id: $0).email == context.addr }.first
         guard let currentUserId = myId else {
             return nil
         }

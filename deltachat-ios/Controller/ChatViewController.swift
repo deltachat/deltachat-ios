@@ -97,7 +97,7 @@ class ChatViewController: MessagesViewController {
     override func viewDidLoad() {
         messagesCollectionView.register(InfoMessageCell.self)
         super.viewDidLoad()
-        if !DcConfig.configured {
+        if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
             return
         }
@@ -325,7 +325,7 @@ class ChatViewController: MessagesViewController {
         if show {
             let dcChat = DcChat(id: chatId)
             if chatId == DC_CHAT_ID_DEADDROP {
-                if DcConfig.showEmails != DC_SHOW_EMAILS_ALL {
+                if dcContext.showEmails != DC_SHOW_EMAILS_ALL {
                     emptyStateView.text = String.localized("chat_no_contact_requests")
                 } else {
                     emptyStateView.text = String.localized("chat_no_messages")

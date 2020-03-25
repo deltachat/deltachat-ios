@@ -27,7 +27,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
     private lazy var statusCell: MultilineTextFieldCell = {
         let cell = MultilineTextFieldCell(description: String.localized("pref_default_status_label"),
-                                          multilineText: DcConfig.selfstatus,
+                                          multilineText: dcContext.selfstatus,
                                           placeholder: String.localized("pref_default_status_label"))
         return cell
     }()
@@ -47,7 +47,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
     private lazy var nameCell: TextFieldCell = {
         let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("pref_your_name"))
-        cell.setText(text: DcConfig.displayname)
+        cell.setText(text: dcContext.displayname)
         return cell
     }()
 
@@ -68,8 +68,8 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        DcConfig.selfstatus = statusCell.getText()
-        DcConfig.displayname = nameCell.getText()
+        dcContext.selfstatus = statusCell.getText()
+        dcContext.displayname = nameCell.getText()
         dc_configure(mailboxPointer)
     }
 
@@ -149,7 +149,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }
 
     private func deleteProfileIconPressed(_ action: UIAlertAction) {
-        DcConfig.selfavatar = nil
+        dcContext.selfavatar = nil
         updateAvatarAndNameCell()
     }
 
@@ -170,7 +170,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }
 
     func onImageSelected(image: UIImage) {
-        AvatarHelper.saveSelfAvatarImage(image: image)
+        AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: image)
         updateAvatarAndNameCell()
     }
 

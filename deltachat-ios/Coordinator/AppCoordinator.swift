@@ -283,18 +283,20 @@ class AccountSetupCoordinator: Coordinator {
     }
 
     func showCertCheckOptions() {
-        let certificateCheckController = CertificateCheckController(sectionTitle: String.localized("login_certificate_checks"))
+        let certificateCheckController = CertificateCheckController(dcContext: dcContext, sectionTitle: String.localized("login_certificate_checks"))
         navigationController.pushViewController(certificateCheckController, animated: true)
     }
 
     func showImapSecurityOptions() {
-        let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
+        let securitySettingsController = SecuritySettingsController(dcContext: dcContext, title: String.localized("login_imap_security"),
                                                                       type: SecurityType.IMAPSecurity)
         navigationController.pushViewController(securitySettingsController, animated: true)
     }
 
     func showSmptpSecurityOptions() {
-        let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"), type: SecurityType.SMTPSecurity)
+        let securitySettingsController = SecuritySettingsController(dcContext: dcContext,
+                                                                    title: String.localized("login_imap_security"),
+                                                                    type: SecurityType.SMTPSecurity)
         navigationController.pushViewController(securitySettingsController, animated: true)
     }
 

@@ -7,6 +7,7 @@ class SecuritySettingsController: UITableViewController {
     private var selectedIndex: Int
 
     private var securityType: SecurityType
+    private let dcContext: DcContext
 
     private var okButton: UIBarButtonItem {
         let button =  UIBarButtonItem(title: String.localized("ok"), style: .done, target: self, action: #selector(okButtonPressed))
@@ -27,15 +28,16 @@ class SecuritySettingsController: UITableViewController {
         }
     }
 
-    init(title: String, type: SecurityType) {
+    init(dcContext: DcContext, title: String, type: SecurityType) {
         self.securityType = type
+        self.dcContext = dcContext
         switch securityType {
         case .IMAPSecurity:
             options = [0x00, 0x100, 0x200, 0x400]
-            selectedIndex = options.index(of: DcConfig.getImapSecurity()) ?? 0
+            selectedIndex = options.index(of: dcContext.getImapSecurity()) ?? 0
         case .SMTPSecurity:
             options = [0x00, 0x10000, 0x20000, 0x40000]
-            selectedIndex = options.index(of: DcConfig.getSmtpSecurity()) ?? 0
+            selectedIndex = options.index(of: dcContext.getSmtpSecurity()) ?? 0
         }
         super.init(style: .grouped)
         self.title = title
@@ -86,9 +88,9 @@ class SecuritySettingsController: UITableViewController {
     @objc func okButtonPressed() {
         switch securityType {
         case .IMAPSecurity:
-            DcConfig.setImapSecurity(imapFlags: options[selectedIndex])
+            dcContext.setImapSecurity(imapFlags: options[selectedIndex])
         case .SMTPSecurity:
-            DcConfig.setSmtpSecurity(smptpFlags: options[selectedIndex])
+            dcContext.setSmtpSecurity(smptpFlags: options[selectedIndex])
         }
         navigationController?.popViewController(animated: true)
     }

@@ -42,11 +42,11 @@ internal final class SettingsViewController: UITableViewController {
 
     private let profileHeader = ContactDetailHeader()
 
-    private var profileCell: ProfileCell = {
-        let displayName = DcConfig.displayname ?? String.localized("pref_your_name")
-        let email = (DcConfig.addr ?? "")
+    private lazy var profileCell: ProfileCell = {
+        let displayName = dcContext.displayname ?? String.localized("pref_your_name")
+        let email = dcContext.addr ?? ""
         let selfContact = DcContact(id: Int(DC_CONTACT_ID_SELF))
-        let cell = ProfileCell(contact: selfContact)
+        let cell = ProfileCell(contact: selfContact, displayName: displayName, address: email)
         cell.tag = CellTags.profile.rawValue
         return cell
     }()
@@ -59,12 +59,12 @@ internal final class SettingsViewController: UITableViewController {
         return cell
     }()
 
-    private var chatPreferenceCell: UITableViewCell = {
+    private lazy var chatPreferenceCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.preferences.rawValue
         cell.textLabel?.text = String.localized("pref_show_emails")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: DcConfig.showEmails)
+        cell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
         return cell
     }()
 
@@ -94,7 +94,7 @@ internal final class SettingsViewController: UITableViewController {
     private lazy var receiptConfirmationSwitch: UISwitch = {
         let switchControl = UISwitch()
         switchControl.isUserInteractionEnabled = false // toggled by cell tap
-        switchControl.isOn = DcConfig.mdnsEnabled
+        switchControl.isOn = dcContext.mdnsEnabled
         return switchControl
     }()
 
@@ -106,10 +106,10 @@ internal final class SettingsViewController: UITableViewController {
         return cell
     }()
 
-    private var autocryptSwitch: UISwitch = {
+    private lazy var autocryptSwitch: UISwitch = {
         let switchControl = UISwitch()
         switchControl.isUserInteractionEnabled = false // toggled by cell tap
-        switchControl.isOn = DcConfig.e2eeEnabled
+        switchControl.isOn = dcContext.e2eeEnabled
         return switchControl
     }()
 
@@ -320,13 +320,13 @@ internal final class SettingsViewController: UITableViewController {
 
     private func handleReceiptConfirmationToggle() {
         receiptConfirmationSwitch.isOn = !receiptConfirmationSwitch.isOn
-        DcConfig.mdnsEnabled = receiptConfirmationSwitch.isOn
+        dcContext.mdnsEnabled = receiptConfirmationSwitch.isOn
         dc_configure(mailboxPointer)
     }
 
     private func handleAutocryptPreferencesToggle() {
         autocryptSwitch.isOn = !autocryptSwitch.isOn
-        DcConfig.e2eeEnabled = autocryptSwitch.isOn
+        dcContext.e2eeEnabled = autocryptSwitch.isOn
         dc_configure(mailboxPointer)
     }
 
@@ -409,10 +409,11 @@ internal final class SettingsViewController: UITableViewController {
 
     // MARK: - updates
     private func updateCells() {
+        let displayName = dcContext.displayname ?? String.localized("pref_your_name")
+        let email = dcContext.addr ?? ""
         let selfContact = DcContact(id: Int(DC_CONTACT_ID_SELF))
-        profileCell.update(contact: selfContact)
+        profileCell.update(contact: selfContact, displayName: displayName, address: email)
 
-        chatPreferenceCell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: DcConfig.showEmails)
-
+        chatPreferenceCell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
     }
 }
