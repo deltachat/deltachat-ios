@@ -53,5 +53,5 @@ on https://appstoreconnect.apple.com :
 in both cases, make sure, the provided test-email-address is working.
 finally, back on command line:
 
-9. commit changes from 1.-4. add add a tag:
+9. commit changes from 1.-5. add add a tag:
    $ git tag v1.2.3; git push --tags
