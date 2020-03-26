@@ -19,7 +19,7 @@ internal final class SettingsViewController: UITableViewController {
         case autocryptPreferences = 6
         case sendAutocryptMessage = 7
         case exportBackup = 8
-        case exportKey = 9
+        case advanced = 9
         case help = 10
     }
 
@@ -137,9 +137,9 @@ internal final class SettingsViewController: UITableViewController {
         return cell
     }()
 
-    private var exportKeyCell: ActionCell = {
+    private var advancedCell: ActionCell = {
         let cell = ActionCell()
-        cell.tag = CellTags.exportKey.rawValue
+        cell.tag = CellTags.advanced.rawValue
         cell.actionTitle = String.localized("menu_advanced")
         cell.selectionStyle = .default
         return cell
@@ -171,12 +171,12 @@ internal final class SettingsViewController: UITableViewController {
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
             footerTitle: String.localized("autocrypt_explain"),
-            cells: [autocryptPreferencesCell, sendAutocryptMessageCell, exportKeyCell]
+            cells: [autocryptPreferencesCell, sendAutocryptMessageCell]
         )
         let backupSection = SectionConfigs(
-            headerTitle: String.localized("pref_backup"),
+            headerTitle: nil,
             footerTitle: String.localized("pref_backup_explain"),
-            cells: [exportBackupCell])
+            cells: [advancedCell, exportBackupCell])
         let helpSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: appNameAndVersion,
@@ -287,7 +287,7 @@ internal final class SettingsViewController: UITableViewController {
         case .autocryptPreferences: handleAutocryptPreferencesToggle()
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .exportBackup: createBackup()
-        case .exportKey: showKeyManagementDialog()
+        case .advanced: showAdvancedDialog()
         case .help: coordinator?.showHelp()
         }
     }
@@ -361,8 +361,9 @@ internal final class SettingsViewController: UITableViewController {
         present(askAlert, animated: true, completion: nil)
     }
 
-    private func showKeyManagementDialog() {
-        let alert = UIAlertController(title: String.localized("pref_manage_keys"), message: nil, preferredStyle: .safeActionSheet)
+    private func showAdvancedDialog() {
+        let alert = UIAlertController(title: String.localized("menu_advanced"), message: nil, preferredStyle: .safeActionSheet)
+
         alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_export_secret_keys"), style: .default, handler: { _ in
             let msg = String.localizedStringWithFormat(String.localized("pref_managekeys_export_explain"), self.externalPathDescr)
             let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
@@ -372,6 +373,7 @@ internal final class SettingsViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }))
+
         alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_import_secret_keys"), style: .default, handler: { _ in
             let msg = String.localizedStringWithFormat(String.localized("pref_managekeys_import_explain"), self.externalPathDescr)
             let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
@@ -381,6 +383,14 @@ internal final class SettingsViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }))
+
+        let locationStreaming = UserDefaults.standard.bool(forKey: "location_streaming")
+        let title = locationStreaming ?
+            "Disable on-demand location streaming" : String.localized("pref_on_demand_location_streaming")
+        alert.addAction(UIAlertAction(title: title, style: .default, handler: { _ in
+            UserDefaults.standard.set(!locationStreaming, forKey: "location_streaming")
+        }))
+
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
