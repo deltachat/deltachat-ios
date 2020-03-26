@@ -1,5 +1,27 @@
 # Delta Chat iOS Changelog
 
+## v1.3.0
+2020-03-26
+
+* add global search for chats, contacts, messages - just swipe down in the chatlist
+* show padlock beside encrypted messages
+* tweak checkmarks for "delivered" and "read by recipient"
+* add option "Settings / Advanced / On-demand location streaming" -
+  once enabled, you can share your location with all group members by
+  taping on the "Attach" icon in a group
+* add gallery-options to chat-profiles
+* on forwarding, "Saved messages" will be always shown at the top of the list
+* streamline confirmation dialogs on chat creation and on forwarding to "Saved messages"
+* faster contact-suggestions, improved search for contacts
+* improve interoperability eg. with Cyrus server
+* fix group creation if group was created by non-delta clients
+* fix showing replies from non-delta clients
+* fix crash when using empty groups
+* several other fixes
+* update translations and help
+
+
+
 ## v1.2.1
 2020-03-04
 

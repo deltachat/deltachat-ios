@@ -1125,7 +1125,9 @@ extension ChatViewController: MessagesLayoutDelegate {
         alert.addAction(galleryAction)
         alert.addAction(documentAction)
         alert.addAction(voiceMessageAction)
-        alert.addAction(locationStreamingAction)
+        if UserDefaults.standard.bool(forKey: "location_streaming") {
+            alert.addAction(locationStreamingAction)
+        }
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
