@@ -7,6 +7,7 @@ disabled_rules:
 - large_tuple
 - todo
 - trailing_whitespace
+- type_body_length
 
 excluded:
 - Carthage
@@ -39,10 +40,6 @@ function_body_length:
 function_parameter_count:
   warning: 6
   error: 8
-
-type_body_length:
-  warning: 600
-  error: 800
 
 file_length:
   warning: 1000
