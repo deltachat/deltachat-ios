@@ -13,9 +13,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%dmin</string>
+			<string>%d min</string>
 			<key>other</key>
-			<string>%dmin-oj</string>
+			<string>%d min</string>
 		</dict>
 	</dict>
 	<key>n_hours</key>
@@ -47,7 +47,7 @@
 			<key>one</key>
 			<string>%d Parolado</string>
 			<key>other</key>
-			<string>%d Paroladoj</string>
+			<string>%d babiloj</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -96,6 +96,70 @@
 			<string>%d ano</string>
 			<key>other</key>
 			<string>%d anoj </string>
+		</dict>
+	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Ĉu forigi %d babilon? Ĝi ne plu troveblos en la babilaro, tamen ĝiaj mesaĝoj plurestos en la servilo.</string>
+			<key>other</key>
+			<string>Ĉu forigi %d babilojn? Ili ne plu troveblos en la babilaro, tamen iliaj mesaĝoj plurestos en la servilo.</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Ĉu forigi %d mesaĝon kaj ĉi tie kaj en la servilo?</string>
+			<key>other</key>
+			<string>Ĉu forigi %d mesaĝojn kaj ĉi tie kaj en la servilo?</string>
+		</dict>
+	</dict>
+	<key>chat_archived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d babilo enarĥivigita</string>
+			<key>other</key>
+			<string>%d babiloj enarĥivigitaj</string>
+		</dict>
+	</dict>
+	<key>chat_unarchived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d babilo elarĥivigita</string>
+			<key>other</key>
+			<string>%d babiloj elarĥivigitaj</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

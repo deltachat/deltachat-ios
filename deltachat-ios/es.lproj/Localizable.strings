@@ -157,6 +157,15 @@
 "device_talk_explain" = "Los mensajes en este chat son generados localmente por tu aplicación Delta Chat. Los creadores lo usan para informar sobre actualizaciones y problemas durante el uso de la aplicación.";
 "device_talk_welcome_message" = "¡Bienvenido a Delta Chat! – Delta Chat luce como otras aplicaciones de mensajería populares, pero sin control centralizado, seguimiento ni venta de tus datos, o los de tus amigos, colegas o familiares a grandes organizaciones.\n\nTécnicamente, Delta Chat es una aplicación de correo electrónico con una interfaz de chat moderna. Correo electrónico en un nuevo vestido si quieres 👻\n\nUsa Delta Chat con cualquiera de miles de millones de personas: solo necesitas su dirección de correo electrónico. Los destinatarios no necesitan instalar Delta Chat, visitar sitios web o registrarse en ningún lugar - sin embargo, por supuesto, si lo desean, puedes indicarles 👉 https://get.delta.chat";
 "edit_contact" = "Editar contacto";
+// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin_chat" = "Anclar chat";
+// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+"unpin_chat" = "Desanclar chat";
+// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin" = "Anclar";
+// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+"unpin" = "Desanclar";
+
 "mute_for_one_hour" = "Silenciar por 1 hora";
 "mute_for_two_hours" = "Silenciar por 2 horas";
 "mute_for_one_day" = "Silenciar por 1 día";
@@ -253,6 +262,9 @@
 "tab_gallery_empty_hint" = "Las imágenes y videos compartidos en este chat se mostrarán aquí.";
 "tab_docs_empty_hint" = "Documentos, música y otros archivos compartidos en este chat se mostrarán aquí.";
 "media_preview" = "Vista previa de multimedia";
+"send_message" = "Enviar mensaje";
+
+
 // welcome and login
 "welcome_intro1_message" = "La aplicación de mensajería instantánea con la audiencia más amplia del mundo. Libre e independiente. ";
 "welcome_start_messaging" = "Empezar a Chatear";

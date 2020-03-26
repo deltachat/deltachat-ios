@@ -16,11 +16,18 @@
 "info" = "Informoj";
 "update" = "Ĝisdatigi";
 "emoji" = "Emoji";
+"attachment" = "Aldonaĵo";
+"back" = "Reen";
 "close" = "Fermi";
 "forward" = "Plusendi";
+"archive" = "Arĥivi";
+"unarchive" = "Malarĥivi";
 "mute" = "Muta sciigoj";
 "save" = "Konservi";
 "chat" = "Babilo";
+"media" = "Aŭdovidaĵoj";
+"main_menu" = "Ĉefa menuo";
+"start_chat" = "Komenci babilon";
 "show_password" = "Montri pasvorton";
 "hide_password" = "Kaŝi pasvorton";
 "not_now" = "Ne nun";
@@ -33,6 +40,7 @@
 "error" = "Eraro";
 "error_x" = "Eraro: %1$@";
 "error_no_network" = "Reto neatingebla.";
+"no_app_to_handle_data" = "Ne povas trovi aplikaĵon por trakti tiun ĉi tipon de datumo.";
 "no_browser_installed" = "Neniu retumilo instalita.";
 "file_not_found" = "Ne povis trovi %1$@.";
 "copied_to_clipboard" = "Kopiita al tondujo";
@@ -44,7 +52,7 @@
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Danĝero";
 // n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%dmin";
+"n_min_ago" = "%d min";
 "today" = "Hodiaŭ";
 "yesterday" = "Hieraŭ";
 "this_week" = "Ĉi-semajne";
@@ -77,6 +85,7 @@
 "blue" = "Blua";
 "orange" = "Oranĝkolora";
 "cyan" = "Cejana";
+"purple" = "Purpura";
 "magenta" = "Malva";
 "white" = "Blanka";
 
@@ -103,6 +112,8 @@
 "menu_group_name_and_image" = "Grup-nomo kaj bildo";
 "menu_show_map" = "Montri mapon";
 "menu_show_global_map" = "Montri ĉiujn lokojn";
+"menu_archive_chat" = "Enarĥivigi babilon";
+"menu_unarchive_chat" = "Elarĥivigi babilon";
 "menu_add_attachment" = "Aldoni kunsendaĵon";
 "menu_leave_group" = "Forlasi grupon";
 "menu_delete_chat" = "Forigi babilon";
@@ -117,23 +128,50 @@
 "menu_reply" = "Respondi al mesaĝo";
 "menu_mute" = "Silentigi sciigojn";
 "menu_unmute" = "Malsilentigi";
+"menu_export_attachment" = "Eksporti aldonaĵon";
 "menu_all_media" = "Ĉiuj aŭvidaĵoj";
 "menu_share" = "Kunhavigi";
 "menu_block_contact" = "Bloki kontakton";
 "menu_unblock_contact" = "Malbloki kontakton";
+"menu_play" = "Ludi";
+"menu_pause" = "Paŭzigi";
+"menu_scroll_to_bottom" = "Rulumi al la malsupro";
+"menu_scroll_to_top" = "Rulumi al la supro";
 "menu_help" = "Helpo";
 "menu_select_all" = "Elekti ĉion";
+"menu_expand" = "Etendi";
 "menu_edit_name" = "Redakti nomon";
 "menu_edit_group_name" = "Redakti grup-nomon";
 "menu_edit_group_image" = "Redakti grup-bildon";
 "menu_settings" = "Agordoj";
 "menu_advanced" = "Speciala";
 "menu_deaddrop" = "Kontakt-petoj";
+"menu_deaddrop_subtitle" = "Premu mesaĝon por komenci babiladon";
+"menu_view_profile" = "Vidi profilon";
+"menu_zoom_in" = "Zomi";
+"menu_zoom_out" = "Malzomi";
+"menu_save_log" = "Konservi protokolon";
+"title_share_location" = "Konigi lokon al ĉiuj grupanoj";
+"device_talk" = "Aparataj mesaĝoj";
+"device_talk_subtitle" = "Loke generitaj mesaĝoj";
+"device_talk_explain" = "Mesaĝoj en tiu ĉi babilo estas surloke generataj de via Delta Chat apo. Ĝiaj kreintoj uzas ilin por informi pri apaj ĝisdatigoj kaj problemoj dum uzado.";
+"device_talk_welcome_message" = "Bonvenon al Delta Chat! – Delta Chat aspektas kvazaŭ aliaj popularaj mesaĝiloj, sed al ĝi mankas centra regado, sekvado de kaj perfido al vi, viaj amikoj, kolegoj kaj familianoj je la servo de grandaj organizoj.\n\nVere, Delta Chat estas retpoŝta aplikaĵo kun moderna babila interfaco. Alivorte, retpoŝto kun novaj vestaĵoj 👻\n\nUzu Delta Chat-on kun iu ajn el miliardoj da homoj: simple uzu la retadreson. Ricevantoj ne devas instali Delta Chat-on, viziti retejojn aŭ registriĝi ie ajn - sed, kompreneble, se ili volas, vi povas atentigi ilin al 👉 https://get.delta.chat";
 "edit_contact" = "Redakti kontakton";
+// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin_chat" = "Alpingli babilon";
+// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+"unpin_chat" = "Depingli babilon";
+// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin" = "Alpingli";
+// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+"unpin" = "Depingli";
+
 "mute_for_one_hour" = "Silentigi por 1 horo";
 "mute_for_two_hours" = "Silentigi por 2 horoj";
 "mute_for_one_day" = "Silentigi por 1 tago";
 "mute_for_seven_days" = "Silentigi por 7 tagoj";
+"mute_forever" = "Silentigi por ĉiam";
+
 "share_location_once" = "unufoje";
 "share_location_for_5_minutes" = "por 5 minutoj";
 "share_location_for_30_minutes" = "por 30 minutoj";
@@ -141,32 +179,58 @@
 "share_location_for_two_hours" = "por 2 horoj";
 "share_location_for_six_hours" = "por 6 horoj";
 
+"file_saved_to" = "Dosiero konservita kiel \"%1$@\".";
+
 // get confirmations
 "ask_leave_group" = "Ĉu vi estas certa, ke vi volas forlasi tiun ĉi grupon?";
 "ask_forward" = "Plusendi mesaĝojn al %1$@?";
+"cannot_delete_contacts_in_use" = "Ne eblas forigi kontaktojn kun aktualaj babiloj.";
 "ask_start_chat_with" = "Babili kun %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Forigi %1$@el la grupo?";
+"info_outdated_app_title" = "La versio de via aplikaĵo estas malnova.";
+"info_outdated_app_text" = "Ŝajnas ke vi instalis Delta Chat-on el fonto sen aŭtomataj ĝisdatigoj (t.e. GitHub). Bonvolu ŝanĝi al butika versio por ricevi la plej novajn eblecojn kaj cimoriparojn.";
+"info_outdated_app_dialog_title" = "Ĝisdatigi fontojn";
+"info_outdated_app_dialog_text" = "Delta Chat estas atingebla je:";
+
+
 // contact list
 "contacts_title" = "Kontaktoj";
 "contacts_enter_name_or_email" = "Enigi nomon aŭ retadreson";
+"contacts_type_email_above" = "Enigu retadreson supren";
 "contacts_empty_hint" = "Neniu kontakto.";
 
 
+// chatlist and chat view
+"chat_archived_chats_title" = "Enarĥivigitaj babiloj";
 "chat_please_enter_message" = "Bonvolu enigi mesaĝon.";
 "chat_camera_unavailable" = "Fotilo neatingebla.";
+"chat_unable_to_record_audio" = "Ne povas registri aŭdaĵon.";
+"chat_no_messages_hint" = "Sendi mesaĝon al %1$@:\n\n• Ne estas problemo se %2$@ ne uzas Delta Chat-on.\n\n• Liveri la unuan mesaĝon eble prenos iom da tempo kaj eble ne estos ĉifrita.";
 "chat_record_slide_to_cancel" = "Gliti por nuligi";
 "chat_record_explain" = "Tuŝadi por registri voĉan mesaĝon, maltuŝadi por sendi";
+"chat_no_chats_yet_hint" = "Vi povas babili kun aliaj uzantoj de Delta Chat kaj kun iu ajn retadreso.";
+"chat_all_archived" = "Ĉiuj babiloj enarĥivigitaj.\nPremu \"+\" por komenci novan babilon.";
+"chat_share_with_title" = "Kunhavigi kun";
 "chat_input_placeholder" = "Mesaĝo";
 "chat_archived_label" = "Enarĥivigitaj";
 "chat_no_messages" = "Neniu mesaĝo.";
 "chat_self_talk_subtitle" = "Mesaĝoj senditaj al mi mem";
+"saved_messages" = "Konservitaj mesaĝoj";
 "chat_contact_request" = "Kontakt-peto";
 "retry_send" = "Reprovi sendi mesaĝon";
 "send_failed" = "Ne povis sendi mesaĝon";
 
+"show_location_traces" = "Montri spurojn";
+"add_poi" = "Sendi punkton de intereso";
+
+
 // search
 "search" = "Serĉi";
+"search_explain" = "Serĉi babilojn, kontaktojn, kaj mesaĝojn";
+"search_no_result_for_x" = "Neniu rezulto trovita por \"%s\"";
+
+
 // create/edit groups, contact/group profile
 "group_name" = "Grup-nomo";
 "group_avatar" = "Bildo de la grupo";
@@ -176,6 +240,7 @@
 "group_hello_draft" = "Saluton, mi ĵus kreis la grupon \"%1$@\" por ni.";
 "group_self_not_in_group" = "Vi devas esti grupano por fari tion.";
 "profile_encryption" = "Ĉifrado";
+"profile_shared_chats" = "Kunhavigitaj babiloj";
 "tab_contact" = "Kontakto";
 "tab_group" = "Grupo";
 "tab_members" = "Anoj";
@@ -190,14 +255,45 @@
 "welcome_start_messaging" = "Komenci mesaĝadon";
 "login_title" = "Ensaluti";
 "login_header" = "Ensaluti al via servilo";
-"login_manually" = "Ensaltui neaŭtomate";
+"login_inbox" = "Ricevujo";
+"login_imap_login" = "IMAP salutnomo";
+"login_imap_server" = "IMAP servilo";
+"login_imap_port" = "IMAP pordo";
+"login_imap_security" = "IMAP sekureco";
+"login_outbox" = "Senditujo";
+"login_smtp_login" = "SMTP salutnomo";
+"login_smtp_password" = "SMTP pasvorto";
+"login_smtp_server" = "SMTP servilo";
+"login_smtp_port" = "SMTP pordo";
+"login_smtp_security" = "SMTP sekureco";
+"login_auth_method" = "Metodo de rajtigado";
+"login_info_oauth2_title" = "Ĉu daŭri kun faciligitaj agordoj?";
+"login_certificate_checks" = "Atestilaj kontroloj";
+"login_error_mail" = "Bonvolu enigi validan retadreson";
+"login_error_server" = "Bonvolu enigi validan servilon / IP adreson";
+"login_error_port" = "Bonvolu enigi validan pordon (1-65535)";
+"login_error_required_fields" = "Bonvolu enigi validan retadreson kaj pasvorton";
+"import_backup_title" = "Importi savkopion";
+// TLS certificate checks
+"accept_invalid_hostnames" = "Akcepti nevalidajn hostnomojn";
+"accept_invalid_certificates" = "Akcepti nevalidajn atestilojn";
+
+"used_settings" = "Uzitaj agordoj:";
 "delete_account" = "Forigi konton";
+"delete_account_ask" = "Ĉu vi certas, ke vi volas forigi ĉiujn datumojn de vi konto?";
+
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Plusendi al…";
+"share_multiple_attachments" = "Ĉu vi volas sendi %1$d dosierojn al la elektita babilo?\n\nLa dosieroj sendiĝos senŝanĝe en iliaj originalaj grandecoj, ekz. bildoj kaj filmetoj ne estos rekoditaj.";
+"share_abort" = "Kunhavigado ĉesis pro manko de permesoj.";
+
+
+"pref_profile_photo" = "Profilbildo";
 "pref_trim_option" = "Forigi malnovajn mesaĝojn";
 "pref_trim_length_limit_summary" = "Po %d mesaĝoj en babilo";
 "pref_blocked_contacts" = "Blokitaj kontaktoj";
+"pref_profile_photo_remove_ask" = "Ĉu forigi profilbildon?";
 "pref_help_url" = "https://delta.chat/help";
 "pref_password_and_account_settings" = "Pasvorto kaj konto";
 "pref_who_can_see_this_information" = "Kiu povas vidi ĉi tion?";
@@ -232,6 +328,7 @@
 "pref_incognito_keyboard_explain" = "Peti al la klavaro malŝalti personan lernadon";
 "pref_read_receipts" = "Legokonfirmoj";
 "pref_read_receipts_explain" = "Se legokonfirmoj ne estas ŝaltitaj, vi ne vidos aliulajn legokonfirmojn.";
+"pref_manage_keys" = "Administri ŝlosilojn";
 "pref_use_system_emoji" = "Uzi sisteman emoĝiaron";
 "pref_use_system_emoji_explain" = "Malebligi emoĝiaron de Delta Chat";
 "pref_app_access" = "Aliro al aplikaĵo";
@@ -240,8 +337,30 @@
 "pref_messages" = "Mesaĝoj";
 "pref_in_chat_sounds" = "Sonoj dum interparolado";
 "pref_message_text_size" = "Mesaĝa tipargrando";
+"pref_view_log" = "Vidi protokolon";
+"pref_saved_log" = "Konservis protokolon al la elŝuta dosierujo";
+"pref_save_log_failed" = "Malsukcesis konservi protokolon";
+"pref_log_header" = "Protokolo";
 "pref_other" = "Alia";
+"pref_backup" = "Savkopio";
+"pref_backup_explain" = "Savkopii babilojn al ekstera memorilo";
+"pref_backup_export_start_button" = "Komenci savkopiadon";
+"pref_backup_written_to_x" = "Savkopio sukcese konservita al \"%1$@\".";
+"pref_managekeys_menu_title" = "Administri ŝlosilojn";
+"pref_managekeys_ask_for_storage_permission" = "Delta Chat bezonas permeson atingi viajn dosierojn por importi/eksporti ŝlosilojn.";
+"pref_managekeys_export_secret_keys" = "Eksporti sekretajn ŝlosilojn";
+"pref_managekeys_export_explain" = "Ĉu eksporti sekretajn ŝlosilojn al \"%1$@\"?";
+"pref_managekeys_import_secret_keys" = "Importi sekretajn ŝlosilojn";
+"pref_background" = "Fono";
+"pref_background_btn_default" = "Uzi defaŭltan bildon";
+"pref_background_btn_gallery" = "Elekti el galerio";
+"pref_imap_folder_handling" = "IMAP dosieruja traktado";
+"pref_watch_inbox_folder" = "Kontroli ricevujon";
+"pref_watch_sent_folder" = "Kontroli senditujon";
+"pref_watch_mvbox_folder" = "Kontroli DeltaChat dosierujon";
+"pref_send_copy_to_self" = "Sendi kopion al mi mem";
 "pref_show_emails_all" = "Ĉiuj";
+"autocrypt_prefer_e2ee" = "Preferi tutvojan ĉifradon";
 // screen lock
 "screenlock_title" = "Ekranŝloso";
 "screenlock_explain" = "Lock Delta Chat access with Android screen lock or fingerprint";
@@ -271,7 +390,7 @@
 "global_menu_help_desktop" = "Helpo";
 "more_info_desktop" = "Plia informo";
 "timestamp_format_m_desktop" = "MMM D";
-"no_chats_desktop" = "Neniu parolado ankoraŭ.";
+"no_chats_desktop" = "Neniu babilo nun";
 "remove_desktop" = "Forviŝi";
 "save_desktop" = "Konservi";
 "me_desktop" = "mi";

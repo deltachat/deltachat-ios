@@ -31,7 +31,7 @@
 "show_password" = "Visa lösenord";
 "hide_password" = "Dölj lösenord";
 "not_now" = "Inte nu";
-"never" = "Nyare";
+"never" = "Aldrig";
 "one_moment" = "Ett ögonblick...";
 "done" = "Klar";
 "undo" = "Ångra";
@@ -154,6 +154,8 @@
 "title_share_location" = "Dela plats med alla gruppmedlemmar";
 "device_talk" = "Enhetsmeddelanden";
 "device_talk_subtitle" = "Lokalt genererade meddelanden";
+"device_talk_explain" = "Meddelanden i denna chatt är lokalt genererade av din Delta Chat-app. Dess skapare använder den för att informera om app-uppdateringar och problem vid användning.";
+"device_talk_welcome_message" = "Välkommen till Delta Chat! - Delta Chat ser och känns som andra populär meddelande-appar, men involverar ingen centraliserad kontroll, tracking eller säljer dig, dina vänner, kollegor eller familj till stora organisationer/företag.\n\nTekniskt, Delta Chat är en epost applikation med ett modernt utseende. Epost i ett nytt utseende som får dig att vilja 👻\n\nAnvänd Delta Chat med vem som helst av alla miljader människor som har en epostadress. Mottagare behöver inte installera Delta Chat, besöka webbsidor eller registera sig någonstans - men såklart om de vill så kan du visa dem till 👉 https://get.delta.chat";
 "edit_contact" = "Redigera kontakt";
 // Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
 "pin_chat" = "Nåla chatt";
@@ -186,8 +188,17 @@
 "ask_block_contact" = "Blockera den här kontakten? Du kommer inte längre att få meddelanden från den här kontakten.";
 "ask_unblock_contact" = "Avblockera den här kontakten? Du kommer återigen att kunna ta emot meddelanden från den här kontakten.";
 "ask_delete_contacts" = "Ta bort kontakter? Detta kommer permanent radera de valda kontakterna.\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte raderas permanent.";
+"ask_delete_contact" = "Radera kontakt %1$@?\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte raderas permanent. ";
 "cannot_delete_contacts_in_use" = "Det går inte att radera kontakter med pågående chattar.";
 "ask_start_chat_with" = "Chatta med%1$@ ?";
+// Translators: %1$s will be replaces by a comma separated list of names
+"ask_remove_members" = "Radera %1$@ från grupp?";
+"info_outdated_app_title" = "Din app-version är för gammal.";
+"info_outdated_app_text" = "Det verkar som att du installerade Delta Chat från en källa som inte har auto-uppdateringar (t.ex. GitHub). Vänligen använd en butiksversion för att komma åt de senaste funktionerna och buggfixar.";
+"info_outdated_app_dialog_title" = "Uppdatera källan";
+"info_outdated_app_dialog_text" = "Delta Chat är tillgänglig för:";
+
+
 // contact list
 "contacts_title" = "Kontakter";
 "contacts_enter_name_or_email" = "Ange namn eller e-postadress";
@@ -195,20 +206,36 @@
 "contacts_empty_hint" = "Inga kontakter.";
 
 
+// chatlist and chat view
 "chat_archived_chats_title" = "Arkiverade chattar";
 "chat_please_enter_message" = "Skriv in ett meddelande.";
 "chat_camera_unavailable" = "Kamera otillgänglig.";
 "chat_unable_to_record_audio" = "Det går inte att spela in ljud.";
-"chat_no_messages_hint" = "Skicka meddelande till %1$@:\n\n• Det är okej om %2$@inte använder Delta Chat.\n\n• Leverans av det första meddelandet kan ta ett tag och kan vara okrypterad.";
+"chat_no_messages_hint" = "Skicka meddelande till %1$@:\n\n• Det är okej om %2$@ inte använder Delta Chat.\n\n• Leverans av det första meddelandet kan ta ett tag och kan vara okrypterad.";
 "chat_new_group_hint" = "Komponera det första meddelandet, så att andra kan svara inom denna grupp.\n\n• Det är okej om inte alla medlemmar använder Delta Chat.\n\n• Det kan ta en stund innan det första meddelandet levereras.";
 "chat_record_slide_to_cancel" = "Svep för att avbryta";
 "chat_record_explain" = "Tryck och håll ned för att spela in ett röstmeddelande, släpp för att skicka";
+"chat_no_chats_yet_title" = "Tom inkorg.\nTryck på \"+\" för att starta en ny chatt.";
+"chat_no_chats_yet_hint" = "Du kan chatta med andra Delta Chat-användare och med alla andra med en e-postadress.";
+"chat_all_archived" = "Alla chattar arkiverade.\nTryck på \"+\" för att starta en ny chatt.";
 "chat_share_with_title" = "Dela med";
 "chat_input_placeholder" = "Meddelande";
 "chat_archived_label" = "Arkiverat";
 "chat_no_messages" = "Inga meddelanden.";
 "chat_self_talk_subtitle" = "Meddelanden jag skickade till mig själv";
 "saved_messages" = "Sparade meddelanden";
+"saved_messages_explain" = "• Vidarebefordra meddelanden här för att komma åt dom enkelt\n\n• Spara anteckningar eller röstmemon\n\n• Bifoga mediafiler för att spara dom";
+"chat_contact_request" = "Kontaktförfrågningar";
+"chat_no_contact_requests" = "Inga kontaktförfrågningar.\n\nOm du vill ha vanliga e-postmeddelande här som kontakter, så kan du ändra på det under appens inställningar.";
+"retry_send" = "Skicka om meddelande";
+"send_failed" = "Kunde inte skicka meddelande";
+
+// map
+"filter_map_on_time" = "Visa platser inom tidsramen";
+"show_location_traces" = "Visa spår";
+"add_poi" = "Skicka intressant plats";
+
+
 // search
 "search" = "Sök";
 "search_explain" = "Sök efter chattar, kontakter och meddelanden";
@@ -230,13 +257,22 @@
 "tab_members" = "Medlemmar";
 "tab_gallery" = "Galleri";
 "tab_docs" = "Dokument";
+"tab_links" = "Länkar";
+"tab_map" = "Karta";
+"tab_gallery_empty_hint" = "Bilder och videos delade i denna chatt kommer att visas här.";
+"tab_docs_empty_hint" = "Dokument, musik och andra filer som delas i denna chatt kommer att visas här.";
 "media_preview" = "Media förhandsvisning";
+"send_message" = "Skicka meddelande";
+
+
 // welcome and login
 "welcome_intro1_message" = "Chattappen med den bredaste publiken i världen. Fri och oberoende.";
 "welcome_start_messaging" = "Börja Chatta";
 "login_title" = "Logga in";
 "login_header" = "Logga in på din server";
+"login_explain" = "Logga in med ett existerande epostkonto";
 "login_subheader" = "För kända e-postleverantörer installeras ytterligare inställningar automatiskt. Ibland måste IMAP aktiveras i webbfronten. Kontakta din e-postleverantör eller vänner för hjälp.";
+"login_no_servers_hint" = "Det finns ingen Delta Chat server. Appen använder bara din e-postserver.";
 "login_inbox" = "Inkorg";
 "login_imap_login" = "Inloggningsnamn till IMAP";
 "login_imap_server" = "IMAP-server";
@@ -249,6 +285,7 @@
 "login_smtp_port" = "SMTP-port";
 "login_smtp_security" = "SMTP-säkerhet";
 "login_auth_method" = "Auktoriseringsmetod";
+"login_info_oauth2_title" = "Fortsätt med förenklad installation?";
 "login_info_gmail_text" = "För GMail-konton måste du skapa ett app-lösenord om du har 2FA aktiverat. Om denna inställning inte är tillgänglig måste du slå på \"Mindre säkra appar\".";
 "login_error_mail" = "Vänligen ange en giltig e-postadress";
 "login_error_server" = "Vänligen ange en giltig server/IP-adress";
@@ -256,16 +293,27 @@
 "login_error_required_fields" = "Vänligen ange en giltig e-postadress och ett giltigt lösenord";
 "import_backup_title" = "Importera säkerhetskopiering";
 "import_backup_ask" = "Säkerhetskopiering hittades på %1$@.\n\n Vill du importera eller använda all data och alla inställningar från den?";
+// Translators: %1$s will be replaced by the email address
+"login_error_cannot_login" = "Kan inte logga in som \"%1$@\". \"% 1 $ s\". Kontrollera om e-postadressen och lösenordet är korrekta.";
+"used_settings" = "Använda inställningar:";
+"delete_account" = "Radera konto";
+"delete_account_ask" = "Är du säker på att du vill ta bort dina kontodata?";
+
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "vidarebefordra till...";
+"pref_using_default" = "Använder standard: %s";
 "pref_profile_info_headline" = "Din profilinformation";
 "pref_profile_photo" = "Profilbild";
 "pref_trim_headline" = "Trimma meddelanden";
 "pref_trim_option" = "Ta bort gamla meddelanden";
 "pref_trim_option_explain" = "Ta bort automatiskt gamla meddelanden när en konversation överstiger en specificerad längd";
+"pref_trim_length_limit" = "Chattens maximala längd";
+"pref_trim_length_limit_summary" = "%d meddelanden per chatt";
 "pref_trim_now_button" = "Trimma alla konversationer nu";
 "pref_blocked_contacts" = "Blockerade kontakter";
+"pref_help_url" = "https://delta.chat/help";
+"pref_password_and_account_settings" = "Lösenord och konto";
 "pref_who_can_see_this_information" = "Vem kan se denna information?";
 "pref_your_name" = "Ditt namn";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -274,6 +322,9 @@
 "pref_default_status_text" = "Skickat från Delta Chat: https://delta.chat";
 "pref_enter_sends" = "Returtangenten skickar";
 "pref_enter_sends_explain" = "Tryck på returtangenten skickar textmeddelanden";
+"pref_outgoing_media_quality" = "Utgående ljudkvalitet";
+"pref_outgoing_balanced" = "Balanserad";
+"pref_outgoing_worse" = "Sämre kvalitet, mindre storlek";
 "pref_vibrate" = "Vibrera";
 "pref_chat_settings" = "Konversationsinställningar";
 "pref_screen_security" = "Skärmsäkerhet";
@@ -299,6 +350,7 @@
 "pref_incognito_keyboard_explain" = "Begär att tangentbordet stänger av personlig inlärning";
 "pref_read_receipts" = "Returkvitto";
 "pref_read_receipts_explain" = "Om läskvittenser är avstängda kan du inte se läskvittenser från andra.";
+"pref_manage_keys" = "Hantera nycklar";
 "pref_use_system_emoji" = "Använd systemets emojier";
 "pref_use_system_emoji_explain" = "Inaktivera Delta Chat\'s inbyggda emojier";
 "pref_app_access" = "Appåtkomst";
@@ -308,14 +360,36 @@
 "pref_in_chat_sounds" = "Ljud i konversationer";
 "pref_message_text_size" = "Teckenstorlek för meddelanden";
 "pref_view_log" = "Visa logg";
+"pref_saved_log" = "Sparade loggen till \"Downloads\" folder";
+"pref_save_log_failed" = "Misslyckades att spara loggen";
 "pref_log_header" = "Logg";
 "pref_other" = "Övrigt";
+"pref_backup" = "Säkerhetskopiering";
+"pref_backup_explain" = "Säkerhetskopiera meddelanden till extern lagring";
+"pref_backup_export_start_button" = "Starta säkerhetsbackup";
+"pref_managekeys_menu_title" = "Hantera nycklar";
+"pref_managekeys_export_secret_keys" = "Exportera hemliga nycklar";
+"pref_managekeys_export_explain" = "Exportera hemliga nycklar till \"%1$@\"?";
+"pref_managekeys_import_secret_keys" = "Importera hemliga nycklar";
+"pref_background" = "Bakgrund";
+"pref_background_btn_default" = "Använd standard bild";
+"pref_background_btn_gallery" = "Välj från galleriet";
+"pref_watch_mvbox_folder" = "Titta på DeltaChat-mappen";
+"pref_show_emails_no" = "Nej, bara cattar";
+"pref_show_emails_accepted_contacts" = "För godkända kontakter";
+"pref_show_emails_all" = "Allt";
+"pref_background_default" = "Standard bakgrund";
+"pref_background_default_color" = "Standard färg";
+"pref_background_custom_image" = "Anpassad bild";
+"pref_background_custom_color" = "Anpassad färg";
+
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_send_asm_explain_before" = "Ett meddelande för att sätta upp Autocrypt delar den informationen med andra Autocrypt-anpassade applikationer på ett säkert sätt. Informationen krypteras med en kod som visas här och som måste matas in på den mottagande enheten.";
 "autocrypt_asm_subject" = "Uppsättningsmeddelande för Autocrypt";
 "autocrypt_asm_general_body" = "Detta är uppsättningsmeddelandet för Autocrypt som används för att skicka nycklar mellan klienter. För att kunna avkryptera och använda din nyckel, öppna meddelandet i en Autocrypt-kompatibel klient och skriv in uppsättningskoden som visas på den genererande enheten.";
 "autocrypt_asm_click_body" = "Detta är ett uppsättningsmeddelande för Autocrypt för att föra över krypteringsnyckel mellan klienter. Klicka på det här meddelandet för börja överföring av din krypteringsnyckel.";
+"autocrypt_continue_transfer_retry" = "Försök igen";
 // system messages
 "systemmsg_group_name_changed" = "Gruppnamnet ändrades från \"%1$@\" till \"%2$@\".";
 "systemmsg_group_image_changed" = "Gruppbilden ändrades.";
@@ -352,9 +426,12 @@
 
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Välkommen till Delta Chat";
+"login_known_accounts_title_desktop" = "Kända konton";
 "global_menu_preferences_language_desktop" = "Språk";
 "global_menu_file_desktop" = "Fil";
+"global_menu_file_quit_desktop" = "Avsluta";
 "global_menu_edit_desktop" = "Redigera";
+"global_menu_edit_undo_desktop" = "Ångra";
 "global_menu_edit_redo_desktop" = "Gör om";
 "global_menu_edit_cut_desktop" = "Klipp ut";
 "global_menu_edit_copy_desktop" = "Kopiera";
@@ -371,9 +448,11 @@
 "no_chat_selected_suggestion_desktop" = "Välj eller skapa en ny chatt";
 "write_message_desktop" = "Skriv ett meddelande";
 "contact_detail_title_desktop" = "Kontaktdetaljer";
+"contact_request_title_desktop" = "Kontaktfördrågan";
 "delete_message_desktop" = "Radera meddelande";
 "more_info_desktop" = "Mer information";
 "logout_desktop" = "Logga ut";
+"timestamp_format_m_desktop" = "MMM D";
 "no_archived_chats_desktop" = "Inga arkiverade chattar";
 "no_chats_desktop" = "Inga chattar";
 "verified_desktop" = "verifierad";
@@ -383,10 +462,13 @@
 "login_required_desktop" = "nödvändig";
 "name_desktop" = "Namn";
 "reply_to_message_desktop" = "Svara på meddelande";
+"select_group_image_desktop" = "Välj en gruppbild";
 "download_attachment_desktop" = "Ladda ner bifogad fil";
 "show_key_transfer_message_desktop" = "Din nyckel har skickats till dig själv. Du bör nu fått ett meddelande på den andra enheten. Byt till den andra enhten, öppna meddelandet och skriv in koden som nu visas. När du har gjort det är den andra enheten redo att använda Autocrypt.";
 "new_message_from_desktop" = "Nytt meddelande från";
 "create_chat_error_desktop" = "Chatten kunde inte skapas.";
+"ask_delete_chat_desktop" = "Ta bort den här chatten?";
+"me_desktop" = "jag";
 "in_this_group_desktop" = "Gruppmedlemmar";
 "message_detail_sent_desktop" = "skickat";
 "message_detail_received_desktop" = "mottaget";
