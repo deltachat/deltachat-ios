@@ -2,11 +2,19 @@ import UIKit
 
 class WelcomeViewController: UIViewController, UITableViewDataSource {
 
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+
+        return scrollView
+    }()
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
+//        tableView.rowHeight = UITableView.automaticDimension
+//        tableView.estimatedRowHeight = UITableView.automaticDimension
         return tableView
     }()
 
@@ -19,7 +27,19 @@ class WelcomeViewController: UIViewController, UITableViewDataSource {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.rowHeight = view.frame.height
+
+  //      welcomeCell.minumumCellHeight = view.frame.height
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//         tableView.estimatedRowHeight = view.frame.height
+//        welcomeCell.minumumCellHeight = size.height
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        welcomeCell.minumumCellHeight = view.frame.height
+        tableView.reloadData()
+
     }
 
     private func setupSubviews() {
@@ -44,11 +64,20 @@ class WelcomeViewController: UIViewController, UITableViewDataSource {
 
 class WelcomeCell: UITableViewCell {
 
+    var minumumCellHeight: CGFloat = 0 {
+        didSet {
+            containerMinimumHeightConstraint.constant = 1000
+        }
+    }
+
     var onLogin: VoidFunction?
     var onScanQRCode: VoidFunction?
     var onImportBackup: VoidFunction?
 
+
     private let fontSize: CGFloat = 24 // probably better to make larger for ipad
+
+    private var container = UIView()
 
     private var logoView: UIImageView = {
         let image = #imageLiteral(resourceName: "ic_launcher").withRenderingMode(.alwaysOriginal)
@@ -72,7 +101,6 @@ class WelcomeCell: UITableViewCell {
         label.textColor = DcColors.grayTextColor
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.makeBorder()
         return label
     }()
 
@@ -109,6 +137,8 @@ class WelcomeCell: UITableViewCell {
         return button
     }()
 
+    private var containerMinimumHeightConstraint: NSLayoutConstraint!
+
 
     init() {
         super.init(style: .default, reuseIdentifier: nil)
@@ -122,13 +152,26 @@ class WelcomeCell: UITableViewCell {
 
     private func setupSubviews() {
 
+        contentView.addSubview(container)
+        container.translatesAutoresizingMaskIntoConstraints = false
+
+        container.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        container.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        container.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        container.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+
+        containerMinimumHeightConstraint = contentView.heightAnchor.constraint(equalToConstant: 100)
+        containerMinimumHeightConstraint.isActive = true
+
+/*
+
         let verticalStackview = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
         verticalStackview.axis = .vertical
         verticalStackview.spacing = 20
         contentView.addSubview(verticalStackview)
         verticalStackview.translatesAutoresizingMaskIntoConstraints = false
         verticalStackview.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
-        verticalStackview.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        verticalStackview.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         verticalStackview.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.75).isActive = true
 
         contentView.addSubview(logoView)
@@ -141,12 +184,40 @@ class WelcomeCell: UITableViewCell {
         logoTopAnchor.priority = UILayoutPriority.defaultLow
         logoTopAnchor.isActive = true
 
+        /*
+        let buttonStackview = UIStackView(arrangedSubviews: [loginButton, qrCodeButton, importBackupButton])
+        buttonStackview.axis = .vertical
+        buttonStackview.spacing = 10
+        buttonStackview.distribution = .fillProportionally
+        contentView.addSubview(buttonStackview)
+        buttonStackview.translatesAutoresizingMaskIntoConstraints = false
+        buttonStackview.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        buttonStackview.topAnchor.constraint(equalTo: verticalStackview.bottomAnchor, constant: 30).isActive = true
+
+        let buttonStackviewBottomAnchor = buttonStackview.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+        buttonStackviewBottomAnchor.priority = .
+        buttonStackviewBottomAnchor.isActive = true
+
+        */
         contentView.addSubview(loginButton)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         loginButton.topAnchor.constraint(equalTo: verticalStackview.bottomAnchor, constant: 20).isActive = true
         loginButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
 
+        contentView.addSubview(qrCodeButton)
+        qrCodeButton.translatesAutoresizingMaskIntoConstraints = false
+        qrCodeButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        qrCodeButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10).isActive = true
 
+        contentView.addSubview(importBackupButton)
+        importBackupButton.translatesAutoresizingMaskIntoConstraints = false
+        importBackupButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        importBackupButton.topAnchor.constraint(equalTo: qrCodeButton.bottomAnchor, constant: 10).isActive = true
+        let buttonStackviewBottomAnchor = importBackupButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+        buttonStackviewBottomAnchor.priority = .defaultHigh
+        buttonStackviewBottomAnchor.isActive = true
+
+ */
     }
 
     // MARK: - actions
