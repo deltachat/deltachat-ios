@@ -92,7 +92,7 @@ class WelcomeContentView: UIView {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Welcome to Delta Chat "
+        label.text = String.localized("welcome_desktop")
         label.textColor = DcColors.grayTextColor
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -102,7 +102,7 @@ class WelcomeContentView: UIView {
 
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "The messenger with the broadest audience in the world. Free and independent."
+        label.text = String.localized("welcome_intro1_message")
         label.font = UIFont.systemFont(ofSize: 22, weight: .regular)
         label.textColor = DcColors.grayTextColor
         label.numberOfLines = 0
@@ -124,6 +124,14 @@ class WelcomeContentView: UIView {
         button.addTarget(self, action: #selector(loginButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
+
+    private lazy var buttonStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [loginButton, qrCodeButton, importBackupButton])
+        stack.axis = .vertical
+        stack.spacing = 10
+        return stack
+    }()
+
 
     private lazy var qrCodeButton: UIButton = {
         let button = UIButton()
@@ -167,7 +175,7 @@ class WelcomeContentView: UIView {
 
         containerMinHeightConstraint.isActive = true
 
-        _ = [logoView, titleLabel, subtitleLabel, loginButton, qrCodeButton, importBackupButton].map {
+        _ = [logoView, titleLabel, subtitleLabel, loginButton /*, qrCodeButton, importBackupButton */].map {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -197,18 +205,39 @@ class WelcomeContentView: UIView {
         logoTopAnchor.priority = .defaultLow
         logoTopAnchor.isActive = true
 
+        let buttonContainerGuide = UILayoutGuide()
+        container.addLayoutGuide(buttonContainerGuide)
+        buttonContainerGuide.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor).isActive = true
+        buttonContainerGuide.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
+
+        container.addSubview(buttonStack)
+        buttonStack.translatesAutoresizingMaskIntoConstraints = false
+        buttonStack.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
+        buttonStack.centerYAnchor.constraint(equalTo: buttonContainerGuide.centerYAnchor).isActive = true
+
+/*
         loginButton.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         loginButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: defaultSpacing * 2).isActive = true
 
+
+
+//       loginButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        loginButton.setContentHuggingPriority(.defaultLow, for: .vertical)
+
+        let loginButtonBottomConstraint = loginButton.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -50)
+        loginButtonBottomConstraint.priority = .defaultLow
+        loginButtonBottomConstraint.isActive = true
+*/
+        /*
         qrCodeButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: defaultSpacing).isActive = true
         qrCodeButton.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         importBackupButton.topAnchor.constraint(equalTo: qrCodeButton.bottomAnchor, constant: 10).isActive = true
         importBackupButton.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         importBackupButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        let importBackupButtonConstraint = importBackupButton.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -50)
-        importBackupButtonConstraint.priority = .defaultLow
-        importBackupButtonConstraint.isActive = true
-
+        let importBackupBottomConstraint = importBackupButton.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -50)
+        importBackupBottomConstraint.priority = .defaultLow
+        importBackupBottomConstraint.isActive = true
+        */
     }
 
     private func calculateLogoHeight() -> CGFloat {
