@@ -106,7 +106,7 @@ class QrInviteViewController: UITableViewController {
     private func createDescriptionView() -> UIView {
         let label = UILabel.init()
         label.translatesAutoresizingMaskIntoConstraints = false
-        let dcChat = DcChat(id: chatId)
+        let dcChat = dcContext.getChat(chatId: chatId)
         if !dcChat.name.isEmpty {
             label.text = String.localizedStringWithFormat(String.localized("qrshow_join_group_hint"), dcChat.name)
         }

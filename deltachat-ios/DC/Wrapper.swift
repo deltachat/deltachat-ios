@@ -3,7 +3,7 @@ import UIKit
 import AVFoundation
 
 class DcContext {
-    let contextPointer: OpaquePointer?
+    let contextPointer: OpaquePointer
 
     init() {
         var version = ""
@@ -27,25 +27,30 @@ class DcContext {
     }
 
     func getContacts(flags: Int32, queryString: String? = nil) -> [Int] {
-        let cContacts = dc_get_contacts(self.contextPointer, UInt32(flags), queryString)
+        let cContacts = dc_get_contacts(contextPointer, UInt32(flags), queryString)
         return Utils.copyAndFreeArray(inputArray: cContacts)
     }
 
     func addContacts(contactString: String) {
-        dc_add_address_book(mailboxPointer, contactString)
+        dc_add_address_book(contextPointer, contactString)
     }
 
     func getChat(chatId: Int) -> DcChat {
-        return DcChat(id: chatId)
+        return DcChat(contextPointer, id: chatId)
     }
 
     func getChatIdByContactId(_ contactId: Int) -> Int? {
-        let chatId = dc_get_chat_id_by_contact_id(self.contextPointer, UInt32(contactId))
+        let chatId = dc_get_chat_id_by_contact_id(contextPointer, UInt32(contactId))
         if chatId == 0 {
             return nil
         } else {
             return Int(chatId)
         }
+    }
+
+    func createChatByMessageId(_ messageId: Int) -> DcChat {
+        let chatId = dc_create_chat_by_msg_id(contextPointer, UInt32(messageId))
+        return DcChat(contextPointer, id: Int(chatId))
     }
 
     func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
@@ -271,17 +276,11 @@ class DcContext {
         return messageIds
     }
 
-    // it is fine to use existing functionality of DcConfig,
-    // however, as DcConfig uses a global pointer,
-    // new functionality should be added to DcContext.
-
     // also, there is no much worth in adding a separate function or so
     // for each config option - esp. if they are just forwarded to the core
     // and set/get only at one line of code each.
     // this adds a complexity that can be avoided -
     // and makes grep harder as these names are typically named following different guidelines.
-
-
 
     var displayname: String? {
         set { setConfig("displayname", newValue) }
@@ -466,11 +465,13 @@ class DcChatlist {
 
 class DcChat {
     var chatPointer: OpaquePointer?
+    var contextPointer: OpaquePointer?
 
     // use DcContext.getChat() instead of calling the constructor directly
-    init(id: Int) {
-        if let p = dc_get_chat(mailboxPointer, UInt32(id)) {
+    init(_ contextPointer: OpaquePointer, id: Int) {
+        if let p = dc_get_chat(contextPointer, UInt32(id)) {
             chatPointer = p
+            self.contextPointer = contextPointer
         } else {
             fatalError("Invalid chatID opened \(id)")
         }
@@ -478,6 +479,7 @@ class DcChat {
 
     deinit {
         dc_chat_unref(chatPointer)
+        self.contextPointer = nil
     }
 
     var id: Int {
@@ -537,7 +539,7 @@ class DcChat {
     }
 
     var contactIds: [Int] {
-        return Utils.copyAndFreeArray(inputArray: dc_get_chat_contacts(mailboxPointer, UInt32(id)))
+        return Utils.copyAndFreeArray(inputArray: dc_get_chat_contacts(contextPointer, UInt32(id)))
     }
 
     lazy var profileImage: UIImage? = { [unowned self] in
@@ -889,11 +891,6 @@ class DcMsg: MessageType {
 
     func showPadlock() -> Bool {
         return dc_msg_get_showpadlock(messagePointer) == 1
-    }
-
-    func createChat() -> DcChat {
-        let chatId = dc_create_chat_by_msg_id(mailboxPointer, UInt32(id))
-        return DcChat(id: Int(chatId))
     }
 
     func sendInChat(id: Int) {

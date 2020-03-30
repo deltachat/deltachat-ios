@@ -81,7 +81,7 @@ class ChatViewController: MessagesViewController {
     }
 
     init(dcContext: DcContext, chatId: Int) {
-        let dcChat = DcChat(id: chatId)
+        let dcChat = dcContext.getChat(chatId: chatId)
         self.dcContext = dcContext
         self.chatId = chatId
         self.disableWriting = !dcChat.canSend
@@ -148,7 +148,7 @@ class ChatViewController: MessagesViewController {
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 
         if showCustomNavBar {
-            updateTitle(chat: DcChat(id: chatId))
+            updateTitle(chat: dcContext.getChat(chatId: chatId))
         }
 
         configureMessageMenu()
@@ -172,7 +172,7 @@ class ChatViewController: MessagesViewController {
                     }
                 }
                 if self.showCustomNavBar {
-                    self.updateTitle(chat: DcChat(id: self.chatId))
+                    self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
                 }
             }
         }
@@ -241,7 +241,7 @@ class ChatViewController: MessagesViewController {
                 }
             },
             completion: { _ in
-                self.updateTitle(chat: DcChat(id: self.chatId))
+                self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
                 self.messagesCollectionView.reloadDataAndKeepOffset()
                 if lastSectionVisibleBeforeTransition {
                     self.messagesCollectionView.scrollToBottom(animated: false)
@@ -323,7 +323,7 @@ class ChatViewController: MessagesViewController {
 
     private func showEmptyStateView(_ show: Bool) {
         if show {
-            let dcChat = DcChat(id: chatId)
+            let dcChat = dcContext.getChat(chatId: chatId)
             if chatId == DC_CHAT_ID_DEADDROP {
                 if dcContext.showEmails != DC_SHOW_EMAILS_ALL {
                     emptyStateView.text = String.localized("chat_no_contact_requests")
@@ -640,7 +640,7 @@ class ChatViewController: MessagesViewController {
     }
 
     private func askToForwardMessage() {
-        let chat = DcChat(id: self.chatId)
+        let chat = dcContext.getChat(chatId: self.chatId)
         if chat.isSelfTalk {
             RelayHelper.sharedInstance.forward(to: self.chatId)
         } else {
@@ -1242,7 +1242,7 @@ extension ChatViewController: MessageCellDelegate {
     @objc func didTapAvatar(in cell: MessageCollectionViewCell) {
         if let indexPath = messagesCollectionView.indexPath(for: cell) {
             let message = messageList[indexPath.section]
-            let chat = DcChat(id: chatId)
+            let chat = dcContext.getChat(chatId: chatId)
             coordinator?.showContactDetail(of: message.fromContact.id, in: chat.chatType, chatId: chatId)
         }
     }

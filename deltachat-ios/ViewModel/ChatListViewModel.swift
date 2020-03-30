@@ -200,7 +200,7 @@ private extension ChatListViewModel {
 
 
         if let msgId = msgIdFor(row: index), chatId == DC_CHAT_ID_DEADDROP {
-            return ChatCellViewModel(dearddropCellData: DeaddropCellData(chatId: chatId, msgId: msgId, summary: summary))
+            return ChatCellViewModel(dcContext: dcContext, deaddropCellData: DeaddropCellData(chatId: chatId, msgId: msgId, summary: summary))
         }
 
         let chat = dcContext.getChat(chatId: chatId)
@@ -213,6 +213,7 @@ private extension ChatListViewModel {
         }
 
         let viewModel = ChatCellViewModel(
+            dcContext: dcContext,
             chatData: ChatCellData(
                 chatId: chatId,
                 summary: summary,
@@ -226,11 +227,12 @@ private extension ChatListViewModel {
     func makeMessageCellViewModel(msgId: Int) -> AvatarCellViewModel {
         let msg: DcMsg = DcMsg(id: msgId)
         let chatId: Int = msg.chatId
-        let chat: DcChat = DcChat(id: chatId)
+        let chat: DcChat = dcContext.getChat(chatId: chatId)
         let summary: DcLot = msg.summary(chat: chat)
         let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
 
         let viewModel = ChatCellViewModel(
+            dcContext: dcContext,
             chatData: ChatCellData(
                 chatId: chatId,
                 summary: summary,

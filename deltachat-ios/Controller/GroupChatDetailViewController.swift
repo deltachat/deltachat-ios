@@ -107,7 +107,7 @@ class GroupChatDetailViewController: UIViewController {
 
     init(chatId: Int, context: DcContext) {
         self.context = context
-        chat = DcChat(id: chatId)
+        chat = context.getChat(chatId: chatId)
         super.init(nibName: nil, bundle: nil)
         setupSubviews()
     }
@@ -137,7 +137,7 @@ class GroupChatDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //update chat object, maybe chat name was edited
-        chat = DcChat(id: chat.id)
+        chat = context.getChat(chatId: chat.id)
         updateGroupMembers()
         tableView.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
@@ -176,7 +176,7 @@ class GroupChatDetailViewController: UIViewController {
         } else {
             self.navigationController?.popToRootViewController(animated: false)
         }
-        self.chat = DcChat(id: chat.id)
+        self.chat = context.getChat(chatId: chat.id)
      }
 
     private func getGroupMemberIdFor(_ row: Int) -> Int {
@@ -259,7 +259,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 chatId: context.getChatIdByContactId(contactId)
             )
             let cellViewModel = ContactCellViewModel(contactData: cellData)
-            contactCell.updateCell(cellViewModel: cellViewModel)
+            contactCell.updateCell(dcContext: context, cellViewModel: cellViewModel)
             return contactCell
         case .chatActions:
             if row == chatActionsRowArchiveChat {

@@ -231,7 +231,7 @@ class ContactCell: UITableViewCell {
     }
 
     // use this update-method to update cell in cellForRowAt whenever it is possible - other set-methods will be set private in progress
-    func updateCell(cellViewModel: AvatarCellViewModel) {
+    func updateCell(dcContext: DcContext, cellViewModel: AvatarCellViewModel) {
 
         // subtitle
         subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: subtitleLabel.font.pointSize)
@@ -252,7 +252,7 @@ class ContactCell: UITableViewCell {
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
 
         case .chat(let chatData):
-            let chat = DcChat(id: chatData.chatId)
+            let chat = dcContext.getChat(chatId: chatData.chatId)
 
             // text bold if chat contains unread messages - otherwise hightlight search results if needed
             if chatData.unreadMessages > 0 {

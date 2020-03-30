@@ -81,7 +81,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     private lazy var chat: DcChat? = {
         if let chatId = chatId {
-            return DcChat(id: chatId)
+            return coordinator?.dcContext.getChat(chatId: chatId)
         }
         return nil
     }()

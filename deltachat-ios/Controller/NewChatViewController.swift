@@ -186,7 +186,7 @@ class NewChatViewController: UITableViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
                 if let contactCell = cell as? ContactCell {
                     let contactCellViewModel = self.contactViewModelBy(row: indexPath.row)
-                    contactCell.updateCell(cellViewModel: contactCellViewModel)
+                    contactCell.updateCell(dcContext: dcContext, cellViewModel: contactCellViewModel)
                 }
                 return cell
             } else {
@@ -201,7 +201,7 @@ class NewChatViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
             if let contactCell = cell as? ContactCell {
                 let contactCellViewModel = self.contactViewModelBy(row: indexPath.row)
-                contactCell.updateCell(cellViewModel: contactCellViewModel)
+                contactCell.updateCell(dcContext: dcContext, cellViewModel: contactCellViewModel)
             }
             return cell
         }
