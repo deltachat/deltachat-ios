@@ -346,8 +346,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 let title = String.localizedStringWithFormat(String.localized("ask_remove_members"), contact.nameNAddr)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { _ in
-                    let success = dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(contact.id))
-                    if success == 1 {
+                    let success = self.context.removeContactFromChat(chatId: self.chat.id, contactId: contact.id)
+                    if success {
                         self.removeGroupMemberFromTableAt(indexPath)
                     }
                 }))
@@ -391,7 +391,7 @@ extension GroupChatDetailViewController {
         if let userId = currentUser?.id {
             let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { _ in
-                dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(userId))
+                let _ = self.context.removeContactFromChat(chatId: self.chat.id, contactId: userId)
                 self.editBarButtonItem.isEnabled = false
                 self.updateGroupMembers()
             }))

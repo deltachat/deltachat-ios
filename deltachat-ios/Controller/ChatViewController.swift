@@ -205,7 +205,7 @@ class ChatViewController: MessagesViewController {
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         dcContext.marknoticedChat(chatId: chatId)
-        let array = DcArray(arrayPointer: dc_get_fresh_msgs(mailboxPointer))
+        let array = dcContext.getFreshMessages()
         UIApplication.shared.applicationIconBadgeNumber = array.count
         startTimer()
     }
@@ -350,21 +350,11 @@ class ChatViewController: MessagesViewController {
     }
 
     private var textDraft: String? {
-        if let draft = dc_get_draft(mailboxPointer, UInt32(chatId)) {
-            if let cString = dc_msg_get_text(draft) {
-                let swiftString = String(cString: cString)
-                dc_str_unref(cString)
-                dc_msg_unref(draft)
-                return swiftString
-            }
-            dc_msg_unref(draft)
-            return nil
-        }
-        return nil
+        return dcContext.getDraft(chatId: chatId)
     }
 
     private func getMessageIds(_ count: Int, from: Int? = nil) -> [DcMsg] {
-        let cMessageIds = dc_get_chat_msgs(mailboxPointer, UInt32(chatId), 0, 0)
+        let cMessageIds = dcContext.getChatMessages(chatId: chatId)
 
         let ids: [Int]
         if let from = from {
@@ -374,7 +364,7 @@ class ChatViewController: MessagesViewController {
         }
 
         let markIds: [UInt32] = ids.map { UInt32($0) }
-        dc_markseen_msgs(mailboxPointer, UnsafePointer(markIds), Int32(ids.count))
+        dcContext.markSeenMessages(messageIds: markIds, count: ids.count)
 
         return ids.map {
             DcMsg(id: $0)
@@ -383,12 +373,7 @@ class ChatViewController: MessagesViewController {
 
     @objc private func setTextDraft() {
         if let text = self.messageInputBar.inputTextView.text {
-            let draft = dc_msg_new(mailboxPointer, DC_MSG_TEXT)
-            dc_msg_set_text(draft, text.cString(using: .utf8))
-            dc_set_draft(mailboxPointer, UInt32(chatId), draft)
-
-            // cleanup
-            dc_msg_unref(draft)
+            dcContext.setDraft(chatId: chatId, draftText: text)
         }
     }
 
@@ -889,7 +874,7 @@ extension ChatViewController: MessagesDataSource {
 
     func updateMessage(_ messageId: Int) {
         if let index = messageList.firstIndex(where: { $0.id == messageId }) {
-            dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(messageId)]), 1)
+            dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
 
             messageList[index] = DcMsg(id: messageId)
             // Reload section to update header/footer labels
@@ -915,7 +900,7 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func insertMessage(_ message: DcMsg) {
-        dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(message.id)]), 1)
+        dcContext.markSeenMessages(messageIds: [UInt32(message.id)])
         messageList.append(message)
         emptyStateView.isHidden = true
         // Reload last section to update header/footer labels and insert a new one

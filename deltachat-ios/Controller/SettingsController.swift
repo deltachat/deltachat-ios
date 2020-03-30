@@ -321,13 +321,13 @@ internal final class SettingsViewController: UITableViewController {
     private func handleReceiptConfirmationToggle() {
         receiptConfirmationSwitch.isOn = !receiptConfirmationSwitch.isOn
         dcContext.mdnsEnabled = receiptConfirmationSwitch.isOn
-        dc_configure(mailboxPointer)
+        dcContext.configure()
     }
 
     private func handleAutocryptPreferencesToggle() {
         autocryptSwitch.isOn = !autocryptSwitch.isOn
         dcContext.e2eeEnabled = autocryptSwitch.isOn
-        dc_configure(mailboxPointer)
+        dcContext.configure()
     }
 
     private func sendAutocryptSetupMessage() {

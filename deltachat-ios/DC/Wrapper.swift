@@ -36,6 +36,11 @@ class DcContext {
         return Utils.copyAndFreeArray(inputArray: cContacts)
     }
 
+    func getBlockedContacts() -> [Int] {
+        let cBlockedContacts = dc_get_blocked_contacts(contextPointer)
+        return Utils.copyAndFreeArray(inputArray: cBlockedContacts)
+    }
+
     func addContacts(contactString: String) {
         dc_add_address_book(contextPointer, contactString)
     }
@@ -135,6 +140,96 @@ class DcContext {
         dc_stop_ongoing_process(contextPointer)
     }
 
+    func getInfo() -> [[String]] {
+        if let cString = dc_get_info(contextPointer) {
+            let info = String(cString: cString)
+            dc_str_unref(cString)
+            logger.info(info)
+            return info.components(separatedBy: "\n").map { val in
+                val.components(separatedBy: "=")
+            }
+        }
+        return []
+    }
+
+    func interruptIdle() {
+        dc_interrupt_imap_idle(contextPointer)
+        dc_interrupt_smtp_idle((contextPointer))
+        dc_interrupt_mvbox_idle((contextPointer))
+        dc_interrupt_sentbox_idle((contextPointer))
+    }
+
+    func openDatabase(dbFile: String) {
+        _ = dc_open(contextPointer, dbFile, nil)
+    }
+
+    func closeDatabase() {
+        dc_close(contextPointer)
+    }
+
+    func performImap() {
+        dc_perform_imap_jobs(contextPointer)
+        dc_perform_imap_fetch(contextPointer)
+        dc_perform_imap_idle(contextPointer)
+    }
+
+    func performMoveBox() {
+        dc_perform_mvbox_jobs(contextPointer)
+        dc_perform_mvbox_fetch(contextPointer)
+        dc_perform_mvbox_idle(contextPointer)
+    }
+
+    func performSmtp() {
+        dc_perform_smtp_jobs(contextPointer)
+        dc_perform_smtp_idle(contextPointer)
+    }
+
+    func performSentbox() {
+        dc_perform_sentbox_jobs(contextPointer)
+        dc_perform_sentbox_fetch(contextPointer)
+        dc_perform_sentbox_idle(contextPointer)
+    }
+
+    func setStockTranslation(id: Int32, localizationKey: String) {
+        dc_set_stock_translation(contextPointer, UInt32(id), String.localized(localizationKey))
+    }
+
+    func getDraft(chatId: Int) -> String? {
+        if let draft = dc_get_draft(contextPointer, UInt32(chatId)) {
+            if let cString = dc_msg_get_text(draft) {
+                let swiftString = String(cString: cString)
+                dc_str_unref(cString)
+                dc_msg_unref(draft)
+                return swiftString
+            }
+            dc_msg_unref(draft)
+            return nil
+        }
+        return nil
+    }
+
+    func setDraft(chatId: Int, draftText: String) {
+        let draft = dc_msg_new(contextPointer, DC_MSG_TEXT)
+        dc_msg_set_text(draft, draftText.cString(using: .utf8))
+        dc_set_draft(contextPointer, UInt32(chatId), draft)
+
+        // cleanup
+        dc_msg_unref(draft)
+    }
+
+    func getFreshMessages() -> DcArray {
+        return DcArray(arrayPointer: dc_get_fresh_msgs(contextPointer))
+    }
+
+    func markSeenMessages(messageIds: [UInt32], count: Int = 1) {
+        let ptr = UnsafePointer(messageIds)
+        dc_markseen_msgs(contextPointer, ptr, Int32(count))
+    }
+
+    func getChatMessages(chatId: Int) -> OpaquePointer {
+        return dc_get_chat_msgs(contextPointer, UInt32(chatId), 0, 0)
+    }
+    
     func getMsgInfo(msgId: Int) -> String {
         if let cString = dc_get_msg_info(self.contextPointer, UInt32(msgId)) {
             let swiftString = String(cString: cString)
@@ -167,6 +262,10 @@ class DcContext {
 
     func continueKeyTransfer(msgId: Int, setupCode: String) -> Bool {
         return dc_continue_key_transfer(self.contextPointer, UInt32(msgId), setupCode) != 0
+    }
+
+    func configure() {
+        dc_configure(contextPointer)
     }
 
     func getConfig(_ key: String) -> String? {
@@ -261,6 +360,15 @@ class DcContext {
         dc_imex(contextPointer, what, directory, nil)
     }
 
+    func imexHasBackup(filePath: String) -> String? {
+        var file: String? = nil
+        if let cString = dc_imex_has_backup(contextPointer, filePath) {
+            file = String(cString: cString)
+            dc_str_unref(cString)
+        }
+        return file
+    }
+
     func isSendingLocationsToChat(chatId: Int) -> Bool {
         return dc_is_sending_locations_to_chat(contextPointer, UInt32(chatId)) == 1
     }
@@ -279,6 +387,11 @@ class DcContext {
         }
         let messageIds = Utils.copyAndFreeArray(inputArray: arrayPointer)
         return messageIds
+    }
+
+    // call dc_maybe_network() from a worker thread.
+    func maybeNetwork() {
+        dc_maybe_network(contextPointer)
     }
 
     // also, there is no much worth in adding a separate function or so

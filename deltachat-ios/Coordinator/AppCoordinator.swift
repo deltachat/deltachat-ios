@@ -203,7 +203,7 @@ class ChatListCoordinator: Coordinator {
     }
 
     func showNewChat(contactId: Int) {
-        let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+        let chatId = dcContext.createChatByContactId(contactId: contactId)
         showChat(chatId: Int(chatId))
     }
 }
@@ -623,8 +623,7 @@ class NewGroupCoordinator: Coordinator {
     }
 
     func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
-        let newGroupController = NewGroupAddMembersViewController(dcContext: dcContext,
-                                                                  preselected: preselectedMembers,
+        let newGroupController = NewGroupAddMembersViewController(preselected: preselectedMembers,
                                                                   isVerified: isVerified)
         let coordinator = NewGroupAddMembersCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)

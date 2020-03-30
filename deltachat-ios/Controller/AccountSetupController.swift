@@ -358,7 +358,7 @@ class AccountSetupController: UITableViewController {
             style: .done,
             target: self,
             action: #selector(loginButtonPressed))
-        button.isEnabled = dc_is_configured(mailboxPointer) == 0
+        button.isEnabled = !dcContext.isConfigured()
         return button
     }()
 
@@ -611,7 +611,7 @@ class AccountSetupController: UITableViewController {
         }
 
         print("oAuth-Flag when loggin in: \(dcContext.getAuthFlags())")
-        dc_configure(mailboxPointer)
+        dcContext.configure()
         showProgressHud(title: String.localized("login_header"))
     }
 
@@ -755,12 +755,10 @@ class AccountSetupController: UITableViewController {
         if !documents.isEmpty {
             logger.info("looking for backup in: \(documents[0])")
 
-            if let cString = dc_imex_has_backup(mailboxPointer, documents[0]) {
-                let file = String(cString: cString)
-                dc_str_unref(cString)
+            if let file = dcContext.imexHasBackup(filePath: documents[0]) {
                 logger.info("restoring backup: \(file)")
                 showProgressHud(title: String.localized("import_backup_title"))
-                dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
+                dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: file)
             }
             else {
                 let alert = UIAlertController(

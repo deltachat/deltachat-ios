@@ -2,7 +2,6 @@ import UIKit
 
 class NewGroupAddMembersViewController: GroupMembersViewController {
     weak var coordinator: NewGroupAddMembersCoordinator?
-    let dcContext: DcContext
 
     var onMembersSelected: ((Set<Int>) -> Void)?
     let isVerifiedGroup: Bool
@@ -17,8 +16,7 @@ class NewGroupAddMembersViewController: GroupMembersViewController {
        return button
    }()
 
-    init(dcContext: DcContext, preselected: Set<Int>, isVerified: Bool) {
-        self.dcContext = dcContext
+    init(preselected: Set<Int>, isVerified: Bool) {
         isVerifiedGroup = isVerified
         super.init()
         selectedContactIds = preselected
@@ -192,7 +190,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 
     func loadMemberCandidates() -> [Int] {
-        var contactIds = Utils.getContactIds()
+        var contactIds = dcContext.getContacts(flags: 0)
         let memberSet = Set(chatMemberIds)
         contactIds.removeAll(where: { memberSet.contains($0)})
         return Array(contactIds)
@@ -207,7 +205,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
             return
         }
         for contactId in selectedContactIds {
-            dc_add_contact_to_chat(mailboxPointer, UInt32(chatId), UInt32(contactId))
+           _ = dcContext.addContactToChat(chatId: chatId, contactId: contactId)
         }
         navigationController?.popViewController(animated: true)
     }
@@ -241,7 +239,7 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("pref_blocked_contacts")
-        contactIds = Utils.getBlockedContactIds()
+        contactIds = dcContext.getBlockedContacts()
         selectedContactIds = Set(contactIds)
         navigationItem.searchController = nil
         groupMemberSelectionDelegate = self
@@ -259,7 +257,7 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
             alert.addAction(UIAlertAction(title: String.localized("menu_unblock_contact"), style: .default, handler: { _ in
                 let contact = DcContact(id: contactId)
                 contact.unblock()
-                self.contactIds = Utils.getBlockedContactIds()
+                self.contactIds = self.dcContext.getBlockedContacts()
                 self.selectedContactIds = Set(self.contactIds)
                 self.tableView.reloadData()
             }))
@@ -281,6 +279,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
     weak var groupMemberSelectionDelegate: GroupMemberSelectionDelegate?
     var enableCheckmarks = true
     var numberOfSections = 1
+    let dcContext: DcContext
 
     var contactIds: [Int] = [] {
         didSet {
@@ -325,6 +324,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
     var selectedContactIds: Set<Int> = []
 
     init() {
+        self.dcContext = DcContext.getInstance()
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
     }

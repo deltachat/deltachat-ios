@@ -70,7 +70,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         dcContext.selfstatus = statusCell.getText()
         dcContext.displayname = nameCell.getText()
-        dc_configure(mailboxPointer)
+        dcContext.configure()
     }
 
     // MARK: - Table view data source

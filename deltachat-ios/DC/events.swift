@@ -131,7 +131,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                 logger.info("notifications: added \(content)")
             }
 
-            let array = DcArray(arrayPointer: dc_get_fresh_msgs(mailboxPointer))
+            let array = DcContext.getInstance().getFreshMessages()
             UIApplication.shared.applicationIconBadgeNumber = array.count
         }
 
