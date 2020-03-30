@@ -113,7 +113,7 @@ class WelcomeContentView: UIView {
     private var container = UIView()
 
     private var logoView: UIImageView = {
-        let image = #imageLiteral(resourceName: "ic_launcher").withRenderingMode(.alwaysOriginal)
+        let image = #imageLiteral(resourceName: "dc_logo")
         let view = UIImageView(image: image)
         return view
     }()
