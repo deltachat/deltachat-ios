@@ -3,9 +3,10 @@ import UIKit
 import AVFoundation
 
 class DcContext {
+    static let dcContext: DcContext = DcContext()
     let contextPointer: OpaquePointer
 
-    init() {
+    private init() {
         var version = ""
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             version += " " + appVersion
@@ -16,6 +17,10 @@ class DcContext {
 
     deinit {
         dc_context_unref(contextPointer)
+    }
+
+    static func getInstance() -> DcContext {
+        return .dcContext
     }
 
     func createContact(name: String, email: String) -> Int {
@@ -36,7 +41,7 @@ class DcContext {
     }
 
     func getChat(chatId: Int) -> DcChat {
-        return DcChat(contextPointer, id: chatId)
+        return DcChat(id: chatId)
     }
 
     func getChatIdByContactId(_ contactId: Int) -> Int? {
@@ -50,7 +55,7 @@ class DcContext {
 
     func createChatByMessageId(_ messageId: Int) -> DcChat {
         let chatId = dc_create_chat_by_msg_id(contextPointer, UInt32(messageId))
-        return DcChat(contextPointer, id: Int(chatId))
+        return DcChat(id: Int(chatId))
     }
 
     func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
@@ -465,13 +470,11 @@ class DcChatlist {
 
 class DcChat {
     var chatPointer: OpaquePointer?
-    var contextPointer: OpaquePointer?
 
     // use DcContext.getChat() instead of calling the constructor directly
-    init(_ contextPointer: OpaquePointer, id: Int) {
-        if let p = dc_get_chat(contextPointer, UInt32(id)) {
+    init(id: Int) {
+        if let p = dc_get_chat(DcContext.getInstance().contextPointer, UInt32(id)) {
             chatPointer = p
-            self.contextPointer = contextPointer
         } else {
             fatalError("Invalid chatID opened \(id)")
         }
@@ -479,7 +482,6 @@ class DcChat {
 
     deinit {
         dc_chat_unref(chatPointer)
-        self.contextPointer = nil
     }
 
     var id: Int {
@@ -539,7 +541,7 @@ class DcChat {
     }
 
     var contactIds: [Int] {
-        return Utils.copyAndFreeArray(inputArray: dc_get_chat_contacts(contextPointer, UInt32(id)))
+        return Utils.copyAndFreeArray(inputArray: dc_get_chat_contacts(DcContext.getInstance().contextPointer, UInt32(id)))
     }
 
     lazy var profileImage: UIImage? = { [unowned self] in
@@ -598,15 +600,15 @@ class DcMsg: MessageType {
             DC_MSG_FILE
      */
     init(viewType: Int32) {
-        messagePointer = dc_msg_new(mailboxPointer, viewType)
+        messagePointer = dc_msg_new(DcContext.getInstance().contextPointer, viewType)
     }
 
     init(id: Int) {
-        messagePointer = dc_get_msg(mailboxPointer, UInt32(id))
+        messagePointer = dc_get_msg(DcContext.getInstance().contextPointer, UInt32(id))
     }
 
     init(type: Int32) {
-        messagePointer = dc_msg_new(mailboxPointer, type)
+        messagePointer = dc_msg_new(DcContext.getInstance().contextPointer, type)
     }
 
     deinit {
@@ -894,31 +896,31 @@ class DcMsg: MessageType {
     }
 
     func sendInChat(id: Int) {
-        dc_send_msg(mailboxPointer, UInt32(id), messagePointer)
+        dc_send_msg(DcContext.getInstance().contextPointer, UInt32(id), messagePointer)
     }
 
     func previousMediaURLs() -> [URL] {
         var urls: [URL] = []
-        var prev: Int = Int(dc_get_next_media(mailboxPointer, UInt32(id), -1, Int32(type), 0, 0))
+        var prev: Int = Int(dc_get_next_media(DcContext.getInstance().contextPointer, UInt32(id), -1, Int32(type), 0, 0))
         while prev != 0 {
             let prevMessage = DcMsg(id: prev)
             if let url = prevMessage.fileURL {
                 urls.insert(url, at: 0)
             }
-            prev = Int(dc_get_next_media(mailboxPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
+            prev = Int(dc_get_next_media(DcContext.getInstance().contextPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
         }
         return urls
     }
 
     func nextMediaURLs() -> [URL] {
         var urls: [URL] = []
-        var next: Int = Int(dc_get_next_media(mailboxPointer, UInt32(id), 1, Int32(type), 0, 0))
+        var next: Int = Int(dc_get_next_media(DcContext.getInstance().contextPointer, UInt32(id), 1, Int32(type), 0, 0))
         while next != 0 {
             let nextMessage = DcMsg(id: next)
             if let url = nextMessage.fileURL {
                 urls.append(url)
             }
-            next = Int(dc_get_next_media(mailboxPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
+            next = Int(dc_get_next_media(DcContext.getInstance().contextPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
         }
         return urls
     }
@@ -928,7 +930,7 @@ class DcContact {
     private var contactPointer: OpaquePointer?
 
     init(id: Int) {
-        contactPointer = dc_get_contact(mailboxPointer, UInt32(id))
+        contactPointer = dc_get_contact(DcContext.getInstance().contextPointer, UInt32(id))
     }
 
     deinit {
@@ -997,15 +999,15 @@ class DcContact {
     }
 
     func block() {
-        dc_block_contact(mailboxPointer, UInt32(id), 1)
+        dc_block_contact(DcContext.getInstance().contextPointer, UInt32(id), 1)
     }
 
     func unblock() {
-        dc_block_contact(mailboxPointer, UInt32(id), 0)
+        dc_block_contact(DcContext.getInstance().contextPointer, UInt32(id), 0)
     }
 
     func marknoticed() {
-        dc_marknoticed_contact(mailboxPointer, UInt32(id))
+        dc_marknoticed_contact(DcContext.getInstance().contextPointer, UInt32(id))
     }
 }
 
