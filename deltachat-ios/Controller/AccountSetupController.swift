@@ -832,8 +832,7 @@ class AccountSetupController: UITableViewController {
     }
 
     private func handleLoginSuccess() {
-        // used when login hud successfully went trough
-        dismiss(animated: true, completion: nil)
+        // used when login hud successfully went through
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.registerForPushNotifications()
         initSelectionCells();

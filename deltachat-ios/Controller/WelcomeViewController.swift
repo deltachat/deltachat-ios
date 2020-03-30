@@ -20,6 +20,19 @@ class WelcomeViewController: UIViewController {
         return view
     }()
 
+    // will be shown while transitioning to tabBarController
+    private var activityIndicator: UIActivityIndicatorView = {
+        let view: UIActivityIndicatorView
+        if #available(iOS 13, *) {
+             view = UIActivityIndicatorView(style: .large)
+        } else {
+            view = UIActivityIndicatorView(style: .whiteLarge)
+            view.color = UIColor.gray
+        }
+        view.isHidden = true
+        return view
+    }()
+
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +52,12 @@ class WelcomeViewController: UIViewController {
 
     // MARK: - setup
     private func setupSubviews() {
+
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(welcomeView)
@@ -58,8 +77,17 @@ class WelcomeViewController: UIViewController {
 
         frameGuide.widthAnchor.constraint(equalTo: contentGuide.widthAnchor).isActive = true
     }
-}
 
+    func setTransitionState(_ transitioning: Bool) {
+        if transitioning {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+        activityIndicator.isHidden = !transitioning
+        scrollView.isHidden = transitioning
+    }
+}
 
 class WelcomeContentView: UIView {
 
@@ -126,7 +154,7 @@ class WelcomeContentView: UIView {
     }()
 
     private lazy var buttonStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [loginButton, qrCodeButton, importBackupButton])
+        let stack = UIStackView(arrangedSubviews: [loginButton /*, qrCodeButton, importBackupButton */])
         stack.axis = .vertical
         stack.spacing = 10
         return stack
@@ -135,7 +163,7 @@ class WelcomeContentView: UIView {
 
     private lazy var qrCodeButton: UIButton = {
         let button = UIButton()
-        let title = "Scan QR code"
+        let title = String.localized("qrscan_title")
         button.setTitleColor(UIColor.systemBlue, for: .normal)
         button.setTitle(title, for: .normal)
         button.addTarget(self, action: #selector(qrCodeButtonPressed(_:)), for: .touchUpInside)
@@ -144,7 +172,7 @@ class WelcomeContentView: UIView {
 
     private lazy var importBackupButton: UIButton = {
         let button = UIButton()
-        let title = "Import backup"
+        let title = String.localized("import_backup_title")
         button.setTitleColor(UIColor.systemBlue, for: .normal)
         button.setTitle(title, for: .normal)
         button.addTarget(self, action: #selector(importBackupButtonPressed(_:)), for: .touchUpInside)
@@ -210,16 +238,25 @@ class WelcomeContentView: UIView {
         buttonContainerGuide.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor).isActive = true
         buttonContainerGuide.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
 
+        loginButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
+
         container.addSubview(buttonStack)
         buttonStack.translatesAutoresizingMaskIntoConstraints = false
         buttonStack.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         buttonStack.centerYAnchor.constraint(equalTo: buttonContainerGuide.centerYAnchor).isActive = true
 
+        let buttonStackTopAnchor = buttonStack.topAnchor.constraint(equalTo: buttonContainerGuide.topAnchor, constant: defaultSpacing)
+        let buttonStackBottomAnchor = buttonStack.bottomAnchor.constraint(equalTo: buttonContainerGuide.bottomAnchor, constant: -50)
+
+        _ = [buttonStackTopAnchor, buttonStackBottomAnchor].map {
+            $0.priority = .defaultLow
+            $0.isActive = true
+        }
+
 /*
+         // alternative approach without stackview
         loginButton.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         loginButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: defaultSpacing * 2).isActive = true
-
-
 
 //       loginButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
         loginButton.setContentHuggingPriority(.defaultLow, for: .vertical)
@@ -227,8 +264,6 @@ class WelcomeContentView: UIView {
         let loginButtonBottomConstraint = loginButton.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -50)
         loginButtonBottomConstraint.priority = .defaultLow
         loginButtonBottomConstraint.isActive = true
-*/
-        /*
         qrCodeButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: defaultSpacing).isActive = true
         qrCodeButton.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         importBackupButton.topAnchor.constraint(equalTo: qrCodeButton.bottomAnchor, constant: 10).isActive = true

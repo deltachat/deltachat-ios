@@ -23,7 +23,7 @@ class AppCoordinator: NSObject, Coordinator {
         return tabBarController
     }()
 
-    private lazy var welcomeController: UIViewController = {
+    private lazy var welcomeController: WelcomeViewController = {
         let welcomeController = WelcomeViewController()
         welcomeController.coordinator = self
         return welcomeController
@@ -33,7 +33,12 @@ class AppCoordinator: NSObject, Coordinator {
         let accountSetupController = AccountSetupController(dcContext: dcContext, editView: false)
         let nav = UINavigationController(rootViewController: accountSetupController)
         let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: nav)
-        coordinator.onLoginSuccess = presentTabBarController
+        coordinator.onLoginSuccess = {
+            [unowned self] in
+            self.loginController.dismiss(animated: true) {
+                self.presentTabBarController()
+            }
+        }
         childCoordinators.append(coordinator)
         accountSetupController.coordinator = coordinator
         return nav
@@ -84,7 +89,6 @@ class AppCoordinator: NSObject, Coordinator {
             presentTabBarController()
         } else {
             presentWelcomeController()
-            // presentLoginController()
         }
     }
 
@@ -146,18 +150,28 @@ class AppCoordinator: NSObject, Coordinator {
 extension AppCoordinator: WelcomeCoordinator {
     func showLogin() {
         // add cancel button item to accountSetupController
-        if let nav = loginController as? UINavigationController, let viewController = nav.topViewController {
-            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(
+        if let nav = loginController as? UINavigationController, let loginController = nav.topViewController as? AccountSetupController {
+            loginController.navigationItem.leftBarButtonItem = UIBarButtonItem(
                 title: String.localized("cancel"),
                 style: .done,
                 target: self, action: #selector(cancelButtonPressed(_:))
             )
+            loginController.coordinator?.onLoginSuccess = handleLoginSuccess
         }
         welcomeController.present(loginController, animated: true, completion: nil)
     }
 
     func showQR() {
         return
+    }
+
+    private func handleLoginSuccess() {
+        welcomeController.setTransitionState(true) // this will hide welcomeController's content
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.loginController.dismiss(animated: true) {
+                self.presentTabBarController()
+            }
+        }
     }
 
     @objc private func cancelButtonPressed(_ sender: UIBarButtonItem) {
