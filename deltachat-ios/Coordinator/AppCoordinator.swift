@@ -4,6 +4,7 @@ import Photos
 import MobileCoreServices
 
 class AppCoordinator: NSObject, Coordinator {
+
     private let window: UIWindow
     private let dcContext: DcContext
     private let qrTab = 0
@@ -24,6 +25,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     private lazy var welcomeController: UIViewController = {
         let welcomeController = WelcomeViewController()
+        welcomeController.coordinator = self
         return welcomeController
     }()
 
@@ -138,6 +140,16 @@ class AppCoordinator: NSObject, Coordinator {
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         showTab(index: chatsTab)
+    }
+}
+
+extension AppCoordinator: WelcomeCoordinator {
+    func showLogin() {
+        welcomeController.present(loginController, animated: true, completion: nil)
+    }
+
+    func showQR() {
+        return
     }
 }
 
@@ -814,4 +826,9 @@ protocol ContactDetailCoordinatorProtocol: class {
 protocol EditContactCoordinatorProtocol: class {
     func navigateBack()
     func showChat(chatId: Int)
+}
+
+protocol WelcomeCoordinator: class {
+    func showLogin()
+    func showQR()
 }

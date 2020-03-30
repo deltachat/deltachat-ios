@@ -2,6 +2,8 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
 
+    weak var coordinator: WelcomeCoordinator?
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
@@ -10,6 +12,10 @@ class WelcomeViewController: UIViewController {
 
     private lazy var welcomeView: WelcomeContentView = {
         let view = WelcomeContentView()
+        view.onLogin = {
+            [unowned self] in
+            self.coordinator?.showLogin()
+        }
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -192,7 +198,7 @@ class WelcomeContentView: UIView {
         logoTopAnchor.isActive = true
 
         loginButton.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
-        loginButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: defaultSpacing).isActive = true
+        loginButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: defaultSpacing * 2).isActive = true
 
         qrCodeButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: defaultSpacing).isActive = true
         qrCodeButton.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
