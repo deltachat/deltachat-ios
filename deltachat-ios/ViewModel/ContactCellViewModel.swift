@@ -23,6 +23,7 @@ struct ChatCellData {
     let chatId: Int
     let summary: DcLot
     let unreadMessages: Int
+    let msgId: Int?
 }
 
 struct DeaddropCellData {

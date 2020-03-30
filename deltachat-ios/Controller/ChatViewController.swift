@@ -142,6 +142,7 @@ class ChatViewController: MessagesViewController {
                              emptyStateView.constraintAlignTrailingTo(view, paddingTrailing: 40)])
     }
 
+    // MARK: - lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // this will be removed in viewWillDisappear
@@ -379,6 +380,17 @@ class ChatViewController: MessagesViewController {
         return ids.map {
             DcMsg(id: $0)
         }
+    }
+
+    func scrollToMessage(id: Int, animated: Bool) {
+        for (index, msg) in messageList.enumerated() {
+            if msg.id == id {
+                let indexPath = IndexPath(row: 0, section: index)
+                messagesCollectionView.scrollToItem(at: indexPath, at: .top, animated: animated)
+                return
+            }
+        }
+        safe_fatalError("message could not be found")
     }
 
     @objc private func setTextDraft() {

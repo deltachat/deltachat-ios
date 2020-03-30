@@ -185,12 +185,17 @@ class ChatListCoordinator: Coordinator {
         navigationController.pushViewController(newChatVC, animated: true)
     }
 
-    func showChat(chatId: Int) {
+    func showChat(chatId: Int, msgId: Int? = nil) {
         let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
         let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
         childCoordinators.append(coordinator)
         chatVC.coordinator = coordinator
-        navigationController.pushViewController(chatVC, animated: true)
+
+        navigationController.pushViewController(chatVC, animated: true, completion: {
+            if let msgId = msgId {
+                chatVC.scrollToMessage(id: msgId, animated: true)
+            }
+        })
     }
 
     func showArchive() {

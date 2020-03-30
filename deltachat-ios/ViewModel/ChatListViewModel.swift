@@ -216,7 +216,8 @@ private extension ChatListViewModel {
             chatData: ChatCellData(
                 chatId: chatId,
                 summary: summary,
-                unreadMessages: unreadMessages
+                unreadMessages: unreadMessages,
+                msgId: nil
             ),
             titleHighlightIndexes: chatTitleIndexes
         )
@@ -234,7 +235,8 @@ private extension ChatListViewModel {
             chatData: ChatCellData(
                 chatId: chatId,
                 summary: summary,
-                unreadMessages: unreadMessages
+                unreadMessages: unreadMessages,
+                msgId: msgId
             )
         )
         let subtitle = viewModel.subtitle
