@@ -145,11 +145,23 @@ class AppCoordinator: NSObject, Coordinator {
 
 extension AppCoordinator: WelcomeCoordinator {
     func showLogin() {
+        // add cancel button item to accountSetupController
+        if let nav = loginController as? UINavigationController, let viewController = nav.topViewController {
+            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(
+                title: String.localized("cancel"),
+                style: .done,
+                target: self, action: #selector(cancelButtonPressed(_:))
+            )
+        }
         welcomeController.present(loginController, animated: true, completion: nil)
     }
 
     func showQR() {
         return
+    }
+
+    @objc private func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        loginController.dismiss(animated: true, completion: nil)
     }
 }
 
