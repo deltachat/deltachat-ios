@@ -155,7 +155,6 @@
 		AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */; };
 		AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */; };
 		AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC472283045D00EDC689 /* EditSettingsController.swift */; };
-		AEF6E8C82432449900AFC203 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF6E8C72432449900AFC203 /* UINavigationController+Extension.swift */; };
 		AEFBE22F23FEF23D0045327A /* ProviderInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */; };
 		AEFBE23123FF09B20045327A /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBE23023FF09B20045327A /* TypeAlias.swift */; };
 		B21005DB23383664004C70C5 /* SettingsClassicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */; };
@@ -390,7 +389,6 @@
 		AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersViewController.swift; sourceTree = "<group>"; };
 		AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
 		AEE6EC472283045D00EDC689 /* EditSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsController.swift; sourceTree = "<group>"; };
-		AEF6E8C72432449900AFC203 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderInfoCell.swift; sourceTree = "<group>"; };
 		AEFBE23023FF09B20045327A /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClassicViewController.swift; sourceTree = "<group>"; };
@@ -479,7 +477,6 @@
 				3059620D234614E700C80F33 /* DcContact+Extension.swift */,
 				3059620F2346154D00C80F33 /* String+Extension.swift */,
 				302B84CD2397F6CD001C261F /* URL+Extension.swift */,
-				AEF6E8C72432449900AFC203 /* UINavigationController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1167,7 +1164,6 @@
 				30A4D9AE2332672700544344 /* QrInviteViewController.swift in Sources */,
 				305961D62346125100C80F33 /* MessageInputBar.swift in Sources */,
 				305961ED2346125100C80F33 /* DetectorType.swift in Sources */,
-				AEF6E8C82432449900AFC203 /* UINavigationController+Extension.swift in Sources */,
 				305962062346125100C80F33 /* TypingIndicatorCellSizeCalculator.swift in Sources */,
 				AE851AC7227C776400ED86F0 /* Location.swift in Sources */,
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,

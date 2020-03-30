@@ -45,6 +45,8 @@ class ChatViewController: MessagesViewController {
     let outgoingAvatarOverlap: CGFloat = 17.5
     let loadCount = 30
 
+    private var searchedMsgId: Int?
+
     let chatId: Int
     let refreshControl = UIRefreshControl()
     var messageList: [DcMsg] = []
@@ -80,7 +82,7 @@ class ChatViewController: MessagesViewController {
         return messageInputBar
     }
 
-    init(dcContext: DcContext, chatId: Int) {
+    init(dcContext: DcContext, chatId: Int, searchedMsgId: Int? = nil) {
         let dcChat = DcChat(id: chatId)
         self.dcContext = dcContext
         self.chatId = chatId
@@ -88,6 +90,7 @@ class ChatViewController: MessagesViewController {
         self.showNamesAboveMessage = dcChat.isGroup
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
+        self.searchedMsgId = searchedMsgId
     }
 
     required init?(coder _: NSCoder) {
@@ -316,7 +319,12 @@ class ChatViewController: MessagesViewController {
                 self.messageList = self.getMessageIds(self.loadCount)
                 self.messagesCollectionView.reloadData()
                 self.refreshControl.endRefreshing()
-                self.messagesCollectionView.scrollToBottom(animated: false)
+                if let msgId = self.searchedMsgId {
+                    self.scrollToMessage(id: msgId, animated: false)
+                    self.searchedMsgId = nil
+                } else {
+                    self.messagesCollectionView.scrollToBottom(animated: false)
+                }
                 self.showEmptyStateView(self.messageList.isEmpty)
             }
         }

@@ -2,7 +2,7 @@ import UIKit
 
 class MailboxViewController: ChatViewController {
 
-    override init(dcContext: DcContext, chatId: Int) {
+    override init(dcContext: DcContext, chatId: Int, searchedMsgId: Int? = nil) {
         super.init(dcContext: dcContext, chatId: chatId)
         hidesBottomBarWhenPushed = true
         showCustomNavBar = false
