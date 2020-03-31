@@ -229,7 +229,7 @@ class WelcomeContentView: UIView {
         logoHeightConstraint.isActive = true
         logoView.widthAnchor.constraint(equalTo: logoView.heightAnchor).isActive = true
 
-        let logoTopAnchor = logoView.topAnchor.constraint(equalTo: container.topAnchor, constant: 20)   // this will make container bigger if needed
+        let logoTopAnchor = logoView.topAnchor.constraint(equalTo: container.topAnchor, constant: 20)   // this will allow the container to grow in height
         logoTopAnchor.priority = .defaultLow
         logoTopAnchor.isActive = true
 
@@ -246,33 +246,13 @@ class WelcomeContentView: UIView {
         buttonStack.centerYAnchor.constraint(equalTo: buttonContainerGuide.centerYAnchor).isActive = true
 
         let buttonStackTopAnchor = buttonStack.topAnchor.constraint(equalTo: buttonContainerGuide.topAnchor, constant: defaultSpacing)
+        // this will allow the container to grow in height
         let buttonStackBottomAnchor = buttonStack.bottomAnchor.constraint(equalTo: buttonContainerGuide.bottomAnchor, constant: -50)
 
         _ = [buttonStackTopAnchor, buttonStackBottomAnchor].map {
             $0.priority = .defaultLow
             $0.isActive = true
         }
-
-/*
-         // alternative approach without stackview
-        loginButton.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
-        loginButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: defaultSpacing * 2).isActive = true
-
-//       loginButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        loginButton.setContentHuggingPriority(.defaultLow, for: .vertical)
-
-        let loginButtonBottomConstraint = loginButton.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -50)
-        loginButtonBottomConstraint.priority = .defaultLow
-        loginButtonBottomConstraint.isActive = true
-        qrCodeButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: defaultSpacing).isActive = true
-        qrCodeButton.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
-        importBackupButton.topAnchor.constraint(equalTo: qrCodeButton.bottomAnchor, constant: 10).isActive = true
-        importBackupButton.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
-        importBackupButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        let importBackupBottomConstraint = importBackupButton.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -50)
-        importBackupBottomConstraint.priority = .defaultLow
-        importBackupBottomConstraint.isActive = true
-        */
     }
 
     private func calculateLogoHeight() -> CGFloat {
