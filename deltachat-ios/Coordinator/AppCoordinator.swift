@@ -158,6 +158,7 @@ extension AppCoordinator: WelcomeCoordinator {
             )
             loginController.coordinator?.onLoginSuccess = handleLoginSuccess
         }
+        loginController.modalPresentationStyle = .fullScreen
         welcomeController.present(loginController, animated: true, completion: nil)
     }
 
