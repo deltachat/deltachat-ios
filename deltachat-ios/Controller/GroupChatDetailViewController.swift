@@ -391,7 +391,7 @@ extension GroupChatDetailViewController {
         if let userId = currentUser?.id {
             let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { _ in
-                let _ = self.context.removeContactFromChat(chatId: self.chat.id, contactId: userId)
+                _ = self.context.removeContactFromChat(chatId: self.chat.id, contactId: userId)
                 self.editBarButtonItem.isEnabled = false
                 self.updateGroupMembers()
             }))

@@ -361,7 +361,7 @@ class DcContext {
     }
 
     func imexHasBackup(filePath: String) -> String? {
-        var file: String? = nil
+        var file: String?
         if let cString = dc_imex_has_backup(contextPointer, filePath) {
             file = String(cString: cString)
             dc_str_unref(cString)
