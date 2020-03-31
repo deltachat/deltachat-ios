@@ -184,7 +184,7 @@ class WelcomeContentView: UIView {
     init() {
         super.init(frame: .zero)
         setupSubviews()
-        backgroundColor = .white
+        backgroundColor = DcColors.defaultBackgroundColor
     }
 
     required init?(coder: NSCoder) {
