@@ -825,7 +825,7 @@ class AccountSetupController: UITableViewController {
             appDelegate.open()
             appDelegate.start()
 
-            appDelegate.appCoordinator.presentWelcomeController()
+            appDelegate.appCoordinator.presentWelcomeController(animated: true)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true, completion: nil)

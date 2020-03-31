@@ -88,7 +88,7 @@ class AppCoordinator: NSObject, Coordinator {
         if dcContext.isConfigured() {
             presentTabBarController()
         } else {
-            presentWelcomeController()
+            showWelomeController()
         }
     }
 
@@ -130,7 +130,19 @@ class AppCoordinator: NSObject, Coordinator {
         }
     }
 
-    func presentWelcomeController() {
+    func presentWelcomeController(animated: Bool) {
+        if animated {
+            welcomeController.setTransitionState(true)
+            showWelomeController()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.welcomeController.setTransitionState(false)
+            }
+        } else {
+            showWelomeController()
+        }
+    }
+
+    private func showWelomeController() {
         window.rootViewController = welcomeController
         window.makeKeyAndVisible()
     }
@@ -166,6 +178,7 @@ extension AppCoordinator: WelcomeCoordinator {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.loginController.dismiss(animated: true) {
                 self.presentTabBarController()
+                self.welcomeController.setTransitionState(false)
             }
         }
     }
