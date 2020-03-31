@@ -324,7 +324,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
     var selectedContactIds: Set<Int> = []
 
     init() {
-        self.dcContext = DcContext.getInstance()
+        self.dcContext = DcContext.shared
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
     }

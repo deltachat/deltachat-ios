@@ -252,7 +252,7 @@ class ContactCell: UITableViewCell {
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
 
         case .chat(let chatData):
-            let chat = DcContext.getInstance().getChat(chatId: chatData.chatId)
+            let chat = DcContext.shared.getChat(chatId: chatData.chatId)
 
             // text bold if chat contains unread messages - otherwise hightlight search results if needed
             if chatData.unreadMessages > 0 {

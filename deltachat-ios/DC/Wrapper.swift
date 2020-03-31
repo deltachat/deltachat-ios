@@ -19,7 +19,7 @@ class DcContext {
         dc_context_unref(contextPointer)
     }
 
-    static func getInstance() -> DcContext {
+    static var shared: DcContext {
         return .dcContext
     }
 
@@ -586,7 +586,7 @@ class DcChat {
 
     // use DcContext.getChat() instead of calling the constructor directly
     init(id: Int) {
-        if let p = dc_get_chat(DcContext.getInstance().contextPointer, UInt32(id)) {
+        if let p = dc_get_chat(DcContext.shared.contextPointer, UInt32(id)) {
             chatPointer = p
         } else {
             fatalError("Invalid chatID opened \(id)")
@@ -654,7 +654,7 @@ class DcChat {
     }
 
     var contactIds: [Int] {
-        return Utils.copyAndFreeArray(inputArray: dc_get_chat_contacts(DcContext.getInstance().contextPointer, UInt32(id)))
+        return Utils.copyAndFreeArray(inputArray: dc_get_chat_contacts(DcContext.shared.contextPointer, UInt32(id)))
     }
 
     lazy var profileImage: UIImage? = { [unowned self] in
@@ -713,15 +713,15 @@ class DcMsg: MessageType {
             DC_MSG_FILE
      */
     init(viewType: Int32) {
-        messagePointer = dc_msg_new(DcContext.getInstance().contextPointer, viewType)
+        messagePointer = dc_msg_new(DcContext.shared.contextPointer, viewType)
     }
 
     init(id: Int) {
-        messagePointer = dc_get_msg(DcContext.getInstance().contextPointer, UInt32(id))
+        messagePointer = dc_get_msg(DcContext.shared.contextPointer, UInt32(id))
     }
 
     init(type: Int32) {
-        messagePointer = dc_msg_new(DcContext.getInstance().contextPointer, type)
+        messagePointer = dc_msg_new(DcContext.shared.contextPointer, type)
     }
 
     deinit {
@@ -1009,31 +1009,31 @@ class DcMsg: MessageType {
     }
 
     func sendInChat(id: Int) {
-        dc_send_msg(DcContext.getInstance().contextPointer, UInt32(id), messagePointer)
+        dc_send_msg(DcContext.shared.contextPointer, UInt32(id), messagePointer)
     }
 
     func previousMediaURLs() -> [URL] {
         var urls: [URL] = []
-        var prev: Int = Int(dc_get_next_media(DcContext.getInstance().contextPointer, UInt32(id), -1, Int32(type), 0, 0))
+        var prev: Int = Int(dc_get_next_media(DcContext.shared.contextPointer, UInt32(id), -1, Int32(type), 0, 0))
         while prev != 0 {
             let prevMessage = DcMsg(id: prev)
             if let url = prevMessage.fileURL {
                 urls.insert(url, at: 0)
             }
-            prev = Int(dc_get_next_media(DcContext.getInstance().contextPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
+            prev = Int(dc_get_next_media(DcContext.shared.contextPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
         }
         return urls
     }
 
     func nextMediaURLs() -> [URL] {
         var urls: [URL] = []
-        var next: Int = Int(dc_get_next_media(DcContext.getInstance().contextPointer, UInt32(id), 1, Int32(type), 0, 0))
+        var next: Int = Int(dc_get_next_media(DcContext.shared.contextPointer, UInt32(id), 1, Int32(type), 0, 0))
         while next != 0 {
             let nextMessage = DcMsg(id: next)
             if let url = nextMessage.fileURL {
                 urls.append(url)
             }
-            next = Int(dc_get_next_media(DcContext.getInstance().contextPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
+            next = Int(dc_get_next_media(DcContext.shared.contextPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
         }
         return urls
     }
@@ -1043,7 +1043,7 @@ class DcContact {
     private var contactPointer: OpaquePointer?
 
     init(id: Int) {
-        contactPointer = dc_get_contact(DcContext.getInstance().contextPointer, UInt32(id))
+        contactPointer = dc_get_contact(DcContext.shared.contextPointer, UInt32(id))
     }
 
     deinit {
@@ -1112,15 +1112,15 @@ class DcContact {
     }
 
     func block() {
-        dc_block_contact(DcContext.getInstance().contextPointer, UInt32(id), 1)
+        dc_block_contact(DcContext.shared.contextPointer, UInt32(id), 1)
     }
 
     func unblock() {
-        dc_block_contact(DcContext.getInstance().contextPointer, UInt32(id), 0)
+        dc_block_contact(DcContext.shared.contextPointer, UInt32(id), 0)
     }
 
     func marknoticed() {
-        dc_marknoticed_contact(DcContext.getInstance().contextPointer, UInt32(id))
+        dc_marknoticed_contact(DcContext.shared.contextPointer, UInt32(id))
     }
 }
 

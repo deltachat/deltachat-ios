@@ -77,7 +77,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         if let groupImage = groupImage, let dcContext = coordinator?.dcContext {
             AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: Int(chat.id))
         }
-        _ = DcContext.getInstance().setChatName(chatId: chat.id, name: newName ?? "")
+        _ = DcContext.shared.setChatName(chatId: chat.id, name: newName ?? "")
         coordinator?.navigateBack()
     }
 
