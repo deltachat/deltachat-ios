@@ -117,7 +117,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
 
         let cellData = ChatCellData(chatId: chatId, summary: summary, unreadMessages: unreadMessages)
         let cellViewModel = ChatCellViewModel(dcContext: context, chatData: cellData)
-        cell.updateCell(dcContext: context, cellViewModel: cellViewModel)
+        cell.updateCell(cellViewModel: cellViewModel)
     }
 
     func titleFor(section: Int) -> String? {

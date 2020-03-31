@@ -259,7 +259,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 chatId: context.getChatIdByContactId(contactId)
             )
             let cellViewModel = ContactCellViewModel(contactData: cellData)
-            contactCell.updateCell(dcContext: context, cellViewModel: cellViewModel)
+            contactCell.updateCell(cellViewModel: cellViewModel)
             return contactCell
         case .chatActions:
             if row == chatActionsRowArchiveChat {

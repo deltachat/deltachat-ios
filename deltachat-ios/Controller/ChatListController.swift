@@ -177,7 +177,7 @@ class ChatListController: UITableViewController {
             guard let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as? ContactCell else {
                 break
             }
-            deaddropCell.updateCell(dcContext: dcContext, cellViewModel: cellData)
+            deaddropCell.updateCell(cellViewModel: cellData)
             return deaddropCell
         case .chat(let chatData):
             let chatId = chatData.chatId
@@ -185,13 +185,13 @@ class ChatListController: UITableViewController {
                 return getArchiveCell(title: dcContext.getChat(chatId: chatId).name)
             } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
                 // default chatCell
-                chatCell.updateCell(dcContext: dcContext, cellViewModel: cellData)
+                chatCell.updateCell(cellViewModel: cellData)
                 return chatCell
             }
         case .contact:
             safe_assert(viewModel.searchActive)
             if let contactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as? ContactCell {
-                contactCell.updateCell(dcContext: dcContext, cellViewModel: cellData)
+                contactCell.updateCell(cellViewModel: cellData)
                 return contactCell
             }
         }
