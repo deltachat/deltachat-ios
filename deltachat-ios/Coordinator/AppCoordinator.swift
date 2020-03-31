@@ -135,11 +135,6 @@ class AppCoordinator: NSObject, Coordinator {
         window.makeKeyAndVisible()
     }
 
-    func presentLoginController() {
-        window.rootViewController = loginController
-        window.makeKeyAndVisible()
-    }
-
     func presentTabBarController() {
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
