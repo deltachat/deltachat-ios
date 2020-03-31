@@ -825,15 +825,14 @@ class AccountSetupController: UITableViewController {
             appDelegate.open()
             appDelegate.start()
 
-            appDelegate.appCoordinator.presentLoginController()
+            appDelegate.appCoordinator.presentWelcomeController(animated: true)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true, completion: nil)
     }
 
     private func handleLoginSuccess() {
-        // used when login hud successfully went trough
-        dismiss(animated: true, completion: nil)
+        // used when login hud successfully went through
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.registerForPushNotifications()
         initSelectionCells();

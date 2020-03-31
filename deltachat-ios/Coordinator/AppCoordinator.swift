@@ -4,6 +4,7 @@ import Photos
 import MobileCoreServices
 
 class AppCoordinator: NSObject, Coordinator {
+
     private let window: UIWindow
     private let dcContext: DcContext
     private let qrTab = 0
@@ -22,11 +23,22 @@ class AppCoordinator: NSObject, Coordinator {
         return tabBarController
     }()
 
+    private lazy var welcomeController: WelcomeViewController = {
+        let welcomeController = WelcomeViewController()
+        welcomeController.coordinator = self
+        return welcomeController
+    }()
+
     private lazy var loginController: UIViewController = {
         let accountSetupController = AccountSetupController(dcContext: dcContext, editView: false)
         let nav = UINavigationController(rootViewController: accountSetupController)
         let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: nav)
-        coordinator.onLoginSuccess = presentTabBarController
+        coordinator.onLoginSuccess = {
+            [unowned self] in
+            self.loginController.dismiss(animated: true) {
+                self.presentTabBarController()
+            }
+        }
         childCoordinators.append(coordinator)
         accountSetupController.coordinator = coordinator
         return nav
@@ -76,7 +88,7 @@ class AppCoordinator: NSObject, Coordinator {
         if dcContext.isConfigured() {
             presentTabBarController()
         } else {
-            presentLoginController()
+            showWelomeController()
         }
     }
 
@@ -118,8 +130,20 @@ class AppCoordinator: NSObject, Coordinator {
         }
     }
 
-    func presentLoginController() {
-        window.rootViewController = loginController
+    func presentWelcomeController(animated: Bool) {
+        if animated {
+            welcomeController.setTransitionState(true)
+            showWelomeController()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.welcomeController.setTransitionState(false)
+            }
+        } else {
+            showWelomeController()
+        }
+    }
+
+    private func showWelomeController() {
+        window.rootViewController = welcomeController
         window.makeKeyAndVisible()
     }
 
@@ -127,6 +151,40 @@ class AppCoordinator: NSObject, Coordinator {
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         showTab(index: chatsTab)
+    }
+}
+
+extension AppCoordinator: WelcomeCoordinator {
+    func showLogin() {
+        // add cancel button item to accountSetupController
+        if let nav = loginController as? UINavigationController, let loginController = nav.topViewController as? AccountSetupController {
+            loginController.navigationItem.leftBarButtonItem = UIBarButtonItem(
+                title: String.localized("cancel"),
+                style: .done,
+                target: self, action: #selector(cancelButtonPressed(_:))
+            )
+            loginController.coordinator?.onLoginSuccess = handleLoginSuccess
+        }
+        loginController.modalPresentationStyle = .fullScreen
+        welcomeController.present(loginController, animated: true, completion: nil)
+    }
+
+    func showQR() {
+        return
+    }
+
+    private func handleLoginSuccess() {
+        welcomeController.setTransitionState(true) // this will hide welcomeController's content
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.loginController.dismiss(animated: true) {
+                self.presentTabBarController()
+                self.welcomeController.setTransitionState(false)
+            }
+        }
+    }
+
+    @objc private func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        loginController.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -803,4 +861,9 @@ protocol ContactDetailCoordinatorProtocol: class {
 protocol EditContactCoordinatorProtocol: class {
     func navigateBack()
     func showChat(chatId: Int)
+}
+
+protocol WelcomeCoordinator: class {
+    func showLogin()
+    func showQR()
 }
