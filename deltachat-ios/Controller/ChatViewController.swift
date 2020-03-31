@@ -398,7 +398,6 @@ class ChatViewController: MessagesViewController {
                 return
             }
         }
-        safe_fatalError("message could not be found")
     }
 
     @objc private func setTextDraft() {
