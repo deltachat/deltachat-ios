@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class QrViewController: UITableViewController, QrCodeReaderDelegate {
+class QrViewController: UITableViewController {
     private let rowQRCode = 0
     private let rowScanQR = 1
 
@@ -129,82 +129,7 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
         }
     }
 
-    //QRCodeDelegate
-    func handleQrCode(_ code: String) {
-        qrCodeReaderController.dismiss(animated: true) {
-            self.processQRCode(code)
-        }
-    }
-
-    private func processQRCode(_ code: String) {
-        let qrParsed: DcLot = self.dcContext.checkQR(qrCode: code)
-        let state = Int32(qrParsed.state)
-        switch state {
-        case DC_QR_ASK_VERIFYCONTACT:
-            let nameAndAddress = DcContact(id: qrParsed.id).nameNAddr
-            joinSecureJoin(alertMessage: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), nameAndAddress), code: code)
-
-        case DC_QR_ASK_VERIFYGROUP:
-            let groupName = qrParsed.text1 ?? "ErrGroupName"
-            joinSecureJoin(alertMessage: String.localizedStringWithFormat(String.localized("qrscan_ask_join_group"), groupName), code: code)
-
-        case DC_QR_FPR_WITHOUT_ADDR:
-            let msg = String.localized("qrscan_no_addr_found") + "\n\n" +
-                String.localized("qrscan_fingerprint_label") + ":\n" + (qrParsed.text1 ?? "")
-            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-
-        case DC_QR_FPR_MISMATCH:
-            let nameAndAddress = DcContact(id: qrParsed.id).nameNAddr
-            let msg = String.localizedStringWithFormat(String.localized("qrscan_fingerprint_mismatch"), nameAndAddress)
-            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-
-        case DC_QR_ADDR, DC_QR_FPR_OK:
-            let nameAndAddress = DcContact(id: qrParsed.id).nameNAddr
-            let msg = String.localizedStringWithFormat(String.localized(state==DC_QR_ADDR ? "ask_start_chat_with" : "qrshow_x_verified"), nameAndAddress)
-            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-                let chatId = self.dcContext.createChatByContactId(contactId: qrParsed.id)
-                self.coordinator?.showChat(chatId: chatId)
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-
-        case DC_QR_TEXT:
-            let msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), qrParsed.text1 ?? "")
-            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-
-        case DC_QR_URL:
-            let url = qrParsed.text1 ?? ""
-            let msg = String.localizedStringWithFormat(String.localized("qrscan_contains_url"), url)
-            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("open"), style: .default, handler: { _ in
-                if let url = URL(string: url) {
-                    UIApplication.shared.open(url)
-                }
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-
-        default:
-            var msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), code)
-            if state == DC_QR_ERROR {
-                if let errorMsg = qrParsed.text1 {
-                    msg = errorMsg + "\n\n" + msg
-                }
-            }
-            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
-    }
-
-    private func joinSecureJoin(alertMessage: String, code: String) {
+      private func joinSecureJoin(alertMessage: String, code: String) {
         let alert = UIAlertController(title: alertMessage,
                                       message: nil,
                                       preferredStyle: .alert)
@@ -314,4 +239,78 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
         chatVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(chatVC, animated: true)
     }
+}
+
+//MARK: - QRCodeDelegate
+extension QrViewController: QrCodeReaderDelegate {
+
+      func handleQrCode(_ code: String) {
+          let qrParsed: DcLot = self.dcContext.checkQR(qrCode: code)
+          let state = Int32(qrParsed.state)
+          switch state {
+          case DC_QR_ASK_VERIFYCONTACT:
+              let nameAndAddress = DcContact(id: qrParsed.id).nameNAddr
+              joinSecureJoin(alertMessage: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), nameAndAddress), code: code)
+
+          case DC_QR_ASK_VERIFYGROUP:
+              let groupName = qrParsed.text1 ?? "ErrGroupName"
+              joinSecureJoin(alertMessage: String.localizedStringWithFormat(String.localized("qrscan_ask_join_group"), groupName), code: code)
+
+          case DC_QR_FPR_WITHOUT_ADDR:
+              let msg = String.localized("qrscan_no_addr_found") + "\n\n" +
+                  String.localized("qrscan_fingerprint_label") + ":\n" + (qrParsed.text1 ?? "")
+              let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+              alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+              present(alert, animated: true, completion: nil)
+
+          case DC_QR_FPR_MISMATCH:
+              let nameAndAddress = DcContact(id: qrParsed.id).nameNAddr
+              let msg = String.localizedStringWithFormat(String.localized("qrscan_fingerprint_mismatch"), nameAndAddress)
+              let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+              alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+              present(alert, animated: true, completion: nil)
+
+          case DC_QR_ADDR, DC_QR_FPR_OK:
+              let nameAndAddress = DcContact(id: qrParsed.id).nameNAddr
+              let msg = String.localizedStringWithFormat(String.localized(state==DC_QR_ADDR ? "ask_start_chat_with" : "qrshow_x_verified"), nameAndAddress)
+              let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+              alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+                  let chatId = self.dcContext.createChatByContactId(contactId: qrParsed.id)
+                  self.coordinator?.showChat(chatId: chatId)
+              }))
+              alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
+              present(alert, animated: true, completion: nil)
+
+          case DC_QR_TEXT:
+              let msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), qrParsed.text1 ?? "")
+              let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+              alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+              present(alert, animated: true, completion: nil)
+
+          case DC_QR_URL:
+              let url = qrParsed.text1 ?? ""
+              let msg = String.localizedStringWithFormat(String.localized("qrscan_contains_url"), url)
+              let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+              alert.addAction(UIAlertAction(title: String.localized("open"), style: .default, handler: { _ in
+                  if let url = URL(string: url) {
+                      UIApplication.shared.open(url)
+                  }
+              }))
+              alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
+              present(alert, animated: true, completion: nil)
+
+          default:
+              var msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), code)
+              if state == DC_QR_ERROR {
+                  if let errorMsg = qrParsed.text1 {
+                      msg = errorMsg + "\n\n" + msg
+                  }
+              }
+              let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+              alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+              present(alert, animated: true, completion: nil)
+          }
+      }
+
+
 }

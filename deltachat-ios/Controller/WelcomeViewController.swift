@@ -4,6 +4,10 @@ class WelcomeViewController: UIViewController {
 
     weak var coordinator: WelcomeCoordinator?
 
+    private let dcContext: DcContext
+
+    private var scannedQrCode: String?
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
@@ -36,6 +40,15 @@ class WelcomeViewController: UIViewController {
         view.isHidden = true
         return view
     }()
+
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: - lifecycle
     override func viewDidLoad() {
@@ -90,6 +103,49 @@ class WelcomeViewController: UIViewController {
         }
         activityIndicator.isHidden = !transitioning
         scrollView.isHidden = transitioning
+    }
+
+    func createAccountFromQRCode(_ action: UIAlertAction) {
+        guard let code = scannedQrCode else {
+            return
+        }
+        let success = dcContext.configureAccountFromQR(qrCode: code)
+        scannedQrCode = nil
+        if success {
+            coordinator?.handleLoginSuccess()
+        }
+    }
+}
+
+extension WelcomeViewController: QrCodeReaderDelegate {
+    func handleQrCode(_ code: String) {
+        self.scannedQrCode = code
+        let lot = dcContext.checkQR(qrCode: code)
+        if let domain = lot.text1, lot.state == DC_QR_ACCOUNT {
+            confirmAccountCreationAlert(accountDomain: domain)
+        }
+    }
+
+    private func confirmAccountCreationAlert(accountDomain domain: String) {
+        let title = "Create new e-mail address on \"\(domain)\" and log in there?"
+
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+
+        let cancelAction = UIAlertAction(
+            title: String.localized("cancel"),
+            style: .cancel,
+            handler: { [unowned self] _ in
+                self.scannedQrCode = nil
+            }
+        )
+        let okAction = UIAlertAction(
+            title: String.localized("ok"),
+            style: .default,
+            handler: createAccountFromQRCode(_:)
+        )
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
     }
 }
 
