@@ -288,9 +288,9 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
     }
 
     @objc func openQRCodeScanner() {
-        if let ctrl = navigationController {
-            ctrl.pushViewController(qrCodeReaderController, animated: true)
-        }
+        let nav = UINavigationController(rootViewController: qrCodeReaderController)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
     }
 
     private func createQRCodeView() -> UIView {

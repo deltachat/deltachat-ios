@@ -16,6 +16,10 @@ class WelcomeViewController: UIViewController {
             [unowned self] in
             self.coordinator?.showLogin()
         }
+        view.onScanQRCode = {
+            [unowned self] in
+            self.coordinator?.showQR()
+        }
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -154,7 +158,7 @@ class WelcomeContentView: UIView {
     }()
 
     private lazy var buttonStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [loginButton /*, qrCodeButton, importBackupButton */])
+        let stack = UIStackView(arrangedSubviews: [loginButton, qrCodeButton /*, importBackupButton */])
         stack.axis = .vertical
         stack.spacing = 10
         return stack

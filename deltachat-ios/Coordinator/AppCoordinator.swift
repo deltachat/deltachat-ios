@@ -175,7 +175,9 @@ extension AppCoordinator: WelcomeCoordinator {
     }
 
     func showQR() {
-        return
+        let qrController = QrCodeReaderController()
+        let nav = UINavigationController(rootViewController: qrController)
+        welcomeController.present(nav, animated: true)
     }
 
     private func handleLoginSuccess() {
