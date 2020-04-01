@@ -214,13 +214,6 @@
 "pref_using_default" = "Utilizando padrão: %s";
 "pref_profile_info_headline" = "O seu perfil";
 "pref_profile_photo" = "Foto do perfil";
-"pref_trim_headline" = "Aparar mensagens";
-"pref_trim_option" = "Apagar mensagens antigas";
-"pref_trim_option_explain" = "Apagar automaticamente as mensagens mais antigas quando a chat ultrapassar um determinado período";
-"pref_trim_length_limit" = "Limite de dimensão da chat";
-"pref_trim_length_limit_summary" = "%d mensagens por chat";
-"pref_trim_now_button" = "Aparar todas as chats";
-"pref_trim_now_ask" = "Apagar todas as mensagens antigas agora? Isso reduzirá imediatamente todas as chats às %d mensagens mais recentes.";
 "pref_blocked_contacts" = "Bloquear contactos";
 "pref_profile_photo_remove_ask" = "Remover a foto do perfil";
 "pref_help_url" = "https://delta.chat/en/help";

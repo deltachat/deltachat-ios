@@ -219,8 +219,6 @@
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Проследи за…";
 "pref_profile_info_headline" = "Подаци вашег профила";
-"pref_trim_headline" = "Скраћивање порука";
-"pref_trim_option" = "Бриши старе поруке";
 "pref_blocked_contacts" = "Блокирани контакти";
 "pref_who_can_see_this_information" = "Ко може да види ове податке?";
 "pref_your_name" = "Ваше име";

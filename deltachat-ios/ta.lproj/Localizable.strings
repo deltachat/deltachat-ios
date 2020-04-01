@@ -160,9 +160,6 @@
 "login_smtp_server" = "SMTP க்கான சேவகன்";
 "login_smtp_port" = "SMTP போர்ட்";
 "pref_profile_info_headline" = "உங்கள் சுயவிவரத் தகவல்";
-"pref_trim_headline" = "செய்தி ஒழுங்கமைத்தல்";
-"pref_trim_option" = "பழைய செய்திகளை நீக்க";
-"pref_trim_option_explain" = "உரையாடல் ஒரு குறிப்பிட்ட நீளத்தை தாண்டியவுடன் பழைய செய்திகளை தானாக நீக்கு";
 "pref_blocked_contacts" = "தடுக்கபட்ட தொடர்புகள்";
 "pref_password_and_account_settings" = "கணக்கு அமைப்புகள்";
 "pref_your_name" = "எனது பெயர்";

@@ -321,13 +321,6 @@
 "pref_using_default" = "Utilizando por omisión: %s";
 "pref_profile_info_headline" = "Info do teu perfil";
 "pref_profile_photo" = "Imaxe de perfil";
-"pref_trim_headline" = "Recorte de mensaxe";
-"pref_trim_option" = "Borrar mensaxes antigas";
-"pref_trim_option_explain" = "Borrar automaticamente as mensaxes antigas cando a conversa alcance determinada lonxitude";
-"pref_trim_length_limit" = "Límite de lonxitude da conversa";
-"pref_trim_length_limit_summary" = "%d mensaxes por conversa";
-"pref_trim_now_button" = "Recortar conversas agora";
-"pref_trim_now_ask" = "Borrar as mensaxes antigas? Esto borrará todas as conversas ate as %d mensaxes máis recentes.";
 "pref_blocked_contacts" = "Contactos bloqueados";
 "pref_profile_photo_remove_ask" = "Eliminar foto de perfil?";
 "pref_help_url" = "https://delta.chat/help";
@@ -493,6 +486,10 @@
 "qrshow_join_contact_hint" = "Escanea esto para conectar con %1$@-";
 "qrshow_join_contact_no_connection_hint" = "O axuste dun código QR precisa de conexión a internet. Conéctate a rede antes de continuar.";
 "qrshow_join_contact_no_connection_toast" = "Sen conexión a internet, non se pode facer o axuste por código QR";
+"qraccount_ask_create_and_login" = "Crear un novo enderezo de correo en \"%1$@\" e conectar ali?";
+"qraccount_success_enter_name" = "Conexión correcta—o teu enderezo é %1$@\n\nSe queres, agora podes escribir un nome e unha imaxe de avatar que será mostrado as persoas coas que te comunicas.";
+"qraccount_qr_code_cannot_be_used" = "O código QR escaneado non se pode utilizar para crear unha nova conta.";
+"qraccount_use_on_new_install" = "O código QR escaneado é para crear unha nova conta. Podes escanear o código QR cando configures unha nova instalación de Delta Chat.";
 "contact_verified" = "%1$@ verificado.";
 "contact_not_verified" = "Non se puido verificar %1$@.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"

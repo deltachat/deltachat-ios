@@ -210,8 +210,6 @@
 "forward_to" = "Továbbítás…";
 "pref_profile_info_headline" = "Profilod adatai";
 "pref_profile_photo" = "Profilkép";
-"pref_trim_headline" = "Üzenetek csonkítása";
-"pref_trim_option" = "Régi üzenetek törlése";
 "pref_blocked_contacts" = "Letiltott partnerek";
 "pref_who_can_see_this_information" = "Ki láthatja ezt az információt?";
 "pref_your_name" = "Neved";

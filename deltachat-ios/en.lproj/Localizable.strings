@@ -321,13 +321,6 @@
 "pref_using_default" = "Using default: %s";
 "pref_profile_info_headline" = "Your profile info";
 "pref_profile_photo" = "Profile picture";
-"pref_trim_headline" = "Message trimming";
-"pref_trim_option" = "Delete old messages";
-"pref_trim_option_explain" = "Automatically delete older messages once a chat exceeds a specified length";
-"pref_trim_length_limit" = "Chat length limit";
-"pref_trim_length_limit_summary" = "%d messages per chat";
-"pref_trim_now_button" = "Trim all chats now";
-"pref_trim_now_ask" = "Delete all old messages now? This will immediately trim all chats to the %d most recent messages.";
 "pref_blocked_contacts" = "Blocked contacts";
 "pref_profile_photo_remove_ask" = "Remove profile photo?";
 "pref_help_url" = "https://delta.chat/help";
@@ -427,6 +420,21 @@
 "pref_background_custom_image" = "Custom image";
 "pref_background_custom_color" = "Custom color";
 
+// automatically delete message
+"autodel_title" = "Auto-delete messages";
+"autodel_title_short" = "Auto-delete";
+"autodel_device_title" = "Delete messages from device";
+"autodel_server_title" = "Delete messages from server";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %1$s will be replaced by a timespan in italics or so.
+"autodel_device_ask" = "Do you want to delete %1$d messages now and all newly fetched messages %2$@ in the future?\n\n• This includes all media\n\n• Message will be deleted whether they were seen or not\n\n• \"Saved messages\" will be skipped from local deletion";
+"autodel_server_ask" = "Do you want to delete %1$d messages now and all newly fetched messages %2$@ in the future?\n\n• This includes all media\n\n• This will also delete emails affected by the \"Show classic emails\" option\n\n• \"Saved messages\" will be deleted from the server as well";
+"autodel_confirm" = "I understand, delete all these messages";
+"autodel_at_once" = "At once";
+"autodel_after_1_hour" = "After 1 hour";
+"autodel_after_1_day" = "After 1 day";
+"autodel_after_1_week" = "After 1 week";
+"autodel_after_4_weeks" = "After 4 weeks";
+
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt is a new and open specification for automatic end-to-end email encryption.\n\nYour end-to-end setup is created automatically as needed and you can transfer it between devices with Autocrypt Setup Messages.";
@@ -493,6 +501,10 @@
 "qrshow_join_contact_hint" = "Scan this to set up a contact with %1$@.";
 "qrshow_join_contact_no_connection_hint" = "QR code setup requires an internet connection. Please connect to a network before proceeding.";
 "qrshow_join_contact_no_connection_toast" = "No internet connection, can\'t perform QR code setup.";
+"qraccount_ask_create_and_login" = "Create new e-mail address on \"%1$@\" and log in there?";
+"qraccount_success_enter_name" = "Login successful—your email address is %1$@\n\nIf you like, you can now enter a name and an avatar image that will be displayed to people you write to.";
+"qraccount_qr_code_cannot_be_used" = "The scanned QR code cannot be used to set up a new account.";
+"qraccount_use_on_new_install" = "The scanned QR code is for setting up a new account. You can scan the QR code when setting up a new Delta Chat installation.";
 "contact_verified" = "%1$@ verified.";
 "contact_not_verified" = "Cannot verify %1$@.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"

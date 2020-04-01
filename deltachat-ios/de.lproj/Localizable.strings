@@ -321,13 +321,6 @@
 "pref_using_default" = "Standard verwenden: %s";
 "pref_profile_info_headline" = "Mein Profil";
 "pref_profile_photo" = "Profilbild";
-"pref_trim_headline" = "Nachrichten kürzen";
-"pref_trim_option" = "Alte Nachrichten löschen";
-"pref_trim_option_explain" = "Ältere Nachrichten automatisch löschen, sobald ein Chat eine bestimmte Länge überschreitet.";
-"pref_trim_length_limit" = "Chat-Länge begrenzen";
-"pref_trim_length_limit_summary" = "%d Nachrichten pro Chat";
-"pref_trim_now_button" = "Alle Chats kürzen";
-"pref_trim_now_ask" = "Alte Nachrichten jetzt löschen? In allen Chats werden die Nachrichten bis auf die %d neuesten entfernt.";
 "pref_blocked_contacts" = "Blockierte Kontakte";
 "pref_profile_photo_remove_ask" = "Profilbild entfernen?";
 "pref_help_url" = "https://delta.chat/de/help";
@@ -493,6 +486,10 @@
 "qrshow_join_contact_hint" = "Scannen, um einen Kontakt mit %1$@ herzustellen.";
 "qrshow_join_contact_no_connection_hint" = "Der Austausch von QR-Codes erfordert eine Verbindung zum Internet. Bitte stellen Sie diese her, bevor Sie fortfahtren.";
 "qrshow_join_contact_no_connection_toast" = "Keine Verbindung zum Internet, Austausch des QR-Codes nicht möglich.";
+"qraccount_ask_create_and_login" = " \"%1$@\" erzeugen und dort anmelden?";
+"qraccount_success_enter_name" = "Anmeldung Erfolgreich — Ihre E-Mail-Adresse ist %1$@\n\nWenn Sie mögen, können Sie nun einen Namen und einen Avatar festlegen, der den ChatpartnerInnen angezeigt wird.";
+"qraccount_qr_code_cannot_be_used" = "Der eingescannte QR-Code kann nicht dazu verwendet werden, eine neues E-Mail-Konto zu erzeugen.";
+"qraccount_use_on_new_install" = "Der gescannte QR-Code ist zum Erstellen eines neuen E-Mail-Kontos. Sie können den QR-Code nur bei einer neuen Delta Chat Installation verwenden.";
 "contact_verified" = "%1$@ verifiziert.";
 "contact_not_verified" = "Kann %1$@ nicht verifizieren";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"

@@ -254,13 +254,6 @@
 
 "pref_profile_info_headline" = "Jūsų profilio informacija";
 "pref_profile_photo" = "Profilio nuotrauka";
-"pref_trim_headline" = "Žinučių apkarpymas";
-"pref_trim_option" = "Ištrinti senas žinutes";
-"pref_trim_option_explain" = "Automatiškai ištrinti senesnes žinutes, kai pokalbis viršija nurodytą ilgį";
-"pref_trim_length_limit" = "Pokalbio ilgio riba";
-"pref_trim_length_limit_summary" = "%d žinučių pokalbyje";
-"pref_trim_now_button" = "Apkarpyti visus pokalbius dabar";
-"pref_trim_now_ask" = "Ištrinti visas senas žinutes dabar? Tai nedelsiant apkarpys visus pokalbius iki %d paskiausių žinučių.";
 "pref_blocked_contacts" = "Užblokuoti adresatai";
 "pref_profile_photo_remove_ask" = "Šalinti profilio nuotrauką?";
 "pref_help_url" = "https://delta.chat/en/help";

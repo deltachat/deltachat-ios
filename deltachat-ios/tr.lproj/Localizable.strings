@@ -321,13 +321,6 @@
 "pref_using_default" = "Varsayılan kullanılıyor: %s";
 "pref_profile_info_headline" = "Profil bilginiz";
 "pref_profile_photo" = "Profil resmi";
-"pref_trim_headline" = "İleti kırpma";
-"pref_trim_option" = "Eski iletileri sil";
-"pref_trim_option_explain" = "Bir sohbet belirtilen bir uzunluğu aştığında daha eski iletileri otomatik olarak sil";
-"pref_trim_length_limit" = "Sohbet uzunluk sınırı";
-"pref_trim_length_limit_summary" = "Sohbet başına %d ileti";
-"pref_trim_now_button" = "Tüm sohbetleri şimdi kırp";
-"pref_trim_now_ask" = "Tüm eski iletiler şimdi silinsin mi? Bu, tüm sohbetleri hemen en son %d en yeni iletiye kırpacak.";
 "pref_blocked_contacts" = "Engellenen kişiler";
 "pref_profile_photo_remove_ask" = "Profil fotoğrafı kaldırılsın mı?";
 "pref_help_url" = "https://delta.chat/help";
@@ -493,6 +486,10 @@
 "qrshow_join_contact_hint" = "%1$@ ile bir iletişim ayarlamak için bunu tarayın.";
 "qrshow_join_contact_no_connection_hint" = "QR kod ayarlaması bir Internet bağlantısı gerektirir. İşlemden önce lütfen bir ağa bağlanın.";
 "qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kod ayarlaması gerçekleştirilemiyor.";
+"qraccount_ask_create_and_login" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve oturum açılsın mı?";
+"qraccount_success_enter_name" = "Oturum açma başarılı—e-posta adresiniz %1$@\n\nİsterseniz şimdi yazdığınız insanların görüntüleyeceği bir ad ve bir avatar görseli girebilirsiniz.";
+"qraccount_qr_code_cannot_be_used" = "Taranan QR kod yeni bir hesap ayarlamak için kullanılamıyor.";
+"qraccount_use_on_new_install" = "Taranan QR kod yeni bir hesap ayarlamak içindir. QR kodu yeni bir Delta Chat kurulumunu ayarlarken tarayabilirsiniz.";
 "contact_verified" = "%1$@ doğrulandı.";
 "contact_not_verified" = "%1$@ doğrulanamıyor.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"

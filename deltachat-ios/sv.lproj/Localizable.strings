@@ -294,7 +294,7 @@
 "import_backup_title" = "Importera säkerhetskopiering";
 "import_backup_ask" = "Säkerhetskopiering hittades på %1$@.\n\n Vill du importera eller använda all data och alla inställningar från den?";
 // Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = "Kan inte logga in som \"%1$@\". \"% 1 $ s\". Kontrollera om e-postadressen och lösenordet är korrekta.";
+"login_error_cannot_login" = "Kan inte logga in som \"%1$@\". Kontrollera om e-postadressen och lösenordet är korrekta.";
 "used_settings" = "Använda inställningar:";
 "delete_account" = "Radera konto";
 "delete_account_ask" = "Är du säker på att du vill ta bort dina kontodata?";
@@ -305,12 +305,6 @@
 "pref_using_default" = "Använder standard: %s";
 "pref_profile_info_headline" = "Din profilinformation";
 "pref_profile_photo" = "Profilbild";
-"pref_trim_headline" = "Trimma meddelanden";
-"pref_trim_option" = "Ta bort gamla meddelanden";
-"pref_trim_option_explain" = "Ta bort automatiskt gamla meddelanden när en konversation överstiger en specificerad längd";
-"pref_trim_length_limit" = "Chattens maximala längd";
-"pref_trim_length_limit_summary" = "%d meddelanden per chatt";
-"pref_trim_now_button" = "Trimma alla konversationer nu";
 "pref_blocked_contacts" = "Blockerade kontakter";
 "pref_help_url" = "https://delta.chat/help";
 "pref_password_and_account_settings" = "Lösenord och konto";

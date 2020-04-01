@@ -156,8 +156,6 @@
 "forward_to" = "채팅방 선택";
 "pref_profile_info_headline" = "내 프로필";
 "pref_profile_photo" = "프로필 사진";
-"pref_trim_headline" = "대화 줄이기";
-"pref_trim_option" = "이전 메시지 삭제";
 "pref_blocked_contacts" = "차단 목록";
 "pref_password_and_account_settings" = "계정 설정";
 "pref_who_can_see_this_information" = "이 정보는 누가 볼 수 있나요?";

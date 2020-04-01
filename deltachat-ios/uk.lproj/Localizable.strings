@@ -210,13 +210,6 @@
 "pref_using_default" = "Використовувати за замовчуванням: %s";
 "pref_profile_info_headline" = "Ваш профіль";
 "pref_profile_photo" = "Фото профілю";
-"pref_trim_headline" = "Очищення повідомлень";
-"pref_trim_option" = "Видалити старі повідомлення";
-"pref_trim_option_explain" = "Автоматично видаляти старі повідомлення після досягнення зазначеного ліміту";
-"pref_trim_length_limit" = "Ліміт довжини чату";
-"pref_trim_length_limit_summary" = "%d повідомлень у чаті";
-"pref_trim_now_button" = "Очистити всі чати";
-"pref_trim_now_ask" = "Видалити всі старі повідомлення? Ця дія негайно очистить всі чати до %d останніх повідомлень.";
 "pref_blocked_contacts" = "Заблоковані контакти";
 "pref_profile_photo_remove_ask" = "Видалити фото профілю?";
 "pref_help_url" = "https://delta.chat/uk/help";

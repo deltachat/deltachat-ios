@@ -270,13 +270,6 @@
 "pref_using_default" = "Bruger standard: %s";
 "pref_profile_info_headline" = "Profil information";
 "pref_profile_photo" = "Profil billede";
-"pref_trim_headline" = "Trimme besked";
-"pref_trim_option" = "Slette gamle beskeder";
-"pref_trim_option_explain" = "Automatisk slette ældre beskeder når samtale overskrider en angivet længde. ";
-"pref_trim_length_limit" = "Samtale længde grænse";
-"pref_trim_length_limit_summary" = "%d beskeder pr. samtale";
-"pref_trim_now_button" = "Trimme alle samtaler";
-"pref_trim_now_ask" = "Slette alle ældre beskeder? Dette vil trimme alle samtaler til %d mest nylige beskeder.";
 "pref_blocked_contacts" = "Blokerede kontakter";
 "pref_profile_photo_remove_ask" = "Fjerne profil billede?";
 "pref_help_url" = "https://delta.chat/en/help";

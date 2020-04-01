@@ -290,8 +290,6 @@
 
 
 "pref_profile_photo" = "Profilbildo";
-"pref_trim_option" = "Forigi malnovajn mesaĝojn";
-"pref_trim_length_limit_summary" = "Po %d mesaĝoj en babilo";
 "pref_blocked_contacts" = "Blokitaj kontaktoj";
 "pref_profile_photo_remove_ask" = "Ĉu forigi profilbildon?";
 "pref_help_url" = "https://delta.chat/help";

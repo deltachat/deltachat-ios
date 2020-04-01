@@ -313,13 +313,6 @@
 "pref_using_default" = "Użyj domyślne: %s";
 "pref_profile_info_headline" = "Twój profil";
 "pref_profile_photo" = "Zdjęcie profilowe";
-"pref_trim_headline" = "Przycinanie wiadomości";
-"pref_trim_option" = "Usuń stare wiadomości";
-"pref_trim_option_explain" = "Automatycznie usuwaj starsze wiadomości, gdy czat przekroczy określoną długość";
-"pref_trim_length_limit" = "Ograniczenie długości czatu";
-"pref_trim_length_limit_summary" = "%d wiadomości na czat";
-"pref_trim_now_button" = "Przytnij teraz wszystkie czaty";
-"pref_trim_now_ask" = "Usunąć teraz wszystkie stare wiadomości? Spowoduje to natychmiastowe przycięcie wszystkich czatów do %d ostatnich wiadomości.";
 "pref_blocked_contacts" = "Zablokowane kontakty";
 "pref_profile_photo_remove_ask" = "Usunąć zdjęcie profilowe?";
 "pref_help_url" = "https://delta.chat/pl/help";

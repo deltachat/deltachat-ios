@@ -321,13 +321,6 @@
 "pref_using_default" = "Lehenetsia erabiltzen: %s";
 "pref_profile_info_headline" = "Zure profileko informazioa";
 "pref_profile_photo" = "Profileko argazkia";
-"pref_trim_headline" = "Mezu kimaketa";
-"pref_trim_option" = "Ezabatu mezu zaharrak";
-"pref_trim_option_explain" = "Automatikoki ezabatu mezu zaharrenak txat batek luzera zehatz bat gainditzen duenean";
-"pref_trim_length_limit" = "Txaten luzera muga";
-"pref_trim_length_limit_summary" = "%d mezu txateko";
-"pref_trim_now_button" = "Kimatu txat guztiak orain";
-"pref_trim_now_ask" = "Ezabatu mezu zaharrak orain? Honek berehala kimatuko ditu txat guztiak %d mezu berrienetara.";
 "pref_blocked_contacts" = "Blokeatutako kontaktuak";
 "pref_profile_photo_remove_ask" = "Kendu profileko argazkia?";
 "pref_help_url" = "https://delta.chat/en/help";

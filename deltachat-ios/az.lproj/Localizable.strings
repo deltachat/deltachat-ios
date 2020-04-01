@@ -283,13 +283,6 @@
 "pref_using_default" = "Varsayılan istifadə: %s";
 "pref_profile_info_headline" = "Profil məlumatınız";
 "pref_profile_photo" = "Profil şəkili";
-"pref_trim_headline" = "Mesajın düzəldilməsi";
-"pref_trim_option" = "Köhnə mesajları sil";
-"pref_trim_option_explain" = "Bir çat müəyyən bir uzunluğu aşdıqdan sonra köhnə mesajları avtomatik olaraq silin";
-"pref_trim_length_limit" = "Çat uzunluq limiti";
-"pref_trim_length_limit_summary" = "%d mesaj çatda. ";
-"pref_trim_now_button" = "İndi bütün söhbətləri kəsin";
-"pref_trim_now_ask" = "Bütün köhnə mesajları indi silmək istəyirsiniz? Bu, bütün mesajları%d ən son olan mesaja  salacaq. ";
 "pref_blocked_contacts" = "Bloklanmış kontaktlar";
 "pref_profile_photo_remove_ask" = "Profil şəkilini silmək?";
 "pref_help_url" = "https://delta.chat/en/help";

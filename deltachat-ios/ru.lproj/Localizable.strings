@@ -321,13 +321,6 @@
 "pref_using_default" = "Использовать по умолчанию: %s";
 "pref_profile_info_headline" = "Личный профиль";
 "pref_profile_photo" = "Фото профиля";
-"pref_trim_headline" = "Очистка сообщений";
-"pref_trim_option" = "Удалить старые сообщения";
-"pref_trim_option_explain" = "Автоматически удалять старые сообщения по достижении указанного лимита";
-"pref_trim_length_limit" = "Ограничение длины чата";
-"pref_trim_length_limit_summary" = "%d сообщений в чате";
-"pref_trim_now_button" = "Очистить все чаты";
-"pref_trim_now_ask" = "Удалить все старые сообщения? Это действие немедленно очистит все чаты до %dпоследних сообщений";
 "pref_blocked_contacts" = "Заблокированные контакты";
 "pref_profile_photo_remove_ask" = "Удалить фото профиля?";
 "pref_help_url" = "https://delta.chat/ru/help";

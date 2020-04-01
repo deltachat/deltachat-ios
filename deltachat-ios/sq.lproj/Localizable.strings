@@ -321,13 +321,6 @@
 "pref_using_default" = "Po përdoret parazgjedhje: %s";
 "pref_profile_info_headline" = "Të dhëna tuajat të profilit";
 "pref_profile_photo" = "Foto profili";
-"pref_trim_headline" = "Qethje mesazhi";
-"pref_trim_option" = "Fshiji mesazhet e vjetër";
-"pref_trim_option_explain" = "Fshiji automatikisht mesazhet më të vjetër, pasi një fjalosje tejkalon një gjatësi të caktuar";
-"pref_trim_length_limit" = "Kufi gjatësie fjalosjeje";
-"pref_trim_length_limit_summary" = "%d mesazhe për fjalosje";
-"pref_trim_now_button" = "Qethi krejt fjalosjet tani";
-"pref_trim_now_ask" = "Të fshihen krejt mesazhet e vjetër tani? Kjo do të sjellë qethjen e menjëhershme të krejt fjalosjeve duke lënë %d mesazhet më të rinj.";
 "pref_blocked_contacts" = "Kontakte të bllokuar";
 "pref_profile_photo_remove_ask" = "Të hiqet fotoja e profilit?";
 "pref_help_url" = "https://delta.chat/en/help";
@@ -492,6 +485,10 @@
 "qrshow_join_contact_hint" = "Skanojeni këtë që të rregullohet një kontakt %1$@";
 "qrshow_join_contact_no_connection_hint" = "Ujdisja e kodit QR lyp lidhje në internet. Ju lutemi, përpara se të ecni më tej, lidhuni me një rrjet.";
 "qrshow_join_contact_no_connection_toast" = "S\’ka lidhje në internet, s\’bëhet dot ujdisja e kodit QR.";
+"qraccount_ask_create_and_login" = "Të krijohet adresë email e re te \"%1$@\" dhe të bëhet hyrja atje?";
+"qraccount_success_enter_name" = "Hyrje e suksesshme—adresa juaj email është %1$@\n\nNëse doni, tani mund të jepni një emër dhe një figurë avatari që do t’u shfaqet personave që ju shkruajnë.";
+"qraccount_qr_code_cannot_be_used" = "Kodi QR i skanuar s’mund të përdoret për të ujdisur një llogari të re.";
+"qraccount_use_on_new_install" = "Kodi QR i skanuar është për ujdisje të një llogarie të re. Kodin QR mund ta skanoni kur ujdisni një instalim të ri të Delta Chat-it.";
 "contact_verified" = "%1$@ u verifikua.";
 "contact_not_verified" = "S\’verifikohet dot %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"

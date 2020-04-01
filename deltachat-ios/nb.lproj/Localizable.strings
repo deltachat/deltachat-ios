@@ -221,10 +221,6 @@
 "forward_to" = "Videresend til…";
 "pref_profile_info_headline" = "Din profilinfo";
 "pref_profile_photo" = "Profilbilde";
-"pref_trim_headline" = "Automatisk sletting";
-"pref_trim_option" = "Slett gamle meldinger";
-"pref_trim_option_explain" = "Automatically delete older messages once a conversation exceeds a specified length";
-"pref_trim_now_button" = "Rydd opp i alle samtaler nå";
 "pref_blocked_contacts" = "Blokkerte kontakter";
 "pref_password_and_account_settings" = "Kontoinnstillinger";
 "pref_who_can_see_this_information" = "Hvem kan se denne informasjonen?";

@@ -321,13 +321,6 @@
 "pref_using_default" = "Standaard wordt gebruikt: %s";
 "pref_profile_info_headline" = "Mijn profiel";
 "pref_profile_photo" = "Profielfoto";
-"pref_trim_headline" = "Gespreksinkorting";
-"pref_trim_option" = "Oude berichten verwijderen";
-"pref_trim_option_explain" = "Oudere berichten automatisch verwijderen na het overschrijden van de opgegeven lengte";
-"pref_trim_length_limit" = "Lengtelimiet";
-"pref_trim_length_limit_summary" = "%d berichten per gesprek";
-"pref_trim_now_button" = "Alle gesprekken nu inkorten";
-"pref_trim_now_ask" = "Wil je alle oude berichten verwijderen? Alle gesprekken worden direct ingekort tot de %d recentste berichten.";
 "pref_blocked_contacts" = "Geblokkeerde contactpersonen";
 "pref_profile_photo_remove_ask" = "Profielfoto verwijderen?";
 "pref_help_url" = "https://delta.chat/en/help";
@@ -493,6 +486,10 @@
 "qrshow_join_contact_hint" = "Scan dit om een contactpersoon in te stellen met %1$@";
 "qrshow_join_contact_no_connection_hint" = "Voor het instellen van QR-codes is een internetverbinding vereist. Maak verbinding en probeer het opnieuw.";
 "qrshow_join_contact_no_connection_toast" = "Geen internetverbinding; kan QR-codes niet instellen.";
+"qraccount_ask_create_and_login" = "Wil je een nieuw e-mailadres aanmaken op \'%1$@\' en daarmee inloggen?";
+"qraccount_success_enter_name" = "Het inloggen is gelukt. Je e-mailadres is \'%1$@\'.\n\nAls je wilt, kun je een naam en profielafbeelding opgeven die worden getoond aan de mensen waarmee je communiceert.";
+"qraccount_qr_code_cannot_be_used" = "De gescande QR-code kan niet worden gebruikt om een nieuw account in te stellen.";
+"qraccount_use_on_new_install" = "De gescande QR-code is voor het instellen van een nieuw account. Je kunt deze direct scannen na het (opnieuw) installeren van Delta Chat.";
 "contact_verified" = "%1$@ is goedgekeurd.";
 "contact_not_verified" = "Kan %1$@ niet goedkeuren";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
