@@ -84,19 +84,19 @@ class ChatCellViewModel: AvatarCellViewModel {
     var titleHighlightIndexes: [Int]
     var subtitleHighlightIndexes: [Int]
 
-    init(chatData: ChatCellData, titleHighlightIndexes: [Int] = [], subtitleHighlightIndexes: [Int] = []) {
+    init(dcContext: DcContext, chatData: ChatCellData, titleHighlightIndexes: [Int] = [], subtitleHighlightIndexes: [Int] = []) {
         self.type = CellModel.chat(chatData)
         self.titleHighlightIndexes = titleHighlightIndexes
         self.subtitleHighlightIndexes = subtitleHighlightIndexes
         self.summary = chatData.summary
-        self.chat = DcChat(id: chatData.chatId)
+        self.chat = dcContext.getChat(chatId: chatData.chatId)
     }
 
-    init(dearddropCellData cellData: DeaddropCellData) {
+    init(dcContext: DcContext, deaddropCellData cellData: DeaddropCellData) {
         self.type = CellModel.deaddrop(cellData)
         self.titleHighlightIndexes = []
         self.subtitleHighlightIndexes = []
-        self.chat = DcChat(id: cellData.chatId)
+        self.chat = dcContext.getChat(chatId: cellData.chatId)
         self.summary = cellData.summary
     }
 }

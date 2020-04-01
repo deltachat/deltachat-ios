@@ -119,7 +119,7 @@ class AccountSetupController: UITableViewController {
         cell.tag = tagEmailCell
         cell.textField.addTarget(self, action: #selector(emailCellEdited), for: .editingChanged)
         cell.textField.tag = tagTextFieldEmail // will be used to eventually show oAuth-Dialogue when pressing return key
-        cell.setText(text: DcConfig.addr ?? nil)
+        cell.setText(text: dcContext.addr ?? nil)
         cell.textField.delegate = self
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return cell
@@ -130,7 +130,7 @@ class AccountSetupController: UITableViewController {
         cell.tag = tagPasswordCell
         cell.textField.tag = tagTextFieldPassword  // will be used to eventually show oAuth-Dialogue when selecting
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        cell.setText(text: DcConfig.mailPw ?? nil)
+        cell.setText(text: dcContext.mailPw ?? nil)
         cell.textField.delegate = self
         return cell
     }()
@@ -182,7 +182,7 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.tag = tagImapServerCell
-        cell.setText(text: DcConfig.mailServer ?? nil)
+        cell.setText(text: dcContext.mailServer ?? nil)
         cell.textField.tag = tagTextFieldImapServer
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
@@ -195,7 +195,7 @@ class AccountSetupController: UITableViewController {
             descriptionID: "login_imap_login",
             placeholder: String.localized("automatic"),
             delegate: self)
-        cell.setText(text: DcConfig.mailUser ?? nil)
+        cell.setText(text: dcContext.mailUser ?? nil)
         cell.textField.tag = tagTextFieldImapLogin
         cell.tag = tagImapUserCell
         return cell
@@ -218,18 +218,18 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.tag = tagImapPortCell
-        cell.setText(text: editablePort(port: DcConfig.mailPort))
+        cell.setText(text: editablePort(port: dcContext.mailPort))
         cell.textField.tag = tagImapPortCell
         cell.textField.keyboardType = .numberPad
         return cell
     }()
 
     lazy var imapSecurityCell: UITableViewCell = {
-        let text = "\(DcConfig.getImapSecurity())"
+        let text = "\(dcContext.getImapSecurity())"
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_imap_security")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = "\(DcConfig.getImapSecurity())"
+        cell.detailTextLabel?.text = "\(dcContext.getImapSecurity())"
         cell.selectionStyle = .none
         cell.tag = tagImapSecurityCell
         return cell
@@ -241,7 +241,7 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.textField.tag = tagTextFieldSmtpServer
-        cell.setText(text: DcConfig.sendServer ?? nil)
+        cell.setText(text: dcContext.sendServer ?? nil)
         cell.tag = tagSmtpServerCell
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
@@ -255,7 +255,7 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.textField.tag = tagTextFieldSmtpUser
-        cell.setText(text: DcConfig.sendUser ?? nil)
+        cell.setText(text: dcContext.sendUser ?? nil)
         cell.tag = tagSmtpUserCell
         return cell
     }()
@@ -266,7 +266,7 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.tag = tagSmtpPortCell
-        cell.setText(text: editablePort(port: DcConfig.sendPort))
+        cell.setText(text: editablePort(port: dcContext.sendPort))
         cell.textField.tag = tagSmtpPortCell
         cell.textField.keyboardType = .numberPad
         return cell
@@ -278,7 +278,7 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.textField.textContentType = UITextContentType.password
-        cell.setText(text: DcConfig.sendPw ?? nil)
+        cell.setText(text: dcContext.sendPw ?? nil)
         cell.textField.isSecureTextEntry = true
         cell.textField.tag = tagTextFieldSmtpPassword
         cell.tag = tagSmtpPasswordCell
@@ -286,7 +286,7 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var smtpSecurityCell: UITableViewCell = {
-        let security = "\(DcConfig.getSmtpSecurity())"
+        let security = "\(dcContext.getSmtpSecurity())"
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_smtp_security")
         cell.detailTextLabel?.text = security
@@ -297,7 +297,7 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var certCheckCell: UITableViewCell = {
-        let certCheckType = CertificateCheckController.ValueConverter.convertHexToString(value: DcConfig.certificateChecks)
+        let certCheckType = CertificateCheckController.ValueConverter.convertHexToString(value: dcContext.certificateChecks)
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_certificate_checks")
         cell.detailTextLabel?.text = certCheckType
@@ -358,7 +358,7 @@ class AccountSetupController: UITableViewController {
             style: .done,
             target: self,
             action: #selector(loginButtonPressed))
-        button.isEnabled = dc_is_configured(mailboxPointer) == 0
+        button.isEnabled = !dcContext.isConfigured()
         return button
     }()
 
@@ -603,15 +603,15 @@ class AccountSetupController: UITableViewController {
     private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {
         addProgressHudLoginListener()
         resignFirstResponderOnAllCells()	// this will resign focus from all textFieldCells so the keyboard wont pop up anymore
-        DcConfig.addr = emailAddress
-        DcConfig.mailPw = password
+        dcContext.addr = emailAddress
+        dcContext.mailPw = password
 
         if !skipAdvanceSetup {
             evaluateAdvancedSetup() // this will set MRConfig related to advanced fields
         }
 
-        print("oAuth-Flag when loggin in: \(DcConfig.getAuthFlags())")
-        dc_configure(mailboxPointer)
+        print("oAuth-Flag when loggin in: \(dcContext.getAuthFlags())")
+        dcContext.configure()
         showProgressHud(title: String.localized("login_header"))
     }
 
@@ -672,7 +672,7 @@ class AccountSetupController: UITableViewController {
             return
         }
         passwordCell.setText(text: token)
-        DcConfig.setAuthFlags(flags: Int(DC_LP_AUTH_OAUTH2))
+        dcContext.setAuthFlags(flags: Int(DC_LP_AUTH_OAUTH2))
         login(emailAddress: emailAddress, password: token, skipAdvanceSetup: true)
     }
 
@@ -725,19 +725,19 @@ class AccountSetupController: UITableViewController {
             if let textFieldCell = cell as? TextFieldCell {
                 switch  textFieldCell.tag {
                 case tagImapServerCell:
-                    DcConfig.mailServer = textFieldCell.getText() ?? nil
+                    dcContext.mailServer = textFieldCell.getText() ?? nil
                 case tagImapPortCell:
-                    DcConfig.mailPort = textFieldCell.getText() ?? nil
+                    dcContext.mailPort = textFieldCell.getText() ?? nil
                 case tagImapUserCell:
-                    DcConfig.mailUser = textFieldCell.getText() ?? nil
+                    dcContext.mailUser = textFieldCell.getText() ?? nil
                 case tagSmtpServerCell:
-                    DcConfig.sendServer = textFieldCell.getText() ?? nil
+                    dcContext.sendServer = textFieldCell.getText() ?? nil
                 case tagSmtpPortCell:
-                    DcConfig.sendPort = textFieldCell.getText() ?? nil
+                    dcContext.sendPort = textFieldCell.getText() ?? nil
                 case tagSmtpUserCell:
-                    DcConfig.sendUser = textFieldCell.getText() ?? nil
+                    dcContext.sendUser = textFieldCell.getText() ?? nil
                 case tagSmtpPasswordCell:
-                    DcConfig.sendPw = textFieldCell.getText() ?? nil
+                    dcContext.sendPw = textFieldCell.getText() ?? nil
                 default:
                     logger.info("unknown identifier \(cell.tag)")
                 }
@@ -747,7 +747,7 @@ class AccountSetupController: UITableViewController {
 
     private func restoreBackup() {
         logger.info("restoring backup")
-        if DcConfig.configured {
+        if dcContext.configured {
             return
         }
         addProgressHudBackupListener()
@@ -755,12 +755,10 @@ class AccountSetupController: UITableViewController {
         if !documents.isEmpty {
             logger.info("looking for backup in: \(documents[0])")
 
-            if let cString = dc_imex_has_backup(mailboxPointer, documents[0]) {
-                let file = String(cString: cString)
-                dc_str_unref(cString)
+            if let file = dcContext.imexHasBackup(filePath: documents[0]) {
                 logger.info("restoring backup: \(file)")
                 showProgressHud(title: String.localized("import_backup_title"))
-                dc_imex(mailboxPointer, DC_IMEX_IMPORT_BACKUP, file, nil)
+                dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: file)
             }
             else {
                 let alert = UIAlertController(
@@ -844,9 +842,9 @@ class AccountSetupController: UITableViewController {
     }
 
     private func initSelectionCells() {
-        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: DcConfig.getSmtpSecurity())
-        imapSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: DcConfig.getImapSecurity())
-        certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: DcConfig.certificateChecks)
+        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: dcContext.getSmtpSecurity())
+        imapSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: dcContext.getImapSecurity())
+        certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: dcContext.certificateChecks)
     }
 
     private func resignFirstResponderOnAllCells() {

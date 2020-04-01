@@ -9,10 +9,10 @@ class AvatarHelper {
         case runtimeError(String)
     }
 
-    static func saveSelfAvatarImage(image: UIImage) {
+    static func saveSelfAvatarImage(dcContext: DcContext, image: UIImage) {
         do {
             let avatarFile = try saveAvatarImageToFile(image: image)
-            DcConfig.selfavatar = avatarFile.path
+            dcContext.selfavatar = avatarFile.path
             deleteAvatarFile(avatarFile)
         } catch let error {
             logger.error("Error saving Image: \(error.localizedDescription)")
@@ -28,7 +28,6 @@ class AvatarHelper {
             logger.error("Error saving Image: \(error.localizedDescription)")
         }
     }
-
 
     private static func saveAvatarImageToFile(image: UIImage) throws -> URL {
         if let data = image.jpegData(compressionQuality: 1.0) {
@@ -62,6 +61,5 @@ class AvatarHelper {
             }
         }
     }
-
 
 }

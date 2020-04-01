@@ -23,7 +23,7 @@ class GroupChatDetailViewController: UIViewController {
     private let sections: [ProfileSections] = [.attachments, .members, .chatActions]
 
     private var currentUser: DcContact? {
-        let myId = groupMemberIds.filter { DcContact(id: $0).email == DcConfig.addr }.first
+        let myId = groupMemberIds.filter { DcContact(id: $0).email == context.addr }.first
         guard let currentUserId = myId else {
             return nil
         }
@@ -107,7 +107,7 @@ class GroupChatDetailViewController: UIViewController {
 
     init(chatId: Int, context: DcContext) {
         self.context = context
-        chat = DcChat(id: chatId)
+        chat = context.getChat(chatId: chatId)
         super.init(nibName: nil, bundle: nil)
         setupSubviews()
     }
@@ -137,7 +137,7 @@ class GroupChatDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //update chat object, maybe chat name was edited
-        chat = DcChat(id: chat.id)
+        chat = context.getChat(chatId: chat.id)
         updateGroupMembers()
         tableView.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
@@ -176,7 +176,7 @@ class GroupChatDetailViewController: UIViewController {
         } else {
             self.navigationController?.popToRootViewController(animated: false)
         }
-        self.chat = DcChat(id: chat.id)
+        self.chat = context.getChat(chatId: chat.id)
      }
 
     private func getGroupMemberIdFor(_ row: Int) -> Int {
@@ -346,8 +346,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 let title = String.localizedStringWithFormat(String.localized("ask_remove_members"), contact.nameNAddr)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { _ in
-                    let success = dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(contact.id))
-                    if success == 1 {
+                    let success = self.context.removeContactFromChat(chatId: self.chat.id, contactId: contact.id)
+                    if success {
                         self.removeGroupMemberFromTableAt(indexPath)
                     }
                 }))
@@ -391,7 +391,7 @@ extension GroupChatDetailViewController {
         if let userId = currentUser?.id {
             let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { _ in
-                dc_remove_contact_from_chat(mailboxPointer, UInt32(self.chat.id), UInt32(userId))
+                _ = self.context.removeContactFromChat(chatId: self.chat.id, contactId: userId)
                 self.editBarButtonItem.isEnabled = false
                 self.updateGroupMembers()
             }))

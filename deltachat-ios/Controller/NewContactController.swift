@@ -2,7 +2,7 @@ import UIKit
 
 class NewContactController: UITableViewController {
 
-    private let dcContext: DcContext
+    let dcContext: DcContext
     weak var coordinator: EditContactCoordinatorProtocol?
     var openChatOnSave = true
 

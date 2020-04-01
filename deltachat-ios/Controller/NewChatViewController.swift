@@ -47,7 +47,7 @@ class NewChatViewController: UITableViewController {
     var hud: ProgressHud?
 
     lazy var deviceContactHandler: DeviceContactsHandler = {
-        let handler = DeviceContactsHandler(dcContext: DcContext())
+        let handler = DeviceContactsHandler(dcContext: DcContext.shared)
         handler.contactListDelegate = self
         return handler
     }()

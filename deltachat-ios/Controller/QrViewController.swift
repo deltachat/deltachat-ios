@@ -11,7 +11,7 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
     var dcContext: DcContext
     var contact: DcContact? {
         // This is nil if we do not have an account setup yet
-        if !DcConfig.configured {
+        if !dcContext.isConfigured() {
             return nil
         }
         return DcContact(id: Int(DC_CONTACT_ID_SELF))

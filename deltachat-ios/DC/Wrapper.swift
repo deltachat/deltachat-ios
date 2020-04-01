@@ -3,9 +3,12 @@ import UIKit
 import AVFoundation
 
 class DcContext {
-    let contextPointer: OpaquePointer?
+    /// TODO: THIS global instance should be replaced in the future, for example for a multi-account scenario,
+    /// where we want to have more than one DcContext.
+    static let dcContext: DcContext = DcContext()
+    let contextPointer: OpaquePointer
 
-    init() {
+    private init() {
         var version = ""
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             version += " " + appVersion
@@ -18,6 +21,11 @@ class DcContext {
         dc_context_unref(contextPointer)
     }
 
+    /// Injection of DcContext is preferred over the usage of the shared variable
+    static var shared: DcContext {
+        return .dcContext
+    }
+
     func createContact(name: String, email: String) -> Int {
         return Int(dc_create_contact(contextPointer, name, email))
     }
@@ -27,12 +35,17 @@ class DcContext {
     }
 
     func getContacts(flags: Int32, queryString: String? = nil) -> [Int] {
-        let cContacts = dc_get_contacts(self.contextPointer, UInt32(flags), queryString)
+        let cContacts = dc_get_contacts(contextPointer, UInt32(flags), queryString)
         return Utils.copyAndFreeArray(inputArray: cContacts)
     }
 
+    func getBlockedContacts() -> [Int] {
+        let cBlockedContacts = dc_get_blocked_contacts(contextPointer)
+        return Utils.copyAndFreeArray(inputArray: cBlockedContacts)
+    }
+
     func addContacts(contactString: String) {
-        dc_add_address_book(mailboxPointer, contactString)
+        dc_add_address_book(contextPointer, contactString)
     }
 
     func getChat(chatId: Int) -> DcChat {
@@ -40,12 +53,17 @@ class DcContext {
     }
 
     func getChatIdByContactId(_ contactId: Int) -> Int? {
-        let chatId = dc_get_chat_id_by_contact_id(self.contextPointer, UInt32(contactId))
+        let chatId = dc_get_chat_id_by_contact_id(contextPointer, UInt32(contactId))
         if chatId == 0 {
             return nil
         } else {
             return Int(chatId)
         }
+    }
+
+    func createChatByMessageId(_ messageId: Int) -> DcChat {
+        let chatId = dc_create_chat_by_msg_id(contextPointer, UInt32(messageId))
+        return DcChat(id: Int(chatId))
     }
 
     func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
@@ -125,6 +143,96 @@ class DcContext {
         dc_stop_ongoing_process(contextPointer)
     }
 
+    func getInfo() -> [[String]] {
+        if let cString = dc_get_info(contextPointer) {
+            let info = String(cString: cString)
+            dc_str_unref(cString)
+            logger.info(info)
+            return info.components(separatedBy: "\n").map { val in
+                val.components(separatedBy: "=")
+            }
+        }
+        return []
+    }
+
+    func interruptIdle() {
+        dc_interrupt_imap_idle(contextPointer)
+        dc_interrupt_smtp_idle((contextPointer))
+        dc_interrupt_mvbox_idle((contextPointer))
+        dc_interrupt_sentbox_idle((contextPointer))
+    }
+
+    func openDatabase(dbFile: String) {
+        _ = dc_open(contextPointer, dbFile, nil)
+    }
+
+    func closeDatabase() {
+        dc_close(contextPointer)
+    }
+
+    func performImap() {
+        dc_perform_imap_jobs(contextPointer)
+        dc_perform_imap_fetch(contextPointer)
+        dc_perform_imap_idle(contextPointer)
+    }
+
+    func performMoveBox() {
+        dc_perform_mvbox_jobs(contextPointer)
+        dc_perform_mvbox_fetch(contextPointer)
+        dc_perform_mvbox_idle(contextPointer)
+    }
+
+    func performSmtp() {
+        dc_perform_smtp_jobs(contextPointer)
+        dc_perform_smtp_idle(contextPointer)
+    }
+
+    func performSentbox() {
+        dc_perform_sentbox_jobs(contextPointer)
+        dc_perform_sentbox_fetch(contextPointer)
+        dc_perform_sentbox_idle(contextPointer)
+    }
+
+    func setStockTranslation(id: Int32, localizationKey: String) {
+        dc_set_stock_translation(contextPointer, UInt32(id), String.localized(localizationKey))
+    }
+
+    func getDraft(chatId: Int) -> String? {
+        if let draft = dc_get_draft(contextPointer, UInt32(chatId)) {
+            if let cString = dc_msg_get_text(draft) {
+                let swiftString = String(cString: cString)
+                dc_str_unref(cString)
+                dc_msg_unref(draft)
+                return swiftString
+            }
+            dc_msg_unref(draft)
+            return nil
+        }
+        return nil
+    }
+
+    func setDraft(chatId: Int, draftText: String) {
+        let draft = dc_msg_new(contextPointer, DC_MSG_TEXT)
+        dc_msg_set_text(draft, draftText.cString(using: .utf8))
+        dc_set_draft(contextPointer, UInt32(chatId), draft)
+
+        // cleanup
+        dc_msg_unref(draft)
+    }
+
+    func getFreshMessages() -> DcArray {
+        return DcArray(arrayPointer: dc_get_fresh_msgs(contextPointer))
+    }
+
+    func markSeenMessages(messageIds: [UInt32], count: Int = 1) {
+        let ptr = UnsafePointer(messageIds)
+        dc_markseen_msgs(contextPointer, ptr, Int32(count))
+    }
+
+    func getChatMessages(chatId: Int) -> OpaquePointer {
+        return dc_get_chat_msgs(contextPointer, UInt32(chatId), 0, 0)
+    }
+    
     func getMsgInfo(msgId: Int) -> String {
         if let cString = dc_get_msg_info(self.contextPointer, UInt32(msgId)) {
             let swiftString = String(cString: cString)
@@ -159,6 +267,10 @@ class DcContext {
         return dc_continue_key_transfer(self.contextPointer, UInt32(msgId), setupCode) != 0
     }
 
+    func configure() {
+        dc_configure(contextPointer)
+    }
+
     func getConfig(_ key: String) -> String? {
         guard let cString = dc_get_config(self.contextPointer, key) else { return nil }
         let value = String(cString: cString)
@@ -186,6 +298,22 @@ class DcContext {
         setConfig(key, vStr)
     }
 
+    func getConfigInt(_ key: String) -> Int {
+        let vStr = getConfig(key)
+        if vStr == nil {
+            return 0
+        }
+        let vInt = Int(vStr!)
+        if vInt == nil {
+            return 0
+        }
+        return vInt!
+    }
+
+    private func setConfigInt(_ key: String, _ value: Int) {
+        setConfig(key, String(value))
+    }
+
     func getUnreadMessages(chatId: Int) -> Int {
         return Int(dc_get_fresh_msg_cnt(contextPointer, UInt32(chatId)))
     }
@@ -199,7 +327,7 @@ class DcContext {
     }
 
     func getSelfAvatarImage() -> UIImage? {
-       guard let fileName = DcConfig.selfavatar else { return nil }
+       guard let fileName = selfavatar else { return nil }
        let path: URL = URL(fileURLWithPath: fileName, isDirectory: false)
        if path.isFileURL {
            do {
@@ -235,6 +363,15 @@ class DcContext {
         dc_imex(contextPointer, what, directory, nil)
     }
 
+    func imexHasBackup(filePath: String) -> String? {
+        var file: String?
+        if let cString = dc_imex_has_backup(contextPointer, filePath) {
+            file = String(cString: cString)
+            dc_str_unref(cString)
+        }
+        return file
+    }
+
     func isSendingLocationsToChat(chatId: Int) -> Bool {
         return dc_is_sending_locations_to_chat(contextPointer, UInt32(chatId)) == 1
     }
@@ -254,13 +391,11 @@ class DcContext {
         let messageIds = Utils.copyAndFreeArray(inputArray: arrayPointer)
         return messageIds
     }
-}
 
-class DcConfig {
-
-    // it is fine to use existing functionality of DcConfig,
-    // however, as DcConfig uses a global pointer,
-    // new functionality should be added to DcContext.
+    // call dc_maybe_network() from a worker thread.
+    func maybeNetwork() {
+        dc_maybe_network(contextPointer)
+    }
 
     // also, there is no much worth in adding a separate function or so
     // for each config option - esp. if they are just forwarded to the core
@@ -268,110 +403,67 @@ class DcConfig {
     // this adds a complexity that can be avoided -
     // and makes grep harder as these names are typically named following different guidelines.
 
-    private class func getConfig(_ key: String) -> String? {
-        guard let cString = dc_get_config(mailboxPointer, key) else { return nil }
-        let value = String(cString: cString)
-        dc_str_unref(cString)
-        if value.isEmpty {
-            return nil
-        }
-        return value
-    }
-
-    private class func setConfig(_ key: String, _ value: String?) {
-        if let v = value {
-            dc_set_config(mailboxPointer, key, v)
-        } else {
-            dc_set_config(mailboxPointer, key, nil)
-        }
-    }
-
-    private class func getConfigBool(_ key: String) -> Bool {
-        return strToBool(getConfig(key))
-    }
-
-    private class func setConfigBool(_ key: String, _ value: Bool) {
-        let vStr = value ? "1" : "0"
-        setConfig(key, vStr)
-    }
-
-    private class func getConfigInt(_ key: String) -> Int {
-        let vStr = getConfig(key)
-        if vStr == nil {
-            return 0
-        }
-        let vInt = Int(vStr!)
-        if vInt == nil {
-            return 0
-        }
-        return vInt!
-    }
-
-    private class func setConfigInt(_ key: String, _ value: Int) {
-        setConfig(key, String(value))
-    }
-
-    class var displayname: String? {
+    var displayname: String? {
         set { setConfig("displayname", newValue) }
         get { return getConfig("displayname") }
     }
 
-    class var selfstatus: String? {
+    var selfstatus: String? {
         set { setConfig("selfstatus", newValue) }
         get { return getConfig("selfstatus") }
     }
 
-    class var selfavatar: String? {
+    var selfavatar: String? {
         set { setConfig("selfavatar", newValue) }
         get { return getConfig("selfavatar") }
     }
 
-    class var addr: String? {
+    var addr: String? {
         set { setConfig("addr", newValue) }
         get { return getConfig("addr") }
     }
 
-    class var mailServer: String? {
+    var mailServer: String? {
         set { setConfig("mail_server", newValue) }
         get { return getConfig("mail_server") }
     }
 
-    class var mailUser: String? {
+    var mailUser: String? {
         set { setConfig("mail_user", newValue) }
         get { return getConfig("mail_user") }
     }
 
-    class var mailPw: String? {
+    var mailPw: String? {
         set { setConfig("mail_pw", newValue) }
         get { return getConfig("mail_pw") }
     }
 
-    class var mailPort: String? {
+    var mailPort: String? {
         set { setConfig("mail_port", newValue) }
         get { return getConfig("mail_port") }
     }
 
-    class var sendServer: String? {
+    var sendServer: String? {
         set { setConfig("send_server", newValue) }
         get { return getConfig("send_server") }
     }
 
-    class var sendUser: String? {
+    var sendUser: String? {
         set { setConfig("send_user", newValue) }
         get { return getConfig("send_user") }
     }
 
-    class var sendPw: String? {
+    var sendPw: String? {
         set { setConfig("send_pw", newValue) }
         get { return getConfig("send_pw") }
     }
 
-    class var sendPort: String? {
+    var sendPort: String? {
         set { setConfig("send_port", newValue) }
         get { return getConfig("send_port") }
     }
 
-    class var certificateChecks: Int {
+    var certificateChecks: Int {
         set {
             setConfig("smtp_certificate_checks", "\(newValue)")
             setConfig("imap_certificate_checks", "\(newValue)")
@@ -385,7 +477,7 @@ class DcConfig {
         }
     }
 
-    private class var serverFlags: Int {
+    private var serverFlags: Int {
         // IMAP-/SMTP-flags as a combination of DC_LP flags
         set {
             setConfig("server_flags", "\(newValue)")
@@ -399,63 +491,63 @@ class DcConfig {
         }
     }
 
-    class func setImapSecurity(imapFlags flags: Int) {
+    func setImapSecurity(imapFlags flags: Int) {
         var sf = serverFlags
         sf = sf & ~0x700 // DC_LP_IMAP_SOCKET_FLAGS
         sf = sf | flags
         serverFlags = sf
     }
 
-    class func setSmtpSecurity(smptpFlags flags: Int) {
+    func setSmtpSecurity(smptpFlags flags: Int) {
         var sf = serverFlags
         sf = sf & ~0x70000 // DC_LP_SMTP_SOCKET_FLAGS
         sf = sf | flags
         serverFlags = sf
     }
 
-    class func setAuthFlags(flags: Int) {
+    func setAuthFlags(flags: Int) {
         var sf = serverFlags
         sf = sf & ~0x6 // DC_LP_AUTH_FLAGS
         sf = sf | flags
         serverFlags = sf
     }
 
-    class func getImapSecurity() -> Int {
+    func getImapSecurity() -> Int {
         var sf = serverFlags
         sf = sf & 0x700 // DC_LP_IMAP_SOCKET_FLAGS
         return sf
     }
 
-    class func getSmtpSecurity() -> Int {
+    func getSmtpSecurity() -> Int {
         var sf = serverFlags
         sf = sf & 0x70000  // DC_LP_SMTP_SOCKET_FLAGS
         return sf
     }
 
-    class func getAuthFlags() -> Int {
+    func getAuthFlags() -> Int {
         var sf = serverFlags
         sf = sf & 0x6 // DC_LP_AUTH_FLAGS
         return sf
     }
 
-    class var e2eeEnabled: Bool {
+    var e2eeEnabled: Bool {
         set { setConfigBool("e2ee_enabled", newValue) }
         get { return getConfigBool("e2ee_enabled") }
     }
 
-    class var mdnsEnabled: Bool {
+    var mdnsEnabled: Bool {
         set { setConfigBool("mdns_enabled", newValue) }
         get { return getConfigBool("mdns_enabled") }
     }
-    
-    class var showEmails: Int {
+
+    var showEmails: Int {
         // one of DC_SHOW_EMAILS_*
         set { setConfigInt("show_emails", newValue) }
         get { return getConfigInt("show_emails") }
     }
 
     // do not use. use DcContext::isConfigured() instead
-    class var configured: Bool {
+    var configured: Bool {
         return getConfigBool("configured")
     }
 }
@@ -497,7 +589,7 @@ class DcChat {
 
     // use DcContext.getChat() instead of calling the constructor directly
     init(id: Int) {
-        if let p = dc_get_chat(mailboxPointer, UInt32(id)) {
+        if let p = dc_get_chat(DcContext.shared.contextPointer, UInt32(id)) {
             chatPointer = p
         } else {
             fatalError("Invalid chatID opened \(id)")
@@ -565,7 +657,7 @@ class DcChat {
     }
 
     var contactIds: [Int] {
-        return Utils.copyAndFreeArray(inputArray: dc_get_chat_contacts(mailboxPointer, UInt32(id)))
+        return Utils.copyAndFreeArray(inputArray: dc_get_chat_contacts(DcContext.shared.contextPointer, UInt32(id)))
     }
 
     lazy var profileImage: UIImage? = { [unowned self] in
@@ -624,15 +716,15 @@ class DcMsg: MessageType {
             DC_MSG_FILE
      */
     init(viewType: Int32) {
-        messagePointer = dc_msg_new(mailboxPointer, viewType)
+        messagePointer = dc_msg_new(DcContext.shared.contextPointer, viewType)
     }
 
     init(id: Int) {
-        messagePointer = dc_get_msg(mailboxPointer, UInt32(id))
+        messagePointer = dc_get_msg(DcContext.shared.contextPointer, UInt32(id))
     }
 
     init(type: Int32) {
-        messagePointer = dc_msg_new(mailboxPointer, type)
+        messagePointer = dc_msg_new(DcContext.shared.contextPointer, type)
     }
 
     deinit {
@@ -919,37 +1011,32 @@ class DcMsg: MessageType {
         return dc_msg_get_showpadlock(messagePointer) == 1
     }
 
-    func createChat() -> DcChat {
-        let chatId = dc_create_chat_by_msg_id(mailboxPointer, UInt32(id))
-        return DcChat(id: Int(chatId))
-    }
-
     func sendInChat(id: Int) {
-        dc_send_msg(mailboxPointer, UInt32(id), messagePointer)
+        dc_send_msg(DcContext.shared.contextPointer, UInt32(id), messagePointer)
     }
 
     func previousMediaURLs() -> [URL] {
         var urls: [URL] = []
-        var prev: Int = Int(dc_get_next_media(mailboxPointer, UInt32(id), -1, Int32(type), 0, 0))
+        var prev: Int = Int(dc_get_next_media(DcContext.shared.contextPointer, UInt32(id), -1, Int32(type), 0, 0))
         while prev != 0 {
             let prevMessage = DcMsg(id: prev)
             if let url = prevMessage.fileURL {
                 urls.insert(url, at: 0)
             }
-            prev = Int(dc_get_next_media(mailboxPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
+            prev = Int(dc_get_next_media(DcContext.shared.contextPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
         }
         return urls
     }
 
     func nextMediaURLs() -> [URL] {
         var urls: [URL] = []
-        var next: Int = Int(dc_get_next_media(mailboxPointer, UInt32(id), 1, Int32(type), 0, 0))
+        var next: Int = Int(dc_get_next_media(DcContext.shared.contextPointer, UInt32(id), 1, Int32(type), 0, 0))
         while next != 0 {
             let nextMessage = DcMsg(id: next)
             if let url = nextMessage.fileURL {
                 urls.append(url)
             }
-            next = Int(dc_get_next_media(mailboxPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
+            next = Int(dc_get_next_media(DcContext.shared.contextPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
         }
         return urls
     }
@@ -959,7 +1046,7 @@ class DcContact {
     private var contactPointer: OpaquePointer?
 
     init(id: Int) {
-        contactPointer = dc_get_contact(mailboxPointer, UInt32(id))
+        contactPointer = dc_get_contact(DcContext.shared.contextPointer, UInt32(id))
     }
 
     deinit {
@@ -1028,15 +1115,15 @@ class DcContact {
     }
 
     func block() {
-        dc_block_contact(mailboxPointer, UInt32(id), 1)
+        dc_block_contact(DcContext.shared.contextPointer, UInt32(id), 1)
     }
 
     func unblock() {
-        dc_block_contact(mailboxPointer, UInt32(id), 0)
+        dc_block_contact(DcContext.shared.contextPointer, UInt32(id), 0)
     }
 
     func marknoticed() {
-        dc_marknoticed_contact(mailboxPointer, UInt32(id))
+        dc_marknoticed_contact(DcContext.shared.contextPointer, UInt32(id))
     }
 }
 

@@ -4,11 +4,11 @@ class ProfileCell: UITableViewCell {
 
     private let detailView = ContactDetailHeader()
 
-    init(contact: DcContact) {
+    init(contact: DcContact, displayName: String?, address: String?) {
         super.init(style: .default, reuseIdentifier: nil)
         accessoryType = .disclosureIndicator
         setupSubviews()
-        update(contact: contact)
+        update(contact: contact, displayName: displayName, address: address)
         detailView.backgroundColor = .clear
     }
 
@@ -26,9 +26,8 @@ class ProfileCell: UITableViewCell {
         detailView.heightAnchor.constraint(equalToConstant: ContactDetailHeader.headerHeight).isActive = true
     }
 
-    func update(contact: DcContact) {
-        let displayName = DcConfig.displayname
-        let email = DcConfig.addr ?? contact.email
+    func update(contact: DcContact, displayName: String?, address: String?) {
+        let email = address ?? contact.email
         detailView.updateDetails(title: displayName ?? contact.displayName, subtitle: email)
         if let image = contact.profileImage {
             detailView.setImage(image)

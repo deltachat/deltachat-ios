@@ -59,7 +59,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     private lazy var chatListController: UIViewController = {
         let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: false)
-        let controller = ChatListController(viewModel: viewModel)
+        let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
         let nav = UINavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "ic_chat")
         nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: chatsTab)
@@ -253,7 +253,7 @@ class ChatListCoordinator: Coordinator {
 
     func showArchive() {
         let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
-        let controller = ChatListController(viewModel: viewModel)
+        let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
         let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
         controller.coordinator = coordinator
@@ -261,7 +261,7 @@ class ChatListCoordinator: Coordinator {
     }
 
     func showNewChat(contactId: Int) {
-        let chatId = dc_create_chat_by_contact_id(mailboxPointer, UInt32(contactId))
+        let chatId = dcContext.createChatByContactId(contactId: contactId)
         showChat(chatId: Int(chatId))
     }
 }
@@ -341,18 +341,20 @@ class AccountSetupCoordinator: Coordinator {
     }
 
     func showCertCheckOptions() {
-        let certificateCheckController = CertificateCheckController(sectionTitle: String.localized("login_certificate_checks"))
+        let certificateCheckController = CertificateCheckController(dcContext: dcContext, sectionTitle: String.localized("login_certificate_checks"))
         navigationController.pushViewController(certificateCheckController, animated: true)
     }
 
     func showImapSecurityOptions() {
-        let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"),
+        let securitySettingsController = SecuritySettingsController(dcContext: dcContext, title: String.localized("login_imap_security"),
                                                                       type: SecurityType.IMAPSecurity)
         navigationController.pushViewController(securitySettingsController, animated: true)
     }
 
     func showSmptpSecurityOptions() {
-        let securitySettingsController = SecuritySettingsController(title: String.localized("login_imap_security"), type: SecurityType.SMTPSecurity)
+        let securitySettingsController = SecuritySettingsController(dcContext: dcContext,
+                                                                    title: String.localized("login_imap_security"),
+                                                                    type: SecurityType.SMTPSecurity)
         navigationController.pushViewController(securitySettingsController, animated: true)
     }
 
@@ -506,7 +508,7 @@ class GroupChatDetailCoordinator: Coordinator {
         func showArchive() {
             self.navigationController.popToRootViewController(animated: false) // in main ChatList now
             let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
-            let controller = ChatListController(viewModel: viewModel)
+            let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
             let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: navigationController)
             childCoordinators.append(coordinator)
             controller.coordinator = coordinator
@@ -516,7 +518,7 @@ class GroupChatDetailCoordinator: Coordinator {
         CATransaction.begin()
         CATransaction.setCompletionBlock(notifyToDeleteChat)
 
-        let chat = DcChat(id: chatId)
+        let chat = dcContext.getChat(chatId: chatId)
         if chat.isArchived {
             showArchive()
         } else {
@@ -547,7 +549,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
     }
 
     func showChatDetail(chatId: Int) {
-        let chat = DcChat(id: chatId)
+        let chat = dcContext.getChat(chatId: chatId)
         switch chat.chatType {
         case .SINGLE:
             if let contactId = chat.contactIds.first {
@@ -679,8 +681,7 @@ class NewGroupCoordinator: Coordinator {
     }
 
     func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
-        let newGroupController = NewGroupAddMembersViewController(dcContext: dcContext,
-                                                                  preselected: preselectedMembers,
+        let newGroupController = NewGroupAddMembersViewController(preselected: preselectedMembers,
                                                                   isVerified: isVerified)
         let coordinator = NewGroupAddMembersCoordinator(dcContext: dcContext, navigationController: navigationController)
         childCoordinators.append(coordinator)
@@ -775,7 +776,7 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
         func showArchive() {
             self.navigationController.popToRootViewController(animated: false) // in main ChatList now
             let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
-            let controller = ChatListController(viewModel: viewModel)
+            let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
             let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: navigationController)
             childCoordinators.append(coordinator)
             controller.coordinator = coordinator
@@ -785,7 +786,7 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
         CATransaction.begin()
         CATransaction.setCompletionBlock(notifyToDeleteChat)
 
-        let chat = DcChat(id: chatId)
+        let chat = dcContext.getChat(chatId: chatId)
         if chat.isArchived {
             showArchive()
         } else {

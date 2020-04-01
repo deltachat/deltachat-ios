@@ -3,6 +3,7 @@ import UIKit
 class ChatListController: UITableViewController {
     weak var coordinator: ChatListCoordinator?
     let viewModel: ChatListViewModelProtocol
+    let dcContext: DcContext
 
     private let chatCellReuseIdentifier = "chat_cell"
     private let deadDropCellReuseIdentifier = "deaddrop_cell"
@@ -41,8 +42,9 @@ class ChatListController: UITableViewController {
         return cell
     }
 
-    init(viewModel: ChatListViewModelProtocol) {
+    init(dcContext: DcContext, viewModel: ChatListViewModelProtocol) {
         self.viewModel = viewModel
+        self.dcContext = dcContext
         if viewModel.isArchive {
             super.init(nibName: nil, bundle: nil)
         } else {
@@ -180,7 +182,7 @@ class ChatListController: UITableViewController {
         case .chat(let chatData):
             let chatId = chatData.chatId
             if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-                return getArchiveCell(title: DcChat(id: chatId).name)
+                return getArchiveCell(title: dcContext.getChat(chatId: chatId).name)
             } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
                 // default chatCell
                 chatCell.updateCell(cellViewModel: cellData)
@@ -247,7 +249,7 @@ class ChatListController: UITableViewController {
         }
         archiveAction.backgroundColor = UIColor.lightGray
 
-        let chat = DcChat(id: chatId)
+        let chat = dcContext.getChat(chatId: chatId)
         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
         let pinAction = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [unowned self] _, _ in
             self.viewModel.pinChatToggle(chatId: chat.id)
@@ -313,7 +315,7 @@ class ChatListController: UITableViewController {
         let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-            let chat = dcMsg.createChat()
+            let chat = self.dcContext.createChatByMessageId(msgId)
             self.coordinator?.showChat(chatId: chat.id)
         }))
         alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in

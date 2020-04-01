@@ -55,18 +55,18 @@ class SettingsClassicViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let oldSelectedCell = tableView.cellForRow(at: IndexPath.init(row: DcConfig.showEmails, section: 0))
+        let oldSelectedCell = tableView.cellForRow(at: IndexPath.init(row: dcContext.showEmails, section: 0))
         oldSelectedCell?.accessoryType = .none
 
         let newSelectedCell = tableView.cellForRow(at: IndexPath.init(row: indexPath.row, section: 0))
         newSelectedCell?.accessoryType = .checkmark
 
-        DcConfig.showEmails = indexPath.row
+        dcContext.showEmails = indexPath.row
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = staticCells[indexPath.row]
-        if options[indexPath.row] == DcConfig.showEmails {
+        if options[indexPath.row] == dcContext.showEmails {
             cell.accessoryType = .checkmark
         }
         return cell

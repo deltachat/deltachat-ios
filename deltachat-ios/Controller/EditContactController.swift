@@ -28,7 +28,7 @@ class EditContactController: NewContactController {
     }
 
     @objc override func saveContactButtonPressed() {
-        dc_create_contact(mailboxPointer, model.name, model.email)
+        _ = dcContext.createContact(name: model.name, email: model.email)
         coordinator?.navigateBack()
     }
 

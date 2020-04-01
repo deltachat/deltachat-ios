@@ -81,7 +81,7 @@ class ChatViewController: MessagesViewController {
     }
 
     init(dcContext: DcContext, chatId: Int) {
-        let dcChat = DcChat(id: chatId)
+        let dcChat = dcContext.getChat(chatId: chatId)
         self.dcContext = dcContext
         self.chatId = chatId
         self.disableWriting = !dcChat.canSend
@@ -97,7 +97,7 @@ class ChatViewController: MessagesViewController {
     override func viewDidLoad() {
         messagesCollectionView.register(InfoMessageCell.self)
         super.viewDidLoad()
-        if !DcConfig.configured {
+        if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
             return
         }
@@ -148,7 +148,7 @@ class ChatViewController: MessagesViewController {
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 
         if showCustomNavBar {
-            updateTitle(chat: DcChat(id: chatId))
+            updateTitle(chat: dcContext.getChat(chatId: chatId))
         }
 
         configureMessageMenu()
@@ -172,7 +172,7 @@ class ChatViewController: MessagesViewController {
                     }
                 }
                 if self.showCustomNavBar {
-                    self.updateTitle(chat: DcChat(id: self.chatId))
+                    self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
                 }
             }
         }
@@ -205,7 +205,7 @@ class ChatViewController: MessagesViewController {
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         dcContext.marknoticedChat(chatId: chatId)
-        let array = DcArray(arrayPointer: dc_get_fresh_msgs(mailboxPointer))
+        let array = dcContext.getFreshMessages()
         UIApplication.shared.applicationIconBadgeNumber = array.count
         startTimer()
     }
@@ -241,7 +241,7 @@ class ChatViewController: MessagesViewController {
                 }
             },
             completion: { _ in
-                self.updateTitle(chat: DcChat(id: self.chatId))
+                self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
                 self.messagesCollectionView.reloadDataAndKeepOffset()
                 if lastSectionVisibleBeforeTransition {
                     self.messagesCollectionView.scrollToBottom(animated: false)
@@ -323,9 +323,9 @@ class ChatViewController: MessagesViewController {
 
     private func showEmptyStateView(_ show: Bool) {
         if show {
-            let dcChat = DcChat(id: chatId)
+            let dcChat = dcContext.getChat(chatId: chatId)
             if chatId == DC_CHAT_ID_DEADDROP {
-                if DcConfig.showEmails != DC_SHOW_EMAILS_ALL {
+                if dcContext.showEmails != DC_SHOW_EMAILS_ALL {
                     emptyStateView.text = String.localized("chat_no_contact_requests")
                 } else {
                     emptyStateView.text = String.localized("chat_no_messages")
@@ -350,21 +350,11 @@ class ChatViewController: MessagesViewController {
     }
 
     private var textDraft: String? {
-        if let draft = dc_get_draft(mailboxPointer, UInt32(chatId)) {
-            if let cString = dc_msg_get_text(draft) {
-                let swiftString = String(cString: cString)
-                dc_str_unref(cString)
-                dc_msg_unref(draft)
-                return swiftString
-            }
-            dc_msg_unref(draft)
-            return nil
-        }
-        return nil
+        return dcContext.getDraft(chatId: chatId)
     }
 
     private func getMessageIds(_ count: Int, from: Int? = nil) -> [DcMsg] {
-        let cMessageIds = dc_get_chat_msgs(mailboxPointer, UInt32(chatId), 0, 0)
+        let cMessageIds = dcContext.getChatMessages(chatId: chatId)
 
         let ids: [Int]
         if let from = from {
@@ -374,7 +364,7 @@ class ChatViewController: MessagesViewController {
         }
 
         let markIds: [UInt32] = ids.map { UInt32($0) }
-        dc_markseen_msgs(mailboxPointer, UnsafePointer(markIds), Int32(ids.count))
+        dcContext.markSeenMessages(messageIds: markIds, count: ids.count)
 
         return ids.map {
             DcMsg(id: $0)
@@ -383,12 +373,7 @@ class ChatViewController: MessagesViewController {
 
     @objc private func setTextDraft() {
         if let text = self.messageInputBar.inputTextView.text {
-            let draft = dc_msg_new(mailboxPointer, DC_MSG_TEXT)
-            dc_msg_set_text(draft, text.cString(using: .utf8))
-            dc_set_draft(mailboxPointer, UInt32(chatId), draft)
-
-            // cleanup
-            dc_msg_unref(draft)
+            dcContext.setDraft(chatId: chatId, draftText: text)
         }
     }
 
@@ -640,7 +625,7 @@ class ChatViewController: MessagesViewController {
     }
 
     private func askToForwardMessage() {
-        let chat = DcChat(id: self.chatId)
+        let chat = dcContext.getChat(chatId: self.chatId)
         if chat.isSelfTalk {
             RelayHelper.sharedInstance.forward(to: self.chatId)
         } else {
@@ -889,7 +874,7 @@ extension ChatViewController: MessagesDataSource {
 
     func updateMessage(_ messageId: Int) {
         if let index = messageList.firstIndex(where: { $0.id == messageId }) {
-            dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(messageId)]), 1)
+            dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
 
             messageList[index] = DcMsg(id: messageId)
             // Reload section to update header/footer labels
@@ -915,7 +900,7 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func insertMessage(_ message: DcMsg) {
-        dc_markseen_msgs(mailboxPointer, UnsafePointer([UInt32(message.id)]), 1)
+        dcContext.markSeenMessages(messageIds: [UInt32(message.id)])
         messageList.append(message)
         emptyStateView.isHidden = true
         // Reload last section to update header/footer labels and insert a new one
@@ -1242,7 +1227,7 @@ extension ChatViewController: MessageCellDelegate {
     @objc func didTapAvatar(in cell: MessageCollectionViewCell) {
         if let indexPath = messagesCollectionView.indexPath(for: cell) {
             let message = messageList[indexPath.section]
-            let chat = DcChat(id: chatId)
+            let chat = dcContext.getChat(chatId: chatId)
             coordinator?.showContactDetail(of: message.fromContact.id, in: chat.chatType, chatId: chatId)
         }
     }

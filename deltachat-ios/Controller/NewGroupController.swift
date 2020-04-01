@@ -258,7 +258,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         //swipe by delete
         if section == sectionGroupMembers, groupContactIds[row] != DC_CONTACT_ID_SELF {
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [unowned self] _, indexPath in
-                if self.groupChatId != 0, DcChat(id: self.groupChatId).contactIds.contains(self.groupContactIds[row]) {
+                if self.groupChatId != 0, self.dcContext.getChat(chatId: self.groupChatId).contactIds.contains(self.groupContactIds[row]) {
                     let success = self.dcContext.removeContactFromChat(chatId: self.groupChatId, contactId: self.groupContactIds[row])
                     if success {
                         self.removeGroupContactFromList(at: indexPath)
@@ -315,7 +315,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     func updateGroupContactIdsOnQRCodeInvite() {
-        for contactId in DcChat(id: groupChatId).contactIds {
+        for contactId in dcContext.getChat(chatId: groupChatId).contactIds {
             contactIdsForGroup.insert(contactId)
         }
         groupContactIds = Array(contactIdsForGroup)
@@ -325,7 +325,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     func updateGroupContactIdsOnListSelection(_ members: Set<Int>) {
         if groupChatId != 0 {
             var members = members
-            for contactId in DcChat(id: groupChatId).contactIds {
+            for contactId in dcContext.getChat(chatId: groupChatId).contactIds {
                 members.insert(contactId)
             }
         }

@@ -88,7 +88,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
            // safe_fatalError("This is a ContactDetail view with no chat id")
             return false
         }
-        return DcChat(id: chatId).isArchived
+        return context.getChat(chatId: chatId).isArchived
     }
 
     var numberOfSections: Int {
@@ -116,7 +116,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         let unreadMessages = context.getUnreadMessages(chatId: chatId)
 
         let cellData = ChatCellData(chatId: chatId, summary: summary, unreadMessages: unreadMessages)
-        let cellViewModel = ChatCellViewModel(chatData: cellData)
+        let cellViewModel = ChatCellViewModel(dcContext: context, chatData: cellData)
         cell.updateCell(cellViewModel: cellViewModel)
     }
 

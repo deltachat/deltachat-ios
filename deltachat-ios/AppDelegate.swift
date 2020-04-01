@@ -5,7 +5,6 @@ import SwiftyBeaver
 import UIKit
 import UserNotifications
 
-var mailboxPointer: OpaquePointer!
 let logger = SwiftyBeaver.self
 
 enum ApplicationState {
@@ -17,7 +16,7 @@ enum ApplicationState {
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-    private let dcContext = DcContext()
+    private let dcContext = DcContext.shared
     var appCoordinator: AppCoordinator!
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
@@ -30,19 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
 
     var state = ApplicationState.stopped
-
-    private func getCoreInfo() -> [[String]] {
-        if let cString = dc_get_info(mailboxPointer) {
-            let info = String(cString: cString)
-            dc_str_unref(cString)
-            logger.info(info)
-            return info.components(separatedBy: "\n").map { val in
-                val.components(separatedBy: "=")
-            }
-        }
-
-        return []
-    }
 
     func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         // gets here when app returns from oAuth2-Setup process - the url contains the provided token
@@ -148,64 +134,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func open() {
         logger.info("open: \(dbfile())")
-
-        if mailboxPointer == nil {
-            mailboxPointer = dcContext.contextPointer
-            guard mailboxPointer != nil else {
-                fatalError("Error: dc_context_new returned nil")
-            }
-        }
-        _ = dc_open(mailboxPointer, dbfile(), nil)
+        dcContext.openDatabase(dbFile: dbfile())
     }
 
     func setStockTranslations() {
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_NOMESSAGES), String.localized("chat_no_messages"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_SELF), String.localized("self"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_DRAFT), String.localized("draft"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_VOICEMESSAGE), String.localized("voice_message"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_DEADDROP), String.localized("chat_contact_request"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_IMAGE), String.localized("image"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_VIDEO), String.localized("video"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_AUDIO), String.localized("audio"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_FILE), String.localized("file"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_STATUSLINE), String.localized("pref_default_status_text"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_NEWGROUPDRAFT), String.localized("group_hello_draft"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGGRPNAME), String.localized("systemmsg_group_name_changed"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGGRPIMGCHANGED), String.localized("systemmsg_group_image_changed"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGADDMEMBER), String.localized("systemmsg_member_added"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGDELMEMBER), String.localized("systemmsg_member_removed"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGGROUPLEFT), String.localized("systemmsg_group_left"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_GIF), String.localized("gif"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_CANTDECRYPT_MSG_BODY), String.localized("systemmsg_cannot_decrypt"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_READRCPT), String.localized("systemmsg_read_receipt_subject"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_READRCPT_MAILBODY), String.localized("systemmsg_read_receipt_body"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGGRPIMGDELETED), String.localized("systemmsg_group_image_deleted"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_CONTACT_VERIFIED), String.localized("contact_verified"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_CONTACT_NOT_VERIFIED), String.localized("contact_not_verified"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_CONTACT_SETUP_CHANGED), String.localized("contact_setup_changed"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_ARCHIVEDCHATS), String.localized("chat_archived_chats_title"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_AC_SETUP_MSG_SUBJECT), String.localized("autocrypt_asm_subject"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_AC_SETUP_MSG_BODY), String.localized("autocrypt_asm_general_body"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_CANNOT_LOGIN), String.localized("login_error_cannot_login"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_SERVER_RESPONSE), String.localized("login_error_server_response"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGACTIONBYUSER), String.localized("systemmsg_action_by_user"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_MSGACTIONBYME), String.localized("systemmsg_action_by_me"))
-        dc_set_stock_translation(mailboxPointer, UInt32(DC_STR_DEVICE_MESSAGES), String.localized("device_talk"))
+        dcContext.setStockTranslation(id: DC_STR_NOMESSAGES, localizationKey: "chat_no_messages")
+        dcContext.setStockTranslation(id: DC_STR_SELF, localizationKey: "self")
+        dcContext.setStockTranslation(id: DC_STR_DRAFT, localizationKey: "draft")
+        dcContext.setStockTranslation(id: DC_STR_VOICEMESSAGE, localizationKey: "voice_message")
+        dcContext.setStockTranslation(id: DC_STR_DEADDROP, localizationKey: "chat_contact_request")
+        dcContext.setStockTranslation(id: DC_STR_IMAGE, localizationKey: "image")
+        dcContext.setStockTranslation(id: DC_STR_VIDEO, localizationKey: "video")
+        dcContext.setStockTranslation(id: DC_STR_AUDIO, localizationKey: "audio")
+        dcContext.setStockTranslation(id: DC_STR_FILE, localizationKey: "file")
+        dcContext.setStockTranslation(id: DC_STR_STATUSLINE, localizationKey: "pref_default_status_text")
+        dcContext.setStockTranslation(id: DC_STR_NEWGROUPDRAFT, localizationKey: "group_hello_draft")
+        dcContext.setStockTranslation(id: DC_STR_MSGGRPNAME, localizationKey: "systemmsg_group_name_changed")
+        dcContext.setStockTranslation(id: DC_STR_MSGGRPIMGCHANGED, localizationKey: "systemmsg_group_image_changed")
+        dcContext.setStockTranslation(id: DC_STR_MSGADDMEMBER, localizationKey: "systemmsg_member_added")
+        dcContext.setStockTranslation(id: DC_STR_MSGDELMEMBER, localizationKey: "systemmsg_member_removed")
+        dcContext.setStockTranslation(id: DC_STR_MSGGROUPLEFT, localizationKey: "systemmsg_group_left")
+        dcContext.setStockTranslation(id: DC_STR_GIF, localizationKey: "gif")
+        dcContext.setStockTranslation(id: DC_STR_CANTDECRYPT_MSG_BODY, localizationKey: "systemmsg_cannot_decrypt")
+        dcContext.setStockTranslation(id: DC_STR_READRCPT, localizationKey: "systemmsg_read_receipt_subject")
+        dcContext.setStockTranslation(id: DC_STR_READRCPT_MAILBODY, localizationKey: "systemmsg_read_receipt_body")
+        dcContext.setStockTranslation(id: DC_STR_MSGGRPIMGDELETED, localizationKey: "systemmsg_group_image_deleted")
+        dcContext.setStockTranslation(id: DC_STR_CONTACT_VERIFIED, localizationKey: "contact_verified")
+        dcContext.setStockTranslation(id: DC_STR_CONTACT_NOT_VERIFIED, localizationKey: "contact_not_verified")
+        dcContext.setStockTranslation(id: DC_STR_CONTACT_SETUP_CHANGED, localizationKey: "contact_setup_changed")
+        dcContext.setStockTranslation(id: DC_STR_ARCHIVEDCHATS, localizationKey: "chat_archived_chats_title")
+        dcContext.setStockTranslation(id: DC_STR_AC_SETUP_MSG_SUBJECT, localizationKey: "autocrypt_asm_subject")
+        dcContext.setStockTranslation(id: DC_STR_AC_SETUP_MSG_BODY, localizationKey: "autocrypt_asm_general_body")
+        dcContext.setStockTranslation(id: DC_STR_CANNOT_LOGIN, localizationKey: "login_error_cannot_login")
+        dcContext.setStockTranslation(id: DC_STR_SERVER_RESPONSE, localizationKey: "login_error_server_response")
+        dcContext.setStockTranslation(id: DC_STR_MSGACTIONBYUSER, localizationKey: "systemmsg_action_by_user")
+        dcContext.setStockTranslation(id: DC_STR_MSGACTIONBYME, localizationKey: "systemmsg_action_by_me")
+        dcContext.setStockTranslation(id: DC_STR_DEVICE_MESSAGES, localizationKey: "device_talk")
     }
 
     func stop() {
         state = .background
-
-        dc_interrupt_imap_idle(mailboxPointer)
-        dc_interrupt_smtp_idle(mailboxPointer)
-        dc_interrupt_mvbox_idle(mailboxPointer)
-        dc_interrupt_sentbox_idle(mailboxPointer)
+        dcContext.interruptIdle()
     }
 
     func close() {
         state = .stopped
-        dc_close(mailboxPointer)
-        mailboxPointer = nil
+        dcContext.closeDatabase()
     }
 
     func start(_ completion: (() -> Void)? = nil) {
@@ -214,15 +188,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if state == .running {
             return
         }
-
         state = .running
 
         DispatchQueue.global(qos: .background).async {
             self.registerBackgroundTask()
             while self.state == .running {
-                dc_perform_imap_jobs(mailboxPointer)
-                dc_perform_imap_fetch(mailboxPointer)
-                dc_perform_imap_idle(mailboxPointer)
+                self.dcContext.performImap()
             }
             if self.backgroundTask != .invalid {
                 completion?()
@@ -233,8 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         DispatchQueue.global(qos: .utility).async {
             self.registerBackgroundTask()
             while self.state == .running {
-                dc_perform_smtp_jobs(mailboxPointer)
-                dc_perform_smtp_idle(mailboxPointer)
+                self.dcContext.performSmtp()
             }
             if self.backgroundTask != .invalid {
                 self.endBackgroundTask()
@@ -243,17 +213,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         DispatchQueue.global(qos: .background).async {
             while self.state == .running {
-                dc_perform_sentbox_jobs(mailboxPointer)
-                dc_perform_sentbox_fetch(mailboxPointer)
-                dc_perform_sentbox_idle(mailboxPointer)
+                self.dcContext.performSentbox()
             }
         }
 
         DispatchQueue.global(qos: .background).async {
             while self.state == .running {
-                dc_perform_mvbox_jobs(mailboxPointer)
-                dc_perform_mvbox_fetch(mailboxPointer)
-                dc_perform_mvbox_idle(mailboxPointer)
+                self.dcContext.performMoveBox()
             }
         }
 
@@ -265,7 +231,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             logger.info("could not start reachability notifier")
         }
 
-        let info: [DBCustomVariable] = getCoreInfo().map { kv in
+        let info: [DBCustomVariable] = dcContext.getInfo().map { kv in
             let value = kv.count > 1 ? kv[1] : ""
             return DBCustomVariable(name: kv[0], value: value)
         }
@@ -288,7 +254,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // however, in fact, it may halt things for some seconds.
             // this pr is a workaround that make things usable for now.
             DispatchQueue.global(qos: .background).async {
-                dc_maybe_network(mailboxPointer)
+                self.dcContext.maybeNetwork()
             }
         case .none:
             logger.info("network: not reachable")
