@@ -95,8 +95,9 @@ class QrCodeReaderController: UIViewController {
         videoPreviewLayer.frame = view.layer.bounds
         view.addSubview(infoLabel)
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addConstraint(infoLabel.constraintAlignBottomTo(view, paddingBottom: 8))
-        view.addConstraint(infoLabel.constraintCenterXTo(view))
+
+        infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        infoLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
         view.bringSubviewToFront(infoLabel)
     }
 

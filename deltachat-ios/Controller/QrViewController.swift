@@ -131,14 +131,12 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
 
     //QRCodeDelegate
     func handleQrCode(_ code: String) {
-        //remove qr code scanner view
-        if let ctrl = navigationController,
-            let lastController = ctrl.viewControllers.last {
-                if type(of: lastController) === QrCodeReaderController.self {
-                    ctrl.viewControllers.removeLast()
-                }
+        qrCodeReaderController.dismiss(animated: true) {
+            self.processQRCode(code)
         }
+    }
 
+    private func processQRCode(_ code: String) {
         let qrParsed: DcLot = self.dcContext.checkQR(qrCode: code)
         let state = Int32(qrParsed.state)
         switch state {
@@ -204,7 +202,6 @@ class QrViewController: UITableViewController, QrCodeReaderDelegate {
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
-
     }
 
     private func joinSecureJoin(alertMessage: String, code: String) {
