@@ -136,9 +136,8 @@ extension QrCodeReaderController: AVCaptureMetadataOutputObjectsDelegate {
         if let metadataObj = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
             if supportedCodeTypes.contains(metadataObj.type) {
                 if metadataObj.stringValue != nil {
-                    dismiss(animated: true) {
-                        self.delegate?.handleQrCode(metadataObj.stringValue!)
-                    }
+                    self.delegate?.handleQrCode(metadataObj.stringValue!)
+                    self.captureSession.stopRunning()
                 }
             }
         }

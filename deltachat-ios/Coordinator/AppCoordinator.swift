@@ -173,18 +173,11 @@ extension AppCoordinator: WelcomeCoordinator {
         loginController.modalPresentationStyle = .fullScreen
         welcomeController.present(loginController, animated: true, completion: nil)
     }
-
-    func showQR() {
-        let qrController = QrCodeReaderController()
-        qrController.delegate = welcomeController
-        let nav = UINavigationController(rootViewController: qrController)
-        nav.modalPresentationStyle = .fullScreen
-        welcomeController.present(nav, animated: true)
-    }
+    
 
     func handleLoginSuccess() {
         welcomeController.setTransitionState(true) // this will hide welcomeController's content
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.loginController.dismiss(animated: true) { // this is ignored if loginController is not shown
                 self.presentTabBarController()
                 self.welcomeController.setTransitionState(false)
@@ -880,6 +873,5 @@ protocol EditContactCoordinatorProtocol: class {
 
 protocol WelcomeCoordinator: class {
     func showLogin()
-    func showQR()
     func handleLoginSuccess()
 }

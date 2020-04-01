@@ -22,10 +22,17 @@ class WelcomeViewController: UIViewController {
         }
         view.onScanQRCode = {
             [unowned self] in
-            self.coordinator?.showQR()
+            self.showQRReader()
         }
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+
+    private lazy var qrCodeReaderNav: UIViewController = {
+        let controller = QrCodeReaderController()
+        controller.delegate = self
+        let nav = UINavigationController(rootViewController: controller)
+        return nav
     }()
 
     // will be shown while transitioning to tabBarController
@@ -105,7 +112,13 @@ class WelcomeViewController: UIViewController {
         scrollView.isHidden = transitioning
     }
 
-    func createAccountFromQRCode(_ action: UIAlertAction) {
+    // MARK: - actions
+
+    func showQRReader() {
+        present(qrCodeReaderNav, animated: true)
+    }
+
+    func createAccountFromQRCode() {
         guard let code = scannedQrCode else {
             return
         }
@@ -113,15 +126,17 @@ class WelcomeViewController: UIViewController {
         scannedQrCode = nil
         if success {
             coordinator?.handleLoginSuccess()
+        } else {
+            setTransitionState(false)
         }
     }
 }
 
 extension WelcomeViewController: QrCodeReaderDelegate {
     func handleQrCode(_ code: String) {
-        self.scannedQrCode = code
         let lot = dcContext.checkQR(qrCode: code)
         if let domain = lot.text1, lot.state == DC_QR_ACCOUNT {
+            self.scannedQrCode = code
             confirmAccountCreationAlert(accountDomain: domain)
         }
     }
@@ -135,17 +150,24 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("cancel"),
             style: .cancel,
             handler: { [unowned self] _ in
-                self.scannedQrCode = nil
+                self.qrCodeReaderNav.dismiss(animated: true) {
+                    self.scannedQrCode = nil
+                }
             }
         )
         let okAction = UIAlertAction(
             title: String.localized("ok"),
             style: .default,
-            handler: createAccountFromQRCode(_:)
+            handler: { [unowned self] _ in
+                self.setTransitionState(true)
+                self.qrCodeReaderNav.dismiss(animated: true) {
+                    self.createAccountFromQRCode()
+                }
+            }
         )
         alert.addAction(okAction)
         alert.addAction(cancelAction)
-        present(alert, animated: true)
+        qrCodeReaderNav.present(alert, animated: true)
     }
 }
 
