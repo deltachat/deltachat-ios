@@ -3,6 +3,8 @@ import UIKit
 import AVFoundation
 
 class DcContext {
+    /// TODO: THIS global instance should be replaced in the future, for example for a multi-account scenario,
+    /// where we want to have more than one DcContext.
     static let dcContext: DcContext = DcContext()
     let contextPointer: OpaquePointer
 
@@ -19,6 +21,7 @@ class DcContext {
         dc_context_unref(contextPointer)
     }
 
+    /// Injection of DcContext is preferred over the usage of the shared variable
     static var shared: DcContext {
         return .dcContext
     }
