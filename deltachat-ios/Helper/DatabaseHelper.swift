@@ -56,7 +56,11 @@ class DatabaseHelper {
     func clearSharedDb() {
         let filemanager = FileManager.default
         if filemanager.fileExists(atPath: sharedDbFile) {
-            try? filemanager.removeItem(atPath: sharedDbFile)
+            do {
+                try filemanager.removeItem(atPath: sharedDbFile)
+            } catch {
+                logger.error("Failed to delete db: \(error)")
+            }
         }
     }
 
