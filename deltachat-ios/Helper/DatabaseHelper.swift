@@ -88,45 +88,7 @@ class DatabaseHelper {
               return localDbFile
           }
       }
-
       return sharedDbFile
-    }
-
-    func testMove(toShared: Bool) -> String? {
-        if toShared {
-            return updateDatabaseLocation()
-        } else {
-            return reverse()
-        }
-    }
-
-    func reverse() -> String? {
-      let filemanager = FileManager.default
-      if  filemanager.fileExists(atPath: sharedDbFile) {
-          do {
-              if filemanager.fileExists(atPath: localDbFile) {
-                  logger.debug("remove local DB first, in order to move DB from shared to local space")
-                  try? filemanager.removeItem(atPath: localDbFile)
-              }
-              try filemanager.moveItem(at: URL(fileURLWithPath: sharedDbFile), to: URL(fileURLWithPath: localDbFile))
-              let filemanager = FileManager.default
-              if filemanager.fileExists(atPath: sharedDbBlobsDir) {
-                  if filemanager.fileExists(atPath: localBlobsDir) {
-                      try? filemanager.removeItem(atPath: localBlobsDir)
-                  }
-                  do {
-                  try filemanager.moveItem(at: URL(fileURLWithPath: sharedDbBlobsDir), to: URL(fileURLWithPath: localBlobsDir))
-                  } catch let error {
-                      logger.error("Could not move db blobs directory to shared space: \(error.localizedDescription)")
-                  }
-              }
-
-          } catch let error {
-              logger.error("Could not update DB location. Share extension will probably not work. \n\(error.localizedDescription)")
-              return sharedDbFile
-          }
-      }
-      return localDbFile
     }
 
 }
