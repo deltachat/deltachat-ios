@@ -126,7 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func open() {
-        guard let databaseLocation = DatabaseHelper().testMove(toShared: true) else {
+        guard let databaseLocation = DatabaseHelper().updateDatabaseLocation() else {
             fatalError("Database could not be opened")
         }
         logger.info("open: \(databaseLocation)")

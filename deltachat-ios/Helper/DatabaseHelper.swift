@@ -38,19 +38,19 @@ class DatabaseHelper {
     }
 
     func clearSharedDbBlobsDir() {
-      let fileManager = FileManager.default
-      do {
-        if fileManager.fileExists(atPath: sharedDbBlobsDir) {
-            let filePaths =  try fileManager.contentsOfDirectory(atPath: sharedDbBlobsDir)
-            for filePath in filePaths {
-                let completePath = URL(fileURLWithPath: sharedDbBlobsDir).appendingPathComponent(filePath)
-                try fileManager.removeItem(atPath: completePath.path)
+        let fileManager = FileManager.default
+        do {
+            if fileManager.fileExists(atPath: sharedDbBlobsDir) {
+                let filePaths =  try fileManager.contentsOfDirectory(atPath: sharedDbBlobsDir)
+                for filePath in filePaths {
+                    let completePath = URL(fileURLWithPath: sharedDbBlobsDir).appendingPathComponent(filePath)
+                    try fileManager.removeItem(atPath: completePath.path)
+                }
+                try fileManager.removeItem(atPath: sharedDbBlobsDir)
             }
-            try fileManager.removeItem(atPath: sharedDbBlobsDir)
-        }
-      } catch {
+        } catch {
           logger.error("Could not clean shared blobs dir, it might be it didn't exist")
-      }
+        }
     }
 
     func clearSharedDb() {
