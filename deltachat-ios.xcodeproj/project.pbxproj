@@ -91,6 +91,7 @@
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
 		30A4D9AE2332672700544344 /* QrInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4D9AD2332672600544344 /* QrInviteViewController.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
+		30ECA5472436026F006F2E7A /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ECA5462436026F006F2E7A /* DatabaseHelper.swift */; };
 		30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9B9EB235F2116006E7ACF /* MessageCounter.swift */; };
 		6795F63A82E94FF7CD2CEC0F /* Pods_deltachat_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */; };
 		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
@@ -317,6 +318,7 @@
 		30A4D9AD2332672600544344 /* QrInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrInviteViewController.swift; sourceTree = "<group>"; };
 		30AC265E237F1807002A943F /* AvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarHelper.swift; sourceTree = "<group>"; };
 		30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateCheckController.swift; sourceTree = "<group>"; };
+		30ECA5462436026F006F2E7A /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		30F9B9EB235F2116006E7ACF /* MessageCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCounter.swift; sourceTree = "<group>"; };
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
@@ -794,6 +796,7 @@
 				AE1988A423EB2FBA00B4CD5F /* Errors.swift */,
 				AEFBE23023FF09B20045327A /* TypeAlias.swift */,
 				307D822D241669C7006D2490 /* LocationManager.swift */,
+				30ECA5462436026F006F2E7A /* DatabaseHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1158,6 +1161,7 @@
 				3040F45E234DFBC000FA34D5 /* Audio.swift in Sources */,
 				305961FE2346125100C80F33 /* InsetLabel.swift in Sources */,
 				3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */,
+				30ECA5472436026F006F2E7A /* DatabaseHelper.swift in Sources */,
 				B21005DB23383664004C70C5 /* SettingsClassicViewController.swift in Sources */,
 				305961F62346125100C80F33 /* MessageContentCell.swift in Sources */,
 				305961E42346125100C80F33 /* MessageKitDateFormatter.swift in Sources */,

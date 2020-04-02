@@ -125,16 +125,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
     }
 
-    func dbfile() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
-        let documentsPath = paths[0]
-
-        return documentsPath + "/messenger.db"
-    }
-
     func open() {
-        logger.info("open: \(dbfile())")
-        dcContext.openDatabase(dbFile: dbfile())
+        guard let databaseLocation = DatabaseHelper().testMove(toShared: true) else {
+            fatalError("Database could not be opened")
+        }
+        logger.info("open: \(databaseLocation)")
+        dcContext.openDatabase(dbFile: databaseLocation)
     }
 
     func setStockTranslations() {
