@@ -132,10 +132,10 @@ class AppCoordinator: NSObject, Coordinator {
 
     func presentWelcomeController(animated: Bool) {
         if animated {
-            welcomeController.setTransitionState(true)
+            welcomeController.activateSpinner(true)
             showWelcomeController()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.welcomeController.setTransitionState(false)
+                self.welcomeController.activateSpinner(false)
             }
         } else {
             showWelcomeController()
@@ -176,11 +176,11 @@ extension AppCoordinator: WelcomeCoordinator {
     
 
     func handleLoginSuccess() {
-        welcomeController.setTransitionState(true) // this will hide welcomeController's content
+        welcomeController.activateSpinner(true) // this will hide welcomeController's content
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.loginController.dismiss(animated: true) { // this is ignored if loginController is not shown
                 self.presentTabBarController()
-                self.welcomeController.setTransitionState(false)
+                self.welcomeController.activateSpinner(false)
             }
         }
     }

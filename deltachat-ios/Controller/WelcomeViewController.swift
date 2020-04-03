@@ -40,7 +40,6 @@ class WelcomeViewController: UIViewController {
         return nav
     }()
 
-    // will be shown while transitioning to tabBarController
     private var activityIndicator: UIActivityIndicatorView = {
         let view: UIActivityIndicatorView
         if #available(iOS 13, *) {
@@ -104,28 +103,30 @@ class WelcomeViewController: UIViewController {
         contentGuide.trailingAnchor.constraint(equalTo: welcomeView.trailingAnchor).isActive = true
         contentGuide.bottomAnchor.constraint(equalTo: welcomeView.bottomAnchor).isActive = true
 
+        // this enables vertical scrolling
         frameGuide.widthAnchor.constraint(equalTo: contentGuide.widthAnchor).isActive = true
     }
 
-    func setTransitionState(_ transitioning: Bool) {
-        if transitioning {
+    /// if active the welcomeViewController will show nothing but a centered activity indicator
+    func activateSpinner(_ active: Bool) {
+        if active {
             activityIndicator.startAnimating()
         } else {
             activityIndicator.stopAnimating()
         }
-        activityIndicator.isHidden = !transitioning
-        scrollView.isHidden = transitioning
+        activityIndicator.isHidden = !active
+        scrollView.isHidden = active
     }
 
     // MARK: - actions
 
-    func showQRReader(completion onComplete: VoidFunction? = nil) {
+    private func showQRReader(completion onComplete: VoidFunction? = nil) {
         present(qrCodeReaderNav, animated: true) {
             onComplete?()
         }
     }
 
-    func createAccountFromQRCode() {
+    private func createAccountFromQRCode() {
         guard let code = scannedQrCode else {
             return
         }
@@ -136,6 +137,35 @@ class WelcomeViewController: UIViewController {
         } else {
             accountCreationErrorAlert()
         }
+    }
+
+    private func accountCreationErrorAlert() {
+        func handleRepeat() {
+            showQRReader(completion: { [unowned self] in
+                self.activateSpinner(false)
+            })
+        }
+
+        let title = String.localized("error") // TODO: replace with more precise error message when available
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(
+            title: String.localized("ok"),
+            style: .default,
+            handler: { [unowned self] _ in
+                self.activateSpinner(false)
+            }
+        )
+
+        let repeatAction = UIAlertAction(
+            title: String.localized("global_menu_edit_redo_desktop"),
+            style: .default,
+            handler: { _ in
+                handleRepeat()
+            }
+        )
+        alert.addAction(okAction)
+        alert.addAction(repeatAction)
+        present(alert, animated: true)
     }
 }
 
@@ -158,7 +188,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("ok"),
             style: .default,
             handler: { [unowned self] _ in
-                self.setTransitionState(true)
+                self.activateSpinner(true)
                 self.qrCodeReaderNav.dismiss(animated: true) {
                     self.createAccountFromQRCode()
                 }
@@ -199,39 +229,9 @@ extension WelcomeViewController: QrCodeReaderDelegate {
                  }
              }
          )
-
         alert.addAction(okAction)
         alert.addAction(qrCancelAction)
         qrCodeReaderNav.present(alert, animated: true, completion: nil)
-    }
-
-    private func accountCreationErrorAlert() {
-        func handleRepeat() {
-            showQRReader(completion: { [unowned self] in
-                self.setTransitionState(false)
-            })
-        }
-
-        let title = String.localized("error") // TODO: replace with more precise error message when available
-        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(
-            title: String.localized("ok"),
-            style: .default,
-            handler: { [unowned self] _ in
-                self.setTransitionState(false)
-            }
-        )
-
-        let repeatAction = UIAlertAction(
-            title: String.localized("global_menu_edit_redo_desktop"),
-            style: .default,
-            handler: { _ in
-                handleRepeat()
-            }
-        )
-        alert.addAction(okAction)
-        alert.addAction(repeatAction)
-        present(alert, animated: true)
     }
 }
 
