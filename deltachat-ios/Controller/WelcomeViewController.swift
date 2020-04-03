@@ -306,7 +306,6 @@ class WelcomeContentView: UIView {
         return stack
     }()
 
-
     private lazy var qrCodeButton: UIButton = {
         let button = UIButton()
         let title = String.localized("qrscan_title")
