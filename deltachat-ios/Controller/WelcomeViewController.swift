@@ -28,10 +28,15 @@ class WelcomeViewController: UIViewController {
         return view
     }()
 
-    private lazy var qrCodeReaderNav: UIViewController = {
+    private lazy var qrCordeReader: QrCodeReaderController = {
         let controller = QrCodeReaderController()
         controller.delegate = self
-        let nav = UINavigationController(rootViewController: controller)
+        return controller
+    }()
+
+    private lazy var qrCodeReaderNav: UINavigationController = {
+        let nav = UINavigationController(rootViewController: qrCordeReader)
+        nav.modalPresentationStyle = .fullScreen
         return nav
     }()
 
@@ -114,8 +119,10 @@ class WelcomeViewController: UIViewController {
 
     // MARK: - actions
 
-    func showQRReader() {
-        present(qrCodeReaderNav, animated: true)
+    func showQRReader(completion onComplete: VoidFunction? = nil) {
+        present(qrCodeReaderNav, animated: true) {
+            onComplete?()
+        }
     }
 
     func createAccountFromQRCode() {
@@ -127,7 +134,7 @@ class WelcomeViewController: UIViewController {
         if success {
             coordinator?.handleLoginSuccess()
         } else {
-            setTransitionState(false)
+            accountCreationErrorAlert()
         }
     }
 }
@@ -138,23 +145,15 @@ extension WelcomeViewController: QrCodeReaderDelegate {
         if let domain = lot.text1, lot.state == DC_QR_ACCOUNT {
             self.scannedQrCode = code
             confirmAccountCreationAlert(accountDomain: domain)
+        } else {
+            qrErrorAlert()
         }
     }
 
     private func confirmAccountCreationAlert(accountDomain domain: String) {
-        let title = "Create new e-mail address on \"\(domain)\" and log in there?"
-
+        let title = String.localizedStringWithFormat(NSLocalizedString("qraccount_ask_create_and_login", comment: ""), domain)
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
 
-        let cancelAction = UIAlertAction(
-            title: String.localized("cancel"),
-            style: .cancel,
-            handler: { [unowned self] _ in
-                self.qrCodeReaderNav.dismiss(animated: true) {
-                    self.scannedQrCode = nil
-                }
-            }
-        )
         let okAction = UIAlertAction(
             title: String.localized("ok"),
             style: .default,
@@ -165,9 +164,74 @@ extension WelcomeViewController: QrCodeReaderDelegate {
                 }
             }
         )
+
+        let qrCancelAction = UIAlertAction(
+            title: String.localized("cancel"),
+            style: .cancel,
+            handler: { [unowned self] _ in
+                self.qrCodeReaderNav.dismiss(animated: true) {
+                    self.scannedQrCode = nil
+                }
+            }
+        )
+
         alert.addAction(okAction)
-        alert.addAction(cancelAction)
+        alert.addAction(qrCancelAction)
         qrCodeReaderNav.present(alert, animated: true)
+    }
+
+    private func qrErrorAlert() {
+        let title = String.localized("qraccount_qr_code_cannot_be_used")
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(
+            title: String.localized("ok"),
+            style: .default,
+            handler: { [unowned self] _ in
+                self.qrCordeReader.startSession()
+            }
+        )
+        let qrCancelAction = UIAlertAction(
+             title: String.localized("cancel"),
+             style: .cancel,
+             handler: { [unowned self] _ in
+                 self.qrCodeReaderNav.dismiss(animated: true) {
+                     self.scannedQrCode = nil
+                 }
+             }
+         )
+
+        alert.addAction(okAction)
+        alert.addAction(qrCancelAction)
+        qrCodeReaderNav.present(alert, animated: true, completion: nil)
+    }
+
+    private func accountCreationErrorAlert() {
+        func handleRepeat() {
+            showQRReader(completion: { [unowned self] in
+                self.setTransitionState(false)
+            })
+        }
+
+        let title = String.localized("error") // TODO: replace with more precise error message when available
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(
+            title: String.localized("ok"),
+            style: .default,
+            handler: { [unowned self] _ in
+                self.setTransitionState(false)
+            }
+        )
+
+        let repeatAction = UIAlertAction(
+            title: String.localized("global_menu_edit_redo_desktop"),
+            style: .default,
+            handler: { _ in
+                handleRepeat()
+            }
+        )
+        alert.addAction(okAction)
+        alert.addAction(repeatAction)
+        present(alert, animated: true)
     }
 }
 

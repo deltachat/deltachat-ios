@@ -101,7 +101,7 @@ class QrCodeReaderController: UIViewController {
         view.bringSubviewToFront(infoLabel)
     }
 
-    func updateVideoOrientation() {
+    private func updateVideoOrientation() {
 
         guard let connection = videoPreviewLayer.connection else {
             return
@@ -127,6 +127,10 @@ class QrCodeReaderController: UIViewController {
     // MARK: - actions
     @objc private func closeButtonPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
+    }
+
+    func startSession() {
+        captureSession.startRunning()
     }
 }
 
