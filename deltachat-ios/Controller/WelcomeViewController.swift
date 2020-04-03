@@ -302,7 +302,7 @@ class WelcomeContentView: UIView {
     private lazy var buttonStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [loginButton, qrCodeButton /*, importBackupButton */])
         stack.axis = .vertical
-        stack.spacing = 10
+        stack.spacing = 15
         return stack
     }()
 
