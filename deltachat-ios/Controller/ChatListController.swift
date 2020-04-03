@@ -70,6 +70,7 @@ class ChatListController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        dcContext.updateDeviceChats()
         updateTitle()
         viewModel.refreshData()
 
