@@ -145,7 +145,6 @@ class DcContext {
             return false
         }
         let success = dc_set_config_from_qr(contextPointer, qrCode)
-        configure()
         return success == 1
     }
 

@@ -570,7 +570,7 @@ class AccountSetupController: UITableViewController {
         login(emailAddress: emailAddress, password: password)
     }
 
-    func updateProviderInfo() {
+    private func updateProviderInfo() {
             provider = dcContext.getProviderFromEmail(addr: emailCell.getText() ?? "")
         if let hint = provider?.beforeLoginHint,
             let status = provider?.status,
@@ -585,14 +585,14 @@ class AccountSetupController: UITableViewController {
         }
     }
 
-    func showProviderInfo() {
+    private func showProviderInfo() {
         basicSectionCells = [emailCell, passwordCell, providerInfoCell]
         let providerInfoCellIndexPath = IndexPath(row: 2, section: 0)
         tableView.insertRows(at: [providerInfoCellIndexPath], with: .fade)
         providerInfoShowing = true
     }
 
-    func hideProviderInfo() {
+    private func hideProviderInfo() {
         providerInfoCell.updateInfo(hint: nil, hintType: .none)
         basicSectionCells = [emailCell, passwordCell]
         let providerInfoCellIndexPath = IndexPath(row: 2, section: 0)

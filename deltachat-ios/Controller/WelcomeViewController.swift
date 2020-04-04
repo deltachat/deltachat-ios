@@ -1,12 +1,12 @@
 import UIKit
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     weak var coordinator: WelcomeCoordinator?
-
     private let dcContext: DcContext
-
     private var scannedQrCode: String?
+    var configureProgressObserver: Any?
+    var onProgressSuccess: VoidFunction?
 
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -40,6 +40,17 @@ class WelcomeViewController: UIViewController {
         return nav
     }()
 
+    lazy var progressAlert: UIAlertController = {
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(
+            title: String.localized("cancel"),
+            style: .cancel,
+            handler: { _ in
+                self.dcContext.stopOngoingProcess()
+        }))
+        return alert
+    }()
+
     private var activityIndicator: UIActivityIndicatorView = {
         let view: UIActivityIndicatorView
         if #available(iOS 13, *) {
@@ -55,8 +66,11 @@ class WelcomeViewController: UIViewController {
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
+        onProgressSuccess = {[unowned self] in
+            self.coordinator?.handleLoginSuccess()
+        }
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -76,6 +90,14 @@ class WelcomeViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         welcomeView.minContainerHeight = size.height
         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        let nc = NotificationCenter.default
+
+        if let configureProgressObserver = self.configureProgressObserver {
+            nc.removeObserver(configureProgressObserver)
+        }
     }
 
     // MARK: - setup
@@ -133,7 +155,11 @@ class WelcomeViewController: UIViewController {
         let success = dcContext.configureAccountFromQR(qrCode: code)
         scannedQrCode = nil
         if success {
-            coordinator?.handleLoginSuccess()
+            if let loginCompletion = self.onProgressSuccess {
+                addProgressAlertListener(onSuccess: loginCompletion)
+                showProgressAlert(title: String.localized("qraccount_use_on_new_install"))
+            }
+            dcContext.configure()
         } else {
             accountCreationErrorAlert()
         }
@@ -188,7 +214,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("ok"),
             style: .default,
             handler: { [unowned self] _ in
-                self.activateSpinner(true)
+               //  self.activateSpinner(true)
                 self.qrCodeReaderNav.dismiss(animated: true) {
                     self.createAccountFromQRCode()
                 }
@@ -420,4 +446,69 @@ class WelcomeContentView: UIView {
      @objc private func importBackupButtonPressed(_ sender: UIButton) {
          onImportBackup?()
      }
+}
+
+protocol ProgressAlertHandler: UIViewController {
+    var progressAlert: UIAlertController { get }
+    var configureProgressObserver: Any? { get set }
+    var onProgressSuccess: VoidFunction? { get set }
+    func showProgressAlert(title: String)
+    func updateProgressAlertValue(value: Int?)
+    func updateProgressAlert(error: String?)
+    func updateProgressAlertSuccess(completion: VoidFunction?)
+    func addProgressAlertListener(onSuccess: @escaping VoidFunction)
+}
+
+extension ProgressAlertHandler {
+
+    func showProgressAlert(title: String) {
+        progressAlert.actions[0].isEnabled = true
+        progressAlert.title = title
+        progressAlert.message = String.localized("one_moment")
+        present(progressAlert, animated: true, completion: nil)
+    }
+
+    func updateProgressAlertValue(value: Int?) {
+        if let value = value {
+            progressAlert.message = String.localized("one_moment") + " " + String(value/10) + "%"
+        }
+    }
+
+    func updateProgressAlert(error message: String?) {
+        DispatchQueue.main.async(execute: {
+            self.progressAlert.dismiss(animated: false)
+            let errorAlert = UIAlertController(title: String.localized("error"), message: message, preferredStyle: .alert)
+            errorAlert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+            self.present(errorAlert, animated: true, completion: nil)
+        })
+    }
+
+    func updateProgressAlertSuccess(completion onComplete: VoidFunction?) {
+        updateProgressAlertValue(value: 1000)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.progressAlert.dismiss(animated: true) {
+                onComplete?()
+            }
+        })
+    }
+
+    func addProgressAlertListener(onSuccess: @escaping VoidFunction) {
+        let nc = NotificationCenter.default
+        configureProgressObserver = nc.addObserver(
+            forName: dcNotificationConfigureProgress,
+            object: nil,
+            queue: nil
+        ) {
+            notification in
+            if let ui = notification.userInfo {
+                if ui["error"] as! Bool {
+                    self.updateProgressAlert(error: ui["errorMessage"] as? String)
+                } else if ui["done"] as! Bool {
+                    self.updateProgressAlertSuccess(completion: onSuccess)
+                } else {
+                    self.updateProgressAlertValue(value: ui["progress"] as? Int)
+                }
+            }
+        }
+    }
 }
