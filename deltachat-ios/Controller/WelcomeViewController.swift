@@ -51,18 +51,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         return alert
     }()
 
-    private var activityIndicator: UIActivityIndicatorView = {
-        let view: UIActivityIndicatorView
-        if #available(iOS 13, *) {
-             view = UIActivityIndicatorView(style: .large)
-        } else {
-            view = UIActivityIndicatorView(style: .whiteLarge)
-            view.color = UIColor.gray
-        }
-        view.isHidden = true
-        return view
-    }()
-
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
@@ -103,11 +91,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     // MARK: - setup
     private func setupSubviews() {
 
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(welcomeView)
@@ -131,13 +114,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     /// if active the welcomeViewController will show nothing but a centered activity indicator
     func activateSpinner(_ active: Bool) {
-        if active {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
-        }
-        activityIndicator.isHidden = !active
-        scrollView.isHidden = active
+        welcomeView.showSpinner(active)
     }
 
     // MARK: - actions
@@ -214,7 +191,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("ok"),
             style: .default,
             handler: { [unowned self] _ in
-               //  self.activateSpinner(true)
+                self.activateSpinner(true)
                 self.qrCodeReaderNav.dismiss(animated: true) {
                     self.createAccountFromQRCode()
                 }
@@ -261,6 +238,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
     }
 }
 
+// MARK: - WelcomeContentView
 class WelcomeContentView: UIView {
 
     var onLogin: VoidFunction?
@@ -350,6 +328,18 @@ class WelcomeContentView: UIView {
         return button
     }()
 
+    private var activityIndicator: UIActivityIndicatorView = {
+        let view: UIActivityIndicatorView
+        if #available(iOS 13, *) {
+             view = UIActivityIndicatorView(style: .large)
+        } else {
+            view = UIActivityIndicatorView(style: .whiteLarge)
+            view.color = UIColor.gray
+        }
+        view.isHidden = true
+        return view
+    }()
+
     private let defaultSpacing: CGFloat = 20
 
     init() {
@@ -424,6 +414,11 @@ class WelcomeContentView: UIView {
             $0.priority = .defaultLow
             $0.isActive = true
         }
+
+        addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.centerYAnchor.constraint(equalTo: buttonContainerGuide.centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
     }
 
     private func calculateLogoHeight() -> CGFloat {
@@ -446,6 +441,16 @@ class WelcomeContentView: UIView {
      @objc private func importBackupButtonPressed(_ sender: UIButton) {
          onImportBackup?()
      }
+
+    func showSpinner(_ show: Bool) {
+        if show {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+        activityIndicator.isHidden = !show
+        buttonStack.isHidden = show
+    }
 }
 
 protocol ProgressAlertHandler: UIViewController {
@@ -498,8 +503,7 @@ extension ProgressAlertHandler {
             forName: dcNotificationConfigureProgress,
             object: nil,
             queue: nil
-        ) {
-            notification in
+        ) { notification in
             if let ui = notification.userInfo {
                 if ui["error"] as! Bool {
                     self.updateProgressAlert(error: ui["errorMessage"] as? String)
