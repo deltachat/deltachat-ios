@@ -854,7 +854,6 @@ class EditContactCoordinator: Coordinator, EditContactCoordinatorProtocol {
     }
 }
 
-
 /*
  boilerplate - I tend to remove that interface (cyberta)
  */
