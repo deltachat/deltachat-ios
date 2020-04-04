@@ -1,14 +1,16 @@
 import SafariServices
 import UIKit
 
-class AccountSetupController: UITableViewController {
+class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     weak var coordinator: AccountSetupCoordinator?
 
     private let dcContext: DcContext
     private var skipOauth = false
     private var backupProgressObserver: Any?
-    private var configureProgressObserver: Any?
+    var configureProgressObserver: Any?
+    var onProgressSuccess: VoidFunction?
+
     private var oauth2Observer: Any?
 
     private let tagEmailCell = 0
@@ -70,7 +72,7 @@ class AccountSetupController: UITableViewController {
 
     // MARK: - the progress dialog
 
-    private lazy var configProgressAlert: UIAlertController = {
+    lazy var progressAlert: UIAlertController = {
         let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(
             title: String.localized("cancel"),
@@ -80,37 +82,6 @@ class AccountSetupController: UITableViewController {
         }))
         return alert
     }()
-
-    private func showProgressHud(title: String) {
-        configProgressAlert.actions[0].isEnabled = true
-        configProgressAlert.title = title
-        configProgressAlert.message = String.localized("one_moment")
-        present(configProgressAlert, animated: true, completion: nil)
-    }
-
-    private func updateProgressHud(error message: String?) {
-        DispatchQueue.main.async(execute: {
-            self.configProgressAlert.dismiss(animated: false)
-            let errorAlert = UIAlertController(title: String.localized("error"), message: message, preferredStyle: .alert)
-            errorAlert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-            self.present(errorAlert, animated: true, completion: nil)
-        })
-    }
-
-    private func updateProgressHudSuccess() {
-        updateProgressHudValue(value: 1000)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            self.configProgressAlert.dismiss(animated: true) {
-                self.handleLoginSuccess()
-            }
-        })
-    }
-
-    private func updateProgressHudValue(value: Int?) {
-        if let value = value {
-            configProgressAlert.message = String.localized("one_moment") + " " + String(value/10) + "%"
-        }
-    }
 
     // MARK: - cells
 
@@ -612,7 +583,7 @@ class AccountSetupController: UITableViewController {
 
         print("oAuth-Flag when loggin in: \(dcContext.getAuthFlags())")
         dcContext.configure()
-        showProgressHud(title: String.localized("login_header"))
+        showProgressAlert(title: String.localized("login_header"))
     }
 
     @objc func closeButtonPressed() {
@@ -690,11 +661,11 @@ class AccountSetupController: UITableViewController {
             notification in
             if let ui = notification.userInfo {
                 if ui["error"] as! Bool {
-                    self.updateProgressHud(error: ui["errorMessage"] as? String)
+                    self.updateProgressAlert(error: ui["errorMessage"] as? String)
                 } else if ui["done"] as! Bool {
-                    self.updateProgressHudSuccess()
+                    self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
                 } else {
-                    self.updateProgressHudValue(value: ui["progress"] as? Int)
+                    self.updateProgressAlertValue(value: ui["progress"] as? Int)
                 }
             }
         }
@@ -710,11 +681,11 @@ class AccountSetupController: UITableViewController {
             notification in
             if let ui = notification.userInfo {
                 if ui["error"] as! Bool {
-                    self.updateProgressHud(error: ui["errorMessage"] as? String)
+                    self.updateProgressAlert(error: ui["errorMessage"] as? String)
                 } else if ui["done"] as! Bool {
-                    self.updateProgressHudSuccess()
+                    self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
                 } else {
-                    self.updateProgressHudValue(value: ui["progress"] as? Int)
+                    self.updateProgressAlertValue(value: ui["progress"] as? Int)
                 }
             }
         }
@@ -757,7 +728,7 @@ class AccountSetupController: UITableViewController {
 
             if let file = dcContext.imexHasBackup(filePath: documents[0]) {
                 logger.info("restoring backup: \(file)")
-                showProgressHud(title: String.localized("import_backup_title"))
+                showProgressAlert(title: String.localized("import_backup_title"))
                 dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: file)
             }
             else {
