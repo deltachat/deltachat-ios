@@ -55,7 +55,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
         onProgressSuccess = {[unowned self] in
-            self.coordinator?.handleLoginSuccess()
+            self.coordinator?.handleQRAccountCreationSuccess()
         }
     }
     

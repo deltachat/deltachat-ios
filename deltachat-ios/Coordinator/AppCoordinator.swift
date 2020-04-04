@@ -160,6 +160,7 @@ class AppCoordinator: NSObject, Coordinator {
 }
 
 extension AppCoordinator: WelcomeCoordinator {
+
     func showLogin() {
         // add cancel button item to accountSetupController
         if let nav = loginController as? UINavigationController, let loginController = nav.topViewController as? AccountSetupController {
@@ -183,6 +184,11 @@ extension AppCoordinator: WelcomeCoordinator {
                 self.welcomeController.activateSpinner(false)
             }
         }
+    }
+
+    func handleQRAccountCreationSuccess() {
+        self.presentTabBarController()
+        self.welcomeController.activateSpinner(false)
     }
 
     @objc private func cancelButtonPressed(_ sender: UIBarButtonItem) {
@@ -873,4 +879,5 @@ protocol EditContactCoordinatorProtocol: class {
 protocol WelcomeCoordinator: class {
     func showLogin()
     func handleLoginSuccess()
+    func handleQRAccountCreationSuccess()
 }

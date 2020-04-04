@@ -9,7 +9,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private var skipOauth = false
     private var backupProgressObserver: Any?
     var configureProgressObserver: Any?
-    var onProgressSuccess: VoidFunction?
+    var onProgressSuccess: VoidFunction? // not needed here
 
     private var oauth2Observer: Any?
 
