@@ -175,10 +175,14 @@ open class TextMediaMessageCell: MessageContentCell {
         }
     }
 
-      /// Used to handle the cell's contentView's tap gesture.
-      /// Return false when the contentView does not need to handle the gesture.
-      open override func cellContentView(canHandle touchPoint: CGPoint) -> Bool {
-          return messageLabel.handleGesture(touchPoint)
-      }
+    /// Used to handle the cell's contentView's tap gesture.
+    /// Return false when the contentView does not need to handle the gesture.
+    open override func cellContentView(canHandle touchPoint: CGPoint) -> Bool {
+        if !imageView.isHidden {
+            let touchPointWithoutImageHeight = CGPoint(x: touchPoint.x, y: touchPoint.y - imageView.frame.height)
+            return messageLabel.handleGesture(touchPointWithoutImageHeight)
+        }
+        return messageLabel.handleGesture(touchPoint)
+    }
 
 }
