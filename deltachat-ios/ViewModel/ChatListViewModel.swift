@@ -63,7 +63,6 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     private var searchResultSections: [ChatListSectionType] = []
 
     init(dcContext: DcContext, isArchive: Bool) {
-        dcContext.updateDeviceChats()
         self.isArchive = isArchive
         self.dcContext = dcContext
         super.init()
