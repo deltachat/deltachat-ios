@@ -804,8 +804,6 @@ class AccountSetupController: UITableViewController {
             return
         }
 
-        let dbfile = DatabaseHelper().currentDatabaseLocation
-        let dburl = URL(fileURLWithPath: dbfile, isDirectory: false)
         let alert = UIAlertController(
             title: String.localized("delete_account_ask"),
             message: nil,
@@ -814,13 +812,7 @@ class AccountSetupController: UITableViewController {
         alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { _ in
             appDelegate.stop()
             appDelegate.close()
-            do {
-                //TODO: remove also blobs folder?!
-                try FileManager.default.removeItem(at: dburl)
-            } catch {
-                logger.error("failed to delete db: \(error)")
-            }
-
+            DatabaseHelper().clearAccountData()
             appDelegate.open()
             appDelegate.start()
 
