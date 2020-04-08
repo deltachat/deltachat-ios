@@ -48,6 +48,7 @@
 "email_address" = "E-Mail-Adresse";
 "bad_email_address" = "Ungültige E-Mail-Adresse";
 "password" = "Passwort";
+"existing_password" = "Bestehendes Passwort";
 "now" = "Jetzt";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Achtung";
@@ -419,6 +420,22 @@
 "pref_background_default_color" = "Voreingestellte Farbe";
 "pref_background_custom_image" = "Benutzerdefiniertes Hintergrundbild";
 "pref_background_custom_color" = "Benutzerdefinierte Farbe";
+
+// automatically delete message
+"autodel_title" = "Nachrichten automatisch löschen";
+"autodel_title_short" = "Automatisch löschen";
+"autodel_device_title" = "Nachrichten vom Gerät löschen";
+"autodel_server_title" = "Nachrichten vom Server löschen";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
+"autodel_device_ask" = "Wirklich %1$d Nachrichten jetzt und zukünftig alle neuen Nachrichten %2$@ löschen?\n\n• Dies schliesst alle Medien mit ein\n\n• Nachrichten werden gelöscht, auch wenn sie nicht angesehen wurden\n\n• \"Gespeicherte Nachrichten\" werden nicht gelöscht";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
+"autodel_server_ask" = "Wirklich %1$d Nachrichten jetzt und zukünftig alle neuen Nachrichten %2$@ löschen?\n\n• Dies schliesst alle Medien mit ein\n\n• E-Mails, die aufgrund von \"Normale E-Mails anzeigen\" angezeigt werden, werden ebenfalls vom Server gelöscht\n\n• \"Gespeicherte Nachrichten\" werden ebenfalls vom Server gelöschet";
+"autodel_confirm" = "Verstanden, löschen all diese Nachrichten";
+"autodel_at_once" = "Sofort";
+"autodel_after_1_hour" = "Nach 1 Stunde";
+"autodel_after_1_day" = "Nach 1 Tag";
+"autodel_after_1_week" = "Nach 1 Woche";
+"autodel_after_4_weeks" = "Nach 4 Wochen";
 
 // autocrypt
 "autocrypt" = "Autocrypt";

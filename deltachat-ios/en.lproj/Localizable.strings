@@ -48,6 +48,7 @@
 "email_address" = "Email address";
 "bad_email_address" = "Bad email address.";
 "password" = "Password";
+"existing_password" = "Existing password";
 "now" = "Now";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Danger";
@@ -425,8 +426,9 @@
 "autodel_title_short" = "Auto-delete";
 "autodel_device_title" = "Delete messages from device";
 "autodel_server_title" = "Delete messages from server";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %1$s will be replaced by a timespan in italics or so.
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
 "autodel_device_ask" = "Do you want to delete %1$d messages now and all newly fetched messages %2$@ in the future?\n\n• This includes all media\n\n• Message will be deleted whether they were seen or not\n\n• \"Saved messages\" will be skipped from local deletion";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
 "autodel_server_ask" = "Do you want to delete %1$d messages now and all newly fetched messages %2$@ in the future?\n\n• This includes all media\n\n• This will also delete emails affected by the \"Show classic emails\" option\n\n• \"Saved messages\" will be deleted from the server as well";
 "autodel_confirm" = "I understand, delete all these messages";
 "autodel_at_once" = "At once";
