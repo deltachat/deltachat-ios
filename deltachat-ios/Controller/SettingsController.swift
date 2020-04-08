@@ -21,6 +21,7 @@ internal final class SettingsViewController: UITableViewController {
         case exportBackup = 8
         case advanced = 9
         case help = 10
+        case autodel = 11
     }
 
     weak var coordinator: SettingsCoordinator?
@@ -73,6 +74,25 @@ internal final class SettingsViewController: UITableViewController {
         cell.tag = CellTags.blockedContacts.rawValue
         cell.textLabel?.text = String.localized("pref_blocked_contacts")
         cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
+    func autodelSummary() -> String {
+        let delDeviceAfter = dcContext.getConfigInt("delete_device_after")
+        let delServerAfter = dcContext.getConfigInt("delete_server_after")
+        if delDeviceAfter==0 && delServerAfter==0 {
+            return String.localized("off")
+        } else {
+            return String.localized("on")
+        }
+    }
+
+    private lazy var autodelCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.autodel.rawValue
+        cell.textLabel?.text = String.localized("autodel_title")
+        cell.accessoryType = .disclosureIndicator
+        cell.detailTextLabel?.text = autodelSummary()
         return cell
     }()
 
@@ -166,7 +186,7 @@ internal final class SettingsViewController: UITableViewController {
         let preferencesSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: String.localized("pref_read_receipts_explain"),
-            cells: [contactRequestCell, chatPreferenceCell, blockedContactsCell, notificationCell, receiptConfirmationCell]
+            cells: [contactRequestCell, chatPreferenceCell, blockedContactsCell, autodelCell, notificationCell, receiptConfirmationCell]
         )
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
@@ -282,6 +302,7 @@ internal final class SettingsViewController: UITableViewController {
         case .contactRequest: self.coordinator?.showContactRequests()
         case .preferences: coordinator?.showClassicMail()
         case .blockedContacts: coordinator?.showBlockedContacts()
+        case .autodel: coordinator?.showAutodelOptions()
         case .notifications: handleNotificationToggle()
         case .receiptConfirmation: handleReceiptConfirmationToggle()
         case .autocryptPreferences: handleAutocryptPreferencesToggle()
@@ -415,5 +436,7 @@ internal final class SettingsViewController: UITableViewController {
         profileCell.update(contact: selfContact, displayName: displayName, address: email)
 
         chatPreferenceCell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
+
+        autodelCell.detailTextLabel?.text = autodelSummary()
     }
 }
