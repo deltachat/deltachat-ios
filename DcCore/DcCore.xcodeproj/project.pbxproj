@@ -1,0 +1,659 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3042193B243DE0F200516852 /* DcCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30421931243DE0F200516852 /* DcCore.framework */; };
+		30421940243DE0F200516852 /* DcCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042193F243DE0F200516852 /* DcCoreTests.swift */; };
+		30421942243DE0F200516852 /* DcCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 30421934243DE0F200516852 /* DcCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30421950243DE15D00516852 /* wrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3042194C243DE15D00516852 /* wrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30421951243DE15D00516852 /* Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042194D243DE15D00516852 /* Wrapper.swift */; };
+		30421952243DE15D00516852 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 3042194E243DE15D00516852 /* wrapper.c */; };
+		30421959243DE6AD00516852 /* libdeltachat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30421958243DE61400516852 /* libdeltachat.a */; platformFilter = ios; };
+		3042195B243DF1C500516852 /* deltachat.h in Headers */ = {isa = PBXBuildFile; fileRef = 3042195A243DF1C500516852 /* deltachat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3042195D243E23F100516852 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042195C243E23F100516852 /* Utils.swift */; };
+		30421960243E257100516852 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042195F243E257100516852 /* UIColor+Extensions.swift */; };
+		30421962243E26C800516852 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421961243E26C800516852 /* Logger.swift */; };
+		30421964243F0B8400516852 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421963243F0B8400516852 /* String+Extensions.swift */; };
+		30421967243F165C00516852 /* SenderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421966243F165C00516852 /* SenderType.swift */; };
+		30421969243F168700516852 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421968243F168700516852 /* Sender.swift */; };
+		3042196B243F169B00516852 /* MessageKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042196A243F169B00516852 /* MessageKind.swift */; };
+		3042196D243F16E100516852 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042196C243F16E100516852 /* MessageType.swift */; };
+		3042196F243F176B00516852 /* MediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042196E243F176B00516852 /* MediaItem.swift */; };
+		30421971243F178800516852 /* AudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421970243F178800516852 /* AudioItem.swift */; };
+		30421973243F179000516852 /* ContactItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421972243F179000516852 /* ContactItem.swift */; };
+		30421975243F17F200516852 /* LocationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421974243F17F200516852 /* LocationItem.swift */; };
+		3042197D243F1CAA00516852 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421979243F1CAA00516852 /* Audio.swift */; };
+		3042197E243F1CAA00516852 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042197A243F1CAA00516852 /* Media.swift */; };
+		3042197F243F1CAA00516852 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042197B243F1CAA00516852 /* Location.swift */; };
+		30421980243F1CAA00516852 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042197C243F1CAA00516852 /* Message.swift */; };
+		30421982243F1D5300516852 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421981243F1D5300516852 /* Colors.swift */; };
+		30421984243F1F0400516852 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421983243F1F0400516852 /* UIImage+Extension.swift */; };
+		30421986243F209E00516852 /* events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421985243F209E00516852 /* events.swift */; };
+		30421988243F23E500516852 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421987243F23E500516852 /* Constants.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3042193C243DE0F200516852 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30421928243DE0F100516852 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30421930243DE0F200516852;
+			remoteInfo = DcCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		30421931243DE0F200516852 /* DcCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DcCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		30421934243DE0F200516852 /* DcCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DcCore.h; sourceTree = "<group>"; };
+		30421935243DE0F200516852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3042193A243DE0F200516852 /* DcCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DcCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3042193F243DE0F200516852 /* DcCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcCoreTests.swift; sourceTree = "<group>"; };
+		30421941243DE0F200516852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3042194C243DE15D00516852 /* wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wrapper.h; path = ../../DcCore/DcCore/DC/wrapper.h; sourceTree = "<group>"; };
+		3042194D243DE15D00516852 /* Wrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wrapper.swift; path = ../../DcCore/DcCore/DC/Wrapper.swift; sourceTree = "<group>"; };
+		3042194E243DE15D00516852 /* wrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = wrapper.c; path = ../../DcCore/DcCore/DC/wrapper.c; sourceTree = "<group>"; };
+		30421958243DE61400516852 /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "../deltachat-ios/libraries/deltachat-core-rust/target/universal/release/libdeltachat.a"; sourceTree = "<group>"; };
+		3042195A243DF1C500516852 /* deltachat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = deltachat.h; path = "../deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi/deltachat.h"; sourceTree = "<group>"; };
+		3042195C243E23F100516852 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		3042195F243E257100516852 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		30421961243E26C800516852 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Logger.swift; path = ../../DcCore/DcCore/DC/Logger.swift; sourceTree = "<group>"; };
+		30421963243F0B8400516852 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		30421966243F165C00516852 /* SenderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderType.swift; sourceTree = "<group>"; };
+		30421968243F168700516852 /* Sender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		3042196A243F169B00516852 /* MessageKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageKind.swift; sourceTree = "<group>"; };
+		3042196C243F16E100516852 /* MessageType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
+		3042196E243F176B00516852 /* MediaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaItem.swift; sourceTree = "<group>"; };
+		30421970243F178800516852 /* AudioItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioItem.swift; sourceTree = "<group>"; };
+		30421972243F179000516852 /* ContactItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactItem.swift; sourceTree = "<group>"; };
+		30421974243F17F200516852 /* LocationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationItem.swift; sourceTree = "<group>"; };
+		30421979243F1CAA00516852 /* Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
+		3042197A243F1CAA00516852 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		3042197B243F1CAA00516852 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		3042197C243F1CAA00516852 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		30421981243F1D5300516852 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		30421983243F1F0400516852 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		30421985243F209E00516852 /* events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = events.swift; path = ../../DcCore/DcCore/DC/events.swift; sourceTree = "<group>"; };
+		30421987243F23E500516852 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3042192E243DE0F200516852 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30421959243DE6AD00516852 /* libdeltachat.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30421937243DE0F200516852 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3042193B243DE0F200516852 /* DcCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		30421927243DE0F100516852 = {
+			isa = PBXGroup;
+			children = (
+				3042195A243DF1C500516852 /* deltachat.h */,
+				30421933243DE0F200516852 /* DcCore */,
+				3042193E243DE0F200516852 /* DcCoreTests */,
+				30421932243DE0F200516852 /* Products */,
+				30421957243DE61400516852 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		30421932243DE0F200516852 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				30421931243DE0F200516852 /* DcCore.framework */,
+				3042193A243DE0F200516852 /* DcCoreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		30421933243DE0F200516852 /* DcCore */ = {
+			isa = PBXGroup;
+			children = (
+				30421978243F1C9900516852 /* Model */,
+				30421977243F1AF400516852 /* Helper */,
+				30421965243F12E900516852 /* MessageKit */,
+				3042195E243E255000516852 /* Extensions */,
+				3042194B243DE15D00516852 /* DC */,
+				30421934243DE0F200516852 /* DcCore.h */,
+				30421935243DE0F200516852 /* Info.plist */,
+			);
+			path = DcCore;
+			sourceTree = "<group>";
+		};
+		3042193E243DE0F200516852 /* DcCoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				3042193F243DE0F200516852 /* DcCoreTests.swift */,
+				30421941243DE0F200516852 /* Info.plist */,
+			);
+			path = DcCoreTests;
+			sourceTree = "<group>";
+		};
+		3042194B243DE15D00516852 /* DC */ = {
+			isa = PBXGroup;
+			children = (
+				30421985243F209E00516852 /* events.swift */,
+				30421961243E26C800516852 /* Logger.swift */,
+				3042194E243DE15D00516852 /* wrapper.c */,
+				3042194C243DE15D00516852 /* wrapper.h */,
+				3042194D243DE15D00516852 /* Wrapper.swift */,
+			);
+			name = DC;
+			path = "../../deltachat-ios/DC";
+			sourceTree = "<group>";
+		};
+		30421957243DE61400516852 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				30421958243DE61400516852 /* libdeltachat.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3042195E243E255000516852 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3042195F243E257100516852 /* UIColor+Extensions.swift */,
+				30421963243F0B8400516852 /* String+Extensions.swift */,
+				30421983243F1F0400516852 /* UIImage+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		30421965243F12E900516852 /* MessageKit */ = {
+			isa = PBXGroup;
+			children = (
+				3042196A243F169B00516852 /* MessageKind.swift */,
+				30421968243F168700516852 /* Sender.swift */,
+				30421976243F17FF00516852 /* Protocols */,
+			);
+			path = MessageKit;
+			sourceTree = "<group>";
+		};
+		30421976243F17FF00516852 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				30421970243F178800516852 /* AudioItem.swift */,
+				30421972243F179000516852 /* ContactItem.swift */,
+				30421974243F17F200516852 /* LocationItem.swift */,
+				3042196E243F176B00516852 /* MediaItem.swift */,
+				3042196C243F16E100516852 /* MessageType.swift */,
+				30421966243F165C00516852 /* SenderType.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		30421977243F1AF400516852 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				30421987243F23E500516852 /* Constants.swift */,
+				30421981243F1D5300516852 /* Colors.swift */,
+				3042195C243E23F100516852 /* Utils.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		30421978243F1C9900516852 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				30421979243F1CAA00516852 /* Audio.swift */,
+				3042197B243F1CAA00516852 /* Location.swift */,
+				3042197A243F1CAA00516852 /* Media.swift */,
+				3042197C243F1CAA00516852 /* Message.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3042192C243DE0F200516852 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30421950243DE15D00516852 /* wrapper.h in Headers */,
+				30421942243DE0F200516852 /* DcCore.h in Headers */,
+				3042195B243DF1C500516852 /* deltachat.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		30421930243DE0F200516852 /* DcCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30421945243DE0F200516852 /* Build configuration list for PBXNativeTarget "DcCore" */;
+			buildPhases = (
+				30421954243DE38E00516852 /* ShellScript */,
+				3042192C243DE0F200516852 /* Headers */,
+				3042192D243DE0F200516852 /* Sources */,
+				3042192E243DE0F200516852 /* Frameworks */,
+				3042192F243DE0F200516852 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DcCore;
+			productName = DcCore;
+			productReference = 30421931243DE0F200516852 /* DcCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		30421939243DE0F200516852 /* DcCoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30421948243DE0F200516852 /* Build configuration list for PBXNativeTarget "DcCoreTests" */;
+			buildPhases = (
+				30421936243DE0F200516852 /* Sources */,
+				30421937243DE0F200516852 /* Frameworks */,
+				30421938243DE0F200516852 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3042193D243DE0F200516852 /* PBXTargetDependency */,
+			);
+			name = DcCoreTests;
+			productName = DcCoreTests;
+			productReference = 3042193A243DE0F200516852 /* DcCoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		30421928243DE0F100516852 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = "merlinux GmbH";
+				TargetAttributes = {
+					30421930243DE0F200516852 = {
+						CreatedOnToolsVersion = 11.4;
+					};
+					30421939243DE0F200516852 = {
+						CreatedOnToolsVersion = 11.4;
+					};
+				};
+			};
+			buildConfigurationList = 3042192B243DE0F100516852 /* Build configuration list for PBXProject "DcCore" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 30421927243DE0F100516852;
+			productRefGroup = 30421932243DE0F200516852 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				30421930243DE0F200516852 /* DcCore */,
+				30421939243DE0F200516852 /* DcCoreTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3042192F243DE0F200516852 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30421938243DE0F200516852 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		30421954243DE38E00516852 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# The $PATH used by XCode likely won't contain Cargo, fix that.\n# This assumes a default `rustup` setup.\nexport PATH=\"$HOME/.cargo/bin:$PATH\"\n\nexport CFLAGS_x86_64_apple_darwin=\"-I /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include\"\n\n# ensure all targets are installed\nrustup target add aarch64-apple-ios x86_64-apple-ios --toolchain `cat ../deltachat-ios/libraries/deltachat-core-rust/rust-toolchain`\n\n# --xcode-integ determines --release and --targets from XCode's env vars.\n# Depending your setup, specify the rustup toolchain explicitly.\ncargo +`cat ../deltachat-ios/libraries/deltachat-core-rust/rust-toolchain` lipo --release --manifest-path ../deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi/Cargo.toml --no-default-features --features nightly\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3042192D243DE0F200516852 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30421969243F168700516852 /* Sender.swift in Sources */,
+				30421988243F23E500516852 /* Constants.swift in Sources */,
+				30421973243F179000516852 /* ContactItem.swift in Sources */,
+				30421962243E26C800516852 /* Logger.swift in Sources */,
+				30421986243F209E00516852 /* events.swift in Sources */,
+				30421980243F1CAA00516852 /* Message.swift in Sources */,
+				30421951243DE15D00516852 /* Wrapper.swift in Sources */,
+				30421971243F178800516852 /* AudioItem.swift in Sources */,
+				3042197F243F1CAA00516852 /* Location.swift in Sources */,
+				30421984243F1F0400516852 /* UIImage+Extension.swift in Sources */,
+				3042196D243F16E100516852 /* MessageType.swift in Sources */,
+				3042197E243F1CAA00516852 /* Media.swift in Sources */,
+				3042196B243F169B00516852 /* MessageKind.swift in Sources */,
+				30421952243DE15D00516852 /* wrapper.c in Sources */,
+				30421967243F165C00516852 /* SenderType.swift in Sources */,
+				30421982243F1D5300516852 /* Colors.swift in Sources */,
+				3042197D243F1CAA00516852 /* Audio.swift in Sources */,
+				3042195D243E23F100516852 /* Utils.swift in Sources */,
+				30421964243F0B8400516852 /* String+Extensions.swift in Sources */,
+				30421960243E257100516852 /* UIColor+Extensions.swift in Sources */,
+				3042196F243F176B00516852 /* MediaItem.swift in Sources */,
+				30421975243F17F200516852 /* LocationItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30421936243DE0F200516852 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30421940243DE0F200516852 /* DcCoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3042193D243DE0F200516852 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30421930243DE0F200516852 /* DcCore */;
+			targetProxy = 3042193C243DE0F200516852 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		30421943243DE0F200516852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		30421944243DE0F200516852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		30421946243DE0F200516852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
+				);
+				INFOPLIST_FILE = DcCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
+					"$(PROJECT_DIR)/../deltachat-ios/libraries/deltachat-core-rust/target/universal/release",
+					"$(PROJECT_DIR)/../deltachat-ios/libraries/deltachat-core-rust/target/universal/debug",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		30421947243DE0F200516852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
+				);
+				INFOPLIST_FILE = DcCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
+					"$(PROJECT_DIR)/../deltachat-ios/libraries/deltachat-core-rust/target/universal/release",
+					"$(PROJECT_DIR)/../deltachat-ios/libraries/deltachat-core-rust/target/universal/debug",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		30421949243DE0F200516852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
+				INFOPLIST_FILE = DcCoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3042194A243DE0F200516852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
+				INFOPLIST_FILE = DcCoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3042192B243DE0F100516852 /* Build configuration list for PBXProject "DcCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30421943243DE0F200516852 /* Debug */,
+				30421944243DE0F200516852 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30421945243DE0F200516852 /* Build configuration list for PBXNativeTarget "DcCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30421946243DE0F200516852 /* Debug */,
+				30421947243DE0F200516852 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30421948243DE0F200516852 /* Build configuration list for PBXNativeTarget "DcCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30421949243DE0F200516852 /* Debug */,
+				3042194A243DE0F200516852 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 30421928243DE0F100516852 /* Project object */;
+}
