@@ -1,4 +1,5 @@
 import UIKit
+import DcCore
 
 protocol ContactCellDelegate: class {
     func onAvatarTapped(at index: Int)

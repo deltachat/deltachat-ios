@@ -1,16 +1,16 @@
 import UIKit
 import UserNotifications
 
-let dcNotificationChanged = Notification.Name(rawValue: "MrEventMsgsChanged")
-let dcNotificationIncoming = Notification.Name(rawValue: "MrEventIncomingMsg")
-let dcNotificationImexProgress = Notification.Name(rawValue: "dcNotificationImexProgress")
-let dcNotificationConfigureProgress = Notification.Name(rawValue: "MrEventConfigureProgress")
-let dcNotificationSecureJoinerProgress = Notification.Name(rawValue: "MrEventSecureJoinerProgress")
-let dcNotificationSecureInviterProgress = Notification.Name(rawValue: "MrEventSecureInviterProgress")
-let dcNotificationViewChat = Notification.Name(rawValue: "MrEventViewChat")
-let dcNotificationContactChanged = Notification.Name(rawValue: "MrEventContactsChanged")
-let dcNotificationChatModified = Notification.Name(rawValue: "dcNotificationChatModified")
-let dcNotificationChatDeletedInChatDetail = Notification.Name(rawValue: "ChatDeletedInChatDetail")
+public let dcNotificationChanged = Notification.Name(rawValue: "MrEventMsgsChanged")
+public let dcNotificationIncoming = Notification.Name(rawValue: "MrEventIncomingMsg")
+public let dcNotificationImexProgress = Notification.Name(rawValue: "dcNotificationImexProgress")
+public let dcNotificationConfigureProgress = Notification.Name(rawValue: "MrEventConfigureProgress")
+public let dcNotificationSecureJoinerProgress = Notification.Name(rawValue: "MrEventSecureJoinerProgress")
+public let dcNotificationSecureInviterProgress = Notification.Name(rawValue: "MrEventSecureInviterProgress")
+public let dcNotificationViewChat = Notification.Name(rawValue: "MrEventViewChat")
+public let dcNotificationContactChanged = Notification.Name(rawValue: "MrEventContactsChanged")
+public let dcNotificationChatModified = Notification.Name(rawValue: "dcNotificationChatModified")
+public let dcNotificationChatDeletedInChatDetail = Notification.Name(rawValue: "ChatDeletedInChatDetail")
 
 @_silgen_name("callbackSwift")
 

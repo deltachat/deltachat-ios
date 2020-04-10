@@ -1,4 +1,5 @@
 import Foundation
+import DcCore
 
 extension DcContact {
     func contains(searchText text: String) -> [ContactHighlights] {

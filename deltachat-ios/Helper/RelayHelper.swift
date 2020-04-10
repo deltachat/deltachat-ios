@@ -1,4 +1,5 @@
 import Foundation
+import DcCore
 
 class RelayHelper {
     static var sharedInstance: RelayHelper = RelayHelper()

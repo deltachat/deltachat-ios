@@ -1,4 +1,5 @@
 import UIKit
+import DcCore
 
 class AvatarSelectionCell: UITableViewCell {
     let badgeSize: CGFloat = 72

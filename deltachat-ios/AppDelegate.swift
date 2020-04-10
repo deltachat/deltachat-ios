@@ -4,6 +4,7 @@ import Reachability
 import SwiftyBeaver
 import UIKit
 import UserNotifications
+import DcCore
 
 let logger = SwiftyBeaver.self
 

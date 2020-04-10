@@ -1,5 +1,6 @@
 import SafariServices
 import UIKit
+import DcCore
 
 class AccountSetupController: UITableViewController, ProgressAlertHandler {
 

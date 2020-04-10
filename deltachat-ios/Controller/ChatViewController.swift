@@ -3,6 +3,7 @@ import QuickLook
 import UIKit
 import InputBarAccessoryView
 import AVFoundation
+import DcCore
 
 protocol MediaSendHandler {
     func onSuccess()

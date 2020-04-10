@@ -1,4 +1,5 @@
 import UIKit
+import DcCore
 
 class ChatListController: UITableViewController {
     weak var coordinator: ChatListCoordinator?

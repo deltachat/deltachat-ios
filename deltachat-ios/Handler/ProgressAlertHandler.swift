@@ -1,4 +1,5 @@
 import UIKit
+import DcCore
 
 protocol ProgressAlertHandler: UIViewController {
     var progressAlert: UIAlertController { get }

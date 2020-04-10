@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import DcCore
 
 class AvatarHelper {
     static let tmpFile = "tempAvatar.jpg"
