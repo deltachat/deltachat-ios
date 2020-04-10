@@ -1,0 +1,214 @@
+// common strings without special context
+"app_name" = "Delta Chat";
+"ok" = "OK";
+"cancel" = "Batalkan";
+"yes" = "Ya";
+"no" = "Tidak";
+"none" = "Tidak ada";
+"automatic" = "Otomatis";
+"open" = "Buka";
+"delete" = "Hapus";
+"info" = "Info";
+"emoji" = "Emoji";
+"attachment" = "Lampiran";
+"back" = "Kembali";
+"close" = "Tutup";
+"forward" = "Teruskan";
+"archive" = "Arsip";
+"mute" = "Diam";
+"save" = "Simpan";
+"media" = "Media";
+"main_menu" = "Menu utama";
+"start_chat" = "Mulai chat";
+"show_password" = "Tunjukkan kata kunci";
+"hide_password" = "Sembunyikan kata kunci";
+"not_now" = "Tidak sekarang";
+"done" = "Selesai";
+"undo" = "Undo";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Berikutnya";
+"error" = "Eror";
+"error_x" = "Eror: %1$@";
+"error_no_network" = "Jaringan tidak tersedia.";
+"no_app_to_handle_data" = "Tidak menemukan aplikasi untuk jenis data ini.";
+"no_browser_installed" = "Tak ada browser yang terpasang.";
+"file_not_found" = "Tak bisa menemukan %1$@.";
+"contacts_headline" = "Kontak";
+"email_address" = "Alamat email";
+"password" = "Kata kunci";
+"now" = "Sekarang";
+// n_min_ago is deprecated, use n_minutes instead
+"n_min_ago" = "%dmenit";
+"today" = "Hari ini";
+"yesterday" = "Kemarin";
+"this_week" = "Minggu ini";
+"this_month" = "Bulan ini";
+"last_week" = "Minggu lalu";
+"last_month" = "Bulan lalu";
+// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
+// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
+"self" = "Saya";
+"draft" = "Draf";
+"image" = "Gambar";
+"gif" = "Gif";
+"images" = "Gambar";
+"audio" = "Audio";
+"voice_message" = "Pesan suara";
+"forwarded_message" = "Pesan yang diteruskan";
+"video" = "Video";
+"documents" = "Dokumen";
+"contact" = "Kontak";
+"verified_contact" = "Kontak terverifikasi";
+"camera" = "Kamera";
+"location" = "Lokasi";
+"gallery" = "Galeri";
+"file" = "Berkas";
+"unknown" = "Tak dikenal";
+
+"green" = "Hijau";
+"red" = "Merah";
+"blue" = "Biru";
+"orange" = "Oranye";
+"purple" = "Ungu";
+"magenta" = "Magenta";
+"white" = "Putih";
+
+"small" = "Kecil";
+"normal" = "Normal";
+"large" = "Besar";
+"extra_large" = "Sangat besar";
+
+"fast" = "Cepat";
+"slow" = "Lambat";
+
+"message_delivered" = "Pesan dikirim";
+"message_read" = "Pesan dibaca";
+
+
+// menu labels (or icon, buttons...)
+"menu_new_contact" = "Kontak baru";
+"menu_new_group" = "Grup baru";
+"menu_new_verified_group" = "Grup baru terverifikasi";
+"menu_send" = "Terkirim";
+"menu_edit_group" = "Edit grup";
+"menu_group_name_and_image" = "Nama dan gambar grup";
+"menu_show_map" = "Tunjukkan peta";
+"menu_show_global_map" = "Tunjukkan semua lokasi";
+"menu_add_attachment" = "Tambah lampiran";
+"menu_leave_group" = "Tinggalkan grup";
+"menu_delete_chat" = "Hapus obrolan";
+"menu_delete_messages" = "Hapus pesan";
+"menu_delete_image" = "Hapus gambar";
+"menu_delete_locations" = "Hapus semua lokasi?";
+"menu_delete_location" = "Hapus lokasi ini?";
+"menu_message_details" = "Detail pesan";
+"menu_forward" = "Teruskan pesan";
+"menu_resend" = "Kirim ulang pesan";
+"menu_reply" = "Balas pesan";
+"menu_mute" = "Nonaktifkan notifikasi";
+"menu_unmute" = "Aktifkan notifikasi";
+"menu_export_attachment" = "Ekspor lampiran";
+"menu_all_media" = "Semua media";
+"menu_share" = "Bagikan";
+"menu_block_contact" = "Blokir kontak";
+"menu_unblock_contact" = "Buka blokir kontak";
+"menu_play" = "Mainkan";
+"menu_pause" = "Jeda";
+"menu_help" = "Bantuan";
+"menu_select_all" = "Pilih semua";
+"menu_expand" = "Perluas";
+"menu_edit_name" = "Edit nama";
+"menu_edit_group_name" = "Edit nama grup";
+"menu_edit_group_image" = "Edit gambar grup";
+"menu_settings" = "Setelan";
+"menu_advanced" = "Lanjutan";
+"menu_deaddrop" = "Permintaan kontak";
+"menu_deaddrop_subtitle" = "Tekan pesan untuk memulai obrolan";
+"menu_view_profile" = "Lihat profil";
+"menu_save_log" = "Simpan log";
+"title_share_location" = "Bagikan lokasi kepada seluruh anggota grup";
+"device_talk" = "Hapus pesan";
+"device_talk_explain" = "Pesan dalam obrolan ini dihasilkan dalam aplikasi Delta Chat anda secara lokal. Pembuatnya menggunakannya untuk memberi tahu soal update aplikasi dan permasalahan dalam penggunaan.";
+"device_talk_welcome_message" = "Selamat datang di Delta Chat! – Delta Chat terlihat dan terasa seperti aplikasi messenger populer lainnya, tapi tidak menggunakan kontrol yang tersentralisasi, melacak atau menjual anda, teman, kolega atau keluarga ke organisasi-organisasi besar.\n\nSecara teknis, Delta Chat merupakan sebuah aplikasi email dengan penampilan chat yang modern. Katakanlah email dengan tampilan baru 👻\n\nGunakan Delta Chat dengan siapa pun dari miliaran orang di luar sana: cukup gunakan alamat email mereka. Penerima tak harus mengunduh Delta Chat, kunjungi website atau daftar di mana pun - karena tentu saja, jika mereka menyukai anda, ajaklah mereka ke 👉 https://get.delta.chat";
+"edit_contact" = "Edit kontak";
+// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin" = "Sematkan";
+"mute_for_one_hour" = "Diamkan untuk 1 jam";
+"mute_for_two_hours" = "Diamkan untuk 2 jam";
+"mute_for_one_day" = "Diamkan untuk 1 hari";
+"mute_for_seven_days" = "Diamkan untuk 7 hari";
+"mute_forever" = "Diamkan seterusnya";
+
+"share_location_once" = "sekali";
+"share_location_for_5_minutes" = "untuk 5 menit";
+"share_location_for_30_minutes" = "untuk 30 menit";
+"share_location_for_one_hour" = "untuk 1 jam";
+"share_location_for_two_hours" = "untuk 2 jam";
+"share_location_for_six_hours" = "untuk 6 jam";
+
+"file_saved_to" = "Berkas disimpan ke \"%1$@\".";
+
+// get confirmations
+"ask_leave_group" = "Apakah anda yakin untuk keluar dari grup ini?";
+"ask_forward" = "Teruskan pesan ke %1$@?";
+"ask_export_attachment" = "Ekspor lampiran? Mengekspor lampiran akan membuat aplikasi lain di gawai anda dapat mengaksesnya.\n\nLanjut?";
+"ask_block_contact" = "Blokir kontak ini? Anda tak akan lagi menerima pesan dari kontak ini.";
+"ask_unblock_contact" = "Buka blokir kontak ini? Anda akan bisa kembali menerima pesan dari kontak ini.";
+"ask_delete_contacts" = "Hapus kontak?\n\nKontak dengan obrolan yang sedang berlangsung dan dari buku alamat pada sistem tak bisa dihapus secara permanen.";
+"ask_delete_contact" = "Hapus kontak %1$@?\n\nKontak dengan obrolan yang sedang berlangsung dan dari buku alamat pada sistem tak bisa dihapus secara permanen.";
+"cannot_delete_contacts_in_use" = "Tak bisa menghapus kontak yang sedang dalam obrolan.";
+// Translators: %1$s will be replaces by a comma separated list of names
+"ask_remove_members" = "Hapus %1$@ dari grup?";
+"info_outdated_app_title" = "Versi aplikasi anda tidak update.";
+"info_outdated_app_text" = "Tampaknya anda menginstall Delta Chat dari sumber tanpa update otomatis (contoh: GitHub). Silakan ubah ke store version untuk mendapatkan fitur-fitur terbaru dan perbaikan bug.";
+"info_outdated_app_dialog_text" = "Delta Chat tersedia di:";
+
+
+// contact list
+"contacts_title" = "Kontak";
+"contacts_enter_name_or_email" = "Masukkan nama atau alamat email";
+"contacts_type_email_above" = "Ketik alamat email di atas";
+"chat_please_enter_message" = "Silakan masukkan pesan.";
+"chat_camera_unavailable" = "Kamera tak tersedia.";
+"chat_unable_to_record_audio" = "Tak bias merekam audio.";
+"chat_no_messages_hint" = "Kirim pesan ke %1$@:\n\n• Tak masalah jika %2$@ tidak menggunakan Delta Chat.\n\n• Mengirimkan pesan pertama membutuhkan waktu dan mungkin tidak terenkripsi.";
+"chat_new_group_hint" = "Buat pesan pertama, perbolehkan yang lain untuk membalas dalam grup ini.\n\n• Tak masalah jika tidak semua anggota menggunakan Delta Chat.\n\n• Mengirim pesan pertama membutuhkan waktu.";
+"chat_record_slide_to_cancel" = "Geser untuk batalkan";
+"chat_record_explain" = "Ketuk dan tahan untuk merekam pesan suara, lepaskan untuk mengirim";
+"chat_no_chats_yet_title" = "Kosongkan inbox.\nTekan \"+\" untuk memulai obrolan baru.";
+"chat_no_chats_yet_hint" = "Anda bisa mengobrol dengan pengguna Delta Chat lain maupun dengan siapa pun yang memiliki alamat email.";
+"chat_share_with_title" = "Bagi kepada";
+"chat_input_placeholder" = "Pesan";
+"chat_no_messages" = "Tak ada pesan.";
+"chat_self_talk_subtitle" = "Pesan yang saya kirimkan pada saya sendiri";
+"saved_messages" = "Pesan yang disimpan";
+"saved_messages_explain" = "• Teruskan pesan di sini untuk akses yang mudah\n\n• Buat catatan atau memo suara\n\n• Lampirkan media untuk menyimpannya";
+"chat_contact_request" = "Permintaan kontak";
+"chat_no_contact_requests" = "Tak ada permintaan kontak.\n\nJika anda ingin email klasik muncul di sini sebagai permintaan kontak, anda bisa mengubah aturannya di aplikasi.";
+"retry_send" = "Coba lagi mengirim pesan";
+"send_failed" = "Tak bisa mengirim pesan";
+
+// map
+"filter_map_on_time" = "Tunjukkan lokasi dalam jangka waktu";
+"show_location_traces" = "Tunjukkan jejak";
+// search
+"search" = "Cari";
+"search_explain" = "Cari obrolan, kontak, dan pesan";
+"search_no_result_for_x" = "Tak ada hasil dari \"%s\"";
+
+
+// create/edit groups, contact/group profile
+"group_name" = "Nama grup";
+"group_avatar" = "Avatar grup";
+"group_create_button" = "Buat grup";
+"group_please_enter_group_name" = "Silakan masukkan nama untuk grup.";
+"group_add_members" = "Tambah anggota";
+"group_hello_draft" = "Halo, saya baru saja membuat grup \"%1$@\" untuk kita.";
+"group_self_not_in_group" = "Anda harus menjadi anggota grup untuk melakukan tindakan ini.";
+"profile_encryption" = "Enkripsi";
+"tab_contact" = "Kontak";
+"tab_group" = "Grup";
+"tab_members" = "Anggota";
+"tab_gallery" = "Galeri";
+"no_chats_desktop" = "Belum ada obrolan";
