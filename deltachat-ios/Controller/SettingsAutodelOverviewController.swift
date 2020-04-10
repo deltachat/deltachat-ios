@@ -84,5 +84,21 @@ class SettingsAutodelOverviewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath), let cellTag = CellTags(rawValue: cell.tag) else {
+            safe_fatalError()
+            return
+        }
+        tableView.deselectRow(at: indexPath, animated: false) // to achieve highlight effect
+
+        switch cellTag {
+        case .autodelDevice:
+            let controller = SettingsAutodelSetController(dcContext: dcContext, fromServer: false)
+            navigationController?.pushViewController(controller, animated: true)
+
+        case .autodelServer:
+            let controller = SettingsAutodelSetController(dcContext: dcContext, fromServer: true)
+            navigationController?.pushViewController(controller, animated: true)
+        }
+
     }
 }

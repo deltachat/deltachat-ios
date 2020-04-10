@@ -160,6 +160,7 @@
 		AEFBE22F23FEF23D0045327A /* ProviderInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */; };
 		AEFBE23123FF09B20045327A /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBE23023FF09B20045327A /* TypeAlias.swift */; };
 		B20462E42440A4A600367A57 /* SettingsAutodelOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20462E32440A4A600367A57 /* SettingsAutodelOverviewController.swift */; };
+		B20462E62440C99600367A57 /* SettingsAutodelSetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20462E52440C99600367A57 /* SettingsAutodelSetController.swift */; };
 		B21005DB23383664004C70C5 /* SettingsClassicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */; };
 		B26B3BC7236DC3DC008ED35A /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26B3BC6236DC3DC008ED35A /* SwitchCell.swift */; };
 /* End PBXBuildFile section */
@@ -400,6 +401,7 @@
 		B20462E12440805C00367A57 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B20462E22440805C00367A57 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = id; path = id.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B20462E32440A4A600367A57 /* SettingsAutodelOverviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAutodelOverviewController.swift; sourceTree = "<group>"; };
+		B20462E52440C99600367A57 /* SettingsAutodelSetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAutodelSetController.swift; sourceTree = "<group>"; };
 		B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClassicViewController.swift; sourceTree = "<group>"; };
 		B253ED992336E759004DD215 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B253ED9A2336E759004DD215 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -776,6 +778,7 @@
 				B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */,
 				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
 				B20462E32440A4A600367A57 /* SettingsAutodelOverviewController.swift */,
+				B20462E52440C99600367A57 /* SettingsAutodelSetController.swift */,
 				AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */,
 			);
 			path = Controller;
@@ -1183,6 +1186,7 @@
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
 				305961E52346125100C80F33 /* LabelAlignment.swift in Sources */,
 				AE77838F23E4276D0093EABD /* ContactCellViewModel.swift in Sources */,
+				B20462E62440C99600367A57 /* SettingsAutodelSetController.swift in Sources */,
 				305961E82346125100C80F33 /* Sender.swift in Sources */,
 				305961EE2346125100C80F33 /* AvatarPosition.swift in Sources */,
 				3015634423A003BA00E9DEF4 /* AudioRecorderController.swift in Sources */,
