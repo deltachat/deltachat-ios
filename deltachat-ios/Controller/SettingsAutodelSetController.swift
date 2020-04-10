@@ -35,7 +35,6 @@ class SettingsAutodelSetController: UITableViewController {
     }()
 
     var fromServer: Bool
-    var enteringVal: Int
     var currVal: Int
 
     private var cancelButton: UIBarButtonItem {
@@ -61,8 +60,7 @@ class SettingsAutodelSetController: UITableViewController {
     init(dcContext: DcContext, fromServer: Bool) {
         self.dcContext = dcContext
         self.fromServer = fromServer
-        self.enteringVal = dcContext.getConfigInt(fromServer ? "delete_server_after" :  "delete_device_after")
-        self.currVal = enteringVal
+        self.currVal = dcContext.getConfigInt(fromServer ? "delete_server_after" :  "delete_device_after")
         super.init(style: .grouped)
         self.title = String.localized(fromServer ? "autodel_server_title" : "autodel_device_title")
         hidesBottomBarWhenPushed = true
@@ -105,13 +103,30 @@ class SettingsAutodelSetController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let oldSelectedCell = tableView.cellForRow(at: IndexPath.init(row: valToIndex(val: currVal), section: 0))
-        oldSelectedCell?.accessoryType = .none
-
+        let oldSelectedCell = tableView.cellForRow(at: IndexPath.init(row: self.valToIndex(val: self.currVal), section: 0))
         let newSelectedCell = tableView.cellForRow(at: IndexPath.init(row: indexPath.row, section: 0))
-        newSelectedCell?.accessoryType = .checkmark
+        let newVal = self.autodelOptions[indexPath.row].value
 
-        currVal = autodelOptions[indexPath.row].value
+        if newVal != currVal && newVal != 0 {
+            let delCount = dcContext.estimateDeletionCnt(fromServer: fromServer, timeout: newVal)
+            let newDescr = "\"" + String.localized(self.autodelOptions[indexPath.row].descr) + "\""
+            let msg = String.localizedStringWithFormat(String.localized(fromServer ? "autodel_server_ask" : "autodel_device_ask"), delCount, newDescr)
+            let alert = UIAlertController(
+                title: String.localized(fromServer ? "autodel_server_title" : "autodel_device_title"),
+                message: msg,
+                preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("autodel_confirm"), style: .destructive, handler: { _ in
+                oldSelectedCell?.accessoryType = .none
+                newSelectedCell?.accessoryType = .checkmark
+                self.currVal = newVal
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+            present(alert, animated: true, completion: nil)
+        } else {
+            oldSelectedCell?.accessoryType = .none
+            newSelectedCell?.accessoryType = .checkmark
+            currVal = newVal
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -125,6 +140,7 @@ class SettingsAutodelSetController: UITableViewController {
     }
 
     @objc private func okButtonPressed() {
+        dcContext.setConfigInt(fromServer ? "delete_server_after" :  "delete_device_after", currVal)
         navigationController?.popViewController(animated: true)
     }
 }
