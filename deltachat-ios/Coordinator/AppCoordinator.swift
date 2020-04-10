@@ -301,6 +301,8 @@ class SettingsCoordinator: Coordinator {
     }
 
     func showAutodelOptions() {
+        let settingsAutodelOverviewController = SettingsAutodelOverviewController(dcContext: dcContext)
+        navigationController.pushViewController(settingsAutodelOverviewController, animated: true)
     }
 
     func showContactRequests() {
