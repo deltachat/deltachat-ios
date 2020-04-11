@@ -20,31 +20,29 @@ class SettingsAutodelOverviewController: UITableViewController {
     }
 
     private lazy var autodelDeviceCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.autodelDevice.rawValue
-        cell.textLabel?.text = String.localized("autodel_device_title")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: false)
+        cell.textLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: false)
         return cell
     }()
 
     private lazy var autodelServerCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.autodelServer.rawValue
-        cell.textLabel?.text = String.localized("autodel_server_title")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: true)
+        cell.textLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: true)
         return cell
     }()
 
     private lazy var sections: [SectionConfigs] = {
         let autodelSection = SectionConfigs(
-            headerTitle: nil,
+            headerTitle: String.localized("autodel_device_title"),
             footerTitle: nil,
             cells: [autodelDeviceCell]
         )
         let autodelSection2 = SectionConfigs(
-            headerTitle: nil,
+            headerTitle: String.localized("autodel_server_title"),
             footerTitle: nil,
             cells: [autodelServerCell]
         )
@@ -68,8 +66,8 @@ class SettingsAutodelOverviewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        autodelDeviceCell.detailTextLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: false)
-        autodelServerCell.detailTextLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: true)
+        autodelDeviceCell.textLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: false)
+        autodelServerCell.textLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: true)
     }
 
     // MARK: - Table view data source
