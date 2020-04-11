@@ -24,7 +24,7 @@ class DatabaseHelper {
         return fileContainer.appendingPathComponent("messenger.db-blobs").path
     }
 
-    var localBlobsDir: String {
+    var localDbBlobsDir: String {
         return localDocumentsDir.appendingPathComponent("messenger.db-blobs").path
     }
 
@@ -41,39 +41,52 @@ class DatabaseHelper {
         return sharedDbFile
     }
 
-    func clearSharedDbBlobsDir() {
+    var currentBlobsDirLocation: String {
+        let filemanager = FileManager.default
+        if filemanager.fileExists(atPath: localDbBlobsDir) {
+            return localDbBlobsDir
+        }
+        return sharedDbBlobsDir
+    }
+
+    func clearDbBlobsDir(at path: String) {
         let fileManager = FileManager.default
         do {
-            if fileManager.fileExists(atPath: sharedDbBlobsDir) {
-                let filePaths =  try fileManager.contentsOfDirectory(atPath: sharedDbBlobsDir)
+            if fileManager.fileExists(atPath: path) {
+                let filePaths =  try fileManager.contentsOfDirectory(atPath: path)
                 for filePath in filePaths {
-                    let completePath = URL(fileURLWithPath: sharedDbBlobsDir).appendingPathComponent(filePath)
+                    let completePath = URL(fileURLWithPath: path).appendingPathComponent(filePath)
                     try fileManager.removeItem(atPath: completePath.path)
                 }
-                try fileManager.removeItem(atPath: sharedDbBlobsDir)
+                try fileManager.removeItem(atPath: path)
             }
         } catch {
           logger.error("Could not clean shared blobs dir, it might be it didn't exist")
         }
     }
 
-    func clearSharedDb() {
+    func clearDb(at path: String) {
         let filemanager = FileManager.default
-        if filemanager.fileExists(atPath: sharedDbFile) {
+        if filemanager.fileExists(atPath: path) {
             do {
-                try filemanager.removeItem(atPath: sharedDbFile)
+                try filemanager.removeItem(atPath: path)
             } catch {
                 logger.error("Failed to delete db: \(error)")
             }
         }
     }
 
+    func clearAccountData() {
+        clearDb(at: currentDatabaseLocation)
+        clearDbBlobsDir(at: currentBlobsDirLocation)
+    }
+
     func moveBlobsFolder() {
         let filemanager = FileManager.default
-        if filemanager.fileExists(atPath: localBlobsDir) {
+        if filemanager.fileExists(atPath: localDbBlobsDir) {
             do {
-                clearSharedDbBlobsDir()
-                try filemanager.moveItem(at: URL(fileURLWithPath: localBlobsDir), to: URL(fileURLWithPath: sharedDbBlobsDir))
+                clearDbBlobsDir(at: sharedDbBlobsDir)
+                try filemanager.moveItem(at: URL(fileURLWithPath: localDbBlobsDir), to: URL(fileURLWithPath: sharedDbBlobsDir))
             } catch let error {
                 logger.error("Could not move db blobs directory to shared space: \(error.localizedDescription)")
             }
@@ -84,7 +97,7 @@ class DatabaseHelper {
       let filemanager = FileManager.default
       if filemanager.fileExists(atPath: localDbFile) {
           do {
-              clearSharedDb()
+              clearDb(at: sharedDbFile)
               try filemanager.moveItem(at: URL(fileURLWithPath: localDbFile), to: URL(fileURLWithPath: sharedDbFile))
               moveBlobsFolder()
           } catch let error {
