@@ -20,7 +20,7 @@ class SettingsAutodelOverviewController: UITableViewController {
     }
 
     private lazy var autodelDeviceCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.tag = CellTags.autodelDevice.rawValue
         cell.textLabel?.text = String.localized("autodel_device_title")
         cell.accessoryType = .disclosureIndicator
@@ -29,7 +29,7 @@ class SettingsAutodelOverviewController: UITableViewController {
     }()
 
     private lazy var autodelServerCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.tag = CellTags.autodelServer.rawValue
         cell.textLabel?.text = String.localized("autodel_server_title")
         cell.accessoryType = .disclosureIndicator
@@ -41,9 +41,14 @@ class SettingsAutodelOverviewController: UITableViewController {
         let autodelSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: nil,
-            cells: [autodelDeviceCell, autodelServerCell]
+            cells: [autodelDeviceCell]
         )
-        return [autodelSection]
+        let autodelSection2 = SectionConfigs(
+            headerTitle: nil,
+            footerTitle: nil,
+            cells: [autodelServerCell]
+        )
+        return [autodelSection, autodelSection2]
     }()
 
     init(dcContext: DcContext) {
