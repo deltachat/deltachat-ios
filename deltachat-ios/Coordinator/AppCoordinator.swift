@@ -88,7 +88,7 @@ class AppCoordinator: NSObject, Coordinator {
         if dcContext.isConfigured() {
             presentTabBarController()
         } else {
-            showWelomeController()
+            showWelcomeController()
         }
     }
 
@@ -133,16 +133,21 @@ class AppCoordinator: NSObject, Coordinator {
     func presentWelcomeController(animated: Bool) {
         if animated {
             welcomeController.setTransitionState(true)
-            showWelomeController()
+            showWelcomeController()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.welcomeController.setTransitionState(false)
             }
         } else {
-            showWelomeController()
+            showWelcomeController()
         }
     }
 
-    private func showWelomeController() {
+    private func showWelcomeController() {
+        // the applicationIconBadgeNumber is remembered by the system even on reinstalls (just tested on ios 13.3.1),
+        // to avoid appearing an old number of a previous installation, we reset the counter manually.
+        // but even when this changes in ios, we need the reset as we allow account-deletion also in-app.
+        UIApplication.shared.applicationIconBadgeNumber = 0
+
         window.rootViewController = welcomeController
         window.makeKeyAndVisible()
     }
