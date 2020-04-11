@@ -120,7 +120,7 @@ class SettingsAutodelSetController: UITableViewController {
             let alert = UIAlertController(
                 title: String.localized(fromServer ? "autodel_server_title" : "autodel_device_title"),
                 message: msg,
-                preferredStyle: .safeActionSheet)
+                preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("autodel_confirm"), style: .destructive, handler: { _ in
                 oldSelectedCell?.accessoryType = .none
                 newSelectedCell?.accessoryType = .checkmark
