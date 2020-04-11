@@ -24,7 +24,7 @@ class SettingsAutodelOverviewController: UITableViewController {
         cell.tag = CellTags.autodelDevice.rawValue
         cell.textLabel?.text = String.localized("autodel_device_title")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = autodelSummary()
+        cell.detailTextLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: false)
         return cell
     }()
 
@@ -33,7 +33,7 @@ class SettingsAutodelOverviewController: UITableViewController {
         cell.tag = CellTags.autodelServer.rawValue
         cell.textLabel?.text = String.localized("autodel_server_title")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = autodelSummary()
+        cell.detailTextLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: true)
         return cell
     }()
 
@@ -59,6 +59,12 @@ class SettingsAutodelOverviewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        autodelDeviceCell.detailTextLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: false)
+        autodelServerCell.detailTextLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: true)
     }
 
     // MARK: - Table view data source

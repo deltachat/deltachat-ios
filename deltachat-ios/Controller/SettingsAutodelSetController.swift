@@ -9,7 +9,7 @@ class SettingsAutodelSetController: UITableViewController {
         let descr: String
     }
 
-    private lazy var autodelDeviceOptions: [Options] = {
+    private static let autodelDeviceOptions: [Options] = {
         return [
             Options(value: 0, descr: "off"),
             Options(value: 3600, descr: "autodel_after_1_hour"),
@@ -19,7 +19,7 @@ class SettingsAutodelSetController: UITableViewController {
         ]
     }()
 
-    private lazy var autodelServerOptions: [Options] = {
+    private static let autodelServerOptions: [Options] = {
         return [
             Options(value: 0, descr: "off"),
             Options(value: 1, descr: "autodel_at_once"),
@@ -31,7 +31,7 @@ class SettingsAutodelSetController: UITableViewController {
     }()
 
     private lazy var autodelOptions: [Options] = {
-        return fromServer ? autodelServerOptions : autodelDeviceOptions
+        return fromServer ? SettingsAutodelSetController.autodelServerOptions : SettingsAutodelSetController.autodelDeviceOptions
     }()
 
     var fromServer: Bool
@@ -76,8 +76,14 @@ class SettingsAutodelSetController: UITableViewController {
         navigationItem.rightBarButtonItem = okButton
     }
 
-    static public func getAutodelString(fromServer: Bool, val: Int) -> String {
-        // TODO
+    static public func getSummary(_ dcContext: DcContext, fromServer: Bool) -> String {
+        let val = dcContext.getConfigInt(fromServer ? "delete_server_after" :  "delete_device_after")
+        let options = fromServer ? SettingsAutodelSetController.autodelServerOptions : SettingsAutodelSetController.autodelDeviceOptions
+        for option in options {
+            if option.value == val {
+                return String.localized(option.descr)
+            }
+        }
         return "Err"
     }
 
