@@ -1,5 +1,16 @@
 # Delta Chat iOS Changelog
 
+## v1.5.0 (Beta-Version, available on Testflight)
+
+* add option for automatic deletion of messages after a given timespan;
+  messages can be deleted from device and/or server
+* switch to ecc keys; ecc keys are much smaller and faster
+  and safe traffic and time this way
+* new welcome screen
+* bug fixes
+* add Indonesian translation, update other translations
+
+
 ## v1.3.0
 2020-03-26
 
@@ -19,7 +30,6 @@
 * fix crash when using empty groups
 * several other fixes
 * update translations and help
-
 
 
 ## v1.2.1
