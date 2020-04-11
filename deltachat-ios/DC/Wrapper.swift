@@ -306,12 +306,16 @@ class DcContext {
         }
     }
 
-    private func setConfigInt(_ key: String, _ value: Int) {
+    func setConfigInt(_ key: String, _ value: Int) {
         setConfig(key, String(value))
     }
 
     func getUnreadMessages(chatId: Int) -> Int {
         return Int(dc_get_fresh_msg_cnt(contextPointer, UInt32(chatId)))
+    }
+
+    func estimateDeletionCnt(fromServer: Bool, timeout: Int) -> Int {
+        return Int(dc_estimate_deletion_cnt(contextPointer, fromServer ? 1 : 0, Int64(timeout)))
     }
 
     func emptyServer(flags: Int) {

@@ -300,6 +300,11 @@ class SettingsCoordinator: Coordinator {
         navigationController.pushViewController(blockedContactsController, animated: true)
     }
 
+    func showAutodelOptions() {
+        let settingsAutodelOverviewController = SettingsAutodelOverviewController(dcContext: dcContext)
+        navigationController.pushViewController(settingsAutodelOverviewController, animated: true)
+    }
+
     func showContactRequests() {
         let deaddropViewController = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
         let deaddropCoordinator = MailboxCoordinator(dcContext: dcContext, navigationController: navigationController)
