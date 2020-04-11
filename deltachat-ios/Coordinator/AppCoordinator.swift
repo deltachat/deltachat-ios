@@ -143,6 +143,11 @@ class AppCoordinator: NSObject, Coordinator {
     }
 
     private func showWelomeController() {
+        // the applicationIconBadgeNumber is remembered by the system even on reinstalls (just tested on ios 13.3.1),
+        // to avoid appearing an old number of a previous installation, we reset the counter manually.
+        // but even when this changes in ios, we need the reset as we allow account-deletion also in-app.
+        UIApplication.shared.applicationIconBadgeNumber = 0
+
         window.rootViewController = welcomeController
         window.makeKeyAndVisible()
     }
