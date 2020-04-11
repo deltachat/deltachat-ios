@@ -48,6 +48,7 @@
 "email_address" = "E-mailadres";
 "bad_email_address" = "Ongeldig e-mailadres.";
 "password" = "Wachtwoord";
+"existing_password" = "Bestaand wachtwoord";
 "now" = "Nu";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Gevarenzone";

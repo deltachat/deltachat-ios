@@ -48,6 +48,7 @@
 "email_address" = "Adresë email";
 "bad_email_address" = "Adresë email e keqe.";
 "password" = "Fjalëkalim";
+"existing_password" = "Fjalëkalimi ekzistues";
 "now" = "Tani";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Rrezik";

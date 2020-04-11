@@ -48,6 +48,7 @@
 "email_address" = "E-posta adresi";
 "bad_email_address" = "Yanlış e-posta adresi.";
 "password" = "Parola";
+"existing_password" = "Varolan parola";
 "now" = "Şimdi";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Tehlikeli";
