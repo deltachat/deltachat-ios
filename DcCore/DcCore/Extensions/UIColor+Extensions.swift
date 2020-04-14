@@ -1,11 +1,3 @@
-//
-//  UIColor+Extension.swift
-//  DcCore
-//
-//  Created by Macci on 08.04.20.
-//  Copyright © 2020 merlinux GmbH. All rights reserved.
-//
-
 import UIKit
 
 internal extension UIColor {

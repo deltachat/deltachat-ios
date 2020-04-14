@@ -310,7 +310,7 @@ public class DcContext {
         setConfig(key, vStr)
     }
 
-      public func getConfigInt(_ key: String) -> Int {
+    public func getConfigInt(_ key: String) -> Int {
         if let str = getConfig(key) {
             return Int(str) ?? 0
         }
@@ -596,7 +596,7 @@ public class DcChatlist {
 }
 
 public class DcChat {
-    public var chatPointer: OpaquePointer?
+    var chatPointer: OpaquePointer?
 
     // use DcContext.getChat() instead of calling the constructor directly
     public init(id: Int) {
@@ -712,7 +712,7 @@ public class DcArray {
     ///TODO: add missing methods here
 }
 
-public class DcMsg/*: MessageType*/ {
+public class DcMsg {
     private var messagePointer: OpaquePointer?
 
     /**
@@ -745,10 +745,6 @@ public class DcMsg/*: MessageType*/ {
     public var cptr: OpaquePointer? {
         return messagePointer
     }
-
-/*    public lazy var sender: SenderType = {
-        Sender(id: "\(fromContactId)", displayName: fromContact.displayName)
-    }()*/
 
     public lazy var sentDate: Date = {
         Date(timeIntervalSince1970: Double(timestamp))
