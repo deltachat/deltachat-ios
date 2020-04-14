@@ -24,7 +24,7 @@ class AppCoordinator: NSObject, Coordinator {
     }()
 
     private lazy var welcomeController: WelcomeViewController = {
-        let welcomeController = WelcomeViewController()
+        let welcomeController = WelcomeViewController(dcContext: dcContext)
         welcomeController.coordinator = self
         return welcomeController
     }()
@@ -132,10 +132,10 @@ class AppCoordinator: NSObject, Coordinator {
 
     func presentWelcomeController(animated: Bool) {
         if animated {
-            welcomeController.setTransitionState(true)
+            welcomeController.activateSpinner(true)
             showWelcomeController()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.welcomeController.setTransitionState(false)
+                self.welcomeController.activateSpinner(false)
             }
         } else {
             showWelcomeController()
@@ -160,6 +160,7 @@ class AppCoordinator: NSObject, Coordinator {
 }
 
 extension AppCoordinator: WelcomeCoordinator {
+
     func showLogin() {
         // add cancel button item to accountSetupController
         if let nav = loginController as? UINavigationController, let loginController = nav.topViewController as? AccountSetupController {
@@ -173,19 +174,21 @@ extension AppCoordinator: WelcomeCoordinator {
         loginController.modalPresentationStyle = .fullScreen
         welcomeController.present(loginController, animated: true, completion: nil)
     }
+    
 
-    func showQR() {
-        return
-    }
-
-    private func handleLoginSuccess() {
-        welcomeController.setTransitionState(true) // this will hide welcomeController's content
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.loginController.dismiss(animated: true) {
+    func handleLoginSuccess() {
+        welcomeController.activateSpinner(true) // this will hide welcomeController's content
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.loginController.dismiss(animated: true) { // this is ignored if loginController is not shown
                 self.presentTabBarController()
-                self.welcomeController.setTransitionState(false)
+                self.welcomeController.activateSpinner(false)
             }
         }
+    }
+
+    func handleQRAccountCreationSuccess() {
+        self.presentTabBarController()
+        self.welcomeController.activateSpinner(false)
     }
 
     @objc private func cancelButtonPressed(_ sender: UIBarButtonItem) {
@@ -857,7 +860,6 @@ class EditContactCoordinator: Coordinator, EditContactCoordinatorProtocol {
     }
 }
 
-
 /*
  boilerplate - I tend to remove that interface (cyberta)
  */
@@ -876,5 +878,6 @@ protocol EditContactCoordinatorProtocol: class {
 
 protocol WelcomeCoordinator: class {
     func showLogin()
-    func showQR()
+    func handleLoginSuccess()
+    func handleQRAccountCreationSuccess()
 }

@@ -1,8 +1,12 @@
 import UIKit
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     weak var coordinator: WelcomeCoordinator?
+    private let dcContext: DcContext
+    private var scannedQrCode: String?
+    var configureProgressObserver: Any?
+    var onProgressSuccess: VoidFunction?
 
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -16,22 +20,48 @@ class WelcomeViewController: UIViewController {
             [unowned self] in
             self.coordinator?.showLogin()
         }
+        view.onScanQRCode = {
+            [unowned self] in
+            self.showQRReader()
+        }
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    // will be shown while transitioning to tabBarController
-    private var activityIndicator: UIActivityIndicatorView = {
-        let view: UIActivityIndicatorView
-        if #available(iOS 13, *) {
-             view = UIActivityIndicatorView(style: .large)
-        } else {
-            view = UIActivityIndicatorView(style: .whiteLarge)
-            view.color = UIColor.gray
-        }
-        view.isHidden = true
-        return view
+    private lazy var qrCordeReader: QrCodeReaderController = {
+        let controller = QrCodeReaderController()
+        controller.delegate = self
+        return controller
     }()
+
+    private lazy var qrCodeReaderNav: UINavigationController = {
+        let nav = UINavigationController(rootViewController: qrCordeReader)
+        nav.modalPresentationStyle = .fullScreen
+        return nav
+    }()
+
+    lazy var progressAlert: UIAlertController = {
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(
+            title: String.localized("cancel"),
+            style: .cancel,
+            handler: { _ in
+                self.dcContext.stopOngoingProcess()
+        }))
+        return alert
+    }()
+
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
+        super.init(nibName: nil, bundle: nil)
+        onProgressSuccess = {[unowned self] in
+            self.coordinator?.handleQRAccountCreationSuccess()
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: - lifecycle
     override func viewDidLoad() {
@@ -50,13 +80,16 @@ class WelcomeViewController: UIViewController {
         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        let nc = NotificationCenter.default
+
+        if let configureProgressObserver = self.configureProgressObserver {
+            nc.removeObserver(configureProgressObserver)
+        }
+    }
+
     // MARK: - setup
     private func setupSubviews() {
-
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,20 +108,137 @@ class WelcomeViewController: UIViewController {
         contentGuide.trailingAnchor.constraint(equalTo: welcomeView.trailingAnchor).isActive = true
         contentGuide.bottomAnchor.constraint(equalTo: welcomeView.bottomAnchor).isActive = true
 
+        // this enables vertical scrolling
         frameGuide.widthAnchor.constraint(equalTo: contentGuide.widthAnchor).isActive = true
     }
 
-    func setTransitionState(_ transitioning: Bool) {
-        if transitioning {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
+    /// if active the welcomeViewController will show nothing but a centered activity indicator
+    func activateSpinner(_ active: Bool) {
+        welcomeView.showSpinner(active)
+    }
+
+    // MARK: - actions
+
+    private func showQRReader(completion onComplete: VoidFunction? = nil) {
+        present(qrCodeReaderNav, animated: true) {
+            onComplete?()
         }
-        activityIndicator.isHidden = !transitioning
-        scrollView.isHidden = transitioning
+    }
+
+    private func createAccountFromQRCode() {
+        guard let code = scannedQrCode else {
+            return
+        }
+        let success = dcContext.configureAccountFromQR(qrCode: code)
+        scannedQrCode = nil
+        if success {
+            if let loginCompletion = self.onProgressSuccess {
+                addProgressAlertListener(onSuccess: loginCompletion)
+                showProgressAlert(title: String.localized("qraccount_use_on_new_install"))
+            }
+            dcContext.configure()
+        } else {
+            accountCreationErrorAlert()
+        }
+    }
+
+    private func accountCreationErrorAlert() {
+        func handleRepeat() {
+            showQRReader(completion: { [unowned self] in
+                self.activateSpinner(false)
+            })
+        }
+
+        let title = String.localized("qraccount_creation_failed")
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(
+            title: String.localized("ok"),
+            style: .default,
+            handler: { [unowned self] _ in
+                self.activateSpinner(false)
+            }
+        )
+
+        let repeatAction = UIAlertAction(
+            title: String.localized("global_menu_edit_redo_desktop"),
+            style: .default,
+            handler: { _ in
+                handleRepeat()
+            }
+        )
+        alert.addAction(okAction)
+        alert.addAction(repeatAction)
+        present(alert, animated: true)
     }
 }
 
+extension WelcomeViewController: QrCodeReaderDelegate {
+    func handleQrCode(_ code: String) {
+        let lot = dcContext.checkQR(qrCode: code)
+        if let domain = lot.text1, lot.state == DC_QR_ACCOUNT {
+            self.scannedQrCode = code
+            confirmAccountCreationAlert(accountDomain: domain)
+        } else {
+            qrErrorAlert()
+        }
+    }
+
+    private func confirmAccountCreationAlert(accountDomain domain: String) {
+        let title = String.localizedStringWithFormat(NSLocalizedString("qraccount_ask_create_and_login", comment: ""), domain)
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+
+        let okAction = UIAlertAction(
+            title: String.localized("ok"),
+            style: .default,
+            handler: { [unowned self] _ in
+                self.activateSpinner(true)
+                self.qrCodeReaderNav.dismiss(animated: true) {
+                    self.createAccountFromQRCode()
+                }
+            }
+        )
+
+        let qrCancelAction = UIAlertAction(
+            title: String.localized("cancel"),
+            style: .cancel,
+            handler: { [unowned self] _ in
+                self.qrCodeReaderNav.dismiss(animated: true) {
+                    self.scannedQrCode = nil
+                }
+            }
+        )
+
+        alert.addAction(okAction)
+        alert.addAction(qrCancelAction)
+        qrCodeReaderNav.present(alert, animated: true)
+    }
+
+    private func qrErrorAlert() {
+        let title = String.localized("qraccount_qr_code_cannot_be_used")
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(
+            title: String.localized("ok"),
+            style: .default,
+            handler: { [unowned self] _ in
+                self.qrCordeReader.startSession()
+            }
+        )
+        let qrCancelAction = UIAlertAction(
+             title: String.localized("cancel"),
+             style: .cancel,
+             handler: { [unowned self] _ in
+                 self.qrCodeReaderNav.dismiss(animated: true) {
+                     self.scannedQrCode = nil
+                 }
+             }
+         )
+        alert.addAction(okAction)
+        alert.addAction(qrCancelAction)
+        qrCodeReaderNav.present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - WelcomeContentView
 class WelcomeContentView: UIView {
 
     var onLogin: VoidFunction?
@@ -140,7 +290,7 @@ class WelcomeContentView: UIView {
 
     private lazy var loginButton: UIButton = {
         let button = UIButton(type: .roundedRect)
-        let title = "log in to your server".uppercased()
+        let title = String.localized("login_header").uppercased()
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         button.setTitleColor(.white, for: .normal)
@@ -154,12 +304,11 @@ class WelcomeContentView: UIView {
     }()
 
     private lazy var buttonStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [loginButton /*, qrCodeButton, importBackupButton */])
+        let stack = UIStackView(arrangedSubviews: [loginButton, qrCodeButton /*, importBackupButton */])
         stack.axis = .vertical
-        stack.spacing = 10
+        stack.spacing = 15
         return stack
     }()
-
 
     private lazy var qrCodeButton: UIButton = {
         let button = UIButton()
@@ -177,6 +326,18 @@ class WelcomeContentView: UIView {
         button.setTitle(title, for: .normal)
         button.addTarget(self, action: #selector(importBackupButtonPressed(_:)), for: .touchUpInside)
         return button
+    }()
+
+    private var activityIndicator: UIActivityIndicatorView = {
+        let view: UIActivityIndicatorView
+        if #available(iOS 13, *) {
+             view = UIActivityIndicatorView(style: .large)
+        } else {
+            view = UIActivityIndicatorView(style: .whiteLarge)
+            view.color = UIColor.gray
+        }
+        view.isHidden = true
+        return view
     }()
 
     private let defaultSpacing: CGFloat = 20
@@ -203,7 +364,7 @@ class WelcomeContentView: UIView {
 
         containerMinHeightConstraint.isActive = true
 
-        _ = [logoView, titleLabel, subtitleLabel, loginButton /*, qrCodeButton, importBackupButton */].map {
+        _ = [logoView, titleLabel, subtitleLabel].map {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -253,6 +414,11 @@ class WelcomeContentView: UIView {
             $0.priority = .defaultLow
             $0.isActive = true
         }
+
+        addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.centerYAnchor.constraint(equalTo: buttonContainerGuide.centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
     }
 
     private func calculateLogoHeight() -> CGFloat {
@@ -275,4 +441,14 @@ class WelcomeContentView: UIView {
      @objc private func importBackupButtonPressed(_ sender: UIButton) {
          onImportBackup?()
      }
+
+    func showSpinner(_ show: Bool) {
+        if show {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+        activityIndicator.isHidden = !show
+        buttonStack.isHidden = show
+    }
 }
