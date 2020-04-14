@@ -1,67 +1,13 @@
 import Foundation
-import UIKit
-import AVFoundation
 
-struct Utils {
-
-    static func copyAndFreeArray(inputArray: OpaquePointer?) -> [Int] {
-        var acc: [Int] = []
-        let len = dc_array_get_cnt(inputArray)
-        for i in 0 ..< len {
-            let e = dc_array_get_id(inputArray, i)
-            acc.append(Int(e))
-        }
-        dc_array_unref(inputArray)
-
-        return acc
-    }
-
-    static func copyAndFreeArrayWithLen(inputArray: OpaquePointer?, len: Int = 0) -> [Int] {
-        var acc: [Int] = []
-        let arrayLen = dc_array_get_cnt(inputArray)
-        let start = max(0, arrayLen - len)
-        for i in start ..< arrayLen {
-            let e = dc_array_get_id(inputArray, i)
-            acc.append(Int(e))
-        }
-        dc_array_unref(inputArray)
-
-        return acc
-    }
-
-    static func copyAndFreeArrayWithOffset(inputArray: OpaquePointer?, len: Int = 0, from: Int = 0, skipEnd: Int = 0) -> [Int] {
-        let lenArray = dc_array_get_cnt(inputArray)
-        if lenArray <= skipEnd || lenArray == 0 {
-            dc_array_unref(inputArray)
-            return []
-        }
-
-        let start = lenArray - 1 - skipEnd
-        let end = max(0, start - len)
-        let finalLen = start - end + (len > 0 ? 0 : 1)
-        var acc: [Int] = [Int](repeating: 0, count: finalLen)
-
-        for i in stride(from: start, to: end, by: -1) {
-            let index = finalLen - (start - i) - 1
-            acc[index] = Int(dc_array_get_id(inputArray, i))
-        }
-
-        dc_array_unref(inputArray)
-        DcContext.shared.logger?.info("got: \(from) \(len) \(lenArray) - \(acc)")
-
-        return acc
-    }
-
-}
-
-class DateUtils {
+public class DateUtils {
     typealias DtU = DateUtils
     static let minute: Double = 60
     static let hour: Double = 3600
     static let day: Double = 86400
     static let year: Double = 365 * day
 
-    static func getRelativeTimeInSeconds(timeStamp: Double) -> Double {
+    public static func getRelativeTimeInSeconds(timeStamp: Double) -> Double {
         let unixTime = Double(Date().timeIntervalSince1970)
         return unixTime - timeStamp
     }
@@ -78,7 +24,7 @@ class DateUtils {
         return formatter
     }
 
-    static func getExtendedRelativeTimeSpanString(timeStamp: Double) -> String {
+    public static func getExtendedRelativeTimeSpanString(timeStamp: Double) -> String {
         let seconds = getRelativeTimeInSeconds(timeStamp: timeStamp)
         let date = Date(timeIntervalSince1970: timeStamp)
         let formatter = getLocalDateFormatter()
@@ -104,4 +50,29 @@ class DateUtils {
         }
     }
 
+    public static func getBriefRelativeTimeSpanString(timeStamp: Double) -> String {
+        let seconds = getRelativeTimeInSeconds(timeStamp: timeStamp)
+        let date = Date(timeIntervalSince1970: timeStamp)
+        let formatter = getLocalDateFormatter()
+
+        if seconds < DtU.minute {
+            return String.localized("now")    // under one minute
+        } else if seconds < DtU.hour {
+            let mins = seconds / DtU.minute
+            return String.localized(stringID: "n_minutes", count: Int(mins))
+        } else if seconds < DtU.day {
+            let hours = seconds / DtU.hour
+            return String.localized(stringID: "n_hours", count: Int(hours))
+        } else if seconds < DtU.day * 6 {
+            formatter.dateFormat = "EEE"
+            return formatter.string(from: date)
+        } else if seconds < DtU.year {
+            formatter.dateFormat = "MMM d"
+            return formatter.string(from: date)
+        } else {
+            formatter.dateFormat = "MMM d, yyyy"
+            let localDate = formatter.string(from: date)
+            return localDate
+        }
+    }
 }

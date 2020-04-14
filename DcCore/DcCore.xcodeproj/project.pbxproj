@@ -15,12 +15,13 @@
 		30421952243DE15D00516852 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 3042194E243DE15D00516852 /* wrapper.c */; };
 		30421959243DE6AD00516852 /* libdeltachat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30421958243DE61400516852 /* libdeltachat.a */; platformFilter = ios; };
 		3042195B243DF1C500516852 /* deltachat.h in Headers */ = {isa = PBXBuildFile; fileRef = 3042195A243DF1C500516852 /* deltachat.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3042195D243E23F100516852 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042195C243E23F100516852 /* Utils.swift */; };
+		3042195D243E23F100516852 /* DcUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042195C243E23F100516852 /* DcUtils.swift */; };
 		30421960243E257100516852 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042195F243E257100516852 /* UIColor+Extensions.swift */; };
 		30421962243E26C800516852 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421961243E26C800516852 /* Logger.swift */; };
 		30421964243F0B8400516852 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421963243F0B8400516852 /* String+Extensions.swift */; };
 		30421986243F209E00516852 /* events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421985243F209E00516852 /* events.swift */; };
 		30421988243F23E500516852 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421987243F23E500516852 /* Constants.swift */; };
+		306C324824460CDE001D89F3 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306C324724460CDE001D89F3 /* DateUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,12 +46,13 @@
 		3042194E243DE15D00516852 /* wrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = wrapper.c; path = ../../DcCore/DcCore/DC/wrapper.c; sourceTree = "<group>"; };
 		30421958243DE61400516852 /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "../deltachat-ios/libraries/deltachat-core-rust/target/universal/release/libdeltachat.a"; sourceTree = "<group>"; };
 		3042195A243DF1C500516852 /* deltachat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = deltachat.h; path = "../deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi/deltachat.h"; sourceTree = "<group>"; };
-		3042195C243E23F100516852 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		3042195C243E23F100516852 /* DcUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DcUtils.swift; sourceTree = "<group>"; };
 		3042195F243E257100516852 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		30421961243E26C800516852 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Logger.swift; path = ../../DcCore/DcCore/DC/Logger.swift; sourceTree = "<group>"; };
 		30421963243F0B8400516852 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		30421985243F209E00516852 /* events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = events.swift; path = ../../DcCore/DcCore/DC/events.swift; sourceTree = "<group>"; };
 		30421987243F23E500516852 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		306C324724460CDE001D89F3 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				30421987243F23E500516852 /* Constants.swift */,
-				3042195C243E23F100516852 /* Utils.swift */,
+				3042195C243E23F100516852 /* DcUtils.swift */,
+				306C324724460CDE001D89F3 /* DateUtils.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -289,8 +292,9 @@
 				30421962243E26C800516852 /* Logger.swift in Sources */,
 				30421986243F209E00516852 /* events.swift in Sources */,
 				30421951243DE15D00516852 /* Wrapper.swift in Sources */,
+				306C324824460CDE001D89F3 /* DateUtils.swift in Sources */,
 				30421952243DE15D00516852 /* wrapper.c in Sources */,
-				3042195D243E23F100516852 /* Utils.swift in Sources */,
+				3042195D243E23F100516852 /* DcUtils.swift in Sources */,
 				30421964243F0B8400516852 /* String+Extensions.swift in Sources */,
 				30421960243E257100516852 /* UIColor+Extensions.swift in Sources */,
 			);

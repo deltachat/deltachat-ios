@@ -39,12 +39,12 @@ public class DcContext {
 
     public func getContacts(flags: Int32, queryString: String? = nil) -> [Int] {
         let cContacts = dc_get_contacts(contextPointer, UInt32(flags), queryString)
-        return Utils.copyAndFreeArray(inputArray: cContacts)
+        return DcUtils.copyAndFreeArray(inputArray: cContacts)
     }
 
     public func getBlockedContacts() -> [Int] {
         let cBlockedContacts = dc_get_blocked_contacts(contextPointer)
-        return Utils.copyAndFreeArray(inputArray: cBlockedContacts)
+        return DcUtils.copyAndFreeArray(inputArray: cBlockedContacts)
     }
 
     public func addContacts(contactString: String) {
@@ -80,7 +80,7 @@ public class DcContext {
             return []
         }
 
-        let messageIds: [Int] =  Utils.copyAndFreeArray(inputArray: messagesPointer)
+        let messageIds: [Int] =  DcUtils.copyAndFreeArray(inputArray: messagesPointer)
         return messageIds
     }
 
@@ -399,7 +399,7 @@ public class DcContext {
         guard let arrayPointer = dc_search_msgs(contextPointer, UInt32(chatId), searchText) else {
             return []
         }
-        let messageIds = Utils.copyAndFreeArray(inputArray: arrayPointer)
+        let messageIds = DcUtils.copyAndFreeArray(inputArray: arrayPointer)
         return messageIds
     }
 
@@ -668,7 +668,7 @@ public class DcChat {
     }
 
     public var contactIds: [Int] {
-        return Utils.copyAndFreeArray(inputArray: dc_get_chat_contacts(DcContext.shared.contextPointer, UInt32(id)))
+        return DcUtils.copyAndFreeArray(inputArray: dc_get_chat_contacts(DcContext.shared.contextPointer, UInt32(id)))
     }
 
     public lazy var profileImage: UIImage? = { [unowned self] in

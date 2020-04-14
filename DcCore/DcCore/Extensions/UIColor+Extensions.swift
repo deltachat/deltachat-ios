@@ -1,6 +1,6 @@
 import UIKit
 
-internal extension UIColor {
+public extension UIColor {
 
     convenience init(alpha: Int, red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")
@@ -38,7 +38,7 @@ internal extension UIColor {
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 
-    static func themeColor(light: UIColor, dark: UIColor? = nil) -> UIColor {
+    public static func themeColor(light: UIColor, dark: UIColor? = nil) -> UIColor {
         if let dark = dark {
             if #available(iOS 13, *) {
                 return UIColor.init { (trait) -> UIColor in
@@ -49,7 +49,7 @@ internal extension UIColor {
         return light
     }
 
-    static func themeColor(lightHex: String, darkHex: String? = nil) -> UIColor {
+    public static func themeColor(lightHex: String, darkHex: String? = nil) -> UIColor {
         if let darkHex = darkHex {
             if #available(iOS 13, *) {
                 return UIColor.init { (trait) -> UIColor in
