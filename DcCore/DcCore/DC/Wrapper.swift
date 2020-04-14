@@ -311,15 +311,10 @@ public class DcContext {
     }
 
       public func getConfigInt(_ key: String) -> Int {
-        let vStr = getConfig(key)
-        if vStr == nil {
-            return 0
+        if let str = getConfig(key) {
+            return Int(str) ?? 0
         }
-        let vInt = Int(vStr!)
-        if vInt == nil {
-            return 0
-        }
-        return vInt!
+        return 0
     }
 
     public func setConfigInt(_ key: String, _ value: Int) {
