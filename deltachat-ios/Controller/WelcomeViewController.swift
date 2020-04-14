@@ -149,7 +149,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             })
         }
 
-        let title = String.localized("qraccount_creation_failt")
+        let title = String.localized("qraccount_creation_failed")
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(
             title: String.localized("ok"),
