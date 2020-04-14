@@ -290,7 +290,7 @@ class WelcomeContentView: UIView {
 
     private lazy var loginButton: UIButton = {
         let button = UIButton(type: .roundedRect)
-        let title = "log in to your server".uppercased()
+        let title = String.localized("login_header").uppercased()
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         button.setTitleColor(.white, for: .normal)
@@ -364,7 +364,7 @@ class WelcomeContentView: UIView {
 
         containerMinHeightConstraint.isActive = true
 
-        _ = [logoView, titleLabel, subtitleLabel, loginButton /*, qrCodeButton, importBackupButton */].map {
+        _ = [logoView, titleLabel, subtitleLabel].map {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
