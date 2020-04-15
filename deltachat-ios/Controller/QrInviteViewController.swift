@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import DcCore
 
 class QrInviteViewController: UITableViewController {
     private let rowQRCode = 0

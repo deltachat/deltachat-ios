@@ -1,5 +1,6 @@
 import Foundation
 import CoreLocation
+import DcCore
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
 

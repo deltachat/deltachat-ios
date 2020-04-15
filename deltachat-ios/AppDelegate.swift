@@ -4,6 +4,7 @@ import Reachability
 import SwiftyBeaver
 import UIKit
 import UserNotifications
+import DcCore
 
 let logger = SwiftyBeaver.self
 
@@ -51,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         let console = ConsoleDestination()
         logger.addDestination(console)
+        dcContext.logger = DcLogger()
 
         logger.info("launching")
 

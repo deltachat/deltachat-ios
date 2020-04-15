@@ -1,4 +1,5 @@
 import UIKit
+import DcCore
 
 class MessageInfoViewController: UITableViewController {
     var dcContext: DcContext

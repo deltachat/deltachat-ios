@@ -1,4 +1,5 @@
 import Foundation
+import DcCore
 
 protocol AvatarCellViewModel {
     var type: CellModel { get }

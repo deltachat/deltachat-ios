@@ -1,5 +1,5 @@
 import UIKit
-
+import DcCore
 class SettingsClassicViewController: UITableViewController {
 
     var dcContext: DcContext

@@ -1,4 +1,5 @@
 import UIKit
+import DcCore
 
 // MARK: - ChatListViewModelProtocol
 protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {

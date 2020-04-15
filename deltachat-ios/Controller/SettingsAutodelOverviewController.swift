@@ -1,4 +1,5 @@
 import UIKit
+import DcCore
 
 class SettingsAutodelOverviewController: UITableViewController {
 

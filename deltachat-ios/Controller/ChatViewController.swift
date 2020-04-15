@@ -3,6 +3,7 @@ import QuickLook
 import UIKit
 import InputBarAccessoryView
 import AVFoundation
+import DcCore
 
 protocol MediaSendHandler {
     func onSuccess()
@@ -354,15 +355,7 @@ class ChatViewController: MessagesViewController {
     }
 
     private func getMessageIds(_ count: Int, from: Int? = nil) -> [DcMsg] {
-        let cMessageIds = dcContext.getChatMessages(chatId: chatId)
-
-        let ids: [Int]
-        if let from = from {
-            ids = Utils.copyAndFreeArrayWithOffset(inputArray: cMessageIds, len: count, skipEnd: from)
-        } else {
-            ids = Utils.copyAndFreeArrayWithLen(inputArray: cMessageIds, len: count)
-        }
-
+        let ids = dcContext.getMessageIds(chatId: chatId, count: count, from: from)
         let markIds: [UInt32] = ids.map { UInt32($0) }
         dcContext.markSeenMessages(messageIds: markIds, count: ids.count)
 

@@ -1,5 +1,6 @@
 import JGProgressHUD
 import UIKit
+import DcCore
 
 internal final class SettingsViewController: UITableViewController {
 

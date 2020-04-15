@@ -2,6 +2,7 @@ import UIKit
 import ALCameraViewController
 import Photos
 import MobileCoreServices
+import DcCore
 
 class AppCoordinator: NSObject, Coordinator {
 

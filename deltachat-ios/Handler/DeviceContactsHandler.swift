@@ -1,5 +1,6 @@
 import Contacts
 import UIKit
+import DcCore
 
 class DeviceContactsHandler {
     private let store = CNContactStore()

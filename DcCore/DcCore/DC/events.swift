@@ -1,24 +1,24 @@
 import UIKit
 import UserNotifications
 
-let dcNotificationChanged = Notification.Name(rawValue: "MrEventMsgsChanged")
-let dcNotificationIncoming = Notification.Name(rawValue: "MrEventIncomingMsg")
-let dcNotificationImexProgress = Notification.Name(rawValue: "dcNotificationImexProgress")
-let dcNotificationConfigureProgress = Notification.Name(rawValue: "MrEventConfigureProgress")
-let dcNotificationSecureJoinerProgress = Notification.Name(rawValue: "MrEventSecureJoinerProgress")
-let dcNotificationSecureInviterProgress = Notification.Name(rawValue: "MrEventSecureInviterProgress")
-let dcNotificationViewChat = Notification.Name(rawValue: "MrEventViewChat")
-let dcNotificationContactChanged = Notification.Name(rawValue: "MrEventContactsChanged")
-let dcNotificationChatModified = Notification.Name(rawValue: "dcNotificationChatModified")
-let dcNotificationChatDeletedInChatDetail = Notification.Name(rawValue: "ChatDeletedInChatDetail")
+public let dcNotificationChanged = Notification.Name(rawValue: "MrEventMsgsChanged")
+public let dcNotificationIncoming = Notification.Name(rawValue: "MrEventIncomingMsg")
+public let dcNotificationImexProgress = Notification.Name(rawValue: "dcNotificationImexProgress")
+public let dcNotificationConfigureProgress = Notification.Name(rawValue: "MrEventConfigureProgress")
+public let dcNotificationSecureJoinerProgress = Notification.Name(rawValue: "MrEventSecureJoinerProgress")
+public let dcNotificationSecureInviterProgress = Notification.Name(rawValue: "MrEventSecureInviterProgress")
+public let dcNotificationViewChat = Notification.Name(rawValue: "MrEventViewChat")
+public let dcNotificationContactChanged = Notification.Name(rawValue: "MrEventContactsChanged")
+public let dcNotificationChatModified = Notification.Name(rawValue: "dcNotificationChatModified")
+public let dcNotificationChatDeletedInChatDetail = Notification.Name(rawValue: "ChatDeletedInChatDetail")
 
 @_silgen_name("callbackSwift")
 
 public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLong, data1String: UnsafePointer<Int8>, data2String: UnsafePointer<Int8>) {
     if event >= DC_EVENT_ERROR && event <= 499 {
         let s = String(cString: data2String)
-        AppDelegate.lastErrorString = s
-        logger.error("event: \(s)")
+        DcContext.shared.lastErrorString = s
+        DcContext.shared.logger?.error("event: \(s)")
         return
     }
 
@@ -26,14 +26,14 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
 
     case DC_EVENT_INFO:
         let s = String(cString: data2String)
-        logger.info("event: \(s)")
+        DcContext.shared.logger?.info("event: \(s)")
 
     case DC_EVENT_WARNING:
         let s = String(cString: data2String)
-        logger.warning("event: \(s)")
+        DcContext.shared.logger?.warning("event: \(s)")
 
     case DC_EVENT_CONFIGURE_PROGRESS:
-        logger.info("configure progress: \(Int(data1)) \(Int(data2))")
+        DcContext.shared.logger?.info("configure progress: \(Int(data1)) \(Int(data2))")
         let nc = NotificationCenter.default
         DispatchQueue.main.async {
             let done = Int(data1) == 1000
@@ -45,14 +45,14 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                     "progress": Int(data1),
                     "error": Int(data1) == 0,
                     "done": done,
-                    "errorMessage": AppDelegate.lastErrorString as Any,
+                    "errorMessage": DcContext.shared.lastErrorString as Any,
                 ]
             )
 
             if done {
                 UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
                 UserDefaults.standard.synchronize()
-                AppDelegate.lastErrorString = nil
+                DcContext.shared.lastErrorString = nil
             }
         }
 
@@ -66,16 +66,16 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
                     "progress": Int(data1),
                     "error": Int(data1) == 0,
                     "done": Int(data1) == 1000,
-                    "errorMessage": AppDelegate.lastErrorString as Any,
+                    "errorMessage": DcContext.shared.lastErrorString as Any,
                 ]
             )
         }
 
     case DC_EVENT_IMAP_CONNECTED, DC_EVENT_SMTP_CONNECTED:
-        logger.warning("network: \(String(cString: data2String))")
+        DcContext.shared.logger?.warning("network: \(String(cString: data2String))")
 
     case DC_EVENT_MSGS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED, DC_EVENT_MSG_FAILED:
-        logger.info("change: \(event)")
+        DcContext.shared.logger?.info("change: \(event)")
 
         let nc = NotificationCenter.default
 
@@ -92,7 +92,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         }
 
     case DC_EVENT_CHAT_MODIFIED:
-        logger.info("chat modified: \(event)")
+        DcContext.shared.logger?.info("chat modified: \(event)")
         let nc = NotificationCenter.default
         DispatchQueue.main.async {
             nc.post(
@@ -128,7 +128,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
 
                 let request = UNNotificationRequest(identifier: Constants.notificationIdentifier, content: content, trigger: trigger)
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                logger.info("notifications: added \(content)")
+                DcContext.shared.logger?.info("notifications: added \(content)")
             }
 
             let array = DcContext.shared.getFreshMessages()
@@ -136,13 +136,13 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         }
 
     case DC_EVENT_SMTP_MESSAGE_SENT:
-        logger.info("network: \(String(cString: data2String))")
+        DcContext.shared.logger?.info("network: \(String(cString: data2String))")
 
     case DC_EVENT_MSG_DELIVERED:
-        logger.info("message delivered: \(data1)-\(data2)")
+        DcContext.shared.logger?.info("message delivered: \(data1)-\(data2)")
 
     case DC_EVENT_SECUREJOIN_INVITER_PROGRESS:
-        logger.info("securejoin inviter progress \(data1)")
+        DcContext.shared.logger?.info("securejoin inviter progress \(data1)")
 
         let nc = NotificationCenter.default
         DispatchQueue.main.async {
@@ -158,7 +158,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         }
 
     case DC_EVENT_SECUREJOIN_JOINER_PROGRESS:
-        logger.info("securejoin joiner progress \(data1)")
+        DcContext.shared.logger?.info("securejoin joiner progress \(data1)")
         let nc = NotificationCenter.default
         DispatchQueue.main.async {
             nc.post(
@@ -173,7 +173,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
             )
         }
     case DC_EVENT_CONTACTS_CHANGED:
-        logger.info("contact changed: \(data1)")
+        DcContext.shared.logger?.info("contact changed: \(data1)")
         let nc = NotificationCenter.default
         DispatchQueue.main.async {
             nc.post(
@@ -186,6 +186,6 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         }
 
     default:
-        logger.warning("unknown event: \(event)")
+        DcContext.shared.logger?.warning("unknown event: \(event)")
     }
 }
