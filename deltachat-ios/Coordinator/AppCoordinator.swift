@@ -327,10 +327,14 @@ class SettingsCoordinator: Coordinator {
     }
 
     func showDebugToolkit() {
-
-        let vc = UIViewController()
-        vc.view.backgroundColor = .red
-        navigationController.present(vc, animated: true, completion: nil)
+        DBDebugToolkit.setup(with: [])  // emtpy array will override default device shake trigger
+        DBDebugToolkit.setupCrashReporting()
+        let info: [DBCustomVariable] = dcContext.getInfo().map { kv in
+            let value = kv.count > 1 ? kv[1] : ""
+            return DBCustomVariable(name: kv[0], value: value)
+        }
+        DBDebugToolkit.add(info)
+        DBDebugToolkit.showMenu()
     }
 }
 

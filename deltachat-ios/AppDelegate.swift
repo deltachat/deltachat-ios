@@ -1,5 +1,4 @@
 import AudioToolbox
-import DBDebugToolkit
 import Reachability
 import SwiftyBeaver
 import UIKit
@@ -47,8 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        DBDebugToolkit.setup()
-        DBDebugToolkit.setupCrashReporting()
 
         let console = ConsoleDestination()
         logger.addDestination(console)
@@ -228,13 +225,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         } catch {
             logger.info("could not start reachability notifier")
         }
-
-        let info: [DBCustomVariable] = dcContext.getInfo().map { kv in
-            let value = kv.count > 1 ? kv[1] : ""
-            return DBCustomVariable(name: kv[0], value: value)
-        }
-
-        DBDebugToolkit.add(info)
     }
 
     @objc private func reachabilityChanged(note: Notification) {
