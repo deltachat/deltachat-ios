@@ -29,6 +29,18 @@ public class DcContext {
         return .dcContext
     }
 
+    public func getMessageIds(chatId: Int, count: Int, from: Int?) -> [Int] {
+		let cMessageIds = getChatMessages(chatId: chatId)
+
+        let ids: [Int]
+        if let from = from {
+            ids = DcUtils.copyAndFreeArrayWithOffset(inputArray: cMessageIds, len: count, skipEnd: from)
+        } else {
+            ids = DcUtils.copyAndFreeArrayWithLen(inputArray: cMessageIds, len: count)
+        }
+        return ids
+    }
+
     public func createContact(name: String, email: String) -> Int {
         return Int(dc_create_contact(contextPointer, name, email))
     }

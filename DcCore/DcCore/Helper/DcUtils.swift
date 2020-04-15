@@ -3,18 +3,6 @@ import UIKit
 
 public struct DcUtils {
 
-    public static func getMessageIds(chatId: Int, count: Int, from: Int?) -> [Int] {
-        let cMessageIds = DcContext.shared.getChatMessages(chatId: chatId)
-
-        let ids: [Int]
-        if let from = from {
-            ids = DcUtils.copyAndFreeArrayWithOffset(inputArray: cMessageIds, len: count, skipEnd: from)
-        } else {
-            ids = DcUtils.copyAndFreeArrayWithLen(inputArray: cMessageIds, len: count)
-        }
-        return ids
-    }
-
     static func copyAndFreeArray(inputArray: OpaquePointer?) -> [Int] {
         var acc: [Int] = []
         let len = dc_array_get_cnt(inputArray)
