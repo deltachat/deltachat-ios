@@ -22,6 +22,7 @@
 		30421986243F209E00516852 /* events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421985243F209E00516852 /* events.swift */; };
 		30421988243F23E500516852 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30421987243F23E500516852 /* Constants.swift */; };
 		306C324824460CDE001D89F3 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306C324724460CDE001D89F3 /* DateUtils.swift */; };
+		30E8F2212447357500CE2C90 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2202447357500CE2C90 /* DatabaseHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		30421985243F209E00516852 /* events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = events.swift; path = ../../DcCore/DcCore/DC/events.swift; sourceTree = "<group>"; };
 		30421987243F23E500516852 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		306C324724460CDE001D89F3 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		30E8F2202447357500CE2C90 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 		30421977243F1AF400516852 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				30E8F2202447357500CE2C90 /* DatabaseHelper.swift */,
 				30421987243F23E500516852 /* Constants.swift */,
 				3042195C243E23F100516852 /* DcUtils.swift */,
 				306C324724460CDE001D89F3 /* DateUtils.swift */,
@@ -294,6 +297,7 @@
 				30421951243DE15D00516852 /* Wrapper.swift in Sources */,
 				306C324824460CDE001D89F3 /* DateUtils.swift in Sources */,
 				30421952243DE15D00516852 /* wrapper.c in Sources */,
+				30E8F2212447357500CE2C90 /* DatabaseHelper.swift in Sources */,
 				3042195D243E23F100516852 /* DcUtils.swift in Sources */,
 				30421964243F0B8400516852 /* String+Extensions.swift in Sources */,
 				30421960243E257100516852 /* UIColor+Extensions.swift in Sources */,
