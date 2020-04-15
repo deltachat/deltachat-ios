@@ -3,7 +3,9 @@ import ALCameraViewController
 import Photos
 import MobileCoreServices
 import DcCore
+import DBDebugToolkit
 
+// MARK: - AppCoordinator
 class AppCoordinator: NSObject, Coordinator {
 
     private let window: UIWindow
@@ -160,6 +162,7 @@ class AppCoordinator: NSObject, Coordinator {
     }
 }
 
+// MARK: - WelcomeCoordinator
 extension AppCoordinator: WelcomeCoordinator {
 
     func showLogin() {
@@ -275,6 +278,7 @@ class ChatListCoordinator: Coordinator {
     }
 }
 
+// MARK: - SettingsCoordinator
 class SettingsCoordinator: Coordinator {
     let dcContext: DcContext
     let navigationController: UINavigationController
@@ -323,12 +327,14 @@ class SettingsCoordinator: Coordinator {
     }
 
     func showDebugToolkit() {
+
         let vc = UIViewController()
         vc.view.backgroundColor = .red
         navigationController.present(vc, animated: true, completion: nil)
     }
 }
 
+// MARK: - EditSettingsCoordinator
 class EditSettingsCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
@@ -349,7 +355,7 @@ class EditSettingsCoordinator: Coordinator {
     }
 }
 
-
+// MARK: - AccountSetupCoordinator
 class AccountSetupCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
@@ -388,6 +394,7 @@ class AccountSetupCoordinator: Coordinator {
     }
 }
 
+// MARK: - NewChatCoordinator
 class NewChatCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
@@ -441,6 +448,7 @@ class NewChatCoordinator: Coordinator {
     
 }
 
+// MARK: - GroupChatDetailCoordinator
 class GroupChatDetailCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
@@ -548,6 +556,7 @@ class GroupChatDetailCoordinator: Coordinator {
     }
 }
 
+// MARK: - ChatViewCoordinator
 class ChatViewCoordinator: NSObject, Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
@@ -631,6 +640,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
     }
 }
 
+// MARK: - NewGroupAddMembersCoordinator
 class NewGroupAddMembersCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
@@ -643,6 +653,7 @@ class NewGroupAddMembersCoordinator: Coordinator {
     }
 }
 
+// MARK: - AddGroupMembersCoordinator
 class AddGroupMembersCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
@@ -664,6 +675,7 @@ class AddGroupMembersCoordinator: Coordinator {
     }
 }
 
+// MARK: - NewGroupCoordinator
 class NewGroupCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
@@ -724,6 +736,7 @@ class NewGroupCoordinator: Coordinator {
     }
 }
 
+// MARK: - ContactDetailCoordinator
 class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
     var dcContext: DcContext
     let navigationController: UINavigationController
@@ -817,6 +830,7 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
 
 }
 
+// MARK: - EditGroupCoordinator
 class EditGroupCoordinator: Coordinator {
     let navigationController: UINavigationController
     let dcContext: DcContext
@@ -841,6 +855,7 @@ class EditGroupCoordinator: Coordinator {
     }
 }
 
+// MARK: - EditContactCoordinator
 class EditContactCoordinator: Coordinator, EditContactCoordinatorProtocol {
     var dcContext: DcContext
     let navigationController: UINavigationController
@@ -870,6 +885,7 @@ class EditContactCoordinator: Coordinator, EditContactCoordinatorProtocol {
 /*
  boilerplate - I tend to remove that interface (cyberta)
  */
+// MARK: - coordinator protocols
 protocol ContactDetailCoordinatorProtocol: class {
     func showEditContact(contactId: Int)
     func showChat(chatId: Int)
