@@ -135,10 +135,9 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if success {
             if let loginCompletion = self.onProgressSuccess {
                 addProgressAlertListener(onSuccess: loginCompletion)
-                showProgressAlert(title: String.localized("qraccount_use_on_new_install"))
+                showProgressAlert(title: String.localized("login_header"))
             }
             dcContext.configure()
-
         } else {
             accountCreationErrorAlert()
         }
@@ -151,7 +150,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             })
         }
 
-        let title = String.localized("qraccount_creation_failed")
+        let title = AppDelegate.lastErrorString ?? String.localized("error")
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(
             title: String.localized("ok"),
