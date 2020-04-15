@@ -144,6 +144,7 @@
 		AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */; };
 		AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0C22C1215D004C9591 /* EditContactController.swift */; };
 		AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */; };
+		AEA0F6A124474146009F887B /* ProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA0F6A024474146009F887B /* ProfileInfoViewController.swift */; };
 		AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */; };
 		AEACE2DF1FB3246400DCDD78 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2DE1FB3246400DCDD78 /* Message.swift */; };
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
@@ -394,6 +395,7 @@
 		AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatDetailViewController.swift; sourceTree = "<group>"; };
 		AE9DAF0C22C1215D004C9591 /* EditContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactController.swift; sourceTree = "<group>"; };
 		AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTitleView.swift; sourceTree = "<group>"; };
+		AEA0F6A024474146009F887B /* ProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewController.swift; sourceTree = "<group>"; };
 		AEACE2DC1FB323CA00DCDD78 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		AEACE2DE1FB3246400DCDD78 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -791,6 +793,7 @@
 				7A0052C71FBE6CB40048C3BF /* NewContactController.swift */,
 				7070FB9A2101ECBB000DC258 /* NewGroupController.swift */,
 				AE4AEE3422B1030D000AA495 /* PreviewController.swift */,
+				AEA0F6A024474146009F887B /* ProfileInfoViewController.swift */,
 				789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */,
 				30A4D9AD2332672600544344 /* QrInviteViewController.swift */,
 				30149D9222F21129003C12B5 /* QrViewController.swift */,
@@ -1237,6 +1240,7 @@
 				305961FF2346125100C80F33 /* AvatarView.swift in Sources */,
 				3059620C2346125100C80F33 /* MessageSizeCalculator.swift in Sources */,
 				305962042346125100C80F33 /* MessagesCollectionViewLayoutAttributes.swift in Sources */,
+				AEA0F6A124474146009F887B /* ProfileInfoViewController.swift in Sources */,
 				305961D02346125100C80F33 /* NSAttributedString+Extensions.swift in Sources */,
 				302B84C72396770B001C261F /* RelayHelper.swift in Sources */,
 				305961CF2346125100C80F33 /* UIColor+Extensions.swift in Sources */,

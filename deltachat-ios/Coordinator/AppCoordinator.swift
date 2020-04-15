@@ -83,6 +83,8 @@ class AppCoordinator: NSObject, Coordinator {
         return nav
     }()
 
+    private var profileInfoNavigationController: UINavigationController?
+
     init(window: UIWindow, dcContext: DcContext) {
         self.window = window
         self.dcContext = dcContext
