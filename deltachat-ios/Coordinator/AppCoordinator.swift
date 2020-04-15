@@ -321,6 +321,12 @@ class SettingsCoordinator: Coordinator {
         let helpViewController = HelpViewController()
         navigationController.pushViewController(helpViewController, animated: true)
     }
+
+    func showDebugToolkit() {
+        let vc = UIViewController()
+        vc.view.backgroundColor = .red
+        navigationController.present(vc, animated: true, completion: nil)
+    }
 }
 
 class EditSettingsCoordinator: Coordinator {
