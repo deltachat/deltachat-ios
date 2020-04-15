@@ -138,6 +138,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
                 showProgressAlert(title: String.localized("qraccount_use_on_new_install"))
             }
             dcContext.configure()
+
         } else {
             accountCreationErrorAlert()
         }
@@ -192,7 +193,6 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("ok"),
             style: .default,
             handler: { [unowned self] _ in
-                self.activateSpinner(true)
                 self.qrCodeReaderNav.dismiss(animated: true) {
                     self.createAccountFromQRCode()
                 }
