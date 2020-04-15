@@ -363,6 +363,7 @@
 		30E8F2122447285600CE2C90 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		30E8F2152447285600CE2C90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		30E8F2172447285600CE2C90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30E8F21F24472AAE00CE2C90 /* DcShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DcShare.entitlements; sourceTree = "<group>"; };
 		30ECA5462436026F006F2E7A /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		30F9B9EB235F2116006E7ACF /* MessageCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCounter.swift; sourceTree = "<group>"; };
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -670,6 +671,7 @@
 		30E8F2112447285600CE2C90 /* DcShare */ = {
 			isa = PBXGroup;
 			children = (
+				30E8F21F24472AAE00CE2C90 /* DcShare.entitlements */,
 				30E8F2122447285600CE2C90 /* ShareViewController.swift */,
 				30E8F2142447285600CE2C90 /* MainInterface.storyboard */,
 				30E8F2172447285600CE2C90 /* Info.plist */,
@@ -1554,6 +1556,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = DcShare/DcShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8Y86453UA8;
@@ -1574,6 +1577,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = DcShare/DcShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8Y86453UA8;
