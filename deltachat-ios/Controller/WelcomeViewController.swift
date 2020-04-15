@@ -136,6 +136,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             if let loginCompletion = self.onProgressSuccess {
                 addProgressAlertListener(onSuccess: loginCompletion)
                 showProgressAlert(title: String.localized("login_header"))
+                activateSpinner(false)
             }
             dcContext.configure()
         } else {
@@ -192,7 +193,8 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("ok"),
             style: .default,
             handler: { [unowned self] _ in
-                self.qrCodeReaderNav.dismiss(animated: true) {
+                self.activateSpinner(true)
+                self.qrCodeReaderNav.dismiss(animated: false) {
                     self.createAccountFromQRCode()
                 }
             }
