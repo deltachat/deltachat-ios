@@ -8,8 +8,6 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     private var displayNameBackup: String?
     private var statusCellBackup: String?
 
-    private let groupBadgeSize: CGFloat = 72
-
     private let section1 = 0
     private let section1Avatar = 0
     private let section1Name = 1
