@@ -5,8 +5,8 @@ class ProfileInfoViewController: UITableViewController {
 
     private lazy var headerCell: TextCell = {
         let cell = TextCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("qraccount_success_enter_name")
-        cell.textLabel?.numberOfLines = 0
+        let email = dcContext.addr ?? ""
+        cell.content = String.localizedStringWithFormat(NSLocalizedString("qraccount_success_enter_name", comment: ""), email)
         return cell
     }()
 
@@ -77,31 +77,3 @@ class ProfileInfoViewController: UITableViewController {
 
 }
 
-class TextCell: UITableViewCell {
-
-    var intrinsicCellHeight: CGFloat {
-        return intrinsicContentSize.height
-    }
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupSubviews()
-        textLabel?.numberOfLines = 0
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setupSubviews() {
-        guard let textLabel = self.textLabel else {
-            return
-        }
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 0).isActive = true
-        textLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 0).isActive = true
-        textLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: 0).isActive = true
-        textLabel.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor, constant: 0).isActive = true
-    }
-
-}
