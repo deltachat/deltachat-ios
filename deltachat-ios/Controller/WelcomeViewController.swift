@@ -133,43 +133,29 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let success = dcContext.configureAccountFromQR(qrCode: code)
         scannedQrCode = nil
         if success {
-            if let loginCompletion = self.onProgressSuccess {
-                addProgressAlertListener(onSuccess: loginCompletion)
-                showProgressAlert(title: String.localized("qraccount_use_on_new_install"))
-            }
+            addProgressAlertListener(onSuccess: handleLoginSuccess)
+            showProgressAlert(title: String.localized("login_header"))
+            activateSpinner(false)
             dcContext.configure()
         } else {
             accountCreationErrorAlert()
         }
     }
 
+    private func handleLoginSuccess() {
+        onProgressSuccess?()
+    }
+
     private func accountCreationErrorAlert() {
-        func handleRepeat() {
-            showQRReader(completion: { [unowned self] in
-                self.activateSpinner(false)
-            })
-        }
-
-        let title = String.localized("qraccount_creation_failed")
+        activateSpinner(false)
+        let title = DcContext.shared.lastErrorString ?? String.localized("error")
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(
-            title: String.localized("ok"),
-            style: .default,
-            handler: { [unowned self] _ in
-                self.activateSpinner(false)
-            }
-        )
-
-        let repeatAction = UIAlertAction(
-            title: String.localized("global_menu_edit_redo_desktop"),
-            style: .default,
-            handler: { _ in
-                handleRepeat()
-            }
-        )
-        alert.addAction(okAction)
-        alert.addAction(repeatAction)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
         present(alert, animated: true)
+    }
+
+    func progressAlertWillDismiss() {
+        activateSpinner(true)
     }
 }
 
@@ -193,7 +179,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             style: .default,
             handler: { [unowned self] _ in
                 self.activateSpinner(true)
-                self.qrCodeReaderNav.dismiss(animated: true) {
+                self.qrCodeReaderNav.dismiss(animated: false) {
                     self.createAccountFromQRCode()
                 }
             }
