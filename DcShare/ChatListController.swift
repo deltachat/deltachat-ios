@@ -22,11 +22,18 @@ class ChatListController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        preferredContentSize = UIScreen.main.bounds.size
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         chatList = dcContext.getChatlist(flags: DC_GCL_ADD_ALLDONE_HINT | DC_GCL_FOR_FORWARDING | DC_GCL_NO_SPECIALS, queryString: nil, queryId: 0)
         tableView.register(ChatListCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
-        tableView.rowHeight = 80
+        tableView.rowHeight = 64
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: Double.leastNormalMagnitude))
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: Double.leastNormalMagnitude))
+
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

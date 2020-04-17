@@ -15,7 +15,7 @@ class ChatListCell: UITableViewCell {
 
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultTextColor
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
@@ -78,14 +78,8 @@ class ChatListCell: UITableViewCell {
     func updateCell(chatId: Int) {
         let chat = DcContext.shared.getChat(chatId: chatId)
         titleLabel.text = chat.name
-
-        if chat.visibility == DC_CHAT_VISIBILITY_PINNED {
-            backgroundColor = DcColors.deaddropBackground
-            contentView.backgroundColor = DcColors.deaddropBackground
-        } else {
-            backgroundColor = DcColors.contactCellBackgroundColor
-            contentView.backgroundColor = DcColors.contactCellBackgroundColor
-        }
+        backgroundColor = DcColors.contactCellBackgroundColor
+        contentView.backgroundColor = DcColors.contactCellBackgroundColor
 
         if let img = chat.profileImage {
             resetBackupImage()
