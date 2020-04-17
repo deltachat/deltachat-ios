@@ -4,8 +4,9 @@ import DcCore
 class ProfileInfoViewController: UITableViewController {
 
     weak var coordinator: EditSettingsCoordinator?
+    private let dcContext: DcContext
 
-    var displayName: String?
+    private var displayName: String?
 
     private lazy var doneButtonItem: UIBarButtonItem = {
         return UIBarButtonItem(
@@ -29,7 +30,7 @@ class ProfileInfoViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var avatarCell: UITableViewCell = {
+    private lazy var avatarCell: AvatarSelectionCell = {
         let cell = AvatarSelectionCell(context: self.dcContext)
         cell.onAvatarTapped = avatarTapped
         return cell
@@ -46,8 +47,6 @@ class ProfileInfoViewController: UITableViewController {
     }()
 
     private lazy var cells = [headerCell, avatarCell, nameCell]
-
-    private let dcContext: DcContext
 
     init(context: DcContext) {
         self.dcContext = context
@@ -78,20 +77,20 @@ class ProfileInfoViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         let cell = cells[indexPath.row]
-
         if let textCell = cell as? TextCell {
             return textCell.intrinsicCellHeight
         }
-
         if cell is AvatarSelectionCell {
             return AvatarSelectionCell.cellHeight
         }
-
         return Constants.defaultCellHeight
     }
 
     // MARK: - updates
     private func updateAvatarCell() {
+        if let avatarImage = dcContext.getSelfAvatarImage() {
+            avatarCell.updateAvatar(image: avatarImage)
+        }
         self.tableView.beginUpdates()
         let indexPath = IndexPath(row: 1, section: 0)
         self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
@@ -105,7 +104,6 @@ class ProfileInfoViewController: UITableViewController {
             message: nil,
             preferredStyle: .safeActionSheet
         )
-
         let photoAction = PhotoPickerAlertAction(
             title: String.localized("gallery"),
             style: .default,
@@ -116,7 +114,6 @@ class ProfileInfoViewController: UITableViewController {
             style: .default,
             handler: cameraButtonPressed(_:)
         )
-
         alert.addAction(photoAction)
         alert.addAction(videoAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -138,8 +135,8 @@ class ProfileInfoViewController: UITableViewController {
 }
 
 extension ProfileInfoViewController: MediaPickerDelegate {
-  func onImageSelected(image: UIImage) {
-    AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: image)
-    updateAvatarCell()
-  }
+    func onImageSelected(image: UIImage) {
+        AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: image)
+        updateAvatarCell()
+    }
 }

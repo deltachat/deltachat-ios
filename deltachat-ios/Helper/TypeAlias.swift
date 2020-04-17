@@ -1,3 +1,3 @@
-import Foundation
+import UIKit
 
 typealias VoidFunction = () -> Void
