@@ -147,31 +147,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }
 
     private func accountCreationErrorAlert() {
-        func handleRepeat() {
-            showQRReader(completion: { [unowned self] in
-                self.activateSpinner(false)
-            })
-        }
-
-        let title = AppDelegate.lastErrorString ?? String.localized("error")
+        activateSpinner(false)
+        let title = DcContext.shared.lastErrorString ?? String.localized("error")
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(
-            title: String.localized("ok"),
-            style: .default,
-            handler: { [unowned self] _ in
-                self.activateSpinner(false)
-            }
-        )
-
-        let repeatAction = UIAlertAction(
-            title: String.localized("global_menu_edit_redo_desktop"),
-            style: .default,
-            handler: { _ in
-                handleRepeat()
-            }
-        )
-        alert.addAction(okAction)
-        alert.addAction(repeatAction)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
         present(alert, animated: true)
     }
 
