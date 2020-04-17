@@ -133,15 +133,17 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let success = dcContext.configureAccountFromQR(qrCode: code)
         scannedQrCode = nil
         if success {
-            if let loginCompletion = self.onProgressSuccess {
-                addProgressAlertListener(onSuccess: loginCompletion)
-                showProgressAlert(title: String.localized("login_header"))
-                activateSpinner(false)
-            }
+            addProgressAlertListener(onSuccess: handleLoginSuccess)
+            showProgressAlert(title: String.localized("login_header"))
+            activateSpinner(false)
             dcContext.configure()
         } else {
             accountCreationErrorAlert()
         }
+    }
+
+    private func handleLoginSuccess() {
+        onProgressSuccess?()
     }
 
     private func accountCreationErrorAlert() {
@@ -171,6 +173,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         alert.addAction(okAction)
         alert.addAction(repeatAction)
         present(alert, animated: true)
+    }
+
+    func progressAlertWillDismiss() {
+        activateSpinner(true)
     }
 }
 

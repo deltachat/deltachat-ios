@@ -4,12 +4,12 @@ import DcCore
 protocol ProgressAlertHandler: UIViewController {
     var progressAlert: UIAlertController { get }
     var configureProgressObserver: Any? { get set }
-    var onProgressSuccess: VoidFunction? { get set }
     func showProgressAlert(title: String)
     func updateProgressAlertValue(value: Int?)
     func updateProgressAlert(error: String?)
     func updateProgressAlertSuccess(completion: VoidFunction?)
     func addProgressAlertListener(onSuccess: @escaping VoidFunction)
+    func progressAlertWillDismiss()
 }
 
 extension ProgressAlertHandler {
@@ -38,6 +38,8 @@ extension ProgressAlertHandler {
 
     func updateProgressAlertSuccess(completion onComplete: VoidFunction?) {
         updateProgressAlertValue(value: 1000)
+        progressAlertWillDismiss()
+        // delay so the user has time to read the success message
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             self.progressAlert.dismiss(animated: true) {
                 onComplete?()
@@ -62,6 +64,10 @@ extension ProgressAlertHandler {
                 }
             }
         }
+    }
+
+    func progressAlertWillDismiss() {
+        // can be overwritten if needed
     }
 }
 
