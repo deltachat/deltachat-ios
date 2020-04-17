@@ -1,7 +1,15 @@
 import UIKit
 
 class TextFieldCell: UITableViewCell {
-    private let placeholder: String
+
+    var placeholder: String? {
+        set {
+            textField.placeholder = newValue
+        }
+        get {
+            return textField.placeholder
+        }
+    }
 
     var onTextFieldChange:((_:UITextField) -> Void)?	// set this from outside to get notified about textfield changes
 
@@ -9,13 +17,11 @@ class TextFieldCell: UITableViewCell {
         let textField = UITextField()
         textField.textAlignment = .right
         // textField.enablesReturnKeyAutomatically = true
-        textField.placeholder = self.placeholder
         textField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         return textField
     }()
 
     init(description: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {
-        self.placeholder = placeholder
         super.init(style: .value1, reuseIdentifier: nil)
         textLabel?.text = "\(description):"
 
@@ -25,6 +31,7 @@ class TextFieldCell: UITableViewCell {
         selectionStyle = .none
         setupViews()
         textField.delegate = delegate
+        textField.placeholder = placeholder
     }
 
     convenience init(descriptionID: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {

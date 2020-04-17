@@ -3,6 +3,17 @@ import DcCore
 
 class ProfileInfoViewController: UITableViewController {
 
+    var displayName: String?
+
+    private lazy var doneButtonItem: UIBarButtonItem = {
+        return UIBarButtonItem(
+            title: String.localized("done"),
+            style: .done,
+            target: self,
+            action: #selector(doneButtonPressed(_:))
+        )
+    }()
+
     private lazy var headerCell: TextCell = {
         let cell = TextCell(style: .default, reuseIdentifier: nil)
         let email = dcContext.addr ?? ""
@@ -23,8 +34,12 @@ class ProfileInfoViewController: UITableViewController {
     }()
 
     private lazy var nameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("pref_your_name"))
+        let cell =  TextFieldCell.makeNameCell()
+        cell.placeholder = String.localized("pref_your_name")
         cell.setText(text: dcContext.displayname)
+        cell.onTextFieldChange = {[unowned self] textField in
+            self.displayName = textField.text
+        }
         return cell
     }()
 
@@ -46,6 +61,7 @@ class ProfileInfoViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("pref_profile_info_headline")
+        navigationItem.rightBarButtonItem = doneButtonItem
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,5 +91,9 @@ class ProfileInfoViewController: UITableViewController {
 
     }
 
-}
+    @objc private func doneButtonPressed(_ sender: UIBarButtonItem) {
+        dcContext.displayname = displayName
+        self.dismiss(animated: true, completion: nil)
+    }
 
+}
