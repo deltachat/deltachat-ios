@@ -5,14 +5,6 @@ import DcCore
 
 struct Utils {
 
-    static func getInitials(inputName: String) -> String {
-        if let firstLetter = inputName.first {
-            return firstLetter.uppercased()
-        } else {
-            return ""
-        }
-    }
-
     static func isValid(email: String) -> Bool {
         let emailRegEx = "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
             + "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"

@@ -3,6 +3,14 @@ import UIKit
 
 public struct DcUtils {
 
+    public static func getInitials(inputName: String) -> String {
+        if let firstLetter = inputName.first {
+            return firstLetter.uppercased()
+        } else {
+            return ""
+        }
+    }
+
     static func copyAndFreeArray(inputArray: OpaquePointer?) -> [Int] {
         var acc: [Int] = []
         let len = dc_array_get_cnt(inputArray)

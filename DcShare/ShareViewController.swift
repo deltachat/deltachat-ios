@@ -32,7 +32,6 @@ class ShareViewController: SLComposeServiceViewController {
     var selectedChatId: Int?
     var selectedChat: DcChat?
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // workaround for iOS13 bug

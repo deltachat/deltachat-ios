@@ -1,6 +1,6 @@
 import UIKit
 
-class InitialsBadge: UIView {
+public class InitialsBadge: UIView {
 
     private let verificationViewPadding: CGFloat = 2
     private let size: CGFloat
@@ -31,18 +31,20 @@ class InitialsBadge: UIView {
         return imageViewContainer
     }()
 
-    convenience init(name: String, color: UIColor, size: CGFloat, accessibilityLabel: String? = nil) {
+
+    public convenience init(name: String, color: UIColor, size: CGFloat, accessibilityLabel: String? = nil) {
         self.init(size: size, accessibilityLabel: accessibilityLabel)
         setName(name)
         setColor(color)
     }
 
-    convenience init (image: UIImage, size: CGFloat, accessibilityLabel: String? = nil) {
+
+    public convenience init (image: UIImage, size: CGFloat, accessibilityLabel: String? = nil) {
         self.init(size: size, accessibilityLabel: accessibilityLabel)
         setImage(image)
     }
 
-    init(size: CGFloat, accessibilityLabel: String? = nil) {
+    public init(size: CGFloat, accessibilityLabel: String? = nil) {
         self.size = size
         super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
         self.accessibilityLabel = accessibilityLabel
@@ -80,32 +82,32 @@ class InitialsBadge: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setName(_ name: String) {
-        label.text = Utils.getInitials(inputName: name)
+    public func setName(_ name: String) {
+        label.text = DcUtils.getInitials(inputName: name)
         label.isHidden = name.isEmpty
         imageView.isHidden = !name.isEmpty
     }
 
-    func setLabelFont(_ font: UIFont) {
+    public func setLabelFont(_ font: UIFont) {
         label.font = font
     }
 
-    func setImage(_ image: UIImage) {
+    public func setImage(_ image: UIImage) {
         self.imageView.image = image
         self.imageView.contentMode = UIView.ContentMode.scaleAspectFill
         self.imageView.isHidden = false
         self.label.isHidden = true
     }
 
-    func showsInitials() -> Bool {
+    public func showsInitials() -> Bool {
         return !label.isHidden
     }
 
-    func setColor(_ color: UIColor) {
+    public func setColor(_ color: UIColor) {
         backgroundColor = color
     }
 
-    func setVerified(_ verified: Bool) {
+    public func setVerified(_ verified: Bool) {
         verifiedView.isHidden = !verified
     }
 }
