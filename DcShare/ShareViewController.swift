@@ -85,8 +85,8 @@ class ShareViewController: SLComposeServiceViewController {
         // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
 
         let item = SLComposeSheetConfigurationItem()
-        item?.title = String.localized("send_message")
-        item?.value = selectedChat?.name ?? "unknown"
+        item?.title = String.localized("forward_to")
+        item?.value = selectedChat?.name
         logger.debug("configurationItems chat name: \(String(describing: selectedChat?.name))")
         item?.tapHandler = {
             let chatListController = ChatListController(dcContext: self.dcContext, chatListDelegate: self)
