@@ -3,6 +3,8 @@ import DcCore
 
 class ProfileInfoViewController: UITableViewController {
 
+    weak var coordinator: EditSettingsCoordinator?
+
     var displayName: String?
 
     private lazy var doneButtonItem: UIBarButtonItem = {
@@ -64,6 +66,7 @@ class ProfileInfoViewController: UITableViewController {
         navigationItem.rightBarButtonItem = doneButtonItem
     }
 
+    // MARK: - tableviewDelegate
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells.count
     }
@@ -87,8 +90,37 @@ class ProfileInfoViewController: UITableViewController {
         return Constants.defaultCellHeight
     }
 
-    private func avatarTapped() {
+    // MARK: - updates
+    private func updateAvatarCell() {
+        self.tableView.beginUpdates()
+        let indexPath = IndexPath(row: 1, section: 0)
+        self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
+        self.tableView.endUpdates()
+    }
 
+    // MARK: - actions
+    private func avatarTapped() {
+        let alert = UIAlertController(
+            title: String.localized("pref_profile_photo"),
+            message: nil,
+            preferredStyle: .safeActionSheet
+        )
+
+        let photoAction = PhotoPickerAlertAction(
+            title: String.localized("gallery"),
+            style: .default,
+            handler: galleryButtonPressed(_:)
+        )
+        let videoAction = PhotoPickerAlertAction(
+            title: String.localized("camera"),
+            style: .default,
+            handler: cameraButtonPressed(_:)
+        )
+
+        alert.addAction(photoAction)
+        alert.addAction(videoAction)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
     @objc private func doneButtonPressed(_ sender: UIBarButtonItem) {
@@ -96,4 +128,18 @@ class ProfileInfoViewController: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
+    private func galleryButtonPressed(_ action: UIAlertAction) {
+        coordinator?.showPhotoPicker(delegate: self)
+    }
+
+    private func cameraButtonPressed(_ action: UIAlertAction) {
+        coordinator?.showCamera(delegate: self)
+    }
+}
+
+extension ProfileInfoViewController: MediaPickerDelegate {
+  func onImageSelected(image: UIImage) {
+    AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: image)
+    updateAvatarCell()
+  }
 }
