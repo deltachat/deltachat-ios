@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var locationManager: LocationManager!
     // static let appCoordinatorDeprecated = AppCoordinatorDeprecated()
     static var progress: Float = 0 // TODO: delete
-    static var lastErrorString: String?
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
 
     var reachability = Reachability()!
