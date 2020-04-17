@@ -112,8 +112,6 @@ class AppCoordinator: NSObject, Coordinator {
 
     func showTab(index: Int) {
         tabBarController.selectedIndex = index
-        // TODO: make sure to delete this before submitting PR
-        showProfileInfo()
     }
 
     func showChat(chatId: Int, animated: Bool = true) {
