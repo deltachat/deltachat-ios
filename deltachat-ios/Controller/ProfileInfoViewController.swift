@@ -99,10 +99,11 @@ class ProfileInfoViewController: UITableViewController {
 
     // MARK: - actions
     private func avatarTapped() {
+        let sender = avatarCell.badge
         let alert = UIAlertController(
             title: String.localized("pref_profile_photo"),
             message: nil,
-            preferredStyle: .safeActionSheet
+            preferredStyle: .actionSheet
         )
         let photoAction = PhotoPickerAlertAction(
             title: String.localized("gallery"),
@@ -117,6 +118,15 @@ class ProfileInfoViewController: UITableViewController {
         alert.addAction(photoAction)
         alert.addAction(videoAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        if let popoverController = alert.popoverPresentationController {
+            popoverController.sourceView = self.avatarCell
+            popoverController.sourceRect = CGRect(
+                x: sender.frame.minX - 10,
+                y: sender.frame.minY,
+                width: sender.frame.width,
+                height: sender.frame.height
+            )
+         }
         self.present(alert, animated: true, completion: nil)
     }
 
