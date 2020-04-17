@@ -99,6 +99,7 @@
 		30E8F21A2447285600CE2C90 /* DcShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30E8F2102447285600CE2C90 /* DcShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		30E8F2252447622300CE2C90 /* DcCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; };
 		30E8F2262447622300CE2C90 /* DcCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		30E8F2422448B77600CE2C90 /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2412448B77600CE2C90 /* ChatListController.swift */; };
 		30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9B9EB235F2116006E7ACF /* MessageCounter.swift */; };
 		6795F63A82E94FF7CD2CEC0F /* Pods_deltachat_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */; };
 		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
@@ -376,6 +377,7 @@
 		30E8F2152447285600CE2C90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		30E8F2172447285600CE2C90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30E8F21F24472AAE00CE2C90 /* DcShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DcShare.entitlements; sourceTree = "<group>"; };
+		30E8F2412448B77600CE2C90 /* ChatListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; };
 		30F9B9EB235F2116006E7ACF /* MessageCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCounter.swift; sourceTree = "<group>"; };
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
@@ -685,6 +687,7 @@
 			children = (
 				30E8F21F24472AAE00CE2C90 /* DcShare.entitlements */,
 				30E8F2122447285600CE2C90 /* ShareViewController.swift */,
+				30E8F2412448B77600CE2C90 /* ChatListController.swift */,
 				30E8F2142447285600CE2C90 /* MainInterface.storyboard */,
 				30E8F2172447285600CE2C90 /* Info.plist */,
 			);
@@ -1246,6 +1249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */,
+				30E8F2422448B77600CE2C90 /* ChatListController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
