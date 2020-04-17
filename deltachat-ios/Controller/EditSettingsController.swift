@@ -107,7 +107,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         if indexPath.section == section1 {
             switch indexPath.row {
             case section1Avatar:
-                return AvatarSelectionCell.cellSize
+                return AvatarSelectionCell.cellHeight
             case section1Status:
                 return MultilineTextFieldCell.cellHeight
             default:

@@ -3,7 +3,7 @@ import DcCore
 
 class AvatarSelectionCell: UITableViewCell {
     let badgeSize: CGFloat = 72
-    static let cellSize: CGFloat = 98
+    static let cellHeight: CGFloat = 98
 
     var onAvatarTapped: (() -> Void)?
 

@@ -207,7 +207,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         switch section {
         case sectionGroupDetails:
             if row == sectionGroupDetailsRowAvatar {
-                return AvatarSelectionCell.cellSize
+                return AvatarSelectionCell.cellHeight
             } else {
                 return Constants.defaultCellHeight
             }

@@ -68,7 +68,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == rowAvatar {
-            return AvatarSelectionCell.cellSize
+            return AvatarSelectionCell.cellHeight
         }
         return Constants.defaultCellHeight
     }
