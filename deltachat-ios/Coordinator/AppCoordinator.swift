@@ -91,7 +91,7 @@ class AppCoordinator: NSObject, Coordinator {
         if dcContext.isConfigured() {
             presentTabBarController()
         } else {
-            showWelcomeController()
+            presentWelcomeController()
         }
     }
 
@@ -133,19 +133,7 @@ class AppCoordinator: NSObject, Coordinator {
         }
     }
 
-    func presentWelcomeController(animated: Bool) {
-        if animated {
-            welcomeController.activateSpinner(true)
-            showWelcomeController()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.welcomeController.activateSpinner(false)
-            }
-        } else {
-            showWelcomeController()
-        }
-    }
-
-    private func showWelcomeController() {
+    func presentWelcomeController() {
         // the applicationIconBadgeNumber is remembered by the system even on reinstalls (just tested on ios 13.3.1),
         // to avoid appearing an old number of a previous installation, we reset the counter manually.
         // but even when this changes in ios, we need the reset as we allow account-deletion also in-app.
@@ -181,18 +169,15 @@ extension AppCoordinator: WelcomeCoordinator {
     
 
     func handleLoginSuccess() {
-        welcomeController.activateSpinner(true) // this will hide welcomeController's content
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.loginController.dismiss(animated: true) { // this is ignored if loginController is not shown
                 self.presentTabBarController()
-                self.welcomeController.activateSpinner(false)
             }
         }
     }
 
     func handleQRAccountCreationSuccess() {
         self.presentTabBarController()
-        self.welcomeController.activateSpinner(false)
     }
 
     @objc private func cancelButtonPressed(_ sender: UIBarButtonItem) {

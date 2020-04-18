@@ -788,7 +788,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             appDelegate.open()
             appDelegate.start()
 
-            appDelegate.appCoordinator.presentWelcomeController(animated: true)
+            appDelegate.appCoordinator.presentWelcomeController()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true, completion: nil)
