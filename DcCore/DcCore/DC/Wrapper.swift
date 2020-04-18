@@ -154,13 +154,8 @@ public class DcContext {
         return DcLot(dc_check_qr(contextPointer, qrCode))
     }
 
-    public func configureAccountFromQR(qrCode: String) -> Bool {
-        let state = checkQR(qrCode: qrCode).state
-        if state != DC_QR_ACCOUNT {
-            return false
-        }
-        let success = dc_set_config_from_qr(contextPointer, qrCode)
-        return success == 1
+    public func setConfigFromQR(qrCode: String) -> Bool {
+        return dc_set_config_from_qr(contextPointer, qrCode) != 0
     }
 
     public func stopOngoingProcess() {

@@ -125,7 +125,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         guard let code = scannedQrCode else {
             return
         }
-        let success = dcContext.configureAccountFromQR(qrCode: code)
+        let success = dcContext.setConfigFromQR(qrCode: code)
         scannedQrCode = nil
         if success {
             addProgressAlertListener(onSuccess: handleLoginSuccess)
@@ -197,17 +197,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
                 self.qrCordeReader.startSession()
             }
         )
-        let qrCancelAction = UIAlertAction(
-             title: String.localized("cancel"),
-             style: .cancel,
-             handler: { [unowned self] _ in
-                 self.qrCodeReaderNav.dismiss(animated: true) {
-                     self.scannedQrCode = nil
-                 }
-             }
-         )
         alert.addAction(okAction)
-        alert.addAction(qrCancelAction)
         qrCodeReaderNav.present(alert, animated: true, completion: nil)
     }
 }
