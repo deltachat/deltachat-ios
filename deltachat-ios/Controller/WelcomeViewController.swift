@@ -179,9 +179,8 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             style: .default,
             handler: { [unowned self] _ in
                 self.activateSpinner(true)
-                self.qrCodeReaderNav.dismiss(animated: false) {
-                    self.createAccountFromQRCode()
-                }
+                self.qrCodeReaderNav.dismiss(animated: false)
+                self.createAccountFromQRCode()
             }
         )
 
