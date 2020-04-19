@@ -113,11 +113,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         frameGuide.widthAnchor.constraint(equalTo: contentGuide.widthAnchor).isActive = true
     }
 
-    /// if active the welcomeViewController will show nothing but a centered activity indicator
-    func activateSpinner(_ active: Bool) {
-        welcomeView.showSpinner(active)
-    }
-
     // MARK: - actions
 
     private func showQRReader(completion onComplete: VoidFunction? = nil) {
@@ -130,12 +125,11 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         guard let code = scannedQrCode else {
             return
         }
-        let success = dcContext.configureAccountFromQR(qrCode: code)
+        let success = dcContext.setConfigFromQR(qrCode: code)
         scannedQrCode = nil
         if success {
             addProgressAlertListener(onSuccess: handleLoginSuccess)
             showProgressAlert(title: String.localized("login_header"))
-            activateSpinner(false)
             dcContext.configure()
         } else {
             accountCreationErrorAlert()
@@ -147,15 +141,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }
 
     private func accountCreationErrorAlert() {
-        activateSpinner(false)
         let title = DcContext.shared.lastErrorString ?? String.localized("error")
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
         present(alert, animated: true)
-    }
-
-    func progressAlertWillDismiss() {
-        activateSpinner(true)
     }
 }
 
@@ -178,10 +167,8 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("ok"),
             style: .default,
             handler: { [unowned self] _ in
-                self.activateSpinner(true)
-                self.qrCodeReaderNav.dismiss(animated: false) {
-                    self.createAccountFromQRCode()
-                }
+                self.qrCodeReaderNav.dismiss(animated: false)
+                self.createAccountFromQRCode()
             }
         )
 
@@ -210,17 +197,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
                 self.qrCordeReader.startSession()
             }
         )
-        let qrCancelAction = UIAlertAction(
-             title: String.localized("cancel"),
-             style: .cancel,
-             handler: { [unowned self] _ in
-                 self.qrCodeReaderNav.dismiss(animated: true) {
-                     self.scannedQrCode = nil
-                 }
-             }
-         )
         alert.addAction(okAction)
-        alert.addAction(qrCancelAction)
         qrCodeReaderNav.present(alert, animated: true, completion: nil)
     }
 }
@@ -315,18 +292,6 @@ class WelcomeContentView: UIView {
         return button
     }()
 
-    private var activityIndicator: UIActivityIndicatorView = {
-        let view: UIActivityIndicatorView
-        if #available(iOS 13, *) {
-             view = UIActivityIndicatorView(style: .large)
-        } else {
-            view = UIActivityIndicatorView(style: .whiteLarge)
-            view.color = UIColor.gray
-        }
-        view.isHidden = true
-        return view
-    }()
-
     private let defaultSpacing: CGFloat = 20
 
     init() {
@@ -401,11 +366,6 @@ class WelcomeContentView: UIView {
             $0.priority = .defaultLow
             $0.isActive = true
         }
-
-        addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.centerYAnchor.constraint(equalTo: buttonContainerGuide.centerYAnchor).isActive = true
-        activityIndicator.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
     }
 
     private func calculateLogoHeight() -> CGFloat {
@@ -428,14 +388,4 @@ class WelcomeContentView: UIView {
      @objc private func importBackupButtonPressed(_ sender: UIButton) {
          onImportBackup?()
      }
-
-    func showSpinner(_ show: Bool) {
-        if show {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
-        }
-        activityIndicator.isHidden = !show
-        buttonStack.isHidden = show
-    }
 }
