@@ -64,7 +64,8 @@ public class DcContext {
     }
 
     public func getChat(chatId: Int) -> DcChat {
-        return DcChat(id: chatId)
+        let chatPointer = dc_get_chat(contextPointer, UInt32(chatId))
+        return DcChat(chatPointer: chatPointer)
     }
 
     public func getChatIdByContactId(_ contactId: Int) -> Int? {
@@ -78,7 +79,7 @@ public class DcContext {
 
     public func createChatByMessageId(_ messageId: Int) -> DcChat {
         let chatId = dc_create_chat_by_msg_id(contextPointer, UInt32(messageId))
-        return DcChat(id: Int(chatId))
+        return getChat(chatId: Int(chatId))
     }
 
     public func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
@@ -606,12 +607,8 @@ public class DcChat {
     var chatPointer: OpaquePointer?
 
     // use DcContext.getChat() instead of calling the constructor directly
-    public init(id: Int) {
-        if let p = dc_get_chat(DcContext.shared.contextPointer, UInt32(id)) {
-            chatPointer = p
-        } else {
-            fatalError("Invalid chatID opened \(id)")
-        }
+    public init(chatPointer: OpaquePointer?) {
+        self.chatPointer = chatPointer
     }
 
     deinit {
