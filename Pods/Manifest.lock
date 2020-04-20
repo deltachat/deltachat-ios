@@ -1,22 +1,22 @@
 PODS:
-  - ALCameraViewController (3.1)
   - DBDebugToolkit (0.5.0)
-  - InputBarAccessoryView (4.3.1):
-    - InputBarAccessoryView/Core (= 4.3.1)
-  - InputBarAccessoryView/Core (4.3.1)
-  - JGProgressHUD (2.0.3)
-  - ReachabilitySwift (4.3.1)
+  - InputBarAccessoryView (4.3.2):
+    - InputBarAccessoryView/Core (= 4.3.2)
+  - InputBarAccessoryView/Core (4.3.2)
+  - JGProgressHUD (2.1)
+  - KK-ALCameraViewController (4.1.0)
+  - ReachabilitySwift (5.0.0)
   - SCSiriWaveformView (1.1.1)
-  - SwiftFormat/CLI (0.40.9)
-  - SwiftLint (0.32.0)
-  - SwiftyBeaver (1.7.0)
-  - UICircularProgressRing (6.2.0)
+  - SwiftFormat/CLI (0.44.7)
+  - SwiftLint (0.39.2)
+  - SwiftyBeaver (1.9.1)
+  - UICircularProgressRing (6.5.0)
 
 DEPENDENCIES:
-  - ALCameraViewController
   - DBDebugToolkit
   - InputBarAccessoryView
   - JGProgressHUD
+  - KK-ALCameraViewController
   - ReachabilitySwift
   - SCSiriWaveformView
   - SwiftFormat/CLI
@@ -26,10 +26,10 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - ALCameraViewController
     - DBDebugToolkit
     - InputBarAccessoryView
     - JGProgressHUD
+    - KK-ALCameraViewController
     - ReachabilitySwift
     - SCSiriWaveformView
     - SwiftFormat
@@ -38,17 +38,17 @@ SPEC REPOS:
     - UICircularProgressRing
 
 SPEC CHECKSUMS:
-  ALCameraViewController: 144dea45fd749a623aafd8cb7b10cea88499fcc3
   DBDebugToolkit: c04bb6f618051d3de447a4b4323f37826116cfed
-  InputBarAccessoryView: 58a348be7ea2736c7eec60e5c315511c2dbb39fd
-  JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
-  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  InputBarAccessoryView: 7985d418040a05fe894bd4b8328dd43ab35517c3
+  JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
+  KK-ALCameraViewController: ea8d8b24c9a7b92f61508a5a41ef8332f4ef7903
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SCSiriWaveformView: 15b9dd6f94c7536e2032b34a35c6ff74d38c7411
-  SwiftFormat: 6b67b6e7fe73d664f0cbb4f13721f130462c86a5
-  SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
-  SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
-  UICircularProgressRing: 0ff679b05a17f15ad6301a7886686837b8c301a9
+  SwiftFormat: fd97e27b8de5a46c9d1988bf1db1dc92e79f86a3
+  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
+  SwiftyBeaver: a1f5691458561414bcfab51874b2b7445451602b
+  UICircularProgressRing: e6852e8f88e296cbbbe2720cccb55241acda6708
 
-PODFILE CHECKSUM: 055466769932ef70c4999b1faacbdf7883a8e6d8
+PODFILE CHECKSUM: 6c70422908ef8b6a40eead0d6b417826fbdcbc32
 
 COCOAPODS: 1.8.4

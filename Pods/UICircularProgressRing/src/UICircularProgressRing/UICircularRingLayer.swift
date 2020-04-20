@@ -46,9 +46,6 @@ class UICircularRingLayer: CAShapeLayer {
     /// formatter for the text of the value label
     var valueFormatter: UICircularRingValueFormatter?
 
-    /// the style for the value knob
-    var valueKnobStyle: UICircularRingValueKnobStyle?
-
     // MARK: Animation members
 
     var animationDuration: TimeInterval = 1.0
@@ -86,7 +83,6 @@ class UICircularRingLayer: CAShapeLayer {
         // copy our properties to this layer which will be used for animation
         guard let layer = layer as? UICircularRingLayer else { fatalError("unable to copy layer") }
         valueFormatter = layer.valueFormatter
-        valueKnobStyle = layer.valueKnobStyle
         animationDuration = layer.animationDuration
         animationTimingFunction = layer.animationTimingFunction
         animated = layer.animated
@@ -162,21 +158,10 @@ class UICircularRingLayer: CAShapeLayer {
     private func drawOuterRing() {
         guard ring.outerRingWidth > 0 else { return }
         let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-
-        let knobSize = ring.valueKnobStyle?.size ?? 0
-        let borderWidth: CGFloat
-        if case let UICircularRingStyle.bordered(width, _) = ring.style {
-            borderWidth = width
-        } else {
-            borderWidth = 0
-        }
-
-        let offSet = max(ring.outerRingWidth, ring.innerRingWidth) / 2
-                        + (knobSize / 4)
-                        + (borderWidth * 2)
-        let outerRadius: CGFloat = min(bounds.width, bounds.height) / 2 - offSet
-        let start: CGFloat = ring.fullCircle ? 0 : ring.startAngle.rads
-        let end: CGFloat = ring.fullCircle ? .pi * 2 : ring.endAngle.rads
+        let offSet = calculateOuterRingOffset()
+        let outerRadius = min(bounds.width, bounds.height) / 2 - offSet
+        let start = ring.fullCircle ? 0 : ring.startAngle.rads
+        let end = ring.fullCircle ? .pi * 2 : ring.endAngle.rads
         let outerPath = UIBezierPath(arcCenter: center,
                                      radius: outerRadius,
                                      startAngle: start,
@@ -184,6 +169,7 @@ class UICircularRingLayer: CAShapeLayer {
                                      clockwise: true)
         outerPath.lineWidth = ring.outerRingWidth
         outerPath.lineCapStyle = ring.outerCapStyle
+
         // Update path depending on style of the ring
         updateOuterRingPath(outerPath, radius: outerRadius, style: ring.style)
 
@@ -246,7 +232,7 @@ class UICircularRingLayer: CAShapeLayer {
             ctx.restoreGState()
         }
 
-        if let knobStyle = ring.valueKnobStyle, value > minValue {
+        if let knobStyle = ring.valueKnobStyle, ((value > minValue) || (ring?.shouldDrawMinValueKnob ?? false)) {
             let knobOffset = knobStyle.size / 2
             drawValueKnob(in: ctx, origin: CGPoint(x: innerPath.currentPoint.x - knobOffset,
                                                    y: innerPath.currentPoint.y - knobOffset))
@@ -265,15 +251,12 @@ class UICircularRingLayer: CAShapeLayer {
 
         case .bordered(let borderWidth, let borderColor):
             let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-            let knobSize = valueKnobStyle?.size ?? 0
-            let offSet = max(ring.outerRingWidth, ring.innerRingWidth) / 2
-                            + knobSize / 4
-                            + borderWidth * 2
-            let outerRadius: CGFloat = min(bounds.width, bounds.height) / 2 - offSet
+            let offSet = calculateOuterRingOffset()
+            let outerRadius = min(bounds.width, bounds.height) / 2 - offSet
             let borderStartAngle = ring.outerCapStyle == .butt ? ring.startAngle - borderWidth : ring.startAngle
             let borderEndAngle = ring.outerCapStyle == .butt ? ring.endAngle + borderWidth : ring.endAngle
-            let start: CGFloat = ring.fullCircle ? 0 : borderStartAngle.rads
-            let end: CGFloat = ring.fullCircle ? .pi * 2 : borderEndAngle.rads
+            let start = ring.fullCircle ? 0 : borderStartAngle.rads
+            let end = ring.fullCircle ? .pi * 2 : borderEndAngle.rads
             let borderPath = UIBezierPath(arcCenter: center,
                                           radius: outerRadius,
                                           startAngle: start,
@@ -288,6 +271,30 @@ class UICircularRingLayer: CAShapeLayer {
         default:
             break
         }
+    }
+
+    /// Returns the style dependent outer ring offset
+    private func calculateOuterRingOffset() -> CGFloat {
+        let borderWidth: CGFloat
+        if case let UICircularRingStyle.bordered(width, _) = ring.style {
+            borderWidth = width
+        } else {
+            borderWidth = 0
+        }
+
+        let offsetBasedOnKnob: Bool
+        switch ring.style {
+        case .bordered, .dashed, .dotted, .ontop:
+            offsetBasedOnKnob = true
+        case .inside:
+            offsetBasedOnKnob = false
+        }
+
+        let knobSize = offsetBasedOnKnob ? (ring.valueKnobStyle?.size ?? 0) : 0
+        
+        return max(ring.outerRingWidth, ring.innerRingWidth) / 2
+            + (knobSize / 2)
+            + (borderWidth * 2)
     }
 
     /// Returns the end angle of the inner ring
@@ -316,27 +323,23 @@ class UICircularRingLayer: CAShapeLayer {
 
     /// Returns the raidus of the inner ring
     private func calculateInnerRadius() -> CGFloat {
-        // The radius for style 1 is set below
-        // The radius for style 1 is a bit less than the outer,
-        // this way it looks like its inside the circle
-        let radiusIn: CGFloat
-
         let knobSize = ring.valueKnobStyle?.size ?? 0
+        let borderWidth: CGFloat
+        if case let UICircularRingStyle.bordered(width, _) = ring.style {
+            borderWidth = width
+        } else {
+            borderWidth = 0
+        }
 
         switch ring.style {
         case .inside:
-            let difference = ring.outerRingWidth * 2 + ring.innerRingSpacing + knobSize / 2
+            let difference = ring.outerRingWidth * 2 + ring.innerRingSpacing
             let offSet = ring.innerRingWidth / 2 + knobSize / 2
-            radiusIn = (min(bounds.width - difference, bounds.height - difference) / 2) - offSet
-        case .bordered(let borderWidth, _):
-            let offSet = (max(ring.outerRingWidth, ring.innerRingWidth) / 2) + (knobSize / 4) + (borderWidth * 2)
-            radiusIn = (min(bounds.width, bounds.height) / 2) - offSet
+            return (min(bounds.width - difference, bounds.height - difference) / 2) - offSet
         default:
-            let offSet = (max(ring.outerRingWidth, ring.innerRingWidth) / 2) + (knobSize / 4)
-            radiusIn = (min(bounds.width, bounds.height) / 2) - offSet
+            let offSet = (max(ring.outerRingWidth, ring.innerRingWidth) / 2) + (knobSize / 2) + (borderWidth * 2)
+            return (min(bounds.width, bounds.height) / 2) - offSet
         }
-
-        return radiusIn
     }
 
     /**
@@ -362,7 +365,7 @@ class UICircularRingLayer: CAShapeLayer {
         context.saveGState()
 
         let rect = CGRect(origin: origin, size: CGSize(width: knobStyle.size, height: knobStyle.size))
-        let knobPath = UIBezierPath(ovalIn: rect)
+        let knobPath = knobStyle.path.from(rect)
 
         context.setShadow(offset: knobStyle.shadowOffset,
                           blur: knobStyle.shadowBlur,
@@ -374,6 +377,20 @@ class UICircularRingLayer: CAShapeLayer {
         context.drawPath(using: .fill)
 
         context.restoreGState()
+
+        if let image = knobStyle.image {
+            context.saveGState()
+
+            let imageRect = rect.inset(by: knobStyle.imageInsets)
+            if let tintColor = knobStyle.imageTintColor {
+                tintColor.setFill()
+                image.withRenderingMode(.alwaysTemplate).draw(in: imageRect)
+            } else {
+                image.draw(in: imageRect)
+            }
+
+            context.restoreGState()
+        }
     }
 
     /**

@@ -9,18 +9,39 @@
 #import "JGProgressHUDErrorIndicatorView.h"
 #import "JGProgressHUD.h"
 
+static UIBezierPath *errorBezierPath() {
+    static UIBezierPath *path;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        path = [UIBezierPath bezierPath];
+        [path moveToPoint:CGPointMake(3, 3)];
+        [path addLineToPoint:CGPointMake(30, 30)];
+        [path moveToPoint:CGPointMake(30, 3)];
+        [path addLineToPoint:CGPointMake(3, 30)];
+        
+        [path setLineWidth:3];
+        [path setLineJoinStyle:kCGLineJoinRound];
+        [path setLineCapStyle:kCGLineCapRound];
+    });
+    
+    return path;
+}
+
 @implementation JGProgressHUDErrorIndicatorView
 
 - (instancetype)initWithContentView:(UIView *__unused)contentView {
-    NSBundle *currentBundle = [NSBundle bundleForClass:[self class]];
-    NSURL *resourceBundleURL = [currentBundle URLForResource:@"JGProgressHUD" withExtension:@"bundle"];
-    NSBundle *resourceBundle = currentBundle;
-    if (resourceBundleURL) {
-        resourceBundle = [NSBundle bundleWithURL:resourceBundleURL] ?: currentBundle;
-    }
+    UIBezierPath *path = errorBezierPath();
 
-    NSString *imgPath = [resourceBundle pathForResource:@"jg_hud_error" ofType:@"png"];
-    self = [super initWithImage:[[UIImage imageWithContentsOfFile:imgPath] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(33, 33), NO, 0.0);
+    [[UIColor blackColor] setStroke];
+    [path stroke];
+    
+    UIImage *img = [UIGraphicsGetImageFromCurrentImageContext() imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    UIGraphicsEndImageContext();
+    
+    self = [super initWithImage:img];
 
     return self;
 }
@@ -31,22 +52,6 @@
 
 - (void)updateAccessibility {
     self.accessibilityLabel = NSLocalizedString(@"Error",);
-}
-
-- (void)setUpForHUDStyle:(JGProgressHUDStyle)style vibrancyEnabled:(BOOL)vibrancyEnabled {
-    [super setUpForHUDStyle:style vibrancyEnabled:vibrancyEnabled];
-
-    if (style == JGProgressHUDStyleDark) {
-        self.contentView.tintColor = [UIColor whiteColor];
-    }
-    else {
-        self.contentView.tintColor = [UIColor blackColor];
-    }
-}
-
-- (void)tintColorDidChange {
-    [super tintColorDidChange];
-    self.contentView.tintColor = self.tintColor;
 }
 
 @end

@@ -40,7 +40,11 @@ open class InputBarAccessoryView: UIView {
     open var backgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        if #available(iOS 13, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
         return view
     }()
     
@@ -59,8 +63,11 @@ open class InputBarAccessoryView: UIView {
      ## Important Notes ##
      1. The blurView is initially not added to the backgroundView to improve performance when not needed. When `isTranslucent` is set to TRUE for the first time the blurView is added and anchored to the `backgroundView`s edge anchors
     */
-    open var blurView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: .light)
+    open lazy var blurView: UIVisualEffectView = {
+        var blurEffect = UIBlurEffect(style: .light)
+        if #available(iOS 13, *) {
+            blurEffect = UIBlurEffect(style: .systemMaterial)
+        }
         let view = UIVisualEffectView(effect: blurEffect)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -140,7 +147,7 @@ open class InputBarAccessoryView: UIView {
     }()
     
     /// The InputTextView a user can input a message in
-    open lazy var inputTextView: InputTextView = { [weak self] in
+    open lazy var inputTextView: InputTextView = {
         let inputTextView = InputTextView()
         inputTextView.translatesAutoresizingMaskIntoConstraints = false
         inputTextView.inputBarAccessoryView = self

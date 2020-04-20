@@ -24,9 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     static var progress: Float = 0 // TODO: delete
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
 
-    var reachability = Reachability()!
-    var window: UIWindow?
+    var reachability: Reachability = {
+        do {
+            return try Reachability()
+        } catch let error {
+            fatalError(error.localizedDescription)
+        }
+    }()
 
+    var window: UIWindow?
     var state = ApplicationState.stopped
 
     func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -243,7 +249,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             DispatchQueue.global(qos: .background).async {
                 self.dcContext.maybeNetwork()
             }
-        case .none:
+        case .none, .unavailable:
             logger.info("network: not reachable")
         }
     }
