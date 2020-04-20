@@ -168,7 +168,6 @@ extension AppCoordinator: WelcomeCoordinator {
         loginController.modalPresentationStyle = .fullScreen
         welcomeController.present(loginController, animated: true, completion: nil)
     }
-    
 
     func handleLoginSuccess() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -438,7 +437,6 @@ class NewChatCoordinator: Coordinator {
         navigationController.pushViewController(chatViewController, animated: true)
         navigationController.viewControllers.remove(at: 1)
     }
-
 
     func showContactDetail(contactId: Int) {
         let viewModel = ContactDetailViewModel(contactId: contactId, chatId: nil, context: dcContext)
