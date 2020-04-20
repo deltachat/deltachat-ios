@@ -17,13 +17,6 @@ class ProfileInfoViewController: UITableViewController {
         )
     }()
 
-    private lazy var headerCell: TextCell = {
-        let cell = TextCell(style: .default, reuseIdentifier: nil)
-        let email = dcContext.addr ?? ""
-        cell.content = String.localizedStringWithFormat(NSLocalizedString("qraccount_success_enter_name", comment: ""), email)
-        return cell
-    }()
-
     private lazy var emailCell: TextFieldCell = {
         let cell = TextFieldCell(description: "Meine Email Adresse", placeholder: "Meine Email")
         cell.setText(text: dcContext.addr)
@@ -46,7 +39,7 @@ class ProfileInfoViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var cells = [headerCell, avatarCell, nameCell]
+    private lazy var cells = [nameCell, avatarCell]
 
     init(context: DcContext) {
         self.dcContext = context
@@ -77,13 +70,18 @@ class ProfileInfoViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         let cell = cells[indexPath.row]
-        if let textCell = cell as? TextCell {
-            return textCell.intrinsicCellHeight
-        }
         if cell is AvatarSelectionCell {
             return AvatarSelectionCell.cellHeight
         }
         return Constants.defaultCellHeight
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        let email = dcContext.addr ?? ""
+        let footerTitle = String.localizedStringWithFormat(
+            NSLocalizedString("qraccount_success_enter_name",comment: ""), email
+        )
+        return footerTitle
     }
 
     // MARK: - updates
