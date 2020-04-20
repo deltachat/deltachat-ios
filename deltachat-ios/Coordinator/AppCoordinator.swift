@@ -103,7 +103,11 @@ class AppCoordinator: NSObject, Coordinator {
         } else {
             showTab(index: lastActiveTab)
             if let lastActiveChatId = appStateRestorer.restoreLastActiveChatId(), lastActiveTab == 1 {
-                showChat(chatId: lastActiveChatId, animated: false)
+                // as getChat() returns an empty object for invalid chatId,
+                // check that the returned object is actually set up.
+                if dcContext.getChat(chatId: lastActiveChatId).id == lastActiveChatId {
+                    showChat(chatId: lastActiveChatId, animated: false)
+                }
             }
         }
     }
