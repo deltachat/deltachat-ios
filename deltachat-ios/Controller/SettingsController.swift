@@ -99,8 +99,8 @@ internal final class SettingsViewController: UITableViewController {
 
     private var notificationSwitch: UISwitch = {
         let switchControl = UISwitch()
-        switchControl.isUserInteractionEnabled = false // toggled by cell tap
         switchControl.isOn = !UserDefaults.standard.bool(forKey: "notifications_disabled")
+        switchControl.addTarget(self, action: #selector(handleNotificationToggle(_:)), for: .valueChanged)
         return switchControl
     }()
 
@@ -109,13 +109,14 @@ internal final class SettingsViewController: UITableViewController {
         cell.tag = CellTags.notifications.rawValue
         cell.textLabel?.text = String.localized("pref_notifications")
         cell.accessoryView = notificationSwitch
+        cell.selectionStyle = .none
         return cell
     }()
 
     private lazy var receiptConfirmationSwitch: UISwitch = {
         let switchControl = UISwitch()
-        switchControl.isUserInteractionEnabled = false // toggled by cell tap
         switchControl.isOn = dcContext.mdnsEnabled
+        switchControl.addTarget(self, action: #selector(handleReceiptConfirmationToggle(_:)), for: .valueChanged)
         return switchControl
     }()
 
@@ -124,13 +125,14 @@ internal final class SettingsViewController: UITableViewController {
         cell.tag = CellTags.receiptConfirmation.rawValue
         cell.textLabel?.text = String.localized("pref_read_receipts")
         cell.accessoryView = receiptConfirmationSwitch
+        cell.selectionStyle = .none
         return cell
     }()
 
     private lazy var autocryptSwitch: UISwitch = {
         let switchControl = UISwitch()
-        switchControl.isUserInteractionEnabled = false // toggled by cell tap
         switchControl.isOn = dcContext.e2eeEnabled
+        switchControl.addTarget(self, action: #selector(handleAutocryptPreferencesToggle(_:)), for: .valueChanged)
         return switchControl
     }()
 
@@ -139,6 +141,7 @@ internal final class SettingsViewController: UITableViewController {
         cell.tag = CellTags.autocryptPreferences.rawValue
         cell.textLabel?.text = String.localized("autocrypt_prefer_e2ee")
         cell.accessoryView = autocryptSwitch
+        cell.selectionStyle = .none
         return cell
     }()
 
@@ -304,9 +307,9 @@ internal final class SettingsViewController: UITableViewController {
         case .preferences: coordinator?.showClassicMail()
         case .blockedContacts: coordinator?.showBlockedContacts()
         case .autodel: coordinator?.showAutodelOptions()
-        case .notifications: handleNotificationToggle()
-        case .receiptConfirmation: handleReceiptConfirmationToggle()
-        case .autocryptPreferences: handleAutocryptPreferencesToggle()
+        case .notifications: break
+        case .receiptConfirmation: break
+        case .autocryptPreferences: break
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .exportBackup: createBackup()
         case .advanced: showAdvancedDialog()
@@ -334,21 +337,18 @@ internal final class SettingsViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    private func handleNotificationToggle() {
-        notificationSwitch.isOn = !notificationSwitch.isOn
-        UserDefaults.standard.set(!notificationSwitch.isOn, forKey: "notifications_disabled")
+    @objc private func handleNotificationToggle(_ sender: UISwitch) {
+        UserDefaults.standard.set(!sender.isOn, forKey: "notifications_disabled")
         UserDefaults.standard.synchronize()
     }
 
-    private func handleReceiptConfirmationToggle() {
-        receiptConfirmationSwitch.isOn = !receiptConfirmationSwitch.isOn
-        dcContext.mdnsEnabled = receiptConfirmationSwitch.isOn
+    @objc private func handleReceiptConfirmationToggle(_ sender: UISwitch) {
+        dcContext.mdnsEnabled = sender.isOn
         dcContext.configure()
     }
 
-    private func handleAutocryptPreferencesToggle() {
-        autocryptSwitch.isOn = !autocryptSwitch.isOn
-        dcContext.e2eeEnabled = autocryptSwitch.isOn
+    @objc private func handleAutocryptPreferencesToggle(_ sender: UISwitch) {
+        dcContext.e2eeEnabled = sender.isOn
         dcContext.configure()
     }
 
