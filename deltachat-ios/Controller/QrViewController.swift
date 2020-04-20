@@ -306,6 +306,11 @@ extension QrViewController: QrCodeReaderDelegate {
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
 
+        case DC_QR_ACCOUNT:
+            let alert = UIAlertController(title: String.localized("qraccount_use_on_new_install"), message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
+            present(alert, animated: true)
+
         default:
             var msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), code)
             if state == DC_QR_ERROR {
