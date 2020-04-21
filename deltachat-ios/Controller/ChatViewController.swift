@@ -191,7 +191,7 @@ class ChatViewController: MessagesViewController {
             }
         }
 
-        loadFirstMessages()
+        loadMessages()
 
         if RelayHelper.sharedInstance.isForwarding() {
             askToForwardMessage()
@@ -296,7 +296,7 @@ class ChatViewController: MessagesViewController {
         }
     }
 
-    private func loadFirstMessages() {
+    private func loadMessages() {
         DispatchQueue.global(qos: .userInitiated).async {
             DispatchQueue.main.async {
                 self.messageList = self.getMessageIds()
@@ -417,8 +417,10 @@ class ChatViewController: MessagesViewController {
         messageInputBar.inputTextView.placeholderTextColor = DcColors.placeholderColor
         messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 38)
         messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 38)
-        messageInputBar.inputTextView.layer.borderColor = UIColor.themeColor(light: UIColor(red: 200 / 255, green: 200 / 255, blue: 200 / 255, alpha: 1),
-                                                                             dark: UIColor(red: 55 / 255, green: 55/255, blue: 55/255, alpha: 1)).cgColor
+        messageInputBar.inputTextView.layer.borderColor = UIColor.themeColor(
+            light: UIColor(red: 200 / 255, green: 200 / 255, blue: 200 / 255, alpha: 1),
+            dark: UIColor(red: 55 / 255, green: 55/255, blue: 55/255, alpha: 1)
+        ).cgColor
         messageInputBar.inputTextView.layer.borderWidth = 1.0
         messageInputBar.inputTextView.layer.cornerRadius = 13.0
         messageInputBar.inputTextView.layer.masksToBounds = true
@@ -430,7 +432,6 @@ class ChatViewController: MessagesViewController {
 
         messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
         messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
-
 
         let sendButtonImage = UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)
         messageInputBar.sendButton.image = sendButtonImage
