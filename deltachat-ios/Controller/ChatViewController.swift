@@ -44,7 +44,6 @@ class ChatViewController: MessagesViewController {
     weak var coordinator: ChatViewCoordinator?
 
     let outgoingAvatarOverlap: CGFloat = 17.5
-    let loadCount = 30
 
     let chatId: Int
     let refreshControl = UIRefreshControl()
@@ -125,7 +124,7 @@ class ChatViewController: MessagesViewController {
             //reload table
             DispatchQueue.main.async {
                 guard let self = self else { return }
-                self.messageList = self.getMessageIds(self.messageList.count)
+                self.messageList = self.getMessageIds()
                 self.messagesCollectionView.reloadDataAndKeepOffset()
                 self.refreshControl.endRefreshing()
             }
@@ -289,7 +288,7 @@ class ChatViewController: MessagesViewController {
     @objc private func loadMoreMessages() {
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
             DispatchQueue.main.async {
-                self.messageList = self.getMessageIds(self.loadCount, from: self.messageList.count) + self.messageList
+                self.messageList = self.getMessageIds()
                 self.messagesCollectionView.reloadDataAndKeepOffset()
                 self.refreshControl.endRefreshing()
             }
@@ -299,7 +298,7 @@ class ChatViewController: MessagesViewController {
     @objc private func refreshMessages() {
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
             DispatchQueue.main.async {
-                self.messageList = self.getMessageIds(self.messageList.count)
+                self.messageList = self.getMessageIds()
                 self.messagesCollectionView.reloadDataAndKeepOffset()
                 self.refreshControl.endRefreshing()
                 if self.isLastSectionVisible() {
@@ -313,7 +312,7 @@ class ChatViewController: MessagesViewController {
     private func loadFirstMessages() {
         DispatchQueue.global(qos: .userInitiated).async {
             DispatchQueue.main.async {
-                self.messageList = self.getMessageIds(self.loadCount)
+                self.messageList = self.getMessageIds()
                 self.messagesCollectionView.reloadData()
                 self.refreshControl.endRefreshing()
                 self.messagesCollectionView.scrollToBottom(animated: false)
@@ -363,6 +362,7 @@ class ChatViewController: MessagesViewController {
         }
     }
 
+    /*
     private func getMessageIds(_ count: Int, from: Int? = nil) -> [DcMsg] {
         let ids = dcContext.getMessageIds(chatId: chatId, count: count, from: from)
         let markIds: [UInt32] = ids.map { UInt32($0) }
@@ -372,6 +372,7 @@ class ChatViewController: MessagesViewController {
             DcMsg(id: $0)
         }
     }
+    */
 
     @objc private func setTextDraft() {
         if let text = self.messageInputBar.inputTextView.text {
