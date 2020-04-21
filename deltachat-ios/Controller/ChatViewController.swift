@@ -283,15 +283,6 @@ class ChatViewController: MessagesViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: badge)
     }
 
-    @objc private func loadMoreMessages() {
-        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
-            DispatchQueue.main.async {
-                self.messageList = self.getMessageIds()
-                self.messagesCollectionView.reloadDataAndKeepOffset()
-            }
-        }
-    }
-
     @objc private func refreshMessages() {
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
             DispatchQueue.main.async {
@@ -356,18 +347,6 @@ class ChatViewController: MessagesViewController {
             DcMsg(id: $0)
         }
     }
-
-    /*
-    private func getMessageIds(_ count: Int, from: Int? = nil) -> [DcMsg] {
-        let ids = dcContext.getMessageIds(chatId: chatId, count: count, from: from)
-        let markIds: [UInt32] = ids.map { UInt32($0) }
-        dcContext.markSeenMessages(messageIds: markIds, count: ids.count)
-
-        return ids.map {
-            DcMsg(id: $0)
-        }
-    }
-    */
 
     @objc private func setTextDraft() {
         if let text = self.messageInputBar.inputTextView.text {
