@@ -11,8 +11,8 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     private let groupBadgeSize: CGFloat = 72
 
     private let section1 = 0
-    private let section1Avatar = 0
-    private let section1Name = 1
+    private let section1Name = 0
+    private let section1Avatar = 1
     private let section1Status = 2
     private let section1RowCount = 3
 
@@ -40,7 +40,6 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         cell.tag = tagAccountSettingsCell
         return cell
     }()
-
 
     private lazy var avatarSelectionCell: AvatarSelectionCell = {
         return createPictureAndNameCell()
@@ -74,7 +73,6 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sectionCount
     }
@@ -140,6 +138,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         }
     }
 
+    // MARK: - actions
     private func galleryButtonPressed(_ action: UIAlertAction) {
         coordinator?.showPhotoPicker(delegate: self)
     }
