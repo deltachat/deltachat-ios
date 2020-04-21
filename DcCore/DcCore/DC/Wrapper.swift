@@ -41,6 +41,12 @@ public class DcContext {
         return ids
     }
 
+	public func getMessageIds(chatId: Int) -> [Int] {
+		let cMessageIds = getChatMessages(chatId: chatId)
+		let ids: [Int] = DcUtils.copyAndFreeArray(inputArray: cMessageIds)
+		return ids
+	}
+
     public func createContact(name: String, email: String) -> Int {
         return Int(dc_create_contact(contextPointer, name, email))
     }
@@ -249,10 +255,10 @@ public class DcContext {
         dc_markseen_msgs(contextPointer, ptr, Int32(count))
     }
 
-    public func getChatMessages(chatId: Int) -> OpaquePointer {
+	private func getChatMessages(chatId: Int) -> OpaquePointer {
         return dc_get_chat_msgs(contextPointer, UInt32(chatId), 0, 0)
     }
-    
+
     public func getMsgInfo(msgId: Int) -> String {
         if let cString = dc_get_msg_info(self.contextPointer, UInt32(msgId)) {
             let swiftString = String(cString: cString)

@@ -95,6 +95,7 @@ class ChatViewController: MessagesViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - lifecycle
     override func viewDidLoad() {
         messagesCollectionView.register(InfoMessageCell.self)
         super.viewDidLoad()
@@ -252,6 +253,7 @@ class ChatViewController: MessagesViewController {
         super.viewWillTransition(to: size, with: coordinator)
     }
 
+    // MARK - update
     private func updateTitle(chat: DcChat) {
         let titleView =  ChatTitleView()
 
@@ -284,8 +286,7 @@ class ChatViewController: MessagesViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: badge)
     }
 
-    @objc
-    private func loadMoreMessages() {
+    @objc private func loadMoreMessages() {
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
             DispatchQueue.main.async {
                 self.messageList = self.getMessageIds(self.loadCount, from: self.messageList.count) + self.messageList
@@ -295,8 +296,7 @@ class ChatViewController: MessagesViewController {
         }
     }
 
-    @objc
-    private func refreshMessages() {
+    @objc private func refreshMessages() {
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
             DispatchQueue.main.async {
                 self.messageList = self.getMessageIds(self.messageList.count)
@@ -352,6 +352,15 @@ class ChatViewController: MessagesViewController {
 
     private var textDraft: String? {
         return dcContext.getDraft(chatId: chatId)
+    }
+
+    private func getMessageIds() -> [DcMsg] {
+        let ids = dcContext.getMessageIds(chatId: chatId)
+        let markIds: [UInt32] = ids.map { UInt32($0) }
+        dcContext.markSeenMessages(messageIds: markIds, count: ids.count)
+        return ids.map {
+            DcMsg(id: $0)
+        }
     }
 
     private func getMessageIds(_ count: Int, from: Int? = nil) -> [DcMsg] {
