@@ -131,6 +131,10 @@ class ProfileInfoViewController: UITableViewController {
     @objc private func doneButtonPressed(_ sender: UIBarButtonItem) {
         dcContext.displayname = displayName
         self.dismiss(animated: true, completion: nil)
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.appCoordinator.presentTabBarController()
+        }
     }
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
