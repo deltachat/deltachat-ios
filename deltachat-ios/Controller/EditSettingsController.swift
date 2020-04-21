@@ -8,8 +8,6 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     private var displayNameBackup: String?
     private var statusCellBackup: String?
 
-    private let groupBadgeSize: CGFloat = 72
-
     private let section1 = 0
     private let section1Name = 0
     private let section1Avatar = 1
@@ -106,7 +104,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         if indexPath.section == section1 {
             switch indexPath.row {
             case section1Avatar:
-                return AvatarSelectionCell.cellSize
+                return AvatarSelectionCell.cellHeight
             case section1Status:
                 return MultilineTextFieldCell.cellHeight
             default:
@@ -189,3 +187,5 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }
 
 }
+
+

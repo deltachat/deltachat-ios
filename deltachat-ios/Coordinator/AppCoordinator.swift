@@ -83,6 +83,8 @@ class AppCoordinator: NSObject, Coordinator {
         return nav
     }()
 
+    private var profileInfoNavigationController: UINavigationController?
+
     init(window: UIWindow, dcContext: DcContext) {
         self.window = window
         self.dcContext = dcContext
@@ -170,7 +172,6 @@ extension AppCoordinator: WelcomeCoordinator {
         loginController.modalPresentationStyle = .fullScreen
         welcomeController.present(loginController, animated: true, completion: nil)
     }
-    
 
     func handleLoginSuccess() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -182,6 +183,18 @@ extension AppCoordinator: WelcomeCoordinator {
 
     func handleQRAccountCreationSuccess() {
         self.presentTabBarController()
+        showTab(index: 1)
+        presentProfileInfoController()
+    }
+
+    private func presentProfileInfoController() {
+        let profileInfoController = ProfileInfoViewController(context: dcContext)
+        let profileInfoNav = UINavigationController(rootViewController: profileInfoController)
+        profileInfoNav.modalPresentationStyle = .fullScreen
+        let coordinator = EditSettingsCoordinator(dcContext: dcContext, navigationController: profileInfoNav)
+        profileInfoController.coordinator = coordinator
+        childCoordinators.append(coordinator)
+        tabBarController.present(profileInfoNav, animated: false, completion: nil)
     }
 
     @objc private func cancelButtonPressed(_ sender: UIBarButtonItem) {
@@ -428,7 +441,6 @@ class NewChatCoordinator: Coordinator {
         navigationController.pushViewController(chatViewController, animated: true)
         navigationController.viewControllers.remove(at: 1)
     }
-
 
     func showContactDetail(contactId: Int) {
         let viewModel = ContactDetailViewModel(contactId: contactId, chatId: nil, context: dcContext)

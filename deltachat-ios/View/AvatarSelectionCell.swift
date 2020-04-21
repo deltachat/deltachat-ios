@@ -3,7 +3,7 @@ import DcCore
 
 class AvatarSelectionCell: UITableViewCell {
     let badgeSize: CGFloat = 72
-    static let cellSize: CGFloat = 98
+    static let cellHeight: CGFloat = 98
 
     var onAvatarTapped: (() -> Void)?
 
@@ -87,6 +87,7 @@ class AvatarSelectionCell: UITableViewCell {
         }
     }
 
+    // I think this is no good, we should rather update badge than overwriting it.
     func setAvatar(for chat: DcChat) {
         if let image = chat.profileImage {
             badge = InitialsBadge(image: image, size: badgeSize)
@@ -96,6 +97,7 @@ class AvatarSelectionCell: UITableViewCell {
         badge.setVerified(chat.isVerified)
     }
 
+    // I think this is no good, we should rather update badge than overwriting it.
     func setAvatar(image: UIImage?, with defaultImage: UIImage?) {
         if let image = image {
             badge = InitialsBadge(image: image, size: badgeSize)
@@ -103,5 +105,9 @@ class AvatarSelectionCell: UITableViewCell {
             badge = InitialsBadge(image: defaultImage, size: badgeSize)
             badge.backgroundColor = DcColors.grayTextColor
         }
+    }
+
+    func updateAvatar(image: UIImage) {
+        badge.setImage(image)
     }
 }
