@@ -151,6 +151,7 @@
 		AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E41FB32E1900DCDD78 /* Utils.swift */; };
 		AEC67A1C241CE9E4007DDBE1 /* AppStateRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC67A1B241CE9E4007DDBE1 /* AppStateRestorer.swift */; };
 		AEC67A1E241FCFE0007DDBE1 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC67A1D241FCFE0007DDBE1 /* ChatListViewModel.swift */; };
+		AECEF03E244F2D55006C90DA /* QRPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEF03D244F2D55006C90DA /* QRPageController.swift */; };
 		AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D752253431E007DC082 /* AccountSetupController.swift */; };
 		AEE56D7D2253ADB4007DC082 /* HudHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7C2253ADB4007DC082 /* HudHandler.swift */; };
 		AEE56D80225504DB007DC082 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7F225504DB007DC082 /* Extensions.swift */; };
@@ -402,6 +403,7 @@
 		AEACE2E41FB32E1900DCDD78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		AEC67A1B241CE9E4007DDBE1 /* AppStateRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateRestorer.swift; sourceTree = "<group>"; };
 		AEC67A1D241FCFE0007DDBE1 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
+		AECEF03D244F2D55006C90DA /* QRPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRPageController.swift; sourceTree = "<group>"; };
 		AEE56D752253431E007DC082 /* AccountSetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AEE56D7C2253ADB4007DC082 /* HudHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudHandler.swift; sourceTree = "<group>"; };
 		AEE56D7F225504DB007DC082 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -802,6 +804,7 @@
 				B20462E32440A4A600367A57 /* SettingsAutodelOverviewController.swift */,
 				B20462E52440C99600367A57 /* SettingsAutodelSetController.swift */,
 				AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */,
+				AECEF03D244F2D55006C90DA /* QRPageController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1298,6 +1301,7 @@
 				AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */,
 				AE728F15229D5C390047565B /* PhotoPickerAlertAction.swift in Sources */,
 				305961F42346125100C80F33 /* TextMessageCell.swift in Sources */,
+				AECEF03E244F2D55006C90DA /* QRPageController.swift in Sources */,
 				AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */,
 				305962052346125100C80F33 /* ContactMessageSizeCalculator.swift in Sources */,
 			);

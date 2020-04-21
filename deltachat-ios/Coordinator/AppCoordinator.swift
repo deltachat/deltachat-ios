@@ -21,7 +21,7 @@ class AppCoordinator: NSObject, Coordinator {
     private lazy var tabBarController: UITabBarController = {
         let tabBarController = UITabBarController()
         tabBarController.delegate = appStateRestorer
-        tabBarController.viewControllers = [qrController, chatListController, settingsController]
+        tabBarController.viewControllers = [qrPageController, chatListController, settingsController]
         tabBarController.tabBar.tintColor = DcColors.primary
         return tabBarController
     }()
@@ -42,6 +42,17 @@ class AppCoordinator: NSObject, Coordinator {
     }()
 
     // MARK: viewControllers
+
+    private lazy var qrPageController: UIViewController = {
+        let pageController = QRPageController()
+        let dummyVC = UIViewController()
+        dummyVC.view.backgroundColor = .green
+        let nav = UINavigationController(rootViewController: pageController)
+        let settingsImage = UIImage(named: "qr_code")
+        nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
+        return nav
+    }()
+
 
     private lazy var qrController: UIViewController = {
         let controller = QrViewController(dcContext: dcContext)
