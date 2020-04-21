@@ -44,7 +44,7 @@ class AppCoordinator: NSObject, Coordinator {
     // MARK: viewControllers
 
     private lazy var qrPageController: UIViewController = {
-        let pageController = QRPageController()
+        let pageController = QRPageController(dcContext: dcContext)
         let dummyVC = UIViewController()
         dummyVC.view.backgroundColor = .green
         let nav = UINavigationController(rootViewController: pageController)

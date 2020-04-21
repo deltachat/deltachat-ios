@@ -1,8 +1,22 @@
 import UIKit
+import DcCore
 
 class QRPageController: UIPageViewController {
 
+    private let dcContext: DcContext
+
     var selectedIndex: Int = 0
+
+    private lazy var qrController: QrViewController = {
+        let controller = QrViewController(dcContext: dcContext)
+        return controller
+    }()
+
+    private lazy var qrCameraController: UIViewController = {
+        let vc = UIViewController()
+        vc.view.backgroundColor = .green
+        return vc
+    }()
 
     private lazy var qrSegmentControl: UISegmentedControl = {
         let control = UISegmentedControl(items: ["Show Left", "Show Right"])
@@ -11,35 +25,62 @@ class QRPageController: UIPageViewController {
         return control
     }()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupSubviews()
-        view.makeBorder()
-        dataSource = self
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
     }
 
-    private func setupSubviews() {
-        view.addSubview(qrSegmentControl)
-        qrSegmentControl.translatesAutoresizingMaskIntoConstraints = false
-        qrSegmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
-        qrSegmentControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        dataSource = self
+        delegate = self
+        navigationItem.titleView = qrSegmentControl
+        setViewControllers(
+            [qrController],
+            direction: .forward,
+            animated: true,
+            completion: nil
+        )
     }
 
     // MARK: - actions
     @objc private func qrSegmentControlChanged(_ sender: UISegmentedControl) {
-
+        if sender.selectedSegmentIndex == 0 {
+            setViewControllers([qrController], direction: .reverse, animated: true, completion: nil)
+        } else {
+            setViewControllers([qrCameraController], direction: .forward, animated: true, completion: nil)
+        }
     }
 }
 
-extension QRPageController: UIPageViewControllerDataSource {
+// MARK: - UIPageViewControllerDataSource, UIPageViewControllerDelegate
+extension QRPageController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        return UIViewController()
+        if viewController is QrViewController {
+            return nil
+        }
+        return qrController
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        return UIViewController()
+        if viewController is QrViewController {
+            return qrCameraController
+        }
+        return nil
     }
 
-
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+            if previousViewControllers.first is QrViewController {
+                qrSegmentControl.selectedSegmentIndex = 1
+            } else {
+                qrSegmentControl.selectedSegmentIndex = 0
+            }
+        }
+    }
 }
-
