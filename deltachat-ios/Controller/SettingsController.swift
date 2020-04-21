@@ -344,12 +344,10 @@ internal final class SettingsViewController: UITableViewController {
 
     @objc private func handleReceiptConfirmationToggle(_ sender: UISwitch) {
         dcContext.mdnsEnabled = sender.isOn
-        dcContext.configure()
     }
 
     @objc private func handleAutocryptPreferencesToggle(_ sender: UISwitch) {
         dcContext.e2eeEnabled = sender.isOn
-        dcContext.configure()
     }
 
     private func sendAutocryptSetupMessage() {

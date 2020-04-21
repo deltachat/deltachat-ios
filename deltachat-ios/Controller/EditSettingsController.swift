@@ -71,7 +71,6 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         dcContext.selfstatus = statusCell.getText()
         dcContext.displayname = nameCell.getText()
-        dcContext.configure()
     }
 
     // MARK: - Table view data source
