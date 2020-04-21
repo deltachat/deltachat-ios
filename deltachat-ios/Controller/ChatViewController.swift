@@ -46,7 +46,6 @@ class ChatViewController: MessagesViewController {
     let outgoingAvatarOverlap: CGFloat = 17.5
 
     let chatId: Int
-    let refreshControl = UIRefreshControl()
     var messageList: [DcMsg] = []
 
     var msgChangedObserver: Any?
@@ -126,7 +125,6 @@ class ChatViewController: MessagesViewController {
                 guard let self = self else { return }
                 self.messageList = self.getMessageIds()
                 self.messagesCollectionView.reloadDataAndKeepOffset()
-                self.refreshControl.endRefreshing()
             }
         }
     }
@@ -290,7 +288,6 @@ class ChatViewController: MessagesViewController {
             DispatchQueue.main.async {
                 self.messageList = self.getMessageIds()
                 self.messagesCollectionView.reloadDataAndKeepOffset()
-                self.refreshControl.endRefreshing()
             }
         }
     }
@@ -300,7 +297,6 @@ class ChatViewController: MessagesViewController {
             DispatchQueue.main.async {
                 self.messageList = self.getMessageIds()
                 self.messagesCollectionView.reloadDataAndKeepOffset()
-                self.refreshControl.endRefreshing()
                 if self.isLastSectionVisible() {
                     self.messagesCollectionView.scrollToBottom(animated: true)
                 }
@@ -314,7 +310,6 @@ class ChatViewController: MessagesViewController {
             DispatchQueue.main.async {
                 self.messageList = self.getMessageIds()
                 self.messagesCollectionView.reloadData()
-                self.refreshControl.endRefreshing()
                 self.messagesCollectionView.scrollToBottom(animated: false)
                 self.showEmptyStateView(self.messageList.isEmpty)
             }
@@ -399,8 +394,6 @@ class ChatViewController: MessagesViewController {
         scrollsToBottomOnKeyboardBeginsEditing = true // default false
         maintainPositionOnKeyboardFrameChanged = true // default false
         messagesCollectionView.backgroundColor = DcColors.chatBackgroundColor
-        messagesCollectionView.addSubview(refreshControl)
-        refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
 
         let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout
         layout?.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 2, right: 8)
