@@ -116,7 +116,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         let summary = sharedChats.getSummary(index: index)
         let unreadMessages = context.getUnreadMessages(chatId: chatId)
 
-        let cellData = ChatCellData(chatId: chatId, summary: summary, unreadMessages: unreadMessages)
+        let cellData = ChatCellData(chatId: chatId, summary: summary, unreadMessages: unreadMessages, msgId: nil)
         let cellViewModel = ChatCellViewModel(dcContext: context, chatData: cellData)
         cell.updateCell(cellViewModel: cellViewModel)
     }

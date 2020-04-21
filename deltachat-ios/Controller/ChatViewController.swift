@@ -45,6 +45,7 @@ class ChatViewController: MessagesViewController {
 
     let outgoingAvatarOverlap: CGFloat = 17.5
 
+    private var searchedMsgId: Int?
     let chatId: Int
     var messageList: [DcMsg] = []
 
@@ -79,7 +80,7 @@ class ChatViewController: MessagesViewController {
         return messageInputBar
     }
 
-    init(dcContext: DcContext, chatId: Int) {
+    init(dcContext: DcContext, chatId: Int, searchedMsgId: Int? = nil) {
         let dcChat = dcContext.getChat(chatId: chatId)
         self.dcContext = dcContext
         self.chatId = chatId
@@ -87,6 +88,7 @@ class ChatViewController: MessagesViewController {
         self.showNamesAboveMessage = dcChat.isGroup
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
+        self.searchedMsgId = searchedMsgId
     }
 
     required init?(coder _: NSCoder) {
@@ -301,7 +303,12 @@ class ChatViewController: MessagesViewController {
             DispatchQueue.main.async {
                 self.messageList = self.getMessageIds()
                 self.messagesCollectionView.reloadData()
-                self.messagesCollectionView.scrollToBottom(animated: false)
+                if let msgId = self.searchedMsgId {
+                    self.scrollToMessage(id: msgId, animated: false)
+                    self.searchedMsgId = nil
+                } else {
+                    self.messagesCollectionView.scrollToBottom(animated: false)
+                }
                 self.showEmptyStateView(self.messageList.isEmpty)
             }
         }
@@ -345,6 +352,16 @@ class ChatViewController: MessagesViewController {
         dcContext.markSeenMessages(messageIds: markIds, count: ids.count)
         return ids.map {
             DcMsg(id: $0)
+        }
+    }
+
+    func scrollToMessage(id: Int, animated: Bool) {
+        for (index, msg) in messageList.enumerated() {
+            if msg.id == id {
+                let indexPath = IndexPath(row: 0, section: index)
+                messagesCollectionView.scrollToItem(at: indexPath, at: .top, animated: animated)
+                return
+            }
         }
     }
 

@@ -216,7 +216,7 @@ class ChatListController: UITableViewController {
             if chatId == DC_CHAT_ID_ARCHIVED_LINK {
                 coordinator?.showArchive()
             } else {
-                coordinator?.showChat(chatId: chatId)
+                coordinator?.showChat(chatId: chatId, msgId: chatData.msgId)
             }
         case .contact(let contactData):
             let contactId = contactData.contactId

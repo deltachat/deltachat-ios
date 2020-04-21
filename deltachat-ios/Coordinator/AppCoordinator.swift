@@ -244,8 +244,8 @@ class ChatListCoordinator: Coordinator {
         navigationController.pushViewController(newChatVC, animated: true)
     }
 
-    func showChat(chatId: Int) {
-        let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
+    func showChat(chatId: Int, msgId: Int? = nil) {
+        let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId, searchedMsgId: msgId)
         let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
         childCoordinators.append(coordinator)
         chatVC.coordinator = coordinator
