@@ -19,7 +19,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let view = WelcomeContentView()
         view.onLogin = {
             [unowned self] in
-            self.coordinator?.showLogin()
+            self.coordinator?.presentLogin()
         }
         view.onScanQRCode = {
             [unowned self] in
