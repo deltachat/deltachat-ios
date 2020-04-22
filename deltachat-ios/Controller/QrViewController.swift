@@ -4,7 +4,6 @@ import DcCore
 
 class QrViewController: UITableViewController {
     private let rowQRCode = 0
-    private let rowScanQR = 1
 
     weak var coordinator: QrViewCoordinator?
     let qrCodeReaderController = QrCodeReaderController()
@@ -39,8 +38,6 @@ class QrViewController: UITableViewController {
         switch row {
         case rowQRCode:
             return createQRCodeCell()
-        case rowScanQR:
-            return createQRCodeScanCell()
         default:
             return UITableViewCell(style: .default, reuseIdentifier: nil)
         }
@@ -58,8 +55,6 @@ class QrViewController: UITableViewController {
         switch indexPath.row {
         case rowQRCode:
             return 325
-        case rowScanQR:
-            return 48
         default:
             return 10
         }
@@ -178,17 +173,6 @@ class QrViewController: UITableViewController {
         return cell
     }
 
-    private func createQRCodeScanCell() -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "scanQR")
-        let scanButton = createQRCodeScannerButton()
-        cell.contentView.addSubview(scanButton)
-        cell.selectionStyle = .none
-        let scanButtonConstraints = [scanButton.constraintCenterXTo(cell.contentView),
-                                     scanButton.constraintCenterYTo(cell.contentView)]
-        cell.contentView.addConstraints(scanButtonConstraints)
-        return cell
-    }
-
     private func createInfoLabel() -> UIView {
         let label = UILabel.init()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -200,20 +184,6 @@ class QrViewController: UITableViewController {
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14)
         return label
-    }
-
-    private func createQRCodeScannerButton() -> UIView {
-        let btn = UIButton.init(type: UIButton.ButtonType.system)
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitle(String.localized("qrscan_title"), for: .normal)
-        btn.addTarget(self, action: #selector(self.openQRCodeScanner), for: .touchUpInside)
-        return btn
-    }
-
-    @objc func openQRCodeScanner() {
-        let nav = UINavigationController(rootViewController: qrCodeReaderController)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true)
     }
 
     private func createQRCodeView() -> UIView {

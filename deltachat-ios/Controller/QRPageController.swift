@@ -25,6 +25,7 @@ class QRPageController: UIPageViewController {
         let control = UISegmentedControl(items: ["Show Left", "Show Right"])
         control.tintColor = DcColors.primary
         control.addTarget(self, action: #selector(qrSegmentControlChanged), for: .valueChanged)
+        control.selectedSegmentIndex = 0
         return control
     }()
 
