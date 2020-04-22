@@ -132,7 +132,6 @@ class ProfileInfoViewController: UITableViewController {
 
     @objc private func doneButtonPressed(_ sender: UIBarButtonItem) {
         dcContext.displayname = displayName
-        self.dismiss(animated: false, completion: nil) // not sure if this is needed
         onClose?()
     }
 
