@@ -3,11 +3,12 @@ import DcCore
 
 class QRPageController: UIPageViewController {
 
-    private let dcContext: DcContext
     weak var coordinator: QrViewCoordinator?
-    var secureJoinObserver: Any?
 
-    var selectedIndex: Int = 0
+    private let dcContext: DcContext
+    private var secureJoinObserver: Any?
+
+    private var selectedIndex: Int = 0
 
     private lazy var qrController: QrViewController = {
         let controller = QrViewController(dcContext: dcContext)
