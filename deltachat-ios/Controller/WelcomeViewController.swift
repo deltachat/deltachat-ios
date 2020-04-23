@@ -18,7 +18,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private lazy var welcomeView: WelcomeContentView = {
         let view = WelcomeContentView()
         view.onLogin = { [unowned self] in
-            self.coordinator?.showLogin()
+            self.coordinator?.presentLogin()
         }
         view.onScanQRCode  = { [unowned self] in
             self.showQRReader()
@@ -103,7 +103,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     private func showQRReader() {
         let qrReader = makeQRReader()
-        self.qrCoreReader = qrReader
+        self.qrCodeReader = qrReader
         let nav = UINavigationController(rootViewController: qrReader)
         nav.modalPresentationStyle = .fullScreen
         self.qrCodeReaderNav = nav
