@@ -164,7 +164,7 @@ class AppCoordinator: NSObject, Coordinator {
 // MARK: - WelcomeCoordinator
 extension AppCoordinator: WelcomeCoordinator {
 
-    func showLogin() {
+    func presentLogin() {
         // add cancel button item to accountSetupController
         if let nav = loginController as? UINavigationController, let loginController = nav.topViewController as? AccountSetupController {
             loginController.navigationItem.leftBarButtonItem = UIBarButtonItem(
@@ -910,7 +910,7 @@ protocol EditContactCoordinatorProtocol: class {
 }
 
 protocol WelcomeCoordinator: class {
-    func showLogin()
+    func presentLogin()
     func handleLoginSuccess()
     func handleQRAccountCreationSuccess()
 }
