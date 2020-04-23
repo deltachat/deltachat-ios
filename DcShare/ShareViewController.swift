@@ -128,7 +128,7 @@ extension ShareViewController: ChatListDelegate {
 }
 
 extension ShareViewController: SendingControllerDelegate {
-    func onSendingAttemptStopped() {
+    func onSendingAttemptFinished() {
         DispatchQueue.main.async {
             self.popConfigurationViewController()
             self.quit()

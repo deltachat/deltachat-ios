@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 
 protocol SendingControllerDelegate: class {
-    func onSendingAttemptStopped()
+    func onSendingAttemptFinished()
 }
 
 class SendingController: UIViewController {
@@ -72,7 +72,7 @@ class SendingController: UIViewController {
         DispatchQueue.global(qos: .utility).async {
             self.dcMsg.sendInChat(id: self.chatId)
             self.dcContext.performSmtpJobs()
-            self.delegate?.onSendingAttemptStopped()
+            self.delegate?.onSendingAttemptFinished()
         }
     }
 }
