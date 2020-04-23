@@ -29,7 +29,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     private var qrCordeReader: QrCodeReaderController?
     private var qrCodeReaderNav: UINavigationController?
-
     weak var progressAlert: UIAlertController?
 
     init(dcContext: DcContext) {

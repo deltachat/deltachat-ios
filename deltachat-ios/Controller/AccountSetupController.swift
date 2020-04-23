@@ -73,7 +73,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     // MARK: - the progress dialog
 
-    var progressAlert: UIAlertController?
+    weak var progressAlert: UIAlertController?
 
     // MARK: - cells
 
@@ -370,6 +370,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     override func viewWillDisappear(_ animated: Bool) {
         resignFirstResponderOnAllCells()
+        configureProgressObserver = nil
     }
 
     override func viewDidDisappear(_: Bool) {
