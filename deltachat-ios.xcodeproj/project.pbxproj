@@ -21,6 +21,7 @@
 		3040F462234F550300FA34D5 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040F461234F550300FA34D5 /* AudioPlayerView.swift */; };
 		304219D3243F588500516852 /* DcCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304219D82440734A00516852 /* DcMsg+Extension.swift */; };
+		304F5E44244F571C00462538 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
 		305961CC2346125100C80F33 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961822346125000C80F33 /* UIView+Extensions.swift */; };
 		305961CD2346125100C80F33 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961832346125000C80F33 /* UIEdgeInsets+Extensions.swift */; };
 		305961CF2346125100C80F33 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961852346125000C80F33 /* UIColor+Extensions.swift */; };
@@ -102,6 +103,7 @@
 		30E8F2422448B77600CE2C90 /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2412448B77600CE2C90 /* ChatListController.swift */; };
 		30E8F2442449C64100CE2C90 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2432449C64100CE2C90 /* ChatListCell.swift */; };
 		30E8F2512449EA0E00CE2C90 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
+		30E8F253244DAD0E00CE2C90 /* SendingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F252244DAD0E00CE2C90 /* SendingController.swift */; };
 		30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9B9EB235F2116006E7ACF /* MessageCounter.swift */; };
 		6795F63A82E94FF7CD2CEC0F /* Pods_deltachat_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */; };
 		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
@@ -379,6 +381,7 @@
 		30E8F21F24472AAE00CE2C90 /* DcShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DcShare.entitlements; sourceTree = "<group>"; };
 		30E8F2412448B77600CE2C90 /* ChatListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; };
 		30E8F2432449C64100CE2C90 /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
+		30E8F252244DAD0E00CE2C90 /* SendingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingController.swift; sourceTree = "<group>"; };
 		30F9B9EB235F2116006E7ACF /* MessageCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCounter.swift; sourceTree = "<group>"; };
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
@@ -690,6 +693,7 @@
 				30E8F2142447285600CE2C90 /* MainInterface.storyboard */,
 				30E8F2172447285600CE2C90 /* Info.plist */,
 				30E8F2432449C64100CE2C90 /* ChatListCell.swift */,
+				30E8F252244DAD0E00CE2C90 /* SendingController.swift */,
 			);
 			path = DcShare;
 			sourceTree = "<group>";
@@ -1087,6 +1091,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30E8F2162447285600CE2C90 /* MainInterface.storyboard in Resources */,
+				304F5E44244F571C00462538 /* Assets.xcassets in Resources */,
 				30E8F2512449EA0E00CE2C90 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1249,6 +1254,7 @@
 			files = (
 				30E8F2442449C64100CE2C90 /* ChatListCell.swift in Sources */,
 				30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */,
+				30E8F253244DAD0E00CE2C90 /* SendingController.swift in Sources */,
 				30E8F2422448B77600CE2C90 /* ChatListController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

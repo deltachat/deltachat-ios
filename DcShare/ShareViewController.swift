@@ -31,9 +31,11 @@ class ShareViewController: SLComposeServiceViewController {
     let dcContext = DcContext.shared
     var selectedChatId: Int?
     var selectedChat: DcChat?
+    let dbHelper = DatabaseHelper()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
         // workaround for iOS13 bug
         if #available(iOS 13.0, *) {
             _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidShowNotification, object: nil, queue: .main) { (_) in
@@ -45,8 +47,6 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
     override func presentationAnimationDidFinish() {
-
-        let dbHelper = DatabaseHelper()
         if dbHelper.currentDatabaseLocation == dbHelper.sharedDbFile {
             dcContext.logger = self.logger
             dcContext.openDatabase(dbFile: dbHelper.sharedDbFile)
@@ -65,18 +65,35 @@ class ShareViewController: SLComposeServiceViewController {
         return  !(contentText?.isEmpty ?? true)
     }
 
-    override func didSelectPost() {
-        // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
-        logger.debug("did select post - \(String(describing: selectedChatId))")
-        if let chatId = selectedChatId {
+    private func setupNavigationBar() {
+        guard let item = navigationController?.navigationBar.items?.first else { return }
+        let button = UIBarButtonItem(
+            title: String.localized("menu_send"),
+            style: .done,
+            target: self,
+            action: #selector(appendPostTapped))
+        item.rightBarButtonItem? = button
+        item.titleView = UIImageView(image: UIImage(named: "ic_chat")?.scaleDownImage(toMax: 26))
+    }
+
+    /// Invoked when the user wants to post.
+    @objc
+    private func appendPostTapped() {
+        if let chatId = self.selectedChatId {
             let message = DcMsg(viewType: DC_MSG_TEXT)
             message.text = self.contentText
-            message.sendInChat(id: chatId)
+            let chatListController = SendingController(chatId: chatId, dcMsg: message, dcContext: dcContext)
+            chatListController.delegate = self
+            self.pushConfigurationViewController(chatListController)
+        }
+    }
+
+    func quit() {
+        if dbHelper.currentDatabaseLocation == dbHelper.sharedDbFile {
+            dcContext.closeDatabase()
         }
 
-        logger.debug("did select post - closeDatabase")
-        dcContext.closeDatabase()
-        // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
+        // Inform the host that we're done, so it un-blocks its UI.
         self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }
 
@@ -95,6 +112,10 @@ class ShareViewController: SLComposeServiceViewController {
 
         return [item as Any]
     }
+
+    override func didSelectCancel() {
+        quit()
+    }
 }
 
 extension ShareViewController: ChatListDelegate {
@@ -103,5 +124,14 @@ extension ShareViewController: ChatListDelegate {
         selectedChat = DcChat(id: chatId)
         reloadConfigurationItems()
         popConfigurationViewController()
+    }
+}
+
+extension ShareViewController: SendingControllerDelegate {
+    func onSendingAttemptStopped() {
+        DispatchQueue.main.async {
+            self.popConfigurationViewController()
+            self.quit()
+        }
     }
 }
