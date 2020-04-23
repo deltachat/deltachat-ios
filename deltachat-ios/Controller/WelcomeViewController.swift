@@ -17,40 +17,19 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     private lazy var welcomeView: WelcomeContentView = {
         let view = WelcomeContentView()
-        view.onLogin = {
-            [unowned self] in
+        view.onLogin = { [unowned self] in
             self.coordinator?.presentLogin()
         }
-        view.onScanQRCode = {
-            [unowned self] in
+        view.onScanQRCode  = { [unowned self] in
             self.showQRReader()
         }
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private lazy var qrCordeReader: QrCodeReaderController = {
-        let controller = QrCodeReaderController()
-        controller.delegate = self
-        return controller
-    }()
-
-    private lazy var qrCodeReaderNav: UINavigationController = {
-        let nav = UINavigationController(rootViewController: qrCordeReader)
-        nav.modalPresentationStyle = .fullScreen
-        return nav
-    }()
-
-    lazy var progressAlert: UIAlertController = {
-        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(
-            title: String.localized("cancel"),
-            style: .cancel,
-            handler: { _ in
-                self.dcContext.stopOngoingProcess()
-        }))
-        return alert
-    }()
+    private var qrCodeReader: QrCodeReaderController?
+    private var qrCodeReaderNav: UINavigationController?
+    weak var progressAlert: UIAlertController?
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
@@ -59,7 +38,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             self.coordinator?.handleQRAccountCreationSuccess()
         }
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -83,9 +62,9 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     override func viewDidDisappear(_ animated: Bool) {
         let nc = NotificationCenter.default
-
         if let configureProgressObserver = self.configureProgressObserver {
             nc.removeObserver(configureProgressObserver)
+            self.configureProgressObserver = nil
         }
     }
 
@@ -113,12 +92,22 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         frameGuide.widthAnchor.constraint(equalTo: contentGuide.widthAnchor).isActive = true
     }
 
+    // MARK: - factory
+    private func makeQRReader() -> QrCodeReaderController {
+        let controller = QrCodeReaderController()
+        controller.delegate = self
+        return controller
+    }
+
     // MARK: - actions
 
-    private func showQRReader(completion onComplete: VoidFunction? = nil) {
-        present(qrCodeReaderNav, animated: true) {
-            onComplete?()
-        }
+    private func showQRReader() {
+        let qrReader = makeQRReader()
+        self.qrCodeReader = qrReader
+        let nav = UINavigationController(rootViewController: qrReader)
+        nav.modalPresentationStyle = .fullScreen
+        self.qrCodeReaderNav = nav
+        present(nav, animated: true)
     }
 
     private func createAccountFromQRCode() {
@@ -129,7 +118,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         scannedQrCode = nil
         if success {
             addProgressAlertListener(onSuccess: handleLoginSuccess)
-            showProgressAlert(title: String.localized("login_header"))
+            showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
             dcContext.configure()
         } else {
             accountCreationErrorAlert()
@@ -167,7 +156,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("ok"),
             style: .default,
             handler: { [unowned self] _ in
-                self.qrCodeReaderNav.dismiss(animated: false)
+                self.dismissQRReader()
                 self.createAccountFromQRCode()
             }
         )
@@ -176,15 +165,13 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("cancel"),
             style: .cancel,
             handler: { [unowned self] _ in
-                self.qrCodeReaderNav.dismiss(animated: true) {
-                    self.scannedQrCode = nil
-                }
+                self.dismissQRReader()
             }
         )
 
         alert.addAction(okAction)
         alert.addAction(qrCancelAction)
-        qrCodeReaderNav.present(alert, animated: true)
+        qrCodeReaderNav?.present(alert, animated: true)
     }
 
     private func qrErrorAlert() {
@@ -194,11 +181,19 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("ok"),
             style: .default,
             handler: { [unowned self] _ in
-                self.qrCordeReader.startSession()
+                self.qrCodeReader?.startSession()
             }
         )
         alert.addAction(okAction)
-        qrCodeReaderNav.present(alert, animated: true, completion: nil)
+        qrCodeReaderNav?.present(alert, animated: true, completion: nil)
+    }
+
+    private func dismissQRReader() {
+        self.qrCodeReaderNav?.dismiss(animated: false) {
+            self.qrCodeReaderNav = nil
+            self.qrCodeReader = nil
+            self.scannedQrCode = nil
+        }
     }
 }
 

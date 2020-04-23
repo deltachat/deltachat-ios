@@ -73,16 +73,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     // MARK: - the progress dialog
 
-    lazy var progressAlert: UIAlertController = {
-        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(
-            title: String.localized("cancel"),
-            style: .cancel,
-            handler: { _ in
-                self.dcContext.stopOngoingProcess()
-        }))
-        return alert
-    }()
+    weak var progressAlert: UIAlertController?
 
     // MARK: - cells
 
@@ -379,6 +370,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     override func viewWillDisappear(_ animated: Bool) {
         resignFirstResponderOnAllCells()
+        configureProgressObserver = nil
     }
 
     override func viewDidDisappear(_: Bool) {
@@ -590,7 +582,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
         print("oAuth-Flag when loggin in: \(dcContext.getAuthFlags())")
         dcContext.configure()
-        showProgressAlert(title: String.localized("login_header"))
+        showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
     }
 
     @objc func closeButtonPressed() {
@@ -735,7 +727,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
             if let file = dcContext.imexHasBackup(filePath: documents[0]) {
                 logger.info("restoring backup: \(file)")
-                showProgressAlert(title: String.localized("import_backup_title"))
+                showProgressAlert(title: String.localized("import_backup_title"), dcContext: dcContext)
                 dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: file)
             }
             else {

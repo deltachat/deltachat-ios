@@ -28,7 +28,6 @@ class QrCodeReaderController: UIViewController {
         return UIBarButtonItem(title: String.localized("cancel"), style: .done, target: self, action: #selector(closeButtonPressed(_:)))
     }()
 
-
     private let supportedCodeTypes = [
         AVMetadataObject.ObjectType.qr
     ]
