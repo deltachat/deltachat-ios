@@ -17,12 +17,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     private lazy var welcomeView: WelcomeContentView = {
         let view = WelcomeContentView()
-        view.onLogin = {
-            [unowned self] in
+        view.onLogin = { [unowned self] in
             self.coordinator?.showLogin()
         }
-        view.onScanQRCode = {
-            [unowned self] in
+        view.onScanQRCode  = { [unowned self] in
             self.showQRReader()
         }
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -42,10 +40,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         }
     }
 
-    deinit {
-        print("WelcomeViewController deinit")
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -69,9 +63,9 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     override func viewDidDisappear(_ animated: Bool) {
         let nc = NotificationCenter.default
-
         if let configureProgressObserver = self.configureProgressObserver {
             nc.removeObserver(configureProgressObserver)
+            self.configureProgressObserver = nil
         }
     }
 
@@ -108,15 +102,12 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     // MARK: - actions
 
-    private func showQRReader(completion onComplete: VoidFunction? = nil) {
-
+    private func showQRReader() {
         let qrReader = makeQRReader()
         self.qrCordeReader = qrReader
         let nav = UINavigationController(rootViewController: qrReader)
         self.qrCodeReaderNav = nav
-        present(nav, animated: true) {
-            onComplete?()
-        }
+        present(nav, animated: true)
     }
 
     private func createAccountFromQRCode() {
