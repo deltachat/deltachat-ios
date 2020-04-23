@@ -4,6 +4,8 @@ import DcCore
 class ProfileInfoViewController: UITableViewController {
 
     weak var coordinator: EditSettingsCoordinator?
+    var onClose: VoidFunction?
+
     private let dcContext: DcContext
 
     private var displayName: String?
@@ -130,7 +132,7 @@ class ProfileInfoViewController: UITableViewController {
 
     @objc private func doneButtonPressed(_ sender: UIBarButtonItem) {
         dcContext.displayname = displayName
-        self.dismiss(animated: true, completion: nil)
+        onClose?()
     }
 
     private func galleryButtonPressed(_ action: UIAlertAction) {

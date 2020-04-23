@@ -187,19 +187,17 @@ extension AppCoordinator: WelcomeCoordinator {
     }
 
     func handleQRAccountCreationSuccess() {
-        self.presentTabBarController()
-        showTab(index: 1)
-        presentProfileInfoController()
-    }
-
-    private func presentProfileInfoController() {
         let profileInfoController = ProfileInfoViewController(context: dcContext)
         let profileInfoNav = UINavigationController(rootViewController: profileInfoController)
         profileInfoNav.modalPresentationStyle = .fullScreen
         let coordinator = EditSettingsCoordinator(dcContext: dcContext, navigationController: profileInfoNav)
         profileInfoController.coordinator = coordinator
-        childCoordinators.append(coordinator)
-        tabBarController.present(profileInfoNav, animated: false, completion: nil)
+        profileInfoController.onClose = handleProfileInfoClosed
+        welcomeController?.present(profileInfoNav, animated: true, completion: nil)
+    }
+
+    private func handleProfileInfoClosed() {
+        presentTabBarController()
     }
 
     @objc private func cancelButtonPressed(_ sender: UIBarButtonItem) {
