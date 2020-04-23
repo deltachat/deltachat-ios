@@ -33,6 +33,10 @@ class QrCodeReaderController: UIViewController {
         AVMetadataObject.ObjectType.qr
     ]
 
+    deinit {
+        print("QrCodeReaderController deinit")
+    }
+
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
