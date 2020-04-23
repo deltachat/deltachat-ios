@@ -105,6 +105,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let qrReader = makeQRReader()
         self.qrCordeReader = qrReader
         let nav = UINavigationController(rootViewController: qrReader)
+        nav.modalPresentationStyle = .fullScreen
         self.qrCodeReaderNav = nav
         present(nav, animated: true)
     }
