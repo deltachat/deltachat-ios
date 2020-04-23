@@ -179,11 +179,7 @@ extension AppCoordinator: WelcomeCoordinator {
     }
 
     func handleLoginSuccess() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.loginController.dismiss(animated: true) { // this is ignored if loginController is not shown
-                self.presentTabBarController()
-            }
-        }
+        presentTabBarController()
     }
 
     func handleQRAccountCreationSuccess() {
