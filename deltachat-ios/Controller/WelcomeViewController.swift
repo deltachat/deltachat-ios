@@ -27,7 +27,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         return view
     }()
 
-    private var qrCordeReader: QrCodeReaderController?
+    private var qrCodeReader: QrCodeReaderController?
     private var qrCodeReaderNav: UINavigationController?
     weak var progressAlert: UIAlertController?
 
@@ -103,7 +103,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     private func showQRReader() {
         let qrReader = makeQRReader()
-        self.qrCordeReader = qrReader
+        self.qrCoreReader = qrReader
         let nav = UINavigationController(rootViewController: qrReader)
         nav.modalPresentationStyle = .fullScreen
         self.qrCodeReaderNav = nav
@@ -181,7 +181,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("ok"),
             style: .default,
             handler: { [unowned self] _ in
-                self.qrCordeReader?.startSession()
+                self.qrCodeReader?.startSession()
             }
         )
         alert.addAction(okAction)
@@ -191,7 +191,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
     private func dismissQRReader() {
         self.qrCodeReaderNav?.dismiss(animated: false) {
             self.qrCodeReaderNav = nil
-            self.qrCordeReader = nil
+            self.qrCodeReader = nil
             self.scannedQrCode = nil
         }
     }
