@@ -91,7 +91,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.tag = tagEmailCell
         cell.textField.addTarget(self, action: #selector(emailCellEdited), for: .editingChanged)
         cell.textField.tag = tagTextFieldEmail // will be used to eventually show oAuth-Dialogue when pressing return key
-        cell.setText(text: dcContext.addr ?? nil)
         cell.textField.delegate = self
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return cell
@@ -102,7 +101,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.tag = tagPasswordCell
         cell.textField.tag = tagTextFieldPassword  // will be used to eventually show oAuth-Dialogue when selecting
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        cell.setText(text: dcContext.mailPw ?? nil)
         cell.textField.delegate = self
         return cell
     }()
@@ -370,7 +368,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initSelectionCells()
+        updateCellData()
         handleLoginButton()
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -500,6 +500,12 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         default:
             break
         }
+    }
+
+    // MARK: - updates
+    private func updateCellData() {
+        emailCell.setText(text: dcContext.addr ?? nil)
+        passwordCell.setText(text: dcContext.mailPw ?? nil)
     }
 
     // MARK: - actions
@@ -787,7 +793,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             DatabaseHelper().clearAccountData()
             appDelegate.open()
             appDelegate.start()
-
             appDelegate.appCoordinator.presentWelcomeController()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
@@ -851,7 +856,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
 }
 
-// MARK: -
+// MARK: - UITextFieldDelegate
 extension AccountSetupController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let currentTag = textField.tag
