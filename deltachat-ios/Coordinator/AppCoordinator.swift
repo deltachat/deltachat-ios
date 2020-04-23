@@ -193,7 +193,7 @@ extension AppCoordinator: WelcomeCoordinator {
         let coordinator = EditSettingsCoordinator(dcContext: dcContext, navigationController: profileInfoNav)
         profileInfoController.coordinator = coordinator
         profileInfoController.onClose = handleProfileInfoClosed
-        welcomeController.present(profileInfoNav, animated: true, completion: nil)
+        welcomeController?.present(profileInfoNav, animated: true, completion: nil)
     }
 
     private func handleProfileInfoClosed() {
