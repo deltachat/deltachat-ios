@@ -10,17 +10,6 @@ class QRPageController: UIPageViewController {
 
     private var selectedIndex: Int = 0
 
-    private lazy var qrController: QrViewController = {
-        let controller = QrViewController(dcContext: dcContext)
-        return controller
-    }()
-
-    private lazy var qrCodeReaderController: QrCodeReaderController = {
-        let qrReader = QrCodeReaderController()
-        qrReader.delegate = self
-        return qrReader
-    }()
-
     private lazy var qrSegmentControl: UISegmentedControl = {
         let control = UISegmentedControl(items: ["Show Left", "Show Right"])
         control.tintColor = DcColors.primary
@@ -60,6 +49,8 @@ class QRPageController: UIPageViewController {
         dataSource = self
         delegate = self
         navigationItem.titleView = qrSegmentControl
+
+        let qrController = makeQrViewController()
         setViewControllers(
             [qrController],
             direction: .forward,
@@ -71,10 +62,24 @@ class QRPageController: UIPageViewController {
     // MARK: - actions
     @objc private func qrSegmentControlChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
+            let qrController = makeQrViewController()
             setViewControllers([qrController], direction: .reverse, animated: true, completion: nil)
         } else {
+            let qrCodeReaderController = makeQRReader()
             setViewControllers([qrCodeReaderController], direction: .forward, animated: true, completion: nil)
         }
+    }
+
+    // MARK: - factory
+    private func makeQrViewController() -> QrViewController {
+        let controller = QrViewController(dcContext: dcContext)
+        return controller
+    }
+
+    private func makeQRReader() -> QrCodeReaderController {
+        let qrReader = QrCodeReaderController()
+        qrReader.delegate = self
+        return qrReader
     }
 }
 
@@ -84,12 +89,12 @@ extension QRPageController: UIPageViewControllerDataSource, UIPageViewController
         if viewController is QrViewController {
             return nil
         }
-        return qrController
+        return makeQrViewController()
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if viewController is QrViewController {
-            return qrCodeReaderController
+            return makeQRReader()
         }
         return nil
     }
@@ -109,9 +114,7 @@ extension QRPageController: UIPageViewControllerDataSource, UIPageViewController
 extension QRPageController: QrCodeReaderDelegate {
 
     func handleQrCode(_ code: String) {
-        qrCodeReaderController.dismiss(animated: true) {
-            self.processQrCode(code)
-        }
+        self.processQrCode(code)
     }
 
     private func processQrCode(_ code: String) {
