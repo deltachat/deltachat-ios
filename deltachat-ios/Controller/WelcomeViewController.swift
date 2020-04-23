@@ -41,16 +41,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         return nav
     }()
 
-    lazy var progressAlert: UIAlertController = {
-        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(
-            title: String.localized("cancel"),
-            style: .cancel,
-            handler: { _ in
-                self.dcContext.stopOngoingProcess()
-        }))
-        return alert
-    }()
+    weak var progressAlert: UIAlertController?
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
@@ -58,6 +49,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         onProgressSuccess = {[unowned self] in
             self.coordinator?.handleQRAccountCreationSuccess()
         }
+    }
+
+    deinit {
+        print("WelcomeViewController deinit")
     }
     
     required init?(coder: NSCoder) {
@@ -129,7 +124,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         scannedQrCode = nil
         if success {
             addProgressAlertListener(onSuccess: handleLoginSuccess)
-            showProgressAlert(title: String.localized("login_header"))
+            showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
             dcContext.configure()
         } else {
             accountCreationErrorAlert()

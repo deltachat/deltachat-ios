@@ -26,12 +26,6 @@ class AppCoordinator: NSObject, Coordinator {
         return tabBarController
     }()
 
-    private lazy var welcomeController: WelcomeViewController = {
-        let welcomeController = WelcomeViewController(dcContext: dcContext)
-        welcomeController.coordinator = self
-        return welcomeController
-    }()
-
     private lazy var loginController: UIViewController = {
         let accountSetupController = AccountSetupController(dcContext: dcContext, editView: false)
         let nav = UINavigationController(rootViewController: accountSetupController)
@@ -83,6 +77,8 @@ class AppCoordinator: NSObject, Coordinator {
         return nav
     }()
 
+
+    private var welcomeController: WelcomeViewController?
     private var profileInfoNavigationController: UINavigationController?
 
     init(window: UIWindow, dcContext: DcContext) {
@@ -145,14 +141,23 @@ class AppCoordinator: NSObject, Coordinator {
         // but even when this changes in ios, we need the reset as we allow account-deletion also in-app.
         UIApplication.shared.applicationIconBadgeNumber = 0
 
-        window.rootViewController = welcomeController
+        let wc = makeWelcomeController()
+        self.welcomeController = wc
+        window.rootViewController = wc
         window.makeKeyAndVisible()
     }
 
     func presentTabBarController() {
         window.rootViewController = tabBarController
+        welcomeController = nil
         window.makeKeyAndVisible()
         showTab(index: chatsTab)
+    }
+
+    private func makeWelcomeController() -> WelcomeViewController {
+        let welcomeController = WelcomeViewController(dcContext: dcContext)
+        welcomeController.coordinator = self
+        return welcomeController
     }
 }
 
@@ -170,7 +175,7 @@ extension AppCoordinator: WelcomeCoordinator {
             loginController.coordinator?.onLoginSuccess = handleLoginSuccess
         }
         loginController.modalPresentationStyle = .fullScreen
-        welcomeController.present(loginController, animated: true, completion: nil)
+        welcomeController?.present(loginController, animated: true, completion: nil)
     }
 
     func handleLoginSuccess() {
