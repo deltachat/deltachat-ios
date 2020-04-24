@@ -288,7 +288,6 @@
 "login_auth_method" = "Autorisatiemethode";
 "login_info_oauth2_title" = "Wil je doorgaan met vereenvoudigd instellen?";
 "login_info_oauth2_text" = "Het ingevoerde e-mailadres ondersteunt vereenvoudigd instellen (OAuth2).\n\nTijdens de volgende stap moet je Delta Chat toestaan te fungeren als je e-mailapp.\n\nDelta Chat heeft geen eigen servers; jóuw gegevens blijven op jóuw apparaat!";
-"login_info_gmail_text" = "Bij Gmail-accounts moet je een app-wachtwoord creëren als je authenticatie in twee stappen hebt ingeschakeld. Als dit niet beschikbaar is, schakel dan \'Minder veilige apps\' in.";
 "login_certificate_checks" = "Certificaatcontrole";
 "login_error_mail" = "Voer een geldig e-mailadres in";
 "login_error_server" = "Voer een geldig(e) IP-adres/server in";
@@ -307,8 +306,11 @@
 "accept_invalid_certificates" = "Ongeldige certificaten accepteren";
 
 "used_settings" = "Gebruikte instellingen:";
+"switch_account" = "Ander account kiezen";
+"add_account" = "Account toevoegen";
 "delete_account" = "Account verwijderen";
 "delete_account_ask" = "Weet je zeker dat je je accountgegevens wilt verwijderen?";
+"switching_account" = "Bezig met overschakelen…";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to

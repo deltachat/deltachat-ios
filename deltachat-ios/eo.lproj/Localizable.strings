@@ -281,7 +281,6 @@
 "used_settings" = "Uzitaj agordoj:";
 "delete_account" = "Forigi konton";
 "delete_account_ask" = "Ĉu vi certas, ke vi volas forigi ĉiujn datumojn de vi konto?";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Plusendi al…";

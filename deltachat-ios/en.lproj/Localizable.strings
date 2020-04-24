@@ -288,7 +288,6 @@
 "login_auth_method" = "Authorization method";
 "login_info_oauth2_title" = "Continue with simplified setup?";
 "login_info_oauth2_text" = "The entered email address supports a simplified setup (OAuth 2.0).\n\nIn the next step, please allow Delta Chat to act as your Chat over Email app.\n\nThere are no Delta Chat servers, your data stays on your device.";
-"login_info_gmail_text" = "For Gmail Accounts you need to create an App-Password if you have \"2-Step Verification\" enabled. If this setting is not available, you need to enable \"Less secure apps\".";
 "login_certificate_checks" = "Certificate checks";
 "login_error_mail" = "Please enter a valid email address";
 "login_error_server" = "Please enter a valid server / IP address";
@@ -307,8 +306,11 @@
 "accept_invalid_certificates" = "Accept invalid certificates";
 
 "used_settings" = "Used settings:";
+"switch_account" = "Switch account";
+"add_account" = "Add account";
 "delete_account" = "Delete account";
 "delete_account_ask" = "Are you sure you want to delete your account data?";
+"switching_account" = "Switching account…";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -427,7 +429,7 @@
 "autodel_device_title" = "Delete messages from device";
 "autodel_server_title" = "Delete messages from server";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_device_ask" = "Do you want to delete %1$d messages now and all newly fetched messages %2$@ in the future?\n\n• This includes all media\n\n• Message will be deleted whether they were seen or not\n\n• \"Saved messages\" will be skipped from local deletion";
+"autodel_device_ask" = "Do you want to delete %1$d messages now and all newly fetched messages %2$@ in the future?\n\n• This includes all media\n\n• Messages will be deleted whether they were seen or not\n\n• \"Saved messages\" will be skipped from local deletion";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
 "autodel_server_ask" = "Do you want to delete %1$d messages now and all newly fetched messages %2$@ in the future?\n\n• This includes all media\n\n• This will also delete emails affected by the \"Show classic emails\" option\n\n• \"Saved messages\" will be deleted from the server as well";
 "autodel_confirm" = "I understand, delete all these messages";

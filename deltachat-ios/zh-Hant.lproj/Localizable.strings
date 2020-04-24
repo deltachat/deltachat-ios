@@ -288,7 +288,6 @@
 "login_auth_method" = "认证方法";
 "login_info_oauth2_title" = "使用简化设置继续？";
 "login_info_oauth2_text" = "输入的电子邮件地址支持简化设置（OAuth 2.0）。\n\n在下一步中，请允许 Delta Chat 充当您的“通过电子邮件聊天”应用程序。\n\n不存在 Delta Chat 服务器，您的数据保留于您的设备！";
-"login_info_gmail_text" = "对于 GMail 帐户，如果您启用了“两步验证”，则需要创建应用专用密码。 如果此设置不可用，则需要启用“安全性较低的应用”。";
 "login_certificate_checks" = "证书检查";
 "login_error_mail" = "请输入有效的电子邮件地址";
 "login_error_server" = "请输入有效的服务器 / IP 地址";
@@ -307,8 +306,11 @@
 "accept_invalid_certificates" = "接受无效的证书";
 
 "used_settings" = "已使用设置：";
+"switch_account" = "切换账户 ";
+"add_account" = "添加账户";
 "delete_account" = "删除账户";
 "delete_account_ask" = "您确定要删除您的账户数据吗？";
+"switching_account" = "切换账户 …";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -426,6 +428,10 @@
 "autodel_title_short" = "自动删除";
 "autodel_device_title" = "从设备删除消息";
 "autodel_server_title" = "从服务器删除消息";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
+"autodel_device_ask" = "您要删除目前的 %1$d 条消息以及之后 %2$@ 内新收到的消息吗？\n\n• 这包括所有媒体文件\n\n• 无论消息是否被浏览过，它们都将会被删除\n\n• 在本地删除中，“保存的消息”将被跳过";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
+"autodel_server_ask" = "您要删除目前的 %1$d 条消息以及之后 %2$@ 内新收到的消息吗？\n\n• 这包括所有媒体文件\n\n• 这也会删除被“显示传统电子邮件”选项影响的电子邮件\n\n• “保存的消息”也将从服务器中删除";
 "autodel_confirm" = "我了解，将这些消息全部删除";
 "autodel_at_once" = "立刻";
 "autodel_after_1_hour" = "1 小时后";

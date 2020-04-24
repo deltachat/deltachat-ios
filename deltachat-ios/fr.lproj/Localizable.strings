@@ -287,7 +287,6 @@
 "login_auth_method" = "Méthode d\'autorisation";
 "login_info_oauth2_title" = "Continuer avec une configuration simplifiée ?";
 "login_info_oauth2_text" = "L\'adresse de courriel saisie prend en charge une configuration simplifiée (OAuth2.0). \n\nDans l\'étape suivante, autorisez Delta Chat à agir comme votre application de Chat avec courriel . Il n\'y a pas de serveur Delta Chat, vos données restent sur votre appareil !";
-"login_info_gmail_text" = "Pour les comptes GMail, vous devez créer un mot de passe d\'application si vous avez activé 2FA. Si ce paramètre n\'est pas disponible, vous devez autoriser des applications moins sécurisées.";
 "login_certificate_checks" = "Vérification du certificat";
 "login_error_mail" = "Entrez une adresse email valide";
 "login_error_server" = "Entre un serveur / adresse IP valide";
@@ -308,7 +307,6 @@
 "used_settings" = "Paramètres utilisés :";
 "delete_account" = "Supprimer le compte";
 "delete_account_ask" = "Êtes-vous sûr de vouloir supprimer les données de votre compte ?";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Transférer à …";

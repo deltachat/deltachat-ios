@@ -288,7 +288,6 @@
 "login_auth_method" = "Baimentze metodoa";
 "login_info_oauth2_title" = "Jarraitu ezarpen sinplifikatuarekin";
 "login_info_oauth2_text" = "Sartu duzun e-mail helbideak ezarpen sinplifikatua onartzen du (OAuth2).\n\nHurrengo urratsean, baimendu Detla Chat zure e-mail bidezko txat aplikazio gisa erabili ahal izateko.\n\nEz dago Delta Chat zerbitzaririk, zure datuak zure gailuan mantentzen dira!";
-"login_info_gmail_text" = "GMail kontu bat erabiltzeko Aplikazio-pasahitza sortu behar duzu 2FA aktibatuta baduzu. Ezarpen hau eskuragarri ez baduzu, aplikazio ez hain seguruak gaitu behar dituzu.";
 "login_certificate_checks" = "Ziurtagiri-egiaztaketak";
 "login_error_mail" = "Sartu baliozko e-mail helbide bat";
 "login_error_server" = "Sartu baliozko zerbitzari / IP helbide bat";
@@ -309,7 +308,6 @@
 "used_settings" = "Erabilitako ezarpenak:";
 "delete_account" = "Ezabatu kontua";
 "delete_account_ask" = "Ziur al zaude zure kontuaren datuak ezabatu nahi dituzula?";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Birbidali honi …";
@@ -359,7 +357,7 @@
 "pref_light_theme" = "Argia";
 "pref_dark_theme" = "Iluna";
 "pref_appearance" = "Itxura";
-"pref_theme" = "Gaia";
+"pref_theme" = "Azala";
 "pref_language" = "Hizkuntza";
 "pref_incognito_keyboard" = "Teklatu pribatua";
 // Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.

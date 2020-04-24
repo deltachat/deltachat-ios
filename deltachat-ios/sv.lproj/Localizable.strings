@@ -286,7 +286,6 @@
 "login_smtp_security" = "SMTP-säkerhet";
 "login_auth_method" = "Auktoriseringsmetod";
 "login_info_oauth2_title" = "Fortsätt med förenklad installation?";
-"login_info_gmail_text" = "För GMail-konton måste du skapa ett app-lösenord om du har 2FA aktiverat. Om denna inställning inte är tillgänglig måste du slå på \"Mindre säkra appar\".";
 "login_error_mail" = "Vänligen ange en giltig e-postadress";
 "login_error_server" = "Vänligen ange en giltig server/IP-adress";
 "login_error_port" = "Vänligen ange en giltig port (1–65535)";
@@ -298,7 +297,6 @@
 "used_settings" = "Använda inställningar:";
 "delete_account" = "Radera konto";
 "delete_account_ask" = "Är du säker på att du vill ta bort dina kontodata?";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "vidarebefordra till...";

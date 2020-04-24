@@ -213,7 +213,6 @@
 "login_auth_method" = "Mètode d\'autorització";
 "login_info_oauth2_title" = "Continua amb la configuració simplificada?";
 "login_info_oauth2_text" = "L’adreça d\'e-mail que heu introduït admet una configuració simplificada. (OAuth2).\n\nEn el pas següent, permeteu que Delta Chat actuï com a xat amb l\'aplicació de correu electrònic..\n\nNo hi ha servidors de Delta Chat, les vostres dades romanen al vostre dispositiu!";
-"login_info_gmail_text" = "Pels comptes de GMail necessiteu crear una Contrasenya-App si teniu l\'opció 2FA activada. Si aquesta opció no està disponible, us caldrà activar l\'opció Less Secure Apps.";
 "login_error_mail" = "Si us plau poseu una adreça d\'email vàlida";
 "login_error_server" = "Si us plau poseu un servidor / adreça IP vàlida";
 "login_error_port" = "Si us plau poseu un  port vàlid (1-65535)";

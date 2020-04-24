@@ -288,7 +288,6 @@
 "login_auth_method" = "Metodë autorizimi";
 "login_info_oauth2_title" = "Të vazhdohet me rregullimin e thjeshtuar?";
 "login_info_oauth2_text" = "Adresa email e dhënë mbulon një ujdisje të thjeshtuar (OAuth2).\n\nNë hapin pasues, ju lutemi, lejojeni Delta Chat-in të veprojë si aplikacioni juaj për Fjalosje Përmes Email-i.\n\nS\’ka shërbyes Delta Chat, të dhënat tuaja rrinë në pajisjen tuaj!";
-"login_info_gmail_text" = "Për llogari GMail lypset të krijoni një App-Password, nëse keni të aktivizuar mirëfilltësimin dyfaktorësh. Nëse ky rregullim s\’gjendet, lypset të aktivizoni Aplikacione Më Pak të Sigurta.";
 "login_certificate_checks" = "Kontrolle dëshmish";
 "login_error_mail" = "Ju lutemi, jepni një adresë email të vlefshme";
 "login_error_server" = "Ju lutemi, jepni një shërbyes / adresë IP të vlefshme";
@@ -307,9 +306,10 @@
 "accept_invalid_certificates" = "Prano dëshmi të pavlefshme";
 
 "used_settings" = "Rregullime të përdorura";
+"switch_account" = "Ndërroni llogari";
+"add_account" = "Shtoni llogari";
 "delete_account" = "Fshije llogarinë";
 "delete_account_ask" = "Jeni i sigurt se doni të fshihen të dhënat e llogarisë tuaj?";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Përcilljani …";

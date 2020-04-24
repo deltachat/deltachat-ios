@@ -48,6 +48,7 @@
 "email_address" = "Адрес эл.почты";
 "bad_email_address" = "Неправильный адрес эл.почты.";
 "password" = "Пароль";
+"existing_password" = "Существующий пароль";
 "now" = "Сейчас";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Опасность";
@@ -220,7 +221,7 @@
 "chat_all_archived" = "Все чаты заархивированы.\nНажмите на \"+\" для начала нового чата.";
 "chat_share_with_title" = "Поделиться с";
 "chat_input_placeholder" = "Сообщение";
-"chat_archived_label" = "Ахивировано";
+"chat_archived_label" = "Архивировано";
 "chat_no_messages" = "Нет сообщений.";
 "chat_self_talk_subtitle" = "Сообщения отправленные себе";
 "saved_messages" = "Сохранённые сообщения";
@@ -287,7 +288,6 @@
 "login_auth_method" = "Метод авторизации";
 "login_info_oauth2_title" = "Продолжить упрощенную настройку?";
 "login_info_oauth2_text" = "Введённый адрес электронной почты поддерживает упрощённую настройку (OAuth2).\n\nНа следующем шаге разрешите, пожалуйста, Delta Chat выступать в качестве Вашего приложения для чата с помощью электронной почты.\n\nУ Delta Chat нет серверов, Ваши данные остаются на Вашем устройстве!";
-"login_info_gmail_text" = "Для учётных записей GMail необходимо задать пароль для приложений (App-Password), если включена двухфакторная аутентификация (2FA). Если эти настройки недоступны, вам нужно активировать параметр «Менее безопасные приложения» (Less Secure Apps).";
 "login_certificate_checks" = "Проверки сертификатов";
 "login_error_mail" = "Укажите действительный адрес эл. почты";
 "login_error_server" = "Укажите действительный сервер / IP адрес";
@@ -308,7 +308,6 @@
 "used_settings" = "Используемые настройки:";
 "delete_account" = "Удалить аккаунт";
 "delete_account_ask" = "Вы уверены, что хотите удалить данные учётной записи?";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Переслать...";
@@ -420,6 +419,17 @@
 "pref_background_custom_image" = "Пользовательское изображение";
 "pref_background_custom_color" = "Пользовательский цвет";
 
+// automatically delete message
+"autodel_title" = "Автоматическое удаление сообщений";
+"autodel_title_short" = "Автоматическое удаление";
+"autodel_device_title" = "Удалять сообщения с устройства";
+"autodel_server_title" = "Удалять сообщения с сервера";
+"autodel_at_once" = "Сразу";
+"autodel_after_1_hour" = "Через 1 час";
+"autodel_after_1_day" = "Через 1 день";
+"autodel_after_1_week" = "Через 1 неделю";
+"autodel_after_4_weeks" = "Через 4 недели";
+
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt — новый и открытый протокол установления сквозного шифрования для электронной почты.\n\n Необходимые параметры шифрования назначаются автоматически и их возможно передавать между своими устройствами используя  сообщения с параметрами Autocrypt.";
@@ -486,6 +496,7 @@
 "qrshow_join_contact_hint" = "Отсканируйте, чтобы создать контакт с %1$@";
 "qrshow_join_contact_no_connection_hint" = "Для настройки по QR коду необходимо интернет соединение. Сначала подключитесь к сети интернет.";
 "qrshow_join_contact_no_connection_toast" = "Нет соединения к интернету, невозможно начать процесс настройки по QR коду.";
+"qraccount_qr_code_cannot_be_used" = "Отсканированный QR-код не может быть использован для создания нового аккаунта.";
 "contact_verified" = "%1$@ подтвержден.";
 "contact_not_verified" = "Невозможно подтвердить %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"

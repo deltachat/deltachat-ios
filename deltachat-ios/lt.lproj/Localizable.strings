@@ -145,11 +145,22 @@
 "menu_save_log" = "Įrašyti žurnalą";
 "title_share_location" = "Bendrinti savo vietą su visais grupės dalyviais";
 "edit_contact" = "Taisyti adresatą";
+// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin_chat" = "Prisegti pokalbį";
+// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+"unpin_chat" = "Atsegti pokalbį";
+// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin" = "Prisegti";
+// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+"unpin" = "Atsegti";
+
 "mute_for_one_hour" = "Išjungti 1 valandai";
 "mute_for_two_hours" = "Išjungti 2 valandoms";
 "mute_for_one_day" = "Išjungti 1 dienai";
 "mute_for_seven_days" = "Išjungti 7 dienoms";
 "mute_forever" = "Išjungti visam laikui";
+
+"file_saved_to" = "Failas įrašytas į \"%1$@\".";
 
 // get confirmations
 "ask_leave_group" = "Ar tikrai norite išeiti iš šios grupės?";
@@ -185,7 +196,10 @@
 "chat_archived_label" = "Archyvuotas";
 "chat_no_messages" = "Žinučių nėra.";
 "chat_self_talk_subtitle" = "Žinutės, kurias siunčiu asmeniškai sau";
+"saved_messages" = "Įrašytos žinutės";
 "chat_contact_request" = "Adresato užklausa";
+"send_failed" = "Nepavyko išsiųsti žinutės";
+
 // search
 "search" = "Ieškoti";
 "search_explain" = "Ieškokite pokalbių, adresatų ir žinučių";
@@ -212,6 +226,9 @@
 "tab_gallery_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami paveikslai ir vaizdo įrašai.";
 "tab_docs_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami dokumentai, muzika ir kiti failai.";
 "media_preview" = "Medijos peržiūra";
+"send_message" = "Siųsti žinutę";
+
+
 // welcome and login
 "welcome_intro1_message" = "Pokalbių programa su plačiausia auditorija pasaulyje. Nemokama ir nepriklausoma.";
 "welcome_start_messaging" = "Pradėti susirašinėjimą";
@@ -243,9 +260,9 @@
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Atsakymas iš %1$@: %2$@\n\nKai kurie teikėjai patalpina papildomą informaciją į jūsų gautųjų laiškų aplanką; galite ją patikrinti, pvz., prisijungę per naršyklę. Jei susidursite su problema, pagalbos teiraukitės savo teikėjo ar draugų.";
 
+"used_settings" = "Naudoti nustatymai:";
 "delete_account" = "Ištrinti paskyrą";
 "delete_account_ask" = "Ar tikrai norite ištrinti savo paskyros duomenis?";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Kam persiųsti …";
@@ -337,6 +354,13 @@
 "pref_background_default_color" = "Numatytoji spalva";
 "pref_background_custom_image" = "Tinkintas paveikslas";
 "pref_background_custom_color" = "Tinkinta spalva";
+
+"autodel_confirm" = "Aš suprantu, ištrinti visas šias žinutes";
+"autodel_at_once" = "Iš karto";
+"autodel_after_1_hour" = "Po 1 valandos";
+"autodel_after_1_day" = "Po 1 dienos";
+"autodel_after_1_week" = "Po 1 savaitės";
+"autodel_after_4_weeks" = "Po 4 savaičių";
 
 // autocrypt
 "autocrypt" = "Autocrypt";

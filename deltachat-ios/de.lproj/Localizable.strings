@@ -288,7 +288,6 @@
 "login_auth_method" = "Autorisierungsmethode";
 "login_info_oauth2_title" = "Weiter mit vereinfachter Einrichtung?";
 "login_info_oauth2_text" = "Die eingegebene E-Mail-Adresse unterstützt eine vereinfachte Einrichtung (OAuth 2.0).\n\nBitte erlauben Sie Delta Chat im nächsten Schritt, als Chat-über-E-Mail-App zu arbeiten.\n\nEs gibt keine Delta Chat Server! Ihre Daten bleiben auf Ihrem Gerät!";
-"login_info_gmail_text" = "Für GMail-Konten muss ein App-Passwort erstellt werden, wenn die 2FA (Zwei-Faktor-Authentifizierung) aktiviert ist. Wenn diese Einstellung nicht verfügbar ist, muss \"Zugriff durch weniger sichere Anwendungen\" aktiviert werden.";
 "login_certificate_checks" = "Zertifikatsüberprüfung";
 "login_error_mail" = "Bitte eine gültige E-Mail-Adresse eingeben";
 "login_error_server" = "Bitte eine gültige Server/IP-Adresse eingeben";
@@ -307,8 +306,11 @@
 "accept_invalid_certificates" = "Ungültige Zertifikate akzeptieren";
 
 "used_settings" = "Verwendete Einstellungen:";
-"delete_account" = "Account löschen";
+"switch_account" = "E-Mail-Konto wechseln";
+"add_account" = "E-Mail-Konto hinzufügen";
+"delete_account" = "E-Mail-Konto löschen";
 "delete_account_ask" = "Möchten Sie das E-Mail-Konto und alle Daten wirklich von diesem Gerät löschen?";
+"switching_account" = "E-Mail-Konto wechseln…";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -503,8 +505,8 @@
 "qrshow_join_contact_hint" = "Scannen, um einen Kontakt mit %1$@ herzustellen.";
 "qrshow_join_contact_no_connection_hint" = "Der Austausch von QR-Codes erfordert eine Verbindung zum Internet. Bitte stellen Sie diese her, bevor Sie fortfahtren.";
 "qrshow_join_contact_no_connection_toast" = "Keine Verbindung zum Internet, Austausch des QR-Codes nicht möglich.";
-"qraccount_ask_create_and_login" = " \"%1$@\" erzeugen und dort anmelden?";
-"qraccount_success_enter_name" = "Anmeldung Erfolgreich — Ihre E-Mail-Adresse ist %1$@\n\nWenn Sie mögen, können Sie nun einen Namen und einen Avatar festlegen, der den ChatpartnerInnen angezeigt wird.";
+"qraccount_ask_create_and_login" = "E-Mail-Konto auf \"%1$@\" erzeugen und dort anmelden?";
+"qraccount_success_enter_name" = "Anmeldung erfolgreich — Ihre E-Mail-Adresse ist %1$@\n\nWenn Sie mögen, können Sie nun einen Namen und einen Avatar festlegen, der den ChatpartnerInnen angezeigt wird.";
 "qraccount_qr_code_cannot_be_used" = "Der eingescannte QR-Code kann nicht dazu verwendet werden, eine neues E-Mail-Konto zu erzeugen.";
 "qraccount_use_on_new_install" = "Der gescannte QR-Code ist zum Erstellen eines neuen E-Mail-Kontos. Sie können den QR-Code nur bei einer neuen Delta Chat Installation verwenden.";
 "contact_verified" = "%1$@ verifiziert.";
@@ -551,7 +553,7 @@
 
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Willkommen bei Delta Chat";
-"login_known_accounts_title_desktop" = "Bekannte Konten";
+"login_known_accounts_title_desktop" = "Bekannte E-Mail-Konten";
 "global_menu_preferences_language_desktop" = "Sprache";
 "global_menu_file_desktop" = "Datei";
 "global_menu_file_quit_desktop" = "Beenden";
@@ -626,7 +628,7 @@
 "a11y_delivery_status_delivered" = "Übertragungsstatus: Versendet";
 "a11y_delivery_status_read" = "Übertragungsstatus: Gelesen";
 "a11y_delivery_status_invalid" = "Übertragungsstatus: Ungültig";
-"a11y_remove_account_btn_label" = "Account löschen";
+"a11y_remove_account_btn_label" = "E-Mail-Konto löschen";
 "a11y_message_context_menu_btn_label" = "Nachrichtaktionen";
 "a11y_background_preview_label" = "Vorschau für Hintergrundbild";
 

@@ -157,9 +157,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d sohbet arşivlenmiyor</string>
+			<string>%d sohbet arşivlenmedi</string>
 			<key>other</key>
-			<string>%d sohbet arşivlenmiyor</string>
+			<string>%d sohbet arşivlenmedi</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>
