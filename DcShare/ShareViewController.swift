@@ -121,7 +121,7 @@ class ShareViewController: SLComposeServiceViewController {
 extension ShareViewController: ChatListDelegate {
     func onChatSelected(chatId: Int) {
         selectedChatId = chatId
-        selectedChat = DcChat(id: chatId)
+        selectedChat = dcContext.getChat(chatId: chatId)
         reloadConfigurationItems()
         popConfigurationViewController()
     }
