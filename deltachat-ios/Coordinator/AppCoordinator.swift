@@ -47,6 +47,7 @@ class AppCoordinator: NSObject, Coordinator {
         let pageController = QRPageController(dcContext: dcContext)
         let nav = UINavigationController(rootViewController: pageController)
         let coordinator = QrViewCoordinator(navigationController: nav)
+        self.childCoordinators.append(coordinator)
         pageController.coordinator = coordinator
         let settingsImage = UIImage(named: "qr_code")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
