@@ -205,23 +205,6 @@ extension QrPageController: QrCodeReaderDelegate {
         present(alert, animated: true, completion: nil)
     }
 
-    /*
-    private func showProgressAlert() {
-        self.present(self.progressAlert, animated: true, completion: {
-            let rect = CGRect(x: 10, y: 10, width: 20, height: 20)
-            let progressView = UIActivityIndicatorView(frame: rect)
-            progressView.tintColor = .blue
-            progressView.startAnimating()
-            progressView.translatesAutoresizingMaskIntoConstraints = false
-            self.progressAlert.view.addSubview(progressView)
-            self.progressAlert.view.addConstraints([
-                progressView.constraintCenterXTo(self.progressAlert.view),
-                progressView.constraintAlignTopTo(self.progressAlert.view, paddingTop: 45)
-            ])
-        })
-    }
-    */
-
     private func showErrorAlert(error: String) {
         let alert = UIAlertController(title: String.localized("error"), message: error, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
