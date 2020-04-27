@@ -44,7 +44,7 @@ class AppCoordinator: NSObject, Coordinator {
     // MARK: viewControllers
 
     private lazy var qrPageController: UIViewController = {
-        let pageController = QRPageController(dcContext: dcContext)
+        let pageController = QrPageController(dcContext: dcContext)
         let nav = UINavigationController(rootViewController: pageController)
         let coordinator = QrViewCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)

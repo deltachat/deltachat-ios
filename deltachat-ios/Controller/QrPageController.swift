@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class QRPageController: UIPageViewController, ProgressAlertHandler {
+class QrPageController: UIPageViewController, ProgressAlertHandler {
 
     weak var coordinator: QrViewCoordinator?
 
@@ -70,7 +70,7 @@ class QRPageController: UIPageViewController, ProgressAlertHandler {
 }
 
 // MARK: - UIPageViewControllerDataSource, UIPageViewControllerDelegate
-extension QRPageController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+extension QrPageController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if viewController is QrViewController {
             return nil
@@ -97,7 +97,7 @@ extension QRPageController: UIPageViewControllerDataSource, UIPageViewController
 }
 
 // MARK: - QRCodeDelegate
-extension QRPageController: QrCodeReaderDelegate {
+extension QrPageController: QrCodeReaderDelegate {
 
     func handleQrCode(_ code: String) {
         self.processQrCode(code)
