@@ -221,15 +221,13 @@ extension QrPageController: QrCodeReaderDelegate {
             object: nil,
             queue: nil
         ) { notification in
-            print("secure join: ", notification)
-            if let ui = notification.userInfo {
-                if ui["progress"] as? Int == 400 {
-                    if let contactId = ui["contact_id"] as? Int {
-                        self.progressAlert?.message = String.localizedStringWithFormat(
-                            String.localized("qrscan_x_verified_introduce_myself"),
-                            DcContact(id: contactId).nameNAddr)
-                    }
-                }
+            if let ui = notification.userInfo,
+                ui["progress"] as? Int == 400,
+                let contactId = ui["contact_id"] as? Int {
+                self.progressAlert?.message = String.localizedStringWithFormat(
+                    String.localized("qrscan_x_verified_introduce_myself"),
+                    DcContact(id: contactId).nameNAddr
+                )
             }
         }
     }
