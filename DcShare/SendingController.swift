@@ -7,7 +7,7 @@ protocol SendingControllerDelegate: class {
 
 class SendingController: UIViewController {
 
-    private let dcMsg: DcMsg
+    private let dcMsgs: [DcMsg]
     private let chatId: Int
     private let dcContext: DcContext
     weak var delegate: SendingControllerDelegate?
@@ -33,9 +33,9 @@ class SendingController: UIViewController {
         return view
     }()
 
-    init(chatId: Int, dcMsg: DcMsg, dcContext: DcContext) {
+    init(chatId: Int, dcMsgs: [DcMsg], dcContext: DcContext) {
         self.chatId = chatId
-        self.dcMsg = dcMsg
+        self.dcMsgs = dcMsgs
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
     }
@@ -70,7 +70,9 @@ class SendingController: UIViewController {
 
     private func sendMessage() {
         DispatchQueue.global(qos: .utility).async {
-            self.dcMsg.sendInChat(id: self.chatId)
+            for message in self.dcMsgs {
+                message.sendInChat(id: self.chatId)
+            }
             self.dcContext.performSmtpJobs()
             self.delegate?.onSendingAttemptFinished()
         }

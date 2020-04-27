@@ -59,4 +59,26 @@ public struct DcUtils {
         return acc
     }
 
+    // compression needs to be done before in UIImage.dcCompress()
+    public static func saveImage(image: UIImage) -> String? {
+        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
+                                                           appropriateFor: nil, create: false) as NSURL else {
+                                                            return nil
+        }
+
+        guard let data = image.isTransparent() ? image.pngData() : image.jpegData(compressionQuality: 1.0) else {
+            return nil
+        }
+
+        do {
+            let timestamp = Double(Date().timeIntervalSince1970)
+            let path = directory.appendingPathComponent("\(timestamp).jpg")
+            try data.write(to: path!)
+            return path?.relativePath
+        } catch {
+            DcContext.shared.logger?.info(error.localizedDescription)
+            return nil
+        }
+    }
+
 }

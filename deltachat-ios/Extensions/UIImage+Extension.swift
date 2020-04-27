@@ -24,19 +24,6 @@ extension UIImage {
         self.init(cgImage: cgImage)
     }
 
-
-    func dcCompress(toMax target: Float = 1280) -> UIImage? {
-        return scaleDownAndCompress(toMax: target)
-    }
-
-    func imageSizeInPixel() -> CGSize {
-        let heightInPoints = size.height
-        let heightInPixels = heightInPoints * scale
-        let widthInPoints = size.width
-        let widthInPixels = widthInPoints * scale
-        return CGSize(width: widthInPixels, height: heightInPixels)
-    }
-
 }
 
 public enum ImageType: String {

@@ -12,6 +12,7 @@
 		30149D9322F21129003C12B5 /* QrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30149D9222F21129003C12B5 /* QrViewController.swift */; };
 		3015634423A003BA00E9DEF4 /* AudioRecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */; };
 		3022E6BE22E8768800763272 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3022E6C022E8768800763272 /* InfoPlist.strings */; };
+		302589FF2452FA280086C1CD /* ShareAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302589FE2452FA280086C1CD /* ShareAttachment.swift */; };
 		30260CA7238F02F700D8D52C /* MultilineTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */; };
 		302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AC265E237F1807002A943F /* AvatarHelper.swift */; };
 		302B84C72396770B001C261F /* RelayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B84C42396627F001C261F /* RelayHelper.swift */; };
@@ -253,6 +254,7 @@
 		3022E6D122E8769E00763272 /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3022E6D222E8769F00763272 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3022E6D322E876A100763272 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		302589FE2452FA280086C1CD /* ShareAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAttachment.swift; sourceTree = "<group>"; };
 		30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextFieldCell.swift; sourceTree = "<group>"; };
 		302B84C42396627F001C261F /* RelayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayHelper.swift; sourceTree = "<group>"; };
 		302B84CD2397F6CD001C261F /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
@@ -532,6 +534,27 @@
 			path = DC;
 			sourceTree = "<group>";
 		};
+		304F5E452451D27500462538 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		304F5E462451D2AA00462538 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		304F5E472451D2CA00462538 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3059617E234610A800C80F33 /* MessageKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -687,6 +710,9 @@
 		30E8F2112447285600CE2C90 /* DcShare */ = {
 			isa = PBXGroup;
 			children = (
+				304F5E472451D2CA00462538 /* View */,
+				304F5E462451D2AA00462538 /* Controller */,
+				304F5E452451D27500462538 /* Extensions */,
 				30E8F21F24472AAE00CE2C90 /* DcShare.entitlements */,
 				30E8F2122447285600CE2C90 /* ShareViewController.swift */,
 				30E8F2412448B77600CE2C90 /* ChatListController.swift */,
@@ -694,6 +720,7 @@
 				30E8F2172447285600CE2C90 /* Info.plist */,
 				30E8F2432449C64100CE2C90 /* ChatListCell.swift */,
 				30E8F252244DAD0E00CE2C90 /* SendingController.swift */,
+				302589FE2452FA280086C1CD /* ShareAttachment.swift */,
 			);
 			path = DcShare;
 			sourceTree = "<group>";
@@ -1252,6 +1279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				302589FF2452FA280086C1CD /* ShareAttachment.swift in Sources */,
 				30E8F2442449C64100CE2C90 /* ChatListCell.swift in Sources */,
 				30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */,
 				30E8F253244DAD0E00CE2C90 /* SendingController.swift in Sources */,

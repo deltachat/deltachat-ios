@@ -37,6 +37,18 @@ public extension UIImage {
         return newImage
     }
 
+    public func dcCompress(toMax target: Float = 1280) -> UIImage? {
+        return scaleDownAndCompress(toMax: target)
+    }
+
+    public func imageSizeInPixel() -> CGSize {
+        let heightInPoints = size.height
+        let heightInPixels = heightInPoints * scale
+        let widthInPoints = size.width
+        let widthInPixels = widthInPoints * scale
+        return CGSize(width: widthInPixels, height: heightInPixels)
+    }
+    
     // if an image has an alpha channel we try to keep it, using PNG formatting instead of JPEG
     // PNGs are less compressed than JPEGs - to keep the message sizes small,
     // the size of PNG imgaes will be scaled down

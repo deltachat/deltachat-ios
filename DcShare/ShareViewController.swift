@@ -1,6 +1,7 @@
 import UIKit
 import Social
 import DcCore
+import MobileCoreServices
 
 
 class ShareViewController: SLComposeServiceViewController {
@@ -32,6 +33,11 @@ class ShareViewController: SLComposeServiceViewController {
     var selectedChatId: Int?
     var selectedChat: DcChat?
     let dbHelper = DatabaseHelper()
+    lazy var shareAttachment: ShareAttachment = {
+        return ShareAttachment(inputItems: self.extensionContext?.inputItems)
+    }()
+
+    var messages: [DcMsg] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +50,7 @@ class ShareViewController: SLComposeServiceViewController {
                 }
             }
         }
+        createMessages()
     }
 
     override func presentationAnimationDidFinish() {
@@ -62,7 +69,7 @@ class ShareViewController: SLComposeServiceViewController {
 
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
-        return  !(contentText?.isEmpty ?? true)
+        return  !(contentText?.isEmpty ?? true) || !self.shareAttachment.isEmpty
     }
 
     private func setupNavigationBar() {
@@ -80,11 +87,45 @@ class ShareViewController: SLComposeServiceViewController {
     @objc
     private func appendPostTapped() {
         if let chatId = self.selectedChatId {
-            let message = DcMsg(viewType: DC_MSG_TEXT)
-            message.text = self.contentText
-            let chatListController = SendingController(chatId: chatId, dcMsg: message, dcContext: dcContext)
+            if !self.contentText.isEmpty {
+                if messages.count == 1 {
+                    messages[0].text?.append(self.contentText)
+                } else {
+                    let message = DcMsg(viewType: DC_MSG_TEXT)
+                    message.text = self.contentText
+                    messages.insert(message, at: 0)
+                }
+            }
+            let chatListController = SendingController(chatId: chatId, dcMsgs: messages, dcContext: dcContext)
             chatListController.delegate = self
             self.pushConfigurationViewController(chatListController)
+        }
+    }
+
+    private func createMessages() {
+        for item in shareAttachment.image {
+            item.loadItem(forTypeIdentifier: kUTTypeImage as String, options: nil) { data, error in
+                let result: UIImage?
+                switch data {
+                case let image as UIImage:
+                    result = image
+                case let data as Data:
+                    result = UIImage(data: data)
+                case let url as URL:
+                    result = UIImage(contentsOfFile: url.path)
+                default:
+                    self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
+                    result = nil
+                }
+                if let result = result, let compressedImage = result.dcCompress() {
+                    let pixelSize = compressedImage.imageSizeInPixel()
+                    let path = DcUtils.saveImage(image: compressedImage)
+                    let msg = DcMsg(viewType: DC_MSG_IMAGE)
+                    msg.setFile(filepath: path, mimeType: "image/jpeg")
+                    msg.setDimension(width: pixelSize.width, height: pixelSize.height)
+                    self.messages.append(msg)
+                }
+            }
         }
     }
 
@@ -98,7 +139,7 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
     override func configurationItems() -> [Any]! {
-         logger.debug("configurationItems")
+        logger.debug("configurationItems")
         // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
 
         let item = SLComposeSheetConfigurationItem()

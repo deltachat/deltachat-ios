@@ -974,7 +974,7 @@ extension ChatViewController: MessagesDataSource {
             if let compressedImage = image.dcCompress() {
                 // at this point image is compressed by 85% by default
                 let pixelSize = compressedImage.imageSizeInPixel()
-                let path = Utils.saveImage(image: compressedImage)
+                let path = DcUtils.saveImage(image: compressedImage)
                 let msg = DcMsg(viewType: DC_MSG_IMAGE)
                 msg.setFile(filepath: path, mimeType: "image/jpeg")
                 msg.setDimension(width: pixelSize.width, height: pixelSize.height)
