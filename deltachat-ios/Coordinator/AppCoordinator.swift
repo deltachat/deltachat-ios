@@ -45,9 +45,9 @@ class AppCoordinator: NSObject, Coordinator {
 
     private lazy var qrPageController: UIViewController = {
         let pageController = QRPageController(dcContext: dcContext)
-        let dummyVC = UIViewController()
-        dummyVC.view.backgroundColor = .green
         let nav = UINavigationController(rootViewController: pageController)
+        let coordinator = QrViewCoordinator(navigationController: nav)
+        pageController.coordinator = coordinator
         let settingsImage = UIImage(named: "qr_code")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
         return nav

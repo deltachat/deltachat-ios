@@ -11,7 +11,7 @@ class QRPageController: UIPageViewController {
     private var selectedIndex: Int = 0
 
     private lazy var qrSegmentControl: UISegmentedControl = {
-        let control = UISegmentedControl(items: ["Show Left", "Show Right"])
+        let control = UISegmentedControl(items: [String.localized("qrshow_title"), String.localized("qrscan_title")])
         control.tintColor = DcColors.primary
         control.addTarget(self, action: #selector(qrSegmentControlChanged), for: .valueChanged)
         control.selectedSegmentIndex = 0

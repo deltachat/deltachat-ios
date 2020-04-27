@@ -798,13 +798,13 @@
 				AEA0F6A024474146009F887B /* ProfileInfoViewController.swift */,
 				789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */,
 				30A4D9AD2332672600544344 /* QrInviteViewController.swift */,
+				AECEF03D244F2D55006C90DA /* QRPageController.swift */,
 				30149D9222F21129003C12B5 /* QrViewController.swift */,
 				B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */,
 				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
 				B20462E32440A4A600367A57 /* SettingsAutodelOverviewController.swift */,
 				B20462E52440C99600367A57 /* SettingsAutodelSetController.swift */,
 				AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */,
-				AECEF03D244F2D55006C90DA /* QRPageController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
