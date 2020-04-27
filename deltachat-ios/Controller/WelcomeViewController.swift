@@ -6,7 +6,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     weak var coordinator: WelcomeCoordinator?
     private let dcContext: DcContext
     private var scannedQrCode: String?
-    var configureProgressObserver: Any?
+    var progressObserver: Any?
     var onProgressSuccess: VoidFunction?
 
     private lazy var scrollView: UIScrollView = {
@@ -62,9 +62,9 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     override func viewDidDisappear(_ animated: Bool) {
         let nc = NotificationCenter.default
-        if let configureProgressObserver = self.configureProgressObserver {
-            nc.removeObserver(configureProgressObserver)
-            self.configureProgressObserver = nil
+        if let observer = self.progressObserver {
+            nc.removeObserver(observer)
+            self.progressObserver = nil
         }
     }
 

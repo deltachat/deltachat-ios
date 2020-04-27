@@ -4,8 +4,9 @@ import DcCore
 class QrPageController: UIPageViewController, ProgressAlertHandler {
 
     weak var coordinator: QrViewCoordinator?
-
     private let dcContext: DcContext
+    weak var progressAlert: UIAlertController?
+    var progressObserver: Any?
 
     private var selectedIndex: Int = 0
 
@@ -16,9 +17,6 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
         control.selectedSegmentIndex = 0
         return control
     }()
-
-    weak var progressAlert: UIAlertController?
-    var configureProgressObserver: Any?
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
@@ -46,7 +44,7 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        self.configureProgressObserver = nil
+        self.progressObserver = nil
     }
 
     // MARK: - actions
@@ -218,7 +216,7 @@ extension QrPageController: QrCodeReaderDelegate {
 
     private func addSecureJoinProgressListener() {
         let nc = NotificationCenter.default
-        configureProgressObserver = nc.addObserver(
+        progressObserver = nc.addObserver(
             forName: dcNotificationSecureJoinerProgress,
             object: nil,
             queue: nil
@@ -238,8 +236,8 @@ extension QrPageController: QrCodeReaderDelegate {
 
     private func removeSecureJoinProgressListener() {
         let nc = NotificationCenter.default
-        if let secureJoinObserver = self.configureProgressObserver {
-            nc.removeObserver(secureJoinObserver)
+        if let observer = self.progressObserver {
+            nc.removeObserver(observer)
         }
     }
 

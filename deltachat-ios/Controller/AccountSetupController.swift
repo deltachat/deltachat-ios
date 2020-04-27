@@ -9,7 +9,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private let dcContext: DcContext
     private var skipOauth = false
     private var backupProgressObserver: Any?
-    var configureProgressObserver: Any?
+    var progressObserver: Any?
     var onProgressSuccess: VoidFunction? // not needed here
 
     private var oauth2Observer: Any?
@@ -370,7 +370,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     override func viewWillDisappear(_ animated: Bool) {
         resignFirstResponderOnAllCells()
-        configureProgressObserver = nil
+        progressObserver = nil
     }
 
     override func viewDidDisappear(_: Bool) {
@@ -379,7 +379,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         if let backupProgressObserver = self.backupProgressObserver {
             nc.removeObserver(backupProgressObserver)
         }
-        if let configureProgressObserver = self.configureProgressObserver {
+        if let configureProgressObserver = self.progressObserver {
             nc.removeObserver(configureProgressObserver)
         }
         if let oauth2Observer = self.oauth2Observer {
@@ -652,7 +652,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     private func addProgressHudLoginListener() {
         let nc = NotificationCenter.default
-        configureProgressObserver = nc.addObserver(
+        progressObserver = nc.addObserver(
             forName: dcNotificationConfigureProgress,
             object: nil,
             queue: nil
