@@ -43,7 +43,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     // MARK: viewControllers
 
-    private lazy var qrPageController: UIViewController = {
+    private lazy var qrPageController: UINavigationController = {
         let pageController = QrPageController(dcContext: dcContext)
         let nav = UINavigationController(rootViewController: pageController)
         let coordinator = QrViewCoordinator(navigationController: nav)
@@ -53,15 +53,6 @@ class AppCoordinator: NSObject, Coordinator {
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
         return nav
     }()
-
-    private lazy var qrController: UIViewController = {
-        let controller = QrViewController(dcContext: dcContext)
-        let nav = UINavigationController(rootViewController: controller)
-        let settingsImage = UIImage(named: "qr_code")
-        nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
-        return nav
-    }()
-
 
     private lazy var chatListController: UIViewController = {
         let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: false)
@@ -137,8 +128,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     func handleQRCode(_ code: String) {
         showTab(index: qrTab)
-        if let navController = qrController as? UINavigationController,
-            let topViewController = navController.topViewController,
+        if let topViewController = qrPageController.topViewController,
             let qrPageController = topViewController as? QrPageController {
             qrPageController.handleQrCode(code)
         }
