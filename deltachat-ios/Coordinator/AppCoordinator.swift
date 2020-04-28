@@ -178,25 +178,17 @@ extension AppCoordinator: WelcomeCoordinator {
         welcomeController?.present(loginController, animated: true, completion: nil)
     }
 
-    func handleLoginSuccess() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.loginController.dismiss(animated: true) { // this is ignored if loginController is not shown
-                self.presentTabBarController()
-            }
-        }
-    }
-
     func handleQRAccountCreationSuccess() {
         let profileInfoController = ProfileInfoViewController(context: dcContext)
         let profileInfoNav = UINavigationController(rootViewController: profileInfoController)
         profileInfoNav.modalPresentationStyle = .fullScreen
         let coordinator = EditSettingsCoordinator(dcContext: dcContext, navigationController: profileInfoNav)
         profileInfoController.coordinator = coordinator
-        profileInfoController.onClose = handleProfileInfoClosed
+        profileInfoController.onClose = handleLoginSuccess
         welcomeController?.present(profileInfoNav, animated: true, completion: nil)
     }
 
-    private func handleProfileInfoClosed() {
+    func handleLoginSuccess() {
         presentTabBarController()
     }
 
