@@ -434,7 +434,6 @@
 "autodel_after_1_day" = "Egun bat eta gero";
 "autodel_after_1_week" = "Aste bat eta gero";
 "autodel_after_4_weeks" = "4 aste eta gero";
-
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt e-maila muturretik muturrera zifratzeko espezifikazio berri eta ireki bat da.\n\nZure muturretik muturrerako ezarpena automatikoki sortzend a behar denean eta gailutik gailura eraman dezakezu Autocrypt ezarpen mezuekin.";

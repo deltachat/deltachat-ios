@@ -310,6 +310,8 @@
 "add_account" = "Hesap ekle";
 "delete_account" = "Hesabı sil";
 "delete_account_ask" = "Hesap verilerinizi silmek istediğinizden emin misiniz?";
+"switching_account" = "Hesap değiştiriliyor…";
+
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "İlet…";
@@ -436,7 +438,6 @@
 "autodel_after_1_day" = "1 gün sonra";
 "autodel_after_1_week" = "1 hafta sonra";
 "autodel_after_4_weeks" = "4 hafta sonra";
-
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt, otomatik uçtan uca e-posta şifrelemesi için yeni ve açık bir belirtimdir.\n\nUçtan uca ayarlamanız, gerektiğinde otomatik olarak oluşturulur ve Autocrypt Ayarlama İletileri ile aygıtlar arasında aktarabilirsiniz.";

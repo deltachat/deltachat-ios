@@ -306,8 +306,12 @@
 "accept_invalid_certificates" = "Aceptar certificados non válidos";
 
 "used_settings" = "Axustes utilizados:";
+"switch_account" = "Cambiar de conta";
+"add_account" = "Engadir conta";
 "delete_account" = "Eliminar conta";
 "delete_account_ask" = "Estás seguro de que queres eliminar os datos da túa conta?";
+"switching_account" = "Cambiando de conta...";
+
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Reenviar a...";
@@ -434,7 +438,6 @@
 "autodel_after_1_day" = "Após 1 día";
 "autodel_after_1_week" = "Após 1 semana";
 "autodel_after_4_weeks" = "Após 4 semanas";
-
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt é un xeito novo de cifrado extremo-a-extremo automático do correo electrónico.\n\nOs axustes extremo-a-extremo créanse de xeito automático cando se precisan e son transferidos entre dispositivos con Mensaxes de Configuración Autocrypt.";

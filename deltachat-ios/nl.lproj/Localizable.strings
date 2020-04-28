@@ -438,7 +438,6 @@
 "autodel_after_1_day" = "Na 1 dag";
 "autodel_after_1_week" = "Na 1 week";
 "autodel_after_4_weeks" = "Na 4 weken";
-
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt is een nieuwe, open specificatie voor het automatisch instellen van end-to-end e-mailversleuteling.\n\nJe instellingen worden, indien nodig, automatisch gecreëerd en kunnen worden overgezet naar andere apparaten middels instelberichten.";

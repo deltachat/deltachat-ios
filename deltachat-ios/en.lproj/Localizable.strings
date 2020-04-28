@@ -438,6 +438,7 @@
 "autodel_after_1_day" = "After 1 day";
 "autodel_after_1_week" = "After 1 week";
 "autodel_after_4_weeks" = "After 4 weeks";
+"autodel_after_1_year" = "After 1 year";
 
 // autocrypt
 "autocrypt" = "Autocrypt";

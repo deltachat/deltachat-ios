@@ -306,6 +306,8 @@
 "add_account" = "Tambah akun";
 "delete_account" = "Hapus Akun";
 "delete_account_ask" = "Apakah anda yakin ingin menghapus data akun anda?";
+"switching_account" = "Ubah akun";
+
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Diteruskan ke…";
@@ -313,6 +315,9 @@
 "share_abort" = "Pembagian dibatalkan karena tidak ada izin.";
 
 
+// preferences
+"pref_using_custom" = "Menggunakan custom: %s";
+"pref_using_default" = "Menggunakan default: %s";
 "pref_profile_info_headline" = "Info profil Anda";
 "pref_profile_photo" = "Gambar profil";
 "pref_blocked_contacts" = "Kontak yang diblokir";
@@ -355,6 +360,8 @@
 "pref_theme" = "Tema";
 "pref_language" = "Bahasa";
 "pref_incognito_keyboard" = "Keyboard penyamaran";
+"pref_read_receipts" = "Baca tanda terima";
+"pref_read_receipts_explain" = "Jika tanda terima baca dinonaktifkan, Anda tidak akan dapat melihat tanda terima baca dari orang lain.";
 "pref_use_system_emoji" = "Gunakan emoji sistem";
 "pref_use_system_emoji_explain" = "Matikan dukungan emoji Delta Chat yang ada";
 "pref_app_access" = "Akes Aplikasi";
@@ -388,7 +395,8 @@
 "pref_email_interaction_title" = "Interaksi surel";
 "pref_show_emails_all" = "Semua";
 "pref_empty_server_title" = "Hapus surel dari server";
-"pref_empty_server_mvbox" = "Hapus semua surel di berkas \"DeltaChat\"";
+"pref_empty_server_inbox" = "Hapus semuail email di berkas \"Pesan Masuk\"";
+"pref_empty_server_mvbox" = "Hapus semua email di berkas \"DeltaChat\"";
 "pref_empty_server_do_button" = "Hapus email";
 "autodel_device_title" = "Hapus pesarn dari perangkat";
 "autodel_server_title" = "Hapus pesan dari server";
@@ -398,7 +406,6 @@
 "autodel_after_1_day" = "Setelah 1 hari";
 "autodel_after_1_week" = "Setelah 1 minggu";
 "autodel_after_4_weeks" = "Setelah 4 minggu";
-
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt adalah spesifikasi baru dan terbuka untuk enkripsi otomatis dimana surel yang dikirim hanya akan terlihat oleh si penerima yang disebut dengan istilah end-to-end atau ujung ke ujung.\n\nPengaturan ujung ke ujung ini dibuat secara otomatis sesuai kebutuhan dan dapat Anda transfer antar perangkat berkat Autocrypt Setup Messages.";
@@ -479,6 +486,7 @@
 "global_menu_help_contribute_desktop" = "Kontribusi di GitHub";
 "global_menu_help_report_desktop" = "Laporkan masalah";
 "global_menu_help_about_desktop" = "Tentang Delta Chat";
+"no_chat_selected_suggestion_desktop" = "Pilih obrolan atau buat sebuah obrolan baru";
 "write_message_desktop" = "Tulis sebuah pesan";
 "encryption_info_title_desktop" = "Info enkripsi";
 "contact_detail_title_desktop" = "Detail Kontak";

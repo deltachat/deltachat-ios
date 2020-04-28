@@ -438,7 +438,6 @@
 "autodel_after_1_day" = "1 天后";
 "autodel_after_1_week" = "1 周后";
 "autodel_after_4_weeks" = "4 星期后";
-
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt 是一种用于自动端到端电子邮件加密的全新开放规范。\n\n您的端到端设置会根据需要自动创建并且您可以使用 Autocrypt 设置消息在设备之间传输此设置。";

@@ -361,7 +361,6 @@
 "autodel_after_1_day" = "Po 1 dienos";
 "autodel_after_1_week" = "Po 1 savaitės";
 "autodel_after_4_weeks" = "Po 4 savaičių";
-
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt yra naujoji ir atviroji specifikacija automatiniam ištisiniam el. pašto šifravui.\n\nPrireikus, jūsų ištisinė sąranka yra sukuriama automatiškai ir gali būti perduodama tarp įrenginių, naudojant Autocrypt sąrankos žinutes.";
