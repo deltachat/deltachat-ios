@@ -94,7 +94,7 @@ class TextFieldCell: UITableViewCell {
     }
 
     static func makePasswordCell(delegate _: UITextFieldDelegate? = nil) -> TextFieldCell {
-        let cell = TextFieldCell(description: String.localized("password"), placeholder: String.localized("password"))
+        let cell = TextFieldCell(description: String.localized("password"), placeholder: String.localized("existing_password"))
         cell.textField.textContentType = UITextContentType.password
         cell.textField.isSecureTextEntry = true
         return cell

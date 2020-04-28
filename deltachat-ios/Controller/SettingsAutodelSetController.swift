@@ -17,6 +17,7 @@ class SettingsAutodelSetController: UITableViewController {
             Options(value: 86400, descr: "autodel_after_1_day"),
             Options(value: 604800, descr: "autodel_after_1_week"),
             Options(value: 2419200, descr: "autodel_after_4_weeks"),
+            Options(value: 31536000, descr: "autodel_after_1_year"),
         ]
     }()
 
@@ -28,6 +29,7 @@ class SettingsAutodelSetController: UITableViewController {
             Options(value: 86400, descr: "autodel_after_1_day"),
             Options(value: 604800, descr: "autodel_after_1_week"),
             Options(value: 2419200, descr: "autodel_after_4_weeks"),
+            Options(value: 31536000, descr: "autodel_after_1_year"),
         ]
     }()
 
@@ -116,7 +118,7 @@ class SettingsAutodelSetController: UITableViewController {
 
         if newVal != currVal && newVal != 0 {
             let delCount = dcContext.estimateDeletionCnt(fromServer: fromServer, timeout: newVal)
-            let newDescr = "\"" + String.localized(self.autodelOptions[indexPath.row].descr) + "\""
+            let newDescr = String.localized(self.autodelOptions[indexPath.row].descr)
             let msg = String.localizedStringWithFormat(String.localized(fromServer ? "autodel_server_ask" : "autodel_device_ask"), delCount, newDescr)
             let alert = UIAlertController(
                 title: String.localized(fromServer ? "autodel_server_title" : "autodel_device_title"),
