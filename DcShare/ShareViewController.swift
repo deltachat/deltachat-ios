@@ -33,11 +33,7 @@ class ShareViewController: SLComposeServiceViewController {
     var selectedChatId: Int?
     var selectedChat: DcChat?
     let dbHelper = DatabaseHelper()
-    lazy var shareAttachment: ShareAttachment = {
-        return ShareAttachment(inputItems: self.extensionContext?.inputItems)
-    }()
-
-    var messages: [DcMsg] = []
+    var shareAttachment: ShareAttachment?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +46,10 @@ class ShareViewController: SLComposeServiceViewController {
                 }
             }
         }
-        createMessages()
+
+        DispatchQueue.global(qos: .background).async {
+            self.shareAttachment = ShareAttachment(dcContext: self.dcContext, inputItems: self.extensionContext?.inputItems, delegate: self)
+        }
     }
 
     override func presentationAnimationDidFinish() {
@@ -69,7 +68,7 @@ class ShareViewController: SLComposeServiceViewController {
 
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
-        return  !(contentText?.isEmpty ?? true) || !self.shareAttachment.isEmpty
+        return  !(contentText?.isEmpty ?? true) || !(self.shareAttachment?.isEmpty ?? true)
     }
 
     private func setupNavigationBar() {
@@ -87,6 +86,7 @@ class ShareViewController: SLComposeServiceViewController {
     @objc
     private func appendPostTapped() {
         if let chatId = self.selectedChatId {
+            guard var messages = shareAttachment?.messages else { return }
             if !self.contentText.isEmpty {
                 if messages.count == 1 {
                     messages[0].text?.append(self.contentText)
@@ -99,33 +99,6 @@ class ShareViewController: SLComposeServiceViewController {
             let chatListController = SendingController(chatId: chatId, dcMsgs: messages, dcContext: dcContext)
             chatListController.delegate = self
             self.pushConfigurationViewController(chatListController)
-        }
-    }
-
-    private func createMessages() {
-        for item in shareAttachment.image {
-            item.loadItem(forTypeIdentifier: kUTTypeImage as String, options: nil) { data, error in
-                let result: UIImage?
-                switch data {
-                case let image as UIImage:
-                    result = image
-                case let data as Data:
-                    result = UIImage(data: data)
-                case let url as URL:
-                    result = UIImage(contentsOfFile: url.path)
-                default:
-                    self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
-                    result = nil
-                }
-                if let result = result, let compressedImage = result.dcCompress() {
-                    let pixelSize = compressedImage.imageSizeInPixel()
-                    let path = DcUtils.saveImage(image: compressedImage)
-                    let msg = DcMsg(viewType: DC_MSG_IMAGE)
-                    msg.setFile(filepath: path, mimeType: "image/jpeg")
-                    msg.setDimension(width: pixelSize.width, height: pixelSize.height)
-                    self.messages.append(msg)
-                }
-            }
         }
     }
 
@@ -173,6 +146,14 @@ extension ShareViewController: SendingControllerDelegate {
         DispatchQueue.main.async {
             self.popConfigurationViewController()
             self.quit()
+        }
+    }
+}
+
+extension ShareViewController: ShareAttachmentDelegate {
+    func onAttachmentAdded() {
+        DispatchQueue.main.async {
+            self.validateContent()
         }
     }
 }

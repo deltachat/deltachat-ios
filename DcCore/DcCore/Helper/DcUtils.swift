@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import MobileCoreServices
 
 public struct DcUtils {
 
@@ -79,6 +80,18 @@ public struct DcUtils {
             DcContext.shared.logger?.info(error.localizedDescription)
             return nil
         }
+    }
+
+    public static func getMimeTypeForPath(path: String) -> String {
+        let url = NSURL(fileURLWithPath: path)
+        let pathExtension = url.pathExtension
+
+        if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension! as NSString, nil)?.takeRetainedValue() {
+            if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
+                return mimetype as String
+            }
+        }
+        return "application/octet-stream"
     }
 
 }
