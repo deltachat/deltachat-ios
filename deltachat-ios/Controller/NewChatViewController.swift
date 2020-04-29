@@ -1,4 +1,4 @@
-import ALCameraViewController
+import KK_ALCameraViewController
 import Contacts
 import UIKit
 import DcCore

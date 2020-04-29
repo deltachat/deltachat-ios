@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double ALCameraViewControllerVersionNumber;
-FOUNDATION_EXPORT const unsigned char ALCameraViewControllerVersionString[];
+FOUNDATION_EXPORT double KK_ALCameraViewControllerVersionNumber;
+FOUNDATION_EXPORT const unsigned char KK_ALCameraViewControllerVersionString[];
 

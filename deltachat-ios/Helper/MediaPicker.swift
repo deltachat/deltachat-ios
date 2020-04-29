@@ -1,7 +1,7 @@
 import UIKit
 import Photos
 import MobileCoreServices
-import ALCameraViewController
+import KK_ALCameraViewController
 
 protocol MediaPickerDelegate: class {
     func onImageSelected(image: UIImage)
@@ -85,27 +85,33 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
             videoPicker.title = String.localized("gallery")
             videoPicker.delegate = self
             videoPicker.sourceType = .photoLibrary
-            videoPicker.mediaTypes = [kUTTypeMovie as String,
-                                      kUTTypeVideo as String,
-                                      kUTTypeImage as String]
+            videoPicker.mediaTypes = [
+                kUTTypeMovie as String,
+                kUTTypeVideo as String,
+                kUTTypeImage as String
+            ]
             self.delegate = delegate
             navigationController.present(videoPicker, animated: true, completion: nil)
         }
     }
 
     func showPhotoGallery(delegate: MediaPickerDelegate) {
-        let croppingParameters = CroppingParameters(isEnabled: true,
-                                                    allowResizing: true,
-                                                    allowMoving: true,
-                                                    minimumSize: CGSize(width: 70, height: 70))
+        let croppingParameters = CroppingParameters(
+            isEnabled: true,
+            allowResizing: true,
+            allowMoving: true,
+            minimumSize: CGSize(width: 70, height: 70)
+        )
 
-        let controller = CameraViewController.imagePickerViewController(croppingParameters: croppingParameters,
-                                                                        completion: { [weak self] image, _ in
-                                                                            if let image = image {
-                                                                                self?.delegate?.onImageSelected(image: image)
-                                                                            }
-                                                                            self?.navigationController.dismiss(animated: true, completion: nil)})
+        let controller = CameraViewController.imagePickerViewController(
+            croppingParameters: croppingParameters,
+            completion: { [weak self] image, _ in
+                if let image = image {
+                    self?.delegate?.onImageSelected(image: image)
+                }
+                self?.navigationController.dismiss(animated: true, completion: nil)})
         self.delegate = delegate
+        controller.modalPresentationStyle = .fullScreen
         navigationController.present(controller, animated: true, completion: nil)
     }
 
@@ -119,16 +125,19 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                 minimumSize: CGSize(width: 70, height: 70))
             }
 
-            let cameraViewController = CameraViewController(croppingParameters: croppingParameters,
-                                                            allowsLibraryAccess: false,
-                                                            allowsSwapCameraOrientation: true,
-                                                            allowVolumeButtonCapture: false,
-                                                            completion: { [weak self] image, _ in
-                                                                if let image = image {
-                                                                    self?.delegate?.onImageSelected(image: image)
-                                                                }
-                                                                self?.navigationController.dismiss(animated: true, completion: nil)})
+            let cameraViewController = CameraViewController(
+                croppingParameters: croppingParameters,
+                allowsLibraryAccess: false,
+                allowsSwapCameraOrientation: true,
+                allowVolumeButtonCapture: false,
+                completion: { [weak self] image, _ in
+                    if let image = image {
+                        self?.delegate?.onImageSelected(image: image)
+                    }
+                    self?.navigationController.dismiss(animated: true, completion: nil)}
+            )
             self.delegate = delegate
+            cameraViewController.modalPresentationStyle = .fullScreen
             navigationController.present(cameraViewController, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: String.localized("chat_camera_unavailable"), message: nil, preferredStyle: .alert)

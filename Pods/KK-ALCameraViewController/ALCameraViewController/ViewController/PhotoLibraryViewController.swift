@@ -5,6 +5,9 @@
 //  Created by Alex Littlejohn on 2015/06/09.
 //  Copyright (c) 2015 zero. All rights reserved.
 //
+//  Modified by Kevin Kieffer on 2019/08/06.  Changes as follows:
+//  Adding a pinch gesture to increase or decrease the number of columns shown, up to a min or max value
+
 
 import UIKit
 import Photos
@@ -19,12 +22,14 @@ public class PhotoLibraryViewController: UIViewController {
     
     internal var assets: PHFetchResult<PHAsset>? = nil
     
+    private var columns = CameraGlobals.DEFAULT_COLUMNS
+    
     public var onSelectionComplete: PhotoLibraryViewSelectionComplete?
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
-        layout.itemSize = CameraGlobals.shared.photoLibraryThumbnailSize
+        layout.itemSize = CameraGlobals.shared.photoLibraryThumbnailSize(withColumns: columns)
         layout.minimumInteritemSpacing = defaultItemSpacing
         layout.minimumLineSpacing = defaultItemSpacing
         layout.sectionInset = UIEdgeInsets.zero
@@ -54,6 +59,9 @@ public class PhotoLibraryViewController: UIViewController {
             .onFailure(onFailure)
             .onSuccess(onSuccess)
             .fetch()
+        
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinch(gesture:)))
+        view.addGestureRecognizer(pinchGesture)
     }
     
     public override func viewWillLayoutSubviews() {
@@ -75,6 +83,31 @@ public class PhotoLibraryViewController: UIViewController {
     @objc public func dismissLibrary() {
         onSelectionComplete?(nil)
     }
+    
+    
+    @objc internal func pinch(gesture: UIPinchGestureRecognizer) {
+        
+        
+        switch gesture.state {
+        case .began, .changed:
+            if gesture.scale > CGFloat(1.2) && columns > CameraGlobals.MIN_COLUMNS {
+                gesture.scale = CGFloat(1.0)
+                columns -= 1
+                collectionView.collectionViewLayout.invalidateLayout()
+            }
+            else if gesture.scale < CGFloat(0.8) && columns < CameraGlobals.MAX_COLUMNS {
+                gesture.scale = CGFloat(1.0)
+                columns += 1
+                collectionView.collectionViewLayout.invalidateLayout()
+            }
+        case .ended:
+            gesture.scale = CGFloat(1.0)
+        default:
+            break
+        }
+    }
+    
+    
     
     private func onSuccess(_ photos: PHFetchResult<PHAsset>) {
         assets = photos
@@ -124,4 +157,11 @@ extension PhotoLibraryViewController : UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         onSelectionComplete?(itemAtIndexPath(indexPath))
     }
+    
+    public func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CameraGlobals.shared.photoLibraryThumbnailSize(withColumns: columns)
+    }
+
 }
