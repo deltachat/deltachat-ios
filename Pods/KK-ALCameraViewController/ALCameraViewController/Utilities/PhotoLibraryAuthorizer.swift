@@ -43,7 +43,8 @@ class PhotoLibraryAuthorizer {
             }
             break
         @unknown default:
-            break
+             let error = errorWithKey("error.unknown-auth-status", domain: errorDomain)
+             completion(error)
         }
     }
 }

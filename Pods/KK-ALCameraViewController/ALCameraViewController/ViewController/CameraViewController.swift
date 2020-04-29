@@ -5,6 +5,11 @@
 //  Created by Alex Littlejohn.
 //  Copyright (c) 2016 zero. All rights reserved.
 //
+//  Modified by Kevin Kieffer on 2019/08/06.  Changes as follows:
+//  Update the overlay constraints when rotating, so the overlay is properly positioned and sized
+//
+//  Updated the button constraint calls and removed the rotate animation method which was not working
+
 
 import UIKit
 import AVFoundation
@@ -33,6 +38,7 @@ public extension CameraViewController {
                     }
                 }
                 confirmController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                confirmController.modalPresentationStyle = .fullScreen
                 imagePicker?.present(confirmController, animated: true, completion: nil)
             } else {
                 completion(nil, nil)
@@ -78,11 +84,23 @@ open class CameraViewController: UIViewController {
     
     var flashButtonEdgeConstraint: NSLayoutConstraint?
     var flashButtonGravityConstraint: NSLayoutConstraint?
-
+    
+    var cameraOverlayEdgeOneConstraint: NSLayoutConstraint?
+    var cameraOverlayEdgeTwoConstraint: NSLayoutConstraint?
+    var cameraOverlayWidthConstraint: NSLayoutConstraint?
+    var cameraOverlayCenterConstraint: NSLayoutConstraint?
+    
     let cameraView : CameraView = {
         let cameraView = CameraView()
         cameraView.translatesAutoresizingMaskIntoConstraints = false
         return cameraView
+    }()
+
+    let cameraOverlay : CropOverlay = {
+        let cameraOverlay = CropOverlay()
+        cameraOverlay.translatesAutoresizingMaskIntoConstraints = false
+        cameraOverlay.showsButtons = false
+        return cameraOverlay
     }()
     
     let cameraButton : UIButton = {
@@ -159,6 +177,8 @@ open class CameraViewController: UIViewController {
         self.allowVolumeButtonCapture = allowVolumeButtonCapture
         super.init(nibName: nil, bundle: nil)
         onCompletion = completion
+        cameraOverlay.isHidden = !croppingParameters.isEnabled || !croppingParameters.cameraOverlay
+        cameraOverlay.isUserInteractionEnabled = false
         libraryButton.isEnabled = allowsLibraryAccess
         libraryButton.isHidden = !allowsLibraryAccess
 		swapButton.isEnabled = allowsSwapCameraOrientation
@@ -186,12 +206,23 @@ open class CameraViewController: UIViewController {
         super.loadView()
         view.backgroundColor = UIColor.black
         [cameraView,
+            cameraOverlay,
             cameraButton,
             closeButton,
             flashButton,
             containerSwapLibraryButton].forEach({ view.addSubview($0) })
         [swapButton, libraryButton].forEach({ containerSwapLibraryButton.addSubview($0) })
         view.setNeedsUpdateConstraints()
+    }
+    
+    private func updateOverlayConstraints() {
+        let portrait = UIApplication.shared.statusBarOrientation.isPortrait
+        let padding : CGFloat = portrait ? 16.0 : -16.0
+        removeCameraOverlayEdgesConstraints()
+        configCameraOverlayEdgeOneContraint(portrait, padding: padding)
+        configCameraOverlayEdgeTwoConstraint(portrait, padding: padding)
+        configCameraOverlayWidthConstraint(portrait)
+        configCameraOverlayCenterConstraint(portrait)
     }
     
     /**
@@ -211,7 +242,8 @@ open class CameraViewController: UIViewController {
         
         let statusBarOrientation = UIApplication.shared.statusBarOrientation
         let portrait = statusBarOrientation.isPortrait
-        
+
+        removeCameraButtonConstraints()
         configCameraButtonEdgeConstraint(statusBarOrientation)
         configCameraButtonGravityConstraint(portrait)
         
@@ -225,17 +257,17 @@ open class CameraViewController: UIViewController {
         
         removeSwapButtonConstraints()
         configSwapButtonEdgeConstraint(statusBarOrientation)
-        configSwapButtonGravityConstraint(portrait)
+        configSwapButtonGravityConstraint(statusBarOrientation)
 
         removeLibraryButtonConstraints()
         configLibraryEdgeButtonConstraint(statusBarOrientation)
-        configLibraryGravityButtonConstraint(portrait)
+        configLibraryGravityButtonConstraint(statusBarOrientation)
         
         configFlashEdgeButtonConstraint(statusBarOrientation)
         configFlashGravityButtonConstraint(statusBarOrientation)
-
-        rotate(actualInterfaceOrientation: statusBarOrientation)
         
+        updateOverlayConstraints()
+         
         super.updateViewConstraints()
     }
     
@@ -252,7 +284,15 @@ open class CameraViewController: UIViewController {
         super.viewDidLoad()
         setupActions()
         checkPermissions()
+        cameraView.configureFocus()
         cameraView.configureZoom()
+        
+        if let device = AVCaptureDevice.default(for: .video) {
+            if !device.hasFlash {
+                flashButton.isEnabled = false
+                flashButton.isHidden = true
+            }
+        }
     }
 
     /**
@@ -372,57 +412,10 @@ open class CameraViewController: UIViewController {
     
     @objc func rotateCameraView() {
         cameraView.rotatePreview()
+        updateViewConstraints()
     }
     
-    /**
-     * This method will rotate the buttons based on
-     * the last and actual orientation of the device.
-     */
-    internal func rotate(actualInterfaceOrientation: UIInterfaceOrientation) {
-        
-        if lastInterfaceOrientation != nil {
-            let lastTransform = CGAffineTransform(rotationAngle: radians(currentRotation(
-                lastInterfaceOrientation!, newOrientation: actualInterfaceOrientation)))
-            setTransform(transform: lastTransform)
-        }
-
-        let transform = CGAffineTransform(rotationAngle: 0)
-        animationRunning = true
-        
-        /**
-         * Dispatch delay to avoid any conflict between the CATransaction of rotation of the screen
-         * and CATransaction of animation of buttons.
-         */
-
-        let duration = animationDuration
-        let spring = animationSpring
-        let options = rotateAnimation
-
-        let time: DispatchTime = DispatchTime.now() + Double(1 * UInt64(NSEC_PER_SEC)/10)
-        DispatchQueue.main.asyncAfter(deadline: time) { [weak self] in
-
-            guard let _ = self else {
-                return
-            }
-            
-            CATransaction.begin()
-            CATransaction.setDisableActions(false)
-            CATransaction.commit()
-            
-            UIView.animate(
-                withDuration: duration,
-                delay: 0.1,
-                usingSpringWithDamping: spring,
-                initialSpringVelocity: 0,
-                options: options,
-                animations: { [weak self] in
-                self?.setTransform(transform: transform)
-                }, completion: { [weak self] _ in
-                    self?.animationRunning = false
-            })
-            
-        }
-    }
+    
     
     func setTransform(transform: CGAffineTransform) {
         closeButton.transform = transform
@@ -575,11 +568,15 @@ open class CameraViewController: UIViewController {
 		let confirmViewController = ConfirmViewController(image: uiImage, croppingParameters: croppingParameters)
 		confirmViewController.onComplete = { [weak self] image, asset in
 			defer {
+                //In iOS13, the volume changed notification channel is being called when dismissing this controller
+                //Since this controller comes back into view momentarily here, before being dismissed, another
+                //photo is being taken and the camera shutter sound occurs. As a workaround, the volume control
+                //is deinitialized here to remove the notification channel.
+                self?.volumeControl = nil
 				self?.dismiss(animated: true, completion: nil)
 			}
 			
 			guard let image = image else {
-				self?.cameraView.startSession()
 				return
 			}
 			
@@ -587,6 +584,8 @@ open class CameraViewController: UIViewController {
 			self?.onCompletion = nil
 		}
 		confirmViewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        confirmViewController.modalPresentationStyle = .fullScreen
+
 		present(confirmViewController, animated: true, completion: nil)
 	}
 	
@@ -594,6 +593,7 @@ open class CameraViewController: UIViewController {
         let confirmViewController = ConfirmViewController(asset: asset, croppingParameters: croppingParameters)
         confirmViewController.onComplete = { [weak self] image, asset in
             defer {
+                self?.volumeControl = nil
                 self?.dismiss(animated: true, completion: nil)
             }
 
@@ -605,6 +605,8 @@ open class CameraViewController: UIViewController {
             self?.onCompletion = nil
         }
         confirmViewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        confirmViewController.modalPresentationStyle = .fullScreen
+
         present(confirmViewController, animated: true, completion: nil)
     }
 
