@@ -111,7 +111,7 @@
 			<key>one</key>
 			<string>Radera %d chatt? Det kommer inte längre synas i chattlistan, meddelanden kommer att finnas kvar på servern.</string>
 			<key>other</key>
-			<string>Radera %d chatt? De kommer inte visas i chattlistan, deras meddelanden kommer finns kvar på servern.</string>
+			<string>Radera %d chattar? De kommer inte att visas i chattlistan, deras meddelanden kommer finnas kvar på servern.</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -159,7 +159,7 @@
 			<key>one</key>
 			<string>%d chatt ur arkivet</string>
 			<key>other</key>
-			<string>%d chattar ur arkivet</string>
+			<string>%d chattar avarkiverade</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

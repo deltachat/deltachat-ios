@@ -7,22 +7,22 @@
 "on" = "På";
 "off" = "Av";
 "def" = "Standard";
-"custom" = "Anpassad";
+"custom" = "Anpassat";
 "none" = "Ingen";
-"automatic" = "Automatisk";
+"automatic" = "Automatiskt";
 "strict" = "Sträng";
-"open" = "Öppen";
-"delete" = "Radera";
+"open" = "Öppna";
+"delete" = "Ta bort";
 "info" = "Info";
-"update" = "Uppdatering";
+"update" = "Uppdatera";
 "emoji" = "Emoji";
-"attachment" = "Bifogad fil";
+"attachment" = "Bilaga";
 "back" = "Tillbaka";
 "close" = "Stäng";
-"forward" = "Vidarebefordra";
+"forward" = "Framåt";
 "archive" = "Arkiv";
 "unarchive" = "Avarkivera";
-"mute" = "Tysta";
+"mute" = "Tyst";
 "save" = "Spara";
 "chat" = "Chatt";
 "media" = "Media";
@@ -33,10 +33,10 @@
 "not_now" = "Inte nu";
 "never" = "Aldrig";
 "one_moment" = "Ett ögonblick...";
-"done" = "Klar";
+"done" = "Klart";
 "undo" = "Ångra";
 // Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
-"next" = "Fortsätt";
+"next" = "Nästa";
 "error" = "Fel";
 "error_x" = "Fel: %1$@";
 "error_no_network" = "Nätverk ej tillgängligt.";
@@ -46,8 +46,9 @@
 "copied_to_clipboard" = "Kopierad till Urklipp.";
 "contacts_headline" = "Kontakter";
 "email_address" = "E-postadress";
-"bad_email_address" = "Fel E-postadress.";
+"bad_email_address" = "Felaktig e-postadress.";
 "password" = "Lösenord";
+"existing_password" = "Befintligt lösenord";
 "now" = "Nu";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Fara";
@@ -65,10 +66,10 @@
 "self" = "Jag";
 "draft" = "Utkast";
 "image" = "Bild";
-"gif" = "Gif";
+"gif" = "GIF";
 "images" = "Bilder";
 "audio" = "Ljud";
-"voice_message" = "Voice message";
+"voice_message" = "Röstmeddelande";
 "forwarded_message" = "Vidarebefordrat meddelande";
 "video" = "Video";
 "documents" = "Dokument";
@@ -77,7 +78,7 @@
 "camera" = "Kamera";
 "location" = "Plats";
 "gallery" = "Galleri";
-"file" = "Fil";
+"file" = "Arkiv";
 "unknown" = "Okänd";
 
 "green" = "Grön";
@@ -97,7 +98,7 @@
 "fast" = "Snabb";
 "slow" = "Långsam";
 
-"message_delivered" = "Meddelande mottaget";
+"message_delivered" = "Meddelande levererat";
 "message_read" = "Meddelande läst";
 
 
@@ -113,29 +114,29 @@
 "menu_show_map" = "Visa karta";
 "menu_show_global_map" = "Visa alla platser";
 "menu_archive_chat" = "Arkivera chatt";
-"menu_unarchive_chat" = "Oarkivera chatt";
-"menu_add_attachment" = "Bifoga fil";
+"menu_unarchive_chat" = "Avarkivera chatt";
+"menu_add_attachment" = "Lägg till bilaga";
 "menu_leave_group" = "Lämna grupp";
-"menu_delete_chat" = "Radera chatt";
-"menu_delete_messages" = "Radera meddelanden";
-"menu_delete_image" = "Radera bild";
-"menu_delete_locations" = "Radera alla platser?";
-"menu_delete_location" = "Radera denna plats?";
+"menu_delete_chat" = "Ta bort chatt";
+"menu_delete_messages" = "Ta bort meddelanden";
+"menu_delete_image" = "Ta bort bild";
+"menu_delete_locations" = "Ta bort alla platser?";
+"menu_delete_location" = "Ta bort denna plats?";
 "menu_message_details" = "Meddelandedetaljer";
-"menu_copy_to_clipboard" = "Kopierad till Urklipp";
-"menu_forward" = "Vidarebefordran";
-"menu_resend" = "Skicka om meddelande";
+"menu_copy_to_clipboard" = "Kopierad till urklipp";
+"menu_forward" = "Vidarebefordra meddelande";
+"menu_resend" = "Skicka om meddelandet";
 "menu_reply" = "Svara på meddelandet";
 "menu_mute" = "Stäng av aviseringar";
-"menu_unmute" = "Slå på ljud";
+"menu_unmute" = "Slå på";
 "menu_export_attachment" = "Exportera bilaga";
 "menu_all_media" = "All media";
 "menu_share" = "Dela";
 "menu_block_contact" = "Blockera kontakt";
 "menu_unblock_contact" = "Avblockera kontakten";
-"menu_play" = "Spela";
-"menu_pause" = "Pausa";
-"menu_scroll_to_bottom" = "Bläddra till botten";
+"menu_play" = "Spela upp";
+"menu_pause" = "Paus";
+"menu_scroll_to_bottom" = "Skrolla till botten";
 "menu_scroll_to_top" = "Bläddra till toppen";
 "menu_help" = "Hjälp";
 "menu_select_all" = "Markera alla";
@@ -144,7 +145,7 @@
 "menu_edit_group_name" = "Redigera gruppnamn";
 "menu_edit_group_image" = "Redigera gruppbild";
 "menu_settings" = "Inställningar";
-"menu_advanced" = "Avancerad";
+"menu_advanced" = "Avancerat";
 "menu_deaddrop" = "Kontaktförfrågningar";
 "menu_deaddrop_subtitle" = "Tryck på meddelande för att börja chatta";
 "menu_view_profile" = "Visa profil";
@@ -155,22 +156,22 @@
 "device_talk" = "Enhetsmeddelanden";
 "device_talk_subtitle" = "Lokalt genererade meddelanden";
 "device_talk_explain" = "Meddelanden i denna chatt är lokalt genererade av din Delta Chat-app. Dess skapare använder den för att informera om app-uppdateringar och problem vid användning.";
-"device_talk_welcome_message" = "Välkommen till Delta Chat! - Delta Chat ser och känns som andra populär meddelande-appar, men involverar ingen centraliserad kontroll, tracking eller säljer dig, dina vänner, kollegor eller familj till stora organisationer/företag.\n\nTekniskt, Delta Chat är en epost applikation med ett modernt utseende. Epost i ett nytt utseende som får dig att vilja 👻\n\nAnvänd Delta Chat med vem som helst av alla miljader människor som har en epostadress. Mottagare behöver inte installera Delta Chat, besöka webbsidor eller registera sig någonstans - men såklart om de vill så kan du visa dem till 👉 https://get.delta.chat";
+"device_talk_welcome_message" = "Välkommen till Delta Chat! - Delta Chat ser ut och känns som andra populära meddelandeappar, men innefattar ingen centraliserad kontroll eller spårning eller säljer dig och dina vänner, kollegor eller familj till stora organisationer/företag.\n\nTekniskt är Delta Chat ett e-postprogram med modernt utseende. E-post i ny skrud, om du vill. 👻\n\nAnvänd Delta Chat med vem som helst av alla miljarder människor som har en e-postadress. Mottagaren behöver inte installera Delta Chat, besöka webbsidor eller registrera sig någonstans, men om de vill så kan du såklart visa dem till 👉 https://get.delta.chat";
 "edit_contact" = "Redigera kontakt";
 // Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
-"pin_chat" = "Nåla chatt";
+"pin_chat" = "Fäst chatten";
 // Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
-"unpin_chat" = "Ta bort nål";
+"unpin_chat" = "Lösgör chatten";
 // Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
-"pin" = "Nåla";
+"pin" = "Fäst";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
-"unpin" = "Ta bort nål";
+"unpin" = "Lösgör";
 
-"mute_for_one_hour" = "Ljud av 1 timma";
-"mute_for_two_hours" = "Ljud av 2 timma";
-"mute_for_one_day" = "Ljud av 1 dag";
-"mute_for_seven_days" = "Ljud av 7 dagar";
-"mute_forever" = "Stum för evigt";
+"mute_for_one_hour" = "Tysta 1 timma";
+"mute_for_two_hours" = "Tysta 2 timmar";
+"mute_for_one_day" = "Tysta 1 dag";
+"mute_for_seven_days" = "Tysta 7 dagar";
+"mute_forever" = "Tysta för evigt";
 
 "share_location_once" = "en gång";
 "share_location_for_5_minutes" = "i 5 minuter";
@@ -179,22 +180,22 @@
 "share_location_for_two_hours" = "i 2 timmar";
 "share_location_for_six_hours" = "i 6 timmar";
 
-"file_saved_to" = "Filen är sparad till \"%1$@\".";
+"file_saved_to" = "Filen är sparad i \"%1$@\".";
 
 // get confirmations
 "ask_leave_group" = "Är du säker på att du vill lämna den här gruppen?";
 "ask_forward" = "Vidarebefordra meddelanden till %1$@?";
-"ask_export_attachment" = "Exportera bifogad fil? Exportera bilagor tillåter andra appar på din enhet att komma åt dem.\n\nFortsätt?";
-"ask_block_contact" = "Blockera den här kontakten? Du kommer inte längre att få meddelanden från den här kontakten.";
+"ask_export_attachment" = "Exportera bilagor? Exporterade bilagor tillåter andra appar på din enhet att komma åt dem.\n\nVill du fortsätta?";
+"ask_block_contact" = "Blockera den här kontakten? Du kommer inte att få fler meddelanden från den här kontakten.";
 "ask_unblock_contact" = "Avblockera den här kontakten? Du kommer återigen att kunna ta emot meddelanden från den här kontakten.";
-"ask_delete_contacts" = "Ta bort kontakter? Detta kommer permanent radera de valda kontakterna.\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte raderas permanent.";
-"ask_delete_contact" = "Radera kontakt %1$@?\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte raderas permanent. ";
-"cannot_delete_contacts_in_use" = "Det går inte att radera kontakter med pågående chattar.";
+"ask_delete_contacts" = "Ta bort kontakter? Detta kommer att ta bort de valda kontakterna permanent.\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte tas bort permanent.";
+"ask_delete_contact" = "Ta bort kontakten %1$@?\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte tas bort permanent. ";
+"cannot_delete_contacts_in_use" = "Det går inte att ta bort kontakter med pågående chattar.";
 "ask_start_chat_with" = "Chatta med%1$@ ?";
 // Translators: %1$s will be replaces by a comma separated list of names
-"ask_remove_members" = "Radera %1$@ från grupp?";
-"info_outdated_app_title" = "Din app-version är för gammal.";
-"info_outdated_app_text" = "Det verkar som att du installerade Delta Chat från en källa som inte har auto-uppdateringar (t.ex. GitHub). Vänligen använd en butiksversion för att komma åt de senaste funktionerna och buggfixar.";
+"ask_remove_members" = "Ta bort %1$@ från gruppen?";
+"info_outdated_app_title" = "Din appversion är för gammal.";
+"info_outdated_app_text" = "Det verkar som att du installerade Delta Chat från en källa som inte har automatiska uppdateringar (t.ex. GitHub). Vänligen använd en butiksversion för att komma åt de senaste funktionerna och buggfixar.";
 "info_outdated_app_dialog_title" = "Uppdatera källan";
 "info_outdated_app_dialog_text" = "Delta Chat är tillgänglig för:";
 
@@ -208,27 +209,27 @@
 
 // chatlist and chat view
 "chat_archived_chats_title" = "Arkiverade chattar";
-"chat_please_enter_message" = "Skriv in ett meddelande.";
+"chat_please_enter_message" = "Skriv ett meddelande.";
 "chat_camera_unavailable" = "Kamera otillgänglig.";
 "chat_unable_to_record_audio" = "Det går inte att spela in ljud.";
-"chat_no_messages_hint" = "Skicka meddelande till %1$@:\n\n• Det är okej om %2$@ inte använder Delta Chat.\n\n• Leverans av det första meddelandet kan ta ett tag och kan vara okrypterad.";
+"chat_no_messages_hint" = "Skicka meddelande till %1$@:\n\n• Det är okej om %2$@ inte använder Delta Chat.\n\n• Leverans av det första meddelandet kan ta ett tag och det kan vara okrypterad.";
 "chat_new_group_hint" = "Komponera det första meddelandet, så att andra kan svara inom denna grupp.\n\n• Det är okej om inte alla medlemmar använder Delta Chat.\n\n• Det kan ta en stund innan det första meddelandet levereras.";
 "chat_record_slide_to_cancel" = "Svep för att avbryta";
-"chat_record_explain" = "Tryck och håll ned för att spela in ett röstmeddelande, släpp för att skicka";
+"chat_record_explain" = "Tryck och håll ner för att spela in ett röstmeddelande, släpp för att skicka.";
 "chat_no_chats_yet_title" = "Tom inkorg.\nTryck på \"+\" för att starta en ny chatt.";
-"chat_no_chats_yet_hint" = "Du kan chatta med andra Delta Chat-användare och med alla andra med en e-postadress.";
+"chat_no_chats_yet_hint" = "Du kan chatta med andra Delta Chat-användare och med vilken e-postadress som helst.";
 "chat_all_archived" = "Alla chattar arkiverade.\nTryck på \"+\" för att starta en ny chatt.";
 "chat_share_with_title" = "Dela med";
 "chat_input_placeholder" = "Meddelande";
 "chat_archived_label" = "Arkiverat";
 "chat_no_messages" = "Inga meddelanden.";
-"chat_self_talk_subtitle" = "Meddelanden jag skickade till mig själv";
+"chat_self_talk_subtitle" = "Meddelanden jag skickat till mig själv";
 "saved_messages" = "Sparade meddelanden";
-"saved_messages_explain" = "• Vidarebefordra meddelanden här för att komma åt dom enkelt\n\n• Spara anteckningar eller röstmemon\n\n• Bifoga mediafiler för att spara dom";
-"chat_contact_request" = "Kontaktförfrågningar";
-"chat_no_contact_requests" = "Inga kontaktförfrågningar.\n\nOm du vill ha vanliga e-postmeddelande här som kontakter, så kan du ändra på det under appens inställningar.";
-"retry_send" = "Skicka om meddelande";
-"send_failed" = "Kunde inte skicka meddelande";
+"saved_messages_explain" = "• Vidarebefordra meddelanden här för enkel åtkomst\n\n• Spara anteckningar eller röstmemon\n\n• Bifoga mediafiler för att spara dom";
+"chat_contact_request" = "Kontaktförfrågan";
+"chat_no_contact_requests" = "Inga kontaktförfrågningar.\n\nOm du vill att vanliga e-postmeddelanden skall visas som kontaktförfrågningar här, kan du ändra det i appens inställningar.";
+"retry_send" = "Skicka om meddelandet";
+"send_failed" = "Kunde inte skicka meddelandet";
 
 // map
 "filter_map_on_time" = "Visa platser inom tidsramen";
@@ -243,8 +244,8 @@
 
 
 // create/edit groups, contact/group profile
-"group_name" = "Grupp namn";
-"group_avatar" = "Grupp bild";
+"group_name" = "Gruppnamn";
+"group_avatar" = "Gruppbild";
 "group_create_button" = "Skapa grupp";
 "group_please_enter_group_name" = "Ange ett namn för gruppen.";
 "group_add_members" = "Lägg till medlemmar";
@@ -374,7 +375,6 @@
 "pref_background_default_color" = "Standard färg";
 "pref_background_custom_image" = "Anpassad bild";
 "pref_background_custom_color" = "Anpassad färg";
-
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_send_asm_explain_before" = "Ett meddelande för att sätta upp Autocrypt delar den informationen med andra Autocrypt-anpassade applikationer på ett säkert sätt. Informationen krypteras med en kod som visas här och som måste matas in på den mottagande enheten.";

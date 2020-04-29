@@ -376,7 +376,6 @@
 "pref_background_default_color" = "Özünəməxsus rəng";
 "pref_background_custom_image" = "Şəkil";
 "pref_background_custom_color" = "Rəng";
-
 // autocrypt
 "autocrypt" = "Avtomatik şifrələmə";
 "autocrypt_explain" = "Avtoşifrələmə, avtomatik ucdan uca e-poçt şifrələməsi üçün yeni və açıq bir spesifikasiyadır. \n\nTədbirdən sonrakı qurulum avtomatik olaraq yaradılıb və Autocrypt Setup Messages ilə cihazlar arasında köçürə bilərsiniz.";

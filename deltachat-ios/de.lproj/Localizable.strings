@@ -422,16 +422,20 @@
 "pref_background_default_color" = "Voreingestellte Farbe";
 "pref_background_custom_image" = "Benutzerdefiniertes Hintergrundbild";
 "pref_background_custom_color" = "Benutzerdefinierte Farbe";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Zuverlässige Hintergrundverbindung";
+"pref_reliable_service_explain" = "Erfordert immer sichtbaren Hinweis";
+
 
 // automatically delete message
 "autodel_title" = "Nachrichten automatisch löschen";
 "autodel_title_short" = "Automatisch löschen";
 "autodel_device_title" = "Nachrichten vom Gerät löschen";
 "autodel_server_title" = "Nachrichten vom Server löschen";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_device_ask" = "Wirklich %1$d Nachrichten jetzt und zukünftig alle neuen Nachrichten %2$@ löschen?\n\n• Dies schliesst alle Medien mit ein\n\n• Nachrichten werden gelöscht, auch wenn sie nicht angesehen wurden\n\n• \"Gespeicherte Nachrichten\" werden nicht gelöscht";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_server_ask" = "Wirklich %1$d Nachrichten jetzt und zukünftig alle neuen Nachrichten %2$@ löschen?\n\n• Dies schliesst alle Medien mit ein\n\n• E-Mails, die aufgrund von \"Normale E-Mails anzeigen\" angezeigt werden, werden ebenfalls vom Server gelöscht\n\n• \"Gespeicherte Nachrichten\" werden ebenfalls vom Server gelöschet";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_device_ask" = "Wirklich %1$d Nachrichten jetzt und zukünftig alle neuen Nachrichten \"%2$@\" löschen?\n\n• Dies schliesst alle Medien mit ein\n\n• Nachrichten werden gelöscht, auch wenn sie nicht angesehen wurden\n\n• \"Gespeicherte Nachrichten\" werden nicht gelöscht";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "Wirklich %1$d Nachrichten jetzt und zukünftig alle neuen Nachrichten \"%2$@\" löschen?\n\n• Dies schliesst alle Medien mit ein\n\n• E-Mails, die aufgrund von \"Normale E-Mails anzeigen\" angezeigt werden, werden ebenfalls vom Server gelöscht\n\n• \"Gespeicherte Nachrichten\" werden ebenfalls vom Server gelöschet";
 "autodel_confirm" = "Verstanden, löschen all diese Nachrichten";
 "autodel_at_once" = "Sofort";
 "autodel_after_1_hour" = "Nach 1 Stunde";
@@ -526,7 +530,7 @@
 "notify_media_message" = "Medienmitteilung";
 "notify_reply_button" = "Antworten";
 "notify_new_message" = "Neue Nachricht";
-"notify_background_connection_enabled" = "Verbindung im Hintergrund aktiviert";
+"notify_background_connection_enabled" = "Hintergrundverbindung aktiviert";
 "notify_priority_high" = "Hoch";
 "notify_priority_max" = "Maximum";
 "notify_name_and_message" = "Name und Nachricht";

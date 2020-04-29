@@ -354,7 +354,6 @@
 "pref_background_default_color" = "Numatytoji spalva";
 "pref_background_custom_image" = "Tinkintas paveikslas";
 "pref_background_custom_color" = "Tinkinta spalva";
-
 "autodel_confirm" = "Aš suprantu, ištrinti visas šias žinutes";
 "autodel_at_once" = "Iš karto";
 "autodel_after_1_hour" = "Po 1 valandos";

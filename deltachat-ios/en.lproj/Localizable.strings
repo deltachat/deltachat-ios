@@ -422,16 +422,20 @@
 "pref_background_default_color" = "Default color";
 "pref_background_custom_image" = "Custom image";
 "pref_background_custom_color" = "Custom color";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Reliable background connection";
+"pref_reliable_service_explain" = "Requires a permanent notification";
+
 
 // automatically delete message
 "autodel_title" = "Auto-delete messages";
 "autodel_title_short" = "Auto-delete";
 "autodel_device_title" = "Delete messages from device";
 "autodel_server_title" = "Delete messages from server";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_device_ask" = "Do you want to delete %1$d messages now and all newly fetched messages %2$@ in the future?\n\n• This includes all media\n\n• Messages will be deleted whether they were seen or not\n\n• \"Saved messages\" will be skipped from local deletion";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_server_ask" = "Do you want to delete %1$d messages now and all newly fetched messages %2$@ in the future?\n\n• This includes all media\n\n• This will also delete emails affected by the \"Show classic emails\" option\n\n• \"Saved messages\" will be deleted from the server as well";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_device_ask" = "Do you want to delete %1$d messages now and all newly fetched messages \"%2$@\" in the future?\n\n• This includes all media\n\n• Messages will be deleted whether they were seen or not\n\n• \"Saved messages\" will be skipped from local deletion";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "Do you want to delete %1$d messages now and all newly fetched messages \"%2$@\" in the future?\n\n• This includes all media\n\n• This will also delete emails affected by the \"Show classic emails\" option\n\n• \"Saved messages\" will be deleted from the server as well";
 "autodel_confirm" = "I understand, delete all these messages";
 "autodel_at_once" = "At once";
 "autodel_after_1_hour" = "After 1 hour";

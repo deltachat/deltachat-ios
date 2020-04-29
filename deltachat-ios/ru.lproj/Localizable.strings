@@ -422,16 +422,15 @@
 "pref_background_default_color" = "Цвет по умолчанию";
 "pref_background_custom_image" = "Пользовательское изображение";
 "pref_background_custom_color" = "Пользовательский цвет";
-
 // automatically delete message
 "autodel_title" = "Автоматическое удаление сообщений";
 "autodel_title_short" = "Автоматическое удаление";
 "autodel_device_title" = "Удалять сообщения с устройства";
 "autodel_server_title" = "Удалять сообщения с сервера";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_device_ask" = "Вы хотите удалить %1$d сообщений сейчас и все новые загруженные сообщения %2$@ в будущем?\n\n• Это включает в себя все медиафайлы\n\n• Сообщения будут удалены независимо от того, были ли они прочитаны\n\n• \"Сохраненные сообщения\" будут пропущены при локальном удалении";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_server_ask" = "Вы хотите удалить %1$d сообщений сейчас и все новые загруженные сообщения %2$@ в будущем?\n\n• Это включает в себя все медиафайлы\n\n• Это также удалит почту, затронутую опцией \"Показывать обычную почту\"\n\n• \"Сохраненные сообщения\" также будут удалены с сервера";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_device_ask" = "Вы хотите удалить %1$d сообщений сейчас и все новые загруженные сообщения \"%2$@\" в будущем?\n\n• Это включает в себя все медиафайлы\n\n• Сообщения будут удалены независимо от того, были ли они прочитаны\n\n• \"Сохраненные сообщения\" будут пропущены при локальном удалении";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "Вы хотите удалить %1$d сообщений сейчас и все новые загруженные сообщения \"%2$@\" в будущем?\n\n• Это включает в себя все медиафайлы\n\n• Это также удалит почту, затронутую опцией \"Показывать обычную почту\"\n\n• \"Сохраненные сообщения\" также будут удалены с сервера";
 "autodel_confirm" = "Я понимаю, удалите все эти сообщения";
 "autodel_at_once" = "Сразу";
 "autodel_after_1_hour" = "Через 1 час";

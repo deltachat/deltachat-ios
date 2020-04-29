@@ -418,16 +418,15 @@
 "pref_background_default_color" = "Colore predefinito";
 "pref_background_custom_image" = "Immagine personalizzata";
 "pref_background_custom_color" = "Colore personalizzato";
-
 // automatically delete message
 "autodel_title" = "Auto eliminazione dei messaggi";
 "autodel_title_short" = "Auto-eliminazione";
 "autodel_device_title" = "Elimina messaggi dal dispositivo";
 "autodel_server_title" = "Elimina messaggi dal server";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_device_ask" = "Vuoi eliminare %1$d messaggi ora e tutti i messaggi arrivati %2$@ nel futuro?\n\n• Questo include tutti i media\n\n• I messaggi verranno eliminati anche se non sono stati letti\n\n• I \"Messaggi salvati\" vengono preservati dalla cancellazione locale.";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_server_ask" = "Vuoi eliminare %1$d messaggi ora e tutti i messaggi arrivati %2$@ nel futuro?\n\n• Questo include tutti i media\n\n• Verranno eliminate anche le email legate all\'opzione \"Mostra email classiche\"\n\n• Anche i \"Messaggi salvati\" verranno eliminati dal server.";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_device_ask" = "Vuoi eliminare %1$d messaggi ora e tutti i messaggi arrivati \"%2$@\" nel futuro?\n\n• Questo include tutti i media\n\n• I messaggi verranno eliminati anche se non sono stati letti\n\n• I \"Messaggi salvati\" vengono preservati dalla cancellazione locale.";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "Vuoi eliminare %1$d messaggi ora e tutti i messaggi arrivati \"%2$@\" nel futuro?\n\n• Questo include tutti i media\n\n• Verranno eliminate anche le email legate all\'opzione \"Mostra email classiche\"\n\n• Anche i \"Messaggi salvati\" verranno eliminati dal server.";
 "autodel_confirm" = "Ho capito, elimina tutti i messaggi";
 "autodel_at_once" = "Una volta";
 "autodel_after_1_hour" = "Dopo 1 ora";

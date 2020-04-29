@@ -417,7 +417,6 @@
 "pref_background_default_color" = "Couleur par défaut";
 "pref_background_custom_image" = "Image personnalisée";
 "pref_background_custom_color" = "Couleur personnalisée";
-
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt est une nouvelle spécification ouverte pour le chiffrement automatique de bout en bout des courriels.\n\nVotre configuration de bout en bout est créée automatiquement si nécessaire et vous pouvez la transférer entre les périphériques avec les messages de configuration Autocrypt.";

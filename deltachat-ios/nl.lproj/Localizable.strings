@@ -422,22 +422,23 @@
 "pref_background_default_color" = "Standaard kleur";
 "pref_background_custom_image" = "Eigen afbeelding";
 "pref_background_custom_color" = "Eigen kleur";
-
 // automatically delete message
 "autodel_title" = "Berichten automatisch verwijderen";
 "autodel_title_short" = "Automatisch verwijderen";
 "autodel_device_title" = "Berichten verwijderen van apparaat";
 "autodel_server_title" = "Berichten verwijderen van server";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_device_ask" = "Wil je nu %1$d berichten verwijderen en toekomstige berichten %2$@?\n\n• Dit omvat alle media\n\n• Berichten worden verwijderd, ongeacht of ze bekeken zijn\n\n• Het gesprek \'Opgeslagen berichten\' wordt overgeslagen";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_server_ask" = "Wil je nu %1$d berichten verwijderen en toekomstige berichten %2$@?\n\n• Dit omvat alle media\n\n• Berichten worden verwijderd, ongeacht of ze bekeken zijn\n\n• Het gesprek \'Opgeslagen berichten\' wordt eveneens verwijderd van de server";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_device_ask" = "Wil je nu %1$d berichten verwijderen en toekomstige berichten \'%2$@\'?\n\n• Dit omvat alle media\n\n• Berichten worden verwijderd, ongeacht of ze bekeken zijn\n\n• Het gesprek \'Opgeslagen berichten\' wordt overgeslagen";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "Wil je nu %1$d berichten verwijderen en toekomstige berichten \'%2$@\'?\n\n• Dit omvat alle media\n\n• Berichten worden verwijderd, ongeacht of ze bekeken zijn\n\n• Het gesprek \'Opgeslagen berichten\' wordt eveneens verwijderd van de server";
 "autodel_confirm" = "Ik begrijp het; verwijder alle berichten";
 "autodel_at_once" = "Direct";
 "autodel_after_1_hour" = "Na 1 uur";
 "autodel_after_1_day" = "Na 1 dag";
 "autodel_after_1_week" = "Na 1 week";
 "autodel_after_4_weeks" = "Na 4 weken";
+"autodel_after_1_year" = "Na 1 jaar";
+
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt is een nieuwe, open specificatie voor het automatisch instellen van end-to-end e-mailversleuteling.\n\nJe instellingen worden, indien nodig, automatisch gecreëerd en kunnen worden overgezet naar andere apparaten middels instelberichten.";

@@ -306,8 +306,12 @@
 "accept_invalid_certificates" = "Onartu ziurtagiri baliogabeak";
 
 "used_settings" = "Erabilitako ezarpenak:";
+"switch_account" = "Aldatu kontua";
+"add_account" = "Gehitu kontua";
 "delete_account" = "Ezabatu kontua";
 "delete_account_ask" = "Ziur al zaude zure kontuaren datuak ezabatu nahi dituzula?";
+"switching_account" = "Kontua aldatzen...";
+
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Birbidali honi …";
@@ -418,22 +422,23 @@
 "pref_background_default_color" = "Lehenetsitako kolorea";
 "pref_background_custom_image" = "Irudi pertsonalizatua";
 "pref_background_custom_color" = "Kolore pertsonalizatua";
-
 // automatically delete message
 "autodel_title" = "Automatikoki ezabatu mezuak";
 "autodel_title_short" = "Automatikoki ezabatu";
 "autodel_device_title" = "Ezabatu mezuak gailutik";
 "autodel_server_title" = "Ezabatu mezuak zerbitzaritik";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_device_ask" = "%1$d mezu ezabatu nahi dituzu orain eta %2$@ etorkizunean jasotako mezuak ere?\n\n• Honek multimedia ere barne hartzen du\n\n• Mezuak ikusi ala ez ezabatuko dira\n\n• \"Gordetako mezuak\" ez dira lokalki ezabatuko";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_server_ask" = "%1$d mezu ezabatu nahi dituzu orain eta %2$@ etorkizunean jasotako mezuak ere?\n\n• Honek \"Erakutsi e-mail klasikoak\" aukerak ekarritako e-mailei ere eragingo die\n\n• \"Gordetako mezuak\" ere zerbitzaritik ezabatuko dira";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_device_ask" = "%1$d mezu ezabatu nahi dituzu orain eta \"%2$@\" etorkizunean jasotako mezuak ere?\n\n• Honek multimedia ere barne hartzen du\n\n• Mezuak ikusi ala ez ezabatuko dira\n\n• \"Gordetako mezuak\" ez dira lokalki ezabatuko";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "%1$d mezu ezabatu nahi dituzu orain eta \"%2$@\" etorkizunean jasotako mezuak ere?\n\n• Honek \"Erakutsi e-mail klasikoak\" aukerak ekarritako e-mailei ere eragingo die\n\n• \"Gordetako mezuak\" ere zerbitzaritik ezabatuko dira";
 "autodel_confirm" = "Ulertzen dut, ezabatu mezuk guzti hauek";
 "autodel_at_once" = "Berehala";
 "autodel_after_1_hour" = "Ordubete eta gero";
 "autodel_after_1_day" = "Egun bat eta gero";
 "autodel_after_1_week" = "Aste bat eta gero";
 "autodel_after_4_weeks" = "4 aste eta gero";
+"autodel_after_1_year" = "Urtebete eta gero";
+
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt e-maila muturretik muturrera zifratzeko espezifikazio berri eta ireki bat da.\n\nZure muturretik muturrerako ezarpena automatikoki sortzend a behar denean eta gailutik gailura eraman dezakezu Autocrypt ezarpen mezuekin.";

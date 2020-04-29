@@ -422,16 +422,15 @@
 "pref_background_default_color" = "Cor por omisión";
 "pref_background_custom_image" = "Imaxe persoal";
 "pref_background_custom_color" = "Cor persoal";
-
 // automatically delete message
 "autodel_title" = "Borrado automático";
 "autodel_title_short" = "Borrar automáticamente";
 "autodel_device_title" = "Borrar mensaxes do dispositivo";
 "autodel_server_title" = "Borrar mensaxes do servidor";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_device_ask" = "Queres borrar %1$d mensaxes agora e todas as novas mensaxes %2$@ no futuro?\n\n• Esto inclúe todo o multimedia\n\n• As mensaxes borraranse fosen lidas ou non\n\n• As \"mensaxes gardadas\" non será borradas do dispositivo.";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_server_ask" = "Queres borrar %1$d mensaxes agora e todas as novas mensaxes recibidas %2$@ no futuro?\n\n• Esto inclúe todo o multimedia\n\n• Esto tamén borrará os correos afectados pola opción \"Mostrar correo clásico\"\n\n• As \"mensaxes gardadas\" tamén se borrarán no servidor.";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_device_ask" = "Queres borrar %1$d mensaxes agora e todas as novas mensaxes \"%2$@\" no futuro?\n\n• Esto inclúe todo o multimedia\n\n• As mensaxes borraranse fosen lidas ou non\n\n• As \"mensaxes gardadas\" non será borradas do dispositivo.";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "Queres borrar %1$d mensaxes agora e todas as novas mensaxes recibidas \"%2$@\" no futuro?\n\n• Esto inclúe todo o multimedia\n\n• Esto tamén borrará os correos afectados pola opción \"Mostrar correo clásico\"\n\n• As \"mensaxes gardadas\" tamén se borrarán no servidor.";
 "autodel_confirm" = "Entendo, dalle e borra as mensaxes todas";
 "autodel_at_once" = "dunha vez";
 "autodel_after_1_hour" = "Após 1 hora";

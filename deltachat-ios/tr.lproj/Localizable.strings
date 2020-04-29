@@ -422,22 +422,23 @@
 "pref_background_default_color" = "Varsayılan renk";
 "pref_background_custom_image" = "Özel görsel";
 "pref_background_custom_color" = "Özel renk";
-
 // automatically delete message
 "autodel_title" = "İletileri otomatik sil";
 "autodel_title_short" = "Otomatik sil";
 "autodel_device_title" = "İletileri aygıttan sil";
 "autodel_server_title" = "İletileri sunucudan sil";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_device_ask" = "%1$d iletiyi şimdi ve gelecekte yeni getirilen tüm iletileri %2$@ silmek istiyor musunuz?\n\n• Bu, tüm ortamları kapsar\n\n• İletiler görülse de görülmese de silinecek\n\n• \"Kaydedilen iletiler\" yerel silmeden atlanacak";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan in italics or so.
-"autodel_server_ask" = "%1$d iletiyi şimdi ve gelecekte yeni getirilen tüm iletileri %2$@ silmek istiyor musunuz?\n\n• Bu, tüm ortamları kapsar\n\n• Bu, \"Klasik e-postaları göster\" seçeneği tarafından etkilenen e-postaları da silecek\n\n• \"Kaydedilen iletiler\" sunucudan da silinecek";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_device_ask" = "%1$d iletiyi şimdi ve gelecekte yeni getirilen tüm iletileri \"%2$@\" silmek istiyor musunuz?\n\n• Bu, tüm ortamları kapsar\n\n• İletiler görülse de görülmese de silinecek\n\n• \"Kaydedilen iletiler\" yerel silmeden atlanacak";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "%1$d iletiyi şimdi ve gelecekte yeni getirilen tüm iletileri \"%2$@\" silmek istiyor musunuz?\n\n• Bu, tüm ortamları kapsar\n\n• Bu, \"Klasik e-postaları göster\" seçeneği tarafından etkilenen e-postaları da silecek\n\n• \"Kaydedilen iletiler\" sunucudan da silinecek";
 "autodel_confirm" = "Anladım, tüm bu iletileri sil";
 "autodel_at_once" = "Bir kerede";
 "autodel_after_1_hour" = "1 saat sonra";
 "autodel_after_1_day" = "1 gün sonra";
 "autodel_after_1_week" = "1 hafta sonra";
 "autodel_after_4_weeks" = "4 hafta sonra";
+"autodel_after_1_year" = "1 yıl sonra";
+
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt, otomatik uçtan uca e-posta şifrelemesi için yeni ve açık bir belirtimdir.\n\nUçtan uca ayarlamanız, gerektiğinde otomatik olarak oluşturulur ve Autocrypt Ayarlama İletileri ile aygıtlar arasında aktarabilirsiniz.";
