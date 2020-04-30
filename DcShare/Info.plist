@@ -34,6 +34,7 @@ $attachment,
 ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.image" ||
 ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.audio" ||
 ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.movie" ||
+ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.plain-text" ||
 ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.url"
 ).@count == $extensionItem.attachments.@count
 ).@count >= 1</string>
