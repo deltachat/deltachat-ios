@@ -5,6 +5,12 @@
 //  Created by Pedro Paulo de Amorim.
 //  Copyright (c) 2016 zero. All rights reserved.
 //
+//  Modified by Kevin Kieffer on 2019/08/06.  Changes as follows:
+//  Changed configCameraOverlayWidthConstraint() to use a multipler to provide a rectangle instead of a square,
+//  the rectangle being created by using an aspect ratio from the CroppingParameters
+//
+//  Cleaned up the constraints for the flash, swap, and library buttons to work properly in both landscape orientations
+
 
 import UIKit
 import AVFoundation
@@ -35,6 +41,11 @@ extension CameraViewController {
         })
     }
     
+    func removeCameraButtonConstraints() {
+        view.autoRemoveConstraint(cameraButtonEdgeConstraint)
+        view.autoRemoveConstraint(cameraButtonGravityConstraint)
+    }
+    
     /**
      * Add the constraints based on the device orientation,
      * this pin the button on the bottom part of the screen
@@ -42,16 +53,17 @@ extension CameraViewController {
      * the button on the right part of the screen.
      */
     func configCameraButtonEdgeConstraint(_ statusBarOrientation: UIInterfaceOrientation) {
-        view.autoRemoveConstraint(cameraButtonEdgeConstraint)
         
         let attribute : NSLayoutConstraint.Attribute = {
             switch statusBarOrientation {
-            case .portrait: return .bottomMargin
-            case .landscapeRight: return .rightMargin
-            case .landscapeLeft: return .leftMargin
-            default: return .topMargin
+            case .portrait: return .bottom
+            case .landscapeRight: return .right
+            case .landscapeLeft: return .left
+            default: return .top
             }
         }()
+        let constraintPortrait = statusBarOrientation == .portrait || statusBarOrientation == .landscapeRight
+
         
         cameraButtonEdgeConstraint = NSLayoutConstraint(
             item: cameraButton,
@@ -60,7 +72,8 @@ extension CameraViewController {
             toItem: view,
             attribute: attribute,
             multiplier: 1.0,
-            constant: -8)
+            constant: constraintPortrait ? -16 : 16)
+        
         view.addConstraint(cameraButtonEdgeConstraint!)
     }
     
@@ -71,7 +84,6 @@ extension CameraViewController {
      * the button based on the height of screen.
      */
     func configCameraButtonGravityConstraint(_ portrait: Bool) {
-        view.autoRemoveConstraint(cameraButtonGravityConstraint)
         let attribute : NSLayoutConstraint.Attribute = portrait ? .centerX : .centerY
         cameraButtonGravityConstraint = NSLayoutConstraint(
             item: cameraButton,
@@ -227,15 +239,19 @@ extension CameraViewController {
      * Configure the center of SwapButton, based on the
      * axis center of CameraButton.
      */
-    func configSwapButtonGravityConstraint(_ portrait: Bool) {
+    func configSwapButtonGravityConstraint(_ statusBarOrientation: UIInterfaceOrientation) {
+        
+        let portrait = statusBarOrientation == .portrait
+        let landLeft = statusBarOrientation == .landscapeLeft
+        
         swapButtonGravityConstraint = NSLayoutConstraint(
             item: swapButton,
-            attribute: portrait ? .right : .bottom,
-            relatedBy: .lessThanOrEqual,
+            attribute: portrait ? .right : (landLeft ? .bottom : .top),
+            relatedBy: portrait || landLeft ? .lessThanOrEqual : .greaterThanOrEqual,
             toItem: containerSwapLibraryButton,
             attribute: portrait ? .centerX : .centerY,
             multiplier: 1.0,
-            constant: -4.0 * DeviceConfig.SCREEN_MULTIPLIER)
+            constant: (portrait || landLeft ? -4.0 : 4.0) * DeviceConfig.SCREEN_MULTIPLIER)
         view.addConstraint(swapButtonGravityConstraint!)
     }
     
@@ -379,15 +395,19 @@ extension CameraViewController {
      * Set the center gravity of the LibraryButton based
      * on the position of CameraButton.
      */
-    func configLibraryGravityButtonConstraint(_ portrait: Bool) {
+    func configLibraryGravityButtonConstraint(_ statusBarOrientation: UIInterfaceOrientation) {
+        
+        let portrait = statusBarOrientation == .portrait
+        let landLeft = statusBarOrientation == .landscapeLeft
+        
         libraryButtonGravityConstraint = NSLayoutConstraint(
             item: libraryButton,
-            attribute: portrait ? .left : .top,
-            relatedBy: .lessThanOrEqual,
+            attribute: portrait ? .left : (landLeft ? .top : .bottom),
+            relatedBy: portrait || landLeft ? .greaterThanOrEqual : .lessThanOrEqual,
             toItem: containerSwapLibraryButton,
             attribute: portrait ? .centerX : .centerY,
             multiplier: 1.0,
-            constant: 4.0 * DeviceConfig.SCREEN_MULTIPLIER)
+            constant: (portrait || landLeft ? 4.0 : -4.0) * DeviceConfig.SCREEN_MULTIPLIER)
         view.addConstraint(libraryButtonGravityConstraint!)
     }
     
@@ -400,8 +420,8 @@ extension CameraViewController {
     func configFlashEdgeButtonConstraint(_ statusBarOrientation: UIInterfaceOrientation) {
         view.autoRemoveConstraint(flashButtonEdgeConstraint)
         
-        let constraintRight = statusBarOrientation == .portrait || statusBarOrientation == .landscapeRight
-        let attribute : NSLayoutConstraint.Attribute = constraintRight ? .topMargin : .bottomMargin
+        let constraintPortrait = statusBarOrientation == .portrait || statusBarOrientation == .landscapeLeft
+        let attribute : NSLayoutConstraint.Attribute = constraintPortrait ? .top : .left
         
         flashButtonEdgeConstraint = NSLayoutConstraint(
             item: flashButton,
@@ -410,7 +430,7 @@ extension CameraViewController {
             toItem: view,
             attribute: attribute,
             multiplier: 1.0,
-            constant: constraintRight ? 8 : -8)
+            constant: constraintPortrait ? 16 : 16)
         view.addConstraint(flashButtonEdgeConstraint!)
     }
     
@@ -424,8 +444,8 @@ extension CameraViewController {
     func configFlashGravityButtonConstraint(_ statusBarOrientation: UIInterfaceOrientation) {
         view.autoRemoveConstraint(flashButtonGravityConstraint)
         
-        let constraintRight = statusBarOrientation == .portrait || statusBarOrientation == .landscapeLeft
-        let attribute : NSLayoutConstraint.Attribute = constraintRight ? .right : .left
+        let constraintPortrait = statusBarOrientation == .portrait || statusBarOrientation == .landscapeLeft
+        let attribute : NSLayoutConstraint.Attribute = constraintPortrait ? .right : .top
         
         flashButtonGravityConstraint = NSLayoutConstraint(
             item: flashButton,
@@ -434,8 +454,95 @@ extension CameraViewController {
             toItem: view,
             attribute: attribute,
             multiplier: 1.0,
-            constant: constraintRight ? -8 : 8)
+            constant: constraintPortrait ? -16 : 16)
         view.addConstraint(flashButtonGravityConstraint!)
     }
-
+    
+    /**
+     * Used to create a perfect was: square now: rectangle with aspect ratio for CameraOverlay.
+     * This method will determinate the size of CameraOverlay,
+     * if portrait, it will use the width of superview to
+     * determinate the height of the view. Else if landscape,
+     * it uses the height of the superview to create the width
+     * of the CameraOverlay.
+     */
+    func configCameraOverlayWidthConstraint(_ portrait: Bool) {
+        view.autoRemoveConstraint(cameraOverlayWidthConstraint)
+        cameraOverlayWidthConstraint = NSLayoutConstraint(
+            item: cameraOverlay,
+            attribute: portrait ? .height : .width,
+            relatedBy: .equal,
+            toItem: cameraOverlay,
+            attribute: portrait ? .width : .height,
+            multiplier: portrait ? croppingParameters.aspectRatioHeightToWidth : 1.0/croppingParameters.aspectRatioHeightToWidth,
+            constant: 0)
+        view.addConstraint(cameraOverlayWidthConstraint!)
+    }
+    
+    /**
+     * This method will center the relative position of
+     * CameraOverlay, based on the biggest size of the
+     * superview.
+     */
+    func configCameraOverlayCenterConstraint(_ portrait: Bool) {
+        view.autoRemoveConstraint(cameraOverlayCenterConstraint)
+        let attribute : NSLayoutConstraint.Attribute = portrait ? .centerY : .centerX
+        cameraOverlayCenterConstraint = NSLayoutConstraint(
+            item: cameraOverlay,
+            attribute: attribute,
+            relatedBy: .equal,
+            toItem: view,
+            attribute: attribute,
+            multiplier: 1.0,
+            constant: 0)
+        view.addConstraint(cameraOverlayCenterConstraint!)
+    }
+    
+    /**
+     * Remove the CameraOverlay constraints to be updated when
+     * the device was rotated.
+     */
+    func removeCameraOverlayEdgesConstraints() {
+        view.autoRemoveConstraint(cameraOverlayEdgeOneConstraint)
+        view.autoRemoveConstraint(cameraOverlayEdgeTwoConstraint)
+    }
+    
+    /**
+     * It needs to get a determined smallest size of the screen
+     to create the smallest size to be used on CameraOverlay.
+     It uses the orientation of the screen to determinate where
+     the view will be pinned.
+     */
+    func configCameraOverlayEdgeOneContraint(_ portrait: Bool, padding: CGFloat) {
+        let attribute : NSLayoutConstraint.Attribute = portrait ? .left : .bottom
+        cameraOverlayEdgeOneConstraint = NSLayoutConstraint(
+            item: cameraOverlay,
+            attribute: attribute,
+            relatedBy: .equal,
+            toItem: view,
+            attribute: attribute,
+            multiplier: 1.0,
+            constant: padding)
+        view.addConstraint(cameraOverlayEdgeOneConstraint!)
+    }
+    
+    /**
+     * It needs to get a determined smallest size of the screen
+     to create the smallest size to be used on CameraOverlay.
+     It uses the orientation of the screen to determinate where
+     the view will be pinned.
+     */
+    func configCameraOverlayEdgeTwoConstraint(_ portrait: Bool, padding: CGFloat) {
+        let attributeTwo : NSLayoutConstraint.Attribute = portrait ? .right : .top
+        cameraOverlayEdgeTwoConstraint = NSLayoutConstraint(
+            item: cameraOverlay,
+            attribute: attributeTwo,
+            relatedBy: .equal,
+            toItem: view,
+            attribute: attributeTwo,
+            multiplier: 1.0,
+            constant: -padding)
+        view.addConstraint(cameraOverlayEdgeTwoConstraint!)
+    }
+    
 }

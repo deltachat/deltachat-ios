@@ -1,5 +1,5 @@
 import UIKit
-import ALCameraViewController
+import KK_ALCameraViewController
 import Photos
 import MobileCoreServices
 import DcCore

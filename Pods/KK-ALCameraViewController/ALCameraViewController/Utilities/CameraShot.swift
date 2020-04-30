@@ -49,7 +49,7 @@ public func takePhoto(_ stillImageOutput: AVCaptureStillImageOutput, videoOrient
             case .downMirrored:
                 image = UIImage(cgImage: cgImage, scale: image.scale, orientation: .down)
             @unknown default:
-                break
+                fatalError("unknown image orientation")
             }
         }
         

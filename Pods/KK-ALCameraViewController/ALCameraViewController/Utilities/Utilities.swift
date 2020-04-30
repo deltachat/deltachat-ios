@@ -54,12 +54,7 @@ internal func currentRotation(_ oldOrientation: UIInterfaceOrientation, newOrien
     }
 }
 
-internal func largestPhotoSize() -> CGSize {
-    let scale = UIScreen.main.scale
-    let screenSize = UIScreen.main.bounds.size
-    let size = CGSize(width: screenSize.width * scale, height: screenSize.height * scale)
-    return size
-}
+
 
 internal func errorWithKey(_ key: String, domain: String) -> NSError {
     let errorString = localizedString(key)
@@ -87,7 +82,7 @@ internal func normalizedRect(_ rect: CGRect, orientation: UIImage.Orientation) -
     case .right, .rightMirrored:
         normalizedRect = CGRect(x: normalizedY, y: 1-normalizedX-normalizedWidth, width: normalizedHeight, height: normalizedWidth)
     @unknown default:
-        normalizedRect = .zero
+        fatalError("unknown orientation")
     }
     
     return normalizedRect
@@ -103,7 +98,7 @@ internal func flashImage(_ mode: AVCaptureDevice.FlashMode) -> String {
     case .off:
         image = "flashOffIcon"
     @unknown default:
-        image = "flashOffIcon"
+        fatalError("unknown flash mode")
     }
     return image
 }
