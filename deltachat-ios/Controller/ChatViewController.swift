@@ -274,7 +274,7 @@ class ChatViewController: MessagesViewController {
 
         let badge: InitialsBadge
         if let image = chat.profileImage {
-            badge =  InitialsBadge(image: image, size: 28)
+            badge =  InitialsBadge(image: image, size: 28, accessibilityLabelText: chat.name)
         } else {
             badge =  InitialsBadge(name: chat.name, color: chat.color, size: 28)
             badge.setLabelFont(UIFont.systemFont(ofSize: 14))

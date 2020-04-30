@@ -37,9 +37,9 @@ class InitialsBadge: UIView {
         setColor(color)
     }
 
-    convenience init (image: UIImage, size: CGFloat) {
+    convenience init (image: UIImage, size: CGFloat, accessibilityLabelText: String? = nil) {
         self.init(size: size)
-        setImage(image)
+        setImage(image, accessibilityLabelText)
     }
 
     init(size: CGFloat) {
@@ -90,11 +90,14 @@ class InitialsBadge: UIView {
         label.font = font
     }
 
-    func setImage(_ image: UIImage) {
+    func setImage(_ image: UIImage, _ accessibilityLabelText: String? = nil) {
         self.imageView.image = image
         self.imageView.contentMode = UIView.ContentMode.scaleAspectFill
         self.imageView.isHidden = false
         self.label.isHidden = true
+        if let text = accessibilityLabelText {
+            accessibilityLabel = "avatar \(text)"
+        }
     }
 
     func showsInitials() -> Bool {
