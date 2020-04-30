@@ -8,8 +8,6 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
     weak var progressAlert: UIAlertController?
     var progressObserver: Any?
 
-    private var selectedIndex: Int = 0
-
     private lazy var qrSegmentControl: UISegmentedControl = {
         let control = UISegmentedControl(
             items: [String.localized("qrshow_title"), String.localized("qrscan_title")]
@@ -45,19 +43,41 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
         )
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        let segmentState = AppStateRestorer.shared.restoreLastActiveQrSegment()
+        qrSegmentControl.selectedSegmentIndex = segmentState.rawValue
+        switch segmentState {
+        case .qrRead:
+            showQrReader()
+        case .qrView:
+            showQrView()
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         self.progressObserver = nil
     }
 
     // MARK: - actions
+
     @objc private func qrSegmentControlChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            let qrController = QrViewController(dcContext: dcContext)
-            setViewControllers([qrController], direction: .reverse, animated: true, completion: nil)
+            showQrView()
         } else {
-            let qrCodeReaderController = makeQRReader()
-            setViewControllers([qrCodeReaderController], direction: .forward, animated: true, completion: nil)
+            showQrReader()
         }
+    }
+
+    private func showQrView() {
+        let qrController = QrViewController(dcContext: dcContext)
+        setViewControllers([qrController], direction: .reverse, animated: true, completion: nil)
+        AppStateRestorer.shared.storeLastActiveQrSegment(segment: .qrView)
+    }
+
+    private func showQrReader() {
+        let qrCodeReaderController = makeQRReader()
+        setViewControllers([qrCodeReaderController], direction: .forward, animated: true, completion: nil)
+        AppStateRestorer.shared.storeLastActiveQrSegment(segment: .qrRead)
     }
 
     // MARK: - factory
@@ -88,8 +108,10 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
         if completed {
             if previousViewControllers.first is QrViewController {
                 qrSegmentControl.selectedSegmentIndex = 1
+                AppStateRestorer.shared.storeLastActiveQrSegment(segment: .qrRead)
             } else {
                 qrSegmentControl.selectedSegmentIndex = 0
+                AppStateRestorer.shared.storeLastActiveQrSegment(segment: .qrView)
             }
         }
     }

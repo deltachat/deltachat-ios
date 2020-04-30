@@ -4,6 +4,7 @@ class AppStateRestorer: NSObject, UITabBarControllerDelegate {
 
     private let lastActiveTabKey = "last_active_tab"
     private let lastActiveChatId = "last_active_chat_id"
+    private let lastActiveQrSegment = "last_active_qr_segment"
     private let offsetKey = 10
 
     // UserDefaults returns 0 by default which conflicts with tab 0 -> therefore we map our tab indexes by adding an offsetKey
@@ -13,6 +14,11 @@ class AppStateRestorer: NSObject, UITabBarControllerDelegate {
         case chatTab = 11
         case settingsTab = 12
         case firstLaunch = 0
+    }
+
+    enum QrSegment: Int {
+        case qrView = 0
+        case qrRead = 1
     }
 
     private override init() {}
@@ -65,5 +71,15 @@ class AppStateRestorer: NSObject, UITabBarControllerDelegate {
             return nil
         }
         return restoredChatId
+    }
+
+    func storeLastActiveQrSegment(segment: QrSegment) {
+        UserDefaults.standard.set(segment.rawValue, forKey: lastActiveQrSegment)
+    }
+
+    func restoreLastActiveQrSegment() -> QrSegment {
+        let value = UserDefaults.standard.integer(forKey: lastActiveQrSegment)
+        let segment = QrSegment(rawValue: value)! // if no segment has been stored it will create QrSegment.qrView (default)
+        return segment
     }
 }
