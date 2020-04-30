@@ -21,7 +21,7 @@ class AppCoordinator: NSObject, Coordinator {
     private lazy var tabBarController: UITabBarController = {
         let tabBarController = UITabBarController()
         tabBarController.delegate = appStateRestorer
-        tabBarController.viewControllers = [qrController, chatListController, settingsController]
+        tabBarController.viewControllers = [qrPageController, chatListController, settingsController]
         tabBarController.tabBar.tintColor = DcColors.primary
         return tabBarController
     }()
@@ -43,14 +43,14 @@ class AppCoordinator: NSObject, Coordinator {
 
     // MARK: viewControllers
 
-    private lazy var qrController: UIViewController = {
-        let controller = QrViewController(dcContext: dcContext)
-        let nav = UINavigationController(rootViewController: controller)
-        let settingsImage = UIImage(named: "qr_code")
-        nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
+    private lazy var qrPageController: UINavigationController = {
+        let pageController = QrPageController(dcContext: dcContext)
+        let nav = UINavigationController(rootViewController: pageController)
         let coordinator = QrViewCoordinator(navigationController: nav)
         self.childCoordinators.append(coordinator)
-        controller.coordinator = coordinator
+        pageController.coordinator = coordinator
+        let settingsImage = UIImage(named: "qr_code")
+        nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
         return nav
     }()
 
@@ -128,10 +128,9 @@ class AppCoordinator: NSObject, Coordinator {
 
     func handleQRCode(_ code: String) {
         showTab(index: qrTab)
-        if let navController = qrController as? UINavigationController,
-            let topViewController = navController.topViewController,
-            let qrViewController = topViewController as? QrViewController {
-            qrViewController.handleQrCode(code)
+        if let topViewController = qrPageController.topViewController,
+            let qrPageController = topViewController as? QrPageController {
+            qrPageController.handleQrCode(code)
         }
     }
 

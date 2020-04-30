@@ -3,7 +3,7 @@ import DcCore
 
 protocol ProgressAlertHandler: UIViewController {
     var progressAlert: UIAlertController? { get set }   // needs to be implemented as weak
-    var configureProgressObserver: Any? { get set } // set to nil in viewDidDisappear
+    var progressObserver: Any? { get set } // set to nil in viewDidDisappear
     func showProgressAlert(title: String, dcContext: DcContext)
     func updateProgressAlertValue(value: Int?)
     func updateProgressAlert(error: String?)
@@ -60,7 +60,7 @@ extension ProgressAlertHandler {
 
     func addProgressAlertListener(onSuccess: @escaping VoidFunction) {
         let nc = NotificationCenter.default
-        configureProgressObserver = nc.addObserver(
+        progressObserver = nc.addObserver(
             forName: dcNotificationConfigureProgress,
             object: nil,
             queue: nil
