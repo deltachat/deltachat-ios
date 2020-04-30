@@ -94,6 +94,9 @@ class ShareAttachment {
                     self.delegate?.onThumbnailChanged()
                 }
             }
+            if error != nil {
+                self.dcContext.logger?.error(error?.localizedDescription ?? "Could not load share item as image")
+            }
         }
     }
 
@@ -107,9 +110,11 @@ class ShareAttachment {
                     self.imageThumbnail = DcUtils.generateThumbnailFromVideo(url: url)?.scaleDownImage(toMax: self.thumbnailSize)
                     self.delegate?.onThumbnailChanged()
                 }
-
             default:
                 self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
+            }
+            if error != nil {
+                self.dcContext.logger?.error(error?.localizedDescription ?? "Could not load share item as video")
             }
         }
     }
@@ -134,6 +139,9 @@ class ShareAttachment {
             default:
                 self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
             }
+            if error != nil {
+                self.dcContext.logger?.error(error?.localizedDescription ?? "Could not load share item.")
+            }
         }
     }
 
@@ -153,7 +161,7 @@ class ShareAttachment {
                                                        scale: scale,
                                                        representationTypes: .all)
             let generator = QLThumbnailGenerator.shared
-            generator.generateRepresentations(for: request) { (thumbnail, type, error) in
+            generator.generateRepresentations(for: request) { (thumbnail, _, error) in
                 DispatchQueue.main.async {
                     if thumbnail == nil || error != nil {
                         self.dcContext.logger?.warning(error?.localizedDescription ?? "Could not create thumbnail.")

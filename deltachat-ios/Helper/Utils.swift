@@ -57,8 +57,6 @@ struct Utils {
         return url.absoluteString.hasSuffix("wav")
     }
 
-   
-
     static func getDeviceLanguage() -> String? {
         // some device languages have suffixes (like en-aus etc.) so we want to cut suffixes off
         guard let lang = Locale.preferredLanguages.first?.split(separator: "-").first else {
