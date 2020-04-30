@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import MobileCoreServices
+import AVFoundation
 
 public struct DcUtils {
 
@@ -93,5 +94,21 @@ public struct DcUtils {
         }
         return "application/octet-stream"
     }
+
+    public static func generateThumbnailFromVideo(url: URL?) -> UIImage? {
+           guard let url = url else {
+               return nil
+           }
+           do {
+               let asset = AVURLAsset(url: url)
+               let imageGenerator = AVAssetImageGenerator(asset: asset)
+               imageGenerator.appliesPreferredTrackTransform = true
+               let cgImage = try imageGenerator.copyCGImage(at: .zero, actualTime: nil)
+               return UIImage(cgImage: cgImage)
+           } catch {
+               print(error.localizedDescription)
+               return nil
+           }
+       }
 
 }

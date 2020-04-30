@@ -534,16 +534,20 @@
 			path = DC;
 			sourceTree = "<group>";
 		};
-		304F5E452451D27500462538 /* Extensions */ = {
+		304F5E452451D27500462538 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				302589FE2452FA280086C1CD /* ShareAttachment.swift */,
 			);
-			path = Extensions;
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		304F5E462451D2AA00462538 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				30E8F2122447285600CE2C90 /* ShareViewController.swift */,
+				30E8F2412448B77600CE2C90 /* ChatListController.swift */,
+				30E8F252244DAD0E00CE2C90 /* SendingController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -551,6 +555,7 @@
 		304F5E472451D2CA00462538 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				30E8F2432449C64100CE2C90 /* ChatListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -712,15 +717,10 @@
 			children = (
 				304F5E472451D2CA00462538 /* View */,
 				304F5E462451D2AA00462538 /* Controller */,
-				304F5E452451D27500462538 /* Extensions */,
+				304F5E452451D27500462538 /* Helper */,
 				30E8F21F24472AAE00CE2C90 /* DcShare.entitlements */,
-				30E8F2122447285600CE2C90 /* ShareViewController.swift */,
-				30E8F2412448B77600CE2C90 /* ChatListController.swift */,
 				30E8F2142447285600CE2C90 /* MainInterface.storyboard */,
 				30E8F2172447285600CE2C90 /* Info.plist */,
-				30E8F2432449C64100CE2C90 /* ChatListCell.swift */,
-				30E8F252244DAD0E00CE2C90 /* SendingController.swift */,
-				302589FE2452FA280086C1CD /* ShareAttachment.swift */,
 			);
 			path = DcShare;
 			sourceTree = "<group>";

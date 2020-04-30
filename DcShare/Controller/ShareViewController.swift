@@ -35,6 +35,14 @@ class ShareViewController: SLComposeServiceViewController {
     let dbHelper = DatabaseHelper()
     var shareAttachment: ShareAttachment?
 
+    lazy var preview: UIImageView? = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.clipsToBounds = true
+        imageView.shouldGroupAccessibilityChildren = true
+        imageView.isAccessibilityElement = false
+        return imageView
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -64,6 +72,10 @@ class ShareViewController: SLComposeServiceViewController {
         } else {
             cancel()
         }
+    }
+
+    override func loadPreviewView() -> UIView! {
+        return preview
     }
 
     override func isContentValid() -> Bool {
@@ -151,9 +163,17 @@ extension ShareViewController: SendingControllerDelegate {
 }
 
 extension ShareViewController: ShareAttachmentDelegate {
-    func onAttachmentAdded() {
+    func onAttachmentChanged() {
         DispatchQueue.main.async {
             self.validateContent()
+        }
+    }
+
+    func onThumbnailChanged() {
+        DispatchQueue.main.async {
+            if let preview = self.preview {
+                preview.image = self.shareAttachment?.thumbnail ?? nil
+            }
         }
     }
 }

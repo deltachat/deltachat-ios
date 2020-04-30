@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-import AVFoundation
 import DcCore
 
 struct Utils {
@@ -58,21 +57,7 @@ struct Utils {
         return url.absoluteString.hasSuffix("wav")
     }
 
-    static func generateThumbnailFromVideo(url: URL?) -> UIImage? {
-        guard let url = url else {
-            return nil
-        }
-        do {
-            let asset = AVURLAsset(url: url)
-            let imageGenerator = AVAssetImageGenerator(asset: asset)
-            imageGenerator.appliesPreferredTrackTransform = true
-            let cgImage = try imageGenerator.copyCGImage(at: .zero, actualTime: nil)
-            return UIImage(cgImage: cgImage)
-        } catch {
-            print(error.localizedDescription)
-            return nil
-        }
-    }
+   
 
     static func getDeviceLanguage() -> String? {
         // some device languages have suffixes (like en-aus etc.) so we want to cut suffixes off
