@@ -7,6 +7,7 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
     private let dcContext: DcContext
     weak var progressAlert: UIAlertController?
     var progressObserver: Any?
+    var qrCodeReaderController: QrCodeReaderController?
 
     private var selectedIndex: Int = 0
 
@@ -45,7 +46,19 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
         )
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        // QrCodeReaderController::viewWillAppear() is on called on section change, not on main-tab change
+        if let qrCodeReaderController = self.qrCodeReaderController {
+            qrCodeReaderController.startSession()
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
+        // QrCodeReaderController::viewWillDisappear() is on called on section change, not on main-tab change
+        if let qrCodeReaderController = self.qrCodeReaderController {
+            qrCodeReaderController.stopSession()
+        }
+
         self.progressObserver = nil
     }
 
@@ -56,6 +69,7 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
             setViewControllers([qrController], direction: .reverse, animated: true, completion: nil)
         } else {
             let qrCodeReaderController = makeQRReader()
+            self.qrCodeReaderController = qrCodeReaderController
             setViewControllers([qrCodeReaderController], direction: .forward, animated: true, completion: nil)
         }
     }
@@ -99,10 +113,7 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
 extension QrPageController: QrCodeReaderDelegate {
 
     func handleQrCode(_ code: String) {
-        self.processQrCode(code)
-    }
-
-    private func processQrCode(_ code: String) {
+        self.coordinator?.showChats()
         let qrParsed: DcLot = self.dcContext.checkQR(qrCode: code)
         let state = Int32(qrParsed.state)
         switch state {

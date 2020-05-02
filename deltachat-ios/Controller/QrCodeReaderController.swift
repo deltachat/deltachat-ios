@@ -131,6 +131,10 @@ class QrCodeReaderController: UIViewController {
     func startSession() {
         captureSession.startRunning()
     }
+
+    func stopSession() {
+        captureSession.stopRunning()
+    }
 }
 
 extension QrCodeReaderController: AVCaptureMetadataOutputObjectsDelegate {
@@ -139,8 +143,8 @@ extension QrCodeReaderController: AVCaptureMetadataOutputObjectsDelegate {
         if let metadataObj = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
             if supportedCodeTypes.contains(metadataObj.type) {
                 if metadataObj.stringValue != nil {
-                    self.delegate?.handleQrCode(metadataObj.stringValue!)
                     self.captureSession.stopRunning()
+                    self.delegate?.handleQrCode(metadataObj.stringValue!)
                 }
             }
         }
