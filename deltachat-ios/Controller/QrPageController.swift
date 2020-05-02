@@ -99,10 +99,6 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
 extension QrPageController: QrCodeReaderDelegate {
 
     func handleQrCode(_ code: String) {
-        self.processQrCode(code)
-    }
-
-    private func processQrCode(_ code: String) {
         let qrParsed: DcLot = self.dcContext.checkQR(qrCode: code)
         let state = Int32(qrParsed.state)
         switch state {
