@@ -11,7 +11,7 @@ class AppCoordinator: NSObject, Coordinator {
     private let window: UIWindow
     private let dcContext: DcContext
     private let qrTab = 0
-    private let chatsTab = 1
+    public  let chatsTab = 1
     private let settingsTab = 2
 
     private let appStateRestorer = AppStateRestorer.shared
@@ -223,6 +223,12 @@ class QrViewCoordinator: Coordinator {
     var navigationController: UINavigationController
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+    }
+
+    func showChats() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.appCoordinator.showTab(index: appDelegate.appCoordinator.chatsTab)
+        }
     }
 
     func showChat(chatId: Int) {

@@ -113,6 +113,7 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
 extension QrPageController: QrCodeReaderDelegate {
 
     func handleQrCode(_ code: String) {
+        self.coordinator?.showChats()
         let qrParsed: DcLot = self.dcContext.checkQR(qrCode: code)
         let state = Int32(qrParsed.state)
         switch state {
