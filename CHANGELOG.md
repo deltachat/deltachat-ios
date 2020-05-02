@@ -1,12 +1,19 @@
 # Delta Chat iOS Changelog
 
-## v1.5.0 (Beta-Version, available on Testflight)
+## v1.6.0
+2020-05-03
 
 * add option for automatic deletion of messages after a given timespan;
   messages can be deleted from device and/or server
 * switch to ecc keys; ecc keys are much smaller and faster
   and safe traffic and time this way
 * new welcome screen
+* add an option to create an account by scanning a qr code, of course,
+  this has to be supported by the used provider
+* rework qr-code scanning: there is now one view with two tabs
+* improve interaction with traditional mail clients
+* improve avatar handling on ipad
+* debug and log moved to "Settings / Advanced / View log"
 * bug fixes
 * add Indonesian translation, update other translations
 
