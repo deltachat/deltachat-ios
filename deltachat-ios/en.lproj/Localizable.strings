@@ -625,7 +625,7 @@
 "user_location_permission_explanation" = "Delta Chat needs the location permission in order to show and share your location.";
 
 
-// accessibility
+// accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Delivery status: Error";
 "a11y_encryption_padlock" = "Encryption padlock";
 "a11y_delivery_status_sending" = "Delivery status: Sending";
@@ -638,6 +638,13 @@
 "a11y_background_preview_label" = "Background preview";
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+
+
+// android specific strings, developers: please take care to remove strings that are no longer used!
+// this message is shown in the device chat, starting in version 1.6, it should explain the need for the permanent-notifiation and also use the same wording as used there (see "Background connection enabled")
+"device_talk_background_connection_android" = "You may already have noticed, that there is a hint \"Background connection enabled\" shown by the system.\n\n👉 The hint normally prevents the operating system from killing the connection between Delta Chat and your server.\n\n👉 If the hint disappears without any action on your part, the connection has probably been killed anyway.\nIf you think, this is weird - we totally agree - but many manufacturers do exactly that. The site https://dontkillmyapp.com shows some workarounds.\n\nHowever, we are happy that we could improve the receiving of messages in background with this change and could fulfil the requests of many users - thanks for reporting 🤗";
+
+
 
 "import_contacts" = "Import device contacts";
 "import_contacts_message" = "To chat with contacts from your device open Settings and enable Contacts.";

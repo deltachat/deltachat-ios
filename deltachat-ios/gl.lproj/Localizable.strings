@@ -618,7 +618,7 @@
 "user_location_permission_explanation" = "Delta Chat precisa permiso para poder mostrar e compartir a túa localización.";
 
 
-// accessibility
+// accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Estado da entrega: Fallo";
 "a11y_encryption_padlock" = "Cadeado do cifrado";
 "a11y_delivery_status_sending" = "Estado da entrega: Enviando";
@@ -631,3 +631,5 @@
 "a11y_background_preview_label" = "Vista previa do fondo";
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+
+

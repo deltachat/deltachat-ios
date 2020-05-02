@@ -421,6 +421,11 @@
 "pref_background_default_color" = "Ngjyrë parazgjedhje";
 "pref_background_custom_image" = "Figurë vetjake";
 "pref_background_custom_color" = "Ngjyrë vetjake";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Lidhje e qëndrueshme në prapaskenë";
+"pref_reliable_service_explain" = "Lyp një njoftim permanent";
+
+
 // automatically delete message
 "autodel_title" = "Vetëfshi mesazhe";
 "autodel_title_short" = "Vetëfshi";
@@ -619,7 +624,7 @@
 "user_location_permission_explanation" = "Që të mund të shfaqë dhe ndajë me të tjerët vendndodhjen tuaj, Delta Chat lyp lejen vendore.";
 
 
-// accessibility
+// accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Gjendje dërgimi: Gabim";
 "a11y_encryption_padlock" = "Dry fshehtëzimi";
 "a11y_delivery_status_sending" = "Gjendje dërgimi: Po dërgohet";
@@ -632,3 +637,10 @@
 "a11y_background_preview_label" = "Paraparje sfondi";
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+
+
+// android specific strings, developers: please take care to remove strings that are no longer used!
+// this message is shown in the device chat, starting in version 1.6, it should explain the need for the permanent-notifiation and also use the same wording as used there (see "Background connection enabled")
+"device_talk_background_connection_android" = "Mund të keni vënë re tashmë se ka një ndihmëz \"Lidhje në prapaskenë e aktivizuar\" shfaqur nga sistemi.\n\n👉 Normalisht ndihmëza shërben për te penguar sistemin operativ të asgjësojë lidhjen mes Delta Chat-it dhe shërbyesin tuaj.\n\n👉 Nëse ndihmëza zhduket pa ndonjë veprim nga ana juaj, lidhja ka mundësi të jetë asgjësuar.\nNëse kjo ju duket e çuditshme - pajtohemi me ju plotësisht - por prodhuesit e telefonave bëjnë pikërisht këtë. Sajti https://dontkillmyapp.com tregon disa zgjidhje prej halli.\n\nSidoqoftë, jemi të lumtur që me këtë ndryshim mund të përmirësojmë marrjen e mesazheve në prapaskenë dhe mund të plotësojmë kërkesat e mjaft përdoruesve - faleminderit që e keni kërkuar 🤗";
+
+

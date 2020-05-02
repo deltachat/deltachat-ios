@@ -422,6 +422,11 @@
 "pref_background_default_color" = "默认颜色";
 "pref_background_custom_image" = "自定义图像";
 "pref_background_custom_color" = "自定义颜色";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "可靠后台连接";
+"pref_reliable_service_explain" = "需要一个永久通知";
+
+
 // automatically delete message
 "autodel_title" = "自动删除消息";
 "autodel_title_short" = "自动删除";
@@ -620,7 +625,7 @@
 "user_location_permission_explanation" = "Delta Chat 需要位置权限来显示和分享您的位置。";
 
 
-// accessibility
+// accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "发送状态：错误";
 "a11y_encryption_padlock" = "加密挂锁";
 "a11y_delivery_status_sending" = "发送状态：发送中";
@@ -633,3 +638,5 @@
 "a11y_background_preview_label" = "背景预览";
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+
+
