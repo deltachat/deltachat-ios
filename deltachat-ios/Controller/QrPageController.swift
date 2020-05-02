@@ -7,6 +7,7 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
     private let dcContext: DcContext
     weak var progressAlert: UIAlertController?
     var progressObserver: Any?
+    var qrCodeReaderController: QrCodeReaderController?
 
     private var selectedIndex: Int = 0
 
@@ -45,6 +46,12 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
         )
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        if let qrCodeReaderController = self.qrCodeReaderController {
+            qrCodeReaderController.startSession()
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         self.progressObserver = nil
     }
@@ -56,6 +63,7 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
             setViewControllers([qrController], direction: .reverse, animated: true, completion: nil)
         } else {
             let qrCodeReaderController = makeQRReader()
+            self.qrCodeReaderController = qrCodeReaderController
             setViewControllers([qrCodeReaderController], direction: .forward, animated: true, completion: nil)
         }
     }
