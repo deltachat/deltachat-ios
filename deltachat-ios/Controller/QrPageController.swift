@@ -47,12 +47,18 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        // QrCodeReaderController::viewWillAppear() is on called on section change, not on main-tab change
         if let qrCodeReaderController = self.qrCodeReaderController {
             qrCodeReaderController.startSession()
         }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+        // QrCodeReaderController::viewWillDisappear() is on called on section change, not on main-tab change
+        if let qrCodeReaderController = self.qrCodeReaderController {
+            qrCodeReaderController.stopSession()
+        }
+
         self.progressObserver = nil
     }
 
