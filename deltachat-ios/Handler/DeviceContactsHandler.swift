@@ -14,10 +14,17 @@ class DeviceContactsHandler {
     private func makeContactString(contacts: [CNContact]) -> String {
         var contactString: String = ""
         for contact in contacts {
-            let displayName: String = "\(contact.givenName) \(contact.familyName)"
+            var displayName: String = "\(contact.givenName) \(contact.familyName)"
+            displayName = displayName.replacingOccurrences(of: "\r", with: "") // remove characters later used as field separator
+            displayName = displayName.replacingOccurrences(of: "\n", with: "")
+
             // cnContact can have multiple email addresses -> create contact for each email address
             for emailAddress in contact.emailAddresses {
-                contactString += "\(displayName)\n\(emailAddress.value)\n"
+                var adr: String = emailAddress.value as String
+                adr = adr.replacingOccurrences(of: "\r", with: "") // remove characters later used as field separator
+                adr = adr.replacingOccurrences(of: "\n", with: "")
+
+                contactString += "\(displayName)\n\(adr)\n"
             }
         }
         return contactString
