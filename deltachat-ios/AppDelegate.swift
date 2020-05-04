@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var locationManager: LocationManager!
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability = Reachability()!
+    var hasNetwork = false
     var window: UIWindow?
     var state = ApplicationState.stopped
 
@@ -226,6 +227,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         switch reachability.connection {
         case .wifi, .cellular:
             logger.info("network: reachable", reachability.connection.description)
+            hasNetwork = true
 
             // call dc_maybe_network() from a worker thread.
             // normally, dc_maybe_network() can be called uncoditionally,
@@ -236,6 +238,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         case .none:
             logger.info("network: not reachable")
+            hasNetwork = false
         }
     }
 
