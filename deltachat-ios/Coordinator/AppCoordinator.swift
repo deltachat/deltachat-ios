@@ -183,6 +183,7 @@ extension AppCoordinator: WelcomeCoordinator {
         profileInfoNav.modalPresentationStyle = .fullScreen
         let coordinator = EditSettingsCoordinator(dcContext: dcContext, navigationController: profileInfoNav)
         profileInfoController.coordinator = coordinator
+        childCoordinators.append(coordinator)
         profileInfoController.onClose = handleLoginSuccess
         welcomeController?.present(profileInfoNav, animated: true, completion: nil)
     }
