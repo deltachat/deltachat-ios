@@ -120,10 +120,10 @@ class AppCoordinator: NSObject, Coordinator {
             assertionFailure("huh? why no nav controller?")
             return
         }
-        let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
-        let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navController, chatId: chatId)
-        chatVC.coordinator = coordinator
-        navController.pushViewController(chatVC, animated: animated)
+
+        if let rootController = navController.viewControllers.first as? ChatListController {
+            rootController.coordinator?.showChat(chatId: chatId)
+        }
     }
 
     func handleQRCode(_ code: String) {
