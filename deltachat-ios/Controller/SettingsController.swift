@@ -13,7 +13,7 @@ internal final class SettingsViewController: UITableViewController {
     private enum CellTags: Int {
         case profile = 0
         case contactRequest = 1
-        case preferences = 2
+        case showEmails = 2
         case blockedContacts = 3
         case notifications = 4
         case receiptConfirmation = 5
@@ -61,9 +61,9 @@ internal final class SettingsViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var chatPreferenceCell: UITableViewCell = {
+    private lazy var showEmailsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.tag = CellTags.preferences.rawValue
+        cell.tag = CellTags.showEmails.rawValue
         cell.textLabel?.text = String.localized("pref_show_emails")
         cell.accessoryType = .disclosureIndicator
         cell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
@@ -190,7 +190,7 @@ internal final class SettingsViewController: UITableViewController {
         let preferencesSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: String.localized("pref_read_receipts_explain"),
-            cells: [contactRequestCell, chatPreferenceCell, blockedContactsCell, autodelCell, notificationCell, receiptConfirmationCell]
+            cells: [contactRequestCell, showEmailsCell, blockedContactsCell, autodelCell, notificationCell, receiptConfirmationCell]
         )
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
@@ -304,7 +304,7 @@ internal final class SettingsViewController: UITableViewController {
         switch cellTag {
         case .profile: self.coordinator?.showEditSettingsController()
         case .contactRequest: self.coordinator?.showContactRequests()
-        case .preferences: coordinator?.showClassicMail()
+        case .showEmails: coordinator?.showClassicMail()
         case .blockedContacts: coordinator?.showBlockedContacts()
         case .autodel: coordinator?.showAutodelOptions()
         case .notifications: break
@@ -436,7 +436,7 @@ internal final class SettingsViewController: UITableViewController {
         let selfContact = DcContact(id: Int(DC_CONTACT_ID_SELF))
         profileCell.update(contact: selfContact, displayName: displayName, address: email)
 
-        chatPreferenceCell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
+        showEmailsCell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
 
         autodelCell.detailTextLabel?.text = autodelSummary()
     }
