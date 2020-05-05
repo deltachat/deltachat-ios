@@ -31,20 +31,21 @@ class InitialsBadge: UIView {
         return imageViewContainer
     }()
 
-    convenience init(name: String, color: UIColor, size: CGFloat) {
-        self.init(size: size)
+    convenience init(name: String, color: UIColor, size: CGFloat, accessibilityLabel: String? = nil) {
+        self.init(size: size, accessibilityLabel: accessibilityLabel)
         setName(name)
         setColor(color)
     }
 
-    convenience init (image: UIImage, size: CGFloat, accessibilityLabelText: String? = nil) {
-        self.init(size: size)
-        setImage(image, accessibilityLabelText)
+    convenience init (image: UIImage, size: CGFloat, accessibilityLabel: String? = nil) {
+        self.init(size: size, accessibilityLabel: accessibilityLabel)
+        setImage(image)
     }
 
-    init(size: CGFloat) {
+    init(size: CGFloat, accessibilityLabel: String? = nil) {
         self.size = size
         super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
+        self.accessibilityLabel = accessibilityLabel
         let radius = size / 2
         layer.cornerRadius = radius
         translatesAutoresizingMaskIntoConstraints = false
@@ -83,21 +84,17 @@ class InitialsBadge: UIView {
         label.text = Utils.getInitials(inputName: name)
         label.isHidden = name.isEmpty
         imageView.isHidden = !name.isEmpty
-        accessibilityLabel = "avatar \(name)"
     }
 
     func setLabelFont(_ font: UIFont) {
         label.font = font
     }
 
-    func setImage(_ image: UIImage, _ accessibilityLabelText: String? = nil) {
+    func setImage(_ image: UIImage) {
         self.imageView.image = image
         self.imageView.contentMode = UIView.ContentMode.scaleAspectFill
         self.imageView.isHidden = false
         self.label.isHidden = true
-        if let text = accessibilityLabelText {
-            accessibilityLabel = text
-        }
     }
 
     func showsInitials() -> Bool {
