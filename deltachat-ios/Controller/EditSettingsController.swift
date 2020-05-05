@@ -190,4 +190,3 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
 }
 
-

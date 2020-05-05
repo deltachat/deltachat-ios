@@ -411,7 +411,9 @@ internal final class SettingsViewController: UITableViewController {
             UserDefaults.standard.set(!locationStreaming, forKey: "location_streaming")
         }))
 
-        let logAction = UIAlertAction(title: String.localized("pref_view_log"), style: .default, handler: { [unowned self] _ in self.coordinator?.showDebugToolkit()})
+        let logAction = UIAlertAction(title: String.localized("pref_view_log"), style: .default, handler: { [unowned self] _ in
+            self.coordinator?.showDebugToolkit()
+        })
         alert.addAction(logAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
