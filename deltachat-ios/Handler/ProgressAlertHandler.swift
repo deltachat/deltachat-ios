@@ -66,9 +66,9 @@ extension ProgressAlertHandler {
             queue: nil
         ) { notification in
             if let ui = notification.userInfo {
-                if ui["error"] as! Bool {
+                if ui["error"] as? Bool ?? false {
                     self.updateProgressAlert(error: ui["errorMessage"] as? String)
-                } else if ui["done"] as! Bool {
+                } else if ui["done"] as? Bool ?? false {
                     self.updateProgressAlertSuccess(completion: onSuccess)
                 } else {
                     self.updateProgressAlertValue(value: ui["progress"] as? Int)
@@ -77,4 +77,3 @@ extension ProgressAlertHandler {
         }
     }
 }
-

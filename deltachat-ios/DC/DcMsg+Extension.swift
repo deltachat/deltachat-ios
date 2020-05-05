@@ -35,7 +35,7 @@ extension DcMsg: MessageType {
             return createAudioMessage(text: text)
         default:
             // TODO: custom views for audio, etc
-            if let _ = self.filename {
+            if self.filename != nil {
                 if Utils.hasAudioSuffix(url: fileURL!) {
                    return createAudioMessage(text: text)
                 }
