@@ -87,6 +87,8 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
                                            target: self,
                                            action: #selector(recordingButtonAction))
         button.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
+        button.accessibilityLabel = String.localized("start_recording")
+        button.accessibilityHint = String.localized("recording_hint")
         return button
     }()
 
@@ -150,6 +152,11 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         validateMicrophoneAccess()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIAccessibility.post(notification: .layoutChanged, argument: self.startRecordingButton)
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
@@ -189,7 +196,13 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     @objc func recordingButtonAction() {
         logger.debug("start recording")
-        self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, pauseButton, flexItem], animated: true)
+        if !UIAccessibility.isVoiceOverRunning {
+            self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, pauseButton, flexItem], animated: true)
+        } else {
+            self.setToolbarItems([], animated: true)
+        }
+
+        UIAccessibility.post(notification: .screenChanged, argument: self.doneButton)
         cancelRecordingButton.isEnabled = true
         doneButton.isEnabled = true
         if FileManager.default.fileExists(atPath: recordingFilePath) {
@@ -276,13 +289,13 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
                 if let self = self {
                     self.noRecordingPermissionView.alpha = granted ? 0.0 : 1.0
                     self.waveFormView.alpha = granted ? 1.0 : 0.0
-                    self.doneButton.isEnabled = granted
+                    self.doneButton.isEnabled = granted && !UIAccessibility.isVoiceOverRunning
 
                     if self.isFirstUsage {
-                        if !granted {
+                        if !granted || UIAccessibility.isVoiceOverRunning {
                             self.setToolbarItems([self.flexItem, self.startRecordingButton, self.flexItem], animated: true)
-                            self.startRecordingButton.isEnabled = false
-                        } else {
+                            self.startRecordingButton.isEnabled = granted
+                        } else { 
                             self.pauseButton.isEnabled = granted
                             self.recordingButtonAction()
                         }
