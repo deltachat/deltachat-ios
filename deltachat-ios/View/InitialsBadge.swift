@@ -96,7 +96,7 @@ class InitialsBadge: UIView {
         self.imageView.isHidden = false
         self.label.isHidden = true
         if let text = accessibilityLabelText {
-            accessibilityLabel = "avatar \(text)"
+            accessibilityLabel = text
         }
     }
 
