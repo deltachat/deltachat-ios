@@ -306,8 +306,12 @@
 "accept_invalid_certificates" = "Accetta certificati non validi";
 
 "used_settings" = "Impostazioni in uso:";
+"switch_account" = "Cambia account";
+"add_account" = "Aggiungi account";
 "delete_account" = "Elimina account";
 "delete_account_ask" = "Sei certo di voler eliminare i dati dell\'account?";
+"switching_account" = "Cambio account";
+
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Inotra a...";
@@ -418,6 +422,11 @@
 "pref_background_default_color" = "Colore predefinito";
 "pref_background_custom_image" = "Immagine personalizzata";
 "pref_background_custom_color" = "Colore personalizzato";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Connessione in background affidabile";
+"pref_reliable_service_explain" = "Richiede una notifica permanente";
+
+
 // automatically delete message
 "autodel_title" = "Auto eliminazione dei messaggi";
 "autodel_title_short" = "Auto-eliminazione";
@@ -433,6 +442,8 @@
 "autodel_after_1_day" = "Dopo 1 giorno";
 "autodel_after_1_week" = "Dopo 1 settimana";
 "autodel_after_4_weeks" = "Dopo 4 settimane";
+"autodel_after_1_year" = "Dopo 1 anno";
+
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt è una nuova specifica aperta per la cifratura end-to-end delle email.\n\nLa tua configurazione end-to-end viene creata automaticamente quando necessario e puoi trasferirla tra dispositivi tramite i Messaggi di configurazione.";
@@ -459,7 +470,7 @@
 "systemmsg_member_removed" = "Membro %1$@ rimosso.";
 "systemmsg_group_left" = "Gruppo abbandonato.";
 "systemmsg_read_receipt_subject" = "Ricevuta di lettura";
-"systemmsg_read_receipt_body" = "Questa è una ricevuta di lettura del messaggio \"%1$@\".\n\nCiò significa che il messaggio è stato mostrato nel dispositivo del destinatario, ma necessariamente che il contenuto è stato letto.";
+"systemmsg_read_receipt_body" = "Questa è una ricevuta di lettura del messaggio \"%1$@\".\n\nCiò significa che il messaggio è stato mostrato nel dispositivo del destinatario, ma non necessariamente che il contenuto è stato letto.";
 "systemmsg_cannot_decrypt" = "Questo messaggio non può essere decrittato.\n\n• Potrebbe essere sufficiente rispondere a questo messaggio e chiedere al mittente di rispedirlo.\n\n• Se hai reinstallato Delta Chat o usi un altro client email dovresti inviare un Messaggio di configurazione Autocrypt dal dispositivo originario.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
 "systemmsg_action_by_me" = "%1$@ da me.";
@@ -627,5 +638,10 @@
 "a11y_background_preview_label" = "Anteprima sfondo";
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+
+
+// android specific strings, developers: please take care to remove strings that are no longer used!
+// this message is shown in the device chat, starting in version 1.6, it should explain the need for the permanent-notifiation and also use the same wording as used there (see "Background connection enabled")
+"device_talk_background_connection_android" = "Potresti aver già notato che esiste una notifica \"Connessione in background abilitata\" mostrata dal sistema.\n\n 👉 La notifica normalmente impedisce al sistema operativo di interrompere la connessione tra Delta Chat e il tuo server.\n\n Se la notifica scompare senza alcuna azione da parte tua, la connessione è stata probabilmente soppressa.\nSe pensi che sia strano, siamo totalmente d\'accordo - ma molti produttori fanno esattamente questo. Il sito https://dontkillmyapp.com mostra alcune soluzioni alternative.\n\nTuttavia, siamo felici di poter migliorare la ricezione dei messaggi in background con questa modifica e di soddisfare le richieste di molti utenti, grazie per avercelo segnalato 🤗";
 
 
