@@ -42,6 +42,17 @@ class QrViewController: UIViewController {
         setupSubviews()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        qrContentView.minContainerHeight = view.frame.height
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        qrContentView.minContainerHeight = size.height
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+
     // MARK: - setup
     private func setupSubviews() {
         view.addSubview(scrollView)
@@ -77,6 +88,40 @@ class QrViewController: UIViewController {
 
 // MARK: - QrViewContentView
 class QrViewContentView: UIView {
+
+    private let container = UIView()
+
+    var minContainerHeight: CGFloat = 0 {
+        didSet {
+            containerMinHeightConstraint.constant = minContainerHeight
+        }
+    }
+
+    private lazy var containerMinHeightConstraint: NSLayoutConstraint = {
+        return container.heightAnchor.constraint(greaterThanOrEqualToConstant: 0)
+    }()
+
+    init() {
+        super.init(frame: .zero)
+        setupSubviews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupSubviews() {
+        addSubview(container)
+        container.translatesAutoresizingMaskIntoConstraints = false
+
+        container.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        container.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        container.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75).isActive = true
+        container.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
+
+        containerMinHeightConstraint.isActive = true
+
+    }
 
 }
 
