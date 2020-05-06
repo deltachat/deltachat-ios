@@ -101,7 +101,6 @@ class QrViewContentView: UIView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14)
-        label.makeBorder()
         return label
     }()
 
@@ -166,6 +165,8 @@ class QrViewContentView: UIView {
         qrCodeDefaultWidth.priority = UILayoutPriority(500)
         qrCodeDefaultWidth.isActive = true
         qrCodeView.heightAnchor.constraint(equalTo: qrCodeView.widthAnchor, multiplier: 1).isActive = true
+
+        hintLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
 
         let stackTopAnchor = stackView.topAnchor.constraint(equalTo: container.layoutMarginsGuide.topAnchor)
         stackTopAnchor.priority = .defaultLow
