@@ -649,3 +649,4 @@
 "import_contacts" = "Import device contacts";
 "import_contacts_message" = "To chat with contacts from your device open Settings and enable Contacts.";
 "stop_sharing_location" = "Stop sharing location";
+"a11y_voice_message_hint_ios" = "After recording double-tap to send. Or scrub left-right with two fingers to discard the recording.";

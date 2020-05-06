@@ -150,6 +150,13 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         validateMicrophoneAccess()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if UIAccessibility.isVoiceOverRunning {
+            UIAccessibility.post(notification: .layoutChanged, argument: self.doneButton)
+        }
+     }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
