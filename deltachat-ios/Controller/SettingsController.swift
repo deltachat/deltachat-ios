@@ -190,7 +190,7 @@ internal final class SettingsViewController: UITableViewController {
         let preferencesSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: String.localized("pref_read_receipts_explain"),
-            cells: [contactRequestCell, showEmailsCell, blockedContactsCell, autodelCell, notificationCell, receiptConfirmationCell]
+            cells: [showEmailsCell, contactRequestCell, blockedContactsCell, autodelCell, notificationCell, receiptConfirmationCell]
         )
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
