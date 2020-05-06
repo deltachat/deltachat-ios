@@ -86,7 +86,7 @@ class QrCodeReaderController: UIViewController {
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
 
         infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        infoLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        infoLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
         view.bringSubviewToFront(infoLabel)
     }
 
