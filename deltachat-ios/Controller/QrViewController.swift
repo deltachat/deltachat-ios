@@ -4,8 +4,8 @@ import DcCore
 
 class QrViewController: UIViewController {
 
-    var dcContext: DcContext
-    var contact: DcContact? {
+    private let dcContext: DcContext
+    private var contact: DcContact? {
         // This is nil if we do not have an account setup yet
         if !dcContext.isConfigured() {
             return nil
@@ -27,7 +27,7 @@ class QrViewController: UIViewController {
         title = String.localized("qr_code")
     }
 
-    func displayNewChat(contactId: Int) {
+    private func displayNewChat(contactId: Int) {
         let chatId = dcContext.createChatByContactId(contactId: contactId)
         let chatVC = ChatViewController(dcContext: dcContext, chatId: Int(chatId))
 
