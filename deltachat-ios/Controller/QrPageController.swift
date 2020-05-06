@@ -31,6 +31,11 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13, *) {}
+        else {
+            // temp fix - ToDo: check if this is needed for >iOS13 devices 
+            self.view.backgroundColor = .white
+        }
         dataSource = self
         delegate = self
         navigationItem.titleView = qrSegmentControl
