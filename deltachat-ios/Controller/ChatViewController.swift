@@ -1107,7 +1107,15 @@ extension ChatViewController: MessagesLayoutDelegate {
             alert.addAction(locationStreamingAction)
         }
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: {
+            // unfortunately, voiceMessageAction.accessibilityHint does not work,
+            // but this hack does the trick
+            if UIAccessibility.isVoiceOverRunning {
+                if let view = voiceMessageAction.value(forKey: "__representer") as? UIView {
+                    view.accessibilityHint = String.localized("a11y_voice_message_hint_ios")
+                }
+            }
+        })
     }
 
     private func documentActionPressed(_ action: UIAlertAction) {
