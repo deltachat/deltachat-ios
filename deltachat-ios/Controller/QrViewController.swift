@@ -5,6 +5,7 @@ import DcCore
 class QrViewController: UIViewController {
 
     private let dcContext: DcContext
+
     private var contact: DcContact? {
         // This is nil if we do not have an account setup yet
         if !dcContext.isConfigured() {
@@ -12,6 +13,18 @@ class QrViewController: UIViewController {
         }
         return DcContact(id: Int(DC_CONTACT_ID_SELF))
     }
+
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+
+    private lazy var qrContentView: QrViewContentView = {
+        let view = QrViewContentView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
@@ -22,11 +35,37 @@ class QrViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK:  - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("qr_code")
+        setupSubviews()
     }
 
+    // MARK: - setup
+    private func setupSubviews() {
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(qrContentView)
+
+        let frameGuide = scrollView.frameLayoutGuide
+        let contentGuide = scrollView.contentLayoutGuide
+
+        frameGuide.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        frameGuide.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        frameGuide.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        frameGuide.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+
+        contentGuide.leadingAnchor.constraint(equalTo: qrContentView.leadingAnchor).isActive = true
+        contentGuide.topAnchor.constraint(equalTo: qrContentView.topAnchor).isActive = true
+        contentGuide.trailingAnchor.constraint(equalTo: qrContentView.trailingAnchor).isActive = true
+        contentGuide.bottomAnchor.constraint(equalTo: qrContentView.bottomAnchor).isActive = true
+
+        // this enables vertical scrolling
+        frameGuide.widthAnchor.constraint(equalTo: contentGuide.widthAnchor).isActive = true
+    }
+
+    // MARK: - actions
     private func displayNewChat(contactId: Int) {
         let chatId = dcContext.createChatByContactId(contactId: contactId)
         let chatVC = ChatViewController(dcContext: dcContext, chatId: Int(chatId))
@@ -36,6 +75,7 @@ class QrViewController: UIViewController {
     }
 }
 
+// MARK: - QrViewContentView
 class QrViewContentView: UIView {
 
 }
