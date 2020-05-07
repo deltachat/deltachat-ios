@@ -74,7 +74,14 @@
 
 a tricky part (see eg. [3]) seems to be to hold the correct type of rerences to the UIViewControllers.
 
-TODO: what are the requirements?
+- at least one "strong" (normal) reference is needed somewhere.
+
+- only "weak" or "unowned" references are not sufficient
+  ("weak" always needs unwrap and may be come nil at any time,
+  "unowned" is kind of always-unwrapped "weak").
+
+- currently, we hold strong references to the coordinators
+  which hold strong references to the view controllers
 
 
 ## what is needed? what adds unneeded complexity?
@@ -107,6 +114,7 @@ TODO: what are the requirements?
 
 [2] delegator/delegate: https://stackoverflow.com/questions/7052926/what-is-the-purpose-of-an-ios-delegate https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Delegation.html
   
-[3] weak coordinator bug: https://github.com/deltachat/deltachat-ios/issues/675
+[3] weak coordinator bugs: https://github.com/deltachat/deltachat-ios/issues/675,
+https://github.com/deltachat/deltachat-ios/issues/323
   
 [4] https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application
