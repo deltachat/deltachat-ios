@@ -43,6 +43,16 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         fatalError("init(coder:) has not been implemented")
     }
 
+    deinit {
+        if #available(iOS 13, *) {}
+        else {
+            /*
+             for pre-iOS 13 versions there was an issue that welcomeView was not deallocated after login - reason unknown
+             */
+            welcomeView.removeFromSuperview()
+        }
+    }
+
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -26,22 +26,7 @@ class AppCoordinator: NSObject, Coordinator {
         return tabBarController
     }()
 
-    private lazy var loginController: UIViewController = {
-        let accountSetupController = AccountSetupController(dcContext: dcContext, editView: false)
-        let nav = UINavigationController(rootViewController: accountSetupController)
-        let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: nav)
-        coordinator.onLoginSuccess = {
-            [unowned self] in
-            self.loginController.dismiss(animated: true) {
-                self.presentTabBarController()
-            }
-        }
-        childCoordinators.append(coordinator)
-        accountSetupController.coordinator = coordinator
-        return nav
-    }()
-
-    // MARK: viewControllers
+    // MARK: base viewControllers
 
     private lazy var qrPageController: UINavigationController = {
         let pageController = QrPageController(dcContext: dcContext)
@@ -77,9 +62,9 @@ class AppCoordinator: NSObject, Coordinator {
         return nav
     }()
 
-
     private var welcomeController: WelcomeViewController?
     private var profileInfoNavigationController: UINavigationController?
+    private weak var loginNavigationController: UINavigationController?
 
     init(window: UIWindow, dcContext: DcContext) {
         self.window = window
@@ -149,6 +134,7 @@ class AppCoordinator: NSObject, Coordinator {
     func presentTabBarController() {
         window.rootViewController = tabBarController
         welcomeController = nil
+        loginNavigationController = nil
         window.makeKeyAndVisible()
         showTab(index: chatsTab)
     }
@@ -164,17 +150,23 @@ class AppCoordinator: NSObject, Coordinator {
 extension AppCoordinator: WelcomeCoordinator {
 
     func presentLogin() {
-        // add cancel button item to accountSetupController
-        if let nav = loginController as? UINavigationController, let loginController = nav.topViewController as? AccountSetupController {
-            loginController.navigationItem.leftBarButtonItem = UIBarButtonItem(
-                title: String.localized("cancel"),
-                style: .done,
-                target: self, action: #selector(cancelButtonPressed(_:))
-            )
-            loginController.coordinator?.onLoginSuccess = handleLoginSuccess
+        let loginController = AccountSetupController(dcContext: dcContext, editView: false)
+        loginController.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: String.localized("cancel"),
+            style: .done,
+            target: self, action: #selector(cancelButtonPressed(_:))
+        )
+        let loginNav = UINavigationController(rootViewController: loginController)
+        loginNav.modalPresentationStyle = .fullScreen
+        let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: loginNav)
+        coordinator.onLoginSuccess = {
+            [unowned self] in
+            self.handleLoginSuccess()
         }
-        loginController.modalPresentationStyle = .fullScreen
-        welcomeController?.present(loginController, animated: true, completion: nil)
+        childCoordinators.append(coordinator)
+        loginController.coordinator = coordinator
+        self.loginNavigationController = loginNav
+        welcomeController?.present(loginNav, animated: true, completion: nil)
     }
 
     func handleQRAccountCreationSuccess() {
@@ -189,11 +181,13 @@ extension AppCoordinator: WelcomeCoordinator {
     }
 
     func handleLoginSuccess() {
+        welcomeController?.dismiss(animated: false, completion: nil)
         presentTabBarController()
     }
 
     @objc private func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        loginController.dismiss(animated: true, completion: nil)
+        loginNavigationController?.dismiss(animated: true, completion: nil)
+        loginNavigationController = nil
     }
 }
 
@@ -451,7 +445,7 @@ class NewChatCoordinator: Coordinator {
         contactDetailController.coordinator = coordinator
         navigationController.pushViewController(contactDetailController, animated: true)
     }
-    
+
 }
 
 // MARK: - GroupChatDetailCoordinator
