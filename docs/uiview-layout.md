@@ -52,6 +52,7 @@
   - typically not subclassed
   - created by calling `UIApplicationMain()`
     or by adding the attribute `@UIApplicationMain` to a class derived from `UIApplicationDelegate`
+  - main entry point is `application(_:didFinishLaunchingWithOptions:)` [4]
   - _similar to "Application" on android_
     
 - `UIApplicationDelegate`
@@ -60,6 +61,13 @@
   - we need to derive from `UIApplicationDelegate` and pass this to `UIApplicationMain`
   - `UIApplication.shared.delegate` will keep a reference to our delegate
   - we can store "app globals" here, as DcContext
+
+- `UIWindow`
+  - backdrop for the ui, dispatches events, derived from `UIView`
+  - stored in `UIApplication.shared.delegate.window`,
+  - created in `application(_:didFinishLaunchingWithOptions:)` - TODO: is that correct?
+  - an app typicaly has only one window
+  - `window.rootViewController` is the anchor of all view controllers
 
 
 ## holding references
@@ -101,3 +109,4 @@ TODO: what are the requirements?
   
 [3] weak coordinator bug: https://github.com/deltachat/deltachat-ios/issues/675
   
+[4] https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application
