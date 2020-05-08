@@ -228,6 +228,14 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
 class BlockedContactsViewController: GroupMembersViewController, GroupMemberSelectionDelegate {
 
+    private var emptyStateLabel: UILabel = {
+        let label = UILabel()
+        label.text = String.localized("none_blocked_desktop")
+        label.textColor = DcColors.grayTextColor
+        return label
+    }()
+
+
     override init() {
         super.init()
         enableCheckmarks = false
@@ -237,6 +245,7 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("pref_blocked_contacts")
@@ -244,12 +253,23 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
         selectedContactIds = Set(contactIds)
         navigationItem.searchController = nil
         groupMemberSelectionDelegate = self
+        setupSubviews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        updateEmtpyStateLabel()
     }
 
+    // MARK: - setup
+    private func setupSubviews() {
+        view.addSubview(emptyStateLabel)
+        emptyStateLabel.translatesAutoresizingMaskIntoConstraints = false
+        emptyStateLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 0).isActive = true
+        emptyStateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0).isActive = true
+    }
+
+    // MARK: - actions + updates
     func selected(contactId: Int, selected: Bool) {
         if !selected {
             let dcContact = DcContact(id: contactId)
@@ -261,6 +281,7 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
                 self.contactIds = self.dcContext.getBlockedContacts()
                 self.selectedContactIds = Set(self.contactIds)
                 self.tableView.reloadData()
+                self.updateEmtpyStateLabel()
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
                 self.selectedContactIds = Set(self.contactIds)
@@ -268,6 +289,10 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
             }))
            present(alert, animated: true, completion: nil)
         }
+    }
+
+    private func updateEmtpyStateLabel() {
+        emptyStateLabel.isHidden = super.getNumberOfRowsForContactList() > 0
     }
 }
 
