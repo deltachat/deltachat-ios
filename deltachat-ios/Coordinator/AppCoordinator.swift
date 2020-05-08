@@ -3,7 +3,6 @@ import KK_ALCameraViewController
 import Photos
 import MobileCoreServices
 import DcCore
-import DBDebugToolkit
 
 // MARK: - AppCoordinator
 class AppCoordinator: NSObject, Coordinator {
@@ -68,9 +67,6 @@ class AppCoordinator: NSObject, Coordinator {
         let nav = UINavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "settings")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: settingsTab)
-        let coordinator = SettingsCoordinator(dcContext: dcContext, navigationController: nav)
-        self.childCoordinators.append(coordinator)
-        controller.coordinator = coordinator
         return nav
     }()
 
@@ -253,66 +249,6 @@ class ChatListCoordinator: Coordinator {
     func showNewChat(contactId: Int) {
         let chatId = dcContext.createChatByContactId(contactId: contactId)
         showChat(chatId: Int(chatId))
-    }
-}
-
-// MARK: - SettingsCoordinator
-class SettingsCoordinator: Coordinator {
-    let dcContext: DcContext
-    let navigationController: UINavigationController
-
-    var childCoordinators: [Coordinator] = []
-
-    init(dcContext: DcContext, navigationController: UINavigationController) {
-        self.dcContext = dcContext
-        self.navigationController = navigationController
-    }
-
-    func showEditSettingsController() {
-        let editController = EditSettingsController(dcContext: dcContext)
-        let coordinator = EditSettingsCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        editController.coordinator = coordinator
-        navigationController.pushViewController(editController, animated: true)
-    }
-
-    func showClassicMail() {
-        let settingsClassicViewController = SettingsClassicViewController(dcContext: dcContext)
-        navigationController.pushViewController(settingsClassicViewController, animated: true)
-    }
-
-    func showBlockedContacts() {
-        let blockedContactsController = BlockedContactsViewController()
-        navigationController.pushViewController(blockedContactsController, animated: true)
-    }
-
-    func showAutodelOptions() {
-        let settingsAutodelOverviewController = SettingsAutodelOverviewController(dcContext: dcContext)
-        navigationController.pushViewController(settingsAutodelOverviewController, animated: true)
-    }
-
-    func showContactRequests() {
-        let deaddropViewController = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
-        let deaddropCoordinator = MailboxCoordinator(dcContext: dcContext, navigationController: navigationController)
-        deaddropViewController.coordinator = deaddropCoordinator
-        childCoordinators.append(deaddropCoordinator)
-        navigationController.pushViewController(deaddropViewController, animated: true)
-    }
-
-    func showHelp() {
-        let helpViewController = HelpViewController()
-        navigationController.pushViewController(helpViewController, animated: true)
-    }
-
-    func showDebugToolkit() {
-        DBDebugToolkit.setup(with: [])  // emtpy array will override default device shake trigger
-        DBDebugToolkit.setupCrashReporting()
-        let info: [DBCustomVariable] = dcContext.getInfo().map { kv in
-            let value = kv.count > 1 ? kv[1] : ""
-            return DBCustomVariable(name: kv[0], value: value)
-        }
-        DBDebugToolkit.add(info)
-        DBDebugToolkit.showMenu()
     }
 }
 

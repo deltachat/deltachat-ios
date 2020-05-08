@@ -1,6 +1,7 @@
 import JGProgressHUD
 import UIKit
 import DcCore
+import DBDebugToolkit
 
 internal final class SettingsViewController: UITableViewController {
 
@@ -24,8 +25,6 @@ internal final class SettingsViewController: UITableViewController {
         case help = 10
         case autodel = 11
     }
-
-    weak var coordinator: SettingsCoordinator?
 
     private var dcContext: DcContext
 
@@ -302,18 +301,18 @@ internal final class SettingsViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: false) // to achieve highlight effect
 
         switch cellTag {
-        case .profile: self.coordinator?.showEditSettingsController()
-        case .contactRequest: self.coordinator?.showContactRequests()
-        case .showEmails: coordinator?.showClassicMail()
-        case .blockedContacts: coordinator?.showBlockedContacts()
-        case .autodel: coordinator?.showAutodelOptions()
+        case .profile: showEditSettingsController()
+        case .contactRequest: showContactRequests()
+        case .showEmails: showClassicMail()
+        case .blockedContacts: showBlockedContacts()
+        case .autodel: showAutodelOptions()
         case .notifications: break
         case .receiptConfirmation: break
         case .autocryptPreferences: break
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .exportBackup: createBackup()
         case .advanced: showAdvancedDialog()
-        case .help: coordinator?.showHelp()
+        case .help: showHelp()
         }
     }
 
@@ -412,7 +411,7 @@ internal final class SettingsViewController: UITableViewController {
         }))
 
         let logAction = UIAlertAction(title: String.localized("pref_view_log"), style: .default, handler: { [unowned self] _ in
-            self.coordinator?.showDebugToolkit()
+            self.showDebugToolkit()
         })
         alert.addAction(logAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -441,5 +440,64 @@ internal final class SettingsViewController: UITableViewController {
         showEmailsCell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
 
         autodelCell.detailTextLabel?.text = autodelSummary()
+    }
+
+    // MARK: - coordinator
+
+    func showEditSettingsController() {
+        if let navigationController = self.parent as? UINavigationController {
+            let editController = EditSettingsController(dcContext: dcContext)
+            let coordinator = EditSettingsCoordinator(dcContext: dcContext, navigationController: navigationController)
+            editController.coordinator = coordinator
+            navigationController.pushViewController(editController, animated: true)
+        }
+    }
+
+    func showClassicMail() {
+        if let navigationController = self.parent as? UINavigationController {
+            let settingsClassicViewController = SettingsClassicViewController(dcContext: dcContext)
+            navigationController.pushViewController(settingsClassicViewController, animated: true)
+        }
+    }
+
+    func showBlockedContacts() {
+        if let navigationController = self.parent as? UINavigationController {
+            let blockedContactsController = BlockedContactsViewController()
+            navigationController.pushViewController(blockedContactsController, animated: true)
+        }
+    }
+
+    func showAutodelOptions() {
+        if let navigationController = self.parent as? UINavigationController {
+            let settingsAutodelOverviewController = SettingsAutodelOverviewController(dcContext: dcContext)
+            navigationController.pushViewController(settingsAutodelOverviewController, animated: true)
+        }
+    }
+
+    func showContactRequests() {
+        if let navigationController = self.parent as? UINavigationController {
+            let deaddropViewController = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
+            let deaddropCoordinator = MailboxCoordinator(dcContext: dcContext, navigationController: navigationController)
+            deaddropViewController.coordinator = deaddropCoordinator
+            navigationController.pushViewController(deaddropViewController, animated: true)
+        }
+    }
+
+    func showHelp() {
+        if let navigationController = self.parent as? UINavigationController {
+            let helpViewController = HelpViewController()
+            navigationController.pushViewController(helpViewController, animated: true)
+        }
+    }
+
+    func showDebugToolkit() {
+        DBDebugToolkit.setup(with: [])  // emtpy array will override default device shake trigger
+        DBDebugToolkit.setupCrashReporting()
+        let info: [DBCustomVariable] = dcContext.getInfo().map { kv in
+            let value = kv.count > 1 ? kv[1] : ""
+            return DBCustomVariable(name: kv[0], value: value)
+        }
+        DBDebugToolkit.add(info)
+        DBDebugToolkit.showMenu()
     }
 }
