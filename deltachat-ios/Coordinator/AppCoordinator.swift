@@ -862,7 +862,7 @@ class EditGroupCoordinator: Coordinator {
 }
 
 // MARK: - EditContactCoordinator
-class EditContactCoordinator: Coordinator, EditContactCoordinatorProtocol {
+class EditContactCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
 
@@ -898,11 +898,6 @@ protocol ContactDetailCoordinatorProtocol: class {
     func deleteChat()
     func showDocuments()
     func showGallery()
-}
-
-protocol EditContactCoordinatorProtocol: class {
-    func navigateBack()
-    func showChat(chatId: Int)
 }
 
 protocol WelcomeCoordinator: class {
