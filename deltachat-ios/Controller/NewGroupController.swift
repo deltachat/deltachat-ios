@@ -352,8 +352,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     func showGroupChat(chatId: Int) {
         if let navigationController = self.parent as? UINavigationController {
             let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
-            let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
-            chatViewController.coordinator = coordinator
             navigationController.popToRootViewController(animated: false)
             navigationController.pushViewController(chatViewController, animated: true)
         }

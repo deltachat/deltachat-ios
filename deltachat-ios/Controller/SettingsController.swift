@@ -477,8 +477,6 @@ internal final class SettingsViewController: UITableViewController {
     func showContactRequests() {
         if let navigationController = self.parent as? UINavigationController {
             let deaddropViewController = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
-            let deaddropCoordinator = MailboxCoordinator(dcContext: dcContext, navigationController: navigationController)
-            deaddropViewController.coordinator = deaddropCoordinator
             navigationController.pushViewController(deaddropViewController, animated: true)
         }
     }

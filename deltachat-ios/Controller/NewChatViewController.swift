@@ -356,8 +356,6 @@ class NewChatViewController: UITableViewController {
     func showChat(chatId: Int) {
         if let navigationController = self.parent as? UINavigationController {
             let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
-            let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
-            chatViewController.coordinator = coordinator
             navigationController.pushViewController(chatViewController, animated: true)
             navigationController.viewControllers.remove(at: 1)
         }

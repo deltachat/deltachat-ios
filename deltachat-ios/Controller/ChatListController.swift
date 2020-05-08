@@ -371,8 +371,6 @@ class ChatListController: UITableViewController {
     func showChat(chatId: Int) {
         if let navigationController = self.parent as? UINavigationController {
             let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
-            let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
-            chatVC.coordinator = coordinator
             navigationController.pushViewController(chatVC, animated: true)
         }
     }

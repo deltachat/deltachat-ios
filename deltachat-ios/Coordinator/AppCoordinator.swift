@@ -184,29 +184,6 @@ extension AppCoordinator: WelcomeCoordinator {
     }
 }
 
-// since mailbox and chatView -tab both use ChatViewController we want to be able to assign different functionality via coordinators -> therefore we override unneeded functions such as showChatDetail -> maybe find better solution in longterm
-class MailboxCoordinator: ChatViewCoordinator {
-
-    init(dcContext: DcContext, navigationController: UINavigationController) {
-        super.init(dcContext: dcContext, navigationController: navigationController, chatId: -1)
-    }
-
-    override func showChatDetail(chatId _: Int) {
-        // ignore for now
-    }
-
-    override func showCameraViewController(delegate: MediaPickerDelegate) {
-        // ignore
-    }
-
-    override func showChat(chatId: Int) {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            navigationController.popToRootViewController(animated: false)
-            appDelegate.appCoordinator.showChat(chatId: chatId)
-        }
-    }
-}
-
 // MARK: - EditSettingsCoordinator
 class EditSettingsCoordinator: Coordinator {
     var dcContext: DcContext
@@ -225,81 +202,6 @@ class EditSettingsCoordinator: Coordinator {
 
     func showCamera(delegate: MediaPickerDelegate) {
         mediaPicker.showCamera(delegate: delegate)
-    }
-}
-
-// MARK: - ChatViewCoordinator
-class ChatViewCoordinator: NSObject, Coordinator {
-    var dcContext: DcContext
-    let navigationController: UINavigationController
-    let chatId: Int
-    var chatViewController: ChatViewController!
-
-    var childCoordinators: [Coordinator] = []
-    let mediaPicker: MediaPicker
-
-    init(dcContext: DcContext, navigationController: UINavigationController, chatId: Int) {
-        self.dcContext = dcContext
-        self.navigationController = navigationController
-        self.chatId = chatId
-        self.mediaPicker = MediaPicker(navigationController: self.navigationController)
-    }
-
-    func navigateBack() {
-        navigationController.popViewController(animated: true)
-    }
-
-    func showChatDetail(chatId: Int) {
-        let chat = dcContext.getChat(chatId: chatId)
-        switch chat.chatType {
-        case .SINGLE:
-            if let contactId = chat.contactIds.first {
-                let viewModel = ContactDetailViewModel(contactId: contactId, chatId: chatId, context: dcContext)
-                let contactDetailController = ContactDetailViewController(viewModel: viewModel)
-                navigationController.pushViewController(contactDetailController, animated: true)
-            }
-        case .GROUP, .VERIFIEDGROUP:
-            let groupChatDetailViewController = GroupChatDetailViewController(chatId: chatId, dcContext: dcContext)
-            navigationController.pushViewController(groupChatDetailViewController, animated: true)
-        }
-    }
-
-    func showContactDetail(of contactId: Int, in chatOfType: ChatType, chatId: Int?) {
-        let viewModel = ContactDetailViewModel(contactId: contactId, chatId: chatId, context: dcContext )
-        let contactDetailController = ContactDetailViewController(viewModel: viewModel)
-        navigationController.pushViewController(contactDetailController, animated: true)
-    }
-
-    func showChat(chatId: Int) {
-        let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
-        let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
-        childCoordinators.append(coordinator)
-        chatViewController.coordinator = coordinator
-        navigationController.popToRootViewController(animated: false)
-        navigationController.pushViewController(chatViewController, animated: true)
-    }
-
-    func showDocumentLibrary(delegate: MediaPickerDelegate) {
-        mediaPicker.showDocumentLibrary(delegate: delegate)
-    }
-
-    func showVoiceMessageRecorder(delegate: MediaPickerDelegate) {
-        mediaPicker.showVoiceRecorder(delegate: delegate)
-    }
-
-    func showCameraViewController(delegate: MediaPickerDelegate) {
-        mediaPicker.showCamera(delegate: delegate, allowCropping: false)
-    }
-
-    func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
-        mediaPicker.showPhotoVideoLibrary(delegate: delegate)
-    }
-
-    func showMediaGallery(currentIndex: Int, mediaUrls urls: [URL]) {
-        let betterPreviewController = PreviewController(currentIndex: currentIndex, urls: urls)
-        let nav = UINavigationController(rootViewController: betterPreviewController)
-        nav.modalPresentationStyle = .fullScreen
-        navigationController.present(nav, animated: true)
     }
 }
 

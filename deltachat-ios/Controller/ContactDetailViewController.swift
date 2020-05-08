@@ -282,8 +282,6 @@ class ContactDetailViewController: UITableViewController {
     func showChat(chatId: Int) {
         if let navigationController = self.parent as? UINavigationController {
             let chatViewController = ChatViewController(dcContext: viewModel.context, chatId: chatId)
-            let coordinator = ChatViewCoordinator(dcContext: viewModel.context, navigationController: navigationController, chatId: chatId)
-            chatViewController.coordinator = coordinator
             navigationController.popToRootViewController(animated: false)
             navigationController.pushViewController(chatViewController, animated: true)
         }

@@ -39,13 +39,9 @@ extension ChatViewController: MediaPickerDelegate {
 }
 
 class ChatViewController: MessagesViewController {
-
     var dcContext: DcContext
-    weak var coordinator: ChatViewCoordinator?
-
     let outgoingAvatarOverlap: CGFloat = 17.5
     let loadCount = 30
-
     let chatId: Int
     let refreshControl = UIRefreshControl()
     var messageList: [DcMsg] = []
@@ -66,6 +62,14 @@ class ChatViewController: MessagesViewController {
     private var showNamesAboveMessage: Bool
     var showCustomNavBar = true
     var previewView: UIView?
+
+    private lazy var mediaPicker: MediaPicker? = {
+        if let navigationController = self.parent as? UINavigationController {
+            return MediaPicker(navigationController: navigationController)
+        } else {
+            return nil
+        }
+    }()
 
     var emptyStateView: PaddingLabel = {
         let view =  PaddingLabel()
@@ -498,7 +502,9 @@ class ChatViewController: MessagesViewController {
     }
 
     @objc private func chatProfilePressed() {
-        coordinator?.showChatDetail(chatId: chatId)
+        if chatId == DC_CHAT_ID_DEADDROP {
+            showChatDetail(chatId: chatId)
+        }
     }
 
     // MARK: - UICollectionViewDataSource
@@ -576,7 +582,7 @@ class ChatViewController: MessagesViewController {
         case NSSelectorFromString("messageForward:"):
             let msg = messageList[indexPath.section]
             RelayHelper.sharedInstance.setForwardMessage(messageId: msg.id)
-            coordinator?.navigateBack()
+            navigateBack()
         default:
             super.collectionView(collectionView, performAction: action, forItemAt: indexPath, withSender: sender)
         }
@@ -599,14 +605,14 @@ class ChatViewController: MessagesViewController {
         if dcContext.getChatIdByContactId(contactId: contactId) != 0 {
             self.dismiss(animated: true, completion: nil)
             let chatId = self.dcContext.createChatByContactId(contactId: contactId)
-            self.coordinator?.showChat(chatId: chatId)
+            self.showChat(chatId: chatId)
         } else {
             confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), email),
                               actionTitle: String.localized("start_chat"),
                               actionHandler: { _ in
                                 self.dismiss(animated: true, completion: nil)
                                 let chatId = self.dcContext.createChatByContactId(contactId: contactId)
-                                self.coordinator?.showChat(chatId: chatId)})
+                                self.showChat(chatId: chatId)})
         }
     }
 
@@ -629,7 +635,71 @@ class ChatViewController: MessagesViewController {
                             self.dismiss(animated: true, completion: nil)},
                           cancelHandler: { _ in
                             self.dismiss(animated: false, completion: nil)
-                            self.coordinator?.navigateBack()})
+                            self.navigateBack()})
+        }
+    }
+
+    //  MARK: - coordinator
+    func navigateBack() {
+        if let navigationController = self.parent as? UINavigationController {
+            navigationController.popViewController(animated: true)
+        }
+    }
+
+    func showChatDetail(chatId: Int) {
+        if let navigationController = self.parent as? UINavigationController {
+            let chat = dcContext.getChat(chatId: chatId)
+            switch chat.chatType {
+            case .SINGLE:
+                if let contactId = chat.contactIds.first {
+                    let viewModel = ContactDetailViewModel(contactId: contactId, chatId: chatId, context: dcContext)
+                    let contactDetailController = ContactDetailViewController(viewModel: viewModel)
+                    navigationController.pushViewController(contactDetailController, animated: true)
+                }
+            case .GROUP, .VERIFIEDGROUP:
+                let groupChatDetailViewController = GroupChatDetailViewController(chatId: chatId, dcContext: dcContext)
+                navigationController.pushViewController(groupChatDetailViewController, animated: true)
+            }
+        }
+    }
+
+    func showContactDetail(of contactId: Int, in chatOfType: ChatType, chatId: Int?) {
+        if let navigationController = self.parent as? UINavigationController {
+            let viewModel = ContactDetailViewModel(contactId: contactId, chatId: chatId, context: dcContext )
+            let contactDetailController = ContactDetailViewController(viewModel: viewModel)
+            navigationController.pushViewController(contactDetailController, animated: true)
+        }
+    }
+
+    func showChat(chatId: Int) {
+        if let navigationController = self.parent as? UINavigationController, let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            navigationController.popToRootViewController(animated: false)
+            appDelegate.appCoordinator.showChat(chatId: chatId)
+        }
+    }
+
+    func showDocumentLibrary(delegate: MediaPickerDelegate) {
+        mediaPicker?.showDocumentLibrary(delegate: delegate)
+    }
+
+    func showVoiceMessageRecorder(delegate: MediaPickerDelegate) {
+        mediaPicker?.showVoiceRecorder(delegate: delegate)
+    }
+
+    func showCameraViewController(delegate: MediaPickerDelegate) {
+        mediaPicker?.showCamera(delegate: delegate, allowCropping: false)
+    }
+
+    func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
+        mediaPicker?.showPhotoVideoLibrary(delegate: delegate)
+    }
+
+    func showMediaGallery(currentIndex: Int, mediaUrls urls: [URL]) {
+        if let navigationController = self.parent as? UINavigationController {
+            let betterPreviewController = PreviewController(currentIndex: currentIndex, urls: urls)
+            let nav = UINavigationController(rootViewController: betterPreviewController)
+            nav.modalPresentationStyle = .fullScreen
+            navigationController.present(nav, animated: true)
         }
     }
 }
@@ -1119,19 +1189,19 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
 
     private func documentActionPressed(_ action: UIAlertAction) {
-        coordinator?.showDocumentLibrary(delegate: self)
+        showDocumentLibrary(delegate: self)
     }
 
     private func voiceMessageButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showVoiceMessageRecorder(delegate: self)
+        showVoiceMessageRecorder(delegate: self)
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showCameraViewController(delegate: self)
+        showCameraViewController(delegate: self)
     }
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showPhotoVideoLibrary(delegate: self)
+        showPhotoVideoLibrary(delegate: self)
     }
 
     private func locationStreamingButtonPressed(_ action: UIAlertAction) {
@@ -1181,7 +1251,7 @@ extension ChatViewController: MessageCellDelegate {
 
                 // these are the files user will be able to swipe trough
                 let mediaUrls: [URL] = previousUrls + [url] + nextUrls
-                coordinator?.showMediaGallery(currentIndex: previousUrls.count, mediaUrls: mediaUrls)
+                showMediaGallery(currentIndex: previousUrls.count, mediaUrls: mediaUrls)
             }
         }
     }
@@ -1229,7 +1299,7 @@ extension ChatViewController: MessageCellDelegate {
         if let indexPath = messagesCollectionView.indexPath(for: cell) {
             let message = messageList[indexPath.section]
             let chat = dcContext.getChat(chatId: chatId)
-            coordinator?.showContactDetail(of: message.fromContact.id, in: chat.chatType, chatId: chatId)
+            showContactDetail(of: message.fromContact.id, in: chat.chatType, chatId: chatId)
         }
     }
 
