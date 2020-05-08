@@ -46,9 +46,6 @@ class AppCoordinator: NSObject, Coordinator {
     private lazy var qrPageController: UINavigationController = {
         let pageController = QrPageController(dcContext: dcContext)
         let nav = UINavigationController(rootViewController: pageController)
-        let coordinator = QrViewCoordinator(navigationController: nav)
-        self.childCoordinators.append(coordinator)
-        pageController.coordinator = coordinator
         let settingsImage = UIImage(named: "qr_code")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
         return nav
@@ -215,25 +212,6 @@ class MailboxCoordinator: ChatViewCoordinator {
     override func showChat(chatId: Int) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             navigationController.popToRootViewController(animated: false)
-            appDelegate.appCoordinator.showChat(chatId: chatId)
-        }
-    }
-}
-
-class QrViewCoordinator: Coordinator {
-    var navigationController: UINavigationController
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-
-    func showChats() {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.appCoordinator.showTab(index: appDelegate.appCoordinator.chatsTab)
-        }
-    }
-
-    func showChat(chatId: Int) {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.appCoordinator.showChat(chatId: chatId)
         }
     }

@@ -2,8 +2,6 @@ import UIKit
 import DcCore
 
 class QrPageController: UIPageViewController, ProgressAlertHandler {
-
-    weak var coordinator: QrViewCoordinator?
     private let dcContext: DcContext
     weak var progressAlert: UIAlertController?
     var progressObserver: Any?
@@ -80,6 +78,19 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
         qrReader.delegate = self
         return qrReader
     }
+
+    // MARK: - coordinator
+    func showChats() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.appCoordinator.showTab(index: appDelegate.appCoordinator.chatsTab)
+        }
+    }
+
+    func showChat(chatId: Int) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.appCoordinator.showChat(chatId: chatId)
+        }
+    }
 }
 
 // MARK: - UIPageViewControllerDataSource, UIPageViewControllerDelegate
@@ -113,7 +124,7 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
 extension QrPageController: QrCodeReaderDelegate {
 
     func handleQrCode(_ code: String) {
-        self.coordinator?.showChats()
+        self.showChats()
         let qrParsed: DcLot = self.dcContext.checkQR(qrCode: code)
         let state = Int32(qrParsed.state)
         switch state {
@@ -145,7 +156,7 @@ extension QrPageController: QrCodeReaderDelegate {
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
                 let chatId = self.dcContext.createChatByContactId(contactId: qrParsed.id)
-                self.coordinator?.showChat(chatId: chatId)
+                self.showChat(chatId: chatId)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
@@ -205,7 +216,7 @@ extension QrPageController: QrCodeReaderDelegate {
                 DispatchQueue.main.async {
                     self.progressAlert?.dismiss(animated: true, completion: nil)
                     if chatId != 0 {
-                        self.coordinator?.showChat(chatId: chatId)
+                        self.showChat(chatId: chatId)
                     } else if errorString != nil {
                         self.showErrorAlert(error: errorString!)
                     }
