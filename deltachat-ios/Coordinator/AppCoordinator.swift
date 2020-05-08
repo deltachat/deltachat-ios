@@ -467,9 +467,6 @@ class GroupChatDetailCoordinator: Coordinator {
 
     func showAddGroupMember(chatId: Int) {
         let groupMemberViewController = AddGroupMembersViewController(chatId: chatId)
-        let coordinator = AddGroupMembersCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        groupMemberViewController.coordinator = coordinator
         navigationController.pushViewController(groupMemberViewController, animated: true)
     }
 
@@ -632,25 +629,6 @@ class NewGroupAddMembersCoordinator: Coordinator {
     init(dcContext: DcContext, navigationController: UINavigationController) {
         self.dcContext = dcContext
         self.navigationController = navigationController
-    }
-}
-
-// MARK: - AddGroupMembersCoordinator
-class AddGroupMembersCoordinator: Coordinator {
-    var dcContext: DcContext
-    let navigationController: UINavigationController
-
-    private var childCoordinators: [Coordinator] = []
-
-    init(dcContext: DcContext, navigationController: UINavigationController) {
-        self.dcContext = dcContext
-        self.navigationController = navigationController
-    }
-
-    func showNewContactController() {
-        let newContactController = NewContactController(dcContext: dcContext)
-        newContactController.openChatOnSave = false
-        navigationController.pushViewController(newContactController, animated: true)
     }
 }
 
