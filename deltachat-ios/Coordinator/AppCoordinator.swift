@@ -423,9 +423,6 @@ class NewChatCoordinator: Coordinator {
 
     func showNewContactController() {
         let newContactController = NewContactController(dcContext: dcContext)
-        let coordinator = EditContactCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        newContactController.coordinator = coordinator
         navigationController.pushViewController(newContactController, animated: true)
     }
 
@@ -471,9 +468,6 @@ class GroupChatDetailCoordinator: Coordinator {
 
     func showSingleChatEdit(contactId: Int) {
         let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
-        let coordinator = EditContactCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        editContactController.coordinator = coordinator
         navigationController.pushViewController(editContactController, animated: true)
     }
 
@@ -674,9 +668,6 @@ class AddGroupMembersCoordinator: Coordinator {
     func showNewContactController() {
         let newContactController = NewContactController(dcContext: dcContext)
         newContactController.openChatOnSave = false
-        let coordinator = EditContactCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        newContactController.coordinator = coordinator
         navigationController.pushViewController(newContactController, animated: true)
     }
 }
@@ -768,9 +759,6 @@ class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
 
     func showEditContact(contactId: Int) {
         let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
-        let coordinator = EditContactCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        editContactController.coordinator = coordinator
         navigationController.pushViewController(editContactController, animated: true)
     }
 
@@ -861,32 +849,6 @@ class EditGroupCoordinator: Coordinator {
     }
 }
 
-// MARK: - EditContactCoordinator
-class EditContactCoordinator: Coordinator {
-    var dcContext: DcContext
-    let navigationController: UINavigationController
-
-    var childCoordinators: [Coordinator] = []
-
-    init(dcContext: DcContext, navigationController: UINavigationController) {
-        self.dcContext = dcContext
-        self.navigationController = navigationController
-    }
-
-    func navigateBack() {
-        navigationController.popViewController(animated: true)
-    }
-
-    func showChat(chatId: Int) {
-        let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
-        let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
-        coordinator.chatViewController = chatViewController
-        childCoordinators.append(coordinator)
-        chatViewController.coordinator = coordinator
-        navigationController.popToRootViewController(animated: false)
-        navigationController.pushViewController(chatViewController, animated: true)
-    }
-}
 
 /*
  boilerplate - I tend to remove that interface (cyberta)
