@@ -100,13 +100,20 @@ a tricky part (see eg. [3]) seems to be to hold the correct type of rerences to 
   - TODO: `AppCoordinator` is also derived from NSObject - is there a know reason for that?
   - seem not to help on making code readable - esp. as all coordinators are in a separate file
   - i think the "coordinator" as they are used now are of very limited use,
-  
+
+- however, the coordinator get the UINavigationContoller as argument, so there is some use
+
 - remove "coordinator protocol" and do not use?
   - in general, for some minor adaptions, a simple flag eg. hiding some elements
     appear much more readable to me that having several levels of abstraction
   - when we really come to the point where we need to reuse things, 
     we can add these things as needed (or use parameters on creation "flag"),
     i think, in the current state, coordinators create more harm than use.
+
+- the tearing up of navigator/coordinator into two files is
+  unfortunate, in swiftUI, this is re-combined to a single file,
+  child-class and a makeCoordinator() called by SwiftUI:
+  https://developer.apple.com/tutorials/swiftui/interfacing-with-uikit
 
 
 ## some sources
