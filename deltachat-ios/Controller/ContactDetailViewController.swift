@@ -2,7 +2,7 @@ import UIKit
 
 // this is also used as ChatDetail for SingleChats
 class ContactDetailViewController: UITableViewController {
-    weak var coordinator: ContactDetailCoordinatorProtocol?
+    weak var coordinator: ContactDetailCoordinator?
     private let viewModel: ContactDetailViewModelProtocol
 
     private lazy var headerCell: ContactDetailHeader = {

@@ -734,7 +734,7 @@ class NewGroupCoordinator: Coordinator {
 }
 
 // MARK: - ContactDetailCoordinator
-class ContactDetailCoordinator: Coordinator, ContactDetailCoordinatorProtocol {
+class ContactDetailCoordinator: Coordinator {
     var dcContext: DcContext
     let navigationController: UINavigationController
     var previewController: PreviewController?
@@ -853,14 +853,7 @@ class EditGroupCoordinator: Coordinator {
 /*
  boilerplate - I tend to remove that interface (cyberta)
  */
-// MARK: - coordinator protocols
-protocol ContactDetailCoordinatorProtocol: class {
-    func showEditContact(contactId: Int)
-    func showChat(chatId: Int)
-    func deleteChat()
-    func showDocuments()
-    func showGallery()
-}
+
 
 protocol WelcomeCoordinator: class {
     func presentLogin()
