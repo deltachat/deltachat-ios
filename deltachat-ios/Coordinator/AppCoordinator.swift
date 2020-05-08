@@ -482,10 +482,7 @@ class GroupChatDetailCoordinator: Coordinator {
     }
 
     func showGroupChatEdit(chat: DcChat) {
-        let editGroupViewController = EditGroupViewController(chat: chat)
-        let coordinator = EditGroupCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        editGroupViewController.coordinator = coordinator
+        let editGroupViewController = EditGroupViewController(dcContext: dcContext, chat: chat)
         navigationController.pushViewController(editGroupViewController, animated: true)
     }
 
@@ -720,32 +717,6 @@ class NewGroupCoordinator: Coordinator {
         }
     }
 }
-
-// MARK: - EditGroupCoordinator
-class EditGroupCoordinator: Coordinator {
-    let navigationController: UINavigationController
-    let dcContext: DcContext
-    let mediaPicker: MediaPicker
-
-    init(dcContext: DcContext, navigationController: UINavigationController) {
-        self.dcContext = dcContext
-        self.navigationController = navigationController
-        mediaPicker = MediaPicker(navigationController: self.navigationController)
-    }
-
-    func showPhotoPicker(delegate: MediaPickerDelegate) {
-        mediaPicker.showPhotoGallery(delegate: delegate)
-    }
-
-    func showCamera(delegate: MediaPickerDelegate) {
-        mediaPicker.showCamera(delegate: delegate)
-    }
-
-    func navigateBack() {
-        navigationController.popViewController(animated: true)
-    }
-}
-
 
 /*
  boilerplate - I tend to remove that interface (cyberta)

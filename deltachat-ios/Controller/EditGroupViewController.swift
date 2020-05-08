@@ -2,9 +2,7 @@ import UIKit
 import DcCore
 
 class EditGroupViewController: UITableViewController, MediaPickerDelegate {
-
-    weak var coordinator: EditGroupCoordinator?
-
+    private let dcContext: DcContext
     private let chat: DcChat
     private var groupImage: UIImage?
 
@@ -12,6 +10,14 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     private let rowGroupName = 1
 
     var avatarSelectionCell: AvatarSelectionCell
+
+    private lazy var mediaPicker: MediaPicker? = {
+        if let navigationController = self.parent as? UINavigationController {
+            return MediaPicker(navigationController: navigationController)
+        } else {
+            return nil
+        }
+    }()
 
     lazy var groupNameCell: TextFieldCell = {
         let cell = TextFieldCell(description: String.localized("group_name"), placeholder: self.chat.name)
@@ -31,7 +37,8 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         return button
     }()
 
-    init(chat: DcChat) {
+    init(dcContext: DcContext, chat: DcChat) {
+        self.dcContext = dcContext
         self.chat = chat
         self.avatarSelectionCell = AvatarSelectionCell(chat: chat)
         super.init(style: .grouped)
@@ -75,15 +82,15 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     
     @objc func saveContactButtonPressed() {
         let newName = groupNameCell.getText()
-        if let groupImage = groupImage, let dcContext = coordinator?.dcContext {
+        if let groupImage = groupImage {
             AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: Int(chat.id))
         }
-        _ = DcContext.shared.setChatName(chatId: chat.id, name: newName ?? "")
-        coordinator?.navigateBack()
+        _ = dcContext.setChatName(chatId: chat.id, name: newName ?? "")
+        navigateBack()
     }
 
     @objc func cancelButtonPressed() {
-        coordinator?.navigateBack()
+        navigateBack()
     }
 
     private func groupNameEdited(_ textField: UITextField) {
@@ -102,11 +109,11 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showPhotoPicker(delegate: self)
+        showPhotoPicker(delegate: self)
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showCamera(delegate: self)
+        showCamera(delegate: self)
     }
 
     func onImageSelected(image: UIImage) {
@@ -121,5 +128,21 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         let indexPath = IndexPath(row: rowAvatar, section: 0)
         self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
         self.tableView.endUpdates()
+    }
+
+    // MARK: - coordinator
+
+    func showPhotoPicker(delegate: MediaPickerDelegate) {
+        mediaPicker?.showPhotoGallery(delegate: delegate)
+    }
+
+    func showCamera(delegate: MediaPickerDelegate) {
+        mediaPicker?.showCamera(delegate: delegate)
+    }
+
+    func navigateBack() {
+        if let navigationController = self.parent as? UINavigationController {
+            navigationController.popViewController(animated: true)
+        }
     }
 }
