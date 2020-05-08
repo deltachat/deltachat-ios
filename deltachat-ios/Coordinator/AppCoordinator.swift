@@ -445,102 +445,6 @@ class NewChatCoordinator: Coordinator {
     
 }
 
-// MARK: - GroupChatDetailCoordinator
-class GroupChatDetailCoordinator: Coordinator {
-    var dcContext: DcContext
-    let navigationController: UINavigationController
-    let chatId: Int
-
-    private var childCoordinators: [Coordinator] = []
-    private var previewController: PreviewController?
-
-    init(dcContext: DcContext, chatId: Int, navigationController: UINavigationController) {
-        self.dcContext = dcContext
-        self.chatId = chatId
-        self.navigationController = navigationController
-    }
-
-    func showSingleChatEdit(contactId: Int) {
-        let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
-        navigationController.pushViewController(editContactController, animated: true)
-    }
-
-    func showAddGroupMember(chatId: Int) {
-        let groupMemberViewController = AddGroupMembersViewController(chatId: chatId)
-        navigationController.pushViewController(groupMemberViewController, animated: true)
-    }
-
-    func showQrCodeInvite(chatId: Int) {
-        let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
-        navigationController.pushViewController(qrInviteCodeController, animated: true)
-    }
-
-    func showGroupChatEdit(chat: DcChat) {
-        let editGroupViewController = EditGroupViewController(dcContext: dcContext, chat: chat)
-        navigationController.pushViewController(editGroupViewController, animated: true)
-    }
-
-    func showContactDetail(of contactId: Int) {
-        let viewModel = ContactDetailViewModel(contactId: contactId, chatId: nil, context: dcContext)
-        let contactDetailController = ContactDetailViewController(viewModel: viewModel)
-        navigationController.pushViewController(contactDetailController, animated: true)
-    }
-
-    func showDocuments() {
-        presentPreview(for: DC_MSG_FILE, messageType2: DC_MSG_AUDIO, messageType3: 0)
-    }
-
-    func showGallery() {
-        presentPreview(for: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
-    }
-
-    private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {
-        let messageIds = dcContext.getChatMedia(chatId: chatId, messageType: messageType, messageType2: messageType2, messageType3: messageType3)
-        var mediaUrls: [URL] = []
-        for messageId in messageIds {
-            let message = DcMsg.init(id: messageId)
-            if let url = message.fileURL {
-                mediaUrls.insert(url, at: 0)
-            }
-        }
-        previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
-        if let previewController = previewController {
-            navigationController.pushViewController(previewController, animated: true)
-        }
-    }
-
-    func deleteChat() {
-        /*
-        app will navigate to chatlist or archive and delete the chat there
-        notify chatList/archiveList to delete chat AFTER is is visible
-        */
-        func notifyToDeleteChat() {
-            NotificationCenter.default.post(name: dcNotificationChatDeletedInChatDetail, object: nil, userInfo: ["chat_id": self.chatId])
-        }
-
-        func showArchive() {
-            self.navigationController.popToRootViewController(animated: false) // in main ChatList now
-            let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
-            let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
-            let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: navigationController)
-            childCoordinators.append(coordinator)
-            controller.coordinator = coordinator
-            navigationController.pushViewController(controller, animated: false)
-        }
-
-        CATransaction.begin()
-        CATransaction.setCompletionBlock(notifyToDeleteChat)
-
-        let chat = dcContext.getChat(chatId: chatId)
-        if chat.isArchived {
-            showArchive()
-        } else {
-            self.navigationController.popToRootViewController(animated: true) // in main ChatList now
-        }
-        CATransaction.commit()
-    }
-}
-
 // MARK: - ChatViewCoordinator
 class ChatViewCoordinator: NSObject, Coordinator {
     var dcContext: DcContext
@@ -572,10 +476,7 @@ class ChatViewCoordinator: NSObject, Coordinator {
                 navigationController.pushViewController(contactDetailController, animated: true)
             }
         case .GROUP, .VERIFIEDGROUP:
-            let groupChatDetailViewController = GroupChatDetailViewController(chatId: chatId, context: dcContext) // inherits from ChatDetailViewController
-            let coordinator = GroupChatDetailCoordinator(dcContext: dcContext, chatId: chatId, navigationController: navigationController)
-            childCoordinators.append(coordinator)
-            groupChatDetailViewController.coordinator = coordinator
+            let groupChatDetailViewController = GroupChatDetailViewController(chatId: chatId, dcContext: dcContext)
             navigationController.pushViewController(groupChatDetailViewController, animated: true)
         }
     }
