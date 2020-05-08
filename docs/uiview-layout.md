@@ -33,8 +33,8 @@
 - "coordinator"
   - convention, no requirement from UIKit
   - defined as an empty protocol class from where other derive
-  - they take the view controller as argument on construction
-    and call eg. `pushViewController()` to go to other views
+  - they typically take a `UINavigationController` as argument on construction
+    and call eg. `pushViewController()` to navigate to other view controllers
   - stored as a member of the view controller
   - everything done there could also be done in a view controller directly
   - when derived from an abstract base class, in theory, this helps on making things more reusable
@@ -65,7 +65,8 @@
 - `UIWindow`
   - backdrop for the ui, dispatches events, derived from `UIView`
   - stored in `UIApplication.shared.delegate.window`,
-  - created in `application(_:didFinishLaunchingWithOptions:)` - TODO: is that correct?
+  - created in `application(_:didFinishLaunchingWithOptions:)`;
+    in pure iOS13 apps set in SceneDelegate
   - an app typicaly has only one window
   - `window.rootViewController` is the anchor of all view controllers
 
