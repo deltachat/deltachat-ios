@@ -2,8 +2,6 @@ import UIKit
 import DcCore
 
 class WelcomeViewController: UIViewController, ProgressAlertHandler {
-
-    weak var coordinator: WelcomeCoordinator?
     private let dcContext: DcContext
     private var scannedQrCode: String?
     var progressObserver: Any?
@@ -18,7 +16,9 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private lazy var welcomeView: WelcomeContentView = {
         let view = WelcomeContentView()
         view.onLogin = { [unowned self] in
-            self.coordinator?.presentLogin()
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.appCoordinator.presentLogin()
+            }
         }
         view.onScanQRCode  = { [unowned self] in
             self.showQRReader()
@@ -34,8 +34,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
-        onProgressSuccess = {[unowned self] in
-            self.coordinator?.handleQRAccountCreationSuccess()
+        onProgressSuccess = {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.appCoordinator.handleQRAccountCreationSuccess()
+            }
         }
     }
 

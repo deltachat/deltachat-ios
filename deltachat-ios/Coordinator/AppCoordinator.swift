@@ -127,7 +127,7 @@ class AppCoordinator: NSObject, Coordinator {
         // but even when this changes in ios, we need the reset as we allow account-deletion also in-app.
         UIApplication.shared.applicationIconBadgeNumber = 0
 
-        let wc = makeWelcomeController()
+        let wc = WelcomeViewController(dcContext: dcContext)
         self.welcomeController = wc
         window.rootViewController = wc
         window.makeKeyAndVisible()
@@ -140,28 +140,26 @@ class AppCoordinator: NSObject, Coordinator {
         showTab(index: chatsTab)
     }
 
-    private func makeWelcomeController() -> WelcomeViewController {
-        let welcomeController = WelcomeViewController(dcContext: dcContext)
-        welcomeController.coordinator = self
-        return welcomeController
-    }
-}
-
-// MARK: - WelcomeCoordinator
-extension AppCoordinator: WelcomeCoordinator {
-
     func presentLogin() {
         // add cancel button item to accountSetupController
         if let nav = loginController as? UINavigationController, let loginController = nav.topViewController as? AccountSetupController {
             loginController.navigationItem.leftBarButtonItem = UIBarButtonItem(
                 title: String.localized("cancel"),
                 style: .done,
-                target: self, action: #selector(cancelButtonPressed(_:))
+                target: self, action: #selector(loginCancelButtonPressed)
             )
             loginController.onLoginSuccess = handleLoginSuccess
         }
         loginController.modalPresentationStyle = .fullScreen
         welcomeController?.present(loginController, animated: true, completion: nil)
+    }
+
+    @objc private func loginCancelButtonPressed(_ sender: UIBarButtonItem) {
+        loginController.dismiss(animated: true, completion: nil)
+    }
+
+    private func handleLoginSuccess() {
+        presentTabBarController()
     }
 
     func handleQRAccountCreationSuccess() {
@@ -171,23 +169,4 @@ extension AppCoordinator: WelcomeCoordinator {
         profileInfoController.onClose = handleLoginSuccess
         welcomeController?.present(profileInfoNav, animated: true, completion: nil)
     }
-
-    func handleLoginSuccess() {
-        presentTabBarController()
-    }
-
-    @objc private func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        loginController.dismiss(animated: true, completion: nil)
-    }
-}
-
-/*
- boilerplate - I tend to remove that interface (cyberta)
- */
-
-
-protocol WelcomeCoordinator: class {
-    func presentLogin()
-    func handleLoginSuccess()
-    func handleQRAccountCreationSuccess()
 }
