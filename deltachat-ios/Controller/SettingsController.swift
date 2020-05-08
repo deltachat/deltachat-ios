@@ -447,8 +447,6 @@ internal final class SettingsViewController: UITableViewController {
     func showEditSettingsController() {
         if let navigationController = self.parent as? UINavigationController {
             let editController = EditSettingsController(dcContext: dcContext)
-            let coordinator = EditSettingsCoordinator(dcContext: dcContext, navigationController: navigationController)
-            editController.coordinator = coordinator
             navigationController.pushViewController(editController, animated: true)
         }
     }

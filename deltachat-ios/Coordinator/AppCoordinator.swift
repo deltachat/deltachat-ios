@@ -168,9 +168,6 @@ extension AppCoordinator: WelcomeCoordinator {
         let profileInfoController = ProfileInfoViewController(context: dcContext)
         let profileInfoNav = UINavigationController(rootViewController: profileInfoController)
         profileInfoNav.modalPresentationStyle = .fullScreen
-        let coordinator = EditSettingsCoordinator(dcContext: dcContext, navigationController: profileInfoNav)
-        profileInfoController.coordinator = coordinator
-        childCoordinators.append(coordinator)
         profileInfoController.onClose = handleLoginSuccess
         welcomeController?.present(profileInfoNav, animated: true, completion: nil)
     }
@@ -181,27 +178,6 @@ extension AppCoordinator: WelcomeCoordinator {
 
     @objc private func cancelButtonPressed(_ sender: UIBarButtonItem) {
         loginController.dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - EditSettingsCoordinator
-class EditSettingsCoordinator: Coordinator {
-    var dcContext: DcContext
-    let navigationController: UINavigationController
-    let mediaPicker: MediaPicker
-
-    init(dcContext: DcContext, navigationController: UINavigationController) {
-        self.dcContext = dcContext
-        self.navigationController = navigationController
-        self.mediaPicker = MediaPicker(navigationController: navigationController)
-    }
-
-    func showPhotoPicker(delegate: MediaPickerDelegate) {
-        mediaPicker.showPhotoGallery(delegate: delegate)
-    }
-
-    func showCamera(delegate: MediaPickerDelegate) {
-        mediaPicker.showCamera(delegate: delegate)
     }
 }
 
