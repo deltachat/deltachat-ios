@@ -4,7 +4,7 @@ import DcCore
 class NewContactController: UITableViewController {
 
     let dcContext: DcContext
-    weak var coordinator: EditContactCoordinatorProtocol?
+    weak var coordinator: EditContactCoordinator?
     var openChatOnSave = true
 
     let emailCell = TextFieldCell.makeEmailCell()
