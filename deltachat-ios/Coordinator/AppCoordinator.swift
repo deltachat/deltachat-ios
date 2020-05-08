@@ -56,9 +56,6 @@ class AppCoordinator: NSObject, Coordinator {
         let nav = UINavigationController(rootViewController: controller)
         let settingsImage = UIImage(named: "ic_chat")
         nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: chatsTab)
-        let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: nav)
-        self.childCoordinators.append(coordinator)
-        controller.coordinator = coordinator
         return nav
     }()
 
@@ -115,7 +112,7 @@ class AppCoordinator: NSObject, Coordinator {
         }
 
         if let rootController = navController.viewControllers.first as? ChatListController {
-            rootController.coordinator?.showChat(chatId: chatId)
+            rootController.showChat(chatId: chatId)
         }
     }
 
@@ -210,45 +207,6 @@ class MailboxCoordinator: ChatViewCoordinator {
             navigationController.popToRootViewController(animated: false)
             appDelegate.appCoordinator.showChat(chatId: chatId)
         }
-    }
-}
-
-class ChatListCoordinator: Coordinator {
-    var dcContext: DcContext
-    let navigationController: UINavigationController
-
-    var childCoordinators: [Coordinator] = []
-
-    init(dcContext: DcContext, navigationController: UINavigationController) {
-        self.dcContext = dcContext
-        self.navigationController = navigationController
-    }
-
-    func showNewChatController() {
-        let newChatVC = NewChatViewController(dcContext: dcContext)
-        navigationController.pushViewController(newChatVC, animated: true)
-    }
-
-    func showChat(chatId: Int) {
-        let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
-        let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
-        childCoordinators.append(coordinator)
-        chatVC.coordinator = coordinator
-        navigationController.pushViewController(chatVC, animated: true)
-    }
-
-    func showArchive() {
-        let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
-        let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
-        let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        controller.coordinator = coordinator
-        navigationController.pushViewController(controller, animated: true)
-    }
-
-    func showNewChat(contactId: Int) {
-        let chatId = dcContext.createChatByContactId(contactId: contactId)
-        showChat(chatId: Int(chatId))
     }
 }
 

@@ -338,8 +338,6 @@ class ContactDetailViewController: UITableViewController {
             navigationController.popToRootViewController(animated: false) // in main ChatList now
             let chatlistVM = ChatListViewModel(dcContext: viewModel.context, isArchive: true)
             let controller = ChatListController(dcContext: viewModel.context, viewModel: chatlistVM)
-            let coordinator = ChatListCoordinator(dcContext: viewModel.context, navigationController: navigationController)
-            controller.coordinator = coordinator
             navigationController.pushViewController(controller, animated: false)
         }
 

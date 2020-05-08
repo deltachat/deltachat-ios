@@ -263,8 +263,6 @@ class GroupChatDetailViewController: UIViewController {
                 navigationController.popToRootViewController(animated: false) // in main ChatList now
                 let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
                 let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
-                let coordinator = ChatListCoordinator(dcContext: dcContext, navigationController: navigationController)
-                controller.coordinator = coordinator
                 navigationController.pushViewController(controller, animated: false)
             }
 
