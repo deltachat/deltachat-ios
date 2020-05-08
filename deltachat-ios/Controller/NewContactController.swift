@@ -4,7 +4,6 @@ import DcCore
 class NewContactController: UITableViewController {
 
     let dcContext: DcContext
-    weak var coordinator: EditContactCoordinator?
     var openChatOnSave = true
 
     let emailCell = TextFieldCell.makeEmailCell()
@@ -80,14 +79,14 @@ class NewContactController: UITableViewController {
         let contactId = dcContext.createContact(name: model.name, email: model.email)
         let chatId = dcContext.createChatByContactId(contactId: contactId)
         if openChatOnSave {
-            coordinator?.showChat(chatId: chatId)
+            showChat(chatId: chatId)
         } else {
-            coordinator?.navigateBack()
+            navigateBack()
         }
     }
 
     @objc func cancelButtonPressed() {
-        coordinator?.navigateBack()
+        navigateBack()
     }
 
     required init?(coder _: NSCoder) {
@@ -107,6 +106,26 @@ class NewContactController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+
+    // MARK: - coordinator
+
+    func navigateBack() {
+        if let navigationController = self.parent as? UINavigationController {
+            navigationController.popViewController(animated: true)
+        }
+    }
+
+    func showChat(chatId: Int) {
+        let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
+        if let navigationController = self.parent as? UINavigationController {
+            let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
+            coordinator.chatViewController = chatViewController
+            chatViewController.coordinator = coordinator
+            navigationController.popToRootViewController(animated: false)
+            navigationController.pushViewController(chatViewController, animated: true)
+        }
     }
 }
 
