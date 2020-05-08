@@ -415,9 +415,6 @@ class NewChatCoordinator: Coordinator {
 
     func showNewGroupController(isVerified: Bool) {
         let newGroupController = NewGroupController(dcContext: dcContext, isVerified: isVerified)
-        let coordinator = NewGroupCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        newGroupController.coordinator = coordinator
         navigationController.pushViewController(newGroupController, animated: true)
     }
 
@@ -654,67 +651,6 @@ class AddGroupMembersCoordinator: Coordinator {
         let newContactController = NewContactController(dcContext: dcContext)
         newContactController.openChatOnSave = false
         navigationController.pushViewController(newContactController, animated: true)
-    }
-}
-
-// MARK: - NewGroupCoordinator
-class NewGroupCoordinator: Coordinator {
-    var dcContext: DcContext
-    let navigationController: UINavigationController
-    let mediaPicker: MediaPicker
-
-    private var childCoordinators: [Coordinator] = []
-
-    init(dcContext: DcContext, navigationController: UINavigationController) {
-        self.dcContext = dcContext
-        self.navigationController = navigationController
-        self.mediaPicker = MediaPicker(navigationController: self.navigationController)
-    }
-
-    func showGroupChat(chatId: Int) {
-        let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
-        let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
-        childCoordinators.append(coordinator)
-        chatViewController.coordinator = coordinator
-        navigationController.popToRootViewController(animated: false)
-        navigationController.pushViewController(chatViewController, animated: true)
-    }
-
-    func showPhotoPicker(delegate: MediaPickerDelegate) {
-        mediaPicker.showPhotoGallery(delegate: delegate)
-    }
-
-    func showCamera(delegate: MediaPickerDelegate) {
-        mediaPicker.showCamera(delegate: delegate)
-    }
-
-    func showQrCodeInvite(chatId: Int) {
-        let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
-        qrInviteCodeController.onDismissed = onQRInviteCodeControllerDismissed
-        navigationController.pushViewController(qrInviteCodeController, animated: true)
-    }
-
-    func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
-        let newGroupController = NewGroupAddMembersViewController(preselected: preselectedMembers,
-                                                                  isVerified: isVerified)
-        let coordinator = NewGroupAddMembersCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        newGroupController.coordinator = coordinator
-        newGroupController.onMembersSelected = onGroupMembersSelected(_:)
-        navigationController.pushViewController(newGroupController, animated: true)
-    }
-
-    func onQRInviteCodeControllerDismissed() {
-        if let groupNameController = navigationController.topViewController as? NewGroupController {
-            groupNameController.updateGroupContactIdsOnQRCodeInvite()
-        }
-    }
-
-    func onGroupMembersSelected(_ memberIds: Set<Int>) {
-        navigationController.popViewController(animated: true)
-        if let groupNameController = navigationController.topViewController as? NewGroupController {
-            groupNameController.updateGroupContactIdsOnListSelection(memberIds)
-        }
     }
 }
 

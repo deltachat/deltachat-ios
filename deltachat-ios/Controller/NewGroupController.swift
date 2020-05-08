@@ -2,9 +2,6 @@ import UIKit
 import DcCore
 
 class NewGroupController: UITableViewController, MediaPickerDelegate {
-
-    weak var coordinator: NewGroupCoordinator?
-
     var groupName: String = ""
     var groupChatId: Int = 0
 
@@ -27,6 +24,14 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private let sectionInviteRowShowQrCode = 1
     private lazy var countSectionInvite: Int = 2
     private let sectionGroupMembers = 2
+
+    private lazy var mediaPicker: MediaPicker? = {
+        if let navigationController = self.parent as? UINavigationController {
+            return MediaPicker(navigationController: navigationController)
+        } else {
+            return nil
+        }
+    }()
 
     lazy var groupNameCell: TextFieldCell = {
         let cell = TextFieldCell(description: String.localized("group_name"), placeholder: String.localized("group_name"))
@@ -123,7 +128,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         for contactId in contactIdsForGroup {
             let success = dcContext.addContactToChat(chatId: groupChatId, contactId: contactId)
 
-            if let groupImage = groupImage, let dcContext = coordinator?.dcContext {
+            if let groupImage = groupImage {
                     AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: Int(groupChatId))
             }
 
@@ -134,7 +139,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             }
         }
 
-        coordinator?.showGroupChat(chatId: Int(groupChatId))
+        showGroupChat(chatId: Int(groupChatId))
     }
 
     override func didReceiveMemoryWarning() {
@@ -244,10 +249,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             if row == sectionInviteRowAddMembers {
                 var contactsWithoutSelf = contactIdsForGroup
                 contactsWithoutSelf.remove(Int(DC_CONTACT_ID_SELF))
-                coordinator?.showAddMembers(preselectedMembers: contactsWithoutSelf, isVerified: self.isVerifiedGroup)
+                showAddMembers(preselectedMembers: contactsWithoutSelf, isVerified: self.isVerifiedGroup)
             } else {
                 self.groupChatId = dcContext.createGroupChat(verified: isVerifiedGroup, name: groupName)
-                coordinator?.showQrCodeInvite(chatId: Int(self.groupChatId))
+                showQrCodeInvite(chatId: Int(self.groupChatId))
             }
         }
     }
@@ -295,11 +300,11 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showPhotoPicker(delegate: self)
+        showPhotoPicker(delegate: self)
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showCamera(delegate: self)
+        showCamera(delegate: self)
     }
 
     func onImageSelected(image: UIImage) {
@@ -340,5 +345,59 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         self.contactIdsForGroup.remove(self.groupContactIds[row])
         self.groupContactIds.remove(at: row)
         tableView.deleteRows(at: [indexPath], with: .fade)
+    }
+
+    // MARK: - coordinator
+
+    func showGroupChat(chatId: Int) {
+        if let navigationController = self.parent as? UINavigationController {
+            let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
+            let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
+            chatViewController.coordinator = coordinator
+            navigationController.popToRootViewController(animated: false)
+            navigationController.pushViewController(chatViewController, animated: true)
+        }
+    }
+
+    func showPhotoPicker(delegate: MediaPickerDelegate) {
+        mediaPicker?.showPhotoGallery(delegate: delegate)
+    }
+
+    func showCamera(delegate: MediaPickerDelegate) {
+        mediaPicker?.showCamera(delegate: delegate)
+    }
+
+    func showQrCodeInvite(chatId: Int) {
+        let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
+        qrInviteCodeController.onDismissed = onQRInviteCodeControllerDismissed
+        if let navigationController = self.parent as? UINavigationController {
+            navigationController.pushViewController(qrInviteCodeController, animated: true)
+        }
+    }
+
+    func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
+        if let navigationController = self.parent as? UINavigationController {
+            let newGroupController = NewGroupAddMembersViewController(preselected: preselectedMembers,
+                                                                      isVerified: isVerified)
+            let coordinator = NewGroupAddMembersCoordinator(dcContext: dcContext, navigationController: navigationController)
+            newGroupController.coordinator = coordinator
+            newGroupController.onMembersSelected = onGroupMembersSelected(_:)
+            navigationController.pushViewController(newGroupController, animated: true)
+        }
+    }
+
+    func onQRInviteCodeControllerDismissed() {
+        if let navigationController = self.parent as? UINavigationController, let groupNameController = navigationController.topViewController as? NewGroupController {
+            groupNameController.updateGroupContactIdsOnQRCodeInvite()
+        }
+    }
+
+    func onGroupMembersSelected(_ memberIds: Set<Int>) {
+        if let navigationController = self.parent as? UINavigationController {
+            navigationController.popViewController(animated: true)
+            if let groupNameController = navigationController.topViewController as? NewGroupController {
+                groupNameController.updateGroupContactIdsOnListSelection(memberIds)
+            }
+        }
     }
 }
