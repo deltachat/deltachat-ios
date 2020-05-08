@@ -2,8 +2,6 @@ import UIKit
 import DcCore
 
 class NewGroupAddMembersViewController: GroupMembersViewController {
-    weak var coordinator: NewGroupAddMembersCoordinator?
-
     var onMembersSelected: ((Set<Int>) -> Void)?
     let isVerifiedGroup: Bool
 

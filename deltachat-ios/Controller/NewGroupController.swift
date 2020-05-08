@@ -379,8 +379,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         if let navigationController = self.parent as? UINavigationController {
             let newGroupController = NewGroupAddMembersViewController(preselected: preselectedMembers,
                                                                       isVerified: isVerified)
-            let coordinator = NewGroupAddMembersCoordinator(dcContext: dcContext, navigationController: navigationController)
-            newGroupController.coordinator = coordinator
             newGroupController.onMembersSelected = onGroupMembersSelected(_:)
             navigationController.pushViewController(newGroupController, animated: true)
         }

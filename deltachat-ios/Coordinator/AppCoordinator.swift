@@ -619,19 +619,6 @@ class ChatViewCoordinator: NSObject, Coordinator {
     }
 }
 
-// MARK: - NewGroupAddMembersCoordinator
-class NewGroupAddMembersCoordinator: Coordinator {
-    var dcContext: DcContext
-    let navigationController: UINavigationController
-
-    private var childCoordinators: [Coordinator] = []
-
-    init(dcContext: DcContext, navigationController: UINavigationController) {
-        self.dcContext = dcContext
-        self.navigationController = navigationController
-    }
-}
-
 /*
  boilerplate - I tend to remove that interface (cyberta)
  */
