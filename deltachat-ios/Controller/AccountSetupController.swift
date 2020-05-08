@@ -3,14 +3,12 @@ import UIKit
 import DcCore
 
 class AccountSetupController: UITableViewController, ProgressAlertHandler {
-
-    weak var coordinator: AccountSetupCoordinator?
-
     private let dcContext: DcContext
     private var skipOauth = false
     private var backupProgressObserver: Any?
     var progressObserver: Any?
     var onProgressSuccess: VoidFunction? // not needed here
+    var onLoginSuccess: (() -> Void)?
 
     private var oauth2Observer: Any?
 
@@ -484,11 +482,11 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         case tagAdvancedCell:
             toggleAdvancedSection()
         case tagImapSecurityCell:
-            coordinator?.showImapSecurityOptions()
+            showImapSecurityOptions()
         case tagSmtpSecurityCell:
-            coordinator?.showSmptpSecurityOptions()
+            showSmptpSecurityOptions()
         case tagCertCheckCell:
-            coordinator?.showCertCheckOptions()
+            showCertCheckOptions()
         default:
             break
         }
@@ -796,10 +794,10 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.registerForPushNotifications()
         initSelectionCells();
-        if let onLoginSuccess = self.coordinator?.onLoginSuccess {
+        if let onLoginSuccess = self.onLoginSuccess {
             onLoginSuccess()
         } else {
-            self.coordinator?.navigateBack()
+            self.navigateBack()
         }
     }
 
@@ -827,7 +825,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         guard let provider = provider else {
             return
         }
-        coordinator?.openProviderInfo(provider: provider)
+        openProviderInfo(provider: provider)
     }
 
     func resignCell(cell: UITableViewCell) {
@@ -846,6 +844,41 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         }
     }
 
+    // MARK: - coordinator
+    func showCertCheckOptions() {
+        if let navigationController = self.parent as? UINavigationController {
+            let certificateCheckController = CertificateCheckController(dcContext: dcContext, sectionTitle: String.localized("login_certificate_checks"))
+            navigationController.pushViewController(certificateCheckController, animated: true)
+        }
+    }
+
+    func showImapSecurityOptions() {
+        if let navigationController = self.parent as? UINavigationController {
+            let securitySettingsController = SecuritySettingsController(dcContext: dcContext, title: String.localized("login_imap_security"),
+                                                                          type: SecurityType.IMAPSecurity)
+            navigationController.pushViewController(securitySettingsController, animated: true)
+        }
+    }
+
+    func showSmptpSecurityOptions() {
+        if let navigationController = self.parent as? UINavigationController {
+            let securitySettingsController = SecuritySettingsController(dcContext: dcContext,
+                                                                        title: String.localized("login_imap_security"),
+                                                                        type: SecurityType.SMTPSecurity)
+            navigationController.pushViewController(securitySettingsController, animated: true)
+        }
+    }
+
+    func openProviderInfo(provider: DcProvider) {
+        guard let url = URL(string: provider.getOverviewPage) else { return }
+        UIApplication.shared.open(url)
+    }
+
+    func navigateBack() {
+        if let navigationController = self.parent as? UINavigationController {
+            navigationController.popViewController(animated: true)
+        }
+    }
 }
 
 // MARK: - UITextFieldDelegate

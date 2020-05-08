@@ -28,15 +28,12 @@ class AppCoordinator: NSObject, Coordinator {
     private lazy var loginController: UIViewController = {
         let accountSetupController = AccountSetupController(dcContext: dcContext, editView: false)
         let nav = UINavigationController(rootViewController: accountSetupController)
-        let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: nav)
-        coordinator.onLoginSuccess = {
+        accountSetupController.onLoginSuccess = {
             [unowned self] in
             self.loginController.dismiss(animated: true) {
                 self.presentTabBarController()
             }
         }
-        childCoordinators.append(coordinator)
-        accountSetupController.coordinator = coordinator
         return nav
     }()
 
@@ -161,7 +158,7 @@ extension AppCoordinator: WelcomeCoordinator {
                 style: .done,
                 target: self, action: #selector(cancelButtonPressed(_:))
             )
-            loginController.coordinator?.onLoginSuccess = handleLoginSuccess
+            loginController.onLoginSuccess = handleLoginSuccess
         }
         loginController.modalPresentationStyle = .fullScreen
         welcomeController?.present(loginController, animated: true, completion: nil)
@@ -228,45 +225,6 @@ class EditSettingsCoordinator: Coordinator {
 
     func showCamera(delegate: MediaPickerDelegate) {
         mediaPicker.showCamera(delegate: delegate)
-    }
-}
-
-// MARK: - AccountSetupCoordinator
-class AccountSetupCoordinator: Coordinator {
-    var dcContext: DcContext
-    let navigationController: UINavigationController
-    var onLoginSuccess: (() -> Void)?
-
-    init(dcContext: DcContext, navigationController: UINavigationController) {
-        self.dcContext = dcContext
-        self.navigationController = navigationController
-    }
-
-    func showCertCheckOptions() {
-        let certificateCheckController = CertificateCheckController(dcContext: dcContext, sectionTitle: String.localized("login_certificate_checks"))
-        navigationController.pushViewController(certificateCheckController, animated: true)
-    }
-
-    func showImapSecurityOptions() {
-        let securitySettingsController = SecuritySettingsController(dcContext: dcContext, title: String.localized("login_imap_security"),
-                                                                      type: SecurityType.IMAPSecurity)
-        navigationController.pushViewController(securitySettingsController, animated: true)
-    }
-
-    func showSmptpSecurityOptions() {
-        let securitySettingsController = SecuritySettingsController(dcContext: dcContext,
-                                                                    title: String.localized("login_imap_security"),
-                                                                    type: SecurityType.SMTPSecurity)
-        navigationController.pushViewController(securitySettingsController, animated: true)
-    }
-
-    func openProviderInfo(provider: DcProvider) {
-        guard let url = URL(string: provider.getOverviewPage) else { return }
-        UIApplication.shared.open(url)
-    }
-
-    func navigateBack() {
-        navigationController.popViewController(animated: true)
     }
 }
 
