@@ -443,7 +443,6 @@ internal final class SettingsViewController: UITableViewController {
     }
 
     // MARK: - coordinator
-
     func showEditSettingsController() {
         if let navigationController = self.parent as? UINavigationController {
             let editController = EditSettingsController(dcContext: dcContext)

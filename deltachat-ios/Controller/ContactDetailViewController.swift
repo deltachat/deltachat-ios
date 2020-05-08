@@ -276,9 +276,7 @@ class ContactDetailViewController: UITableViewController {
         self.showChat(chatId: chatId)
     }
 
-
     // MARK: - coordinator
-
     func showChat(chatId: Int) {
         if let navigationController = self.parent as? UINavigationController {
             let chatViewController = ChatViewController(dcContext: viewModel.context, chatId: chatId)

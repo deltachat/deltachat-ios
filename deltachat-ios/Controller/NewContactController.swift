@@ -103,14 +103,7 @@ class NewContactController: UITableViewController {
         return cells[row]
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
     // MARK: - coordinator
-
     func navigateBack() {
         if let navigationController = self.parent as? UINavigationController {
             navigationController.popViewController(animated: true)

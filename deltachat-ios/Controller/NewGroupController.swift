@@ -142,11 +142,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         showGroupChat(chatId: Int(groupChatId))
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     override func numberOfSections(in _: UITableView) -> Int {
         return 3
     }
@@ -348,7 +343,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     // MARK: - coordinator
-
     func showGroupChat(chatId: Int) {
         if let navigationController = self.parent as? UINavigationController {
             let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)

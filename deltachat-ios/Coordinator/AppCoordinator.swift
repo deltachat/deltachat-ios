@@ -15,8 +15,6 @@ class AppCoordinator: NSObject, Coordinator {
 
     private let appStateRestorer = AppStateRestorer.shared
 
-    private var childCoordinators: [Coordinator] = []
-
     private lazy var tabBarController: UITabBarController = {
         let tabBarController = UITabBarController()
         tabBarController.delegate = appStateRestorer

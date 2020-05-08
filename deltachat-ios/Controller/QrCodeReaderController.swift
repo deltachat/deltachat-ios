@@ -83,11 +83,6 @@ class QrCodeReaderController: UIViewController {
         captureSession.stopRunning()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - setup
     private func setupSubviews() {
         view.layer.addSublayer(videoPreviewLayer)

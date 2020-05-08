@@ -109,11 +109,11 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
-        showPhotoPicker(delegate: self)
+        mediaPicker?.showPhotoGallery(delegate: self)
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        showCamera(delegate: self)
+        mediaPicker?.showCamera(delegate: self)
     }
 
     func onImageSelected(image: UIImage) {
@@ -131,15 +131,6 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     // MARK: - coordinator
-
-    func showPhotoPicker(delegate: MediaPickerDelegate) {
-        mediaPicker?.showPhotoGallery(delegate: delegate)
-    }
-
-    func showCamera(delegate: MediaPickerDelegate) {
-        mediaPicker?.showCamera(delegate: delegate)
-    }
-
     func navigateBack() {
         if let navigationController = self.parent as? UINavigationController {
             navigationController.popViewController(animated: true)

@@ -39,10 +39,6 @@ class NewGroupAddMembersViewController: GroupMembersViewController {
         super.viewWillAppear(animated)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     @objc func cancelButtonPressed() {
         navigationController?.popViewController(animated: true)
     }
@@ -223,7 +219,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 
     // MARK: - coordinator
-
     func showNewContactController() {
         if let navigationController = self.parent as? UINavigationController {
             let newContactController = NewContactController(dcContext: dcContext)

@@ -122,11 +122,6 @@ class NewChatViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in _: UITableView) -> Int {
@@ -333,7 +328,6 @@ class NewChatViewController: UITableViewController {
     }
 
     // MARK: - coordinator
-
     func showNewGroupController(isVerified: Bool) {
         if let navigationController = self.parent as? UINavigationController {
             let newGroupController = NewGroupController(dcContext: dcContext, isVerified: isVerified)
