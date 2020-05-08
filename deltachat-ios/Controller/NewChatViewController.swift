@@ -4,8 +4,6 @@ import UIKit
 import DcCore
 
 class NewChatViewController: UITableViewController {
-    weak var coordinator: NewChatCoordinator?
-
     private let dcContext: DcContext
 
     private let sectionNew = 0
@@ -214,11 +212,11 @@ class NewChatViewController: UITableViewController {
 
         if section == sectionNew {
             if row == sectionNewRowNewGroup {
-                coordinator?.showNewGroupController(isVerified: false)
+                showNewGroupController(isVerified: false)
             } else if row == sectionNewRowNewVerifiedGroup {
-                coordinator?.showNewGroupController(isVerified: true)
+                showNewGroupController(isVerified: true)
             } else if row == sectionNewRowNewContact {
-                coordinator?.showNewContactController()
+                showNewContactController()
             }
         } else if section == sectionImportedContacts {
             if deviceContactAccessGranted {
@@ -238,19 +236,16 @@ class NewChatViewController: UITableViewController {
             let edit = UITableViewRowAction(style: .normal, title: String.localized("info")) { [unowned self] _, _ in
                 if self.searchController.isActive {
                     self.searchController.dismiss(animated: false) {
-                        self.coordinator?.showContactDetail(contactId: contactId)
+                        self.showContactDetail(contactId: contactId)
                     }
                 } else {
-                    self.coordinator?.showContactDetail(contactId: contactId)
+                    self.showContactDetail(contactId: contactId)
                 }
             }
 
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("delete")) { [unowned self] _, _ in
-                //handle delete
-                if let dcContext = self.coordinator?.dcContext {
-                    let contactId = self.contactIdByRow(indexPath.row)
-                    self.askToDeleteContact(contactId: contactId, context: dcContext)
-                }
+                let contactId = self.contactIdByRow(indexPath.row)
+                self.askToDeleteContact(contactId: contactId, context: self.dcContext)
             }
 
             edit.backgroundColor = DcColors.primary
@@ -295,7 +290,7 @@ class NewChatViewController: UITableViewController {
     private func askToChatWith(contactId: Int) {
         if dcContext.getChatIdByContactId(contactId: contactId) != 0 {
             self.dismiss(animated: true, completion: nil)
-            self.coordinator?.showNewChat(contactId: contactId)
+            self.showNewChat(contactId: contactId)
         } else {
             let dcContact = DcContact(id: contactId)
             let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
@@ -303,7 +298,7 @@ class NewChatViewController: UITableViewController {
                                           preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
                 self.dismiss(animated: true, completion: nil)
-                self.coordinator?.showNewChat(contactId: contactId)
+                self.showNewChat(contactId: contactId)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
                 self.reactivateSearchBarIfNeeded()
@@ -335,6 +330,45 @@ class NewChatViewController: UITableViewController {
         filteredContactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
         tableView.reloadData()
         tableView.scrollToTop()
+    }
+
+    // MARK: - coordinator
+
+    func showNewGroupController(isVerified: Bool) {
+        if let navigationController = self.parent as? UINavigationController {
+            let newGroupController = NewGroupController(dcContext: dcContext, isVerified: isVerified)
+            navigationController.pushViewController(newGroupController, animated: true)
+        }
+    }
+
+    func showNewContactController() {
+        if let navigationController = self.parent as? UINavigationController {
+            let newContactController = NewContactController(dcContext: dcContext)
+            navigationController.pushViewController(newContactController, animated: true)
+        }
+    }
+
+    func showNewChat(contactId: Int) {
+        let chatId = dcContext.createChatByContactId(contactId: contactId)
+        showChat(chatId: Int(chatId))
+    }
+
+    func showChat(chatId: Int) {
+        if let navigationController = self.parent as? UINavigationController {
+            let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
+            let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
+            chatViewController.coordinator = coordinator
+            navigationController.pushViewController(chatViewController, animated: true)
+            navigationController.viewControllers.remove(at: 1)
+        }
+    }
+
+    func showContactDetail(contactId: Int) {
+        if let navigationController = self.parent as? UINavigationController {
+            let viewModel = ContactDetailViewModel(contactId: contactId, chatId: nil, context: dcContext)
+            let contactDetailController = ContactDetailViewController(viewModel: viewModel)
+            navigationController.pushViewController(contactDetailController, animated: true)
+        }
     }
 }
 

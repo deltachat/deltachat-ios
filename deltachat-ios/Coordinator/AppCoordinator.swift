@@ -252,9 +252,6 @@ class ChatListCoordinator: Coordinator {
 
     func showNewChatController() {
         let newChatVC = NewChatViewController(dcContext: dcContext)
-        let coordinator = NewChatCoordinator(dcContext: dcContext, navigationController: navigationController)
-        childCoordinators.append(coordinator)
-        newChatVC.coordinator = coordinator
         navigationController.pushViewController(newChatVC, animated: true)
     }
 
@@ -399,50 +396,6 @@ class AccountSetupCoordinator: Coordinator {
     func navigateBack() {
         navigationController.popViewController(animated: true)
     }
-}
-
-// MARK: - NewChatCoordinator
-class NewChatCoordinator: Coordinator {
-    var dcContext: DcContext
-    let navigationController: UINavigationController
-
-    private var childCoordinators: [Coordinator] = []
-
-    init(dcContext: DcContext, navigationController: UINavigationController) {
-        self.dcContext = dcContext
-        self.navigationController = navigationController
-    }
-
-    func showNewGroupController(isVerified: Bool) {
-        let newGroupController = NewGroupController(dcContext: dcContext, isVerified: isVerified)
-        navigationController.pushViewController(newGroupController, animated: true)
-    }
-
-    func showNewContactController() {
-        let newContactController = NewContactController(dcContext: dcContext)
-        navigationController.pushViewController(newContactController, animated: true)
-    }
-
-    func showNewChat(contactId: Int) {
-        let chatId = dcContext.createChatByContactId(contactId: contactId)
-        showChat(chatId: Int(chatId))
-    }
-
-    func showChat(chatId: Int) {
-        let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
-        let coordinator = ChatViewCoordinator(dcContext: dcContext, navigationController: navigationController, chatId: chatId)
-        childCoordinators.append(coordinator)
-        chatViewController.coordinator = coordinator
-        navigationController.pushViewController(chatViewController, animated: true)
-        navigationController.viewControllers.remove(at: 1)
-    }
-
-    func showContactDetail(contactId: Int) {
-        let viewModel = ContactDetailViewModel(contactId: contactId, chatId: nil, context: dcContext)
-        let contactDetailController = ContactDetailViewController(viewModel: viewModel)
-        navigationController.pushViewController(contactDetailController, animated: true)
-    }
-    
 }
 
 // MARK: - ChatViewCoordinator
