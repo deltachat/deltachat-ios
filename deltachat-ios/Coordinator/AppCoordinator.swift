@@ -15,29 +15,32 @@ class AppCoordinator: NSObject, Coordinator {
 
     private let appStateRestorer = AppStateRestorer.shared
 
-    private lazy var tabBarController: UITabBarController = {
-        let tabBarController = UITabBarController()
-        tabBarController.delegate = appStateRestorer
-        tabBarController.viewControllers = [qrPageController, chatListController, settingsController]
-        tabBarController.tabBar.tintColor = DcColors.primary
-        return tabBarController
-    }()
 
-    private lazy var loginController: UINavigationController = {
+    // MARK: - login view handling
+    private lazy var loginNavController: UINavigationController = {
         let accountSetupController = AccountSetupController(dcContext: dcContext, editView: false)
         let nav = UINavigationController(rootViewController: accountSetupController)
         accountSetupController.onLoginSuccess = {
             [unowned self] in
-            self.loginController.dismiss(animated: true) {
+            self.loginNavController.dismiss(animated: true) {
                 self.presentTabBarController()
             }
         }
         return nav
     }()
 
-    // MARK: viewControllers
+    private var welcomeController: WelcomeViewController?
 
-    private lazy var qrPageController: UINavigationController = {
+    // MARK: - tabbar view handling
+    private lazy var tabBarController: UITabBarController = {
+        let tabBarController = UITabBarController()
+        tabBarController.delegate = appStateRestorer
+        tabBarController.viewControllers = [qrNavController, chatsNavController, settingsNavController]
+        tabBarController.tabBar.tintColor = DcColors.primary
+        return tabBarController
+    }()
+
+    private lazy var qrNavController: UINavigationController = {
         let root = QrPageController(dcContext: dcContext)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "qr_code")
@@ -45,7 +48,7 @@ class AppCoordinator: NSObject, Coordinator {
         return nav
     }()
 
-    private lazy var chatListController: UINavigationController = {
+    private lazy var chatsNavController: UINavigationController = {
         let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: false)
         let root = ChatListController(dcContext: dcContext, viewModel: viewModel)
         let nav = UINavigationController(rootViewController: root)
@@ -54,7 +57,7 @@ class AppCoordinator: NSObject, Coordinator {
         return nav
     }()
 
-    private lazy var settingsController: UINavigationController = {
+    private lazy var settingsNavController: UINavigationController = {
         let root = SettingsViewController(dcContext: dcContext)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "settings")
@@ -62,8 +65,7 @@ class AppCoordinator: NSObject, Coordinator {
         return nav
     }()
 
-    private var welcomeController: WelcomeViewController?
-
+    // MARK: - misc
     init(window: UIWindow, dcContext: DcContext) {
         self.window = window
         self.dcContext = dcContext
@@ -99,14 +101,14 @@ class AppCoordinator: NSObject, Coordinator {
 
     func showChat(chatId: Int, animated: Bool = true) {
         showTab(index: chatsTab)
-        if let rootController = self.chatListController.viewControllers.first as? ChatListController {
+        if let rootController = self.chatsNavController.viewControllers.first as? ChatListController {
             rootController.showChat(chatId: chatId)
         }
     }
 
     func handleQRCode(_ code: String) {
         showTab(index: qrTab)
-        if let topViewController = qrPageController.topViewController,
+        if let topViewController = qrNavController.topViewController,
             let qrPageController = topViewController as? QrPageController {
             qrPageController.handleQrCode(code)
         }
@@ -133,7 +135,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     func presentLogin() {
         // add cancel button item to accountSetupController
-        if let accountSetupController = loginController.topViewController as? AccountSetupController {
+        if let accountSetupController = loginNavController.topViewController as? AccountSetupController {
             accountSetupController.navigationItem.leftBarButtonItem = UIBarButtonItem(
                 title: String.localized("cancel"),
                 style: .done,
@@ -141,12 +143,12 @@ class AppCoordinator: NSObject, Coordinator {
             )
             accountSetupController.onLoginSuccess = handleLoginSuccess
         }
-        loginController.modalPresentationStyle = .fullScreen
-        welcomeController?.present(loginController, animated: true, completion: nil)
+        loginNavController.modalPresentationStyle = .fullScreen
+        welcomeController?.present(loginNavController, animated: true, completion: nil)
     }
 
     @objc private func loginCancelButtonPressed(_ sender: UIBarButtonItem) {
-        loginController.dismiss(animated: true, completion: nil)
+        loginNavController.dismiss(animated: true, completion: nil)
     }
 
     private func handleLoginSuccess() {
