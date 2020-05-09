@@ -23,7 +23,7 @@ class AppCoordinator: NSObject, Coordinator {
         return tabBarController
     }()
 
-    private lazy var loginController: UIViewController = {
+    private lazy var loginController: UINavigationController = {
         let accountSetupController = AccountSetupController(dcContext: dcContext, editView: false)
         let nav = UINavigationController(rootViewController: accountSetupController)
         accountSetupController.onLoginSuccess = {
@@ -133,13 +133,13 @@ class AppCoordinator: NSObject, Coordinator {
 
     func presentLogin() {
         // add cancel button item to accountSetupController
-        if let nav = loginController as? UINavigationController, let loginController = nav.topViewController as? AccountSetupController {
-            loginController.navigationItem.leftBarButtonItem = UIBarButtonItem(
+        if let accountSetupController = loginController.topViewController as? AccountSetupController {
+            accountSetupController.navigationItem.leftBarButtonItem = UIBarButtonItem(
                 title: String.localized("cancel"),
                 style: .done,
                 target: self, action: #selector(loginCancelButtonPressed)
             )
-            loginController.onLoginSuccess = handleLoginSuccess
+            accountSetupController.onLoginSuccess = handleLoginSuccess
         }
         loginController.modalPresentationStyle = .fullScreen
         welcomeController?.present(loginController, animated: true, completion: nil)
