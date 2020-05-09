@@ -3,7 +3,6 @@ import DcCore
 
 class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private let dcContext: DcContext
-    private var scannedQrCode: String?
     var progressObserver: Any?
     var onProgressSuccess: VoidFunction?
 
@@ -26,14 +25,16 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             self.navigationController?.pushViewController(accountSetupController, animated: true)
         }
         view.onScanQRCode  = { [unowned self] in
-            self.showQRReader()
+            let qrReader = QrCodeReaderController()
+            qrReader.delegate = self
+            self.qrCodeReader = qrReader
+            self.navigationController?.pushViewController(qrReader, animated: true)
         }
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     private var qrCodeReader: QrCodeReaderController?
-    private var qrCodeReaderNav: UINavigationController?
     weak var progressAlert: UIAlertController?
 
     init(dcContext: DcContext) {
@@ -104,30 +105,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         frameGuide.widthAnchor.constraint(equalTo: contentGuide.widthAnchor).isActive = true
     }
 
-    // MARK: - factory
-    private func makeQRReader() -> QrCodeReaderController {
-        let controller = QrCodeReaderController()
-        controller.delegate = self
-        return controller
-    }
-
     // MARK: - actions
 
-    private func showQRReader() {
-        let qrReader = makeQRReader()
-        self.qrCodeReader = qrReader
-        let nav = UINavigationController(rootViewController: qrReader)
-        nav.modalPresentationStyle = .fullScreen
-        self.qrCodeReaderNav = nav
-        present(nav, animated: true)
-    }
-
-    private func createAccountFromQRCode() {
-        guard let code = scannedQrCode else {
-            return
-        }
-        let success = dcContext.setConfigFromQR(qrCode: code)
-        scannedQrCode = nil
+    private func createAccountFromQRCode(qrCode: String) {
+        let success = dcContext.setConfigFromQR(qrCode: qrCode)
         if success {
             addProgressAlertListener(onSuccess: handleLoginSuccess)
             showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
@@ -153,14 +134,13 @@ extension WelcomeViewController: QrCodeReaderDelegate {
     func handleQrCode(_ code: String) {
         let lot = dcContext.checkQR(qrCode: code)
         if let domain = lot.text1, lot.state == DC_QR_ACCOUNT {
-            self.scannedQrCode = code
-            confirmAccountCreationAlert(accountDomain: domain)
+            confirmAccountCreationAlert(accountDomain: domain, qrCode: code)
         } else {
             qrErrorAlert()
         }
     }
 
-    private func confirmAccountCreationAlert(accountDomain domain: String) {
+    private func confirmAccountCreationAlert(accountDomain domain: String, qrCode: String) {
         let title = String.localizedStringWithFormat(NSLocalizedString("qraccount_ask_create_and_login", comment: ""), domain)
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
 
@@ -169,7 +149,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             style: .default,
             handler: { [unowned self] _ in
                 self.dismissQRReader()
-                self.createAccountFromQRCode()
+                self.createAccountFromQRCode(qrCode: qrCode)
             }
         )
 
@@ -183,7 +163,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
 
         alert.addAction(okAction)
         alert.addAction(qrCancelAction)
-        qrCodeReaderNav?.present(alert, animated: true)
+        qrCodeReader?.present(alert, animated: true)
     }
 
     private func qrErrorAlert() {
@@ -197,15 +177,12 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             }
         )
         alert.addAction(okAction)
-        qrCodeReaderNav?.present(alert, animated: true, completion: nil)
+        qrCodeReader?.present(alert, animated: true, completion: nil)
     }
 
     private func dismissQRReader() {
-        self.qrCodeReaderNav?.dismiss(animated: false) {
-            self.qrCodeReaderNav = nil
-            self.qrCodeReader = nil
-            self.scannedQrCode = nil
-        }
+        self.navigationController?.popViewController(animated: true)
+        self.qrCodeReader = nil
     }
 }
 

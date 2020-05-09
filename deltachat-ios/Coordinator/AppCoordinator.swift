@@ -17,8 +17,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     // MARK: - login view handling
     private lazy var loginNavController: UINavigationController = {
-        let root = WelcomeViewController(dcContext: dcContext)
-        let nav = UINavigationController(rootViewController: root)
+        let nav = UINavigationController() // we change the root, therefore do not set on implicit creation
         return nav
     }()
 
@@ -106,6 +105,7 @@ class AppCoordinator: NSObject, Coordinator {
     }
 
     func presentWelcomeController() {
+        loginNavController.setViewControllers([WelcomeViewController(dcContext: dcContext)], animated: true)
         window.rootViewController = loginNavController
         window.makeKeyAndVisible()
 
