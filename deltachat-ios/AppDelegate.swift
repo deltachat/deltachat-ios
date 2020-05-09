@@ -21,11 +21,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
-
     var reachability = Reachability()!
     var window: UIWindow?
-
     var state = ApplicationState.stopped
+
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // main()
+        let console = ConsoleDestination()
+        logger.addDestination(console)
+        dcContext.logger = DcLogger()
+        logger.info("launching")
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+        guard let window = window else {
+            fatalError("window was nil in app delegate")
+        }
+        if #available(iOS 13.0, *) {
+            window.backgroundColor = UIColor.systemBackground
+        } else {
+            window.backgroundColor = UIColor.white
+        }
+
+        openDatabase()
+        RelayHelper.setup(dcContext)
+        appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
+        locationManager = LocationManager(context: dcContext)
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        startThreads()
+        setStockTranslations()
+        return true
+    }
 
     func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         // gets here when app returns from oAuth2-Setup process - the url contains the provided token
@@ -42,42 +67,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
 
-    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        let console = ConsoleDestination()
-        logger.addDestination(console)
-        dcContext.logger = DcLogger()
-
-        logger.info("launching")
-
-        // Override point for customization after application launch.
-
-        window = UIWindow(frame: UIScreen.main.bounds)
-        guard let window = window else {
-            fatalError("window was nil in app delegate")
-        }
-        if #available(iOS 13.0, *) {
-            window.backgroundColor = UIColor.systemBackground
-        } else {
-            window.backgroundColor = UIColor.white
-        }
-        // setup deltachat core context
-        //       - second param remains nil (user data for more than one mailbox)
-        open()
-        RelayHelper.setup(dcContext)
-        appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
-        appCoordinator.start()
-        locationManager = LocationManager(context: dcContext)
-        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-        start()
-        setStockTranslations()
-        return true
-    }
-
     func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("---- background-fetch ----")
 
-        start {
+        startThreads {
             // TODO: actually set the right value depending on if we found sth
             completionHandler(.newData)
         }
@@ -85,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("---- foreground ----")
-        start()
+        startThreads()
     }
 
     func applicationDidEnterBackground(_: UIApplication) {
@@ -106,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 // only need to do sth in the background
                 return
             } else if app.backgroundTimeRemaining < 10 {
-                self.stop()
+                self.stopThreads()
             } else {
                 self.maybeStop()
             }
@@ -115,13 +108,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillTerminate(_: UIApplication) {
         logger.info("---- terminate ----")
-        close()
+        closeDatabase()
 
         reachability.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
     }
 
-    func open() {
+    func openDatabase() {
         guard let databaseLocation = DatabaseHelper().updateDatabaseLocation() else {
             fatalError("Database could not be opened")
         }
@@ -164,17 +157,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_DEVICE_MESSAGES, localizationKey: "device_talk")
     }
 
-    func stop() {
+    func stopThreads() {
         state = .background
         dcContext.interruptIdle()
     }
 
-    func close() {
+    func closeDatabase() {
         state = .stopped
         dcContext.closeDatabase()
     }
 
-    func start(_ completion: (() -> Void)? = nil) {
+    func startThreads(_ completion: (() -> Void)? = nil) {
         logger.info("---- start ----")
 
         if state == .running {

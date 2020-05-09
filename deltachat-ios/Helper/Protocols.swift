@@ -1,8 +1,5 @@
 import UIKit
 
-protocol Coordinator: class {
-}
-
 protocol QrCodeReaderDelegate: class {
     func handleQrCode(_ code: String)
 }

@@ -5,7 +5,7 @@ import MobileCoreServices
 import DcCore
 
 // MARK: - AppCoordinator
-class AppCoordinator: NSObject, Coordinator {
+class AppCoordinator {
 
     private let window: UIWindow
     private let dcContext: DcContext
@@ -59,23 +59,20 @@ class AppCoordinator: NSObject, Coordinator {
     init(window: UIWindow, dcContext: DcContext) {
         self.window = window
         self.dcContext = dcContext
-        super.init()
 
         if dcContext.isConfigured() {
             presentTabBarController()
         } else {
             presentWelcomeController()
         }
-    }
 
-    public func start() {
         let lastActiveTab = appStateRestorer.restoreLastActiveTab()
         if lastActiveTab == -1 {
             // no stored tab
             showTab(index: chatsTab)
         } else {
             showTab(index: lastActiveTab)
-            if let lastActiveChatId = appStateRestorer.restoreLastActiveChatId(), lastActiveTab == 1 {
+            if let lastActiveChatId = appStateRestorer.restoreLastActiveChatId(), lastActiveTab == chatsTab {
                 // as getChat() returns an empty object for invalid chatId,
                 // check that the returned object is actually set up.
                 if dcContext.getChat(chatId: lastActiveChatId).id == lastActiveChatId {

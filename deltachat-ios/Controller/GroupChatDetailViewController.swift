@@ -224,7 +224,7 @@ class GroupChatDetailViewController: UIViewController {
         presentPreview(for: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
     }
 
-private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {
+    private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {
         let messageIds = dcContext.getChatMedia(chatId: chatId, messageType: messageType, messageType2: messageType2, messageType3: messageType3)
         var mediaUrls: [URL] = []
         for messageId in messageIds {
