@@ -38,33 +38,31 @@ class AppCoordinator: NSObject, Coordinator {
     // MARK: viewControllers
 
     private lazy var qrPageController: UINavigationController = {
-        let pageController = QrPageController(dcContext: dcContext)
-        let nav = UINavigationController(rootViewController: pageController)
+        let root = QrPageController(dcContext: dcContext)
+        let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "qr_code")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
         return nav
     }()
 
-    private lazy var chatListController: UIViewController = {
+    private lazy var chatListController: UINavigationController = {
         let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: false)
-        let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
-        let nav = UINavigationController(rootViewController: controller)
+        let root = ChatListController(dcContext: dcContext, viewModel: viewModel)
+        let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "ic_chat")
         nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: chatsTab)
         return nav
     }()
 
-    private lazy var settingsController: UIViewController = {
-        let controller = SettingsViewController(dcContext: dcContext)
-        let nav = UINavigationController(rootViewController: controller)
+    private lazy var settingsController: UINavigationController = {
+        let root = SettingsViewController(dcContext: dcContext)
+        let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "settings")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: settingsTab)
         return nav
     }()
 
-
     private var welcomeController: WelcomeViewController?
-    private var profileInfoNavigationController: UINavigationController?
 
     init(window: UIWindow, dcContext: DcContext) {
         self.window = window
