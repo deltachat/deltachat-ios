@@ -502,7 +502,7 @@ class ChatViewController: MessagesViewController {
     }
 
     @objc private func chatProfilePressed() {
-        if chatId == DC_CHAT_ID_DEADDROP {
+        if chatId != DC_CHAT_ID_DEADDROP {
             showChatDetail(chatId: chatId)
         }
     }
@@ -639,7 +639,7 @@ class ChatViewController: MessagesViewController {
         }
     }
 
-    //  MARK: - coordinator
+    // MARK: - coordinator
     func navigateBack() {
         if let navigationController = self.parent as? UINavigationController {
             navigationController.popViewController(animated: true)
