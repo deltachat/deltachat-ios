@@ -15,21 +15,12 @@ class AppCoordinator: NSObject, Coordinator {
 
     private let appStateRestorer = AppStateRestorer.shared
 
-
     // MARK: - login view handling
     private lazy var loginNavController: UINavigationController = {
-        let accountSetupController = AccountSetupController(dcContext: dcContext, editView: false)
-        let nav = UINavigationController(rootViewController: accountSetupController)
-        accountSetupController.onLoginSuccess = {
-            [unowned self] in
-            self.loginNavController.dismiss(animated: true) {
-                self.presentTabBarController()
-            }
-        }
+        let root = WelcomeViewController(dcContext: dcContext)
+        let nav = UINavigationController(rootViewController: root)
         return nav
     }()
-
-    private var welcomeController: WelcomeViewController?
 
     // MARK: - tabbar view handling
     private lazy var tabBarController: UITabBarController = {
@@ -115,51 +106,18 @@ class AppCoordinator: NSObject, Coordinator {
     }
 
     func presentWelcomeController() {
+        window.rootViewController = loginNavController
+        window.makeKeyAndVisible()
+
         // the applicationIconBadgeNumber is remembered by the system even on reinstalls (just tested on ios 13.3.1),
         // to avoid appearing an old number of a previous installation, we reset the counter manually.
         // but even when this changes in ios, we need the reset as we allow account-deletion also in-app.
         UIApplication.shared.applicationIconBadgeNumber = 0
-
-        let wc = WelcomeViewController(dcContext: dcContext)
-        self.welcomeController = wc
-        window.rootViewController = wc
-        window.makeKeyAndVisible()
     }
 
     func presentTabBarController() {
         window.rootViewController = tabBarController
-        welcomeController = nil
-        window.makeKeyAndVisible()
         showTab(index: chatsTab)
-    }
-
-    func presentLogin() {
-        // add cancel button item to accountSetupController
-        if let accountSetupController = loginNavController.topViewController as? AccountSetupController {
-            accountSetupController.navigationItem.leftBarButtonItem = UIBarButtonItem(
-                title: String.localized("cancel"),
-                style: .done,
-                target: self, action: #selector(loginCancelButtonPressed)
-            )
-            accountSetupController.onLoginSuccess = handleLoginSuccess
-        }
-        loginNavController.modalPresentationStyle = .fullScreen
-        welcomeController?.present(loginNavController, animated: true, completion: nil)
-    }
-
-    @objc private func loginCancelButtonPressed(_ sender: UIBarButtonItem) {
-        loginNavController.dismiss(animated: true, completion: nil)
-    }
-
-    private func handleLoginSuccess() {
-        presentTabBarController()
-    }
-
-    func handleQRAccountCreationSuccess() {
-        let profileInfoController = ProfileInfoViewController(context: dcContext)
-        let profileInfoNav = UINavigationController(rootViewController: profileInfoController)
-        profileInfoNav.modalPresentationStyle = .fullScreen
-        profileInfoController.onClose = handleLoginSuccess
-        welcomeController?.present(profileInfoNav, animated: true, completion: nil)
+        window.makeKeyAndVisible()
     }
 }

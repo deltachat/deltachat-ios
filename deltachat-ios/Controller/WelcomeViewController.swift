@@ -16,9 +16,14 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private lazy var welcomeView: WelcomeContentView = {
         let view = WelcomeContentView()
         view.onLogin = { [unowned self] in
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.appCoordinator.presentLogin()
+            let accountSetupController = AccountSetupController(dcContext: self.dcContext, editView: false)
+            accountSetupController.onLoginSuccess = {
+                [unowned self] in
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.appCoordinator.presentTabBarController()
+                }
             }
+            self.navigationController?.pushViewController(accountSetupController, animated: true)
         }
         view.onScanQRCode  = { [unowned self] in
             self.showQRReader()
@@ -34,10 +39,15 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
+        self.navigationItem.title = String.localized("welcome_desktop")
         onProgressSuccess = {
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.appCoordinator.handleQRAccountCreationSuccess()
+            let profileInfoController = ProfileInfoViewController(context: dcContext)
+            profileInfoController.onClose = {
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.appCoordinator.presentTabBarController()
+                }
             }
+            self.navigationController?.setViewControllers([profileInfoController], animated: true)
         }
     }
 

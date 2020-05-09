@@ -61,10 +61,6 @@ class NewContactController: UITableViewController {
         }
     }
 
-    override func viewWillAppear(_: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-
     @objc func emailTextChanged() {
         let emailText = emailCell.textField.text ?? ""
         model.email = emailText
