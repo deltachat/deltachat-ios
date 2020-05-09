@@ -220,11 +220,9 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     // MARK: - coordinator
     func showNewContactController() {
-        if let navigationController = self.parent as? UINavigationController {
-            let newContactController = NewContactController(dcContext: dcContext)
-            newContactController.openChatOnSave = false
-            navigationController.pushViewController(newContactController, animated: true)
-        }
+        let newContactController = NewContactController(dcContext: dcContext)
+        newContactController.openChatOnSave = false
+        navigationController?.pushViewController(newContactController, animated: true)
     }
 }
 

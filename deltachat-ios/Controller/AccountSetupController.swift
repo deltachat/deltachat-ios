@@ -846,27 +846,21 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     // MARK: - coordinator
     func showCertCheckOptions() {
-        if let navigationController = self.parent as? UINavigationController {
-            let certificateCheckController = CertificateCheckController(dcContext: dcContext, sectionTitle: String.localized("login_certificate_checks"))
-            navigationController.pushViewController(certificateCheckController, animated: true)
-        }
+        let certificateCheckController = CertificateCheckController(dcContext: dcContext, sectionTitle: String.localized("login_certificate_checks"))
+        navigationController?.pushViewController(certificateCheckController, animated: true)
     }
 
     func showImapSecurityOptions() {
-        if let navigationController = self.parent as? UINavigationController {
-            let securitySettingsController = SecuritySettingsController(dcContext: dcContext, title: String.localized("login_imap_security"),
-                                                                          type: SecurityType.IMAPSecurity)
-            navigationController.pushViewController(securitySettingsController, animated: true)
-        }
+        let securitySettingsController = SecuritySettingsController(dcContext: dcContext, title: String.localized("login_imap_security"),
+                                                                      type: SecurityType.IMAPSecurity)
+        navigationController?.pushViewController(securitySettingsController, animated: true)
     }
 
     func showSmptpSecurityOptions() {
-        if let navigationController = self.parent as? UINavigationController {
-            let securitySettingsController = SecuritySettingsController(dcContext: dcContext,
-                                                                        title: String.localized("login_imap_security"),
-                                                                        type: SecurityType.SMTPSecurity)
-            navigationController.pushViewController(securitySettingsController, animated: true)
-        }
+        let securitySettingsController = SecuritySettingsController(dcContext: dcContext,
+                                                                    title: String.localized("login_imap_security"),
+                                                                    type: SecurityType.SMTPSecurity)
+        navigationController?.pushViewController(securitySettingsController, animated: true)
     }
 
     func openProviderInfo(provider: DcProvider) {
@@ -875,9 +869,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     func navigateBack() {
-        if let navigationController = self.parent as? UINavigationController {
-            navigationController.popViewController(animated: true)
-        }
+        navigationController?.popViewController(animated: true)
     }
 }
 

@@ -101,17 +101,13 @@ class NewContactController: UITableViewController {
 
     // MARK: - coordinator
     func navigateBack() {
-        if let navigationController = self.parent as? UINavigationController {
-            navigationController.popViewController(animated: true)
-        }
+        navigationController?.popViewController(animated: true)
     }
 
     func showChat(chatId: Int) {
         let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
-        if let navigationController = self.parent as? UINavigationController {
-            navigationController.popToRootViewController(animated: false)
-            navigationController.pushViewController(chatViewController, animated: true)
-        }
+        navigationController?.popToRootViewController(animated: false)
+        navigationController?.pushViewController(chatViewController, animated: true)
     }
 }
 

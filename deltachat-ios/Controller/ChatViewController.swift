@@ -64,7 +64,7 @@ class ChatViewController: MessagesViewController {
     var previewView: UIView?
 
     private lazy var mediaPicker: MediaPicker? = {
-        if let navigationController = self.parent as? UINavigationController {
+        if let navigationController = navigationController {
             return MediaPicker(navigationController: navigationController)
         } else {
             return nil
@@ -641,39 +641,33 @@ class ChatViewController: MessagesViewController {
 
     // MARK: - coordinator
     func navigateBack() {
-        if let navigationController = self.parent as? UINavigationController {
-            navigationController.popViewController(animated: true)
-        }
+        navigationController?.popViewController(animated: true)
     }
 
     func showChatDetail(chatId: Int) {
-        if let navigationController = self.parent as? UINavigationController {
-            let chat = dcContext.getChat(chatId: chatId)
-            switch chat.chatType {
-            case .SINGLE:
-                if let contactId = chat.contactIds.first {
-                    let viewModel = ContactDetailViewModel(contactId: contactId, chatId: chatId, context: dcContext)
-                    let contactDetailController = ContactDetailViewController(viewModel: viewModel)
-                    navigationController.pushViewController(contactDetailController, animated: true)
-                }
-            case .GROUP, .VERIFIEDGROUP:
-                let groupChatDetailViewController = GroupChatDetailViewController(chatId: chatId, dcContext: dcContext)
-                navigationController.pushViewController(groupChatDetailViewController, animated: true)
+        let chat = dcContext.getChat(chatId: chatId)
+        switch chat.chatType {
+        case .SINGLE:
+            if let contactId = chat.contactIds.first {
+                let viewModel = ContactDetailViewModel(contactId: contactId, chatId: chatId, context: dcContext)
+                let contactDetailController = ContactDetailViewController(viewModel: viewModel)
+                navigationController?.pushViewController(contactDetailController, animated: true)
             }
+        case .GROUP, .VERIFIEDGROUP:
+            let groupChatDetailViewController = GroupChatDetailViewController(chatId: chatId, dcContext: dcContext)
+            navigationController?.pushViewController(groupChatDetailViewController, animated: true)
         }
     }
 
     func showContactDetail(of contactId: Int, in chatOfType: ChatType, chatId: Int?) {
-        if let navigationController = self.parent as? UINavigationController {
-            let viewModel = ContactDetailViewModel(contactId: contactId, chatId: chatId, context: dcContext )
-            let contactDetailController = ContactDetailViewController(viewModel: viewModel)
-            navigationController.pushViewController(contactDetailController, animated: true)
-        }
+        let viewModel = ContactDetailViewModel(contactId: contactId, chatId: chatId, context: dcContext )
+        let contactDetailController = ContactDetailViewController(viewModel: viewModel)
+        navigationController?.pushViewController(contactDetailController, animated: true)
     }
 
     func showChat(chatId: Int) {
-        if let navigationController = self.parent as? UINavigationController, let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            navigationController.popToRootViewController(animated: false)
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            navigationController?.popToRootViewController(animated: false)
             appDelegate.appCoordinator.showChat(chatId: chatId)
         }
     }
@@ -695,12 +689,10 @@ class ChatViewController: MessagesViewController {
     }
 
     func showMediaGallery(currentIndex: Int, mediaUrls urls: [URL]) {
-        if let navigationController = self.parent as? UINavigationController {
-            let betterPreviewController = PreviewController(currentIndex: currentIndex, urls: urls)
-            let nav = UINavigationController(rootViewController: betterPreviewController)
-            nav.modalPresentationStyle = .fullScreen
-            navigationController.present(nav, animated: true)
-        }
+        let betterPreviewController = PreviewController(currentIndex: currentIndex, urls: urls)
+        let nav = UINavigationController(rootViewController: betterPreviewController)
+        nav.modalPresentationStyle = .fullScreen
+        navigationController?.present(nav, animated: true)
     }
 }
 

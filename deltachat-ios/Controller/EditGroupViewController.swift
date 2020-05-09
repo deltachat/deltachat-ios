@@ -12,7 +12,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     var avatarSelectionCell: AvatarSelectionCell
 
     private lazy var mediaPicker: MediaPicker? = {
-        if let navigationController = self.parent as? UINavigationController {
+        if let navigationController = navigationController {
             return MediaPicker(navigationController: navigationController)
         } else {
             return nil
@@ -132,8 +132,6 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
 
     // MARK: - coordinator
     func navigateBack() {
-        if let navigationController = self.parent as? UINavigationController {
-            navigationController.popViewController(animated: true)
-        }
+        navigationController?.popViewController(animated: true)
     }
 }

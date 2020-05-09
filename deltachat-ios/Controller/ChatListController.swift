@@ -362,25 +362,19 @@ class ChatListController: UITableViewController {
 
     // MARK: - coordinator
     func showNewChatController() {
-        if let navigationController = self.parent as? UINavigationController {
-            let newChatVC = NewChatViewController(dcContext: dcContext)
-            navigationController.pushViewController(newChatVC, animated: true)
-        }
+        let newChatVC = NewChatViewController(dcContext: dcContext)
+        navigationController?.pushViewController(newChatVC, animated: true)
     }
 
     func showChat(chatId: Int) {
-        if let navigationController = self.parent as? UINavigationController {
-            let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
-            navigationController.pushViewController(chatVC, animated: true)
-        }
+        let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
+        navigationController?.pushViewController(chatVC, animated: true)
     }
 
     func showArchive() {
-        if let navigationController = self.parent as? UINavigationController {
-            let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
-            let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
-            navigationController.pushViewController(controller, animated: true)
-        }
+        let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
+        let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
+        navigationController?.pushViewController(controller, animated: true)
     }
 
     func showNewChat(contactId: Int) {

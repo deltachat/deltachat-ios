@@ -444,45 +444,32 @@ internal final class SettingsViewController: UITableViewController {
 
     // MARK: - coordinator
     func showEditSettingsController() {
-        if let navigationController = self.parent as? UINavigationController {
-            let editController = EditSettingsController(dcContext: dcContext)
-            navigationController.pushViewController(editController, animated: true)
-        }
+        let editController = EditSettingsController(dcContext: dcContext)
+        navigationController?.pushViewController(editController, animated: true)
     }
 
     func showClassicMail() {
-        if let navigationController = self.parent as? UINavigationController {
-            let settingsClassicViewController = SettingsClassicViewController(dcContext: dcContext)
-            navigationController.pushViewController(settingsClassicViewController, animated: true)
-        }
+        let settingsClassicViewController = SettingsClassicViewController(dcContext: dcContext)
+        navigationController?.pushViewController(settingsClassicViewController, animated: true)
     }
 
     func showBlockedContacts() {
-        if let navigationController = self.parent as? UINavigationController {
-            let blockedContactsController = BlockedContactsViewController()
-            navigationController.pushViewController(blockedContactsController, animated: true)
-        }
+        let blockedContactsController = BlockedContactsViewController()
+        navigationController?.pushViewController(blockedContactsController, animated: true)
     }
 
     func showAutodelOptions() {
-        if let navigationController = self.parent as? UINavigationController {
-            let settingsAutodelOverviewController = SettingsAutodelOverviewController(dcContext: dcContext)
-            navigationController.pushViewController(settingsAutodelOverviewController, animated: true)
-        }
+        let settingsAutodelOverviewController = SettingsAutodelOverviewController(dcContext: dcContext)
+        navigationController?.pushViewController(settingsAutodelOverviewController, animated: true)
     }
 
     func showContactRequests() {
-        if let navigationController = self.parent as? UINavigationController {
-            let deaddropViewController = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
-            navigationController.pushViewController(deaddropViewController, animated: true)
-        }
+        let deaddropViewController = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
+        navigationController?.pushViewController(deaddropViewController, animated: true)
     }
 
     func showHelp() {
-        if let navigationController = self.parent as? UINavigationController {
-            let helpViewController = HelpViewController()
-            navigationController.pushViewController(helpViewController, animated: true)
-        }
+        navigationController?.pushViewController(HelpViewController(), animated: true)
     }
 
     func showDebugToolkit() {

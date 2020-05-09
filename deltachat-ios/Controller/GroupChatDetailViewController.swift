@@ -191,39 +191,29 @@ class GroupChatDetailViewController: UIViewController {
 
     // MARK: - coordinator
     func showSingleChatEdit(contactId: Int) {
-        if let navigationController = self.parent as? UINavigationController {
-            let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
-            navigationController.pushViewController(editContactController, animated: true)
-        }
+        let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
+        navigationController?.pushViewController(editContactController, animated: true)
     }
 
     func showAddGroupMember(chatId: Int) {
-        if let navigationController = self.parent as? UINavigationController {
-            let groupMemberViewController = AddGroupMembersViewController(chatId: chatId)
-            navigationController.pushViewController(groupMemberViewController, animated: true)
-        }
+        let groupMemberViewController = AddGroupMembersViewController(chatId: chatId)
+        navigationController?.pushViewController(groupMemberViewController, animated: true)
     }
 
     func showQrCodeInvite(chatId: Int) {
-        if let navigationController = self.parent as? UINavigationController {
-            let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
-            navigationController.pushViewController(qrInviteCodeController, animated: true)
-        }
+        let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
+        navigationController?.pushViewController(qrInviteCodeController, animated: true)
     }
 
     func showGroupChatEdit(chat: DcChat) {
-        if let navigationController = self.parent as? UINavigationController {
-            let editGroupViewController = EditGroupViewController(dcContext: dcContext, chat: chat)
-            navigationController.pushViewController(editGroupViewController, animated: true)
-        }
+        let editGroupViewController = EditGroupViewController(dcContext: dcContext, chat: chat)
+        navigationController?.pushViewController(editGroupViewController, animated: true)
     }
 
     func showContactDetail(of contactId: Int) {
-        if let navigationController = self.parent as? UINavigationController {
-            let viewModel = ContactDetailViewModel(contactId: contactId, chatId: nil, context: dcContext)
-            let contactDetailController = ContactDetailViewController(viewModel: viewModel)
-            navigationController.pushViewController(contactDetailController, animated: true)
-        }
+        let viewModel = ContactDetailViewModel(contactId: contactId, chatId: nil, context: dcContext)
+        let contactDetailController = ContactDetailViewController(viewModel: viewModel)
+        navigationController?.pushViewController(contactDetailController, animated: true)
     }
 
     func showDocuments() {
@@ -234,49 +224,41 @@ class GroupChatDetailViewController: UIViewController {
         presentPreview(for: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
     }
 
-    private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {
-        if let navigationController = self.parent as? UINavigationController {
-            let messageIds = dcContext.getChatMedia(chatId: chatId, messageType: messageType, messageType2: messageType2, messageType3: messageType3)
-            var mediaUrls: [URL] = []
-            for messageId in messageIds {
-                let message = DcMsg.init(id: messageId)
-                if let url = message.fileURL {
-                    mediaUrls.insert(url, at: 0)
-                }
+private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {
+        let messageIds = dcContext.getChatMedia(chatId: chatId, messageType: messageType, messageType2: messageType2, messageType3: messageType3)
+        var mediaUrls: [URL] = []
+        for messageId in messageIds {
+            let message = DcMsg.init(id: messageId)
+            if let url = message.fileURL {
+                mediaUrls.insert(url, at: 0)
             }
-            let previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
-            navigationController.pushViewController(previewController, animated: true)
         }
+        let previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
+        navigationController?.pushViewController(previewController, animated: true)
     }
 
     func deleteChat() {
-        if let navigationController = self.parent as? UINavigationController {
-            /*
-            app will navigate to chatlist or archive and delete the chat there
-            notify chatList/archiveList to delete chat AFTER is is visible
-            */
-            func notifyToDeleteChat() {
-                NotificationCenter.default.post(name: dcNotificationChatDeletedInChatDetail, object: nil, userInfo: ["chat_id": self.chatId])
-            }
-
-            func showArchive() {
-                navigationController.popToRootViewController(animated: false) // in main ChatList now
-                let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
-                let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
-                navigationController.pushViewController(controller, animated: false)
-            }
-
-            CATransaction.begin()
-            CATransaction.setCompletionBlock(notifyToDeleteChat)
-
-            let chat = dcContext.getChat(chatId: chatId)
-            if chat.isArchived {
-                showArchive()
-            } else {
-                navigationController.popToRootViewController(animated: true) // in main ChatList now
-            }
-            CATransaction.commit()
+        /*
+        app will navigate to chatlist or archive and delete the chat there
+        notify chatList/archiveList to delete chat AFTER is is visible
+        */
+        func notifyToDeleteChat() {
+            NotificationCenter.default.post(name: dcNotificationChatDeletedInChatDetail, object: nil, userInfo: ["chat_id": self.chatId])
         }
+
+        CATransaction.begin()
+        CATransaction.setCompletionBlock(notifyToDeleteChat)
+
+        let chat = dcContext.getChat(chatId: chatId)
+        if chat.isArchived {
+            navigationController?.popToRootViewController(animated: false) // in main ChatList now
+            let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
+            let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
+            navigationController?.pushViewController(controller, animated: false)
+        } else {
+            navigationController?.popToRootViewController(animated: true) // in main ChatList now
+        }
+        CATransaction.commit()
     }
 }
 

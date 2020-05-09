@@ -278,18 +278,14 @@ class ContactDetailViewController: UITableViewController {
 
     // MARK: - coordinator
     func showChat(chatId: Int) {
-        if let navigationController = self.parent as? UINavigationController {
-            let chatViewController = ChatViewController(dcContext: viewModel.context, chatId: chatId)
-            navigationController.popToRootViewController(animated: false)
-            navigationController.pushViewController(chatViewController, animated: true)
-        }
+        let chatViewController = ChatViewController(dcContext: viewModel.context, chatId: chatId)
+        navigationController?.popToRootViewController(animated: false)
+        navigationController?.pushViewController(chatViewController, animated: true)
     }
 
     func showEditContact(contactId: Int) {
-        if let navigationController = self.parent as? UINavigationController {
-            let editContactController = EditContactController(dcContext: viewModel.context, contactIdForUpdate: contactId)
-            navigationController.pushViewController(editContactController, animated: true)
-        }
+        let editContactController = EditContactController(dcContext: viewModel.context, contactIdForUpdate: contactId)
+        navigationController?.pushViewController(editContactController, animated: true)
     }
 
     func showDocuments() {
@@ -311,14 +307,14 @@ class ContactDetailViewController: UITableViewController {
             }
         }
         previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
-        if let navigationController = self.parent as? UINavigationController, let previewController = previewController {
-            navigationController.pushViewController(previewController, animated: true)
+        if let previewController = previewController {
+            navigationController?.pushViewController(previewController, animated: true)
         }
     }
 
 
     func deleteChat() {
-        guard let chatId = viewModel.chatId, let navigationController = self.parent as? UINavigationController else {
+        guard let chatId = viewModel.chatId else {
             return
         }
 
@@ -330,21 +326,17 @@ class ContactDetailViewController: UITableViewController {
             NotificationCenter.default.post(name: dcNotificationChatDeletedInChatDetail, object: nil, userInfo: ["chat_id": chatId])
         }
 
-        func showArchive() {
-            navigationController.popToRootViewController(animated: false) // in main ChatList now
-            let chatlistVM = ChatListViewModel(dcContext: viewModel.context, isArchive: true)
-            let controller = ChatListController(dcContext: viewModel.context, viewModel: chatlistVM)
-            navigationController.pushViewController(controller, animated: false)
-        }
-
         CATransaction.begin()
         CATransaction.setCompletionBlock(notifyToDeleteChat)
 
         let chat = viewModel.context.getChat(chatId: chatId)
         if chat.isArchived {
-            showArchive()
+            navigationController?.popToRootViewController(animated: false) // in main ChatList now
+            let chatlistVM = ChatListViewModel(dcContext: viewModel.context, isArchive: true)
+            let controller = ChatListController(dcContext: viewModel.context, viewModel: chatlistVM)
+            navigationController?.pushViewController(controller, animated: false)
         } else {
-            navigationController.popToRootViewController(animated: true) // in main ChatList now
+            navigationController?.popToRootViewController(animated: true) // in main ChatList now
         }
         CATransaction.commit()
     }
