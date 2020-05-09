@@ -249,6 +249,13 @@ class WelcomeContentView: UIView {
         return label
     }()
 
+    private lazy var buttonStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [loginButton, qrCodeButton /*, importBackupButton */])
+        stack.axis = .vertical
+        stack.spacing = 15
+        return stack
+    }()
+
     private lazy var loginButton: UIButton = {
         let button = UIButton(type: .roundedRect)
         let title = String.localized("login_header").uppercased()
@@ -262,13 +269,6 @@ class WelcomeContentView: UIView {
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(loginButtonPressed(_:)), for: .touchUpInside)
         return button
-    }()
-
-    private lazy var buttonStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [loginButton, qrCodeButton /*, importBackupButton */])
-        stack.axis = .vertical
-        stack.spacing = 15
-        return stack
     }()
 
     private lazy var qrCodeButton: UIButton = {

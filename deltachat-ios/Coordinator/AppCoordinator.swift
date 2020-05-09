@@ -99,12 +99,7 @@ class AppCoordinator: NSObject, Coordinator {
 
     func showChat(chatId: Int, animated: Bool = true) {
         showTab(index: chatsTab)
-        guard let navController = self.chatListController as? UINavigationController else {
-            assertionFailure("huh? why no nav controller?")
-            return
-        }
-
-        if let rootController = navController.viewControllers.first as? ChatListController {
+        if let rootController = self.chatListController.viewControllers.first as? ChatListController {
             rootController.showChat(chatId: chatId)
         }
     }
