@@ -640,11 +640,11 @@ class ChatViewController: MessagesViewController {
     }
 
     // MARK: - coordinator
-    func navigateBack() {
+    private func navigateBack() {
         navigationController?.popViewController(animated: true)
     }
 
-    func showChatDetail(chatId: Int) {
+    private func showChatDetail(chatId: Int) {
         let chat = dcContext.getChat(chatId: chatId)
         switch chat.chatType {
         case .SINGLE:
@@ -659,7 +659,7 @@ class ChatViewController: MessagesViewController {
         }
     }
 
-    func showContactDetail(of contactId: Int, in chatOfType: ChatType, chatId: Int?) {
+    private func showContactDetail(of contactId: Int, in chatOfType: ChatType, chatId: Int?) {
         let viewModel = ContactDetailViewModel(contactId: contactId, chatId: chatId, context: dcContext )
         let contactDetailController = ContactDetailViewController(viewModel: viewModel)
         navigationController?.pushViewController(contactDetailController, animated: true)
@@ -672,23 +672,23 @@ class ChatViewController: MessagesViewController {
         }
     }
 
-    func showDocumentLibrary(delegate: MediaPickerDelegate) {
+    private func showDocumentLibrary(delegate: MediaPickerDelegate) {
         mediaPicker?.showDocumentLibrary(delegate: delegate)
     }
 
-    func showVoiceMessageRecorder(delegate: MediaPickerDelegate) {
+    private func showVoiceMessageRecorder(delegate: MediaPickerDelegate) {
         mediaPicker?.showVoiceRecorder(delegate: delegate)
     }
 
-    func showCameraViewController(delegate: MediaPickerDelegate) {
+    private func showCameraViewController(delegate: MediaPickerDelegate) {
         mediaPicker?.showCamera(delegate: delegate, allowCropping: false)
     }
 
-    func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
+    private func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
         mediaPicker?.showPhotoVideoLibrary(delegate: delegate)
     }
 
-    func showMediaGallery(currentIndex: Int, mediaUrls urls: [URL]) {
+    private func showMediaGallery(currentIndex: Int, mediaUrls urls: [URL]) {
         let betterPreviewController = PreviewController(currentIndex: currentIndex, urls: urls)
         let nav = UINavigationController(rootViewController: betterPreviewController)
         nav.modalPresentationStyle = .fullScreen

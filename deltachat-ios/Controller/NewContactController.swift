@@ -104,7 +104,7 @@ class NewContactController: UITableViewController {
         navigationController?.popViewController(animated: true)
     }
 
-    func showChat(chatId: Int) {
+    private func showChat(chatId: Int) {
         let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
         navigationController?.popToRootViewController(animated: false)
         navigationController?.pushViewController(chatViewController, animated: true)

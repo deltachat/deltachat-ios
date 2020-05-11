@@ -443,36 +443,36 @@ internal final class SettingsViewController: UITableViewController {
     }
 
     // MARK: - coordinator
-    func showEditSettingsController() {
+    private func showEditSettingsController() {
         let editController = EditSettingsController(dcContext: dcContext)
         navigationController?.pushViewController(editController, animated: true)
     }
 
-    func showClassicMail() {
+    private func showClassicMail() {
         let settingsClassicViewController = SettingsClassicViewController(dcContext: dcContext)
         navigationController?.pushViewController(settingsClassicViewController, animated: true)
     }
 
-    func showBlockedContacts() {
+    private func showBlockedContacts() {
         let blockedContactsController = BlockedContactsViewController()
         navigationController?.pushViewController(blockedContactsController, animated: true)
     }
 
-    func showAutodelOptions() {
+    private func showAutodelOptions() {
         let settingsAutodelOverviewController = SettingsAutodelOverviewController(dcContext: dcContext)
         navigationController?.pushViewController(settingsAutodelOverviewController, animated: true)
     }
 
-    func showContactRequests() {
+    private func showContactRequests() {
         let deaddropViewController = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
         navigationController?.pushViewController(deaddropViewController, animated: true)
     }
 
-    func showHelp() {
+    private func showHelp() {
         navigationController?.pushViewController(HelpViewController(), animated: true)
     }
 
-    func showDebugToolkit() {
+    private func showDebugToolkit() {
         DBDebugToolkit.setup(with: [])  // emtpy array will override default device shake trigger
         DBDebugToolkit.setupCrashReporting()
         let info: [DBCustomVariable] = dcContext.getInfo().map { kv in

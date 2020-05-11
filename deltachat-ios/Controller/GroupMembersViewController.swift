@@ -219,7 +219,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 
     // MARK: - coordinator
-    func showNewContactController() {
+    private func showNewContactController() {
         let newContactController = NewContactController(dcContext: dcContext)
         newContactController.openChatOnSave = false
         navigationController?.pushViewController(newContactController, animated: true)

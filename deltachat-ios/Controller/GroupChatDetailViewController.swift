@@ -190,37 +190,37 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     // MARK: - coordinator
-    func showSingleChatEdit(contactId: Int) {
+    private func showSingleChatEdit(contactId: Int) {
         let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
         navigationController?.pushViewController(editContactController, animated: true)
     }
 
-    func showAddGroupMember(chatId: Int) {
+    private func showAddGroupMember(chatId: Int) {
         let groupMemberViewController = AddGroupMembersViewController(chatId: chatId)
         navigationController?.pushViewController(groupMemberViewController, animated: true)
     }
 
-    func showQrCodeInvite(chatId: Int) {
+    private func showQrCodeInvite(chatId: Int) {
         let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
         navigationController?.pushViewController(qrInviteCodeController, animated: true)
     }
 
-    func showGroupChatEdit(chat: DcChat) {
+    private func showGroupChatEdit(chat: DcChat) {
         let editGroupViewController = EditGroupViewController(dcContext: dcContext, chat: chat)
         navigationController?.pushViewController(editGroupViewController, animated: true)
     }
 
-    func showContactDetail(of contactId: Int) {
+    private func showContactDetail(of contactId: Int) {
         let viewModel = ContactDetailViewModel(contactId: contactId, chatId: nil, context: dcContext)
         let contactDetailController = ContactDetailViewController(viewModel: viewModel)
         navigationController?.pushViewController(contactDetailController, animated: true)
     }
 
-    func showDocuments() {
+    private func showDocuments() {
         presentPreview(for: DC_MSG_FILE, messageType2: DC_MSG_AUDIO, messageType3: 0)
     }
 
-    func showGallery() {
+    private func showGallery() {
         presentPreview(for: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
     }
 
@@ -237,7 +237,7 @@ class GroupChatDetailViewController: UIViewController {
         navigationController?.pushViewController(previewController, animated: true)
     }
 
-    func deleteChat() {
+    private func deleteChat() {
         /*
         app will navigate to chatlist or archive and delete the chat there
         notify chatList/archiveList to delete chat AFTER is is visible

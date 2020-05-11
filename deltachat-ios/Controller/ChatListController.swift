@@ -361,7 +361,7 @@ class ChatListController: UITableViewController {
     }
 
     // MARK: - coordinator
-    func showNewChatController() {
+    private func showNewChatController() {
         let newChatVC = NewChatViewController(dcContext: dcContext)
         navigationController?.pushViewController(newChatVC, animated: true)
     }
@@ -371,13 +371,13 @@ class ChatListController: UITableViewController {
         navigationController?.pushViewController(chatVC, animated: true)
     }
 
-    func showArchive() {
+    private func showArchive() {
         let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
         let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
         navigationController?.pushViewController(controller, animated: true)
     }
 
-    func showNewChat(contactId: Int) {
+    private func showNewChat(contactId: Int) {
         let chatId = dcContext.createChatByContactId(contactId: contactId)
         showChat(chatId: Int(chatId))
     }

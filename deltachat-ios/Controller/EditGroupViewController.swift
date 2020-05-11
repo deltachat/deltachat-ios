@@ -131,7 +131,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     // MARK: - coordinator
-    func navigateBack() {
+    private func navigateBack() {
         navigationController?.popViewController(animated: true)
     }
 }

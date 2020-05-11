@@ -343,40 +343,40 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     // MARK: - coordinator
-    func showGroupChat(chatId: Int) {
+    private func showGroupChat(chatId: Int) {
         let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
         navigationController?.popToRootViewController(animated: false)
         navigationController?.pushViewController(chatViewController, animated: true)
     }
 
-    func showPhotoPicker(delegate: MediaPickerDelegate) {
+    private func showPhotoPicker(delegate: MediaPickerDelegate) {
         mediaPicker?.showPhotoGallery(delegate: delegate)
     }
 
-    func showCamera(delegate: MediaPickerDelegate) {
+    private func showCamera(delegate: MediaPickerDelegate) {
         mediaPicker?.showCamera(delegate: delegate)
     }
 
-    func showQrCodeInvite(chatId: Int) {
+    private func showQrCodeInvite(chatId: Int) {
         let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
         qrInviteCodeController.onDismissed = onQRInviteCodeControllerDismissed
         navigationController?.pushViewController(qrInviteCodeController, animated: true)
     }
 
-    func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
+    private func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
         let newGroupController = NewGroupAddMembersViewController(preselected: preselectedMembers,
                                                                   isVerified: isVerified)
         newGroupController.onMembersSelected = onGroupMembersSelected(_:)
         navigationController?.pushViewController(newGroupController, animated: true)
     }
 
-    func onQRInviteCodeControllerDismissed() {
+    private func onQRInviteCodeControllerDismissed() {
         if let groupNameController = navigationController?.topViewController as? NewGroupController {
             groupNameController.updateGroupContactIdsOnQRCodeInvite()
         }
     }
 
-    func onGroupMembersSelected(_ memberIds: Set<Int>) {
+    private func onGroupMembersSelected(_ memberIds: Set<Int>) {
         navigationController?.popViewController(animated: true)
         if let groupNameController = navigationController?.topViewController as? NewGroupController {
             groupNameController.updateGroupContactIdsOnListSelection(memberIds)

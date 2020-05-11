@@ -277,23 +277,23 @@ class ContactDetailViewController: UITableViewController {
     }
 
     // MARK: - coordinator
-    func showChat(chatId: Int) {
+    private func showChat(chatId: Int) {
         if let chatlistViewController = navigationController?.viewControllers[0] {
             let chatViewController = ChatViewController(dcContext: viewModel.context, chatId: chatId)
             navigationController?.setViewControllers([chatlistViewController, chatViewController], animated: true)
         }
     }
 
-    func showEditContact(contactId: Int) {
+    private func showEditContact(contactId: Int) {
         let editContactController = EditContactController(dcContext: viewModel.context, contactIdForUpdate: contactId)
         navigationController?.pushViewController(editContactController, animated: true)
     }
 
-    func showDocuments() {
+    private func showDocuments() {
         presentPreview(for: DC_MSG_FILE, messageType2: DC_MSG_AUDIO, messageType3: 0)
     }
 
-    func showGallery() {
+    private func showGallery() {
         presentPreview(for: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
     }
 
@@ -313,8 +313,7 @@ class ContactDetailViewController: UITableViewController {
         }
     }
 
-
-    func deleteChat() {
+    private func deleteChat() {
         guard let chatId = viewModel.chatId else {
             return
         }
@@ -341,5 +340,4 @@ class ContactDetailViewController: UITableViewController {
         }
         CATransaction.commit()
     }
-
 }

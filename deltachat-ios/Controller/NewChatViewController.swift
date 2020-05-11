@@ -328,28 +328,28 @@ class NewChatViewController: UITableViewController {
     }
 
     // MARK: - coordinator
-    func showNewGroupController(isVerified: Bool) {
+    private func showNewGroupController(isVerified: Bool) {
         let newGroupController = NewGroupController(dcContext: dcContext, isVerified: isVerified)
         navigationController?.pushViewController(newGroupController, animated: true)
     }
 
-    func showNewContactController() {
+    private func showNewContactController() {
         let newContactController = NewContactController(dcContext: dcContext)
         navigationController?.pushViewController(newContactController, animated: true)
     }
 
-    func showNewChat(contactId: Int) {
+    private func showNewChat(contactId: Int) {
         let chatId = dcContext.createChatByContactId(contactId: contactId)
         showChat(chatId: Int(chatId))
     }
 
-    func showChat(chatId: Int) {
+    private func showChat(chatId: Int) {
         let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
         navigationController?.pushViewController(chatViewController, animated: true)
         navigationController?.viewControllers.remove(at: 1)
     }
 
-    func showContactDetail(contactId: Int) {
+    private func showContactDetail(contactId: Int) {
         let viewModel = ContactDetailViewModel(contactId: contactId, chatId: nil, context: dcContext)
         let contactDetailController = ContactDetailViewController(viewModel: viewModel)
         navigationController?.pushViewController(contactDetailController, animated: true)

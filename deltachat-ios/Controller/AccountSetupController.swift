@@ -845,30 +845,30 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     // MARK: - coordinator
-    func showCertCheckOptions() {
+    private func showCertCheckOptions() {
         let certificateCheckController = CertificateCheckController(dcContext: dcContext, sectionTitle: String.localized("login_certificate_checks"))
         navigationController?.pushViewController(certificateCheckController, animated: true)
     }
 
-    func showImapSecurityOptions() {
+    private func showImapSecurityOptions() {
         let securitySettingsController = SecuritySettingsController(dcContext: dcContext, title: String.localized("login_imap_security"),
                                                                       type: SecurityType.IMAPSecurity)
         navigationController?.pushViewController(securitySettingsController, animated: true)
     }
 
-    func showSmptpSecurityOptions() {
+    private func showSmptpSecurityOptions() {
         let securitySettingsController = SecuritySettingsController(dcContext: dcContext,
                                                                     title: String.localized("login_imap_security"),
                                                                     type: SecurityType.SMTPSecurity)
         navigationController?.pushViewController(securitySettingsController, animated: true)
     }
 
-    func openProviderInfo(provider: DcProvider) {
+    private func openProviderInfo(provider: DcProvider) {
         guard let url = URL(string: provider.getOverviewPage) else { return }
         UIApplication.shared.open(url)
     }
 
-    func navigateBack() {
+    private func navigateBack() {
         navigationController?.popViewController(animated: true)
     }
 }
