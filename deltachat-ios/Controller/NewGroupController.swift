@@ -344,9 +344,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     // MARK: - coordinator
     private func showGroupChat(chatId: Int) {
-        let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
-        navigationController?.popToRootViewController(animated: false)
-        navigationController?.pushViewController(chatViewController, animated: true)
+        if let chatlistViewController = navigationController?.viewControllers[0] {
+            let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
+            navigationController?.setViewControllers([chatlistViewController, chatViewController], animated: true)
+        }
     }
 
     private func showPhotoPicker(delegate: MediaPickerDelegate) {
@@ -377,8 +378,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func onGroupMembersSelected(_ memberIds: Set<Int>) {
-        navigationController?.popViewController(animated: true)
         if let groupNameController = navigationController?.topViewController as? NewGroupController {
+            navigationController?.popViewController(animated: true)
             groupNameController.updateGroupContactIdsOnListSelection(memberIds)
         }
     }
