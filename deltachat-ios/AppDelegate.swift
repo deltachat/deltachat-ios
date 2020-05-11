@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var locationManager: LocationManager!
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability = Reachability()!
-    var hasNetwork = false
     var window: UIWindow?
     var state = ApplicationState.stopped
 
@@ -50,6 +49,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         startThreads()
         setStockTranslations()
+
+        reachability.whenReachable = { reachability in
+            logger.info("could not start reachability notifier")
+            // call dc_maybe_network() from a worker thread.
+            // normally, dc_maybe_network() can be called uncoditionally,
+            // however, in fact, it may halt things for some seconds.
+            // this pr is a workaround that make things usable for now.
+            DispatchQueue.global(qos: .background).async {
+               self.dcContext.maybeNetwork()
+           }
+        }
+
+        reachability.whenUnreachable = { _ in
+            logger.info("network: not reachable")
+        }
+
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+
         return true
     }
 
@@ -85,9 +106,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationDidEnterBackground(_: UIApplication) {
         logger.info("---- background ----")
 
-        reachability.stopNotifier()
-        NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
-
         maybeStop()
     }
 
@@ -112,7 +130,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         closeDatabase()
 
         reachability.stopNotifier()
-        NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
     }
 
     func openDatabase() {
@@ -207,38 +224,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             while self.state == .running {
                 self.dcContext.performMoveBox()
             }
-        }
-
-        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)),
-                                               name: .reachabilityChanged, object: reachability)
-        do {
-            try reachability.startNotifier()
-        } catch {
-            logger.info("could not start reachability notifier")
-        }
-    }
-
-    @objc private func reachabilityChanged(note: Notification) {
-        guard let reachability = note.object as? Reachability else {
-            logger.info("reachability object missing")
-            return
-        }
-
-        switch reachability.connection {
-        case .wifi, .cellular:
-            logger.info("network: reachable", reachability.connection.description)
-            hasNetwork = true
-
-            // call dc_maybe_network() from a worker thread.
-            // normally, dc_maybe_network() can be called uncoditionally,
-            // however, in fact, it may halt things for some seconds.
-            // this pr is a workaround that make things usable for now.
-            DispatchQueue.global(qos: .background).async {
-                self.dcContext.maybeNetwork()
-            }
-        case .none:
-            logger.info("network: not reachable")
-            hasNetwork = false
         }
     }
 
