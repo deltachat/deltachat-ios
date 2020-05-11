@@ -298,7 +298,7 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {
-        guard let chatId = viewModel.chatId else { return }
+        guard let chatId = viewModel.chatId ?? viewModel.context.getChatIdByContactId(viewModel.contactId) else { return }
         let messageIds = viewModel.context.getChatMedia(chatId: chatId, messageType: messageType, messageType2: messageType2, messageType3: messageType3)
         var mediaUrls: [URL] = []
         for messageId in messageIds {
