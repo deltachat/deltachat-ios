@@ -360,27 +360,19 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     private func showQrCodeInvite(chatId: Int) {
         let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
-        qrInviteCodeController.onDismissed = onQRInviteCodeControllerDismissed
+        qrInviteCodeController.onDismissed = {
+            self.updateGroupContactIdsOnQRCodeInvite()
+        }
         navigationController?.pushViewController(qrInviteCodeController, animated: true)
     }
 
     private func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
         let newGroupController = NewGroupAddMembersViewController(preselected: preselectedMembers,
                                                                   isVerified: isVerified)
-        newGroupController.onMembersSelected = onGroupMembersSelected(_:)
+        newGroupController.onMembersSelected = {(memberIds: Set<Int>) -> Void in
+            self.updateGroupContactIdsOnListSelection(memberIds)
+            self.navigationController?.popViewController(animated: true)
+        }
         navigationController?.pushViewController(newGroupController, animated: true)
-    }
-
-    private func onQRInviteCodeControllerDismissed() {
-        if let groupNameController = navigationController?.topViewController as? NewGroupController {
-            groupNameController.updateGroupContactIdsOnQRCodeInvite()
-        }
-    }
-
-    private func onGroupMembersSelected(_ memberIds: Set<Int>) {
-        if let groupNameController = navigationController?.topViewController as? NewGroupController {
-            navigationController?.popViewController(animated: true)
-            groupNameController.updateGroupContactIdsOnListSelection(memberIds)
-        }
     }
 }
