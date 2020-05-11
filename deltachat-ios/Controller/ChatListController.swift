@@ -101,14 +101,6 @@ class ChatListController: UITableViewController {
                     self.showChat(chatId: chatId)
                 }
         }
-        deleteChatObserver = nc.addObserver(
-            forName: dcNotificationChatDeletedInChatDetail,
-            object: nil,
-            queue: nil) { notification in
-                if let chatId = notification.userInfo?["chat_id"] as? Int {
-                    self.deleteChat(chatId: chatId, animated: true)
-                }
-        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {

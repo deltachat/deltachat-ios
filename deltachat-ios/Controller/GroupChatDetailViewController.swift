@@ -238,27 +238,14 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func deleteChat() {
-        /*
-        app will navigate to chatlist or archive and delete the chat there
-        notify chatList/archiveList to delete chat AFTER is is visible
-        */
-        func notifyToDeleteChat() {
-            NotificationCenter.default.post(name: dcNotificationChatDeletedInChatDetail, object: nil, userInfo: ["chat_id": self.chatId])
-        }
+        dcContext.deleteChat(chatId: chatId)
 
-        CATransaction.begin()
-        CATransaction.setCompletionBlock(notifyToDeleteChat)
-
-        let chat = dcContext.getChat(chatId: chatId)
-        if chat.isArchived {
-            navigationController?.popToRootViewController(animated: false) // in main ChatList now
-            let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
-            let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
-            navigationController?.pushViewController(controller, animated: false)
-        } else {
-            navigationController?.popToRootViewController(animated: true) // in main ChatList now
+        // just pop to viewControllers - we've in chatlist or archive then
+        // (no not use `navigationController?` here: popping self will make the reference becoming nil)
+        if let navigationController = navigationController {
+            navigationController.popViewController(animated: false)
+            navigationController.popViewController(animated: true)
         }
-        CATransaction.commit()
     }
 }
 
