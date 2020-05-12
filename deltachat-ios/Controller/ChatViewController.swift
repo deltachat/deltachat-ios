@@ -582,7 +582,7 @@ class ChatViewController: MessagesViewController {
         case NSSelectorFromString("messageForward:"):
             let msg = messageList[indexPath.section]
             RelayHelper.sharedInstance.setForwardMessage(messageId: msg.id)
-            navigateBack()
+            navigationController?.popViewController(animated: true)
         default:
             super.collectionView(collectionView, performAction: action, forItemAt: indexPath, withSender: sender)
         }
@@ -635,15 +635,11 @@ class ChatViewController: MessagesViewController {
                             self.dismiss(animated: true, completion: nil)},
                           cancelHandler: { _ in
                             self.dismiss(animated: false, completion: nil)
-                            self.navigateBack()})
+                            self.navigationController?.popViewController(animated: true)})
         }
     }
 
     // MARK: - coordinator
-    private func navigateBack() {
-        navigationController?.popViewController(animated: true)
-    }
-
     private func showChatDetail(chatId: Int) {
         let chat = dcContext.getChat(chatId: chatId)
         switch chat.chatType {

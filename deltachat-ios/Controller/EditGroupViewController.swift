@@ -86,11 +86,11 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
             AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: Int(chat.id))
         }
         _ = dcContext.setChatName(chatId: chat.id, name: newName ?? "")
-        navigateBack()
+        navigationController?.popViewController(animated: true)
     }
 
     @objc func cancelButtonPressed() {
-        navigateBack()
+        navigationController?.popViewController(animated: true)
     }
 
     private func groupNameEdited(_ textField: UITextField) {
@@ -128,10 +128,5 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         let indexPath = IndexPath(row: rowAvatar, section: 0)
         self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
         self.tableView.endUpdates()
-    }
-
-    // MARK: - coordinator
-    private func navigateBack() {
-        navigationController?.popViewController(animated: true)
     }
 }

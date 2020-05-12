@@ -77,12 +77,12 @@ class NewContactController: UITableViewController {
         if openChatOnSave {
             showChat(chatId: chatId)
         } else {
-            navigateBack()
+            navigationController?.popViewController(animated: true)
         }
     }
 
     @objc func cancelButtonPressed() {
-        navigateBack()
+        navigationController?.popViewController(animated: true)
     }
 
     required init?(coder _: NSCoder) {
@@ -100,10 +100,6 @@ class NewContactController: UITableViewController {
     }
 
     // MARK: - coordinator
-    func navigateBack() {
-        navigationController?.popViewController(animated: true)
-    }
-
     private func showChat(chatId: Int) {
         if let chatlistViewController = navigationController?.viewControllers[0] {
             let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)

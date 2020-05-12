@@ -46,7 +46,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         return DcContact(id: contactId)
     }
 
-    internal let chatId: Int?
+    let chatId: Int?
     private let sharedChats: DcChatlist
     private var sections: [ProfileSections] = []
     private var chatActions: [ChatAction] = [] // chatDetail: archive, block, delete - else: block

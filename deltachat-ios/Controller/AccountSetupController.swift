@@ -797,7 +797,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         if let onLoginSuccess = self.onLoginSuccess {
             onLoginSuccess()
         } else {
-            self.navigateBack()
+            navigationController?.popViewController(animated: true)
         }
     }
 
@@ -866,10 +866,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private func openProviderInfo(provider: DcProvider) {
         guard let url = URL(string: provider.getOverviewPage) else { return }
         UIApplication.shared.open(url)
-    }
-
-    private func navigateBack() {
-        navigationController?.popViewController(animated: true)
     }
 }
 

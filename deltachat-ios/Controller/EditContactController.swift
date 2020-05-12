@@ -30,7 +30,7 @@ class EditContactController: NewContactController {
 
     @objc override func saveContactButtonPressed() {
         _ = dcContext.createContact(name: model.name, email: model.email)
-        navigateBack()
+        navigationController?.popViewController(animated: true)
     }
 
 }
