@@ -4,7 +4,6 @@ import DcCore
 // this is also used as ChatDetail for SingleChats
 class ContactDetailViewController: UITableViewController {
     private let viewModel: ContactDetailViewModelProtocol
-    private var previewController: PreviewController?
 
     private lazy var headerCell: ContactDetailHeader = {
         let cell = ContactDetailHeader()
@@ -307,10 +306,8 @@ class ContactDetailViewController: UITableViewController {
                 mediaUrls.insert(url, at: 0)
             }
         }
-        previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
-        if let previewController = previewController {
-            navigationController?.pushViewController(previewController, animated: true)
-        }
+        let previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
+        navigationController?.pushViewController(previewController, animated: true)
     }
 
     private func deleteChat() {
