@@ -41,7 +41,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
         self.navigationItem.title = String.localized("welcome_desktop")
-        onProgressSuccess = {
+        onProgressSuccess = { [unowned self] in
             let profileInfoController = ProfileInfoViewController(context: dcContext)
             profileInfoController.onClose = {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {

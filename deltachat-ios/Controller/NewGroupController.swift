@@ -356,7 +356,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     private func showQrCodeInvite(chatId: Int) {
         let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
-        qrInviteCodeController.onDismissed = {
+        qrInviteCodeController.onDismissed = { [unowned self] in
             self.updateGroupContactIdsOnQRCodeInvite()
         }
         navigationController?.pushViewController(qrInviteCodeController, animated: true)
@@ -365,7 +365,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
         let newGroupController = NewGroupAddMembersViewController(preselected: preselectedMembers,
                                                                   isVerified: isVerified)
-        newGroupController.onMembersSelected = {(memberIds: Set<Int>) -> Void in
+        newGroupController.onMembersSelected = { [unowned self] (memberIds: Set<Int>) -> Void in
             self.updateGroupContactIdsOnListSelection(memberIds)
             self.navigationController?.popViewController(animated: true)
         }
