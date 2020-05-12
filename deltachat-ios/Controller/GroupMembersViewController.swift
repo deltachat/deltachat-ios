@@ -228,13 +228,13 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
 class BlockedContactsViewController: GroupMembersViewController, GroupMemberSelectionDelegate {
 
-    private var emptyStateLabel: UILabel = {
-        let label = UILabel()
-        label.text = String.localized("none_blocked_desktop")
-        label.textColor = DcColors.grayTextColor
-        return label
+    var emptyStateView: PaddingLabel = {
+        let view =  PaddingLabel()
+        view.text = String.localized("none_blocked_desktop")
+        view.backgroundColor = DcColors.systemMessageBackgroundColor
+        view.textColor = DcColors.defaultTextColor
+        return view
     }()
-
 
     override init() {
         super.init()
@@ -258,15 +258,16 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateEmtpyStateLabel()
+        updateEmtpyStateView()
     }
 
     // MARK: - setup
     private func setupSubviews() {
-        view.addSubview(emptyStateLabel)
-        emptyStateLabel.translatesAutoresizingMaskIntoConstraints = false
-        emptyStateLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 0).isActive = true
-        emptyStateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0).isActive = true
+        view.addSubview(emptyStateView)
+        emptyStateView.translatesAutoresizingMaskIntoConstraints = false
+        emptyStateView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        emptyStateView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        emptyStateView.widthAnchor.constraint(equalToConstant: 200).isActive = true
     }
 
     // MARK: - actions + updates
@@ -281,7 +282,7 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
                 self.contactIds = self.dcContext.getBlockedContacts()
                 self.selectedContactIds = Set(self.contactIds)
                 self.tableView.reloadData()
-                self.updateEmtpyStateLabel()
+                self.updateEmtpyStateView()
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
                 self.selectedContactIds = Set(self.contactIds)
@@ -291,8 +292,8 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
         }
     }
 
-    private func updateEmtpyStateLabel() {
-        emptyStateLabel.isHidden = super.getNumberOfRowsForContactList() > 0
+    private func updateEmtpyStateView() {
+        emptyStateView.isHidden = super.getNumberOfRowsForContactList() > 0
     }
 }
 
