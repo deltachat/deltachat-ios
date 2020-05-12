@@ -7,11 +7,7 @@ class ProfileInfoViewController: UITableViewController {
     private var displayName: String?
 
     private lazy var mediaPicker: MediaPicker? = {
-        if let navigationController = navigationController {
-            return MediaPicker(navigationController: navigationController)
-        } else {
-            return nil
-        }
+        return MediaPicker(navigationController: navigationController)
     }()
 
     private lazy var doneButtonItem: UIBarButtonItem = {

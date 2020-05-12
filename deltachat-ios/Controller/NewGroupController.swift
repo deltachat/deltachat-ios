@@ -26,11 +26,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private let sectionGroupMembers = 2
 
     private lazy var mediaPicker: MediaPicker? = {
-        if let navigationController = navigationController {
-            return MediaPicker(navigationController: navigationController)
-        } else {
-            return nil
-        }
+        return MediaPicker(navigationController: navigationController)
     }()
 
     lazy var groupNameCell: TextFieldCell = {

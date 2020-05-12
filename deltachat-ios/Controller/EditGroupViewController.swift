@@ -12,11 +12,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     var avatarSelectionCell: AvatarSelectionCell
 
     private lazy var mediaPicker: MediaPicker? = {
-        if let navigationController = navigationController {
-            return MediaPicker(navigationController: navigationController)
-        } else {
-            return nil
-        }
+        return MediaPicker(navigationController: navigationController)
     }()
 
     lazy var groupNameCell: TextFieldCell = {

@@ -64,11 +64,7 @@ class ChatViewController: MessagesViewController {
     var previewView: UIView?
 
     private lazy var mediaPicker: MediaPicker? = {
-        if let navigationController = navigationController {
-            return MediaPicker(navigationController: navigationController)
-        } else {
-            return nil
-        }
+        return MediaPicker(navigationController: navigationController)
     }()
 
     var emptyStateView: PaddingLabel = {
