@@ -89,7 +89,7 @@ class AppCoordinator {
     func showChat(chatId: Int, animated: Bool = true) {
         showTab(index: chatsTab)
         if let rootController = self.chatsNavController.viewControllers.first as? ChatListController {
-            rootController.showChat(chatId: chatId)
+            rootController.showChat(chatId: chatId, animated: animated)
         }
     }
 

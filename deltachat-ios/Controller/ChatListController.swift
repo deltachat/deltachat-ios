@@ -358,9 +358,9 @@ class ChatListController: UITableViewController {
         navigationController?.pushViewController(newChatVC, animated: true)
     }
 
-    func showChat(chatId: Int) {
+    func showChat(chatId: Int, animated: Bool = true) {
         let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
-        navigationController?.pushViewController(chatVC, animated: true)
+        navigationController?.pushViewController(chatVC, animated: animated)
     }
 
     private func showArchive() {
