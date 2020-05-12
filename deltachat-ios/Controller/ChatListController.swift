@@ -12,7 +12,6 @@ class ChatListController: UITableViewController {
     private var msgChangedObserver: Any?
     private var incomingMsgObserver: Any?
     private var viewChatObserver: Any?
-    private var deleteChatObserver: Any?
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -115,10 +114,6 @@ class ChatListController: UITableViewController {
         }
         if let viewChatObserver = self.viewChatObserver {
             nc.removeObserver(viewChatObserver)
-        }
-
-        if let deleteChatObserver = self.deleteChatObserver {
-            nc.removeObserver(deleteChatObserver)
         }
     }
 
