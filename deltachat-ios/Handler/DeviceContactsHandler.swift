@@ -85,15 +85,15 @@ class DeviceContactsHandler {
         case .denied:
             contactListDelegate?.accessDenied()
         case .restricted, .notDetermined:
-            store.requestAccess(for: .contacts) { [unowned self] granted, _ in
+            store.requestAccess(for: .contacts) { [weak self] granted, _ in
                 if granted {
                     DispatchQueue.main.async {
-                        self.addContactsToCore()
-                        self.contactListDelegate?.accessGranted()
+                        self?.addContactsToCore()
+                        self?.contactListDelegate?.accessGranted()
                     }
                 } else {
                     DispatchQueue.main.async {
-                        self.contactListDelegate?.accessDenied()
+                        self?.contactListDelegate?.accessDenied()
                     }
                 }
             }

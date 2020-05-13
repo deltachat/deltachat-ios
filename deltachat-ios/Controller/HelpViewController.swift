@@ -40,10 +40,10 @@ class HelpViewController: UIViewController, WKNavigationDelegate {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        loadHtmlContent { [unowned self] url in
+        loadHtmlContent { [weak self] url in
             // return to main thread
             DispatchQueue.main.async {
-                self.webView.loadFileURL(url, allowingReadAccessTo: url)
+                self?.webView.loadFileURL(url, allowingReadAccessTo: url)
             }
         }
     }

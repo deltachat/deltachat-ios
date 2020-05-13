@@ -223,14 +223,15 @@ public extension Reachability {
 fileprivate extension Reachability {
 
     func setReachabilityFlags() throws {
-        try reachabilitySerialQueue.sync { [unowned self] in
+        try reachabilitySerialQueue.sync { [weak self] in
+            guard let strongSelf = self else { return }
             var flags = SCNetworkReachabilityFlags()
-            if !SCNetworkReachabilityGetFlags(self.reachabilityRef, &flags) {
-                self.stopNotifier()
+            if !SCNetworkReachabilityGetFlags(strongSelf.reachabilityRef, &flags) {
+                strongSelf.stopNotifier()
                 throw ReachabilityError.UnableToGetInitialFlags
             }
             
-            self.flags = flags
+            strongSelf.flags = flags
         }
     }
     

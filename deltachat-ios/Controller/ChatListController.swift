@@ -232,20 +232,20 @@ class ChatListController: UITableViewController {
         }
         let archiveActionTitle: String = String.localized(viewModel.isArchive ? "unarchive" : "archive")
 
-        let archiveAction = UITableViewRowAction(style: .destructive, title: archiveActionTitle) { [unowned self] _, _ in
-            self.viewModel.archiveChatToggle(chatId: chatId)
+        let archiveAction = UITableViewRowAction(style: .destructive, title: archiveActionTitle) { [weak self] _, _ in
+            self?.viewModel.archiveChatToggle(chatId: chatId)
         }
         archiveAction.backgroundColor = UIColor.lightGray
 
         let chat = dcContext.getChat(chatId: chatId)
         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
-        let pinAction = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [unowned self] _, _ in
-            self.viewModel.pinChatToggle(chatId: chat.id)
+        let pinAction = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [weak self] _, _ in
+            self?.viewModel.pinChatToggle(chatId: chat.id)
         }
         pinAction.backgroundColor = UIColor.systemGreen
 
-        let deleteAction = UITableViewRowAction(style: .normal, title: String.localized("delete")) { [unowned self] _, _ in
-            self.showDeleteChatConfirmationAlert(chatId: chatId)
+        let deleteAction = UITableViewRowAction(style: .normal, title: String.localized("delete")) { [weak self] _, _ in
+            self?.showDeleteChatConfirmationAlert(chatId: chatId)
         }
         deleteAction.backgroundColor = UIColor.systemRed
 

@@ -401,21 +401,20 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             !isMemberManagementRow(row: row) &&
             getGroupMemberIdFor(row) != currentUser.id {
             // action set for members except for current user
-            let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [unowned self] _, indexPath in
-
-                let contact = self.getGroupMember(at: row)
+            let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
+                guard let strongSelf = self else { return }
+                let contact = strongSelf.getGroupMember(at: row)
                 let title = String.localizedStringWithFormat(String.localized("ask_remove_members"), contact.nameNAddr)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { _ in
-                    let success = self.dcContext.removeContactFromChat(chatId: self.chat.id, contactId: contact.id)
+                    let success = strongSelf.dcContext.removeContactFromChat(chatId: strongSelf.chat.id, contactId: contact.id)
                     if success {
-                        self.removeGroupMemberFromTableAt(indexPath)
+                        strongSelf.removeGroupMemberFromTableAt(indexPath)
                     }
                 }))
                 alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-
- }
+                strongSelf.present(alert, animated: true, completion: nil)
+            }
             delete.backgroundColor = UIColor.red
             return [delete]
         }

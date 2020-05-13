@@ -3,7 +3,7 @@ import UIKit
 
 class HudHandler {
     var backupHud: JGProgressHUD?
-    unowned var view: UIView
+    weak var view: UIView?
 
     init(parentView: UIView) {
         view = parentView
@@ -23,7 +23,9 @@ class HudHandler {
             hud.indicatorView = JGProgressHUDPieIndicatorView()
             hud.detailTextLabel.text = "0%"
             hud.textLabel.text = text
-            hud.show(in: self.view)
+            if let view = self.view {
+                hud.show(in: view)
+            }
             self.backupHud = hud
         }
     }

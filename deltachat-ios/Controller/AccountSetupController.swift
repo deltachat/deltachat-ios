@@ -97,8 +97,8 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private lazy var providerInfoCell: ProviderInfoCell = {
         let cell = ProviderInfoCell()
         cell.onInfoButtonPressed = {
-            [unowned self] in
-            self.handleProviderInfoButton()
+            [weak self] in
+            self?.handleProviderInfoButton()
         }
         return cell
     }()
@@ -612,7 +612,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
              let oAuthAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
              let confirm = UIAlertAction(title: "Confirm", style: .default, handler: {
-                 [unowned self] _ in
+                 [weak self] _ in // TODO: refactor usages of `self` to `self?` when this code is used again
                  let nc = NotificationCenter.default
                  self.oauth2Observer = nc.addObserver(self, selector: #selector(self.oauthLoginApproved), name: NSNotification.Name("oauthLoginApproved"), object: nil)
                  self.launchOAuthBrowserWindow(url: url)
