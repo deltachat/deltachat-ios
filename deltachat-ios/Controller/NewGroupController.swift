@@ -255,15 +255,15 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         //swipe by delete
         if section == sectionGroupMembers, groupContactIds[row] != DC_CONTACT_ID_SELF {
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
-                guard let strongSelf = self else { return }
-                if strongSelf.groupChatId != 0,
-                    strongSelf.dcContext.getChat(chatId: strongSelf.groupChatId).contactIds.contains(strongSelf.groupContactIds[row]) {
-                    let success = strongSelf.dcContext.removeContactFromChat(chatId: strongSelf.groupChatId, contactId: strongSelf.groupContactIds[row])
+                guard let self = self else { return }
+                if self.groupChatId != 0,
+                    self.dcContext.getChat(chatId: self.groupChatId).contactIds.contains(self.groupContactIds[row]) {
+                    let success = self.dcContext.removeContactFromChat(chatId: self.groupChatId, contactId: self.groupContactIds[row])
                     if success {
-                        strongSelf.removeGroupContactFromList(at: indexPath)
+                        self.removeGroupContactFromList(at: indexPath)
                     }
                 } else {
-                    strongSelf.removeGroupContactFromList(at: indexPath)
+                    self.removeGroupContactFromList(at: indexPath)
                 }
             }
             delete.backgroundColor = UIColor.red

@@ -229,20 +229,20 @@ class NewChatViewController: UITableViewController {
             let contactId = contactIdByRow(indexPath.row)
 
             let edit = UITableViewRowAction(style: .normal, title: String.localized("info")) { [weak self] _, _ in
-                guard let strongSelf = self else { return }
-                if strongSelf.searchController.isActive {
-                    strongSelf.searchController.dismiss(animated: false) {
-                        strongSelf.showContactDetail(contactId: contactId)
+                guard let self = self else { return }
+                if self.searchController.isActive {
+                    self.searchController.dismiss(animated: false) {
+                        self.showContactDetail(contactId: contactId)
                     }
                 } else {
-                    strongSelf.showContactDetail(contactId: contactId)
+                    self.showContactDetail(contactId: contactId)
                 }
             }
 
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("delete")) { [weak self] _, _ in
-                guard let strongSelf = self else { return }
-                let contactId = strongSelf.contactIdByRow(indexPath.row)
-                strongSelf.askToDeleteContact(contactId: contactId, context: strongSelf.dcContext)
+                guard let self = self else { return }
+                let contactId = self.contactIdByRow(indexPath.row)
+                self.askToDeleteContact(contactId: contactId, context: self.dcContext)
             }
 
             edit.backgroundColor = DcColors.primary

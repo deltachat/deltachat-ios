@@ -15,15 +15,15 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private lazy var welcomeView: WelcomeContentView = {
         let view = WelcomeContentView()
         view.onLogin = { [weak self] in
-            guard let strongSelf = self else { return }
-            let accountSetupController = AccountSetupController(dcContext: strongSelf.dcContext, editView: false)
+            guard let self = self else { return }
+            let accountSetupController = AccountSetupController(dcContext: self.dcContext, editView: false)
             accountSetupController.onLoginSuccess = {
                 [weak self] in
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.appCoordinator.presentTabBarController()
                 }
             }
-            strongSelf.navigationController?.pushViewController(accountSetupController, animated: true)
+            self.navigationController?.pushViewController(accountSetupController, animated: true)
         }
         view.onScanQRCode  = { [weak self] in
             let qrReader = QrCodeReaderController()
