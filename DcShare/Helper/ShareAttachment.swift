@@ -7,6 +7,7 @@ import QuickLookThumbnailing
 protocol ShareAttachmentDelegate: class {
     func onAttachmentChanged()
     func onThumbnailChanged()
+    func onUrlShared(url: URL)
 }
 
 class ShareAttachment {
@@ -56,6 +57,8 @@ class ShareAttachment {
                 createAudioMsg(attachment)
             } else if attachment.hasItemConformingToTypeIdentifier(kUTTypeFileURL as String) {
                 createFileMsg(attachment)
+            } else if attachment.hasItemConformingToTypeIdentifier(kUTTypeURL as String) {
+                addSharedUrl(attachment)
             }
         }
     }
@@ -171,4 +174,19 @@ class ShareAttachment {
         }
     }
 
+    func addSharedUrl(_ item: NSItemProvider) {
+        if let delegate = self.delegate {
+            item.loadItem(forTypeIdentifier: kUTTypeURL as String, options: nil) { data, error in
+                switch data {
+                case let url as URL:
+                    delegate.onUrlShared(url: url)
+                default:
+                    self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
+                }
+                if error != nil {
+                    self.dcContext.logger?.error(error?.localizedDescription ?? "Could not share URL.")
+                }
+            }
+        }
+    }
 }

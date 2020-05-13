@@ -163,6 +163,17 @@ extension ShareViewController: SendingControllerDelegate {
 }
 
 extension ShareViewController: ShareAttachmentDelegate {
+    func onUrlShared(url: URL) {
+        DispatchQueue.main.async {
+            if var contentText = self.contentText, !contentText.isEmpty {
+                contentText.append("\n\(url.absoluteString)")
+                self.textView.text = contentText
+            } else {
+                self.textView.text = "\(url.absoluteString)"
+            }
+        }
+    }
+
     func onAttachmentChanged() {
         DispatchQueue.main.async {
             self.validateContent()
