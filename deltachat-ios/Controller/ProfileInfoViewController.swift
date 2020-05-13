@@ -35,8 +35,8 @@ class ProfileInfoViewController: UITableViewController {
         let cell =  TextFieldCell.makeNameCell()
         cell.placeholder = String.localized("pref_your_name")
         cell.setText(text: dcContext.displayname)
-        cell.onTextFieldChange = {[unowned self] textField in
-            self.displayName = textField.text
+        cell.onTextFieldChange = {[weak self] textField in
+            self?.displayName = textField.text
         }
         return cell
     }()

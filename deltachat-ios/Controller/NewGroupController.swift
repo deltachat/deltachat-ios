@@ -254,8 +254,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
         //swipe by delete
         if section == sectionGroupMembers, groupContactIds[row] != DC_CONTACT_ID_SELF {
-            let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [unowned self] _, indexPath in
-                if self.groupChatId != 0, self.dcContext.getChat(chatId: self.groupChatId).contactIds.contains(self.groupContactIds[row]) {
+            let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
+                guard let self = self else { return }
+                if self.groupChatId != 0,
+                    self.dcContext.getChat(chatId: self.groupChatId).contactIds.contains(self.groupContactIds[row]) {
                     let success = self.dcContext.removeContactFromChat(chatId: self.groupChatId, contactId: self.groupContactIds[row])
                     if success {
                         self.removeGroupContactFromList(at: indexPath)
@@ -356,8 +358,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     private func showQrCodeInvite(chatId: Int) {
         let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
-        qrInviteCodeController.onDismissed = { [unowned self] in
-            self.updateGroupContactIdsOnQRCodeInvite()
+        qrInviteCodeController.onDismissed = { [weak self] in
+            self?.updateGroupContactIdsOnQRCodeInvite()
         }
         navigationController?.pushViewController(qrInviteCodeController, animated: true)
     }
@@ -365,7 +367,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
         let newGroupController = NewGroupAddMembersViewController(preselected: preselectedMembers,
                                                                   isVerified: isVerified)
-        newGroupController.onMembersSelected = { [unowned self] (memberIds: Set<Int>) -> Void in
+        newGroupController.onMembersSelected = { [weak self] (memberIds: Set<Int>) -> Void in
+            guard let self = self else { return }
             self.updateGroupContactIdsOnListSelection(memberIds)
             self.navigationController?.popViewController(animated: true)
         }

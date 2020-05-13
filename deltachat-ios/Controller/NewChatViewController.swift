@@ -228,7 +228,8 @@ class NewChatViewController: UITableViewController {
         if indexPath.section == sectionContacts {
             let contactId = contactIdByRow(indexPath.row)
 
-            let edit = UITableViewRowAction(style: .normal, title: String.localized("info")) { [unowned self] _, _ in
+            let edit = UITableViewRowAction(style: .normal, title: String.localized("info")) { [weak self] _, _ in
+                guard let self = self else { return }
                 if self.searchController.isActive {
                     self.searchController.dismiss(animated: false) {
                         self.showContactDetail(contactId: contactId)
@@ -238,7 +239,8 @@ class NewChatViewController: UITableViewController {
                 }
             }
 
-            let delete = UITableViewRowAction(style: .destructive, title: String.localized("delete")) { [unowned self] _, _ in
+            let delete = UITableViewRowAction(style: .destructive, title: String.localized("delete")) { [weak self] _, _ in
+                guard let self = self else { return }
                 let contactId = self.contactIdByRow(indexPath.row)
                 self.askToDeleteContact(contactId: contactId, context: self.dcContext)
             }

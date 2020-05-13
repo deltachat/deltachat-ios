@@ -401,8 +401,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             !isMemberManagementRow(row: row) &&
             getGroupMemberIdFor(row) != currentUser.id {
             // action set for members except for current user
-            let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [unowned self] _, indexPath in
-
+            let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
+                guard let self = self else { return }
                 let contact = self.getGroupMember(at: row)
                 let title = String.localizedStringWithFormat(String.localized("ask_remove_members"), contact.nameNAddr)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
@@ -414,8 +414,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 }))
                 alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-
- }
+            }
             delete.backgroundColor = UIColor.red
             return [delete]
         }

@@ -62,8 +62,8 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("pref_profile_info_headline")
-        avatarSelectionCell.onAvatarTapped = { [unowned self] in
-            self.onAvatarTapped()
+        avatarSelectionCell.onAvatarTapped = { [weak self] in
+            self?.onAvatarTapped()
         }
     }
 

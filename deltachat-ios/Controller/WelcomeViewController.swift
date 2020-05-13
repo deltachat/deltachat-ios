@@ -14,17 +14,19 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     private lazy var welcomeView: WelcomeContentView = {
         let view = WelcomeContentView()
-        view.onLogin = { [unowned self] in
+        view.onLogin = { [weak self] in
+            guard let self = self else { return }
             let accountSetupController = AccountSetupController(dcContext: self.dcContext, editView: false)
             accountSetupController.onLoginSuccess = {
-                [unowned self] in
+                [weak self] in
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.appCoordinator.presentTabBarController()
                 }
             }
             self.navigationController?.pushViewController(accountSetupController, animated: true)
         }
-        view.onScanQRCode  = { [unowned self] in
+        view.onScanQRCode  = { [weak self] in
+            guard let self = self else { return }
             let qrReader = QrCodeReaderController()
             qrReader.delegate = self
             self.qrCodeReader = qrReader
@@ -41,14 +43,14 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
         self.navigationItem.title = String.localized("welcome_desktop")
-        onProgressSuccess = { [unowned self] in
+        onProgressSuccess = { [weak self] in
             let profileInfoController = ProfileInfoViewController(context: dcContext)
             profileInfoController.onClose = {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.appCoordinator.presentTabBarController()
                 }
             }
-            self.navigationController?.setViewControllers([profileInfoController], animated: true)
+            self?.navigationController?.setViewControllers([profileInfoController], animated: true)
         }
     }
 
@@ -147,7 +149,8 @@ extension WelcomeViewController: QrCodeReaderDelegate {
         let okAction = UIAlertAction(
             title: String.localized("ok"),
             style: .default,
-            handler: { [unowned self] _ in
+            handler: { [weak self] _ in
+                guard let self = self else { return }
                 self.dismissQRReader()
                 self.createAccountFromQRCode(qrCode: qrCode)
             }
@@ -156,8 +159,8 @@ extension WelcomeViewController: QrCodeReaderDelegate {
         let qrCancelAction = UIAlertAction(
             title: String.localized("cancel"),
             style: .cancel,
-            handler: { [unowned self] _ in
-                self.dismissQRReader()
+            handler: { [weak self] _ in
+                self?.dismissQRReader()
             }
         )
 
@@ -172,8 +175,8 @@ extension WelcomeViewController: QrCodeReaderDelegate {
         let okAction = UIAlertAction(
             title: String.localized("ok"),
             style: .default,
-            handler: { [unowned self] _ in
-                self.qrCodeReader?.startSession()
+            handler: { [weak self] _ in
+                self?.qrCodeReader?.startSession()
             }
         )
         alert.addAction(okAction)
