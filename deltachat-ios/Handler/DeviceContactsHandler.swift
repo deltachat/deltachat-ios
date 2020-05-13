@@ -86,14 +86,15 @@ class DeviceContactsHandler {
             contactListDelegate?.accessDenied()
         case .restricted, .notDetermined:
             store.requestAccess(for: .contacts) { [weak self] granted, _ in
+                guard let self = self else { return }
                 if granted {
                     DispatchQueue.main.async {
-                        self?.addContactsToCore()
-                        self?.contactListDelegate?.accessGranted()
+                        self.addContactsToCore()
+                        self.contactListDelegate?.accessGranted()
                     }
                 } else {
                     DispatchQueue.main.async {
-                        self?.contactListDelegate?.accessDenied()
+                        self.contactListDelegate?.accessDenied()
                     }
                 }
             }
