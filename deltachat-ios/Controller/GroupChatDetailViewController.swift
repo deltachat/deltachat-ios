@@ -18,19 +18,19 @@ class GroupChatDetailViewController: UIViewController {
     private let chatActionsRowLeaveGroup = 1
     private let chatActionsRowDeleteChat = 2
 
-    private let context: DcContext
-    weak var coordinator: GroupChatDetailCoordinator?
+    private let dcContext: DcContext
 
     private let sections: [ProfileSections] = [.attachments, .members, .chatActions]
 
     private var currentUser: DcContact? {
-        let myId = groupMemberIds.filter { DcContact(id: $0).email == context.addr }.first
+        let myId = groupMemberIds.filter { DcContact(id: $0).email == dcContext.addr }.first
         guard let currentUserId = myId else {
             return nil
         }
         return DcContact(id: currentUserId)
     }
 
+    private var chatId: Int
     fileprivate var chat: DcChat
 
     // stores contactIds
@@ -106,9 +106,10 @@ class GroupChatDetailViewController: UIViewController {
         return cell
     }()
 
-    init(chatId: Int, context: DcContext) {
-        self.context = context
-        chat = context.getChat(chatId: chatId)
+    init(chatId: Int, dcContext: DcContext) {
+        self.dcContext = dcContext
+        self.chatId = chatId
+        chat = dcContext.getChat(chatId: chatId)
         super.init(nibName: nil, bundle: nil)
         setupSubviews()
     }
@@ -138,7 +139,7 @@ class GroupChatDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //update chat object, maybe chat name was edited
-        chat = context.getChat(chatId: chat.id)
+        chat = dcContext.getChat(chatId: chat.id)
         updateGroupMembers()
         tableView.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
@@ -166,18 +167,18 @@ class GroupChatDetailViewController: UIViewController {
 
     // MARK: - actions
     @objc func editButtonPressed() {
-        coordinator?.showGroupChatEdit(chat: chat)
+        showGroupChatEdit(chat: chat)
     }
 
     private func toggleArchiveChat() {
         let archivedBefore = chat.isArchived
-        context.archiveChat(chatId: chat.id, archive: !archivedBefore)
+        dcContext.archiveChat(chatId: chat.id, archive: !archivedBefore)
         if archivedBefore {
             archiveChatCell.actionTitle = String.localized("menu_archive_chat")
         } else {
             self.navigationController?.popToRootViewController(animated: false)
         }
-        self.chat = context.getChat(chatId: chat.id)
+        self.chat = dcContext.getChat(chatId: chat.id)
      }
 
     private func getGroupMemberIdFor(_ row: Int) -> Int {
@@ -186,6 +187,65 @@ class GroupChatDetailViewController: UIViewController {
 
     private func isMemberManagementRow(row: Int) -> Bool {
         return row < memberManagementRows
+    }
+
+    // MARK: - coordinator
+    private func showSingleChatEdit(contactId: Int) {
+        let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
+        navigationController?.pushViewController(editContactController, animated: true)
+    }
+
+    private func showAddGroupMember(chatId: Int) {
+        let groupMemberViewController = AddGroupMembersViewController(chatId: chatId)
+        navigationController?.pushViewController(groupMemberViewController, animated: true)
+    }
+
+    private func showQrCodeInvite(chatId: Int) {
+        let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
+        navigationController?.pushViewController(qrInviteCodeController, animated: true)
+    }
+
+    private func showGroupChatEdit(chat: DcChat) {
+        let editGroupViewController = EditGroupViewController(dcContext: dcContext, chat: chat)
+        navigationController?.pushViewController(editGroupViewController, animated: true)
+    }
+
+    private func showContactDetail(of contactId: Int) {
+        let viewModel = ContactDetailViewModel(contactId: contactId, chatId: nil, context: dcContext)
+        let contactDetailController = ContactDetailViewController(viewModel: viewModel)
+        navigationController?.pushViewController(contactDetailController, animated: true)
+    }
+
+    private func showDocuments() {
+        presentPreview(for: DC_MSG_FILE, messageType2: DC_MSG_AUDIO, messageType3: 0)
+    }
+
+    private func showGallery() {
+        presentPreview(for: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
+    }
+
+    private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {
+        let messageIds = dcContext.getChatMedia(chatId: chatId, messageType: messageType, messageType2: messageType2, messageType3: messageType3)
+        var mediaUrls: [URL] = []
+        for messageId in messageIds {
+            let message = DcMsg.init(id: messageId)
+            if let url = message.fileURL {
+                mediaUrls.insert(url, at: 0)
+            }
+        }
+        let previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
+        navigationController?.pushViewController(previewController, animated: true)
+    }
+
+    private func deleteChat() {
+        dcContext.deleteChat(chatId: chatId)
+
+        // just pop to viewControllers - we've in chatlist or archive then
+        // (no not use `navigationController?` here: popping self will make the reference becoming nil)
+        if let navigationController = navigationController {
+            navigationController.popViewController(animated: false)
+            navigationController.popViewController(animated: true)
+        }
     }
 }
 
@@ -257,7 +317,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             let contactId: Int = getGroupMemberIdFor(row)
             let cellData = ContactCellData(
                 contactId: contactId,
-                chatId: context.getChatIdByContactId(contactId)
+                chatId: dcContext.getChatIdByContactId(contactId)
             )
             let cellViewModel = ContactCellViewModel(contactData: cellData)
             contactCell.updateCell(cellViewModel: cellViewModel)
@@ -282,18 +342,18 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         switch sectionType {
         case .attachments:
             if row == attachmentsRowGallery {
-                coordinator?.showGallery()
+                showGallery()
             } else if row == attachmentsRowDocuments {
-                coordinator?.showDocuments()
+                showDocuments()
             }
         case .members:
             if row == membersRowAddMembers {
-                coordinator?.showAddGroupMember(chatId: chat.id)
+                showAddGroupMember(chatId: chat.id)
             } else if row == membersRowQrInvite {
-                coordinator?.showQrCodeInvite(chatId: chat.id)
+                showQrCodeInvite(chatId: chat.id)
             } else {
                 let member = getGroupMember(at: row)
-                coordinator?.showContactDetail(of: member.id)
+                showContactDetail(of: member.id)
             }
         case .chatActions:
             if row == chatActionsRowArchiveChat {
@@ -347,7 +407,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 let title = String.localizedStringWithFormat(String.localized("ask_remove_members"), contact.nameNAddr)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { _ in
-                    let success = self.context.removeContactFromChat(chatId: self.chat.id, contactId: contact.id)
+                    let success = self.dcContext.removeContactFromChat(chatId: self.chat.id, contactId: contact.id)
                     if success {
                         self.removeGroupMemberFromTableAt(indexPath)
                     }
@@ -382,7 +442,7 @@ extension GroupChatDetailViewController {
             preferredStyle: .safeActionSheet
         )
         alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
-            self.coordinator?.deleteChat()
+            self.deleteChat()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -392,7 +452,7 @@ extension GroupChatDetailViewController {
         if let userId = currentUser?.id {
             let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { _ in
-                _ = self.context.removeContactFromChat(chatId: self.chat.id, contactId: userId)
+                _ = self.dcContext.removeContactFromChat(chatId: self.chat.id, contactId: userId)
                 self.editBarButtonItem.isEnabled = false
                 self.updateGroupMembers()
             }))

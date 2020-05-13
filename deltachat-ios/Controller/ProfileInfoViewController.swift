@@ -2,13 +2,13 @@ import UIKit
 import DcCore
 
 class ProfileInfoViewController: UITableViewController {
-
-    weak var coordinator: EditSettingsCoordinator?
     var onClose: VoidFunction?
-
     private let dcContext: DcContext
-
     private var displayName: String?
+
+    private lazy var mediaPicker: MediaPicker? = {
+        return MediaPicker(navigationController: navigationController)
+    }()
 
     private lazy var doneButtonItem: UIBarButtonItem = {
         return UIBarButtonItem(
@@ -136,11 +136,11 @@ class ProfileInfoViewController: UITableViewController {
     }
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showPhotoPicker(delegate: self)
+        mediaPicker?.showPhotoGallery(delegate: self)
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showCamera(delegate: self)
+        mediaPicker?.showCamera(delegate: self)
     }
 }
 

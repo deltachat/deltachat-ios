@@ -2,8 +2,6 @@ import UIKit
 import DcCore
 
 class NewGroupAddMembersViewController: GroupMembersViewController {
-    weak var coordinator: NewGroupAddMembersCoordinator?
-
     var onMembersSelected: ((Set<Int>) -> Void)?
     let isVerifiedGroup: Bool
 
@@ -41,10 +39,6 @@ class NewGroupAddMembersViewController: GroupMembersViewController {
         super.viewWillAppear(animated)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     @objc func cancelButtonPressed() {
         navigationController?.popViewController(animated: true)
     }
@@ -61,7 +55,6 @@ class NewGroupAddMembersViewController: GroupMembersViewController {
 }
 
 class AddGroupMembersViewController: GroupMembersViewController {
-    weak var coordinator: AddGroupMembersCoordinator?
     private var chatId: Int?
     private let sectionNewContact = 0
     private let sectionMemberList = 1
@@ -80,7 +73,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     private lazy var chat: DcChat? = {
         if let chatId = chatId {
-            return coordinator?.dcContext.getChat(chatId: chatId)
+            return dcContext.getChat(chatId: chatId)
         }
         return nil
     }()
@@ -182,7 +175,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         switch indexPath.section {
         case sectionNewContact:
             tableView.deselectRow(at: indexPath, animated: true)
-            coordinator?.showNewContactController()
+            showNewContactController()
         case sectionMemberList:
             didSelectContactCell(at: indexPath)
         default:
@@ -223,6 +216,13 @@ class AddGroupMembersViewController: GroupMembersViewController {
         cell.textLabel?.textAlignment = .center
 
         return cell
+    }
+
+    // MARK: - coordinator
+    private func showNewContactController() {
+        let newContactController = NewContactController(dcContext: dcContext)
+        newContactController.openChatOnSave = false
+        navigationController?.pushViewController(newContactController, animated: true)
     }
 }
 

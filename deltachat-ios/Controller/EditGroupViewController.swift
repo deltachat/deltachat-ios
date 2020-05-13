@@ -2,9 +2,7 @@ import UIKit
 import DcCore
 
 class EditGroupViewController: UITableViewController, MediaPickerDelegate {
-
-    weak var coordinator: EditGroupCoordinator?
-
+    private let dcContext: DcContext
     private let chat: DcChat
     private var groupImage: UIImage?
 
@@ -12,6 +10,10 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     private let rowGroupName = 1
 
     var avatarSelectionCell: AvatarSelectionCell
+
+    private lazy var mediaPicker: MediaPicker? = {
+        return MediaPicker(navigationController: navigationController)
+    }()
 
     lazy var groupNameCell: TextFieldCell = {
         let cell = TextFieldCell(description: String.localized("group_name"), placeholder: self.chat.name)
@@ -31,7 +33,8 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         return button
     }()
 
-    init(chat: DcChat) {
+    init(dcContext: DcContext, chat: DcChat) {
+        self.dcContext = dcContext
         self.chat = chat
         self.avatarSelectionCell = AvatarSelectionCell(chat: chat)
         super.init(style: .grouped)
@@ -75,15 +78,15 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     
     @objc func saveContactButtonPressed() {
         let newName = groupNameCell.getText()
-        if let groupImage = groupImage, let dcContext = coordinator?.dcContext {
+        if let groupImage = groupImage {
             AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: Int(chat.id))
         }
-        _ = DcContext.shared.setChatName(chatId: chat.id, name: newName ?? "")
-        coordinator?.navigateBack()
+        _ = dcContext.setChatName(chatId: chat.id, name: newName ?? "")
+        navigationController?.popViewController(animated: true)
     }
 
     @objc func cancelButtonPressed() {
-        coordinator?.navigateBack()
+        navigationController?.popViewController(animated: true)
     }
 
     private func groupNameEdited(_ textField: UITextField) {
@@ -102,11 +105,11 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showPhotoPicker(delegate: self)
+        mediaPicker?.showPhotoGallery(delegate: self)
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showCamera(delegate: self)
+        mediaPicker?.showCamera(delegate: self)
     }
 
     func onImageSelected(image: UIImage) {

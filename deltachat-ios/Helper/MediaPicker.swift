@@ -28,13 +28,13 @@ extension MediaPickerDelegate {
 
 class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AudioRecorderControllerDelegate, UIDocumentPickerDelegate {
 
-    private let navigationController: UINavigationController
+    private weak var navigationController: UINavigationController?
     private weak var delegate: MediaPickerDelegate?
 
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController?) {
+        // it does not make sense to give nil here, but it makes construction easier
         self.navigationController = navigationController
     }
-
 
     func showVoiceRecorder(delegate: MediaPickerDelegate) {
         self.delegate = delegate
@@ -43,8 +43,8 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         //audioRecorderController.maximumRecordDuration = 1200
         let audioRecorderNavController = UINavigationController(rootViewController: audioRecorderController)
 
-        navigationController.present(audioRecorderNavController, animated: true, completion: nil)
- }
+        navigationController?.present(audioRecorderNavController, animated: true, completion: nil)
+    }
 
     func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
         if PHPhotoLibrary.authorizationStatus() != .authorized {
@@ -71,7 +71,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         documentPicker.allowsMultipleSelection = false
         documentPicker.modalPresentationStyle = .formSheet
         self.delegate = delegate
-        navigationController.present(documentPicker, animated: true, completion: nil)
+        navigationController?.present(documentPicker, animated: true, completion: nil)
     }
 
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
@@ -91,7 +91,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                 kUTTypeImage as String
             ]
             self.delegate = delegate
-            navigationController.present(videoPicker, animated: true, completion: nil)
+            navigationController?.present(videoPicker, animated: true, completion: nil)
         }
     }
 
@@ -109,10 +109,10 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                 if let image = image {
                     self?.delegate?.onImageSelected(image: image)
                 }
-                self?.navigationController.dismiss(animated: true, completion: nil)})
+                self?.navigationController?.dismiss(animated: true, completion: nil)})
         self.delegate = delegate
         controller.modalPresentationStyle = .fullScreen
-        navigationController.present(controller, animated: true, completion: nil)
+        navigationController?.present(controller, animated: true, completion: nil)
     }
 
     func showCamera(delegate: MediaPickerDelegate, allowCropping: Bool) {
@@ -134,17 +134,17 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                     if let image = image {
                         self?.delegate?.onImageSelected(image: image)
                     }
-                    self?.navigationController.dismiss(animated: true, completion: nil)}
+                    self?.navigationController?.dismiss(animated: true, completion: nil)}
             )
             self.delegate = delegate
             cameraViewController.modalPresentationStyle = .fullScreen
-            navigationController.present(cameraViewController, animated: true, completion: nil)
+            navigationController?.present(cameraViewController, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: String.localized("chat_camera_unavailable"), message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
-                self.navigationController.dismiss(animated: true, completion: nil)
+                self.navigationController?.dismiss(animated: true, completion: nil)
             }))
-            navigationController.present(alert, animated: true, completion: nil)
+            navigationController?.present(alert, animated: true, completion: nil)
         }
     }
 
@@ -161,15 +161,15 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                     logger.error(error.localizedDescription)
                     let alert = UIAlertController(title: String.localized("error"), message: nil, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
-                        self.navigationController.dismiss(animated: true, completion: nil)
+                        self.navigationController?.dismiss(animated: true, completion: nil)
                     }))
-                    self.navigationController.present(alert, animated: true, completion: nil)
+                    self.navigationController?.present(alert, animated: true, completion: nil)
                 }
             })
         } else if let imageUrl = info[UIImagePickerController.InfoKey.imageURL] as? NSURL {
             self.delegate?.onImageSelected(url: imageUrl)
         }
-        navigationController.dismiss(animated: true, completion: nil)
+        navigationController?.dismiss(animated: true, completion: nil)
     }
 
     func didFinishAudioAtPath(path: String) {

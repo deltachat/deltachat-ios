@@ -10,7 +10,6 @@ public let dcNotificationSecureInviterProgress = Notification.Name(rawValue: "Mr
 public let dcNotificationViewChat = Notification.Name(rawValue: "MrEventViewChat")
 public let dcNotificationContactChanged = Notification.Name(rawValue: "MrEventContactsChanged")
 public let dcNotificationChatModified = Notification.Name(rawValue: "dcNotificationChatModified")
-public let dcNotificationChatDeletedInChatDetail = Notification.Name(rawValue: "ChatDeletedInChatDetail")
 
 @_silgen_name("callbackSwift")
 

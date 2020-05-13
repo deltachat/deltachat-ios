@@ -2,7 +2,6 @@ import UIKit
 import DcCore
 
 class ChatListController: UITableViewController {
-    weak var coordinator: ChatListCoordinator?
     let viewModel: ChatListViewModelProtocol
     let dcContext: DcContext
 
@@ -13,7 +12,6 @@ class ChatListController: UITableViewController {
     private var msgChangedObserver: Any?
     private var incomingMsgObserver: Any?
     private var viewChatObserver: Any?
-    private var deleteChatObserver: Any?
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -99,15 +97,7 @@ class ChatListController: UITableViewController {
             object: nil,
             queue: nil) { notification in
                 if let chatId = notification.userInfo?["chat_id"] as? Int {
-                    self.coordinator?.showChat(chatId: chatId)
-                }
-        }
-        deleteChatObserver = nc.addObserver(
-            forName: dcNotificationChatDeletedInChatDetail,
-            object: nil,
-            queue: nil) { notification in
-                if let chatId = notification.userInfo?["chat_id"] as? Int {
-                    self.deleteChat(chatId: chatId, animated: true)
+                    self.showChat(chatId: chatId)
                 }
         }
     }
@@ -125,10 +115,6 @@ class ChatListController: UITableViewController {
         if let viewChatObserver = self.viewChatObserver {
             nc.removeObserver(viewChatObserver)
         }
-
-        if let deleteChatObserver = self.deleteChatObserver {
-            nc.removeObserver(deleteChatObserver)
-        }
     }
 
     // MARK: - configuration
@@ -141,7 +127,7 @@ class ChatListController: UITableViewController {
 
     // MARK: - actions
     @objc func didPressNewChat() {
-        coordinator?.showNewChatController()
+        showNewChatController()
     }
 
     @objc func cancelButtonPressed() {
@@ -214,14 +200,14 @@ class ChatListController: UITableViewController {
         case .chat(let chatData):
             let chatId = chatData.chatId
             if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-                coordinator?.showArchive()
+                showArchive()
             } else {
-                coordinator?.showChat(chatId: chatId)
+                showChat(chatId: chatId)
             }
         case .contact(let contactData):
             let contactId = contactData.contactId
             if let chatId = contactData.chatId {
-                coordinator?.showChat(chatId: chatId)
+                showChat(chatId: chatId)
             } else {
                 self.askToChatWith(contactId: contactId)
             }
@@ -318,7 +304,7 @@ class ChatListController: UITableViewController {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
             let chat = self.dcContext.createChatByMessageId(msgId)
-            self.coordinator?.showChat(chatId: chat.id)
+            self.showChat(chatId: chat.id)
         }))
         alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
             dcContact.marknoticed()
@@ -340,7 +326,7 @@ class ChatListController: UITableViewController {
             title: String.localized("start_chat"),
             style: .default,
             handler: { _ in
-                self.coordinator?.showNewChat(contactId: contactId)
+                self.showNewChat(contactId: contactId)
         }))
         alert.addAction(UIAlertAction(
             title: String.localized("cancel"),
@@ -359,6 +345,28 @@ class ChatListController: UITableViewController {
 
         let row = viewModel.deleteChat(chatId: chatId)
         tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade)
+    }
+
+    // MARK: - coordinator
+    private func showNewChatController() {
+        let newChatVC = NewChatViewController(dcContext: dcContext)
+        navigationController?.pushViewController(newChatVC, animated: true)
+    }
+
+    func showChat(chatId: Int, animated: Bool = true) {
+        let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
+        navigationController?.pushViewController(chatVC, animated: animated)
+    }
+
+    private func showArchive() {
+        let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
+        let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+
+    private func showNewChat(contactId: Int) {
+        let chatId = dcContext.createChatByContactId(contactId: contactId)
+        showChat(chatId: Int(chatId))
     }
 }
 

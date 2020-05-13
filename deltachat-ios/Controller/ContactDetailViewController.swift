@@ -1,8 +1,8 @@
 import UIKit
+import DcCore
 
 // this is also used as ChatDetail for SingleChats
 class ContactDetailViewController: UITableViewController {
-    weak var coordinator: ContactDetailCoordinatorProtocol?
     private let viewModel: ContactDetailViewModelProtocol
 
     private lazy var headerCell: ContactDetailHeader = {
@@ -150,7 +150,7 @@ class ContactDetailViewController: UITableViewController {
             chatWith(contactId: contactId)
         case .sharedChats:
             let chatId = viewModel.getSharedChatIdAt(indexPath: indexPath)
-            coordinator?.showChat(chatId: chatId)
+            showChat(chatId: chatId)
         }
     }
 
@@ -200,9 +200,9 @@ class ContactDetailViewController: UITableViewController {
         let action = viewModel.attachmentActionFor(row: index)
         switch action {
         case .documents:
-            coordinator?.showDocuments()
+            showDocuments()
         case .gallery:
-            coordinator?.showGallery()
+            showGallery()
         }
     }
 
@@ -222,12 +222,11 @@ class ContactDetailViewController: UITableViewController {
 
 
     @objc private func editButtonPressed() {
-        coordinator?.showEditContact(contactId: viewModel.contactId)
+        showEditContact(contactId: viewModel.contactId)
     }
-}
 
-// MARK: alerts
-extension ContactDetailViewController {
+    // MARK: alerts
+
     private func showDeleteChatConfirmationAlert() {
         let alert = UIAlertController(
             title: nil,
@@ -235,7 +234,7 @@ extension ContactDetailViewController {
             preferredStyle: .safeActionSheet
         )
         alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
-            self.coordinator?.deleteChat()
+            self.deleteChat()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -273,7 +272,55 @@ extension ContactDetailViewController {
 
     private func chatWith(contactId: Int) {
         let chatId = self.viewModel.context.createChatByContactId(contactId: contactId)
-        self.coordinator?.showChat(chatId: chatId)
+        self.showChat(chatId: chatId)
     }
 
+    // MARK: - coordinator
+    private func showChat(chatId: Int) {
+        if let chatlistViewController = navigationController?.viewControllers[0] {
+            let chatViewController = ChatViewController(dcContext: viewModel.context, chatId: chatId)
+            navigationController?.setViewControllers([chatlistViewController, chatViewController], animated: true)
+        }
+    }
+
+    private func showEditContact(contactId: Int) {
+        let editContactController = EditContactController(dcContext: viewModel.context, contactIdForUpdate: contactId)
+        navigationController?.pushViewController(editContactController, animated: true)
+    }
+
+    private func showDocuments() {
+        presentPreview(for: DC_MSG_FILE, messageType2: DC_MSG_AUDIO, messageType3: 0)
+    }
+
+    private func showGallery() {
+        presentPreview(for: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
+    }
+
+    private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {
+        guard let chatId = viewModel.chatId ?? viewModel.context.getChatIdByContactId(viewModel.contactId) else { return }
+        let messageIds = viewModel.context.getChatMedia(chatId: chatId, messageType: messageType, messageType2: messageType2, messageType3: messageType3)
+        var mediaUrls: [URL] = []
+        for messageId in messageIds {
+            let message = DcMsg.init(id: messageId)
+            if let url = message.fileURL {
+                mediaUrls.insert(url, at: 0)
+            }
+        }
+        let previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
+        navigationController?.pushViewController(previewController, animated: true)
+    }
+
+    private func deleteChat() {
+        guard let chatId = viewModel.chatId else {
+            return
+        }
+        viewModel.context.deleteChat(chatId: chatId)
+
+        // just pop to viewControllers - we've in chatlist or archive then
+        // (no not use `navigationController?` here: popping self will make the reference becoming nil)
+        if let navigationController = navigationController {
+            navigationController.popViewController(animated: false)
+            navigationController.popViewController(animated: true)
+        }
+    }
 }

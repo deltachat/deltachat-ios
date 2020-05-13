@@ -2,9 +2,7 @@ import UIKit
 import DcCore
 
 class EditSettingsController: UITableViewController, MediaPickerDelegate {
-
     private let dcContext: DcContext
-    weak var coordinator: EditSettingsCoordinator?
     private var displayNameBackup: String?
     private var statusCellBackup: String?
 
@@ -22,7 +20,9 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
     private let tagAccountSettingsCell = 1
 
-    private var childCoordinators: Coordinator?
+    private lazy var mediaPicker: MediaPicker? = {
+        return MediaPicker(navigationController: navigationController)
+    }()
 
     private lazy var statusCell: MultilineTextFieldCell = {
         let cell = MultilineTextFieldCell(description: String.localized("pref_default_status_label"),
@@ -131,20 +131,17 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
             tableView.deselectRow(at: indexPath, animated: true)
             guard let nc = navigationController else { return }
             let accountSetupVC = AccountSetupController(dcContext: dcContext, editView: true)
-            let coordinator = AccountSetupCoordinator(dcContext: dcContext, navigationController: nc)
-            self.childCoordinators = coordinator
-            accountSetupVC.coordinator = coordinator
             nc.pushViewController(accountSetupVC, animated: true)
         }
     }
 
     // MARK: - actions
     private func galleryButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showPhotoPicker(delegate: self)
+        mediaPicker?.showPhotoGallery(delegate: self)
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        coordinator?.showCamera(delegate: self)
+        mediaPicker?.showCamera(delegate: self)
     }
 
     private func deleteProfileIconPressed(_ action: UIAlertAction) {
@@ -189,4 +186,3 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }
 
 }
-

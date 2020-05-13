@@ -4,6 +4,7 @@ import DcCore
 protocol ContactDetailViewModelProtocol {
     var context: DcContext { get }
     var contactId: Int { get }
+    var chatId: Int? { get }
     var contact: DcContact { get }
     var numberOfSections: Int { get }
     var chatIsArchived: Bool { get }
@@ -45,7 +46,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         return DcContact(id: contactId)
     }
 
-    private let chatId: Int?
+    let chatId: Int?
     private let sharedChats: DcChatlist
     private var sections: [ProfileSections] = []
     private var chatActions: [ChatAction] = [] // chatDetail: archive, block, delete - else: block

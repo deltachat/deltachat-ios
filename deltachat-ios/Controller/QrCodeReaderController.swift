@@ -24,10 +24,6 @@ class QrCodeReaderController: UIViewController {
            return label
     }()
 
-    private lazy var closeButton: UIBarButtonItem = {
-        return UIBarButtonItem(title: String.localized("cancel"), style: .done, target: self, action: #selector(closeButtonPressed(_:)))
-    }()
-
     private let supportedCodeTypes = [
         AVMetadataObject.ObjectType.qr
     ]
@@ -37,7 +33,6 @@ class QrCodeReaderController: UIViewController {
         super.viewDidLoad()
         self.edgesForExtendedLayout = []
         title = String.localized("qrscan_title")
-        navigationItem.leftBarButtonItem = closeButton
 
         guard let captureDevice = AVCaptureDevice.DiscoverySession.init(
             deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera],
@@ -83,11 +78,6 @@ class QrCodeReaderController: UIViewController {
         captureSession.stopRunning()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - setup
     private func setupSubviews() {
         view.layer.addSublayer(videoPreviewLayer)
@@ -124,10 +114,6 @@ class QrCodeReaderController: UIViewController {
     }
 
     // MARK: - actions
-    @objc private func closeButtonPressed(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-    }
-
     func startSession() {
         captureSession.startRunning()
     }
