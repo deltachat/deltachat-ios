@@ -26,10 +26,11 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             self.navigationController?.pushViewController(accountSetupController, animated: true)
         }
         view.onScanQRCode  = { [weak self] in
+            guard let self = self else { return }
             let qrReader = QrCodeReaderController()
             qrReader.delegate = self
-            self?.qrCodeReader = qrReader
-            self?.navigationController?.pushViewController(qrReader, animated: true)
+            self.qrCodeReader = qrReader
+            self.navigationController?.pushViewController(qrReader, animated: true)
         }
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -149,8 +150,9 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("ok"),
             style: .default,
             handler: { [weak self] _ in
-                self?.dismissQRReader()
-                self?.createAccountFromQRCode(qrCode: qrCode)
+                guard let self = self else { return }
+                self.dismissQRReader()
+                self.createAccountFromQRCode(qrCode: qrCode)
             }
         )
 
