@@ -46,23 +46,16 @@ class ShareAttachment {
         }
     }
 
-    // a NSExtensionItem can have multiple attachments representing the same data in diffent types
-    // we want only one DcMsg per NSExtensionItem which is why we're breaking out of the loop
-    // after the first match
     func createMessageFromDataRepresentaion(_ attachments: [NSItemProvider]) {
         for attachment in attachments {
             if attachment.hasItemConformingToTypeIdentifier(kUTTypeImage as String) {
                 createImageMsg(attachment)
-                break
             } else if attachment.hasItemConformingToTypeIdentifier(kUTTypeMovie as String) {
                 createMovieMsg(attachment)
-                break
             } else if attachment.hasItemConformingToTypeIdentifier(kUTTypeAudio as String) {
                 createAudioMsg(attachment)
-                break
             } else if attachment.hasItemConformingToTypeIdentifier(kUTTypeFileURL as String) {
                 createFileMsg(attachment)
-                break
             }
         }
     }
