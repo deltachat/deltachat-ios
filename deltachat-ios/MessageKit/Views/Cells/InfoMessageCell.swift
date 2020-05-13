@@ -1,4 +1,5 @@
 import UIKit
+import DcCore
 
 open class InfoMessageCell: UICollectionViewCell {
     let label = MessageLabel()

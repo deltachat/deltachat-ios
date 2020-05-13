@@ -1,7 +1,17 @@
 import Foundation
 import UIKit
+import MobileCoreServices
+import AVFoundation
 
 public struct DcUtils {
+
+    public static func getInitials(inputName: String) -> String {
+        if let firstLetter = inputName.first {
+            return firstLetter.uppercased()
+        } else {
+            return ""
+        }
+    }
 
     static func copyAndFreeArray(inputArray: OpaquePointer?) -> [Int] {
         var acc: [Int] = []
@@ -50,5 +60,55 @@ public struct DcUtils {
 
         return acc
     }
+
+    // compression needs to be done before in UIImage.dcCompress()
+    public static func saveImage(image: UIImage) -> String? {
+        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
+                                                           appropriateFor: nil, create: false) as NSURL else {
+                                                            return nil
+        }
+
+        guard let data = image.isTransparent() ? image.pngData() : image.jpegData(compressionQuality: 1.0) else {
+            return nil
+        }
+
+        do {
+            let timestamp = Double(Date().timeIntervalSince1970)
+            let path = directory.appendingPathComponent("\(timestamp).jpg")
+            try data.write(to: path!)
+            return path?.relativePath
+        } catch {
+            DcContext.shared.logger?.info(error.localizedDescription)
+            return nil
+        }
+    }
+
+    public static func getMimeTypeForPath(path: String) -> String {
+        let url = NSURL(fileURLWithPath: path)
+        let pathExtension = url.pathExtension
+
+        if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension! as NSString, nil)?.takeRetainedValue() {
+            if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
+                return mimetype as String
+            }
+        }
+        return "application/octet-stream"
+    }
+
+    public static func generateThumbnailFromVideo(url: URL?) -> UIImage? {
+           guard let url = url else {
+               return nil
+           }
+           do {
+               let asset = AVURLAsset(url: url)
+               let imageGenerator = AVAssetImageGenerator(asset: asset)
+               imageGenerator.appliesPreferredTrackTransform = true
+               let cgImage = try imageGenerator.copyCGImage(at: .zero, actualTime: nil)
+               return UIImage(cgImage: cgImage)
+           } catch {
+               print(error.localizedDescription)
+               return nil
+           }
+       }
 
 }

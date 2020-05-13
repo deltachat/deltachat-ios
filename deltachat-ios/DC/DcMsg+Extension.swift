@@ -46,7 +46,7 @@ extension DcMsg: MessageType {
     }
 
     internal func createVideoMessage(text: String) -> MessageKind {
-        let thumbnail = Utils.generateThumbnailFromVideo(url: fileURL)
+        let thumbnail = DcUtils.generateThumbnailFromVideo(url: fileURL)
         if text.isEmpty {
             return MessageKind.video(Media(url: fileURL, image: thumbnail))
         }

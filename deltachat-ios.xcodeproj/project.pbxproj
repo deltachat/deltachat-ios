@@ -12,6 +12,7 @@
 		30149D9322F21129003C12B5 /* QrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30149D9222F21129003C12B5 /* QrViewController.swift */; };
 		3015634423A003BA00E9DEF4 /* AudioRecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */; };
 		3022E6BE22E8768800763272 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3022E6C022E8768800763272 /* InfoPlist.strings */; };
+		302589FF2452FA280086C1CD /* ShareAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302589FE2452FA280086C1CD /* ShareAttachment.swift */; };
 		30260CA7238F02F700D8D52C /* MultilineTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */; };
 		302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AC265E237F1807002A943F /* AvatarHelper.swift */; };
 		302B84C72396770B001C261F /* RelayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B84C42396627F001C261F /* RelayHelper.swift */; };
@@ -21,6 +22,7 @@
 		3040F462234F550300FA34D5 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040F461234F550300FA34D5 /* AudioPlayerView.swift */; };
 		304219D3243F588500516852 /* DcCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304219D82440734A00516852 /* DcMsg+Extension.swift */; };
+		304F5E44244F571C00462538 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
 		305961CC2346125100C80F33 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961822346125000C80F33 /* UIView+Extensions.swift */; };
 		305961CD2346125100C80F33 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961832346125000C80F33 /* UIEdgeInsets+Extensions.swift */; };
 		305961CF2346125100C80F33 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961852346125000C80F33 /* UIColor+Extensions.swift */; };
@@ -94,7 +96,15 @@
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
 		30A4D9AE2332672700544344 /* QrInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4D9AD2332672600544344 /* QrInviteViewController.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
-		30ECA5472436026F006F2E7A /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ECA5462436026F006F2E7A /* DatabaseHelper.swift */; };
+		30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2122447285600CE2C90 /* ShareViewController.swift */; };
+		30E8F2162447285600CE2C90 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30E8F2142447285600CE2C90 /* MainInterface.storyboard */; };
+		30E8F21A2447285600CE2C90 /* DcShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30E8F2102447285600CE2C90 /* DcShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		30E8F2252447622300CE2C90 /* DcCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; };
+		30E8F2262447622300CE2C90 /* DcCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		30E8F2422448B77600CE2C90 /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2412448B77600CE2C90 /* ChatListController.swift */; };
+		30E8F2442449C64100CE2C90 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2432449C64100CE2C90 /* ChatListCell.swift */; };
+		30E8F2512449EA0E00CE2C90 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
+		30E8F253244DAD0E00CE2C90 /* SendingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F252244DAD0E00CE2C90 /* SendingController.swift */; };
 		30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9B9EB235F2116006E7ACF /* MessageCounter.swift */; };
 		6795F63A82E94FF7CD2CEC0F /* Pods_deltachat_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */; };
 		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
@@ -125,7 +135,6 @@
 		AE1988AB23EB3C7600B4CD5F /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = AE1988AA23EB3C7600B4CD5F /* Assets */; };
 		AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */; };
 		AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B31722672DFC00EC37A1 /* ActionCell.swift */; };
-		AE38B31A2267328200EC37A1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B3192267328200EC37A1 /* Colors.swift */; };
 		AE406EF0240FF8FF005F7022 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE406EEF240FF8FF005F7022 /* ProfileCell.swift */; };
 		AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4AEE3422B1030D000AA495 /* PreviewController.swift */; };
 		AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */; };
@@ -139,7 +148,6 @@
 		AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC4227C755A00ED86F0 /* Protocols.swift */; };
 		AE851AC7227C776400ED86F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC6227C776400ED86F0 /* Location.swift */; };
 		AE851AC9227C77CF00ED86F0 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC8227C77CF00ED86F0 /* Media.swift */; };
-		AE851ACE227CA54400ED86F0 /* InitialsBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACD227CA54300ED86F0 /* InitialsBadge.swift */; };
 		AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */; };
 		AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0C22C1215D004C9591 /* EditContactController.swift */; };
 		AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */; };
@@ -167,6 +175,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		30E8F2182447285600CE2C90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30E8F20F2447285600CE2C90;
+			remoteInfo = DcShare;
+		};
 		AE851A06227AECDF00ED86F0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
@@ -184,6 +199,28 @@
 			dstSubfolderSpec = 10;
 			files = (
 				304219D3243F588500516852 /* DcCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30E8F21B2447285600CE2C90 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				30E8F21A2447285600CE2C90 /* DcShare.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30E8F2272447622400CE2C90 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				30E8F2262447622300CE2C90 /* DcCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,6 +254,7 @@
 		3022E6D122E8769E00763272 /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3022E6D222E8769F00763272 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3022E6D322E876A100763272 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		302589FE2452FA280086C1CD /* ShareAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAttachment.swift; sourceTree = "<group>"; };
 		30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextFieldCell.swift; sourceTree = "<group>"; };
 		302B84C42396627F001C261F /* RelayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayHelper.swift; sourceTree = "<group>"; };
 		302B84CD2397F6CD001C261F /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
@@ -338,7 +376,14 @@
 		30A4D9AD2332672600544344 /* QrInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrInviteViewController.swift; sourceTree = "<group>"; };
 		30AC265E237F1807002A943F /* AvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarHelper.swift; sourceTree = "<group>"; };
 		30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateCheckController.swift; sourceTree = "<group>"; };
-		30ECA5462436026F006F2E7A /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
+		30E8F2102447285600CE2C90 /* DcShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DcShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		30E8F2122447285600CE2C90 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		30E8F2152447285600CE2C90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		30E8F2172447285600CE2C90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30E8F21F24472AAE00CE2C90 /* DcShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DcShare.entitlements; sourceTree = "<group>"; };
+		30E8F2412448B77600CE2C90 /* ChatListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; };
+		30E8F2432449C64100CE2C90 /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
+		30E8F252244DAD0E00CE2C90 /* SendingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingController.swift; sourceTree = "<group>"; };
 		30F9B9EB235F2116006E7ACF /* MessageCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCounter.swift; sourceTree = "<group>"; };
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
@@ -374,7 +419,6 @@
 		AE1988AA23EB3C7600B4CD5F /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionCell.swift; sourceTree = "<group>"; };
 		AE38B31722672DFC00EC37A1 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
-		AE38B3192267328200EC37A1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		AE406EEF240FF8FF005F7022 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		AE4AEE3422B1030D000AA495 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailHeader.swift; sourceTree = "<group>"; };
@@ -390,7 +434,6 @@
 		AE851AC4227C755A00ED86F0 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		AE851AC6227C776400ED86F0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		AE851AC8227C77CF00ED86F0 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
-		AE851ACD227CA54300ED86F0 /* InitialsBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsBadge.swift; sourceTree = "<group>"; };
 		AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatDetailViewController.swift; sourceTree = "<group>"; };
 		AE9DAF0C22C1215D004C9591 /* EditContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactController.swift; sourceTree = "<group>"; };
 		AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTitleView.swift; sourceTree = "<group>"; };
@@ -455,6 +498,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		30E8F20D2447285600CE2C90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30E8F2252447622300CE2C90 /* DcCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7A9FB13D1FB061E2001FEA36 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -481,6 +532,32 @@
 				306C32312445CDE9001D89F3 /* DcLogger.swift */,
 			);
 			path = DC;
+			sourceTree = "<group>";
+		};
+		304F5E452451D27500462538 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				302589FE2452FA280086C1CD /* ShareAttachment.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		304F5E462451D2AA00462538 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				30E8F2122447285600CE2C90 /* ShareViewController.swift */,
+				30E8F2412448B77600CE2C90 /* ChatListController.swift */,
+				30E8F252244DAD0E00CE2C90 /* SendingController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		304F5E472451D2CA00462538 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				30E8F2432449C64100CE2C90 /* ChatListCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3059617E234610A800C80F33 /* MessageKit */ = {
@@ -635,6 +712,19 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
+		30E8F2112447285600CE2C90 /* DcShare */ = {
+			isa = PBXGroup;
+			children = (
+				304F5E472451D2CA00462538 /* View */,
+				304F5E462451D2AA00462538 /* Controller */,
+				304F5E452451D27500462538 /* Helper */,
+				30E8F21F24472AAE00CE2C90 /* DcShare.entitlements */,
+				30E8F2142447285600CE2C90 /* MainInterface.storyboard */,
+				30E8F2172447285600CE2C90 /* Info.plist */,
+			);
+			path = DcShare;
+			sourceTree = "<group>";
+		};
 		7A9FB1371FB061E2001FEA36 = {
 			isa = PBXGroup;
 			children = (
@@ -644,6 +734,7 @@
 				7837B63F21E54DC600CDE126 /* .swiftlint.yml */,
 				7A9FB1421FB061E2001FEA36 /* deltachat-ios */,
 				AE851A02227AECDE00ED86F0 /* deltachat-iosTests */,
+				30E8F2112447285600CE2C90 /* DcShare */,
 				7A9FB1411FB061E2001FEA36 /* Products */,
 				7A9FB4F81FB084E6001FEA36 /* Frameworks */,
 				7DB2DC4CCB84D323E5130F99 /* Pods */,
@@ -658,6 +749,7 @@
 			children = (
 				7A9FB1401FB061E2001FEA36 /* deltachat-ios.app */,
 				AE851A01227AECDE00ED86F0 /* deltachat-iosTests.xctest */,
+				30E8F2102447285600CE2C90 /* DcShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -819,7 +911,6 @@
 			children = (
 				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
 				AEACE2E41FB32E1900DCDD78 /* Utils.swift */,
-				AE38B3192267328200EC37A1 /* Colors.swift */,
 				AE851AC4227C755A00ED86F0 /* Protocols.swift */,
 				3095A350237DD1F700AB07F7 /* MediaPicker.swift */,
 				30AC265E237F1807002A943F /* AvatarHelper.swift */,
@@ -827,7 +918,6 @@
 				AE1988A423EB2FBA00B4CD5F /* Errors.swift */,
 				AEFBE23023FF09B20045327A /* TypeAlias.swift */,
 				307D822D241669C7006D2490 /* LocationManager.swift */,
-				30ECA5462436026F006F2E7A /* DatabaseHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -844,7 +934,6 @@
 				78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */,
 				789E879C21D6DF86003ED1C5 /* ProgressHud.swift */,
 				AE38B31722672DFC00EC37A1 /* ActionCell.swift */,
-				AE851ACD227CA54300ED86F0 /* InitialsBadge.swift */,
 				AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */,
 				AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */,
 				AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */,
@@ -870,6 +959,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		30E8F20F2447285600CE2C90 /* DcShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30E8F21E2447285600CE2C90 /* Build configuration list for PBXNativeTarget "DcShare" */;
+			buildPhases = (
+				30E8F20C2447285600CE2C90 /* Sources */,
+				30E8F20D2447285600CE2C90 /* Frameworks */,
+				30E8F20E2447285600CE2C90 /* Resources */,
+				30E8F2272447622400CE2C90 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DcShare;
+			productName = DcShare;
+			productReference = 30E8F2102447285600CE2C90 /* DcShare.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		7A9FB13F1FB061E2001FEA36 /* deltachat-ios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A9FB1521FB061E2001FEA36 /* Build configuration list for PBXNativeTarget "deltachat-ios" */;
@@ -883,10 +990,12 @@
 				7837B63821E54CB400CDE126 /* Run Script */,
 				7837B64621E5532B00CDE126 /* ShellScript */,
 				304219D4243F588600516852 /* Embed Frameworks */,
+				30E8F21B2447285600CE2C90 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				30E8F2192447285600CE2C90 /* PBXTargetDependency */,
 			);
 			name = "deltachat-ios";
 			productName = "deltachat-ios";
@@ -918,10 +1027,14 @@
 		7A9FB1381FB061E2001FEA36 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Jonas Reinsch";
 				TargetAttributes = {
+					30E8F20F2447285600CE2C90 = {
+						CreatedOnToolsVersion = 11.4;
+						ProvisioningStyle = Automatic;
+					};
 					7A9FB13F1FB061E2001FEA36 = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 1030;
@@ -994,11 +1107,22 @@
 			targets = (
 				7A9FB13F1FB061E2001FEA36 /* deltachat-ios */,
 				AE851A00227AECDE00ED86F0 /* deltachat-iosTests */,
+				30E8F20F2447285600CE2C90 /* DcShare */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		30E8F20E2447285600CE2C90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30E8F2162447285600CE2C90 /* MainInterface.storyboard in Resources */,
+				304F5E44244F571C00462538 /* Assets.xcassets in Resources */,
+				30E8F2512449EA0E00CE2C90 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7A9FB13E1FB061E2001FEA36 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1151,6 +1275,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		30E8F20C2447285600CE2C90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				302589FF2452FA280086C1CD /* ShareAttachment.swift in Sources */,
+				30E8F2442449C64100CE2C90 /* ChatListCell.swift in Sources */,
+				30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */,
+				30E8F253244DAD0E00CE2C90 /* SendingController.swift in Sources */,
+				30E8F2422448B77600CE2C90 /* ChatListController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7A9FB13C1FB061E2001FEA36 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1183,7 +1319,6 @@
 				3040F45E234DFBC000FA34D5 /* Audio.swift in Sources */,
 				305961FE2346125100C80F33 /* InsetLabel.swift in Sources */,
 				3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */,
-				30ECA5472436026F006F2E7A /* DatabaseHelper.swift in Sources */,
 				B21005DB23383664004C70C5 /* SettingsClassicViewController.swift in Sources */,
 				305961F62346125100C80F33 /* MessageContentCell.swift in Sources */,
 				305961E42346125100C80F33 /* MessageKitDateFormatter.swift in Sources */,
@@ -1261,14 +1396,12 @@
 				305961F32346125100C80F33 /* MediaMessageCell.swift in Sources */,
 				305962102346154D00C80F33 /* String+Extension.swift in Sources */,
 				78E45E4C21D404AE00D4B15E /* InfoMessageCell.swift in Sources */,
-				AE38B31A2267328200EC37A1 /* Colors.swift in Sources */,
 				789E879621D6CB58003ED1C5 /* QrCodeReaderController.swift in Sources */,
 				305961D22346125100C80F33 /* CGRect+Extensions.swift in Sources */,
 				305961E12346125100C80F33 /* LocationItem.swift in Sources */,
 				305961E72346125100C80F33 /* AccessoryPosition.swift in Sources */,
 				30260CA7238F02F700D8D52C /* MultilineTextFieldCell.swift in Sources */,
 				305961DE2346125100C80F33 /* MessageType.swift in Sources */,
-				AE851ACE227CA54400ED86F0 /* InitialsBadge.swift in Sources */,
 				305961DA2346125100C80F33 /* MediaItem.swift in Sources */,
 				305961EB2346125100C80F33 /* MessageKitError.swift in Sources */,
 				70B8882E2091B8550074812E /* ContactCell.swift in Sources */,
@@ -1314,6 +1447,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		30E8F2192447285600CE2C90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30E8F20F2447285600CE2C90 /* DcShare */;
+			targetProxy = 30E8F2182447285600CE2C90 /* PBXContainerItemProxy */;
+		};
 		AE851A07227AECDF00ED86F0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7A9FB13F1FB061E2001FEA36 /* deltachat-ios */;
@@ -1442,6 +1580,14 @@
 			path = "deltachat-ios";
 			sourceTree = "<group>";
 		};
+		30E8F2142447285600CE2C90 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30E8F2152447285600CE2C90 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1453,6 +1599,49 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		30E8F21C2447285600CE2C90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = DcShare/DcShare.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = DcShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		30E8F21D2447285600CE2C90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = DcShare/DcShare.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = DcShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		7A9FB1501FB061E2001FEA36 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1570,6 +1759,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8DE110C607A0E4485C43B5FA /* Pods-deltachat-ios.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -1643,6 +1833,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -1753,6 +1944,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		30E8F21E2447285600CE2C90 /* Build configuration list for PBXNativeTarget "DcShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30E8F21C2447285600CE2C90 /* Debug */,
+				30E8F21D2447285600CE2C90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7A9FB13B1FB061E2001FEA36 /* Build configuration list for PBXProject "deltachat-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

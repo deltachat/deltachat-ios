@@ -1,4 +1,5 @@
 import UIKit
+import DcCore
 
 enum ProviderInfoStatus: Int {
     case preparation = 2

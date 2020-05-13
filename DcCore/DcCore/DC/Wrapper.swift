@@ -202,6 +202,10 @@ public class DcContext {
         dc_perform_mvbox_idle(contextPointer)
     }
 
+    public func performSmtpJobs() {
+        dc_perform_smtp_jobs(contextPointer)
+    }
+    
     public func performSmtp() {
         dc_perform_smtp_jobs(contextPointer)
         dc_perform_smtp_idle(contextPointer)

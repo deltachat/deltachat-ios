@@ -45,7 +45,7 @@ class ContactCellViewModel: AvatarCellViewModel {
     }
 
     var avartarTitle: String {
-        return Utils.getInitials(inputName: title)
+        return DcUtils.getInitials(inputName: title)
     }
 
     var titleHighlightIndexes: [Int]

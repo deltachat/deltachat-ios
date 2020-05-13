@@ -279,7 +279,7 @@ class ChatListController: UITableViewController {
         }
         archiveCell.textLabel?.textAlignment = .center
         archiveCell.textLabel?.text = title
-        archiveCell.textLabel?.textColor = .systemBlue
+        archiveCell.textLabel?.textColor = UIColor.systemBlue
         return archiveCell
     }
 

@@ -707,7 +707,7 @@ extension ChatViewController: MessagesDataSource {
     func avatar(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> Avatar {
         let message = messageList[indexPath.section]
         let contact = message.fromContact
-        return Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.displayName))
+        return Avatar(image: contact.profileImage, initials: DcUtils.getInitials(inputName: contact.displayName))
     }
 
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
@@ -974,7 +974,7 @@ extension ChatViewController: MessagesDataSource {
             if let compressedImage = image.dcCompress() {
                 // at this point image is compressed by 85% by default
                 let pixelSize = compressedImage.imageSizeInPixel()
-                let path = Utils.saveImage(image: compressedImage)
+                let path = DcUtils.saveImage(image: compressedImage)
                 let msg = DcMsg(viewType: DC_MSG_IMAGE)
                 msg.setFile(filepath: path, mimeType: "image/jpeg")
                 msg.setDimension(width: pixelSize.width, height: pixelSize.height)
@@ -1076,7 +1076,7 @@ extension ChatViewController: MessagesDisplayDelegate {
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) {
         let message = messageList[indexPath.section]
         let contact = message.fromContact
-        let avatar = Avatar(image: contact.profileImage, initials: Utils.getInitials(inputName: contact.displayName))
+        let avatar = Avatar(image: contact.profileImage, initials: DcUtils.getInitials(inputName: contact.displayName))
         avatarView.set(avatar: avatar)
         avatarView.isHidden = isAvatarHidden(at: indexPath)
         avatarView.backgroundColor = contact.color

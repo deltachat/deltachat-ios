@@ -1,17 +1,8 @@
 import Foundation
 import UIKit
-import AVFoundation
 import DcCore
 
 struct Utils {
-
-    static func getInitials(inputName: String) -> String {
-        if let firstLetter = inputName.first {
-            return firstLetter.uppercased()
-        } else {
-            return ""
-        }
-    }
 
     static func isValid(email: String) -> Bool {
         let emailRegEx = "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
@@ -61,47 +52,9 @@ struct Utils {
         return addressParts.joined(separator: ", ")
     }
 
-    // compression needs to be done before in UIImage.dcCompress()
-    static func saveImage(image: UIImage) -> String? {
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
-            appropriateFor: nil, create: false) as NSURL else {
-            return nil
-        }
-
-        guard let data = image.isTransparent() ? image.pngData() : image.jpegData(compressionQuality: 1.0) else {
-            return nil
-        }
-
-        do {
-            let timestamp = Double(Date().timeIntervalSince1970)
-            let path = directory.appendingPathComponent("\(timestamp).jpg")
-            try data.write(to: path!)
-            return path?.relativePath
-        } catch {
-            logger.info(error.localizedDescription)
-            return nil
-        }
-    }
-
     static func hasAudioSuffix(url: URL) -> Bool {
         ///TODO: add more file suffixes
         return url.absoluteString.hasSuffix("wav")
-    }
-
-    static func generateThumbnailFromVideo(url: URL?) -> UIImage? {
-        guard let url = url else {
-            return nil
-        }
-        do {
-            let asset = AVURLAsset(url: url)
-            let imageGenerator = AVAssetImageGenerator(asset: asset)
-            imageGenerator.appliesPreferredTrackTransform = true
-            let cgImage = try imageGenerator.copyCGImage(at: .zero, actualTime: nil)
-            return UIImage(cgImage: cgImage)
-        } catch {
-            print(error.localizedDescription)
-            return nil
-        }
     }
 
     static func getDeviceLanguage() -> String? {

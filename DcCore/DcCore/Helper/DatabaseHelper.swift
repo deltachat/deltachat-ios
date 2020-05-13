@@ -1,11 +1,11 @@
 import Foundation
-class DatabaseHelper {
+public class DatabaseHelper {
 
     /// The application group identifier defines a group of apps or extensions that have access to a shared container.
     /// The ID is created in the apple developer portal and can be changed there.
     static let applicationGroupIdentifier = "group.chat.delta.ios"
 
-    var sharedDbFile: String {
+    public var sharedDbFile: String {
         guard let fileContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: DatabaseHelper.applicationGroupIdentifier) else {
             return ""
         }
@@ -33,7 +33,7 @@ class DatabaseHelper {
         return URL(fileURLWithPath: paths[0], isDirectory: true)
     }
 
-    var currentDatabaseLocation: String {
+    public var currentDatabaseLocation: String {
         let filemanager = FileManager.default
         if filemanager.fileExists(atPath: localDbFile) {
             return localDbFile
@@ -49,6 +49,10 @@ class DatabaseHelper {
         return sharedDbBlobsDir
     }
 
+    public init() {
+
+    }
+
     func clearDbBlobsDir(at path: String) {
         let fileManager = FileManager.default
         do {
@@ -61,7 +65,7 @@ class DatabaseHelper {
                 try fileManager.removeItem(atPath: path)
             }
         } catch {
-          logger.error("Could not clean shared blobs dir, it might be it didn't exist")
+            DcContext.shared.logger?.error("Could not clean shared blobs dir, it might be it didn't exist")
         }
     }
 
@@ -71,12 +75,12 @@ class DatabaseHelper {
             do {
                 try filemanager.removeItem(atPath: path)
             } catch {
-                logger.error("Failed to delete db: \(error)")
+                DcContext.shared.logger?.error("Failed to delete db: \(error)")
             }
         }
     }
 
-    func clearAccountData() {
+    public func clearAccountData() {
         clearDb(at: currentDatabaseLocation)
         clearDbBlobsDir(at: currentBlobsDirLocation)
     }
@@ -88,12 +92,12 @@ class DatabaseHelper {
                 clearDbBlobsDir(at: sharedDbBlobsDir)
                 try filemanager.moveItem(at: URL(fileURLWithPath: localDbBlobsDir), to: URL(fileURLWithPath: sharedDbBlobsDir))
             } catch let error {
-                logger.error("Could not move db blobs directory to shared space: \(error.localizedDescription)")
+                DcContext.shared.logger?.error("Could not move db blobs directory to shared space: \(error.localizedDescription)")
             }
         }
     }
 
-    func updateDatabaseLocation() -> String? {
+    public func updateDatabaseLocation() -> String? {
       let filemanager = FileManager.default
       if filemanager.fileExists(atPath: localDbFile) {
           do {
@@ -101,7 +105,7 @@ class DatabaseHelper {
               try filemanager.moveItem(at: URL(fileURLWithPath: localDbFile), to: URL(fileURLWithPath: sharedDbFile))
               moveBlobsFolder()
           } catch let error {
-              logger.error("Could not update DB location. Share extension will probably not work. \n\(error.localizedDescription)")
+              DcContext.shared.logger?.error("Could not update DB location. Share extension will probably not work. \n\(error.localizedDescription)")
               return localDbFile
           }
       }
