@@ -139,7 +139,7 @@ class ShareAttachment {
     }
 
     func addDcMsg(url: URL, viewType: Int32) {
-        let msg = DcMsg(viewType: DC_MSG_VIDEO)
+        let msg = DcMsg(viewType: viewType)
         msg.setFile(filepath: url.path, mimeType: DcUtils.getMimeTypeForPath(path: url.path))
         self.messages.append(msg)
     }
