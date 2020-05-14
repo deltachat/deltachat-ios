@@ -211,7 +211,7 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func showContactDetail(of contactId: Int) {
-        let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: contactId, chatId: nil)
+        let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: contactId)
         navigationController?.pushViewController(contactDetailController, animated: true)
     }
 

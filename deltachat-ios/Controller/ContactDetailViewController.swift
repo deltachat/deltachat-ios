@@ -53,6 +53,10 @@ class ContactDetailViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("gallery")
         cell.accessoryType = .disclosureIndicator
+        if viewModel.chatId == nil {
+            cell.isUserInteractionEnabled = false
+            cell.textLabel?.isEnabled = false
+        }
         return cell
     }()
 
@@ -60,12 +64,16 @@ class ContactDetailViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("documents")
         cell.accessoryType = .disclosureIndicator
+        if viewModel.chatId == nil {
+            cell.isUserInteractionEnabled = false
+            cell.textLabel?.isEnabled = false
+        }
         return cell
     }()
 
 
-    init(dcContext: DcContext, contactId: Int, chatId: Int?) {
-        self.viewModel = ContactDetailViewModel(contactId: contactId, chatId: chatId, context: dcContext)
+    init(dcContext: DcContext, contactId: Int) {
+        self.viewModel = ContactDetailViewModel(dcContext: dcContext, contactId: contactId)
         super.init(style: .grouped)
     }
 
@@ -297,7 +305,7 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {
-        guard let chatId = viewModel.chatId ?? viewModel.context.getChatIdByContactId(viewModel.contactId) else { return }
+        guard let chatId = viewModel.chatId else { return }
         let messageIds = viewModel.context.getChatMedia(chatId: chatId, messageType: messageType, messageType2: messageType2, messageType3: messageType3)
         var mediaUrls: [URL] = []
         for messageId in messageIds {
