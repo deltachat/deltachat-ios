@@ -613,7 +613,8 @@ class ChatViewController: MessagesViewController {
     }
 
     private func askToDeleteMessage(id: Int) {
-        confirmationAlert(title: String.localized("delete"), actionTitle: String.localized("delete"), actionStyle: .destructive,
+        let title = String.localized(stringID: "ask_delete_messages", count: 1)
+        confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { _ in
                             self.dcContext.deleteMessage(msgId: id)
                             self.dismiss(animated: true, completion: nil)})
