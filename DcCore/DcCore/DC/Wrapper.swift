@@ -10,6 +10,7 @@ public class DcContext {
     public var logger: Logger?
     let contextPointer: OpaquePointer
     public var lastErrorString: String?
+    public var lastWarningString: String = "" // temporary thing to get a grip on some weird errors
     public var maxConfigureProgress: Int = 0 // temporary thing to get a grip on some weird errors
 
     private init() {
@@ -294,6 +295,7 @@ public class DcContext {
 
     public func configure() {
         maxConfigureProgress = 0
+        lastWarningString = ""
         dc_configure(contextPointer)
     }
 
