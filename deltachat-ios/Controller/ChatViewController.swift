@@ -67,10 +67,8 @@ class ChatViewController: MessagesViewController {
         return MediaPicker(navigationController: navigationController)
     }()
 
-    var emptyStateView: PaddingLabel = {
-        let view =  PaddingLabel()
-        view.backgroundColor = DcColors.systemMessageBackgroundColor
-        view.textColor = DcColors.defaultTextColor
+    var emptyStateView: EmptyStateLabel = {
+        let view =  EmptyStateLabel()
         return view
     }()
 
@@ -137,10 +135,11 @@ class ChatViewController: MessagesViewController {
 
     private func configureEmptyStateView() {
         view.addSubview(emptyStateView)
-        view.addConstraints([emptyStateView.constraintCenterYTo(view),
-                             emptyStateView.constraintCenterXTo(view),
-                             emptyStateView.constraintAlignLeadingTo(view, paddingLeading: 40),
-                             emptyStateView.constraintAlignTrailingTo(view, paddingTrailing: 40)])
+        emptyStateView.translatesAutoresizingMaskIntoConstraints = false
+        emptyStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
+        emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
+        emptyStateView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
