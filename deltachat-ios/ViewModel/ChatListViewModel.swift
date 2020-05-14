@@ -129,7 +129,7 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
             case .messages:
                 title = "n_messages"
             }
-            return String.localizedStringWithFormat(NSLocalizedString(title, comment: ""), numberOfRowsIn(section: section))
+            return String.localized(stringID: title, count: numberOfRowsIn(section: section))
         }
         return nil
     }
