@@ -658,7 +658,11 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             notification in
             if let ui = notification.userInfo {
                 if ui["error"] as! Bool {
-                    self.updateProgressAlert(error: ui["errorMessage"] as? String)
+                    var errorMessage = ui["errorMessage"] as? String
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate, appDelegate.reachability.connection == .none {
+                        errorMessage = String.localized("login_error_no_internet_connection")
+                    }
+                    self.updateProgressAlert(error: errorMessage)
                 } else if ui["done"] as! Bool {
                     self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
                 } else {
