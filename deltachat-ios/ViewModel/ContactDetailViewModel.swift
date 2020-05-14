@@ -35,11 +35,10 @@ class ContactDetailViewModel {
     private var chatActions: [ChatAction] = [] // chatDetail: archive, block, delete - else: block
     private var attachmentActions: [AttachmentAction] = [.gallery, .documents]
 
-    /// if chatId is nil this is a contact detail with 'start chat'-option
-    init(contactId: Int, chatId: Int?, context: DcContext) {
-        self.context = context
+    init(dcContext: DcContext, contactId: Int) {
+        self.context = dcContext
         self.contactId = contactId
-        self.chatId = chatId
+        self.chatId = dcContext.getChatIdByContactId(contactId)
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
         sections.append(.attachments)
@@ -70,7 +69,6 @@ class ContactDetailViewModel {
 
     var chatIsArchived: Bool {
         guard let chatId = chatId else {
-           // safe_fatalError("This is a ContactDetail view with no chat id")
             return false
         }
         return context.getChat(chatId: chatId).isArchived
@@ -91,7 +89,6 @@ class ContactDetailViewModel {
 
     func getSharedChatIdAt(indexPath: IndexPath) -> Int {
         let index = indexPath.row
-        // assert(sections[indexPath.section] == .sharedChats)
         return sharedChats.getChatId(index: index)
     }
 
