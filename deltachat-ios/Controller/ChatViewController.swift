@@ -258,7 +258,7 @@ class ChatViewController: MessagesViewController {
         var subtitle = "ErrSubtitle"
         let chatContactIds = chat.contactIds
         if chat.isGroup {
-            subtitle = String.localizedStringWithFormat(NSLocalizedString("n_members", comment: ""), chatContactIds.count)
+            subtitle = String.localized(stringID: "n_members", count: chatContactIds.count)
         } else if chatContactIds.count >= 1 {
             if chat.isDeviceTalk {
                 subtitle = String.localized("device_talk_subtitle")
