@@ -641,8 +641,7 @@ class ChatViewController: MessagesViewController {
         switch chat.chatType {
         case .SINGLE:
             if let contactId = chat.contactIds.first {
-                let viewModel = ContactDetailViewModel(contactId: contactId, chatId: chatId, context: dcContext)
-                let contactDetailController = ContactDetailViewController(viewModel: viewModel)
+                let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: contactId, chatId: chatId)
                 navigationController?.pushViewController(contactDetailController, animated: true)
             }
         case .GROUP, .VERIFIEDGROUP:
@@ -652,8 +651,7 @@ class ChatViewController: MessagesViewController {
     }
 
     private func showContactDetail(of contactId: Int, in chatOfType: ChatType, chatId: Int?) {
-        let viewModel = ContactDetailViewModel(contactId: contactId, chatId: chatId, context: dcContext )
-        let contactDetailController = ContactDetailViewController(viewModel: viewModel)
+        let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: contactId, chatId: chatId)
         navigationController?.pushViewController(contactDetailController, animated: true)
     }
 

@@ -1,24 +1,7 @@
 import UIKit
 import DcCore
 
-protocol ContactDetailViewModelProtocol {
-    var context: DcContext { get }
-    var contactId: Int { get }
-    var chatId: Int? { get }
-    var contact: DcContact { get }
-    var numberOfSections: Int { get }
-    var chatIsArchived: Bool { get }
-    func numberOfRowsInSection(_ : Int) -> Int
-    func typeFor(section: Int) -> ContactDetailViewModel.ProfileSections
-    func chatActionFor(row: Int) -> ContactDetailViewModel.ChatAction
-    func attachmentActionFor(row: Int) -> ContactDetailViewModel.AttachmentAction
-    func update(sharedChatCell: ContactCell, row index: Int)
-    func getSharedChatIdAt(indexPath: IndexPath) -> Int
-    func titleFor(section: Int) -> String?
-    func toggleArchiveChat() -> Bool // returns true if chat is archived after action
-}
-
-class ContactDetailViewModel: ContactDetailViewModelProtocol {
+class ContactDetailViewModel {
 
     let context: DcContext
 
@@ -129,6 +112,7 @@ class ContactDetailViewModel: ContactDetailViewModelProtocol {
         return nil
     }
 
+    // returns true if chat is archived after action
     func toggleArchiveChat() -> Bool {
         guard let chatId = chatId else {
             safe_fatalError("there is no chatId - you are probably are calling this from ContactDetail - this should be only called from ChatDetail")

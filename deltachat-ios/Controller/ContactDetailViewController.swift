@@ -3,7 +3,7 @@ import DcCore
 
 // this is also used as ChatDetail for SingleChats
 class ContactDetailViewController: UITableViewController {
-    private let viewModel: ContactDetailViewModelProtocol
+    private let viewModel: ContactDetailViewModel
 
     private lazy var headerCell: ContactDetailHeader = {
         let cell = ContactDetailHeader()
@@ -64,8 +64,8 @@ class ContactDetailViewController: UITableViewController {
     }()
 
 
-    init(viewModel: ContactDetailViewModelProtocol) {
-        self.viewModel = viewModel
+    init(dcContext: DcContext, contactId: Int, chatId: Int?) {
+        self.viewModel = ContactDetailViewModel(contactId: contactId, chatId: chatId, context: dcContext)
         super.init(style: .grouped)
     }
 
