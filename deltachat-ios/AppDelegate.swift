@@ -51,6 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         setStockTranslations()
 
         reachability.whenReachable = { reachability in
+            logger.info("network: reachable", reachability.connection.description)
+
             // call dc_maybe_network() from a worker thread.
             // normally, dc_maybe_network() can be called uncoditionally,
             // however, in fact, it may halt things for some seconds.
