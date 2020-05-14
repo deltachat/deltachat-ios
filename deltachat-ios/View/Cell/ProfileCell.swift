@@ -24,7 +24,9 @@ class ProfileCell: UITableViewCell {
         detailView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
         detailView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
         detailView.trailingAnchor.constraint(equalTo: accessoryView?.trailingAnchor ?? contentView.trailingAnchor, constant: 0).isActive = true
-        detailView.heightAnchor.constraint(equalToConstant: ContactDetailHeader.headerHeight).isActive = true
+        let heightConstraint = detailView.heightAnchor.constraint(equalToConstant: ContactDetailHeader.headerHeight)
+        heightConstraint.priority = .defaultLow
+        heightConstraint.isActive = true
     }
 
     func update(contact: DcContact, displayName: String?, address: String?) {
