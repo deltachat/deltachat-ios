@@ -167,6 +167,7 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return sizeCalculator
     }()
     lazy open var textMediaMessageSizeCalculator = TextMediaMessageSizeCalculator(layout: self)
+    lazy open var fileMessageSizeCalculator = FileMessageSizeCalculator(layout: self)
     lazy open var photoMessageSizeCalculator = MediaMessageSizeCalculator(layout: self)
     lazy open var videoMessageSizeCalculator = MediaMessageSizeCalculator(layout: self)
     lazy open var locationMessageSizeCalculator = LocationMessageSizeCalculator(layout: self)
@@ -194,8 +195,10 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
             return emojiMessageSizeCalculator
         case .photo:
             return photoMessageSizeCalculator
-        case .photoText, .videoText, .fileText:
+        case .photoText, .videoText:
             return textMediaMessageSizeCalculator
+        case .fileText:
+            return fileMessageSizeCalculator
         case .video:
             return videoMessageSizeCalculator
         case .location:
@@ -326,6 +329,7 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return [textMessageSizeCalculator,
                 attributedTextMessageSizeCalculator,
                 emojiMessageSizeCalculator,
+                fileMessageSizeCalculator,
                 textMediaMessageSizeCalculator,
                 photoMessageSizeCalculator,
                 videoMessageSizeCalculator,

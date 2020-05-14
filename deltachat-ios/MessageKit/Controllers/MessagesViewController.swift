@@ -288,8 +288,12 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
             let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
-        case .photoText, .videoText, .fileText:
+        case .photoText, .videoText:
             let cell = messagesCollectionView.dequeueReusableCell(TextMediaMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
+        case .fileText:
+            let cell = messagesCollectionView.dequeueReusableCell(FileMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
         case .location:
@@ -416,10 +420,8 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
             pasteBoard.string = text
         case .attributedText(let attributedText):
             pasteBoard.string = attributedText.string
-        case .photoText(let mediaItem), .videoText(let mediaItem):
-            pasteBoard.string = mediaItem.text?.string
-        case .fileText(let mediaItem):
-            pasteBoard.string = mediaItem.text?.string
+        case .photoText(let mediaItem), .videoText(let mediaItem), .fileText(let mediaItem):
+            pasteBoard.string = mediaItem.text?[MediaItemConstants.messageText].string
         default:
             break
         }
