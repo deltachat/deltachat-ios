@@ -122,7 +122,7 @@ class ContactDetailViewController: UITableViewController {
             switch viewModel.chatActionFor(row: row) {
             case .archiveChat:
                 return archiveChatCell
-            case .blockChat:
+            case .blockContact:
                 return blockContactCell
             case .deleteChat:
                 return deleteChatCell
@@ -189,7 +189,7 @@ class ContactDetailViewController: UITableViewController {
         switch action {
         case .archiveChat:
             toggleArchiveChat()
-        case .blockChat:
+        case .blockContact:
             toggleBlockContact()
         case .deleteChat:
             showDeleteChatConfirmationAlert()

@@ -14,7 +14,7 @@ class ContactDetailViewModel {
 
     enum ChatAction {
         case archiveChat
-        case blockChat
+        case blockContact
         case deleteChat
     }
 
@@ -50,9 +50,9 @@ class ContactDetailViewModel {
         sections.append(.chatActions)
 
         if chatId != nil {
-            chatActions = [.archiveChat, .blockChat, .deleteChat]
+            chatActions = [.archiveChat, .blockContact, .deleteChat]
         } else {
-            chatActions = [.blockChat]
+            chatActions = [.blockContact]
         }
     }
 
