@@ -96,7 +96,8 @@ class NewChatViewController: UITableViewController {
             forName: dcNotificationSecureJoinerProgress,
             object: nil,
             queue: nil
-        ) { notification in
+        ) { [weak self] notification in
+            guard let self = self else { return }
             if let ui = notification.userInfo {
                 if ui["error"] as? Bool ?? false {
                     self.hud?.error(ui["errorMessage"] as? String)
