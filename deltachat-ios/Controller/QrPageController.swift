@@ -239,7 +239,8 @@ extension QrPageController: QrCodeReaderDelegate {
             forName: dcNotificationSecureJoinerProgress,
             object: nil,
             queue: nil
-        ) { notification in
+        ) { [weak self] notification in
+            guard let self = self else { return }
             if let ui = notification.userInfo,
                 ui["progress"] as? Int == 400,
                 let contactId = ui["contact_id"] as? Int {

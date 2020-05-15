@@ -109,7 +109,8 @@ class AddGroupMembersViewController: GroupMembersViewController {
             forName: dcNotificationContactChanged,
             object: nil,
             queue: nil
-        ) { notification in
+        ) { [weak self] notification in
+            guard let self = self else { return }
             if let ui = notification.userInfo {
                 if let contactId = ui["contact_id"] as? Int {
                     if contactId == 0 {
