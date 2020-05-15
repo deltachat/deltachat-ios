@@ -112,7 +112,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private func createAccountFromQRCode(qrCode: String) {
         let success = dcContext.setConfigFromQR(qrCode: qrCode)
         if success {
-            addProgressAlertListener(onSuccess: handleLoginSuccess)
+            addProgressAlertListener(progressName: dcNotificationConfigureProgress, onSuccess: handleLoginSuccess)
             showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
             dcContext.configure()
         } else {

@@ -649,6 +649,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     private func addProgressHudLoginListener() {
+
         let nc = NotificationCenter.default
         progressObserver = nc.addObserver(
             forName: dcNotificationConfigureProgress,

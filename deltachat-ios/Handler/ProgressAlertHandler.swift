@@ -58,7 +58,7 @@ extension ProgressAlertHandler {
         })
     }
 
-    func addProgressAlertListener(progressName: Notification.Name = dcNotificationConfigureProgress, onSuccess: @escaping VoidFunction) {
+    func addProgressAlertListener(progressName: Notification.Name, onSuccess: @escaping VoidFunction) {
         let nc = NotificationCenter.default
         progressObserver = nc.addObserver(
             forName: progressName, //dcNotificationConfigureProgress,

@@ -33,15 +33,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     let documentInteractionController = UIDocumentInteractionController()
     weak var progressAlert: UIAlertController?
     var progressObserver: Any?
-/*
-    var backupProgressObserver: Any?
-    var configureProgressObserver: Any?
 
-    private lazy var hudHandler: HudHandler = {
-        let hudHandler = HudHandler(parentView: self.view)
-        return hudHandler
-    }()
-*/
     // MARK: - cells
 
     private let profileHeader = ContactDetailHeader()
@@ -237,45 +229,10 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     override func viewDidAppear(_ animated: Bool) {
 
         super.viewDidAppear(animated)
-        let nc = NotificationCenter.default
         addProgressAlertListener(progressName: dcNotificationImexProgress) { [weak self] in
             guard let self = self else { return }
             self.progressAlert?.dismiss(animated: true, completion: nil)
         }
-        /*
-        backupProgressObserver = nc.addObserver(
-            forName: dcNotificationImexProgress,
-            object: nil,
-            queue: nil
-        ) { [weak self] notification in
-            guard let self = self else { return }
-            if let ui = notification.userInfo {
-                if ui["error"] as? Bool ?? false {
-                    self.hudHandler.setHudError(ui["errorMessage"] as? String)
-                } else if ui["done"] as? Bool ?? false {
-                    self.hudHandler.setHudDone(callback: nil)
-                } else {
-                    self.hudHandler.setHudProgress(ui["progress"] as? Int ?? 0)
-                }
-            }
-        }
-        configureProgressObserver = nc.addObserver(
-            forName: dcNotificationConfigureProgress,
-            object: nil,
-            queue: nil
-        ) { [weak self] notification in
-            guard let self = self else { return }
-            if let ui = notification.userInfo {
-                if ui["error"] as? Bool ?? false {
-                    self.hudHandler.setHudError(ui["errorMessage"] as? String)
-                } else if ui["done"] as? Bool ?? false {
-                    self.hudHandler.setHudDone(callback: nil)
-                } else {
-                    self.hudHandler.setHudProgress(ui["progress"] as? Int ?? 0)
-                }
-            }
-        }
-        */
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -429,8 +386,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     private func startImex(what: Int32) {
         let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if !documents.isEmpty {
-            showProgressAlert(title: "", dcContext: dcContext)
-            // self.hudHandler.showHud(String.localized("one_moment"))
+            showProgressAlert(title: String.localized("imex_progress_title_desktop"), dcContext: dcContext)
             DispatchQueue.main.async {
                 self.dcContext.imex(what: what, directory: documents[0])
             }
