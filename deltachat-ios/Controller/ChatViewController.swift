@@ -159,7 +159,8 @@ class ChatViewController: MessagesViewController {
             forName: dcNotificationChanged,
             object: nil,
             queue: OperationQueue.main
-        ) { notification in
+        ) { [weak self] notification in
+            guard let self = self else { return }
             if let ui = notification.userInfo {
                 if self.disableWriting {
                     // always refresh, as we can't check currently

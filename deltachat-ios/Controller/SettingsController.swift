@@ -239,7 +239,8 @@ internal final class SettingsViewController: UITableViewController {
             forName: dcNotificationImexProgress,
             object: nil,
             queue: nil
-        ) { notification in
+        ) { [weak self] notification in
+            guard let self = self else { return }
             if let ui = notification.userInfo {
                 if ui["error"] as? Bool ?? false {
                     self.hudHandler.setHudError(ui["errorMessage"] as? String)
@@ -254,7 +255,8 @@ internal final class SettingsViewController: UITableViewController {
             forName: dcNotificationConfigureProgress,
             object: nil,
             queue: nil
-        ) { notification in
+        ) { [weak self] notification in
+            guard let self = self else { return }
             if let ui = notification.userInfo {
                 if ui["error"] as? Bool ?? false {
                     self.hudHandler.setHudError(ui["errorMessage"] as? String)

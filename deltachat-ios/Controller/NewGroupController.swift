@@ -74,7 +74,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             forName: dcNotificationChatModified,
             object: nil,
             queue: nil
-        ) { notification in
+        ) { [weak self] notification in
+            guard let self = self else { return }
             if let ui = notification.userInfo {
                 if let chatId = ui["chat_id"] as? Int {
                     if self.groupChatId == 0 || chatId != self.groupChatId {
@@ -90,7 +91,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             forName: dcNotificationChanged,
             object: nil,
             queue: nil
-        ) { notification in
+        ) { [weak self] notification in
+            guard let self = self else { return }
             if let ui = notification.userInfo {
                 if let chatId = ui["chat_id"] as? Int {
                     if self.groupChatId == 0 || chatId != self.groupChatId {
