@@ -3,7 +3,7 @@ import UIKit
 import DcCore
 import DBDebugToolkit
 
-internal final class SettingsViewController: UITableViewController {
+internal final class SettingsViewController: UITableViewController, ProgressAlertHandler {
 
     private struct SectionConfigs {
         let headerTitle: String?
@@ -31,6 +31,9 @@ internal final class SettingsViewController: UITableViewController {
     private let externalPathDescr = "File Sharing/Delta Chat"
 
     let documentInteractionController = UIDocumentInteractionController()
+    weak var progressAlert: UIAlertController?
+    var progressObserver: Any?
+/*
     var backupProgressObserver: Any?
     var configureProgressObserver: Any?
 
@@ -38,7 +41,7 @@ internal final class SettingsViewController: UITableViewController {
         let hudHandler = HudHandler(parentView: self.view)
         return hudHandler
     }()
-
+*/
     // MARK: - cells
 
     private let profileHeader = ContactDetailHeader()
@@ -235,6 +238,11 @@ internal final class SettingsViewController: UITableViewController {
 
         super.viewDidAppear(animated)
         let nc = NotificationCenter.default
+        addProgressAlertListener(progressName: dcNotificationImexProgress) { [weak self] in
+            guard let self = self else { return }
+            self.progressAlert?.dismiss(animated: true, completion: nil)
+        }
+        /*
         backupProgressObserver = nc.addObserver(
             forName: dcNotificationImexProgress,
             object: nil,
@@ -267,17 +275,15 @@ internal final class SettingsViewController: UITableViewController {
                 }
             }
         }
+        */
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
         let nc = NotificationCenter.default
-        if let backupProgressObserver = self.backupProgressObserver {
+        if let backupProgressObserver = self.progressObserver {
             nc.removeObserver(backupProgressObserver)
-        }
-        if let configureProgressObserver = self.configureProgressObserver {
-            nc.removeObserver(configureProgressObserver)
         }
     }
 
@@ -423,7 +429,8 @@ internal final class SettingsViewController: UITableViewController {
     private func startImex(what: Int32) {
         let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if !documents.isEmpty {
-            self.hudHandler.showHud(String.localized("one_moment"))
+            showProgressAlert(title: "", dcContext: dcContext)
+            // self.hudHandler.showHud(String.localized("one_moment"))
             DispatchQueue.main.async {
                 self.dcContext.imex(what: what, directory: documents[0])
             }

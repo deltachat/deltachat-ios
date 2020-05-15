@@ -1,6 +1,7 @@
 import JGProgressHUD
 import UIKit
 
+/*
 class HudHandler {
     var backupHud: JGProgressHUD?
     weak var view: UIView?
@@ -68,3 +69,4 @@ class HudHandler {
         }
     }
 }
+*/
