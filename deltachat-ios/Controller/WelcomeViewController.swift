@@ -311,7 +311,7 @@ class WelcomeContentView: UIView {
         let bottomLayoutGuide = UILayoutGuide()
         container.addLayoutGuide(bottomLayoutGuide)
         bottomLayoutGuide.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
-        bottomLayoutGuide.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.5).isActive = true
+        bottomLayoutGuide.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.55).isActive = true
 
         subtitleLabel.topAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
         subtitleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
