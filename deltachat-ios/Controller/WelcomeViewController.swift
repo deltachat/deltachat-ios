@@ -66,12 +66,12 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        welcomeView.minContainerHeight = view.frame.height
+        welcomeView.minContainerHeight = view.frame.height - view.safeAreaInsets.top
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        welcomeView.minContainerHeight = size.height
+        welcomeView.minContainerHeight = size.height - view.safeAreaInsets.top
         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 
