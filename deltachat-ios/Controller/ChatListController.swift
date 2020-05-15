@@ -82,22 +82,22 @@ class ChatListController: UITableViewController {
         msgChangedObserver = nc.addObserver(
             forName: dcNotificationChanged,
             object: nil,
-            queue: nil) { _ in
-                self.viewModel.refreshData()
+            queue: nil) { [weak self] _ in
+                self?.viewModel.refreshData()
 
         }
         incomingMsgObserver = nc.addObserver(
             forName: dcNotificationIncoming,
             object: nil,
-            queue: nil) { _ in
-                self.viewModel.refreshData()
+            queue: nil) { [weak self] _ in
+                self?.viewModel.refreshData()
         }
         viewChatObserver = nc.addObserver(
             forName: dcNotificationViewChat,
             object: nil,
-            queue: nil) { notification in
+            queue: nil) { [weak self] notification in
                 if let chatId = notification.userInfo?["chat_id"] as? Int {
-                    self.showChat(chatId: chatId)
+                    self?.showChat(chatId: chatId)
                 }
         }
     }
