@@ -26,6 +26,12 @@ class NewChatViewController: UITableViewController {
         return searchController
     }()
 
+    private lazy var emptySearchStateLabel: EmptyStateLabel = {
+          let label = EmptyStateLabel()
+          label.isHidden = false
+          return label
+      }()
+
     private var contactIds: [Int]
     private var filteredContactIds: [Int] = []
 
@@ -65,6 +71,7 @@ class NewChatViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -78,6 +85,7 @@ class NewChatViewController: UITableViewController {
         }
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
+        setupSubviews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -85,12 +93,22 @@ class NewChatViewController: UITableViewController {
         deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
     }
 
+    // MARK: - setup
+    private func setupSubviews() {
+        view.addSubview(emptySearchStateLabel)
+        emptySearchStateLabel.translatesAutoresizingMaskIntoConstraints = false
+        emptySearchStateLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        emptySearchStateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
+        emptySearchStateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
+        emptySearchStateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+    }
+
+    // MARK: - actions
     @objc func cancelButtonPressed() {
         dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in _: UITableView) -> Int {
         return sectionsCount
     }
@@ -229,7 +247,6 @@ class NewChatViewController: UITableViewController {
 
     private func contactViewModelBy(row: Int) -> ContactCellViewModel {
         let id = contactIdByRow(row)
-
         return ContactCellViewModel.make(contactId: id, searchText: searchText, dcContext: dcContext)
   }
 
@@ -271,6 +288,7 @@ class NewChatViewController: UITableViewController {
         }
     }
 
+    // MARK: - search
     private func reactivateSearchBarIfNeeded() {
         if !searchBarIsEmpty {
             searchController.isActive = true
@@ -294,6 +312,19 @@ class NewChatViewController: UITableViewController {
         filteredContactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
         tableView.reloadData()
         tableView.scrollToTop()
+
+        // handle empty searchstate
+        if searchController.isActive && filteredContactIds.isEmpty {
+            let text = String.localizedStringWithFormat(
+                String.localized("search_no_result_for_x"),
+                searchText
+            )
+            emptySearchStateLabel.text = text
+            emptySearchStateLabel.isHidden = false
+        } else {
+            emptySearchStateLabel.text = nil
+            emptySearchStateLabel.isHidden = true
+        }
     }
 
     // MARK: - coordinator
