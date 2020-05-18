@@ -91,7 +91,6 @@ class ShareViewController: SLComposeServiceViewController {
             target: self,
             action: #selector(appendPostTapped))
         item.rightBarButtonItem? = button
-        item.titleView = UIImageView(image: UIImage(named: "ic_chat")?.scaleDownImage(toMax: 26))
     }
 
     /// Invoked when the user wants to post.
