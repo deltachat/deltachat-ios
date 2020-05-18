@@ -27,10 +27,10 @@ class NewChatViewController: UITableViewController {
     }()
 
     private lazy var emptySearchStateLabel: EmptyStateLabel = {
-          let label = EmptyStateLabel()
-          label.isHidden = false
-          return label
-      }()
+        let label = EmptyStateLabel()
+        label.isHidden = false
+        return label
+    }()
 
     private var contactIds: [Int]
     private var filteredContactIds: [Int] = []
