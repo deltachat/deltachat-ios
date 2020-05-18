@@ -1,5 +1,11 @@
 # Delta Chat iOS Changelog
 
+## v1.8.0
+
+* lots bug fixes
+* improbe error handling
+
+
 ## v1.6.1
 
 * better error messages
