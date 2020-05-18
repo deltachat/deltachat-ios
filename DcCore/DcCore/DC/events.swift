@@ -29,9 +29,11 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
 
     case DC_EVENT_WARNING:
         let s = String(cString: data2String)
+        DcContext.shared.lastWarningString = s
         DcContext.shared.logger?.warning("event: \(s)")
 
     case DC_EVENT_CONFIGURE_PROGRESS:
+        DcContext.shared.maxConfigureProgress = max(DcContext.shared.maxConfigureProgress, Int(data1))
         DcContext.shared.logger?.info("configure progress: \(Int(data1)) \(Int(data2))")
         let nc = NotificationCenter.default
         DispatchQueue.main.async {

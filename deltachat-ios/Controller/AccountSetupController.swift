@@ -661,6 +661,8 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                     var errorMessage = ui["errorMessage"] as? String
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate, appDelegate.reachability.connection == .none {
                         errorMessage = String.localized("login_error_no_internet_connection")
+                    } else {
+                        errorMessage = "\(errorMessage ?? "no message")\n\n(warning=\(DcContext.shared.lastWarningString) (progress=\(DcContext.shared.maxConfigureProgress))"
                     }
                     self.updateProgressAlert(error: errorMessage)
                 } else if ui["done"] as! Bool {
