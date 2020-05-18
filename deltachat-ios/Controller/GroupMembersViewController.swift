@@ -229,11 +229,9 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
 class BlockedContactsViewController: GroupMembersViewController, GroupMemberSelectionDelegate {
 
-    var emptyStateView: PaddingLabel = {
-        let view =  PaddingLabel()
+    var emptyStateView: EmptyStateLabel = {
+        let view =  EmptyStateLabel()
         view.text = String.localized("none_blocked_desktop")
-        view.backgroundColor = DcColors.systemMessageBackgroundColor
-        view.textColor = DcColors.defaultTextColor
         return view
     }()
 
@@ -268,7 +266,8 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
         emptyStateView.translatesAutoresizingMaskIntoConstraints = false
         emptyStateView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
         emptyStateView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        emptyStateView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        emptyStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
+        emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
     }
 
     // MARK: - actions + updates
