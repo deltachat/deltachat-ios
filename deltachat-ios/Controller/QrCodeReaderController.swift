@@ -15,13 +15,13 @@ class QrCodeReaderController: UIViewController {
 
     private var infoLabel: UILabel = {
         let label = UILabel()
-           label.translatesAutoresizingMaskIntoConstraints = false
-           label.text = String.localized("qrscan_hint")
-           label.lineBreakMode = .byWordWrapping
-           label.numberOfLines = 0
-           label.textAlignment = .center
-           label.textColor = .white
-           return label
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = String.localized("qrscan_hint")
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = .white
+        return label
     }()
 
     private let supportedCodeTypes = [
@@ -117,14 +117,10 @@ class QrCodeReaderController: UIViewController {
         #else
         captureSession.startRunning()
         #endif
-        }
+    }
 
     func stopSession() {
         captureSession.stopRunning()
-    }
-
-    @objc private func cameraAccessButtonPressed(_ sender: UIButton) {
-        print("Camera button pressed")
     }
 }
 
