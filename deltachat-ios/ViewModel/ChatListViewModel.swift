@@ -20,7 +20,8 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     func beginSearch()
     func endSearch()
     func titleForHeaderIn(section: Int) -> String? // only visible on search results
-    
+    var emptySearchText: String? { get }
+
     /// returns ROW of table
     func deleteChat(chatId: Int) -> Int
     func archiveChatToggle(chatId: Int)
@@ -165,6 +166,13 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         searchActive = false
         searchText = ""
         resetSearch()
+    }
+
+    var emptySearchText: String? {
+        if searchActive && numberOfSections == 0 {
+            return searchText
+        }
+        return nil
     }
 
     func deleteChat(chatId: Int) -> Int {
