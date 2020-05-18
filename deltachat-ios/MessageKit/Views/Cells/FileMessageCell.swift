@@ -3,10 +3,19 @@ import UIKit
 // A subclass of `MessageContentCell` used to display mixed media messages.
 open class FileMessageCell: MessageContentCell {
 
-    public static let insetTop: CGFloat = 12
     public static let insetBottom: CGFloat = 12
     public static let insetHorizontalBig: CGFloat = 23
     public static let insetHorizontalSmall: CGFloat = 12
+
+    var fileViewLeadingPadding: CGFloat = 0 {
+        didSet {
+            fileViewLeadingAlignment.constant = fileViewLeadingPadding
+        }
+    }
+
+    private lazy var fileViewLeadingAlignment: NSLayoutConstraint = {
+        return fileView.constraintAlignLeadingTo(messageContainerView, paddingLeading: 0)
+    }()
 
     private var mediaItem: MediaItem?
 
@@ -32,17 +41,16 @@ open class FileMessageCell: MessageContentCell {
     /// Responsible for setting up the constraints of the cell's subviews.
     open func setupConstraints(for messageKind: MessageKind) {
         messageContainerView.removeConstraints(messageContainerView.constraints)
-        let fileViewHeight = messageContainerView.frame.height - getMessageLabelHeight()
 
-        let fileViewConstraints = [fileView.constraintHeightTo(fileViewHeight),
-                                    fileView.constraintAlignLeadingTo(messageContainerView),
+        let fileViewConstraints = [fileView.constraintHeightTo(FileView.defaultHeight),
+                                    fileViewLeadingAlignment,
                                     fileView.constraintAlignTrailingTo(messageContainerView),
                                     fileView.constraintAlignTopTo(messageContainerView),
                                     ]
         messageContainerView.addConstraints(fileViewConstraints)
 
         messageLabel.frame = CGRect(x: 0,
-                                    y: messageContainerView.frame.height - getMessageLabelHeight(),
+                                    y: FileView.defaultHeight,
                                     width: messageContainerView.frame.width,
                                     height: getMessageLabelHeight())
     }
@@ -53,7 +61,7 @@ open class FileMessageCell: MessageContentCell {
                 messageContainerView.frame.width -
                     FileMessageCell.insetHorizontalSmall -
                     FileMessageCell.insetHorizontalBig))
-            return height + FileMessageCell.insetBottom + FileMessageCell.insetTop
+            return height + FileMessageCell.insetBottom
         }
         return 0
     }
@@ -75,6 +83,7 @@ open class FileMessageCell: MessageContentCell {
         if let attributes = layoutAttributes as? MessagesCollectionViewLayoutAttributes {
             messageLabel.textInsets = attributes.messageLabelInsets
             messageLabel.messageLabelFont = attributes.messageLabelFont
+            fileViewLeadingPadding = attributes.messageLabelInsets.left
         }
     }
 
@@ -94,16 +103,11 @@ open class FileMessageCell: MessageContentCell {
                                              message: message,
                                              at: indexPath,
                                              in: messagesCollectionView)
-
         default:
             fatalError("Unexpected message kind in FileMessageCell")
         }
-
         setupConstraints(for: message.kind)
-
-        //displayDelegate.configureMediaMessageImageView(imageView, for: message, at: indexPath, in: messagesCollectionView)
     }
-
 
     func configureFileView(for mediaItem: MediaItem) {
         fileView.configureFor(mediaItem: mediaItem)
@@ -132,5 +136,4 @@ open class FileMessageCell: MessageContentCell {
                                                    y: touchPoint.y - fileView.frame.height)
         return messageLabel.handleGesture(touchPointWithoutImageHeight)
     }
-
 }
