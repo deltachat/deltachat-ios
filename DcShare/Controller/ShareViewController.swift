@@ -54,6 +54,7 @@ class ShareViewController: SLComposeServiceViewController {
                 }
             }
         }
+        placeholder = String.localized("chat_input_placeholder")
 
         DispatchQueue.global(qos: .background).async {
             self.shareAttachment = ShareAttachment(dcContext: self.dcContext, inputItems: self.extensionContext?.inputItems, delegate: self)
@@ -91,7 +92,6 @@ class ShareViewController: SLComposeServiceViewController {
             target: self,
             action: #selector(appendPostTapped))
         item.rightBarButtonItem? = button
-        item.titleView = UIImageView(image: UIImage(named: "ic_chat")?.scaleDownImage(toMax: 26))
     }
 
     /// Invoked when the user wants to post.
