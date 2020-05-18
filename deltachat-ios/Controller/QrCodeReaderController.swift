@@ -68,7 +68,7 @@ class QrCodeReaderController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        
+        startSession()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -82,7 +82,7 @@ class QrCodeReaderController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        captureSession.stopRunning()
+        stopSession()
     }
 
     // MARK: - setup
@@ -128,8 +128,12 @@ class QrCodeReaderController: UIViewController {
 
     // MARK: - actions
     func startSession() {
+        #if targetEnvironment(simulator)
+        // ignore if run from simulator
+        #else
         captureSession.startRunning()
-    }
+        #endif
+        }
 
     func stopSession() {
         captureSession.stopRunning()
