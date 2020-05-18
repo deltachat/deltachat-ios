@@ -13,6 +13,13 @@ class QrCodeReaderController: UIViewController {
         return videoPreviewLayer
     }()
 
+    private lazy var cameraAccessButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Settings", for: .normal)
+        button.addTarget(self, action: #selector(cameraAccessButtonPressed(_:)), for: .touchUpInside)
+        return button
+    }()
+
     private var infoLabel: UILabel = {
         let label = UILabel()
            label.translatesAutoresizingMaskIntoConstraints = false
@@ -61,10 +68,10 @@ class QrCodeReaderController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        captureSession.startRunning()
+        
     }
 
-  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: nil, completion: { [weak self] _ in
@@ -88,6 +95,12 @@ class QrCodeReaderController: UIViewController {
         infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         infoLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
         view.bringSubviewToFront(infoLabel)
+    }
+
+    private func handleCameraAutorizationState() {
+        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) == .authorized {
+            captureSession.startRunning()
+        }
     }
 
     private func updateVideoOrientation() {
@@ -120,6 +133,10 @@ class QrCodeReaderController: UIViewController {
 
     func stopSession() {
         captureSession.stopRunning()
+    }
+
+    @objc private func cameraAccessButtonPressed(_ sender: UIButton) {
+        print("Camera button pressed")
     }
 }
 
