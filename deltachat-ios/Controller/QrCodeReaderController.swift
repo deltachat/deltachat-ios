@@ -90,22 +90,14 @@ class QrCodeReaderController: UIViewController {
         view.bringSubviewToFront(infoLabel)
     }
 
-    private func handleCameraAutorizationState() {
-        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) == .authorized {
-            captureSession.startRunning()
-        }
-    }
-
     private func updateVideoOrientation() {
 
         guard let connection = videoPreviewLayer.connection else {
             return
         }
-
         guard connection.isVideoOrientationSupported else {
             return
         }
-
         let statusBarOrientation = UIApplication.shared.statusBarOrientation
         let videoOrientation: AVCaptureVideoOrientation =  statusBarOrientation.videoOrientation ?? .portrait
 
@@ -113,7 +105,6 @@ class QrCodeReaderController: UIViewController {
             print("no change to videoOrientation")
             return
         }
-
         videoPreviewLayer.frame = view.bounds
         connection.videoOrientation = videoOrientation
         videoPreviewLayer.removeAllAnimations()
