@@ -24,6 +24,8 @@ in Xcode:
 5. a) adapt version ("View/Navigator/Project Navigator/deltachat-ios",
       target "deltachat-ios", then "General/Version")
    b) increase the build number in the same dialog
+   c) to avoid a warning,
+      use the same version and build number for target "DcShare"
 
 6. a) select "Generic iOS Device" in the toolbar
    b) select menu "Product/Archive"
