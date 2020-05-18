@@ -15,8 +15,7 @@ class SendingController: UIViewController {
     private var progressLabel: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        /// TODO: translation!
-        view.text = "Sending..."
+        view.text = String.localized("one_moment")
         return view
     }()
 
