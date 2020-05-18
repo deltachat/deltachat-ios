@@ -15,13 +15,13 @@ class QrCodeReaderController: UIViewController {
 
     private var infoLabel: UILabel = {
         let label = UILabel()
-           label.translatesAutoresizingMaskIntoConstraints = false
-           label.text = String.localized("qrscan_hint")
-           label.lineBreakMode = .byWordWrapping
-           label.numberOfLines = 0
-           label.textAlignment = .center
-           label.textColor = .white
-           return label
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = String.localized("qrscan_hint")
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = .white
+        return label
     }()
 
     private let supportedCodeTypes = [
@@ -61,10 +61,10 @@ class QrCodeReaderController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        captureSession.startRunning()
+        startSession()
     }
 
-  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: nil, completion: { [weak self] _ in
@@ -75,7 +75,7 @@ class QrCodeReaderController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        captureSession.stopRunning()
+        stopSession()
     }
 
     // MARK: - setup
@@ -95,11 +95,9 @@ class QrCodeReaderController: UIViewController {
         guard let connection = videoPreviewLayer.connection else {
             return
         }
-
         guard connection.isVideoOrientationSupported else {
             return
         }
-
         let statusBarOrientation = UIApplication.shared.statusBarOrientation
         let videoOrientation: AVCaptureVideoOrientation =  statusBarOrientation.videoOrientation ?? .portrait
 
@@ -107,7 +105,6 @@ class QrCodeReaderController: UIViewController {
             print("no change to videoOrientation")
             return
         }
-
         videoPreviewLayer.frame = view.bounds
         connection.videoOrientation = videoOrientation
         videoPreviewLayer.removeAllAnimations()
@@ -115,7 +112,11 @@ class QrCodeReaderController: UIViewController {
 
     // MARK: - actions
     func startSession() {
+        #if targetEnvironment(simulator)
+        // ignore if run from simulator
+        #else
         captureSession.startRunning()
+        #endif
     }
 
     func stopSession() {
