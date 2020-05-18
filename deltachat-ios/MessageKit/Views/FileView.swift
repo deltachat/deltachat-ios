@@ -31,8 +31,7 @@ class FileView: UIView {
     }()
 
     private lazy var fileBadgeView: InitialsBadge = {
-        let defaultImage = UIImage(named: "ic_attach_file_36pt") ?? UIImage()
-        let badge: InitialsBadge = InitialsBadge(image: defaultImage, size: FileView.badgeSize)
+        let badge: InitialsBadge = InitialsBadge(image: UIImage(), size: FileView.badgeSize)
         badge.setColor(DcColors.middleGray)
         badge.isAccessibilityElement = false
         badge.isHidden = false
@@ -89,6 +88,8 @@ class FileView: UIView {
         if let subtitle = mediaItem.text?[MediaItemConstants.mediaSubtitle] {
             subtitleView.attributedText = subtitle
         }
+
+        fileBadgeView.setImage(mediaItem.placeholderImage)
     }
 
     required init?(coder: NSCoder) {
