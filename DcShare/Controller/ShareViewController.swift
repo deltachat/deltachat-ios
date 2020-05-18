@@ -54,6 +54,7 @@ class ShareViewController: SLComposeServiceViewController {
                 }
             }
         }
+        placeholder = String.localized("chat_input_placeholder")
 
         DispatchQueue.global(qos: .background).async {
             self.shareAttachment = ShareAttachment(dcContext: self.dcContext, inputItems: self.extensionContext?.inputItems, delegate: self)
