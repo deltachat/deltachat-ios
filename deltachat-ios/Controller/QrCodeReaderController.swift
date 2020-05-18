@@ -13,13 +13,6 @@ class QrCodeReaderController: UIViewController {
         return videoPreviewLayer
     }()
 
-    private lazy var cameraAccessButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Settings", for: .normal)
-        button.addTarget(self, action: #selector(cameraAccessButtonPressed(_:)), for: .touchUpInside)
-        return button
-    }()
-
     private var infoLabel: UILabel = {
         let label = UILabel()
            label.translatesAutoresizingMaskIntoConstraints = false
