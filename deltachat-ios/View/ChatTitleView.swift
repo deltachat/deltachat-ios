@@ -49,10 +49,11 @@ class ChatTitleView: UIView {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(containerView)
+
         addConstraints([ containerView.constraintAlignTopTo(self),
                          containerView.constraintAlignBottomTo(self),
                          containerView.constraintCenterXTo(self),
-                         containerView.constraintWidthTo(UIScreen.main.bounds.width - CGFloat(paddingNaviationButtons + sizeStreamingIndicator)) ])
+        ])
 
         containerView.addSubview(titleLabel)
         containerView.addConstraints([ titleLabel.constraintAlignLeadingTo(containerView),
