@@ -32,9 +32,9 @@ class FileView: UIView {
 
     private lazy var fileBadgeView: InitialsBadge = {
         let badge: InitialsBadge = InitialsBadge(image: UIImage(), size: FileView.badgeSize)
-        badge.setColor(DcColors.middleGray)
         badge.isAccessibilityElement = false
         badge.isHidden = false
+        badge.cornerRadius = 6
         return badge
     }()
 
@@ -89,7 +89,14 @@ class FileView: UIView {
             subtitleView.attributedText = subtitle
         }
 
-        fileBadgeView.setImage(mediaItem.placeholderImage)
+        if let url = mediaItem.url {
+            let controller = UIDocumentInteractionController(url: url)
+            logger.debug("create attachmentThumbnail \(url)")
+            fileBadgeView.setImage(controller.icons.first ?? mediaItem.placeholderImage)
+        } else {
+            fileBadgeView.setImage(mediaItem.placeholderImage)
+        }
+
     }
 
     required init?(coder: NSCoder) {

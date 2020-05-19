@@ -16,12 +16,12 @@ public class InitialsBadge: UIView {
     }()
 
     private var verifiedView: UIImageView = {
-           let imgView = UIImageView()
-           let img = UIImage(named: "verified")
-           imgView.isHidden = true
-           imgView.image = img
-           imgView.translatesAutoresizingMaskIntoConstraints = false
-           return imgView
+        let imgView = UIImageView()
+        let img = UIImage(named: "verified")
+        imgView.isHidden = true
+        imgView.image = img
+        imgView.translatesAutoresizingMaskIntoConstraints = false
+        return imgView
     }()
 
     private var imageView: UIImageView = {
@@ -31,6 +31,15 @@ public class InitialsBadge: UIView {
         return imageViewContainer
     }()
 
+    public var cornerRadius: CGFloat {
+        set {
+            layer.cornerRadius = newValue
+            imageView.layer.cornerRadius = newValue
+        }
+        get {
+            return layer.cornerRadius
+        }
+    }
 
     public convenience init(name: String, color: UIColor, size: CGFloat, accessibilityLabel: String? = nil) {
         self.init(size: size, accessibilityLabel: accessibilityLabel)

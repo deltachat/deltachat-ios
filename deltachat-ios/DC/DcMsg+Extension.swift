@@ -90,7 +90,7 @@ extension DcMsg: MessageType {
                                                                               NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor])
 
         let mediaText = [attributedMediaMessageString, attributedFileString, attributedFileSizeString]
-        return MessageKind.fileText(Media(placeholderImage: UIImage(named: "ic_attach_file_36pt"), text: mediaText))
+        return MessageKind.fileText(Media(url: fileURL, placeholderImage: UIImage(named: "ic_attach_file_36pt"), text: mediaText))
     }
     
 }
