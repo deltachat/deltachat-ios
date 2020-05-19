@@ -3,7 +3,7 @@
 ## v1.8.0
 
 * lots bug fixes
-* improbe error handling
+* improve error handling
 
 
 ## v1.6.1
