@@ -31,21 +31,17 @@ open class FileMessageSizeCalculator: MessageSizeCalculator {
 
     open override func messageContainerSize(for message: MessageType) -> CGSize {
         let sizeForMediaItem = { (maxWidth: CGFloat, item: MediaItem) -> CGSize in
-            if item.image != nil {
-                fatalError("not implemented yet")
-            } else {
-                var messageContainerSize = CGSize(width: maxWidth, height: FileView.defaultHeight)
-                switch message.kind {
-                case .fileText(let mediaItem):
-                    if let messageText = mediaItem.text?[MediaItemConstants.messageText], !messageText.string.isEmpty {
-                        let messageTextHeight = messageText.height(withConstrainedWidth: maxWidth - self.messageLabelInsets(for: message).horizontal)
-                        messageContainerSize.height += messageTextHeight + self.messageLabelInsets(for: message).bottom
-                    }
-                default:
-                    fatalError("only fileText types can be calculated by FileMessageSizeCalculator")
+            var messageContainerSize = CGSize(width: maxWidth, height: FileView.defaultHeight)
+            switch message.kind {
+            case .fileText(let mediaItem):
+                if let messageText = mediaItem.text?[MediaItemConstants.messageText], !messageText.string.isEmpty {
+                    let messageTextHeight = messageText.height(withConstrainedWidth: maxWidth - self.messageLabelInsets(for: message).horizontal)
+                    messageContainerSize.height += messageTextHeight + self.messageLabelInsets(for: message).bottom
                 }
-                return messageContainerSize
+            default:
+                fatalError("only fileText types can be calculated by FileMessageSizeCalculator")
             }
+            return messageContainerSize
         }
 
         switch message.kind {

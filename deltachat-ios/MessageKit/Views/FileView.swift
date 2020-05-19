@@ -7,14 +7,6 @@ class FileView: UIView {
     static let defaultHeight: CGFloat = 78
     static let defaultWidth: CGFloat = 250
 
-    private lazy var previewImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.isHidden = true
-        return imageView
-    }()
-
     private lazy var titleView: MessageLabel = {
         let label = MessageLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -56,47 +48,34 @@ class FileView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(fileBadgeView)
         addSubview(verticalStackView)
+        addConstraints([
+            fileBadgeView.constraintAlignLeadingTo(self),
+            fileBadgeView.constraintWidthTo(FileView.badgeSize),
+            fileBadgeView.constraintHeightTo(FileView.badgeSize),
+            fileBadgeView.constraintCenterYTo(self)
+        ])
+        addConstraints([
+            verticalStackView.constraintCenterYTo(self),
+            verticalStackView.constraintToTrailingOf(fileBadgeView),
+            verticalStackView.constraintAlignTrailingTo(self)
+        ])
     }
 
     func configureFor(mediaItem: MediaItem) {
-        removeConstraints(self.constraints)
-        previewImageView.removeFromSuperview()
-        if let previewImage = mediaItem.image {
-            previewImageView.image = previewImage
-            addSubview(previewImageView)
-            addConstraints([
-                previewImageView.constraintAlignTopTo(self),
-                previewImageView.constraintAlignLeadingTo(self),
-                previewImageView.constraintAlignTrailingTo(self),
-            ])
-        } else {
-            addConstraints([
-                fileBadgeView.constraintAlignLeadingTo(self),
-                fileBadgeView.constraintWidthTo(FileView.badgeSize),
-                fileBadgeView.constraintHeightTo(FileView.badgeSize),
-                fileBadgeView.constraintCenterYTo(self)
-            ])
-            addConstraints([
-                verticalStackView.constraintCenterYTo(self),
-                verticalStackView.constraintToTrailingOf(fileBadgeView),
-                verticalStackView.constraintAlignTrailingTo(self)
-            ])
-        }
-        if let title = mediaItem.text?[MediaItemConstants.mediaTitle] {
-            titleView.attributedText = title
-        }
-        if let subtitle = mediaItem.text?[MediaItemConstants.mediaSubtitle] {
-            subtitleView.attributedText = subtitle
-        }
-
         if let url = mediaItem.url {
             let controller = UIDocumentInteractionController(url: url)
-            logger.debug("create attachmentThumbnail \(url)")
             fileBadgeView.setImage(controller.icons.first ?? mediaItem.placeholderImage)
         } else {
             fileBadgeView.setImage(mediaItem.placeholderImage)
         }
 
+        if let title = mediaItem.text?[MediaItemConstants.mediaTitle] {
+            titleView.attributedText = title
+        }
+
+        if let subtitle = mediaItem.text?[MediaItemConstants.mediaSubtitle] {
+            subtitleView.attributedText = subtitle
+        }
     }
 
     required init?(coder: NSCoder) {
