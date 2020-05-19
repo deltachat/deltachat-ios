@@ -106,6 +106,6 @@ class FileView: UIView {
     func prepareForReuse() {
         titleView.attributedText = nil
         subtitleView.attributedText = nil
-        previewImageView.image = nil
+        fileBadgeView.reset()
     }
 }

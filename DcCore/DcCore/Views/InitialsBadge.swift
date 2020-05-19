@@ -119,4 +119,10 @@ public class InitialsBadge: UIView {
     public func setVerified(_ verified: Bool) {
         verifiedView.isHidden = !verified
     }
+
+    public func reset() {
+        verifiedView.isHidden = true
+        imageView.image = nil
+        label.text = nil
+    }
 }
