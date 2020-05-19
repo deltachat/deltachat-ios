@@ -12,7 +12,6 @@ target 'deltachat-ios' do
   # pod 'openssl-ios-bitcode'
   pod 'ReachabilitySwift'
   pod 'UICircularProgressRing'
-  pod 'JGProgressHUD'
   pod 'SwiftyBeaver'
   pod 'DBDebugToolkit'
   pod 'InputBarAccessoryView'
