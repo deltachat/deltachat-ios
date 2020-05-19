@@ -27,15 +27,28 @@ import UIKit
 
 open class MediaMessageSizeCalculator: MessageSizeCalculator {
 
+    var maxMediaItemHeight: CGFloat {
+        return UIScreen.main.bounds.size.height * 0.8
+    }
+
     open override func messageContainerSize(for message: MessageType) -> CGSize {
         let maxWidth = messageContainerMaxWidth(for: message)
         let sizeForMediaItem = { (maxWidth: CGFloat, item: MediaItem) -> CGSize in
+            var imageWidth = item.size.width
+            var imageHeight = item.size.height
             if maxWidth < item.size.width {
                 // Maintain the ratio if width is too great
-                let height = maxWidth * item.size.height / item.size.width
-                return CGSize(width: maxWidth, height: height)
+                imageHeight = maxWidth * item.size.height / item.size.width
+                imageWidth = maxWidth
             }
-            return item.size
+
+            if self.maxMediaItemHeight < imageHeight {
+                // Maintain the ratio if height is too great
+                imageWidth = self.maxMediaItemHeight * imageWidth / imageHeight
+                imageHeight = self.maxMediaItemHeight
+            }
+
+            return CGSize(width: imageWidth, height: imageHeight)
         }
         switch message.kind {
         case .photo(let item):
