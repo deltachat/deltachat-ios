@@ -7,6 +7,7 @@ open class FileMessageCell: MessageContentCell {
     public static let insetHorizontalBig: CGFloat = 23
     public static let insetHorizontalSmall: CGFloat = 12
 
+    // MARK: - Properties
     var fileViewLeadingPadding: CGFloat = 0 {
         didSet {
             fileViewLeadingAlignment.constant = fileViewLeadingPadding
@@ -17,9 +18,7 @@ open class FileMessageCell: MessageContentCell {
         return fileView.constraintAlignLeadingTo(messageContainerView, paddingLeading: 0)
     }()
 
-    private var mediaItem: MediaItem?
 
-    // MARK: - Properties
     /// The `MessageCellDelegate` for the cell.
     open override weak var delegate: MessageCellDelegate? {
         didSet {
