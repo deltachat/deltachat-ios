@@ -34,12 +34,6 @@ open class TextMediaMessageCell: MessageContentCell {
         return playButtonView
     }()
 
- /*   open lazy var fileView: UIImageView = {
-        let fileView = UIImageView(image: UIImage(named: "ic_attach_file_36pt"))
-        fileView.translatesAutoresizingMaskIntoConstraints = false
-        return fileView
-    }()*/
-
     // MARK: - Methods
 
     open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
@@ -85,11 +79,6 @@ open class TextMediaMessageCell: MessageContentCell {
             let playButtonViewConstraints = [ playButtonView.constraintCenterXTo(imageView),
                                               playButtonView.constraintCenterYTo(imageView)]
             messageContainerView.addConstraints(playButtonViewConstraints)
-        /*case .fileText:
-            fileView.constraint(equalTo: CGSize(width: 35, height: 35))
-            let fileViewConstraints = [ fileView.constraintCenterXTo(imageView),
-                                                         fileView.constraintCenterYTo(imageView)]
-            messageContainerView.addConstraints(fileViewConstraints)*/
         default:
             break
         }
@@ -106,7 +95,6 @@ open class TextMediaMessageCell: MessageContentCell {
         super.setupSubviews()
         messageContainerView.addSubview(imageView)
         messageContainerView.addSubview(playButtonView)
-      //  messageContainerView.addSubview(fileView)
         messageContainerView.addSubview(messageLabel)
     }
 
@@ -131,7 +119,6 @@ open class TextMediaMessageCell: MessageContentCell {
         }
 
         configurePlayButtonView(for: message.kind)
-  //      configureFileView(for: message.kind)
         setupConstraints(for: message.kind)
 
         displayDelegate.configureMediaMessageImageView(imageView, for: message, at: indexPath, in: messagesCollectionView)
@@ -146,15 +133,6 @@ open class TextMediaMessageCell: MessageContentCell {
             playButtonView.isHidden = true
         }
     }
-
- /*   func configureFileView(for messageKind: MessageKind) {
-        switch messageKind {
-        case .fileText:
-            fileView.isHidden = false
-        default:
-            fileView.isHidden = true
-        }
-    }*/
 
     func configureImageView(for mediaItem: MediaItem) {
         imageView.image = mediaItem.image ?? mediaItem.placeholderImage
