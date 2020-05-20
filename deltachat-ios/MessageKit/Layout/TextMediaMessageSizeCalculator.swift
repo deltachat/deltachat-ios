@@ -27,11 +27,11 @@ import UIKit
 
 open class TextMediaMessageSizeCalculator: MessageSizeCalculator {
 
-    var maxMediaItemHeight: CGFloat {
+    private var maxMediaItemHeight: CGFloat {
         return UIScreen.main.bounds.size.height * 0.8
     }
 
-    let minTextWidth: CGFloat = 180
+    private let minTextWidth: CGFloat = 180
 
     public var incomingMessageLabelInsets = UIEdgeInsets(top: TextMediaMessageCell.insetTop,
                                                          left: TextMediaMessageCell.insetHorizontalBig,
