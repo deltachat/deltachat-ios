@@ -119,6 +119,7 @@ class QrCodeReaderController: UIViewController {
         #endif
     }
 
+     
     func stopSession() {
         captureSession.stopRunning()
     }
