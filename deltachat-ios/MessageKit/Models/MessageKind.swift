@@ -47,6 +47,9 @@ public enum MessageKind {
     /// A photo message with a textual description
     case photoText(MediaItem)
 
+    /// A message containing an animated Image and an optional text
+    case animatedImageText(MediaItem)
+
     /// A file message with an optional text
     case fileText(MediaItem)
 

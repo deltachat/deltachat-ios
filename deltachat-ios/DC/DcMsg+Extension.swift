@@ -33,6 +33,8 @@ extension DcMsg: MessageType {
             return createVideoMessage(text: text)
         case .voice, .audio:
             return createAudioMessage(text: text)
+        case .gif:
+            return createAnimatedImageMessage(text: text)
         default:
             // TODO: custom views for audio, etc
             if self.filename != nil {
@@ -62,6 +64,15 @@ extension DcMsg: MessageType {
         let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
                                                                              NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor])
         return MessageKind.photoText(Media(image: image, text: [attributedString]))
+    }
+
+    internal func createAnimatedImageMessage(text: String) -> MessageKind {
+        if text.isEmpty {
+            return MessageKind.animatedImageText(Media(url: fileURL, image: image))
+        }
+        let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
+                                                                             NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor])
+        return MessageKind.animatedImageText(Media(url: fileURL, image: image, text: attributedString))
     }
 
     internal func createAudioMessage(text: String) -> MessageKind {

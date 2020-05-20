@@ -83,6 +83,22 @@ public struct DcUtils {
         }
     }
 
+    public static func saveAnimatedImage(data: Data, suffix: String) -> String? {
+        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
+                                                           appropriateFor: nil, create: false) as NSURL else {
+                                                            return nil
+        }
+        do {
+            let timestamp = Double(Date().timeIntervalSince1970)
+            let path = directory.appendingPathComponent("\(timestamp).\(suffix)")
+            try data.write(to: path!)
+            return path?.relativePath
+        } catch {
+            DcContext.shared.logger?.info(error.localizedDescription)
+            return nil
+        }
+    }
+
     public static func getMimeTypeForPath(path: String) -> String {
         let url = NSURL(fileURLWithPath: path)
         let pathExtension = url.pathExtension
