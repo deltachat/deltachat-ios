@@ -348,8 +348,8 @@ class ContactDetailViewController: UITableViewController {
                 mediaUrls.insert(url, at: 0)
             }
         }
-        let previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
-        navigationController?.pushViewController(previewController, animated: true)
+        let galleryController = GalleryViewController(mediaMessageIds: messageIds)
+        navigationController?.pushViewController(galleryController, animated: true)
     }
 
     private func deleteChat() {
