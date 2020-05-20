@@ -28,7 +28,7 @@ import UIKit
 open class MediaMessageSizeCalculator: MessageSizeCalculator {
 
     private var maxMediaItemHeight: CGFloat {
-        return UIScreen.main.bounds.size.height * 0.8
+        return UIScreen.main.bounds.size.height * 0.7
     }
 
     open override func messageContainerSize(for message: MessageType) -> CGSize {

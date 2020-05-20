@@ -28,7 +28,7 @@ import UIKit
 open class TextMediaMessageSizeCalculator: MessageSizeCalculator {
 
     private var maxMediaItemHeight: CGFloat {
-        return UIScreen.main.bounds.size.height * 0.8
+        return UIScreen.main.bounds.size.height * 0.7
     }
 
     private let minTextWidth: CGFloat = 180
