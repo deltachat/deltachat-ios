@@ -3,6 +3,7 @@ import MobileCoreServices
 import DcCore
 import UIKit
 import QuickLookThumbnailing
+import SDWebImage
 
 protocol ShareAttachmentDelegate: class {
     func onAttachmentChanged()
@@ -49,7 +50,9 @@ class ShareAttachment {
 
     func createMessageFromDataRepresentaion(_ attachments: [NSItemProvider]) {
         for attachment in attachments {
-            if attachment.hasItemConformingToTypeIdentifier(kUTTypeImage as String) {
+            if attachment.hasItemConformingToTypeIdentifier(kUTTypeGIF as String) {
+                createAnimatedImageMsg(attachment)
+            } else if attachment.hasItemConformingToTypeIdentifier(kUTTypeImage as String) {
                 createImageMsg(attachment)
             } else if attachment.hasItemConformingToTypeIdentifier(kUTTypeMovie as String) {
                 createMovieMsg(attachment)
@@ -59,6 +62,37 @@ class ShareAttachment {
                 createFileMsg(attachment)
             } else if attachment.hasItemConformingToTypeIdentifier(kUTTypeURL as String) {
                 addSharedUrl(attachment)
+            }
+        }
+    }
+
+    // for now we only support GIF
+    func createAnimatedImageMsg(_ item: NSItemProvider) {
+        item.loadItem(forTypeIdentifier: kUTTypeGIF as String, options: nil) { data, error in
+            var result: SDAnimatedImage?
+            switch data {
+            case let animatedImageData as Data:
+                result = SDAnimatedImage(data: animatedImageData)
+            case let url as URL:
+                result = SDAnimatedImage(contentsOfFile: url.path)
+            default:
+                self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
+            }
+            if let result = result, let animatedImageData = result.animatedImageData {
+                let path = DcUtils.saveAnimatedImage(data: animatedImageData, suffix: "gif")
+                let msg = DcMsg(viewType: DC_MSG_GIF)
+                msg.setFile(filepath: path, mimeType: "image/gif")
+                let pixelSize = result.imageSizeInPixel()
+                msg.setDimension(width: pixelSize.width, height: pixelSize.height)
+                self.messages.append(msg)
+                self.delegate?.onAttachmentChanged()
+                if self.imageThumbnail == nil {
+                    self.imageThumbnail = result.scaleDownImage(toMax: self.thumbnailSize)
+                    self.delegate?.onThumbnailChanged()
+                }
+                if error != nil {
+                    self.dcContext.logger?.error(error?.localizedDescription ?? "Could not load share item as image")
+                }
             }
         }
     }
