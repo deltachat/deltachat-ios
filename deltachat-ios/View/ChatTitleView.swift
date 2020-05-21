@@ -21,17 +21,6 @@ class ChatTitleView: UIView {
         return subtitleLabel
     }()
 
-    private let locationStreamingIndicator: UIImageView = {
-        let view = UIImageView()
-        view.tintColor = DcColors.checkmarkGreen
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.constraintHeightTo(28).isActive = true
-        view.constraintWidthTo(28).isActive = true
-        view.image = #imageLiteral(resourceName: "ic_location").withRenderingMode(.alwaysTemplate)
-        view.isHidden = true
-        return view
-    }()
-
     private let paddingNaviationButtons = 120
     private let sizeStreamingIndicator = 28
 
@@ -65,22 +54,12 @@ class ChatTitleView: UIView {
                                        subtitleLabel.constraintAlignLeadingTo(containerView),
                                        subtitleLabel.constraintAlignTrailingTo(containerView),
                                        subtitleLabel.constraintAlignBottomTo(containerView)])
-        addSubview(locationStreamingIndicator)
-        addConstraints([
-                         locationStreamingIndicator.constraintCenterYTo(self),
-                         locationStreamingIndicator.constraintAlignTrailingTo(self),
-                         locationStreamingIndicator.constraintToTrailingOf(containerView)])
     }
 
-    func updateTitleView(title: String, subtitle: String?, baseColor: UIColor = DcColors.defaultTextColor, isLocationStreaming: Bool) {
+    func updateTitleView(title: String, subtitle: String?, baseColor: UIColor = DcColors.defaultTextColor) {
         subtitleLabel.textColor = baseColor.withAlphaComponent(0.95)
         titleLabel.textColor = baseColor
         titleLabel.text = title
         subtitleLabel.text = subtitle
-        locationStreamingIndicator.isHidden = !isLocationStreaming
-    }
-
-    func hideLocationStreamingIndicator() {
-        locationStreamingIndicator.isHidden = true
     }
 }
