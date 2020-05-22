@@ -33,6 +33,7 @@ class GalleryViewController: UIViewController {
         )
         collection.contentInset = UIEdgeInsets(top: 0, left: gridInsets, bottom: 0, right: gridInsets)
         collection.backgroundColor = .white
+        collection.delaysContentTouches = false
         return collection
     }()
 

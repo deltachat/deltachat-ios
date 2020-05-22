@@ -35,4 +35,11 @@ class GalleryCell: UICollectionViewCell {
         }
         imageView.image = image
     }
+
+    override var isSelected: Bool {
+        willSet {
+            contentView.backgroundColor = newValue ? DcColors.primary : .white
+            imageView.alpha = newValue ? 0.75 : 1.0
+        }
+    }
 }
