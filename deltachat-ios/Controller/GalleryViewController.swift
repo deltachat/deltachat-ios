@@ -1,10 +1,48 @@
 import UIKit
 import DcCore
 
+enum TimeBucket: CaseIterable {
+    case today
+    case yesterday
+    case thisWeek
+    case lastWeek
+    case thisMonth
+    case lastMonth
+}
+
+extension TimeBucket {
+
+    static func bucket(for date: Date) -> TimeBucket {
+        // TODO: calculate here
+
+        return date.bucket()
+    }
+
+    var translationKey: String {
+        switch self {
+        case .today:
+            return "today"
+        case .yesterday:
+            return "yesterday"
+        case .thisWeek:
+            return "this_week"
+        case .lastWeek:
+            return "last_week"
+        case .thisMonth:
+            return "this_month"
+        case .lastMonth:
+            return "last_month"
+        }
+    }
+}
+
 class GalleryViewController: UIViewController {
 
     private struct GallerySection {
-        let headerTitle: String?
+        var headerTitle: String {
+            return String.localized(timeBucket.translationKey)
+        }
+        let timeBucket: TimeBucket
         let msgIds: [Int]
     }
 
@@ -77,8 +115,28 @@ class GalleryViewController: UIViewController {
 
     // MARK: - data processing + update
     private func processData(msgIds: [Int]) -> [GallerySection] {
-        let section = GallerySection(headerTitle: String.localized("today"), msgIds: msgIds)
-        return [section]
+
+        var buckets: [TimeBucket: [Int]] = [:]
+
+        msgIds.forEach { msgId in
+            let msg = DcMsg(id: msgId)
+            let date: Date = msg.sentDate
+            let msgBucket = TimeBucket.bucket(for: date)
+
+            if buckets[msgBucket] != nil {
+                buckets[msgBucket]?.append(msgId)
+            } else {
+                buckets[msgBucket] = [msgId]
+            }
+        }
+
+        var sections: [GallerySection] = []
+        TimeBucket.allCases.forEach { bucket in
+            if let msgIds = buckets[bucket] {
+                sections.append(GallerySection(timeBucket: bucket, msgIds: msgIds))
+            }
+        }
+        return sections
     }
 }
 
