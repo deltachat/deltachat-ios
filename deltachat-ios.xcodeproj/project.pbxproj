@@ -130,6 +130,8 @@
 		7A9FB14E1FB061E2001FEA36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */; };
 		7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */; };
 		8B6D425BC604F7C43B65D436 /* Pods_deltachat_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */; };
+		AE0AA952247800E700D42A7F /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AA951247800E700D42A7F /* GalleryCell.swift */; };
+		AE0AA9542478010D00D42A7F /* GallerySectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AA9532478010D00D42A7F /* GallerySectionHeader.swift */; };
 		AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */; };
 		AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */; };
 		AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19887423EB264000B4CD5F /* HelpViewController.swift */; };
@@ -410,6 +412,8 @@
 		8DE110C607A0E4485C43B5FA /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		914DDA723E78965D83162E78 /* Pods-deltachat-ios-DcShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios-DcShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios-DcShare/Pods-deltachat-ios-DcShare.debug.xcconfig"; sourceTree = "<group>"; };
 		A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.release.xcconfig"; sourceTree = "<group>"; };
+		AE0AA951247800E700D42A7F /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
+		AE0AA9532478010D00D42A7F /* GallerySectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallerySectionHeader.swift; sourceTree = "<group>"; };
 		AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuritySettingsController.swift; sourceTree = "<group>"; };
 		AE19887423EB264000B4CD5F /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
@@ -839,6 +843,7 @@
 			isa = PBXGroup;
 			children = (
 				AE406EEF240FF8FF005F7022 /* ProfileCell.swift */,
+				AE0AA951247800E700D42A7F /* GalleryCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -953,6 +958,7 @@
 				AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */,
 				AEB54C7E246DBA610004624C /* FlexLabel.swift */,
 				AED62BCD247687E6009E220D /* LocationStreamingIndicator.swift */,
+				AE0AA9532478010D00D42A7F /* GallerySectionHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1340,6 +1346,7 @@
 				305961EA2346125100C80F33 /* MessageStyle.swift in Sources */,
 				305961F92346125100C80F33 /* MessageLabel.swift in Sources */,
 				304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */,
+				AE0AA9542478010D00D42A7F /* GallerySectionHeader.swift in Sources */,
 				305961FA2346125100C80F33 /* MessageReusableView.swift in Sources */,
 				3040F462234F550300FA34D5 /* AudioPlayerView.swift in Sources */,
 				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
@@ -1453,6 +1460,7 @@
 				7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */,
 				300C50A1234BDAB800F8AE22 /* TextMediaMessageSizeCalculator.swift in Sources */,
 				30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */,
+				AE0AA952247800E700D42A7F /* GalleryCell.swift in Sources */,
 				307D822E241669C7006D2490 /* LocationManager.swift in Sources */,
 				305961F12346125100C80F33 /* ContactMessageCell.swift in Sources */,
 				AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */,

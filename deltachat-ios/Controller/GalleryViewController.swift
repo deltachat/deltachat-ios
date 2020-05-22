@@ -8,25 +8,35 @@ class GalleryViewController: UIViewController {
         let msgIds: [Int]
     }
 
+    // MARK: - data
     private let mediaMessageIds: [Int]
-
     private var gridSections: [GallerySection] = []
 
+    private lazy var gridLayout: GridCollectionViewFlowLayout = {
+        let layout = GridCollectionViewFlowLayout()
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        return layout
+    }()
+
+    // MARK: - subview specs
     private lazy var grid: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 50, height: 50)
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: gridLayout)
         collection.dataSource = self
         collection.delegate = self
-        collection.register(MediaCell.self, forCellWithReuseIdentifier: MediaCell.reuseIdentifier)
+        collection.register(GalleryCell.self, forCellWithReuseIdentifier: GalleryCell.reuseIdentifier)
         collection.register(
             GalleryGridSectionHeader.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: GalleryGridSectionHeader.reuseIdentifier
         )
+        collection.contentInset = UIEdgeInsets(top: 0, left: gridInsets, bottom: 0, right: gridInsets)
         collection.backgroundColor = .white
         return collection
     }()
+
+    // MARK: - specs
+    private let gridInsets: CGFloat = 10
 
     init(mediaMessageIds: [Int]) {
         self.mediaMessageIds = mediaMessageIds
@@ -48,14 +58,19 @@ class GalleryViewController: UIViewController {
         grid.reloadData()
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.reloadCollectionViewLayout()
+    }
+
     // MARK: - setup
     private func setupSubviews() {
         view.addSubview(grid)
         grid.translatesAutoresizingMaskIntoConstraints = false
 
-        grid.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        grid.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         grid.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        grid.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        grid.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         grid.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
@@ -78,7 +93,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let mediaCell = collectionView.dequeueReusableCell(withReuseIdentifier: MediaCell.reuseIdentifier, for: indexPath) as! MediaCell
+        let mediaCell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCell.reuseIdentifier, for: indexPath) as! GalleryCell
         let msg = DcMsg(id: mediaMessageIds[indexPath.row])
         mediaCell.update(msg: msg)
         // cell update
@@ -92,86 +107,119 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             for: indexPath
             ) as? GalleryGridSectionHeader {
             header.text = gridSections[indexPath.section].headerTitle
+            header.leadingMargin = gridInsets // to have grid and header equally aligned
             return header
         }
         return UICollectionReusableView()
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 40)
+        return CGSize(width: collectionView.frame.width - 2 * gridInsets, height: 32)
     }
 }
 
-class MediaCell: UICollectionViewCell {
-    static let reuseIdentifier = "media_cell"
+extension GalleryViewController {
+    private func reloadCollectionViewLayout() {
 
-    var imageView: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFill
-        view.clipsToBounds = true
-        return view
-    }()
+        // columns specification
+        let phonePortrait = 2
+        let phoneLandscape = 3
+        let padPortrait = 3
+        let padLandscape = 5
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupSubviews()
-    }
+        let orientation = UIDevice.current.orientation
+        let deviceType = UIDevice.current.userInterfaceIdiom
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
-    private func setupSubviews() {
-        contentView.addSubview(imageView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
-        imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
-    }
-
-    func update(msg: DcMsg) {
-        guard let image = msg.image else {
-            return
+        var gridDisplay: CollectionDisplay?
+        if deviceType == .phone {
+            if orientation.isPortrait {
+                gridDisplay = .grid(columns: phonePortrait)
+            } else {
+                gridDisplay = .grid(columns: phoneLandscape)
+            }
+        } else if deviceType == .pad {
+            if orientation.isPortrait {
+                gridDisplay = .grid(columns: padPortrait)
+            } else {
+                gridDisplay = .grid(columns: padLandscape)
+            }
         }
-        imageView.image = image
+
+        if let gridDisplay = gridDisplay {
+            gridLayout.display = gridDisplay
+        } else {
+            safe_fatalError("undefined format")
+        }
+        let containerWidth = view.bounds.width - view.safeAreaInsets.left - view.safeAreaInsets.right - 2 * gridInsets
+        gridLayout.containerWidth = containerWidth
+    }
+ }
+
+
+enum CollectionDisplay {
+    case list
+    case grid(columns: Int)
+}
+
+extension CollectionDisplay: Equatable {
+
+    public static func == (lhs: CollectionDisplay, rhs: CollectionDisplay) -> Bool {
+
+        switch (lhs, rhs) {
+        case (.list, .list):
+            return true
+        case (.grid(let lColumn), .grid(let rColumn)):
+            return lColumn == rColumn
+
+        default:
+            return false
+        }
     }
 }
 
-class GalleryGridSectionHeader: UICollectionReusableView {
-    static let reuseIdentifier = "gallery_grid_section_header"
+class GridCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
-    private lazy var label: UILabel = {
-        let label = UILabel()
-        label.textColor = DcColors.grayDateColor
-        return label
-    }()
-
-    var text: String? {
-        set {
-            label.text = newValue?.uppercased()
-        }
-        get {
-            return label.text
+    var display: CollectionDisplay = .list {
+        didSet {
+            if display != oldValue {
+                self.invalidateLayout()
+            }
         }
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupSubviews()
-        backgroundColor = .white
+    var containerWidth: CGFloat = 0.0 {
+        didSet {
+            if containerWidth != oldValue {
+                self.invalidateLayout()
+            }
+        }
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    convenience init(display: CollectionDisplay, containerWidth: CGFloat) {
+        self.init()
+        self.display = display
+        self.containerWidth = containerWidth
+        self.configLayout()
     }
 
-    private func setupSubviews() {
-        addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 0).isActive = true
-        label.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
-        label.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: 0).isActive = true
-        label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+    private func configLayout() {
+        switch display {
+        case .grid(let column):
+            self.scrollDirection = .vertical
+            let spacing = CGFloat(column - 1) * minimumLineSpacing
+            let optimisedWidth = (containerWidth - spacing) / CGFloat(column)
+            self.itemSize = CGSize(width: optimisedWidth, height: optimisedWidth) // keep as square
+        case .list:
+            self.scrollDirection = .vertical
+            self.itemSize = CGSize(width: containerWidth, height: containerWidth)
+        }
+    }
+
+    override func invalidateLayout() {
+        super.invalidateLayout()
+        self.configLayout()
     }
 }
+
+
