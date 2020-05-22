@@ -1,5 +1,31 @@
 import UIKit
 
+enum GridItemFormat {
+    case square
+    case rect(ratio: CGFloat)
+}
+
+enum GridDisplay {
+    case list
+    case grid(columns: Int)
+}
+
+extension GridDisplay: Equatable {
+
+    public static func == (lhs: GridDisplay, rhs: GridDisplay) -> Bool {
+        switch (lhs, rhs) {
+        case (.list, .list):
+            return true
+        case (.grid(let lColumn), .grid(let rColumn)):
+            return lColumn == rColumn
+
+        default:
+            return false
+        }
+    }
+}
+
+// MARK: - GridCollectionViewFlowLayout
 class GridCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     var display: GridDisplay = .list {

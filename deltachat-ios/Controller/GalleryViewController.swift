@@ -134,7 +134,7 @@ extension GalleryViewController {
         let padPortrait = 4
         let padLandscape = 6
 
-        let orientation = UIDevice.current.orientation
+        let orientation = UIApplication.shared.statusBarOrientation
         let deviceType = UIDevice.current.userInterfaceIdiom
 
         var gridDisplay: GridDisplay?
@@ -177,31 +177,3 @@ extension GalleryViewController {
         present(previewController, animated: true, completion: nil)
     }
 }
-
-
-enum GridDisplay {
-    case list
-    case grid(columns: Int)
-}
-
-enum GridItemFormat {
-    case square
-    case rect(ratio: CGFloat)
-}
-
-extension GridDisplay: Equatable {
-
-    public static func == (lhs: GridDisplay, rhs: GridDisplay) -> Bool {
-
-        switch (lhs, rhs) {
-        case (.list, .list):
-            return true
-        case (.grid(let lColumn), .grid(let rColumn)):
-            return lColumn == rColumn
-
-        default:
-            return false
-        }
-    }
-}
-
