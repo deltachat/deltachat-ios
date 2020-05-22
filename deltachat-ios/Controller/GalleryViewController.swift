@@ -4,7 +4,7 @@ import DcCore
 class GalleryViewController: UIViewController {
 
     private struct GallerySection {
-        let header: String?
+        let headerTitle: String?
         let msgIds: [Int]
     }
 
@@ -19,6 +19,12 @@ class GalleryViewController: UIViewController {
         collection.dataSource = self
         collection.delegate = self
         collection.register(MediaCell.self, forCellWithReuseIdentifier: MediaCell.reuseIdentifier)
+        collection.register(
+            GalleryGridSectionHeader.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: GalleryGridSectionHeader.reuseIdentifier
+        )
+        collection.backgroundColor = .white
         return collection
     }()
 
@@ -55,13 +61,13 @@ class GalleryViewController: UIViewController {
 
     // MARK: - data processing + update
     private func processData(msgIds: [Int]) -> [GallerySection] {
-        let section = GallerySection(header: nil, msgIds: msgIds)
+        let section = GallerySection(headerTitle: String.localized("today"), msgIds: msgIds)
         return [section]
     }
 }
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
-extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return gridSections.count
@@ -77,6 +83,22 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         mediaCell.update(msg: msg)
         // cell update
         return mediaCell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: GalleryGridSectionHeader.reuseIdentifier,
+            for: indexPath
+            ) as? GalleryGridSectionHeader {
+            header.text = gridSections[indexPath.section].headerTitle
+            return header
+        }
+        return UICollectionReusableView()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 40)
     }
 }
 
@@ -113,5 +135,43 @@ class MediaCell: UICollectionViewCell {
             return
         }
         imageView.image = image
+    }
+}
+
+class GalleryGridSectionHeader: UICollectionReusableView {
+    static let reuseIdentifier = "gallery_grid_section_header"
+
+    private lazy var label: UILabel = {
+        let label = UILabel()
+        label.textColor = DcColors.grayDateColor
+        return label
+    }()
+
+    var text: String? {
+        set {
+            label.text = newValue?.uppercased()
+        }
+        get {
+            return label.text
+        }
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupSubviews()
+        backgroundColor = .white
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupSubviews() {
+        addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 0).isActive = true
+        label.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        label.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: 0).isActive = true
+        label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
     }
 }
