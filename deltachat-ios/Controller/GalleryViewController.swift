@@ -16,6 +16,7 @@ class GalleryViewController: UIViewController {
         let layout = GridCollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
+        layout.format = .square
         return layout
     }()
 
@@ -52,6 +53,7 @@ class GalleryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
+        title = String.localized("gallery")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +69,6 @@ class GalleryViewController: UIViewController {
     private func setupSubviews() {
         view.addSubview(grid)
         grid.translatesAutoresizingMaskIntoConstraints = false
-
         grid.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         grid.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         grid.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
@@ -131,7 +132,7 @@ extension GalleryViewController {
         let deviceType = UIDevice.current.userInterfaceIdiom
 
 
-        var gridDisplay: CollectionDisplay?
+        var gridDisplay: GridDisplay?
         if deviceType == .phone {
             if orientation.isPortrait {
                 gridDisplay = .grid(columns: phonePortrait)
@@ -157,14 +158,19 @@ extension GalleryViewController {
  }
 
 
-enum CollectionDisplay {
+enum GridDisplay {
     case list
     case grid(columns: Int)
 }
 
-extension CollectionDisplay: Equatable {
+enum GridItemFormat {
+    case square
+    case rect(ratio: CGFloat)
+}
 
-    public static func == (lhs: CollectionDisplay, rhs: CollectionDisplay) -> Bool {
+extension GridDisplay: Equatable {
+
+    public static func == (lhs: GridDisplay, rhs: GridDisplay) -> Bool {
 
         switch (lhs, rhs) {
         case (.list, .list):
@@ -180,7 +186,7 @@ extension CollectionDisplay: Equatable {
 
 class GridCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
-    var display: CollectionDisplay = .list {
+    var display: GridDisplay = .list {
         didSet {
             if display != oldValue {
                 self.invalidateLayout()
@@ -196,10 +202,17 @@ class GridCollectionViewFlowLayout: UICollectionViewFlowLayout {
         }
     }
 
-    convenience init(display: CollectionDisplay, containerWidth: CGFloat) {
+    var format: GridItemFormat = .square {
+        didSet {
+            self.invalidateLayout()
+        }
+    }
+
+    convenience init(display: GridDisplay, containerWidth: CGFloat, format: GridItemFormat) {
         self.init()
         self.display = display
         self.containerWidth = containerWidth
+        self.format = format
         self.configLayout()
     }
 
@@ -209,10 +222,21 @@ class GridCollectionViewFlowLayout: UICollectionViewFlowLayout {
             self.scrollDirection = .vertical
             let spacing = CGFloat(column - 1) * minimumLineSpacing
             let optimisedWidth = (containerWidth - spacing) / CGFloat(column)
-            self.itemSize = CGSize(width: optimisedWidth, height: optimisedWidth) // keep as square
+            let height = calculateHeight(width: optimisedWidth)
+            self.itemSize = CGSize(width: optimisedWidth, height: height) // keep as square
         case .list:
             self.scrollDirection = .vertical
-            self.itemSize = CGSize(width: containerWidth, height: containerWidth)
+            let height = calculateHeight(width: containerWidth)
+            self.itemSize = CGSize(width: containerWidth, height: height)
+        }
+    }
+
+    private func calculateHeight(width: CGFloat) -> CGFloat {
+        switch format {
+        case .square:
+            return width
+        case .rect(let ratio):
+            return width * ratio
         }
     }
 
@@ -221,5 +245,3 @@ class GridCollectionViewFlowLayout: UICollectionViewFlowLayout {
         self.configLayout()
     }
 }
-
-
