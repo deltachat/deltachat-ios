@@ -12,6 +12,7 @@ class GalleryViewController: UIViewController {
     private let mediaMessageIds: [Int]
     private var gridSections: [GallerySection] = []
 
+    // MARK: - subview specs
     private lazy var gridLayout: GridCollectionViewFlowLayout = {
         let layout = GridCollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
@@ -20,7 +21,6 @@ class GalleryViewController: UIViewController {
         return layout
     }()
 
-    // MARK: - subview specs
     private lazy var grid: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: gridLayout)
         collection.dataSource = self
@@ -36,7 +36,6 @@ class GalleryViewController: UIViewController {
         return collection
     }()
 
-    // MARK: - specs
     private let gridInsets: CGFloat = 10
 
     init(mediaMessageIds: [Int]) {
@@ -114,23 +113,28 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         return UICollectionReusableView()
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let msgId = gridSections[indexPath.section].msgIds[indexPath.row]
+        showPreview(msgId: msgId)
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width - 2 * gridInsets, height: 32)
     }
 }
 
+// MARK: - update layout
 extension GalleryViewController {
     private func reloadCollectionViewLayout() {
 
         // columns specification
         let phonePortrait = 2
         let phoneLandscape = 3
-        let padPortrait = 3
-        let padLandscape = 5
+        let padPortrait = 4
+        let padLandscape = 6
 
         let orientation = UIDevice.current.orientation
         let deviceType = UIDevice.current.userInterfaceIdiom
-
 
         var gridDisplay: GridDisplay?
         if deviceType == .phone {
@@ -155,7 +159,23 @@ extension GalleryViewController {
         let containerWidth = view.bounds.width - view.safeAreaInsets.left - view.safeAreaInsets.right - 2 * gridInsets
         gridLayout.containerWidth = containerWidth
     }
- }
+}
+
+// MARK: - coordinator
+extension GalleryViewController {
+    func showPreview(msgId: Int) {
+        let msg = DcMsg(id: msgId)
+        guard let url = msg.fileURL, let index = mediaMessageIds.index(of: msgId) else {
+            return
+        }
+        let previousUrls: [URL] = msg.previousMediaURLs()
+        let nextUrls: [URL] = msg.nextMediaURLs()
+        // these are the files user will be able to swipe trough
+        let mediaUrls: [URL] = previousUrls + [url] + nextUrls
+        let previewController = PreviewController(currentIndex: index, urls: mediaUrls)
+        present(previewController, animated: true, completion: nil)
+    }
+}
 
 
 enum GridDisplay {
@@ -184,64 +204,3 @@ extension GridDisplay: Equatable {
     }
 }
 
-class GridCollectionViewFlowLayout: UICollectionViewFlowLayout {
-
-    var display: GridDisplay = .list {
-        didSet {
-            if display != oldValue {
-                self.invalidateLayout()
-            }
-        }
-    }
-
-    var containerWidth: CGFloat = 0.0 {
-        didSet {
-            if containerWidth != oldValue {
-                self.invalidateLayout()
-            }
-        }
-    }
-
-    var format: GridItemFormat = .square {
-        didSet {
-            self.invalidateLayout()
-        }
-    }
-
-    convenience init(display: GridDisplay, containerWidth: CGFloat, format: GridItemFormat) {
-        self.init()
-        self.display = display
-        self.containerWidth = containerWidth
-        self.format = format
-        self.configLayout()
-    }
-
-    private func configLayout() {
-        switch display {
-        case .grid(let column):
-            self.scrollDirection = .vertical
-            let spacing = CGFloat(column - 1) * minimumLineSpacing
-            let optimisedWidth = (containerWidth - spacing) / CGFloat(column)
-            let height = calculateHeight(width: optimisedWidth)
-            self.itemSize = CGSize(width: optimisedWidth, height: height) // keep as square
-        case .list:
-            self.scrollDirection = .vertical
-            let height = calculateHeight(width: containerWidth)
-            self.itemSize = CGSize(width: containerWidth, height: height)
-        }
-    }
-
-    private func calculateHeight(width: CGFloat) -> CGFloat {
-        switch format {
-        case .square:
-            return width
-        case .rect(let ratio):
-            return width * ratio
-        }
-    }
-
-    override func invalidateLayout() {
-        super.invalidateLayout()
-        self.configLayout()
-    }
-}

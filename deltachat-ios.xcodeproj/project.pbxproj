@@ -132,6 +132,7 @@
 		8B6D425BC604F7C43B65D436 /* Pods_deltachat_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */; };
 		AE0AA952247800E700D42A7F /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AA951247800E700D42A7F /* GalleryCell.swift */; };
 		AE0AA9542478010D00D42A7F /* GallerySectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AA9532478010D00D42A7F /* GallerySectionHeader.swift */; };
+		AE0AA9562478191900D42A7F /* GridCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */; };
 		AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */; };
 		AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */; };
 		AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19887423EB264000B4CD5F /* HelpViewController.swift */; };
@@ -414,6 +415,7 @@
 		A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.release.xcconfig"; sourceTree = "<group>"; };
 		AE0AA951247800E700D42A7F /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		AE0AA9532478010D00D42A7F /* GallerySectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallerySectionHeader.swift; sourceTree = "<group>"; };
+		AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuritySettingsController.swift; sourceTree = "<group>"; };
 		AE19887423EB264000B4CD5F /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
@@ -934,6 +936,7 @@
 				AE1988A423EB2FBA00B4CD5F /* Errors.swift */,
 				AEFBE23023FF09B20045327A /* TypeAlias.swift */,
 				307D822D241669C7006D2490 /* LocationManager.swift */,
+				AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1416,6 +1419,7 @@
 				308FEA52246ABA2700FCEAD6 /* FileMessageSizeCalculator.swift in Sources */,
 				305961F52346125100C80F33 /* TypingIndicatorCell.swift in Sources */,
 				305961FF2346125100C80F33 /* AvatarView.swift in Sources */,
+				AE0AA9562478191900D42A7F /* GridCollectionViewFlowLayout.swift in Sources */,
 				3059620C2346125100C80F33 /* MessageSizeCalculator.swift in Sources */,
 				305962042346125100C80F33 /* MessagesCollectionViewLayoutAttributes.swift in Sources */,
 				AEA0F6A124474146009F887B /* ProfileInfoViewController.swift in Sources */,
