@@ -124,7 +124,6 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         }
         let msg = DcMsg(id: mediaMessageIds[indexPath.row])
         mediaCell.update(msg: msg)
-        // cell update
         return mediaCell
     }
 

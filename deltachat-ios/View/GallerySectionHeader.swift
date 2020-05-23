@@ -27,7 +27,7 @@ class GalleryGridSectionHeader: UICollectionReusableView {
     var text: String? {
         set {
             label.text = newValue?.uppercased()
-            verticalAlignLabel(ratio: 0.75)
+            yAlignLabel(ratio: 0.75)
         }
         get {
             return label.text
@@ -53,7 +53,8 @@ class GalleryGridSectionHeader: UICollectionReusableView {
         label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -leadingMargin).isActive = true
     }
 
-    private func verticalAlignLabel(ratio: CGFloat) {
+    /// Can be used to offset the label from center (if there is enough space) - ration == 0.5 will Ycenter the label - ratio >= 0.5 will move the label down.
+    private func yAlignLabel(ratio: CGFloat) {
         safe_assert(ratio <= 1)
         let labelHeight = label.intrinsicContentSize.height
         let verticalMarginTotal = frame.height - labelHeight

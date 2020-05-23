@@ -330,7 +330,10 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func showGallery() {
-        presentPreview(for: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
+        guard let chatId = viewModel.chatId else { return }
+        let messageIds = viewModel.context.getChatMedia(chatId: chatId, messageType: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
+        let galleryController = GalleryViewController(mediaMessageIds: messageIds)
+            navigationController?.pushViewController(galleryController, animated: true)
     }
 
     private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {
@@ -348,8 +351,8 @@ class ContactDetailViewController: UITableViewController {
                 mediaUrls.insert(url, at: 0)
             }
         }
-        let galleryController = GalleryViewController(mediaMessageIds: messageIds)
-        navigationController?.pushViewController(galleryController, animated: true)
+        let previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
+        navigationController?.pushViewController(previewController, animated: true)
     }
 
     private func deleteChat() {
