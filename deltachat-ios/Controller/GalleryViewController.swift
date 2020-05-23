@@ -1,41 +1,6 @@
 import UIKit
 import DcCore
 
-enum TimeBucket: CaseIterable {
-    case today
-    case yesterday
-    case thisWeek
-    case lastWeek
-    case thisMonth
-    case lastMonth
-}
-
-extension TimeBucket {
-
-    static func bucket(for date: Date) -> TimeBucket {
-        // TODO: calculate here
-
-        return date.bucket()
-    }
-
-    var translationKey: String {
-        switch self {
-        case .today:
-            return "today"
-        case .yesterday:
-            return "yesterday"
-        case .thisWeek:
-            return "this_week"
-        case .lastWeek:
-            return "last_week"
-        case .thisMonth:
-            return "this_month"
-        case .lastMonth:
-            return "last_month"
-        }
-    }
-}
-
 class GalleryViewController: UIViewController {
 
     private struct GallerySection {
@@ -152,7 +117,11 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let mediaCell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCell.reuseIdentifier, for: indexPath) as! GalleryCell
+        guard let mediaCell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: GalleryCell.reuseIdentifier,
+            for: indexPath) as? GalleryCell else {
+            return UICollectionViewCell()
+        }
         let msg = DcMsg(id: mediaMessageIds[indexPath.row])
         mediaCell.update(msg: msg)
         // cell update

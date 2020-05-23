@@ -142,6 +142,7 @@
 		AE1988AB23EB3C7600B4CD5F /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = AE1988AA23EB3C7600B4CD5F /* Assets */; };
 		AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */; };
 		AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B31722672DFC00EC37A1 /* ActionCell.swift */; };
+		AE3FA04424793B8B004B5F30 /* TimeBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FA04324793B8B004B5F30 /* TimeBucket.swift */; };
 		AE406EF0240FF8FF005F7022 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE406EEF240FF8FF005F7022 /* ProfileCell.swift */; };
 		AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4AEE3422B1030D000AA495 /* PreviewController.swift */; };
 		AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */; };
@@ -426,6 +427,7 @@
 		AE1988AA23EB3C7600B4CD5F /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionCell.swift; sourceTree = "<group>"; };
 		AE38B31722672DFC00EC37A1 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
+		AE3FA04324793B8B004B5F30 /* TimeBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBucket.swift; sourceTree = "<group>"; };
 		AE406EEF240FF8FF005F7022 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		AE4AEE3422B1030D000AA495 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailHeader.swift; sourceTree = "<group>"; };
@@ -940,6 +942,7 @@
 				AEFBE23023FF09B20045327A /* TypeAlias.swift */,
 				307D822D241669C7006D2490 /* LocationManager.swift */,
 				AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */,
+				AE3FA04324793B8B004B5F30 /* TimeBucket.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1479,6 +1482,7 @@
 				AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */,
 				AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */,
 				305961FC2346125100C80F33 /* MessageContainerView.swift in Sources */,
+				AE3FA04424793B8B004B5F30 /* TimeBucket.swift in Sources */,
 				305961D42346125100C80F33 /* MessagesViewController.swift in Sources */,
 				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
 				AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */,

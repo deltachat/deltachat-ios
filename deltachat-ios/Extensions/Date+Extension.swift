@@ -2,57 +2,43 @@ import Foundation
 
 extension Date {
 
-    func bucket() -> TimeBucket {
-        if Calendar.current.isDateInToday(self) {
-            return .today
-        }
-        if Calendar.current.isDateInYesterday(self) {
-            return .yesterday
-        }
-
-        let today = Date()
-        let earliest = self
-        let latest = today
-
-        let differenceComponents: DateComponents = Calendar.current.dateComponents (
-            [.day, .weekOfYear, .month, .year],
-            from: earliest,
-            to: latest
-        )
-
-        let todayComponents: DateComponents = Calendar.current.dateComponents(
-            [.day, .weekOfYear, .month, .year],
-            from: today
-        )
-
-        let dateComponents: DateComponents = Calendar.current.dateComponents(
-            [.day, .weekOfYear, .month, .year],
-            from: self
-        )
-
-        let year = differenceComponents.year ?? 0
-        let month = differenceComponents.month ?? 0
-        let week = differenceComponents.weekOfYear ?? 0
-
-        if year > 1 || month > 1 || month == 1 {
-            return .lastMonth
-        }
-
-        if week > 1 {
-            return .thisMonth
-        }
-
-
-
-        if month == 1 && dateComponents.month == todayComponents.month {
-            return .thisMonth
-        }
-
-        if week > 1 {
-            return .lastWeek
-        }
-
-
-
+    func isEqual(
+        to date: Date,
+        toGranularity component: Calendar.Component,
+        in calendar: Calendar = .current
+    ) -> Bool {
+        calendar.isDate(self, equalTo: date, toGranularity: component)
     }
+
+    func isInSameYear(as date: Date) -> Bool { isEqual(to: date, toGranularity: .year) }
+    func isInSameMonth(as date: Date) -> Bool { isEqual(to: date, toGranularity: .month) }
+    func isInSameWeek(as date: Date) -> Bool { isEqual(to: date, toGranularity: .weekOfYear) }
+
+    func isInSameDay(as date: Date) -> Bool { Calendar.current.isDate(self, inSameDayAs: date) }
+
+    var isInThisYear: Bool { isInSameYear(as: Date()) }
+    var isInThisMonth: Bool { isInSameMonth(as: Date()) }
+    var isInThisWeek: Bool { isInSameWeek(as: Date()) }
+    var isInLastWeek: Bool {
+        guard let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date()) else { return false
+        }
+        return isEqual(to: lastWeekDate, toGranularity: .weekOfYear)
+    }
+
+    var isInLastMonth: Bool {
+        guard let lastMonthDate = Calendar.current.date(byAdding: .month, value: -1, to: Date()) else {
+            return false
+        }
+        return isEqual(to: lastMonthDate, toGranularity: .month)
+    }
+
+
+    var isInYesterday: Bool { Calendar.current.isDateInYesterday(self) }
+    var isInToday: Bool { Calendar.current.isDateInToday(self) }
+    var isInTomorrow: Bool { Calendar.current.isDateInTomorrow(self) }
+
+    var isInTheFuture: Bool { self > Date() }
+    var isInThePast: Bool { self < Date() }
+
+
 }
