@@ -229,7 +229,14 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func showGallery() {
-        presentPreview(for: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
+        let messageIds = dcContext.getChatMedia(
+            chatId: chatId,
+            messageType: DC_MSG_IMAGE,
+            messageType2: DC_MSG_GIF,
+            messageType3: DC_MSG_VIDEO
+        )
+        let galleryController = GalleryViewController(mediaMessageIds: messageIds)
+        navigationController?.pushViewController(galleryController, animated: true)
     }
 
     private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {
