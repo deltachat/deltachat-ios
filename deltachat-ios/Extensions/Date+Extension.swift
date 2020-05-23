@@ -20,7 +20,8 @@ extension Date {
     var isInThisMonth: Bool { isInSameMonth(as: Date()) }
     var isInThisWeek: Bool { isInSameWeek(as: Date()) }
     var isInLastWeek: Bool {
-        guard let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date()) else { return false
+        guard let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date()) else {
+            return false
         }
         return isEqual(to: lastWeekDate, toGranularity: .weekOfYear)
     }
