@@ -10,6 +10,14 @@ class GalleryGridSectionHeader: UICollectionReusableView {
         return label
     }()
 
+    private lazy var labelTopConstraint: NSLayoutConstraint = {
+        return label.topAnchor.constraint(equalTo: topAnchor, constant: 0)
+    }()
+
+    private lazy var labelBottomConstraint: NSLayoutConstraint = {
+        return label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
+    }()
+
     var leadingMargin: CGFloat = 0 {
         didSet {
             setNeedsLayout()
@@ -19,6 +27,7 @@ class GalleryGridSectionHeader: UICollectionReusableView {
     var text: String? {
         set {
             label.text = newValue?.uppercased()
+            verticalAlignLabel(ratio: 0.75)
         }
         get {
             return label.text
@@ -38,9 +47,19 @@ class GalleryGridSectionHeader: UICollectionReusableView {
     private func setupSubviews() {
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
+        labelTopConstraint.isActive = true
+        labelBottomConstraint.isActive = true
         label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leadingMargin).isActive = true
-        label.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
         label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -leadingMargin).isActive = true
-        label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+    }
+
+    private func verticalAlignLabel(ratio: CGFloat) {
+        safe_assert(ratio <= 1)
+        let labelHeight = label.intrinsicContentSize.height
+        let verticalMarginTotal = frame.height - labelHeight
+        if verticalMarginTotal > 0 {
+            labelBottomConstraint.constant = verticalMarginTotal * (1 - ratio)
+            labelTopConstraint.constant = verticalMarginTotal * ratio
+        }
     }
 }

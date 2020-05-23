@@ -141,13 +141,13 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         return UICollectionReusableView()
     }
 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width - 2 * gridInsets, height: 36)
+    }
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let msgId = gridSections[indexPath.section].msgIds[indexPath.row]
         showPreview(msgId: msgId)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width - 2 * gridInsets, height: 32)
     }
 }
 
