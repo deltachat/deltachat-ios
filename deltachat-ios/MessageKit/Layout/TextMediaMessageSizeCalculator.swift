@@ -27,6 +27,12 @@ import UIKit
 
 open class TextMediaMessageSizeCalculator: MessageSizeCalculator {
 
+    private var maxMediaItemHeight: CGFloat {
+        return UIScreen.main.bounds.size.height * 0.7
+    }
+
+    private let minTextWidth: CGFloat = 180
+
     public var incomingMessageLabelInsets = UIEdgeInsets(top: TextMediaMessageCell.insetTop,
                                                          left: TextMediaMessageCell.insetHorizontalBig,
                                                          bottom: TextMediaMessageCell.insetBottom,
@@ -48,17 +54,32 @@ open class TextMediaMessageSizeCalculator: MessageSizeCalculator {
         let maxImageWidth = messageContainerMaxWidth(for: message)
 
         let sizeForMediaItem = { (maxWidth: CGFloat, item: MediaItem) -> CGSize in
-            let maxTextWidth = maxWidth - self.messageLabelInsets(for: message).horizontal
+            var maxTextWidth = maxWidth - self.messageLabelInsets(for: message).horizontal
             var imageHeight = item.size.height
-            var itemWidth = item.size.width
+            var imageWidth = item.size.width
 
             if maxWidth < item.size.width {
                 // Maintain the ratio if width is too great
                 imageHeight = maxWidth * item.size.height / item.size.width
-                itemWidth = maxWidth
+                imageWidth = maxWidth
             }
 
-            var messageContainerSize = CGSize(width: itemWidth, height: imageHeight)
+            if self.maxMediaItemHeight < imageHeight {
+                // Maintain the ratio if height is too great
+                imageWidth = self.maxMediaItemHeight * imageWidth / imageHeight
+                imageHeight = self.maxMediaItemHeight
+                maxTextWidth = imageWidth - self.messageLabelInsets(for: message).horizontal
+
+            }
+
+            if imageWidth < self.minTextWidth {
+                // if text will be too narrow, increase again the size
+                imageHeight = self.minTextWidth * imageHeight / imageWidth
+                imageWidth = self.minTextWidth
+                maxTextWidth = imageWidth - self.messageLabelInsets(for: message).horizontal
+            }
+
+            var messageContainerSize = CGSize(width: imageWidth, height: imageHeight)
             switch message.kind {
             case .photoText(let mediaItem), .videoText(let mediaItem), .fileText(let mediaItem):
                 if let text = mediaItem.text {
