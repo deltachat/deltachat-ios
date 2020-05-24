@@ -19,7 +19,7 @@ public class DcContext {
             version += " " + appVersion
         }
 
-        contextPointer = dc_context_new(callback_ios, nil, "iOS" + version)
+        contextPointer = dc_context_new("iOS" + version, nil, nil)
     }
 
     deinit {
@@ -178,45 +178,27 @@ public class DcContext {
     }
 
     public func interruptIdle() {
-        dc_interrupt_imap_idle(contextPointer)
-        dc_interrupt_smtp_idle((contextPointer))
-        dc_interrupt_mvbox_idle((contextPointer))
-        dc_interrupt_sentbox_idle((contextPointer))
     }
 
     public func openDatabase(dbFile: String) {
-        _ = dc_open(contextPointer, dbFile, nil)
     }
 
     public func closeDatabase() {
-        dc_close(contextPointer)
     }
 
     public func performImap() {
-        dc_perform_imap_jobs(contextPointer)
-        dc_perform_imap_fetch(contextPointer)
-        dc_perform_imap_idle(contextPointer)
     }
 
     public func performMoveBox() {
-        dc_perform_mvbox_jobs(contextPointer)
-        dc_perform_mvbox_fetch(contextPointer)
-        dc_perform_mvbox_idle(contextPointer)
     }
 
     public func performSmtpJobs() {
-        dc_perform_smtp_jobs(contextPointer)
     }
     
     public func performSmtp() {
-        dc_perform_smtp_jobs(contextPointer)
-        dc_perform_smtp_idle(contextPointer)
     }
 
     public func performSentbox() {
-        dc_perform_sentbox_jobs(contextPointer)
-        dc_perform_sentbox_fetch(contextPointer)
-        dc_perform_sentbox_idle(contextPointer)
     }
 
     public func setStockTranslation(id: Int32, localizationKey: String) {
