@@ -8,22 +8,18 @@ public class DcContext {
     /// where we want to have more than one DcContext.
     static let dcContext: DcContext = DcContext()
     public var logger: Logger?
-    let contextPointer: OpaquePointer
+    var contextPointer: OpaquePointer?
     public var lastErrorString: String?
     public var lastWarningString: String = "" // temporary thing to get a grip on some weird errors
     public var maxConfigureProgress: Int = 0 // temporary thing to get a grip on some weird errors
 
     private init() {
-        var version = ""
-        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            version += " " + appVersion
-        }
-
-        contextPointer = dc_context_new("iOS" + version, nil, nil)
     }
 
     deinit {
+        if contextPointer == nil { return } // avoid a warning about a "careless call"
         dc_context_unref(contextPointer)
+        contextPointer = nil
     }
 
     /// Injection of DcContext is preferred over the usage of the shared variable
@@ -181,9 +177,17 @@ public class DcContext {
     }
 
     public func openDatabase(dbFile: String) {
+        var version = ""
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            version += " " + appVersion
+        }
+
+        contextPointer = dc_context_new("iOS" + version, dbFile, nil)
     }
 
     public func closeDatabase() {
+        dc_context_unref(contextPointer)
+        contextPointer = nil
     }
 
     public func performImap() {
