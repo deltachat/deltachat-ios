@@ -190,19 +190,20 @@ public class DcContext {
         contextPointer = nil
     }
 
-    public func performImap() {
+    public func maybeStartIo() {
+        if dc_is_io_running(contextPointer) == 0 {
+            dc_start_io(contextPointer)
+        }
     }
 
-    public func performMoveBox() {
+    public func maybeStopIo() {
+        if dc_is_io_running(contextPointer) != 0 {
+            dc_stop_io(contextPointer)
+        }
     }
 
     public func performSmtpJobs() {
-    }
-    
-    public func performSmtp() {
-    }
-
-    public func performSentbox() {
+        // TODO-ASYNC: call the new direct-send function
     }
 
     public func setStockTranslation(id: Int32, localizationKey: String) {

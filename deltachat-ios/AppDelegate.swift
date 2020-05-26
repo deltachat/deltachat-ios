@@ -141,6 +141,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.openDatabase(dbFile: databaseLocation)
     }
 
+    func closeDatabase() {
+        state = .stopped
+        dcContext.closeDatabase()
+    }
+
     func setStockTranslations() {
         dcContext.setStockTranslation(id: DC_STR_NOMESSAGES, localizationKey: "chat_no_messages")
         dcContext.setStockTranslation(id: DC_STR_SELF, localizationKey: "self")
@@ -176,16 +181,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_DEVICE_MESSAGES, localizationKey: "device_talk")
     }
 
-    func stopThreads() {
-        state = .background
-        dcContext.interruptIdle()
-    }
-
-    func closeDatabase() {
-        state = .stopped
-        dcContext.closeDatabase()
-    }
-
     func startThreads(_ completion: (() -> Void)? = nil) {
         logger.info("---- start ----")
 
@@ -194,6 +189,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         state = .running
 
+        /* TODO-ASYNC: use that for events
         DispatchQueue.global(qos: .background).async {
             self.registerBackgroundTask()
             while self.state == .running {
@@ -204,28 +200,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 self.endBackgroundTask()
             }
         }
+        */
 
-        DispatchQueue.global(qos: .utility).async {
-            self.registerBackgroundTask()
-            while self.state == .running {
-                self.dcContext.performSmtp()
-            }
-            if self.backgroundTask != .invalid {
-                self.endBackgroundTask()
-            }
-        }
+        dcContext.maybeStartIo()
+    }
 
-        DispatchQueue.global(qos: .background).async {
-            while self.state == .running {
-                self.dcContext.performSentbox()
-            }
-        }
-
-        DispatchQueue.global(qos: .background).async {
-            while self.state == .running {
-                self.dcContext.performMoveBox()
-            }
-        }
+    func stopThreads() {
+        state = .background
+        dcContext.maybeStopIo()
     }
 
     // MARK: - BackgroundTask
