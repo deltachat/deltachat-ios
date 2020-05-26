@@ -90,8 +90,8 @@ class ShareAttachment {
                     self.imageThumbnail = result.scaleDownImage(toMax: self.thumbnailSize)
                     self.delegate?.onThumbnailChanged()
                 }
-                if error != nil {
-                    self.dcContext.logger?.error(error?.localizedDescription ?? "Could not load share item as image")
+                if let error = error {
+                    self.dcContext.logger?.error("Could not load share item as image: \(error.localizedDescription)")
                 }
             }
         }
@@ -124,8 +124,8 @@ class ShareAttachment {
                     self.delegate?.onThumbnailChanged()
                 }
             }
-            if error != nil {
-                self.dcContext.logger?.error(error?.localizedDescription ?? "Could not load share item as image")
+            if let error = error {
+                self.dcContext.logger?.error("Could not load share item as image: \(error.localizedDescription)")
             }
         }
     }
@@ -143,8 +143,8 @@ class ShareAttachment {
             default:
                 self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
             }
-            if error != nil {
-                self.dcContext.logger?.error(error?.localizedDescription ?? "Could not load share item as video")
+            if let error = error {
+                self.dcContext.logger?.error("Could not load share item as video: \(error.localizedDescription)")
             }
         }
     }
@@ -169,8 +169,8 @@ class ShareAttachment {
             default:
                 self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
             }
-            if error != nil {
-                self.dcContext.logger?.error(error?.localizedDescription ?? "Could not load share item.")
+            if let error = error {
+                self.dcContext.logger?.error("Could not load share item: \(error.localizedDescription)")
             }
         }
     }
@@ -217,8 +217,8 @@ class ShareAttachment {
                 default:
                     self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
                 }
-                if error != nil {
-                    self.dcContext.logger?.error(error?.localizedDescription ?? "Could not share URL.")
+                if let error = error {
+                    self.dcContext.logger?.error("Could not share URL: \(error.localizedDescription)")
                 }
             }
         }
