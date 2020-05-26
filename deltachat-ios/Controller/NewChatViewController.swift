@@ -42,9 +42,6 @@ class NewChatViewController: UITableViewController {
         return searchController.searchBar.text?.isEmpty ?? true
     }
 
-    var syncObserver: Any?
-    var hud: ProgressHud?
-
     lazy var deviceContactHandler: DeviceContactsHandler = {
         let handler = DeviceContactsHandler(dcContext: DcContext.shared)
         handler.contactListDelegate = self
@@ -86,37 +83,6 @@ class NewChatViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        let nc = NotificationCenter.default
-        syncObserver = nc.addObserver(
-            forName: dcNotificationSecureJoinerProgress,
-            object: nil,
-            queue: nil
-        ) { [weak self] notification in
-            guard let self = self else { return }
-            if let ui = notification.userInfo {
-                if ui["error"] as? Bool ?? false {
-                    self.hud?.error(ui["errorMessage"] as? String)
-                } else if ui["done"] as? Bool ?? false {
-                    self.hud?.done()
-                } else {
-                    self.hud?.progress(ui["progress"] as? Int ?? 0)
-                }
-            }
-        }
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-
-        let nc = NotificationCenter.default
-        if let syncObserver = self.syncObserver {
-            nc.removeObserver(syncObserver)
-        }
     }
 
     @objc func cancelButtonPressed() {
