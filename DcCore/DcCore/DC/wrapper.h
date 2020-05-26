@@ -13,6 +13,4 @@ typedef dc_lot_t dc_lot_t;
 typedef dc_array_t dc_array_t;
 typedef dc_chatlist_t dc_chatlist_t;
 
-uintptr_t callback_ios(dc_context_t* mailbox, int event, uintptr_t data1, uintptr_t data2);
-
 #endif /* wrapper_h */
