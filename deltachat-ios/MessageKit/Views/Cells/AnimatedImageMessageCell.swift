@@ -126,7 +126,7 @@ open class AnimatedImageMessageCell: MessageContentCell {
                let attributes = displayDelegate.detectorAttributes(for: detector, and: message, at: indexPath)
                messageLabel.setAttributes(attributes, detector: detector)
            }
-            messageLabel.attributedText = mediaItem.text
+            messageLabel.attributedText = mediaItem.text?[MediaItemConstants.messageText]
         }
     }
 

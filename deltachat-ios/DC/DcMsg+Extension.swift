@@ -72,7 +72,7 @@ extension DcMsg: MessageType {
         }
         let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
                                                                              NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor])
-        return MessageKind.animatedImageText(Media(url: fileURL, image: image, text: attributedString))
+        return MessageKind.animatedImageText(Media(url: fileURL, image: image, text: [attributedString]))
     }
 
     internal func createAudioMessage(text: String) -> MessageKind {

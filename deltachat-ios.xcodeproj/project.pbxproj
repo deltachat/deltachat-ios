@@ -97,6 +97,7 @@
 		308FEA50246AB67100FCEAD6 /* FileMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FEA4F246AB67100FCEAD6 /* FileMessageCell.swift */; };
 		308FEA52246ABA2700FCEAD6 /* FileMessageSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FEA51246ABA2700FCEAD6 /* FileMessageSizeCalculator.swift */; };
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
+		30A2EC36247D72720024ADD8 /* AnimatedImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A2EC35247D72720024ADD8 /* AnimatedImageMessageCell.swift */; };
 		30A4D9AE2332672700544344 /* QrInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4D9AD2332672600544344 /* QrInviteViewController.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
 		30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2122447285600CE2C90 /* ShareViewController.swift */; };
@@ -368,6 +369,7 @@
 		308FEA4F246AB67100FCEAD6 /* FileMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMessageCell.swift; sourceTree = "<group>"; };
 		308FEA51246ABA2700FCEAD6 /* FileMessageSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMessageSizeCalculator.swift; sourceTree = "<group>"; };
 		3095A350237DD1F700AB07F7 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
+		30A2EC35247D72720024ADD8 /* AnimatedImageMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedImageMessageCell.swift; sourceTree = "<group>"; };
 		30A4D9AD2332672600544344 /* QrInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrInviteViewController.swift; sourceTree = "<group>"; };
 		30AC265E237F1807002A943F /* AvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarHelper.swift; sourceTree = "<group>"; };
 		30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateCheckController.swift; sourceTree = "<group>"; };
@@ -672,8 +674,8 @@
 		305961AD2346125100C80F33 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				308FEA5624753A5B00FCEAD6 /* AnimatedImageMessageCell.swift */,
 				300C509C234B551900F8AE22 /* TextMediaMessageCell.swift */,
+				30A2EC35247D72720024ADD8 /* AnimatedImageMessageCell.swift */,
 				305961AE2346125100C80F33 /* ContactMessageCell.swift */,
 				78E45E4B21D404AE00D4B15E /* InfoMessageCell.swift */,
 				305961AF2346125100C80F33 /* LocationMessageCell.swift */,
@@ -1339,6 +1341,7 @@
 				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
 				3040F460234F419400FA34D5 /* BasicAudioController.swift in Sources */,
+				30A2EC36247D72720024ADD8 /* AnimatedImageMessageCell.swift in Sources */,
 				305962082346125100C80F33 /* MediaMessageSizeCalculator.swift in Sources */,
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,

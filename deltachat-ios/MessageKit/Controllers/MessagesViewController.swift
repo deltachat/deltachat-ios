@@ -292,6 +292,10 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
             let cell = messagesCollectionView.dequeueReusableCell(TextMediaMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
+        case .animatedImageText:
+            let cell = messagesCollectionView.dequeueReusableCell(AnimatedImageMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
         case .fileText:
             let cell = messagesCollectionView.dequeueReusableCell(FileMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
