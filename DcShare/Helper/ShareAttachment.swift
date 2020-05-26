@@ -39,7 +39,7 @@ class ShareAttachment {
     }
 
 
-    func createMessages() {
+    private func createMessages() {
         guard let items = inputItems as? [NSExtensionItem] else { return }
         for item in items {
             if let attachments = item.attachments {
@@ -48,7 +48,7 @@ class ShareAttachment {
         }
     }
 
-    func createMessageFromDataRepresentaion(_ attachments: [NSItemProvider]) {
+    private func createMessageFromDataRepresentaion(_ attachments: [NSItemProvider]) {
         for attachment in attachments {
             if attachment.hasItemConformingToTypeIdentifier(kUTTypeGIF as String) {
                 createAnimatedImageMsg(attachment)
@@ -67,7 +67,7 @@ class ShareAttachment {
     }
 
     // for now we only support GIF
-    func createAnimatedImageMsg(_ item: NSItemProvider) {
+    private func createAnimatedImageMsg(_ item: NSItemProvider) {
         item.loadItem(forTypeIdentifier: kUTTypeGIF as String, options: nil) { data, error in
             var result: SDAnimatedImage?
             switch data {
@@ -97,7 +97,7 @@ class ShareAttachment {
         }
     }
 
-    func createImageMsg(_ item: NSItemProvider) {
+    private func createImageMsg(_ item: NSItemProvider) {
         item.loadItem(forTypeIdentifier: kUTTypeImage as String, options: nil) { data, error in
             let result: UIImage?
             switch data {
@@ -130,7 +130,7 @@ class ShareAttachment {
         }
     }
 
-    func createMovieMsg(_ item: NSItemProvider) {
+    private func createMovieMsg(_ item: NSItemProvider) {
         item.loadItem(forTypeIdentifier: kUTTypeMovie as String, options: nil) { data, error in
             switch data {
             case let url as URL:
@@ -149,15 +149,15 @@ class ShareAttachment {
         }
     }
 
-    func createAudioMsg(_ item: NSItemProvider) {
+    private func createAudioMsg(_ item: NSItemProvider) {
         createMessageFromItemURL(item: item, typeIdentifier: kUTTypeAudio, viewType: DC_MSG_AUDIO)
     }
 
-    func createFileMsg(_ item: NSItemProvider) {
+    private func createFileMsg(_ item: NSItemProvider) {
         createMessageFromItemURL(item: item, typeIdentifier: kUTTypeFileURL, viewType: DC_MSG_FILE)
     }
 
-    func createMessageFromItemURL(item: NSItemProvider, typeIdentifier: CFString, viewType: Int32) {
+    private func createMessageFromItemURL(item: NSItemProvider, typeIdentifier: CFString, viewType: Int32) {
         item.loadItem(forTypeIdentifier: typeIdentifier as String, options: nil) { data, error in
             switch data {
             case let url as URL:
@@ -175,13 +175,13 @@ class ShareAttachment {
         }
     }
 
-    func addDcMsg(url: URL, viewType: Int32) {
+    private func addDcMsg(url: URL, viewType: Int32) {
         let msg = DcMsg(viewType: viewType)
         msg.setFile(filepath: url.path, mimeType: DcUtils.getMimeTypeForPath(path: url.path))
         self.messages.append(msg)
     }
 
-    func generateThumbnailRepresentations(url: URL) {
+    private func generateThumbnailRepresentations(url: URL) {
         let size: CGSize = CGSize(width: self.thumbnailSize * 2 / 3, height: self.thumbnailSize)
         let scale = UIScreen.main.scale
 
@@ -208,7 +208,7 @@ class ShareAttachment {
         }
     }
 
-    func addSharedUrl(_ item: NSItemProvider) {
+    private func addSharedUrl(_ item: NSItemProvider) {
         if let delegate = self.delegate {
             item.loadItem(forTypeIdentifier: kUTTypeURL as String, options: nil) { data, error in
                 switch data {
