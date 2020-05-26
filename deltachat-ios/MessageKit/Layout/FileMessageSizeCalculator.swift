@@ -12,16 +12,16 @@ open class FileMessageSizeCalculator: MessageSizeCalculator {
         }
     }
 
-    public var incomingMessageLabelInsets = UIEdgeInsets(top: 0,
+    private var incomingMessageLabelInsets = UIEdgeInsets(top: 0,
                                                          left: FileMessageCell.insetHorizontalBig,
                                                          bottom: FileMessageCell.insetBottom,
                                                          right: FileMessageCell.insetHorizontalSmall)
-    public var outgoingMessageLabelInsets = UIEdgeInsets(top: 0,
+    private var outgoingMessageLabelInsets = UIEdgeInsets(top: 0,
                                                          left: FileMessageCell.insetHorizontalSmall,
                                                          bottom: FileMessageCell.insetBottom,
                                                          right: FileMessageCell.insetHorizontalBig)
 
-    public var messageLabelFont = UIFont.preferredFont(forTextStyle: .body)
+    private var messageLabelFont = UIFont.preferredFont(forTextStyle: .body)
 
     internal func messageLabelInsets(for message: MessageType) -> UIEdgeInsets {
         let dataSource = messagesLayout.messagesDataSource
@@ -39,7 +39,7 @@ open class FileMessageSizeCalculator: MessageSizeCalculator {
                     messageContainerSize.height += messageTextHeight + self.messageLabelInsets(for: message).bottom
                 }
             default:
-                fatalError("only fileText types can be calculated by FileMessageSizeCalculator")
+                safe_fatalError("only fileText types can be calculated by FileMessageSizeCalculator")
             }
             return messageContainerSize
         }
@@ -49,7 +49,8 @@ open class FileMessageSizeCalculator: MessageSizeCalculator {
             let maxImageWidth = item.image != nil ? messageContainerMaxWidth(for: message) : defaultFileMessageCellWidth
             return sizeForMediaItem(maxImageWidth, item)
         default:
-            fatalError("messageContainerSize received unhandled MessageDataType: \(message.kind)")
+            safe_fatalError("messageContainerSize received unhandled MessageDataType: \(message.kind)")
+            return .zero
         }
     }
 
@@ -69,6 +70,4 @@ open class FileMessageSizeCalculator: MessageSizeCalculator {
             break
         }
     }
-
-
 }

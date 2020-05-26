@@ -36,16 +36,13 @@ class FileView: UIView {
         stackView.axis = .vertical
         stackView.alignment = .leading
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: FileMessageCell.insetHorizontalSmall,
-                                                                     leading: FileMessageCell.insetHorizontalSmall,
-                                                                     bottom: FileMessageCell.insetHorizontalSmall,
-                                                                     trailing: FileMessageCell.insetHorizontalSmall)
         return stackView
     }()
 
-    init() {
+    init(directionalLayoutMargins: NSDirectionalEdgeInsets) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
+        verticalStackView.directionalLayoutMargins = directionalLayoutMargins
         addSubview(fileBadgeView)
         addSubview(verticalStackView)
         addConstraints([
