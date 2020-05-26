@@ -117,7 +117,6 @@
 		7837B64021E54DC600CDE126 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7837B63F21E54DC600CDE126 /* .swiftlint.yml */; };
 		785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BE16721E247F1003BE98C /* MessageInfoViewController.swift */; };
 		789E879621D6CB58003ED1C5 /* QrCodeReaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */; };
-		789E879D21D6DF86003ED1C5 /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E879C21D6DF86003ED1C5 /* ProgressHud.swift */; };
 		78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3921D3CFBC00D4B15E /* SettingsController.swift */; };
 		78E45E3C21D3D03700D4B15E /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */; };
 		78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */; };
@@ -391,7 +390,6 @@
 		785BE16721E247F1003BE98C /* MessageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfoViewController.swift; sourceTree = "<group>"; };
 		787D6699229F2237000A7A9D /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "deltachat-ios/libraries/deltachat-core-rust/target/universal/debug/libdeltachat.a"; sourceTree = "<group>"; };
 		789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeReaderController.swift; sourceTree = "<group>"; };
-		789E879C21D6DF86003ED1C5 /* ProgressHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHud.swift; sourceTree = "<group>"; };
 		78C7036A21D46752005D4525 /* deltachat-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "deltachat-ios.entitlements"; sourceTree = "<group>"; };
 		78E45E3921D3CFBC00D4B15E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
@@ -940,7 +938,6 @@
 				78ED838221D5379000243125 /* TextFieldCell.swift */,
 				30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */,
 				78E45E3B21D3D03700D4B15E /* TextFieldTableViewCell.swift */,
-				789E879C21D6DF86003ED1C5 /* ProgressHud.swift */,
 				AE38B31722672DFC00EC37A1 /* ActionCell.swift */,
 				AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */,
 				AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */,
@@ -1425,7 +1422,6 @@
 				305962012346125100C80F33 /* PlayButtonView.swift in Sources */,
 				308FEA4C2462F11300FCEAD6 /* FileView.swift in Sources */,
 				B20462E42440A4A600367A57 /* SettingsAutodelOverviewController.swift in Sources */,
-				789E879D21D6DF86003ED1C5 /* ProgressHud.swift in Sources */,
 				305961F32346125100C80F33 /* MediaMessageCell.swift in Sources */,
 				305962102346154D00C80F33 /* String+Extension.swift in Sources */,
 				78E45E4C21D404AE00D4B15E /* InfoMessageCell.swift in Sources */,
