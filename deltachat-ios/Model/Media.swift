@@ -8,7 +8,7 @@ struct Media: MediaItem {
     var image: UIImage?
 
     var placeholderImage: UIImage = UIImage(color: .gray, size: CGSize(width: 250, height: 100))!
-    var text: NSAttributedString?
+    var text: [NSAttributedString]?
 
     var size: CGSize {
         if let image = image {
@@ -18,9 +18,12 @@ struct Media: MediaItem {
         }
     }
 
-    init(url: URL? = nil, image: UIImage? = nil, text: NSAttributedString? = nil) {
+    init(url: URL? = nil, image: UIImage? = nil, placeholderImage: UIImage? = nil, text: [NSAttributedString]? = nil) {
         self.url = url
         self.image = image
         self.text = text
+        if let placeholderImage = placeholderImage {
+            self.placeholderImage = placeholderImage
+        }
     }
 }

@@ -93,6 +93,9 @@
 		306011B622E5E7FB00C1CE6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
 		306C32322445CDE9001D89F3 /* DcLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306C32312445CDE9001D89F3 /* DcLogger.swift */; };
 		307D822E241669C7006D2490 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307D822D241669C7006D2490 /* LocationManager.swift */; };
+		308FEA4C2462F11300FCEAD6 /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FEA4B2462F11300FCEAD6 /* FileView.swift */; };
+		308FEA50246AB67100FCEAD6 /* FileMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FEA4F246AB67100FCEAD6 /* FileMessageCell.swift */; };
+		308FEA52246ABA2700FCEAD6 /* FileMessageSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FEA51246ABA2700FCEAD6 /* FileMessageSizeCalculator.swift */; };
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
 		30A4D9AE2332672700544344 /* QrInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4D9AD2332672600544344 /* QrInviteViewController.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
@@ -360,6 +363,9 @@
 		306011C922E5E83500C1CE6F /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = uk; path = uk.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		306C32312445CDE9001D89F3 /* DcLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcLogger.swift; sourceTree = "<group>"; };
 		307D822D241669C7006D2490 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		308FEA4B2462F11300FCEAD6 /* FileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
+		308FEA4F246AB67100FCEAD6 /* FileMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMessageCell.swift; sourceTree = "<group>"; };
+		308FEA51246ABA2700FCEAD6 /* FileMessageSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMessageSizeCalculator.swift; sourceTree = "<group>"; };
 		3095A350237DD1F700AB07F7 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
 		30A4D9AD2332672600544344 /* QrInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrInviteViewController.swift; sourceTree = "<group>"; };
 		30AC265E237F1807002A943F /* AvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarHelper.swift; sourceTree = "<group>"; };
@@ -641,9 +647,9 @@
 		305961AC2346125100C80F33 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				305961B72346125100C80F33 /* HeadersFooters */,
 				305961AD2346125100C80F33 /* Cells */,
 				305961B62346125100C80F33 /* MessageLabel.swift */,
-				305961B72346125100C80F33 /* HeadersFooters */,
 				305961B92346125100C80F33 /* TypingIndicator.swift */,
 				305961BA2346125100C80F33 /* MessageContainerView.swift */,
 				305961BB2346125100C80F33 /* TypingBubble.swift */,
@@ -653,6 +659,7 @@
 				305961BF2346125100C80F33 /* PlayButtonView.swift */,
 				305961C02346125100C80F33 /* BubbleCircle.swift */,
 				3040F461234F550300FA34D5 /* AudioPlayerView.swift */,
+				308FEA4B2462F11300FCEAD6 /* FileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -666,6 +673,7 @@
 				305961AF2346125100C80F33 /* LocationMessageCell.swift */,
 				305961B02346125100C80F33 /* MediaMessageCell.swift */,
 				305961B12346125100C80F33 /* TextMessageCell.swift */,
+				308FEA4F246AB67100FCEAD6 /* FileMessageCell.swift */,
 				305961B22346125100C80F33 /* TypingIndicatorCell.swift */,
 				305961B32346125100C80F33 /* MessageContentCell.swift */,
 				305961B42346125100C80F33 /* MessageCollectionViewCell.swift */,
@@ -692,6 +700,7 @@
 				305961C62346125100C80F33 /* MessagesCollectionViewFlowLayout.swift */,
 				305961C72346125100C80F33 /* MediaMessageSizeCalculator.swift */,
 				300C50A0234BDAB800F8AE22 /* TextMediaMessageSizeCalculator.swift */,
+				308FEA51246ABA2700FCEAD6 /* FileMessageSizeCalculator.swift */,
 				305961C82346125100C80F33 /* AudioMessageSizeCalculator.swift */,
 				305961C92346125100C80F33 /* TextMessageSizeCalculator.swift */,
 				305961CA2346125100C80F33 /* LocationMessageSizeCalculator.swift */,
@@ -1343,6 +1352,7 @@
 				AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */,
 				30149D9322F21129003C12B5 /* QrViewController.swift in Sources */,
 				AEE56D80225504DB007DC082 /* Extensions.swift in Sources */,
+				308FEA50246AB67100FCEAD6 /* FileMessageCell.swift in Sources */,
 				7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */,
 				AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */,
 				305FE03623A81B4C0053BE90 /* EmptyStateLabel.swift in Sources */,
@@ -1354,6 +1364,7 @@
 				305961CC2346125100C80F33 /* UIView+Extensions.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
 				AE76E5EE242BF2EA003CF461 /* WelcomeViewController.swift in Sources */,
+				308FEA52246ABA2700FCEAD6 /* FileMessageSizeCalculator.swift in Sources */,
 				305961F52346125100C80F33 /* TypingIndicatorCell.swift in Sources */,
 				305961FF2346125100C80F33 /* AvatarView.swift in Sources */,
 				3059620C2346125100C80F33 /* MessageSizeCalculator.swift in Sources */,
@@ -1375,6 +1386,7 @@
 				305962092346125100C80F33 /* AudioMessageSizeCalculator.swift in Sources */,
 				305961DB2346125100C80F33 /* AudioItem.swift in Sources */,
 				305962012346125100C80F33 /* PlayButtonView.swift in Sources */,
+				308FEA4C2462F11300FCEAD6 /* FileView.swift in Sources */,
 				B20462E42440A4A600367A57 /* SettingsAutodelOverviewController.swift in Sources */,
 				789E879D21D6DF86003ED1C5 /* ProgressHud.swift in Sources */,
 				305961F32346125100C80F33 /* MediaMessageCell.swift in Sources */,

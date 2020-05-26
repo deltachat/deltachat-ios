@@ -3,10 +3,10 @@ import UIKit
 // A subclass of `MessageContentCell` used to display mixed media messages.
 open class TextMediaMessageCell: MessageContentCell {
 
-    public static let insetTop: CGFloat = 12
-    public static let insetBottom: CGFloat = 12
-    public static let insetHorizontalBig: CGFloat = 23
-    public static let insetHorizontalSmall: CGFloat = 12
+    static let insetTop: CGFloat = 12
+    static let insetBottom: CGFloat = 12
+    static let insetHorizontalBig: CGFloat = 23
+    static let insetHorizontalSmall: CGFloat = 12
 
 
     // MARK: - Properties
@@ -34,12 +34,6 @@ open class TextMediaMessageCell: MessageContentCell {
         return playButtonView
     }()
 
-    open lazy var fileView: UIImageView = {
-        let fileView = UIImageView(image: UIImage(named: "ic_attach_file_36pt"))
-        fileView.translatesAutoresizingMaskIntoConstraints = false
-        return fileView
-    }()
-
     // MARK: - Methods
 
     open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
@@ -50,7 +44,7 @@ open class TextMediaMessageCell: MessageContentCell {
         }
     }
 
-    func getMessageLabelHeight() -> CGFloat {
+    private func getMessageLabelHeight() -> CGFloat {
         if let text = messageLabel.attributedText {
             let height = (text.height(withConstrainedWidth:
                 messageContainerView.frame.width -
@@ -85,11 +79,6 @@ open class TextMediaMessageCell: MessageContentCell {
             let playButtonViewConstraints = [ playButtonView.constraintCenterXTo(imageView),
                                               playButtonView.constraintCenterYTo(imageView)]
             messageContainerView.addConstraints(playButtonViewConstraints)
-        case .fileText:
-            fileView.constraint(equalTo: CGSize(width: 35, height: 35))
-            let fileViewConstraints = [ fileView.constraintCenterXTo(imageView),
-                                                         fileView.constraintCenterYTo(imageView)]
-            messageContainerView.addConstraints(fileViewConstraints)
         default:
             break
         }
@@ -106,7 +95,6 @@ open class TextMediaMessageCell: MessageContentCell {
         super.setupSubviews()
         messageContainerView.addSubview(imageView)
         messageContainerView.addSubview(playButtonView)
-        messageContainerView.addSubview(fileView)
         messageContainerView.addSubview(messageLabel)
     }
 
@@ -131,14 +119,13 @@ open class TextMediaMessageCell: MessageContentCell {
         }
 
         configurePlayButtonView(for: message.kind)
-        configureFileView(for: message.kind)
         setupConstraints(for: message.kind)
 
         displayDelegate.configureMediaMessageImageView(imageView, for: message, at: indexPath, in: messagesCollectionView)
     }
 
 
-    func configurePlayButtonView(for messageKind: MessageKind) {
+    private func configurePlayButtonView(for messageKind: MessageKind) {
         switch messageKind {
         case .videoText:
             playButtonView.isHidden = false
@@ -147,31 +134,23 @@ open class TextMediaMessageCell: MessageContentCell {
         }
     }
 
-    func configureFileView(for messageKind: MessageKind) {
-        switch messageKind {
-        case .fileText:
-            fileView.isHidden = false
-        default:
-            fileView.isHidden = true
-        }
-    }
-
-    func configureImageView(for mediaItem: MediaItem) {
+    private func configureImageView(for mediaItem: MediaItem) {
         imageView.image = mediaItem.image ?? mediaItem.placeholderImage
     }
-    func configureMessageLabel(for mediaItem: MediaItem,
-                               with displayDelegate: MessagesDisplayDelegate,
-                               message: MessageType,
-                               at indexPath: IndexPath,
-                               in messagesCollectionView: MessagesCollectionView) {
+
+    private func configureMessageLabel(for mediaItem: MediaItem,
+                                       with displayDelegate: MessagesDisplayDelegate,
+                                       message: MessageType,
+                                       at indexPath: IndexPath,
+                                       in messagesCollectionView: MessagesCollectionView) {
         let enabledDetectors = displayDelegate.enabledDetectors(for: message, at: indexPath, in: messagesCollectionView)
         messageLabel.configure {
-           messageLabel.enabledDetectors = enabledDetectors
-           for detector in enabledDetectors {
-               let attributes = displayDelegate.detectorAttributes(for: detector, and: message, at: indexPath)
-               messageLabel.setAttributes(attributes, detector: detector)
-           }
-            messageLabel.attributedText = mediaItem.text
+            messageLabel.enabledDetectors = enabledDetectors
+            for detector in enabledDetectors {
+                let attributes = displayDelegate.detectorAttributes(for: detector, and: message, at: indexPath)
+                messageLabel.setAttributes(attributes, detector: detector)
+            }
+            messageLabel.attributedText = mediaItem.text?[MediaItemConstants.messageText]
         }
     }
 

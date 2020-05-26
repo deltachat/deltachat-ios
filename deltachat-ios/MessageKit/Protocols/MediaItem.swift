@@ -40,6 +40,11 @@ public protocol MediaItem {
     /// The size of the media item.
     var size: CGSize { get }
 
-    var text: NSAttributedString? { get }
+    var text: [NSAttributedString]? { get }
+}
 
+struct MediaItemConstants {
+    static let messageText = 0
+    static let mediaTitle = 1
+    static let mediaSubtitle = 2
 }

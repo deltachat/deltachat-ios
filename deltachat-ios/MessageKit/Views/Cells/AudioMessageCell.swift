@@ -72,9 +72,9 @@ open class AudioMessageCell: MessageContentCell {
         if let text = messageLabel.attributedText {
             let height = (text.height(withConstrainedWidth:
                 messageContainerView.frame.width -
-                    TextMediaMessageCell.insetHorizontalSmall -
-                    TextMediaMessageCell.insetHorizontalBig))
-            return height + TextMediaMessageCell.insetBottom + TextMediaMessageCell.insetTop
+                    AudioMessageCell.insetHorizontalSmall -
+                    AudioMessageCell.insetHorizontalBig))
+            return height + AudioMessageCell.insetBottom + AudioMessageCell.insetTop
         }
         return 0
     }
