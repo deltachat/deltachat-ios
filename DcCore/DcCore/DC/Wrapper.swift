@@ -176,6 +176,11 @@ public class DcContext {
     public func interruptIdle() {
     }
 
+    public func getEventEmitter() -> DcEventEmitter {
+        let eventEmitterPointer = dc_get_event_emitter(contextPointer)
+        return DcEventEmitter(eventEmitterPointer: eventEmitterPointer)
+    }
+
     public func openDatabase(dbFile: String) {
         var version = ""
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
@@ -566,6 +571,56 @@ public class DcContext {
     }
 }
 
+public class DcEventEmitter {
+    private var eventEmitterPointer: OpaquePointer?
+
+    // takes ownership of specified pointer
+    public init(eventEmitterPointer: OpaquePointer?) {
+        self.eventEmitterPointer = eventEmitterPointer
+    }
+
+    public func getNextEvent() -> DcEvent? {
+        guard let eventPointer = dc_get_next_event(eventEmitterPointer) else { return nil }
+        return DcEvent(eventPointer: eventPointer)
+    }
+
+    deinit {
+        dc_event_emitter_unref(eventEmitterPointer)
+    }
+}
+
+public class DcEvent {
+    private var eventPointer: OpaquePointer?
+
+    // takes ownership of specified pointer
+    public init(eventPointer: OpaquePointer?) {
+        self.eventPointer = eventPointer
+    }
+
+    deinit {
+        dc_event_unref(eventPointer)
+    }
+
+    public var id: Int {
+        return Int(dc_event_get_id(eventPointer))
+    }
+
+    public var data1Int: Int {
+        return Int(dc_event_get_data1_int(eventPointer))
+    }
+
+    public var data2Int: Int {
+        return Int(dc_event_get_data2_int(eventPointer))
+    }
+
+    public var data2String: String {
+        guard let cString = dc_event_get_data2_str(eventPointer) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+}
+
 public class DcChatlist {
     private var chatListPointer: OpaquePointer?
 
@@ -707,8 +762,6 @@ public class DcArray {
     public var count: Int {
        return Int(dc_array_get_cnt(dcArrayPointer))
     }
-
-    ///TODO: add missing methods here
 }
 
 public class DcMsg {
