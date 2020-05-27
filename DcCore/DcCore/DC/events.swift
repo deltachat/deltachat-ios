@@ -11,24 +11,26 @@ public let dcNotificationViewChat = Notification.Name(rawValue: "MrEventViewChat
 public let dcNotificationContactChanged = Notification.Name(rawValue: "MrEventContactsChanged")
 public let dcNotificationChatModified = Notification.Name(rawValue: "dcNotificationChatModified")
 
-@_silgen_name("callbackSwift")
+public func handleEvent(event: DcEvent) {
+    let id = event.id
+    let data1 = event.data1Int
+    let data2 = event.data2Int
 
-public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLong, data1String: UnsafePointer<Int8>, data2String: UnsafePointer<Int8>) {
-    if event >= DC_EVENT_ERROR && event <= 499 {
-        let s = String(cString: data2String)
+    if id >= DC_EVENT_ERROR && id <= 499 {
+        let s = event.data2String
         DcContext.shared.lastErrorString = s
         DcContext.shared.logger?.error("event: \(s)")
         return
     }
 
-    switch event {
+    switch id {
 
     case DC_EVENT_INFO:
-        let s = String(cString: data2String)
+        let s = event.data2String
         DcContext.shared.logger?.info("event: \(s)")
 
     case DC_EVENT_WARNING:
-        let s = String(cString: data2String)
+        let s = event.data2String
         DcContext.shared.lastWarningString = s
         DcContext.shared.logger?.warning("event: \(s)")
 
@@ -73,10 +75,10 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         }
 
     case DC_EVENT_IMAP_CONNECTED, DC_EVENT_SMTP_CONNECTED:
-        DcContext.shared.logger?.warning("network: \(String(cString: data2String))")
+        DcContext.shared.logger?.warning("network: \(event.data2String)")
 
     case DC_EVENT_MSGS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED, DC_EVENT_MSG_FAILED:
-        DcContext.shared.logger?.info("change: \(event)")
+        DcContext.shared.logger?.info("change: \(id)")
 
         let nc = NotificationCenter.default
 
@@ -93,7 +95,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         }
 
     case DC_EVENT_CHAT_MODIFIED:
-        DcContext.shared.logger?.info("chat modified: \(event)")
+        DcContext.shared.logger?.info("chat modified: \(id)")
         let nc = NotificationCenter.default
         DispatchQueue.main.async {
             nc.post(
@@ -137,7 +139,7 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         }
 
     case DC_EVENT_SMTP_MESSAGE_SENT:
-        DcContext.shared.logger?.info("network: \(String(cString: data2String))")
+        DcContext.shared.logger?.info("network: \(event.data2String)")
 
     case DC_EVENT_MSG_DELIVERED:
         DcContext.shared.logger?.info("message delivered: \(data1)-\(data2)")
@@ -187,6 +189,6 @@ public func callbackSwift(event: CInt, data1: CUnsignedLong, data2: CUnsignedLon
         }
 
     default:
-        DcContext.shared.logger?.warning("unknown event: \(event)")
+        DcContext.shared.logger?.warning("unknown event: \(id)")
     }
 }

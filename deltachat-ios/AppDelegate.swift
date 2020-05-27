@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
 
         openDatabase()
+        installEventHandler()
         RelayHelper.setup(dcContext)
         appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
         locationManager = LocationManager(context: dcContext)
@@ -182,26 +183,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_DEVICE_MESSAGES, localizationKey: "device_talk")
     }
 
-    func startThreads(_ completion: (() -> Void)? = nil) {
+    func installEventHandler() {
+        DispatchQueue.global(qos: .background).async {
+            self.registerBackgroundTask()
+            let eventEmitter = self.dcContext.getEventEmitter()
+            while true {
+                guard let event = eventEmitter.getNextEvent() else { break }
+                handleEvent(event: event)
+            }
+            if self.backgroundTask != .invalid {
+                self.endBackgroundTask()
+            }
+        }
+    }
+
+    func startThreads() {
         logger.info("---- start ----")
 
         if state == .running {
             return
         }
         state = .running
-
-        /* TODO-ASYNC: use that for events
-        DispatchQueue.global(qos: .background).async {
-            self.registerBackgroundTask()
-            while self.state == .running {
-                self.dcContext.performImap()
-            }
-            if self.backgroundTask != .invalid {
-                completion?()
-                self.endBackgroundTask()
-            }
-        }
-        */
 
         dcContext.maybeStartIo()
     }

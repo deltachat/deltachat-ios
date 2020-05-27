@@ -789,6 +789,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             appDelegate.closeDatabase()
             DatabaseHelper().clearAccountData()
             appDelegate.openDatabase()
+            appDelegate.installEventHandler()
             appDelegate.startThreads()
             appDelegate.appCoordinator.presentWelcomeController()
         }))
