@@ -1,19 +1,7 @@
 # Delta Chat iOS Changelog
 
-## v1.8.0
-
-* lots bug fixes
-* improve error handling
-
-
-## v1.6.1
-
-* better error messages
-* bug fixes
-
-
-## v1.6.0
-2020-05-03
+## v1.8.1
+2020-05
 
 * add option for automatic deletion of messages after a given timespan;
   messages can be deleted from device and/or server
