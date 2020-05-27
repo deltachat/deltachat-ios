@@ -114,6 +114,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if success {
             addProgressAlertListener(progressName: dcNotificationConfigureProgress, onSuccess: handleLoginSuccess)
             showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
+            dcContext.stopIo()
             dcContext.configure()
         } else {
             accountCreationErrorAlert()
