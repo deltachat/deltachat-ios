@@ -210,7 +210,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func stopThreads() {
         state = .background
-        dcContext.maybeStopIo()
+        dcContext.stopIo()
     }
 
     // MARK: - BackgroundTask

@@ -196,15 +196,13 @@ public class DcContext {
     }
 
     public func maybeStartIo() {
-        if dc_is_io_running(contextPointer) == 0 {
+        if isConfigured() {
             dc_start_io(contextPointer)
         }
     }
 
-    public func maybeStopIo() {
-        if dc_is_io_running(contextPointer) != 0 {
-            dc_stop_io(contextPointer)
-        }
+    public func stopIo() {
+        dc_stop_io(contextPointer)
     }
 
     public func performSmtpJobs() {
