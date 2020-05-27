@@ -90,13 +90,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
 
+
     func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("---- background-fetch ----")
+        startThreads()
 
-        startThreads {
-            // TODO: actually set the right value depending on if we found sth
-            completionHandler(.newData)
-        }
+        // TODO-ASYNC: implement that correctly
+        sleep(15)
+        completionHandler(.newData)
     }
 
     func applicationWillEnterForeground(_: UIApplication) {
