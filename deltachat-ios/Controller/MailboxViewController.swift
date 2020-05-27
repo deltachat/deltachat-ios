@@ -43,7 +43,7 @@ class MailboxViewController: ChatViewController {
     private func askToChat(cell: MessageCollectionViewCell) {
         if let indexPath = messagesCollectionView.indexPath(for: cell) {
 
-            let message = messageList[indexPath.section]
+            let message = getMessageAt(row: indexPath.section)
             let dcContact = message.fromContact
             let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
             let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)

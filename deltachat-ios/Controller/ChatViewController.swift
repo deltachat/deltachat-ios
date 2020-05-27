@@ -41,21 +41,28 @@ extension ChatViewController: MediaPickerDelegate {
 class ChatViewController: MessagesViewController {
     var dcContext: DcContext
     let outgoingAvatarOverlap: CGFloat = 17.5
-    let loadCount = 30
     let chatId: Int
-    let refreshControl = UIRefreshControl()
-    var messageList: [DcMsg] = []
+
+    lazy var messageCache: NSCache<NSNumber, DcMsg> = {
+        return NSCache()
+    }()
+
+    lazy var messageIds: [Int] = {
+        let messageCount = self.dcContext.getMessageCount(chatId: self.chatId)
+        return getMessageIds(messageCount)
+    }()
 
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
 
+    /// the timer refreshes the date labels of each message
     weak var timer: Timer?
 
     lazy var navBarTap: UITapGestureRecognizer = {
         UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
     }()
 
-    /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and udpate audio cell UI accordingly.
+    /// The `BasicAudioController` controls the AVAudioPlayer state (play, pause, stop) and updates the audio cell UI accordingly.
     open lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
 
     private var disableWriting: Bool
@@ -122,9 +129,7 @@ class ChatViewController: MessagesViewController {
             //reload table
             DispatchQueue.main.async {
                 guard let self = self else { return }
-                self.messageList = self.getMessageIds(self.messageList.count)
                 self.messagesCollectionView.reloadDataAndKeepOffset()
-                self.refreshControl.endRefreshing()
             }
         }
     }
@@ -193,8 +198,7 @@ class ChatViewController: MessagesViewController {
             }
         }
 
-        loadFirstMessages()
-
+        loadMessages()
         if RelayHelper.sharedInstance.isForwarding() {
             askToForwardMessage()
         }
@@ -285,39 +289,26 @@ class ChatViewController: MessagesViewController {
     }
 
     @objc
-    private func loadMoreMessages() {
-        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
-            DispatchQueue.main.async {
-                self.messageList = self.getMessageIds(self.loadCount, from: self.messageList.count) + self.messageList
-                self.messagesCollectionView.reloadDataAndKeepOffset()
-                self.refreshControl.endRefreshing()
-            }
-        }
-    }
-
-    @objc
     private func refreshMessages() {
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
             DispatchQueue.main.async {
-                self.messageList = self.getMessageIds(self.messageList.count)
+                self.messageIds = self.getMessageIds(self.messageIds.count)
                 self.messagesCollectionView.reloadDataAndKeepOffset()
-                self.refreshControl.endRefreshing()
                 if self.isLastSectionVisible() {
                     self.messagesCollectionView.scrollToBottom(animated: true)
                 }
-                self.showEmptyStateView(self.messageList.isEmpty)
+                self.showEmptyStateView(self.messageIds.isEmpty)
             }
         }
     }
 
-    private func loadFirstMessages() {
+    private func loadMessages() {
         DispatchQueue.global(qos: .userInitiated).async {
             DispatchQueue.main.async {
-                self.messageList = self.getMessageIds(self.loadCount)
+                self.messageIds = self.getMessageIds(self.messageIds.count)
                 self.messagesCollectionView.reloadData()
-                self.refreshControl.endRefreshing()
                 self.messagesCollectionView.scrollToBottom(animated: false)
-                self.showEmptyStateView(self.messageList.isEmpty)
+                self.showEmptyStateView(self.messageIds.isEmpty)
             }
         }
     }
@@ -354,13 +345,21 @@ class ChatViewController: MessagesViewController {
         return dcContext.getDraft(chatId: chatId)
     }
 
-    private func getMessageIds(_ count: Int, from: Int? = nil) -> [DcMsg] {
-        let ids = dcContext.getMessageIds(chatId: chatId, count: count, from: from)
-        let markIds: [UInt32] = ids.map { UInt32($0) }
-        dcContext.markSeenMessages(messageIds: markIds, count: ids.count)
+    private func getMessageIds(_ count: Int) -> [Int] {
+        return dcContext.getMessageIds(chatId: chatId, count: count, from: 0)
+    }
 
-        return ids.map {
-            DcMsg(id: $0)
+    func getMessageAt(row: Int) -> DcMsg {
+        if row > self.messageIds.count - 1 {
+            safe_fatalError("message requested at index \(row) doesn't exist")
+        }
+
+        if let message = messageCache.object(forKey: NSNumber(value: messageIds[row])) {
+            return message
+        } else {
+            let message = DcMsg(id: messageIds[row])
+            messageCache.setObject(message, forKey: NSNumber(value: messageIds[row]))
+            return message
         }
     }
 
@@ -389,8 +388,6 @@ class ChatViewController: MessagesViewController {
         scrollsToBottomOnKeyboardBeginsEditing = true // default false
         maintainPositionOnKeyboardFrameChanged = true // default false
         messagesCollectionView.backgroundColor = DcColors.chatBackgroundColor
-        messagesCollectionView.addSubview(refreshControl)
-        refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
 
         let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout
         layout?.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 2, right: 8)
@@ -567,7 +564,7 @@ class ChatViewController: MessagesViewController {
     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
         switch action {
         case NSSelectorFromString("messageInfo:"):
-            let msg = messageList[indexPath.section]
+            let msg = getMessageAt(row: indexPath.section)
             logger.info("message: View info \(msg.messageId)")
 
             let msgViewController = MessageInfoViewController(dcContext: dcContext, message: msg)
@@ -575,12 +572,12 @@ class ChatViewController: MessagesViewController {
                 ctrl.pushViewController(msgViewController, animated: true)
             }
         case NSSelectorFromString("messageDelete:"):
-            let msg = messageList[indexPath.section]
+            let msg = getMessageAt(row: indexPath.section)
             logger.info("message: delete \(msg.messageId)")
             askToDeleteMessage(id: msg.id)
 
         case NSSelectorFromString("messageForward:"):
-            let msg = messageList[indexPath.section]
+            let msg = getMessageAt(row: indexPath.section)
             RelayHelper.sharedInstance.setForwardMessage(messageId: msg.id)
             navigationController?.popViewController(animated: true)
         default:
@@ -695,7 +692,7 @@ class ChatViewController: MessagesViewController {
 extension ChatViewController: MessagesDataSource {
 
     func numberOfSections(in _: MessagesCollectionView) -> Int {
-        return messageList.count
+        return messageIds.count
     }
 
     func currentSender() -> SenderType {
@@ -704,11 +701,11 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func messageForItem(at indexPath: IndexPath, in _: MessagesCollectionView) -> MessageType {
-        return messageList[indexPath.section]
+        return getMessageAt(row: indexPath.section)
     }
 
     func avatar(for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> Avatar {
-        let message = messageList[indexPath.section]
+        let message = getMessageAt(row: indexPath.section)
         let contact = message.fromContact
         return Avatar(image: contact.profileImage, initials: DcUtils.getInitials(inputName: contact.displayName))
     }
@@ -736,7 +733,7 @@ extension ChatViewController: MessagesDataSource {
 
         if showNamesAboveMessage && !isPreviousMessageSameSender(at: indexPath) {
             let name = message.sender.displayName
-            let m = messageList[indexPath.section]
+            let m = getMessageAt(row: indexPath.section)
             attributedString = NSMutableAttributedString(string: name, attributes: [
                 .font: UIFont.systemFont(ofSize: 14),
                 .foregroundColor: m.fromContact.color,
@@ -760,15 +757,15 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func isMessageForwarded(at indexPath: IndexPath) -> Bool {
-        let m = messageList[indexPath.section]
+        let m = getMessageAt(row: indexPath.section)
         return m.isForwarded
     }
 
     func isTimeLabelVisible(at indexPath: IndexPath) -> Bool {
-        guard indexPath.section + 1 < messageList.count else { return false }
+        guard indexPath.section + 1 < messageIds.count else { return false }
 
-        let messageA = messageList[indexPath.section]
-        let messageB = messageList[indexPath.section + 1]
+        let messageA = getMessageAt(row: indexPath.section)
+        let messageB = getMessageAt(row: indexPath.section + 1)
 
         if messageA.fromContactId == messageB.fromContactId {
             return false
@@ -786,8 +783,8 @@ extension ChatViewController: MessagesDataSource {
 
     func isPreviousMessageSameSender(at indexPath: IndexPath) -> Bool {
         guard indexPath.section - 1 >= 0 else { return false }
-        let messageA = messageList[indexPath.section - 1]
-        let messageB = messageList[indexPath.section]
+        let messageA = getMessageAt(row: indexPath.section - 1)
+        let messageB = getMessageAt(row: indexPath.section)
 
         if messageA.isInfo {
             return false
@@ -797,13 +794,13 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func isInfoMessage(at indexPath: IndexPath) -> Bool {
-        return messageList[indexPath.section].isInfo
+        return getMessageAt(row: indexPath.section).isInfo
     }
 
     func isImmediateNextMessageSameSender(at indexPath: IndexPath) -> Bool {
-        guard indexPath.section + 1 < messageList.count else { return false }
-        let messageA = messageList[indexPath.section]
-        let messageB = messageList[indexPath.section + 1]
+        guard indexPath.section + 1 < messageIds.count else { return false }
+        let messageA = getMessageAt(row: indexPath.section)
+        let messageB = getMessageAt(row: indexPath.section + 1)
 
         if messageA.isInfo {
             return false
@@ -820,14 +817,14 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func isAvatarHidden(at indexPath: IndexPath) -> Bool {
-        let message = messageList[indexPath.section]
+        let message = getMessageAt(row: indexPath.section)
         return isNextMessageSameSender(at: indexPath) || message.isInfo
     }
 
     func isNextMessageSameSender(at indexPath: IndexPath) -> Bool {
-        guard indexPath.section + 1 < messageList.count else { return false }
-        let messageA = messageList[indexPath.section]
-        let messageB = messageList[indexPath.section + 1]
+        guard indexPath.section + 1 < messageIds.count else { return false }
+        let messageA = getMessageAt(row: indexPath.section)
+        let messageB = getMessageAt(row: indexPath.section + 1)
 
         if messageA.isInfo {
             return false
@@ -837,8 +834,8 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        guard indexPath.section < messageList.count else { return nil }
-        let m = messageList[indexPath.section]
+        guard indexPath.section < messageIds.count else { return nil }
+        let m = getMessageAt(row: indexPath.section)
 
         if m.isInfo || isImmediateNextMessageSameSender(at: indexPath) {
             return nil
@@ -923,17 +920,21 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func updateMessage(_ messageId: Int) {
-        if let index = messageList.firstIndex(where: { $0.id == messageId }) {
+        if let index = messageIds.firstIndex(where: { $0 == messageId }) {
             dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
 
-            messageList[index] = DcMsg(id: messageId)
+            messageCache.setObject(DcMsg(id: messageId), forKey: NSNumber(value: messageId))
             // Reload section to update header/footer labels
             messagesCollectionView.performBatchUpdates({
+                logger.debug("reload section \(index)")
                 messagesCollectionView.reloadSections([index])
                 if index > 0 {
+                    logger.debug("also reload section \(index - 1)")
                     messagesCollectionView.reloadSections([index - 1])
                 }
-                if index < messageList.count - 1 {
+
+                if index <  messagesCollectionView.numberOfSections - 1 {
+                    logger.debug("also reload section \(index + 1)")
                     messagesCollectionView.reloadSections([index + 1])
                 }
             }, completion: { [weak self] _ in
@@ -942,6 +943,7 @@ extension ChatViewController: MessagesDataSource {
                 }
             })
         } else {
+            /// TODO: check if it is more robust to just load the message Ids from the core
             let msg = DcMsg(id: messageId)
             if msg.chatId == chatId {
                 insertMessage(msg)
@@ -951,13 +953,14 @@ extension ChatViewController: MessagesDataSource {
 
     func insertMessage(_ message: DcMsg) {
         dcContext.markSeenMessages(messageIds: [UInt32(message.id)])
-        messageList.append(message)
+        messageIds.append(message.id)
+        messageCache.setObject(message, forKey: NSNumber(value: message.id))
         emptyStateView.isHidden = true
         // Reload last section to update header/footer labels and insert a new one
         messagesCollectionView.performBatchUpdates({
-            messagesCollectionView.insertSections([messageList.count - 1])
-            if messageList.count >= 2 {
-                messagesCollectionView.reloadSections([messageList.count - 2])
+            messagesCollectionView.insertSections([messageIds.count - 1])
+            if messageIds.count >= 2 {
+                messagesCollectionView.reloadSections([messageIds.count - 2])
             }
         }, completion: { [weak self] _ in
             if self?.isLastSectionVisible() == true {
@@ -1020,9 +1023,9 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func isLastSectionVisible() -> Bool {
-        guard !messageList.isEmpty else { return false }
+        guard !messageIds.isEmpty else { return false }
 
-        let lastIndexPath = IndexPath(item: 0, section: messageList.count - 1)
+        let lastIndexPath = IndexPath(item: 0, section: messageIds.count - 1)
         return messagesCollectionView.indexPathsForVisibleItems.contains(lastIndexPath)
     }
 }
@@ -1077,7 +1080,7 @@ extension ChatViewController: MessagesDisplayDelegate {
     }
 
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) {
-        let message = messageList[indexPath.section]
+        let message = getMessageAt(row: indexPath.section)
         let contact = message.fromContact
         let avatar = Avatar(image: contact.profileImage, initials: DcUtils.getInitials(inputName: contact.displayName))
         avatarView.set(avatar: avatar)
@@ -1228,7 +1231,7 @@ extension ChatViewController: MessagesLayoutDelegate {
 extension ChatViewController: MessageCellDelegate {
     @objc func didTapMessage(in cell: MessageCollectionViewCell) {
         if let indexPath = messagesCollectionView.indexPath(for: cell) {
-            let message = messageList[indexPath.section]
+            let message = getMessageAt(row: indexPath.section) //messageList[indexPath.section]
             if message.isSetupMessage {
                 didTapAsm(msg: message, orgText: "")
             } else if let url = message.fileURL {
@@ -1284,7 +1287,7 @@ extension ChatViewController: MessageCellDelegate {
 
     @objc func didTapAvatar(in cell: MessageCollectionViewCell) {
         if let indexPath = messagesCollectionView.indexPath(for: cell) {
-            let message = messageList[indexPath.section]
+            let message = getMessageAt(row: indexPath.section) //messageList[indexPath.section]
             let chat = dcContext.getChat(chatId: chatId)
             showContactDetail(of: message.fromContact.id, in: chat.chatType, chatId: chatId)
         }

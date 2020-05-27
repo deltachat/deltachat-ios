@@ -31,6 +31,10 @@ public class DcContext {
         return .dcContext
     }
 
+    public func getMessageCount(chatId: Int) -> Int {
+        return Int(dc_get_msg_cnt(contextPointer, UInt32(chatId)))
+    }
+
     public func getMessageIds(chatId: Int, count: Int, from: Int?) -> [Int] {
 		let cMessageIds = getChatMessages(chatId: chatId)
 
