@@ -9,7 +9,6 @@ class ChatTitleView: UIView {
         titleLabel.backgroundColor = UIColor.clear
         titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         titleLabel.textAlignment = .center
-        titleLabel.adjustsFontSizeToFitWidth = true
         return titleLabel
     }()
 
@@ -42,6 +41,8 @@ class ChatTitleView: UIView {
         addConstraints([ containerView.constraintAlignTopTo(self),
                          containerView.constraintAlignBottomTo(self),
                          containerView.constraintCenterXTo(self),
+                         containerView.constraintAlignLeadingTo(self),
+                         containerView.constraintAlignTrailingTo(self)
         ])
 
         containerView.addSubview(titleLabel)
