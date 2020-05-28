@@ -36,7 +36,7 @@ class QrViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK:  - lifecycle
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("qr_code")
