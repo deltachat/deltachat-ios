@@ -38,4 +38,3 @@ class EmptyStateLabel: FlexLabel {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
