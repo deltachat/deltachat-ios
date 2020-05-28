@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var reachability = Reachability()!
     var window: UIWindow?
     var state = ApplicationState.stopped
+    var appIsInForeground = false
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // main()
@@ -96,19 +97,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("---- background-fetch ----")
         startThreads()
 
-        // TODO-ASYNC: implement that correctly
-        sleep(15)
-        completionHandler(.newData)
+        // we have 30 seconds time for our job, leave some seconds for graceful termination.
+        // also, the faster we return, the sooner we get called again.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            if !self.appIsInForeground {
+                self.dcContext.stopIo()
+            }
+            completionHandler(.newData)
+        }
     }
 
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("---- foreground ----")
+        appIsInForeground = true
         startThreads()
     }
 
     func applicationDidEnterBackground(_: UIApplication) {
         logger.info("---- background ----")
-
+        appIsInForeground = false
         maybeStop()
     }
 
