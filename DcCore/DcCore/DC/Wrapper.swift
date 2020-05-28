@@ -86,6 +86,10 @@ public class DcContext {
         return chatlist
     }
 
+    public func sendMsgSync(chatId: Int, msg: DcMsg) {
+        dc_send_msg_sync(contextPointer, UInt32(chatId), msg.messagePointer)
+    }
+
     public func getChatMedia(chatId: Int, messageType: Int32, messageType2: Int32, messageType3: Int32) -> [Int] {
         guard let messagesPointer = dc_get_chat_media(contextPointer, UInt32(chatId), messageType, messageType2, messageType3) else {
             return []
@@ -203,10 +207,6 @@ public class DcContext {
 
     public func stopIo() {
         dc_stop_io(contextPointer)
-    }
-
-    public func performSmtpJobs() {
-        // TODO-ASYNC: call the new direct-send function
     }
 
     public func setStockTranslation(id: Int32, localizationKey: String) {
@@ -763,7 +763,7 @@ public class DcArray {
 }
 
 public class DcMsg {
-    private var messagePointer: OpaquePointer?
+    var messagePointer: OpaquePointer?
 
     /**
         viewType: one of
