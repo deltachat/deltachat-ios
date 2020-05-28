@@ -55,6 +55,30 @@ class ChatViewController: MessagesViewController {
         UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
     }()
 
+    private var locationStreamingItem: UIBarButtonItem = {
+        let indicator = LocationStreamingIndicator()
+        return UIBarButtonItem(customView: indicator)
+    }()
+
+    private lazy var badgeItem: UIBarButtonItem = {
+        let badge: InitialsBadge
+        let chat = dcContext.getChat(chatId: chatId)
+        if let image = chat.profileImage {
+            badge = InitialsBadge(image: image, size: 28, accessibilityLabel: String.localized("menu_view_profile"))
+        } else {
+            badge = InitialsBadge(
+                name: chat.name,
+                color: chat.color,
+                size: 28,
+                accessibilityLabel: String.localized("menu_view_profile")
+            )
+            badge.setLabelFont(UIFont.systemFont(ofSize: 14))
+        }
+        badge.setVerified(chat.isVerified)
+        badge.accessibilityTraits = .button
+        return UIBarButtonItem(customView: badge)
+    }()
+
     /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and udpate audio cell UI accordingly.
     open lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
 
@@ -139,7 +163,6 @@ class ChatViewController: MessagesViewController {
         emptyStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
         emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
         emptyStateView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -236,12 +259,14 @@ class ChatViewController: MessagesViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         let lastSectionVisibleBeforeTransition = self.isLastSectionVisible()
         coordinator.animate(
-            alongsideTransition: { _ in
-                if self.showCustomNavBar, let titleView = self.navigationItem.titleView as? ChatTitleView {
-                    titleView.hideLocationStreamingIndicator()
+            alongsideTransition: { [weak self] _ in
+                guard let self = self else { return }
+                if self.showCustomNavBar {
+                    self.navigationItem.setRightBarButton(self.badgeItem, animated: true)
                 }
             },
-            completion: { _ in
+            completion: {[weak self] _ in
+                guard let self = self else { return }
                 self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
                 self.messagesCollectionView.reloadDataAndKeepOffset()
                 if lastSectionVisibleBeforeTransition {
@@ -269,19 +294,14 @@ class ChatViewController: MessagesViewController {
             }
         }
         
-        titleView.updateTitleView(title: chat.name, subtitle: subtitle, isLocationStreaming: chat.isSendingLocations)
+        titleView.updateTitleView(title: chat.name, subtitle: subtitle)
         navigationItem.titleView = titleView
 
-        let badge: InitialsBadge
-        if let image = chat.profileImage {
-            badge =  InitialsBadge(image: image, size: 28, accessibilityLabel: String.localized("menu_view_profile"))
+        if chat.isSendingLocations {
+            navigationItem.rightBarButtonItems = [badgeItem, locationStreamingItem]
         } else {
-            badge =  InitialsBadge(name: chat.name, color: chat.color, size: 28, accessibilityLabel: String.localized("menu_view_profile"))
-            badge.setLabelFont(UIFont.systemFont(ofSize: 14))
+            navigationItem.rightBarButtonItem = badgeItem
         }
-        badge.setVerified(chat.isVerified)
-        badge.accessibilityTraits = .button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: badge)
     }
 
     @objc
