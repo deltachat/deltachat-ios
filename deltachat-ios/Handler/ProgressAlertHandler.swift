@@ -68,8 +68,10 @@ extension ProgressAlertHandler {
             guard let self = self else { return }
             if let ui = notification.userInfo {
                 if ui["error"] as? Bool ?? false {
+                    DcContext.shared.maybeStartIo()
                     self.updateProgressAlert(error: ui["errorMessage"] as? String)
                 } else if ui["done"] as? Bool ?? false {
+                    DcContext.shared.maybeStartIo()
                     self.updateProgressAlertSuccess(completion: onSuccess)
                 } else {
                     self.updateProgressAlertValue(value: ui["progress"] as? Int)

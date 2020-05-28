@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var reachability = Reachability()!
     var window: UIWindow?
     var state = ApplicationState.stopped
+    var appIsInForeground = false
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // main()
@@ -43,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
 
         openDatabase()
+        installEventHandler()
         RelayHelper.setup(dcContext)
         appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
         locationManager = LocationManager(context: dcContext)
@@ -90,23 +92,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
 
+
     func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("---- background-fetch ----")
+        startThreads()
 
-        startThreads {
-            // TODO: actually set the right value depending on if we found sth
+        // we have 30 seconds time for our job, leave some seconds for graceful termination.
+        // also, the faster we return, the sooner we get called again.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            if !self.appIsInForeground {
+                self.dcContext.stopIo()
+            }
             completionHandler(.newData)
         }
     }
 
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("---- foreground ----")
+        appIsInForeground = true
         startThreads()
     }
 
     func applicationDidEnterBackground(_: UIApplication) {
         logger.info("---- background ----")
-
+        appIsInForeground = false
         maybeStop()
     }
 
@@ -139,6 +148,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         logger.info("open: \(databaseLocation)")
         dcContext.openDatabase(dbFile: databaseLocation)
+    }
+
+    func closeDatabase() {
+        state = .stopped
+        dcContext.closeDatabase()
     }
 
     func setStockTranslations() {
@@ -176,17 +190,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_DEVICE_MESSAGES, localizationKey: "device_talk")
     }
 
-    func stopThreads() {
-        state = .background
-        dcContext.interruptIdle()
+    func installEventHandler() {
+        DispatchQueue.global(qos: .background).async {
+            self.registerBackgroundTask()
+            let eventEmitter = self.dcContext.getEventEmitter()
+            while true {
+                guard let event = eventEmitter.getNextEvent() else { break }
+                handleEvent(event: event)
+            }
+            if self.backgroundTask != .invalid {
+                self.endBackgroundTask()
+            }
+        }
     }
 
-    func closeDatabase() {
-        state = .stopped
-        dcContext.closeDatabase()
-    }
-
-    func startThreads(_ completion: (() -> Void)? = nil) {
+    func startThreads() {
         logger.info("---- start ----")
 
         if state == .running {
@@ -194,38 +212,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         state = .running
 
-        DispatchQueue.global(qos: .background).async {
-            self.registerBackgroundTask()
-            while self.state == .running {
-                self.dcContext.performImap()
-            }
-            if self.backgroundTask != .invalid {
-                completion?()
-                self.endBackgroundTask()
-            }
-        }
+        dcContext.maybeStartIo()
+    }
 
-        DispatchQueue.global(qos: .utility).async {
-            self.registerBackgroundTask()
-            while self.state == .running {
-                self.dcContext.performSmtp()
-            }
-            if self.backgroundTask != .invalid {
-                self.endBackgroundTask()
-            }
-        }
-
-        DispatchQueue.global(qos: .background).async {
-            while self.state == .running {
-                self.dcContext.performSentbox()
-            }
-        }
-
-        DispatchQueue.global(qos: .background).async {
-            while self.state == .running {
-                self.dcContext.performMoveBox()
-            }
-        }
+    func stopThreads() {
+        state = .background
+        dcContext.stopIo()
     }
 
     // MARK: - BackgroundTask

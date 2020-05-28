@@ -579,6 +579,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         }
 
         print("oAuth-Flag when loggin in: \(dcContext.getAuthFlags())")
+        dcContext.stopIo()
         dcContext.configure()
         showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
     }
@@ -659,6 +660,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             notification in
             if let ui = notification.userInfo {
                 if ui["error"] as! Bool {
+                    self.dcContext.maybeStartIo()
                     var errorMessage = ui["errorMessage"] as? String
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate, appDelegate.reachability.connection == .none {
                         errorMessage = String.localized("login_error_no_internet_connection")
@@ -667,6 +669,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                     }
                     self.updateProgressAlert(error: errorMessage)
                 } else if ui["done"] as! Bool {
+                    self.dcContext.maybeStartIo()
                     self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
                 } else {
                     self.updateProgressAlertValue(value: ui["progress"] as? Int)
@@ -789,6 +792,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             appDelegate.closeDatabase()
             DatabaseHelper().clearAccountData()
             appDelegate.openDatabase()
+            appDelegate.installEventHandler()
             appDelegate.startThreads()
             appDelegate.appCoordinator.presentWelcomeController()
         }))

@@ -69,10 +69,9 @@ class SendingController: UIViewController {
 
     private func sendMessage() {
         DispatchQueue.global(qos: .utility).async {
-            for message in self.dcMsgs {
-                message.sendInChat(id: self.chatId)
+            for dcMsg in self.dcMsgs {
+                self.dcContext.sendMsgSync(chatId: self.chatId, msg: dcMsg)
             }
-            self.dcContext.performSmtpJobs()
             self.delegate?.onSendingAttemptFinished()
         }
     }

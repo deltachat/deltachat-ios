@@ -8,22 +8,18 @@ public class DcContext {
     /// where we want to have more than one DcContext.
     static let dcContext: DcContext = DcContext()
     public var logger: Logger?
-    let contextPointer: OpaquePointer
+    var contextPointer: OpaquePointer?
     public var lastErrorString: String?
     public var lastWarningString: String = "" // temporary thing to get a grip on some weird errors
     public var maxConfigureProgress: Int = 0 // temporary thing to get a grip on some weird errors
 
     private init() {
-        var version = ""
-        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            version += " " + appVersion
-        }
-
-        contextPointer = dc_context_new(callback_ios, nil, "iOS" + version)
     }
 
     deinit {
+        if contextPointer == nil { return } // avoid a warning about a "careless call"
         dc_context_unref(contextPointer)
+        contextPointer = nil
     }
 
     /// Injection of DcContext is preferred over the usage of the shared variable
@@ -88,6 +84,10 @@ public class DcContext {
         let chatlistPointer = dc_get_chatlist(contextPointer, flags, queryString, UInt32(queryId))
         let chatlist = DcChatlist(chatListPointer: chatlistPointer)
         return chatlist
+    }
+
+    public func sendMsgSync(chatId: Int, msg: DcMsg) {
+        dc_send_msg_sync(contextPointer, UInt32(chatId), msg.messagePointer)
     }
 
     public func getChatMedia(chatId: Int, messageType: Int32, messageType2: Int32, messageType3: Int32) -> [Int] {
@@ -178,45 +178,39 @@ public class DcContext {
     }
 
     public func interruptIdle() {
-        dc_interrupt_imap_idle(contextPointer)
-        dc_interrupt_smtp_idle((contextPointer))
-        dc_interrupt_mvbox_idle((contextPointer))
-        dc_interrupt_sentbox_idle((contextPointer))
+    }
+
+    public func getEventEmitter() -> DcEventEmitter {
+        let eventEmitterPointer = dc_get_event_emitter(contextPointer)
+        return DcEventEmitter(eventEmitterPointer: eventEmitterPointer)
     }
 
     public func openDatabase(dbFile: String) {
-        _ = dc_open(contextPointer, dbFile, nil)
+        var version = ""
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            version += " " + appVersion
+        }
+
+        contextPointer = dc_context_new("iOS" + version, dbFile, nil)
     }
 
     public func closeDatabase() {
-        dc_close(contextPointer)
+        dc_context_unref(contextPointer)
+        contextPointer = nil
     }
 
-    public func performImap() {
-        dc_perform_imap_jobs(contextPointer)
-        dc_perform_imap_fetch(contextPointer)
-        dc_perform_imap_idle(contextPointer)
+    public func maybeStartIo() {
+        if isConfigured() {
+            dc_start_io(contextPointer)
+        }
     }
 
-    public func performMoveBox() {
-        dc_perform_mvbox_jobs(contextPointer)
-        dc_perform_mvbox_fetch(contextPointer)
-        dc_perform_mvbox_idle(contextPointer)
+    public func stopIo() {
+        dc_stop_io(contextPointer)
     }
 
-    public func performSmtpJobs() {
-        dc_perform_smtp_jobs(contextPointer)
-    }
-    
-    public func performSmtp() {
-        dc_perform_smtp_jobs(contextPointer)
-        dc_perform_smtp_idle(contextPointer)
-    }
-
-    public func performSentbox() {
-        dc_perform_sentbox_jobs(contextPointer)
-        dc_perform_sentbox_fetch(contextPointer)
-        dc_perform_sentbox_idle(contextPointer)
+    public func isIoRunning() -> Bool {
+        return dc_is_io_running(contextPointer) != 0
     }
 
     public func setStockTranslation(id: Int32, localizationKey: String) {
@@ -579,6 +573,56 @@ public class DcContext {
     }
 }
 
+public class DcEventEmitter {
+    private var eventEmitterPointer: OpaquePointer?
+
+    // takes ownership of specified pointer
+    public init(eventEmitterPointer: OpaquePointer?) {
+        self.eventEmitterPointer = eventEmitterPointer
+    }
+
+    public func getNextEvent() -> DcEvent? {
+        guard let eventPointer = dc_get_next_event(eventEmitterPointer) else { return nil }
+        return DcEvent(eventPointer: eventPointer)
+    }
+
+    deinit {
+        dc_event_emitter_unref(eventEmitterPointer)
+    }
+}
+
+public class DcEvent {
+    private var eventPointer: OpaquePointer?
+
+    // takes ownership of specified pointer
+    public init(eventPointer: OpaquePointer?) {
+        self.eventPointer = eventPointer
+    }
+
+    deinit {
+        dc_event_unref(eventPointer)
+    }
+
+    public var id: Int32 {
+        return Int32(dc_event_get_id(eventPointer))
+    }
+
+    public var data1Int: Int {
+        return Int(dc_event_get_data1_int(eventPointer))
+    }
+
+    public var data2Int: Int {
+        return Int(dc_event_get_data2_int(eventPointer))
+    }
+
+    public var data2String: String {
+        guard let cString = dc_event_get_data2_str(eventPointer) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+}
+
 public class DcChatlist {
     private var chatListPointer: OpaquePointer?
 
@@ -720,12 +764,10 @@ public class DcArray {
     public var count: Int {
        return Int(dc_array_get_cnt(dcArrayPointer))
     }
-
-    ///TODO: add missing methods here
 }
 
 public class DcMsg {
-    private var messagePointer: OpaquePointer?
+    var messagePointer: OpaquePointer?
 
     /**
         viewType: one of
