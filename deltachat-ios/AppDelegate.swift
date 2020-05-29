@@ -107,6 +107,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if reachability.connection != .none {
             self.dcContext.maybeNetwork()
         }
+        
+        let userDefaults = UserDefaults.init(suiteName: Constants.sharedUserDefaults)
+        if userDefaults?.bool(forKey: Constants.hasExtensionAttemptedToSend) ?? false {
+            let nc = NotificationCenter.default
+
+            DispatchQueue.main.async {
+                nc.post(
+                    name: dcNotificationChanged,
+                    object: nil,
+                    userInfo: [
+                        //TODO: Use correct message_id and chat_id
+                        "message_id": Int(0),
+                        "chat_id": Int(0),
+                        "date": Date(),
+                    ]
+                )
+            }
+
+            userDefaults?.removeObject(forKey: Constants.hasExtensionAttemptedToSend)
+        }
     }
 
     func applicationDidEnterBackground(_: UIApplication) {

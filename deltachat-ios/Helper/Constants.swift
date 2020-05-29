@@ -18,6 +18,9 @@ struct Constants {
 
     static let defaultCellHeight: CGFloat = 48
     static let defaultHeaderHeight: CGFloat = 20
+
+    public static let sharedUserDefaults = "deltachat-ios-shared-user-defaults"
+    public static let hasExtensionAttemptedToSend = "hasExtensionAttemptedToSend"
 }
 
 struct Time {
