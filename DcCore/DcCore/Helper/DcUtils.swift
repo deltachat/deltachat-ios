@@ -63,20 +63,32 @@ public struct DcUtils {
 
     // compression needs to be done before in UIImage.dcCompress()
     public static func saveImage(image: UIImage) -> String? {
+        let timestamp = Double(Date().timeIntervalSince1970)
         guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
-                                                           appropriateFor: nil, create: false) as NSURL else {
-                                                            return nil
-        }
-
-        guard let data = image.isTransparent() ? image.pngData() : image.jpegData(compressionQuality: 1.0) else {
-            return nil
-        }
+                                                           appropriateFor: nil, create: false) as NSURL,
+            let data = image.isTransparent() ? image.pngData() : image.jpegData(compressionQuality: 1.0),
+            let path = directory.appendingPathComponent("\(timestamp).jpg")
+            else { return nil }
 
         do {
-            let timestamp = Double(Date().timeIntervalSince1970)
-            let path = directory.appendingPathComponent("\(timestamp).jpg")
-            try data.write(to: path!)
-            return path?.relativePath
+            try data.write(to: path)
+            return path.relativePath
+        } catch {
+            DcContext.shared.logger?.info(error.localizedDescription)
+            return nil
+        }
+    }
+
+    public static func saveAnimatedImage(data: Data, suffix: String) -> String? {
+        let timestamp = Double(Date().timeIntervalSince1970)
+        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
+                                                           appropriateFor: nil, create: false) as NSURL,
+            let path = directory.appendingPathComponent("\(timestamp).\(suffix)")
+            else { return nil }
+
+        do {
+            try data.write(to: path)
+            return path.relativePath
         } catch {
             DcContext.shared.logger?.info(error.localizedDescription)
             return nil

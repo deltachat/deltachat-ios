@@ -3,6 +3,7 @@ import MobileCoreServices
 import DcCore
 import UIKit
 import QuickLookThumbnailing
+import SDWebImage
 
 protocol ShareAttachmentDelegate: class {
     func onAttachmentChanged()
@@ -38,7 +39,7 @@ class ShareAttachment {
     }
 
 
-    func createMessages() {
+    private func createMessages() {
         guard let items = inputItems as? [NSExtensionItem] else { return }
         for item in items {
             if let attachments = item.attachments {
@@ -47,9 +48,11 @@ class ShareAttachment {
         }
     }
 
-    func createMessageFromDataRepresentaion(_ attachments: [NSItemProvider]) {
+    private func createMessageFromDataRepresentaion(_ attachments: [NSItemProvider]) {
         for attachment in attachments {
-            if attachment.hasItemConformingToTypeIdentifier(kUTTypeImage as String) {
+            if attachment.hasItemConformingToTypeIdentifier(kUTTypeGIF as String) {
+                createAnimatedImageMsg(attachment)
+            } else if attachment.hasItemConformingToTypeIdentifier(kUTTypeImage as String) {
                 createImageMsg(attachment)
             } else if attachment.hasItemConformingToTypeIdentifier(kUTTypeMovie as String) {
                 createMovieMsg(attachment)
@@ -63,7 +66,38 @@ class ShareAttachment {
         }
     }
 
-    func createImageMsg(_ item: NSItemProvider) {
+    // for now we only support GIF
+    private func createAnimatedImageMsg(_ item: NSItemProvider) {
+        item.loadItem(forTypeIdentifier: kUTTypeGIF as String, options: nil) { data, error in
+            var result: SDAnimatedImage?
+            switch data {
+            case let animatedImageData as Data:
+                result = SDAnimatedImage(data: animatedImageData)
+            case let url as URL:
+                result = SDAnimatedImage(contentsOfFile: url.path)
+            default:
+                self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
+            }
+            if let result = result, let animatedImageData = result.animatedImageData {
+                let path = DcUtils.saveAnimatedImage(data: animatedImageData, suffix: "gif")
+                let msg = DcMsg(viewType: DC_MSG_GIF)
+                msg.setFile(filepath: path, mimeType: "image/gif")
+                let pixelSize = result.imageSizeInPixel()
+                msg.setDimension(width: pixelSize.width, height: pixelSize.height)
+                self.messages.append(msg)
+                self.delegate?.onAttachmentChanged()
+                if self.imageThumbnail == nil {
+                    self.imageThumbnail = result.scaleDownImage(toMax: self.thumbnailSize)
+                    self.delegate?.onThumbnailChanged()
+                }
+                if let error = error {
+                    self.dcContext.logger?.error("Could not load share item as image: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+
+    private func createImageMsg(_ item: NSItemProvider) {
         item.loadItem(forTypeIdentifier: kUTTypeImage as String, options: nil) { data, error in
             let result: UIImage?
             switch data {
@@ -90,13 +124,13 @@ class ShareAttachment {
                     self.delegate?.onThumbnailChanged()
                 }
             }
-            if error != nil {
-                self.dcContext.logger?.error(error?.localizedDescription ?? "Could not load share item as image")
+            if let error = error {
+                self.dcContext.logger?.error("Could not load share item as image: \(error.localizedDescription)")
             }
         }
     }
 
-    func createMovieMsg(_ item: NSItemProvider) {
+    private func createMovieMsg(_ item: NSItemProvider) {
         item.loadItem(forTypeIdentifier: kUTTypeMovie as String, options: nil) { data, error in
             switch data {
             case let url as URL:
@@ -109,21 +143,21 @@ class ShareAttachment {
             default:
                 self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
             }
-            if error != nil {
-                self.dcContext.logger?.error(error?.localizedDescription ?? "Could not load share item as video")
+            if let error = error {
+                self.dcContext.logger?.error("Could not load share item as video: \(error.localizedDescription)")
             }
         }
     }
 
-    func createAudioMsg(_ item: NSItemProvider) {
+    private func createAudioMsg(_ item: NSItemProvider) {
         createMessageFromItemURL(item: item, typeIdentifier: kUTTypeAudio, viewType: DC_MSG_AUDIO)
     }
 
-    func createFileMsg(_ item: NSItemProvider) {
+    private func createFileMsg(_ item: NSItemProvider) {
         createMessageFromItemURL(item: item, typeIdentifier: kUTTypeFileURL, viewType: DC_MSG_FILE)
     }
 
-    func createMessageFromItemURL(item: NSItemProvider, typeIdentifier: CFString, viewType: Int32) {
+    private func createMessageFromItemURL(item: NSItemProvider, typeIdentifier: CFString, viewType: Int32) {
         item.loadItem(forTypeIdentifier: typeIdentifier as String, options: nil) { data, error in
             switch data {
             case let url as URL:
@@ -135,19 +169,19 @@ class ShareAttachment {
             default:
                 self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
             }
-            if error != nil {
-                self.dcContext.logger?.error(error?.localizedDescription ?? "Could not load share item.")
+            if let error = error {
+                self.dcContext.logger?.error("Could not load share item: \(error.localizedDescription)")
             }
         }
     }
 
-    func addDcMsg(url: URL, viewType: Int32) {
+    private func addDcMsg(url: URL, viewType: Int32) {
         let msg = DcMsg(viewType: viewType)
         msg.setFile(filepath: url.path, mimeType: DcUtils.getMimeTypeForPath(path: url.path))
         self.messages.append(msg)
     }
 
-    func generateThumbnailRepresentations(url: URL) {
+    private func generateThumbnailRepresentations(url: URL) {
         let size: CGSize = CGSize(width: self.thumbnailSize * 2 / 3, height: self.thumbnailSize)
         let scale = UIScreen.main.scale
 
@@ -174,7 +208,7 @@ class ShareAttachment {
         }
     }
 
-    func addSharedUrl(_ item: NSItemProvider) {
+    private func addSharedUrl(_ item: NSItemProvider) {
         if let delegate = self.delegate {
             item.loadItem(forTypeIdentifier: kUTTypeURL as String, options: nil) { data, error in
                 switch data {
@@ -183,8 +217,8 @@ class ShareAttachment {
                 default:
                     self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
                 }
-                if error != nil {
-                    self.dcContext.logger?.error(error?.localizedDescription ?? "Could not share URL.")
+                if let error = error {
+                    self.dcContext.logger?.error("Could not share URL: \(error.localizedDescription)")
                 }
             }
         }

@@ -882,7 +882,7 @@ public class DcMsg {
 
     public lazy var image: UIImage? = { [weak self] in
         let filetype = dc_msg_get_viewtype(messagePointer)
-        if let path = fileURL, filetype == DC_MSG_IMAGE {
+        if let path = fileURL, filetype == DC_MSG_IMAGE || filetype == DC_MSG_GIF {
             if path.isFileURL {
                 do {
                     let data = try Data(contentsOf: path)

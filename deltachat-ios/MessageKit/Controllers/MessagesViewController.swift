@@ -292,6 +292,10 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
             let cell = messagesCollectionView.dequeueReusableCell(TextMediaMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
+        case .animatedImageText:
+            let cell = messagesCollectionView.dequeueReusableCell(AnimatedImageMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
         case .fileText:
             let cell = messagesCollectionView.dequeueReusableCell(FileMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
@@ -382,7 +386,7 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
         let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
 
         switch message.kind {
-        case .text, .attributedText, .emoji, .photo, .photoText, .videoText, .fileText, .audio, .video:
+        case .text, .attributedText, .emoji, .photo, .animatedImageText, .photoText, .videoText, .fileText, .audio, .video:
             selectedIndexPathForMenu = indexPath
             return true
         default:
@@ -401,7 +405,7 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
         let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
 
         switch message.kind {
-        case .text, .emoji, .attributedText, .fileText, .photoText, .videoText:
+        case .text, .emoji, .attributedText, .fileText, .photoText, .videoText, .animatedImageText:
             return (action == NSSelectorFromString("copy:"))
         default:
             return false

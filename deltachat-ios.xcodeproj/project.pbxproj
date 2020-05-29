@@ -97,6 +97,7 @@
 		308FEA50246AB67100FCEAD6 /* FileMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FEA4F246AB67100FCEAD6 /* FileMessageCell.swift */; };
 		308FEA52246ABA2700FCEAD6 /* FileMessageSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FEA51246ABA2700FCEAD6 /* FileMessageSizeCalculator.swift */; };
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
+		30A2EC36247D72720024ADD8 /* AnimatedImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A2EC35247D72720024ADD8 /* AnimatedImageMessageCell.swift */; };
 		30A4D9AE2332672700544344 /* QrInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4D9AD2332672600544344 /* QrInviteViewController.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
 		30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2122447285600CE2C90 /* ShareViewController.swift */; };
@@ -108,6 +109,7 @@
 		30E8F2512449EA0E00CE2C90 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
 		30E8F253244DAD0E00CE2C90 /* SendingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F252244DAD0E00CE2C90 /* SendingController.swift */; };
 		30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9B9EB235F2116006E7ACF /* MessageCounter.swift */; };
+		451CF971F08D38BCECADCB45 /* Pods_deltachat_ios_DcShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546063D4BFB8FD920C4EAA22 /* Pods_deltachat_ios_DcShare.framework */; };
 		6795F63A82E94FF7CD2CEC0F /* Pods_deltachat_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */; };
 		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
 		7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactDetailViewController.swift */; };
@@ -367,6 +369,7 @@
 		308FEA4F246AB67100FCEAD6 /* FileMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMessageCell.swift; sourceTree = "<group>"; };
 		308FEA51246ABA2700FCEAD6 /* FileMessageSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMessageSizeCalculator.swift; sourceTree = "<group>"; };
 		3095A350237DD1F700AB07F7 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
+		30A2EC35247D72720024ADD8 /* AnimatedImageMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedImageMessageCell.swift; sourceTree = "<group>"; };
 		30A4D9AD2332672600544344 /* QrInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrInviteViewController.swift; sourceTree = "<group>"; };
 		30AC265E237F1807002A943F /* AvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarHelper.swift; sourceTree = "<group>"; };
 		30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateCheckController.swift; sourceTree = "<group>"; };
@@ -379,6 +382,7 @@
 		30E8F2432449C64100CE2C90 /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		30E8F252244DAD0E00CE2C90 /* SendingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingController.swift; sourceTree = "<group>"; };
 		30F9B9EB235F2116006E7ACF /* MessageCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCounter.swift; sourceTree = "<group>"; };
+		546063D4BFB8FD920C4EAA22 /* Pods_deltachat_ios_DcShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios_DcShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
 		7092474020B3869500AF8799 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
@@ -403,6 +407,7 @@
 		7A9FB14F1FB061E2001FEA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		8DE110C607A0E4485C43B5FA /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		914DDA723E78965D83162E78 /* Pods-deltachat-ios-DcShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios-DcShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios-DcShare/Pods-deltachat-ios-DcShare.debug.xcconfig"; sourceTree = "<group>"; };
 		A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.release.xcconfig"; sourceTree = "<group>"; };
 		AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuritySettingsController.swift; sourceTree = "<group>"; };
@@ -488,6 +493,7 @@
 		B294717723E1A49600885D02 /* sr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sr; path = sr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B294717823E1A49600885D02 /* sr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sr; path = sr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B294717923E1A49600885D02 /* sr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = sr; path = sr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		E13946A7FC0AB662737BDFF5 /* Pods-deltachat-ios-DcShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios-DcShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios-DcShare/Pods-deltachat-ios-DcShare.release.xcconfig"; sourceTree = "<group>"; };
 		FECB35E2B04CD5F5D02C157A /* Pods-deltachat-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -497,6 +503,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30E8F2252447622300CE2C90 /* DcCore.framework in Frameworks */,
+				451CF971F08D38BCECADCB45 /* Pods_deltachat_ios_DcShare.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,6 +675,7 @@
 			isa = PBXGroup;
 			children = (
 				300C509C234B551900F8AE22 /* TextMediaMessageCell.swift */,
+				30A2EC35247D72720024ADD8 /* AnimatedImageMessageCell.swift */,
 				305961AE2346125100C80F33 /* ContactMessageCell.swift */,
 				78E45E4B21D404AE00D4B15E /* InfoMessageCell.swift */,
 				305961AF2346125100C80F33 /* LocationMessageCell.swift */,
@@ -790,6 +798,7 @@
 				787D6699229F2237000A7A9D /* libdeltachat.a */,
 				6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */,
 				2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */,
+				546063D4BFB8FD920C4EAA22 /* Pods_deltachat_ios_DcShare.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -801,6 +810,8 @@
 				A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */,
 				21EE28844E7A690D73BF5285 /* Pods-deltachat-iosTests.debug.xcconfig */,
 				FECB35E2B04CD5F5D02C157A /* Pods-deltachat-iosTests.release.xcconfig */,
+				914DDA723E78965D83162E78 /* Pods-deltachat-ios-DcShare.debug.xcconfig */,
+				E13946A7FC0AB662737BDFF5 /* Pods-deltachat-ios-DcShare.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -960,6 +971,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30E8F21E2447285600CE2C90 /* Build configuration list for PBXNativeTarget "DcShare" */;
 			buildPhases = (
+				78BB0FE6A8C17A549A144EDE /* [CP] Check Pods Manifest.lock */,
 				30E8F20C2447285600CE2C90 /* Sources */,
 				30E8F20D2447285600CE2C90 /* Frameworks */,
 				30E8F20E2447285600CE2C90 /* Resources */,
@@ -1156,6 +1168,7 @@
 				"${BUILT_PRODUCTS_DIR}/KK-ALCameraViewController/KK_ALCameraViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SCSiriWaveformView/SCSiriWaveformView.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework",
 			);
@@ -1166,6 +1179,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KK_ALCameraViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSiriWaveformView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICircularProgressRing.framework",
 			);
@@ -1266,6 +1280,28 @@
 			shellPath = /bin/sh;
 			shellScript = "# The $PATH used by XCode likely won't contain Cargo, fix that.\n# This assumes a default `rustup` setup.\n export PATH=\"$HOME/.cargo/bin:$PATH\"\n\n export CFLAGS_x86_64_apple_darwin=\"-I /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include\"\n\n# ensure all targets are installed\n rustup target add aarch64-apple-ios x86_64-apple-ios --toolchain `cat deltachat-ios/libraries/deltachat-core-rust/rust-toolchain`\n\n# --xcode-integ determines --release and --targets from XCode's env vars.\n# Depending your setup, specify the rustup toolchain explicitly.\n cargo +`cat deltachat-ios/libraries/deltachat-core-rust/rust-toolchain` lipo --release --manifest-path deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi/Cargo.toml\n";
 		};
+		78BB0FE6A8C17A549A144EDE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-deltachat-ios-DcShare-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1306,6 +1342,7 @@
 				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
 				3040F460234F419400FA34D5 /* BasicAudioController.swift in Sources */,
+				30A2EC36247D72720024ADD8 /* AnimatedImageMessageCell.swift in Sources */,
 				305962082346125100C80F33 /* MediaMessageSizeCalculator.swift in Sources */,
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
@@ -1598,6 +1635,7 @@
 /* Begin XCBuildConfiguration section */
 		30E8F21C2447285600CE2C90 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 914DDA723E78965D83162E78 /* Pods-deltachat-ios-DcShare.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = DcShare/DcShare.entitlements;
@@ -1622,6 +1660,7 @@
 		};
 		30E8F21D2447285600CE2C90 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E13946A7FC0AB662737BDFF5 /* Pods-deltachat-ios-DcShare.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = DcShare/DcShare.entitlements;
