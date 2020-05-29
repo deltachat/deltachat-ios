@@ -3,7 +3,7 @@ import DcCore
 
 class FileView: UIView {
 
-    static let badgeSize: CGFloat = 54
+    static let badgeSize: CGFloat = 48
     static let defaultHeight: CGFloat = 78
     static let defaultWidth: CGFloat = 250
 
@@ -22,12 +22,13 @@ class FileView: UIView {
         return label
     }()
 
-    private lazy var fileBadgeView: InitialsBadge = {
-        let badge: InitialsBadge = InitialsBadge(image: UIImage(), size: FileView.badgeSize)
-        badge.isAccessibilityElement = false
-        badge.isHidden = false
-        badge.cornerRadius = 6
-        return badge
+    private lazy var fileThumbnail: UIImageView = {
+        let image = UIImageView()
+        image.frame.size = CGSize(width: FileView.badgeSize, height: FileView.badgeSize)
+        image.contentMode = .scaleAspectFill
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.isAccessibilityElement = false
+        return image
     }()
 
     private lazy var verticalStackView: UIStackView = {
@@ -43,17 +44,17 @@ class FileView: UIView {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         verticalStackView.directionalLayoutMargins = directionalLayoutMargins
-        addSubview(fileBadgeView)
+        addSubview(fileThumbnail)
         addSubview(verticalStackView)
         addConstraints([
-            fileBadgeView.constraintAlignLeadingTo(self),
-            fileBadgeView.constraintWidthTo(FileView.badgeSize),
-            fileBadgeView.constraintHeightTo(FileView.badgeSize),
-            fileBadgeView.constraintCenterYTo(self)
+            fileThumbnail.constraintAlignLeadingTo(self),
+            fileThumbnail.constraintWidthTo(FileView.badgeSize),
+            fileThumbnail.constraintHeightTo(FileView.badgeSize),
+            fileThumbnail.constraintCenterYTo(self),
         ])
         addConstraints([
             verticalStackView.constraintCenterYTo(self),
-            verticalStackView.constraintToTrailingOf(fileBadgeView),
+            verticalStackView.constraintToTrailingOf(fileThumbnail),
             verticalStackView.constraintAlignTrailingTo(self)
         ])
     }
@@ -61,9 +62,9 @@ class FileView: UIView {
     func configureFor(mediaItem: MediaItem) {
         if let url = mediaItem.url {
             let controller = UIDocumentInteractionController(url: url)
-            fileBadgeView.setImage(controller.icons.first ?? mediaItem.placeholderImage)
+            fileThumbnail.image = controller.icons.first ?? mediaItem.placeholderImage
         } else {
-            fileBadgeView.setImage(mediaItem.placeholderImage)
+            fileThumbnail.image = mediaItem.placeholderImage
         }
 
         if let title = mediaItem.text?[MediaItemConstants.mediaTitle] {
@@ -82,6 +83,6 @@ class FileView: UIView {
     func prepareForReuse() {
         titleView.attributedText = nil
         subtitleView.attributedText = nil
-        fileBadgeView.reset()
+        fileThumbnail.image = nil
     }
 }

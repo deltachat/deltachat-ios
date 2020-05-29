@@ -77,7 +77,7 @@ extension DcMsg: MessageType {
 
     internal func createFileMessage(text: String) -> MessageKind {
         let fileString = "\(self.filename ?? "???")"
-        let fileSizeString = "(\(self.filesize / 1024) kB)"
+        let fileSizeString = getPrettyFileSize()
         let attributedMediaMessageString =
                    NSAttributedString(string: text,
                                              attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
@@ -92,5 +92,12 @@ extension DcMsg: MessageType {
         let mediaText = [attributedMediaMessageString, attributedFileString, attributedFileSizeString]
         return MessageKind.fileText(Media(url: fileURL, placeholderImage: UIImage(named: "ic_attach_file_36pt"), text: mediaText))
     }
-    
+
+    private func getPrettyFileSize() -> String {
+        if self.filesize <= 0 { return "0 B" }
+        let units: [String] = ["B", "kB", "MB"]
+        let digitGroups = Int(log10(Double(self.filesize)) / log10(1024))
+        let size = String(format: "%.1f", Double(filesize) / pow(1024, Double(digitGroups)))
+        return "\(size) \(units[digitGroups])"
+    }
 }
