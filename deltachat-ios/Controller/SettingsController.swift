@@ -437,8 +437,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     }
 
     private func showDebugToolkit() {
-        DBDebugToolkit.setup(with: [])  // emtpy array will override default device shake trigger
-        DBDebugToolkit.setupCrashReporting()
+        DBDebugToolkit.setupCrashReporting() // as this might cause issues on its own, we add this handler only on opening the debugToolkit the first time
         let info: [DBCustomVariable] = dcContext.getInfo().map { kv in
             let value = kv.count > 1 ? kv[1] : ""
             return DBCustomVariable(name: kv[0], value: value)

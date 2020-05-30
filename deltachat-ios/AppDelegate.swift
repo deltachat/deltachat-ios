@@ -4,6 +4,7 @@ import SwiftyBeaver
 import UIKit
 import UserNotifications
 import DcCore
+import DBDebugToolkit
 
 let logger = SwiftyBeaver.self
 
@@ -27,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var appIsInForeground = false
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
+
         // main()
         let console = ConsoleDestination()
         logger.addDestination(console)
