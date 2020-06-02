@@ -240,7 +240,7 @@
 // search
 "search" = "Ara";
 "search_explain" = "Sohbetleri, kişileri ve iletileri ara";
-"search_no_result_for_x" = "\"%s\" için sonuç bulunamadı";
+"search_no_result_for_x" = "\"%1$@\" için sonuç bulunamadı";
 
 
 // create/edit groups, contact/group profile
@@ -267,7 +267,7 @@
 
 
 // welcome and login
-"welcome_intro1_message" = "Dünyanın en geniş kitleli ulağı. Özgür ve bağımsızdır.";
+"welcome_intro1_message" = "Dünyanın en geniş kitleli ulağı. Özgür ve bağımsız.";
 "welcome_start_messaging" = "İletileşmeye başla";
 "login_title" = "Oturum aç";
 "login_header" = "Sunucunuzda oturum açın";
@@ -320,8 +320,8 @@
 
 
 // preferences
-"pref_using_custom" = "Özel kullanılıyor: %s";
-"pref_using_default" = "Varsayılan kullanılıyor: %s";
+"pref_using_custom" = "Özel kullanılıyor: %1$@";
+"pref_using_default" = "Varsayılan kullanılıyor: %1$@";
 "pref_profile_info_headline" = "Profil bilginiz";
 "pref_profile_photo" = "Profil resmi";
 "pref_blocked_contacts" = "Engellenen kişiler";
@@ -524,7 +524,7 @@
 // notifications 
 "notify_n_messages_in_m_chats" = "%2$d sohbette %1$d yeni ileti";
 "notify_most_recent_from" = "Şundan en yeni: %1$@";
-"notify_media_message_with_text" = "Ortam iletisi: %s";
+"notify_media_message_with_text" = "Ortam iletisi: %1$@";
 "notify_mark_all_read" = "Tümünü okundu olarak imle";
 "notify_mark_read" = "Okundu imi";
 "notify_media_message" = "Ortam iletisi";
@@ -643,5 +643,6 @@
 // android specific strings, developers: please take care to remove strings that are no longer used!
 // this message is shown in the device chat, starting in version 1.6, it should explain the need for the permanent-notifiation and also use the same wording as used there (see "Background connection enabled")
 "device_talk_background_connection_android" = "Sistem tarafından gösterilen bir \"Arka plan bağlantısı etkinleştirildi\" ipucu olduğunu zaten fark etmiş olabilirsiniz.\n\n👉 İpucu, normal olarak işletim sisteminin Delta Chat ve sunucunuz arasındaki bağlantıyı öldürmesini önler.\n\n👉 İpucu, tarafınızda herhangi bir eylem olmadan kaybolursa, bağlantı belki de öldürülmüştür.\nBunun olmaması gerektiğini düşünüyorsanız, genelde buna katılırız - ama çoğu üretici tam olarak bunu yapar. https://dontkillmyapp.com sitesi, bazı geçici çözümleri gösterir.\n\nBununla birlikte, bu değişiklikle arka planda iletilerin alınmasını iyileştirebildiğimiz ve çoğu kullanıcının isteklerini yerine getirebildiğimiz için mutluyuz - raporlama için teşekkürler 🤗";
+"device_talk_background_connection2_android" = "Artık \"Ayarlar / Bildirimler\"den \"Arka plan bağlantısı\"nı gerektiğinde etkinleştirebilir ve etkisizleştirebilirsiniz.";
 
 

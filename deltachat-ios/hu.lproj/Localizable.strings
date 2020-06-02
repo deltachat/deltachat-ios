@@ -277,7 +277,7 @@
 "contact_not_verified" = "%1$@ nem ellenőrizhető";
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$dúj üzenet %2$d beszélgetésben";
-"notify_media_message_with_text" = "Médiaüzenet: %s";
+"notify_media_message_with_text" = "Médiaüzenet: %1$@";
 "notify_mark_all_read" = "Mindet olvasottnak jelöl";
 "notify_mark_read" = "Olvasottnak jelöl";
 "notify_media_message" = "Médiaüzenet";

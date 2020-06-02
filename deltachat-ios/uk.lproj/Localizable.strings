@@ -155,7 +155,7 @@
 // search
 "search" = "Пошук";
 "search_explain" = "Пошук чатів, контактів і повідомлень";
-"search_no_result_for_x" = "Запит «%s» не дав результатів";
+"search_no_result_for_x" = "Запит «%1$@» не дав результатів";
 
 
 // create/edit groups, contact/group profile
@@ -205,8 +205,8 @@
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Переслати...";
 // preferences
-"pref_using_custom" = "Використовувати персоналізовано: %s";
-"pref_using_default" = "Використовувати за замовчуванням: %s";
+"pref_using_custom" = "Використовувати персоналізовано: %1$@";
+"pref_using_default" = "Використовувати за замовчуванням: %1$@";
 "pref_profile_info_headline" = "Ваш профіль";
 "pref_profile_photo" = "Фото профілю";
 "pref_blocked_contacts" = "Заблоковані контакти";
@@ -355,7 +355,7 @@
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d нових повідомлень з %2$d чатів";
 "notify_most_recent_from" = "Останнє від: %1$@";
-"notify_media_message_with_text" = "Медіа-повідомлення: %s";
+"notify_media_message_with_text" = "Медіа-повідомлення: %1$@";
 "notify_mark_all_read" = "Позначити все як прочитане";
 "notify_mark_read" = "Позначити прочитаним";
 "notify_media_message" = "Медіа-повідомлення";

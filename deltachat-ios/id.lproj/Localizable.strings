@@ -240,7 +240,7 @@
 // search
 "search" = "Cari";
 "search_explain" = "Mencari obrolan, kontak dan pesan";
-"search_no_result_for_x" = "Tak ada hasil dari \"%s\"";
+"search_no_result_for_x" = "Tak ada hasil dari \"%1$@\"";
 
 
 // create/edit groups, contact/group profile
@@ -316,8 +316,8 @@
 
 
 // preferences
-"pref_using_custom" = "Menggunakan custom: %s";
-"pref_using_default" = "Menggunakan default: %s";
+"pref_using_custom" = "Menggunakan custom: %1$@";
+"pref_using_default" = "Menggunakan default: %1$@";
 "pref_profile_info_headline" = "Info profil Anda";
 "pref_profile_photo" = "Gambar profil";
 "pref_blocked_contacts" = "Kontak yang diblokir";
@@ -472,7 +472,7 @@
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$dpesan baru di%2$d obrolan";
 "notify_most_recent_from" = "Terbaru dari: %1$@";
-"notify_media_message_with_text" = "Pesan media: %s";
+"notify_media_message_with_text" = "Pesan media: %1$@";
 "notify_mark_all_read" = "Tandai semua telah dibaca";
 "notify_media_message" = "Pesan media";
 "notify_reply_button" = "Balasan";

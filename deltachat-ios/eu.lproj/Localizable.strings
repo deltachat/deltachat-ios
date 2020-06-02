@@ -240,7 +240,7 @@
 // search
 "search" = "Bilatu";
 "search_explain" = "Bilatu txatak, kontaktuak, eta mezuak.";
-"search_no_result_for_x" = "Ez da emaitzarik aurkitu \"%s\" bilaketarentzat";
+"search_no_result_for_x" = "Ez da emaitzarik aurkitu \"%1$@\" bilaketarentzat";
 
 
 // create/edit groups, contact/group profile
@@ -320,8 +320,8 @@
 
 
 // preferences
-"pref_using_custom" = "Pertsonalizatua erabiltzen: %s";
-"pref_using_default" = "Lehenetsia erabiltzen: %s";
+"pref_using_custom" = "Pertsonalizatua erabiltzen: %1$@";
+"pref_using_default" = "Lehenetsia erabiltzen: %1$@";
 "pref_profile_info_headline" = "Zure profileko informazioa";
 "pref_profile_photo" = "Profileko argazkia";
 "pref_blocked_contacts" = "Blokeatutako kontaktuak";
@@ -422,6 +422,11 @@
 "pref_background_default_color" = "Lehenetsitako kolorea";
 "pref_background_custom_image" = "Irudi pertsonalizatua";
 "pref_background_custom_color" = "Kolore pertsonalizatua";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Bigarren planoko konexio egonkorra";
+"pref_reliable_service_explain" = "Etengabeko jakinarazpena eskatzen du";
+
+
 // automatically delete message
 "autodel_title" = "Automatikoki ezabatu mezuak";
 "autodel_title_short" = "Automatikoki ezabatu";
@@ -518,7 +523,7 @@
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d mezu berri %2$d txatetan";
 "notify_most_recent_from" = "%1$@(r)en azkena";
-"notify_media_message_with_text" = "Multimedia mezua: %s";
+"notify_media_message_with_text" = "Multimedia mezua: %1$@";
 "notify_mark_all_read" = "Markatu denak irakurrita gisa";
 "notify_mark_read" = "Markatu irakurrita gisa";
 "notify_media_message" = "Multimedia mezua";
@@ -632,5 +637,11 @@
 "a11y_background_preview_label" = "Atzealdearen aurrebista";
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+
+
+// android specific strings, developers: please take care to remove strings that are no longer used!
+// this message is shown in the device chat, starting in version 1.6, it should explain the need for the permanent-notifiation and also use the same wording as used there (see "Background connection enabled")
+"device_talk_background_connection_android" = "Agian ikusi duzu, \"Bigarren planoko konexioa gaituta\" erakusten du sistemak.\n\n👉 Jakinarazpenak normalean sistema eragileak Delta Chat eta zure zerbitzariaren arteko konexioa etetea eragozten du.\n\n👉 Zuk ezer egin gabe desagertzen bada jakinarazpena, konexioa eten egin dela esan nahi lezake.\nHau arraroa dela uste baduzu, ados gaude, baina ekoizleek horrelakoak egiten dituzte. https://dontkillmyapp.com guneak konponbide batzuk erakusten dit,\n\nEdonola ere, aldaketa honekin bigarren planoan mezuak jasotzea hobetu izanak pozten gaitu, erabiltzaile askoren eskaerei erantzunez., eskerrik asko berri emateagatik.";
+"device_talk_background_connection2_android" = "\"Bigarren planoko konexioa\" nahi eran gaitu edo desgaitu dezakezu  \"Ezarpenak / Jakinarazpenak\" atalean.";
 
 

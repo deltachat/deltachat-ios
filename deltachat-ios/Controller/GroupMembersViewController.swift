@@ -25,6 +25,7 @@ class NewGroupAddMembersViewController: GroupMembersViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("group_add_members")
@@ -96,6 +97,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -348,6 +350,12 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
         return searchController
     }()
 
+    private lazy var emptySearchStateLabel: EmptyStateLabel = {
+        let label = EmptyStateLabel()
+        label.isHidden = false
+        return label
+    }()
+
     var selectedContactIds: Set<Int> = []
 
     init() {
@@ -360,6 +368,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - lifecycle
     override func viewDidLoad() {
         tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
         navigationItem.searchController = searchController
@@ -367,8 +376,19 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
             navigationItem.hidesSearchBarWhenScrolling = false
         }
         definesPresentationContext = true
+        setupSubviews()
     }
 
+    private func setupSubviews() {
+        view.addSubview(emptySearchStateLabel)
+        emptySearchStateLabel.translatesAutoresizingMaskIntoConstraints = false
+        emptySearchStateLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        emptySearchStateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
+        emptySearchStateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
+        emptySearchStateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+    }
+
+    // MARK: - UITableView datasource + delegate
     override func numberOfSections(in _: UITableView) -> Int {
         return numberOfSections
     }
@@ -430,7 +450,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             filterContentForSearchText(searchText)
-        }
+        } 
     }
 
     private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
@@ -442,6 +462,19 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
         filteredContacts = contactsWithHighlights.filter { !$0.indexesToHighlight.isEmpty }
         tableView.reloadData()
         tableView.scrollToTop()
+
+        // handle empty searchstate
+        if isFiltering() && getNumberOfRowsForContactList() == 0 {
+            let text = String.localizedStringWithFormat(
+                String.localized("search_no_result_for_x"),
+                searchText
+            )
+            emptySearchStateLabel.text = text
+            emptySearchStateLabel.isHidden = false
+        } else {
+            emptySearchStateLabel.text = nil
+            emptySearchStateLabel.isHidden = true
+        }
     }
 
     private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {

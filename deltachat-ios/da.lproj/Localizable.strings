@@ -201,7 +201,7 @@
 // search
 "search" = "Søge";
 "search_explain" = "Søge efter samtaler, kontakter og beskeder";
-"search_no_result_for_x" = "Ingen resultater fundet for  \"%s\"";
+"search_no_result_for_x" = "Ingen resultater fundet for  \"%1$@\"";
 
 
 // create/edit groups, contact/group profile
@@ -265,8 +265,8 @@
 
 
 // preferences
-"pref_using_custom" = "Bruger tilpasset: %s";
-"pref_using_default" = "Bruger standard: %s";
+"pref_using_custom" = "Bruger tilpasset: %1$@";
+"pref_using_default" = "Bruger standard: %1$@";
 "pref_profile_info_headline" = "Profil information";
 "pref_profile_photo" = "Profil billede";
 "pref_blocked_contacts" = "Blokerede kontakter";
@@ -423,7 +423,7 @@
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nye beskeder i %2$d samtaler";
 "notify_most_recent_from" = "Nylig fra: %1$@";
-"notify_media_message_with_text" = "Medie besked: %s";
+"notify_media_message_with_text" = "Medie besked: %1$@";
 "notify_mark_all_read" = "Vælge alle som læst";
 "notify_mark_read" = "Vælge læst";
 "notify_media_message" = "Medie besked";

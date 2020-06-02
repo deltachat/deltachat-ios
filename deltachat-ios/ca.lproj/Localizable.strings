@@ -177,7 +177,7 @@
 // search
 "search" = "Busca";
 "search_explain" = "Busca als xats, contactes i missatges";
-"search_no_result_for_x" = "No s\'han trobat resultats per \"%s\"";
+"search_no_result_for_x" = "No s\'han trobat resultats per \"%1$@\"";
 
 
 // create/edit groups, contact/group profile
@@ -233,8 +233,8 @@
 
 
 // preferences
-"pref_using_custom" = "Ús personalitzat: %s";
-"pref_using_default" = "Ús per defecte: %s";
+"pref_using_custom" = "Ús personalitzat: %1$@";
+"pref_using_default" = "Ús per defecte: %1$@";
 "pref_profile_info_headline" = "Informació del vostre perfil";
 "pref_profile_photo" = "Fotografia de perfil";
 "pref_blocked_contacts" = "Contactes bloquejats";
@@ -385,7 +385,7 @@
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d missatges nous en %2$d xats";
 "notify_most_recent_from" = "El més nou des de : %1$@";
-"notify_media_message_with_text" = "Missatge multimèdia: %s";
+"notify_media_message_with_text" = "Missatge multimèdia: %1$@";
 "notify_mark_all_read" = "Marca\'ls tots com a llegits";
 "notify_mark_read" = "Marca\'l com a llegit";
 "notify_media_message" = "Missatge multimèdia";

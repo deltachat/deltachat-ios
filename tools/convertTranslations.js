@@ -21,13 +21,22 @@ function parseAndroid(data) {
   for (let line of lines) {
     let kv = line.match(rgxKeyValue);
     if (kv != null) {
-      result.parsed.push([kv[1], kv[2].
-        replace(/([^\\])(")/g, '$1\\$2').
-        replace(/&quot;/g, '\\"').
-        replace(/&lt;/g, '<').
-        replace(/&gt;/g, '>').
-        replace(/&amp;/g, '&').
-        replace(/\$s/ig, '$@')])
+      value = kv[2].
+      replace(/([^\\])(")/g, '$1\\$2').
+      replace(/&quot;/g, '\\"').
+      replace(/&lt;/g, '<').
+      replace(/&gt;/g, '>').
+      replace(/&amp;/g, '&').
+      replace(/\$s/ig, '$@').
+      replace(/\%s/ig, '%1$@')
+
+      let countOfPlaceholders = (value.match(/\%1\$\@/g) || []).length
+      if (countOfPlaceholders > 1) {
+        console.error("\n\n\n ERROR: Placeholder mismatch. A source file contained '%s' and '%1$s' in the same resource which we are not willing to fix automatically. Please fix the input source on tranisfex first! \n\n\n")
+        continue;
+      }
+
+      result.parsed.push([kv[1], value])
       continue;
     }
 

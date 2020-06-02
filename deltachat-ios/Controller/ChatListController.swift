@@ -33,6 +33,12 @@ class ChatListController: UITableViewController {
         return button
     }()
 
+    private lazy var emptySearchStateLabel: EmptyStateLabel = {
+        let label = EmptyStateLabel()
+        label.isHidden = false
+        return label
+    }()
+
     func getArchiveCell(title: String) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.textLabel?.textColor = .systemBlue
@@ -64,6 +70,7 @@ class ChatListController: UITableViewController {
             navigationItem.searchController = searchController
         }
         configureTableView()
+        setupSubviews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -116,6 +123,15 @@ class ChatListController: UITableViewController {
             nc.removeObserver(viewChatObserver)
         }
     }
+    // MARK: - setup
+    private func setupSubviews() {
+        view.addSubview(emptySearchStateLabel)
+        emptySearchStateLabel.translatesAutoresizingMaskIntoConstraints = false
+        emptySearchStateLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        emptySearchStateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
+        emptySearchStateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
+        emptySearchStateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+    }
 
     // MARK: - configuration
     private func configureTableView() {
@@ -154,7 +170,6 @@ class ChatListController: UITableViewController {
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRowsIn(section: section)
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
@@ -268,6 +283,18 @@ class ChatListController: UITableViewController {
 
     func handleChatListUpdate() {
         tableView.reloadData()
+
+        if let emptySearchText = viewModel.emptySearchText {
+            let text = String.localizedStringWithFormat(
+                String.localized("search_no_result_for_x"),
+                emptySearchText
+            )
+            emptySearchStateLabel.text = text
+            emptySearchStateLabel.isHidden = false
+        } else {
+            emptySearchStateLabel.text = nil
+            emptySearchStateLabel.isHidden = true
+        }
     }
 
     func getArchiveCell(_ tableView: UITableView, title: String) -> UITableViewCell {

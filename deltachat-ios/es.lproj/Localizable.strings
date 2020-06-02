@@ -239,7 +239,7 @@
 // search
 "search" = "Buscar";
 "search_explain" = "Buscar chats, contactos, y mensajes";
-"search_no_result_for_x" = "No se encontraron resultados para \"%s\"";
+"search_no_result_for_x" = "No se encontraron resultados para \"%1$@\"";
 
 
 // create/edit groups, contact/group profile
@@ -315,8 +315,8 @@
 
 
 // preferences
-"pref_using_custom" = "Usando valor personalizado: %s";
-"pref_using_default" = "Usando valor por defecto: %s";
+"pref_using_custom" = "Usando valor personalizado: %1$@";
+"pref_using_default" = "Usando valor por defecto: %1$@";
 "pref_profile_info_headline" = "Información de perfil ";
 "pref_profile_photo" = "Foto de perfil";
 "pref_blocked_contacts" = "Contactos bloqueados";
@@ -493,7 +493,7 @@
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nuevos mensajes en %2$d chats";
 "notify_most_recent_from" = "Más reciente de: %1$@";
-"notify_media_message_with_text" = "Mensaje multimedia: %s";
+"notify_media_message_with_text" = "Mensaje multimedia: %1$@";
 "notify_mark_all_read" = "Marcar todo como leído";
 "notify_mark_read" = "Marcar como leído";
 "notify_media_message" = "Mensaje multimedia";
@@ -612,5 +612,3 @@
 // android specific strings, developers: please take care to remove strings that are no longer used!
 // this message is shown in the device chat, starting in version 1.6, it should explain the need for the permanent-notifiation and also use the same wording as used there (see "Background connection enabled")
 "device_talk_background_connection_android" = "Es posible que ya haya notado que el sistema muestra una notificación \"Conexión de fondo habilitada\".\n\n👉 Esta notificación normalmente impide que el sistema operativo corte la conexión entre Delta Chat y su servidor.\n\n👉 Si la notificación desaparece sin ninguna acción de su parte, la conexión probablemente se haya interrumpido de todos modos. Si cree, esto es extraño, estamos totalmente de acuerdo, pero muchos fabricantes hacen exactamente eso. El sitio https://dontkillmyapp.com muestra algunas soluciones.\n\nSin embargo, estamos contentos de poder mejorar la recepción de mensajes en segundo plano con este cambio y satisfacer las solicitudes de muchos usuarios - gracias por reportar 🤗";
-
-
