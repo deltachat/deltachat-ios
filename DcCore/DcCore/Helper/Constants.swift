@@ -8,7 +8,4 @@ public struct Constants {
         static let deltachatImapPasswordKey = "__DELTACHAT_IMAP_PASSWORD_KEY__"
     }
     public static let notificationIdentifier = "deltachat-ios-local-notifications"
-
-    public static let sharedUserDefaults = "deltachat-ios-shared-user-defaults"
-    public static let hasExtensionAttemptedToSend = "hasExtensionAttemptedToSend"
 }
