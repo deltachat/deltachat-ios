@@ -28,10 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var appIsInForeground = false
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // explicitly ignore SIGPIPE to avoid crashes, see https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html
+        // setupCrashReporting() may create an additional handler, but we do not want to rely on that
+        signal(SIGPIPE, SIG_IGN)
+
         DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
         DBDebugToolkit.setupCrashReporting()
 
-        // main()
         let console = ConsoleDestination()
         logger.addDestination(console)
         dcContext.logger = DcLogger()
