@@ -133,7 +133,7 @@
 "saved_messages" = "Sačuvane poruke";
 // search
 "search" = "Traži";
-"search_no_result_for_x" = "Nema pronađenih rezultata za \"%s\"";
+"search_no_result_for_x" = "Nema pronađenih rezultata za \"%1$@\"";
 
 
 // create/edit groups, contact/group profile

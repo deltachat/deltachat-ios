@@ -160,7 +160,7 @@
 // search
 "search" = "Pesquisar";
 "search_explain" = "Pesquisar chats, contactos, emensagens";
-"search_no_result_for_x" = "Nenhum resultado encontrado para \"%s\"";
+"search_no_result_for_x" = "Nenhum resultado encontrado para \"%1$@\"";
 
 
 // create/edit groups, contact/group profile
@@ -209,8 +209,8 @@
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Reencaminhar ...";
 // preferences
-"pref_using_custom" = "Utilizando personalizado %s";
-"pref_using_default" = "Utilizando padrão: %s";
+"pref_using_custom" = "Utilizando personalizado %1$@";
+"pref_using_default" = "Utilizando padrão: %1$@";
 "pref_profile_info_headline" = "O seu perfil";
 "pref_profile_photo" = "Foto do perfil";
 "pref_blocked_contacts" = "Bloquear contactos";
@@ -357,7 +357,7 @@
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d novas mensagens em %2$d chats";
 "notify_most_recent_from" = "Mais recentes de: %1$@";
-"notify_media_message_with_text" = "Mensagem de mídia: %s";
+"notify_media_message_with_text" = "Mensagem de mídia: %1$@";
 "notify_mark_all_read" = "Marcar tudo como lido";
 "notify_mark_read" = "Marcar lido";
 "notify_media_message" = "Mensagem de mídia";

@@ -234,7 +234,7 @@
 // search
 "search" = "Szukaj";
 "search_explain" = "Wyszukaj czaty, kontakty i wiadomości";
-"search_no_result_for_x" = "Nie znaleziono wyników dla „%s";
+"search_no_result_for_x" = "Nie znaleziono wyników dla „%1$@";
 
 
 // create/edit groups, contact/group profile
@@ -307,8 +307,8 @@
 
 
 // preferences
-"pref_using_custom" = "Używanie niestandardowe: %s";
-"pref_using_default" = "Użyj domyślne: %s";
+"pref_using_custom" = "Używanie niestandardowe: %1$@";
+"pref_using_default" = "Użyj domyślne: %1$@";
 "pref_profile_info_headline" = "Twój profil";
 "pref_profile_photo" = "Zdjęcie profilowe";
 "pref_blocked_contacts" = "Zablokowane kontakty";
@@ -482,7 +482,7 @@
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nowe wiadomości w %2$d czatach";
 "notify_most_recent_from" = "Najnowsze z: %1$@";
-"notify_media_message_with_text" = "Wiadomość multimedialna: %s";
+"notify_media_message_with_text" = "Wiadomość multimedialna: %1$@";
 "notify_mark_all_read" = "Oznacz wszystkie jako przeczytane";
 "notify_mark_read" = "Oznacz jako przeczytane";
 "notify_media_message" = "Wiadomość multimedialna";

@@ -240,7 +240,7 @@
 // search
 "search" = "Buscar";
 "search_explain" = "Buscar conversas, contactos e mensaxes";
-"search_no_result_for_x" = "Non hai resultados para \"%s\"";
+"search_no_result_for_x" = "Non hai resultados para \"%1$@\"";
 
 
 // create/edit groups, contact/group profile
@@ -320,8 +320,8 @@
 
 
 // preferences
-"pref_using_custom" = "Utilizar personalizado: %s";
-"pref_using_default" = "Utilizando por omisión: %s";
+"pref_using_custom" = "Utilizar personalizado: %1$@";
+"pref_using_default" = "Utilizando por omisión: %1$@";
 "pref_profile_info_headline" = "Info do teu perfil";
 "pref_profile_photo" = "Imaxe de perfil";
 "pref_blocked_contacts" = "Contactos bloqueados";
@@ -343,7 +343,7 @@
 "pref_vibrate" = "Vibrar";
 "pref_chat_settings" = "Axustes da conversa";
 "pref_change_secret" = "Cambiar seguridade";
-"pref_change_secret_explain" = "Cambiar o PIN / patrón / pegada dactilar a través dos axustes do sistema";
+"pref_change_secret_explain" = "Cambiar o PIN / patrón / impresión dactilar a través dos axustes do sistema";
 "pref_screen_security" = "Seguridade da pantalla";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Solicitar bloqueo de captura de pantalla para a lista de recentes e dentro da app";
@@ -480,7 +480,7 @@
 
 // screen lock
 "screenlock_title" = "Bloqueo de pantalla";
-"screenlock_explain" = "Limita o acceso co bloqueo de pantalla Android ou pegada dactilar; para evitar mostrar o contido, por favor activa \"Seguridade de Pantalla\".";
+"screenlock_explain" = "Limita o acceso co bloqueo de pantalla Android ou impresión dactilar; para evitar mostrar o contido, por favor activa \"Seguridade de Pantalla\".";
 "screenlock_authentication_failed" = "Fallo de Autenticación.";
 "screenlock_unlock_title" = "Desbloquear Delta Chat";
 "screenlock_unlock_description" = "Introduce o código establecido no sistema para desbloquerar Delta Chat.";
@@ -494,8 +494,8 @@
 "qrscan_title" = "Escanear código QR";
 "qrscan_hint" = "Mantén a cámara sobre o código QR.";
 "qrscan_ask_join_group" = "Queres unirte ao grupo \"%1$@\"?";
-"qrscan_fingerprint_mismatch" = "A pegada escaneada non concorda coa última vista para %1$@.";
-"qrscan_no_addr_found" = "Este código QR contén unha pegada dactilar pero non un enderezo de correo.\n\nPara unha verificación fora de liña, por favor establece unha conexión cifrada co correspondente.";
+"qrscan_fingerprint_mismatch" = "A impresión escaneada non concorda coa última vista para %1$@.";
+"qrscan_no_addr_found" = "Este código QR contén unha imprsión dixital pero non un enderezo de correo.\n\nPara unha verificación fora de liña, por favor establece unha conexión cifrada co correspondente.";
 "qrscan_contains_text" = "Texto escaneado no código QR:\n\n%1$@";
 "qrscan_contains_url" = "URL escaneado no código QR:\n\n%1$@";
 "qrscan_fingerprint_label" = "Pegada dactilar";
@@ -524,7 +524,7 @@
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d novas mensaxes en %2$d conversas";
 "notify_most_recent_from" = "Máis recente desde: %1$@";
-"notify_media_message_with_text" = "Mensaxe de medios: %s";
+"notify_media_message_with_text" = "Mensaxe de medios: %1$@";
 "notify_mark_all_read" = "Marcar todo como lido";
 "notify_mark_read" = "Marcar como lido";
 "notify_media_message" = "Mensaxe de medios";
@@ -643,5 +643,6 @@
 // android specific strings, developers: please take care to remove strings that are no longer used!
 // this message is shown in the device chat, starting in version 1.6, it should explain the need for the permanent-notifiation and also use the same wording as used there (see "Background connection enabled")
 "device_talk_background_connection_android" = "Igual xa o notaches, hai un aviso \"Conexión en segundo plano activada\" na bandexa do sistema.\n\n👉 O aviso normalmente evita que o sistema corte a conexión entre Delta Chat e o teu servidor.\n\n👉 O aviso desaparece sen que teñas que facer nada, a conexión vaise cortar igualmente.\nSe cres que é raro, entendémolo - pero moitos fabricantes fan precisamente eso. A web https://dontkillmyapp.com proporciona posibles solucións.\n\nPorén, agrádanos poder mellorar a recepción de mensaxes en segundo plano con este cambio e poder cumprir coas expectativas de moitas usuarias - grazas por informarnos  🤗";
+"device_talk_background_connection2_android" = "Se o precisas xa podes activar / desactivar a \"Conexión en segundo plano\" nos \"Axustes / Notificacións\".";
 
 

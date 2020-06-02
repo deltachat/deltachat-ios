@@ -155,7 +155,7 @@
 // search
 "search" = "検索";
 "search_explain" = "ﾁｬｯﾄ･ﾒｯｾｰｼﾞ･連絡先を検索";
-"search_no_result_for_x" = "｢%s｣は見付かりませんでした｡";
+"search_no_result_for_x" = "｢%1$@｣は見付かりませんでした｡";
 
 
 // create/edit groups, contact/group profile

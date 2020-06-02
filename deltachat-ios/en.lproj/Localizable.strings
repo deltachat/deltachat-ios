@@ -240,7 +240,7 @@
 // search
 "search" = "Search";
 "search_explain" = "Search for chats, contacts, and messages";
-"search_no_result_for_x" = "No results found for \"%s\"";
+"search_no_result_for_x" = "No results found for \"%1$@\"";
 
 
 // create/edit groups, contact/group profile
@@ -299,7 +299,7 @@
 // Translators: %1$s will be replaced by the email address
 "login_error_cannot_login" = "Cannot login as \"%1$@\". Please check if the email address and the password are correct.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Response from %1$@: %2$@\n\nSome providers place additional information in your inbox; you can check them it eg. in the web frontend. Consult your provider or friends if you run into problems.";
+"login_error_server_response" = "Response from %1$@: %2$@\n\nSome providers place additional information in your inbox; you can check them eg. in the web frontend. Consult your provider or friends if you run into problems.";
 
 // TLS certificate checks
 "accept_invalid_hostnames" = "Accept invalid hostnames";
@@ -320,8 +320,8 @@
 
 
 // preferences
-"pref_using_custom" = "Using custom: %s";
-"pref_using_default" = "Using default: %s";
+"pref_using_custom" = "Using custom: %1$@";
+"pref_using_default" = "Using default: %1$@";
 "pref_profile_info_headline" = "Your profile info";
 "pref_profile_photo" = "Profile picture";
 "pref_blocked_contacts" = "Blocked contacts";
@@ -524,7 +524,7 @@
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d new messages in %2$d chats";
 "notify_most_recent_from" = "Most recent from: %1$@";
-"notify_media_message_with_text" = "Media message: %s";
+"notify_media_message_with_text" = "Media message: %1$@";
 "notify_mark_all_read" = "Mark all as read";
 "notify_mark_read" = "Mark read";
 "notify_media_message" = "Media message";
@@ -643,6 +643,7 @@
 // android specific strings, developers: please take care to remove strings that are no longer used!
 // this message is shown in the device chat, starting in version 1.6, it should explain the need for the permanent-notifiation and also use the same wording as used there (see "Background connection enabled")
 "device_talk_background_connection_android" = "You may already have noticed, that there is a hint \"Background connection enabled\" shown by the system.\n\n👉 The hint normally prevents the operating system from killing the connection between Delta Chat and your server.\n\n👉 If the hint disappears without any action on your part, the connection has probably been killed anyway.\nIf you think this is weird, we totally agree - but many manufacturers do exactly that. The site https://dontkillmyapp.com shows some workarounds.\n\nHowever, we are happy that we could improve the receiving of messages in background with this change and could fulfil the requests of many users - thanks for reporting 🤗";
+"device_talk_background_connection2_android" = "You can now enable and disabled the \"Background connection\" as needed at \"Settings / Notifications\".";
 
 
 

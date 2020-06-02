@@ -192,7 +192,7 @@
 // search
 "search" = "搜尋";
 "search_explain" = "搜尋對話紀錄、聯絡人以及訊息";
-"search_no_result_for_x" = "找不到 %s";
+"search_no_result_for_x" = "找不到 %1$@";
 
 
 // create/edit groups, contact/group profile
@@ -256,8 +256,8 @@
 
 
 // preferences
-"pref_using_custom" = "使用自訂值: %s";
-"pref_using_default" = "使用預設值: %s";
+"pref_using_custom" = "使用自訂值: %1$@";
+"pref_using_default" = "使用預設值: %1$@";
 "pref_profile_info_headline" = "你的個人資料";
 "pref_profile_photo" = "大頭照";
 "pref_blocked_contacts" = "已封鎖的聯絡人";

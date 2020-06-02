@@ -239,7 +239,7 @@
 // search
 "search" = "Chercher";
 "search_explain" = "Rechercher des discussions, des contacts ou des messages";
-"search_no_result_for_x" = "Aucun résultat trouvé pour \"%s\"";
+"search_no_result_for_x" = "Aucun résultat trouvé pour \"%1$@\"";
 
 
 // create/edit groups, contact/group profile
@@ -315,8 +315,8 @@
 
 
 // preferences
-"pref_using_custom" = "Usage de la personnalisation : %s";
-"pref_using_default" = "Utilisation par défaut : %s";
+"pref_using_custom" = "Usage de la personnalisation : %1$@";
+"pref_using_default" = "Utilisation par défaut : %1$@";
 "pref_profile_info_headline" = "Informations de votre profil";
 "pref_profile_photo" = "Photo du profil";
 "pref_blocked_contacts" = "Contacts bloqués";
@@ -493,7 +493,7 @@
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nouveaux messages dans %2$d tchats";
 "notify_most_recent_from" = "Plus récents depuis : %1$@";
-"notify_media_message_with_text" = "Message multimédia: %s";
+"notify_media_message_with_text" = "Message multimédia: %1$@";
 "notify_mark_all_read" = "Tout marquer comme lus";
 "notify_mark_read" = "Marquer comme lu";
 "notify_media_message" = "Message multimédia";

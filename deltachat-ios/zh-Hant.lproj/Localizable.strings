@@ -240,7 +240,7 @@
 // search
 "search" = "搜索";
 "search_explain" = "搜索聊天、联系人和消息";
-"search_no_result_for_x" = "没有找到有关\"%s\"的结果";
+"search_no_result_for_x" = "没有找到有关\"%1$@\"的结果";
 
 
 // create/edit groups, contact/group profile
@@ -320,8 +320,8 @@
 
 
 // preferences
-"pref_using_custom" = "使用自定义： %s";
-"pref_using_default" = "使用默认： %s";
+"pref_using_custom" = "使用自定义： %1$@";
+"pref_using_default" = "使用默认： %1$@";
 "pref_profile_info_headline" = "您的个人资料";
 "pref_profile_photo" = "个人资料图片";
 "pref_blocked_contacts" = "已屏蔽联系人";
@@ -524,7 +524,7 @@
 // notifications 
 "notify_n_messages_in_m_chats" = "%2$d 个聊天中有 %1$d 条新消息";
 "notify_most_recent_from" = "最新来自： %1$@";
-"notify_media_message_with_text" = "媒体消息： %s";
+"notify_media_message_with_text" = "媒体消息： %1$@";
 "notify_mark_all_read" = "将所有标记为已读";
 "notify_mark_read" = "标记为已读";
 "notify_media_message" = "媒体消息";
@@ -638,5 +638,11 @@
 "a11y_background_preview_label" = "背景预览";
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+
+
+// android specific strings, developers: please take care to remove strings that are no longer used!
+// this message is shown in the device chat, starting in version 1.6, it should explain the need for the permanent-notifiation and also use the same wording as used there (see "Background connection enabled")
+"device_talk_background_connection_android" = "您可能已经注意到了，系统显示了“后台连接已启用”的提示。\n\n👉通常，该提示可防止操作系统终止 Delta Chat 与您的服务器之间的连接。\n\n👉如果您没有采取任何行动而提示消失了，则连接可能已被终止。\n如果您认为这很奇怪，我们完全同意——但许多制造商确实是这么做的。网站 https://dontkillmyapp.com 给出了一些解决办法。\n\n不过，我们很高兴可以通过此更改改善后台的消息接收并能满足许多用户的请求——感谢您的报告🤗";
+"device_talk_background_connection2_android" = "现在，您可以根据需要在“设置/通知”中启用或禁用“后台连接”。";
 
 

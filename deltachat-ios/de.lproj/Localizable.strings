@@ -240,7 +240,7 @@
 // search
 "search" = "Suchen";
 "search_explain" = "Suche nach Chats, Kontakten und Nachrichten";
-"search_no_result_for_x" = "Keine Ergebnisse für \"%s\" gefunden.";
+"search_no_result_for_x" = "Keine Ergebnisse für \"%1$@\" gefunden.";
 
 
 // create/edit groups, contact/group profile
@@ -320,8 +320,8 @@
 
 
 // preferences
-"pref_using_custom" = "Benutzerdefiniert verwenden: %s";
-"pref_using_default" = "Standard verwenden: %s";
+"pref_using_custom" = "Benutzerdefiniert verwenden: %1$@";
+"pref_using_default" = "Standard verwenden: %1$@";
 "pref_profile_info_headline" = "Mein Profil";
 "pref_profile_photo" = "Profilbild";
 "pref_blocked_contacts" = "Blockierte Kontakte";
@@ -524,7 +524,7 @@
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d neue Nachrichten in %2$d Chats";
 "notify_most_recent_from" = "Letzter Stand von: %1$@";
-"notify_media_message_with_text" = "Medienmitteilung: %s";
+"notify_media_message_with_text" = "Medienmitteilung: %1$@";
 "notify_mark_all_read" = "Alle als gelesen markieren";
 "notify_mark_read" = "Als gelesen markieren";
 "notify_media_message" = "Medienmitteilung";
@@ -643,5 +643,3 @@
 // android specific strings, developers: please take care to remove strings that are no longer used!
 // this message is shown in the device chat, starting in version 1.6, it should explain the need for the permanent-notifiation and also use the same wording as used there (see "Background connection enabled")
 "device_talk_background_connection_android" = "Zum Hinweis \"Hintergrundverbindung aktiviert\" im Systembereich:\n\n👉 Der Hinweis hält das Betriebssystem normalerweise davon ab, die Verbindung zwischen Delta Chat und Ihrem Server zu unterbrechen.\n\n👉 Wenn der Hinweis ohne Ihr Zutun verschwindet wurde die Verbindung vermutlich dennoch unterbrochen. Auch wenn dies seltsam erscheint - viele Handyhersteller tun genau dies - auf der Seite https://dontkillmyapp.com finden Sie herstellerspezifische Hinweise, was Sie dagegen tun können.\n\nWie auch immer - wir freuen uns, dass wir die Hintergrundverbindung grundsätzlich stabiler gestalten konnten und so viele Benutzerwünsche erfüllen könnten 🤗";
-
-

@@ -203,7 +203,7 @@
 // search
 "search" = "Ieškoti";
 "search_explain" = "Ieškokite pokalbių, adresatų ir žinučių";
-"search_no_result_for_x" = "Nerasta jokių rezultatų pagal užklausą \"%s\"";
+"search_no_result_for_x" = "Nerasta jokių rezultatų pagal užklausą \"%1$@\"";
 
 
 // create/edit groups, contact/group profile
@@ -419,7 +419,7 @@
 "qrshow_join_contact_no_connection_toast" = "Nėra interneto ryšio, nepavyksta atlikti QR kodo sąrankos.";
 "contact_not_verified" = "Nepavyksta patvirtinti %1$@";
 "notify_most_recent_from" = "Naujausia nuo: %1$@";
-"notify_media_message_with_text" = "Medijos žinutė: %s";
+"notify_media_message_with_text" = "Medijos žinutė: %1$@";
 "notify_mark_all_read" = "Žymėti visas kaip skaitytas";
 "notify_mark_read" = "Žymėti kaip skaitytą";
 "notify_media_message" = "Medijos žinutė";
