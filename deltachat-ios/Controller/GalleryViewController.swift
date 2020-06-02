@@ -98,7 +98,9 @@ class GalleryViewController: UIViewController {
         var sections: [GallerySection] = []
         TimeBucket.allCases.forEach { bucket in
             if let msgIds = buckets[bucket] {
-                sections.append(GallerySection(timeBucket: bucket, msgIds: msgIds))
+                sections.append(
+                    GallerySection(timeBucket: bucket, msgIds: msgIds)
+                )
             }
         }
         return sections
@@ -122,7 +124,8 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             for: indexPath) as? GalleryCell else {
             return UICollectionViewCell()
         }
-        let msg = DcMsg(id: mediaMessageIds[indexPath.row])
+        let msgId = gridSections[indexPath.section].msgIds[indexPath.row]
+        let msg = DcMsg(id: msgId)
         mediaCell.update(msg: msg)
         return mediaCell
     }
