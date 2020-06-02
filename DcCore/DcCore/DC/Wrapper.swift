@@ -66,7 +66,12 @@ public class DcContext {
         return DcChat(chatPointer: chatPointer)
     }
 
-    public func getChatIdByContactId(_ contactId: Int) -> Int? {
+    public func getChatIdByContactId(contactId: Int) -> Int {
+        return Int(dc_get_chat_id_by_contact_id(contextPointer, UInt32(contactId)))
+    }
+
+    public func getChatIdByContactIdOld(_ contactId: Int) -> Int? {
+        // deprecated function, use getChatIdByContactId() and check for != 0 as for all other places IDs are used
         let chatId = dc_get_chat_id_by_contact_id(contextPointer, UInt32(contactId))
         if chatId == 0 {
             return nil
@@ -102,10 +107,6 @@ public class DcContext {
     @discardableResult
     public func createChatByContactId(contactId: Int) -> Int {
         return Int(dc_create_chat_by_contact_id(contextPointer, UInt32(contactId)))
-    }
-
-    public func getChatIdByContactId(contactId: Int) -> Int {
-        return Int(dc_get_chat_id_by_contact_id(contextPointer, UInt32(contactId)))
     }
 
     public func createGroupChat(verified: Bool, name: String) -> Int {

@@ -38,7 +38,7 @@ class ContactDetailViewModel {
     init(dcContext: DcContext, contactId: Int) {
         self.context = dcContext
         self.contactId = contactId
-        self.chatId = dcContext.getChatIdByContactId(contactId)
+        self.chatId = dcContext.getChatIdByContactIdOld(contactId)
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
         sections.append(.attachments)
