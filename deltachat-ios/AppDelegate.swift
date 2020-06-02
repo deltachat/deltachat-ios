@@ -8,13 +8,6 @@ import DBDebugToolkit
 
 let logger = SwiftyBeaver.self
 
-enum ApplicationState {
-    case stopped
-    case running
-    case background
-    case backgroundFetch
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     private let dcContext = DcContext.shared
@@ -24,13 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability = Reachability()!
     var window: UIWindow?
-    var state = ApplicationState.stopped
     var appIsInForeground = false
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
+        // explicitly ignore SIGPIPE to avoid crashes, see https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html
+        // setupCrashReporting() may create an additional handler, but we do not want to rely on that
+        signal(SIGPIPE, SIG_IGN)
 
-        // main()
+        DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
+        DBDebugToolkit.setupCrashReporting()
+
         let console = ConsoleDestination()
         logger.addDestination(console)
         dcContext.logger = DcLogger()
@@ -154,7 +150,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func closeDatabase() {
-        state = .stopped
         dcContext.closeDatabase()
     }
 
@@ -209,17 +204,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func startThreads() {
         logger.info("---- start ----")
-
-        if state == .running {
-            return
-        }
-        state = .running
-
         dcContext.maybeStartIo()
     }
 
     func stopThreads() {
-        state = .background
         dcContext.stopIo()
     }
 
