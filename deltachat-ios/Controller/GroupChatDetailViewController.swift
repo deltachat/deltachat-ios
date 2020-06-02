@@ -316,7 +316,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             let contactId: Int = getGroupMemberIdFor(row)
             let cellData = ContactCellData(
                 contactId: contactId,
-                chatId: dcContext.getChatIdByContactId(contactId)
+                chatId: dcContext.getChatIdByContactIdOld(contactId)
             )
             let cellViewModel = ContactCellViewModel(contactData: cellData)
             contactCell.updateCell(cellViewModel: cellViewModel)

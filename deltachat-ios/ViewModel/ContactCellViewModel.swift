@@ -107,7 +107,7 @@ extension ContactCellViewModel {
         let contact = DcContact(id: contactId)
         let nameIndexes = contact.displayName.containsExact(subSequence: searchText)
         let emailIndexes = contact.email.containsExact(subSequence: searchText)
-        let chatId: Int? = dcContext.getChatIdByContactId(contactId)
+        let chatId: Int? = dcContext.getChatIdByContactIdOld(contactId)
             // contact contains searchText
         let viewModel = ContactCellViewModel(
             contactData: ContactCellData(
