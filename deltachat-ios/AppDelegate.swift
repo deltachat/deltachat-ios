@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
+        DBDebugToolkit.setupCrashReporting()
 
         // main()
         let console = ConsoleDestination()
