@@ -8,13 +8,6 @@ import DBDebugToolkit
 
 let logger = SwiftyBeaver.self
 
-enum ApplicationState {
-    case stopped
-    case running
-    case background
-    case backgroundFetch
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     private let dcContext = DcContext.shared
@@ -24,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability = Reachability()!
     var window: UIWindow?
-    var state = ApplicationState.stopped
     var appIsInForeground = false
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -158,7 +150,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func closeDatabase() {
-        state = .stopped
         dcContext.closeDatabase()
     }
 
@@ -213,17 +204,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func startThreads() {
         logger.info("---- start ----")
-
-        if state == .running {
-            return
-        }
-        state = .running
-
         dcContext.maybeStartIo()
     }
 
     func stopThreads() {
-        state = .background
         dcContext.stopIo()
     }
 
