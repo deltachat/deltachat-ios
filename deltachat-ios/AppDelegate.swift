@@ -109,23 +109,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         let userDefaults = UserDefaults.shared
         if userDefaults?.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) ?? false {
+            userDefaults?.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
             let nc = NotificationCenter.default
 
             DispatchQueue.main.async {
                 nc.post(
                     name: dcNotificationChanged,
                     object: nil,
-                    userInfo: [
-                        // ChatViewController and ChatListController update their views
-                        // unconditionally, so ids with value 0 are ok
-                        "message_id": Int(0),
-                        "chat_id": Int(0),
-                        "date": Date(),
-                    ]
+                    userInfo: [:]
                 )
             }
-
-            userDefaults?.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
         }
     }
 
