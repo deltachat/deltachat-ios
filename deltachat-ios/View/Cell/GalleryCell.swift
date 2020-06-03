@@ -1,5 +1,6 @@
 import UIKit
 import DcCore
+import SDWebImage
 
 
 class GalleryCell: UICollectionViewCell {
@@ -31,7 +32,7 @@ class GalleryCell: UICollectionViewCell {
     }
 
     func update(msg: DcMsg) {
-        guard let viewtype = msg.viewtype else {
+        guard let viewtype = msg.viewtype, let fileUrl = msg.fileURL else {
             return
         }
 
@@ -41,7 +42,7 @@ class GalleryCell: UICollectionViewCell {
         case .video:
             break
         case .gif:
-            break
+            imageView.sd_setImage(with: fileUrl, placeholderImage: nil)
         default:
             break
         }
