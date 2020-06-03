@@ -23,8 +23,8 @@ public struct DcUtils {
                                                         content: nil,
                                                         speakableGroupName: groupName,
                                                         conversationIdentifier: "\(chat.id)",
-                serviceName: nil,
-                sender: nil)
+                                                        serviceName: nil,
+                                                        sender: nil)
 
             // Add the user's avatar to the intent.
             if let imageData = chat.profileImage?.pngData() {
