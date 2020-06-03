@@ -15,35 +15,31 @@ public struct DcUtils {
     }
 
     public static func donateSendMessageIntent(chatId: Int) {
-       let chat = DcContext.shared.getChat(chatId: chatId)
-       let groupName = INSpeakableString(spokenPhrase: chat.name)
+        if #available(iOS 13.0, *) {
+            let chat = DcContext.shared.getChat(chatId: chatId)
+            let groupName = INSpeakableString(spokenPhrase: chat.name)
 
-       let sendMessageIntent = INSendMessageIntent(recipients: nil,
-                                                   content: nil,
-                                                   speakableGroupName: groupName,
-                                                   conversationIdentifier: "\(chat.id)",
-                                                   serviceName: nil,
-                                                   sender: nil)
+            let sendMessageIntent = INSendMessageIntent(recipients: nil,
+                                                        content: nil,
+                                                        speakableGroupName: groupName,
+                                                        conversationIdentifier: "\(chat.id)",
+                serviceName: nil,
+                sender: nil)
 
-       // Add the user's avatar to the intent.
-        if #available(iOS 12.0, *) {
+            // Add the user's avatar to the intent.
             if let imageData = chat.profileImage?.pngData() {
                 let image = INImage(imageData: imageData)
                 sendMessageIntent.setImage(image, forParameterNamed: \.speakableGroupName)
             }
-        }
 
-       // Donate the intent.
-       let interaction = INInteraction(intent: sendMessageIntent, response: nil)
-       interaction.donate(completion: { error in
-           if error != nil {
-               // Add error handling here.
-                DcContext.shared.logger?.error(error.debugDescription)
-           } else {
-               // Do something, e.g. send the content to a contact.
-                DcContext.shared.logger?.debug("donated message intent")
-           }
-       })
+            // Donate the intent.
+            let interaction = INInteraction(intent: sendMessageIntent, response: nil)
+            interaction.donate(completion: { error in
+                if error != nil {
+                    DcContext.shared.logger?.error(error.debugDescription)
+                }
+            })
+        }
     }
 
     static func copyAndFreeArray(inputArray: OpaquePointer?) -> [Int] {
