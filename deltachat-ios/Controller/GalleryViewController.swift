@@ -96,15 +96,15 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let mediaCell = collectionView.dequeueReusableCell(
+        guard let galleryCell = collectionView.dequeueReusableCell(
             withReuseIdentifier: GalleryCell.reuseIdentifier,
             for: indexPath) as? GalleryCell else {
             return UICollectionViewCell()
         }
         let msgId = mediaMessageIds[indexPath.row]
         let msg = DcMsg(id: msgId)
-        mediaCell.update(msg: msg)
-        return mediaCell
+        galleryCell.update(msg: msg)
+        return galleryCell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

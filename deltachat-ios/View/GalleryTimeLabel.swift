@@ -34,7 +34,6 @@ class GalleryTimeLabel: UIView {
         let localizedDescription = date.galleryLocalizedDescription
         if label.text != localizedDescription {
             label.text = localizedDescription
-            setNeedsLayout() // TOODO: test if this is actually needed
         }
     }
 

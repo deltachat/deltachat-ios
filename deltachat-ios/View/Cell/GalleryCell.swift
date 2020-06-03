@@ -1,6 +1,7 @@
 import UIKit
 import DcCore
 
+
 class GalleryCell: UICollectionViewCell {
     static let reuseIdentifier = "gallery_cell"
 
@@ -30,10 +31,20 @@ class GalleryCell: UICollectionViewCell {
     }
 
     func update(msg: DcMsg) {
-        guard let image = msg.image else {
+        guard let viewtype = msg.viewtype else {
             return
         }
-        imageView.image = image
+
+        switch viewtype {
+        case .image:
+            imageView.image = msg.image
+        case .video:
+            break
+        case .gif:
+            break
+        default:
+            break
+        }
     }
 
     override var isSelected: Bool {
