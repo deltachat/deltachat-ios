@@ -39,14 +39,14 @@ class GalleryTimeLabel: UIView {
     }
 
     func show(animated: Bool) {
-        UIView.animate(withDuration: animated ? 0 : 0.2) {
+        UIView.animate(withDuration: animated ? 0.2 : 0) {
             self.alpha = 1
         }
     }
 
     func hide(animated: Bool) {
-        UIView.animate(withDuration: animated ? 0 : 0.2) {
+        UIView.animate(withDuration: animated ? 0.2 : 0, delay: animated ? 0.2 : 0, options: .curveEaseInOut, animations: {
             self.alpha = 0
-        }
+        })
     }
 }
