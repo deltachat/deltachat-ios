@@ -586,13 +586,6 @@ public class DcContext {
     }
 }
 
-
-
-
-
-
-
-
 public class DcEventEmitter {
     private var eventEmitterPointer: OpaquePointer?
 
