@@ -7,10 +7,12 @@ class GalleryViewController: UIViewController {
     private let mediaMessageIds: [Int]
 
     // MARK: - subview specs
+    private let gridDefaultSpacing: CGFloat = 5
+
     private lazy var gridLayout: GridCollectionViewFlowLayout = {
         let layout = GridCollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = gridDefaultSpacing
+        layout.minimumInteritemSpacing = gridDefaultSpacing
         layout.format = .square
         return layout
     }()
@@ -20,7 +22,7 @@ class GalleryViewController: UIViewController {
         collection.dataSource = self
         collection.delegate = self
         collection.register(GalleryCell.self, forCellWithReuseIdentifier: GalleryCell.reuseIdentifier)
-        collection.contentInset = UIEdgeInsets(top: 0, left: gridInsets, bottom: 0, right: gridInsets)
+        collection.contentInset = UIEdgeInsets(top: gridDefaultSpacing, left: gridDefaultSpacing, bottom: gridDefaultSpacing, right: gridDefaultSpacing)
         collection.backgroundColor = .white
         collection.delaysContentTouches = false
         return collection
@@ -31,8 +33,6 @@ class GalleryViewController: UIViewController {
         view.hide(animated: false)
         return view
     }()
-
-    private let gridInsets: CGFloat = 10
 
     init(mediaMessageIds: [Int]) {
         self.mediaMessageIds = mediaMessageIds.reversed()
@@ -74,6 +74,7 @@ class GalleryViewController: UIViewController {
         floatingTimeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
 
+    // MARK: - updates
     private func updateFloatingTimeLabel() {
         if let indexPath = grid.indexPathsForVisibleItems.min() {
             let msgId = mediaMessageIds[indexPath.row]
@@ -104,10 +105,6 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         let msg = DcMsg(id: msgId)
         mediaCell.update(msg: msg)
         return mediaCell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width - 2 * gridInsets, height: 36)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -162,7 +159,7 @@ extension GalleryViewController {
         } else {
             safe_fatalError("undefined format")
         }
-        let containerWidth = view.bounds.width - view.safeAreaInsets.left - view.safeAreaInsets.right - 2 * gridInsets
+        let containerWidth = view.bounds.width - view.safeAreaInsets.left - view.safeAreaInsets.right - 2 * gridDefaultSpacing
         gridLayout.containerWidth = containerWidth
     }
 }
