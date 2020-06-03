@@ -3,17 +3,8 @@ import DcCore
 
 class GalleryViewController: UIViewController {
 
-    private struct GallerySection {
-        var headerTitle: String {
-            return String.localized(timeBucket.translationKey)
-        }
-        let timeBucket: TimeBucket
-        let msgIds: [Int]
-    }
-
     // MARK: - data
     private let mediaMessageIds: [Int]
-    private var gridSections: [GallerySection] = []
 
     // MARK: - subview specs
     private lazy var gridLayout: GridCollectionViewFlowLayout = {
@@ -29,23 +20,23 @@ class GalleryViewController: UIViewController {
         collection.dataSource = self
         collection.delegate = self
         collection.register(GalleryCell.self, forCellWithReuseIdentifier: GalleryCell.reuseIdentifier)
-        collection.register(
-            GalleryGridSectionHeader.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: GalleryGridSectionHeader.reuseIdentifier
-        )
         collection.contentInset = UIEdgeInsets(top: 0, left: gridInsets, bottom: 0, right: gridInsets)
         collection.backgroundColor = .white
         collection.delaysContentTouches = false
         return collection
     }()
 
+    private lazy var floatingTimeLabel: GalleryTimeLabel = {
+        let view = GalleryTimeLabel()
+        view.hide(animated: false)
+        return view
+    }()
+
     private let gridInsets: CGFloat = 10
 
     init(mediaMessageIds: [Int]) {
-        self.mediaMessageIds = mediaMessageIds
+        self.mediaMessageIds = mediaMessageIds.reversed()
         super.init(nibName: nil, bundle: nil)
-        self.gridSections = processData(msgIds: mediaMessageIds)
     }
 
     required init?(coder: NSCoder) {
@@ -76,34 +67,19 @@ class GalleryViewController: UIViewController {
         grid.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         grid.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         grid.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+        view.addSubview(floatingTimeLabel)
+        floatingTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+        floatingTimeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        floatingTimeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
 
-    // MARK: - data processing + update
-    private func processData(msgIds: [Int]) -> [GallerySection] {
-
-        var buckets: [TimeBucket: [Int]] = [:]
-
-        msgIds.forEach { msgId in
+    private func updateFloatingTimeLabel() {
+        if let indexPath = grid.indexPathsForVisibleItems.min() {
+            let msgId = mediaMessageIds[indexPath.row]
             let msg = DcMsg(id: msgId)
-            let date: Date = msg.sentDate
-            let msgBucket = TimeBucket.bucket(for: date)
-
-            if buckets[msgBucket] != nil {
-                buckets[msgBucket]?.append(msgId)
-            } else {
-                buckets[msgBucket] = [msgId]
-            }
+            floatingTimeLabel.update(date: msg.sentDate)
         }
-
-        var sections: [GallerySection] = []
-        TimeBucket.allCases.forEach { bucket in
-            if let msgIds = buckets[bucket] {
-                sections.append(
-                    GallerySection(timeBucket: bucket, msgIds: msgIds)
-                )
-            }
-        }
-        return sections
     }
 }
 
@@ -111,11 +87,11 @@ class GalleryViewController: UIViewController {
 extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return gridSections.count
+        return 1
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return gridSections[section].msgIds.count
+        return mediaMessageIds.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -124,23 +100,10 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             for: indexPath) as? GalleryCell else {
             return UICollectionViewCell()
         }
-        let msgId = gridSections[indexPath.section].msgIds[indexPath.row]
+        let msgId = mediaMessageIds[indexPath.row]
         let msg = DcMsg(id: msgId)
         mediaCell.update(msg: msg)
         return mediaCell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if let header = collectionView.dequeueReusableSupplementaryView(
-            ofKind: kind,
-            withReuseIdentifier: GalleryGridSectionHeader.reuseIdentifier,
-            for: indexPath
-            ) as? GalleryGridSectionHeader {
-            header.text = gridSections[indexPath.section].headerTitle
-            header.leadingMargin = gridInsets // to have grid and header equally aligned
-            return header
-        }
-        return UICollectionReusableView()
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -148,8 +111,21 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let msgId = gridSections[indexPath.section].msgIds[indexPath.row]
+        let msgId = mediaMessageIds[indexPath.row]
         showPreview(msgId: msgId)
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        updateFloatingTimeLabel()
+        floatingTimeLabel.show(animated: true)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateFloatingTimeLabel()
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        floatingTimeLabel.hide(animated: true)
     }
 }
 

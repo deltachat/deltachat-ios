@@ -150,6 +150,7 @@
 		AE76E5EE242BF2EA003CF461 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */; };
 		AE77838D23E32ED20093EABD /* ContactDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838C23E32ED20093EABD /* ContactDetailViewModel.swift */; };
 		AE77838F23E4276D0093EABD /* ContactCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */; };
+		AE83F53A2487D6F900DDDA04 /* GalleryTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83F5392487D6F900DDDA04 /* GalleryTimeLabel.swift */; };
 		AE8519EA2272FDCA00ED86F0 /* DeviceContactsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8519E92272FDCA00ED86F0 /* DeviceContactsHandler.swift */; };
 		AE851A04227AECDE00ED86F0 /* deltachat_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851A03227AECDE00ED86F0 /* deltachat_iosTests.swift */; };
 		AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC4227C755A00ED86F0 /* Protocols.swift */; };
@@ -434,6 +435,7 @@
 		AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		AE77838C23E32ED20093EABD /* ContactDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewModel.swift; sourceTree = "<group>"; };
 		AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCellViewModel.swift; sourceTree = "<group>"; };
+		AE83F5392487D6F900DDDA04 /* GalleryTimeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryTimeLabel.swift; sourceTree = "<group>"; };
 		AE8519E92272FDCA00ED86F0 /* DeviceContactsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceContactsHandler.swift; sourceTree = "<group>"; };
 		AE851A01227AECDE00ED86F0 /* deltachat-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "deltachat-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE851A03227AECDE00ED86F0 /* deltachat_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deltachat_iosTests.swift; sourceTree = "<group>"; };
@@ -965,6 +967,7 @@
 				AEB54C7E246DBA610004624C /* FlexLabel.swift */,
 				AED62BCD247687E6009E220D /* LocationStreamingIndicator.swift */,
 				AE0AA9532478010D00D42A7F /* GallerySectionHeader.swift */,
+				AE83F5392487D6F900DDDA04 /* GalleryTimeLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1480,6 +1483,7 @@
 				AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */,
 				305961FC2346125100C80F33 /* MessageContainerView.swift in Sources */,
 				305961D42346125100C80F33 /* MessagesViewController.swift in Sources */,
+				AE83F53A2487D6F900DDDA04 /* GalleryTimeLabel.swift in Sources */,
 				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
 				AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */,
 				AE728F15229D5C390047565B /* PhotoPickerAlertAction.swift in Sources */,
