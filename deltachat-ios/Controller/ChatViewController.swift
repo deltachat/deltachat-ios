@@ -4,6 +4,7 @@ import UIKit
 import InputBarAccessoryView
 import AVFoundation
 import DcCore
+import SDWebImage
 
 protocol MediaSendHandler {
     func onSuccess()
@@ -1011,6 +1012,20 @@ extension ChatViewController: MessagesDataSource {
         }
     }
 
+    private func sendAnimatedImage(url: NSURL) {
+        if let path = url.path {
+            let result = SDAnimatedImage(contentsOfFile: path)
+            if let result = result, let animatedImageData = result.animatedImageData {
+                let path = DcUtils.saveAnimatedImage(data: animatedImageData, suffix: "gif")
+                let msg = DcMsg(viewType: DC_MSG_GIF)
+                msg.setFile(filepath: path, mimeType: "image/gif")
+                let pixelSize = result.imageSizeInPixel()
+                msg.setDimension(width: pixelSize.width, height: pixelSize.height)
+                msg.sendInChat(id: self.chatId)
+            }
+        }
+    }
+
     private func sendDocumentMessage(url: NSURL) {
         DispatchQueue.global().async {
             let msg = DcMsg(viewType: DC_MSG_FILE)
@@ -1036,10 +1051,11 @@ extension ChatViewController: MessagesDataSource {
     }
 
     private func sendImage(url: NSURL) {
-        if let data = try? Data(contentsOf: url as URL) {
-            if let image = UIImage(data: data) {
-                sendImage(image)
-            }
+        if url.pathExtension == "gif" {
+            sendAnimatedImage(url: url)
+        } else if let data = try? Data(contentsOf: url as URL),
+            let image = UIImage(data: data) {
+            sendImage(image)
         }
     }
 
