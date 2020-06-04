@@ -188,10 +188,10 @@ extension GalleryViewController {
         guard let url = msg.fileURL, let index = mediaMessageIds.index(of: msgId) else {
             return
         }
-        let previousUrls: [URL] = msg.previousMediaURLs()
-        let nextUrls: [URL] = msg.nextMediaURLs()
+        let olderUrls: [URL] = msg.previousMediaURLs().reversed()
+        let newerUrls: [URL] = msg.nextMediaURLs().reversed()
         // these are the files user will be able to swipe trough
-        let mediaUrls: [URL] = previousUrls + [url] + nextUrls
+        let mediaUrls: [URL] = newerUrls + [url] + olderUrls
         let previewController = PreviewController(currentIndex: index, urls: mediaUrls)
         present(previewController, animated: true, completion: nil)
     }
