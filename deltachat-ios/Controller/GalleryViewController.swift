@@ -25,10 +25,11 @@ class GalleryViewController: UIViewController {
         collection.contentInset = UIEdgeInsets(top: gridDefaultSpacing, left: gridDefaultSpacing, bottom: gridDefaultSpacing, right: gridDefaultSpacing)
         collection.backgroundColor = .white
         collection.delaysContentTouches = false
+        collection.alwaysBounceVertical = true
         return collection
     }()
 
-    private lazy var floatingTimeLabel: GalleryTimeLabel = {
+    private lazy var timeLabel: GalleryTimeLabel = {
         let view = GalleryTimeLabel()
         view.hide(animated: false)
         return view
@@ -78,10 +79,10 @@ class GalleryViewController: UIViewController {
         grid.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         grid.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
-        view.addSubview(floatingTimeLabel)
-        floatingTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-        floatingTimeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-        floatingTimeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        view.addSubview(timeLabel)
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+        timeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 
         view.addSubview(emptyStateView)
         emptyStateView.translatesAutoresizingMaskIntoConstraints = false
@@ -96,7 +97,7 @@ class GalleryViewController: UIViewController {
         if let indexPath = grid.indexPathsForVisibleItems.min() {
             let msgId = mediaMessageIds[indexPath.row]
             let msg = DcMsg(id: msgId)
-            floatingTimeLabel.update(date: msg.sentDate)
+            timeLabel.update(date: msg.sentDate)
         }
     }
 }
@@ -131,7 +132,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         updateFloatingTimeLabel()
-        floatingTimeLabel.show(animated: true)
+        timeLabel.show(animated: true)
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -139,7 +140,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        floatingTimeLabel.hide(animated: true)
+        timeLabel.hide(animated: true)
     }
 }
 
