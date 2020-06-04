@@ -28,7 +28,7 @@ class NewChatViewController: UITableViewController {
 
     private lazy var emptySearchStateLabel: EmptyStateLabel = {
         let label = EmptyStateLabel()
-        label.isHidden = false
+        label.isHidden = true
         return label
     }()
 
