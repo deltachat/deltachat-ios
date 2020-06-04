@@ -34,6 +34,13 @@ class GalleryViewController: UIViewController {
         return view
     }()
 
+    private lazy var emptyStateView: EmptyStateLabel = {
+        let label = EmptyStateLabel()
+        label.text = String.localized("chat_gallery_empty_state")
+        label.isHidden = true
+        return label
+    }()
+
     init(mediaMessageIds: [Int]) {
         self.mediaMessageIds = mediaMessageIds.reversed()
         super.init(nibName: nil, bundle: nil)
@@ -48,6 +55,9 @@ class GalleryViewController: UIViewController {
         super.viewDidLoad()
         setupSubviews()
         title = String.localized("gallery")
+        if mediaMessageIds.isEmpty {
+            emptyStateView.isHidden = false
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +82,13 @@ class GalleryViewController: UIViewController {
         floatingTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         floatingTimeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         floatingTimeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+
+        view.addSubview(emptyStateView)
+        emptyStateView.translatesAutoresizingMaskIntoConstraints = false
+        emptyStateView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor).isActive = true
+        emptyStateView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
+        emptyStateView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        emptyStateView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
     }
 
     // MARK: - updates
@@ -126,9 +143,9 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 }
 
-// MARK: - update layout
-extension GalleryViewController {
-    private func reloadCollectionViewLayout() {
+// MARK: - grid layout + updates
+private extension GalleryViewController {
+    func reloadCollectionViewLayout() {
 
         // columns specification
         let phonePortrait = 2
