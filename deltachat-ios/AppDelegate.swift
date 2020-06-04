@@ -107,9 +107,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.dcContext.maybeNetwork()
         }
 
-        let userDefaults = UserDefaults.shared
-        if userDefaults?.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) ?? false {
-            userDefaults?.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
+        if let userDefaults = UserDefaults.shared, userDefaults.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
+            userDefaults.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
             let nc = NotificationCenter.default
 
             DispatchQueue.main.async {
