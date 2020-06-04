@@ -40,10 +40,11 @@ class GalleryCell: UICollectionViewCell {
         case .image:
             imageView.image = msg.image
         case .video:
-            break
+            imageView.image = DcUtils.generateThumbnailFromVideo(url: fileUrl)
         case .gif:
             imageView.sd_setImage(with: fileUrl, placeholderImage: nil)
         default:
+            safe_fatalError("unsupported viewtype - viewtype \(viewtype) not supported.")
             break
         }
     }
