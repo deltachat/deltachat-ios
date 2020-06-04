@@ -185,14 +185,13 @@ private extension GalleryViewController {
 // MARK: - coordinator
 extension GalleryViewController {
     func showPreview(msgId: Int) {
-        let msg = DcMsg(id: msgId)
-        guard let url = msg.fileURL, let index = mediaMessageIds.index(of: msgId) else {
+        guard let index = mediaMessageIds.index(of: msgId) else {
             return
         }
-        let olderUrls: [URL] = msg.previousMediaURLs().reversed()
-        let newerUrls: [URL] = msg.nextMediaURLs().reversed()
-        // these are the files user will be able to swipe trough
-        let mediaUrls: [URL] = newerUrls + [url] + olderUrls
+
+        let mediaUrls = mediaMessageIds.compactMap {
+            return DcMsg(id: $0).fileURL
+        }
         let previewController = PreviewController(currentIndex: index, urls: mediaUrls)
         present(previewController, animated: true, completion: nil)
     }
