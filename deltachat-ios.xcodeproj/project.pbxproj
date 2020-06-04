@@ -149,7 +149,6 @@
 		AE76E5EE242BF2EA003CF461 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */; };
 		AE77838D23E32ED20093EABD /* ContactDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838C23E32ED20093EABD /* ContactDetailViewModel.swift */; };
 		AE77838F23E4276D0093EABD /* ContactCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */; };
-		AE83F53A2487D6F900DDDA04 /* GalleryTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83F5392487D6F900DDDA04 /* GalleryTimeLabel.swift */; };
 		AE8519EA2272FDCA00ED86F0 /* DeviceContactsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8519E92272FDCA00ED86F0 /* DeviceContactsHandler.swift */; };
 		AE851A04227AECDE00ED86F0 /* deltachat_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851A03227AECDE00ED86F0 /* deltachat_iosTests.swift */; };
 		AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC4227C755A00ED86F0 /* Protocols.swift */; };
@@ -175,6 +174,7 @@
 		AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */; };
 		AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC472283045D00EDC689 /* EditSettingsController.swift */; };
 		AEE700252438E0E500D6992E /* ProgressAlertHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE700242438E0E500D6992E /* ProgressAlertHandler.swift */; };
+		AEF53BD5248904BF00D309C1 /* GalleryTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF53BD4248904BF00D309C1 /* GalleryTimeLabel.swift */; };
 		AEFBE22F23FEF23D0045327A /* ProviderInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */; };
 		AEFBE23123FF09B20045327A /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBE23023FF09B20045327A /* TypeAlias.swift */; };
 		B20462E42440A4A600367A57 /* SettingsAutodelOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20462E32440A4A600367A57 /* SettingsAutodelOverviewController.swift */; };
@@ -433,7 +433,6 @@
 		AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		AE77838C23E32ED20093EABD /* ContactDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewModel.swift; sourceTree = "<group>"; };
 		AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCellViewModel.swift; sourceTree = "<group>"; };
-		AE83F5392487D6F900DDDA04 /* GalleryTimeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryTimeLabel.swift; sourceTree = "<group>"; };
 		AE8519E92272FDCA00ED86F0 /* DeviceContactsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceContactsHandler.swift; sourceTree = "<group>"; };
 		AE851A01227AECDE00ED86F0 /* deltachat-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "deltachat-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE851A03227AECDE00ED86F0 /* deltachat_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deltachat_iosTests.swift; sourceTree = "<group>"; };
@@ -461,6 +460,7 @@
 		AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
 		AEE6EC472283045D00EDC689 /* EditSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsController.swift; sourceTree = "<group>"; };
 		AEE700242438E0E500D6992E /* ProgressAlertHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressAlertHandler.swift; sourceTree = "<group>"; };
+		AEF53BD4248904BF00D309C1 /* GalleryTimeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryTimeLabel.swift; sourceTree = "<group>"; };
 		AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderInfoCell.swift; sourceTree = "<group>"; };
 		AEFBE23023FF09B20045327A /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		B20462E02440805C00367A57 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -947,6 +947,7 @@
 		AE851AC3227C695900ED86F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AEF53BD4248904BF00D309C1 /* GalleryTimeLabel.swift */,
 				AE406EEE240FA454005F7022 /* Cell */,
 				B26B3BC6236DC3DC008ED35A /* SwitchCell.swift */,
 				70B8882D2091B8550074812E /* ContactCell.swift */,
@@ -963,12 +964,7 @@
 				305FE03523A81B4C0053BE90 /* EmptyStateLabel.swift */,
 				AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */,
 				AEB54C7E246DBA610004624C /* FlexLabel.swift */,
-<<<<<<< HEAD
 				AED62BCD247687E6009E220D /* LocationStreamingIndicator.swift */,
-				AE0AA9532478010D00D42A7F /* GallerySectionHeader.swift */,
-=======
->>>>>>> removed redundant file
-				AE83F5392487D6F900DDDA04 /* GalleryTimeLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1416,6 +1412,7 @@
 				305FE03623A81B4C0053BE90 /* EmptyStateLabel.swift in Sources */,
 				AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */,
 				AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */,
+				AEF53BD5248904BF00D309C1 /* GalleryTimeLabel.swift in Sources */,
 				AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */,
 				305961DF2346125100C80F33 /* MessageCellDelegate.swift in Sources */,
 				302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */,
@@ -1483,7 +1480,6 @@
 				AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */,
 				305961FC2346125100C80F33 /* MessageContainerView.swift in Sources */,
 				305961D42346125100C80F33 /* MessagesViewController.swift in Sources */,
-				AE83F53A2487D6F900DDDA04 /* GalleryTimeLabel.swift in Sources */,
 				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
 				AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */,
 				AE728F15229D5C390047565B /* PhotoPickerAlertAction.swift in Sources */,
