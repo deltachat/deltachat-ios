@@ -34,6 +34,7 @@ class ShareViewController: SLComposeServiceViewController {
     var selectedChat: DcChat?
     let dbHelper = DatabaseHelper()
     var shareAttachment: ShareAttachment?
+    var isAccountConfigured: Bool = true
 
     lazy var preview: UIImageView? = {
         let imageView = UIImageView(frame: .zero)
@@ -65,11 +66,15 @@ class ShareViewController: SLComposeServiceViewController {
         if dbHelper.currentDatabaseLocation == dbHelper.sharedDbFile {
             dcContext.logger = self.logger
             dcContext.openDatabase(dbFile: dbHelper.sharedDbFile)
-            selectedChatId = dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
-            if let chatId = selectedChatId {
-                selectedChat = dcContext.getChat(chatId: chatId)
+            isAccountConfigured = dcContext.isConfigured()
+            if isAccountConfigured {
+                selectedChatId = dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
+                if let chatId = selectedChatId {
+                    selectedChat = dcContext.getChat(chatId: chatId)
+                }
             }
             reloadConfigurationItems()
+            validateContent()
         } else {
             cancel()
         }
@@ -81,7 +86,7 @@ class ShareViewController: SLComposeServiceViewController {
 
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
-        return  !(contentText?.isEmpty ?? true) || !(self.shareAttachment?.isEmpty ?? true)
+        return  isAccountConfigured && (!(contentText?.isEmpty ?? true) || !(self.shareAttachment?.isEmpty ?? true))
     }
 
     private func setupNavigationBar() {
@@ -124,16 +129,21 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
     override func configurationItems() -> [Any]! {
-        logger.debug("configurationItems")
-        // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
-
         let item = SLComposeSheetConfigurationItem()
-        item?.title = String.localized("forward_to")
-        item?.value = selectedChat?.name
-        logger.debug("configurationItems chat name: \(String(describing: selectedChat?.name))")
-        item?.tapHandler = {
-            let chatListController = ChatListController(dcContext: self.dcContext, chatListDelegate: self)
-            self.pushConfigurationViewController(chatListController)
+        if isAccountConfigured {
+            logger.debug("configurationItems")
+            // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
+
+
+            item?.title = String.localized("forward_to")
+            item?.value = selectedChat?.name
+            logger.debug("configurationItems chat name: \(String(describing: selectedChat?.name))")
+            item?.tapHandler = {
+                let chatListController = ChatListController(dcContext: self.dcContext, chatListDelegate: self)
+                self.pushConfigurationViewController(chatListController)
+            }
+        } else {
+            item?.title = String.localized("share_account_not_configured")
         }
 
         return [item as Any]
