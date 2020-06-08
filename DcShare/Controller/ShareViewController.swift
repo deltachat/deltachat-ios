@@ -68,7 +68,6 @@ class ShareViewController: SLComposeServiceViewController {
             dcContext.openDatabase(dbFile: dbHelper.sharedDbFile)
             isAccountConfigured = dcContext.isConfigured()
             if isAccountConfigured {
-                isAccountConfigured = true
                 selectedChatId = dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
                 if let chatId = selectedChatId {
                     selectedChat = dcContext.getChat(chatId: chatId)
@@ -144,7 +143,7 @@ class ShareViewController: SLComposeServiceViewController {
                 self.pushConfigurationViewController(chatListController)
             }
         } else {
-            item?.value = String.localized("share_account_not_configured")
+            item?.title = String.localized("share_account_not_configured")
         }
 
         return [item as Any]
