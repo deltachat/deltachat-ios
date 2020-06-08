@@ -300,7 +300,7 @@ class ChatViewController: MessagesViewController {
         if chat.isSendingLocations {
             navigationItem.rightBarButtonItems = [badgeItem, locationStreamingItem]
         } else {
-            navigationItem.rightBarButtonItem = badgeItem
+            navigationItem.rightBarButtonItems = [badgeItem]
         }
     }
 
