@@ -34,7 +34,7 @@ class ShareViewController: SLComposeServiceViewController {
     var selectedChat: DcChat?
     let dbHelper = DatabaseHelper()
     var shareAttachment: ShareAttachment?
-    var isAccountConfigured: Bool = false
+    var isAccountConfigured: Bool = true
 
     lazy var preview: UIImageView? = {
         let imageView = UIImageView(frame: .zero)
