@@ -999,15 +999,8 @@ extension ChatViewController: MessagesDataSource {
 
     private func sendImage(_ image: UIImage, message: String? = nil) {
         DispatchQueue.global().async {
-            if let compressedImage = image.dcCompress() {
-                // at this point image is compressed by 85% by default
-                let pixelSize = compressedImage.imageSizeInPixel()
-                let path = DcUtils.saveImage(image: compressedImage)
-                let msg = DcMsg(viewType: DC_MSG_IMAGE)
-                msg.setFile(filepath: path, mimeType: "image/jpeg")
-                msg.setDimension(width: pixelSize.width, height: pixelSize.height)
-                msg.text = (message ?? "").isEmpty ? nil : message
-                msg.sendInChat(id: self.chatId)
+            if let path = DcUtils.saveImage(image: image) {
+                self.sendImageMessage(viewType: DC_MSG_IMAGE, image: image, filePath: path)
             }
         }
     }
@@ -1015,15 +1008,21 @@ extension ChatViewController: MessagesDataSource {
     private func sendAnimatedImage(url: NSURL) {
         if let path = url.path {
             let result = SDAnimatedImage(contentsOfFile: path)
-            if let result = result, let animatedImageData = result.animatedImageData {
-                let path = DcUtils.saveAnimatedImage(data: animatedImageData, suffix: "gif")
-                let msg = DcMsg(viewType: DC_MSG_GIF)
-                msg.setFile(filepath: path, mimeType: "image/gif")
-                let pixelSize = result.imageSizeInPixel()
-                msg.setDimension(width: pixelSize.width, height: pixelSize.height)
-                msg.sendInChat(id: self.chatId)
+            if let result = result,
+               let animatedImageData = result.animatedImageData,
+               let pathInDocDir = DcUtils.saveAnimatedImage(data: animatedImageData, suffix: "gif") {
+                self.sendImageMessage(viewType: DC_MSG_GIF, image: result, filePath: pathInDocDir)
             }
         }
+    }
+
+    private func sendImageMessage(viewType: Int32, image: UIImage, filePath: String, message: String? = nil) {
+        let pixelSize = image.imageSizeInPixel()
+        let msg = DcMsg(viewType: viewType)
+        msg.setFile(filepath: filePath, mimeType: viewType == DC_MSG_GIF ? "image/gif" : "image/jpeg")
+        msg.setDimension(width: pixelSize.width, height: pixelSize.height)
+        msg.text = (message ?? "").isEmpty ? nil : message
+        msg.sendInChat(id: self.chatId)
     }
 
     private func sendDocumentMessage(url: NSURL) {
