@@ -18,6 +18,7 @@ struct Constants {
 
     static let defaultCellHeight: CGFloat = 48
     static let defaultHeaderHeight: CGFloat = 20
+
 }
 
 struct Time {

@@ -103,9 +103,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("---- foreground ----")
         appIsInForeground = true
         startThreads()
-
         if reachability.connection != .none {
             self.dcContext.maybeNetwork()
+        }
+
+        if let userDefaults = UserDefaults.shared, userDefaults.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
+            userDefaults.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
+            let nc = NotificationCenter.default
+
+            DispatchQueue.main.async {
+                nc.post(
+                    name: dcNotificationChanged,
+                    object: nil,
+                    userInfo: [:]
+                )
+            }
         }
     }
 

@@ -157,6 +157,7 @@ extension ShareViewController: SendingControllerDelegate {
     func onSendingAttemptFinished() {
         DispatchQueue.main.async {
             self.popConfigurationViewController()
+            UserDefaults.shared?.set(true, forKey: UserDefaults.hasExtensionAttemptedToSend)
             self.quit()
         }
     }
