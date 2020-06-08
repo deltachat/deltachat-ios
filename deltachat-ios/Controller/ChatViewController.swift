@@ -1053,7 +1053,7 @@ extension ChatViewController: MessagesDataSource {
         if url.pathExtension == "gif" {
             sendAnimatedImage(url: url)
         } else if let data = try? Data(contentsOf: url as URL),
-            let image = UIImage(data: data) {
+                  let image = UIImage(data: data) {
             sendImage(image)
         }
     }
