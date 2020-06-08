@@ -922,7 +922,7 @@ extension ChatViewController: MessagesDataSource {
 
         switch Int32(state) {
         case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_36pt").scaleDownImage(toMax: 16)
+            imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 16)?.maskWithColor(color: DcColors.grayDateColor)
             imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_sending")
             offset = -2
         case DC_STATE_OUT_DELIVERED:
