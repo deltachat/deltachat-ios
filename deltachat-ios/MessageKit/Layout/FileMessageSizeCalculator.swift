@@ -14,11 +14,11 @@ open class FileMessageSizeCalculator: MessageSizeCalculator {
 
     private var incomingMessageLabelInsets = UIEdgeInsets(top: 0,
                                                          left: FileMessageCell.insetHorizontalBig,
-                                                         bottom: FileMessageCell.insetBottom,
+                                                         bottom: FileMessageCell.insetVertical,
                                                          right: FileMessageCell.insetHorizontalSmall)
     private var outgoingMessageLabelInsets = UIEdgeInsets(top: 0,
                                                          left: FileMessageCell.insetHorizontalSmall,
-                                                         bottom: FileMessageCell.insetBottom,
+                                                         bottom: FileMessageCell.insetVertical,
                                                          right: FileMessageCell.insetHorizontalBig)
 
     private var messageLabelFont = UIFont.preferredFont(forTextStyle: .body)

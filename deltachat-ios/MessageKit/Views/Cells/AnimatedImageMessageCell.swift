@@ -8,8 +8,8 @@ open class AnimatedImageMessageCell: MessageContentCell {
 
     public static let insetTop: CGFloat = 12
     public static let insetBottom: CGFloat = 12
-    public static let insetHorizontalBig: CGFloat = 23
-    public static let insetHorizontalSmall: CGFloat = 12
+    public static let insetHorizontalBig: CGFloat = 18
+    public static let insetHorizontalSmall: CGFloat = 14
 
 
     // MARK: - Properties

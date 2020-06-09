@@ -5,8 +5,8 @@ open class TextMediaMessageCell: MessageContentCell {
 
     static let insetTop: CGFloat = 12
     static let insetBottom: CGFloat = 12
-    static let insetHorizontalBig: CGFloat = 23
-    static let insetHorizontalSmall: CGFloat = 12
+    static let insetHorizontalBig: CGFloat = 18
+    static let insetHorizontalSmall: CGFloat = 14
 
 
     // MARK: - Properties
