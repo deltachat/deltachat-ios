@@ -61,7 +61,6 @@ public struct DcUtils {
         return acc
     }
 
-    // compression needs to be done before in UIImage.dcCompress()
     public static func saveImage(image: UIImage) -> String? {
         let timestamp = Double(Date().timeIntervalSince1970)
         guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask,

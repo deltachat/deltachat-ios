@@ -1010,17 +1010,15 @@ extension ChatViewController: MessagesDataSource {
             let result = SDAnimatedImage(contentsOfFile: path)
             if let result = result,
                let animatedImageData = result.animatedImageData,
-               let pathInDocDir = DcUtils.saveAnimatedImage(data: animatedImageData, suffix: "gif") {
+               let pathInDocDir = DcUtils.saveImage(data: animatedImageData, suffix: "gif") {
                 self.sendImageMessage(viewType: DC_MSG_GIF, image: result, filePath: pathInDocDir)
             }
         }
     }
 
     private func sendImageMessage(viewType: Int32, image: UIImage, filePath: String, message: String? = nil) {
-        let pixelSize = image.imageSizeInPixel()
         let msg = DcMsg(viewType: viewType)
-        msg.setFile(filepath: filePath, mimeType: viewType == DC_MSG_GIF ? "image/gif" : "image/jpeg")
-        msg.setDimension(width: pixelSize.width, height: pixelSize.height)
+        msg.setFile(filepath: filePath)
         msg.text = (message ?? "").isEmpty ? nil : message
         msg.sendInChat(id: self.chatId)
     }

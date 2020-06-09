@@ -37,36 +37,12 @@ public extension UIImage {
         return newImage
     }
 
-    func dcCompress(toMax target: Float = 1280) -> UIImage? {
-        return scaleDownAndCompress(toMax: target)
-    }
-
     func imageSizeInPixel() -> CGSize {
         let heightInPoints = size.height
         let heightInPixels = heightInPoints * scale
         let widthInPoints = size.width
         let widthInPixels = widthInPoints * scale
         return CGSize(width: widthInPixels, height: heightInPixels)
-    }
-    
-    // if an image has an alpha channel we try to keep it, using PNG formatting instead of JPEG
-    // PNGs are less compressed than JPEGs - to keep the message sizes small,
-    // the size of PNG imgaes will be scaled down
-    func scaleDownAndCompress(toMax: Float) -> UIImage? {
-        let rect = getResizedRectangle(toMax: self.isTransparent() ?
-            min(Float(self.size.width) / 2, toMax / 2) :
-            toMax)
-
-        UIGraphicsBeginImageContextWithOptions(rect.size, !self.isTransparent(), 0.0)
-        draw(in: rect)
-        let img = UIGraphicsGetImageFromCurrentImageContext()
-
-        let imageData = self.isTransparent() ?
-            img?.pngData() :
-            img?.jpegData(compressionQuality: 0.85)
-
-        UIGraphicsEndImageContext()
-        return UIImage(data: imageData!)
     }
 
     func isTransparent() -> Bool {
