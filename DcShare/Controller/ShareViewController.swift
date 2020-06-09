@@ -57,9 +57,6 @@ class ShareViewController: SLComposeServiceViewController {
         }
         placeholder = String.localized("chat_input_placeholder")
 
-        DispatchQueue.global(qos: .background).async {
-            self.shareAttachment = ShareAttachment(dcContext: self.dcContext, inputItems: self.extensionContext?.inputItems, delegate: self)
-        }
     }
 
     override func presentationAnimationDidFinish() {
@@ -71,6 +68,9 @@ class ShareViewController: SLComposeServiceViewController {
                 selectedChatId = dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
                 if let chatId = selectedChatId {
                     selectedChat = dcContext.getChat(chatId: chatId)
+                }
+                DispatchQueue.global(qos: .background).async {
+                    self.shareAttachment = ShareAttachment(dcContext: self.dcContext, inputItems: self.extensionContext?.inputItems, delegate: self)
                 }
             }
             reloadConfigurationItems()
