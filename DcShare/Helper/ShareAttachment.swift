@@ -81,9 +81,7 @@ class ShareAttachment {
             if let result = result, let animatedImageData = result.animatedImageData {
                 let path = DcUtils.saveAnimatedImage(data: animatedImageData, suffix: "gif")
                 let msg = DcMsg(viewType: DC_MSG_GIF)
-                msg.setFile(filepath: path, mimeType: "image/gif")
-                let pixelSize = result.imageSizeInPixel()
-                msg.setDimension(width: pixelSize.width, height: pixelSize.height)
+                msg.setFile(filepath: path)
                 self.messages.append(msg)
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
@@ -111,16 +109,14 @@ class ShareAttachment {
                 self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
                 result = nil
             }
-            if let result = result, let compressedImage = result.dcCompress() {
-                let pixelSize = compressedImage.imageSizeInPixel()
-                let path = DcUtils.saveImage(image: compressedImage)
+            if let result = result {
+                let path = DcUtils.saveImage(image: result)
                 let msg = DcMsg(viewType: DC_MSG_IMAGE)
-                msg.setFile(filepath: path, mimeType: "image/jpeg")
-                msg.setDimension(width: pixelSize.width, height: pixelSize.height)
+                msg.setFile(filepath: path)
                 self.delegate?.onAttachmentChanged()
                 self.messages.append(msg)
                 if self.imageThumbnail == nil {
-                    self.imageThumbnail = compressedImage.scaleDownImage(toMax: self.thumbnailSize)
+                    self.imageThumbnail = result.scaleDownImage(toMax: self.thumbnailSize)
                     self.delegate?.onThumbnailChanged()
                 }
             }
@@ -177,7 +173,7 @@ class ShareAttachment {
 
     private func addDcMsg(url: URL, viewType: Int32) {
         let msg = DcMsg(viewType: viewType)
-        msg.setFile(filepath: url.path, mimeType: DcUtils.getMimeTypeForPath(path: url.path))
+        msg.setFile(filepath: url.relativePath)
         self.messages.append(msg)
     }
 

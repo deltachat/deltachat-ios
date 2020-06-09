@@ -930,7 +930,7 @@ public class DcMsg {
         return nil
     }
 
-    public func setFile(filepath: String?, mimeType: String?) {
+    public func setFile(filepath: String?, mimeType: String? = nil) {
         dc_msg_set_file(messagePointer, filepath, mimeType)
     }
 
