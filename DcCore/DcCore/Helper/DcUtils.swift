@@ -62,23 +62,15 @@ public struct DcUtils {
     }
 
     public static func saveImage(image: UIImage) -> String? {
-        let timestamp = Double(Date().timeIntervalSince1970)
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
-                                                           appropriateFor: nil, create: false) as NSURL,
-            let data = image.isTransparent() ? image.pngData() : image.jpegData(compressionQuality: 1.0),
-            let path = directory.appendingPathComponent("\(timestamp).jpg")
-            else { return nil }
-
-        do {
-            try data.write(to: path)
-            return path.relativePath
-        } catch {
-            DcContext.shared.logger?.info(error.localizedDescription)
+        let suffix = image.isTransparent() ? "png" : "jpg"
+        guard let data = image.isTransparent() ? image.pngData() : image.jpegData(compressionQuality: 1.0) else {
             return nil
         }
+
+        return saveImage(data: data, suffix: suffix)
     }
 
-    public static func saveAnimatedImage(data: Data, suffix: String) -> String? {
+    public static func saveImage(data: Data, suffix: String) -> String? {
         let timestamp = Double(Date().timeIntervalSince1970)
         guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
                                                            appropriateFor: nil, create: false) as NSURL,
