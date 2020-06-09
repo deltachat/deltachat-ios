@@ -4,6 +4,7 @@ import UIKit
 import InputBarAccessoryView
 import AVFoundation
 import DcCore
+import SDWebImage
 
 protocol MediaSendHandler {
     func onSuccess()
@@ -998,17 +999,30 @@ extension ChatViewController: MessagesDataSource {
 
     private func sendImage(_ image: UIImage, message: String? = nil) {
         DispatchQueue.global().async {
-            if let compressedImage = image.dcCompress() {
-                // at this point image is compressed by 85% by default
-                let pixelSize = compressedImage.imageSizeInPixel()
-                let path = DcUtils.saveImage(image: compressedImage)
-                let msg = DcMsg(viewType: DC_MSG_IMAGE)
-                msg.setFile(filepath: path, mimeType: "image/jpeg")
-                msg.setDimension(width: pixelSize.width, height: pixelSize.height)
-                msg.text = (message ?? "").isEmpty ? nil : message
-                msg.sendInChat(id: self.chatId)
+            if let path = DcUtils.saveImage(image: image) {
+                self.sendImageMessage(viewType: DC_MSG_IMAGE, image: image, filePath: path)
             }
         }
+    }
+
+    private func sendAnimatedImage(url: NSURL) {
+        if let path = url.path {
+            let result = SDAnimatedImage(contentsOfFile: path)
+            if let result = result,
+               let animatedImageData = result.animatedImageData,
+               let pathInDocDir = DcUtils.saveAnimatedImage(data: animatedImageData, suffix: "gif") {
+                self.sendImageMessage(viewType: DC_MSG_GIF, image: result, filePath: pathInDocDir)
+            }
+        }
+    }
+
+    private func sendImageMessage(viewType: Int32, image: UIImage, filePath: String, message: String? = nil) {
+        let pixelSize = image.imageSizeInPixel()
+        let msg = DcMsg(viewType: viewType)
+        msg.setFile(filepath: filePath, mimeType: viewType == DC_MSG_GIF ? "image/gif" : "image/jpeg")
+        msg.setDimension(width: pixelSize.width, height: pixelSize.height)
+        msg.text = (message ?? "").isEmpty ? nil : message
+        msg.sendInChat(id: self.chatId)
     }
 
     private func sendDocumentMessage(url: NSURL) {
@@ -1036,10 +1050,11 @@ extension ChatViewController: MessagesDataSource {
     }
 
     private func sendImage(url: NSURL) {
-        if let data = try? Data(contentsOf: url as URL) {
-            if let image = UIImage(data: data) {
-                sendImage(image)
-            }
+        if url.pathExtension == "gif" {
+            sendAnimatedImage(url: url)
+        } else if let data = try? Data(contentsOf: url as URL),
+                  let image = UIImage(data: data) {
+            sendImage(image)
         }
     }
 
