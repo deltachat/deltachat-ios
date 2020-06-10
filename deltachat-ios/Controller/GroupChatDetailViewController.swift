@@ -14,9 +14,10 @@ class GroupChatDetailViewController: UIViewController {
     private let membersRowAddMembers = 0
     private let membersRowQrInvite = 1
     private let memberManagementRows = 2
-    private let chatActionsRowArchiveChat = 0
-    private let chatActionsRowLeaveGroup = 1
-    private let chatActionsRowDeleteChat = 2
+    private let chatActionsRowMuteChat = 0
+    private let chatActionsRowArchiveChat = 1
+    private let chatActionsRowLeaveGroup = 2
+    private let chatActionsRowDeleteChat = 3
 
     private let dcContext: DcContext
 
@@ -31,7 +32,9 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private var chatId: Int
-    fileprivate var chat: DcChat
+    private var chat: DcChat {
+        return dcContext.getChat(chatId: chatId)
+    }
 
     // stores contactIds
     private var groupMemberIds: [Int] = []
@@ -67,6 +70,15 @@ class GroupChatDetailViewController: UIViewController {
         header.setVerified(isVerified: chat.isVerified)
         return header
     }()
+
+    private lazy var muteChatCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = self.chat.isMuted ? String.localized("menu_unmute") :  String.localized("menu_mute")
+        cell.actionColor = SystemColor.blue.uiColor
+        cell.selectionStyle = .none
+        return cell
+    }()
+
 
     private lazy var archiveChatCell: ActionCell = {
         let cell = ActionCell()
@@ -109,7 +121,6 @@ class GroupChatDetailViewController: UIViewController {
     init(chatId: Int, dcContext: DcContext) {
         self.dcContext = dcContext
         self.chatId = chatId
-        chat = dcContext.getChat(chatId: chatId)
         super.init(nibName: nil, bundle: nil)
         setupSubviews()
     }
@@ -139,7 +150,6 @@ class GroupChatDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //update chat object, maybe chat name was edited
-        chat = dcContext.getChat(chatId: chat.id)
         updateGroupMembers()
         tableView.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
@@ -178,7 +188,6 @@ class GroupChatDetailViewController: UIViewController {
         } else {
             self.navigationController?.popToRootViewController(animated: false)
         }
-        self.chat = dcContext.getChat(chatId: chat.id)
      }
 
     private func getGroupMemberIdFor(_ row: Int) -> Int {
@@ -263,7 +272,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         case .members:
             return groupMemberIds.count + memberManagementRows
         case .chatActions:
-            return 3
+            return 4
         }
     }
 
@@ -322,7 +331,9 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             contactCell.updateCell(cellViewModel: cellViewModel)
             return contactCell
         case .chatActions:
-            if row == chatActionsRowArchiveChat {
+            if row == chatActionsRowMuteChat {
+                return muteChatCell
+            } else if row == chatActionsRowArchiveChat {
                 return archiveChatCell
             } else if row == chatActionsRowLeaveGroup {
                 return leaveGroupCell
@@ -355,7 +366,14 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 showContactDetail(of: member.id)
             }
         case .chatActions:
-            if row == chatActionsRowArchiveChat {
+            if row == chatActionsRowMuteChat {
+                if chat.isMuted {
+                    dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
+                    muteChatCell.actionTitle = String.localized("menu_mute")
+                } else {
+                    showMuteAlert()
+                }
+            } else if row == chatActionsRowArchiveChat {
                 toggleArchiveChat()
             } else if row == chatActionsRowLeaveGroup {
                 showLeaveGroupConfirmationAlert()
@@ -433,6 +451,29 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 
 // MARK: - alerts
 extension GroupChatDetailViewController {
+
+    private func showMuteAlert() {
+        let alert = UIAlertController(title: String.localized("mute"), message: nil, preferredStyle: .safeActionSheet)
+        let forever = -1
+        addDurationSelectionAction(to: alert, key: "mute_for_one_hour", duration: Time.oneHour)
+        addDurationSelectionAction(to: alert, key: "mute_for_one_hour", duration: Time.twoHours)
+        addDurationSelectionAction(to: alert, key: "mute_for_one_day", duration: Time.oneDay)
+        addDurationSelectionAction(to: alert, key: "mute_for_seven_days", duration: Time.oneWeek)
+        addDurationSelectionAction(to: alert, key: "mute_forever", duration: forever)
+
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func addDurationSelectionAction(to alert: UIAlertController, key: String, duration: Int) {
+        let action = UIAlertAction(title: String.localized(key), style: .default, handler: { _ in
+            self.dcContext.setChatMuteDuration(chatId: self.chatId, duration: duration)
+            self.muteChatCell.actionTitle = String.localized("menu_unmute")
+        })
+        alert.addAction(action)
+    }
+
     private func showDeleteChatConfirmationAlert() {
         let alert = UIAlertController(
             title: nil,
