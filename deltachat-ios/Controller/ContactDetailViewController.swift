@@ -337,7 +337,10 @@ class ContactDetailViewController: UITableViewController {
         if viewModel.chatId == 0 {
             return
         }
-        let messageIds = viewModel.context.getChatMedia(chatId: viewModel.chatId, messageType: messageType, messageType2: messageType2, messageType3: messageType3)
+        let messageIds = viewModel.context.getChatMedia(chatId: viewModel.chatId,
+                                                        messageType: messageType,
+                                                        messageType2: messageType2,
+                                                        messageType3: messageType3)
         var mediaUrls: [URL] = []
         for messageId in messageIds {
             let message = DcMsg.init(id: messageId)
