@@ -294,6 +294,10 @@ public class DcContext {
         dc_configure(contextPointer)
     }
 
+    public func setChatMuteDuration(chatId: Int, duration: Int) {
+        dc_set_chat_mute_duration(self.contextPointer, UInt32(chatId), Int64(duration))
+    }
+
     public func getConfig(_ key: String) -> String? {
         guard let cString = dc_get_config(self.contextPointer, key) else { return nil }
         let value = String(cString: cString)
