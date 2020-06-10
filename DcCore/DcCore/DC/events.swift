@@ -119,7 +119,9 @@ public func handleEvent(event: DcEvent) {
                     object: nil,
                     userInfo: userInfo)
 
-            if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+            let chat = DcContext.shared.getChat(chatId: Int(data1))
+            if !UserDefaults.standard.bool(forKey: "notifications_disabled") && !chat.isMuted
+                {
                 let content = UNMutableNotificationContent()
                 let msg = DcMsg(id: Int(data2))
                 content.title = msg.fromContact.displayName
