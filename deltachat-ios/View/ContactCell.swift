@@ -72,7 +72,8 @@ class ContactCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = DcColors.middleGray
         label.textAlignment = .right
-        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 2), for: NSLayoutConstraint.Axis.horizontal)
+        label.setContentHuggingPriority(.defaultHigh, for: NSLayoutConstraint.Axis.horizontal)
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 10), for: NSLayoutConstraint.Axis.horizontal)
         return label
     }()
 
