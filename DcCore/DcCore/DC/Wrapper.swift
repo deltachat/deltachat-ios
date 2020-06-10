@@ -724,6 +724,10 @@ public class DcChat {
         return dc_chat_is_verified(chatPointer) > 0
     }
 
+    public var isMuted: Bool {
+        return dc_chat_is_muted(chatPointer) != 0
+    }
+
     public var contactIds: [Int] {
         return DcUtils.copyAndFreeArray(inputArray: dc_get_chat_contacts(DcContext.shared.contextPointer, UInt32(id)))
     }
