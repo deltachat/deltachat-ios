@@ -641,8 +641,4 @@
 
 
 // android specific strings, developers: please take care to remove strings that are no longer used!
-// this message is shown in the device chat, starting in version 1.6, it should explain the need for the permanent-notifiation and also use the same wording as used there (see "Background connection enabled")
-"device_talk_background_connection_android" = "Igual xa o notaches, hai un aviso \"Conexión en segundo plano activada\" na bandexa do sistema.\n\n👉 O aviso normalmente evita que o sistema corte a conexión entre Delta Chat e o teu servidor.\n\n👉 O aviso desaparece sen que teñas que facer nada, a conexión vaise cortar igualmente.\nSe cres que é raro, entendémolo - pero moitos fabricantes fan precisamente eso. A web https://dontkillmyapp.com proporciona posibles solucións.\n\nPorén, agrádanos poder mellorar a recepción de mensaxes en segundo plano con este cambio e poder cumprir coas expectativas de moitas usuarias - grazas por informarnos  🤗";
-"device_talk_background_connection2_android" = "Se o precisas xa podes activar / desactivar a \"Conexión en segundo plano\" nos \"Axustes / Notificacións\".";
-
 

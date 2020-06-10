@@ -238,3 +238,5 @@
 "unblock_contacts_desktop" = "పరిచయం నిరోధాన్ని నిలిపివేయి";
 "me_desktop" = "నేను";
 "message_detail_from_desktop" = "నుండీ";
+// android specific strings, developers: please take care to remove strings that are no longer used!
+

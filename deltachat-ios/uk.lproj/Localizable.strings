@@ -445,3 +445,5 @@
 "message_detail_to_desktop" = " ";
 "menu.view.developer.open.log.folder" = "Відкрити папку журналів";
 "menu.view.developer.open.current.log.file" = "Відкрити поточний файл журналу";
+// android specific strings, developers: please take care to remove strings that are no longer used!
+
