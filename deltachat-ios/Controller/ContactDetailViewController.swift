@@ -33,6 +33,14 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var muteChatCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = viewModel.chatIsMuted ? String.localized("menu_unmute") :  String.localized("menu_mute")
+        cell.actionColor = SystemColor.blue.uiColor
+        cell.selectionStyle = .none
+        return cell
+    }()
+
     private lazy var archiveChatCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = viewModel.chatIsArchived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
@@ -53,7 +61,7 @@ class ContactDetailViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("gallery")
         cell.accessoryType = .disclosureIndicator
-        if viewModel.chatId == nil {
+        if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
             cell.textLabel?.isEnabled = false
         }
@@ -64,7 +72,7 @@ class ContactDetailViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("documents")
         cell.accessoryType = .disclosureIndicator
-        if viewModel.chatId == nil {
+        if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
             cell.textLabel?.isEnabled = false
         }
@@ -128,6 +136,8 @@ class ContactDetailViewController: UITableViewController {
             }
         case .chatActions:
             switch viewModel.chatActionFor(row: row) {
+            case .muteChat:
+                return muteChatCell
             case .archiveChat:
                 return archiveChatCell
             case .blockContact:
@@ -195,6 +205,13 @@ class ContactDetailViewController: UITableViewController {
     private func handleCellAction(for index: Int) {
         let action = viewModel.chatActionFor(row: index)
         switch action {
+        case .muteChat:
+            if viewModel.chatIsMuted {
+                self.viewModel.context.setChatMuteDuration(chatId: self.viewModel.chatId, duration: 0)
+                muteChatCell.actionTitle = String.localized("menu_mute")
+            } else {
+                showMuteAlert()
+            }
         case .archiveChat:
             toggleArchiveChat()
         case .blockContact:
@@ -248,14 +265,26 @@ class ContactDetailViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
-    private func showNotificationSetup() {
-        let notificationSetupAlert = UIAlertController(
-            title: "Notifications Setup is not implemented yet",
-            message: "But you get an idea where this is going",
-            preferredStyle: .safeActionSheet)
+    private func showMuteAlert() {
+        let alert = UIAlertController(title: String.localized("mute"), message: nil, preferredStyle: .safeActionSheet)
+        let forever = -1
+        addDurationSelectionAction(to: alert, key: "mute_for_one_hour", duration: Time.oneHour)
+        addDurationSelectionAction(to: alert, key: "mute_for_one_hour", duration: Time.twoHours)
+        addDurationSelectionAction(to: alert, key: "mute_for_one_day", duration: Time.oneDay)
+        addDurationSelectionAction(to: alert, key: "mute_for_seven_days", duration: Time.oneWeek)
+        addDurationSelectionAction(to: alert, key: "mute_forever", duration: forever)
+
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
-        notificationSetupAlert.addAction(cancelAction)
-        present(notificationSetupAlert, animated: true, completion: nil)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func addDurationSelectionAction(to alert: UIAlertController, key: String, duration: Int) {
+        let action = UIAlertAction(title: String.localized(key), style: .default, handler: { _ in
+            self.viewModel.context.setChatMuteDuration(chatId: self.viewModel.chatId, duration: duration)
+            self.muteChatCell.actionTitle = String.localized("menu_unmute")
+        })
+        alert.addAction(action)
     }
 
     private func toggleBlockContact() {
@@ -305,8 +334,10 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {
-        guard let chatId = viewModel.chatId else { return }
-        let messageIds = viewModel.context.getChatMedia(chatId: chatId, messageType: messageType, messageType2: messageType2, messageType3: messageType3)
+        if viewModel.chatId == 0 {
+            return
+        }
+        let messageIds = viewModel.context.getChatMedia(chatId: viewModel.chatId, messageType: messageType, messageType2: messageType2, messageType3: messageType3)
         var mediaUrls: [URL] = []
         for messageId in messageIds {
             let message = DcMsg.init(id: messageId)
@@ -319,10 +350,10 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func deleteChat() {
-        guard let chatId = viewModel.chatId else {
+        if viewModel.chatId == 0 {
             return
         }
-        viewModel.context.deleteChat(chatId: chatId)
+        viewModel.context.deleteChat(chatId: viewModel.chatId)
 
         // just pop to viewControllers - we've in chatlist or archive then
         // (no not use `navigationController?` here: popping self will make the reference becoming nil)
