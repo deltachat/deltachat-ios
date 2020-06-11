@@ -340,10 +340,6 @@ public class DcContext {
         return Int(dc_estimate_deletion_cnt(contextPointer, fromServer ? 1 : 0, Int64(timeout)))
     }
 
-    public func emptyServer(flags: Int) {
-        dc_empty_server(contextPointer, UInt32(flags))
-    }
-
     public func isConfigured() -> Bool {
         return dc_is_configured(contextPointer) != 0
     }
