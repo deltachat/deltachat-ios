@@ -15,7 +15,7 @@ class ContactCell: UITableViewCell {
     private let imgSize: CGFloat = 20
 
     lazy var toplineStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, pinnedIndicator, timeLabel, locationStreamingIndicator])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, mutedIndicator, pinnedIndicator, timeLabel, locationStreamingIndicator])
         stackView.axis = .horizontal
         stackView.alignment = .firstBaseline
         stackView.spacing = 4
@@ -56,12 +56,24 @@ class ContactCell: UITableViewCell {
         return view
     }()
 
+    private let mutedIndicator: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        view.widthAnchor.constraint(equalToConstant: 16).isActive = true
+        view.tintColor = DcColors.middleGray
+        view.image = #imageLiteral(resourceName: "volume_off").withRenderingMode(.alwaysTemplate)
+        view.isHidden = true
+        return view
+    }()
+
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = DcColors.middleGray
         label.textAlignment = .right
-        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 2), for: NSLayoutConstraint.Axis.horizontal)
+        label.setContentHuggingPriority(.defaultHigh, for: NSLayoutConstraint.Axis.horizontal)
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 10), for: NSLayoutConstraint.Axis.horizontal)
         return label
     }()
 
@@ -180,17 +192,17 @@ class ContactCell: UITableViewCell {
         avatar.setName(name)
     }
 
-    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool) {
+    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool, isMuted: Bool) {
         if visibility==DC_CHAT_VISIBILITY_ARCHIVED {
             pinnedIndicator.isHidden = true
             unreadMessageCounter.isHidden = true
             deliveryStatusIndicator.isHidden = true
             archivedIndicator.isHidden = false
         } else if unreadCount > 0 {
-            unreadMessageCounter.setCount(unreadCount)
-
             pinnedIndicator.isHidden = !(visibility==DC_CHAT_VISIBILITY_PINNED)
+            unreadMessageCounter.setCount(unreadCount)
             unreadMessageCounter.isHidden = false
+            unreadMessageCounter.backgroundColor = isMuted ? .gray : .red
             deliveryStatusIndicator.isHidden = true
             archivedIndicator.isHidden = true
         } else {
@@ -213,6 +225,7 @@ class ContactCell: UITableViewCell {
             archivedIndicator.isHidden = true
         }
 
+        mutedIndicator.isHidden = !isMuted
         locationStreamingIndicator.isHidden = !isLocationStreaming
     }
 
@@ -276,8 +289,11 @@ class ContactCell: UITableViewCell {
             }
             setVerified(isVerified: chat.isVerified)
             setTimeLabel(chatData.summary.timestamp)
-            setStatusIndicators(unreadCount: chatData.unreadMessages, status: chatData.summary.state,
-                                visibility: chat.visibility, isLocationStreaming: chat.isSendingLocations)
+            setStatusIndicators(unreadCount: chatData.unreadMessages,
+                                status: chatData.summary.state,
+                                visibility: chat.visibility,
+                                isLocationStreaming: chat.isSendingLocations,
+                                isMuted: chat.isMuted)
 
         case .contact(let contactData):
             let contact = DcContact(id: contactData.contactId)
@@ -289,7 +305,11 @@ class ContactCell: UITableViewCell {
                 avatar.setColor(contact.color)
             }
             setVerified(isVerified: contact.isVerified)
-            setStatusIndicators(unreadCount: 0, status: 0, visibility: 0, isLocationStreaming: false)
+            setStatusIndicators(unreadCount: 0,
+                                status: 0,
+                                visibility: 0,
+                                isLocationStreaming: false,
+                                isMuted: false)
         }
     }
 }

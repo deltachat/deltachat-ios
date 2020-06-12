@@ -13,6 +13,7 @@ class ContactDetailViewModel {
     }
 
     enum ChatAction {
+        case muteChat
         case archiveChat
         case blockContact
         case deleteChat
@@ -29,16 +30,16 @@ class ContactDetailViewModel {
         return DcContact(id: contactId)
     }
 
-    let chatId: Int?
+    let chatId: Int
     private let sharedChats: DcChatlist
     private var sections: [ProfileSections] = []
-    private var chatActions: [ChatAction] = [] // chatDetail: archive, block, delete - else: block
+    private var chatActions: [ChatAction] = []
     private var attachmentActions: [AttachmentAction] = [.gallery, .documents]
 
     init(dcContext: DcContext, contactId: Int) {
         self.context = dcContext
         self.contactId = contactId
-        self.chatId = dcContext.getChatIdByContactIdOld(contactId)
+        self.chatId = dcContext.getChatIdByContactId(contactId: contactId)
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
         sections.append(.attachments)
@@ -48,8 +49,8 @@ class ContactDetailViewModel {
         }
         sections.append(.chatActions)
 
-        if chatId != nil {
-            chatActions = [.archiveChat, .blockContact, .deleteChat]
+        if chatId != 0 {
+            chatActions = [.muteChat, .archiveChat, .blockContact, .deleteChat]
         } else {
             chatActions = [.blockContact]
         }
@@ -68,10 +69,11 @@ class ContactDetailViewModel {
     }
 
     var chatIsArchived: Bool {
-        guard let chatId = chatId else {
-            return false
-        }
-        return context.getChat(chatId: chatId).isArchived
+        return chatId != 0 && context.getChat(chatId: chatId).isArchived
+    }
+
+    var chatIsMuted: Bool {
+        return chatId != 0 && context.getChat(chatId: chatId).isMuted
     }
 
     var numberOfSections: Int {
@@ -111,7 +113,7 @@ class ContactDetailViewModel {
 
     // returns true if chat is archived after action
     func toggleArchiveChat() -> Bool {
-        guard let chatId = chatId else {
+        if chatId == 0 {
             safe_fatalError("there is no chatId - you are probably are calling this from ContactDetail - this should be only called from ChatDetail")
             return false
         }

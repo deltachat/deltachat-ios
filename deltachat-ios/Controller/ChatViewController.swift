@@ -61,6 +61,17 @@ class ChatViewController: MessagesViewController {
         return UIBarButtonItem(customView: indicator)
     }()
 
+
+    private lazy var muteItem: UIBarButtonItem = {
+        let imageView = UIImageView()
+        imageView.tintColor = DcColors.defaultTextColor
+        imageView.image =  #imageLiteral(resourceName: "volume_off").withRenderingMode(.alwaysTemplate)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        return UIBarButtonItem(customView: imageView)
+    }()
+
     private lazy var badgeItem: UIBarButtonItem = {
         let badge: InitialsBadge
         let chat = dcContext.getChat(chatId: chatId)
@@ -298,11 +309,14 @@ class ChatViewController: MessagesViewController {
         titleView.updateTitleView(title: chat.name, subtitle: subtitle)
         navigationItem.titleView = titleView
 
+        var rightBarButtonItems = [badgeItem]
         if chat.isSendingLocations {
-            navigationItem.rightBarButtonItems = [badgeItem, locationStreamingItem]
-        } else {
-            navigationItem.rightBarButtonItems = [badgeItem]
+            rightBarButtonItems.append(locationStreamingItem)
         }
+        if chat.isMuted {
+            rightBarButtonItems.append(muteItem)
+        }
+        navigationItem.rightBarButtonItems = rightBarButtonItems
     }
 
     @objc
