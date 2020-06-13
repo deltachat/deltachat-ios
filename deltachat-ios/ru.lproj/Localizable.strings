@@ -63,7 +63,7 @@
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
 
-"self" = "Самим собой";
+"self" = "Я";
 "draft" = "Черновик";
 "image" = "Изображение";
 "gif" = "GIF";
@@ -511,6 +511,7 @@
 "qrshow_join_contact_no_connection_hint" = "Для настройки по QR коду необходимо интернет соединение. Сначала подключитесь к сети интернет.";
 "qrshow_join_contact_no_connection_toast" = "Нет соединения к интернету, невозможно начать процесс настройки по QR коду.";
 "qraccount_ask_create_and_login" = "Создать новый адрес электронной почты на \"%1$@\" и войти?";
+"qraccount_ask_create_and_login_another" = "Создать новый адрес почты на \"%1$@\" и войти?\n\nВаш существующий аккаунт не будет удалён. Используйте пункт меню «Сменить аккаунт», чтобы переключаться между аккаунтами.";
 "qraccount_success_enter_name" = "Вход удался—ваш адрес электронной почты %1$@\n\nЕсли хотите, вы можете ввести имя и установить аватар, которые будут отображаться людям, которым вы пишете.";
 "qraccount_qr_code_cannot_be_used" = "Отсканированный QR код не может быть использован для создания нового аккаунта.";
 "qraccount_use_on_new_install" = "Отсканированный QR код предназначен для создания нового аккаунта. Вы можете отсканировать QR код при установке Delta Chat.";
@@ -551,6 +552,9 @@
 "perm_explain_access_to_location_denied" = "Чтобы передать местоположение приложению Delta Chat нужно разрешить доступ к нему, но сейчас он заблокирован. Перейдите в меню настроек приложения, выберите \"Разрешения приложений\" и включите \"Местоположение\".";
 "perm_enable_bg_reminder_title" = "Нажмите здесь, чтобы получать сообщения, когда Delta Chat находится в фоновом режиме.";
 "perm_enable_bg_reminder_text" = "Delta Chat использует минимальные ресурсы и старается не разряжать батарею.";
+
+// ImageEditorHud
+"ImageEditorHud_draw_anywhere_to_blur" = "Рисуйте, чтобы размывать";
 
 // dc_str_* resources
 "encrypted_message" = "Зашифрованное сообщение";

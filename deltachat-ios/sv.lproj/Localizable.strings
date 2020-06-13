@@ -511,6 +511,7 @@
 "qrshow_join_contact_no_connection_hint" = "QR-kod-inställning kräver en internetanslutning. Anslut till ett nätverk innan du fortsätter.";
 "qrshow_join_contact_no_connection_toast" = "Ingen internetanslutning, kan inte utföra QR-kod-inställning.";
 "qraccount_ask_create_and_login" = "Skapa ny e-postadress på \"%1$@\" och logga in där?";
+"qraccount_ask_create_and_login_another" = "Vill du skapa en ny e-postadress på \"%1$@\" och logga in där?\n\nDitt befintliga konto kommer inte att tas bort. Använd \"Byt konto\" för att växla mellan dina konton.";
 "qraccount_success_enter_name" = "Inloggning slutförd. - Din e-postadress är %1$@\n\nOm du vill, kan du nu ange ett namn och en bild som visas för folk du skriver till.";
 "qraccount_qr_code_cannot_be_used" = "Den skannade QR-koden kan inte användas för att konfigurera ett nytt konto.";
 "qraccount_use_on_new_install" = "Den skannade QR-koden är till för att konfigurera ett nytt konto. Du kan skanna QR-koden när du konfigurerar en ny Delta Chat-installation.";
@@ -552,6 +553,9 @@
 "perm_enable_bg_reminder_title" = "Tryck här för att ta emot meddelanden medan Delta Chat är i bakgrunden.";
 "perm_enable_bg_reminder_text" = "Delta Chat använder få resurser och försöker att inte dränera ditt batteri.";
 "perm_enable_bg_already_done" = "Du har redan gett Delta Chatt tillstånd att ta emot meddelanden i bakgrunden.\n\nKontrollera dina systeminställningar också, om det fortfarande inte kommer några meddelanden i bakgrunden.";
+
+// ImageEditorHud
+"ImageEditorHud_draw_anywhere_to_blur" = "Rita var som helst för att smeta ut";
 
 // dc_str_* resources
 "encrypted_message" = "Krypterat meddelande";
