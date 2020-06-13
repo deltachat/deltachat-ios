@@ -113,8 +113,8 @@ class ShareAttachment {
                 let path = DcUtils.saveImage(image: result)
                 let msg = DcMsg(viewType: DC_MSG_IMAGE)
                 msg.setFile(filepath: path)
-                self.delegate?.onAttachmentChanged()
                 self.messages.append(msg)
+                self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
                     self.imageThumbnail = result.scaleDownImage(toMax: self.thumbnailSize)
                     self.delegate?.onThumbnailChanged()
