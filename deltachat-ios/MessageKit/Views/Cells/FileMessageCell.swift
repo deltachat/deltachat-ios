@@ -3,9 +3,9 @@ import UIKit
 // A subclass of `MessageContentCell` used to display mixed media messages.
 open class FileMessageCell: MessageContentCell {
 
-    static let insetBottom: CGFloat = 12
-    static let insetHorizontalBig: CGFloat = 23
-    static let insetHorizontalSmall: CGFloat = 12
+    static let insetVertical: CGFloat = 12
+    static let insetHorizontalBig: CGFloat = 18
+    static let insetHorizontalSmall: CGFloat = 14
 
     // MARK: - Properties
     var fileViewLeadingPadding: CGFloat = 0 {
@@ -29,9 +29,9 @@ open class FileMessageCell: MessageContentCell {
     open var messageLabel = MessageLabel()
 
     private lazy var fileView: FileView = {
-        let marginInsets = NSDirectionalEdgeInsets(top: FileMessageCell.insetHorizontalSmall,
+        let marginInsets = NSDirectionalEdgeInsets(top: FileMessageCell.insetVertical,
                                                    leading: FileMessageCell.insetHorizontalSmall,
-                                                   bottom: FileMessageCell.insetHorizontalSmall,
+                                                   bottom: FileMessageCell.insetVertical,
                                                    trailing: FileMessageCell.insetHorizontalSmall)
         let fileView = FileView(directionalLayoutMargins: marginInsets)
         fileView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +63,7 @@ open class FileMessageCell: MessageContentCell {
                 messageContainerView.frame.width -
                     FileMessageCell.insetHorizontalSmall -
                     FileMessageCell.insetHorizontalBig))
-            return height + FileMessageCell.insetBottom
+            return height + FileMessageCell.insetVertical
         }
         return 0
     }

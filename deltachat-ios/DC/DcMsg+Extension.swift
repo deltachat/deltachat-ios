@@ -52,7 +52,7 @@ extension DcMsg: MessageType {
         if text.isEmpty {
             return MessageKind.video(Media(url: fileURL, image: thumbnail))
         }
-        let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
+        let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
                                                                              NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor])
         return MessageKind.videoText(Media(url: fileURL, image: thumbnail, text: [attributedString]))
     }
@@ -61,7 +61,7 @@ extension DcMsg: MessageType {
         if text.isEmpty {
             return MessageKind.photo(Media(image: image))
         }
-        let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
+        let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
                                                                              NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor])
         return MessageKind.photoText(Media(image: image, text: [attributedString]))
     }
@@ -70,7 +70,7 @@ extension DcMsg: MessageType {
         if text.isEmpty {
             return MessageKind.animatedImageText(Media(url: fileURL, image: image))
         }
-        let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
+        let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
                                                                              NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor])
         return MessageKind.animatedImageText(Media(url: fileURL, image: image, text: [attributedString]))
     }
@@ -79,7 +79,7 @@ extension DcMsg: MessageType {
         let audioAsset = AVURLAsset(url: fileURL!)
         let seconds = Float(CMTimeGetSeconds(audioAsset.duration))
         if !text.isEmpty {
-            let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
+            let attributedString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
                                                                                  NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor])
             return MessageKind.audio(Audio(url: audioAsset.url, duration: seconds, text: attributedString))
         }
@@ -91,7 +91,7 @@ extension DcMsg: MessageType {
         let fileSizeString = getPrettyFileSize()
         let attributedMediaMessageString =
                    NSAttributedString(string: text,
-                                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
+                                             attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
                                                           NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor])
         let attributedFileString = NSAttributedString(string: fileString,
                                                              attributes: [NSAttributedString.Key.font: UIFont.italicSystemFont(ofSize: 13.0),
