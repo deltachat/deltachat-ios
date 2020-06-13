@@ -79,7 +79,7 @@ class ShareAttachment {
                 self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
             }
             if let result = result, let animatedImageData = result.animatedImageData {
-                let path = DcUtils.saveAnimatedImage(data: animatedImageData, suffix: "gif")
+                let path = DcUtils.saveImage(data: animatedImageData, suffix: "gif")
                 let msg = DcMsg(viewType: DC_MSG_GIF)
                 msg.setFile(filepath: path)
                 self.messages.append(msg)
