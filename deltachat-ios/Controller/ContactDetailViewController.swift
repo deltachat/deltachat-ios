@@ -330,7 +330,12 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func showGallery() {
-        presentPreview(for: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
+        let messageIds = viewModel.context.getChatMedia(chatId: viewModel.chatId,
+                                                        messageType: DC_MSG_IMAGE,
+                                                        messageType2: DC_MSG_GIF,
+                                                        messageType3: DC_MSG_VIDEO)
+        let galleryController = GalleryViewController(mediaMessageIds: messageIds)
+            navigationController?.pushViewController(galleryController, animated: true)
     }
 
     private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {

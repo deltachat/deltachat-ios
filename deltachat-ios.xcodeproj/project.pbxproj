@@ -130,6 +130,9 @@
 		7A9FB14E1FB061E2001FEA36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */; };
 		7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */; };
 		8B6D425BC604F7C43B65D436 /* Pods_deltachat_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */; };
+		AE0AA952247800E700D42A7F /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AA951247800E700D42A7F /* GalleryCell.swift */; };
+		AE0AA9562478191900D42A7F /* GridCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */; };
+		AE0AA958247834A400D42A7F /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AA957247834A400D42A7F /* Date+Extension.swift */; };
 		AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */; };
 		AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */; };
 		AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19887423EB264000B4CD5F /* HelpViewController.swift */; };
@@ -152,6 +155,7 @@
 		AE851AC7227C776400ED86F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC6227C776400ED86F0 /* Location.swift */; };
 		AE851AC9227C77CF00ED86F0 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC8227C77CF00ED86F0 /* Media.swift */; };
 		AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */; };
+		AE8F503524753DFE007FEE0B /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8F503424753DFE007FEE0B /* GalleryViewController.swift */; };
 		AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0C22C1215D004C9591 /* EditContactController.swift */; };
 		AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */; };
 		AEA0F6A124474146009F887B /* ProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA0F6A024474146009F887B /* ProfileInfoViewController.swift */; };
@@ -170,6 +174,7 @@
 		AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */; };
 		AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC472283045D00EDC689 /* EditSettingsController.swift */; };
 		AEE700252438E0E500D6992E /* ProgressAlertHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE700242438E0E500D6992E /* ProgressAlertHandler.swift */; };
+		AEF53BD5248904BF00D309C1 /* GalleryTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF53BD4248904BF00D309C1 /* GalleryTimeLabel.swift */; };
 		AEFBE22F23FEF23D0045327A /* ProviderInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */; };
 		AEFBE23123FF09B20045327A /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBE23023FF09B20045327A /* TypeAlias.swift */; };
 		B20462E42440A4A600367A57 /* SettingsAutodelOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20462E32440A4A600367A57 /* SettingsAutodelOverviewController.swift */; };
@@ -409,6 +414,9 @@
 		8DE110C607A0E4485C43B5FA /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		914DDA723E78965D83162E78 /* Pods-deltachat-ios-DcShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios-DcShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios-DcShare/Pods-deltachat-ios-DcShare.debug.xcconfig"; sourceTree = "<group>"; };
 		A8615D4600859851E53CAA9C /* Pods-deltachat-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.release.xcconfig"; sourceTree = "<group>"; };
+		AE0AA951247800E700D42A7F /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
+		AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		AE0AA957247834A400D42A7F /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuritySettingsController.swift; sourceTree = "<group>"; };
 		AE19887423EB264000B4CD5F /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
@@ -433,6 +441,7 @@
 		AE851AC6227C776400ED86F0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		AE851AC8227C77CF00ED86F0 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatDetailViewController.swift; sourceTree = "<group>"; };
+		AE8F503424753DFE007FEE0B /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		AE9DAF0C22C1215D004C9591 /* EditContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactController.swift; sourceTree = "<group>"; };
 		AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTitleView.swift; sourceTree = "<group>"; };
 		AEA0F6A024474146009F887B /* ProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewController.swift; sourceTree = "<group>"; };
@@ -451,6 +460,7 @@
 		AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
 		AEE6EC472283045D00EDC689 /* EditSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsController.swift; sourceTree = "<group>"; };
 		AEE700242438E0E500D6992E /* ProgressAlertHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressAlertHandler.swift; sourceTree = "<group>"; };
+		AEF53BD4248904BF00D309C1 /* GalleryTimeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryTimeLabel.swift; sourceTree = "<group>"; };
 		AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderInfoCell.swift; sourceTree = "<group>"; };
 		AEFBE23023FF09B20045327A /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		B20462E02440805C00367A57 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -588,6 +598,7 @@
 				3059620D234614E700C80F33 /* DcContact+Extension.swift */,
 				3059620F2346154D00C80F33 /* String+Extension.swift */,
 				302B84CD2397F6CD001C261F /* URL+Extension.swift */,
+				AE0AA957247834A400D42A7F /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -837,6 +848,7 @@
 			isa = PBXGroup;
 			children = (
 				AE406EEF240FF8FF005F7022 /* ProfileCell.swift */,
+				AE0AA951247800E700D42A7F /* GalleryCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -902,6 +914,7 @@
 				B20462E32440A4A600367A57 /* SettingsAutodelOverviewController.swift */,
 				B20462E52440C99600367A57 /* SettingsAutodelSetController.swift */,
 				AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */,
+				AE8F503424753DFE007FEE0B /* GalleryViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -926,6 +939,7 @@
 				AE1988A423EB2FBA00B4CD5F /* Errors.swift */,
 				AEFBE23023FF09B20045327A /* TypeAlias.swift */,
 				307D822D241669C7006D2490 /* LocationManager.swift */,
+				AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -933,6 +947,7 @@
 		AE851AC3227C695900ED86F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AEF53BD4248904BF00D309C1 /* GalleryTimeLabel.swift */,
 				AE406EEE240FA454005F7022 /* Cell */,
 				B26B3BC6236DC3DC008ED35A /* SwitchCell.swift */,
 				70B8882D2091B8550074812E /* ContactCell.swift */,
@@ -1393,9 +1408,11 @@
 				308FEA50246AB67100FCEAD6 /* FileMessageCell.swift in Sources */,
 				7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */,
 				AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */,
+				AE8F503524753DFE007FEE0B /* GalleryViewController.swift in Sources */,
 				305FE03623A81B4C0053BE90 /* EmptyStateLabel.swift in Sources */,
 				AEACE2DD1FB323CA00DCDD78 /* ChatViewController.swift in Sources */,
 				AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */,
+				AEF53BD5248904BF00D309C1 /* GalleryTimeLabel.swift in Sources */,
 				AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */,
 				305961DF2346125100C80F33 /* MessageCellDelegate.swift in Sources */,
 				302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */,
@@ -1405,6 +1422,7 @@
 				308FEA52246ABA2700FCEAD6 /* FileMessageSizeCalculator.swift in Sources */,
 				305961F52346125100C80F33 /* TypingIndicatorCell.swift in Sources */,
 				305961FF2346125100C80F33 /* AvatarView.swift in Sources */,
+				AE0AA9562478191900D42A7F /* GridCollectionViewFlowLayout.swift in Sources */,
 				3059620C2346125100C80F33 /* MessageSizeCalculator.swift in Sources */,
 				305962042346125100C80F33 /* MessagesCollectionViewLayoutAttributes.swift in Sources */,
 				AEA0F6A124474146009F887B /* ProfileInfoViewController.swift in Sources */,
@@ -1449,6 +1467,8 @@
 				7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */,
 				300C50A1234BDAB800F8AE22 /* TextMediaMessageSizeCalculator.swift in Sources */,
 				30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */,
+				AE0AA952247800E700D42A7F /* GalleryCell.swift in Sources */,
+				AE0AA958247834A400D42A7F /* Date+Extension.swift in Sources */,
 				307D822E241669C7006D2490 /* LocationManager.swift in Sources */,
 				305961F12346125100C80F33 /* ContactMessageCell.swift in Sources */,
 				AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */,
