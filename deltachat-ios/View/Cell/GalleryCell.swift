@@ -13,6 +13,13 @@ class GalleryCell: UICollectionViewCell {
         return view
     }()
 
+    private lazy var playButtonView: PlayButtonView = {
+        let playButtonView = PlayButtonView()
+        playButtonView.isHidden = true
+        return playButtonView
+    }()
+
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
@@ -29,6 +36,11 @@ class GalleryCell: UICollectionViewCell {
         imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
         imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
         imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
+
+        contentView.addSubview(playButtonView)
+        playButtonView.translatesAutoresizingMaskIntoConstraints = false
+        playButtonView.centerInSuperview()
+        playButtonView.constraint(equalTo: CGSize(width: 50, height: 50))
     }
 
     func update(msg: DcMsg) {
@@ -39,13 +51,15 @@ class GalleryCell: UICollectionViewCell {
         switch viewtype {
         case .image:
             imageView.image = msg.image
+            playButtonView.isHidden = true
         case .video:
             imageView.image = DcUtils.generateThumbnailFromVideo(url: fileUrl)
+            playButtonView.isHidden = false
         case .gif:
             imageView.sd_setImage(with: fileUrl, placeholderImage: nil)
+            playButtonView.isHidden = true
         default:
             safe_fatalError("unsupported viewtype - viewtype \(viewtype) not supported.")
-            break
         }
     }
 
