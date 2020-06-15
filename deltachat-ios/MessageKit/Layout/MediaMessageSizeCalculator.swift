@@ -55,7 +55,7 @@ open class MediaMessageSizeCalculator: MessageSizeCalculator {
             return sizeForMediaItem(maxWidth, item)
         case .video(let item):
             if item.image == nil {
-                // no cached thumbnail -> is generated asynchronously
+                // no cached thumbnail -> set default size
                 return CGSize(width: maxWidth, height: maxWidth)
             } else {
                 return sizeForMediaItem(maxWidth, item)
