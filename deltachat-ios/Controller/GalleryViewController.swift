@@ -149,10 +149,10 @@ private extension GalleryViewController {
     func reloadCollectionViewLayout() {
 
         // columns specification
-        let phonePortrait = 2
-        let phoneLandscape = 3
-        let padPortrait = 4
-        let padLandscape = 6
+        let phonePortrait = 3
+        let phoneLandscape = 4
+        let padPortrait = 5
+        let padLandscape = 8
 
         let orientation = UIApplication.shared.statusBarOrientation
         let deviceType = UIDevice.current.userInterfaceIdiom
