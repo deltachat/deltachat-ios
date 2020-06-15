@@ -65,7 +65,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     }
 
     func showDocumentLibrary(delegate: MediaPickerDelegate) {
-        let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet, kUTTypeVCard, kUTTypeZipArchive]
+        let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet, kUTTypeVCard, kUTTypeZipArchive, kUTTypeImage]
         let documentPicker = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
