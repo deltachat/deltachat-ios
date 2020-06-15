@@ -561,6 +561,7 @@ class ChatViewController: MessagesViewController {
         case .photo, .video:
             let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            cell.asyncDelegate = self
             return cell
         case .photoText, .videoText:
             let cell = messagesCollectionView.dequeueReusableCell(TextMediaMessageCell.self, for: indexPath)
@@ -1502,5 +1503,11 @@ extension MessageCollectionViewCell {
                     forItemAt: indexPath, withSender: sender)
             }
         }
+    }
+}
+
+extension ChatViewController: AsyncContentLoadDelegate {
+    func contentDidLoad() {
+        messagesCollectionView.reloadData()
     }
 }

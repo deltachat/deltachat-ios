@@ -22,10 +22,16 @@
  SOFTWARE.
  */
 
+protocol AsyncContentLoadDelegate: class {
+    func contentDidLoad()
+}
+
 import UIKit
 
 /// A subclass of `MessageContentCell` used to display video and audio messages.
 open class MediaMessageCell: MessageContentCell {
+
+    weak var asyncDelegate: AsyncContentLoadDelegate?
 
     /// The play button view to display on video messages.
     open lazy var playButtonView: PlayButtonView = {
@@ -60,6 +66,7 @@ open class MediaMessageCell: MessageContentCell {
     open override func prepareForReuse() {
         super.prepareForReuse()
         self.imageView.image = nil
+        self.asyncDelegate = nil
     }
 
     open override func configure(with message: MessageType, at indexPath: IndexPath, and messagesCollectionView: MessagesCollectionView) {
@@ -82,6 +89,7 @@ open class MediaMessageCell: MessageContentCell {
                     imageView.loadVideoThumbnail(from: url, placeholderImage: mediaItem.placeholderImage, completionHandler: { [weak self] thumbnail in
                         if let image = thumbnail {
                             self?.cache(thumbnail: image, key: url.absoluteString)
+                            self?.asyncDelegate?.contentDidLoad()
                         }
                     })
                 }
