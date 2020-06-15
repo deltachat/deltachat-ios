@@ -103,7 +103,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("---- foreground ----")
         appIsInForeground = true
         startThreads()
-        self.dcContext.maybeNetwork()
+        if reachability.connection != .none {
+            self.dcContext.maybeNetwork()
+        }
 
         if let userDefaults = UserDefaults.shared, userDefaults.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
             userDefaults.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
