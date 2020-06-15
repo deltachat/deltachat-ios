@@ -37,11 +37,8 @@ open class MediaMessageCell: MessageContentCell {
     open var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
-    }()
-
-    private lazy var imageViewHeightConstraint: NSLayoutConstraint = {
-        return imageView.heightAnchor.constraint(equalToConstant: 350)
     }()
 
     // MARK: - Methods
@@ -74,12 +71,10 @@ open class MediaMessageCell: MessageContentCell {
 
         switch message.kind {
         case .photo(let mediaItem):
-            imageViewHeightConstraint.isActive = false
             imageView.image = mediaItem.image ?? mediaItem.placeholderImage
             playButtonView.isHidden = true
         case .video(let mediaItem):
             if let url = mediaItem.url {
-                imageViewHeightConstraint.isActive = true
                 if let image = mediaItem.image {
                     imageView.image = image
                 } else {

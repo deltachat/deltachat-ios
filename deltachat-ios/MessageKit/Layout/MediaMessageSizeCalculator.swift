@@ -31,8 +31,6 @@ open class MediaMessageSizeCalculator: MessageSizeCalculator {
         return UIScreen.main.bounds.size.height * 0.7
     }
 
-    private let defaultHeight: CGFloat = 250
-
     open override func messageContainerSize(for message: MessageType) -> CGSize {
         let maxWidth = messageContainerMaxWidth(for: message)
         let sizeForMediaItem = { (maxWidth: CGFloat, item: MediaItem) -> CGSize in
@@ -55,13 +53,8 @@ open class MediaMessageSizeCalculator: MessageSizeCalculator {
         switch message.kind {
         case .photo(let item):
             return sizeForMediaItem(maxWidth, item)
-        case .video(let item):
-            if item.image == nil {
-                // no cached thumbnail -> is generated asynchronously
-                return CGSize(width: maxWidth, height: defaultHeight)
-            } else {
-                return sizeForMediaItem(maxWidth, item)
-            }
+        case .video:
+            return CGSize(width: maxWidth, height: maxWidth)
         default:
             fatalError("messageContainerSize received unhandled MessageDataType: \(message.kind)")
         }
