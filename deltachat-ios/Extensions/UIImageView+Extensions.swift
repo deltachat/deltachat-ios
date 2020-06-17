@@ -10,6 +10,7 @@ extension UIImageView {
             let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: url)
             DispatchQueue.main.async { [weak self] in
                 self?.image = thumbnailImage
+                self?.setNeedsDisplay()
                 completionHandler?(thumbnailImage)
             }
         }
