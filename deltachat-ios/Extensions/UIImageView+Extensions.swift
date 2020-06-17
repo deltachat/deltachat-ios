@@ -3,7 +3,7 @@ import DcCore
 
 extension UIImageView {
 
-    func loadVideoThumbnail(from url: URL, placeholderImage: UIImage?, completionHandler: ((UIImage?)->Void)?) {
+    func loadVideoThumbnail(from url: URL, placeholderImage: UIImage?, completionHandler: ((UIImage?) -> Void)?) {
 
         self.image = placeholderImage
         DispatchQueue.global(qos: .background).async {
