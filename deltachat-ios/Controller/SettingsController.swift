@@ -23,6 +23,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case advanced = 9
         case help = 10
         case autodel = 11
+        case mediaQuality = 12
     }
 
     private var dcContext: DcContext
@@ -87,6 +88,15 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         cell.textLabel?.text = String.localized("autodel_title")
         cell.accessoryType = .disclosureIndicator
         cell.detailTextLabel?.text = autodelSummary()
+        return cell
+    }()
+
+    private lazy var mediaQualityCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.mediaQuality.rawValue
+        cell.textLabel?.text = String.localized("pref_outgoing_media_quality")
+        cell.accessoryType = .disclosureIndicator
+        cell.detailTextLabel?.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
         return cell
     }()
 
@@ -183,7 +193,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let preferencesSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: String.localized("pref_read_receipts_explain"),
-            cells: [showEmailsCell, contactRequestCell, blockedContactsCell, autodelCell, notificationCell, receiptConfirmationCell]
+            cells: [showEmailsCell, contactRequestCell, blockedContactsCell, autodelCell, mediaQualityCell, notificationCell, receiptConfirmationCell]
         )
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
@@ -226,7 +236,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     }
 
     override func viewDidAppear(_ animated: Bool) {
-
         super.viewDidAppear(animated)
         addProgressAlertListener(progressName: dcNotificationImexProgress) { [weak self] in
             guard let self = self else { return }
@@ -236,7 +245,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-
         let nc = NotificationCenter.default
         if let backupProgressObserver = self.progressObserver {
             nc.removeObserver(backupProgressObserver)
@@ -270,6 +278,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case .showEmails: showClassicMail()
         case .blockedContacts: showBlockedContacts()
         case .autodel: showAutodelOptions()
+        case .mediaQuality: showMediaQuality()
         case .notifications: break
         case .receiptConfirmation: break
         case .autocryptPreferences: break
@@ -402,6 +411,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         profileCell.update(contact: selfContact, displayName: displayName, address: email)
 
         showEmailsCell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
+        mediaQualityCell.detailTextLabel?.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
 
         autodelCell.detailTextLabel?.text = autodelSummary()
     }
@@ -415,6 +425,11 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     private func showClassicMail() {
         let settingsClassicViewController = SettingsClassicViewController(dcContext: dcContext)
         navigationController?.pushViewController(settingsClassicViewController, animated: true)
+    }
+
+    private func  showMediaQuality() {
+        let mediaQualityController = MediaQualityController(dcContext: dcContext)
+        navigationController?.pushViewController(mediaQualityController, animated: true)
     }
 
     private func showBlockedContacts() {
