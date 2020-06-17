@@ -3,12 +3,6 @@ import UIKit
 
 class PreviewController: QLPreviewController {
 
-    struct QLBottomToolbar {
-        let toolbar: UIToolbar
-        let shareButton: UIBarButtonItem?
-        let listButton: UIBarButtonItem?
-    }
-
     private var urls: [URL]
 
     private lazy var doneButtonItem: UIBarButtonItem = {
@@ -16,32 +10,9 @@ class PreviewController: QLPreviewController {
         return button
     }()
 
-    // this toolbar will cover the default toolbar
-    private lazy var customToolbar: UIToolbar = {
-        let toolbar = UIToolbar()
-        let shareItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped(_:)))
-        toolbar.backgroundColor = .clear
-        toolbar.items = [shareItem]
-        return toolbar
-    }()
-
-    private var qlToolbarCopy: QLBottomToolbar? // object that holds references to native qlToolbar
-
     private let bottomToolbarIdentifier = "QLCustomToolBarModalAccessibilityIdentifier"
     private let shareIdentifier = "QLOverlayDefaultActionButtonAccessibilityIdentifier"
     private let listButtonIdentifier = "QLOverlayListButtonAccessibilityIdentifier"
-
-    private var customToolbarLeadingConstraint: NSLayoutConstraint?
-    private var customToolbarTrailingConstraint: NSLayoutConstraint?
-    private var customToolbarTopConstraint: NSLayoutConstraint?
-    private var customToolbarBottomConstraint: NSLayoutConstraint?
-
-    private var customToolbarHasLayout: Bool {
-        return customToolbarLeadingConstraint != nil
-            && customToolbarTopConstraint != nil
-            && customToolbarTrailingConstraint != nil
-            && customToolbarBottomConstraint != nil
-    }
 
     init(currentIndex: Int, urls: [URL]) {
         self.urls = urls
@@ -57,24 +28,20 @@ class PreviewController: QLPreviewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if navigationController?.isBeingPresented ?? false {
-            /* QLPreviewController comes with a done-button by default. But if is embedded in UINavigationContrller we need to set a done-button manually.
+            /*
+             QLPreviewController comes with a done-button by default. But if is embedded in UINavigationContrller we need to set a done-button manually.
             */
             navigationItem.leftBarButtonItem = doneButtonItem
         }
-        view.addSubview(customToolbar)
-    }
-
-    @objc private func shareButtonTapped(_ sender: UIBarButtonItem) {
-        guard let defaultShareButton = self.qlToolbarCopy?.shareButton else { return }
-        // trigger action of nativeShareButton
-        _ = defaultShareButton.target?.perform(defaultShareButton.action, with: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // native toolbar is accessable just on and after viewWillAppear
-        qlToolbarCopy = traverseSearchToolbar(root: self.view)
-        layoutCustumToolbarIfNeeded()
+        let bottomToolbar = traverseSearchToolbar(root: self.view)
+        if let bottomToolbar = bottomToolbar {
+            hideListItem(toolbar: bottomToolbar)
+        }
         hideListButtonInNavigationBarIfNeeded()
     }
 
@@ -98,11 +65,11 @@ extension PreviewController: QLPreviewControllerDataSource {
 // MARK: - customisation (to hide list button)
 private extension PreviewController {
     // MARK: - bottom bar customisation
-    func traverseSearchToolbar(root: UIView) -> QLBottomToolbar? {
+    func traverseSearchToolbar(root: UIView) -> UIToolbar? {
 
         if let toolbar = root as? UIToolbar {
             if toolbar.accessibilityIdentifier == bottomToolbarIdentifier {
-                return extractBottomBar(toolbar: toolbar)
+                return toolbar
             }
         }
         if root.subviews.isEmpty {
@@ -120,38 +87,14 @@ private extension PreviewController {
         return nil
     }
 
-    func layoutCustumToolbarIfNeeded() {
-        guard let nativeToolbar = qlToolbarCopy?.toolbar else {
-            return
-        }
-        if !customToolbarHasLayout {
-            customToolbar.translatesAutoresizingMaskIntoConstraints = false
-            customToolbarLeadingConstraint = customToolbar.leadingAnchor.constraint(equalTo: nativeToolbar.leadingAnchor, constant: 0)
-            customToolbarTopConstraint = customToolbar.topAnchor.constraint(equalTo: nativeToolbar.topAnchor, constant: 0)
-            customToolbarTrailingConstraint = customToolbar.trailingAnchor.constraint(equalTo: nativeToolbar.trailingAnchor, constant: 0)
-            customToolbarBottomConstraint = customToolbar.bottomAnchor.constraint(equalTo: nativeToolbar.bottomAnchor, constant: 0)
-            [
-                customToolbarLeadingConstraint, customToolbarTopConstraint, customToolbarTrailingConstraint, customToolbarBottomConstraint
-            ].forEach { $0?.isActive = true }
-        }
-    }
-
-    func extractBottomBar(toolbar: UIToolbar) -> QLBottomToolbar? {
+    func hideListItem(toolbar: UIToolbar) {
         // share item, flex item, list item
-        var shareButton: UIBarButtonItem?
-        var listButton: UIBarButtonItem?
         for item in toolbar.items ?? [] {
-            if item.accessibilityIdentifier ==  shareIdentifier {
-                shareButton = item
-            } else if item.accessibilityIdentifier == listButtonIdentifier {
-                listButton = item
+            if item.accessibilityIdentifier == listButtonIdentifier {
+                item.tintColor = .clear
+                item.action = nil
             }
         }
-        if listButton == nil {
-            // if there is no list button we can leave the bar (ipads)
-            return nil
-        }
-        return QLBottomToolbar(toolbar: toolbar, shareButton: shareButton, listButton: listButton)
     }
 
     // MARK: - navigation bar customization
