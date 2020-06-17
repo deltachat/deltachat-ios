@@ -11,7 +11,6 @@ class PreviewController: QLPreviewController {
     }()
 
     private let bottomToolbarIdentifier = "QLCustomToolBarModalAccessibilityIdentifier"
-    private let shareIdentifier = "QLOverlayDefaultActionButtonAccessibilityIdentifier"
     private let listButtonIdentifier = "QLOverlayListButtonAccessibilityIdentifier"
 
     init(currentIndex: Int, urls: [URL]) {
@@ -38,10 +37,7 @@ class PreviewController: QLPreviewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // native toolbar is accessable just on and after viewWillAppear
-        let bottomToolbar = traverseSearchToolbar(root: self.view)
-        if let bottomToolbar = bottomToolbar {
-            hideListItem(toolbar: bottomToolbar)
-        }
+        hideListButtonInBottomToolBarIfNeeded()
         hideListButtonInNavigationBarIfNeeded()
     }
 
@@ -64,52 +60,17 @@ extension PreviewController: QLPreviewControllerDataSource {
 
 // MARK: - customisation (to hide list button)
 private extension PreviewController {
-    // MARK: - bottom bar customisation
-    func traverseSearchToolbar(root: UIView) -> UIToolbar? {
 
-        if let toolbar = root as? UIToolbar {
-            if toolbar.accessibilityIdentifier == bottomToolbarIdentifier {
-                return toolbar
-            }
-        }
-        if root.subviews.isEmpty {
-            return nil
-        }
-
-        var subviews = root.subviews
-        var current = subviews.popLast()
-        while current != nil {
-            if let current = current, let toolbar = traverseSearchToolbar(root: current) {
-                return toolbar
-            }
-            current = subviews.popLast()
-        }
-        return nil
-    }
-
-    func hideListItem(toolbar: UIToolbar) {
-        // share item, flex item, list item
-        for item in toolbar.items ?? [] {
-            if item.accessibilityIdentifier == listButtonIdentifier {
-                item.tintColor = .clear
-                item.action = nil
-            }
-        }
-    }
-
-    // MARK: - navigation bar customization
-
-    func getQLNavigationBar(rootView: UIView) -> UINavigationBar? {
-        for subview in rootView.subviews {
-            if subview is UINavigationBar {
-                return subview as? UINavigationBar
-            } else {
-                if let navigationBar = self.getQLNavigationBar(rootView: subview) {
-                    return navigationBar
+    func hideListButtonInBottomToolBarIfNeeded() {
+        let bottomToolbar = getQLBottomToolbar(root: self.view)
+        if let toolbar = bottomToolbar {
+            for item in toolbar.items ?? [] {
+                if item.accessibilityIdentifier == listButtonIdentifier {
+                    item.tintColor = .clear
+                    item.action = nil
                 }
             }
         }
-        return nil
     }
 
     func hideListButtonInNavigationBarIfNeeded() {
@@ -125,4 +86,26 @@ private extension PreviewController {
         }
     }
 
+    func getQLBottomToolbar(root: UIView) -> UIToolbar? {
+
+        if let toolbar = root as? UIToolbar, toolbar.accessibilityIdentifier == bottomToolbarIdentifier {
+            return toolbar
+        }
+        return root.subviews.compactMap {
+            getQLBottomToolbar(root: $0)
+        }.first
+    }
+
+    func getQLNavigationBar(rootView: UIView) -> UINavigationBar? {
+        for subview in rootView.subviews {
+            if subview is UINavigationBar {
+                return subview as? UINavigationBar
+            } else {
+                if let navigationBar = self.getQLNavigationBar(rootView: subview) {
+                    return navigationBar
+                }
+            }
+        }
+        return nil
+    }
 }
