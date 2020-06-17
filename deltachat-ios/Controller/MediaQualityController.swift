@@ -2,18 +2,18 @@ import UIKit
 import DcCore
 class MediaQualityController: UITableViewController {
 
-    var dcContext: DcContext
+    private var dcContext: DcContext
 
-    var options: [Int]
+    private var options: [Int]
 
-    var staticCells: [UITableViewCell] {
+    private lazy var staticCells: [UITableViewCell] = {
         return options.map({
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = MediaQualityController.getValString(val: $0)
             cell.selectionStyle = .none
             return cell
         })
-    }
+    } ()
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
@@ -31,7 +31,7 @@ class MediaQualityController: UITableViewController {
         super.viewDidLoad()
     }
 
-    static public func getValString(val: Int) -> String {
+    static func getValString(val: Int) -> String {
         switch Int32(val) {
         case DC_MEDIA_QUALITY_BALANCED:
             return String.localized("pref_outgoing_balanced")
