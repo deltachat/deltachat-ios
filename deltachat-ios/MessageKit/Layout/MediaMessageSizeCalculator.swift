@@ -53,13 +53,8 @@ open class MediaMessageSizeCalculator: MessageSizeCalculator {
         switch message.kind {
         case .photo(let item):
             return sizeForMediaItem(maxWidth, item)
-        case .video(let item):
-            if item.image == nil {
-                // no cached thumbnail -> set default size
-                return CGSize(width: maxWidth, height: maxWidth)
-            } else {
-                return sizeForMediaItem(maxWidth, item)
-            }
+        case .video:
+            return CGSize(width: maxWidth, height: maxWidth)
         default:
             fatalError("messageContainerSize received unhandled MessageDataType: \(message.kind)")
         }
