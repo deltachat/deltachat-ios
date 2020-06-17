@@ -3,21 +3,21 @@ import UIKit
 
 class PreviewController: QLPreviewController {
 
-    struct QLToolbar {
+    struct QLBottomToolbar {
         let toolbar: UIToolbar
         let shareButton: UIBarButtonItem?
         let listButton: UIBarButtonItem?
     }
 
-    var urls: [URL]
+    private var urls: [URL]
 
     private lazy var doneButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem(title: String.localized("done"), style: .done, target: self, action: #selector(doneButtonPressed(_:)))
         return button
     }()
 
-    // we use this toolbar to cover the default toolbar
-    lazy var customToolbar: UIToolbar = {
+    // this toolbar will cover the default toolbar
+    private lazy var customToolbar: UIToolbar = {
         let toolbar = UIToolbar()
         let shareItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped(_:)))
         toolbar.backgroundColor = .clear
@@ -25,12 +25,16 @@ class PreviewController: QLPreviewController {
         return toolbar
     }()
 
-    var qlToolbarCopy: QLToolbar? // object that holds references to native qlToolbar
+    private var qlToolbarCopy: QLBottomToolbar? // object that holds references to native qlToolbar
 
-    var customToolbarLeadingConstraint: NSLayoutConstraint?
-    var customToolbarTrailingConstraint: NSLayoutConstraint?
-    var customToolbarTopConstraint: NSLayoutConstraint?
-    var customToolbarBottomConstraint: NSLayoutConstraint?
+    private let bottomToolbarIdentifier = "QLCustomToolBarModalAccessibilityIdentifier"
+    private let shareIdentifier = "QLOverlayDefaultActionButtonAccessibilityIdentifier"
+    private let listButtonIdentifier = "QLOverlayListButtonAccessibilityIdentifier"
+
+    private var customToolbarLeadingConstraint: NSLayoutConstraint?
+    private var customToolbarTrailingConstraint: NSLayoutConstraint?
+    private var customToolbarTopConstraint: NSLayoutConstraint?
+    private var customToolbarBottomConstraint: NSLayoutConstraint?
 
     private var customToolbarHasLayout: Bool {
         return customToolbarLeadingConstraint != nil
@@ -74,13 +78,30 @@ class PreviewController: QLPreviewController {
         hideListButtonInNavigationBarIfNeeded()
     }
 
-    // MARK: - bottom bar customisation
-    private func traverseSearchToolbar(root: UIView) -> QLToolbar? {
+    // MARK: - actions
+    @objc private func doneButtonPressed(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
 
-        let toolbarIdentifiers = ["QLCustomToolBarModalAccessibilityIdentifier"]
+extension PreviewController: QLPreviewControllerDataSource {
+
+    func numberOfPreviewItems(in _: QLPreviewController) -> Int {
+        return urls.count
+    }
+
+    func previewController(_: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        return urls[index] as QLPreviewItem
+    }
+}
+
+// MARK: - customisation (to hide list button)
+private extension PreviewController {
+    // MARK: - bottom bar customisation
+    func traverseSearchToolbar(root: UIView) -> QLBottomToolbar? {
 
         if let toolbar = root as? UIToolbar {
-            if toolbarIdentifiers.contains(toolbar.accessibilityIdentifier ?? "") {
+            if toolbar.accessibilityIdentifier == bottomToolbarIdentifier {
                 return extractBottomBar(toolbar: toolbar)
             }
         }
@@ -99,7 +120,7 @@ class PreviewController: QLPreviewController {
         return nil
     }
 
-    private func layoutCustumToolbarIfNeeded() {
+    func layoutCustumToolbarIfNeeded() {
         guard let nativeToolbar = qlToolbarCopy?.toolbar else {
             return
         }
@@ -115,15 +136,14 @@ class PreviewController: QLPreviewController {
         }
     }
 
-    private func extractBottomBar(toolbar: UIToolbar) -> QLToolbar? {
-        let shareIdentifier = "QLOverlayDefaultActionButtonAccessibilityIdentifier"
+    func extractBottomBar(toolbar: UIToolbar) -> QLBottomToolbar? {
         // share item, flex item, list item
         var shareButton: UIBarButtonItem?
         var listButton: UIBarButtonItem?
         for item in toolbar.items ?? [] {
             if item.accessibilityIdentifier ==  shareIdentifier {
                 shareButton = item
-            } else if item.accessibilityIdentifier == "QLOverlayListButtonAccessibilityIdentifier" {
+            } else if item.accessibilityIdentifier == listButtonIdentifier {
                 listButton = item
             }
         }
@@ -131,7 +151,7 @@ class PreviewController: QLPreviewController {
             // if there is no list button we can leave the bar (ipads)
             return nil
         }
-        return QLToolbar(toolbar: toolbar, shareButton: shareButton, listButton: listButton)
+        return QLBottomToolbar(toolbar: toolbar, shareButton: shareButton, listButton: listButton)
     }
 
     // MARK: - navigation bar customization
@@ -149,33 +169,17 @@ class PreviewController: QLPreviewController {
         return nil
     }
 
-    private func hideListButtonInNavigationBarIfNeeded() {
+    func hideListButtonInNavigationBarIfNeeded() {
         guard let navBar = getQLNavigationBar(rootView: view) else {
             return
         }
         if let items = navBar.items, let item = items.first {
            let leftItems = item.leftBarButtonItems
-
-        let listButtonIdentifier = "QLOverlayListButtonAccessibilityIdentifier"
             let listButton = leftItems?.filter { $0.accessibilityIdentifier == listButtonIdentifier }.first
+            // listButton is impossible to remove so we make it invisible
             listButton?.isEnabled = false
             listButton?.tintColor = .clear
         }
     }
 
-    // MARK: - actions
-    @objc private func doneButtonPressed(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-    }
-}
-
-extension PreviewController: QLPreviewControllerDataSource {
-
-    func numberOfPreviewItems(in _: QLPreviewController) -> Int {
-        return urls.count
-    }
-
-    func previewController(_: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-        return urls[index] as QLPreviewItem
-    }
 }
