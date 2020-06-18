@@ -44,13 +44,12 @@ class ChatViewController: MessagesViewController {
     let outgoingAvatarOverlap: CGFloat = 17.5
     let loadCount = 30
     let chatId: Int
-    let refreshControl = UIRefreshControl()
     var messageList: [DcMsg] = []
 
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
-
-    weak var timer: Timer?
+    private weak var refreshControl: UIRefreshControl?
+    private weak var timer: Timer?
 
     lazy var navBarTap: UITapGestureRecognizer = {
         UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
@@ -160,7 +159,7 @@ class ChatViewController: MessagesViewController {
                 guard let self = self else { return }
                 self.messageList = self.getMessageIds(self.messageList.count)
                 self.messagesCollectionView.reloadDataAndKeepOffset()
-                self.refreshControl.endRefreshing()
+                self.refreshControl?.endRefreshing()
             }
         }
     }
@@ -216,7 +215,8 @@ class ChatViewController: MessagesViewController {
         incomingMsgObserver = nc.addObserver(
             forName: dcNotificationIncoming,
             object: nil, queue: OperationQueue.main
-        ) { notification in
+        ) {  [weak self] notification in
+            guard let self = self else { return }
             if let ui = notification.userInfo {
                 if self.chatId == ui["chat_id"] as? Int {
                     if let id = ui["message_id"] as? Int {
@@ -326,7 +326,7 @@ class ChatViewController: MessagesViewController {
                 guard let self = self else { return }
                 self.messageList = self.getMessageIds(self.loadCount, from: self.messageList.count) + self.messageList
                 self.messagesCollectionView.reloadDataAndKeepOffset()
-                self.refreshControl.endRefreshing()
+                self.refreshControl?.endRefreshing()
             }
         }
     }
@@ -338,7 +338,7 @@ class ChatViewController: MessagesViewController {
                 guard let self = self else { return }
                 self.messageList = self.getMessageIds(self.messageList.count)
                 self.messagesCollectionView.reloadDataAndKeepOffset()
-                self.refreshControl.endRefreshing()
+                self.refreshControl?.endRefreshing()
                 if self.isLastSectionVisible() {
                     self.messagesCollectionView.scrollToBottom(animated: true)
                 }
@@ -353,7 +353,7 @@ class ChatViewController: MessagesViewController {
                 guard let self = self else { return }
                 self.messageList = self.getMessageIds(self.loadCount)
                 self.messagesCollectionView.reloadData()
-                self.refreshControl.endRefreshing()
+                self.refreshControl?.endRefreshing()
                 self.messagesCollectionView.scrollToBottom(animated: false)
                 self.showEmptyStateView(self.messageList.isEmpty)
             }
@@ -427,8 +427,10 @@ class ChatViewController: MessagesViewController {
         scrollsToBottomOnKeyboardBeginsEditing = true // default false
         maintainPositionOnKeyboardFrameChanged = true // default false
         messagesCollectionView.backgroundColor = DcColors.chatBackgroundColor
+        let refreshControl = UIRefreshControl()
         messagesCollectionView.addSubview(refreshControl)
         refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
+        self.refreshControl = refreshControl
 
         let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout
         layout?.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 2, right: 8)
@@ -970,13 +972,14 @@ extension ChatViewController: MessagesDataSource {
 
             messageList[index] = DcMsg(id: messageId)
             // Reload section to update header/footer labels
-            messagesCollectionView.performBatchUpdates({
-                messagesCollectionView.reloadSections([index])
+            messagesCollectionView.performBatchUpdates({ [weak self] in
+                guard let self = self else { return }
+                self.messagesCollectionView.reloadSections([index])
                 if index > 0 {
-                    messagesCollectionView.reloadSections([index - 1])
+                    self.messagesCollectionView.reloadSections([index - 1])
                 }
                 if index < messageList.count - 1 {
-                    messagesCollectionView.reloadSections([index + 1])
+                    self.messagesCollectionView.reloadSections([index + 1])
                 }
             }, completion: { [weak self] _ in
                 if self?.isLastSectionVisible() == true {
