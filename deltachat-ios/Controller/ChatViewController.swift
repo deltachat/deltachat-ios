@@ -96,7 +96,6 @@ class ChatViewController: MessagesViewController {
     private var disableWriting: Bool
     private var showNamesAboveMessage: Bool
     var showCustomNavBar = true
-    var previewView: UIView?
 
     private lazy var mediaPicker: MediaPicker? = {
         return MediaPicker(navigationController: navigationController)
@@ -517,8 +516,8 @@ class ChatViewController: MessagesViewController {
                     $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
                 }.onDeselected {
                     $0.tintColor = DcColors.primary
-                }.onTouchUpInside { _ in
-                    self.clipperButtonPressed()
+                }.onTouchUpInside { [weak self] _ in
+                    self?.clipperButtonPressed()
                 }
         ]
 
