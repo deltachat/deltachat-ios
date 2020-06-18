@@ -106,14 +106,36 @@ open class TextMediaMessageCell: MessageContentCell {
         }
 
         switch message.kind {
-        case .photoText(let mediaItem), .videoText(let mediaItem), .fileText(let mediaItem):
+        case .photoText(let mediaItem), .fileText(let mediaItem):
             configureImageView(for: mediaItem)
             configureMessageLabel(for: mediaItem,
                                   with: displayDelegate,
                                   message: message,
                                   at: indexPath,
                                   in: messagesCollectionView)
-
+        case .videoText(let mediaItem):
+            configureMessageLabel(
+                for: mediaItem,
+                with: displayDelegate,
+                message: message,
+                at: indexPath,
+                in: messagesCollectionView
+            )
+            if let url = mediaItem.url {
+                if let image = mediaItem.image {
+                    imageView.image = image
+                } else {
+                    // no image in cache
+                    imageView.loadVideoThumbnail(from: url, placeholderImage: mediaItem.placeholderImage, completionHandler: { [weak self] thumbnail in
+                            if let image = thumbnail {
+                                self?.cache(thumbnail: image, key: url.absoluteString)
+                            }
+                        }
+                    )
+                }
+            } else {
+                imageView.image = mediaItem.placeholderImage
+            }
         default:
             fatalError("Unexpected message kind in TextMediaMessageCell")
         }
@@ -124,6 +146,9 @@ open class TextMediaMessageCell: MessageContentCell {
         displayDelegate.configureMediaMessageImageView(imageView, for: message, at: indexPath, in: messagesCollectionView)
     }
 
+    private func cache(thumbnail image: UIImage, key: String) {
+        ThumbnailCache.shared.storeImage(image: image, key: key)
+    }
 
     private func configurePlayButtonView(for messageKind: MessageKind) {
         switch messageKind {

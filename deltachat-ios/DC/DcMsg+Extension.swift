@@ -48,18 +48,19 @@ extension DcMsg: MessageType {
     }
 
     internal func createVideoMessage(text: String) -> MessageKind {
+        var thumbnail: UIImage?
+        if let fileURL = fileURL {
+            thumbnail = ThumbnailCache.shared.restoreImage(key: fileURL.absoluteString)
+        }
         if text.isEmpty {
-            var thumbnail: UIImage?
-            if let fileURL = fileURL {
-                thumbnail = ThumbnailCache.shared.restoreImage(key: fileURL.absoluteString)
-            }
+
             return MessageKind.video(Media(url: fileURL, image: thumbnail))
         }
         let attributedString = NSAttributedString(string: text, attributes: [
             NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
             NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor]
         )
-        return MessageKind.videoText(Media(url: fileURL, text: [attributedString]))
+        return MessageKind.videoText(Media(url: fileURL, image: thumbnail, text: [attributedString]))
     }
 
     internal func createImageMessage(text: String) -> MessageKind {
