@@ -10,8 +10,27 @@ class PreviewController: QLPreviewController {
         return button
     }()
 
-    private let bottomToolbarIdentifier = "QLCustomToolBarModalAccessibilityIdentifier"
+    private let bottomToolbarIdentifier = "QLCustomToolBarModalAccessibilityIdentifier" // QLCustomToolBarAccessibilityIdentifier
     private let listButtonIdentifier = "QLOverlayListButtonAccessibilityIdentifier"
+    private let shareButtonIdentifier = "QLOverlayDefaultActionButtonAccessibilityIdentifier"
+
+    // hack to hide list button for iOS 13.4 and lower
+    private var fakeToolbarTop: NSLayoutConstraint?
+    private var fakeToolbarBottom: NSLayoutConstraint?
+    private var fakeToolbarLeading: NSLayoutConstraint?
+    private var fakeToolbarTrailing: NSLayoutConstraint?
+    private var nativeToolbar: NativeToolbar?
+
+    private var observerToken: NSKeyValueObservation?
+
+    // this toolbar will cover the default toolbar
+      private lazy var fakeToolbar: UIToolbar = {
+          let toolbar = UIToolbar()
+          let shareItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped(_:)))
+          toolbar.backgroundColor = .clear
+          toolbar.items = [shareItem]
+          return toolbar
+      }()
 
     init(currentIndex: Int, urls: [URL]) {
         self.urls = urls
@@ -36,9 +55,21 @@ class PreviewController: QLPreviewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         // native toolbar is accessable just on and after viewWillAppear
-        hideListButtonInBottomToolBarIfNeeded()
         hideListButtonInNavigationBarIfNeeded()
+        if #available(iOS 13.5, *) {
+            hideListButtonInBottomToolBarIfNeeded()
+        } else {
+            setupFakeToolbarIfNeeded()
+        }
+    }
+
+    private func findListButton(view: UIView) -> UIView? {
+        if view.accessibilityIdentifier == listButtonIdentifier {
+            return view
+        }
+        return view.subviews.compactMap { findListButton(view: $0) }.first
     }
 
     // MARK: - actions
@@ -64,12 +95,9 @@ private extension PreviewController {
     func hideListButtonInBottomToolBarIfNeeded() {
         let bottomToolbar = getQLBottomToolbar(root: self.view)
         if let toolbar = bottomToolbar {
-            for item in toolbar.items ?? [] {
-                if item.accessibilityIdentifier == listButtonIdentifier {
-                    item.tintColor = .clear
-                    item.action = nil
-                }
-            }
+            let listButton = toolbar.items?.filter { $0.accessibilityIdentifier == listButtonIdentifier }.first
+            listButton?.tintColor = .clear
+            listButton?.action = nil
         }
     }
 
@@ -108,4 +136,57 @@ private extension PreviewController {
         }
         return nil
     }
+}
+
+private extension PreviewController {
+
+    struct NativeToolbar {
+        let qlToolbar: UIToolbar
+        let qlShareButton: UIBarButtonItem?
+    }
+
+    var fakeToolBarLayoutSetup: Bool {
+        return fakeToolbarTop != nil && fakeToolbarBottom != nil && fakeToolbarLeading != nil && fakeToolbarTrailing != nil
+    }
+
+    private func setupFakeToolbarIfNeeded() {
+
+        if fakeToolBarLayoutSetup {
+            return
+        }
+
+        guard let qlToolbar = getQLBottomToolbar(root: self.view) else {
+            return
+        }
+
+        var shareButton: UIBarButtonItem?
+        for item in qlToolbar.items ?? [] {
+            if item.accessibilityIdentifier == shareButtonIdentifier {
+               shareButton = item
+            }
+        }
+
+        self.nativeToolbar = NativeToolbar(qlToolbar: qlToolbar, qlShareButton: shareButton)
+
+        self.observerToken = qlToolbar.observe(\.alpha, changeHandler: { [weak self] toolbar, _ in self?.fakeToolbar.alpha = toolbar.alpha})
+
+        view.addSubview(fakeToolbar)
+        fakeToolbar.translatesAutoresizingMaskIntoConstraints = false
+        fakeToolbarLeading = fakeToolbar.leadingAnchor.constraint(equalTo: qlToolbar.leadingAnchor)
+        fakeToolbarTop = fakeToolbar.topAnchor.constraint(equalTo: qlToolbar.topAnchor)
+        fakeToolbarTrailing = fakeToolbar.trailingAnchor.constraint(equalTo: qlToolbar.trailingAnchor)
+        fakeToolbarBottom = fakeToolbar.bottomAnchor.constraint(equalTo: qlToolbar.bottomAnchor)
+
+        fakeToolbarLeading?.isActive = true
+        fakeToolbarTop?.isActive = true
+        fakeToolbarTrailing?.isActive = true
+        fakeToolbarBottom?.isActive = true
+    }
+
+    @objc private func shareButtonTapped(_ sender: UIBarButtonItem) {
+         guard let defaultShareButton = self.nativeToolbar?.qlShareButton else { return }
+         // trigger action of nativeShareButton
+         _ = defaultShareButton.target?.perform(defaultShareButton.action, with: nil)
+     }
+
 }
