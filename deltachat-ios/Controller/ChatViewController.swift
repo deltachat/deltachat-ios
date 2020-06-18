@@ -322,7 +322,8 @@ class ChatViewController: MessagesViewController {
     @objc
     private func loadMoreMessages() {
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.messageList = self.getMessageIds(self.loadCount, from: self.messageList.count) + self.messageList
                 self.messagesCollectionView.reloadDataAndKeepOffset()
                 self.refreshControl.endRefreshing()
@@ -333,7 +334,8 @@ class ChatViewController: MessagesViewController {
     @objc
     private func refreshMessages() {
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.messageList = self.getMessageIds(self.messageList.count)
                 self.messagesCollectionView.reloadDataAndKeepOffset()
                 self.refreshControl.endRefreshing()
@@ -347,7 +349,8 @@ class ChatViewController: MessagesViewController {
 
     private func loadFirstMessages() {
         DispatchQueue.global(qos: .userInitiated).async {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.messageList = self.getMessageIds(self.loadCount)
                 self.messagesCollectionView.reloadData()
                 self.refreshControl.endRefreshing()
