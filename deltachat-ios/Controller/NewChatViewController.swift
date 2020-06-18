@@ -227,7 +227,7 @@ class NewChatViewController: UITableViewController {
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("delete")) { [weak self] _, _ in
                 guard let self = self else { return }
                 let contactId = self.contactIdByRow(indexPath.row)
-                self.askToDeleteContact(contactId: contactId, context: self.dcContext)
+                self.askToDeleteContact(contactId: contactId, indexPath: indexPath)
             }
 
             edit.backgroundColor = DcColors.primary
@@ -248,45 +248,20 @@ class NewChatViewController: UITableViewController {
     private func contactViewModelBy(row: Int) -> ContactCellViewModel {
         let id = contactIdByRow(row)
         return ContactCellViewModel.make(contactId: id, searchText: searchText, dcContext: dcContext)
-  }
-
-    private func askToDeleteContact(contactId: Int, context: DcContext) {
-        let contact = DcContact(id: contactId)
-        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_delete_contact"), contact.nameNAddr),
-                                      message: nil,
-                                      preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-            if context.deleteContact(contactId: contactId) {
-                self.contactIds = self.dcContext.getContacts(flags: DC_GCL_ADD_SELF)
-                self.tableView.reloadData()
-            }
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        present(alert, animated: true, completion: nil)
     }
 
-    private func askToChatWith(contactId: Int) {
-        if dcContext.getChatIdByContactId(contactId: contactId) != 0 {
-            self.dismiss(animated: true, completion: nil)
-            self.showNewChat(contactId: contactId)
-        } else {
-            let dcContact = DcContact(id: contactId)
-            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
-                                          message: nil,
-                                          preferredStyle: .safeActionSheet)
-            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-                self.dismiss(animated: true, completion: nil)
-                self.showNewChat(contactId: contactId)
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-                self.reactivateSearchBarIfNeeded()
-            }))
-            present(alert, animated: true, completion: nil)
+    // MARK: - updates
+    private func deleteContact(contactId: Int, indexPath: IndexPath) {
+        if dcContext.deleteContact(contactId: contactId) {
+            contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
+            if isFiltering {
+                filteredContactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
+            }
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            // self.tableView.reloadData()
         }
     }
+
 
     // MARK: - search
     private func reactivateSearchBarIfNeeded() {
@@ -384,6 +359,47 @@ extension NewChatViewController: ContactListDelegate {
     }
 }
 
+// MARK: - alerts
+extension NewChatViewController {
+    private func askToDeleteContact(contactId: Int, indexPath: IndexPath) {
+        let contact = DcContact(id: contactId)
+        let alert = UIAlertController(
+            title: String.localizedStringWithFormat(String.localized("ask_delete_contact"), contact.nameNAddr),
+            message: nil,
+            preferredStyle: .safeActionSheet
+        )
+        alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
+            self?.deleteContact(contactId: contactId, indexPath: indexPath)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func askToChatWith(contactId: Int) {
+        if dcContext.getChatIdByContactId(contactId: contactId) != 0 {
+            self.dismiss(animated: true, completion: nil)
+            self.showNewChat(contactId: contactId)
+        } else {
+            let dcContact = DcContact(id: contactId)
+            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
+                                          message: nil,
+                                          preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+                self.dismiss(animated: true, completion: nil)
+                self.showNewChat(contactId: contactId)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+                self.reactivateSearchBarIfNeeded()
+            }))
+            present(alert, animated: true, completion: nil)
+        }
+    }
+}
+
+// MARK: - UISearchResultsUpdating
 extension NewChatViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
