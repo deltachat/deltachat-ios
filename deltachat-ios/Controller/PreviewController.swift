@@ -169,7 +169,9 @@ private extension PreviewController {
         self.nativeToolbar = NativeToolbar(qlToolbar: qlToolbar, qlShareButton: shareButton)
 
         // this will bind native toolbar's alpha to our fake toolbar (used on swipe down events)
-        observerToken = qlToolbar.observe(\.alpha, changeHandler: { [weak self] toolbar, _ in self?.fakeToolbar.alpha = toolbar.alpha})
+        observerToken = qlToolbar.observe(\.alpha, changeHandler: { [weak self] toolbar, _ in
+            self?.fakeToolbar.alpha = toolbar.alpha * 2}  // use factor 2 to avoid real toolbar items shine through
+        )
 
         view.addSubview(fakeToolbar)
         fakeToolbar.translatesAutoresizingMaskIntoConstraints = false
