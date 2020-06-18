@@ -168,7 +168,8 @@ private extension PreviewController {
 
         self.nativeToolbar = NativeToolbar(qlToolbar: qlToolbar, qlShareButton: shareButton)
 
-        self.observerToken = qlToolbar.observe(\.alpha, changeHandler: { [weak self] toolbar, _ in self?.fakeToolbar.alpha = toolbar.alpha})
+        // this will bind native toolbar's alpha to our fake toolbar (used on swipe down events)
+        _ = qlToolbar.observe(\.alpha, changeHandler: { [weak self] toolbar, _ in self?.fakeToolbar.alpha = toolbar.alpha})
 
         view.addSubview(fakeToolbar)
         fakeToolbar.translatesAutoresizingMaskIntoConstraints = false
@@ -185,7 +186,7 @@ private extension PreviewController {
 
     @objc private func shareButtonTapped(_ sender: UIBarButtonItem) {
          guard let defaultShareButton = self.nativeToolbar?.qlShareButton else { return }
-         // trigger action of nativeShareButton
+         // trigger action of native qlShareButton
          _ = defaultShareButton.target?.perform(defaultShareButton.action, with: nil)
      }
 
