@@ -77,5 +77,3 @@ extension DocumentGalleryController {
         present(previewController, animated: true, completion: nil)
     }
 }
-
-
