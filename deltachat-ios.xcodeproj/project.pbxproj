@@ -142,6 +142,7 @@
 		AE1988AB23EB3C7600B4CD5F /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = AE1988AA23EB3C7600B4CD5F /* Assets */; };
 		AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */; };
 		AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B31722672DFC00EC37A1 /* ActionCell.swift */; };
+		AE39D323249CFC1A007346A1 /* DocumentGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE39D322249CFC1A007346A1 /* DocumentGalleryController.swift */; };
 		AE406EF0240FF8FF005F7022 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE406EEF240FF8FF005F7022 /* ProfileCell.swift */; };
 		AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4AEE3422B1030D000AA495 /* PreviewController.swift */; };
 		AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */; };
@@ -432,6 +433,7 @@
 		AE1988AA23EB3C7600B4CD5F /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionCell.swift; sourceTree = "<group>"; };
 		AE38B31722672DFC00EC37A1 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
+		AE39D322249CFC1A007346A1 /* DocumentGalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentGalleryController.swift; sourceTree = "<group>"; };
 		AE406EEF240FF8FF005F7022 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		AE4AEE3422B1030D000AA495 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailHeader.swift; sourceTree = "<group>"; };
@@ -932,6 +934,7 @@
 				AED423D2249F578B00B6B2BB /* NewGroupAddMembersViewController.swift */,
 				AED423D4249F57C100B6B2BB /* AddGroupMembersViewController.swift */,
 				AED423D6249F580700B6B2BB /* BlockedContactsViewController.swift */,
+				AE39D322249CFC1A007346A1 /* DocumentGalleryController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1382,6 +1385,7 @@
 				AE6EC5282497B9B200A400E4 /* ThumbnailCache.swift in Sources */,
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
+				AE39D323249CFC1A007346A1 /* DocumentGalleryController.swift in Sources */,
 				305961FD2346125100C80F33 /* TypingBubble.swift in Sources */,
 				305961D72346125100C80F33 /* MessageKit+Availability.swift in Sources */,
 				AED423D5249F57C100B6B2BB /* AddGroupMembersViewController.swift in Sources */,
