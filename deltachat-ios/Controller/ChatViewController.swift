@@ -48,7 +48,13 @@ class ChatViewController: MessagesViewController {
 
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
-    private weak var refreshControl: UIRefreshControl?
+
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
+        return UIRefreshControl()
+    }()
+
     private weak var timer: Timer?
 
     lazy var navBarTap: UITapGestureRecognizer = {
@@ -158,7 +164,7 @@ class ChatViewController: MessagesViewController {
                 guard let self = self else { return }
                 self.messageList = self.getMessageIds(self.messageList.count)
                 self.messagesCollectionView.reloadDataAndKeepOffset()
-                self.refreshControl?.endRefreshing()
+                self.refreshControl.endRefreshing()
             }
         }
     }
@@ -325,7 +331,7 @@ class ChatViewController: MessagesViewController {
                 guard let self = self else { return }
                 self.messageList = self.getMessageIds(self.loadCount, from: self.messageList.count) + self.messageList
                 self.messagesCollectionView.reloadDataAndKeepOffset()
-                self.refreshControl?.endRefreshing()
+                self.refreshControl.endRefreshing()
             }
         }
     }
@@ -337,7 +343,7 @@ class ChatViewController: MessagesViewController {
                 guard let self = self else { return }
                 self.messageList = self.getMessageIds(self.messageList.count)
                 self.messagesCollectionView.reloadDataAndKeepOffset()
-                self.refreshControl?.endRefreshing()
+                self.refreshControl.endRefreshing()
                 if self.isLastSectionVisible() {
                     self.messagesCollectionView.scrollToBottom(animated: true)
                 }
@@ -352,7 +358,7 @@ class ChatViewController: MessagesViewController {
                 guard let self = self else { return }
                 self.messageList = self.getMessageIds(self.loadCount)
                 self.messagesCollectionView.reloadData()
-                self.refreshControl?.endRefreshing()
+                self.refreshControl.endRefreshing()
                 self.messagesCollectionView.scrollToBottom(animated: false)
                 self.showEmptyStateView(self.messageList.isEmpty)
             }
@@ -426,10 +432,7 @@ class ChatViewController: MessagesViewController {
         scrollsToBottomOnKeyboardBeginsEditing = true // default false
         maintainPositionOnKeyboardFrameChanged = true // default false
         messagesCollectionView.backgroundColor = DcColors.chatBackgroundColor
-        let refreshControl = UIRefreshControl()
         messagesCollectionView.addSubview(refreshControl)
-        refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
-        self.refreshControl = refreshControl
 
         let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout
         layout?.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 2, right: 8)
