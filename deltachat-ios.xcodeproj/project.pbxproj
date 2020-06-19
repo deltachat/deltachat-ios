@@ -159,6 +159,7 @@
 		AE851AC7227C776400ED86F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC6227C776400ED86F0 /* Location.swift */; };
 		AE851AC9227C77CF00ED86F0 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC8227C77CF00ED86F0 /* Media.swift */; };
 		AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */; };
+		AE8DD451249D1DFB009A4BC1 /* FileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8DD450249D1DFB009A4BC1 /* FileTableViewCell.swift */; };
 		AE8F503524753DFE007FEE0B /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8F503424753DFE007FEE0B /* GalleryViewController.swift */; };
 		AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0C22C1215D004C9591 /* EditContactController.swift */; };
 		AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */; };
@@ -452,6 +453,7 @@
 		AE851AC6227C776400ED86F0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		AE851AC8227C77CF00ED86F0 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatDetailViewController.swift; sourceTree = "<group>"; };
+		AE8DD450249D1DFB009A4BC1 /* FileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTableViewCell.swift; sourceTree = "<group>"; };
 		AE8F503424753DFE007FEE0B /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		AE9DAF0C22C1215D004C9591 /* EditContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactController.swift; sourceTree = "<group>"; };
 		AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTitleView.swift; sourceTree = "<group>"; };
@@ -864,6 +866,7 @@
 			children = (
 				AE406EEF240FF8FF005F7022 /* ProfileCell.swift */,
 				AE0AA951247800E700D42A7F /* GalleryCell.swift */,
+				AE8DD450249D1DFB009A4BC1 /* FileTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1389,6 +1392,7 @@
 				305961FD2346125100C80F33 /* TypingBubble.swift in Sources */,
 				305961D72346125100C80F33 /* MessageKit+Availability.swift in Sources */,
 				AED423D5249F57C100B6B2BB /* AddGroupMembersViewController.swift in Sources */,
+				AE8DD451249D1DFB009A4BC1 /* FileTableViewCell.swift in Sources */,
 				3040F45E234DFBC000FA34D5 /* Audio.swift in Sources */,
 				305961FE2346125100C80F33 /* InsetLabel.swift in Sources */,
 				3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */,
