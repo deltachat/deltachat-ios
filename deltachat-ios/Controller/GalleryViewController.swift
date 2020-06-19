@@ -3,6 +3,30 @@ import DcCore
 
 class GalleryViewController: UIViewController {
 
+    struct LayoutSpecs {
+        // used to specify columns
+        let backgroundColor: UIColor
+        let phonePortrait: Int
+        let phoneLandscape: Int
+        let padPortrait: Int
+        let padLandscape: Int
+
+        init(
+            backgroundColor: UIColor = DcColors.defaultBackgroundColor,
+            phonePortrait: Int = 3,
+            phoneLandscape: Int = 4,
+            padPortrait: Int = 5,
+            padLandscape: Int = 6
+        ) {
+            self.backgroundColor = backgroundColor
+            self.phonePortrait = phonePortrait
+            self.phoneLandscape = phoneLandscape
+            self.padPortrait = padPortrait
+            self.padLandscape = padLandscape
+        }
+    }
+
+
     // MARK: - data
     private let mediaMessageIds: [Int]
 
@@ -23,7 +47,7 @@ class GalleryViewController: UIViewController {
         collection.delegate = self
         collection.register(GalleryCell.self, forCellWithReuseIdentifier: GalleryCell.reuseIdentifier)
         collection.contentInset = UIEdgeInsets(top: gridDefaultSpacing, left: gridDefaultSpacing, bottom: gridDefaultSpacing, right: gridDefaultSpacing)
-        collection.backgroundColor = .white
+        collection.backgroundColor = layoutSpecs.backgroundColor
         collection.delaysContentTouches = false
         collection.alwaysBounceVertical = true
         return collection
@@ -42,8 +66,11 @@ class GalleryViewController: UIViewController {
         return label
     }()
 
-    init(mediaMessageIds: [Int]) {
+    private let layoutSpecs: LayoutSpecs
+
+    init(mediaMessageIds: [Int], layoutSpecs: LayoutSpecs? = nil) {
         self.mediaMessageIds = mediaMessageIds.reversed()
+        self.layoutSpecs = layoutSpecs ?? LayoutSpecs()
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -122,12 +149,14 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         let msgId = mediaMessageIds[indexPath.row]
         let msg = DcMsg(id: msgId)
         galleryCell.update(msg: msg)
+        galleryCell.bgColor = layoutSpecs.backgroundColor
         return galleryCell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let msgId = mediaMessageIds[indexPath.row]
         showPreview(msgId: msgId)
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -148,27 +177,21 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 private extension GalleryViewController {
     func reloadCollectionViewLayout() {
 
-        // columns specification
-        let phonePortrait = 3
-        let phoneLandscape = 4
-        let padPortrait = 5
-        let padLandscape = 8
-
         let orientation = UIApplication.shared.statusBarOrientation
         let deviceType = UIDevice.current.userInterfaceIdiom
 
         var gridDisplay: GridDisplay?
         if deviceType == .phone {
             if orientation.isPortrait {
-                gridDisplay = .grid(columns: phonePortrait)
+                gridDisplay = .grid(columns: layoutSpecs.phonePortrait)
             } else {
-                gridDisplay = .grid(columns: phoneLandscape)
+                gridDisplay = .grid(columns: layoutSpecs.phoneLandscape)
             }
         } else if deviceType == .pad {
             if orientation.isPortrait {
-                gridDisplay = .grid(columns: padPortrait)
+                gridDisplay = .grid(columns: layoutSpecs.padPortrait)
             } else {
-                gridDisplay = .grid(columns: padLandscape)
+                gridDisplay = .grid(columns: layoutSpecs.padLandscape)
             }
         }
 

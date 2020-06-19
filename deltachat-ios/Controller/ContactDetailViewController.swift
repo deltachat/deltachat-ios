@@ -326,7 +326,21 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func showDocuments() {
-        presentPreview(for: DC_MSG_FILE, messageType2: DC_MSG_AUDIO, messageType3: 0)
+        let messageIds = viewModel.context.getChatMedia(
+            chatId: viewModel.chatId,
+            messageType: DC_MSG_FILE,
+            messageType2: DC_MSG_AUDIO
+        )
+        let specs: GalleryViewController.LayoutSpecs = GalleryViewController.LayoutSpecs(
+            backgroundColor: UIColor.lightGray,
+            phonePortrait: 1,
+            phoneLandscape: 2,
+            padPortrait: 3,
+            padLandscape: 4
+        )
+        let galleryController = GalleryViewController(mediaMessageIds: messageIds, layoutSpecs: specs)
+        navigationController?.pushViewController(galleryController, animated: true)
+        // presentPreview(for: DC_MSG_FILE, messageType2: DC_MSG_AUDIO, messageType3: 0)
     }
 
     private func showGallery() {

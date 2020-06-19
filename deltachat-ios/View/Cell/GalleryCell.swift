@@ -6,10 +6,13 @@ import SDWebImage
 class GalleryCell: UICollectionViewCell {
     static let reuseIdentifier = "gallery_cell"
 
+    var bgColor: UIColor = DcColors.defaultBackgroundColor
+
     var imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
+        view.backgroundColor = .clear
         return view
     }()
 
@@ -29,13 +32,18 @@ class GalleryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        // reset to defaults
+        imageView.contentMode = .scaleAspectFill
+    }
+
     private func setupSubviews() {
         contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
-        imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4).isActive = true
+        imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4).isActive = true
 
         contentView.addSubview(playButtonView)
         playButtonView.translatesAutoresizingMaskIntoConstraints = false
@@ -58,6 +66,17 @@ class GalleryCell: UICollectionViewCell {
         case .gif:
             imageView.sd_setImage(with: fileUrl, placeholderImage: nil)
             playButtonView.isHidden = true
+        case .file:
+            var thumbnail: UIImage?
+            if let pdfThumbnail =  DcUtils.thumbnailFromPdf(withUrl: fileUrl, pageNumber: 1) { // DcUtils.generateThumbnailFromPDF(of: contentView.frame.size, for: fileUrl, atPage: 0) {
+                thumbnail = pdfThumbnail
+            } else {
+                let controller = UIDocumentInteractionController(url: fileUrl)
+                thumbnail = controller.icons.last
+            }
+            imageView.image = thumbnail
+            imageView.contentMode = .scaleAspectFit
+            contentView.backgroundColor = .lightGray
         default:
             safe_fatalError("unsupported viewtype - viewtype \(viewtype) not supported.")
         }
@@ -66,7 +85,7 @@ class GalleryCell: UICollectionViewCell {
     override var isSelected: Bool {
         willSet {
             // to provide visual feedback on select events
-            contentView.backgroundColor = newValue ? DcColors.primary : .white
+            contentView.backgroundColor = newValue ? DcColors.primary : bgColor
             imageView.alpha = newValue ? 0.75 : 1.0
         }
     }
