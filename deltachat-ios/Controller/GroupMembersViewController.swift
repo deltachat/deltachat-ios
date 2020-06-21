@@ -12,6 +12,7 @@ class GroupMembersViewController: UITableViewController {
     var numberOfSections = 1
     let dcContext: DcContext
 
+    // MARK: - datasource
     var contactIds: [Int] = [] {
         didSet {
             tableView.reloadData()
@@ -20,8 +21,22 @@ class GroupMembersViewController: UITableViewController {
     // used when seachbar is active
     private var filteredContactIds: [Int] = []
 
+    var numberOfRowsForContactList: Int {
+        return isFiltering ? filteredContactIds.count : contactIds.count
+    }
+
     var selectedContactIds: Set<Int> = []
 
+    private func contactIdByRow(_ row: Int) -> Int {
+        return isFiltering ? filteredContactIds[row] : contactIds[row]
+    }
+
+    private func contactViewModelBy(row: Int) -> ContactCellViewModel {
+        let id = contactIdByRow(row)
+        return ContactCellViewModel.make(contactId: id, searchText: searchText, dcContext: dcContext)
+    }
+
+    // MARK: - search
     // searchBar active?
     private var isFiltering: Bool {
         return searchController.isActive && !searchBarIsEmpty
@@ -35,15 +50,7 @@ class GroupMembersViewController: UITableViewController {
         return searchController.searchBar.text
     }
 
-    private func contactIdByRow(_ row: Int) -> Int {
-        return isFiltering ? filteredContactIds[row] : contactIds[row]
-    }
-
-    private func contactViewModelBy(row: Int) -> ContactCellViewModel {
-        let id = contactIdByRow(row)
-        return ContactCellViewModel.make(contactId: id, searchText: searchText, dcContext: dcContext)
-    }
-
+    // MARK: - subview configuration
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -98,7 +105,7 @@ class GroupMembersViewController: UITableViewController {
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return getNumberOfRowsForContactList()
+        return numberOfRowsForContactList
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -106,18 +113,14 @@ class GroupMembersViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return getContactCell(cellForRowAt: indexPath)
+        return updateContactCell(for: indexPath)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         didSelectContactCell(at: indexPath)
     }
 
-    func getNumberOfRowsForContactList() -> Int {
-        return isFiltering ? filteredContactIds.count : contactIds.count
-    }
-
-    func getContactCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func updateContactCell(for indexPath: IndexPath) -> UITableViewCell {
         guard let cell: ContactCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell else {
             safe_fatalError("unsupported cell type")
             return UITableViewCell()
@@ -130,6 +133,7 @@ class GroupMembersViewController: UITableViewController {
         return cell
     }
 
+    // MARK: - actions
     func didSelectContactCell(at indexPath: IndexPath) {
         let row = indexPath.row
         if let cell = tableView.cellForRow(at: indexPath) {
@@ -152,6 +156,7 @@ class GroupMembersViewController: UITableViewController {
     }
 }
 
+// MARK: - UISearchResultsUpdating
 extension GroupMembersViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {

@@ -67,6 +67,6 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
     }
 
     private func updateEmtpyStateView() {
-        emptyStateView.isHidden = super.getNumberOfRowsForContactList() > 0
+        emptyStateView.isHidden = super.numberOfRowsForContactList > 0
     }
 }

@@ -92,7 +92,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         case sectionNewContact:
             return 1
         case sectionMemberList:
-            return getNumberOfRowsForContactList()
+            return numberOfRowsForContactList
         default:
             return 0
         }
@@ -114,7 +114,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         case sectionNewContact:
             return getNewContactCell()
         case sectionMemberList:
-            return getContactCell(cellForRowAt: indexPath)
+            return updateContactCell(for: indexPath)
         default:
             return UITableViewCell(style: .default, reuseIdentifier: nil)
         }
