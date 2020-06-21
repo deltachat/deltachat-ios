@@ -134,10 +134,8 @@ class ContactCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        selectionStyle = .none
-        backgroundColor = DcColors.contactCellBackgroundColor
-        contentView.backgroundColor = DcColors.contactCellBackgroundColor
         setupSubviews()
+        selectionStyle = .default
     }
 
     required init?(coder: NSCoder) {
@@ -275,10 +273,8 @@ class ContactCell: UITableViewCell {
                 titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             }
             if chat.visibility == DC_CHAT_VISIBILITY_PINNED {
-                backgroundColor = DcColors.deaddropBackground
                 contentView.backgroundColor = DcColors.deaddropBackground
             } else {
-                backgroundColor = DcColors.contactCellBackgroundColor
                 contentView.backgroundColor = DcColors.contactCellBackgroundColor
             }
             if let img = chat.profileImage {
@@ -310,6 +306,16 @@ class ContactCell: UITableViewCell {
                                 visibility: 0,
                                 isLocationStreaming: false,
                                 isMuted: false)
+        }
+    }
+
+    private var bgColor: UIColor?
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if selected {
+            bgColor = contentView.backgroundColor
+            contentView.backgroundColor = nil
+        } else {
+            contentView.backgroundColor = bgColor
         }
     }
 }
