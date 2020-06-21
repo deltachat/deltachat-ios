@@ -262,7 +262,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             textLabel: String.localized("pref_watch_inbox_folder"),
             on: dcContext.getConfigBool("inbox_watch"),
             action: { cell in
+                self.dcContext.stopIo()
                 self.dcContext.setConfigBool("inbox_watch", cell.isOn)
+                self.dcContext.maybeStartIo()
         })
     }()
 
@@ -271,7 +273,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             textLabel: String.localized("pref_watch_sent_folder"),
             on: dcContext.getConfigBool("sentbox_watch"),
             action: { cell in
+                self.dcContext.stopIo()
                 self.dcContext.setConfigBool("sentbox_watch", cell.isOn)
+                self.dcContext.maybeStartIo()
         })
     }()
 
@@ -280,7 +284,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             textLabel: String.localized("pref_watch_mvbox_folder"),
             on: dcContext.getConfigBool("mvbox_watch"),
             action: { cell in
+                self.dcContext.stopIo()
                 self.dcContext.setConfigBool("mvbox_watch", cell.isOn)
+                self.dcContext.maybeStartIo()
         })
     }()
 
