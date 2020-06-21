@@ -303,8 +303,8 @@ protocol GroupMemberSelectionDelegate: class {
     func selected(contactId: Int, selected: Bool)
 }
 
+// MARK: - GroupMembersViewController
 class GroupMembersViewController: UITableViewController, UISearchResultsUpdating {
-    let contactCellReuseIdentifier = "contactCell"
     weak var groupMemberSelectionDelegate: GroupMemberSelectionDelegate?
     var enableCheckmarks = true
     var numberOfSections = 1
@@ -323,6 +323,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
 
     // used when seachbar is active
     var filteredContacts: [ContactWithSearchResults] = []
+    var filteredContactIds: [Int] = []
 
     // searchBar active?
     func isFiltering() -> Bool {
@@ -370,7 +371,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
 
     // MARK: - lifecycle
     override func viewDidLoad() {
-        tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
+        tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
         navigationItem.searchController = searchController
         if #available(iOS 11.0, *) {
             navigationItem.hidesSearchBarWhenScrolling = false
@@ -414,7 +415,7 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
     }
 
     func getContactCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: ContactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as? ContactCell else {
+        guard let cell: ContactCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell else {
             fatalError("shouldn't happen")
         }
 
@@ -453,30 +454,6 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
         } 
     }
 
-    private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
-        let contactsWithHighlights: [ContactWithSearchResults] = contacts.map { contact in
-            let indexes = contact.contact.containsExact(searchText: searchText)
-            return ContactWithSearchResults(contact: contact.contact, indexesToHighlight: indexes)
-        }
-
-        filteredContacts = contactsWithHighlights.filter { !$0.indexesToHighlight.isEmpty }
-        tableView.reloadData()
-        tableView.scrollToTop()
-
-        // handle empty searchstate
-        if isFiltering() && getNumberOfRowsForContactList() == 0 {
-            let text = String.localizedStringWithFormat(
-                String.localized("search_no_result_for_x"),
-                searchText
-            )
-            emptySearchStateLabel.text = text
-            emptySearchStateLabel.isHidden = false
-        } else {
-            emptySearchStateLabel.text = nil
-            emptySearchStateLabel.isHidden = true
-        }
-    }
-
     private func updateContactCell(cell: ContactCell, contactWithHighlight: ContactWithSearchResults) {
         let contact = contactWithHighlight.contact
         let displayName = contact.displayName
@@ -506,5 +483,28 @@ class GroupMembersViewController: UITableViewController, UISearchResultsUpdating
             cell.titleLabel.attributedText = displayName.boldAt(indexes: [], fontSize: nameLabelFontSize)
         }
     }
+
+}
+
+private extension GroupMembersViewController {
+    private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
+        filteredContactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
+        tableView.reloadData()
+        tableView.scrollToTop()
+
+        // handle empty searchstate
+        if searchController.isActive && filteredContactIds.isEmpty {
+            let text = String.localizedStringWithFormat(
+                String.localized("search_no_result_for_x"),
+                searchText
+            )
+            emptySearchStateLabel.text = text
+            emptySearchStateLabel.isHidden = false
+        } else {
+            emptySearchStateLabel.text = nil
+            emptySearchStateLabel.isHidden = true
+        }
+    }
+
 
 }
