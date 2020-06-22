@@ -258,7 +258,6 @@ class NewChatViewController: UITableViewController {
                 filteredContactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
             }
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            // self.tableView.reloadData()
         }
     }
 
