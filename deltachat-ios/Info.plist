@@ -51,7 +51,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Delta Chat will let you choose which photos from your library to send.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Delta Chat uses this permission to save images to your photo library.</string>
+	<string>Delta Chat wants to save images to your photo library.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
