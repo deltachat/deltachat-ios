@@ -37,6 +37,7 @@ open class MediaMessageCell: MessageContentCell {
     open var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
 
@@ -73,12 +74,29 @@ open class MediaMessageCell: MessageContentCell {
             imageView.image = mediaItem.image ?? mediaItem.placeholderImage
             playButtonView.isHidden = true
         case .video(let mediaItem):
-            imageView.image = mediaItem.image ?? mediaItem.placeholderImage
+            if let url = mediaItem.url {
+                if let image = mediaItem.image {
+                    imageView.image = image
+                } else {
+                    // no image in cache
+                    imageView.loadVideoThumbnail(from: url, placeholderImage: mediaItem.placeholderImage, completionHandler: { [weak self] thumbnail in
+                        if let image = thumbnail {
+                            self?.cache(thumbnail: image, key: url.absoluteString)
+                        }
+                    })
+                }
+            } else {
+                imageView.image = mediaItem.placeholderImage
+            }
             playButtonView.isHidden = false
         default:
             break
         }
 
         displayDelegate.configureMediaMessageImageView(imageView, for: message, at: indexPath, in: messagesCollectionView)
+    }
+
+    private func cache(thumbnail image: UIImage, key: String) {
+        ThumbnailCache.shared.storeImage(image: image, key: key)
     }
 }

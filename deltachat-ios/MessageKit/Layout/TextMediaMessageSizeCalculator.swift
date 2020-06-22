@@ -81,13 +81,22 @@ open class TextMediaMessageSizeCalculator: MessageSizeCalculator {
 
             var messageContainerSize = CGSize(width: imageWidth, height: imageHeight)
             switch message.kind {
-            case .photoText(let mediaItem), .videoText(let mediaItem), .animatedImageText(let mediaItem):
+            case .photoText(let mediaItem), .animatedImageText(let mediaItem):
                 if let text = mediaItem.text?[MediaItemConstants.messageText] {
                     let textHeight = text.height(withConstrainedWidth: maxTextWidth)
                     messageContainerSize.height += textHeight
                     messageContainerSize.height +=  self.messageLabelInsets(for: message).vertical
                 }
                 return messageContainerSize
+            case .videoText(let mediaItem):
+                var videoContainerSize = CGSize(width: self.minTextWidth, height: self.minTextWidth)
+                if let text = mediaItem.text?[MediaItemConstants.messageText] {
+                    let textHeight = text.height(withConstrainedWidth: maxTextWidth)
+                    // static size for thumbnails
+                    videoContainerSize.height += textHeight
+                    videoContainerSize.height += self.messageLabelInsets(for: message).vertical
+                }
+                return videoContainerSize
             default:
                 return messageContainerSize
             }
