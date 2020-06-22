@@ -10,6 +10,7 @@ class FileView: UIView {
     private lazy var titleView: MessageLabel = {
         let label = MessageLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 3
         return label
     }()
 
