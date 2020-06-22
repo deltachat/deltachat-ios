@@ -24,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // setupCrashReporting() may create an additional handler, but we do not want to rely on that
         signal(SIGPIPE, SIG_IGN)
 
-        //DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
-        //DBDebugToolkit.setupCrashReporting()
+        DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
+        DBDebugToolkit.setupCrashReporting()
 
         let console = ConsoleDestination()
         logger.addDestination(console)
