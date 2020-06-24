@@ -22,6 +22,9 @@ class ActionCell: UITableViewCell {
         let label = UILabel()
         label.text = actionTitle
         label.textColor = UIColor.systemBlue
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
+        label.lineBreakMode = .byTruncatingTail
         return label
     }()
 

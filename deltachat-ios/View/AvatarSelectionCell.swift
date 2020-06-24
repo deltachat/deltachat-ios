@@ -25,6 +25,8 @@ class AvatarSelectionCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = DcColors.defaultTextColor
         label.text = String.localized("pref_profile_photo")
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 

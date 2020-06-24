@@ -2,7 +2,11 @@ import Foundation
 import UIKit
 
 class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
-    static let cellHeight: CGFloat = 125
+
+    private static let padding: CGFloat = 16
+    static var cellHeight: CGFloat {
+        return UIFont.preferredFont(forTextStyle: .body).fontDescriptor.pointSize * 6 + MultilineTextFieldCell.padding
+    }
 
     var onTextFieldChange:((_:UITextView) -> Void)?    // set this from outside to get notified about textfield changes
 
@@ -10,6 +14,8 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.isEnabled = false
+        textField.adjustsFontForContentSizeCategory = true
+        textField.font = .preferredFont(forTextStyle: .body)
         return textField
     }()
 
@@ -17,16 +23,18 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
         let textField = UITextView()
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.font = UIFont.systemFont(ofSize: 16)
+        textField.adjustsFontForContentSizeCategory = true
+        textField.font = .preferredFont(forTextStyle: .body)
         textField.backgroundColor = .none
         return textField
     }()
 
     lazy var placeholder: UILabel = {
         let placeholderLabel = UILabel()
-        placeholderLabel.font = self.textField.font
         placeholderLabel.textColor = UIColor.lightGray
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
+        placeholderLabel.adjustsFontForContentSizeCategory = true
+        placeholderLabel.font = .preferredFont(forTextStyle: .body)
         return placeholderLabel
     }()
 
@@ -56,7 +64,8 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
 
         textField.alignLeadingToAnchor(margins.leadingAnchor, paddingLeading: -5)
         textField.alignTrailingToAnchor(margins.trailingAnchor)
-        contentView.addConstraint(textField.constraintHeightTo(95))
+        let fontsize = textField.font!.fontDescriptor.pointSize
+        contentView.addConstraint(textField.constraintHeightTo(fontsize * 4))
         textField.alignTopToAnchor(descriptionField.bottomAnchor)
 
         placeholder.alignLeadingToAnchor(margins.leadingAnchor)

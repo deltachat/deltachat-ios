@@ -26,6 +26,7 @@ class ContactCell: UITableViewCell {
         let stackView = UIStackView(arrangedSubviews: [subtitleLabel, deliveryStatusIndicator, archivedIndicator, unreadMessageCounter])
         stackView.axis = .horizontal
         stackView.spacing = 10
+        stackView.alignment = .firstBaseline
         return stackView
     }()
 
@@ -38,38 +39,40 @@ class ContactCell: UITableViewCell {
 
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultTextColor
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
     private let pinnedIndicator: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalToConstant: 16).isActive = true
         view.widthAnchor.constraint(equalToConstant: 16).isActive = true
         view.tintColor = DcColors.middleGray
         view.image = #imageLiteral(resourceName: "pinned_chatlist").withRenderingMode(.alwaysTemplate)
         view.isHidden = true
+        view.contentMode = .scaleAspectFit
         return view
     }()
 
     private let mutedIndicator: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalToConstant: 16).isActive = true
         view.widthAnchor.constraint(equalToConstant: 16).isActive = true
         view.tintColor = DcColors.middleGray
         view.image = #imageLiteral(resourceName: "volume_off").withRenderingMode(.alwaysTemplate)
         view.isHidden = true
+        view.contentMode = .scaleAspectFit
         return view
     }()
 
     private let timeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        label.adjustsFontForContentSizeCategory = true
         label.textColor = DcColors.middleGray
         label.textAlignment = .right
         label.setContentHuggingPriority(.defaultHigh, for: NSLayoutConstraint.Axis.horizontal)
@@ -80,20 +83,21 @@ class ContactCell: UITableViewCell {
     private let locationStreamingIndicator: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalToConstant: 16).isActive = true
         view.widthAnchor.constraint(equalToConstant: 16).isActive = true
         view.tintColor = DcColors.checkmarkGreen
         view.image = #imageLiteral(resourceName: "ic_location").withRenderingMode(.alwaysTemplate)
         view.isHidden = true
+        view.contentMode = .scaleAspectFit
         return view
     }()
 
     let subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = DcColors.middleGray
         label.lineBreakMode = .byTruncatingTail
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
+        label.font = .preferredFont(forTextStyle: .subheadline)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
@@ -170,6 +174,12 @@ class ContactCell: UITableViewCell {
         verticalStackView.axis = .vertical
         verticalStackView.addArrangedSubview(toplineStackView)
         verticalStackView.addArrangedSubview(bottomlineStackView)
+
+        toplineStackView.addConstraints([
+            pinnedIndicator.constraintHeightTo(titleLabel.font.fontDescriptor.pointSize * 1.2),
+            mutedIndicator.constraintHeightTo(titleLabel.font.fontDescriptor.pointSize * 1.2),
+            locationStreamingIndicator.constraintHeightTo(titleLabel.font.fontDescriptor.pointSize * 1.2)
+        ])
     }
 
     func setVerified(isVerified: Bool) {
@@ -267,7 +277,7 @@ class ContactCell: UITableViewCell {
 
             // text bold if chat contains unread messages - otherwise hightlight search results if needed
             if chatData.unreadMessages > 0 {
-                titleLabel.attributedText = NSAttributedString(string: cellViewModel.title, attributes: [ .font: UIFont.systemFont(ofSize: 16, weight: .bold) ])
+                titleLabel.attributedText = cellViewModel.title.bold(fontSize: titleLabel.font.pointSize)
             } else {
                 titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             }

@@ -16,18 +16,20 @@ class ContactDetailHeader: UIView {
 
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultTextColor
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
+        label.adjustsFontForContentSizeCategory = true
+        label.font = .preferredFont(forTextStyle: UIFont.TextStyle.headline)
         return label
     }()
 
     private var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = .preferredFont(forTextStyle: .callout)
         label.textColor = UIColor(hexString: "848ba7")
         label.lineBreakMode = .byTruncatingTail
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 

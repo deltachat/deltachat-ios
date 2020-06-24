@@ -74,6 +74,12 @@ extension String {
         return attributedText
     }
 
+    func bold(fontSize: CGFloat) -> NSAttributedString {
+        let attributedText = NSMutableAttributedString(string: self)
+        attributedText.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: fontSize), range: NSRange(location: 0, length: count - 1))
+        return attributedText
+    }
+
     static func timeStringForInterval(_ interval: TimeInterval) -> String {
         let time = NSInteger(interval)
         let seconds = time % 60

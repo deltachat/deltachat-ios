@@ -18,6 +18,8 @@ class TextFieldCell: UITableViewCell {
         textField.textAlignment = .right
         // textField.enablesReturnKeyAutomatically = true
         textField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        textField.adjustsFontForContentSizeCategory = true
+        textField.font = .preferredFont(forTextStyle: .body)
         return textField
     }()
 

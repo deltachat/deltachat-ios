@@ -83,7 +83,7 @@ class QrInviteViewController: UITableViewController {
                                 label.constraintAlignTopTo(cell.contentView, paddingTop: 45),
                                 label.constraintAlignLeadingTo(cell.contentView, paddingLeading: 30),
                                 label.constraintAlignTrailingTo(cell.contentView, paddingTrailing: 30)]
-         cell.contentView.addConstraints(labelConstraints)
+        cell.contentView.addConstraints(labelConstraints)
         return cell
     }
 
@@ -114,7 +114,8 @@ class QrInviteViewController: UITableViewController {
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }
 }
