@@ -176,9 +176,9 @@ class ContactCell: UITableViewCell {
         verticalStackView.addArrangedSubview(bottomlineStackView)
 
         toplineStackView.addConstraints([
-            pinnedIndicator.constraintHeightTo(titleLabel.font.fontDescriptor.pointSize * 1.2),
-            mutedIndicator.constraintHeightTo(titleLabel.font.fontDescriptor.pointSize * 1.2),
-            locationStreamingIndicator.constraintHeightTo(titleLabel.font.fontDescriptor.pointSize * 1.2)
+            pinnedIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2),
+            mutedIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2),
+            locationStreamingIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2)
         ])
     }
 

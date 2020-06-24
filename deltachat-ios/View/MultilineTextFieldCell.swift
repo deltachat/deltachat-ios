@@ -5,7 +5,7 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
 
     private static let padding: CGFloat = 16
     static var cellHeight: CGFloat {
-        return UIFont.preferredFont(forTextStyle: .body).fontDescriptor.pointSize * 6 + MultilineTextFieldCell.padding
+        return UIFont.preferredFont(forTextStyle: .body).pointSize * 6 + MultilineTextFieldCell.padding
     }
 
     var onTextFieldChange:((_:UITextView) -> Void)?    // set this from outside to get notified about textfield changes
@@ -64,7 +64,7 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
 
         textField.alignLeadingToAnchor(margins.leadingAnchor, paddingLeading: -5)
         textField.alignTrailingToAnchor(margins.trailingAnchor)
-        let fontsize = textField.font!.fontDescriptor.pointSize
+        let fontsize = textField.font!.pointSize
         contentView.addConstraint(textField.constraintHeightTo(fontsize * 4))
         textField.alignTopToAnchor(descriptionField.bottomAnchor)
 
