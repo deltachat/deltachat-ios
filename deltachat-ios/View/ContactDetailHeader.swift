@@ -26,7 +26,7 @@ class ContactDetailHeader: UIView {
 
     private var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .preferredFont(forTextStyle: .callout)
+        label.font = .preferredFont(forTextStyle: .subheadline)
         label.textColor = UIColor(hexString: "848ba7")
         label.lineBreakMode = .byTruncatingTail
         label.adjustsFontForContentSizeCategory = true
