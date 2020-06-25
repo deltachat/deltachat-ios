@@ -133,8 +133,13 @@ class ShareAttachment {
                 self.addDcMsg(url: url, viewType: DC_MSG_VIDEO)
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
-                    self.imageThumbnail = DcUtils.generateThumbnailFromVideo(url: url)?.scaleDownImage(toMax: self.thumbnailSize)
-                    self.delegate?.onThumbnailChanged()
+                    DispatchQueue.global(qos: .background).async {
+                        self.imageThumbnail = DcUtils.generateThumbnailFromVideo(url: url)?.scaleDownImage(toMax: self.thumbnailSize)
+                        DispatchQueue.main.async { [weak self] in
+                            self?.delegate?.onThumbnailChanged()
+                        }
+                    }
+
                 }
             default:
                 self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
