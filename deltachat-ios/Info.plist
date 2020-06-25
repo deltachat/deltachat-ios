@@ -50,6 +50,8 @@
 	<string>Delta Chat uses your microphone to record and send voice messages and videos with sound.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Delta Chat will let you choose which photos from your library to send.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Delta Chat wants to save images to your photo library.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
