@@ -47,7 +47,6 @@ class GalleryCell: UICollectionViewCell {
         guard let viewtype = msg.viewtype, let fileUrl = msg.fileURL else {
             return
         }
-
         switch viewtype {
         case .image:
             imageView.image = msg.image
