@@ -252,7 +252,7 @@ class ContactCell: UITableViewCell {
         case .deaddrop(let deaddropData):
             safe_assert(deaddropData.chatId == DC_CHAT_ID_DEADDROP)
             backgroundColor = DcColors.deaddropBackground
-            contentView.backgroundColor = DcColors.deaddropBackground
+            // contentView.backgroundColor = DcColors.deaddropBackground
             let contact = DcContact(id: DcMsg(id: deaddropData.msgId).fromContactId)
             if let img = contact.profileImage {
                 resetBackupImage()
@@ -273,9 +273,9 @@ class ContactCell: UITableViewCell {
                 titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             }
             if chat.visibility == DC_CHAT_VISIBILITY_PINNED {
-                contentView.backgroundColor = DcColors.deaddropBackground
+                backgroundColor = DcColors.deaddropBackground
             } else {
-                contentView.backgroundColor = DcColors.contactCellBackgroundColor
+                backgroundColor = DcColors.contactCellBackgroundColor
             }
             if let img = chat.profileImage {
                 resetBackupImage()
@@ -306,16 +306,6 @@ class ContactCell: UITableViewCell {
                                 visibility: 0,
                                 isLocationStreaming: false,
                                 isMuted: false)
-        }
-    }
-
-    private var bgColor: UIColor?
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        if selected {
-            bgColor = contentView.backgroundColor
-            contentView.backgroundColor = nil
-        } else {
-            contentView.backgroundColor = bgColor
         }
     }
 }
