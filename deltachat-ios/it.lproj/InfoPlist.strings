@@ -2,3 +2,4 @@ NSCameraUsageDescription = "Autorizzare l\'accesso alla camera ti permette di fa
 NSContactsUsageDescription = "Autorizzare l\'accesso alla rubrica ti permette di chattare con i contatti nel tuo dispositivo.";
 NSMicrophoneUsageDescription = "Autorizzare l\'accesso al microfono ti permette di registrare audio.";
 NSPhotoLibraryUsageDescription = "Autorizzare l\'accesso alla galleria ti permette di caricare foto da essa.";
+NSPhotoLibraryAddUsageDescription = "Delta Chat vuole salvare le immagini nella tua libreria di foto.";

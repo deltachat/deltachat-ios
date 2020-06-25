@@ -372,5 +372,3 @@
 "none_blocked_desktop" = "Ingen blokkerte kontakter enda";
 "me_desktop" = "Meg";
 "message_detail_from_desktop" = "Fra";
-// android specific strings, developers: please take care to remove strings that are no longer used!
-

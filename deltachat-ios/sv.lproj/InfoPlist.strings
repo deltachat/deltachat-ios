@@ -2,3 +2,4 @@ NSCameraUsageDescription = "Delta Chat använder din kamera för att ta och skic
 NSContactsUsageDescription = "Delta Chat använder dina kontakter för att visa en lista över e-postadresser som du kan skriva till.m Delta Chat har ingen server, dina kontakter skickas inte någonstans.";
 NSMicrophoneUsageDescription = "Delta Chat använder din mikrofon för att spela in och skicka röstmeddelanden, och filmer med ljud.";
 NSPhotoLibraryUsageDescription = "Delta Chat låter dig välja vilka bilder från ditt galleri som du vill skicka.";
+NSPhotoLibraryAddUsageDescription = "Delta Chat vill spara bilder i ditt fotogalleri.";

@@ -286,6 +286,8 @@
 "login_smtp_port" = "SMTP-Port";
 "login_smtp_security" = "SMTP-Sicherheit";
 "login_auth_method" = "Autorisierungsmethode";
+// Translators: %1$s will be replaced by an email address
+"login_oauth2_checking_addr" = "Teste %1$@";
 "login_info_oauth2_title" = "Weiter mit vereinfachter Einrichtung?";
 "login_info_oauth2_text" = "Die eingegebene E-Mail-Adresse unterstützt eine vereinfachte Einrichtung (OAuth 2.0).\n\nBitte erlauben Sie Delta Chat im nächsten Schritt, als Chat-über-E-Mail-App zu arbeiten.\n\nEs gibt keine Delta Chat Server! Ihre Daten bleiben auf Ihrem Gerät!";
 "login_certificate_checks" = "Zertifikatsüberprüfung";
@@ -642,7 +644,6 @@
 "a11y_background_preview_label" = "Vorschau für Hintergrundbild";
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-
-
 // android specific strings, developers: please take care to remove strings that are no longer used!
+"update_1_10_android" = "Die neuen Delta Chat 1.10 Features im Überblick: schneller, Multi-Account, Bildbereiche verwischen, neue Emojis, überarbeitete Benachrichtigungen, Anzeige fehlerhafter Nachrichten. Aber am wichtigsten:\n\nAvatare im Profil vergrößern 🚀";
 

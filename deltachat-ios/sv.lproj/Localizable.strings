@@ -286,6 +286,8 @@
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP säkerhet";
 "login_auth_method" = "Auktoriseringsmetod";
+// Translators: %1$s will be replaced by an email address
+"login_oauth2_checking_addr" = "Kontrollerar %1$@";
 "login_info_oauth2_title" = "Fortsätta med förenklad installation?";
 "login_info_oauth2_text" = "Den angivna e-postadressen stödjer förenklad inställning (OAuth 2.0).\n\nLåt Delta Chat agera som ditt chatt-över-epost-program, i nästa steg.\n\nDet finns ingen Delta Chat-server, din data stannar på din enhet.";
 "login_certificate_checks" = "Certifikatkontroller";
@@ -643,6 +645,4 @@
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
-
-// android specific strings, developers: please take care to remove strings that are no longer used!
 

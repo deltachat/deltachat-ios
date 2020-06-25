@@ -447,5 +447,3 @@
 "message_detail_to_desktop" = "para";
 "menu.view.developer.open.log.folder" = "Abrir pasta de Log";
 "menu.view.developer.open.current.log.file" = "Abrir o aqrquio do log actual";
-// android specific strings, developers: please take care to remove strings that are no longer used!
-

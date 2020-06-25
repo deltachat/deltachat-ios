@@ -570,7 +570,3 @@
 "a11y_delivery_status_read" = "Status pengiriman: Dibaca";
 "a11y_delivery_status_invalid" = "Status pengiriman tidak valid";
 "a11y_remove_account_btn_label" = "Menghapus akun";
-
-
-// android specific strings, developers: please take care to remove strings that are no longer used!
-

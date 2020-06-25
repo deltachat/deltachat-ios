@@ -520,5 +520,3 @@
 "a11y_remove_account_btn_label" = "Šalinti paskyrą";
 "a11y_background_preview_label" = "Fono peržiūra";
 
-// android specific strings, developers: please take care to remove strings that are no longer used!
-

@@ -511,6 +511,7 @@
 "qrshow_join_contact_no_connection_hint" = "O axuste dun código QR precisa de conexión a internet. Conéctate a rede antes de continuar.";
 "qrshow_join_contact_no_connection_toast" = "Sen conexión a internet, non se pode facer o axuste por código QR";
 "qraccount_ask_create_and_login" = "Crear un novo enderezo de correo en \"%1$@\" e conectar ali?";
+"qraccount_ask_create_and_login_another" = "Crear un novo enderezo de email en \"%1$@\" e conectarte?\n\nNon se eliminará a conta actual. Usa \"Cambiar de conta\" para cambiar entre as túas contas.";
 "qraccount_success_enter_name" = "Conexión correcta—o teu enderezo é %1$@\n\nSe queres, agora podes escribir un nome e unha imaxe de avatar que será mostrado as persoas coas que te comunicas.";
 "qraccount_qr_code_cannot_be_used" = "O código QR escaneado non se pode utilizar para crear unha nova conta.";
 "qraccount_use_on_new_install" = "O código QR escaneado é para crear unha nova conta. Podes escanear o código QR cando configures unha nova instalación de Delta Chat.";
@@ -552,6 +553,9 @@
 "perm_enable_bg_reminder_title" = "Toca aquí para recibir mensaxes mentras Delta Chat está en segundo plano.";
 "perm_enable_bg_reminder_text" = "Delta Chat utiliza poucos recursos e procura non esgotar a batería.";
 "perm_enable_bg_already_done" = "Xa permitiches que Delta Chat reciba mensaxes en segundo plano\n\nSe aínda así non recibes as mensaxes, por favor comproba os axustes do sistema.";
+
+// ImageEditorHud
+"ImageEditorHud_draw_anywhere_to_blur" = "Debuxa para esborranchar";
 
 // dc_str_* resources
 "encrypted_message" = "Mensaxe cifrada";
@@ -638,7 +642,3 @@
 "a11y_background_preview_label" = "Vista previa do fondo";
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-
-
-// android specific strings, developers: please take care to remove strings that are no longer used!
-

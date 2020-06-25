@@ -392,5 +392,3 @@
 "save_desktop" = "Konservi";
 "me_desktop" = "mi";
 "message_detail_from_desktop" = "De";
-// android specific strings, developers: please take care to remove strings that are no longer used!
-

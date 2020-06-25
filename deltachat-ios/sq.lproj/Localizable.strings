@@ -286,6 +286,8 @@
 "login_smtp_port" = "Portë SMTP";
 "login_smtp_security" = "Siguri SMTP";
 "login_auth_method" = "Metodë autorizimi";
+// Translators: %1$s will be replaced by an email address
+"login_oauth2_checking_addr" = "Po kontrollohet %1$@";
 "login_info_oauth2_title" = "Të vazhdohet me rregullimin e thjeshtuar?";
 "login_info_oauth2_text" = "Adresa email e dhënë mbulon një ujdisje të thjeshtuar (OAuth2).\n\nNë hapin pasues, ju lutemi, lejojeni Delta Chat-in të veprojë si aplikacioni juaj për Fjalosje Përmes Email-i.\n\nS\’ka shërbyes Delta Chat, të dhënat tuaja rrinë në pajisjen tuaj!";
 "login_certificate_checks" = "Kontrolle dëshmish";
@@ -644,4 +646,5 @@
 
 
 // android specific strings, developers: please take care to remove strings that are no longer used!
+"update_1_10_android" = "Veçori të reja në Delta Chat 1.10, me një vështrim: më i shpejtë, llogari të shumëfishta, turbullim figurash, emotikone të rinj, njoftime të ripunuara, njoftim më i mirë të metash, por më e rëndësishmja:\n\nKlikoni mbi një avatar profili dhe zmadhojeni 🚀";
 

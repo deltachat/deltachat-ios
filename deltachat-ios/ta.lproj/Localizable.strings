@@ -249,5 +249,3 @@
 "none_blocked_desktop" = "இதுவரையில் எந்த தொடர்பும் தடுக்கப்படவில்லை";
 "me_desktop" = "நான்";
 "message_detail_from_desktop" = "அனுப்புதல்";
-// android specific strings, developers: please take care to remove strings that are no longer used!
-

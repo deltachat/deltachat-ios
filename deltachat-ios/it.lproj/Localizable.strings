@@ -286,6 +286,8 @@
 "login_smtp_port" = "Porta SMTP";
 "login_smtp_security" = "Sicurezza SMTP";
 "login_auth_method" = "Metodo di autorizzazione";
+// Translators: %1$s will be replaced by an email address
+"login_oauth2_checking_addr" = "Verifica %1$@";
 "login_info_oauth2_title" = "Usare il setup semplificato?";
 "login_info_oauth2_text" = "L\'indirizzo email inserito supporta l\'autenticazione semplificata (OAuth2.0).\n\nContinuando, puoi autorizzare Delta Chat ad operare come app di messaggistica via e-mail.\n\nNon esistono server di Delta Chat, i tuoi dati restano nel tuo dispositivo!";
 "login_certificate_checks" = "Controlli certificato";
@@ -645,4 +647,5 @@
 
 
 // android specific strings, developers: please take care to remove strings that are no longer used!
+"update_1_10_android" = "Nuove funzionalità di Delta Chat 1.10 a colpo d\'occhio: più veloce, multi-account, immagini sfocate, nuove emoji, notifiche rielaborate, migliore segnalazione degli errori, ma soprattutto:\n\nFai clic su un avatar nel profilo e ingrandiscilo 🚀";
 
