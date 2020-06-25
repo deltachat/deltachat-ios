@@ -135,8 +135,8 @@ class ShareAttachment {
                 if self.imageThumbnail == nil {
                     DispatchQueue.global(qos: .background).async {
                         self.imageThumbnail = DcUtils.generateThumbnailFromVideo(url: url)?.scaleDownImage(toMax: self.thumbnailSize)
-                        DispatchQueue.main.async { [weak self] in
-                            self?.delegate?.onThumbnailChanged()
+                        DispatchQueue.main.async {
+                            self.delegate?.onThumbnailChanged()
                         }
                     }
 
