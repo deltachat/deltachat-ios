@@ -64,7 +64,7 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
 
         textField.alignLeadingToAnchor(margins.leadingAnchor, paddingLeading: -5)
         textField.alignTrailingToAnchor(margins.trailingAnchor)
-        let fontsize = textField.font!.pointSize
+        let fontsize = UIFont.preferredFont(forTextStyle: .body).pointSize
         contentView.addConstraint(textField.constraintHeightTo(fontsize * 4))
         textField.alignTopToAnchor(descriptionField.bottomAnchor)
 
