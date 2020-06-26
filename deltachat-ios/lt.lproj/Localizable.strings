@@ -9,6 +9,8 @@
 "def" = "Pagal numatymą";
 "custom" = "Tinkintas";
 "none" = "Nėra";
+"automatic" = "Automatinis";
+"strict" = "Griežtas";
 "open" = "Atverti";
 "delete" = "Ištrinti";
 "attachment" = "Priedas";
@@ -40,6 +42,7 @@
 "email_address" = "El. pašto adresas";
 "bad_email_address" = "Blogas el. pašto adresas.";
 "password" = "Slaptažodis";
+"existing_password" = "Esamas slaptažodis";
 "now" = "Dabar";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Dėmesio";
@@ -233,7 +236,7 @@
 "welcome_intro1_message" = "Pokalbių programa su plačiausia auditorija pasaulyje. Nemokama ir nepriklausoma.";
 "welcome_start_messaging" = "Pradėti susirašinėjimą";
 "login_title" = "Prisijungti";
-"login_header" = "Prisijunkite prie savo serverio";
+"login_header" = "Prisijungti prie savo serverio";
 "login_subheader" = "Žinomiems el. pašto teikėjams papildomi nustatymai yra nustatomi automatiškai. Kartais, IMAP turi būti įjungtas prisijungus per naršyklę. Išsamesnės pagalbos teiraukitės savo el. pašto teikėjo ar draugų.";
 "login_no_servers_hint" = "Nėra jokių Delta Chat serverių, jūsų duomenys išlieka jūsų įrenginyje!";
 "login_inbox" = "Gauta";
@@ -247,7 +250,9 @@
 "login_smtp_server" = "SMTP serveris";
 "login_smtp_port" = "SMTP prievadas";
 "login_smtp_security" = "SMTP saugumas";
+"login_auth_method" = "Įgaliojimų suteikimo metodas";
 "login_info_oauth2_title" = "Tęsti, naudojant supaprastintą sąranką?";
+"login_certificate_checks" = "Liudijimų patikrinimai";
 "login_error_mail" = "Įveskite teisingą el. pašto adresą.";
 "login_error_server" = "Įveskite teisingą serverį / IP adresą";
 "login_error_port" = "Įveskite teisingą prievadą (1–65535)";
@@ -259,6 +264,10 @@
 "login_error_cannot_login" = "Nepavyksta prisijungti kaip \"%1$@\". Patikrinkite ar el. pašto adresas ir slaptažodis yra teisingi.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Atsakymas iš %1$@: %2$@\n\nKai kurie teikėjai patalpina papildomą informaciją į jūsų gautųjų laiškų aplanką; galite ją patikrinti, pvz., prisijungę per naršyklę. Jei susidursite su problema, pagalbos teiraukitės savo teikėjo ar draugų.";
+
+// TLS certificate checks
+"accept_invalid_hostnames" = "Priimti neteisingus serverių vardus";
+"accept_invalid_certificates" = "Priimti negaliojančius liudijimus";
 
 "used_settings" = "Naudoti nustatymai:";
 "switch_account" = "Perjungti paskyrą";
@@ -358,12 +367,16 @@
 "pref_background_default_color" = "Numatytoji spalva";
 "pref_background_custom_image" = "Tinkintas paveikslas";
 "pref_background_custom_color" = "Tinkinta spalva";
+"autodel_device_title" = "Ištrinti žinutes iš įrenginio";
+"autodel_server_title" = "Ištrinti žinutes iš serverio";
 "autodel_confirm" = "Aš suprantu, ištrinti visas šias žinutes";
 "autodel_at_once" = "Iš karto";
 "autodel_after_1_hour" = "Po 1 valandos";
 "autodel_after_1_day" = "Po 1 dienos";
 "autodel_after_1_week" = "Po 1 savaitės";
 "autodel_after_4_weeks" = "Po 4 savaičių";
+"autodel_after_1_year" = "Po 1 metų";
+
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt yra naujoji ir atviroji specifikacija automatiniam ištisiniam el. pašto šifravui.\n\nPrireikus, jūsų ištisinė sąranka yra sukuriama automatiškai ir gali būti perduodama tarp įrenginių, naudojant Autocrypt sąrankos žinutes.";
@@ -403,7 +416,7 @@
 
 // qr code stuff
 "qr_code" = "QR kodas";
-"qrscan_title" = "Nuskenuokite QR kodą";
+"qrscan_title" = "Nuskenuoti QR kodą";
 "qrscan_hint" = "Laikykite savo kamerą virš QR kodo";
 "qrscan_ask_join_group" = "Ar norite prisijungti prie grupės \"%1$@\"?";
 "qrscan_contains_text" = "Nuskenuoto QR kodo tekstas:\n\n%1$@";
