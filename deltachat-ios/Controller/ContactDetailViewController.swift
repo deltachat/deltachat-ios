@@ -66,9 +66,9 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var galleryCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("gallery")
+    private lazy var galleryCell: BasicCell = {
+        let cell = BasicCell(style: .default, reuseIdentifier: nil)
+        cell.title.text = String.localized("gallery")
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
@@ -77,9 +77,9 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var documentsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("documents")
+    private lazy var documentsCell: BasicCell = {
+        let cell = BasicCell(style: .default, reuseIdentifier: nil)
+        cell.title.text = String.localized("documents")
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
@@ -106,6 +106,8 @@ class ContactDetailViewController: UITableViewController {
             title: String.localized("global_menu_edit_desktop"),
             style: .plain, target: self, action: #selector(editButtonPressed))
         self.title = String.localized("tab_contact")
+        tableView.sectionHeaderHeight =  UITableView.automaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -123,7 +125,13 @@ class ContactDetailViewController: UITableViewController {
     }
 
     // MARK: - UITableViewDatasource, UITableViewDelegate
-
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.preferredContentSizeCategory !=
+            traitCollection.preferredContentSizeCategory {
+            headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
+        }
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
@@ -183,19 +191,15 @@ class ContactDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let type = viewModel.typeFor(section: indexPath.section)
         switch type {
-        case .chatActions, .chatOptions:
-            return Constants.defaultCellHeight
         case .sharedChats:
             return ContactCell.cellHeight
+        default:
+            return UITableView.automaticDimension
         }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.titleFor(section: section)
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return Constants.defaultHeaderHeight
     }
 
     // MARK: - updates
