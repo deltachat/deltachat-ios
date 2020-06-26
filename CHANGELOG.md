@@ -1,5 +1,31 @@
 # Delta Chat iOS Changelog
 
+## 1.10.0
+2020-06
+
+* with this version, Delta Chat enters a whole new level of speed,
+  messages will be downloaded and sent way faster -
+  technically, this was introduced by using so called "async-processing"
+* share images and other content from other apps to Delta Chat
+* show animated GIF directly in chat
+* reworked gallery and document view
+* select outgoing media quality
+* mute chats
+* if a message cannot be delivered to a recipient
+  and the server replies with an error report message,
+  the error is shown beside the message itself in more cases
+* default to "Strict TLS" for some known providers
+* improve reconnection handling
+* improve interaction with conventional email programs
+  by showing better subjects
+* improve adding group members
+* fix landscape appearance
+* fix issues with database locking
+* fix importing addresses
+* fix memory leaks
+* more bug fixes
+
+
 ## v1.8.1
 2020-05
 
