@@ -13,7 +13,8 @@ on the command-line:
 3. update local help:
    $ cd ../deltachat-pages; ./tools/create-local-help.py; cd ../deltachat-ios
 
-4. update CHANGELOG.md
+4. add a device message to ChatListController::viewWillAppear()
+   and update CHANGELOG.md
    (the core-changelog at
    https://github.com/deltachat/deltachat-core-rust/blob/master/CHANGELOG.md
    and the "N commits to master since last release" on
@@ -39,7 +40,7 @@ on https://appstoreconnect.apple.com :
 
 7. for a **Testflight release**, open "My Apps/Delta Chat/TestFlight/iOS"
    a) fill out compliance info, status should be "Ready to Submit" then
-   b) select "open-testing-group" on the left, then "Builds" tab
+   b) select "open-testing-group" on the left, scroll down to "Builds" section
    c) click "+" and select the version made "Ready to submit" above
    d) make sure the credentials shown on the next page are working
       (the credentials are needed by apple for review)
