@@ -8,7 +8,13 @@ protocol ContactCellDelegate: class {
 class ContactCell: UITableViewCell {
 
     static let reuseIdentifier = "contact_cell_reuse_identifier"
-    static let cellHeight: CGFloat = 74.5
+    static var cellHeight: CGFloat {
+        let textHeight = UIFont.preferredFont(forTextStyle: .headline).pointSize + UIFont.preferredFont(forTextStyle: .subheadline).pointSize + 24
+        if textHeight > 74.5 {
+            return textHeight
+        }
+        return 74.5
+    }
 
     weak var delegate: ContactCellDelegate?
     private let badgeSize: CGFloat = 54
@@ -156,7 +162,9 @@ class ContactCell: UITableViewCell {
             avatar.constraintWidthTo(badgeSize),
             avatar.constraintHeightTo(badgeSize),
             avatar.constraintAlignLeadingTo(contentView, paddingLeading: badgeSize / 4),
-            avatar.constraintCenterYTo(contentView),
+            avatar.constraintAlignTopTo(contentView, paddingTop: badgeSize / 4, priority: .defaultLow),
+            avatar.constraintAlignBottomTo(contentView, paddingBottom: badgeSize / 4, priority: .defaultLow),
+            avatar.constraintCenterYTo(contentView, priority: .required),
         ])
 
         deliveryStatusIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -168,12 +176,12 @@ class ContactCell: UITableViewCell {
         verticalStackView.clipsToBounds = true
 
         contentView.addSubview(verticalStackView)
-        verticalStackView.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: margin).isActive = true
-        verticalStackView.centerYAnchor.constraint(equalTo: avatar.centerYAnchor).isActive = true
-        verticalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin).isActive = true
-        verticalStackView.axis = .vertical
         verticalStackView.addArrangedSubview(toplineStackView)
         verticalStackView.addArrangedSubview(bottomlineStackView)
+        verticalStackView.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: margin).isActive = true
+        verticalStackView.constraintCenterYTo(avatar, priority: .required).isActive = true
+        verticalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin).isActive = true
+        verticalStackView.axis = .vertical
 
         toplineStackView.addConstraints([
             pinnedIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2),
@@ -315,6 +323,23 @@ class ContactCell: UITableViewCell {
                                 visibility: 0,
                                 isLocationStreaming: false,
                                 isMuted: false)
+        case .profile:
+            let contact = DcContact(id: Int(DC_CONTACT_ID_SELF))
+            titleLabel.text = cellViewModel.title
+            subtitleLabel.text = cellViewModel.subtitle
+            if let profileImage = contact.profileImage {
+                avatar.setImage(profileImage)
+            } else {
+                avatar.setName(cellViewModel.title)
+                avatar.setColor(contact.color)
+            }
+            setVerified(isVerified: false)
+            setStatusIndicators(unreadCount: 0,
+            status: 0,
+            visibility: 0,
+            isLocationStreaming: false,
+            isMuted: false)
         }
+
     }
 }

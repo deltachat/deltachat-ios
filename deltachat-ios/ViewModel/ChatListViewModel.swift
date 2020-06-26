@@ -144,6 +144,8 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
             return data.chatId
         case .contact:
             return nil
+        case .profile:
+            return nil
         }
     }
 

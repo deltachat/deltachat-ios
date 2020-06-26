@@ -154,7 +154,7 @@ class ChatListController: UITableViewController {
         tableView.register(ContactCell.self, forCellReuseIdentifier: chatCellReuseIdentifier)
         tableView.register(ContactCell.self, forCellReuseIdentifier: deadDropCellReuseIdentifier)
         tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
-        tableView.rowHeight = 80
+        tableView.rowHeight = ContactCell.cellHeight
     }
 
     // MARK: - actions
@@ -169,6 +169,12 @@ class ChatListController: UITableViewController {
         updateTitle()
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.preferredContentSizeCategory !=
+            traitCollection.preferredContentSizeCategory {
+            tableView.rowHeight = ContactCell.cellHeight
+        }
+    }
     private func quitSearch(animated: Bool) {
         searchController.searchBar.text = nil
         self.viewModel.endSearch()
@@ -179,6 +185,7 @@ class ChatListController: UITableViewController {
 
     // MARK: - UITableViewDelegate + UITableViewDatasource
 
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
@@ -213,6 +220,8 @@ class ChatListController: UITableViewController {
                 contactCell.updateCell(cellViewModel: cellData)
                 return contactCell
             }
+        case .profile:
+            safe_fatalError("CellData type profile not allowed")
         }
         safe_fatalError("Could not find/dequeue or recycle UITableViewCell.")
         return UITableViewCell()
@@ -242,6 +251,8 @@ class ChatListController: UITableViewController {
             } else {
                 self.askToChatWith(contactId: contactId)
             }
+        case .profile:
+            safe_fatalError("CellData type profile not allowed")
         }
         tableView.deselectRow(at: indexPath, animated: false)
     }

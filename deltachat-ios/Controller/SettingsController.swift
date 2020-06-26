@@ -36,14 +36,12 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     // MARK: - cells
 
-    private let profileHeader = ContactDetailHeader()
-
-    private lazy var profileCell: ProfileCell = {
-        let displayName = dcContext.displayname ?? String.localized("pref_your_name")
-        let email = dcContext.addr ?? ""
-        let selfContact = DcContact(id: Int(DC_CONTACT_ID_SELF))
-        let cell = ProfileCell(contact: selfContact, displayName: displayName, address: email)
+    private lazy var profileCell: ContactCell = {
+        let cell = ContactCell(style: .default, reuseIdentifier: "profile_cell")
+        let cellViewModel = ProfileViewModell(context: dcContext)
+        cell.updateCell(cellViewModel: cellViewModel)
         cell.tag = CellTags.profile.rawValue
+        cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
@@ -428,15 +426,15 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     // MARK: - updates
     private func updateCells() {
-        let displayName = dcContext.displayname ?? String.localized("pref_your_name")
-        let email = dcContext.addr ?? ""
-        let selfContact = DcContact(id: Int(DC_CONTACT_ID_SELF))
-        profileCell.update(contact: selfContact, displayName: displayName, address: email)
-
         showEmailsCell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
         mediaQualityCell.detailTextLabel?.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
 
         autodelCell.detailTextLabel?.text = autodelSummary()
+       // let displayName = dcContext.displayname ?? String.localized("pref_your_name")
+       // let email = dcContext.addr ?? ""
+       // let selfContact = DcContact(id: Int(DC_CONTACT_ID_SELF))
+        //profileCell.update(contact: selfContact, displayName: displayName, address: email)
+        profileCell.updateCell(cellViewModel: ProfileViewModell(context: dcContext))
     }
 
     // MARK: - coordinator
