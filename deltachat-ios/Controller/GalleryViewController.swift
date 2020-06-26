@@ -128,6 +128,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let msgId = mediaMessageIds[indexPath.row]
         showPreview(msgId: msgId)
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

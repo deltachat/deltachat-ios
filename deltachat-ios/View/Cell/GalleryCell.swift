@@ -2,7 +2,6 @@ import UIKit
 import DcCore
 import SDWebImage
 
-
 class GalleryCell: UICollectionViewCell {
     static let reuseIdentifier = "gallery_cell"
 

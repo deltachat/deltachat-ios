@@ -326,35 +326,25 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func showDocuments() {
-        presentPreview(for: DC_MSG_FILE, messageType2: DC_MSG_AUDIO, messageType3: 0)
+        let messageIds = viewModel.context.getChatMedia(
+            chatId: viewModel.chatId,
+            messageType: DC_MSG_FILE,
+            messageType2: DC_MSG_AUDIO,
+            messageType3: 0
+        )
+        let fileGalleryController = DocumentGalleryController(fileMessageIds: messageIds)
+        navigationController?.pushViewController(fileGalleryController, animated: true)
     }
 
     private func showGallery() {
-        let messageIds = viewModel.context.getChatMedia(chatId: viewModel.chatId,
-                                                        messageType: DC_MSG_IMAGE,
-                                                        messageType2: DC_MSG_GIF,
-                                                        messageType3: DC_MSG_VIDEO)
+        let messageIds = viewModel.context.getChatMedia(
+            chatId: viewModel.chatId,
+            messageType: DC_MSG_IMAGE,
+            messageType2: DC_MSG_GIF,
+            messageType3: DC_MSG_VIDEO
+        )
         let galleryController = GalleryViewController(mediaMessageIds: messageIds)
             navigationController?.pushViewController(galleryController, animated: true)
-    }
-
-    private func presentPreview(for messageType: Int32, messageType2: Int32, messageType3: Int32) {
-        if viewModel.chatId == 0 {
-            return
-        }
-        let messageIds = viewModel.context.getChatMedia(chatId: viewModel.chatId,
-                                                        messageType: messageType,
-                                                        messageType2: messageType2,
-                                                        messageType3: messageType3)
-        var mediaUrls: [URL] = []
-        for messageId in messageIds {
-            let message = DcMsg.init(id: messageId)
-            if let url = message.fileURL {
-                mediaUrls.insert(url, at: 0)
-            }
-        }
-        let previewController = PreviewController(currentIndex: 0, urls: mediaUrls)
-        navigationController?.pushViewController(previewController, animated: true)
     }
 
     private func deleteChat() {
