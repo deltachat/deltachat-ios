@@ -45,27 +45,27 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private var contactRequestCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+    private var contactRequestCell: BasicCell = {
+        let cell = BasicCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.contactRequest.rawValue
-        cell.textLabel?.text = String.localized("menu_deaddrop")
+        cell.title.text = String.localized("menu_deaddrop")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
-    private lazy var showEmailsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    private lazy var showEmailsCell: BasicCell = {
+        let cell = BasicCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.showEmails.rawValue
-        cell.textLabel?.text = String.localized("pref_show_emails")
+        cell.title.text = String.localized("pref_show_emails")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
+        cell.value.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
         return cell
     }()
 
-    private var blockedContactsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+    private var blockedContactsCell: BasicCell = {
+        let cell = BasicCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.blockedContacts.rawValue
-        cell.textLabel?.text = String.localized("pref_blocked_contacts")
+        cell.title.text = String.localized("pref_blocked_contacts")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -80,21 +80,21 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         }
     }
 
-    private lazy var autodelCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    private lazy var autodelCell: BasicCell = {
+        let cell = BasicCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.autodel.rawValue
-        cell.textLabel?.text = String.localized("delete_old_messages")
+        cell.title.text = String.localized("delete_old_messages")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = autodelSummary()
+        cell.value.text = autodelSummary()
         return cell
     }()
 
-    private lazy var mediaQualityCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    private lazy var mediaQualityCell: BasicCell = {
+        let cell = BasicCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.mediaQuality.rawValue
-        cell.textLabel?.text = String.localized("pref_outgoing_media_quality")
+        cell.title.text = String.localized("pref_outgoing_media_quality")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
+        cell.value.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
         return cell
     }()
 
@@ -105,10 +105,10 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return switchControl
     }()
 
-    private lazy var notificationCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+    private lazy var notificationCell: BasicCell = {
+        let cell = BasicCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.notifications.rawValue
-        cell.textLabel?.text = String.localized("pref_notifications")
+        cell.title.text = String.localized("pref_notifications")
         cell.accessoryView = notificationSwitch
         cell.selectionStyle = .none
         return cell
@@ -121,10 +121,10 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return switchControl
     }()
 
-    private lazy var receiptConfirmationCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+    private lazy var receiptConfirmationCell: BasicCell = {
+        let cell = BasicCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.receiptConfirmation.rawValue
-        cell.textLabel?.text = String.localized("pref_read_receipts")
+        cell.title.text = String.localized("pref_read_receipts")
         cell.accessoryView = receiptConfirmationSwitch
         cell.selectionStyle = .none
         return cell
@@ -137,10 +137,10 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return switchControl
     }()
 
-    private lazy var autocryptPreferencesCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+    private lazy var autocryptPreferencesCell: BasicCell = {
+        let cell = BasicCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.autocryptPreferences.rawValue
-        cell.textLabel?.text = String.localized("autocrypt_prefer_e2ee")
+        cell.title.text = String.localized("autocrypt_prefer_e2ee")
         cell.accessoryView = autocryptSwitch
         cell.selectionStyle = .none
         return cell
@@ -226,6 +226,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let backButton = UIBarButtonItem(title: String.localized("menu_settings"), style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
         documentInteractionController.delegate = self as? UIDocumentInteractionControllerDelegate
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -250,6 +251,15 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     }
 
     // MARK: - UITableViewDelegate + UITableViewDatasource
+
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            return ContactCell.cellHeight
+        } else {
+            return UITableView.automaticDimension
+        }
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -426,15 +436,10 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     // MARK: - updates
     private func updateCells() {
-        showEmailsCell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
-        mediaQualityCell.detailTextLabel?.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
-
-        autodelCell.detailTextLabel?.text = autodelSummary()
-       // let displayName = dcContext.displayname ?? String.localized("pref_your_name")
-       // let email = dcContext.addr ?? ""
-       // let selfContact = DcContact(id: Int(DC_CONTACT_ID_SELF))
-        //profileCell.update(contact: selfContact, displayName: displayName, address: email)
         profileCell.updateCell(cellViewModel: ProfileViewModell(context: dcContext))
+        showEmailsCell.value.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
+        mediaQualityCell.value.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
+        autodelCell.value.text = autodelSummary()
     }
 
     // MARK: - coordinator
