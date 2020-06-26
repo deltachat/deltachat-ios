@@ -44,13 +44,18 @@ class ChatViewController: MessagesViewController {
     let outgoingAvatarOverlap: CGFloat = 17.5
     let loadCount = 30
     let chatId: Int
-    let refreshControl = UIRefreshControl()
     var messageList: [DcMsg] = []
 
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
 
-    weak var timer: Timer?
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
+        return UIRefreshControl()
+    }()
+
+    private weak var timer: Timer?
 
     lazy var navBarTap: UITapGestureRecognizer = {
         UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
@@ -97,7 +102,6 @@ class ChatViewController: MessagesViewController {
     private var disableWriting: Bool
     private var showNamesAboveMessage: Bool
     var showCustomNavBar = true
-    var previewView: UIView?
 
     private lazy var mediaPicker: MediaPicker? = {
         return MediaPicker(navigationController: navigationController)
@@ -216,7 +220,8 @@ class ChatViewController: MessagesViewController {
         incomingMsgObserver = nc.addObserver(
             forName: dcNotificationIncoming,
             object: nil, queue: OperationQueue.main
-        ) { notification in
+        ) {  [weak self] notification in
+            guard let self = self else { return }
             if let ui = notification.userInfo {
                 if self.chatId == ui["chat_id"] as? Int {
                     if let id = ui["message_id"] as? Int {
@@ -322,7 +327,8 @@ class ChatViewController: MessagesViewController {
     @objc
     private func loadMoreMessages() {
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.messageList = self.getMessageIds(self.loadCount, from: self.messageList.count) + self.messageList
                 self.messagesCollectionView.reloadDataAndKeepOffset()
                 self.refreshControl.endRefreshing()
@@ -333,7 +339,8 @@ class ChatViewController: MessagesViewController {
     @objc
     private func refreshMessages() {
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.messageList = self.getMessageIds(self.messageList.count)
                 self.messagesCollectionView.reloadDataAndKeepOffset()
                 self.refreshControl.endRefreshing()
@@ -347,7 +354,8 @@ class ChatViewController: MessagesViewController {
 
     private func loadFirstMessages() {
         DispatchQueue.global(qos: .userInitiated).async {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.messageList = self.getMessageIds(self.loadCount)
                 self.messagesCollectionView.reloadData()
                 self.refreshControl.endRefreshing()
@@ -425,7 +433,6 @@ class ChatViewController: MessagesViewController {
         maintainPositionOnKeyboardFrameChanged = true // default false
         messagesCollectionView.backgroundColor = DcColors.chatBackgroundColor
         messagesCollectionView.addSubview(refreshControl)
-        refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
 
         let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout
         layout?.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 2, right: 8)
@@ -512,8 +519,8 @@ class ChatViewController: MessagesViewController {
                     $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
                 }.onDeselected {
                     $0.tintColor = DcColors.primary
-                }.onTouchUpInside { _ in
-                    self.clipperButtonPressed()
+                }.onTouchUpInside { [weak self] _ in
+                    self?.clipperButtonPressed()
                 }
         ]
 
@@ -967,13 +974,14 @@ extension ChatViewController: MessagesDataSource {
 
             messageList[index] = DcMsg(id: messageId)
             // Reload section to update header/footer labels
-            messagesCollectionView.performBatchUpdates({
-                messagesCollectionView.reloadSections([index])
+            messagesCollectionView.performBatchUpdates({ [weak self] in
+                guard let self = self else { return }
+                self.messagesCollectionView.reloadSections([index])
                 if index > 0 {
-                    messagesCollectionView.reloadSections([index - 1])
+                    self.messagesCollectionView.reloadSections([index - 1])
                 }
                 if index < messageList.count - 1 {
-                    messagesCollectionView.reloadSections([index + 1])
+                    self.messagesCollectionView.reloadSections([index + 1])
                 }
             }, completion: { [weak self] _ in
                 if self?.isLastSectionVisible() == true {
