@@ -2,6 +2,7 @@ import UIKit
 
 class TextFieldCell: UITableViewCell {
 
+    private let maxFontSizeHorizontalLayout: CGFloat = 30
     var placeholder: String? {
         set {
             textField.placeholder = newValue
@@ -11,21 +12,49 @@ class TextFieldCell: UITableViewCell {
         }
     }
 
+    private var fontSize: CGFloat {
+        return UIFont.preferredFont(forTextStyle: .body).pointSize
+    }
+
+    private var customConstraints: [NSLayoutConstraint] = []
+
     var onTextFieldChange:((_:UITextField) -> Void)?	// set this from outside to get notified about textfield changes
+
+
+    public lazy var title: UILabel = {
+        let label = UILabel()
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
+        label.textColor = .darkGray
+        label.lineBreakMode = .byTruncatingTail
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     lazy var textField: UITextField = {
         let textField = UITextField()
         textField.textAlignment = .right
-        // textField.enablesReturnKeyAutomatically = true
         textField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         textField.adjustsFontForContentSizeCategory = true
         textField.font = .preferredFont(forTextStyle: .body)
+        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
 
+    public lazy var stackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.addArrangedSubview(title)
+        view.addArrangedSubview(textField)
+        view.axis = .horizontal
+        view.spacing = 10
+        return view
+    }()
+    
     init(description: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {
-        super.init(style: .value1, reuseIdentifier: nil)
-        textLabel?.text = "\(description):"
+        super.init(style: .default, reuseIdentifier: nil)
+        title.text = "\(description):"
 
         // see: https://stackoverflow.com/a/35903650
         // this makes the textField respect the trailing margin of
@@ -45,18 +74,13 @@ class TextFieldCell: UITableViewCell {
     }
 
     private func setupViews() {
-        contentView.addSubview(textField)
-        textField.translatesAutoresizingMaskIntoConstraints = false
         let margins = contentView.layoutMarginsGuide
-        let trailing = margins.trailingAnchor
-        textField.trailingAnchor.constraint(equalTo: trailing).isActive = true
-        textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        if let label = self.textLabel {
-            textField.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 20).isActive = true
-            // this will prevent the textfield from growing over the textLabel while typing
-        } else {
-            textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        }
+        contentView.addSubview(stackView)
+        stackView.alignTopToAnchor(margins.topAnchor)
+        stackView.alignBottomToAnchor(margins.bottomAnchor)
+        stackView.alignLeadingToAnchor(margins.leadingAnchor)
+        stackView.alignTrailingToAnchor(margins.trailingAnchor)
+        updateViews()
     }
 
     override func setSelected(_ selected: Bool, animated _: Bool) {
@@ -83,6 +107,32 @@ class TextFieldCell: UITableViewCell {
 
     func setText(text: String?) {
         textField.text = text
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.preferredContentSizeCategory !=
+            traitCollection.preferredContentSizeCategory {
+            updateViews()
+        }
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        title.text = nil
+        title.attributedText = nil
+        textField.text = nil
+    }
+
+    private func updateViews() {
+        if fontSize <= maxFontSizeHorizontalLayout {
+            stackView.axis = .horizontal
+            title.numberOfLines = 1
+            textField.textAlignment = .right
+        } else {
+            stackView.axis = .vertical
+            title.numberOfLines = 1
+            textField.textAlignment = .left
+        }
     }
 
     static func makeEmailCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
