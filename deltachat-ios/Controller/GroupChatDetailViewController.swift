@@ -426,10 +426,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         return nil
     }
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return Constants.defaultHeaderHeight
-    }
-
     func tableView(_: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         guard let currentUser = self.currentUser else {
             return false
