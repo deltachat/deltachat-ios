@@ -51,7 +51,10 @@ class ContactDetailViewModel {
         sections.append(.chatActions)
 
         if chatId != 0 {
-            chatActions = [.ephemeralMessages, .muteChat, .archiveChat, .blockContact, .deleteChat]
+            chatActions = [.muteChat, .archiveChat, .blockContact, .deleteChat]
+            if UserDefaults.standard.bool(forKey: "ephemeral_messages") || dcContext.getChatEphemeralTimer(chatId: chatId) > 0 {
+                chatActions.insert(.ephemeralMessages, at: 0)
+            }
         } else {
             chatActions = [.blockContact]
         }

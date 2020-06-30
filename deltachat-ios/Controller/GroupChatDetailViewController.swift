@@ -9,16 +9,27 @@ class GroupChatDetailViewController: UIViewController {
         case chatActions
     }
 
+    enum ChatAction {
+        case ephemeralMessages
+        case muteChat
+        case archiveChat
+        case leaveGroup
+        case deleteChat
+    }
+
+    private lazy var chatActions: [ChatAction] = {
+        var actions: [ChatAction] = [.muteChat, .archiveChat, .leaveGroup, .deleteChat]
+        if UserDefaults.standard.bool(forKey: "ephemeral_messages") || dcContext.getChatEphemeralTimer(chatId: chatId) > 0 {
+            actions.insert(.ephemeralMessages, at: 0)
+        }
+        return actions
+    }()
+
     private let attachmentsRowGallery = 0
     private let attachmentsRowDocuments = 1
     private let membersRowAddMembers = 0
     private let membersRowQrInvite = 1
     private let memberManagementRows = 2
-    private let chatActionsRowEphemeralMessages = 0
-    private let chatActionsRowMuteChat = 1
-    private let chatActionsRowArchiveChat = 2
-    private let chatActionsRowLeaveGroup = 3
-    private let chatActionsRowDeleteChat = 4
 
     private let dcContext: DcContext
 
@@ -126,6 +137,10 @@ class GroupChatDetailViewController: UIViewController {
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
+
+    private var supportsEphemeralMessages: Bool {
+        return UserDefaults.standard.bool(forKey: "ephemeral_messages") || dcContext.getChatEphemeralTimer(chatId: chatId) > 0
+    }
 
     init(chatId: Int, dcContext: DcContext) {
         self.dcContext = dcContext
@@ -281,7 +296,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         case .members:
             return groupMemberIds.count + memberManagementRows
         case .chatActions:
-            return 4
+            return chatActions.count
         }
     }
 
@@ -340,15 +355,16 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             contactCell.updateCell(cellViewModel: cellViewModel)
             return contactCell
         case .chatActions:
-            if row == chatActionsRowEphemeralMessages {
+            switch chatActions[row] {
+            case .ephemeralMessages:
                 return ephemeralMessagesCell
-            } else if row == chatActionsRowMuteChat {
+            case .muteChat:
                 return muteChatCell
-            } else if row == chatActionsRowArchiveChat {
+            case .archiveChat:
                 return archiveChatCell
-            } else if row == chatActionsRowLeaveGroup {
+            case .leaveGroup:
                 return leaveGroupCell
-            } else if row == chatActionsRowDeleteChat {
+            case .deleteChat:
                 return deleteChatCell
             }
         }
@@ -377,20 +393,21 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 showContactDetail(of: member.id)
             }
         case .chatActions:
-            if row == chatActionsRowEphemeralMessages {
+            switch chatActions[row] {
+            case .ephemeralMessages:
                 showEphemeralMessagesController()
-            } else if row == chatActionsRowMuteChat {
+            case .muteChat:
                 if chat.isMuted {
                     dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
                     muteChatCell.actionTitle = String.localized("menu_mute")
                 } else {
                     showMuteAlert()
                 }
-            } else if row == chatActionsRowArchiveChat {
+            case .archiveChat:
                 toggleArchiveChat()
-            } else if row == chatActionsRowLeaveGroup {
-                showLeaveGroupConfirmationAlert()
-            } else if row == chatActionsRowDeleteChat {
+            case .leaveGroup:
+                 showLeaveGroupConfirmationAlert()
+            case .deleteChat:
                 showDeleteChatConfirmationAlert()
             }
         }
