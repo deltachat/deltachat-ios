@@ -402,7 +402,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             case .archiveChat:
                 toggleArchiveChat()
             case .leaveGroup:
-                 showLeaveGroupConfirmationAlert()
+                showLeaveGroupConfirmationAlert()
             case .deleteChat:
                 showDeleteChatConfirmationAlert()
             }
