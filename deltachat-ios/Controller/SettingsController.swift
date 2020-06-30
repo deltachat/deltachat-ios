@@ -383,6 +383,13 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             UserDefaults.standard.set(!locationStreaming, forKey: "location_streaming")
         }))
 
+        let ephemeralMessages = UserDefaults.standard.bool(forKey: "ephemeral_messages")
+        let ephemeralTitle = ephemeralMessages ?
+            "Disable ephemeral messages" : "Enable ephemeral messages"
+        alert.addAction(UIAlertAction(title: ephemeralTitle, style: .default, handler: { _ in
+            UserDefaults.standard.set(!ephemeralMessages, forKey: "ephemeral_messages")
+        }))
+
         let logAction = UIAlertAction(title: String.localized("pref_view_log"), style: .default, handler: { [weak self] _ in
             self?.showDebugToolkit()
         })
