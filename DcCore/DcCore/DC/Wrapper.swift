@@ -298,6 +298,14 @@ public class DcContext {
         dc_set_chat_mute_duration(self.contextPointer, UInt32(chatId), Int64(duration))
     }
 
+    public func setChatEphemeralTimer(chatId: Int, duration: Int) {
+        dc_set_chat_ephemeral_timer(self.contextPointer, UInt32(chatId), UInt32(duration))
+    }
+
+    public func getChatEphemeralTimer(chatId: Int) -> Int {
+        return Int(dc_get_chat_ephemeral_timer(self.contextPointer, UInt32(chatId)))
+    }
+
     public func getConfig(_ key: String) -> String? {
         guard let cString = dc_get_config(self.contextPointer, key) else { return nil }
         let value = String(cString: cString)
