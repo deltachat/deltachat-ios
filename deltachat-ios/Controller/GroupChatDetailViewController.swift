@@ -14,10 +14,11 @@ class GroupChatDetailViewController: UIViewController {
     private let membersRowAddMembers = 0
     private let membersRowQrInvite = 1
     private let memberManagementRows = 2
-    private let chatActionsRowMuteChat = 0
-    private let chatActionsRowArchiveChat = 1
-    private let chatActionsRowLeaveGroup = 2
-    private let chatActionsRowDeleteChat = 3
+    private let chatActionsRowEphemeralMessages = 0
+    private let chatActionsRowMuteChat = 1
+    private let chatActionsRowArchiveChat = 2
+    private let chatActionsRowLeaveGroup = 3
+    private let chatActionsRowDeleteChat = 4
 
     private let dcContext: DcContext
 
@@ -69,6 +70,14 @@ class GroupChatDetailViewController: UIViewController {
         }
         header.setVerified(isVerified: chat.isVerified)
         return header
+    }()
+
+    private lazy var ephemeralMessagesCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("pref_ephemeral_messages")
+        cell.selectionStyle = .none
+        cell.accessoryType = .disclosureIndicator
+        return cell
     }()
 
     private lazy var muteChatCell: ActionCell = {
@@ -331,7 +340,9 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             contactCell.updateCell(cellViewModel: cellViewModel)
             return contactCell
         case .chatActions:
-            if row == chatActionsRowMuteChat {
+            if row == chatActionsRowEphemeralMessages {
+                return ephemeralMessagesCell
+            } else if row == chatActionsRowMuteChat {
                 return muteChatCell
             } else if row == chatActionsRowArchiveChat {
                 return archiveChatCell
@@ -366,7 +377,9 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 showContactDetail(of: member.id)
             }
         case .chatActions:
-            if row == chatActionsRowMuteChat {
+            if row == chatActionsRowEphemeralMessages {
+                showEphemeralMessagesController()
+            } else if row == chatActionsRowMuteChat {
                 if chat.isMuted {
                     dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
                     muteChatCell.actionTitle = String.localized("menu_mute")
@@ -446,6 +459,11 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         self.groupMemberIds.remove(at: indexPath.row - memberManagementRows)
         self.tableView.deleteRows(at: [indexPath], with: .automatic)
         updateHeader()  // to display correct group size
+    }
+
+    private func showEphemeralMessagesController() {
+        let ephemeralMessagesController = SettingsEphemeralMessageController(dcContext: dcContext, chatId: chatId)
+        navigationController?.pushViewController(ephemeralMessagesController, animated: true)
     }
 }
 

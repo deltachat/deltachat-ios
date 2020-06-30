@@ -30,7 +30,7 @@ class SettingsEphemeralMessageController: UITableViewController {
         self.dcContext = dcContext
         self.chatId = chatId
         super.init(style: .grouped)
-        self.title = String.localized("pref_show_emails")
+        self.title = String.localized("pref_ephemeral_messages")
         hidesBottomBarWhenPushed = true
     }
 
