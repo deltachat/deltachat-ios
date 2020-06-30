@@ -100,6 +100,7 @@
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
 		30A2EC36247D72720024ADD8 /* AnimatedImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A2EC35247D72720024ADD8 /* AnimatedImageMessageCell.swift */; };
 		30A4D9AE2332672700544344 /* QrInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4D9AD2332672600544344 /* QrInviteViewController.swift */; };
+		30B0ACFA24AB5B99004D5E29 /* SettingsEphemeralMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
 		30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2122447285600CE2C90 /* ShareViewController.swift */; };
 		30E8F2162447285600CE2C90 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30E8F2142447285600CE2C90 /* MainInterface.storyboard */; };
@@ -386,6 +387,7 @@
 		30A2EC35247D72720024ADD8 /* AnimatedImageMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedImageMessageCell.swift; sourceTree = "<group>"; };
 		30A4D9AD2332672600544344 /* QrInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrInviteViewController.swift; sourceTree = "<group>"; };
 		30AC265E237F1807002A943F /* AvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarHelper.swift; sourceTree = "<group>"; };
+		30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEphemeralMessageController.swift; sourceTree = "<group>"; };
 		30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateCheckController.swift; sourceTree = "<group>"; };
 		30E8F2102447285600CE2C90 /* DcShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DcShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E8F2122447285600CE2C90 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -928,6 +930,7 @@
 				AECEF03D244F2D55006C90DA /* QrPageController.swift */,
 				30149D9222F21129003C12B5 /* QrViewController.swift */,
 				B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */,
+				30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */,
 				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
 				B20462E32440A4A600367A57 /* SettingsAutodelOverviewController.swift */,
 				B20462E52440C99600367A57 /* SettingsAutodelSetController.swift */,
@@ -1472,6 +1475,7 @@
 				305961E22346125100C80F33 /* MessagesDisplayDelegate.swift in Sources */,
 				305962092346125100C80F33 /* AudioMessageSizeCalculator.swift in Sources */,
 				305961DB2346125100C80F33 /* AudioItem.swift in Sources */,
+				30B0ACFA24AB5B99004D5E29 /* SettingsEphemeralMessageController.swift in Sources */,
 				305962012346125100C80F33 /* PlayButtonView.swift in Sources */,
 				308FEA4C2462F11300FCEAD6 /* FileView.swift in Sources */,
 				B20462E42440A4A600367A57 /* SettingsAutodelOverviewController.swift in Sources */,

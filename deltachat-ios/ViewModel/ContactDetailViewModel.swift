@@ -13,6 +13,7 @@ class ContactDetailViewModel {
     }
 
     enum ChatAction {
+        case ephemeralMessages
         case muteChat
         case archiveChat
         case blockContact
@@ -51,6 +52,9 @@ class ContactDetailViewModel {
 
         if chatId != 0 {
             chatActions = [.muteChat, .archiveChat, .blockContact, .deleteChat]
+            if UserDefaults.standard.bool(forKey: "ephemeral_messages") || dcContext.getChatEphemeralTimer(chatId: chatId) > 0 {
+                chatActions.insert(.ephemeralMessages, at: 0)
+            }
         } else {
             chatActions = [.blockContact]
         }

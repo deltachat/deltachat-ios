@@ -17,11 +17,20 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+
     private lazy var startChatCell: ActionCell = {
         let cell = ActionCell()
         cell.actionColor = SystemColor.blue.uiColor
         cell.actionTitle = String.localized("send_message")
         cell.selectionStyle = .none
+        return cell
+    }()
+
+    private lazy var ephemeralMessagesCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("pref_ephemeral_messages")
+        cell.selectionStyle = .none
+        cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
@@ -136,6 +145,8 @@ class ContactDetailViewController: UITableViewController {
             }
         case .chatActions:
             switch viewModel.chatActionFor(row: row) {
+            case .ephemeralMessages:
+                return ephemeralMessagesCell
             case .muteChat:
                 return muteChatCell
             case .archiveChat:
@@ -205,6 +216,8 @@ class ContactDetailViewController: UITableViewController {
     private func handleCellAction(for index: Int) {
         let action = viewModel.chatActionFor(row: index)
         switch action {
+        case .ephemeralMessages:
+            showEphemeralMessagesController()
         case .muteChat:
             if viewModel.chatIsMuted {
                 self.viewModel.context.setChatMuteDuration(chatId: self.viewModel.chatId, duration: 0)
@@ -263,6 +276,11 @@ class ContactDetailViewController: UITableViewController {
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+
+    private func showEphemeralMessagesController() {
+        let ephemeralMessagesController = SettingsEphemeralMessageController(dcContext: viewModel.context, chatId: viewModel.chatId)
+        navigationController?.pushViewController(ephemeralMessagesController, animated: true)
     }
 
     private func showMuteAlert() {
