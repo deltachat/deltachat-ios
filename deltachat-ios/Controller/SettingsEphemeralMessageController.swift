@@ -4,12 +4,23 @@ class SettingsEphemeralMessageController: UITableViewController {
 
     var dcContext: DcContext
     var chatId: Int
+    var currentIndex: Int = 0
 
-    lazy var options: [Int] = {
+    private lazy var options: [Int] = {
         return [0, Time.thirtySeconds, Time.oneMinute, Time.oneHour, Time.oneDay, Time.oneWeek, Time.fourWeeks]
     }()
 
-    var staticCells: [UITableViewCell] {
+    private lazy var cancelButton: UIBarButtonItem = {
+        let button =  UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
+        return button
+    }()
+
+    private lazy var okButton: UIBarButtonItem = {
+        let button =  UIBarButtonItem(title: String.localized("ok"), style: .done, target: self, action: #selector(okButtonPressed))
+        return button
+    }()
+
+    private var staticCells: [UITableViewCell] {
         return options.map({
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = SettingsEphemeralMessageController.getValString(val: $0)
@@ -18,27 +29,27 @@ class SettingsEphemeralMessageController: UITableViewController {
         })
     }
 
-    var selectedIndex: Int {
-        if let index = self.options.index(of: dcContext.getChatEphemeralTimer(chatId: chatId)) {
-            return index
-        }
-        //default to off
-        return 0
-    }
-
     init(dcContext: DcContext, chatId: Int) {
         self.dcContext = dcContext
         self.chatId = chatId
         super.init(style: .grouped)
+        self.currentIndex = self.options.index(of: dcContext.getChatEphemeralTimer(chatId: chatId)) ?? 0
         self.title = String.localized("pref_ephemeral_messages")
         hidesBottomBarWhenPushed = true
+
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    static public func getValString(val: Int) -> String {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.leftBarButtonItem = cancelButton
+        navigationItem.rightBarButtonItem = okButton
+    }
+
+    public static func getValString(val: Int) -> String {
         switch val {
         case 0:
             return String.localized("off")
@@ -59,6 +70,15 @@ class SettingsEphemeralMessageController: UITableViewController {
         }
     }
 
+    @objc private func cancelButtonPressed() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    @objc private func okButtonPressed() {
+        dcContext.setChatEphemeralTimer(chatId: chatId, duration: options[currentIndex])
+        navigationController?.popViewController(animated: true)
+    }
+
 
     // MARK: - Table view data source
 
@@ -71,21 +91,19 @@ class SettingsEphemeralMessageController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let oldSelectedCell = tableView.cellForRow(at: IndexPath.init(row: selectedIndex, section: 0))
+        let oldSelectedCell = tableView.cellForRow(at: IndexPath.init(row: currentIndex, section: 0))
         oldSelectedCell?.accessoryType = .none
 
         let newSelectedCell = tableView.cellForRow(at: IndexPath.init(row: indexPath.row, section: 0))
         newSelectedCell?.accessoryType = .checkmark
 
-        dcContext.setChatEphemeralTimer(chatId: chatId, duration: options[indexPath.row])
+        currentIndex = indexPath.row
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = staticCells[indexPath.row]
-        if selectedIndex == indexPath.row {
+        if currentIndex == indexPath.row {
             cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
         }
         return cell
     }
