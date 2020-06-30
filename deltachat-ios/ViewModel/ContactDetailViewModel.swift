@@ -13,6 +13,7 @@ class ContactDetailViewModel {
     }
 
     enum ChatAction {
+        case ephemeralMessages
         case muteChat
         case archiveChat
         case blockContact
@@ -50,7 +51,7 @@ class ContactDetailViewModel {
         sections.append(.chatActions)
 
         if chatId != 0 {
-            chatActions = [.muteChat, .archiveChat, .blockContact, .deleteChat]
+            chatActions = [.ephemeralMessages, .muteChat, .archiveChat, .blockContact, .deleteChat]
         } else {
             chatActions = [.blockContact]
         }
