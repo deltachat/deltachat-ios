@@ -138,10 +138,6 @@ class GroupChatDetailViewController: UIViewController {
         return cell
     }()
 
-    private var supportsEphemeralMessages: Bool {
-        return UserDefaults.standard.bool(forKey: "ephemeral_messages") || dcContext.getChatEphemeralTimer(chatId: chatId) > 0
-    }
-
     init(chatId: Int, dcContext: DcContext) {
         self.dcContext = dcContext
         self.chatId = chatId
