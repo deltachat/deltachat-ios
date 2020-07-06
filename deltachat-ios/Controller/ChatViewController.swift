@@ -51,7 +51,6 @@ class ChatViewController: MessagesViewController {
 
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
         return UIRefreshControl()
     }()
 
@@ -148,6 +147,8 @@ class ChatViewController: MessagesViewController {
             messageInputBar.inputTextView.text = textDraft
             messageInputBar.inputTextView.becomeFirstResponder()
         }
+
+        refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
 
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
