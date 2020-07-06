@@ -222,7 +222,7 @@ class ChatListController: UITableViewController {
         return viewModel.titleForHeaderIn(section: section)
     }
 
-    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
         switch cellData.type {
         case .deaddrop(let deaddropData):
@@ -243,6 +243,7 @@ class ChatListController: UITableViewController {
                 self.askToChatWith(contactId: contactId)
             }
         }
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

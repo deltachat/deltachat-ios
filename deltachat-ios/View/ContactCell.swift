@@ -134,10 +134,8 @@ class ContactCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        selectionStyle = .none
-        backgroundColor = DcColors.contactCellBackgroundColor
-        contentView.backgroundColor = DcColors.contactCellBackgroundColor
         setupSubviews()
+        selectionStyle = .default
     }
 
     required init?(coder: NSCoder) {
@@ -254,7 +252,6 @@ class ContactCell: UITableViewCell {
         case .deaddrop(let deaddropData):
             safe_assert(deaddropData.chatId == DC_CHAT_ID_DEADDROP)
             backgroundColor = DcColors.deaddropBackground
-            contentView.backgroundColor = DcColors.deaddropBackground
             let contact = DcContact(id: DcMsg(id: deaddropData.msgId).fromContactId)
             if let img = contact.profileImage {
                 resetBackupImage()
@@ -276,10 +273,8 @@ class ContactCell: UITableViewCell {
             }
             if chat.visibility == DC_CHAT_VISIBILITY_PINNED {
                 backgroundColor = DcColors.deaddropBackground
-                contentView.backgroundColor = DcColors.deaddropBackground
             } else {
                 backgroundColor = DcColors.contactCellBackgroundColor
-                contentView.backgroundColor = DcColors.contactCellBackgroundColor
             }
             if let img = chat.profileImage {
                 resetBackupImage()
