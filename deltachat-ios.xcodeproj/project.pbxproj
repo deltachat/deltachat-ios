@@ -104,7 +104,7 @@
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
 		30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2122447285600CE2C90 /* ShareViewController.swift */; };
 		30E8F2162447285600CE2C90 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30E8F2142447285600CE2C90 /* MainInterface.storyboard */; };
-		30E8F21A2447285600CE2C90 /* DcShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30E8F2102447285600CE2C90 /* DcShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		30E8F21A2447285600CE2C90 /* Delta Chat.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30E8F2102447285600CE2C90 /* Delta Chat.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		30E8F2252447622300CE2C90 /* DcCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; };
 		30E8F2422448B77600CE2C90 /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2412448B77600CE2C90 /* ChatListController.swift */; };
 		30E8F2442449C64100CE2C90 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2432449C64100CE2C90 /* ChatListCell.swift */; };
@@ -227,7 +227,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				30E8F21A2447285600CE2C90 /* DcShare.appex in Embed App Extensions */,
+				30E8F21A2447285600CE2C90 /* Delta Chat.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,7 +389,7 @@
 		30AC265E237F1807002A943F /* AvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarHelper.swift; sourceTree = "<group>"; };
 		30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEphemeralMessageController.swift; sourceTree = "<group>"; };
 		30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateCheckController.swift; sourceTree = "<group>"; };
-		30E8F2102447285600CE2C90 /* DcShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DcShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		30E8F2102447285600CE2C90 /* Delta Chat.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Delta Chat.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E8F2122447285600CE2C90 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		30E8F2152447285600CE2C90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		30E8F2172447285600CE2C90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -784,7 +784,7 @@
 			children = (
 				7A9FB1401FB061E2001FEA36 /* deltachat-ios.app */,
 				AE851A01227AECDE00ED86F0 /* deltachat-iosTests.xctest */,
-				30E8F2102447285600CE2C90 /* DcShare.appex */,
+				30E8F2102447285600CE2C90 /* Delta Chat.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1024,7 +1024,7 @@
 			);
 			name = DcShare;
 			productName = DcShare;
-			productReference = 30E8F2102447285600CE2C90 /* DcShare.appex */;
+			productReference = 30E8F2102447285600CE2C90 /* Delta Chat.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		7A9FB13F1FB061E2001FEA36 /* deltachat-ios */ = {
@@ -1707,7 +1707,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcShare;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Delta Chat";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1731,7 +1731,7 @@
 				MARKETING_VERSION = 1.10.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcShare;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Delta Chat";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
