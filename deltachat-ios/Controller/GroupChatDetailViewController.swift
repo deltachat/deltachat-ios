@@ -487,7 +487,7 @@ extension GroupChatDetailViewController {
         let alert = UIAlertController(title: String.localized("mute"), message: nil, preferredStyle: .safeActionSheet)
         let forever = -1
         addDurationSelectionAction(to: alert, key: "mute_for_one_hour", duration: Time.oneHour)
-        addDurationSelectionAction(to: alert, key: "mute_for_one_hour", duration: Time.twoHours)
+        addDurationSelectionAction(to: alert, key: "mute_for_two_hours", duration: Time.twoHours)
         addDurationSelectionAction(to: alert, key: "mute_for_one_day", duration: Time.oneDay)
         addDurationSelectionAction(to: alert, key: "mute_for_seven_days", duration: Time.oneWeek)
         addDurationSelectionAction(to: alert, key: "mute_forever", duration: forever)
