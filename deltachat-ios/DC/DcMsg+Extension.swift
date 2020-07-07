@@ -110,7 +110,7 @@ extension DcMsg: MessageType {
         return MessageKind.fileText(Media(url: fileURL, placeholderImage: UIImage(named: "ic_attach_file_36pt"), text: mediaText))
     }
 
-    private func getPrettyFileSize() -> String {
+    public func getPrettyFileSize() -> String {
         if self.filesize <= 0 { return "0 B" }
         let units: [String] = ["B", "kB", "MB"]
         let digitGroups = Int(log10(Double(self.filesize)) / log10(1024))

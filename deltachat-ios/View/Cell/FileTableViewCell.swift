@@ -11,6 +11,28 @@ class FileTableViewCell: UITableViewCell {
         return imageView
     }()
 
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [title, subtitle])
+        stackView.axis = NSLayoutConstraint.Axis.vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.clipsToBounds = true
+        return stackView
+    }()
+
+    private lazy var title: UILabel = {
+        let title = UILabel()
+        title.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        title.translatesAutoresizingMaskIntoConstraints = false
+        return title
+    }()
+
+    private lazy var subtitle: UILabel = {
+        let subtitle = UILabel()
+        subtitle.font = UIFont.italicSystemFont(ofSize: 12)
+        subtitle.translatesAutoresizingMaskIntoConstraints = false
+        return subtitle
+    }()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         setupSubviews()
@@ -21,30 +43,26 @@ class FileTableViewCell: UITableViewCell {
     }
 
     override func prepareForReuse() {
+        super.prepareForReuse()
         fileImageView.image = nil
-        detailTextLabel?.text = nil
-        textLabel?.text = nil
+        title.text = nil
+        subtitle.text = nil
     }
 
     // MARK: - layout
     private func setupSubviews() {
-        guard let textLabel = textLabel, let detailTextLabel = detailTextLabel else { return }
-
         contentView.addSubview(fileImageView)
+        contentView.addSubview(stackView)
         fileImageView.translatesAutoresizingMaskIntoConstraints = false
         fileImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
         fileImageView.heightAnchor.constraint(lessThanOrEqualTo: contentView.heightAnchor, multiplier: 0.9).isActive = true
         fileImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 0).isActive = true
         fileImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
-        detailTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.leadingAnchor.constraint(equalTo: fileImageView.trailingAnchor, constant: 10).isActive = true
-        textLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 0).isActive = true
-        textLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: 0).isActive = true
-        detailTextLabel.leadingAnchor.constraint(equalTo: textLabel.leadingAnchor, constant: 0).isActive = true
-        detailTextLabel.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 0).isActive = true
-        detailTextLabel.trailingAnchor.constraint(equalTo: textLabel.trailingAnchor, constant: 0).isActive = true
-        detailTextLabel.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor, constant: 0).isActive = true
+        stackView.constraintToTrailingOf(fileImageView, paddingLeading: 12).isActive = true
+        stackView.constraintAlignTrailingTo(contentView, paddingTrailing: 12).isActive = true
+        stackView.constraintAlignTopTo(contentView, paddingTop: 12).isActive = true
+        stackView.constraintAlignBottomTo(contentView, paddingBottom: 12).isActive = true
+
     }
 
     // MARK: - update
@@ -52,19 +70,30 @@ class FileTableViewCell: UITableViewCell {
         switch msg.kind {
         case .fileText(let mediaItem):
             if let url = mediaItem.url {
-                if let pdfThumbnail = DcUtils.thumbnailFromPdf(withUrl: url) {
-                    fileImageView.image = pdfThumbnail
-                } else {
-                    let controller = UIDocumentInteractionController(url: url)
-                    fileImageView.image = controller.icons.first ?? mediaItem.placeholderImage
-                }
+                generateThumbnailFor(url: url, placeholder: mediaItem.placeholderImage)
             } else {
                 fileImageView.image = mediaItem.placeholderImage
             }
-            textLabel?.text = msg.filename
-            detailTextLabel?.attributedText = mediaItem.text?[MediaItemConstants.mediaSubtitle]
         default:
-            break
+            guard let url = msg.fileURL else {
+                return
+            }
+            generateThumbnailFor(url: url, placeholder: nil)
         }
+        title.text = msg.filename
+        subtitle.text = msg.getPrettyFileSize()
+    }
+
+    private func generateThumbnailFor(url: URL, placeholder: UIImage?) {
+        if let thumbnail = ThumbnailCache.shared.restoreImage(key: url.absoluteString) {
+            fileImageView.image = thumbnail
+        } else if let pdfThumbnail = DcUtils.thumbnailFromPdf(withUrl: url) {
+            fileImageView.image = pdfThumbnail
+            ThumbnailCache.shared.storeImage(image: pdfThumbnail, key: url.absoluteString)
+        } else {
+            let controller = UIDocumentInteractionController(url: url)
+            fileImageView.image = controller.icons.first ?? placeholder
+        }
+
     }
 }
