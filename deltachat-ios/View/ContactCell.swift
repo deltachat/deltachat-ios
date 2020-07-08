@@ -32,7 +32,7 @@ class ContactCell: UITableViewCell {
         let stackView = UIStackView(arrangedSubviews: [subtitleLabel, deliveryStatusIndicator, archivedIndicator, unreadMessageCounter])
         stackView.axis = .horizontal
         stackView.spacing = 10
-        stackView.alignment = .firstBaseline
+        stackView.alignment = .center
         return stackView
     }()
 
