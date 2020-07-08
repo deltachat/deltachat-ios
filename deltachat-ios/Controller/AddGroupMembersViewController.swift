@@ -13,6 +13,14 @@ class AddGroupMembersViewController: GroupMembersViewController {
         return button
     }()
 
+    lazy var newContactCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionColor = SystemColor.blue.uiColor
+        cell.actionTitle = String.localized("menu_new_contact")
+        cell.selectionStyle = .none
+        return cell
+    }()
+
     lazy var doneButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
         return button
@@ -99,20 +107,13 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case sectionNewContact:
-            return Constants.defaultCellHeight
-        case sectionMemberList:
-            return ContactCell.cellHeight
-        default:
-            return Constants.defaultCellHeight
-        }
+        return indexPath.section == sectionMemberList ? ContactCell.cellHeight : UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case sectionNewContact:
-            return getNewContactCell()
+            return newContactCell
         case sectionMemberList:
             return updateContactCell(for: indexPath)
         default:
@@ -151,20 +152,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
            _ = dcContext.addContactToChat(chatId: chatId, contactId: contactId)
         }
         navigationController?.popViewController(animated: true)
-    }
-
-    func getNewContactCell() -> UITableViewCell {
-        let cell: UITableViewCell
-        if let c = tableView.dequeueReusableCell(withIdentifier: "actionCell") {
-            cell = c
-        } else {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "actionCell")
-        }
-        cell.textLabel?.text = String.localized("menu_new_contact")
-        cell.textLabel?.textColor = view.tintColor
-        cell.textLabel?.textAlignment = .center
-
-        return cell
     }
 
     // MARK: - coordinator
