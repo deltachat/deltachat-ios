@@ -15,7 +15,7 @@ class DocumentGalleryController: UIViewController {
     }()
 
     init(fileMessageIds: [Int]) {
-        self.fileMessageIds = fileMessageIds.reversed()
+        self.fileMessageIds = fileMessageIds
         super.init(nibName: nil, bundle: nil)
         self.title = String.localized("documents")
     }

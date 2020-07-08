@@ -245,22 +245,22 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func showDocuments() {
-        let messageIds = dcContext.getChatMedia(
+        let messageIds: [Int] = dcContext.getChatMedia(
             chatId: chatId,
             messageType: DC_MSG_FILE,
             messageType2: DC_MSG_AUDIO,
             messageType3: 0
-        )
+        ).reversed()
         let fileGalleryController = DocumentGalleryController(fileMessageIds: messageIds)
         navigationController?.pushViewController(fileGalleryController, animated: true)    }
 
     private func showGallery() {
-        let messageIds = dcContext.getChatMedia(
+        let messageIds: [Int] = dcContext.getChatMedia(
             chatId: chatId,
             messageType: DC_MSG_IMAGE,
             messageType2: DC_MSG_GIF,
             messageType3: DC_MSG_VIDEO
-        )
+        ).reversed()
         let galleryController = GalleryViewController(mediaMessageIds: messageIds)
         navigationController?.pushViewController(galleryController, animated: true)
     }
