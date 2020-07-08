@@ -30,7 +30,7 @@
 "start_chat" = "Começar conversa";
 "show_password" = "Mostrar senha";
 "hide_password" = "Ocultar senha";
-"not_now" = "Não agora";
+"not_now" = "Mais tarde";
 "never" = "Nunca";
 "one_moment" = "Um momento...";
 "done" = "Feito";
@@ -40,14 +40,15 @@
 "error" = "Erro";
 "error_x" = "Erro: %1$@";
 "error_no_network" = "Rede indisponível.";
-"no_app_to_handle_data" = "Arquivo desconhecido.";
+"no_app_to_handle_data" = "Não foi possível encontrar um app para abrir esse tipo de arquivo.";
 "no_browser_installed" = "Nenhum navegador instalado.";
-"file_not_found" = "Impossível achar%1$@.";
-"copied_to_clipboard" = "Copiado para a área de transferência.";
+"file_not_found" = "Não foi possível encontrar %1$@.";
+"copied_to_clipboard" = "Salvo na área de transferência.";
 "contacts_headline" = "Contatos";
 "email_address" = "Endereço de email";
 "bad_email_address" = "Email inválido.";
 "password" = "Senha";
+"existing_password" = "Senha existente";
 "now" = "Agora";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Perigo";
@@ -92,12 +93,12 @@
 "small" = "Pequeno";
 "normal" = "Normal";
 "large" = "Grande";
-"extra_large" = "Extragrande";
+"extra_large" = "Muito grande";
 
 "fast" = "Rápido";
 "slow" = "Lento";
 
-"message_delivered" = "Mensagem enviada";
+"message_delivered" = "Mensagem entregue";
 "message_read" = "Mensagem lida";
 
 
@@ -107,20 +108,20 @@
 "menu_new_group" = "Novo grupo";
 "menu_new_verified_group" = "Novo grupo verificado";
 "menu_send" = "Enviar";
-"menu_toggle_keyboard" = "Ativar teclado emoji";
-"menu_edit_group" = "Editar grupo";
+"menu_toggle_keyboard" = "Ativar teclado de emojis";
+"menu_edit_group" = "Modificar grupo";
 "menu_group_name_and_image" = "Nome e Imagem do grupo";
 "menu_show_map" = "Exibir mapa";
 "menu_show_global_map" = "Exibir todas as localizações";
 "menu_archive_chat" = "Arquivar conversa";
 "menu_unarchive_chat" = "Desarquivar conversa";
 "menu_add_attachment" = "Inserir anexo";
-"menu_leave_group" = "Deixar o grupo";
+"menu_leave_group" = "Sair do grupo";
 "menu_delete_chat" = "Apagar conversa";
 "menu_delete_messages" = "Apagar mensagens";
 "menu_delete_image" = "Apagar imagem";
 "menu_delete_locations" = "Apagar todas as localizações?";
-"menu_delete_location" = "Deletar esta localização?";
+"menu_delete_location" = "Apagar esta localização?";
 "menu_message_details" = "Detalhes da mensagem";
 "menu_copy_to_clipboard" = "Copiar para a área de transferência";
 "menu_forward" = "Encaminhar mensagem";
@@ -133,31 +134,33 @@
 "menu_share" = "Compartilhar";
 "menu_block_contact" = "Bloquear contato";
 "menu_unblock_contact" = "Desbloquear contato";
-"menu_play" = "Executar";
+"menu_play" = "Ouvir";
 "menu_pause" = "Pausar";
 "menu_scroll_to_bottom" = "Rolar até o fim";
 "menu_scroll_to_top" = "Rolar até o início";
 "menu_help" = "Ajuda";
 "menu_select_all" = "Selecionar tudo";
 "menu_expand" = "Expandir";
-"menu_edit_name" = "Editar nome";
-"menu_edit_group_name" = "Editar nome do grupo";
-"menu_edit_group_image" = "Editar imagem do grupo";
+"menu_edit_name" = "Modificar nome";
+"menu_edit_group_name" = "Modificar nome do grupo";
+"menu_edit_group_image" = "Modificar imagem do grupo";
 "menu_settings" = "Configurações";
 "menu_advanced" = "Avançado";
-"menu_deaddrop" = "Pedidos de contato";
-"menu_deaddrop_subtitle" = "Pressione na mensagem para conversar";
+"menu_deaddrop" = "Solicitações de contato";
+"menu_deaddrop_subtitle" = "Pressione na mensagem para iniciar a conversa";
 "menu_view_profile" = "Ver perfil";
 "menu_zoom_in" = "Ampliar";
 "menu_zoom_out" = "Afastar";
 "menu_save_log" = "Salvar registro";
 "title_share_location" = "Compartilhar localização com o grupo";
+"device_talk" = "Mensagens desse aparelho";
+"device_talk_subtitle" = "Mensagens geradas localmente";
 "edit_contact" = "Editar contato";
 "mute_for_one_hour" = "Silenciar por 1 hora";
 "mute_for_two_hours" = "Silenciar por 2 horas";
 "mute_for_one_day" = "Silenciar por 1 dia";
 "mute_for_seven_days" = "Silenciar por 7 dias";
-"mute_forever" = "Silenciar eternamente";
+"mute_forever" = "Silenciar para sempre";
 
 "share_location_once" = "uma vez";
 "share_location_for_5_minutes" = "por 5 minutos";
@@ -166,20 +169,23 @@
 "share_location_for_two_hours" = "por 2 horas";
 "share_location_for_six_hours" = "por 6 horas";
 
+"file_saved_to" = "Arquivo salvo em \"%1$@\".";
+
 // get confirmations
 "ask_leave_group" = "Quer mesmo sair do grupo?";
 "ask_forward" = "Encaminhar mensagens para %1$@?";
-"ask_export_attachment" = "Exportar o anexo? Anexos exportados poderão ser acessados pelos demais aplicativos.\n\nContinuar?";
-"ask_block_contact" = "Bloquear este contato? Você não mais receberá mensagens dele.";
+"ask_forward_multiple" = "Encaminhar mensagens para 1%1$d conversas?";
+"ask_export_attachment" = "Exportar o anexo? Anexos exportados poderão ser acessados por outros aplicativos.\n\nContinuar?";
+"ask_block_contact" = "Bloquear este contato? Você não receberá mais mensagens dele.";
 "ask_unblock_contact" = "Desbloquear este contato? Você voltará a receber mensagens dele.";
-"ask_delete_contacts" = "Apagar contatos? Eles serão permanentemente apagados.\n\nContatos com conversas ativas e contatos do livro de endereços do sistema não podem ser permanentemente apagados.";
+"ask_delete_contacts" = "Apagar contatos? Eles serão permanentemente apagados.\n\nContatos com conversas ativas e contatos do livro de endereços do sistema não podem ser apagados permanentemente.";
 "ask_delete_contact" = "Apagar permanentemente contato %1$@?\n\nContatos com conversas em andamento e contatos da lista de contatos do sistema não podem ser apagados permanentemente.";
 "cannot_delete_contacts_in_use" = "Impossível apagar contatos com conversas em curso.";
 "ask_start_chat_with" = "Conversar com %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Remover %1$@ do grupo?";
 "info_outdated_app_title" = "Seu aplicativo está desatualizado.";
-"info_outdated_app_text" = "Parece que você instalou Delta Chat de uma fonte sem atualizações automáticas (ex: Github). Por favor altere para a versão de loja para receber as funções mais recentes e correções de bugs.";
+"info_outdated_app_text" = "Parece que você instalou Delta Chat de uma fonte sem atualizações automáticas (ex: Github). Por favor altere para a versão da loja para receber as funções mais recentes e correções de falhas.";
 "info_outdated_app_dialog_title" = "Atualizar fontes";
 "info_outdated_app_dialog_text" = "Delta Chat está disponível em:";
 
@@ -279,7 +285,6 @@
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Encaminhar para...";
-"share_multiple_attachments" = "Você quer enviar %1$d arquivos para o destinatário selecionado?\n\nOs arquivos não serão modificados, por exemplo, imagens e vídeos não serão reprocessados.";
 "share_abort" = "Compartilhamento abortado devido a falta de permissões.";
 
 
@@ -410,8 +415,6 @@
 "systemmsg_action_by_me" = "%1$@ por mim.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ por %2$@.";
-
-
 // screen lock
 "screenlock_title" = "Bloqueio de tela";
 "screenlock_explain" = "Tranque o acesso com o bloqueio de tela do Android ou com sua digital; para evitar que o conteúdo prévio seja exibido habilite também a \"segurança de tela\".";

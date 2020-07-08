@@ -111,7 +111,7 @@
 			<key>one</key>
 			<string>Esborra %d xat? Ja no es mostrarà al llistat de xats, i els seus missatges no romandran al servidor.</string>
 			<key>other</key>
-			<string>Esborra %d xats? Ja no es mostraran al llistat de xats i els missatges no quedaran al servidor.</string>
+			<string>Voleu esborrar %d xats? Ja no es mostraran al llistat de xats i els missatges no quedaran al servidor.</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

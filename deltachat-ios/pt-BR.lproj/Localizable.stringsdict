@@ -47,7 +47,7 @@
 			<key>one</key>
 			<string>%d conversa</string>
 			<key>other</key>
-			<string>%d conversa</string>
+			<string>%d conversas</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -95,7 +95,7 @@
 			<key>one</key>
 			<string>%d participantes</string>
 			<key>other</key>
-			<string>%d participantes</string>
+			<string>%d membros</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

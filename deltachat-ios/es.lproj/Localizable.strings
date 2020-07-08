@@ -310,7 +310,6 @@
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Reenviar a ...";
-"share_multiple_attachments" = "¿Desea enviar %1$d archivos al chat seleccionado?\n\nLos archivos se envían sin modificar en su tamaño original, por ejemplo, las imágenes y videos no son recodificados.";
 "share_abort" = "Intercambio abortado debido a la falta de permisos.";
 
 
@@ -449,8 +448,6 @@
 "systemmsg_action_by_me" = "%1$@ por mi.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ por %2$@.";
-
-
 // screen lock
 "screenlock_title" = "Bloqueo de pantalla";
 "screenlock_explain" = "Bloquea el acceso con el bloqueo de pantalla de Android o huella; para evitar que aparezca el contenido anterior, habilite también \"Seguridad de pantalla\"";

@@ -185,6 +185,7 @@
 // get confirmations
 "ask_leave_group" = "Sei sicuro di voler abbandonare il gruppo?";
 "ask_forward" = "Inoltrare messaggi a %1$@?";
+"ask_forward_multiple" = "Inoltra messaggi a %1$d chat?";
 "ask_export_attachment" = "Esportare allegato? Questo permetterà ad ogni altra app sul tuo dispositivo di accedervi.\n\nContinuare?";
 "ask_block_contact" = "Bloccare il contatto? Non riceverai più messaggi da questo contatto.";
 "ask_unblock_contact" = "Sbloccare il contatto? Potrai nuovamente ricevere messaggi da questo contatto.";
@@ -317,7 +318,9 @@
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Inotra a...";
-"share_multiple_attachments" = "Vuoi inviare %1$d file alla chat selezionata?\n\nI file vengono inviati senza modifiche e della dimensione originale. Immagini e video non vengono ricodificati.";
+"share_multiple_attachments" = "Invia %1$d file alla chat selezionata?\n\nI file vengono inviati non modificati nella loro dimensione originale, ad es. immagini e video non vengono ricodificati.";
+"share_multiple_attachments_multiple_chats" = "Invia %1$d file(s) a %2$d chat?\n\nI file vengono inviati non modificati nella loro dimensione originale, ad es. immagini e video non vengono ricodificati.";
+"share_text_multiple_chats" = "Invia questo testo alle %1$d chat?\n\n\"%2$@\"";
 "share_abort" = "Condivisione annullata per permessi mancanti.";
 
 
@@ -427,6 +430,7 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Connessione in background affidabile";
 "pref_reliable_service_explain" = "Richiede una notifica permanente";
+"ephemeral_dialog_title" = "Elimina i messaggi letti";
 
 
 // automatically delete message
@@ -440,6 +444,8 @@
 "autodel_server_ask" = "Vuoi eliminare %1$d messaggi ora e tutti i messaggi arrivati \"%2$@\" nel futuro?\n\n• Questo include tutti i media\n\n• Verranno eliminate anche le email legate all\'opzione \"Mostra email classiche\"\n\n• Anche i \"Messaggi salvati\" verranno eliminati dal server.";
 "autodel_confirm" = "Ho capito, elimina tutti i messaggi";
 "autodel_at_once" = "Una volta";
+"after_30_seconds" = "Dopo 30 secondi";
+"after_1_minute" = "Dopo 1 minuto";
 "autodel_after_1_hour" = "Dopo 1 ora";
 "autodel_after_1_day" = "Dopo 1 giorno";
 "autodel_after_1_week" = "Dopo 1 settimana";
@@ -478,6 +484,17 @@
 "systemmsg_action_by_me" = "%1$@ da me.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ da %2$@.";
+"systemmsg_unknown_sender_for_chat" = "Mittente sconosciuto per questa chat. Vedi \'info\' per maggiori dettagli.";
+"systemmsg_subject_for_new_contact" = "Messaggio da %1$@";
+"systemmsg_failed_sending_to" = "Impossibile inviare il messaggio a %1$@.";
+
+"systemmsg_ephemeral_timer_disabled" = "Il timer di eliminazione dei messaggi è disabilitato.";
+"systemmsg_ephemeral_timer_enabled" = "Il timer di eliminazione dei messaggi è impostato su %1$@ s.";
+"systemmsg_ephemeral_timer_minute" = "Il timer di eliminazione dei messaggi è impostato su 1 minuto.";
+"systemmsg_ephemeral_timer_hour" = "Il timer di eliminazione dei messaggi è impostato su 1 ora.";
+"systemmsg_ephemeral_timer_day" = "Il timer di eliminazione dei messaggi è impostato su 1 giorno.";
+"systemmsg_ephemeral_timer_week" = "Il timer di eliminazione dei messaggi è impostato su 1 settimana.";
+"systemmsg_ephemeral_timer_four_weeks" = "Il timer di eliminazione dei messaggi è impostato su 4 settimane.";
 
 
 // screen lock

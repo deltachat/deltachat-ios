@@ -13,6 +13,7 @@
 "strict" = "Griežtas";
 "open" = "Atverti";
 "delete" = "Ištrinti";
+"info" = "Informacija";
 "attachment" = "Priedas";
 "back" = "Atgal";
 "close" = "Užverti";
@@ -336,6 +337,7 @@
 "pref_message_text_size" = "Žinučių šrifto dydis";
 "pref_view_log" = "Rodyti žurnalą";
 "pref_save_log_failed" = "Nepavyko įrašyti žurnalo";
+"pref_log_header" = "Žurnalas";
 "pref_other" = "Kita";
 "pref_backup" = "Atsarginė kopija";
 "pref_backup_explain" = "Padaro atsarginę pokalbių kopiją į išorinę saugyklą";
@@ -371,6 +373,8 @@
 "autodel_server_title" = "Ištrinti žinutes iš serverio";
 "autodel_confirm" = "Aš suprantu, ištrinti visas šias žinutes";
 "autodel_at_once" = "Iš karto";
+"after_30_seconds" = "Po 30 sekundžių";
+"after_1_minute" = "Po 1 minutės";
 "autodel_after_1_hour" = "Po 1 valandos";
 "autodel_after_1_day" = "Po 1 dienos";
 "autodel_after_1_week" = "Po 1 savaitės";
@@ -404,6 +408,16 @@
 "systemmsg_read_receipt_subject" = "Pranešimas apie skaitymą";
 "systemmsg_read_receipt_body" = "Tai yra pranešimas apie žinutės \"%1$@\" skaitymą.\n\nTai reiškia, kad žinutė buvo atvaizduota gavėjo įrenginyje, tačiau neužtikrina, kad jos turinys buvo perskaitytas.";
 "systemmsg_cannot_decrypt" = "Nepavyksta iššifruoti šios žinutės.\n\n• Galima, tiesiog, atsakyti į šią žinutę ir paprašyti siuntėjo dar kartą išsiųsti šią žinutę.\n\n• Tuo atveju, jeigu iš naujo įdiegėte Delta Chat ar kitą el. pašto programą šiame ar kitame įrenginyje, jūs galite pageidauti išsiųsti Autocrypt sąrankos žinutę iš to įrenginio.";
+"systemmsg_subject_for_new_contact" = "Žinutė nuo %1$@";
+"systemmsg_ephemeral_timer_disabled" = "Žinučių ištrynimo laikmatis yra išjungtas.";
+"systemmsg_ephemeral_timer_enabled" = "Žinučių ištrynimo laikmatis yra nustatytas į %1$@ sek.";
+"systemmsg_ephemeral_timer_minute" = "Žinučių ištrynimo laikmatis yra nustatytas į 1 minutę.";
+"systemmsg_ephemeral_timer_hour" = "Žinučių ištrynimo laikmatis yra nustatytas į 1 valandą.";
+"systemmsg_ephemeral_timer_day" = "Žinučių ištrynimo laikmatis yra nustatytas į 1 dieną.";
+"systemmsg_ephemeral_timer_week" = "Žinučių ištrynimo laikmatis yra nustatytas į 1 savaitę.";
+"systemmsg_ephemeral_timer_four_weeks" = "Žinučių ištrynimo laikmatis yra nustatytas į 4 savaites.";
+
+
 // screen lock
 "screenlock_title" = "Ekrano užraktas";
 "screenlock_authentication_failed" = "Tapatybės nustatymas nepavyko.";

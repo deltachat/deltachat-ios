@@ -45,6 +45,7 @@
 "email_address" = "Adres e-mail";
 "bad_email_address" = "Zły adres e-mail";
 "password" = "Hasło";
+"existing_password" = "Istniejące hasło";
 "now" = "Teraz";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Uwaga";
@@ -176,6 +177,8 @@
 "share_location_for_two_hours" = "na 2 godziny";
 "share_location_for_six_hours" = "na 6 godzin";
 
+"file_saved_to" = "Plik zapisany w „%1$@";
+
 // get confirmations
 "ask_leave_group" = "Czy na pewno chcesz opuścić tą grupę?";
 "ask_forward" = "Przekazać wiadomości do użytkownika %1$@?";
@@ -257,6 +260,9 @@
 "tab_gallery_empty_hint" = "Tutaj zostaną wyświetlone zdjęcia i filmy udostępnione na tym czacie.";
 "tab_docs_empty_hint" = "Tutaj zostaną wyświetlone dokumenty, muzyka i inne pliki udostępnione na tym czacie.";
 "media_preview" = "Podgląd multimediów";
+"send_message" = "Wyślij wiadomość";
+
+
 // welcome and login
 "welcome_intro1_message" = "Komunikator o największym zasięgu na świecie. Darmowy i bezpieczny.";
 "welcome_start_messaging" = "Uruchom komunikator";
@@ -297,12 +303,15 @@
 "accept_invalid_certificates" = "Zaakceptuj nieprawidłowe certyfikaty";
 
 "used_settings" = "Użyte ustawienia:";
+"switch_account" = "Przełącz konto";
+"add_account" = "Dodaj konto";
 "delete_account" = "Usuń konto";
 "delete_account_ask" = "Czy na pewno chcesz usunąć dane swojego konta?";
+"switching_account" = "Przełączam konto…";
+
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Przekaż do…";
-"share_multiple_attachments" = "Czy chcesz wysłać pliki %1$d do wybranego czatu?\n\nPliki są wysyłane niezmodyfikowane w oryginalnym rozmiarze, np. obrazy i filmy nie są przekodowywane.";
 "share_abort" = "Udostępnianie zostało przerwane z powodu brakujących uprawnień.";
 
 
@@ -409,6 +418,22 @@
 "pref_background_default_color" = "Domyślny kolor";
 "pref_background_custom_image" = "Własny obraz";
 "pref_background_custom_color" = "Własny kolor";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Niezawodne połączenie w tle";
+"pref_reliable_service_explain" = "Wymaga stałego powiadomienia";
+// automatically delete message
+"autodel_title" = "Automatyczne usuwanie wiadomości";
+"autodel_title_short" = "Automatyczne usuwanie";
+"autodel_device_title" = "Usuwanie wiadomości z urządzenia";
+"autodel_server_title" = "Usuwanie wiadomości z serwera";
+"autodel_confirm" = "Rozumiem, usuń te wszystkie wiadomości";
+"autodel_at_once" = "Od razu";
+"autodel_after_1_hour" = "Po 1 godzinie";
+"autodel_after_1_day" = "Po 1 dniu";
+"autodel_after_1_week" = "Po 1 tygodniu";
+"autodel_after_4_weeks" = "Po 4 tygodniach";
+"autodel_after_1_year" = "Po 1 roku";
+
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt to nowa i otwarta specyfikacja szyfrowania e-maili typu end-to-end.\n\nTwoja konfiguracja end-to-end w razie potrzeby jest tworzona automatycznie i można ją przesłać między urządzeniami za pomocą Wiadomości konfiguracyjnej automatycznego szyfrowania.";
@@ -441,8 +466,6 @@
 "systemmsg_action_by_me" = "%1$@ przeze mnie.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ przez %2$@.";
-
-
 // screen lock
 "screenlock_title" = "Blokada ekranu";
 "screenlock_explain" = "Blokuj dostęp za pomocą blokady ekranu systemu Android lub odcisku palca; aby uniknąć pojawienia się poprzedniej zawartości, włącz również opcję „Zabezpieczenia ekranu”";
@@ -593,3 +616,5 @@
 "a11y_background_preview_label" = "Podgląd tła";
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+
+

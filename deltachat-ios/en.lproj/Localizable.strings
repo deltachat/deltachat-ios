@@ -185,6 +185,7 @@
 // get confirmations
 "ask_leave_group" = "Are you sure you want to leave this group?";
 "ask_forward" = "Forward messages to %1$@?";
+"ask_forward_multiple" = "Forward messages to %1$d chats?";
 "ask_export_attachment" = "Export attachment? Exporting attachments will allow any other apps on your device to access them.\n\nContinue?";
 "ask_block_contact" = "Block this contact? You will no longer receive messages from this contact.";
 "ask_unblock_contact" = "Unblock this contact? You will once again be able to receive messages from this contact.";
@@ -317,7 +318,9 @@
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Forward to…";
-"share_multiple_attachments" = "Do you want to send %1$d files to the selected chat?\n\nThe files are sent unmodified in their original size, eg. images and videos are not recoded.";
+"share_multiple_attachments" = "Send %1$d files to the selected chat?\n\nThe files are sent unmodified in their original size, eg. images and videos are not recoded.";
+"share_multiple_attachments_multiple_chats" = "Send %1$d file(s) to %2$d chats?\n\nThe files are sent unmodified in their original size, eg. images and videos are not recoded.";
+"share_text_multiple_chats" = "Send this text to %1$d chats?\n\n\"%2$@\"";
 "share_abort" = "Sharing aborted due to missing permissions.";
 
 
@@ -427,6 +430,7 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Reliable background connection";
 "pref_reliable_service_explain" = "Requires a permanent notification";
+"ephemeral_dialog_title" = "Delete read messages";
 
 
 // automatically delete message
@@ -440,6 +444,8 @@
 "autodel_server_ask" = "Do you want to delete %1$d messages now and all newly fetched messages \"%2$@\" in the future?\n\n• This includes all media\n\n• This will also delete emails affected by the \"Show classic emails\" option\n\n• \"Saved messages\" will be deleted from the server as well";
 "autodel_confirm" = "I understand, delete all these messages";
 "autodel_at_once" = "At once";
+"after_30_seconds" = "After 30 seconds";
+"after_1_minute" = "After 1 minute";
 "autodel_after_1_hour" = "After 1 hour";
 "autodel_after_1_day" = "After 1 day";
 "autodel_after_1_week" = "After 1 week";
@@ -478,6 +484,17 @@
 "systemmsg_action_by_me" = "%1$@ by me.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ by %2$@.";
+"systemmsg_unknown_sender_for_chat" = "Unknown sender for this chat. See \'info\' for more details.";
+"systemmsg_subject_for_new_contact" = "Message from %1$@";
+"systemmsg_failed_sending_to" = "Failed to send message to %1$@.";
+
+"systemmsg_ephemeral_timer_disabled" = "Message deletion timer is disabled.";
+"systemmsg_ephemeral_timer_enabled" = "Message deletion timer is set to %1$@ s.";
+"systemmsg_ephemeral_timer_minute" = "Message deletion timer is set to 1 minute.";
+"systemmsg_ephemeral_timer_hour" = "Message deletion timer is set to 1 hour.";
+"systemmsg_ephemeral_timer_day" = "Message deletion timer is set to 1 day.";
+"systemmsg_ephemeral_timer_week" = "Message deletion timer is set to 1 week.";
+"systemmsg_ephemeral_timer_four_weeks" = "Message deletion timer is set to 4 weeks.";
 
 
 // screen lock
@@ -657,5 +674,3 @@
 "login_error_no_internet_connection" = "No internet connection, can\'t log in to your server.";
 "share_account_not_configured" = "Account is not configured.";
 "pref_ephemeral_messages" = "Self-destructing messages";
-"after_30_seconds" = "After 30 seconds";
-"after_1_minute" = "After 1 minute";

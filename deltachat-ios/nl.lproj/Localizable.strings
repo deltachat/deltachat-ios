@@ -185,6 +185,7 @@
 // get confirmations
 "ask_leave_group" = "Weet je zeker dat je deze groep wilt verlaten?";
 "ask_forward" = "Wil je de berichten doorsturen aan %1$@?";
+"ask_forward_multiple" = "Wil je de berichten doorsturen naar %1$d gesprekken?";
 "ask_export_attachment" = "Als je de bijlage exporteert, geef je andere apps op je apparaat toegang om hem uit te lezen.\n\nWil je doorgaan?";
 "ask_block_contact" = "Wil je deze contactpersoon blokkeren? Hij/zij kan je geen berichten meer sturen.";
 "ask_unblock_contact" = "Wil je deze contactpersoon deblokkeren? Hij/zij kan je wederom berichten sturen.";
@@ -318,6 +319,8 @@
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Doorsturen naar...";
 "share_multiple_attachments" = "Wil je %1$d bestanden delen in het gekozen gesprek?\n\nDe bestanden worden ongewijzigd verstuurd in oorspronkelijke grootte.";
+"share_multiple_attachments_multiple_chats" = "Wil je %1$d bestand(en) delen in %2$d gesprekken?\n\nDe bestanden worden ongewijzigd verstuurd in oorspronkelijke grootte.";
+"share_text_multiple_chats" = "Wil je deze tekst versturen naar %1$d gesprekken?\n\n\"%2$@\"";
 "share_abort" = "Kan niet delen wegens ontbrekende machtigingen.";
 
 
@@ -427,6 +430,7 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Betrouwbare achtergrondverbinding";
 "pref_reliable_service_explain" = "Vereist een permanente melding";
+"ephemeral_dialog_title" = "Gelezen berichten verwijderen";
 
 
 // automatically delete message
@@ -440,6 +444,8 @@
 "autodel_server_ask" = "Wil je nu %1$d berichten verwijderen en toekomstige berichten \'%2$@\'?\n\n• Dit omvat alle media\n\n• Berichten worden verwijderd, ongeacht of ze bekeken zijn\n\n• Het gesprek \'Opgeslagen berichten\' wordt eveneens verwijderd van de server";
 "autodel_confirm" = "Ik begrijp het; verwijder alle berichten";
 "autodel_at_once" = "Direct";
+"after_30_seconds" = "Na 30 seconden";
+"after_1_minute" = "Na 1 minuut";
 "autodel_after_1_hour" = "Na 1 uur";
 "autodel_after_1_day" = "Na 1 dag";
 "autodel_after_1_week" = "Na 1 week";
@@ -478,6 +484,17 @@
 "systemmsg_action_by_me" = "%1$@ door mij.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ door %2$@.";
+"systemmsg_unknown_sender_for_chat" = "Onbekende afzender in dit gesprek. Zie \'Informatie\' voor meer informatie.";
+"systemmsg_subject_for_new_contact" = "Bericht van %1$@";
+"systemmsg_failed_sending_to" = "Het bericht kan niet worden verstuurd aan %1$@.";
+
+"systemmsg_ephemeral_timer_disabled" = "De tijdklok omtrent berichtverwijdering is uitgeschakeld.";
+"systemmsg_ephemeral_timer_enabled" = "De tijdklok omtrent berichtverwijdering is ingesteld op %1$@ seconden.";
+"systemmsg_ephemeral_timer_minute" = "De tijdklok omtrent berichtverwijdering is ingesteld op 1 minuut.";
+"systemmsg_ephemeral_timer_hour" = "De tijdklok omtrent berichtverwijdering is ingesteld op 1 uur.";
+"systemmsg_ephemeral_timer_day" = "De tijdklok omtrent berichtverwijdering is ingesteld op 1 dag.";
+"systemmsg_ephemeral_timer_week" = "De tijdklok omtrent berichtverwijdering is ingesteld op 1 week.";
+"systemmsg_ephemeral_timer_four_weeks" = "De tijdklok omtrent berichtverwijdering is ingesteld op 4 weken.";
 
 
 // screen lock

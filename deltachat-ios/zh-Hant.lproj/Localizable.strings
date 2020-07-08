@@ -185,6 +185,7 @@
 // get confirmations
 "ask_leave_group" = "您确定要离开此群组吗？";
 "ask_forward" = "将消息转发给 %1$@？";
+"ask_forward_multiple" = "转发消息到 %1$d 个聊天？";
 "ask_export_attachment" = "导出附件？导出附件将允许您设备上的任意应用程序访问它们。\n\n继续？";
 "ask_block_contact" = "屏蔽此联系人？您将不再收到此联系人的消息。";
 "ask_unblock_contact" = "取消屏蔽此联系人？您将再次能收到此联系人的消息。";
@@ -317,7 +318,9 @@
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "转发给…";
-"share_multiple_attachments" = "是否将 %1$d 个文件发送到所选聊天？\n\n文件将以未经修改的、保持原大小的方式发送，例如：图像和视频不会被重新编码。";
+"share_multiple_attachments" = "发送 %1$d 个文件到所选聊天？\n\n文件将以未经修改的、保持原大小的方式发送，例如：图像和视频不会被重新编码。";
+"share_multiple_attachments_multiple_chats" = "发送 %1$d 个文件到 %2$d 个聊天？\n\n文件将以未经修改的、保持原大小的方式发送，例如：图像和视频不会被重新编码。";
+"share_text_multiple_chats" = "发送这段文字到 %1$d 个聊天？\n\n\"%2$@“";
 "share_abort" = "由于缺少权限，分享中止。";
 
 
@@ -427,6 +430,7 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "可靠后台连接";
 "pref_reliable_service_explain" = "需要一个永久通知";
+"ephemeral_dialog_title" = "删除已读消息";
 
 
 // automatically delete message
@@ -440,6 +444,8 @@
 "autodel_server_ask" = "您要删除目前的 %1$d 条消息以及之后 %2$@ 内新收到的消息吗？\n\n• 这包括所有媒体文件\n\n• 这也会删除被“显示传统电子邮件”选项影响的电子邮件\n\n• “保存的消息”也将从服务器中删除";
 "autodel_confirm" = "我了解，将这些消息全部删除";
 "autodel_at_once" = "立刻";
+"after_30_seconds" = "30 秒后";
+"after_1_minute" = "1 分钟后";
 "autodel_after_1_hour" = "1 小时后";
 "autodel_after_1_day" = "1 天后";
 "autodel_after_1_week" = "1 周后";
@@ -478,6 +484,17 @@
 "systemmsg_action_by_me" = "我 %1$@。";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%2$@ %1$@。";
+"systemmsg_unknown_sender_for_chat" = "此聊天发送者未知。查看“信息”来获取更多详情。";
+"systemmsg_subject_for_new_contact" = "来自 %1$@ 的消息";
+"systemmsg_failed_sending_to" = "发送消息给 %1$@ 失败。";
+
+"systemmsg_ephemeral_timer_disabled" = "消息删除定时器已禁用。";
+"systemmsg_ephemeral_timer_enabled" = "消息删除定时器被设置为 %1$@ 秒。";
+"systemmsg_ephemeral_timer_minute" = "消息删除定时器被设置为 1 分钟。";
+"systemmsg_ephemeral_timer_hour" = "消息删除定时器被设置为 1 小时。";
+"systemmsg_ephemeral_timer_day" = "消息删除定时器被设置为 1 天。";
+"systemmsg_ephemeral_timer_week" = "消息删除定时器被设置为 1 周。";
+"systemmsg_ephemeral_timer_four_weeks" = "消息删除定时器被设置为 4 周。";
 
 
 // screen lock

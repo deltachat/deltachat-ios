@@ -317,7 +317,6 @@
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Weiterleiten an ...";
-"share_multiple_attachments" = "Möchten Sie %1$d Dateien an den ausgewählten Chat senden?\n\nDie Dateien werden unverändert in ihrer Originalgröße gesendet, z.B. werden Bilder und Videos nicht neu codiert.";
 "share_abort" = "Teilen aufgrund fehlender Berechtigungen abgebrochen.";
 
 
@@ -427,8 +426,6 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Zuverlässige Hintergrundverbindung";
 "pref_reliable_service_explain" = "Erfordert immer sichtbaren Hinweis";
-
-
 // automatically delete message
 "autodel_title" = "Nachrichten automatisch löschen";
 "autodel_title_short" = "Automatisch löschen";
@@ -440,6 +437,8 @@
 "autodel_server_ask" = "Wirklich %1$d Nachrichten jetzt und zukünftig alle neuen Nachrichten \"%2$@\" löschen?\n\n• Dies schliesst alle Medien mit ein\n\n• E-Mails, die aufgrund von \"Normale E-Mails anzeigen\" angezeigt werden, werden ebenfalls vom Server gelöscht\n\n• \"Gespeicherte Nachrichten\" werden ebenfalls vom Server gelöschet";
 "autodel_confirm" = "Verstanden, löschen all diese Nachrichten";
 "autodel_at_once" = "Sofort";
+"after_30_seconds" = "Nach 30 Sekunden";
+"after_1_minute" = "Nach 1 Minute";
 "autodel_after_1_hour" = "Nach 1 Stunde";
 "autodel_after_1_day" = "Nach 1 Tag";
 "autodel_after_1_week" = "Nach 1 Woche";
@@ -478,8 +477,6 @@
 "systemmsg_action_by_me" = "%1$@ von mir.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ von %2$@.";
-
-
 // screen lock
 "screenlock_title" = "Bildschirmsperre";
 "screenlock_explain" = "Zugriff sichern mittels Android-Bildschirmsperre oder Fingerabdruck. Um vorherige Inhalte zu verbergen, bitte außerdem \"Bildschirmsicherheit\" aktivieren.";
@@ -644,6 +641,8 @@
 "a11y_background_preview_label" = "Vorschau für Hintergrundbild";
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+
+
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "update_1_10_android" = "Die neuen Delta Chat 1.10 Features im Überblick: schneller, Multi-Account, Bildbereiche verwischen, neue Emojis, überarbeitete Benachrichtigungen, Anzeige fehlerhafter Nachrichten. Aber am wichtigsten:\n\nAvatare im Profil vergrößern 🚀";
 

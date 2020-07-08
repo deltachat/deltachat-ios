@@ -185,6 +185,7 @@
 // get confirmations
 "ask_leave_group" = "Jeni i sigurt se doni ta braktisni këtë grup?";
 "ask_forward" = "Të përcillen mesazhet te %1$@?";
+"ask_forward_multiple" = "Të përcillen mesazhet te %1$d fjalosje?";
 "ask_export_attachment" = "Të eksportohet bashkëngjitja? Eksportimi i bashkëngjitjeve do t\’i lejojë çfarëdo aplikacioni tjetër në pajisjen tuaj t\’i përdorë ato.\n\nTë vazhdohet?";
 "ask_block_contact" = "Të bllokohet ky kontakt? S\’do të merrni më mesazhe prej këtij kontakti.";
 "ask_unblock_contact" = "Të zhbllokohet ky kontakt? Do të jeni sërish në gjendje të merrni mesazhe prej këtij kontakti.";
@@ -317,7 +318,9 @@
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Përcilljani …";
-"share_multiple_attachments" = "Doni të dërgohen %1$d kartela te fjalosja e përzgjedhur?\n\nKartelat dërgohen të pandryshuara, në madhësinë e tyre origjinale, p.sh., figura dhe video nuk rikodohen.";
+"share_multiple_attachments" = "Të dërgohen %1$d kartela te fjalosja e përzgjedhur?\n\nKartelat dërgohen të pandryshuara, në madhësinë e tyre origjinale, p.sh., figurat dhe videot nuk rikodohen.";
+"share_multiple_attachments_multiple_chats" = "Doni të dërgohet %1$d kartelë(a) te 2 %2$d fjalosje?\n\nKartelat dërgohen të pandryshuara, në madhësinë e tyre origjinale, p.sh., figura dhe video nuk rikodohen.";
+"share_text_multiple_chats" = "Të dërgohet ky tekst te %1$d fjalosje?\n\n\"%2$@\"";
 "share_abort" = "Ndarja me të tjerë dështoi ngaqë mungojnë leje.";
 
 
@@ -426,6 +429,7 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Lidhje e qëndrueshme në prapaskenë";
 "pref_reliable_service_explain" = "Lyp një njoftim permanent";
+"ephemeral_dialog_title" = "Fshiji mesazhet e lexuar";
 
 
 // automatically delete message
@@ -439,6 +443,8 @@
 "autodel_server_ask" = "Doni të fshihen %1$d mesazhe tani dhe krejt mesazhet e prurë rishtazi \"%2$@\" në të ardhmen?\n\n• Kjo përfshin krejt mediat\n\n• Kjo do të fshijë gjithashtu email-e nën mundësinë \"Shfaq email-e klasikë\"\n\n• \"Mesazhet e ruajtur\" do të fshihen gjithashtu nga shërbyesi";
 "autodel_confirm" = "E kuptoj, fshiji krejt këto mesazhe";
 "autodel_at_once" = "Menjëherë";
+"after_30_seconds" = "Pas 30 sekondash";
+"after_1_minute" = "Pas 1 minute";
 "autodel_after_1_hour" = "Pas 1 ore";
 "autodel_after_1_day" = "Pas 1 dite";
 "autodel_after_1_week" = "Pas 1 jave";
@@ -477,6 +483,17 @@
 "systemmsg_action_by_me" = "%1$@ nga unë.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ nga %2$@.";
+"systemmsg_unknown_sender_for_chat" = "Dërgues i panjohur për këtë fjalosje. Për më tepër hollësi, shihni \'info\'.";
+"systemmsg_subject_for_new_contact" = "Mesazh nga %1$@";
+"systemmsg_failed_sending_to" = "S’u arrit të dërgohej mesazh te %1$@.";
+
+"systemmsg_ephemeral_timer_disabled" = "Kohëmatësi i fshirjes së mesazheve është i çaktivizuar.";
+"systemmsg_ephemeral_timer_enabled" = "Kohëmatësi i fshirjes së mesazheve është vënë në %1$@ s.";
+"systemmsg_ephemeral_timer_minute" = "Kohëmatësi i fshirjes së mesazheve është vënë në 1 minutë.";
+"systemmsg_ephemeral_timer_hour" = "Kohëmatësi i fshirjes së mesazheve është vënë në 1 orë.";
+"systemmsg_ephemeral_timer_day" = "Kohëmatësi i fshirjes së mesazheve është vënë në 1 ditë.";
+"systemmsg_ephemeral_timer_week" = "Kohëmatësi i fshirjes së mesazheve është vënë në 1 javë.";
+"systemmsg_ephemeral_timer_four_weeks" = "Kohëmatësi i fshirjes së mesazheve është vënë në 4 javë.";
 
 
 // screen lock

@@ -2,3 +2,4 @@ NSCameraUsageDescription = "Zezwolenie na dostęp do aparatu pozwala robić zdj�
 NSContactsUsageDescription = "Zezwolenie na dostęp do książki adresowej pozwala czatować z kontaktami z urządzenia.";
 NSMicrophoneUsageDescription = "Zezwolenie na dostęp do mikrofonu pozwala nagrywać dźwięk.";
 NSPhotoLibraryUsageDescription = "Zezwolenie na dostęp do biblioteki zdjęć umożliwia przesyłanie z niej zdjęć.";
+NSPhotoLibraryAddUsageDescription = "Delta Chat chce zapisać obrazy w twojej bibliotece zdjęć.";

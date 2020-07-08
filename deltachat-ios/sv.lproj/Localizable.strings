@@ -185,6 +185,7 @@
 // get confirmations
 "ask_leave_group" = "Är du säker på att du vill lämna den här gruppen?";
 "ask_forward" = "Vidarebefordra meddelanden till %1$@?";
+"ask_forward_multiple" = "Vill du vidarebefordra meddelanden till %1$d chattar?";
 "ask_export_attachment" = "Exportera bilagor? Exporterade bilagor tillåter andra appar på din enhet att komma åt dem.\n\nVill du fortsätta?";
 "ask_block_contact" = "Blockera den här kontakten? Du kommer inte att få fler meddelanden från den här kontakten.";
 "ask_unblock_contact" = "Avblockera den här kontakten? Du kommer återigen att kunna ta emot meddelanden från den här kontakten.";
@@ -318,6 +319,8 @@
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Vidarebefordra till...";
 "share_multiple_attachments" = "Vill du skicka %1$d filer till den valda chatten?\n\nFilerna skickas oförändrade i ursprunglig storlek, t.ex. bilder och videor kodas inte om.";
+"share_multiple_attachments_multiple_chats" = "Vill du skicka %1$d fil(er) till %2$d chattar?\n\nFilerna skickas oförändrade i ursprunglig storlek, t.ex. bilder och videor kodas inte om.";
+"share_text_multiple_chats" = "Vill du skicka denna text till %1$d chattar?\n\n\"%2$@\"";
 "share_abort" = "Delningen avbröts på grund av saknad behörighet.";
 
 
@@ -427,6 +430,7 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Tillförlitlig bakgrundsanslutning";
 "pref_reliable_service_explain" = "Kräver permanent avisering";
+"ephemeral_dialog_title" = "Ta bort lästa meddelanden";
 
 
 // automatically delete message
@@ -440,6 +444,8 @@
 "autodel_server_ask" = "Vill du ta bort %1$d meddelanden nu och alla kommande meddelanden \"%2$@\" i framtiden?\n\n• Detta inkluderar all mediafiler.\n\n• Detta tar också bort e-post som påverkas av alternativet \"Visa vanlig e-post\".\n\n• \"Sparade e-postmeddelanden\" kommer även att tas bort från servern.";
 "autodel_confirm" = "Jag förstår! Ta bort alla dessa meddelanden.";
 "autodel_at_once" = "Nu genast";
+"after_30_seconds" = "Efter 30 sekunder";
+"after_1_minute" = "Efter 1 minut";
 "autodel_after_1_hour" = "Efter 1 timma";
 "autodel_after_1_day" = "Efter 1 dag";
 "autodel_after_1_week" = "Efter 1 vecka";
@@ -478,6 +484,17 @@
 "systemmsg_action_by_me" = "%1$@ av mig.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ av %2$@.";
+"systemmsg_unknown_sender_for_chat" = "Okänd avsändare för denna chatt. Se info för fler detaljer.";
+"systemmsg_subject_for_new_contact" = "Meddelande från %1$@";
+"systemmsg_failed_sending_to" = "Kunde inte skicka meddelande till %1$@.";
+
+"systemmsg_ephemeral_timer_disabled" = "Tiduret för meddelandeborttagning är inaktiverat.";
+"systemmsg_ephemeral_timer_enabled" = "Tiduret för meddelandeborttagning är satt till %1$@ s.";
+"systemmsg_ephemeral_timer_minute" = "Tiduret för meddelandeborttagning är satt till 1 minut.";
+"systemmsg_ephemeral_timer_hour" = "Tiduret för meddelandeborttagning är satt till 1 timma.";
+"systemmsg_ephemeral_timer_day" = "Tiduret för meddelandeborttagning är satt till 1 dag.";
+"systemmsg_ephemeral_timer_week" = "Tiduret för meddelandeborttagning är satt till 1 vecka.";
+"systemmsg_ephemeral_timer_four_weeks" = "Tiduret för meddelandeborttagning är satt till 4 veckor.";
 
 
 // screen lock
@@ -645,4 +662,7 @@
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
+
+// android specific strings, developers: please take care to remove strings that are no longer used!
+"update_1_10_android" = "Nya Delta Chatt 1.10-funktioner i korthet: Snabbare, multikonto, suddiga bilder, nya emojis, omarbetade meddelanden, bättre felrapportering men viktigast av allt... \n\nKlicka på en avatar i profilen och förstora den 🚀";
 

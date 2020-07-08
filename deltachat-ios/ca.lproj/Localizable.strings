@@ -10,15 +10,31 @@
 "custom" = "Personalitzat";
 "none" = "Cap";
 "automatic" = "Automàtic";
+"strict" = "Estricte";
 "open" = "Obre";
 "delete" = "Esborra";
 "info" = "Info";
+"update" = "Actualitza";
+"attachment" = "Adjunt";
+"back" = "Enrere";
+"close" = "Tanca";
 "forward" = "Reenvia";
+"archive" = "Arxiva";
+"unarchive" = "Treu de l\'arxiu";
+"mute" = "Emmudeix";
+"save" = "Guarda";
+"chat" = "Xat";
+"main_menu" = "Menú principal";
+"start_chat" = "Inicia un xat";
+"show_password" = "Mostra la contrasenya";
+"hide_password" = "Amaga la contrasenya";
 "not_now" = "Ara no";
 "never" = "Mai";
 "one_moment" = "Espereu...";
 "done" = "Fet";
 "undo" = "Desfés";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "Següent";
 "error" = "Error";
 "error_x" = "Error: %1$@";
 "error_no_network" = "Xarxa no disponible.";
@@ -30,7 +46,10 @@
 "email_address" = "Adreça de correu electrònic";
 "bad_email_address" = "Adreça de correu electrònic errònia.";
 "password" = "Contrasenya";
+"existing_password" = "Contrasenya existent";
 "now" = "Ara";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Perill";
 // n_min_ago is deprecated, use n_minutes instead
 "n_min_ago" = "%d min";
 "today" = "Avui";
@@ -53,6 +72,7 @@
 "video" = "Vídeo";
 "documents" = "Documents";
 "contact" = "Contacte";
+"verified_contact" = "Contacte verificat";
 "camera" = "Càmera";
 "location" = "Ubicació";
 "gallery" = "Galeria";
@@ -88,6 +108,7 @@
 "menu_send" = "Envia";
 "menu_toggle_keyboard" = "Canvia al teclat d\'emoticones";
 "menu_edit_group" = "Modifica el grup";
+"menu_group_name_and_image" = "Nom i imatge del grup";
 "menu_show_map" = "Mostra el mapa";
 "menu_show_global_map" = "Mostra totes les ubicacions";
 "menu_archive_chat" = "Arxiva el xat";
@@ -98,6 +119,7 @@
 "menu_delete_messages" = "Esborra els missatges";
 "menu_delete_image" = "Esborra la imatge";
 "menu_delete_locations" = "Voleu esborrar totes les ubicacions?";
+"menu_delete_location" = "Voleu esborrar aquesta ubicació?";
 "menu_message_details" = "Detalls del missatge";
 "menu_copy_to_clipboard" = "Copia al porta-retalls";
 "menu_forward" = "Reenvia el missatge";
@@ -113,16 +135,23 @@
 "menu_play" = "Reprodueix";
 "menu_pause" = "Pausa";
 "menu_scroll_to_bottom" = "Vés al final";
+"menu_scroll_to_top" = "Desplaça\'t al cap d\'amunt";
 "menu_help" = "Ajuda";
 "menu_select_all" = "Selecciona-ho tot";
 "menu_expand" = "Desplega";
 "menu_edit_name" = "Edita el nom";
+"menu_edit_group_name" = "Modifica el nom del grup";
+"menu_edit_group_image" = "Modifica la imatge del grup";
 "menu_settings" = "Preferències";
 "menu_advanced" = "Avançat";
 "menu_deaddrop" = "Sol·licituds de contacte";
 "menu_deaddrop_subtitle" = "Prem a missatge per començar a xatejar";
 "menu_view_profile" = "Visualitza el perfil";
+"menu_zoom_in" = "Apropa";
+"menu_zoom_out" = "Allunya";
+"menu_save_log" = "Guarda el registre";
 "title_share_location" = "Comparteix la ubicació amb tots els membres del grup";
+"device_talk" = "Missatges del dispositiu";
 "mute_for_one_hour" = "Silencia 1 hora";
 "mute_for_two_hours" = "Silencia 2 hores";
 "mute_for_one_day" = "Silencia 1 dia";
@@ -147,8 +176,8 @@
 "ask_start_chat_with" = "Voleu xatejar amb %1$@?";
 // contact list
 "contacts_title" = "Llista de contactes";
-"contacts_enter_name_or_email" = "Introduïu el vostre nom o la vostra adreça d\'e-mail";
-"contacts_type_email_above" = "Escriviu l\'adreça d\'email anterior";
+"contacts_enter_name_or_email" = "Introduïu el vostre nom o la vostra adreça de correu electrònic";
+"contacts_type_email_above" = "Escriviu l\'adreça d\'email superior";
 "contacts_empty_hint" = "Cap contacte.";
 
 
@@ -211,7 +240,7 @@
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Seguretat SMTP";
 "login_auth_method" = "Mètode d\'autorització";
-"login_info_oauth2_title" = "Continua amb la configuració simplificada?";
+"login_info_oauth2_title" = "Voleu continuar amb la configuració simplificada?";
 "login_info_oauth2_text" = "L’adreça d\'e-mail que heu introduït admet una configuració simplificada. (OAuth2).\n\nEn el pas següent, permeteu que Delta Chat actuï com a xat amb l\'aplicació de correu electrònic..\n\nNo hi ha servidors de Delta Chat, les vostres dades romanen al vostre dispositiu!";
 "login_error_mail" = "Si us plau poseu una adreça d\'email vàlida";
 "login_error_server" = "Si us plau poseu un servidor / adreça IP vàlida";
@@ -228,7 +257,6 @@
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Reenvia a ...";
-"share_multiple_attachments" = "Voleu enviar %1$d fitxers al xat seleccionat?\n\nEls fitxers s\'envien sense variar-ne la mida, p. ex. les imatges i els vídeos no són recodificats.";
 "share_abort" = "S\'ha avortat la compartició per falta de permisos.";
 
 
@@ -348,8 +376,6 @@
 "systemmsg_action_by_me" = "%1$@ per mi.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ per %2$@.";
-
-
 // screen lock
 "screenlock_title" = "Bloqueja la pantalla";
 "screenlock_explain" = "Bloqueja l’accés amb el bloqueig de la pantalla d’Android o amb l’empremta digital; per evitar que aparegui el contingut anterior, habiliteu també \"Seguretat de pantalla\"";
