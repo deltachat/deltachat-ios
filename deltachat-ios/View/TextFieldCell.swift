@@ -3,12 +3,15 @@ import UIKit
 class TextFieldCell: UITableViewCell {
 
     private let maxFontSizeHorizontalLayout: CGFloat = 30
+
+    var placeholderVal: String
     var placeholder: String? {
         set {
-            textField.placeholder = newValue
+            placeholderVal = newValue ?? ""
+            configureTextFieldPlaceholder()
         }
         get {
-            return textField.placeholder
+            return placeholderVal
         }
     }
 
@@ -66,6 +69,7 @@ class TextFieldCell: UITableViewCell {
     
     init(description: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {
         preferValueOnWrite = true
+        placeholderVal = placeholder
         super.init(style: .default, reuseIdentifier: nil)
         title.text = "\(description):"
 
@@ -105,7 +109,16 @@ class TextFieldCell: UITableViewCell {
 
     @objc func textFieldChanged() {
         preferValue = preferValueOnWrite
+        configureTextFieldPlaceholder()
         onTextFieldChange?(self.textField)
+    }
+
+    func configureTextFieldPlaceholder() {
+        if let textFieldText = textField.text, !textFieldText.isEmpty {
+            textField.placeholder = nil
+        } else {
+            textField.placeholder = placeholderVal
+        }
     }
 
     func getText() -> String? {
