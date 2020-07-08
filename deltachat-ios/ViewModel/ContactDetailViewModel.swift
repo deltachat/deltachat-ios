@@ -6,7 +6,6 @@ class ContactDetailViewModel {
     let context: DcContext
 
     enum ProfileSections {
-        case startChat
         case chatOptions
         case sharedChats
         case chatActions
@@ -17,6 +16,7 @@ class ContactDetailViewModel {
         case documents
         case ephemeralMessages
         case muteChat
+        case startChat
     }
 
     enum ChatAction {
@@ -44,20 +44,19 @@ class ContactDetailViewModel {
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
         sections.append(.chatOptions)
-        sections.append(.startChat)
         if sharedChats.length > 0 {
             sections.append(.sharedChats)
         }
         sections.append(.chatActions)
 
         if chatId != 0 {
-            chatOptions = [.gallery, .documents, .muteChat]
+            chatOptions = [.gallery, .documents, .muteChat, .startChat]
             chatActions = [.archiveChat, .blockContact, .deleteChat]
             if UserDefaults.standard.bool(forKey: "ephemeral_messages") || dcContext.getChatEphemeralTimer(chatId: chatId) > 0 {
                 chatOptions.insert(.ephemeralMessages, at: 2)
             }
         } else {
-            chatOptions = [.gallery, .documents]
+            chatOptions = [.gallery, .documents, .startChat]
             chatActions = [.blockContact]
         }
     }
@@ -90,7 +89,6 @@ class ContactDetailViewModel {
         switch sections[section] {
         case .chatOptions: return chatOptions.count
         case .sharedChats: return sharedChats.length
-        case .startChat: return 1
         case .chatActions: return chatActions.count
         }
     }

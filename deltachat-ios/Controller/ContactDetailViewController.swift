@@ -146,6 +146,8 @@ class ContactDetailViewController: UITableViewController {
                 return ephemeralMessagesCell
             case .muteChat:
                 return muteChatCell
+            case .startChat:
+                return startChatCell
             }
         case .chatActions:
             switch viewModel.chatActionFor(row: row) {
@@ -156,8 +158,6 @@ class ContactDetailViewController: UITableViewController {
             case .deleteChat:
                 return deleteChatCell
             }
-        case .startChat:
-            return startChatCell
         case .sharedChats:
             if let cell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell {
                 viewModel.update(sharedChatCell: cell, row: row)
@@ -174,9 +174,6 @@ class ContactDetailViewController: UITableViewController {
             handleAttachmentAction(for: indexPath.row)
         case .chatActions:
             handleCellAction(for: indexPath.row)
-        case .startChat:
-            let contactId = viewModel.contactId
-            chatWith(contactId: contactId)
         case .sharedChats:
             let chatId = viewModel.getSharedChatIdAt(indexPath: indexPath)
             showChat(chatId: chatId)
@@ -186,7 +183,7 @@ class ContactDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let type = viewModel.typeFor(section: indexPath.section)
         switch type {
-        case .chatActions, .startChat, .chatOptions:
+        case .chatActions, .chatOptions:
             return Constants.defaultCellHeight
         case .sharedChats:
             return ContactCell.cellHeight
@@ -241,6 +238,9 @@ class ContactDetailViewController: UITableViewController {
             } else {
                 showMuteAlert()
             }
+        case .startChat:
+            let contactId = viewModel.contactId
+            chatWith(contactId: contactId)
         }
     }
 
