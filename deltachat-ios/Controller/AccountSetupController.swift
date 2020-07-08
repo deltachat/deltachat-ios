@@ -102,9 +102,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         return cell
     }()
 
-    private lazy var restoreCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("import_backup_title")
+    private lazy var restoreCell: BasicCell = {
+        let cell = BasicCell(style: .value1, reuseIdentifier: nil)
+        cell.title.text = String.localized("import_backup_title")
         cell.accessoryType = .disclosureIndicator
         cell.tag = tagRestoreCell
         return cell
@@ -118,9 +118,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         return cell
     }()
 
-    lazy var advancedShowCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("menu_advanced")
+    lazy var advancedShowCell: BasicCell = {
+        let cell = BasicCell(style: .value1, reuseIdentifier: nil)
+        cell.title.text = String.localized("menu_advanced")
         cell.accessoryType = .disclosureIndicator
         cell.tag = tagAdvancedCell
         return cell
@@ -174,12 +174,12 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         return cell
     }()
 
-    lazy var imapSecurityCell: UITableViewCell = {
+    lazy var imapSecurityCell: BasicCell = {
         let text = "\(dcContext.getImapSecurity())"
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("login_imap_security")
+        let cell = BasicCell(style: .value1, reuseIdentifier: nil)
+        cell.title.text = String.localized("login_imap_security")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = "\(dcContext.getImapSecurity())"
+        cell.value.text = "\(dcContext.getImapSecurity())"
         cell.selectionStyle = .none
         cell.tag = tagImapSecurityCell
         return cell
@@ -235,22 +235,22 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         return cell
     }()
 
-    lazy var smtpSecurityCell: UITableViewCell = {
+    lazy var smtpSecurityCell: BasicCell = {
         let security = "\(dcContext.getSmtpSecurity())"
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("login_smtp_security")
-        cell.detailTextLabel?.text = security
+        let cell = BasicCell(style: .value1, reuseIdentifier: nil)
+        cell.title.text = String.localized("login_smtp_security")
+        cell.value.text = security
         cell.tag = tagSmtpSecurityCell
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
         return cell
     }()
 
-    lazy var certCheckCell: UITableViewCell = {
+    lazy var certCheckCell: BasicCell = {
         let certCheckType = CertificateCheckController.ValueConverter.convertHexToString(value: dcContext.certificateChecks)
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("login_certificate_checks")
-        cell.detailTextLabel?.text = certCheckType
+        let cell = BasicCell(style: .value1, reuseIdentifier: nil)
+        cell.title.text = String.localized("login_certificate_checks")
+        cell.value.text = certCheckType
         cell.tag = tagCertCheckCell
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
@@ -778,9 +778,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     private func initSelectionCells() {
-        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: dcContext.getSmtpSecurity())
-        imapSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: dcContext.getImapSecurity())
-        certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: dcContext.certificateChecks)
+        smtpSecurityCell.value.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: dcContext.getSmtpSecurity())
+        imapSecurityCell.value.text = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: dcContext.getImapSecurity())
+        certCheckCell.value.text = CertificateCheckController.ValueConverter.convertHexToString(value: dcContext.certificateChecks)
     }
 
     private func resignFirstResponderOnAllCells() {
