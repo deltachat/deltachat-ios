@@ -52,7 +52,7 @@ class ContactCell: UITableViewCell {
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultTextColor
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
-        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.font = UIFont.preferredFont(for: .body, weight: .medium)
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
