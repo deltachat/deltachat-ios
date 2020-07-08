@@ -69,7 +69,7 @@ class ContactDetailViewModel {
         return chatActions[row]
     }
 
-    func attachmentActionFor(row: Int) -> ContactDetailViewModel.ChatOption {
+    func chatOptionFor(row: Int) -> ContactDetailViewModel.ChatOption {
         return chatOptions[row]
     }
 

@@ -137,7 +137,7 @@ class ContactDetailViewController: UITableViewController {
         let cellType = viewModel.typeFor(section: indexPath.section)
         switch cellType {
         case .chatOptions:
-            switch viewModel.attachmentActionFor(row: row) {
+            switch viewModel.chatOptionFor(row: row) {
             case .documents:
                 return documentsCell
             case .gallery:
@@ -171,9 +171,9 @@ class ContactDetailViewController: UITableViewController {
         let type = viewModel.typeFor(section: indexPath.section)
         switch type {
         case .chatOptions:
-            handleAttachmentAction(for: indexPath.row)
+            handleChatOption(for: indexPath.row)
         case .chatActions:
-            handleCellAction(for: indexPath.row)
+            handleChatAction(for: indexPath.row)
         case .sharedChats:
             let chatId = viewModel.getSharedChatIdAt(indexPath: indexPath)
             showChat(chatId: chatId)
@@ -210,7 +210,7 @@ class ContactDetailViewController: UITableViewController {
     }
 
     // MARK: - actions
-    private func handleCellAction(for index: Int) {
+    private func handleChatAction(for index: Int) {
         let action = viewModel.chatActionFor(row: index)
         switch action {
         case .archiveChat:
@@ -222,8 +222,8 @@ class ContactDetailViewController: UITableViewController {
         }
     }
 
-    private func handleAttachmentAction(for index: Int) {
-        let action = viewModel.attachmentActionFor(row: index)
+    private func handleChatOption(for index: Int) {
+        let action = viewModel.chatOptionFor(row: index)
         switch action {
         case .documents:
             showDocuments()
