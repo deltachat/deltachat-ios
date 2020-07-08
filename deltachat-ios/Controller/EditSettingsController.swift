@@ -31,9 +31,9 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         return cell
     }()
 
-    private lazy var accountSettingsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("pref_password_and_account_settings")
+    private lazy var accountSettingsCell: BasicCell = {
+        let cell = BasicCell(style: .value1, reuseIdentifier: nil)
+        cell.title.text = String.localized("pref_password_and_account_settings")
         cell.accessoryType = .disclosureIndicator
         cell.tag = tagAccountSettingsCell
         return cell
