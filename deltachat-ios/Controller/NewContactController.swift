@@ -32,8 +32,8 @@ class NewContactController: UITableViewController {
         self.dcContext = dcContext
         cells = [emailCell, nameCell]
         super.init(style: .grouped)
-        emailCell.textField.delegate = self
-        nameCell.textField.delegate = self
+        emailCell.textFieldDelegate = self
+        nameCell.textFieldDelegate = self
 
         // always show return key with name field, because
         // name is optional

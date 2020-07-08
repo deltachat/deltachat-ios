@@ -4,7 +4,7 @@ class TextFieldCell: UITableViewCell {
 
     private let maxFontSizeHorizontalLayout: CGFloat = 30
 
-    var placeholderVal: String
+    private var placeholderVal: String
     var placeholder: String? {
         set {
             placeholderVal = newValue ?? ""
@@ -29,8 +29,6 @@ class TextFieldCell: UITableViewCell {
         }
     }
 
-    public var preferValueOnWrite: Bool
-
     private var customConstraints: [NSLayoutConstraint] = []
 
     var onTextFieldChange:((_:UITextField) -> Void)?	// set this from outside to get notified about textfield changes
@@ -46,6 +44,8 @@ class TextFieldCell: UITableViewCell {
         return label
     }()
 
+    // use textFieldDelegate instead of textfield.delegate if you want to set a delegate from outside
+    public weak var textFieldDelegate: UITextFieldDelegate?
     lazy var textField: UITextField = {
         let textField = UITextField()
         textField.textAlignment = .right
@@ -53,6 +53,7 @@ class TextFieldCell: UITableViewCell {
         textField.adjustsFontForContentSizeCategory = true
         textField.font = .preferredFont(forTextStyle: .body)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.delegate = self
         return textField
     }()
 
@@ -68,7 +69,6 @@ class TextFieldCell: UITableViewCell {
     }()
     
     init(description: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {
-        preferValueOnWrite = true
         placeholderVal = placeholder
         super.init(style: .default, reuseIdentifier: nil)
         title.text = "\(description):"
@@ -78,7 +78,7 @@ class TextFieldCell: UITableViewCell {
         // the table view cell
         selectionStyle = .none
         setupViews()
-        textField.delegate = delegate
+        textFieldDelegate = delegate
         textField.placeholder = placeholder
         preferValue = false
     }
@@ -108,7 +108,6 @@ class TextFieldCell: UITableViewCell {
     }
 
     @objc func textFieldChanged() {
-        preferValue = preferValueOnWrite
         configureTextFieldPlaceholder()
         onTextFieldChange?(self.textField)
     }
@@ -169,8 +168,7 @@ class TextFieldCell: UITableViewCell {
         // switch off quicktype
         cell.textField.autocorrectionType = .no
         cell.textField.autocapitalizationType = .none
-        cell.textField.delegate = delegate
-        cell.preferValueOnWrite = true
+        cell.textFieldDelegate = delegate
         return cell
     }
 
@@ -178,7 +176,6 @@ class TextFieldCell: UITableViewCell {
         let cell = TextFieldCell(description: String.localized("password"), placeholder: String.localized("existing_password"))
         cell.textField.textContentType = UITextContentType.password
         cell.textField.isSecureTextEntry = true
-        cell.preferValueOnWrite = true
         return cell
     }
 
@@ -190,7 +187,7 @@ class TextFieldCell: UITableViewCell {
         // see: https://stackoverflow.com/a/36365399
         // therefore we use .default to capitalize the first character of the name
         cell.textField.keyboardType = .default
-        cell.textField.delegate = delegate
+        cell.textFieldDelegate = delegate
 
         return cell
     }
@@ -203,7 +200,72 @@ class TextFieldCell: UITableViewCell {
         // see: https://stackoverflow.com/a/36365399
         // therefore we use .default to capitalize the first character of the name
         cell.textField.keyboardType = .default
-        cell.textField.delegate = delegate
+        cell.textFieldDelegate = delegate
         return cell
     }
+}
+
+extension TextFieldCell: UITextFieldDelegate {
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let delegate = textFieldDelegate {
+            delegate.textFieldDidBeginEditing?(textField)
+        }
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let delegate = textFieldDelegate {
+            delegate.textFieldDidEndEditing?(textField)
+        }
+    }
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if #available(iOS 13.0, *), let delegate = textFieldDelegate {
+            delegate.textFieldDidChangeSelection?(textField)
+        }
+    }
+
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        if let delegate = textFieldDelegate, let result = delegate.textFieldShouldClear?(textField) {
+            return result
+        }
+        return true
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let delegate = textFieldDelegate, let result = delegate.textFieldShouldReturn?(textField) {
+            return result
+        }
+        return true
+    }
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        preferValue = true
+        if let delegate = textFieldDelegate, let result = delegate.textFieldShouldBeginEditing?(textField) {
+            return result
+        }
+        return true
+    }
+
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        preferValue = false
+        if let delegate = textFieldDelegate, let result = delegate.textFieldShouldEndEditing?(textField) {
+            return result
+        }
+        return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if let delegate = textFieldDelegate {
+            delegate.textFieldDidEndEditing?(textField)
+        }
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let delegate = textFieldDelegate, let result = delegate.textField?(textField, shouldChangeCharactersIn: range, replacementString: string) {
+            return result
+        }
+        return true
+    }
+
 }

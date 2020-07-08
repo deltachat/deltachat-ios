@@ -79,7 +79,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.tag = tagEmailCell
         cell.textField.addTarget(self, action: #selector(emailCellEdited), for: .editingChanged)
         cell.textField.tag = tagTextFieldEmail // will be used to eventually show oAuth-Dialogue when pressing return key
-        cell.textField.delegate = self
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return cell
     }()
@@ -89,7 +88,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.tag = tagPasswordCell
         cell.textField.tag = tagTextFieldPassword  // will be used to eventually show oAuth-Dialogue when selecting
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        cell.textField.delegate = self
         return cell
     }()
 
