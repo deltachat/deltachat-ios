@@ -82,12 +82,14 @@ class BasicCell: UITableViewCell {
             value.numberOfLines = 1
             value.textAlignment = .right
             stackView.axis = .horizontal
+            stackView.spacing = 10
 
         } else {
             title.numberOfLines = 0
             value.numberOfLines = 0
             value.textAlignment = .left
             stackView.axis = .vertical
+            stackView.spacing = 0
         }
     }
 
