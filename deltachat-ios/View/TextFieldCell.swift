@@ -16,6 +16,18 @@ class TextFieldCell: UITableViewCell {
         return UIFont.preferredFont(forTextStyle: .body).pointSize
     }
 
+    private var preferValue: Bool {
+        set {
+            textField.setContentCompressionResistancePriority( newValue ? .defaultHigh : .defaultLow, for: .horizontal)
+            title.setContentCompressionResistancePriority( newValue ? .defaultLow : .defaultHigh, for: .horizontal)
+        }
+        get {
+            textField.contentCompressionResistancePriority(for: .horizontal) == .defaultHigh
+        }
+    }
+
+    public var preferValueOnWrite: Bool
+
     private var customConstraints: [NSLayoutConstraint] = []
 
     var onTextFieldChange:((_:UITextField) -> Void)?	// set this from outside to get notified about textfield changes
@@ -53,6 +65,7 @@ class TextFieldCell: UITableViewCell {
     }()
     
     init(description: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {
+        preferValueOnWrite = true
         super.init(style: .default, reuseIdentifier: nil)
         title.text = "\(description):"
 
@@ -63,6 +76,7 @@ class TextFieldCell: UITableViewCell {
         setupViews()
         textField.delegate = delegate
         textField.placeholder = placeholder
+        preferValue = false
     }
 
     convenience init(descriptionID: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {
@@ -90,6 +104,7 @@ class TextFieldCell: UITableViewCell {
     }
 
     @objc func textFieldChanged() {
+        preferValue = preferValueOnWrite
         onTextFieldChange?(self.textField)
     }
 
@@ -142,6 +157,7 @@ class TextFieldCell: UITableViewCell {
         cell.textField.autocorrectionType = .no
         cell.textField.autocapitalizationType = .none
         cell.textField.delegate = delegate
+        cell.preferValueOnWrite = true
         return cell
     }
 
@@ -149,6 +165,7 @@ class TextFieldCell: UITableViewCell {
         let cell = TextFieldCell(description: String.localized("password"), placeholder: String.localized("existing_password"))
         cell.textField.textContentType = UITextContentType.password
         cell.textField.isSecureTextEntry = true
+        cell.preferValueOnWrite = true
         return cell
     }
 
