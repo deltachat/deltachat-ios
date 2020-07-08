@@ -142,13 +142,13 @@ class ContactDetailViewController: UITableViewController {
                 return documentsCell
             case .gallery:
                 return galleryCell
-            }
-        case .chatActions:
-            switch viewModel.chatActionFor(row: row) {
             case .ephemeralMessages:
                 return ephemeralMessagesCell
             case .muteChat:
                 return muteChatCell
+            }
+        case .chatActions:
+            switch viewModel.chatActionFor(row: row) {
             case .archiveChat:
                 return archiveChatCell
             case .blockContact:
@@ -216,15 +216,6 @@ class ContactDetailViewController: UITableViewController {
     private func handleCellAction(for index: Int) {
         let action = viewModel.chatActionFor(row: index)
         switch action {
-        case .ephemeralMessages:
-            showEphemeralMessagesController()
-        case .muteChat:
-            if viewModel.chatIsMuted {
-                self.viewModel.context.setChatMuteDuration(chatId: self.viewModel.chatId, duration: 0)
-                muteChatCell.actionTitle = String.localized("menu_mute")
-            } else {
-                showMuteAlert()
-            }
         case .archiveChat:
             toggleArchiveChat()
         case .blockContact:
@@ -241,6 +232,15 @@ class ContactDetailViewController: UITableViewController {
             showDocuments()
         case .gallery:
             showGallery()
+        case .ephemeralMessages:
+            showEphemeralMessagesController()
+        case .muteChat:
+            if viewModel.chatIsMuted {
+                self.viewModel.context.setChatMuteDuration(chatId: self.viewModel.chatId, duration: 0)
+                muteChatCell.actionTitle = String.localized("menu_mute")
+            } else {
+                showMuteAlert()
+            }
         }
     }
 

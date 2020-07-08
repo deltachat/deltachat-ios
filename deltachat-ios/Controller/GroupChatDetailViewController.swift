@@ -12,26 +12,26 @@ class GroupChatDetailViewController: UIViewController {
     enum ChatOption {
         case gallery
         case documents
+        case ephemeralMessages
+        case muteChat
     }
 
     enum ChatAction {
-        case ephemeralMessages
-        case muteChat
         case archiveChat
         case leaveGroup
         case deleteChat
     }
 
     private lazy var chatOptions: [ChatOption] = {
-        return [.gallery, .documents]
+        var options: [ChatOption] = [.gallery, .documents, .muteChat]
+        if UserDefaults.standard.bool(forKey: "ephemeral_messages") || dcContext.getChatEphemeralTimer(chatId: chatId) > 0 {
+            options.insert(.ephemeralMessages, at: 2)
+        }
+        return options
     }()
 
     private lazy var chatActions: [ChatAction] = {
-        var actions: [ChatAction] = [.muteChat, .archiveChat, .leaveGroup, .deleteChat]
-        if UserDefaults.standard.bool(forKey: "ephemeral_messages") || dcContext.getChatEphemeralTimer(chatId: chatId) > 0 {
-            actions.insert(.ephemeralMessages, at: 0)
-        }
-        return actions
+        return [.archiveChat, .leaveGroup, .deleteChat]
     }()
 
     private let membersRowAddMembers = 0
@@ -329,6 +329,10 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 return galleryCell
             case .documents:
                 return documentsCell
+            case .ephemeralMessages:
+                return ephemeralMessagesCell
+            case .muteChat:
+                return muteChatCell
             }
         case .members:
             if row == membersRowAddMembers || row == membersRowQrInvite {
@@ -360,10 +364,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             return contactCell
         case .chatActions:
             switch chatActions[row] {
-            case .ephemeralMessages:
-                return ephemeralMessagesCell
-            case .muteChat:
-                return muteChatCell
             case .archiveChat:
                 return archiveChatCell
             case .leaveGroup:
@@ -387,6 +387,15 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 showGallery()
             case .documents:
                 showDocuments()
+            case .ephemeralMessages:
+                showEphemeralMessagesController()
+            case .muteChat:
+                if chat.isMuted {
+                    dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
+                    muteChatCell.actionTitle = String.localized("menu_mute")
+                } else {
+                    showMuteAlert()
+                }
             }
         case .members:
             if row == membersRowAddMembers {
@@ -399,15 +408,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             }
         case .chatActions:
             switch chatActions[row] {
-            case .ephemeralMessages:
-                showEphemeralMessagesController()
-            case .muteChat:
-                if chat.isMuted {
-                    dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
-                    muteChatCell.actionTitle = String.localized("menu_mute")
-                } else {
-                    showMuteAlert()
-                }
             case .archiveChat:
                 toggleArchiveChat()
             case .leaveGroup:
