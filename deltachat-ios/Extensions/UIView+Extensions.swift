@@ -33,20 +33,36 @@ internal extension UIView {
         self.layer.borderWidth = 2
     }
 
-    func alignLeadingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingLeading: CGFloat = 0.0) {
-        self.leadingAnchor.constraint(equalTo: anchor, constant: paddingLeading).isActive = true
+    func alignLeadingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority? = .none) {
+        let constraint = self.leadingAnchor.constraint(equalTo: anchor, constant: paddingLeading)
+        if let priority = priority {
+            constraint.priority = priority
+        }
+        constraint.isActive = true
     }
 
-    func alignTrailingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingTrailing: CGFloat = 0.0) {
-        self.trailingAnchor.constraint(equalTo: anchor, constant: -paddingTrailing).isActive = true
+    func alignTrailingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority? = .none) {
+        let constraint = self.trailingAnchor.constraint(equalTo: anchor, constant: -paddingTrailing)
+        if let priority = priority {
+            constraint.priority = priority
+        }
+        constraint.isActive = true
     }
 
-    func alignTopToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingTop: CGFloat = 0.0) {
-        self.topAnchor.constraint(equalTo: anchor, constant: paddingTop).isActive = true
+    func alignTopToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingTop: CGFloat = 0.0, priority: UILayoutPriority? = .none) {
+        let constraint = self.topAnchor.constraint(equalTo: anchor, constant: paddingTop)
+        if let priority = priority {
+            constraint.priority = priority
+        }
+        constraint.isActive = true
     }
 
-    func alignBottomToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingBottom: CGFloat = 0.0) {
-        self.bottomAnchor.constraint(equalTo: anchor, constant: -paddingBottom).isActive = true
+    func alignBottomToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingBottom: CGFloat = 0.0, priority: UILayoutPriority? = .none) {
+        let constraint = self.bottomAnchor.constraint(equalTo: anchor, constant: -paddingBottom)
+        if let priority = priority {
+            constraint.priority = priority
+        }
+        constraint.isActive = true
     }
 
     func fill(view: UIView, paddingLeading: CGFloat? = 0.0, paddingTrailing: CGFloat? = 0.0, paddingTop: CGFloat? = 0.0, paddingBottom: CGFloat? = 0.0) {
