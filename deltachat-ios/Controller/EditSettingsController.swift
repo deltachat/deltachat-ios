@@ -103,17 +103,10 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == section1 {
-            switch indexPath.row {
-            case section1Avatar:
-                return AvatarSelectionCell.cellHeight
-            case section1Status:
-                return MultilineTextFieldCell.cellHeight
-            default:
-                 return Constants.defaultCellHeight
-            }
+        if indexPath.section == section1 && indexPath.row == section1Status {
+            return MultilineTextFieldCell.cellHeight
         } else {
-            return Constants.defaultCellHeight
+            return UITableView.automaticDimension
         }
     }
 
