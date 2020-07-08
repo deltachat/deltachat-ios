@@ -352,7 +352,12 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func showQrCodeInvite(chatId: Int) {
-        let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
+        var hint = ""
+        let dcChat = dcContext.getChat(chatId: chatId)
+        if !dcChat.name.isEmpty {
+            hint = String.localizedStringWithFormat(String.localized("qrshow_join_group_hint"), dcChat.name)
+        }
+        let qrInviteCodeController = QrViewController(dcContext: dcContext, chatId: chatId, qrCodeHint: hint)
         qrInviteCodeController.onDismissed = { [weak self] in
             self?.updateGroupContactIdsOnQRCodeInvite()
         }

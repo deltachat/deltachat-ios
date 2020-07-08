@@ -100,7 +100,6 @@
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
 		30A2039D24A4A1A100BFF51C /* BasicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A2039C24A4A1A100BFF51C /* BasicCell.swift */; };
 		30A2EC36247D72720024ADD8 /* AnimatedImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A2EC35247D72720024ADD8 /* AnimatedImageMessageCell.swift */; };
-		30A4D9AE2332672700544344 /* QrInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4D9AD2332672600544344 /* QrInviteViewController.swift */; };
 		30B0ACFA24AB5B99004D5E29 /* SettingsEphemeralMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
 		30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2122447285600CE2C90 /* ShareViewController.swift */; };
@@ -387,7 +386,6 @@
 		3095A350237DD1F700AB07F7 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
 		30A2039C24A4A1A100BFF51C /* BasicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicCell.swift; sourceTree = "<group>"; };
 		30A2EC35247D72720024ADD8 /* AnimatedImageMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedImageMessageCell.swift; sourceTree = "<group>"; };
-		30A4D9AD2332672600544344 /* QrInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrInviteViewController.swift; sourceTree = "<group>"; };
 		30AC265E237F1807002A943F /* AvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarHelper.swift; sourceTree = "<group>"; };
 		30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEphemeralMessageController.swift; sourceTree = "<group>"; };
 		30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateCheckController.swift; sourceTree = "<group>"; };
@@ -928,7 +926,6 @@
 				AE4AEE3422B1030D000AA495 /* PreviewController.swift */,
 				AEA0F6A024474146009F887B /* ProfileInfoViewController.swift */,
 				789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */,
-				30A4D9AD2332672600544344 /* QrInviteViewController.swift */,
 				AECEF03D244F2D55006C90DA /* QrPageController.swift */,
 				30149D9222F21129003C12B5 /* QrViewController.swift */,
 				B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */,
@@ -1408,7 +1405,6 @@
 				AEC67A1C241CE9E4007DDBE1 /* AppStateRestorer.swift in Sources */,
 				305961D32346125100C80F33 /* MessagesViewController+Keyboard.swift in Sources */,
 				305961EF2346125100C80F33 /* HorizontalEdgeInsets.swift in Sources */,
-				30A4D9AE2332672700544344 /* QrInviteViewController.swift in Sources */,
 				305961D62346125100C80F33 /* MessageInputBar.swift in Sources */,
 				305961ED2346125100C80F33 /* DetectorType.swift in Sources */,
 				305962062346125100C80F33 /* TypingIndicatorCellSizeCalculator.swift in Sources */,

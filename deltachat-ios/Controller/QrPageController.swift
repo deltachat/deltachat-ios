@@ -9,6 +9,18 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
 
     private var selectedIndex: Int = 0
 
+    private lazy var qrCodeHint: String = {
+        var qrCodeHint = ""
+        if dcContext.isConfigured() {
+            let contact = DcContact(id: Int(DC_CONTACT_ID_SELF))
+            qrCodeHint = String.localizedStringWithFormat(
+                String.localized("qrshow_join_contact_hint"),
+                contact.email
+            )
+        }
+        return qrCodeHint
+    }()
+
     private lazy var qrSegmentControl: UISegmentedControl = {
         let control = UISegmentedControl(
             items: [String.localized("qrshow_title"), String.localized("qrscan_title")]
@@ -35,7 +47,7 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
         delegate = self
         navigationItem.titleView = qrSegmentControl
 
-        let qrController = QrViewController(dcContext: dcContext)
+        let qrController = QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
         setViewControllers(
             [qrController],
             direction: .forward,
@@ -60,10 +72,12 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
         self.progressObserver = nil
     }
 
+
+
     // MARK: - actions
     @objc private func qrSegmentControlChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            let qrController = QrViewController(dcContext: dcContext)
+            let qrController = QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
             setViewControllers([qrController], direction: .reverse, animated: true, completion: nil)
         } else {
             let qrCodeReaderController = makeQRReader()
@@ -99,7 +113,7 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
         if viewController is QrViewController {
             return nil
         }
-        return QrViewController(dcContext: dcContext)
+        return QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
