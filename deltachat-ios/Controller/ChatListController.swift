@@ -22,6 +22,11 @@ class ChatListController: UITableViewController {
         return searchController
     }()
 
+    private lazy var archiveCell: ActionCell = {
+        let actionCell = ActionCell()
+        return actionCell
+    }()
+
     private lazy var newButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
         button.tintColor = DcColors.primary
@@ -38,14 +43,6 @@ class ChatListController: UITableViewController {
         label.isHidden = false
         return label
     }()
-
-    func getArchiveCell(title: String) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.textColor = .systemBlue
-        cell.textLabel?.text = title
-        cell.textLabel?.textAlignment = .center
-        return cell
-    }
 
     init(dcContext: DcContext, viewModel: ChatListViewModelProtocol) {
         self.viewModel = viewModel
@@ -208,7 +205,8 @@ class ChatListController: UITableViewController {
         case .chat(let chatData):
             let chatId = chatData.chatId
             if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-                return getArchiveCell(title: dcContext.getChat(chatId: chatId).name)
+                archiveCell.actionTitle = dcContext.getChat(chatId: chatId).name
+                return archiveCell
             } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
                 // default chatCell
                 chatCell.updateCell(cellViewModel: cellData)
@@ -323,19 +321,6 @@ class ChatListController: UITableViewController {
             emptySearchStateLabel.text = nil
             emptySearchStateLabel.isHidden = true
         }
-    }
-
-    func getArchiveCell(_ tableView: UITableView, title: String) -> UITableViewCell {
-        let archiveCell: UITableViewCell
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "ArchiveCell") {
-            archiveCell = cell
-        } else {
-            archiveCell = UITableViewCell(style: .default, reuseIdentifier: "ArchiveCell")
-        }
-        archiveCell.textLabel?.textAlignment = .center
-        archiveCell.textLabel?.text = title
-        archiveCell.textLabel?.textColor = UIColor.systemBlue
-        return archiveCell
     }
 
     // MARK: - alerts
