@@ -136,7 +136,7 @@ class ContactDetailViewController: UITableViewController {
         let row = indexPath.row
         let cellType = viewModel.typeFor(section: indexPath.section)
         switch cellType {
-        case .attachments:
+        case .chatOptions:
             switch viewModel.attachmentActionFor(row: row) {
             case .documents:
                 return documentsCell
@@ -170,7 +170,7 @@ class ContactDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let type = viewModel.typeFor(section: indexPath.section)
         switch type {
-        case .attachments:
+        case .chatOptions:
             handleAttachmentAction(for: indexPath.row)
         case .chatActions:
             handleCellAction(for: indexPath.row)
@@ -186,7 +186,7 @@ class ContactDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let type = viewModel.typeFor(section: indexPath.section)
         switch type {
-        case .chatActions, .startChat, .attachments:
+        case .chatActions, .startChat, .chatOptions:
             return Constants.defaultCellHeight
         case .sharedChats:
             return ContactCell.cellHeight

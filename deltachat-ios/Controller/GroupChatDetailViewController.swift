@@ -4,9 +4,14 @@ import DcCore
 class GroupChatDetailViewController: UIViewController {
 
     enum ProfileSections {
-        case attachments
+        case chatOptions
         case members
         case chatActions
+    }
+
+    enum ChatOption {
+        case gallery
+        case documents
     }
 
     enum ChatAction {
@@ -17,6 +22,10 @@ class GroupChatDetailViewController: UIViewController {
         case deleteChat
     }
 
+    private lazy var chatOptions: [ChatOption] = {
+        return [.gallery, .documents]
+    }()
+
     private lazy var chatActions: [ChatAction] = {
         var actions: [ChatAction] = [.muteChat, .archiveChat, .leaveGroup, .deleteChat]
         if UserDefaults.standard.bool(forKey: "ephemeral_messages") || dcContext.getChatEphemeralTimer(chatId: chatId) > 0 {
@@ -25,15 +34,13 @@ class GroupChatDetailViewController: UIViewController {
         return actions
     }()
 
-    private let attachmentsRowGallery = 0
-    private let attachmentsRowDocuments = 1
     private let membersRowAddMembers = 0
     private let membersRowQrInvite = 1
     private let memberManagementRows = 2
 
     private let dcContext: DcContext
 
-    private let sections: [ProfileSections] = [.attachments, .members, .chatActions]
+    private let sections: [ProfileSections] = [.chatOptions, .members, .chatActions]
 
     private var currentUser: DcContact? {
         let myId = groupMemberIds.filter { DcContact(id: $0).email == dcContext.addr }.first
@@ -287,8 +294,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionType = sections[section]
         switch sectionType {
-        case .attachments:
-            return 2
+        case .chatOptions:
+            return chatOptions.count
         case .members:
             return groupMemberIds.count + memberManagementRows
         case .chatActions:
@@ -300,7 +307,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         let sectionType = sections[indexPath.section]
         let row = indexPath.row
         switch sectionType {
-        case .attachments, .chatActions:
+        case .chatOptions, .chatActions:
             return Constants.defaultCellHeight
         case .members:
             switch row {
@@ -316,10 +323,11 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         let row = indexPath.row
         let sectionType = sections[indexPath.section]
         switch sectionType {
-        case .attachments:
-            if row == attachmentsRowGallery {
+        case .chatOptions:
+            switch chatOptions[row] {
+            case .gallery:
                 return galleryCell
-            } else if row == attachmentsRowDocuments {
+            case .documents:
                 return documentsCell
             }
         case .members:
@@ -373,10 +381,11 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         let row = indexPath.row
 
         switch sectionType {
-        case .attachments:
-            if row == attachmentsRowGallery {
+        case .chatOptions:
+            switch chatOptions[row] {
+            case .gallery:
                 showGallery()
-            } else if row == attachmentsRowDocuments {
+            case .documents:
                 showDocuments()
             }
         case .members:

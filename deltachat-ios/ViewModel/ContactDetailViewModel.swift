@@ -7,9 +7,14 @@ class ContactDetailViewModel {
 
     enum ProfileSections {
         case startChat
-        case attachments
+        case chatOptions
         case sharedChats
         case chatActions //  archive chat, block chat, delete chats
+    }
+
+    enum ChatOption {
+        case gallery
+        case documents
     }
 
     enum ChatAction {
@@ -18,11 +23,6 @@ class ContactDetailViewModel {
         case archiveChat
         case blockContact
         case deleteChat
-    }
-
-    enum AttachmentAction {
-        case gallery
-        case documents
     }
 
     var contactId: Int
@@ -35,7 +35,7 @@ class ContactDetailViewModel {
     private let sharedChats: DcChatlist
     private var sections: [ProfileSections] = []
     private var chatActions: [ChatAction] = []
-    private var attachmentActions: [AttachmentAction] = [.gallery, .documents]
+    private var chatOptions: [ChatOption] = [.gallery, .documents]
 
     init(dcContext: DcContext, contactId: Int) {
         self.context = dcContext
@@ -43,7 +43,7 @@ class ContactDetailViewModel {
         self.chatId = dcContext.getChatIdByContactId(contactId: contactId)
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
-        sections.append(.attachments)
+        sections.append(.chatOptions)
         sections.append(.startChat)
         if sharedChats.length > 0 {
             sections.append(.sharedChats)
@@ -68,8 +68,8 @@ class ContactDetailViewModel {
         return chatActions[row]
     }
 
-    func attachmentActionFor(row: Int) -> ContactDetailViewModel.AttachmentAction {
-        return attachmentActions[row]
+    func attachmentActionFor(row: Int) -> ContactDetailViewModel.ChatOption {
+        return chatOptions[row]
     }
 
     var chatIsArchived: Bool {
@@ -86,7 +86,7 @@ class ContactDetailViewModel {
 
     func numberOfRowsInSection(_ section: Int) -> Int {
         switch sections[section] {
-        case .attachments: return 2
+        case .chatOptions: return chatOptions.count
         case .sharedChats: return sharedChats.length
         case .startChat: return 1
         case .chatActions: return chatActions.count
