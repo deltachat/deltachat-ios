@@ -65,6 +65,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         avatarSelectionCell.onAvatarTapped = { [weak self] in
             self?.onAvatarTapped()
         }
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -99,14 +100,6 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
             }
         } else {
             return accountSettingsCell
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == section1 && indexPath.row == section1Status {
-            return MultilineTextFieldCell.cellHeight
-        } else {
-            return UITableView.automaticDimension
         }
     }
 

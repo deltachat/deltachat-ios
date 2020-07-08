@@ -3,9 +3,12 @@ import UIKit
 
 class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
 
-    private static let padding: CGFloat = 16
-    static var cellHeight: CGFloat {
-        return UIFont.preferredFont(forTextStyle: .body).pointSize * 6 + MultilineTextFieldCell.padding
+    private lazy var textFieldHeightConstraint: NSLayoutConstraint = {
+        return textField.constraintHeightTo(fourLinesHeight)
+    }()
+
+    private var fourLinesHeight: CGFloat {
+        return UIFont.preferredFont(forTextStyle: .body).pointSize * 4
     }
 
     var onTextFieldChange:((_:UITextView) -> Void)?    // set this from outside to get notified about textfield changes
@@ -64,9 +67,9 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
 
         textField.alignLeadingToAnchor(margins.leadingAnchor, paddingLeading: -5)
         textField.alignTrailingToAnchor(margins.trailingAnchor)
-        let fontsize = UIFont.preferredFont(forTextStyle: .body).pointSize
-        contentView.addConstraint(textField.constraintHeightTo(fontsize * 4))
+        contentView.addConstraint(textFieldHeightConstraint)
         textField.alignTopToAnchor(descriptionField.bottomAnchor)
+        textField.alignBottomToAnchor(margins.bottomAnchor)
 
         placeholder.alignLeadingToAnchor(margins.leadingAnchor)
         placeholder.alignTrailingToAnchor(textField.layoutMarginsGuide.trailingAnchor)
@@ -96,5 +99,12 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         placeholder.isHidden = !(text.isEmpty && range.length == textView.text.count)
         return true
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.preferredContentSizeCategory !=
+            traitCollection.preferredContentSizeCategory {
+            textFieldHeightConstraint.constant = fourLinesHeight
+        }
     }
 }
