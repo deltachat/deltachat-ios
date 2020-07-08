@@ -13,13 +13,6 @@ struct Constants {
 
     static let notificationIdentifier = "deltachat-ios-local-notifications"
 
-    static var defaultCellHeight: CGFloat {
-        return UIFont.preferredFont(forTextStyle: .body).pointSize + 32
-    }
-    static var defaultHeaderHeight: CGFloat {
-        return UIFont.preferredFont(forTextStyle: .caption1).pointSize + 12
-    }
-
 }
 
 struct Time {

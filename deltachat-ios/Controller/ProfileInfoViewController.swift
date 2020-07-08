@@ -46,7 +46,6 @@ class ProfileInfoViewController: UITableViewController {
     init(context: DcContext) {
         self.dcContext = context
         super.init(style: .grouped)
-        tableView.estimatedRowHeight = Constants.defaultCellHeight
     }
 
     required init?(coder: NSCoder) {
