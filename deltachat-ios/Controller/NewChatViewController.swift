@@ -130,12 +130,12 @@ class NewChatViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = indexPath.section
         if section == sectionNew {
-           return Constants.defaultCellHeight
+            return UITableView.automaticDimension
         } else if section == sectionImportedContacts {
             if deviceContactAccessGranted {
                 return ContactCell.cellHeight
             } else {
-                return Constants.defaultCellHeight
+                return UITableView.automaticDimension
             }
         } else {
             return ContactCell.cellHeight
