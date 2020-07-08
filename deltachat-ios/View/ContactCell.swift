@@ -16,6 +16,10 @@ class ContactCell: UITableViewCell {
         return 74.5
     }
 
+    var isLargeText: Bool {
+        return UIFont.preferredFont(forTextStyle: .body).pointSize > 36
+    }
+
     weak var delegate: ContactCellDelegate?
     private let badgeSize: CGFloat = 54
     private let imgSize: CGFloat = 20
@@ -82,7 +86,6 @@ class ContactCell: UITableViewCell {
         label.textColor = DcColors.middleGray
         label.textAlignment = .right
         label.setContentHuggingPriority(.defaultHigh, for: NSLayoutConstraint.Axis.horizontal)
-        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 10), for: NSLayoutConstraint.Axis.horizontal)
         return label
     }()
 
@@ -101,7 +104,6 @@ class ContactCell: UITableViewCell {
         let label = UILabel()
         label.textColor = DcColors.middleGray
         label.lineBreakMode = .byTruncatingTail
-        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
         label.font = .preferredFont(forTextStyle: .subheadline)
         label.adjustsFontForContentSizeCategory = true
         return label
@@ -146,6 +148,25 @@ class ContactCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupSubviews()
         selectionStyle = .default
+        configureCompressionPriority()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.preferredContentSizeCategory !=
+            traitCollection.preferredContentSizeCategory {
+            configureCompressionPriority()
+        }
+    }
+
+
+    private func configureCompressionPriority() {
+        if isLargeText {
+            timeLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
+            subtitleLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 10), for: .horizontal)
+        } else {
+            timeLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 10), for: .horizontal)
+            subtitleLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -209,6 +230,16 @@ class ContactCell: UITableViewCell {
     }
 
     func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool, isMuted: Bool) {
+        if isLargeText {
+            unreadMessageCounter.setCount(unreadCount)
+            unreadMessageCounter.isHidden = unreadCount == 0
+            unreadMessageCounter.backgroundColor = isMuted ? .gray : .red
+            pinnedIndicator.isHidden = true
+            deliveryStatusIndicator.isHidden = true
+            archivedIndicator.isHidden = true
+            return
+        }
+
         if visibility==DC_CHAT_VISIBILITY_ARCHIVED {
             pinnedIndicator.isHidden = true
             unreadMessageCounter.isHidden = true
