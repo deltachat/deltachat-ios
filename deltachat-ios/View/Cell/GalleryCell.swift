@@ -46,13 +46,21 @@ class GalleryCell: UICollectionViewCell {
         guard let viewtype = msg.viewtype, let fileUrl = msg.fileURL else {
             return
         }
-
         switch viewtype {
         case .image:
             imageView.image = msg.image
             playButtonView.isHidden = true
         case .video:
-            imageView.image = DcUtils.generateThumbnailFromVideo(url: fileUrl)
+            let key = fileUrl.absoluteString
+            if let image = ThumbnailCache.shared.restoreImage(key: key) {
+                imageView.image = image
+            } else {
+                imageView.loadVideoThumbnail(from: fileUrl, placeholderImage: nil) { thumbnail in
+                    if let image = thumbnail {
+                        ThumbnailCache.shared.storeImage(image: image, key: key)
+                    }
+                }
+            }
             playButtonView.isHidden = false
         case .gif:
             imageView.sd_setImage(with: fileUrl, placeholderImage: nil)
