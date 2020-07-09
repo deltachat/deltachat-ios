@@ -76,7 +76,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let delDeviceAfter = dcContext.getConfigInt("delete_device_after")
         let delServerAfter = dcContext.getConfigInt("delete_server_after")
         if delDeviceAfter==0 && delServerAfter==0 {
-            return String.localized("off")
+            return String.localized("never")
         } else {
             return String.localized("on")
         }
@@ -85,7 +85,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     private lazy var autodelCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.autodel.rawValue
-        cell.textLabel?.text = String.localized("autodel_title")
+        cell.textLabel?.text = String.localized("delete_old_messages")
         cell.accessoryType = .disclosureIndicator
         cell.detailTextLabel?.text = autodelSummary()
         return cell
