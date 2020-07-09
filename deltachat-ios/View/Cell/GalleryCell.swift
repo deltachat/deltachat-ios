@@ -33,6 +33,7 @@ class GalleryCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        item?.onImageLoaded = nil
         item = nil
     }
 
@@ -51,16 +52,13 @@ class GalleryCell: UICollectionViewCell {
     }
 
     func update(item: GalleryItem) {
+        self.item = item
         item.onImageLoaded = { [weak self] image in
-            print("dc_debug: image set")
             self?.imageView.image = image
         }
         playButtonView.isHidden = !item.showPlayButton
-        self.item = item
         imageView.image = item.thumbnailImage
-
     }
-
 
     override var isSelected: Bool {
         willSet {
