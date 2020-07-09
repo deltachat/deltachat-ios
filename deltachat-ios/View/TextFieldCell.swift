@@ -1,4 +1,5 @@
 import UIKit
+import DcCore
 
 class TextFieldCell: UITableViewCell {
 
@@ -38,7 +39,7 @@ class TextFieldCell: UITableViewCell {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
-        label.textColor = .darkGray
+        label.textColor = DcColors.defaultTextColor
         label.lineBreakMode = .byTruncatingTail
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
