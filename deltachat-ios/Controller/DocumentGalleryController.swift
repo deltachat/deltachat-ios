@@ -6,13 +6,21 @@ class DocumentGalleryController: UIViewController {
     private let fileMessageIds: [Int]
 
     private lazy var tableViews: UITableView = {
-        let table = UITableView(frame: .zero, style: .plain)
+        let table = UITableView(frame: .zero, style: .grouped)
         table.register(FileTableViewCell.self, forCellReuseIdentifier: FileTableViewCell.reuseIdentifier)
         table.dataSource = self
         table.delegate = self
         table.rowHeight = 60
         return table
     }()
+
+    private lazy var emptyStateView: EmptyStateLabel = {
+        let label = EmptyStateLabel()
+        label.text = String.localized("tab_docs_empty_hint")
+        label.isHidden = true
+        return label
+    }()
+
 
     init(fileMessageIds: [Int]) {
         self.fileMessageIds = fileMessageIds
@@ -28,6 +36,9 @@ class DocumentGalleryController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
+        if fileMessageIds.isEmpty {
+            emptyStateView.isHidden = false
+        }
     }
 
     // MARK: - layout
@@ -38,6 +49,13 @@ class DocumentGalleryController: UIViewController {
         tableViews.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableViews.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         tableViews.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+        view.addSubview(emptyStateView)
+        emptyStateView.translatesAutoresizingMaskIntoConstraints = false
+        emptyStateView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor).isActive = true
+        emptyStateView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
+        emptyStateView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        emptyStateView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
     }
 }
 

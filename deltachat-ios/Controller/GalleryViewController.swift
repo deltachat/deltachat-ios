@@ -43,7 +43,7 @@ class GalleryViewController: UIViewController {
     }()
 
     init(mediaMessageIds: [Int]) {
-        self.mediaMessageIds = mediaMessageIds.reversed()
+        self.mediaMessageIds = mediaMessageIds
         super.init(nibName: nil, bundle: nil)
     }
 
