@@ -433,6 +433,8 @@
 "ephemeral_dialog_title" = "删除已读消息";
 
 
+// automatically delete message
+"delete_old_messages" = "删除旧消息";
 "autodel_title" = "自动删除消息";
 "autodel_title_short" = "自动删除";
 "autodel_device_title" = "从设备删除消息";
