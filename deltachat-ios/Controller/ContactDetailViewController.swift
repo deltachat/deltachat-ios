@@ -136,19 +136,21 @@ class ContactDetailViewController: UITableViewController {
         let row = indexPath.row
         let cellType = viewModel.typeFor(section: indexPath.section)
         switch cellType {
-        case .attachments:
-            switch viewModel.attachmentActionFor(row: row) {
+        case .chatOptions:
+            switch viewModel.chatOptionFor(row: row) {
             case .documents:
                 return documentsCell
             case .gallery:
                 return galleryCell
-            }
-        case .chatActions:
-            switch viewModel.chatActionFor(row: row) {
             case .ephemeralMessages:
                 return ephemeralMessagesCell
             case .muteChat:
                 return muteChatCell
+            case .startChat:
+                return startChatCell
+            }
+        case .chatActions:
+            switch viewModel.chatActionFor(row: row) {
             case .archiveChat:
                 return archiveChatCell
             case .blockContact:
@@ -156,8 +158,6 @@ class ContactDetailViewController: UITableViewController {
             case .deleteChat:
                 return deleteChatCell
             }
-        case .startChat:
-            return startChatCell
         case .sharedChats:
             if let cell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell {
                 viewModel.update(sharedChatCell: cell, row: row)
@@ -170,13 +170,10 @@ class ContactDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let type = viewModel.typeFor(section: indexPath.section)
         switch type {
-        case .attachments:
-            handleAttachmentAction(for: indexPath.row)
+        case .chatOptions:
+            handleChatOption(for: indexPath.row)
         case .chatActions:
-            handleCellAction(for: indexPath.row)
-        case .startChat:
-            let contactId = viewModel.contactId
-            chatWith(contactId: contactId)
+            handleChatAction(for: indexPath.row)
         case .sharedChats:
             let chatId = viewModel.getSharedChatIdAt(indexPath: indexPath)
             showChat(chatId: chatId)
@@ -186,7 +183,7 @@ class ContactDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let type = viewModel.typeFor(section: indexPath.section)
         switch type {
-        case .chatActions, .startChat, .attachments:
+        case .chatActions, .chatOptions:
             return Constants.defaultCellHeight
         case .sharedChats:
             return ContactCell.cellHeight
@@ -213,18 +210,9 @@ class ContactDetailViewController: UITableViewController {
     }
 
     // MARK: - actions
-    private func handleCellAction(for index: Int) {
+    private func handleChatAction(for index: Int) {
         let action = viewModel.chatActionFor(row: index)
         switch action {
-        case .ephemeralMessages:
-            showEphemeralMessagesController()
-        case .muteChat:
-            if viewModel.chatIsMuted {
-                self.viewModel.context.setChatMuteDuration(chatId: self.viewModel.chatId, duration: 0)
-                muteChatCell.actionTitle = String.localized("menu_mute")
-            } else {
-                showMuteAlert()
-            }
         case .archiveChat:
             toggleArchiveChat()
         case .blockContact:
@@ -234,13 +222,25 @@ class ContactDetailViewController: UITableViewController {
         }
     }
 
-    private func handleAttachmentAction(for index: Int) {
-        let action = viewModel.attachmentActionFor(row: index)
+    private func handleChatOption(for index: Int) {
+        let action = viewModel.chatOptionFor(row: index)
         switch action {
         case .documents:
             showDocuments()
         case .gallery:
             showGallery()
+        case .ephemeralMessages:
+            showEphemeralMessagesController()
+        case .muteChat:
+            if viewModel.chatIsMuted {
+                self.viewModel.context.setChatMuteDuration(chatId: self.viewModel.chatId, duration: 0)
+                muteChatCell.actionTitle = String.localized("menu_mute")
+            } else {
+                showMuteAlert()
+            }
+        case .startChat:
+            let contactId = viewModel.contactId
+            chatWith(contactId: contactId)
         }
     }
 
