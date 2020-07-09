@@ -12,7 +12,7 @@ class SettingsAutodelSetController: UITableViewController {
 
     private static let autodelDeviceOptions: [Options] = {
         return [
-            Options(value: 0, descr: "off"),
+            Options(value: 0, descr: "never"),
             Options(value: 3600, descr: "autodel_after_1_hour"),
             Options(value: 86400, descr: "autodel_after_1_day"),
             Options(value: 604800, descr: "autodel_after_1_week"),
@@ -23,7 +23,7 @@ class SettingsAutodelSetController: UITableViewController {
 
     private static let autodelServerOptions: [Options] = {
         return [
-            Options(value: 0, descr: "off"),
+            Options(value: 0, descr: "never"),
             Options(value: 1, descr: "autodel_at_once"),
             Options(value: 3600, descr: "autodel_after_1_hour"),
             Options(value: 86400, descr: "autodel_after_1_day"),
@@ -65,7 +65,7 @@ class SettingsAutodelSetController: UITableViewController {
         self.fromServer = fromServer
         self.currVal = dcContext.getConfigInt(fromServer ? "delete_server_after" :  "delete_device_after")
         super.init(style: .grouped)
-        self.title = String.localized("autodel_title_short")
+        self.title = String.localized("delete_old_messages")
         hidesBottomBarWhenPushed = true
     }
 

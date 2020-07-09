@@ -76,7 +76,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let delDeviceAfter = dcContext.getConfigInt("delete_device_after")
         let delServerAfter = dcContext.getConfigInt("delete_server_after")
         if delDeviceAfter==0 && delServerAfter==0 {
-            return String.localized("off")
+            return String.localized("never")
         } else {
             return String.localized("on")
         }
@@ -85,7 +85,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     private lazy var autodelCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.autodel.rawValue
-        cell.textLabel?.text = String.localized("autodel_title")
+        cell.textLabel?.text = String.localized("delete_old_messages")
         cell.accessoryType = .disclosureIndicator
         cell.detailTextLabel?.text = autodelSummary()
         return cell
@@ -379,15 +379,31 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let locationStreaming = UserDefaults.standard.bool(forKey: "location_streaming")
         let title = locationStreaming ?
             "Disable on-demand location streaming" : String.localized("pref_on_demand_location_streaming")
-        alert.addAction(UIAlertAction(title: title, style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
             UserDefaults.standard.set(!locationStreaming, forKey: "location_streaming")
+            if !locationStreaming {
+                let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Location streaming\"",
+                                              message: "You will find a corresponding option in the attach menu (the paper clip) of each chat now.\n\n"
+                                                + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                self?.navigationController?.present(alert, animated: true, completion: nil)
+            }
         }))
 
         let ephemeralMessages = UserDefaults.standard.bool(forKey: "ephemeral_messages")
         let ephemeralTitle = ephemeralMessages ?
-            "Disable ephemeral messages" : "Enable ephemeral messages"
-        alert.addAction(UIAlertAction(title: ephemeralTitle, style: .default, handler: { _ in
+            "Disable disappearing messages options" : "Enable disappearing messages options"
+        alert.addAction(UIAlertAction(title: ephemeralTitle, style: .default, handler: { [weak self] _ in
             UserDefaults.standard.set(!ephemeralMessages, forKey: "ephemeral_messages")
+            if !ephemeralMessages {
+                let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Disappearing messages\"",
+                                              message: "You will find a corresponding option in each chat profile now.\n\n"
+                                                + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                self?.navigationController?.present(alert, animated: true, completion: nil)
+            }
         }))
 
         let logAction = UIAlertAction(title: String.localized("pref_view_log"), style: .default, handler: { [weak self] _ in

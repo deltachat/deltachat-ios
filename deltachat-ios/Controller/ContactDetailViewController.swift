@@ -28,7 +28,7 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var ephemeralMessagesCell: UITableViewCell = {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("pref_ephemeral_messages")
+        cell.textLabel?.text = String.localized("ephemeral_messages")
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         return cell

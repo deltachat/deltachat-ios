@@ -16,10 +16,6 @@ class SettingsAutodelOverviewController: UITableViewController {
         case autodelServer = 1
     }
 
-    func autodelSummary() -> String {
-        return String.localized("off")
-    }
-
     private lazy var autodelDeviceCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.autodelDevice.rawValue
@@ -53,7 +49,7 @@ class SettingsAutodelOverviewController: UITableViewController {
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(style: .grouped)
-        self.title = String.localized("autodel_title")
+        self.title = String.localized("delete_old_messages")
         hidesBottomBarWhenPushed = true
     }
 
