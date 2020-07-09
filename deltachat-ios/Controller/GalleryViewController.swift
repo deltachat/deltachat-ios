@@ -253,7 +253,7 @@ class GalleryItem {
         }
     }
 
-    func loadThumbnail() {
+    private func loadThumbnail() {
         guard let viewtype = msg.viewtype, let url = msg.fileURL else {
             return
         }
