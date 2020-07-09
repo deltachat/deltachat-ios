@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
         DBDebugToolkit.setupCrashReporting()
-
+        
         let console = ConsoleDestination()
         logger.addDestination(console)
         dcContext.logger = DcLogger()
