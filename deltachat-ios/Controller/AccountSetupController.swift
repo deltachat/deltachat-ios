@@ -660,8 +660,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                 } else if ui["done"] as! Bool {
                     self.dcContext.maybeStartIo()
                     self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
-                    self.emailCell.setText(text: nil)
-                    self.passwordCell.setText(text: nil)
                 } else {
                     self.updateProgressAlertValue(value: ui["progress"] as? Int)
                 }
