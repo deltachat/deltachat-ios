@@ -55,8 +55,8 @@ class GalleryCell: UICollectionViewCell {
         item.onImageLoaded = { [weak self] image in
             self?.imageView.image = image
         }
-        imageView.image = item.thumbnailImage
         playButtonView.isHidden = !item.showPlayButton
+        imageView.image = item.thumbnailImage
     }
 
     override var isSelected: Bool {
