@@ -349,14 +349,14 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             title = String.localized("login_header")
         }
         navigationItem.rightBarButtonItem = loginButton
+        emailCell.setText(text: dcContext.addr ?? nil)
+        passwordCell.setText(text: dcContext.mailPw ?? nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initSelectionCells()
-        updateCellData()
         handleLoginButton()
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -485,12 +485,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         default:
             break
         }
-    }
-
-    // MARK: - updates
-    private func updateCellData() {
-        emailCell.setText(text: dcContext.addr ?? nil)
-        passwordCell.setText(text: dcContext.mailPw ?? nil)
     }
 
     // MARK: - actions
