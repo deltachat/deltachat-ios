@@ -432,7 +432,6 @@
 "ephemeral_dialog_title" = "Fshiji mesazhet e lexuar";
 
 
-// automatically delete message
 "autodel_title" = "Vetëfshi mesazhe";
 "autodel_title_short" = "Vetëfshi";
 "autodel_device_title" = "Fshini mesazhe prej pajisjes";
@@ -486,15 +485,6 @@
 "systemmsg_unknown_sender_for_chat" = "Dërgues i panjohur për këtë fjalosje. Për më tepër hollësi, shihni \'info\'.";
 "systemmsg_subject_for_new_contact" = "Mesazh nga %1$@";
 "systemmsg_failed_sending_to" = "S’u arrit të dërgohej mesazh te %1$@.";
-
-"systemmsg_ephemeral_timer_disabled" = "Kohëmatësi i fshirjes së mesazheve është i çaktivizuar.";
-"systemmsg_ephemeral_timer_enabled" = "Kohëmatësi i fshirjes së mesazheve është vënë në %1$@ s.";
-"systemmsg_ephemeral_timer_minute" = "Kohëmatësi i fshirjes së mesazheve është vënë në 1 minutë.";
-"systemmsg_ephemeral_timer_hour" = "Kohëmatësi i fshirjes së mesazheve është vënë në 1 orë.";
-"systemmsg_ephemeral_timer_day" = "Kohëmatësi i fshirjes së mesazheve është vënë në 1 ditë.";
-"systemmsg_ephemeral_timer_week" = "Kohëmatësi i fshirjes së mesazheve është vënë në 1 javë.";
-"systemmsg_ephemeral_timer_four_weeks" = "Kohëmatësi i fshirjes së mesazheve është vënë në 4 javë.";
-
 
 // screen lock
 "screenlock_title" = "Kyçje ekrani";

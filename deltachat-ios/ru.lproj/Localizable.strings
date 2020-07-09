@@ -23,6 +23,7 @@
 "archive" = "В архив";
 "unarchive" = "Из архива";
 "mute" = "Отключить уведомления";
+"ephemeral_messages" = "Исчезающие сообщения";
 "save" = "Сохранить";
 "chat" = "Чат";
 "media" = "Медиафайлы";
@@ -434,6 +435,7 @@
 
 
 // automatically delete message
+"delete_old_messages" = "Удалять старые сообщения";
 "autodel_title" = "Автоматическое удаление сообщений";
 "autodel_title_short" = "Автоматическое удаление";
 "autodel_device_title" = "Удалять сообщения с устройства";
@@ -488,13 +490,13 @@
 "systemmsg_subject_for_new_contact" = "Сообщение от %1$@";
 "systemmsg_failed_sending_to" = "Не удалось отправить сообщение %1$@.";
 
-"systemmsg_ephemeral_timer_disabled" = "Таймер удаления сообщений отключён.";
-"systemmsg_ephemeral_timer_enabled" = "Таймер удаления сообщений установлен на %1$@ с.";
-"systemmsg_ephemeral_timer_minute" = "Таймер удаления сообщений установлен на 1 минуту.";
-"systemmsg_ephemeral_timer_hour" = "Таймер удаления сообщений установлен на 1 час.";
-"systemmsg_ephemeral_timer_day" = "Таймер удаления сообщений установлен на 1 день.";
-"systemmsg_ephemeral_timer_week" = "Таймер удаления сообщений установлен на 1 неделю.";
-"systemmsg_ephemeral_timer_four_weeks" = "Таймер удаления сообщений установлен на 4 недели.";
+"systemmsg_ephemeral_timer_disabled" = "Таймер исчезающих сообщений отключен.";
+"systemmsg_ephemeral_timer_enabled" = "Таймер исчезающих сообщений установлен на %1$@ с.";
+"systemmsg_ephemeral_timer_minute" = "Таймер исчезающих сообщений установлен на 1 минуту.";
+"systemmsg_ephemeral_timer_hour" = "Таймер исчезающих сообщений установлен на 1 час.";
+"systemmsg_ephemeral_timer_day" = "Таймер исчезающих сообщений установлен на 1 день.";
+"systemmsg_ephemeral_timer_week" = "Таймер исчезающих сообщений установлен на 1 неделю.";
+"systemmsg_ephemeral_timer_four_weeks" = "Таймер исчезающих сообщений установлен на 4 недели.";
 
 
 // screen lock

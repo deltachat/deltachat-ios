@@ -433,7 +433,6 @@
 "ephemeral_dialog_title" = "Okunan iletileri sil";
 
 
-// automatically delete message
 "autodel_title" = "İletileri otomatik sil";
 "autodel_title_short" = "Otomatik sil";
 "autodel_device_title" = "İletileri aygıttan sil";
@@ -487,15 +486,6 @@
 "systemmsg_unknown_sender_for_chat" = "Bu sohbet için bilinmeyen gönderen. Daha fazla ayrıntı için \'bilgi\'ye bakın.";
 "systemmsg_subject_for_new_contact" = "Şundan ileti: %1$@";
 "systemmsg_failed_sending_to" = "%1$@ alıcısına ileti gönderme başarısız.";
-
-"systemmsg_ephemeral_timer_disabled" = "İleti silme zamanlayıcısı etkisiz.";
-"systemmsg_ephemeral_timer_enabled" = "İleti silme zamanlayıcısı ayarlı: %1$@.";
-"systemmsg_ephemeral_timer_minute" = "İleti silme zamanlayıcısı 1 dakikaya ayarlı.";
-"systemmsg_ephemeral_timer_hour" = "İleti silme zamanlayıcısı 1 saate ayarlı.";
-"systemmsg_ephemeral_timer_day" = "İleti silme zamanlayıcısı 1 güne ayarlı.";
-"systemmsg_ephemeral_timer_week" = "İleti silme zamanlayıcısı 1 haftaya ayarlı.";
-"systemmsg_ephemeral_timer_four_weeks" = "İleti silme zamanlayıcısı 4 haftaya ayarlı.";
-
 
 // screen lock
 "screenlock_title" = "Ekran kilidi";

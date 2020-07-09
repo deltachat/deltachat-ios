@@ -433,7 +433,6 @@
 "ephemeral_dialog_title" = "删除已读消息";
 
 
-// automatically delete message
 "autodel_title" = "自动删除消息";
 "autodel_title_short" = "自动删除";
 "autodel_device_title" = "从设备删除消息";
@@ -487,15 +486,6 @@
 "systemmsg_unknown_sender_for_chat" = "此聊天发送者未知。查看“信息”来获取更多详情。";
 "systemmsg_subject_for_new_contact" = "来自 %1$@ 的消息";
 "systemmsg_failed_sending_to" = "发送消息给 %1$@ 失败。";
-
-"systemmsg_ephemeral_timer_disabled" = "消息删除定时器已禁用。";
-"systemmsg_ephemeral_timer_enabled" = "消息删除定时器被设置为 %1$@ 秒。";
-"systemmsg_ephemeral_timer_minute" = "消息删除定时器被设置为 1 分钟。";
-"systemmsg_ephemeral_timer_hour" = "消息删除定时器被设置为 1 小时。";
-"systemmsg_ephemeral_timer_day" = "消息删除定时器被设置为 1 天。";
-"systemmsg_ephemeral_timer_week" = "消息删除定时器被设置为 1 周。";
-"systemmsg_ephemeral_timer_four_weeks" = "消息删除定时器被设置为 4 周。";
-
 
 // screen lock
 "screenlock_title" = "屏幕锁定";

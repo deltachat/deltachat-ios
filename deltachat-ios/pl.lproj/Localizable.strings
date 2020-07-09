@@ -421,7 +421,6 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Niezawodne połączenie w tle";
 "pref_reliable_service_explain" = "Wymaga stałego powiadomienia";
-// automatically delete message
 "autodel_title" = "Automatyczne usuwanie wiadomości";
 "autodel_title_short" = "Automatyczne usuwanie";
 "autodel_device_title" = "Usuwanie wiadomości z urządzenia";

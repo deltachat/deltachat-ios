@@ -23,6 +23,7 @@
 "archive" = "Archive";
 "unarchive" = "Unarchive";
 "mute" = "Mute";
+"ephemeral_messages" = "Disappearing messages";
 "save" = "Save";
 "chat" = "Chat";
 "media" = "Media";
@@ -434,6 +435,7 @@
 
 
 // automatically delete message
+"delete_old_messages" = "Delete old messages";
 "autodel_title" = "Auto-delete messages";
 "autodel_title_short" = "Auto-delete";
 "autodel_device_title" = "Delete messages from device";
@@ -488,13 +490,13 @@
 "systemmsg_subject_for_new_contact" = "Message from %1$@";
 "systemmsg_failed_sending_to" = "Failed to send message to %1$@.";
 
-"systemmsg_ephemeral_timer_disabled" = "Message deletion timer is disabled.";
-"systemmsg_ephemeral_timer_enabled" = "Message deletion timer is set to %1$@ s.";
-"systemmsg_ephemeral_timer_minute" = "Message deletion timer is set to 1 minute.";
-"systemmsg_ephemeral_timer_hour" = "Message deletion timer is set to 1 hour.";
-"systemmsg_ephemeral_timer_day" = "Message deletion timer is set to 1 day.";
-"systemmsg_ephemeral_timer_week" = "Message deletion timer is set to 1 week.";
-"systemmsg_ephemeral_timer_four_weeks" = "Message deletion timer is set to 4 weeks.";
+"systemmsg_ephemeral_timer_disabled" = "Disappearing messages timer disabled.";
+"systemmsg_ephemeral_timer_enabled" = "Disappearing messages timer set to %1$@ s.";
+"systemmsg_ephemeral_timer_minute" = "Disappearing messages timer set to 1 minute.";
+"systemmsg_ephemeral_timer_hour" = "Disappearing messages timer set to 1 hour.";
+"systemmsg_ephemeral_timer_day" = "Disappearing messages timer set to 1 day.";
+"systemmsg_ephemeral_timer_week" = "Disappearing messages timer set to 1 week.";
+"systemmsg_ephemeral_timer_four_weeks" = "Disappearing messages timer set to 4 weeks.";
 
 
 // screen lock

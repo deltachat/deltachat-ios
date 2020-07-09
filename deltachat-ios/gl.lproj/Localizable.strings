@@ -426,7 +426,6 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Conexión estable en segundo plano";
 "pref_reliable_service_explain" = "Require unha notificación permanente";
-// automatically delete message
 "autodel_title" = "Borrado automático";
 "autodel_title_short" = "Borrar automáticamente";
 "autodel_device_title" = "Borrar mensaxes do dispositivo";

@@ -424,7 +424,6 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Bigarren planoko konexio egonkorra";
 "pref_reliable_service_explain" = "Etengabeko jakinarazpena eskatzen du";
-// automatically delete message
 "autodel_title" = "Automatikoki ezabatu mezuak";
 "autodel_title_short" = "Automatikoki ezabatu";
 "autodel_device_title" = "Ezabatu mezuak gailutik";

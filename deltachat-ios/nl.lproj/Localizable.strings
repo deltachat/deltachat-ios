@@ -433,7 +433,6 @@
 "ephemeral_dialog_title" = "Gelezen berichten verwijderen";
 
 
-// automatically delete message
 "autodel_title" = "Berichten automatisch verwijderen";
 "autodel_title_short" = "Automatisch verwijderen";
 "autodel_device_title" = "Berichten verwijderen van apparaat";
@@ -487,15 +486,6 @@
 "systemmsg_unknown_sender_for_chat" = "Onbekende afzender in dit gesprek. Zie \'Informatie\' voor meer informatie.";
 "systemmsg_subject_for_new_contact" = "Bericht van %1$@";
 "systemmsg_failed_sending_to" = "Het bericht kan niet worden verstuurd aan %1$@.";
-
-"systemmsg_ephemeral_timer_disabled" = "De tijdklok omtrent berichtverwijdering is uitgeschakeld.";
-"systemmsg_ephemeral_timer_enabled" = "De tijdklok omtrent berichtverwijdering is ingesteld op %1$@ seconden.";
-"systemmsg_ephemeral_timer_minute" = "De tijdklok omtrent berichtverwijdering is ingesteld op 1 minuut.";
-"systemmsg_ephemeral_timer_hour" = "De tijdklok omtrent berichtverwijdering is ingesteld op 1 uur.";
-"systemmsg_ephemeral_timer_day" = "De tijdklok omtrent berichtverwijdering is ingesteld op 1 dag.";
-"systemmsg_ephemeral_timer_week" = "De tijdklok omtrent berichtverwijdering is ingesteld op 1 week.";
-"systemmsg_ephemeral_timer_four_weeks" = "De tijdklok omtrent berichtverwijdering is ingesteld op 4 weken.";
-
 
 // screen lock
 "screenlock_title" = "Schermvergrendeling";
