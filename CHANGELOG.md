@@ -1,5 +1,14 @@
 # Delta Chat iOS Changelog
 
+## 1.10.1
+2020-07
+
+* new launchscreen
+* improve overall stability
+* improve message processing
+* disappearing messags added as an experimental feature
+
+
 ## 1.10.0
 2020-06
 
