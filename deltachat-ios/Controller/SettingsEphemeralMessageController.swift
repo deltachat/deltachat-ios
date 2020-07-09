@@ -34,7 +34,7 @@ class SettingsEphemeralMessageController: UITableViewController {
         self.chatId = chatId
         super.init(style: .grouped)
         self.currentIndex = self.options.index(of: dcContext.getChatEphemeralTimer(chatId: chatId)) ?? 0
-        self.title = String.localized("pref_ephemeral_messages")
+        self.title = String.localized("ephemeral_messages")
         hidesBottomBarWhenPushed = true
 
     }
