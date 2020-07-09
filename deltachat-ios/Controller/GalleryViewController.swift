@@ -225,10 +225,6 @@ class GalleryItem {
 
     var msg: DcMsg
 
-    var msgViewType: MessageViewType? {
-        return msg.viewtype
-    }
-
     var fileUrl: URL? {
         return msg.fileURL
     }
