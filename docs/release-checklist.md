@@ -51,10 +51,11 @@ on https://appstoreconnect.apple.com :
 
    OR
 
-8. for a **Reguar release**, open "My Apps/Delta Chat/+Version or Platform/iOS"
+8. for a **Reguar release**, open "My Apps/Delta Chat iOS/iOS App+ (first item)"
    a) enter the version number (without leading "v")
    b) fill out "what's new", use CHANGELOG.md as a template
-   c) make sure, the credentials for the apple-review-team are working
+   c) select a build
+   d) make sure, the credentials for the apple-review-team are working
    click on "Save" and then "Submit", wrt ads: we do not use ads, answer "No"
 
 in both cases, make sure, the provided test-email-address is working.
