@@ -26,9 +26,9 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var ephemeralMessagesCell: BasicCell = {
-        let cell = BasicCell(style: .default, reuseIdentifier: nil)
-        cell.title.text = String.localized("ephemeral_messages")
+    private lazy var ephemeralMessagesCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("ephemeral_messages")
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -66,9 +66,9 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var galleryCell: BasicCell = {
-        let cell = BasicCell(style: .default, reuseIdentifier: nil)
-        cell.title.text = String.localized("gallery")
+    private lazy var galleryCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("gallery")
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
@@ -77,9 +77,9 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var documentsCell: BasicCell = {
-        let cell = BasicCell(style: .default, reuseIdentifier: nil)
-        cell.title.text = String.localized("documents")
+    private lazy var documentsCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("documents")
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false

@@ -90,9 +90,9 @@ class GroupChatDetailViewController: UIViewController {
         return header
     }()
 
-    private lazy var ephemeralMessagesCell: BasicCell = {
-        let cell = BasicCell(style: .default, reuseIdentifier: nil)
-        cell.title.text = String.localized("ephemeral_messages")
+    private lazy var ephemeralMessagesCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("ephemeral_messages")
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -131,16 +131,16 @@ class GroupChatDetailViewController: UIViewController {
         return cell
     }()
 
-    private lazy var galleryCell: BasicCell = {
-        let cell = BasicCell(style: .default, reuseIdentifier: nil)
-        cell.title.text = String.localized("gallery")
+    private lazy var galleryCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("gallery")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
-    private lazy var documentsCell: BasicCell = {
-        let cell = BasicCell(style: .default, reuseIdentifier: nil)
-        cell.title.text = String.localized("documents")
+    private lazy var documentsCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("documents")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
