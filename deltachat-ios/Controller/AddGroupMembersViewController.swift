@@ -13,7 +13,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         return button
     }()
 
-    lazy var newContactCell: ActionCell = {
+    private lazy var newContactCell: ActionCell = {
         let cell = ActionCell()
         cell.actionColor = SystemColor.blue.uiColor
         cell.actionTitle = String.localized("menu_new_contact")
@@ -21,7 +21,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         return cell
     }()
 
-    lazy var doneButton: UIBarButtonItem = {
+    private lazy var doneButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
         return button
     }()
