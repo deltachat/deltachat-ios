@@ -106,8 +106,6 @@ class ContactDetailViewController: UITableViewController {
             title: String.localized("global_menu_edit_desktop"),
             style: .plain, target: self, action: #selector(editButtonPressed))
         self.title = String.localized("tab_contact")
-        tableView.sectionHeaderHeight =  UITableView.automaticDimension
-        tableView.rowHeight = UITableView.automaticDimension
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -122,6 +120,8 @@ class ContactDetailViewController: UITableViewController {
         tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
         headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
         tableView.tableHeaderView = headerCell
+        tableView.sectionHeaderHeight =  UITableView.automaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     // MARK: - UITableViewDatasource, UITableViewDelegate
