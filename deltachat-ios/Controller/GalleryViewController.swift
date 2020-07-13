@@ -23,7 +23,7 @@ class GalleryViewController: UIViewController {
         collection.delegate = self
         collection.register(GalleryCell.self, forCellWithReuseIdentifier: GalleryCell.reuseIdentifier)
         collection.contentInset = UIEdgeInsets(top: gridDefaultSpacing, left: gridDefaultSpacing, bottom: gridDefaultSpacing, right: gridDefaultSpacing)
-        collection.backgroundColor = .white
+        collection.backgroundColor = DcColors.defaultBackgroundColor
         collection.delaysContentTouches = false
         collection.alwaysBounceVertical = true
         return collection

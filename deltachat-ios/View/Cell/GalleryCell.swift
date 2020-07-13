@@ -9,6 +9,7 @@ class GalleryCell: UICollectionViewCell {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
+        view.backgroundColor = DcColors.defaultBackgroundColor
         return view
     }()
 
