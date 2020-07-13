@@ -21,8 +21,8 @@ class QrViewController: UIViewController {
         return view
     }()
 
-    private var qrCodeHint: String
-    private var chatId: Int
+    private let qrCodeHint: String
+    private let chatId: Int
 
     init(dcContext: DcContext, chatId: Int? = 0, qrCodeHint: String?) {
         self.dcContext = dcContext
