@@ -776,9 +776,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     private func initSelectionCells() {
-        smtpSecurityCell.textLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: dcContext.getSmtpSecurity())
-        imapSecurityCell.textLabel?.text = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: dcContext.getImapSecurity())
-        certCheckCell.textLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: dcContext.certificateChecks)
+        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: dcContext.getSmtpSecurity())
+        imapSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: dcContext.getImapSecurity())
+        certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: dcContext.certificateChecks)
     }
 
     private func resignFirstResponderOnAllCells() {
