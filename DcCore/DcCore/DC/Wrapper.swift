@@ -13,7 +13,7 @@ public class DcContext {
     public var lastWarningString: String = "" // temporary thing to get a grip on some weird errors
     public var maxConfigureProgress: Int = 0 // temporary thing to get a grip on some weird errors
 
-    private init() {
+    public init() {
     }
 
     deinit {
@@ -193,6 +193,10 @@ public class DcContext {
         }
 
         contextPointer = dc_context_new("iOS" + version, dbFile, nil)
+    }
+
+    public func isOk() -> Bool {
+        return contextPointer != nil
     }
 
     public func closeDatabase() {

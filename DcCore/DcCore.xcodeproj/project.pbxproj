@@ -29,6 +29,7 @@
 		30E8F2482449C98600CE2C90 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2472449C98600CE2C90 /* UIView+Extensions.swift */; };
 		30E8F24B2449CF6500CE2C90 /* InitialsBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F24A2449CF6500CE2C90 /* InitialsBadge.swift */; };
 		30E8F24D2449D30200CE2C90 /* DcColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F24C2449D30200CE2C90 /* DcColors.swift */; };
+		B245B07124BF68990084271C /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B245B07024BF68990084271C /* AccountManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		30E8F2472449C98600CE2C90 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		30E8F24A2449CF6500CE2C90 /* InitialsBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsBadge.swift; sourceTree = "<group>"; };
 		30E8F24C2449D30200CE2C90 /* DcColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcColors.swift; sourceTree = "<group>"; };
+		B245B07024BF68990084271C /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 		30421977243F1AF400516852 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B245B07024BF68990084271C /* AccountManager.swift */,
 				30E8F2202447357500CE2C90 /* DatabaseHelper.swift */,
 				30421987243F23E500516852 /* Constants.swift */,
 				3042195C243E23F100516852 /* DcUtils.swift */,
@@ -324,6 +327,7 @@
 				30421951243DE15D00516852 /* Wrapper.swift in Sources */,
 				306C324824460CDE001D89F3 /* DateUtils.swift in Sources */,
 				30421952243DE15D00516852 /* wrapper.c in Sources */,
+				B245B07124BF68990084271C /* AccountManager.swift in Sources */,
 				30E8F24B2449CF6500CE2C90 /* InitialsBadge.swift in Sources */,
 				30E8F2212447357500CE2C90 /* DatabaseHelper.swift in Sources */,
 				3042195D243E23F100516852 /* DcUtils.swift in Sources */,

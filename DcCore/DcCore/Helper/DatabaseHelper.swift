@@ -5,8 +5,12 @@ public class DatabaseHelper {
     /// The ID is created in the apple developer portal and can be changed there.
     static let applicationGroupIdentifier = "group.chat.delta.ios"
 
+    public var sharedDir: URL? {
+        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: DatabaseHelper.applicationGroupIdentifier)
+    }
+
     public var sharedDbFile: String {
-        guard let fileContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: DatabaseHelper.applicationGroupIdentifier) else {
+        guard let fileContainer = sharedDir else {
             return ""
         }
         let storeURL = fileContainer.appendingPathComponent("messenger.db")
@@ -18,7 +22,7 @@ public class DatabaseHelper {
     }
 
     var sharedDbBlobsDir: String {
-        guard let fileContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: DatabaseHelper.applicationGroupIdentifier) else {
+        guard let fileContainer = sharedDir else {
             return ""
         }
         return fileContainer.appendingPathComponent("messenger.db-blobs").path
@@ -112,4 +116,7 @@ public class DatabaseHelper {
       return sharedDbFile
     }
 
+    public func updateSucceeded() -> Bool {
+        return !FileManager.default.fileExists(atPath: localDbFile)
+    }
 }

@@ -24,6 +24,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case help = 10
         case autodel = 11
         case mediaQuality = 12
+        case switchAccount = 13
     }
 
     private var dcContext: DcContext
@@ -170,6 +171,14 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
+    private lazy var switchAccountCell: ActionCell = {
+        let cell = ActionCell()
+        cell.tag = CellTags.switchAccount.rawValue
+        cell.actionTitle = String.localized("switch_account")
+        cell.selectionStyle = .default
+        return cell
+    }()
+
     private lazy var helpCell: ActionCell = {
         let cell = ActionCell()
         cell.tag = CellTags.help.rawValue
@@ -201,7 +210,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let backupSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: String.localized("pref_backup_explain"),
-            cells: [advancedCell, exportBackupCell])
+            cells: [switchAccountCell, advancedCell, exportBackupCell])
         let helpSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: appNameAndVersion,
@@ -293,6 +302,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .exportBackup: createBackup()
         case .advanced: showAdvancedDialog()
+        case .switchAccount: showSwitchAccountMenu()
         case .help: showHelp()
         }
     }
@@ -418,6 +428,40 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             self?.showDebugToolkit()
         })
         alert.addAction(logAction)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func showSwitchAccountMenu() {
+        let accounts = AccountManager().getAccounts()
+        if accounts.isEmpty {
+            let error = UIAlertController(title: String.localized("switch_account"),
+                message: "Cannot switch or add accounts as the 'shared folder' is not set up. " +
+                "To fix this, make sure, there is enough free space available and restart Delta Chat.",
+                preferredStyle: .alert)
+            error.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
+            present(error, animated: true)
+            return
+        }
+
+        // switch account
+        let alert = UIAlertController(title: String.localized("switch_account"), message: nil, preferredStyle: .safeActionSheet)
+        for account in accounts {
+            var title = account.displayname.isEmpty ? account.addr : "\(account.displayname) (\(account.addr))"
+            title += account.current ? " ✓" : ""
+            alert.addAction(UIAlertAction(title: title, style: .default, handler: nil))
+        }
+
+        // delete account
+        if accounts.count > 1 {
+            alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .default, handler: nil))
+        }
+
+        // add account
+        alert.addAction(UIAlertAction(title: String.localized("add_account"), style: .default, handler: { _ in
+            AccountManager().beginAccountCreation()
+        }))
+
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
