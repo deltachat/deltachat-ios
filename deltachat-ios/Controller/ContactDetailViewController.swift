@@ -67,7 +67,7 @@ class ContactDetailViewController: UITableViewController {
     }()
 
     private lazy var galleryCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("gallery")
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
@@ -78,7 +78,7 @@ class ContactDetailViewController: UITableViewController {
     }()
 
     private lazy var documentsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("documents")
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
@@ -120,10 +120,18 @@ class ContactDetailViewController: UITableViewController {
         tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
         headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
         tableView.tableHeaderView = headerCell
+        tableView.sectionHeaderHeight =  UITableView.automaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     // MARK: - UITableViewDatasource, UITableViewDelegate
-
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.preferredContentSizeCategory !=
+            traitCollection.preferredContentSizeCategory {
+            headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
+        }
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
@@ -183,19 +191,15 @@ class ContactDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let type = viewModel.typeFor(section: indexPath.section)
         switch type {
-        case .chatActions, .chatOptions:
-            return Constants.defaultCellHeight
         case .sharedChats:
             return ContactCell.cellHeight
+        default:
+            return UITableView.automaticDimension
         }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.titleFor(section: section)
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return Constants.defaultHeaderHeight
     }
 
     // MARK: - updates

@@ -21,6 +21,9 @@ class QrCodeReaderController: UIViewController {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .white
+        label.adjustsFontForContentSizeCategory = true
+        label.font = .preferredFont(forTextStyle: .subheadline)
+
         return label
     }()
 
@@ -85,8 +88,9 @@ class QrCodeReaderController: UIViewController {
         view.addSubview(infoLabel)
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         infoLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+        infoLabel.constraintAlignLeadingTo(view, paddingLeading: 5).isActive = true
+        infoLabel.constraintAlignTrailingTo(view, paddingTrailing: 5).isActive = true
         view.bringSubviewToFront(infoLabel)
     }
 

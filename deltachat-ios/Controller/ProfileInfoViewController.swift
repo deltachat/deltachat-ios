@@ -46,7 +46,6 @@ class ProfileInfoViewController: UITableViewController {
     init(context: DcContext) {
         self.dcContext = context
         super.init(style: .grouped)
-        tableView.estimatedRowHeight = Constants.defaultCellHeight
     }
 
     required init?(coder: NSCoder) {
@@ -58,6 +57,7 @@ class ProfileInfoViewController: UITableViewController {
         super.viewDidLoad()
         title = String.localized("pref_profile_info_headline")
         navigationItem.rightBarButtonItem = doneButtonItem
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     // MARK: - tableviewDelegate
@@ -67,15 +67,6 @@ class ProfileInfoViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return cells[indexPath.row]
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-
-        let cell = cells[indexPath.row]
-        if cell is AvatarSelectionCell {
-            return AvatarSelectionCell.cellHeight
-        }
-        return Constants.defaultCellHeight
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {

@@ -51,6 +51,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = doneButton
         navigationItem.leftBarButtonItem = cancelButton
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,13 +68,6 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == rowAvatar {
-            return AvatarSelectionCell.cellHeight
-        }
-        return Constants.defaultCellHeight
     }
     
     @objc func saveContactButtonPressed() {

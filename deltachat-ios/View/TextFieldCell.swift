@@ -1,37 +1,87 @@
 import UIKit
+import DcCore
 
 class TextFieldCell: UITableViewCell {
 
+    private let maxFontSizeHorizontalLayout: CGFloat = 30
+
+    private var placeholderVal: String
     var placeholder: String? {
         set {
-            textField.placeholder = newValue
+            placeholderVal = newValue ?? ""
+            configureTextFieldPlaceholder()
         }
         get {
-            return textField.placeholder
+            return placeholderVal
         }
     }
 
+    private var fontSize: CGFloat {
+        return UIFont.preferredFont(forTextStyle: .body).pointSize
+    }
+
+    private var preferValue: Bool {
+        set {
+            textField.setContentCompressionResistancePriority( newValue ? .defaultHigh : .defaultLow, for: .horizontal)
+            title.setContentCompressionResistancePriority( newValue ? .defaultLow : .defaultHigh, for: .horizontal)
+        }
+        get {
+            textField.contentCompressionResistancePriority(for: .horizontal) == .defaultHigh
+        }
+    }
+
+    private var customConstraints: [NSLayoutConstraint] = []
+
     var onTextFieldChange:((_:UITextField) -> Void)?	// set this from outside to get notified about textfield changes
 
+
+    public lazy var title: UILabel = {
+        let label = UILabel()
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
+        label.textColor = DcColors.defaultTextColor
+        label.lineBreakMode = .byTruncatingTail
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    // use textFieldDelegate instead of textfield.delegate if you want to set a delegate from outside
+    public weak var textFieldDelegate: UITextFieldDelegate?
     lazy var textField: UITextField = {
         let textField = UITextField()
         textField.textAlignment = .right
-        // textField.enablesReturnKeyAutomatically = true
         textField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        textField.adjustsFontForContentSizeCategory = true
+        textField.font = .preferredFont(forTextStyle: .body)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.delegate = self
         return textField
     }()
 
+    public lazy var stackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.addArrangedSubview(title)
+        view.addArrangedSubview(textField)
+        view.axis = .horizontal
+        view.spacing = 10
+        return view
+    }()
+    
     init(description: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {
-        super.init(style: .value1, reuseIdentifier: nil)
-        textLabel?.text = "\(description):"
+        placeholderVal = placeholder
+        super.init(style: .default, reuseIdentifier: nil)
+        title.text = "\(description):"
 
         // see: https://stackoverflow.com/a/35903650
         // this makes the textField respect the trailing margin of
         // the table view cell
         selectionStyle = .none
         setupViews()
-        textField.delegate = delegate
+        textFieldDelegate = delegate
         textField.placeholder = placeholder
+        preferValue = false
     }
 
     convenience init(descriptionID: String, placeholder: String, delegate: UITextFieldDelegate? = nil) {
@@ -43,18 +93,13 @@ class TextFieldCell: UITableViewCell {
     }
 
     private func setupViews() {
-        contentView.addSubview(textField)
-        textField.translatesAutoresizingMaskIntoConstraints = false
         let margins = contentView.layoutMarginsGuide
-        let trailing = margins.trailingAnchor
-        textField.trailingAnchor.constraint(equalTo: trailing).isActive = true
-        textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        if let label = self.textLabel {
-            textField.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 20).isActive = true
-            // this will prevent the textfield from growing over the textLabel while typing
-        } else {
-            textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        }
+        contentView.addSubview(stackView)
+        stackView.alignTopToAnchor(margins.topAnchor)
+        stackView.alignBottomToAnchor(margins.bottomAnchor)
+        stackView.alignLeadingToAnchor(margins.leadingAnchor)
+        stackView.alignTrailingToAnchor(margins.trailingAnchor)
+        updateViews()
     }
 
     override func setSelected(_ selected: Bool, animated _: Bool) {
@@ -64,7 +109,16 @@ class TextFieldCell: UITableViewCell {
     }
 
     @objc func textFieldChanged() {
+        configureTextFieldPlaceholder()
         onTextFieldChange?(self.textField)
+    }
+
+    func configureTextFieldPlaceholder() {
+        if let textFieldText = textField.text, !textFieldText.isEmpty {
+            textField.placeholder = nil
+        } else {
+            textField.placeholder = placeholderVal
+        }
     }
 
     func getText() -> String? {
@@ -83,13 +137,39 @@ class TextFieldCell: UITableViewCell {
         textField.text = text
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.preferredContentSizeCategory !=
+            traitCollection.preferredContentSizeCategory {
+            updateViews()
+        }
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        title.text = nil
+        title.attributedText = nil
+        textField.text = nil
+    }
+
+    private func updateViews() {
+        if fontSize <= maxFontSizeHorizontalLayout {
+            stackView.axis = .horizontal
+            title.numberOfLines = 1
+            textField.textAlignment = .right
+        } else {
+            stackView.axis = .vertical
+            title.numberOfLines = 1
+            textField.textAlignment = .left
+        }
+    }
+
     static func makeEmailCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
         let cell = TextFieldCell(description: String.localized("email_address"), placeholder: "you@example.org")
         cell.textField.keyboardType = .emailAddress
         // switch off quicktype
         cell.textField.autocorrectionType = .no
         cell.textField.autocapitalizationType = .none
-        cell.textField.delegate = delegate
+        cell.textFieldDelegate = delegate
         return cell
     }
 
@@ -108,7 +188,7 @@ class TextFieldCell: UITableViewCell {
         // see: https://stackoverflow.com/a/36365399
         // therefore we use .default to capitalize the first character of the name
         cell.textField.keyboardType = .default
-        cell.textField.delegate = delegate
+        cell.textFieldDelegate = delegate
 
         return cell
     }
@@ -121,7 +201,72 @@ class TextFieldCell: UITableViewCell {
         // see: https://stackoverflow.com/a/36365399
         // therefore we use .default to capitalize the first character of the name
         cell.textField.keyboardType = .default
-        cell.textField.delegate = delegate
+        cell.textFieldDelegate = delegate
         return cell
     }
+}
+
+extension TextFieldCell: UITextFieldDelegate {
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let delegate = textFieldDelegate {
+            delegate.textFieldDidBeginEditing?(textField)
+        }
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let delegate = textFieldDelegate {
+            delegate.textFieldDidEndEditing?(textField)
+        }
+    }
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if #available(iOS 13.0, *), let delegate = textFieldDelegate {
+            delegate.textFieldDidChangeSelection?(textField)
+        }
+    }
+
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        if let delegate = textFieldDelegate, let result = delegate.textFieldShouldClear?(textField) {
+            return result
+        }
+        return true
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let delegate = textFieldDelegate, let result = delegate.textFieldShouldReturn?(textField) {
+            return result
+        }
+        return true
+    }
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        preferValue = true
+        if let delegate = textFieldDelegate, let result = delegate.textFieldShouldBeginEditing?(textField) {
+            return result
+        }
+        return true
+    }
+
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        preferValue = false
+        if let delegate = textFieldDelegate, let result = delegate.textFieldShouldEndEditing?(textField) {
+            return result
+        }
+        return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if let delegate = textFieldDelegate {
+            delegate.textFieldDidEndEditing?(textField)
+        }
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let delegate = textFieldDelegate, let result = delegate.textField?(textField, shouldChangeCharactersIn: range, replacementString: string) {
+            return result
+        }
+        return true
+    }
+
 }

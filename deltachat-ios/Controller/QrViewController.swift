@@ -6,13 +6,7 @@ class QrViewController: UIViewController {
 
     private let dcContext: DcContext
 
-    private var contact: DcContact? {
-        // This is nil if we do not have an account setup yet
-        if !dcContext.isConfigured() {
-            return nil
-        }
-        return DcContact(id: Int(DC_CONTACT_ID_SELF))
-    }
+    var onDismissed: (() -> Void)?
 
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -21,14 +15,19 @@ class QrViewController: UIViewController {
     }()
 
     private lazy var qrContentView: QrViewContentView = {
-        let qrCode = dcContext.getSecurejoinQr(chatId: 0)
-        let view = QrViewContentView(contact: contact, qrCode: qrCode)
+        let qrCode = dcContext.getSecurejoinQr(chatId: chatId)
+        let view = QrViewContentView(qrCode: qrCode, hint: qrCodeHint)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    init(dcContext: DcContext) {
+    private let qrCodeHint: String
+    private let chatId: Int
+
+    init(dcContext: DcContext, chatId: Int? = 0, qrCodeHint: String?) {
         self.dcContext = dcContext
+        self.chatId = chatId ?? 0
+        self.qrCodeHint = qrCodeHint ?? ""
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -41,6 +40,7 @@ class QrViewController: UIViewController {
         super.viewDidLoad()
         title = String.localized("qr_code")
         setupSubviews()
+        view.backgroundColor = DcColors.defaultBackgroundColor
     }
 
     override func viewDidLayoutSubviews() {
@@ -52,6 +52,10 @@ class QrViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         qrContentView.minContainerHeight = size.height - (view.safeAreaInsets.top + view.safeAreaInsets.bottom)
         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        onDismissed?()
     }
 
     // MARK: - setup
@@ -77,14 +81,6 @@ class QrViewController: UIViewController {
         frameGuide.widthAnchor.constraint(equalTo: contentGuide.widthAnchor).isActive = true
     }
 
-    // MARK: - actions
-    private func displayNewChat(contactId: Int) {
-        let chatId = dcContext.createChatByContactId(contactId: contactId)
-        let chatVC = ChatViewController(dcContext: dcContext, chatId: Int(chatId))
-
-        chatVC.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(chatVC, animated: true)
-    }
 }
 
 // MARK: - QrViewContentView
@@ -100,7 +96,8 @@ class QrViewContentView: UIView {
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = .preferredFont(forTextStyle: .subheadline)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
@@ -116,14 +113,9 @@ class QrViewContentView: UIView {
         return container.heightAnchor.constraint(greaterThanOrEqualToConstant: 0)
     }()
 
-    init(contact: DcContact?, qrCode: String?) {
+    init(qrCode: String?, hint: String) {
         super.init(frame: .zero)
-        if let contact = contact {
-            hintLabel.text = String.localizedStringWithFormat(
-                String.localized("qrshow_join_contact_hint"),
-                contact.email
-            )
-        }
+        hintLabel.text = hint
         if let qrCode = qrCode {
             qrCodeView.generateCode(
                 qrCode,

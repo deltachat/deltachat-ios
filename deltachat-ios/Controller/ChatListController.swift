@@ -22,6 +22,11 @@ class ChatListController: UITableViewController {
         return searchController
     }()
 
+    private lazy var archiveCell: ActionCell = {
+        let actionCell = ActionCell()
+        return actionCell
+    }()
+
     private lazy var newButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
         button.tintColor = DcColors.primary
@@ -38,14 +43,6 @@ class ChatListController: UITableViewController {
         label.isHidden = false
         return label
     }()
-
-    func getArchiveCell(title: String) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.textColor = .systemBlue
-        cell.textLabel?.text = title
-        cell.textLabel?.textAlignment = .center
-        return cell
-    }
 
     init(dcContext: DcContext, viewModel: ChatListViewModelProtocol) {
         self.viewModel = viewModel
@@ -154,7 +151,7 @@ class ChatListController: UITableViewController {
         tableView.register(ContactCell.self, forCellReuseIdentifier: chatCellReuseIdentifier)
         tableView.register(ContactCell.self, forCellReuseIdentifier: deadDropCellReuseIdentifier)
         tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
-        tableView.rowHeight = 80
+        tableView.rowHeight = ContactCell.cellHeight
     }
 
     // MARK: - actions
@@ -169,6 +166,12 @@ class ChatListController: UITableViewController {
         updateTitle()
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.preferredContentSizeCategory !=
+            traitCollection.preferredContentSizeCategory {
+            tableView.rowHeight = ContactCell.cellHeight
+        }
+    }
     private func quitSearch(animated: Bool) {
         searchController.searchBar.text = nil
         self.viewModel.endSearch()
@@ -179,6 +182,7 @@ class ChatListController: UITableViewController {
 
     // MARK: - UITableViewDelegate + UITableViewDatasource
 
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
@@ -201,7 +205,8 @@ class ChatListController: UITableViewController {
         case .chat(let chatData):
             let chatId = chatData.chatId
             if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-                return getArchiveCell(title: dcContext.getChat(chatId: chatId).name)
+                archiveCell.actionTitle = dcContext.getChat(chatId: chatId).name
+                return archiveCell
             } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
                 // default chatCell
                 chatCell.updateCell(cellViewModel: cellData)
@@ -213,6 +218,8 @@ class ChatListController: UITableViewController {
                 contactCell.updateCell(cellViewModel: cellData)
                 return contactCell
             }
+        case .profile:
+            safe_fatalError("CellData type profile not allowed")
         }
         safe_fatalError("Could not find/dequeue or recycle UITableViewCell.")
         return UITableViewCell()
@@ -242,6 +249,8 @@ class ChatListController: UITableViewController {
             } else {
                 self.askToChatWith(contactId: contactId)
             }
+        case .profile:
+            safe_fatalError("CellData type profile not allowed")
         }
         tableView.deselectRow(at: indexPath, animated: false)
     }
@@ -312,19 +321,6 @@ class ChatListController: UITableViewController {
             emptySearchStateLabel.text = nil
             emptySearchStateLabel.isHidden = true
         }
-    }
-
-    func getArchiveCell(_ tableView: UITableView, title: String) -> UITableViewCell {
-        let archiveCell: UITableViewCell
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "ArchiveCell") {
-            archiveCell = cell
-        } else {
-            archiveCell = UITableViewCell(style: .default, reuseIdentifier: "ArchiveCell")
-        }
-        archiveCell.textLabel?.textAlignment = .center
-        archiveCell.textLabel?.text = title
-        archiveCell.textLabel?.textColor = UIColor.systemBlue
-        return archiveCell
     }
 
     // MARK: - alerts

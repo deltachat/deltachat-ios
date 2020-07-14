@@ -11,13 +11,7 @@ struct Constants {
         static let deltachatImapPasswordKey = "__DELTACHAT_IMAP_PASSWORD_KEY__"
     }
 
-    static let defaultShadow = UIImage(color: UIColor(hexString: "ff2b82"), size: CGSize(width: 1, height: 1))
-    static let onlineShadow = UIImage(color: UIColor(hexString: "3ed67e"), size: CGSize(width: 1, height: 1))
-
     static let notificationIdentifier = "deltachat-ios-local-notifications"
-
-    static let defaultCellHeight: CGFloat = 48
-    static let defaultHeaderHeight: CGFloat = 20
 
 }
 

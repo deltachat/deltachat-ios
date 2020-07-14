@@ -19,7 +19,8 @@ open class AudioPlayerView: UIView {
     private lazy var durationLabel: UILabel = {
         let durationLabel = UILabel(frame: CGRect.zero)
         durationLabel.textAlignment = .right
-        durationLabel.font = UIFont.systemFont(ofSize: 14)
+        durationLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        durationLabel.adjustsFontForContentSizeCategory = true
         durationLabel.text = "0:00"
         durationLabel.translatesAutoresizingMaskIntoConstraints = false
         return durationLabel

@@ -201,16 +201,9 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = indexPath.section
-        let row = indexPath.row
         switch section {
-        case sectionGroupDetails:
-            if row == sectionGroupDetailsRowAvatar {
-                return AvatarSelectionCell.cellHeight
-            } else {
-                return Constants.defaultCellHeight
-            }
-        case sectionInvite:
-            return Constants.defaultCellHeight
+        case sectionGroupDetails, sectionInvite:
+            return UITableView.automaticDimension
         default:
             return ContactCell.cellHeight
         }
@@ -359,7 +352,12 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func showQrCodeInvite(chatId: Int) {
-        let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
+        var hint = ""
+        let dcChat = dcContext.getChat(chatId: chatId)
+        if !dcChat.name.isEmpty {
+            hint = String.localizedStringWithFormat(String.localized("qrshow_join_group_hint"), dcChat.name)
+        }
+        let qrInviteCodeController = QrViewController(dcContext: dcContext, chatId: chatId, qrCodeHint: hint)
         qrInviteCodeController.onDismissed = { [weak self] in
             self?.updateGroupContactIdsOnQRCodeInvite()
         }

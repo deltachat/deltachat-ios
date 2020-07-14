@@ -22,6 +22,10 @@ class ActionCell: UITableViewCell {
         let label = UILabel()
         label.text = actionTitle
         label.textColor = UIColor.systemBlue
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
+        label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
 
@@ -43,7 +47,12 @@ class ActionCell: UITableViewCell {
     private func setupSubviews() {
         contentView.addSubview(actionLabel)
         actionLabel.translatesAutoresizingMaskIntoConstraints = false
-        actionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0).isActive = true
-        actionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
+        contentView.addConstraints([
+            actionLabel.constraintAlignLeadingTo(contentView, paddingLeading: 12),
+            actionLabel.constraintAlignTrailingTo(contentView, paddingTrailing: 12),
+            actionLabel.constraintAlignTopTo(contentView, paddingTop: 12),
+            actionLabel.constraintAlignBottomTo(contentView, paddingBottom: 12)
+
+        ])
     }
 }

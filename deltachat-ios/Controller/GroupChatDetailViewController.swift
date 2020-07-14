@@ -132,14 +132,14 @@ class GroupChatDetailViewController: UIViewController {
     }()
 
     private lazy var galleryCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("gallery")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
     private lazy var documentsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("documents")
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -181,6 +181,13 @@ class GroupChatDetailViewController: UIViewController {
         tableView.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
         updateHeader()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.preferredContentSizeCategory !=
+            traitCollection.preferredContentSizeCategory {
+            groupHeader.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
+        }
     }
 
     // MARK: - update
@@ -237,7 +244,12 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func showQrCodeInvite(chatId: Int) {
-        let qrInviteCodeController = QrInviteViewController(dcContext: dcContext, chatId: chatId)
+        var hint = ""
+        let dcChat = dcContext.getChat(chatId: chatId)
+        if !dcChat.name.isEmpty {
+            hint = String.localizedStringWithFormat(String.localized("qrshow_join_group_hint"), dcChat.name)
+        }
+        let qrInviteCodeController = QrViewController(dcContext: dcContext, chatId: chatId, qrCodeHint: hint)
         navigationController?.pushViewController(qrInviteCodeController, animated: true)
     }
 
@@ -306,16 +318,10 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let sectionType = sections[indexPath.section]
         let row = indexPath.row
-        switch sectionType {
-        case .chatOptions, .chatActions:
-            return Constants.defaultCellHeight
-        case .members:
-            switch row {
-            case membersRowAddMembers, membersRowQrInvite:
-                return Constants.defaultCellHeight
-            default:
-                return ContactCell.cellHeight
-            }
+        if sectionType == .members && row != membersRowAddMembers && row != membersRowQrInvite {
+            return ContactCell.cellHeight
+        } else {
+            return UITableView.automaticDimension
         }
     }
 
@@ -423,10 +429,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             return String.localized("tab_members")
         }
         return nil
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return Constants.defaultHeaderHeight
     }
 
     func tableView(_: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

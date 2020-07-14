@@ -13,6 +13,7 @@ enum CellModel {
     case contact(ContactCellData)
     case chat(ChatCellData)
     case deaddrop(DeaddropCellData)
+    case profile
 }
 
 struct ContactCellData {
@@ -56,6 +57,32 @@ class ContactCellViewModel: AvatarCellViewModel {
         self.titleHighlightIndexes = titleHighlightIndexes
         self.subtitleHighlightIndexes = subtitleHighlightIndexes
         self.contact = DcContact(id: contactData.contactId)
+    }
+}
+
+class ProfileViewModell: AvatarCellViewModel {
+    var type: CellModel {
+        return CellModel.profile
+    }
+
+    var title: String
+
+    private let contact: DcContact
+
+    var titleHighlightIndexes: [Int] {
+        return []
+    }
+
+    var subtitle: String
+
+    var subtitleHighlightIndexes: [Int] {
+        return []
+    }
+
+    init(context: DcContext) {
+        contact = DcContact(id: Int(DC_CONTACT_ID_SELF))
+        title = context.displayname ?? String.localized("pref_your_name")
+        subtitle = context.addr ?? ""
     }
 }
 

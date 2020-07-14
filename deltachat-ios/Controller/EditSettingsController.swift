@@ -32,7 +32,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }()
 
     private lazy var accountSettingsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("pref_password_and_account_settings")
         cell.accessoryType = .disclosureIndicator
         cell.tag = tagAccountSettingsCell
@@ -65,6 +65,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         avatarSelectionCell.onAvatarTapped = { [weak self] in
             self?.onAvatarTapped()
         }
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -99,21 +100,6 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
             }
         } else {
             return accountSettingsCell
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == section1 {
-            switch indexPath.row {
-            case section1Avatar:
-                return AvatarSelectionCell.cellHeight
-            case section1Status:
-                return MultilineTextFieldCell.cellHeight
-            default:
-                 return Constants.defaultCellHeight
-            }
-        } else {
-            return Constants.defaultCellHeight
         }
     }
 

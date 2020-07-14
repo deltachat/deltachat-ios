@@ -2,7 +2,14 @@ import Foundation
 import UIKit
 
 class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
-    static let cellHeight: CGFloat = 125
+
+    private lazy var textFieldHeightConstraint: NSLayoutConstraint = {
+        return textField.constraintHeightTo(fourLinesHeight)
+    }()
+
+    private var fourLinesHeight: CGFloat {
+        return UIFont.preferredFont(forTextStyle: .body).pointSize * 4
+    }
 
     var onTextFieldChange:((_:UITextView) -> Void)?    // set this from outside to get notified about textfield changes
 
@@ -10,6 +17,8 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.isEnabled = false
+        textField.adjustsFontForContentSizeCategory = true
+        textField.font = .preferredFont(forTextStyle: .body)
         return textField
     }()
 
@@ -17,16 +26,18 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
         let textField = UITextView()
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.font = UIFont.systemFont(ofSize: 16)
+        textField.adjustsFontForContentSizeCategory = true
+        textField.font = .preferredFont(forTextStyle: .body)
         textField.backgroundColor = .none
         return textField
     }()
 
     lazy var placeholder: UILabel = {
         let placeholderLabel = UILabel()
-        placeholderLabel.font = self.textField.font
         placeholderLabel.textColor = UIColor.lightGray
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
+        placeholderLabel.adjustsFontForContentSizeCategory = true
+        placeholderLabel.font = .preferredFont(forTextStyle: .body)
         return placeholderLabel
     }()
 
@@ -56,8 +67,9 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
 
         textField.alignLeadingToAnchor(margins.leadingAnchor, paddingLeading: -5)
         textField.alignTrailingToAnchor(margins.trailingAnchor)
-        contentView.addConstraint(textField.constraintHeightTo(95))
+        contentView.addConstraint(textFieldHeightConstraint)
         textField.alignTopToAnchor(descriptionField.bottomAnchor)
+        textField.alignBottomToAnchor(margins.bottomAnchor)
 
         placeholder.alignLeadingToAnchor(margins.leadingAnchor)
         placeholder.alignTrailingToAnchor(textField.layoutMarginsGuide.trailingAnchor)
@@ -87,5 +99,12 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         placeholder.isHidden = !(text.isEmpty && range.length == textView.text.count)
         return true
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.preferredContentSizeCategory !=
+            traitCollection.preferredContentSizeCategory {
+            textFieldHeightConstraint.constant = fourLinesHeight
+        }
     }
 }
