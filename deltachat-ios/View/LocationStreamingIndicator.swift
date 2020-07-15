@@ -3,8 +3,15 @@ import DcCore
 
 class LocationStreamingIndicator: UIImageView {
 
+    private let aspectRatio: CGFloat = 16/22
+
     convenience init() {
         self.init(frame: .zero)
+    }
+
+    convenience init(height: CGFloat) {
+        let rect = CGRect(x: 0, y: 0, width: 0, height: height)
+        self.init(frame: rect)
     }
 
     override init(frame: CGRect) {
@@ -22,6 +29,6 @@ class LocationStreamingIndicator: UIImageView {
         image =  #imageLiteral(resourceName: "ic_location").withRenderingMode(.alwaysTemplate)
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: size).isActive = true
-        widthAnchor.constraint(equalToConstant: size).isActive = true
+        widthAnchor.constraint(equalToConstant: aspectRatio * size).isActive = true
     }
 }
