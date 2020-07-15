@@ -257,11 +257,6 @@ class ChatListController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
-        if viewModel.searchActive {
-            // no swipe actions during search
-            return []
-        }
-
         guard let chatId = viewModel.chatIdFor(section: indexPath.section, row: indexPath.row) else {
             return []
         }
@@ -271,14 +266,15 @@ class ChatListController: UITableViewController {
             // returning nil may result in a default delete action,
             // see https://forums.developer.apple.com/thread/115030
         }
-        let archiveActionTitle: String = String.localized(viewModel.isArchive ? "unarchive" : "archive")
+        let chat = dcContext.getChat(chatId: chatId)
+        let archived = chat.isArchived
+        let archiveActionTitle: String = String.localized(archived ? "unarchive" : "archive")
 
         let archiveAction = UITableViewRowAction(style: .destructive, title: archiveActionTitle) { [weak self] _, _ in
             self?.viewModel.archiveChatToggle(chatId: chatId)
         }
         archiveAction.backgroundColor = UIColor.lightGray
 
-        let chat = dcContext.getChat(chatId: chatId)
         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
         let pinAction = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [weak self] _, _ in
             self?.viewModel.pinChatToggle(chatId: chat.id)
@@ -380,6 +376,13 @@ class ChatListController: UITableViewController {
         if !animated {
             _ = viewModel.deleteChat(chatId: chatId)
             viewModel.refreshData()
+            return
+        }
+
+        if viewModel.searchActive {
+            _ = viewModel.deleteChat(chatId: chatId)
+            viewModel.refreshData()
+            viewModel.updateSearchResults(for: searchController)
             return
         }
 
