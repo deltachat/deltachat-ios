@@ -21,7 +21,9 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     private let tagAccountSettingsCell = 1
 
     private lazy var mediaPicker: MediaPicker? = {
-        return MediaPicker(navigationController: navigationController)
+        let mediaPicker = MediaPicker(navigationController: navigationController)
+        mediaPicker.delegate = self
+        return mediaPicker
     }()
 
     private lazy var statusCell: MultilineTextFieldCell = {

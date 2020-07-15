@@ -104,7 +104,7 @@ class ChatViewController: MessagesViewController, UINavigationControllerDelegate
 
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(navigationController: navigationController)
-        mediaPicker.delegate = self 
+        mediaPicker.delegate = self
         return mediaPicker
     }()
 
@@ -1512,34 +1512,3 @@ extension MessageCollectionViewCell {
         }
     }
 }
-
-/*
-// MARK: - UIImagePickerControllerDelegate
-extension MediaPicker: UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-
-        enum PickerMediaType: String {
-            case image = "public.image"
-            case video = "public.movie"
-         }
-
-        if let type = info[.mediaType] as? String, let mediaType = PickerMediaType(rawValue: type) {
-
-            switch mediaType {
-            case .video:
-                if let mediaUrl = info[.mediaURL] as? NSURL {
-                    sendVideo(url: mediaUrl)
-                }
-            case .image:
-                if let image = info[.editedImage] as? UIImage {
-                    sendImage(image)
-                } else if let image = info[.originalImage] as? UIImage {
-                    sendImage(image)
-                }
-            }
-        }
-        picker.dismiss(animated: true, completion: nil)
-    }
-
-}
-*/
