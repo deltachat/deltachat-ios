@@ -10,6 +10,7 @@ public let dcNotificationSecureInviterProgress = Notification.Name(rawValue: "Mr
 public let dcNotificationViewChat = Notification.Name(rawValue: "MrEventViewChat")
 public let dcNotificationContactChanged = Notification.Name(rawValue: "MrEventContactsChanged")
 public let dcNotificationChatModified = Notification.Name(rawValue: "dcNotificationChatModified")
+public let dcEphemeralTimerModified =  Notification.Name(rawValue: "dcEphemeralTimerModified")
 
 public func handleEvent(event: DcEvent) {
     let id = event.id
@@ -104,6 +105,16 @@ public func handleEvent(event: DcEvent) {
                 userInfo: [
                     "chat_id": Int(data1),
                 ]
+            )
+        }
+    case DC_EVENT_CHAT_EPHEMERAL_TIMER_MODIFIED:
+        DcContext.shared.logger?.info("chat ephemeral timer modified: \(id)")
+        let nc = NotificationCenter.default
+        DispatchQueue.main.async {
+            nc.post(
+                name: dcEphemeralTimerModified,
+                object: nil,
+                userInfo: nil
             )
         }
 
