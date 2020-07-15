@@ -38,7 +38,7 @@ class QrViewController: UIViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("qr_code")
+        title = String.localized("qrshow_title")
         setupSubviews()
         view.backgroundColor = DcColors.defaultBackgroundColor
     }
