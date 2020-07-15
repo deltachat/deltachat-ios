@@ -74,10 +74,6 @@ class GalleryViewController: UIViewController {
         self.reloadCollectionViewLayout()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        ThumbnailCache.shared.clearCache()
-    }
-
     // MARK: - setup
     private func setupSubviews() {
         view.addSubview(grid)
@@ -226,7 +222,6 @@ extension GalleryViewController {
 class GalleryItem {
 
     var onImageLoaded: ((UIImage?) -> Void)?
-    var onGifLoaded: ((SDAnimatedImage?) -> Void)?
 
     var msg: DcMsg
 
@@ -241,13 +236,6 @@ class GalleryItem {
     var thumbnailImage: UIImage? {
         willSet {
            onImageLoaded?(newValue)
-        }
-    }
-
-    var gifImage: SDAnimatedImage? {
-        willSet {
-            print("onGifLoaded")
-            onGifLoaded?(newValue)
         }
     }
 
@@ -290,20 +278,7 @@ class GalleryItem {
         guard let imageData = try? Data(contentsOf: url) else {
             return
         }
-        self.gifImage = SDAnimatedImage(data: imageData)
-
-
-        /*
-        DispatchQueue.global(qos: .background).async {
-            let gifThumbnail = self.gifThumbnail(url: url)
-            DispatchQueue.main.async { [weak self] in
-                self?.thumbnailImage = gifThumbnail
-                if let image = gifThumbnail {
-                    ThumbnailCache.shared.storeImage(image: image, key: url.absoluteString)
-                }
-            }
-        }
-        */
+        self.thumbnailImage = SDAnimatedImage(data: imageData)
     }
 
     private func loadVideoThumbnail(from url: URL) {
@@ -316,38 +291,5 @@ class GalleryItem {
                 }
             }
         }
-    }
-
-    private func gifThumbnail(url: URL) -> UIImage? {
-        return getGifSequence(url: url)?.first ?? nil
-    }
-
-    private func getGifSequence(url: URL) -> [UIImage]? {
-
-        guard let imageData = try? Data(contentsOf: url) else {
-            return nil
-        }
-
-        let gifOptions = [
-            kCGImageSourceShouldAllowFloat as String: true as NSNumber,
-            kCGImageSourceCreateThumbnailWithTransform as String: true as NSNumber,
-            kCGImageSourceCreateThumbnailFromImageAlways as String: true as NSNumber
-            ] as CFDictionary
-
-        guard let imageSource = CGImageSourceCreateWithData(imageData as CFData, gifOptions) else {
-            debugPrint("Cannot create image source with data!")
-            return nil
-        }
-
-        let framesCount = CGImageSourceGetCount(imageSource)
-        var frameList = [UIImage]()
-
-        for index in 0 ..< framesCount {
-            if let cgImageRef = CGImageSourceCreateImageAtIndex(imageSource, index, nil) {
-                let uiImageRef = UIImage(cgImage: cgImageRef)
-                frameList.append(uiImageRef)
-            }
-        }
-        return frameList
     }
 }
