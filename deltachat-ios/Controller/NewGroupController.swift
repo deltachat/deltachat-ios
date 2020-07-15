@@ -348,7 +348,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func showCamera(delegate: MediaPickerDelegate) {
-        mediaPicker?.showCamera(delegate: delegate)
+        mediaPicker?.showCamera(delegate: self, allowCropping: true, supportedMediaTypes: .photo)
     }
 
     private func showQrCodeInvite(chatId: Int) {

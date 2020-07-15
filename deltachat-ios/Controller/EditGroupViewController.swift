@@ -12,7 +12,9 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     var avatarSelectionCell: AvatarSelectionCell
 
     private lazy var mediaPicker: MediaPicker? = {
-        return MediaPicker(navigationController: navigationController)
+        let mediaPicker = MediaPicker(navigationController: navigationController)
+        mediaPicker.delegate = self 
+        return mediaPicker
     }()
 
     lazy var groupNameCell: TextFieldCell = {
@@ -103,7 +105,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        mediaPicker?.showCamera(delegate: self)
+        mediaPicker?.showCamera(delegate: self, allowCropping: true, supportedMediaTypes: .photo)
     }
 
     func onImageSelected(image: UIImage) {

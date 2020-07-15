@@ -103,7 +103,9 @@ class ChatViewController: MessagesViewController, UINavigationControllerDelegate
     var showCustomNavBar = true
 
     private lazy var mediaPicker: MediaPicker? = {
-        return MediaPicker(navigationController: navigationController)
+        let mediaPicker = MediaPicker(navigationController: navigationController)
+        mediaPicker.delegate = self 
+        return mediaPicker
     }()
 
     var emptyStateView: EmptyStateLabel = {
@@ -723,21 +725,7 @@ class ChatViewController: MessagesViewController, UINavigationControllerDelegate
     }
 
     private func showCameraViewController() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.sourceType = .camera
-            imagePickerController.delegate = self
-            let mediaTypes: [String] = UIImagePickerController.availableMediaTypes(for: .camera) ?? []
-            imagePickerController.mediaTypes = mediaTypes
-            imagePickerController.setEditing(true, animated: true)
-            present(imagePickerController, animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: String.localized("chat_camera_unavailable"), message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
-                self.navigationController?.dismiss(animated: true, completion: nil)
-            }))
-            present(alert, animated: true, completion: nil)
-        }
+       mediaPicker?.showCamera(delegate: self)
     }
 
     private func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
@@ -1525,8 +1513,9 @@ extension MessageCollectionViewCell {
     }
 }
 
+/*
 // MARK: - UIImagePickerControllerDelegate
-extension ChatViewController: UIImagePickerControllerDelegate {
+extension MediaPicker: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
 
         enum PickerMediaType: String {
@@ -1553,3 +1542,4 @@ extension ChatViewController: UIImagePickerControllerDelegate {
     }
 
 }
+*/

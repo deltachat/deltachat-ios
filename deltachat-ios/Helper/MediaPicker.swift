@@ -28,8 +28,18 @@ extension MediaPickerDelegate {
 
 class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AudioRecorderControllerDelegate, UIDocumentPickerDelegate {
 
+    enum CameraMediaTypes {
+        case photo
+        case allAvailable
+    }
+
+    enum PickerMediaType: String {
+        case image = "public.image"
+        case video = "public.movie"
+     }
+
     private weak var navigationController: UINavigationController?
-    private weak var delegate: MediaPickerDelegate?
+    weak var delegate: MediaPickerDelegate?
 
     init(navigationController: UINavigationController?) {
         // it does not make sense to give nil here, but it makes construction easier
@@ -115,32 +125,30 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         navigationController?.present(controller, animated: true, completion: nil)
     }
 
-    func showCamera(delegate: MediaPickerDelegate, allowCropping: Bool) {
+    func showCamera(delegate: MediaPickerDelegate, allowCropping: Bool, supportedMediaTypes: CameraMediaTypes) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            var croppingParameters: CroppingParameters = CroppingParameters()
-            if allowCropping {
-                croppingParameters = CroppingParameters(isEnabled: true,
-                allowResizing: true,
-                allowMoving: true,
-                minimumSize: CGSize(width: 70, height: 70))
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.sourceType = .camera
+            imagePickerController.delegate = self
+            let mediaTypes: [String]
+            switch supportedMediaTypes {
+            case .photo:
+                mediaTypes = [PickerMediaType.image.rawValue]
+            case .allAvailable:
+                mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera) ?? []
             }
-
-            let cameraViewController = CameraViewController(
-                croppingParameters: croppingParameters,
-                allowsLibraryAccess: false,
-                allowsSwapCameraOrientation: true,
-                allowVolumeButtonCapture: false,
-                completion: { [weak self] image, _ in
-                    if let image = image {
-                        self?.delegate?.onImageSelected(image: image)
-                    }
-                    self?.navigationController?.dismiss(animated: true, completion: nil)}
-            )
-            self.delegate = delegate
-            cameraViewController.modalPresentationStyle = .fullScreen
-            navigationController?.present(cameraViewController, animated: true, completion: nil)
+            if allowCropping {
+                imagePickerController.allowsEditing = true
+            }
+            imagePickerController.mediaTypes = mediaTypes
+            imagePickerController.setEditing(true, animated: true)
+            navigationController?.present(imagePickerController, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: String.localized("chat_camera_unavailable"), message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(
+                title: String.localized("chat_camera_unavailable"),
+                message: nil,
+                preferredStyle: .alert
+            )
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
                 self.navigationController?.dismiss(animated: true, completion: nil)
             }))
@@ -149,27 +157,42 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     }
 
     func showCamera(delegate: MediaPickerDelegate) {
-        showCamera(delegate: delegate, allowCropping: true)
+        showCamera(delegate: delegate, allowCropping: false, supportedMediaTypes: .allAvailable)
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
-            videoUrl.convertToMp4(completionHandler: { url, error in
-                if let url = url {
-                    self.delegate?.onVideoSelected(url: (url as NSURL))
-                } else if let error = error {
-                    logger.error(error.localizedDescription)
-                    let alert = UIAlertController(title: String.localized("error"), message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
-                        self.navigationController?.dismiss(animated: true, completion: nil)
-                    }))
-                    self.navigationController?.present(alert, animated: true, completion: nil)
+
+        if let type = info[.mediaType] as? String, let mediaType = PickerMediaType(rawValue: type) {
+
+            switch mediaType {
+            case .video:
+                if let videoUrl = info[.mediaURL] as? URL {
+                    handleVideoUrl(url: videoUrl)
                 }
-            })
-        } else if let imageUrl = info[UIImagePickerController.InfoKey.imageURL] as? NSURL {
-            self.delegate?.onImageSelected(url: imageUrl)
+            case .image:
+                if let image = info[.editedImage] as? UIImage {
+                    self.delegate?.onImageSelected(image: image)
+                } else if let image = info[.originalImage] as? UIImage {
+                    self.delegate?.onImageSelected(image: image)
+                }
+            }
         }
-        navigationController?.dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+    func handleVideoUrl(url: URL) {
+        url.convertToMp4(completionHandler: { url, error in
+            if let url = url {
+                self.delegate?.onVideoSelected(url: (url as NSURL))
+            } else if let error = error {
+                logger.error(error.localizedDescription)
+            let alert = UIAlertController(title: String.localized("error"), message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
+                self.navigationController?.dismiss(animated: true, completion: nil)
+            }))
+                self.navigationController?.present(alert, animated: true, completion: nil)
+            }
+        })
     }
 
     func didFinishAudioAtPath(path: String) {
