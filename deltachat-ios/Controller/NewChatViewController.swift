@@ -207,6 +207,7 @@ class NewChatViewController: UITableViewController {
         } else {
             showChatAt(row: row)
         }
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
