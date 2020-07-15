@@ -48,6 +48,7 @@ class ChatViewController: MessagesViewController {
 
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
+    var ephemeralTimerModifiedObserver: Any?
 
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -70,6 +71,16 @@ class ChatViewController: MessagesViewController {
         let imageView = UIImageView()
         imageView.tintColor = DcColors.defaultTextColor
         imageView.image =  #imageLiteral(resourceName: "volume_off").withRenderingMode(.alwaysTemplate)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        return UIBarButtonItem(customView: imageView)
+    }()
+
+    private lazy var ephemeralMessageItem: UIBarButtonItem = {
+        let imageView = UIImageView()
+        imageView.tintColor = DcColors.defaultTextColor
+        imageView.image =  #imageLiteral(resourceName: "ephemeral_timer").withRenderingMode(.alwaysTemplate)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
@@ -221,7 +232,7 @@ class ChatViewController: MessagesViewController {
         incomingMsgObserver = nc.addObserver(
             forName: dcNotificationIncoming,
             object: nil, queue: OperationQueue.main
-        ) {  [weak self] notification in
+        ) { [weak self] notification in
             guard let self = self else { return }
             if let ui = notification.userInfo {
                 if self.chatId == ui["chat_id"] as? Int {
@@ -232,6 +243,14 @@ class ChatViewController: MessagesViewController {
                     }
                 }
             }
+        }
+
+        ephemeralTimerModifiedObserver = nc.addObserver(
+            forName: dcEphemeralTimerModified,
+            object: nil, queue: OperationQueue.main
+        ) { [weak self] _ in
+            guard let self = self else { return }
+            self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
         }
 
         loadFirstMessages()
@@ -269,6 +288,9 @@ class ChatViewController: MessagesViewController {
         }
         if let incomingMsgObserver = self.incomingMsgObserver {
             nc.removeObserver(incomingMsgObserver)
+        }
+        if let ephemeralTimerModifiedObserver = self.ephemeralTimerModifiedObserver {
+            nc.removeObserver(ephemeralTimerModifiedObserver)
         }
         audioController.stopAnyOngoingPlaying()
         stopTimer()
@@ -322,6 +344,11 @@ class ChatViewController: MessagesViewController {
         if chat.isMuted {
             rightBarButtonItems.append(muteItem)
         }
+
+        if dcContext.getChatEphemeralTimer(chatId: chat.id) > 0 {
+            rightBarButtonItems.append(ephemeralMessageItem)
+        }
+
         navigationItem.rightBarButtonItems = rightBarButtonItems
     }
 
