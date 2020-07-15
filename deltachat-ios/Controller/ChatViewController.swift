@@ -39,7 +39,7 @@ extension ChatViewController: MediaPickerDelegate {
 
 }
 
-class ChatViewController: MessagesViewController, UINavigationControllerDelegate {
+class ChatViewController: MessagesViewController {
     var dcContext: DcContext
     let outgoingAvatarOverlap: CGFloat = 17.5
     let loadCount = 30
