@@ -151,9 +151,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func openDatabase() {
-        guard let databaseLocation = DatabaseHelper().updateDatabaseLocation() else {
-            fatalError("Database could not be opened")
-        }
+        DatabaseHelper().updateDatabaseLocation()
+
+        let databaseLocation = AccountManager().getSelectedAccount()
         logger.info("open: \(databaseLocation)")
         dcContext.openDatabase(dbFile: databaseLocation)
     }

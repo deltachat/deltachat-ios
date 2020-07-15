@@ -432,15 +432,17 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         present(alert, animated: true, completion: nil)
     }
 
+    private func presentError(message: String) {
+        let error = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        error.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
+        present(error, animated: true)
+    }
+
     private func showSwitchAccountMenu() {
         let accounts = AccountManager().getAccounts()
         if accounts.isEmpty {
-            let error = UIAlertController(title: String.localized("switch_account"),
-                message: "Cannot switch or add accounts as the 'shared folder' is not set up. " +
-                "To fix this, make sure, there is enough free space available and restart Delta Chat.",
-                preferredStyle: .alert)
-            error.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
-            present(error, animated: true)
+            presentError(message: "Cannot switch or add accounts as the 'shared folder' is not set up. " +
+            "To fix this, make sure, there is enough free space available and restart Delta Chat.")
             return
         }
 
@@ -449,17 +451,21 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         for account in accounts {
             var title = account.displayname.isEmpty ? account.addr : "\(account.displayname) (\(account.addr))"
             title += account.current ? " ✓" : ""
-            alert.addAction(UIAlertAction(title: title, style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: title, style: .default, handler: nil)) // TODO
         }
 
         // delete account
         if accounts.count > 1 {
-            alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .default, handler: nil)) // TODO
         }
 
         // add account
-        alert.addAction(UIAlertAction(title: String.localized("add_account"), style: .default, handler: { _ in
-            AccountManager().beginAccountCreation()
+        alert.addAction(UIAlertAction(title: String.localized("add_account"), style: .default, handler: { [weak self] _ in
+            if !AccountManager().beginAccountCreation() {
+                self?.presentError(message: "Cannot begin account creation.")
+            } else {
+                // TODO
+            }
         }))
 
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))

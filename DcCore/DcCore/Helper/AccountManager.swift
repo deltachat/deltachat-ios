@@ -23,6 +23,24 @@ public class AccountManager {
     public init() {
     }
 
+    private func getUniqueDbName() -> String? {
+        let filemanager = FileManager.default
+        let databaseHelper = DatabaseHelper()
+        if databaseHelper.updateSucceeded(), let sharedDir = databaseHelper.sharedDir {
+            var index = 1
+            while true {
+                let test = String(format: "messenger-%d.db", index)
+                let testBlobdir = String(format: "messenger-%d.db-blobs", index)
+                if !filemanager.fileExists(atPath: sharedDir.appendingPathComponent(test).path) &&
+                   !filemanager.fileExists(atPath: sharedDir.appendingPathComponent(testBlobdir).path) {
+                    return test
+                }
+                index += 1
+            }
+        }
+        return nil
+    }
+
     private func maybeGetAccount(dbFile: String) -> Account? {
         let testContext = DcContext()
         testContext.openDatabase(dbFile: dbFile)
@@ -37,7 +55,10 @@ public class AccountManager {
     }
 
     private func resetDcContext() {
+        // create an empty DcContext object - this will be set up then, starting with
+        // getSelectedAccount()
 
+        // TODO
     }
 
 
@@ -80,7 +101,16 @@ public class AccountManager {
 
     // pause the current account and let the user create a new one.
     // this function is not needed on the very first account creation.
-    public func beginAccountCreation() {
+    public func beginAccountCreation() -> Bool {
+        guard let userDefaults = UserDefaults.shared else { return false }
+
+        let prevDbName = userDefaults.string(forKey: UserDefaults.currAccountDbName) ?? defaultDbName
+        guard let inCreationDbName = getUniqueDbName() else { return false }
+
+        userDefaults.set(prevDbName, forKey: UserDefaults.prevAccountDbName)
+        userDefaults.set(inCreationDbName, forKey: UserDefaults.currAccountDbName)
+
         resetDcContext()
+        return true
     }
 }

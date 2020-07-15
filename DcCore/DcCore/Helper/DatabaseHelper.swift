@@ -101,7 +101,7 @@ public class DatabaseHelper {
         }
     }
 
-    public func updateDatabaseLocation() -> String? {
+    public func updateDatabaseLocation() {
       let filemanager = FileManager.default
       if filemanager.fileExists(atPath: localDbFile) {
           do {
@@ -110,10 +110,8 @@ public class DatabaseHelper {
               moveBlobsFolder()
           } catch let error {
               DcContext.shared.logger?.error("Could not update DB location. Share extension will probably not work. \n\(error.localizedDescription)")
-              return localDbFile
           }
       }
-      return sharedDbFile
     }
 
     public func updateSucceeded() -> Bool {
