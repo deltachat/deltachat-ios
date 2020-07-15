@@ -187,7 +187,8 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
     }
 
     func archiveChatToggle(chatId: Int) {
-        dcContext.archiveChat(chatId: chatId, archive: !self.isArchive)
+        let chat = dcContext.getChat(chatId: chatId)
+        dcContext.archiveChat(chatId: chatId, archive: !chat.isArchived)
         updateChatList(notifyListener: false)
     }
 
