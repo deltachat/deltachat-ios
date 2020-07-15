@@ -725,7 +725,7 @@ class ChatViewController: MessagesViewController, UINavigationControllerDelegate
     }
 
     private func showCameraViewController() {
-       mediaPicker?.showCamera(delegate: self)
+       mediaPicker?.showCamera()
     }
 
     private func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {

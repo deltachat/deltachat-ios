@@ -133,7 +133,7 @@ class ProfileInfoViewController: UITableViewController {
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        mediaPicker?.showCamera(delegate: self)
+        mediaPicker?.showCamera()
     }
 }
 

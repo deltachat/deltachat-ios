@@ -13,7 +13,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
 
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(navigationController: navigationController)
-        mediaPicker.delegate = self 
+        mediaPicker.delegate = self
         return mediaPicker
     }()
 
@@ -105,7 +105,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        mediaPicker?.showCamera(delegate: self, allowCropping: true, supportedMediaTypes: .photo)
+        mediaPicker?.showCamera(allowCropping: true, supportedMediaTypes: .photo)
     }
 
     func onImageSelected(image: UIImage) {

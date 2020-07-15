@@ -125,7 +125,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         navigationController?.present(controller, animated: true, completion: nil)
     }
 
-    func showCamera(delegate: MediaPickerDelegate, allowCropping: Bool, supportedMediaTypes: CameraMediaTypes) {
+    func showCamera(allowCropping: Bool, supportedMediaTypes: CameraMediaTypes) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let imagePickerController = UIImagePickerController()
             imagePickerController.sourceType = .camera
@@ -156,8 +156,8 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         }
     }
 
-    func showCamera(delegate: MediaPickerDelegate) {
-        showCamera(delegate: delegate, allowCropping: false, supportedMediaTypes: .allAvailable)
+    func showCamera() {
+        showCamera(allowCropping: false, supportedMediaTypes: .allAvailable)
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {

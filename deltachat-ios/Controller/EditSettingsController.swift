@@ -129,7 +129,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        mediaPicker?.showCamera(delegate: self, allowCropping: true, supportedMediaTypes: .photo)
+        mediaPicker?.showCamera(allowCropping: true, supportedMediaTypes: .photo)
     }
 
     private func deleteProfileIconPressed(_ action: UIAlertAction) {
