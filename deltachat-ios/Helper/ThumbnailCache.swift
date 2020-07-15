@@ -12,11 +12,12 @@ class ThumbnailCache {
     }()
 
     func storeImage(image: UIImage, key: String){
-        cache.setObject(image, forKey: NSString(string: key))
+     //   cache.setObject(image, forKey: NSString(string: key))
     }
 
     func restoreImage(key: String) -> UIImage? {
-        return cache.object(forKey: NSString(string: key))
+        return nil
+        //  return cache.object(forKey: NSString(string: key))
     }
 
     func clearCache() {

@@ -7,8 +7,8 @@ class GalleryCell: UICollectionViewCell {
 
     weak var item: GalleryItem?
 
-    var imageView: UIImageView = {
-        let view = UIImageView()
+    var imageView: SDAnimatedImageView = {
+        let view = SDAnimatedImageView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.backgroundColor = DcColors.defaultBackgroundColor
@@ -20,7 +20,6 @@ class GalleryCell: UICollectionViewCell {
         playButtonView.isHidden = true
         return playButtonView
     }()
-
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,12 +51,35 @@ class GalleryCell: UICollectionViewCell {
     }
 
     func update(item: GalleryItem) {
+
+        guard let viewType = item.msgViewType else {
+            return
+        }
+
         self.item = item
         item.onImageLoaded = { [weak self] image in
             self?.imageView.image = image
         }
+        item.onGifLoaded = { [weak self] gifImage in
+            self?.imageView.image = gifImage
+        }
+
+        switch viewType {
+        case .gif:
+            imageView.image = item.gifImage
+        case .video:
+            imageView.image = item.thumbnailImage
+        case .image:
+            imageView.image = item.thumbnailImage
+        default:
+            safe_fatalError("unsupported viewtype - viewtype \(viewType) not supported.")
+        }
+
         playButtonView.isHidden = !item.showPlayButton
-        imageView.image = item.thumbnailImage
+    }
+
+    private func updateThumbnail() {
+
     }
 
     override var isSelected: Bool {

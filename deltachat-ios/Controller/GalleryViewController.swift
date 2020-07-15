@@ -1,5 +1,6 @@
 import UIKit
 import DcCore
+import SDWebImage
 
 class GalleryViewController: UIViewController {
 
@@ -71,6 +72,10 @@ class GalleryViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.reloadCollectionViewLayout()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        ThumbnailCache.shared.clearCache()
     }
 
     // MARK: - setup
@@ -221,8 +226,13 @@ extension GalleryViewController {
 class GalleryItem {
 
     var onImageLoaded: ((UIImage?) -> Void)?
+    var onGifLoaded: ((SDAnimatedImage?) -> Void)?
 
     var msg: DcMsg
+
+    var msgViewType: MessageViewType? {
+        return msg.viewtype
+    }
 
     var fileUrl: URL? {
         return msg.fileURL
@@ -234,9 +244,16 @@ class GalleryItem {
         }
     }
 
+    var gifImage: SDAnimatedImage? {
+        willSet {
+            print("onGifLoaded")
+            onGifLoaded?(newValue)
+        }
+    }
+
     var showPlayButton: Bool {
         switch msg.viewtype {
-        case .gif, .video:
+        case .video:
             return true
         default:
             return false
@@ -270,6 +287,13 @@ class GalleryItem {
     }
 
     private func loadGifThumbnail(from url: URL) {
+        guard let imageData = try? Data(contentsOf: url) else {
+            return
+        }
+        self.gifImage = SDAnimatedImage(data: imageData)
+
+
+        /*
         DispatchQueue.global(qos: .background).async {
             let gifThumbnail = self.gifThumbnail(url: url)
             DispatchQueue.main.async { [weak self] in
@@ -279,6 +303,7 @@ class GalleryItem {
                 }
             }
         }
+        */
     }
 
     private func loadVideoThumbnail(from url: URL) {
