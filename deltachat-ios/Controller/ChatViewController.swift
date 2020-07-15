@@ -39,7 +39,7 @@ extension ChatViewController: MediaPickerDelegate {
 
 }
 
-class ChatViewController: MessagesViewController {
+class ChatViewController: MessagesViewController, UINavigationControllerDelegate {
     var dcContext: DcContext
     let outgoingAvatarOverlap: CGFloat = 17.5
     let loadCount = 30
@@ -722,8 +722,22 @@ class ChatViewController: MessagesViewController {
         mediaPicker?.showVoiceRecorder(delegate: delegate)
     }
 
-    private func showCameraViewController(delegate: MediaPickerDelegate) {
-        mediaPicker?.showCamera(delegate: delegate, allowCropping: false)
+    private func showCameraViewController() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.sourceType = .camera
+            imagePickerController.delegate = self
+            let mediaTypes: [String] = UIImagePickerController.availableMediaTypes(for: .camera) ?? []
+            imagePickerController.mediaTypes = mediaTypes
+            imagePickerController.setEditing(true, animated: true)
+            present(imagePickerController, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: String.localized("chat_camera_unavailable"), message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
+                self.navigationController?.dismiss(animated: true, completion: nil)
+            }))
+            present(alert, animated: true, completion: nil)
+        }
     }
 
     private func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
@@ -1244,7 +1258,7 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        showCameraViewController(delegate: self)
+        showCameraViewController()
     }
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
@@ -1383,7 +1397,6 @@ extension ChatViewController: MessageCellDelegate {
         }
     }
 
-
     func didStartAudio(in cell: AudioMessageCell) {
         print("audio started")
     }
@@ -1395,7 +1408,6 @@ extension ChatViewController: MessageCellDelegate {
     func didPauseAudio(in cell: AudioMessageCell) {
         print("audio paused")
     }
-
 
     @objc func didTapBackground(in cell: MessageCollectionViewCell) {
         print("background of message tapped")
@@ -1486,7 +1498,6 @@ extension MessageCollectionViewCell {
         }
     }
 
-
     @objc func messageDelete(_ sender: Any?) {
         // Get the collectionView
         if let collectionView = self.superview as? UICollectionView {
@@ -1512,4 +1523,33 @@ extension MessageCollectionViewCell {
             }
         }
     }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+extension ChatViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+
+        enum PickerMediaType: String {
+            case image = "public.image"
+            case video = "public.movie"
+         }
+
+        if let type = info[.mediaType] as? String, let mediaType = PickerMediaType(rawValue: type) {
+
+            switch mediaType {
+            case .video:
+                if let mediaUrl = info[.mediaURL] as? NSURL {
+                    sendVideo(url: mediaUrl)
+                }
+            case .image:
+                if let image = info[.editedImage] as? UIImage {
+                    sendImage(image)
+                } else if let image = info[.originalImage] as? UIImage {
+                    sendImage(image)
+                }
+            }
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+
 }
