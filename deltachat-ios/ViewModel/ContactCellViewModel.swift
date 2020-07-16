@@ -60,7 +60,7 @@ class ContactCellViewModel: AvatarCellViewModel {
     }
 }
 
-class ProfileViewModell: AvatarCellViewModel {
+class ProfileViewModel: AvatarCellViewModel {
     var type: CellModel {
         return CellModel.profile
     }
