@@ -271,10 +271,15 @@ class GalleryItem {
     }
 
     private func loadGifThumbnail(from url: URL) {
-        guard let imageData = try? Data(contentsOf: url) else {
-            return
+        DispatchQueue.global(qos: .background).async {
+            guard let imageData = try? Data(contentsOf: url) else {
+                return
+            }
+            let thumbnailImage = SDAnimatedImage(data: imageData)
+            DispatchQueue.main.async { [weak self] in
+                self?.thumbnailImage = thumbnailImage
+            }
         }
-        self.thumbnailImage = SDAnimatedImage(data: imageData)
     }
 
     private func loadVideoThumbnail(from url: URL) {
