@@ -271,7 +271,7 @@ class GalleryItem {
     }
 
     private func loadGifThumbnail(from url: URL) {
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .userInteractive).async {
             guard let imageData = try? Data(contentsOf: url) else {
                 return
             }
@@ -283,7 +283,7 @@ class GalleryItem {
     }
 
     private func loadVideoThumbnail(from url: URL) {
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .userInteractive).async {
             let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: url)
             DispatchQueue.main.async { [weak self] in
                 self?.thumbnailImage = thumbnailImage
