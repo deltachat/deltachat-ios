@@ -37,7 +37,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     // MARK: - cells
 
     private lazy var profileCell: ContactCell = {
-        let cell = ContactCell(style: .default, reuseIdentifier: "profile_cell")
+        let cell = ContactCell(style: .default, reuseIdentifier: nil)
         let cellViewModel = ProfileViewModel(context: dcContext)
         cell.updateCell(cellViewModel: cellViewModel)
         cell.tag = CellTags.profile.rawValue
