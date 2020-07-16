@@ -5,12 +5,12 @@ public class Account {
     public let displayname: String
     public let addr: String
     public let configured: Bool
-    public let current: Bool
+    public var current: Bool
 
     public init(dbName: String, displayname: String, addr: String, configured: Bool) {
         self.dbName = dbName
-        self.displayname = displayname
         self.addr = addr
+        self.displayname = (displayname.isEmpty && addr.isEmpty) ? dbName : displayname
         self.configured = configured
         self.current = false
     }
@@ -41,14 +41,17 @@ public class AccountManager {
         return nil
     }
 
-    private func maybeGetAccount(dbFile: String) -> Account? {
+    private func maybeGetAccount(dbName: String) -> Account? {
+        guard let sharedDir = DatabaseHelper().sharedDir else { return nil }
+        let dbFile = sharedDir.appendingPathComponent(dbName).path
+
         let testContext = DcContext()
         testContext.openDatabase(dbFile: dbFile)
         if !testContext.isOk() {
             return nil
         }
 
-        return Account(dbName: dbFile,
+        return Account(dbName: dbName,
                        displayname: testContext.getConfig("displayname") ?? "",
                        addr: testContext.getConfig("addr") ?? "",
                        configured: testContext.isConfigured())
@@ -85,12 +88,13 @@ public class AccountManager {
         var result: [Account] = Array()
         do {
             let databaseHelper = DatabaseHelper()
-            if databaseHelper.updateSucceeded(), let sharedDir = databaseHelper.sharedDir {
+            if databaseHelper.updateSucceeded(), let sharedDir = databaseHelper.sharedDir, let userDefaults = UserDefaults.shared {
+                let currDbName = userDefaults.string(forKey: UserDefaults.currAccountDbName) ?? defaultDbName
                 let names = try FileManager.default.contentsOfDirectory(atPath: sharedDir.path)
                 for name in names {
                     if name.hasPrefix("messenger") && name.hasSuffix(".db") {
-                        let dbFile = sharedDir.appendingPathComponent(name).path
-                        if let account = maybeGetAccount(dbFile: dbFile) {
+                        if let account = maybeGetAccount(dbName: name) {
+                            account.current = account.dbName == currDbName
                             result.append(account)
                         }
                     }
@@ -140,11 +144,11 @@ public class AccountManager {
     // returns true when account creation was canceled,
     // returns false when there is no account to cancel or on errors
     public func rollbackAccountCreation() -> Bool {
-        if let userDefaults = UserDefaults.shared, let sharedDir = DatabaseHelper().sharedDir {
+        if let userDefaults = UserDefaults.shared {
             let prevDbName = userDefaults.string(forKey: UserDefaults.prevAccountDbName) ?? ""
             let inCreationDbName = userDefaults.string(forKey: UserDefaults.currAccountDbName) ?? ""
 
-            if let prevAccount = maybeGetAccount(dbFile: sharedDir.appendingPathComponent(prevDbName).path) {
+            if let prevAccount = maybeGetAccount(dbName: prevDbName) {
                 if switchAccount(account: prevAccount) {
                     // TODO: delete inCreationDbName
                     return true
