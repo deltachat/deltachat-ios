@@ -45,7 +45,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private var contactRequestCell: UITableViewCell = {
+    private lazy var contactRequestCell: UITableViewCell = {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.contactRequest.rawValue
         cell.textLabel?.text = String.localized("menu_deaddrop")
@@ -62,7 +62,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private var blockedContactsCell: UITableViewCell = {
+    private lazy var blockedContactsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.blockedContacts.rawValue
         cell.textLabel?.text = String.localized("pref_blocked_contacts")
@@ -98,7 +98,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private var notificationSwitch: UISwitch = {
+    private lazy var notificationSwitch: UISwitch = {
         let switchControl = UISwitch()
         switchControl.isOn = !UserDefaults.standard.bool(forKey: "notifications_disabled")
         switchControl.addTarget(self, action: #selector(handleNotificationToggle(_:)), for: .valueChanged)
@@ -146,7 +146,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private var sendAutocryptMessageCell: ActionCell = {
+    private lazy var sendAutocryptMessageCell: ActionCell = {
         let cell = ActionCell()
         cell.tag = CellTags.sendAutocryptMessage.rawValue
         cell.actionTitle = String.localized("autocrypt_send_asm_title")
@@ -154,7 +154,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private var exportBackupCell: ActionCell = {
+    private lazy var exportBackupCell: ActionCell = {
         let cell = ActionCell()
         cell.tag = CellTags.exportBackup.rawValue
         cell.actionTitle = String.localized("export_backup_desktop")
@@ -162,7 +162,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private var advancedCell: ActionCell = {
+    private lazy var advancedCell: ActionCell = {
         let cell = ActionCell()
         cell.tag = CellTags.advanced.rawValue
         cell.actionTitle = String.localized("menu_advanced")
@@ -170,7 +170,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private var helpCell: ActionCell = {
+    private lazy var helpCell: ActionCell = {
         let cell = ActionCell()
         cell.tag = CellTags.help.rawValue
         cell.actionTitle = String.localized("menu_help")
