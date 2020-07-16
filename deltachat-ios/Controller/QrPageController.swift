@@ -80,8 +80,6 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
         self.progressObserver = nil
     }
 
-
-
     // MARK: - actions
     @objc private func qrSegmentControlChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
