@@ -5,6 +5,8 @@ class PreviewController: QLPreviewController {
 
     var urls: [URL]
 
+    var customTitle: String?
+
     private lazy var doneButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem(title: String.localized("done"), style: .done, target: self, action: #selector(doneButtonPressed(_:)))
         return button
@@ -43,6 +45,17 @@ extension PreviewController: QLPreviewControllerDataSource {
     }
 
     func previewController(_: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-        return urls[index] as QLPreviewItem
+        return PreviewItem(url: urls[index], title: self.customTitle)
+    }
+}
+
+// needed to prevent showing url-path in PreviewController's title (only relevant if url.count == 1)
+class PreviewItem: NSObject, QLPreviewItem {
+    var previewItemURL: URL?
+    var previewItemTitle: String?
+
+    init(url: URL, title: String?) {
+        self.previewItemURL = url
+        self.previewItemTitle = title ?? ""
     }
 }
