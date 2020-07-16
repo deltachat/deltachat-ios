@@ -90,11 +90,7 @@ class ContactCell: UITableViewCell {
     }()
 
     private let locationStreamingIndicator: UIImageView = {
-        let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.widthAnchor.constraint(equalToConstant: 16).isActive = true
-        view.tintColor = DcColors.checkmarkGreen
-        view.image = #imageLiteral(resourceName: "ic_location").withRenderingMode(.alwaysTemplate)
+        let view = LocationStreamingIndicator(height: 16)
         view.isHidden = true
         view.contentMode = .scaleAspectFit
         return view
