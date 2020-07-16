@@ -6,15 +6,16 @@ class ContactDetailViewController: UITableViewController {
     private let viewModel: ContactDetailViewModel
 
     private lazy var headerCell: ContactDetailHeader = {
-        let cell = ContactDetailHeader()
-        cell.updateDetails(title: viewModel.contact.displayName, subtitle: viewModel.contact.email)
+        let header = ContactDetailHeader()
+        header.updateDetails(title: viewModel.contact.displayName, subtitle: viewModel.contact.email)
         if let img = viewModel.contact.profileImage {
-            cell.setImage(img)
+            header.setImage(img)
         } else {
-            cell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
+            header.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
         }
-        cell.setVerified(isVerified: viewModel.contact.isVerified)
-        return cell
+        header.setVerified(isVerified: viewModel.contact.isVerified)
+        header.onAvatarTap = showContactAvatarIfNeeded
+        return header
     }()
 
 
@@ -368,6 +369,15 @@ class ContactDetailViewController: UITableViewController {
         ).reversed()
         let galleryController = GalleryViewController(mediaMessageIds: messageIds)
         navigationController?.pushViewController(galleryController, animated: true)
+    }
+
+    private func showContactAvatarIfNeeded() {
+        let contact = viewModel.contact
+        if let url =  contact.profileImageURL {
+            let previewController = PreviewController(currentIndex: 0, urls: [url])
+            previewController.customTitle = contact.displayName
+            present(previewController, animated: true, completion: nil)
+        }
     }
 
     private func deleteChat() {
