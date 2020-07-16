@@ -756,7 +756,7 @@ class ChatViewController: MessagesViewController {
     }
 
     private func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
-        mediaPicker?.showPhotoVideoLibrary(delegate: delegate)
+        mediaPicker?.showPhotoVideoLibrary()
     }
 
     private func showMediaGallery(currentIndex: Int, mediaUrls urls: [URL]) {

@@ -1,7 +1,6 @@
 import UIKit
 import Photos
 import MobileCoreServices
-import KK_ALCameraViewController
 
 protocol MediaPickerDelegate: class {
     func onImageSelected(image: UIImage)
@@ -56,7 +55,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderContro
         navigationController?.present(audioRecorderNavController, animated: true, completion: nil)
     }
 
-    func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
+    func showPhotoVideoLibrary() {
         if PHPhotoLibrary.authorizationStatus() != .authorized {
             PHPhotoLibrary.requestAuthorization { status in
                 DispatchQueue.main.async {
@@ -65,12 +64,12 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderContro
                     case  .denied, .notDetermined, .restricted:
                         print("denied")
                     case .authorized:
-                        self?.presentPhotoVideoLibrary(delegate: delegate)
+                        self?.presentPhotoVideoLibrary()
                     }
                 }
             }
         } else {
-            presentPhotoVideoLibrary(delegate: delegate)
+            presentPhotoVideoLibrary()
         }
     }
 
@@ -84,7 +83,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderContro
         navigationController?.present(documentPicker, animated: true, completion: nil)
     }
 
-    private func presentPhotoVideoLibrary(delegate: MediaPickerDelegate) {
+    private func presentPhotoVideoLibrary() {
         let mediaTypes = [
             kUTTypeMovie as String,
             kUTTypeVideo as String,
