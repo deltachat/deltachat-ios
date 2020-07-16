@@ -38,7 +38,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     private lazy var profileCell: ContactCell = {
         let cell = ContactCell(style: .default, reuseIdentifier: "profile_cell")
-        let cellViewModel = ProfileViewModell(context: dcContext)
+        let cellViewModel = ProfileViewModel(context: dcContext)
         cell.updateCell(cellViewModel: cellViewModel)
         cell.tag = CellTags.profile.rawValue
         cell.accessoryType = .disclosureIndicator
@@ -436,7 +436,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     // MARK: - updates
     private func updateCells() {
-        profileCell.updateCell(cellViewModel: ProfileViewModell(context: dcContext))
+        profileCell.updateCell(cellViewModel: ProfileViewModel(context: dcContext))
         showEmailsCell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
         mediaQualityCell.detailTextLabel?.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
         autodelCell.detailTextLabel?.text = autodelSummary()
