@@ -12,10 +12,18 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
     private lazy var qrCodeHint: String = {
         var qrCodeHint = ""
         if dcContext.isConfigured() {
-            let contact = DcContact(id: Int(DC_CONTACT_ID_SELF))
+            // we cannot use dc_contact_get_displayname() as this would result in "Me" instead of the real name
+            let name = dcContext.getConfig("displayname") ?? ""
+            let addr = dcContext.getConfig("addr") ?? ""
+            var nameAndAddress = ""
+            if name.isEmpty {
+                nameAndAddress = addr
+            } else {
+                nameAndAddress = name + " (" + addr + ")"
+            }
             qrCodeHint = String.localizedStringWithFormat(
                 String.localized("qrshow_join_contact_hint"),
-                contact.email
+                nameAndAddress
             )
         }
         return qrCodeHint
