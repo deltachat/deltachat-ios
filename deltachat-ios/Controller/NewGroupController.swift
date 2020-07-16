@@ -26,7 +26,9 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private let sectionGroupMembers = 2
 
     private lazy var mediaPicker: MediaPicker? = {
-        return MediaPicker(navigationController: navigationController)
+        let mediaPicker = MediaPicker(navigationController: navigationController)
+        mediaPicker.delegate = self
+        return mediaPicker
     }()
 
     lazy var groupNameCell: TextFieldCell = {
@@ -348,7 +350,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func showCamera(delegate: MediaPickerDelegate) {
-        mediaPicker?.showCamera(delegate: delegate)
+        mediaPicker?.showCamera(allowCropping: true, supportedMediaTypes: .photo)
     }
 
     private func showQrCodeInvite(chatId: Int) {

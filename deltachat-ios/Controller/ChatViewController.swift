@@ -114,7 +114,9 @@ class ChatViewController: MessagesViewController {
     var showCustomNavBar = true
 
     private lazy var mediaPicker: MediaPicker? = {
-        return MediaPicker(navigationController: navigationController)
+        let mediaPicker = MediaPicker(navigationController: navigationController)
+        mediaPicker.delegate = self
+        return mediaPicker
     }()
 
     var emptyStateView: EmptyStateLabel = {
@@ -749,8 +751,8 @@ class ChatViewController: MessagesViewController {
         mediaPicker?.showVoiceRecorder(delegate: delegate)
     }
 
-    private func showCameraViewController(delegate: MediaPickerDelegate) {
-        mediaPicker?.showCamera(delegate: delegate, allowCropping: false)
+    private func showCameraViewController() {
+       mediaPicker?.showCamera()
     }
 
     private func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
@@ -1271,7 +1273,7 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        showCameraViewController(delegate: self)
+        showCameraViewController()
     }
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
@@ -1410,7 +1412,6 @@ extension ChatViewController: MessageCellDelegate {
         }
     }
 
-
     func didStartAudio(in cell: AudioMessageCell) {
         print("audio started")
     }
@@ -1422,7 +1423,6 @@ extension ChatViewController: MessageCellDelegate {
     func didPauseAudio(in cell: AudioMessageCell) {
         print("audio paused")
     }
-
 
     @objc func didTapBackground(in cell: MessageCollectionViewCell) {
         print("background of message tapped")
@@ -1512,7 +1512,6 @@ extension MessageCollectionViewCell {
             }
         }
     }
-
 
     @objc func messageDelete(_ sender: Any?) {
         // Get the collectionView

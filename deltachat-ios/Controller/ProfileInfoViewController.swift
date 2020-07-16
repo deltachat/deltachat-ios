@@ -7,7 +7,9 @@ class ProfileInfoViewController: UITableViewController {
     private var displayName: String?
 
     private lazy var mediaPicker: MediaPicker? = {
-        return MediaPicker(navigationController: navigationController)
+        let mediaPicker = MediaPicker(navigationController: navigationController)
+        mediaPicker.delegate = self
+        return mediaPicker
     }()
 
     private lazy var doneButtonItem: UIBarButtonItem = {
@@ -131,7 +133,7 @@ class ProfileInfoViewController: UITableViewController {
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        mediaPicker?.showCamera(delegate: self)
+        mediaPicker?.showCamera()
     }
 }
 
