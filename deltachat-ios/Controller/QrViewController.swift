@@ -21,7 +21,11 @@ class QrViewController: UIViewController {
         return view
     }()
 
-    private let qrCodeHint: String
+    var qrCodeHint: String {
+        willSet {
+            qrContentView.hintText = newValue
+        }
+    }
     private let chatId: Int
 
     init(dcContext: DcContext, chatId: Int? = 0, qrCodeHint: String?) {
@@ -86,18 +90,25 @@ class QrViewController: UIViewController {
 // MARK: - QrViewContentView
 class QrViewContentView: UIView {
 
+    var hintText: String? {
+        willSet {
+            hintLabel.text = newValue
+        }
+    }
+
     private var qrCodeView: QRCodeView = {
         let view = QRCodeView(frame: .zero)
         return view
     }()
 
-    private var hintLabel: UILabel = {
+    private lazy var hintLabel: UILabel = {
         let label = UILabel.init()
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .preferredFont(forTextStyle: .subheadline)
         label.adjustsFontForContentSizeCategory = true
+        label.text = hintText
         return label
     }()
 
@@ -115,7 +126,7 @@ class QrViewContentView: UIView {
 
     init(qrCode: String?, hint: String) {
         super.init(frame: .zero)
-        hintLabel.text = hint
+        hintText = hint
         if let qrCode = qrCode {
             qrCodeView.generateCode(
                 qrCode,

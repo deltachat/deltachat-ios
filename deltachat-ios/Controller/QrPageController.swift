@@ -9,7 +9,7 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
 
     private var selectedIndex: Int = 0
 
-    private var getQrCodeHint: String {
+    private var qrCodeHint: String {
         var qrCodeHint = ""
         if dcContext.isConfigured() {
             // we cannot use dc_contact_get_displayname() as this would result in "Me" instead of the real name
@@ -55,7 +55,7 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
         delegate = self
         navigationItem.titleView = qrSegmentControl
 
-        let qrController = QrViewController(dcContext: dcContext, qrCodeHint: getQrCodeHint)
+        let qrController = QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
         setViewControllers(
             [qrController],
             direction: .forward,
@@ -69,6 +69,7 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
         if let qrCodeReaderController = self.qrCodeReaderController {
             qrCodeReaderController.startSession()
         }
+        updateHintText()    // needed in case user changes profile name
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,7 +84,7 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
     // MARK: - actions
     @objc private func qrSegmentControlChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            let qrController = QrViewController(dcContext: dcContext, qrCodeHint: getQrCodeHint)
+            let qrController = QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
             setViewControllers([qrController], direction: .reverse, animated: true, completion: nil)
         } else {
             let qrCodeReaderController = makeQRReader()
@@ -97,6 +98,13 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
         let qrReader = QrCodeReaderController()
         qrReader.delegate = self
         return qrReader
+    }
+
+    // MARK: - update
+    private func updateHintText() {
+        for case let qrViewController as QrViewController in self.viewControllers ?? [] {
+            qrViewController.qrCodeHint = qrCodeHint
+        }
     }
 
     // MARK: - coordinator
@@ -119,7 +127,7 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
         if viewController is QrViewController {
             return nil
         }
-        return QrViewController(dcContext: dcContext, qrCodeHint: getQrCodeHint)
+        return QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
