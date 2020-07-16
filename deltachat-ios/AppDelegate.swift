@@ -10,7 +10,7 @@ let logger = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-    private let dcContext = DcContext.shared
+    private let dcContext = DcContext()
     var appCoordinator: AppCoordinator!
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
@@ -156,6 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let databaseLocation = AccountManager().getSelectedAccount()
         logger.info("open: \(databaseLocation)")
         dcContext.openDatabase(dbFile: databaseLocation)
+        DcContext.shared = dcContext
     }
 
     func closeDatabase() {

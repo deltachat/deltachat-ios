@@ -29,7 +29,7 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
     let logger = SimpleLogger()
-    let dcContext = DcContext.shared
+    let dcContext = DcContext()
     var selectedChatId: Int?
     var selectedChat: DcChat?
     let dbHelper = DatabaseHelper()
@@ -60,9 +60,10 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
     override func presentationAnimationDidFinish() {
-        if dbHelper.currentDatabaseLocation == dbHelper.sharedDbFile {
+        if dbHelper.updateSucceeded() {
             dcContext.logger = self.logger
-            dcContext.openDatabase(dbFile: dbHelper.sharedDbFile)
+            dcContext.openDatabase(dbFile: AccountManager().getSelectedAccount())
+            DcContext.shared = dcContext
             isAccountConfigured = dcContext.isConfigured()
             if isAccountConfigured {
                 selectedChatId = dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))

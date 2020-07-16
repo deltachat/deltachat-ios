@@ -4,9 +4,10 @@ import AVFoundation
 
 public class DcContext {
 
-    /// TODO: THIS global instance should be replaced in the future, for example for a multi-account scenario,
-    /// where we want to have more than one DcContext.
-    static let dcContext: DcContext = DcContext()
+    /// DcContact.shared can be set to get a global pointer to the current context.
+    /// It is not set implicitly. In general, injection of DcContext is preferred.
+    public static var shared: DcContext = DcContext()
+
     public var logger: Logger?
     var contextPointer: OpaquePointer?
     public var lastErrorString: String?
@@ -20,11 +21,6 @@ public class DcContext {
         if contextPointer == nil { return } // avoid a warning about a "careless call"
         dc_context_unref(contextPointer)
         contextPointer = nil
-    }
-
-    /// Injection of DcContext is preferred over the usage of the shared variable
-    public static var shared: DcContext {
-        return .dcContext
     }
 
     public func getMessageIds(chatId: Int, count: Int, from: Int?) -> [Int] {
