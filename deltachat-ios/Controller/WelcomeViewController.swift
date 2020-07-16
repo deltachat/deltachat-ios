@@ -42,7 +42,15 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
-        self.navigationItem.title = String.localized("welcome_desktop")
+
+        let canRollback = AccountManager().canRollbackAccountCreation()
+        self.navigationItem.title = canRollback ? String.localized("add_account") : String.localized("welcome_desktop")
+        if canRollback {
+            navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
+                target: self,
+                action: #selector(rollbackButton))
+        }
+
         onProgressSuccess = { [weak self] in
             let profileInfoController = ProfileInfoViewController(context: dcContext)
             profileInfoController.onClose = {
@@ -130,6 +138,9 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
         present(alert, animated: true)
+    }
+
+    @objc func rollbackButton() {
     }
 }
 

@@ -461,10 +461,11 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
         // add account
         alert.addAction(UIAlertAction(title: String.localized("add_account"), style: .default, handler: { [weak self] _ in
-            if !AccountManager().beginAccountCreation() {
-                self?.presentError(message: "Cannot begin account creation.")
+            if AccountManager().beginAccountCreation(), let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.installEventHandler()
+                appDelegate.appCoordinator.presentWelcomeController()
             } else {
-                // TODO
+                self?.presentError(message: "Cannot begin account creation.")
             }
         }))
 

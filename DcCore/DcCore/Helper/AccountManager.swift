@@ -57,8 +57,9 @@ public class AccountManager {
     private func resetDcContext() {
         // create an empty DcContext object - this will be set up then, starting with
         // getSelectedAccount()
-
-        // TODO
+        DcContext.shared.stopIo()
+        DcContext.shared.closeDatabase()
+        DcContext.shared = DcContext()
     }
 
 
@@ -112,5 +113,11 @@ public class AccountManager {
 
         resetDcContext()
         return true
+    }
+
+    public func canRollbackAccountCreation() -> Bool {
+        guard let userDefaults = UserDefaults.shared else { return false }
+        let prevDbName = userDefaults.string(forKey: UserDefaults.prevAccountDbName) ?? ""
+        return !prevDbName.isEmpty
     }
 }
