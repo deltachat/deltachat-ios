@@ -1,10 +1,12 @@
 import UIKit
 import DcCore
+import SDWebImage
 
 class GalleryViewController: UIViewController {
 
     // MARK: - data
     private let mediaMessageIds: [Int]
+    private var items: [Int: GalleryItem] = [:]
 
     // MARK: - subview specs
     private let gridDefaultSpacing: CGFloat = 5
@@ -26,6 +28,8 @@ class GalleryViewController: UIViewController {
         collection.backgroundColor = DcColors.defaultBackgroundColor
         collection.delaysContentTouches = false
         collection.alwaysBounceVertical = true
+        collection.isPrefetchingEnabled = true
+        collection.prefetchDataSource = self
         return collection
     }()
 
@@ -102,8 +106,17 @@ class GalleryViewController: UIViewController {
     }
 }
 
+extension GalleryViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+         indexPaths.forEach { if items[$0.row] == nil {
+            let item = GalleryItem(msgId: mediaMessageIds[$0.row])
+            items[$0.row] = item
+        }}
+    }
+}
+
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
-extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -119,9 +132,17 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             for: indexPath) as? GalleryCell else {
             return UICollectionViewCell()
         }
+
         let msgId = mediaMessageIds[indexPath.row]
-        let msg = DcMsg(id: msgId)
-        galleryCell.update(msg: msg)
+        var item: GalleryItem
+        if let galleryItem = items[indexPath.row] {
+            item = galleryItem
+        } else {
+            let galleryItem = GalleryItem(msgId: msgId)
+            items[indexPath.row] = galleryItem
+            item = galleryItem
+        }
+        galleryCell.update(item: item)
         return galleryCell
     }
 
@@ -195,5 +216,81 @@ extension GalleryViewController {
         }
         let previewController = PreviewController(currentIndex: index, urls: mediaUrls)
         present(previewController, animated: true, completion: nil)
+    }
+}
+
+class GalleryItem {
+
+    var onImageLoaded: ((UIImage?) -> Void)?
+
+    var msg: DcMsg
+
+    var fileUrl: URL? {
+        return msg.fileURL
+    }
+
+    var thumbnailImage: UIImage? {
+        willSet {
+           onImageLoaded?(newValue)
+        }
+    }
+
+    var showPlayButton: Bool {
+        switch msg.viewtype {
+        case .video:
+            return true
+        default:
+            return false
+        }
+    }
+
+    init(msgId: Int) {
+        self.msg = DcMsg(id: msgId)
+
+        if let key = msg.fileURL?.absoluteString, let image = ThumbnailCache.shared.restoreImage(key: key) {
+            self.thumbnailImage = image
+        } else {
+            loadThumbnail()
+        }
+    }
+
+    private func loadThumbnail() {
+        guard let viewtype = msg.viewtype, let url = msg.fileURL else {
+            return
+        }
+        switch viewtype {
+        case .image:
+            thumbnailImage = msg.image
+        case .video:
+            loadVideoThumbnail(from: url)
+        case .gif:
+            loadGifThumbnail(from: url)
+        default:
+           safe_fatalError("unsupported viewtype - viewtype \(viewtype) not supported.")
+        }
+    }
+
+    private func loadGifThumbnail(from url: URL) {
+        DispatchQueue.global(qos: .userInteractive).async {
+            guard let imageData = try? Data(contentsOf: url) else {
+                return
+            }
+            let thumbnailImage = SDAnimatedImage(data: imageData)
+            DispatchQueue.main.async { [weak self] in
+                self?.thumbnailImage = thumbnailImage
+            }
+        }
+    }
+
+    private func loadVideoThumbnail(from url: URL) {
+        DispatchQueue.global(qos: .userInteractive).async {
+            let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: url)
+            DispatchQueue.main.async { [weak self] in
+                self?.thumbnailImage = thumbnailImage
+                if let image = thumbnailImage {
+                    ThumbnailCache.shared.storeImage(image: image, key: url.absoluteString)
+                }
+            }
+        }
     }
 }

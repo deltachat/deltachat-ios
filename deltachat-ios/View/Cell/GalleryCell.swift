@@ -5,8 +5,10 @@ import SDWebImage
 class GalleryCell: UICollectionViewCell {
     static let reuseIdentifier = "gallery_cell"
 
-    var imageView: UIImageView = {
-        let view = UIImageView()
+    weak var item: GalleryItem?
+
+    var imageView: SDAnimatedImageView = {
+        let view = SDAnimatedImageView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.backgroundColor = DcColors.defaultBackgroundColor
@@ -19,7 +21,6 @@ class GalleryCell: UICollectionViewCell {
         return playButtonView
     }()
 
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
@@ -27,6 +28,12 @@ class GalleryCell: UICollectionViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        item?.onImageLoaded = nil
+        item = nil
     }
 
     private func setupSubviews() {
@@ -43,32 +50,13 @@ class GalleryCell: UICollectionViewCell {
         playButtonView.constraint(equalTo: CGSize(width: 50, height: 50))
     }
 
-    func update(msg: DcMsg) {
-        guard let viewtype = msg.viewtype, let fileUrl = msg.fileURL else {
-            return
+    func update(item: GalleryItem) {
+        self.item = item
+        item.onImageLoaded = { [weak self] image in
+            self?.imageView.image = image
         }
-        switch viewtype {
-        case .image:
-            imageView.image = msg.image
-            playButtonView.isHidden = true
-        case .video:
-            let key = fileUrl.absoluteString
-            if let image = ThumbnailCache.shared.restoreImage(key: key) {
-                imageView.image = image
-            } else {
-                imageView.loadVideoThumbnail(from: fileUrl, placeholderImage: nil) { thumbnail in
-                    if let image = thumbnail {
-                        ThumbnailCache.shared.storeImage(image: image, key: key)
-                    }
-                }
-            }
-            playButtonView.isHidden = false
-        case .gif:
-            imageView.sd_setImage(with: fileUrl, placeholderImage: nil)
-            playButtonView.isHidden = true
-        default:
-            safe_fatalError("unsupported viewtype - viewtype \(viewtype) not supported.")
-        }
+        playButtonView.isHidden = !item.showPlayButton
+        imageView.image = item.thumbnailImage
     }
 
     override var isSelected: Bool {
