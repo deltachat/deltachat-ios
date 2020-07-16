@@ -26,7 +26,7 @@ extension MediaPickerDelegate {
     }
 }
 
-class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderControllerDelegate, UIDocumentPickerDelegate {
+class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderControllerDelegate {
 
     enum CameraMediaTypes {
         case photo
@@ -84,50 +84,28 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderContro
         navigationController?.present(documentPicker, animated: true, completion: nil)
     }
 
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        let url = urls[0] as NSURL
-        self.delegate?.onDocumentSelected(url: url)
-    }
-
     private func presentPhotoVideoLibrary(delegate: MediaPickerDelegate) {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let videoPicker = UIImagePickerController()
-            videoPicker.title = String.localized("gallery")
-            videoPicker.delegate = self
-            videoPicker.sourceType = .photoLibrary
-            videoPicker.mediaTypes = [
-                kUTTypeMovie as String,
-                kUTTypeVideo as String,
-                kUTTypeImage as String
-            ]
-            self.delegate = delegate
-            navigationController?.present(videoPicker, animated: true, completion: nil)
-        }
+        let mediaTypes = [
+            kUTTypeMovie as String,
+            kUTTypeVideo as String,
+            kUTTypeImage as String
+        ]
+        showPhotoLibrary(mediaTypes: mediaTypes)
     }
 
     func showPhotoGallery() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = .photoLibrary
-        imagePickerController.delegate = self
+        let mediaType = [kUTTypeImage as String]
+        showPhotoLibrary(mediaTypes: mediaType)
+    }
 
-//
-//        let croppingParameters = CroppingParameters(
-//            isEnabled: true,UIImagePickerController
-//            allowResizing: true,
-//            allowMoving: true,
-//            minimumSize: CGSize(width: 70, height: 70)
-//        )
-//
-//        let controller = CameraViewController.imagePickerViewController(
-//            croppingParameters: croppingParameters,
-//            completion: { [weak self] image, _ in
-//                if let image = image {
-//                    self?.delegate?.onImageSelected(image: image)
-//                }
-//                self?.navigationController?.dismiss(animated: true, completion: nil)})
-//        controller.modalPresentationStyle = .fullScreen
-//        navigationController?.present(controller, animated: true, completion: nil)
-        navigationController?.present(imagePickerController, animated: true, completion: nil)
+    private func showPhotoLibrary(mediaTypes: [String]) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.mediaTypes = mediaTypes
+            navigationController?.present(imagePicker, animated: true, completion: nil)
+        }
     }
 
     func showCamera(allowCropping: Bool, supportedMediaTypes: CameraMediaTypes) {
@@ -180,17 +158,16 @@ extension MediaPicker: UIImagePickerControllerDelegate {
                     handleVideoUrl(url: videoUrl)
                 }
             case .image:
-                var image: UIImage? = nil
+                var image: UIImage?
                 if let editedImage = info[.editedImage] as? UIImage {
                     image = editedImage
                 } else if let originalImage = info[.originalImage] as? UIImage {
                     image = originalImage
                 }
-                // photos picked from the photoLibrary come here with unadjusted orientation
+                // orientation fix needed for images picked from photoGallery
                 if let image = image?.upOrientationImage() {
                     self.delegate?.onImageSelected(image: image)
                 }
-
             }
         }
         picker.dismiss(animated: true, completion: nil)
@@ -216,4 +193,11 @@ extension MediaPicker: UIImagePickerControllerDelegate {
         self.delegate?.onVoiceMessageRecorded(url: url)
     }
 
+}
+
+extension MediaPicker: UIDocumentPickerDelegate {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        let url = urls[0] as NSURL
+        self.delegate?.onDocumentSelected(url: url)
+    }
 }
