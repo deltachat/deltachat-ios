@@ -450,8 +450,14 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let alert = UIAlertController(title: String.localized("switch_account"), message: nil, preferredStyle: .safeActionSheet)
         for account in accounts {
             var title = account.displayname.isEmpty ? account.addr : "\(account.displayname) (\(account.addr))"
+            title += account.configured ? "" : " (not configured)"
             title += account.current ? " ✓" : ""
-            alert.addAction(UIAlertAction(title: title, style: .default, handler: nil)) // TODO
+            alert.addAction(UIAlertAction(title: title, style: .default, handler: { _ in
+                if AccountManager().switchAccount(account: account), let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.installEventHandler()
+                    appDelegate.appCoordinator.presentTabBarController()
+                }
+            }))
         }
 
         // delete account

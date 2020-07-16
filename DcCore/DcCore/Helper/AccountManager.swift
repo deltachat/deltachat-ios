@@ -1,7 +1,7 @@
 import Foundation
 
 public class Account {
-    private let dbName: String
+    let dbName: String // only name, no full path
     public let displayname: String
     public let addr: String
     public let configured: Bool
@@ -52,6 +52,20 @@ public class AccountManager {
                        displayname: testContext.getConfig("displayname") ?? "",
                        addr: testContext.getConfig("addr") ?? "",
                        configured: testContext.isConfigured())
+    }
+
+    public func switchAccount(account: Account) -> Bool {
+        if let userDefaults = UserDefaults.shared {
+            let prevDbName = userDefaults.string(forKey: UserDefaults.currAccountDbName) ?? defaultDbName
+
+            // we remember prev_account_db_name in case the account is not configured
+            // and the user want to rollback to the working account
+            userDefaults.set(prevDbName, forKey: UserDefaults.prevAccountDbName)
+            userDefaults.set(account.dbName, forKey: UserDefaults.currAccountDbName)
+            resetDcContext()
+            return true
+        }
+        return false
     }
 
     private func resetDcContext() {
@@ -115,9 +129,28 @@ public class AccountManager {
         return true
     }
 
+    // check if there is an account creation started by beginAccountCreation().
     public func canRollbackAccountCreation() -> Bool {
         guard let userDefaults = UserDefaults.shared else { return false }
         let prevDbName = userDefaults.string(forKey: UserDefaults.prevAccountDbName) ?? ""
         return !prevDbName.isEmpty
+    }
+
+    // cancels account creation started by beginAccountCreation(),
+    // returns true when account creation was canceled,
+    // returns false when there is no account to cancel or on errors
+    public func rollbackAccountCreation() -> Bool {
+        if let userDefaults = UserDefaults.shared, let sharedDir = DatabaseHelper().sharedDir {
+            let prevDbName = userDefaults.string(forKey: UserDefaults.prevAccountDbName) ?? ""
+            let inCreationDbName = userDefaults.string(forKey: UserDefaults.currAccountDbName) ?? ""
+
+            if let prevAccount = maybeGetAccount(dbFile: sharedDir.appendingPathComponent(prevDbName).path) {
+                if switchAccount(account: prevAccount) {
+                    // TODO: delete inCreationDbName
+                    return true
+                }
+            }
+        }
+        return false
     }
 }

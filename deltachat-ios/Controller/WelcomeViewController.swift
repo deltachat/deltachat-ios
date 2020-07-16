@@ -141,6 +141,12 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }
 
     @objc func rollbackButton() {
+        if AccountManager().rollbackAccountCreation() {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.installEventHandler()
+                appDelegate.appCoordinator.presentTabBarController()
+            }
+        }
     }
 }
 
