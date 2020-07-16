@@ -21,12 +21,6 @@ class ProfileInfoViewController: UITableViewController {
         )
     }()
 
-    private lazy var emailCell: TextFieldCell = {
-        let cell = TextFieldCell(description: "Meine Email Adresse", placeholder: "Meine Email")
-        cell.setText(text: dcContext.addr)
-        return cell
-    }()
-
     private lazy var avatarCell: AvatarSelectionCell = {
         let cell = AvatarSelectionCell(context: self.dcContext)
         cell.onAvatarTapped = avatarTapped
