@@ -125,7 +125,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
     // MARK: - actions
     private func galleryButtonPressed(_ action: UIAlertAction) {
-        mediaPicker?.showPhotoGallery(delegate: self)
+        mediaPicker?.showPhotoGallery()
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {

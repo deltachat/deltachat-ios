@@ -26,7 +26,7 @@ extension MediaPickerDelegate {
     }
 }
 
-class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AudioRecorderControllerDelegate, UIDocumentPickerDelegate {
+class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderControllerDelegate, UIDocumentPickerDelegate {
 
     enum CameraMediaTypes {
         case photo
@@ -105,24 +105,29 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         }
     }
 
-    func showPhotoGallery(delegate: MediaPickerDelegate) {
-        let croppingParameters = CroppingParameters(
-            isEnabled: true,
-            allowResizing: true,
-            allowMoving: true,
-            minimumSize: CGSize(width: 70, height: 70)
-        )
+    func showPhotoGallery() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
 
-        let controller = CameraViewController.imagePickerViewController(
-            croppingParameters: croppingParameters,
-            completion: { [weak self] image, _ in
-                if let image = image {
-                    self?.delegate?.onImageSelected(image: image)
-                }
-                self?.navigationController?.dismiss(animated: true, completion: nil)})
-        self.delegate = delegate
-        controller.modalPresentationStyle = .fullScreen
-        navigationController?.present(controller, animated: true, completion: nil)
+//
+//        let croppingParameters = CroppingParameters(
+//            isEnabled: true,UIImagePickerController
+//            allowResizing: true,
+//            allowMoving: true,
+//            minimumSize: CGSize(width: 70, height: 70)
+//        )
+//
+//        let controller = CameraViewController.imagePickerViewController(
+//            croppingParameters: croppingParameters,
+//            completion: { [weak self] image, _ in
+//                if let image = image {
+//                    self?.delegate?.onImageSelected(image: image)
+//                }
+//                self?.navigationController?.dismiss(animated: true, completion: nil)})
+//        controller.modalPresentationStyle = .fullScreen
+//        navigationController?.present(controller, animated: true, completion: nil)
+        navigationController?.present(imagePickerController, animated: true, completion: nil)
     }
 
     func showCamera(allowCropping: Bool, supportedMediaTypes: CameraMediaTypes) {
@@ -160,6 +165,11 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         showCamera(allowCropping: false, supportedMediaTypes: .allAvailable)
     }
 
+}
+
+// MARK: - UIImagePickerControllerDelegate
+extension MediaPicker: UIImagePickerControllerDelegate {
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
 
         if let type = info[.mediaType] as? String, let mediaType = PickerMediaType(rawValue: type) {
@@ -170,11 +180,17 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                     handleVideoUrl(url: videoUrl)
                 }
             case .image:
-                if let image = info[.editedImage] as? UIImage {
-                    self.delegate?.onImageSelected(image: image)
-                } else if let image = info[.originalImage] as? UIImage {
+                var image: UIImage? = nil
+                if let editedImage = info[.editedImage] as? UIImage {
+                    image = editedImage
+                } else if let originalImage = info[.originalImage] as? UIImage {
+                    image = originalImage
+                }
+                // photos picked from the photoLibrary come here with unadjusted orientation
+                if let image = image?.upOrientationImage() {
                     self.delegate?.onImageSelected(image: image)
                 }
+
             }
         }
         picker.dismiss(animated: true, completion: nil)
