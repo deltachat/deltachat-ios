@@ -69,7 +69,7 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
         if let qrCodeReaderController = self.qrCodeReaderController {
             qrCodeReaderController.startSession()
         }
-        updateHintText()    // needed in case user changes profile name
+        updateHintTextIfNeeded()    // needed in case user changes profile name
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -101,9 +101,12 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
     }
 
     // MARK: - update
-    private func updateHintText() {
+    private func updateHintTextIfNeeded() {
         for case let qrViewController as QrViewController in self.viewControllers ?? [] {
-            qrViewController.qrCodeHint = qrCodeHint
+            let newHint = qrCodeHint
+            if qrCodeHint != qrViewController.qrCodeHint {
+                qrViewController.qrCodeHint = newHint
+            }
         }
     }
 
