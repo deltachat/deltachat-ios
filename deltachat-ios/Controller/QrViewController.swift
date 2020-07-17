@@ -23,7 +23,8 @@ class QrViewController: UIViewController {
 
     var qrCodeHint: String {
         willSet {
-            qrContentView.hintText = newValue
+            let qrCode = dcContext.getSecurejoinQr(chatId: chatId)
+            qrContentView.update(qrCode: qrCode, hint: newValue)
         }
     }
     private let chatId: Int
@@ -90,12 +91,6 @@ class QrViewController: UIViewController {
 // MARK: - QrViewContentView
 class QrViewContentView: UIView {
 
-    var hintText: String? {
-        willSet {
-            hintLabel.text = newValue
-        }
-    }
-
     private var qrCodeView: QRCodeView = {
         let view = QRCodeView(frame: .zero)
         return view
@@ -108,7 +103,6 @@ class QrViewContentView: UIView {
         label.textAlignment = .center
         label.font = .preferredFont(forTextStyle: .subheadline)
         label.adjustsFontForContentSizeCategory = true
-        label.text = hintText
         return label
     }()
 
@@ -126,7 +120,16 @@ class QrViewContentView: UIView {
 
     init(qrCode: String?, hint: String) {
         super.init(frame: .zero)
-        hintText = hint
+        update(qrCode: qrCode, hint: hint)
+        setupSubviews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - update
+    func update(qrCode: String?, hint: String?) {
         if let qrCode = qrCode {
             qrCodeView.generateCode(
                 qrCode,
@@ -134,11 +137,7 @@ class QrViewContentView: UIView {
                 backgroundColor: .white
             )
         }
-        setupSubviews()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        hintLabel.text = hint
     }
 
     private func setupSubviews() {
