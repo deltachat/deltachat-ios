@@ -65,6 +65,11 @@ extension UIImage {
             return result
         }
     }
+
+    func convertToJPEG(compressionQuality quality: CGFloat) -> UIImage? {
+        guard let jpegData = jpegData(compressionQuality: quality) else { return nil }
+        return UIImage(data: jpegData)
+    }
 }
 
 public enum ImageType: String {
