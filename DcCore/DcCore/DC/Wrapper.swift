@@ -760,10 +760,10 @@ public class DcChat {
 
 	public var profileImageURL: URL? {
 		guard let cString = dc_chat_get_profile_image(chatPointer) else { return nil }
-        let filename = String(cString: cString)
-        dc_str_unref(cString)
-        let path: URL = URL(fileURLWithPath: filename, isDirectory: false)
-        return path
+		let filename = String(cString: cString)
+		dc_str_unref(cString)
+		let path: URL = URL(fileURLWithPath: filename, isDirectory: false)
+		return path
 	}
 
     public var isSendingLocations: Bool {
