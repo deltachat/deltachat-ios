@@ -1,8 +1,9 @@
 import UIKit
 
 public struct DcColors {
-    private static let white						= #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-    private static let actionCellBackgroundDark		= #colorLiteral(red: 0.1031623408, green: 0.1083367988, blue: 0.1185036376, alpha: 1)
+    private static let white                                  = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    private static let actionCellBackgroundDark               = #colorLiteral(red: 0.1031623408, green: 0.1083367988, blue: 0.1185036376, alpha: 1)
+
 
     public static let primary = UIColor.systemBlue
     public static let colorDisabled = UIColor.themeColor(light: UIColor(white: 0.9, alpha: 1), dark: UIColor(white: 0.2, alpha: 1))
@@ -12,7 +13,7 @@ public struct DcColors {
                                                           dark: UIColor.init(hexString: "333333"))
     public static let contactCellBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
     public static let defaultBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
-	public static let sharedChatCellBackgroundColor = UIColor.themeColor(light: white, dark: actionCellBackgroundDark)
+    public static let sharedChatCellBackgroundColor = UIColor.themeColor(light: white, dark: actionCellBackgroundDark)
     public static let chatBackgroundColor = UIColor.themeColor(light: UIColor(red: 255, green: 255, blue: 255, alpha: 0), dark: .black)
     public static let checkmarkGreen = UIColor.themeColor(light: UIColor.rgb(red: 112, green: 177, blue: 92))
     public static let defaultTextColor = UIColor.themeColor(light: .darkText, dark: .white)
