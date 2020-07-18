@@ -743,12 +743,12 @@ class ChatViewController: MessagesViewController {
         }
     }
 
-    private func showDocumentLibrary(delegate: MediaPickerDelegate) {
-        mediaPicker?.showDocumentLibrary(delegate: delegate)
+    private func showDocumentLibrary() {
+        mediaPicker?.showDocumentLibrary()
     }
 
-    private func showVoiceMessageRecorder(delegate: MediaPickerDelegate) {
-        mediaPicker?.showVoiceRecorder(delegate: delegate)
+    private func showVoiceMessageRecorder() {
+        mediaPicker?.showVoiceRecorder()
     }
 
     private func showCameraViewController() {
@@ -1265,11 +1265,11 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
 
     private func documentActionPressed(_ action: UIAlertAction) {
-        showDocumentLibrary(delegate: self)
+        showDocumentLibrary()
     }
 
     private func voiceMessageButtonPressed(_ action: UIAlertAction) {
-        showVoiceMessageRecorder(delegate: self)
+        showVoiceMessageRecorder()
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {

@@ -45,8 +45,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderContro
         self.navigationController = navigationController
     }
 
-    func showVoiceRecorder(delegate: MediaPickerDelegate) {
-        self.delegate = delegate
+    func showVoiceRecorder() {
         let audioRecorderController = AudioRecorderController()
         audioRecorderController.delegate = self
         //audioRecorderController.maximumRecordDuration = 1200
@@ -73,13 +72,12 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderContro
         }
     }
 
-    func showDocumentLibrary(delegate: MediaPickerDelegate) {
+    func showDocumentLibrary() {
         let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet, kUTTypeVCard, kUTTypeZipArchive, kUTTypeImage]
         let documentPicker = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
         documentPicker.modalPresentationStyle = .formSheet
-        self.delegate = delegate
         navigationController?.present(documentPicker, animated: true, completion: nil)
     }
 
