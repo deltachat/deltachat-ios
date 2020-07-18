@@ -87,21 +87,22 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderContro
             kUTTypeVideo as String,
             kUTTypeImage as String
         ]
-        showPhotoLibrary(mediaTypes: mediaTypes)
+        showPhotoLibrary(allowsCropping: false, mediaTypes: mediaTypes)
     }
 
     func showPhotoGallery() {
         let mediaType = [kUTTypeImage as String]
-        showPhotoLibrary(mediaTypes: mediaType)
+        showPhotoLibrary(allowsCropping: true, mediaTypes: mediaType) // used mainly for avatar-selection, allow cropping therefore
     }
 
-    private func showPhotoLibrary(mediaTypes: [String]) {
+    private func showPhotoLibrary(allowsCropping: Bool, mediaTypes: [String]) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = .photoLibrary
-            imagePicker.mediaTypes = mediaTypes
-            navigationController?.present(imagePicker, animated: true, completion: nil)
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            imagePickerController.sourceType = .photoLibrary
+            imagePickerController.mediaTypes = mediaTypes
+            imagePickerController.allowsEditing = allowsCropping
+            navigationController?.present(imagePickerController, animated: true, completion: nil)
         }
     }
 
@@ -117,9 +118,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderContro
             case .allAvailable:
                 mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera) ?? []
             }
-            if allowCropping {
-                imagePickerController.allowsEditing = true
-            }
+            imagePickerController.allowsEditing = allowCropping
             imagePickerController.mediaTypes = mediaTypes
             imagePickerController.setEditing(true, animated: true)
             navigationController?.present(imagePickerController, animated: true, completion: nil)
