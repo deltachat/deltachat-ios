@@ -23,6 +23,7 @@
 "archive" = "Arkiv";
 "unarchive" = "Avarkivera";
 "mute" = "Tyst";
+"ephemeral_messages" = "Försvinnande meddelanden";
 "save" = "Spara";
 "chat" = "Chatt";
 "media" = "Media";
@@ -433,6 +434,8 @@
 "ephemeral_dialog_title" = "Ta bort lästa meddelanden";
 
 
+// automatically delete message
+"delete_old_messages" = "Ta bort gamla meddelanden";
 "autodel_title" = "Ta bort meddelanden automatiskt";
 "autodel_title_short" = "Ta bort automatiskt";
 "autodel_device_title" = "Ta bort meddelanden från enheten";
@@ -486,6 +489,15 @@
 "systemmsg_unknown_sender_for_chat" = "Okänd avsändare för denna chatt. Se info för fler detaljer.";
 "systemmsg_subject_for_new_contact" = "Meddelande från %1$@";
 "systemmsg_failed_sending_to" = "Kunde inte skicka meddelande till %1$@.";
+
+"systemmsg_ephemeral_timer_disabled" = "Tiduret för meddelandeborttagning är inaktiverat.";
+"systemmsg_ephemeral_timer_enabled" = "Tiduret för meddelandeborttagning är satt till %1$@ s.";
+"systemmsg_ephemeral_timer_minute" = "Tiduret för meddelandeborttagning är satt till 1 minut.";
+"systemmsg_ephemeral_timer_hour" = "Tiduret för meddelandeborttagning är satt till 1 timma.";
+"systemmsg_ephemeral_timer_day" = "Tiduret för meddelandeborttagning är satt till 1 dag.";
+"systemmsg_ephemeral_timer_week" = "Tiduret för meddelandeborttagning är satt till 1 vecka.";
+"systemmsg_ephemeral_timer_four_weeks" = "Tiduret för meddelandeborttagning är satt till 4 veckor.";
+
 
 // screen lock
 "screenlock_title" = "Skärmlås";

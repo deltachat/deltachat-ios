@@ -23,6 +23,7 @@
 "archive" = "Arşivle";
 "unarchive" = "Arşivleme";
 "mute" = "Sessize al";
+"ephemeral_messages" = "Kaybolan iletiler";
 "save" = "Kaydet";
 "chat" = "Sohbet";
 "media" = "Ortam";
@@ -433,6 +434,8 @@
 "ephemeral_dialog_title" = "Okunan iletileri sil";
 
 
+// automatically delete message
+"delete_old_messages" = "Eski iletileri sil";
 "autodel_title" = "İletileri otomatik sil";
 "autodel_title_short" = "Otomatik sil";
 "autodel_device_title" = "İletileri aygıttan sil";
@@ -486,6 +489,15 @@
 "systemmsg_unknown_sender_for_chat" = "Bu sohbet için bilinmeyen gönderen. Daha fazla ayrıntı için \'bilgi\'ye bakın.";
 "systemmsg_subject_for_new_contact" = "Şundan ileti: %1$@";
 "systemmsg_failed_sending_to" = "%1$@ alıcısına ileti gönderme başarısız.";
+
+"systemmsg_ephemeral_timer_disabled" = "Kaybolan iletiler zamanlayıcısı etkisizleştirildi.";
+"systemmsg_ephemeral_timer_enabled" = "Kaybolan iletiler zamanlayıcısı %1$@ s\'ye ayarlandı.";
+"systemmsg_ephemeral_timer_minute" = "Kaybolan iletiler zamanlayıcısı 1 dakikaya ayarlandı.";
+"systemmsg_ephemeral_timer_hour" = "Kaybolan iletiler zamanlayıcısı 1 saate ayarlandı.";
+"systemmsg_ephemeral_timer_day" = "Kaybolan iletiler zamanlayıcısı 1 güne ayarlandı.";
+"systemmsg_ephemeral_timer_week" = "Kaybolan iletiler zamanlayıcısı 1 haftaya ayarlandı.";
+"systemmsg_ephemeral_timer_four_weeks" = "Kaybolan iletiler zamanlayıcısı 4 haftaya ayarlandı.";
+
 
 // screen lock
 "screenlock_title" = "Ekran kilidi";

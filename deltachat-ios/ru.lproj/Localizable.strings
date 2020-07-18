@@ -491,12 +491,12 @@
 "systemmsg_failed_sending_to" = "Не удалось отправить сообщение %1$@.";
 
 "systemmsg_ephemeral_timer_disabled" = "Таймер исчезающих сообщений отключен.";
-"systemmsg_ephemeral_timer_enabled" = "Таймер исчезающих сообщений установлен на %1$@ с.";
-"systemmsg_ephemeral_timer_minute" = "Таймер исчезающих сообщений установлен на 1 минуту.";
-"systemmsg_ephemeral_timer_hour" = "Таймер исчезающих сообщений установлен на 1 час.";
-"systemmsg_ephemeral_timer_day" = "Таймер исчезающих сообщений установлен на 1 день.";
-"systemmsg_ephemeral_timer_week" = "Таймер исчезающих сообщений установлен на 1 неделю.";
-"systemmsg_ephemeral_timer_four_weeks" = "Таймер исчезающих сообщений установлен на 4 недели.";
+"systemmsg_ephemeral_timer_enabled" = "Таймер исчезающих сообщений установлен на %1$@ с.";
+"systemmsg_ephemeral_timer_minute" = "Таймер исчезающих сообщений установлен на 1 минуту.";
+"systemmsg_ephemeral_timer_hour" = "Таймер исчезающих сообщений установлен на 1 час.";
+"systemmsg_ephemeral_timer_day" = "Таймер исчезающих сообщений установлен на 1 день.";
+"systemmsg_ephemeral_timer_week" = "Таймер исчезающих сообщений установлен на 1 неделю.";
+"systemmsg_ephemeral_timer_four_weeks" = "Таймер исчезающих сообщений установлен на 4 недели.";
 
 
 // screen lock

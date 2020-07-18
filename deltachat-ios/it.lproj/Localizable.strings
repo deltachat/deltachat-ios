@@ -23,6 +23,7 @@
 "archive" = "Archivia";
 "unarchive" = "Ripristina";
 "mute" = "Silenzia";
+"ephemeral_messages" = "Messaggi che scompaiono";
 "save" = "Salva";
 "chat" = "Chat";
 "media" = "Media";
@@ -213,7 +214,7 @@
 "chat_please_enter_message" = "Scrivere un messaggio.";
 "chat_camera_unavailable" = "Camera non disponibile.";
 "chat_unable_to_record_audio" = "Impossibile registrare audio.";
-"chat_no_messages_hint" = "Invia un messaggio a %1$@:\n\n• Non è necessario che anche %2$@ usi Delta Chat.\n\n• L\'invio del primo messaggio può richiedere qualche istante ed non essere crittografato. ";
+"chat_no_messages_hint" = "Invia un messaggio a %1$@:\n\n• Non è necessario che anche %2$@ usi Delta Chat.\n\n• L\'invio del primo messaggio può richiedere qualche istante e non essere crittografato. ";
 "chat_new_group_hint" = "Invia il primo messaggio per permettere agli altri di rispondere nel gruppo\n\n• Non è necessario che tutti i membri usino Delta Chat.\n\n• L\'invio del primo messaggio può richiedere qualche istante.";
 "chat_record_slide_to_cancel" = "Scorri per annullare";
 "chat_record_explain" = "Tocca e mantieni per registrare un messaggio vocale, rilascia per inviare ";
@@ -389,7 +390,7 @@
 "pref_other" = "Altro";
 "pref_backup" = "Backup";
 "pref_backup_explain" = "Backup chat su memoria esterna";
-"pref_backup_export_explain" = "Un backup ti aiuta a impostare una nuova installazione su questo o un altro dispositivo.\n\nIl backup conterrà tutti i messaggi, i contatti, le chat e le impostazioni Autocrypt. Tienilo al sicuro o eliminalo il prima possibile. ";
+"pref_backup_export_explain" = "Un backup ti aiuta ad impostare una nuova installazione su questo o un altro dispositivo.\n\nIl backup conterrà tutti i messaggi, i contatti, le chat e le impostazioni Autocrypt. Tienilo al sicuro o eliminalo il prima possibile. ";
 "pref_backup_export_start_button" = "Avvia backup";
 "pref_backup_written_to_x" = "Backup scritto con successo in %1$@";
 "pref_managekeys_menu_title" = "Gestisci chiavi";
@@ -433,6 +434,8 @@
 "ephemeral_dialog_title" = "Elimina i messaggi letti";
 
 
+// automatically delete message
+"delete_old_messages" = "Elimina i vecchi messaggi";
 "autodel_title" = "Auto eliminazione dei messaggi";
 "autodel_title_short" = "Auto-eliminazione";
 "autodel_device_title" = "Elimina messaggi dal dispositivo";
@@ -486,6 +489,15 @@
 "systemmsg_unknown_sender_for_chat" = "Mittente sconosciuto per questa chat. Vedi \'info\' per maggiori dettagli.";
 "systemmsg_subject_for_new_contact" = "Messaggio da %1$@";
 "systemmsg_failed_sending_to" = "Impossibile inviare il messaggio a %1$@.";
+
+"systemmsg_ephemeral_timer_disabled" = "Timer scomparsa messaggi disabilitato.";
+"systemmsg_ephemeral_timer_enabled" = "Il timer per la scomparsa dei messaggi è impostato su %1$@ s.";
+"systemmsg_ephemeral_timer_minute" = "Il timer per la scomparsa dei messaggi è impostato su 1 minuto.";
+"systemmsg_ephemeral_timer_hour" = "Il timer per la scomparsa dei messaggi è impostato su 1 ora.";
+"systemmsg_ephemeral_timer_day" = "Il timer per la scomparsa dei messaggi è impostato su 1 giorno.";
+"systemmsg_ephemeral_timer_week" = "Il timer per la scomparsa dei messaggi è impostato su 1 settimana.";
+"systemmsg_ephemeral_timer_four_weeks" = "Il timer per la scomparsa dei messaggi è impostato su 4 settimane.";
+
 
 // screen lock
 "screenlock_title" = "Blocco schermo";
