@@ -3,6 +3,8 @@ import DcCore
 
 class ContactDetailHeader: UIView {
 
+    var onAvatarTap: VoidFunction?
+
     public static let headerHeight: CGFloat = 74.5
 
     let badgeSize: CGFloat = 54
@@ -11,6 +13,8 @@ class ContactDetailHeader: UIView {
         let badge = InitialsBadge(size: badgeSize)
         badge.setColor(UIColor.lightGray)
         badge.isAccessibilityElement = false
+        let tap = UITapGestureRecognizer(target: self, action: #selector(avatarTapped(_:)))
+        badge.addGestureRecognizer(tap)
         return badge
     }()
 
@@ -90,4 +94,9 @@ class ContactDetailHeader: UIView {
     func setVerified(isVerified: Bool) {
         avatar.setVerified(isVerified)
     }
+
+    @objc private func avatarTapped(_ sender: InitialsBadge) {
+        onAvatarTap?()
+    }
+
 }

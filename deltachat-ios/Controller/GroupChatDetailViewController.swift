@@ -1,5 +1,6 @@
 import UIKit
 import DcCore
+import QuickLook
 
 class GroupChatDetailViewController: UIViewController {
 
@@ -86,6 +87,7 @@ class GroupChatDetailViewController: UIViewController {
         } else {
             header.setBackupImage(name: chat.name, color: chat.color)
         }
+        header.onAvatarTap = showGroupAvatarIfNeeded
         header.setVerified(isVerified: chat.isVerified)
         return header
     }()
@@ -292,6 +294,14 @@ class GroupChatDetailViewController: UIViewController {
         if let navigationController = navigationController {
             navigationController.popViewController(animated: false)
             navigationController.popViewController(animated: true)
+        }
+    }
+
+    private func showGroupAvatarIfNeeded() {
+        if let url = chat.profileImageURL {
+            let previewController = PreviewController(currentIndex: 0, urls: [url])
+            previewController.customTitle = self.title
+            present(previewController, animated: true, completion: nil)
         }
     }
 }
