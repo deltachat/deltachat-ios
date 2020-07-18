@@ -155,15 +155,10 @@ extension MediaPicker: UIImagePickerControllerDelegate {
                     handleVideoUrl(url: videoUrl)
                 }
             case .image:
-                var image: UIImage?
-                if let editedImage = info[.editedImage] as? UIImage {
-                    image = editedImage
-                } else if let originalImage = info[.originalImage] as? UIImage {
-                    image = originalImage
-                }
-                // orientation fix needed for images picked from photoGallery
-                if let image = image?.upOrientationImage(), let jpeg = image.convertToJPEG(compressionQuality: 1) {
-                    self.delegate?.onImageSelected(image: jpeg)
+                if let image = info[.editedImage] as? UIImage {
+                    self.delegate?.onImageSelected(image: image)
+                } else if let image = info[.originalImage] as? UIImage {
+                    self.delegate?.onImageSelected(image: image)
                 }
             }
         }
