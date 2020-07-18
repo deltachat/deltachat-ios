@@ -1,7 +1,6 @@
 import UIKit
 import Photos
 import MobileCoreServices
-import KK_ALCameraViewController
 
 protocol MediaPickerDelegate: class {
     func onImageSelected(image: UIImage)
@@ -26,7 +25,7 @@ extension MediaPickerDelegate {
     }
 }
 
-class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AudioRecorderControllerDelegate, UIDocumentPickerDelegate {
+class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderControllerDelegate {
 
     enum CameraMediaTypes {
         case photo
@@ -46,8 +45,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         self.navigationController = navigationController
     }
 
-    func showVoiceRecorder(delegate: MediaPickerDelegate) {
-        self.delegate = delegate
+    func showVoiceRecorder() {
         let audioRecorderController = AudioRecorderController()
         audioRecorderController.delegate = self
         //audioRecorderController.maximumRecordDuration = 1200
@@ -56,7 +54,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         navigationController?.present(audioRecorderNavController, animated: true, completion: nil)
     }
 
-    func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
+    func showPhotoVideoLibrary() {
         if PHPhotoLibrary.authorizationStatus() != .authorized {
             PHPhotoLibrary.requestAuthorization { status in
                 DispatchQueue.main.async {
@@ -65,64 +63,47 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                     case  .denied, .notDetermined, .restricted:
                         print("denied")
                     case .authorized:
-                        self?.presentPhotoVideoLibrary(delegate: delegate)
+                        self?.presentPhotoVideoLibrary()
                     }
                 }
             }
         } else {
-            presentPhotoVideoLibrary(delegate: delegate)
+            presentPhotoVideoLibrary()
         }
     }
 
-    func showDocumentLibrary(delegate: MediaPickerDelegate) {
+    func showDocumentLibrary() {
         let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet, kUTTypeVCard, kUTTypeZipArchive, kUTTypeImage]
         let documentPicker = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
         documentPicker.modalPresentationStyle = .formSheet
-        self.delegate = delegate
         navigationController?.present(documentPicker, animated: true, completion: nil)
     }
 
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        let url = urls[0] as NSURL
-        self.delegate?.onDocumentSelected(url: url)
+    private func presentPhotoVideoLibrary() {
+        let mediaTypes = [
+            kUTTypeMovie as String,
+            kUTTypeVideo as String,
+            kUTTypeImage as String
+        ]
+        showPhotoLibrary(allowsCropping: false, mediaTypes: mediaTypes)
     }
 
-    private func presentPhotoVideoLibrary(delegate: MediaPickerDelegate) {
+    func showPhotoGallery() {
+        let mediaType = [kUTTypeImage as String]
+        showPhotoLibrary(allowsCropping: true, mediaTypes: mediaType) // used mainly for avatar-selection, allow cropping therefore
+    }
+
+    private func showPhotoLibrary(allowsCropping: Bool, mediaTypes: [String]) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let videoPicker = UIImagePickerController()
-            videoPicker.title = String.localized("gallery")
-            videoPicker.delegate = self
-            videoPicker.sourceType = .photoLibrary
-            videoPicker.mediaTypes = [
-                kUTTypeMovie as String,
-                kUTTypeVideo as String,
-                kUTTypeImage as String
-            ]
-            self.delegate = delegate
-            navigationController?.present(videoPicker, animated: true, completion: nil)
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            imagePickerController.sourceType = .photoLibrary
+            imagePickerController.mediaTypes = mediaTypes
+            imagePickerController.allowsEditing = allowsCropping
+            navigationController?.present(imagePickerController, animated: true, completion: nil)
         }
-    }
-
-    func showPhotoGallery(delegate: MediaPickerDelegate) {
-        let croppingParameters = CroppingParameters(
-            isEnabled: true,
-            allowResizing: true,
-            allowMoving: true,
-            minimumSize: CGSize(width: 70, height: 70)
-        )
-
-        let controller = CameraViewController.imagePickerViewController(
-            croppingParameters: croppingParameters,
-            completion: { [weak self] image, _ in
-                if let image = image {
-                    self?.delegate?.onImageSelected(image: image)
-                }
-                self?.navigationController?.dismiss(animated: true, completion: nil)})
-        self.delegate = delegate
-        controller.modalPresentationStyle = .fullScreen
-        navigationController?.present(controller, animated: true, completion: nil)
     }
 
     func showCamera(allowCropping: Bool, supportedMediaTypes: CameraMediaTypes) {
@@ -137,9 +118,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
             case .allAvailable:
                 mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera) ?? []
             }
-            if allowCropping {
-                imagePickerController.allowsEditing = true
-            }
+            imagePickerController.allowsEditing = allowCropping
             imagePickerController.mediaTypes = mediaTypes
             imagePickerController.setEditing(true, animated: true)
             navigationController?.present(imagePickerController, animated: true, completion: nil)
@@ -159,6 +138,11 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     func showCamera() {
         showCamera(allowCropping: false, supportedMediaTypes: .allAvailable)
     }
+
+}
+
+// MARK: - UIImagePickerControllerDelegate
+extension MediaPicker: UIImagePickerControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
 
@@ -200,4 +184,11 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         self.delegate?.onVoiceMessageRecorded(url: url)
     }
 
+}
+
+extension MediaPicker: UIDocumentPickerDelegate {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        let url = urls[0] as NSURL
+        self.delegate?.onDocumentSelected(url: url)
+    }
 }
