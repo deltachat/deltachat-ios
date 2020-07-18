@@ -35,7 +35,7 @@ class ContactDetailHeader: UIView {
 
     init() {
         super.init(frame: .zero)
-        backgroundColor = DcColors.contactCellBackgroundColor
+        backgroundColor =  .clear
         setupSubviews()
     }
 
