@@ -21,7 +21,12 @@ class QrViewController: UIViewController {
         return view
     }()
 
-    private let qrCodeHint: String
+    var qrCodeHint: String {
+        willSet {
+            let qrCode = dcContext.getSecurejoinQr(chatId: chatId)
+            qrContentView.update(qrCode: qrCode, hint: newValue)
+        }
+    }
     private let chatId: Int
 
     init(dcContext: DcContext, chatId: Int? = 0, qrCodeHint: String?) {
@@ -91,7 +96,7 @@ class QrViewContentView: UIView {
         return view
     }()
 
-    private var hintLabel: UILabel = {
+    private lazy var hintLabel: UILabel = {
         let label = UILabel.init()
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -115,7 +120,16 @@ class QrViewContentView: UIView {
 
     init(qrCode: String?, hint: String) {
         super.init(frame: .zero)
-        hintLabel.text = hint
+        update(qrCode: qrCode, hint: hint)
+        setupSubviews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - update
+    func update(qrCode: String?, hint: String?) {
         if let qrCode = qrCode {
             qrCodeView.generateCode(
                 qrCode,
@@ -123,11 +137,7 @@ class QrViewContentView: UIView {
                 backgroundColor: .white
             )
         }
-        setupSubviews()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        hintLabel.text = hint
     }
 
     private func setupSubviews() {
