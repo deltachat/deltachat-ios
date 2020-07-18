@@ -170,10 +170,10 @@ extension MediaPicker: UIImagePickerControllerDelegate {
                 self.delegate?.onVideoSelected(url: (url as NSURL))
             } else if let error = error {
                 logger.error(error.localizedDescription)
-            let alert = UIAlertController(title: String.localized("error"), message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
-                self.navigationController?.dismiss(animated: true, completion: nil)
-            }))
+                let alert = UIAlertController(title: String.localized("error"), message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
+                    self.navigationController?.dismiss(animated: true, completion: nil)
+                }))
                 self.navigationController?.present(alert, animated: true, completion: nil)
             }
         })
