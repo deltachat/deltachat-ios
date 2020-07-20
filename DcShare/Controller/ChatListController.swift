@@ -12,6 +12,18 @@ class ChatListController: UITableViewController {
     let contactCellReuseIdentifier = "contactCellReuseIdentifier"
     weak var chatListDelegate: ChatListDelegate?
 
+    /// MARK - search
+
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        //searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = String.localized("search")
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
+        return searchController
+    }()
+
     init(dcContext: DcContext, chatListDelegate: ChatListDelegate) {
         self.dcContext = dcContext
         self.chatListDelegate = chatListDelegate
@@ -24,11 +36,17 @@ class ChatListController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         preferredContentSize = UIScreen.main.bounds.size
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         chatList = dcContext.getChatlist(flags: DC_GCL_ADD_ALLDONE_HINT | DC_GCL_FOR_FORWARDING | DC_GCL_NO_SPECIALS, queryString: nil, queryId: 0)
+        navigationItem.searchController = searchController
         tableView.register(ChatListCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
         tableView.rowHeight = 64
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: Double.leastNormalMagnitude))
