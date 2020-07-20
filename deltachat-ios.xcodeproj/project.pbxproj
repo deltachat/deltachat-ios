@@ -26,6 +26,12 @@
 		3057027F24C5B2F800D84EFC /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057027E24C5B2F800D84EFC /* ChatListViewModel.swift */; };
 		3057028724C5C88300D84EFC /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
 		3057028C24C5E7B600D84EFC /* ContactCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */; };
+		3057029B24C6441300D84EFC /* EmptyStateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057029A24C6441300D84EFC /* EmptyStateLabel.swift */; };
+		3057029D24C6442800D84EFC /* FlexLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057029C24C6442800D84EFC /* FlexLabel.swift */; };
+		3057029E24C6444D00D84EFC /* FlexLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057029C24C6442800D84EFC /* FlexLabel.swift */; };
+		3057029F24C6445000D84EFC /* EmptyStateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057029A24C6441300D84EFC /* EmptyStateLabel.swift */; };
+		305702A124C6453700D84EFC /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305702A024C6453700D84EFC /* TypeAlias.swift */; };
+		305702A224C6455400D84EFC /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305702A024C6453700D84EFC /* TypeAlias.swift */; };
 		305961CC2346125100C80F33 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961822346125000C80F33 /* UIView+Extensions.swift */; };
 		305961CD2346125100C80F33 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961832346125000C80F33 /* UIEdgeInsets+Extensions.swift */; };
 		305961CF2346125100C80F33 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961852346125000C80F33 /* UIColor+Extensions.swift */; };
@@ -268,6 +274,9 @@
 		304219D1243F588500516852 /* DcCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DcCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		304219D82440734A00516852 /* DcMsg+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DcMsg+Extension.swift"; sourceTree = "<group>"; };
 		3057027E24C5B2F800D84EFC /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
+		3057029A24C6441300D84EFC /* EmptyStateLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStateLabel.swift; sourceTree = "<group>"; };
+		3057029C24C6442800D84EFC /* FlexLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexLabel.swift; sourceTree = "<group>"; };
+		305702A024C6453700D84EFC /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		305961822346125000C80F33 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		305961832346125000C80F33 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		305961852346125000C80F33 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -957,6 +966,7 @@
 		AE851AC2227C695000ED86F0 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				305702A024C6453700D84EFC /* TypeAlias.swift */,
 				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
 				AEACE2E41FB32E1900DCDD78 /* Utils.swift */,
 				AE851AC4227C755A00ED86F0 /* Protocols.swift */,
@@ -974,6 +984,8 @@
 		AE851AC3227C695900ED86F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3057029C24C6442800D84EFC /* FlexLabel.swift */,
+				3057029A24C6441300D84EFC /* EmptyStateLabel.swift */,
 				AEF53BD4248904BF00D309C1 /* GalleryTimeLabel.swift */,
 				AE406EEE240FA454005F7022 /* Cell */,
 				B26B3BC6236DC3DC008ED35A /* SwitchCell.swift */,
@@ -1352,7 +1364,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3057027F24C5B2F800D84EFC /* ChatListViewModel.swift in Sources */,
+				3057029E24C6444D00D84EFC /* FlexLabel.swift in Sources */,
 				302589FF2452FA280086C1CD /* ShareAttachment.swift in Sources */,
+				3057029F24C6445000D84EFC /* EmptyStateLabel.swift in Sources */,
+				305702A224C6455400D84EFC /* TypeAlias.swift in Sources */,
 				30E8F2442449C64100CE2C90 /* ChatListCell.swift in Sources */,
 				30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */,
 				30E8F253244DAD0E00CE2C90 /* SendingController.swift in Sources */,
@@ -1390,6 +1405,7 @@
 				30A2EC36247D72720024ADD8 /* AnimatedImageMessageCell.swift in Sources */,
 				305962082346125100C80F33 /* MediaMessageSizeCalculator.swift in Sources */,
 				AE6EC5282497B9B200A400E4 /* ThumbnailCache.swift in Sources */,
+				3057029D24C6442800D84EFC /* FlexLabel.swift in Sources */,
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
 				AE39D323249CFC1A007346A1 /* DocumentGalleryController.swift in Sources */,
@@ -1430,6 +1446,7 @@
 				3059620B2346125100C80F33 /* LocationMessageSizeCalculator.swift in Sources */,
 				305962072346125100C80F33 /* MessagesCollectionViewFlowLayout.swift in Sources */,
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
+				305702A124C6453700D84EFC /* TypeAlias.swift in Sources */,
 				AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */,
 				305961D52346125100C80F33 /* MessagesViewController+Menu.swift in Sources */,
 				305961F22346125100C80F33 /* LocationMessageCell.swift in Sources */,
@@ -1483,6 +1500,7 @@
 				305961D22346125100C80F33 /* CGRect+Extensions.swift in Sources */,
 				305961E12346125100C80F33 /* LocationItem.swift in Sources */,
 				305961E72346125100C80F33 /* AccessoryPosition.swift in Sources */,
+				3057029B24C6441300D84EFC /* EmptyStateLabel.swift in Sources */,
 				30260CA7238F02F700D8D52C /* MultilineTextFieldCell.swift in Sources */,
 				305961DE2346125100C80F33 /* MessageType.swift in Sources */,
 				305961DA2346125100C80F33 /* MediaItem.swift in Sources */,
