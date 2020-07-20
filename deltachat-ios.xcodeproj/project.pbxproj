@@ -25,6 +25,7 @@
 		304F5E44244F571C00462538 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
 		3057027F24C5B2F800D84EFC /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057027E24C5B2F800D84EFC /* ChatListViewModel.swift */; };
 		3057028724C5C88300D84EFC /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
+		3057028C24C5E7B600D84EFC /* ContactCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */; };
 		305961CC2346125100C80F33 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961822346125000C80F33 /* UIView+Extensions.swift */; };
 		305961CD2346125100C80F33 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961832346125000C80F33 /* UIEdgeInsets+Extensions.swift */; };
 		305961CF2346125100C80F33 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961852346125000C80F33 /* UIColor+Extensions.swift */; };
@@ -1355,6 +1356,7 @@
 				30E8F2442449C64100CE2C90 /* ChatListCell.swift in Sources */,
 				30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */,
 				30E8F253244DAD0E00CE2C90 /* SendingController.swift in Sources */,
+				3057028C24C5E7B600D84EFC /* ContactCellViewModel.swift in Sources */,
 				30E8F2422448B77600CE2C90 /* ChatListController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

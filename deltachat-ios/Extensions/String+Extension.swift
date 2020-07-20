@@ -9,25 +9,6 @@ extension String {
         return String(self[idx1..<idx2])
     }
 
-    func containsExact(subSequence: String?) -> [Int] {
-        guard let searchText = subSequence else {
-            return []
-        }
-        if searchText.count > count {
-            return []
-        }
-
-        if let range = range(of: searchText, options: .caseInsensitive) {
-            let index: Int = distance(from: startIndex, to: range.lowerBound)
-            var indexes: [Int] = []
-            for i in index..<(index + searchText.count) {
-                indexes.append(i)
-            }
-            return indexes
-        }
-        return []
-    }
-
     // O(n) - returns indexes of subsequences -> can be used to highlight subsequence within string
     func contains(subSequence: String) -> [Int] {
         if subSequence.count > count {
@@ -56,18 +37,6 @@ extension String {
 
     func subScript(_ i: Int) -> Character {
         return self[index(startIndex, offsetBy: i)]
-    }
-
-    func boldAt(indexes: [Int], fontSize: CGFloat) -> NSAttributedString {
-        let attributedText = NSMutableAttributedString(string: self)
-
-        for index in indexes {
-            if index < 0 || count <= index {
-                break
-            }
-            attributedText.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: fontSize), range: NSRange(location: index, length: 1))
-        }
-        return attributedText
     }
 
     func bold(fontSize: CGFloat) -> NSAttributedString {

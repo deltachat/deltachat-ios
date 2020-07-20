@@ -13,16 +13,34 @@ class ChatListCell: UITableViewCell {
         return badge
     }()
 
-    let titleLabel: UILabel = {
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .leading
+        stackView.clipsToBounds = true
+        return stackView
+    }()
+
+    lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         label.adjustsFontForContentSizeCategory = true
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultTextColor
-        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+
+    lazy var subtitleLabel: UILabel = {
+           let label = UILabel()
+           label.textColor = DcColors.middleGray
+           label.lineBreakMode = .byTruncatingTail
+           label.font = .preferredFont(forTextStyle: .subheadline)
+           label.adjustsFontForContentSizeCategory = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+           return label
+       }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -49,11 +67,11 @@ class ChatListCell: UITableViewCell {
             avatar.constraintCenterYTo(contentView),
         ])
 
-        contentView.addSubview(titleLabel)
+        contentView.addSubview(stackView)
         contentView.addConstraints([
-            titleLabel.constraintCenterYTo(contentView),
-            titleLabel.constraintToTrailingOf(avatar, paddingLeading: margin),
-            titleLabel.constraintAlignTrailingTo(contentView)
+            stackView.constraintCenterYTo(contentView),
+            stackView.constraintToTrailingOf(avatar, paddingLeading: margin),
+            stackView.constraintAlignTrailingTo(contentView),
         ])
     }
 
@@ -76,17 +94,33 @@ class ChatListCell: UITableViewCell {
       }
 
     // use this update-method to update cell in cellForRowAt whenever it is possible - other set-methods will be set private in progress
-    func updateCell(chatId: Int) {
-        let chat = DcContext.shared.getChat(chatId: chatId)
-        titleLabel.text = chat.name
-        backgroundColor = DcColors.contactCellBackgroundColor
-        contentView.backgroundColor = DcColors.contactCellBackgroundColor
+      func updateCell(cellViewModel: AvatarCellViewModel) {
+          // subtitle
+          switch cellViewModel.type {
+          case .chat(let chatData):
+              let chat = DcContext.shared.getChat(chatId: chatData.chatId)
+              titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
+              if let img = chat.profileImage {
+                  resetBackupImage()
+                  setImage(img)
+              } else {
+                  setBackupImage(name: chat.name, color: chat.color)
+              }
+            subtitleLabel.attributedText = nil
 
-        if let img = chat.profileImage {
-            resetBackupImage()
-            setImage(img)
-        } else {
-            setBackupImage(name: chat.name, color: chat.color)
+          case .contact(let contactData):
+              let contact = DcContact(id: contactData.contactId)
+              titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
+              if let profileImage = contact.profileImage {
+                  avatar.setImage(profileImage)
+              } else {
+                setBackupImage(name: cellViewModel.title, color: contact.color)
+              }
+              subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes,
+                                                                           fontSize: subtitleLabel.font.pointSize)
+          default:
+            return
+
         }
-    }
+      }
 }

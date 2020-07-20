@@ -48,13 +48,11 @@ class ChatListController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //chatList = dcContext.getChatlist(flags: DC_GCL_ADD_ALLDONE_HINT | DC_GCL_FOR_FORWARDING | DC_GCL_NO_SPECIALS, queryString: nil, queryId: 0)
         navigationItem.searchController = searchController
         tableView.register(ChatListCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
         tableView.rowHeight = 64
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: Double.leastNormalMagnitude))
         tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: Double.leastNormalMagnitude))
-
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -70,9 +68,8 @@ class ChatListController: UITableViewController {
             fatalError("could not deque TableViewCell")
         }
 
-        if let chatId = viewModel.getChatId(section: indexPath.section, row: indexPath.row) {
-            cell.updateCell(chatId: chatId)
-        }
+        let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
+        cell.updateCell(cellViewModel: cellData)
 
         return cell
     }
@@ -80,6 +77,21 @@ class ChatListController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let chatId = viewModel.getChatId(section: indexPath.section, row: indexPath.row) {
             chatListDelegate?.onChatSelected(chatId: chatId)
+        }
+
+        let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
+        switch cellData.type {
+        case .chat(let data):
+            chatListDelegate?.onChatSelected(chatId: data.chatId)
+        case .contact(let data):
+             if let chatId = data.chatId {
+                chatListDelegate?.onChatSelected(chatId: chatId)
+            } else {
+                let chatId = dcContext.createChatByContactId(contactId: data.contactId)
+                chatListDelegate?.onChatSelected(chatId: chatId)
+            }
+        default:
+            fatalError("Other types are not allowed in Share contact search")
         }
     }
 

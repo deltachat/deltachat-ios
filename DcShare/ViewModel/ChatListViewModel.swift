@@ -59,6 +59,45 @@ class ChatListViewModel: NSObject {
         return chatList.getChatId(index: row)
     }
 
+    func cellDataFor(section: Int, row: Int) -> AvatarCellViewModel {
+        if showSearchResults {
+            switch searchResultSections[section] {
+            case .chats:
+                return makeChatCellViewModel(index: row, searchText: searchText)
+            case .contacts:
+                return ContactCellViewModel.make(contactId: searchResultContactIds[row], searchText: searchText, dcContext: dcContext)
+            }
+        }
+        return makeChatCellViewModel(index: row, searchText: "")
+    }
+
+    func makeChatCellViewModel(index: Int, searchText: String) -> AvatarCellViewModel {
+        let list: DcChatlist = searchResultChatList ?? chatList
+               let chatId = list.getChatId(index: index)
+               let summary = list.getSummary(index: index)
+
+               let chat = dcContext.getChat(chatId: chatId)
+               let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
+
+               var chatTitleIndexes: [Int] = []
+               if searchText.containsCharacters() {
+                   let chatName = chat.name
+                   chatTitleIndexes = chatName.containsExact(subSequence: searchText)
+               }
+
+               let viewModel = ChatCellViewModel(
+                   dcContext: dcContext,
+                   chatData: ChatCellData(
+                       chatId: chatId,
+                       summary: summary,
+                       unreadMessages: unreadMessages
+                   ),
+                   titleHighlightIndexes: chatTitleIndexes
+               )
+               return viewModel
+    }
+
+
     var numberOfSections: Int {
         if showSearchResults {
             return searchResultSections.count
