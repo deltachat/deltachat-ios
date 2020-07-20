@@ -28,6 +28,8 @@
 		30E8F2482449C98600CE2C90 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2472449C98600CE2C90 /* UIView+Extensions.swift */; };
 		30E8F24B2449CF6500CE2C90 /* InitialsBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F24A2449CF6500CE2C90 /* InitialsBadge.swift */; };
 		30E8F24D2449D30200CE2C90 /* DcColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F24C2449D30200CE2C90 /* DcColors.swift */; };
+		30FE253324BF2688005AC669 /* EmptyStateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE253124BF2688005AC669 /* EmptyStateLabel.swift */; };
+		30FE253424BF2688005AC669 /* FlexLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE253224BF2688005AC669 /* FlexLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		30E8F2472449C98600CE2C90 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		30E8F24A2449CF6500CE2C90 /* InitialsBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsBadge.swift; sourceTree = "<group>"; };
 		30E8F24C2449D30200CE2C90 /* DcColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcColors.swift; sourceTree = "<group>"; };
+		30FE253124BF2688005AC669 /* EmptyStateLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStateLabel.swift; sourceTree = "<group>"; };
+		30FE253224BF2688005AC669 /* FlexLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +181,8 @@
 		30E8F2492449CF2F00CE2C90 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				30FE253124BF2688005AC669 /* EmptyStateLabel.swift */,
+				30FE253224BF2688005AC669 /* FlexLabel.swift */,
 				30E8F24A2449CF6500CE2C90 /* InitialsBadge.swift */,
 			);
 			path = Views;
@@ -314,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30FE253324BF2688005AC669 /* EmptyStateLabel.swift in Sources */,
 				30421988243F23E500516852 /* Constants.swift in Sources */,
 				30E8F24D2449D30200CE2C90 /* DcColors.swift in Sources */,
 				30421962243E26C800516852 /* Logger.swift in Sources */,
@@ -328,6 +335,7 @@
 				30421960243E257100516852 /* UIColor+Extensions.swift in Sources */,
 				30E8F2482449C98600CE2C90 /* UIView+Extensions.swift in Sources */,
 				308198AB24866229003BE20D /* UserDefaults+Extensions.swift in Sources */,
+				30FE253424BF2688005AC669 /* FlexLabel.swift in Sources */,
 				304F5E41244F2F3200462538 /* UIImage+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
