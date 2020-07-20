@@ -183,8 +183,7 @@ class ChatListViewModel: NSObject {
     func filterAndUpdateList(searchText: String) {
 
         // #1 chats with searchPattern in title bar
-        var flags: Int32 = 0
-        flags |= DC_GCL_NO_SPECIALS
+        let flags = DC_GCL_ADD_ALLDONE_HINT | DC_GCL_FOR_FORWARDING | DC_GCL_NO_SPECIALS
         searchResultChatList = dcContext.getChatlist(flags: flags, queryString: searchText, queryId: 0)
 
         // #2 contacts with searchPattern in name or in email
