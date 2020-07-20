@@ -20,4 +20,8 @@ public extension String {
         return resultString
     }
 
+    func containsCharacters() -> Bool {
+        return !trimmingCharacters(in: [" "]).isEmpty
+    }
+    
 }

@@ -9,10 +9,6 @@ extension String {
         return String(self[idx1..<idx2])
     }
 
-    func containsCharacters() -> Bool {
-        return !trimmingCharacters(in: [" "]).isEmpty
-    }
-
     func containsExact(subSequence: String?) -> [Int] {
         guard let searchText = subSequence else {
             return []
