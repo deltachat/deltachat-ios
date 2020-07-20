@@ -1,9 +1,9 @@
 import UIKit
 import DcCore
 
-public class EmptyStateLabel: FlexLabel {
+class EmptyStateLabel: FlexLabel {
 
-    public override var text: String? {
+    override var text: String? {
         set {
             guard let newValue = newValue else {
                 super.label.attributedText = nil
@@ -26,7 +26,7 @@ public class EmptyStateLabel: FlexLabel {
         }
     }
 
-    public override init() {
+    override init() {
         super.init()
         label.backgroundColor = DcColors.systemMessageBackgroundColor
         label.textColor = DcColors.defaultTextColor

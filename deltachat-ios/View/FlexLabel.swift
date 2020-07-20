@@ -2,7 +2,7 @@ import UIKit
 
 /// view that contains a label (horizontally centered) and
 /// allows it's label to grow/shrink within it's available space
-public class FlexLabel: UIView {
+class FlexLabel: UIView {
 
     var text: String? {
         set {
