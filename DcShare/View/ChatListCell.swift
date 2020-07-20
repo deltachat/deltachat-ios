@@ -33,14 +33,14 @@ class ChatListCell: UITableViewCell {
     }()
 
     lazy var subtitleLabel: UILabel = {
-           let label = UILabel()
-           label.textColor = DcColors.middleGray
-           label.lineBreakMode = .byTruncatingTail
-           label.font = .preferredFont(forTextStyle: .subheadline)
-           label.adjustsFontForContentSizeCategory = true
+        let label = UILabel()
+        label.textColor = DcColors.middleGray
+        label.lineBreakMode = .byTruncatingTail
+        label.font = .preferredFont(forTextStyle: .subheadline)
+        label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
-           return label
-       }()
+        return label
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -90,37 +90,37 @@ class ChatListCell: UITableViewCell {
     }
 
     private func setColor(_ color: UIColor) {
-          avatar.setColor(color)
-      }
+        avatar.setColor(color)
+    }
 
     // use this update-method to update cell in cellForRowAt whenever it is possible - other set-methods will be set private in progress
-      func updateCell(cellViewModel: AvatarCellViewModel) {
-          // subtitle
-          switch cellViewModel.type {
-          case .chat(let chatData):
-              let chat = DcContext.shared.getChat(chatId: chatData.chatId)
-              titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
-              if let img = chat.profileImage {
-                  resetBackupImage()
-                  setImage(img)
-              } else {
-                  setBackupImage(name: chat.name, color: chat.color)
-              }
+    func updateCell(cellViewModel: AvatarCellViewModel) {
+        // subtitle
+        switch cellViewModel.type {
+        case .chat(let chatData):
+            let chat = DcContext.shared.getChat(chatId: chatData.chatId)
+            titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
+            if let img = chat.profileImage {
+                resetBackupImage()
+                setImage(img)
+            } else {
+                setBackupImage(name: chat.name, color: chat.color)
+            }
             subtitleLabel.attributedText = nil
 
-          case .contact(let contactData):
-              let contact = DcContact(id: contactData.contactId)
-              titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
-              if let profileImage = contact.profileImage {
-                  avatar.setImage(profileImage)
-              } else {
+        case .contact(let contactData):
+            let contact = DcContact(id: contactData.contactId)
+            titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
+            if let profileImage = contact.profileImage {
+                avatar.setImage(profileImage)
+            } else {
                 setBackupImage(name: cellViewModel.title, color: contact.color)
-              }
-              subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes,
-                                                                           fontSize: subtitleLabel.font.pointSize)
-          default:
+            }
+            subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes,
+                                                                         fontSize: subtitleLabel.font.pointSize)
+        default:
             return
 
         }
-      }
+    }
 }
