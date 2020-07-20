@@ -8,7 +8,7 @@ protocol ChatListDelegate: class {
 
 class ChatListController: UITableViewController {
     let dcContext: DcContext
-    var chatList: DcChatlist?
+    let viewModel: ChatListViewModel
     let contactCellReuseIdentifier = "contactCellReuseIdentifier"
     weak var chatListDelegate: ChatListDelegate?
 
@@ -16,18 +16,21 @@ class ChatListController: UITableViewController {
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
-        //searchController.searchResultsUpdater = self
+        searchController.searchResultsUpdater = viewModel
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = String.localized("search")
         searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = true
+        searchController.searchBar.delegate = self
         return searchController
     }()
 
     init(dcContext: DcContext, chatListDelegate: ChatListDelegate) {
         self.dcContext = dcContext
         self.chatListDelegate = chatListDelegate
+        viewModel = ChatListViewModel(dcContext: dcContext)
         super.init(style: .grouped)
+        viewModel.onChatListUpdate = handleChatListUpdate
     }
 
     required init?(coder: NSCoder) {
@@ -45,7 +48,7 @@ class ChatListController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        chatList = dcContext.getChatlist(flags: DC_GCL_ADD_ALLDONE_HINT | DC_GCL_FOR_FORWARDING | DC_GCL_NO_SPECIALS, queryString: nil, queryId: 0)
+        //chatList = dcContext.getChatlist(flags: DC_GCL_ADD_ALLDONE_HINT | DC_GCL_FOR_FORWARDING | DC_GCL_NO_SPECIALS, queryString: nil, queryId: 0)
         navigationItem.searchController = searchController
         tableView.register(ChatListCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
         tableView.rowHeight = 64
@@ -54,8 +57,12 @@ class ChatListController: UITableViewController {
 
     }
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chatList?.length ?? 0
+        return viewModel.numberOfRowsIn(section: section)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,17 +70,46 @@ class ChatListController: UITableViewController {
             fatalError("could not deque TableViewCell")
         }
 
-        if let chatList = chatList {
-            cell.updateCell(chatId: chatList.getChatId(index: indexPath.row))
+        if let chatId = viewModel.getChatId(section: indexPath.section, row: indexPath.row) {
+            cell.updateCell(chatId: chatId)
         }
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let chatList = chatList {
-            chatListDelegate?.onChatSelected(chatId: chatList.getChatId(index: indexPath.row))
+        if let chatId = viewModel.getChatId(section: indexPath.section, row: indexPath.row) {
+            chatListDelegate?.onChatSelected(chatId: chatId)
         }
     }
 
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+           return viewModel.titleForHeaderIn(section: section)
+       }
+
+    func handleChatListUpdate() {
+        tableView.reloadData()
+    }
+
+}
+
+// MARK: - uisearchbardelegate
+extension ChatListController: UISearchBarDelegate {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        viewModel.beginSearch()
+        return true
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        // searchBar will be set to "" by system
+        viewModel.endSearch()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+           self.tableView.scrollToTop()
+        }
+    }
+
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        tableView.scrollToTop()
+        return true
+    }
 }
