@@ -25,6 +25,12 @@ class ChatListController: UITableViewController {
         return searchController
     }()
 
+    private lazy var emptySearchStateLabel: EmptyStateLabel = {
+        let label = EmptyStateLabel()
+        label.isHidden = true
+        return label
+    }()
+
     init(dcContext: DcContext, chatListDelegate: ChatListDelegate) {
         self.dcContext = dcContext
         self.chatListDelegate = chatListDelegate
@@ -49,6 +55,22 @@ class ChatListController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.searchController = searchController
+        configureTableView()
+        setupSubviews()
+    }
+
+    // MARK: - setup
+    private func setupSubviews() {
+        view.addSubview(emptySearchStateLabel)
+        emptySearchStateLabel.translatesAutoresizingMaskIntoConstraints = false
+        emptySearchStateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
+        emptySearchStateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
+        emptySearchStateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
+        emptySearchStateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+    }
+
+    // MARK: - configuration
+    private func configureTableView() {
         tableView.register(ChatListCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
         tableView.rowHeight = 64
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: Double.leastNormalMagnitude))
@@ -101,6 +123,18 @@ class ChatListController: UITableViewController {
 
     func handleChatListUpdate() {
         tableView.reloadData()
+
+        if let emptySearchText = viewModel.emptySearchText {
+            let text = String.localizedStringWithFormat(
+                String.localized("search_no_result_for_x"),
+                emptySearchText
+            )
+            emptySearchStateLabel.text = text
+            emptySearchStateLabel.isHidden = false
+        } else {
+            emptySearchStateLabel.text = nil
+            emptySearchStateLabel.isHidden = true
+        }
     }
 
 }
