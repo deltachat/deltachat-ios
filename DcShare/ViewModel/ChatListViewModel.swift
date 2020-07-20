@@ -73,28 +73,28 @@ class ChatListViewModel: NSObject {
 
     func makeChatCellViewModel(index: Int, searchText: String) -> AvatarCellViewModel {
         let list: DcChatlist = searchResultChatList ?? chatList
-               let chatId = list.getChatId(index: index)
-               let summary = list.getSummary(index: index)
+        let chatId = list.getChatId(index: index)
+        let summary = list.getSummary(index: index)
 
-               let chat = dcContext.getChat(chatId: chatId)
-               let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
+        let chat = dcContext.getChat(chatId: chatId)
+        let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
 
-               var chatTitleIndexes: [Int] = []
-               if searchText.containsCharacters() {
-                   let chatName = chat.name
-                   chatTitleIndexes = chatName.containsExact(subSequence: searchText)
-               }
+        var chatTitleIndexes: [Int] = []
+        if searchText.containsCharacters() {
+            let chatName = chat.name
+            chatTitleIndexes = chatName.containsExact(subSequence: searchText)
+        }
 
-               let viewModel = ChatCellViewModel(
-                   dcContext: dcContext,
-                   chatData: ChatCellData(
-                       chatId: chatId,
-                       summary: summary,
-                       unreadMessages: unreadMessages
-                   ),
-                   titleHighlightIndexes: chatTitleIndexes
-               )
-               return viewModel
+        let viewModel = ChatCellViewModel(
+            dcContext: dcContext,
+            chatData: ChatCellData(
+                chatId: chatId,
+                summary: summary,
+                unreadMessages: unreadMessages
+            ),
+            titleHighlightIndexes: chatTitleIndexes
+        )
+        return viewModel
     }
 
 
@@ -171,27 +171,27 @@ class ChatListViewModel: NSObject {
     }
 
     func filterContentForSearchText(_ searchText: String) {
-           if !searchText.isEmpty {
-               filterAndUpdateList(searchText: searchText)
-           } else {
-               // when search input field empty we show default chatList
-               resetSearch()
-           }
-           onChatListUpdate?()
-       }
+        if !searchText.isEmpty {
+            filterAndUpdateList(searchText: searchText)
+        } else {
+            // when search input field empty we show default chatList
+            resetSearch()
+        }
+        onChatListUpdate?()
+    }
 
     func filterAndUpdateList(searchText: String) {
 
-           // #1 chats with searchPattern in title bar
-           var flags: Int32 = 0
-           flags |= DC_GCL_NO_SPECIALS
-           searchResultChatList = dcContext.getChatlist(flags: flags, queryString: searchText, queryId: 0)
+        // #1 chats with searchPattern in title bar
+        var flags: Int32 = 0
+        flags |= DC_GCL_NO_SPECIALS
+        searchResultChatList = dcContext.getChatlist(flags: flags, queryString: searchText, queryId: 0)
 
-           // #2 contacts with searchPattern in name or in email
-           searchResultContactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
+        // #2 contacts with searchPattern in name or in email
+        searchResultContactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
 
-           updateSearchResultSections()
-       }
+        updateSearchResultSections()
+    }
 }
 
 // MARK: UISearchResultUpdating
