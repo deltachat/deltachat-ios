@@ -11,6 +11,8 @@ class ChatListController: UITableViewController {
     let viewModel: ChatListViewModel
     let contactCellReuseIdentifier = "contactCellReuseIdentifier"
     weak var chatListDelegate: ChatListDelegate?
+    var keyboardAppearedObserver: Any?
+    var keyboardDisappearedObserver: Any?
 
     /// MARK - search
 
@@ -34,7 +36,7 @@ class ChatListController: UITableViewController {
     init(dcContext: DcContext, chatListDelegate: ChatListDelegate) {
         self.dcContext = dcContext
         self.chatListDelegate = chatListDelegate
-        viewModel = ChatListViewModel(dcContext: dcContext)
+        self.viewModel = ChatListViewModel(dcContext: dcContext)
         super.init(style: .grouped)
         viewModel.onChatListUpdate = handleChatListUpdate
     }
@@ -50,6 +52,15 @@ class ChatListController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         navigationItem.hidesSearchBarWhenScrolling = true
+        let nc = NotificationCenter.default
+        keyboardAppearedObserver = nc.addObserver(self,
+                                                  selector: #selector(keyboardWillShow(_:)),
+                                                  name: UIResponder.keyboardWillShowNotification,
+                                                  object: nil)
+        keyboardDisappearedObserver = nc.addObserver(self,
+                                                     selector: #selector(keyboardWillHide(_:)),
+                                                     name: UIResponder.keyboardWillHideNotification,
+                                                     object: nil)
     }
 
     override func viewDidLoad() {
@@ -57,6 +68,25 @@ class ChatListController: UITableViewController {
         navigationItem.searchController = searchController
         configureTableView()
         setupSubviews()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        if let keyboardAppearedObserver = keyboardAppearedObserver {
+            NotificationCenter.default.removeObserver(keyboardAppearedObserver)
+        }
+        if let keyboardDisappearedObserver = keyboardDisappearedObserver {
+            NotificationCenter.default.removeObserver(keyboardDisappearedObserver)
+        }
+    }
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: keyboardSize.height))
+        }
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: Double.leastNormalMagnitude))
     }
 
     // MARK: - setup
