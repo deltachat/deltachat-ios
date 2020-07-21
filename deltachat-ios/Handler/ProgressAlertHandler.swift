@@ -14,12 +14,12 @@ protocol ProgressAlertHandler: UIViewController {
 extension ProgressAlertHandler {
 
     func showProgressAlert(title: String, dcContext: DcContext) {
-        self.progressAlert = makeProgressAlert(dcContext: dcContext)
-        guard let progressAlert = progressAlert else { return }
+        let progressAlert = makeProgressAlert(dcContext: dcContext)
         progressAlert.actions[0].isEnabled = true
         progressAlert.title = title
         progressAlert.message = String.localized("one_moment")
-        present(progressAlert, animated: true, completion: nil)
+        self.present(progressAlert, animated: true, completion: nil)
+        self.progressAlert = progressAlert
     }
 
     private func makeProgressAlert(dcContext: DcContext) -> UIAlertController {
