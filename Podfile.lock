@@ -3,7 +3,6 @@ PODS:
   - InputBarAccessoryView (4.3.1):
     - InputBarAccessoryView/Core (= 4.3.1)
   - InputBarAccessoryView/Core (4.3.1)
-  - KK-ALCameraViewController (4.1.0)
   - ReachabilitySwift (4.3.1)
   - SCSiriWaveformView (1.1.1)
   - SDWebImage (5.8.0):
@@ -17,7 +16,6 @@ PODS:
 DEPENDENCIES:
   - DBDebugToolkit
   - InputBarAccessoryView
-  - KK-ALCameraViewController
   - ReachabilitySwift
   - SCSiriWaveformView
   - SDWebImage (~> 5.0)
@@ -30,7 +28,6 @@ SPEC REPOS:
   trunk:
     - DBDebugToolkit
     - InputBarAccessoryView
-    - KK-ALCameraViewController
     - ReachabilitySwift
     - SCSiriWaveformView
     - SDWebImage
@@ -42,7 +39,6 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   DBDebugToolkit: c04bb6f618051d3de447a4b4323f37826116cfed
   InputBarAccessoryView: 58a348be7ea2736c7eec60e5c315511c2dbb39fd
-  KK-ALCameraViewController: ea8d8b24c9a7b92f61508a5a41ef8332f4ef7903
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SCSiriWaveformView: 15b9dd6f94c7536e2032b34a35c6ff74d38c7411
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
@@ -51,6 +47,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
   UICircularProgressRing: 0ff679b05a17f15ad6301a7886686837b8c301a9
 
-PODFILE CHECKSUM: fc6398b2c880bba3ade506b053a523c5c84b2a3f
+PODFILE CHECKSUM: 1a7acd0b609ee6aae5a5a59e591f7983e53b81ab
 
 COCOAPODS: 1.8.4
