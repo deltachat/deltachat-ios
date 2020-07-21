@@ -28,8 +28,9 @@ class ContactDetailViewController: UITableViewController {
     }()
 
     private lazy var ephemeralMessagesCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("ephemeral_messages")
+        cell.detailTextLabel?.text = String.localized(viewModel.chatIsEphemeral ? "on" : "off")
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -68,8 +69,9 @@ class ContactDetailViewController: UITableViewController {
     }()
 
     private lazy var galleryCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("gallery")
+        cell.detailTextLabel?.text = "\(viewModel.galleryItemMessageIds.count)"
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
@@ -79,8 +81,9 @@ class ContactDetailViewController: UITableViewController {
     }()
 
     private lazy var documentsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("documents")
+        cell.detailTextLabel?.text = "\(viewModel.documentItemMessageIds.count)"
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
@@ -112,6 +115,7 @@ class ContactDetailViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateHeader() // maybe contact name has been edited
+        updateCellValues()
         tableView.reloadData()
     }
 
@@ -213,6 +217,12 @@ class ContactDetailViewController: UITableViewController {
             headerCell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
         }
         headerCell.setVerified(isVerified: viewModel.contact.isVerified)
+    }
+
+    private func updateCellValues() {
+        ephemeralMessagesCell.detailTextLabel?.text = String.localized(viewModel.chatIsEphemeral ? "on" : "off")
+        galleryCell.detailTextLabel?.text = "\(viewModel.galleryItemMessageIds.count)"
+        documentsCell.detailTextLabel?.text = "\(viewModel.documentItemMessageIds.count)"
     }
 
     // MARK: - actions
@@ -350,23 +360,13 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func showDocuments() {
-        let messageIds: [Int] = viewModel.context.getChatMedia(
-            chatId: viewModel.chatId,
-            messageType: DC_MSG_FILE,
-            messageType2: DC_MSG_AUDIO,
-            messageType3: 0
-        ).reversed()
+        let messageIds: [Int] = viewModel.documentItemMessageIds.reversed()
         let fileGalleryController = DocumentGalleryController(fileMessageIds: messageIds)
         navigationController?.pushViewController(fileGalleryController, animated: true)
     }
 
     private func showGallery() {
-        let messageIds: [Int] = viewModel.context.getChatMedia(
-            chatId: viewModel.chatId,
-            messageType: DC_MSG_IMAGE,
-            messageType2: DC_MSG_GIF,
-            messageType3: DC_MSG_VIDEO
-        ).reversed()
+        let messageIds: [Int] = viewModel.galleryItemMessageIds.reversed()
         let galleryController = GalleryViewController(mediaMessageIds: messageIds)
         navigationController?.pushViewController(galleryController, animated: true)
     }

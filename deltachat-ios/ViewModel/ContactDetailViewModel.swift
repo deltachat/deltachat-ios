@@ -81,6 +81,28 @@ class ContactDetailViewModel {
         return chatId != 0 && context.getChat(chatId: chatId).isMuted
     }
 
+    var chatIsEphemeral: Bool {
+        return chatId != 0 && context.getChatEphemeralTimer(chatId: chatId) > 0
+    }
+
+    var galleryItemMessageIds: [Int] {
+        return context.getChatMedia(
+            chatId: chatId,
+            messageType: DC_MSG_IMAGE,
+            messageType2: DC_MSG_GIF,
+            messageType3: DC_MSG_VIDEO
+        )
+    }
+
+    var documentItemMessageIds: [Int] {
+        return context.getChatMedia(
+            chatId: chatId,
+            messageType: DC_MSG_FILE,
+            messageType2: DC_MSG_AUDIO,
+            messageType3: 0
+        )
+    }
+
     var numberOfSections: Int {
         return sections.count
     }

@@ -56,6 +56,28 @@ class GroupChatDetailViewController: UIViewController {
         return dcContext.getChat(chatId: chatId)
     }
 
+    var chatIsEphemeral: Bool {
+        return chatId != 0 && dcContext.getChatEphemeralTimer(chatId: chatId) > 0
+    }
+
+    private var galleryItemMessageIds: [Int] {
+        return dcContext.getChatMedia(
+            chatId: chatId,
+            messageType: DC_MSG_IMAGE,
+            messageType2: DC_MSG_GIF,
+            messageType3: DC_MSG_VIDEO
+        )
+    }
+
+    private var documentItemMessageIds: [Int] {
+        return dcContext.getChatMedia(
+            chatId: chatId,
+            messageType: DC_MSG_FILE,
+            messageType2: DC_MSG_AUDIO,
+            messageType3: 0
+        )
+    }
+
     // stores contactIds
     private var groupMemberIds: [Int] = []
 
@@ -93,8 +115,9 @@ class GroupChatDetailViewController: UIViewController {
     }()
 
     private lazy var ephemeralMessagesCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("ephemeral_messages")
+        cell.detailTextLabel?.text = String.localized(chatIsEphemeral ? "on" : "off")
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -134,15 +157,17 @@ class GroupChatDetailViewController: UIViewController {
     }()
 
     private lazy var galleryCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("gallery")
+        cell.detailTextLabel?.text = "\(galleryItemMessageIds.count)"
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
     private lazy var documentsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("documents")
+        cell.detailTextLabel?.text = "\(documentItemMessageIds.count)"
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -183,6 +208,7 @@ class GroupChatDetailViewController: UIViewController {
         tableView.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
         updateHeader()
+        updateCellValues()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -209,6 +235,12 @@ class GroupChatDetailViewController: UIViewController {
             groupHeader.setBackupImage(name: chat.name, color: chat.color)
         }
         groupHeader.setVerified(isVerified: chat.isVerified)
+    }
+
+    private func updateCellValues() {
+        ephemeralMessagesCell.detailTextLabel?.text = String.localized(chatIsEphemeral ? "on" : "off")
+        galleryCell.detailTextLabel?.text = "\(galleryItemMessageIds.count)"
+        documentsCell.detailTextLabel?.text = "\(documentItemMessageIds.count)"
     }
 
     // MARK: - actions
@@ -266,22 +298,12 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func showDocuments() {
-        let messageIds: [Int] = dcContext.getChatMedia(
-            chatId: chatId,
-            messageType: DC_MSG_FILE,
-            messageType2: DC_MSG_AUDIO,
-            messageType3: 0
-        ).reversed()
+        let messageIds: [Int] = documentItemMessageIds.reversed()
         let fileGalleryController = DocumentGalleryController(fileMessageIds: messageIds)
         navigationController?.pushViewController(fileGalleryController, animated: true)    }
 
     private func showGallery() {
-        let messageIds: [Int] = dcContext.getChatMedia(
-            chatId: chatId,
-            messageType: DC_MSG_IMAGE,
-            messageType2: DC_MSG_GIF,
-            messageType3: DC_MSG_VIDEO
-        ).reversed()
+        let messageIds: [Int] = galleryItemMessageIds.reversed()
         let galleryController = GalleryViewController(mediaMessageIds: messageIds)
         navigationController?.pushViewController(galleryController, animated: true)
     }
