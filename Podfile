@@ -8,7 +8,6 @@ target 'deltachat-ios' do
 
   pod 'SwiftLint'
   pod 'SwiftFormat/CLI'
-  pod 'KK-ALCameraViewController'
   # pod 'openssl-ios-bitcode'
   pod 'ReachabilitySwift'
   pod 'UICircularProgressRing'
