@@ -30,7 +30,6 @@ class ContactDetailViewController: UITableViewController {
     private lazy var ephemeralMessagesCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("ephemeral_messages")
-        cell.detailTextLabel?.text = String.localized(viewModel.chatIsEphemeral ? "on" : "off")
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -70,8 +69,7 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var galleryCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("gallery")
-        cell.detailTextLabel?.text = "\(viewModel.galleryItemMessageIds.count)"
+        cell.textLabel?.text = String.localized("images_and_videos")
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
@@ -82,8 +80,7 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var documentsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("documents")
-        cell.detailTextLabel?.text = "\(viewModel.documentItemMessageIds.count)"
+        cell.textLabel?.text = String.localized("files")
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
@@ -221,8 +218,8 @@ class ContactDetailViewController: UITableViewController {
 
     private func updateCellValues() {
         ephemeralMessagesCell.detailTextLabel?.text = String.localized(viewModel.chatIsEphemeral ? "on" : "off")
-        galleryCell.detailTextLabel?.text = "\(viewModel.galleryItemMessageIds.count)"
-        documentsCell.detailTextLabel?.text = "\(viewModel.documentItemMessageIds.count)"
+        galleryCell.detailTextLabel?.text = String.numberOrNone(viewModel.galleryItemMessageIds.count)
+        documentsCell.detailTextLabel?.text = String.numberOrNone(viewModel.documentItemMessageIds.count)
     }
 
     // MARK: - actions
