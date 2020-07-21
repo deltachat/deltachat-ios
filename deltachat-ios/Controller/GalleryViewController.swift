@@ -59,7 +59,7 @@ class GalleryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
-        title = String.localized("gallery")
+        title = String.localized("images_and_videos")
         if mediaMessageIds.isEmpty {
             emptyStateView.isHidden = false
         }

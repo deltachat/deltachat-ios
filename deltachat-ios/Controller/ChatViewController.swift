@@ -1238,7 +1238,7 @@ extension ChatViewController: MessagesLayoutDelegate {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
         let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
         let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
-        let documentAction = UIAlertAction(title: String.localized("documents"), style: .default, handler: documentActionPressed(_:))
+        let documentAction = UIAlertAction(title: String.localized("files"), style: .default, handler: documentActionPressed(_:))
         let voiceMessageAction = UIAlertAction(title: String.localized("voice_message"), style: .default, handler: voiceMessageButtonPressed(_:))
         let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
         let locationStreamingAction = UIAlertAction(title: isLocationStreaming ? String.localized("stop_sharing_location") : String.localized("location"),
