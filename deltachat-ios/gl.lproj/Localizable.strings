@@ -23,6 +23,7 @@
 "archive" = "Arquivar";
 "unarchive" = "Desarquivar";
 "mute" = "Acalar";
+"ephemeral_messages" = "Desaparición das mensaxes";
 "save" = "Gardar";
 "chat" = "Chat";
 "media" = "Medios";

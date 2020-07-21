@@ -17,6 +17,7 @@
 "emoji" = "Emoji";
 "forward" = "Továbbítás";
 "mute" = "Némítás";
+"ephemeral_messages" = "Eltűnő üzenetek";
 "save" = "Mentés";
 "media" = "Média";
 "not_now" = "Most nem";

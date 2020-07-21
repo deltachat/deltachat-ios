@@ -20,6 +20,7 @@
 "forward" = "Persiųsti";
 "archive" = "Archyvuoti";
 "unarchive" = "Išarchyvuoti";
+"ephemeral_messages" = "Išnykstančios žinutės";
 "save" = "Įrašyti";
 "media" = "Medija";
 "main_menu" = "Pagrindinis meniu";

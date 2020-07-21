@@ -23,6 +23,7 @@
 "archive" = "Arkiver";
 "unarchive" = "Fjern fra arkiv";
 "mute" = "Demp";
+"ephemeral_messages" = "Forsvinnende meldinger";
 "save" = "Lagre";
 "chat" = "Sludring";
 "media" = "Media";

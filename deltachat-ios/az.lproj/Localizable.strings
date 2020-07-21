@@ -23,6 +23,7 @@
 "archive" = "Arxivləşmə";
 "unarchive" = "Arxivdən çıxarma";
 "mute" = "Səssiz";
+"ephemeral_messages" = "Yox olan mesajlar";
 "save" = "Saxla";
 "chat" = "Çat";
 "media" = "Mediafayllar";

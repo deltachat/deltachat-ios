@@ -20,6 +20,7 @@
 "forward" = "Przekaż";
 "archive" = "Archiwizuj";
 "unarchive" = "Przywróć z archiwum";
+"ephemeral_messages" = "Znikające wiadomości";
 "save" = "Zapisz";
 "chat" = "Czat";
 "media" = "Multimedia";

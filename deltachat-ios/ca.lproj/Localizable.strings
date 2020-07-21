@@ -22,6 +22,7 @@
 "archive" = "Arxiva";
 "unarchive" = "Treu de l\'arxiu";
 "mute" = "Emmudeix";
+"ephemeral_messages" = "Missatges efímers";
 "save" = "Guarda";
 "chat" = "Xat";
 "main_menu" = "Menú principal";

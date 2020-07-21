@@ -13,6 +13,7 @@
 "delete" = "Slette";
 "forward" = "Videresend";
 "mute" = "Udsæt";
+"ephemeral_messages" = "Beskeder med tidsudløb";
 "save" = "Gem";
 "media" = "Medie";
 "not_now" = "Ikke nu";

@@ -23,6 +23,7 @@
 "archive" = "Artxibatu";
 "unarchive" = "Berreskuratu artxibotik";
 "mute" = "Isilarazi";
+"ephemeral_messages" = "Mezuen desagerpena";
 "save" = "Gorde";
 "chat" = "Txata";
 "media" = "Multimedia";

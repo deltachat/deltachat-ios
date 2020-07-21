@@ -22,6 +22,7 @@
 "archive" = "Arhiviraj";
 "unarchive" = "Dearhiviraj";
 "mute" = "Prigušiti";
+"ephemeral_messages" = "Nestajuće poruke";
 "save" = "Spremi";
 "media" = "Medij";
 "main_menu" = "Glavni izbornik";

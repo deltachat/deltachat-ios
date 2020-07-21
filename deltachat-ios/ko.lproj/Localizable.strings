@@ -23,6 +23,7 @@
 "archive" = "아카이브";
 "unarchive" = "보관 취소";
 "mute" = "알림 음소거";
+"ephemeral_messages" = "사라지는 메시지";
 "save" = "저장";
 "chat" = "잡담";
 "media" = "매체";

@@ -11,6 +11,7 @@
 "none" = "無";
 "open" = "開啟";
 "delete" = "刪除";
+"ephemeral_messages" = "自動銷毀訊息";
 "not_now" = "不要";
 "never" = "永遠不要";
 "one_moment" = "請稍候…";

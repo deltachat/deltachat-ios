@@ -23,6 +23,7 @@
 "archive" = "归档";
 "unarchive" = "解档";
 "mute" = "静音";
+"ephemeral_messages" = "阅后即焚";
 "save" = "保存";
 "chat" = "聊天";
 "media" = "媒体";
@@ -79,6 +80,7 @@
 "location" = "位置";
 "gallery" = "图库";
 "file" = "文件";
+"files" = "文件";
 "unknown" = "未知";
 
 "green" = "绿色";

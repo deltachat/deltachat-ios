@@ -13,6 +13,7 @@
 "delete" = "削除";
 "forward" = "転送";
 "mute" = "ミュート";
+"ephemeral_messages" = "消えるメッセージ";
 "save" = "保存";
 "media" = "メディア";
 "not_now" = "今はしない";

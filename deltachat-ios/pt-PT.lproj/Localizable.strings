@@ -11,6 +11,7 @@
 "none" = "Nenhum";
 "open" = "Abrir";
 "delete" = "Apagar";
+"ephemeral_messages" = "Destruição de mensagens";
 "not_now" = "Agora não";
 "never" = "Nunca";
 "one_moment" = "Um momento...";
