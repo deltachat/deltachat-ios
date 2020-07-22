@@ -28,7 +28,8 @@ class LocationStreamingIndicator: UIImageView {
         tintColor = DcColors.checkmarkGreen
         image =  #imageLiteral(resourceName: "ic_location").withRenderingMode(.alwaysTemplate)
         translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalToConstant: size).isActive = true
-        widthAnchor.constraint(equalToConstant: aspectRatio * size).isActive = true
+        constraintHeightTo(size, priority: .defaultLow).isActive = true
+        constraintWidthTo(aspectRatio * size).isActive = true
+        contentMode = .scaleAspectFit
     }
 }
