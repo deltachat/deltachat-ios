@@ -76,7 +76,10 @@ class SettingsEphemeralMessageController: UITableViewController {
 
     @objc private func okButtonPressed() {
         dcContext.setChatEphemeralTimer(chatId: chatId, duration: options[currentIndex])
-        navigationController?.popViewController(animated: true)
+
+        // pop two view controllers:
+        // go directly back to the chatview where also the confirmation message will be shown
+        navigationController?.popViewControllers(viewsToPop: 2, animated: true)
     }
 
 

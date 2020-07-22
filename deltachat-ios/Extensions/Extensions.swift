@@ -81,3 +81,13 @@ extension UIFont {
         return metrics.scaledFont(for: font)
     }
 }
+
+extension UINavigationController {
+    // pop up to viewsToPop viewControllers from the stack
+    func popViewControllers(viewsToPop: Int, animated: Bool) {
+        if viewControllers.count >= 2 && viewsToPop >= 1 {
+            let vc = viewControllers[max(0, viewControllers.count - viewsToPop - 1)]
+            popToViewController(vc, animated: animated)
+        }
+    }
+}

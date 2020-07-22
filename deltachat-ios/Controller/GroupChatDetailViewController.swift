@@ -431,6 +431,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 if chat.isMuted {
                     dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
                     muteChatCell.actionTitle = String.localized("menu_mute")
+                    navigationController?.popViewController(animated: true)
                 } else {
                     showMuteAlert()
                 }
@@ -544,6 +545,7 @@ extension GroupChatDetailViewController {
         let action = UIAlertAction(title: String.localized(key), style: .default, handler: { _ in
             self.dcContext.setChatMuteDuration(chatId: self.chatId, duration: duration)
             self.muteChatCell.actionTitle = String.localized("menu_unmute")
+            self.navigationController?.popViewController(animated: true)
         })
         alert.addAction(action)
     }
