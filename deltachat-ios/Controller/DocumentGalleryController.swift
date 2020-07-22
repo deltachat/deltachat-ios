@@ -25,7 +25,7 @@ class DocumentGalleryController: UIViewController {
     init(fileMessageIds: [Int]) {
         self.fileMessageIds = fileMessageIds
         super.init(nibName: nil, bundle: nil)
-        self.title = String.localized("documents")
+        self.title = String.localized("files")
     }
 
     required init?(coder: NSCoder) {

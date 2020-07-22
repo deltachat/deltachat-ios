@@ -117,7 +117,6 @@ class GroupChatDetailViewController: UIViewController {
     private lazy var ephemeralMessagesCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("ephemeral_messages")
-        cell.detailTextLabel?.text = String.localized(chatIsEphemeral ? "on" : "off")
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -158,16 +157,14 @@ class GroupChatDetailViewController: UIViewController {
 
     private lazy var galleryCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("gallery")
-        cell.detailTextLabel?.text = "\(galleryItemMessageIds.count)"
+        cell.textLabel?.text = String.localized("images_and_videos")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
     private lazy var documentsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("documents")
-        cell.detailTextLabel?.text = "\(documentItemMessageIds.count)"
+        cell.textLabel?.text = String.localized("files")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -239,8 +236,8 @@ class GroupChatDetailViewController: UIViewController {
 
     private func updateCellValues() {
         ephemeralMessagesCell.detailTextLabel?.text = String.localized(chatIsEphemeral ? "on" : "off")
-        galleryCell.detailTextLabel?.text = "\(galleryItemMessageIds.count)"
-        documentsCell.detailTextLabel?.text = "\(documentItemMessageIds.count)"
+        galleryCell.detailTextLabel?.text = String.numberOrNone(galleryItemMessageIds.count)
+        documentsCell.detailTextLabel?.text = String.numberOrNone(documentItemMessageIds.count)
     }
 
     // MARK: - actions

@@ -57,4 +57,12 @@ extension String {
             return NSString.localizedStringWithFormat("%02li:%02li", minutes, seconds) as String
         }
     }
+
+    static func numberOrNone(_ number: Int) -> String {
+        if number == 0 {
+            return String.localized("none")
+        } else {
+            return "\(number)"
+        }
+    }
 }
