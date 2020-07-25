@@ -16,8 +16,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private var workaroundObserver: NSObjectProtocol?
 
     private let sectionGroupDetails = 0
-    private let sectionGroupDetailsRowAvatar = 0
-    private let sectionGroupDetailsRowName = 1
+    private let sectionGroupDetailsRowName = 0
+    private let sectionGroupDetailsRowAvatar = 1
     private let countSectionGroupDetails = 2
     private let sectionInvite = 1
     private let sectionInviteRowAddMembers = 0

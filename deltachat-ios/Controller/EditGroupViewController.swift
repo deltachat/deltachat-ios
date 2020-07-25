@@ -6,8 +6,8 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     private let chat: DcChat
     private var groupImage: UIImage?
 
-    private let rowAvatar = 0
-    private let rowGroupName = 1
+    private let rowGroupName = 0
+    private let rowAvatar = 1
 
     var avatarSelectionCell: AvatarSelectionCell
 
