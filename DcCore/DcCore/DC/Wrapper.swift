@@ -371,7 +371,7 @@ public class DcContext {
        return nil
     }
 
-    public func saveChatAvatarImage(chatId: Int, path: String) {
+    public func setChatProfileImage(chatId: Int, path: String?) {
         dc_set_chat_profile_image(contextPointer, UInt32(chatId), path)
     }
 
