@@ -169,7 +169,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }
 
     private func createPictureAndNameCell() -> AvatarSelectionCell {
-        let cell = AvatarSelectionCell(context: dcContext)
+        let cell = AvatarSelectionCell(image: dcContext.getSelfAvatarImage())
         return cell
     }
 

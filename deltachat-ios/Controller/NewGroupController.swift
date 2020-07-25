@@ -39,7 +39,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }()
 
     lazy var avatarSelectionCell: AvatarSelectionCell = {
-        let cell = AvatarSelectionCell(context: nil)
+        let cell = AvatarSelectionCell(image: nil)
         cell.hintLabel.text = String.localized("group_avatar")
         cell.onAvatarTapped = onAvatarTapped
         return cell
@@ -301,7 +301,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     func onImageSelected(image: UIImage) {
         groupImage = image
 
-        avatarSelectionCell = AvatarSelectionCell(context: nil, with: groupImage)
+        avatarSelectionCell = AvatarSelectionCell(image: groupImage)
         avatarSelectionCell.hintLabel.text = String.localized("group_avatar")
         avatarSelectionCell.onAvatarTapped = onAvatarTapped
 

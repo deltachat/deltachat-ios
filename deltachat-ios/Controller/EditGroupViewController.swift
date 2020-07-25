@@ -38,7 +38,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     init(dcContext: DcContext, chat: DcChat) {
         self.dcContext = dcContext
         self.chat = chat
-        self.avatarSelectionCell = AvatarSelectionCell(chat: chat)
+        self.avatarSelectionCell = AvatarSelectionCell(image: chat.profileImage)
         super.init(style: .grouped)
         self.avatarSelectionCell.hintLabel.text = String.localized("group_avatar")
         self.avatarSelectionCell.onAvatarTapped = onAvatarTapped
@@ -86,7 +86,6 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func groupNameEdited(_ textField: UITextField) {
-        avatarSelectionCell.onInitialsChanged(text: textField.text)
         doneButton.isEnabled = true
     }
 
@@ -112,7 +111,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         groupImage = image
         doneButton.isEnabled = true
 
-        avatarSelectionCell = AvatarSelectionCell(context: nil, with: groupImage)
+        avatarSelectionCell = AvatarSelectionCell(image: groupImage)
         avatarSelectionCell.hintLabel.text = String.localized("group_avatar")
         avatarSelectionCell.onAvatarTapped = onAvatarTapped
 
