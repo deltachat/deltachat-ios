@@ -8,7 +8,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     var doneButton: UIBarButtonItem!
     var contactIdsForGroup: Set<Int> // TODO: check if array is sufficient
     var groupContactIds: [Int]
-    var groupImage: UIImage?
+
+    private var changeGroupImage: UIImage?
+    private var deleteGroupImage: Bool = false
+
     let isVerifiedGroup: Bool
     let dcContext: DcContext
     private var contactAddedObserver: NSObjectProtocol?
@@ -128,8 +131,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         for contactId in contactIdsForGroup {
             let success = dcContext.addContactToChat(chatId: groupChatId, contactId: contactId)
 
-            if let groupImage = groupImage {
-                    AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: Int(groupChatId))
+            if let groupImage = changeGroupImage {
+                AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: groupChatId)
+            } else if deleteGroupImage {
+                AvatarHelper.saveChatAvatar(dcContext: dcContext, image: nil, for: groupChatId)
             }
 
             if success {
@@ -284,8 +289,12 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         let alert = UIAlertController(title: String.localized("group_avatar"), message: nil, preferredStyle: .safeActionSheet)
             let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
             let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
+            let deleteAction = UIAlertAction(title: String.localized("delete"), style: .destructive, handler: deleteGroupAvatarPressed(_:))
             alert.addAction(cameraAction)
             alert.addAction(galleryAction)
+            if avatarSelectionCell.isAvatarSet() {
+                alert.addAction(deleteAction)
+            }
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -298,10 +307,20 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         showCamera(delegate: self)
     }
 
-    func onImageSelected(image: UIImage) {
-        groupImage = image
+    private func deleteGroupAvatarPressed(_ action: UIAlertAction) {
+        changeGroupImage = nil
+        deleteGroupImage = true
+        updateAvatarRow(image: nil)
+    }
 
-        avatarSelectionCell = AvatarSelectionCell(image: groupImage)
+    func onImageSelected(image: UIImage) {
+        changeGroupImage = image
+        deleteGroupImage = false
+        updateAvatarRow(image: changeGroupImage)
+    }
+
+    func updateAvatarRow(image: UIImage?) {
+        avatarSelectionCell = AvatarSelectionCell(image: image)
         avatarSelectionCell.hintLabel.text = String.localized("group_avatar")
         avatarSelectionCell.onAvatarTapped = onAvatarTapped
 

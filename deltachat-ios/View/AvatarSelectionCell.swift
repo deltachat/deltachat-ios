@@ -3,6 +3,7 @@ import DcCore
 
 class AvatarSelectionCell: UITableViewCell {
     let badgeSize: CGFloat = 72
+    private var avatarSet = false
 
     var onAvatarTapped: (() -> Void)?
 
@@ -79,9 +80,15 @@ class AvatarSelectionCell: UITableViewCell {
     func setAvatar(image: UIImage?) {
         if let image = image {
             badge.setImage(image)
+            avatarSet = true
         } else {
             badge = InitialsBadge(image: defaultImage, size: badgeSize)
             badge.backgroundColor = DcColors.grayTextColor
+            avatarSet = false
         }
+    }
+
+    func isAvatarSet() -> Bool {
+        return avatarSet
     }
 }
