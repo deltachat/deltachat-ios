@@ -139,12 +139,12 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
     private func onAvatarTapped() {
         let alert = UIAlertController(title: String.localized("pref_profile_photo"), message: nil, preferredStyle: .safeActionSheet)
-        let photoAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
-        let videoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
+        let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
+        let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
         let deleteAction = UIAlertAction(title: String.localized("delete"), style: .destructive, handler: deleteProfileIconPressed(_:))
 
-        alert.addAction(photoAction)
-        alert.addAction(videoAction)
+        alert.addAction(cameraAction)
+        alert.addAction(galleryAction)
         if dcContext.getSelfAvatarImage() != nil {
             alert.addAction(deleteAction)
         }
