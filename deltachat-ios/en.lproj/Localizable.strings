@@ -24,6 +24,7 @@
 "unarchive" = "Unarchive";
 "mute" = "Mute";
 "ephemeral_messages" = "Disappearing messages";
+"ephemeral_messages_hint" = "These settings apply to all participants using Delta Chat. However, they may copy, save and forward messages or use other e-mail clients.";
 "save" = "Save";
 "chat" = "Chat";
 "media" = "Media";

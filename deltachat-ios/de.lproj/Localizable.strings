@@ -24,6 +24,7 @@
 "unarchive" = "Dearchivieren";
 "mute" = "Stumm";
 "ephemeral_messages" = "Verschwindende Nachrichten";
+"ephemeral_messages_hint" = "Diese Einstellungen gelten für alle Delta Chat BenutzerInnen. Nachrichten können jedoch kopiert, gespeichert und weitergeleitet werden oder es können andere E-Mail-Clients verwenden werden.";
 "save" = "Speichern";
 "chat" = "Chat";
 "media" = "Medien";

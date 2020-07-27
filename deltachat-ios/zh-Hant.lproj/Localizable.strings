@@ -79,6 +79,7 @@
 "camera" = "相机";
 "location" = "位置";
 "gallery" = "图库";
+"images_and_videos" = "图片和视频";
 "file" = "文件";
 "files" = "文件";
 "unknown" = "未知";
@@ -490,6 +491,15 @@
 "systemmsg_unknown_sender_for_chat" = "此聊天发送者未知。查看“信息”来获取更多详情。";
 "systemmsg_subject_for_new_contact" = "来自 %1$@ 的消息";
 "systemmsg_failed_sending_to" = "发送消息给 %1$@ 失败。";
+
+"systemmsg_ephemeral_timer_disabled" = "已禁用消息在多久后消失的计时器";
+"systemmsg_ephemeral_timer_enabled" = "消息将在%1$@秒后消失";
+"systemmsg_ephemeral_timer_minute" = "消息将在1分钟后消失";
+"systemmsg_ephemeral_timer_hour" = "消息将在1小时后消失";
+"systemmsg_ephemeral_timer_day" = "消息将在1天后消失";
+"systemmsg_ephemeral_timer_week" = "消息将在1周后消失";
+"systemmsg_ephemeral_timer_four_weeks" = "消息将在4周后消失";
+
 
 // screen lock
 "screenlock_title" = "屏幕锁定";

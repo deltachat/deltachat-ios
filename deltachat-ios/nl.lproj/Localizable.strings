@@ -79,7 +79,9 @@
 "camera" = "Camera";
 "location" = "Locatie";
 "gallery" = "Galerij";
+"images_and_videos" = "Afbeeldingen en video\'s";
 "file" = "Bestand";
+"files" = "Bestanden";
 "unknown" = "Onbekend";
 
 "green" = "Groen";

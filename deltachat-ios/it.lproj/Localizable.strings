@@ -79,7 +79,9 @@
 "camera" = "Camera";
 "location" = "Posizione";
 "gallery" = "Galleria";
+"images_and_videos" = "Immagini e video";
 "file" = "File";
+"files" = "File";
 "unknown" = "Sconosciuto";
 
 "green" = "Verde";

@@ -79,7 +79,9 @@
 "camera" = "Kamera";
 "location" = "Konum";
 "gallery" = "Galeri";
+"images_and_videos" = "Görseller ve videolar";
 "file" = "Dosya";
+"files" = "Dosyalar";
 "unknown" = "Bilinmeyen";
 
 "green" = "Yeşil";

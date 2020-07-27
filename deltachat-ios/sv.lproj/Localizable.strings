@@ -79,7 +79,9 @@
 "camera" = "Kamera";
 "location" = "Plats";
 "gallery" = "Galleri";
+"images_and_videos" = "Bilder och videor";
 "file" = "Arkiv";
+"files" = "Filer";
 "unknown" = "Okänd";
 
 "green" = "Grön";
@@ -177,7 +179,7 @@
 "share_location_once" = "en gång";
 "share_location_for_5_minutes" = "i 5 minuter";
 "share_location_for_30_minutes" = "i 30 minuter";
-"share_location_for_one_hour" = "i 1 timme";
+"share_location_for_one_hour" = "i 1 timma";
 "share_location_for_two_hours" = "i 2 timmar";
 "share_location_for_six_hours" = "i 6 timmar";
 

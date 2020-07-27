@@ -79,7 +79,9 @@
 "camera" = "Kamerë";
 "location" = "Vendndodhje";
 "gallery" = "Galeri";
+"images_and_videos" = "Figura dhe video";
 "file" = "Kartelë";
+"files" = "Kartela";
 "unknown" = "E panjohur";
 
 "green" = "E gjelbër";
