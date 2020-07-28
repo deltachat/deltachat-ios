@@ -4,10 +4,12 @@ import DcCore
 class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     private let dcContext: DcContext
     private let chat: DcChat
-    private var groupImage: UIImage?
 
-    private let rowAvatar = 0
-    private let rowGroupName = 1
+    private var changeGroupImage: UIImage?
+    private var deleteGroupImage: Bool = false
+
+    private let rowGroupName = 0
+    private let rowAvatar = 1
 
     var avatarSelectionCell: AvatarSelectionCell
 
@@ -38,7 +40,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     init(dcContext: DcContext, chat: DcChat) {
         self.dcContext = dcContext
         self.chat = chat
-        self.avatarSelectionCell = AvatarSelectionCell(chat: chat)
+        self.avatarSelectionCell = AvatarSelectionCell(image: chat.profileImage)
         super.init(style: .grouped)
         self.avatarSelectionCell.hintLabel.text = String.localized("group_avatar")
         self.avatarSelectionCell.onAvatarTapped = onAvatarTapped
@@ -74,8 +76,10 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     
     @objc func saveContactButtonPressed() {
         let newName = groupNameCell.getText()
-        if let groupImage = groupImage {
-            AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: Int(chat.id))
+        if let groupImage = changeGroupImage {
+            AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: chat.id)
+        } else if deleteGroupImage {
+            AvatarHelper.saveChatAvatar(dcContext: dcContext, image: nil, for: chat.id)
         }
         _ = dcContext.setChatName(chatId: chat.id, name: newName ?? "")
         navigationController?.popViewController(animated: true)
@@ -86,16 +90,16 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func groupNameEdited(_ textField: UITextField) {
-        avatarSelectionCell.onInitialsChanged(text: textField.text)
         doneButton.isEnabled = true
     }
 
     private func onAvatarTapped() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
-            let photoAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
-            let videoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
-            alert.addAction(photoAction)
-            alert.addAction(videoAction)
+        let alert = UIAlertController(title: String.localized("group_avatar"), message: nil, preferredStyle: .safeActionSheet)
+            alert.addAction(PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:)))
+            alert.addAction(PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:)))
+            if avatarSelectionCell.isAvatarSet() {
+                alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: deleteGroupAvatarPressed(_:)))
+            }
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -108,11 +112,22 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         mediaPicker?.showCamera(allowCropping: true, supportedMediaTypes: .photo)
     }
 
-    func onImageSelected(image: UIImage) {
-        groupImage = image
+    private func deleteGroupAvatarPressed(_ action: UIAlertAction) {
+        changeGroupImage = nil
+        deleteGroupImage = true
         doneButton.isEnabled = true
+        updateAvatarRow(image: nil)
+    }
 
-        avatarSelectionCell = AvatarSelectionCell(context: nil, with: groupImage)
+    func onImageSelected(image: UIImage) {
+        changeGroupImage = image
+        deleteGroupImage = false
+        doneButton.isEnabled = true
+        updateAvatarRow(image: changeGroupImage)
+    }
+
+    func updateAvatarRow(image: UIImage?) {
+        avatarSelectionCell = AvatarSelectionCell(image: image)
         avatarSelectionCell.hintLabel.text = String.localized("group_avatar")
         avatarSelectionCell.onAvatarTapped = onAvatarTapped
 

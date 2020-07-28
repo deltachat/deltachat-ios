@@ -22,7 +22,7 @@ class ProfileInfoViewController: UITableViewController {
     }()
 
     private lazy var avatarCell: AvatarSelectionCell = {
-        let cell = AvatarSelectionCell(context: self.dcContext)
+        let cell = AvatarSelectionCell(image: dcContext.getSelfAvatarImage())
         cell.onAvatarTapped = avatarTapped
         return cell
     }()
@@ -76,7 +76,7 @@ class ProfileInfoViewController: UITableViewController {
     // MARK: - updates
     private func updateAvatarCell() {
         if let avatarImage = dcContext.getSelfAvatarImage() {
-            avatarCell.updateAvatar(image: avatarImage)
+            avatarCell.setAvatar(image: avatarImage)
         }
         self.tableView.beginUpdates()
         let indexPath = IndexPath(row: 1, section: 0)

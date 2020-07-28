@@ -3,6 +3,7 @@ import DcCore
 
 class AvatarSelectionCell: UITableViewCell {
     let badgeSize: CGFloat = 72
+    private var avatarSet = false
 
     var onAvatarTapped: (() -> Void)?
 
@@ -29,16 +30,9 @@ class AvatarSelectionCell: UITableViewCell {
         return label
     }()
 
-    init(chat: DcChat) {
+    init(image: UIImage?) {
         super.init(style: .default, reuseIdentifier: nil)
-        setAvatar(for: chat)
-        setupSubviews()
-    }
-
-    init(context: DcContext?, with defaultImage: UIImage? = nil) {
-        super.init(style: .default, reuseIdentifier: nil)
-        setAvatar(image: context?.getSelfAvatarImage(),
-                  with: defaultImage ?? self.defaultImage)
+        setAvatar(image: image)
         setupSubviews()
     }
 
@@ -69,12 +63,6 @@ class AvatarSelectionCell: UITableViewCell {
         selectionStyle = .none
     }
 
-    func onInitialsChanged(text: String?) {
-        if badge.showsInitials() {
-            badge.setName(text ?? "")
-        }
-    }
-
     @objc func onBadgeTouched(gesture: UILongPressGestureRecognizer) {
         switch gesture.state {
         case .began:
@@ -89,27 +77,18 @@ class AvatarSelectionCell: UITableViewCell {
         }
     }
 
-    // I think this is no good, we should rather update badge than overwriting it.
-    func setAvatar(for chat: DcChat) {
-        if let image = chat.profileImage {
-            badge = InitialsBadge(image: image, size: badgeSize)
-        } else {
-            badge = InitialsBadge(name: chat.name, color: chat.color, size: badgeSize)
-        }
-        badge.setVerified(chat.isVerified)
-    }
-
-    // I think this is no good, we should rather update badge than overwriting it.
-    func setAvatar(image: UIImage?, with defaultImage: UIImage?) {
+    func setAvatar(image: UIImage?) {
         if let image = image {
-            badge = InitialsBadge(image: image, size: badgeSize)
-        } else if let defaultImage = defaultImage {
+            badge.setImage(image)
+            avatarSet = true
+        } else {
             badge = InitialsBadge(image: defaultImage, size: badgeSize)
             badge.backgroundColor = DcColors.grayTextColor
+            avatarSet = false
         }
     }
 
-    func updateAvatar(image: UIImage) {
-        badge.setImage(image)
+    func isAvatarSet() -> Bool {
+        return avatarSet
     }
 }

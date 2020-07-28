@@ -20,11 +20,15 @@ class AvatarHelper {
         }
     }
 
-    static func saveChatAvatar(dcContext: DcContext, image: UIImage, for chatId: Int) {
+    static func saveChatAvatar(dcContext: DcContext, image: UIImage?, for chatId: Int) {
         do {
-            let groupFileName = try saveAvatarImageToFile(image: image)
-            dcContext.saveChatAvatarImage(chatId: chatId, path: groupFileName.path)
-            deleteAvatarFile(groupFileName)
+            if let image = image {
+                let groupFileName = try saveAvatarImageToFile(image: image)
+                dcContext.setChatProfileImage(chatId: chatId, path: groupFileName.path)
+                deleteAvatarFile(groupFileName)
+            } else {
+                dcContext.setChatProfileImage(chatId: chatId, path: nil)
+            }
         } catch let error {
             logger.error("Error saving Image: \(error.localizedDescription)")
         }

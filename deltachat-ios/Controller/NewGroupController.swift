@@ -8,7 +8,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     var doneButton: UIBarButtonItem!
     var contactIdsForGroup: Set<Int> // TODO: check if array is sufficient
     var groupContactIds: [Int]
-    var groupImage: UIImage?
+
+    private var changeGroupImage: UIImage?
+    private var deleteGroupImage: Bool = false
+
     let isVerifiedGroup: Bool
     let dcContext: DcContext
     private var contactAddedObserver: NSObjectProtocol?
@@ -16,8 +19,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private var workaroundObserver: NSObjectProtocol?
 
     private let sectionGroupDetails = 0
-    private let sectionGroupDetailsRowAvatar = 0
-    private let sectionGroupDetailsRowName = 1
+    private let sectionGroupDetailsRowName = 0
+    private let sectionGroupDetailsRowAvatar = 1
     private let countSectionGroupDetails = 2
     private let sectionInvite = 1
     private let sectionInviteRowAddMembers = 0
@@ -39,7 +42,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }()
 
     lazy var avatarSelectionCell: AvatarSelectionCell = {
-        let cell = AvatarSelectionCell(context: nil)
+        let cell = AvatarSelectionCell(image: nil)
         cell.hintLabel.text = String.localized("group_avatar")
         cell.onAvatarTapped = onAvatarTapped
         return cell
@@ -128,8 +131,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         for contactId in contactIdsForGroup {
             let success = dcContext.addContactToChat(chatId: groupChatId, contactId: contactId)
 
-            if let groupImage = groupImage {
-                    AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: Int(groupChatId))
+            if let groupImage = changeGroupImage {
+                AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: groupChatId)
+            } else if deleteGroupImage {
+                AvatarHelper.saveChatAvatar(dcContext: dcContext, image: nil, for: groupChatId)
             }
 
             if success {
@@ -281,11 +286,12 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func onAvatarTapped() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
-            let photoAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
-            let videoAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
-            alert.addAction(photoAction)
-            alert.addAction(videoAction)
+        let alert = UIAlertController(title: String.localized("group_avatar"), message: nil, preferredStyle: .safeActionSheet)
+            alert.addAction(PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:)))
+            alert.addAction(PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:)))
+            if avatarSelectionCell.isAvatarSet() {
+                alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: deleteGroupAvatarPressed(_:)))
+            }
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -298,10 +304,20 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         showCamera(delegate: self)
     }
 
-    func onImageSelected(image: UIImage) {
-        groupImage = image
+    private func deleteGroupAvatarPressed(_ action: UIAlertAction) {
+        changeGroupImage = nil
+        deleteGroupImage = true
+        updateAvatarRow(image: nil)
+    }
 
-        avatarSelectionCell = AvatarSelectionCell(context: nil, with: groupImage)
+    func onImageSelected(image: UIImage) {
+        changeGroupImage = image
+        deleteGroupImage = false
+        updateAvatarRow(image: changeGroupImage)
+    }
+
+    func updateAvatarRow(image: UIImage?) {
+        avatarSelectionCell = AvatarSelectionCell(image: image)
         avatarSelectionCell.hintLabel.text = String.localized("group_avatar")
         avatarSelectionCell.onAvatarTapped = onAvatarTapped
 
