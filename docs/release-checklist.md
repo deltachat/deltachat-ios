@@ -2,12 +2,8 @@
 
 on the command-line:
 
-1. a) update core rust submodule, if needed:
-      $ ./tools/update-core.sh
-
-   b) make sure, `lto = true` is present in
-      `deltachat-ios/libraries/deltachat-core-rust/Cargo.toml`
-
+1. update core rust submodule, if needed:
+   $ ./tools/update-core.sh
    depending on how much you trust in rust, you might want to do a
    ./tools/clean-core.sh before building
 
