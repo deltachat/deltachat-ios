@@ -72,6 +72,10 @@ class SendingController: UIViewController {
             for dcMsg in self.dcMsgs {
                 self.dcContext.sendMsgSync(chatId: self.chatId, msg: dcMsg)
             }
+
+            if !self.dcContext.getChat(chatId: self.chatId).isSelfTalk {
+                DcUtils.donateSendMessageIntent(chatId: self.chatId)
+            }
             self.delegate?.onSendingAttemptFinished()
         }
     }

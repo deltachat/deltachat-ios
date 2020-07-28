@@ -93,7 +93,6 @@ public class DcContext {
 
     public func sendMsgSync(chatId: Int, msg: DcMsg) {
         dc_send_msg_sync(contextPointer, UInt32(chatId), msg.messagePointer)
-        DcUtils.donateSendMessageIntent(chatId: chatId)
     }
 
     public func getChatMedia(chatId: Int, messageType: Int32, messageType2: Int32, messageType3: Int32) -> [Int] {
@@ -270,12 +269,10 @@ public class DcContext {
 
     public func forwardMessage(with msgId: Int, to chat: Int) {
         dc_forward_msgs(contextPointer, [UInt32(msgId)], 1, UInt32(chat))
-        DcUtils.donateSendMessageIntent(chatId: chat)
     }
 
     public func sendTextInChat(id: Int, message: String) {
         dc_send_text_msg(contextPointer, UInt32(id), message)
-        DcUtils.donateSendMessageIntent(chatId: id)
     }
 
     public func initiateKeyTransfer() -> String? {
@@ -1018,7 +1015,6 @@ public class DcMsg {
 
     public func sendInChat(id: Int) {
         dc_send_msg(DcContext.shared.contextPointer, UInt32(id), messagePointer)
-        DcUtils.donateSendMessageIntent(chatId: chatId)
     }
 
     public func previousMediaURLs() -> [URL] {
