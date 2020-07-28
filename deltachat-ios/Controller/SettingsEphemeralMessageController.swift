@@ -93,6 +93,10 @@ class SettingsEphemeralMessageController: UITableViewController {
         return options.count
     }
 
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return String.localized("ephemeral_messages_hint")
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let oldSelectedCell = tableView.cellForRow(at: IndexPath.init(row: currentIndex, section: 0))
         oldSelectedCell?.accessoryType = .none
