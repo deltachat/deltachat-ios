@@ -155,8 +155,13 @@ extension MediaPicker: UIImagePickerControllerDelegate {
                 }
             case .image:
                 if let image = info[.editedImage] as? UIImage {
+                    //  selected from camera and edtied
                     self.delegate?.onImageSelected(image: image)
+                } else if let imageURL = info[.imageURL] as? NSURL {
+                    //selected from gallery
+                    self.delegate?.onImageSelected(url: imageURL)
                 } else if let image = info[.originalImage] as? UIImage {
+                    //selected from camera
                     self.delegate?.onImageSelected(image: image)
                 }
             }
