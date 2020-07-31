@@ -12,6 +12,8 @@
 "automatic" = "Automatike";
 "strict" = "Strikt";
 "open" = "Hap";
+"join" = "Hyni";
+"rejoin" = "Rihyni";
 "delete" = "Fshije";
 "info" = "Të dhëna";
 "update" = "Përditësoje";
@@ -24,6 +26,7 @@
 "unarchive" = "Çarkivoje";
 "mute" = "Heshtoje";
 "ephemeral_messages" = "Mesazhe që zhduken";
+"ephemeral_messages_hint" = "Këto rregullime zbatohen mbi krejt pjesëmarrësit që përdorin Delta Chat-in. Sidoqoftë, ata mund të kopjojnë, ruajnë dhe përcjellin mesazhe ose të përdorin klientë të tjerë email-i.";
 "save" = "Ruaje";
 "chat" = "Fjalosje";
 "media" = "Media";
@@ -184,6 +187,19 @@
 "share_location_for_six_hours" = "për 6 orë";
 
 "file_saved_to" = "Kartela u ruajt te \"%1$@\".";
+
+"videochat" = "Fjalosje me video";
+"videochat_contact_invited_hint" = "%1$@ ftoi te një fjalosje me video.";
+"videochat_you_invited_hint" = "Ftuat te një fjalosje me video.";
+"videochat_will_open_in_your_browser" = "Kjo fjalosje me video do të hapet në shfletuesin tuaj.";
+"videochat_tap_to_join" = "Prekeni që të hyni";
+"videochat_tap_to_open" = "Prekeni që të hapet";
+"videochat_instance" = "Instancë fjalosjeje me video";
+"videochat_instance_placeholder" = "Instanca juaj e fjalosjes me video";
+"videochat_instance_explain" = "Nëse është përkufizuar një instancë fjalosjeje me video, mund të nisni një fjalosje me video prej secilës anë të fjalosjes tek-për-tek. Fjalosjet me video kanë të domosdoshëm në të dy skajet një aplikacion të përputhshëm ose një shfletues të përputhshëm.\n\nShembuj: https://meet.jit.si/$ROOM ose basicwebrtc:https://your-server";
+"videochat_instance_from_qr" = "Të përdoret \"%1$@\" për të ftuar të tjerë në fjalosje me video?\n\nPasi të ujdiset kjo, mund të filloni një fjalosje me video që prej një fjalosjeje tek-për-tek. Kështu do të zëvendësohet rregullimi i mëparshëm për fjalosje video, në pastë.";
+"videochat_invitation" = "Ftesë për fjalosje me video";
+"videochat_invitation_body" = "Jeni ftuar në një fjalosje video, klikoni mbi %1$@ që të hyni në të.";
 
 // get confirmations
 "ask_leave_group" = "Jeni i sigurt se doni ta braktisni këtë grup?";

@@ -12,6 +12,8 @@
 "automatic" = "Automatisch";
 "strict" = "Strikt";
 "open" = "Openen";
+"join" = "Deelnemen";
+"rejoin" = "Opnieuw deelnemen";
 "delete" = "Verwijderen";
 "info" = "Informatie";
 "update" = "Bijwerken";
@@ -24,6 +26,7 @@
 "unarchive" = "De-archiveren";
 "mute" = "Dempen";
 "ephemeral_messages" = "Verdwijnende berichten";
+"ephemeral_messages_hint" = "Deze instellingen zijn van toepassing op alle deelnemers die Delta Chat gebruiken. Ze kunnen echter wél berichten kopiëren, opslaan of doorsturen middels andere e-mailapps.";
 "save" = "Opslaan";
 "chat" = "Gesprek";
 "media" = "Media";
@@ -184,6 +187,19 @@
 "share_location_for_six_hours" = "6 uur lang";
 
 "file_saved_to" = "Het bestand is opgeslagen in \'%1$@\'.";
+
+"videochat" = "Videogesprek";
+"videochat_contact_invited_hint" = "%1$@ is uitgenodigd voor een videogesprek.";
+"videochat_you_invited_hint" = "Je bent uitgenodigd voor een videogesprek.";
+"videochat_will_open_in_your_browser" = "Het videogesprek wordt geopend in je webbrowser.";
+"videochat_tap_to_join" = "Druk om deel te nemen";
+"videochat_tap_to_open" = "Druk om te openen";
+"videochat_instance" = "Videogespreksinstantie";
+"videochat_instance_placeholder" = "Mijn videogespreksinstantie";
+"videochat_instance_explain" = "Als je een videogespreksinstantie opgeeft, kun je een videogesprek starten vanuit elk één-op-ééngesprek. Voor videogesprekken hebben zowel jij als je gesprekspartner een compatibele app of webbrowser nodig.\n\nVoorbeelden: https://meet.jit.si/$KAMER of basicwebrtc:https://mijn-server";
+"videochat_instance_from_qr" = "Wil je \"%1$@\" gebruiken om anderen uit te nodigen voor videogesprekken?\n\nNa het instellen kun je een videogesprek starten vanuit elk één-op-ééngesprek. Deze instelling vervangt de vorige videogespreksinstelling.";
+"videochat_invitation" = "Uitnodiging voor videogesprek";
+"videochat_invitation_body" = "Je bent uitgenodigd voor een videogesprek. Druk op %1$@ om deel te nemen.";
 
 // get confirmations
 "ask_leave_group" = "Weet je zeker dat je deze groep wilt verlaten?";

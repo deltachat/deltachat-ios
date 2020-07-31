@@ -12,6 +12,8 @@
 "automatic" = "Automatiskt";
 "strict" = "Sträng";
 "open" = "Öppna";
+"join" = "Anslut";
+"rejoin" = "Återanslut";
 "delete" = "Ta bort";
 "info" = "Info";
 "update" = "Uppdatera";
@@ -24,6 +26,7 @@
 "unarchive" = "Avarkivera";
 "mute" = "Tyst";
 "ephemeral_messages" = "Försvinnande meddelanden";
+"ephemeral_messages_hint" = "Dessa inställningar tillämpas för alla deltagare som använder Delta Chat. De kan dock kopiera, spara och vidarebefordra meddelanden eller använda andra e-postklienter.";
 "save" = "Spara";
 "chat" = "Chatt";
 "media" = "Media";
@@ -184,6 +187,19 @@
 "share_location_for_six_hours" = "i 6 timmar";
 
 "file_saved_to" = "Filen är sparad i \"%1$@\".";
+
+"videochat" = "Videochatt";
+"videochat_contact_invited_hint" = "%1$@ bjöd in till en videochatt";
+"videochat_you_invited_hint" = "Du bjöd in till en videochatt";
+"videochat_will_open_in_your_browser" = "Denna videochatt öppnas i din webbläsare.";
+"videochat_tap_to_join" = "Tryck för att ansluta";
+"videochat_tap_to_open" = "Tryck för att öppna";
+"videochat_instance" = "Videochattinstans";
+"videochat_instance_placeholder" = "Din videochattinstans";
+"videochat_instance_explain" = "Om en videochattinstans har definierats kan du starta en videochatt från varje en-till-en-chatt. Videochattar kräver en kompatibel app eller en kompatibel webbläsare i båda ändar.\n\nExempel: https://meet.jit.si/$ROOM or basicwebrtc:https://your-server";
+"videochat_instance_from_qr" = "Vill du använda \"%1$@\" för att bjuda in andra till videochattar?\n\nNär det väl är inställt kan du starta en videochatt från vilken en-till-en-chatt som helst. Detta ersätter den tidigare inställningen för eventuella videochattar.";
+"videochat_invitation" = "Videochattinbjudan";
+"videochat_invitation_body" = "Du är inbjuden till en videochatt, klicka på %1$@ för att ansluta.";
 
 // get confirmations
 "ask_leave_group" = "Är du säker på att du vill lämna den här gruppen?";

@@ -12,6 +12,8 @@
 "automatic" = "Automatico";
 "strict" = "Stringente";
 "open" = "Apri";
+"join" = "Partecipa";
+"rejoin" = "Ripartecipa";
 "delete" = "Elimina";
 "info" = "Info";
 "update" = "Aggiorna";
@@ -24,6 +26,7 @@
 "unarchive" = "Ripristina";
 "mute" = "Silenzia";
 "ephemeral_messages" = "Messaggi che scompaiono";
+"ephemeral_messages_hint" = "Queste impostazioni si applicano a tutti i partecipanti che utilizzano Delta Chat. Tuttavia, possono copiare, salvare e inoltrare messaggi o utilizzare altri client e-mail.";
 "save" = "Salva";
 "chat" = "Chat";
 "media" = "Media";
@@ -184,6 +187,19 @@
 "share_location_for_six_hours" = "per 6 ore";
 
 "file_saved_to" = "File salvato su \"%1$@\".";
+
+"videochat" = "Chat video";
+"videochat_contact_invited_hint" = "%1$@ invitato a una chat video.";
+"videochat_you_invited_hint" = "Hai invitato a una chat video.";
+"videochat_will_open_in_your_browser" = "Questa video chat si aprirà nel tuo browser.";
+"videochat_tap_to_join" = "Tocca per partecipare";
+"videochat_tap_to_open" = "Tocca per aprire";
+"videochat_instance" = "Istanza chat video";
+"videochat_instance_placeholder" = "La tua istanza chat video";
+"videochat_instance_explain" = "Se viene definita un\'istanza chat video, è possibile avviare una chat video da ciascuna chat uno a uno. Le chat video richiedono un\'app compatibile o un browser compatibile da entrambe le parti.\n\nEsempi: https://meet.jit.si/$ROOM o basicwebrtc: https://your-server";
+"videochat_instance_from_qr" = "Utilizzare \"%1$@\" per invitare altri alla chat video?\n\nUna volta impostato, è possibile avviare una chat video da ogni chat uno a uno. Ciò sostituirà l\'eventuale impostazione precedente per le chat video.";
+"videochat_invitation" = "Invito alla chat video";
+"videochat_invitation_body" = "Sei invitato a una chat video, fai clic %1$@ per partecipare.";
 
 // get confirmations
 "ask_leave_group" = "Sei sicuro di voler abbandonare il gruppo?";

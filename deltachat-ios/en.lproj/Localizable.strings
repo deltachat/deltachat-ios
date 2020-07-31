@@ -12,6 +12,8 @@
 "automatic" = "Automatic";
 "strict" = "Strict";
 "open" = "Open";
+"join" = "Join";
+"rejoin" = "Rejoin";
 "delete" = "Delete";
 "info" = "Info";
 "update" = "Update";
@@ -185,6 +187,19 @@
 "share_location_for_six_hours" = "for 6 hours";
 
 "file_saved_to" = "File saved to \"%1$@\".";
+
+"videochat" = "Video chat";
+"videochat_contact_invited_hint" = "%1$@ invited to a video chat.";
+"videochat_you_invited_hint" = "You invited to a video chat.";
+"videochat_will_open_in_your_browser" = "This video chat will open in your browser.";
+"videochat_tap_to_join" = "Tap to join";
+"videochat_tap_to_open" = "Tap to open";
+"videochat_instance" = "Video chat instance";
+"videochat_instance_placeholder" = "Your video chat instance";
+"videochat_instance_explain" = "If a video chat instance is defined, you can start a video chat from each one-to-one chat. Video chats require a compatible app or a compatible browser on both ends.\n\nExamples: https://meet.jit.si/$ROOM or basicwebrtc:https://your-server";
+"videochat_instance_from_qr" = "Use \"%1$@\" to invite others to video chats?\n\nOnce set, you can start a video chat from each one-to-one chat. This will replace the previous setting for video chats, if any.";
+"videochat_invitation" = "Video chat invitation";
+"videochat_invitation_body" = "You are invited to a video chat, click %1$@ to join.";
 
 // get confirmations
 "ask_leave_group" = "Are you sure you want to leave this group?";
