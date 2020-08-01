@@ -1,5 +1,22 @@
 # Delta Chat iOS Changelog
 
+## 1.12.0
+2020-07
+
+* use native camera, improve video recording
+* streamline profile views and show the number of items
+* option to enlarge profile image
+* show a device message when the password was changed on the server
+* show experimental disappearing-messags state in chat's title bar
+* improve sending large messages and GIF messages
+* improve receiving messages
+* improve error handling when there is no network
+* allow avatar deletion in profile and in groups
+* fix gallery dark-mode
+* fix login issue on ios 11
+* more bug fixes
+
+
 ## 1.10.1
 2020-07
 
