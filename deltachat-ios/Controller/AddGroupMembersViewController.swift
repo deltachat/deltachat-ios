@@ -44,7 +44,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
         super.init()
         self.chatId = chatId
         numberOfSections = 2
-
     }
 
     required init?(coder _: NSCoder) {
@@ -134,7 +133,11 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 
     func loadMemberCandidates() -> [Int] {
-        var contactIds = dcContext.getContacts(flags: 0)
+        var flags: Int32 = 0
+        if let chat = chat, chat.isVerified {
+            flags |= DC_GCL_VERIFIED_ONLY
+        }
+        var contactIds = dcContext.getContacts(flags: flags)
         let memberSet = Set(chatMemberIds)
         contactIds.removeAll(where: { memberSet.contains($0)})
         return Array(contactIds)
