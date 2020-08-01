@@ -17,6 +17,7 @@ class AvatarSelectionCell: UITableViewCell {
     lazy var badge: InitialsBadge = {
         let badge = InitialsBadge(size: badgeSize)
         badge.setColor(UIColor.lightGray)
+        badge.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return badge
     }()
 
@@ -27,7 +28,17 @@ class AvatarSelectionCell: UITableViewCell {
         label.text = String.localized("pref_profile_photo")
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return label
+    }()
+
+    private lazy var container: UIStackView = {
+        let container = UIStackView(arrangedSubviews: [hintLabel, badge])
+        container.axis = .horizontal
+        container.alignment = .center
+        container.clipsToBounds = true
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
     }()
 
     init(image: UIImage?) {
@@ -46,16 +57,11 @@ class AvatarSelectionCell: UITableViewCell {
     }
 
     private func setupSubviews() {
-        contentView.addSubview(badge)
-        badge.alignTrailingToAnchor(contentView.layoutMarginsGuide.trailingAnchor)
-        badge.alignTopToAnchor(contentView.layoutMarginsGuide.topAnchor)
-        badge.alignBottomToAnchor(contentView.layoutMarginsGuide.bottomAnchor)
-
-        contentView.addSubview(hintLabel)
-        hintLabel.alignLeadingToAnchor(contentView.layoutMarginsGuide.leadingAnchor)
-        hintLabel.alignTopToAnchor(contentView.layoutMarginsGuide.topAnchor)
-        hintLabel.alignTrailingToAnchor(badge.leadingAnchor)
-        hintLabel.alignBottomToAnchor(contentView.layoutMarginsGuide.bottomAnchor, priority: .defaultLow)
+        contentView.addSubview(container)
+        container.alignTopToAnchor(contentView.layoutMarginsGuide.topAnchor)
+        container.alignBottomToAnchor(contentView.layoutMarginsGuide.bottomAnchor)
+        container.alignLeadingToAnchor(contentView.layoutMarginsGuide.leadingAnchor)
+        container.alignTrailingToAnchor(contentView.layoutMarginsGuide.trailingAnchor)
 
         let touchListener = UILongPressGestureRecognizer(target: self, action: #selector(onBadgeTouched))
         touchListener.minimumPressDuration = 0
