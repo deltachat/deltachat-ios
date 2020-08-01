@@ -4,6 +4,7 @@
 "cancel" = "Cancel";
 "yes" = "Yes";
 "no" = "No";
+"select" = "Select";
 "on" = "On";
 "off" = "Off";
 "def" = "Default";
@@ -189,6 +190,8 @@
 "file_saved_to" = "File saved to \"%1$@\".";
 
 "videochat" = "Video chat";
+"videochat_invite_user_to_videochat" = "Invite %1$@ to a video chat?";
+"videochat_invite_user_hint" = "This requires a compatible app or a compatible browser on both ends.";
 "videochat_contact_invited_hint" = "%1$@ invited to a video chat.";
 "videochat_you_invited_hint" = "You invited to a video chat.";
 "videochat_will_open_in_your_browser" = "This video chat will open in your browser.";
