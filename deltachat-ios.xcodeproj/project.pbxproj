@@ -117,6 +117,8 @@
 		30E8F2512449EA0E00CE2C90 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
 		30E8F253244DAD0E00CE2C90 /* SendingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F252244DAD0E00CE2C90 /* SendingController.swift */; };
 		30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9B9EB235F2116006E7ACF /* MessageCounter.swift */; };
+		30FDB70524D1C1000066C48D /* ChatViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDB6F824D1C1000066C48D /* ChatViewControllerNew.swift */; };
+		30FDB71F24D8170E0066C48D /* NewTextMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDB71E24D8170E0066C48D /* NewTextMessageCell.swift */; };
 		451CF971F08D38BCECADCB45 /* Pods_deltachat_ios_DcShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546063D4BFB8FD920C4EAA22 /* Pods_deltachat_ios_DcShare.framework */; };
 		6795F63A82E94FF7CD2CEC0F /* Pods_deltachat_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7009234DB9408201A6CDCB /* Pods_deltachat_iosTests.framework */; };
 		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
@@ -401,6 +403,8 @@
 		30E8F2432449C64100CE2C90 /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		30E8F252244DAD0E00CE2C90 /* SendingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingController.swift; sourceTree = "<group>"; };
 		30F9B9EB235F2116006E7ACF /* MessageCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCounter.swift; sourceTree = "<group>"; };
+		30FDB6F824D1C1000066C48D /* ChatViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewControllerNew.swift; sourceTree = "<group>"; };
+		30FDB71E24D8170E0066C48D /* NewTextMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTextMessageCell.swift; sourceTree = "<group>"; };
 		546063D4BFB8FD920C4EAA22 /* Pods_deltachat_ios_DcShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios_DcShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6241BE1534A653E79AD5D01D /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
@@ -767,6 +771,31 @@
 			path = DcShare;
 			sourceTree = "<group>";
 		};
+		30FDB6B224D18E390066C48D /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				30FDB6F824D1C1000066C48D /* ChatViewControllerNew.swift */,
+				30FDB6B524D193DD0066C48D /* Views */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		30FDB6B524D193DD0066C48D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				30FDB6B624D193DD0066C48D /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		30FDB6B624D193DD0066C48D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				30FDB71E24D8170E0066C48D /* NewTextMessageCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		7A9FB1371FB061E2001FEA36 = {
 			isa = PBXGroup;
 			children = (
@@ -808,6 +837,7 @@
 				7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */,
 				AE851AC3227C695900ED86F0 /* View */,
 				AE851AC2227C695000ED86F0 /* Helper */,
+				30FDB6B224D18E390066C48D /* Chat */,
 				AE851AC1227C694300ED86F0 /* Coordinator */,
 				AE851AC0227C693B00ED86F0 /* Controller */,
 				AE851ABA227C692600ED86F0 /* Model */,
@@ -1397,6 +1427,7 @@
 				30A2EC36247D72720024ADD8 /* AnimatedImageMessageCell.swift in Sources */,
 				305962082346125100C80F33 /* MediaMessageSizeCalculator.swift in Sources */,
 				AE6EC5282497B9B200A400E4 /* ThumbnailCache.swift in Sources */,
+				30FDB70524D1C1000066C48D /* ChatViewControllerNew.swift in Sources */,
 				3057029D24C6442800D84EFC /* FlexLabel.swift in Sources */,
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
@@ -1471,6 +1502,7 @@
 				300C509D234B551900F8AE22 /* TextMediaMessageCell.swift in Sources */,
 				305961E92346125100C80F33 /* MessageKind.swift in Sources */,
 				305962022346125100C80F33 /* BubbleCircle.swift in Sources */,
+				30FDB71F24D8170E0066C48D /* NewTextMessageCell.swift in Sources */,
 				AE1988A523EB2FBA00B4CD5F /* Errors.swift in Sources */,
 				305961DD2346125100C80F33 /* SenderType.swift in Sources */,
 				305961E32346125100C80F33 /* MessagesDataSource.swift in Sources */,
