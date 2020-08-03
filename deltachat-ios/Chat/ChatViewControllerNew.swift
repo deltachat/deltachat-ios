@@ -115,6 +115,7 @@ class ChatViewControllerNew: UITableViewController {
     override func viewDidLoad() {
 
         tableView.register(NewTextMessageCell.self, forCellReuseIdentifier: "text")
+        tableView.rowHeight = UITableView.automaticDimension
         //messagesCollectionView.register(InfoMessageCell.self)
         super.viewDidLoad()
         if !dcContext.isConfigured() {
