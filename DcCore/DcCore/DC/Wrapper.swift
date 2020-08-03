@@ -27,14 +27,19 @@ public class DcContext {
         return .dcContext
     }
 
-    public func getMessageIds(chatId: Int, count: Int, from: Int?) -> [Int] {
+    public func getMessageIds(chatId: Int, count: Int? = nil, from: Int? = nil) -> [Int] {
 		let cMessageIds = getChatMessages(chatId: chatId)
+
 
         let ids: [Int]
         if let from = from {
+            // skip last part
             ids = DcUtils.copyAndFreeArrayWithOffset(inputArray: cMessageIds, len: count, skipEnd: from)
-        } else {
+        } else if let count = count {
+            // skip first part
             ids = DcUtils.copyAndFreeArrayWithLen(inputArray: cMessageIds, len: count)
+        } else {
+            ids = DcUtils.copyAndFreeArrayWithLen(inputArray: cMessageIds)
         }
         return ids
     }
