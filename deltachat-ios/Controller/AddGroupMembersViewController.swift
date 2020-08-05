@@ -2,10 +2,15 @@ import UIKit
 import DcCore
 
 class AddGroupMembersViewController: GroupMembersViewController {
-    private var chatId: Int
+    var onMembersSelected: ((Set<Int>) -> Void)?
+    lazy var isVerifiedGroup: Bool = false
+
+    lazy var isNewGroup: Bool = {
+        return chat == nil
+    }()
 
     private lazy var sections: [AddGroupMemberSections] = {
-        if let chat = self.chat, chat.isVerified {
+        if isVerifiedGroup {
             return [.memberList]
         } else {
             return [.newContact, .memberList]
@@ -19,10 +24,21 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     private var contactAddedObserver: NSObjectProtocol?
 
-    private lazy var cancelButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
-        return button
+    private lazy var chatMemberIds: [Int] = {
+        if let chat = chat {
+            return chat.contactIds
+        }
+        return []
     }()
+
+    private lazy var chat: DcChat? = {
+        if let chatId = self.chatId {
+            return dcContext.getChat(chatId: chatId)
+        }
+        return nil
+    }()
+
+    private var chatId: Int?
 
     private lazy var newContactCell: ActionCell = {
         let cell = ActionCell()
@@ -32,26 +48,31 @@ class AddGroupMembersViewController: GroupMembersViewController {
         return cell
     }()
 
-    private lazy var doneButton: UIBarButtonItem = {
+    private lazy var cancelButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
+        return button
+    }()
+
+    lazy var doneButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
         return button
     }()
 
-    private lazy var chat: DcChat? = {
-        return dcContext.getChat(chatId: chatId)
-    }()
+    //add members of new group, no chat object yet
+    init(preselected: Set<Int>, isVerified: Bool) {
+        super.init()
+        isVerifiedGroup = isVerified
+        numberOfSections = sections.count
+        selectedContactIds = preselected
+    }
 
-    private lazy var chatMemberIds: [Int] = {
-        if let chat = chat {
-            return chat.contactIds
-        }
-        return []
-    }()
-
+    //add members of existing group
     init(chatId: Int) {
         self.chatId = chatId
         super.init()
+        isVerifiedGroup = chat?.isVerified ?? false
         numberOfSections = sections.count
+        selectedContactIds = []
     }
 
     required init?(coder _: NSCoder) {
@@ -61,12 +82,11 @@ class AddGroupMembersViewController: GroupMembersViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        super.navigationItem.leftBarButtonItem = cancelButton
-        super.navigationItem.rightBarButtonItem = doneButton
         title = String.localized("group_add_members")
-        super.contactIds = loadMemberCandidates()
-        // Do any additional setup after loading the view.
+        navigationItem.rightBarButtonItem = doneButton
+        navigationItem.leftBarButtonItem = cancelButton
+        contactIds = loadMemberCandidates()
+
         let nc = NotificationCenter.default
         contactAddedObserver = nc.addObserver(
             forName: dcNotificationContactChanged,
@@ -82,6 +102,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
                     self.contactIds = self.loadMemberCandidates()
                     if self.contactIds.contains(contactId) {
                         self.selectedContactIds.insert(contactId)
+
                         self.tableView.reloadData()
                     }
 
@@ -90,7 +111,12 @@ class AddGroupMembersViewController: GroupMembersViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+
     override func viewWillDisappear(_: Bool) {
+        // TODO: - check this for new group context
         if !isMovingFromParent {
             // a subview was added to the navigation stack, no action needed
             return
@@ -100,6 +126,20 @@ class AddGroupMembersViewController: GroupMembersViewController {
         if let observer = self.contactAddedObserver {
             nc.removeObserver(observer)
         }
+    }
+
+    @objc func cancelButtonPressed() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    @objc func doneButtonPressed() {
+        if let onMembersSelected = onMembersSelected {
+            if isNewGroup {
+                selectedContactIds.insert(Int(DC_CONTACT_ID_SELF))
+            }
+            onMembersSelected(selectedContactIds)
+        }
+        navigationController?.popViewController(animated: true)
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -140,7 +180,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     func loadMemberCandidates() -> [Int] {
         var flags: Int32 = 0
-        if let chat = chat, chat.isVerified {
+        if isVerifiedGroup {
             flags |= DC_GCL_VERIFIED_ONLY
         }
         var contactIds = dcContext.getContacts(flags: flags)
@@ -149,18 +189,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
         return Array(contactIds)
     }
 
-    @objc func cancelButtonPressed() {
-        navigationController?.popViewController(animated: true)
-    }
-
-    @objc func doneButtonPressed() {
-        for contactId in selectedContactIds {
-           _ = dcContext.addContactToChat(chatId: chatId, contactId: contactId)
-        }
-        navigationController?.popViewController(animated: true)
-    }
-
-    // MARK: - coordinator
     private func showNewContactController() {
         let newContactController = NewContactController(dcContext: dcContext)
         newContactController.openChatOnSave = false

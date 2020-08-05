@@ -384,7 +384,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
-        let newGroupController = NewGroupAddMembersViewController(preselected: preselectedMembers,
+        let newGroupController = AddGroupMembersViewController(preselected: preselectedMembers,
                                                                   isVerified: isVerified)
         newGroupController.onMembersSelected = { [weak self] (memberIds: Set<Int>) -> Void in
             guard let self = self else { return }
