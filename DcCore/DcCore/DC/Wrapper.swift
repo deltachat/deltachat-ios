@@ -408,7 +408,6 @@ public class DcContext {
 
     public func sendLocationsToChat(chatId: Int, seconds: Int) {
         dc_send_locations_to_chat(contextPointer, UInt32(chatId), Int32(seconds))
-        //TODO: discuss if we want to omit the message intent donation here here
     }
 
     public func setLocation(latitude: Double, longitude: Double, accuracy: Double) {
