@@ -116,7 +116,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 
     override func viewWillDisappear(_: Bool) {
-        // TODO: - check this for new group context
         if !isMovingFromParent {
             // a subview was added to the navigation stack, no action needed
             return
