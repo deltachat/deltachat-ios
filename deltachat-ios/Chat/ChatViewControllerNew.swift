@@ -116,6 +116,7 @@ class ChatViewControllerNew: UITableViewController {
 
         tableView.register(NewTextMessageCell.self, forCellReuseIdentifier: "text")
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
         //messagesCollectionView.register(InfoMessageCell.self)
         super.viewDidLoad()
         if !dcContext.isConfigured() {
@@ -306,12 +307,68 @@ class ChatViewControllerNew: UITableViewController {
 
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? NewTextMessageCell ?? NewTextMessageCell()
-        cell.update(msg: message)
+        cell.update(msg: message,
+                    messageStyle: configureMessageStyle(for: message, at: indexPath))
         return cell
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "test title" //viewModel.titleForHeaderIn(section: section)
+    }
+
+    func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {
+
+        var corners: UIRectCorner = []
+
+        if message.isFromCurrentSender { //isFromCurrentSender(message: message) {
+            corners.formUnion(.topLeft)
+            corners.formUnion(.bottomLeft)
+            if !isPreviousMessageSameSender(currentMessage: message, at: indexPath) {
+                corners.formUnion(.topRight)
+            }
+            if !isNextMessageSameSender(currentMessage: message, at: indexPath) {
+                corners.formUnion(.bottomRight)
+            }
+        } else {
+            corners.formUnion(.topRight)
+            corners.formUnion(.bottomRight)
+            if !isPreviousMessageSameSender(currentMessage: message, at: indexPath) {
+                corners.formUnion(.topLeft)
+            }
+            if !isNextMessageSameSender(currentMessage: message, at: indexPath) {
+                corners.formUnion(.bottomLeft)
+            }
+        }
+
+        return corners
+    }
+
+    private func getBackgroundColor(for currentMessage: DcMsg) -> UIColor {
+        return currentMessage.isFromCurrentSender ? DcColors.messagePrimaryColor : DcColors.messageSecondaryColor
+    }
+
+    private func isPreviousMessageSameSender(currentMessage: DcMsg, at indexPath: IndexPath) -> Bool {
+        let previousRow = indexPath.row - 1
+        if previousRow < 0 {
+            return false
+        }
+
+        let messageId = messageIds[previousRow]
+        let previousMessage = DcMsg(id: messageId)
+
+        return previousMessage.fromContact.id == currentMessage.fromContact.id
+    }
+
+    private func isNextMessageSameSender(currentMessage: DcMsg, at indexPath: IndexPath) -> Bool {
+        let nextRow = indexPath.row + 1
+        if nextRow >= messageIds.count {
+            return false
+        }
+
+        let messageId = messageIds[nextRow]
+        let nextMessage = DcMsg(id: messageId)
+
+        return nextMessage.fromContact.id == currentMessage.fromContact.id
     }
 
 

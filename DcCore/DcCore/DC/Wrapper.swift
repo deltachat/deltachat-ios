@@ -837,6 +837,10 @@ public class DcMsg {
         DcContact(id: fromContactId)
     }()
 
+    public var isFromCurrentSender: Bool {
+        return fromContact.id == DcContact(id: Int(DC_CONTACT_ID_SELF)).id
+    }
+
     public var chatId: Int {
         return Int(dc_msg_get_chat_id(messagePointer))
     }

@@ -16,11 +16,12 @@ class NewTextMessageCell: BaseMessageCell {
         super.setupSubviews()
         mainContentView.addArrangedSubview(messageLabel)
         mainContentView.axis = .horizontal
+        
     }
 
-    override func update(msg: DcMsg) {
-        super.update(msg: msg)
+    override func update(msg: DcMsg, messageStyle: UIRectCorner) {
         messageLabel.text = msg.text
+        super.update(msg: msg, messageStyle: messageStyle)
     }
 
     override func prepareForReuse() {
