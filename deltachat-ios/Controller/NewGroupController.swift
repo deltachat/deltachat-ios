@@ -389,7 +389,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         newGroupController.onMembersSelected = { [weak self] (memberIds: Set<Int>) -> Void in
             guard let self = self else { return }
             self.updateGroupContactIdsOnListSelection(memberIds)
-            self.navigationController?.popViewController(animated: true)
         }
         navigationController?.pushViewController(newGroupController, animated: true)
     }
