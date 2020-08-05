@@ -270,7 +270,13 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func showAddGroupMember(chatId: Int) {
-        let groupMemberViewController = AddGroupMembersViewController(chatId: chatId)
+        let groupMemberViewController = NewGroupAddMembersViewController(chatId: chatId)
+        groupMemberViewController.onMembersSelected = { [weak self] (memberIds: Set<Int>) -> Void in
+            guard let self = self else { return }
+            for contactId in memberIds {
+                _ = self.dcContext.addContactToChat(chatId: chatId, contactId: contactId)
+            }
+        }
         navigationController?.pushViewController(groupMemberViewController, animated: true)
     }
 
