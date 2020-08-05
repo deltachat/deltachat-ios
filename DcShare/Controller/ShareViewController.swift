@@ -2,6 +2,7 @@ import UIKit
 import Social
 import DcCore
 import MobileCoreServices
+import Intents
 
 
 class ShareViewController: SLComposeServiceViewController {
@@ -65,7 +66,15 @@ class ShareViewController: SLComposeServiceViewController {
             dcContext.openDatabase(dbFile: dbHelper.sharedDbFile)
             isAccountConfigured = dcContext.isConfigured()
             if isAccountConfigured {
-                selectedChatId = dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
+                if #available(iOSApplicationExtension 13.0, *) {
+                   if let intent = self.extensionContext?.intent as? INSendMessageIntent, let chatId = Int(intent.conversationIdentifier ?? "") {
+                       selectedChatId = chatId
+                   }
+                }
+
+                if selectedChatId == nil {
+                    selectedChatId = dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
+                }
                 if let chatId = selectedChatId {
                     selectedChat = dcContext.getChat(chatId: chatId)
                 }

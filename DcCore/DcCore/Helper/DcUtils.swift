@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import MobileCoreServices
 import AVFoundation
+import Intents
 
 public struct DcUtils {
 
@@ -10,6 +11,34 @@ public struct DcUtils {
             return firstLetter.uppercased()
         } else {
             return ""
+        }
+    }
+
+    public static func donateSendMessageIntent(chatId: Int) {
+        if #available(iOS 13.0, *) {
+            let chat = DcContext.shared.getChat(chatId: chatId)
+            let groupName = INSpeakableString(spokenPhrase: chat.name)
+
+            let sendMessageIntent = INSendMessageIntent(recipients: nil,
+                                                        content: nil,
+                                                        speakableGroupName: groupName,
+                                                        conversationIdentifier: "\(chat.id)",
+                                                        serviceName: nil,
+                                                        sender: nil)
+
+            // Add the user's avatar to the intent.
+            if let imageData = chat.profileImage?.pngData() {
+                let image = INImage(imageData: imageData)
+                sendMessageIntent.setImage(image, forParameterNamed: \.speakableGroupName)
+            }
+
+            // Donate the intent.
+            let interaction = INInteraction(intent: sendMessageIntent, response: nil)
+            interaction.donate(completion: { error in
+                if error != nil {
+                    DcContext.shared.logger?.error(error.debugDescription)
+                }
+            })
         }
     }
 
