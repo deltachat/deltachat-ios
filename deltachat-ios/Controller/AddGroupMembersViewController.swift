@@ -2,9 +2,9 @@ import UIKit
 import DcCore
 
 class AddGroupMembersViewController: GroupMembersViewController {
-    private var chatId: Int?
     private let sectionNewContact = 0
     private let sectionMemberList = 1
+    private var chatId: Int
 
     private var contactAddedObserver: NSObjectProtocol?
 
@@ -27,10 +27,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }()
 
     private lazy var chat: DcChat? = {
-        if let chatId = chatId {
-            return dcContext.getChat(chatId: chatId)
-        }
-        return nil
+        return dcContext.getChat(chatId: chatId)
     }()
 
     private lazy var chatMemberIds: [Int] = {
@@ -41,9 +38,9 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }()
 
     init(chatId: Int) {
-        super.init()
         self.chatId = chatId
         numberOfSections = 2
+        super.init()
     }
 
     required init?(coder _: NSCoder) {
@@ -148,9 +145,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 
     @objc func doneButtonPressed() {
-        guard let chatId = chatId else {
-            return
-        }
         for contactId in selectedContactIds {
            _ = dcContext.addContactToChat(chatId: chatId, contactId: contactId)
         }
