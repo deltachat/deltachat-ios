@@ -2,9 +2,20 @@ import UIKit
 import DcCore
 
 class AddGroupMembersViewController: GroupMembersViewController {
-    private let sectionNewContact = 0
-    private let sectionMemberList = 1
     private var chatId: Int
+
+    private lazy var sections: [AddGroupMemberSections] = {
+        if let chat = self.chat, chat.isVerified {
+            return [.memberList]
+        } else {
+            return [.newContact, .memberList]
+        }
+    }()
+
+    enum AddGroupMemberSections {
+        case newContact
+        case memberList
+    }
 
     private var contactAddedObserver: NSObjectProtocol?
 
@@ -39,8 +50,8 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     init(chatId: Int) {
         self.chatId = chatId
-        numberOfSections = 2
         super.init()
+        numberOfSections = sections.count
     }
 
     required init?(coder _: NSCoder) {
@@ -92,40 +103,38 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case sectionNewContact:
+        let sectionType = sections[section]
+        switch sectionType {
+        case .newContact:
             return 1
-        case sectionMemberList:
+        case .memberList:
             return numberOfRowsForContactList
-        default:
-            return 0
         }
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == sectionMemberList ? ContactCell.cellHeight : UITableView.automaticDimension
+        let sectionType = sections[indexPath.section]
+        return sectionType == .memberList ? ContactCell.cellHeight : UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case sectionNewContact:
+        let sectionType = sections[indexPath.section]
+        switch sectionType {
+        case .newContact:
             return newContactCell
-        case sectionMemberList:
+        case .memberList:
             return updateContactCell(for: indexPath)
-        default:
-            return UITableViewCell(style: .default, reuseIdentifier: nil)
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case sectionNewContact:
+        let sectionType = sections[indexPath.section]
+        switch sectionType {
+        case .newContact:
             tableView.deselectRow(at: indexPath, animated: true)
             showNewContactController()
-        case sectionMemberList:
+        case .memberList:
             didSelectContactCell(at: indexPath)
-        default:
-            fatalError("unexpected section selected in GroupMembersViewController")
         }
     }
 
