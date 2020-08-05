@@ -3,6 +3,8 @@ import DcCore
 public class BaseMessageCell: UITableViewCell {
 
     static var defaultPadding: CGFloat = 12
+    static var containerPadding: CGFloat = -6
+    typealias BMC = BaseMessageCell
 
     lazy var avatarView: InitialsBadge = {
         let view = InitialsBadge(size: 28)
@@ -32,6 +34,7 @@ public class BaseMessageCell: UITableViewCell {
         view.axis = .horizontal
         return view
     }()
+
     lazy var bottomLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,6 +49,15 @@ public class BaseMessageCell: UITableViewCell {
         return view
     }()
 
+    private lazy var messageBackgroundContainer: BackgroundContainer = {
+        let container = BackgroundContainer()
+        container.image = UIImage(color: UIColor.blue)
+        container.contentMode = .scaleToFill
+        container.clipsToBounds = true
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         setupSubviews()
@@ -58,23 +70,31 @@ public class BaseMessageCell: UITableViewCell {
 
     func setupSubviews() {
         contentView.addSubview(avatarView)
+        contentView.addSubview(messageBackgroundContainer)
         contentView.addSubview(contentContainer)
 
         contentView.addConstraints([
-            avatarView.constraintAlignTopTo(contentView, paddingTop: defaultPadding),
+            avatarView.constraintAlignTopTo(contentView, paddingTop: BMC.defaultPadding),
             avatarView.constraintAlignLeadingTo(contentView),
-            avatarView.constraintAlignBottomTo(contentView, paddingBottom: defaultPadding, priority: .defaultLow),
-            contentContainer.constraintToTrailingOf(avatarView, paddingLeading: defaultPadding),
-            contentContainer.constraintAlignTrailingTo(contentView, paddingTrailing: defaultPadding),
-            contentContainer.constraintAlignTopTo(contentView, paddingTop: defaultPadding),
-            contentContainer.constraintAlignBottomTo(contentView, paddingBottom: defaultPadding)
+            avatarView.constraintAlignBottomTo(contentView, paddingBottom: BMC.defaultPadding, priority: .defaultLow),
+            contentContainer.constraintToTrailingOf(avatarView, paddingLeading: BMC.defaultPadding),
+            contentContainer.constraintAlignTrailingTo(contentView, paddingTrailing: BMC.defaultPadding),
+            contentContainer.constraintAlignTopTo(contentView, paddingTop: BMC.defaultPadding),
+            contentContainer.constraintAlignBottomTo(contentView, paddingBottom: BMC.defaultPadding),
+            messageBackgroundContainer.constraintAlignLeadingTo(contentContainer, paddingLeading: BMC.containerPadding),
+            messageBackgroundContainer.constraintAlignTopTo(contentContainer, paddingTop: BMC.containerPadding),
+            messageBackgroundContainer.constraintAlignBottomTo(contentContainer, paddingBottom: BMC.containerPadding),
+            messageBackgroundContainer.constraintAlignTrailingTo(contentContainer, paddingTrailing: BMC.containerPadding)
         ])
     }
-    
-    func update(msg: DcMsg) {
+
+
+    // update classes inheriting BaseMessageCell first before calling super.update(...)
+    func update(msg: DcMsg, messageStyle: UIRectCorner) {
         topLabel.text = msg.fromContact.displayName
         avatarView.setName(msg.fromContact.displayName)
         avatarView.setColor(msg.fromContact.color)
+        messageBackgroundContainer.update(rectCorners: messageStyle, color: msg.isFromCurrentSender ? DcColors.messagePrimaryColor : DcColors.messageSecondaryColor)
     }
 
     override public func prepareForReuse() {
@@ -82,7 +102,6 @@ public class BaseMessageCell: UITableViewCell {
         textLabel?.attributedText = nil
         topLabel.text = nil
         avatarView.reset()
-
+        messageBackgroundContainer.prepareForReuse()
     }
-    
 }
