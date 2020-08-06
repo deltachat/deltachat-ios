@@ -4,6 +4,7 @@
 "cancel" = "Avbryt";
 "yes" = "Ja";
 "no" = "Nej";
+"select" = "Välj";
 "on" = "På";
 "off" = "Av";
 "def" = "Standard";
@@ -189,6 +190,8 @@
 "file_saved_to" = "Filen är sparad i \"%1$@\".";
 
 "videochat" = "Videochatt";
+"videochat_invite_user_to_videochat" = "Vill du bjuda in %1$@ till en videochatt?";
+"videochat_invite_user_hint" = "Detta kräver ett kompatibelt program eller en kompatibel webbläsare i bägge ändar.";
 "videochat_contact_invited_hint" = "%1$@ bjöd in till en videochatt";
 "videochat_you_invited_hint" = "Du bjöd in till en videochatt";
 "videochat_will_open_in_your_browser" = "Denna videochatt öppnas i din webbläsare.";

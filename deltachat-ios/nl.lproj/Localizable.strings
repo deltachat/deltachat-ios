@@ -4,6 +4,7 @@
 "cancel" = "Annuleren";
 "yes" = "Ja";
 "no" = "Nee";
+"select" = "Selecteren";
 "on" = "Aan";
 "off" = "Uit";
 "def" = "Standaard";
@@ -189,6 +190,8 @@
 "file_saved_to" = "Het bestand is opgeslagen in \'%1$@\'.";
 
 "videochat" = "Videogesprek";
+"videochat_invite_user_to_videochat" = "Wil je %1$@ uitnodigen voor een videogesprek?";
+"videochat_invite_user_hint" = "Hiervoor hebben jullie beiden een compatibele app of webbrowser nodig.";
 "videochat_contact_invited_hint" = "%1$@ is uitgenodigd voor een videogesprek.";
 "videochat_you_invited_hint" = "Je bent uitgenodigd voor een videogesprek.";
 "videochat_will_open_in_your_browser" = "Het videogesprek wordt geopend in je webbrowser.";

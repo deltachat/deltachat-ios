@@ -4,6 +4,7 @@
 "cancel" = "Annulla";
 "yes" = "Si";
 "no" = "No";
+"select" = "Selezionare";
 "on" = "On";
 "off" = "Off";
 "def" = "Predefinito";
@@ -189,7 +190,9 @@
 "file_saved_to" = "File salvato su \"%1$@\".";
 
 "videochat" = "Chat video";
-"videochat_contact_invited_hint" = "%1$@ invitato a una chat video.";
+"videochat_invite_user_to_videochat" = "Invito %1$@ a una chat video?";
+"videochat_invite_user_hint" = "Questo richiede un\'app compatibile o un browser compatibile da entrambe le parti.";
+"videochat_contact_invited_hint" = "%1$@ ti ha invitato a una chat video.";
 "videochat_you_invited_hint" = "Hai invitato a una chat video.";
 "videochat_will_open_in_your_browser" = "Questa video chat si aprirà nel tuo browser.";
 "videochat_tap_to_join" = "Tocca per partecipare";

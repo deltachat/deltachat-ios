@@ -4,6 +4,7 @@
 "cancel" = "Отмена";
 "yes" = "Да";
 "no" = "Нет";
+"select" = "Выбрать";
 "on" = "Вкл.";
 "off" = "Выкл.";
 "def" = "По умолчанию";
@@ -189,6 +190,8 @@
 "file_saved_to" = "Файл сохранён в «%1$@».";
 
 "videochat" = "Видеочат";
+"videochat_invite_user_to_videochat" = "Пригласить %1$@ в видеочат?";
+"videochat_invite_user_hint" = "Это требует совместимого приложения или совместимого браузера на обоих концах.";
 "videochat_contact_invited_hint" = "%1$@ приглашает вас в видеочат.";
 "videochat_you_invited_hint" = "Вы пригласили в видеочат.";
 "videochat_will_open_in_your_browser" = "Этот видеочат будет открываться в браузере";
