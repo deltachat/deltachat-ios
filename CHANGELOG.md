@@ -1,5 +1,18 @@
 # Delta Chat iOS Changelog
 
+## 1.12.2
+2020-08
+
+* add last chats to share suggestions
+* fix improvements for sending larger mails
+* fix a crash related to muted chats
+* fix incorrect dimensions sometimes reported for images
+* improve linebreak-handling in HTML mails
+* improve footer detection in plain text email
+* fix deletion of multiple messages
+* more bug fixes
+
+
 ## 1.12.0
 2020-07
 
