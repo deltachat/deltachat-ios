@@ -3,8 +3,6 @@ import DcCore
 
 class EditSettingsController: UITableViewController, MediaPickerDelegate {
     private let dcContext: DcContext
-    private var displayNameBackup: String?
-    private var statusCellBackup: String?
 
     private let section1 = 0
     private let section1Name = 0
