@@ -21,6 +21,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
                 [weak self] in
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.appCoordinator.presentTabBarController()
+                    appDelegate.appCoordinator.popTabsToRootViewControllers()
                 }
             }
             self.navigationController?.pushViewController(accountSetupController, animated: true)

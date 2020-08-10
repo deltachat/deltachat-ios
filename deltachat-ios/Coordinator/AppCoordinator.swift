@@ -116,4 +116,10 @@ class AppCoordinator {
         showTab(index: chatsTab)
         window.makeKeyAndVisible()
     }
+
+    func popTabsToRootViewControllers() {
+        qrNavController.popToRootViewController(animated: false)
+        chatsNavController.popToRootViewController(animated: false)
+        settingsNavController.popToRootViewController(animated: false)
+    }
 }
