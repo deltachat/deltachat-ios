@@ -72,7 +72,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         super.init()
         isVerifiedGroup = chat?.isVerified ?? false
         numberOfSections = sections.count
-        selectedContactIds = []
+        selectedContactIds = Set(dcContext.getChat(chatId: chatId).contactIds)
     }
 
     required init?(coder _: NSCoder) {
@@ -102,7 +102,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
                     self.contactIds = self.loadMemberCandidates()
                     if self.contactIds.contains(contactId) {
                         self.selectedContactIds.insert(contactId)
-
                         self.tableView.reloadData()
                     }
 
@@ -182,10 +181,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         if isVerifiedGroup {
             flags |= DC_GCL_VERIFIED_ONLY
         }
-        var contactIds = dcContext.getContacts(flags: flags)
-        let memberSet = Set(chatMemberIds)
-        contactIds.removeAll(where: { memberSet.contains($0)})
-        return Array(contactIds)
+        return dcContext.getContacts(flags: flags)
     }
 
     private func showNewContactController() {

@@ -273,6 +273,12 @@ class GroupChatDetailViewController: UIViewController {
         let groupMemberViewController = AddGroupMembersViewController(chatId: chatId)
         groupMemberViewController.onMembersSelected = { [weak self] (memberIds: Set<Int>) -> Void in
             guard let self = self else { return }
+            let chat = self.dcContext.getChat(chatId: chatId)
+            var chatMembersToRemove = chat.contactIds
+            chatMembersToRemove.removeAll(where: { memberIds.contains($0)})
+            for contactId in chatMembersToRemove {
+                _ = self.dcContext.removeContactFromChat(chatId: chatId, contactId: contactId)
+            }
             for contactId in memberIds {
                 _ = self.dcContext.addContactToChat(chatId: chatId, contactId: contactId)
             }
