@@ -78,10 +78,6 @@ class ProfileInfoViewController: UITableViewController {
         if let avatarImage = dcContext.getSelfAvatarImage() {
             avatarCell.setAvatar(image: avatarImage)
         }
-        self.tableView.beginUpdates()
-        let indexPath = IndexPath(row: 1, section: 0)
-        self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
-        self.tableView.endUpdates()
     }
 
     // MARK: - actions

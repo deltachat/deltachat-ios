@@ -307,24 +307,13 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private func deleteGroupAvatarPressed(_ action: UIAlertAction) {
         changeGroupImage = nil
         deleteGroupImage = true
-        updateAvatarRow(image: nil)
+        avatarSelectionCell.setAvatar(image: nil)
     }
 
     func onImageSelected(image: UIImage) {
         changeGroupImage = image
         deleteGroupImage = false
-        updateAvatarRow(image: changeGroupImage)
-    }
-
-    func updateAvatarRow(image: UIImage?) {
-        avatarSelectionCell = AvatarSelectionCell(image: image)
-        avatarSelectionCell.hintLabel.text = String.localized("group_avatar")
-        avatarSelectionCell.onAvatarTapped = onAvatarTapped
-
-        self.tableView.beginUpdates()
-        let indexPath = IndexPath(row: sectionGroupDetailsRowAvatar, section: sectionGroupDetails)
-        self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
-        self.tableView.endUpdates()
+        avatarSelectionCell.setAvatar(image: changeGroupImage)
     }
 
     func updateGroupContactIdsOnQRCodeInvite() {

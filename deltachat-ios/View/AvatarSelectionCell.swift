@@ -88,7 +88,7 @@ class AvatarSelectionCell: UITableViewCell {
             badge.setImage(image)
             avatarSet = true
         } else {
-            badge = InitialsBadge(image: defaultImage, size: badgeSize)
+            badge.setImage(defaultImage)
             badge.backgroundColor = DcColors.grayTextColor
             avatarSet = false
         }
