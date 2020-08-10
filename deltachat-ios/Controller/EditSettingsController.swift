@@ -156,10 +156,4 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         self.avatarSelectionCell.setAvatar(image: dcContext.getSelfAvatarImage())
     }
 
-    private func updateCells() {
-        updateAvatarCell()
-        statusCell.setText(text: dcContext.selfstatus)
-        nameCell.setText(text: dcContext.displayname)
-    }
-
 }
