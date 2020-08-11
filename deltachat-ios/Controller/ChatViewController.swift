@@ -6,16 +6,6 @@ import AVFoundation
 import DcCore
 import SDWebImage
 
-protocol MediaSendHandler {
-    func onSuccess()
-}
-
-extension ChatViewController: MediaSendHandler {
-    func onSuccess() {
-        refreshMessages()
-    }
-}
-
 extension ChatViewController: MediaPickerDelegate {
     func onVideoSelected(url: NSURL) {
         sendVideo(url: url)
