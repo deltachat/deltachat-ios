@@ -3,8 +3,6 @@ import DcCore
 
 class EditSettingsController: UITableViewController, MediaPickerDelegate {
     private let dcContext: DcContext
-    private var displayNameBackup: String?
-    private var statusCellBackup: String?
 
     private let section1 = 0
     private let section1Name = 0
@@ -42,7 +40,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     }()
 
     private lazy var avatarSelectionCell: AvatarSelectionCell = {
-        return createPictureAndNameCell()
+        return AvatarSelectionCell(image: dcContext.getSelfAvatarImage())
     }()
 
     private lazy var nameCell: TextFieldCell = {
@@ -134,7 +132,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
     private func deleteProfileIconPressed(_ action: UIAlertAction) {
         dcContext.selfavatar = nil
-        updateAvatarAndNameCell()
+        updateAvatarCell()
     }
 
     private func onAvatarTapped() {
@@ -151,22 +149,11 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
     func onImageSelected(image: UIImage) {
         AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: image)
-        updateAvatarAndNameCell()
+        updateAvatarCell()
     }
 
-    private func updateAvatarAndNameCell() {
-        self.avatarSelectionCell = createPictureAndNameCell()
-        self.avatarSelectionCell.onAvatarTapped = onAvatarTapped
-
-        self.tableView.beginUpdates()
-        let indexPath = IndexPath(row: section1Avatar, section: section1)
-        self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
-        self.tableView.endUpdates()
-    }
-
-    private func createPictureAndNameCell() -> AvatarSelectionCell {
-        let cell = AvatarSelectionCell(image: dcContext.getSelfAvatarImage())
-        return cell
+    private func updateAvatarCell() {
+        self.avatarSelectionCell.setAvatar(image: dcContext.getSelfAvatarImage())
     }
 
 }
