@@ -176,8 +176,7 @@
 		AEC67A1C241CE9E4007DDBE1 /* AppStateRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC67A1B241CE9E4007DDBE1 /* AppStateRestorer.swift */; };
 		AEC67A1E241FCFE0007DDBE1 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC67A1D241FCFE0007DDBE1 /* ChatListViewModel.swift */; };
 		AECEF03E244F2D55006C90DA /* QrPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEF03D244F2D55006C90DA /* QrPageController.swift */; };
-		AED423D3249F578B00B6B2BB /* NewGroupAddMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED423D2249F578B00B6B2BB /* NewGroupAddMembersViewController.swift */; };
-		AED423D5249F57C100B6B2BB /* AddGroupMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED423D4249F57C100B6B2BB /* AddGroupMembersViewController.swift */; };
+		AED423D3249F578B00B6B2BB /* AddGroupMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED423D2249F578B00B6B2BB /* AddGroupMembersViewController.swift */; };
 		AED423D7249F580700B6B2BB /* BlockedContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED423D6249F580700B6B2BB /* BlockedContactsViewController.swift */; };
 		AED62BCE247687E6009E220D /* LocationStreamingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED62BCD247687E6009E220D /* LocationStreamingIndicator.swift */; };
 		AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D752253431E007DC082 /* AccountSetupController.swift */; };
@@ -470,8 +469,7 @@
 		AEC67A1B241CE9E4007DDBE1 /* AppStateRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateRestorer.swift; sourceTree = "<group>"; };
 		AEC67A1D241FCFE0007DDBE1 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		AECEF03D244F2D55006C90DA /* QrPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPageController.swift; sourceTree = "<group>"; };
-		AED423D2249F578B00B6B2BB /* NewGroupAddMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupAddMembersViewController.swift; sourceTree = "<group>"; };
-		AED423D4249F57C100B6B2BB /* AddGroupMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupMembersViewController.swift; sourceTree = "<group>"; };
+		AED423D2249F578B00B6B2BB /* AddGroupMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupMembersViewController.swift; sourceTree = "<group>"; };
 		AED423D6249F580700B6B2BB /* BlockedContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedContactsViewController.swift; sourceTree = "<group>"; };
 		AED62BCD247687E6009E220D /* LocationStreamingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStreamingIndicator.swift; sourceTree = "<group>"; };
 		AEE56D752253431E007DC082 /* AccountSetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupController.swift; sourceTree = "<group>"; tabWidth = 4; };
@@ -944,8 +942,7 @@
 				AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */,
 				AE8F503424753DFE007FEE0B /* GalleryViewController.swift */,
 				30734325249A280B00BF9AD1 /* MediaQualityController.swift */,
-				AED423D2249F578B00B6B2BB /* NewGroupAddMembersViewController.swift */,
-				AED423D4249F57C100B6B2BB /* AddGroupMembersViewController.swift */,
+				AED423D2249F578B00B6B2BB /* AddGroupMembersViewController.swift */,
 				AED423D6249F580700B6B2BB /* BlockedContactsViewController.swift */,
 				AE39D322249CFC1A007346A1 /* DocumentGalleryController.swift */,
 			);
@@ -1406,7 +1403,6 @@
 				AE39D323249CFC1A007346A1 /* DocumentGalleryController.swift in Sources */,
 				305961FD2346125100C80F33 /* TypingBubble.swift in Sources */,
 				305961D72346125100C80F33 /* MessageKit+Availability.swift in Sources */,
-				AED423D5249F57C100B6B2BB /* AddGroupMembersViewController.swift in Sources */,
 				AE8DD451249D1DFB009A4BC1 /* FileTableViewCell.swift in Sources */,
 				3040F45E234DFBC000FA34D5 /* Audio.swift in Sources */,
 				305961FE2346125100C80F33 /* InsetLabel.swift in Sources */,
@@ -1524,7 +1520,7 @@
 				305961FC2346125100C80F33 /* MessageContainerView.swift in Sources */,
 				305961D42346125100C80F33 /* MessagesViewController.swift in Sources */,
 				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
-				AED423D3249F578B00B6B2BB /* NewGroupAddMembersViewController.swift in Sources */,
+				AED423D3249F578B00B6B2BB /* AddGroupMembersViewController.swift in Sources */,
 				AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */,
 				AE728F15229D5C390047565B /* PhotoPickerAlertAction.swift in Sources */,
 				305961F42346125100C80F33 /* TextMessageCell.swift in Sources */,
