@@ -1,5 +1,18 @@
 # Delta Chat iOS Changelog
 
+## 1.12.3
+2020-08
+
+* allow importing backups in the upcoming .tar format
+* remove X-Mailer debug header
+* try various server domains on configuration
+* improve guessing message types from extension
+* improve member selection in verified groups
+* fix threading in interaction with non-delta-clients
+* fix showing unprotected subjects in encrypted messages
+* more fixes, update provider database and dependencies
+
+
 ## 1.12.2
 2020-08
 
