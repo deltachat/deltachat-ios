@@ -52,6 +52,9 @@ on https://appstoreconnect.apple.com :
    b) fill out "what's new", use CHANGELOG.md as a template
    c) select a build
    d) make sure, the credentials for the apple-review-team are working
+   e) select "Release update over 7-day period using phased release"
+   f) if the question comes up,
+      we are not using "Advertising Identifier (IDFA)"
    click on "Save" and then "Submit", wrt ads: we do not use ads, answer "No"
 
 in both cases, make sure, the provided test-email-address is working.
