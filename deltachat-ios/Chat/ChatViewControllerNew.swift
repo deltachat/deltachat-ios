@@ -801,47 +801,6 @@ class ChatViewControllerNew: UITableViewController {
         appDelegate.locationManager.shareLocation(chatId: self.chatId, duration: seconds)
     }
 
-    private func attachPadlock(to text: NSMutableAttributedString) {
-        let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(named: "ic_lock")
-        imageAttachment.image?.accessibilityIdentifier = String.localized("encrypted_message")
-        let imageString = NSMutableAttributedString(attachment: imageAttachment)
-        imageString.addAttributes([NSAttributedString.Key.baselineOffset: -1], range: NSRange(location: 0, length: 1))
-        text.append(NSAttributedString(string: " "))
-        text.append(imageString)
-    }
-
-    private func attachSendingState(_ state: Int, to text: NSMutableAttributedString) {
-        let imageAttachment = NSTextAttachment()
-        var offset = -4
-
-
-        switch Int32(state) {
-        case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 16)?.maskWithColor(color: DcColors.grayDateColor)
-            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_sending")
-            offset = -2
-        case DC_STATE_OUT_DELIVERED:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_done_36pt").scaleDownImage(toMax: 18)
-            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_delivered")
-        case DC_STATE_OUT_MDN_RCVD:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_done_all_36pt").scaleDownImage(toMax: 18)
-            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_read")
-            text.append(NSAttributedString(string: " "))
-        case DC_STATE_OUT_FAILED:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 16)
-            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_error")
-            offset = -2
-        default:
-            imageAttachment.image = nil
-        }
-
-        let imageString = NSMutableAttributedString(attachment: imageAttachment)
-        imageString.addAttributes([.baselineOffset: offset],
-                                  range: NSRange(location: 0, length: 1))
-        text.append(imageString)
-    }
-
     func updateMessage(_ messageId: Int) {
         if let index = messageIds.firstIndex(where: { $0 == messageId }) {
             dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
