@@ -129,7 +129,6 @@ class ChatViewControllerNew: UITableViewController {
         if !disableWriting {
             configureMessageInputBar()
             messageInputBar.inputTextView.text = textDraft
-            self.tableView.becomeFirstResponder()
         }
 
 
@@ -166,6 +165,7 @@ class ChatViewControllerNew: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tableView.becomeFirstResponder()
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 
@@ -224,7 +224,7 @@ class ChatViewControllerNew: UITableViewController {
             self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
         }
 
-        loadFirstMessages()
+        loadMessages()
 
         if RelayHelper.sharedInstance.isForwarding() {
             askToForwardMessage()
@@ -444,27 +444,29 @@ class ChatViewControllerNew: UITableViewController {
         }
     }
 
-    private func loadFirstMessages() {
+    private func loadMessages() {
         DispatchQueue.global(qos: .userInitiated).async {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
                 self.tableView.reloadData()
-                //self.messagesCollectionView.scrollToBottom(animated: false)
+                self.scrollToBottom(animated: false)
                 self.showEmptyStateView(self.messageIds.isEmpty)
             }
         }
     }
 
     func isLastSectionVisible() -> Bool {
-           guard !messageIds.isEmpty else { return false }
+        guard !messageIds.isEmpty else { return false }
 
-            let lastIndexPath = IndexPath(item: messageIds.count - 1, section: 0)
-            return tableView.indexPathsForVisibleRows?.contains(lastIndexPath) ?? false
-       }
+        let lastIndexPath = IndexPath(item: messageIds.count - 1, section: 0)
+        return tableView.indexPathsForVisibleRows?.contains(lastIndexPath) ?? false
+    }
 
     func scrollToBottom(animated: Bool) {
-        //self.tableView.scrollToRow(at: IndexPath(row: self.messageList.count - 1, section: 0), at: .bottom, animated: animated)
+        if !messageIds.isEmpty {
+            self.tableView.scrollToRow(at: IndexPath(row: self.messageIds.count - 1, section: 0), at: .bottom, animated: animated)
+        }
     }
 
     private func showEmptyStateView(_ show: Bool) {
@@ -800,168 +802,176 @@ class ChatViewControllerNew: UITableViewController {
     }
 
     private func attachPadlock(to text: NSMutableAttributedString) {
-           let imageAttachment = NSTextAttachment()
-           imageAttachment.image = UIImage(named: "ic_lock")
-           imageAttachment.image?.accessibilityIdentifier = String.localized("encrypted_message")
-           let imageString = NSMutableAttributedString(attachment: imageAttachment)
-           imageString.addAttributes([NSAttributedString.Key.baselineOffset: -1], range: NSRange(location: 0, length: 1))
-           text.append(NSAttributedString(string: " "))
-           text.append(imageString)
-       }
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = UIImage(named: "ic_lock")
+        imageAttachment.image?.accessibilityIdentifier = String.localized("encrypted_message")
+        let imageString = NSMutableAttributedString(attachment: imageAttachment)
+        imageString.addAttributes([NSAttributedString.Key.baselineOffset: -1], range: NSRange(location: 0, length: 1))
+        text.append(NSAttributedString(string: " "))
+        text.append(imageString)
+    }
 
-       private func attachSendingState(_ state: Int, to text: NSMutableAttributedString) {
-           let imageAttachment = NSTextAttachment()
-           var offset = -4
+    private func attachSendingState(_ state: Int, to text: NSMutableAttributedString) {
+        let imageAttachment = NSTextAttachment()
+        var offset = -4
 
 
-           switch Int32(state) {
-           case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
-               imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 16)?.maskWithColor(color: DcColors.grayDateColor)
-               imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_sending")
-               offset = -2
-           case DC_STATE_OUT_DELIVERED:
-               imageAttachment.image = #imageLiteral(resourceName: "ic_done_36pt").scaleDownImage(toMax: 18)
-               imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_delivered")
-           case DC_STATE_OUT_MDN_RCVD:
-               imageAttachment.image = #imageLiteral(resourceName: "ic_done_all_36pt").scaleDownImage(toMax: 18)
-               imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_read")
-               text.append(NSAttributedString(string: " "))
-           case DC_STATE_OUT_FAILED:
-               imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 16)
-               imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_error")
-               offset = -2
-           default:
-               imageAttachment.image = nil
-           }
+        switch Int32(state) {
+        case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
+            imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 16)?.maskWithColor(color: DcColors.grayDateColor)
+            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_sending")
+            offset = -2
+        case DC_STATE_OUT_DELIVERED:
+            imageAttachment.image = #imageLiteral(resourceName: "ic_done_36pt").scaleDownImage(toMax: 18)
+            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_delivered")
+        case DC_STATE_OUT_MDN_RCVD:
+            imageAttachment.image = #imageLiteral(resourceName: "ic_done_all_36pt").scaleDownImage(toMax: 18)
+            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_read")
+            text.append(NSAttributedString(string: " "))
+        case DC_STATE_OUT_FAILED:
+            imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 16)
+            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_error")
+            offset = -2
+        default:
+            imageAttachment.image = nil
+        }
 
-           let imageString = NSMutableAttributedString(attachment: imageAttachment)
-           imageString.addAttributes([.baselineOffset: offset],
-                                     range: NSRange(location: 0, length: 1))
-           text.append(imageString)
-       }
+        let imageString = NSMutableAttributedString(attachment: imageAttachment)
+        imageString.addAttributes([.baselineOffset: offset],
+                                  range: NSRange(location: 0, length: 1))
+        text.append(imageString)
+    }
 
-       func updateMessage(_ messageId: Int) {
-           if let index = messageIds.firstIndex(where: { $0 == messageId }) {
-               dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
+    func updateMessage(_ messageId: Int) {
+        if let index = messageIds.firstIndex(where: { $0 == messageId }) {
+            dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
 
-               //messageList[index] = DcMsg(id: messageId)
-               /// TODO: Reload section to update header/footer labels
-               /*messagesCollectionView.performBatchUpdates({ [weak self] in
-                   guard let self = self else { return }
-                   self.messagesCollectionView.reloadSections([index])
-                   if index > 0 {
-                       self.messagesCollectionView.reloadSections([index - 1])
-                   }
-                   if index < messageList.count - 1 {
-                       self.messagesCollectionView.reloadSections([index + 1])
-                   }
-               }, completion: { [weak self] _ in
-                   if self?.isLastSectionVisible() == true {
-                       self?.messagesCollectionView.scrollToBottom(animated: true)
-                   }
-               })*/
+            //messageList[index] = DcMsg(id: messageId)
+            /// TODO: Reload section to update header/footer labels
+            /*messagesCollectionView.performBatchUpdates({ [weak self] in
+             guard let self = self else { return }
+             self.messagesCollectionView.reloadSections([index])
+             if index > 0 {
+             self.messagesCollectionView.reloadSections([index - 1])
+             }
+             if index < messageList.count - 1 {
+             self.messagesCollectionView.reloadSections([index + 1])
+             }
+             }, completion: { [weak self] _ in
+             if self?.isLastSectionVisible() == true {
+             self?.messagesCollectionView.scrollToBottom(animated: true)
+             }
+             })*/
+            let wasLastSectionVisible = self.isLastSectionVisible()
             tableView.reloadData()
-           } else {
-               let msg = DcMsg(id: messageId)
-               if msg.chatId == chatId {
-                   insertMessage(msg)
-               }
-           }
-       }
+            if wasLastSectionVisible {
+                self.scrollToBottom(animated: true)
+            }
+        } else {
+            let msg = DcMsg(id: messageId)
+            if msg.chatId == chatId {
+                insertMessage(msg)
+            }
+        }
+    }
 
-       func insertMessage(_ message: DcMsg) {
-           dcContext.markSeenMessages(messageIds: [UInt32(message.id)])
-           messageIds.append(message.id)
-           //messageList.append(message)
-           emptyStateView.isHidden = true
-           /// TODO:  Reload last section to update header/footer labels and insert a new one
-           /*messagesCollectionView.performBatchUpdates({
-               messagesCollectionView.insertSections([messageList.count - 1])
-               if messageList.count >= 2 {
-                   messagesCollectionView.reloadSections([messageList.count - 2])
-               }
-           }, completion: { [weak self] _ in
-               if self?.isLastSectionVisible() == true {
-                   self?.messagesCollectionView.scrollToBottom(animated: true)
-               }
-           })*/
+    func insertMessage(_ message: DcMsg) {
+        dcContext.markSeenMessages(messageIds: [UInt32(message.id)])
+        messageIds.append(message.id)
+        //messageList.append(message)
+        emptyStateView.isHidden = true
+        /// TODO:  Reload last section to update header/footer labels and insert a new one
+        /*messagesCollectionView.performBatchUpdates({
+         messagesCollectionView.insertSections([messageList.count - 1])
+         if messageList.count >= 2 {
+         messagesCollectionView.reloadSections([messageList.count - 2])
+         }
+         }, completion: { [weak self] _ in
+         if self?.isLastSectionVisible() == true {
+         self?.messagesCollectionView.scrollToBottom(animated: true)
+         }
+         })*/
 
-           tableView.reloadData()
-       }
+        let wasLastSectionVisible = isLastSectionVisible()
+        tableView.reloadData()
+        if wasLastSectionVisible {
+            scrollToBottom(animated: true)
+        }
+    }
 
-       private func sendTextMessage(message: String) {
-           DispatchQueue.global().async {
-               self.dcContext.sendTextInChat(id: self.chatId, message: message)
-           }
-       }
+    private func sendTextMessage(message: String) {
+        DispatchQueue.global().async {
+            self.dcContext.sendTextInChat(id: self.chatId, message: message)
+        }
+    }
 
-       private func sendImage(_ image: UIImage, message: String? = nil) {
-           DispatchQueue.global().async {
-               if let path = DcUtils.saveImage(image: image) {
-                   self.sendImageMessage(viewType: DC_MSG_IMAGE, image: image, filePath: path)
-               }
-           }
-       }
+    private func sendImage(_ image: UIImage, message: String? = nil) {
+        DispatchQueue.global().async {
+            if let path = DcUtils.saveImage(image: image) {
+                self.sendImageMessage(viewType: DC_MSG_IMAGE, image: image, filePath: path)
+            }
+        }
+    }
 
-       private func sendAnimatedImage(url: NSURL) {
-           if let path = url.path {
-               let result = SDAnimatedImage(contentsOfFile: path)
-               if let result = result,
-                  let animatedImageData = result.animatedImageData,
-                  let pathInDocDir = DcUtils.saveImage(data: animatedImageData, suffix: "gif") {
-                   self.sendImageMessage(viewType: DC_MSG_GIF, image: result, filePath: pathInDocDir)
-               }
-           }
-       }
+    private func sendAnimatedImage(url: NSURL) {
+        if let path = url.path {
+            let result = SDAnimatedImage(contentsOfFile: path)
+            if let result = result,
+                let animatedImageData = result.animatedImageData,
+                let pathInDocDir = DcUtils.saveImage(data: animatedImageData, suffix: "gif") {
+                self.sendImageMessage(viewType: DC_MSG_GIF, image: result, filePath: pathInDocDir)
+            }
+        }
+    }
 
-       private func sendImageMessage(viewType: Int32, image: UIImage, filePath: String, message: String? = nil) {
-           let msg = DcMsg(viewType: viewType)
-           msg.setFile(filepath: filePath)
-           msg.text = (message ?? "").isEmpty ? nil : message
-           msg.sendInChat(id: self.chatId)
-       }
+    private func sendImageMessage(viewType: Int32, image: UIImage, filePath: String, message: String? = nil) {
+        let msg = DcMsg(viewType: viewType)
+        msg.setFile(filepath: filePath)
+        msg.text = (message ?? "").isEmpty ? nil : message
+        msg.sendInChat(id: self.chatId)
+    }
 
-       private func sendDocumentMessage(url: NSURL) {
-           DispatchQueue.global().async {
-               let msg = DcMsg(viewType: DC_MSG_FILE)
-               msg.setFile(filepath: url.relativePath, mimeType: nil)
-               msg.sendInChat(id: self.chatId)
-           }
-       }
+    private func sendDocumentMessage(url: NSURL) {
+        DispatchQueue.global().async {
+            let msg = DcMsg(viewType: DC_MSG_FILE)
+            msg.setFile(filepath: url.relativePath, mimeType: nil)
+            msg.sendInChat(id: self.chatId)
+        }
+    }
 
-       private func sendVoiceMessage(url: NSURL) {
-           DispatchQueue.global().async {
-               let msg = DcMsg(viewType: DC_MSG_VOICE)
-               msg.setFile(filepath: url.relativePath, mimeType: "audio/m4a")
-               msg.sendInChat(id: self.chatId)
-           }
-       }
+    private func sendVoiceMessage(url: NSURL) {
+        DispatchQueue.global().async {
+            let msg = DcMsg(viewType: DC_MSG_VOICE)
+            msg.setFile(filepath: url.relativePath, mimeType: "audio/m4a")
+            msg.sendInChat(id: self.chatId)
+        }
+    }
 
-       private func sendVideo(url: NSURL) {
-           DispatchQueue.global().async {
-               let msg = DcMsg(viewType: DC_MSG_VIDEO)
-               msg.setFile(filepath: url.relativePath, mimeType: "video/mp4")
-               msg.sendInChat(id: self.chatId)
-           }
-       }
+    private func sendVideo(url: NSURL) {
+        DispatchQueue.global().async {
+            let msg = DcMsg(viewType: DC_MSG_VIDEO)
+            msg.setFile(filepath: url.relativePath, mimeType: "video/mp4")
+            msg.sendInChat(id: self.chatId)
+        }
+    }
 
-       private func sendImage(url: NSURL) {
-           if url.pathExtension == "gif" {
-               sendAnimatedImage(url: url)
-           } else if let data = try? Data(contentsOf: url as URL),
-                     let image = UIImage(data: data) {
-               sendImage(image)
-           }
-       }
+    private func sendImage(url: NSURL) {
+        if url.pathExtension == "gif" {
+            sendAnimatedImage(url: url)
+        } else if let data = try? Data(contentsOf: url as URL),
+            let image = UIImage(data: data) {
+            sendImage(image)
+        }
+    }
 
 
 }
 
 /*extension ChatViewControllerNew: MediaSendHandler {
-    func onSuccess() {
-        refreshMessages()
-    }
-}*/
+ func onSuccess() {
+ refreshMessages()
+ }
+ }*/
 
 extension ChatViewControllerNew: MediaPickerDelegate {
     func onVideoSelected(url: NSURL) {
