@@ -310,10 +310,6 @@ class ChatViewControllerNew: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "test title" //viewModel.titleForHeaderIn(section: section)
-    }
-
     func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {
 
         var corners: UIRectCorner = []
