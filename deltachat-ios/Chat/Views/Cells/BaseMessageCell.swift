@@ -178,7 +178,10 @@ public class BaseMessageCell: UITableViewCell {
         textLabel?.text = nil
         textLabel?.attributedText = nil
         topLabel.text = nil
+        topLabel.attributedText = nil
         avatarView.reset()
         messageBackgroundContainer.prepareForReuse()
+        bottomLabel.text = nil
+        bottomLabel.attributedText = nil
     }
 }
