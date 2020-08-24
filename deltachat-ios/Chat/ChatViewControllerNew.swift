@@ -130,7 +130,6 @@ class ChatViewControllerNew: UITableViewController {
             self.tableView.becomeFirstResponder()
         }
 
-        //refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
 
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
@@ -147,7 +146,6 @@ class ChatViewControllerNew: UITableViewController {
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
                 self.reloadDataAndKeepOffset()
-                //self.refreshControl.endRefreshing()
             }
         }
     }
@@ -425,7 +423,6 @@ class ChatViewControllerNew: UITableViewController {
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
                 self.reloadDataAndKeepOffset()
-                //self.refreshControl.endRefreshing()
             }
         }
     }
@@ -437,7 +434,6 @@ class ChatViewControllerNew: UITableViewController {
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
                 self.reloadDataAndKeepOffset()
-                //self.refreshControl.endRefreshing()
                 if self.isLastSectionVisible() {
                     self.scrollToBottom(animated: true)
                 }
@@ -452,7 +448,6 @@ class ChatViewControllerNew: UITableViewController {
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
                 self.tableView.reloadData()
-                //self.refreshControl.endRefreshing()
                 //self.messagesCollectionView.scrollToBottom(animated: false)
                 self.showEmptyStateView(self.messageIds.isEmpty)
             }
