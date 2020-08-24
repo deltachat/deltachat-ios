@@ -19,12 +19,6 @@ class ChatViewControllerNew: UITableViewController {
 
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
     open var messageInputBar = InputBarAccessoryView()
-    override var inputAccessoryView: UIView? {
-        if disableWriting {
-            return nil
-        }
-        return messageInputBar
-    }
 
     open override var shouldAutorotate: Bool {
         return false
@@ -112,8 +106,14 @@ class ChatViewControllerNew: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
+    override func loadView() {
+        self.tableView = ChatTableView(messageInputBar: self.disableWriting ? nil : messageInputBar)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.view = self.tableView
+    }
 
+    override func viewDidLoad() {
         tableView.register(NewTextMessageCell.self, forCellReuseIdentifier: "text")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
@@ -129,10 +129,9 @@ class ChatViewControllerNew: UITableViewController {
         if !disableWriting {
             configureMessageInputBar()
             messageInputBar.inputTextView.text = textDraft
-            messageInputBar.inputTextView.becomeFirstResponder()
+            self.tableView.becomeFirstResponder()
         }
 
-        //refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
 
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
@@ -149,7 +148,6 @@ class ChatViewControllerNew: UITableViewController {
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
                 self.reloadDataAndKeepOffset()
-                //self.refreshControl.endRefreshing()
             }
         }
     }
@@ -312,10 +310,6 @@ class ChatViewControllerNew: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "test title" //viewModel.titleForHeaderIn(section: section)
-    }
-
     func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {
 
         var corners: UIRectCorner = []
@@ -431,7 +425,6 @@ class ChatViewControllerNew: UITableViewController {
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
                 self.reloadDataAndKeepOffset()
-                //self.refreshControl.endRefreshing()
             }
         }
     }
@@ -443,7 +436,6 @@ class ChatViewControllerNew: UITableViewController {
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
                 self.reloadDataAndKeepOffset()
-                //self.refreshControl.endRefreshing()
                 if self.isLastSectionVisible() {
                     self.scrollToBottom(animated: true)
                 }
@@ -458,7 +450,6 @@ class ChatViewControllerNew: UITableViewController {
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
                 self.tableView.reloadData()
-                //self.refreshControl.endRefreshing()
                 //self.messagesCollectionView.scrollToBottom(animated: false)
                 self.showEmptyStateView(self.messageIds.isEmpty)
             }
