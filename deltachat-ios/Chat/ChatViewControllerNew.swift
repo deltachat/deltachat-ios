@@ -108,6 +108,8 @@ class ChatViewControllerNew: UITableViewController {
 
     override func loadView() {
         self.tableView = ChatTableView(messageInputBar: self.disableWriting ? nil : messageInputBar)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         self.view = self.tableView
     }
 
