@@ -966,11 +966,11 @@ class ChatViewControllerNew: UITableViewController {
 
 }
 
-extension ChatViewControllerNew: MediaSendHandler {
+/*extension ChatViewControllerNew: MediaSendHandler {
     func onSuccess() {
         refreshMessages()
     }
-}
+}*/
 
 extension ChatViewControllerNew: MediaPickerDelegate {
     func onVideoSelected(url: NSURL) {
