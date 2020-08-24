@@ -129,7 +129,6 @@ class ChatViewControllerNew: UITableViewController {
         if !disableWriting {
             configureMessageInputBar()
             messageInputBar.inputTextView.text = textDraft
-            self.tableView.becomeFirstResponder()
         }
 
 
@@ -166,6 +165,7 @@ class ChatViewControllerNew: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tableView.becomeFirstResponder()
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 
