@@ -94,14 +94,94 @@ public class BaseMessageCell: UITableViewCell {
         topLabel.text = msg.fromContact.displayName
         avatarView.setName(msg.fromContact.displayName)
         avatarView.setColor(msg.fromContact.color)
-        messageBackgroundContainer.update(rectCorners: messageStyle, color: msg.isFromCurrentSender ? DcColors.messagePrimaryColor : DcColors.messageSecondaryColor)
+        messageBackgroundContainer.update(rectCorners: messageStyle,
+                                          color: msg.isFromCurrentSender ? DcColors.messagePrimaryColor : DcColors.messageSecondaryColor)
+
+        if !msg.isInfo {
+            bottomLabel.attributedText = getFormattedBottomLine(message: msg)
+        }
+    }
+
+    func getFormattedBottomLine(message: DcMsg) -> NSAttributedString {
+        var timestampAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 12),
+            .foregroundColor: DcColors.grayDateColor,
+            .paragraphStyle: NSParagraphStyle()
+        ]
+
+        let text = NSMutableAttributedString()
+        if message.fromContactId == Int(DC_CONTACT_ID_SELF) {
+            if let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle {
+                style.alignment = .right
+                timestampAttributes[.paragraphStyle] = style
+            }
+
+            text.append(NSAttributedString(string: message.formattedSentDate(), attributes: timestampAttributes))
+
+            if message.showPadlock() {
+                attachPadlock(to: text)
+            }
+
+            attachSendingState(message.state, to: text)
+            return text
+        }
+
+        text.append(NSAttributedString(string: message.formattedSentDate(), attributes: timestampAttributes))
+        if message.showPadlock() {
+            attachPadlock(to: text)
+        }
+        return text
+    }
+
+    private func attachPadlock(to text: NSMutableAttributedString) {
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = UIImage(named: "ic_lock")
+        imageAttachment.image?.accessibilityIdentifier = String.localized("encrypted_message")
+        let imageString = NSMutableAttributedString(attachment: imageAttachment)
+        imageString.addAttributes([NSAttributedString.Key.baselineOffset: -1], range: NSRange(location: 0, length: 1))
+        text.append(NSAttributedString(string: " "))
+        text.append(imageString)
+    }
+
+    private func attachSendingState(_ state: Int, to text: NSMutableAttributedString) {
+        let imageAttachment = NSTextAttachment()
+        var offset = -4
+
+
+        switch Int32(state) {
+        case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
+            imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 16)?.maskWithColor(color: DcColors.grayDateColor)
+            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_sending")
+            offset = -2
+        case DC_STATE_OUT_DELIVERED:
+            imageAttachment.image = #imageLiteral(resourceName: "ic_done_36pt").scaleDownImage(toMax: 18)
+            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_delivered")
+        case DC_STATE_OUT_MDN_RCVD:
+            imageAttachment.image = #imageLiteral(resourceName: "ic_done_all_36pt").scaleDownImage(toMax: 18)
+            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_read")
+            text.append(NSAttributedString(string: " "))
+        case DC_STATE_OUT_FAILED:
+            imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 16)
+            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_error")
+            offset = -2
+        default:
+            imageAttachment.image = nil
+        }
+
+        let imageString = NSMutableAttributedString(attachment: imageAttachment)
+        imageString.addAttributes([.baselineOffset: offset],
+                                  range: NSRange(location: 0, length: 1))
+        text.append(imageString)
     }
 
     override public func prepareForReuse() {
         textLabel?.text = nil
         textLabel?.attributedText = nil
         topLabel.text = nil
+        topLabel.attributedText = nil
         avatarView.reset()
         messageBackgroundContainer.prepareForReuse()
+        bottomLabel.text = nil
+        bottomLabel.attributedText = nil
     }
 }
