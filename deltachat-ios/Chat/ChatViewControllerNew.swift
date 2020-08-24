@@ -224,7 +224,7 @@ class ChatViewControllerNew: UITableViewController {
             self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
         }
 
-        loadFirstMessages()
+        loadMessages()
 
         if RelayHelper.sharedInstance.isForwarding() {
             askToForwardMessage()
@@ -444,7 +444,7 @@ class ChatViewControllerNew: UITableViewController {
         }
     }
 
-    private func loadFirstMessages() {
+    private func loadMessages() {
         DispatchQueue.global(qos: .userInitiated).async {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
