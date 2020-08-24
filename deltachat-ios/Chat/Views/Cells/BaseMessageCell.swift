@@ -97,7 +97,9 @@ public class BaseMessageCell: UITableViewCell {
         messageBackgroundContainer.update(rectCorners: messageStyle,
                                           color: msg.isFromCurrentSender ? DcColors.messagePrimaryColor : DcColors.messageSecondaryColor)
 
-        bottomLabel.attributedText = getFormattedBottomLine(message: msg)
+        if !msg.isInfo {
+            bottomLabel.attributedText = getFormattedBottomLine(message: msg)
+        }
     }
 
     func getFormattedBottomLine(message: DcMsg) -> NSAttributedString {
