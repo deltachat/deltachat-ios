@@ -117,6 +117,7 @@ class ChatViewControllerNew: UITableViewController {
         tableView.register(NewTextMessageCell.self, forCellReuseIdentifier: "text")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         //messagesCollectionView.register(InfoMessageCell.self)
         super.viewDidLoad()
         if !dcContext.isConfigured() {
