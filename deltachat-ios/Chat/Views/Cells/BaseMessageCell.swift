@@ -40,7 +40,7 @@ public class BaseMessageCell: UITableViewCell {
     lazy var mainContentView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .horizontal
+        view.axis = .vertical
         return view
     }()
 
