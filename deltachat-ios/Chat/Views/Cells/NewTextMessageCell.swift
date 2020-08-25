@@ -14,9 +14,7 @@ class NewTextMessageCell: BaseMessageCell {
 
     override func setupSubviews() {
         super.setupSubviews()
-        mainContentView.addArrangedSubview(messageLabel)
-        mainContentView.axis = .horizontal
-        
+        mainContentView.addArrangedSubview(messageLabel)        
     }
 
     override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
