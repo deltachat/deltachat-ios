@@ -6,10 +6,21 @@ public class BaseMessageCell: UITableViewCell {
     static var containerPadding: CGFloat = -6
     typealias BMC = BaseMessageCell
 
+    private lazy var contentContainer: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [topLabel, mainContentView, bottomContentView])
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        view.alignment = .leading
+        view.axis = .vertical
+        return view
+    }()
+
     lazy var avatarView: InitialsBadge = {
         let view = InitialsBadge(size: 28)
         view.setColor(UIColor.gray)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        view.isHidden = true
         return view
     }()
 
@@ -42,13 +53,6 @@ public class BaseMessageCell: UITableViewCell {
         return label
     }()
 
-    private lazy var contentContainer: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [topLabel, mainContentView, bottomContentView])
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .vertical
-        return view
-    }()
-
     private lazy var messageBackgroundContainer: BackgroundContainer = {
         let container = BackgroundContainer()
         container.image = UIImage(color: UIColor.blue)
@@ -60,6 +64,8 @@ public class BaseMessageCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        clipsToBounds = false
+        backgroundColor = .none
         setupSubviews()
     }
 
@@ -69,19 +75,19 @@ public class BaseMessageCell: UITableViewCell {
 
 
     func setupSubviews() {
-        contentView.addSubview(avatarView)
         contentView.addSubview(messageBackgroundContainer)
         contentView.addSubview(contentContainer)
+        contentView.addSubview(avatarView)
 
         contentView.addConstraints([
-            avatarView.constraintAlignTopTo(contentView, paddingTop: BMC.defaultPadding),
-            avatarView.constraintAlignLeadingTo(contentView),
-            avatarView.constraintAlignBottomTo(contentView, paddingBottom: BMC.defaultPadding, priority: .defaultLow),
-            contentContainer.constraintToTrailingOf(avatarView, paddingLeading: BMC.defaultPadding),
+            avatarView.constraintAlignTopTo(contentView, paddingTop: BMC.defaultPadding, priority: .defaultLow),
+            avatarView.constraintAlignLeadingTo(contentView, paddingLeading: 6),
+            avatarView.constraintAlignBottomTo(contentView, paddingBottom: -6),
+            contentContainer.constraintToTrailingOf(avatarView),
             contentContainer.constraintAlignTrailingTo(contentView, paddingTrailing: BMC.defaultPadding),
             contentContainer.constraintAlignTopTo(contentView, paddingTop: BMC.defaultPadding),
             contentContainer.constraintAlignBottomTo(contentView, paddingBottom: BMC.defaultPadding),
-            messageBackgroundContainer.constraintAlignLeadingTo(contentContainer, paddingLeading: BMC.containerPadding),
+            messageBackgroundContainer.constraintAlignLeadingTo(contentContainer, paddingLeading: 2 * BMC.containerPadding),
             messageBackgroundContainer.constraintAlignTopTo(contentContainer, paddingTop: BMC.containerPadding),
             messageBackgroundContainer.constraintAlignBottomTo(contentContainer, paddingBottom: BMC.containerPadding),
             messageBackgroundContainer.constraintAlignTrailingTo(contentContainer, paddingTrailing: BMC.containerPadding)
@@ -90,10 +96,16 @@ public class BaseMessageCell: UITableViewCell {
 
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
-    func update(msg: DcMsg, messageStyle: UIRectCorner) {
+    func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
         topLabel.text = msg.fromContact.displayName
-        avatarView.setName(msg.fromContact.displayName)
-        avatarView.setColor(msg.fromContact.color)
+        if isAvatarVisible {
+            avatarView.isHidden = false
+            avatarView.setName(msg.fromContact.displayName)
+            avatarView.setColor(msg.fromContact.color)
+            if let profileImage = msg.fromContact.profileImage {
+                avatarView.setImage(profileImage)
+            }
+        }
         messageBackgroundContainer.update(rectCorners: messageStyle,
                                           color: msg.isFromCurrentSender ? DcColors.messagePrimaryColor : DcColors.messageSecondaryColor)
 
@@ -180,6 +192,7 @@ public class BaseMessageCell: UITableViewCell {
         topLabel.text = nil
         topLabel.attributedText = nil
         avatarView.reset()
+        avatarView.isHidden = true
         messageBackgroundContainer.prepareForReuse()
         bottomLabel.text = nil
         bottomLabel.attributedText = nil
