@@ -115,6 +115,7 @@ class ChatViewControllerNew: UITableViewController {
 
     override func viewDidLoad() {
         tableView.register(NewTextMessageCell.self, forCellReuseIdentifier: "text")
+        tableView.register(NewImageTextCell.self, forCellReuseIdentifier: "image")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
@@ -305,7 +306,13 @@ class ChatViewControllerNew: UITableViewController {
         let message = DcMsg(id: id)
 
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? NewTextMessageCell ?? NewTextMessageCell()
+        let cell: BaseMessageCell
+        if message.type == DC_MSG_IMAGE || message.type == DC_MSG_GIF {
+            cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? NewImageTextCell ?? NewImageTextCell()
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? NewTextMessageCell ?? NewTextMessageCell()
+        }
+
         cell.update(msg: message,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     isAvatarVisible: configureAvatarVisibility(for: message, at: indexPath))
