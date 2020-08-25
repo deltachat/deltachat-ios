@@ -6,6 +6,11 @@ public class BaseMessageCell: UITableViewCell {
     static var containerPadding: CGFloat = -6
     typealias BMC = BaseMessageCell
 
+    private var leadingConstraint: NSLayoutConstraint?
+    private var trailingConstraint: NSLayoutConstraint?
+    private var leadingConstraintCurrentSender: NSLayoutConstraint?
+    private var trailingConstraintCurrentSender: NSLayoutConstraint?
+
     private lazy var contentContainer: UIStackView = {
         let view = UIStackView(arrangedSubviews: [topLabel, mainContentView, bottomContentView])
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -83,8 +88,6 @@ public class BaseMessageCell: UITableViewCell {
             avatarView.constraintAlignTopTo(contentView, paddingTop: BMC.defaultPadding, priority: .defaultLow),
             avatarView.constraintAlignLeadingTo(contentView, paddingLeading: 6),
             avatarView.constraintAlignBottomTo(contentView, paddingBottom: -6),
-            contentContainer.constraintToTrailingOf(avatarView),
-            contentContainer.constraintAlignTrailingTo(contentView, paddingTrailing: BMC.defaultPadding),
             contentContainer.constraintAlignTopTo(contentView, paddingTop: BMC.defaultPadding),
             contentContainer.constraintAlignBottomTo(contentView, paddingBottom: BMC.defaultPadding),
             messageBackgroundContainer.constraintAlignLeadingTo(contentContainer, paddingLeading: 2 * BMC.containerPadding),
@@ -92,12 +95,26 @@ public class BaseMessageCell: UITableViewCell {
             messageBackgroundContainer.constraintAlignBottomTo(contentContainer, paddingBottom: BMC.containerPadding),
             messageBackgroundContainer.constraintAlignTrailingTo(contentContainer, paddingTrailing: BMC.containerPadding)
         ])
+
+        self.leadingConstraint = contentContainer.constraintToTrailingOf(avatarView)
+        self.trailingConstraint = contentContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: BMC.defaultPadding)
+        self.leadingConstraintCurrentSender = contentContainer.constraintAlignLeadingMaxTo(contentView, paddingLeading: 36)
+        self.trailingConstraintCurrentSender = contentContainer.constraintAlignTrailingTo(contentView, paddingTrailing: BMC.defaultPadding)
     }
 
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
     func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
         topLabel.text = msg.fromContact.displayName
+
+        if msg.isFromCurrentSender {
+            self.leadingConstraintCurrentSender?.isActive = true
+            self.trailingConstraintCurrentSender?.isActive = true
+        } else {
+            self.leadingConstraint?.isActive = true
+            self.trailingConstraint?.isActive = true
+        }
+
         if isAvatarVisible {
             avatarView.isHidden = false
             avatarView.setName(msg.fromContact.displayName)
@@ -196,5 +213,9 @@ public class BaseMessageCell: UITableViewCell {
         messageBackgroundContainer.prepareForReuse()
         bottomLabel.text = nil
         bottomLabel.attributedText = nil
+        leadingConstraint?.isActive = false
+        trailingConstraint?.isActive = false
+        leadingConstraintCurrentSender?.isActive = false
+        trailingConstraintCurrentSender?.isActive = false
     }
 }
