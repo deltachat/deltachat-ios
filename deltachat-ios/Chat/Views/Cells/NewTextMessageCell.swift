@@ -19,9 +19,9 @@ class NewTextMessageCell: BaseMessageCell {
         
     }
 
-    override func update(msg: DcMsg, messageStyle: UIRectCorner) {
+    override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
         messageLabel.text = msg.text
-        super.update(msg: msg, messageStyle: messageStyle)
+        super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible)
     }
 
     override func prepareForReuse() {
