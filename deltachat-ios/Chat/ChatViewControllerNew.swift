@@ -117,6 +117,7 @@ class ChatViewControllerNew: UITableViewController {
         tableView.register(NewTextMessageCell.self, forCellReuseIdentifier: "text")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         //messagesCollectionView.register(InfoMessageCell.self)
         super.viewDidLoad()
         if !dcContext.isConfigured() {
@@ -306,8 +307,13 @@ class ChatViewControllerNew: UITableViewController {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? NewTextMessageCell ?? NewTextMessageCell()
         cell.update(msg: message,
-                    messageStyle: configureMessageStyle(for: message, at: indexPath))
+                    messageStyle: configureMessageStyle(for: message, at: indexPath),
+                    isAvatarVisible: configureAvatarVisibility(for: message, at: indexPath))
         return cell
+    }
+
+    func configureAvatarVisibility(for message: DcMsg, at indexPath: IndexPath) -> Bool {
+        return !message.isFromCurrentSender && !isNextMessageSameSender(currentMessage: message, at: indexPath)
     }
 
     func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {

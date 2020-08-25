@@ -95,11 +95,47 @@ public extension UIView {
         return constraint
     }
 
+    /**
+        allows to align leading to the leading of another view but allows left side shrinking
+     */
+    func constraintAlignLeadingMaxTo(_ view: UIView, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+        let constraint = NSLayoutConstraint(
+            item: self,
+            attribute: .leading,
+            relatedBy: .greaterThanOrEqual,
+            toItem: view,
+            attribute: .leading,
+            multiplier: 1.0,
+            constant: paddingLeading)
+        if let priority = priority {
+            constraint.priority = priority
+        }
+        return constraint
+    }
+
     func constraintAlignTrailingTo(_ view: UIView, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: self,
             attribute: .trailing,
             relatedBy: .equal,
+            toItem: view,
+            attribute: .trailing,
+            multiplier: 1.0,
+            constant: -paddingTrailing)
+        if let priority = priority {
+            constraint.priority = priority
+        }
+        return constraint
+    }
+
+    /**
+        allows to align trailing to the trailing of another view but allows right side shrinking
+     */
+    func constraintAlignTrailingMaxTo(_ view: UIView, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+        let constraint = NSLayoutConstraint(
+            item: self,
+            attribute: .trailing,
+            relatedBy: .lessThanOrEqual,
             toItem: view,
             attribute: .trailing,
             multiplier: 1.0,
