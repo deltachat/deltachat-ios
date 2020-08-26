@@ -3,7 +3,7 @@ import DcCore
 
 class SecuritySettingsController: UITableViewController {
 
-    private var options: [Int]
+    private var options: [Int32] = [DC_SOCKET_AUTO, DC_SOCKET_SSL, DC_SOCKET_STARTTLS, DC_SOCKET_PLAIN]
 
     private var selectedIndex: Int
 
@@ -23,7 +23,7 @@ class SecuritySettingsController: UITableViewController {
     private var staticCells: [UITableViewCell] {
         return options.map {
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = SecurityConverter.convertHexToString(type: self.securityType, hex: $0)
+            cell.textLabel?.text = SecurityConverter.getSocketName(value: $0)
             cell.selectionStyle = .none
             return cell
         }
@@ -34,11 +34,9 @@ class SecuritySettingsController: UITableViewController {
         self.dcContext = dcContext
         switch securityType {
         case .IMAPSecurity:
-            options = [0x00, 0x100, 0x200, 0x400]
-            selectedIndex = options.index(of: dcContext.getImapSecurity()) ?? 0
+            selectedIndex = options.index(of: Int32(dcContext.getConfigInt("mail_security"))) ?? 0
         case .SMTPSecurity:
-            options = [0x00, 0x10000, 0x20000, 0x40000]
-            selectedIndex = options.index(of: dcContext.getSmtpSecurity()) ?? 0
+            selectedIndex = options.index(of: Int32(dcContext.getConfigInt("send_security"))) ?? 0
         }
         super.init(style: .grouped)
         self.title = title
@@ -89,9 +87,9 @@ class SecuritySettingsController: UITableViewController {
     @objc func okButtonPressed() {
         switch securityType {
         case .IMAPSecurity:
-            dcContext.setImapSecurity(imapFlags: options[selectedIndex])
+            dcContext.setConfigInt("mail_security", Int(options[selectedIndex]))
         case .SMTPSecurity:
-            dcContext.setSmtpSecurity(smptpFlags: options[selectedIndex])
+            dcContext.setConfigInt("send_security", Int(options[selectedIndex]))
         }
         navigationController?.popViewController(animated: true)
     }
@@ -107,21 +105,15 @@ enum SecurityType {
 }
 
 class SecurityConverter {
-    static func convertHexToString(type: SecurityType, hex value: Int) -> String {
+    static func getSocketName(value: Int32) -> String {
         switch value {
-        case 0x0:
+        case DC_SOCKET_AUTO:
             return String.localized("automatic")
-        case 0x100:
-            return "StartTLS"
-        case 0x200:
+        case DC_SOCKET_SSL:
             return "SSL/TLS"
-        case 0x400:
-            return String.localized("off")
-        case 0x10000:
+        case DC_SOCKET_STARTTLS:
             return "StartTLS"
-        case 0x20000:
-            return "SSL/TLS"
-        case 0x40000:
+        case DC_SOCKET_PLAIN:
             return String.localized("off")
         default:
             return "Undefined"

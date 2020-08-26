@@ -521,37 +521,11 @@ public class DcContext {
         }
     }
 
-    public func setImapSecurity(imapFlags flags: Int) {
-        var sf = serverFlags
-        sf = sf & ~0x700 // DC_LP_IMAP_SOCKET_FLAGS
-        sf = sf | flags
-        serverFlags = sf
-    }
-
-    public func setSmtpSecurity(smptpFlags flags: Int) {
-        var sf = serverFlags
-        sf = sf & ~0x70000 // DC_LP_SMTP_SOCKET_FLAGS
-        sf = sf | flags
-        serverFlags = sf
-    }
-
     public func setAuthFlags(flags: Int) {
         var sf = serverFlags
         sf = sf & ~0x6 // DC_LP_AUTH_FLAGS
         sf = sf | flags
         serverFlags = sf
-    }
-
-    public func getImapSecurity() -> Int {
-        var sf = serverFlags
-        sf = sf & 0x700 // DC_LP_IMAP_SOCKET_FLAGS
-        return sf
-    }
-
-    public func getSmtpSecurity() -> Int {
-        var sf = serverFlags
-        sf = sf & 0x70000  // DC_LP_SMTP_SOCKET_FLAGS
-        return sf
     }
 
     public func getAuthFlags() -> Int {
