@@ -33,18 +33,25 @@ class NewImageTextCell: BaseMessageCell {
 
     override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
         messageLabel.text = msg.text
-        if msg.type == DC_MSG_IMAGE || msg.type == DC_MSG_GIF, let url = msg.fileURL {
+        if msg.type == DC_MSG_IMAGE, let image = msg.image {
+            contentImageView.image = image
+            setAspectRatioFor(image: image)
+        } else if msg.type == DC_MSG_GIF, let url = msg.fileURL {
             contentImageView.sd_setImage(with: url) { (image, _, _, _) in
                 if let image = image {
-                    self.imageAspectRatioConstraint?.isActive = false
-                    self.imageAspectRatioConstraint = self.contentImageView.heightAnchor.constraint(
-                        equalTo: self.contentImageView.widthAnchor,
-                        multiplier: image.size.height / image.size.width)
-                    self.imageAspectRatioConstraint?.isActive = true
+                    self.setAspectRatioFor(image: image)
                 }
             }
         }
         super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible)
+    }
+
+    private func setAspectRatioFor(image: UIImage) {
+        self.imageAspectRatioConstraint?.isActive = false
+        self.imageAspectRatioConstraint = self.contentImageView.heightAnchor.constraint(
+            equalTo: self.contentImageView.widthAnchor,
+            multiplier: image.size.height / image.size.width)
+        self.imageAspectRatioConstraint?.isActive = true
     }
 
     override func prepareForReuse() {
