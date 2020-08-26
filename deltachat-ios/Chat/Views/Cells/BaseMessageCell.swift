@@ -17,6 +17,7 @@ public class BaseMessageCell: UITableViewCell {
         view.setContentHuggingPriority(.defaultLow, for: .horizontal)
         view.alignment = .leading
         view.axis = .vertical
+        view.spacing = 6
         return view
     }()
 
