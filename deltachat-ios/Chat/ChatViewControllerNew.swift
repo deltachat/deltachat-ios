@@ -116,6 +116,7 @@ class ChatViewControllerNew: UITableViewController {
     override func viewDidLoad() {
         tableView.register(NewTextMessageCell.self, forCellReuseIdentifier: "text")
         tableView.register(NewImageTextCell.self, forCellReuseIdentifier: "image")
+        tableView.register(NewFileTextCell.self, forCellReuseIdentifier: "file")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
@@ -309,6 +310,8 @@ class ChatViewControllerNew: UITableViewController {
         let cell: BaseMessageCell
         if message.type == DC_MSG_IMAGE || message.type == DC_MSG_GIF {
             cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? NewImageTextCell ?? NewImageTextCell()
+        } else if message.type == DC_MSG_FILE {
+            cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? NewFileTextCell ?? NewFileTextCell()
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? NewTextMessageCell ?? NewTextMessageCell()
         }
