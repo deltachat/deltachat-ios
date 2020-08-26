@@ -80,6 +80,14 @@ extension UIFont {
         let metrics = UIFontMetrics(forTextStyle: style)
         return metrics.scaledFont(for: font)
     }
+
+    static func preferredItalicFont(for style: TextStyle) -> UIFont {
+        let traits = UITraitCollection(preferredContentSizeCategory: .large)
+        let desc = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style, compatibleWith: traits)
+        let font = UIFont.italicSystemFont(ofSize: desc.pointSize)
+        let metrics = UIFontMetrics(forTextStyle: style)
+        return metrics.scaledFont(for: font)
+    }
 }
 
 extension UINavigationController {
