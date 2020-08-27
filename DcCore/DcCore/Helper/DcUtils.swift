@@ -54,19 +54,6 @@ public struct DcUtils {
         return acc
     }
 
-
-    static func copyAndFreeArrayWithLen(inputArray: OpaquePointer?) -> [Int] {
-        var acc: [Int] = []
-        let arrayLen = dc_array_get_cnt(inputArray)
-        for i in 0 ..< arrayLen {
-            let e = dc_array_get_id(inputArray, i)
-            acc.append(Int(e))
-        }
-        dc_array_unref(inputArray)
-
-        return acc
-    }
-
     static func copyAndFreeArrayWithLen(inputArray: OpaquePointer?, len: Int = 0) -> [Int] {
         var acc: [Int] = []
         let arrayLen = dc_array_get_cnt(inputArray)

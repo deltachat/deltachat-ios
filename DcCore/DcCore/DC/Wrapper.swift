@@ -39,7 +39,7 @@ public class DcContext {
             // skip first part
             ids = DcUtils.copyAndFreeArrayWithLen(inputArray: cMessageIds, len: count)
         } else {
-            ids = DcUtils.copyAndFreeArrayWithLen(inputArray: cMessageIds)
+            ids = DcUtils.copyAndFreeArray(inputArray: cMessageIds)
         }
         return ids
     }
