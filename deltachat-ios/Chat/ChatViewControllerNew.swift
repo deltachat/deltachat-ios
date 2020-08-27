@@ -440,17 +440,7 @@ class ChatViewControllerNew: UITableViewController {
         tableView.setContentOffset(newOffset, animated: false)
     }
 
-    @objc
-    private func loadMoreMessages() {
-        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.messageIds = self.getMessageIds()
-                self.reloadDataAndKeepOffset()
-            }
-        }
-    }
-
+    // TODO: is the delay of one second needed?
     @objc
     private func refreshMessages() {
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
@@ -522,21 +512,10 @@ class ChatViewControllerNew: UITableViewController {
     private var textDraft: String? {
         return dcContext.getDraft(chatId: chatId)
     }
-
-    private func getMessageIds(_ count: Int, from: Int? = nil) -> [DcMsg] {
-        let ids = dcContext.getMessageIds(chatId: chatId, count: count, from: from)
-        let markIds: [UInt32] = ids.map { UInt32($0) }
-        dcContext.markSeenMessages(messageIds: markIds, count: ids.count)
-
-        return ids.map {
-            DcMsg(id: $0)
-        }
-    }
     
     private func getMessageIds() -> [Int] {
         return dcContext.getMessageIds(chatId: chatId)
     }
-
 
     @objc private func setTextDraft() {
         if let text = self.messageInputBar.inputTextView.text {
