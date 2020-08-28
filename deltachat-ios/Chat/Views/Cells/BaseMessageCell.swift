@@ -113,16 +113,17 @@ public class BaseMessageCell: UITableViewCell {
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
     func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
-        topLabel.text = msg.fromContact.displayName
 
         if msg.isFromCurrentSender {
             self.leadingConstraintCurrentSender?.isActive = true
             self.trailingConstraintCurrentSender?.isActive = true
+            topLabel.text = nil
             bottomSpacerConstraint?.isActive = true
 
         } else {
             self.leadingConstraint?.isActive = true
             self.trailingConstraint?.isActive = true
+            topLabel.text = msg.fromContact.displayName
             bottomSpacerConstraint?.isActive = false
 
         }
