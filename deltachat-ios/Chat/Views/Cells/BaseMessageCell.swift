@@ -45,10 +45,16 @@ public class BaseMessageCell: UITableViewCell {
         return view
     }()
 
+    var bottomSpacerConstraint: NSLayoutConstraint?
     lazy var bottomContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [bottomLabel])
+        let stretchingView = UIView()
+        bottomSpacerConstraint = stretchingView.constraintWidthTo(10000, priority: .defaultLow)
+        stretchingView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        stretchingView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        let view = UIStackView(arrangedSubviews: [stretchingView, bottomLabel])
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal
+        view.distribution = .fill
         return view
     }()
 
@@ -56,6 +62,8 @@ public class BaseMessageCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(for: .caption1, weight: .regular)
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return label
     }()
 
@@ -103,7 +111,6 @@ public class BaseMessageCell: UITableViewCell {
         self.trailingConstraintCurrentSender = contentContainer.constraintAlignTrailingTo(contentView, paddingTrailing: BMC.defaultPadding)
     }
 
-
     // update classes inheriting BaseMessageCell first before calling super.update(...)
     func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
         topLabel.text = msg.fromContact.displayName
@@ -111,9 +118,13 @@ public class BaseMessageCell: UITableViewCell {
         if msg.isFromCurrentSender {
             self.leadingConstraintCurrentSender?.isActive = true
             self.trailingConstraintCurrentSender?.isActive = true
+            bottomSpacerConstraint?.isActive = true
+
         } else {
             self.leadingConstraint?.isActive = true
             self.trailingConstraint?.isActive = true
+            bottomSpacerConstraint?.isActive = false
+
         }
 
         if isAvatarVisible {
