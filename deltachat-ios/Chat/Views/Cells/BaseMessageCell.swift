@@ -105,26 +105,30 @@ public class BaseMessageCell: UITableViewCell {
             messageBackgroundContainer.constraintAlignTrailingTo(contentContainer, paddingTrailing: BMC.containerPadding)
         ])
 
-        self.leadingConstraint = contentContainer.constraintToTrailingOf(avatarView)
-        self.trailingConstraint = contentContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: BMC.defaultPadding)
-        self.leadingConstraintCurrentSender = contentContainer.constraintAlignLeadingMaxTo(contentView, paddingLeading: 36)
-        self.trailingConstraintCurrentSender = contentContainer.constraintAlignTrailingTo(contentView, paddingTrailing: BMC.defaultPadding)
+        leadingConstraint = contentContainer.constraintToTrailingOf(avatarView)
+        trailingConstraint = contentContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: BMC.defaultPadding)
+        leadingConstraintCurrentSender = contentContainer.constraintAlignLeadingMaxTo(contentView, paddingLeading: 36)
+        trailingConstraintCurrentSender = contentContainer.constraintAlignTrailingTo(contentView, paddingTrailing: BMC.defaultPadding)
     }
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
     func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
 
         if msg.isFromCurrentSender {
-            self.leadingConstraintCurrentSender?.isActive = true
-            self.trailingConstraintCurrentSender?.isActive = true
             topLabel.text = nil
+            leadingConstraintCurrentSender?.isActive = true
+            trailingConstraintCurrentSender?.isActive = true
             bottomSpacerConstraint?.isActive = true
+            leadingConstraint?.isActive = false
+            trailingConstraint?.isActive = false
 
         } else {
-            self.leadingConstraint?.isActive = true
-            self.trailingConstraint?.isActive = true
             topLabel.text = msg.fromContact.displayName
+            leadingConstraint?.isActive = true
+            trailingConstraint?.isActive = true
             bottomSpacerConstraint?.isActive = false
+            leadingConstraintCurrentSender?.isActive = false
+            trailingConstraintCurrentSender?.isActive = false
 
         }
 
@@ -228,9 +232,5 @@ public class BaseMessageCell: UITableViewCell {
         messageBackgroundContainer.prepareForReuse()
         bottomLabel.text = nil
         bottomLabel.attributedText = nil
-        leadingConstraint?.isActive = false
-        trailingConstraint?.isActive = false
-        leadingConstraintCurrentSender?.isActive = false
-        trailingConstraintCurrentSender?.isActive = false
     }
 }
