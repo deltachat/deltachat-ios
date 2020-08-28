@@ -135,7 +135,10 @@ public class BaseMessageCell: UITableViewCell {
             if let profileImage = msg.fromContact.profileImage {
                 avatarView.setImage(profileImage)
             }
+        } else {
+            avatarView.isHidden = true
         }
+
         messageBackgroundContainer.update(rectCorners: messageStyle,
                                           color: msg.isFromCurrentSender ? DcColors.messagePrimaryColor : DcColors.messageSecondaryColor)
 
@@ -222,7 +225,6 @@ public class BaseMessageCell: UITableViewCell {
         topLabel.text = nil
         topLabel.attributedText = nil
         avatarView.reset()
-        avatarView.isHidden = true
         messageBackgroundContainer.prepareForReuse()
         bottomLabel.text = nil
         bottomLabel.attributedText = nil
