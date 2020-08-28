@@ -173,11 +173,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }()
 
     lazy var imapSecurityCell: UITableViewCell = {
-        let text = "\(dcContext.getImapSecurity())"
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_imap_security")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = "\(dcContext.getImapSecurity())"
         cell.selectionStyle = .none
         cell.tag = tagImapSecurityCell
         return cell
@@ -234,10 +232,8 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }()
 
     lazy var smtpSecurityCell: UITableViewCell = {
-        let security = "\(dcContext.getSmtpSecurity())"
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_smtp_security")
-        cell.detailTextLabel?.text = security
         cell.tag = tagSmtpSecurityCell
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
@@ -417,14 +413,13 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         } else if sections[section] == advancedSection {
             if advancedSectionShowing && dcContext.isConfigured() {
                 var info = String.localized("used_settings") + "\n"
-                let serverFlags = Int(dcContext.getConfig("configured_server_flags") ?? "") ?? 0
                 info += "IMAP "
-                info += SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: serverFlags&0x700) + " "
+                info += SecurityConverter.getSocketName(value: Int32(dcContext.getConfigInt("mail_security"))) + " "
                 info += (dcContext.getConfig("configured_mail_user") ?? "unset") + ":***@"
                 info += (dcContext.getConfig("configured_mail_server") ?? "unset") + ":"
                 info += (dcContext.getConfig("configured_mail_port") ?? "unset") + "\n"
                 info += "SMTP "
-                info += SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: serverFlags&0x70000) + " "
+                info += SecurityConverter.getSocketName(value: Int32(dcContext.getConfigInt("send_security"))) + " "
                 info += (dcContext.getConfig("configured_send_user") ?? "unset") + ":***@"
                 info += (dcContext.getConfig("configured_send_server") ?? "unset") +  ":"
                 info += (dcContext.getConfig("configured_send_port") ?? "unset") + "\n\n"
@@ -776,8 +771,8 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     private func initSelectionCells() {
-        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .SMTPSecurity, hex: dcContext.getSmtpSecurity())
-        imapSecurityCell.detailTextLabel?.text = SecurityConverter.convertHexToString(type: .IMAPSecurity, hex: dcContext.getImapSecurity())
+        imapSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(dcContext.getConfigInt("mail_security")))
+        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(dcContext.getConfigInt("send_security")))
         certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: dcContext.certificateChecks)
     }
 
