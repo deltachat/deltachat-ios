@@ -113,7 +113,6 @@ public class BaseMessageCell: UITableViewCell {
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
     func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
-
         if msg.isFromCurrentSender {
             topLabel.text = nil
             leadingConstraintCurrentSender?.isActive = true
@@ -232,5 +231,18 @@ public class BaseMessageCell: UITableViewCell {
         messageBackgroundContainer.prepareForReuse()
         bottomLabel.text = nil
         bottomLabel.attributedText = nil
+    }
+
+    // MARK: - Context menu
+    @objc func messageInfo(sender: AnyObject?) {
+
+    }
+
+    @objc func messageDelete(sender: AnyObject?) {
+
+    }
+
+    @objc func messageForward(sender: AnyObject?) {
+
     }
 }
