@@ -141,6 +141,12 @@ class ChatViewControllerNew: UITableViewController {
                                        object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        UIMenuController.shared.menuItems = [
+            UIMenuItem(title: String.localized("info"), action: #selector(BaseMessageCell.messageInfo)),
+            UIMenuItem(title: String.localized("delete"), action: #selector(BaseMessageCell.messageDelete)),
+            UIMenuItem(title: String.localized("forward"), action: #selector(BaseMessageCell.messageForward))
+        ]
+        UIMenuController.shared.update()
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -193,8 +199,6 @@ class ChatViewControllerNew: UITableViewController {
         if showCustomNavBar {
             updateTitle(chat: dcContext.getChat(chatId: chatId))
         }
-
-        configureMessageMenu()
 
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
@@ -541,18 +545,6 @@ class ChatViewControllerNew: UITableViewController {
         if let text = self.messageInputBar.inputTextView.text {
             dcContext.setDraft(chatId: chatId, draftText: text)
         }
-    }
-
-    private func configureMessageMenu() {
-        var menuItems: [UIMenuItem]
-
-        menuItems = [
-            UIMenuItem(title: String.localized("info"), action: #selector(MessageCollectionViewCell.messageInfo(_:))),
-            UIMenuItem(title: String.localized("delete"), action: #selector(MessageCollectionViewCell.messageDelete(_:))),
-            UIMenuItem(title: String.localized("forward"), action: #selector(MessageCollectionViewCell.messageForward(_:)))
-        ]
-
-        UIMenuController.shared.menuItems = menuItems
     }
 
     private func configureMessageInputBar() {
@@ -912,6 +904,33 @@ class ChatViewControllerNew: UITableViewController {
         } else if let data = try? Data(contentsOf: url as URL),
             let image = UIImage(data: data) {
             sendImage(image)
+        }
+    }
+
+    // MARK: - Context menu
+    override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        return action == #selector(UIResponderStandardEditActions.copy(_:))
+            || action == #selector(BaseMessageCell.messageInfo)
+            || action == #selector(BaseMessageCell.messageDelete)
+            || action == #selector(BaseMessageCell.messageForward)
+    }
+
+    override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+        // handle standard actions here, but custom actions never trigger this. it still needs to be present for the menu to display, though.
+        if action == #selector(copy(_:)) {
+            let id = messageIds[indexPath.row]
+            let msg = DcMsg(id: id)
+
+            let pasteboard = UIPasteboard.general
+            if msg.type == DC_MSG_TEXT {
+                pasteboard.string = msg.text
+            } else {
+                pasteboard.string = msg.summary(chars: 10000000)
+            }
         }
     }
 }
