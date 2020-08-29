@@ -25,19 +25,6 @@
 import UIKit
 import AVFoundation
 
-/// The `PlayerState` indicates the current audio controller state
-public enum PlayerState {
-
-    /// The audio controller is currently playing a sound
-    case playing
-
-    /// The audio controller is currently in pause state
-    case pause
-
-    /// The audio controller is not playing any sound and audioPlayer is nil
-    case stopped
-}
-
 /// The `BasicAudioController` update UI for current audio cell that is playing a sound
 /// and also creates and manage an `AVAudioPlayer` states, play, pause and stop.
 open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
