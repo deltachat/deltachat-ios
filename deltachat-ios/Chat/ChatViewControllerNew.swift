@@ -856,23 +856,11 @@ class ChatViewControllerNew: UITableViewController {
     func insertMessage(_ message: DcMsg) {
         dcContext.markSeenMessages(messageIds: [UInt32(message.id)])
         messageIds.append(message.id)
-        //messageList.append(message)
         emptyStateView.isHidden = true
-        /// TODO:  Reload last section to update header/footer labels and insert a new one
-        /*messagesCollectionView.performBatchUpdates({
-         messagesCollectionView.insertSections([messageList.count - 1])
-         if messageList.count >= 2 {
-         messagesCollectionView.reloadSections([messageList.count - 2])
-         }
-         }, completion: { [weak self] _ in
-         if self?.isLastSectionVisible() == true {
-         self?.messagesCollectionView.scrollToBottom(animated: true)
-         }
-         })*/
 
         let wasLastSectionVisible = isLastSectionVisible()
         tableView.reloadData()
-        if wasLastSectionVisible {
+        if wasLastSectionVisible || message.isFromCurrentSender {
             scrollToBottom(animated: true)
         }
     }
