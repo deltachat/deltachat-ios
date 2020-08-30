@@ -121,7 +121,6 @@ class ChatViewControllerNew: UITableViewController {
         tableView.register(NewAudioMessageCell.self, forCellReuseIdentifier: "audio")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
-        tableView.allowsSelection = false
         super.viewDidLoad()
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
@@ -329,7 +328,22 @@ class ChatViewControllerNew: UITableViewController {
         cell.update(msg: message,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     isAvatarVisible: configureAvatarVisibility(for: message, at: indexPath))
+        cell.selectionStyle = .none
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let messageId = messageIds[indexPath.row]
+        let message = DcMsg(id: messageId)
+        if let url = message.fileURL {
+            // find all other messages with same message type
+            let previousUrls: [URL] = message.previousMediaURLs()
+            let nextUrls: [URL] = message.nextMediaURLs()
+
+            // these are the files user will be able to swipe trough
+            let mediaUrls: [URL] = previousUrls + [url] + nextUrls
+            showMediaGallery(currentIndex: previousUrls.count, mediaUrls: mediaUrls)
+        }
     }
 
     func configureAvatarVisibility(for message: DcMsg, at indexPath: IndexPath) -> Bool {
