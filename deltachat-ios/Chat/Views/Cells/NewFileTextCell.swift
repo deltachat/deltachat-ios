@@ -12,6 +12,7 @@ class NewFileTextCell: BaseMessageCell {
 
     private var imageWidthConstraint: NSLayoutConstraint?
     private var imageHeightConstraint: NSLayoutConstraint?
+    private var spacer: NSLayoutConstraint?
 
     private var horizontalLayout: Bool {
         set {
@@ -69,7 +70,6 @@ class NewFileTextCell: BaseMessageCell {
         return subtitle
     }()
 
-
     lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -81,10 +81,14 @@ class NewFileTextCell: BaseMessageCell {
 
     override func setupSubviews() {
         super.setupSubviews()
+        let spacerView = UIView()
+        spacer = spacerView.constraintHeightTo(8, priority: .defaultHigh)
+        spacer?.isActive = true
         mainContentView.addArrangedSubview(fileStackView)
+        mainContentView.addArrangedSubview(spacerView)
         mainContentView.addArrangedSubview(messageLabel)
         imageWidthConstraint = fileImageView.constraintWidthTo(50)
-        imageHeightConstraint = fileImageView.constraintHeightTo(50 * 1.3)
+        imageHeightConstraint = fileImageView.constraintHeightTo(50 * 1.3, priority: .defaultLow)
         horizontalLayout = true
     }
 
@@ -95,7 +99,12 @@ class NewFileTextCell: BaseMessageCell {
     }
 
     override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
-        messageLabel.text = msg.text
+        if let text = msg.text, !text.isEmpty {
+            messageLabel.text = text
+            spacer?.isActive = true
+        } else {
+            spacer?.isActive = false
+        }
         if let url = msg.fileURL {
             generateThumbnailFor(url: url, placeholder: defaultImage)
         } else {
