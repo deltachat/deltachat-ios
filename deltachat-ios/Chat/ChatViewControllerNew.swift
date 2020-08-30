@@ -166,7 +166,7 @@ class ChatViewControllerNew: UITableViewController {
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
-                self.reloadDataAndKeepOffset()
+                self.tableView.reloadData()
             }
         }
     }
@@ -300,7 +300,7 @@ class ChatViewControllerNew: UITableViewController {
             completion: {[weak self] _ in
                 guard let self = self else { return }
                 self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
-                self.reloadDataAndKeepOffset()
+                self.tableView.reloadData()
                 if lastSectionVisibleBeforeTransition {
                     self.scrollToBottom(animated: false)
                 }
@@ -460,23 +460,6 @@ class ChatViewControllerNew: UITableViewController {
         navigationItem.rightBarButtonItems = rightBarButtonItems
     }
 
-    public func reloadDataAndKeepOffset() {
-        // stop scrolling
-        tableView.setContentOffset(tableView.contentOffset, animated: false)
-
-        // calculate the offset and reloadData
-        let beforeContentSize = tableView.contentSize
-        tableView.reloadData()
-        tableView.layoutIfNeeded()
-        let afterContentSize = tableView.contentSize
-
-        // reset the contentOffset after data is updated
-        let newOffset = CGPoint(
-            x: tableView.contentOffset.x + (afterContentSize.width - beforeContentSize.width),
-            y: tableView.contentOffset.y + (afterContentSize.height - beforeContentSize.height))
-        tableView.setContentOffset(newOffset, animated: false)
-    }
-
     // TODO: is the delay of one second needed?
     @objc
     private func refreshMessages() {
@@ -484,7 +467,7 @@ class ChatViewControllerNew: UITableViewController {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
-                self.reloadDataAndKeepOffset()
+                self.tableView.reloadData()
                 if self.isLastSectionVisible() {
                     self.scrollToBottom(animated: true)
                 }
