@@ -75,7 +75,7 @@ class ChatViewControllerNew: UITableViewController {
     }()
 
     /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and udpate audio cell UI accordingly.
-    //open lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
+    private lazy var audioController = NewAudioController(dcContext: dcContext, chatId: chatId)
 
     private var disableWriting: Bool
     private var showNamesAboveMessage: Bool
@@ -118,16 +118,15 @@ class ChatViewControllerNew: UITableViewController {
         tableView.register(NewImageTextCell.self, forCellReuseIdentifier: "image")
         tableView.register(NewFileTextCell.self, forCellReuseIdentifier: "file")
         tableView.register(NewInfoMessageCell.self, forCellReuseIdentifier: "info")
+        tableView.register(NewAudioMessageCell.self, forCellReuseIdentifier: "audio")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
-        //messagesCollectionView.register(InfoMessageCell.self)
         super.viewDidLoad()
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
             return
         }
-        //configureMessageCollectionView()
         configureEmptyStateView()
 
         if !disableWriting {
@@ -267,7 +266,7 @@ class ChatViewControllerNew: UITableViewController {
         if let ephemeralTimerModifiedObserver = self.ephemeralTimerModifiedObserver {
             nc.removeObserver(ephemeralTimerModifiedObserver)
         }
-        //audioController.stopAnyOngoingPlaying()
+        audioController.stopAnyOngoingPlaying()
         stopTimer()
     }
 
@@ -318,6 +317,11 @@ class ChatViewControllerNew: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? NewImageTextCell ?? NewImageTextCell()
         } else if message.type == DC_MSG_FILE {
             cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? NewFileTextCell ?? NewFileTextCell()
+        } else if message.type == DC_MSG_AUDIO ||  message.type == DC_MSG_VOICE {
+            let audioMessageCell: NewAudioMessageCell = tableView.dequeueReusableCell(withIdentifier: "audio",
+                                                                                      for: indexPath) as? NewAudioMessageCell ?? NewAudioMessageCell()
+            audioController.update(audioMessageCell, with: message.id)
+            cell = audioMessageCell
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? NewTextMessageCell ?? NewTextMessageCell()
         }
