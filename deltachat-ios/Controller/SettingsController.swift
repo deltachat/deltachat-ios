@@ -399,21 +399,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             }
         }))
 
-        let ephemeralMessages = UserDefaults.standard.bool(forKey: "ephemeral_messages")
-        let ephemeralTitle = ephemeralMessages ?
-            "Disable disappearing messages options" : "Enable disappearing messages options"
-        alert.addAction(UIAlertAction(title: ephemeralTitle, style: .default, handler: { [weak self] _ in
-            UserDefaults.standard.set(!ephemeralMessages, forKey: "ephemeral_messages")
-            if !ephemeralMessages {
-                let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Disappearing messages\"",
-                                              message: "You will find a corresponding option in each chat profile now.\n\n"
-                                                + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-                self?.navigationController?.present(alert, animated: true, completion: nil)
-            }
-        }))
-
         let logAction = UIAlertAction(title: String.localized("pref_view_log"), style: .default, handler: { [weak self] _ in
             self?.showDebugToolkit()
         })
