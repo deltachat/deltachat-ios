@@ -289,7 +289,7 @@ class ChatViewControllerNew: UITableViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let lastSectionVisibleBeforeTransition = self.isLastSectionVisible()
+        let lastSectionVisibleBeforeTransition = self.isLastRowVisible()
         coordinator.animate(
             alongsideTransition: { [weak self] _ in
                 guard let self = self else { return }
@@ -468,7 +468,7 @@ class ChatViewControllerNew: UITableViewController {
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
                 self.tableView.reloadData()
-                if self.isLastSectionVisible() {
+                if self.isLastRowVisible() {
                     self.scrollToBottom(animated: true)
                 }
                 self.showEmptyStateView(self.messageIds.isEmpty)
@@ -488,7 +488,7 @@ class ChatViewControllerNew: UITableViewController {
         }
     }
 
-    func isLastSectionVisible() -> Bool {
+    func isLastRowVisible() -> Bool {
         guard !messageIds.isEmpty else { return false }
 
         let lastIndexPath = IndexPath(item: messageIds.count - 1, section: 0)
@@ -842,7 +842,7 @@ class ChatViewControllerNew: UITableViewController {
              self?.messagesCollectionView.scrollToBottom(animated: true)
              }
              })*/
-            let wasLastSectionVisible = self.isLastSectionVisible()
+            let wasLastSectionVisible = self.isLastRowVisible()
             tableView.reloadData()
             if wasLastSectionVisible {
                 self.scrollToBottom(animated: true)
@@ -860,7 +860,7 @@ class ChatViewControllerNew: UITableViewController {
         messageIds.append(message.id)
         emptyStateView.isHidden = true
 
-        let wasLastSectionVisible = isLastSectionVisible()
+        let wasLastSectionVisible = isLastRowVisible()
         tableView.reloadData()
         if wasLastSectionVisible || message.isFromCurrentSender {
             scrollToBottom(animated: true)
