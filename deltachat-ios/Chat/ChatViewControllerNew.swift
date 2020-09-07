@@ -823,25 +823,8 @@ class ChatViewControllerNew: UITableViewController {
     }
 
     func updateMessage(_ messageId: Int) {
-        if let index = messageIds.firstIndex(where: { $0 == messageId }) {
+        if messageIds.firstIndex(where: { $0 == messageId }) != nil {
             dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
-
-            //messageList[index] = DcMsg(id: messageId)
-            /// TODO: Reload section to update header/footer labels
-            /*messagesCollectionView.performBatchUpdates({ [weak self] in
-             guard let self = self else { return }
-             self.messagesCollectionView.reloadSections([index])
-             if index > 0 {
-             self.messagesCollectionView.reloadSections([index - 1])
-             }
-             if index < messageList.count - 1 {
-             self.messagesCollectionView.reloadSections([index + 1])
-             }
-             }, completion: { [weak self] _ in
-             if self?.isLastSectionVisible() == true {
-             self?.messagesCollectionView.scrollToBottom(animated: true)
-             }
-             })*/
             let wasLastSectionVisible = self.isLastRowVisible()
             tableView.reloadData()
             if wasLastSectionVisible {
@@ -931,8 +914,6 @@ class ChatViewControllerNew: UITableViewController {
             sendImage(image)
         }
     }
-
-
 }
 
 /*extension ChatViewControllerNew: MediaSendHandler {
