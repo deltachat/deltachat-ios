@@ -319,6 +319,7 @@ class ChatViewControllerNew: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        UIMenuController.shared.setMenuVisible(false, animated: true)
 
         let id = messageIds[indexPath.row]
         let message = DcMsg(id: id)
@@ -362,6 +363,7 @@ class ChatViewControllerNew: UITableViewController {
             let mediaUrls: [URL] = previousUrls + [url] + nextUrls
             showMediaGallery(currentIndex: previousUrls.count, mediaUrls: mediaUrls)
         }
+        UIMenuController.shared.setMenuVisible(false, animated: true)
     }
 
     func configureAvatarVisibility(for message: DcMsg, at indexPath: IndexPath) -> Bool {
