@@ -139,6 +139,24 @@ class ChatViewControllerNew: UITableViewController {
                                        selector: #selector(setTextDraft),
                                        name: UIApplication.willResignActiveNotification,
                                        object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 && tableView.inputAccessoryView?.frame.height ?? 0 < keyboardSize.height {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
     }
 
     private func startTimer() {
@@ -148,7 +166,7 @@ class ChatViewControllerNew: UITableViewController {
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
-                self.reloadDataAndKeepOffset()
+                self.tableView.reloadData()
             }
         }
     }
@@ -271,7 +289,7 @@ class ChatViewControllerNew: UITableViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let lastSectionVisibleBeforeTransition = self.isLastSectionVisible()
+        let lastSectionVisibleBeforeTransition = self.isLastRowVisible()
         coordinator.animate(
             alongsideTransition: { [weak self] _ in
                 guard let self = self else { return }
@@ -282,7 +300,7 @@ class ChatViewControllerNew: UITableViewController {
             completion: {[weak self] _ in
                 guard let self = self else { return }
                 self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
-                self.reloadDataAndKeepOffset()
+                self.tableView.reloadData()
                 if lastSectionVisibleBeforeTransition {
                     self.scrollToBottom(animated: false)
                 }
@@ -442,23 +460,6 @@ class ChatViewControllerNew: UITableViewController {
         navigationItem.rightBarButtonItems = rightBarButtonItems
     }
 
-    public func reloadDataAndKeepOffset() {
-        // stop scrolling
-        tableView.setContentOffset(tableView.contentOffset, animated: false)
-
-        // calculate the offset and reloadData
-        let beforeContentSize = tableView.contentSize
-        tableView.reloadData()
-        tableView.layoutIfNeeded()
-        let afterContentSize = tableView.contentSize
-
-        // reset the contentOffset after data is updated
-        let newOffset = CGPoint(
-            x: tableView.contentOffset.x + (afterContentSize.width - beforeContentSize.width),
-            y: tableView.contentOffset.y + (afterContentSize.height - beforeContentSize.height))
-        tableView.setContentOffset(newOffset, animated: false)
-    }
-
     // TODO: is the delay of one second needed?
     @objc
     private func refreshMessages() {
@@ -466,8 +467,8 @@ class ChatViewControllerNew: UITableViewController {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
-                self.reloadDataAndKeepOffset()
-                if self.isLastSectionVisible() {
+                self.tableView.reloadData()
+                if self.isLastRowVisible() {
                     self.scrollToBottom(animated: true)
                 }
                 self.showEmptyStateView(self.messageIds.isEmpty)
@@ -487,7 +488,7 @@ class ChatViewControllerNew: UITableViewController {
         }
     }
 
-    func isLastSectionVisible() -> Bool {
+    func isLastRowVisible() -> Bool {
         guard !messageIds.isEmpty else { return false }
 
         let lastIndexPath = IndexPath(item: messageIds.count - 1, section: 0)
@@ -822,26 +823,9 @@ class ChatViewControllerNew: UITableViewController {
     }
 
     func updateMessage(_ messageId: Int) {
-        if let index = messageIds.firstIndex(where: { $0 == messageId }) {
+        if messageIds.firstIndex(where: { $0 == messageId }) != nil {
             dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
-
-            //messageList[index] = DcMsg(id: messageId)
-            /// TODO: Reload section to update header/footer labels
-            /*messagesCollectionView.performBatchUpdates({ [weak self] in
-             guard let self = self else { return }
-             self.messagesCollectionView.reloadSections([index])
-             if index > 0 {
-             self.messagesCollectionView.reloadSections([index - 1])
-             }
-             if index < messageList.count - 1 {
-             self.messagesCollectionView.reloadSections([index + 1])
-             }
-             }, completion: { [weak self] _ in
-             if self?.isLastSectionVisible() == true {
-             self?.messagesCollectionView.scrollToBottom(animated: true)
-             }
-             })*/
-            let wasLastSectionVisible = self.isLastSectionVisible()
+            let wasLastSectionVisible = self.isLastRowVisible()
             tableView.reloadData()
             if wasLastSectionVisible {
                 self.scrollToBottom(animated: true)
@@ -859,7 +843,7 @@ class ChatViewControllerNew: UITableViewController {
         messageIds.append(message.id)
         emptyStateView.isHidden = true
 
-        let wasLastSectionVisible = isLastSectionVisible()
+        let wasLastSectionVisible = isLastRowVisible()
         tableView.reloadData()
         if wasLastSectionVisible || message.isFromCurrentSender {
             scrollToBottom(animated: true)
@@ -930,8 +914,6 @@ class ChatViewControllerNew: UITableViewController {
             sendImage(image)
         }
     }
-
-
 }
 
 /*extension ChatViewControllerNew: MediaSendHandler {
