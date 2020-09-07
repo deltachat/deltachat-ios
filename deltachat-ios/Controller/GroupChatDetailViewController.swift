@@ -24,11 +24,7 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private lazy var chatOptions: [ChatOption] = {
-        var options: [ChatOption] = [.gallery, .documents, .muteChat]
-        if UserDefaults.standard.bool(forKey: "ephemeral_messages") || dcContext.getChatEphemeralTimer(chatId: chatId) > 0 {
-            options.insert(.ephemeralMessages, at: 2)
-        }
-        return options
+        return [.gallery, .documents, .ephemeralMessages, .muteChat]
     }()
 
     private lazy var chatActions: [ChatAction] = {
