@@ -940,14 +940,12 @@ class ChatViewControllerNew: UITableViewController {
             }
         case #selector(BaseMessageCell.messageInfo(_:)):
             let msg = DcMsg(id: messageIds[indexPath.row])
-            logger.info("message: View info \(msg.messageId)")
             let msgViewController = MessageInfoViewController(dcContext: dcContext, message: msg)
             if let ctrl = navigationController {
                 ctrl.pushViewController(msgViewController, animated: true)
             }
         case #selector(BaseMessageCell.messageDelete(_:)):
             let msg = DcMsg(id: messageIds[indexPath.row])
-            logger.info("message: delete \(msg.messageId)")
             askToDeleteMessage(id: msg.id)
 
         case #selector(BaseMessageCell.messageForward(_:)):
