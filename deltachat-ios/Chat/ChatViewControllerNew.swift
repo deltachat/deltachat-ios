@@ -927,7 +927,8 @@ class ChatViewControllerNew: UITableViewController {
 
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
         // handle standard actions here, but custom actions never trigger this. it still needs to be present for the menu to display, though.
-        if action == #selector(copy(_:)) {
+        switch action {
+        case #selector(copy(_:)):
             let id = messageIds[indexPath.row]
             let msg = DcMsg(id: id)
 
@@ -937,6 +938,24 @@ class ChatViewControllerNew: UITableViewController {
             } else {
                 pasteboard.string = msg.summary(chars: 10000000)
             }
+        case #selector(BaseMessageCell.messageInfo(_:)):
+            let msg = DcMsg(id: messageIds[indexPath.row])
+            logger.info("message: View info \(msg.messageId)")
+            let msgViewController = MessageInfoViewController(dcContext: dcContext, message: msg)
+            if let ctrl = navigationController {
+                ctrl.pushViewController(msgViewController, animated: true)
+            }
+        case #selector(BaseMessageCell.messageDelete(_:)):
+            let msg = DcMsg(id: messageIds[indexPath.row])
+            logger.info("message: delete \(msg.messageId)")
+            askToDeleteMessage(id: msg.id)
+
+        case #selector(BaseMessageCell.messageForward(_:)):
+            let msg = DcMsg(id: messageIds[indexPath.row])
+            RelayHelper.sharedInstance.setForwardMessage(messageId: msg.id)
+            navigationController?.popViewController(animated: true)
+        default:
+            break
         }
     }
 }
