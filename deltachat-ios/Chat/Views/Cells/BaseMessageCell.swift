@@ -234,15 +234,25 @@ public class BaseMessageCell: UITableViewCell {
     }
 
     // MARK: - Context menu
-    @objc func messageInfo(sender: AnyObject?) {
-
+    @objc func messageInfo(_ sender: Any?) {
+        self.performAction(#selector(BaseMessageCell.messageInfo(_:)), with: sender)
     }
 
-    @objc func messageDelete(sender: AnyObject?) {
-
+    @objc func messageDelete(_ sender: Any?) {
+        self.performAction(#selector(BaseMessageCell.messageDelete(_:)), with: sender)
     }
 
-    @objc func messageForward(sender: AnyObject?) {
+    @objc func messageForward(_ sender: Any?) {
+        self.performAction(#selector(BaseMessageCell.messageForward(_:)), with: sender)
+    }
 
+    func performAction(_ action: Selector, with sender: Any?) {
+        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            // Trigger action in tableView delegate (UITableViewController)
+            tableView.delegate?.tableView?(tableView,
+                                           performAction: action,
+                                           forRowAt: indexPath,
+                                           withSender: sender)
+        }
     }
 }
