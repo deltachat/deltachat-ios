@@ -912,15 +912,10 @@ class ChatViewControllerNew: UITableViewController {
             UIMenuItem(title: String.localized("forward"), action: #selector(BaseMessageCell.messageForward))
         ]
         UIMenuController.shared.update()
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewControllerNew.menuWillShow),
-                                               name: UIMenuController.willShowMenuNotification, object: nil)
     }
 
     override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
-    @objc func menuWillShow(notification: NSNotification) {
+        return !DcMsg(id: messageIds[indexPath.row]).isInfo 
     }
 
     override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
