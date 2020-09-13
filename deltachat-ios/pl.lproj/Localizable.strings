@@ -4,6 +4,7 @@
 "cancel" = "Anuluj";
 "yes" = "Tak";
 "no" = "Nie";
+"select" = "Zaznacz";
 "on" = "Włączone";
 "off" = "Wyłączone";
 "def" = "Domyślne";
@@ -12,7 +13,10 @@
 "automatic" = "Automatyczne";
 "strict" = "Dokładne";
 "open" = "Otwórz";
+"join" = "Dołącz";
+"rejoin" = "Dołącz ponownie";
 "delete" = "Usuń";
+"info" = "Informacje";
 "emoji" = "Emoji";
 "attachment" = "Załącznik";
 "back" = "Wróć";
@@ -21,6 +25,7 @@
 "archive" = "Archiwizuj";
 "unarchive" = "Przywróć z archiwum";
 "ephemeral_messages" = "Znikające wiadomości";
+"ephemeral_messages_hint" = "Te ustawienia dotyczą wszystkich uczestników korzystających z Delta Chat. Mogą jednak kopiować, zapisywać i przekazywać wiadomości lub korzystać z innych klientów poczty e-mail.";
 "save" = "Zapisz";
 "chat" = "Czat";
 "media" = "Multimedia";
@@ -50,8 +55,6 @@
 "now" = "Teraz";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Uwaga";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d min.";
 "today" = "Dzisiaj";
 "yesterday" = "Wczoraj";
 "this_week" = "Ten tydzień";
@@ -76,7 +79,9 @@
 "camera" = "Kamera";
 "location" = "Lokalizacja";
 "gallery" = "Galeria";
+"images_and_videos" = "Obrazy i wideo";
 "file" = "Plik";
+"files" = "Pliki";
 "unknown" = "Nieznany";
 
 "green" = "Zielony";
@@ -140,8 +145,6 @@
 "menu_select_all" = "Zaznacz wszystko";
 "menu_expand" = "Rozwiń";
 "menu_edit_name" = "Edytuj nazwę";
-"menu_edit_group_name" = "Edytuj nazwę grupy";
-"menu_edit_group_image" = "Edytuj obraz grupy";
 "menu_settings" = "Ustawienia";
 "menu_advanced" = "Zaawansowane";
 "menu_deaddrop" = "Prośba o kontakt";
@@ -180,9 +183,25 @@
 
 "file_saved_to" = "Plik zapisany w „%1$@";
 
+"videochat" = "Czat wideo";
+"videochat_invite_user_to_videochat" = "Zaprosić %1$@ do czatu wideo?";
+"videochat_invite_user_hint" = "Wymaga to kompatybilnej aplikacji lub kompatybilnej przeglądarki po obu stronach.";
+"videochat_contact_invited_hint" = "Użytkownik %1$@ zaprosił na czat wideo.";
+"videochat_you_invited_hint" = "Zaprosiłeś do czatu wideo.";
+"videochat_will_open_in_your_browser" = "Ten czat wideo otworzy się w twojej przeglądarce.";
+"videochat_tap_to_join" = "Dotknij, aby dołączyć";
+"videochat_tap_to_open" = "Dotknij, aby otworzyć";
+"videochat_instance" = "Instancja czatu wideo";
+"videochat_instance_placeholder" = "Twoja instancja czatu wideo";
+"videochat_instance_explain" = "Jeśli zdefiniowano instancję czatu wideo, możesz rozpocząć rozmowę wideo z każdego czatu indywidualnego. Czaty wideo wymagają kompatybilnej aplikacji lub kompatybilnej przeglądarki po obu stronach.\n\nPrzykłady: https://meet.jit.si/$ROOM lub basicwebrtc:https://your-server";
+"videochat_instance_from_qr" = "Czy użyć „%1$@”, aby zaprosić innych do czatów wideo?\n\nPo ustawieniu możesz rozpocząć czat wideo z każdego czatu indywidualnego. Spowoduje to zastąpienie poprzedniego ustawienia czatów wideo, jeśli takie istnieją.";
+"videochat_invitation" = "Zaproszenie do czatu wideo";
+"videochat_invitation_body" = "Masz zaproszenie do czatu wideo, naciśnij %1$@, aby dołączyć.";
+
 // get confirmations
 "ask_leave_group" = "Czy na pewno chcesz opuścić tą grupę?";
 "ask_forward" = "Przekazać wiadomości do użytkownika %1$@?";
+"ask_forward_multiple" = "Przekazać wiadomości do %1$d czatów?";
 "ask_export_attachment" = "Eksportować załącznik? Eksportowanie załączników umożliwi dostęp do nich wszystkim aplikacjom na urządzeniu.\n\nKontynuować?";
 "ask_block_contact" = "Zablokować ten kontakt? Nie będziesz już odbierać wiadomości od tego kontaktu.";
 "ask_unblock_contact" = "Odblokować ten kontakt? Ponownie będzie można odbierać wiadomości od tego kontaktu.";
@@ -266,7 +285,6 @@
 
 // welcome and login
 "welcome_intro1_message" = "Komunikator o największym zasięgu na świecie. Darmowy i bezpieczny.";
-"welcome_start_messaging" = "Uruchom komunikator";
 "login_title" = "Zaloguj się";
 "login_header" = "Zaloguj się na swój serwer";
 "login_explain" = "Zaloguj się przy użyciu istniejącego konta e-mail";
@@ -284,6 +302,8 @@
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Bezpieczeństwo SMTP";
 "login_auth_method" = "Metoda autoryzacji";
+// Translators: %1$s will be replaced by an email address
+"login_oauth2_checking_addr" = "Sprawdzanie %1$@";
 "login_info_oauth2_title" = "Kontynuuj w uproszczonej konfiguracji?";
 "login_info_oauth2_text" = "Wprowadzony adres e-mail obsługuje uproszczoną konfigurację (OAuth2.0).\n\nW następnym kroku pozwól, aby Delta Chat działał jako czat z aplikacją e-mail.\n\nNie ma serwerów Delta Chat, Twoje dane pozostają na Twoim urządzeniu!";
 "login_certificate_checks" = "Sprawdzanie certyfikatów";
@@ -298,21 +318,20 @@
 "login_error_cannot_login" = "Nie można się zalogować jako „%1$@. Sprawdź, czy adres e-mail i hasło są poprawne.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Odpowiedź od %1$@: %2$@\n\nNiektórzy dostawcy umieszczają w skrzynce odbiorczej dodatkowe informacje, które można sprawdzić np. na stronie internetowej. W przypadku wystąpienia problemów należy skonsultować się z dostawcą lub znajomymi.";
-
 // TLS certificate checks
-"accept_invalid_hostnames" = "Zaakceptuj nieprawidłowe nazwy hostów";
 "accept_invalid_certificates" = "Zaakceptuj nieprawidłowe certyfikaty";
-
 "used_settings" = "Użyte ustawienia:";
 "switch_account" = "Przełącz konto";
 "add_account" = "Dodaj konto";
 "delete_account" = "Usuń konto";
 "delete_account_ask" = "Czy na pewno chcesz usunąć dane swojego konta?";
 "switching_account" = "Przełączam konto…";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Przekaż do…";
+"share_multiple_attachments" = "Wysłać %1$d pliki do wybranych czatów?\n\nWysyłane pliki są niezmodyfikowane w oryginalnym rozmiarze, np. obrazy i filmy nie są przekodowywane.";
+"share_multiple_attachments_multiple_chats" = "Wysłać %1$d plik(i) do %2$d czatów?\n\nWysyłane pliki są niezmodyfikowane w oryginalnym rozmiarze, np. obrazy i filmy nie są przekodowywane.";
+"share_text_multiple_chats" = "Wysłać ten tekst do %1$d czatów?\n\n\"%2$@\"";
 "share_abort" = "Udostępnianie zostało przerwane z powodu brakujących uprawnień.";
 
 
@@ -323,9 +342,7 @@
 "pref_profile_photo" = "Zdjęcie profilowe";
 "pref_blocked_contacts" = "Zablokowane kontakty";
 "pref_profile_photo_remove_ask" = "Usunąć zdjęcie profilowe?";
-"pref_help_url" = "https://delta.chat/pl/help";
 "pref_password_and_account_settings" = "Hasło i konto";
-"pref_who_can_see_this_information" = "Kto może zobaczyć tę informację?";
 "pref_who_can_see_profile_explain" = "Twoje zdjęcie profilowe i nazwa będą wyświetlane wraz z wiadomościami podczas komunikacji z innymi użytkownikami. Już wysłanych informacji nie można skasować ani usunąć.";
 "pref_your_name" = "Twoja nazwa";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -338,7 +355,6 @@
 "pref_outgoing_balanced" = "Zrównoważona";
 "pref_outgoing_worse" = "Gorsza jakość, mały rozmiar";
 "pref_vibrate" = "Wibracje";
-"pref_chat_settings" = "Ustawienia czatu";
 "pref_change_secret" = "Zmień zabezpieczenia";
 "pref_change_secret_explain" = "Zmień swój pin / wzór / odcisk palca za pomocą ustawień systemowych";
 "pref_screen_security" = "Zabezpieczenie ekranu";
@@ -349,7 +365,6 @@
 "pref_notifications_show" = "Pokaż";
 "pref_notifications_priority" = "Priorytet";
 "pref_led_color" = "Kolor LED-a";
-"pref_led_pattern" = "Miganie diody LED";
 "pref_sound" = "Dźwięk";
 "pref_silent" = "Cichy";
 "pref_privacy" = "Prywatność";
@@ -371,7 +386,6 @@
 "pref_app_access" = "Dostęp do aplikacji";
 "pref_communication" = "Komunikacja";
 "pref_chats" = "Czaty";
-"pref_messages" = "Wiadomości";
 "pref_in_chat_sounds" = "Dźwięki w czacie";
 "pref_message_text_size" = "Rozmiar czcionki w wiadomości";
 "pref_view_log" = "Wyświetl dziennik";
@@ -385,7 +399,6 @@
 "pref_backup_export_start_button" = "Utwórz kopię";
 "pref_backup_written_to_x" = "Kopia zapasowa została pomyślnie zapisana do %1$@";
 "pref_managekeys_menu_title" = "Zarządzaj prywatnymi kluczami";
-"pref_managekeys_ask_for_storage_permission" = "Aby zaimportować/wyeksportować klucze Delta Chat musi mieć dostęp do twoich plików.";
 "pref_managekeys_export_secret_keys" = "Eksportuj prywatne klucze";
 "pref_managekeys_export_explain" = "Wyeksportować prywatne klucze do „%1$@”?";
 "pref_managekeys_import_secret_keys" = "Importuj prywatne klucze";
@@ -403,31 +416,30 @@
 "pref_send_copy_to_self" = "Wyślij kopię do siebie";
 "pref_auto_folder_moves" = "Automatyczne przenoszenie do folderu DeltaChat";
 "pref_auto_folder_moves_explain" = "Rozmowy na czacie są przenoszone, aby nie zaśmiecać folderu Skrzynka odbiorcza";
-"pref_email_interaction_title" = "Interakcja e-mail";
 "pref_show_emails" = "Pokaż klasyczne e-maile";
 "pref_show_emails_no" = "Nie, tylko czaty";
 "pref_show_emails_accepted_contacts" = "Dla zaakceptowanych kontaktów";
 "pref_show_emails_all" = "Wszystkie";
-"pref_empty_server_title" = "Usuwanie e-maili z serwera";
-"pref_empty_server_msg" = "Ta funkcja pomaga zwolnić miejsce na serwerze IMAP, usuwając WSZYSTKIE wiadomości e-mail, w tym wiadomości czat, w podanych folderach. Wiadomości na tym urządzeniu nie zostaną usunięte. Usunięcia nie można cofnąć!";
-"pref_empty_server_inbox" = "Usuń WSZYSTKIE wiadomości e-mail w folderze Skrzynka odbiorcza";
-"pref_empty_server_mvbox" = " Usuń WSZYSTKIE wiadomości e-mail w folderze DeltaChat";
-"pref_empty_server_do_button" = "Usuń e-maile";
 "pref_experimental_features" = "Funkcje eksperymentalne";
 "pref_on_demand_location_streaming" = "Przesyłanie strumieniowe lokalizacji na żądanie";
 "pref_background_default" = "Domyślne tło";
 "pref_background_default_color" = "Domyślny kolor";
 "pref_background_custom_image" = "Własny obraz";
 "pref_background_custom_color" = "Własny kolor";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Niezawodne połączenie w tle";
-"pref_reliable_service_explain" = "Wymaga stałego powiadomienia";
+// automatically delete message
+"delete_old_messages" = "Usuń stare wiadomości";
+// devs: autodel_title is deprecated, use delete_old_messages instead
 "autodel_title" = "Automatyczne usuwanie wiadomości";
-"autodel_title_short" = "Automatyczne usuwanie";
 "autodel_device_title" = "Usuwanie wiadomości z urządzenia";
 "autodel_server_title" = "Usuwanie wiadomości z serwera";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_device_ask" = "Czy chcesz teraz usunąć %1$d wiadomości i wszystkie nowo pobrane wiadomości w przyszłości „%2$@”?\n\n• Obejmuje to wszystkie multimedia\n\n• Wiadomości zostaną usunięte niezależnie od tego, czy były widoczne, czy nie\n\n• „Zapisane wiadomości” zostaną pominięte podczas lokalnego usuwania";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "Czy chcesz teraz usunąć %1$d wiadomości i wszystkie nowo pobrane wiadomości w przyszłości „%2$@”?\n\n• Obejmuje to wszystkie multimedia\n\n• Spowoduje to również usunięcie e-maili, na które ma wpływ opcja „Pokaż klasyczne e-maile”\n\n• „Zapisane wiadomości” zostaną pominięte podczas lokalnego usuwania";
 "autodel_confirm" = "Rozumiem, usuń te wszystkie wiadomości";
 "autodel_at_once" = "Od razu";
+"after_30_seconds" = "Po 30 sekundach";
+"after_1_minute" = "Po 1 minucie";
 "autodel_after_1_hour" = "Po 1 godzinie";
 "autodel_after_1_day" = "Po 1 dniu";
 "autodel_after_1_week" = "Po 1 tygodniu";
@@ -466,6 +478,19 @@
 "systemmsg_action_by_me" = "%1$@ przeze mnie.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ przez %2$@.";
+"systemmsg_unknown_sender_for_chat" = "Nieznany nadawca tego czatu. Więcej szczegółów znajdziesz w sekcji „Informacje”.";
+"systemmsg_subject_for_new_contact" = "Wiadomość od %1$@";
+"systemmsg_failed_sending_to" = "Nie udało się wysłać wiadomości do %1$@.";
+
+"systemmsg_ephemeral_timer_disabled" = "Wyłączono zegar znikających wiadomości.";
+"systemmsg_ephemeral_timer_enabled" = "Ustawiono zegar znikających wiadomości na %1$@ s.";
+"systemmsg_ephemeral_timer_minute" = "Ustawiono zegar znikających wiadomości na 1 minutę.";
+"systemmsg_ephemeral_timer_hour" = "Ustawiono zegar znikających wiadomości na 1 godzinę.";
+"systemmsg_ephemeral_timer_day" = "Ustawiono zegar znikających wiadomości na 1 dzień.";
+"systemmsg_ephemeral_timer_week" = "Ustawiono zegar znikających wiadomości na 1 tydzień.";
+"systemmsg_ephemeral_timer_four_weeks" = "Ustawiono zegar znikających wiadomości na 4 tygodnie.";
+
+
 // screen lock
 "screenlock_title" = "Blokada ekranu";
 "screenlock_explain" = "Blokuj dostęp za pomocą blokady ekranu systemu Android lub odcisku palca; aby uniknąć pojawienia się poprzedniej zawartości, włącz również opcję „Zabezpieczenia ekranu”";
@@ -504,11 +529,7 @@
 "contact_setup_changed" = "Zmieniono konfigurację dla %1$@";
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nowe wiadomości w %2$d czatach";
-"notify_most_recent_from" = "Najnowsze z: %1$@";
-"notify_media_message_with_text" = "Wiadomość multimedialna: %1$@";
-"notify_mark_all_read" = "Oznacz wszystkie jako przeczytane";
 "notify_mark_read" = "Oznacz jako przeczytane";
-"notify_media_message" = "Wiadomość multimedialna";
 "notify_reply_button" = "Odpowiedz";
 "notify_new_message" = "Nowa wiadomość";
 "notify_background_connection_enabled" = "Połączenie w tle włączone";
@@ -522,16 +543,11 @@
 // permissions
 "perm_required_title" = "Wymagane zezwolenie";
 "perm_continue" = "Kontynuuj";
-"perm_explain_need_for_camera_access" = "Aby robić zdjęcia i nagrywać wideo, zezwól Delta Chat na dostęp do aparatu.";
-"perm_explain_need_for_mic_access" = "Aby wysyłać wiadomości audio, zezwól Delta Chat na dostęp do mikrofonu.";
-"perm_explain_need_for_storage_access" = "Aby eksportować pliki lub tworzyć kopie zapasowe Delta Chat potrzebuje dostępu do twoich plików.";
-"perm_explain_need_for_storage_access_share" = "Delta Chat potrzebuje dostępu do twoich plików, aby udostępnić wybrane pliki.";
 "perm_explain_access_to_camera_denied" = "Delta Chat wymaga pozwolenia na używanie aparatu, aby robić zdjęcia lub nagrywać filmy, ale zostało ono trwale odrzucone. Przejdź do menu ustawień aplikacji, wybierz „Uprawnienia” i włącz „Aparat”.";
 "perm_explain_access_to_mic_denied" = "Delta Chat wymaga zezwolenia użycia mikrofonu, aby wysyłać wiadomości audio, ale zostało ono trwale odrzucone. Przejdź do ustawień aplikacji, wybierz „Uprawnienia” i włącz „Mikrofon”.";
 "perm_explain_access_to_storage_denied" = "Delta Chat wymaga uprawnienia do przechowywania, aby dołączyć lub wyeksportować zdjęcia, filmy lub dźwięk, ale zostało ono trwale odrzucone. Przejdź do menu ustawień aplikacji, wybierz „Uprawnienia” i włącz „Pamięć”.";
 "perm_explain_access_to_location_denied" = "Delta Chat wymaga zezwolenia na lokalizację, aby dołączyć lokalizację, ale zostało ono trwale odrzucone. Przejdź do menu ustawień aplikacji, wybierz „Uprawnienia” i włącz „Lokalizacja”.";
-"perm_enable_bg_reminder_title" = "Dotknij tutaj, aby odbierać wiadomości, podczas gdy Delta Chat działa w tle.";
-"perm_enable_bg_reminder_text" = "Delta Chat wykorzystuje minimalne zasoby i dba o to, aby nie rozładować baterii.";
+
 // dc_str_* resources
 "encrypted_message" = "Zaszyfrowana wiadomość";
 
@@ -565,8 +581,6 @@
 "more_info_desktop" = "Więcej informacji";
 "logout_desktop" = "Wyloguj się";
 "timestamp_format_m_desktop" = "D MMM";
-"no_archived_chats_desktop" = "Nie ma zarchiwizowanych czatów";
-"no_chats_desktop" = "Nie ma czatów";
 "encryption_info_desktop" = "Pokaż informacje o szyfrowaniu";
 "verified_desktop" = "zweryfikowano";
 "remove_desktop" = "Usuń";
@@ -615,6 +629,11 @@
 "a11y_remove_account_btn_label" = "Usuń konto";
 "a11y_background_preview_label" = "Podgląd tła";
 
+
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Niezawodne połączenie w tle";
+"pref_reliable_service_explain" = "Wymaga stałego powiadomienia";
+"perm_enable_bg_reminder_title" = "Dotknij tutaj, aby odbierać wiadomości, podczas gdy Delta Chat działa w tle.";

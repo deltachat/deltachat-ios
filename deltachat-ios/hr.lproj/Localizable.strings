@@ -43,8 +43,6 @@
 "now" = "Sada";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Oprez";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d min";
 "today" = "Danas";
 "yesterday" = "Jučer";
 "this_week" = "Ovaj tjedan";
@@ -159,14 +157,11 @@
 "pref_profile_photo" = "Profilna slika";
 "pref_blocked_contacts" = "Blokirani kontakti";
 "pref_profile_photo_remove_ask" = "Ukloniti profilnu sliku?";
-"pref_help_url" = "https://delta.chat/help";
 "pref_password_and_account_settings" = "Lozinka i račun";
-"pref_who_can_see_this_information" = "Tko može ovo vidjeti?";
 "pref_your_name" = "Vaše ime";
 "pref_enter_sends" = "Enter šalje poruku";
 "pref_enter_sends_explain" = "Pritisak na Enter će poslati tekst poruku";
 "pref_vibrate" = "Vibracija";
-"pref_chat_settings" = "Postavke razgovora";
 "pref_screen_security" = "Sigurnost ekrana";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Onemogući snimanje ekrana na popisu nedavnih i unutar aplikacije";
@@ -174,7 +169,6 @@
 "pref_notifications_show" = "Prikaži";
 "pref_notifications_priority" = "Prioritet";
 "pref_led_color" = "Boja LED";
-"pref_led_pattern" = "LED uzorak treptanja";
 "pref_sound" = "Zvuk";
 "pref_silent" = "Tiho";
 "pref_privacy" = "Privatnost";
@@ -195,7 +189,6 @@
 "pref_app_access" = "Pristup aplikaciji";
 "pref_communication" = "Komunikacija";
 "pref_chats" = "Razgovori";
-"pref_messages" = "Poruke";
 "pref_in_chat_sounds" = "Zvuk unutar razgovora";
 "pref_message_text_size" = "Veličina fonta poruke";
 "pref_other" = "Ostalo";
@@ -217,9 +210,7 @@
 // qr code stuff
 "qr_code" = "QR kod";
 "qrscan_fingerprint_label" = "Otisak prsta";
-"notify_mark_all_read" = "Označi sve kao pročitane";
 "notify_mark_read" = "Označi pročitano";
-"notify_media_message" = "Multimedijalna poruka";
 "notify_reply_button" = "Odgovori";
 "notify_new_message" = "Nova poruka";
 "notify_priority_high" = "Visoko";

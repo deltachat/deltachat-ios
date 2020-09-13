@@ -51,8 +51,6 @@
 "now" = "Ara";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Perill";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d min";
 "today" = "Avui";
 "yesterday" = "Ahir";
 "this_week" = "Aquesta setmana";
@@ -141,8 +139,6 @@
 "menu_select_all" = "Selecciona-ho tot";
 "menu_expand" = "Desplega";
 "menu_edit_name" = "Edita el nom";
-"menu_edit_group_name" = "Modifica el nom del grup";
-"menu_edit_group_image" = "Modifica la imatge del grup";
 "menu_settings" = "Preferències";
 "menu_advanced" = "Avançat";
 "menu_deaddrop" = "Sol·licituds de contacte";
@@ -224,7 +220,6 @@
 "media_preview" = "Previsualització multimèdia";
 // welcome and login
 "welcome_intro1_message" = "El programa de missatgeria amb més ususaris del món. Gratuït i independent.";
-"welcome_start_messaging" = "Comenceu a comunicar-vos";
 "login_title" = "Identifiqueu-vos";
 "login_header" = "Identifiqueu-vos al vostre servidor";
 "login_subheader" = "Als proveïdors de mail coneguts els paràmetres es configuren automàticament. De vegades l\'IMAP s\'ha d\'activar a la interfície web. Consulta el teu proveïdor de correu electrònic o a un amic perquè t\'ajudi. ";
@@ -254,7 +249,6 @@
 "login_error_cannot_login" = "No es pot iniciar la sessió com a \"%1$@\". Comproveu que l\'adreça electrònica i la contrasenya són correctes.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "La resposta de%1$@ ha sigut: %2$@\n\nHi ha proveïdors que posen informació addicional a la vostra safata d\'entrada; podeu trobar-la allà p. ex. usant la interfície de correu web. Consulteu el vostre proveïdor o els vostres amics si teniu problemes.";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Reenvia a ...";
@@ -268,8 +262,6 @@
 "pref_profile_photo" = "Fotografia de perfil";
 "pref_blocked_contacts" = "Contactes bloquejats";
 "pref_profile_photo_remove_ask" = "Esborrar la foto de perfil?";
-"pref_help_url" = "https://delta.chat/ca/help";
-"pref_who_can_see_this_information" = "Qui pot veure aquesta informació?";
 "pref_who_can_see_profile_explain" = "La vostra imatge de perfil i el vostre nom es mostraran en els missatges que envieu als altres usuaris. La informació que ja s\'hagi enviat no es pot eliminar ni esborrar.";
 "pref_your_name" = "El vostre nom";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -279,7 +271,6 @@
 "pref_enter_sends" = "La tecla \"Intro\" envia";
 "pref_enter_sends_explain" = "Els missatges s\'enviaran prement la tecla \"Intro\"";
 "pref_vibrate" = "Vibració";
-"pref_chat_settings" = "Configuració del xat";
 "pref_change_secret" = "Canvieu el secret";
 "pref_change_secret_explain" = "Canvieu el vostre pin / patró / empremta digital via preferències del sistema";
 "pref_screen_security" = "Seguretat de la pantalla";
@@ -290,7 +281,6 @@
 "pref_notifications_show" = "Mostra";
 "pref_notifications_priority" = "Prioritat";
 "pref_led_color" = "Color LED";
-"pref_led_pattern" = "Patró de pampallugues del LED";
 "pref_sound" = "So";
 "pref_silent" = "Silenci";
 "pref_privacy" = "Privacitat";
@@ -312,7 +302,6 @@
 "pref_app_access" = "Accés a l\'aplicació";
 "pref_communication" = "Comunicació";
 "pref_chats" = "Xats";
-"pref_messages" = "Missatges";
 "pref_in_chat_sounds" = "Sons d\'entrada";
 "pref_message_text_size" = "Mida de la font del missatge";
 "pref_view_log" = "Veure el registre";
@@ -323,7 +312,6 @@
 "pref_backup_export_start_button" = "Inicia la còpia de seguretat";
 "pref_backup_written_to_x" = "La còpia de seguretat s\'ha escrit correctament a %1$@";
 "pref_managekeys_menu_title" = "Gestiona les claus";
-"pref_managekeys_ask_for_storage_permission" = "Delta Chat necessita accedir als vostres arxius per poder importar/exportar les claus.";
 "pref_managekeys_export_secret_keys" = "Exporta les claus secretes";
 "pref_managekeys_export_explain" = "Exporto les claus secretes a \"%1$@\"?";
 "pref_managekeys_import_secret_keys" = "Importa les claus secretes";
@@ -340,7 +328,6 @@
 "pref_watch_mvbox_folder" = "Mostra la safata DeltaChat";
 "pref_auto_folder_moves" = "Moure automàticament a la carpeta de Delta Chat";
 "pref_auto_folder_moves_explain" = "Les converses de xat s\'han mogut per no atapeir la safata d’entrada";
-"pref_email_interaction_title" = "Interacció per correu electrònic";
 "pref_show_emails" = "Mostra els e-mails clàssics";
 "pref_show_emails_no" = "No, només xats";
 "pref_show_emails_accepted_contacts" = "Per a contactes acceptats";
@@ -411,11 +398,7 @@
 "contact_setup_changed" = "Configuració canviada per %1$@";
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d missatges nous en %2$d xats";
-"notify_most_recent_from" = "El més nou des de : %1$@";
-"notify_media_message_with_text" = "Missatge multimèdia: %1$@";
-"notify_mark_all_read" = "Marca\'ls tots com a llegits";
 "notify_mark_read" = "Marca\'l com a llegit";
-"notify_media_message" = "Missatge multimèdia";
 "notify_reply_button" = "Respondre";
 "notify_new_message" = "Missatge nou";
 "notify_background_connection_enabled" = "Connexió habilitada en segon pla";
@@ -429,16 +412,11 @@
 // permissions
 "perm_required_title" = "Es requereix permís";
 "perm_continue" = "Continua";
-"perm_explain_need_for_camera_access" = "Permet que Delta Chat accedeixi a la càmera per fer fotos i vídeo";
-"perm_explain_need_for_mic_access" = "Permet que Delta Chat accedeixi al micròfon per enviar missatges d\'àudio";
-"perm_explain_need_for_storage_access" = "Delta Chat necessita accedir als vostres arxius per exportar documents o per fer-ne còpies de seguretat.";
-"perm_explain_need_for_storage_access_share" = "Delta Chat necessita accedir als vostres documents per poder compartir els arxius triats.";
 "perm_explain_access_to_camera_denied" = "Delta Chat demana accés a la càmera per poder fer fotos o vídeos, però li ha estat denegat. Sisplau, vés al menú de configuració de l\'app, busca-hi els \"Permisos\" i habilita\'n la \"Càmera\".";
 "perm_explain_access_to_mic_denied" = "Delta Chat demana accés al micròfon per poder enviar missatges d\'àudio, però li ha estat denegat. Sisplau, vés al menú de configuració de l\'app, busca-hi els \"Permisos\" i habilita\'n el \"Micròfon\".";
 "perm_explain_access_to_storage_denied" = "Delta Chat necessita accedir a l’emmagatzematge per adjuntar o exportar fotos, vídeos o àudio, però se li ha denegat permanentment. Aneu al menú de configuració de l\'aplicació, seleccioneu \"Permisos\" i activeu \"Emmagatzematge\".";
 "perm_explain_access_to_location_denied" = "Delta Chat necessita accedir a la ubicació per poder-la adjuntar, però li ha estat denegada de forma permanent. Vés a les preferències del menú de l\'aplicació, tria \"Permisos i activa-hi la \"Ubicació\".";
-"perm_enable_bg_reminder_title" = "Prem aquí per rebre missatges mentre Delta Chat és en segon pla.";
-"perm_enable_bg_reminder_text" = "Delta Chat fa servir els recursos mínims i procura no gastar gaire bateria.";
+
 // dc_str_* resources
 "encrypted_message" = "Missatge encriptat";
 
@@ -468,8 +446,6 @@
 "more_info_desktop" = "Més informació";
 "logout_desktop" = "Surt";
 "timestamp_format_m_desktop" = "MMM D";
-"no_archived_chats_desktop" = "Cap xat arxivat";
-"no_chats_desktop" = "Cap xat";
 "encryption_info_desktop" = "Mostra la informació de xifratge";
 "verified_desktop" = "Verificat";
 "remove_desktop" = "Elimina";
@@ -507,3 +483,4 @@
 "user_location_permission_explanation" = "Delta Chat necessita permís per accedir a la ubicació per poder-la mostrar i compartir.";
 
 
+"perm_enable_bg_reminder_title" = "Prem aquí per rebre missatges mentre Delta Chat és en segon pla.";

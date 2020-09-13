@@ -52,8 +52,6 @@
 "now" = "Nun";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Danĝero";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d min";
 "today" = "Hodiaŭ";
 "yesterday" = "Hieraŭ";
 "this_week" = "Ĉi-semajne";
@@ -142,8 +140,6 @@
 "menu_select_all" = "Elekti ĉion";
 "menu_expand" = "Etendi";
 "menu_edit_name" = "Redakti nomon";
-"menu_edit_group_name" = "Redakti grup-nomon";
-"menu_edit_group_image" = "Redakti grup-bildon";
 "menu_settings" = "Agordoj";
 "menu_advanced" = "Speciala";
 "menu_deaddrop" = "Kontakt-petoj";
@@ -253,7 +249,6 @@
 "send_message" = "Sendi mesaĝon";
 
 
-"welcome_start_messaging" = "Komenci mesaĝadon";
 "login_title" = "Ensaluti";
 "login_header" = "Ensaluti al via servilo";
 "login_inbox" = "Ricevujo";
@@ -276,9 +271,7 @@
 "login_error_required_fields" = "Bonvolu enigi validan retadreson kaj pasvorton";
 "import_backup_title" = "Importi savkopion";
 // TLS certificate checks
-"accept_invalid_hostnames" = "Akcepti nevalidajn hostnomojn";
 "accept_invalid_certificates" = "Akcepti nevalidajn atestilojn";
-
 "used_settings" = "Uzitaj agordoj:";
 "delete_account" = "Forigi konton";
 "delete_account_ask" = "Ĉu vi certas, ke vi volas forigi ĉiujn datumojn de vi konto?";
@@ -291,16 +284,13 @@
 "pref_profile_photo" = "Profilbildo";
 "pref_blocked_contacts" = "Blokitaj kontaktoj";
 "pref_profile_photo_remove_ask" = "Ĉu forigi profilbildon?";
-"pref_help_url" = "https://delta.chat/help";
 "pref_password_and_account_settings" = "Pasvorto kaj konto";
-"pref_who_can_see_this_information" = "Kiu povas vidi ĉi tion?";
 "pref_your_name" = "Via nomo";
 // Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
 "pref_default_status_text" = "Sendita per mia Delta Chat mesaĝilo: https://delta.chat";
 "pref_enter_sends" = "La Eniga klavo kaŭzas sendon";
 "pref_enter_sends_explain" = "Premado de la Eniga klavo sendos mesaĝojn";
 "pref_vibrate" = "Vibrado";
-"pref_chat_settings" = "Babilaj agordoj";
 "pref_change_secret" = "Ŝanĝi sekreton";
 "pref_screen_security" = "Ekrana sekureco";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
@@ -309,7 +299,6 @@
 "pref_notifications_show" = "Montri";
 "pref_notifications_priority" = "Prioritato";
 "pref_led_color" = "LED-a koloro";
-"pref_led_pattern" = "LED-a pulsa modelo";
 "pref_sound" = "Sono";
 "pref_silent" = "Silenta";
 "pref_privacy" = "Privateco";
@@ -331,7 +320,6 @@
 "pref_app_access" = "Aliro al aplikaĵo";
 "pref_communication" = "Komunikado";
 "pref_chats" = "Interparoloj";
-"pref_messages" = "Mesaĝoj";
 "pref_in_chat_sounds" = "Sonoj dum interparolado";
 "pref_message_text_size" = "Mesaĝa tipargrando";
 "pref_view_log" = "Vidi protokolon";
@@ -344,7 +332,6 @@
 "pref_backup_export_start_button" = "Komenci savkopiadon";
 "pref_backup_written_to_x" = "Savkopio sukcese konservita al \"%1$@\".";
 "pref_managekeys_menu_title" = "Administri ŝlosilojn";
-"pref_managekeys_ask_for_storage_permission" = "Delta Chat bezonas permeson atingi viajn dosierojn por importi/eksporti ŝlosilojn.";
 "pref_managekeys_export_secret_keys" = "Eksporti sekretajn ŝlosilojn";
 "pref_managekeys_export_explain" = "Ĉu eksporti sekretajn ŝlosilojn al \"%1$@\"?";
 "pref_managekeys_import_secret_keys" = "Importi sekretajn ŝlosilojn";
@@ -363,9 +350,7 @@
 "screenlock_explain" = "Lock Delta Chat access with Android screen lock or fingerprint";
 "screenlock_unlock_title" = "Malŝlosi Delta Chat-on";
 "screenlock_inactivity_timeout_explain" = "Aŭtomate ŝlosi Signal-on post specifa templimo de neaktiveco";
-"notify_mark_all_read" = "Marki ĉiujn legitaj";
 "notify_mark_read" = "Marki legita";
-"notify_media_message" = "Aŭdvida mesaĝo";
 "notify_reply_button" = "Respondi";
 "notify_new_message" = "Nova mesaĝo";
 "notify_priority_high" = "Alta";
@@ -387,7 +372,6 @@
 "global_menu_help_desktop" = "Helpo";
 "more_info_desktop" = "Plia informo";
 "timestamp_format_m_desktop" = "MMM D";
-"no_chats_desktop" = "Neniu babilo nun";
 "remove_desktop" = "Forviŝi";
 "save_desktop" = "Konservi";
 "me_desktop" = "mi";

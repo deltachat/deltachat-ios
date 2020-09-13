@@ -52,8 +52,6 @@
 "now" = "Ahora";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Sea cuidadoso";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d min";
 "today" = "Hoy";
 "yesterday" = "Ayer";
 "this_week" = "Esta semana";
@@ -142,8 +140,6 @@
 "menu_select_all" = "Seleccionar todo";
 "menu_expand" = "Expandir";
 "menu_edit_name" = "Editar nombre";
-"menu_edit_group_name" = "Editar nombre de grupo";
-"menu_edit_group_image" = "Editar imagen de grupo";
 "menu_settings" = "Ajustes";
 "menu_advanced" = "Avanzado";
 "menu_deaddrop" = "Solicitudes de contacto";
@@ -268,7 +264,6 @@
 
 // welcome and login
 "welcome_intro1_message" = "La aplicación de mensajería instantánea con la audiencia más amplia del mundo. Libre e independiente. ";
-"welcome_start_messaging" = "Empezar a Chatear";
 "login_title" = "Iniciar sesión";
 "login_header" = "Inicie sesión en su servidor";
 "login_explain" = "Iniciar sesión con una cuenta de e-mail existente";
@@ -300,11 +295,8 @@
 "login_error_cannot_login" = "No se puede iniciar sesión como \"%1$@\". Por favor, compruebe si la dirección de correo y la contraseña son correctas.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Respuesta de %1$@: %2$@\n\nAlgunos proveedores colocan información adicional en su bandeja de entrada; Puedes comprobarlo por ej. en la interfaz web. Consulte a su proveedor o amigos si tiene problemas.";
-
 // TLS certificate checks
-"accept_invalid_hostnames" = "Aceptar nombres de host no válidos";
 "accept_invalid_certificates" = "Aceptar certificados no válidos";
-
 "used_settings" = "Ajustes usados:";
 "delete_account" = "Eliminar cuenta";
 "delete_account_ask" = "Estás seguro de que quieres eliminar los datos de tu cuenta?";
@@ -321,9 +313,7 @@
 "pref_profile_photo" = "Foto de perfil";
 "pref_blocked_contacts" = "Contactos bloqueados";
 "pref_profile_photo_remove_ask" = "¿Eliminar foto de perfil? ";
-"pref_help_url" = "https://delta.chat/es/help";
 "pref_password_and_account_settings" = "Contraseña y cuenta";
-"pref_who_can_see_this_information" = "¿Quién puede ver esta información?";
 "pref_who_can_see_profile_explain" = "La imagen y el nombre de su perfil se mostrarán junto con sus mensajes cuando se comunique con otros usuarios. La información ya enviada no puede ser borrada o eliminada.";
 "pref_your_name" = "Tu nombre";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -336,7 +326,6 @@
 "pref_outgoing_balanced" = "Balanceada";
 "pref_outgoing_worse" = "Peor calidad, tamaño pequeño";
 "pref_vibrate" = "Vibrar";
-"pref_chat_settings" = "Ajustes de chat";
 "pref_change_secret" = "Cambiar secreto";
 "pref_change_secret_explain" = "Cambie su pin / patrón / huella a través de la configuración del sistema";
 "pref_screen_security" = "Seguridad de la pantalla";
@@ -347,7 +336,6 @@
 "pref_notifications_show" = "Mostrar";
 "pref_notifications_priority" = "Prioridad";
 "pref_led_color" = "Color de LED";
-"pref_led_pattern" = "Patrón de parpadeo LED";
 "pref_sound" = "Sonido";
 "pref_silent" = "Silencio";
 "pref_privacy" = "Privacidad";
@@ -369,7 +357,6 @@
 "pref_app_access" = "Acceso a la aplicación";
 "pref_communication" = "Comunicación";
 "pref_chats" = "Chats";
-"pref_messages" = "Mensajes";
 "pref_in_chat_sounds" = "Sonidos en el chat";
 "pref_message_text_size" = "Tamaño de texto del mensaje";
 "pref_view_log" = "Ver log";
@@ -383,7 +370,6 @@
 "pref_backup_export_start_button" = "Iniciar copia de respaldo";
 "pref_backup_written_to_x" = "Copia de respaldo escrita correctamente en %1$@";
 "pref_managekeys_menu_title" = "Administrar claves";
-"pref_managekeys_ask_for_storage_permission" = "Delta Chat necesita acceso a tus archivos para importar/exportar claves";
 "pref_managekeys_export_secret_keys" = "Exportar claves secretas";
 "pref_managekeys_export_explain" = "¿Exportar claves secretas a \"%1$@\"?";
 "pref_managekeys_import_secret_keys" = "Importar claves secretas";
@@ -401,16 +387,10 @@
 "pref_send_copy_to_self" = "Enviar autocopia";
 "pref_auto_folder_moves" = "Mover automáticamente a la carpeta DeltaChat";
 "pref_auto_folder_moves_explain" = "Las conversaciones son movidas para evitar saturar la Bandeja de entrada";
-"pref_email_interaction_title" = "Interacción con correo electrónico";
 "pref_show_emails" = "Mostrar correos clásicos";
 "pref_show_emails_no" = "No, sólo chats";
 "pref_show_emails_accepted_contacts" = "Para contactos aceptados";
 "pref_show_emails_all" = "Todos";
-"pref_empty_server_title" = "Eliminar correos del servidor";
-"pref_empty_server_msg" = "Esta función ayuda a liberar espacio en su servidor IMAP al eliminar TODOS los correos, incluidos los mensajes de chat, en las carpetas indicadas. Los mensajes en este dispositivo no serán eliminados. La eliminación no se puede deshacer!";
-"pref_empty_server_inbox" = "Eliminar TODOS los correos en la carpeta INBOX";
-"pref_empty_server_mvbox" = "Eliminar TODOS los correos en la carpeta DeltaChat";
-"pref_empty_server_do_button" = "Eliminar correos";
 "pref_experimental_features" = "Características experimentales";
 "pref_on_demand_location_streaming" = "Transmisión de ubicación bajo demanda";
 "pref_background_default" = "Fondo por defecto";
@@ -490,11 +470,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nuevos mensajes en %2$d chats";
-"notify_most_recent_from" = "Más reciente de: %1$@";
-"notify_media_message_with_text" = "Mensaje multimedia: %1$@";
-"notify_mark_all_read" = "Marcar todo como leído";
 "notify_mark_read" = "Marcar como leído";
-"notify_media_message" = "Mensaje multimedia";
 "notify_reply_button" = "Responder";
 "notify_new_message" = "Nuevo mensaje";
 "notify_background_connection_enabled" = "Conexión en segundo plano habilitada";
@@ -508,17 +484,10 @@
 // permissions
 "perm_required_title" = "Permiso requerido";
 "perm_continue" = "Continuar";
-"perm_explain_need_for_camera_access" = "Para capturar fotos y videos, permita que Delta Chat acceda a la cámara.";
-"perm_explain_need_for_mic_access" = "Para enviar mensajes de audio, permita que Delta Chat acceda a su micrófono.";
-"perm_explain_need_for_storage_access" = "Delta Chat necesita acceso a sus archivos para exportar archivos o crear copias de respaldo.";
-"perm_explain_need_for_storage_access_share" = "Delta Chat necesita acceso a tus archivos para compartir los archivos seleccionados.";
 "perm_explain_access_to_camera_denied" = "Delta Chat requiere el permiso de Cámara para tomar fotos o videos, pero ha sido denegado de forma permanente. Por favor, vaya al menú de configuración de aplicaciones, seleccione \"Permisos\" y habilite \"Cámara\".";
 "perm_explain_access_to_mic_denied" = "Delta Chat requiere el permiso de Micrófono para enviar mensajes de audio, pero ha sido denegado de forma permanente. Por favor, vaya al menú de configuración de aplicaciones, seleccione \"Permisos\" y habilite \"Micrófono\".";
 "perm_explain_access_to_storage_denied" = "Delta Chat requiere el permiso de Almacenamiento para adjuntar o exportar fotos, videos o audio, pero ha sido denegado de forma permanente. Por favor, vaya al menú de configuración de aplicaciones, seleccione \"Permisos\" y habilite \"Almacenamiento\".";
 "perm_explain_access_to_location_denied" = "Delta Chat requiere el permiso de Ubicación para adjuntar una ubicación, pero ha sido denegado de forma permanente. Por favor, vaya al menú de configuración de aplicaciones, seleccione \"Permisos\" y habilite \"Ubicación\".";
-"perm_enable_bg_reminder_title" = "Toque aquí para recibir mensajes mientras Delta Chat está en segundo plano.";
-"perm_enable_bg_reminder_text" = "Delta Chat utiliza los recursos al mínimo y tiene cuidado de no drenar tu batería.";
-"perm_enable_bg_already_done" = "Ya has permitido que Delta Chat reciba mensajes en segundo plano.\n\nSi los mensajes aún no llegan en segundo plano, compruebe también la configuración de su sistema.";
 
 // dc_str_* resources
 "encrypted_message" = "Mensaje cifrado";
@@ -553,8 +522,6 @@
 "more_info_desktop" = "Más información";
 "logout_desktop" = "Cerrar sesión";
 "timestamp_format_m_desktop" = "MMM D";
-"no_archived_chats_desktop" = "No hay chats archivados";
-"no_chats_desktop" = "No hay chats";
 "encryption_info_desktop" = "Mostrar información de cifrado";
 "verified_desktop" = "verificado";
 "remove_desktop" = "Eliminar";
@@ -604,4 +571,8 @@
 "a11y_message_context_menu_btn_label" = "Acciones del mensaje";
 "a11y_background_preview_label" = "Previsualización del fondo";
 
+
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+"perm_enable_bg_reminder_title" = "Toque aquí para recibir mensajes mientras Delta Chat está en segundo plano.";
+"perm_enable_bg_already_done" = "Ya has permitido que Delta Chat reciba mensajes en segundo plano.\n\nSi los mensajes aún no llegan en segundo plano, compruebe también la configuración de su sistema.";
+

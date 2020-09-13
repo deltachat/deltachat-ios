@@ -159,7 +159,6 @@
 "pref_default_status_text" = "నా Delta Chat మెసెంజర్ ద్వారా పంపబడినది: https://delta.chat";
 "pref_enter_sends" = "\"ఎంటర్\" నొక్కితే పంపు";
 "pref_vibrate" = "వైబ్రేషన్";
-"pref_chat_settings" = "చాట్స్ సెట్టింగులు";
 "pref_screen_security" = "స్క్రీన్ భద్రత";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "నిరోధించు స్క్రీన్షాట్లు లో ది ఇటీవలి జాబితా మరియు లోపల ది అనువర్తనం";
@@ -167,7 +166,6 @@
 "pref_notifications_show" = "కనబర్చు";
 "pref_notifications_priority" = "ప్రాధాన్యత";
 "pref_led_color" = "LED రంగు";
-"pref_led_pattern" = "ఎల్ఇడి రెప్పపాటు నమూనా";
 "pref_sound" = "శబ్ధం";
 "pref_silent" = "మౌనం";
 "pref_privacy" = "గోప్యత";
@@ -188,7 +186,6 @@
 "pref_app_access" = "అనువర్తన ప్రాప్యత";
 "pref_communication" = "సమాచారం";
 "pref_chats" = "చాట్లు";
-"pref_messages" = "సందేశాలు";
 "pref_in_chat_sounds" = "యాప్-లోపల నోటిఫికేషన్లు";
 "pref_message_text_size" = "సందేశం ఫాంట్ పరిమాణం";
 "pref_other" = "ఇతర";
@@ -204,7 +201,6 @@
 "screenlock_explain" = "Android స్క్రీన్ లాక్ లేదా వేలిముద్రతో Signal యాక్సెస్ను లాక్ చేయండి";
 "screenlock_unlock_title" = "అన్లాక్ Delta Chat";
 "qrscan_fingerprint_label" = "ఫింగర్‌ప్రింట్స్";
-"notify_media_message" = "మల్టీమీడియా సందేశం";
 "notify_reply_button" = "జవాబు";
 "notify_new_message" = "కొత్త సందేశం";
 "notify_priority_high" = "అధికం";
@@ -229,7 +225,6 @@
 "global_menu_help_about_desktop" = "Delta Chat గురించి";
 "contact_request_title_desktop" = "పరిచయ అభ్యర్ధనలు";
 "more_info_desktop" = "మరింత సమాచారం";
-"no_chats_desktop" = "ఏ చాట్లు లేవు";
 "remove_desktop" = "తొలగించు";
 "save_desktop" = "భద్రపరుచు";
 "reply_to_message_desktop" = "సందేశానికి ప్రత్యుత్తరం ఇవ్వండి";

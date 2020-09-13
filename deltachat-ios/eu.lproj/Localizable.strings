@@ -53,8 +53,6 @@
 "now" = "Orain";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Arriskua";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d min";
 "today" = "Gaur";
 "yesterday" = "Atzo";
 "this_week" = "Aste honetan";
@@ -143,8 +141,6 @@
 "menu_select_all" = "Hautatu guztiak";
 "menu_expand" = "Hedatu";
 "menu_edit_name" = "Editatu izena";
-"menu_edit_group_name" = "Editatu taldearen izena";
-"menu_edit_group_image" = "Editatu taldearen irudia";
 "menu_settings" = "Ezarpenak";
 "menu_advanced" = "Aurreratua";
 "menu_deaddrop" = "Kontaktu-eskaerak";
@@ -269,7 +265,6 @@
 
 // welcome and login
 "welcome_intro1_message" = "Munduan erabiltzaile gehien dituen mezularitza aplikazioa. Librea eta independentea.";
-"welcome_start_messaging" = "Hasi txateatzen";
 "login_title" = "Hasi saioa";
 "login_header" = "Hasi saioa zure zerbitzarian";
 "login_explain" = "Badagoen e-mail kontu batekin saioa hasten";
@@ -301,18 +296,14 @@
 "login_error_cannot_login" = "Ezin da \"%1$@\" bezala saioa hasi. Egiaztatu E-mail helbidea eta pasahitza zuzenak diren.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "%1$@(r)en erantzuna: %2$@\n\nHornitzaile batzuk informazio gehigarria uzten dute zure sarrera ontzian; adibidez bere web interfazearen bidez egiaztatu dezakezu. Galdetu zure hornitzaileari edo lagunei arazoak badituzu.";
-
 // TLS certificate checks
-"accept_invalid_hostnames" = "Onartu ostalari izen baliogabeak";
 "accept_invalid_certificates" = "Onartu ziurtagiri baliogabeak";
-
 "used_settings" = "Erabilitako ezarpenak:";
 "switch_account" = "Aldatu kontua";
 "add_account" = "Gehitu kontua";
 "delete_account" = "Ezabatu kontua";
 "delete_account_ask" = "Ziur al zaude zure kontuaren datuak ezabatu nahi dituzula?";
 "switching_account" = "Kontua aldatzen...";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Birbidali honi …";
@@ -326,9 +317,7 @@
 "pref_profile_photo" = "Profileko argazkia";
 "pref_blocked_contacts" = "Blokeatutako kontaktuak";
 "pref_profile_photo_remove_ask" = "Kendu profileko argazkia?";
-"pref_help_url" = "https://delta.chat/en/help";
 "pref_password_and_account_settings" = "Pasahitza eta kontua";
-"pref_who_can_see_this_information" = "Nork ikusi dezake informazio hau?";
 "pref_who_can_see_profile_explain" = "Zure profileko argazkia eta izena zure mezuekin batera erakutsiko dira beste erabiltzaileekin komunikatzen zarenean. Informazioa behin bidalita ezin da ezabatu edo kendu.";
 "pref_your_name" = "Zure izena";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -341,7 +330,6 @@
 "pref_outgoing_balanced" = "Orekatua";
 "pref_outgoing_worse" = "Kalitate txarragoa, tamaina txikia";
 "pref_vibrate" = "Bibratu";
-"pref_chat_settings" = "Txat ezarpenak";
 "pref_change_secret" = "Aldatu sekretua";
 "pref_change_secret_explain" = "Aldatu zure pina / eredua / hatz-marka sistemako ezarpenetan.";
 "pref_screen_security" = "Pantaila segurtasuna";
@@ -352,7 +340,6 @@
 "pref_notifications_show" = "Erakutsi";
 "pref_notifications_priority" = "Lehentasuna";
 "pref_led_color" = "LED kolorea";
-"pref_led_pattern" = "LEDaren kliskatze eredua";
 "pref_sound" = "Soinua";
 "pref_silent" = "Isila";
 "pref_privacy" = "Pribatutasuna";
@@ -374,7 +361,6 @@
 "pref_app_access" = "Aplikazio sarbidea";
 "pref_communication" = "Komunikazioa";
 "pref_chats" = "Txatak";
-"pref_messages" = "Mezuak";
 "pref_in_chat_sounds" = "Txat bitarteko soinuak";
 "pref_message_text_size" = "Mezuen letra tamaina";
 "pref_view_log" = "Ikusi egunkaria";
@@ -388,7 +374,6 @@
 "pref_backup_export_start_button" = "Hasi babes-kopia";
 "pref_backup_written_to_x" = "Babes-kopia ongi idatzi da hemen: %1$@";
 "pref_managekeys_menu_title" = "Kudeatu gakoak";
-"pref_managekeys_ask_for_storage_permission" = "Delta Chat-ek zure fitxategiak atzitzeko baimena behar du gakoak inportatu/esportatu ahal izateko.";
 "pref_managekeys_export_secret_keys" = "Esportatu gako sekretuak";
 "pref_managekeys_export_explain" = "Esportatu gako sekretuak \"%1$@\"-ra?";
 "pref_managekeys_import_secret_keys" = "Inportatu gako sekretuak";
@@ -406,27 +391,18 @@
 "pref_send_copy_to_self" = "Bidali kopia norberari";
 "pref_auto_folder_moves" = "Automatikoki mugitzen du DeltaChat karpetara";
 "pref_auto_folder_moves_explain" = "Txat elkarrizketak lekuz aldatzen dira sarrera ontzian enbarazu ez egiteko";
-"pref_email_interaction_title" = "E-mail interakzioa";
 "pref_show_emails" = "Erakutsi ohiko e-mailak";
 "pref_show_emails_no" = "Ez, txatak besterik ez";
 "pref_show_emails_accepted_contacts" = "Onartutako kontaktuena";
 "pref_show_emails_all" = "Denak";
-"pref_empty_server_title" = "Ezabatu e-mailak zerbitzaritik";
-"pref_empty_server_msg" = "Funtzio honek IMAP zerbitzarian espazioa aurreztea ahalbidetzen dizu karpeta zehatzetako e-mail GUZTIAK ezabatuz, txatetako mezuak barne. Gailu honetako mezuak ez dira ezabatuko. Behin ezabatuta ezin dira berreskuratu!";
-"pref_empty_server_inbox" = "Ezabatu sarrera ontziko e-mail GUZTIAK";
-"pref_empty_server_mvbox" = "Ezabatu DeltaChat karpetako e-mail GUZTIAK";
-"pref_empty_server_do_button" = "Ezabatu e-mailak";
 "pref_experimental_features" = "Ezaugarri esperimentalak";
 "pref_on_demand_location_streaming" = "Eskaera bidezko kokalekuaren hedapena";
 "pref_background_default" = "Lehenetsitako atzealdea";
 "pref_background_default_color" = "Lehenetsitako kolorea";
 "pref_background_custom_image" = "Irudi pertsonalizatua";
 "pref_background_custom_color" = "Kolore pertsonalizatua";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Bigarren planoko konexio egonkorra";
-"pref_reliable_service_explain" = "Etengabeko jakinarazpena eskatzen du";
+// devs: autodel_title is deprecated, use delete_old_messages instead
 "autodel_title" = "Automatikoki ezabatu mezuak";
-"autodel_title_short" = "Automatikoki ezabatu";
 "autodel_device_title" = "Ezabatu mezuak gailutik";
 "autodel_server_title" = "Ezabatu mezuak zerbitzaritik";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
@@ -517,11 +493,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d mezu berri %2$d txatetan";
-"notify_most_recent_from" = "%1$@(r)en azkena";
-"notify_media_message_with_text" = "Multimedia mezua: %1$@";
-"notify_mark_all_read" = "Markatu denak irakurrita gisa";
 "notify_mark_read" = "Markatu irakurrita gisa";
-"notify_media_message" = "Multimedia mezua";
 "notify_reply_button" = "Erantzun";
 "notify_new_message" = "Mezu berria";
 "notify_background_connection_enabled" = "Bigarren planoko konexioa gaituta";
@@ -535,17 +507,10 @@
 // permissions
 "perm_required_title" = "Baimena behar da";
 "perm_continue" = "Jarraitu";
-"perm_explain_need_for_camera_access" = "Argazkiak eta bideoa hartzeko, baimendu DeltaChat-ek kamera atzitzea.";
-"perm_explain_need_for_mic_access" = "Audio-mezuak bidaltzeko, baimendu DeltaChat-ek mikrofonoa atzitzea.";
-"perm_explain_need_for_storage_access" = "Delta Chat-ek zure fitxategiak atzitzeko baimena behar du fitxategiak esportatu ahal izateko edo babes-kopiak sortzeko.";
-"perm_explain_need_for_storage_access_share" = "Delta Chat-ek zure fitxategietara sarbidea behar du hautatutako fitxategiak partekatu ahal izateko.";
 "perm_explain_access_to_camera_denied" = "Delta Chat-ek kamerara sarbidea behar du argazkiak edo bideoak ateratzeko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"Baimenak\" eta gaitu \"Kamera\".";
 "perm_explain_access_to_mic_denied" = "Delta Chat-ek mikrofonoa erabiltzeko baimena behar du ahots-mezuak bidali ahal izateko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpenetara, hautatu \"Baimenak\" eta gaitu \"Mikrofonoa\".";
 "perm_explain_access_to_storage_denied" = "Delta Chat-ek biltegiratze baimena behar du argazkiak, bideoak edo audioa erantsi edo esportatzeko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"baimenak\", eta gaitu \"Biltegiratzea\"";
 "perm_explain_access_to_location_denied" = "Delta Chat-ek kokaleku aatzitzeko baimena behar du kokalekua eransteko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"baimenak\", eta gaitu \"Kokalekua\".";
-"perm_enable_bg_reminder_title" = "Sakatu hemen mezuak jasotzeko Delta Chat bigarren planoan dagoenean.";
-"perm_enable_bg_reminder_text" = "Delta Chat-ek baliabide gutxi erabiltzen ditu eta zure bateria ez agortzeaz arduratzen da.";
-"perm_enable_bg_already_done" = "Dagoeneko baimendu diozu Delta Chat aplikazioari bigarren planoan mezuak jasotzea,\n\nOraindik ere mezuak heltzen ez badira, egiaztatu ere zure sistemaren ezarpenak.";
 
 // dc_str_* resources
 "encrypted_message" = "Zifratutako mezua";
@@ -580,8 +545,6 @@
 "more_info_desktop" = "Informazio gehiago";
 "logout_desktop" = "Amaitu saioa";
 "timestamp_format_m_desktop" = "MMM D";
-"no_archived_chats_desktop" = "Artxibatutako txatik ez";
-"no_chats_desktop" = "Txatik ez";
 "encryption_info_desktop" = "Erakutsi zifratzeari buruzko informazioa";
 "verified_desktop" = "egiaztatuta";
 "remove_desktop" = "Kendu";
@@ -631,4 +594,11 @@
 "a11y_message_context_menu_btn_label" = "Mezu-ekintzak";
 "a11y_background_preview_label" = "Atzealdearen aurrebista";
 
+
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Bigarren planoko konexio egonkorra";
+"pref_reliable_service_explain" = "Etengabeko jakinarazpena eskatzen du";
+"perm_enable_bg_reminder_title" = "Sakatu hemen mezuak jasotzeko Delta Chat bigarren planoan dagoenean.";
+"perm_enable_bg_already_done" = "Dagoeneko baimendu diozu Delta Chat aplikazioari bigarren planoan mezuak jasotzea,\n\nOraindik ere mezuak heltzen ez badira, egiaztatu ere zure sistemaren ezarpenak.";
+

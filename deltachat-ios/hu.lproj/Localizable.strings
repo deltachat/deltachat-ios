@@ -38,8 +38,6 @@
 "bad_email_address" = "Rossz e-mail cím.";
 "password" = "Jelszó";
 "now" = "Most";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d perce";
 "today" = "Ma";
 "yesterday" = "Tegnap";
 "this_week" = "Ezen a héten";
@@ -126,8 +124,6 @@
 "menu_help" = "Segítség";
 "menu_select_all" = "Összes kiválasztása";
 "menu_edit_name" = "Név módosítása";
-"menu_edit_group_name" = "Csoportnév módosítása";
-"menu_edit_group_image" = "Csoportkép módosítása";
 "menu_settings" = "Beállítások";
 "menu_advanced" = "Haladó";
 "menu_deaddrop" = "Levelesláda";
@@ -193,7 +189,6 @@
 "tab_links" = "Linkek";
 "tab_map" = "Térkép";
 "media_preview" = "Média előnézete";
-"welcome_start_messaging" = "Kezdj csevegni!";
 "login_subheader" = "Ismert e-mail szolgáltató esetén az alábbi beállításokat automatikusan meghatározzuk. Előfordulhat, hogy az IMAP/SMTP szolgáltatást az email fiókod webes felületén engedélyezni kell.\n\nHa nem megy, kérj segítséget a szolgáltatótól vagy a barátaidtól.";
 "login_inbox" = "Bejövő";
 "login_imap_login" = "IMAP bejelentkezési név";
@@ -212,13 +207,11 @@
 "pref_profile_info_headline" = "Profilod adatai";
 "pref_profile_photo" = "Profilkép";
 "pref_blocked_contacts" = "Letiltott partnerek";
-"pref_who_can_see_this_information" = "Ki láthatja ezt az információt?";
 "pref_your_name" = "Neved";
 // Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
 "pref_default_status_text" = "A Delta Chat Messengeremmel küldtem: https://delta.chat";
 "pref_enter_sends" = "Küldés \"enterrel\"";
 "pref_vibrate" = "Rezgés";
-"pref_chat_settings" = "Csevegés beállításai";
 "pref_screen_security" = "Képernyőbiztonság";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Képernyőképek készítésének blokkolása a futó alkalmazások listájában és az alkalmazáson belül";
@@ -226,7 +219,6 @@
 "pref_notifications_show" = "Megjelenítés";
 "pref_notifications_priority" = "Prioritás";
 "pref_led_color" = "LED színe";
-"pref_led_pattern" = "LED villogás mintázata";
 "pref_sound" = "Hang";
 "pref_silent" = "Csendes";
 "pref_privacy" = "Privacy";
@@ -248,7 +240,6 @@
 "pref_app_access" = "Alkalmazás hozzáférés";
 "pref_communication" = "Kommunikáció";
 "pref_chats" = "Csevegések";
-"pref_messages" = "Üzenetek";
 "pref_in_chat_sounds" = "Csevegésen belüli hangok";
 "pref_message_text_size" = "Üzenetek betűmérete";
 "pref_other" = "Egyéb";
@@ -278,10 +269,7 @@
 "contact_not_verified" = "%1$@ nem ellenőrizhető";
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$dúj üzenet %2$d beszélgetésben";
-"notify_media_message_with_text" = "Médiaüzenet: %1$@";
-"notify_mark_all_read" = "Mindet olvasottnak jelöl";
 "notify_mark_read" = "Olvasottnak jelöl";
-"notify_media_message" = "Médiaüzenet";
 "notify_reply_button" = "Válasz";
 "notify_new_message" = "Új üzenet";
 "notify_priority_high" = "Magas";
@@ -313,7 +301,6 @@
 "no_chat_selected_suggestion_desktop" = "Válassz ki egy beszélgetést vagy indíts egy újat";
 "contact_request_title_desktop" = "Levelesláda";
 "more_info_desktop" = "További információ";
-"no_chats_desktop" = "Még nincs beszélgetés.";
 "remove_desktop" = "Eltávolítás";
 "save_desktop" = "Mentés";
 "add_contact_desktop" = "Új partner";

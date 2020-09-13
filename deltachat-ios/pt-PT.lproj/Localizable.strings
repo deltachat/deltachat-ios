@@ -29,8 +29,6 @@
 "bad_email_address" = "Endereço de errado de email";
 "password" = "Palavra-chave";
 "now" = "Agora";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d min";
 "today" = "Hoje";
 "yesterday" = "Ontem";
 "this_week" = "Esta semana";
@@ -176,7 +174,6 @@
 "media_preview" = "Visualização de mídia";
 // welcome and login
 "welcome_intro1_message" = "O mensageiro com o público mais amplo do mundo. Livre e independente.";
-"welcome_start_messaging" = "Comece a chatr";
 "login_title" = "Login";
 "login_header" = "Login no seu servidor";
 "login_subheader" = "Para os provedores de e-mail conhecidos as configurações adicionais são configuradas automaticamente. Por vezes, o IMAP precisa estar activado no frontend da web. Consulte seu provedor de e-mail ou amigos para obter ajuda.";
@@ -205,7 +202,6 @@
 "login_error_cannot_login" = "Não é possível fazer o login como \"%1$@\". Por favor, verifique se o endereço de email e a palavra-chave estão corretos.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Resposta de %1$@: %2$@ \n\nAlguns provedores colocam informações adicionais na sua caixa de entrada; pode verificá-los, por exemplo, na interface web. Consulte o seu provedor ou amigos se você tiver problemas.";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Reencaminhar ...";
@@ -216,8 +212,6 @@
 "pref_profile_photo" = "Foto do perfil";
 "pref_blocked_contacts" = "Bloquear contactos";
 "pref_profile_photo_remove_ask" = "Remover a foto do perfil";
-"pref_help_url" = "https://delta.chat/en/help";
-"pref_who_can_see_this_information" = "Quem pode ver esta informação?";
 "pref_who_can_see_profile_explain" = "A sua foto e nome de perfil serão mostrados ao lado das suas mensagens ao comunicar com outros utilizadores. As informações já enviadas não podem ser excluídas ou removidas";
 "pref_your_name" = "O seu nome";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -227,7 +221,6 @@
 "pref_enter_sends" = "Tecla ENTER para enviar";
 "pref_enter_sends_explain" = "Pressionar a tecla ENTER enviará mensagens de texto";
 "pref_vibrate" = "Vibrar";
-"pref_chat_settings" = "Definições da chat";
 "pref_change_secret" = "Modificar cóidgo secreto";
 "pref_change_secret_explain" = "Mude o seu pin/padrão/impressão digital através das configurações do sistema";
 "pref_screen_security" = "Segurança do ecrã";
@@ -238,7 +231,6 @@
 "pref_notifications_show" = "Mostrar";
 "pref_notifications_priority" = "Prioridade";
 "pref_led_color" = "Cor do LED";
-"pref_led_pattern" = "Padrão de piscar do LED";
 "pref_sound" = "Som";
 "pref_silent" = "Silêncio";
 "pref_privacy" = "Privacidade";
@@ -260,7 +252,6 @@
 "pref_app_access" = "Acesso à App";
 "pref_communication" = "Comunicação";
 "pref_chats" = "chats";
-"pref_messages" = "Mensagens";
 "pref_in_chat_sounds" = "Sons na chat";
 "pref_message_text_size" = "Tamanho do texto das mensagens";
 "pref_view_log" = "Ver o log";
@@ -271,7 +262,6 @@
 "pref_backup_export_start_button" = "Inicia backup";
 "pref_backup_written_to_x" = "Backup escrito com sucesso em %1$@";
 "pref_managekeys_menu_title" = "Gerir teclas";
-"pref_managekeys_ask_for_storage_permission" = "O Delta Chat precisa de acesso aos seus arquivos para importar/exportar chaves";
 "pref_managekeys_export_secret_keys" = "Exportar chave secreta";
 "pref_managekeys_export_explain" = "Exportar chave secreta para \"%1$@\"?";
 "pref_managekeys_import_secret_keys" = "Importar chave secreta";
@@ -286,7 +276,6 @@
 "pref_watch_mvbox_folder" = "Ver a pasta do Delta Chat";
 "pref_auto_folder_moves" = "Mover pasta automaticamente para o Delta Chat";
 "pref_auto_folder_moves_explain" = "As chats de chat são movidas para evitar atravancar da pasta Inbox";
-"pref_email_interaction_title" = "Interação com e-mails";
 "pref_show_emails" = "Exibir e-mails comuns";
 "pref_show_emails_no" = "Não, apenas conversas";
 "pref_show_emails_all" = "Tudo";
@@ -355,11 +344,7 @@
 "contact_setup_changed" = "Configuração alterada para %1$@";
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d novas mensagens em %2$d chats";
-"notify_most_recent_from" = "Mais recentes de: %1$@";
-"notify_media_message_with_text" = "Mensagem de mídia: %1$@";
-"notify_mark_all_read" = "Marcar tudo como lido";
 "notify_mark_read" = "Marcar lido";
-"notify_media_message" = "Mensagem de mídia";
 "notify_reply_button" = "Responder";
 "notify_new_message" = "Mensagem nova";
 "notify_background_connection_enabled" = "Conexão em segundo plano ativada";
@@ -373,15 +358,11 @@
 // permissions
 "perm_required_title" = "Permissão necessária";
 "perm_continue" = "Continuar";
-"perm_explain_need_for_camera_access" = "Para capturar fotos e vídeos, permita que o Delta Chat aceda a câmera.";
-"perm_explain_need_for_mic_access" = "Para enviar mensagens de áudio, permita o acesso do Delta Chat ao seu microfone.";
-"perm_explain_need_for_storage_access" = "O Delta Chat precisa de acesso aos seus arquivos para exportar arquivos ou criar backups.";
 "perm_explain_access_to_camera_denied" = "O Delta Chat necessita de permissão de acesso à Câmera para tirar fotos ou vídeos, mas o acesso foi negado permanentemente. Por favor, continue no menu de configurações do aplicativo, selecione \"Permissões\" e active \"Câmera\".";
 "perm_explain_access_to_mic_denied" = "O Delta Chat necessita de permissão de  acesso ao microfone para enviar mensagens de áudio, mas foi negado. Por favor, continue com as configurações do aplicativo, selecione \"Permissões\" e active \"Microfone\".";
 "perm_explain_access_to_storage_denied" = "O Delta Chat necessita da permissão de armazenamento para anexar ou exportar fotos, vídeos ou áudio, mas foi negado. Por favor, continue no menu de configurações do aplicativo, seleccione \"Permissões\" e active \"Armazenamento\".";
 "perm_explain_access_to_location_denied" = "O Delta Chat necessita permissão de acesso à localização para anexar um local, mas ele negado. Por favor, continue no menu de configurações do aplicativo, selecione \"Permissões \"e ative \"Localização\".";
-"perm_enable_bg_reminder_title" = "Toque aqui para receber mensagens mesmo que o Delta Chat esteja em segundo plano.";
-"perm_enable_bg_reminder_text" = "O Delta Chat usa pouquíssimos recursos e busca não consumir muito a bateria.";
+
 // dc_str_* resources
 "encrypted_message" = "Mensagem encriptada";
 
@@ -411,8 +392,6 @@
 "more_info_desktop" = "Informação adicional";
 "logout_desktop" = "Sair";
 "timestamp_format_m_desktop" = "MMM D";
-"no_archived_chats_desktop" = "Não existem arquivos de CHATS";
-"no_chats_desktop" = "Não existem CHATS";
 "encryption_info_desktop" = "Mostrar a informação de encriptação";
 "verified_desktop" = "verificado";
 "remove_desktop" = "Apagar";
@@ -446,3 +425,4 @@
 "message_detail_to_desktop" = "para";
 "menu.view.developer.open.log.folder" = "Abrir pasta de Log";
 "menu.view.developer.open.current.log.file" = "Abrir o aqrquio do log actual";
+"perm_enable_bg_reminder_title" = "Toque aqui para receber mensagens mesmo que o Delta Chat esteja em segundo plano.";

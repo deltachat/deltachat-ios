@@ -47,7 +47,7 @@
 			<key>one</key>
 			<string>%d sludring</string>
 			<key>other</key>
-			<string>%d sludringer</string>
+			<string>%d chatter</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -98,6 +98,22 @@
 			<string>%d medlemmer</string>
 		</dict>
 	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Slett %d chat? Den vil ikke lenger vises</string>
+			<key>other</key>
+			<string>Slett %d chatter? De vil ikke lenger vises i chattelisten, meldingene vil fortsatt være lagret tjeneren.</string>
+		</dict>
+	</dict>
 	<key>ask_delete_messages</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -112,6 +128,38 @@
 			<string>Slett %d melding? Den vil også bli slettet fra tjeneren?</string>
 			<key>other</key>
 			<string>Slett %d meldinger? De vil også bli slettet fra tjeneren.</string>
+		</dict>
+	</dict>
+	<key>chat_archived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d chatter </string>
+			<key>other</key>
+			<string>%d chatter arkivert</string>
+		</dict>
+	</dict>
+	<key>chat_unarchived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d chatter fjernet fra arkivet</string>
+			<key>other</key>
+			<string>%d chatter fjernet fra arkivet</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

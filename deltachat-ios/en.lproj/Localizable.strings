@@ -57,8 +57,6 @@
 "now" = "Now";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Danger";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d min";
 "today" = "Today";
 "yesterday" = "Yesterday";
 "this_week" = "This week";
@@ -149,8 +147,6 @@
 "menu_select_all" = "Select all";
 "menu_expand" = "Expand";
 "menu_edit_name" = "Edit name";
-"menu_edit_group_name" = "Edit group name";
-"menu_edit_group_image" = "Edit group image";
 "menu_settings" = "Settings";
 "menu_advanced" = "Advanced";
 "menu_deaddrop" = "Contact requests";
@@ -291,7 +287,6 @@
 
 // welcome and login
 "welcome_intro1_message" = "The messenger with the broadest audience in the world. Free and independent.";
-"welcome_start_messaging" = "Start messaging";
 "login_title" = "Log in";
 "login_header" = "Log in to your server";
 "login_explain" = "Log in with an existing email account";
@@ -324,18 +319,17 @@
 // Translators: %1$s will be replaced by the email address
 "login_error_cannot_login" = "Cannot login as \"%1$@\". Please check if the email address and the password are correct.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Response from %1$@: %2$@\n\nSome providers place additional information in your inbox; you can check them eg. in the web frontend. Consult your provider or friends if you run into problems.";
-
+"login_error_server_response" = "Response from %1$@: %2$@\n\nSome providers may email you additional information about this problem; you should be able to check your inbox using your regular email app or web site. Consult your provider or friends if you run into problems.";
 // TLS certificate checks
-"accept_invalid_hostnames" = "Accept invalid hostnames";
 "accept_invalid_certificates" = "Accept invalid certificates";
-
 "used_settings" = "Used settings:";
 "switch_account" = "Switch account";
 "add_account" = "Add account";
 "delete_account" = "Delete account";
 "delete_account_ask" = "Are you sure you want to delete your account data?";
 "switching_account" = "Switching account…";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "Configuration failed. Error: %1$@";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -353,9 +347,7 @@
 "pref_profile_photo" = "Profile picture";
 "pref_blocked_contacts" = "Blocked contacts";
 "pref_profile_photo_remove_ask" = "Remove profile photo?";
-"pref_help_url" = "https://delta.chat/help";
 "pref_password_and_account_settings" = "Password and account";
-"pref_who_can_see_this_information" = "Who can see this?";
 "pref_who_can_see_profile_explain" = "Your profile picture and name will be shown alongside your messages when communicating with other users. Already sent information can not be deleted or removed.";
 "pref_your_name" = "Your name";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -368,7 +360,6 @@
 "pref_outgoing_balanced" = "Balanced";
 "pref_outgoing_worse" = "Worse quality, small size";
 "pref_vibrate" = "Vibrate";
-"pref_chat_settings" = "Chat settings";
 "pref_change_secret" = "Change secret";
 "pref_change_secret_explain" = "Change your PIN / pattern / fingerprint via system settings";
 "pref_screen_security" = "Screen security";
@@ -379,7 +370,6 @@
 "pref_notifications_show" = "Show";
 "pref_notifications_priority" = "Priority";
 "pref_led_color" = "LED color";
-"pref_led_pattern" = "LED blink pattern";
 "pref_sound" = "Sound";
 "pref_silent" = "Silent";
 "pref_privacy" = "Privacy";
@@ -401,7 +391,6 @@
 "pref_app_access" = "App access";
 "pref_communication" = "Communication";
 "pref_chats" = "Chats";
-"pref_messages" = "Messages";
 "pref_in_chat_sounds" = "In-chat sounds";
 "pref_message_text_size" = "Message font size";
 "pref_view_log" = "View log";
@@ -415,7 +404,6 @@
 "pref_backup_export_start_button" = "Start backup";
 "pref_backup_written_to_x" = "Backup written successfully to \"%1$@\".";
 "pref_managekeys_menu_title" = "Manage keys";
-"pref_managekeys_ask_for_storage_permission" = "Delta Chat needs access to your files to import/export keys.";
 "pref_managekeys_export_secret_keys" = "Export secret keys";
 "pref_managekeys_export_explain" = "Export secret keys to \"%1$@\"?";
 "pref_managekeys_import_secret_keys" = "Import secret keys";
@@ -433,32 +421,22 @@
 "pref_send_copy_to_self" = "Send copy to self";
 "pref_auto_folder_moves" = "Automatic moves to DeltaChat folder";
 "pref_auto_folder_moves_explain" = "Chat conversations are moved to avoid cluttering the Inbox";
-"pref_email_interaction_title" = "Email interaction";
 "pref_show_emails" = "Show classic emails";
 "pref_show_emails_no" = "No, chats only";
 "pref_show_emails_accepted_contacts" = "For accepted contacts";
 "pref_show_emails_all" = "All";
-"pref_empty_server_title" = "Delete emails from server";
-"pref_empty_server_msg" = "This function helps free up space on your IMAP server by deleting all emails, including chat messages, in the given folders. Messages on this device will not be deleted. The deletion cannot be undone!";
-"pref_empty_server_inbox" = "Delete all emails in \"Inbox\" folder";
-"pref_empty_server_mvbox" = "Delete all emails in \"DeltaChat\" folder";
-"pref_empty_server_do_button" = "Delete emails";
 "pref_experimental_features" = "Experimental features";
 "pref_on_demand_location_streaming" = "On-demand location streaming";
 "pref_background_default" = "Default background";
 "pref_background_default_color" = "Default color";
 "pref_background_custom_image" = "Custom image";
 "pref_background_custom_color" = "Custom color";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Reliable background connection";
-"pref_reliable_service_explain" = "Requires a permanent notification";
-"ephemeral_dialog_title" = "Delete read messages";
-
+"export_aborted" = "Export aborted.";
 
 // automatically delete message
 "delete_old_messages" = "Delete old messages";
+// devs: autodel_title is deprecated, use delete_old_messages instead
 "autodel_title" = "Auto-delete messages";
-"autodel_title_short" = "Auto-delete";
 "autodel_device_title" = "Delete messages from device";
 "autodel_server_title" = "Delete messages from server";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
@@ -566,11 +544,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d new messages in %2$d chats";
-"notify_most_recent_from" = "Most recent from: %1$@";
-"notify_media_message_with_text" = "Media message: %1$@";
-"notify_mark_all_read" = "Mark all as read";
 "notify_mark_read" = "Mark read";
-"notify_media_message" = "Media message";
 "notify_reply_button" = "Reply";
 "notify_new_message" = "New message";
 "notify_background_connection_enabled" = "Background connection enabled";
@@ -584,17 +558,10 @@
 // permissions
 "perm_required_title" = "Permission required";
 "perm_continue" = "Continue";
-"perm_explain_need_for_camera_access" = "To capture photos and videos, allow Delta Chat to access the camera.";
-"perm_explain_need_for_mic_access" = "To send audio messages, allow Delta Chat to access the microphone.";
-"perm_explain_need_for_storage_access" = "Delta Chat needs access to your files in order to export files or to create backups.";
-"perm_explain_need_for_storage_access_share" = "Delta Chat needs access to your files to share them.";
 "perm_explain_access_to_camera_denied" = "To take photos or capture videos, go to the app settings, select \"Permissions\", and enable \"Camera\".";
 "perm_explain_access_to_mic_denied" = "To send audio messages, go to the app settings, select \"Permissions\", and enable \"Microphone\".";
 "perm_explain_access_to_storage_denied" = "To recieve or send files, go to the app settings, select \"Permissions\", and enable \"Storage\".";
 "perm_explain_access_to_location_denied" = "To attach a location, go to the app settings, select \"Permissions\", and enable \"Location\".";
-"perm_enable_bg_reminder_title" = "Tap here to receive messages while Delta Chat is in the background.";
-"perm_enable_bg_reminder_text" = "Delta Chat uses few resources and takes care not to drain your battery.";
-"perm_enable_bg_already_done" = "You already allowed Delta Chat to receive messages in the background.\n\nIf messages still do not arrive in background, please also check your system settings.";
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Draw anywhere to blur";
@@ -632,8 +599,6 @@
 "more_info_desktop" = "More info";
 "logout_desktop" = "Logout";
 "timestamp_format_m_desktop" = "MMM D";
-"no_archived_chats_desktop" = "No archived chats";
-"no_chats_desktop" = "No chats";
 "encryption_info_desktop" = "Show encryption info";
 "verified_desktop" = "verified";
 "remove_desktop" = "Remove";
@@ -683,11 +648,19 @@
 "a11y_message_context_menu_btn_label" = "Message actions";
 "a11y_background_preview_label" = "Background preview";
 
+
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
 // android specific strings, developers: please take care to remove strings that are no longer used!
-"update_1_10_android" = "New Delta Chat 1.10 features at a glance: faster, multi-account, blur images, new emojis, reworked notifications, better error-reporting but most importantly:\n\nClick an avatar in profile and enlarge it 🚀";
+"pref_background_notifications" = "Background notifications";
+"pref_background_notifications_explain" = "Uses a background connection to your server and requires ignored battery optimizations.";
+"pref_background_notifications_rationale" = "To maintain connection to your email server and receive messages in the background, ignore battery optimizations in the next step.\n\nDelta Chat uses few resources and takes care not to drain your battery.";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Reliable background connection";
+"pref_reliable_service_explain" = "Requires a permanent notification";
+"perm_enable_bg_reminder_title" = "Tap here to receive messages while Delta Chat is in the background.";
+"perm_enable_bg_already_done" = "You already allowed Delta Chat to receive messages in the background.\n\nIf messages still do not arrive in background, please also check your system settings.";
 
 
 "import_contacts" = "Import device contacts";

@@ -57,8 +57,6 @@
 "now" = "现在";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "危险";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d 分钟前";
 "today" = "今天";
 "yesterday" = "昨天";
 "this_week" = "本周";
@@ -149,8 +147,6 @@
 "menu_select_all" = "全选";
 "menu_expand" = "展开";
 "menu_edit_name" = "编辑名称";
-"menu_edit_group_name" = "编辑群组名称";
-"menu_edit_group_image" = "编辑群组图像";
 "menu_settings" = "设置";
 "menu_advanced" = "高级";
 "menu_deaddrop" = "联系人请求";
@@ -291,7 +287,6 @@
 
 // welcome and login
 "welcome_intro1_message" = "本通讯软件有着世界上最广泛的受众。自由且自主。";
-"welcome_start_messaging" = "开始发送消息";
 "login_title" = "登录";
 "login_header" = "登录至您的服务器";
 "login_explain" = "使用现有电子邮件帐户登录";
@@ -325,17 +320,16 @@
 "login_error_cannot_login" = "无法作为“%1$@”登录。请检查电子邮件地址和密码是否正确。";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "来自 %1$@ 的回应： %2$@\n\n某些提供商会在您的收件箱中放置额外信息; 您可以在 Web 端等处等查看它。 如遇到问题，请咨询您的提供商或朋友。";
-
 // TLS certificate checks
-"accept_invalid_hostnames" = "接受无效的主机名";
 "accept_invalid_certificates" = "接受无效的证书";
-
 "used_settings" = "已使用设置：";
 "switch_account" = "切换账户 ";
 "add_account" = "添加账户";
 "delete_account" = "删除账户";
 "delete_account_ask" = "您确定要删除您的账户数据吗？";
 "switching_account" = "切换账户 …";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "配置失败。错误：%1$@";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -353,9 +347,7 @@
 "pref_profile_photo" = "个人资料图片";
 "pref_blocked_contacts" = "已屏蔽联系人";
 "pref_profile_photo_remove_ask" = "移除个人资料照片？";
-"pref_help_url" = "https://delta.chat/help";
 "pref_password_and_account_settings" = "密码和账户";
-"pref_who_can_see_this_information" = "谁能看到这个？";
 "pref_who_can_see_profile_explain" = "在与其他用户交流时，您的个人资料图片和名称将与您的消息一起显示。 已经发送的信息不能被删除或者移除。";
 "pref_your_name" = "您的名称";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -368,7 +360,6 @@
 "pref_outgoing_balanced" = "平衡";
 "pref_outgoing_worse" = "体积小，但质量更差";
 "pref_vibrate" = "振动";
-"pref_chat_settings" = "聊天设置";
 "pref_change_secret" = "更改密码";
 "pref_change_secret_explain" = "通过系统设置来更改您的 PIN 码 / 图案 / 指纹";
 "pref_screen_security" = "屏幕安全";
@@ -379,7 +370,6 @@
 "pref_notifications_show" = "显示";
 "pref_notifications_priority" = "优先级";
 "pref_led_color" = "LED 颜色";
-"pref_led_pattern" = "LED 闪烁模式";
 "pref_sound" = "声音";
 "pref_silent" = "无声";
 "pref_privacy" = "隐私";
@@ -401,7 +391,6 @@
 "pref_app_access" = "应用程序访问";
 "pref_communication" = "通讯";
 "pref_chats" = "聊天";
-"pref_messages" = "消息";
 "pref_in_chat_sounds" = "聊天音";
 "pref_message_text_size" = "消息字体大小";
 "pref_view_log" = "查看日志";
@@ -415,7 +404,6 @@
 "pref_backup_export_start_button" = "开始备份";
 "pref_backup_written_to_x" = "备份已成功写入到“%1$@”。";
 "pref_managekeys_menu_title" = "管理密钥";
-"pref_managekeys_ask_for_storage_permission" = "Delta Chat 需要访问您的文件来导入 / 导出密钥。";
 "pref_managekeys_export_secret_keys" = "导出密钥";
 "pref_managekeys_export_explain" = "导出密钥到“%1$@”？";
 "pref_managekeys_import_secret_keys" = "导入密钥";
@@ -433,32 +421,22 @@
 "pref_send_copy_to_self" = "给自己发送副本";
 "pref_auto_folder_moves" = "自动移动至 DeltaChat 文件夹";
 "pref_auto_folder_moves_explain" = "移动聊天对话以免弄乱收件箱";
-"pref_email_interaction_title" = "电子邮件交互";
 "pref_show_emails" = "显示传统电子邮件";
 "pref_show_emails_no" = "不显示，仅聊天";
 "pref_show_emails_accepted_contacts" = "已接受的联系人";
 "pref_show_emails_all" = "全部";
-"pref_empty_server_title" = "从服务器上删除电子邮件";
-"pref_empty_server_msg" = "此功能通过删除给定文件夹中包括聊天消息在内的所有电子邮件来释放您 IMAP 服务器上的空间。 此设备上的消息不会被删除。 此删除无法撤消！";
-"pref_empty_server_inbox" = "删除“收件箱”文件夹中所有电子邮件";
-"pref_empty_server_mvbox" = "删除“DeltaChat”文件夹中所有电子邮件";
-"pref_empty_server_do_button" = "删除电子邮件";
 "pref_experimental_features" = "实验性功能";
 "pref_on_demand_location_streaming" = "按需位置流";
 "pref_background_default" = "默认背景";
 "pref_background_default_color" = "默认颜色";
 "pref_background_custom_image" = "自定义图像";
 "pref_background_custom_color" = "自定义颜色";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "可靠后台连接";
-"pref_reliable_service_explain" = "需要一个永久通知";
-"ephemeral_dialog_title" = "删除已读消息";
-
+"export_aborted" = "导出已中止。";
 
 // automatically delete message
 "delete_old_messages" = "删除旧消息";
+// devs: autodel_title is deprecated, use delete_old_messages instead
 "autodel_title" = "自动删除消息";
-"autodel_title_short" = "自动删除";
 "autodel_device_title" = "从设备删除消息";
 "autodel_server_title" = "从服务器删除消息";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
@@ -511,13 +489,13 @@
 "systemmsg_subject_for_new_contact" = "来自 %1$@ 的消息";
 "systemmsg_failed_sending_to" = "发送消息给 %1$@ 失败。";
 
-"systemmsg_ephemeral_timer_disabled" = "已禁用阅后即焚消息定时器。";
-"systemmsg_ephemeral_timer_enabled" = "设置阅后即焚消息定时器为 %1$@ 秒。";
-"systemmsg_ephemeral_timer_minute" = "设置阅后即焚消息定时器为 1 分钟。";
-"systemmsg_ephemeral_timer_hour" = "设置阅后即焚消息定时器为 1 小时。";
-"systemmsg_ephemeral_timer_day" = "设置阅后即焚消息定时器为 1 天。";
-"systemmsg_ephemeral_timer_week" = "设置阅后即焚消息定时器为 1 周。";
-"systemmsg_ephemeral_timer_four_weeks" = "设置阅后即焚消息定时器为 4 周。";
+"systemmsg_ephemeral_timer_disabled" = "已禁用阅后即焚消息定时器";
+"systemmsg_ephemeral_timer_enabled" = "设置阅后即焚消息定时器为 %1$@ 秒";
+"systemmsg_ephemeral_timer_minute" = "设置阅后即焚消息定时器为 1 分钟";
+"systemmsg_ephemeral_timer_hour" = "设置阅后即焚消息定时器为 1 小时";
+"systemmsg_ephemeral_timer_day" = "设置阅后即焚消息定时器为 1 天";
+"systemmsg_ephemeral_timer_week" = "设置阅后即焚消息定时器为 1 周";
+"systemmsg_ephemeral_timer_four_weeks" = "设置阅后即焚消息定时器为 4 周";
 
 
 // screen lock
@@ -566,11 +544,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%2$d 个聊天中有 %1$d 条新消息";
-"notify_most_recent_from" = "最新来自： %1$@";
-"notify_media_message_with_text" = "媒体消息： %1$@";
-"notify_mark_all_read" = "将所有标记为已读";
 "notify_mark_read" = "标记为已读";
-"notify_media_message" = "媒体消息";
 "notify_reply_button" = "回复";
 "notify_new_message" = "新消息";
 "notify_background_connection_enabled" = "后台连接已启用";
@@ -584,17 +558,10 @@
 // permissions
 "perm_required_title" = "需要权限";
 "perm_continue" = "继续";
-"perm_explain_need_for_camera_access" = "要拍照和录像，请允许 Delta Chat 访问相机。";
-"perm_explain_need_for_mic_access" = "要发送音频消息，请允许 Delta Chat 访问麦克风。";
-"perm_explain_need_for_storage_access" = "Delta Chat 需要访问您的文件来导出文件或创建备份。";
-"perm_explain_need_for_storage_access_share" = "Delta Chat 需要访问您的文件来分享它们。";
 "perm_explain_access_to_camera_denied" = "要拍照或录像，请转至应用设置，选择“权限”，然后启用“相机”。";
 "perm_explain_access_to_mic_denied" = "要发送音频消息，请转至应用设置，选择“权限”，然后启用“麦克风”。";
 "perm_explain_access_to_storage_denied" = "要发送或接收文件，请转至应用设置，选择“权限”，然后启用“存储”。";
 "perm_explain_access_to_location_denied" = "要附加位置，请转至应用设置，选择“权限”，然后启用“位置”。";
-"perm_enable_bg_reminder_title" = "点击此处以在 Delta Chat 处于后台时接收消息。";
-"perm_enable_bg_reminder_text" = "Delta Chat 仅使用少量的资源并且会注意不去耗尽电池电量。";
-"perm_enable_bg_already_done" = "您已允许 Delta Chat 在后台接收消息。\n\n如果在后台时消息仍没到达，请同时检查系统设置。";
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "对任意地方进行模糊";
@@ -632,8 +599,6 @@
 "more_info_desktop" = "更多信息";
 "logout_desktop" = "登出";
 "timestamp_format_m_desktop" = "MMM D";
-"no_archived_chats_desktop" = "没有已归档聊天";
-"no_chats_desktop" = "没有聊天";
 "encryption_info_desktop" = "显示加密信息";
 "verified_desktop" = "已验证";
 "remove_desktop" = "移除";
@@ -683,9 +648,17 @@
 "a11y_message_context_menu_btn_label" = "消息操作";
 "a11y_background_preview_label" = "背景预览";
 
+
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
 // android specific strings, developers: please take care to remove strings that are no longer used!
-"update_1_10_android" = "Delta Chat 1.10 新功能概览：更快、多帐户、对图像进行模糊、新表情、通知重做、更好的错误报告，以及最重要的：\n\n点击个人资料中的头像并放大🚀";
+"pref_background_notifications" = "后台通知";
+"pref_background_notifications_explain" = "使用与服务器的后台连接，并且需要忽略电池优化。";
+"pref_background_notifications_rationale" = "要保持与您的电子邮件服务器的连接并在后台接收消息，请在下一步中忽略电池优化。\n\nDelta Chat 仅使用少量的资源并且会注意不去耗尽电池电量。";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "可靠后台连接";
+"pref_reliable_service_explain" = "需要一个永久通知";
+"perm_enable_bg_reminder_title" = "点击此处以在 Delta Chat 处于后台时接收消息。";
+"perm_enable_bg_already_done" = "您已允许 Delta Chat 在后台接收消息。\n\n如果在后台时消息仍没到达，请同时检查系统设置。";
 

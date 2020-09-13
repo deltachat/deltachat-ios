@@ -4,6 +4,7 @@
 "cancel" = "Avbryt";
 "yes" = "Ja";
 "no" = "Nei";
+"select" = "Velg";
 "on" = "På";
 "off" = "Av";
 "def" = "Forvalg";
@@ -12,6 +13,8 @@
 "automatic" = "Automatisk";
 "strict" = "Streng";
 "open" = "Åpne";
+"join" = "Bli med";
+"rejoin" = "Bli med igjen";
 "delete" = "Slett";
 "info" = "Info";
 "update" = "Oppdater";
@@ -24,11 +27,12 @@
 "unarchive" = "Fjern fra arkiv";
 "mute" = "Demp";
 "ephemeral_messages" = "Forsvinnende meldinger";
+"ephemeral_messages_hint" = "Disse innstillingene gjelder alle deltakerne som bruker Delta Chat. Men de kan kopiere, lagre og videresende meldinger eller bruke annen e-postklient.";
 "save" = "Lagre";
-"chat" = "Sludring";
+"chat" = "Chat";
 "media" = "Media";
 "main_menu" = "Hovedmeny";
-"start_chat" = "Start sludring";
+"start_chat" = "Start chat";
 "show_password" = "Vis passord";
 "hide_password" = "Skjul passord";
 "not_now" = "Ikke nå";
@@ -41,17 +45,18 @@
 "error" = "Feil";
 "error_x" = "Feil: %1$@";
 "error_no_network" = "Nettverk utilgjengelig.";
+"no_app_to_handle_data" = "Kan ikke finne en app som kan handtere denne typen data.";
+"no_browser_installed" = "Ingen nettleser installert";
 "file_not_found" = "Filen %1$@ ble ikke funnet.";
 "copied_to_clipboard" = "Kopiert til utklippstavle";
 "contacts_headline" = "Kontakter";
 "email_address" = "E-postadresse";
 "bad_email_address" = "Feilaktig e-postadresse.";
 "password" = "Passord";
+"existing_password" = "Eksisterende passord";
 "now" = "Nå";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Fare";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d minutt";
 "today" = "I dag";
 "yesterday" = "I går";
 "this_week" = "Denne uken";
@@ -76,7 +81,9 @@
 "camera" = "Kamera";
 "location" = "Posisjon";
 "gallery" = "Galleri";
+"images_and_videos" = "Bilder og videoer";
 "file" = "Fil";
+"files" = "Filer";
 "unknown" = "Ukjent";
 
 "green" = "Grønn";
@@ -102,7 +109,7 @@
 
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Ny kontakt";
-"menu_new_chat" = "Ny sludring";
+"menu_new_chat" = "Ny chat";
 "menu_new_group" = "Ny gruppe";
 "menu_new_verified_group" = "Ny bekreftet gruppe";
 "menu_send" = "Send";
@@ -111,13 +118,15 @@
 "menu_group_name_and_image" = "Gruppenavn og bilde";
 "menu_show_map" = "Vis kart";
 "menu_show_global_map" = "Vis alle posisjoner";
-"menu_archive_chat" = "Arkiver sludring";
-"menu_unarchive_chat" = "Fjern sludring fra arkiv";
+"menu_archive_chat" = "Arkiver chat";
+"menu_unarchive_chat" = "Fjern chat fra arkiv";
 "menu_add_attachment" = "Legg ved filer";
 "menu_leave_group" = "Forlat gruppe";
 "menu_delete_chat" = "Slett sludring";
 "menu_delete_messages" = "Slett meldinger";
 "menu_delete_image" = "Slett bilde";
+"menu_delete_locations" = "Slett alle steder?";
+"menu_delete_location" = "Slett på dette stedet?";
 "menu_message_details" = "Meldingsdetaljer";
 "menu_copy_to_clipboard" = "Kopier til utklippstavle";
 "menu_forward" = "Videresend melding";
@@ -138,8 +147,6 @@
 "menu_select_all" = "Velg alle";
 "menu_expand" = "Utvid";
 "menu_edit_name" = "Rediger navn";
-"menu_edit_group_name" = "Rediger gruppenavn";
-"menu_edit_group_image" = "Rediger gruppebilde";
 "menu_settings" = "Innstillinger";
 "menu_advanced" = "Avanserte innstillinger";
 "menu_deaddrop" = "Kontaktforespørsler";
@@ -151,7 +158,18 @@
 "title_share_location" = "Del beliggenhet med alle gruppemedlemmer";
 "device_talk" = "Enhetsmeldinger";
 "device_talk_subtitle" = "Lokalt genererte meldinger";
+"device_talk_explain" = "Meldinger i denne chatten blir generert lokalt av Delta Chat-appen. Produsentene bruker den for å informere om appoppdateringer og problemer under bruk.";
+"device_talk_welcome_message" = "Velkommen til Delta Chat! – Delta Chat ser ut og føles som andre populære messenger-apper, men involverer ikke sentralisert kontroll, sporing eller salg av deg, venner, kolleger eller familie til store organisasjoner.\n\nTeknisk er Delta Chat en e-postapplikasjon med et moderne chattegrensesnitt. E-post i en nye klær hvis du vil 👻\n\nBruk Delta Chat med hvem som helst av milliarder av mennesker: bare bruk e-postadressen deres. Mottakere trenger ikke installere Delta Chat, besøke nettsteder eller registrere seg noen steder – men selvfølgelig, hvis de vil, kan du peke dem til 👉 https://get.delta.chat";
 "edit_contact" = "Rediger kontakt";
+// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin_chat" = "Fest chat";
+// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+"unpin_chat" = "Løsne chat";
+// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin" = "Fest";
+// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+"unpin" = "Løsn";
+
 "mute_for_one_hour" = "Demp i 1 time";
 "mute_for_two_hours" = "Demp i 2 timer";
 "mute_for_one_day" = "Demp i 1 dag";
@@ -165,19 +183,61 @@
 "share_location_for_two_hours" = "i 2 timer";
 "share_location_for_six_hours" = "i 6 timer";
 
+"file_saved_to" = "Lagre fil til \"%1$@\".";
+
+"videochat" = "Videochat";
+"videochat_invite_user_to_videochat" = "Inviter %1$@ til en videochat?";
+"videochat_invite_user_hint" = "Dette krever en kompatibel app, eller en kompatible nettleser i begge ender.";
+"videochat_contact_invited_hint" = "%1$@ inviterte til en videochat.";
+"videochat_you_invited_hint" = "Du inviterte til en videochat.";
+"videochat_will_open_in_your_browser" = "Denne videochatten åpnes i nettleseren din";
+"videochat_tap_to_join" = "Trykk for å bli med";
+"videochat_tap_to_open" = "Trykk for å åpne";
+"videochat_instance" = "Videochatteinstans";
+"videochat_instance_placeholder" = "Din videochatteinstans";
+"videochat_instance_explain" = "Hvis en videochatteinstans er definert, kan dere starte videochat med hverandre en-til-en. Videochat trenger en kompatibel nettleser i begge ender.\n\nEksempel: https://meet.jit.si/$ROOM eller basicwebrtc:https://your-server";
+"videochat_instance_from_qr" = "Bruk \"%1$@\" til å invitere andre til videochatter?\n\nNår satt, kan dere starte videochatter til hverandre en-til-en. Dette vil erstatte, eventuelle, tidligere innstillinger for videochatter.";
+"videochat_invitation" = "Videochatinvitasjon";
+"videochat_invitation_body" = "Du er invitert til en videochat, klikk %1$@ for å bli med.";
+
 // get confirmations
 "ask_leave_group" = "Er du sikker på at du vil forlate denne gruppen?";
 "ask_forward" = "Videresend meldinger til %1$@?";
+"ask_forward_multiple" = "Videresend meldinger til %1$d chatter?";
+"ask_export_attachment" = "Eksporter vedlegg? Eksport av vedlegg vil gi andre apper på din enhet tilgang til dem\n\nFortsett?";
+"ask_block_contact" = "Blokkere denne kontakten? Du vil ikke lenger motta meldinger fra kontakten.";
+"ask_unblock_contact" = "Fjern blokkering av denne kontakten? Du vil igjen kunne motta meldinger fra kontakten.";
+"ask_delete_contacts" = "Slett kontakter?\n\nKontakter med pågående chatter og kontakter fra systemet adressebok kan ikke bli slettet permanent.";
+"ask_delete_contact" = "Slett kontakter %1$@?\n\nKontakter med pågående chatter og kontakter fra systemets adressebok, kan ikke slettes permanent.";
+"cannot_delete_contacts_in_use" = "Kan ikke slette kontakter med pågående chatter.";
 "ask_start_chat_with" = "Begynn å sludre med %1$@?";
+// Translators: %1$s will be replaces by a comma separated list of names
+"ask_remove_members" = "Fjern %1$@ fra gruppen?";
+"info_outdated_app_title" = "Din appversjon er utdatert";
+"info_outdated_app_text" = "Det ser ut til at du installerte Delta Chat fra en kilde uten automatisk oppdatering (f.eks. GitHub). Vennligst bytt til en butikkversjon for å motta de siste funksjoner og sikkerhetsfikser.";
+"info_outdated_app_dialog_title" = "Oppdater kilder";
+"info_outdated_app_dialog_text" = "Delta Chat er tilgjengelig på:";
+
+
 // contact list
 "contacts_title" = "Kontakter";
+"contacts_enter_name_or_email" = "Skriv navn eller e-postadresse";
+"contacts_type_email_above" = "Skriv e-postadresse over";
 "contacts_empty_hint" = "Ingen kontakter.";
 
 
+// chatlist and chat view
 "chat_archived_chats_title" = "Arkiverte sludringer";
+"chat_please_enter_message" = "Vennligst skiv en melding.";
+"chat_camera_unavailable" = "Kamera ikke tilgjengelig.";
+"chat_unable_to_record_audio" = "Ikke mulig å ta opp lyd.";
 "chat_no_messages_hint" = "Send melding til %1$@:\n\n• Det er greit hvis %2$@ ikke bruker Delta Chat.\n\n• Levering av den første meldingen kan ta sin tid.";
 "chat_new_group_hint" = "Forfatt den første meldingen, noe som lar andre svare i gruppen.\n\n• Det er greit at ikke alle medlemmer bruker Delta Chat.\n\n• Levering av den første meldingen kan ta sin tid.";
 "chat_record_slide_to_cancel" = "Dra for å avbryte";
+"chat_record_explain" = "Trykk og hold for å ta opp en melding, slipp for å sende";
+"chat_no_chats_yet_title" = "Tøm innboksen.\nTrykk \"+\" for å starte en ny chat.";
+"chat_no_chats_yet_hint" = "Du kan chatte med andre Delta Chat-brukere og med hvilken som helst annen e-postadresse.";
+"chat_all_archived" = "Alle chatter er arkivert\nTrykk \"+\" for å starte en ny chat.";
 "chat_share_with_title" = "Del med";
 "chat_input_placeholder" = "Melding";
 "chat_archived_label" = "Arkivert";
@@ -200,7 +260,6 @@
 "tab_gallery" = "Galleri";
 "tab_docs" = "Dokumenter";
 "media_preview" = "Forhåndsvisning av medier";
-"welcome_start_messaging" = "Start meldingsutveksling";
 "login_title" = "Logg inn";
 "login_inbox" = "Innboks";
 "login_imap_login" = "IMAP-innloggingsnavn";
@@ -224,7 +283,6 @@
 "pref_profile_photo" = "Profilbilde";
 "pref_blocked_contacts" = "Blokkerte kontakter";
 "pref_password_and_account_settings" = "Kontoinnstillinger";
-"pref_who_can_see_this_information" = "Hvem kan se denne informasjonen?";
 "pref_your_name" = "Mitt navn";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
 "pref_default_status_label" = "Signaturtekst";
@@ -232,7 +290,6 @@
 "pref_default_status_text" = "Sendt med Delta Chat: https://delta.chat";
 "pref_enter_sends" = "Send med \"Enter\"";
 "pref_vibrate" = "Vibrer";
-"pref_chat_settings" = "Samtale-innstillinger";
 "pref_screen_security" = "Skjermsikkerhet";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Blokker skjermbilder i sist brukte-liste og i programmet";
@@ -240,7 +297,6 @@
 "pref_notifications_show" = "Vis";
 "pref_notifications_priority" = "Prioritet";
 "pref_led_color" = "LED-farge";
-"pref_led_pattern" = "LED-blinkemønster";
 "pref_sound" = "Lyd";
 "pref_silent" = "Stille";
 "pref_privacy" = "Personvern";
@@ -262,7 +318,6 @@
 "pref_app_access" = "Programtilgang";
 "pref_communication" = "Kommunikasjon";
 "pref_chats" = "Sludringer";
-"pref_messages" = "Meldinger";
 "pref_in_chat_sounds" = "Merknader i programmet";
 "pref_message_text_size" = "Skriftstørrelse i meldinger";
 "pref_view_log" = "Vis logg";
@@ -328,9 +383,7 @@
 "qrshow_join_contact_title" = "QR-invitasjonskode";
 "qrshow_join_contact_hint" = "Skann dette for å bekrefte en kontakt med %1$@.";
 "contact_verified" = "%1$@ bekreftet.";
-"notify_mark_all_read" = "Merk alle som lest";
 "notify_mark_read" = "Merk som lest";
-"notify_media_message" = "Mediemelding";
 "notify_reply_button" = "Svar";
 "notify_new_message" = "Ny meldin";
 "notify_priority_high" = "Høy";
@@ -358,7 +411,6 @@
 "contact_request_title_desktop" = "Kontaktforespørsel";
 "delete_message_desktop" = "Slett melding";
 "more_info_desktop" = "Mer informasjon";
-"no_chats_desktop" = "Ingen sladder.";
 "encryption_info_desktop" = "Krypteringsinfo";
 "verified_desktop" = "bekreftet";
 "remove_desktop" = "Fjerne";

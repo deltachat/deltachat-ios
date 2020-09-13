@@ -37,8 +37,6 @@
 "now" = "Nu";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Fare";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d min.";
 "today" = "I dag";
 "yesterday" = "I går";
 "this_week" = "Denne uge";
@@ -127,8 +125,6 @@
 "menu_select_all" = "Vælge alle";
 "menu_expand" = "Udvide";
 "menu_edit_name" = "Redigere navn";
-"menu_edit_group_name" = "Redigere gruppe navn";
-"menu_edit_group_image" = "Redigere gruppe billede";
 "menu_settings" = "Opsætning";
 "menu_advanced" = "Avanceret";
 "menu_deaddrop" = "Kontakt anmodninger";
@@ -227,7 +223,6 @@
 "media_preview" = "Medie forhåndvisning";
 // welcome and login
 "welcome_intro1_message" = "Budbringeren med verdens bredeste publikum. Fri og uafhængig.";
-"welcome_start_messaging" = "Start skrivning";
 "login_title" = "Logind";
 "login_header" = "Logind til server";
 "login_subheader" = "For kendte e-post udbydere opsættes yderligere indstillinger automatisk. Nogle gange skal IMAP aktiveres i brugerfladen. Kontakt din e-post udbyder eller venner for at få hjælp.";
@@ -257,7 +252,6 @@
 "login_error_cannot_login" = "Kan ikke logge ind som  \"%1$@\". Kontrollere om e-post adresse og adgangskode er korrekt.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Svar fra %1$@: %2$@\n\nNogle udbydere placerer ekstra information i indbakken; det kan kontrolleres f.eks. i net grænsefladen. Kontakt udbyder eller venner hvis disse problemer opstår.";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Videresende til …";
@@ -271,8 +265,6 @@
 "pref_profile_photo" = "Profil billede";
 "pref_blocked_contacts" = "Blokerede kontakter";
 "pref_profile_photo_remove_ask" = "Fjerne profil billede?";
-"pref_help_url" = "https://delta.chat/en/help";
-"pref_who_can_see_this_information" = "Hvem kan se denne information?";
 "pref_who_can_see_profile_explain" = "Profilbillede og navn vises sammen med beskeder, når der kommunikeres med andre brugere. Allerede sendt information kan ikke slettes eller fjernes.";
 "pref_your_name" = "Nanv";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -285,7 +277,6 @@
 "pref_outgoing_balanced" = "Balanceret";
 "pref_outgoing_worse" = "Dårligere kvalitet mindre størrelse";
 "pref_vibrate" = "Vibrere";
-"pref_chat_settings" = "Samtale opsætning";
 "pref_change_secret" = "Ændre hemmelighed";
 "pref_change_secret_explain" = "Ændre PIN / mønster / fingeraftryk via system opsætning";
 "pref_screen_security" = "Skærm sikkerhed";
@@ -296,7 +287,6 @@
 "pref_notifications_show" = "Vise";
 "pref_notifications_priority" = "Prioritet";
 "pref_led_color" = "LED farve";
-"pref_led_pattern" = "LED blinke mønster";
 "pref_sound" = "Lyd";
 "pref_silent" = "Stille";
 "pref_privacy" = "Privatliv";
@@ -318,7 +308,6 @@
 "pref_app_access" = "Program adgang";
 "pref_communication" = "Kommunikation";
 "pref_chats" = "Samtaler";
-"pref_messages" = "Beskeder";
 "pref_in_chat_sounds" = "I samtale lyde";
 "pref_message_text_size" = "Besked tekststørrelse";
 "pref_view_log" = "Vise log";
@@ -330,7 +319,6 @@
 "pref_backup_export_start_button" = "Starte sikkerhedskopiering";
 "pref_backup_written_to_x" = "Sikkerhedskopi skrevet til %1$@";
 "pref_managekeys_menu_title" = "Håndtere nøgler";
-"pref_managekeys_ask_for_storage_permission" = "Delta Chat behøver fil adgang for importere/eksportere nøgler.";
 "pref_managekeys_export_secret_keys" = "Eksportere hemmelige nøgler";
 "pref_managekeys_export_explain" = "Eksportere hemmelige nøgler til \"%1$@\"?";
 "pref_managekeys_import_secret_keys" = "Importere hemmelige nøgler";
@@ -347,7 +335,6 @@
 "pref_watch_mvbox_folder" = "Overvåge DeltaChat mappe";
 "pref_auto_folder_moves" = "Flytter automatisk til DeltaChat mappe";
 "pref_auto_folder_moves_explain" = "Samtaler er flyttet for at undgå rodet indbakke mappe";
-"pref_email_interaction_title" = "E-post interaktion";
 "pref_show_emails" = "Vis klassisk e-post";
 "pref_show_emails_no" = "Nej, kun samtaler";
 "pref_show_emails_accepted_contacts" = "For godkendte kontakter";
@@ -420,11 +407,7 @@
 "contact_setup_changed" = "Ændret opsætning for %1$@";
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nye beskeder i %2$d samtaler";
-"notify_most_recent_from" = "Nylig fra: %1$@";
-"notify_media_message_with_text" = "Medie besked: %1$@";
-"notify_mark_all_read" = "Vælge alle som læst";
 "notify_mark_read" = "Vælge læst";
-"notify_media_message" = "Medie besked";
 "notify_reply_button" = "Svare";
 "notify_new_message" = "Ny besked";
 "notify_background_connection_enabled" = "Baggrunds forbindelse aktiveret";
@@ -438,16 +421,11 @@
 // permissions
 "perm_required_title" = "Tilladelse påkrævet";
 "perm_continue" = "Fortsætte";
-"perm_explain_need_for_camera_access" = "For at fange billeder og video, tillad Delta Chat adgang til kamera.";
-"perm_explain_need_for_mic_access" = "For at sende lyd beskeder, tillad Delta Chat mikrofon adgang.";
-"perm_explain_need_for_storage_access" = "Delta Chat behøver fil adgang for at kunne eksportere filer eller oprette sikkerhedskopier.";
-"perm_explain_need_for_storage_access_share" = "Delta Chat behøver adgang til filer for at dele de udvalgte filer.";
 "perm_explain_access_to_camera_denied" = "Delta Chat kræver kamera tilladelse for at tage billeder eller video men det er blevet afvist permanent. Fortsæt til program opsætning menu og vælg \"Tilladelser\" og aktivere \"Kamera\".";
 "perm_explain_access_to_mic_denied" = "Delta Chat kræver mikrofon tilladelse for at sende lydbeskeder, men den er blevet nægtet permanent. Fortsæt til program indstillinger, vælg \"Tilladelser\" og aktiver \"Mikrofon\".";
 "perm_explain_access_to_storage_denied" = "Delta Chat kræver lagring tilladelse for at vedhæfte eller eksportere billeder, video eller lyd, men det er blevet afvist permanent. Fortsæt til program indstillings-menuen, vælg \"Tilladelser\" og aktiver \"Lagring\".";
 "perm_explain_access_to_location_denied" = "Delta Chat kræver placering tilladelse for at kunne vedhæfte placering, men det er blevet afvist permanent. Fortsæt til program indstillings-menuen, vælg \"Tilladelser\" og aktiver \"Placering\".";
-"perm_enable_bg_reminder_title" = "Tryk her for at modtage beskeder når Delta Chat er i baggrunden.";
-"perm_enable_bg_reminder_text" = "Delta Chat bruger minimal resurse og passer på ikke at dræne batteriet.";
+
 // dc_str_* resources
 "encrypted_message" = "Krypteret besked";
 
@@ -479,8 +457,6 @@
 "more_info_desktop" = "Mere information";
 "logout_desktop" = "Logud";
 "timestamp_format_m_desktop" = "MMM D";
-"no_archived_chats_desktop" = "Ingen arkiverede samtaler";
-"no_chats_desktop" = "Ingen samtaler";
 "encryption_info_desktop" = "Vise kryptering information";
 "verified_desktop" = "efterprøvet";
 "remove_desktop" = "Fjerne";
@@ -518,3 +494,4 @@
 "user_location_permission_explanation" = "Delta Chat behøver placering tilladelse for at vise og dele placering.";
 
 
+"perm_enable_bg_reminder_title" = "Tryk her for at modtage beskeder når Delta Chat er i baggrunden.";

@@ -48,8 +48,6 @@
 "now" = "Dabar";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Dėmesio";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d min.";
 "today" = "Šiandien";
 "yesterday" = "Vakar";
 "this_week" = "Šią savaitę";
@@ -138,8 +136,6 @@
 "menu_select_all" = "Žymėti viską";
 "menu_expand" = "Išplėsti";
 "menu_edit_name" = "Taisyti vardą";
-"menu_edit_group_name" = "Taisyti grupės pavadinimą";
-"menu_edit_group_image" = "Taisyti grupės paveikslą";
 "menu_settings" = "Nustatymai";
 "menu_advanced" = "Išplėstiniai";
 "menu_deaddrop" = "Adresatų užklausos";
@@ -236,7 +232,6 @@
 
 // welcome and login
 "welcome_intro1_message" = "Pokalbių programa su plačiausia auditorija pasaulyje. Nemokama ir nepriklausoma.";
-"welcome_start_messaging" = "Pradėti susirašinėjimą";
 "login_title" = "Prisijungti";
 "login_header" = "Prisijungti prie savo serverio";
 "login_subheader" = "Žinomiems el. pašto teikėjams papildomi nustatymai yra nustatomi automatiškai. Kartais, IMAP turi būti įjungtas prisijungus per naršyklę. Išsamesnės pagalbos teiraukitės savo el. pašto teikėjo ar draugų.";
@@ -266,18 +261,14 @@
 "login_error_cannot_login" = "Nepavyksta prisijungti kaip \"%1$@\". Patikrinkite ar el. pašto adresas ir slaptažodis yra teisingi.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Atsakymas iš %1$@: %2$@\n\nKai kurie teikėjai patalpina papildomą informaciją į jūsų gautųjų laiškų aplanką; galite ją patikrinti, pvz., prisijungę per naršyklę. Jei susidursite su problema, pagalbos teiraukitės savo teikėjo ar draugų.";
-
 // TLS certificate checks
-"accept_invalid_hostnames" = "Priimti neteisingus serverių vardus";
 "accept_invalid_certificates" = "Priimti negaliojančius liudijimus";
-
 "used_settings" = "Naudoti nustatymai:";
 "switch_account" = "Perjungti paskyrą";
 "add_account" = "Pridėti paskyrą";
 "delete_account" = "Ištrinti paskyrą";
 "delete_account_ask" = "Ar tikrai norite ištrinti savo paskyros duomenis?";
 "switching_account" = "Perjungiama paskyra…";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Kam persiųsti …";
@@ -288,9 +279,7 @@
 "pref_profile_photo" = "Profilio nuotrauka";
 "pref_blocked_contacts" = "Užblokuoti adresatai";
 "pref_profile_photo_remove_ask" = "Šalinti profilio nuotrauką?";
-"pref_help_url" = "https://delta.chat/en/help";
 "pref_password_and_account_settings" = "Slaptažodis ir paskyra";
-"pref_who_can_see_this_information" = "Kas gali matyti šią informaciją?";
 "pref_who_can_see_profile_explain" = "Bendraujant su kitais naudotojais, jūsų profilio paveikslas ir vardas bus rodomi kartu su jūsų žinutėmis. Jau išsiųsta informacija negalės būti ištrinta ar pašalinta.";
 "pref_your_name" = "Jūsų vardas";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -303,7 +292,6 @@
 "pref_outgoing_balanced" = "Subalansuota";
 "pref_outgoing_worse" = "Blogesnė kokybė, mažas dydis";
 "pref_vibrate" = "Vibruoti";
-"pref_chat_settings" = "Pokalbio nustatymai";
 "pref_change_secret" = "Pakeisti paslaptį";
 "pref_change_secret_explain" = "Pakeisti savo pin / šabloną / piršto atspaudą per sistemos nustatymus";
 "pref_screen_security" = "Ekrano saugumas";
@@ -314,7 +302,6 @@
 "pref_notifications_show" = "Rodyti";
 "pref_notifications_priority" = "Pirmenybė";
 "pref_led_color" = "Šviesos diodo spalva";
-"pref_led_pattern" = "Šviesos diodo blykčiojimo šablonas";
 "pref_sound" = "Garsas";
 "pref_privacy" = "Privatumas";
 "pref_chats_and_media" = "Pokalbiai ir medija";
@@ -333,7 +320,6 @@
 "pref_app_access" = "Prieiga prie programėlės";
 "pref_communication" = "Bendravimas";
 "pref_chats" = "Pokalbiai";
-"pref_messages" = "Žinutės";
 "pref_in_chat_sounds" = "Garsai pokalbiuose";
 "pref_message_text_size" = "Žinučių šrifto dydis";
 "pref_view_log" = "Rodyti žurnalą";
@@ -346,7 +332,6 @@
 "pref_backup_export_start_button" = "Pradėti daryti atsarginę kopiją";
 "pref_backup_written_to_x" = "Atsarginė kopija sėkmingai įrašyta į %1$@";
 "pref_managekeys_menu_title" = "Tvarkykite raktus";
-"pref_managekeys_ask_for_storage_permission" = "Norint importuoti/eksportuoti raktus, Delta Chat reikia prieigos prie jūsų failų.";
 "pref_managekeys_export_secret_keys" = "Eksportuoti slaptus raktus";
 "pref_managekeys_export_explain" = "Eksportuoti slaptus raktus į \"%1$@\"?";
 "pref_managekeys_import_secret_keys" = "Importuoti slaptus raktus";
@@ -363,8 +348,6 @@
 "pref_watch_mvbox_folder" = "Stebėti DeltaChat aplanką";
 "pref_auto_folder_moves" = "Automatiniai perkėlimai į DeltaChat aplanką";
 "pref_auto_folder_moves_explain" = "Pokalbiai yra perkeliami, kad nebūtų sujauktas Gautųjų aplankas";
-"pref_email_interaction_title" = "Sąveika su el. paštu";
-"pref_empty_server_title" = "Ištrinti el. laiškus iš serverio";
 "pref_experimental_features" = "Eksperimentinės ypatybės";
 "pref_background_default" = "Numatytasis fonas";
 "pref_background_default_color" = "Numatytoji spalva";
@@ -437,11 +420,7 @@
 "qrshow_join_contact_no_connection_hint" = "QR kodo sąranka reikalauja interneto ryšio. Prieš tęsdami, prisijunkite prie tinklo.";
 "qrshow_join_contact_no_connection_toast" = "Nėra interneto ryšio, nepavyksta atlikti QR kodo sąrankos.";
 "contact_not_verified" = "Nepavyksta patvirtinti %1$@";
-"notify_most_recent_from" = "Naujausia nuo: %1$@";
-"notify_media_message_with_text" = "Medijos žinutė: %1$@";
-"notify_mark_all_read" = "Žymėti visas kaip skaitytas";
 "notify_mark_read" = "Žymėti kaip skaitytą";
-"notify_media_message" = "Medijos žinutė";
 "notify_reply_button" = "Atsakyti";
 "notify_new_message" = "Nauja žinutė";
 "notify_background_connection_enabled" = "Foninis ryšys įjungtas";
@@ -455,12 +434,6 @@
 // permissions
 "perm_required_title" = "Reikalingas leidimas";
 "perm_continue" = "Tęsti";
-"perm_explain_need_for_camera_access" = "Norėdami fotografuoti ir filmuoti, suteikite Delta Chat prieigą prie kameros.";
-"perm_explain_need_for_mic_access" = "Norėdami siųsti garso žinutes, suteikite Delta Chat prieigą prie mikrofono.";
-"perm_explain_need_for_storage_access" = "Norint eksportuoti failus ar daryti atsargines kopijas, Delta Chat reikia prieigos prie jūsų failų.";
-"perm_explain_need_for_storage_access_share" = "Norint bendrinti pasirinktus failus, Delta Chat reikia prieigos prie jūsų failų.";
-"perm_enable_bg_reminder_title" = "Bakstelėkite čia, norėdami gauti žinutes, kol Delta Chat veikia fone.";
-"perm_enable_bg_reminder_text" = "Delta Chat naudoja mažai išteklių ir rūpinasi, kad neiškrautų jūsų baterijos.";
 // dc_str_* resources
 "encrypted_message" = "Šifruota žinutė";
 
@@ -494,8 +467,6 @@
 "more_info_desktop" = "Daugiau informacijos";
 "logout_desktop" = "Atsijungti";
 "timestamp_format_m_desktop" = "MMM D";
-"no_archived_chats_desktop" = "Archyvuotų pokalbių nėra";
-"no_chats_desktop" = "Pokalbių nėra";
 "encryption_info_desktop" = "Rodyti šifravimo informaciją";
 "remove_desktop" = "Šalinti";
 "save_desktop" = "Išsaugoti";
@@ -539,3 +510,5 @@
 "a11y_remove_account_btn_label" = "Šalinti paskyrą";
 "a11y_background_preview_label" = "Fono peržiūra";
 
+
+"perm_enable_bg_reminder_title" = "Bakstelėkite čia, norėdami gauti žinutes, kol Delta Chat veikia fone.";

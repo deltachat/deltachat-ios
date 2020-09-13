@@ -4,6 +4,7 @@
 "cancel" = "Batalkan";
 "yes" = "Ya";
 "no" = "Tidak";
+"select" = "Pilih";
 "on" = "Nyala";
 "off" = "Mati";
 "def" = "Default";
@@ -12,6 +13,8 @@
 "automatic" = "Otomatis";
 "strict" = "Ketat";
 "open" = "Buka";
+"join" = "Gabung";
+"rejoin" = "Gabung kembali";
 "delete" = "Hapus";
 "info" = "Info";
 "update" = "Memperbarui";
@@ -52,8 +55,6 @@
 "now" = "Sekarang";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Bahaya";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%dmenit";
 "today" = "Hari ini";
 "yesterday" = "Kemarin";
 "this_week" = "Minggu ini";
@@ -78,7 +79,9 @@
 "camera" = "Kamera";
 "location" = "Lokasi";
 "gallery" = "Galeri";
+"images_and_videos" = "Gambar dan video";
 "file" = "Berkas";
+"files" = "File";
 "unknown" = "Tak dikenal";
 
 "green" = "Hijau";
@@ -142,8 +145,6 @@
 "menu_select_all" = "Pilih semua";
 "menu_expand" = "Perluas";
 "menu_edit_name" = "Edit nama";
-"menu_edit_group_name" = "Edit nama grup";
-"menu_edit_group_image" = "Edit gambar grup";
 "menu_settings" = "Setelan";
 "menu_advanced" = "Lanjutan";
 "menu_deaddrop" = "Permintaan kontak";
@@ -182,6 +183,8 @@
 
 "file_saved_to" = "Berkas disimpan ke \"%1$@\".";
 
+"videochat_tap_to_join" = "Ketuk untuk bergabung";
+"videochat_tap_to_open" = "Ketuk untuk membuka";
 // get confirmations
 "ask_leave_group" = "Apakah anda yakin untuk keluar dari grup ini?";
 "ask_forward" = "Teruskan pesan ke %1$@?";
@@ -268,7 +271,6 @@
 
 // welcome and login
 "welcome_intro1_message" = "Percakapan dengan pemirsa terluas di dunia. Gratis dan independen.";
-"welcome_start_messaging" = "Mulai obrolan";
 "login_title" = "Masuk";
 "login_header" = "Masuk ke server Anda";
 "login_explain" = "Masuk dengan akun surel yang ada";
@@ -286,6 +288,8 @@
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "Keamanan SMTP";
 "login_auth_method" = "Metode otorisasi";
+// Translators: %1$s will be replaced by an email address
+"login_oauth2_checking_addr" = "Memeriksa %1$@";
 "login_info_oauth2_title" = "Lanjutkan dengan pengaturan yang disederhanakan?";
 "login_info_oauth2_text" = "Bantuan untuk alamat surel yang telah dimasukkan adalah pengaturan yang disederhanakan (OAuth 2.0).\n\nPada langkah selanjutnya, izinkan Delta Chat sebagai Obrolan Anda pada aplikasi Surel.\n\nTidak ada server Delta Chat, obrolan Anda tetap di perangkat Anda.";
 "login_certificate_checks" = "Cek sertifikat";
@@ -299,15 +303,13 @@
 // Translators: %1$s will be replaced by the email address
 "login_error_cannot_login" = "Tidak bisa login sebagai \"%1$@\". Mohon cek apakah alamat surel dan kata sandi benar.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Tanggapan dari %1$@: %2$@\n\nBeberapa penyedia layanan (provider) menempatkan informasi tambahan di kotak masuk Anda; Anda bisa memeriksanya, misalnya di beranda depan web. Konsultasikan dengan penyedia atau teman Anda jika Anda mengalami masalah.";
-
+"login_error_server_response" = "Tanggapan dari %1$@: %2$@\n\nBeberapa penyedia layanan provider menempatkan informasi tambahan di kotak masuk Anda; Anda bisa memeriksanya, misalnya di beranda depan web. Konsultasikan dengan penyedia atau teman Anda jika Anda mengalami masalah.";
 "used_settings" = "Setelan yang digunakan:";
 "switch_account" = "Alihkan akun";
 "add_account" = "Tambah akun";
 "delete_account" = "Hapus Akun";
 "delete_account_ask" = "Apakah anda yakin ingin menghapus data akun anda?";
 "switching_account" = "Ubah akun";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Diteruskan ke…";
@@ -321,9 +323,7 @@
 "pref_profile_photo" = "Gambar profil";
 "pref_blocked_contacts" = "Kontak yang diblokir";
 "pref_profile_photo_remove_ask" = "Hapus foto profil?";
-"pref_help_url" = "https://delta.chat/help";
 "pref_password_and_account_settings" = "Kata sandi dan akun";
-"pref_who_can_see_this_information" = "Siapa yang dapat melihat ini?";
 "pref_who_can_see_profile_explain" = "Foto dan nama profil Anda akan tampak bersama dengan pesan-pesan ketika berkomunikasi dengan pengguna lain. Informasi yang telah dikirimkan tidak dapat dihapus atau dipindah.";
 "pref_your_name" = "Nama Anda";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -336,7 +336,6 @@
 "pref_outgoing_balanced" = "Seimbang";
 "pref_outgoing_worse" = "Kualitas rendah, ukuran kecil";
 "pref_vibrate" = "Bergetar";
-"pref_chat_settings" = "Setelan chat";
 "pref_change_secret" = "Ubah rahasia";
 "pref_change_secret_explain" = "Ubah PIN / pola / sidik jari melalui setelan sistem";
 "pref_screen_security" = "Keamanan layar";
@@ -347,7 +346,6 @@
 "pref_notifications_show" = "Menunjukkan";
 "pref_notifications_priority" = "Prioritas";
 "pref_led_color" = "Warna LED";
-"pref_led_pattern" = "Pola kedip LED";
 "pref_sound" = "Suara";
 "pref_silent" = "Sunyi";
 "pref_privacy" = "Privasi";
@@ -366,7 +364,7 @@
 "pref_app_access" = "Akes Aplikasi";
 "pref_communication" = "Komunikasi";
 "pref_chats" = "Obrolan";
-"pref_messages" = "Pesan";
+"pref_in_chat_sounds" = "Suara dalam obrolan";
 "pref_message_text_size" = "Ukuran huruf pesan";
 "pref_view_log" = "Lihat catatan";
 "pref_saved_log" = "Menyimpan log ke folder \"Unduhan\"";
@@ -379,7 +377,6 @@
 "pref_backup_export_start_button" = "Mulai Cadangkan";
 "pref_backup_written_to_x" = "Cadangan berhasil ditulis ke \"%1$@\".";
 "pref_managekeys_menu_title" = "Kelola kunci";
-"pref_managekeys_ask_for_storage_permission" = "Delta Chat perlu akses ke berkas Anda untuk impor/ekspor kunci.";
 "pref_managekeys_export_secret_keys" = "Ekspor kunci rahasia";
 "pref_managekeys_export_explain" = "Ekspor kunci rahasia ke \"%1$@\"?";
 "pref_managekeys_import_secret_keys" = "Impor kunci rahasia";
@@ -391,12 +388,7 @@
 "pref_send_copy_to_self" = "Kirim salinan ke saya";
 "pref_auto_folder_moves" = "Perpindahan otomatis ke berkas DeltaChat";
 "pref_auto_folder_moves_explain" = "Percakapan dipindahkan untuk menghindari memenuhi kotak masuk";
-"pref_email_interaction_title" = "Interaksi surel";
 "pref_show_emails_all" = "Semua";
-"pref_empty_server_title" = "Hapus surel dari server";
-"pref_empty_server_inbox" = "Hapus semuail email di berkas \"Pesan Masuk\"";
-"pref_empty_server_mvbox" = "Hapus semua email di berkas \"DeltaChat\"";
-"pref_empty_server_do_button" = "Hapus email";
 "autodel_device_title" = "Hapus pesarn dari perangkat";
 "autodel_server_title" = "Hapus pesan dari server";
 "autodel_confirm" = "Saya mengerti, hapus semua pesan ini";
@@ -468,10 +460,6 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$dpesan baru di%2$d obrolan";
-"notify_most_recent_from" = "Terbaru dari: %1$@";
-"notify_media_message_with_text" = "Pesan media: %1$@";
-"notify_mark_all_read" = "Tandai semua telah dibaca";
-"notify_media_message" = "Pesan media";
 "notify_reply_button" = "Balasan";
 "notify_new_message" = "Pesan baru";
 "notify_background_connection_enabled" = "Koneksi latar diaktifkan";
@@ -485,14 +473,11 @@
 // permissions
 "perm_required_title" = "Perlu izin";
 "perm_continue" = "Lanjutkan";
-"perm_explain_need_for_camera_access" = "Untuk mengambil foto dan video, izinkan akses Delta Chat ke kamera.";
-"perm_explain_need_for_mic_access" = "Untuk mengirim pesan suara, izinkan akses Delta Chat ke mikrofon.";
-"perm_explain_need_for_storage_access" = "Delta Chat perlu akses ke berkas-berkas Anda untuk mengekspor berkas atau membuat cadangan.";
-"perm_explain_need_for_storage_access_share" = "Delta Chat perlu akses ke berkas-berkas Anda supaya bisa membagikannya.";
 "perm_explain_access_to_camera_denied" = "Untuk mengambil foto atau merekam video, lihat pengaturan aplikasi, pilih \"Perizinan\", dan aktifkan \"Kamera\".";
 "perm_explain_access_to_mic_denied" = "Untuk mengirim pesan audio, lihat pengaturan aplikasi, pilih \"Perizinan\", dan aktifkan \"Mikrofon\".";
 "perm_explain_access_to_storage_denied" = "Untuk menerima atau mengirim berkas, pergi ke pengaturan aplikasi, pilih \"Perizinan\", dan fungsikan \"Penyimpanan\".";
 "perm_explain_access_to_location_denied" = "Untuk melampirkan lokasi, lihat pengaturan aplikasi, pilih \"Perizinan\", dan aktifkan \"Lokasi\".";
+
 // dc_str_* resources
 "encrypted_message" = "Pesan terenkripsi";
 
@@ -525,8 +510,6 @@
 "more_info_desktop" = "Info lebih lanjut";
 "logout_desktop" = "Keluar";
 "timestamp_format_m_desktop" = "MMM D";
-"no_archived_chats_desktop" = "Tidak ada arsip chat";
-"no_chats_desktop" = "Belum ada obrolan";
 "encryption_info_desktop" = "Tampilkan info enkripsi";
 "verified_desktop" = "Diverifikasi";
 "remove_desktop" = "Menghapus";

@@ -57,8 +57,6 @@
 "now" = "Nu";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Gevarenzone";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d min";
 "today" = "Vandaag";
 "yesterday" = "Gisteren";
 "this_week" = "Deze week";
@@ -149,8 +147,6 @@
 "menu_select_all" = "Alles selecteren";
 "menu_expand" = "Uitvouwen";
 "menu_edit_name" = "Naam wijzigen";
-"menu_edit_group_name" = "Groepsnaam wijzigen";
-"menu_edit_group_image" = "Groepsafbeelding wijzigen";
 "menu_settings" = "Instellingen";
 "menu_advanced" = "Geavanceerd";
 "menu_deaddrop" = "Contactpersoonverzoeken";
@@ -291,7 +287,6 @@
 
 // welcome and login
 "welcome_intro1_message" = "Dé berichtenapp met het breedste publiek ter wereld. Gratis en onafhankelijk.";
-"welcome_start_messaging" = "Aan de slag";
 "login_title" = "Inloggen";
 "login_header" = "Inloggen op je server";
 "login_explain" = "Log in met een bestaand e-mailaccount.";
@@ -325,17 +320,16 @@
 "login_error_cannot_login" = "Kan niet inloggen als \"%1$@\". Controleer het e-mailadres en wachtwoord.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Antwoord van %1$@: %2$@\n\nSommige providers plaatsen extra informatie in je Postvak IN. Je kunt dit controleren in, bijv., de webversie. Neem contact op met je provider of vrienden als je problemen ervaart.";
-
 // TLS certificate checks
-"accept_invalid_hostnames" = "Ongeldige hostnamen accepteren";
 "accept_invalid_certificates" = "Ongeldige certificaten accepteren";
-
 "used_settings" = "Gebruikte instellingen:";
 "switch_account" = "Ander account kiezen";
 "add_account" = "Account toevoegen";
 "delete_account" = "Account verwijderen";
 "delete_account_ask" = "Weet je zeker dat je je accountgegevens wilt verwijderen?";
 "switching_account" = "Bezig met overschakelen…";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "Het instellen is mislukt. Foutmelding: %1$@";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -353,9 +347,7 @@
 "pref_profile_photo" = "Profielfoto";
 "pref_blocked_contacts" = "Geblokkeerde contactpersonen";
 "pref_profile_photo_remove_ask" = "Profielfoto verwijderen?";
-"pref_help_url" = "https://delta.chat/en/help";
 "pref_password_and_account_settings" = "Wachtwoord en account";
-"pref_who_can_see_this_information" = "Wie kan deze informatie bekijken?";
 "pref_who_can_see_profile_explain" = "Je profielfoto en -naam worden getoond in gesprekken, naast je berichten. Reeds verstuurde informatie kan niet worden verwijderd of teruggehaald.";
 "pref_your_name" = "Je naam";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -368,7 +360,6 @@
 "pref_outgoing_balanced" = "Normaal";
 "pref_outgoing_worse" = "Lagere kwaliteit, kleinere bestanden";
 "pref_vibrate" = "Trillen";
-"pref_chat_settings" = "Gespreksinstellingen";
 "pref_change_secret" = "Toegangsmethode beheren";
 "pref_change_secret_explain" = "Wijzig je pincode/patroon/vingerafdruk via de systeeminstellingen";
 "pref_screen_security" = "Schermbeveiliging";
@@ -379,7 +370,6 @@
 "pref_notifications_show" = "Tonen";
 "pref_notifications_priority" = "Prioriteit";
 "pref_led_color" = "LED-kleur";
-"pref_led_pattern" = "LED-knipperpatroon";
 "pref_sound" = "Geluid";
 "pref_silent" = "Stil";
 "pref_privacy" = "Privacy";
@@ -401,7 +391,6 @@
 "pref_app_access" = "App-toegang";
 "pref_communication" = "Communicatie";
 "pref_chats" = "Gesprekken";
-"pref_messages" = "Berichten";
 "pref_in_chat_sounds" = "Gespreksgeluiden";
 "pref_message_text_size" = "Tekstgrootte van berichten";
 "pref_view_log" = "Logboek bekijken";
@@ -415,7 +404,6 @@
 "pref_backup_export_start_button" = "Nu back-uppen";
 "pref_backup_written_to_x" = "Back-up weggeschreven naar %1$@";
 "pref_managekeys_menu_title" = "Sleutels beheren";
-"pref_managekeys_ask_for_storage_permission" = "Delta Chat heeft toegang nodig tot je bestanden om sleutels te im- en exporteren.";
 "pref_managekeys_export_secret_keys" = "Geheime sleutels exporteren";
 "pref_managekeys_export_explain" = "Geheime sleutels exporteren naar \"%1$@\"?";
 "pref_managekeys_import_secret_keys" = "Geheime sleutels importeren";
@@ -433,32 +421,22 @@
 "pref_send_copy_to_self" = "Kopie versturen naar mijzelf";
 "pref_auto_folder_moves" = "Automatisch verplaatsen naar DeltaChat-map";
 "pref_auto_folder_moves_explain" = "Gesprekken worden verplaatst om je Postvak IN netjes te houden";
-"pref_email_interaction_title" = "E-mailinteractie";
 "pref_show_emails" = "Klassieke e-mails tonen";
 "pref_show_emails_no" = "Nee, alleen gesprekken";
 "pref_show_emails_accepted_contacts" = "Van goedgekeurde contactpersonen";
 "pref_show_emails_all" = "Alles";
-"pref_empty_server_title" = "E-mails verwijderen van server";
-"pref_empty_server_msg" = "Deze optie helpt je ruimte vrij te maken op je IMAP-server door ALLE e-mails, inclusief gesprekken, te verwijderen uit de opgegeven mappen. Berichten op dit apparaat worden niet verwijderd. Deze actie kan niet ongedaan worden gemaakt!";
-"pref_empty_server_inbox" = "Alle e-mails verwijderen uit Postvak IN";
-"pref_empty_server_mvbox" = "Alle e-mails verwijderen uit DeltaChat-map";
-"pref_empty_server_do_button" = "E-mails verwijderen";
 "pref_experimental_features" = "Experimentele functies";
 "pref_on_demand_location_streaming" = "Locatie continue doorgeven (op verzoek)";
 "pref_background_default" = "Standaard achtergrond";
 "pref_background_default_color" = "Standaard kleur";
 "pref_background_custom_image" = "Eigen afbeelding";
 "pref_background_custom_color" = "Eigen kleur";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Betrouwbare achtergrondverbinding";
-"pref_reliable_service_explain" = "Vereist een permanente melding";
-"ephemeral_dialog_title" = "Gelezen berichten verwijderen";
-
+"export_aborted" = "Het exporteren is afgebroken.";
 
 // automatically delete message
 "delete_old_messages" = "Oude berichten verwijderen";
+// devs: autodel_title is deprecated, use delete_old_messages instead
 "autodel_title" = "Berichten automatisch verwijderen";
-"autodel_title_short" = "Automatisch verwijderen";
 "autodel_device_title" = "Berichten verwijderen van apparaat";
 "autodel_server_title" = "Berichten verwijderen van server";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
@@ -566,11 +544,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nieuwe berichten in %2$d gesprekken";
-"notify_most_recent_from" = "Recentste van: %1$@";
-"notify_media_message_with_text" = "Mediabericht: %1$@";
-"notify_mark_all_read" = "Alles markeren als gelezen";
 "notify_mark_read" = "Markeren als gelezen";
-"notify_media_message" = "Mediabericht";
 "notify_reply_button" = "Beantwoorden";
 "notify_new_message" = "Nieuw bericht";
 "notify_background_connection_enabled" = "Achtergrondverbinding ingeschakeld";
@@ -584,17 +558,10 @@
 // permissions
 "perm_required_title" = "Machtiging vereist";
 "perm_continue" = "Doorgaan";
-"perm_explain_need_for_camera_access" = "Delta Chat heeft toegang nodig tot de camera om foto\'s en video\'s te kunnen vastleggen.";
-"perm_explain_need_for_mic_access" = "Delta Chat heeft toegang nodig tot je microfoon om audioberichten te kunnen versturen.";
-"perm_explain_need_for_storage_access" = "Delta Chat heeft toegang nodig tot je bestanden om bestanden te kunnen exporteren of back-ups te kunnen maken.";
-"perm_explain_need_for_storage_access_share" = "Delta Chat heeft toegang nodig tot je bestanden om de geselecteerde bestanden te kunnen delen.";
 "perm_explain_access_to_camera_denied" = "Delta Chat vereist de cameramachtiging om foto\'s en video\'s te kunnen maken, maar je hebt dit permanent geweigerd. Ga naar de app-instellingen, kies \"Machtigingen\" en schakel \"Camera\" in.";
 "perm_explain_access_to_mic_denied" = "Delta Chat vereist de microfoonmachtiging om audioberichten te kunnen versturen, maar je hebt dit permanent geweigerd. Ga naar de app-instellingen, kies \"Machtigingen\" en schakel \"Microfoon\" in.";
 "perm_explain_access_to_storage_denied" = "Delta Chat vereist de opslagmachtiging om foto\'s, video\'s of audio te kunnen bijvoegen of exporteren, maar je hebt dit permanent geweigerd. Ga naar de app-instellingen, kies \"Machtigingen\" en schakel \"Opslag\" in.";
 "perm_explain_access_to_location_denied" = "Delta Chat vereist de locatiemachtiging om je locatie te kunnen delen, maar je hebt dit permanent geweigerd. Ga naar de app-instellingen, kies \"Machtigingen\" en schakel \"Locatie\" in.";
-"perm_enable_bg_reminder_title" = "Druk hier om berichten te ontvangen als Delta Chat niet geopend is.";
-"perm_enable_bg_reminder_text" = "Delta Chat\'s accugebruik is laag omdat het slechts een minimaal aantal systeembronnen gebruikt.";
-"perm_enable_bg_already_done" = "Je hebt al toestemming gegeven voor het ophalen van berichten op de achtergrond.\n\nAls het nog steeds niet werkt, controleer dan de systeeminstellingen.";
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Teken met je vinger om vervaging toe te passen";
@@ -632,8 +599,6 @@
 "more_info_desktop" = "Meer informatie";
 "logout_desktop" = "Uitloggen";
 "timestamp_format_m_desktop" = "MMM D";
-"no_archived_chats_desktop" = "Geen gearchiveerde gesprekken";
-"no_chats_desktop" = "Geen gesprekken";
 "encryption_info_desktop" = "Versleutelingsinformatie tonen";
 "verified_desktop" = "goedgekeurd";
 "remove_desktop" = "Verwijderen";
@@ -683,9 +648,17 @@
 "a11y_message_context_menu_btn_label" = "Berichtacties";
 "a11y_background_preview_label" = "Achtergrondvoorbeeld";
 
+
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
 // android specific strings, developers: please take care to remove strings that are no longer used!
-"update_1_10_android" = "Een klein overzicht van de nieuwe Delta Chat 1.10-functies: sneller, meerdere accounts, afbeeldingen vervagen, nieuwe emoji\'s, verbeterde meldingen, verbeterde foutrapportage, en het allerbelangrijkste:\n\ndruk op een profielafbeelding om deze te vergroten 🚀";
+"pref_background_notifications" = "Achtergrondmeldingen";
+"pref_background_notifications_explain" = "Zet een achtergrondverbinding op naar je server en negeert alle accu-optimalisaties.";
+"pref_background_notifications_rationale" = "Om een achtergrondverbinding naar je server op te zetten, dien je alle accu-optimalisaties te negeren in de volgende stap.\n\nDelta Chat gebruikt weinig systeembronnen en verhoogt je accuverbruik nauwelijks.";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Betrouwbare achtergrondverbinding";
+"pref_reliable_service_explain" = "Vereist een permanente melding";
+"perm_enable_bg_reminder_title" = "Druk hier om berichten te ontvangen als Delta Chat niet geopend is.";
+"perm_enable_bg_already_done" = "Je hebt al toestemming gegeven voor het ophalen van berichten op de achtergrond.\n\nAls het nog steeds niet werkt, controleer dan de systeeminstellingen.";
 

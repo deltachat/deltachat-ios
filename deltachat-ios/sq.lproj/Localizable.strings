@@ -57,8 +57,6 @@
 "now" = "Tani";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Rrezik";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d min.";
 "today" = "Sot";
 "yesterday" = "Dje";
 "this_week" = "Këtë javë";
@@ -149,8 +147,6 @@
 "menu_select_all" = "Përzgjidhi krejt";
 "menu_expand" = "Zgjeroje";
 "menu_edit_name" = "Përpunoni emrin";
-"menu_edit_group_name" = "Përpunoni emër grupi";
-"menu_edit_group_image" = "Përpunoni figurë grupi";
 "menu_settings" = "Rregullime";
 "menu_advanced" = "Të mëtejshme";
 "menu_deaddrop" = "Kërkesa kontakti";
@@ -291,7 +287,6 @@
 
 // welcome and login
 "welcome_intro1_message" = "Shkëmbyesi i mesazheve me publikun më të gjerë në botë. I lirë dhe i pavarur.";
-"welcome_start_messaging" = "Filloni të Shkëmbeni Mesazhe";
 "login_title" = "Hyrje";
 "login_header" = "Hyrje te shërbyesi juaj";
 "login_explain" = "Hyrje me një llogari email ekzistuese.";
@@ -325,17 +320,16 @@
 "login_error_cannot_login" = "S\’bëhet dot hyrja si %1$@. Ju lutemi, shihni nëse adresa email dhe fjalëkalimi janë të saktë.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Përgjigje nga %1$@: %2$@\n\nDisa shërbime vendosin të dhëna shtesë te kutia juaj e mesazheve të marrë; mund t\’i shihni, për shembull, te pjesa e dukshme web. Nëse hasni probleme, këshillohuni me shërbimin tuaj ose shokë.";
-
 // TLS certificate checks
-"accept_invalid_hostnames" = "Prano strehëemra të pavlefshëm";
 "accept_invalid_certificates" = "Prano dëshmi të pavlefshme";
-
 "used_settings" = "Rregullime të përdorura";
 "switch_account" = "Ndërroni llogari";
 "add_account" = "Shtoni llogari";
 "delete_account" = "Fshije llogarinë";
 "delete_account_ask" = "Jeni i sigurt se doni të fshihen të dhënat e llogarisë tuaj?";
 "switching_account" = "Po ndërrohet llogari…";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "Formësimi dështoi. Gabim: %1$@";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -353,9 +347,7 @@
 "pref_profile_photo" = "Foto profili";
 "pref_blocked_contacts" = "Kontakte të bllokuar";
 "pref_profile_photo_remove_ask" = "Të hiqet fotoja e profilit?";
-"pref_help_url" = "https://delta.chat/en/help";
 "pref_password_and_account_settings" = "Fjalëkalim dhe llogari";
-"pref_who_can_see_this_information" = "Kush mund ta shohë këtë informacion?";
 "pref_who_can_see_profile_explain" = "Fotoja dhe emri juaj i profilit do të shfaqen tok me mesazhet, kur komunikoni me përdorues të tjerë. Informacioni i dërguar tashmë s\’mund të fshihet apo të hiqet.";
 "pref_your_name" = "Emri juaj";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -368,7 +360,6 @@
 "pref_outgoing_balanced" = "E baraspeshuar";
 "pref_outgoing_worse" = "Cilësia më e ulët, madhësi e vogël";
 "pref_vibrate" = "Dridhu";
-"pref_chat_settings" = "Rregullime fjalosjeje";
 "pref_change_secret" = "Ndryshoni të fshehtën";
 "pref_change_secret_explain" = "Ndryshojeni pin-in / rregullsinë / shenjat tuaja të gishtave përmes rregullimeve të sistemit";
 "pref_screen_security" = "Siguri ekrani";
@@ -379,7 +370,6 @@
 "pref_notifications_show" = "Shfaqi";
 "pref_notifications_priority" = "Përparësi";
 "pref_led_color" = "Ngjyrë LED-i";
-"pref_led_pattern" = "Rregullsi xixëllimi LED-i";
 "pref_sound" = "Tingull";
 "pref_silent" = "Heshtazi";
 "pref_privacy" = "Privatësi";
@@ -401,7 +391,6 @@
 "pref_app_access" = "Hyrje aplikacioni";
 "pref_communication" = "Komunikim";
 "pref_chats" = "Fjalosje";
-"pref_messages" = "Mesazhe";
 "pref_in_chat_sounds" = "Tinguj brenda fjalosjeje";
 "pref_message_text_size" = "Madhësi shkronjash mesazhi";
 "pref_view_log" = "Shihni regjistrin";
@@ -415,7 +404,6 @@
 "pref_backup_export_start_button" = "Fillo kopjeruajtjen";
 "pref_backup_written_to_x" = "Kopjeruajtje e shkruar me sukses te %1$@";
 "pref_managekeys_menu_title" = "Administroni kyçe";
-"pref_managekeys_ask_for_storage_permission" = "Delta Chat lyp hyrje në kartelat tuaja që të importojë/eksportojë kyçe.";
 "pref_managekeys_export_secret_keys" = "Eksportoni kyçe të fshehtë";
 "pref_managekeys_export_explain" = "Të eksportohen kyçet e fshehtë te \"%1$@\"?";
 "pref_managekeys_import_secret_keys" = "Importoni kyçe të fshehtë";
@@ -433,31 +421,21 @@
 "pref_send_copy_to_self" = "Dërgojini kopje vetes";
 "pref_auto_folder_moves" = "Lëvizje të Vetvetishme te dosja DeltaChat";
 "pref_auto_folder_moves_explain" = "Bisedat zhvendosen, që të shmanget rrëmuja te dosja Të marrë";
-"pref_email_interaction_title" = "Ndërveprim me email";
 "pref_show_emails" = "Shfaq email-e klasikë";
 "pref_show_emails_no" = "Jo, vetëm fjalosje";
 "pref_show_emails_accepted_contacts" = "Për kontakte të pranuar";
 "pref_show_emails_all" = "Krejt";
-"pref_empty_server_title" = "Fshini email-e që nga shërbyesi";
-"pref_empty_server_msg" = "Ky funksion ndihmon të lironi hapësirë te shërbyesi juaj IMAP përmes fshirjes së KREJT email-eve, përfshi mesazhe bisedash, te dosjet e dhëna. Mesazhet në këtë pajisje s’do të fshihen.  Fshirja s’mund të zhbëhet!";
-"pref_empty_server_inbox" = "Fshiji KREJT email-et te dosja e të Marrëve";
-"pref_empty_server_mvbox" = "Fshiji KREJT email-et te dosja DeltaChat";
-"pref_empty_server_do_button" = "Fshiji email-et";
 "pref_experimental_features" = "Veçori eksperimentale";
 "pref_background_default" = "Sfond parazgjedhje";
 "pref_background_default_color" = "Ngjyrë parazgjedhje";
 "pref_background_custom_image" = "Figurë vetjake";
 "pref_background_custom_color" = "Ngjyrë vetjake";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Lidhje e qëndrueshme në prapaskenë";
-"pref_reliable_service_explain" = "Lyp një njoftim permanent";
-"ephemeral_dialog_title" = "Fshiji mesazhet e lexuar";
-
+"export_aborted" = "Eksportimi dështoi.";
 
 // automatically delete message
 "delete_old_messages" = "Fshiji mesazhet e vjetër";
+// devs: autodel_title is deprecated, use delete_old_messages instead
 "autodel_title" = "Vetëfshi mesazhe";
-"autodel_title_short" = "Vetëfshi";
 "autodel_device_title" = "Fshini mesazhe prej pajisjes";
 "autodel_server_title" = "Fshini mesazhe prej shërbyesi";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
@@ -565,11 +543,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d mesazhe të rinj në %2$d fjalosje";
-"notify_most_recent_from" = "Më të rejat nga: %1$@";
-"notify_media_message_with_text" = "Mesazh media: %1$@";
-"notify_mark_all_read" = "Vëru shenjë të tërave si të lexuar";
 "notify_mark_read" = "Vëri shenjë si i lexuar";
-"notify_media_message" = "Mesazh media";
 "notify_reply_button" = "Përgjigju";
 "notify_new_message" = "Mesazh i ri";
 "notify_background_connection_enabled" = "U vendos lidhje në prapaskenë";
@@ -583,17 +557,10 @@
 // permissions
 "perm_required_title" = "Lypset leje";
 "perm_continue" = "Vazhdo";
-"perm_explain_need_for_camera_access" = "Që të bëhen foto dhe video, lejojeni Delta Chat-in të përdorë kamerën.";
-"perm_explain_need_for_mic_access" = "Që të dërgoni mesazhe audio, lejojeni Delta Chat-in të përdorë mikrofonin tuaj.";
-"perm_explain_need_for_storage_access" = "Delta Chat-i lyp hyrje në kartelat tuaja që të mund të eksportojë të tilla apo të krijojë kopjeruajtje.";
-"perm_explain_need_for_storage_access_share" = "Që të mund të ndajë me të tjerët kartelat e përzgjedhura, Delta Chat lyp hyrje në kartelat tuaja.";
 "perm_explain_access_to_camera_denied" = "Delta Chat lyp leje mbi Kamerën që të mund të bëjë foto apo video, por kjo i është mohuar. Ju lutemi, vazhdoni te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizojini për \"Kamerën\".";
 "perm_explain_access_to_mic_denied" = "Delta Chat lyp leje mbi Mikrofonin që të mund të dërgojë mesazhe audio, por kjo i është mohuar. Ju lutemi, vazhdoni te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizojini për \"Mikrofonin\".";
 "perm_explain_access_to_storage_denied" = "Delta Chat lyp leje mbi Depozitimin që të mund të bashkëngjisë apo eksportojë foto, video ose audio, por kjo i është mohuar. Ju lutemi, vazhdoni te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizojini për \"Depozitimin\".";
 "perm_explain_access_to_location_denied" = "Delta Chat lyp leje mbi Vendndodhjen që të mund të bashkëngjisë një vendndodhje, por kjo i është mohuar. Ju lutemi, vazhdoni te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizojini për \"Vendndodhjen\".";
-"perm_enable_bg_reminder_title" = "Prekeni këtu që të merrni mesazhe, teksa Delta Chat rri në prapaskenë.";
-"perm_enable_bg_reminder_text" = "Delta Chat-i përdor burime minimale dhe kujdeset të mos thajë baterinë.";
-"perm_enable_bg_already_done" = "E keni lejuar tashmë Delta Chat-in të marrë mesazhe në prapaskenë.\n\nNëse mesazhet prapë nuk mbërrijnë në prapaskenë, ju lutemi, kontrolloni edhe rregullimet e sistemit tuaj.";
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Që të turbullohet, vizatoni kudo qoftë";
@@ -631,8 +598,6 @@
 "more_info_desktop" = "Më tepër të dhëna";
 "logout_desktop" = "Dalje";
 "timestamp_format_m_desktop" = "MMM D";
-"no_archived_chats_desktop" = "S\’ka fjalosje të arkivuara";
-"no_chats_desktop" = "S\’ka fjalosje";
 "encryption_info_desktop" = "Shfaq të dhëna fshehtëzimi";
 "verified_desktop" = "e verifikuar";
 "remove_desktop" = "Hiqe";
@@ -682,9 +647,17 @@
 "a11y_message_context_menu_btn_label" = "Veprime mesazhesh";
 "a11y_background_preview_label" = "Paraparje sfondi";
 
+
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
 // android specific strings, developers: please take care to remove strings that are no longer used!
-"update_1_10_android" = "Veçori të reja në Delta Chat 1.10, me një vështrim: më i shpejtë, llogari të shumëfishta, turbullim figurash, emotikone të rinj, njoftime të ripunuara, njoftim më i mirë të metash, por më e rëndësishmja:\n\nKlikoni mbi një avatar profili dhe zmadhojeni 🚀";
+"pref_background_notifications" = "Njoftime në prapaskenë";
+"pref_background_notifications_explain" = "Përdor një lidhje në prapaskenë me shërbyesin tuaj dhe lyp shpërfillje optimizimesh baterie.";
+"pref_background_notifications_rationale" = "Që të ruhet lidhja me shërbyesin tuaj të email-eve dhe të merren mesazhe në prapaskenë, në hapin pasues shpërfillini optimizimet për baterinë.\n\nDelta Chat-i përdor pak burime dhe kujdeset të mos e shterojë baterinë tuaj.";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Lidhje e qëndrueshme në prapaskenë";
+"pref_reliable_service_explain" = "Lyp një njoftim permanent";
+"perm_enable_bg_reminder_title" = "Prekeni këtu që të merrni mesazhe, teksa Delta Chat rri në prapaskenë.";
+"perm_enable_bg_already_done" = "E keni lejuar tashmë Delta Chat-in të marrë mesazhe në prapaskenë.\n\nNëse mesazhet prapë nuk mbërrijnë në prapaskenë, ju lutemi, kontrolloni edhe rregullimet e sistemit tuaj.";
 

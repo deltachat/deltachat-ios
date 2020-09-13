@@ -151,7 +151,6 @@
 "tab_group" = "그룹";
 "tab_gallery" = "앨범";
 "media_preview" = "미디어 미리보기";
-"welcome_start_messaging" = "시작하기";
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "채팅방 선택";
@@ -159,11 +158,9 @@
 "pref_profile_photo" = "프로필 사진";
 "pref_blocked_contacts" = "차단 목록";
 "pref_password_and_account_settings" = "계정 설정";
-"pref_who_can_see_this_information" = "이 정보는 누가 볼 수 있나요?";
 "pref_your_name" = "내 이름";
 "pref_enter_sends" = "엔터키로 메시지 전송";
 "pref_vibrate" = "진동";
-"pref_chat_settings" = "대화 설정";
 "pref_screen_security" = "화면 보안";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "최근 사용 목록/개요 및 앱 안에서 스크린샷 차단";
@@ -171,7 +168,6 @@
 "pref_notifications_show" = "보이기";
 "pref_notifications_priority" = "우선순위";
 "pref_led_color" = "LED 색상";
-"pref_led_pattern" = "알림등 반복 패턴";
 "pref_sound" = ">알림음";
 "pref_silent" = "무음";
 "pref_privacy" = "개인정보 보호";
@@ -192,7 +188,6 @@
 "pref_app_access" = "앱 접근";
 "pref_communication" = "연결";
 "pref_chats" = "대화";
-"pref_messages" = "메시지";
 "pref_in_chat_sounds" = "앱 내 알림";
 "pref_message_text_size" = "메시지 폰트 크기";
 "pref_other" = "기타";
@@ -201,9 +196,7 @@
 // screen lock
 "screenlock_title" = "화면 잠금";
 "screenlock_explain" = "안드로이드 화면 잠금 또는 지문으로 Delta Chat을 잠급니다";
-"notify_mark_all_read" = "모두 읽음으로 표시";
 "notify_mark_read" = "읽음으로 표시";
-"notify_media_message" = "미디어 메시지";
 "notify_reply_button" = "답장";
 "notify_new_message" = "새 메시지";
 "notify_priority_high" = "높게";
@@ -225,7 +218,6 @@
 "global_menu_help_desktop" = "도움말";
 "contact_request_title_desktop" = "사서함";
 "more_info_desktop" = "더 많은 정보";
-"no_chats_desktop" = "채팅방이 없습니다…";
 "remove_desktop" = "삭제";
 "save_desktop" = "저장";
 "add_contact_desktop" = "대화상대 추가";

@@ -57,8 +57,6 @@
 "now" = "Nu";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Fara";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d min";
 "today" = "Idag";
 "yesterday" = "Igår";
 "this_week" = "Denna vecka";
@@ -149,8 +147,6 @@
 "menu_select_all" = "Markera alla";
 "menu_expand" = "Expandera";
 "menu_edit_name" = "Redigera namn";
-"menu_edit_group_name" = "Redigera gruppnamn";
-"menu_edit_group_image" = "Redigera gruppbild";
 "menu_settings" = "Inställningar";
 "menu_advanced" = "Avancerat";
 "menu_deaddrop" = "Kontaktförfrågningar";
@@ -291,7 +287,6 @@
 
 // welcome and login
 "welcome_intro1_message" = "Chattappen med den bredaste publiken i världen. Fri och oberoende.";
-"welcome_start_messaging" = "Börja chatta";
 "login_title" = "Logga in";
 "login_header" = "Logga in på din server";
 "login_explain" = "Logga in med ett befintligt e-postkonto";
@@ -325,18 +320,14 @@
 "login_error_cannot_login" = "Kan inte logga in som \"%1$@\". Kontrollera om e-postadressen och lösenordet är korrekt.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Svar från %1$@: %2$@\n\nVissa e-postleverantörer placerar tilläggsinformation i din inkorg. Du kan kontrollera dem i t.ex. webbgränssnittet. Kontakta din e-postleverantör eller vänner om du stöter på problem.";
-
 // TLS certificate checks
-"accept_invalid_hostnames" = "Acceptera ogiltiga värdnamn";
 "accept_invalid_certificates" = "Acceptera ogiltiga certifikat";
-
 "used_settings" = "Använda inställningar:";
 "switch_account" = "Byt konto";
 "add_account" = "Lägg till konto";
 "delete_account" = "Ta bort konto";
 "delete_account_ask" = "Är du säker på att du vill ta bort din kontodata?";
 "switching_account" = "Byter konto...";
-
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Vidarebefordra till...";
@@ -353,9 +344,7 @@
 "pref_profile_photo" = "Profilbild";
 "pref_blocked_contacts" = "Blockerade kontakter";
 "pref_profile_photo_remove_ask" = "Ta bort profilfotot?";
-"pref_help_url" = "https://delta.chat/help";
 "pref_password_and_account_settings" = "Lösenord och konto";
-"pref_who_can_see_this_information" = "Vem kan se detta?";
 "pref_who_can_see_profile_explain" = "Din profilbild och ditt namn visas tillsammans med dina meddelanden när du kommunicerar med andra användare. Information som redan skickats kan inte tas bort eller flyttas.";
 "pref_your_name" = "Ditt namn";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -368,7 +357,6 @@
 "pref_outgoing_balanced" = "Balanserad";
 "pref_outgoing_worse" = "Sämre kvalitet, mindre storlek";
 "pref_vibrate" = "Vibrera";
-"pref_chat_settings" = "Konversationsinställningar";
 "pref_change_secret" = "Ändra hemlighet";
 "pref_change_secret_explain" = "Ändra ditt PIN/mönster/fingeravtryck via systeminställningarna";
 "pref_screen_security" = "Skärmsäkerhet";
@@ -379,7 +367,6 @@
 "pref_notifications_show" = "Visa";
 "pref_notifications_priority" = "Prioritet";
 "pref_led_color" = "Färg på ljusindikator";
-"pref_led_pattern" = "Blinkmönster på ljusindikator";
 "pref_sound" = "Ljud";
 "pref_silent" = "Tyst";
 "pref_privacy" = "Integritet";
@@ -401,7 +388,6 @@
 "pref_app_access" = "Programåtkomst";
 "pref_communication" = "Kommunikation";
 "pref_chats" = "Chattar";
-"pref_messages" = "Meddelanden";
 "pref_in_chat_sounds" = "Ljud i konversationer";
 "pref_message_text_size" = "Teckenstorlek för meddelanden";
 "pref_view_log" = "Visa logg";
@@ -415,7 +401,6 @@
 "pref_backup_export_start_button" = "Starta säkerhetskopiering";
 "pref_backup_written_to_x" = "Säkerhetskopia korrekt skriven till \"%1$@\".";
 "pref_managekeys_menu_title" = "Hantera nycklar";
-"pref_managekeys_ask_for_storage_permission" = "Delta Chat behöver åtkomst till dina filer, för att importera/exportera nycklar.";
 "pref_managekeys_export_secret_keys" = "Exportera säkerhetsnycklar";
 "pref_managekeys_export_explain" = "Exportera säkerhetsnycklar till \"%1$@\"?";
 "pref_managekeys_import_secret_keys" = "Importera säkerhetsnycklar";
@@ -433,32 +418,22 @@
 "pref_send_copy_to_self" = "Skicka kopia till mig själv";
 "pref_auto_folder_moves" = "Flyttas automatiskt till DeltaChat-mappen";
 "pref_auto_folder_moves_explain" = "Chattkonversationer flyttas automatiskt för att undvika att inkorgen belamras";
-"pref_email_interaction_title" = "E-postinteraktion";
 "pref_show_emails" = "Visa vanliga e-postmeddelanden";
 "pref_show_emails_no" = "Nej, bara cattar";
 "pref_show_emails_accepted_contacts" = "För godkända kontakter";
 "pref_show_emails_all" = "Alla";
-"pref_empty_server_title" = "Ta bort e-postmeddelanden från servern";
-"pref_empty_server_msg" = "Den här funktionen hjälper till att frigöra utrymme på din IMAP-server genom att ta bort alla e-postmeddelanden, inklusive chattmeddelanden, i de angivna mapparna. Meddelanden på den här enheten tas inte bort. Borttagningen kan inte ångras!";
-"pref_empty_server_inbox" = "Ta bort alla e-postmeddelanden i mappen \"Inkorg\"";
-"pref_empty_server_mvbox" = "Ta bort alla e-postmeddelanden i mappen \"DeltaChat\"";
-"pref_empty_server_do_button" = "Ta bort e-postmeddelanden";
 "pref_experimental_features" = "Experimentella funktioner";
 "pref_on_demand_location_streaming" = "På-begäran platsströmning";
 "pref_background_default" = "Standardbakgrund";
 "pref_background_default_color" = "Standardfärg";
 "pref_background_custom_image" = "Anpassad bild";
 "pref_background_custom_color" = "Anpassad färg";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Tillförlitlig bakgrundsanslutning";
-"pref_reliable_service_explain" = "Kräver permanent avisering";
-"ephemeral_dialog_title" = "Ta bort lästa meddelanden";
-
+"export_aborted" = "Exporten avbruten";
 
 // automatically delete message
 "delete_old_messages" = "Ta bort gamla meddelanden";
+// devs: autodel_title is deprecated, use delete_old_messages instead
 "autodel_title" = "Ta bort meddelanden automatiskt";
-"autodel_title_short" = "Ta bort automatiskt";
 "autodel_device_title" = "Ta bort meddelanden från enheten";
 "autodel_server_title" = "Ta bort meddelanden från servern";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
@@ -566,11 +541,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nya meddelanden i %2$d chattar";
-"notify_most_recent_from" = "Senast från: %1$@";
-"notify_media_message_with_text" = "Mediameddelande: %1$@";
-"notify_mark_all_read" = "Markera alla som lästa";
 "notify_mark_read" = "Läst";
-"notify_media_message" = "Multimediameddelande";
 "notify_reply_button" = "Svara";
 "notify_new_message" = "Nytt meddelande";
 "notify_background_connection_enabled" = "Bakgrundsanslutning aktiverad";
@@ -584,17 +555,10 @@
 // permissions
 "perm_required_title" = "Behörighet krävs";
 "perm_continue" = "Fortsätt";
-"perm_explain_need_for_camera_access" = "Ge Delta Chat tillgång till kameran, för att ta bilder och filma.";
-"perm_explain_need_for_mic_access" = "Ge Delta Chat tillgång till mikrofonen, för att ta skicka röstmeddelanden.";
-"perm_explain_need_for_storage_access" = "Delta Chat behöver tillgång till dina filer, för att kunna exportera filer och för att skapa säkerhetskopior.";
-"perm_explain_need_for_storage_access_share" = "Delta Chat behöver åtkomst till dina filer, för att dela dem.";
 "perm_explain_access_to_camera_denied" = "Gå till programinställningarna och aktivera \"Kamera\" under \"Behörighet\", för att ta foton eller filma.";
 "perm_explain_access_to_mic_denied" = "Gå till programinställningarna och aktivera \"Mikrofon\" under \"Behörighet\", för att skicka röstmeddelanden.";
 "perm_explain_access_to_storage_denied" = "Gå till programinställningarna och aktivera \"Lagring\" under \"Behörighet\", för att ta emot eller skicka filer.";
 "perm_explain_access_to_location_denied" = "Gå till programinställningarna och aktivera \"Plats\" under \"Behörighet\", för att bifoga en plats.";
-"perm_enable_bg_reminder_title" = "Tryck här för att ta emot meddelanden medan Delta Chat är i bakgrunden.";
-"perm_enable_bg_reminder_text" = "Delta Chat använder få resurser och försöker att inte dränera ditt batteri.";
-"perm_enable_bg_already_done" = "Du har redan gett Delta Chatt tillstånd att ta emot meddelanden i bakgrunden.\n\nKontrollera dina systeminställningar också, om det fortfarande inte kommer några meddelanden i bakgrunden.";
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Rita var som helst för att smeta ut";
@@ -632,8 +596,6 @@
 "more_info_desktop" = "Mer information";
 "logout_desktop" = "Logga ut";
 "timestamp_format_m_desktop" = "MMM D";
-"no_archived_chats_desktop" = "Inga arkiverade chattar";
-"no_chats_desktop" = "Inga chattar";
 "encryption_info_desktop" = "Visa krypteringsinfo";
 "verified_desktop" = "verifierad";
 "remove_desktop" = "Ta bort";
@@ -683,9 +645,17 @@
 "a11y_message_context_menu_btn_label" = "Meddelandeåtgärder";
 "a11y_background_preview_label" = "Förhandsvisning i bakgrunden";
 
+
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
 // android specific strings, developers: please take care to remove strings that are no longer used!
-"update_1_10_android" = "Nya Delta Chatt 1.10-funktioner i korthet: Snabbare, multikonto, suddiga bilder, nya emojis, omarbetade meddelanden, bättre felrapportering men viktigast av allt... \n\nKlicka på en avatar i profilen och förstora den 🚀";
+"pref_background_notifications" = "Bakgrundsaviseringar";
+"pref_background_notifications_explain" = "Använder en bakgrundsanslutning till din server och kräver undantagna batterioptimeringar.";
+"pref_background_notifications_rationale" = "För att behålla anslutningen till din e-postserver och fortsätta ta emot meddelanden i bakgrunden, behöver du skippa batterioptimeringen i nästa steg.\n\nDelta Chat använder små resurser och ser till att inte dra ur ditt batteri.";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Tillförlitlig bakgrundsanslutning";
+"pref_reliable_service_explain" = "Kräver permanent avisering";
+"perm_enable_bg_reminder_title" = "Tryck här för att ta emot meddelanden medan Delta Chat är i bakgrunden.";
+"perm_enable_bg_already_done" = "Du har redan gett Delta Chatt tillstånd att ta emot meddelanden i bakgrunden.\n\nKontrollera dina systeminställningar också, om det fortfarande inte kommer några meddelanden i bakgrunden.";
 

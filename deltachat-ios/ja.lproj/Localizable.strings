@@ -32,8 +32,6 @@
 "email_address" = "ﾒｰﾙｱﾄﾞﾚｽ";
 "password" = "ﾊﾟｽﾜｰﾄﾞ";
 "now" = "現在";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d分";
 "today" = "今日";
 "yesterday" = "昨日";
 "this_week" = "今週";
@@ -112,8 +110,6 @@
 "menu_help" = "ﾍﾙﾌﾟ";
 "menu_select_all" = "全選択";
 "menu_edit_name" = "名前の編集";
-"menu_edit_group_name" = "ｸﾞﾙｰﾌﾟ名の編集";
-"menu_edit_group_image" = "ｸﾞﾙｰﾌﾟ画像の編集";
 "menu_settings" = "設定";
 "menu_advanced" = "追加設定";
 "menu_deaddrop" = "連絡先追加";
@@ -171,7 +167,6 @@
 "tab_links" = "ﾘﾝｸ";
 "tab_map" = "地図";
 "media_preview" = "メディアのプレビュー";
-"welcome_start_messaging" = "開始する";
 "login_title" = "ﾛｸﾞｲﾝ";
 "login_header" = "自分のﾒｰﾙｻｰﾊﾞｰにﾛｸﾞｲﾝする";
 "login_subheader" = "有名なﾒｰﾙｻｰﾊﾞｰは自動で設定されます｡一般にIMAPはｻｰﾊﾞｰ側で有効に設定する必要が有ります｡ｻｰﾊﾞｰ提供者や詳しい人に確認しましょう｡";
@@ -187,7 +182,6 @@
 "login_smtp_server" = "SMTPｻｰﾊﾞｰ";
 "login_smtp_port" = "SMTPﾎﾟｰﾄ";
 "login_smtp_security" = "SMTP暗号方式";
-"pref_who_can_see_this_information" = "誰がこの情報を見れるようになるのですか？";
 "pref_your_name" = "あなたの名前";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
 "pref_default_status_label" = "署名";
@@ -195,7 +189,6 @@
 "pref_enter_sends" = "エンターキーで送信";
 "pref_enter_sends_explain" = "エンターキーを押すとテキストメッセージが送信されます";
 "pref_vibrate" = "振動";
-"pref_chat_settings" = "ﾁｬｯﾄ設定";
 "pref_screen_security" = "画面セキュリティ";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "アプリ内や「最近使ったアプリ」でスクリーンショットを表示しない";
@@ -203,7 +196,6 @@
 "pref_notifications_show" = "表示";
 "pref_notifications_priority" = "優先度";
 "pref_led_color" = "LED色";
-"pref_led_pattern" = "LED点滅パターン";
 "pref_sound" = "通知音";
 "pref_silent" = "無音";
 "pref_privacy" = "機密保護";
@@ -224,7 +216,6 @@
 "pref_app_access" = "アプリのアクセス";
 "pref_communication" = "通信";
 "pref_chats" = "ﾁｬｯﾄ";
-"pref_messages" = "ﾒｯｾｰｼﾞ";
 "pref_in_chat_sounds" = "着信音";
 "pref_message_text_size" = "文字の大きさ";
 "pref_other" = "その他";
@@ -250,9 +241,7 @@
 "qrshow_x_joining" = "%1$@が参加しました";
 "qrshow_join_group_title" = "自分のQRｺｰﾄﾞ";
 "qrshow_join_contact_title" = "自分のQRｺｰﾄﾞ";
-"notify_mark_all_read" = "全て閲覧済";
 "notify_mark_read" = "閲覧済";
-"notify_media_message" = "マルチメディアメッセージ";
 "notify_reply_button" = "返信";
 "notify_new_message" = "新規ﾒｯｾｰｼﾞ";
 "notify_priority_high" = "高";
@@ -285,7 +274,6 @@
 "global_menu_help_report_desktop" = "問題を報告する";
 "contact_detail_title_desktop" = "連絡先の詳細";
 "timestamp_format_m_desktop" = "MMM D";
-"no_chats_desktop" = "ﾁｬｯﾄ無し";
 "remove_desktop" = "削除";
 "add_contact_desktop" = "連絡先を追加";
 "login_required_desktop" = ">保存";

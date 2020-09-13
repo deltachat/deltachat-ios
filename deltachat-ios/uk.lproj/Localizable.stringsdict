@@ -202,5 +202,25 @@
 			<string>%d чатів розпаковано</string>
 		</dict>
 	</dict>
+	<key>chat_n_new_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d нове повідомлення</string>
+			<key>few</key>
+			<string>%d нові повідомлення</string>
+			<key>many</key>
+			<string>%d нових повідомлень</string>
+			<key>other</key>
+			<string>%d нових повідомлень</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

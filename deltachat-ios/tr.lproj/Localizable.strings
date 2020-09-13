@@ -57,8 +57,6 @@
 "now" = "Şimdi";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Tehlikeli";
-// n_min_ago is deprecated, use n_minutes instead
-"n_min_ago" = "%d dk";
 "today" = "Bugün";
 "yesterday" = "Dün";
 "this_week" = "Bu hafta";
@@ -149,8 +147,6 @@
 "menu_select_all" = "Tümünü seç";
 "menu_expand" = "Genişlet";
 "menu_edit_name" = "Adı düzenle";
-"menu_edit_group_name" = "Grup adını düzenle";
-"menu_edit_group_image" = "Grup görselini düzenle";
 "menu_settings" = "Ayarlar";
 "menu_advanced" = "Gelişmiş";
 "menu_deaddrop" = "İletişim istekleri";
@@ -291,7 +287,6 @@
 
 // welcome and login
 "welcome_intro1_message" = "Dünyanın en geniş kitleli ulağı. Özgür ve bağımsız.";
-"welcome_start_messaging" = "İletileşmeye başla";
 "login_title" = "Oturum aç";
 "login_header" = "Sunucunuzda oturum açın";
 "login_explain" = "Varolan bir e-posta hesabıyla oturum açın";
@@ -324,18 +319,17 @@
 // Translators: %1$s will be replaced by the email address
 "login_error_cannot_login" = "\"%1$@\" olarak oturum açılamıyor. Lütfen e-posta adresinin ve parolanın doğru olup olmadığını denetleyin.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "%1$@ yanıtı: %2$@\n\nBazı sağlayıcılar gelen kutunuza ek bilgiler yerleştirir; onları örn. web ön ucundan denetleyebilirsiniz. Sorun yaşarsanız sağlayıcınıza ya da arkadaşlarınıza danışın.";
-
+"login_error_server_response" = "%1$@ yanıtı: %2$@\n\nBazı sağlayıcılar size bu sorun hakkında e-posta gönderebilir; ilgili uygulamanızdan ya da web sitesinden gelen kutunuzu denetleyebiliyor olmalısınız. Sorun yaşarsanız sağlayıcınıza ya da arkadaşlarınıza danışın.";
 // TLS certificate checks
-"accept_invalid_hostnames" = "Geçersiz ana bilgisayar adlarını kabul et";
 "accept_invalid_certificates" = "Geçersiz sertifikaları kabul et";
-
 "used_settings" = "Kullanılan ayarlar:";
 "switch_account" = "Hesap değiştir";
 "add_account" = "Hesap ekle";
 "delete_account" = "Hesabı sil";
 "delete_account_ask" = "Hesap verilerinizi silmek istediğinizden emin misiniz?";
 "switching_account" = "Hesap değiştiriliyor…";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "Yapılandırma başarısız. Hata: %1$@";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -353,10 +347,8 @@
 "pref_profile_photo" = "Profil resmi";
 "pref_blocked_contacts" = "Engellenen kişiler";
 "pref_profile_photo_remove_ask" = "Profil fotoğrafı kaldırılsın mı?";
-"pref_help_url" = "https://delta.chat/help";
 "pref_password_and_account_settings" = "Parola ve hesap";
-"pref_who_can_see_this_information" = "Bunu kim görebilir?";
-"pref_who_can_see_profile_explain" = "Profil resminiz ve adınız, diğer kullanıcılarla iletişim kurarken iletilerinizin yanında gösterilir. Zaten gönderilen bilgiler silinemeyebilir ya da kaldırılamayabilir.";
+"pref_who_can_see_profile_explain" = "Diğer kullanıcılarla iletişim kurarken, profil resminiz ve adınız iletilerinizin yanında gösterilir. Zaten gönderilen bilgiler silinemeyebilir ya da kaldırılamayabilir.";
 "pref_your_name" = "Adınız";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
 "pref_default_status_label" = "İmza metni";
@@ -368,7 +360,6 @@
 "pref_outgoing_balanced" = "Dengeli";
 "pref_outgoing_worse" = "Daha kötü kalite, küçük boyut";
 "pref_vibrate" = "Titret";
-"pref_chat_settings" = "Sohbet ayarları";
 "pref_change_secret" = "Sırrı değiştir";
 "pref_change_secret_explain" = "PIN / desen / parmak izinizi sistem ayarları üzerinden değiştirin";
 "pref_screen_security" = "Ekran güvenliği";
@@ -379,7 +370,6 @@
 "pref_notifications_show" = "Göster";
 "pref_notifications_priority" = "Öncelik";
 "pref_led_color" = "LED rengi";
-"pref_led_pattern" = "LED yanıp sönme deseni";
 "pref_sound" = "Ses";
 "pref_silent" = "Sessiz";
 "pref_privacy" = "Gizlilik";
@@ -401,7 +391,6 @@
 "pref_app_access" = "Uygulama erişimi";
 "pref_communication" = "İletişim";
 "pref_chats" = "Sohbetler";
-"pref_messages" = "İletiler";
 "pref_in_chat_sounds" = "Sohbet içi sesler";
 "pref_message_text_size" = "İleti yazı tipi boyutu";
 "pref_view_log" = "Günlüğü görüntüle";
@@ -415,7 +404,6 @@
 "pref_backup_export_start_button" = "Yedeklemeye başla";
 "pref_backup_written_to_x" = "Yedek \"%1$@\" üzerine başarıyla yazıldı.";
 "pref_managekeys_menu_title" = "Anahtarları yönet";
-"pref_managekeys_ask_for_storage_permission" = "Delta Chat\'in anahtarları içe/dışa aktarmak için dosyalarınıza erişmesi gerekir.";
 "pref_managekeys_export_secret_keys" = "Sır anahtarları dışa aktar";
 "pref_managekeys_export_explain" = "Sır anahtarlar \"%1$@\" üzerinde dışa aktarılsın mı?";
 "pref_managekeys_import_secret_keys" = "Sır anahtarları içe aktar";
@@ -433,32 +421,22 @@
 "pref_send_copy_to_self" = "Kendime kopya gönder";
 "pref_auto_folder_moves" = "DeltaChat klasörüne otomatik taşınsın";
 "pref_auto_folder_moves_explain" = "Sohbet görüşmeleri, Gelen Kutusu\'ndaki dağınıklığı önlemek için taşınır";
-"pref_email_interaction_title" = "E-posta etkileşimi";
 "pref_show_emails" = "Klasik e-postaları göster";
 "pref_show_emails_no" = "Hayır, yalnızca sohbetler";
 "pref_show_emails_accepted_contacts" = "Kabul edilen kişiler için";
 "pref_show_emails_all" = "Tümü";
-"pref_empty_server_title" = "E-postaları sunucudan sil";
-"pref_empty_server_msg" = "Bu işlev, verilen klasörlerdeki sohbet iletilerini kapsayıp tüm e-postaları silerek IMAP sunucunuzda boş alan açmanıza yardım eder. Bu aygıttaki iletiler silinmeyecek. Silme geri alınamaz!";
-"pref_empty_server_inbox" = "\"Gelen Kutusu\" klasöründeki tüm e-postaları sil";
-"pref_empty_server_mvbox" = "\"DeltaChat\" klasöründeki tüm e-postaları sil";
-"pref_empty_server_do_button" = "E-postaları sil";
 "pref_experimental_features" = "Deneysel özellikler";
 "pref_on_demand_location_streaming" = "İsteğe bağlı konum akışı";
 "pref_background_default" = "Varsayılan arka plan";
 "pref_background_default_color" = "Varsayılan renk";
 "pref_background_custom_image" = "Özel görsel";
 "pref_background_custom_color" = "Özel renk";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Güvenilir arka plan bağlantısı";
-"pref_reliable_service_explain" = "Kalıcı bir bildirim gerektirir";
-"ephemeral_dialog_title" = "Okunan iletileri sil";
-
+"export_aborted" = "Dışa aktarmadan vazgeçildi.";
 
 // automatically delete message
 "delete_old_messages" = "Eski iletileri sil";
+// devs: autodel_title is deprecated, use delete_old_messages instead
 "autodel_title" = "İletileri otomatik sil";
-"autodel_title_short" = "Otomatik sil";
 "autodel_device_title" = "İletileri aygıttan sil";
 "autodel_server_title" = "İletileri sunucudan sil";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
@@ -566,11 +544,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%2$d sohbette %1$d yeni ileti";
-"notify_most_recent_from" = "Şundan en yeni: %1$@";
-"notify_media_message_with_text" = "Ortam iletisi: %1$@";
-"notify_mark_all_read" = "Tümünü okundu olarak imle";
 "notify_mark_read" = "Okundu imi";
-"notify_media_message" = "Ortam iletisi";
 "notify_reply_button" = "Yanıtla";
 "notify_new_message" = "Yeni ileti";
 "notify_background_connection_enabled" = "Arka plan bağlantısı etkinleştirildi";
@@ -584,17 +558,10 @@
 // permissions
 "perm_required_title" = "İzin gerekli";
 "perm_continue" = "Sürdür";
-"perm_explain_need_for_camera_access" = "Fotoğraflar ve videolar yakalamak için Delta Chat\'in kameraya erişmesine izin verin.";
-"perm_explain_need_for_mic_access" = "Sesli iletiler göndermek için Delta Chat\'in mikrofona erişmesine izin verin.";
-"perm_explain_need_for_storage_access" = "Delta Chat\'in dosyaları dışa aktarmak ya da yedekler oluşturmak için dosyalarınıza erişmesi gerekir.";
-"perm_explain_need_for_storage_access_share" = "Delta Chat\'in paylaşmak için dosyalarınıza erişmesi gerekir.";
 "perm_explain_access_to_camera_denied" = "Fotoğraflar çekmek ya da videolar yakalamak için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Kamera\"yı etkinleştirin.";
 "perm_explain_access_to_mic_denied" = "Sesli iletiler göndermek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Mikrofon\"u etkinleştirin.";
 "perm_explain_access_to_storage_denied" = "Dosyaları almak ya da göndermek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Depolama\"yı etkinleştirin.";
 "perm_explain_access_to_location_denied" = "Bir konum iliştirmek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Konum\"u etkinleştirin.";
-"perm_enable_bg_reminder_title" = "Delta Chat arka plandayken iletileri almak için buraya dokunun.";
-"perm_enable_bg_reminder_text" = "Delta Chat, kaynakların en azını kullanır ve pilinizi boşaltmamaya özen gösterir.";
-"perm_enable_bg_already_done" = "Delta Chat\'in arka planda iletileri almasına zaten izin verdiniz.\n\nİletiler arka planda hâlâ gelmiyorsa, lütfen sistem ayarlarınızı da denetleyin.";
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Bulanıklaştırmak için herhangi bir yere çizin";
@@ -632,8 +599,6 @@
 "more_info_desktop" = "Daha fazla bilgi";
 "logout_desktop" = "Oturumu kapat";
 "timestamp_format_m_desktop" = "MMM D";
-"no_archived_chats_desktop" = "Arşivlenen sohbet yok";
-"no_chats_desktop" = "Sohbet yok";
 "encryption_info_desktop" = "Şifreleme bilgisini göster";
 "verified_desktop" = "doğrulanan";
 "remove_desktop" = "Kaldır";
@@ -683,9 +648,17 @@
 "a11y_message_context_menu_btn_label" = "İleti eylemleri";
 "a11y_background_preview_label" = "Arka plan önizlemesi";
 
+
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
 // android specific strings, developers: please take care to remove strings that are no longer used!
-"update_1_10_android" = "Bir bakışta yeni Delta Chat 1.10: Daha hızlı, çoklu hesap, bulanık görseller, yeni emojiler, yeniden çalışılmış bildirimler, daha iyi hata raporlama ama en önemlisi:\n\nProfildeki bir avatarı tıklayın ve onu genişletin 🚀";
+"pref_background_notifications" = "Arka plan bildirimleri";
+"pref_background_notifications_explain" = "Sunucunuza bir arka plan bağlantısı kullanır ve pil iyileştirmelerinin yoksayılmasını gerektirir.";
+"pref_background_notifications_rationale" = "E-posta sunucunuza bağlantıyı sürdürmek ve arka planda iletileri almak için sonraki adımda pil iyileştirmelerini yoksayın.\n\nDelta Chat, kaynakların en azını kullanır ve pilinizi boşaltmamaya özen gösterir.";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Güvenilir arka plan bağlantısı";
+"pref_reliable_service_explain" = "Kalıcı bir bildirim gerektirir";
+"perm_enable_bg_reminder_title" = "Delta Chat arka plandayken iletileri almak için buraya dokunun.";
+"perm_enable_bg_already_done" = "Delta Chat\'in arka planda iletileri almasına zaten izin verdiniz.\n\nİletiler arka planda hâlâ gelmiyorsa, lütfen sistem ayarlarınızı da denetleyin.";
 
