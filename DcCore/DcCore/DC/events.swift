@@ -49,14 +49,13 @@ public func handleEvent(event: DcEvent) {
                     "progress": Int(data1),
                     "error": Int(data1) == 0,
                     "done": done,
-                    "errorMessage": DcContext.shared.lastErrorString as Any,
+                    "errorMessage": event.data2String,
                 ]
             )
 
             if done {
                 UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
                 UserDefaults.standard.synchronize()
-                DcContext.shared.lastErrorString = nil
             }
         }
 
