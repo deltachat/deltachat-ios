@@ -626,7 +626,6 @@
 "a11y_delivery_status_delivered" = "Status dostawy: Dostarczone";
 "a11y_delivery_status_read" = "Status dostawy: Przeczytane";
 "a11y_delivery_status_invalid" = "Nieprawidłowy status dostawy";
-"a11y_remove_account_btn_label" = "Usuń konto";
 "a11y_background_preview_label" = "Podgląd tła";
 
 

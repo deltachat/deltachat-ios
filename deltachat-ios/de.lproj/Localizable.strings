@@ -644,7 +644,6 @@
 "a11y_delivery_status_delivered" = "Übertragungsstatus: Versendet";
 "a11y_delivery_status_read" = "Übertragungsstatus: Gelesen";
 "a11y_delivery_status_invalid" = "Übertragungsstatus: Ungültig";
-"a11y_remove_account_btn_label" = "E-Mail-Konto löschen";
 "a11y_message_context_menu_btn_label" = "Nachrichtaktionen";
 "a11y_background_preview_label" = "Vorschau für Hintergrundbild";
 

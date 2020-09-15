@@ -641,7 +641,6 @@
 "a11y_delivery_status_delivered" = "Статус доставки: Доставлено";
 "a11y_delivery_status_read" = "Статус доставки: Прочитано";
 "a11y_delivery_status_invalid" = "Невірний статус доставки";
-"a11y_remove_account_btn_label" = "Видалити обліковий запис";
 "a11y_message_context_menu_btn_label" = "Дії з повідомленням";
 "a11y_background_preview_label" = "Попередній перегляд фону";
 

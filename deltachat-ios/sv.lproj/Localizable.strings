@@ -641,7 +641,6 @@
 "a11y_delivery_status_delivered" = "Leveransstatus: Levererat";
 "a11y_delivery_status_read" = "Leveransstatus: Läst";
 "a11y_delivery_status_invalid" = "Ogiltig leveransstatus";
-"a11y_remove_account_btn_label" = "Ta bort konto";
 "a11y_message_context_menu_btn_label" = "Meddelandeåtgärder";
 "a11y_background_preview_label" = "Förhandsvisning i bakgrunden";
 

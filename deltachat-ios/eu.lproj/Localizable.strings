@@ -590,7 +590,6 @@
 "a11y_delivery_status_delivered" = "Bidalketa-egoera: Bidalita";
 "a11y_delivery_status_read" = "Bidalketa-egoera: Irakurrita";
 "a11y_delivery_status_invalid" = "Bidalketa-egoera baliogabea";
-"a11y_remove_account_btn_label" = "Kendu kontua";
 "a11y_message_context_menu_btn_label" = "Mezu-ekintzak";
 "a11y_background_preview_label" = "Atzealdearen aurrebista";
 

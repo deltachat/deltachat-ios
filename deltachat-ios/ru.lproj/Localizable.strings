@@ -641,7 +641,6 @@
 "a11y_delivery_status_delivered" = "Статус доставки: Доставлено";
 "a11y_delivery_status_read" = "Статус доставки: Прочитано";
 "a11y_delivery_status_invalid" = "Недопустимый статус доставки";
-"a11y_remove_account_btn_label" = "Удалить аккаунт";
 "a11y_message_context_menu_btn_label" = "Действия с сообщением";
 "a11y_background_preview_label" = "Предпросмотр фона";
 

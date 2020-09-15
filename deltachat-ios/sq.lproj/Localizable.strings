@@ -643,7 +643,6 @@
 "a11y_delivery_status_delivered" = "Gjendje dërgimi: I dërguar";
 "a11y_delivery_status_read" = "Gjendje dërgimi: I lexuar";
 "a11y_delivery_status_invalid" = "Gjendje dërgimi e pavlefshme";
-"a11y_remove_account_btn_label" = "Hiqe llogarinë";
 "a11y_message_context_menu_btn_label" = "Veprime mesazhesh";
 "a11y_background_preview_label" = "Paraparje sfondi";
 

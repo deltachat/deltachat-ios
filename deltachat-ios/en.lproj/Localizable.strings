@@ -644,7 +644,6 @@
 "a11y_delivery_status_delivered" = "Delivery status: Delivered";
 "a11y_delivery_status_read" = "Delivery status: Read";
 "a11y_delivery_status_invalid" = "Invalid delivery status";
-"a11y_remove_account_btn_label" = "Remove account";
 "a11y_message_context_menu_btn_label" = "Message actions";
 "a11y_background_preview_label" = "Background preview";
 

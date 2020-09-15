@@ -644,7 +644,6 @@
 "a11y_delivery_status_delivered" = "Bezorgstatus: afgeleverd";
 "a11y_delivery_status_read" = "Bezorgstatus: gelezen";
 "a11y_delivery_status_invalid" = "Onbekende bezorgstatus";
-"a11y_remove_account_btn_label" = "Account verwijderen";
 "a11y_message_context_menu_btn_label" = "Berichtacties";
 "a11y_background_preview_label" = "Achtergrondvoorbeeld";
 

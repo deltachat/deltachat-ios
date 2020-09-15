@@ -644,7 +644,6 @@
 "a11y_delivery_status_delivered" = "Teslimat durumu: Teslim edildi";
 "a11y_delivery_status_read" = "Teslimat durumu: Okundu";
 "a11y_delivery_status_invalid" = "Geçersiz teslimat durumu";
-"a11y_remove_account_btn_label" = "Hesabı kaldır";
 "a11y_message_context_menu_btn_label" = "İleti eylemleri";
 "a11y_background_preview_label" = "Arka plan önizlemesi";
 

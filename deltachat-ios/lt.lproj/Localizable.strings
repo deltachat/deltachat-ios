@@ -72,7 +72,9 @@
 "camera" = "Kamera";
 "location" = "Vieta";
 "gallery" = "Galerija";
+"images_and_videos" = "Paveikslai ir vaizdo įrašai";
 "file" = "Failas";
+"files" = "Failai";
 "unknown" = "Nežinoma";
 
 "green" = "Žalia";
@@ -353,6 +355,8 @@
 "pref_background_default_color" = "Numatytoji spalva";
 "pref_background_custom_image" = "Tinkintas paveikslas";
 "pref_background_custom_color" = "Tinkinta spalva";
+"export_aborted" = "Eksportavimas nutrauktas.";
+
 "autodel_device_title" = "Ištrinti žinutes iš įrenginio";
 "autodel_server_title" = "Ištrinti žinutes iš serverio";
 "autodel_confirm" = "Aš suprantu, ištrinti visas šias žinutes";
@@ -507,7 +511,6 @@
 "a11y_delivery_status_delivered" = "Pristatymo būsena: Pristatyta";
 "a11y_delivery_status_read" = "Pristatymo būsena: Perskaityta";
 "a11y_delivery_status_invalid" = "Neteisinga pristatymo būsena";
-"a11y_remove_account_btn_label" = "Šalinti paskyrą";
 "a11y_background_preview_label" = "Fono peržiūra";
 
 

@@ -567,7 +567,6 @@
 "a11y_delivery_status_delivered" = "Estado de envío: Enviado";
 "a11y_delivery_status_read" = "Estado de envío: Leído";
 "a11y_delivery_status_invalid" = "Estado de envío no válido";
-"a11y_remove_account_btn_label" = "Eliminar cuenta";
 "a11y_message_context_menu_btn_label" = "Acciones del mensaje";
 "a11y_background_preview_label" = "Previsualización del fondo";
 
