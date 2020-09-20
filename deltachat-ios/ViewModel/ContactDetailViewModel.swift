@@ -21,6 +21,7 @@ class ContactDetailViewModel {
 
     enum ChatAction {
         case archiveChat
+        case showEncrInfo
         case blockContact
         case deleteChat
     }
@@ -51,10 +52,10 @@ class ContactDetailViewModel {
 
         if chatId != 0 {
             chatOptions = [.gallery, .documents, .ephemeralMessages, .muteChat, .startChat]
-            chatActions = [.archiveChat, .blockContact, .deleteChat]
+            chatActions = [.archiveChat, .showEncrInfo, .blockContact, .deleteChat]
         } else {
             chatOptions = [.gallery, .documents, .startChat]
-            chatActions = [.blockContact]
+            chatActions = [.showEncrInfo, .blockContact]
         }
     }
 
