@@ -5,7 +5,9 @@ import SDWebImage
 
 class NewImageTextCell: BaseMessageCell {
 
-    var imageAspectRatioConstraint: NSLayoutConstraint?
+    var imageHeightConstraint: NSLayoutConstraint?
+    var imageWidthConstraint: NSLayoutConstraint?
+
     lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -28,31 +30,50 @@ class NewImageTextCell: BaseMessageCell {
         super.setupSubviews()
         mainContentView.addArrangedSubview(contentImageView)
         mainContentView.addArrangedSubview(messageLabel)
-        contentImageView.widthAnchor.constraint(equalTo: mainContentView.widthAnchor).isActive = true
+        contentImageView.constraintAlignLeadingMaxTo(mainContentView).isActive = true
+        contentImageView.constraintAlignTrailingMaxTo(mainContentView).isActive = true
     }
 
     override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
         messageLabel.text = msg.text
         if msg.type == DC_MSG_IMAGE, let image = msg.image {
             contentImageView.image = image
-            setAspectRatioFor(image: image)
         } else if msg.type == DC_MSG_GIF, let url = msg.fileURL {
-            contentImageView.sd_setImage(with: url) { (image, _, _, _) in
-                if let image = image {
-                    self.setAspectRatioFor(image: image)
-                }
-            }
+            contentImageView.sd_setImage(with: url,
+                                         placeholderImage: UIImage(color: UIColor.init(alpha: 0,
+                                                                                       red: 255,
+                                                                                       green: 255,
+                                                                                       blue: 255),
+                                                                   size: CGSize(width: 500, height: 500)))
         }
+        setAspectRatioFor(msg: msg)
         super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible)
     }
 
-    private func setAspectRatioFor(image: UIImage) {
-        self.imageAspectRatioConstraint?.isActive = false
-        self.imageAspectRatioConstraint = self.contentImageView.heightAnchor.constraint(
-            equalTo: self.contentImageView.widthAnchor,
-            multiplier: image.size.height / image.size.width)
-        self.imageAspectRatioConstraint?.isActive = true
-    }
+    private func setAspectRatioFor(msg: DcMsg) {
+        guard let image = msg.image else {
+           return
+       }
+
+       self.imageHeightConstraint?.isActive = false
+       self.imageWidthConstraint?.isActive = false
+       var messageWidth = msg.messageWidth
+       var messageHeight = msg.messageHeight
+       if messageWidth == 0 || messageHeight == 0 {
+           messageWidth = image.size.width
+           messageHeight = image.size.height
+           msg.setLateFilingMediaSize(width: messageWidth, height: messageHeight, duration: 0)
+       }
+
+       self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: messageWidth)
+       self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(
+           lessThanOrEqualTo: self.contentImageView.widthAnchor,
+           multiplier: messageHeight / messageWidth
+       )
+       self.imageHeightConstraint?.isActive = true
+       self.imageWidthConstraint?.isActive = true
+
+ }
 
     override func prepareForReuse() {
         contentImageView.image = nil
