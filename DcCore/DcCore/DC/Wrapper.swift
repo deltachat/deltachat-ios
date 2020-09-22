@@ -910,7 +910,19 @@ public class DcMsg {
         } else {
             return nil
         }
-        }()
+    }()
+
+    public var messageHeight: CGFloat {
+        return CGFloat(dc_msg_get_height(messagePointer))
+    }
+
+    public var messageWidth: CGFloat {
+        return CGFloat(dc_msg_get_width(messagePointer))
+    }
+
+    public func setLateFilingMediaSize(width: CGFloat, height: CGFloat, duration: Int) {
+        dc_msg_latefiling_mediasize(messagePointer, Int32(width), Int32(height), Int32(duration))
+    }
 
     public var file: String? {
         if let cString = dc_msg_get_file(messagePointer) {
