@@ -178,6 +178,15 @@ public class DcContext {
         return []
     }
 
+    public func getContactEncrInfo(contactId: Int) -> String {
+        if let cString = dc_get_contact_encrinfo(contextPointer, UInt32(contactId)) {
+            let switftString = String(cString: cString)
+            dc_str_unref(cString)
+            return switftString
+        }
+        return "ErrGetContactEncrInfo"
+    }
+
     public func interruptIdle() {
     }
 

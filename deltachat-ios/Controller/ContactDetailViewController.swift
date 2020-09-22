@@ -35,6 +35,14 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var showEncrInfoCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = String.localized("encryption_info_title_desktop")
+        cell.actionColor = SystemColor.blue.uiColor
+        cell.selectionStyle = .none
+        return cell
+    }()
+
     private lazy var blockContactCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = viewModel.contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
@@ -163,6 +171,8 @@ class ContactDetailViewController: UITableViewController {
             switch viewModel.chatActionFor(row: row) {
             case .archiveChat:
                 return archiveChatCell
+            case .showEncrInfo:
+                return showEncrInfoCell
             case .blockContact:
                 return blockContactCell
             case .deleteChat:
@@ -228,6 +238,8 @@ class ContactDetailViewController: UITableViewController {
         switch action {
         case .archiveChat:
             toggleArchiveChat()
+        case .showEncrInfo:
+            showEncrInfoAlert()
         case .blockContact:
             toggleBlockContact()
         case .deleteChat:
@@ -289,6 +301,16 @@ class ContactDetailViewController: UITableViewController {
             self.deleteChat()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func showEncrInfoAlert() {
+        let alert = UIAlertController(
+            title: nil,
+            message: self.viewModel.context.getContactEncrInfo(contactId: self.viewModel.contactId),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 
