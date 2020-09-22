@@ -351,6 +351,33 @@ class ChatViewControllerNew: UITableViewController {
         return cell
     }
 
+    public override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            markSeenMessagesInVisibleArea()
+        }
+    }
+
+    public override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        markSeenMessagesInVisibleArea()
+    }
+
+    func markSeenMessagesInVisibleArea() {
+        if let indexPaths = tableView.indexPathsForVisibleRows {
+            let messages = indexPaths.map { DcMsg(id: messageIds[$0.row]) }
+            var markSeenMessageIds: [UInt32] = []
+            for message in messages {
+                if message.state != DC_STATE_IN_SEEN &&
+                    dcContext.getChat(chatId: chatId).canSend &&
+                    !message.isFromCurrentSender {
+                    markSeenMessageIds.append(UInt32(message.id))
+                }
+            }
+            if !markSeenMessageIds.isEmpty {
+                dcContext.markSeenMessages(messageIds: markSeenMessageIds)
+            }
+        }
+    }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let messageId = messageIds[indexPath.row]
         let message = DcMsg(id: messageId)
