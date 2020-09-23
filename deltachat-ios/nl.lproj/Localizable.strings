@@ -25,7 +25,7 @@
 "forward" = "Doorsturen";
 "archive" = "Archiveren";
 "unarchive" = "De-archiveren";
-"mute" = "Dempen";
+"mute" = "Negeren";
 "ephemeral_messages" = "Verdwijnende berichten";
 "ephemeral_messages_hint" = "Deze instellingen zijn van toepassing op alle deelnemers die Delta Chat gebruiken. Ze kunnen echter wél berichten kopiëren, opslaan of doorsturen middels andere e-mailapps.";
 "save" = "Opslaan";
@@ -81,7 +81,7 @@
 "camera" = "Camera";
 "location" = "Locatie";
 "gallery" = "Galerij";
-"images_and_videos" = "Afbeeldingen en video\'s";
+"images_and_videos" = "Foto\'s en video\'s";
 "file" = "Bestand";
 "files" = "Bestanden";
 "unknown" = "Onbekend";
@@ -213,10 +213,6 @@
 "ask_start_chat_with" = "Wil je een gesprek voeren met %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Wil je %1$@ verwijderen uit de groep?";
-"info_outdated_app_title" = "Je gebruikt een verouderde versie.";
-"info_outdated_app_text" = "Het lijkt erop dat je Delta Chat hebt geïnstalleerd uit een bron zonder automatische updates (bijv. GitHub). Installeer Delta Chat via een appwinkel om updates te ontvangen.";
-"info_outdated_app_dialog_title" = "Bronnen bijwerken";
-"info_outdated_app_dialog_text" = "Delta Chat is beschikbaar in:";
 
 
 // contact list
@@ -265,7 +261,7 @@
 // create/edit groups, contact/group profile
 "group_name" = "Groepsnaam";
 "group_avatar" = "Groepsafbeelding";
-"group_create_button" = "Groep creëren";
+"group_create_button" = "Groep aanmaken";
 "group_please_enter_group_name" = "Voer een naam in voor de groep.";
 "group_add_members" = "Deelnemers toevoegen";
 "group_hello_draft" = "Hallo, ik heb zojuist de groep \"%1$@\" voor ons gemaakt.";
@@ -290,7 +286,7 @@
 "login_title" = "Inloggen";
 "login_header" = "Inloggen op je server";
 "login_explain" = "Log in met een bestaand e-mailaccount.";
-"login_subheader" = "Bij bekende e-mailproviders gaat het instellen vrijwel geheel automatisch. Soms moet je IMAP inschakelen in de webversie van je e-mailclient. Vraag je e-mailprovider of vrienden om hulp.";
+"login_subheader" = "Bij bekende e-mailproviders gaat het instellen vrijwel geheel automatisch. Soms moet je imap inschakelen in de webversie van je e-mailclient. Vraag je e-mailprovider of vrienden om hulp.";
 "login_no_servers_hint" = "Er is geen Delta Chat-server; jóuw gegevens blijven op jóuw apparaat.";
 "login_inbox" = "Postvak IN";
 "login_imap_login" = "IMAP-inlognaam";
@@ -337,7 +333,7 @@
 "share_multiple_attachments" = "Wil je %1$d bestanden delen in het gekozen gesprek?\n\nDe bestanden worden ongewijzigd verstuurd in oorspronkelijke grootte.";
 "share_multiple_attachments_multiple_chats" = "Wil je %1$d bestand(en) delen in %2$d gesprekken?\n\nDe bestanden worden ongewijzigd verstuurd in oorspronkelijke grootte.";
 "share_text_multiple_chats" = "Wil je deze tekst versturen naar %1$d gesprekken?\n\n\"%2$@\"";
-"share_abort" = "Kan niet delen wegens ontbrekende machtigingen.";
+"share_abort" = "Het delen is afgebroken wegens ontbrekende rechten.";
 
 
 // preferences
@@ -394,26 +390,26 @@
 "pref_in_chat_sounds" = "Gespreksgeluiden";
 "pref_message_text_size" = "Tekstgrootte van berichten";
 "pref_view_log" = "Logboek bekijken";
-"pref_saved_log" = "Logboek opslaan in downloads-map";
+"pref_saved_log" = "Het logboek is opgeslagen in de downloadmap";
 "pref_save_log_failed" = "Kan logboek niet opslaan";
 "pref_log_header" = "Logboek";
 "pref_other" = "Overig";
 "pref_backup" = "Back-up";
 "pref_backup_explain" = "Gesprekken back-uppen naar externe opslag";
-"pref_backup_export_explain" = "Een back-up helpt je om een nieuwe installatie in te stellen op dit of een ander apparaat.\n\nDe back-up bevat alle berichten, contactpersonen, gesprekken en je end-to-end Autocrypt-instellingen. Bewaar het back-upbestand op een veilige plaats of verwijder het zo snel mogelijk.";
+"pref_backup_export_explain" = "Een back-up helpt je om een nieuwe installatie in te stellen op dit of een ander apparaat.\n\nDe back-up bevat alle berichten, contactpersonen, gesprekken en je eind-tot-eindinstellingen. Bewaar het back-upbestand op een veilige plaats of verwijder het zo snel mogelijk.";
 "pref_backup_export_start_button" = "Nu back-uppen";
-"pref_backup_written_to_x" = "Back-up weggeschreven naar %1$@";
+"pref_backup_written_to_x" = "Back-up weggeschreven naar \'%1$@\'.";
 "pref_managekeys_menu_title" = "Sleutels beheren";
 "pref_managekeys_export_secret_keys" = "Geheime sleutels exporteren";
-"pref_managekeys_export_explain" = "Geheime sleutels exporteren naar \"%1$@\"?";
+"pref_managekeys_export_explain" = "Geheime sleutels exporteren naar \'%1$@\'?";
 "pref_managekeys_import_secret_keys" = "Geheime sleutels importeren";
-"pref_managekeys_import_explain" = "Wil je geheime sleutels importeren uit \"%1$@\"?\n\n• Bestaande sleutels worden niet verwijderd.\n\n• De laatst geïmporteerde sleutel wordt als standaard gebruikt tenzij de bestandsnaam \"legacy\" bevat.";
-"pref_managekeys_secret_keys_exported_to_x" = "Geheime sleutels weggeschreven naar \"%1$@\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Geheime sleutels geïmporteerd uit \"%1$@\".";
+"pref_managekeys_import_explain" = "Wil je geheime sleutels importeren uit \'%1$@\'?\n\n• Bestaande sleutels worden niet verwijderd.\n\n• De laatst geïmporteerde sleutel wordt als standaard gebruikt tenzij de bestandsnaam \"legacy\" bevat.";
+"pref_managekeys_secret_keys_exported_to_x" = "Geheime sleutels weggeschreven naar \'%1$@\'.";
+"pref_managekeys_secret_keys_imported_from_x" = "Geheime sleutels geïmporteerd uit \'%1$@\'.";
 "pref_background" = "Achtergrond";
 "pref_background_btn_default" = "Standaardafbeelding gebruiken";
 "pref_background_btn_gallery" = "Kiezen uit galerij";
-"pref_imap_folder_handling" = "Controleren in IMAP-mappen";
+"pref_imap_folder_handling" = "IMAP-mappen controleren";
 "pref_imap_folder_warn_disable_defaults" = "Als je deze optie uitschakelt, zorg er dan voor dat je server en overige clients goed ingesteld zijn.\n\nAls dat niet zo is, dan werkt het misschien helemaal niet.";
 "pref_watch_inbox_folder" = "Postvak IN controleren op nieuwe berichten";
 "pref_watch_sent_folder" = "Map \'Verzonden\' controleren op nieuwe berichten";
@@ -427,8 +423,8 @@
 "pref_show_emails_all" = "Alles";
 "pref_experimental_features" = "Experimentele functies";
 "pref_on_demand_location_streaming" = "Locatie continue doorgeven (op verzoek)";
-"pref_background_default" = "Standaard achtergrond";
-"pref_background_default_color" = "Standaard kleur";
+"pref_background_default" = "Standaardachtergrond";
+"pref_background_default_color" = "Standaardkleur";
 "pref_background_custom_image" = "Eigen afbeelding";
 "pref_background_custom_color" = "Eigen kleur";
 "export_aborted" = "Het exporteren is afgebroken.";
@@ -455,18 +451,18 @@
 
 // autocrypt
 "autocrypt" = "Autocrypt";
-"autocrypt_explain" = "Autocrypt is een nieuwe, open specificatie voor het automatisch instellen van end-to-end e-mailversleuteling.\n\nJe instellingen worden, indien nodig, automatisch gecreëerd en kunnen worden overgezet naar andere apparaten middels instelberichten.";
+"autocrypt_explain" = "Autocrypt is een nieuwe, open specificatie voor het automatisch instellen van eind-tot-eindversleuteling.\n\nJe instellingen worden, indien nodig, automatisch aangemaakt en kunnen worden overgezet naar andere apparaten middels instelberichten.";
 "autocrypt_send_asm_title" = "Autocrypt-instelbericht versturen";
-"autocrypt_send_asm_explain_before" = "Een \'Autocrypt-instelbericht\' deelt je end-to-end-instellingen veilig met andere Autocrypt-compatibele apps.\n\nDe instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
+"autocrypt_send_asm_explain_before" = "Een \'Autocrypt-instelbericht\' deelt je eind-tot-eindinstellingen veilig met andere Autocrypt-compatibele apps.\n\nDe instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
 "autocrypt_send_asm_button" = "Autocrypt-instelbericht versturen";
-"autocrypt_send_asm_explain_after" = "Je instellingen zijn aan jezelf verstuurd. Schakel over naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld:\n\n%1$@\n\nAls je klaar bent, is je andere apparaat klaar voor gebruik.";
-"autocrypt_prefer_e2ee" = "Voorkeur voor end-to-end-versleuteling";
+"autocrypt_send_asm_explain_after" = "Je instellingen zijn aan jezelf verstuurd. Schakel over naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld:\n\n%1$@";
+"autocrypt_prefer_e2ee" = "Voorkeur voor eind-tot-eindversleuteling";
 "autocrypt_asm_subject" = "Autocrypt-instelbericht";
-"autocrypt_asm_general_body" = "Dit is het Autocrypt-instelbericht dat wordt gebruikt om je instellingen over te zetten naar andere clients.\n\nOm te ontsleutelen en te gebruiken, open je het bericht in een met Autocrypt compatibele app en voer je de code in die wordt getoond op het apparaat dat de code heeft gegenereerd.";
-"autocrypt_asm_click_body" = "Dit is het Autocrypt-instelbericht dat wordt gebruikt om je end-to-end-instellingen over te zetten naar andere clients.\n\nOm het te ontsleutelen en gebruiken, druk je op dit bericht.";
+"autocrypt_asm_general_body" = "Dit is het Autocrypt-instelbericht dat wordt gebruikt om je instellingen over te zetten.\n\nOm te ontsleutelen en te gebruiken, open je het bericht in een met Autocrypt compatibele app en voer je de code in die wordt getoond op het apparaat dat de code heeft gegenereerd.";
+"autocrypt_asm_click_body" = "Dit is het Autocrypt-instelbericht dat wordt gebruikt om je eind-tot-eindinstellingen over te zetten.\n\nDruk op dit bericht om je instellingen te ontsleutelen en gebruiken.";
 "autocrypt_continue_transfer_title" = "Autocrypt-instelbericht";
 "autocrypt_continue_transfer_please_enter_code" = "Voer de code die wordt getoond op het andere apparaat.";
-"autocrypt_continue_transfer_succeeded" = "Je end-to-end-instellingen zijn overgezet. Dit apparaat kan nu worden gebruikt i.c.m. Autocrypt, met dezelfde instellingen als het andere apparaat.";
+"autocrypt_continue_transfer_succeeded" = "Je eind-tot-eindinstellingen zijn overgezet. Dit apparaat kan nu worden gebruikt i.c.m. Autocrypt, met dezelfde instellingen als het andere apparaat.";
 "autocrypt_continue_transfer_retry" = "Opnieuw";
 "autocrypt_bad_setup_code" = "Onjuist; probeer het opnieuw.\n\nAls je je code niet meer weet, verstuur dan nóg een Autocrypt-instelbericht vanaf het andere apparaat.";
 
@@ -491,7 +487,7 @@
 
 "systemmsg_ephemeral_timer_disabled" = "De tijdklok van verdwijnende berichten is uitgeschakeld.";
 "systemmsg_ephemeral_timer_enabled" = "De tijdklok van verdwijnende berichten is ingesteld op %1$@ sec.";
-"systemmsg_ephemeral_timer_minute" = "De tijdklop van verdwijnende berichten is ingesteld op 1 minuut.";
+"systemmsg_ephemeral_timer_minute" = "De tijdklok van verdwijnende berichten is ingesteld op 1 minuut.";
 "systemmsg_ephemeral_timer_hour" = "De tijdklok van verdwijnende berichten is ingesteld op 1 uur.";
 "systemmsg_ephemeral_timer_day" = "De tijdklok van verdwijnende berichten is ingesteld op 1 dag.";
 "systemmsg_ephemeral_timer_week" = "De tijdklok van verdwijnende berichten is ingesteld op 1 week.";
@@ -515,9 +511,9 @@
 "qrscan_hint" = "Plaatst je camera boven de QR-code";
 "qrscan_ask_join_group" = "Wil je deelnemen aan de groep \"%1$@\"?";
 "qrscan_fingerprint_mismatch" = "De gescande vingerafdruk komt niet overeen met de vorige voor %1$@";
-"qrscan_no_addr_found" = "Deze QR-code bevat een vingerafdruk, maar geen e-mailadres.\n\nVoor out-of-band-goedkeuring, moet je eerst een beveiligde verbinding opzetten met de ontvanger.";
+"qrscan_no_addr_found" = "Deze QR-code bevat een vingerafdruk, maar geen e-mailadres.\n\nVoor out-of-bandgoedkeuring, moet je eerst een beveiligde verbinding opzetten met de ontvanger.";
 "qrscan_contains_text" = "Gescande QR-codetekst:\n\n %1$@";
-"qrscan_contains_url" = "Gescande QR-code-URL:\n\n %1$@";
+"qrscan_contains_url" = "Gescande QR-code-url:\n\n %1$@";
 "qrscan_fingerprint_label" = "Vingerafdruk";
 "qrscan_x_verified_introduce_myself" = "%1$@ goedgekeurd; vertel iets over jezelf...";
 "qrshow_title" = "QR-uitnodigingscode";
@@ -539,7 +535,7 @@
 "contact_not_verified" = "Kan %1$@ niet goedkeuren";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Gewijzigde instellingen voor %1$@";
-"verified_group_explain" = "Goedgekeurde groepen (experimenteel) zijn exta beveiligd tegen aanvallen van buitenaf. Leden worden goedgekeurd door andere leden en berichten zijn altijd end-to-end versleuteld.";
+"verified_group_explain" = "Goedgekeurde groepen (experimenteel) zijn extra beveiligd tegen aanvallen van buitenaf. Leden worden goedgekeurd door andere leden en berichten zijn altijd eind-tot-eind versleuteld.";
 
 
 // notifications 
@@ -558,10 +554,10 @@
 // permissions
 "perm_required_title" = "Machtiging vereist";
 "perm_continue" = "Doorgaan";
-"perm_explain_access_to_camera_denied" = "Delta Chat vereist de cameramachtiging om foto\'s en video\'s te kunnen maken, maar je hebt dit permanent geweigerd. Ga naar de app-instellingen, kies \"Machtigingen\" en schakel \"Camera\" in.";
-"perm_explain_access_to_mic_denied" = "Delta Chat vereist de microfoonmachtiging om audioberichten te kunnen versturen, maar je hebt dit permanent geweigerd. Ga naar de app-instellingen, kies \"Machtigingen\" en schakel \"Microfoon\" in.";
-"perm_explain_access_to_storage_denied" = "Delta Chat vereist de opslagmachtiging om foto\'s, video\'s of audio te kunnen bijvoegen of exporteren, maar je hebt dit permanent geweigerd. Ga naar de app-instellingen, kies \"Machtigingen\" en schakel \"Opslag\" in.";
-"perm_explain_access_to_location_denied" = "Delta Chat vereist de locatiemachtiging om je locatie te kunnen delen, maar je hebt dit permanent geweigerd. Ga naar de app-instellingen, kies \"Machtigingen\" en schakel \"Locatie\" in.";
+"perm_explain_access_to_camera_denied" = "Delta Chat wil foto\'s en video\'s kunnen maken. Ga naar de app-instellingen, kies \'Rechten\' en schakel \'Camera\' in.";
+"perm_explain_access_to_mic_denied" = "Delta Chat wil spraakberichten versturen. Ga naar de app-instellingen, kies \'Rechten\' en schakel \'Microfoon\' in.";
+"perm_explain_access_to_storage_denied" = "Delta Chat wil bestanden kunnen ontvangen of versturen. Ga naar de app-instellingen, kies \'Rechten\' en schakel \'Opslag\' in.";
+"perm_explain_access_to_location_denied" = "Delta Chat wil je locatie kunnen delen. Ga naar de app-instellingen, kies \'Rechten\' en schakel \'Locatie\' in.";
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Teken met je vinger om vervaging toe te passen";
@@ -590,7 +586,7 @@
 "global_menu_help_contribute_desktop" = "Draag bij op GitHub";
 "global_menu_help_report_desktop" = "Meld een probleem";
 "global_menu_help_about_desktop" = "Over Delta Chat";
-"no_chat_selected_suggestion_desktop" = "Kies een gesprek of creëer een nieuw gesprek";
+"no_chat_selected_suggestion_desktop" = "Kies een gesprek of begin een gesprek";
 "write_message_desktop" = "Schrijf een bericht";
 "encryption_info_title_desktop" = "Versleutelingsinformatie";
 "contact_detail_title_desktop" = "Contactpersoongegevens";
@@ -607,23 +603,23 @@
 "login_required_desktop" = "vereist";
 "name_desktop" = "Naam";
 "autocrypt_key_transfer_desktop" = "Autocrypt-sleuteloverdracht";
-"initiate_key_transfer_desktop" = "Een \'Autocrypt-instelbericht\' deelt je end-to-end-instellingen veilig met andere Autocrypt-compatibele apps. De instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
+"initiate_key_transfer_desktop" = "Een \'Autocrypt-instelbericht\' deelt je eind-tot-eindinstellingen veilig met andere Autocrypt-compatibele apps. De instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
 "reply_to_message_desktop" = "Bericht beantwoorden";
 "select_group_image_desktop" = "Kies een groepsafbeelding";
 "imex_progress_title_desktop" = "Back-upvoortgang";
 "download_attachment_desktop" = "Bijlage downloaden";
 "export_backup_desktop" = "Back-up exporteren";
 "transfer_key_desktop" = "Sleuteloverdracht";
-"show_key_transfer_message_desktop" = "Je sleutel is aan jezelf verstuurd. Ga naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld. Als je klaar bent, is je andere apparaat klaar voor gebruik.";
+"show_key_transfer_message_desktop" = "Je sleutel is aan jezelf verstuurd. Ga naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld:";
 "new_message_from_desktop" = "Nieuw bericht van";
 "unblock_contacts_desktop" = "Contactpersonen deblokkeren";
 "none_blocked_desktop" = "Nog geen geblokkeerde contactpersonen";
 "autocrypt_correct_desktop" = "Autocrypt-instellingen overgedragen!";
 "autocrypt_incorrect_desktop" = "Onjuiste instelcode; probeer het opnieuw.";
-"create_chat_error_desktop" = "Kan gesprek niet creëren.";
+"create_chat_error_desktop" = "Kan geen gesprek beginnen.";
 "ask_delete_chat_desktop" = "Weet je zeker dat je dit gesprek wilt verwijderen?";
 "email_validation_failed_desktop" = "E-mailadres vereist.";
-"forget_login_confirmation_desktop" = "Wil je dit account verwijderen? Alles wordt verwijderd, inclusief je end-to-end-instellingen, contactpersonen, gesprekken, berichten en media. Deze actie kan niet ongedaan worden gemaakt.";
+"forget_login_confirmation_desktop" = "Wil je dit account verwijderen? Alles wordt verwijderd: je eind-tot-eindinstellingen, contactpersonen, gesprekken, berichten en media. Deze actie kan niet ongedaan worden gemaakt.";
 "me_desktop" = "ik";
 "in_this_group_desktop" = "Groepsleden";
 "not_in_this_group_desktop" = "Potentiële groepsleden (niet in de groep)";
@@ -633,7 +629,7 @@
 "message_detail_to_desktop" = "aan";
 "menu.view.developer.open.log.folder" = "Map met logbestanden openen";
 "menu.view.developer.open.current.log.file" = "Huidig logbestand openen";
-"user_location_permission_explanation" = "Delta Chat heeft de locatiemachtiging nodig om je locatie te kunnen tonen en delen.";
+"user_location_permission_explanation" = "Delta Chat heeft het locatietoegangsrecht nodig om je locatie te tonen en delen.";
 
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
@@ -654,7 +650,7 @@
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Achtergrondmeldingen";
 "pref_background_notifications_explain" = "Zet een achtergrondverbinding op naar je server en negeert alle accu-optimalisaties.";
-"pref_background_notifications_rationale" = "Om een achtergrondverbinding naar je server op te zetten, dien je alle accu-optimalisaties te negeren in de volgende stap.\n\nDelta Chat gebruikt weinig systeembronnen en verhoogt je accuverbruik nauwelijks.";
+"pref_background_notifications_rationale" = "Om een achtergrondverbinding naar je server op te zetten, dien je in de volgende stap alle accu-optimalisaties te negeren.\n\nDelta Chat gebruikt weinig systeembronnen en verhoogt nauwelijks je accuverbruik.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Betrouwbare achtergrondverbinding";
 "pref_reliable_service_explain" = "Vereist een permanente melding";

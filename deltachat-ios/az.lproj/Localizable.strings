@@ -168,10 +168,6 @@
 "ask_start_chat_with" = "%1$@ ilə çat? ";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "%1$@ qrupdan silmək? ";
-"info_outdated_app_title" = "Sizin tətbiq versiyanız köhnəlmişdir.";
-"info_outdated_app_text" = "Göründüyü kimi, Delta Chat avtomatik yeniləmələr olmadan (məsələn, GitHub) bir mənbədən quraşdırılmışdır. Ən son xüsusiyyətləri əldə etmək üçün mağaza versiyasına keçin.";
-"info_outdated_app_dialog_title" = "Resursların yenilənməsi";
-"info_outdated_app_dialog_text" = "Delta Chat mövcuddur:";
 
 
 // contact list

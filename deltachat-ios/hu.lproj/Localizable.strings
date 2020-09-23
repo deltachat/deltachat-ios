@@ -149,7 +149,6 @@
 "ask_start_chat_with" = "Beszélgetést indítasz %1$@ partnerrel?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Kiveszed a csoportból %1$@ partnert?";
-"info_outdated_app_dialog_text" = "A Delta Chat elérhető:";
 
 
 // contact list

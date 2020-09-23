@@ -174,8 +174,6 @@
 "ask_start_chat_with" = "Pradėti pokalbį su %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Pašalinti %1$@ iš grupės?";
-"info_outdated_app_title" = "Atrodo, kad jūsų programėlės versija yra pasenusi.";
-"info_outdated_app_dialog_text" = "Delta Chat yra prieinama:";
 
 
 // contact list

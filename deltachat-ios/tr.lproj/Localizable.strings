@@ -27,7 +27,7 @@
 "unarchive" = "Arşivleme";
 "mute" = "Sessize al";
 "ephemeral_messages" = "Kaybolan iletiler";
-"ephemeral_messages_hint" = "Bu ayarlar, Delta Chat\'i kullanan tüm katılımcılara uygulanır. Ancak onlar, iletileri kopyalayabilir, kaydedebilir ve iletebilir ya da diğer e-posta istemcilerinde kullanabilir.";
+"ephemeral_messages_hint" = "Bu ayarlar, Delta Chat\'i kullanan tüm katılımcılara uygulanır. Ancak, onlar iletileri kopyalayabilir, kaydedebilir ve iletebilir ya da diğer e-posta istemcilerinde kullanabilir.";
 "save" = "Kaydet";
 "chat" = "Sohbet";
 "media" = "Ortam";
@@ -213,10 +213,6 @@
 "ask_start_chat_with" = "%1$@ ile sohbet edilsin mi?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "%1$@ gruptan kaldırılsın mı?";
-"info_outdated_app_title" = "Uygulama sürümünüz eski";
-"info_outdated_app_text" = "Delta Chat\'i otomatik güncelleştirmeler olmayan bir kaynaktan (örn. GitHub) kurdunuz. En son özellikleri ve hata düzeltmelerini almak için lütfen bir mağaza sürümüne geçin.";
-"info_outdated_app_dialog_title" = "Güncelleştirme kaynakları";
-"info_outdated_app_dialog_text" = "Delta Chat şurada kullanılabilir:";
 
 
 // contact list
