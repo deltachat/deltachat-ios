@@ -137,6 +137,8 @@
 "ask_start_chat_with" = "%1$@とﾁｬｯﾄしますか";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "%1$@をｸﾞﾙｰﾌﾟから排除しますか";
+
+
 // contact list
 "contacts_title" = "連絡先一覧";
 "contacts_enter_name_or_email" = "名前かﾒｰﾙｱﾄﾞﾚｽを入力";

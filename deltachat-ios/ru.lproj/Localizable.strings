@@ -213,10 +213,6 @@
 "ask_start_chat_with" = "Создать чат с %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Удалить %1$@ из группы?";
-"info_outdated_app_title" = "Версия вашего приложения устарела.";
-"info_outdated_app_text" = "Похоже что Delta Chat установлен из исходников не имеющих возможности обновляться автоматически (напр. GitHub). Подключитесь к источнику из магазина приложений для того чтобы получать своевременные обновления и исправления ошибок.";
-"info_outdated_app_dialog_title" = "Источник обновлений";
-"info_outdated_app_dialog_text" = "Delta Chat доступен на:";
 
 
 // contact list
@@ -328,6 +324,9 @@
 "delete_account" = "Удалить аккаунт";
 "delete_account_ask" = "Вы уверены, что хотите удалить данные учётной записи?";
 "switching_account" = "Меняем аккаунт...";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "Настройка не удалась. Ошибка: %1$@";
+
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Переслать...";

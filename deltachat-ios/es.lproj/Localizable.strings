@@ -190,10 +190,6 @@
 "ask_start_chat_with" = "¿Chatear con %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "¿Eliminar a %1$@ del grupo?";
-"info_outdated_app_title" = "Tu versión de la aplicación está desactualizada.";
-"info_outdated_app_text" = "Parece que instaló Delta Chat desde una fuente sin actualizaciones automáticas (por ejemplo, GitHub). Cambie a una versión de tienda para recibir las últimas funciones y correcciones de errores.";
-"info_outdated_app_dialog_title" = "Actualizar las fuentes";
-"info_outdated_app_dialog_text" = "Delta Chat está disponible en:";
 
 
 // contact list

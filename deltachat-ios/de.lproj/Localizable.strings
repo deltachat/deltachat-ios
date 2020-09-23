@@ -27,7 +27,7 @@
 "unarchive" = "Dearchivieren";
 "mute" = "Stumm";
 "ephemeral_messages" = "Verschwindende Nachrichten";
-"ephemeral_messages_hint" = "Diese Einstellungen gelten für alle Delta Chat BenutzerInnen. Nachrichten können jedoch kopiert, gespeichert und weitergeleitet werden oder es können andere E-Mail-Clients verwenden werden.";
+"ephemeral_messages_hint" = "Diese Einstellungen gelten für alle Gruppenmitglieder, die Delta Chat verwenden. Nachrichten können jedoch kopiert, gespeichert und weitergeleitet werden oder es können andere E-Mail-Clients verwenden werden.";
 "save" = "Speichern";
 "chat" = "Chat";
 "media" = "Medien";
@@ -213,10 +213,6 @@
 "ask_start_chat_with" = "Chat mit %1$@ starten?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "%1$@ aus der Gruppe löschen?";
-"info_outdated_app_title" = "Ihre App-Version ist veraltet.";
-"info_outdated_app_text" = "Anscheinend haben Sie Delta Chat von einer Quelle ohne automatische Updates (z. B. GitHub) installiert. Bitte wechseln Sie zu einer Store-Version, um die neuesten Funktionen und Fehlerbehebungen zu erhalten.";
-"info_outdated_app_dialog_title" = "Quellen updaten";
-"info_outdated_app_dialog_text" = "Delta Chat ist verfügbar bei:";
 
 
 // contact list
@@ -263,8 +259,8 @@
 
 
 // create/edit groups, contact/group profile
-"group_name" = "Gruppen-Name";
-"group_avatar" = "Gruppen-Avatar";
+"group_name" = "Gruppenname";
+"group_avatar" = "Gruppenbild";
 "group_create_button" = "Gruppe erstellen";
 "group_please_enter_group_name" = "Bitte einen Gruppennamen eingeben.";
 "group_add_members" = "Mitglied hinzufügen";
@@ -532,7 +528,7 @@
 "qrshow_join_contact_no_connection_toast" = "Keine Verbindung zum Internet, Austausch des QR-Codes nicht möglich.";
 "qraccount_ask_create_and_login" = "E-Mail-Konto auf \"%1$@\" erzeugen und dort anmelden?";
 
-"qraccount_success_enter_name" = "Anmeldung erfolgreich — Ihre E-Mail-Adresse ist %1$@\n\nWenn Sie mögen, können Sie nun einen Namen und einen Avatar festlegen, der den ChatpartnerInnen angezeigt wird.";
+"qraccount_success_enter_name" = "Anmeldung erfolgreich — Ihre E-Mail-Adresse ist %1$@\n\nWenn Sie mögen, können Sie nun einen Namen und ein Profilbild festlegen, der den ChatpartnerInnen angezeigt wird.";
 "qraccount_qr_code_cannot_be_used" = "Der eingescannte QR-Code kann nicht dazu verwendet werden, eine neues E-Mail-Konto zu erzeugen.";
 "qraccount_use_on_new_install" = "Der gescannte QR-Code ist zum Erstellen eines neuen E-Mail-Kontos. Sie können den QR-Code nur bei einer neuen Delta Chat Installation verwenden.";
 "contact_verified" = "%1$@ verifiziert.";

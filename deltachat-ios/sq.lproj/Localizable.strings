@@ -213,10 +213,6 @@
 "ask_start_chat_with" = "Të bisedohet me %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Të hiqet %1$@ nga grupi?";
-"info_outdated_app_title" = "Versioni juaj i aplikacionit është i vjetruar.";
-"info_outdated_app_text" = "Duket se e instaluat Delta Chat-in prej një burimi pa vetëpërditësim (p.sh. GitHub). Ju lutemi, që të merrni veçoritë më të reja dhe ndreqje të metash, hidhuni te një version shitoreje.";
-"info_outdated_app_dialog_title" = "Përditëso burime";
-"info_outdated_app_dialog_text" = "Delta Chat është i gatshëm për:";
 
 
 // contact list

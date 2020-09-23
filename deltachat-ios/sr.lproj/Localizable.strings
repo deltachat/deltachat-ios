@@ -153,6 +153,8 @@
 "ask_start_chat_with" = "Ћаскати са %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Уклонити %1$@ из групе?";
+
+
 // contact list
 "contacts_title" = "Контакти";
 "contacts_empty_hint" = "Још нема контаката.";

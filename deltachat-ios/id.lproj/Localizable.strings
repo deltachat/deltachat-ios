@@ -197,10 +197,6 @@
 "ask_start_chat_with" = "Ngobrol dengan %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Hapus %1$@ dari grup?";
-"info_outdated_app_title" = "Versi aplikasi anda tidak update.";
-"info_outdated_app_text" = "Tampaknya anda menginstal Delta Chat dari sumber tanpa pemutakhiran otomatis (contoh: GitHub). Silakan ubah ke versi toko untuk mendapatkan fitur-fitur terbaru dan perbaikan bug.";
-"info_outdated_app_dialog_title" = "Mutakhirkan sumber";
-"info_outdated_app_dialog_text" = "Delta Chat tersedia di:";
 
 
 // contact list
