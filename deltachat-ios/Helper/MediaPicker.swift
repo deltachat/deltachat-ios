@@ -62,7 +62,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderContro
                     switch status {
                     case  .denied, .notDetermined, .restricted:
                         print("denied")
-                    case .authorized:
+                    case .authorized, .limited:
                         self?.presentPhotoVideoLibrary()
                     }
                 }
