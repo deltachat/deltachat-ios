@@ -1,6 +1,8 @@
 import UIKit
 import DcCore
 
+// NewAudioMessageCellDelegate is for sending events to NewAudioController.
+// do not confuse with BaseMessageCellDelegate that is for sending events to ChatViewControllerNew.
 public protocol NewAudioMessageCellDelegate: AnyObject {
     func playButtonTapped(cell: NewAudioMessageCell, messageId: Int)
 }
@@ -8,6 +10,7 @@ public protocol NewAudioMessageCellDelegate: AnyObject {
 public class NewAudioMessageCell: BaseMessageCell {
 
     public weak var delegate: NewAudioMessageCellDelegate?
+
     lazy var audioPlayerView: NewAudioPlayerView = {
         let view = NewAudioPlayerView()
         view.translatesAutoresizingMaskIntoConstraints = false

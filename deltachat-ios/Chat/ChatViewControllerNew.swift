@@ -74,7 +74,7 @@ class ChatViewControllerNew: UITableViewController {
         return UIBarButtonItem(customView: badge)
     }()
 
-    /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and udpate audio cell UI accordingly.
+    /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and update audio cell UI accordingly.
     private lazy var audioController = NewAudioController(dcContext: dcContext, chatId: chatId)
 
     private var disableWriting: Bool
@@ -344,6 +344,7 @@ class ChatViewControllerNew: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? NewTextMessageCell ?? NewTextMessageCell()
         }
 
+        cell.baseDelegate = self
         cell.update(msg: message,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     isAvatarVisible: configureAvatarVisibility(for: message, at: indexPath))
@@ -998,12 +999,13 @@ class ChatViewControllerNew: UITableViewController {
     }
 }
 
-/*extension ChatViewControllerNew: MediaSendHandler {
- func onSuccess() {
- refreshMessages()
- }
- }*/
+// MARK: - BaseMessageCellDelegate
+extension ChatViewControllerNew: BaseMessageCellDelegate {
+    func linkTapped(link: String) {
+    }
+}
 
+// MARK: - MediaPickerDelegate
 extension ChatViewControllerNew: MediaPickerDelegate {
     func onVideoSelected(url: NSURL) {
         sendVideo(url: url)

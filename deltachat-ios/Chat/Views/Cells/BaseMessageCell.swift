@@ -1,5 +1,6 @@
 import UIKit
 import DcCore
+
 public class BaseMessageCell: UITableViewCell {
 
     static var defaultPadding: CGFloat = 12
@@ -10,6 +11,8 @@ public class BaseMessageCell: UITableViewCell {
     private var trailingConstraint: NSLayoutConstraint?
     private var leadingConstraintCurrentSender: NSLayoutConstraint?
     private var trailingConstraintCurrentSender: NSLayoutConstraint?
+
+    public weak var baseDelegate: BaseMessageCellDelegate?
 
     private lazy var contentContainer: UIStackView = {
         let view = UIStackView(arrangedSubviews: [topLabel, mainContentView, bottomContentView])
@@ -231,6 +234,7 @@ public class BaseMessageCell: UITableViewCell {
         messageBackgroundContainer.prepareForReuse()
         bottomLabel.text = nil
         bottomLabel.attributedText = nil
+        baseDelegate = nil
     }
 
     // MARK: - Context menu
@@ -255,4 +259,11 @@ public class BaseMessageCell: UITableViewCell {
                                            withSender: sender)
         }
     }
+}
+
+// MARK: - BaseMessageCellDelegate
+// this delegate contains possible events from base cells or from derived cells
+public protocol BaseMessageCellDelegate: class {
+
+    func linkTapped(link: String) // link is eg. `https://foo.bar` or `/command`
 }
