@@ -10,6 +10,7 @@ class ChatListController: UITableViewController {
     private let contactCellReuseIdentifier = "contact_cell"
 
     private var msgChangedObserver: Any?
+    private var msgsNoticedObserver: Any?
     private var incomingMsgObserver: Any?
     private var viewChatObserver: Any?
 
@@ -101,6 +102,13 @@ class ChatListController: UITableViewController {
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
             forName: dcNotificationChanged,
+            object: nil,
+            queue: nil) { [weak self] _ in
+                self?.viewModel.refreshData()
+
+        }
+        msgsNoticedObserver = nc.addObserver(
+            forName: dcMsgsNoticed,
             object: nil,
             queue: nil) { [weak self] _ in
                 self?.viewModel.refreshData()
