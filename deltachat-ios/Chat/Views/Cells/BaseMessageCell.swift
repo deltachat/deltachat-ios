@@ -112,6 +112,8 @@ public class BaseMessageCell: UITableViewCell {
         trailingConstraint = contentContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: BMC.defaultPadding)
         leadingConstraintCurrentSender = contentContainer.constraintAlignLeadingMaxTo(contentView, paddingLeading: 36)
         trailingConstraintCurrentSender = contentContainer.constraintAlignTrailingTo(contentView, paddingTrailing: BMC.defaultPadding)
+
+        selectionStyle = .none
     }
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
