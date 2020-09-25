@@ -348,7 +348,6 @@ class ChatViewControllerNew: UITableViewController {
         cell.update(msg: message,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     isAvatarVisible: configureAvatarVisibility(for: message, at: indexPath))
-        cell.selectionStyle = .none
         return cell
     }
 

@@ -48,6 +48,7 @@ class NewInfoMessageCell: UITableViewCell {
             messageBackgroundContainer.constraintAlignBottomTo(messageLabel, paddingBottom: -6),
             messageBackgroundContainer.constraintAlignTrailingTo(messageLabel, paddingTrailing: -6)
         ])
+        selectionStyle = .none
     }
 
     func update(msg: DcMsg) {
