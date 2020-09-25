@@ -268,4 +268,5 @@ public class BaseMessageCell: UITableViewCell {
 public protocol BaseMessageCellDelegate: class {
 
     func linkTapped(link: String) // link is eg. `https://foo.bar` or `/command`
+    func imageTapped(indexPath: IndexPath)
 }

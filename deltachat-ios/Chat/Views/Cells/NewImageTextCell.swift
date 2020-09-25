@@ -23,6 +23,7 @@ class NewImageTextCell: BaseMessageCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
 
@@ -32,6 +33,9 @@ class NewImageTextCell: BaseMessageCell {
         mainContentView.addArrangedSubview(messageLabel)
         contentImageView.constraintAlignLeadingMaxTo(mainContentView).isActive = true
         contentImageView.constraintAlignTrailingMaxTo(mainContentView).isActive = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onImageTapped))
+        gestureRecognizer.numberOfTapsRequired = 1
+        contentImageView.addGestureRecognizer(gestureRecognizer)
     }
 
     override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
@@ -48,6 +52,12 @@ class NewImageTextCell: BaseMessageCell {
         }
         setAspectRatioFor(msg: msg)
         super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible)
+    }
+
+    @objc func onImageTapped() {
+        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            baseDelegate?.imageTapped(indexPath: indexPath)
+        }
     }
 
     private func setAspectRatioFor(msg: DcMsg) {

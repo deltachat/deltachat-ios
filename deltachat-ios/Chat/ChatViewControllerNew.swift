@@ -381,14 +381,10 @@ class ChatViewControllerNew: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let messageId = messageIds[indexPath.row]
         let message = DcMsg(id: messageId)
-        if let url = message.fileURL {
-            // find all other messages with same message type
-            let previousUrls: [URL] = message.previousMediaURLs()
-            let nextUrls: [URL] = message.nextMediaURLs()
-
-            // these are the files user will be able to swipe trough
-            let mediaUrls: [URL] = previousUrls + [url] + nextUrls
-            showMediaGallery(currentIndex: previousUrls.count, mediaUrls: mediaUrls)
+        if message.type == DC_MSG_FILE ||
+            message.type == DC_MSG_AUDIO ||
+            message.type == DC_MSG_VOICE {
+            showMediaGalleryFor(message: message)
         }
         UIMenuController.shared.setMenuVisible(false, animated: true)
     }
@@ -989,11 +985,31 @@ class ChatViewControllerNew: UITableViewController {
             break
         }
     }
+
+    func showMediaGalleryFor(indexPath: IndexPath) {
+        let messageId = messageIds[indexPath.row]
+        let message = DcMsg(id: messageId)
+        showMediaGalleryFor(message: message)
+    }
+
+    func showMediaGalleryFor(message: DcMsg) {
+        if let url = message.fileURL {
+            // find all other messages with same message type
+            let previousUrls: [URL] = message.previousMediaURLs()
+            let nextUrls: [URL] = message.nextMediaURLs()
+            // these are the files user will be able to swipe trough
+            let mediaUrls: [URL] = previousUrls + [url] + nextUrls
+            showMediaGallery(currentIndex: previousUrls.count, mediaUrls: mediaUrls)
+        }
+    }
 }
 
 // MARK: - BaseMessageCellDelegate
 extension ChatViewControllerNew: BaseMessageCellDelegate {
     func linkTapped(link: String) {
+    }
+    func imageTapped(indexPath: IndexPath) {
+        showMediaGalleryFor(indexPath: indexPath)
     }
 }
 
