@@ -509,20 +509,13 @@ class ChatViewControllerNew: UITableViewController {
         DispatchQueue.global(qos: .userInitiated).async {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                // keep old message ids for comparison
-                let oldLastMessageId = self.messageIds.last
-                var oldLastVisibleMessageId: Int?
-                if let lastRowIndex = self.tableView.indexPathsForVisibleRows?.last?.row {
-                    oldLastVisibleMessageId = self.messageIds[lastRowIndex]
-                }
+                let wasLastRowVisible = self.isLastRowVisible()
+                let wasMessageIdsEmpty = self.messageIds.isEmpty
                 // update message ids
                 self.messageIds = self.getMessageIds()
                 self.tableView.reloadData()
-                // scroll down if the table view was emtpy before or
-                // the user was at the end of the list before the update
-                if oldLastMessageId == nil ||
-                    (oldLastVisibleMessageId != nil &&
-                        oldLastVisibleMessageId == oldLastMessageId) {
+                if wasMessageIdsEmpty ||
+                    wasLastRowVisible {
                     self.scrollToBottom(animated: false)
                 }
                 self.showEmptyStateView(self.messageIds.isEmpty)
