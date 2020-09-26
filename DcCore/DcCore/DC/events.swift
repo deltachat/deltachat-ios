@@ -11,6 +11,7 @@ public let dcNotificationViewChat = Notification.Name(rawValue: "MrEventViewChat
 public let dcNotificationContactChanged = Notification.Name(rawValue: "MrEventContactsChanged")
 public let dcNotificationChatModified = Notification.Name(rawValue: "dcNotificationChatModified")
 public let dcEphemeralTimerModified =  Notification.Name(rawValue: "dcEphemeralTimerModified")
+public let dcMsgsNoticed = Notification.Name(rawValue: "dcMsgsNoticed")
 
 public func handleEvent(event: DcEvent) {
     let id = event.id
@@ -90,6 +91,18 @@ public func handleEvent(event: DcEvent) {
                     "message_id": Int(data2),
                     "chat_id": Int(data1),
                     "date": Date(),
+                ]
+            )
+        }
+
+    case DC_EVENT_MSGS_NOTICED:
+        let nc = NotificationCenter.default
+        DispatchQueue.main.async {
+            nc.post(
+                name: dcMsgsNoticed,
+                object: nil,
+                userInfo: [
+                    "chat_id": Int(data1),
                 ]
             )
         }
