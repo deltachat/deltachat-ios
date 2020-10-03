@@ -369,17 +369,9 @@ class ChatViewControllerNew: UITableViewController {
 
     func markSeenMessagesInVisibleArea() {
         if let indexPaths = tableView.indexPathsForVisibleRows {
-            let messages = indexPaths.map { DcMsg(id: messageIds[$0.row]) }
-            var markSeenMessageIds: [UInt32] = []
-            for message in messages {
-                if message.state != DC_STATE_IN_SEEN &&
-                    dcContext.getChat(chatId: chatId).canSend &&
-                    !message.isFromCurrentSender {
-                    markSeenMessageIds.append(UInt32(message.id))
-                }
-            }
-            if !markSeenMessageIds.isEmpty {
-                dcContext.markSeenMessages(messageIds: markSeenMessageIds)
+            let visibleMessagesIds = indexPaths.map { UInt32(messageIds[$0.row]) }
+            if !visibleMessagesIds.isEmpty {
+                dcContext.markSeenMessages(messageIds: visibleMessagesIds)
             }
         }
     }
