@@ -337,7 +337,7 @@ class ChatViewControllerNew: UITableViewController {
         }
 
         let cell: BaseMessageCell
-        if message.type == DC_MSG_IMAGE || message.type == DC_MSG_GIF {
+        if message.type == DC_MSG_IMAGE || message.type == DC_MSG_GIF || message.type == DC_MSG_VIDEO {
             cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? NewImageTextCell ?? NewImageTextCell()
         } else if message.type == DC_MSG_FILE {
             cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? NewFileTextCell ?? NewFileTextCell()

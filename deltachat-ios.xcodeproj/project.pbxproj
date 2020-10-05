@@ -20,6 +20,7 @@
 		302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AC265E237F1807002A943F /* AvatarHelper.swift */; };
 		302B84C72396770B001C261F /* RelayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B84C42396627F001C261F /* RelayHelper.swift */; };
 		302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B84CD2397F6CD001C261F /* URL+Extension.swift */; };
+		302E1BB4252B5AB4008F4264 /* NewPlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E1BB3252B5AB4008F4264 /* NewPlayButtonView.swift */; };
 		3040F45E234DFBC000FA34D5 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040F45D234DFBC000FA34D5 /* Audio.swift */; };
 		3040F460234F419400FA34D5 /* BasicAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040F45F234F419300FA34D5 /* BasicAudioController.swift */; };
 		3040F462234F550300FA34D5 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040F461234F550300FA34D5 /* AudioPlayerView.swift */; };
@@ -280,6 +281,7 @@
 		30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextFieldCell.swift; sourceTree = "<group>"; };
 		302B84C42396627F001C261F /* RelayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayHelper.swift; sourceTree = "<group>"; };
 		302B84CD2397F6CD001C261F /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		302E1BB3252B5AB4008F4264 /* NewPlayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewPlayButtonView.swift; path = "deltachat-ios/Chat/Views/NewPlayButtonView.swift"; sourceTree = SOURCE_ROOT; };
 		3040F45D234DFBC000FA34D5 /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		3040F45F234F419300FA34D5 /* BasicAudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAudioController.swift; sourceTree = "<group>"; };
 		3040F461234F550300FA34D5 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
@@ -804,6 +806,7 @@
 			children = (
 				30FDB6B624D193DD0066C48D /* Cells */,
 				30E348DE24F3F819005C93D1 /* ChatTableView.swift */,
+				302E1BB3252B5AB4008F4264 /* NewPlayButtonView.swift */,
 				30F8817524DA97DA0023780E /* BackgroundContainer.swift */,
 				3008CB7324F9436C00E6A617 /* NewAudioPlayerView.swift */,
 			);
@@ -1473,6 +1476,7 @@
 				305961D32346125100C80F33 /* MessagesViewController+Keyboard.swift in Sources */,
 				3008CB7224F93EB900E6A617 /* NewAudioMessageCell.swift in Sources */,
 				305961EF2346125100C80F33 /* HorizontalEdgeInsets.swift in Sources */,
+				302E1BB4252B5AB4008F4264 /* NewPlayButtonView.swift in Sources */,
 				305961D62346125100C80F33 /* MessageInputBar.swift in Sources */,
 				305961ED2346125100C80F33 /* DetectorType.swift in Sources */,
 				305962062346125100C80F33 /* TypingIndicatorCellSizeCalculator.swift in Sources */,
