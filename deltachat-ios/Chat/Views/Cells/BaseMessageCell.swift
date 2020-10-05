@@ -157,7 +157,7 @@ public class BaseMessageCell: UITableViewCell {
 
     func getFormattedBottomLine(message: DcMsg) -> NSAttributedString {
         var timestampAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 12),
+            .font: UIFont.preferredFont(for: .caption1, weight: .regular),
             .foregroundColor: DcColors.grayDateColor,
             .paragraphStyle: NSParagraphStyle()
         ]

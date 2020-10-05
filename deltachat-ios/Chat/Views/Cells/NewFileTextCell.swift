@@ -76,6 +76,7 @@ class NewFileTextCell: BaseMessageCell {
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.setContentHuggingPriority(.defaultLow, for: .vertical)
+        label.font = UIFont.preferredFont(for: .body, weight: .regular)
         return label
     }()
 

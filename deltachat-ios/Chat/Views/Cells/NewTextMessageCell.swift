@@ -9,6 +9,7 @@ class NewTextMessageCell: BaseMessageCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
+        label.font = UIFont.preferredFont(for: .body, weight: .regular)
         return label
     }()
 
