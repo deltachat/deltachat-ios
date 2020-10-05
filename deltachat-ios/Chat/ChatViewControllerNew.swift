@@ -17,6 +17,8 @@ class ChatViewControllerNew: UITableViewController {
     var incomingMsgObserver: Any?
     var ephemeralTimerModifiedObserver: Any?
 
+    var originFrame: CGRect?
+
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
     open var messageInputBar = InputBarAccessoryView()
 
@@ -145,18 +147,22 @@ class ChatViewControllerNew: UITableViewController {
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 && tableView.inputAccessoryView?.frame.height ?? 0 < keyboardSize.height {
-                self.view.frame.origin.y -= keyboardSize.height
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+           tableView.inputAccessoryView?.frame.height ?? 0 < keyboardSize.height {
+            originFrame = self.tableView.frame
+            if let originFrame = originFrame {
+                self.tableView.frame = CGRect(origin: originFrame.origin,
+                                              size: CGSize(width: originFrame.width, height: originFrame.height - keyboardSize.height))
+                self.scrollToBottom(animated: false)
             }
         }
     }
 
     @objc func keyboardWillHide(_ notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y += keyboardSize.height
-            }
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+           keyboardSize.height == 0,
+           let originFrame = originFrame {
+            self.tableView.frame = originFrame
         }
     }
 
