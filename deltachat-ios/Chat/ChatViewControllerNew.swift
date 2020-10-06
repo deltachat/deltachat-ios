@@ -150,10 +150,14 @@ class ChatViewControllerNew: UITableViewController {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
            tableView.inputAccessoryView?.frame.height ?? 0 < keyboardSize.height {
             originFrame = self.tableView.frame
+            let wasLastRowVisible = self.isLastRowVisible()
             if let originFrame = originFrame {
                 self.tableView.frame = CGRect(origin: originFrame.origin,
                                               size: CGSize(width: originFrame.width, height: originFrame.height - keyboardSize.height))
-                self.scrollToBottom(animated: false)
+
+                if wasLastRowVisible {
+                    self.scrollToBottom(animated: false)
+                }
             }
         }
     }
