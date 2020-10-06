@@ -18,6 +18,8 @@ class ChatViewControllerNew: UITableViewController {
     var ephemeralTimerModifiedObserver: Any?
 
     var originFrame: CGRect?
+    var lastContentOffset: CGFloat = -1
+    var isKeyboardShown: Bool = false
 
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
     open var messageInputBar = InputBarAccessoryView()
@@ -143,7 +145,12 @@ class ChatViewControllerNew: UITableViewController {
                                        object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
         prepareContextMenu()
+    }
+
+    @objc func keyboardDidShow(_ notification: Notification) {
+        isKeyboardShown = true
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -168,6 +175,7 @@ class ChatViewControllerNew: UITableViewController {
            let originFrame = originFrame {
             self.tableView.frame = originFrame
         }
+        isKeyboardShown = false
     }
 
     private func startTimer() {
@@ -361,10 +369,22 @@ class ChatViewControllerNew: UITableViewController {
         return cell
     }
 
+    public override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        lastContentOffset = scrollView.contentOffset.y
+    }
+
     public override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
             markSeenMessagesInVisibleArea()
         }
+
+        if scrollView.contentOffset.y < lastContentOffset {
+            if isKeyboardShown {
+                tableView.endEditing(true)
+                tableView.becomeFirstResponder()
+            }
+        }
+        lastContentOffset = -1
     }
 
     public override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
