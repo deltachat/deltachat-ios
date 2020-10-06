@@ -17,7 +17,6 @@ class ChatViewControllerNew: UITableViewController {
     var incomingMsgObserver: Any?
     var ephemeralTimerModifiedObserver: Any?
 
-    var originFrame: CGRect?
     var lastContentOffset: CGFloat = -1
     var isKeyboardShown: Bool = false
 
@@ -156,26 +155,17 @@ class ChatViewControllerNew: UITableViewController {
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
            tableView.inputAccessoryView?.frame.height ?? 0 < keyboardSize.height {
-            originFrame = self.tableView.frame
             let wasLastRowVisible = self.isLastRowVisible()
-            if let originFrame = originFrame {
-                self.tableView.frame = CGRect(origin: originFrame.origin,
-                                              size: CGSize(width: originFrame.width, height: originFrame.height - keyboardSize.height))
-
-                if wasLastRowVisible {
-                    self.scrollToBottom(animated: false)
-                }
+            self.tableView.contentInset.bottom = keyboardSize.height - (tableView.inputAccessoryView?.frame.height ?? 0)
+            if wasLastRowVisible {
+                self.scrollToBottom(animated: false)
             }
         }
     }
 
     @objc func keyboardWillHide(_ notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-           keyboardSize.height == 0,
-           let originFrame = originFrame {
-            self.tableView.frame = originFrame
-        }
         isKeyboardShown = false
+        self.tableView.contentInset.bottom = 0
     }
 
     private func startTimer() {
