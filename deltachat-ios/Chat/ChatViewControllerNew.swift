@@ -124,6 +124,7 @@ class ChatViewControllerNew: UITableViewController {
         tableView.register(NewAudioMessageCell.self, forCellReuseIdentifier: "audio")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
+        tableView.contentInset.bottom = 8
         super.viewDidLoad()
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
