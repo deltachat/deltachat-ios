@@ -153,19 +153,21 @@ class ChatViewControllerNew: UITableViewController {
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-           tableView.inputAccessoryView?.frame.height ?? 0 < keyboardSize.height {
-            let wasLastRowVisible = self.isLastRowVisible()
-            self.tableView.contentInset.bottom = keyboardSize.height - (tableView.inputAccessoryView?.frame.height ?? 0)
-            if wasLastRowVisible {
-                self.scrollToBottom(animated: false)
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if keyboardSize.height > tableView.inputAccessoryView?.frame.height ?? 0 {
+                if self.isLastRowVisible() {
+                    DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 0.01) {
+                        DispatchQueue.main.async { [weak self] in
+                            self?.scrollToBottom(animated: true)
+                        }
+                    }
+                }
             }
         }
     }
 
     @objc func keyboardWillHide(_ notification: Notification) {
         isKeyboardShown = false
-        self.tableView.contentInset.bottom = 0
     }
 
     private func startTimer() {
