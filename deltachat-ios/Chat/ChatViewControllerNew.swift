@@ -19,6 +19,9 @@ class ChatViewControllerNew: UITableViewController {
 
     var lastContentOffset: CGFloat = -1
     var isKeyboardShown: Bool = false
+    lazy var isGroupChat: Bool = {
+        return dcContext.getChat(chatId: chatId).isGroup
+    }()
 
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
     open var messageInputBar = InputBarAccessoryView()
@@ -357,7 +360,8 @@ class ChatViewControllerNew: UITableViewController {
         cell.baseDelegate = self
         cell.update(msg: message,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
-                    isAvatarVisible: configureAvatarVisibility(for: message, at: indexPath))
+                    isAvatarVisible: configureAvatarVisibility(for: message, at: indexPath),
+                    isGroup: isGroupChat)
         return cell
     }
 
@@ -404,7 +408,7 @@ class ChatViewControllerNew: UITableViewController {
     }
 
     func configureAvatarVisibility(for message: DcMsg, at indexPath: IndexPath) -> Bool {
-        return !message.isFromCurrentSender && !isNextMessageSameSender(currentMessage: message, at: indexPath)
+        return isGroupChat && !message.isFromCurrentSender && !isNextMessageSameSender(currentMessage: message, at: indexPath)
     }
 
     func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {

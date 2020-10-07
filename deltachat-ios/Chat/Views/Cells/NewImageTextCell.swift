@@ -51,7 +51,7 @@ class NewImageTextCell: BaseMessageCell {
         contentImageView.addGestureRecognizer(gestureRecognizer)
     }
 
-    override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
+    override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool, isGroup: Bool) {
         messageLabel.text = msg.text
         tag = msg.id
         if msg.type == DC_MSG_IMAGE, let image = msg.image {
@@ -94,7 +94,7 @@ class NewImageTextCell: BaseMessageCell {
                 setAspectRatioFor(message: msg, with: placeholderImage, isPlaceholder: true)
             }
         }
-        super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible)
+        super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible, isGroup: isGroup)
     }
 
     @objc func onImageTapped() {

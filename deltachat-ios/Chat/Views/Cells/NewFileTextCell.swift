@@ -99,7 +99,7 @@ class NewFileTextCell: BaseMessageCell {
         fileImageView.image = nil
     }
 
-    override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
+    override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool, isGroup: Bool) {
         if let text = msg.text, !text.isEmpty {
             messageLabel.text = text
             spacer?.isActive = true
@@ -114,7 +114,7 @@ class NewFileTextCell: BaseMessageCell {
         }
         fileTitle.text = msg.filename
         fileSubtitle.text = msg.getPrettyFileSize()
-        super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible)
+        super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible, isGroup: isGroup)
     }
 
     private func generateThumbnailFor(url: URL, placeholder: UIImage?) {

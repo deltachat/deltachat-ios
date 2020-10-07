@@ -18,9 +18,9 @@ class NewTextMessageCell: BaseMessageCell {
         mainContentView.addArrangedSubview(messageLabel)        
     }
 
-    override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool) {
+    override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool, isGroup: Bool) {
         messageLabel.text = msg.text
-        super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible)
+        super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible, isGroup: isGroup)
     }
 
     override func prepareForReuse() {
