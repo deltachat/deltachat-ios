@@ -156,10 +156,8 @@ class ChatViewControllerNew: UITableViewController {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if keyboardSize.height > tableView.inputAccessoryView?.frame.height ?? 0 {
                 if self.isLastRowVisible() {
-                    DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 0.01) {
-                        DispatchQueue.main.async { [weak self] in
-                            self?.scrollToBottom(animated: true)
-                        }
+                    DispatchQueue.main.async { [weak self] in
+                        self?.scrollToBottom(animated: true)
                     }
                 }
             }
@@ -309,9 +307,10 @@ class ChatViewControllerNew: UITableViewController {
             completion: {[weak self] _ in
                 guard let self = self else { return }
                 self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
-                self.tableView.reloadData()
                 if lastSectionVisibleBeforeTransition {
-                    self.scrollToBottom(animated: false)
+                    DispatchQueue.main.async { [weak self] in
+                        self?.scrollToBottom(animated: true)
+                    }
                 }
             }
         )
