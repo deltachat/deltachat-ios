@@ -6,6 +6,7 @@ public class BaseMessageCell: UITableViewCell {
     private var leadingConstraint: NSLayoutConstraint?
     private var trailingConstraint: NSLayoutConstraint?
     private var leadingConstraintCurrentSender: NSLayoutConstraint?
+    private var leadingConstraintGroup: NSLayoutConstraint?
     private var trailingConstraintCurrentSender: NSLayoutConstraint?
     private var mainContentBelowTopLabelConstraint: NSLayoutConstraint?
     private var mainContentUnderTopLabelConstraint: NSLayoutConstraint?
@@ -150,7 +151,8 @@ public class BaseMessageCell: UITableViewCell {
             messageBackgroundContainer.constraintAlignBottomTo(contentView),
         ])
 
-        leadingConstraint = messageBackgroundContainer.constraintToTrailingOf(avatarView, paddingLeading: -8)
+        leadingConstraint = messageBackgroundContainer.constraintAlignLeadingTo(contentView, paddingLeading: 6)
+        leadingConstraintGroup = messageBackgroundContainer.constraintToTrailingOf(avatarView, paddingLeading: -8)
         trailingConstraint = messageBackgroundContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 36)
         leadingConstraintCurrentSender = messageBackgroundContainer.constraintAlignLeadingMaxTo(contentView, paddingLeading: 36)
         trailingConstraintCurrentSender = messageBackgroundContainer.constraintAlignTrailingTo(contentView, paddingTrailing: 6)
@@ -179,18 +181,25 @@ public class BaseMessageCell: UITableViewCell {
     func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool, isGroup: Bool) {
         if msg.isFromCurrentSender {
             topLabel.text = nil
-            leadingConstraintCurrentSender?.isActive = true
-            trailingConstraintCurrentSender?.isActive = true
             leadingConstraint?.isActive = false
+            leadingConstraintGroup?.isActive = false
             trailingConstraint?.isActive = false
             bottomLineLeftAlign = false
+            leadingConstraintCurrentSender?.isActive = true
+            trailingConstraintCurrentSender?.isActive = true
 
         } else {
             topLabel.text = isGroup ? msg.fromContact.displayName : nil
-            leadingConstraint?.isActive = true
-            trailingConstraint?.isActive = true
             leadingConstraintCurrentSender?.isActive = false
             trailingConstraintCurrentSender?.isActive = false
+            if isGroup {
+                leadingConstraint?.isActive = false
+                leadingConstraintGroup?.isActive = true
+            } else {
+                leadingConstraintGroup?.isActive = false
+                leadingConstraint?.isActive = true
+            }
+            trailingConstraint?.isActive = true
             bottomLineLeftAlign = true
         }
 
