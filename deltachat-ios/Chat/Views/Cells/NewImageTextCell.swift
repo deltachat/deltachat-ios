@@ -8,11 +8,9 @@ class NewImageTextCell: BaseMessageCell {
     var imageHeightConstraint: NSLayoutConstraint?
     var imageWidthConstraint: NSLayoutConstraint?
 
-    lazy var messageLabel: UILabel = {
-        let label = PaddingLabel(top: 0, left: 12, bottom: 0, right: 12)
+    lazy var messageLabel: PaddingTextView = {
+        let label = PaddingTextView(top: 0, left: 12, bottom: 0, right: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
         label.setContentHuggingPriority(.defaultLow, for: .vertical)
         label.font = UIFont.preferredFont(for: .body, weight: .regular)
         return label

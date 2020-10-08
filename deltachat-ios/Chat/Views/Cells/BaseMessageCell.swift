@@ -82,14 +82,14 @@ public class BaseMessageCell: UITableViewCell {
         return view
     }()
 
-    lazy var topLabel: UILabel = {
-        let label = PaddingLabel(top: 0, left: 4, bottom: 0, right: 4)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "title"
-        label.font = UIFont.preferredFont(for: .caption1, weight: .regular)
-        label.layer.cornerRadius = 4
-        label.clipsToBounds = true
-        return label
+    lazy var topLabel: PaddingTextView = {
+        let view = PaddingTextView(top: 0, left: 4, bottom: 0, right: 4)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.text = "title"
+        view.font = UIFont.preferredFont(for: .caption1, weight: .regular)
+        view.layer.cornerRadius = 4
+        view.clipsToBounds = true
+        return view
     }()
 
     lazy var mainContentView: UIStackView = {
@@ -99,8 +99,8 @@ public class BaseMessageCell: UITableViewCell {
         return view
     }()
 
-    lazy var bottomLabel: UILabel = {
-        let label = PaddingLabel(top: 0, left: 4, bottom: 0, right: 4)
+    lazy var bottomLabel: PaddingTextView = {
+        let label = PaddingTextView(top: 0, left: 4, bottom: 0, right: 4)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(for: .caption1, weight: .regular)
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)

@@ -4,18 +4,16 @@ import UIKit
 
 class NewTextMessageCell: BaseMessageCell {
 
-    lazy var messageLabel: UILabel = {
-        let label = PaddingLabel(top: 0, left: 12, bottom: 0, right: 12)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.preferredFont(for: .body, weight: .regular)
-        return label
+    lazy var messageLabel: PaddingTextView = {
+        let paddingView = PaddingTextView(top: 0, left: 12, bottom: 0, right: 12)
+        paddingView.translatesAutoresizingMaskIntoConstraints = false
+        paddingView.font = UIFont.preferredFont(for: .body, weight: .regular)
+        return paddingView
     }()
 
     override func setupSubviews() {
         super.setupSubviews()
-        mainContentView.addArrangedSubview(messageLabel)        
+        mainContentView.addArrangedSubview(messageLabel)
     }
 
     override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool, isGroup: Bool) {
