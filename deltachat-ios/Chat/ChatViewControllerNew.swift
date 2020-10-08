@@ -347,7 +347,12 @@ class ChatViewControllerNew: UITableViewController {
         if message.type == DC_MSG_IMAGE || message.type == DC_MSG_GIF || message.type == DC_MSG_VIDEO {
             cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? NewImageTextCell ?? NewImageTextCell()
         } else if message.type == DC_MSG_FILE {
-            cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? NewFileTextCell ?? NewFileTextCell()
+            if message.isSetupMessage {
+                cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? NewTextMessageCell ?? NewTextMessageCell()
+                message.text = String.localized("autocrypt_asm_click_body")
+            } else {
+                cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? NewFileTextCell ?? NewFileTextCell()
+            }
         } else if message.type == DC_MSG_AUDIO ||  message.type == DC_MSG_VOICE {
             let audioMessageCell: NewAudioMessageCell = tableView.dequeueReusableCell(withIdentifier: "audio",
                                                                                       for: indexPath) as? NewAudioMessageCell ?? NewAudioMessageCell()
@@ -399,7 +404,9 @@ class ChatViewControllerNew: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let messageId = messageIds[indexPath.row]
         let message = DcMsg(id: messageId)
-        if message.type == DC_MSG_FILE ||
+        if message.isSetupMessage {
+            didTapAsm(msg: message, orgText: "")
+        } else if message.type == DC_MSG_FILE ||
             message.type == DC_MSG_AUDIO ||
             message.type == DC_MSG_VOICE {
             showMediaGalleryFor(message: message)
@@ -776,11 +783,6 @@ class ChatViewControllerNew: UITableViewController {
         }
     }
 
-    private func showContactDetail(of contactId: Int, in chatOfType: ChatType, chatId: Int?) {
-        let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: contactId)
-        navigationController?.pushViewController(contactDetailController, animated: true)
-    }
-
     func showChat(chatId: Int) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             navigationController?.popToRootViewController(animated: false)
@@ -1020,6 +1022,46 @@ class ChatViewControllerNew: UITableViewController {
             showMediaGallery(currentIndex: previousUrls.count, mediaUrls: mediaUrls)
         }
     }
+
+    private func didTapAsm(msg: DcMsg, orgText: String) {
+        let inputDlg = UIAlertController(
+            title: String.localized("autocrypt_continue_transfer_title"),
+            message: String.localized("autocrypt_continue_transfer_please_enter_code"),
+            preferredStyle: .alert)
+        inputDlg.addTextField(configurationHandler: { (textField) in
+            textField.placeholder = msg.setupCodeBegin + ".."
+            textField.text = orgText
+            textField.keyboardType = UIKeyboardType.numbersAndPunctuation // allows entering spaces; decimalPad would require a mask to keep things readable
+        })
+        inputDlg.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+
+        let okAction = UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+            let textField = inputDlg.textFields![0]
+            let modText = textField.text ?? ""
+            let success = self.dcContext.continueKeyTransfer(msgId: msg.id, setupCode: modText)
+
+            let alert = UIAlertController(
+                title: String.localized("autocrypt_continue_transfer_title"),
+                message: String.localized(success ? "autocrypt_continue_transfer_succeeded" : "autocrypt_bad_setup_code"),
+                preferredStyle: .alert)
+            if success {
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+            } else {
+                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+                let retryAction = UIAlertAction(title: String.localized("autocrypt_continue_transfer_retry"), style: .default, handler: { _ in
+                    self.didTapAsm(msg: msg, orgText: modText)
+                })
+                alert.addAction(retryAction)
+                alert.preferredAction = retryAction
+            }
+            self.navigationController?.present(alert, animated: true, completion: nil)
+        })
+
+        inputDlg.addAction(okAction)
+        inputDlg.preferredAction = okAction // without setting preferredAction, cancel become shown *bold* as the preferred action
+        navigationController?.present(inputDlg, animated: true, completion: nil)
+    }
+
 }
 
 // MARK: - BaseMessageCellDelegate
