@@ -20,10 +20,12 @@ class NewFileTextCell: BaseMessageCell {
                 fileStackView.axis = .horizontal
                 imageWidthConstraint?.isActive = true
                 imageHeightConstraint?.isActive = true
+                fileStackView.alignment = .center
             } else {
                 fileStackView.axis = .vertical
                 imageWidthConstraint?.isActive = false
                 imageHeightConstraint?.isActive = false
+                fileStackView.alignment = .leading
             }
         }
         get {
@@ -35,7 +37,6 @@ class NewFileTextCell: BaseMessageCell {
         let stackView = UIStackView(arrangedSubviews: [fileImageView, fileMetadataStackView])
         stackView.axis = .horizontal
         stackView.spacing = 6
-        stackView.alignment = .center
         return stackView
     }()
 
@@ -91,6 +92,7 @@ class NewFileTextCell: BaseMessageCell {
         imageWidthConstraint = fileImageView.constraintWidthTo(50)
         imageHeightConstraint = fileImageView.constraintHeightTo(50 * 1.3, priority: .defaultLow)
         horizontalLayout = true
+        mainContentViewHorizontalPadding = 12
     }
 
     override func prepareForReuse() {

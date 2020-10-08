@@ -5,7 +5,7 @@ import UIKit
 class NewTextMessageCell: BaseMessageCell {
 
     lazy var messageLabel: UILabel = {
-        let label = UILabel()
+        let label = PaddingLabel(top: 0, left: 12, bottom: 0, right: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping

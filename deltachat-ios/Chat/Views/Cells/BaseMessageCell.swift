@@ -3,26 +3,73 @@ import DcCore
 
 public class BaseMessageCell: UITableViewCell {
 
-    static var defaultPadding: CGFloat = 12
-    static var containerPadding: CGFloat = -6
-    typealias BMC = BaseMessageCell
-
     private var leadingConstraint: NSLayoutConstraint?
     private var trailingConstraint: NSLayoutConstraint?
     private var leadingConstraintCurrentSender: NSLayoutConstraint?
     private var trailingConstraintCurrentSender: NSLayoutConstraint?
+    private var mainContentBelowTopLabelConstraint: NSLayoutConstraint?
+    private var mainContentUnderTopLabelConstraint: NSLayoutConstraint?
+    private var mainContentAboveBottomLabelConstraint: NSLayoutConstraint?
+    private var mainContentUnderBottomLabelConstraint: NSLayoutConstraint?
+    private var bottomLineLeftAlignedConstraint: [NSLayoutConstraint] = []
+    private var bottomLineRightAlignedConstraint: [NSLayoutConstraint] = []
+    private var mainContentViewLeadingConstraint: NSLayoutConstraint?
+    private var mainContentViewTrailingConstraint: NSLayoutConstraint?
+
+    public var mainContentViewHorizontalPadding: CGFloat {
+        set {
+            mainContentViewLeadingConstraint?.constant = newValue
+            mainContentViewTrailingConstraint?.constant = -newValue
+        }
+        get {
+            return mainContentViewLeadingConstraint?.constant ?? 0
+        }
+    }
+
+    //aligns the bottomLabel to the left / right
+    private var bottomLineLeftAlign: Bool {
+        set {
+            for constraint in bottomLineLeftAlignedConstraint {
+                constraint.isActive = newValue
+            }
+            for constraint in bottomLineRightAlignedConstraint {
+                constraint.isActive = !newValue
+            }
+        }
+        get {
+            return !bottomLineLeftAlignedConstraint.isEmpty && bottomLineLeftAlignedConstraint[0].isActive
+        }
+    }
+
+    // if set to true topLabel overlaps the main content
+    public var topCompactView: Bool {
+        set {
+            mainContentBelowTopLabelConstraint?.isActive = !newValue
+            mainContentUnderTopLabelConstraint?.isActive = newValue
+            topLabel.backgroundColor = newValue ?
+                UIColor(alpha: 200, red: 50, green: 50, blue: 50) :
+                UIColor(alpha: 0, red: 0, green: 0, blue: 0)
+        }
+        get {
+            return mainContentUnderTopLabelConstraint?.isActive ?? false
+        }
+    }
+
+    // if set to true bottomLabel overlaps the main content
+    public var bottomCompactView: Bool {
+        set {
+            mainContentAboveBottomLabelConstraint?.isActive = !newValue
+            mainContentUnderBottomLabelConstraint?.isActive = newValue
+            bottomLabel.backgroundColor = newValue ?
+                UIColor(alpha: 200, red: 50, green: 50, blue: 50) :
+                UIColor(alpha: 0, red: 0, green: 0, blue: 0)
+        }
+        get {
+            return mainContentUnderBottomLabelConstraint?.isActive ?? false
+        }
+    }
 
     public weak var baseDelegate: BaseMessageCellDelegate?
-
-    private lazy var contentContainer: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [topLabel, mainContentView, bottomContentView])
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        view.alignment = .leading
-        view.axis = .vertical
-        view.spacing = 6
-        return view
-    }()
 
     lazy var avatarView: InitialsBadge = {
         let view = InitialsBadge(size: 28)
@@ -34,10 +81,12 @@ public class BaseMessageCell: UITableViewCell {
     }()
 
     lazy var topLabel: UILabel = {
-        let label = UILabel()
+        let label = PaddingLabel(top: 0, left: 4, bottom: 0, right: 4)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "title"
         label.font = UIFont.preferredFont(for: .caption1, weight: .regular)
+        label.layer.cornerRadius = 4
+        label.clipsToBounds = true
         return label
     }()
 
@@ -48,25 +97,14 @@ public class BaseMessageCell: UITableViewCell {
         return view
     }()
 
-    var bottomSpacerConstraint: NSLayoutConstraint?
-    lazy var bottomContentView: UIStackView = {
-        let stretchingView = UIView()
-        bottomSpacerConstraint = stretchingView.constraintWidthTo(10000, priority: .defaultLow)
-        stretchingView.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        stretchingView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        let view = UIStackView(arrangedSubviews: [stretchingView, bottomLabel])
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .horizontal
-        view.distribution = .fill
-        return view
-    }()
-
     lazy var bottomLabel: UILabel = {
-        let label = UILabel()
+        let label = PaddingLabel(top: 0, left: 4, bottom: 0, right: 4)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(for: .caption1, weight: .regular)
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        label.layer.cornerRadius = 4
+        label.clipsToBounds = true
         return label
     }()
 
@@ -76,6 +114,7 @@ public class BaseMessageCell: UITableViewCell {
         container.contentMode = .scaleToFill
         container.clipsToBounds = true
         container.translatesAutoresizingMaskIntoConstraints = false
+        container.isUserInteractionEnabled = true
         return container
     }()
 
@@ -93,26 +132,46 @@ public class BaseMessageCell: UITableViewCell {
 
     func setupSubviews() {
         contentView.addSubview(messageBackgroundContainer)
-        contentView.addSubview(contentContainer)
+        messageBackgroundContainer.addSubview(mainContentView)
+        messageBackgroundContainer.addSubview(topLabel)
+        messageBackgroundContainer.addSubview(bottomLabel)
         contentView.addSubview(avatarView)
 
         contentView.addConstraints([
-            avatarView.constraintAlignTopTo(contentView, paddingTop: BMC.defaultPadding, priority: .defaultLow),
             avatarView.constraintAlignLeadingTo(contentView, paddingLeading: 6),
             avatarView.constraintAlignBottomTo(contentView, paddingBottom: -6),
-            contentContainer.constraintAlignTopTo(contentView, paddingTop: BMC.defaultPadding),
-            contentContainer.constraintAlignBottomTo(contentView, paddingBottom: BMC.defaultPadding),
-            messageBackgroundContainer.constraintAlignLeadingTo(contentContainer, paddingLeading: 2 * BMC.containerPadding),
-            messageBackgroundContainer.constraintAlignTopTo(contentContainer, paddingTop: BMC.containerPadding),
-            messageBackgroundContainer.constraintAlignBottomTo(contentContainer, paddingBottom: BMC.containerPadding),
-            messageBackgroundContainer.constraintAlignTrailingTo(contentContainer, paddingTrailing: BMC.containerPadding)
+            avatarView.constraintWidthTo(28, priority: .defaultHigh),
+            avatarView.constraintHeightTo(28, priority: .defaultHigh),
+            topLabel.constraintAlignTopTo(messageBackgroundContainer, paddingTop: 6),
+            topLabel.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 6),
+            topLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 6),
+            bottomLabel.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 6),
+            messageBackgroundContainer.constraintAlignTopTo(contentView, paddingTop: 6),
+            messageBackgroundContainer.constraintAlignBottomTo(contentView),
         ])
 
-        leadingConstraint = contentContainer.constraintToTrailingOf(avatarView)
-        trailingConstraint = contentContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: BMC.defaultPadding)
-        leadingConstraintCurrentSender = contentContainer.constraintAlignLeadingMaxTo(contentView, paddingLeading: 36)
-        trailingConstraintCurrentSender = contentContainer.constraintAlignTrailingTo(contentView, paddingTrailing: BMC.defaultPadding)
+        leadingConstraint = messageBackgroundContainer.constraintToTrailingOf(avatarView, paddingLeading: -8)
+        trailingConstraint = messageBackgroundContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 36)
+        leadingConstraintCurrentSender = messageBackgroundContainer.constraintAlignLeadingMaxTo(contentView, paddingLeading: 36)
+        trailingConstraintCurrentSender = messageBackgroundContainer.constraintAlignTrailingTo(contentView, paddingTrailing: 6)
 
+        mainContentViewLeadingConstraint = mainContentView.constraintAlignLeadingTo(messageBackgroundContainer)
+        mainContentViewTrailingConstraint = mainContentView.constraintAlignTrailingTo(messageBackgroundContainer)
+        mainContentViewLeadingConstraint?.isActive = true
+        mainContentViewTrailingConstraint?.isActive = true
+
+        mainContentBelowTopLabelConstraint = mainContentView.constraintToBottomOf(topLabel, paddingTop: 6)
+        mainContentUnderTopLabelConstraint = mainContentView.constraintAlignTopTo(messageBackgroundContainer)
+        mainContentAboveBottomLabelConstraint = bottomLabel.constraintToBottomOf(mainContentView, paddingTop: 6, priority: .defaultHigh)
+        mainContentUnderBottomLabelConstraint = mainContentView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 0, priority: .defaultHigh)
+
+        bottomLineRightAlignedConstraint = [bottomLabel.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 6),
+                                           bottomLabel.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 6)]
+        bottomLineLeftAlignedConstraint = [bottomLabel.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 6),
+                                           bottomLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 6)]
+
+        topCompactView = false
+        bottomCompactView = false
         selectionStyle = .none
     }
 
@@ -122,18 +181,17 @@ public class BaseMessageCell: UITableViewCell {
             topLabel.text = nil
             leadingConstraintCurrentSender?.isActive = true
             trailingConstraintCurrentSender?.isActive = true
-            bottomSpacerConstraint?.isActive = true
             leadingConstraint?.isActive = false
             trailingConstraint?.isActive = false
+            bottomLineLeftAlign = false
 
         } else {
             topLabel.text = isGroup ? msg.fromContact.displayName : nil
             leadingConstraint?.isActive = true
             trailingConstraint?.isActive = true
-            bottomSpacerConstraint?.isActive = false
             leadingConstraintCurrentSender?.isActive = false
             trailingConstraintCurrentSender?.isActive = false
-
+            bottomLineLeftAlign = true
         }
 
         if isAvatarVisible {

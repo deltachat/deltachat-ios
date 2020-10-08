@@ -53,7 +53,7 @@ open class NewAudioPlayerView: UIView {
         playButton.constraintWidthTo(45, priority: UILayoutPriority(rawValue: 999)).isActive = true
 
         let playButtonConstraints = [playButton.constraintCenterYTo(self),
-                                     playButton.constraintAlignLeadingTo(self)]
+                                     playButton.constraintAlignLeadingTo(self, paddingLeading: 12)]
         let durationLabelConstraints = [durationLabel.constraintAlignTrailingTo(self, paddingTrailing: 12),
                                         durationLabel.constraintCenterYTo(self)]
         self.addConstraints(playButtonConstraints)

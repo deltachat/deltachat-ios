@@ -9,7 +9,7 @@ class NewImageTextCell: BaseMessageCell {
     var imageWidthConstraint: NSLayoutConstraint?
 
     lazy var messageLabel: UILabel = {
-        let label = UILabel()
+        let label = PaddingLabel(top: 0, left: 12, bottom: 0, right: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -46,6 +46,7 @@ class NewImageTextCell: BaseMessageCell {
         mainContentView.addArrangedSubview(messageLabel)
         contentImageView.constraintAlignLeadingMaxTo(mainContentView).isActive = true
         contentImageView.constraintAlignTrailingMaxTo(mainContentView).isActive = true
+        topCompactView = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onImageTapped))
         gestureRecognizer.numberOfTapsRequired = 1
         contentImageView.addGestureRecognizer(gestureRecognizer)
@@ -53,6 +54,8 @@ class NewImageTextCell: BaseMessageCell {
 
     override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool, isGroup: Bool) {
         messageLabel.text = msg.text
+        bottomCompactView = msg.text?.isEmpty ?? true
+        mainContentView.spacing = msg.text?.isEmpty ?? false ? 0 : 6
         tag = msg.id
         if msg.type == DC_MSG_IMAGE, let image = msg.image {
             contentImageView.image = image
