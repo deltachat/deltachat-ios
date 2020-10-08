@@ -78,6 +78,7 @@ public class BaseMessageCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         view.isHidden = true
+        view.isUserInteractionEnabled = true
         return view
     }()
 
@@ -175,6 +176,16 @@ public class BaseMessageCell: UITableViewCell {
         topCompactView = false
         bottomCompactView = false
         selectionStyle = .none
+
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
+        gestureRecognizer.numberOfTapsRequired = 1
+        avatarView.addGestureRecognizer(gestureRecognizer)
+    }
+
+    @objc func onAvatarTapped() {
+        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            baseDelegate?.avatarTapped(indexPath: indexPath)
+        }
     }
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
@@ -336,4 +347,5 @@ public protocol BaseMessageCellDelegate: class {
 
     func linkTapped(link: String) // link is eg. `https://foo.bar` or `/command`
     func imageTapped(indexPath: IndexPath)
+    func avatarTapped(indexPath: IndexPath)
 }

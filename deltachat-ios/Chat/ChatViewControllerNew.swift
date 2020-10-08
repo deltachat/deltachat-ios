@@ -1029,6 +1029,11 @@ extension ChatViewControllerNew: BaseMessageCellDelegate {
     func imageTapped(indexPath: IndexPath) {
         showMediaGalleryFor(indexPath: indexPath)
     }
+    func avatarTapped(indexPath: IndexPath) {
+        let message = DcMsg(id: messageIds[indexPath.row])
+        let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: message.fromContactId)
+        navigationController?.pushViewController(contactDetailController, animated: true)
+    }
 }
 
 // MARK: - MediaPickerDelegate
