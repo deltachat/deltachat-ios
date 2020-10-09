@@ -71,16 +71,6 @@ class NewFileTextCell: BaseMessageCell {
         return subtitle
     }()
 
-    lazy var messageLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.setContentHuggingPriority(.defaultLow, for: .vertical)
-        label.font = UIFont.preferredFont(for: .body, weight: .regular)
-        return label
-    }()
-
     override func setupSubviews() {
         super.setupSubviews()
         let spacerView = UIView()
@@ -96,8 +86,6 @@ class NewFileTextCell: BaseMessageCell {
     }
 
     override func prepareForReuse() {
-        messageLabel.text = nil
-        messageLabel.attributedText = nil
         fileImageView.image = nil
     }
 

@@ -72,6 +72,23 @@ public class BaseMessageCell: UITableViewCell {
 
     public weak var baseDelegate: BaseMessageCellDelegate?
 
+    lazy var messageLabel: PaddingTextView = {
+        let view = PaddingTextView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        view.font = UIFont.preferredFont(for: .body, weight: .regular)
+        view.delegate = self
+        view.enabledDetectors = [.url, .phoneNumber]
+        let attributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor,
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+            NSAttributedString.Key.underlineColor: DcColors.defaultTextColor ]
+        view.label.setAttributes(attributes, detector: .url)
+        view.label.setAttributes(attributes, detector: .phoneNumber)
+        view.isUserInteractionEnabled = true
+        return view
+    }()
+
     lazy var avatarView: InitialsBadge = {
         let view = InitialsBadge(size: 28)
         view.setColor(UIColor.gray)
@@ -180,7 +197,22 @@ public class BaseMessageCell: UITableViewCell {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
         gestureRecognizer.numberOfTapsRequired = 1
         avatarView.addGestureRecognizer(gestureRecognizer)
+
+        let messageLabelGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        //messageLabelGestureRecognizer.delaysTouchesBegan = true
+        gestureRecognizer.numberOfTapsRequired = 1
+        messageLabel.addGestureRecognizer(messageLabelGestureRecognizer)
     }
+
+    @objc
+    open func handleTapGesture(_ gesture: UIGestureRecognizer) {
+        guard gesture.state == .ended else { return }
+
+        let touchLocation = gesture.location(in: messageLabel)
+        let _ = messageLabel.label.handleGesture(touchLocation)
+    }
+
+
 
     @objc func onAvatarTapped() {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
@@ -231,6 +263,7 @@ public class BaseMessageCell: UITableViewCell {
         if !msg.isInfo {
             bottomLabel.attributedText = getFormattedBottomLine(message: msg)
         }
+        messageLabel.delegate = self
     }
 
     func getFormattedBottomLine(message: DcMsg) -> NSAttributedString {
@@ -315,6 +348,9 @@ public class BaseMessageCell: UITableViewCell {
         bottomLabel.text = nil
         bottomLabel.attributedText = nil
         baseDelegate = nil
+        messageLabel.text = nil
+        messageLabel.attributedText = nil
+        messageLabel.delegate = nil
     }
 
     // MARK: - Context menu
@@ -341,11 +377,36 @@ public class BaseMessageCell: UITableViewCell {
     }
 }
 
+extension BaseMessageCell: MessageLabelDelegate {
+    public func didSelectAddress(_ addressComponents: [String: String]) {}
+
+    public func didSelectDate(_ date: Date) {}
+
+    public func didSelectPhoneNumber(_ phoneNumber: String) {
+        baseDelegate?.phoneNumberTapped(number: phoneNumber)
+    }
+
+    public func didSelectURL(_ url: URL) {
+        logger.debug("did select URL")
+        baseDelegate?.urlTapped(url: url)
+    }
+
+    public func didSelectTransitInformation(_ transitInformation: [String: String]) {}
+
+    public func didSelectMention(_ mention: String) {}
+
+    public func didSelectHashtag(_ hashtag: String) {}
+
+    public func didSelectCustom(_ pattern: String, match: String?) {}
+}
+
 // MARK: - BaseMessageCellDelegate
 // this delegate contains possible events from base cells or from derived cells
 public protocol BaseMessageCellDelegate: class {
-
-    func linkTapped(link: String) // link is eg. `https://foo.bar` or `/command`
+    func commandTapped(command: String) // `/command`
+    func phoneNumberTapped(number: String)
+    func urlTapped(url: URL) // url is eg. `https://foo.bar`
     func imageTapped(indexPath: IndexPath)
     func avatarTapped(indexPath: IndexPath)
+
 }

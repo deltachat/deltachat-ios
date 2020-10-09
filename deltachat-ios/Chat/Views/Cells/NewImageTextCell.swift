@@ -8,15 +8,6 @@ class NewImageTextCell: BaseMessageCell {
     var imageHeightConstraint: NSLayoutConstraint?
     var imageWidthConstraint: NSLayoutConstraint?
 
-    lazy var messageLabel: PaddingTextView = {
-        let label = PaddingTextView(top: 0, left: 12, bottom: 0, right: 12)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.setContentHuggingPriority(.defaultLow, for: .vertical)
-        label.font = UIFont.preferredFont(for: .body, weight: .regular)
-        return label
-    }()
-
-
     lazy var contentImageView: SDAnimatedImageView = {
         let imageView = SDAnimatedImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,6 +33,8 @@ class NewImageTextCell: BaseMessageCell {
         playButtonView.constraint(equalTo: CGSize(width: 50, height: 50))
         mainContentView.addArrangedSubview(contentImageView)
         mainContentView.addArrangedSubview(messageLabel)
+        messageLabel.paddingLeading = 12
+        messageLabel.paddingTrailing = 12
         contentImageView.constraintAlignLeadingMaxTo(mainContentView).isActive = true
         contentImageView.constraintAlignTrailingMaxTo(mainContentView).isActive = true
         topCompactView = true
@@ -147,8 +140,6 @@ class NewImageTextCell: BaseMessageCell {
 
     override func prepareForReuse() {
         contentImageView.image = nil
-        messageLabel.text = nil
-        messageLabel.attributedText = nil
         tag = -1
     }
 }

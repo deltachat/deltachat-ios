@@ -17,13 +17,6 @@ public class NewAudioMessageCell: BaseMessageCell {
         return view
     }()
 
-    lazy var messageLabel: PaddingTextView = {
-        let label = PaddingTextView(top: 0, left: 12, bottom: 0, right: 12)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(for: .body, weight: .regular)
-        return label
-    }()
-
     private var messageId: Int = 0
 
     override func setupSubviews() {
@@ -32,6 +25,8 @@ public class NewAudioMessageCell: BaseMessageCell {
         spacerView.translatesAutoresizingMaskIntoConstraints = false
         mainContentView.addArrangedSubview(audioPlayerView)
         mainContentView.addArrangedSubview(messageLabel)
+        messageLabel.paddingLeading = 12
+        messageLabel.paddingTrailing = 12
         audioPlayerView.constraintWidthTo(250).isActive = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onPlayButtonTapped))
         gestureRecognizer.numberOfTapsRequired = 1
@@ -58,8 +53,6 @@ public class NewAudioMessageCell: BaseMessageCell {
     public override func prepareForReuse() {
         super.prepareForReuse()
         mainContentView.spacing = 0
-        messageLabel.text = nil
-        messageLabel.attributedText = nil
         messageId = 0
         delegate = nil
         audioPlayerView.reset()

@@ -1066,8 +1066,25 @@ class ChatViewControllerNew: UITableViewController {
 
 // MARK: - BaseMessageCellDelegate
 extension ChatViewControllerNew: BaseMessageCellDelegate {
-    func linkTapped(link: String) {
+    func phoneNumberTapped(number: String) {
+        logger.debug("phone number tapped \(number)")
     }
+
+    func commandTapped(command: String) {
+        logger.debug("command tapped \(command)")
+    }
+
+    func urlTapped(url: URL) {
+        if Utils.isEmail(url: url) {
+            logger.debug("tapped on contact")
+            let email = Utils.getEmailFrom(url)
+            self.askToChatWith(email: email)
+            ///TODO: implement handling
+        } else {
+            UIApplication.shared.open(url)
+        }
+    }
+
     func imageTapped(indexPath: IndexPath) {
         showMediaGalleryFor(indexPath: indexPath)
     }
