@@ -79,7 +79,7 @@ public class BaseMessageCell: UITableViewCell {
         view.font = UIFont.preferredFont(for: .body, weight: .regular)
         view.delegate = self
         view.enabledDetectors = [.url, .phoneNumber]
-        let attributes: [NSAttributedString.Key : Any] = [
+        let attributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor,
             NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
             NSAttributedString.Key.underlineColor: DcColors.defaultTextColor ]
@@ -100,12 +100,14 @@ public class BaseMessageCell: UITableViewCell {
     }()
 
     lazy var topLabel: PaddingTextView = {
-        let view = PaddingTextView(top: 0, left: 4, bottom: 0, right: 4)
+        let view = PaddingTextView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.text = "title"
         view.font = UIFont.preferredFont(for: .caption1, weight: .regular)
         view.layer.cornerRadius = 4
         view.clipsToBounds = true
+        view.paddingLeading = 4
+        view.paddingTrailing = 4
         return view
     }()
 
@@ -117,12 +119,14 @@ public class BaseMessageCell: UITableViewCell {
     }()
 
     lazy var bottomLabel: PaddingTextView = {
-        let label = PaddingTextView(top: 0, left: 4, bottom: 0, right: 4)
+        let label = PaddingTextView()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(for: .caption1, weight: .regular)
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         label.layer.cornerRadius = 4
+        label.paddingLeading = 4
+        label.paddingTrailing = 4
         label.clipsToBounds = true
         return label
     }()
@@ -157,20 +161,20 @@ public class BaseMessageCell: UITableViewCell {
         contentView.addSubview(avatarView)
 
         contentView.addConstraints([
-            avatarView.constraintAlignLeadingTo(contentView, paddingLeading: 6),
-            avatarView.constraintAlignBottomTo(contentView, paddingBottom: -6),
+            avatarView.constraintAlignLeadingTo(contentView),
+            avatarView.constraintAlignBottomTo(contentView),
             avatarView.constraintWidthTo(28, priority: .defaultHigh),
             avatarView.constraintHeightTo(28, priority: .defaultHigh),
             topLabel.constraintAlignTopTo(messageBackgroundContainer, paddingTop: 6),
-            topLabel.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 6),
-            topLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 6),
+            topLabel.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 8),
+            topLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 8),
             bottomLabel.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 6),
             messageBackgroundContainer.constraintAlignTopTo(contentView, paddingTop: 6),
             messageBackgroundContainer.constraintAlignBottomTo(contentView),
         ])
 
         leadingConstraint = messageBackgroundContainer.constraintAlignLeadingTo(contentView, paddingLeading: 6)
-        leadingConstraintGroup = messageBackgroundContainer.constraintToTrailingOf(avatarView, paddingLeading: -8)
+        leadingConstraintGroup = messageBackgroundContainer.constraintToTrailingOf(avatarView, paddingLeading: 2)
         trailingConstraint = messageBackgroundContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 36)
         leadingConstraintCurrentSender = messageBackgroundContainer.constraintAlignLeadingMaxTo(contentView, paddingLeading: 36)
         trailingConstraintCurrentSender = messageBackgroundContainer.constraintAlignTrailingTo(contentView, paddingTrailing: 6)
@@ -185,10 +189,10 @@ public class BaseMessageCell: UITableViewCell {
         mainContentAboveBottomLabelConstraint = bottomLabel.constraintToBottomOf(mainContentView, paddingTop: 6, priority: .defaultHigh)
         mainContentUnderBottomLabelConstraint = mainContentView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 0, priority: .defaultHigh)
 
-        bottomLineRightAlignedConstraint = [bottomLabel.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 6),
-                                           bottomLabel.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 6)]
-        bottomLineLeftAlignedConstraint = [bottomLabel.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 6),
-                                           bottomLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 6)]
+        bottomLineRightAlignedConstraint = [bottomLabel.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
+                                           bottomLabel.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8)]
+        bottomLineLeftAlignedConstraint = [bottomLabel.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 8),
+                                           bottomLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 8)]
 
         topCompactView = false
         bottomCompactView = false
@@ -199,7 +203,6 @@ public class BaseMessageCell: UITableViewCell {
         avatarView.addGestureRecognizer(gestureRecognizer)
 
         let messageLabelGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
-        //messageLabelGestureRecognizer.delaysTouchesBegan = true
         gestureRecognizer.numberOfTapsRequired = 1
         messageLabel.addGestureRecognizer(messageLabelGestureRecognizer)
     }
@@ -209,10 +212,8 @@ public class BaseMessageCell: UITableViewCell {
         guard gesture.state == .ended else { return }
 
         let touchLocation = gesture.location(in: messageLabel)
-        let _ = messageLabel.label.handleGesture(touchLocation)
+        _ = messageLabel.label.handleGesture(touchLocation)
     }
-
-
 
     @objc func onAvatarTapped() {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {

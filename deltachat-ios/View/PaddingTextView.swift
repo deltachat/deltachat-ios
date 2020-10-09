@@ -69,17 +69,9 @@ public class PaddingTextView: UIView {
         get { return label.delegate }
     }
 
-    convenience init() {
-        self.init(top: 0, left: 0, bottom: 0, right: 0)
-    }
-    
-    init(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) {
+    init() {
         super.init(frame: .zero)
         addSubview(label)
-        paddingLeading = left
-        paddingTop = top
-        paddingBottom = bottom
-        paddingTrailing = right
         addConstraints([
             containerTailingConstraint,
             containerLeadingConstraint,
