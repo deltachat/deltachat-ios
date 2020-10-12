@@ -27,14 +27,19 @@ public class DcContext {
         return .dcContext
     }
 
-    public func getMessageIds(chatId: Int, count: Int, from: Int?) -> [Int] {
+    public func getMessageIds(chatId: Int, count: Int? = nil, from: Int? = nil) -> [Int] {
 		let cMessageIds = getChatMessages(chatId: chatId)
+
 
         let ids: [Int]
         if let from = from {
+            // skip last part
             ids = DcUtils.copyAndFreeArrayWithOffset(inputArray: cMessageIds, len: count, skipEnd: from)
-        } else {
+        } else if let count = count {
+            // skip first part
             ids = DcUtils.copyAndFreeArrayWithLen(inputArray: cMessageIds, len: count)
+        } else {
+            ids = DcUtils.copyAndFreeArray(inputArray: cMessageIds)
         }
         return ids
     }
@@ -832,6 +837,10 @@ public class DcMsg {
         DcContact(id: fromContactId)
     }()
 
+    public var isFromCurrentSender: Bool {
+        return fromContact.id == DcContact(id: Int(DC_CONTACT_ID_SELF)).id
+    }
+
     public var chatId: Int {
         return Int(dc_msg_get_chat_id(messagePointer))
     }
@@ -901,7 +910,19 @@ public class DcMsg {
         } else {
             return nil
         }
-        }()
+    }()
+
+    public var messageHeight: CGFloat {
+        return CGFloat(dc_msg_get_height(messagePointer))
+    }
+
+    public var messageWidth: CGFloat {
+        return CGFloat(dc_msg_get_width(messagePointer))
+    }
+
+    public func setLateFilingMediaSize(width: CGFloat, height: CGFloat, duration: Int) {
+        dc_msg_latefiling_mediasize(messagePointer, Int32(width), Int32(height), Int32(duration))
+    }
 
     public var file: String? {
         if let cString = dc_msg_get_file(messagePointer) {

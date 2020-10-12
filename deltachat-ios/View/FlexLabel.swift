@@ -56,9 +56,10 @@ class FlexLabel: UIView {
         label.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, multiplier: 0.95).isActive = true
     }
 
+    ///FIXME: - replace this implementation, it's cutting off long texts, check PaddingTextView
     class PaddingLabel: UILabel {
-        let insets: UIEdgeInsets
 
+        let insets: UIEdgeInsets
         init(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) {
             self.insets = UIEdgeInsets(top: top, left: left, bottom: bottom, right: right)
             super.init(frame: .zero)

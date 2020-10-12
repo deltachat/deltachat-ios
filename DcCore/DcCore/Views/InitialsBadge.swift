@@ -7,7 +7,6 @@ public class InitialsBadge: UIView {
 
     private var label: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 26)
         label.textAlignment = NSTextAlignment.center
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -62,6 +61,7 @@ public class InitialsBadge: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: size).isActive = true
         widthAnchor.constraint(equalToConstant: size).isActive = true
+        label.font = UIFont.systemFont(ofSize: size * 3 / 5)
         setupSubviews(with: radius)
         isAccessibilityElement = true
     }

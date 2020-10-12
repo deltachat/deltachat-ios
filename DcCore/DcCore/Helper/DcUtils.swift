@@ -67,16 +67,17 @@ public struct DcUtils {
         return acc
     }
 
-    static func copyAndFreeArrayWithOffset(inputArray: OpaquePointer?, len: Int = 0, from: Int = 0, skipEnd: Int = 0) -> [Int] {
+    static func copyAndFreeArrayWithOffset(inputArray: OpaquePointer?, len: Int? = 0, from: Int = 0, skipEnd: Int = 0) -> [Int] {
         let lenArray = dc_array_get_cnt(inputArray)
+        let length = len ?? lenArray
         if lenArray <= skipEnd || lenArray == 0 {
             dc_array_unref(inputArray)
             return []
         }
 
         let start = lenArray - 1 - skipEnd
-        let end = max(0, start - len)
-        let finalLen = start - end + (len > 0 ? 0 : 1)
+        let end = max(0, start - length)
+        let finalLen = start - end + (length > 0 ? 0 : 1)
         var acc: [Int] = [Int](repeating: 0, count: finalLen)
 
         for i in stride(from: start, to: end, by: -1) {
@@ -85,7 +86,7 @@ public struct DcUtils {
         }
 
         dc_array_unref(inputArray)
-        DcContext.shared.logger?.info("got: \(from) \(len) \(lenArray) - \(acc)")
+        DcContext.shared.logger?.info("got: \(from) \(length) \(lenArray) - \(acc)")
 
         return acc
     }
