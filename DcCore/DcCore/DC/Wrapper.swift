@@ -700,8 +700,7 @@ public class DcChat {
     }
 
     public var isGroup: Bool {
-        let type = Int(dc_chat_get_type(chatPointer))
-        return type == DC_CHAT_TYPE_GROUP || type == DC_CHAT_TYPE_VERIFIED_GROUP
+        return Int(dc_chat_get_type(chatPointer)) == DC_CHAT_TYPE_GROUP
     }
 
     public var isSelfTalk: Bool {
@@ -716,8 +715,8 @@ public class DcChat {
         return Int(dc_chat_can_send(chatPointer)) != 0
     }
 
-    public var isVerified: Bool {
-        return dc_chat_is_verified(chatPointer) > 0
+    public var isProtected: Bool {
+        return dc_chat_is_protected(chatPointer) != 0
     }
 
     public var isMuted: Bool {

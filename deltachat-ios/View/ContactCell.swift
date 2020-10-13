@@ -327,7 +327,7 @@ class ContactCell: UITableViewCell {
             } else {
                 setBackupImage(name: chat.name, color: chat.color)
             }
-            setVerified(isVerified: chat.isVerified)
+            setVerified(isVerified: chat.isProtected)
             setTimeLabel(chatData.summary.timestamp)
             setStatusIndicators(unreadCount: chatData.unreadMessages,
                                 status: chatData.summary.state,

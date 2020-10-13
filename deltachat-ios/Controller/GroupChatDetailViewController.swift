@@ -106,7 +106,7 @@ class GroupChatDetailViewController: UIViewController {
             header.setBackupImage(name: chat.name, color: chat.color)
         }
         header.onAvatarTap = showGroupAvatarIfNeeded
-        header.setVerified(isVerified: chat.isVerified)
+        header.setVerified(isVerified: chat.isProtected)
         return header
     }()
 
@@ -227,7 +227,7 @@ class GroupChatDetailViewController: UIViewController {
         } else {
             groupHeader.setBackupImage(name: chat.name, color: chat.color)
         }
-        groupHeader.setVerified(isVerified: chat.isVerified)
+        groupHeader.setVerified(isVerified: chat.isProtected)
     }
 
     private func updateCellValues() {

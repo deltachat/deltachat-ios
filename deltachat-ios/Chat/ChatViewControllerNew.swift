@@ -75,7 +75,7 @@ class ChatViewControllerNew: UITableViewController {
             )
             badge.setLabelFont(UIFont.systemFont(ofSize: 14))
         }
-        badge.setVerified(chat.isVerified)
+        badge.setVerified(chat.isProtected)
         badge.accessibilityTraits = .button
         return UIBarButtonItem(customView: badge)
     }()
