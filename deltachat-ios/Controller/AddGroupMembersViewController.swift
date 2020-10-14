@@ -70,7 +70,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     init(chatId: Int) {
         self.chatId = chatId
         super.init()
-        isVerifiedGroup = chat?.isVerified ?? false
+        isVerifiedGroup = chat?.isProtected ?? false
         numberOfSections = sections.count
         selectedContactIds = Set(dcContext.getChat(chatId: chatId).contactIds)
     }
