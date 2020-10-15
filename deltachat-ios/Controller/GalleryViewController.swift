@@ -1,12 +1,12 @@
 import UIKit
 import DcCore
-import SDWebImage
+
 
 class GalleryViewController: UIViewController {
 
     private let dcContext: DcContext
     // MARK: - data
-    private let mediaMessageIds: [Int]
+    private var mediaMessageIds: [Int]
     private var items: [Int: GalleryItem] = [:]
 
     // MARK: - subview specs
@@ -106,6 +106,12 @@ class GalleryViewController: UIViewController {
             timeLabel.update(date: msg.sentDate)
         }
     }
+
+    private func deleteItem(at index: IndexPath) {
+        let msgId = mediaMessageIds.remove(at: index.row)
+        self.dcContext.deleteMessage(msgId: msgId)
+        self.grid.deleteItems(at: [index])
+    }
 }
 
 extension GalleryViewController: UICollectionViewDataSourcePrefetching {
@@ -144,10 +150,6 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             items[indexPath.row] = galleryItem
             item = galleryItem
         }
-        if #available(iOS 13, *) {
-            let interaction = UIContextMenuInteraction(delegate: self)
-            galleryCell.addInteraction(interaction)
-        }
         galleryCell.update(item: item)
         return galleryCell
     }
@@ -169,6 +171,39 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         timeLabel.hide(animated: true)
+    }
+
+    @available(iOS 13, *)
+    func collectionView(_ collectionView: UICollectionView,
+                        contextMenuConfigurationForItemAt indexPath: IndexPath,
+                        point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let galleryCell = collectionView.cellForItem(at: indexPath) as? GalleryCell, let item = galleryCell.item else {
+            return nil
+        }
+
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil,
+            actionProvider: { [weak self] _ in
+                return self?.makeContextMenu(indexPath: indexPath)
+            }
+        )
+    }
+
+    @available(iOS 13, *)
+    private func makeContextMenu(indexPath: IndexPath) -> UIMenu {
+        let deleteAction = UIAction(
+            title: String.localized("delete"),
+            image: UIImage(systemName: "trash")) { _ in
+            self.deleteItem(at: indexPath)
+        }
+
+        return UIMenu(
+            title: "",
+            image: nil,
+            identifier: nil,
+            children: [deleteAction]
+        )
     }
 }
 
@@ -224,130 +259,3 @@ extension GalleryViewController {
         present(previewController, animated: true, completion: nil)
     }
 }
-
-class GalleryItem {
-
-    var onImageLoaded: ((UIImage?) -> Void)?
-
-    var msg: DcMsg
-
-    var fileUrl: URL? {
-        return msg.fileURL
-    }
-
-    var thumbnailImage: UIImage? {
-        willSet {
-           onImageLoaded?(newValue)
-        }
-    }
-
-    var showPlayButton: Bool {
-        switch msg.viewtype {
-        case .video:
-            return true
-        default:
-            return false
-        }
-    }
-
-    init(msgId: Int) {
-        self.msg = DcMsg(id: msgId)
-
-        if let key = msg.fileURL?.absoluteString, let image = ThumbnailCache.shared.restoreImage(key: key) {
-            self.thumbnailImage = image
-        } else {
-            loadThumbnail()
-        }
-    }
-
-    private func loadThumbnail() {
-        guard let viewtype = msg.viewtype, let url = msg.fileURL else {
-            return
-        }
-        switch viewtype {
-        case .image:
-            thumbnailImage = msg.image
-        case .video:
-            loadVideoThumbnail(from: url)
-        case .gif:
-            loadGifThumbnail(from: url)
-        default:
-           safe_fatalError("unsupported viewtype - viewtype \(viewtype) not supported.")
-        }
-    }
-
-    private func loadGifThumbnail(from url: URL) {
-        DispatchQueue.global(qos: .userInteractive).async {
-            guard let imageData = try? Data(contentsOf: url) else {
-                return
-            }
-            let thumbnailImage = SDAnimatedImage(data: imageData)
-            DispatchQueue.main.async { [weak self] in
-                self?.thumbnailImage = thumbnailImage
-            }
-        }
-    }
-
-    private func loadVideoThumbnail(from url: URL) {
-        DispatchQueue.global(qos: .userInteractive).async {
-            let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: url)
-            DispatchQueue.main.async { [weak self] in
-                self?.thumbnailImage = thumbnailImage
-                if let image = thumbnailImage {
-                    ThumbnailCache.shared.storeImage(image: image, key: url.absoluteString)
-                }
-            }
-        }
-    }
-}
-
-// MARK: UIContextMenuInteractionDelegate
-@available(iOS 13, *)
-extension GalleryViewController: UIContextMenuInteractionDelegate {
-    func contextMenuInteraction(
-        _ interaction: UIContextMenuInteraction,
-        configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-
-        guard let galleryCell = interaction.view as? GalleryCell, let galleryItem = galleryCell.item else {
-            return nil
-        }
-
-        return UIContextMenuConfiguration(
-            identifier: nil,
-            previewProvider: nil,
-            actionProvider: { [weak self] _ in
-                return self?.makeContextMenu(item: galleryItem)
-            }
-        )
-    }
-
-    private func makeContextMenu(item: GalleryItem) -> UIMenu {
-        let deleteAction = UIAction(
-            title: String.localized("delete"),
-            image: nil) { _ in
-            self.dcContext.deleteMessage(msgId: item.msg.id)
-            self.grid.reloadData()
-        }
-
-        return UIMenu(
-            title: "",
-            image: nil,
-            identifier: nil,
-            children: [deleteAction]
-        )
-    }
-
-}
-
-/*
-
- // MARK: - Context menu
- private func prepareContextMenu() {
- UIMenuController.shared.menuItems = [
- UIMenuItem(title: String.localized("info"), action: #selector(BaseMessageCell.messageInfo)),
- UIMenuItem(title: String.localized("delete"), action: #selector(BaseMessageCell.messageDelete)),
- UIMenuItem(title: String.localized("forward"), action: #selector(BaseMessageCell.messageForward))
- ]
- UIMenuController.shared.update()
- }
- */

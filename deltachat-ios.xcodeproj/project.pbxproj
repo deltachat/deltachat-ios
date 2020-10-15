@@ -164,6 +164,7 @@
 		AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B31722672DFC00EC37A1 /* ActionCell.swift */; };
 		AE39D323249CFC1A007346A1 /* DocumentGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE39D322249CFC1A007346A1 /* DocumentGalleryController.swift */; };
 		AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4AEE3422B1030D000AA495 /* PreviewController.swift */; };
+		AE4FADA32538CD5D00C81DD9 /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4FADA22538CD5C00C81DD9 /* GalleryItem.swift */; };
 		AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */; };
 		AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */; };
 		AE6EC5242497663200A400E4 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6EC5232497663200A400E4 /* UIImageView+Extensions.swift */; };
@@ -468,6 +469,7 @@
 		AE38B31722672DFC00EC37A1 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		AE39D322249CFC1A007346A1 /* DocumentGalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentGalleryController.swift; sourceTree = "<group>"; };
 		AE4AEE3422B1030D000AA495 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
+		AE4FADA22538CD5C00C81DD9 /* GalleryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItem.swift; sourceTree = "<group>"; };
 		AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailHeader.swift; sourceTree = "<group>"; };
 		AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupViewController.swift; sourceTree = "<group>"; };
 		AE6EC5232497663200A400E4 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -711,6 +713,7 @@
 				305961A92346125100C80F33 /* AvatarPosition.swift */,
 				305961AA2346125100C80F33 /* HorizontalEdgeInsets.swift */,
 				305961AB2346125100C80F33 /* NSConstraintLayoutSet.swift */,
+				AE4FADA22538CD5C00C81DD9 /* GalleryItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1593,6 +1596,7 @@
 				AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */,
 				30FDB72124D838240066C48D /* BaseMessageCell.swift in Sources */,
 				305961D12346125100C80F33 /* Bundle+Extensions.swift in Sources */,
+				AE4FADA32538CD5D00C81DD9 /* GalleryItem.swift in Sources */,
 				305962002346125100C80F33 /* MessagesCollectionView.swift in Sources */,
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
 				AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */,
