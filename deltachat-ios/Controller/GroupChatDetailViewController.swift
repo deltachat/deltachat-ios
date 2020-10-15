@@ -309,7 +309,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private func showGallery() {
         let messageIds: [Int] = galleryItemMessageIds.reversed()
-        let galleryController = GalleryViewController(mediaMessageIds: messageIds)
+        let galleryController = GalleryViewController(context: dcContext, mediaMessageIds: messageIds)
         navigationController?.pushViewController(galleryController, animated: true)
     }
 

@@ -4,6 +4,7 @@ import SDWebImage
 
 class GalleryViewController: UIViewController {
 
+    private let dcContext: DcContext
     // MARK: - data
     private let mediaMessageIds: [Int]
     private var items: [Int: GalleryItem] = [:]
@@ -46,7 +47,8 @@ class GalleryViewController: UIViewController {
         return label
     }()
 
-    init(mediaMessageIds: [Int]) {
+    init(context: DcContext, mediaMessageIds: [Int]) {
+        self.dcContext = context
         self.mediaMessageIds = mediaMessageIds
         super.init(nibName: nil, bundle: nil)
     }
@@ -323,6 +325,8 @@ extension GalleryViewController: UIContextMenuInteractionDelegate {
         let deleteAction = UIAction(
             title: String.localized("delete"),
             image: nil) { _ in
+            self.dcContext.deleteMessage(msgId: item.msg.id)
+            self.grid.reloadData()
         }
 
         return UIMenu(
