@@ -142,6 +142,10 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             items[indexPath.row] = galleryItem
             item = galleryItem
         }
+        if #available(iOS 13, *) {
+            let interaction = UIContextMenuInteraction(delegate: self)
+            galleryCell.addInteraction(interaction)
+        }
         galleryCell.update(item: item)
         return galleryCell
     }
@@ -294,3 +298,52 @@ class GalleryItem {
         }
     }
 }
+
+// MARK: UIContextMenuInteractionDelegate
+@available(iOS 13, *)
+extension GalleryViewController: UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(
+        _ interaction: UIContextMenuInteraction,
+        configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+
+        guard let galleryCell = interaction.view as? GalleryCell, let galleryItem = galleryCell.item else {
+            return nil
+        }
+
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil,
+            actionProvider: { [weak self] _ in
+                return self?.makeContextMenu(item: galleryItem)
+            }
+        )
+    }
+
+    private func makeContextMenu(item: GalleryItem) -> UIMenu {
+        let deleteAction = UIAction(
+            title: String.localized("delete"),
+            image: nil) { _ in
+        }
+
+        return UIMenu(
+            title: "",
+            image: nil,
+            identifier: nil,
+            children: [deleteAction]
+        )
+    }
+
+}
+
+/*
+
+ // MARK: - Context menu
+ private func prepareContextMenu() {
+ UIMenuController.shared.menuItems = [
+ UIMenuItem(title: String.localized("info"), action: #selector(BaseMessageCell.messageInfo)),
+ UIMenuItem(title: String.localized("delete"), action: #selector(BaseMessageCell.messageDelete)),
+ UIMenuItem(title: String.localized("forward"), action: #selector(BaseMessageCell.messageForward))
+ ]
+ UIMenuController.shared.update()
+ }
+ */
