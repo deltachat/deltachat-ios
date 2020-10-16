@@ -183,12 +183,27 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 
         return UIContextMenuConfiguration(
             identifier: nil,
-            previewProvider: nil,
+            previewProvider: {
+                return XLPreviewViewController(imageUrl: item.fileUrl)
+            },
             actionProvider: { [weak self] _ in
                 return self?.makeContextMenu(indexPath: indexPath)
             }
         )
     }
+
+    /*
+    override func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        animator.addCompletion {
+
+            // We should have our image name set as the identifier of the configuration
+            if let identifier = configuration.identifier as? String {
+                let viewController = PhotoDetailViewController(imageName: identifier)
+                self.show(viewController, sender: self)
+            }
+        }
+    }
+    */
 
     @available(iOS 13, *)
     private func makeContextMenu(indexPath: IndexPath) -> UIMenu {
@@ -257,5 +272,46 @@ extension GalleryViewController {
         }
         let previewController = PreviewController(currentIndex: index, urls: mediaUrls)
         present(previewController, animated: true, completion: nil)
+    }
+}
+
+private class XLPreviewViewController: UIViewController {
+
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+
+    init(imageUrl: URL?) {
+        super.init(nibName: nil, bundle: nil)
+        if let url = imageUrl {
+            imageView.image = UIImage(named: url.relativePath)
+        }
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.addSubview(imageView)
+
+        NSLayoutConstraint.activate([
+            imageView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            imageView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            imageView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+
+        let width = view.bounds.width
+        if let image = imageView.image {
+            let height = image.size.height * (width / image.size.width)
+            preferredContentSize = CGSize(width: width, height: height)
+        }
     }
 }
