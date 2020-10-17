@@ -69,6 +69,7 @@ class GalleryViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         grid.reloadData()
+        setupContextMenuIfNeeded()
     }
 
     override func viewWillLayoutSubviews() {
@@ -98,6 +99,21 @@ class GalleryViewController: UIViewController {
         emptyStateView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
     }
 
+    private func setupContextMenuIfNeeded() {
+
+//        if #available(iOS 13, *) {
+//            return // iOS 13-style context menu will be provided in delegate
+//        } else {
+            UIMenuController.shared.menuItems = [
+              //  UIMenuItem(title: String.localized("info"), action: #selector(GalleryCell.messageInfo)),
+                UIMenuItem(title: String.localized("delete"), action: #selector(GalleryCell.itemDelete(_:))),
+             //   UIMenuItem(title: String.localized("forward"), action: #selector(BaseMessageCell.messageForward))
+            ]
+            UIMenuController.shared.update()
+//        }
+
+    }
+
     // MARK: - updates
     private func updateFloatingTimeLabel() {
         if let indexPath = grid.indexPathsForVisibleItems.min() {
@@ -107,10 +123,10 @@ class GalleryViewController: UIViewController {
         }
     }
 
-    private func deleteItem(at index: IndexPath) {
-        let msgId = mediaMessageIds.remove(at: index.row)
+    private func deleteItem(at indexPath: IndexPath) {
+        let msgId = mediaMessageIds.remove(at: indexPath.row)
         self.dcContext.deleteMessage(msgId: msgId)
-        self.grid.deleteItems(at: [index])
+        self.grid.deleteItems(at: [indexPath])
     }
 }
 
@@ -151,6 +167,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             item = galleryItem
         }
         galleryCell.update(item: item)
+        UIMenuController.shared.setMenuVisible(false, animated: true)
         return galleryCell
     }
 
@@ -158,6 +175,25 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         let msgId = mediaMessageIds[indexPath.row]
         showPreview(msgId: msgId)
         collectionView.deselectItem(at: indexPath, animated: true)
+        UIMenuController.shared.setMenuVisible(false, animated: true)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        return action ==  #selector(GalleryCell.itemDelete(_:))
+    }
+
+    func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+
+        switch action {
+        case #selector(GalleryCell.itemDelete(_:)):
+            deleteItem(at: indexPath)
+        default:
+            break
+        }
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -191,19 +227,6 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             }
         )
     }
-
-    /*
-    override func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-        animator.addCompletion {
-
-            // We should have our image name set as the identifier of the configuration
-            if let identifier = configuration.identifier as? String {
-                let viewController = PhotoDetailViewController(imageName: identifier)
-                self.show(viewController, sender: self)
-            }
-        }
-    }
-    */
 
     @available(iOS 13, *)
     private func makeContextMenu(indexPath: IndexPath) -> UIMenu {
