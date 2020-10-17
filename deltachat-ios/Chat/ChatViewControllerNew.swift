@@ -148,7 +148,6 @@ class ChatViewControllerNew: UITableViewController {
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
-        prepareContextMenu()
     }
 
     @objc func keyboardDidShow(_ notification: Notification) {
@@ -260,6 +259,7 @@ class ChatViewControllerNew: UITableViewController {
         if RelayHelper.sharedInstance.isForwarding() {
             askToForwardMessage()
         }
+        prepareContextMenu()
     }
 
     override func viewDidAppear(_ animated: Bool) {
