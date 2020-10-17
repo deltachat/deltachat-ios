@@ -100,18 +100,10 @@ class GalleryViewController: UIViewController {
     }
 
     private func setupContextMenuIfNeeded() {
-
-//        if #available(iOS 13, *) {
-//            return // iOS 13-style context menu will be provided in delegate
-//        } else {
-            UIMenuController.shared.menuItems = [
-              //  UIMenuItem(title: String.localized("info"), action: #selector(GalleryCell.messageInfo)),
-                UIMenuItem(title: String.localized("delete"), action: #selector(GalleryCell.itemDelete(_:))),
-             //   UIMenuItem(title: String.localized("forward"), action: #selector(BaseMessageCell.messageForward))
-            ]
-            UIMenuController.shared.update()
-//        }
-
+        UIMenuController.shared.menuItems = [
+            UIMenuItem(title: String.localized("delete"), action: #selector(GalleryCell.itemDelete(_:))),
+        ]
+        UIMenuController.shared.update()
     }
 
     // MARK: - updates
@@ -178,10 +170,25 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         UIMenuController.shared.setMenuVisible(false, animated: true)
     }
 
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        updateFloatingTimeLabel()
+        timeLabel.show(animated: true)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateFloatingTimeLabel()
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        timeLabel.hide(animated: true)
+    }
+
     func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
         return true
     }
 
+    // MARK: - context menu
+    // context menu for iOS 11, 12
     func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         return action ==  #selector(GalleryCell.itemDelete(_:))
     }
@@ -196,19 +203,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         }
     }
 
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        updateFloatingTimeLabel()
-        timeLabel.show(animated: true)
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        updateFloatingTimeLabel()
-    }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        timeLabel.hide(animated: true)
-    }
-
+    // context menu for iOS 13+
     @available(iOS 13, *)
     func collectionView(_ collectionView: UICollectionView,
                         contextMenuConfigurationForItemAt indexPath: IndexPath,
