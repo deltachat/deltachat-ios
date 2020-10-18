@@ -3,18 +3,12 @@ import UIKit
 import DcCore
 
 class PreviewController: QLPreviewController {
-
     enum PreviewType {
         case single(URL)
         case multi([Int], Int) // msgIds, index
     }
 
     let previewType: PreviewType
-
-    /*
-    var msgIds: [Int] = []
-    var url: URL?
-    */
 
     var customTitle: String?
 
@@ -26,21 +20,14 @@ class PreviewController: QLPreviewController {
     init(type: PreviewType) {
         self.previewType = type
         super.init(nibName: nil, bundle: nil)
-    }
-
-    /*
-    convenience init(url: URL) {
-        self.init(currentIndex: 0, msgIds: [])
-        self.url = url
-    }
-
-    init(currentIndex: Int, msgIds: [Int]) {
-        self.msgIds = msgIds
-        super.init(nibName: nil, bundle: nil)
         dataSource = self
-        currentPreviewItemIndex = currentIndex
+        switch type {
+        case .multi(_,let currentIndex):
+            currentPreviewItemIndex = currentIndex
+        case .single:
+            currentPreviewItemIndex = 0
+        }
     }
-    */
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -76,7 +63,7 @@ extension PreviewController: QLPreviewControllerDataSource {
         switch previewType {
         case .single(let url):
             return PreviewItem(url: url, title: self.customTitle)
-        case .multi(let msgIds, let index):
+        case .multi(let msgIds, _):
             let msg = DcMsg(id: msgIds[index])
             return PreviewItem(url: msg.fileURL, title: self.customTitle)
         }
