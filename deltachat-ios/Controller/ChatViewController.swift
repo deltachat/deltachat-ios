@@ -1310,7 +1310,7 @@ extension ChatViewController: MessageCellDelegate {
             let message = messageList[indexPath.section]
             if message.isSetupMessage {
                 didTapAsm(msg: message, orgText: "")
-            } else if message.fileURL != nil {
+            } else {
                 let msgIds = dcContext.getChatMedia(chatId: chatId, messageType: Int32(message.type), messageType2: 0, messageType3: 0)
                 let index = msgIds.firstIndex(of: message.id) ?? 0
                 showMediaGallery(currentIndex: index, msgIds: msgIds)
