@@ -1,9 +1,11 @@
 import QuickLook
 import UIKit
+import DcCore
 
 class PreviewController: QLPreviewController {
 
-    var urls: [URL]
+    var msgIds: [Int] = []
+    var url: URL?
 
     var customTitle: String?
 
@@ -12,8 +14,13 @@ class PreviewController: QLPreviewController {
         return button
     }()
 
-    init(currentIndex: Int, urls: [URL]) {
-        self.urls = urls
+    convenience init(url: URL) {
+        self.init(currentIndex: 0, msgIds: [])
+        self.url = url
+    }
+
+    init(currentIndex: Int, msgIds: [Int]) {
+        self.msgIds = msgIds
         super.init(nibName: nil, bundle: nil)
         dataSource = self
         currentPreviewItemIndex = currentIndex
@@ -41,11 +48,19 @@ class PreviewController: QLPreviewController {
 extension PreviewController: QLPreviewControllerDataSource {
 
     func numberOfPreviewItems(in _: QLPreviewController) -> Int {
-        return urls.count
+        if url != nil {
+            return 1
+        }
+        return msgIds.count
     }
 
     func previewController(_: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-        return PreviewItem(url: urls[index], title: self.customTitle)
+        if let url = self.url {
+            return PreviewItem(url: url, title: self.customTitle)
+        } else {
+            let msg = DcMsg(id: msgIds[index])
+            return PreviewItem(url: url ?? msg.fileURL, title: self.customTitle)
+        }
     }
 }
 
@@ -54,7 +69,7 @@ class PreviewItem: NSObject, QLPreviewItem {
     var previewItemURL: URL?
     var previewItemTitle: String?
 
-    init(url: URL, title: String?) {
+    init(url: URL?, title: String?) {
         self.previewItemURL = url
         self.previewItemTitle = title ?? ""
     }
