@@ -394,10 +394,6 @@ public class DcContext {
         return Int(dc_add_device_msg(contextPointer, label.cString(using: .utf8), msg.cptr))
     }
 
-    public func updateDeviceChats() {
-        dc_update_device_chats(contextPointer)
-    }
-
     public func getProviderFromEmail(addr: String) -> DcProvider? {
         guard let dcProviderPointer = dc_provider_new_from_email(contextPointer, addr) else { return nil }
         return DcProvider(dcProviderPointer)
