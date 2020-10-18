@@ -805,8 +805,8 @@ class ChatViewControllerNew: UITableViewController {
         mediaPicker?.showPhotoVideoLibrary()
     }
 
-    private func showMediaGallery(currentIndex: Int, mediaUrls urls: [URL]) {
-        let betterPreviewController = PreviewController(currentIndex: currentIndex, urls: urls)
+    private func showMediaGallery(currentIndex: Int, msgIds: [Int]) {
+        let betterPreviewController = PreviewController(type: .multi(msgIds, currentIndex))
         let nav = UINavigationController(rootViewController: betterPreviewController)
         nav.modalPresentationStyle = .fullScreen
         navigationController?.present(nav, animated: true)

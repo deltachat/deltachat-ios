@@ -87,11 +87,7 @@ extension DocumentGalleryController {
         guard let index = fileMessageIds.index(of: msgId) else {
             return
         }
-
-        let mediaUrls = fileMessageIds.compactMap {
-            return DcMsg(id: $0).fileURL
-        }
-        let previewController = PreviewController(currentIndex: index, urls: mediaUrls)
+        let previewController = PreviewController(type: .multi(fileMessageIds, index))
         present(previewController, animated: true, completion: nil)
     }
 }
