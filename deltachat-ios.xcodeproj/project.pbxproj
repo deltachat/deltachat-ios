@@ -110,7 +110,7 @@
 		AE851A04227AECDE00ED86F0 /* deltachat_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851A03227AECDE00ED86F0 /* deltachat_iosTests.swift */; };
 		AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC4227C755A00ED86F0 /* Protocols.swift */; };
 		AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */; };
-		AE8DD451249D1DFB009A4BC1 /* FileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8DD450249D1DFB009A4BC1 /* FileTableViewCell.swift */; };
+		AE8DD451249D1DFB009A4BC1 /* DocumentGalleryFileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8DD450249D1DFB009A4BC1 /* DocumentGalleryFileCell.swift */; };
 		AE8F503524753DFE007FEE0B /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8F503424753DFE007FEE0B /* GalleryViewController.swift */; };
 		AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0C22C1215D004C9591 /* EditContactController.swift */; };
 		AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */; };
@@ -345,7 +345,7 @@
 		AE851A05227AECDF00ED86F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE851AC4227C755A00ED86F0 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatDetailViewController.swift; sourceTree = "<group>"; };
-		AE8DD450249D1DFB009A4BC1 /* FileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTableViewCell.swift; sourceTree = "<group>"; };
+		AE8DD450249D1DFB009A4BC1 /* DocumentGalleryFileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentGalleryFileCell.swift; sourceTree = "<group>"; };
 		AE8F503424753DFE007FEE0B /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		AE9DAF0C22C1215D004C9591 /* EditContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactController.swift; sourceTree = "<group>"; };
 		AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTitleView.swift; sourceTree = "<group>"; };
@@ -659,7 +659,7 @@
 			isa = PBXGroup;
 			children = (
 				AE0AA951247800E700D42A7F /* GalleryCell.swift */,
-				AE8DD450249D1DFB009A4BC1 /* FileTableViewCell.swift */,
+				AE8DD450249D1DFB009A4BC1 /* DocumentGalleryFileCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1164,7 +1164,7 @@
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
 				AE39D323249CFC1A007346A1 /* DocumentGalleryController.swift in Sources */,
-				AE8DD451249D1DFB009A4BC1 /* FileTableViewCell.swift in Sources */,
+				AE8DD451249D1DFB009A4BC1 /* DocumentGalleryFileCell.swift in Sources */,
 				3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */,
 				B21005DB23383664004C70C5 /* SettingsClassicViewController.swift in Sources */,
 				AEC67A1C241CE9E4007DDBE1 /* AppStateRestorer.swift in Sources */,

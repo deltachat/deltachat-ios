@@ -1,9 +1,9 @@
 import UIKit
 import DcCore
 
-class FileTableViewCell: UITableViewCell {
+class DocumentGalleryFileCell: UITableViewCell {
 
-    static let reuseIdentifier = "file_table_view_cell"
+    static let reuseIdentifier = "document_gallery_file_cell"
 
     private let fileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -67,19 +67,9 @@ class FileTableViewCell: UITableViewCell {
 
     // MARK: - update
     func update(msg: DcMsg) {
-       /* switch msg.kind {
-        case .fileText(let mediaItem):
-            if let url = mediaItem.url {
-                generateThumbnailFor(url: url, placeholder: mediaItem.placeholderImage)
-            } else {
-                fileImageView.image = mediaItem.placeholderImage
-            }
-        default:
-            guard let url = msg.fileURL else {
-                return
-            }
-            generateThumbnailFor(url: url, placeholder: nil)
-        }*/
+        if let fileUrl = msg.fileURL {
+            generateThumbnailFor(url: fileUrl, placeholder: UIImage(named: "ic_attach_file_36pt")?.maskWithColor(color: DcColors.grayTextColor))
+        }
         title.text = msg.filename
         subtitle.text = msg.getPrettyFileSize()
     }
