@@ -19,8 +19,8 @@ class NewImageTextCell: BaseMessageCell {
     }()
 
     /// The play button view to display on video messages.
-    open lazy var playButtonView: PlayButtonView = {
-        let playButtonView = PlayButtonView()
+    open lazy var playButtonView: NewPlayButtonView = {
+        let playButtonView = NewPlayButtonView()
         playButtonView.isHidden = true
         translatesAutoresizingMaskIntoConstraints = false
         return playButtonView

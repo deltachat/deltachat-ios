@@ -102,7 +102,7 @@ class NewContactController: UITableViewController {
     // MARK: - coordinator
     private func showChat(chatId: Int) {
         if let chatlistViewController = navigationController?.viewControllers[0] {
-            let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
+            let chatViewController = ChatViewControllerNew(dcContext: dcContext, chatId: chatId)
             navigationController?.setViewControllers([chatlistViewController, chatViewController], animated: true)
         }
     }

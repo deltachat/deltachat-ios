@@ -3,9 +3,9 @@ import DcCore
 import UIKit
 import AVFoundation
 
-extension DcMsg: MessageType {
+extension DcMsg {
     
-    public var sender: SenderType {
+   /* public var sender: SenderType {
         return Sender(id: "\(fromContactId)", displayName: fromContact.displayName)
     }
 
@@ -108,7 +108,7 @@ extension DcMsg: MessageType {
 
         let mediaText = [attributedMediaMessageString, attributedFileString, attributedFileSizeString]
         return MessageKind.fileText(Media(url: fileURL, placeholderImage: UIImage(named: "ic_attach_file_36pt"), text: mediaText))
-    }
+    }*/
 
     public func getPrettyFileSize() -> String {
         if self.filesize <= 0 { return "0 B" }

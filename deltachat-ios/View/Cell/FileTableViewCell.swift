@@ -67,7 +67,7 @@ class FileTableViewCell: UITableViewCell {
 
     // MARK: - update
     func update(msg: DcMsg) {
-        switch msg.kind {
+       /* switch msg.kind {
         case .fileText(let mediaItem):
             if let url = mediaItem.url {
                 generateThumbnailFor(url: url, placeholder: mediaItem.placeholderImage)
@@ -79,7 +79,7 @@ class FileTableViewCell: UITableViewCell {
                 return
             }
             generateThumbnailFor(url: url, placeholder: nil)
-        }
+        }*/
         title.text = msg.filename
         subtitle.text = msg.getPrettyFileSize()
     }

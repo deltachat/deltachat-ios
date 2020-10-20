@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class MailboxViewController: ChatViewController {
+class MailboxViewController: ChatViewControllerNew {
 
     override init(dcContext: DcContext, chatId: Int) {
         super.init(dcContext: dcContext, chatId: chatId)
@@ -23,7 +23,7 @@ class MailboxViewController: ChatViewController {
         super.viewWillAppear(animated)
     }
 
-    override func didTapMessage(in cell: MessageCollectionViewCell) {
+   /* override func didTapMessage(in cell: MessageCollectionViewCell) {
         askToChat(cell: cell)
     }
 
@@ -38,9 +38,9 @@ class MailboxViewController: ChatViewController {
     override func didTapBackground(in cell: MessageCollectionViewCell) {
         askToChat(cell: cell)
     }
+*/
 
-
-    private func askToChat(cell: MessageCollectionViewCell) {
+/*    private func askToChat(cell: MessageCollectionViewCell) {
         if let indexPath = messagesCollectionView.indexPath(for: cell) {
 
             let message = messageList[indexPath.section]
@@ -58,4 +58,5 @@ class MailboxViewController: ChatViewController {
             present(alert, animated: true, completion: nil)
         }
     }
+ */
 }

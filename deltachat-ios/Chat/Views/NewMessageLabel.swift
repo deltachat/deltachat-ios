@@ -300,7 +300,7 @@ open class NewMessageLabel: UILabel {
         case .hashtag:
             return hashtagAttributes
         case .custom(let regex):
-            return customAttributes[regex] ?? MessageLabel.defaultAttributes
+            return customAttributes[regex] ?? NewMessageLabel.defaultAttributes
         }
 
     }
@@ -318,7 +318,7 @@ open class NewMessageLabel: UILabel {
         case .transitInformation:
             return transitInformationAttributes
         default:
-            fatalError(MessageKitError.unrecognizedCheckingResult)
+            fatalError("link detector failure: unrecognized checking result")
         }
     }
 
