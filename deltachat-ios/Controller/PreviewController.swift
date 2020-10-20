@@ -1,9 +1,14 @@
 import QuickLook
 import UIKit
+import DcCore
 
 class PreviewController: QLPreviewController {
+    enum PreviewType {
+        case single(URL)
+        case multi([Int], Int) // msgIds, index
+    }
 
-    var urls: [URL]
+    let previewType: PreviewType
 
     var customTitle: String?
 
@@ -12,11 +17,16 @@ class PreviewController: QLPreviewController {
         return button
     }()
 
-    init(currentIndex: Int, urls: [URL]) {
-        self.urls = urls
+    init(type: PreviewType) {
+        self.previewType = type
         super.init(nibName: nil, bundle: nil)
         dataSource = self
-        currentPreviewItemIndex = currentIndex
+        switch type {
+        case .multi(_,let currentIndex):
+            currentPreviewItemIndex = currentIndex
+        case .single:
+            currentPreviewItemIndex = 0
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -41,11 +51,22 @@ class PreviewController: QLPreviewController {
 extension PreviewController: QLPreviewControllerDataSource {
 
     func numberOfPreviewItems(in _: QLPreviewController) -> Int {
-        return urls.count
+        switch previewType {
+        case .single:
+            return 1
+        case .multi(let msgIds, _):
+            return msgIds.count
+        }
     }
 
     func previewController(_: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-        return PreviewItem(url: urls[index], title: self.customTitle)
+        switch previewType {
+        case .single(let url):
+            return PreviewItem(url: url, title: self.customTitle)
+        case .multi(let msgIds, _):
+            let msg = DcMsg(id: msgIds[index])
+            return PreviewItem(url: msg.fileURL, title: self.customTitle)
+        }
     }
 }
 
@@ -54,7 +75,7 @@ class PreviewItem: NSObject, QLPreviewItem {
     var previewItemURL: URL?
     var previewItemTitle: String?
 
-    init(url: URL, title: String?) {
+    init(url: URL?, title: String?) {
         self.previewItemURL = url
         self.previewItemTitle = title ?? ""
     }

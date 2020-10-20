@@ -210,11 +210,7 @@ extension GalleryViewController {
         guard let index = mediaMessageIds.index(of: msgId) else {
             return
         }
-
-        let mediaUrls = mediaMessageIds.compactMap {
-            return DcMsg(id: $0).fileURL
-        }
-        let previewController = PreviewController(currentIndex: index, urls: mediaUrls)
+        let previewController = PreviewController(type: .multi(mediaMessageIds, index))
         present(previewController, animated: true, completion: nil)
     }
 }

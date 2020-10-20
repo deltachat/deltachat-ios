@@ -326,7 +326,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private func showGroupAvatarIfNeeded() {
         if let url = chat.profileImageURL {
-            let previewController = PreviewController(currentIndex: 0, urls: [url])
+            let previewController = PreviewController(type: .single(url))
             previewController.customTitle = self.title
             present(previewController, animated: true, completion: nil)
         }

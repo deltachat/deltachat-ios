@@ -395,7 +395,7 @@ class ContactDetailViewController: UITableViewController {
     private func showContactAvatarIfNeeded() {
         let contact = viewModel.contact
         if let url =  contact.profileImageURL {
-            let previewController = PreviewController(currentIndex: 0, urls: [url])
+            let previewController = PreviewController(type: .single(url))
             previewController.customTitle = contact.displayName
             present(previewController, animated: true, completion: nil)
         }

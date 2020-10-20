@@ -805,8 +805,8 @@ class ChatViewControllerNew: UITableViewController {
         mediaPicker?.showPhotoVideoLibrary()
     }
 
-    private func showMediaGallery(currentIndex: Int, mediaUrls urls: [URL]) {
-        let betterPreviewController = PreviewController(currentIndex: currentIndex, urls: urls)
+    private func showMediaGallery(currentIndex: Int, msgIds: [Int]) {
+        let betterPreviewController = PreviewController(type: .multi(msgIds, currentIndex))
         let nav = UINavigationController(rootViewController: betterPreviewController)
         nav.modalPresentationStyle = .fullScreen
         navigationController?.present(nav, animated: true)
@@ -1012,14 +1012,10 @@ class ChatViewControllerNew: UITableViewController {
     }
 
     func showMediaGalleryFor(message: DcMsg) {
-        if let url = message.fileURL {
-            // find all other messages with same message type
-            let previousUrls: [URL] = message.previousMediaURLs()
-            let nextUrls: [URL] = message.nextMediaURLs()
-            // these are the files user will be able to swipe trough
-            let mediaUrls: [URL] = previousUrls + [url] + nextUrls
-            showMediaGallery(currentIndex: previousUrls.count, mediaUrls: mediaUrls)
-        }
+
+        let msgIds = dcContext.getChatMedia(chatId: chatId, messageType: Int32(message.type), messageType2: 0, messageType3: 0)
+        let index = msgIds.firstIndex(of: message.id) ?? 0
+        showMediaGallery(currentIndex: index, msgIds: msgIds)
     }
 
     private func didTapAsm(msg: DcMsg, orgText: String) {
