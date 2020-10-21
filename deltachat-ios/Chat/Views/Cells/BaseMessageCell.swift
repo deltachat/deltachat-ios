@@ -12,8 +12,6 @@ public class BaseMessageCell: UITableViewCell {
     private var mainContentUnderTopLabelConstraint: NSLayoutConstraint?
     private var mainContentAboveBottomLabelConstraint: NSLayoutConstraint?
     private var mainContentUnderBottomLabelConstraint: NSLayoutConstraint?
-    private var bottomLineLeftAlignedConstraint: [NSLayoutConstraint] = []
-    private var bottomLineRightAlignedConstraint: [NSLayoutConstraint] = []
     private var mainContentViewLeadingConstraint: NSLayoutConstraint?
     private var mainContentViewTrailingConstraint: NSLayoutConstraint?
 
@@ -24,21 +22,6 @@ public class BaseMessageCell: UITableViewCell {
         }
         get {
             return mainContentViewLeadingConstraint?.constant ?? 0
-        }
-    }
-
-    //aligns the bottomLabel to the left / right
-    private var bottomLineLeftAlign: Bool {
-        set {
-            for constraint in bottomLineLeftAlignedConstraint {
-                constraint.isActive = newValue
-            }
-            for constraint in bottomLineRightAlignedConstraint {
-                constraint.isActive = !newValue
-            }
-        }
-        get {
-            return !bottomLineLeftAlignedConstraint.isEmpty && bottomLineLeftAlignedConstraint[0].isActive
         }
     }
 
@@ -170,6 +153,8 @@ public class BaseMessageCell: UITableViewCell {
             bottomLabel.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 6),
             messageBackgroundContainer.constraintAlignTopTo(contentView, paddingTop: 6),
             messageBackgroundContainer.constraintAlignBottomTo(contentView),
+            bottomLabel.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
+            bottomLabel.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8)
         ])
 
         leadingConstraint = messageBackgroundContainer.constraintAlignLeadingTo(contentView, paddingLeading: 6)
@@ -187,11 +172,6 @@ public class BaseMessageCell: UITableViewCell {
         mainContentUnderTopLabelConstraint = mainContentView.constraintAlignTopTo(messageBackgroundContainer)
         mainContentAboveBottomLabelConstraint = bottomLabel.constraintToBottomOf(mainContentView, paddingTop: 6, priority: .defaultHigh)
         mainContentUnderBottomLabelConstraint = mainContentView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 0, priority: .defaultHigh)
-
-        bottomLineRightAlignedConstraint = [bottomLabel.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
-                                           bottomLabel.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8)]
-        bottomLineLeftAlignedConstraint = [bottomLabel.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 8),
-                                           bottomLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 8)]
 
         topCompactView = false
         bottomCompactView = false
@@ -230,7 +210,6 @@ public class BaseMessageCell: UITableViewCell {
             leadingConstraint?.isActive = false
             leadingConstraintGroup?.isActive = false
             trailingConstraint?.isActive = false
-            bottomLineLeftAlign = false
             leadingConstraintCurrentSender?.isActive = true
             trailingConstraintCurrentSender?.isActive = true
 
@@ -249,7 +228,6 @@ public class BaseMessageCell: UITableViewCell {
                 leadingConstraint?.isActive = true
             }
             trailingConstraint?.isActive = true
-            bottomLineLeftAlign = true
         }
 
         if isAvatarVisible {
