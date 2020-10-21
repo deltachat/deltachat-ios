@@ -32,7 +32,7 @@ function parseAndroid(data) {
 
       let countOfPlaceholders = (value.match(/\%1\$\@/g) || []).length
       if (countOfPlaceholders > 1) {
-        console.error("\n\n\n ERROR: Placeholder mismatch. A source file contained '%s' and '%1$s' in the same resource which we are not willing to fix automatically. Please fix the input source on tranisfex first! \n\n\n")
+        console.error("\n\n\n ERROR: Placeholder mismatch. A source file contained '%s' and '%1$s' in the same resource which we are not willing to fix automatically. Please fix the input source on tranisfex first! context:\n" + line +  "\n\n\n")
         continue;
       }
 
