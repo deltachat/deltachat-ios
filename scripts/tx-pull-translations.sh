@@ -6,7 +6,7 @@
 
 # ----Main-----
 
-cd tools
+cd scripts
 
 TMP_ANDROID_TRANSLATIONS=tmpAndroidTranslations
 
