@@ -59,6 +59,11 @@ public class PaddingTextView: UIView {
         get { return label.font }
     }
 
+    public var textColor: UIColor {
+        set { label.textColor = newValue }
+        get { return label.textColor }
+    }
+
     public var enabledDetectors: [DetectorType] {
         set { label.enabledDetectors = newValue }
         get { return label.enabledDetectors }
