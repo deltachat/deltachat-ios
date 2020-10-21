@@ -270,12 +270,15 @@ public class BaseMessageCell: UITableViewCell {
                 style.alignment = .right
                 style.minimumLineHeight = 22
                 timestampAttributes[.paragraphStyle] = style
+                if !bottomCompactView {
+                    timestampAttributes[.foregroundColor] = DcColors.checkmarkGreen
+                }
             }
 
             text.append(NSAttributedString(string: message.formattedSentDate(), attributes: timestampAttributes))
 
             if message.showPadlock() {
-                attachPadlock(to: text)
+                attachPadlock(to: text, color: bottomCompactView ? nil : DcColors.checkmarkGreen)
             }
 
             attachSendingState(message.state, to: text)
@@ -289,9 +292,13 @@ public class BaseMessageCell: UITableViewCell {
         return text
     }
 
-    private func attachPadlock(to text: NSMutableAttributedString) {
+    private func attachPadlock(to text: NSMutableAttributedString, color: UIColor? = nil) {
         let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(named: "ic_lock")
+        if let color = color {
+            imageAttachment.image = UIImage(named: "ic_lock")?.maskWithColor(color: color)
+        } else {
+            imageAttachment.image = UIImage(named: "ic_lock")
+        }
         imageAttachment.image?.accessibilityIdentifier = String.localized("encrypted_message")
         let imageString = NSMutableAttributedString(attachment: imageAttachment)
         imageString.addAttributes([NSAttributedString.Key.baselineOffset: -1], range: NSRange(location: 0, length: 1))
