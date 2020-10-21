@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-open class NewAudioPlayerView: UIView {
+open class AudioPlayerView: UIView {
 
     /// The play button view to display on audio messages.
     lazy var playButton: UIButton = {

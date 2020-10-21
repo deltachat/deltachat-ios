@@ -3,7 +3,7 @@ import UIKit
 import DcCore
 import SDWebImage
 
-class NewFileTextCell: BaseMessageCell {
+class FileTextCell: BaseMessageCell {
 
     private lazy var defaultImage: UIImage = {
         let image = UIImage(named: "ic_attach_file_36pt")

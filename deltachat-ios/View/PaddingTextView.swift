@@ -1,8 +1,8 @@
 import UIKit
 public class PaddingTextView: UIView {
 
-    public lazy var label: NewMessageLabel = {
-        let label = NewMessageLabel()
+    public lazy var label: MessageLabel = {
+        let label = MessageLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping

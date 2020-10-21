@@ -15,9 +15,9 @@ public enum PlayerState {
     case stopped
 }
 
-/// The `NewAudioController` update UI for current audio cell that is playing a sound
+/// The `AudioController` update UI for current audio cell that is playing a sound
 /// and also creates and manage an `AVAudioPlayer` states, play, pause and stop.
-open class NewAudioController: NSObject, AVAudioPlayerDelegate, NewAudioMessageCellDelegate {
+open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDelegate {
 
     lazy var audioSession: AVAudioSession = {
         let audioSession = AVAudioSession.sharedInstance()
@@ -29,7 +29,7 @@ open class NewAudioController: NSObject, AVAudioPlayerDelegate, NewAudioMessageC
     open var audioPlayer: AVAudioPlayer?
 
     /// The `AudioMessageCell` that is currently playing sound
-    open weak var playingCell: NewAudioMessageCell?
+    open weak var playingCell: AudioMessageCell?
 
     /// The `MessageType` that is currently playing sound
     open var playingMessage: DcMsg?
@@ -69,7 +69,7 @@ open class NewAudioController: NSObject, AVAudioPlayerDelegate, NewAudioMessageC
     ///
     /// - Note:
     ///   This protocol method is called by MessageKit every time an audio cell needs to be configure
-    func update(_ cell: NewAudioMessageCell, with messageId: Int) {
+    func update(_ cell: AudioMessageCell, with messageId: Int) {
         cell.delegate = self
         if playingMessage?.id == messageId, let player = audioPlayer {
             playingCell = cell
@@ -79,7 +79,7 @@ open class NewAudioController: NSObject, AVAudioPlayerDelegate, NewAudioMessageC
         }
     }
 
-    public func playButtonTapped(cell: NewAudioMessageCell, messageId: Int) {
+    public func playButtonTapped(cell: AudioMessageCell, messageId: Int) {
             let message = DcMsg(id: messageId)
             guard state != .stopped else {
                 // There is no audio sound playing - prepare to start playing for given audio message
@@ -105,7 +105,7 @@ open class NewAudioController: NSObject, AVAudioPlayerDelegate, NewAudioMessageC
     /// - Parameters:
     ///   - message: The `DcMsg` that contain the audio item to be played.
     ///   - audioCell: The `NewAudioMessageCell` that needs to be updated while audio is playing.
-    open func playSound(for message: DcMsg, in audioCell: NewAudioMessageCell) {
+    open func playSound(for message: DcMsg, in audioCell: AudioMessageCell) {
         if message.type == DC_MSG_AUDIO || message.type == DC_MSG_VOICE {
             _ = try? audioSession.setActive(true)
             playingCell = audioCell
@@ -129,7 +129,7 @@ open class NewAudioController: NSObject, AVAudioPlayerDelegate, NewAudioMessageC
     /// - Parameters:
     ///   - message: The `MessageType` that contain the audio item to be pause.
     ///   - audioCell: The `AudioMessageCell` that needs to be updated by the pause action.
-    open func pauseSound(in audioCell: NewAudioMessageCell) {
+    open func pauseSound(in audioCell: AudioMessageCell) {
         audioPlayer?.pause()
         state = .pause
         audioCell.audioPlayerView.showPlayLayout(false) // show play button on audio cell
@@ -183,7 +183,7 @@ open class NewAudioController: NSObject, AVAudioPlayerDelegate, NewAudioMessageC
         progressTimer = nil
         progressTimer = Timer.scheduledTimer(timeInterval: 0.1,
                                              target: self,
-                                             selector: #selector(NewAudioController.didFireProgressTimer(_:)),
+                                             selector: #selector(AudioController.didFireProgressTimer(_:)),
                                              userInfo: nil,
                                              repeats: true)
     }

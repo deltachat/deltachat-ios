@@ -24,7 +24,7 @@
 
 import UIKit
 
-open class NewPlayButtonView: UIView {
+open class PlayButtonView: UIView {
 
     // MARK: - Properties
 

@@ -24,7 +24,7 @@
 
 import UIKit
 
-open class NewMessageLabel: UILabel {
+open class MessageLabel: UILabel {
 
     // MARK: - Private Properties
 
@@ -300,7 +300,7 @@ open class NewMessageLabel: UILabel {
         case .hashtag:
             return hashtagAttributes
         case .custom(let regex):
-            return customAttributes[regex] ?? NewMessageLabel.defaultAttributes
+            return customAttributes[regex] ?? MessageLabel.defaultAttributes
         }
 
     }

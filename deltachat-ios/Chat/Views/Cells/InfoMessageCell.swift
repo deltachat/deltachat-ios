@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class NewInfoMessageCell: UITableViewCell {
+class InfoMessageCell: UITableViewCell {
 
     private lazy var messageBackgroundContainer: BackgroundContainer = {
         let container = BackgroundContainer()

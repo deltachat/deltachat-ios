@@ -15,8 +15,8 @@ class GalleryCell: UICollectionViewCell {
         return view
     }()
 
-    private lazy var playButtonView: NewPlayButtonView = {
-        let playButtonView = NewPlayButtonView()
+    private lazy var playButtonView: PlayButtonView = {
+        let playButtonView = PlayButtonView()
         playButtonView.isHidden = true
         return playButtonView
     }()

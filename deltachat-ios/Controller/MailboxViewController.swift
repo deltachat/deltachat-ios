@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class MailboxViewController: ChatViewControllerNew {
+class MailboxViewController: ChatViewController {
 
     override init(dcContext: DcContext, chatId: Int) {
         super.init(dcContext: dcContext, chatId: chatId)

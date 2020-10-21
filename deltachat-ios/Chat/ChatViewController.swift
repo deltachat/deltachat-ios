@@ -6,7 +6,7 @@ import AVFoundation
 import DcCore
 import SDWebImage
 
-class ChatViewControllerNew: UITableViewController {
+class ChatViewController: UITableViewController {
     var dcContext: DcContext
     let outgoingAvatarOverlap: CGFloat = 17.5
     let loadCount = 30
@@ -81,7 +81,7 @@ class ChatViewControllerNew: UITableViewController {
     }()
 
     /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and update audio cell UI accordingly.
-    private lazy var audioController = NewAudioController(dcContext: dcContext, chatId: chatId)
+    private lazy var audioController = AudioController(dcContext: dcContext, chatId: chatId)
 
     private var disableWriting: Bool
     private var showNamesAboveMessage: Bool
@@ -120,11 +120,11 @@ class ChatViewControllerNew: UITableViewController {
     }
 
     override func viewDidLoad() {
-        tableView.register(NewTextMessageCell.self, forCellReuseIdentifier: "text")
-        tableView.register(NewImageTextCell.self, forCellReuseIdentifier: "image")
-        tableView.register(NewFileTextCell.self, forCellReuseIdentifier: "file")
-        tableView.register(NewInfoMessageCell.self, forCellReuseIdentifier: "info")
-        tableView.register(NewAudioMessageCell.self, forCellReuseIdentifier: "audio")
+        tableView.register(TextMessageCell.self, forCellReuseIdentifier: "text")
+        tableView.register(ImageTextCell.self, forCellReuseIdentifier: "image")
+        tableView.register(FileTextCell.self, forCellReuseIdentifier: "file")
+        tableView.register(InfoMessageCell.self, forCellReuseIdentifier: "info")
+        tableView.register(AudioMessageCell.self, forCellReuseIdentifier: "audio")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         super.viewDidLoad()
@@ -337,28 +337,28 @@ class ChatViewControllerNew: UITableViewController {
         let message = DcMsg(id: id)
 
         if message.isInfo {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? NewInfoMessageCell ?? NewInfoMessageCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
             cell.update(msg: message)
             return cell
         }
 
         let cell: BaseMessageCell
         if message.type == DC_MSG_IMAGE || message.type == DC_MSG_GIF || message.type == DC_MSG_VIDEO {
-            cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? NewImageTextCell ?? NewImageTextCell()
+            cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? ImageTextCell ?? ImageTextCell()
         } else if message.type == DC_MSG_FILE {
             if message.isSetupMessage {
-                cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? NewTextMessageCell ?? NewTextMessageCell()
+                cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
                 message.text = String.localized("autocrypt_asm_click_body")
             } else {
-                cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? NewFileTextCell ?? NewFileTextCell()
+                cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? FileTextCell ?? FileTextCell()
             }
         } else if message.type == DC_MSG_AUDIO ||  message.type == DC_MSG_VOICE {
-            let audioMessageCell: NewAudioMessageCell = tableView.dequeueReusableCell(withIdentifier: "audio",
-                                                                                      for: indexPath) as? NewAudioMessageCell ?? NewAudioMessageCell()
+            let audioMessageCell: AudioMessageCell = tableView.dequeueReusableCell(withIdentifier: "audio",
+                                                                                      for: indexPath) as? AudioMessageCell ?? AudioMessageCell()
             audioController.update(audioMessageCell, with: message.id)
             cell = audioMessageCell
         } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? NewTextMessageCell ?? NewTextMessageCell()
+            cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
         }
 
         cell.baseDelegate = self
@@ -1067,7 +1067,7 @@ class ChatViewControllerNew: UITableViewController {
 }
 
 // MARK: - BaseMessageCellDelegate
-extension ChatViewControllerNew: BaseMessageCellDelegate {
+extension ChatViewController: BaseMessageCellDelegate {
 
     @objc func textTapped(indexPath: IndexPath) {
         _ = handleUIMenu()
@@ -1108,7 +1108,7 @@ extension ChatViewControllerNew: BaseMessageCellDelegate {
 }
 
 // MARK: - MediaPickerDelegate
-extension ChatViewControllerNew: MediaPickerDelegate {
+extension ChatViewController: MediaPickerDelegate {
     func onVideoSelected(url: NSURL) {
         sendVideo(url: url)
     }
@@ -1132,7 +1132,7 @@ extension ChatViewControllerNew: MediaPickerDelegate {
 }
 
 // MARK: - MessageInputBarDelegate
-extension ChatViewControllerNew: InputBarAccessoryViewDelegate {
+extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         if inputBar.inputTextView.images.isEmpty {
             self.sendTextMessage(message: text.trimmingCharacters(in: .whitespacesAndNewlines))

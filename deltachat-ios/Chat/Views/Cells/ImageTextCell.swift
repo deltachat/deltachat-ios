@@ -3,7 +3,7 @@ import UIKit
 import DcCore
 import SDWebImage
 
-class NewImageTextCell: BaseMessageCell {
+class ImageTextCell: BaseMessageCell {
 
     var imageHeightConstraint: NSLayoutConstraint?
     var imageWidthConstraint: NSLayoutConstraint?
@@ -19,8 +19,8 @@ class NewImageTextCell: BaseMessageCell {
     }()
 
     /// The play button view to display on video messages.
-    open lazy var playButtonView: NewPlayButtonView = {
-        let playButtonView = NewPlayButtonView()
+    open lazy var playButtonView: PlayButtonView = {
+        let playButtonView = PlayButtonView()
         playButtonView.isHidden = true
         translatesAutoresizingMaskIntoConstraints = false
         return playButtonView

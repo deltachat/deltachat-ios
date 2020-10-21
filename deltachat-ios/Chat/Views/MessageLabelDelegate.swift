@@ -97,4 +97,3 @@ public extension MessageLabelDelegate {
     func didSelectCustom(_ pattern: String, match: String?) {}
 
 }
-

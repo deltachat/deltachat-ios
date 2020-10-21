@@ -2,7 +2,7 @@ import Foundation
 import DcCore
 import UIKit
 
-class NewTextMessageCell: BaseMessageCell {
+class TextMessageCell: BaseMessageCell {
 
     override func setupSubviews() {
         super.setupSubviews()
