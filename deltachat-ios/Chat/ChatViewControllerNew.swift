@@ -331,7 +331,7 @@ class ChatViewControllerNew: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UIMenuController.shared.setMenuVisible(false, animated: true)
+        _ = handleUIMenu()
 
         let id = messageIds[indexPath.row]
         let message = DcMsg(id: id)
@@ -410,7 +410,7 @@ class ChatViewControllerNew: UITableViewController {
             message.type == DC_MSG_VOICE {
             showMediaGalleryFor(message: message)
         }
-        UIMenuController.shared.setMenuVisible(false, animated: true)
+        _ = handleUIMenu()
     }
 
     func configureAvatarVisibility(for message: DcMsg, at indexPath: IndexPath) -> Bool {
@@ -1057,19 +1057,34 @@ class ChatViewControllerNew: UITableViewController {
         navigationController?.present(inputDlg, animated: true, completion: nil)
     }
 
+    func handleUIMenu() -> Bool {
+        if UIMenuController.shared.isMenuVisible {
+            UIMenuController.shared.setMenuVisible(false, animated: true)
+            return true
+        }
+        return false
+    }
 }
 
 // MARK: - BaseMessageCellDelegate
 extension ChatViewControllerNew: BaseMessageCellDelegate {
-    func phoneNumberTapped(number: String) {
+
+    @objc func textTapped(indexPath: IndexPath) {
+        _ = handleUIMenu()
+    }
+
+    @objc func phoneNumberTapped(number: String) {
+        if handleUIMenu() { return }
         logger.debug("phone number tapped \(number)")
     }
 
-    func commandTapped(command: String) {
+    @objc func commandTapped(command: String) {
+        if handleUIMenu() { return }
         logger.debug("command tapped \(command)")
     }
 
-    func urlTapped(url: URL) {
+    @objc func urlTapped(url: URL) {
+        if handleUIMenu() { return }
         if Utils.isEmail(url: url) {
             logger.debug("tapped on contact")
             let email = Utils.getEmailFrom(url)
@@ -1080,10 +1095,12 @@ extension ChatViewControllerNew: BaseMessageCellDelegate {
         }
     }
 
-    func imageTapped(indexPath: IndexPath) {
+    @objc func imageTapped(indexPath: IndexPath) {
+        if handleUIMenu() { return }
         showMediaGalleryFor(indexPath: indexPath)
     }
-    func avatarTapped(indexPath: IndexPath) {
+
+    @objc func avatarTapped(indexPath: IndexPath) {
         let message = DcMsg(id: messageIds[indexPath.row])
         let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: message.fromContactId)
         navigationController?.pushViewController(contactDetailController, animated: true)
