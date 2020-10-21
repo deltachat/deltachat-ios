@@ -72,7 +72,7 @@ public class BaseMessageCell: UITableViewCell {
 
     public weak var baseDelegate: BaseMessageCellDelegate?
 
-    lazy var messageLabel: PaddingTextView = {
+    public lazy var messageLabel: PaddingTextView = {
         let view = PaddingTextView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
@@ -210,9 +210,11 @@ public class BaseMessageCell: UITableViewCell {
     @objc
     open func handleTapGesture(_ gesture: UIGestureRecognizer) {
         guard gesture.state == .ended else { return }
-
         let touchLocation = gesture.location(in: messageLabel)
-        _ = messageLabel.label.handleGesture(touchLocation)
+        let isHandled = messageLabel.label.handleGesture(touchLocation)
+        if !isHandled, let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            self.baseDelegate?.textTapped(indexPath: indexPath)
+        }
     }
 
     @objc func onAvatarTapped() {
@@ -409,5 +411,5 @@ public protocol BaseMessageCellDelegate: class {
     func urlTapped(url: URL) // url is eg. `https://foo.bar`
     func imageTapped(indexPath: IndexPath)
     func avatarTapped(indexPath: IndexPath)
-
+    func textTapped(indexPath: IndexPath)
 }

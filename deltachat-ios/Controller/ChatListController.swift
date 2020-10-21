@@ -403,7 +403,7 @@ class ChatListController: UITableViewController {
 
     func showChat(chatId: Int, animated: Bool = true) {
         //let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
-        let chatVC = ChatViewControllerNew(dcContext: dcContext, chatId: chatId)
+        let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId)
         navigationController?.pushViewController(chatVC, animated: animated)
     }
 

@@ -16,46 +16,43 @@ class MailboxViewController: ChatViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = String.localized("menu_deaddrop")
-
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        askToChat(messageId: messageIds[indexPath.row])
     }
 
-    override func didTapMessage(in cell: MessageCollectionViewCell) {
-        askToChat(cell: cell)
+    override func phoneNumberTapped(number: String) {}
+    override func commandTapped(command: String) {}
+    override func urlTapped(url: URL) {}
+    override func imageTapped(indexPath: IndexPath) {
+        askToChat(messageId: messageIds[indexPath.row])
     }
-
-    override func didTapCellTopLabel(in cell: MessageCollectionViewCell) {
-        askToChat(cell: cell)
+    override func avatarTapped(indexPath: IndexPath) {
+        askToChat(messageId: messageIds[indexPath.row])
     }
-
-    override func didTapAvatar(in cell: MessageCollectionViewCell) {
-        askToChat(cell: cell)
-    }
-
-    override func didTapBackground(in cell: MessageCollectionViewCell) {
-        askToChat(cell: cell)
+    override func textTapped(indexPath: IndexPath) {
+        askToChat(messageId: messageIds[indexPath.row])
     }
 
 
-    private func askToChat(cell: MessageCollectionViewCell) {
-        if let indexPath = messagesCollectionView.indexPath(for: cell) {
-
-            let message = messageList[indexPath.section]
-            let dcContact = message.fromContact
-            let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
-            let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
-            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-                let chat = self.dcContext.createChatByMessageId(message.id)
-                self.showChat(chatId: chat.id)
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
-                dcContact.block()
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
-            present(alert, animated: true, completion: nil)
+    func askToChat(messageId: Int) {
+        if handleUIMenu() { return }
+        let message = DcMsg(id: messageId)
+        if message.isInfo {
+            return
         }
+        let dcContact = message.fromContact
+        let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+            let chat = self.dcContext.createChatByMessageId(messageId)
+            self.showChat(chatId: chat.id)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
+            dcContact.block()
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+        present(alert, animated: true, completion: nil)
     }
 }

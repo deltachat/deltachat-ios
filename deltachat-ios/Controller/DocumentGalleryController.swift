@@ -7,7 +7,7 @@ class DocumentGalleryController: UIViewController {
 
     private lazy var tableViews: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
-        table.register(FileTableViewCell.self, forCellReuseIdentifier: FileTableViewCell.reuseIdentifier)
+        table.register(DocumentGalleryFileCell.self, forCellReuseIdentifier: DocumentGalleryFileCell.reuseIdentifier)
         table.dataSource = self
         table.delegate = self
         table.rowHeight = 60
@@ -66,7 +66,7 @@ extension DocumentGalleryController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FileTableViewCell.reuseIdentifier, for: indexPath) as? FileTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DocumentGalleryFileCell.reuseIdentifier, for: indexPath) as? DocumentGalleryFileCell else {
             return UITableViewCell()
         }
         let msg = DcMsg(id: fileMessageIds[indexPath.row])
