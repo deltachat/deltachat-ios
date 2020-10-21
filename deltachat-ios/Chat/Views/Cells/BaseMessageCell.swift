@@ -160,7 +160,7 @@ public class BaseMessageCell: UITableViewCell {
         contentView.addSubview(avatarView)
 
         contentView.addConstraints([
-            avatarView.constraintAlignLeadingTo(contentView),
+            avatarView.constraintAlignLeadingTo(contentView, paddingLeading: 2),
             avatarView.constraintAlignBottomTo(contentView),
             avatarView.constraintWidthTo(28, priority: .defaultHigh),
             avatarView.constraintHeightTo(28, priority: .defaultHigh),
