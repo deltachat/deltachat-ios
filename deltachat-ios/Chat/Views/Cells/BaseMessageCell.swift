@@ -48,7 +48,7 @@ public class BaseMessageCell: UITableViewCell {
             mainContentBelowTopLabelConstraint?.isActive = !newValue
             mainContentUnderTopLabelConstraint?.isActive = newValue
             topLabel.backgroundColor = newValue ?
-                UIColor(alpha: 200, red: 50, green: 50, blue: 50) :
+                UIColor(alpha: 200, red: 20, green: 20, blue: 20) :
                 UIColor(alpha: 0, red: 0, green: 0, blue: 0)
         }
         get {
@@ -102,8 +102,7 @@ public class BaseMessageCell: UITableViewCell {
     lazy var topLabel: PaddingTextView = {
         let view = PaddingTextView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "title"
-        view.font = UIFont.preferredFont(for: .caption1, weight: .regular)
+        view.font = UIFont.preferredFont(for: .caption1, weight: .bold)
         view.layer.cornerRadius = 4
         view.clipsToBounds = true
         view.paddingLeading = 4
@@ -226,7 +225,8 @@ public class BaseMessageCell: UITableViewCell {
     // update classes inheriting BaseMessageCell first before calling super.update(...)
     func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool, isGroup: Bool) {
         if msg.isFromCurrentSender {
-            topLabel.text = nil
+            topLabel.text = msg.isForwarded ? String.localized("forwarded_message") : nil
+            topLabel.textColor = msg.isForwarded ? DcColors.grayDateColor : DcColors.defaultTextColor
             leadingConstraint?.isActive = false
             leadingConstraintGroup?.isActive = false
             trailingConstraint?.isActive = false
@@ -235,7 +235,10 @@ public class BaseMessageCell: UITableViewCell {
             trailingConstraintCurrentSender?.isActive = true
 
         } else {
-            topLabel.text = isGroup ? msg.fromContact.displayName : nil
+            topLabel.text = msg.isForwarded ? String.localized("forwarded_message") :
+                isGroup ? msg.fromContact.displayName : nil
+            topLabel.textColor = msg.isForwarded ? DcColors.grayDateColor :
+                isGroup ? msg.fromContact.color : DcColors.defaultTextColor
             leadingConstraintCurrentSender?.isActive = false
             trailingConstraintCurrentSender?.isActive = false
             if isGroup {
