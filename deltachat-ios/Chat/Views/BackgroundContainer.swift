@@ -1,5 +1,3 @@
-
-
 import Foundation
 import UIKit
 import DcCore
@@ -7,9 +5,11 @@ import DcCore
 class BackgroundContainer: UIImageView {
 
     var rectCorners: UIRectCorner?
+    var color: UIColor?
 
     func update(rectCorners: UIRectCorner, color: UIColor) {
         self.rectCorners = rectCorners
+        self.color = color
         image = UIImage(color: color)
         setNeedsLayout()
         layoutIfNeeded()
@@ -33,6 +33,15 @@ class BackgroundContainer: UIImageView {
     func prepareForReuse() {
         layer.mask = nil
         image = nil
+        rectCorners = nil
+        color = nil
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if let rectCorners = self.rectCorners, let color = self.color {
+            update(rectCorners: rectCorners, color: color)
+        }
     }
 
 }
