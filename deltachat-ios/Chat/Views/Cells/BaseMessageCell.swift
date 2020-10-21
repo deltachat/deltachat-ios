@@ -170,7 +170,7 @@ public class BaseMessageCell: UITableViewCell {
 
         mainContentBelowTopLabelConstraint = mainContentView.constraintToBottomOf(topLabel, paddingTop: 6)
         mainContentUnderTopLabelConstraint = mainContentView.constraintAlignTopTo(messageBackgroundContainer)
-        mainContentAboveBottomLabelConstraint = bottomLabel.constraintToBottomOf(mainContentView, paddingTop: 6, priority: .defaultHigh)
+        mainContentAboveBottomLabelConstraint = bottomLabel.constraintToBottomOf(mainContentView, paddingTop: -2, priority: .defaultHigh)
         mainContentUnderBottomLabelConstraint = mainContentView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 0, priority: .defaultHigh)
 
         topCompactView = false
@@ -251,16 +251,24 @@ public class BaseMessageCell: UITableViewCell {
     }
 
     func getFormattedBottomLine(message: DcMsg) -> NSAttributedString {
+
+        var paragraphStyle = NSParagraphStyle()
+        if let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle {
+            style.minimumLineHeight = 22
+            paragraphStyle = style
+        }
+
         var timestampAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.preferredFont(for: .caption1, weight: .regular),
             .foregroundColor: DcColors.grayDateColor,
-            .paragraphStyle: NSParagraphStyle()
+            .paragraphStyle: paragraphStyle,
         ]
 
         let text = NSMutableAttributedString()
         if message.fromContactId == Int(DC_CONTACT_ID_SELF) {
             if let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle {
                 style.alignment = .right
+                style.minimumLineHeight = 22
                 timestampAttributes[.paragraphStyle] = style
             }
 
@@ -293,25 +301,24 @@ public class BaseMessageCell: UITableViewCell {
 
     private func attachSendingState(_ state: Int, to text: NSMutableAttributedString) {
         let imageAttachment = NSTextAttachment()
-        var offset = -4
-
+        var offset = -2
 
         switch Int32(state) {
         case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 16)?.maskWithColor(color: DcColors.grayDateColor)
+            imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 14)?.maskWithColor(color: DcColors.grayDateColor)
             imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_sending")
-            offset = -2
         case DC_STATE_OUT_DELIVERED:
             imageAttachment.image = #imageLiteral(resourceName: "ic_done_36pt").scaleDownImage(toMax: 18)
             imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_delivered")
+            offset = -3
         case DC_STATE_OUT_MDN_RCVD:
             imageAttachment.image = #imageLiteral(resourceName: "ic_done_all_36pt").scaleDownImage(toMax: 18)
             imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_read")
             text.append(NSAttributedString(string: " "))
+            offset = -3
         case DC_STATE_OUT_FAILED:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 16)
+            imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 17)
             imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_error")
-            offset = -2
         default:
             imageAttachment.image = nil
         }
