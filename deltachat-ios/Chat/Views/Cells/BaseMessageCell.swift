@@ -12,8 +12,6 @@ public class BaseMessageCell: UITableViewCell {
     private var mainContentUnderTopLabelConstraint: NSLayoutConstraint?
     private var mainContentAboveBottomLabelConstraint: NSLayoutConstraint?
     private var mainContentUnderBottomLabelConstraint: NSLayoutConstraint?
-    private var bottomLineLeftAlignedConstraint: [NSLayoutConstraint] = []
-    private var bottomLineRightAlignedConstraint: [NSLayoutConstraint] = []
     private var mainContentViewLeadingConstraint: NSLayoutConstraint?
     private var mainContentViewTrailingConstraint: NSLayoutConstraint?
 
@@ -24,21 +22,6 @@ public class BaseMessageCell: UITableViewCell {
         }
         get {
             return mainContentViewLeadingConstraint?.constant ?? 0
-        }
-    }
-
-    //aligns the bottomLabel to the left / right
-    private var bottomLineLeftAlign: Bool {
-        set {
-            for constraint in bottomLineLeftAlignedConstraint {
-                constraint.isActive = newValue
-            }
-            for constraint in bottomLineRightAlignedConstraint {
-                constraint.isActive = !newValue
-            }
-        }
-        get {
-            return !bottomLineLeftAlignedConstraint.isEmpty && bottomLineLeftAlignedConstraint[0].isActive
         }
     }
 
@@ -170,6 +153,8 @@ public class BaseMessageCell: UITableViewCell {
             bottomLabel.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 6),
             messageBackgroundContainer.constraintAlignTopTo(contentView, paddingTop: 6),
             messageBackgroundContainer.constraintAlignBottomTo(contentView),
+            bottomLabel.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
+            bottomLabel.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8)
         ])
 
         leadingConstraint = messageBackgroundContainer.constraintAlignLeadingTo(contentView, paddingLeading: 6)
@@ -185,13 +170,8 @@ public class BaseMessageCell: UITableViewCell {
 
         mainContentBelowTopLabelConstraint = mainContentView.constraintToBottomOf(topLabel, paddingTop: 6)
         mainContentUnderTopLabelConstraint = mainContentView.constraintAlignTopTo(messageBackgroundContainer)
-        mainContentAboveBottomLabelConstraint = bottomLabel.constraintToBottomOf(mainContentView, paddingTop: 6, priority: .defaultHigh)
+        mainContentAboveBottomLabelConstraint = bottomLabel.constraintToBottomOf(mainContentView, paddingTop: -2, priority: .defaultHigh)
         mainContentUnderBottomLabelConstraint = mainContentView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 0, priority: .defaultHigh)
-
-        bottomLineRightAlignedConstraint = [bottomLabel.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
-                                           bottomLabel.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8)]
-        bottomLineLeftAlignedConstraint = [bottomLabel.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 8),
-                                           bottomLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 8)]
 
         topCompactView = false
         bottomCompactView = false
@@ -230,7 +210,6 @@ public class BaseMessageCell: UITableViewCell {
             leadingConstraint?.isActive = false
             leadingConstraintGroup?.isActive = false
             trailingConstraint?.isActive = false
-            bottomLineLeftAlign = false
             leadingConstraintCurrentSender?.isActive = true
             trailingConstraintCurrentSender?.isActive = true
 
@@ -249,7 +228,6 @@ public class BaseMessageCell: UITableViewCell {
                 leadingConstraint?.isActive = true
             }
             trailingConstraint?.isActive = true
-            bottomLineLeftAlign = true
         }
 
         if isAvatarVisible {
@@ -273,23 +251,34 @@ public class BaseMessageCell: UITableViewCell {
     }
 
     func getFormattedBottomLine(message: DcMsg) -> NSAttributedString {
+
+        var paragraphStyle = NSParagraphStyle()
+        if let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle {
+            style.minimumLineHeight = 22
+            paragraphStyle = style
+        }
+
         var timestampAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.preferredFont(for: .caption1, weight: .regular),
             .foregroundColor: DcColors.grayDateColor,
-            .paragraphStyle: NSParagraphStyle()
+            .paragraphStyle: paragraphStyle,
         ]
 
         let text = NSMutableAttributedString()
         if message.fromContactId == Int(DC_CONTACT_ID_SELF) {
             if let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle {
                 style.alignment = .right
+                style.minimumLineHeight = 22
                 timestampAttributes[.paragraphStyle] = style
+                if !bottomCompactView {
+                    timestampAttributes[.foregroundColor] = DcColors.checkmarkGreen
+                }
             }
 
             text.append(NSAttributedString(string: message.formattedSentDate(), attributes: timestampAttributes))
 
             if message.showPadlock() {
-                attachPadlock(to: text)
+                attachPadlock(to: text, color: bottomCompactView ? nil : DcColors.checkmarkGreen)
             }
 
             attachSendingState(message.state, to: text)
@@ -303,9 +292,13 @@ public class BaseMessageCell: UITableViewCell {
         return text
     }
 
-    private func attachPadlock(to text: NSMutableAttributedString) {
+    private func attachPadlock(to text: NSMutableAttributedString, color: UIColor? = nil) {
         let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(named: "ic_lock")
+        if let color = color {
+            imageAttachment.image = UIImage(named: "ic_lock")?.maskWithColor(color: color)
+        } else {
+            imageAttachment.image = UIImage(named: "ic_lock")
+        }
         imageAttachment.image?.accessibilityIdentifier = String.localized("encrypted_message")
         let imageString = NSMutableAttributedString(attachment: imageAttachment)
         imageString.addAttributes([NSAttributedString.Key.baselineOffset: -1], range: NSRange(location: 0, length: 1))
@@ -315,25 +308,24 @@ public class BaseMessageCell: UITableViewCell {
 
     private func attachSendingState(_ state: Int, to text: NSMutableAttributedString) {
         let imageAttachment = NSTextAttachment()
-        var offset = -4
-
+        var offset = -2
 
         switch Int32(state) {
         case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 16)?.maskWithColor(color: DcColors.grayDateColor)
+            imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 14)?.maskWithColor(color: DcColors.grayDateColor)
             imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_sending")
-            offset = -2
         case DC_STATE_OUT_DELIVERED:
             imageAttachment.image = #imageLiteral(resourceName: "ic_done_36pt").scaleDownImage(toMax: 18)
             imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_delivered")
+            offset = -3
         case DC_STATE_OUT_MDN_RCVD:
             imageAttachment.image = #imageLiteral(resourceName: "ic_done_all_36pt").scaleDownImage(toMax: 18)
             imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_read")
             text.append(NSAttributedString(string: " "))
+            offset = -3
         case DC_STATE_OUT_FAILED:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 16)
+            imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 17)
             imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_error")
-            offset = -2
         default:
             imageAttachment.image = nil
         }
