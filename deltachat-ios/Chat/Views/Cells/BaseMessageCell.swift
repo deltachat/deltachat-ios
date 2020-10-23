@@ -255,6 +255,20 @@ public class BaseMessageCell: UITableViewCell {
         if !msg.isInfo {
             bottomLabel.attributedText = getFormattedBottomLine(message: msg)
         }
+
+        if let quoteText = msg.quoteText {
+            quoteView.isHidden = false
+            quoteView.quote.text = quoteText
+
+            if let quoteMsg = msg.quoteMessage {
+                let contact = quoteMsg.fromContact
+                quoteView.senderTitle.text = contact.displayName
+                quoteView.senderTitle.textColor = contact.color
+            }
+        } else {
+            quoteView.isHidden = true
+        }
+
         messageLabel.delegate = self
     }
 
@@ -357,6 +371,7 @@ public class BaseMessageCell: UITableViewCell {
         messageLabel.text = nil
         messageLabel.attributedText = nil
         messageLabel.delegate = nil
+        quoteView.prepareForReuse()
     }
 
     // MARK: - Context menu

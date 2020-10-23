@@ -796,6 +796,10 @@ public class DcMsg {
         messagePointer = dc_msg_new(DcContext.shared.contextPointer, type)
     }
 
+    init(pointer: OpaquePointer) {
+        messagePointer = pointer
+    }
+
     deinit {
         dc_msg_unref(messagePointer)
     }
@@ -854,6 +858,18 @@ public class DcMsg {
             dc_str_unref(cString)
             return swiftString
         }
+    }
+
+    public var quoteText: String? {
+        guard let cString = dc_msg_get_quoted_text(messagePointer) else { return nil }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
+    public var quoteMessage: DcMsg? {
+        guard let msgpointer = dc_msg_get_quoted_msg(messagePointer) else { return nil }
+        return DcMsg(pointer: msgpointer)
     }
 
     public var viewtype: MessageViewType? {
