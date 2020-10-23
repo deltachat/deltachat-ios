@@ -55,6 +55,14 @@ public class BaseMessageCell: UITableViewCell {
 
     public weak var baseDelegate: BaseMessageCellDelegate?
 
+    public lazy var quoteView: QuoteView = {
+        let view = QuoteView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = true
+        view.isHidden = true
+        return view
+    }()
+
     public lazy var messageLabel: PaddingTextView = {
         let view = PaddingTextView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +102,7 @@ public class BaseMessageCell: UITableViewCell {
     }()
 
     lazy var mainContentView: UIStackView = {
-        let view = UIStackView()
+        let view = UIStackView(arrangedSubviews: [quoteView])
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
         return view
