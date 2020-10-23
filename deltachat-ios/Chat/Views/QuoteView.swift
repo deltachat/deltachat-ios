@@ -10,10 +10,18 @@ public class QuoteView: UIView {
         return view
     }()
 
-    lazy var quote: PaddingTextView = {
-        let view = PaddingTextView()
+    public lazy var quote: UILabel = {
+        let view = UILabel()
         view.font = UIFont.preferredFont(for: .caption1, weight: .regular)
         view.text = "quote"
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    public lazy var senderTitle: UILabel = {
+        let view = UILabel()
+        view.font = UIFont.preferredFont(for: .caption1, weight: .bold)
+        view.text = "title"
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -29,19 +37,19 @@ public class QuoteView: UIView {
 
     func setupSubviews() {
         addSubview(citeBar)
+        addSubview(senderTitle)
         addSubview(quote)
 
-        quote.paddingTop = 4
-        quote.paddingBottom = 4
-        quote.paddingLeading = 4
-        quote.paddingTrailing = 4
         addConstraints([
-            quote.constraintAlignLeadingTo(self, paddingLeading: 20),
-            quote.constraintAlignTopTo(self),
-            quote.constraintAlignTrailingTo(self),
-            quote.constraintAlignBottomTo(self),
+            senderTitle.constraintAlignTopTo(self, paddingTop: 4),
+            senderTitle.constraintAlignLeadingTo(self, paddingLeading: 24),
+            senderTitle.constraintAlignTrailingTo(self, paddingTrailing: 4),
+            quote.constraintAlignLeadingTo(self, paddingLeading: 24),
+            quote.constraintToBottomOf(senderTitle),
+            quote.constraintAlignTrailingTo(self, paddingTrailing: 4),
+            quote.constraintAlignBottomTo(self, paddingBottom: 4),
             citeBar.constraintAlignLeadingTo(self, paddingLeading: 16),
-            citeBar.constraintAlignTopTo(quote, paddingTop: 4),
+            citeBar.constraintAlignTopTo(senderTitle, paddingTop: 4),
             citeBar.constraintAlignBottomTo(quote, paddingBottom: 4),
             citeBar.constraintWidthTo(3)
         ])
