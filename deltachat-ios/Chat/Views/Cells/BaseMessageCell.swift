@@ -190,7 +190,7 @@ public class BaseMessageCell: UITableViewCell {
         avatarView.addGestureRecognizer(gestureRecognizer)
 
         let messageLabelGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
-        gestureRecognizer.numberOfTapsRequired = 1
+        messageLabelGestureRecognizer.numberOfTapsRequired = 1
         messageLabel.addGestureRecognizer(messageLabelGestureRecognizer)
 
         let quoteViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onQuoteTapped))
