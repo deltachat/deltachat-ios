@@ -149,8 +149,6 @@
 "ask_start_chat_with" = "要和%1$@開始對話嗎？";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "要把%1$@移出群組嗎？";
-
-
 // contact list
 "contacts_title" = "聯絡人清單";
 "contacts_enter_name_or_email" = "請輸入姓名或email地址";

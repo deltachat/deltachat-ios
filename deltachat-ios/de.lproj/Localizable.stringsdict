@@ -98,6 +98,22 @@
 			<string>%d Mitglieder</string>
 		</dict>
 	</dict>
+	<key>ask_send_following_n_files_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Die folgende Datei an %s senden?</string>
+			<key>other</key>
+			<string>Die folgenden %d Dateien an %s senden?</string>
+		</dict>
+	</dict>
 	<key>ask_delete_chat</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

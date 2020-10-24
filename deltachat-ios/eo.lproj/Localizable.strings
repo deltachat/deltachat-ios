@@ -162,7 +162,6 @@
 "pin" = "Alpingli";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "Depingli";
-
 "mute_for_one_hour" = "Silentigi por 1 horo";
 "mute_for_two_hours" = "Silentigi por 2 horoj";
 "mute_for_one_day" = "Silentigi por 1 tago";
@@ -185,8 +184,6 @@
 "ask_start_chat_with" = "Babili kun %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Forigi %1$@el la grupo?";
-
-
 // contact list
 "contacts_title" = "Kontaktoj";
 "contacts_enter_name_or_email" = "Enigi nomon aŭ retadreson";
@@ -213,7 +210,6 @@
 "chat_contact_request" = "Kontakt-peto";
 "retry_send" = "Reprovi sendi mesaĝon";
 "send_failed" = "Ne povis sendi mesaĝon";
-
 "show_location_traces" = "Montri spurojn";
 "add_poi" = "Sendi punkton de intereso";
 
@@ -359,7 +355,6 @@
 // permissions
 "perm_required_title" = "Permeso bezonata";
 "perm_continue" = "Daŭrigi";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Bonvenon al Delta Chat";
 "global_menu_preferences_language_desktop" = "Lingvo";
 "global_menu_file_desktop" = "Dosiero";

@@ -98,6 +98,22 @@
 			<string>%d üye</string>
 		</dict>
 	</dict>
+	<key>ask_send_following_n_files_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Aşağıdaki dosya %s alıcısına gönderilsin mi?</string>
+			<key>other</key>
+			<string>Aşağıdaki %d dosya %s alıcısına gönderilsin mi?</string>
+		</dict>
+	</dict>
 	<key>ask_delete_chat</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

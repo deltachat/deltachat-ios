@@ -168,8 +168,6 @@
 "ask_start_chat_with" = "%1$@ ilə çat? ";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "%1$@ qrupdan silmək? ";
-
-
 // contact list
 "contacts_title" = "Kontaktlar";
 "contacts_enter_name_or_email" = "Ad ya e-poçt daxil et";
@@ -199,7 +197,6 @@
 "chat_no_contact_requests" = "Əlaqə sorğuları yoxdur. \n\nƏgər klassik e-poçtların burada əlaqə istəkləri kimi görünməsini istəyirsinizsə, tətbiq parametrlərindəki müvafiq parametrləri dəyişə bilərsiniz.";
 "retry_send" = "Mesaji yenidən göndərməyə cəht et";
 "send_failed" = "Mesaj göndərilmədi";
-
 // map
 "filter_map_on_time" = "Vaxt məhdudiyyəti ilə yerləşmə yerləri göstərin";
 "show_location_traces" = "İzləri göstərmək";
@@ -504,6 +501,5 @@
 "menu.view.developer.open.log.folder" = "Loq mələfini açın";
 "menu.view.developer.open.current.log.file" = "Loq-faylı açın";
 "user_location_permission_explanation" = "Delta Chat yerinizi göstərmək və bölüşmək üçün yer icazəsinə ehtiyac duyur.";
-
 
 "perm_enable_bg_reminder_title" = "Delta Chat arxa fonda mesajları almaq üçün bura toxunun.";

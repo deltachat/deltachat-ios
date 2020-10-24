@@ -8,11 +8,14 @@
 "on" = "On";
 "off" = "Off";
 "def" = "Default";
+"default_value" = "Default (%1$@)";
+"default_value_as_above" = "Default (same as above)";
 "custom" = "Custom";
 "none" = "None";
 "automatic" = "Automatic";
 "strict" = "Strict";
 "open" = "Open";
+"open_attachment" = "Open attachment";
 "join" = "Join";
 "rejoin" = "Rejoin";
 "delete" = "Delete";
@@ -40,6 +43,7 @@
 "one_moment" = "One moment…";
 "done" = "Done";
 "undo" = "Undo";
+"offline" = "Offline";
 // Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
 "next" = "Next";
 "error" = "Error";
@@ -69,6 +73,8 @@
 "self" = "Me";
 "draft" = "Draft";
 "image" = "Image";
+// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Reply";
 "gif" = "Gif";
 "images" = "Images";
 "audio" = "Audio";
@@ -95,6 +101,8 @@
 "magenta" = "Magenta";
 "white" = "White";
 
+"zoom" = "Zoom";
+"extra_small" = "Extra small";
 "small" = "Small";
 "normal" = "Normal";
 "large" = "Large";
@@ -123,12 +131,17 @@
 "menu_add_attachment" = "Add attachment";
 "menu_leave_group" = "Leave group";
 "menu_delete_chat" = "Delete chat";
+"ask_delete_named_chat" = "Are you sure you want to delete \"%1$@\"?";
 "menu_delete_messages" = "Delete messages";
 "menu_delete_image" = "Delete image";
+"delete_contact" = "Delete contact";
 "menu_delete_locations" = "Delete all locations?";
 "menu_delete_location" = "Delete this location?";
 "menu_message_details" = "Message details";
 "menu_copy_to_clipboard" = "Copy to clipboard";
+"menu_copy_selection_to_clipboard" = "Copy selection";
+"menu_copy_link_to_clipboard" = "Copy link";
+"paste_from_clipboard" = "Paste from clipboard";
 "menu_forward" = "Forward message";
 "menu_resend" = "Resend message";
 "menu_reply" = "Reply to message";
@@ -169,6 +182,8 @@
 "pin" = "Pin";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "Unpin";
+"ConversationFragment_quoted_message_not_found" = "Original message not found";
+"reply_privately" = "Reply privately";
 
 "mute_for_one_hour" = "Mute for 1 hour";
 "mute_for_two_hours" = "Mute for 2 hours";
@@ -211,8 +226,10 @@
 "ask_delete_contact" = "Delete contact %1$@?\n\nContacts with ongoing chats and contacts from the system\'s address book cannot be deleted permanently.";
 "cannot_delete_contacts_in_use" = "Cannot delete contacts with ongoing chats.";
 "ask_start_chat_with" = "Chat with %1$@?";
+"ask_delete_value" = "Delete %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Remove %1$@ from group?";
+"open_url_confirmation" = "Do you want to open this link?";
 
 
 // contact list
@@ -241,10 +258,19 @@
 "chat_self_talk_subtitle" = "Messages I sent to myself";
 "saved_messages" = "Saved messages";
 "saved_messages_explain" = "• Forward messages here for easy access\n\n• Take notes or voice memos\n\n• Attach media to save them";
+// this "Saved" should match the "Saved" from "Saved messages"
+"saved" = "Saved";
 "chat_contact_request" = "Contact request";
 "chat_no_contact_requests" = "No contact requests.\n\nIf you want classic emails to appear here as contact requests, you can change the corresponding setting in the app settings.";
 "retry_send" = "Retry to send message";
 "send_failed" = "Could not send message";
+// reasons for a disabled message composer
+"messaging_disabled_not_in_group" = "You cannot write because you are not in this group. To join, ask another member.";
+"messaging_disabled_device_chat" = "This chat contains locally generated messages. Therefore you cannot write any messages.";
+"messaging_disabled_deaddrop" = "Click on a message to accept or deny the contact request";
+"cannot_display_unsuported_file_type" = "Cannot display this file type: %1$@";
+"attachment_failed_to_load" = "Failed to load attachment";
+
 
 // map
 "filter_map_on_time" = "Show locations in time frame";
@@ -260,7 +286,9 @@
 
 // create/edit groups, contact/group profile
 "group_name" = "Group name";
-"group_avatar" = "Group avatar";
+"group_avatar" = "Group image";
+"remove_group_image" = "Remove group image";
+"change_group_image" = "Change group image";
 "group_create_button" = "Create group";
 "group_please_enter_group_name" = "Please enter a name for the group.";
 "group_add_members" = "Add members";
@@ -323,7 +351,9 @@
 "add_account" = "Add account";
 "delete_account" = "Delete account";
 "delete_account_ask" = "Are you sure you want to delete your account data?";
+"delete_account_explain_with_name" = "All account data of \"%1$@\" on this device will be deleted, including your end-to-end encryption setup, contacts, chats, messages and media. This action cannot be undone.";
 "switching_account" = "Switching account…";
+"try_connect_now" = "Try to connect now";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Configuration failed. Error: %1$@";
 
@@ -340,11 +370,11 @@
 "pref_using_custom" = "Using custom: %1$@";
 "pref_using_default" = "Using default: %1$@";
 "pref_profile_info_headline" = "Your profile info";
-"pref_profile_photo" = "Profile picture";
+"pref_profile_photo" = "Profile image";
 "pref_blocked_contacts" = "Blocked contacts";
-"pref_profile_photo_remove_ask" = "Remove profile photo?";
+"pref_profile_photo_remove_ask" = "Remove profile image?";
 "pref_password_and_account_settings" = "Password and account";
-"pref_who_can_see_profile_explain" = "Your profile picture and name will be shown alongside your messages when communicating with other users. Already sent information can not be deleted or removed.";
+"pref_who_can_see_profile_explain" = "Your profile image and name will be shown alongside your messages when communicating with other users. Already sent information can not be deleted or removed.";
 "pref_your_name" = "Your name";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
 "pref_default_status_label" = "Signature text";
@@ -365,6 +395,9 @@
 "pref_notifications" = "Notifications";
 "pref_notifications_show" = "Show";
 "pref_notifications_priority" = "Priority";
+"pref_notifications_explain" = "Enable system notifications for new messages";
+"pref_show_notification_content" = "Show message content in notification";
+"pref_show_notification_content_explain" = "Shows sender and first words of the message in notifications";
 "pref_led_color" = "LED color";
 "pref_sound" = "Sound";
 "pref_silent" = "Silent";
@@ -428,6 +461,24 @@
 "pref_background_custom_image" = "Custom image";
 "pref_background_custom_color" = "Custom color";
 "export_aborted" = "Export aborted.";
+"profile_image_select" = "Select profile image";
+"select_your_new_profile_image" = "Select your new profile image";
+"profile_image_delete" = "Delete profile image";
+
+
+// Emoji picker and categories
+"emoji_search_results" = "Search results";
+"emoji_not_found" = "No emoji found";
+"emoji_recent" = "Recently used";
+"emoji_people" = "People & Body";
+"emoji_nature" = "Animals & Nature";
+"emoji_foods" = "Food & Drink";
+"emoji_activity" = "Activity";
+"emoji_places" = "Travel & Places";
+"emoji_objects" = "Objects";
+"emoji_symbols" = "Symbols";
+"emoji_flags" = "Flags";
+
 
 // automatically delete message
 "delete_old_messages" = "Delete old messages";
@@ -493,6 +544,9 @@
 "systemmsg_ephemeral_timer_week" = "Disappearing messages timer set to 1 week.";
 "systemmsg_ephemeral_timer_four_weeks" = "Disappearing messages timer set to 4 weeks.";
 
+// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+"systemmsg_chat_protection_disabled" = "Chat protection disabled.";
+"systemmsg_chat_protection_enabled" = "Chat protection enabled.";
 
 // screen lock
 "screenlock_title" = "Screen lock";
@@ -507,8 +561,10 @@
 
 // qr code stuff
 "qr_code" = "QR code";
+"load_qr_code_as_image" = "Load QR code as image";
 "qrscan_title" = "Scan QR code";
 "qrscan_hint" = "Hold your camera over the QR code.";
+"qrscan_failed" = "QR code could not be decoded";
 "qrscan_ask_join_group" = "Do you want to join the group \"%1$@\"?";
 "qrscan_fingerprint_mismatch" = "The scanned fingerprint does not match the last seen for %1$@.";
 "qrscan_no_addr_found" = "This QR code contains a fingerprint but no email address.\n\nFor an out-of-band-verification, please establish an encrypted connection to the recipient first.";
@@ -528,7 +584,7 @@
 "qrshow_join_contact_no_connection_toast" = "No internet connection, can\'t perform QR code setup.";
 "qraccount_ask_create_and_login" = "Create new e-mail address on \"%1$@\" and log in there?";
 "qraccount_ask_create_and_login_another" = "Create new e-mail address on \"%1$@\" and log in there?\n\nYour existing account will not be deleted. Use the \"Switch account\" item to switch between your accounts.";
-"qraccount_success_enter_name" = "Login successful—your email address is %1$@\n\nIf you like, you can now enter a name and an avatar image that will be displayed to people you write to.";
+"qraccount_success_enter_name" = "Login successful—your email address is %1$@\n\nIf you like, you can now enter a name and an profile image that will be displayed to people you write to.";
 "qraccount_qr_code_cannot_be_used" = "The scanned QR code cannot be used to set up a new account.";
 "qraccount_use_on_new_install" = "The scanned QR code is for setting up a new account. You can scan the QR code when setting up a new Delta Chat installation.";
 "contact_verified" = "%1$@ verified.";
@@ -536,6 +592,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Changed setup for %1$@.";
 "verified_group_explain" = "Verified groups (experimental) provide safety against active attacks. Members are verified with a second factor by other members and messages are always end-to-end-encrypted.";
+"copy_qr_data_success" = "Copied QR url to clipboard";
 
 
 // notifications 
@@ -566,6 +623,8 @@
 "encrypted_message" = "Encrypted message";
 
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"about_offical_app_desktop" = "This is the official Delta Chat Desktop app.";
+"about_licensed_under_desktop" = "This software is licensed under GNU GPL version 3 and the source code is available on GitHub.";
 "welcome_desktop" = "Welcome to Delta Chat";
 "login_known_accounts_title_desktop" = "Known accounts";
 "global_menu_preferences_language_desktop" = "Language";
@@ -620,6 +679,7 @@
 "ask_delete_chat_desktop" = "Delete this chat?";
 "email_validation_failed_desktop" = "Email address required.";
 "forget_login_confirmation_desktop" = "Delete this login? Everything will be deleted, including your end-to-end setup, contacts, chats, messages and media. This action cannot be undone.";
+"account_info_hover_tooltip_desktop" = "E-Mail: %1$@\nSize: %2$@\nPath: %3$@";
 "me_desktop" = "me";
 "in_this_group_desktop" = "Group members";
 "not_in_this_group_desktop" = "Potential group members (not in group)";
@@ -631,7 +691,6 @@
 "menu.view.developer.open.current.log.file" = "Open current logfile";
 "user_location_permission_explanation" = "Delta Chat needs the location permission in order to show and share your location.";
 
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Delivery status: Error";
 "a11y_encryption_padlock" = "Encryption padlock";
@@ -642,6 +701,7 @@
 "a11y_delivery_status_invalid" = "Invalid delivery status";
 "a11y_message_context_menu_btn_label" = "Message actions";
 "a11y_background_preview_label" = "Background preview";
+"a11y_disappearing_messages_activated" = "Disappearing messages activated";
 
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"

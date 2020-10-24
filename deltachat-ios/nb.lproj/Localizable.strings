@@ -169,7 +169,6 @@
 "pin" = "Fest";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "Løsn";
-
 "mute_for_one_hour" = "Demp i 1 time";
 "mute_for_two_hours" = "Demp i 2 timer";
 "mute_for_one_day" = "Demp i 1 dag";
@@ -213,8 +212,6 @@
 "ask_start_chat_with" = "Begynn å sludre med %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Fjern %1$@ fra gruppen?";
-
-
 // contact list
 "contacts_title" = "Kontakter";
 "contacts_enter_name_or_email" = "Skriv navn eller e-postadresse";
@@ -395,7 +392,6 @@
 // dc_str_* resources
 "encrypted_message" = "Kryptert melding";
 
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Velkommen til Delta Chat";
 "global_menu_preferences_language_desktop" = "Språk";
 "global_menu_edit_desktop" = "Rediger";

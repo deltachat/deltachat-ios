@@ -13,6 +13,7 @@
 "automatic" = "Otomatis";
 "strict" = "Ketat";
 "open" = "Buka";
+"open_attachment" = "Buka lampiran";
 "join" = "Gabung";
 "rejoin" = "Gabung kembali";
 "delete" = "Hapus";
@@ -26,6 +27,7 @@
 "archive" = "Arsip";
 "unarchive" = "Tidak diarsip";
 "mute" = "Diam";
+"ephemeral_messages" = "Pesan yang berhilangan";
 "save" = "Simpan";
 "chat" = "Chat";
 "media" = "Media";
@@ -38,6 +40,7 @@
 "one_moment" = "Sebentar...";
 "done" = "Selesai";
 "undo" = "Undo";
+"offline" = "Offline";
 // Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
 "next" = "Berikutnya";
 "error" = "Eror";
@@ -67,6 +70,8 @@
 "self" = "Saya";
 "draft" = "Draf";
 "image" = "Gambar";
+// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Balas";
 "gif" = "Gif";
 "images" = "Gambar";
 "audio" = "Audio";
@@ -93,6 +98,8 @@
 "magenta" = "Magenta";
 "white" = "Putih";
 
+"zoom" = "Perbesar";
+"extra_small" = "Sangat kecil";
 "small" = "Kecil";
 "normal" = "Normal";
 "large" = "Besar";
@@ -127,6 +134,8 @@
 "menu_delete_location" = "Hapus lokasi ini?";
 "menu_message_details" = "Detail pesan";
 "menu_copy_to_clipboard" = "Kopi ke papan klip";
+"menu_copy_link_to_clipboard" = "Salin pranala";
+"paste_from_clipboard" = "Tempelkan dari papan klip";
 "menu_forward" = "Teruskan pesan";
 "menu_resend" = "Kirim ulang pesan";
 "menu_reply" = "Balas pesan";
@@ -167,6 +176,7 @@
 "pin" = "Sematkan";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "Lepas pin";
+"reply_privately" = "Balas secara privat";
 
 "mute_for_one_hour" = "Diamkan untuk 1 jam";
 "mute_for_two_hours" = "Diamkan untuk 2 jam";
@@ -183,8 +193,12 @@
 
 "file_saved_to" = "Berkas disimpan ke \"%1$@\".";
 
+"videochat" = "Obrolan video";
+"videochat_contact_invited_hint" = "%1$@ diundang ke obrolan video.";
+"videochat_you_invited_hint" = "Anda diundang ke obrolan video.";
 "videochat_tap_to_join" = "Ketuk untuk bergabung";
 "videochat_tap_to_open" = "Ketuk untuk membuka";
+"videochat_invitation" = "Undangan obrolan video";
 // get confirmations
 "ask_leave_group" = "Apakah anda yakin untuk keluar dari grup ini?";
 "ask_forward" = "Teruskan pesan ke %1$@?";
@@ -195,8 +209,10 @@
 "ask_delete_contact" = "Hapus kontak %1$@?\n\nKontak dengan obrolan yang sedang berlangsung dan dari buku alamat pada sistem tak bisa dihapus secara permanen.";
 "cannot_delete_contacts_in_use" = "Tak bisa menghapus kontak yang sedang dalam obrolan.";
 "ask_start_chat_with" = "Ngobrol dengan %1$@?";
+"ask_delete_value" = "Hapus %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Hapus %1$@ dari grup?";
+"open_url_confirmation" = "Apakah anda ingin membuka pranala ini?";
 
 
 // contact list
@@ -225,10 +241,15 @@
 "chat_self_talk_subtitle" = "Pesan yang saya kirimkan pada saya sendiri";
 "saved_messages" = "Pesan yang disimpan";
 "saved_messages_explain" = "• Teruskan pesan di sini untuk akses yang mudah\n\n• Buat catatan atau memo suara\n\n• Lampirkan media untuk menyimpannya";
+// this "Saved" should match the "Saved" from "Saved messages"
+"saved" = "Sudah disimpan";
 "chat_contact_request" = "Permintaan kontak";
 "chat_no_contact_requests" = "Tak ada permintaan kontak.\n\nJika anda ingin email klasik muncul di sini sebagai permintaan kontak, anda bisa mengubah aturannya di aplikasi.";
 "retry_send" = "Coba lagi mengirim pesan";
 "send_failed" = "Tak bisa mengirim pesan";
+"cannot_display_unsuported_file_type" = "Tidak dapat menampilkan tipe berkas ini: %1$@";
+"attachment_failed_to_load" = "Gagal memuat lampiran";
+
 
 // map
 "filter_map_on_time" = "Tunjukkan lokasi dalam jangka waktu";
@@ -245,6 +266,8 @@
 // create/edit groups, contact/group profile
 "group_name" = "Nama grup";
 "group_avatar" = "Avatar grup";
+"remove_group_image" = "Hapus gambar grup";
+"change_group_image" = "Ubah gambar grup";
 "group_create_button" = "Buat grup";
 "group_please_enter_group_name" = "Silakan masukkan nama untuk grup.";
 "group_add_members" = "Tambah anggota";
@@ -300,12 +323,18 @@
 "login_error_cannot_login" = "Tidak bisa login sebagai \"%1$@\". Mohon cek apakah alamat surel dan kata sandi benar.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Tanggapan dari %1$@: %2$@\n\nBeberapa penyedia layanan provider menempatkan informasi tambahan di kotak masuk Anda; Anda bisa memeriksanya, misalnya di beranda depan web. Konsultasikan dengan penyedia atau teman Anda jika Anda mengalami masalah.";
+// TLS certificate checks
+"accept_invalid_certificates" = "Terima sertifikat yang tidak sah";
 "used_settings" = "Setelan yang digunakan:";
 "switch_account" = "Alihkan akun";
 "add_account" = "Tambah akun";
 "delete_account" = "Hapus Akun";
 "delete_account_ask" = "Apakah anda yakin ingin menghapus data akun anda?";
 "switching_account" = "Ubah akun";
+"try_connect_now" = "Coba hubungkan sekarang";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "Konfigurasi gagal. Error: %1$@";
+
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Diteruskan ke…";
@@ -341,6 +370,7 @@
 "pref_notifications" = "Notifikasi";
 "pref_notifications_show" = "Menunjukkan";
 "pref_notifications_priority" = "Prioritas";
+"pref_show_notification_content_explain" = "Tampilkan pengirim dan kata-kata awal dari pesan di dalam notifikasi";
 "pref_led_color" = "Warna LED";
 "pref_sound" = "Suara";
 "pref_silent" = "Sunyi";
@@ -355,6 +385,7 @@
 "pref_incognito_keyboard" = "Keyboard penyamaran";
 "pref_read_receipts" = "Baca tanda terima";
 "pref_read_receipts_explain" = "Jika tanda terima baca dinonaktifkan, Anda tidak akan dapat melihat tanda terima baca dari orang lain.";
+"pref_manage_keys" = "Kelola kunci";
 "pref_use_system_emoji" = "Gunakan emoji sistem";
 "pref_use_system_emoji_explain" = "Matikan dukungan emoji Delta Chat yang ada";
 "pref_app_access" = "Akes Aplikasi";
@@ -379,20 +410,46 @@
 "pref_managekeys_import_explain" = "Impor kunci rahasia dari \"%1$@\"?\n\n• Kunci rahasia sebelumnya tidak akan terhapus\n\n• Kunci terakhir yang diimpo akan digunakan sebagai kunci default baru kecuali ada kata \"legacy\" di nama berkas.";
 "pref_managekeys_secret_keys_imported_from_x" = "Kunci rahasia diimpor dari \"%1$@\".";
 "pref_background" = "Latar belakang";
+"pref_background_btn_default" = "Menggunakan gambar default";
 "pref_background_btn_gallery" = "Pilih dari galeri";
 "pref_watch_mvbox_folder" = "Saksikan berkas DeltaChat";
 "pref_send_copy_to_self" = "Kirim salinan ke saya";
 "pref_auto_folder_moves" = "Perpindahan otomatis ke berkas DeltaChat";
 "pref_auto_folder_moves_explain" = "Percakapan dipindahkan untuk menghindari memenuhi kotak masuk";
+"pref_show_emails" = "Tampilkan email klasik";
+"pref_show_emails_no" = "Tidak, hanya obrolan saja";
+"pref_show_emails_accepted_contacts" = "Untuk kontak yang telah diterima";
 "pref_show_emails_all" = "Semua";
+"pref_experimental_features" = "Fitur yang masih bersifat eksperimen";
+"pref_background_default" = "Latar belakang default";
+"pref_background_default_color" = "Warna default";
+"profile_image_select" = "Pilih gambar profil";
+"select_your_new_profile_image" = "Pilih gambar profil baru";
+"profile_image_delete" = "Hapus gambar profil";
+
+
+"emoji_recent" = "Terakhir digunakan";
+"emoji_nature" = "Hewan & Alam";
+"emoji_foods" = "Makanan & Minuman";
+"emoji_activity" = "Aktifitas";
+"emoji_places" = "Perjalanan & Tempat";
+"emoji_symbols" = "Simbol-simbol";
+// automatically delete message
+"delete_old_messages" = "Hapus pesan-pesan lama";
+// devs: autodel_title is deprecated, use delete_old_messages instead
+"autodel_title" = "Otomatis hapus pesan-pesan";
 "autodel_device_title" = "Hapus pesarn dari perangkat";
 "autodel_server_title" = "Hapus pesan dari server";
 "autodel_confirm" = "Saya mengerti, hapus semua pesan ini";
 "autodel_at_once" = "Segera";
+"after_30_seconds" = "Setelah 30 detik";
+"after_1_minute" = "Setelah 1 menit";
 "autodel_after_1_hour" = "Setelah 1 jam";
 "autodel_after_1_day" = "Setelah 1 hari";
 "autodel_after_1_week" = "Setelah 1 minggu";
 "autodel_after_4_weeks" = "Setelah 4 minggu";
+"autodel_after_1_year" = "Setelah 1 tahun";
+
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt adalah spesifikasi baru dan terbuka untuk enkripsi otomatis dimana surel yang dikirim hanya akan terlihat oleh si penerima yang disebut dengan istilah end-to-end atau ujung ke ujung.\n\nPengaturan ujung ke ujung ini dibuat secara otomatis sesuai kebutuhan dan dapat Anda transfer antar perangkat berkat Autocrypt Setup Messages.";
@@ -407,9 +464,14 @@
 "autocrypt_continue_transfer_title" = "Pengaturan Pesan Autocrypt";
 "autocrypt_continue_transfer_please_enter_code" = "Masukkan kode pengaturan yang ditampilkan di perangkat lain.";
 "autocrypt_continue_transfer_succeeded" = "Pengaturan ujung ke ujung sudah ditransfer. Sekarang perangkat ini sudah siap dengan pengaturan Autocrypt yang sama dengan perangkat lain.";
+"autocrypt_continue_transfer_retry" = "Ulangi";
 "autocrypt_bad_setup_code" = "Kode pengaturan jelek. Ayo cakepan lagi.\n\nKalau Anda lupa kode pengaturan, kirim lagi Autocrypt Setup Message dari perangkat lainnya.";
 
 
+"systemmsg_group_image_changed" = "Gambar grup telah diubah.";
+"systemmsg_group_image_deleted" = "Gambar grup telah dihapus.";
+"systemmsg_member_added" = "Member %1$@ telah ditambahkan.";
+"systemmsg_member_removed" = "Member %1$@ telah dikeluarkan.";
 "systemmsg_read_receipt_subject" = "Pesan dibuka";
 "systemmsg_read_receipt_body" = "Pesan \"%1$@\" yang Anda kirimkan tampak di layar penerima.\n\nIni bukan jaminan kalau isinya dibaca.";
 "systemmsg_cannot_decrypt" = "Pesan ini tidak bisa dienkripsi.\n\n• Ada baiknya menjawab pesan ini dan meminta pengirimnya untuk kirim ulang.\n\n• Dalam kasus Anda menginstal ulang Delta Chat atau program surel lain di perangkat ini atau perangkat lain, sebaiknya Anda mengirim Pengaturan Pesan Autocrypt dari sana.";
@@ -417,6 +479,9 @@
 "systemmsg_action_by_me" = "%1$@ oleh saya.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ oleh %2$@.";
+"systemmsg_subject_for_new_contact" = "Pesan dari %1$@";
+"systemmsg_failed_sending_to" = "Gagal mengirim pesan ke %1$@.";
+
 // screen lock
 "screenlock_title" = "Kunci Layar";
 "screenlock_explain" = "Kunci akses dengan kunci layar Android atau sidik jari; kalau tidak mau menampilkan konten sebelumnya, mohon aktifkan pula \"Keamanan Layar\".";
@@ -452,10 +517,9 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Ubah pengaturan untuk %1$@.";
 "verified_group_explain" = "Kelompok yang sudah diverifikasi (eksperimental) menjaga keamanan dari serangan aktif. Anggota diverifikasi dengan faktor kedua oleh anggota lain dan selalu dengan pesan yang terinkripsi ujung ke ujung.";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$dpesan baru di%2$d obrolan";
+"notify_mark_read" = "Tandai telah dibaca";
 "notify_reply_button" = "Balasan";
 "notify_new_message" = "Pesan baru";
 "notify_background_connection_enabled" = "Koneksi latar diaktifkan";
@@ -477,7 +541,6 @@
 // dc_str_* resources
 "encrypted_message" = "Pesan terenkripsi";
 
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Selamat Datang di Delta Chat";
 "login_known_accounts_title_desktop" = "Akun yang dikenal";
 "global_menu_preferences_language_desktop" = "Bahasa";
@@ -516,6 +579,7 @@
 "autocrypt_key_transfer_desktop" = "Transfer kunci Autocrypt";
 "initiate_key_transfer_desktop" = "Pengaturan Pesan Autocrypt secara aman membagikan pengaturan ujung ke ujung Anda dengan aplikasi lain yang sesuai dengan Autocrypt. Pengaturan akan dienkripsi dengan kode pengaturan yang ditampilkan di sini dan harus diketik di perangkat lain.";
 "reply_to_message_desktop" = "Balas pesan";
+"download_attachment_desktop" = "Unduh lampiran";
 "show_key_transfer_message_desktop" = "Kunci Anda sudah dikirim ke Anda sendiri. Lihat pesan pengaturan di perangkat yang lain. Seharusnya Anda akan diminta kode pengaturan. Masukkan angka berikut:";
 "new_message_from_desktop" = "Pesan baru dari";
 "unblock_contacts_desktop" = "Buka blokir kontak";
@@ -537,7 +601,6 @@
 "menu.view.developer.open.current.log.file" = "Buka log berkas saat ini";
 "user_location_permission_explanation" = "Delta Chat memerlukan izin lokasi untuk menunjukkan dan membagikan lokasi Anda.";
 
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Status pengiriman: Kesalahan";
 "a11y_delivery_status_sending" = "Status pengiriman: Mengirim";
@@ -545,3 +608,6 @@
 "a11y_delivery_status_delivered" = "Status pengiriman: Terkirim";
 "a11y_delivery_status_read" = "Status pengiriman: Dibaca";
 "a11y_delivery_status_invalid" = "Status pengiriman tidak valid";
+"a11y_background_preview_label" = "Pratampil latar belakang";
+
+

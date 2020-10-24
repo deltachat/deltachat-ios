@@ -8,11 +8,14 @@
 "on" = "Aan";
 "off" = "Uit";
 "def" = "Standaard";
+"default_value" = "Standaard (%1$@)";
+"default_value_as_above" = "Standaard (zoals hierboven)";
 "custom" = "Aangepast";
 "none" = "Geen";
 "automatic" = "Automatisch";
 "strict" = "Strikt";
 "open" = "Openen";
+"open_attachment" = "Bijlage openen";
 "join" = "Deelnemen";
 "rejoin" = "Opnieuw deelnemen";
 "delete" = "Verwijderen";
@@ -40,6 +43,7 @@
 "one_moment" = "Even geduld...";
 "done" = "Klaar";
 "undo" = "Ongedaan maken";
+"offline" = "Offline";
 // Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
 "next" = "Volgende";
 "error" = "Fout";
@@ -69,6 +73,8 @@
 "self" = "Ik";
 "draft" = "Concept";
 "image" = "Afbeelding";
+// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Antwoord";
 "gif" = "GIF";
 "images" = "Afbeeldingen";
 "audio" = "Audio";
@@ -95,6 +101,8 @@
 "magenta" = "Magenta";
 "white" = "Wit";
 
+"zoom" = "Zoomen";
+"extra_small" = "Extra klein";
 "small" = "Klein";
 "normal" = "Normaal";
 "large" = "Groot";
@@ -123,12 +131,17 @@
 "menu_add_attachment" = "Bijlage toevoegen";
 "menu_leave_group" = "Groep verlaten";
 "menu_delete_chat" = "Gesprek verwijderen";
+"ask_delete_named_chat" = "Weet je zeker dat je \'%1$@\' wilt verwijderen?";
 "menu_delete_messages" = "Berichten verwijderen";
 "menu_delete_image" = "Afbeelding verwijderen";
+"delete_contact" = "Contactpersoon verwijderen";
 "menu_delete_locations" = "Wil je alle locaties verwijderen?";
 "menu_delete_location" = "Wil je deze locatie verwijderen?";
 "menu_message_details" = "Berichtinformatie";
 "menu_copy_to_clipboard" = "Kopiëren naar klembord";
+"menu_copy_selection_to_clipboard" = "Selectie kopiëren";
+"menu_copy_link_to_clipboard" = "Link kopiëren";
+"paste_from_clipboard" = "Plakken van klembord";
 "menu_forward" = "Bericht doorsturen";
 "menu_resend" = "Bericht opnieuw versturen";
 "menu_reply" = "Bericht beantwoorden";
@@ -169,6 +182,8 @@
 "pin" = "Vastmaken";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "Losmaken";
+"ConversationFragment_quoted_message_not_found" = "Geen oorspronkelijk bericht gevonden";
+"reply_privately" = "Privé beantwoorden";
 
 "mute_for_one_hour" = "1 uur lang uitschakelen";
 "mute_for_two_hours" = "2 uur lang uitschakelen";
@@ -211,8 +226,10 @@
 "ask_delete_contact" = "Wil je de contactpersoon %1$@ permanent verwijderen?\n\nPersonen met actieve gesprekken en personen afkomstig uit je adresboek kunnen niet permanent worden verwijderd.";
 "cannot_delete_contacts_in_use" = "Contactpersonen waarmee je nog gesprekken voert kunnen niet worden verwijderd.";
 "ask_start_chat_with" = "Wil je een gesprek voeren met %1$@?";
+"ask_delete_value" = "Wil je %1$@ verwijderen?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Wil je %1$@ verwijderen uit de groep?";
+"open_url_confirmation" = "Weet je zeker dat je deze link wilt openen?";
 
 
 // contact list
@@ -241,10 +258,19 @@
 "chat_self_talk_subtitle" = "Aan mijzelf gestuurde berichten";
 "saved_messages" = "Opgeslagen berichten";
 "saved_messages_explain" = "• Stuur berichten door naar hier om ze snel terug te kunnen lezen\n\n• Maak aantekeningen of spraakopnamen\n\n• Voeg media toe om deze op te slaan";
+// this "Saved" should match the "Saved" from "Saved messages"
+"saved" = "Opgeslagen";
 "chat_contact_request" = "Contactpersoonverzoek";
 "chat_no_contact_requests" = "Geen contactpersoonverzoeken.\n\nAls je wilt dat klassieke e-mail hier verschijnt in de vorm van contactpersoonverzoeken, dan kun je dat aangeven in de app-instellingen.";
 "retry_send" = "Bericht opnieuw versturen";
 "send_failed" = "Kan bericht niet versturen";
+// reasons for a disabled message composer
+"messaging_disabled_not_in_group" = "Alleen leden kunnen berichten versturen aan deze groep. Vraag aan een lid om lid te worden.";
+"messaging_disabled_device_chat" = "Je kunt geen berichten versturen omdat dit gesprek alleen lokaal gegenereerde berichten bevat.";
+"messaging_disabled_deaddrop" = "Druk op een bericht om het contactpersoonverzoek goed te keuren of af te wijzen";
+"cannot_display_unsuported_file_type" = "Het volgende bestandstype kan niet worden getoond: %1$@";
+"attachment_failed_to_load" = "De bijlage kan niet worden geladen";
+
 
 // map
 "filter_map_on_time" = "Locaties tonen in tijdsbeeld";
@@ -261,6 +287,8 @@
 // create/edit groups, contact/group profile
 "group_name" = "Groepsnaam";
 "group_avatar" = "Groepsafbeelding";
+"remove_group_image" = "Groepsafbeelding verwijderen";
+"change_group_image" = "Groepsafbeelding wijzigen";
 "group_create_button" = "Groep aanmaken";
 "group_please_enter_group_name" = "Voer een naam in voor de groep.";
 "group_add_members" = "Deelnemers toevoegen";
@@ -323,7 +351,9 @@
 "add_account" = "Account toevoegen";
 "delete_account" = "Account verwijderen";
 "delete_account_ask" = "Weet je zeker dat je je accountgegevens wilt verwijderen?";
+"delete_account_explain_with_name" = "Alle gegevens van \'%1$@\' worden verwijderd: de eind-tot-eindinstellingen, contactpersonen, gesprekken, berichten en media. Deze actie kan niet ongedaan worden gemaakt.";
 "switching_account" = "Bezig met overschakelen…";
+"try_connect_now" = "Probeer te verbinden";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Het instellen is mislukt. Foutmelding: %1$@";
 
@@ -365,6 +395,9 @@
 "pref_notifications" = "Meldingen";
 "pref_notifications_show" = "Tonen";
 "pref_notifications_priority" = "Prioriteit";
+"pref_notifications_explain" = "Systeemmeldingen tonen bij nieuwe berichten";
+"pref_show_notification_content" = "Berichtinhoud tonen op meldingen";
+"pref_show_notification_content_explain" = "Toont de afzender en eerste regel van berichten op meldingen";
 "pref_led_color" = "LED-kleur";
 "pref_sound" = "Geluid";
 "pref_silent" = "Stil";
@@ -428,6 +461,24 @@
 "pref_background_custom_image" = "Eigen afbeelding";
 "pref_background_custom_color" = "Eigen kleur";
 "export_aborted" = "Het exporteren is afgebroken.";
+"profile_image_select" = "Profielfoto kiezen";
+"select_your_new_profile_image" = "Kies een nieuwe profielfoto";
+"profile_image_delete" = "Profielfoto verwijderen";
+
+
+// Emoji picker and categories
+"emoji_search_results" = "Zoekresultaten";
+"emoji_not_found" = "Geen emoji gevonden";
+"emoji_recent" = "Onlangs gebruikt";
+"emoji_people" = "Personen en lichaamsuitdrukkingen";
+"emoji_nature" = "Dieren en natuur";
+"emoji_foods" = "Eten en drinken";
+"emoji_activity" = "Activiteit";
+"emoji_places" = "Reizen en locaties";
+"emoji_objects" = "Objecten";
+"emoji_symbols" = "Symbolen";
+"emoji_flags" = "Vlaggen";
+
 
 // automatically delete message
 "delete_old_messages" = "Oude berichten verwijderen";
@@ -493,6 +544,9 @@
 "systemmsg_ephemeral_timer_week" = "De tijdklok van verdwijnende berichten is ingesteld op 1 week.";
 "systemmsg_ephemeral_timer_four_weeks" = "De tijdklok van verdwijnende berichten is ingesteld op 4 weken.";
 
+// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+"systemmsg_chat_protection_disabled" = "Gespreksbeveiliging is uitgeschakeld.";
+"systemmsg_chat_protection_enabled" = "Gespreksbeveiliging is ingeschakeld.";
 
 // screen lock
 "screenlock_title" = "Schermvergrendeling";
@@ -507,8 +561,10 @@
 
 // qr code stuff
 "qr_code" = "QR-code";
+"load_qr_code_as_image" = "QR-code als afbeelding laden";
 "qrscan_title" = "QR-code scannen";
 "qrscan_hint" = "Plaatst je camera boven de QR-code";
+"qrscan_failed" = "De qr-code kan niet worden ontcijferd";
 "qrscan_ask_join_group" = "Wil je deelnemen aan de groep \"%1$@\"?";
 "qrscan_fingerprint_mismatch" = "De gescande vingerafdruk komt niet overeen met de vorige voor %1$@";
 "qrscan_no_addr_found" = "Deze QR-code bevat een vingerafdruk, maar geen e-mailadres.\n\nVoor out-of-bandgoedkeuring, moet je eerst een beveiligde verbinding opzetten met de ontvanger.";
@@ -536,6 +592,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Gewijzigde instellingen voor %1$@";
 "verified_group_explain" = "Goedgekeurde groepen (experimenteel) zijn extra beveiligd tegen aanvallen van buitenaf. Leden worden goedgekeurd door andere leden en berichten zijn altijd eind-tot-eind versleuteld.";
+"copy_qr_data_success" = "De qr-url is gekopieerd naar het klembord";
 
 
 // notifications 
@@ -566,6 +623,8 @@
 "encrypted_message" = "Versleuteld bericht";
 
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"about_offical_app_desktop" = "Dit is de officiële Delta Chat-computerapp.";
+"about_licensed_under_desktop" = "Deze software is vrijgegeven onder de GNU GPL versie 3 en de broncode is beschikbaar op GitHub.";
 "welcome_desktop" = "Welkom bij Delta Chat";
 "login_known_accounts_title_desktop" = "Bekende accounts";
 "global_menu_preferences_language_desktop" = "Kies een taal...";
@@ -620,6 +679,7 @@
 "ask_delete_chat_desktop" = "Weet je zeker dat je dit gesprek wilt verwijderen?";
 "email_validation_failed_desktop" = "E-mailadres vereist.";
 "forget_login_confirmation_desktop" = "Wil je dit account verwijderen? Alles wordt verwijderd: je eind-tot-eindinstellingen, contactpersonen, gesprekken, berichten en media. Deze actie kan niet ongedaan worden gemaakt.";
+"account_info_hover_tooltip_desktop" = "E-Mail: %1$@\nGrootte: %2$@\nPad: %3$@";
 "me_desktop" = "ik";
 "in_this_group_desktop" = "Groepsleden";
 "not_in_this_group_desktop" = "Potentiële groepsleden (niet in de groep)";
@@ -631,7 +691,6 @@
 "menu.view.developer.open.current.log.file" = "Huidig logbestand openen";
 "user_location_permission_explanation" = "Delta Chat heeft het locatietoegangsrecht nodig om je locatie te tonen en delen.";
 
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Bezorgstatus: afleveren mislukt";
 "a11y_encryption_padlock" = "Versleutelingsslot";
@@ -642,6 +701,7 @@
 "a11y_delivery_status_invalid" = "Onbekende bezorgstatus";
 "a11y_message_context_menu_btn_label" = "Berichtacties";
 "a11y_background_preview_label" = "Achtergrondvoorbeeld";
+"a11y_disappearing_messages_activated" = "Verdwijnende berichten zijn ingeschakeld";
 
 
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"

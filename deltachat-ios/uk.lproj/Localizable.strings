@@ -169,7 +169,6 @@
 "pin" = "Закріпити";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "Відкрипити";
-
 "mute_for_one_hour" = "Відключити сповіщення на 1 годину";
 "mute_for_two_hours" = "Відключити сповіщення на 2 години";
 "mute_for_one_day" = "Відключити сповіщення на 1 день";
@@ -213,8 +212,6 @@
 "ask_start_chat_with" = "Створити чат з %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Видалити %1$@ із групи?";
-
-
 // contact list
 "contacts_title" = "Контакти";
 "contacts_enter_name_or_email" = "Введіть ім\'я або адресу електронної пошти";
@@ -245,7 +242,6 @@
 "chat_no_contact_requests" = "Немає запитів контактів.\n\nЯкщо Ви бажаєте, щоб звичайна пошта з\'являлася тут як запити контактів, Ви можете змінити відповідний параметр у налаштуваннях додатку.";
 "retry_send" = "Спробувати надіслати повідомлення ще раз";
 "send_failed" = "Не можу надіслати повідомлення";
-
 // map
 "filter_map_on_time" = "Показати місця у часовому проміжку";
 "show_location_traces" = "Показати треки";
@@ -324,6 +320,9 @@
 "delete_account" = "Видалити обліковий запис";
 "delete_account_ask" = "Ви впевнені, що хочете видалити дані вашого облікового запису?";
 "switching_account" = "Перемикаємо обліковий запис...";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "Помилка конфігурації: %1$@";
+
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Переслати...";
@@ -425,7 +424,6 @@
 "pref_background_custom_image" = "Персональне зображення";
 "pref_background_custom_color" = "Персональний колір";
 "export_aborted" = "Експорт припинено.";
-
 // automatically delete message
 "delete_old_messages" = "Видалити старі повідомлення";
 // devs: autodel_title is deprecated, use delete_old_messages instead
@@ -490,7 +488,6 @@
 "systemmsg_ephemeral_timer_week" = "Таймер зникнення повідомлень встановлено на 1 тиждень.";
 "systemmsg_ephemeral_timer_four_weeks" = "Таймер зникнення повідомлень встановлено на 4 тижні.";
 
-
 // screen lock
 "screenlock_title" = "Блокування екрану";
 "screenlock_explain" = "Блокування доступу за допомогою блокування екрану Android або відбитків пальців; щоб уникнути появи попереднього вмісту, будь ласка, увімкнить «Безпека екрану».";
@@ -533,8 +530,6 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Змінені параметри для %1$@";
 "verified_group_explain" = "Перевірені групи (експеримент) надають захист від активних атак. Члени таких груп перевірені через другий фактор іншими членами групи, а повідомлення завжди наскрізно зашифровані.";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d нових повідомлень з %2$d чатів";
 "notify_mark_read" = "Позначити прочитаним";
@@ -562,7 +557,6 @@
 // dc_str_* resources
 "encrypted_message" = "Зашифроване повідомлення";
 
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Вітаємо у Delta Chat";
 "login_known_accounts_title_desktop" = "Відомі облікові записи";
 "global_menu_preferences_language_desktop" = "Вибір мови";
@@ -628,7 +622,6 @@
 "menu.view.developer.open.current.log.file" = "Відкрити поточний файл журналу";
 "user_location_permission_explanation" = "Delta Chat потребує дозволу на доступ до геоданих щоб ділитися вашим місцезнаходженням.";
 
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Статус доставки: Помилка";
 "a11y_encryption_padlock" = "Замок шифрування";
@@ -639,8 +632,6 @@
 "a11y_delivery_status_invalid" = "Невірний статус доставки";
 "a11y_message_context_menu_btn_label" = "Дії з повідомленням";
 "a11y_background_preview_label" = "Попередній перегляд фону";
-
-
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 

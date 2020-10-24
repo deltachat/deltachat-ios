@@ -209,7 +209,6 @@
 // permissions
 "perm_required_title" = "권한 필요";
 "perm_continue" = "확인";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "welcome_desktop" = "Delta Chat에 오신 것을 환영합니다.";
 "global_menu_preferences_language_desktop" = "언어";
 "global_menu_file_desktop" = "파일";
