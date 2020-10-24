@@ -192,6 +192,11 @@ public class BaseMessageCell: UITableViewCell {
         let messageLabelGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         gestureRecognizer.numberOfTapsRequired = 1
         messageLabel.addGestureRecognizer(messageLabelGestureRecognizer)
+
+        let quoteViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onQuoteTapped))
+        quoteViewGestureRecognizer.numberOfTapsRequired = 1
+        quoteView.addGestureRecognizer(quoteViewGestureRecognizer)
+
     }
 
     @objc
@@ -207,6 +212,12 @@ public class BaseMessageCell: UITableViewCell {
     @objc func onAvatarTapped() {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
             baseDelegate?.avatarTapped(indexPath: indexPath)
+        }
+    }
+
+    @objc func onQuoteTapped() {
+        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            baseDelegate?.quoteTapped(indexPath: indexPath)
         }
     }
 
@@ -430,4 +441,5 @@ public protocol BaseMessageCellDelegate: class {
     func imageTapped(indexPath: IndexPath)
     func avatarTapped(indexPath: IndexPath)
     func textTapped(indexPath: IndexPath)
+    func quoteTapped(indexPath: IndexPath)
 }
