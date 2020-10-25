@@ -6,16 +6,7 @@ class ContactDetailViewController: UITableViewController {
     private let viewModel: ContactDetailViewModel
 
     private lazy var headerCell: ContactDetailHeader = {
-        let header = ContactDetailHeader()
-        header.updateDetails(title: viewModel.contact.displayName, subtitle: viewModel.contact.email)
-        if let img = viewModel.contact.profileImage {
-            header.setImage(img)
-        } else {
-            header.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
-        }
-        header.setVerified(isVerified: viewModel.contact.isVerified)
-        header.onAvatarTap = showContactAvatarIfNeeded
-        return header
+        return ContactDetailHeader()
     }()
 
 
@@ -228,6 +219,7 @@ class ContactDetailViewController: UITableViewController {
             headerCell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
         }
         headerCell.setVerified(isVerified: viewModel.contact.isVerified)
+        headerCell.onAvatarTap = showContactAvatarIfNeeded
     }
 
     private func updateCellValues() {
