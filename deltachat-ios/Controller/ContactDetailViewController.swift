@@ -111,9 +111,11 @@ class ContactDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: String.localized("global_menu_edit_desktop"),
-            style: .plain, target: self, action: #selector(editButtonPressed))
+        if !self.viewModel.isSavedMessages && !self.viewModel.isDeviceTalk {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: String.localized("global_menu_edit_desktop"),
+                style: .plain, target: self, action: #selector(editButtonPressed))
+        }
         self.title = String.localized("tab_contact")
     }
 
