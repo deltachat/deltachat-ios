@@ -64,7 +64,9 @@ class ContactDetailViewModel {
             if !isDeviceTalk {
                 chatOptions.append(.ephemeralMessages)
             }
-            chatOptions.append(.muteChat)
+            if !isSavedMessages {
+                chatOptions.append(.muteChat)
+            }
             if !isDeviceTalk {
                 chatOptions.append(.startChat)
             }
