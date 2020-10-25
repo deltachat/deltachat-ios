@@ -46,19 +46,20 @@ class ContactDetailViewModel {
         self.chatId = dcContext.getChatIdByContactId(contactId: contactId)
         self.isSavedMessages = false
         self.isDeviceTalk = false
+        if chatId != 0 {
+            let dcChat = dcContext.getChat(chatId: chatId)
+            isSavedMessages = dcChat.isSelfTalk
+            isDeviceTalk = dcChat.isDeviceTalk
+        }
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
         sections.append(.chatOptions)
-        if sharedChats.length > 0 {
+        if sharedChats.length > 0 && !isSavedMessages && !isDeviceTalk {
             sections.append(.sharedChats)
         }
         sections.append(.chatActions)
 
         if chatId != 0 {
-            let dcChat = dcContext.getChat(chatId: chatId)
-            isSavedMessages = dcChat.isSelfTalk
-            isDeviceTalk = dcChat.isDeviceTalk
-
             chatOptions = [.gallery, .documents]
             if !isDeviceTalk {
                 chatOptions.append(.ephemeralMessages)
