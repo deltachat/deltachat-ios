@@ -212,13 +212,25 @@ class ContactDetailViewController: UITableViewController {
 
     // MARK: - updates
     private func updateHeader() {
-        headerCell.updateDetails(title: viewModel.contact.displayName, subtitle: viewModel.contact.email)
-        if let img = viewModel.contact.profileImage {
-            headerCell.setImage(img)
+        if viewModel.isSavedMessages {
+            let chat = viewModel.context.getChat(chatId: viewModel.chatId)
+            headerCell.updateDetails(title: chat.name, subtitle: String.localized("chat_self_talk_subtitle"))
+            if let img = chat.profileImage {
+                headerCell.setImage(img)
+            } else {
+                headerCell.setBackupImage(name: chat.name, color: chat.color)
+            }
+            headerCell.setVerified(isVerified: false)
         } else {
-            headerCell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
+            headerCell.updateDetails(title: viewModel.contact.displayName,
+                                     subtitle: viewModel.isDeviceTalk ? String.localized("device_talk_subtitle") : viewModel.contact.email)
+            if let img = viewModel.contact.profileImage {
+                headerCell.setImage(img)
+            } else {
+                headerCell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
+            }
+            headerCell.setVerified(isVerified: viewModel.contact.isVerified)
         }
-        headerCell.setVerified(isVerified: viewModel.contact.isVerified)
         headerCell.onAvatarTap = showContactAvatarIfNeeded
     }
 
@@ -389,10 +401,16 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func showContactAvatarIfNeeded() {
-        let contact = viewModel.contact
-        if let url =  contact.profileImageURL {
+        if viewModel.isSavedMessages {
+            let chat = viewModel.context.getChat(chatId: viewModel.chatId)
+            if let url = chat.profileImageURL {
+                let previewController = PreviewController(type: .single(url))
+                previewController.customTitle = chat.name
+                present(previewController, animated: true, completion: nil)
+            }
+        } else if let url = viewModel.contact.profileImageURL {
             let previewController = PreviewController(type: .single(url))
-            previewController.customTitle = contact.displayName
+            previewController.customTitle = viewModel.contact.displayName
             present(previewController, animated: true, completion: nil)
         }
     }
