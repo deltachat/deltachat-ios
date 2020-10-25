@@ -447,8 +447,12 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             } else if row == membersRowQrInvite {
                 showQrCodeInvite(chatId: chat.id)
             } else {
-                let member = getGroupMember(at: row)
-                showContactDetail(of: member.id)
+                let memberId = getGroupMemberIdFor(row)
+                if memberId == DC_CONTACT_ID_SELF {
+                    tableView.deselectRow(at: indexPath, animated: true)
+                } else {
+                    showContactDetail(of: memberId)
+                }
             }
         case .chatActions:
             switch chatActions[row] {
