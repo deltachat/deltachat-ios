@@ -2,9 +2,9 @@ import UIKit
 import DcCore
 
 public class QuoteView: UIView {
-    lazy var citeBar: UIView = {
+    public lazy var citeBar: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGreen
+        view.backgroundColor = DcColors.grayDateColor
         view.clipsToBounds = true
         view.layer.cornerRadius = 1.5
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -62,5 +62,6 @@ public class QuoteView: UIView {
         quote.attributedText = nil
         senderTitle.text = nil
         senderTitle.attributedText = nil
+        citeBar.backgroundColor = DcColors.grayDateColor
     }
 }
