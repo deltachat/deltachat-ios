@@ -400,18 +400,6 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    func highlightCell() {
-        if let indexpath = highlightedCell {
-            tableView.allowsSelection = true
-            tableView.selectRow(at: indexpath, animated: true, scrollPosition: .middle)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                self.tableView.deselectRow(at: indexpath, animated: true)
-                self.tableView.allowsSelection = false
-            })
-            highlightedCell = nil
-        }
-    }
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let messageId = messageIds[indexPath.row]
         let message = DcMsg(id: messageId)
@@ -1082,7 +1070,6 @@ class ChatViewController: UITableViewController {
 extension ChatViewController: BaseMessageCellDelegate {
 
     @objc func quoteTapped(indexPath: IndexPath) {
-        logger.debug("quoteTapped")
         _ = handleUIMenu()
         let msg = DcMsg(id: messageIds[indexPath.row])
         if let quoteMsg = msg.quoteMessage,
