@@ -55,6 +55,14 @@ public class BaseMessageCell: UITableViewCell {
 
     public weak var baseDelegate: BaseMessageCellDelegate?
 
+    public lazy var quoteView: QuoteView = {
+        let view = QuoteView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = true
+        view.isHidden = true
+        return view
+    }()
+
     public lazy var messageLabel: PaddingTextView = {
         let view = PaddingTextView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +102,7 @@ public class BaseMessageCell: UITableViewCell {
     }()
 
     lazy var mainContentView: UIStackView = {
-        let view = UIStackView()
+        let view = UIStackView(arrangedSubviews: [quoteView])
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
         return view
@@ -103,7 +111,7 @@ public class BaseMessageCell: UITableViewCell {
     lazy var bottomLabel: PaddingTextView = {
         let label = PaddingTextView()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(for: .caption1, weight: .regular)
+        label.font = UIFont.preferredFont(for: .caption1, weight: .medium)
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         label.layer.cornerRadius = 4
@@ -182,8 +190,13 @@ public class BaseMessageCell: UITableViewCell {
         avatarView.addGestureRecognizer(gestureRecognizer)
 
         let messageLabelGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
-        gestureRecognizer.numberOfTapsRequired = 1
+        messageLabelGestureRecognizer.numberOfTapsRequired = 1
         messageLabel.addGestureRecognizer(messageLabelGestureRecognizer)
+
+        let quoteViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onQuoteTapped))
+        quoteViewGestureRecognizer.numberOfTapsRequired = 1
+        quoteView.addGestureRecognizer(quoteViewGestureRecognizer)
+
     }
 
     @objc
@@ -199,6 +212,12 @@ public class BaseMessageCell: UITableViewCell {
     @objc func onAvatarTapped() {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
             baseDelegate?.avatarTapped(indexPath: indexPath)
+        }
+    }
+
+    @objc func onQuoteTapped() {
+        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            baseDelegate?.quoteTapped(indexPath: indexPath)
         }
     }
 
@@ -247,6 +266,22 @@ public class BaseMessageCell: UITableViewCell {
         if !msg.isInfo {
             bottomLabel.attributedText = getFormattedBottomLine(message: msg)
         }
+
+        if let quoteText = msg.quoteText {
+            quoteView.isHidden = false
+            quoteView.quote.text = quoteText
+
+            if let quoteMsg = msg.quoteMessage {
+                let contact = quoteMsg.fromContact
+                quoteView.senderTitle.text = contact.displayName
+                quoteView.senderTitle.textColor = contact.color
+                quoteView.citeBar.backgroundColor = contact.color
+                quoteView.imagePreview.image = quoteMsg.image
+            }
+        } else {
+            quoteView.isHidden = true
+        }
+
         messageLabel.delegate = self
     }
 
@@ -349,6 +384,7 @@ public class BaseMessageCell: UITableViewCell {
         messageLabel.text = nil
         messageLabel.attributedText = nil
         messageLabel.delegate = nil
+        quoteView.prepareForReuse()
     }
 
     // MARK: - Context menu
@@ -407,4 +443,5 @@ public protocol BaseMessageCellDelegate: class {
     func imageTapped(indexPath: IndexPath)
     func avatarTapped(indexPath: IndexPath)
     func textTapped(indexPath: IndexPath)
+    func quoteTapped(indexPath: IndexPath)
 }

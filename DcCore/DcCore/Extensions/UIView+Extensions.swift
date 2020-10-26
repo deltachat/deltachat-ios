@@ -176,6 +176,20 @@ public extension UIView {
         return constraint
     }
 
+    func constraintTrailingToLeadingOf(_ view: UIView, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+        let constraint = NSLayoutConstraint(
+            item: self,
+            attribute: .trailing,
+            relatedBy: .equal,
+            toItem: view,
+            attribute: .leading,
+            multiplier: 1.0,
+            constant: -paddingTrailing)
+        if let priority = priority {
+            constraint.priority = priority
+        }
+        return constraint
+    }
 
     func constraintCenterXTo(_ view: UIView, paddingX: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(item: self,

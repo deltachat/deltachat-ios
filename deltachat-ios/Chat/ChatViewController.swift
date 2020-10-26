@@ -1069,6 +1069,16 @@ class ChatViewController: UITableViewController {
 // MARK: - BaseMessageCellDelegate
 extension ChatViewController: BaseMessageCellDelegate {
 
+    @objc func quoteTapped(indexPath: IndexPath) {
+        _ = handleUIMenu()
+        let msg = DcMsg(id: messageIds[indexPath.row])
+        if let quoteMsg = msg.quoteMessage,
+           let index = messageIds.firstIndex(of: quoteMsg.id) {
+            let indexPath = IndexPath(row: index, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+        }
+    }
+
     @objc func textTapped(indexPath: IndexPath) {
         _ = handleUIMenu()
     }
