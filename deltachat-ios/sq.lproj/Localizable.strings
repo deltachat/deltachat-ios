@@ -34,6 +34,7 @@
 "save" = "Ruaje";
 "chat" = "Fjalosje";
 "media" = "Media";
+"profile" = "Profile";
 "main_menu" = "Menuja kryesore";
 "start_chat" = "Nisni fjalosje";
 "show_password" = "Shfaqe fjalëkalimin";
@@ -43,6 +44,7 @@
 "one_moment" = "Një çast…";
 "done" = "U bë";
 "undo" = "Zhbëje";
+"offline" = "Jo në linjë";
 // Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
 "next" = "Pasuesja";
 "error" = "Gabim";

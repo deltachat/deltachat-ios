@@ -34,6 +34,7 @@
 "save" = "保存";
 "chat" = "聊天";
 "media" = "媒体";
+"profile" = "概要";
 "main_menu" = "主菜单";
 "start_chat" = "开始聊天";
 "show_password" = "显示密码";
