@@ -111,7 +111,7 @@ public class BaseMessageCell: UITableViewCell {
     lazy var bottomLabel: PaddingTextView = {
         let label = PaddingTextView()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(for: .caption1, weight: .regular)
+        label.font = UIFont.preferredFont(for: .caption1, weight: .medium)
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         label.layer.cornerRadius = 4

@@ -13,7 +13,7 @@ public class QuoteView: UIView {
 
     public lazy var quote: UILabel = {
         let view = UILabel()
-        view.font = UIFont.preferredFont(for: .caption2, weight: .light)
+        view.font = UIFont.preferredFont(for: .subheadline, weight: .regular)
         view.textColor = DcColors.grayTextColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -21,7 +21,7 @@ public class QuoteView: UIView {
 
     public lazy var senderTitle: UILabel = {
         let view = UILabel()
-        view.font = UIFont.preferredFont(for: .caption2, weight: .semibold)
+        view.font = UIFont.preferredFont(for: .subheadline, weight: .semibold)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -53,15 +53,15 @@ public class QuoteView: UIView {
             imagePreview.constraintWidthTo(36),
             imagePreview.constraintCenterYTo(citeBar),
             senderTitle.constraintAlignTopTo(self),
-            senderTitle.constraintAlignLeadingTo(self, paddingLeading: 24),
+            senderTitle.constraintAlignLeadingTo(self, paddingLeading: 28),
             senderTitle.constraintTrailingToLeadingOf(imagePreview, paddingTrailing: 8),
-            quote.constraintAlignLeadingTo(self, paddingLeading: 24),
+            quote.constraintAlignLeadingTo(self, paddingLeading: 28),
             quote.constraintToBottomOf(senderTitle),
             quote.constraintTrailingToLeadingOf(imagePreview, paddingTrailing: 8),
             quote.constraintAlignBottomTo(self, paddingBottom: 4),
             citeBar.constraintAlignLeadingTo(self, paddingLeading: 16),
-            citeBar.constraintAlignTopTo(senderTitle, paddingTop: 4),
-            citeBar.constraintAlignBottomTo(quote, paddingBottom: 4),
+            citeBar.constraintAlignTopTo(senderTitle, paddingTop: 2),
+            citeBar.constraintAlignBottomTo(quote, paddingBottom: 2),
             citeBar.constraintWidthTo(3),
         ])
     }
