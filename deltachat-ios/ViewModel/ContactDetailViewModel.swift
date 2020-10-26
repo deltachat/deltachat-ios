@@ -33,6 +33,8 @@ class ContactDetailViewModel {
     }
 
     let chatId: Int
+    var isSavedMessages: Bool
+    var isDeviceTalk: Bool
     private let sharedChats: DcChatlist
     private var sections: [ProfileSections] = []
     private var chatActions: [ChatAction] = []
@@ -42,17 +44,39 @@ class ContactDetailViewModel {
         self.context = dcContext
         self.contactId = contactId
         self.chatId = dcContext.getChatIdByContactId(contactId: contactId)
+        self.isSavedMessages = false
+        self.isDeviceTalk = false
+        if chatId != 0 {
+            let dcChat = dcContext.getChat(chatId: chatId)
+            isSavedMessages = dcChat.isSelfTalk
+            isDeviceTalk = dcChat.isDeviceTalk
+        }
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
         sections.append(.chatOptions)
-        if sharedChats.length > 0 {
+        if sharedChats.length > 0 && !isSavedMessages && !isDeviceTalk {
             sections.append(.sharedChats)
         }
         sections.append(.chatActions)
 
         if chatId != 0 {
-            chatOptions = [.gallery, .documents, .ephemeralMessages, .muteChat, .startChat]
-            chatActions = [.archiveChat, .showEncrInfo, .blockContact, .deleteChat]
+            chatOptions = [.gallery, .documents]
+            if !isDeviceTalk {
+                chatOptions.append(.ephemeralMessages)
+            }
+            if !isSavedMessages {
+                chatOptions.append(.muteChat)
+            }
+            if !isDeviceTalk {
+                chatOptions.append(.startChat)
+            }
+
+            chatActions = [.archiveChat]
+            if !isDeviceTalk && !isSavedMessages {
+                chatActions.append(.showEncrInfo)
+                chatActions.append(.blockContact)
+            }
+            chatActions.append(.deleteChat)
         } else {
             chatOptions = [.gallery, .documents, .startChat]
             chatActions = [.showEncrInfo, .blockContact]

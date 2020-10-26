@@ -6,16 +6,7 @@ class ContactDetailViewController: UITableViewController {
     private let viewModel: ContactDetailViewModel
 
     private lazy var headerCell: ContactDetailHeader = {
-        let header = ContactDetailHeader()
-        header.updateDetails(title: viewModel.contact.displayName, subtitle: viewModel.contact.email)
-        if let img = viewModel.contact.profileImage {
-            header.setImage(img)
-        } else {
-            header.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
-        }
-        header.setVerified(isVerified: viewModel.contact.isVerified)
-        header.onAvatarTap = showContactAvatarIfNeeded
-        return header
+        return ContactDetailHeader()
     }()
 
 
@@ -111,10 +102,14 @@ class ContactDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: String.localized("global_menu_edit_desktop"),
-            style: .plain, target: self, action: #selector(editButtonPressed))
-        self.title = String.localized("tab_contact")
+        if !self.viewModel.isSavedMessages && !self.viewModel.isDeviceTalk {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: String.localized("global_menu_edit_desktop"),
+                style: .plain, target: self, action: #selector(editButtonPressed))
+            self.title = String.localized("tab_contact")
+        } else {
+            self.title = String.localized("profile")
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -217,13 +212,26 @@ class ContactDetailViewController: UITableViewController {
 
     // MARK: - updates
     private func updateHeader() {
-        headerCell.updateDetails(title: viewModel.contact.displayName, subtitle: viewModel.contact.email)
-        if let img = viewModel.contact.profileImage {
-            headerCell.setImage(img)
+        if viewModel.isSavedMessages {
+            let chat = viewModel.context.getChat(chatId: viewModel.chatId)
+            headerCell.updateDetails(title: chat.name, subtitle: String.localized("chat_self_talk_subtitle"))
+            if let img = chat.profileImage {
+                headerCell.setImage(img)
+            } else {
+                headerCell.setBackupImage(name: chat.name, color: chat.color)
+            }
+            headerCell.setVerified(isVerified: false)
         } else {
-            headerCell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
+            headerCell.updateDetails(title: viewModel.contact.displayName,
+                                     subtitle: viewModel.isDeviceTalk ? String.localized("device_talk_subtitle") : viewModel.contact.email)
+            if let img = viewModel.contact.profileImage {
+                headerCell.setImage(img)
+            } else {
+                headerCell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
+            }
+            headerCell.setVerified(isVerified: viewModel.contact.isVerified)
         }
-        headerCell.setVerified(isVerified: viewModel.contact.isVerified)
+        headerCell.onAvatarTap = showContactAvatarIfNeeded
     }
 
     private func updateCellValues() {
@@ -393,10 +401,16 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func showContactAvatarIfNeeded() {
-        let contact = viewModel.contact
-        if let url =  contact.profileImageURL {
+        if viewModel.isSavedMessages {
+            let chat = viewModel.context.getChat(chatId: viewModel.chatId)
+            if let url = chat.profileImageURL {
+                let previewController = PreviewController(type: .single(url))
+                previewController.customTitle = chat.name
+                present(previewController, animated: true, completion: nil)
+            }
+        } else if let url = viewModel.contact.profileImageURL {
             let previewController = PreviewController(type: .single(url))
-            previewController.customTitle = contact.displayName
+            previewController.customTitle = viewModel.contact.displayName
             present(previewController, animated: true, completion: nil)
         }
     }
