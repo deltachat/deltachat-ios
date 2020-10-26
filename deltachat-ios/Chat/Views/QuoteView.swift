@@ -14,7 +14,6 @@ public class QuoteView: UIView {
     public lazy var quote: UILabel = {
         let view = UILabel()
         view.font = UIFont.preferredFont(for: .caption2, weight: .light)
-        view.text = "quote"
         view.textColor = DcColors.grayTextColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -23,7 +22,12 @@ public class QuoteView: UIView {
     public lazy var senderTitle: UILabel = {
         let view = UILabel()
         view.font = UIFont.preferredFont(for: .caption2, weight: .semibold)
-        view.text = "title"
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    public lazy var imagePreview: UIImageView = {
+        let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -40,20 +44,25 @@ public class QuoteView: UIView {
     func setupSubviews() {
         addSubview(citeBar)
         addSubview(senderTitle)
+        addSubview(imagePreview)
         addSubview(quote)
 
         addConstraints([
+            imagePreview.constraintAlignTrailingTo(self, paddingTrailing: 16),
+            imagePreview.constraintHeightTo(36),
+            imagePreview.constraintWidthTo(36),
+            imagePreview.constraintCenterYTo(citeBar),
             senderTitle.constraintAlignTopTo(self),
             senderTitle.constraintAlignLeadingTo(self, paddingLeading: 24),
-            senderTitle.constraintAlignTrailingTo(self, paddingTrailing: 8),
+            senderTitle.constraintTrailingToLeadingOf(imagePreview, paddingTrailing: 8),
             quote.constraintAlignLeadingTo(self, paddingLeading: 24),
             quote.constraintToBottomOf(senderTitle),
-            quote.constraintAlignTrailingTo(self, paddingTrailing: 8),
+            quote.constraintTrailingToLeadingOf(imagePreview, paddingTrailing: 8),
             quote.constraintAlignBottomTo(self, paddingBottom: 4),
             citeBar.constraintAlignLeadingTo(self, paddingLeading: 16),
             citeBar.constraintAlignTopTo(senderTitle, paddingTop: 4),
             citeBar.constraintAlignBottomTo(quote, paddingBottom: 4),
-            citeBar.constraintWidthTo(3)
+            citeBar.constraintWidthTo(3),
         ])
     }
 
@@ -63,5 +72,6 @@ public class QuoteView: UIView {
         senderTitle.text = nil
         senderTitle.attributedText = nil
         citeBar.backgroundColor = DcColors.grayDateColor
+        imagePreview.image = nil
     }
 }

@@ -276,6 +276,7 @@ public class BaseMessageCell: UITableViewCell {
                 quoteView.senderTitle.text = contact.displayName
                 quoteView.senderTitle.textColor = contact.color
                 quoteView.citeBar.backgroundColor = contact.color
+                quoteView.imagePreview.image = quoteMsg.image
             }
         } else {
             quoteView.isHidden = true
