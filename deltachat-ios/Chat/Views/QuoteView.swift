@@ -21,7 +21,7 @@ public class QuoteView: UIView {
 
     public lazy var senderTitle: UILabel = {
         let view = UILabel()
-        view.font = UIFont.preferredFont(for: .subheadline, weight: .semibold)
+        view.font = UIFont.preferredFont(for: .caption1, weight: .semibold)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
