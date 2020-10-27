@@ -15,6 +15,7 @@ public class QuoteView: UIView {
         let view = UILabel()
         view.font = UIFont.preferredFont(for: .subheadline, weight: .regular)
         view.textColor = DcColors.grayTextColor
+        view.numberOfLines = 3
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
