@@ -348,10 +348,14 @@ class ChatListController: UITableViewController {
             self.showChat(chatId: chat.id)
         }))
         alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
-            dcContact.marknoticed()
+            DispatchQueue.main.async {
+                dcContact.marknoticed()
+            }
         }))
         alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
-            dcContact.block()
+            DispatchQueue.main.async {
+                dcContact.block()
+            }
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true, completion: nil)
