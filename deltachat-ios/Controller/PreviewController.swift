@@ -22,7 +22,7 @@ class PreviewController: QLPreviewController {
         super.init(nibName: nil, bundle: nil)
         dataSource = self
         switch type {
-        case .multi(_,let currentIndex):
+        case .multi(_, let currentIndex):
             currentPreviewItemIndex = currentIndex
         case .single:
             currentPreviewItemIndex = 0

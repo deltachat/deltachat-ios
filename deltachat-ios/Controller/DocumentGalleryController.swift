@@ -66,7 +66,8 @@ extension DocumentGalleryController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: DocumentGalleryFileCell.reuseIdentifier, for: indexPath) as? DocumentGalleryFileCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DocumentGalleryFileCell.reuseIdentifier, for: indexPath)
+                as? DocumentGalleryFileCell else {
             return UITableViewCell()
         }
         let msg = DcMsg(id: fileMessageIds[indexPath.row])
