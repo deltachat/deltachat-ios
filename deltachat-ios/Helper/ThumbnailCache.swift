@@ -11,7 +11,7 @@ class ThumbnailCache {
         return cache
     }()
 
-    func storeImage(image: UIImage, key: String){
+    func storeImage(image: UIImage, key: String) {
         cache.setObject(image, forKey: NSString(string: key))
     }
 

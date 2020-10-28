@@ -65,5 +65,3 @@ struct Utils {
         return String(lang)
     }
 }
-
-

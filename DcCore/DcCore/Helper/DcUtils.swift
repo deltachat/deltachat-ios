@@ -144,7 +144,7 @@ public struct DcUtils {
 		}
 	}
 
-	public static func thumbnailFromPdf(withUrl url:URL, pageNumber:Int = 1, width: CGFloat = 240) -> UIImage? {
+	public static func thumbnailFromPdf(withUrl url: URL, pageNumber: Int = 1, width: CGFloat = 240) -> UIImage? {
 		guard let pdf = CGPDFDocument(url as CFURL),
 			let page = pdf.page(at: pageNumber)
 			else {
