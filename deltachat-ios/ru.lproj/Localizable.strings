@@ -33,6 +33,7 @@
 "save" = "Сохранить";
 "chat" = "Чат";
 "media" = "Медиафайлы";
+"profile" = "Профиль";
 "main_menu" = "Главное меню";
 "start_chat" = "Начать чат";
 "show_password" = "Показать пароль";
@@ -258,6 +259,7 @@
 "chat_no_contact_requests" = "Нет запросов контактов.\n\nЕсли Вы хотите, чтобы обычная почта появлялась здесь как запросы контактов, вы можете изменить соответствующий параметр в настройках приложения.";
 "retry_send" = "Повторить отправку сообщения";
 "send_failed" = "Не удалось отправить сообщение";
+"messaging_disabled_deaddrop" = "Нажмите на сообщение чтобы принять или отклонить запрос контакта";
 "attachment_failed_to_load" = "Не удалось загрузить вложение";
 
 
@@ -383,6 +385,7 @@
 "pref_notifications" = "Уведомления";
 "pref_notifications_show" = "Показывать";
 "pref_notifications_priority" = "Приоритет";
+"pref_show_notification_content" = "Показывать содержимое сообщений в уведомлениях.";
 "pref_led_color" = "Цвет светодиода ";
 "pref_sound" = "Звук";
 "pref_silent" = "Беззвучный";
@@ -524,6 +527,10 @@
 "systemmsg_ephemeral_timer_week" = "Таймер исчезающих сообщений установлен на 1 неделю.";
 "systemmsg_ephemeral_timer_four_weeks" = "Таймер исчезающих сообщений установлен на 4 недели.";
 
+// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+"systemmsg_chat_protection_disabled" = "Защита чата отключена.";
+"systemmsg_chat_protection_enabled" = "Защита чата включена";
+
 // screen lock
 "screenlock_title" = "Блокировка экрана";
 "screenlock_explain" = "Блокировка доступа с помощью блокировки экрана Android или отпечатков пальцев; чтобы избежать появления предыдущего контента, пожалуйста, включите \"Безопасность экрана\"";
@@ -540,6 +547,7 @@
 "load_qr_code_as_image" = "Загрузить QR-код как изображение";
 "qrscan_title" = "Сканировать QR код";
 "qrscan_hint" = "Наведите камеру на QR код";
+"qrscan_failed" = "QR-код не может быть декодирован";
 "qrscan_ask_join_group" = "Присоединиться к группе «%1$@»?";
 "qrscan_fingerprint_mismatch" = "Отсканированный отпечаток не совпадает с последним известным отпечатком %1$@";
 "qrscan_no_addr_found" = "QR код содержит отпечаток ключа, но не содержит адрес электронной почты.\n\nДля проверки подлинности с использованием альтернативного канала связи следует сначала установить с получателем защищенное соединение.";
@@ -594,6 +602,8 @@
 // dc_str_* resources
 "encrypted_message" = "Зашифрованное сообщение";
 
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"about_offical_app_desktop" = "Это официальное приложение Delta Chat Desktop.";
 "welcome_desktop" = "Добро пожаловать в Delta Chat";
 "login_known_accounts_title_desktop" = "Известные аккаунты";
 "global_menu_preferences_language_desktop" = "Выбор языка";
