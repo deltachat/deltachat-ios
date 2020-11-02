@@ -95,6 +95,8 @@ public class BaseMessageCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = UIFont.preferredFont(for: .caption1, weight: .bold)
         view.layer.cornerRadius = 4
+        view.numberOfLines = 1
+        view.label.lineBreakMode = .byTruncatingTail
         view.clipsToBounds = true
         view.paddingLeading = 4
         view.paddingTrailing = 4
