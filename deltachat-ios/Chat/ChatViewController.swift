@@ -313,6 +313,7 @@ class ChatViewController: UITableViewController {
                 if lastSectionVisibleBeforeTransition {
                     DispatchQueue.main.async { [weak self] in
                         self?.scrollToBottom(animated: true)
+                        self?.tableView.reloadData()
                     }
                 }
             }
