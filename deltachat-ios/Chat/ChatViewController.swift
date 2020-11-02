@@ -265,11 +265,13 @@ class ChatViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
+
         // things that do not affect the chatview
         // and are delayed after the view is displayed
-        dcContext.marknoticedChat(chatId: chatId)
-        let array = dcContext.getFreshMessages()
-        UIApplication.shared.applicationIconBadgeNumber = array.count
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else { return }
+            self.dcContext.marknoticedChat(chatId: self.chatId)
+        }
         startTimer()
     }
 
@@ -395,7 +397,9 @@ class ChatViewController: UITableViewController {
         if let indexPaths = tableView.indexPathsForVisibleRows {
             let visibleMessagesIds = indexPaths.map { UInt32(messageIds[$0.row]) }
             if !visibleMessagesIds.isEmpty {
-                dcContext.markSeenMessages(messageIds: visibleMessagesIds)
+                DispatchQueue.global(qos: .background).async { [weak self] in
+                    self?.dcContext.markSeenMessages(messageIds: visibleMessagesIds)
+                }
             }
         }
     }
@@ -861,7 +865,9 @@ class ChatViewController: UITableViewController {
 
     func updateMessage(_ messageId: Int) {
         if messageIds.firstIndex(where: { $0 == messageId }) != nil {
-            dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
+            DispatchQueue.global(qos: .background).async { [weak self] in
+                self?.dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
+            }
             let wasLastSectionVisible = self.isLastRowVisible()
             tableView.reloadData()
             if wasLastSectionVisible {
@@ -876,7 +882,9 @@ class ChatViewController: UITableViewController {
     }
 
     func insertMessage(_ message: DcMsg) {
-        dcContext.markSeenMessages(messageIds: [UInt32(message.id)])
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            self?.dcContext.markSeenMessages(messageIds: [UInt32(message.id)])
+        }
         messageIds.append(message.id)
         emptyStateView.isHidden = true
 

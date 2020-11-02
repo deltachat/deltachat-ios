@@ -105,6 +105,9 @@ public func handleEvent(event: DcEvent) {
                     "chat_id": Int(data1),
                 ]
             )
+
+            let array = DcContext.shared.getFreshMessages()
+            UIApplication.shared.applicationIconBadgeNumber = array.count
         }
 
     case DC_EVENT_CHAT_MODIFIED:
