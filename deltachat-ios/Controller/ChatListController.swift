@@ -348,12 +348,12 @@ class ChatListController: UITableViewController {
             self.showChat(chatId: chat.id)
         }))
         alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
-            DispatchQueue.main.async {
+            DispatchQueue.global(qos: .background).async {
                 dcContact.marknoticed()
             }
         }))
         alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
-            DispatchQueue.main.async {
+            DispatchQueue.global(qos: .background).async {
                 dcContact.block()
             }
         }))
