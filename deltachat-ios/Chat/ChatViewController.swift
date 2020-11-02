@@ -1080,7 +1080,11 @@ extension ChatViewController: BaseMessageCellDelegate {
     }
 
     @objc func textTapped(indexPath: IndexPath) {
-        _ = handleUIMenu()
+        if handleUIMenu() { return }
+        let message = DcMsg(id: messageIds[indexPath.row])
+        if message.isSetupMessage {
+            didTapAsm(msg: message, orgText: "")
+        }
     }
 
     @objc func phoneNumberTapped(number: String) {
