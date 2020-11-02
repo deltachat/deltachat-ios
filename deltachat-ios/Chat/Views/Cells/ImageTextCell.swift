@@ -165,6 +165,7 @@ class ImageTextCell: BaseMessageCell {
 
     override func prepareForReuse() {
         contentImageView.image = nil
+        contentImageView.sd_cancelCurrentImageLoad()
         tag = -1
     }
 }
