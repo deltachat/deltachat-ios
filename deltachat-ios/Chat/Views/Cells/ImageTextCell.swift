@@ -35,8 +35,8 @@ class ImageTextCell: BaseMessageCell {
         mainContentView.addArrangedSubview(messageLabel)
         messageLabel.paddingLeading = 12
         messageLabel.paddingTrailing = 12
-        contentImageView.constraintAlignLeadingMaxTo(mainContentView).isActive = true
-        contentImageView.constraintAlignTrailingMaxTo(mainContentView).isActive = true
+        contentImageView.constraintAlignLeadingMaxTo(mainContentView, priority: .required).isActive = true
+        contentImageView.constraintAlignTrailingMaxTo(mainContentView, priority: .required).isActive = true
         topCompactView = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onImageTapped))
         gestureRecognizer.numberOfTapsRequired = 1
@@ -101,13 +101,38 @@ class ImageTextCell: BaseMessageCell {
         if height == 0 || width == 0 {
             return
         }
+
+        let orientation = UIApplication.shared.statusBarOrientation
         self.imageHeightConstraint?.isActive = false
         self.imageWidthConstraint?.isActive = false
-        self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: width)
-        self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(
-            lessThanOrEqualTo: self.contentImageView.widthAnchor,
-            multiplier: height / width
-        )
+        if  height > width {
+            // show square image for portrait images
+            // restrict width to half of the screen in device landscape and to 5 / 6 in portrait
+            // it results in a good balance between message text width and image size
+            let factor: CGFloat = orientation.isLandscape ? 1 / 2 : 5 / 6
+            var squareSize  = UIScreen.main.bounds.width * factor
+
+            //reduce the image square size if there's no message text so that it fits best in the viewable area
+            if squareSize > UIScreen.main.bounds.height * 5 / 8 && (messageLabel.text?.isEmpty ?? true) {
+                squareSize = UIScreen.main.bounds.height * 5 / 8
+            }
+            imageHeightConstraint = self.contentImageView.heightAnchor.constraint(lessThanOrEqualToConstant: squareSize)
+            imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: squareSize)
+        } else {
+            // show image in aspect ratio for landscape images
+            if orientation.isLandscape && height > UIScreen.main.bounds.height * 5 / 8 {
+                //shrink landscape image in landscape device orientation if image height is too big
+                self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(lessThanOrEqualToConstant: UIScreen.main.bounds.height * 5 / 8)
+                self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualTo: self.contentImageView.heightAnchor,
+                                                                                         multiplier: width/height)
+            } else {
+                self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: width)
+                self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(
+                    lessThanOrEqualTo: self.contentImageView.widthAnchor,
+                    multiplier: height / width
+                )
+            }
+        }
         self.imageHeightConstraint?.isActive = true
         self.imageWidthConstraint?.isActive = true
     }
@@ -140,6 +165,7 @@ class ImageTextCell: BaseMessageCell {
 
     override func prepareForReuse() {
         contentImageView.image = nil
+        contentImageView.sd_cancelCurrentImageLoad()
         tag = -1
     }
 }

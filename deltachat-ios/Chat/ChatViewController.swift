@@ -308,13 +308,17 @@ class ChatViewController: UITableViewController {
                 if self.showCustomNavBar {
                     self.navigationItem.setRightBarButton(self.badgeItem, animated: true)
                 }
+                if lastSectionVisibleBeforeTransition {
+                    self.scrollToBottom(animated: false)
+                }
             },
             completion: {[weak self] _ in
                 guard let self = self else { return }
                 self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
                 if lastSectionVisibleBeforeTransition {
                     DispatchQueue.main.async { [weak self] in
-                        self?.scrollToBottom(animated: true)
+                        self?.tableView.reloadData()
+                        self?.scrollToBottom(animated: false)
                     }
                 }
             }
