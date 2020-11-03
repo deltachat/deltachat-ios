@@ -889,10 +889,11 @@ class ChatViewController: UITableViewController {
         DispatchQueue.global(qos: .background).async { [weak self] in
             self?.dcContext.markSeenMessages(messageIds: [UInt32(message.id)])
         }
+
+        let wasLastSectionVisible = isLastRowVisible()
         messageIds.append(message.id)
         emptyStateView.isHidden = true
 
-        let wasLastSectionVisible = isLastRowVisible()
         tableView.reloadData()
         if wasLastSectionVisible || message.isFromCurrentSender {
             scrollToBottom(animated: true)
