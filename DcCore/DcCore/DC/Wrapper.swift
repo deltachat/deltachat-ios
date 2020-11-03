@@ -259,9 +259,10 @@ public class DcContext {
         return DcArray(arrayPointer: dc_get_fresh_msgs(contextPointer))
     }
 
-    public func markSeenMessages(messageIds: [UInt32], count: Int = 1) {
-        let ptr = UnsafePointer(messageIds)
-        dc_markseen_msgs(contextPointer, ptr, Int32(count))
+    public func markSeenMessages(messageIds: [UInt32]) {
+        messageIds.withUnsafeBufferPointer { ptr in
+            dc_markseen_msgs(contextPointer, ptr.baseAddress, Int32(ptr.count))
+        }
     }
 
     public func getChatMessages(chatId: Int) -> OpaquePointer {
