@@ -204,9 +204,10 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 
     // context menu for iOS 13+
     @available(iOS 13, *)
-    func collectionView(_ collectionView: UICollectionView,
-                        contextMenuConfigurationForItemAt indexPath: IndexPath,
-                        point: CGPoint) -> UIContextMenuConfiguration? {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        contextMenuConfigurationForItemAt indexPath: IndexPath,
+        point: CGPoint) -> UIContextMenuConfiguration? {
         guard let galleryCell = collectionView.cellForItem(at: indexPath) as? GalleryCell, let item = galleryCell.item else {
             return nil
         }
@@ -214,7 +215,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         return UIContextMenuConfiguration(
             identifier: nil,
             previewProvider: {
-                return XLPreviewViewController(imageUrl: item.fileUrl)
+                return XLPreviewViewController(item: item)
             },
             actionProvider: { [weak self] _ in
                 return self?.makeContextMenu(indexPath: indexPath)
@@ -299,11 +300,9 @@ private class XLPreviewViewController: UIViewController {
         return imageView
     }()
 
-    init(imageUrl: URL?) {
+    init(item: GalleryItem) {
         super.init(nibName: nil, bundle: nil)
-        if let url = imageUrl {
-            imageView.image = UIImage(named: url.relativePath)
-        }
+        imageView.image = item.thumbnailImage
     }
 
     required init?(coder: NSCoder) {
