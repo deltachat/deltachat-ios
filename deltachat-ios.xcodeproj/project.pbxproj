@@ -104,6 +104,7 @@
 		AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */; };
 		AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */; };
 		AE57C0802552BBD0003CFE70 /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE57C07F2552BBD0003CFE70 /* GalleryItem.swift */; };
+		AE57C084255310BB003CFE70 /* ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE57C083255310BB003CFE70 /* ContextMenuController.swift */; };
 		AE6EC5242497663200A400E4 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6EC5232497663200A400E4 /* UIImageView+Extensions.swift */; };
 		AE6EC5282497B9B200A400E4 /* ThumbnailCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6EC5272497B9B200A400E4 /* ThumbnailCache.swift */; };
 		AE728F15229D5C390047565B /* PhotoPickerAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */; };
@@ -341,6 +342,7 @@
 		AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailHeader.swift; sourceTree = "<group>"; };
 		AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupViewController.swift; sourceTree = "<group>"; };
 		AE57C07F2552BBD0003CFE70 /* GalleryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItem.swift; sourceTree = "<group>"; };
+		AE57C083255310BB003CFE70 /* ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuController.swift; sourceTree = "<group>"; };
 		AE6EC5232497663200A400E4 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		AE6EC5272497B9B200A400E4 /* ThumbnailCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailCache.swift; sourceTree = "<group>"; };
 		AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerAlertAction.swift; sourceTree = "<group>"; };
@@ -739,6 +741,7 @@
 				AED423D2249F578B00B6B2BB /* AddGroupMembersViewController.swift */,
 				AED423D6249F580700B6B2BB /* BlockedContactsViewController.swift */,
 				AE39D322249CFC1A007346A1 /* DocumentGalleryController.swift */,
+				AE57C083255310BB003CFE70 /* ContextMenuController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1176,6 +1179,7 @@
 				AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */,
 				AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */,
 				7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */,
+				AE57C084255310BB003CFE70 /* ContextMenuController.swift in Sources */,
 				304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */,
 				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
