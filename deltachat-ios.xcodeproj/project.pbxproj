@@ -103,6 +103,7 @@
 		AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4AEE3422B1030D000AA495 /* PreviewController.swift */; };
 		AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */; };
 		AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */; };
+		AE57C0802552BBD0003CFE70 /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE57C07F2552BBD0003CFE70 /* GalleryItem.swift */; };
 		AE6EC5242497663200A400E4 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6EC5232497663200A400E4 /* UIImageView+Extensions.swift */; };
 		AE6EC5282497B9B200A400E4 /* ThumbnailCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6EC5272497B9B200A400E4 /* ThumbnailCache.swift */; };
 		AE728F15229D5C390047565B /* PhotoPickerAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */; };
@@ -339,6 +340,7 @@
 		AE4AEE3422B1030D000AA495 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailHeader.swift; sourceTree = "<group>"; };
 		AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupViewController.swift; sourceTree = "<group>"; };
+		AE57C07F2552BBD0003CFE70 /* GalleryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItem.swift; sourceTree = "<group>"; };
 		AE6EC5232497663200A400E4 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		AE6EC5272497B9B200A400E4 /* ThumbnailCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailCache.swift; sourceTree = "<group>"; };
 		AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerAlertAction.swift; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 		7A9FB1421FB061E2001FEA36 /* deltachat-ios */ = {
 			isa = PBXGroup;
 			children = (
+				AE57C07E2552BBC0003CFE70 /* Model */,
 				304219D7244072E600516852 /* DC */,
 				AE1988AA23EB3C7600B4CD5F /* Assets */,
 				AE19887623EB2BDA00B4CD5F /* Assets */,
@@ -672,6 +675,14 @@
 				AE8DD450249D1DFB009A4BC1 /* DocumentGalleryFileCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		AE57C07E2552BBC0003CFE70 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE57C07F2552BBD0003CFE70 /* GalleryItem.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		AE77838B23E32EAA0093EABD /* ViewModel */ = {
@@ -1185,6 +1196,7 @@
 				AE77838F23E4276D0093EABD /* ContactCellViewModel.swift in Sources */,
 				B20462E62440C99600367A57 /* SettingsAutodelSetController.swift in Sources */,
 				3015634423A003BA00E9DEF4 /* AudioRecorderController.swift in Sources */,
+				AE57C0802552BBD0003CFE70 /* GalleryItem.swift in Sources */,
 				AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */,
 				30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */,
 				302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */,
