@@ -85,10 +85,10 @@ class AppCoordinator {
         tabBarController.selectedIndex = index
     }
 
-    func showChat(chatId: Int, animated: Bool = true) {
+    func showChat(chatId: Int, msgId: Int? = nil, animated: Bool = true) {
         showTab(index: chatsTab)
         if let rootController = self.chatsNavController.viewControllers.first as? ChatListController {
-            rootController.showChat(chatId: chatId, animated: animated)
+            rootController.showChat(chatId: chatId, msgId: msgId, animated: animated)
         }
     }
 

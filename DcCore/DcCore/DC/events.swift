@@ -139,30 +139,10 @@ public func handleEvent(event: DcEvent) {
             "message_id": Int(data2),
             "chat_id": Int(data1),
         ]
-
         DispatchQueue.main.async {
             nc.post(name: dcNotificationIncoming,
                     object: nil,
                     userInfo: userInfo)
-
-            let chat = DcContext.shared.getChat(chatId: Int(data1))
-            if !UserDefaults.standard.bool(forKey: "notifications_disabled") && !chat.isMuted {
-                let content = UNMutableNotificationContent()
-                let msg = DcMsg(id: Int(data2))
-                content.title = msg.getSenderName(msg.fromContact)
-                content.body = msg.summary(chars: 40) ?? ""
-                content.userInfo = userInfo
-                content.sound = .default
-
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
-
-                let request = UNNotificationRequest(identifier: Constants.notificationIdentifier, content: content, trigger: trigger)
-                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                DcContext.shared.logger?.info("notifications: added \(content)")
-            }
-
-            let array = DcContext.shared.getFreshMessages()
-            UIApplication.shared.applicationIconBadgeNumber = array.count
         }
 
     case DC_EVENT_SMTP_MESSAGE_SENT:

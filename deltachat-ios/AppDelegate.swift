@@ -9,7 +9,7 @@ import DBDebugToolkit
 let logger = SwiftyBeaver.self
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     private let dcContext = DcContext.shared
     var appCoordinator: AppCoordinator!
     var relayHelper: RelayHelper!
@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var reachability = Reachability()!
     var window: UIWindow?
     var appIsInForeground = false
+
+    var incomingMsgObserver: Any?
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // explicitly ignore SIGPIPE to avoid crashes, see https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html
@@ -64,6 +66,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             try reachability.startNotifier()
         } catch {
             print("Unable to start notifier")
+        }
+
+        if dcContext.isConfigured() {
+            registerForPushNotifications()
         }
 
         return true
@@ -255,45 +261,82 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UIApplication.shared.endBackgroundTask(backgroundTask)
         backgroundTask = .invalid
     }
+}
 
-    // MARK: - PushNotifications
-
-    func registerForPushNotifications() {
-        UNUserNotificationCenter.current().delegate = self
-
-        UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
-                logger.info("permission granted: \(granted)")
-                guard granted else { return }
-                self.getNotificationSettings()
-            }
-    }
-
-    private func getNotificationSettings() {
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            logger.info("Notification settings: \(settings)")
-        }
-    }
-
-    private func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        logger.info("forground notification")
-        completionHandler([.alert, .sound])
-    }
-
-    private func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    // This function will be called right after user tap on the notification
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if response.notification.request.identifier == Constants.notificationIdentifier {
-            logger.info("handling notifications")
             let userInfo = response.notification.request.content.userInfo
-            let nc = NotificationCenter.default
-            DispatchQueue.main.async {
-                nc.post(
-                    name: dcNotificationViewChat,
-                    object: nil,
-                    userInfo: userInfo
-                )
+            logger.info("notifications: \(userInfo)")
+            if let chatId = userInfo["chat_id"] as? Int,
+               let msgId = userInfo["message_id"] as? Int {
+                appCoordinator.showChat(chatId: chatId, msgId: msgId)
             }
         }
 
         completionHandler()
+    }
+
+    func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        logger.info("notifications: forground notification appeared")
+        completionHandler([.alert, .sound])
+    }
+
+    func registerForPushNotifications() {
+        logger.info("notifications: reister for push notifications")
+        UNUserNotificationCenter.current().delegate = self
+
+        UNUserNotificationCenter.current()
+            .requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
+                logger.info("notifications: permission granted: \(granted)")
+                guard granted else { return }
+                self.getNotificationSettings()
+            }
+
+        let nc = NotificationCenter.default
+        incomingMsgObserver = nc.addObserver(
+            forName: dcNotificationIncoming,
+            object: nil, queue: OperationQueue.main
+        ) { [weak self] notification in
+            guard let self = self else { return }
+            let array = DcContext.shared.getFreshMessages()
+            UIApplication.shared.applicationIconBadgeNumber = array.count
+
+            let lastActiveChat = AppStateRestorer.shared.restoreLastActiveChatId()
+            if let ui = notification.userInfo,
+               let chatId = ui["chat_id"] as? Int,
+               lastActiveChat != chatId,
+               let msgId = ui["message_id"] as? Int {
+                let chat = self.dcContext.getChat(chatId: chatId)
+                if !UserDefaults.standard.bool(forKey: "notifications_disabled") && !chat.isMuted {
+                    let content = UNMutableNotificationContent()
+                    let msg = DcMsg(id: msgId)
+                    content.title = chat.isGroup ? chat.name : msg.fromContact.displayName
+                    content.body =  msg.summary(chars: 80) ?? ""
+                    content.subtitle = chat.isGroup ?  msg.fromContact.displayName : ""
+                    content.userInfo = ui
+                    content.sound = .default
+
+                    /*if let url = msg.fileURL,
+                       let attachment = try? UNNotificationAttachment(identifier: Constants.notificationIdentifier, url: url, options: nil) {
+                        content.attachments = [attachment]
+                    }*/
+
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+                    let request = UNNotificationRequest(identifier: Constants.notificationIdentifier, content: content, trigger: trigger)
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                    DcContext.shared.logger?.info("notifications: added \(content)")
+                }
+
+            }
+
+        }
+    }
+
+    private func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            logger.info("notifications: Notification settings: \(settings)")
+        }
     }
 }
