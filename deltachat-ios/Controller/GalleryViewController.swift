@@ -1,5 +1,6 @@
 import UIKit
 import DcCore
+import AVFoundation
 
 class GalleryViewController: UIViewController {
 
@@ -292,39 +293,78 @@ extension GalleryViewController {
 
 private class XLPreviewViewController: UIViewController {
 
-    private lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    let item: GalleryItem
 
     init(item: GalleryItem) {
+        self.item = item
         super.init(nibName: nil, bundle: nil)
-        imageView.image = item.thumbnailImage
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(imageView)
+        let viewType = item.msg.viewtype
+        var thumbnailView: UIView?
+        switch viewType {
+        case .image:
+            thumbnailView = makeImageView(image: item.msg.image)
+        case .video:
+            thumbnailView = makeVideoView(videoUrl: item.msg.fileURL)
+        default:
+            return
+        }
+
+        guard let contentView = thumbnailView else {
+            return
+        }
+        view.addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            imageView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            imageView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            imageView.topAnchor.constraint(equalTo: view.topAnchor),
-            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            contentView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            contentView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            contentView.topAnchor.constraint(equalTo: view.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+    }
+
+    private func makeImageView(image: UIImage?) -> UIView? {
+        guard let image = image else {
+            safe_fatalError("unexpected nil value")
+            return nil
+        }
+
+        let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = image
 
         let width = view.bounds.width
-        if let image = imageView.image {
-            let height = image.size.height * (width / image.size.width)
-            preferredContentSize = CGSize(width: width, height: height)
-        }
+        let height = image.size.height * (width / image.size.width)
+        preferredContentSize = CGSize(width: width, height: height)
+        return imageView
+    }
+
+    private func makeVideoView(videoUrl: URL?) -> UIView? {
+        guard let videoUrl = videoUrl, let thumbnail = item.thumbnailImage else { return nil }
+        let player = AVPlayer(url: videoUrl)
+        let playerLayer = AVPlayerLayer(player: player)
+
+        let width = view.bounds.width
+        let height = thumbnail.size.height * (width / thumbnail.size.width)
+        let size = CGSize(width: width, height: height)
+        playerLayer.frame = CGRect(origin: .zero, size: size)
+        playerLayer.videoGravity = .resizeAspectFill
+
+        let playerView = UIView()
+        playerView.layer.addSublayer(playerLayer)
+        player.play()
+        preferredContentSize = size
+        return playerView
     }
 }
