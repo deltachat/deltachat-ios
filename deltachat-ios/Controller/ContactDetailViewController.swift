@@ -396,7 +396,7 @@ class ContactDetailViewController: UITableViewController {
 
     private func showGallery() {
         let messageIds: [Int] = viewModel.galleryItemMessageIds.reversed()
-        let galleryController = GalleryViewController(mediaMessageIds: messageIds)
+        let galleryController = GalleryViewController(context: viewModel.context, mediaMessageIds: messageIds)
         navigationController?.pushViewController(galleryController, animated: true)
     }
 
