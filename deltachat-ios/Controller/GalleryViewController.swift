@@ -217,10 +217,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         return UIContextMenuConfiguration(
             identifier: nil,
             previewProvider: {
-
-                return VideoPreviewController(item: item)
-
-               // return XLPreviewViewController(item: item)
+               return ContextMenuViewController(item: item)
             },
             actionProvider: { [weak self] _ in
                 return self?.makeContextMenu(indexPath: indexPath)
@@ -295,61 +292,7 @@ extension GalleryViewController {
     }
 }
 
-private class VideoPreviewController: UIViewController {
-
-    var playerController = AVPlayerViewController()
-    let item: GalleryItem
-
-
-    init(item: GalleryItem) {
-        self.item = item
-        super.init(nibName: nil, bundle: nil)
-     }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    // MARK: - lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        addChild(playerController)
-        view.addSubview(playerController.view)
-        playerController.didMove(toParent: self)
-        playerController.view.frame = self.view.frame
-        playerController.view.backgroundColor = .darkGray
-        playerController.view.clipsToBounds = true 
-        let url = item.msg.fileURL!
-        let player = AVPlayer(url: url)
-        player.play()
-        playerController.player = player
-
-        if let videoSize = item.thumbnailImage?.size {
-            print(videoSize)
-            // truncate edges on top/bottom or sides
-            let videoAspectRatio = videoSize.width / videoSize.height
-            let resizedHeightFactor = view.frame.height / videoSize.height
-            let resizedWidthFactor = view.frame.width / videoSize.width
-
-            let minFactor = min(resizedWidthFactor, resizedHeightFactor)
-            let maxHeight = videoSize.height * minFactor
-            let maxWidth = videoSize.width * minFactor
-
-            let size = CGSize(width: maxWidth, height: maxHeight)
-            preferredContentSize = size
-        }
-
-
-
-       // preferredContentSize = // CGSize(width: view.frame.width, height: view.frame.height)
-    }
-
-
-
-
-}
-
-private class XLPreviewViewController: UIViewController {
+class ContextMenuViewController: UIViewController {
 
     let item: GalleryItem
 
@@ -409,33 +352,26 @@ private class XLPreviewViewController: UIViewController {
     }
 
     private func makeVideoView(videoUrl: URL?) -> UIView? {
-        guard let videoUrl = videoUrl, let thumbnail = item.thumbnailImage else { return nil }
+        guard let videoUrl = videoUrl, let videoSize = item.thumbnailImage?.size else { return nil }
         let player = AVPlayer(url: videoUrl)
-        let playerLayer = AVPlayerLayer(player: player)
-
-
-        let maxWidth = min(view.bounds.width, thumbnail.size.width)
-        let maxHeight = min(view.bounds.height, thumbnail.size.height)
-        let size: CGSize
-        if view.bounds.height > view.bounds.width {
-            // portrait
-            let height = thumbnail.size.height * (maxWidth / thumbnail.size.width)
-            size = CGSize(width: maxWidth, height: height)
-        } else {
-            // landscape
-            let width = thumbnail.size.width * (maxHeight / thumbnail.size.height)
-            size = CGSize(width: width, height: maxHeight)
-        }
-        playerLayer.frame = CGRect(origin: .zero, size: size)
-        playerLayer.videoGravity = .resizeAspect
-        print(view.bounds.size)
-        print(size)
-        print(thumbnail.size)
-
-        let playerView = UIView()
-        playerView.layer.addSublayer(playerLayer)
+        let playerController = AVPlayerViewController()
+        addChild(playerController)
+        view.addSubview(playerController.view)
+        playerController.didMove(toParent: self)
+        playerController.view.backgroundColor = .darkGray
+        playerController.view.clipsToBounds = true
         player.play()
+        playerController.player = player
+
+        // truncate edges on top/bottom or sides
+        let resizedHeightFactor = view.frame.height / videoSize.height
+        let resizedWidthFactor = view.frame.width / videoSize.width
+        let effectiveResizeFactor = min(resizedWidthFactor, resizedHeightFactor)
+        let maxHeight = videoSize.height * effectiveResizeFactor
+        let maxWidth = videoSize.width * effectiveResizeFactor
+        let size = CGSize(width: maxWidth, height: maxHeight)
         preferredContentSize = size
-        return playerView
+
+        return playerController.view
     }
 }
