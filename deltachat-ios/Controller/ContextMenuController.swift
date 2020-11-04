@@ -1,0 +1,86 @@
+import AVKit
+import AVFoundation
+
+class ContextMenuController: UIViewController {
+
+    let item: GalleryItem
+
+    init(item: GalleryItem) {
+        self.item = item
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let viewType = item.msg.viewtype
+        var thumbnailView: UIView?
+        switch viewType {
+        case .image:
+            thumbnailView = makeImageView(image: item.msg.image)
+        case .video:
+            thumbnailView = makeVideoView(videoUrl: item.msg.fileURL)
+        default:
+            return
+        }
+
+        guard let contentView = thumbnailView else {
+            return
+        }
+        view.addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            contentView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            contentView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            contentView.topAnchor.constraint(equalTo: view.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+    }
+
+    private func makeImageView(image: UIImage?) -> UIView? {
+        guard let image = image else {
+            safe_fatalError("unexpected nil value")
+            return nil
+        }
+
+        let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = image
+
+        let width = view.bounds.width
+        let height = image.size.height * (width / image.size.width)
+        preferredContentSize = CGSize(width: width, height: height)
+        return imageView
+    }
+
+    private func makeVideoView(videoUrl: URL?) -> UIView? {
+        guard let videoUrl = videoUrl, let videoSize = item.thumbnailImage?.size else { return nil }
+        let player = AVPlayer(url: videoUrl)
+        let playerController = AVPlayerViewController()
+        addChild(playerController)
+        view.addSubview(playerController.view)
+        playerController.didMove(toParent: self)
+        playerController.view.backgroundColor = .darkGray
+        playerController.view.clipsToBounds = true
+        player.play()
+        playerController.player = player
+
+        // truncate edges on top/bottom or sides
+        let resizedHeightFactor = view.frame.height / videoSize.height
+        let resizedWidthFactor = view.frame.width / videoSize.width
+        let effectiveResizeFactor = min(resizedWidthFactor, resizedHeightFactor)
+        let maxHeight = videoSize.height * effectiveResizeFactor
+        let maxWidth = videoSize.width * effectiveResizeFactor
+        let size = CGSize(width: maxWidth, height: maxHeight)
+        preferredContentSize = size
+
+        return playerController.view
+    }
+}
