@@ -80,9 +80,9 @@ class GalleryViewController: UIViewController {
     private func setupSubviews() {
         view.addSubview(grid)
         grid.translatesAutoresizingMaskIntoConstraints = false
-        grid.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        grid.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
         grid.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        grid.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        grid.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
         grid.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
         view.addSubview(timeLabel)
