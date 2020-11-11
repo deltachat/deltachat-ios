@@ -1,5 +1,32 @@
 # Delta Chat iOS Changelog
 
+## 1.14.0
+2020-11
+
+* disappearing messages: select for any chat the lifetime of the messages
+* scroll chat to search result
+* fast scrolling through all chat-messages by long tapping the scrollbar
+* show quotes in messages as such
+* add known contacts from the IMAP-server to the local addressbook on configure
+* enable encryption in groups if preferred by the majority of recipients
+  (previously, encryption was only enabled if everyone preferred it)
+* speed up configuration
+* try multiple servers from autoconfig
+* check system clock and app date for common issues
+* improve multi-device notification handling
+* improve detection and handling of video and audio messages
+* hide unused functions in "Saved messages" and "Device chat" profiles
+* bypass some limits for maximum number of recipients
+* add option to show encryption info for a contact
+* fix launch if there is an ongoing process
+* fix errors that are not shown during configuring
+* fix mistakenly unarchived chats
+* fix: tons of improvements affecting sending and receiving messages, see
+  https://github.com/deltachat/deltachat-core-rust/blob/master/CHANGELOG.md
+* update provider database and dependencies
+* add Slovak translation, update other translations
+
+
 ## 1.12.3
 2020-08
 
