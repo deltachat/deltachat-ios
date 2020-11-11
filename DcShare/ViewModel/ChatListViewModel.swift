@@ -89,6 +89,7 @@ class ChatListViewModel: NSObject {
             dcContext: dcContext,
             chatData: ChatCellData(
                 chatId: chatId,
+                highlightMsgId: nil,
                 summary: summary,
                 unreadMessages: unreadMessages
             ),
