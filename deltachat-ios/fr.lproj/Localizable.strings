@@ -189,7 +189,7 @@
 "videochat_tap_to_open" = "Appuyez pour ouvrir";
 // get confirmations
 "ask_leave_group" = "Voulez-vous vraiment quitter ce groupe ?";
-"ask_forward" = "Faire suivre les messages à %1$@ \?";
+"ask_forward" = "Faire suivre les messages à %1$@ ?";
 "ask_export_attachment" = "Exporter une pièce jointe ? L\'exportation des pièces jointes permettra à toute autre application sur votre appareil d\'y accéder. Continuer ?";
 "ask_block_contact" = "Bloquer ce contact ? Vous ne recevrez plus ses messages.";
 "ask_unblock_contact" = "Débloquer ce contact ? Vous recevrez à nouveau ses messages.";
@@ -315,7 +315,7 @@
 "pref_using_custom" = "Usage de la personnalisation : %1$@";
 "pref_using_default" = "Utilisation par défaut : %1$@";
 "pref_profile_info_headline" = "Informations de votre profil";
-"pref_profile_photo" = "Photo du profil";
+"pref_profile_photo" = "Photo de profil";
 "pref_blocked_contacts" = "Contacts bloqués";
 "pref_profile_photo_remove_ask" = "Supprimer la photo de profil ?";
 "pref_password_and_account_settings" = "Mot de passe et compte";
@@ -590,4 +590,3 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "perm_enable_bg_reminder_title" = "Touchez ici pour recevoir des messages pendant que DeltaChat est en arrière-plan.";
 "perm_enable_bg_already_done" = "Vous avez déjà autorisé Delta Chat à recevoir des messages en arrière plan.\n\nSi vous ne les recevez toujours pas en arrière plan, vérifiez les paramètres de votre système.";
-

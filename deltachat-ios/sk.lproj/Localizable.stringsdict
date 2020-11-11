@@ -133,13 +133,113 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Odoslať nasledujúci súbor%s používateľovi?</string>
+			<string>Odoslať nasledujúci súbor %s používateľovi?</string>
 			<key>few</key>
-			<string>Odoslať nasledujúce%d súbory%s používateľovi?</string>
+			<string>Odoslať nasledujúce %d súbory %s používateľovi?</string>
 			<key>many</key>
-			<string>Odoslať nasledujúce%d súbory%s používateľovi?</string>
+			<string>Odoslať nasledujúce %d súbory %s používateľovi?</string>
 			<key>other</key>
-			<string>Odoslať nasledujúce%d súbory%s používateľovi?</string>
+			<string>Odoslať nasledujúce %d súbory %s používateľovi?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Odstrániť %d chat? Už sa nebude zobrazovať v zozname chatu, jeho správy zostanú na serveri.</string>
+			<key>few</key>
+			<string>Odstrániť %d chaty? Už sa nebudú zobrazovať v zozname chatu, ich správy zostanú na serveri.</string>
+			<key>many</key>
+			<string>Odstrániť %d chaty? Už sa nebudú zobrazovať v zozname chatu, ich správy zostanú na serveri.</string>
+			<key>other</key>
+			<string>Odstrániť %d chaty? Už sa nebudú zobrazovať v zozname chatu, ich správy zostanú na serveri.</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Odstrániť %d správu tu a na serveri?</string>
+			<key>few</key>
+			<string>Odstrániť %d správy tu a na serveri?</string>
+			<key>many</key>
+			<string>Odstrániť %d správy tu a na serveri?</string>
+			<key>other</key>
+			<string>Odstrániť %d správy tu a na serveri?</string>
+		</dict>
+	</dict>
+	<key>chat_archived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%dčet bol archivovaný</string>
+			<key>few</key>
+			<string>%dchaty archivované</string>
+			<key>many</key>
+			<string>%dchaty archivované</string>
+			<key>other</key>
+			<string>%dchaty archivované</string>
+		</dict>
+	</dict>
+	<key>chat_unarchived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%dčet bol zrušený z archívu</string>
+			<key>few</key>
+			<string>%dkonverzácie boli archivované</string>
+			<key>many</key>
+			<string>%dkonverzácie boli archivované</string>
+			<key>other</key>
+			<string>%dkonverzácie boli archivované</string>
+		</dict>
+	</dict>
+	<key>chat_n_new_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%dnová správa</string>
+			<key>few</key>
+			<string>%dnových správ</string>
+			<key>many</key>
+			<string>%dnové správy</string>
+			<key>other</key>
+			<string>%dnové správy</string>
 		</dict>
 	</dict>
 </dict>

@@ -80,12 +80,12 @@
 "images" = "Snímky";
 "audio" = "Zvuk";
 "voice_message" = "Hlasová správa";
-"forwarded_message" = "preposlaná správa";
+"forwarded_message" = "Preposlaná správa";
 "video" = "Video";
 "documents" = "Dokumenty";
 "contact" = "Kontakt";
 "verified_contact" = "Overený kontakt";
-"camera" = "fotoaparát";
+"camera" = "Fotoaparát";
 "location" = "Poloha";
 "gallery" = "Galéria";
 "images_and_videos" = "Obrázky a videá";
@@ -93,24 +93,24 @@
 "files" = "Súbory";
 "unknown" = "Neznáme";
 
-"green" = "zelená";
-"red" = "červená";
-"blue" = "modrá";
-"orange" = "oranžová";
+"green" = "Zelená";
+"red" = "Červená";
+"blue" = "Modrá";
+"orange" = "Oranžová";
 "cyan" = "Tyrkysový";
 "purple" = "Fialová";
 "magenta" = "Purpurová";
-"white" = "biela";
+"white" = "Biela";
 
 "zoom" = "Zväčšiť";
 "extra_small" = "Extra malý";
-"small" = "malý";
-"normal" = "normálny";
-"large" = "veľký";
+"small" = "Malý";
+"normal" = "Normálny";
+"large" = "Veľký";
 "extra_large" = "Extra veľké";
 
 "fast" = "Rýchlo";
-"slow" = "pomaly";
+"slow" = "Pomaly";
 
 "message_delivered" = "Správa doručená";
 "message_read" = "Správa prečítaná";
@@ -121,7 +121,7 @@
 "menu_new_chat" = "Nový chat";
 "menu_new_group" = "Nová skupina";
 "menu_new_verified_group" = "Nová overená skupina";
-"menu_send" = "poslať";
+"menu_send" = "Poslať";
 "menu_toggle_keyboard" = "Prepnúť klávesnicu emodži";
 "menu_edit_group" = "Upraviť skupinu";
 "menu_group_name_and_image" = "Názov a obrázok skupiny";
@@ -150,18 +150,18 @@
 "menu_unmute" = "Zapnúť zvuk";
 "menu_export_attachment" = "Exportovať prílohu";
 "menu_all_media" = "Všetky médiá";
-"menu_share" = "zdieľam";
+"menu_share" = "Zdieľam";
 "menu_block_contact" = "Blokovať kontakt";
 "menu_unblock_contact" = "Odblokovať kontakt";
-"menu_play" = "hrať";
-"menu_pause" = "stopnúť";
+"menu_play" = "Hrať";
+"menu_pause" = "Stopnúť";
 "menu_scroll_to_bottom" = "Posuňte sa nadol";
 "menu_scroll_to_top" = "Prejdite hore";
-"menu_help" = "pomoc";
+"menu_help" = "Pomoc";
 "menu_select_all" = "Vybrať všetko";
 "menu_expand" = "Rozbaliť";
 "menu_edit_name" = "Upraviť meno";
-"menu_settings" = "nastavenie";
+"menu_settings" = "Nastavenie";
 "menu_advanced" = "Pokročilé";
 "menu_deaddrop" = "Žiadosti o kontakt";
 "menu_deaddrop_subtitle" = "Stlačením správy začnete chatovať";
@@ -173,7 +173,7 @@
 "device_talk" = "Správy zariadenia";
 "device_talk_subtitle" = "Miestne generované správy";
 "device_talk_explain" = "Správy v tomto rozhovore sú generované lokálne vašou aplikáciou Delta Chat. Jeho tvorcovia ho používajú na informovanie o aktualizáciách aplikácií a problémoch počas používania.";
-"device_talk_welcome_message" = "Vitajte na chatu Delta! - Delta Chat vyzerá a vyzerá ako iné populárne aplikácie pre komunikáciu, nezahŕňa však centralizované riadenie, sledovanie ani predaj vašich priateľov, kolegov alebo rodiny veľkým organizáciám. \ N \ nTechnicky je Delta Chat e-mailová aplikácia s moderným rozhraním pre chat. . Ak budete chcieť, pošlite e-mail v novom šate 👻 \ n \ nPoužite program Delta Chat s kýmkoľvek z miliárd ľudí: stačí použiť jeho e-mailovú adresu. Príjemcovia nemusia inštalovať Delta Chat, navštevovať webové stránky alebo sa kdekoľvek registrovať - samozrejme, ak sa im páči, môžete ich odkázať na 👉 https://get.delta.chat";
+"device_talk_welcome_message" = "Vitajte na chatu Delta! - Delta Chat vyzerá a vyzerá ako iné populárne aplikácie pre komunikáciu, nezahŕňa však centralizované riadenie, sledovanie ani predaj vašich priateľov, kolegov alebo rodiny veľkým organizáciám.\n\nTechnicky je Delta Chat e-mailová aplikácia s moderným rozhraním pre chat. . Ak budete chcieť, pošlite e-mail v novom šate 👻\n\nPoužite program Delta Chat s kýmkoľvek z miliárd ľudí: stačí použiť jeho e-mailovú adresu. Príjemcovia nemusia inštalovať Delta Chat, navštevovať webové stránky alebo sa kdekoľvek registrovať - samozrejme, ak sa im páči, môžete ich odkázať na 👉 https://get.delta.chat";
 "edit_contact" = "Upraviť kontakt";
 // Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
 "pin_chat" = "Pripnúť čet";
@@ -204,17 +204,61 @@
 "videochat" = "Video chat";
 "videochat_invite_user_to_videochat" = "Pozvať %1$@ na videorozhovor?";
 "videochat_invite_user_hint" = "Vyžaduje to kompatibilnú aplikáciu alebo kompatibilný prehliadač na oboch stranách.";
-"videochat_contact_invited_hint" = "%1$@pozvaný na videorozhovor.";
+"videochat_contact_invited_hint" = "%1$@ pozvaný na videorozhovor.";
 "videochat_you_invited_hint" = "Pozvali ste na videorozhovor.";
 "videochat_will_open_in_your_browser" = "Tento videorozhovor sa otvorí vo vašom prehliadači.";
 "videochat_tap_to_join" = "Klepnutím sa pripojíte";
 "videochat_tap_to_open" = "Otvoríte klepnutím";
 "videochat_instance" = "Inštancia videorozhovoru";
 "videochat_instance_placeholder" = "Vaša inštancia videorozhovoru";
-"videochat_instance_explain" = "Ak je definovaná inštancia videorozhovoru, môžete začať videorozhovor z každého individuálneho rozhovoru. Videochaty vyžadujú na oboch stranách kompatibilnú aplikáciu alebo kompatibilný prehliadač. \ N \ nPríklady: https://meet.jit.si/$ROOM alebo basicwebrtc: https: // váš server";
-"videochat_instance_from_qr" = "Pomocou %1$@„“ pozvete ostatných na videorozhovory? \ N \ nPo nastavení môžete začať videorozhovor z každého individuálneho rozhovoru. Toto nahradí predchádzajúce nastavenie pre videorozhovory, ak existujú.";
+"videochat_instance_explain" = "Ak je definovaná inštancia videorozhovoru, môžete začať videorozhovor z každého individuálneho rozhovoru. Videochaty vyžadujú na oboch stranách kompatibilnú aplikáciu alebo kompatibilný prehliadač. \n\nPríklady: https://meet.jit.si/$ROOM alebo basicwebrtc:https://váš-server";
+"videochat_instance_from_qr" = "Pomocou „%1$@“ pozvete ostatných na videorozhovory?\n\nPo nastavení môžete začať videorozhovor z každého individuálneho rozhovoru. Toto nahradí predchádzajúce nastavenie pre videorozhovory, ak existujú.";
 "videochat_invitation" = "Pozvánka na videorozhovor";
 "videochat_invitation_body" = "Ste pozvaní na videorozhovor, kliknutím %1$@ sa pripojíte.";
 
 // get confirmations
 "ask_leave_group" = "Naozaj chcete opustiť túto skupinu?";
+"ask_forward" = "Preposielať správy na %1$@?";
+"ask_forward_multiple" = "Preposielať správy do %1$d chatu?";
+"ask_export_attachment" = "Exportovať prílohu? Exportovanie príloh umožní prístup k nim všetkým ďalším aplikáciám na vašom zariadení.\n\nChcete pokračovať?";
+"ask_block_contact" = "Zablokovať tento kontakt? Od tohto kontaktu už nebudete dostávať správy.";
+"ask_unblock_contact" = "Odblokovať tento kontakt? Z tohto kontaktu budete opäť môcť dostávať správy.";
+"ask_delete_contacts" = "Odstrániť kontakty?\n\nKontakty s prebiehajúcimi rozhovormi a kontakty z adresára systému nemožno natrvalo odstrániť.";
+"ask_delete_contact" = "Odstrániť kontakt %1$@?\n\nKontakty s prebiehajúcimi chatmi a kontakty z adresára systému nemožno natrvalo odstrániť.";
+"cannot_delete_contacts_in_use" = "Nie je možné odstrániť kontakty s prebiehajúcimi rozhovormi.";
+"ask_start_chat_with" = "Chatovať s %1$@?";
+"ask_delete_value" = "Odstrániť %1$@?";
+// Translators: %1$s will be replaces by a comma separated list of names
+"ask_remove_members" = "Odstrániť %1$@ zo skupiny?";
+"open_url_confirmation" = "Chcete otvoriť tento odkaz?";
+
+
+// contact list
+"contacts_title" = "Kontakty";
+"contacts_enter_name_or_email" = "Zadajte meno alebo e-mailovú adresu";
+"contacts_type_email_above" = "Vyššie zadajte e-mailovú adresu";
+"contacts_empty_hint" = "Žiadne kontakty.";
+
+
+// chatlist and chat view
+"chat_archived_chats_title" = "Archivované rozhovory";
+"chat_please_enter_message" = "Zadajte správu.";
+"chat_camera_unavailable" = "Fotoaparát nie je k dispozícii.";
+"chat_unable_to_record_audio" = "Nie je možné zaznamenať zvuk.";
+"chat_no_messages_hint" = "Pošlite správu na%1$@:\n\n • Je v poriadku, ak %2$@nepoužívate program Delta Chat.\n\n• Doručenie prvej správy môže chvíľu trvať a môže byť nezašifrované.";
+"chat_new_group_hint" = "Vytvorte prvú správu a umožnite ostatným odpovedať v rámci tejto skupiny.\n\n• Je v poriadku, ak nie všetci členovia používajú Delta Chat.\n\n• Doručenie prvej správy môže chvíľu trvať.";
+"chat_record_slide_to_cancel" = "Posunutím akciu zrušíte";
+"chat_record_explain" = "Klepnutím a podržaním nahráte hlasovú správu, uvoľnením ju odošlete";
+"chat_no_chats_yet_title" = "Prázdna doručená pošta.\nStlačením tlačidla + spustíte nový chat.";
+"chat_no_chats_yet_hint" = "Môžete chatovať s ostatnými používateľmi služby Delta Chat a s ľubovoľnou e-mailovou adresou.";
+"chat_all_archived" = "Všetky chaty boli archivované.\nStlačením tlačidla „+“ začnite nový čet.";
+"chat_share_with_title" = "Zdieľať s";
+"chat_input_placeholder" = "Správa";
+"chat_archived_label" = "Archivované";
+"chat_no_messages" = "Žiadne správy.";
+"chat_self_talk_subtitle" = "Správy, ktoré som si posielal sám pre seba";
+"saved_messages" = "Uložené správy";
+"saved_messages_explain" = "• Preposielajte správy sem, aby ste k nim mali ľahký prístup\n\n• Robte si poznámky alebo hlasové poznámky\n\n• Pripojte médiá, aby ste ich uložili";
+// this "Saved" should match the "Saved" from "Saved messages"
+"saved" = "Uložené";
+"chat_contact_request" = "Kontaktná žiadosť";

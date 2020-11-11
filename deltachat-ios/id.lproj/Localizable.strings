@@ -8,6 +8,8 @@
 "on" = "Nyala";
 "off" = "Mati";
 "def" = "Default";
+"default_value" = "Default (%1$@)";
+"default_value_as_above" = "Default (sama seperti di atas)";
 "custom" = "Menurut pesanan";
 "none" = "Tidak ada";
 "automatic" = "Otomatis";
@@ -31,6 +33,7 @@
 "save" = "Simpan";
 "chat" = "Chat";
 "media" = "Media";
+"profile" = "Profil";
 "main_menu" = "Menu utama";
 "start_chat" = "Mulai obrolan";
 "show_password" = "Tunjukkan kata kunci";
@@ -128,12 +131,15 @@
 "menu_add_attachment" = "Tambah lampiran";
 "menu_leave_group" = "Tinggalkan grup";
 "menu_delete_chat" = "Hapus obrolan";
+"ask_delete_named_chat" = "Apakah anda yakin ingin menghapus \"%1$@\"?";
 "menu_delete_messages" = "Hapus pesan";
 "menu_delete_image" = "Hapus gambar";
+"delete_contact" = "Hapus kontak";
 "menu_delete_locations" = "Hapus semua lokasi?";
 "menu_delete_location" = "Hapus lokasi ini?";
 "menu_message_details" = "Detail pesan";
 "menu_copy_to_clipboard" = "Kopi ke papan klip";
+"menu_copy_selection_to_clipboard" = "Salin yang dipilih";
 "menu_copy_link_to_clipboard" = "Salin pranala";
 "paste_from_clipboard" = "Tempelkan dari papan klip";
 "menu_forward" = "Teruskan pesan";
@@ -176,6 +182,7 @@
 "pin" = "Sematkan";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "Lepas pin";
+"ConversationFragment_quoted_message_not_found" = "Pesan orisinil tidak ditemukan";
 "reply_privately" = "Balas secara privat";
 
 "mute_for_one_hour" = "Diamkan untuk 1 jam";
@@ -194,6 +201,7 @@
 "file_saved_to" = "Berkas disimpan ke \"%1$@\".";
 
 "videochat" = "Obrolan video";
+"videochat_invite_user_to_videochat" = "Undang %1$@ ke obrolan video?";
 "videochat_contact_invited_hint" = "%1$@ diundang ke obrolan video.";
 "videochat_you_invited_hint" = "Anda diundang ke obrolan video.";
 "videochat_tap_to_join" = "Ketuk untuk bergabung";

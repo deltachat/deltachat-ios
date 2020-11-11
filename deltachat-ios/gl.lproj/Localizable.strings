@@ -8,11 +8,14 @@
 "on" = "On";
 "off" = "Off";
 "def" = "Por omisión";
+"default_value" = "Por omisión (%1$@)";
+"default_value_as_above" = "Por omisión (igual que arriba)";
 "custom" = "Personalizado";
 "none" = "Ningún";
 "automatic" = "Automático";
 "strict" = "Estrito";
 "open" = "Abrir";
+"open_attachment" = "Abrir anexo";
 "join" = "Unirse";
 "rejoin" = "Volta a unirte";
 "delete" = "Eliminar";
@@ -31,6 +34,7 @@
 "save" = "Gardar";
 "chat" = "Chat";
 "media" = "Medios";
+"profile" = "Perfil";
 "main_menu" = "Menú principal";
 "start_chat" = "Inciar chat";
 "show_password" = "Mostrar contrasinal";
@@ -40,6 +44,7 @@
 "one_moment" = "Un momento...";
 "done" = "Feito";
 "undo" = "Desfacer";
+"offline" = "Sen conexión";
 // Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
 "next" = "Seguinte";
 "error" = "Fallo";
@@ -69,6 +74,8 @@
 "self" = "Eu";
 "draft" = "Borrador";
 "image" = "Imaxe";
+// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Resposta";
 "gif" = "Gif";
 "images" = "Imaxes";
 "audio" = "Audio";
@@ -95,6 +102,8 @@
 "magenta" = "Maxenta";
 "white" = "Branco";
 
+"zoom" = "Zoo";
+"extra_small" = "Moi pequena";
 "small" = "Pequeno";
 "normal" = "Normal";
 "large" = "Grande";
@@ -123,12 +132,17 @@
 "menu_add_attachment" = "Engadir anexo";
 "menu_leave_group" = "Deixar grupo";
 "menu_delete_chat" = "Eliminar conversa";
+"ask_delete_named_chat" = "Tes a certeza de querer eliminar \"%1$@\"?";
 "menu_delete_messages" = "Eliminar mensaxes";
 "menu_delete_image" = "Eliminar imaxe";
+"delete_contact" = "Eliminar contacto";
 "menu_delete_locations" = "Eliminar todas as localizacións?";
 "menu_delete_location" = "Eliminar esta localización?";
 "menu_message_details" = "Detalles da mensaxe";
 "menu_copy_to_clipboard" = "Copiar ao portaretallos";
+"menu_copy_selection_to_clipboard" = "Copiar selección";
+"menu_copy_link_to_clipboard" = "Copiar ligazón";
+"paste_from_clipboard" = "Pegar desde portapapeis";
 "menu_forward" = "Reenviar mensaxe";
 "menu_resend" = "Voltar a enviar mensaxes";
 "menu_reply" = "Respostar a mensaxe";
@@ -169,6 +183,9 @@
 "pin" = "Fixar";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "Desafixar";
+"ConversationFragment_quoted_message_not_found" = "Non se atopa a mensaxe orixinal";
+"reply_privately" = "Responder de xeito privado";
+
 "mute_for_one_hour" = "Acalar durante 1 h.";
 "mute_for_two_hours" = "Acalar durante 2 h.";
 "mute_for_one_day" = "Acalar durante 1 día";
@@ -210,8 +227,12 @@
 "ask_delete_contact" = "Eliminar contacto %1$@?\n\nOs contactos con conversas activas e os contactos da libreta de enderezos do sistema non se poden eliminar de xeito definitivo.";
 "cannot_delete_contacts_in_use" = "Non podes eliminar contactos con conversas activas.";
 "ask_start_chat_with" = "Conversa con %1$@?";
+"ask_delete_value" = "Eliminar %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Eliminar  %1$@ do grupo?";
+"open_url_confirmation" = "Queres abrir esta ligazón?";
+
+
 // contact list
 "contacts_title" = "Contactos";
 "contacts_enter_name_or_email" = "Introducir nome ou enderezo de correo";
@@ -238,10 +259,20 @@
 "chat_self_talk_subtitle" = "Mensaxes que me enviei a min mesma";
 "saved_messages" = "Mensaxes gardadas";
 "saved_messages_explain" = "• Reenvía aquí as mensaxes para un acceso rápido\n\n• Toma notas de texto ou voz\n\n• Anexa medios para gardalos";
+// this "Saved" should match the "Saved" from "Saved messages"
+"saved" = "Gardado";
 "chat_contact_request" = "Solicitude de contacto";
 "chat_no_contact_requests" = "Sen solicitudes de contacto.\n\nSe queres que os correos tradicionais aparezan aquí como solicitudes de contacto, podes establecelo nos axustes da app.";
 "retry_send" = "Reintentar o envío da mensaxe";
 "send_failed" = "Non se puido enviar a mensaxe";
+// reasons for a disabled message composer
+"messaging_disabled_not_in_group" = "Non podes escribir porque non estás no grupo. Para unirte, solicítallo a outro membro.";
+"messaging_disabled_device_chat" = "A conversa contén mensaxes creados localmente. Polo tanto non podes escribir ningunha mensaxe.";
+"messaging_disabled_deaddrop" = "Preme nunha mensaxe para aceptar ou denegar a solicitude de contacto";
+"cannot_display_unsuported_file_type" = "Non se pode motrar este tipo de ficheiro: %1$@";
+"attachment_failed_to_load" = "Erro ó cargar o anexo";
+
+
 // map
 "filter_map_on_time" = "Mostrar localizacións no marco temporal";
 "show_location_traces" = "Mostrar trazas";
@@ -257,6 +288,8 @@
 // create/edit groups, contact/group profile
 "group_name" = "Nome do grupo";
 "group_avatar" = "Avatar do grupo";
+"remove_group_image" = "Eliminar imaxe do grupo";
+"change_group_image" = "Cambiar imaxe do grupo";
 "group_create_button" = "Crear grupo";
 "group_please_enter_group_name" = "Por favor, introduce un nome para o grupo";
 "group_add_members" = "Engadir membros";
@@ -319,7 +352,12 @@
 "add_account" = "Engadir conta";
 "delete_account" = "Eliminar conta";
 "delete_account_ask" = "Estás seguro de que queres eliminar os datos da túa conta?";
+"delete_account_explain_with_name" = "Todos os datos da conta \"%1$@\" neste dispositivo vanse eliminar, incluíndo os axustes de cifrado extremo-a-extremo, contactos, conversas, mensaxes e multimedia. Esta acción non ten volta.";
 "switching_account" = "Cambiando de conta...";
+"try_connect_now" = "Intenta conectar agora";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "Fallou a configuración. Erro: %1$@";
+
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Reenviar a...";
@@ -358,6 +396,9 @@
 "pref_notifications" = "Notificacións";
 "pref_notifications_show" = "Mostrar";
 "pref_notifications_priority" = "Prioridade";
+"pref_notifications_explain" = "Activa as notificación para as novas mensaxes";
+"pref_show_notification_content" = "Motra o contido da mensaxe na notificación";
+"pref_show_notification_content_explain" = "Mostra a remitente e as primeiras palabras da mensaxe na notificación";
 "pref_led_color" = "cor LED";
 "pref_sound" = "Son";
 "pref_silent" = "Mudo";
@@ -420,6 +461,26 @@
 "pref_background_default_color" = "Cor por omisión";
 "pref_background_custom_image" = "Imaxe persoal";
 "pref_background_custom_color" = "Cor persoal";
+"export_aborted" = "Exportación detida.";
+"profile_image_select" = "Elixe imaxe de perfil";
+"select_your_new_profile_image" = "Elixe a túa nova imaxe de perfil";
+"profile_image_delete" = "Elimina a imaxe de perfil";
+
+
+// Emoji picker and categories
+"emoji_search_results" = "Resultados da busca";
+"emoji_not_found" = "Non se atopan emojis";
+"emoji_recent" = "Usado recentemente";
+"emoji_people" = "Persoas & Corpo";
+"emoji_nature" = "Animals & Natureza";
+"emoji_foods" = "Comida & Bebida";
+"emoji_activity" = "Actividade";
+"emoji_places" = "Viaxes & Lugares";
+"emoji_objects" = "Obxectos";
+"emoji_symbols" = "Símbolos";
+"emoji_flags" = "Bandeiras";
+
+
 // automatically delete message
 "delete_old_messages" = "Eliminar mensaxes antigas";
 // devs: autodel_title is deprecated, use delete_old_messages instead
@@ -484,6 +545,10 @@
 "systemmsg_ephemeral_timer_week" = "As mensaxes desaparecerán após 1 semana.";
 "systemmsg_ephemeral_timer_four_weeks" = "As mensaxes desaparecerán após 4 semanas.";
 
+// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+"systemmsg_chat_protection_disabled" = "Protección do chat desactivada.";
+"systemmsg_chat_protection_enabled" = "Protección do chat activada.";
+
 // screen lock
 "screenlock_title" = "Bloqueo de pantalla";
 "screenlock_explain" = "Limita o acceso co bloqueo de pantalla Android ou impresión dactilar; para evitar mostrar o contido, por favor activa \"Seguridade de Pantalla\".";
@@ -497,8 +562,10 @@
 
 // qr code stuff
 "qr_code" = "Código QR";
+"load_qr_code_as_image" = "Cargar código QR como imaxe";
 "qrscan_title" = "Escanear código QR";
 "qrscan_hint" = "Mantén a cámara sobre o código QR.";
+"qrscan_failed" = "Non se puido descodificar o código QR";
 "qrscan_ask_join_group" = "Queres unirte ao grupo \"%1$@\"?";
 "qrscan_fingerprint_mismatch" = "A impresión escaneada non concorda coa última vista para %1$@.";
 "qrscan_no_addr_found" = "Este código QR contén unha imprsión dixital pero non un enderezo de correo.\n\nPara unha verificación fora de liña, por favor establece unha conexión cifrada co correspondente.";
@@ -526,6 +593,9 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Cambiaron os axustes para %1$@.";
 "verified_group_explain" = "Os grupos verificados (experimental) proporcionan seguridade contra ataques activos. As integrantes son verificadas cun segundo factor por outros membros e as mensaxes van sempre cifradas E2E.";
+"copy_qr_data_success" = "Copiado o url do QR ó portapapeis";
+
+
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d novas mensaxes en %2$d conversas";
 "notify_mark_read" = "Marcar como lido";
@@ -553,6 +623,9 @@
 // dc_str_* resources
 "encrypted_message" = "Mensaxe cifrada";
 
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"about_offical_app_desktop" = "Esta é a app oficial de Escritorio para Delta Chat";
+"about_licensed_under_desktop" = "Este software está baixo licenza GNU GPL versión 3 e o código fonte está dispoñible en GitHub.";
 "welcome_desktop" = "Benvida a Delta Chat";
 "login_known_accounts_title_desktop" = "Contas coñecidas";
 "global_menu_preferences_language_desktop" = "Idioma";
@@ -607,6 +680,7 @@
 "ask_delete_chat_desktop" = "Eliminar a conversa?";
 "email_validation_failed_desktop" = "Correo-e requerido.";
 "forget_login_confirmation_desktop" = "Eliminar esta conexión? Borrarase todo, incluíndo os axustes de cifrado, contactos, conversas, mensaxes e ficheiros de medios. Esta acción non ten volta atrás.";
+"account_info_hover_tooltip_desktop" = "Email: %1$@\nTamaño: %2$@\nRuta: %3$@";
 "me_desktop" = "eu";
 "in_this_group_desktop" = "Membros do grupo";
 "not_in_this_group_desktop" = "Membros potenciais do grupo (fóra do grupo)";
@@ -628,12 +702,18 @@
 "a11y_delivery_status_invalid" = "Estado de entrega inválido";
 "a11y_message_context_menu_btn_label" = "Accións da mensaxe";
 "a11y_background_preview_label" = "Vista previa do fondo";
+"a11y_disappearing_messages_activated" = "Activada a desaparición de mensaxes";
+
+
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
+// android specific strings, developers: please take care to remove strings that are no longer used!
+"pref_background_notifications" = "Notificacións en segundo plano";
+"pref_background_notifications_explain" = "Utiliza a conexión en segundo plano co servidor e require que ignores as optimizacións de batería.";
+"pref_background_notifications_rationale" = "Para manter a conexión co servidor de correo e recibir mensaxes en segundo plano, ignora as optimizacións de batería no seguinte paso.\n\nDelta Chat utiliza moi poucos recursos e preocúpase de non esgotar a batería.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Conexión estable en segundo plano";
 "pref_reliable_service_explain" = "Require unha notificación permanente";
 "perm_enable_bg_reminder_title" = "Toca aquí para recibir mensaxes mentras Delta Chat está en segundo plano.";
 "perm_enable_bg_already_done" = "Xa permitiches que Delta Chat reciba mensaxes en segundo plano\n\nSe aínda así non recibes as mensaxes, por favor comproba os axustes do sistema.";
-

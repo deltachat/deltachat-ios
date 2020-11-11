@@ -122,6 +122,26 @@
 			<string>%d учасників</string>
 		</dict>
 	</dict>
+	<key>ask_send_following_n_files_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Надіслати наступний файл %s?</string>
+			<key>few</key>
+			<string>Надіслати наступні %d файли до %s?</string>
+			<key>many</key>
+			<string>Надіслати наступні %d файлів до %s?</string>
+			<key>other</key>
+			<string>Надіслати наступні %d файлів до %s?</string>
+		</dict>
+	</dict>
 	<key>ask_delete_chat</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
