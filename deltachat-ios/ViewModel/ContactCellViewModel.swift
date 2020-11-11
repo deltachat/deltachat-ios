@@ -23,6 +23,7 @@ struct ContactCellData {
 
 struct ChatCellData {
     let chatId: Int
+    let highlightMsgId: Int?
     let summary: DcLot
     let unreadMessages: Int
 }

@@ -227,6 +227,7 @@ private extension ChatListViewModel {
             dcContext: dcContext,
             chatData: ChatCellData(
                 chatId: chatId,
+                highlightMsgId: nil,
                 summary: summary,
                 unreadMessages: unreadMessages
             ),
@@ -246,6 +247,7 @@ private extension ChatListViewModel {
             dcContext: dcContext,
             chatData: ChatCellData(
                 chatId: chatId,
+                highlightMsgId: msgId,
                 summary: summary,
                 unreadMessages: unreadMessages
             )
