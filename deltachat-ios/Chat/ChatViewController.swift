@@ -86,6 +86,7 @@ class ChatViewController: UITableViewController {
     private var disableWriting: Bool
     private var showNamesAboveMessage: Bool
     var showCustomNavBar = true
+    var highlightedMsg: Int?
 
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(navigationController: navigationController)
@@ -98,12 +99,13 @@ class ChatViewController: UITableViewController {
         return view
     }()
 
-    init(dcContext: DcContext, chatId: Int) {
+    init(dcContext: DcContext, chatId: Int, highlightedMsg: Int? = nil) {
         let dcChat = dcContext.getChat(chatId: chatId)
         self.dcContext = dcContext
         self.chatId = chatId
         self.disableWriting = !dcChat.canSend
         self.showNamesAboveMessage = dcChat.isGroup
+        self.highlightedMsg = highlightedMsg
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
     }
@@ -541,7 +543,10 @@ class ChatViewController: UITableViewController {
                 // update message ids
                 self.messageIds = self.getMessageIds()
                 self.tableView.reloadData()
-                if wasMessageIdsEmpty ||
+                if let msgId = self.highlightedMsg, let msgPosition = self.messageIds.firstIndex(of: msgId) {
+                    self.tableView.scrollToRow(at: IndexPath(row: msgPosition, section: 0), at: .top, animated: false)
+                    self.highlightedMsg = nil
+                } else if wasMessageIdsEmpty ||
                     wasLastRowVisible {
                     self.scrollToBottom(animated: false)
                 }
