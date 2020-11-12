@@ -114,6 +114,18 @@ class GalleryViewController: UIViewController {
         }
     }
 
+    private func askToDeleteItem(at indexPath: IndexPath) {
+        let title = String.localized("delete")
+        let alertController =  UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
+        let okAction = UIAlertAction(title: String.localized("ok"), style: .destructive, handler: { [weak self] _ in
+            self?.deleteItem(at: indexPath)
+        })
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+
     private func deleteItem(at indexPath: IndexPath) {
         let msgId = mediaMessageIds.remove(at: indexPath.row)
         self.dcContext.deleteMessage(msgId: msgId)
@@ -196,7 +208,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 
         switch action {
         case #selector(GalleryCell.itemDelete(_:)):
-            deleteItem(at: indexPath)
+            self.askToDeleteItem(at: indexPath)
         default:
             break
         }
@@ -228,9 +240,10 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         let deleteAction = UIAction(
             title: String.localized("delete"),
             image: UIImage(systemName: "trash")) { _ in
-            self.deleteItem(at: indexPath)
+            self.askToDeleteItem(at: indexPath)
         }
 
+        deleteAction.attributes = [.destructive]
         return UIMenu(
             title: "",
             image: nil,
