@@ -166,7 +166,6 @@ extension GroupMembersViewController: UISearchResultsUpdating {
                 String.localized("search_no_result_for_x"),
                 searchText
             )
-
             emptySearchStateLabel.text = text
             emptySearchStateLabel.frame = CGRect(x: 0, y: 0, width: 0, height: emptySearchStateLabel.intrinsicContentSize.height)
             emptySearchStateLabel.isHidden = false
@@ -174,6 +173,7 @@ extension GroupMembersViewController: UISearchResultsUpdating {
         } else {
             emptySearchStateLabel.text = nil
             emptySearchStateLabel.isHidden = true
+            tableView.tableHeaderView = nil
         }
     }
 }
