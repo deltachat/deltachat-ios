@@ -115,9 +115,9 @@ class GalleryViewController: UIViewController {
     }
 
     private func askToDeleteItem(at indexPath: IndexPath) {
-        let title = String.localized("delete")
+        let title = String.localized(stringID: "ask_delete_messages", count: 1)
         let alertController =  UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
-        let okAction = UIAlertAction(title: String.localized("ok"), style: .destructive, handler: { [weak self] _ in
+        let okAction = UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
             self?.deleteItem(at: indexPath)
         })
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
