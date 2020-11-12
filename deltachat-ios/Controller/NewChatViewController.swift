@@ -84,22 +84,11 @@ class NewChatViewController: UITableViewController {
         }
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
-        setupSubviews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
-    }
-
-    // MARK: - setup
-    private func setupSubviews() {
-        view.addSubview(emptySearchStateLabel)
-        emptySearchStateLabel.translatesAutoresizingMaskIntoConstraints = false
-        emptySearchStateLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        emptySearchStateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
-        emptySearchStateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
-        emptySearchStateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
     }
 
     // MARK: - actions
@@ -295,9 +284,12 @@ class NewChatViewController: UITableViewController {
             )
             emptySearchStateLabel.text = text
             emptySearchStateLabel.isHidden = false
+            emptySearchStateLabel.frame = CGRect(x: 0, y: 0, width: 0, height: emptySearchStateLabel.intrinsicContentSize.height)
+            tableView.tableHeaderView = emptySearchStateLabel
         } else {
             emptySearchStateLabel.text = nil
             emptySearchStateLabel.isHidden = true
+            tableView.tableHeaderView = nil
         }
     }
 
