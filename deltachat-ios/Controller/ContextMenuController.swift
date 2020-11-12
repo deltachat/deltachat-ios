@@ -56,7 +56,6 @@ class ContextMenuController: UIViewController {
             setPreferredContentSize(for: image)
         }
         view.image = gifImage
-
         return view
     }
 
@@ -103,6 +102,4 @@ class ContextMenuController: UIViewController {
         let height = image.size.height * (width / image.size.width)
         self.preferredContentSize = CGSize(width: width, height: height)
     }
-
-
 }
