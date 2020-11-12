@@ -28,13 +28,14 @@ in Xcode:
    c) to avoid a warning,
       use the same version and build number for target "DcShare"
 
-6. a) select "Generic iOS Device" in the toolbar
+6. a) select "Any iOS Device (arm64)" in the toolbar
    b) select menu "Product/Archive"
       (codesign may ask for a password, this _may_ be empty and "Enter" will do)
    c) on success, a dialog with all releases on the machine is shown;
-      select the most recent, then "Distribute/App Store Connect/Next/Upload",
-      leave default options (strip symbols: yes, upload symbols: yes,
-      automatically manage signing: yes), in the summary, click "Upload" again
+      select the most recent,
+      then "Distribute App/App Store Connect/Next/Upload",
+      leave default options (Strip symbols: yes, Upload symbols: yes,
+      Automatically manage signing), in the summary, click "Upload" again
 
 on https://appstoreconnect.apple.com :
 
