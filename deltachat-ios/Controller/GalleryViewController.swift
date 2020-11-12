@@ -242,7 +242,6 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             image: UIImage(systemName: "trash")) { _ in
             self.askToDeleteItem(at: indexPath)
         }
-
         deleteAction.attributes = [.destructive]
         return UIMenu(
             title: "",
