@@ -26,6 +26,12 @@ class EmptyStateLabel: FlexLabel {
         }
     }
 
+    override var intrinsicContentSize: CGSize {
+        let width = layoutMargins.left + layoutMargins.right + label.intrinsicContentSize.width
+        let height = layoutMargins.top + layoutMargins.bottom + label.intrinsicContentSize.height
+        return CGSize(width: width, height: height)
+    }
+
     override init() {
         super.init()
         label.backgroundColor = DcColors.systemMessageBackgroundColor

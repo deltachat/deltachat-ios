@@ -82,18 +82,9 @@ class GroupMembersViewController: UITableViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         configureTableView()
         definesPresentationContext = true
-        setupSubviews()
     }
 
     // MARK: - setup + configuration
-    private func setupSubviews() {
-        view.addSubview(emptySearchStateLabel)
-        emptySearchStateLabel.translatesAutoresizingMaskIntoConstraints = false
-        emptySearchStateLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        emptySearchStateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
-        emptySearchStateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
-        emptySearchStateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-    }
 
     private func configureTableView() {
         tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
@@ -175,8 +166,11 @@ extension GroupMembersViewController: UISearchResultsUpdating {
                 String.localized("search_no_result_for_x"),
                 searchText
             )
+
             emptySearchStateLabel.text = text
+            emptySearchStateLabel.frame = CGRect(x: 0, y: 0, width: 0, height: emptySearchStateLabel.intrinsicContentSize.height)
             emptySearchStateLabel.isHidden = false
+            tableView.tableHeaderView = emptySearchStateLabel
         } else {
             emptySearchStateLabel.text = nil
             emptySearchStateLabel.isHidden = true
