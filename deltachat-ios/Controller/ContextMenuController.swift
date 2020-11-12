@@ -1,5 +1,7 @@
 import AVKit
 import AVFoundation
+import SDWebImage
+import DcCore
 
 class ContextMenuController: UIViewController {
 
@@ -25,6 +27,8 @@ class ContextMenuController: UIViewController {
             thumbnailView = makeImageView(image: item.msg.image)
         case .video:
             thumbnailView = makeVideoView(videoUrl: item.msg.fileURL)
+        case .gif:
+            thumbnailView = makeGifView(gifImage: item.thumbnailImage)
         default:
             return
         }
@@ -43,6 +47,19 @@ class ContextMenuController: UIViewController {
         ])
     }
 
+    private func makeGifView(gifImage: UIImage?) -> UIView? {
+        let view = SDAnimatedImageView()
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        view.backgroundColor = DcColors.defaultBackgroundColor
+        if let image = gifImage {
+            setPreferredContentSize(for: image)
+        }
+        view.image = gifImage
+
+        return view
+    }
+
     private func makeImageView(image: UIImage?) -> UIView? {
         guard let image = image else {
             safe_fatalError("unexpected nil value")
@@ -53,10 +70,7 @@ class ContextMenuController: UIViewController {
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.image = image
-
-        let width = view.bounds.width
-        let height = image.size.height * (width / image.size.width)
-        preferredContentSize = CGSize(width: width, height: height)
+        setPreferredContentSize(for: image)
         return imageView
     }
 
@@ -83,4 +97,12 @@ class ContextMenuController: UIViewController {
 
         return playerController.view
     }
+
+    private func setPreferredContentSize(for image: UIImage) {
+        let width = view.bounds.width
+        let height = image.size.height * (width / image.size.width)
+        self.preferredContentSize = CGSize(width: width, height: height)
+    }
+
+
 }
