@@ -8,10 +8,7 @@ class AvatarSelectionCell: UITableViewCell {
     var onAvatarTapped: (() -> Void)?
 
     lazy var defaultImage: UIImage = {
-        if let image = UIImage(named: "camera") {
-            return image.invert()
-        }
-        return UIImage()
+        return UIImage(named: "camera") ?? UIImage()
     }()
 
     lazy var badge: InitialsBadge = {

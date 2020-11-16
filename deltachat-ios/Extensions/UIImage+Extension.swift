@@ -3,15 +3,6 @@ import DcCore
 
 extension UIImage {
 
-    func invert() -> UIImage {
-        let beginImage = CIImage(image: self)
-        if let filter = CIFilter(name: "CIColorInvert") {
-            filter.setValue(beginImage, forKey: kCIInputImageKey)
-            return UIImage(ciImage: filter.outputImage!)
-        }
-        return self
-    }
-
     func maskWithColor(color: UIColor) -> UIImage? {
         let maskImage = cgImage!
 
