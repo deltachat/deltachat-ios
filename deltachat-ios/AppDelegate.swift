@@ -278,8 +278,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler()
     }
 
-    func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        logger.info("notifications: forground notification appeared")
+    func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        //remove foreground notifications after 3 seconds
+        if notification.request.identifier == Constants.notificationIdentifier {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [notification.request.identifier])
+            }
+        }
         completionHandler([.alert, .sound])
     }
 
