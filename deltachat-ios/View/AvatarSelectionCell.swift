@@ -8,15 +8,11 @@ class AvatarSelectionCell: UITableViewCell {
     var onAvatarTapped: (() -> Void)?
 
     lazy var defaultImage: UIImage = {
-        if let image = UIImage(named: "camera") {
-            return image.invert()
-        }
-        return UIImage()
+        return UIImage(named: "camera") ?? UIImage()
     }()
 
     lazy var badge: InitialsBadge = {
         let badge = InitialsBadge(size: badgeSize)
-        badge.setColor(UIColor.lightGray)
         badge.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return badge
     }()
@@ -89,7 +85,7 @@ class AvatarSelectionCell: UITableViewCell {
             avatarSet = true
         } else {
             badge.setImage(defaultImage)
-            badge.backgroundColor = DcColors.grayTextColor
+            badge.setColor(UIColor.lightGray)
             avatarSet = false
         }
     }
