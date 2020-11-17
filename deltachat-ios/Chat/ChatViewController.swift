@@ -399,6 +399,24 @@ class ChatViewController: UITableViewController {
         markSeenMessagesInVisibleArea()
     }
 
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?  {
+        let action = UIContextualAction(style: .normal, title: nil,
+                                        handler: { (action, view, completionHandler) in
+                                            // Update data source when user taps action
+                                            completionHandler(true)
+                                        })
+        if #available(iOS 12.0, *) {
+            action.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "ic_reply_black" : "ic_reply")
+        } else {
+            action.image = UIImage(named: "ic_reply_black")
+        }
+        action.backgroundColor = DcColors.chatBackgroundColor
+        action.accessibilityHint = String.localized("reply_noun")
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+
+        return configuration
+    }
+
     func markSeenMessagesInVisibleArea() {
         if let indexPaths = tableView.indexPathsForVisibleRows {
             let visibleMessagesIds = indexPaths.map { UInt32(messageIds[$0.row]) }
