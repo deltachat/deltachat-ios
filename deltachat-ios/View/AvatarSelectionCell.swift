@@ -13,7 +13,6 @@ class AvatarSelectionCell: UITableViewCell {
 
     lazy var badge: InitialsBadge = {
         let badge = InitialsBadge(size: badgeSize)
-        badge.setColor(UIColor.lightGray)
         badge.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return badge
     }()
@@ -86,7 +85,7 @@ class AvatarSelectionCell: UITableViewCell {
             avatarSet = true
         } else {
             badge.setImage(defaultImage)
-            badge.backgroundColor = DcColors.grayTextColor
+            badge.setColor(UIColor.lightGray)
             avatarSet = false
         }
     }
