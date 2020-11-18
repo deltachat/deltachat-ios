@@ -26,6 +26,13 @@ class ChatViewController: UITableViewController {
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
     open var messageInputBar = InputBarAccessoryView()
 
+    lazy var quotePreview: QuotePreview = {
+        let view = QuotePreview()
+        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     open override var shouldAutorotate: Bool {
         return false
     }
@@ -403,6 +410,14 @@ class ChatViewController: UITableViewController {
         let action = UIContextualAction(style: .normal, title: nil,
                                         handler: { (action, view, completionHandler) in
                                             // Update data source when user taps action
+                                            let message = DcMsg(id: self.messageIds[indexPath.row])
+                                            let contact = message.fromContact
+                                            self.messageInputBar.setStackViewItems([self.quotePreview], forStack: .top, animated: false)
+                                            self.quotePreview.text = message.text
+                                            self.quotePreview.senderTitle.text = contact.displayName
+                                            self.quotePreview.senderTitle.textColor = contact.color
+                                            self.quotePreview.citeBar.backgroundColor = contact.color
+                                            self.quotePreview.imagePreview.image = message.image
                                             completionHandler(true)
                                         })
         if #available(iOS 12.0, *) {
@@ -1194,5 +1209,14 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         }
         inputBar.inputTextView.text = String()
         inputBar.inputTextView.attributedText = nil
+    }
+}
+
+extension ChatViewController: QuotePreviewDelegate {
+    func onCancel() {
+        // instead of hiding quote preview we need to remove it from the top view stack
+        // setStackViewItems ensures the size of the messagInputBarHeight is
+        // calculated correctly
+        messageInputBar.setStackViewItems([], forStack: .top, animated: false)
     }
 }
