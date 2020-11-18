@@ -8,6 +8,7 @@ import SDWebImage
 
 class ChatViewController: UITableViewController {
     var dcContext: DcContext
+    private var draftMessage: DcMsg?
     let outgoingAvatarOverlap: CGFloat = 17.5
     let loadCount = 30
     let chatId: Int
@@ -145,13 +146,23 @@ class ChatViewController: UITableViewController {
 
         if !disableWriting {
             configureMessageInputBar()
-            messageInputBar.inputTextView.text = textDraft
+            draftMessage = dcContext.getDraft(chatId: chatId)
+            messageInputBar.inputTextView.text = draftMessage?.text
+            if draftMessage?.quoteText != nil {
+                quotePreview.text = draftMessage?.quoteText
+                if let quoteMessage = draftMessage?.quoteMessage {
+                    quotePreview.senderTitle.text = quoteMessage.fromContact.displayName
+                    quotePreview.citeBar.backgroundColor = quoteMessage.fromContact.color
+                    quotePreview.imagePreview.image = quoteMessage.image
+                }
+                messageInputBar.setStackViewItems([quotePreview], forStack: .top, animated: false)
+            }
         }
 
 
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
-                                       selector: #selector(setTextDraft),
+                                       selector: #selector(saveDraft),
                                        name: UIApplication.willResignActiveNotification,
                                        object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -294,7 +305,7 @@ class ChatViewController: UITableViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         AppStateRestorer.shared.resetLastActiveChat()
-        setTextDraft()
+        saveDraft()
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
@@ -413,11 +424,15 @@ class ChatViewController: UITableViewController {
                                             let message = DcMsg(id: self.messageIds[indexPath.row])
                                             let contact = message.fromContact
                                             self.messageInputBar.setStackViewItems([self.quotePreview], forStack: .top, animated: false)
-                                            self.quotePreview.text = message.text
+                                            self.quotePreview.text = message.summary(chars: 80)
                                             self.quotePreview.senderTitle.text = contact.displayName
                                             self.quotePreview.senderTitle.textColor = contact.color
                                             self.quotePreview.citeBar.backgroundColor = contact.color
                                             self.quotePreview.imagePreview.image = message.image
+                                            if self.draftMessage == nil {
+                                                self.draftMessage = DcMsg(viewType: DC_MSG_TEXT)
+                                            }
+                                            self.draftMessage?.quoteMessage = message
                                             completionHandler(true)
                                         })
         if #available(iOS 12.0, *) {
@@ -628,18 +643,21 @@ class ChatViewController: UITableViewController {
             emptyStateView.isHidden = true
         }
     }
-
-    private var textDraft: String? {
-        return dcContext.getDraft(chatId: chatId)
-    }
     
     private func getMessageIds() -> [Int] {
         return dcContext.getMessageIds(chatId: chatId)
     }
 
-    @objc private func setTextDraft() {
-        if let text = self.messageInputBar.inputTextView.text {
-            dcContext.setDraft(chatId: chatId, draftText: text)
+    @objc private func saveDraft() {
+        if draftMessage == nil && self.messageInputBar.inputTextView.text == nil {
+            return
+        }
+        if draftMessage == nil {
+            draftMessage = DcMsg(viewType: DC_MSG_TEXT)
+        }
+        if let draftMessage = draftMessage {
+            draftMessage.text = messageInputBar.inputTextView.text
+            dcContext.setDraft(chatId: chatId, message: draftMessage)
         }
     }
 
@@ -1218,5 +1236,8 @@ extension ChatViewController: QuotePreviewDelegate {
         // setStackViewItems ensures the size of the messagInputBarHeight is
         // calculated correctly
         messageInputBar.setStackViewItems([], forStack: .top, animated: false)
+        let message = DcMsg(viewType: DC_MSG_TEXT)
+        message.text = messageInputBar.inputTextView.text
+        self.draftMessage = message
     }
 }
