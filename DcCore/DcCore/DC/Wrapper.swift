@@ -239,8 +239,8 @@ public class DcContext {
         return nil
     }
 
-    public func setDraft(chatId: Int, message: DcMsg) {
-        dc_set_draft(contextPointer, UInt32(chatId), message.messagePointer)
+    public func setDraft(chatId: Int, message: DcMsg?) {
+        dc_set_draft(contextPointer, UInt32(chatId), message?.messagePointer)
     }
 
     public func getFreshMessages() -> DcArray {

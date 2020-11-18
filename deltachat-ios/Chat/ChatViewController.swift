@@ -652,9 +652,18 @@ class ChatViewController: UITableViewController {
         if draftMessage == nil && self.messageInputBar.inputTextView.text == nil {
             return
         }
+
+        //dismiss draft if it doesn't contain any quotes or text
+        if self.messageInputBar.inputTextView.text == nil && draftMessage?.quoteMessage == nil {
+            draftMessage = nil
+            dcContext.setDraft(chatId: chatId, message: nil)
+            return
+        }
+
         if draftMessage == nil {
             draftMessage = DcMsg(viewType: DC_MSG_TEXT)
         }
+
         if let draftMessage = draftMessage {
             draftMessage.text = messageInputBar.inputTextView.text
             dcContext.setDraft(chatId: chatId, message: draftMessage)
@@ -958,8 +967,15 @@ class ChatViewController: UITableViewController {
 
     private func sendTextMessage(message: String) {
         DispatchQueue.global().async {
-            self.dcContext.sendTextInChat(id: self.chatId, message: message)
+            if self.draftMessage != nil {
+                self.draftMessage?.text = message
+                self.draftMessage?.sendInChat(id: self.chatId)
+                self.draftMessage = nil
+            } else {
+                self.dcContext.sendTextInChat(id: self.chatId, message: message)
+            }
         }
+        self.quotePreview.cancel()
     }
 
     private func sendImage(_ image: UIImage, message: String? = nil) {
@@ -1236,8 +1252,10 @@ extension ChatViewController: QuotePreviewDelegate {
         // setStackViewItems ensures the size of the messagInputBarHeight is
         // calculated correctly
         messageInputBar.setStackViewItems([], forStack: .top, animated: false)
-        let message = DcMsg(viewType: DC_MSG_TEXT)
-        message.text = messageInputBar.inputTextView.text
-        self.draftMessage = message
+        if messageInputBar.inputTextView.text != nil {
+            let message = DcMsg(viewType: DC_MSG_TEXT)
+            message.text = messageInputBar.inputTextView.text
+            self.draftMessage = message
+        }
     }
 }

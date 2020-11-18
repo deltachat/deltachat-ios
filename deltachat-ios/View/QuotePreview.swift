@@ -86,11 +86,11 @@ public class QuotePreview: UIView, InputItem {
             cancelButton.constraintHeightTo(30),
             cancelButton.constraintCenterYTo(self),
         ])
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(onCancelPressed))
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(cancel))
         cancelButton.addGestureRecognizer(recognizer)
     }
 
-    @objc func onCancelPressed() {
+    @objc public func cancel() {
         quoteView.prepareForReuse()
         delegate?.onCancel()
     }
