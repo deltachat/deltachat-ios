@@ -148,15 +148,7 @@ class ChatViewController: UITableViewController {
             configureMessageInputBar()
             draftMessage = dcContext.getDraft(chatId: chatId)
             messageInputBar.inputTextView.text = draftMessage?.text
-            if draftMessage?.quoteText != nil {
-                quotePreview.text = draftMessage?.quoteText
-                if let quoteMessage = draftMessage?.quoteMessage {
-                    quotePreview.senderTitle.text = quoteMessage.fromContact.displayName
-                    quotePreview.citeBar.backgroundColor = quoteMessage.fromContact.color
-                    quotePreview.imagePreview.image = quoteMessage.image
-                }
-                messageInputBar.setStackViewItems([quotePreview], forStack: .top, animated: false)
-            }
+            configureQuoteView(draft: draftMessage)
         }
 
 
@@ -417,22 +409,30 @@ class ChatViewController: UITableViewController {
         markSeenMessagesInVisibleArea()
     }
 
+    private func configureQuoteView(draft: DcMsg?) {
+        if draftMessage?.quoteText != nil {
+            quotePreview.text = draftMessage?.quoteText
+            if let quoteMessage = draftMessage?.quoteMessage {
+                let contact = quoteMessage.fromContact
+                quotePreview.senderTitle.text = contact.displayName
+                quotePreview.senderTitle.textColor = contact.color
+                quotePreview.citeBar.backgroundColor = contact.color
+                quotePreview.imagePreview.image = quoteMessage.image
+            }
+            messageInputBar.setStackViewItems([quotePreview], forStack: .top, animated: false)
+        }
+    }
+
+
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?  {
         let action = UIContextualAction(style: .normal, title: nil,
                                         handler: { (action, view, completionHandler) in
-                                            // Update data source when user taps action
                                             let message = DcMsg(id: self.messageIds[indexPath.row])
-                                            let contact = message.fromContact
-                                            self.messageInputBar.setStackViewItems([self.quotePreview], forStack: .top, animated: false)
-                                            self.quotePreview.text = message.summary(chars: 80)
-                                            self.quotePreview.senderTitle.text = contact.displayName
-                                            self.quotePreview.senderTitle.textColor = contact.color
-                                            self.quotePreview.citeBar.backgroundColor = contact.color
-                                            self.quotePreview.imagePreview.image = message.image
                                             if self.draftMessage == nil {
                                                 self.draftMessage = DcMsg(viewType: DC_MSG_TEXT)
                                             }
                                             self.draftMessage?.quoteMessage = message
+                                            self.configureQuoteView(draft: self.draftMessage)
                                             completionHandler(true)
                                         })
         if #available(iOS 12.0, *) {
