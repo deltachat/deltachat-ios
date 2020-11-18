@@ -64,6 +64,25 @@ public extension UIView {
         }
         return constraint
     }
+    
+    /**
+     ensure the top of self is aligned with or lower than another view
+     can be used in conjunction with constraintAlignCenterY
+     */
+    func constraintAlignTopMaxTo(_ view: UIView, paddingTop: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+        let constraint = NSLayoutConstraint(
+            item: self,
+            attribute: .top,
+            relatedBy: .greaterThanOrEqual,
+            toItem: view,
+            attribute: .top,
+            multiplier: 1.0,
+            constant: paddingTop)
+        if let priority = priority {
+            constraint.priority = priority
+        }
+        return constraint
+    }
 
     func constraintAlignBottomTo(_ view: UIView, paddingBottom: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
