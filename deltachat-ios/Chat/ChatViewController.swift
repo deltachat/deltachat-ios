@@ -945,7 +945,9 @@ class ChatViewController: UITableViewController {
             if let draftText = self.draft.draftText {
                 let message = DcMsg(viewType: DC_MSG_TEXT)
                 message.text = draftText.trimmingCharacters(in: .whitespacesAndNewlines)
-                message.quoteMessage = self.draft.quoteMessage
+                if let quoteMessage = self.draft.quoteMessage {
+                    message.quoteMessage = quoteMessage
+                }
                 message.sendInChat(id: self.chatId)
                 DispatchQueue.main.async {
                     self.quotePreview.cancel()
