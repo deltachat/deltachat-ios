@@ -38,9 +38,9 @@ public class QuotePreview: UIView, InputItem {
         return view
     }()
 
-    lazy var upperBorder: UIView = {
+    private lazy var upperBorder: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.lightGray
+        view.backgroundColor = DcColors.colorDisabled
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
