@@ -19,8 +19,16 @@ public class DraftModel {
     }
 
     public func setQuote(quotedMsg: DcMsg?) {
-        quoteMessage = quotedMsg
-        self.quoteText = quotedMsg?.text
+        if let quotedMsg = quotedMsg {
+            // create a temporary draft to get the correct quoteText
+            let draftMessage = DcMsg(viewType: DC_MSG_TEXT)
+            draftMessage.quoteMessage = quotedMsg
+            self.quoteText = draftMessage.quoteText
+            self.quoteMessage = quotedMsg
+        } else {
+            self.quoteText = nil
+            self.quoteMessage = nil
+        }
     }
 
     public func save(context: DcContext) {

@@ -90,18 +90,18 @@ public class QuotePreview: UIView, InputItem {
     }
 
     public func configure(draft: DraftModel) {
-        if draft.quoteMessage == nil && draft.quoteText == nil {
+        if let quoteText = draft.quoteText {
+            quoteView.quote.text = quoteText
+            if let quoteMessage = draft.quoteMessage {
+                let contact = quoteMessage.fromContact
+                quoteView.senderTitle.text = contact.displayName
+                quoteView.senderTitle.textColor = contact.color
+                quoteView.citeBar.backgroundColor = contact.color
+                quoteView.imagePreview.image = quoteMessage.image
+            }
+            isHidden = false
+        } else {
             isHidden = true
-            return
         }
-        quoteView.quote.text = draft.quoteText ?? draft.quoteMessage?.summary(chars: 80)
-        if let quoteMessage = draft.quoteMessage {
-            let contact = quoteMessage.fromContact
-            quoteView.senderTitle.text = contact.displayName
-            quoteView.senderTitle.textColor = contact.color
-            quoteView.citeBar.backgroundColor = contact.color
-            quoteView.imagePreview.image = quoteMessage.image
-        }
-        isHidden = false
     }
 }
