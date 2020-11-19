@@ -417,7 +417,7 @@ class ChatViewController: UITableViewController {
     private func configureDraftArea(draft: DraftModel) {
         quotePreview.configure(draft: draft)
         // setStackViewItems recalculates the proper messageInputBar height
-        messageInputBar.setStackViewItems([quotePreview], forStack: .top, animated: false)
+        messageInputBar.setStackViewItems([quotePreview], forStack: .top, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
