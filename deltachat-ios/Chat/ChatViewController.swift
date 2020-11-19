@@ -1228,9 +1228,6 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 
 extension ChatViewController: QuotePreviewDelegate {
     func onCancel() {
-        // instead of hiding quote preview we need to remove it from the top view stack
-        // setStackViewItems ensures the size of the messagInputBarHeight is
-        // calculated correctly
         draft.setQuote(quotedMsg: nil)
         configureDraftArea(draft: draft)
     }
