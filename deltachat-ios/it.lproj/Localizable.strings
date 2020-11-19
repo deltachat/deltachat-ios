@@ -490,7 +490,7 @@
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Vuoi eliminare %1$d messaggi ora e tutti i messaggi arrivati \"%2$@\" nel futuro?\n\n• Questo include tutti i media\n\n• I messaggi verranno eliminati anche se non sono stati letti\n\n• I \"Messaggi salvati\" vengono preservati dalla cancellazione locale.";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "Vuoi eliminare %1$d messaggi ora e tutti i messaggi arrivati \"%2$@\" nel futuro?\n\n• Questo include tutti i media\n\n• Verranno eliminate anche le email legate all\'opzione \"Mostra email classiche\"\n\n• Anche i \"Messaggi salvati\" verranno eliminati dal server.";
+"autodel_server_ask" = "Vuoi eliminare %1$d messaggi ora e tutti i messaggi appena recuperati \"%2$@\" nel futuro?\n\n⚠️ Ciò include emails, contenuti multimediali e \"Messaggi salvati\" in tutte le cartelle del server\n\n⚠️ Non utilizzare questa funzione se vuoi mantenere i dati sul server\n\n⚠️ Non utilizzare questa funzione se stai utilizzando altri client di posta elettronica oltre a Delta Chat";
 "autodel_confirm" = "Ho capito, elimina tutti i messaggi";
 "autodel_at_once" = "Una volta";
 "after_30_seconds" = "Dopo 30 secondi";

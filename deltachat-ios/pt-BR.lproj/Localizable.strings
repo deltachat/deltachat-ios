@@ -4,14 +4,20 @@
 "cancel" = "Cancelar";
 "yes" = "Sim";
 "no" = "Não";
+"select" = "Selecionar";
 "on" = "Ligado";
 "off" = "Desligado";
 "def" = "Padrão";
+"default_value" = "Padrão (%1$@)";
+"default_value_as_above" = "Padrão (igual acima)";
 "custom" = "Personalizado";
 "none" = "Nenhum";
 "automatic" = "Automático";
 "strict" = "Rigoroso";
 "open" = "Abrir";
+"open_attachment" = "Abrir anexo";
+"join" = "Entrar";
+"rejoin" = "Re-entrar";
 "delete" = "Apagar";
 "info" = "Informação";
 "update" = "Atualizar";
@@ -24,9 +30,11 @@
 "unarchive" = "Desarquivar";
 "mute" = "Mudo";
 "ephemeral_messages" = "Mensagens efêmeras";
+"ephemeral_messages_hint" = "Estas configurações se aplicam a todos os participantes usando o Delta Chat. No entanto, eles podem copiar, salvar e encaminhar mensagens ou usar outros clientes de email.";
 "save" = "Salvar";
 "chat" = "Conversa";
 "media" = "Mídia";
+"profile" = "Perfil";
 "main_menu" = "Menu principal";
 "start_chat" = "Começar conversa";
 "show_password" = "Mostrar senha";
@@ -36,6 +44,7 @@
 "one_moment" = "Um momento...";
 "done" = "Feito";
 "undo" = "Desfazer";
+"offline" = "Desconectado";
 // Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
 "next" = "Avançar";
 "error" = "Erro";
@@ -65,6 +74,8 @@
 "self" = "Eu";
 "draft" = "Rascunho";
 "image" = "Imagem";
+// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Responder";
 "gif" = "Gif";
 "images" = "Imagens";
 "audio" = "Áudio";
@@ -77,7 +88,9 @@
 "camera" = "Câmera";
 "location" = "Localização";
 "gallery" = "Galeria";
+"images_and_videos" = "Imagens e vídeos";
 "file" = "Arquivo";
+"files" = "Arquivos";
 "unknown" = "Desconhecido";
 
 "green" = "Verde";
@@ -89,6 +102,8 @@
 "magenta" = "Magenta";
 "white" = "Branco";
 
+"zoom" = "Zoom";
+"extra_small" = "Muito pequeno";
 "small" = "Pequeno";
 "normal" = "Normal";
 "large" = "Grande";
@@ -117,12 +132,17 @@
 "menu_add_attachment" = "Inserir anexo";
 "menu_leave_group" = "Sair do grupo";
 "menu_delete_chat" = "Apagar conversa";
+"ask_delete_named_chat" = "Você tem certeza que quer apagar \"%1$@\"?";
 "menu_delete_messages" = "Apagar mensagens";
 "menu_delete_image" = "Apagar imagem";
+"delete_contact" = "Apagar contato";
 "menu_delete_locations" = "Apagar todas as localizações?";
 "menu_delete_location" = "Apagar esta localização?";
 "menu_message_details" = "Detalhes da mensagem";
 "menu_copy_to_clipboard" = "Copiar para a área de transferência";
+"menu_copy_selection_to_clipboard" = "Copiar seleção";
+"menu_copy_link_to_clipboard" = "Copiar link";
+"paste_from_clipboard" = "Colar a partir da área de transferência";
 "menu_forward" = "Encaminhar mensagem";
 "menu_resend" = "Reenviar mensagem";
 "menu_reply" = "Responder a mensagem";
@@ -152,7 +172,20 @@
 "title_share_location" = "Compartilhar localização com o grupo";
 "device_talk" = "Mensagens desse aparelho";
 "device_talk_subtitle" = "Mensagens geradas localmente";
+"device_talk_explain" = "Mensagens nesta conversa são geradas localmente pelo app Delta Chat. Essas mensagens são para informar sobre atualizações do app e problemas durante seu uso.";
+"device_talk_welcome_message" = "Bem vindo ao Delta Chat! - O Delta Chat se parece com outros aplicativos de mensagens populares, mas não envolve controle centralizado, rastreamento ou venda de você, amigos, colegas ou família para grandes organizações.\n\nTecnicamente, o Delta Chat é um aplicativo de e-mail com uma interface de bate-papo moderna. E-mail de cara nova se você 👻\n\nUtilize o Delta Chat com qualquer pessoa dentre bilhões de pessoas: basta usar o endereço de e-mail. Os destinatários não precisam instalar o Delta Chat, visitar sites ou se inscrever em qualquer lugar - no entanto, é claro, se quiserem, você pode direcioná-los para 👉 https://get.delta.chat";
 "edit_contact" = "Editar contato";
+// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin_chat" = "Fixar conversa";
+// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+"unpin_chat" = "Desafixar conversa";
+// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin" = "Fixar";
+// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+"unpin" = "Desafixar";
+"ConversationFragment_quoted_message_not_found" = "Mensagem original não encontrada";
+"reply_privately" = "Responder em privado";
+
 "mute_for_one_hour" = "Silenciar por 1 hora";
 "mute_for_two_hours" = "Silenciar por 2 horas";
 "mute_for_one_day" = "Silenciar por 1 dia";
@@ -168,6 +201,14 @@
 
 "file_saved_to" = "Arquivo salvo em \"%1$@\".";
 
+"videochat" = "Vídeo conversa";
+"videochat_invite_user_to_videochat" = "Convidar %1$@ para uma chamada de vídeo?";
+"videochat_invite_user_hint" = "Isto requer um app compatível ou um navegador compatível nos dois interlocutores.";
+"videochat_contact_invited_hint" = "%1$@ convidou para uma conversa em vídeo.";
+"videochat_you_invited_hint" = "Você convidou para uma conversa em vídeo.";
+"videochat_will_open_in_your_browser" = "Esta conversa em vídeo vai abrir no seu navegador.";
+"videochat_tap_to_join" = "Clique para entrar";
+"videochat_tap_to_open" = "Clique para abrir";
 // get confirmations
 "ask_leave_group" = "Quer mesmo sair do grupo?";
 "ask_forward" = "Encaminhar mensagens para %1$@?";

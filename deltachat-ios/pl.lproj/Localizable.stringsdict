@@ -59,7 +59,7 @@
 			<key>many</key>
 			<string>%d czatów</string>
 			<key>other</key>
-			<string>%d czatu</string>
+			<string>%d czatów</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -79,7 +79,7 @@
 			<key>many</key>
 			<string>%d kontaktów</string>
 			<key>other</key>
-			<string>%d kontaktu</string>
+			<string>%d kontaktów</string>
 		</dict>
 	</dict>
 	<key>n_messages</key>
@@ -99,7 +99,7 @@
 			<key>many</key>
 			<string>%d wiadomości</string>
 			<key>other</key>
-			<string>%dwiadomości </string>
+			<string>%d wiadomości </string>
 		</dict>
 	</dict>
 	<key>n_members</key>

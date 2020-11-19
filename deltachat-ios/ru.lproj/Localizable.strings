@@ -487,8 +487,6 @@
 "autodel_server_title" = "Удалять сообщения с сервера";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Вы хотите удалить %1$d сообщений сейчас и все новые загруженные сообщения \"%2$@\" в будущем?\n\n• Это включает в себя все медиафайлы\n\n• Сообщения будут удалены независимо от того, просмотрены они или нет\n\n• \"Сохранённые сообщения\" будут пропущены при локальном удалении";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "Вы хотите удалить %1$d сообщений сейчас и все новые загруженные сообщения \"%2$@\" в будущем?\n\n• Это включает в себя все медиафайлы\n\n• Это также удалит почту, затронутую опцией \"Показывать обычную почту\"\n\n• \"Сохранённые сообщения\" также будут удалены с сервера";
 "autodel_confirm" = "Я понимаю, удалить все эти сообщения";
 "autodel_at_once" = "Сразу";
 "after_30_seconds" = "Через 30 секунд";

@@ -399,8 +399,6 @@
 "autodel_server_title" = "Ezabatu mezuak zerbitzaritik";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "%1$d mezu ezabatu nahi dituzu orain eta \"%2$@\" etorkizunean jasotako mezuak ere?\n\n• Honek multimedia ere barne hartzen du\n\n• Mezuak ikusi ala ez ezabatuko dira\n\n• \"Gordetako mezuak\" ez dira lokalki ezabatuko";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "%1$d mezu ezabatu nahi dituzu orain eta \"%2$@\" etorkizunean jasotako mezuak ere?\n\n• Honek \"Erakutsi e-mail klasikoak\" aukerak ekarritako e-mailei ere eragingo die\n\n• \"Gordetako mezuak\" ere zerbitzaritik ezabatuko dira";
 "autodel_confirm" = "Ulertzen dut, ezabatu mezuk guzti hauek";
 "autodel_at_once" = "Berehala";
 "autodel_after_1_hour" = "Ordubete eta gero";

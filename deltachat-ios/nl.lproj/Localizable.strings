@@ -490,7 +490,9 @@
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Wil je nu %1$d berichten verwijderen en toekomstige berichten \'%2$@\'?\n\n• Dit omvat alle media\n\n• Berichten worden verwijderd, ongeacht of ze bekeken zijn\n\n• Het gesprek \'Opgeslagen berichten\' wordt overgeslagen";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "Wil je nu %1$d berichten verwijderen en toekomstige berichten \'%2$@\'?\n\n• Dit omvat alle media\n\n• Berichten worden verwijderd, ongeacht of ze bekeken zijn\n\n• Het gesprek \'Opgeslagen berichten\' wordt eveneens verwijderd van de server";
+"autodel_server_ask" = "Wil je nu %1$d berichten verwijderen en toekomstige berichten %2$@?\n\n⚠️ Dit omvat alle berichten, media en het gesprek \'Opgeslagen berichten\'.\n\n⚠️ Gebruik deze functie niet als je je gegevens wilt bewaren op de server\n\n⚠️ Gebruik deze functie niet als je ook andere e-mailclients gebruikt";
+// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+"autodel_server_enabled_hint" = "Dit omvat alle berichten, media en het gesprek \'Opgeslagen berichten\'. Gebruik deze functie niet als je je gegevens wilt bewaren op de server of als je ook andere e-mailclients gebruikt.";
 "autodel_confirm" = "Ik begrijp het; verwijder alle berichten";
 "autodel_at_once" = "Direct";
 "after_30_seconds" = "Na 30 seconden";
