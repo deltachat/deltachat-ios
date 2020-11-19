@@ -426,6 +426,7 @@ class ChatViewController: UITableViewController {
                                             let message = DcMsg(id: self.messageIds[indexPath.row])
                                             self.draft.setQuote(quotedMsg: message)
                                             self.configureDraftArea(draft: self.draft)
+                                            self.messageInputBar.inputTextView.becomeFirstResponder()
                                             completionHandler(true)
                                         })
         if #available(iOS 12.0, *) {
