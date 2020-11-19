@@ -23,7 +23,7 @@ public class DraftModel {
         self.quoteText = quotedMsg?.text
     }
 
-    func save(context: DcContext) {
+    public func save(context: DcContext) {
         if draftText == nil && quoteMessage == nil {
             context.setDraft(chatId: chatId, message: nil)
             return

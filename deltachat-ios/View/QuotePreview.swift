@@ -54,7 +54,7 @@ public class QuotePreview: UIView, InputItem {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setupSubviews() {
+    private func setupSubviews() {
         addSubview(upperBorder)
         addSubview(quoteView)
         addSubview(cancelButton)
