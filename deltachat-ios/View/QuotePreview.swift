@@ -39,26 +39,6 @@ public class QuotePreview: UIView, InputItem {
         return view
     }()
 
-    public var text: String? {
-        set { quoteView.quote.text = newValue }
-        get { return quoteView.quote.text }
-    }
-
-    public var senderTitle: UILabel {
-        set { quoteView.senderTitle = newValue }
-        get { return quoteView.senderTitle }
-    }
-
-    public var citeBar: UIView {
-        set { quoteView.citeBar = newValue }
-        get { return quoteView.citeBar }
-    }
-
-    public var imagePreview: UIImageView {
-        set { quoteView.imagePreview = newValue }
-        get { return quoteView.imagePreview }
-    }
-
     init() {
         super.init(frame: .zero)
         setupSubviews()
@@ -93,5 +73,21 @@ public class QuotePreview: UIView, InputItem {
     @objc public func cancel() {
         quoteView.prepareForReuse()
         delegate?.onCancel()
+    }
+
+    public func configure(draft: DraftModel) {
+        if draft.quoteMessage == nil && draft.quoteText == nil {
+            isHidden = true
+            return
+        }
+        quoteView.quote.text = draft.quoteText ?? draft.quoteMessage?.summary(chars: 80)
+        if let quoteMessage = draft.quoteMessage {
+            let contact = quoteMessage.fromContact
+            quoteView.senderTitle.text = contact.displayName
+            quoteView.senderTitle.textColor = contact.color
+            quoteView.citeBar.backgroundColor = contact.color
+            quoteView.imagePreview.image = quoteMessage.image
+        }
+        isHidden = false
     }
 }

@@ -24,6 +24,11 @@ class ChatViewController: UITableViewController {
         return dcContext.getChat(chatId: chatId).isGroup
     }()
 
+    lazy var draft: DraftModel = {
+        let draft = DraftModel(chatId: chatId)
+        return draft
+    }()
+
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
     open var messageInputBar = InputBarAccessoryView()
 
@@ -146,9 +151,9 @@ class ChatViewController: UITableViewController {
 
         if !disableWriting {
             configureMessageInputBar()
-            draftMessage = dcContext.getDraft(chatId: chatId)
-            messageInputBar.inputTextView.text = draftMessage?.text
-            configureQuoteView(draft: draftMessage)
+            draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
+            messageInputBar.inputTextView.text = draft.draftText
+            configureDraftArea(draft: draft)
         }
 
 
@@ -409,30 +414,18 @@ class ChatViewController: UITableViewController {
         markSeenMessagesInVisibleArea()
     }
 
-    private func configureQuoteView(draft: DcMsg?) {
-        if draftMessage?.quoteText != nil {
-            quotePreview.text = draftMessage?.quoteText
-            if let quoteMessage = draftMessage?.quoteMessage {
-                let contact = quoteMessage.fromContact
-                quotePreview.senderTitle.text = contact.displayName
-                quotePreview.senderTitle.textColor = contact.color
-                quotePreview.citeBar.backgroundColor = contact.color
-                quotePreview.imagePreview.image = quoteMessage.image
-            }
-            messageInputBar.setStackViewItems([quotePreview], forStack: .top, animated: false)
-        }
+    private func configureDraftArea(draft: DraftModel) {
+        quotePreview.configure(draft: draft)
+        // setStackViewItems recalculates the proper messageInputBar height
+        messageInputBar.setStackViewItems([quotePreview], forStack: .top, animated: false)
     }
 
-
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?  {
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: nil,
-                                        handler: { (action, view, completionHandler) in
+                                        handler: { (_, _, completionHandler) in
                                             let message = DcMsg(id: self.messageIds[indexPath.row])
-                                            if self.draftMessage == nil {
-                                                self.draftMessage = DcMsg(viewType: DC_MSG_TEXT)
-                                            }
-                                            self.draftMessage?.quoteMessage = message
-                                            self.configureQuoteView(draft: self.draftMessage)
+                                            self.draft.setQuote(quotedMsg: message)
+                                            self.configureDraftArea(draft: self.draft)
                                             completionHandler(true)
                                         })
         if #available(iOS 12.0, *) {
@@ -649,25 +642,7 @@ class ChatViewController: UITableViewController {
     }
 
     @objc private func saveDraft() {
-        if draftMessage == nil && self.messageInputBar.inputTextView.text == nil {
-            return
-        }
-
-        //dismiss draft if it doesn't contain any quotes or text
-        if self.messageInputBar.inputTextView.text == nil && draftMessage?.quoteMessage == nil {
-            draftMessage = nil
-            dcContext.setDraft(chatId: chatId, message: nil)
-            return
-        }
-
-        if draftMessage == nil {
-            draftMessage = DcMsg(viewType: DC_MSG_TEXT)
-        }
-
-        if let draftMessage = draftMessage {
-            draftMessage.text = messageInputBar.inputTextView.text
-            dcContext.setDraft(chatId: chatId, message: draftMessage)
-        }
+        draft.save(context: dcContext)
     }
 
     private func configureMessageInputBar() {
@@ -965,17 +940,18 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    private func sendTextMessage(message: String) {
+    private func sendTextMessage() {
         DispatchQueue.global().async {
-            if self.draftMessage != nil {
-                self.draftMessage?.text = message
-                self.draftMessage?.sendInChat(id: self.chatId)
-                self.draftMessage = nil
-            } else {
-                self.dcContext.sendTextInChat(id: self.chatId, message: message)
+            if let draftText = self.draft.draftText {
+                let message = DcMsg(viewType: DC_MSG_TEXT)
+                message.text = draftText.trimmingCharacters(in: .whitespacesAndNewlines)
+                message.quoteMessage = self.draft.quoteMessage
+                message.sendInChat(id: self.chatId)
+                DispatchQueue.main.async {
+                    self.quotePreview.cancel()
+                }
             }
         }
-        self.quotePreview.cancel()
     }
 
     private func sendImage(_ image: UIImage, message: String? = nil) {
@@ -1234,7 +1210,7 @@ extension ChatViewController: MediaPickerDelegate {
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         if inputBar.inputTextView.images.isEmpty {
-            self.sendTextMessage(message: text.trimmingCharacters(in: .whitespacesAndNewlines))
+            self.sendTextMessage()
         } else {
             let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
                 .trimmingCharacters(in: .whitespacesAndNewlines)
@@ -1244,6 +1220,10 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         inputBar.inputTextView.text = String()
         inputBar.inputTextView.attributedText = nil
     }
+
+    func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
+        draft.draftText = text
+    }
 }
 
 extension ChatViewController: QuotePreviewDelegate {
@@ -1251,11 +1231,7 @@ extension ChatViewController: QuotePreviewDelegate {
         // instead of hiding quote preview we need to remove it from the top view stack
         // setStackViewItems ensures the size of the messagInputBarHeight is
         // calculated correctly
-        messageInputBar.setStackViewItems([], forStack: .top, animated: false)
-        if messageInputBar.inputTextView.text != nil {
-            let message = DcMsg(viewType: DC_MSG_TEXT)
-            message.text = messageInputBar.inputTextView.text
-            self.draftMessage = message
-        }
+        draft.setQuote(quotedMsg: nil)
+        configureDraftArea(draft: draft)
     }
 }
