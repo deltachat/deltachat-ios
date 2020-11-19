@@ -128,6 +128,7 @@ class SettingsAutodelSetController: UITableViewController {
                 oldSelectedCell?.accessoryType = .none
                 newSelectedCell?.accessoryType = .checkmark
                 self.currVal = newVal
+                self.tableView.reloadData() // needed to update footer
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
             present(alert, animated: true, completion: nil)
@@ -135,6 +136,7 @@ class SettingsAutodelSetController: UITableViewController {
             oldSelectedCell?.accessoryType = .none
             newSelectedCell?.accessoryType = .checkmark
             currVal = newVal
+            self.tableView.reloadData() // needed to update footer
         }
     }
 
@@ -144,6 +146,13 @@ class SettingsAutodelSetController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return String.localized(fromServer ? "autodel_server_title" : "autodel_device_title")
+    }
+
+    override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
+        if fromServer && currVal != 0 {
+            return String.localized("autodel_server_enabled_hint")
+        }
+        return nil
     }
 
     // MARK: - actions
