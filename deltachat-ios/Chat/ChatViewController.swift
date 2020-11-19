@@ -433,8 +433,9 @@ class ChatViewController: UITableViewController {
         } else {
             action.image = UIImage(named: "ic_reply_black")
         }
+        action.image?.accessibilityTraits = .button
+        action.image?.accessibilityLabel = String.localized("menu_reply")
         action.backgroundColor = DcColors.chatBackgroundColor
-        action.accessibilityHint = String.localized("reply_noun")
         let configuration = UISwipeActionsConfiguration(actions: [action])
 
         return configuration
