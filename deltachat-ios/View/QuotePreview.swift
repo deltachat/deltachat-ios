@@ -29,6 +29,8 @@ public class QuotePreview: UIView, InputItem {
         view.isUserInteractionEnabled = true
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(cancelImageView)
+        view.accessibilityLabel = String.localized("cancel")
+        view.isAccessibilityElement = true
         return view
     }()
 
