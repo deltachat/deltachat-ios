@@ -24,11 +24,17 @@ public class QuotePreview: UIView, InputItem {
         return view
     }()
 
-    lazy var cancelButton: UIImageView = {
-        let view = UIImageView(image: UIImage(named: "ic_close_36pt"))
-        view.tintColor = .darkGray
-        view.translatesAutoresizingMaskIntoConstraints = false
+    lazy var cancelButton: UIView = {
+        let view = UIView()
         view.isUserInteractionEnabled = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(cancelImageView)
+        return view
+    }()
+
+    private lazy var cancelImageView: UIImageView = {
+        let view = UIImageView(image: UIImage(named: "ic_close_36pt"))
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -62,8 +68,12 @@ public class QuotePreview: UIView, InputItem {
             quoteView.constraintAlignBottomTo(self, paddingBottom: 4),
             quoteView.constraintTrailingToLeadingOf(cancelButton),
             cancelButton.constraintAlignTrailingTo(self, paddingTrailing: 8),
-            cancelButton.constraintWidthTo(30),
-            cancelButton.constraintHeightTo(30),
+            cancelButton.constraintWidthTo(35),
+            cancelButton.constraintHeightTo(35),
+            cancelImageView.constraintAlignLeadingTo(cancelButton, paddingLeading: 5),
+            cancelImageView.constraintAlignTrailingTo(cancelButton, paddingTrailing: 5),
+            cancelImageView.constraintAlignTopTo(cancelButton, paddingTop: 5),
+            cancelImageView.constraintAlignBottomTo(cancelButton, paddingBottom: 5),
             cancelButton.constraintCenterYTo(self),
         ])
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(cancel))
