@@ -420,7 +420,7 @@ class ChatViewController: UITableViewController {
         messageInputBar.setStackViewItems([quotePreview], forStack: .top, animated: true)
     }
 
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: nil,
                                         handler: { (_, _, completionHandler) in
                                             let message = DcMsg(id: self.messageIds[indexPath.row])
