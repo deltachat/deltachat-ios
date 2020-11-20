@@ -22,7 +22,7 @@ on the command-line:
 
 in Xcode:
 
-5. a) adapt version ("View/Navigator/Project Navigator/deltachat-ios",
+5. a) adapt version ("View/Navigators/Project/deltachat-ios",
       target "deltachat-ios", then "General/Version")
    b) increase the build number in the same dialog
    c) to avoid a warning,
