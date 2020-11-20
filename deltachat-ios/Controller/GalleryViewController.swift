@@ -19,8 +19,8 @@ class GalleryViewController: UIViewController {
         return layout
     }()
 
-    private lazy var grid: UICollectionView = {
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: gridLayout)
+    private lazy var grid: HitTestCollectionView = {
+        let collection = HitTestCollectionView(frame: .zero, collectionViewLayout: gridLayout)
         collection.dataSource = self
         collection.delegate = self
         collection.register(GalleryCell.self, forCellWithReuseIdentifier: GalleryCell.reuseIdentifier)
@@ -227,7 +227,9 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         return UIContextMenuConfiguration(
             identifier: nil,
             previewProvider: {
-               return ContextMenuController(item: item)
+                let contextMenuController = ContextMenuController(item: item)
+                contextMenuController.delegate = self
+                return contextMenuController
             },
             actionProvider: { [weak self] _ in
                 return self?.makeContextMenu(indexPath: indexPath)
@@ -300,4 +302,36 @@ extension GalleryViewController {
         let previewController = PreviewController(type: .multi(mediaMessageIds, index))
         present(previewController, animated: true, completion: nil)
     }
+}
+
+extension GalleryViewController: ContextMenuDelegate {
+
+    func contextMenu(_: ContextMenuController, event: ContextMenuController.Event) {
+
+        switch event {
+        case .tap(let item):
+            let msgId = item.msg.id
+            showPreview(msgId: msgId)
+        default:
+            return
+        }
+    }
+}
+
+class HitTestCollectionView: UICollectionView {
+
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        print("collection hit test succeeded")
+        return self
+    }
+
+}
+
+class HitTestView: UIView {
+
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        print("thumbnail hit test succeeded")
+        return self
+    }
+
 }
