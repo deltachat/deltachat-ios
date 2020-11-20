@@ -215,6 +215,9 @@
 "ask_start_chat_with" = "Rozpocząć czat z %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Usunąć %1$@ z grupy?";
+"open_url_confirmation" = "Czy chcesz otworzyć ten link?";
+
+
 // contact list
 "contacts_title" = "Kontakty";
 "contacts_enter_name_or_email" = "Podaj nazwę lub adres e-mail";

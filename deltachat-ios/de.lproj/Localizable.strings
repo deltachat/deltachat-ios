@@ -150,6 +150,8 @@
 "menu_unmute" = "Stumm aus";
 "menu_export_attachment" = "Datei exportieren";
 "menu_all_media" = "Alle Medien";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Im Chat zeigen";
 "menu_share" = "Teilen";
 "menu_block_contact" = "Kontakt blockieren";
 "menu_unblock_contact" = "Kontakt nicht mehr blockieren";
