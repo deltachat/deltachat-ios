@@ -82,6 +82,7 @@ public class QuotePreview: UIView, InputItem {
         ])
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(cancel))
         cancelButton.addGestureRecognizer(recognizer)
+        backgroundColor = DcColors.chatBackgroundColor
     }
 
     @objc public func cancel() {
