@@ -3,18 +3,12 @@ import AVFoundation
 import SDWebImage
 import DcCore
 
-// TODO: probably not able to trigger touch events this way
-// MARK: - ContextMenuDelegate
-protocol ContextMenuDelegate: class {
-    func contextMenu(_: ContextMenuController, event: ContextMenuController.Event)
-}
 
 // MARK: - ContextMenuController
 class ContextMenuController: UIViewController {
 
     let item: GalleryItem
-    weak var delegate: ContextMenuDelegate?
-
+    
     init(item: GalleryItem) {
         self.item = item
         super.init(nibName: nil, bundle: nil)
@@ -45,33 +39,15 @@ class ContextMenuController: UIViewController {
             return
         }
 
-        let hitTestView = HitTestView()
-
-        view.addSubview(hitTestView)
         view.addSubview(contentView)
-        hitTestView.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            hitTestView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            hitTestView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            hitTestView.topAnchor.constraint(equalTo: view.topAnchor),
-            hitTestView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
             contentView.leftAnchor.constraint(equalTo: view.leftAnchor),
             contentView.rightAnchor.constraint(equalTo: view.rightAnchor),
             contentView.topAnchor.constraint(equalTo: view.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
-
-        let button = UIButton(frame: CGRect(x: view.frame.midX, y: view.frame.midY, width: 100, height: 100))
-        button.makeBorder()
-        button.setTitle("Tap me", for: .normal)
-        button.addTarget(self, action: #selector(handleThumbnailTap(_:)), for: .touchUpInside)
-        view.addSubview(button)
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleThumbnailTap(_:)))
-//        contentView.addGestureRecognizer(tapGesture)
-//        contentView.makeBorder()
     }
 
     // MARK: - thumbnailView creation
@@ -130,22 +106,4 @@ class ContextMenuController: UIViewController {
         let height = image.size.height * (width / image.size.width)
         self.preferredContentSize = CGSize(width: width, height: height)
     }
-
-    // MARK: - actions
-    @objc private func handleThumbnailTap(_ tapGesture: UITapGestureRecognizer) {
-        delegate?.contextMenu(self, event: .tap(item))
-    }
-
-
 }
-
-// MARK: - inner class definitions
-extension ContextMenuController {
-    enum Event {
-        case tap(GalleryItem)
-        case doupleTap(GalleryItem)
-        case longPress(GalleryItem)
-        // add event types if needed
-    }
-}
-
