@@ -421,6 +421,10 @@ class ChatViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if disableWriting {
+            return nil
+        }
+
         let action = UIContextualAction(style: .normal, title: nil,
                                         handler: { (_, _, completionHandler) in
                                             let message = DcMsg(id: self.messageIds[indexPath.row])
