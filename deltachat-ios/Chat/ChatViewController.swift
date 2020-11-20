@@ -276,6 +276,7 @@ class ChatViewController: UITableViewController {
         if RelayHelper.sharedInstance.isForwarding() {
             askToForwardMessage()
         }
+
         prepareContextMenu()
     }
 
