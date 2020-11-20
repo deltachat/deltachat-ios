@@ -7,7 +7,6 @@ class SettingsAutodelOverviewController: UITableViewController {
 
     private struct SectionConfigs {
         let headerTitle: String?
-        let footerTitle: String?
         let cells: [UITableViewCell]
     }
 
@@ -35,12 +34,10 @@ class SettingsAutodelOverviewController: UITableViewController {
     private lazy var sections: [SectionConfigs] = {
         let autodelSection = SectionConfigs(
             headerTitle: String.localized("autodel_device_title"),
-            footerTitle: nil,
             cells: [autodelDeviceCell]
         )
         let autodelSection2 = SectionConfigs(
             headerTitle: String.localized("autodel_server_title"),
-            footerTitle: nil,
             cells: [autodelServerCell]
         )
         return [autodelSection, autodelSection2]
@@ -63,6 +60,7 @@ class SettingsAutodelOverviewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tableView.reloadData() // needed to update footer
         autodelDeviceCell.textLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: false)
         autodelServerCell.textLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: true)
     }
@@ -86,7 +84,14 @@ class SettingsAutodelOverviewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return sections[section].footerTitle
+        guard let cellTag = CellTags(rawValue: section) else {
+            safe_fatalError()
+            return nil
+        }
+        if cellTag == .autodelServer && dcContext.getConfigInt("delete_server_after") != 0 {
+            return String.localized("autodel_server_enabled_hint")
+        }
+        return nil
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
