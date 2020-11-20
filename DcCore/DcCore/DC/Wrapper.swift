@@ -232,27 +232,15 @@ public class DcContext {
         dc_set_stock_translation(contextPointer, UInt32(id), String.localized(localizationKey))
     }
 
-    public func getDraft(chatId: Int) -> String? {
+    public func getDraft(chatId: Int) -> DcMsg? {
         if let draft = dc_get_draft(contextPointer, UInt32(chatId)) {
-            if let cString = dc_msg_get_text(draft) {
-                let swiftString = String(cString: cString)
-                dc_str_unref(cString)
-                dc_msg_unref(draft)
-                return swiftString
-            }
-            dc_msg_unref(draft)
-            return nil
+            return DcMsg(pointer: draft)
         }
         return nil
     }
 
-    public func setDraft(chatId: Int, draftText: String) {
-        let draft = dc_msg_new(contextPointer, DC_MSG_TEXT)
-        dc_msg_set_text(draft, draftText.cString(using: .utf8))
-        dc_set_draft(contextPointer, UInt32(chatId), draft)
-
-        // cleanup
-        dc_msg_unref(draft)
+    public func setDraft(chatId: Int, message: DcMsg?) {
+        dc_set_draft(contextPointer, UInt32(chatId), message?.messagePointer)
     }
 
     public func getFreshMessages() -> DcArray {
@@ -793,10 +781,6 @@ public class DcMsg {
         messagePointer = dc_get_msg(DcContext.shared.contextPointer, UInt32(id))
     }
 
-    public init(type: Int32) {
-        messagePointer = dc_msg_new(DcContext.shared.contextPointer, type)
-    }
-
     init(pointer: OpaquePointer) {
         messagePointer = pointer
     }
@@ -869,8 +853,16 @@ public class DcMsg {
     }
 
     public var quoteMessage: DcMsg? {
-        guard let msgpointer = dc_msg_get_quoted_msg(messagePointer) else { return nil }
-        return DcMsg(pointer: msgpointer)
+        get {
+            guard let msgpointer = dc_msg_get_quoted_msg(messagePointer) else { return nil }
+            return DcMsg(pointer: msgpointer)
+        }
+        set {
+            if newValue == nil {
+                fatalError("Quote message cannot be set to null!")
+            }
+            dc_msg_set_quote(messagePointer, newValue?.messagePointer)
+        }
     }
 
     public var viewtype: MessageViewType? {

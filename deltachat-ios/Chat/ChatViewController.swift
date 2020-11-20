@@ -8,6 +8,7 @@ import SDWebImage
 
 class ChatViewController: UITableViewController {
     var dcContext: DcContext
+    private var draftMessage: DcMsg?
     let outgoingAvatarOverlap: CGFloat = 17.5
     let loadCount = 30
     let chatId: Int
@@ -23,8 +24,20 @@ class ChatViewController: UITableViewController {
         return dcContext.getChat(chatId: chatId).isGroup
     }()
 
+    lazy var draft: DraftModel = {
+        let draft = DraftModel(chatId: chatId)
+        return draft
+    }()
+
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
     open var messageInputBar = InputBarAccessoryView()
+
+    lazy var quotePreview: QuotePreview = {
+        let view = QuotePreview()
+        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     open override var shouldAutorotate: Bool {
         return false
@@ -138,13 +151,15 @@ class ChatViewController: UITableViewController {
 
         if !disableWriting {
             configureMessageInputBar()
-            messageInputBar.inputTextView.text = textDraft
+            draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
+            messageInputBar.inputTextView.text = draft.draftText
+            configureDraftArea(draft: draft)
         }
 
 
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
-                                       selector: #selector(setTextDraft),
+                                       selector: #selector(saveDraft),
                                        name: UIApplication.willResignActiveNotification,
                                        object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -287,7 +302,7 @@ class ChatViewController: UITableViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         AppStateRestorer.shared.resetLastActiveChat()
-        setTextDraft()
+        saveDraft()
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
@@ -397,6 +412,34 @@ class ChatViewController: UITableViewController {
 
     public override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         markSeenMessagesInVisibleArea()
+    }
+
+    private func configureDraftArea(draft: DraftModel) {
+        quotePreview.configure(draft: draft)
+        // setStackViewItems recalculates the proper messageInputBar height
+        messageInputBar.setStackViewItems([quotePreview], forStack: .top, animated: true)
+    }
+
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: nil,
+                                        handler: { (_, _, completionHandler) in
+                                            let message = DcMsg(id: self.messageIds[indexPath.row])
+                                            self.draft.setQuote(quotedMsg: message)
+                                            self.configureDraftArea(draft: self.draft)
+                                            self.messageInputBar.inputTextView.becomeFirstResponder()
+                                            completionHandler(true)
+                                        })
+        if #available(iOS 12.0, *) {
+            action.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "ic_reply_black" : "ic_reply")
+        } else {
+            action.image = UIImage(named: "ic_reply_black")
+        }
+        action.image?.accessibilityTraits = .button
+        action.image?.accessibilityLabel = String.localized("menu_reply")
+        action.backgroundColor = DcColors.chatBackgroundColor
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+
+        return configuration
     }
 
     func markSeenMessagesInVisibleArea() {
@@ -595,19 +638,13 @@ class ChatViewController: UITableViewController {
             emptyStateView.isHidden = true
         }
     }
-
-    private var textDraft: String? {
-        return dcContext.getDraft(chatId: chatId)
-    }
     
     private func getMessageIds() -> [Int] {
         return dcContext.getMessageIds(chatId: chatId)
     }
 
-    @objc private func setTextDraft() {
-        if let text = self.messageInputBar.inputTextView.text {
-            dcContext.setDraft(chatId: chatId, draftText: text)
-        }
+    @objc private func saveDraft() {
+        draft.save(context: dcContext)
     }
 
     private func configureMessageInputBar() {
@@ -905,9 +942,19 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    private func sendTextMessage(message: String) {
+    private func sendTextMessage() {
         DispatchQueue.global().async {
-            self.dcContext.sendTextInChat(id: self.chatId, message: message)
+            if let draftText = self.draft.draftText {
+                let message = DcMsg(viewType: DC_MSG_TEXT)
+                message.text = draftText.trimmingCharacters(in: .whitespacesAndNewlines)
+                if let quoteMessage = self.draft.quoteMessage {
+                    message.quoteMessage = quoteMessage
+                }
+                message.sendInChat(id: self.chatId)
+                DispatchQueue.main.async {
+                    self.quotePreview.cancel()
+                }
+            }
         }
     }
 
@@ -1167,7 +1214,7 @@ extension ChatViewController: MediaPickerDelegate {
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         if inputBar.inputTextView.images.isEmpty {
-            self.sendTextMessage(message: text.trimmingCharacters(in: .whitespacesAndNewlines))
+            self.sendTextMessage()
         } else {
             let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
                 .trimmingCharacters(in: .whitespacesAndNewlines)
@@ -1176,5 +1223,16 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         }
         inputBar.inputTextView.text = String()
         inputBar.inputTextView.attributedText = nil
+    }
+
+    func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
+        draft.draftText = text
+    }
+}
+
+extension ChatViewController: QuotePreviewDelegate {
+    func onCancel() {
+        draft.setQuote(quotedMsg: nil)
+        configureDraftArea(draft: draft)
     }
 }

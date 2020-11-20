@@ -42,7 +42,7 @@ public class QuoteView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setupSubviews() {
+    private func setupSubviews() {
         addSubview(citeBar)
         addSubview(senderTitle)
         addSubview(imagePreview)
@@ -53,6 +53,7 @@ public class QuoteView: UIView {
             imagePreview.constraintHeightTo(36),
             imagePreview.constraintWidthTo(36),
             imagePreview.constraintCenterYTo(citeBar),
+            imagePreview.constraintAlignTopMaxTo(self),
             senderTitle.constraintAlignTopTo(self),
             senderTitle.constraintAlignLeadingTo(self, paddingLeading: 28),
             senderTitle.constraintTrailingToLeadingOf(imagePreview, paddingTrailing: 8),
