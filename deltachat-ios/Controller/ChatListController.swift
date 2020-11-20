@@ -76,16 +76,19 @@ class ChatListController: UITableViewController {
 
         // update messages - for new messages, do not reuse or modify strings but create new ones.
         // it is not needed to keep all past update messages, however, when deleted, also the strings should be deleted.
-        //let msg = DcMsg(viewType: DC_MSG_TEXT)
-        //msg.text = "new Delta Chat 1.10 features at a glance:\n"
-        //         + "\n"
-        //         + "⚡ faster\n"
-        //         + "💕 share to Delta Chat\n"
-        //         + "🤫 mute chats\n"
-        //         + "🖼️ reworked gallery\n"
-        //         + "\n"
-        //         + "more details at https://delta.chat/en/2020-06-24-releases"
-        //dcContext.addDeviceMessage(label: "update_1_10k_ios", msg: msg)
+        let msg = DcMsg(viewType: DC_MSG_TEXT)
+        msg.text = "Some highlights of the 1.14 update:\n"
+            + "\n"
+            + "🧹 Swipe to reply: "
+            + "To answer a concrete message, just swipe it right (not here! you cannot answer here :) "
+            + "You\'ll see a quote above the compose line and can continue writing your message as usual.\n"
+            + "\n"
+            + "🔥 Disappearing messages - the time has come :) "
+            + "Any chat can now be configured to delete sent and received messages after some time. "
+            + "Just select \"Disappearing messages\" from the chat\'s profile (again: not here)\n"
+            + "\n"
+            + "🎃 Finally, we\'ve again frightened many bugs! Lots were so scared, they won\'t come back."
+        dcContext.addDeviceMessage(label: "update_1_14c_ios", msg: msg)
 
         // create view
         updateTitle()

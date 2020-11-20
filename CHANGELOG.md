@@ -1,5 +1,19 @@
 # Delta Chat iOS Changelog
 
+## 1.14.1
+2020-11
+
+* new swipe-to-reply option
+* show impact of the "Delete messages from server" option more clearly
+* fix: do not fetch from INBOX if "Watch Inbox folder" is disabled
+  and do not fetch messages arriving before re-enabling
+* fix: do not use STARTTLS when PLAIN connection is requested
+  and do not allow downgrade if STARTTLS is not available
+* fix: make "nothing found" hints always visible
+* fix: update selected avatars immediately
+* update translations
+
+
 ## 1.14.0
 2020-11
 
