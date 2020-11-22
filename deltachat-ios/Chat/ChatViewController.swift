@@ -471,31 +471,21 @@ class ChatViewController: UITableViewController {
     }
 
     func configureAvatarVisibility(for message: DcMsg, at indexPath: IndexPath) -> Bool {
-        return isGroupChat && !message.isFromCurrentSender && !isNextMessageSameSender(currentMessage: message, at: indexPath)
+        return isGroupChat && !message.isFromCurrentSender
     }
 
     func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {
 
         var corners: UIRectCorner = []
 
-        if message.isFromCurrentSender { //isFromCurrentSender(message: message) {
+        if message.isFromCurrentSender {
             corners.formUnion(.topLeft)
             corners.formUnion(.bottomLeft)
-            if !isPreviousMessageSameSender(currentMessage: message, at: indexPath) {
-                corners.formUnion(.topRight)
-            }
-            if !isNextMessageSameSender(currentMessage: message, at: indexPath) {
-                corners.formUnion(.bottomRight)
-            }
+            corners.formUnion(.topRight)
         } else {
             corners.formUnion(.topRight)
             corners.formUnion(.bottomRight)
-            if !isPreviousMessageSameSender(currentMessage: message, at: indexPath) {
-                corners.formUnion(.topLeft)
-            }
-            if !isNextMessageSameSender(currentMessage: message, at: indexPath) {
-                corners.formUnion(.bottomLeft)
-            }
+            corners.formUnion(.topLeft)
         }
 
         return corners
@@ -504,31 +494,6 @@ class ChatViewController: UITableViewController {
     private func getBackgroundColor(for currentMessage: DcMsg) -> UIColor {
         return currentMessage.isFromCurrentSender ? DcColors.messagePrimaryColor : DcColors.messageSecondaryColor
     }
-
-    private func isPreviousMessageSameSender(currentMessage: DcMsg, at indexPath: IndexPath) -> Bool {
-        let previousRow = indexPath.row - 1
-        if previousRow < 0 {
-            return false
-        }
-
-        let messageId = messageIds[previousRow]
-        let previousMessage = DcMsg(id: messageId)
-
-        return previousMessage.fromContact.id == currentMessage.fromContact.id
-    }
-
-    private func isNextMessageSameSender(currentMessage: DcMsg, at indexPath: IndexPath) -> Bool {
-        let nextRow = indexPath.row + 1
-        if nextRow >= messageIds.count {
-            return false
-        }
-
-        let messageId = messageIds[nextRow]
-        let nextMessage = DcMsg(id: messageId)
-
-        return nextMessage.fromContact.id == currentMessage.fromContact.id
-    }
-
 
     private func updateTitle(chat: DcChat) {
         let titleView =  ChatTitleView()
