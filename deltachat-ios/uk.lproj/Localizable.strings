@@ -150,6 +150,8 @@
 "menu_unmute" = "Увімкнути сповіщення";
 "menu_export_attachment" = "Експортувати вкладення";
 "menu_all_media" = "Всі матеріали";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Показати в чаті";
 "menu_share" = "Поділитися";
 "menu_block_contact" = "Заблокувати контакт";
 "menu_unblock_contact" = "Розблокувати контакт";
@@ -489,6 +491,10 @@
 "autodel_server_title" = "Видалити повідомлення на сервері";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Ви бажаєте видалити %1$d повідомлень та всі щойно отримані повідомлення \"%2$@\" у майбутньому?\n\n• Це включає усі медіа\n\n• Повідомлення будуть видалені незалежно від того бачили їх чи ні\n\n• \"Збережені повідомлення\" будуть пропущені при локальному видаленні";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "Ви бажаєте видалити %1$d повідомлень зараз та всі наступні повідомлення протягом %2$@?\n\n⚠️ Це стосується повідомлень електронної пошти, медіа та \"Збережених повідомлень\" у всіх серверних папках\n\n⚠️ Не використовуйте цю функцію якщо ви хочете зберегти дані на сервері\n\n⚠️ Не використовуйте цю функцію якщо ви користуєтесь іншими клієнтами електронної пошти окрім Delta Chat";
+// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+"autodel_server_enabled_hint" = "Це стосується повідомлень електронної пошти, медіа та \"Збережених повідомлень\" у всіх серверних папках. Не використовуйте цю функцію якщо ви хочете зберегти дані на сервері або якщо ви користуєтесь іншими клієнтами електронної пошти окрім Delta Chat.";
 "autodel_confirm" = "Я все розумію, видалити усі повідомлення";
 "autodel_at_once" = "Одразу";
 "after_30_seconds" = "Через 30 секунд";

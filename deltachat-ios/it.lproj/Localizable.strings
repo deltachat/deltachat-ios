@@ -150,6 +150,8 @@
 "menu_unmute" = "Abilita notifiche";
 "menu_export_attachment" = "Esporta allegato";
 "menu_all_media" = "Tutti i media";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Mostra in chat";
 "menu_share" = "Condividi";
 "menu_block_contact" = "Blocca contatto";
 "menu_unblock_contact" = "Sblocca contatto";
@@ -491,6 +493,8 @@
 "autodel_device_ask" = "Vuoi eliminare %1$d messaggi ora e tutti i messaggi arrivati \"%2$@\" nel futuro?\n\n• Questo include tutti i media\n\n• I messaggi verranno eliminati anche se non sono stati letti\n\n• I \"Messaggi salvati\" vengono preservati dalla cancellazione locale.";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_server_ask" = "Vuoi eliminare %1$d messaggi ora e tutti i messaggi appena recuperati \"%2$@\" nel futuro?\n\n⚠️ Ciò include emails, contenuti multimediali e \"Messaggi salvati\" in tutte le cartelle del server\n\n⚠️ Non utilizzare questa funzione se vuoi mantenere i dati sul server\n\n⚠️ Non utilizzare questa funzione se stai utilizzando altri client di posta elettronica oltre a Delta Chat";
+// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+"autodel_server_enabled_hint" = "Questo include email, media e \"Messaggi salvati\" in tutte le cartelle del server. Non utilizzare questa funzione se desideri mantenere i dati sul server o se stai utilizzando altri client di posta elettronica oltre a Delta Chat.";
 "autodel_confirm" = "Ho capito, elimina tutti i messaggi";
 "autodel_at_once" = "Una volta";
 "after_30_seconds" = "Dopo 30 secondi";
