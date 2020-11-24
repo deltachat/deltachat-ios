@@ -1,5 +1,12 @@
 # Delta Chat iOS Changelog
 
+## 1.14.2
+2020-11
+
+* fix issues when combining bubbles of the same sender
+* update translations
+
+
 ## 1.14.1
 2020-11
 
