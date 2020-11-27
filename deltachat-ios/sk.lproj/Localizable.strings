@@ -150,6 +150,8 @@
 "menu_unmute" = "Zapnúť zvuk";
 "menu_export_attachment" = "Exportovať prílohu";
 "menu_all_media" = "Všetky médiá";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Zobraziť v chate";
 "menu_share" = "Zdieľam";
 "menu_block_contact" = "Blokovať kontakt";
 "menu_unblock_contact" = "Odblokovať kontakt";
@@ -262,3 +264,91 @@
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Uložené";
 "chat_contact_request" = "Kontaktná žiadosť";
+"chat_no_contact_requests" = "Žiadne žiadosti o kontakt.\n\nAk chcete, aby sa tu klasické e-maily zobrazovali ako žiadosti o kontakt, môžete príslušné nastavenie zmeniť v nastaveniach aplikácie.";
+"retry_send" = "Skúste správu odoslať znova";
+"send_failed" = "Správu sa nepodarilo odoslať";
+// reasons for a disabled message composer
+"messaging_disabled_not_in_group" = "Nemôžete písať, pretože nie ste v tejto skupine. Ak sa chcete pripojiť, požiadajte iného člena.";
+"messaging_disabled_device_chat" = "Tento chat obsahuje miestne generované správy. Preto nemôžete písať žiadne správy.";
+"messaging_disabled_deaddrop" = "Kliknutím na správu prijmete alebo odmietnete žiadosť o kontakt";
+"cannot_display_unsuported_file_type" = "Nie je možné zobraziť tento typ súboru:%1$@";
+"attachment_failed_to_load" = "Prílohu sa nepodarilo načítať";
+
+
+// map
+"filter_map_on_time" = "Zobraziť polohy v časovom rámci";
+"show_location_traces" = "Zobraziť stopy";
+"add_poi" = "Pošlite zaujímavé miesto";
+
+
+// search
+"search" = "Vyhľadávanie";
+"search_explain" = "Vyhľadajte chaty, kontakty a správy";
+"search_no_result_for_x" = "Neboli nájdené žiadne výsledky pre %1$@";
+
+
+// create/edit groups, contact/group profile
+"group_name" = "Názov skupiny";
+"group_avatar" = "Skupinový obrázok";
+"remove_group_image" = "Odstrániť skupinový obrázok";
+"change_group_image" = "Zmeniť skupinový obrázok";
+"group_create_button" = "Vytvorte skupinu";
+"group_please_enter_group_name" = "Zadajte názov skupiny.";
+"group_add_members" = "Pridajte členov";
+"group_hello_draft" = "Dobrý deň, práve som pre nás vytvoril skupinu \"%1$@\"";
+"group_self_not_in_group" = "Ak chcete vykonať túto akciu, musíte byť členom skupiny.";
+"profile_encryption" = "Šifrovanie";
+"profile_shared_chats" = "Zdieľané chaty";
+"tab_contact" = "Kontakt";
+"tab_group" = "Skupina";
+"tab_members" = "Členovia";
+"tab_gallery" = "Galéria";
+"tab_docs" = "Docs";
+"tab_links" = "Odkazy";
+"tab_map" = "Mapa";
+"tab_gallery_empty_hint" = "Tu sa zobrazia obrázky a videá zdieľané v tomto rozhovore.";
+"tab_docs_empty_hint" = "Tu sa zobrazia dokumenty, hudba a ďalšie súbory zdieľané v tomto rozhovore.";
+"media_preview" = "Ukážka pre médiá";
+"send_message" = "Poslať správu";
+
+
+// welcome and login
+"welcome_intro1_message" = "Posol s najširším publikom na svete. Slobodný a nezávislý.";
+"login_title" = "Prihlásiť sa";
+"login_header" = "Prihláste sa na server";
+"login_explain" = "Prihláste sa pomocou existujúceho e-mailového účtu";
+"login_subheader" = "Pre známych poskytovateľov e-mailov sa automaticky nastavujú ďalšie nastavenia. Niekedy je potrebné v nastaveniach webu povoliť protokol IMAP. Požiadajte o pomoc svojho poskytovateľa e-mailu alebo priateľov";
+"login_no_servers_hint" = "Neexistujú žiadne servery Delta Chat, vaše dáta zostanú vo vašom prístroji.";
+"login_inbox" = "Doručená pošta";
+"login_imap_login" = "Prihlasovacie meno IMAP";
+"login_imap_server" = "Server IMAP";
+"login_imap_port" = "Port IMAP";
+"login_imap_security" = "Zabezpečenie IMAP";
+"login_outbox" = "Pošta na odoslanie";
+"login_smtp_login" = "Prihlasovacie meno pre SMTP";
+"login_smtp_password" = "Heslo SMTP";
+"login_smtp_server" = "Server SMTP";
+"login_smtp_port" = "Port SMTP";
+"login_smtp_security" = "Zabezpečenie SMTP";
+"login_auth_method" = "Metóda autorizácie";
+// Translators: %1$s will be replaced by an email address
+"login_oauth2_checking_addr" = "Prebieha kontrola %1$@";
+"login_info_oauth2_title" = "Pokračovať v zjednodušenom nastavovaní?";
+"login_info_oauth2_text" = "Zadaná e-mailová adresa podporuje zjednodušené nastavenie (OAuth 2.0).\n\nV ďalšom kroku povoľte aplikácii Delta Chat, aby fungovala ako vaša aplikácia Chat cez e-mail.\n\nNie sú k dispozícii servery Delta Chat, vaše dáta zostanú vo vašom zariadení .";
+"login_certificate_checks" = "Osvedčovacie kontroly";
+"login_error_mail" = "Prosím zadajte platnú emailovú adresu";
+"login_error_server" = "Zadajte platný server / IP adresu";
+"login_error_port" = "Zadajte platný port (1–65535)";
+"login_error_required_fields" = "Zadajte platnú e-mailovú adresu a heslo";
+"import_backup_title" = "Importovať zálohu";
+"import_backup_ask" = "Záloha sa našla na „%1$@“.\n\nChcete z nej importovať a použiť všetky dáta a nastavenia?";
+"import_backup_no_backup_found" = "Neboli nájdené žiadne zálohy.\n\nSkopírujte zálohu na „%1$@“ a skúste to znova. Prípadne stlačte tlačidlo „Spustiť zasielanie správ“ a pokračujte v bežnom procese nastavenia.";
+// Translators: %1$s will be replaced by the email address
+"login_error_cannot_login" = "Nie je možné prihlásiť sa ako „%1$@“. Skontrolujte správnosť e-mailovej adresy a hesla.";
+// Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
+"login_error_server_response" = "Odpoveď od%1$@:%2$@\n\nNiektorí poskytovatelia vám môžu poslať e-mailom ďalšie informácie o tomto probléme; mali by ste byť schopní skontrolovať svoju doručenú poštu pomocou svojej bežnej e-mailovej aplikácie alebo webovej stránky. Ak narazíte na problémy, obráťte sa na svojho poskytovateľa alebo priateľov.";
+// TLS certificate checks
+"accept_invalid_certificates" = "Prijmite neplatné certifikáty";
+"used_settings" = "Použité nastavenia:";
+"switch_account" = "Prepnúť účet";
+"add_account" = "Pridať účet";

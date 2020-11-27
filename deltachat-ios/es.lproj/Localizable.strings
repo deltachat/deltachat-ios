@@ -150,6 +150,8 @@
 "menu_unmute" = "Des-silenciar ";
 "menu_export_attachment" = "Exportar adjunto";
 "menu_all_media" = "Toda la multimedia";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Mostrar en el chat";
 "menu_share" = "Compartir";
 "menu_block_contact" = "Bloquear contacto";
 "menu_unblock_contact" = "Desbloquear contacto";
@@ -489,6 +491,10 @@
 "autodel_server_title" = "Borrar mensajes del servidor";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "¿Desea borrar %1$d mensajes ahora y todos los mensajes recientemente alcanzados \"%2$@\" en el futuro?\n\n• Esto incluye toda la multimedia\n\n• Los mensajes serán eliminados siendo vistos o no\n\n• \"Mensajes guardados\" serán saltados de este proceso local";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "¿Deseas borrar %1$d mensajes ahora y todos los mensajes recibidos en \"%2$@\"  al futuro?\n\n⚠️ Esto incluye correos, multimedia y \"Mensajes guardados\" en todas las carpetas del servidor. No uses esta función sis quieres mantener tus datos en el servidor o si estas usando otros clientes de correo más allá de Delta Chat\n\n⚠️ No uses esta función si deseas mantener tus datos en el servidor\n\n⚠️ No uses esta función si estás usando otros clientes de correo más allá de Delta Chat";
+// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+"autodel_server_enabled_hint" = "Esto incluye correos, multimedia  y \"Mensajes guardados\" en todas las carpetas del servidor. No uses esta función sis quieres mantener tus datos en el servidor o si estas usando otros clientes de correo más allá de Delta Chat";
 "autodel_confirm" = "Comprendo, borrar todos los mensajes";
 "autodel_at_once" = "Inmediatamente";
 "after_30_seconds" = "Luego de 30 segundos";

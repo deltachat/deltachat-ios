@@ -375,6 +375,7 @@
 "pref_profile_info_headline" = "Mein Profil";
 "pref_profile_photo" = "Profilbild";
 "pref_blocked_contacts" = "Blockierte Kontakte";
+"blocked_empty_hint" = "Wenn Sie Kontakte blockieren, werden diese hier angezeigt.";
 "pref_profile_photo_remove_ask" = "Profilbild entfernen?";
 "pref_password_and_account_settings" = "Passwort und E-Mail-Konto";
 "pref_who_can_see_profile_explain" = "Das Profilbild und der Name werden neben gesendeten Nachrichten angezeigt. Bereits gesendete Informationen können nicht mehr gelöscht oder entfernt werden.";

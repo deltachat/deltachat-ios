@@ -5,7 +5,7 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
 
     var emptyStateView: EmptyStateLabel = {
         let view =  EmptyStateLabel()
-        view.text = String.localized("none_blocked_desktop")
+        view.text = String.localized("blocked_empty_hint")
         return view
     }()
 
