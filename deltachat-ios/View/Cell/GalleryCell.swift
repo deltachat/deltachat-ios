@@ -71,6 +71,10 @@ class GalleryCell: UICollectionViewCell {
         self.performAction(#selector(GalleryCell.itemDelete(_:)), with: sender)
     }
 
+    @objc func showInChat(_ sender: Any) {
+        self.performAction(#selector(GalleryCell.showInChat(_:)), with: sender)
+    }
+
     func performAction(_ action: Selector, with sender: Any?) {
         if let collectionView = self.superview as? UICollectionView, let indexPath = collectionView.indexPath(for: self) {
             collectionView.delegate?.collectionView?(

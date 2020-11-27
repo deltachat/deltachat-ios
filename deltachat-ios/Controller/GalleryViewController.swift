@@ -100,6 +100,7 @@ class GalleryViewController: UIViewController {
 
     private func setupContextMenuIfNeeded() {
         UIMenuController.shared.menuItems = [
+            UIMenuItem(title: String.localized("show_in_chat"), action: #selector(GalleryCell.showInChat(_:))),
             UIMenuItem(title: String.localized("delete"), action: #selector(GalleryCell.itemDelete(_:))),
         ]
         UIMenuController.shared.update()
@@ -201,7 +202,9 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     // MARK: - context menu
     // context menu for iOS 11, 12
     func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return action ==  #selector(GalleryCell.itemDelete(_:))
+        return
+            action ==  #selector(GalleryCell.itemDelete(_:)) ||
+            action == #selector(GalleryCell.showInChat(_:))
     }
 
     func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
@@ -209,6 +212,8 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         switch action {
         case #selector(GalleryCell.itemDelete(_:)):
             self.askToDeleteItem(at: indexPath)
+        case #selector(GalleryCell.showInChat(_:)):
+            self.redirectToMessage(of: indexPath)
         default:
             break
         }
