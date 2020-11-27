@@ -250,12 +250,16 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             image: UIImage(systemName: "trash")) { _ in
             self.askToDeleteItem(at: indexPath)
         }
+
+        let redirectAction = UIAction(title: String.localized("show_in_chat"), image: UIImage(systemName: "doc.text.magnifyingglass")) { _ in
+            self.redirectToMessage(of: indexPath)
+        }
         deleteAction.attributes = [.destructive]
         return UIMenu(
             title: "",
             image: nil,
             identifier: nil,
-            children: [deleteAction]
+            children: [redirectAction, deleteAction]
         )
     }
 }
@@ -299,7 +303,7 @@ private extension GalleryViewController {
 }
 
 // MARK: - coordinator
-extension GalleryViewController {
+private extension GalleryViewController {
     func showPreview(msgId: Int) {
         guard let index = mediaMessageIds.index(of: msgId) else {
             return
@@ -307,5 +311,22 @@ extension GalleryViewController {
 
         let previewController = PreviewController(type: .multi(mediaMessageIds, index))
         present(previewController, animated: true, completion: nil)
+    }
+
+    func redirectToMessage(of indexPath: IndexPath) {
+        let msgId = mediaMessageIds[indexPath.row]
+
+        guard
+            let chatViewController = navigationController?.viewControllers.filter ({ $0 is ChatViewController}).first as? ChatViewController,
+            let chatListController = navigationController?.viewControllers.filter({ $0 is ChatListController}).first as? ChatListController
+        else {
+            safe_fatalError("failt to retrieve chatViewController, chatListController in navigation stack")
+            return
+        }
+        self.navigationController?.viewControllers.remove(at: 1)
+
+        self.navigationController?.pushViewController(chatViewController, animated: true)
+        self.navigationController?.setViewControllers([chatListController, chatViewController], animated: false)
+        chatViewController.scrollToMessage(msgId: msgId)
     }
 }
