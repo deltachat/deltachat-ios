@@ -566,6 +566,14 @@ class ChatViewController: UITableViewController {
         }
     }
 
+    func scrollToMessage(msgId: Int, animated: Bool = true) {
+        guard let index = messageIds.firstIndex(of: msgId) else {
+            return
+        }
+        let indexPath = IndexPath(row: index, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
+    }
+
     private func showEmptyStateView(_ show: Bool) {
         if show {
             let dcChat = dcContext.getChat(chatId: chatId)
@@ -1108,10 +1116,8 @@ extension ChatViewController: BaseMessageCellDelegate {
     @objc func quoteTapped(indexPath: IndexPath) {
         _ = handleUIMenu()
         let msg = DcMsg(id: messageIds[indexPath.row])
-        if let quoteMsg = msg.quoteMessage,
-           let index = messageIds.firstIndex(of: quoteMsg.id) {
-            let indexPath = IndexPath(row: index, section: 0)
-            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        if let quoteMsg = msg.quoteMessage {
+            scrollToMessage(msgId: quoteMsg.id)
         }
     }
 
