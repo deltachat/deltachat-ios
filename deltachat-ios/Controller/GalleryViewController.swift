@@ -46,6 +46,31 @@ class GalleryViewController: UIViewController {
         return label
     }()
 
+    private lazy var contextMenuConfiguration: ContextMenuConfiguration = {
+        let deleteItem = ContextMenuConfiguration.ContextMenuItem(
+            option: .delete,
+            menuItem: UIMenuItem(title: String.localized("delete"), action: #selector(GalleryCell.itemDelete(_:))),
+            title: String.localized("delete"),
+            image: UIImage(systemName: "trash")!,
+            onPerform: { [weak self] indexPath in
+                self?.askToDeleteItem(at: indexPath)
+            }
+        )
+
+        let showInChatItem = ContextMenuConfiguration.ContextMenuItem(
+            option: .showInChat,
+            menuItem: UIMenuItem(title: String.localized("show_in_chat"), action: #selector(GalleryCell.showInChat(_:))), modernAction: <#UIAction#>,
+            onPerform: { [weak self] indexPath in
+                self?.redirectToMessage(of: indexPath)
+            }
+        )
+
+        let config = ContextMenuConfiguration()
+        config.menu = [showInChatItem, deleteItem]
+        return config
+
+    }()
+
     init(context: DcContext, mediaMessageIds: [Int]) {
         self.dcContext = context
         self.mediaMessageIds = mediaMessageIds
@@ -99,10 +124,7 @@ class GalleryViewController: UIViewController {
     }
 
     private func setupContextMenuIfNeeded() {
-        UIMenuController.shared.menuItems = [
-            UIMenuItem(title: String.localized("show_in_chat"), action: #selector(GalleryCell.showInChat(_:))),
-            UIMenuItem(title: String.localized("delete"), action: #selector(GalleryCell.itemDelete(_:))),
-        ]
+        UIMenuController.shared.menuItems = contextMenuConfiguration.menuItems
         UIMenuController.shared.update()
     }
 
@@ -202,21 +224,20 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     // MARK: - context menu
     // context menu for iOS 11, 12
     func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return
-            action ==  #selector(GalleryCell.itemDelete(_:)) ||
-            action == #selector(GalleryCell.showInChat(_:))
+        return contextMenuConfiguration.canPerformAction(action: action)
     }
 
     func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
 
-        switch action {
-        case #selector(GalleryCell.itemDelete(_:)):
-            self.askToDeleteItem(at: indexPath)
-        case #selector(GalleryCell.showInChat(_:)):
-            self.redirectToMessage(of: indexPath)
-        default:
-            break
-        }
+        contextMenuConfiguration.performAction(action: action, indexPath: indexPath)
+//        switch action {
+//        case #selector(GalleryCell.itemDelete(_:)):
+//            self.askToDeleteItem(at: indexPath)
+//        case #selector(GalleryCell.showInChat(_:)):
+//            self.redirectToMessage(of: indexPath)
+//        default:
+//            break
+//        }
     }
 
     // context menu for iOS 13+
@@ -335,3 +356,84 @@ private extension GalleryViewController {
         chatViewController.scrollToMessage(msgId: msgId)
     }
 }
+
+
+class ContextMenuConfiguration {
+
+    var menu: [ContextMenuItem] = []
+
+    var menuItems: [UIMenuItem] {
+        return menu.map { $0.menuItem }
+    }
+
+    func canPerformAction(action: Selector) -> Bool {
+        return !menu.filter {
+            $0.action == action
+        }.isEmpty
+    }
+
+    func performAction(action: Selector, indexPath: IndexPath) {
+        menu.filter {
+            $0.action == action
+        }.first?.onPerform?(indexPath)
+    }
+
+    @available(iOS 13, *)
+    func modernMenu(title: String = "", image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, indexPath: IndexPath) -> UIMenu {
+
+        let children: [UIMenuElement]
+
+        for item in menu {
+            children.append(
+                UIAction(
+                title: item.title,
+                image: image,
+                handler: { _ in item.onPerform?(indexPath) }
+                )
+            )
+        }
+
+        return UIMenu(
+            title: title,
+            image: image,
+            identifier: identifier,
+            children: children
+        )
+    }
+
+    enum Option {
+        case showInChat
+        case delete
+    }
+}
+
+
+
+extension ContextMenuConfiguration {
+
+    struct ContextMenuItem {
+        let option: Option
+        let menuItem: UIMenuItem // iOS 12 and older
+
+        var action: Selector {
+            return menuItem.action
+        }
+
+        var title: String
+        var image: UIImage
+
+
+        var onPerform: ((IndexPath) -> Void)?
+
+
+    }
+}
+
+/*
+
+ UIAction(
+ title: String.localized("delete"),
+ image: UIImage(systemName: "trash")) { _ in
+ self.askToDeleteItem(at: indexPath)
+ },
+ */
