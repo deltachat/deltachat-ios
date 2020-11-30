@@ -12,8 +12,12 @@
 "automatic" = "Automatinis";
 "strict" = "Griežtas";
 "open" = "Atverti";
+"open_attachment" = "Atverti priedą";
+"join" = "Prisijungti";
+"rejoin" = "Prisijungti iš naujo";
 "delete" = "Ištrinti";
 "info" = "Informacija";
+"update" = "Atnaujinti";
 "attachment" = "Priedas";
 "back" = "Atgal";
 "close" = "Užverti";
@@ -23,6 +27,7 @@
 "ephemeral_messages" = "Išnykstančios žinutės";
 "save" = "Įrašyti";
 "media" = "Medija";
+"profile" = "Profilis";
 "main_menu" = "Pagrindinis meniu";
 "show_password" = "Rodyti slaptažodį";
 "hide_password" = "Slėpti slaptažodį";
@@ -86,6 +91,7 @@
 "magenta" = "Rausvai raudona";
 "white" = "Balta";
 
+"extra_small" = "Labai mažas";
 "small" = "Mažas";
 "normal" = "Normalus";
 "large" = "Didelis";
@@ -114,12 +120,16 @@
 "menu_add_attachment" = "Pridėti priedą";
 "menu_leave_group" = "Išeiti iš grupės";
 "menu_delete_chat" = "Ištrinti pokalbį";
+"ask_delete_named_chat" = "Ar tikrai norite ištrinti „%1$@“?";
 "menu_delete_messages" = "Ištrinti žinutes";
 "menu_delete_image" = "Ištrinti paveikslą";
+"delete_contact" = "Ištrinti adresatą";
 "menu_delete_locations" = "Ištrinti visas vietas?";
 "menu_delete_location" = "Ištrinti šią vietą?";
 "menu_message_details" = "Išsamesnė žinutės informacija";
 "menu_copy_to_clipboard" = "Kopijuoti į iškarpinę";
+"menu_copy_link_to_clipboard" = "Kopijuoti nuorodą";
+"paste_from_clipboard" = "Įdėti iš iškarpinės";
 "menu_forward" = "Persiųsti žinutę";
 "menu_resend" = "Siųsti žinutę iš naujo";
 "menu_reply" = "Atsakyti į žinutę";
@@ -127,6 +137,8 @@
 "menu_unmute" = "Įjungti pranešimus";
 "menu_export_attachment" = "Eksportuoti priedą";
 "menu_all_media" = "Visa medija";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Rodyti pokalbyje";
 "menu_share" = "Bendrinti";
 "menu_block_contact" = "Užblokuoti adresatą";
 "menu_unblock_contact" = "Atblokuoti adresatą";
@@ -156,6 +168,8 @@
 "pin" = "Prisegti";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "Atsegti";
+"reply_privately" = "Atsakyti privačiai";
+
 "mute_for_one_hour" = "Išjungti 1 valandai";
 "mute_for_two_hours" = "Išjungti 2 valandoms";
 "mute_for_one_day" = "Išjungti 1 dienai";
@@ -164,6 +178,7 @@
 
 "file_saved_to" = "Failas įrašytas į \"%1$@\".";
 
+"videochat_will_open_in_your_browser" = "Šis vaizdo pokalbis bus atvertas jūsų naršyklėje.";
 // get confirmations
 "ask_leave_group" = "Ar tikrai norite išeiti iš šios grupės?";
 "ask_forward" = "Persiųsti žinutes %1$@?";
@@ -171,8 +186,12 @@
 "ask_block_contact" = "Užblokuoti šį adresatą? Jūs daugiau nebegausite žinučių nuo šio adresato.";
 "ask_unblock_contact" = "Atblokuoti šį adresatą? Jūs ir vėl galėsite gauti žinutes nuo šio adresato.";
 "ask_start_chat_with" = "Pradėti pokalbį su %1$@?";
+"ask_delete_value" = "Ištrinti %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Pašalinti %1$@ iš grupės?";
+"open_url_confirmation" = "Ar norite atverti šią nuorodą?";
+
+
 // contact list
 "contacts_title" = "Adresatai";
 "contacts_enter_name_or_email" = "Įveskite vardą ar el. pašto adresą";
@@ -197,6 +216,9 @@
 "saved_messages" = "Įrašytos žinutės";
 "chat_contact_request" = "Adresato užklausa";
 "send_failed" = "Nepavyko išsiųsti žinutės";
+"attachment_failed_to_load" = "Nepavyko įkelti priedo";
+
+
 // search
 "search" = "Ieškoti";
 "search_explain" = "Ieškokite pokalbių, adresatų ir žinučių";
@@ -265,6 +287,9 @@
 "delete_account" = "Ištrinti paskyrą";
 "delete_account_ask" = "Ar tikrai norite ištrinti savo paskyros duomenis?";
 "switching_account" = "Perjungiama paskyra…";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "Konfigūracija patyrė nesėkmę. Klaida: %1$@";
+
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Kam persiųsti …";
@@ -350,6 +375,16 @@
 "pref_background_custom_image" = "Tinkintas paveikslas";
 "pref_background_custom_color" = "Tinkinta spalva";
 "export_aborted" = "Eksportavimas nutrauktas.";
+"emoji_people" = "Žmonės ir kūnas";
+"emoji_nature" = "Gyvūnai ir gamta";
+"emoji_foods" = "Maistas ir gėrimai";
+"emoji_activity" = "Veikla";
+"emoji_places" = "Kelionės ir vietos";
+"emoji_objects" = "Objektai";
+"emoji_symbols" = "Simboliai";
+"emoji_flags" = "Vėliavos";
+
+
 "autodel_device_title" = "Ištrinti žinutes iš įrenginio";
 "autodel_server_title" = "Ištrinti žinutes iš serverio";
 "autodel_confirm" = "Aš suprantu, ištrinti visas šias žinutes";
@@ -504,4 +539,6 @@
 "a11y_delivery_status_read" = "Pristatymo būsena: Perskaityta";
 "a11y_delivery_status_invalid" = "Neteisinga pristatymo būsena";
 "a11y_background_preview_label" = "Fono peržiūra";
+// android specific strings, developers: please take care to remove strings that are no longer used!
+"pref_background_notifications" = "Foniniai pranešimai";
 "perm_enable_bg_reminder_title" = "Bakstelėkite čia, norėdami gauti žinutes, kol Delta Chat veikia fone.";

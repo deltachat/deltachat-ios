@@ -90,7 +90,7 @@
 "gallery" = "Galleria";
 "images_and_videos" = "Immagini e video";
 "file" = "File";
-"files" = "File";
+"files" = "Files";
 "unknown" = "Sconosciuto";
 
 "green" = "Verde";
@@ -375,6 +375,7 @@
 "pref_profile_info_headline" = "Le tue info profilo";
 "pref_profile_photo" = "Foto profilo";
 "pref_blocked_contacts" = "Contatti bloccati";
+"blocked_empty_hint" = "Se blocchi dei contatti, verranno elencati qui.";
 "pref_profile_photo_remove_ask" = "Rimuvere la foto profilo?";
 "pref_password_and_account_settings" = "Password e account";
 "pref_who_can_see_profile_explain" = "L\'immagine del tuo profilo e il tuo nome saranno mostrati insieme ai tuoi messaggi quando comunichi con altri utenti. Le informazioni già inviate non possono essere cancellate o rimosse.";

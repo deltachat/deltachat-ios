@@ -149,6 +149,8 @@
 "menu_unmute" = "Çheshtoji";
 "menu_export_attachment" = "Eksporto bashkëngjitje";
 "menu_all_media" = "Krejt mediat";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Shfaqe në fjalosje";
 "menu_share" = "Ndajeni me të tjerë";
 "menu_block_contact" = "Bllokoje kontaktin";
 "menu_unblock_contact" = "Zhbllokoje kontaktin";
@@ -372,6 +374,7 @@
 "pref_profile_info_headline" = "Të dhëna tuajat të profilit";
 "pref_profile_photo" = "Foto profili";
 "pref_blocked_contacts" = "Kontakte të bllokuar";
+"blocked_empty_hint" = "Nëse bllokoni kontakte, do të shfaqen këtu.";
 "pref_profile_photo_remove_ask" = "Të hiqet fotoja e profilit?";
 "pref_password_and_account_settings" = "Fjalëkalim dhe llogari";
 "pref_who_can_see_profile_explain" = "Fotoja dhe emri juaj i profilit do të shfaqen tok me mesazhet, kur komunikoni me përdorues të tjerë. Informacioni i dërguar tashmë s\’mund të fshihet apo të hiqet.";
