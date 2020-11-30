@@ -67,7 +67,7 @@ class GalleryViewController: UIViewController {
         )
 
         let config = ContextMenuConfiguration()
-        config.menu = [showInChatItem, deleteItem]
+        config.setMenu([showInChatItem, deleteItem])
         return config
     }()
 
@@ -333,6 +333,14 @@ class ContextMenuConfiguration {
 
     var menu: [ContextMenuItem] = []
 
+    init(menu: [ContextMenuItem] = []) {
+        self.menu = menu
+    }
+
+    func setMenu(_ menu: [ContextMenuItem]) {
+        self.menu = menu
+    }
+
     // iOS 12- action menu
     var menuItems: [UIMenuItem] {
         return menu.map { UIMenuItem(title: $0.title, action: $0.action) }
@@ -366,7 +374,6 @@ class ContextMenuConfiguration {
             children: children
         )
     }
-
 
     func canPerformAction(action: Selector) -> Bool {
         return !menu.filter {
