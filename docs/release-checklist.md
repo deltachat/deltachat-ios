@@ -3,15 +3,15 @@
 on the command-line:
 
 1. update core rust submodule, if needed:
-   $ ./tools/update-core.sh
+   $ ./scripts/update-core.sh
    depending on how much you trust in rust, you might want to do a
-   ./tools/clean-core.sh before building
+   ./scripts/clean-core.sh before building
 
 2. update translations:
-   $ ./tools/tx-pull-translations.sh
+   $ ./scripts/tx-pull-translations.sh
 
 3. update local help:
-   $ cd ../deltachat-pages; ./tools/create-local-help.py; cd ../deltachat-ios
+   $ cd ../deltachat-pages; ./scripts/create-local-help.py; cd ../deltachat-ios
 
 4. add a device message to ChatListController::viewWillAppear()
    and update CHANGELOG.md
