@@ -911,19 +911,14 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    private func sendTextMessage() {
+    private func sendTextMessage(text: String, quoteMessage: DcMsg?) {
         DispatchQueue.global().async {
-            if let draftText = self.draft.draftText {
-                let message = DcMsg(viewType: DC_MSG_TEXT)
-                message.text = draftText.trimmingCharacters(in: .whitespacesAndNewlines)
-                if let quoteMessage = self.draft.quoteMessage {
-                    message.quoteMessage = quoteMessage
-                }
-                message.sendInChat(id: self.chatId)
-                DispatchQueue.main.async {
-                    self.quotePreview.cancel()
-                }
+            let message = DcMsg(viewType: DC_MSG_TEXT)
+            message.text = text
+            if let quoteMessage = quoteMessage {
+                message.quoteMessage = quoteMessage
             }
+            message.sendInChat(id: self.chatId)
         }
     }
 
@@ -1182,11 +1177,12 @@ extension ChatViewController: MediaPickerDelegate {
 // MARK: - MessageInputBarDelegate
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
         if inputBar.inputTextView.images.isEmpty {
-            self.sendTextMessage()
+            self.sendTextMessage(text: trimmedText, quoteMessage: draft.quoteMessage)
+            self.quotePreview.cancel()
         } else {
-            let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
-                .trimmingCharacters(in: .whitespacesAndNewlines)
             // only 1 attachment allowed for now, thus it takes the first one
             self.sendImage(inputBar.inputTextView.images[0], message: trimmedText)
         }
