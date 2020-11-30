@@ -1,5 +1,12 @@
 # Delta Chat iOS Changelog
 
+## 1.14.3
+2020-11
+
+* fix bug that could lead to empty messages being sent
+* update translations
+
+
 ## 1.14.2
 2020-11
 
