@@ -930,7 +930,7 @@ class ChatViewController: UITableViewController {
                let animatedImageData = result.animatedImageData,
                let pathInDocDir = DcUtils.saveImage(data: animatedImageData, suffix: "gif") {
                 DispatchQueue.main.async {
-                    self.draft.setAttachment(viewType: DC_MSG_GIF, path: URL(fileURLWithPath: pathInDocDir))
+                    self.draft.setAttachment(viewType: DC_MSG_GIF, path: pathInDocDir)
                     self.configureDraftArea(draft: self.draft)
                     self.messageInputBar.inputTextView.becomeFirstResponder()
                 }
@@ -940,9 +940,9 @@ class ChatViewController: UITableViewController {
 
     private func stageImage(_ image: UIImage) {
         DispatchQueue.global().async {
-            if let path = DcUtils.saveImage(image: image) {
+            if let pathInDocDir = DcUtils.saveImage(image: image) {
                 DispatchQueue.main.async {
-                    self.draft.setAttachment(viewType: DC_MSG_IMAGE, path: URL(fileURLWithPath: path), mimetype: nil)
+                    self.draft.setAttachment(viewType: DC_MSG_IMAGE, path: pathInDocDir)
                     self.configureDraftArea(draft: self.draft)
                     self.messageInputBar.inputTextView.becomeFirstResponder()
                 }
@@ -1215,11 +1215,11 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         if let filePath = draft.draftAttachment, let viewType = draft.draftViewType {
             switch viewType {
             case DC_MSG_GIF:
-                self.sendImageMessage(viewType: DC_MSG_GIF, filePath: filePath.absoluteString, message: trimmedText, quoteMessage: draft.quoteMessage)
+                self.sendImageMessage(viewType: DC_MSG_GIF, filePath: filePath, message: trimmedText, quoteMessage: draft.quoteMessage)
             case DC_MSG_IMAGE:
-                self.sendImageMessage(viewType: DC_MSG_IMAGE, filePath: filePath.absoluteString, message: trimmedText, quoteMessage: draft.quoteMessage)
+                self.sendImageMessage(viewType: DC_MSG_IMAGE, filePath: filePath, message: trimmedText, quoteMessage: draft.quoteMessage)
             default:
-                logger.debug("nothing to do")
+                logger.warning("Unsupported viewType for drafted messages.")
             }
         } else if inputBar.inputTextView.images.isEmpty {
             self.sendTextMessage(text: trimmedText, quoteMessage: draft.quoteMessage)

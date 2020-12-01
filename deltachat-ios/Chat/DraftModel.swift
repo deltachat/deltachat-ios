@@ -6,7 +6,7 @@ public class DraftModel {
     var quoteMessage: DcMsg?
     var quoteText: String?
     var draftText: String?
-    var draftAttachment: URL?
+    var draftAttachment: String?
     var draftAttachmentMimeType: String?
     var draftViewType: Int32?
     let chatId: Int
@@ -19,7 +19,7 @@ public class DraftModel {
         draftText = draftMsg?.text
         quoteText = draftMsg?.quoteText
         quoteMessage = draftMsg?.quoteMessage
-        draftAttachment = draftMsg?.fileURL
+        draftAttachment = draftMsg?.fileURL?.absoluteString
         if let viewType = draftMsg?.type {
             draftViewType = Int32(viewType)
         }
@@ -39,7 +39,7 @@ public class DraftModel {
         }
     }
 
-    public func setAttachment(viewType: Int32?, path: URL?, mimetype: String? = nil) {
+    public func setAttachment(viewType: Int32?, path: String?, mimetype: String? = nil) {
         draftAttachment = path
         draftViewType = viewType
         draftAttachmentMimeType = mimetype
@@ -57,7 +57,7 @@ public class DraftModel {
             draftMessage.quoteMessage = quoteMessage
         }
         if draftAttachment != nil {
-            draftMessage.setFile(filepath: draftAttachment?.absoluteString, mimeType: draftAttachmentMimeType)
+            draftMessage.setFile(filepath: draftAttachment, mimeType: draftAttachmentMimeType)
         }
         context.setDraft(chatId: chatId, message: draftMessage)
     }

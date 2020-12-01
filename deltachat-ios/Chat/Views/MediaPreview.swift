@@ -31,7 +31,7 @@ class MediaPreview: DraftPreview {
 
     override func configure(draft: DraftModel) {
         if let path = draft.draftAttachment {
-            contentImageView.sd_setImage(with: path, completed: { image, error, _, _ in
+            contentImageView.sd_setImage(with: URL(fileURLWithPath: path, isDirectory: false), completed: { image, error, _, _ in
                 if let error = error {
                     logger.error("could not load draft image: \(error)")
                     self.cancel()
