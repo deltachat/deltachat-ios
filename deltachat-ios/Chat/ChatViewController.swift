@@ -627,6 +627,10 @@ class ChatViewController: UITableViewController {
         configureInputBarItems()
     }
 
+    func evaluateInputBar(draft: DraftModel) {
+        let isEnabled = !(draft.draftText?.isEmpty ?? true) || draft.draftAttachment != nil
+        messageInputBar.sendButton.isEnabled = isEnabled
+    }
 
     private func configureInputBarItems() {
 
@@ -646,6 +650,7 @@ class ChatViewController: UITableViewController {
         messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         messageInputBar.sendButton.setSize(CGSize(width: 40, height: 40), animated: false)
         messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
+        messageInputBar.shouldManageSendButtonEnabledState = false
 
         let leftItems = [
             InputBarButtonItem()
@@ -1119,6 +1124,8 @@ class ChatViewController: UITableViewController {
         }
         return false
     }
+
+
 }
 
 // MARK: - BaseMessageCellDelegate
@@ -1228,6 +1235,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
         draft.draftText = text
+        evaluateInputBar(draft: draft)
     }
 }
 
@@ -1240,5 +1248,10 @@ extension ChatViewController: QuotePreviewDelegate, MediaPreviewDelegate {
     func onCancelAttachment() {
         draft.setAttachment(viewType: nil, path: nil, mimetype: nil)
         configureDraftArea(draft: draft)
+        evaluateInputBar(draft: draft)
+    }
+
+    func onAttachmentAdded() {
+        evaluateInputBar(draft: draft)
     }
 }

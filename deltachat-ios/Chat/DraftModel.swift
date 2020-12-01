@@ -61,4 +61,8 @@ public class DraftModel {
         }
         context.setDraft(chatId: chatId, message: draftMessage)
     }
+
+    public func canSend() -> Bool {
+        return !(draftText?.isEmpty ?? true) || draftAttachment != nil
+    }
 }

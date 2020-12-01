@@ -3,6 +3,7 @@ import SDWebImage
 
 public protocol MediaPreviewDelegate: class {
     func onCancelAttachment()
+    func onAttachmentAdded()
 }
 class MediaPreview: DraftPreview {
     var imageWidthConstraint: NSLayoutConstraint?
@@ -34,9 +35,9 @@ class MediaPreview: DraftPreview {
                 if let error = error {
                     logger.error("could not load draft image: \(error)")
                     self.cancel()
-                }
-                if let image = image {
+                } else if let image = image {
                     self.setAspectRatio(image: image)
+                    self.delegate?.onAttachmentAdded()
                 }
             })
 
