@@ -37,6 +37,13 @@ class ChatViewController: UITableViewController {
         return view
     }()
 
+    lazy var mediaPreview: MediaPreview = {
+        let view = MediaPreview()
+        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     open override var shouldAutorotate: Bool {
         return false
     }
@@ -395,8 +402,9 @@ class ChatViewController: UITableViewController {
 
     private func configureDraftArea(draft: DraftModel) {
         quotePreview.configure(draft: draft)
+        mediaPreview.configure(draft: draft)
         // setStackViewItems recalculates the proper messageInputBar height
-        messageInputBar.setStackViewItems([quotePreview], forStack: .top, animated: true)
+        messageInputBar.setStackViewItems([quotePreview, mediaPreview], forStack: .top, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -901,15 +909,51 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    private func sendImage(_ image: UIImage, message: String? = nil) {
+    private func stageImage(url: NSURL) {
+        if url.pathExtension == "gif" {
+            stageAnimatedImage(url: url)
+        } else if let data = try? Data(contentsOf: url as URL),
+                  let image = UIImage(data: data) {
+            stageImage(image)
+        }
+    }
+
+    private func stageAnimatedImage(url: NSURL) {
         DispatchQueue.global().async {
-            if let path = DcUtils.saveImage(image: image) {
-                self.sendImageMessage(viewType: DC_MSG_IMAGE, image: image, filePath: path)
+            if let path = url.path,
+               let result = SDAnimatedImage(contentsOfFile: path),
+               let animatedImageData = result.animatedImageData,
+               let pathInDocDir = DcUtils.saveImage(data: animatedImageData, suffix: "gif") {
+                DispatchQueue.main.async {
+                    self.draft.setAttachment(viewType: DC_MSG_GIF, path: URL(fileURLWithPath: pathInDocDir))
+                    self.configureDraftArea(draft: self.draft)
+                    self.messageInputBar.inputTextView.becomeFirstResponder()
+                }
             }
         }
     }
 
-    private func sendAnimatedImage(url: NSURL) {
+    private func stageImage(_ image: UIImage) {
+        DispatchQueue.global().async {
+            if let path = DcUtils.saveImage(image: image) {
+                DispatchQueue.main.async {
+                    self.draft.setAttachment(viewType: DC_MSG_IMAGE, path: URL(fileURLWithPath: path), mimetype: nil)
+                    self.configureDraftArea(draft: self.draft)
+                    self.messageInputBar.inputTextView.becomeFirstResponder()
+                }
+            }
+        }
+    }
+
+    private func sendImage(_ image: UIImage, message: String? = nil) {
+        DispatchQueue.global().async {
+            if let path = DcUtils.saveImage(image: image) {
+                self.sendImageMessage(viewType: DC_MSG_IMAGE, filePath: path)
+            }
+        }
+    }
+
+    /*private func sendAnimatedImage(url: NSURL) {
         if let path = url.path {
             let result = SDAnimatedImage(contentsOfFile: path)
             if let result = result,
@@ -918,12 +962,15 @@ class ChatViewController: UITableViewController {
                 self.sendImageMessage(viewType: DC_MSG_GIF, image: result, filePath: pathInDocDir)
             }
         }
-    }
+    }*/
 
-    private func sendImageMessage(viewType: Int32, image: UIImage, filePath: String, message: String? = nil) {
+    private func sendImageMessage(viewType: Int32, filePath: String, message: String? = nil, quoteMessage: DcMsg? = nil) {
         let msg = DcMsg(viewType: viewType)
         msg.setFile(filepath: filePath)
         msg.text = (message ?? "").isEmpty ? nil : message
+        if quoteMessage != nil {
+            msg.quoteMessage = quoteMessage
+        }
         msg.sendInChat(id: self.chatId)
     }
 
@@ -951,14 +998,14 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    private func sendImage(url: NSURL) {
+    /*private func sendImage(url: NSURL) {
         if url.pathExtension == "gif" {
             sendAnimatedImage(url: url)
         } else if let data = try? Data(contentsOf: url as URL),
             let image = UIImage(data: data) {
             sendImage(image)
         }
-    }
+    }*/
 
     // MARK: - Context menu
     private func prepareContextMenu() {
@@ -1136,11 +1183,11 @@ extension ChatViewController: MediaPickerDelegate {
     }
 
     func onImageSelected(url: NSURL) {
-        sendImage(url: url)
+        stageImage(url: url)
     }
 
     func onImageSelected(image: UIImage) {
-        sendImage(image)
+        stageImage(image)
     }
 
     func onVoiceMessageRecorded(url: NSURL) {
@@ -1158,15 +1205,25 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
             .trimmingCharacters(in: .whitespacesAndNewlines)
-        if inputBar.inputTextView.images.isEmpty {
+        if let filePath = draft.draftAttachment, let viewType = draft.draftViewType {
+            switch viewType {
+            case DC_MSG_GIF:
+                self.sendImageMessage(viewType: DC_MSG_GIF, filePath: filePath.absoluteString, message: trimmedText, quoteMessage: draft.quoteMessage)
+            case DC_MSG_IMAGE:
+                self.sendImageMessage(viewType: DC_MSG_IMAGE, filePath: filePath.absoluteString, message: trimmedText, quoteMessage: draft.quoteMessage)
+            default:
+                logger.debug("nothing to do")
+            }
+        } else if inputBar.inputTextView.images.isEmpty {
             self.sendTextMessage(text: trimmedText, quoteMessage: draft.quoteMessage)
-            self.quotePreview.cancel()
         } else {
             // only 1 attachment allowed for now, thus it takes the first one
             self.sendImage(inputBar.inputTextView.images[0], message: trimmedText)
         }
         inputBar.inputTextView.text = String()
         inputBar.inputTextView.attributedText = nil
+        self.quotePreview.cancel()
+        self.mediaPreview.cancel()
     }
 
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
@@ -1174,9 +1231,14 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     }
 }
 
-extension ChatViewController: QuotePreviewDelegate {
+extension ChatViewController: QuotePreviewDelegate, MediaPreviewDelegate {
     func onCancelQuote() {
         draft.setQuote(quotedMsg: nil)
+        configureDraftArea(draft: draft)
+    }
+
+    func onCancelAttachment() {
+        draft.setAttachment(viewType: nil, path: nil, mimetype: nil)
         configureDraftArea(draft: draft)
     }
 }

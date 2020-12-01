@@ -21,6 +21,7 @@
 		302E1BB4252B5AB4008F4264 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */; };
 		30349291256441E200A523D0 /* QuotePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30349290256441E200A523D0 /* QuotePreview.swift */; };
 		303492952565AABC00A523D0 /* DraftModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492942565AABC00A523D0 /* DraftModel.swift */; };
+		3034929F25752FC800A523D0 /* MediaPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3034929E25752FC800A523D0 /* MediaPreview.swift */; };
 		303492A5257546B400A523D0 /* DraftPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492A4257546B400A523D0 /* DraftPreview.swift */; };
 		304219D3243F588500516852 /* DcCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304219D82440734A00516852 /* DcMsg+Extension.swift */; };
@@ -218,6 +219,7 @@
 		302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayButtonView.swift; path = "deltachat-ios/Chat/Views/PlayButtonView.swift"; sourceTree = SOURCE_ROOT; };
 		30349290256441E200A523D0 /* QuotePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotePreview.swift; sourceTree = "<group>"; };
 		303492942565AABC00A523D0 /* DraftModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftModel.swift; sourceTree = "<group>"; };
+		3034929E25752FC800A523D0 /* MediaPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPreview.swift; sourceTree = "<group>"; };
 		303492A4257546B400A523D0 /* DraftPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftPreview.swift; sourceTree = "<group>"; };
 		304219D1243F588500516852 /* DcCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DcCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		304219D82440734A00516852 /* DcMsg+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DcMsg+Extension.swift"; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 				3052C609253F082E007D13EA /* MessageLabelDelegate.swift */,
 				3052C60D253F088E007D13EA /* DetectorType.swift */,
 				30653080254358B10093E196 /* QuoteView.swift */,
+				3034929E25752FC800A523D0 /* MediaPreview.swift */,
 				30349290256441E200A523D0 /* QuotePreview.swift */,
 				303492A4257546B400A523D0 /* DraftPreview.swift */,
 			);
@@ -1219,6 +1222,7 @@
 				3008CB7624F95B6D00E6A617 /* AudioController.swift in Sources */,
 				302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
+				3034929F25752FC800A523D0 /* MediaPreview.swift in Sources */,
 				AE76E5EE242BF2EA003CF461 /* WelcomeViewController.swift in Sources */,
 				3052C60A253F082E007D13EA /* MessageLabelDelegate.swift in Sources */,
 				AE0AA9562478191900D42A7F /* GridCollectionViewFlowLayout.swift in Sources */,
