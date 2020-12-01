@@ -1175,7 +1175,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 }
 
 extension ChatViewController: QuotePreviewDelegate {
-    func onCancel() {
+    func onCancelQuote() {
         draft.setQuote(quotedMsg: nil)
         configureDraftArea(draft: draft)
     }
