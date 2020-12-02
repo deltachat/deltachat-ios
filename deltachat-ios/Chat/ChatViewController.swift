@@ -169,7 +169,11 @@ class ChatViewController: UITableViewController {
     }
 
     @objc func keyboardDidShow(_ notification: Notification) {
-        isKeyboardShown = true
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if keyboardSize.height > tableView.inputAccessoryView?.frame.height ?? 0 {
+                isKeyboardShown = true
+            }
+        }
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
