@@ -18,8 +18,6 @@ class ChatViewController: UITableViewController {
     var incomingMsgObserver: Any?
     var ephemeralTimerModifiedObserver: Any?
 
-    var lastContentOffset: CGFloat = -1
-    var isKeyboardShown: Bool = false
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
     }()
@@ -135,6 +133,7 @@ class ChatViewController: UITableViewController {
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         tableView.register(TextMessageCell.self, forCellReuseIdentifier: "text")
         tableView.register(ImageTextCell.self, forCellReuseIdentifier: "image")
         tableView.register(FileTextCell.self, forCellReuseIdentifier: "file")
@@ -142,7 +141,7 @@ class ChatViewController: UITableViewController {
         tableView.register(AudioMessageCell.self, forCellReuseIdentifier: "audio")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
-        super.viewDidLoad()
+        tableView.keyboardDismissMode = .interactive
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
             return
@@ -163,17 +162,9 @@ class ChatViewController: UITableViewController {
                                        name: UIApplication.willResignActiveNotification,
                                        object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
         prepareContextMenu()
-    }
 
-    @objc func keyboardDidShow(_ notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if keyboardSize.height > tableView.inputAccessoryView?.frame.height ?? 0 {
-                isKeyboardShown = true
-            }
-        }
+
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -186,10 +177,6 @@ class ChatViewController: UITableViewController {
                 }
             }
         }
-    }
-
-    @objc func keyboardWillHide(_ notification: Notification) {
-        isKeyboardShown = false
     }
 
     private func startTimer() {
@@ -396,22 +383,10 @@ class ChatViewController: UITableViewController {
         return cell
     }
 
-    public override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        lastContentOffset = scrollView.contentOffset.y
-    }
-
     public override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
             markSeenMessagesInVisibleArea()
         }
-
-        if scrollView.contentOffset.y < lastContentOffset {
-            if isKeyboardShown {
-                tableView.endEditing(true)
-                tableView.becomeFirstResponder()
-            }
-        }
-        lastContentOffset = -1
     }
 
     public override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
