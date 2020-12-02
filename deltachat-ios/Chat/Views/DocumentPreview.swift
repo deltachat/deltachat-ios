@@ -15,8 +15,14 @@ public class DocumentPreview: DraftPreview {
     override func setupSubviews() {
         super.setupSubviews()
         mainContentView.addSubview(fileView)
+        addConstraints([
+            fileView.constraintAlignTopTo(mainContentView),
+            fileView.constraintAlignLeadingTo(mainContentView, paddingLeading: 8),
+            fileView.constraintAlignBottomTo(mainContentView),
+            fileView.constraintAlignTrailingTo(mainContentView)
+        ])
         fileView.fillSuperview()
-        mainContentView.constraintHeightTo(80).isActive = true
+        mainContentView.constraintHeightTo(75).isActive = true
     }
     
     override public func cancel() {
