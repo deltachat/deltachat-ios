@@ -23,6 +23,7 @@
 		303492952565AABC00A523D0 /* DraftModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492942565AABC00A523D0 /* DraftModel.swift */; };
 		3034929F25752FC800A523D0 /* MediaPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3034929E25752FC800A523D0 /* MediaPreview.swift */; };
 		303492A5257546B400A523D0 /* DraftPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492A4257546B400A523D0 /* DraftPreview.swift */; };
+		303492AD2577CAC300A523D0 /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492AC2577CAC300A523D0 /* FileView.swift */; };
 		304219D3243F588500516852 /* DcCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304219D82440734A00516852 /* DcMsg+Extension.swift */; };
 		304F5E44244F571C00462538 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
@@ -221,6 +222,7 @@
 		303492942565AABC00A523D0 /* DraftModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftModel.swift; sourceTree = "<group>"; };
 		3034929E25752FC800A523D0 /* MediaPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPreview.swift; sourceTree = "<group>"; };
 		303492A4257546B400A523D0 /* DraftPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftPreview.swift; sourceTree = "<group>"; };
+		303492AC2577CAC300A523D0 /* FileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
 		304219D1243F588500516852 /* DcCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DcCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		304219D82440734A00516852 /* DcMsg+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DcMsg+Extension.swift"; sourceTree = "<group>"; };
 		3052C609253F082E007D13EA /* MessageLabelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabelDelegate.swift; sourceTree = "<group>"; };
@@ -553,6 +555,7 @@
 				3034929E25752FC800A523D0 /* MediaPreview.swift */,
 				30349290256441E200A523D0 /* QuotePreview.swift */,
 				303492A4257546B400A523D0 /* DraftPreview.swift */,
+				303492AC2577CAC300A523D0 /* FileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1187,6 +1190,7 @@
 				AEC67A1C241CE9E4007DDBE1 /* AppStateRestorer.swift in Sources */,
 				3008CB7224F93EB900E6A617 /* AudioMessageCell.swift in Sources */,
 				302E1BB4252B5AB4008F4264 /* PlayButtonView.swift in Sources */,
+				303492AD2577CAC300A523D0 /* FileView.swift in Sources */,
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
 				AE77838F23E4276D0093EABD /* ContactCellViewModel.swift in Sources */,
 				B20462E62440C99600367A57 /* SettingsAutodelSetController.swift in Sources */,

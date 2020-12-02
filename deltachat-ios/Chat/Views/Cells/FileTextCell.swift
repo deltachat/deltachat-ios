@@ -5,70 +5,11 @@ import SDWebImage
 
 class FileTextCell: BaseMessageCell {
 
-    private lazy var defaultImage: UIImage = {
-        let image = UIImage(named: "ic_attach_file_36pt")
-        return image!
-    }()
-
-    private var imageWidthConstraint: NSLayoutConstraint?
-    private var imageHeightConstraint: NSLayoutConstraint?
     private var spacer: NSLayoutConstraint?
 
-    private var horizontalLayout: Bool {
-        set {
-            if newValue {
-                fileStackView.axis = .horizontal
-                imageWidthConstraint?.isActive = true
-                imageHeightConstraint?.isActive = true
-                fileStackView.alignment = .center
-            } else {
-                fileStackView.axis = .vertical
-                imageWidthConstraint?.isActive = false
-                imageHeightConstraint?.isActive = false
-                fileStackView.alignment = .leading
-            }
-        }
-        get {
-            return fileStackView.axis == .horizontal
-        }
-    }
-
-    private lazy var fileStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [fileImageView, fileMetadataStackView])
-        stackView.axis = .horizontal
-        stackView.spacing = 6
-        return stackView
-    }()
-
-    private lazy var fileImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-
-    private lazy var fileMetadataStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [fileTitle, fileSubtitle])
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.clipsToBounds = true
-        return stackView
-    }()
-
-    private lazy var fileTitle: UILabel = {
-        let title = UILabel()
-        title.font = UIFont.preferredItalicFont(for: .body)
-        title.translatesAutoresizingMaskIntoConstraints = false
-        title.numberOfLines = 3
-        title.lineBreakMode = .byCharWrapping
-        return title
-    }()
-
-    private lazy var fileSubtitle: UILabel = {
-        let subtitle = UILabel()
-        subtitle.font = UIFont.preferredItalicFont(for: .caption2)
-        subtitle.translatesAutoresizingMaskIntoConstraints = false
-        subtitle.numberOfLines = 1
-        return subtitle
+    private lazy var fileView: FileView = {
+        let view = FileView()
+        return view
     }()
 
     override func setupSubviews() {
@@ -76,17 +17,15 @@ class FileTextCell: BaseMessageCell {
         let spacerView = UIView()
         spacer = spacerView.constraintHeightTo(8, priority: .defaultHigh)
         spacer?.isActive = true
-        mainContentView.addArrangedSubview(fileStackView)
+        mainContentView.addArrangedSubview(fileView)
         mainContentView.addArrangedSubview(spacerView)
         mainContentView.addArrangedSubview(messageLabel)
-        imageWidthConstraint = fileImageView.constraintWidthTo(50)
-        imageHeightConstraint = fileImageView.constraintHeightTo(50 * 1.3, priority: .defaultLow)
-        horizontalLayout = true
+        fileView.horizontalLayout = true
         mainContentViewHorizontalPadding = 12
     }
 
     override func prepareForReuse() {
-        fileImageView.image = nil
+        fileView.prepareForReuse()
     }
 
     override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool, isGroup: Bool) {
@@ -96,30 +35,9 @@ class FileTextCell: BaseMessageCell {
         } else {
             spacer?.isActive = false
         }
-        if let url = msg.fileURL {
-            generateThumbnailFor(url: url, placeholder: defaultImage)
-        } else {
-            fileImageView.image = defaultImage
-            horizontalLayout = true
-        }
-        fileTitle.text = msg.filename
-        fileSubtitle.text = msg.getPrettyFileSize()
+        
+        fileView.configure(message: msg)
         super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible, isGroup: isGroup)
-    }
-
-    private func generateThumbnailFor(url: URL, placeholder: UIImage?) {
-        if let thumbnail = ThumbnailCache.shared.restoreImage(key: url.absoluteString) {
-            fileImageView.image = thumbnail
-            horizontalLayout = false
-        } else if let pdfThumbnail = DcUtils.thumbnailFromPdf(withUrl: url) {
-            fileImageView.image = pdfThumbnail
-            horizontalLayout = false
-            ThumbnailCache.shared.storeImage(image: pdfThumbnail, key: url.absoluteString)
-        } else {
-            let controller = UIDocumentInteractionController(url: url)
-            fileImageView.image = controller.icons.first ?? placeholder
-            horizontalLayout = true
-        }
     }
     
 }
