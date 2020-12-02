@@ -1,5 +1,6 @@
 import UIKit
 import SDWebImage
+import DcCore
 
 class MediaPreview: DraftPreview {
     var imageWidthConstraint: NSLayoutConstraint?
@@ -26,7 +27,7 @@ class MediaPreview: DraftPreview {
     }
 
     override func configure(draft: DraftModel) {
-        if let path = draft.draftAttachment {
+        if (draft.draftViewType == DC_MSG_GIF || draft.draftViewType == DC_MSG_IMAGE), let path = draft.draftAttachment {
             contentImageView.sd_setImage(with: URL(fileURLWithPath: path, isDirectory: false), completed: { image, error, _, _ in
                 if let error = error {
                     logger.error("could not load draft image: \(error)")
