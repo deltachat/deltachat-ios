@@ -44,6 +44,13 @@ class ChatViewController: UITableViewController {
         return view
     }()
 
+    lazy var documentPreview: DocumentPreview = {
+        let view = DocumentPreview()
+        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     open override var shouldAutorotate: Bool {
         return false
     }
@@ -403,8 +410,9 @@ class ChatViewController: UITableViewController {
     private func configureDraftArea(draft: DraftModel) {
         quotePreview.configure(draft: draft)
         mediaPreview.configure(draft: draft)
+        documentPreview.configure(draft: draft)
         // setStackViewItems recalculates the proper messageInputBar height
-        messageInputBar.setStackViewItems([quotePreview, mediaPreview], forStack: .top, animated: true)
+        messageInputBar.setStackViewItems([quotePreview, mediaPreview, documentPreview], forStack: .top, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -914,6 +922,12 @@ class ChatViewController: UITableViewController {
         }
     }
 
+    private func stageDocument(url: NSURL) {
+        self.draft.setAttachment(viewType: DC_MSG_FILE, path: url.relativePath)
+        self.configureDraftArea(draft: self.draft)
+        self.messageInputBar.inputTextView.becomeFirstResponder()
+    }
+
     private func stageImage(url: NSURL) {
         if url.pathExtension == "gif" {
             stageAnimatedImage(url: url)
@@ -953,7 +967,7 @@ class ChatViewController: UITableViewController {
     private func sendImage(_ image: UIImage, message: String? = nil) {
         DispatchQueue.global().async {
             if let path = DcUtils.saveImage(image: image) {
-                self.sendImageMessage(viewType: DC_MSG_IMAGE, filePath: path)
+                self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path)
             }
         }
     }
@@ -969,7 +983,7 @@ class ChatViewController: UITableViewController {
         }
     }*/
 
-    private func sendImageMessage(viewType: Int32, filePath: String, message: String? = nil, quoteMessage: DcMsg? = nil) {
+    private func sendAttachmentMessage(viewType: Int32, filePath: String, message: String? = nil, quoteMessage: DcMsg? = nil) {
         let msg = DcMsg(viewType: viewType)
         msg.setFile(filepath: filePath)
         msg.text = (message ?? "").isEmpty ? nil : message
@@ -977,14 +991,6 @@ class ChatViewController: UITableViewController {
             msg.quoteMessage = quoteMessage
         }
         msg.sendInChat(id: self.chatId)
-    }
-
-    private func sendDocumentMessage(url: NSURL) {
-        DispatchQueue.global().async {
-            let msg = DcMsg(viewType: DC_MSG_FILE)
-            msg.setFile(filepath: url.relativePath, mimeType: nil)
-            msg.sendInChat(id: self.chatId)
-        }
     }
 
     private func sendVoiceMessage(url: NSURL) {
@@ -1202,7 +1208,7 @@ extension ChatViewController: MediaPickerDelegate {
     }
 
     func onDocumentSelected(url: NSURL) {
-        sendDocumentMessage(url: url)
+        stageDocument(url: url)
     }
 
 }
@@ -1214,10 +1220,8 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             .trimmingCharacters(in: .whitespacesAndNewlines)
         if let filePath = draft.draftAttachment, let viewType = draft.draftViewType {
             switch viewType {
-            case DC_MSG_GIF:
-                self.sendImageMessage(viewType: DC_MSG_GIF, filePath: filePath, message: trimmedText, quoteMessage: draft.quoteMessage)
-            case DC_MSG_IMAGE:
-                self.sendImageMessage(viewType: DC_MSG_IMAGE, filePath: filePath, message: trimmedText, quoteMessage: draft.quoteMessage)
+            case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE:
+                self.sendAttachmentMessage(viewType: viewType, filePath: filePath, message: trimmedText, quoteMessage: draft.quoteMessage)
             default:
                 logger.warning("Unsupported viewType for drafted messages.")
             }
@@ -1231,6 +1235,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         inputBar.inputTextView.attributedText = nil
         self.quotePreview.cancel()
         self.mediaPreview.cancel()
+        self.documentPreview.cancel()
     }
 
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {

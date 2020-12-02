@@ -24,6 +24,7 @@
 		3034929F25752FC800A523D0 /* MediaPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3034929E25752FC800A523D0 /* MediaPreview.swift */; };
 		303492A5257546B400A523D0 /* DraftPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492A4257546B400A523D0 /* DraftPreview.swift */; };
 		303492AD2577CAC300A523D0 /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492AC2577CAC300A523D0 /* FileView.swift */; };
+		303492B32577E40700A523D0 /* DocumentPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492B22577E40700A523D0 /* DocumentPreview.swift */; };
 		304219D3243F588500516852 /* DcCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304219D82440734A00516852 /* DcMsg+Extension.swift */; };
 		304F5E44244F571C00462538 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
@@ -223,6 +224,7 @@
 		3034929E25752FC800A523D0 /* MediaPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPreview.swift; sourceTree = "<group>"; };
 		303492A4257546B400A523D0 /* DraftPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftPreview.swift; sourceTree = "<group>"; };
 		303492AC2577CAC300A523D0 /* FileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
+		303492B22577E40700A523D0 /* DocumentPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPreview.swift; sourceTree = "<group>"; };
 		304219D1243F588500516852 /* DcCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DcCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		304219D82440734A00516852 /* DcMsg+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DcMsg+Extension.swift"; sourceTree = "<group>"; };
 		3052C609253F082E007D13EA /* MessageLabelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabelDelegate.swift; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 				30349290256441E200A523D0 /* QuotePreview.swift */,
 				303492A4257546B400A523D0 /* DraftPreview.swift */,
 				303492AC2577CAC300A523D0 /* FileView.swift */,
+				303492B22577E40700A523D0 /* DocumentPreview.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1169,6 +1172,7 @@
 				78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */,
 				3059620E234614E700C80F33 /* DcContact+Extension.swift in Sources */,
 				AED423D7249F580700B6B2BB /* BlockedContactsViewController.swift in Sources */,
+				303492B32577E40700A523D0 /* DocumentPreview.swift in Sources */,
 				3008CB7424F9436C00E6A617 /* AudioPlayerView.swift in Sources */,
 				AED62BCE247687E6009E220D /* LocationStreamingIndicator.swift in Sources */,
 				AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */,
