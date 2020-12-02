@@ -2,6 +2,12 @@ import UIKit
 import InputBarAccessoryView
 import DcCore
 
+public protocol DraftPreviewDelegate: class {
+    func onAttachmentAdded()
+    func onCancelAttachment()
+    func onCancelQuote()
+}
+
 public class DraftPreview: UIView, InputItem {
 
     public var inputBarAccessoryView: InputBarAccessoryView?

@@ -1,13 +1,9 @@
 import UIKit
 import SDWebImage
 
-public protocol MediaPreviewDelegate: class {
-    func onCancelAttachment()
-    func onAttachmentAdded()
-}
 class MediaPreview: DraftPreview {
     var imageWidthConstraint: NSLayoutConstraint?
-    weak var delegate: MediaPreviewDelegate?
+    weak var delegate: DraftPreviewDelegate?
 
     lazy var contentImageView: SDAnimatedImageView = {
         let imageView = SDAnimatedImageView()
@@ -40,7 +36,6 @@ class MediaPreview: DraftPreview {
                     self.delegate?.onAttachmentAdded()
                 }
             })
-
             isHidden = false
         } else {
             isHidden = true

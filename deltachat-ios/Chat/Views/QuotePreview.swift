@@ -2,13 +2,9 @@ import UIKit
 import InputBarAccessoryView
 import DcCore
 
-public protocol QuotePreviewDelegate: class {
-    func onCancelQuote()
-}
-
 public class QuotePreview: DraftPreview {
 
-    public weak var delegate: QuotePreviewDelegate?
+    public weak var delegate: DraftPreviewDelegate?
 
     lazy var quoteView: QuoteView = {
         let view = QuoteView()
