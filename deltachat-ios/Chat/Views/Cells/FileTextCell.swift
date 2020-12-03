@@ -25,6 +25,7 @@ class FileTextCell: BaseMessageCell {
     }
 
     override func prepareForReuse() {
+        super.prepareForReuse()
         fileView.prepareForReuse()
     }
 
