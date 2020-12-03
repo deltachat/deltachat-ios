@@ -36,6 +36,7 @@ public class DocumentPreview: DraftPreview {
             tmpMsg.setFile(filepath: path)
             tmpMsg.text = draft.draftText
             fileView.configure(message: tmpMsg)
+            self.delegate?.onAttachmentAdded()
             isHidden = false
         } else {
             isHidden = true
