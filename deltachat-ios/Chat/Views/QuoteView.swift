@@ -30,6 +30,8 @@ public class QuoteView: UIView {
     public lazy var imagePreview: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         return view
     }()
 
