@@ -150,6 +150,8 @@
 "menu_unmute" = "Reativar notificações";
 "menu_export_attachment" = "Exportar o anexo";
 "menu_all_media" = "Todos os arquivos de mídia";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Mostrar na conversa";
 "menu_share" = "Compartilhar";
 "menu_block_contact" = "Bloquear contato";
 "menu_unblock_contact" = "Desbloquear contato";
@@ -209,6 +211,9 @@
 "videochat_will_open_in_your_browser" = "Esta conversa em vídeo vai abrir no seu navegador.";
 "videochat_tap_to_join" = "Clique para entrar";
 "videochat_tap_to_open" = "Clique para abrir";
+"videochat_instance" = "Instância de conversa de vídeo";
+"videochat_instance_placeholder" = "Sua instância de conversa de vídeo";
+"videochat_invitation" = "Convite para conversa de vídeo";
 // get confirmations
 "ask_leave_group" = "Quer mesmo sair do grupo?";
 "ask_forward" = "Encaminhar mensagens para %1$@?";

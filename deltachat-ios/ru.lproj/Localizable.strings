@@ -150,6 +150,8 @@
 "menu_unmute" = "Включить уведомления";
 "menu_export_attachment" = "Экспортировать вложение";
 "menu_all_media" = "Все медиафайлы";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Показать в чате";
 "menu_share" = "Поделиться";
 "menu_block_contact" = "Заблокировать контакт";
 "menu_unblock_contact" = "Разблокировать контакт";
@@ -373,6 +375,7 @@
 "pref_profile_info_headline" = "Личный профиль";
 "pref_profile_photo" = "Фото профиля";
 "pref_blocked_contacts" = "Заблокированные контакты";
+"blocked_empty_hint" = "Если вы заблокируете контакты, они будут показаны здесь.";
 "pref_profile_photo_remove_ask" = "Удалить фото профиля?";
 "pref_password_and_account_settings" = "Пароль и аккаунт";
 "pref_who_can_see_profile_explain" = "Изображение профиля и имя будут отображаться при общении с другими пользователями. Уже отправленная информация не может быть удалена или отозвана.";
@@ -398,6 +401,7 @@
 "pref_notifications_priority" = "Приоритет";
 "pref_notifications_explain" = "Включить системные уведомления для новых сообщений";
 "pref_show_notification_content" = "Показывать содержимое сообщений в уведомлениях.";
+"pref_show_notification_content_explain" = "Показывает отправителя и первые слова сообщения в уведомлениях";
 "pref_led_color" = "Цвет светодиода ";
 "pref_sound" = "Звук";
 "pref_silent" = "Беззвучный";
@@ -473,6 +477,7 @@
 "emoji_people" = "Люди & Тело";
 "emoji_nature" = "Животные & Природа";
 "emoji_foods" = "Еда & Напитки";
+"emoji_activity" = "Активность";
 "emoji_places" = "Путешествия & Места";
 "emoji_objects" = "Объекты";
 "emoji_symbols" = "Символы";
@@ -487,6 +492,10 @@
 "autodel_server_title" = "Удалять сообщения с сервера";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Вы хотите удалить %1$d сообщений сейчас и все новые загруженные сообщения \"%2$@\" в будущем?\n\n• Это включает в себя все медиафайлы\n\n• Сообщения будут удалены независимо от того, просмотрены они или нет\n\n• \"Сохранённые сообщения\" будут пропущены при локальном удалении";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "Вы хотите удалить %1$d сообщений сейчас и все новые сообщения «%2$@» в будущем?\n\n⚠️ Это включает письма, медиа и «Сохраненные сообщения» во всех папках сервера\n\n⚠️ Не используйте эту функцию если вы хотите сохранить данные на сервере\n\n⚠️ Не используйте эту функцию если вы используете другие почтовые клиенты кроме Delta Chat";
+// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+"autodel_server_enabled_hint" = "Это включает почту, медиа и «Сохраненные сообщения» во всех папках сервера. Не используйте эту функцию, если вы хотите сохранить данные на сервере или если вы используете другие почтовые клиенты кроме Delta Chat.";
 "autodel_confirm" = "Я понимаю, удалить все эти сообщения";
 "autodel_at_once" = "Сразу";
 "after_30_seconds" = "Через 30 секунд";
