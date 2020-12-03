@@ -19,10 +19,9 @@ public class DocumentPreview: DraftPreview {
             fileView.constraintAlignTopTo(mainContentView),
             fileView.constraintAlignLeadingTo(mainContentView, paddingLeading: 8),
             fileView.constraintAlignBottomTo(mainContentView),
-            fileView.constraintAlignTrailingTo(mainContentView)
+            fileView.constraintAlignTrailingTo(mainContentView),
+            mainContentView.constraintHeightTo(75, priority: .required)
         ])
-        fileView.fillSuperview()
-        mainContentView.constraintHeightTo(75).isActive = true
     }
     
     override public func cancel() {
