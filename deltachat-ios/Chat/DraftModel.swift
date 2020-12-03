@@ -19,7 +19,7 @@ public class DraftModel {
         draftText = draftMsg?.text
         quoteText = draftMsg?.quoteText
         quoteMessage = draftMsg?.quoteMessage
-        draftAttachment = draftMsg?.fileURL?.absoluteString
+        draftAttachment = draftMsg?.fileURL?.relativePath
         if let viewType = draftMsg?.type {
             draftViewType = Int32(viewType)
         }
