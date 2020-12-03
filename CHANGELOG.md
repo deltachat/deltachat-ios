@@ -1,5 +1,12 @@
 # Delta Chat iOS Changelog
 
+## 1.14.4
+2020-12
+
+* fix scrolling bug on ios 14.2
+* update translations
+
+
 ## 1.14.3
 2020-11
 
