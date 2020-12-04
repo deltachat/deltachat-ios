@@ -927,6 +927,14 @@ class ChatViewController: UITableViewController {
         self.messageInputBar.inputTextView.becomeFirstResponder()
     }
 
+    private func stageVideo(url: NSURL) {
+        DispatchQueue.main.async {
+            self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
+            self.configureDraftArea(draft: self.draft)
+            self.messageInputBar.inputTextView.becomeFirstResponder()
+        }
+    }
+
     private func stageImage(url: NSURL) {
         if url.pathExtension == "gif" {
             stageAnimatedImage(url: url)
@@ -962,6 +970,8 @@ class ChatViewController: UITableViewController {
             }
         }
     }
+
+
 
     private func sendImage(_ image: UIImage, message: String? = nil) {
         DispatchQueue.global().async {
@@ -1000,13 +1010,13 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    private func sendVideo(url: NSURL) {
+ /*   private func sendVideo(url: NSURL) {
         DispatchQueue.global().async {
             let msg = DcMsg(viewType: DC_MSG_VIDEO)
             msg.setFile(filepath: url.relativePath, mimeType: "video/mp4")
             msg.sendInChat(id: self.chatId)
         }
-    }
+    } */
 
     /*private func sendImage(url: NSURL) {
         if url.pathExtension == "gif" {
@@ -1191,7 +1201,7 @@ extension ChatViewController: BaseMessageCellDelegate {
 // MARK: - MediaPickerDelegate
 extension ChatViewController: MediaPickerDelegate {
     func onVideoSelected(url: NSURL) {
-        sendVideo(url: url)
+        stageVideo(url: url)
     }
 
     func onImageSelected(url: NSURL) {
@@ -1219,7 +1229,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             .trimmingCharacters(in: .whitespacesAndNewlines)
         if let filePath = draft.draftAttachment, let viewType = draft.draftViewType {
             switch viewType {
-            case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE:
+            case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE, DC_MSG_VIDEO:
                 self.sendAttachmentMessage(viewType: viewType, filePath: filePath, message: trimmedText, quoteMessage: draft.quoteMessage)
             default:
                 logger.warning("Unsupported viewType for drafted messages.")
