@@ -11,6 +11,7 @@ class MediaPreview: DraftPreview {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 4
         return imageView
     }()
 
