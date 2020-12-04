@@ -12,7 +12,7 @@ public class DraftArea: UIView, InputItem {
     public func keyboardEditingEndsAction() {}
     public func keyboardEditingBeginsAction() {}
 
-    weak var delegate: DraftPreviewDelegate? {
+    var delegate: DraftPreviewDelegate? {
         set {
             quotePreview.delegate = newValue
             mediaPreview.delegate = newValue
