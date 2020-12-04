@@ -55,7 +55,7 @@ public class FileView: UIView {
         return stackView
     }()
 
-    private lazy var fileTitle: UILabel = {
+    lazy var fileTitle: UILabel = {
         let title = UILabel()
         title.font = UIFont.preferredItalicFont(for: .body)
         title.translatesAutoresizingMaskIntoConstraints = false

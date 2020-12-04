@@ -9,6 +9,7 @@ public class DocumentPreview: DraftPreview {
         let view = FileView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.allowLayoutChange = false
+        view.fileTitle.numberOfLines = 2
         return view
     }()
 
