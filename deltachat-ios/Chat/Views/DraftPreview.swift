@@ -1,5 +1,4 @@
 import UIKit
-import InputBarAccessoryView
 import DcCore
 
 public protocol DraftPreviewDelegate: class {
@@ -8,14 +7,7 @@ public protocol DraftPreviewDelegate: class {
     func onCancelQuote()
 }
 
-public class DraftPreview: UIView, InputItem {
-
-    public var inputBarAccessoryView: InputBarAccessoryView?
-    public var parentStackViewPosition: InputStackView.Position?
-    public func textViewDidChangeAction(with textView: InputTextView) {}
-    public func keyboardSwipeGestureAction(with gesture: UISwipeGestureRecognizer) {}
-    public func keyboardEditingEndsAction() {}
-    public func keyboardEditingBeginsAction() {}
+public class DraftPreview: UIView {
 
     lazy var cancelButton: UIView = {
         let view = UIView()

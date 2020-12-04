@@ -30,24 +30,10 @@ class ChatViewController: UITableViewController {
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
     open var messageInputBar = InputBarAccessoryView()
 
-    lazy var quotePreview: QuotePreview = {
-        let view = QuotePreview()
-        view.delegate = self
+    lazy var draftArea: DraftArea = {
+        let view = DraftArea()
         view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    lazy var mediaPreview: MediaPreview = {
-        let view = MediaPreview()
         view.delegate = self
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    lazy var documentPreview: DocumentPreview = {
-        let view = DocumentPreview()
-        view.delegate = self
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -408,11 +394,9 @@ class ChatViewController: UITableViewController {
     }
 
     private func configureDraftArea(draft: DraftModel) {
-        quotePreview.configure(draft: draft)
-        mediaPreview.configure(draft: draft)
-        documentPreview.configure(draft: draft)
+        draftArea.configureDraftArea(draft: draft)
         // setStackViewItems recalculates the proper messageInputBar height
-        messageInputBar.setStackViewItems([quotePreview, mediaPreview, documentPreview], forStack: .top, animated: true)
+        messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -1242,9 +1226,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         }
         inputBar.inputTextView.text = String()
         inputBar.inputTextView.attributedText = nil
-        self.quotePreview.cancel()
-        self.mediaPreview.cancel()
-        self.documentPreview.cancel()
+        draftArea.cancel()
     }
 
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
