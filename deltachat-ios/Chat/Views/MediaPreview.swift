@@ -39,17 +39,23 @@ class MediaPreview: DraftPreview {
             })
             isHidden = false
         } else if draft.draftViewType == DC_MSG_VIDEO, let path = draft.draftAttachment {
-            self.isHidden = false
-            DispatchQueue.global(qos: .userInteractive).async {
-                let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: URL(fileURLWithPath: path, isDirectory: false))
-                if let thumbnailImage = thumbnailImage {
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        self.contentImageView.image = thumbnailImage
-                        self.setAspectRatio(image: thumbnailImage)
+            if let image = ThumbnailCache.shared.restoreImage(key: path) {
+                self.contentImageView.image = image
+                self.setAspectRatio(image: image)
+            } else {
+                DispatchQueue.global(qos: .userInteractive).async {
+                    let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: URL(fileURLWithPath: path, isDirectory: false))
+                    if let thumbnailImage = thumbnailImage {
+                        DispatchQueue.main.async { [weak self] in
+                            guard let self = self else { return }
+                            self.contentImageView.image = thumbnailImage
+                            self.setAspectRatio(image: thumbnailImage)
+                            ThumbnailCache.shared.storeImage(image: thumbnailImage, key: path)
+                        }
                     }
                 }
             }
+            self.isHidden = false
         } else {
             isHidden = true
         }
