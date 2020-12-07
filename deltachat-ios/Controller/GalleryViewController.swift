@@ -137,6 +137,7 @@ class GalleryViewController: UIViewController {
         }
     }
 
+    // MARK: - actions
     private func askToDeleteItem(at indexPath: IndexPath) {
         let title = String.localized(stringID: "ask_delete_messages", count: 1)
         let alertController =  UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
