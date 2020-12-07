@@ -125,6 +125,28 @@ extension DocumentGalleryController: UITableViewDelegate, UITableViewDataSource 
         showPreview(msgId: msgId)
         tableView.deselectRow(at: indexPath, animated: false)
     }
+
+    // MARK: - context menu
+    // context menu for iOS 11, 12
+    func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        return contextMenuConfiguration.canPerformAction(action: action)
+    }
+
+    func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+        contextMenuConfiguration.performAction(action: action, indexPath: indexPath)
+    }
+
+    // context menu for iOS 13+
+    @available(iOS 13, *)
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil,
+            actionProvider: { [weak self] _ in
+                self?.contextMenuConfiguration.actionProvider(indexPath: indexPath)
+            }
+        )
+    }
 }
 
 // MARK: - coordinator

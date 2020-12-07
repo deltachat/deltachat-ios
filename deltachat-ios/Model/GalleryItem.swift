@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 import SDWebImage
 
-class GalleryItem {
+class GalleryItem: ContextMenuItem {
 
     var onImageLoaded: ((UIImage?) -> Void)?
 

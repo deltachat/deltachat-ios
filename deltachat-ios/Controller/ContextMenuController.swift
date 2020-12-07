@@ -4,12 +4,21 @@ import SDWebImage
 import DcCore
 
 
+protocol ContextMenuItem {
+    var msg: DcMsg { get set }
+    var thumbnailImage: UIImage? { get set  }
+}
+
 // MARK: - ContextMenuController
 class ContextMenuController: UIViewController {
 
-    let item: GalleryItem
-    
-    init(item: GalleryItem) {
+    let item: ContextMenuItem
+
+    var msg: DcMsg {
+        return item.msg
+    }
+
+    init(item: ContextMenuItem) {
         self.item = item
         super.init(nibName: nil, bundle: nil)
     }
@@ -22,13 +31,13 @@ class ContextMenuController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let viewType = item.msg.viewtype
+        let viewType = msg.viewtype
         var thumbnailView: UIView?
         switch viewType {
         case .image:
-            thumbnailView = makeImageView(image: item.msg.image)
+            thumbnailView = makeImageView(image: msg.image)
         case .video:
-            thumbnailView = makeVideoView(videoUrl: item.msg.fileURL)
+            thumbnailView = makeVideoView(videoUrl: msg.fileURL)
         case .gif:
             thumbnailView = makeGifView(gifImage: item.thumbnailImage)
         default:
