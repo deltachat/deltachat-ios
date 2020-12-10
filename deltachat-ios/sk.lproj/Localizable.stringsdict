@@ -33,13 +33,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d hour</string>
+			<string>%d hodina</string>
 			<key>few</key>
-			<string>%d hours</string>
+			<string>%d hodín</string>
 			<key>many</key>
-			<string>%d hours</string>
+			<string>%d hodín</string>
 			<key>other</key>
-			<string>%d hours</string>
+			<string>%d hodina</string>
 		</dict>
 	</dict>
 	<key>n_chats</key>
@@ -73,13 +73,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d contact</string>
+			<string>%d kontakt</string>
 			<key>few</key>
-			<string>%d contact</string>
+			<string>%d kontakty</string>
 			<key>many</key>
-			<string>%d contact</string>
+			<string>%d kontakty</string>
 			<key>other</key>
-			<string>%d contacts</string>
+			<string>%d kontakt</string>
 		</dict>
 	</dict>
 	<key>n_messages</key>
@@ -93,13 +93,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d message</string>
+			<string>%d správa</string>
 			<key>few</key>
-			<string>%d messages</string>
+			<string>%d správy</string>
 			<key>many</key>
-			<string>%d messages</string>
+			<string>%d správy</string>
 			<key>other</key>
-			<string>%d messages</string>
+			<string>%d správa</string>
 		</dict>
 	</dict>
 	<key>n_members</key>
@@ -113,13 +113,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d member</string>
+			<string>%d používateľ</string>
 			<key>few</key>
-			<string>%d members</string>
+			<string>%d používatelia</string>
 			<key>many</key>
-			<string>%d members</string>
+			<string>%d používatelia</string>
 			<key>other</key>
-			<string>%d members</string>
+			<string>%d používateľ</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>
@@ -199,7 +199,7 @@
 			<key>many</key>
 			<string>%dchaty archivované</string>
 			<key>other</key>
-			<string>%dchaty archivované</string>
+			<string>%d chaty archivované</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -219,7 +219,7 @@
 			<key>many</key>
 			<string>%dkonverzácie boli archivované</string>
 			<key>other</key>
-			<string>%dkonverzácie boli archivované</string>
+			<string>%d konverzácie boli archivované</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>
@@ -239,7 +239,7 @@
 			<key>many</key>
 			<string>%dnové správy</string>
 			<key>other</key>
-			<string>%dnové správy</string>
+			<string>%d nové správy</string>
 		</dict>
 	</dict>
 </dict>

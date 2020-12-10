@@ -15,6 +15,7 @@
 "automatic" = "Automatyczne";
 "strict" = "Dokładne";
 "open" = "Otwórz";
+"open_attachment" = "Otwórz załącznik";
 "join" = "Dołącz";
 "rejoin" = "Dołącz ponownie";
 "delete" = "Usuń";
@@ -31,6 +32,7 @@
 "save" = "Zapisz";
 "chat" = "Czat";
 "media" = "Multimedia";
+"profile" = "Profil";
 "main_menu" = "Menu główne";
 "start_chat" = "Rozpocznij czat";
 "show_password" = "Pokaż hasło";
@@ -40,6 +42,7 @@
 "one_moment" = "Jedną chwilę…";
 "done" = "Gotowe";
 "undo" = "Cofnij";
+"offline" = "Offline";
 // Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
 "next" = "Dalej";
 "error" = "Błąd";
@@ -69,6 +72,8 @@
 "self" = "Ja";
 "draft" = "Szkic";
 "image" = "Obraz";
+// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Odpowiedź";
 "gif" = "Gif";
 "images" = "Obrazy";
 "audio" = "Audio";
@@ -95,6 +100,8 @@
 "magenta" = "Magenta";
 "white" = "Biały";
 
+"zoom" = "Powiększenie";
+"extra_small" = "Bardzo małe";
 "small" = "Mały";
 "normal" = "Normalny";
 "large" = "Duży";
@@ -126,12 +133,14 @@
 "ask_delete_named_chat" = "Czy na pewno chcesz usunąć „%1$@”?";
 "menu_delete_messages" = "Usuń wiadomości";
 "menu_delete_image" = "Usuń  obraz";
+"delete_contact" = "Usuń kontakt";
 "menu_delete_locations" = "Usunąć wszystkie lokalizacje?";
 "menu_delete_location" = "Usunąć tę lokalizację?";
 "menu_message_details" = "Szczegóły wiadomości";
 "menu_copy_to_clipboard" = "Kopiuj do schowka";
 "menu_copy_selection_to_clipboard" = "Kopiuj zaznaczenie";
 "menu_copy_link_to_clipboard" = "Kopiuj link";
+"paste_from_clipboard" = "Wklej ze schowka";
 "menu_forward" = "Przekaż wiadomość";
 "menu_resend" = "Wyślij ponownie wiadomość";
 "menu_reply" = "Odpowiedz na wiadomość";
@@ -139,6 +148,8 @@
 "menu_unmute" = "Wyłącz powiadomienia";
 "menu_export_attachment" = "Eksportuj załącznik";
 "menu_all_media" = "Wszystkie multimedia";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Pokaż w czacie";
 "menu_share" = "Udostępnij";
 "menu_block_contact" = "Blokuj kontakt";
 "menu_unblock_contact" = "Odblokuj kontakt";
@@ -172,6 +183,7 @@
 "pin" = "Przypnij";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "Odepnij";
+"ConversationFragment_quoted_message_not_found" = "Nie znaleziono oryginalnej wiadomości";
 "mute_for_one_hour" = "Wyłącz na 1 godzinę";
 "mute_for_two_hours" = "Wyłącz na 2 godziny";
 "mute_for_one_day" = "Wyłącz na 1 dzień";
@@ -213,6 +225,7 @@
 "ask_delete_contact" = "Usunąć trwale kontakt %1$@?\n\nKontaktów z trwającymi czatami i kontaktów z książki adresowej systemu nie można trwale usunąć.";
 "cannot_delete_contacts_in_use" = "Nie można usunąć kontaktów z trwającymi czatami.";
 "ask_start_chat_with" = "Rozpocząć czat z %1$@?";
+"ask_delete_value" = "Usunąć %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Usunąć %1$@ z grupy?";
 "open_url_confirmation" = "Czy chcesz otworzyć ten link?";
@@ -244,10 +257,14 @@
 "chat_self_talk_subtitle" = "Wiadomości wysłane do siebie";
 "saved_messages" = "Zapisane wiadomości";
 "saved_messages_explain" = "• Przesyłaj tu wiadomości, aby mieć je pod ręką\n\n• Rób notatki lub notatki głosowe\n\n• Dołączaj media, aby je zachować";
+// this "Saved" should match the "Saved" from "Saved messages"
+"saved" = "Zapisana";
 "chat_contact_request" = "Prośba o kontakt";
 "chat_no_contact_requests" = "Brak zaproszenia do kontaktów.\n\nJeśli chcesz, aby klasyczne wiadomości e-mail pojawiały się tutaj jako prośby o kontakt, możesz zmienić odpowiednie ustawienia w ustawieniach aplikacji.";
 "retry_send" = "Spróbuj ponownie wysłać wiadomość";
 "send_failed" = "Nie można wysłać wiadomości";
+// reasons for a disabled message composer
+"messaging_disabled_not_in_group" = "Nie możesz pisać, ponieważ nie jesteś w tej grupie. Aby dołączyć, poproś innego członka.";
 "messaging_disabled_device_chat" = "Ten czat zawiera wiadomości generowane lokalnie dlatego nie możesz pisać żadnych wiadomości.";
 "messaging_disabled_deaddrop" = "Kliknij wiadomość, aby zaakceptować lub odrzucić prośbę o kontakt";
 // map
@@ -432,11 +449,13 @@
 "pref_background_default_color" = "Domyślny kolor";
 "pref_background_custom_image" = "Własny obraz";
 "pref_background_custom_color" = "Własny kolor";
+"export_aborted" = "Eksport przerwany.";
 "profile_image_select" = "Wybierz zdjęcie profilowe";
 "select_your_new_profile_image" = "Wybierz nowe zdjęcie profilowe";
 "profile_image_delete" = "Usuń zdjęcie profilowe";
 
 
+"emoji_not_found" = "Nie znaleziono emoji";
 "emoji_recent" = "Ostatnio używane";
 "emoji_people" = "Ludzie i Ciało";
 "emoji_nature" = "Zwierzęta i Natura";
@@ -509,6 +528,10 @@
 "systemmsg_ephemeral_timer_day" = "Ustawiono zegar znikających wiadomości na 1 dzień.";
 "systemmsg_ephemeral_timer_week" = "Ustawiono zegar znikających wiadomości na 1 tydzień.";
 "systemmsg_ephemeral_timer_four_weeks" = "Ustawiono zegar znikających wiadomości na 4 tygodnie.";
+
+// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+"systemmsg_chat_protection_disabled" = "Ochrona czatu wyłączona.";
+"systemmsg_chat_protection_enabled" = "Ochrona czatu włączona.";
 
 // screen lock
 "screenlock_title" = "Blokada ekranu";
@@ -652,6 +675,9 @@
 "a11y_delivery_status_read" = "Status dostawy: Przeczytane";
 "a11y_delivery_status_invalid" = "Nieprawidłowy status dostawy";
 "a11y_background_preview_label" = "Podgląd tła";
+"a11y_disappearing_messages_activated" = "Aktywowano znikające wiadomości";
+
+
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 

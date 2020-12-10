@@ -132,7 +132,7 @@
 "menu_add_attachment" = "Pridať prílohu";
 "menu_leave_group" = "Opustit skupinu";
 "menu_delete_chat" = "Odstrániť čet";
-"ask_delete_named_chat" = "Naozaj chcete položku odstrániť \"%1$@\"?";
+"ask_delete_named_chat" = "Naozaj chcete položku odstrániť  \"%1$@\" ?";
 "menu_delete_messages" = "Odstrániť správy";
 "menu_delete_image" = "Odstrániť obrázok";
 "delete_contact" = "Odstrániť kontakt";
@@ -201,7 +201,7 @@
 "share_location_for_two_hours" = "po dobu 2 hodín";
 "share_location_for_six_hours" = "po dobu 6 hodín";
 
-"file_saved_to" = "Súbor bol uložený do priečinka%1$@";
+"file_saved_to" = "Súbor bol uložený do priečinka %1$@";
 
 "videochat" = "Video chat";
 "videochat_invite_user_to_videochat" = "Pozvať %1$@ na videorozhovor?";
@@ -213,7 +213,7 @@
 "videochat_tap_to_open" = "Otvoríte klepnutím";
 "videochat_instance" = "Inštancia videorozhovoru";
 "videochat_instance_placeholder" = "Vaša inštancia videorozhovoru";
-"videochat_instance_explain" = "Ak je definovaná inštancia videorozhovoru, môžete začať videorozhovor z každého individuálneho rozhovoru. Videochaty vyžadujú na oboch stranách kompatibilnú aplikáciu alebo kompatibilný prehliadač. \n\nPríklady: https://meet.jit.si/$ROOM alebo basicwebrtc:https://váš-server";
+"videochat_instance_explain" = "Ak je definovaná inštancia videorozhovoru, môžete začať videorozhovor z každého individuálneho rozhovoru. Videochaty vyžadujú na oboch stranách kompatibilnú aplikáciu alebo kompatibilný prehliadač. \n\n Príklady: https://meet.jit.si/$ROOM alebo basicwebrtc:https://váš-server";
 "videochat_instance_from_qr" = "Pomocou „%1$@“ pozvete ostatných na videorozhovory?\n\nPo nastavení môžete začať videorozhovor z každého individuálneho rozhovoru. Toto nahradí predchádzajúce nastavenie pre videorozhovory, ak existujú.";
 "videochat_invitation" = "Pozvánka na videorozhovor";
 "videochat_invitation_body" = "Ste pozvaní na videorozhovor, kliknutím %1$@ sa pripojíte.";
@@ -247,7 +247,7 @@
 "chat_please_enter_message" = "Zadajte správu.";
 "chat_camera_unavailable" = "Fotoaparát nie je k dispozícii.";
 "chat_unable_to_record_audio" = "Nie je možné zaznamenať zvuk.";
-"chat_no_messages_hint" = "Pošlite správu na%1$@:\n\n • Je v poriadku, ak %2$@nepoužívate program Delta Chat.\n\n• Doručenie prvej správy môže chvíľu trvať a môže byť nezašifrované.";
+"chat_no_messages_hint" = "Pošlite správu na %1$@:\n\n • Je v poriadku, ak %2$@ nepoužívate program Delta Chat.\n\n• Doručenie prvej správy môže chvíľu trvať a môže byť nezašifrované.";
 "chat_new_group_hint" = "Vytvorte prvú správu a umožnite ostatným odpovedať v rámci tejto skupiny.\n\n• Je v poriadku, ak nie všetci členovia používajú Delta Chat.\n\n• Doručenie prvej správy môže chvíľu trvať.";
 "chat_record_slide_to_cancel" = "Posunutím akciu zrušíte";
 "chat_record_explain" = "Klepnutím a podržaním nahráte hlasovú správu, uvoľnením ju odošlete";
@@ -271,7 +271,7 @@
 "messaging_disabled_not_in_group" = "Nemôžete písať, pretože nie ste v tejto skupine. Ak sa chcete pripojiť, požiadajte iného člena.";
 "messaging_disabled_device_chat" = "Tento chat obsahuje miestne generované správy. Preto nemôžete písať žiadne správy.";
 "messaging_disabled_deaddrop" = "Kliknutím na správu prijmete alebo odmietnete žiadosť o kontakt";
-"cannot_display_unsuported_file_type" = "Nie je možné zobraziť tento typ súboru:%1$@";
+"cannot_display_unsuported_file_type" = "Nie je možné zobraziť tento typ súboru: %1$@";
 "attachment_failed_to_load" = "Prílohu sa nepodarilo načítať";
 
 
@@ -284,7 +284,7 @@
 // search
 "search" = "Vyhľadávanie";
 "search_explain" = "Vyhľadajte chaty, kontakty a správy";
-"search_no_result_for_x" = "Neboli nájdené žiadne výsledky pre %1$@";
+"search_no_result_for_x" = "Neboli nájdené žiadne výsledky pre \"%1$@\"";
 
 
 // create/edit groups, contact/group profile
@@ -303,7 +303,7 @@
 "tab_group" = "Skupina";
 "tab_members" = "Členovia";
 "tab_gallery" = "Galéria";
-"tab_docs" = "Docs";
+"tab_docs" = "Dokumentácia";
 "tab_links" = "Odkazy";
 "tab_map" = "Mapa";
 "tab_gallery_empty_hint" = "Tu sa zobrazia obrázky a videá zdieľané v tomto rozhovore.";
@@ -346,9 +346,50 @@
 // Translators: %1$s will be replaced by the email address
 "login_error_cannot_login" = "Nie je možné prihlásiť sa ako „%1$@“. Skontrolujte správnosť e-mailovej adresy a hesla.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Odpoveď od%1$@:%2$@\n\nNiektorí poskytovatelia vám môžu poslať e-mailom ďalšie informácie o tomto probléme; mali by ste byť schopní skontrolovať svoju doručenú poštu pomocou svojej bežnej e-mailovej aplikácie alebo webovej stránky. Ak narazíte na problémy, obráťte sa na svojho poskytovateľa alebo priateľov.";
+"login_error_server_response" = "Odpoveď od %1$@:%2$@\n\nNiektorí poskytovatelia vám môžu poslať e-mailom ďalšie informácie o tomto probléme; mali by ste byť schopní skontrolovať svoju doručenú poštu pomocou svojej bežnej e-mailovej aplikácie alebo webovej stránky. Ak narazíte na problémy, obráťte sa na svojho poskytovateľa alebo priateľov.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Prijmite neplatné certifikáty";
 "used_settings" = "Použité nastavenia:";
 "switch_account" = "Prepnúť účet";
 "add_account" = "Pridať účet";
+"delete_account" = "Zmazať účet";
+"delete_account_ask" = "Naozaj chcete odstrániť údaje svojho účtu?";
+"delete_account_explain_with_name" = "Budú odstránené všetky údaje účtu používateľa „%1$@“ z tohto zariadenia vrátane vášho kompletného nastavenia šifrovania, kontaktov, chatov, správ a médií. Túto akciu nie je možné vrátiť späť.";
+"switching_account" = "Prepína sa účet ...";
+"try_connect_now" = "Skúste sa teraz pripojiť";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "Konfigurácia zlyhala. Chyba: %1$@";
+
+// share and forward messages
+// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+"forward_to" = "Poslať ďalej ...";
+"share_multiple_attachments" = "Posielať %1$d súbory na vybraný chat?\n\nSúbory sa odosielajú bez zmeny v pôvodnej veľkosti, napr. obrázky a videá nie sú prekódované.";
+"share_multiple_attachments_multiple_chats" = "Odoslať %1$d súbor(y) na %2$d chaty?\n\nSúbory sa odosielajú neupravené v pôvodnej veľkosti, napr. obrázky a videá nie sú prekódované.";
+"share_text_multiple_chats" = "Odoslať tento text na %1$d chatov?\n\n \"%2$@\"";
+"share_abort" = "Zdieľanie bolo prerušené z dôvodu chýbajúcich povolení.";
+
+
+// preferences
+"pref_using_custom" = "Používa sa vlastné: %1$@";
+"pref_using_default" = "Používa sa predvolené nastavenie: %1$@";
+"pref_profile_info_headline" = "Informácie o vašom profile";
+"pref_profile_photo" = "Profilový obrázok";
+"pref_blocked_contacts" = "Blokované kontakty";
+"blocked_empty_hint" = "Ak zablokujete kontakty, zobrazia sa tu.";
+"pref_profile_photo_remove_ask" = "Odstrániť profilový obrázok?";
+"pref_password_and_account_settings" = "Heslo a účet";
+"pref_who_can_see_profile_explain" = "Pri komunikácii s ostatnými používateľmi sa vedľa vašich správ zobrazí váš profilový obrázok a meno. Už odoslané informácie nemožno vymazať ani odstrániť.";
+"pref_your_name" = "Tvoje meno";
+// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+"pref_default_status_label" = "Podpisový text";
+// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+"pref_default_status_text" = "Odoslané s mojím Delta Chat Messenger: https://delta.chat";
+"pref_enter_sends" = "Zadajte odoslanie kľúča";
+"pref_enter_sends_explain" = "Stlačením klávesu Enter sa odošlú textové správy";
+"pref_outgoing_media_quality" = "Kvalita odchádzajúcich médií";
+"pref_outgoing_balanced" = "Vyvážený";
+"pref_outgoing_worse" = "Horšia kvalita, malé rozmery";
+"pref_vibrate" = "Vibrovať";
+"pref_change_secret" = "Zmeniť secret";
+"pref_change_secret_explain" = "Zmeňte svoj PIN / vzor / odtlačok prsta pomocou nastavení systému";
+"pref_screen_security" = "Zabezpečenie obrazovky";
