@@ -21,11 +21,13 @@ public class QuotePreview: DraftPreview {
     override public func cancel() {
         quoteView.prepareForReuse()
         delegate?.onCancelQuote()
+        quoteView.quote.numberOfLines = 3
     }
 
     override public func configure(draft: DraftModel) {
         if let quoteText = draft.quoteText {
             quoteView.quote.text = quoteText
+            quoteView.quote.numberOfLines = draft.draftAttachment != nil ? 1 : 3
             if let quoteMessage = draft.quoteMessage {
                 let contact = quoteMessage.fromContact
                 quoteView.senderTitle.text = contact.displayName
@@ -33,6 +35,7 @@ public class QuotePreview: DraftPreview {
                 quoteView.citeBar.backgroundColor = contact.color
                 quoteView.imagePreview.image = quoteMessage.image
             }
+
             isHidden = false
         } else {
             isHidden = true

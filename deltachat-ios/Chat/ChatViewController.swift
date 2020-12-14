@@ -28,7 +28,7 @@ class ChatViewController: UITableViewController {
     }()
 
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
-    open var messageInputBar = InputBarAccessoryView()
+    open var messageInputBar = ChatInputBar()
 
     lazy var draftArea: DraftArea = {
         let view = DraftArea()
@@ -155,7 +155,6 @@ class ChatViewController: UITableViewController {
             configureDraftArea(draft: draft)
         }
 
-
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
                                        selector: #selector(saveDraft),
@@ -163,8 +162,6 @@ class ChatViewController: UITableViewController {
                                        object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         prepareContextMenu()
-
-
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -174,6 +171,10 @@ class ChatViewController: UITableViewController {
                     DispatchQueue.main.async { [weak self] in
                         self?.scrollToBottom(animated: true)
                     }
+                }
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.configureDraftArea(draft: self.draft)
                 }
             }
         }
@@ -954,8 +955,6 @@ class ChatViewController: UITableViewController {
             }
         }
     }
-
-
 
     private func sendImage(_ image: UIImage, message: String? = nil) {
         DispatchQueue.global().async {

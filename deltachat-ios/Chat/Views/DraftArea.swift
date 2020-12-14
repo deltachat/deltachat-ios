@@ -4,7 +4,6 @@ import DcCore
 import InputBarAccessoryView
 
 public class DraftArea: UIView, InputItem {
-
     public var inputBarAccessoryView: InputBarAccessoryView?
     public var parentStackViewPosition: InputStackView.Position?
     public func textViewDidChangeAction(with textView: InputTextView) {}
@@ -71,12 +70,18 @@ public class DraftArea: UIView, InputItem {
         quotePreview.configure(draft: draft)
         mediaPreview.configure(draft: draft)
         documentPreview.configure(draft: draft)
+        if let chatInputBar = inputBarAccessoryView as? ChatInputBar {
+            chatInputBar.configure(draft: draft)
+        }
     }
 
     public func cancel() {
         quotePreview.cancel()
         mediaPreview.cancel()
         documentPreview.cancel()
+        if let chatInputBar = inputBarAccessoryView as? ChatInputBar {
+            chatInputBar.cancel()
+        }
     }
 
 }
