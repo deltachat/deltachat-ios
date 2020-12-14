@@ -46,8 +46,8 @@ class GalleryViewController: UIViewController {
         return label
     }()
 
-    private lazy var contextMenuConfiguration: ContextMenuConfiguration = {
-        let deleteItem = ContextMenuConfiguration.ContextMenuItem(
+    private lazy var contextMenu: ContextMenuProvider = {
+        let deleteItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("delete"),
             imageNames: ("trash", nil),
             option: .delete,
@@ -56,7 +56,7 @@ class GalleryViewController: UIViewController {
                 self?.askToDeleteItem(at: indexPath)
             }
         )
-        let showInChatItem = ContextMenuConfiguration.ContextMenuItem(
+        let showInChatItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("show_in_chat"),
             imageNames: ("doc.text.magnifyingglass", nil),
             option: .showInChat,
@@ -66,7 +66,7 @@ class GalleryViewController: UIViewController {
             }
         )
 
-        let config = ContextMenuConfiguration()
+        let config = ContextMenuProvider()
         config.setMenu([showInChatItem, deleteItem])
         return config
     }()
@@ -124,7 +124,7 @@ class GalleryViewController: UIViewController {
     }
 
     private func setupContextMenuIfNeeded() {
-        UIMenuController.shared.menuItems = contextMenuConfiguration.menuItems
+        UIMenuController.shared.menuItems = contextMenu.menuItems
         UIMenuController.shared.update()
     }
 
@@ -218,19 +218,19 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         timeLabel.hide(animated: true)
     }
 
+    // MARK: - context menu
+    // context menu for iOS 11, 12
     func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
         return true
     }
 
-    // MARK: - context menu
-    // context menu for iOS 11, 12
     func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return contextMenuConfiguration.canPerformAction(action: action)
+        return contextMenu.canPerformAction(action: action)
     }
 
     func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
 
-        contextMenuConfiguration.performAction(action: action, indexPath: indexPath)
+        contextMenu.performAction(action: action, indexPath: indexPath)
     }
 
     // context menu for iOS 13+
@@ -250,7 +250,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
                 return contextMenuController
             },
             actionProvider: { [weak self] _ in
-                self?.contextMenuConfiguration.actionProvider(indexPath: indexPath)
+                self?.contextMenu.actionProvider(indexPath: indexPath)
             }
         )
     }
@@ -330,7 +330,7 @@ private extension GalleryViewController {
     }
 }
 
-class ContextMenuConfiguration {
+class ContextMenuProvider {
 
     var menu: [ContextMenuItem] = []
 
@@ -394,7 +394,7 @@ class ContextMenuConfiguration {
     }
 }
 
-extension ContextMenuConfiguration {
+extension ContextMenuProvider {
     typealias ImageSystemName = String
     struct ContextMenuItem {
         var title: String

@@ -22,29 +22,29 @@ class DocumentGalleryController: UIViewController {
         return label
     }()
 
-    private lazy var contextMenuConfiguration: ContextMenuConfiguration = {
-        let deleteItem = ContextMenuConfiguration.ContextMenuItem(
+    private lazy var contextMenu: ContextMenuProvider = {
+        let deleteItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("delete"),
             imageNames: ("trash", nil),
             option: .delete,
-            action: #selector(GalleryCell.itemDelete(_:)),
+            action: #selector(DocumentGalleryFileCell.itemDelete(_:)),
             onPerform: { [weak self] indexPath in
                 self?.askToDeleteItem(at: indexPath)
             }
         )
-        let showInChatItem = ContextMenuConfiguration.ContextMenuItem(
+        let showInChatItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("show_in_chat"),
             imageNames: ("doc.text.magnifyingglass", nil),
             option: .showInChat,
-            action: #selector(GalleryCell.showInChat(_:)),
+            action: #selector(DocumentGalleryFileCell.showInChat(_:)),
             onPerform: { [weak self] indexPath in
                 self?.redirectToMessage(of: indexPath)
             }
         )
 
-        let config = ContextMenuConfiguration()
-        config.setMenu([showInChatItem, deleteItem])
-        return config
+        let menu = ContextMenuProvider()
+        menu.setMenu([showInChatItem, deleteItem])
+        return menu
     }()
 
     init(context: DcContext, fileMessageIds: [Int]) {
@@ -67,6 +67,10 @@ class DocumentGalleryController: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        setupContextMenuIfNeeded()
+    }
+
     // MARK: - layout
     private func setupSubviews() {
         view.addSubview(tableView)
@@ -82,6 +86,11 @@ class DocumentGalleryController: UIViewController {
         emptyStateView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
         emptyStateView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
         emptyStateView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+    }
+
+    private func setupContextMenuIfNeeded() {
+        UIMenuController.shared.menuItems = contextMenu.menuItems
+        UIMenuController.shared.update()
     }
 
     // MARK: - actions
@@ -128,12 +137,17 @@ extension DocumentGalleryController: UITableViewDelegate, UITableViewDataSource 
 
     // MARK: - context menu
     // context menu for iOS 11, 12
+    func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
     func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return contextMenuConfiguration.canPerformAction(action: action)
+        let action = contextMenu.canPerformAction(action: action)
+        return action
     }
 
     func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
-        contextMenuConfiguration.performAction(action: action, indexPath: indexPath)
+        contextMenu.performAction(action: action, indexPath: indexPath)
     }
 
     // context menu for iOS 13+
@@ -143,7 +157,7 @@ extension DocumentGalleryController: UITableViewDelegate, UITableViewDataSource 
             identifier: nil,
             previewProvider: nil,
             actionProvider: { [weak self] _ in
-                self?.contextMenuConfiguration.actionProvider(indexPath: indexPath)
+                self?.contextMenu.actionProvider(indexPath: indexPath)
             }
         )
     }
