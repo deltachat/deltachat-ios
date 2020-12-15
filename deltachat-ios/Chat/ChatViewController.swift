@@ -34,6 +34,7 @@ class ChatViewController: UITableViewController {
         let view = DraftArea()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
+        view.inputBarAccessoryView = messageInputBar
         return view
     }()
 
@@ -171,10 +172,6 @@ class ChatViewController: UITableViewController {
                     DispatchQueue.main.async { [weak self] in
                         self?.scrollToBottom(animated: true)
                     }
-                }
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.configureDraftArea(draft: self.draft)
                 }
             }
         }
