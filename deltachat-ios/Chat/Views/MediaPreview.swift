@@ -20,8 +20,8 @@ class MediaPreview: DraftPreview {
         mainContentView.addSubview(contentImageView)
         addConstraints([
             contentImageView.constraintAlignTopTo(mainContentView),
-            contentImageView.constraintAlignLeadingMaxTo(mainContentView, paddingLeading: 12),
-            contentImageView.constraintAlignTrailingTo(mainContentView, paddingTrailing: 14),
+            contentImageView.constraintAlignLeadingTo(mainContentView, paddingLeading: 14),
+            contentImageView.constraintAlignTrailingMaxTo(mainContentView, paddingTrailing: 14),
             contentImageView.constraintAlignBottomTo(mainContentView),
             contentImageView.constraintHeightTo(90)
         ])
