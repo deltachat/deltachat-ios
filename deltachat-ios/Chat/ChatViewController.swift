@@ -392,7 +392,7 @@ class ChatViewController: UITableViewController {
     }
 
     private func configureDraftArea(draft: DraftModel) {
-        draftArea.configureDraftArea(draft: draft)
+        draftArea.configure(draft: draft)
         // setStackViewItems recalculates the proper messageInputBar height
         messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: true)
     }

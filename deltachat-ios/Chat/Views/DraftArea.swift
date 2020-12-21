@@ -65,7 +65,7 @@ public class DraftArea: UIView, InputItem {
         mainContentView.fillSuperview()
     }
 
-    public func configureDraftArea(draft: DraftModel) {
+    public func configure(draft: DraftModel) {
         guard let  chatInputBar = inputBarAccessoryView as? ChatInputBar else {
             safe_fatalError("Expecting inputBarAccessoryView of type ChatInputBar")
             return
