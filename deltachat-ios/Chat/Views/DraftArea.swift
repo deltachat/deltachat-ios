@@ -1,4 +1,3 @@
-
 import UIKit
 import DcCore
 import InputBarAccessoryView
@@ -67,12 +66,14 @@ public class DraftArea: UIView, InputItem {
     }
 
     public func configureDraftArea(draft: DraftModel) {
+        guard let  chatInputBar = inputBarAccessoryView as? ChatInputBar else {
+            safe_fatalError("Expecting inputBarAccessoryView of type ChatInputBar")
+            return
+        }
         quotePreview.configure(draft: draft)
         mediaPreview.configure(draft: draft)
         documentPreview.configure(draft: draft)
-        if let chatInputBar = inputBarAccessoryView as? ChatInputBar {
-            chatInputBar.configure(draft: draft)
-        }
+        chatInputBar.configure(draft: draft)
     }
 
     public func cancel() {
