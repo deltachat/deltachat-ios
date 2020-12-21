@@ -956,7 +956,7 @@ class ChatViewController: UITableViewController {
     private func sendImage(_ image: UIImage, message: String? = nil) {
         DispatchQueue.global().async {
             if let path = DcUtils.saveImage(image: image) {
-                self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path)
+                self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path, message: message)
             }
         }
     }
@@ -1091,8 +1091,6 @@ class ChatViewController: UITableViewController {
         }
         return false
     }
-
-
 }
 
 // MARK: - BaseMessageCellDelegate
