@@ -71,9 +71,7 @@ public class ChatInputBar: InputBarAccessoryView {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             keyboardHeight = keyboardRectangle.height - intrinsicContentSize.height
-            maxTextViewHeight = calculateMaxTextViewHeight()
-            logger.debug("keyboard height: \(keyboardHeight) - intrinsic content size:  \(intrinsicContentSize.height)")
-            forceMaxTextViewHeightForHorizontalLayout()
+            updateTextViewHeight()
         }
     }
 
@@ -81,15 +79,17 @@ public class ChatInputBar: InputBarAccessoryView {
         super.traitCollectionDidChange(previousTraitCollection)
         if (self.traitCollection.verticalSizeClass != previousTraitCollection?.verticalSizeClass)
                 || (self.traitCollection.horizontalSizeClass != previousTraitCollection?.horizontalSizeClass) {
-            forceMaxTextViewHeightForHorizontalLayout()
+            updateTextViewHeight()
         }
     }
 
-    private func forceMaxTextViewHeightForHorizontalLayout() {
+    private func updateTextViewHeight() {
+        maxTextViewHeight = calculateMaxTextViewHeight()
         if keyboardHeight > 0, UIApplication.shared.statusBarOrientation.isLandscape {
             setShouldForceMaxTextViewHeight(to: true, animated: false)
         } else if shouldForceTextViewMaxHeight {
             setShouldForceMaxTextViewHeight(to: false, animated: false)
         }
+        invalidateIntrinsicContentSize()
     }
 }
