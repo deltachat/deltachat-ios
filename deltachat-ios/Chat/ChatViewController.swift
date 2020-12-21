@@ -961,17 +961,6 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    /*private func sendAnimatedImage(url: NSURL) {
-        if let path = url.path {
-            let result = SDAnimatedImage(contentsOfFile: path)
-            if let result = result,
-                let animatedImageData = result.animatedImageData,
-                let pathInDocDir = DcUtils.saveImage(data: animatedImageData, suffix: "gif") {
-                self.sendImageMessage(viewType: DC_MSG_GIF, image: result, filePath: pathInDocDir)
-            }
-        }
-    }*/
-
     private func sendAttachmentMessage(viewType: Int32, filePath: String, message: String? = nil, quoteMessage: DcMsg? = nil) {
         let msg = DcMsg(viewType: viewType)
         msg.setFile(filepath: filePath)
@@ -989,23 +978,6 @@ class ChatViewController: UITableViewController {
             msg.sendInChat(id: self.chatId)
         }
     }
-
- /*   private func sendVideo(url: NSURL) {
-        DispatchQueue.global().async {
-            let msg = DcMsg(viewType: DC_MSG_VIDEO)
-            msg.setFile(filepath: url.relativePath, mimeType: "video/mp4")
-            msg.sendInChat(id: self.chatId)
-        }
-    } */
-
-    /*private func sendImage(url: NSURL) {
-        if url.pathExtension == "gif" {
-            sendAnimatedImage(url: url)
-        } else if let data = try? Data(contentsOf: url as URL),
-            let image = UIImage(data: data) {
-            sendImage(image)
-        }
-    }*/
 
     // MARK: - Context menu
     private func prepareContextMenu() {
@@ -1231,8 +1203,8 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     }
 }
 
+// MARK: - DraftPreviewDelegate
 extension ChatViewController: DraftPreviewDelegate {
-
     func onCancelQuote() {
         draft.setQuote(quotedMsg: nil)
         configureDraftArea(draft: draft)
