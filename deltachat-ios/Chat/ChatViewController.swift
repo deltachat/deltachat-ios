@@ -1217,4 +1217,14 @@ extension ChatViewController: DraftPreviewDelegate {
     func onAttachmentAdded() {
         evaluateInputBar(draft: draft)
     }
+
+    func onAttachmentTapped() {
+        if let attachmentPath = draft.draftAttachment {
+            let attachmentURL = URL(fileURLWithPath: attachmentPath, isDirectory: false)
+            let previewController = PreviewController(type: .single(attachmentURL))
+            let nav = UINavigationController(rootViewController: previewController)
+            nav.modalPresentationStyle = .fullScreen
+            navigationController?.present(nav, animated: true)
+        }
+    }
 }

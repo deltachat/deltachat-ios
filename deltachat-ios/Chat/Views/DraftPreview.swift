@@ -5,6 +5,7 @@ public protocol DraftPreviewDelegate: class {
     func onAttachmentAdded()
     func onCancelAttachment()
     func onCancelQuote()
+    func onAttachmentTapped()
 }
 
 public class DraftPreview: UIView {

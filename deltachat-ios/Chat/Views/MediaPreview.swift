@@ -6,12 +6,13 @@ class MediaPreview: DraftPreview {
     var imageWidthConstraint: NSLayoutConstraint?
     weak var delegate: DraftPreviewDelegate?
 
-    lazy var contentImageView: SDAnimatedImageView = {
+    public lazy var contentImageView: SDAnimatedImageView = {
         let imageView = SDAnimatedImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 4
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
 
@@ -25,6 +26,8 @@ class MediaPreview: DraftPreview {
             contentImageView.constraintAlignBottomTo(mainContentView),
             contentImageView.constraintHeightTo(90)
         ])
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        contentImageView.addGestureRecognizer(gestureRecognizer)
     }
 
     override func configure(draft: DraftModel) {
@@ -74,5 +77,9 @@ class MediaPreview: DraftPreview {
         imageWidthConstraint?.isActive = false
         imageWidthConstraint = contentImageView.widthAnchor.constraint(lessThanOrEqualTo: contentImageView.heightAnchor, multiplier: width / height)
         imageWidthConstraint?.isActive = true
+    }
+
+    @objc func imageTapped() {
+        delegate?.onAttachmentTapped()
     }
 }
