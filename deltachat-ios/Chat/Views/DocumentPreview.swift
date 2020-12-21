@@ -10,6 +10,7 @@ public class DocumentPreview: DraftPreview {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.allowLayoutChange = false
         view.fileTitle.numberOfLines = 2
+        view.isUserInteractionEnabled = true
         return view
     }()
 
@@ -23,6 +24,8 @@ public class DocumentPreview: DraftPreview {
             fileView.constraintAlignTrailingTo(mainContentView),
             mainContentView.constraintHeightTo(75, priority: .required)
         ])
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(fileViewTapped))
+        fileView.addGestureRecognizer(gestureRecognizer)
     }
     
     override public func cancel() {
@@ -41,5 +44,9 @@ public class DocumentPreview: DraftPreview {
         } else {
             isHidden = true
         }
+    }
+
+    @objc func fileViewTapped() {
+        delegate?.onAttachmentTapped()
     }
 }
