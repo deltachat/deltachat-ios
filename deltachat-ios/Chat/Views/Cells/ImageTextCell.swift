@@ -37,7 +37,6 @@ class ImageTextCell: BaseMessageCell {
         messageLabel.paddingTrailing = 12
         contentImageView.constraintAlignLeadingMaxTo(mainContentView, priority: .required).isActive = true
         contentImageView.constraintAlignTrailingMaxTo(mainContentView, priority: .required).isActive = true
-        topCompactView = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onImageTapped))
         gestureRecognizer.numberOfTapsRequired = 1
         contentImageView.addGestureRecognizer(gestureRecognizer)
@@ -47,6 +46,7 @@ class ImageTextCell: BaseMessageCell {
         messageLabel.text = msg.text
         bottomCompactView = msg.text?.isEmpty ?? true
         mainContentView.spacing = msg.text?.isEmpty ?? false ? 0 : 6
+        topCompactView = msg.quoteText == nil ? true : false
         tag = msg.id
         if msg.type == DC_MSG_IMAGE, let image = msg.image {
             contentImageView.image = image
@@ -164,6 +164,7 @@ class ImageTextCell: BaseMessageCell {
     }
 
     override func prepareForReuse() {
+        super.prepareForReuse()
         contentImageView.image = nil
         contentImageView.sd_cancelCurrentImageLoad()
         tag = -1

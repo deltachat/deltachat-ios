@@ -17,6 +17,7 @@ class ChatViewController: UITableViewController {
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
     var ephemeralTimerModifiedObserver: Any?
+    var dismissCancelled = false
 
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -28,12 +29,13 @@ class ChatViewController: UITableViewController {
     }()
 
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
-    open var messageInputBar = InputBarAccessoryView()
+    open var messageInputBar = ChatInputBar()
 
-    lazy var quotePreview: QuotePreview = {
-        let view = QuotePreview()
-        view.delegate = self
+    lazy var draftArea: DraftArea = {
+        let view = DraftArea()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
+        view.inputBarAccessoryView = messageInputBar
         return view
     }()
 
@@ -151,10 +153,9 @@ class ChatViewController: UITableViewController {
         if !disableWriting {
             configureMessageInputBar()
             draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
-            messageInputBar.inputTextView.text = draft.draftText
+            messageInputBar.inputTextView.text = draft.text
             configureDraftArea(draft: draft)
         }
-
 
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
@@ -163,17 +164,15 @@ class ChatViewController: UITableViewController {
                                        object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         prepareContextMenu()
-
-
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if keyboardSize.height > tableView.inputAccessoryView?.frame.height ?? 0 {
-                if self.isLastRowVisible() {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.scrollToBottom(animated: true)
-                    }
+        if self.isLastRowVisible() {
+            DispatchQueue.main.async { [weak self] in
+                if self?.messageInputBar.keyboardHeight ?? 0 > 0 {
+                    self?.scrollToBottom(animated: true)
+                } else { // inputbar height increased, probably because of draft area changes
+                    self?.scrollToBottom(animated: false)
                 }
             }
         }
@@ -206,13 +205,30 @@ class ChatViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.becomeFirstResponder()
+        if dismissCancelled {
+            self.dismissCancelled = false
+        } else {
+            self.tableView.becomeFirstResponder()
+        }
+
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 
         if showCustomNavBar {
             updateTitle(chat: dcContext.getChat(chatId: chatId))
         }
+
+        loadMessages()
+
+        if RelayHelper.sharedInstance.isForwarding() {
+            askToForwardMessage()
+        }
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
 
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
@@ -263,17 +279,6 @@ class ChatViewController: UITableViewController {
             self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
         }
 
-        loadMessages()
-
-        if RelayHelper.sharedInstance.isForwarding() {
-            askToForwardMessage()
-        }
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
-
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         DispatchQueue.global(qos: .background).async { [weak self] in
@@ -288,10 +293,12 @@ class ChatViewController: UITableViewController {
 
         // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
         navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
+        dismissCancelled = true
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        dismissCancelled = false
         AppStateRestorer.shared.resetLastActiveChat()
         saveDraft()
         let nc = NotificationCenter.default
@@ -394,9 +401,9 @@ class ChatViewController: UITableViewController {
     }
 
     private func configureDraftArea(draft: DraftModel) {
-        quotePreview.configure(draft: draft)
+        draftArea.configure(draft: draft)
         // setStackViewItems recalculates the proper messageInputBar height
-        messageInputBar.setStackViewItems([quotePreview], forStack: .top, animated: true)
+        messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -619,6 +626,9 @@ class ChatViewController: UITableViewController {
         configureInputBarItems()
     }
 
+    func evaluateInputBar(draft: DraftModel) {
+        messageInputBar.sendButton.isEnabled = draft.canSend()
+    }
 
     private func configureInputBarItems() {
 
@@ -638,6 +648,7 @@ class ChatViewController: UITableViewController {
         messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         messageInputBar.sendButton.setSize(CGSize(width: 40, height: 40), animated: false)
         messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
+        messageInputBar.shouldManageSendButtonEnabledState = false
 
         let leftItems = [
             InputBarButtonItem()
@@ -901,38 +912,72 @@ class ChatViewController: UITableViewController {
         }
     }
 
+    private func stageDocument(url: NSURL) {
+        self.draft.setAttachment(viewType: DC_MSG_FILE, path: url.relativePath)
+        self.configureDraftArea(draft: self.draft)
+        self.messageInputBar.inputTextView.becomeFirstResponder()
+    }
+
+    private func stageVideo(url: NSURL) {
+        DispatchQueue.main.async {
+            self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
+            self.configureDraftArea(draft: self.draft)
+            self.messageInputBar.inputTextView.becomeFirstResponder()
+        }
+    }
+
+    private func stageImage(url: NSURL) {
+        if url.pathExtension == "gif" {
+            stageAnimatedImage(url: url)
+        } else if let data = try? Data(contentsOf: url as URL),
+                  let image = UIImage(data: data) {
+            stageImage(image)
+        }
+    }
+
+    private func stageAnimatedImage(url: NSURL) {
+        DispatchQueue.global().async {
+            if let path = url.path,
+               let result = SDAnimatedImage(contentsOfFile: path),
+               let animatedImageData = result.animatedImageData,
+               let pathInDocDir = DcUtils.saveImage(data: animatedImageData, suffix: "gif") {
+                DispatchQueue.main.async {
+                    self.draft.setAttachment(viewType: DC_MSG_GIF, path: pathInDocDir)
+                    self.configureDraftArea(draft: self.draft)
+                    self.messageInputBar.inputTextView.becomeFirstResponder()
+                }
+            }
+        }
+    }
+
+    private func stageImage(_ image: UIImage) {
+        DispatchQueue.global().async {
+            if let pathInDocDir = DcUtils.saveImage(image: image) {
+                DispatchQueue.main.async {
+                    self.draft.setAttachment(viewType: DC_MSG_IMAGE, path: pathInDocDir)
+                    self.configureDraftArea(draft: self.draft)
+                    self.messageInputBar.inputTextView.becomeFirstResponder()
+                }
+            }
+        }
+    }
+
     private func sendImage(_ image: UIImage, message: String? = nil) {
         DispatchQueue.global().async {
             if let path = DcUtils.saveImage(image: image) {
-                self.sendImageMessage(viewType: DC_MSG_IMAGE, image: image, filePath: path)
+                self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path, message: message)
             }
         }
     }
 
-    private func sendAnimatedImage(url: NSURL) {
-        if let path = url.path {
-            let result = SDAnimatedImage(contentsOfFile: path)
-            if let result = result,
-                let animatedImageData = result.animatedImageData,
-                let pathInDocDir = DcUtils.saveImage(data: animatedImageData, suffix: "gif") {
-                self.sendImageMessage(viewType: DC_MSG_GIF, image: result, filePath: pathInDocDir)
-            }
-        }
-    }
-
-    private func sendImageMessage(viewType: Int32, image: UIImage, filePath: String, message: String? = nil) {
+    private func sendAttachmentMessage(viewType: Int32, filePath: String, message: String? = nil, quoteMessage: DcMsg? = nil) {
         let msg = DcMsg(viewType: viewType)
         msg.setFile(filepath: filePath)
         msg.text = (message ?? "").isEmpty ? nil : message
-        msg.sendInChat(id: self.chatId)
-    }
-
-    private func sendDocumentMessage(url: NSURL) {
-        DispatchQueue.global().async {
-            let msg = DcMsg(viewType: DC_MSG_FILE)
-            msg.setFile(filepath: url.relativePath, mimeType: nil)
-            msg.sendInChat(id: self.chatId)
+        if quoteMessage != nil {
+            msg.quoteMessage = quoteMessage
         }
+        msg.sendInChat(id: self.chatId)
     }
 
     private func sendVoiceMessage(url: NSURL) {
@@ -940,23 +985,6 @@ class ChatViewController: UITableViewController {
             let msg = DcMsg(viewType: DC_MSG_VOICE)
             msg.setFile(filepath: url.relativePath, mimeType: "audio/m4a")
             msg.sendInChat(id: self.chatId)
-        }
-    }
-
-    private func sendVideo(url: NSURL) {
-        DispatchQueue.global().async {
-            let msg = DcMsg(viewType: DC_MSG_VIDEO)
-            msg.setFile(filepath: url.relativePath, mimeType: "video/mp4")
-            msg.sendInChat(id: self.chatId)
-        }
-    }
-
-    private func sendImage(url: NSURL) {
-        if url.pathExtension == "gif" {
-            sendAnimatedImage(url: url)
-        } else if let data = try? Data(contentsOf: url as URL),
-            let image = UIImage(data: data) {
-            sendImage(image)
         }
     }
 
@@ -1132,15 +1160,15 @@ extension ChatViewController: BaseMessageCellDelegate {
 // MARK: - MediaPickerDelegate
 extension ChatViewController: MediaPickerDelegate {
     func onVideoSelected(url: NSURL) {
-        sendVideo(url: url)
+        stageVideo(url: url)
     }
 
     func onImageSelected(url: NSURL) {
-        sendImage(url: url)
+        stageImage(url: url)
     }
 
     func onImageSelected(image: UIImage) {
-        sendImage(image)
+        stageImage(image)
     }
 
     func onVoiceMessageRecorded(url: NSURL) {
@@ -1148,7 +1176,7 @@ extension ChatViewController: MediaPickerDelegate {
     }
 
     func onDocumentSelected(url: NSURL) {
-        sendDocumentMessage(url: url)
+        stageDocument(url: url)
     }
 
 }
@@ -1158,25 +1186,72 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
             .trimmingCharacters(in: .whitespacesAndNewlines)
-        if inputBar.inputTextView.images.isEmpty {
+        if let filePath = draft.attachment, let viewType = draft.viewType {
+            switch viewType {
+            case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE, DC_MSG_VIDEO:
+                self.sendAttachmentMessage(viewType: viewType, filePath: filePath, message: trimmedText, quoteMessage: draft.quoteMessage)
+            default:
+                logger.warning("Unsupported viewType for drafted messages.")
+            }
+        } else if inputBar.inputTextView.images.isEmpty {
             self.sendTextMessage(text: trimmedText, quoteMessage: draft.quoteMessage)
-            self.quotePreview.cancel()
         } else {
             // only 1 attachment allowed for now, thus it takes the first one
             self.sendImage(inputBar.inputTextView.images[0], message: trimmedText)
         }
         inputBar.inputTextView.text = String()
         inputBar.inputTextView.attributedText = nil
+        draftArea.cancel()
     }
 
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
-        draft.draftText = text
+        draft.text = text
+        evaluateInputBar(draft: draft)
     }
 }
 
-extension ChatViewController: QuotePreviewDelegate {
-    func onCancel() {
+// MARK: - DraftPreviewDelegate
+extension ChatViewController: DraftPreviewDelegate {
+    func onCancelQuote() {
         draft.setQuote(quotedMsg: nil)
         configureDraftArea(draft: draft)
+    }
+
+    func onCancelAttachment() {
+        draft.setAttachment(viewType: nil, path: nil, mimetype: nil)
+        configureDraftArea(draft: draft)
+        evaluateInputBar(draft: draft)
+    }
+
+    func onAttachmentAdded() {
+        evaluateInputBar(draft: draft)
+    }
+
+    func onAttachmentTapped() {
+        if let attachmentPath = draft.attachment {
+            let attachmentURL = URL(fileURLWithPath: attachmentPath, isDirectory: false)
+            let previewController = PreviewController(type: .single(attachmentURL))
+            if #available(iOS 13.0, *), draft.viewType == DC_MSG_IMAGE || draft.viewType == DC_MSG_VIDEO {
+                previewController.setEditing(true, animated: true)
+                previewController.delegate = self
+            }
+            let nav = UINavigationController(rootViewController: previewController)
+            nav.modalPresentationStyle = .fullScreen
+            navigationController?.present(nav, animated: true)
+        }
+    }
+}
+
+extension ChatViewController: QLPreviewControllerDelegate {
+    @available(iOS 13.0, *)
+    func previewController(_ controller: QLPreviewController, editingModeFor previewItem: QLPreviewItem) -> QLPreviewItemEditingMode {
+        return .updateContents
+    }
+
+    func previewController(_ controller: QLPreviewController, didUpdateContentsOf previewItem: QLPreviewItem) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.draftArea.reload(draft: self.draft)
+        }
     }
 }

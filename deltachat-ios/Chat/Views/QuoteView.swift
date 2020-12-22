@@ -30,6 +30,8 @@ public class QuoteView: UIView {
     public lazy var imagePreview: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         return view
     }()
 
@@ -61,7 +63,7 @@ public class QuoteView: UIView {
             quote.constraintToBottomOf(senderTitle),
             quote.constraintTrailingToLeadingOf(imagePreview, paddingTrailing: 8),
             quote.constraintAlignBottomTo(self, paddingBottom: 4),
-            citeBar.constraintAlignLeadingTo(self, paddingLeading: 16),
+            citeBar.constraintAlignLeadingTo(self, paddingLeading: 14),
             citeBar.constraintAlignTopTo(senderTitle, paddingTop: 2),
             citeBar.constraintAlignBottomTo(quote, paddingBottom: 2),
             citeBar.constraintWidthTo(3),

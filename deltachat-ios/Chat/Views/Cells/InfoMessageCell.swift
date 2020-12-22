@@ -61,4 +61,10 @@ class InfoMessageCell: UITableViewCell {
         messageBackgroundContainer.update(rectCorners: corners, color: DcColors.systemMessageBackgroundColor)
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        messageLabel.text = nil
+        messageLabel.attributedText = nil
+    }
+
 }
