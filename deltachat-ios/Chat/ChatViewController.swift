@@ -166,12 +166,12 @@ class ChatViewController: UITableViewController {
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if keyboardSize.height > tableView.inputAccessoryView?.frame.height ?? 0 {
-                if self.isLastRowVisible() {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.scrollToBottom(animated: true)
-                    }
+        if self.isLastRowVisible() {
+            DispatchQueue.main.async { [weak self] in
+                if self?.messageInputBar.keyboardHeight ?? 0 > 0 {
+                    self?.scrollToBottom(animated: true)
+                } else { // inputbar height increased, probably because of draft area changes
+                    self?.scrollToBottom(animated: false)
                 }
             }
         }
