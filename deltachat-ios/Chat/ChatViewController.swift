@@ -212,6 +212,18 @@ class ChatViewController: UITableViewController {
             updateTitle(chat: dcContext.getChat(chatId: chatId))
         }
 
+        loadMessages()
+
+        if RelayHelper.sharedInstance.isForwarding() {
+            askToForwardMessage()
+        }
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
+
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
             forName: dcNotificationChanged,
@@ -260,17 +272,6 @@ class ChatViewController: UITableViewController {
             guard let self = self else { return }
             self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
         }
-
-        loadMessages()
-
-        if RelayHelper.sharedInstance.isForwarding() {
-            askToForwardMessage()
-        }
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
 
         // things that do not affect the chatview
         // and are delayed after the view is displayed
