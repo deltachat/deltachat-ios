@@ -76,6 +76,12 @@ public class DraftArea: UIView, InputItem {
         chatInputBar.configure(draft: draft)
     }
 
+    /// reload cleans caches containing the drafted attachment so that the UI will update correctly
+    public func reload(draft: DraftModel) {
+        mediaPreview.reload(draft: draft)
+        ///TODO: add document reloading when document editing was added
+    }
+
     public func cancel() {
         quotePreview.cancel()
         mediaPreview.cancel()

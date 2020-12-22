@@ -1222,9 +1222,27 @@ extension ChatViewController: DraftPreviewDelegate {
         if let attachmentPath = draft.draftAttachment {
             let attachmentURL = URL(fileURLWithPath: attachmentPath, isDirectory: false)
             let previewController = PreviewController(type: .single(attachmentURL))
+            if #available(iOS 13.0, *), draft.draftViewType == DC_MSG_IMAGE || draft.draftViewType == DC_MSG_VIDEO {
+                previewController.setEditing(true, animated: true)
+                previewController.delegate = self
+            }
             let nav = UINavigationController(rootViewController: previewController)
             nav.modalPresentationStyle = .fullScreen
             navigationController?.present(nav, animated: true)
+        }
+    }
+}
+
+extension ChatViewController: QLPreviewControllerDelegate {
+    @available(iOS 13.0, *)
+    func previewController(_ controller: QLPreviewController, editingModeFor previewItem: QLPreviewItem) -> QLPreviewItemEditingMode {
+        return .updateContents
+    }
+
+    func previewController(_ controller: QLPreviewController, didUpdateContentsOf previewItem: QLPreviewItem) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.draftArea.reload(draft: self.draft)
         }
     }
 }

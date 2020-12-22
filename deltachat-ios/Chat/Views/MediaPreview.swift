@@ -82,4 +82,18 @@ class MediaPreview: DraftPreview {
     @objc func imageTapped() {
         delegate?.onAttachmentTapped()
     }
+
+    func reload(draft: DraftModel) {
+        guard let attachment = draft.draftAttachment else { return }
+        let url = URL(fileURLWithPath: attachment, isDirectory: false)
+        // there are editing options for DC_MSG_GIF, so that can be ignored
+        if draft.draftViewType == DC_MSG_IMAGE {
+            SDImageCache.shared.removeImage(forKey: url.absoluteString, withCompletion: { [weak self] in
+                self?.configure(draft: draft)
+            })
+        } else if draft.draftViewType == DC_MSG_VIDEO {
+            ThumbnailCache.shared.deleteImage(key: attachment)
+            self.configure(draft: draft)
+        }
+    }
 }

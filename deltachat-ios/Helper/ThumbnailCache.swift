@@ -18,4 +18,8 @@ class ThumbnailCache {
     func restoreImage(key: String) -> UIImage? {
         return cache.object(forKey: NSString(string: key))
     }
+
+    func deleteImage(key: String) {
+        cache.removeObject(forKey: NSString(string: key))
+    }
 }
