@@ -153,7 +153,7 @@ class ChatViewController: UITableViewController {
         if !disableWriting {
             configureMessageInputBar()
             draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
-            messageInputBar.inputTextView.text = draft.draftText
+            messageInputBar.inputTextView.text = draft.text
             configureDraftArea(draft: draft)
         }
 
@@ -1186,7 +1186,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
             .trimmingCharacters(in: .whitespacesAndNewlines)
-        if let filePath = draft.draftAttachment, let viewType = draft.draftViewType {
+        if let filePath = draft.attachment, let viewType = draft.viewType {
             switch viewType {
             case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE, DC_MSG_VIDEO:
                 self.sendAttachmentMessage(viewType: viewType, filePath: filePath, message: trimmedText, quoteMessage: draft.quoteMessage)
@@ -1205,7 +1205,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     }
 
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
-        draft.draftText = text
+        draft.text = text
         evaluateInputBar(draft: draft)
     }
 }
@@ -1228,10 +1228,10 @@ extension ChatViewController: DraftPreviewDelegate {
     }
 
     func onAttachmentTapped() {
-        if let attachmentPath = draft.draftAttachment {
+        if let attachmentPath = draft.attachment {
             let attachmentURL = URL(fileURLWithPath: attachmentPath, isDirectory: false)
             let previewController = PreviewController(type: .single(attachmentURL))
-            if #available(iOS 13.0, *), draft.draftViewType == DC_MSG_IMAGE || draft.draftViewType == DC_MSG_VIDEO {
+            if #available(iOS 13.0, *), draft.viewType == DC_MSG_IMAGE || draft.viewType == DC_MSG_VIDEO {
                 previewController.setEditing(true, animated: true)
                 previewController.delegate = self
             }

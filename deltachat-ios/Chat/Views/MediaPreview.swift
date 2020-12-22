@@ -31,7 +31,7 @@ class MediaPreview: DraftPreview {
     }
 
     override func configure(draft: DraftModel) {
-        if (draft.draftViewType == DC_MSG_GIF || draft.draftViewType == DC_MSG_IMAGE), let path = draft.draftAttachment {
+        if (draft.viewType == DC_MSG_GIF || draft.viewType == DC_MSG_IMAGE), let path = draft.attachment {
             contentImageView.sd_setImage(with: URL(fileURLWithPath: path, isDirectory: false), completed: { image, error, _, _ in
                 if let error = error {
                     logger.error("could not load draft image: \(error)")
@@ -42,7 +42,7 @@ class MediaPreview: DraftPreview {
                 }
             })
             isHidden = false
-        } else if draft.draftViewType == DC_MSG_VIDEO, let path = draft.draftAttachment {
+        } else if draft.viewType == DC_MSG_VIDEO, let path = draft.attachment {
             if let image = ThumbnailCache.shared.restoreImage(key: path) {
                 self.contentImageView.image = image
                 self.setAspectRatio(image: image)
@@ -84,14 +84,14 @@ class MediaPreview: DraftPreview {
     }
 
     func reload(draft: DraftModel) {
-        guard let attachment = draft.draftAttachment else { return }
+        guard let attachment = draft.attachment else { return }
         let url = URL(fileURLWithPath: attachment, isDirectory: false)
         // there are editing options for DC_MSG_GIF, so that can be ignored
-        if draft.draftViewType == DC_MSG_IMAGE {
+        if draft.viewType == DC_MSG_IMAGE {
             SDImageCache.shared.removeImage(forKey: url.absoluteString, withCompletion: { [weak self] in
                 self?.configure(draft: draft)
             })
-        } else if draft.draftViewType == DC_MSG_VIDEO {
+        } else if draft.viewType == DC_MSG_VIDEO {
             ThumbnailCache.shared.deleteImage(key: attachment)
             self.configure(draft: draft)
         }

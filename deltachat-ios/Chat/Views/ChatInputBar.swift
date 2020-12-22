@@ -56,7 +56,7 @@ public class ChatInputBar: InputBarAccessoryView {
     }
 
     public func configure(draft: DraftModel) {
-        hasDraft = draft.draftAttachment != nil
+        hasDraft = draft.attachment != nil
         hasQuote = draft.quoteText != nil
         maxTextViewHeight = calculateMaxTextViewHeight()
     }
