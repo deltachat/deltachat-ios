@@ -17,6 +17,7 @@ class ChatViewController: UITableViewController {
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
     var ephemeralTimerModifiedObserver: Any?
+    var dismissCancelled = false
 
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -204,7 +205,12 @@ class ChatViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.becomeFirstResponder()
+        if dismissCancelled {
+            self.dismissCancelled = false
+        } else {
+            self.tableView.becomeFirstResponder()
+        }
+
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
 
@@ -287,10 +293,12 @@ class ChatViewController: UITableViewController {
 
         // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
         navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
+        dismissCancelled = true
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        dismissCancelled = false
         AppStateRestorer.shared.resetLastActiveChat()
         saveDraft()
         let nc = NotificationCenter.default
