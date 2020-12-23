@@ -75,9 +75,8 @@ class ProfileInfoViewController: UITableViewController {
 
     // MARK: - updates
     private func updateAvatarCell() {
-        if let avatarImage = dcContext.getSelfAvatarImage() {
-            avatarCell.setAvatar(image: avatarImage)
-        }
+        let avatarImage = dcContext.getSelfAvatarImage()
+        avatarCell.setAvatar(image: avatarImage)
     }
 
     // MARK: - actions
@@ -88,18 +87,28 @@ class ProfileInfoViewController: UITableViewController {
             message: nil,
             preferredStyle: .actionSheet
         )
-        let photoAction = PhotoPickerAlertAction(
+        let galleryAction = PhotoPickerAlertAction(
             title: String.localized("gallery"),
             style: .default,
             handler: galleryButtonPressed(_:)
         )
-        let videoAction = PhotoPickerAlertAction(
+        let cameraAction = PhotoPickerAlertAction(
             title: String.localized("camera"),
             style: .default,
             handler: cameraButtonPressed(_:)
         )
-        alert.addAction(photoAction)
-        alert.addAction(videoAction)
+        alert.addAction(cameraAction)
+        alert.addAction(galleryAction)
+
+        if dcContext.getSelfAvatarImage() != nil {
+            let deleteAction = UIAlertAction(
+                title: String.localized("delete"),
+                style: .destructive,
+                handler: deleteProfileIconPressed(_:)
+            )
+            alert.addAction(deleteAction)
+        }
+
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         if let popoverController = alert.popoverPresentationController {
             popoverController.sourceView = self.avatarCell
@@ -124,6 +133,11 @@ class ProfileInfoViewController: UITableViewController {
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
         mediaPicker?.showCamera()
+    }
+
+    private func deleteProfileIconPressed(_ action: UIAlertAction) {
+        dcContext.selfavatar = nil
+        updateAvatarCell()
     }
 }
 
