@@ -132,7 +132,7 @@ class ProfileInfoViewController: UITableViewController {
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        mediaPicker?.showCamera()
+        mediaPicker?.showCamera(allowCropping: true, supportedMediaTypes: .photo)
     }
 
     private func deleteProfileIconPressed(_ action: UIAlertAction) {
