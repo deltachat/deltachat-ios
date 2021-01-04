@@ -164,7 +164,6 @@ class ChatViewController: UITableViewController {
                                        name: UIApplication.willResignActiveNotification,
                                        object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        prepareContextMenu()
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -220,6 +219,7 @@ class ChatViewController: UITableViewController {
             askToForwardMessage()
         }
 
+        prepareContextMenu()
     }
 
     override func viewDidAppear(_ animated: Bool) {
