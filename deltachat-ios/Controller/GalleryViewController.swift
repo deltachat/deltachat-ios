@@ -1,11 +1,11 @@
 import UIKit
 import DcCore
-import SDWebImage
 
 class GalleryViewController: UIViewController {
 
+    private let dcContext: DcContext
     // MARK: - data
-    private let mediaMessageIds: [Int]
+    private var mediaMessageIds: [Int]
     private var items: [Int: GalleryItem] = [:]
 
     // MARK: - subview specs
@@ -46,7 +46,33 @@ class GalleryViewController: UIViewController {
         return label
     }()
 
-    init(mediaMessageIds: [Int]) {
+    private lazy var contextMenu: ContextMenuProvider = {
+        let deleteItem = ContextMenuProvider.ContextMenuItem(
+            title: String.localized("delete"),
+            imageNames: ("trash", nil),
+            option: .delete,
+            action: #selector(GalleryCell.itemDelete(_:)),
+            onPerform: { [weak self] indexPath in
+                self?.askToDeleteItem(at: indexPath)
+            }
+        )
+        let showInChatItem = ContextMenuProvider.ContextMenuItem(
+            title: String.localized("show_in_chat"),
+            imageNames: ("doc.text.magnifyingglass", nil),
+            option: .showInChat,
+            action: #selector(GalleryCell.showInChat(_:)),
+            onPerform: { [weak self] indexPath in
+                self?.redirectToMessage(of: indexPath)
+            }
+        )
+
+        let config = ContextMenuProvider()
+        config.setMenu([showInChatItem, deleteItem])
+        return config
+    }()
+
+    init(context: DcContext, mediaMessageIds: [Int]) {
+        self.dcContext = context
         self.mediaMessageIds = mediaMessageIds
         super.init(nibName: nil, bundle: nil)
     }
@@ -67,6 +93,7 @@ class GalleryViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         grid.reloadData()
+        setupContextMenuIfNeeded()
     }
 
     override func viewWillLayoutSubviews() {
@@ -78,9 +105,9 @@ class GalleryViewController: UIViewController {
     private func setupSubviews() {
         view.addSubview(grid)
         grid.translatesAutoresizingMaskIntoConstraints = false
-        grid.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        grid.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
         grid.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        grid.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        grid.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
         grid.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
         view.addSubview(timeLabel)
@@ -96,6 +123,11 @@ class GalleryViewController: UIViewController {
         emptyStateView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
     }
 
+    private func setupContextMenuIfNeeded() {
+        UIMenuController.shared.menuItems = contextMenu.menuItems
+        UIMenuController.shared.update()
+    }
+
     // MARK: - updates
     private func updateFloatingTimeLabel() {
         if let indexPath = grid.indexPathsForVisibleItems.min() {
@@ -104,11 +136,30 @@ class GalleryViewController: UIViewController {
             timeLabel.update(date: msg.sentDate)
         }
     }
+
+    // MARK: - actions
+    private func askToDeleteItem(at indexPath: IndexPath) {
+        let title = String.localized(stringID: "ask_delete_messages", count: 1)
+        let alertController =  UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
+        let okAction = UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
+            self?.deleteItem(at: indexPath)
+        })
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+
+    private func deleteItem(at indexPath: IndexPath) {
+        let msgId = mediaMessageIds.remove(at: indexPath.row)
+        self.dcContext.deleteMessage(msgId: msgId)
+        self.grid.deleteItems(at: [indexPath])
+    }
 }
 
 extension GalleryViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-         indexPaths.forEach { if items[$0.row] == nil {
+        indexPaths.forEach { if items[$0.row] == nil {
             let item = GalleryItem(msgId: mediaMessageIds[$0.row])
             items[$0.row] = item
         }}
@@ -128,8 +179,8 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let galleryCell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: GalleryCell.reuseIdentifier,
-            for: indexPath) as? GalleryCell else {
+                withReuseIdentifier: GalleryCell.reuseIdentifier,
+                for: indexPath) as? GalleryCell else {
             return UICollectionViewCell()
         }
 
@@ -143,6 +194,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             item = galleryItem
         }
         galleryCell.update(item: item)
+        UIMenuController.shared.setMenuVisible(false, animated: true)
         return galleryCell
     }
 
@@ -150,6 +202,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         let msgId = mediaMessageIds[indexPath.row]
         showPreview(msgId: msgId)
         collectionView.deselectItem(at: indexPath, animated: true)
+        UIMenuController.shared.setMenuVisible(false, animated: true)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -163,6 +216,50 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         timeLabel.hide(animated: true)
+    }
+
+    // MARK: - context menu
+    // context menu for iOS 11, 12
+    func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        return contextMenu.canPerformAction(action: action)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+
+        contextMenu.performAction(action: action, indexPath: indexPath)
+    }
+
+    // context menu for iOS 13+
+    @available(iOS 13, *)
+    func collectionView(
+        _ collectionView: UICollectionView,
+        contextMenuConfigurationForItemAt indexPath: IndexPath,
+        point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let galleryCell = collectionView.cellForItem(at: indexPath) as? GalleryCell, let item = galleryCell.item else {
+            return nil
+        }
+
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: {
+                let contextMenuController = ContextMenuController(item: item)
+                return contextMenuController
+            },
+            actionProvider: { [weak self] _ in
+                self?.contextMenu.actionProvider(indexPath: indexPath)
+            }
+        )
+    }
+
+    @available(iOS 13, *)
+    func collectionView(_ collectionView: UICollectionView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+        if let msgId = (animator?.previewViewController as? ContextMenuController)?.msg.id {
+            self.showPreview(msgId: msgId)
+        }
     }
 }
 
@@ -205,88 +302,105 @@ private extension GalleryViewController {
 }
 
 // MARK: - coordinator
-extension GalleryViewController {
+private extension GalleryViewController {
     func showPreview(msgId: Int) {
         guard let index = mediaMessageIds.index(of: msgId) else {
             return
         }
+
         let previewController = PreviewController(type: .multi(mediaMessageIds, index))
         present(previewController, animated: true, completion: nil)
     }
-}
 
-class GalleryItem {
+    func redirectToMessage(of indexPath: IndexPath) {
+        let msgId = mediaMessageIds[indexPath.row]
 
-    var onImageLoaded: ((UIImage?) -> Void)?
-
-    var msg: DcMsg
-
-    var fileUrl: URL? {
-        return msg.fileURL
-    }
-
-    var thumbnailImage: UIImage? {
-        willSet {
-           onImageLoaded?(newValue)
-        }
-    }
-
-    var showPlayButton: Bool {
-        switch msg.viewtype {
-        case .video:
-            return true
-        default:
-            return false
-        }
-    }
-
-    init(msgId: Int) {
-        self.msg = DcMsg(id: msgId)
-
-        if let key = msg.fileURL?.absoluteString, let image = ThumbnailCache.shared.restoreImage(key: key) {
-            self.thumbnailImage = image
-        } else {
-            loadThumbnail()
-        }
-    }
-
-    private func loadThumbnail() {
-        guard let viewtype = msg.viewtype, let url = msg.fileURL else {
+        guard
+            let chatViewController = navigationController?.viewControllers.filter ({ $0 is ChatViewController}).first as? ChatViewController,
+            let chatListController = navigationController?.viewControllers.filter({ $0 is ChatListController}).first as? ChatListController
+        else {
+            safe_fatalError("failt to retrieve chatViewController, chatListController in navigation stack")
             return
         }
-        switch viewtype {
-        case .image:
-            thumbnailImage = msg.image
-        case .video:
-            loadVideoThumbnail(from: url)
-        case .gif:
-            loadGifThumbnail(from: url)
-        default:
-           safe_fatalError("unsupported viewtype - viewtype \(viewtype) not supported.")
-        }
+        self.navigationController?.viewControllers.remove(at: 1)
+
+        self.navigationController?.pushViewController(chatViewController, animated: true)
+        self.navigationController?.setViewControllers([chatListController, chatViewController], animated: false)
+        chatViewController.scrollToMessage(msgId: msgId)
+    }
+}
+
+class ContextMenuProvider {
+
+    var menu: [ContextMenuItem] = []
+
+    init(menu: [ContextMenuItem] = []) {
+        self.menu = menu
     }
 
-    private func loadGifThumbnail(from url: URL) {
-        DispatchQueue.global(qos: .userInteractive).async {
-            guard let imageData = try? Data(contentsOf: url) else {
-                return
-            }
-            let thumbnailImage = SDAnimatedImage(data: imageData)
-            DispatchQueue.main.async { [weak self] in
-                self?.thumbnailImage = thumbnailImage
-            }
-        }
+    func setMenu(_ menu: [ContextMenuItem]) {
+        self.menu = menu
     }
 
-    private func loadVideoThumbnail(from url: URL) {
-        DispatchQueue.global(qos: .userInteractive).async {
-            let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: url)
-            DispatchQueue.main.async { [weak self] in
-                self?.thumbnailImage = thumbnailImage
-                if let image = thumbnailImage {
-                    ThumbnailCache.shared.storeImage(image: image, key: url.absoluteString)
-                }
+    // iOS 12- action menu
+    var menuItems: [UIMenuItem] {
+        return menu.map { UIMenuItem(title: $0.title, action: $0.action) }
+    }
+
+    // iOS13+ action menu
+    @available(iOS 13, *)
+    func actionProvider(title: String = "", image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, indexPath: IndexPath) -> UIMenu {
+
+        var children: [UIMenuElement] = []
+
+        for item in menu {
+            // some system images are not available in iOS 13
+            let image = UIImage(systemName: item.imageNames.0) ?? UIImage(systemName: item.imageNames.1 ?? "")
+
+            let action = UIAction(
+                title: item.title,
+                image: image,
+                handler: { _ in item.onPerform?(indexPath) }
+            )
+            if item.option == .delete {
+                action.attributes = [.destructive]
             }
+            children.append(action)
         }
+
+        return UIMenu(
+            title: title,
+            image: image,
+            identifier: identifier,
+            children: children
+        )
+    }
+
+    func canPerformAction(action: Selector) -> Bool {
+        return !menu.filter {
+            $0.action == action
+        }.isEmpty
+    }
+
+    func performAction(action: Selector, indexPath: IndexPath) {
+        menu.filter {
+            $0.action == action
+        }.first?.onPerform?(indexPath)
+    }
+
+    enum Option {
+        case showInChat
+        case delete
+    }
+}
+
+extension ContextMenuProvider {
+    typealias ImageSystemName = String
+    struct ContextMenuItem {
+        var title: String
+        var imageNames: (ImageSystemName, ImageSystemName?) // (0,1) -> define 1 as backup if 0 is not available in iOS 13
+        let option: Option
+        var action: Selector
+        var onPerform: ((IndexPath) -> Void)?
     }
 }
