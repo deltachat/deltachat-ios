@@ -95,8 +95,9 @@ class ContextMenuController: UIViewController {
         playerController.didMove(toParent: self)
         playerController.view.backgroundColor = .darkGray
         playerController.view.clipsToBounds = true
-        player.play()
         playerController.player = player
+        playerController.showsPlaybackControls = false
+        player.play()
 
         // truncate edges on top/bottom or sides
         let resizedHeightFactor = view.frame.height / videoSize.height
