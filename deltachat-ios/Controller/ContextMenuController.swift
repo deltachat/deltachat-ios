@@ -143,7 +143,9 @@ class ContextMenuProvider {
 
         for item in menu {
             // some system images are not available in iOS 13
-            let image = UIImage(systemName: item.imageNames.0) ?? UIImage(systemName: item.imageNames.1 ?? "")
+            let image = UIImage(systemName: item.imageNames.0) ??
+                UIImage(systemName: item.imageNames.1 ?? "") ??
+                UIImage(named: item.imageNames.0)
 
             let action = UIAction(
                 title: item.title,
