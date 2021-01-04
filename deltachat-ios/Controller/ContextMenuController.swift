@@ -150,7 +150,7 @@ class ContextMenuProvider {
                 image: image,
                 handler: { _ in item.onPerform?(indexPath) }
             )
-            if item.option == .delete {
+            if item.isDestructive {
                 action.attributes = [.destructive]
             }
             children.append(action)
@@ -176,10 +176,6 @@ class ContextMenuProvider {
         }.first?.onPerform?(indexPath)
     }
 
-    enum Option {
-        case showInChat
-        case delete
-    }
 }
 
 extension ContextMenuProvider {
@@ -187,9 +183,8 @@ extension ContextMenuProvider {
     struct ContextMenuItem {
         var title: String
         var imageNames: (ImageSystemName, ImageSystemName?) // (0,1) -> define 1 as backup if 0 is not available in iOS 13
-        let option: Option
+        let isDestructive: Bool
         var action: Selector
         var onPerform: ((IndexPath) -> Void)?
     }
 }
-

@@ -26,7 +26,7 @@ class DocumentGalleryController: UIViewController {
         let deleteItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("delete"),
             imageNames: ("trash", nil),
-            option: .delete,
+            isDestructive: true,
             action: #selector(DocumentGalleryFileCell.itemDelete(_:)),
             onPerform: { [weak self] indexPath in
                 self?.askToDeleteItem(at: indexPath)
@@ -35,7 +35,7 @@ class DocumentGalleryController: UIViewController {
         let showInChatItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("show_in_chat"),
             imageNames: ("doc.text.magnifyingglass", nil),
-            option: .showInChat,
+            isDestructive: false,
             action: #selector(DocumentGalleryFileCell.showInChat(_:)),
             onPerform: { [weak self] indexPath in
                 self?.redirectToMessage(of: indexPath)
