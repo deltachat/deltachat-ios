@@ -117,3 +117,79 @@ class ContextMenuController: UIViewController {
         self.preferredContentSize = CGSize(width: width, height: height)
     }
 }
+
+class ContextMenuProvider {
+
+    var menu: [ContextMenuItem] = []
+
+    init(menu: [ContextMenuItem] = []) {
+        self.menu = menu
+    }
+
+    func setMenu(_ menu: [ContextMenuItem]) {
+        self.menu = menu
+    }
+
+    // iOS 12- action menu
+    var menuItems: [UIMenuItem] {
+        return menu.map { UIMenuItem(title: $0.title, action: $0.action) }
+    }
+
+    // iOS13+ action menu
+    @available(iOS 13, *)
+    func actionProvider(title: String = "", image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, indexPath: IndexPath) -> UIMenu {
+
+        var children: [UIMenuElement] = []
+
+        for item in menu {
+            // some system images are not available in iOS 13
+            let image = UIImage(systemName: item.imageNames.0) ?? UIImage(systemName: item.imageNames.1 ?? "")
+
+            let action = UIAction(
+                title: item.title,
+                image: image,
+                handler: { _ in item.onPerform?(indexPath) }
+            )
+            if item.option == .delete {
+                action.attributes = [.destructive]
+            }
+            children.append(action)
+        }
+
+        return UIMenu(
+            title: title,
+            image: image,
+            identifier: identifier,
+            children: children
+        )
+    }
+
+    func canPerformAction(action: Selector) -> Bool {
+        return !menu.filter {
+            $0.action == action
+        }.isEmpty
+    }
+
+    func performAction(action: Selector, indexPath: IndexPath) {
+        menu.filter {
+            $0.action == action
+        }.first?.onPerform?(indexPath)
+    }
+
+    enum Option {
+        case showInChat
+        case delete
+    }
+}
+
+extension ContextMenuProvider {
+    typealias ImageSystemName = String
+    struct ContextMenuItem {
+        var title: String
+        var imageNames: (ImageSystemName, ImageSystemName?) // (0,1) -> define 1 as backup if 0 is not available in iOS 13
+        let option: Option
+        var action: Selector
+        var onPerform: ((IndexPath) -> Void)?
+    }
+}
+
