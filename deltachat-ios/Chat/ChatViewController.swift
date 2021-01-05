@@ -134,12 +134,9 @@ class ChatViewController: UITableViewController {
             isDestructive: true,
             action: #selector(BaseMessageCell.messageDelete),
             onPerform: { [weak self] indexPath in
-                guard let self = self else { return }
-                self.tableView.becomeFirstResponder()
-                // DispatchQueue.main.async ensures the table view has already become
-                // first responder before askToDeleteMessage shows a new UIAlertController
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
+                    self.tableView.becomeFirstResponder()
                     let msg = DcMsg(id: self.messageIds[indexPath.row])
                     self.askToDeleteMessage(id: msg.id)
                 }
@@ -159,8 +156,25 @@ class ChatViewController: UITableViewController {
             }
         )
 
+        let replyItem = ContextMenuProvider.ContextMenuItem(
+            title: String.localized("notify_reply_button"),
+            imageNames: ("ic_reply", nil),
+            isDestructive: false,
+            action: #selector(BaseMessageCell.messageReply),
+            onPerform: { indexPath in
+                DispatchQueue.main.async { [weak self] in
+                    self?.replyToMessage(at: indexPath)
+                }
+            }
+        )
+
         let config = ContextMenuProvider()
-        config.setMenu([copyItem, infoItem, forwardItem, deleteItem])
+        if #available(iOS 13.0, *), !disableWriting {
+            config.setMenu([copyItem, replyItem, forwardItem, infoItem, deleteItem])
+        } else {
+            config.setMenu([copyItem, forwardItem, infoItem, deleteItem])
+        }
+
         return config
     }()
 
@@ -479,11 +493,8 @@ class ChatViewController: UITableViewController {
         }
 
         let action = UIContextualAction(style: .normal, title: nil,
-                                        handler: { (_, _, completionHandler) in
-                                            let message = DcMsg(id: self.messageIds[indexPath.row])
-                                            self.draft.setQuote(quotedMsg: message)
-                                            self.configureDraftArea(draft: self.draft)
-                                            self.messageInputBar.inputTextView.becomeFirstResponder()
+                                        handler: { [weak self] (_, _, completionHandler) in
+                                            self?.replyToMessage(at: indexPath)
                                             completionHandler(true)
                                         })
         if #available(iOS 12.0, *) {
@@ -497,6 +508,13 @@ class ChatViewController: UITableViewController {
         let configuration = UISwipeActionsConfiguration(actions: [action])
 
         return configuration
+    }
+
+    func replyToMessage(at indexPath: IndexPath) {
+        let message = DcMsg(id: self.messageIds[indexPath.row])
+        self.draft.setQuote(quotedMsg: message)
+        self.configureDraftArea(draft: self.draft)
+        self.messageInputBar.inputTextView.becomeFirstResponder()
     }
 
     func markSeenMessagesInVisibleArea() {
