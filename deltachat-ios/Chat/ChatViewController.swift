@@ -97,7 +97,7 @@ class ChatViewController: UITableViewController {
         let copyItem = ContextMenuProvider.ContextMenuItem(
         title: String.localized("global_menu_edit_copy_desktop"),
         imageName: "ic_content_copy_white_36pt",
-        action: #selector(UIResponderStandardEditActions.copy(_:)),
+        action: #selector(BaseMessageCell.messageCopy),
         onPerform: { [weak self] indexPath in
                 guard let self = self else { return }
                 let id = self.messageIds[indexPath.row]
