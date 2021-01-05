@@ -135,9 +135,14 @@ class ChatViewController: UITableViewController {
             action: #selector(BaseMessageCell.messageDelete),
             onPerform: { [weak self] indexPath in
                 guard let self = self else { return }
-                logger.debug("delete message")
-                let msg = DcMsg(id: self.messageIds[indexPath.row])
-                self.askToDeleteMessage(id: msg.id)
+                self.tableView.becomeFirstResponder()
+                // DispatchQueue.main.async ensures the table view has already become
+                // first responder before askToDeleteMessage shows a new UIAlertController
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    let msg = DcMsg(id: self.messageIds[indexPath.row])
+                    self.askToDeleteMessage(id: msg.id)
+                }
             }
         )
 
@@ -827,7 +832,7 @@ class ChatViewController: UITableViewController {
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { _ in
                             self.dcContext.deleteMessage(msgId: id)
-                            self.dismiss(animated: true, completion: nil)})
+                          })
     }
 
     private func askToForwardMessage() {
