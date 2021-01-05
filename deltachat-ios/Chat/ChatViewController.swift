@@ -143,7 +143,7 @@ class ChatViewController: UITableViewController {
 
         let forwardItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("forward"),
-            imageNames: ("ic_reply", nil),
+            imageNames: ("ic_forward_white_36pt", nil),
             isDestructive: false,
             action: #selector(BaseMessageCell.messageForward),
             onPerform: { [weak self] indexPath in
