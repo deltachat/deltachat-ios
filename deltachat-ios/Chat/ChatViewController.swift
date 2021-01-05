@@ -583,20 +583,15 @@ class ChatViewController: UITableViewController {
         navigationItem.rightBarButtonItems = rightBarButtonItems
     }
 
-    // TODO: is the delay of one second needed?
     @objc
     private func refreshMessages() {
-        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.messageIds = self.getMessageIds()
-                self.tableView.reloadData()
-                if self.isLastRowVisible() {
-                    self.scrollToBottom(animated: true)
-                }
-                self.showEmptyStateView(self.messageIds.isEmpty)
-            }
+        self.messageIds = self.getMessageIds()
+        let wasLastSectionVisible = self.isLastRowVisible()
+        self.tableView.reloadData()
+        if wasLastSectionVisible {
+            self.scrollToBottom(animated: true)
         }
+        self.showEmptyStateView(self.messageIds.isEmpty)
     }
 
     private func loadMessages() {
