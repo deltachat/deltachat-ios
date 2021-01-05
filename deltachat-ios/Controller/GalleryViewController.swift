@@ -50,7 +50,7 @@ class GalleryViewController: UIViewController {
     private lazy var contextMenu: ContextMenuProvider = {
         let deleteItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("delete"),
-            imageNames: ("trash", nil),
+            imageName: "trash",
             isDestructive: true,
             action: #selector(GalleryCell.itemDelete(_:)),
             onPerform: { [weak self] indexPath in
@@ -59,8 +59,7 @@ class GalleryViewController: UIViewController {
         )
         let showInChatItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("show_in_chat"),
-            imageNames: ("doc.text.magnifyingglass", nil),
-            isDestructive: false,
+            imageName: "doc.text.magnifyingglass",
             action: #selector(GalleryCell.showInChat(_:)),
             onPerform: { [weak self] indexPath in
                 self?.redirectToMessage(of: indexPath)

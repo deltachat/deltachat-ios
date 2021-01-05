@@ -142,10 +142,8 @@ class ContextMenuProvider {
         var children: [UIMenuElement] = []
 
         for item in menu {
-            // some system images are not available in iOS 13
-            let image = UIImage(systemName: item.imageNames.0) ??
-                UIImage(systemName: item.imageNames.1 ?? "") ??
-                UIImage(named: item.imageNames.0)
+            let image = UIImage(systemName: item.imageName) ??
+                UIImage(named: item.imageName)
 
             let action = UIAction(
                 title: item.title,
@@ -181,12 +179,19 @@ class ContextMenuProvider {
 }
 
 extension ContextMenuProvider {
-    typealias ImageSystemName = String
     struct ContextMenuItem {
         var title: String
-        var imageNames: (ImageSystemName, ImageSystemName?) // (0,1) -> define 1 as backup if 0 is not available in iOS 13
+        var imageName: String
         let isDestructive: Bool
         var action: Selector
         var onPerform: ((IndexPath) -> Void)?
+
+        init(title: String, imageName: String, isDestructive: Bool = false, action: Selector, onPerform: ((IndexPath) -> Void)?) {
+            self.title = title
+            self.imageName = imageName
+            self.isDestructive = isDestructive
+            self.action = action
+            self.onPerform = onPerform
+        }
     }
 }

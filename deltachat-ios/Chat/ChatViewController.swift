@@ -96,8 +96,7 @@ class ChatViewController: UITableViewController {
     private lazy var contextMenu: ContextMenuProvider = {
         let copyItem = ContextMenuProvider.ContextMenuItem(
         title: String.localized("global_menu_edit_copy_desktop"),
-        imageNames: ("ic_content_copy_white_36pt", nil),
-        isDestructive: false,
+        imageName: "ic_content_copy_white_36pt",
         action: #selector(UIResponderStandardEditActions.copy(_:)),
         onPerform: { [weak self] indexPath in
                 guard let self = self else { return }
@@ -115,8 +114,7 @@ class ChatViewController: UITableViewController {
 
         let infoItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("info"),
-            imageNames: ("info", nil),
-            isDestructive: false,
+            imageName: "info",
             action: #selector(BaseMessageCell.messageInfo),
             onPerform: { [weak self] indexPath in
                 guard let self = self else { return }
@@ -130,7 +128,7 @@ class ChatViewController: UITableViewController {
 
         let deleteItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("delete"),
-            imageNames: ("trash", nil),
+            imageName: "trash",
             isDestructive: true,
             action: #selector(BaseMessageCell.messageDelete),
             onPerform: { [weak self] indexPath in
@@ -145,8 +143,7 @@ class ChatViewController: UITableViewController {
 
         let forwardItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("forward"),
-            imageNames: ("ic_forward_white_36pt", nil),
-            isDestructive: false,
+            imageName: "ic_forward_white_36pt",
             action: #selector(BaseMessageCell.messageForward),
             onPerform: { [weak self] indexPath in
                 guard let self = self else { return }
@@ -158,8 +155,7 @@ class ChatViewController: UITableViewController {
 
         let replyItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("notify_reply_button"),
-            imageNames: ("ic_reply", nil),
-            isDestructive: false,
+            imageName: "ic_reply",
             action: #selector(BaseMessageCell.messageReply),
             onPerform: { indexPath in
                 DispatchQueue.main.async { [weak self] in
