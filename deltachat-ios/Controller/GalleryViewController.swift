@@ -1,5 +1,6 @@
 import UIKit
 import DcCore
+import QuickLook
 
 class GalleryViewController: UIViewController {
 
@@ -302,6 +303,7 @@ private extension GalleryViewController {
         }
 
         let previewController = PreviewController(type: .multi(mediaMessageIds, index))
+        previewController.delegate = self
         present(previewController, animated: true, completion: nil)
     }
 
@@ -395,5 +397,13 @@ extension ContextMenuProvider {
         let option: Option
         var action: Selector
         var onPerform: ((IndexPath) -> Void)?
+    }
+}
+
+// MARK: - QLPreviewControllerDataSource
+extension GalleryViewController: QLPreviewControllerDelegate {
+    func previewController(_ controller: QLPreviewController, transitionViewFor item: QLPreviewItem) -> UIView? {
+        let indexPath = IndexPath(row: controller.currentPreviewItemIndex, section: 0)
+        return grid.cellForItem(at: indexPath)
     }
 }
