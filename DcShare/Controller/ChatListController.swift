@@ -91,12 +91,7 @@ class ChatListController: UITableViewController {
 
     // MARK: - setup
     private func setupSubviews() {
-        view.addSubview(emptySearchStateLabel)
-        emptySearchStateLabel.translatesAutoresizingMaskIntoConstraints = false
-        emptySearchStateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-        emptySearchStateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
-        emptySearchStateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
-        emptySearchStateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        emptySearchStateLabel.addCenteredTo(parentView: view)
     }
 
     // MARK: - configuration

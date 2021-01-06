@@ -66,6 +66,10 @@ class GroupMembersViewController: UITableViewController {
         return label
     }()
 
+    private lazy var emptySearchStateLabelWidthConstraint: NSLayoutConstraint? = {
+        return emptySearchStateLabel.widthAnchor.constraint(equalTo: tableView.widthAnchor)
+    }()
+
     init() {
         self.dcContext = DcContext.shared
         super.init(style: .grouped)
@@ -88,6 +92,7 @@ class GroupMembersViewController: UITableViewController {
 
     private func configureTableView() {
         tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
     }
 
     // MARK: - UITableView datasource + delegate
@@ -167,13 +172,22 @@ extension GroupMembersViewController: UISearchResultsUpdating {
                 searchText
             )
             emptySearchStateLabel.text = text
-            emptySearchStateLabel.frame = CGRect(x: 0, y: 0, width: 0, height: emptySearchStateLabel.intrinsicContentSize.height)
             emptySearchStateLabel.isHidden = false
             tableView.tableHeaderView = emptySearchStateLabel
+            emptySearchStateLabelWidthConstraint?.isActive = true
         } else {
             emptySearchStateLabel.text = nil
             emptySearchStateLabel.isHidden = true
+            emptySearchStateLabelWidthConstraint?.isActive = false
             tableView.tableHeaderView = nil
+        }
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //ensure the empty search state message can be fully read
+        if searchController.isActive && filteredContactIds.isEmpty {
+            tableView.scrollRectToVisible(emptySearchStateLabel.frame, animated: false)
         }
     }
 }

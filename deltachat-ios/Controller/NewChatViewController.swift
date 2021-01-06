@@ -31,6 +31,10 @@ class NewChatViewController: UITableViewController {
         return label
     }()
 
+    private lazy var emptySearchStateLabelWidthConstraint: NSLayoutConstraint? = {
+        return emptySearchStateLabel.widthAnchor.constraint(equalTo: tableView.widthAnchor)
+    }()
+
     private var contactIds: [Int]
     private var filteredContactIds: [Int] = []
 
@@ -84,6 +88,7 @@ class NewChatViewController: UITableViewController {
         }
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -284,12 +289,21 @@ class NewChatViewController: UITableViewController {
             )
             emptySearchStateLabel.text = text
             emptySearchStateLabel.isHidden = false
-            emptySearchStateLabel.frame = CGRect(x: 0, y: 0, width: 0, height: emptySearchStateLabel.intrinsicContentSize.height)
             tableView.tableHeaderView = emptySearchStateLabel
+            emptySearchStateLabelWidthConstraint?.isActive = true
         } else {
             emptySearchStateLabel.text = nil
             emptySearchStateLabel.isHidden = true
+            emptySearchStateLabelWidthConstraint?.isActive = false
             tableView.tableHeaderView = nil
+        }
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //ensure the empty search state message can be fully read
+        if searchController.isActive && filteredContactIds.isEmpty {
+            tableView.scrollRectToVisible(emptySearchStateLabel.frame, animated: false)
         }
     }
 

@@ -36,12 +36,7 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
 
     // MARK: - setup
     private func setupSubviews() {
-        view.addSubview(emptyStateView)
-        emptyStateView.translatesAutoresizingMaskIntoConstraints = false
-        emptyStateView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        emptyStateView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        emptyStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
-        emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
+        emptyStateView.addCenteredTo(parentView: view)
     }
 
     // MARK: - actions + updates

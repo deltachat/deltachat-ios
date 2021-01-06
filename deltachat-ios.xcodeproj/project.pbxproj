@@ -11,6 +11,11 @@
 		3008CB7424F9436C00E6A617 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008CB7324F9436C00E6A617 /* AudioPlayerView.swift */; };
 		3008CB7624F95B6D00E6A617 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008CB7524F95B6D00E6A617 /* AudioController.swift */; };
 		30149D9322F21129003C12B5 /* QrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30149D9222F21129003C12B5 /* QrViewController.swift */; };
+		30152C9425A5D91400377714 /* PaddingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F4BFED252E3E020006B9B3 /* PaddingTextView.swift */; };
+		30152C9725A5D91900377714 /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF7323252FF15F00E2C54A /* MessageLabel.swift */; };
+		30152C9A25A5D92200377714 /* DetectorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3052C60D253F088E007D13EA /* DetectorType.swift */; };
+		30152C9D25A5D95400377714 /* MessageLabelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3052C609253F082E007D13EA /* MessageLabelDelegate.swift */; };
+		30152CA025A5D97900377714 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961832346125000C80F33 /* UIEdgeInsets+Extensions.swift */; };
 		3015634423A003BA00E9DEF4 /* AudioRecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */; };
 		3022E6BE22E8768800763272 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3022E6C022E8768800763272 /* InfoPlist.strings */; };
 		302589FF2452FA280086C1CD /* ShareAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302589FE2452FA280086C1CD /* ShareAttachment.swift */; };
@@ -36,8 +41,6 @@
 		3057028724C5C88300D84EFC /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
 		3057028C24C5E7B600D84EFC /* ContactCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */; };
 		3057029B24C6441300D84EFC /* EmptyStateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057029A24C6441300D84EFC /* EmptyStateLabel.swift */; };
-		3057029D24C6442800D84EFC /* FlexLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057029C24C6442800D84EFC /* FlexLabel.swift */; };
-		3057029E24C6444D00D84EFC /* FlexLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057029C24C6442800D84EFC /* FlexLabel.swift */; };
 		3057029F24C6445000D84EFC /* EmptyStateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057029A24C6441300D84EFC /* EmptyStateLabel.swift */; };
 		305702A124C6453700D84EFC /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305702A024C6453700D84EFC /* TypeAlias.swift */; };
 		305702A224C6455400D84EFC /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305702A024C6453700D84EFC /* TypeAlias.swift */; };
@@ -237,7 +240,6 @@
 		3052C60D253F088E007D13EA /* DetectorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectorType.swift; sourceTree = "<group>"; };
 		3057027E24C5B2F800D84EFC /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		3057029A24C6441300D84EFC /* EmptyStateLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStateLabel.swift; sourceTree = "<group>"; };
-		3057029C24C6442800D84EFC /* FlexLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexLabel.swift; sourceTree = "<group>"; };
 		305702A024C6453700D84EFC /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		305961832346125000C80F33 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		305961852346125000C80F33 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -795,7 +797,6 @@
 			isa = PBXGroup;
 			children = (
 				AE406EEE240FA454005F7022 /* Cell */,
-				3057029C24C6442800D84EFC /* FlexLabel.swift */,
 				3057029A24C6441300D84EFC /* EmptyStateLabel.swift */,
 				AEF53BD4248904BF00D309C1 /* GalleryTimeLabel.swift */,
 				B26B3BC6236DC3DC008ED35A /* SwitchCell.swift */,
@@ -1173,14 +1174,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				3057027F24C5B2F800D84EFC /* ChatListViewModel.swift in Sources */,
-				3057029E24C6444D00D84EFC /* FlexLabel.swift in Sources */,
 				302589FF2452FA280086C1CD /* ShareAttachment.swift in Sources */,
 				3057029F24C6445000D84EFC /* EmptyStateLabel.swift in Sources */,
 				305702A224C6455400D84EFC /* TypeAlias.swift in Sources */,
+				30152C9D25A5D95400377714 /* MessageLabelDelegate.swift in Sources */,
 				30E8F2442449C64100CE2C90 /* ChatListCell.swift in Sources */,
 				30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */,
+				30152C9A25A5D92200377714 /* DetectorType.swift in Sources */,
+				30152CA025A5D97900377714 /* UIEdgeInsets+Extensions.swift in Sources */,
 				30E8F253244DAD0E00CE2C90 /* SendingController.swift in Sources */,
 				3057028C24C5E7B600D84EFC /* ContactCellViewModel.swift in Sources */,
+				30152C9425A5D91400377714 /* PaddingTextView.swift in Sources */,
+				30152C9725A5D91900377714 /* MessageLabel.swift in Sources */,
 				30E8F2422448B77600CE2C90 /* ChatListController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1206,7 +1211,6 @@
 				30734326249A280B00BF9AD1 /* MediaQualityController.swift in Sources */,
 				AE6EC5282497B9B200A400E4 /* ThumbnailCache.swift in Sources */,
 				30FDB70524D1C1000066C48D /* ChatViewController.swift in Sources */,
-				3057029D24C6442800D84EFC /* FlexLabel.swift in Sources */,
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
 				AE39D323249CFC1A007346A1 /* DocumentGalleryController.swift in Sources */,
