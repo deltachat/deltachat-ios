@@ -254,13 +254,6 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             }
         )
     }
-
-    @available(iOS 13, *)
-    func collectionView(_ collectionView: UICollectionView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
-        if let msgId = (animator?.previewViewController as? ContextMenuController)?.msg.id {
-            self.showPreview(msgId: msgId)
-        }
-    }
 }
 
 // MARK: - grid layout + updates
