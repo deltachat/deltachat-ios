@@ -1,5 +1,6 @@
 import UIKit
 import DcCore
+import QuickLook
 
 class GalleryViewController: UIViewController {
 
@@ -254,13 +255,6 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             }
         )
     }
-
-    @available(iOS 13, *)
-    func collectionView(_ collectionView: UICollectionView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
-        if let msgId = (animator?.previewViewController as? ContextMenuController)?.msg.id {
-            self.showPreview(msgId: msgId)
-        }
-    }
 }
 
 // MARK: - grid layout + updates
@@ -309,6 +303,7 @@ private extension GalleryViewController {
         }
 
         let previewController = PreviewController(type: .multi(mediaMessageIds, index))
+        previewController.delegate = self
         present(previewController, animated: true, completion: nil)
     }
 
@@ -402,5 +397,13 @@ extension ContextMenuProvider {
         let option: Option
         var action: Selector
         var onPerform: ((IndexPath) -> Void)?
+    }
+}
+
+// MARK: - QLPreviewControllerDataSource
+extension GalleryViewController: QLPreviewControllerDelegate {
+    func previewController(_ controller: QLPreviewController, transitionViewFor item: QLPreviewItem) -> UIView? {
+        let indexPath = IndexPath(row: controller.currentPreviewItemIndex, section: 0)
+        return grid.cellForItem(at: indexPath)
     }
 }
