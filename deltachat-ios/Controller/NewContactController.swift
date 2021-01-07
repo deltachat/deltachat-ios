@@ -118,6 +118,8 @@ extension NewContactController: UITextFieldDelegate {
         } else if textField == nameCell.textField {
             if contactIsValid() {
                 saveContactButtonPressed()
+            } else {
+                emailCell.textField.becomeFirstResponder()
             }
         }
         return true
