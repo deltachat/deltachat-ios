@@ -31,11 +31,17 @@ public class QuotePreview: DraftPreview {
             compactView = draft.attachment != nil
             calculateQuoteHeight(compactView: compactView)
             if let quoteMessage = draft.quoteMessage {
-                let contact = quoteMessage.fromContact
-                quoteView.senderTitle.text = contact.displayName
-                quoteView.senderTitle.textColor = contact.color
-                quoteView.citeBar.backgroundColor = contact.color
                 quoteView.imagePreview.image = quoteMessage.image
+                if quoteMessage.isForwarded {
+                    quoteView.senderTitle.text = String.localized("forwarded_message")
+                    quoteView.senderTitle.textColor = DcColors.grayDateColor
+                    quoteView.citeBar.backgroundColor = DcColors.grayDateColor
+                } else {
+                    let contact = quoteMessage.fromContact
+                    quoteView.senderTitle.text = contact.displayName
+                    quoteView.senderTitle.textColor = contact.color
+                    quoteView.citeBar.backgroundColor = contact.color
+                }
             }
 
             isHidden = false

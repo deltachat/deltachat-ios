@@ -274,11 +274,18 @@ public class BaseMessageCell: UITableViewCell {
             quoteView.quote.text = quoteText
 
             if let quoteMsg = msg.quoteMessage {
-                let contact = quoteMsg.fromContact
-                quoteView.senderTitle.text = contact.displayName
-                quoteView.senderTitle.textColor = contact.color
-                quoteView.citeBar.backgroundColor = contact.color
                 quoteView.imagePreview.image = quoteMsg.image
+                if quoteMsg.isForwarded {
+                    quoteView.senderTitle.text = String.localized("forwarded_message")
+                    quoteView.senderTitle.textColor = DcColors.grayDateColor
+                    quoteView.citeBar.backgroundColor = DcColors.grayDateColor
+                } else {
+                    let contact = quoteMsg.fromContact
+                    quoteView.senderTitle.text = contact.displayName
+                    quoteView.senderTitle.textColor = contact.color
+                    quoteView.citeBar.backgroundColor = contact.color
+                }
+
             }
         } else {
             quoteView.isHidden = true
