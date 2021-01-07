@@ -30,11 +30,13 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     private let tagTextFieldEmail = 100
     private let tagTextFieldPassword = 200
-    private let tagTextFieldImapServer = 300
-    private let tagTextFieldImapLogin = 400
-    private let tagTextFieldSmtpServer = 500
-    private let tagTextFieldSmtpUser = 600
+    private let tagTextFieldImapLogin = 300
+    private let tagTextFieldImapServer = 400
+    private let tagTextFieldImapPort = 500
+    private let tagTextFieldSmtpLogin = 600
     private let tagTextFieldSmtpPassword = 700
+    private let tagTextFieldSmtpServer = 800
+    private let tagTextFieldSmtpPort = 900
 
     // add cells to sections
 
@@ -167,7 +169,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             delegate: self)
         cell.tag = tagImapPortCell
         cell.setText(text: editablePort(port: dcContext.mailPort))
-        cell.textField.tag = tagImapPortCell
+        cell.textField.tag = tagTextFieldImapPort
         cell.textField.keyboardType = .numberPad
         return cell
     }()
@@ -200,7 +202,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             descriptionID: "login_smtp_login",
             placeholder: String.localized("automatic"),
             delegate: self)
-        cell.textField.tag = tagTextFieldSmtpUser
+        cell.textField.tag = tagTextFieldSmtpLogin
         cell.setText(text: dcContext.sendUser ?? nil)
         cell.tag = tagSmtpUserCell
         return cell
@@ -213,7 +215,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             delegate: self)
         cell.tag = tagSmtpPortCell
         cell.setText(text: editablePort(port: dcContext.sendPort))
-        cell.textField.tag = tagSmtpPortCell
+        cell.textField.tag = tagTextFieldSmtpPort
         cell.textField.keyboardType = .numberPad
         return cell
     }()
