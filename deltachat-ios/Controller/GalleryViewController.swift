@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 import QuickLook
 
-class GalleryViewController: UIViewController {
+class GalleryViewController: UIViewController, QLPreviewControllerDelegate {
 
     private let dcContext: DcContext
     // MARK: - data
