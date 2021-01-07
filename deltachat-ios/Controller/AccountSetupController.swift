@@ -82,6 +82,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textField.addTarget(self, action: #selector(emailCellEdited), for: .editingChanged)
         cell.textField.tag = tagTextFieldEmail // will be used to eventually show oAuth-Dialogue when pressing return key
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        cell.textField.returnKeyType = .next
         return cell
     }()
 
@@ -90,6 +91,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.tag = tagPasswordCell
         cell.textField.tag = tagTextFieldPassword  // will be used to eventually show oAuth-Dialogue when selecting
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        cell.textField.returnKeyType = advancedSectionShowing ? .next : .done
         return cell
     }()
 
@@ -137,6 +139,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
         cell.textField.autocapitalizationType = .none
+        cell.textField.returnKeyType = .next
         return cell
     }()
 
@@ -151,6 +154,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
         cell.textField.autocapitalizationType = .none
+        cell.textField.returnKeyType = .next
         return cell
     }()
 
@@ -197,6 +201,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
         cell.textField.autocapitalizationType = .none
+        cell.textField.returnKeyType = .next
         return cell
     }()
 
@@ -211,6 +216,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
         cell.textField.autocapitalizationType = .none
+        cell.textField.returnKeyType = .next
         return cell
     }()
 
@@ -236,6 +242,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textField.isSecureTextEntry = true
         cell.textField.tag = tagTextFieldSmtpPassword
         cell.tag = tagSmtpPasswordCell
+        cell.textField.returnKeyType = .next
         return cell
     }()
 
@@ -501,7 +508,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         advancedShowCell.detailTextLabel?.text = willShow ? "\u{2013}" : nil
 
         advancedSectionShowing = willShow // set flag before delete/insert, because cellForRowAt will be triggered and uses this flag
-
+        passwordCell.textField.returnKeyType = willShow ? .next : .done
         if willShow {
             tableView.insertRows(at: advancedIndexPaths, with: .fade)
         } else {
