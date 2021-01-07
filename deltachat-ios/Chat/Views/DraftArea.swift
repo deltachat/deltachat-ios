@@ -63,6 +63,7 @@ public class DraftArea: UIView, InputItem {
     public func setupSubviews() {
         addSubview(mainContentView)
         mainContentView.fillSuperview()
+        mainContentView.backgroundColor = DcColors.chatBackgroundColor
     }
 
     public func configure(draft: DraftModel) {

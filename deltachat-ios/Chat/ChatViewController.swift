@@ -93,6 +93,87 @@ class ChatViewController: UITableViewController {
         return UIBarButtonItem(customView: badge)
     }()
 
+    private lazy var contextMenu: ContextMenuProvider = {
+        let copyItem = ContextMenuProvider.ContextMenuItem(
+        title: String.localized("global_menu_edit_copy_desktop"),
+        imageName: "ic_content_copy_white_36pt",
+        action: #selector(BaseMessageCell.messageCopy),
+        onPerform: { [weak self] indexPath in
+                guard let self = self else { return }
+                let id = self.messageIds[indexPath.row]
+                let msg = DcMsg(id: id)
+
+                let pasteboard = UIPasteboard.general
+                if msg.type == DC_MSG_TEXT {
+                    pasteboard.string = msg.text
+                } else {
+                    pasteboard.string = msg.summary(chars: 10000000)
+                }
+            }
+        )
+
+        let infoItem = ContextMenuProvider.ContextMenuItem(
+            title: String.localized("info"),
+            imageName: "info",
+            action: #selector(BaseMessageCell.messageInfo),
+            onPerform: { [weak self] indexPath in
+                guard let self = self else { return }
+                let msg = DcMsg(id: self.messageIds[indexPath.row])
+                let msgViewController = MessageInfoViewController(dcContext: self.dcContext, message: msg)
+                if let ctrl = self.navigationController {
+                    ctrl.pushViewController(msgViewController, animated: true)
+                }
+            }
+        )
+
+        let deleteItem = ContextMenuProvider.ContextMenuItem(
+            title: String.localized("delete"),
+            imageName: "trash",
+            isDestructive: true,
+            action: #selector(BaseMessageCell.messageDelete),
+            onPerform: { [weak self] indexPath in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.tableView.becomeFirstResponder()
+                    let msg = DcMsg(id: self.messageIds[indexPath.row])
+                    self.askToDeleteMessage(id: msg.id)
+                }
+            }
+        )
+
+        let forwardItem = ContextMenuProvider.ContextMenuItem(
+            title: String.localized("forward"),
+            imageName: "ic_forward_white_36pt",
+            action: #selector(BaseMessageCell.messageForward),
+            onPerform: { [weak self] indexPath in
+                guard let self = self else { return }
+                let msg = DcMsg(id: self.messageIds[indexPath.row])
+                RelayHelper.sharedInstance.setForwardMessage(messageId: msg.id)
+                self.navigationController?.popViewController(animated: true)
+            }
+        )
+
+        let replyItem = ContextMenuProvider.ContextMenuItem(
+            title: String.localized("notify_reply_button"),
+            imageName: "ic_reply",
+            action: #selector(BaseMessageCell.messageReply),
+            onPerform: { indexPath in
+                DispatchQueue.main.async { [weak self] in
+                    self?.replyToMessage(at: indexPath)
+                }
+            }
+        )
+
+        let config = ContextMenuProvider()
+        if #available(iOS 13.0, *), !disableWriting {
+            config.setMenu([replyItem, forwardItem, infoItem, copyItem, deleteItem])
+        } else {
+            config.setMenu([forwardItem, infoItem, copyItem, deleteItem])
+        }
+
+        return config
+    }()
+
     /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and update audio cell UI accordingly.
     private lazy var audioController = AudioController(dcContext: dcContext, chatId: chatId)
 
@@ -164,7 +245,6 @@ class ChatViewController: UITableViewController {
                                        name: UIApplication.willResignActiveNotification,
                                        object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        prepareContextMenu()
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -220,6 +300,7 @@ class ChatViewController: UITableViewController {
             askToForwardMessage()
         }
 
+        prepareContextMenu()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -408,11 +489,8 @@ class ChatViewController: UITableViewController {
         }
 
         let action = UIContextualAction(style: .normal, title: nil,
-                                        handler: { (_, _, completionHandler) in
-                                            let message = DcMsg(id: self.messageIds[indexPath.row])
-                                            self.draft.setQuote(quotedMsg: message)
-                                            self.configureDraftArea(draft: self.draft)
-                                            self.messageInputBar.inputTextView.becomeFirstResponder()
+                                        handler: { [weak self] (_, _, completionHandler) in
+                                            self?.replyToMessage(at: indexPath)
                                             completionHandler(true)
                                         })
         if #available(iOS 12.0, *) {
@@ -426,6 +504,13 @@ class ChatViewController: UITableViewController {
         let configuration = UISwipeActionsConfiguration(actions: [action])
 
         return configuration
+    }
+
+    func replyToMessage(at indexPath: IndexPath) {
+        let message = DcMsg(id: self.messageIds[indexPath.row])
+        self.draft.setQuote(quotedMsg: message)
+        self.configureDraftArea(draft: self.draft)
+        self.messageInputBar.inputTextView.becomeFirstResponder()
     }
 
     func markSeenMessagesInVisibleArea() {
@@ -512,20 +597,15 @@ class ChatViewController: UITableViewController {
         navigationItem.rightBarButtonItems = rightBarButtonItems
     }
 
-    // TODO: is the delay of one second needed?
     @objc
     private func refreshMessages() {
-        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.messageIds = self.getMessageIds()
-                self.tableView.reloadData()
-                if self.isLastRowVisible() {
-                    self.scrollToBottom(animated: true)
-                }
-                self.showEmptyStateView(self.messageIds.isEmpty)
-            }
+        self.messageIds = self.getMessageIds()
+        let wasLastSectionVisible = self.isLastRowVisible()
+        self.tableView.reloadData()
+        if wasLastSectionVisible {
+            self.scrollToBottom(animated: true)
         }
+        self.showEmptyStateView(self.messageIds.isEmpty)
     }
 
     private func loadMessages() {
@@ -761,7 +841,7 @@ class ChatViewController: UITableViewController {
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { _ in
                             self.dcContext.deleteMessage(msgId: id)
-                            self.dismiss(animated: true, completion: nil)})
+                          })
     }
 
     private func askToForwardMessage() {
@@ -994,11 +1074,7 @@ class ChatViewController: UITableViewController {
 
     // MARK: - Context menu
     private func prepareContextMenu() {
-        UIMenuController.shared.menuItems = [
-            UIMenuItem(title: String.localized("info"), action: #selector(BaseMessageCell.messageInfo)),
-            UIMenuItem(title: String.localized("delete"), action: #selector(BaseMessageCell.messageDelete)),
-            UIMenuItem(title: String.localized("forward"), action: #selector(BaseMessageCell.messageForward))
-        ]
+        UIMenuController.shared.menuItems = contextMenu.menuItems
         UIMenuController.shared.update()
     }
 
@@ -1007,42 +1083,24 @@ class ChatViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return action == #selector(UIResponderStandardEditActions.copy(_:))
-            || action == #selector(BaseMessageCell.messageInfo)
-            || action == #selector(BaseMessageCell.messageDelete)
-            || action == #selector(BaseMessageCell.messageForward)
+        return contextMenu.canPerformAction(action: action)
     }
 
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
         // handle standard actions here, but custom actions never trigger this. it still needs to be present for the menu to display, though.
-        switch action {
-        case #selector(copy(_:)):
-            let id = messageIds[indexPath.row]
-            let msg = DcMsg(id: id)
+        contextMenu.performAction(action: action, indexPath: indexPath)
+    }
 
-            let pasteboard = UIPasteboard.general
-            if msg.type == DC_MSG_TEXT {
-                pasteboard.string = msg.text
-            } else {
-                pasteboard.string = msg.summary(chars: 10000000)
+    // context menu for iOS 13+
+    @available(iOS 13, *)
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil,
+            actionProvider: { [weak self] _ in
+                self?.contextMenu.actionProvider(indexPath: indexPath)
             }
-        case #selector(BaseMessageCell.messageInfo(_:)):
-            let msg = DcMsg(id: messageIds[indexPath.row])
-            let msgViewController = MessageInfoViewController(dcContext: dcContext, message: msg)
-            if let ctrl = navigationController {
-                ctrl.pushViewController(msgViewController, animated: true)
-            }
-        case #selector(BaseMessageCell.messageDelete(_:)):
-            let msg = DcMsg(id: messageIds[indexPath.row])
-            askToDeleteMessage(id: msg.id)
-
-        case #selector(BaseMessageCell.messageForward(_:)):
-            let msg = DcMsg(id: messageIds[indexPath.row])
-            RelayHelper.sharedInstance.setForwardMessage(messageId: msg.id)
-            navigationController?.popViewController(animated: true)
-        default:
-            break
-        }
+        )
     }
 
     func showMediaGalleryFor(indexPath: IndexPath) {

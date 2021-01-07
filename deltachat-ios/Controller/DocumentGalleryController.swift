@@ -23,10 +23,10 @@ class DocumentGalleryController: UIViewController {
     }()
 
     private lazy var contextMenu: ContextMenuProvider = {
-        let deleteItem = ContextMenuProvider.ContextMenuItem(
+        let deleteItem = ContextMenuProvider.ContextMenuItem.init(
             title: String.localized("delete"),
-            imageNames: ("trash", nil),
-            option: .delete,
+            imageName: "trash",
+            isDestructive: true,
             action: #selector(DocumentGalleryFileCell.itemDelete(_:)),
             onPerform: { [weak self] indexPath in
                 self?.askToDeleteItem(at: indexPath)
@@ -34,8 +34,7 @@ class DocumentGalleryController: UIViewController {
         )
         let showInChatItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("show_in_chat"),
-            imageNames: ("doc.text.magnifyingglass", nil),
-            option: .showInChat,
+            imageName: "doc.text.magnifyingglass",
             action: #selector(DocumentGalleryFileCell.showInChat(_:)),
             onPerform: { [weak self] indexPath in
                 self?.redirectToMessage(of: indexPath)

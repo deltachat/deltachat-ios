@@ -409,6 +409,14 @@ public class BaseMessageCell: UITableViewCell {
         self.performAction(#selector(BaseMessageCell.messageForward(_:)), with: sender)
     }
 
+    @objc func messageReply(_ sender: Any?) {
+        self.performAction(#selector(BaseMessageCell.messageReply(_:)), with: sender)
+    }
+
+    @objc func messageCopy(_ sender: Any?) {
+        self.performAction(#selector(BaseMessageCell.messageCopy(_:)), with: sender)
+    }
+
     func performAction(_ action: Selector, with sender: Any?) {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
             // Trigger action in tableView delegate (UITableViewController)

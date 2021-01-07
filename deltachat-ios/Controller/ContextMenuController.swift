@@ -117,3 +117,81 @@ class ContextMenuController: UIViewController {
         self.preferredContentSize = CGSize(width: width, height: height)
     }
 }
+
+class ContextMenuProvider {
+
+    var menu: [ContextMenuItem] = []
+
+    init(menu: [ContextMenuItem] = []) {
+        self.menu = menu
+    }
+
+    func setMenu(_ menu: [ContextMenuItem]) {
+        self.menu = menu
+    }
+
+    // iOS 12- action menu
+    var menuItems: [UIMenuItem] {
+        return menu.map { UIMenuItem(title: $0.title, action: $0.action) }
+    }
+
+    // iOS13+ action menu
+    @available(iOS 13, *)
+    func actionProvider(title: String = "", image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, indexPath: IndexPath) -> UIMenu {
+
+        var children: [UIMenuElement] = []
+
+        for item in menu {
+            let image = UIImage(systemName: item.imageName) ??
+                UIImage(named: item.imageName)
+
+            let action = UIAction(
+                title: item.title,
+                image: image,
+                handler: { _ in item.onPerform?(indexPath) }
+            )
+            if item.isDestructive {
+                action.attributes = [.destructive]
+            }
+            children.append(action)
+        }
+
+        return UIMenu(
+            title: title,
+            image: image,
+            identifier: identifier,
+            children: children
+        )
+    }
+
+    func canPerformAction(action: Selector) -> Bool {
+        return !menu.filter {
+            $0.action == action
+        }.isEmpty
+    }
+
+    func performAction(action: Selector, indexPath: IndexPath) {
+        menu.filter {
+            $0.action == action
+        }.first?.onPerform?(indexPath)
+    }
+
+}
+
+extension ContextMenuProvider {
+    struct ContextMenuItem {
+        var title: String
+        var imageName: String
+        let isDestructive: Bool
+        var action: Selector
+        var onPerform: ((IndexPath) -> Void)?
+
+        init(title: String, imageName: String, isDestructive: Bool = false, action: Selector, onPerform: ((IndexPath) -> Void)?) {
+            self.title = title
+            self.imageName = imageName
+            self.isDestructive = isDestructive
+            self.action = action
+            self.onPerform = onPerform
+        }
+    }
+}

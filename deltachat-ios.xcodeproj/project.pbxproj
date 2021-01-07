@@ -557,6 +557,7 @@
 			children = (
 				30FDB6B624D193DD0066C48D /* Cells */,
 				30E348DE24F3F819005C93D1 /* ChatTableView.swift */,
+				303492CE2587C2DC00A523D0 /* ChatInputBar.swift */,
 				302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */,
 				30F8817524DA97DA0023780E /* BackgroundContainer.swift */,
 				3008CB7324F9436C00E6A617 /* AudioPlayerView.swift */,
@@ -570,7 +571,6 @@
 				303492AC2577CAC300A523D0 /* FileView.swift */,
 				303492B22577E40700A523D0 /* DocumentPreview.swift */,
 				303492CA257A814200A523D0 /* DraftArea.swift */,
-				303492CE2587C2DC00A523D0 /* ChatInputBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
