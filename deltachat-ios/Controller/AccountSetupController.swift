@@ -858,10 +858,6 @@ extension AccountSetupController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let currentTag = textField.tag
         if let nextField = tableView.viewWithTag(currentTag + 100) as? UITextField {
-            if nextField.tag > tagTextFieldPassword, !advancedSectionShowing {
-                // gets here when trying to activate a collapsed cell
-                return false
-            }
             nextField.becomeFirstResponder()
             return true
         } else {
