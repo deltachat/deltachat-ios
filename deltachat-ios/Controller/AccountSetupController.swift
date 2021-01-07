@@ -148,6 +148,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.setText(text: dcContext.mailUser ?? nil)
         cell.textField.tag = tagTextFieldImapLogin
         cell.tag = tagImapUserCell
+        cell.textField.autocorrectionType = .no
+        cell.textField.spellCheckingType = .no
+        cell.textField.autocapitalizationType = .none
         return cell
     }()
 
@@ -205,6 +208,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textField.tag = tagTextFieldSmtpLogin
         cell.setText(text: dcContext.sendUser ?? nil)
         cell.tag = tagSmtpUserCell
+        cell.textField.autocorrectionType = .no
+        cell.textField.spellCheckingType = .no
+        cell.textField.autocapitalizationType = .none
         return cell
     }()
 
