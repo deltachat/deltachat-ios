@@ -109,6 +109,7 @@ class ChatViewController: UITableViewController {
 
     var emptyStateView: EmptyStateLabel = {
         let view =  EmptyStateLabel()
+        view.isHidden = true
         return view
     }()
 
@@ -195,12 +196,7 @@ class ChatViewController: UITableViewController {
     }
 
     private func configureEmptyStateView() {
-        view.addSubview(emptyStateView)
-        emptyStateView.translatesAutoresizingMaskIntoConstraints = false
-        emptyStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
-        emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
-        emptyStateView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        emptyStateView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        emptyStateView.addCenteredTo(parentView: view)
     }
 
     override func viewWillAppear(_ animated: Bool) {

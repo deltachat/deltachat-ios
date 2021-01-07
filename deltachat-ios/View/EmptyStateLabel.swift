@@ -1,43 +1,27 @@
 import UIKit
 import DcCore
 
-class EmptyStateLabel: FlexLabel {
-
-    override var text: String? {
-        set {
-            guard let newValue = newValue else {
-                super.label.attributedText = nil
-                return
-            }
-
-            guard let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle else {
-                label.attributedText = NSAttributedString(string: newValue)
-                return
-            }
-            style.alignment = NSTextAlignment.natural
-            style.lineBreakMode = .byWordWrapping
-            attributedText = NSAttributedString(
-                string: newValue,
-                attributes: [.paragraphStyle: style]
-            )
-        }
-        get {
-            return super.label.text
-        }
-    }
-
-    override var intrinsicContentSize: CGSize {
-        let width = layoutMargins.left + layoutMargins.right + label.intrinsicContentSize.width
-        let height = layoutMargins.top + layoutMargins.bottom + label.intrinsicContentSize.height
-        return CGSize(width: width, height: height)
-    }
+class EmptyStateLabel: PaddingTextView {
 
     override init() {
         super.init()
-        label.backgroundColor = DcColors.systemMessageBackgroundColor
+        backgroundColor = DcColors.systemMessageBackgroundColor
         label.textColor = DcColors.defaultTextColor
-        label.layer.cornerRadius = 10
+        layer.cornerRadius = 10
         label.clipsToBounds = true
+        paddingTop = 15
+        paddingBottom = 15
+        paddingLeading = 15
+        paddingTrailing = 15
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    func addCenteredTo(parentView: UIView) {
+        parentView.addSubview(self)
+        leadingAnchor.constraint(equalTo: parentView.leadingAnchor, constant: 40).isActive = true
+        trailingAnchor.constraint(equalTo: parentView.trailingAnchor, constant: -40).isActive = true
+        centerYAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        centerXAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.centerXAnchor).isActive = true
     }
 
     required init?(coder: NSCoder) {
