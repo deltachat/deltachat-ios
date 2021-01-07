@@ -36,6 +36,9 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         let cell = TextFieldCell(description: String.localized("group_name"), placeholder: String.localized("group_name"))
         cell.onTextFieldChange = self.updateGroupName
         cell.textField.autocorrectionType = UITextAutocorrectionType.no
+        cell.textField.enablesReturnKeyAutomatically = true
+        cell.textField.returnKeyType = .continue
+        cell.textFieldDelegate = self
         return cell
     }()
 
@@ -356,5 +359,12 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             self.updateGroupContactIdsOnListSelection(memberIds)
         }
         navigationController?.pushViewController(newGroupController, animated: true)
+    }
+}
+
+extension NewGroupController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
