@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 import QuickLook
 
-class GalleryViewController: UIViewController, QLPreviewControllerDelegate {
+class GalleryViewController: UIViewController {
 
     private let dcContext: DcContext
     // MARK: - data
@@ -316,5 +316,13 @@ private extension GalleryViewController {
         self.navigationController?.pushViewController(chatViewController, animated: true)
         self.navigationController?.setViewControllers([chatListController, chatViewController], animated: false)
         chatViewController.scrollToMessage(msgId: msgId)
+    }
+}
+
+// MARK: - QLPreviewControllerDataSource
+extension GalleryViewController: QLPreviewControllerDelegate {
+    func previewController(_ controller: QLPreviewController, transitionViewFor item: QLPreviewItem) -> UIView? {
+        let indexPath = IndexPath(row: controller.currentPreviewItemIndex, section: 0)
+        return grid.cellForItem(at: indexPath)
     }
 }
