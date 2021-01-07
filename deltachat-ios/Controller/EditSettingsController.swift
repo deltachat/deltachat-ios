@@ -46,6 +46,8 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     private lazy var nameCell: TextFieldCell = {
         let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("pref_your_name"))
         cell.setText(text: dcContext.displayname)
+        cell.textFieldDelegate = self
+        cell.textField.returnKeyType = .continue
         return cell
     }()
 
@@ -156,4 +158,13 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         self.avatarSelectionCell.setAvatar(image: dcContext.getSelfAvatarImage())
     }
 
+}
+
+
+extension EditSettingsController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
