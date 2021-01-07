@@ -862,7 +862,6 @@ extension AccountSetupController: UITextFieldDelegate {
             return true
         } else {
             textField.resignFirstResponder()
-            emailCell.textField.becomeFirstResponder()
             let indexPath = IndexPath(row: 0, section: 0)
             tableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.top, animated: true)
             return true
