@@ -75,7 +75,7 @@
 "draft" = "Borrador";
 "image" = "Imagen";
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
-"reply_noun" = "Responder";
+"reply_noun" = "Respuesta";
 "gif" = "Gif";
 "images" = "Imágenes";
 "audio" = "Audio";
@@ -375,6 +375,7 @@
 "pref_profile_info_headline" = "Información de perfil ";
 "pref_profile_photo" = "Foto de perfil";
 "pref_blocked_contacts" = "Contactos bloqueados";
+"blocked_empty_hint" = "Si bloqueas los contactos, se mostrarán aquí";
 "pref_profile_photo_remove_ask" = "¿Eliminar foto de perfil? ";
 "pref_password_and_account_settings" = "Contraseña y cuenta";
 "pref_who_can_see_profile_explain" = "La imagen y el nombre de su perfil se mostrarán junto con sus mensajes cuando se comunique con otros usuarios. La información ya enviada no puede ser borrada o eliminada.";
@@ -406,6 +407,7 @@
 "pref_silent" = "Silencio";
 "pref_privacy" = "Privacidad";
 "pref_chats_and_media" = "Chats y multimedia";
+"pref_system_default" = "Predeterminado del sistema";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Claro";
 "pref_dark_theme" = "Oscuro ";

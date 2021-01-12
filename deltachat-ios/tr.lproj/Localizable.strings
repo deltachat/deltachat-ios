@@ -363,8 +363,8 @@
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "İlet…";
-"share_multiple_attachments" = "%1$d dosya seçilen sohbete gönderilsin mi?\n\nDosyalar, değiştirilmeden özgün boyutlarında gönderilir; örn. görseller ve videolar yeniden kodlanmaz.";
-"share_multiple_attachments_multiple_chats" = "%1$d dosya %2$d sohbete gönderilsin mi?\n\nDosyalar, değiştirilmeden özgün boyutlarında gönderilir; örn. görseller ve videolar yeniden kodlanmaz.";
+"share_multiple_attachments" = "%1$d dosya seçilen sohbete gönderilsin mi?\n\nDosyalar, değiştirilmeden özgün boyutlarında gönderilir; ör. görseller ve videolar yeniden kodlanmaz.";
+"share_multiple_attachments_multiple_chats" = "%1$d dosya %2$d sohbete gönderilsin mi?\n\nDosyalar, değiştirilmeden özgün boyutlarında gönderilir; ör. görseller ve videolar yeniden kodlanmaz.";
 "share_text_multiple_chats" = "Bu metin %1$d sohbete gönderilsin mi?\n\n\"%2$@\"";
 "share_abort" = "Eksik izinlerden dolayı paylaşımdan vazgeçildi.";
 
@@ -407,6 +407,7 @@
 "pref_silent" = "Sessiz";
 "pref_privacy" = "Gizlilik";
 "pref_chats_and_media" = "Sohbetler ve ortamlar";
+"pref_system_default" = "Sistem varsayılanı";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Açık";
 "pref_dark_theme" = "Koyu";

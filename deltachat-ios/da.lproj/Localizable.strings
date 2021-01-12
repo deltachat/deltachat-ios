@@ -285,6 +285,7 @@
 "pref_silent" = "Stille";
 "pref_privacy" = "Privatliv";
 "pref_chats_and_media" = "Samtaler og medie";
+"pref_system_default" = "System standard";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Lys";
 "pref_dark_theme" = "Mørk";

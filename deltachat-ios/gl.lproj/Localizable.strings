@@ -404,6 +404,7 @@
 "pref_silent" = "Mudo";
 "pref_privacy" = "Intimidade";
 "pref_chats_and_media" = "Conversas e medios";
+"pref_system_default" = "Por omsión no sistema";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Claro";
 "pref_dark_theme" = "Escuro";

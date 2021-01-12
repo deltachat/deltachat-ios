@@ -406,6 +406,7 @@
 "pref_silent" = "Heshtazi";
 "pref_privacy" = "Privatësi";
 "pref_chats_and_media" = "Fjalosje dhe media";
+"pref_system_default" = "Parazgjedhje sistemi";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "E çelët";
 "pref_dark_theme" = "E errët";

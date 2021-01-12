@@ -173,6 +173,7 @@
 "pref_silent" = "Tiho";
 "pref_privacy" = "Privatnost";
 "pref_chats_and_media" = "Razgovori i media";
+"pref_system_default" = "Sustavno zadano";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Svijetlo";
 "pref_dark_theme" = "Tamno";

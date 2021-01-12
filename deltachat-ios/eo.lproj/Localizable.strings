@@ -295,6 +295,7 @@
 "pref_silent" = "Silenta";
 "pref_privacy" = "Privateco";
 "pref_chats_and_media" = "Interparoloj kaj aŭdvidaĵoj";
+"pref_system_default" = "Sistema defaŭlto";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Hela";
 "pref_dark_theme" = "Malhela";

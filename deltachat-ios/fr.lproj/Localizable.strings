@@ -407,6 +407,7 @@
 "pref_silent" = "Silencieux";
 "pref_privacy" = "Vie privée";
 "pref_chats_and_media" = "Discussions et fichiers multimédia";
+"pref_system_default" = "Valeur par défaut du système";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Clair";
 "pref_dark_theme" = "Foncé";

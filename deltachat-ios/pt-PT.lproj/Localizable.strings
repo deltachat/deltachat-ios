@@ -235,6 +235,7 @@
 "pref_silent" = "Silêncio";
 "pref_privacy" = "Privacidade";
 "pref_chats_and_media" = "chats e mídia";
+"pref_system_default" = "Configuração por omissão";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Luz";
 "pref_dark_theme" = "Escuro";

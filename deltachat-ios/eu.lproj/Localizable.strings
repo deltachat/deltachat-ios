@@ -336,6 +336,7 @@
 "pref_silent" = "Isila";
 "pref_privacy" = "Pribatutasuna";
 "pref_chats_and_media" = "Txatak eta multimedia";
+"pref_system_default" = "Sisteman lehenetsia";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Argia";
 "pref_dark_theme" = "Iluna";

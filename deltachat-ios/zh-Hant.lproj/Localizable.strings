@@ -407,6 +407,7 @@
 "pref_silent" = "无声";
 "pref_privacy" = "隐私";
 "pref_chats_and_media" = "聊天与媒体";
+"pref_system_default" = "系统默认";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "明亮";
 "pref_dark_theme" = "黑暗";

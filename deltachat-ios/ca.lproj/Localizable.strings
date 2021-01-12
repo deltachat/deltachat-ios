@@ -285,6 +285,7 @@
 "pref_silent" = "Silenci";
 "pref_privacy" = "Privacitat";
 "pref_chats_and_media" = "Xats i multimèdia";
+"pref_system_default" = "Per defecte del sistema";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Clar";
 "pref_dark_theme" = "Fosc";

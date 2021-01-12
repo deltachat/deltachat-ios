@@ -393,3 +393,4 @@
 "pref_change_secret" = "Zmeniť secret";
 "pref_change_secret_explain" = "Zmeňte svoj PIN / vzor / odtlačok prsta pomocou nastavení systému";
 "pref_screen_security" = "Zabezpečenie obrazovky";
+"pref_system_default" = "Predvolené nastavenie";

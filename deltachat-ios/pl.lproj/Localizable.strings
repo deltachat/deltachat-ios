@@ -392,6 +392,7 @@
 "pref_silent" = "Cichy";
 "pref_privacy" = "Prywatność";
 "pref_chats_and_media" = "Czaty i media";
+"pref_system_default" = "Domyślny systemu";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Jasny";
 "pref_dark_theme" = "Ciemny";

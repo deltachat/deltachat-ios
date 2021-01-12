@@ -363,6 +363,7 @@
 "pref_silent" = "Tyst";
 "pref_privacy" = "Integritet";
 "pref_chats_and_media" = "Chattar och media";
+"pref_system_default" = "Systemets standardinställning";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Ljust";
 "pref_dark_theme" = "Mörkt";

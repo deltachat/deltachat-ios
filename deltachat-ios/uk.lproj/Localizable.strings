@@ -9,7 +9,7 @@
 "off" = "Вимкн.";
 "def" = "За замовчуванням";
 "default_value" = "За замовчуванням (%1$@)";
-"default_value_as_above" = "За замовчуванням (так сам, як вказано вище)";
+"default_value_as_above" = "За замовчуванням (так само, як вказано вище)";
 "custom" = "Персональне налаштування";
 "none" = "Не задано";
 "automatic" = "Автоматично";
@@ -407,6 +407,7 @@
 "pref_silent" = "Беззвучний";
 "pref_privacy" = "Конфіденційність";
 "pref_chats_and_media" = "Чати і медіа";
+"pref_system_default" = "Системне значення за замовчуванням";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Світла";
 "pref_dark_theme" = "Темна";

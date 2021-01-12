@@ -277,6 +277,7 @@
 "pref_silent" = "靜音";
 "pref_privacy" = "隱私權設定";
 "pref_chats_and_media" = "對話和媒體設定";
+"pref_system_default" = "系統預設";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "亮色";
 "pref_dark_theme" = "暗色";

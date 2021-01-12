@@ -326,6 +326,7 @@
 "pref_sound" = "Garsas";
 "pref_privacy" = "Privatumas";
 "pref_chats_and_media" = "Pokalbiai ir medija";
+"pref_system_default" = "Sistemos numatytoji";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Šviesi";
 "pref_dark_theme" = "Tamsi";

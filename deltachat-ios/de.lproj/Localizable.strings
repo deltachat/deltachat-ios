@@ -407,6 +407,7 @@
 "pref_silent" = "Leise";
 "pref_privacy" = "Datenschutz";
 "pref_chats_and_media" = "Chats und Medien";
+"pref_system_default" = "Systemstandard";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Hell";
 "pref_dark_theme" = "Dunkel";

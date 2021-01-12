@@ -178,6 +178,7 @@
 "pref_silent" = "அமைதி";
 "pref_privacy" = "தனியுரிமை";
 "pref_chats_and_media" = "அரட்டைகள் மற்றும் ஊடகங்கள்";
+"pref_system_default" = "கருவி இயல்புநிலை";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "வெளிச்சமிக்க";
 "pref_dark_theme" = "இருள்கொண்ட";

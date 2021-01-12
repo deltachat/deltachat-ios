@@ -407,6 +407,7 @@
 "pref_silent" = "Беззвучный";
 "pref_privacy" = "Конфиденциальность";
 "pref_chats_and_media" = "Чаты и медиафайлы";
+"pref_system_default" = "По умолчанию";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Светлая";
 "pref_dark_theme" = "Тёмная";

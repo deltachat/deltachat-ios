@@ -75,7 +75,7 @@
 "draft" = "Bozza";
 "image" = "Immagine";
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
-"reply_noun" = "Risponde";
+"reply_noun" = "Rispondi";
 "gif" = "Gif";
 "images" = "Immagine";
 "audio" = "Audio";
@@ -407,6 +407,7 @@
 "pref_silent" = "Silenzia";
 "pref_privacy" = "Privacy";
 "pref_chats_and_media" = "Chat e media";
+"pref_system_default" = "Predefinito di sistema";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Chiaro";
 "pref_dark_theme" = "Scuro";

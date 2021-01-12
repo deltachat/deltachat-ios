@@ -220,6 +220,7 @@
 "pref_silent" = "Csendes";
 "pref_privacy" = "Privacy";
 "pref_chats_and_media" = "Csevegések és média";
+"pref_system_default" = "Alapbeállítás";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Világos";
 "pref_dark_theme" = "Sötét";
