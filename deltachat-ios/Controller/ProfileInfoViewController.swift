@@ -34,7 +34,7 @@ class ProfileInfoViewController: UITableViewController {
         cell.onTextFieldChange = {[weak self] textField in
             self?.displayName = textField.text
         }
-        cell.textField.returnKeyType = .continue
+        cell.textField.returnKeyType = .default
         return cell
     }()
 

@@ -47,7 +47,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("pref_your_name"))
         cell.setText(text: dcContext.displayname)
         cell.textFieldDelegate = self
-        cell.textField.returnKeyType = .continue
+        cell.textField.returnKeyType = .default
         return cell
     }()
 

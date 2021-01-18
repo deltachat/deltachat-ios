@@ -37,7 +37,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         cell.onTextFieldChange = self.updateGroupName
         cell.textField.autocorrectionType = UITextAutocorrectionType.no
         cell.textField.enablesReturnKeyAutomatically = true
-        cell.textField.returnKeyType = .continue
+        cell.textField.returnKeyType = .default
         cell.textFieldDelegate = self
         return cell
     }()
