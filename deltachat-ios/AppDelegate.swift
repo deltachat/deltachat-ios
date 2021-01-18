@@ -279,13 +279,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 
     func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        //remove foreground notifications after 4 seconds
-        if notification.request.identifier == Constants.notificationIdentifier {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [notification.request.identifier])
-            }
+        if #available(iOS 14.0, *) {
+            completionHandler([.list, .badge])
+        } else {
+            completionHandler([.badge])
         }
-        completionHandler([.alert, .sound])
     }
 
     func registerForPushNotifications() {
