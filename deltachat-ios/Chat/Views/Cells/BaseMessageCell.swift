@@ -161,8 +161,8 @@ public class BaseMessageCell: UITableViewCell {
             topLabel.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 8),
             topLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 8),
             bottomLabel.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 6),
-            messageBackgroundContainer.constraintAlignTopTo(contentView, paddingTop: 6),
-            messageBackgroundContainer.constraintAlignBottomTo(contentView),
+            messageBackgroundContainer.constraintAlignTopTo(contentView, paddingTop: 3),
+            messageBackgroundContainer.constraintAlignBottomTo(contentView, paddingBottom: 3),
             bottomLabel.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
             bottomLabel.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8)
         ])
