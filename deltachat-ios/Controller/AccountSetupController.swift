@@ -91,7 +91,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.tag = tagPasswordCell
         cell.textField.tag = tagTextFieldPassword  // will be used to eventually show oAuth-Dialogue when selecting
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        cell.textField.returnKeyType = advancedSectionShowing ? .next : .done
+        cell.textField.returnKeyType = advancedSectionShowing ? .next : .default
         return cell
     }()
 
@@ -508,7 +508,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         advancedShowCell.detailTextLabel?.text = willShow ? "\u{2013}" : nil
 
         advancedSectionShowing = willShow // set flag before delete/insert, because cellForRowAt will be triggered and uses this flag
-        passwordCell.textField.returnKeyType = willShow ? .next : .done
+        passwordCell.textField.returnKeyType = willShow ? .next : .default
         if willShow {
             tableView.insertRows(at: advancedIndexPaths, with: .fade)
         } else {
