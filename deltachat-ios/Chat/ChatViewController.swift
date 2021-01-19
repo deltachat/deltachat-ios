@@ -282,7 +282,7 @@ class ChatViewController: UITableViewController {
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
-                self.tableView.reloadData()
+                self.reloadData()
             }
         }
     }
@@ -425,7 +425,7 @@ class ChatViewController: UITableViewController {
                 self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
                 if lastSectionVisibleBeforeTransition {
                     DispatchQueue.main.async { [weak self] in
-                        self?.tableView.reloadData()
+                        self?.reloadData()
                         self?.scrollToBottom(animated: false)
                     }
                 }
@@ -441,7 +441,7 @@ class ChatViewController: UITableViewController {
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messageIds.count //viewModel.numberOfRowsIn(section: section)
+        return messageIds.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -620,11 +620,19 @@ class ChatViewController: UITableViewController {
     private func refreshMessages() {
         self.messageIds = self.getMessageIds()
         let wasLastSectionVisible = self.isLastRowVisible()
-        self.tableView.reloadData()
+        self.reloadData()
         if wasLastSectionVisible {
             self.scrollToBottom(animated: true)
         }
         self.showEmptyStateView(self.messageIds.isEmpty)
+    }
+
+    func reloadData() {
+        let selectredRows = tableView.indexPathsForSelectedRows
+        tableView.reloadData()
+        selectredRows?.forEach({ (selectedRow) in
+            self.tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
+        })
     }
 
     private func loadMessages() {
@@ -635,7 +643,7 @@ class ChatViewController: UITableViewController {
                 let wasMessageIdsEmpty = self.messageIds.isEmpty
                 // update message ids
                 self.messageIds = self.getMessageIds()
-                self.tableView.reloadData()
+                self.reloadData()
                 if let msgId = self.highlightedMsg, let msgPosition = self.messageIds.firstIndex(of: msgId) {
                     self.tableView.scrollToRow(at: IndexPath(row: msgPosition, section: 0), at: .top, animated: false)
                     self.highlightedMsg = nil
@@ -977,7 +985,7 @@ class ChatViewController: UITableViewController {
                 self?.dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
             }
             let wasLastSectionVisible = self.isLastRowVisible()
-            tableView.reloadData()
+            reloadData()
             if wasLastSectionVisible {
                 self.scrollToBottom(animated: true)
             }
@@ -998,7 +1006,7 @@ class ChatViewController: UITableViewController {
         messageIds.append(message.id)
         emptyStateView.isHidden = true
 
-        tableView.reloadData()
+        reloadData()
         if wasLastSectionVisible || message.isFromCurrentSender {
             scrollToBottom(animated: true)
         }
