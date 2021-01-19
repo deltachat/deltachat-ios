@@ -733,3 +733,5 @@
 "a11y_voice_message_hint_ios" = "After recording double-tap to send. To discard the recording scrub left-right with two fingers.";
 "login_error_no_internet_connection" = "No internet connection, can\'t log in to your server.";
 "share_account_not_configured" = "Account is not configured.";
+
+"select_more" = "Select more";

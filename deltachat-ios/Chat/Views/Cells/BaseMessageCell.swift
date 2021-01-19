@@ -185,7 +185,7 @@ public class BaseMessageCell: UITableViewCell {
 
         topCompactView = false
         bottomCompactView = false
-        selectionStyle = .none
+        
 
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
         gestureRecognizer.numberOfTapsRequired = 1
@@ -415,6 +415,10 @@ public class BaseMessageCell: UITableViewCell {
 
     @objc func messageCopy(_ sender: Any?) {
         self.performAction(#selector(BaseMessageCell.messageCopy(_:)), with: sender)
+    }
+
+    @objc func messageSelectMore(_ sender: Any?) {
+        self.performAction(#selector(BaseMessageCell.messageSelectMore(_:)), with: sender)
     }
 
     func performAction(_ action: Selector, with sender: Any?) {

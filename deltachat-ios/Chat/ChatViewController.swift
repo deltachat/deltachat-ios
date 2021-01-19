@@ -164,11 +164,25 @@ class ChatViewController: UITableViewController {
             }
         )
 
+        let selectMoreItem = ContextMenuProvider.ContextMenuItem(
+            title: String.localized("select_more"),
+            imageName: "ic_check",
+            action: #selector(BaseMessageCell.messageSelectMore),
+            onPerform: { indexPath in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    let messageId = self.messageIds[indexPath.row]
+                    self.tableView.setEditing(true, animated: true)
+                    self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                }
+            }
+        )
+
         let config = ContextMenuProvider()
         if #available(iOS 13.0, *), !disableWriting {
-            config.setMenu([replyItem, forwardItem, infoItem, copyItem, deleteItem])
+            config.setMenu([replyItem, forwardItem, infoItem, copyItem, selectMoreItem, deleteItem])
         } else {
-            config.setMenu([forwardItem, infoItem, copyItem, deleteItem])
+            config.setMenu([forwardItem, infoItem, copyItem, deleteItem, selectMoreItem])
         }
 
         return config
@@ -226,6 +240,8 @@ class ChatViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
+        tableView.allowsSelection = false
+        tableView.allowsMultipleSelectionDuringEditing = true
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
             return
@@ -525,6 +541,9 @@ class ChatViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            return
+        }
         let messageId = messageIds[indexPath.row]
         let message = DcMsg(id: messageId)
         if message.isSetupMessage {
