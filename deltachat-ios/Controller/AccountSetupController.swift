@@ -30,11 +30,13 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     private let tagTextFieldEmail = 100
     private let tagTextFieldPassword = 200
-    private let tagTextFieldImapServer = 300
-    private let tagTextFieldImapLogin = 400
-    private let tagTextFieldSmtpServer = 500
-    private let tagTextFieldSmtpUser = 600
+    private let tagTextFieldImapLogin = 300
+    private let tagTextFieldImapServer = 400
+    private let tagTextFieldImapPort = 500
+    private let tagTextFieldSmtpLogin = 600
     private let tagTextFieldSmtpPassword = 700
+    private let tagTextFieldSmtpServer = 800
+    private let tagTextFieldSmtpPort = 900
 
     // add cells to sections
 
@@ -80,6 +82,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textField.addTarget(self, action: #selector(emailCellEdited), for: .editingChanged)
         cell.textField.tag = tagTextFieldEmail // will be used to eventually show oAuth-Dialogue when pressing return key
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        cell.textField.returnKeyType = .next
         return cell
     }()
 
@@ -88,6 +91,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.tag = tagPasswordCell
         cell.textField.tag = tagTextFieldPassword  // will be used to eventually show oAuth-Dialogue when selecting
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        cell.textField.returnKeyType = advancedSectionShowing ? .next : .default
         return cell
     }()
 
@@ -135,6 +139,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
         cell.textField.autocapitalizationType = .none
+        cell.textField.returnKeyType = .next
         return cell
     }()
 
@@ -146,6 +151,10 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.setText(text: dcContext.mailUser ?? nil)
         cell.textField.tag = tagTextFieldImapLogin
         cell.tag = tagImapUserCell
+        cell.textField.autocorrectionType = .no
+        cell.textField.spellCheckingType = .no
+        cell.textField.autocapitalizationType = .none
+        cell.textField.returnKeyType = .next
         return cell
     }()
 
@@ -167,7 +176,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             delegate: self)
         cell.tag = tagImapPortCell
         cell.setText(text: editablePort(port: dcContext.mailPort))
-        cell.textField.tag = tagImapPortCell
+        cell.textField.tag = tagTextFieldImapPort
         cell.textField.keyboardType = .numberPad
         return cell
     }()
@@ -192,6 +201,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
         cell.textField.autocapitalizationType = .none
+        cell.textField.returnKeyType = .next
         return cell
     }()
 
@@ -200,9 +210,13 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             descriptionID: "login_smtp_login",
             placeholder: String.localized("automatic"),
             delegate: self)
-        cell.textField.tag = tagTextFieldSmtpUser
+        cell.textField.tag = tagTextFieldSmtpLogin
         cell.setText(text: dcContext.sendUser ?? nil)
         cell.tag = tagSmtpUserCell
+        cell.textField.autocorrectionType = .no
+        cell.textField.spellCheckingType = .no
+        cell.textField.autocapitalizationType = .none
+        cell.textField.returnKeyType = .next
         return cell
     }()
 
@@ -213,7 +227,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             delegate: self)
         cell.tag = tagSmtpPortCell
         cell.setText(text: editablePort(port: dcContext.sendPort))
-        cell.textField.tag = tagSmtpPortCell
+        cell.textField.tag = tagTextFieldSmtpPort
         cell.textField.keyboardType = .numberPad
         return cell
     }()
@@ -228,6 +242,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textField.isSecureTextEntry = true
         cell.textField.tag = tagTextFieldSmtpPassword
         cell.tag = tagSmtpPasswordCell
+        cell.textField.returnKeyType = .next
         return cell
     }()
 
@@ -493,7 +508,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         advancedShowCell.detailTextLabel?.text = willShow ? "\u{2013}" : nil
 
         advancedSectionShowing = willShow // set flag before delete/insert, because cellForRowAt will be triggered and uses this flag
-
+        passwordCell.textField.returnKeyType = willShow ? .next : .default
         if willShow {
             tableView.insertRows(at: advancedIndexPaths, with: .fade)
         } else {
@@ -843,15 +858,10 @@ extension AccountSetupController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let currentTag = textField.tag
         if let nextField = tableView.viewWithTag(currentTag + 100) as? UITextField {
-            if nextField.tag > tagTextFieldPassword, !advancedSectionShowing {
-                // gets here when trying to activate a collapsed cell
-                return false
-            }
             nextField.becomeFirstResponder()
             return true
         } else {
             textField.resignFirstResponder()
-            emailCell.textField.becomeFirstResponder()
             let indexPath = IndexPath(row: 0, section: 0)
             tableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.top, animated: true)
             return true

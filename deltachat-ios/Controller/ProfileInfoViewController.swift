@@ -28,12 +28,13 @@ class ProfileInfoViewController: UITableViewController {
     }()
 
     private lazy var nameCell: TextFieldCell = {
-        let cell =  TextFieldCell.makeNameCell()
+        let cell =  TextFieldCell.makeNameCell(delegate: self)
         cell.placeholder = String.localized("pref_your_name")
         cell.setText(text: dcContext.displayname)
         cell.onTextFieldChange = {[weak self] textField in
             self?.displayName = textField.text
         }
+        cell.textField.returnKeyType = .default
         return cell
     }()
 
@@ -145,5 +146,13 @@ extension ProfileInfoViewController: MediaPickerDelegate {
     func onImageSelected(image: UIImage) {
         AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: image)
         updateAvatarCell()
+    }
+}
+
+extension ProfileInfoViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
