@@ -6,6 +6,7 @@ class MailboxViewController: ChatViewController {
     override init(dcContext: DcContext, chatId: Int, highlightedMsg: Int? = nil) {
         super.init(dcContext: dcContext, chatId: chatId)
         hidesBottomBarWhenPushed = true
+        tableView.allowsSelectionDuringEditing = false
         showCustomNavBar = false
     }
 
