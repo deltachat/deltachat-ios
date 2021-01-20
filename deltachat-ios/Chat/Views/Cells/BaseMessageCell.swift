@@ -438,12 +438,17 @@ extension BaseMessageCell: MessageLabelDelegate {
     public func didSelectDate(_ date: Date) {}
 
     public func didSelectPhoneNumber(_ phoneNumber: String) {
-        baseDelegate?.phoneNumberTapped(number: phoneNumber)
+        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            baseDelegate?.phoneNumberTapped(number: phoneNumber, indexPath: indexPath)
+        }
+
     }
 
     public func didSelectURL(_ url: URL) {
-        logger.debug("did select URL")
-        baseDelegate?.urlTapped(url: url)
+        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            logger.debug("did select URL")
+            baseDelegate?.urlTapped(url: url, indexPath: indexPath)
+        }
     }
 
     public func didSelectTransitInformation(_ transitInformation: [String: String]) {}
@@ -458,9 +463,9 @@ extension BaseMessageCell: MessageLabelDelegate {
 // MARK: - BaseMessageCellDelegate
 // this delegate contains possible events from base cells or from derived cells
 public protocol BaseMessageCellDelegate: class {
-    func commandTapped(command: String) // `/command`
-    func phoneNumberTapped(number: String)
-    func urlTapped(url: URL) // url is eg. `https://foo.bar`
+    func commandTapped(command: String, indexPath: IndexPath) // `/command`
+    func phoneNumberTapped(number: String, indexPath: IndexPath)
+    func urlTapped(url: URL, indexPath: IndexPath) // url is eg. `https://foo.bar`
     func imageTapped(indexPath: IndexPath)
     func avatarTapped(indexPath: IndexPath)
     func textTapped(indexPath: IndexPath)

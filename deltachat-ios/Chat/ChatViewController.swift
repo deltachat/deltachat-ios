@@ -1194,7 +1194,7 @@ class ChatViewController: UITableViewController {
 
     func handleSelection(indexPath: IndexPath) -> Bool {
         if tableView.isEditing {
-            if (tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false) {
+            if tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false {
                 tableView.deselectRow(at: indexPath, animated: false)
             } else {
                 tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
@@ -1228,23 +1228,28 @@ extension ChatViewController: BaseMessageCellDelegate {
         }
     }
 
-    @objc func phoneNumberTapped(number: String) {
-        if handleUIMenu() { return }
+    @objc func phoneNumberTapped(number: String, indexPath: IndexPath) {
+        if handleUIMenu() || handleSelection(indexPath: indexPath) {
+            return
+        }
         logger.debug("phone number tapped \(number)")
     }
 
-    @objc func commandTapped(command: String) {
-        if handleUIMenu() { return }
+    @objc func commandTapped(command: String, indexPath: IndexPath) {
+        if handleUIMenu() || handleSelection(indexPath: indexPath) {
+            return
+        }
         logger.debug("command tapped \(command)")
     }
 
-    @objc func urlTapped(url: URL) {
-        if handleUIMenu() { return }
+    @objc func urlTapped(url: URL, indexPath: IndexPath) {
+        if handleUIMenu() || handleSelection(indexPath: indexPath) {
+            return
+        }
         if Utils.isEmail(url: url) {
             logger.debug("tapped on contact")
             let email = Utils.getEmailFrom(url)
             self.askToChatWith(email: email)
-            ///TODO: implement handling
         } else {
             UIApplication.shared.open(url)
         }
