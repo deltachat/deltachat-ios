@@ -1191,12 +1191,25 @@ class ChatViewController: UITableViewController {
         }
         return false
     }
+
+    func handleSelection(indexPath: IndexPath) -> Bool {
+        if tableView.isEditing {
+            if (tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false) {
+                tableView.deselectRow(at: indexPath, animated: false)
+            } else {
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            }
+            return true
+        }
+        return false
+    }
 }
 
 // MARK: - BaseMessageCellDelegate
 extension ChatViewController: BaseMessageCellDelegate {
 
     @objc func quoteTapped(indexPath: IndexPath) {
+        if handleSelection(indexPath: indexPath) { return }
         _ = handleUIMenu()
         let msg = DcMsg(id: messageIds[indexPath.row])
         if let quoteMsg = msg.quoteMessage {
@@ -1205,7 +1218,10 @@ extension ChatViewController: BaseMessageCellDelegate {
     }
 
     @objc func textTapped(indexPath: IndexPath) {
-        if handleUIMenu() { return }
+        if handleUIMenu() || handleSelection(indexPath: indexPath) {
+            return
+        }
+
         let message = DcMsg(id: messageIds[indexPath.row])
         if message.isSetupMessage {
             didTapAsm(msg: message, orgText: "")
@@ -1235,7 +1251,9 @@ extension ChatViewController: BaseMessageCellDelegate {
     }
 
     @objc func imageTapped(indexPath: IndexPath) {
-        if handleUIMenu() { return }
+        if handleUIMenu() || handleSelection(indexPath: indexPath) {
+            return
+        }
         showMediaGalleryFor(indexPath: indexPath)
     }
 
