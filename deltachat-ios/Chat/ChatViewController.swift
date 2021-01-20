@@ -173,7 +173,12 @@ class ChatViewController: UITableViewController {
                     guard let self = self else { return }
                     let messageId = self.messageIds[indexPath.row]
                     self.tableView.setEditing(true, animated: true)
-                    self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                    UIView.performWithoutAnimation {
+                        if let indexPaths = self.tableView.indexPathsForVisibleRows {
+                            self.tableView.reloadRows(at: indexPaths, with: .none)
+                        }
+                        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                    }
                 }
             }
         )
@@ -240,7 +245,6 @@ class ChatViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
-        tableView.allowsSelection = false
         tableView.allowsMultipleSelectionDuringEditing = true
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
@@ -480,6 +484,8 @@ class ChatViewController: UITableViewController {
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     isAvatarVisible: configureAvatarVisibility(for: message, at: indexPath),
                     isGroup: isGroupChat)
+
+        cell.selectionStyle = tableView.isEditing ? .default : .none
         return cell
     }
 
