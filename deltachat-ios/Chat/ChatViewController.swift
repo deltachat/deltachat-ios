@@ -553,8 +553,15 @@ class ChatViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            handleEditingBar()
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
+            handleEditingBar()
             return
         }
         let messageId = messageIds[indexPath.row]
@@ -1219,9 +1226,19 @@ class ChatViewController: UITableViewController {
             } else {
                 tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             }
+            handleEditingBar()
             return true
         }
         return false
+    }
+
+    func handleEditingBar() {
+        if let rows = tableView.indexPathsForSelectedRows,
+           !rows.isEmpty {
+            editingBar.isEnabled = true
+        } else {
+            editingBar.isEnabled = false
+        }
     }
 
     func setEditing(isEditing: Bool, selectedAtIndexPath: IndexPath? = nil) {
@@ -1232,8 +1249,8 @@ class ChatViewController: UITableViewController {
             if let indexPaths = self.tableView.indexPathsForVisibleRows {
                 self.tableView.reloadRows(at: indexPaths, with: .none)
             }
-            if isEditing {
-                self.tableView.selectRow(at: selectedAtIndexPath, animated: false, scrollPosition: .none)
+            if let indexPath = selectedAtIndexPath {
+                _ = handleSelection(indexPath: indexPath)
             }
         }
     }

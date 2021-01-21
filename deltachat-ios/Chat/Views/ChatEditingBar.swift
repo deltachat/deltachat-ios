@@ -17,20 +17,26 @@ public class ChatEditingBar: UIView, InputItem {
     public func keyboardEditingBeginsAction() {}
 
 
+    public var isEnabled: Bool {
+        willSet(newValue) {
+            deleteButton.isEnabled = newValue
+            forwardButton.isEnabled = newValue
+        }
+    }
+
     weak var delegate: ChatEditingDelegate?
 
-    private lazy var cancelImageView: UIButton = {
+    private lazy var cancelButton: UIButton = {
         let view = UIButton()
         view.tintColor = .systemBlue
         view.setImage(#imageLiteral(resourceName: "ic_close_36pt").withRenderingMode(.alwaysTemplate), for: .normal)
-        view.adjustsImageWhenHighlighted = true
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true
         return view
     }()
 
-    private lazy var deleteImageView: UIButton = {
+    private lazy var deleteButton: UIButton = {
         let view = UIButton()
         view.tintColor = .red
         view.setImage( #imageLiteral(resourceName: "ic_delete").withRenderingMode(.alwaysTemplate), for: .normal)
@@ -40,7 +46,7 @@ public class ChatEditingBar: UIView, InputItem {
         return view
     }()
 
-    private lazy var forwardImageView: UIButton = {
+    private lazy var forwardButton: UIButton = {
         let view = UIButton()
         view.tintColor = DcColors.defaultTextColor
         view.setImage( #imageLiteral(resourceName: "ic_forward_white_36pt").withRenderingMode(.alwaysTemplate), for: .normal)
@@ -51,7 +57,7 @@ public class ChatEditingBar: UIView, InputItem {
     }()
 
     private lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [deleteImageView, forwardImageView, cancelImageView])
+        let view = UIStackView(arrangedSubviews: [deleteButton, forwardButton, cancelButton])
         view.axis = .horizontal
         view.distribution = .equalSpacing
         view.alignment = .center
@@ -66,6 +72,7 @@ public class ChatEditingBar: UIView, InputItem {
     }
 
     public override init(frame: CGRect) {
+        isEnabled = false
         super.init(frame: frame)
         self.setupSubviews()
     }
@@ -82,24 +89,24 @@ public class ChatEditingBar: UIView, InputItem {
             mainContentView.constraintAlignBottomTo(self, paddingBottom: 4),
             mainContentView.constraintAlignLeadingTo(self),
             mainContentView.constraintAlignTrailingTo(self),
-            deleteImageView.constraintHeightTo(36),
-            deleteImageView.constraintWidthTo(36),
-            forwardImageView.constraintHeightTo(36),
-            forwardImageView.constraintWidthTo(36),
-            cancelImageView.constraintHeightTo(36),
-            cancelImageView.constraintWidthTo(36)
+            deleteButton.constraintHeightTo(36),
+            deleteButton.constraintWidthTo(36),
+            forwardButton.constraintHeightTo(36),
+            forwardButton.constraintWidthTo(36),
+            cancelButton.constraintHeightTo(36),
+            cancelButton.constraintWidthTo(36)
         ])
 
         backgroundColor = DcColors.chatBackgroundColor
 
         let cancelGestureListener = UITapGestureRecognizer(target: self, action: #selector(onCancelPressed))
-        cancelImageView.addGestureRecognizer(cancelGestureListener)
+        cancelButton.addGestureRecognizer(cancelGestureListener)
 
         let forwardGestureListener = UITapGestureRecognizer(target: self, action: #selector(onForwardPressed))
-        forwardImageView.addGestureRecognizer(forwardGestureListener)
+        forwardButton.addGestureRecognizer(forwardGestureListener)
 
         let deleteGestureListener = UITapGestureRecognizer(target: self, action: #selector(onDeletePressed))
-        deleteImageView.addGestureRecognizer(deleteGestureListener)
+        deleteButton.addGestureRecognizer(deleteGestureListener)
     }
 
     @objc func onCancelPressed() {
