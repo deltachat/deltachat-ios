@@ -31,6 +31,11 @@ class MediaPreview: DraftPreview {
     }
 
     override func configure(draft: DraftModel) {
+        if draft.isEditing {
+            self.isHidden = true
+            return
+        }
+        
         if (draft.viewType == DC_MSG_GIF || draft.viewType == DC_MSG_IMAGE), let path = draft.attachment {
             contentImageView.sd_setImage(with: URL(fileURLWithPath: path, isDirectory: false), completed: { image, error, _, _ in
                 if let error = error {

@@ -39,6 +39,13 @@ class ChatViewController: UITableViewController {
         return view
     }()
 
+    public lazy var editingBar: ChatEditingBar = {
+        let view = ChatEditingBar()
+        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     open override var shouldAutorotate: Bool {
         return false
     }
@@ -128,7 +135,7 @@ class ChatViewController: UITableViewController {
 
         let deleteItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("delete"),
-            imageName: "trash",
+            imageName: "ic_delete",
             isDestructive: true,
             action: #selector(BaseMessageCell.messageDelete),
             onPerform: { [weak self] indexPath in
@@ -172,13 +179,7 @@ class ChatViewController: UITableViewController {
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     let messageId = self.messageIds[indexPath.row]
-                    self.tableView.setEditing(true, animated: true)
-                    UIView.performWithoutAnimation {
-                        if let indexPaths = self.tableView.indexPathsForVisibleRows {
-                            self.tableView.reloadRows(at: indexPaths, with: .none)
-                        }
-                        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-                    }
+                    self.setEditing(isEditing: true, selectedAtIndexPath: indexPath)
                 }
             }
         )
@@ -257,6 +258,7 @@ class ChatViewController: UITableViewController {
             draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
             messageInputBar.inputTextView.text = draft.text
             configureDraftArea(draft: draft)
+            editingBar.delegate = self
         }
 
         let notificationCenter = NotificationCenter.default
@@ -501,7 +503,11 @@ class ChatViewController: UITableViewController {
 
     private func configureDraftArea(draft: DraftModel) {
         draftArea.configure(draft: draft)
-        // setStackViewItems recalculates the proper messageInputBar height
+        if draft.isEditing {
+            messageInputBar.setMiddleContentView(editingBar, animated: false)
+        } else {
+            messageInputBar.setMiddleContentView(messageInputBar.inputTextView, animated: false)
+        }
         messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: true)
     }
 
@@ -872,10 +878,17 @@ class ChatViewController: UITableViewController {
     }
 
     private func askToDeleteMessage(id: Int) {
-        let title = String.localized(stringID: "ask_delete_messages", count: 1)
+        self.askToDeleteMessages(ids: [id])
+    }
+
+    private func askToDeleteMessages(ids: [Int]) {
+        let title = String.localized(stringID: "ask_delete_messages", count: ids.count)
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { _ in
-                            self.dcContext.deleteMessage(msgId: id)
+                            self.dcContext.deleteMessages(msgIds: ids)
+                            if self.tableView.isEditing {
+                                self.setEditing(isEditing: false)
+                            }
                           })
     }
 
@@ -1209,6 +1222,20 @@ class ChatViewController: UITableViewController {
         }
         return false
     }
+
+    func setEditing(isEditing: Bool, selectedAtIndexPath: IndexPath? = nil) {
+        self.tableView.setEditing(isEditing, animated: true)
+        self.draft.isEditing = isEditing
+        self.configureDraftArea(draft: self.draft)
+        UIView.performWithoutAnimation {
+            if let indexPaths = self.tableView.indexPathsForVisibleRows {
+                self.tableView.reloadRows(at: indexPaths, with: .none)
+            }
+            if isEditing {
+                self.tableView.selectRow(at: selectedAtIndexPath, animated: false, scrollPosition: .none)
+            }
+        }
+    }
 }
 
 // MARK: - BaseMessageCellDelegate
@@ -1360,6 +1387,27 @@ extension ChatViewController: DraftPreviewDelegate {
     }
 }
 
+// MARK: - ChatEditingDelegate
+extension ChatViewController: ChatEditingDelegate {
+    func onDeletePressed() {
+        if let rows = tableView.indexPathsForSelectedRows {
+            let messageIdsToDelete = rows.compactMap { messageIds[$0.row] }
+            askToDeleteMessages(ids: messageIdsToDelete)
+        }
+    }
+
+    func onForwardPressed() {
+        logger.debug("onForward pressed")
+    }
+
+    func onCancelPressed() {
+        setEditing(isEditing: false)
+    }
+
+
+}
+
+// MARK: - QLPreviewControllerDelegate
 extension ChatViewController: QLPreviewControllerDelegate {
     @available(iOS 13.0, *)
     func previewController(_ controller: QLPreviewController, editingModeFor previewItem: QLPreviewItem) -> QLPreviewItemEditingMode {

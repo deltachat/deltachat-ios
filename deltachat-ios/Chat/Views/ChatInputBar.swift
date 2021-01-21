@@ -1,5 +1,6 @@
 import UIKit
 import InputBarAccessoryView
+import DcCore
 
 
 public class ChatInputBar: InputBarAccessoryView {
@@ -20,6 +21,7 @@ public class ChatInputBar: InputBarAccessoryView {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupKeyboardObserver()
+        backgroundColor = DcColors.chatBackgroundColor
     }
 
     func setupKeyboardObserver() {
@@ -56,8 +58,10 @@ public class ChatInputBar: InputBarAccessoryView {
     }
 
     public func configure(draft: DraftModel) {
-        hasDraft = draft.attachment != nil
-        hasQuote = draft.quoteText != nil
+        hasDraft = !draft.isEditing && draft.attachment != nil
+        hasQuote = !draft.isEditing && draft.quoteText != nil
+        leftStackView.isHidden = draft.isEditing
+        rightStackView.isHidden = draft.isEditing
         maxTextViewHeight = calculateMaxTextViewHeight()
     }
 

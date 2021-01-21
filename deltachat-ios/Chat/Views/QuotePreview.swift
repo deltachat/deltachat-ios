@@ -26,7 +26,8 @@ public class QuotePreview: DraftPreview {
     }
 
     override public func configure(draft: DraftModel) {
-        if let quoteText = draft.quoteText {
+        if !draft.isEditing,
+           let quoteText = draft.quoteText {
             quoteView.quote.text = quoteText
             compactView = draft.attachment != nil
             calculateQuoteHeight(compactView: compactView)
