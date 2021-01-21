@@ -488,7 +488,6 @@ class ChatViewController: UITableViewController {
                     isAvatarVisible: configureAvatarVisibility(for: message, at: indexPath),
                     isGroup: isGroupChat)
 
-        cell.selectionStyle = tableView.isEditing ? .default : .none
         return cell
     }
 
@@ -1245,13 +1244,8 @@ class ChatViewController: UITableViewController {
         self.tableView.setEditing(isEditing, animated: true)
         self.draft.isEditing = isEditing
         self.configureDraftArea(draft: self.draft)
-        UIView.performWithoutAnimation {
-            if let indexPaths = self.tableView.indexPathsForVisibleRows {
-                self.tableView.reloadRows(at: indexPaths, with: .none)
-            }
-            if let indexPath = selectedAtIndexPath {
-                _ = handleSelection(indexPath: indexPath)
-            }
+        if let indexPath = selectedAtIndexPath {
+            _ = handleSelection(indexPath: indexPath)
         }
     }
 }

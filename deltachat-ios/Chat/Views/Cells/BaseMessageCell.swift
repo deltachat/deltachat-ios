@@ -146,6 +146,7 @@ public class BaseMessageCell: UITableViewCell {
 
 
     func setupSubviews() {
+        selectedBackgroundView = UIView()
         contentView.addSubview(messageBackgroundContainer)
         messageBackgroundContainer.addSubview(mainContentView)
         messageBackgroundContainer.addSubview(topLabel)
