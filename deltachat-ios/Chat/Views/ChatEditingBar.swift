@@ -19,30 +19,31 @@ public class ChatEditingBar: UIView, InputItem {
 
     weak var delegate: ChatEditingDelegate?
 
-    private lazy var cancelImageView: UIImageView = {
-        let view = UIImageView()
+    private lazy var cancelImageView: UIButton = {
+        let view = UIButton()
         view.tintColor = .systemBlue
-        view.image = #imageLiteral(resourceName: "ic_close_36pt").withRenderingMode(.alwaysTemplate)
+        view.setImage(#imageLiteral(resourceName: "ic_close_36pt").withRenderingMode(.alwaysTemplate), for: .normal)
+        view.adjustsImageWhenHighlighted = true
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true
         return view
     }()
 
-    private lazy var deleteImageView: UIImageView = {
-        let view = UIImageView()
+    private lazy var deleteImageView: UIButton = {
+        let view = UIButton()
         view.tintColor = .red
-        view.image = #imageLiteral(resourceName: "ic_delete").withRenderingMode(.alwaysTemplate)
+        view.setImage( #imageLiteral(resourceName: "ic_delete").withRenderingMode(.alwaysTemplate), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
         view.contentMode = .scaleAspectFit
         return view
     }()
 
-    private lazy var forwardImageView: UIImageView = {
-        let view = UIImageView()
+    private lazy var forwardImageView: UIButton = {
+        let view = UIButton()
         view.tintColor = DcColors.defaultTextColor
-        view.image = #imageLiteral(resourceName: "ic_forward_white_36pt").withRenderingMode(.alwaysTemplate)
+        view.setImage( #imageLiteral(resourceName: "ic_forward_white_36pt").withRenderingMode(.alwaysTemplate), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true
