@@ -246,7 +246,7 @@ class ChatViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
-        tableView.allowsMultipleSelectionDuringEditing = true
+
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
             return
@@ -259,6 +259,7 @@ class ChatViewController: UITableViewController {
             messageInputBar.inputTextView.text = draft.text
             configureDraftArea(draft: draft)
             editingBar.delegate = self
+            tableView.allowsMultipleSelectionDuringEditing = true
         }
 
         let notificationCenter = NotificationCenter.default
