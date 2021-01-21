@@ -4,7 +4,7 @@ import DcCore
 class RelayHelper {
     static var sharedInstance: RelayHelper = RelayHelper()
     private static var dcContext: DcContext?
-    var messageId: Int?
+    var messageIds: [Int]?
 
     private init() {
         guard RelayHelper.dcContext != nil else {
@@ -17,21 +17,25 @@ class RelayHelper {
     }
 
     func setForwardMessage(messageId: Int) {
-        self.messageId = messageId
+        self.messageIds = [messageId]
+    }
+
+    func setForwardMessages(messageIds: [Int]) {
+        self.messageIds = messageIds
     }
 
     func isForwarding() -> Bool {
-        return messageId != nil
+        return !(messageIds?.isEmpty ?? true)
     }
 
     func forward(to chat: Int) {
-        if let messageId = self.messageId {
-            RelayHelper.dcContext?.forwardMessage(with: messageId, to: chat)
+        if let messageIds = self.messageIds {
+            RelayHelper.dcContext?.forwardMessages(with: messageIds, to: chat)
         }
-        self.messageId = nil
+        self.messageIds = nil
     }
 
     func cancel() {
-        messageId = nil
+        messageIds = nil
     }
 }

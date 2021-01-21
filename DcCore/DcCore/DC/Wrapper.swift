@@ -267,11 +267,15 @@ public class DcContext {
     }
 
     public func deleteMessages(msgIds: [Int]) {
-        dc_delete_msgs(contextPointer, msgIds.compactMap{ UInt32($0) }, Int32(msgIds.count))
+        dc_delete_msgs(contextPointer, msgIds.compactMap { UInt32($0) }, Int32(msgIds.count))
     }
 
     public func forwardMessage(with msgId: Int, to chat: Int) {
         dc_forward_msgs(contextPointer, [UInt32(msgId)], 1, UInt32(chat))
+    }
+
+    public func forwardMessages(with msgIds: [Int], to chat: Int) {
+        dc_forward_msgs(contextPointer, msgIds.compactMap { UInt32($0) }, Int32(msgIds.count), UInt32(chat))
     }
 
     public func sendTextInChat(id: Int, message: String) {

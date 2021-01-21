@@ -1409,14 +1409,16 @@ extension ChatViewController: ChatEditingDelegate {
     }
 
     func onForwardPressed() {
-        logger.debug("onForward pressed")
+        if let rows = tableView.indexPathsForSelectedRows {
+            let messageIdsToForward = rows.compactMap { messageIds[$0.row] }
+            RelayHelper.sharedInstance.setForwardMessages(messageIds: messageIdsToForward)
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     func onCancelPressed() {
         setEditing(isEditing: false)
     }
-
-
 }
 
 // MARK: - QLPreviewControllerDelegate
