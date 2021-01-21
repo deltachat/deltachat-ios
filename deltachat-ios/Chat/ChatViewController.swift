@@ -1149,6 +1149,9 @@ class ChatViewController: UITableViewController {
     // context menu for iOS 13+
     @available(iOS 13, *)
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        if tableView.isEditing {
+            return nil
+        }
         return UIContextMenuConfiguration(
             identifier: nil,
             previewProvider: nil,
