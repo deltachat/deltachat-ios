@@ -63,7 +63,7 @@ public class ChatEditingBar: UIView, InputItem {
     }()
 
     private lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [deleteButton, forwardButton, cancelButton])
+        let view = UIStackView(arrangedSubviews: [cancelButton, forwardButton, deleteButton])
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.alignment = .center
