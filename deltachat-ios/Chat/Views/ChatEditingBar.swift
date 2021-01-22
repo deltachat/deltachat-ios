@@ -38,8 +38,14 @@ public class ChatEditingBar: UIView, InputItem {
 
     private lazy var deleteButton: UIButton = {
         let view = UIButton()
-        view.tintColor = .red
-        view.setImage( #imageLiteral(resourceName: "ic_delete").withRenderingMode(.alwaysTemplate), for: .normal)
+
+        if #available(iOS 13.0, *) {
+            view.setImage(UIImage(systemName: "trash"), for: .normal)
+            view.tintColor = .systemBlue
+        } else {
+            view.setTitle("delete", for: .normal)
+            view.setTitleColor(.systemBlue, for: .normal)
+        }
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
         view.contentMode = .scaleAspectFit

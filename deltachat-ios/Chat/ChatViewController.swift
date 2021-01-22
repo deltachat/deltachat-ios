@@ -135,7 +135,7 @@ class ChatViewController: UITableViewController {
 
         let deleteItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("delete"),
-            imageName: "ic_delete",
+            imageName: "trash",
             isDestructive: true,
             action: #selector(BaseMessageCell.messageDelete),
             onPerform: { [weak self] indexPath in
