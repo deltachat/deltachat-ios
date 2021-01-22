@@ -54,7 +54,7 @@ public class ChatEditingBar: UIView, InputItem {
 
     private lazy var forwardButton: UIButton = {
         let view = UIButton()
-        view.tintColor = DcColors.defaultTextColor
+        view.tintColor = .systemBlue
         view.setImage( #imageLiteral(resourceName: "ic_forward_white_36pt").withRenderingMode(.alwaysTemplate), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
