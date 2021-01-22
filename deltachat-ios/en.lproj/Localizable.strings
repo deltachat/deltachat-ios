@@ -161,6 +161,7 @@
 "menu_scroll_to_top" = "Scroll to the top";
 "menu_help" = "Help";
 "menu_select_all" = "Select all";
+"select_more" = "Select more";
 "menu_expand" = "Expand";
 "menu_edit_name" = "Edit name";
 "menu_settings" = "Settings";

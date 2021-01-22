@@ -150,6 +150,8 @@
 "menu_unmute" = "Dar voz";
 "menu_export_attachment" = "Exportar anexo";
 "menu_all_media" = "Todos os medios";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Mostrar na conversa";
 "menu_share" = "Compartir";
 "menu_block_contact" = "Bloquear contacto";
 "menu_unblock_contact" = "Desbloquear contacto";
@@ -270,7 +272,7 @@
 "messaging_disabled_device_chat" = "A conversa contén mensaxes creados localmente. Polo tanto non podes escribir ningunha mensaxe.";
 "messaging_disabled_deaddrop" = "Preme nunha mensaxe para aceptar ou denegar a solicitude de contacto";
 "cannot_display_unsuported_file_type" = "Non se pode motrar este tipo de ficheiro: %1$@";
-"attachment_failed_to_load" = "Erro ó cargar o anexo";
+"attachment_failed_to_load" = "Erro ao cargar o anexo";
 
 
 // map
@@ -373,6 +375,7 @@
 "pref_profile_info_headline" = "Info do teu perfil";
 "pref_profile_photo" = "Imaxe de perfil";
 "pref_blocked_contacts" = "Contactos bloqueados";
+"blocked_empty_hint" = "Móstranse aquí os contactos que bloqueas.";
 "pref_profile_photo_remove_ask" = "Eliminar foto de perfil?";
 "pref_password_and_account_settings" = "Contrasinal e conta";
 "pref_who_can_see_profile_explain" = "A túa foto de perfil e nome móstranse xunto coas túas mensaxes ao comunicarte con outras persoas. A información xa enviada non se pode agochar o borrar.";
@@ -490,6 +493,10 @@
 "autodel_server_title" = "Borrar mensaxes do servidor";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Queres borrar %1$d mensaxes agora e todas as novas mensaxes \"%2$@\" no futuro?\n\n• Esto inclúe todo o multimedia\n\n• As mensaxes borraranse fosen lidas ou non\n\n• As \"mensaxes gardadas\" non será borradas do dispositivo.";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "Desexas eliminar %1$d mensaxes e todas as \"%2$@\" novas mensaxes obtidas no futuro?\n\n⚠️ Esto inclúe emails, multimedia e \"Mensaxes gardadas\" en tódolos cartafoles do servidor\n\n⚠️ Non uses esta función se queres manter os datos gardados no servidor\n\n⚠️ Non uses esta función se estás a utilizar outro cliente de email ademáis de Delta Chat";
+// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+"autodel_server_enabled_hint" = "Esto inclúe emails, multimedia e \"Mensaxes gardadas\" en tódolos cartafoles do servidor. Non uses esta función se queres manter os datos gardados no servidor ou se estás a utilizar outro cliente de email ademáis de Delta Chat.";
 "autodel_confirm" = "Entendo, dalle e borra as mensaxes todas";
 "autodel_at_once" = "dunha vez";
 "after_30_seconds" = "Após 30 segundos";
@@ -592,7 +599,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Cambiaron os axustes para %1$@.";
 "verified_group_explain" = "Os grupos verificados (experimental) proporcionan seguridade contra ataques activos. As integrantes son verificadas cun segundo factor por outros membros e as mensaxes van sempre cifradas E2E.";
-"copy_qr_data_success" = "Copiado o url do QR ó portapapeis";
+"copy_qr_data_success" = "Copiado o url do QR ao portapapeis";
 
 
 // notifications 
@@ -716,3 +723,5 @@
 "pref_reliable_service_explain" = "Require unha notificación permanente";
 "perm_enable_bg_reminder_title" = "Toca aquí para recibir mensaxes mentras Delta Chat está en segundo plano.";
 "perm_enable_bg_already_done" = "Xa permitiches que Delta Chat reciba mensaxes en segundo plano\n\nSe aínda así non recibes as mensaxes, por favor comproba os axustes do sistema.";
+"update_1_14_android" = "Destacados da actualización 1.14:\n\n🧹 Despraza para responder: para responder a unha mensaxe concreta, despraza hacia á dereita (non aquí! non podes responder aquí 😛) Verás a cita na parte superior da caixa de texto e poderás escribir como sempre.\n\n🔥 Mensaxes efémeras - chegou a hora 😀. Calquera conversa pódese configurar para eliminar as mensaxes enviadas e recibidas após un tempo. Elixe \"Mensaxes efémeras\" desde o menú da conversa (non aquí!)\n\n👆 Abrir conversa na primeira mensaxe non lida\n\n💾 Enviar cousas a \"Mensaxes gardadas\" directamente e máis rápido (esto pódelo probar aquí: mantén presa esta mensaxe e despois toca a flecha arriba-a-dereita)\n\n🎃 Para rematar, arranxamos moitos fallos! Moitos eran arrepiantes, non volverán.";
+

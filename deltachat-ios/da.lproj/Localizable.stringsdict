@@ -98,6 +98,22 @@
 			<string>%d medlemmer</string>
 		</dict>
 	</dict>
+	<key>ask_send_following_n_files_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Send den følgende fil til 2%s?</string>
+			<key>other</key>
+			<string>Send de følgende %d filer til %s?</string>
+		</dict>
+	</dict>
 	<key>ask_delete_chat</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -111,7 +127,7 @@
 			<key>one</key>
 			<string>Slette %d samtale? Den vil ikke længere blive vist i samtale listen, dens beskeder vil forblive på serveren.</string>
 			<key>other</key>
-			<string>Slette %d samtaler? De vil ikke længere blive vist i samtale listen, deres beskeder vil forblive på serveren.</string>
+			<string>Slet %d samtaler? De vil ikke længere blive vist i samtale listen, deres beskeder vil forblive på serveren.</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -127,7 +143,7 @@
 			<key>one</key>
 			<string>Slette %d besked her og på serveren?</string>
 			<key>other</key>
-			<string>Slette %d beskeder her og på serveren?</string>
+			<string>Slet %d beskeder her og på serveren?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>

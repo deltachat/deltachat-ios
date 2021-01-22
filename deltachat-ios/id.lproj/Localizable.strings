@@ -149,6 +149,8 @@
 "menu_unmute" = "Aktifkan notifikasi";
 "menu_export_attachment" = "Ekspor lampiran";
 "menu_all_media" = "Semua media";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Tunjukkan dalam chat";
 "menu_share" = "Bagikan";
 "menu_block_contact" = "Blokir kontak";
 "menu_unblock_contact" = "Buka blokir kontak";
@@ -204,6 +206,7 @@
 "videochat_invite_user_to_videochat" = "Undang %1$@ ke obrolan video?";
 "videochat_contact_invited_hint" = "%1$@ diundang ke obrolan video.";
 "videochat_you_invited_hint" = "Anda diundang ke obrolan video.";
+"videochat_will_open_in_your_browser" = "Video chat ini akan terbuka di browser Anda.";
 "videochat_tap_to_join" = "Ketuk untuk bergabung";
 "videochat_tap_to_open" = "Ketuk untuk membuka";
 "videochat_invitation" = "Undangan obrolan video";
@@ -436,6 +439,7 @@
 "profile_image_delete" = "Hapus gambar profil";
 
 
+"emoji_not_found" = "Emoji tidak ditemukan";
 "emoji_recent" = "Terakhir digunakan";
 "emoji_nature" = "Hewan & Alam";
 "emoji_foods" = "Makanan & Minuman";
@@ -476,6 +480,8 @@
 "autocrypt_bad_setup_code" = "Kode pengaturan jelek. Ayo cakepan lagi.\n\nKalau Anda lupa kode pengaturan, kirim lagi Autocrypt Setup Message dari perangkat lainnya.";
 
 
+// system messages
+"systemmsg_group_name_changed" = "Nama grup diganti dari \"%1$@\" ke \"%2$@\".";
 "systemmsg_group_image_changed" = "Gambar grup telah diubah.";
 "systemmsg_group_image_deleted" = "Gambar grup telah dihapus.";
 "systemmsg_member_added" = "Member %1$@ telah ditambahkan.";
@@ -549,6 +555,9 @@
 "perm_explain_access_to_storage_denied" = "Untuk menerima atau mengirim berkas, pergi ke pengaturan aplikasi, pilih \"Perizinan\", dan fungsikan \"Penyimpanan\".";
 "perm_explain_access_to_location_denied" = "Untuk melampirkan lokasi, lihat pengaturan aplikasi, pilih \"Perizinan\", dan aktifkan \"Lokasi\".";
 
+// ImageEditorHud
+"ImageEditorHud_draw_anywhere_to_blur" = "Gambar di mana saja untuk diburamkan";
+
 // dc_str_* resources
 "encrypted_message" = "Pesan terenkripsi";
 
@@ -593,6 +602,7 @@
 "autocrypt_key_transfer_desktop" = "Transfer kunci Autocrypt";
 "initiate_key_transfer_desktop" = "Pengaturan Pesan Autocrypt secara aman membagikan pengaturan ujung ke ujung Anda dengan aplikasi lain yang sesuai dengan Autocrypt. Pengaturan akan dienkripsi dengan kode pengaturan yang ditampilkan di sini dan harus diketik di perangkat lain.";
 "reply_to_message_desktop" = "Balas pesan";
+"select_group_image_desktop" = "Pilih gambar grup";
 "download_attachment_desktop" = "Unduh lampiran";
 "show_key_transfer_message_desktop" = "Kunci Anda sudah dikirim ke Anda sendiri. Lihat pesan pengaturan di perangkat yang lain. Seharusnya Anda akan diminta kode pengaturan. Masukkan angka berikut:";
 "new_message_from_desktop" = "Pesan baru dari";
