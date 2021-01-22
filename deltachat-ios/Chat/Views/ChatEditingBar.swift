@@ -28,8 +28,8 @@ public class ChatEditingBar: UIView, InputItem {
 
     private lazy var cancelButton: UIButton = {
         let view = UIButton()
-        view.tintColor = .systemBlue
-        view.setImage(#imageLiteral(resourceName: "ic_close_36pt").withRenderingMode(.alwaysTemplate), for: .normal)
+        view.setTitle(String.localized("cancel"), for: .normal)
+        view.setTitleColor(.systemBlue, for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true
