@@ -186,7 +186,8 @@ class ChatViewController: UITableViewController {
 
         let config = ContextMenuProvider()
         if #available(iOS 13.0, *), !disableWriting {
-            config.setMenu([replyItem, forwardItem, infoItem, copyItem, selectMoreItem, deleteItem])
+            let mainContextMenu = ContextMenuProvider.ContextMenuItem(submenuitems: [replyItem, forwardItem, infoItem, copyItem, deleteItem])
+            config.setMenu([mainContextMenu, selectMoreItem])
         } else {
             config.setMenu([forwardItem, infoItem, copyItem, deleteItem, selectMoreItem])
         }

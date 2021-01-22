@@ -132,7 +132,9 @@ class ContextMenuProvider {
 
     // iOS 12- action menu
     var menuItems: [UIMenuItem] {
-        return menu.map { UIMenuItem(title: $0.title, action: $0.action) }
+        return menu
+            .filter({ $0.title != nil && $0.action != nil })
+            .map({ return UIMenuItem(title: $0.title!, action: $0.action!) })
     }
 
     // iOS13+ action menu
@@ -142,18 +144,17 @@ class ContextMenuProvider {
         var children: [UIMenuElement] = []
 
         for item in menu {
-            let image = UIImage(systemName: item.imageName) ??
-                UIImage(named: item.imageName)
-
-            let action = UIAction(
-                title: item.title,
-                image: image,
-                handler: { _ in item.onPerform?(indexPath) }
-            )
-            if item.isDestructive {
-                action.attributes = [.destructive]
+            //we only support 1 submenu layer for now
+            if let subMenus = item.children {
+                var submenuChildren: [UIMenuElement] = []
+                for submenuItem in subMenus {
+                    submenuChildren.append(generateUIAction(item: submenuItem, indexPath: indexPath))
+                }
+                let submenu = UIMenu(title: "", options: .displayInline, children: submenuChildren)
+                children.append(submenu)
+            } else {
+                children.append(generateUIAction(item: item, indexPath: indexPath))
             }
-            children.append(action)
         }
 
         return UIMenu(
@@ -162,6 +163,23 @@ class ContextMenuProvider {
             identifier: identifier,
             children: children
         )
+    }
+
+    @available(iOS 13, *)
+    private func generateUIAction(item: ContextMenuItem, indexPath: IndexPath) -> UIAction {
+        let image = UIImage(systemName: item.imageName ?? "") ??
+            UIImage(named: item.imageName ?? "")
+
+        let action = UIAction(
+            title: item.title ?? "",
+            image: image,
+            handler: { _ in item.onPerform?(indexPath) }
+        )
+        if item.isDestructive ?? false {
+            action.attributes = [.destructive]
+        }
+
+        return action
     }
 
     func canPerformAction(action: Selector) -> Bool {
@@ -180,11 +198,12 @@ class ContextMenuProvider {
 
 extension ContextMenuProvider {
     struct ContextMenuItem {
-        var title: String
-        var imageName: String
-        let isDestructive: Bool
-        var action: Selector
+        var title: String?
+        var imageName: String?
+        let isDestructive: Bool?
+        var action: Selector?
         var onPerform: ((IndexPath) -> Void)?
+        var children: [ContextMenuItem]?
 
         init(title: String, imageName: String, isDestructive: Bool = false, action: Selector, onPerform: ((IndexPath) -> Void)?) {
             self.title = title
@@ -192,6 +211,15 @@ extension ContextMenuProvider {
             self.isDestructive = isDestructive
             self.action = action
             self.onPerform = onPerform
+        }
+
+        init(submenuitems: [ContextMenuItem]) {
+            title = nil
+            imageName = nil
+            isDestructive = nil
+            action = nil
+            onPerform = nil
+            children = submenuitems
         }
     }
 }
