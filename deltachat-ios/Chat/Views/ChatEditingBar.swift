@@ -65,10 +65,9 @@ public class ChatEditingBar: UIView, InputItem {
     private lazy var mainContentView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [deleteButton, forwardButton, cancelButton])
         view.axis = .horizontal
-        view.distribution = .equalSpacing
+        view.distribution = .fillEqually
         view.alignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.spacing = 16
         return view
     }()
 
@@ -96,11 +95,8 @@ public class ChatEditingBar: UIView, InputItem {
             mainContentView.constraintAlignLeadingTo(self),
             mainContentView.constraintAlignTrailingTo(self),
             deleteButton.constraintHeightTo(36),
-            deleteButton.constraintWidthTo(36),
             forwardButton.constraintHeightTo(36),
-            forwardButton.constraintWidthTo(36),
             cancelButton.constraintHeightTo(36),
-            cancelButton.constraintWidthTo(36)
         ])
 
         backgroundColor = DcColors.chatBackgroundColor
