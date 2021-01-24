@@ -103,7 +103,7 @@ class ChatViewController: UITableViewController {
     private lazy var contextMenu: ContextMenuProvider = {
         let copyItem = ContextMenuProvider.ContextMenuItem(
         title: String.localized("global_menu_edit_copy_desktop"),
-        imageName: "ic_content_copy_white_36pt",
+        imageName: "doc.on.doc",
         action: #selector(BaseMessageCell.messageCopy),
         onPerform: { [weak self] indexPath in
                 guard let self = self else { return }
@@ -173,7 +173,7 @@ class ChatViewController: UITableViewController {
 
         let selectMoreItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("select_more"),
-            imageName: "ic_check",
+            imageName: "checkmark.circle",
             action: #selector(BaseMessageCell.messageSelectMore),
             onPerform: { indexPath in
                 DispatchQueue.main.async { [weak self] in
