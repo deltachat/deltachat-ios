@@ -1142,7 +1142,7 @@ class ChatViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return contextMenu.canPerformAction(action: action)
+        return !tableView.isEditing && contextMenu.canPerformAction(action: action)
     }
 
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
