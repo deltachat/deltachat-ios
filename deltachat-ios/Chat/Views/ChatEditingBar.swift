@@ -43,7 +43,7 @@ public class ChatEditingBar: UIView, InputItem {
             view.setImage(UIImage(systemName: "trash"), for: .normal)
             view.tintColor = .systemBlue
         } else {
-            view.setTitle("delete", for: .normal)
+            view.setTitle(String.localized("delete"), for: .normal)
             view.setTitleColor(.systemBlue, for: .normal)
         }
         view.translatesAutoresizingMaskIntoConstraints = false
