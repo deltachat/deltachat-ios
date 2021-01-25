@@ -10,6 +10,7 @@ public class DraftModel {
     var attachmentMimeType: String?
     var viewType: Int32?
     let chatId: Int
+    var isEditing: Bool = false
 
     public init(chatId: Int) {
         self.chatId = chatId

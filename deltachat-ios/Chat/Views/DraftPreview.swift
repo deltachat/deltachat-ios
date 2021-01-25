@@ -58,7 +58,7 @@ public class DraftPreview: UIView {
             upperBorder.constraintAlignLeadingTo(self),
             upperBorder.constraintAlignTrailingTo(self),
             upperBorder.constraintHeightTo(1),
-            upperBorder.constraintAlignTopTo(self, paddingTop: 4),
+            upperBorder.constraintAlignTopTo(self),
             mainContentView.constraintAlignTopTo(upperBorder, paddingTop: 4),
             mainContentView.constraintAlignLeadingTo(self),
             mainContentView.constraintAlignBottomTo(self, paddingBottom: 4),

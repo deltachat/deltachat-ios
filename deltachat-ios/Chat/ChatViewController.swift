@@ -39,6 +39,13 @@ class ChatViewController: UITableViewController {
         return view
     }()
 
+    public lazy var editingBar: ChatEditingBar = {
+        let view = ChatEditingBar()
+        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     open override var shouldAutorotate: Bool {
         return false
     }
@@ -96,7 +103,7 @@ class ChatViewController: UITableViewController {
     private lazy var contextMenu: ContextMenuProvider = {
         let copyItem = ContextMenuProvider.ContextMenuItem(
         title: String.localized("global_menu_edit_copy_desktop"),
-        imageName: "ic_content_copy_white_36pt",
+        imageName: "doc.on.doc",
         action: #selector(BaseMessageCell.messageCopy),
         onPerform: { [weak self] indexPath in
                 guard let self = self else { return }
@@ -164,11 +171,25 @@ class ChatViewController: UITableViewController {
             }
         )
 
+        let selectMoreItem = ContextMenuProvider.ContextMenuItem(
+            title: String.localized("select_more"),
+            imageName: "checkmark.circle",
+            action: #selector(BaseMessageCell.messageSelectMore),
+            onPerform: { indexPath in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    let messageId = self.messageIds[indexPath.row]
+                    self.setEditing(isEditing: true, selectedAtIndexPath: indexPath)
+                }
+            }
+        )
+
         let config = ContextMenuProvider()
         if #available(iOS 13.0, *), !disableWriting {
-            config.setMenu([replyItem, forwardItem, infoItem, copyItem, deleteItem])
+            let mainContextMenu = ContextMenuProvider.ContextMenuItem(submenuitems: [replyItem, forwardItem, infoItem, copyItem, deleteItem])
+            config.setMenu([mainContextMenu, selectMoreItem])
         } else {
-            config.setMenu([forwardItem, infoItem, copyItem, deleteItem])
+            config.setMenu([forwardItem, infoItem, copyItem, deleteItem, selectMoreItem])
         }
 
         return config
@@ -226,6 +247,7 @@ class ChatViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
+
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
             return
@@ -237,6 +259,8 @@ class ChatViewController: UITableViewController {
             draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
             messageInputBar.inputTextView.text = draft.text
             configureDraftArea(draft: draft)
+            editingBar.delegate = self
+            tableView.allowsMultipleSelectionDuringEditing = true
         }
 
         let notificationCenter = NotificationCenter.default
@@ -266,7 +290,7 @@ class ChatViewController: UITableViewController {
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.messageIds = self.getMessageIds()
-                self.tableView.reloadData()
+                self.reloadData()
             }
         }
     }
@@ -409,7 +433,7 @@ class ChatViewController: UITableViewController {
                 self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
                 if lastSectionVisibleBeforeTransition {
                     DispatchQueue.main.async { [weak self] in
-                        self?.tableView.reloadData()
+                        self?.reloadData()
                         self?.scrollToBottom(animated: false)
                     }
                 }
@@ -425,7 +449,7 @@ class ChatViewController: UITableViewController {
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messageIds.count //viewModel.numberOfRowsIn(section: section)
+        return messageIds.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -464,6 +488,7 @@ class ChatViewController: UITableViewController {
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     isAvatarVisible: configureAvatarVisibility(for: message, at: indexPath),
                     isGroup: isGroupChat)
+
         return cell
     }
 
@@ -479,7 +504,17 @@ class ChatViewController: UITableViewController {
 
     private func configureDraftArea(draft: DraftModel) {
         draftArea.configure(draft: draft)
-        // setStackViewItems recalculates the proper messageInputBar height
+        if draft.isEditing {
+            messageInputBar.setMiddleContentView(editingBar, animated: false)
+            messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
+            messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
+        } else {
+            messageInputBar.setMiddleContentView(messageInputBar.inputTextView, animated: false)
+            messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
+            messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
+        }
         messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: true)
     }
 
@@ -524,7 +559,17 @@ class ChatViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            handleEditingBar()
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            handleEditingBar()
+            return
+        }
         let messageId = messageIds[indexPath.row]
         let message = DcMsg(id: messageId)
         if message.isSetupMessage {
@@ -601,11 +646,21 @@ class ChatViewController: UITableViewController {
     private func refreshMessages() {
         self.messageIds = self.getMessageIds()
         let wasLastSectionVisible = self.isLastRowVisible()
-        self.tableView.reloadData()
+        self.reloadData()
         if wasLastSectionVisible {
             self.scrollToBottom(animated: true)
         }
         self.showEmptyStateView(self.messageIds.isEmpty)
+    }
+
+    func reloadData() {
+        let selectredRows = tableView.indexPathsForSelectedRows
+        tableView.reloadData()
+        // There's an iOS bug, filling up the console output but which can be ignored: https://developer.apple.com/forums/thread/668295
+        // [Assert] Attempted to call -cellForRowAtIndexPath: on the table view while it was in the process of updating its visible cells, which is not allowed.
+        selectredRows?.forEach({ (selectedRow) in
+            tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
+        })
     }
 
     private func loadMessages() {
@@ -616,7 +671,7 @@ class ChatViewController: UITableViewController {
                 let wasMessageIdsEmpty = self.messageIds.isEmpty
                 // update message ids
                 self.messageIds = self.getMessageIds()
-                self.tableView.reloadData()
+                self.reloadData()
                 if let msgId = self.highlightedMsg, let msgPosition = self.messageIds.firstIndex(of: msgId) {
                     self.tableView.scrollToRow(at: IndexPath(row: msgPosition, section: 0), at: .top, animated: false)
                     self.highlightedMsg = nil
@@ -690,13 +745,10 @@ class ChatViewController: UITableViewController {
         messageInputBar.delegate = self
         messageInputBar.inputTextView.tintColor = DcColors.primary
         messageInputBar.inputTextView.placeholder = String.localized("chat_input_placeholder")
-        messageInputBar.separatorLine.isHidden = true
+        messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
         messageInputBar.inputTextView.tintColor = DcColors.primary
         messageInputBar.inputTextView.textColor = DcColors.defaultTextColor
         messageInputBar.backgroundView.backgroundColor = DcColors.chatBackgroundColor
-
-        //scrollsToBottomOnKeyboardBeginsEditing = true
-
         messageInputBar.inputTextView.backgroundColor = DcColors.inputFieldColor
         messageInputBar.inputTextView.placeholderTextColor = DcColors.placeholderColor
         messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 38)
@@ -837,10 +889,17 @@ class ChatViewController: UITableViewController {
     }
 
     private func askToDeleteMessage(id: Int) {
-        let title = String.localized(stringID: "ask_delete_messages", count: 1)
+        self.askToDeleteMessages(ids: [id])
+    }
+
+    private func askToDeleteMessages(ids: [Int]) {
+        let title = String.localized(stringID: "ask_delete_messages", count: ids.count)
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { _ in
-                            self.dcContext.deleteMessage(msgId: id)
+                            self.dcContext.deleteMessages(msgIds: ids)
+                            if self.tableView.isEditing {
+                                self.setEditing(isEditing: false)
+                            }
                           })
     }
 
@@ -958,7 +1017,7 @@ class ChatViewController: UITableViewController {
                 self?.dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
             }
             let wasLastSectionVisible = self.isLastRowVisible()
-            tableView.reloadData()
+            reloadData()
             if wasLastSectionVisible {
                 self.scrollToBottom(animated: true)
             }
@@ -979,7 +1038,7 @@ class ChatViewController: UITableViewController {
         messageIds.append(message.id)
         emptyStateView.isHidden = true
 
-        tableView.reloadData()
+        reloadData()
         if wasLastSectionVisible || message.isFromCurrentSender {
             scrollToBottom(animated: true)
         }
@@ -1083,7 +1142,7 @@ class ChatViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return contextMenu.canPerformAction(action: action)
+        return !tableView.isEditing && contextMenu.canPerformAction(action: action)
     }
 
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
@@ -1094,6 +1153,9 @@ class ChatViewController: UITableViewController {
     // context menu for iOS 13+
     @available(iOS 13, *)
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        if tableView.isEditing {
+            return nil
+        }
         return UIContextMenuConfiguration(
             identifier: nil,
             previewProvider: nil,
@@ -1162,12 +1224,44 @@ class ChatViewController: UITableViewController {
         }
         return false
     }
+
+    func handleSelection(indexPath: IndexPath) -> Bool {
+        if tableView.isEditing {
+            if tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false {
+                tableView.deselectRow(at: indexPath, animated: false)
+            } else {
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            }
+            handleEditingBar()
+            return true
+        }
+        return false
+    }
+
+    func handleEditingBar() {
+        if let rows = tableView.indexPathsForSelectedRows,
+           !rows.isEmpty {
+            editingBar.isEnabled = true
+        } else {
+            editingBar.isEnabled = false
+        }
+    }
+
+    func setEditing(isEditing: Bool, selectedAtIndexPath: IndexPath? = nil) {
+        self.tableView.setEditing(isEditing, animated: true)
+        self.draft.isEditing = isEditing
+        self.configureDraftArea(draft: self.draft)
+        if let indexPath = selectedAtIndexPath {
+            _ = handleSelection(indexPath: indexPath)
+        }
+    }
 }
 
 // MARK: - BaseMessageCellDelegate
 extension ChatViewController: BaseMessageCellDelegate {
 
     @objc func quoteTapped(indexPath: IndexPath) {
+        if handleSelection(indexPath: indexPath) { return }
         _ = handleUIMenu()
         let msg = DcMsg(id: messageIds[indexPath.row])
         if let quoteMsg = msg.quoteMessage {
@@ -1176,37 +1270,47 @@ extension ChatViewController: BaseMessageCellDelegate {
     }
 
     @objc func textTapped(indexPath: IndexPath) {
-        if handleUIMenu() { return }
+        if handleUIMenu() || handleSelection(indexPath: indexPath) {
+            return
+        }
+
         let message = DcMsg(id: messageIds[indexPath.row])
         if message.isSetupMessage {
             didTapAsm(msg: message, orgText: "")
         }
     }
 
-    @objc func phoneNumberTapped(number: String) {
-        if handleUIMenu() { return }
+    @objc func phoneNumberTapped(number: String, indexPath: IndexPath) {
+        if handleUIMenu() || handleSelection(indexPath: indexPath) {
+            return
+        }
         logger.debug("phone number tapped \(number)")
     }
 
-    @objc func commandTapped(command: String) {
-        if handleUIMenu() { return }
+    @objc func commandTapped(command: String, indexPath: IndexPath) {
+        if handleUIMenu() || handleSelection(indexPath: indexPath) {
+            return
+        }
         logger.debug("command tapped \(command)")
     }
 
-    @objc func urlTapped(url: URL) {
-        if handleUIMenu() { return }
+    @objc func urlTapped(url: URL, indexPath: IndexPath) {
+        if handleUIMenu() || handleSelection(indexPath: indexPath) {
+            return
+        }
         if Utils.isEmail(url: url) {
             logger.debug("tapped on contact")
             let email = Utils.getEmailFrom(url)
             self.askToChatWith(email: email)
-            ///TODO: implement handling
         } else {
             UIApplication.shared.open(url)
         }
     }
 
     @objc func imageTapped(indexPath: IndexPath) {
-        if handleUIMenu() { return }
+        if handleUIMenu() || handleSelection(indexPath: indexPath) {
+            return
+        }
         showMediaGalleryFor(indexPath: indexPath)
     }
 
@@ -1302,6 +1406,29 @@ extension ChatViewController: DraftPreviewDelegate {
     }
 }
 
+// MARK: - ChatEditingDelegate
+extension ChatViewController: ChatEditingDelegate {
+    func onDeletePressed() {
+        if let rows = tableView.indexPathsForSelectedRows {
+            let messageIdsToDelete = rows.compactMap { messageIds[$0.row] }
+            askToDeleteMessages(ids: messageIdsToDelete)
+        }
+    }
+
+    func onForwardPressed() {
+        if let rows = tableView.indexPathsForSelectedRows {
+            let messageIdsToForward = rows.compactMap { messageIds[$0.row] }
+            RelayHelper.sharedInstance.setForwardMessages(messageIds: messageIdsToForward)
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+
+    func onCancelPressed() {
+        setEditing(isEditing: false)
+    }
+}
+
+// MARK: - QLPreviewControllerDelegate
 extension ChatViewController: QLPreviewControllerDelegate {
     @available(iOS 13.0, *)
     func previewController(_ controller: QLPreviewController, editingModeFor previewItem: QLPreviewItem) -> QLPreviewItemEditingMode {
