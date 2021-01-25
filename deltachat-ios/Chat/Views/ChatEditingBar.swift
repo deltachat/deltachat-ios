@@ -31,7 +31,7 @@ public class ChatEditingBar: UIView, InputItem {
         view.setTitle(String.localized("cancel"), for: .normal)
         view.setTitleColor(.systemBlue, for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFit
+        view.imageView?.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true
         return view
     }()
@@ -48,7 +48,7 @@ public class ChatEditingBar: UIView, InputItem {
         }
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
-        view.contentMode = .scaleAspectFit
+        view.imageView?.contentMode = .scaleAspectFit
         return view
     }()
 
@@ -57,7 +57,7 @@ public class ChatEditingBar: UIView, InputItem {
         view.tintColor = .systemBlue
         view.setImage( #imageLiteral(resourceName: "ic_forward_white_36pt").withRenderingMode(.alwaysTemplate), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFit
+        view.imageView?.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true
         return view
     }()
@@ -95,7 +95,7 @@ public class ChatEditingBar: UIView, InputItem {
             mainContentView.constraintAlignLeadingTo(self),
             mainContentView.constraintAlignTrailingTo(self),
             deleteButton.constraintHeightTo(36),
-            forwardButton.constraintHeightTo(36),
+            forwardButton.constraintHeightTo(26),
             cancelButton.constraintHeightTo(36),
         ])
 
