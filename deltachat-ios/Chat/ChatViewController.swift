@@ -528,14 +528,15 @@ class ChatViewController: UITableViewController {
                                             self?.replyToMessage(at: indexPath)
                                             completionHandler(true)
                                         })
-        if #available(iOS 12.0, *) {
+        if #available(iOS 13.0, *) {
             action.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "ic_reply_black" : "ic_reply")
+            action.backgroundColor = DcColors.chatBackgroundColor
         } else {
             action.image = UIImage(named: "ic_reply_black")
+            action.backgroundColor = .systemBlue
         }
         action.image?.accessibilityTraits = .button
         action.image?.accessibilityLabel = String.localized("menu_reply")
-        action.backgroundColor = DcColors.chatBackgroundColor
         let configuration = UISwipeActionsConfiguration(actions: [action])
 
         return configuration
