@@ -518,6 +518,12 @@ class ChatViewController: UITableViewController {
         messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: true)
     }
 
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+       let swipeAction = UISwipeActionsConfiguration(actions: [])
+       return swipeAction
+    }
+
+
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if disableWriting {
             return nil
