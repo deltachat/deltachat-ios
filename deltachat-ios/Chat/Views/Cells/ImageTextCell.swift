@@ -50,6 +50,7 @@ class ImageTextCell: BaseMessageCell {
         tag = msg.id
         if msg.type == DC_MSG_IMAGE, let image = msg.image {
             contentImageView.image = image
+            accessibilityLabel = String.localized("image")
             playButtonView.isHidden = true
             setAspectRatioFor(message: msg)
         } else if msg.type == DC_MSG_GIF, let url = msg.fileURL {
@@ -60,9 +61,11 @@ class ImageTextCell: BaseMessageCell {
                                                                                        blue: 255),
                                                                    size: CGSize(width: 500, height: 500)))
             playButtonView.isHidden = true
+            accessibilityLabel = String.localized("gif")
             setAspectRatioFor(message: msg)
         } else if msg.type == DC_MSG_VIDEO, let url = msg.fileURL {
             playButtonView.isHidden = false
+            accessibilityLabel = String.localized("video")
             if let image = ThumbnailCache.shared.restoreImage(key: url.absoluteString) {
                 contentImageView.image = image
                 setAspectRatioFor(message: msg, with: image, isPlaceholder: false)
