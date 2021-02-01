@@ -31,7 +31,6 @@ public class AudioMessageCell: BaseMessageCell {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onPlayButtonTapped))
         gestureRecognizer.numberOfTapsRequired = 1
         audioPlayerView.playButton.addGestureRecognizer(gestureRecognizer)
-        contentView.isAccessibilityElement = true
     }
 
     @objc public func onPlayButtonTapped() {
@@ -48,9 +47,9 @@ public class AudioMessageCell: BaseMessageCell {
             mainContentView.spacing = 0
         }
         if msg.type == DC_MSG_VOICE {
-            contentView.accessibilityLabel = String.localized("voice_message")
+            accessibilityLabel = String.localized("voice_message")
         } else {
-            contentView.accessibilityLabel = String.localized("audio")
+            accessibilityLabel = String.localized("audio")
         }
 
         super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible, isGroup: isGroup)
