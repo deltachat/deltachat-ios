@@ -29,6 +29,7 @@ open class AudioPlayerView: UIView {
         durationLabel.adjustsFontForContentSizeCategory = true
         durationLabel.text = "0:00"
         durationLabel.translatesAutoresizingMaskIntoConstraints = false
+        durationLabel.isAccessibilityElement = false
         return durationLabel
     }()
 
@@ -36,6 +37,7 @@ open class AudioPlayerView: UIView {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.progress = 0.0
         progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.isAccessibilityElement = false
         return progressView
     }()
 
