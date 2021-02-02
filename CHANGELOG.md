@@ -1,5 +1,25 @@
 # Delta Chat iOS Changelog
 
+## 1.16.0
+2021-02
+
+* new staging area: images and other files
+  can be reviewed and sent together with a description now
+* show in chat: go to the the corresponding message
+  directly from images or documents in the gallery
+* new, redesigned context menus in chat, gallery and document view -
+  long-tap a message to feel the difference
+* multi-select in chat: long-tap a message and select more messages
+  for deletion or forwarding
+* improve several accessibility items and texts
+* improve keyboard layouts
+* fix: profile images can now always be cropped after selection
+* fix: hints in empty chats are no longer truncated
+* fix swipe-to-reply icon for iOS 11 and 12
+* more bug fixes
+* update translations and local help
+
+
 ## 1.14.4
 2020-12
 
