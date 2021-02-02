@@ -38,6 +38,7 @@ class FileTextCell: BaseMessageCell {
         }
         
         fileView.configure(message: msg)
+        accessibilityLabel = "\(String.localized("document")), \(fileView.configureAccessibilityLabel())"
         super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible, isGroup: isGroup)
     }
     
