@@ -313,7 +313,7 @@ public class BaseMessageCell: UITableViewCell {
             messageLabelAccessibilityString = "\(messageLabelText), "
         }
         if let senderTitle = quoteView.senderTitle.text, let quote = quoteView.quote.text {
-            quoteAccessibilityString = "\(senderTitle), \(quote), "
+            quoteAccessibilityString = "\(senderTitle), \(quote), \(String.localized("reply_noun")), "
         }
         if let additionalAccessibilityInfo = accessibilityLabel {
             additionalAccessibilityString = "\(additionalAccessibilityInfo), "
