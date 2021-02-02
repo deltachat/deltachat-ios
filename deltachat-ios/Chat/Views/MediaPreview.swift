@@ -44,6 +44,7 @@ class MediaPreview: DraftPreview {
                 } else if let image = image {
                     self.setAspectRatio(image: image)
                     self.delegate?.onAttachmentAdded()
+                    self.accessibilityLabel = "\(String.localized("attachment")), \(draft.viewType == DC_MSG_GIF ? String.localized("gif") : String.localized("image"))"
                 }
             })
             isHidden = false
@@ -65,6 +66,7 @@ class MediaPreview: DraftPreview {
                 }
             }
             self.isHidden = false
+            self.accessibilityLabel = "\(String.localized("attachment")), \(String.localized("video"))"
         } else {
             isHidden = true
         }
@@ -74,6 +76,7 @@ class MediaPreview: DraftPreview {
         contentImageView.sd_cancelCurrentImageLoad()
         contentImageView.image = nil
         delegate?.onCancelAttachment()
+        accessibilityLabel = nil
     }
 
     func setAspectRatio(image: UIImage) {

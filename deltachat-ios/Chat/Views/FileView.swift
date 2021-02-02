@@ -44,6 +44,7 @@ public class FileView: UIView {
     private lazy var fileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        isAccessibilityElement = false
         return imageView
     }()
 
@@ -61,6 +62,7 @@ public class FileView: UIView {
         title.translatesAutoresizingMaskIntoConstraints = false
         title.numberOfLines = 3
         title.lineBreakMode = .byCharWrapping
+        isAccessibilityElement = false
         return title
     }()
 
@@ -69,6 +71,7 @@ public class FileView: UIView {
         subtitle.font = UIFont.preferredItalicFont(for: .caption2)
         subtitle.translatesAutoresizingMaskIntoConstraints = false
         subtitle.numberOfLines = 1
+        isAccessibilityElement = false
         return subtitle
     }()
 
@@ -106,6 +109,18 @@ public class FileView: UIView {
         fileSubtitle.text = message.getPrettyFileSize()
     }
 
+    public func configureAccessibilityLabel() -> String {
+        var accessibilityFileTitle = ""
+        var accessiblityFileSubtitle = ""
+        if let fileTitleText = fileTitle.text {
+            accessibilityFileTitle = fileTitleText
+        }
+        if let subtitleText = fileSubtitle.text {
+            accessiblityFileSubtitle = subtitleText
+        }
+        
+        return "\(accessibilityFileTitle), \(accessiblityFileSubtitle)"
+    }
 
     public func prepareForReuse() {
         fileImageView.image = nil

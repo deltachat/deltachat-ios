@@ -46,6 +46,11 @@ public class AudioMessageCell: BaseMessageCell {
         } else {
             mainContentView.spacing = 0
         }
+        if msg.type == DC_MSG_VOICE {
+            accessibilityLabel = String.localized("voice_message")
+        } else {
+            accessibilityLabel = String.localized("audio")
+        }
 
         super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible, isGroup: isGroup)
     }

@@ -60,6 +60,7 @@ public class BaseMessageCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
         view.isHidden = true
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -77,6 +78,7 @@ public class BaseMessageCell: UITableViewCell {
         view.label.setAttributes(attributes, detector: .url)
         view.label.setAttributes(attributes, detector: .phoneNumber)
         view.isUserInteractionEnabled = true
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -100,6 +102,7 @@ public class BaseMessageCell: UITableViewCell {
         view.clipsToBounds = true
         view.paddingLeading = 4
         view.paddingTrailing = 4
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -120,6 +123,7 @@ public class BaseMessageCell: UITableViewCell {
         label.paddingLeading = 4
         label.paddingTrailing = 4
         label.clipsToBounds = true
+        label.isAccessibilityElement = false
         return label
     }()
 
@@ -293,6 +297,40 @@ public class BaseMessageCell: UITableViewCell {
         }
 
         messageLabel.delegate = self
+        accessibilityLabel = configureAccessibilityString(message: msg)
+    }
+
+    func configureAccessibilityString(message: DcMsg) -> String {
+        var topLabelAccessibilityString = ""
+        var quoteAccessibilityString = ""
+        var messageLabelAccessibilityString = ""
+        var additionalAccessibilityString = ""
+
+        if let topLabelText = topLabel.text {
+            topLabelAccessibilityString = "\(topLabelText), "
+        }
+        if let messageLabelText = messageLabel.text {
+            messageLabelAccessibilityString = "\(messageLabelText), "
+        }
+        if let senderTitle = quoteView.senderTitle.text, let quote = quoteView.quote.text {
+            quoteAccessibilityString = "\(senderTitle), \(quote), \(String.localized("reply_noun")), "
+        }
+        if let additionalAccessibilityInfo = accessibilityLabel {
+            additionalAccessibilityString = "\(additionalAccessibilityInfo), "
+        }
+
+        return "\(topLabelAccessibilityString) " +
+            "\(quoteAccessibilityString) " +
+            "\(additionalAccessibilityString) " +
+            "\(messageLabelAccessibilityString) " +
+            "\(getFormattedBottomLineAccessibilityString(message: message))"
+    }
+
+    func getFormattedBottomLineAccessibilityString(message: DcMsg) -> String {
+        let padlock =  message.showPadlock() ? "\(String.localized("encrypted_message")), " : ""
+        let date = "\(message.formattedSentDate()), "
+        let sendingState = "\(getSendingStateString(message.state))"
+        return "\(date) \(padlock) \(sendingState)"
     }
 
     func getFormattedBottomLine(message: DcMsg) -> NSAttributedString {
@@ -321,7 +359,6 @@ public class BaseMessageCell: UITableViewCell {
             }
 
             text.append(NSAttributedString(string: message.formattedSentDate(), attributes: timestampAttributes))
-
             if message.showPadlock() {
                 attachPadlock(to: text, color: bottomCompactView ? nil : DcColors.checkmarkGreen)
             }
@@ -344,11 +381,25 @@ public class BaseMessageCell: UITableViewCell {
         } else {
             imageAttachment.image = UIImage(named: "ic_lock")
         }
-        imageAttachment.image?.accessibilityIdentifier = String.localized("encrypted_message")
         let imageString = NSMutableAttributedString(attachment: imageAttachment)
         imageString.addAttributes([NSAttributedString.Key.baselineOffset: -1], range: NSRange(location: 0, length: 1))
         text.append(NSAttributedString(string: " "))
         text.append(imageString)
+    }
+
+    private func getSendingStateString(_ state: Int) -> String {
+        switch Int32(state) {
+        case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
+            return String.localized("a11y_delivery_status_sending")
+        case DC_STATE_OUT_DELIVERED:
+            return String.localized("a11y_delivery_status_delivered")
+        case DC_STATE_OUT_MDN_RCVD:
+            return String.localized("a11y_delivery_status_read")
+        case DC_STATE_OUT_FAILED:
+            return String.localized("a11y_delivery_status_error")
+        default:
+            return ""
+        }
     }
 
     private func attachSendingState(_ state: Int, to text: NSMutableAttributedString) {
@@ -358,23 +409,18 @@ public class BaseMessageCell: UITableViewCell {
         switch Int32(state) {
         case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
             imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 14)?.maskWithColor(color: DcColors.grayDateColor)
-            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_sending")
         case DC_STATE_OUT_DELIVERED:
             imageAttachment.image = #imageLiteral(resourceName: "ic_done_36pt").scaleDownImage(toMax: 18)
-            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_delivered")
             offset = -3
         case DC_STATE_OUT_MDN_RCVD:
             imageAttachment.image = #imageLiteral(resourceName: "ic_done_all_36pt").scaleDownImage(toMax: 18)
-            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_read")
             text.append(NSAttributedString(string: " "))
             offset = -3
         case DC_STATE_OUT_FAILED:
             imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 17)
-            imageAttachment.image?.accessibilityIdentifier = String.localized("a11y_delivery_status_error")
         default:
             imageAttachment.image = nil
         }
-
         let imageString = NSMutableAttributedString(attachment: imageAttachment)
         imageString.addAttributes([.baselineOffset: offset],
                                   range: NSRange(location: 0, length: 1))
@@ -382,6 +428,7 @@ public class BaseMessageCell: UITableViewCell {
     }
 
     override public func prepareForReuse() {
+        accessibilityLabel = nil
         textLabel?.text = nil
         textLabel?.attributedText = nil
         topLabel.text = nil

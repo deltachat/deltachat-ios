@@ -7,7 +7,9 @@ open class AudioPlayerView: UIView {
     lazy var playButton: UIButton = {
         let playButton = UIButton(type: .custom)
         let playImage = UIImage(named: "play")
+        playImage?.isAccessibilityElement = false
         let pauseImage = UIImage(named: "pause")
+        pauseImage?.isAccessibilityElement = false
         playButton.setImage(playImage?.withRenderingMode(.alwaysTemplate), for: .normal)
         playButton.setImage(pauseImage?.withRenderingMode(.alwaysTemplate), for: .selected)
         playButton.imageView?.contentMode = .scaleAspectFit
@@ -15,6 +17,7 @@ open class AudioPlayerView: UIView {
         playButton.contentHorizontalAlignment = .fill
         playButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.isUserInteractionEnabled = true
+        playButton.accessibilityLabel = String.localized("menu_play")
         return playButton
     }()
 
@@ -26,6 +29,7 @@ open class AudioPlayerView: UIView {
         durationLabel.adjustsFontForContentSizeCategory = true
         durationLabel.text = "0:00"
         durationLabel.translatesAutoresizingMaskIntoConstraints = false
+        durationLabel.isAccessibilityElement = false
         return durationLabel
     }()
 
@@ -33,6 +37,7 @@ open class AudioPlayerView: UIView {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.progress = 0.0
         progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.isAccessibilityElement = false
         return progressView
     }()
 
@@ -80,6 +85,7 @@ open class AudioPlayerView: UIView {
         progressView.progress = 0
         playButton.isSelected = false
         durationLabel.text = "0:00"
+        playButton.accessibilityLabel = String.localized("menu_play")
     }
 
     open func setProgress(_ progress: Float) {
@@ -106,5 +112,6 @@ open class AudioPlayerView: UIView {
 
     open func showPlayLayout(_ play: Bool) {
         playButton.isSelected = play
+        playButton.accessibilityLabel = play ? String.localized("menu_pause") : String.localized("menu_play")
     }
 }

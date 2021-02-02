@@ -31,6 +31,7 @@ public class DocumentPreview: DraftPreview {
     override public func cancel() {
         fileView.prepareForReuse()
         delegate?.onCancelAttachment()
+        accessibilityLabel = nil
     }
 
     override public func configure(draft: DraftModel) {
@@ -42,6 +43,7 @@ public class DocumentPreview: DraftPreview {
             tmpMsg.text = draft.text
             fileView.configure(message: tmpMsg)
             self.delegate?.onAttachmentAdded()
+            accessibilityLabel = "\(String.localized("attachment")), \(fileView.configureAccessibilityLabel())"
             isHidden = false
         } else {
             isHidden = true
