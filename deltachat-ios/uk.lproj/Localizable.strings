@@ -161,6 +161,7 @@
 "menu_scroll_to_top" = "Прокрутити на початок";
 "menu_help" = "Допомога";
 "menu_select_all" = "Вибрати все";
+"select_more" = "Вибрати ще";
 "menu_expand" = "Розширити";
 "menu_edit_name" = "Редагувати ім\'я";
 "menu_settings" = "Налаштування";
@@ -550,7 +551,6 @@
 "systemmsg_ephemeral_timer_day" = "Таймер зникнення повідомлень встановлено на 1 день.";
 "systemmsg_ephemeral_timer_week" = "Таймер зникнення повідомлень встановлено на 1 тиждень.";
 "systemmsg_ephemeral_timer_four_weeks" = "Таймер зникнення повідомлень встановлено на 4 тижні.";
-
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Захист чату вимкнено.";
 "systemmsg_chat_protection_enabled" = "Захист чату увімкнено.";

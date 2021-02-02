@@ -37,6 +37,12 @@
 "profile" = "Perfil";
 "main_menu" = "Menú principal";
 "start_chat" = "Inciar chat";
+"show_full_message" = "Mostrar mensaxe completa...";
+"load_remote_content" = "Cargar imaxes remotas";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "As imaxes remotas poden ser utilizadas para rastrexarte.\n\nO axuste tamén permite cargar tipografías e outro contido. Incluso estando desactivado, é posible ver as imaxes gardadas na caché.\n\nCargar imaxes remotas?";
+"always" = "Sempre";
+"once" = "Unha vez";
 "show_password" = "Mostrar contrasinal";
 "hide_password" = "Agochar contrasinal";
 "not_now" = "Agora non";
@@ -161,6 +167,7 @@
 "menu_scroll_to_top" = "Moverse arriba";
 "menu_help" = "Axuda";
 "menu_select_all" = "Escoller todo";
+"select_more" = "Elexir máis";
 "menu_expand" = "Despregar";
 "menu_edit_name" = "Editar nome";
 "menu_settings" = "Axustes";
@@ -501,6 +508,8 @@
 "autodel_at_once" = "dunha vez";
 "after_30_seconds" = "Após 30 segundos";
 "after_1_minute" = "Após 1 minuto";
+"after_5_minutes" = "Após 5 minutos";
+"after_30_minutes" = "Após 30 minutos";
 "autodel_after_1_hour" = "Após 1 hora";
 "autodel_after_1_day" = "Após 1 día";
 "autodel_after_1_week" = "Após 1 semana";
@@ -550,6 +559,10 @@
 "systemmsg_ephemeral_timer_day" = "As mensaxes desaparecerán após 1 día.";
 "systemmsg_ephemeral_timer_week" = "As mensaxes desaparecerán após 1 semana.";
 "systemmsg_ephemeral_timer_four_weeks" = "As mensaxes desaparecerán após 4 semanas.";
+"systemmsg_ephemeral_timer_minutes" = "As mensaxes desaparecerán após %1$@ minutos.";
+"systemmsg_ephemeral_timer_hours" = "As mensaxes desaparecerán após %1$@ horas.";
+"systemmsg_ephemeral_timer_days" = "As mensaxes desaparecerán após %1$@ días.";
+"systemmsg_ephemeral_timer_weeks" = "As mensaxes desaparecerán após %1$@ semanas.";
 
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Protección do chat desactivada.";

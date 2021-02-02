@@ -37,6 +37,12 @@
 "profile" = "Profile";
 "main_menu" = "Menuja kryesore";
 "start_chat" = "Nisni fjalosje";
+"show_full_message" = "Shfaq mesazhin e plotë…";
+"load_remote_content" = "Ngarko figura të largëta";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Figurat e largëta mund të përdoren për t’ju ndjekur.\n\nRregullimi lejon gjithashtu të ngarkohen shkronja dhe lëndë tjetër. Edhe nëse është e çaktivizuar, prapë mund të shihni figura të trupëzuara ose të ruajtura në fshehtinë.\n\nTë ngarkohen figura të largëta?";
+"always" = "Përherë";
+"once" = "Vetëm njëherë";
 "show_password" = "Shfaqe fjalëkalimin";
 "hide_password" = "Fshihe fjalëkalimin";
 "not_now" = "Jo tani";
@@ -160,6 +166,7 @@
 "menu_scroll_to_top" = "Rrëshqit sipër në krye";
 "menu_help" = "Nidhmë";
 "menu_select_all" = "Përzgjidhi krejt";
+"select_more" = "Përzgjidhni më tepër";
 "menu_expand" = "Zgjeroje";
 "menu_edit_name" = "Përpunoni emrin";
 "menu_settings" = "Rregullime";
@@ -499,6 +506,8 @@
 "autodel_at_once" = "Menjëherë";
 "after_30_seconds" = "Pas 30 sekondash";
 "after_1_minute" = "Pas 1 minute";
+"after_5_minutes" = "Pas 5 minutash";
+"after_30_minutes" = "Pas 30 minutash";
 "autodel_after_1_hour" = "Pas 1 ore";
 "autodel_after_1_day" = "Pas 1 dite";
 "autodel_after_1_week" = "Pas 1 jave";
@@ -548,6 +557,10 @@
 "systemmsg_ephemeral_timer_day" = "Kohëmatësi për mesazhe që zhduken është vënë në 1 ditë.";
 "systemmsg_ephemeral_timer_week" = "Kohëmatësi për mesazhe që zhduken është vënë në 1 javë.";
 "systemmsg_ephemeral_timer_four_weeks" = "Kohëmatësi për mesazhe që zhduken është vënë në 4 javë.";
+"systemmsg_ephemeral_timer_minutes" = "Kohëmatësi për mesazhe që zhduken është vënë në %1$@ minuta.";
+"systemmsg_ephemeral_timer_hours" = "Kohëmatësi për mesazhe që zhduken është vënë në %1$@ orë.";
+"systemmsg_ephemeral_timer_days" = "Kohëmatësi i zhdukjes së mesazheve është vënë në %1$@ ditë.";
+"systemmsg_ephemeral_timer_weeks" = "Kohëmatësi për mesazhe që zhduken është vënë në %1$@ javë.";
 
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Mbrojtja e fjalosjes u çaktivizua.";

@@ -550,7 +550,6 @@
 "systemmsg_ephemeral_timer_day" = "Temporisation des messages éphémères réglée à 1 journée.";
 "systemmsg_ephemeral_timer_week" = "Temporisation des messages éphémères réglée à 1 semaine.";
 "systemmsg_ephemeral_timer_four_weeks" = "Temporisation des messages éphémères réglée à 4 semaines.";
-
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Protection de la discussion désactivée.";
 "systemmsg_chat_protection_enabled" = "Protection de la discussion activée.";

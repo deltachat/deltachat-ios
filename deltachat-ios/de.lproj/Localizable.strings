@@ -37,6 +37,12 @@
 "profile" = "Profil";
 "main_menu" = "Hauptmenü";
 "start_chat" = "Chat starten";
+"show_full_message" = "Ganze Nachricht anzeigen…";
+"load_remote_content" = "Bilder nachladen";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Das Nachladen von Bildern kann dazu verwendet werden, Sie zu tracken.\n\nDie Option erlaubt auch das Laden von Schriftarten und anderen Inhalten; wenn sie deaktiviert ist, werden eingebettete oder zwischengespeicherte Bilder dennoch angezeigt.\n\nBilder nachladen?";
+"always" = "Immer";
+"once" = "Einmal";
 "show_password" = "Passwort anzeigen";
 "hide_password" = "Passwort verstecken";
 "not_now" = "Nicht jetzt";
@@ -502,6 +508,8 @@
 "autodel_at_once" = "Sofort";
 "after_30_seconds" = "Nach 30 Sekunden";
 "after_1_minute" = "Nach 1 Minute";
+"after_5_minutes" = "Nach 5 Minuten";
+"after_30_minutes" = "Nach 30 Minuten";
 "autodel_after_1_hour" = "Nach 1 Stunde";
 "autodel_after_1_day" = "Nach 1 Tag";
 "autodel_after_1_week" = "Nach 1 Woche";
@@ -551,6 +559,10 @@
 "systemmsg_ephemeral_timer_day" = "Ablaufzeit verschwindender Nachrichten auf 1 Tag festgelegt.";
 "systemmsg_ephemeral_timer_week" = "Ablaufzeit verschwindender Nachrichten auf 1 Woche festgelegt.";
 "systemmsg_ephemeral_timer_four_weeks" = "Ablaufzeit verschwindender Nachrichten auf 4 Wochen festgelegt.";
+"systemmsg_ephemeral_timer_minutes" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Minuten festgelegt.";
+"systemmsg_ephemeral_timer_hours" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Stunden festgelegt.";
+"systemmsg_ephemeral_timer_days" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Tage festgelegt.";
+"systemmsg_ephemeral_timer_weeks" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Wochen festgelegt.";
 
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Chat-Absicherung ausgeschaltet.";

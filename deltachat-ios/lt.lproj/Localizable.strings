@@ -29,6 +29,8 @@
 "media" = "Medija";
 "profile" = "Profilis";
 "main_menu" = "Pagrindinis meniu";
+"always" = "Visada";
+"once" = "Vieną kartą";
 "show_password" = "Rodyti slaptažodį";
 "hide_password" = "Slėpti slaptažodį";
 "not_now" = "Ne dabar";
@@ -65,6 +67,8 @@
 "self" = "Aš";
 "draft" = "Juodraštis";
 "image" = "Paveikslas";
+// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Atsakymas";
 "gif" = "Gif";
 "images" = "Paveikslai";
 "audio" = "Garsas";
@@ -128,6 +132,7 @@
 "menu_delete_location" = "Ištrinti šią vietą?";
 "menu_message_details" = "Išsamesnė žinutės informacija";
 "menu_copy_to_clipboard" = "Kopijuoti į iškarpinę";
+"menu_copy_selection_to_clipboard" = "Kopijuoti žymėjimą";
 "menu_copy_link_to_clipboard" = "Kopijuoti nuorodą";
 "paste_from_clipboard" = "Įdėti iš iškarpinės";
 "menu_forward" = "Persiųsti žinutę";
@@ -176,6 +181,13 @@
 "mute_for_seven_days" = "Išjungti 7 dienoms";
 "mute_forever" = "Išjungti visam laikui";
 
+"share_location_once" = "vieną kartą";
+"share_location_for_5_minutes" = "5 minutėms";
+"share_location_for_30_minutes" = "30 minučių";
+"share_location_for_one_hour" = "1 valandai";
+"share_location_for_two_hours" = "2 valandoms";
+"share_location_for_six_hours" = "6 valandoms";
+
 "file_saved_to" = "Failas įrašytas į \"%1$@\".";
 
 "videochat_will_open_in_your_browser" = "Šis vaizdo pokalbis bus atvertas jūsų naršyklėje.";
@@ -214,6 +226,8 @@
 "chat_no_messages" = "Žinučių nėra.";
 "chat_self_talk_subtitle" = "Žinutės, kurias siunčiu asmeniškai sau";
 "saved_messages" = "Įrašytos žinutės";
+// this "Saved" should match the "Saved" from "Saved messages"
+"saved" = "Įrašyta";
 "chat_contact_request" = "Adresato užklausa";
 "send_failed" = "Nepavyko išsiųsti žinutės";
 "attachment_failed_to_load" = "Nepavyko įkelti priedo";
@@ -252,6 +266,7 @@
 "welcome_intro1_message" = "Pokalbių programa su plačiausia auditorija pasaulyje. Nemokama ir nepriklausoma.";
 "login_title" = "Prisijungti";
 "login_header" = "Prisijungti prie savo serverio";
+"login_explain" = "Prisijungti naudojant esamą el. pašto paskyrą";
 "login_subheader" = "Žinomiems el. pašto teikėjams papildomi nustatymai yra nustatomi automatiškai. Kartais, IMAP turi būti įjungtas prisijungus per naršyklę. Išsamesnės pagalbos teiraukitės savo el. pašto teikėjo ar draugų.";
 "login_no_servers_hint" = "Nėra jokių Delta Chat serverių, jūsų duomenys išlieka jūsų įrenginyje!";
 "login_inbox" = "Gauta";
@@ -266,6 +281,8 @@
 "login_smtp_port" = "SMTP prievadas";
 "login_smtp_security" = "SMTP saugumas";
 "login_auth_method" = "Įgaliojimų suteikimo metodas";
+// Translators: %1$s will be replaced by an email address
+"login_oauth2_checking_addr" = "Tikrinamas %1$@";
 "login_info_oauth2_title" = "Tęsti, naudojant supaprastintą sąranką?";
 "login_certificate_checks" = "Liudijimų patikrinimai";
 "login_error_mail" = "Įveskite teisingą el. pašto adresą.";
@@ -392,6 +409,8 @@
 "autodel_at_once" = "Iš karto";
 "after_30_seconds" = "Po 30 sekundžių";
 "after_1_minute" = "Po 1 minutės";
+"after_5_minutes" = "Po 5 minučių";
+"after_30_minutes" = "Po 30 minučių";
 "autodel_after_1_hour" = "Po 1 valandos";
 "autodel_after_1_day" = "Po 1 dienos";
 "autodel_after_1_week" = "Po 1 savaitės";
@@ -422,6 +441,7 @@
 "systemmsg_group_image_deleted" = "Grupės paveikslas ištrintas.";
 "systemmsg_member_added" = "Dalyvis %1$@ pridėtas.";
 "systemmsg_member_removed" = "Dalyvis %1$@ pašalintas.";
+"systemmsg_group_left" = "Išeita iš grupės.";
 "systemmsg_read_receipt_subject" = "Pranešimas apie skaitymą";
 "systemmsg_read_receipt_body" = "Tai yra pranešimas apie žinutės \"%1$@\" skaitymą.\n\nTai reiškia, kad žinutė buvo atvaizduota gavėjo įrenginyje, tačiau neužtikrina, kad jos turinys buvo perskaitytas.";
 "systemmsg_cannot_decrypt" = "Nepavyksta iššifruoti šios žinutės.\n\n• Galima, tiesiog, atsakyti į šią žinutę ir paprašyti siuntėjo dar kartą išsiųsti šią žinutę.\n\n• Tuo atveju, jeigu iš naujo įdiegėte Delta Chat ar kitą el. pašto programą šiame ar kitame įrenginyje, jūs galite pageidauti išsiųsti Autocrypt sąrankos žinutę iš to įrenginio.";
@@ -522,6 +542,7 @@
 "ask_delete_chat_desktop" = "Ar tikrai norite ištrinti šį pokalbį?";
 "email_validation_failed_desktop" = "Reikalingas el. pašto adresas.";
 "forget_login_confirmation_desktop" = "Ištrinti šį prisijungimą? Viskas bus ištrinta, įskaitant jūsų ištisinę sąranką, adresatus, pokalbius, žinutes ir mediją. Šis veiksmas yra galutinis ir negalės būti panaikintas.";
+"account_info_hover_tooltip_desktop" = "El. paštas: %1$@\nDydis: %2$@\nKelias: %3$@";
 "me_desktop" = "aš";
 "in_this_group_desktop" = "Grupės dalyviai";
 "not_in_this_group_desktop" = "Potencialūs grupės dalyviai (nėra grupėje)";

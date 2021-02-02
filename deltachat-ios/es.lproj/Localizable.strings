@@ -37,6 +37,12 @@
 "profile" = "Perfil";
 "main_menu" = "Menú principal";
 "start_chat" = "Comienza un chat";
+"show_full_message" = "Mostrar el mensaje completo...";
+"load_remote_content" = "Cargar imágenes remotas";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Las imágenes remotas pueden ser usadas para seguirte.\n\nLos ajustes también te permiten cargar fuentes y otros contenidos. Inclusive si están deshabilitadas, quizás puedas ver imágenes embebidas o en caché.\n\n¿Cargar imágenes remotas?";
+"always" = "Siempre";
+"once" = "Una vez";
 "show_password" = "Mostrar contraseña";
 "hide_password" = "Ocultar contraseña";
 "not_now" = "Ahora no";
@@ -161,6 +167,7 @@
 "menu_scroll_to_top" = "Desplazarse al inicio";
 "menu_help" = "Ayuda";
 "menu_select_all" = "Seleccionar todo";
+"select_more" = "Selecciona más";
 "menu_expand" = "Expandir";
 "menu_edit_name" = "Editar nombre";
 "menu_settings" = "Ajustes";
@@ -550,7 +557,6 @@
 "systemmsg_ephemeral_timer_day" = "Temporizador de borrado de mensaje dispuesto en 1 día";
 "systemmsg_ephemeral_timer_week" = "Temporizador de borrado de mensaje dispuesto en 1 semana";
 "systemmsg_ephemeral_timer_four_weeks" = "Temporizador de borrado de mensaje dispuesto en 4 semanas";
-
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Protección de chat desactivada";
 "systemmsg_chat_protection_enabled" = "Protección de chat activa";

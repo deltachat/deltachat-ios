@@ -37,6 +37,12 @@
 "profile" = "Профиль";
 "main_menu" = "Главное меню";
 "start_chat" = "Начать чат";
+"show_full_message" = "Показать сообщение…";
+"load_remote_content" = "Загружать удаленные изображения";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Удаленные изображения могут использоваться для отслеживания вас.\n\nЭта настройка также позволяет загружать удаленные шрифты и другое содержимое. Даже если она отключена, вы все равно сможете видеть встроенные или кешированные изображения.\n\nЗагружать удаленные изображения?";
+"always" = "Всегда";
+"once" = "Только сейчас";
 "show_password" = "Показать пароль";
 "hide_password" = "Скрыть пароль";
 "not_now" = "Не сейчас";
@@ -161,6 +167,7 @@
 "menu_scroll_to_top" = "Прокрутить вверх";
 "menu_help" = "Помощь";
 "menu_select_all" = "Выбрать всё";
+"select_more" = "Выбрать больше";
 "menu_expand" = "Расширить";
 "menu_edit_name" = "Изменить имя";
 "menu_settings" = "Настройки";
@@ -501,6 +508,8 @@
 "autodel_at_once" = "Сразу";
 "after_30_seconds" = "Через 30 секунд";
 "after_1_minute" = "Через 1 минуту";
+"after_5_minutes" = "Через 5 минут";
+"after_30_minutes" = "Через 30 минут";
 "autodel_after_1_hour" = "Через 1 час";
 "autodel_after_1_day" = "Через 1 день";
 "autodel_after_1_week" = "Через 1 неделю";
@@ -550,6 +559,10 @@
 "systemmsg_ephemeral_timer_day" = "Таймер исчезающих сообщений установлен на 1 день.";
 "systemmsg_ephemeral_timer_week" = "Таймер исчезающих сообщений установлен на 1 неделю.";
 "systemmsg_ephemeral_timer_four_weeks" = "Таймер исчезающих сообщений установлен на 4 недели.";
+"systemmsg_ephemeral_timer_minutes" = "Таймер исчезающих сообщений установлен в %1$@ минут.";
+"systemmsg_ephemeral_timer_hours" = "Таймер исчезающих сообщений установлен в %1$@ часов.";
+"systemmsg_ephemeral_timer_days" = "Таймер исчезающих сообщений установлен в %1$@ дней.";
+"systemmsg_ephemeral_timer_weeks" = "Таймер исчезающих сообщений установлен в %1$@ недель.";
 
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Защита чата отключена.";

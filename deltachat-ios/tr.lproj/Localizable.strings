@@ -37,6 +37,12 @@
 "profile" = "Profil";
 "main_menu" = "Ana menü";
 "start_chat" = "Sohbete başla";
+"show_full_message" = "Tam iletiyi göster…";
+"load_remote_content" = "Uzak görselleri yükle";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Uzak görseller sizi izlemek için kullanılabilir.\n\nAyar, yazı tiplerinin ve diğer içeriğin de yüklenmesine izin verir. Etkisizleştirildiyse bile katıştırılan ya da önbelleklenen görselleri hâlâ görebilirsiniz.\n\nUzak görseller yüklensin mi?";
+"always" = "Her zaman";
+"once" = "Bir kez";
 "show_password" = "Parolayı göster";
 "hide_password" = "Parolayı gizle";
 "not_now" = "Şimdi değil";
@@ -161,6 +167,7 @@
 "menu_scroll_to_top" = "Üste kaydır";
 "menu_help" = "Yardım";
 "menu_select_all" = "Tümünü seç";
+"select_more" = "Daha fazlasını seç";
 "menu_expand" = "Genişlet";
 "menu_edit_name" = "Adı düzenle";
 "menu_settings" = "Ayarlar";
@@ -501,6 +508,8 @@
 "autodel_at_once" = "Bir kerede";
 "after_30_seconds" = "30 saniye sonra";
 "after_1_minute" = "1 dakika sonra";
+"after_5_minutes" = "5 dakika sonra";
+"after_30_minutes" = "30 dakika sonra";
 "autodel_after_1_hour" = "1 saat sonra";
 "autodel_after_1_day" = "1 gün sonra";
 "autodel_after_1_week" = "1 hafta sonra";
@@ -550,6 +559,10 @@
 "systemmsg_ephemeral_timer_day" = "Kaybolan iletiler zamanlayıcısı 1 güne ayarlandı.";
 "systemmsg_ephemeral_timer_week" = "Kaybolan iletiler zamanlayıcısı 1 haftaya ayarlandı.";
 "systemmsg_ephemeral_timer_four_weeks" = "Kaybolan iletiler zamanlayıcısı 4 haftaya ayarlandı.";
+"systemmsg_ephemeral_timer_minutes" = "Kaybolan iletiler zamanlayıcısı %1$@ dakikaya ayarlandı.";
+"systemmsg_ephemeral_timer_hours" = "Kaybolan iletiler zamanlayıcısı %1$@ saate ayarlandı.";
+"systemmsg_ephemeral_timer_days" = "Kaybolan iletiler zamanlayıcısı %1$@ güne ayarlandı.";
+"systemmsg_ephemeral_timer_weeks" = "Kaybolan iletiler zamanlayıcısı %1$@ haftaya ayarlandı.";
 
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Sohbet koruması etkisizleştirildi.";
