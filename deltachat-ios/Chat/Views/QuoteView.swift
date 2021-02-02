@@ -8,6 +8,7 @@ public class QuoteView: UIView {
         view.clipsToBounds = true
         view.layer.cornerRadius = 1.5
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -17,6 +18,7 @@ public class QuoteView: UIView {
         view.textColor = DcColors.grayTextColor
         view.numberOfLines = 3
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -24,6 +26,7 @@ public class QuoteView: UIView {
         let view = UILabel()
         view.font = UIFont.preferredFont(for: .caption1, weight: .semibold)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -32,6 +35,7 @@ public class QuoteView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -45,6 +49,7 @@ public class QuoteView: UIView {
     }
 
     private func setupSubviews() {
+        isAccessibilityElement = true
         addSubview(citeBar)
         addSubview(senderTitle)
         addSubview(imagePreview)
@@ -68,6 +73,22 @@ public class QuoteView: UIView {
             citeBar.constraintAlignBottomTo(quote, paddingBottom: 2),
             citeBar.constraintWidthTo(3),
         ])
+    }
+
+    public func configureAccessibilityLabel() -> String {
+        var accessibilitySenderTitle = ""
+        var accessibilityQuoteText = ""
+        var accessibilityQuoteImageText = ""
+        if let senderTiteText = senderTitle.text {
+            accessibilitySenderTitle = "\(senderTiteText), "
+        }
+        if let quoteText = quote.text {
+            accessibilityQuoteText = "\(quoteText), "
+        }
+        if imagePreview.image != nil {
+            accessibilityQuoteImageText = "\(String.localized("image")), "
+        }
+        return "\(accessibilitySenderTitle), \(accessibilityQuoteText), \(accessibilityQuoteImageText)"
     }
 
     public func prepareForReuse() {

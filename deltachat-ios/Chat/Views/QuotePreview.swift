@@ -23,6 +23,7 @@ public class QuotePreview: DraftPreview {
         quoteView.prepareForReuse()
         delegate?.onCancelQuote()
         quoteView.quote.numberOfLines = 3
+        accessibilityLabel = nil
     }
 
     override public func configure(draft: DraftModel) {
@@ -44,6 +45,7 @@ public class QuotePreview: DraftPreview {
                     quoteView.citeBar.backgroundColor = contact.color
                 }
             }
+            accessibilityLabel = quoteView.configureAccessibilityLabel()
 
             isHidden = false
         } else {
