@@ -319,9 +319,9 @@ public class BaseMessageCell: UITableViewCell {
             additionalAccessibilityString = "\(additionalAccessibilityInfo), "
         }
 
-        return "\(additionalAccessibilityString) " +
-            "\(topLabelAccessibilityString) " +
+        return "\(topLabelAccessibilityString) " +
             "\(quoteAccessibilityString) " +
+            "\(additionalAccessibilityString) " +
             "\(messageLabelAccessibilityString) " +
             "\(getFormattedBottomLineAccessibilityString(message: message))"
     }
