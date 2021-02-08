@@ -687,6 +687,10 @@ public class DcChat {
         return type == DC_CHAT_TYPE_GROUP || type == DC_CHAT_TYPE_MAILINGLIST
     }
 
+    public var isMailinglist: Bool {
+        return Int(dc_chat_get_type(chatPointer)) == DC_CHAT_TYPE_MAILINGLIST
+    }
+
     public var isSelfTalk: Bool {
         return Int(dc_chat_is_self_talk(chatPointer)) != 0
     }

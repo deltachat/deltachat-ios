@@ -189,7 +189,11 @@ class GroupChatDetailViewController: UIViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("tab_group")
+        if chat.isMailinglist {
+            title = String.localized("mailing_list")
+        } else {
+            title = String.localized("tab_group")
+        }
         navigationItem.rightBarButtonItem = editBarButtonItem
         groupHeader.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
     }
@@ -220,7 +224,8 @@ class GroupChatDetailViewController: UIViewController {
     private func updateHeader() {
         groupHeader.updateDetails(
             title: chat.name,
-            subtitle: String.localizedStringWithFormat(String.localized("n_members"), chat.contactIds.count)
+            subtitle: chat.isMailinglist ?
+                nil : String.localizedStringWithFormat(String.localized("n_members"), chat.contactIds.count)
         )
         if let img = chat.profileImage {
             groupHeader.setImage(img)
