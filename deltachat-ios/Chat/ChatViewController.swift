@@ -931,13 +931,12 @@ class ChatViewController: UITableViewController {
     // MARK: - coordinator
     private func showChatDetail(chatId: Int) {
         let chat = dcContext.getChat(chatId: chatId)
-        switch chat.chatType {
-        case .SINGLE:
+        if !chat.isGroup {
             if let contactId = chat.contactIds.first {
                 let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: contactId)
                 navigationController?.pushViewController(contactDetailController, animated: true)
             }
-        case .GROUP, .VERIFIEDGROUP:
+        } else {
             let groupChatDetailViewController = GroupChatDetailViewController(chatId: chatId, dcContext: dcContext)
             navigationController?.pushViewController(groupChatDetailViewController, animated: true)
         }

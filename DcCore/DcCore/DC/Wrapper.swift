@@ -664,14 +664,6 @@ public class DcChat {
         return swiftString
     }
 
-    public var type: Int {
-        return Int(dc_chat_get_type(chatPointer))
-    }
-
-    public var chatType: ChatType {
-        return ChatType(rawValue: type) ?? ChatType.GROUP // group as fallback - shouldn't get here
-    }
-
     public var color: UIColor {
         return UIColor(netHex: Int(dc_chat_get_color(chatPointer)))
     }
@@ -689,7 +681,10 @@ public class DcChat {
     }
 
     public var isGroup: Bool {
-        return Int(dc_chat_get_type(chatPointer)) == DC_CHAT_TYPE_GROUP
+        // isMultiUser() might fit better,
+        // however, would result in lots of code changes, so we leave this as is for now.
+        let type = Int(dc_chat_get_type(chatPointer))
+        return type == DC_CHAT_TYPE_GROUP || type == DC_CHAT_TYPE_MAILINGLIST
     }
 
     public var isSelfTalk: Bool {
@@ -1219,12 +1214,6 @@ public class DcProvider {
         dc_str_unref(cString)
         return swiftString
     }
-}
-
-public enum ChatType: Int {
-    case SINGLE = 100
-    case GROUP = 120
-    case VERIFIEDGROUP = 130
 }
 
 public enum MessageViewType: CustomStringConvertible {
