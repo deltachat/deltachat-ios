@@ -159,6 +159,8 @@
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Tonen in bijbehorend gesprek";
 "menu_share" = "Delen";
+// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+"block" = "Blokkeren";
 "menu_block_contact" = "Contactpersoon blokkeren";
 "menu_unblock_contact" = "Contactpersoon deblokkeren";
 "menu_play" = "Afspelen";
@@ -280,6 +282,11 @@
 "messaging_disabled_deaddrop" = "Druk op een bericht om het contactpersoonverzoek goed te keuren of af te wijzen";
 "cannot_display_unsuported_file_type" = "Het volgende bestandstype kan niet worden getoond: %1$@";
 "attachment_failed_to_load" = "De bijlage kan niet worden geladen";
+
+
+// mailing lists
+"mailing_list" = "Mailinglijst";
+"ask_show_mailing_list" = "Wil je de mailinglijst \'%1$@\' tonen?";
 
 
 // map
@@ -514,6 +521,7 @@
 "autodel_after_1_day" = "Na 1 dag";
 "autodel_after_1_week" = "Na 1 week";
 "autodel_after_4_weeks" = "Na 4 weken";
+"after_5_weeks" = "Na 5 weken";
 "autodel_after_1_year" = "Na 1 jaar";
 
 // autocrypt

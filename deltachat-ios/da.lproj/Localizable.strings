@@ -37,6 +37,10 @@
 "profile" = "Profil";
 "main_menu" = "Hovedmenu";
 "start_chat" = "Begynd chat";
+"show_full_message" = "Vis hele beskeden...";
+"load_remote_content" = "Hent billeder";
+"always" = "Altid";
+"once" = "En gang";
 "show_password" = "Vis adgangskode";
 "hide_password" = "Vis ikke adgangskode";
 "not_now" = "Ikke nu";
@@ -502,10 +506,13 @@
 "autodel_at_once" = "Med det samme";
 "after_30_seconds" = "Efter 30 sekunder";
 "after_1_minute" = "Efter 1 minut";
+"after_5_minutes" = "Efter 5 minutter";
+"after_30_minutes" = "Efter 30 minutter";
 "autodel_after_1_hour" = "Efter 1 time";
 "autodel_after_1_day" = "Efter 1 dag";
 "autodel_after_1_week" = "Efter 1 uge";
 "autodel_after_4_weeks" = "Efter 4 uger";
+"after_5_weeks" = "Efter 5 uger";
 "autodel_after_1_year" = "Efter 1 år";
 
 // autocrypt
@@ -551,6 +558,11 @@
 "systemmsg_ephemeral_timer_day" = "Tidsudløb for beskeder sat til 1 dag.";
 "systemmsg_ephemeral_timer_week" = "Tidsudløb for beskeder sat til 1 uge.";
 "systemmsg_ephemeral_timer_four_weeks" = "Tidsudløb for beskeder sat til 4 uger.";
+"systemmsg_ephemeral_timer_minutes" = "Beskeder sat til at udløbe efter %1$@ minutter.";
+"systemmsg_ephemeral_timer_hours" = "Beskeder sat til at udløbe efter %1$@ timer.";
+"systemmsg_ephemeral_timer_days" = "Beskeder sat til at udløbe efter %1$@ dage.";
+"systemmsg_ephemeral_timer_weeks" = "Beskeder sat til at udløbe efter %1$@ uger.";
+
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Chat-beskyttelse slået fra.";
 "systemmsg_chat_protection_enabled" = "Chat-beskyttelse sluttet til.";

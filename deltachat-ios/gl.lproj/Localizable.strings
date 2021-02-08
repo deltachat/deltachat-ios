@@ -159,6 +159,8 @@
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Mostrar na conversa";
 "menu_share" = "Compartir";
+// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+"block" = "Bloquear";
 "menu_block_contact" = "Bloquear contacto";
 "menu_unblock_contact" = "Desbloquear contacto";
 "menu_play" = "Reproducir";
@@ -280,6 +282,11 @@
 "messaging_disabled_deaddrop" = "Preme nunha mensaxe para aceptar ou denegar a solicitude de contacto";
 "cannot_display_unsuported_file_type" = "Non se pode motrar este tipo de ficheiro: %1$@";
 "attachment_failed_to_load" = "Erro ao cargar o anexo";
+
+
+// mailing lists
+"mailing_list" = "Lista de correo";
+"ask_show_mailing_list" = "Mostrar lista de correo \"%1$@\"?";
 
 
 // map
@@ -514,6 +521,7 @@
 "autodel_after_1_day" = "Após 1 día";
 "autodel_after_1_week" = "Após 1 semana";
 "autodel_after_4_weeks" = "Após 4 semanas";
+"after_5_weeks" = "Após 5 semanas";
 "autodel_after_1_year" = "Após 1 ano";
 
 // autocrypt

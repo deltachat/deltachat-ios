@@ -514,6 +514,7 @@
 "autodel_after_1_day" = "1 gün sonra";
 "autodel_after_1_week" = "1 hafta sonra";
 "autodel_after_4_weeks" = "4 hafta sonra";
+"after_5_weeks" = "5 hafta sonra";
 "autodel_after_1_year" = "1 yıl sonra";
 
 // autocrypt

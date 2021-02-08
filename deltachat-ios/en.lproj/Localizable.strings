@@ -159,6 +159,8 @@
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Show in chat";
 "menu_share" = "Share";
+// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+"block" = "Block";
 "menu_block_contact" = "Block contact";
 "menu_unblock_contact" = "Unblock contact";
 "menu_play" = "Play";
@@ -280,6 +282,11 @@
 "messaging_disabled_deaddrop" = "Click on a message to accept or deny the contact request";
 "cannot_display_unsuported_file_type" = "Cannot display this file type: %1$@";
 "attachment_failed_to_load" = "Failed to load attachment";
+
+
+// mailing lists
+"mailing_list" = "Mailing list";
+"ask_show_mailing_list" = "Show mailing list \"%1$@\"?";
 
 
 // map
@@ -514,6 +521,7 @@
 "autodel_after_1_day" = "After 1 day";
 "autodel_after_1_week" = "After 1 week";
 "autodel_after_4_weeks" = "After 4 weeks";
+"after_5_weeks" = "After 5 weeks";
 "autodel_after_1_year" = "After 1 year";
 
 // autocrypt

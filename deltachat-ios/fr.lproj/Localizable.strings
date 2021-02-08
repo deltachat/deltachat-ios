@@ -505,6 +505,7 @@
 "autodel_after_1_day" = "Après 1 jour";
 "autodel_after_1_week" = "Après 1 semaine";
 "autodel_after_4_weeks" = "Après 4 semaines";
+"after_5_weeks" = "Après 5 semaines";
 "autodel_after_1_year" = "Après 1 année";
 
 // autocrypt

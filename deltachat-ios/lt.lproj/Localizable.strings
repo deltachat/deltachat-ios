@@ -415,6 +415,7 @@
 "autodel_after_1_day" = "Po 1 dienos";
 "autodel_after_1_week" = "Po 1 savaitės";
 "autodel_after_4_weeks" = "Po 4 savaičių";
+"after_5_weeks" = "Po 5 savaičių";
 "autodel_after_1_year" = "Po 1 metų";
 
 // autocrypt
@@ -446,6 +447,10 @@
 "systemmsg_read_receipt_body" = "Tai yra pranešimas apie žinutės \"%1$@\" skaitymą.\n\nTai reiškia, kad žinutė buvo atvaizduota gavėjo įrenginyje, tačiau neužtikrina, kad jos turinys buvo perskaitytas.";
 "systemmsg_cannot_decrypt" = "Nepavyksta iššifruoti šios žinutės.\n\n• Galima, tiesiog, atsakyti į šią žinutę ir paprašyti siuntėjo dar kartą išsiųsti šią žinutę.\n\n• Tuo atveju, jeigu iš naujo įdiegėte Delta Chat ar kitą el. pašto programą šiame ar kitame įrenginyje, jūs galite pageidauti išsiųsti Autocrypt sąrankos žinutę iš to įrenginio.";
 "systemmsg_subject_for_new_contact" = "Žinutė nuo %1$@";
+// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+"systemmsg_chat_protection_disabled" = "Pokalbio apsauga išjungta.";
+"systemmsg_chat_protection_enabled" = "Pokalbio apsauga įjungta.";
+
 // screen lock
 "screenlock_title" = "Ekrano užraktas";
 "screenlock_authentication_failed" = "Tapatybės nustatymas nepavyko.";
