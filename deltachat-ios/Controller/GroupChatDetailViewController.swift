@@ -23,13 +23,8 @@ class GroupChatDetailViewController: UIViewController {
         case deleteChat
     }
 
-    private lazy var chatOptions: [ChatOption] = {
-        return [.gallery, .documents, .ephemeralMessages, .muteChat]
-    }()
-
-    private lazy var chatActions: [ChatAction] = {
-        return [.archiveChat, .leaveGroup, .deleteChat]
-    }()
+    private let chatOptions: [ChatOption]
+    private let chatActions: [ChatAction]
 
     private let membersRowAddMembers = 0
     private let membersRowQrInvite = 1
@@ -37,7 +32,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private let dcContext: DcContext
 
-    private let sections: [ProfileSections] = [.chatOptions, .members, .chatActions]
+    private let sections: [ProfileSections]
 
     private var currentUser: DcContact? {
         let myId = groupMemberIds.filter { DcContact(id: $0).email == dcContext.addr }.first
@@ -168,6 +163,18 @@ class GroupChatDetailViewController: UIViewController {
     init(chatId: Int, dcContext: DcContext) {
         self.dcContext = dcContext
         self.chatId = chatId
+
+        let chat = dcContext.getChat(chatId: chatId)
+        if chat.isMailinglist {
+            self.chatOptions = [.gallery, .documents, .muteChat]
+            self.chatActions = [.archiveChat, .deleteChat]
+            self.sections = [.chatOptions, .chatActions]
+        } else {
+            self.chatOptions = [.gallery, .documents, .ephemeralMessages, .muteChat]
+            self.chatActions = [.archiveChat, .leaveGroup, .deleteChat]
+            self.sections = [.chatOptions, .members, .chatActions]
+        }
+
         super.init(nibName: nil, bundle: nil)
         setupSubviews()
     }
