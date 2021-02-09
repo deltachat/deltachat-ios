@@ -12,6 +12,7 @@ class EditContactController: NewContactController {
 
         let contact = DcContact(id: contactIdForUpdate)
         nameCell.textField.text = contact.name
+        nameCell.placeholder = contact.displayName
         emailCell.textField.text = contact.email
         emailCell.textField.isEnabled = false
         emailCell.contentView.alpha = 0.3
