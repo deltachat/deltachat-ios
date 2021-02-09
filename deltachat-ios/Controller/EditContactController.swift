@@ -11,13 +11,13 @@ class EditContactController: NewContactController {
         title = String.localized("edit_contact")
 
         let contact = DcContact(id: contactIdForUpdate)
-        nameCell.textField.text = contact.name
+        nameCell.textField.text = contact.editedName
         nameCell.placeholder = contact.displayName
         emailCell.textField.text = contact.email
         emailCell.textField.isEnabled = false
         emailCell.contentView.alpha = 0.3
 
-        model.name = contact.name
+        model.name = contact.editedName
         model.email = contact.email
 
         if contactIsValid() {

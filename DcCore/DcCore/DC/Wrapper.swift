@@ -1079,7 +1079,7 @@ public class DcContact {
         return swiftString
     }
 
-    public var name: String {
+    public var editedName: String {
         guard let cString = dc_contact_get_name(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)

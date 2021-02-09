@@ -6,15 +6,15 @@ extension DcContact {
         var nameIndexes = [Int]()
         var emailIndexes = [Int]()
 
-        let contactString = name + email
+        let contactString = displayName + email
         let subsequenceIndexes = contactString.contains(subSequence: text)
 
         if !subsequenceIndexes.isEmpty {
             for index in subsequenceIndexes {
-                if index < name.count {
+                if index < displayName.count {
                     nameIndexes.append(index)
                 } else {
-                    let emailIndex = index - name.count
+                    let emailIndex = index - displayName.count
                     emailIndexes.append(emailIndex)
                 }
             }
@@ -27,7 +27,7 @@ extension DcContact {
     func containsExact(searchText text: String) -> [ContactHighlights] {
         var contactHighlights = [ContactHighlights]()
 
-        let nameString = name + ""
+        let nameString = displayName + ""
         let emailString = email + ""
         if let nameRange = nameString.range(of: text, options: .caseInsensitive) {
             let index: Int = nameString.distance(from: nameString.startIndex, to: nameRange.lowerBound)
