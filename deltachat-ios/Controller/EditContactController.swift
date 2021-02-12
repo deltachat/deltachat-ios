@@ -11,8 +11,11 @@ class EditContactController: NewContactController {
         title = String.localized("edit_contact")
 
         let contact = DcContact(id: contactIdForUpdate)
+
         nameCell.textField.text = contact.editedName
-        nameCell.placeholder = contact.displayName
+        if !contact.authName.isEmpty { // else show string "Name" as set by super.init()
+            nameCell.placeholder = contact.authName
+        }
         emailCell.textField.text = contact.email
         emailCell.textField.isEnabled = false
         emailCell.contentView.alpha = 0.3

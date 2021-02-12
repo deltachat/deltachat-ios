@@ -1086,6 +1086,13 @@ public class DcContact {
         return swiftString
     }
 
+    public var authName: String {
+        guard let cString = dc_contact_get_auth_name(contactPointer) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
     public var email: String {
         guard let cString = dc_contact_get_addr(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
