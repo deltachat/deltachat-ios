@@ -25,10 +25,14 @@
 "archive" = "Archyvuoti";
 "unarchive" = "Išarchyvuoti";
 "ephemeral_messages" = "Išnykstančios žinutės";
+"ephemeral_messages_hint" = "Šie nustatymai taikomi visiems Delta Chat besinaudojantiems dalyviams. Vis dėlto, jie gali kopijuoti, įrašyti ir persiųsti žinutes arba naudoti kitas el. pašto kliento programas.";
 "save" = "Įrašyti";
 "media" = "Medija";
 "profile" = "Profilis";
 "main_menu" = "Pagrindinis meniu";
+"start_chat" = "Pradėti pokalbį";
+"show_full_message" = "Rodyti visą žinutę…";
+"load_remote_content" = "Įkelti nuotolinius paveikslus";
 "always" = "Visada";
 "once" = "Vieną kartą";
 "show_password" = "Rodyti slaptažodį";
@@ -74,6 +78,8 @@
 "audio" = "Garsas";
 "voice_message" = "Balso žinutė";
 "forwarded_message" = "Persiųsta žinutė";
+// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+"forwarded_by" = "Persiuntė %1$@";
 "video" = "Vaizdas";
 "documents" = "Dokumentai";
 "contact" = "Adresatas";
@@ -95,6 +101,7 @@
 "magenta" = "Rausvai raudona";
 "white" = "Balta";
 
+"zoom" = "Mastelis";
 "extra_small" = "Labai mažas";
 "small" = "Mažas";
 "normal" = "Normalus";
@@ -145,9 +152,11 @@
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Rodyti pokalbyje";
 "menu_share" = "Bendrinti";
+// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+"block" = "Užblokuoti";
 "menu_block_contact" = "Užblokuoti adresatą";
 "menu_unblock_contact" = "Atblokuoti adresatą";
-"menu_play" = "Groti";
+"menu_play" = "Atkurti";
 "menu_pause" = "Pristabdyti";
 "menu_scroll_to_bottom" = "Slinkti į apačią";
 "menu_scroll_to_top" = "Slinkti į viršų";
@@ -164,6 +173,7 @@
 "menu_zoom_out" = "Mažinti";
 "menu_save_log" = "Įrašyti žurnalą";
 "title_share_location" = "Bendrinti savo vietą su visais grupės dalyviais";
+"device_talk" = "Įrenginio žinutės";
 "edit_contact" = "Taisyti adresatą";
 // Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
 "pin_chat" = "Prisegti pokalbį";
@@ -173,6 +183,7 @@
 "pin" = "Prisegti";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "Atsegti";
+"ConversationFragment_quoted_message_not_found" = "Pradinė žinutė nerasta";
 "reply_privately" = "Atsakyti privačiai";
 
 "mute_for_one_hour" = "Išjungti 1 valandai";
@@ -190,7 +201,14 @@
 
 "file_saved_to" = "Failas įrašytas į \"%1$@\".";
 
+"videochat" = "Vaizdo pokalbis";
+"videochat_invite_user_to_videochat" = "Pakviesti %1$@ į vaizdo pokalbį?";
+"videochat_invite_user_hint" = "Tai reikalauja, kad abu pašnekovai turėtų suderinamą programėlę ar suderinamą naršyklę.";
 "videochat_will_open_in_your_browser" = "Šis vaizdo pokalbis bus atvertas jūsų naršyklėje.";
+"videochat_tap_to_join" = "Bakstelėkite norėdami prisijungti";
+"videochat_tap_to_open" = "Bakstelėkite norėdami atverti";
+"videochat_instance" = "Vaizdo pokalbio egzempliorius";
+"videochat_instance_placeholder" = "Jūsų vaizdo pokalbio egzempliorius";
 // get confirmations
 "ask_leave_group" = "Ar tikrai norite išeiti iš šios grupės?";
 "ask_forward" = "Persiųsti žinutes %1$@?";
@@ -242,6 +260,8 @@
 // create/edit groups, contact/group profile
 "group_name" = "Grupės pavadinimas";
 "group_avatar" = "Grupės avataras";
+"remove_group_image" = "Šalinti grupės paveikslą";
+"change_group_image" = "Keisti grupės paveikslą";
 "group_create_button" = "Sukurti grupę";
 "group_please_enter_group_name" = "Įveskite grupės pavadinimą.";
 "group_add_members" = "Pridėti dalyvius";
@@ -316,6 +336,7 @@
 "pref_profile_info_headline" = "Jūsų profilio informacija";
 "pref_profile_photo" = "Profilio nuotrauka";
 "pref_blocked_contacts" = "Užblokuoti adresatai";
+"blocked_empty_hint" = "Jei užblokuosite adresatus, jie bus rodomi čia.";
 "pref_profile_photo_remove_ask" = "Šalinti profilio nuotrauką?";
 "pref_password_and_account_settings" = "Slaptažodis ir paskyra";
 "pref_who_can_see_profile_explain" = "Bendraujant su kitais naudotojais, jūsų profilio paveikslas ir vardas bus rodomi kartu su jūsų žinutėmis. Jau išsiųsta informacija negalės būti ištrinta ar pašalinta.";
@@ -447,6 +468,18 @@
 "systemmsg_read_receipt_body" = "Tai yra pranešimas apie žinutės \"%1$@\" skaitymą.\n\nTai reiškia, kad žinutė buvo atvaizduota gavėjo įrenginyje, tačiau neužtikrina, kad jos turinys buvo perskaitytas.";
 "systemmsg_cannot_decrypt" = "Nepavyksta iššifruoti šios žinutės.\n\n• Galima, tiesiog, atsakyti į šią žinutę ir paprašyti siuntėjo dar kartą išsiųsti šią žinutę.\n\n• Tuo atveju, jeigu iš naujo įdiegėte Delta Chat ar kitą el. pašto programą šiame ar kitame įrenginyje, jūs galite pageidauti išsiųsti Autocrypt sąrankos žinutę iš to įrenginio.";
 "systemmsg_subject_for_new_contact" = "Žinutė nuo %1$@";
+"systemmsg_ephemeral_timer_disabled" = "Išnykstančių žinučių laikmatis išjungtas.";
+"systemmsg_ephemeral_timer_enabled" = "Išnykstančių žinučių laikmatis nustatytas į %1$@ sek.";
+"systemmsg_ephemeral_timer_minute" = "Išnykstančių žinučių laikmatis nustatytas į 1 minutę.";
+"systemmsg_ephemeral_timer_hour" = "Išnykstančių žinučių laikmatis nustatytas į 1 valandą.";
+"systemmsg_ephemeral_timer_day" = "Išnykstančių žinučių laikmatis nustatytas į 1 dieną.";
+"systemmsg_ephemeral_timer_week" = "Išnykstančių žinučių laikmatis nustatytas į 1 savaitę.";
+"systemmsg_ephemeral_timer_four_weeks" = "Išnykstančių žinučių laikmatis nustatytas į 4 savaites.";
+"systemmsg_ephemeral_timer_minutes" = "Išnykstančių žinučių laikmatis nustatytas į %1$@ min.";
+"systemmsg_ephemeral_timer_hours" = "Išnykstančių žinučių laikmatis nustatytas į %1$@ val.";
+"systemmsg_ephemeral_timer_days" = "Išnykstančių žinučių laikmatis nustatytas į %1$@ d.";
+"systemmsg_ephemeral_timer_weeks" = "Išnykstančių žinučių laikmatis nustatytas į %1$@ sav.";
+
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Pokalbio apsauga išjungta.";
 "systemmsg_chat_protection_enabled" = "Pokalbio apsauga įjungta.";
@@ -463,8 +496,10 @@
 
 // qr code stuff
 "qr_code" = "QR kodas";
+"load_qr_code_as_image" = "Įkelti QR kodą kaip paveikslą";
 "qrscan_title" = "Nuskenuoti QR kodą";
 "qrscan_hint" = "Laikykite savo kamerą virš QR kodo";
+"qrscan_failed" = "Nepavyko dekoduoti QR kodo";
 "qrscan_ask_join_group" = "Ar norite prisijungti prie grupės \"%1$@\"?";
 "qrscan_contains_text" = "Nuskenuoto QR kodo tekstas:\n\n%1$@";
 "qrscan_contains_url" = "Nuskenuoto QR kodo URL:\n\n%1$@";
@@ -477,7 +512,10 @@
 "qrshow_join_contact_hint" = "Nuskenuokite tai, norėdami užmegzti kontaktą su %1$@";
 "qrshow_join_contact_no_connection_hint" = "QR kodo sąranka reikalauja interneto ryšio. Prieš tęsdami, prisijunkite prie tinklo.";
 "qrshow_join_contact_no_connection_toast" = "Nėra interneto ryšio, nepavyksta atlikti QR kodo sąrankos.";
+"qraccount_ask_create_and_login" = "Sukurti naują el. pašto adresą ties „%1$@“ ir prisijungti ten?";
 "contact_not_verified" = "Nepavyksta patvirtinti %1$@";
+// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+"contact_setup_changed" = "Pakeista sąranka, skirta %1$@.";
 "notify_mark_read" = "Žymėti kaip skaitytą";
 "notify_reply_button" = "Atsakyti";
 "notify_new_message" = "Nauja žinutė";
@@ -566,6 +604,13 @@
 "a11y_delivery_status_read" = "Pristatymo būsena: Perskaityta";
 "a11y_delivery_status_invalid" = "Neteisinga pristatymo būsena";
 "a11y_background_preview_label" = "Fono peržiūra";
+"a11y_disappearing_messages_activated" = "Išnykstančios žinutės aktyvuotos";
+
+
+
+
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Foniniai pranešimai";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Patikimas foninis ryšys";
 "perm_enable_bg_reminder_title" = "Bakstelėkite čia, norėdami gauti žinutes, kol Delta Chat veikia fone.";

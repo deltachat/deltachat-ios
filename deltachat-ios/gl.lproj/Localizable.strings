@@ -87,6 +87,8 @@
 "audio" = "Audio";
 "voice_message" = "Mensaxe de voz";
 "forwarded_message" = "Mensaxe reenviado";
+// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+"forwarded_by" = "Reenviado por %1$@";
 "video" = "Vídeo";
 "documents" = "Documentos";
 "contact" = "Contacto";

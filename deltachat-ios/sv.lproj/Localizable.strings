@@ -8,11 +8,14 @@
 "on" = "På";
 "off" = "Av";
 "def" = "Standard";
+"default_value" = "Standard (%1$@)";
+"default_value_as_above" = "Standard (samma som ovan)";
 "custom" = "Anpassat";
 "none" = "Ingen";
 "automatic" = "Automatiskt";
 "strict" = "Sträng";
 "open" = "Öppna";
+"open_attachment" = "Öppna bilaga";
 "join" = "Anslut";
 "rejoin" = "Återanslut";
 "delete" = "Ta bort";
@@ -31,8 +34,15 @@
 "save" = "Spara";
 "chat" = "Chatt";
 "media" = "Media";
+"profile" = "Profil";
 "main_menu" = "Huvudmeny";
 "start_chat" = "Starta chatt";
+"show_full_message" = "Visa hela meddelandet...";
+"load_remote_content" = "Ladda in fjärrbilder";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Fjärrbilder kan användas för att spåra dig.\n\nInställningen att fonter och annat innehåll laddas in. Även om inställningen är inaktiverad kan eventuellt inbäddade eller cachade fjärrbilder visas.\n\nLadda in fjärrbilder?";
+"always" = "Alltid";
+"once" = "en gång";
 "show_password" = "Visa lösenord";
 "hide_password" = "Dölj lösenord";
 "not_now" = "Inte nu";
@@ -40,6 +50,7 @@
 "one_moment" = "Ett ögonblick...";
 "done" = "Klart";
 "undo" = "Ångra";
+"offline" = "Offline";
 // Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
 "next" = "Nästa";
 "error" = "Fel";
@@ -69,11 +80,15 @@
 "self" = "Jag";
 "draft" = "Utkast";
 "image" = "Bild";
+// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Svara";
 "gif" = "GIF";
 "images" = "Bilder";
 "audio" = "Ljud";
 "voice_message" = "Röstmeddelande";
 "forwarded_message" = "Vidarebefordrat meddelande";
+// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+"forwarded_by" = "Vidarebefordrad av %1$@";
 "video" = "Video";
 "documents" = "Dokument";
 "contact" = "Kontakt";
@@ -95,6 +110,8 @@
 "magenta" = "Magenta";
 "white" = "Vit";
 
+"zoom" = "Zoom";
+"extra_small" = "Extra liten";
 "small" = "Liten";
 "normal" = "Normal";
 "large" = "Stor";
@@ -123,12 +140,17 @@
 "menu_add_attachment" = "Lägg till bilaga";
 "menu_leave_group" = "Lämna grupp";
 "menu_delete_chat" = "Ta bort chatt";
+"ask_delete_named_chat" = "Är du säker på att du vill ta bort \"%1$@\"?";
 "menu_delete_messages" = "Ta bort meddelanden";
 "menu_delete_image" = "Ta bort bild";
+"delete_contact" = "Ta bort kontakt";
 "menu_delete_locations" = "Ta bort alla platser?";
 "menu_delete_location" = "Ta bort denna plats?";
 "menu_message_details" = "Meddelandedetaljer";
 "menu_copy_to_clipboard" = "Kopierad till urklipp";
+"menu_copy_selection_to_clipboard" = "Kopiera urval";
+"menu_copy_link_to_clipboard" = "Kopiera länk";
+"paste_from_clipboard" = "Klistra in från urklipp";
 "menu_forward" = "Vidarebefordra meddelande";
 "menu_resend" = "Skicka om meddelandet";
 "menu_reply" = "Svara på meddelandet";
@@ -136,7 +158,11 @@
 "menu_unmute" = "Slå på";
 "menu_export_attachment" = "Exportera bilaga";
 "menu_all_media" = "All media";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Visa i chatten";
 "menu_share" = "Dela";
+// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+"block" = "Blockera";
 "menu_block_contact" = "Blockera kontakt";
 "menu_unblock_contact" = "Avblockera kontakten";
 "menu_play" = "Spela upp";
@@ -145,6 +171,7 @@
 "menu_scroll_to_top" = "Bläddra till toppen";
 "menu_help" = "Hjälp";
 "menu_select_all" = "Markera alla";
+"select_more" = "Välj flera";
 "menu_expand" = "Expandera";
 "menu_edit_name" = "Redigera namn";
 "menu_settings" = "Inställningar";
@@ -169,6 +196,9 @@
 "pin" = "Fäst";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "Lösgör";
+"ConversationFragment_quoted_message_not_found" = "Original meddelandet hittas inte";
+"reply_privately" = "Svara säkert";
+
 "mute_for_one_hour" = "Tysta 1 timma";
 "mute_for_two_hours" = "Tysta 2 timmar";
 "mute_for_one_day" = "Tysta 1 dag";
@@ -210,8 +240,12 @@
 "ask_delete_contact" = "Ta bort kontakten %1$@?\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte tas bort permanent. ";
 "cannot_delete_contacts_in_use" = "Det går inte att ta bort kontakter med pågående chattar.";
 "ask_start_chat_with" = "Chatta med %1$@ ?";
+"ask_delete_value" = "Ta bort %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Ta bort %1$@ från gruppen?";
+"open_url_confirmation" = "Vill du öppna denna länk?";
+
+
 // contact list
 "contacts_title" = "Kontakter";
 "contacts_enter_name_or_email" = "Ange namn eller e-postadress";
@@ -238,10 +272,25 @@
 "chat_self_talk_subtitle" = "Meddelanden jag skickat till mig själv";
 "saved_messages" = "Sparade meddelanden";
 "saved_messages_explain" = "• Vidarebefordra meddelanden här för enkel åtkomst\n\n• Spara anteckningar eller röstmemon\n\n• Bifoga mediafiler för att spara dom";
+// this "Saved" should match the "Saved" from "Saved messages"
+"saved" = "Sparad";
 "chat_contact_request" = "Kontaktförfrågan";
 "chat_no_contact_requests" = "Inga kontaktförfrågningar.\n\nOm du vill att vanliga e-postmeddelanden skall visas som kontaktförfrågningar här, kan du ändra det i appens inställningar.";
 "retry_send" = "Skicka om meddelandet";
 "send_failed" = "Kunde inte skicka meddelandet";
+// reasons for a disabled message composer
+"messaging_disabled_not_in_group" = "Du kan inte skriva eftersom du inte är med i denna grupp. Be en medlem bjuda in dig, för att gå med";
+"messaging_disabled_device_chat" = "Den här chatten innehåller meddelanden som har genererats lokalt. Därför kan du inte skriva meddelanden.";
+"messaging_disabled_deaddrop" = "Tryck på ett meddelande för att acceptera, eller neka en kontaktförfrågan";
+"cannot_display_unsuported_file_type" = "Denna filtyp kan inte visas: %1$@";
+"attachment_failed_to_load" = "Bilagan kunde inte visas";
+
+
+// mailing lists
+"mailing_list" = "Mejllista";
+"ask_show_mailing_list" = "Visa mejllistan \"%1$@\"?";
+
+
 // map
 "filter_map_on_time" = "Visa platser inom tidsramen";
 "show_location_traces" = "Visa spår";
@@ -257,6 +306,8 @@
 // create/edit groups, contact/group profile
 "group_name" = "Gruppnamn";
 "group_avatar" = "Gruppbild";
+"remove_group_image" = "Ta bort gruppbild";
+"change_group_image" = "Ändra gruppbild";
 "group_create_button" = "Skapa grupp";
 "group_please_enter_group_name" = "Ange ett namn för gruppen.";
 "group_add_members" = "Lägg till medlemmar";

@@ -87,6 +87,8 @@
 "audio" = "Audio";
 "voice_message" = "Mesazh zanor";
 "forwarded_message" = "Mesazhi u përcoll";
+// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+"forwarded_by" = "Përcjellë nga %1$@";
 "video" = "Video";
 "documents" = "Dokumente";
 "contact" = "Kontakt";
