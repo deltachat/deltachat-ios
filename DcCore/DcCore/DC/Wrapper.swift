@@ -85,8 +85,9 @@ public class DcContext {
         }
     }
 
-    public func createChatByMessageId(_ messageId: Int) -> DcChat {
-        let chatId = dc_create_chat_by_msg_id(contextPointer, UInt32(messageId))
+    @discardableResult
+    public func decideOnContactRequest(_ messageId: Int, _ decision: Int32) -> DcChat {
+        let chatId = dc_decide_on_contact_request(contextPointer, UInt32(messageId), decision)
         return getChat(chatId: Int(chatId))
     }
 
@@ -832,6 +833,10 @@ public class DcMsg {
         return Int(dc_msg_get_chat_id(messagePointer))
     }
 
+    public var realChatId: Int {
+        return Int(dc_msg_get_real_chat_id(messagePointer))
+    }
+
     public var text: String? {
         set {
             if let newValue = newValue {
@@ -1146,10 +1151,6 @@ public class DcContact {
 
     public func unblock() {
         dc_block_contact(DcContext.shared.contextPointer, UInt32(id), 0)
-    }
-
-    public func marknoticed() {
-        dc_marknoticed_contact(DcContext.shared.contextPointer, UInt32(id))
     }
 }
 
