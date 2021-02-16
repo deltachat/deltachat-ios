@@ -149,7 +149,7 @@ public func handleEvent(event: DcEvent) {
             if !UserDefaults.standard.bool(forKey: "notifications_disabled") && !chat.isMuted {
                 let content = UNMutableNotificationContent()
                 let msg = DcMsg(id: Int(data2))
-                content.title = msg.fromContact.displayName
+                content.title = msg.getSenderName(msg.fromContact)
                 content.body = msg.summary(chars: 40) ?? ""
                 content.userInfo = userInfo
                 content.sound = .default

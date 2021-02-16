@@ -837,6 +837,21 @@ public class DcMsg {
         return Int(dc_msg_get_real_chat_id(messagePointer))
     }
 
+    public var overrideSenderName: String? {
+        guard let cString = dc_msg_get_override_sender_name(messagePointer) else { return nil }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
+    public func getSenderName(_ dcContact: DcContact, markOverride: Bool = false) -> String {
+        if let overrideName = overrideSenderName {
+            return (markOverride ? "~" : "") + overrideName
+        } else {
+            return dcContact.displayName
+        }
+    }
+
     public var text: String? {
         set {
             if let newValue = newValue {
