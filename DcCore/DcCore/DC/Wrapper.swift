@@ -1015,6 +1015,10 @@ public class DcMsg {
         return dc_msg_is_setupmessage(messagePointer) == 1
     }
 
+    public var hasHtml: Bool {
+        return dc_msg_has_html(messagePointer) == 1
+    }
+
     public var setupCodeBegin: String {
         guard let cString = dc_msg_get_setupcodebegin(messagePointer) else { return "" }
         let swiftString = String(cString: cString)

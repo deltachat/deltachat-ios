@@ -219,7 +219,7 @@ public class BaseMessageCell: UITableViewCell {
 
         topCompactView = false
         bottomCompactView = false
-        isFullMessageButtonHidden = false
+        isFullMessageButtonHidden = true
         
 
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
@@ -296,6 +296,8 @@ public class BaseMessageCell: UITableViewCell {
         } else {
             avatarView.isHidden = true
         }
+
+        isFullMessageButtonHidden = !msg.hasHtml
 
         messageBackgroundContainer.update(rectCorners: messageStyle,
                                           color: msg.isFromCurrentSender ? DcColors.messagePrimaryColor : DcColors.messageSecondaryColor)
