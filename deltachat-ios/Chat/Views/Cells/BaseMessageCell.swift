@@ -133,6 +133,7 @@ public class BaseMessageCell: UITableViewCell {
         button.setTitleColor(.gray, for: .highlighted)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(onFullMessageButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -255,6 +256,12 @@ public class BaseMessageCell: UITableViewCell {
     @objc func onQuoteTapped() {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
             baseDelegate?.quoteTapped(indexPath: indexPath)
+        }
+    }
+
+    @objc func onFullMessageButtonTapped() {
+        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            baseDelegate?.fullMessageTapped(indexPath: indexPath)
         }
     }
 
@@ -550,4 +557,5 @@ public protocol BaseMessageCellDelegate: class {
     func avatarTapped(indexPath: IndexPath)
     func textTapped(indexPath: IndexPath)
     func quoteTapped(indexPath: IndexPath)
+    func fullMessageTapped(indexPath: IndexPath)
 }

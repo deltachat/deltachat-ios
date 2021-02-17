@@ -35,6 +35,8 @@
 		304219D3243F588500516852 /* DcCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304219D82440734A00516852 /* DcMsg+Extension.swift */; };
 		304F5E44244F571C00462538 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
+		304F769525DD237B0094B5E2 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F769425DD237B0094B5E2 /* WebViewViewController.swift */; };
+		304F769925DD23D70094B5E2 /* FullMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F769825DD23D70094B5E2 /* FullMessageViewController.swift */; };
 		3052C60A253F082E007D13EA /* MessageLabelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3052C609253F082E007D13EA /* MessageLabelDelegate.swift */; };
 		3052C60E253F088E007D13EA /* DetectorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3052C60D253F088E007D13EA /* DetectorType.swift */; };
 		3057027F24C5B2F800D84EFC /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057027E24C5B2F800D84EFC /* ChatListViewModel.swift */; };
@@ -237,6 +239,8 @@
 		303492CE2587C2DC00A523D0 /* ChatInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputBar.swift; sourceTree = "<group>"; };
 		304219D1243F588500516852 /* DcCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DcCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		304219D82440734A00516852 /* DcMsg+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DcMsg+Extension.swift"; sourceTree = "<group>"; };
+		304F769425DD237B0094B5E2 /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
+		304F769825DD23D70094B5E2 /* FullMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullMessageViewController.swift; sourceTree = "<group>"; };
 		3052C609253F082E007D13EA /* MessageLabelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabelDelegate.swift; sourceTree = "<group>"; };
 		3052C60D253F088E007D13EA /* DetectorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectorType.swift; sourceTree = "<group>"; };
 		3057027E24C5B2F800D84EFC /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
@@ -759,6 +763,8 @@
 				AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */,
 				AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */,
 				AE19887423EB264000B4CD5F /* HelpViewController.swift */,
+				304F769425DD237B0094B5E2 /* WebViewViewController.swift */,
+				304F769825DD23D70094B5E2 /* FullMessageViewController.swift */,
 				AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */,
 				785BE16721E247F1003BE98C /* MessageInfoViewController.swift */,
 				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
@@ -1311,8 +1317,10 @@
 				305961CD2346125100C80F33 /* UIEdgeInsets+Extensions.swift in Sources */,
 				30EF7324252FF15F00E2C54A /* MessageLabel.swift in Sources */,
 				30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */,
+				304F769525DD237B0094B5E2 /* WebViewViewController.swift in Sources */,
 				7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */,
 				30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */,
+				304F769925DD23D70094B5E2 /* FullMessageViewController.swift in Sources */,
 				AE0AA952247800E700D42A7F /* GalleryCell.swift in Sources */,
 				AE0AA958247834A400D42A7F /* Date+Extension.swift in Sources */,
 				307D822E241669C7006D2490 /* LocationManager.swift in Sources */,

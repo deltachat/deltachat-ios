@@ -1019,6 +1019,13 @@ public class DcMsg {
         return dc_msg_has_html(messagePointer) == 1
     }
 
+    public lazy var html: String = {
+        guard let cString = dc_get_msg_html(DcContext.shared.contextPointer, dc_msg_get_id(messagePointer)) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }()
+
     public var setupCodeBegin: String {
         guard let cString = dc_msg_get_setupcodebegin(messagePointer) else { return "" }
         let swiftString = String(cString: cString)
