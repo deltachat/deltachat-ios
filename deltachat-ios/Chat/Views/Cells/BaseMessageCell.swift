@@ -126,14 +126,16 @@ public class BaseMessageCell: UITableViewCell {
         return view
     }()
 
-    lazy var fullMessageButton: UIButton = {
-        let button = UIButton()
+    lazy var fullMessageButton: DynamicFontButton = {
+        let button = DynamicFontButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.systemBlue, for: .normal)
         button.setTitleColor(.gray, for: .highlighted)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(onFullMessageButtonTapped), for: .touchUpInside)
+        button.titleLabel?.font = UIFont.preferredFont(for: .body, weight: .regular)
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
         button.accessibilityLabel = String.localized("show_full_message")
         return button
     }()

@@ -52,6 +52,7 @@
 		305961D22346125100C80F33 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961882346125000C80F33 /* CGRect+Extensions.swift */; };
 		3059620E234614E700C80F33 /* DcContact+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3059620D234614E700C80F33 /* DcContact+Extension.swift */; };
 		305962102346154D00C80F33 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3059620F2346154D00C80F33 /* String+Extension.swift */; };
+		305DDD8725DD97BF00974489 /* DynamicFontButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305DDD8625DD97BF00974489 /* DynamicFontButton.swift */; };
 		3060119C22DDE24000C1CE6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
 		306011B622E5E7FB00C1CE6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
 		30653081254358B10093E196 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30653080254358B10093E196 /* QuoteView.swift */; };
@@ -252,6 +253,7 @@
 		305961882346125000C80F33 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		3059620D234614E700C80F33 /* DcContact+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DcContact+Extension.swift"; sourceTree = "<group>"; };
 		3059620F2346154D00C80F33 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		305DDD8625DD97BF00974489 /* DynamicFontButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFontButton.swift; sourceTree = "<group>"; };
 		305FE03523A81B4C0053BE90 /* EmptyStateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateLabel.swift; sourceTree = "<group>"; };
 		3060119D22DDE24000C1CE6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3060119F22DDE24500C1CE6F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -838,6 +840,7 @@
 				AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */,
 				AED62BCD247687E6009E220D /* LocationStreamingIndicator.swift */,
 				30F4BFED252E3E020006B9B3 /* PaddingTextView.swift */,
+				305DDD8625DD97BF00974489 /* DynamicFontButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1329,6 +1332,7 @@
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
 				AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */,
 				AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */,
+				305DDD8725DD97BF00974489 /* DynamicFontButton.swift in Sources */,
 				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
 				AED423D3249F578B00B6B2BB /* AddGroupMembersViewController.swift in Sources */,
 				AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */,
