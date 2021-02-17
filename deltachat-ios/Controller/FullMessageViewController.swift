@@ -6,6 +6,7 @@ class FullMessageViewController: WebViewViewController {
 
     var loadButton: UIBarButtonItem {
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh, target: self, action: #selector(showLoadOptions))
+        button.accessibilityLabel = String.localized("load_remote_content")
         button.tintColor = DcColors.primary
         return button
     }

@@ -134,6 +134,7 @@ public class BaseMessageCell: UITableViewCell {
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(onFullMessageButtonTapped), for: .touchUpInside)
+        button.accessibilityLabel = String.localized("show_full_message")
         return button
     }()
 
