@@ -180,21 +180,6 @@ public extension UIView {
         return constraint
     }
 
-    func constraintToTopOf(_ view: UIView, paddingBottom: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
-        let constraint = NSLayoutConstraint(
-            item: self,
-            attribute: .bottom,
-            relatedBy: .equal,
-            toItem: view,
-            attribute: .top,
-            multiplier: 1.0,
-            constant: -paddingBottom)
-        if let priority = priority {
-            constraint.priority = priority
-        }
-        return constraint
-    }
-
     func constraintToTrailingOf(_ view: UIView, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: self,
