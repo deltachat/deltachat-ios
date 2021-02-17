@@ -75,8 +75,6 @@ class FullMessageViewController: WebViewViewController {
     }
 
     @objc func onceActionPressed(_ action: UIAlertAction) {
-        let configuration = self.webView.configuration
-        configuration.userContentController.removeAllContentRuleLists()
         loadUnrestricedHtml()
     }
 
