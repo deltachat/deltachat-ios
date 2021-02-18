@@ -36,6 +36,19 @@ class MailboxViewController: ChatViewController {
         askToChat(messageId: messageIds[indexPath.row])
     }
 
+    // function builds the correct question when tapping on a deaddrop message.
+    // returns a tuple (question, startButton, blockButton)
+    public static func deaddropQuestion(context: DcContext, msg: DcMsg) -> (String, String, String) {
+        let chat = context.getChat(chatId: msg.realChatId)
+        if chat.isMailinglist {
+            let question = String.localizedStringWithFormat(String.localized("ask_show_mailing_list"), chat.name)
+            return (question, String.localized("yes"), String.localized("block"))
+        } else {
+            let contact = msg.fromContact
+            let question = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), contact.nameNAddr)
+            return (question, String.localized("start_chat"), String.localized("menu_block_contact"))
+        }
+    }
 
     func askToChat(messageId: Int) {
         if handleUIMenu() { return }
@@ -43,15 +56,14 @@ class MailboxViewController: ChatViewController {
         if message.isInfo {
             return
         }
-        let dcContact = message.fromContact
-        let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
+        let (title, startButton, blockButton) = MailboxViewController.deaddropQuestion(context: dcContext, msg: message)
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-            let chat = self.dcContext.createChatByMessageId(messageId)
+        alert.addAction(UIAlertAction(title: startButton, style: .default, handler: { _ in
+            let chat = self.dcContext.decideOnContactRequest(messageId, DC_DECISION_START_CHAT)
             self.showChat(chatId: chat.id)
         }))
-        alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
-            dcContact.block()
+        alert.addAction(UIAlertAction(title: blockButton, style: .destructive, handler: { _ in
+            self.dcContext.decideOnContactRequest(messageId, DC_DECISION_BLOCK)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true, completion: nil)

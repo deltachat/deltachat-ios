@@ -337,21 +337,20 @@ class ChatListController: UITableViewController {
 
     private func showDeaddropRequestAlert(msgId: Int) {
         let dcMsg = DcMsg(id: msgId)
-        let dcContact = DcContact(id: dcMsg.fromContactId)
-        let title = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr)
+        let (title, startButton, blockButton) = MailboxViewController.deaddropQuestion(context: dcContext, msg: dcMsg)
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-            let chat = self.dcContext.createChatByMessageId(msgId)
+        alert.addAction(UIAlertAction(title: startButton, style: .default, handler: { _ in
+            let chat = self.dcContext.decideOnContactRequest(msgId, DC_DECISION_START_CHAT)
             self.showChat(chatId: chat.id)
         }))
         alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
             DispatchQueue.global(qos: .background).async {
-                dcContact.marknoticed()
+                self.dcContext.decideOnContactRequest(msgId, DC_DECISION_NOT_NOW)
             }
         }))
-        alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
+        alert.addAction(UIAlertAction(title: blockButton, style: .destructive, handler: { _ in
             DispatchQueue.global(qos: .background).async {
-                dcContact.block()
+                self.dcContext.decideOnContactRequest(msgId, DC_DECISION_BLOCK)
             }
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))

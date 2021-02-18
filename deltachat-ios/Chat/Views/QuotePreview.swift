@@ -40,7 +40,7 @@ public class QuotePreview: DraftPreview {
                     quoteView.citeBar.backgroundColor = DcColors.grayDateColor
                 } else {
                     let contact = quoteMessage.fromContact
-                    quoteView.senderTitle.text = contact.displayName
+                    quoteView.senderTitle.text = quoteMessage.getSenderName(contact)
                     quoteView.senderTitle.textColor = contact.color
                     quoteView.citeBar.backgroundColor = contact.color
                 }

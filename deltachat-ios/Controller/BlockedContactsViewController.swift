@@ -43,7 +43,7 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
     func selected(contactId: Int, selected: Bool) {
         if !selected {
             let dcContact = DcContact(id: contactId)
-            let title = dcContact.displayName.isEmpty ? dcContact.email : dcContact.displayName
+            let title = dcContact.displayName
             let alert = UIAlertController(title: title, message: String.localized("ask_unblock_contact"), preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("menu_unblock_contact"), style: .default, handler: { _ in
                 let contact = DcContact(id: contactId)

@@ -241,7 +241,7 @@ public class BaseMessageCell: UITableViewCell {
 
         } else {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") :
-                isGroup ? msg.fromContact.displayName : nil
+                isGroup ? msg.getSenderName(msg.fromContact, markOverride: true) : nil
             topLabel.textColor = msg.isForwarded ? DcColors.grayDateColor :
                 isGroup ? msg.fromContact.color : DcColors.defaultTextColor
             leadingConstraintCurrentSender?.isActive = false
@@ -258,7 +258,7 @@ public class BaseMessageCell: UITableViewCell {
 
         if isAvatarVisible {
             avatarView.isHidden = false
-            avatarView.setName(msg.fromContact.displayName)
+            avatarView.setName(msg.getSenderName(msg.fromContact))
             avatarView.setColor(msg.fromContact.color)
             if let profileImage = msg.fromContact.profileImage {
                 avatarView.setImage(profileImage)
@@ -286,7 +286,7 @@ public class BaseMessageCell: UITableViewCell {
                     quoteView.citeBar.backgroundColor = DcColors.grayDateColor
                 } else {
                     let contact = quoteMsg.fromContact
-                    quoteView.senderTitle.text = contact.displayName
+                    quoteView.senderTitle.text = quoteMsg.getSenderName(contact)
                     quoteView.senderTitle.textColor = contact.color
                     quoteView.citeBar.backgroundColor = contact.color
                 }

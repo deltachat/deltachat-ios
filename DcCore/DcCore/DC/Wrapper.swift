@@ -85,8 +85,9 @@ public class DcContext {
         }
     }
 
-    public func createChatByMessageId(_ messageId: Int) -> DcChat {
-        let chatId = dc_create_chat_by_msg_id(contextPointer, UInt32(messageId))
+    @discardableResult
+    public func decideOnContactRequest(_ messageId: Int, _ decision: Int32) -> DcChat {
+        let chatId = dc_decide_on_contact_request(contextPointer, UInt32(messageId), decision)
         return getChat(chatId: Int(chatId))
     }
 
@@ -664,14 +665,6 @@ public class DcChat {
         return swiftString
     }
 
-    public var type: Int {
-        return Int(dc_chat_get_type(chatPointer))
-    }
-
-    public var chatType: ChatType {
-        return ChatType(rawValue: type) ?? ChatType.GROUP // group as fallback - shouldn't get here
-    }
-
     public var color: UIColor {
         return UIColor(netHex: Int(dc_chat_get_color(chatPointer)))
     }
@@ -689,7 +682,14 @@ public class DcChat {
     }
 
     public var isGroup: Bool {
-        return Int(dc_chat_get_type(chatPointer)) == DC_CHAT_TYPE_GROUP
+        // isMultiUser() might fit better,
+        // however, would result in lots of code changes, so we leave this as is for now.
+        let type = Int(dc_chat_get_type(chatPointer))
+        return type == DC_CHAT_TYPE_GROUP || type == DC_CHAT_TYPE_MAILINGLIST
+    }
+
+    public var isMailinglist: Bool {
+        return Int(dc_chat_get_type(chatPointer)) == DC_CHAT_TYPE_MAILINGLIST
     }
 
     public var isSelfTalk: Bool {
@@ -831,6 +831,25 @@ public class DcMsg {
 
     public var chatId: Int {
         return Int(dc_msg_get_chat_id(messagePointer))
+    }
+
+    public var realChatId: Int {
+        return Int(dc_msg_get_real_chat_id(messagePointer))
+    }
+
+    public var overrideSenderName: String? {
+        guard let cString = dc_msg_get_override_sender_name(messagePointer) else { return nil }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
+    public func getSenderName(_ dcContact: DcContact, markOverride: Bool = false) -> String {
+        if let overrideName = overrideSenderName {
+            return (markOverride ? "~" : "") + overrideName
+        } else {
+            return dcContact.displayName
+        }
     }
 
     public var text: String? {
@@ -1080,8 +1099,15 @@ public class DcContact {
         return swiftString
     }
 
-    public var name: String {
+    public var editedName: String {
         guard let cString = dc_contact_get_name(contactPointer) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
+    public var authName: String {
+        guard let cString = dc_contact_get_auth_name(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
@@ -1140,10 +1166,6 @@ public class DcContact {
 
     public func unblock() {
         dc_block_contact(DcContext.shared.contextPointer, UInt32(id), 0)
-    }
-
-    public func marknoticed() {
-        dc_marknoticed_contact(DcContext.shared.contextPointer, UInt32(id))
     }
 }
 
@@ -1219,12 +1241,6 @@ public class DcProvider {
         dc_str_unref(cString)
         return swiftString
     }
-}
-
-public enum ChatType: Int {
-    case SINGLE = 100
-    case GROUP = 120
-    case VERIFIEDGROUP = 130
 }
 
 public enum MessageViewType: CustomStringConvertible {
