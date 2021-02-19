@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>n_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>لا دقيقة</string>
+			<key>one</key>
+			<string>دقيقة واحدة</string>
+			<key>two</key>
+			<string>دقيقتَيْن</string>
+			<key>few</key>
+			<string>%d دقائق</string>
+			<key>many</key>
+			<string>%d دقائق</string>
+			<key>other</key>
+			<string>%d دقائق</string>
+		</dict>
+	</dict>
+	<key>n_hours</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>لا ساعة</string>
+			<key>one</key>
+			<string>ساعة واحدة</string>
+			<key>two</key>
+			<string>ساعتان</string>
+			<key>few</key>
+			<string>%d ساعات</string>
+			<key>many</key>
+			<string>%d ساعات</string>
+			<key>other</key>
+			<string>%d ساعات</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
