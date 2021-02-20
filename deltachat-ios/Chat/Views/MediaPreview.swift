@@ -52,6 +52,7 @@ class MediaPreview: DraftPreview {
             if let image = ThumbnailCache.shared.restoreImage(key: path) {
                 self.contentImageView.image = image
                 self.setAspectRatio(image: image)
+                self.delegate?.onAttachmentAdded()
             } else {
                 DispatchQueue.global(qos: .userInteractive).async {
                     let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: URL(fileURLWithPath: path, isDirectory: false))
@@ -61,6 +62,7 @@ class MediaPreview: DraftPreview {
                             self.contentImageView.image = thumbnailImage
                             self.setAspectRatio(image: thumbnailImage)
                             ThumbnailCache.shared.storeImage(image: thumbnailImage, key: path)
+                            self.delegate?.onAttachmentAdded()
                         }
                     }
                 }
