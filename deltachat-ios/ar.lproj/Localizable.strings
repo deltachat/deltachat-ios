@@ -1,0 +1,245 @@
+// common strings without special context
+"app_name" = "Delta Chat";
+"ok" = "موافق";
+"cancel" = "إلغاء";
+"yes" = "نعم";
+"no" = "لا";
+"on" = "يعمل";
+"off" = "معطّل";
+"def" = "افتراضي";
+"custom" = "مخصص";
+"none" = "لا شيء";
+"automatic" = "تلقائي";
+"open" = "افتح";
+"delete" = "احذف";
+"info" = "معلومات";
+"update" = "تحديث";
+"emoji" = "إيموجي";
+"attachment" = "مرفق";
+"back" = "العودة";
+"close" = "إغلاق";
+"forward" = "إعادة توجيه";
+"mute" = "حجب المكرفون.";
+"ephemeral_messages" = "الرسائل المُختفية";
+"save" = "حفظ";
+"chat" = "الدردشة";
+"media" = "الوسائط";
+"main_menu" = "القائمة الرئيسية";
+"start_chat" = "ابدأ الدردشة";
+"show_password" = "اظهر الكلمة السرية";
+"hide_password" = "أخفِ الكلمة السرية";
+"not_now" = "ليس الآن";
+"never" = "أبدا";
+"one_moment" = "لحظة…";
+"done" = "تم";
+"undo" = "ألغ";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+"next" = "التالي";
+"error" = "خطأ";
+"error_x" = "خطأ: %1$@";
+"copied_to_clipboard" = "تم نسخه إلى الحافظة.";
+"contacts_headline" = "جهات الإتصا";
+"email_address" = "عنوان البريد الإلكتروني";
+"password" = "الكلمة السرية";
+"now" = "الآن";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "خطر";
+"today" = "اليوم";
+"yesterday" = "البارحة";
+"this_week" = "هذا الأسبوع";
+"this_month" = "هذا الشهر";
+"last_week" = "الأسبوع الماضي";
+"last_month" = "الشهر الماضي";
+// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
+// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+"self" = "أنا";
+"draft" = "مسودة";
+"image" = "صورة";
+"gif" = "صورة GIF";
+"images" = "الصور";
+"audio" = "الصوت";
+"voice_message" = "رسالة صوتية";
+"video" = "فيديو";
+"documents" = "المستندات";
+"contact" = "للاتصال";
+"camera" = "آلة التصوير";
+"location" = "المَوقع";
+"gallery" = "المعرض";
+"file" = "ملف";
+"files" = "الملفات";
+"unknown" = "مجهول";
+
+"green" = "أخضر";
+"red" = "أحمر";
+"blue" = "أزرق";
+"orange" = "برتقالي";
+"cyan" = "سماوي";
+"purple" = "بنفسجي";
+"magenta" = "وردي";
+"white" = "أبيض";
+
+"small" = "صغير";
+"normal" = "عادي";
+"large" = "كبيرة";
+"extra_large" = "كبيرة جداً";
+
+"fast" = "سريع";
+"slow" = "بطيء";
+
+"menu_new_chat" = "محادثة جديدة";
+"menu_new_group" = "فريق جديد";
+"menu_send" = "إرسال";
+"menu_toggle_keyboard" = "تبديل لوحة مفاتيح إيموجي";
+"menu_edit_group" = "تعديل الفريق";
+"menu_group_name_and_image" = "اسم الفريق وصورته";
+"menu_show_map" = "أظهر الخريطة";
+"menu_add_attachment" = "إضافة مرفقات";
+"menu_leave_group" = "غادر الفريق";
+"menu_delete_chat" = "احدف المحادثة";
+"menu_delete_messages" = "احذف الرسائل";
+"menu_delete_image" = "احذف الصورة";
+"menu_message_details" = "تفاصيل الرسالة";
+"menu_copy_to_clipboard" = "انسخ إلى الحافظة";
+"menu_forward" = "إعادة توجيه الرسالة";
+"menu_resend" = "إعادة الإرسال";
+"menu_reply" = "الرَدّ على الرسالة";
+"menu_mute" = "كتم الإشعارات";
+"menu_unmute" = "إلغاء الكتم.";
+"menu_all_media" = "جميع الوسائط";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "إظهار في المحادثة";
+"menu_share" = "شارك";
+"menu_play" = "شغّل";
+"menu_pause" = "تعليق مؤقت";
+"menu_help" = "المساعدة";
+"menu_select_all" = "اختر الكل";
+"menu_edit_name" = "تعديل الإسم";
+"menu_settings" = "الإعدادات";
+"menu_advanced" = "مُتقدّم";
+"menu_view_profile" = "عرض الملف الشخصي";
+"menu_zoom_in" = "تقريب";
+"menu_zoom_out" = "تصغير";
+"mute_for_one_hour" = "أكتم لمدة ساعة";
+"mute_for_two_hours" = "أكتم لمدة ساعتين";
+"mute_for_one_day" = "أكتم لمدة يوم";
+"mute_for_seven_days" = "أكتم لمدة أسبوع";
+// contact list
+"contacts_title" = "جهات الإتصا";
+"contacts_enter_name_or_email" = "ادخل الإسم أو البريد الإلكتروني";
+"contacts_empty_hint" = "لا توجد جهات اتصال.";
+
+
+"chat_camera_unavailable" = "الكاميرا غير متاحة.";
+"chat_share_with_title" = "شارك مع";
+"chat_input_placeholder" = "رسالة";
+"chat_archived_label" = "محتفظة";
+// search
+"search" = "بحث";
+// create/edit groups, contact/group profile
+"group_name" = "اسم الفريق";
+"group_avatar" = "الصورة المصغّرة للفريق";
+"group_create_button" = "إنشاء فريق";
+"group_add_members" = "إضافة أعضاء";
+"profile_encryption" = "التعمية";
+"tab_contact" = "للاتصال";
+"tab_group" = "الفريق";
+"tab_members" = "الأعضاء";
+"tab_gallery" = "المعرض";
+"tab_docs" = "المستندات";
+"tab_links" = "الروابط";
+"tab_map" = "الخريطة";
+"media_preview" = "معاينة الصورة";
+"login_title" = "الولوج";
+"login_header" = "الإتصال بخادومك";
+"login_inbox" = "صندوق الوارد";
+"login_imap_login" = "مستخدم IMAP";
+"login_imap_server" = "خادم IMAP";
+"login_imap_port" = "مَنفَذ IMAP";
+"login_imap_security" = "أمان IMAP";
+"login_outbox" = "صندوق المُرسَلات";
+"login_smtp_password" = "الكلمة السرية لـ SMTP";
+"login_smtp_server" = "خادم SMTP";
+"login_smtp_port" = "منفذ SMTP";
+"login_smtp_security" = "أمان SMTP";
+"login_certificate_checks" = "التحقق مِن الشهادة";
+"login_error_mail" = "يرجى إدخال عنوان بريد إلكتروني صالح";
+"import_backup_title" = "استيراد نسخة احتياطية";
+"used_settings" = "الإعدادات المُستَخدَمة:";
+"delete_account" = "حذف الحساب";
+// preferences
+"pref_using_custom" = "استخدام التخصيص: %1$@";
+"pref_using_default" = "مستخدم كافتراضي: %1$@";
+"pref_profile_info_headline" = "معلومات ملفك التعريفي";
+"pref_profile_photo" = "صورة الملف التعريفي";
+"pref_blocked_contacts" = "المراسلون المحبوسون";
+"pref_password_and_account_settings" = "الكلمة السرية والحساب";
+"pref_your_name" = "اسمك";
+// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+"pref_default_status_label" = "التوقيع";
+"pref_enter_sends" = "مفتاح الدخول يقوم بالإرسا";
+"pref_vibrate" = "إهتز";
+"pref_screen_security" = "تأمين الشاشة";
+"pref_notifications" = "الإشعارات";
+"pref_notifications_show" = "عرض";
+"pref_led_color" = "لون ضوء التنبيه LED";
+"pref_sound" = "الصوت";
+"pref_privacy" = "الخصوصية";
+"pref_chats_and_media" = "الدردشة والوسائط";
+"pref_system_default" = "افتراضيات النظام";
+// Translators: "light" in the meaning "opposite of dark"
+"pref_light_theme" = "فاتح";
+"pref_dark_theme" = "داكن";
+"pref_appearance" = "المظهر";
+"pref_theme" = "السمة";
+"pref_language" = "اللغة";
+"pref_use_system_emoji" = "استخدام الرموز التعبيرية بالنظام";
+"pref_use_system_emoji_explain" = " Delta Chat تعطيل الرموز التعبيرية المدمجة في ";
+"pref_app_access" = "دخول البرنامج";
+"pref_communication" = "التواصل";
+"pref_chats" = "المحادثات";
+"pref_in_chat_sounds" = "أصوات خلال الدردش";
+"pref_message_text_size" = "حجم الخط في الرسائل";
+"pref_other" = "أخرى";
+"pref_background" = "الخلفية";
+"pref_show_emails_all" = "كلها";
+"autocrypt_continue_transfer_retry" = "أعد المحاولة";
+// screen lock
+"screenlock_title" = "قفل الشاشة";
+"screenlock_authentication_failed" = "فشلت المصادقة.";
+"screenlock_inactivity_timeout" = "نفاذ مهلة قفل الشاشة";
+"qrscan_fingerprint_label" = "البصمة";
+"notify_mark_read" = "اعتبره كمقروء";
+"notify_reply_button" = "رد";
+"notify_new_message" = "رسالة جديدة";
+"notify_priority_high" = "عالي";
+"notify_priority_max" = "الأقص";
+"notify_name_and_message" = "الاسم والرسالة";
+"notify_name_only" = "الاسم فقط";
+"notify_no_name_or_message" = "لا إسم ولا رسالة";
+
+
+// permissions
+"perm_required_title" = "منح إحدى الأذونات مطلو";
+"perm_continue" = "استمر";
+// dc_str_* resources
+"encrypted_message" = "رسالة مشفرة";
+
+"global_menu_preferences_language_desktop" = "اختر اللغة…";
+"global_menu_file_desktop" = "الملف";
+"global_menu_edit_desktop" = "تعديل";
+"global_menu_edit_undo_desktop" = "ألغ";
+"global_menu_edit_copy_desktop" = "نسخ";
+"global_menu_edit_paste_desktop" = "لصق";
+"global_menu_view_desktop" = "رأي";
+"global_menu_view_developer_desktop" = "مطوِّر";
+"global_menu_help_desktop" = "المساعدة";
+"delete_message_desktop" = "حذف الرسالة";
+"more_info_desktop" = "تفاصيل أكثر";
+"logout_desktop" = "الخروج";
+"remove_desktop" = "أزِل";
+"save_desktop" = "حفظ";
+"name_desktop" = "الاسم";
+"new_message_from_desktop" = "رسالة جديدة مِن";
+"none_blocked_desktop" = "لا توجد جهات اتصال محظورة";
+"ask_delete_chat_desktop" = "هل أنت متأكد مِن أنك تريد حذف هذا؟";
+"in_this_group_desktop" = "أعضاء المجموعة";

@@ -740,7 +740,7 @@
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Hintergrundbenachrichtigungen";
 "pref_background_notifications_explain" = "Verwendet eine Hintergrundverbindung zu Ihrem Server und erfordert das Ausschalten der Akku-Optimierung";
-"pref_background_notifications_rationale" = "Um die Verbindung zu Ihrem E-Mail-Server aufrechtzuerhalten und Nachrichten im Hintergrund zu empfangen, Ignorieren Sie im nächsten Schritt die \"Akku-Optimierungen\".\n\nDelta Chat verbraucht nur minimale Ressourcen und achtet darauf, den Akku zu schonen.";
+"pref_background_notifications_rationale" = "Um die Verbindung zu Ihrem E-Mail-Server aufrechtzuerhalten und Nachrichten im Hintergrund zu empfangen, ignorieren Sie im nächsten Schritt die \"Akku-Optimierungen\".\n\nDelta Chat verbraucht nur minimale Ressourcen und achtet darauf, den Akku zu schonen.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Zuverlässige Hintergrundverbindung";
 "pref_reliable_service_explain" = "Erfordert immer sichtbaren Hinweis";
