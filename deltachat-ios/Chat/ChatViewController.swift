@@ -20,6 +20,7 @@ class ChatViewController: UITableViewController {
     var dismissCancelled = false
     var foregroundObserver: Any?
     var backgroundObserver: Any?
+    var keyboardObserver: Any?
 
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -266,8 +267,6 @@ class ChatViewController: UITableViewController {
             editingBar.delegate = self
             tableView.allowsMultipleSelectionDuringEditing = true
         }
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -395,6 +394,12 @@ class ChatViewController: UITableViewController {
                                        name: UIApplication.willResignActiveNotification,
                                        object: nil)
 
+        keyboardObserver = nc.addObserver(self,
+                                          selector: #selector(keyboardWillShow(_:)),
+                                          name: UIResponder.keyboardWillShowNotification,
+                                          object: nil)
+
+
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         DispatchQueue.global(qos: .background).async { [weak self] in
@@ -433,6 +438,9 @@ class ChatViewController: UITableViewController {
         }
         if let backgroundObserver = self.backgroundObserver {
             nc.removeObserver(backgroundObserver)
+        }
+        if let keyboardObserver = keyboardObserver {
+            nc.removeObserver(keyboardObserver)
         }
         audioController.stopAnyOngoingPlaying()
 
