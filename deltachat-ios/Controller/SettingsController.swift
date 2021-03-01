@@ -412,6 +412,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         if !documents.isEmpty {
             showProgressAlert(title: String.localized("imex_progress_title_desktop"), dcContext: dcContext)
             DispatchQueue.main.async {
+                self.dcContext.stopIo()
                 self.dcContext.imex(what: what, directory: documents[0])
             }
         } else {
