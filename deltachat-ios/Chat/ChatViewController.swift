@@ -283,11 +283,9 @@ class ChatViewController: UITableViewController {
 
     private func startTimer() {
         if !(timer?.isValid ?? false) {
-            logger.debug("timer - starting")
             timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
                 //reload table
                 DispatchQueue.main.async {
-                    logger.debug("timer - getMessageIds")
                     guard let self = self else { return }
                     self.messageIds = self.getMessageIds()
                     self.reloadData()
@@ -298,7 +296,6 @@ class ChatViewController: UITableViewController {
 
     private func stopTimer() {
         if timer?.isValid ?? false {
-            logger.debug("timer - stopping")
             timer?.invalidate()
         }
     }
@@ -475,14 +472,12 @@ class ChatViewController: UITableViewController {
 
     @objc func applicationDidBecomeActive(_ notification: NSNotification) {
         if navigationController?.visibleViewController == self {
-            logger.debug("start timer - applicationDidResignActive")
             startTimer()
         }
     }
 
     @objc func applicationDidResignActive(_ notification: NSNotification) {
         if navigationController?.visibleViewController == self {
-            logger.debug("stop timer - applicationDidResignActive")
             stopTimer()
             draft.save(context: dcContext)
         }
