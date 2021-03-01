@@ -388,8 +388,8 @@ class ChatViewController: UITableViewController {
 
         backgroundObserver = nc.addObserver(self,
                                             selector: #selector(applicationDidResignActive(_:)),
-                                       name: UIApplication.willResignActiveNotification,
-                                       object: nil)
+                                            name: UIApplication.willResignActiveNotification,
+                                            object: nil)
 
         keyboardObserver = nc.addObserver(self,
                                           selector: #selector(keyboardWillShow(_:)),
