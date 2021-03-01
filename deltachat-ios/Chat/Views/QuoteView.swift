@@ -30,7 +30,7 @@ public class QuoteView: UIView {
         return view
     }()
 
-    public lazy var imagePreview: UIImageView = {
+    private lazy var imagePreview: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFill
@@ -38,6 +38,8 @@ public class QuoteView: UIView {
         view.isAccessibilityElement = false
         return view
     }()
+
+    private var imageWidthConstraint: NSLayoutConstraint?
 
     init() {
         super.init(frame: .zero)
@@ -58,7 +60,6 @@ public class QuoteView: UIView {
         addConstraints([
             imagePreview.constraintAlignTrailingTo(self, paddingTrailing: 16),
             imagePreview.constraintHeightTo(36),
-            imagePreview.constraintWidthTo(36),
             imagePreview.constraintCenterYTo(citeBar),
             imagePreview.constraintAlignTopMaxTo(self),
             senderTitle.constraintAlignTopTo(self),
@@ -73,6 +74,8 @@ public class QuoteView: UIView {
             citeBar.constraintAlignBottomTo(quote, paddingBottom: 2),
             citeBar.constraintWidthTo(3),
         ])
+        imageWidthConstraint = imagePreview.constraintWidthTo(0)
+        imageWidthConstraint?.isActive = true
     }
 
     public func configureAccessibilityLabel() -> String {
@@ -98,5 +101,16 @@ public class QuoteView: UIView {
         senderTitle.attributedText = nil
         citeBar.backgroundColor = DcColors.grayDateColor
         imagePreview.image = nil
+        imageWidthConstraint?.constant = 0
+    }
+
+    public func setImagePreview(_ image: UIImage?) {
+        if let image = image {
+            imageWidthConstraint?.constant = 36
+            imagePreview.image = image
+        } else {
+            imageWidthConstraint?.constant = 0
+        }
+
     }
 }

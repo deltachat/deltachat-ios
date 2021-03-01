@@ -321,7 +321,7 @@ public class BaseMessageCell: UITableViewCell {
             quoteView.quote.text = quoteText
 
             if let quoteMsg = msg.quoteMessage {
-                quoteView.imagePreview.image = quoteMsg.image
+                quoteView.setImagePreview(quoteMsg.image)
                 if quoteMsg.isForwarded {
                     quoteView.senderTitle.text = String.localized("forwarded_message")
                     quoteView.senderTitle.textColor = DcColors.grayDateColor
