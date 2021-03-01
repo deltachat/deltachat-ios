@@ -18,6 +18,8 @@ class ChatViewController: UITableViewController {
     var incomingMsgObserver: Any?
     var ephemeralTimerModifiedObserver: Any?
     var dismissCancelled = false
+    var foregroundObserver: Any?
+    var backgroundObserver: Any?
 
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -264,12 +266,7 @@ class ChatViewController: UITableViewController {
             editingBar.delegate = self
             tableView.allowsMultipleSelectionDuringEditing = true
         }
-
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self,
-                                       selector: #selector(saveDraft),
-                                       name: UIApplication.willResignActiveNotification,
-                                       object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
 
@@ -286,19 +283,25 @@ class ChatViewController: UITableViewController {
     }
 
     private func startTimer() {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
-            //reload table
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                self.messageIds = self.getMessageIds()
-                self.reloadData()
+        if !(timer?.isValid ?? false) {
+            logger.debug("timer - starting")
+            timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+                //reload table
+                DispatchQueue.main.async {
+                    logger.debug("timer - getMessageIds")
+                    guard let self = self else { return }
+                    self.messageIds = self.getMessageIds()
+                    self.reloadData()
+                }
             }
         }
     }
 
     private func stopTimer() {
-        timer?.invalidate()
+        if timer?.isValid ?? false {
+            logger.debug("timer - stopping")
+            timer?.invalidate()
+        }
     }
 
     private func configureEmptyStateView() {
@@ -382,6 +385,16 @@ class ChatViewController: UITableViewController {
             self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
         }
 
+        foregroundObserver = nc.addObserver(self,
+                                            selector: #selector(applicationDidBecomeActive(_:)),
+                                            name: UIApplication.didBecomeActiveNotification,
+                                            object: nil)
+
+        backgroundObserver = nc.addObserver(self,
+                                            selector: #selector(applicationDidResignActive(_:)),
+                                       name: UIApplication.willResignActiveNotification,
+                                       object: nil)
+
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         DispatchQueue.global(qos: .background).async { [weak self] in
@@ -403,7 +416,8 @@ class ChatViewController: UITableViewController {
         super.viewDidDisappear(animated)
         dismissCancelled = false
         AppStateRestorer.shared.resetLastActiveChat()
-        saveDraft()
+        draft.save(context: dcContext)
+        stopTimer()
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
@@ -414,8 +428,14 @@ class ChatViewController: UITableViewController {
         if let ephemeralTimerModifiedObserver = self.ephemeralTimerModifiedObserver {
             nc.removeObserver(ephemeralTimerModifiedObserver)
         }
+        if let foregroundObserver = self.foregroundObserver {
+            nc.removeObserver(foregroundObserver)
+        }
+        if let backgroundObserver = self.backgroundObserver {
+            nc.removeObserver(backgroundObserver)
+        }
         audioController.stopAnyOngoingPlaying()
-        stopTimer()
+
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -442,6 +462,22 @@ class ChatViewController: UITableViewController {
             }
         )
         super.viewWillTransition(to: size, with: coordinator)
+    }
+
+
+    @objc func applicationDidBecomeActive(_ notification: NSNotification) {
+        if navigationController?.visibleViewController == self {
+            logger.debug("start timer - applicationDidResignActive")
+            startTimer()
+        }
+    }
+
+    @objc func applicationDidResignActive(_ notification: NSNotification) {
+        if navigationController?.visibleViewController == self {
+            logger.debug("stop timer - applicationDidResignActive")
+            stopTimer()
+            draft.save(context: dcContext)
+        }
     }
 
     /// UITableView methods
