@@ -12,7 +12,7 @@ class FullMessageViewController: WebViewViewController {
     }
 
     var message: DcMsg
-    private var loadUrlAllowed = false
+    private var loadContentOnce = false
 
     // Block just everything :)
     let blockRules = """
@@ -54,12 +54,24 @@ class FullMessageViewController: WebViewViewController {
     }
 
     @objc private func showLoadOptions() {
+        let checkmark = "✔︎ "
+        var onceCheckmark = ""
+        var neverCheckmark = ""
+        var alwaysCheckmark = ""
+        if loadContentOnce {
+            onceCheckmark = checkmark
+        } else if UserDefaults.standard.bool(forKey: "html_load_remote_content") {
+            alwaysCheckmark = checkmark
+        } else {
+            neverCheckmark = checkmark
+        }
+
         let alert = UIAlertController(title: String.localized("load_remote_content"),
                                       message: String.localized("load_remote_content_ask"),
                                       preferredStyle: .safeActionSheet)
-        let alwaysAction = UIAlertAction(title: String.localized("always"), style: .default, handler: alwaysActionPressed(_:))
-        let neverAction = UIAlertAction(title: String.localized("never"), style: .default, handler: neverActionPressed(_:))
-        let onceAction = UIAlertAction(title: String.localized("once"), style: .default, handler: onceActionPressed(_:))
+        let alwaysAction = UIAlertAction(title: "\(alwaysCheckmark)\(String.localized("always"))", style: .default, handler: alwaysActionPressed(_:))
+        let neverAction = UIAlertAction(title: "\(neverCheckmark)\(String.localized("never"))", style: .default, handler: neverActionPressed(_:))
+        let onceAction = UIAlertAction(title: "\(onceCheckmark)\(String.localized("once"))", style: .default, handler: onceActionPressed(_:))
 
 
         alert.addAction(onceAction)
@@ -72,16 +84,21 @@ class FullMessageViewController: WebViewViewController {
     @objc func alwaysActionPressed(_ action: UIAlertAction) {
         UserDefaults.standard.set(true, forKey: "html_load_remote_content")
         UserDefaults.standard.synchronize()
+        loadContentOnce = false
         loadUnrestricedHtml()
     }
 
     @objc func onceActionPressed(_ action: UIAlertAction) {
+        UserDefaults.standard.set(false, forKey: "html_load_remote_content")
+        UserDefaults.standard.synchronize()
+        loadContentOnce = true
         loadUnrestricedHtml()
     }
 
     @objc func neverActionPressed(_ action: UIAlertAction) {
         UserDefaults.standard.set(false, forKey: "html_load_remote_content")
         UserDefaults.standard.synchronize()
+        loadContentOnce = false
         loadRestrictedHtml()
     }
 
