@@ -263,6 +263,13 @@ public class DcContext {
         return "ErrGetMsgInfo"
     }
 
+    public func getMsgHtml(msgId: Int) -> String {
+        guard let cString = dc_get_msg_html(self.contextPointer, UInt32(msgId)) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
     public func deleteMessage(msgId: Int) {
         dc_delete_msgs(contextPointer, [UInt32(msgId)], 1)
     }
@@ -1018,13 +1025,6 @@ public class DcMsg {
     public var hasHtml: Bool {
         return dc_msg_has_html(messagePointer) == 1
     }
-
-    public lazy var html: String = {
-        guard let cString = dc_get_msg_html(DcContext.shared.contextPointer, dc_msg_get_id(messagePointer)) else { return "" }
-        let swiftString = String(cString: cString)
-        dc_str_unref(cString)
-        return swiftString
-    }()
 
     public var setupCodeBegin: String {
         guard let cString = dc_msg_get_setupcodebegin(messagePointer) else { return "" }

@@ -1274,7 +1274,7 @@ extension ChatViewController: BaseMessageCellDelegate {
             return
         }
         let msg = DcMsg(id: messageIds[indexPath.row])
-        let fullMessageViewController = FullMessageViewController(message: msg)
+        let fullMessageViewController = FullMessageViewController(dcContext: dcContext, messageId: msg.id)
         navigationController?.pushViewController(fullMessageViewController, animated: true)
     }
 

@@ -11,7 +11,8 @@ class FullMessageViewController: WebViewViewController {
         return button
     }
 
-    var message: DcMsg
+    var messageId: Int
+    var dcContext: DcContext
     private var loadContentOnce = false
 
     // Block just everything :)
@@ -29,8 +30,9 @@ class FullMessageViewController: WebViewViewController {
     """
     
 
-    init(message: DcMsg) {
-        self.message = message
+    init(dcContext: DcContext, messageId: Int) {
+        self.dcContext = dcContext
+        self.messageId = messageId
         super.init()
     }
 
@@ -126,7 +128,7 @@ class FullMessageViewController: WebViewViewController {
     private func loadHtml() {
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
-            let html = self.message.html
+            let html = self.dcContext.getMsgHtml(msgId: self.messageId)
             DispatchQueue.main.async {
                 self.webView.loadHTMLString(html, baseURL: nil)
             }
