@@ -37,6 +37,12 @@
 "profile" = "ពត៌មានផ្ទាល់ខ្លួន";
 "main_menu" = "បញ្ជីដើម";
 "start_chat" = "ចាប់ផ្តើមសន្ទនា";
+"show_full_message" = "បង្ហាញសារទាំងស្រុង…";
+"load_remote_content" = "ផ្ទុករូបភាពពីខាងក្រៅ";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "រូបភាពពីខាងក្រៅអាចប្រើបានប្រើដើម្បីតាមដានអ្នក។\n\nការកំណត់នេះក៏អនុញ្ញាតឱ្យផ្ទុកពុម្ពអក្សរនិងមាតិកាផ្សេងទៀត។ ទោះបីជាវាត្រូវបានបិទក៏ដោយអ្នកនៅតែអាចមើលឃើញរូបភាពដែលបានបង្កប់ឬលាក់ទុក។\n\nផ្ទុករូបភាពពីខាងក្រៅ?";
+"always" = "ជារហូត";
+"once" = "ម្តង";
 "show_password" = "បង្ហាញពាក្យសម្ងាត់";
 "hide_password" = "លាក់ពាក្យសម្ងាត់";
 "not_now" = "មិនឥឡូវនេះទេ";
@@ -81,6 +87,8 @@
 "audio" = "សម្លេង";
 "voice_message" = "សារជាសម្លេង";
 "forwarded_message" = "សារដែលបានបញ្ជូនបន្ត";
+// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+"forwarded_by" = "បញ្ជូនបន្តពី %1$@";
 "video" = "វីដេអូ";
 "documents" = "ឯកសារ";
 "contact" = "ទំនាក់ទំនង";
@@ -150,7 +158,11 @@
 "menu_unmute" = "ចេញពីមិនឃើញមិនលឺ";
 "menu_export_attachment" = "នាំចេញឯកសារភ្ជាប់";
 "menu_all_media" = "ប្រព័ន្ធផ្សព្វផ្សាយទាំងអស់";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "បង្ហាញនៅក្នុងសន្ទនា";
 "menu_share" = "ចែករំលែក";
+// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+"block" = "រារាំង";
 "menu_block_contact" = "រារាំងទំនាក់ទំនង";
 "menu_unblock_contact" = "មិនរារាំងទំនាក់ទំនង";
 "menu_play" = "ចាក់";
@@ -159,6 +171,7 @@
 "menu_scroll_to_top" = "រំកិលឡើងទៅលើ";
 "menu_help" = "ជំនួយ";
 "menu_select_all" = "ជ្រើសរើសទាំងអស់";
+"select_more" = "ជ្រើសរើសថែមទៀត";
 "menu_expand" = "លាត";
 "menu_edit_name" = "កែឈ្មោះ";
 "menu_settings" = "ការកំណត់";
@@ -241,6 +254,7 @@
 
 
 // chatlist and chat view
+"chat_archived_chats_title" = "ការសន្ទនាដែលបានទុកក្នុងប័ណ្ណសារ";
 "chat_please_enter_message" = "សូមសរសេរសារមួយ។";
 "chat_camera_unavailable" = "កាមេរ៉ាមិនអាចរកឃើញទេ។";
 "chat_unable_to_record_audio" = "មិនអាចថតសំលេងបានទេ។";
@@ -270,6 +284,11 @@
 "messaging_disabled_deaddrop" = "ចុចលើសារដើម្បីទទួលយក ឬបដិសេធស្នើសុំទំនាក់ទំនង។";
 "cannot_display_unsuported_file_type" = "មិនអាចបង្ហាញប្រភេទឯកសារនេះ៖ %1$@";
 "attachment_failed_to_load" = "បានបរាជ័យ ក្នុងការផ្ទុកឯកសារភ្ជាប់។";
+
+
+// mailing lists
+"mailing_list" = "អ៊ីម៉ែលការផ្សាយ";
+"ask_show_mailing_list" = "បង្ហាញសារអ៊ីម៉ែលការផ្សាយ \"%1$@\"?";
 
 
 // map
@@ -333,6 +352,7 @@
 "login_info_oauth2_title" = "បន្តជាមួយការដំឡើងសាមញ្ញ?";
 "login_info_oauth2_text" = "អស័យដ្ឋានអុីម៉េលដែលបានបញ្ចូល គាំទ្រការដំឡើងសាមញ្ញ (OAuth 2.0)\n\nនៅជំហានបន្ទាប់ សូមអនុញ្ញាតឲ្យសាហារីសង្ឃ ដើរតួជាការសន្ទនារបស់អ្នកនៅលើកម្មវិធីអុីម៉េល។\n\nមិនមាន ម៉ាសុីនមេ សាហារីសង្ឃទេ។ ទិន្ន័យរបស់អ្នកស្ថិតនៅលើឧបករណ៍របស់អ្នក។";
 "login_certificate_checks" = "ការត្រួតពិនិត្យលិខិតបញ្ជាក់";
+"login_error_mail" = "សូមបញ្ចូលអាស័យដ្ឋាន់អ៊ីមែលត្រឹមត្រូវ";
 "login_error_server" = "សូមបញ្ចូលម៉ាសុីន ឬ IP អស័យដ្ឋាន ដែលសុពលភាព";
 "login_error_port" = "សូមបញ្ចូលច្រកដែលសុពលភាព (1-65535)";
 "login_error_required_fields" = "សូមបញ្ចូលអ៊ីម៉េលអាស័យដ្ឋាននិងពាក្យសម្ងាត់ដែលសុពលភាព។";
@@ -371,6 +391,7 @@
 "pref_profile_info_headline" = "ពត៌មានទិន្នន័យផ្ទាល់ខ្លួនរបស់អ្នក";
 "pref_profile_photo" = "រូបភាពទិន្ន័យផ្ទាល់ខ្លួន";
 "pref_blocked_contacts" = "ទំនាក់ទំនងដែលបានរារាំង";
+"blocked_empty_hint" = "ប្រសិនបើអ្នករារាំងទំនាក់ទំ នងពួកទំនាក់ទំនងនេះនឹងត្រូវបានដាកបង្ហាញនៅទីនេះ។";
 "pref_profile_photo_remove_ask" = "លុបរូបភាពទិន្ន័យផ្ទាល់ខ្លួន?";
 "pref_password_and_account_settings" = "ពាក្យសម្ងាត់ និងគណនី";
 "pref_who_can_see_profile_explain" = "រូបភាពទិន្ន័យផ្ទាល់ខ្លួនរបស់អ្នក និងឈ្មោះនឹងត្រូវបានបង្ហាញនៅក្បែរសាររបស់អ្នក នៅពេល ទនំាក់ទំនងជាមួយអ្នកប្រើប្រាស់ផ្សេងទៀត។ ដំណឹងដែលបានផ្ញើរួចមិនអាចលុបចោល ឬដកចេញបានទេ។";
@@ -402,6 +423,7 @@
 "pref_silent" = "ស្ងាត់សម្លេង";
 "pref_privacy" = "ភាពឯកជន";
 "pref_chats_and_media" = "សន្ទនា និងប្រពន្ធ័សម្លេង";
+"pref_system_default" = "លំនាំដើមប្រព័ន្ធ";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "ពន្លឺ";
 "pref_dark_theme" = "ងងឹត";
@@ -495,10 +517,13 @@
 "autodel_at_once" = "នៅពេលតែមួយ";
 "after_30_seconds" = "បន្ទាប់ពី ៣០វិនាទី";
 "after_1_minute" = "បន្ទាប់ពី ១នាទី";
+"after_5_minutes" = "ក្រោយរយៈពេល៥នាទី";
+"after_30_minutes" = "ក្រោយរយៈពេល៣០នាទី";
 "autodel_after_1_hour" = "បន្ទាប់ពី ១ម៉ោង";
 "autodel_after_1_day" = "បន្ទាប់ពី ១ថ្ងៃ";
 "autodel_after_1_week" = "បន្ទាប់ពី ១អាទិត្យ";
 "autodel_after_4_weeks" = "បន្ទាប់ពី ៤អាទិត្យ";
+"after_5_weeks" = "ក្រោយរយៈពេល៣០៥សប្តាហ៍";
 "autodel_after_1_year" = "បន្ទាប់ពី ១ឆ្នាំ";
 
 // autocrypt
@@ -544,6 +569,11 @@
 "systemmsg_ephemeral_timer_day" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ ១ថ្ងៃ។";
 "systemmsg_ephemeral_timer_week" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ ១សប្តាហ៍។";
 "systemmsg_ephemeral_timer_four_weeks" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ ៤សប្តាហ៍";
+"systemmsg_ephemeral_timer_minutes" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ %1$@ នាទី។";
+"systemmsg_ephemeral_timer_hours" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ %1$@ ម៉ោង។";
+"systemmsg_ephemeral_timer_days" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ %1$@ ថ្ងៃ។";
+"systemmsg_ephemeral_timer_weeks" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ %1$@ ថ្ងៃ។";
+
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "ការការពារសន្ទនាត្រូវបានបិទ";
 "systemmsg_chat_protection_enabled" = "ការការពារសន្ទនាត្រូវបានបើក";
