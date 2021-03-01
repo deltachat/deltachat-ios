@@ -282,6 +282,7 @@ class ChatViewController: UITableViewController {
     }
 
     private func startTimer() {
+        // check if the timer is not yet started
         if !(timer?.isValid ?? false) {
             timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
                 //reload table
@@ -295,6 +296,7 @@ class ChatViewController: UITableViewController {
     }
 
     private func stopTimer() {
+        // check if the timer is not already stopped
         if timer?.isValid ?? false {
             timer?.invalidate()
         }
