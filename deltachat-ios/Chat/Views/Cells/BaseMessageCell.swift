@@ -136,6 +136,7 @@ public class BaseMessageCell: UITableViewCell {
         button.addTarget(self, action: #selector(onFullMessageButtonTapped), for: .touchUpInside)
         button.titleLabel?.font = UIFont.preferredFont(for: .body, weight: .regular)
         button.titleLabel?.adjustsFontForContentSizeCategory = true
+        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
         button.accessibilityLabel = String.localized("show_full_message")
         return button
     }()
