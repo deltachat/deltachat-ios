@@ -33,7 +33,7 @@ public class QuotePreview: DraftPreview {
             compactView = draft.attachment != nil
             calculateQuoteHeight(compactView: compactView)
             if let quoteMessage = draft.quoteMessage {
-                quoteView.imagePreview.image = quoteMessage.image
+                quoteView.setImagePreview(quoteMessage.image)
                 if quoteMessage.isForwarded {
                     quoteView.senderTitle.text = String.localized("forwarded_message")
                     quoteView.senderTitle.textColor = DcColors.grayDateColor
