@@ -1302,6 +1302,9 @@ extension ChatViewController: BaseMessageCellDelegate {
         if handleUIMenu() || handleSelection(indexPath: indexPath) {
             return
         }
+        if let phoneURL = URL(string: "tel://\(number)") {
+            UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+        }
         logger.debug("phone number tapped \(number)")
     }
 
