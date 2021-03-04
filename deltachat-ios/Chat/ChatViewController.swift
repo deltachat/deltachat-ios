@@ -20,7 +20,8 @@ class ChatViewController: UITableViewController {
     var dismissCancelled = false
     var foregroundObserver: Any?
     var backgroundObserver: Any?
-    var keyboardObserver: Any?
+    var keyboardWillShowObserver: Any?
+    var keyboardWillHideObserver: Any?
 
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -252,6 +253,7 @@ class ChatViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
+        tableView.contentInsetAdjustmentBehavior = .never
 
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
@@ -270,6 +272,10 @@ class ChatViewController: UITableViewController {
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
+        guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+        tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(), left: 0, bottom: keyboardHeight, right: 0)
         if self.isLastRowVisible() {
             DispatchQueue.main.async { [weak self] in
                 if self?.messageInputBar.keyboardHeight ?? 0 > 0 {
@@ -279,6 +285,17 @@ class ChatViewController: UITableViewController {
                 }
             }
         }
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+        tableView.contentInset = UIEdgeInsets(top: getTopInsetHeight(), left: 0, bottom: keyboardHeight, right: 0)
+    }
+
+    private func getTopInsetHeight() -> CGFloat {
+        return UIApplication.shared.statusBarFrame.height + (navigationController?.navigationBar.bounds.height ?? 0)
     }
 
     private func startTimer() {
@@ -322,6 +339,16 @@ class ChatViewController: UITableViewController {
         }
 
         loadMessages()
+        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+            guard let self = self else { return }
+            self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(), left: 0, bottom: self.messageInputBar.calculateIntrinsicContentSize().height, right: 0)
+
+            if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
+                self.scrollToMessage(msgId: msgId, animated: false)
+            } else {
+                self.scrollToBottom(animated: false)
+            }
+        })
 
         if RelayHelper.sharedInstance.isForwarding() {
             askToForwardMessage()
@@ -393,10 +420,15 @@ class ChatViewController: UITableViewController {
                                             name: UIApplication.willResignActiveNotification,
                                             object: nil)
 
-        keyboardObserver = nc.addObserver(self,
+        keyboardWillShowObserver = nc.addObserver(self,
                                           selector: #selector(keyboardWillShow(_:)),
                                           name: UIResponder.keyboardWillShowNotification,
                                           object: nil)
+
+        keyboardWillHideObserver = nc.addObserver(self,
+                                                  selector: #selector(keyboardWillHide(_:)),
+                                                  name: UIResponder.keyboardWillHideNotification,
+                                                  object: nil)
 
 
         // things that do not affect the chatview
@@ -439,8 +471,11 @@ class ChatViewController: UITableViewController {
         if let backgroundObserver = self.backgroundObserver {
             nc.removeObserver(backgroundObserver)
         }
-        if let keyboardObserver = keyboardObserver {
-            nc.removeObserver(keyboardObserver)
+        if let keyboardWillShowObserver = self.keyboardWillShowObserver {
+            nc.removeObserver(keyboardWillShowObserver)
+        }
+        if let keyboardWillHideObserver = self.keyboardWillHideObserver {
+            nc.removeObserver(keyboardWillHideObserver)
         }
         audioController.stopAnyOngoingPlaying()
 
@@ -716,24 +751,12 @@ class ChatViewController: UITableViewController {
     }
 
     private func loadMessages() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                let wasLastRowVisible = self.isLastRowVisible()
-                let wasMessageIdsEmpty = self.messageIds.isEmpty
-                // update message ids
-                self.messageIds = self.getMessageIds()
-                self.reloadData()
-                if let msgId = self.highlightedMsg, let msgPosition = self.messageIds.firstIndex(of: msgId) {
-                    self.tableView.scrollToRow(at: IndexPath(row: msgPosition, section: 0), at: .top, animated: false)
-                    self.highlightedMsg = nil
-                } else if wasMessageIdsEmpty ||
-                    wasLastRowVisible {
-                    self.scrollToBottom(animated: false)
-                }
-                self.showEmptyStateView(self.messageIds.isEmpty)
-            }
-        }
+
+        // update message ids
+        self.messageIds = self.getMessageIds()
+        self.showEmptyStateView(self.messageIds.isEmpty)
+
+        self.reloadData()
     }
 
     func isLastRowVisible() -> Bool {
@@ -745,7 +768,10 @@ class ChatViewController: UITableViewController {
 
     func scrollToBottom(animated: Bool) {
         if !messageIds.isEmpty {
-            self.tableView.scrollToRow(at: IndexPath(row: self.messageIds.count - 1, section: 0), at: .bottom, animated: animated)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.tableView.scrollToRow(at: IndexPath(row: self.messageIds.count - 1, section: 0), at: .bottom, animated: animated)
+            }
         }
     }
 
