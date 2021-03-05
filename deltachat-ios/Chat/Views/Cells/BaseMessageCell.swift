@@ -329,7 +329,7 @@ public class BaseMessageCell: UITableViewCell {
                     quoteView.citeBar.backgroundColor = DcColors.grayDateColor
                 } else {
                     let contact = quoteMsg.fromContact
-                    quoteView.senderTitle.text = quoteMsg.getSenderName(contact)
+                    quoteView.senderTitle.text = quoteMsg.getSenderName(contact, markOverride: true)
                     quoteView.senderTitle.textColor = contact.color
                     quoteView.citeBar.backgroundColor = contact.color
                 }
