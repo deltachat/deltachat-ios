@@ -875,6 +875,13 @@ public class DcMsg {
         }
     }
 
+    public var subject: String {
+        guard let cString = dc_msg_get_subject(messagePointer) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
     public var quoteText: String? {
         guard let cString = dc_msg_get_quoted_text(messagePointer) else { return nil }
         let swiftString = String(cString: cString)
