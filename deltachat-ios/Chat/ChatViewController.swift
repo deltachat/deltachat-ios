@@ -1302,10 +1302,11 @@ extension ChatViewController: BaseMessageCellDelegate {
         if handleUIMenu() || handleSelection(indexPath: indexPath) {
             return
         }
-        if let phoneURL = URL(string: "tel://\(number)") {
+        let sanitizedNumber = number.filter("0123456789".contains)
+        if let phoneURL = URL(string: "tel://\(sanitizedNumber)") {
             UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
         }
-        logger.debug("phone number tapped \(number)")
+        logger.debug("phone number tapped \(sanitizedNumber)")
     }
 
     @objc func commandTapped(command: String, indexPath: IndexPath) {
