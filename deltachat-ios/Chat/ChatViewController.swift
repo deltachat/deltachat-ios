@@ -389,7 +389,7 @@ class ChatViewController: UITableViewController {
                                             object: nil)
 
         backgroundObserver = nc.addObserver(self,
-                                            selector: #selector(applicationDidResignActive(_:)),
+                                            selector: #selector(applicationWillResignActive(_:)),
                                             name: UIApplication.willResignActiveNotification,
                                             object: nil)
 
@@ -478,7 +478,7 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    @objc func applicationDidResignActive(_ notification: NSNotification) {
+    @objc func applicationWillResignActive(_ notification: NSNotification) {
         if navigationController?.visibleViewController == self {
             stopTimer()
             draft.save(context: dcContext)
