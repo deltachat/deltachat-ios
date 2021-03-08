@@ -389,6 +389,7 @@ class ChatViewController: UITableViewController {
             self.dcContext.marknoticedChat(chatId: self.chatId)
         }
         startTimer()
+        markSeenMessagesInVisibleArea()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
