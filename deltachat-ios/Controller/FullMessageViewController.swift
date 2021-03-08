@@ -47,7 +47,7 @@ class FullMessageViewController: WebViewViewController {
         if title.isEmpty {
             title = String.localized("chat_input_placeholder")
         }
-        self.title = title;
+        self.title = title
 
         self.navigationItem.rightBarButtonItem = loadButton
     }
