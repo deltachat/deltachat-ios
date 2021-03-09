@@ -141,9 +141,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>دەتەوێت %d پەیام لێرە و لەسەر سێرڤەر بسڕیتەوە؟</string>
+			<string>دەتەوێت ئەم %d پەیامە لێرە و لەسەر سێرڤەر بسڕیتەوە؟</string>
 			<key>other</key>
-			<string>دەتەوێت %d پەیام لێرە و لەسەر سێرڤەر بسڕیتەوە؟</string>
+			<string>دەتەوێت ئەم %d پەیامە لێرە و لەسەر سێرڤەر بسڕیتەوە؟</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>

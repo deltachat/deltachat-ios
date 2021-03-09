@@ -257,7 +257,7 @@
 "chat_archived_chats_title" = "Arşivlenen sohbetler";
 "chat_please_enter_message" = "Lütfen bir ileti girin.";
 "chat_camera_unavailable" = "Kamera kullanım dışı.";
-"chat_unable_to_record_audio" = "Ses kaydedilemedi.";
+"chat_unable_to_record_audio" = "Ses kaydedilemiyor.";
 "chat_no_messages_hint" = "%1$@ alıcısına ileti gönder:\n\n• %2$@ Delta Chat kullanmıyorsa tamam.\n\n• İlk iletinin teslim edilmesi biraz zaman alabilir ve şifrelenmeyebilir.";
 "chat_new_group_hint" = "İlk iletiyi oluşturun, diğerlerinin bu grupta yanıtlamasına izin verin.\n\n• Tüm üyeler Delta Chat kullanmıyorsa tamam.\n\n• İlk iletinin teslim edilmesi biraz zaman alabilir.";
 "chat_record_slide_to_cancel" = "Vazgeçmek için kaydırın";

@@ -41,7 +41,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d 個のﾁｬｯﾄ</string>
+			<string>%d 個のチャット</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -69,7 +69,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d個のﾒｯｾｰｼﾞ</string>
+			<string>%d個のメッセージ</string>
 		</dict>
 	</dict>
 	<key>n_members</key>
@@ -83,7 +83,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d人のﾒﾝﾊﾞｰ</string>
+			<string>%d人のメンバー</string>
 		</dict>
 	</dict>
 </dict>

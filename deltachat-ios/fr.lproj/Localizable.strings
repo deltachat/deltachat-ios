@@ -37,6 +37,12 @@
 "profile" = "Profil";
 "main_menu" = "Menu principal";
 "start_chat" = "Commencer la discussion";
+"show_full_message" = "Montrer le message complet...";
+"load_remote_content" = "Charger les images distantes";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Les images distantes peuvent être utilisées pour vous pister. Ce paramètre autorise également le chargement de polices ou d\'autres contenus. S\'il est désactivé, vous pouvez tout de même voir les images ancrées ou en cache. Souhaitez-vous charger les images distantes ?";
+"always" = "Toujours";
+"once" = "Une fois";
 "show_password" = "Afficher le mot de passe";
 "hide_password" = "Masquer le mot de passe";
 "not_now" = "Pas maintenant";
@@ -81,6 +87,8 @@
 "audio" = "Son";
 "voice_message" = "Message vocal";
 "forwarded_message" = "Message transféré";
+// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+"forwarded_by" = "Transféré par %1$@";
 "video" = "Vidéo";
 "documents" = "Documents";
 "contact" = "Contact";
@@ -153,6 +161,8 @@
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Montrer dans la discussion";
 "menu_share" = "Partager";
+// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+"block" = "Bloquer";
 "menu_block_contact" = "Bloquer ce contact";
 "menu_unblock_contact" = "Débloquer ce contact";
 "menu_play" = "Jouer";
@@ -161,6 +171,7 @@
 "menu_scroll_to_top" = "Faites défiler jusqu\'en haut";
 "menu_help" = "Aide";
 "menu_select_all" = "Tout sélectionner";
+"select_more" = "Sélectionner plus";
 "menu_expand" = "Étendre";
 "menu_edit_name" = "Modifier le nom";
 "menu_settings" = "Configuration";
@@ -273,6 +284,11 @@
 "messaging_disabled_deaddrop" = "Cliquez sur un message pour accepter ou rejeter la demande de contact.";
 "cannot_display_unsuported_file_type" = "Impossible d\'afficher ce type de fichier : %1$@";
 "attachment_failed_to_load" = "Échec du chargement de la pièce jointe";
+
+
+// mailing lists
+"mailing_list" = "Liste de diffusion";
+"ask_show_mailing_list" = "Montrer la liste de diffusion « %1$@ » ?";
 
 
 // map
@@ -501,6 +517,8 @@
 "autodel_at_once" = "Une fois";
 "after_30_seconds" = "Après 30 secondes";
 "after_1_minute" = "Après 1 minute";
+"after_5_minutes" = "Après 5 minutes";
+"after_30_minutes" = "Après 30 minutes";
 "autodel_after_1_hour" = "Après 1 heure";
 "autodel_after_1_day" = "Après 1 jour";
 "autodel_after_1_week" = "Après 1 semaine";
@@ -551,6 +569,11 @@
 "systemmsg_ephemeral_timer_day" = "Temporisation des messages éphémères réglée à 1 journée.";
 "systemmsg_ephemeral_timer_week" = "Temporisation des messages éphémères réglée à 1 semaine.";
 "systemmsg_ephemeral_timer_four_weeks" = "Temporisation des messages éphémères réglée à 4 semaines.";
+"systemmsg_ephemeral_timer_minutes" = "Régler le temps d\'affichage des messages éphémères à %1$@ minute(s).";
+"systemmsg_ephemeral_timer_hours" = "Régler le temps d\'affichage des messages éphémères à %1$@ heure(s).";
+"systemmsg_ephemeral_timer_days" = "Régler le temps d\'affichage des messages éphémères à %1$@ jour(s).";
+"systemmsg_ephemeral_timer_weeks" = "Régler le temps d\'affichage des messages éphémères à %1$@ semaine(s).";
+
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Protection de la discussion désactivée.";
 "systemmsg_chat_protection_enabled" = "Protection de la discussion activée.";
