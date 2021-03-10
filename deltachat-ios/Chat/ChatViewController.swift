@@ -527,7 +527,7 @@ class ChatViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if disableWriting {
+        if disableWriting || DcMsg(id: messageIds[indexPath.row]).isInfo {
             return nil
         }
 
