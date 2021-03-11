@@ -17,7 +17,7 @@ class ChatViewController: UITableViewController {
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
     var ephemeralTimerModifiedObserver: Any?
-    var dismissCancelled = false
+    var isDismissing = false
     var foregroundObserver: Any?
     var backgroundObserver: Any?
     var keyboardWillShowObserver: Any?
@@ -272,6 +272,9 @@ class ChatViewController: UITableViewController {
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
+        if isDismissing {
+            return
+        }
         guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
@@ -288,6 +291,9 @@ class ChatViewController: UITableViewController {
     }
 
     @objc func keyboardWillHide(_ notification: Notification) {
+        if isDismissing {
+            return
+        }
         guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
@@ -325,8 +331,8 @@ class ChatViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if dismissCancelled {
-            self.dismissCancelled = false
+        if isDismissing {
+            self.isDismissing = false
         } else {
             self.tableView.becomeFirstResponder()
         }
@@ -446,12 +452,12 @@ class ChatViewController: UITableViewController {
 
         // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
         navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
-        dismissCancelled = true
+        isDismissing = true
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        dismissCancelled = false
+        isDismissing = false
         AppStateRestorer.shared.resetLastActiveChat()
         draft.save(context: dcContext)
         stopTimer()
