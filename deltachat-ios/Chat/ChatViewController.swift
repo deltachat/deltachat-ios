@@ -269,7 +269,7 @@ class ChatViewController: UITableViewController {
             configureMessageInputBar()
             draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
             messageInputBar.inputTextView.text = draft.text
-            configureDraftArea(draft: draft)
+            configureDraftArea(draft: draft, animated: false)
             editingBar.delegate = self
             tableView.allowsMultipleSelectionDuringEditing = true
         }
@@ -593,7 +593,7 @@ class ChatViewController: UITableViewController {
         markSeenMessagesInVisibleArea()
     }
 
-    private func configureDraftArea(draft: DraftModel) {
+    private func configureDraftArea(draft: DraftModel, animated: Bool = true) {
         draftArea.configure(draft: draft)
         if draft.isEditing {
             messageInputBar.setMiddleContentView(editingBar, animated: false)
@@ -606,7 +606,7 @@ class ChatViewController: UITableViewController {
             messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
             messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
         }
-        messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: true)
+        messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: animated)
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
