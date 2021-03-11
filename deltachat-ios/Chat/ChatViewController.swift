@@ -17,6 +17,10 @@ class ChatViewController: UITableViewController {
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
     var ephemeralTimerModifiedObserver: Any?
+    // isDismissing indicates whether the ViewController is/was about to dismissed.
+    // The VC can be dismissed by pressing back '<' or by a swipe-to-dismiss gesture.
+    // The latter is cancelable and leads to viewWillAppear is called in case the gesture is cancelled
+    // We need the flag to handle that special case correctly in viewWillAppear
     var isDismissing = false
     var foregroundObserver: Any?
     var backgroundObserver: Any?
@@ -332,30 +336,31 @@ class ChatViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if isDismissing {
-            self.isDismissing = false
-        } else {
-            self.tableView.becomeFirstResponder()
-        }
-
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
-
         if showCustomNavBar {
             updateTitle(chat: dcContext.getChat(chatId: chatId))
         }
+        if !isDismissing {
+            self.tableView.becomeFirstResponder()
+            loadMessages()
+            UIView.animate(withDuration: 0.5, animations: { [weak self] in
+                guard let self = self else { return }
+                self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
+                                                           left: 0,
+                                                           bottom: self.messageInputBar.calculateIntrinsicContentSize().height,
+                                                           right: 0)
 
-        loadMessages()
-        UIView.animate(withDuration: 0.5, animations: { [weak self] in
-            guard let self = self else { return }
-            self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(), left: 0, bottom: self.messageInputBar.calculateIntrinsicContentSize().height, right: 0)
+                if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
+                    self.scrollToMessage(msgId: msgId, animated: false)
+                } else {
+                    logger.debug("scrolling: viewWillAppear - no animation")
+                    self.scrollToBottom(animated: false)
+                }
+            })
+        }
+        isDismissing = false
 
-            if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
-                self.scrollToMessage(msgId: msgId, animated: false)
-            } else {
-                self.scrollToBottom(animated: false)
-            }
-        })
 
         if RelayHelper.sharedInstance.isForwarding() {
             askToForwardMessage()
