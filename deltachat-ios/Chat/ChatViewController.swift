@@ -279,13 +279,14 @@ class ChatViewController: UITableViewController {
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
         tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(), left: 0, bottom: keyboardHeight, right: 0)
-        if self.isLastRowVisible() {
-            DispatchQueue.main.async { [weak self] in
-                if self?.messageInputBar.keyboardHeight ?? 0 > 0 {
-                    self?.scrollToBottom(animated: true)
-                } else { // inputbar height increased, probably because of draft area changes
-                    self?.scrollToBottom(animated: false)
-                }
+        // adapt the scroll position if the table view is not already moving and if the last row is visible
+        if self.isLastRowVisible() && !tableView.isDragging && !tableView.isDecelerating {
+            if self.messageInputBar.keyboardHeight > 0 {
+                logger.debug("scrolling keyboardWillShow - animated: true")
+                self.scrollToBottom(animated: true)
+            } else { // inputbar height increased, probably because of draft area changes
+                logger.debug("scrolling keyboardWillShow - animated: false")
+                self.scrollToBottom(animated: false)
             }
         }
     }
