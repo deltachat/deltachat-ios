@@ -28,15 +28,13 @@ public class ChatInputBar: InputBarAccessoryView {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardChanged),
-            name: UIResponder.keyboardWillShowNotification,
+            name: UIResponder.keyboardWillChangeFrameNotification,
             object: nil
         )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardChanged),
-            name: UIResponder.keyboardDidHideNotification,
-            object: nil
-        )
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override open func calculateMaxTextViewHeight() -> CGFloat {
@@ -74,8 +72,10 @@ public class ChatInputBar: InputBarAccessoryView {
     @objc func keyboardChanged(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
+            invalidateIntrinsicContentSize()
             keyboardHeight = keyboardRectangle.height - intrinsicContentSize.height
             updateTextViewHeight()
+            delegate?.inputBar(self, didChangeIntrinsicContentTo: intrinsicContentSize)
         }
     }
 
@@ -83,7 +83,9 @@ public class ChatInputBar: InputBarAccessoryView {
         super.traitCollectionDidChange(previousTraitCollection)
         if (self.traitCollection.verticalSizeClass != previousTraitCollection?.verticalSizeClass)
                 || (self.traitCollection.horizontalSizeClass != previousTraitCollection?.horizontalSizeClass) {
+            invalidateIntrinsicContentSize()
             updateTextViewHeight()
+            delegate?.inputBar(self, didChangeIntrinsicContentTo: intrinsicContentSize)
         }
     }
 
@@ -94,6 +96,5 @@ public class ChatInputBar: InputBarAccessoryView {
         } else if shouldForceTextViewMaxHeight {
             setShouldForceMaxTextViewHeight(to: false, animated: false)
         }
-        invalidateIntrinsicContentSize()
     }
 }

@@ -24,8 +24,6 @@ class ChatViewController: UITableViewController {
     var isDismissing = false
     var foregroundObserver: Any?
     var backgroundObserver: Any?
-    var keyboardWillShowObserver: Any?
-    var keyboardWillHideObserver: Any?
 
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -275,36 +273,6 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if isDismissing {
-            return
-        }
-        guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        let keyboardRectangle = keyboardFrame.cgRectValue
-        let keyboardHeight = keyboardRectangle.height
-        tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(), left: 0, bottom: keyboardHeight, right: 0)
-        // adapt the scroll position if the table view is not already moving and if the last row is visible
-        if self.isLastRowVisible() && !tableView.isDragging && !tableView.isDecelerating {
-            if self.messageInputBar.keyboardHeight > 0 {
-                logger.debug("scrolling keyboardWillShow - animated: true")
-                self.scrollToBottom(animated: true)
-            } else { // inputbar height increased, probably because of draft area changes
-                logger.debug("scrolling keyboardWillShow - animated: false")
-                self.scrollToBottom(animated: false)
-            }
-        }
-    }
-
-    @objc func keyboardWillHide(_ notification: Notification) {
-        if isDismissing {
-            return
-        }
-        guard let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        let keyboardRectangle = keyboardFrame.cgRectValue
-        let keyboardHeight = keyboardRectangle.height
-        tableView.contentInset = UIEdgeInsets(top: getTopInsetHeight(), left: 0, bottom: keyboardHeight, right: 0)
-    }
-
     private func getTopInsetHeight() -> CGFloat {
         return UIApplication.shared.statusBarFrame.height + (navigationController?.navigationBar.bounds.height ?? 0)
     }
@@ -432,17 +400,6 @@ class ChatViewController: UITableViewController {
                                             name: UIApplication.willResignActiveNotification,
                                             object: nil)
 
-        keyboardWillShowObserver = nc.addObserver(self,
-                                          selector: #selector(keyboardWillShow(_:)),
-                                          name: UIResponder.keyboardWillShowNotification,
-                                          object: nil)
-
-        keyboardWillHideObserver = nc.addObserver(self,
-                                                  selector: #selector(keyboardWillHide(_:)),
-                                                  name: UIResponder.keyboardWillHideNotification,
-                                                  object: nil)
-
-
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         DispatchQueue.global(qos: .background).async { [weak self] in
@@ -482,12 +439,6 @@ class ChatViewController: UITableViewController {
         }
         if let backgroundObserver = self.backgroundObserver {
             nc.removeObserver(backgroundObserver)
-        }
-        if let keyboardWillShowObserver = self.keyboardWillShowObserver {
-            nc.removeObserver(keyboardWillShowObserver)
-        }
-        if let keyboardWillHideObserver = self.keyboardWillHideObserver {
-            nc.removeObserver(keyboardWillHideObserver)
         }
         audioController.stopAnyOngoingPlaying()
 
@@ -1476,6 +1427,19 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
         draft.text = text
         evaluateInputBar(draft: draft)
+    }
+
+    func inputBar(_ inputBar: InputBarAccessoryView, didChangeIntrinsicContentTo size: CGSize) {
+        if isDismissing {
+            return
+        }
+        self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
+                                                   left: 0,
+                                                   bottom: size.height + messageInputBar.keyboardHeight,
+                                                   right: 0)
+        if isLastRowVisible() {
+            self.scrollToBottom(animated: true)
+        }
     }
 }
 
