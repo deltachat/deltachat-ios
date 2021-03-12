@@ -312,7 +312,7 @@ class ChatViewController: UITableViewController {
         if !isDismissing {
             self.tableView.becomeFirstResponder()
             loadMessages()
-            UIView.animate(withDuration: 0.5, animations: { [weak self] in
+            UIView.animate(withDuration: 0.3, animations: { [weak self] in
                 guard let self = self else { return }
                 self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
                                                            left: 0,
@@ -320,7 +320,15 @@ class ChatViewController: UITableViewController {
                                                            right: 0)
 
                 if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
-                    self.scrollToMessage(msgId: msgId, animated: false)
+                    UIView.animate(withDuration: 0.5, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
+                        logger.debug("scrolling: scrollToMessage viewWillAppear - no animation")
+                        self?.scrollToMessage(msgId: msgId, animated: false)
+                    }, completion: { [weak self] finished in
+                        if finished {
+                            guard let self = self else { return }
+                            self.highlightedMsg = nil
+                        }
+                    })
                 } else {
                     logger.debug("scrolling: viewWillAppear - no animation")
                     self.scrollToBottom(animated: false)
@@ -739,11 +747,14 @@ class ChatViewController: UITableViewController {
     }
 
     func scrollToMessage(msgId: Int, animated: Bool = true) {
-        guard let index = messageIds.firstIndex(of: msgId) else {
-            return
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            guard let index = self.messageIds.firstIndex(of: msgId) else {
+                return
+            }
+            let indexPath = IndexPath(row: index, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
         }
-        let indexPath = IndexPath(row: index, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
     }
 
     private func showEmptyStateView(_ show: Bool) {
@@ -1437,7 +1448,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
                                                    left: 0,
                                                    bottom: size.height + messageInputBar.keyboardHeight,
                                                    right: 0)
-        if isLastRowVisible() {
+        if isLastRowVisible() && !tableView.isDragging && !tableView.isDecelerating  && highlightedMsg == nil {
             self.scrollToBottom(animated: true)
         }
     }
