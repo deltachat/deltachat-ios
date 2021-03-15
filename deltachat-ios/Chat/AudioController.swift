@@ -15,9 +15,15 @@ public enum PlayerState {
     case stopped
 }
 
+public protocol AudioControllerDelegate: AnyObject {
+    func onAudioPlayFailed()
+}
+
 /// The `AudioController` update UI for current audio cell that is playing a sound
 /// and also creates and manage an `AVAudioPlayer` states, play, pause and stop.
 open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDelegate {
+
+    open weak var delegate: AudioControllerDelegate?
 
     lazy var audioSession: AVAudioSession = {
         let audioSession = AVAudioSession.sharedInstance()
@@ -46,10 +52,11 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
 
     // MARK: - Init Methods
 
-    public init(dcContext: DcContext, chatId: Int) {
+    public init(dcContext: DcContext, chatId: Int, delegate: AudioControllerDelegate? = nil) {
         self.dcContext = dcContext
         self.chatId = chatId
         self.chat = dcContext.getChat(chatId: chatId)
+        self.delegate = delegate
         super.init()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(audioRouteChanged),
@@ -118,9 +125,9 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
                 state = .playing
                 audioCell.audioPlayerView.showPlayLayout(true)  // show pause button on audio cell
                 startProgressTimer()
+            } else {
+                delegate?.onAudioPlayFailed()
             }
-
-            print("NewAudioController failed play sound becasue given message kind is not Audio")
         }
     }
 

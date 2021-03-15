@@ -201,7 +201,7 @@ class ChatViewController: UITableViewController {
     }()
 
     /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and update audio cell UI accordingly.
-    private lazy var audioController = AudioController(dcContext: dcContext, chatId: chatId)
+    private lazy var audioController = AudioController(dcContext: dcContext, chatId: chatId, delegate: self)
 
     private var disableWriting: Bool
     private var showNamesAboveMessage: Bool
@@ -406,6 +406,7 @@ class ChatViewController: UITableViewController {
             self.dcContext.marknoticedChat(chatId: self.chatId)
         }
         startTimer()
+        markSeenMessagesInVisibleArea()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -603,6 +604,7 @@ class ChatViewController: UITableViewController {
             let visibleMessagesIds = indexPaths.map { UInt32(messageIds[$0.row]) }
             if !visibleMessagesIds.isEmpty {
                 DispatchQueue.global(qos: .background).async { [weak self] in
+                    logger.debug("markseen messages in chat \(String(describing: self?.chatId))")
                     self?.dcContext.markSeenMessages(messageIds: visibleMessagesIds)
                 }
             }
@@ -1065,6 +1067,7 @@ class ChatViewController: UITableViewController {
         if messageIds.firstIndex(where: { $0 == messageId }) != nil {
             DispatchQueue.global(qos: .background).async { [weak self] in
                 self?.dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
+                logger.debug("markseen message updateMessage in chat \(String(describing: self?.chatId))")
             }
             let wasLastSectionVisible = self.isLastRowVisible()
             reloadData()
@@ -1081,6 +1084,7 @@ class ChatViewController: UITableViewController {
 
     func insertMessage(_ message: DcMsg) {
         DispatchQueue.global(qos: .background).async { [weak self] in
+            logger.debug("markseen messages insertMessage in chat \(String(describing: self?.chatId))")
             self?.dcContext.markSeenMessages(messageIds: [UInt32(message.id)])
         }
 
@@ -1503,5 +1507,13 @@ extension ChatViewController: QLPreviewControllerDelegate {
             guard let self = self else { return }
             self.draftArea.reload(draft: self.draft)
         }
+    }
+}
+
+extension ChatViewController: AudioControllerDelegate {
+    func onAudioPlayFailed() {
+        let alert = UIAlertController(title: String.localized("error"), message: String.localized("cannot_play_unsupported_file_type"), preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
