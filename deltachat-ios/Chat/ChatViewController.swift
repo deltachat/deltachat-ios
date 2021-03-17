@@ -312,7 +312,7 @@ class ChatViewController: UITableViewController {
         if !isDismissing {
             self.tableView.becomeFirstResponder()
             loadMessages()
-            UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            UIView.animate(withDuration: 0.1, animations: { [weak self] in
                 guard let self = self else { return }
                 self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
                                                            left: 0,
@@ -320,7 +320,7 @@ class ChatViewController: UITableViewController {
                                                            right: 0)
 
                 if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
-                    UIView.animate(withDuration: 0.5, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
+                    UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
                         self?.scrollToMessage(msgId: msgId, animated: false)
                     }, completion: { [weak self] finished in
                         if finished {
