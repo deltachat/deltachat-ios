@@ -208,6 +208,7 @@ class ChatListController: UITableViewController {
             let chatId = chatData.chatId
             if chatId == DC_CHAT_ID_ARCHIVED_LINK {
                 archiveCell.actionTitle = dcContext.getChat(chatId: chatId).name
+                archiveCell.backgroundColor = DcColors.chatBackgroundColor
                 return archiveCell
             } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
                 // default chatCell
