@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("remoteNotification: \(String(describing: notificationOption))")
 
         if dcContext.isConfigured() {
-            registerForShowingNotifications()
+            registerForNotifications()
         }
 
         return true
@@ -265,26 +265,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - PushNotifications
 
-    func registerForShowingNotifications() {
-        print("register push")
+    func registerForNotifications() {
         UNUserNotificationCenter.current().delegate = self
 
+        // register for showing notifications
         UNUserNotificationCenter.current()
-          .requestAuthorization(options: [.alert, .sound, .badge]) {
-            [weak self] granted, _ in
-              
-            print("Permission granted: \(granted)")
-            guard granted else { return }
-            self?.getNotificationSettings()
+          .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
+            logger.info("Permission granted: \(granted)")
+
+            if granted {
+                // we are allowd to show notifications:
+                // register for receiving push notifications
+                self?.maybeRegisterForRemoteNotifications()
+            }
         }
     }
 
-    private func getNotificationSettings() {
+    private func maybeRegisterForRemoteNotifications() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             logger.info("Notification settings: \(settings)")
-            guard settings.authorizationStatus == .authorized else { return }
-            DispatchQueue.main.async {
-              UIApplication.shared.registerForRemoteNotifications()
+
+            switch settings.authorizationStatus {
+            case .authorized, .provisional, .ephemeral:
+                DispatchQueue.main.async {
+                  // on success, we get a token at didRegisterForRemoteNotificationsWithDeviceToken
+                  UIApplication.shared.registerForRemoteNotifications()
+                }
+            case .denied, .notDetermined:
+                break
             }
         }
     }
