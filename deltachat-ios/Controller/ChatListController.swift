@@ -101,6 +101,7 @@ class ChatListController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
             forName: dcNotificationChanged,
