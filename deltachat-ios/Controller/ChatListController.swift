@@ -13,6 +13,7 @@ class ChatListController: UITableViewController {
     private var msgsNoticedObserver: Any?
     private var incomingMsgObserver: Any?
     private var viewChatObserver: Any?
+    private var foregroundObserver: Any?
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -97,7 +98,9 @@ class ChatListController: UITableViewController {
             quitSearch(animated: false)
             tableView.scrollToTop()
         }
-
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
             forName: dcNotificationChanged,
@@ -127,6 +130,10 @@ class ChatListController: UITableViewController {
                     self?.showChat(chatId: chatId)
                 }
         }
+        foregroundObserver = nc.addObserver(self,
+                                            selector: #selector(applicationDidBecomeActive(_:)),
+                                            name: UIApplication.didBecomeActiveNotification,
+                                            object: nil)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -142,7 +149,14 @@ class ChatListController: UITableViewController {
         if let viewChatObserver = self.viewChatObserver {
             nc.removeObserver(viewChatObserver)
         }
+        if let msgsNoticedObserver = self.msgsNoticedObserver {
+            nc.removeObserver(msgsNoticedObserver)
+        }
+        if let foregroundObserver = self.foregroundObserver {
+            nc.removeObserver(foregroundObserver)
+        }
     }
+    
     // MARK: - setup
     private func setupSubviews() {
         emptySearchStateLabel.addCenteredTo(parentView: view)
@@ -156,6 +170,10 @@ class ChatListController: UITableViewController {
         tableView.rowHeight = ContactCell.cellHeight
     }
 
+    @objc func applicationDidBecomeActive(_ notification: NSNotification) {
+        viewModel.refreshData()
+    }
+    
     // MARK: - actions
     @objc func didPressNewChat() {
         showNewChatController()
