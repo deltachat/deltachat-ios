@@ -14,6 +14,9 @@ class ChatListController: UITableViewController {
     private var incomingMsgObserver: Any?
     private var viewChatObserver: Any?
     private var foregroundObserver: Any?
+    private var backgroundObserver: Any?
+
+    private weak var timer: Timer?
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -102,6 +105,7 @@ class ChatListController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        startTimer()
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
             forName: dcNotificationChanged,
@@ -135,10 +139,15 @@ class ChatListController: UITableViewController {
                                             selector: #selector(applicationDidBecomeActive(_:)),
                                             name: UIApplication.didBecomeActiveNotification,
                                             object: nil)
+        backgroundObserver = nc.addObserver(self,
+                                            selector: #selector(applicationWillResignActive(_:)),
+                                            name: UIApplication.willResignActiveNotification,
+                                            object: nil)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        stopTimer()
 
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
@@ -156,6 +165,9 @@ class ChatListController: UITableViewController {
         if let foregroundObserver = self.foregroundObserver {
             nc.removeObserver(foregroundObserver)
         }
+        if let backgroundObserver = self.backgroundObserver {
+            nc.removeObserver(backgroundObserver)
+        }
     }
     
     // MARK: - setup
@@ -171,8 +183,18 @@ class ChatListController: UITableViewController {
         tableView.rowHeight = ContactCell.cellHeight
     }
 
+    
     @objc func applicationDidBecomeActive(_ notification: NSNotification) {
-        viewModel.refreshData()
+        if navigationController?.visibleViewController == self {
+            startTimer()
+            viewModel.refreshData()
+        }
+    }
+
+    @objc func applicationWillResignActive(_ notification: NSNotification) {
+        if navigationController?.visibleViewController == self {
+            stopTimer()
+        }
     }
     
     // MARK: - actions
@@ -337,6 +359,24 @@ class ChatListController: UITableViewController {
         } else {
             emptySearchStateLabel.text = nil
             emptySearchStateLabel.isHidden = true
+        }
+    }
+    
+    private func startTimer() {
+        // check if the timer is not yet started
+        if !(timer?.isValid ?? false) {
+            timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+                DispatchQueue.main.async { [weak self] in
+                    self?.viewModel.refreshData()
+                }
+            }
+        }
+    }
+    
+    private func stopTimer() {
+        // check if the timer is not already stopped
+        if timer?.isValid ?? false {
+            timer?.invalidate()
         }
     }
 
