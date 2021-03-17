@@ -66,10 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             print("Unable to start notifier")
         }
         
-        // Push Notifications
-        // Check if launched from notification
         let notificationOption = launchOptions?[.remoteNotification]
-        print(notificationOption)
+        logger.info("remoteNotification: \(String(describing: notificationOption))")
 
         if dcContext.isConfigured() {
             registerForShowingNotifications()
