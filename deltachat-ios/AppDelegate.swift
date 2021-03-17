@@ -70,9 +70,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Check if launched from notification
         let notificationOption = launchOptions?[.remoteNotification]
         print(notificationOption)
-        
-        registerForPushNotifications()
 
+        if dcContext.isConfigured() {
+            registerForShowingNotifications()
+        }
 
         return true
     }
@@ -266,19 +267,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - PushNotifications
 
-    func registerForPushNotifications() {
+    func registerForShowingNotifications() {
         print("register push")
         UNUserNotificationCenter.current().delegate = self
 
         UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
-                logger.info("permission granted: \(granted)")
-                guard granted else { return }
-                self.getNotificationSettings()
-            }
-        UNUserNotificationCenter.current()
           .requestAuthorization(options: [.alert, .sound, .badge]) {
-            [weak self] granted, error in
+            [weak self] granted, _ in
               
             print("Permission granted: \(granted)")
             guard granted else { return }
