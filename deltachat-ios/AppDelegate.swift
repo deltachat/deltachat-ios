@@ -305,6 +305,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let tokenString = tokenParts.joined()
         print("Device Token: \(tokenString)")
 
+        // TODO: persist token in config
+        // and post token to notification server only on changes
+
         if let url = URL(string: "https://notifications.delta.chat/register?token=\(tokenString)") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
