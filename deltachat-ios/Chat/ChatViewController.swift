@@ -17,10 +17,13 @@ class ChatViewController: UITableViewController {
     var msgChangedObserver: Any?
     var incomingMsgObserver: Any?
     var ephemeralTimerModifiedObserver: Any?
-    var dismissCancelled = false
+    // isDismissing indicates whether the ViewController is/was about to dismissed.
+    // The VC can be dismissed by pressing back '<' or by a swipe-to-dismiss gesture.
+    // The latter is cancelable and leads to viewWillAppear is called in case the gesture is cancelled
+    // We need the flag to handle that special case correctly in viewWillAppear
+    var isDismissing = false
     var foregroundObserver: Any?
     var backgroundObserver: Any?
-    var keyboardObserver: Any?
 
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -252,6 +255,7 @@ class ChatViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
+        tableView.contentInsetAdjustmentBehavior = .never
 
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
@@ -263,22 +267,14 @@ class ChatViewController: UITableViewController {
             configureMessageInputBar()
             draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
             messageInputBar.inputTextView.text = draft.text
-            configureDraftArea(draft: draft)
+            configureDraftArea(draft: draft, animated: false)
             editingBar.delegate = self
             tableView.allowsMultipleSelectionDuringEditing = true
         }
     }
 
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if self.isLastRowVisible() {
-            DispatchQueue.main.async { [weak self] in
-                if self?.messageInputBar.keyboardHeight ?? 0 > 0 {
-                    self?.scrollToBottom(animated: true)
-                } else { // inputbar height increased, probably because of draft area changes
-                    self?.scrollToBottom(animated: false)
-                }
-            }
-        }
+    private func getTopInsetHeight() -> CGFloat {
+        return UIApplication.shared.statusBarFrame.height + (navigationController?.navigationBar.bounds.height ?? 0)
     }
 
     private func startTimer() {
@@ -308,20 +304,37 @@ class ChatViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if dismissCancelled {
-            self.dismissCancelled = false
-        } else {
-            self.tableView.becomeFirstResponder()
-        }
-
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
-
         if showCustomNavBar {
             updateTitle(chat: dcContext.getChat(chatId: chatId))
         }
+        if !isDismissing {
+            self.tableView.becomeFirstResponder()
+            loadMessages()
+            UIView.animate(withDuration: 0.1, animations: { [weak self] in
+                guard let self = self else { return }
+                self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
+                                                           left: 0,
+                                                           bottom: self.messageInputBar.calculateIntrinsicContentSize().height,
+                                                           right: 0)
 
-        loadMessages()
+                if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
+                    UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
+                        self?.scrollToMessage(msgId: msgId, animated: false)
+                    }, completion: { [weak self] finished in
+                        if finished {
+                            guard let self = self else { return }
+                            self.highlightedMsg = nil
+                        }
+                    })
+                } else {
+                    self.scrollToBottom(animated: false)
+                }
+            })
+        }
+        isDismissing = false
+
 
         if RelayHelper.sharedInstance.isForwarding() {
             askToForwardMessage()
@@ -393,12 +406,6 @@ class ChatViewController: UITableViewController {
                                             name: UIApplication.willResignActiveNotification,
                                             object: nil)
 
-        keyboardObserver = nc.addObserver(self,
-                                          selector: #selector(keyboardWillShow(_:)),
-                                          name: UIResponder.keyboardWillShowNotification,
-                                          object: nil)
-
-
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         DispatchQueue.global(qos: .background).async { [weak self] in
@@ -414,12 +421,12 @@ class ChatViewController: UITableViewController {
 
         // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
         navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
-        dismissCancelled = true
+        isDismissing = true
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        dismissCancelled = false
+        isDismissing = false
         AppStateRestorer.shared.resetLastActiveChat()
         draft.save(context: dcContext)
         stopTimer()
@@ -438,9 +445,6 @@ class ChatViewController: UITableViewController {
         }
         if let backgroundObserver = self.backgroundObserver {
             nc.removeObserver(backgroundObserver)
-        }
-        if let keyboardObserver = keyboardObserver {
-            nc.removeObserver(keyboardObserver)
         }
         audioController.stopAnyOngoingPlaying()
 
@@ -546,7 +550,7 @@ class ChatViewController: UITableViewController {
         markSeenMessagesInVisibleArea()
     }
 
-    private func configureDraftArea(draft: DraftModel) {
+    private func configureDraftArea(draft: DraftModel, animated: Bool = true) {
         draftArea.configure(draft: draft)
         if draft.isEditing {
             messageInputBar.setMiddleContentView(editingBar, animated: false)
@@ -559,7 +563,7 @@ class ChatViewController: UITableViewController {
             messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
             messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
         }
-        messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: true)
+        messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: animated)
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -716,24 +720,12 @@ class ChatViewController: UITableViewController {
     }
 
     private func loadMessages() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                let wasLastRowVisible = self.isLastRowVisible()
-                let wasMessageIdsEmpty = self.messageIds.isEmpty
-                // update message ids
-                self.messageIds = self.getMessageIds()
-                self.reloadData()
-                if let msgId = self.highlightedMsg, let msgPosition = self.messageIds.firstIndex(of: msgId) {
-                    self.tableView.scrollToRow(at: IndexPath(row: msgPosition, section: 0), at: .top, animated: false)
-                    self.highlightedMsg = nil
-                } else if wasMessageIdsEmpty ||
-                    wasLastRowVisible {
-                    self.scrollToBottom(animated: false)
-                }
-                self.showEmptyStateView(self.messageIds.isEmpty)
-            }
-        }
+
+        // update message ids
+        self.messageIds = self.getMessageIds()
+        self.showEmptyStateView(self.messageIds.isEmpty)
+
+        self.reloadData()
     }
 
     func isLastRowVisible() -> Bool {
@@ -745,16 +737,22 @@ class ChatViewController: UITableViewController {
 
     func scrollToBottom(animated: Bool) {
         if !messageIds.isEmpty {
-            self.tableView.scrollToRow(at: IndexPath(row: self.messageIds.count - 1, section: 0), at: .bottom, animated: animated)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.tableView.scrollToRow(at: IndexPath(row: self.messageIds.count - 1, section: 0), at: .bottom, animated: animated)
+            }
         }
     }
 
     func scrollToMessage(msgId: Int, animated: Bool = true) {
-        guard let index = messageIds.firstIndex(of: msgId) else {
-            return
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            guard let index = self.messageIds.firstIndex(of: msgId) else {
+                return
+            }
+            let indexPath = IndexPath(row: index, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
         }
-        let indexPath = IndexPath(row: index, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
     }
 
     private func showEmptyStateView(_ show: Bool) {
@@ -1439,6 +1437,19 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         draft.text = text
         evaluateInputBar(draft: draft)
     }
+
+    func inputBar(_ inputBar: InputBarAccessoryView, didChangeIntrinsicContentTo size: CGSize) {
+        if isDismissing {
+            return
+        }
+        self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
+                                                   left: 0,
+                                                   bottom: size.height + messageInputBar.keyboardHeight,
+                                                   right: 0)
+        if isLastRowVisible() && !tableView.isDragging && !tableView.isDecelerating  && highlightedMsg == nil {
+            self.scrollToBottom(animated: true)
+        }
+    }
 }
 
 // MARK: - DraftPreviewDelegate
@@ -1512,7 +1523,9 @@ extension ChatViewController: QLPreviewControllerDelegate {
 
 extension ChatViewController: AudioControllerDelegate {
     func onAudioPlayFailed() {
-        let alert = UIAlertController(title: String.localized("error"), message: String.localized("cannot_play_unsupported_file_type"), preferredStyle: .safeActionSheet)
+        let alert = UIAlertController(title: String.localized("error"),
+                                      message: String.localized("cannot_play_unsupported_file_type"),
+                                      preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
