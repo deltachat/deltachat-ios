@@ -321,7 +321,6 @@ class ChatViewController: UITableViewController {
 
                 if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
                     UIView.animate(withDuration: 0.5, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
-                        logger.debug("scrolling: scrollToMessage viewWillAppear - no animation")
                         self?.scrollToMessage(msgId: msgId, animated: false)
                     }, completion: { [weak self] finished in
                         if finished {
@@ -330,7 +329,6 @@ class ChatViewController: UITableViewController {
                         }
                     })
                 } else {
-                    logger.debug("scrolling: viewWillAppear - no animation")
                     self.scrollToBottom(animated: false)
                 }
             })
