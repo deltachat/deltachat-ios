@@ -301,10 +301,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
       _ application: UIApplication,
       didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-      let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-      let token = tokenParts.joined()
-      print("Device Token: \(token)")
-      // TODO: pass token to provider
+        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+        let tokenString = tokenParts.joined()
+        print("Device Token: \(tokenString)")
+
+        if let url = URL(string: "https://notifications.delta.chat/register?token=\(tokenString)") {
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            //let param = "token=\(tokenString)"
+            //request.httpBody = param.data(using: String.Encoding.utf8)
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    logger.error("cannot POST to notification server: \(error)")
+                    return
+                }
+                logger.info("request to notification server succeeded with respose, data: \(String(describing: response)), \(String(describing: data))")
+            }
+            task.resume()
+        }
     }
 
     func application(
