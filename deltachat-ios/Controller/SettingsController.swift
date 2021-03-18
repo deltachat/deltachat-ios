@@ -319,6 +319,11 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     @objc private func handleNotificationToggle(_ sender: UISwitch) {
         UserDefaults.standard.set(!sender.isOn, forKey: "notifications_disabled")
+        if sender.isOn {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.registerForNotifications()
+            }
+        }
         UserDefaults.standard.synchronize()
     }
 
