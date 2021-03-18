@@ -11,6 +11,8 @@ class NewContactController: UITableViewController {
     var doneButton: UIBarButtonItem?
     var cancelButton: UIBarButtonItem?
 
+    var onContactSaved: ((Int) -> Void)?
+
     func contactIsValid() -> Bool {
         return Utils.isValid(email: model.email)
     }
@@ -73,6 +75,9 @@ class NewContactController: UITableViewController {
 
     @objc func saveContactButtonPressed() {
         let contactId = dcContext.createContact(name: model.name, email: model.email)
+        if let onContactSaved = self.onContactSaved {
+            onContactSaved(contactId)
+        }
         if createChatOnSave {
             let chatId = dcContext.createChatByContactId(contactId: contactId)
             showChat(chatId: chatId)
