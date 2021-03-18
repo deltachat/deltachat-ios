@@ -288,7 +288,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             switch settings.authorizationStatus {
             case .authorized, .provisional, .ephemeral:
                 DispatchQueue.main.async {
-                  // on success, we get a token at didRegisterForRemoteNotificationsWithDeviceToken
+                  // on success, we get a token at didRegisterForRemoteNotificationsWithDeviceToken;
+                  // on failure, didFailToRegisterForRemoteNotificationsWithError is called
                   UIApplication.shared.registerForRemoteNotifications()
                 }
             case .denied, .notDetermined:
