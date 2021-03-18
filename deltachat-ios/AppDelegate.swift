@@ -306,7 +306,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let tokenString = tokenParts.joined()
         logger.verbose("device token: \(tokenString)")
 
-        if let url = URL(string: "https://notifications.delta.chat/register") {
+        #if DEBUG
+        let endpoint = "https://notifications.delta.chat/register" // FIXME: use sandbox address
+        #else
+        let endpoint = "https://notifications.delta.chat/register"
+        #endif
+
+        if let url = URL(string: endpoint) {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             let body = "{ \"token\": \"\(tokenString)\" }"
