@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let notificationOption = launchOptions?[.remoteNotification]
         logger.info("remoteNotification: \(String(describing: notificationOption))")
 
-        if dcContext.isConfigured() {
+        if dcContext.isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
             registerForNotifications()
         }
 
