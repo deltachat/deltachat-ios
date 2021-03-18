@@ -303,10 +303,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     ) {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let tokenString = tokenParts.joined()
-        print("Device Token: \(tokenString)")
-
-        // TODO: persist token in config
-        // and post token to notification server only on changes
+        logger.verbose("device token: \(tokenString)")
 
         if let url = URL(string: "https://notifications.delta.chat/register?token=\(tokenString)") {
             var request = URLRequest(url: url)
@@ -321,6 +318,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 logger.info("request to notification server succeeded with respose, data: \(String(describing: response)), \(String(describing: data))")
             }
             task.resume()
+        } else {
+            logger.error("cannot create URL for token: \(tokenString)")
         }
     }
 
