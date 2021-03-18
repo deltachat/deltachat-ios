@@ -4,7 +4,7 @@ import DcCore
 class NewContactController: UITableViewController {
 
     let dcContext: DcContext
-    var openChatOnSave = true
+    var createChatOnSave = true
 
     let emailCell = TextFieldCell.makeEmailCell()
     let nameCell = TextFieldCell.makeNameCell()
@@ -73,8 +73,8 @@ class NewContactController: UITableViewController {
 
     @objc func saveContactButtonPressed() {
         let contactId = dcContext.createContact(name: model.name, email: model.email)
-        let chatId = dcContext.createChatByContactId(contactId: contactId)
-        if openChatOnSave {
+        if createChatOnSave {
+            let chatId = dcContext.createChatByContactId(contactId: contactId)
             showChat(chatId: chatId)
         } else {
             navigationController?.popViewController(animated: true)

@@ -186,7 +186,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     private func showNewContactController() {
         let newContactController = NewContactController(dcContext: dcContext)
-        newContactController.openChatOnSave = false
+        newContactController.createChatOnSave = false
         navigationController?.pushViewController(newContactController, animated: true)
     }
 }
