@@ -314,7 +314,7 @@ class NewChatViewController: UITableViewController {
     }
 
     private func showNewContactController() {
-        let newContactController = NewContactController(dcContext: dcContext)
+        let newContactController = NewContactController(dcContext: dcContext, searchResult: searchText)
         navigationController?.pushViewController(newContactController, animated: true)
     }
 

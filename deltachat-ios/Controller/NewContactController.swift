@@ -5,6 +5,7 @@ class NewContactController: UITableViewController {
 
     let dcContext: DcContext
     var createChatOnSave = true
+    var prefilledSeachResult: String?
 
     let emailCell = TextFieldCell.makeEmailCell()
     let nameCell = TextFieldCell.makeNameCell()
@@ -30,9 +31,10 @@ class NewContactController: UITableViewController {
     let cells: [UITableViewCell]
 
     // for creating a new contact
-    init(dcContext: DcContext) {
+    init(dcContext: DcContext, searchResult: String? = nil) {
         self.dcContext = dcContext
         cells = [emailCell, nameCell]
+        prefilledSeachResult = searchResult
         super.init(style: .grouped)
         emailCell.textFieldDelegate = self
         nameCell.textFieldDelegate = self
@@ -53,6 +55,13 @@ class NewContactController: UITableViewController {
 
         emailCell.textField.addTarget(self, action: #selector(NewContactController.emailTextChanged), for: UIControl.Event.editingChanged)
         nameCell.textField.addTarget(self, action: #selector(NewContactController.nameTextChanged), for: UIControl.Event.editingChanged)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if let searchResult = prefilledSeachResult, searchResult.contains("@") {
+            emailCell.textField.insertText(searchResult)
+        }
     }
 
     override func viewDidAppear(_: Bool) {
