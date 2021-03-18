@@ -306,11 +306,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let tokenString = tokenParts.joined()
         logger.verbose("device token: \(tokenString)")
 
-        if let url = URL(string: "https://notifications.delta.chat/register?token=\(tokenString)") {
+        if let url = URL(string: "https://notifications.delta.chat/register") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
-            //let param = "token=\(tokenString)"
-            //request.httpBody = param.data(using: String.Encoding.utf8)
+            let body = "{ \"token\": \"\(tokenString)\" }"
+            request.httpBody = body.data(using: String.Encoding.utf8)
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let error = error {
                     logger.error("cannot POST to notification server: \(error)")
