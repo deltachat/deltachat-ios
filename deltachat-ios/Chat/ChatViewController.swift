@@ -608,7 +608,6 @@ class ChatViewController: UITableViewController {
             let visibleMessagesIds = indexPaths.map { UInt32(messageIds[$0.row]) }
             if !visibleMessagesIds.isEmpty {
                 DispatchQueue.global(qos: .background).async { [weak self] in
-                    logger.debug("markseen messages in chat \(String(describing: self?.chatId))")
                     self?.dcContext.markSeenMessages(messageIds: visibleMessagesIds)
                 }
             }
@@ -1065,7 +1064,6 @@ class ChatViewController: UITableViewController {
         if messageIds.firstIndex(where: { $0 == messageId }) != nil {
             DispatchQueue.global(qos: .background).async { [weak self] in
                 self?.dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
-                logger.debug("markseen message updateMessage in chat \(String(describing: self?.chatId))")
             }
             let wasLastSectionVisible = self.isLastRowVisible()
             reloadData()
@@ -1082,7 +1080,6 @@ class ChatViewController: UITableViewController {
 
     func insertMessage(_ message: DcMsg) {
         DispatchQueue.global(qos: .background).async { [weak self] in
-            logger.debug("markseen messages insertMessage in chat \(String(describing: self?.chatId))")
             self?.dcContext.markSeenMessages(messageIds: [UInt32(message.id)])
         }
 
