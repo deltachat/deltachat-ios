@@ -70,12 +70,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
 
         let msg = DcMsg(viewType: DC_MSG_TEXT)
-        msg.text = "remoteNotification: \(String(describing: notificationOption))"
+        msg.text = "I. remoteNotification: \(String(describing: notificationOption))"
         dcContext.addDeviceMessage(label: nil, msg: msg)
 
         if dcContext.isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
             registerForNotifications()
         }
+
 
         return true
     }
@@ -336,16 +337,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func application(
-      _ application: UIApplication,
-      didFailToRegisterForRemoteNotificationsWithError error: Error) {
-      print("Notifications: Failed to register: \(error)")
+        _ application: UIApplication,
+        didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Notifications: Failed to register: \(error)")
     }
     
-     func application(
+    func application(
         _ application: UIApplication,
         didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         // TODO: got notification from apple, check for new messages
         print("Notifications: didReceiveRemoteNotification", userInfo)
+
+        let msg = DcMsg(viewType: DC_MSG_TEXT)
+        msg.text = "II. didReceiveRemoteNotification: \(String(describing: userInfo))"
+        dcContext.addDeviceMessage(label: nil, msg: msg)
+        
     }
     
     private func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
