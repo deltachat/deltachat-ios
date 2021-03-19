@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
         locationManager = LocationManager(context: dcContext)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-        startThreads()
+        dcContext.maybeStartIo()
         setStockTranslations()
 
         reachability.whenReachable = { reachability in
@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("---- background-fetch ----")
-        startThreads()
+        dcContext.maybeStartIo()
 
         // we have 30 seconds time for our job, leave some seconds for graceful termination.
         // also, the faster we return, the sooner we get called again.
@@ -109,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("---- foreground ----")
         appIsInForeground = true
-        startThreads()
+        dcContext.maybeStartIo()
         if reachability.connection != .none {
             self.dcContext.maybeNetwork()
         }
@@ -238,11 +238,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
-    func startThreads() {
-        logger.info("---- start ----")
-        dcContext.maybeStartIo()
-    }
-
     func stopThreads() {
         dcContext.stopIo()
     }
@@ -337,11 +332,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.error("Notifications: Failed to register: \(error)")
     }
     
-     func application(
+    func application(
         _ application: UIApplication,
         didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        // TODO: got notification from apple, check for new messages
         logger.verbose("Notifications: didReceiveRemoteNotification \(userInfo)")
+
+        // startIO as this function may be called from suspended state
+        // (with app in memory, but gracefully shut down before; sort of freezed)
+        dcContext.maybeStartIo()
     }
     
     private func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

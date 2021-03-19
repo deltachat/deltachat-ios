@@ -766,7 +766,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             DatabaseHelper().clearAccountData()
             appDelegate.openDatabase()
             appDelegate.installEventHandler()
-            appDelegate.startThreads()
+            self.dcContext.maybeStartIo()
             appDelegate.appCoordinator.presentWelcomeController()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
