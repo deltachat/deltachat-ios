@@ -143,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 // only need to do sth in the background
                 return
             } else if app.backgroundTimeRemaining < 10 {
-                self.stopThreads()
+                self.dcContext.stopIo()
             } else {
                 self.maybeStop()
             }
@@ -236,10 +236,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 self.endBackgroundTask()
             }
         }
-    }
-
-    func stopThreads() {
-        dcContext.stopIo()
     }
 
     // MARK: - BackgroundTask
