@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     var appIsInForeground = false
 
-    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // explicitly ignore SIGPIPE to avoid crashes, see https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html
         // setupCrashReporting() may create an additional handler, but we do not want to rely on that
         signal(SIGPIPE, SIG_IGN)
@@ -64,6 +64,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             try reachability.startNotifier()
         } catch {
             print("Unable to start notifier")
+        }
+        
+        let notificationOption = launchOptions?[.remoteNotification]
+        logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
+
+        if dcContext.isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+            registerForNotifications()
         }
 
         return true
@@ -258,23 +265,85 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - PushNotifications
 
-    func registerForPushNotifications() {
+    func registerForNotifications() {
         UNUserNotificationCenter.current().delegate = self
 
+        // register for showing notifications
         UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
-                logger.info("permission granted: \(granted)")
-                guard granted else { return }
-                self.getNotificationSettings()
-            }
-    }
+          .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
+            logger.info("Notifications: Permission granted: \(granted)")
 
-    private func getNotificationSettings() {
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            logger.info("Notification settings: \(settings)")
+            if granted {
+                // we are allowd to show notifications:
+                // register for receiving push notifications
+                self?.maybeRegisterForRemoteNotifications()
+            }
         }
     }
 
+    private func maybeRegisterForRemoteNotifications() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            logger.info("Notifications: Settings: \(settings)")
+
+            switch settings.authorizationStatus {
+            case .authorized, .provisional, .ephemeral:
+                DispatchQueue.main.async {
+                  // on success, we get a token at didRegisterForRemoteNotificationsWithDeviceToken;
+                  // on failure, didFailToRegisterForRemoteNotificationsWithError is called
+                  UIApplication.shared.registerForRemoteNotifications()
+                }
+            case .denied, .notDetermined:
+                break
+            }
+        }
+    }
+    
+    func application(
+      _ application: UIApplication,
+      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+        let tokenString = tokenParts.joined()
+
+        #if DEBUG
+        let endpoint = "https://sandbox.notifications.delta.chat/register"
+        #else
+        let endpoint = "https://notifications.delta.chat/register"
+        #endif
+
+        logger.verbose("Notifications: POST token: \(tokenString) to \(endpoint)")
+
+        if let url = URL(string: endpoint) {
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            let body = "{ \"token\": \"\(tokenString)\" }"
+            request.httpBody = body.data(using: String.Encoding.utf8)
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    logger.error("Notifications: cannot POST to notification server: \(error)")
+                    return
+                }
+                logger.info("Notifications: request to notification server succeeded with respose, data: \(String(describing: response)), \(String(describing: data))")
+            }
+            task.resume()
+        } else {
+            logger.error("Notifications: cannot create URL for token: \(tokenString)")
+        }
+    }
+
+    func application(
+      _ application: UIApplication,
+      didFailToRegisterForRemoteNotificationsWithError error: Error) {
+      print("Notifications: Failed to register: \(error)")
+    }
+    
+     func application(
+        _ application: UIApplication,
+        didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // TODO: got notification from apple, check for new messages
+        print("Notifications: didReceiveRemoteNotification", userInfo)
+    }
+    
     private func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         logger.info("forground notification")
         completionHandler([.alert, .sound])

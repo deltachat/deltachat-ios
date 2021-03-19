@@ -776,7 +776,11 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private func handleLoginSuccess() {
         // used when login hud successfully went through
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.registerForPushNotifications()
+
+        if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+            appDelegate.registerForNotifications()
+        }
+
         initSelectionCells();
         if let onLoginSuccess = self.onLoginSuccess {
             onLoginSuccess()
