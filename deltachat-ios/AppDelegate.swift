@@ -69,6 +69,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let notificationOption = launchOptions?[.remoteNotification]
         logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
 
+        let msg = DcMsg(viewType: DC_MSG_TEXT)
+        msg.text = "remoteNotification: \(String(describing: notificationOption))"
+        dcContext.addDeviceMessage(label: nil, msg: msg)
+
         if dcContext.isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
             registerForNotifications()
         }
