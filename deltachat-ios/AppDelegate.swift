@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         let notificationOption = launchOptions?[.remoteNotification]
-        logger.info("remoteNotification: \(String(describing: notificationOption))")
+        logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
 
         if dcContext.isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
             registerForNotifications()
@@ -271,7 +271,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // register for showing notifications
         UNUserNotificationCenter.current()
           .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
-            logger.info("Permission granted: \(granted)")
+            logger.info("Notifications: Permission granted: \(granted)")
 
             if granted {
                 // we are allowd to show notifications:
@@ -283,7 +283,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     private func maybeRegisterForRemoteNotifications() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
-            logger.info("Notification settings: \(settings)")
+            logger.info("Notifications: Settings: \(settings)")
 
             switch settings.authorizationStatus {
             case .authorized, .provisional, .ephemeral:
@@ -304,13 +304,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     ) {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let tokenString = tokenParts.joined()
-        logger.verbose("device token: \(tokenString)")
 
         #if DEBUG
         let endpoint = "https://sandbox.notifications.delta.chat/register"
         #else
         let endpoint = "https://notifications.delta.chat/register"
         #endif
+
+        logger.verbose("Notifications: POST token: \(tokenString) to \(endpoint)")
 
         if let url = URL(string: endpoint) {
             var request = URLRequest(url: url)
@@ -319,28 +320,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             request.httpBody = body.data(using: String.Encoding.utf8)
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let error = error {
-                    logger.error("cannot POST to notification server: \(error)")
+                    logger.error("Notifications: cannot POST to notification server: \(error)")
                     return
                 }
-                logger.info("request to notification server succeeded with respose, data: \(String(describing: response)), \(String(describing: data))")
+                logger.info("Notifications: request to notification server succeeded with respose, data: \(String(describing: response)), \(String(describing: data))")
             }
             task.resume()
         } else {
-            logger.error("cannot create URL for token: \(tokenString)")
+            logger.error("Notifications: cannot create URL for token: \(tokenString)")
         }
     }
 
     func application(
       _ application: UIApplication,
       didFailToRegisterForRemoteNotificationsWithError error: Error) {
-      print("Failed to register: \(error)")
+      print("Notifications: Failed to register: \(error)")
     }
     
      func application(
         _ application: UIApplication,
         didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         // TODO: got notification from apple, check for new messages
-        print("notification", userInfo)
+        print("Notifications: didReceiveRemoteNotification", userInfo)
     }
     
     private func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
