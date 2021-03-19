@@ -73,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         msg.text = "I. remoteNotification: \(String(describing: notificationOption))"
         dcContext.addDeviceMessage(label: nil, msg: msg)
 
+        /*
         let content = UNMutableNotificationContent()
         content.title = "I. TITLE"
         content.body = "I. BODY"
@@ -84,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if dcContext.isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
             registerForNotifications()
         }
-
+        */
 
         return true
     }
@@ -360,6 +361,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         msg.text = "II. didReceiveRemoteNotification: \(String(describing: userInfo))"
         dcContext.addDeviceMessage(label: nil, msg: msg)
 
+        /*
         let content = UNMutableNotificationContent()
         content.title = "II. TITLE"
         content.body = "II. BODY"
@@ -367,6 +369,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
         let request = UNNotificationRequest(identifier: Constants.notificationIdentifier, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        */
+        dcContext.maybeStartIo()
     }
     
     private func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
