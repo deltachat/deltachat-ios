@@ -307,7 +307,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.verbose("device token: \(tokenString)")
 
         #if DEBUG
-        let endpoint = "https://notifications.delta.chat/register" // FIXME: use sandbox address
+        let endpoint = "https://sandbox.notifications.delta.chat/register"
         #else
         let endpoint = "https://notifications.delta.chat/register"
         #endif
