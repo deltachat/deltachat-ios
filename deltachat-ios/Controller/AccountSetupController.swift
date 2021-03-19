@@ -761,12 +761,12 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             preferredStyle: .safeActionSheet)
 
         alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { _ in
-            appDelegate.stopThreads()
+            self.dcContext.stopIo()
             appDelegate.closeDatabase()
             DatabaseHelper().clearAccountData()
             appDelegate.openDatabase()
             appDelegate.installEventHandler()
-            appDelegate.startThreads()
+            self.dcContext.maybeStartIo()
             appDelegate.appCoordinator.presentWelcomeController()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
