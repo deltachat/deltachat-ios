@@ -155,7 +155,6 @@ public func handleEvent(event: DcEvent) {
                 content.sound = .default
 
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
-
                 let request = UNNotificationRequest(identifier: Constants.notificationIdentifier, content: content, trigger: trigger)
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
                 DcContext.shared.logger?.info("notifications: added \(content)")
