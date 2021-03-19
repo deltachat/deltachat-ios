@@ -22,8 +22,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
         case memberList
     }
 
-    private var contactAddedObserver: NSObjectProtocol?
-
     private lazy var chatMemberIds: [Int] = {
         if let chat = chat {
             return chat.contactIds
@@ -86,44 +84,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
         navigationItem.rightBarButtonItem = doneButton
         navigationItem.leftBarButtonItem = cancelButton
         contactIds = loadMemberCandidates()
-
-        let nc = NotificationCenter.default
-        contactAddedObserver = nc.addObserver(
-            forName: dcNotificationContactChanged,
-            object: nil,
-            queue: nil
-        ) { [weak self] notification in
-            guard let self = self else { return }
-            if let ui = notification.userInfo {
-                if let contactId = ui["contact_id"] as? Int {
-                    if contactId == 0 {
-                        return
-                    }
-                    self.contactIds = self.loadMemberCandidates()
-                    if self.contactIds.contains(contactId) {
-                        self.selectedContactIds.insert(contactId)
-                        self.tableView.reloadData()
-                    }
-
-                }
-            }
-        }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
-    override func viewWillDisappear(_: Bool) {
-        if !isMovingFromParent {
-            // a subview was added to the navigation stack, no action needed
-            return
-        }
-
-        let nc = NotificationCenter.default
-        if let observer = self.contactAddedObserver {
-            nc.removeObserver(observer)
-        }
     }
 
     @objc func cancelButtonPressed() {
@@ -185,8 +145,16 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 
     private func showNewContactController() {
-        let newContactController = NewContactController(dcContext: dcContext)
-        newContactController.openChatOnSave = false
+        let newContactController = NewContactController(dcContext: dcContext, searchResult: searchText)
+        newContactController.createChatOnSave = false
+        newContactController.onContactSaved = { [weak self] (contactId: Int) -> Void in
+            guard let self = self else { return }
+            self.contactIds = self.loadMemberCandidates()
+            if self.contactIds.contains(contactId) {
+                self.selectedContactIds.insert(contactId)
+                self.tableView.reloadData()
+            }
+        }
         navigationController?.pushViewController(newContactController, animated: true)
     }
 }

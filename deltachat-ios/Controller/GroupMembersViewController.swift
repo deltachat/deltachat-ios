@@ -46,7 +46,7 @@ class GroupMembersViewController: UITableViewController {
         return searchController.searchBar.text?.isEmpty ?? true
     }
 
-    private var searchText: String? {
+    open var searchText: String? {
         return searchController.searchBar.text
     }
 

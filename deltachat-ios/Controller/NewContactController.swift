@@ -4,12 +4,15 @@ import DcCore
 class NewContactController: UITableViewController {
 
     let dcContext: DcContext
-    var openChatOnSave = true
+    var createChatOnSave = true
+    var prefilledSeachResult: String?
 
     let emailCell = TextFieldCell.makeEmailCell()
     let nameCell = TextFieldCell.makeNameCell()
     var doneButton: UIBarButtonItem?
     var cancelButton: UIBarButtonItem?
+
+    var onContactSaved: ((Int) -> Void)?
 
     func contactIsValid() -> Bool {
         return Utils.isValid(email: model.email)
@@ -28,9 +31,10 @@ class NewContactController: UITableViewController {
     let cells: [UITableViewCell]
 
     // for creating a new contact
-    init(dcContext: DcContext) {
+    init(dcContext: DcContext, searchResult: String? = nil) {
         self.dcContext = dcContext
         cells = [emailCell, nameCell]
+        prefilledSeachResult = searchResult
         super.init(style: .grouped)
         emailCell.textFieldDelegate = self
         nameCell.textFieldDelegate = self
@@ -51,6 +55,13 @@ class NewContactController: UITableViewController {
 
         emailCell.textField.addTarget(self, action: #selector(NewContactController.emailTextChanged), for: UIControl.Event.editingChanged)
         nameCell.textField.addTarget(self, action: #selector(NewContactController.nameTextChanged), for: UIControl.Event.editingChanged)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if let searchResult = prefilledSeachResult, searchResult.contains("@") {
+            emailCell.textField.insertText(searchResult)
+        }
     }
 
     override func viewDidAppear(_: Bool) {
@@ -73,8 +84,11 @@ class NewContactController: UITableViewController {
 
     @objc func saveContactButtonPressed() {
         let contactId = dcContext.createContact(name: model.name, email: model.email)
-        let chatId = dcContext.createChatByContactId(contactId: contactId)
-        if openChatOnSave {
+        if let onContactSaved = self.onContactSaved {
+            onContactSaved(contactId)
+        }
+        if createChatOnSave {
+            let chatId = dcContext.createChatByContactId(contactId: contactId)
             showChat(chatId: chatId)
         } else {
             navigationController?.popViewController(animated: true)
