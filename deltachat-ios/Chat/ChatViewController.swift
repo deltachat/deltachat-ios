@@ -22,6 +22,8 @@ class ChatViewController: UITableViewController {
     // The latter is cancelable and leads to viewWillAppear is called in case the gesture is cancelled
     // We need the flag to handle that special case correctly in viewWillAppear
     var isDismissing = false
+    var isInitial = true
+    var ignoreInputBarChange = false
     var foregroundObserver: Any?
     var backgroundObserver: Any?
 
@@ -312,26 +314,35 @@ class ChatViewController: UITableViewController {
         if !isDismissing {
             self.tableView.becomeFirstResponder()
             loadMessages()
-            UIView.animate(withDuration: 0.1, animations: { [weak self] in
-                guard let self = self else { return }
-                self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
-                                                           left: 0,
-                                                           bottom: self.messageInputBar.calculateIntrinsicContentSize().height,
-                                                           right: 0)
+            self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
+                                                       left: 0,
+                                                       bottom: self.messageInputBar.calculateIntrinsicContentSize().height,
+                                                       right: 0)
 
-                if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
-                    UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
-                        self?.scrollToMessage(msgId: msgId, animated: false)
-                    }, completion: { [weak self] finished in
-                        if finished {
-                            guard let self = self else { return }
-                            self.highlightedMsg = nil
-                        }
-                    })
-                } else {
-                    self.scrollToBottom(animated: false)
-                }
-            })
+            if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
+                UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
+                    self?.scrollToMessage(msgId: msgId, animated: false)
+                }, completion: { [weak self] finished in
+                    if finished {
+                        guard let self = self else { return }
+                        self.highlightedMsg = nil
+                        self.isInitial = false
+                        self.ignoreInputBarChange = false
+                    }
+                })
+            } else {
+                UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
+                    guard let self = self else { return }
+                    if self.isInitial {
+                        self.scrollToBottom(animated: false)
+                    }
+                }, completion: { [weak self] finished in
+                    if finished {
+                        self?.isInitial = false
+                        self?.ignoreInputBarChange = false
+                    }
+                })
+            }
         }
         isDismissing = false
 
@@ -427,6 +438,7 @@ class ChatViewController: UITableViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         isDismissing = false
+        ignoreInputBarChange = true
         AppStateRestorer.shared.resetLastActiveChat()
         draft.save(context: dcContext)
         stopTimer()
@@ -1443,7 +1455,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
                                                    left: 0,
                                                    bottom: size.height + messageInputBar.keyboardHeight,
                                                    right: 0)
-        if isLastRowVisible() && !tableView.isDragging && !tableView.isDecelerating  && highlightedMsg == nil {
+        if isLastRowVisible() && !tableView.isDragging && !tableView.isDecelerating  && highlightedMsg == nil && !ignoreInputBarChange {
             self.scrollToBottom(animated: true)
         }
     }
