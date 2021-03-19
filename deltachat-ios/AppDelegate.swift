@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         do {
             try reachability.startNotifier()
         } catch {
-            print("Unable to start notifier")
+            logger.error("Unable to start notifier")
         }
         
         let notificationOption = launchOptions?[.remoteNotification]
@@ -333,15 +333,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(
       _ application: UIApplication,
-      didFailToRegisterForRemoteNotificationsWithError error: Error) {
-      print("Notifications: Failed to register: \(error)")
+        didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        logger.error("Notifications: Failed to register: \(error)")
     }
     
      func application(
         _ application: UIApplication,
         didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         // TODO: got notification from apple, check for new messages
-        print("Notifications: didReceiveRemoteNotification", userInfo)
+        logger.verbose("Notifications: didReceiveRemoteNotification \(userInfo)")
     }
     
     private func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

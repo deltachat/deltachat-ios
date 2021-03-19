@@ -469,10 +469,18 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     }
 
     private func showDebugToolkit() {
-        let info: [DBCustomVariable] = dcContext.getInfo().map { kv in
+        var info: [DBCustomVariable] = dcContext.getInfo().map { kv in
             let value = kv.count > 1 ? kv[1] : ""
             return DBCustomVariable(name: kv[0], value: value)
         }
+
+        #if DEBUG
+        info.append(DBCustomVariable(name: "DEBUG", value: "1"))
+        #else
+        info.append(DBCustomVariable(name: "DEBUG", value: "0"))
+        #endif
+
+
         DBDebugToolkit.add(info)
         DBDebugToolkit.showMenu()
     }
