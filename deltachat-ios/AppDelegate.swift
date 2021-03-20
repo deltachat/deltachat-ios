@@ -76,8 +76,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             logger.error("Unable to start notifier")
         }
         
-        let notificationOption = launchOptions?[.remoteNotification]
-        logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
+        if let notificationOption = launchOptions?[.remoteNotification] {
+            logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
+            increaseDebugCounter("notify-remote-launch")
+        }
 
         if dcContext.isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
             registerForNotifications()
@@ -111,6 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // also, the faster we return, the sooner we get called again.
     func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("---- background-fetch ----")
+        increaseDebugCounter("notify-local-wakeup")
 
         dcContext.maybeStartIo()
         dcContext.maybeNetwork()
@@ -367,9 +370,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         _ application: UIApplication,
         didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         logger.verbose("Notifications: didReceiveRemoteNotification \(userInfo)")
+        increaseDebugCounter("notify-remote-receive")
 
         dcContext.maybeStartIo()
         dcContext.maybeNetwork()
+    }
+
+    private func increaseDebugCounter(_ name: String) {
+        let cnt = UserDefaults.standard.integer(forKey: name + "-cnt")
+        UserDefaults.standard.set(cnt + 1, forKey: name + "-cnt")
+
+        let timestamp = Double(Date().timeIntervalSince1970)
+        UserDefaults.standard.set(timestamp, forKey: name + "-name")
     }
 
 
