@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var appCoordinator: AppCoordinator!
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
+    var notificationManager: NotificationManager!
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability = Reachability()!
     var window: UIWindow?
@@ -295,6 +296,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 self?.maybeRegisterForRemoteNotifications()
             }
         }
+        notificationManager = NotificationManager()
     }
 
     // register on apple server for receiving push notifications
