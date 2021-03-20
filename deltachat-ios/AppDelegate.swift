@@ -111,7 +111,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // also, the faster we return, the sooner we get called again.
     func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("---- background-fetch ----")
+
         dcContext.maybeStartIo()
+        dcContext.maybeNetwork()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             if !self.appIsInForeground {
