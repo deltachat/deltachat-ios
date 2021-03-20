@@ -19,6 +19,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     var appIsInForeground = false
 
+    // `didFinishLaunchingWithOptions` is the main entry point
+    // that is called if the app is started for the first time
+    // or after the app is killed.
+    //
+    // `didFinishLaunchingWithOptions` creates the context object and sets
+    // up other global things.
+    //
+    // `didFinishLaunchingWithOptions` is _not_ called
+    // when the app wakes up from "suspended" state
+    // (app is in memory in the background but no code is executed, IO stopped)
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // explicitly ignore SIGPIPE to avoid crashes, see https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html
         // setupCrashReporting() may create an additional handler, but we do not want to rely on that
@@ -76,6 +86,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
 
+    // `open` is called when an url should be opened by Delta Chat.
+    // we currently use that for handling oauth2 and for handing openpgp4fpr
     func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         // gets here when app returns from oAuth2-Setup process - the url contains the provided token
         if let params = url.queryParameters, let token = params["code"] {
@@ -91,13 +103,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
 
-
+    // `performFetchWithCompletionHandler` is called on local wakeup.
+    // this requires "UIBackgroundModes: fetch" to be set in Info.plist
+    // ("App downloads content from the network" in Xcode)
+    //
+    // we have 30 seconds time for our job, leave some seconds for graceful termination.
+    // also, the faster we return, the sooner we get called again.
     func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("---- background-fetch ----")
         dcContext.maybeStartIo()
 
-        // we have 30 seconds time for our job, leave some seconds for graceful termination.
-        // also, the faster we return, the sooner we get called again.
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             if !self.appIsInForeground {
                 self.dcContext.stopIo()
@@ -254,8 +269,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         backgroundTask = .invalid
     }
 
+
     // MARK: - PushNotifications
 
+    // `registerForNotifications` asks the user if they want to get notifiations shown.
+    // if so, it registers for receiving push notifications.
     func registerForNotifications() {
         UNUserNotificationCenter.current().delegate = self
 
@@ -265,13 +283,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             logger.info("Notifications: Permission granted: \(granted)")
 
             if granted {
-                // we are allowd to show notifications:
+                // we are allowed to show notifications:
                 // register for receiving push notifications
                 self?.maybeRegisterForRemoteNotifications()
             }
         }
     }
 
+    // register on apple server for receiving push notifications
+    // and pass the token to the app's notification server.
+    //
+    // on success, we get a token at didRegisterForRemoteNotificationsWithDeviceToken;
+    // on failure, didFailToRegisterForRemoteNotificationsWithError is called
     private func maybeRegisterForRemoteNotifications() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             logger.info("Notifications: Settings: \(settings)")
@@ -279,8 +302,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             switch settings.authorizationStatus {
             case .authorized, .provisional, .ephemeral:
                 DispatchQueue.main.async {
-                  // on success, we get a token at didRegisterForRemoteNotificationsWithDeviceToken;
-                  // on failure, didFailToRegisterForRemoteNotificationsWithError is called
                   UIApplication.shared.registerForRemoteNotifications()
                 }
             case .denied, .notDetermined:
@@ -288,7 +309,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
     }
-    
+
+    // `didRegisterForRemoteNotificationsWithDeviceToken` is called by iOS
+    // when the call to `UIApplication.shared.registerForRemoteNotifications` succeeded.
+    //
+    // we pass the received token to the app's notification server then.
     func application(
       _ application: UIApplication,
       didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
@@ -322,26 +347,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
+    // `didFailToRegisterForRemoteNotificationsWithError` is called by iOS
+    // when the call to `UIApplication.shared.registerForRemoteNotifications` failed.
     func application(
       _ application: UIApplication,
-        didFailToRegisterForRemoteNotificationsWithError error: Error) {
+      didFailToRegisterForRemoteNotificationsWithError error: Error) {
         logger.error("Notifications: Failed to register: \(error)")
     }
-    
+
+    // `didReceiveRemoteNotification` is called by iOS when a push notification is received.
+    //
+    // we need to ensure IO is running as the functionb may be called from suspended state
+    // (with app in memory, but gracefully shut down before; sort of freezed).
+    // if the function was not called from suspended state,
+    // the call to maybeStartIo() did nothing, therefore, interrupt and force fetch
     func application(
         _ application: UIApplication,
         didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         logger.verbose("Notifications: didReceiveRemoteNotification \(userInfo)")
 
-        // startIO as this function may be called from suspended state
-        // (with app in memory, but gracefully shut down before; sort of freezed)
         dcContext.maybeStartIo()
-
-        // if the function was not called from suspended state,
-        // the call to maybeStartIo() did nothing, therefore, interrupt and force fetch
         dcContext.maybeNetwork()
     }
-    
+
+
+    // MARK: - Handle notification banners
+
     private func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         logger.info("forground notification")
         completionHandler([.alert, .sound])
