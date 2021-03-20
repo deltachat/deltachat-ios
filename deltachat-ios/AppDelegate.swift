@@ -336,6 +336,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // startIO as this function may be called from suspended state
         // (with app in memory, but gracefully shut down before; sort of freezed)
         dcContext.maybeStartIo()
+
+        // if the function was not called from suspended state,
+        // the call to maybeStartIo() did nothing, therefore, interrupt and force fetch
+        dcContext.maybeNetwork()
     }
     
     private func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
