@@ -11,7 +11,7 @@ on the command-line:
    $ ./scripts/tx-pull-translations.sh
 
 3. update local help:
-   $ cd ../deltachat-pages; ./scripts/create-local-help.py; cd ../deltachat-ios
+   $ cd ../deltachat-pages; ./tools/create-local-help.py; cd ../deltachat-ios
 
 4. add a device message to ChatListController::viewWillAppear()
    and update CHANGELOG.md
