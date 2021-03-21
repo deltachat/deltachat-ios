@@ -122,8 +122,8 @@
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "بەردەنگی نوێ";
 "menu_new_chat" = "وتووێژی نوێ";
-"menu_new_group" = "گرووپی نوێ";
-"menu_new_verified_group" = "گرووپی پشتڕاستکراوەی نوێ";
+"menu_new_group" = "کۆڕی نوێ";
+"menu_new_verified_group" = "کۆڕی پشتڕاستکراوەی نوێ";
 "menu_send" = "بینێرە";
 "menu_edit_group" = "دەستکاری کۆڕ";
 "menu_group_name_and_image" = "ناو و وێنەی کۆڕ";
@@ -252,6 +252,7 @@
 "chat_camera_unavailable" = "کامێرا بەردەست نییە";
 "chat_unable_to_record_audio" = "دەنگ تۆمار ناکرێ";
 "chat_no_messages_hint" = "پەیام دەنێری بۆ %1$@:\n\n• کێشە نییە ئەگەر %2$@ دێڵتاچات بەکارناهێنێت.\n\n• گەیشتنی یەکەم پەیام لەوانەیە ماوەیەک بخایەنێت و لەوانەیە شفرەنەکراو بێت.";
+"chat_new_group_hint" = "پەیامی یەکەم بنێرە، ئیدی کەسانی دیکەش دەتوانن لەنێو ئەم کۆڕەدا وتووێژ بکەن. \n\n• کێشە نییە ئەگەر هەموو ئەندامان دێڵتا چات بەکارنەهێنن.\n\n• لەوانەیە گەیشتنی یەکەمین پەیام هەندێک کات ببات.";
 "chat_record_slide_to_cancel" = "بیخشێنە بۆ وازهێنان";
 "chat_record_explain" = "کرتە بکە و دەست لەسەری ڕابگرە بۆ تۆمارکردنی پەیامێکی دەنگی، پاشان دەستبەردە بۆ هەناردنی.";
 "chat_no_chats_yet_title" = "هاتنگە بەتاڵە. \n \"+\" لێبدە بۆ دەستپێکی وتووێژێکی نوێ.";
@@ -299,7 +300,7 @@
 "group_create_button" = "کۆڕێک درووست بکە";
 "group_please_enter_group_name" = "تکایە ناوێک بنووسە بۆ کۆڕەکە.";
 "group_add_members" = "ئەندام زیاد بکە";
-"group_hello_draft" = "سڵاو، کۆڕی %1$@ م درووست کرد بۆ خۆمان.";
+"group_hello_draft" = "سڵاو، کۆڕی \"%1$@\"م درووست کرد بۆ خۆمان.";
 "group_self_not_in_group" = "بۆ ئەم کردارە دەبێت ئەندامی کۆڕەکە بیت.";
 "profile_encryption" = "شفرەکردن";
 "profile_shared_chats" = "وتووێژە هاوبەشکراوەکان";
@@ -343,6 +344,8 @@
 "import_backup_title" = "هاوردەکردنی یەدەک";
 "import_backup_ask" = "یەدەکەکە لە \"%1$@\"دا دۆزرایەوە.\n\n دەتەوێت هەموو داتا و ڕێکخستنەکانی هاوردە بکەیت و بەکاریان بێنیت؟";
 "import_backup_no_backup_found" = "هیچ یەدەکێک نەدۆزرایەوە.\n\n یەدەکەکە کۆپی بکە بۆ\"%1$@\" و دیسان هەوڵبدەوە. یان بۆ بەردەوامبوون لەسەر پرۆسەی ئاسایی دامەزراندنەکە، دەستبنە بە \"دەستپێکی نامەنووسین\"دا .";
+// Translators: %1$s will be replaced by the email address
+"login_error_cannot_login" = "\"%1$@\" ناتوانێت بچێتە ژوورەوە. سەرنج بدە بزانە ئیمەیل و تێپەڕوشەکە درووستە.";
 "used_settings" = "ڕێکخستنە بەکارهێنراوەکان:";
 "switch_account" = "گۆڕینی هەژمار";
 "add_account" = "زیادکردنی هەژمار";
@@ -541,10 +544,12 @@
 "qrshow_join_contact_hint" = "بۆ ڕێکخستنی پێوەندی لەگەڵ %1$@، ئەم کۆدە سکان بکە. ";
 "qrshow_join_contact_no_connection_toast" = "هێڵی ئینتەرنێت بەردەست نییە، ڕێکخستنی کۆدی QR جێبەجێ ناکرێ.";
 "qraccount_ask_create_and_login" = "دەتەوێت ناونیشانی ئیمەیلێکی نوێ لەسەر \"%1$@\" درووست بکەیت و لەوێ بچیتە ژوورەوە؟";
+"qraccount_qr_code_cannot_be_used" = "ناتوانی لە کۆدی QRە سکان کراوەکە کەڵک بگریت بۆ پێکهێنانی هەژمارێکی نوێ.";
 "contact_verified" = "%1$@ پشتڕاست کرایەوە";
 "contact_not_verified" = "%1$@ پشتڕاست ناکرێتەوە.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "ڕێکخستن بۆ %1$@ گۆڕا.";
+"verified_group_explain" = "کۆڕی پشتڕاستکراوە (لە قۆناخی تاقیکردنەوەدایە) پارێزراودەبێت بەرانبەر هێرشەکان. ئەندامان لەلایەن ئەندامانی دیکەوە پشتڕاست دەکرێنەوە و پەیامەکان هەمیشە شفرەکراوی ئەمسەر-ئەوسەر دەبن.";
 "copy_qr_data_success" = "ناونیشانی وێبی QRەکە ڕوونووس کرا.";
 
 
@@ -607,7 +612,7 @@
 "name_desktop" = "ناو";
 "autocrypt_key_transfer_desktop" = "گواستنەوەی کلیلی ئۆتۆکریپت";
 "reply_to_message_desktop" = "وەڵامی ئەو پەیامە بدەوە";
-"select_group_image_desktop" = "هەڵبژاردنی وێنەی گرووپ";
+"select_group_image_desktop" = "هەڵبژاردنی وێنەی کۆڕ";
 "imex_progress_title_desktop" = "پرۆسەی یەدەک هەڵگرتن";
 "download_attachment_desktop" = "داگرتنی پێوەلکاو";
 "export_backup_desktop" = "هەناردەکردنی یەدەک";
