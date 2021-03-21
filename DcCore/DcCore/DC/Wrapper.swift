@@ -172,16 +172,13 @@ public class DcContext {
         dc_stop_ongoing_process(contextPointer)
     }
 
-    public func getInfo() -> [[String]] {
+    public func getInfo() -> String {
         if let cString = dc_get_info(contextPointer) {
             let info = String(cString: cString)
             dc_str_unref(cString)
-            logger?.info(info)
-            return info.components(separatedBy: "\n").map { val in
-                val.components(separatedBy: "=")
-            }
+            return info
         }
-        return []
+        return "ErrGetInfo"
     }
 
     public func getContactEncrInfo(contactId: Int) -> String {
