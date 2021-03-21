@@ -469,25 +469,24 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     }
 
     private func showDebugToolkit() {
-        var info: [DBCustomVariable] = dcContext.getInfo().map { kv in
-            let value = kv.count > 1 ? kv[1] : ""
-            return DBCustomVariable(name: kv[0], value: value)
-        }
-
-        #if DEBUG
-        info.append(DBCustomVariable(name: "DEBUG", value: "1"))
-        #else
-        info.append(DBCustomVariable(name: "DEBUG", value: "0"))
-        #endif
+        var info = ""
 
         for name in ["notify-remote-launch", "notify-remote-receive", "notify-local-wakeup"] {
             let cnt = UserDefaults.standard.integer(forKey: name + "-cnt")
             let timestampInt = UserDefaults.standard.double(forKey: name + "-name")
             let timestampStr = timestampInt==0.0 ? "" : ", last time: " + DateUtils.getExtendedRelativeTimeSpanString(timeStamp: timestampInt)
-            info.append(DBCustomVariable(name: name, value: "\(cnt) times\(timestampStr)"))
+            info += "\(name)=\(cnt) times\(timestampStr)\n"
         }
 
-        DBDebugToolkit.add(info)
+        #if DEBUG
+        info += "DEBUG=1\n"
+        #else
+        info += "DEBUG=0\n"
+        #endif
+
+        info += "\n" + dcContext.getInfo()
+
+        DBDebugToolkit.add(DBCustomVariable(name: "", value: info))
         DBDebugToolkit.showMenu()
     }
 }
