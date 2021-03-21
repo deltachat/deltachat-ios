@@ -377,11 +377,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     private func increaseDebugCounter(_ name: String) {
-        let cnt = UserDefaults.standard.integer(forKey: name + "-cnt")
-        UserDefaults.standard.set(cnt + 1, forKey: name + "-cnt")
+        let nowDate = Date()
+        let nowTimestamp = Double(nowDate.timeIntervalSince1970)
+        let startTimestamp = UserDefaults.standard.double(forKey: name + "-start")
+        if nowTimestamp > startTimestamp + 60*60*24 {
+            let cal: Calendar = Calendar(identifier: .gregorian)
+            let newStartDate: Date = cal.date(bySettingHour: 0, minute: 0, second: 0, of: nowDate)!
+            UserDefaults.standard.set(0, forKey: name + "-count")
+            UserDefaults.standard.set(Double(newStartDate.timeIntervalSince1970), forKey: name + "-start")
+        }
 
-        let timestamp = Double(Date().timeIntervalSince1970)
-        UserDefaults.standard.set(timestamp, forKey: name + "-name")
+        let cnt = UserDefaults.standard.integer(forKey: name + "-count")
+        UserDefaults.standard.set(cnt + 1, forKey: name + "-count")
+        UserDefaults.standard.set(nowTimestamp, forKey: name + "-last")
     }
 
 

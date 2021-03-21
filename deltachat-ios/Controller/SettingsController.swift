@@ -472,10 +472,15 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         var info = ""
 
         for name in ["notify-remote-launch", "notify-remote-receive", "notify-local-wakeup"] {
-            let cnt = UserDefaults.standard.integer(forKey: name + "-cnt")
-            let timestampInt = UserDefaults.standard.double(forKey: name + "-name")
-            let timestampStr = timestampInt==0.0 ? "" : ", last time: " + DateUtils.getExtendedRelativeTimeSpanString(timeStamp: timestampInt)
-            info += "\(name)=\(cnt) times\(timestampStr)\n"
+            let cnt = UserDefaults.standard.integer(forKey: name + "-count")
+
+            let startInt = UserDefaults.standard.double(forKey: name + "-start")
+            let startStr = startInt==0.0 ? "" : " since " + DateUtils.getExtendedRelativeTimeSpanString(timeStamp: startInt)
+
+            let timestampInt = UserDefaults.standard.double(forKey: name + "-last")
+            let timestampStr = timestampInt==0.0 ? "" : ", last " + DateUtils.getExtendedRelativeTimeSpanString(timeStamp: timestampInt)
+
+            info += "\(name)=\(cnt)x\(startStr)\(timestampStr)\n"
         }
 
         #if DEBUG
