@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var reachability = Reachability()!
     var window: UIWindow?
     var appIsInForeground = false
+    var notifyToken: String?
 
     // `didFinishLaunchingWithOptions` is the main entry point
     // that is called if the app is started for the first time
@@ -281,6 +282,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // if so, it registers for receiving push notifications.
     func registerForNotifications() {
         UNUserNotificationCenter.current().delegate = self
+        notifyToken = nil
 
         // register for showing notifications
         UNUserNotificationCenter.current()
@@ -345,6 +347,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     return
                 }
                 logger.info("Notifications: request to notification server succeeded with respose, data: \(String(describing: response)), \(String(describing: data))")
+                self.notifyToken = tokenString
+
             }
             task.resume()
         } else {
