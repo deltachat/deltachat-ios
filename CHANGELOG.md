@@ -1,5 +1,33 @@
 # Delta Chat iOS Changelog
 
+## 1.17.0
+2021-03
+
+* new mailinglist and better bot support
+* more reliable notifications about every 20 minutes
+* add option to view original-/html-mails
+* allow dialing on tapping a phone number
+* use more colors for user avatars
+* improve e-mail compatibility
+* improve animations and scrolling
+* improve compatibility with Outlook.com
+  and other providers changing message headers
+* scale avatars based on media_quality, fix avatar rotation
+* export backups as .tar files
+* enable strict TLS for known providers by default
+* improve and harden secure join
+* show warning for unsupported audio formats
+* fix send button state after video draft has been added
+* fix background crash
+* fix read receipts
+* fix decoding of attachment filenames
+* fix: exclude muted chats from notified-list
+* fix: do not return quoted messages from the trash chat
+* much more bug fixes
+* add Khmer, Persian, Arabic, Kurdish, Sardinian translations, update other translations
+* add Czech local help, update other local help
+
+
 ## 1.16.0
 2021-02
 
