@@ -115,6 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("---- background-fetch ----")
         increaseDebugCounter("notify-local-wakeup")
+        let oldFresh = DcContext.shared.getFreshMessages().count
 
         dcContext.maybeStartIo()
         dcContext.maybeNetwork()
@@ -123,7 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if !self.appIsInForeground {
                 self.dcContext.stopIo()
             }
-            completionHandler(.newData)
+            completionHandler(DcContext.shared.getFreshMessages().count > oldFresh ? .newData : .noData)
         }
     }
 
@@ -382,6 +383,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.verbose("Notifications: didReceiveRemoteNotification \(userInfo)")
         increaseDebugCounter("notify-remote-receive")
+        let oldFresh = DcContext.shared.getFreshMessages().count
 
         dcContext.maybeStartIo()
         dcContext.maybeNetwork()
@@ -390,7 +392,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if !self.appIsInForeground {
                 self.dcContext.stopIo()
             }
-            completionHandler(.newData)
+            completionHandler(DcContext.shared.getFreshMessages().count > oldFresh ? .newData : .noData)
         }
     }
 
