@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var reachability = Reachability()!
     var window: UIWindow?
     var appIsInForeground = false
+    var notifyToken: String?
 
     // `didFinishLaunchingWithOptions` is the main entry point
     // that is called if the app is started for the first time
@@ -281,6 +282,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // if so, it registers for receiving push notifications.
     func registerForNotifications() {
         UNUserNotificationCenter.current().delegate = self
+        notifyToken = nil
 
         // register for showing notifications
         UNUserNotificationCenter.current()
@@ -345,6 +347,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     return
                 }
                 logger.info("Notifications: request to notification server succeeded with respose, data: \(String(describing: response)), \(String(describing: data))")
+                self.notifyToken = tokenString
+
             }
             task.resume()
         } else {
@@ -362,18 +366,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // `didReceiveRemoteNotification` is called by iOS when a push notification is received.
     //
-    // we need to ensure IO is running as the functionb may be called from suspended state
+    // we need to ensure IO is running as the function may be called from suspended state
     // (with app in memory, but gracefully shut down before; sort of freezed).
     // if the function was not called from suspended state,
-    // the call to maybeStartIo() did nothing, therefore, interrupt and force fetch
+    // the call to maybeStartIo() did nothing, therefore, interrupt and force fetch.
+    //
+    // we have max. 30 seconds time for our job and to call the completion handler.
+    // as the system tracks the elapsed time, power usage, and data costs, we return faster,
+    // after 10 seconds, things should be done.
+    // (see https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application)
+    // (at some point it would be nice if we get a clear signal from the core)
     func application(
         _ application: UIApplication,
-        didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+        fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.verbose("Notifications: didReceiveRemoteNotification \(userInfo)")
         increaseDebugCounter("notify-remote-receive")
 
         dcContext.maybeStartIo()
         dcContext.maybeNetwork()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            if !self.appIsInForeground {
+                self.dcContext.stopIo()
+            }
+            completionHandler(.newData)
+        }
     }
 
     private func increaseDebugCounter(_ name: String) {

@@ -483,6 +483,10 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             info += "\(name)=\(cnt)x\(startStr)\(timestampStr)\n"
         }
 
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            info += "notify-token=\(appDelegate.notifyToken ?? "<unset>")\n"
+        }
+
         #if DEBUG
         info += "DEBUG=1\n"
         #else
