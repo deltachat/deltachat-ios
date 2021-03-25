@@ -129,7 +129,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("---- foreground ----")
-        logger.debug("---- UNUserNotificationCenter.delegate:  \(UNUserNotificationCenter.current().delegate)---- ")
         appIsInForeground = true
         dcContext.maybeStartIo()
         if reachability.connection != .none {
