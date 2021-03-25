@@ -7,7 +7,6 @@ public let dcNotificationImexProgress = Notification.Name(rawValue: "dcNotificat
 public let dcNotificationConfigureProgress = Notification.Name(rawValue: "MrEventConfigureProgress")
 public let dcNotificationSecureJoinerProgress = Notification.Name(rawValue: "MrEventSecureJoinerProgress")
 public let dcNotificationSecureInviterProgress = Notification.Name(rawValue: "MrEventSecureInviterProgress")
-public let dcNotificationViewChat = Notification.Name(rawValue: "MrEventViewChat")
 public let dcNotificationContactChanged = Notification.Name(rawValue: "MrEventContactsChanged")
 public let dcNotificationChatModified = Notification.Name(rawValue: "dcNotificationChatModified")
 public let dcEphemeralTimerModified =  Notification.Name(rawValue: "dcEphemeralTimerModified")
