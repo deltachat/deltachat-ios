@@ -129,6 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("---- foreground ----")
+        logger.debug("---- UNUserNotificationCenter.delegate:  \(UNUserNotificationCenter.current().delegate)---- ")
         appIsInForeground = true
         dcContext.maybeStartIo()
         if reachability.connection != .none {
@@ -415,7 +416,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         logger.info("forground notification")
-        completionHandler([.alert, .sound])
+        if #available(iOS 14.0, *) {
+            completionHandler([.list, .badge])
+        } else {
+            completionHandler([.badge])
+        }
     }
 
     func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
