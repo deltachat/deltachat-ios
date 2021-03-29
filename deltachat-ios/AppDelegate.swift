@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var appCoordinator: AppCoordinator!
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
+    var notificationManager: NotificationManager!
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability = Reachability()!
     var window: UIWindow?
@@ -59,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
         locationManager = LocationManager(context: dcContext)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        notificationManager = NotificationManager()
         dcContext.maybeStartIo()
         setStockTranslations()
 
