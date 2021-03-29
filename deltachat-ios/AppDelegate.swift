@@ -423,23 +423,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - Handle notification banners
 
-    private func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    // this method will be called if an incoming message was received while the app was in forground.
+    // on iOS 14+ we show a notification in the notification center, without triggering an alert that needs to be manually swiped away
+    // on pre iOS 14 this feature isn't available so we're just triggering to show the badge at the launcher icon
+    func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         logger.info("forground notification")
-        completionHandler([.alert, .sound])
+        if #available(iOS 14.0, *) {
+            completionHandler([.list, .badge])
+        } else {
+            completionHandler([.badge])
+        }
     }
 
-    private func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    // this method will be called if the user tapped on a notification
+    func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if response.notification.request.identifier == Constants.notificationIdentifier {
             logger.info("handling notifications")
             let userInfo = response.notification.request.content.userInfo
-            let nc = NotificationCenter.default
-            DispatchQueue.main.async {
-                nc.post(
-                    name: dcNotificationViewChat,
-                    object: nil,
-                    userInfo: userInfo
-                )
-            }
+             if let chatId = userInfo["chat_id"] as? Int,
+                 let msgId = userInfo["message_id"] as? Int {
+                 appCoordinator.showChat(chatId: chatId, msgId: msgId)
+             }
         }
 
         completionHandler()

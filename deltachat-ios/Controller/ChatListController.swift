@@ -127,14 +127,6 @@ class ChatListController: UITableViewController {
             queue: nil) { [weak self] _ in
                 self?.viewModel.refreshData()
         }
-        viewChatObserver = nc.addObserver(
-            forName: dcNotificationViewChat,
-            object: nil,
-            queue: nil) { [weak self] notification in
-                if let chatId = notification.userInfo?["chat_id"] as? Int {
-                    self?.showChat(chatId: chatId)
-                }
-        }
         foregroundObserver = nc.addObserver(self,
                                             selector: #selector(applicationDidBecomeActive(_:)),
                                             name: UIApplication.didBecomeActiveNotification,
@@ -155,9 +147,6 @@ class ChatListController: UITableViewController {
         }
         if let incomingMsgObserver = self.incomingMsgObserver {
             nc.removeObserver(incomingMsgObserver)
-        }
-        if let viewChatObserver = self.viewChatObserver {
-            nc.removeObserver(viewChatObserver)
         }
         if let msgsNoticedObserver = self.msgsNoticedObserver {
             nc.removeObserver(msgsNoticedObserver)
