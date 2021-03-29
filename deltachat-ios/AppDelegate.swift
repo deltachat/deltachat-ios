@@ -60,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
         locationManager = LocationManager(context: dcContext)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        notificationManager = NotificationManager()
         dcContext.maybeStartIo()
         setStockTranslations()
 
@@ -296,7 +297,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 self?.maybeRegisterForRemoteNotifications()
             }
         }
-        notificationManager = NotificationManager()
     }
 
     // register on apple server for receiving push notifications
