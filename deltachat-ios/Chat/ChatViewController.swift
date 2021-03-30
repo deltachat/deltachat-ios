@@ -258,6 +258,7 @@ class ChatViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
         tableView.contentInsetAdjustmentBehavior = .never
+        navigationController?.setNavigationBarHidden(false, animated: false)
 
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
