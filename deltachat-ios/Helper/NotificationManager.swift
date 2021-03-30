@@ -17,35 +17,37 @@ public class NotificationManager {
                let messageId = ui["message_id"] as? Int {
                 let chat = DcContext.shared.getChat(chatId: chatId)
                 if !UserDefaults.standard.bool(forKey: "notifications_disabled") && !chat.isMuted {
-                    let content = UNMutableNotificationContent()
-                    let msg = DcMsg(id: messageId)
-                    content.title = chat.isGroup ? chat.name : msg.getSenderName(msg.fromContact)
-                    content.body =  msg.summary(chars: 80) ?? ""
-                    content.subtitle = chat.isGroup ?  msg.getSenderName(msg.fromContact) : ""
-                    content.userInfo = ui
-                    content.sound = .default
+                    DispatchQueue.global(qos: .background).async {
+                        let content = UNMutableNotificationContent()
+                        let msg = DcMsg(id: messageId)
+                        content.title = chat.isGroup ? chat.name : msg.getSenderName(msg.fromContact)
+                        content.body =  msg.summary(chars: 80) ?? ""
+                        content.subtitle = chat.isGroup ?  msg.getSenderName(msg.fromContact) : ""
+                        content.userInfo = ui
+                        content.sound = .default
 
-                    if msg.type == DC_MSG_IMAGE || msg.type == DC_MSG_GIF,
-                       let url = msg.fileURL {
-                        do {
-                            // make a copy of the file first since UNNotificationAttachment will move attached files into the attachment data store
-                            // so that they can be accessed by all of the appropriate processes
-                            let tempUrl = url.deletingLastPathComponent()
-                                .appendingPathComponent("notification_tmp")
-                                .appendingPathExtension(url.pathExtension)
-                            try FileManager.default.copyItem(at: url, to: tempUrl)
-                            if let attachment = try? UNNotificationAttachment(identifier: Constants.notificationIdentifier, url: tempUrl, options: nil) {
-                                content.attachments = [attachment]
+                        if msg.type == DC_MSG_IMAGE || msg.type == DC_MSG_GIF,
+                           let url = msg.fileURL {
+                            do {
+                                // make a copy of the file first since UNNotificationAttachment will move attached files into the attachment data store
+                                // so that they can be accessed by all of the appropriate processes
+                                let tempUrl = url.deletingLastPathComponent()
+                                    .appendingPathComponent("notification_tmp")
+                                    .appendingPathExtension(url.pathExtension)
+                                try FileManager.default.copyItem(at: url, to: tempUrl)
+                                if let attachment = try? UNNotificationAttachment(identifier: Constants.notificationIdentifier, url: tempUrl, options: nil) {
+                                    content.attachments = [attachment]
+                                }
+                            } catch let error {
+                                logger.error("Failed to copy file \(url) for notification preview generation: \(error)")
                             }
-                        } catch let error {
-                            logger.error("Failed to copy file \(url) for notification preview generation: \(error)")
                         }
-                    }
-                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
+                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
 
-                    let request = UNNotificationRequest(identifier: Constants.notificationIdentifier, content: content, trigger: trigger)
-                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                    DcContext.shared.logger?.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
+                        let request = UNNotificationRequest(identifier: Constants.notificationIdentifier, content: content, trigger: trigger)
+                        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                        DcContext.shared.logger?.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
+                    }
                 }
 
                 let array = DcContext.shared.getFreshMessages()
