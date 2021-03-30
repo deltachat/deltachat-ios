@@ -6,7 +6,16 @@ import UIKit
 public class NotificationManager {
     
     var incomingMsgObserver: Any?
-    
+
+    public static func updateApplicationIconBadge(reset: Bool) {
+        if reset {
+            UIApplication.shared.applicationIconBadgeNumber = 0
+        } else {
+            let array = DcContext.shared.getFreshMessages()
+            UIApplication.shared.applicationIconBadgeNumber = array.count
+        }
+    }
+
     init() {
         incomingMsgObserver = NotificationCenter.default.addObserver(
             forName: dcNotificationIncoming,

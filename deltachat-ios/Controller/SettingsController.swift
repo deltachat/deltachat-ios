@@ -325,6 +325,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             }
         }
         UserDefaults.standard.synchronize()
+        NotificationManager.updateApplicationIconBadge(reset: !sender.isOn)
     }
 
     @objc private func handleReceiptConfirmationToggle(_ sender: UISwitch) {
