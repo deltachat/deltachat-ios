@@ -140,7 +140,6 @@ class ChatListController: UITableViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         stopTimer()
-        searchController.isActive = false
 
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
