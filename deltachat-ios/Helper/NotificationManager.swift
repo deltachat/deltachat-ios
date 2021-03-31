@@ -22,7 +22,7 @@ public class NotificationManager {
         initIncomingMsgsObserver()
         initMsgsNoticedObserver()
     }
-    
+
     private func initIncomingMsgsObserver() {
         incomingMsgObserver = NotificationCenter.default.addObserver(
             forName: dcNotificationIncoming,
@@ -33,6 +33,12 @@ public class NotificationManager {
                    let chatId = ui["chat_id"] as? Int,
                    let messageId = ui["message_id"] as? Int,
                    !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+                    
+                    if let lastChatId = AppStateRestorer.shared.restoreLastActiveChatId(),
+                       lastChatId == chatId {
+                        return
+                    }
+
                     let array = DcContext.shared.getFreshMessages()
                     UIApplication.shared.applicationIconBadgeNumber = array.count
                     NotificationManager.updateApplicationIconBadge(reset: false)
