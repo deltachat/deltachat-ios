@@ -28,20 +28,20 @@ public class NotificationManager {
             forName: dcNotificationIncoming,
             object: nil, queue: OperationQueue.main
         ) { notification in
-            if let ui = notification.userInfo,
-               let chatId = ui["chat_id"] as? Int,
-               let messageId = ui["message_id"] as? Int,
-               !UserDefaults.standard.bool(forKey: "notifications_disabled") {
-                let array = DcContext.shared.getFreshMessages()
-                UIApplication.shared.applicationIconBadgeNumber = array.count
-                NotificationManager.updateApplicationIconBadge(reset: false)
+            DispatchQueue.global(qos: .background).async {
+                if let ui = notification.userInfo,
+                   let chatId = ui["chat_id"] as? Int,
+                   let messageId = ui["message_id"] as? Int,
+                   !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+                    let array = DcContext.shared.getFreshMessages()
+                    UIApplication.shared.applicationIconBadgeNumber = array.count
+                    NotificationManager.updateApplicationIconBadge(reset: false)
 
-                let chat = DcContext.shared.getChat(chatId: chatId)
-                if chat.isMuted {
-                    return
-                }
+                    let chat = DcContext.shared.getChat(chatId: chatId)
+                    if chat.isMuted {
+                        return
+                    }
 
-                DispatchQueue.global(qos: .background).async {
                     let content = UNMutableNotificationContent()
                     let msg = DcMsg(id: messageId)
                     content.title = chat.isGroup ? chat.name : msg.getSenderName(msg.fromContact)
@@ -81,8 +81,10 @@ public class NotificationManager {
             forName: dcNotificationIncoming,
             object: nil, queue: OperationQueue.main
         ) { _ in
-            if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
-                NotificationManager.updateApplicationIconBadge(reset: false)
+            DispatchQueue.global(qos: .background).async {
+                if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+                    NotificationManager.updateApplicationIconBadge(reset: false)
+                }
             }
         }
     }
