@@ -78,7 +78,7 @@ public class NotificationManager {
 
     private func initMsgsNoticedObserver() {
         msgsNoticedObserver =  NotificationCenter.default.addObserver(
-            forName: dcNotificationIncoming,
+            forName: dcMsgsNoticed,
             object: nil, queue: OperationQueue.main
         ) { _ in
             DispatchQueue.global(qos: .background).async {
