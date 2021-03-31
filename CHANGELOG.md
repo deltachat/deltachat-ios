@@ -1,10 +1,12 @@
 # Delta Chat iOS Changelog
 
-## 1.17.0
+## 1.17.1
 2021-03
 
 * new mailinglist and better bot support
-* more reliable notifications about every 20 minutes
+* more reliable notifications about every 20 minutes, typically faster
+* tapping notification opens the corresponding chat
+* more information and images shown in notifications
 * add option to view original-/html-mails
 * allow dialing on tapping a phone number
 * use more colors for user avatars
