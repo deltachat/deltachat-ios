@@ -10,11 +10,13 @@ public class NotificationManager {
 
 
     public static func updateApplicationIconBadge(reset: Bool) {
-        if reset {
-            UIApplication.shared.applicationIconBadgeNumber = 0
-        } else {
-            let array = DcContext.shared.getFreshMessages()
-            UIApplication.shared.applicationIconBadgeNumber = array.count
+        var unreadMessages = 0
+        if !reset {
+            unreadMessages = DcContext.shared.getFreshMessages().count
+        }
+
+        DispatchQueue.main.async {
+            UIApplication.shared.applicationIconBadgeNumber = unreadMessages
         }
     }
 
@@ -39,8 +41,6 @@ public class NotificationManager {
                         return
                     }
 
-                    let array = DcContext.shared.getFreshMessages()
-                    UIApplication.shared.applicationIconBadgeNumber = array.count
                     NotificationManager.updateApplicationIconBadge(reset: false)
 
                     let chat = DcContext.shared.getChat(chatId: chatId)
