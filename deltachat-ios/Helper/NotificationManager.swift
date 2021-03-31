@@ -81,7 +81,7 @@ public class NotificationManager {
             forName: dcNotificationIncoming,
             object: nil, queue: OperationQueue.main
         ) { _ in
-            if !UserDefaults.standard.bool(forKey: "notifications_disabled"){
+            if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
                 NotificationManager.updateApplicationIconBadge(reset: false)
             }
         }
