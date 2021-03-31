@@ -425,10 +425,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - Handle notification banners
 
-    // this method will be called if an incoming message was received while the app was in forground.
-    // on iOS 14+ we show a notification in the notification center, without triggering an alert that needs to be manually swiped away
-    // on pre iOS 14 this feature isn't available so we're just triggering to show the badge at the launcher icon
-    func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    // This method will be called if an incoming message was received while the app was in forground.
+    // On iOS 14+ we show a non-intrusive notification in the notification center, if the notification doesn't belong to a currently opened chat.
+    // On pre iOS 14 this feature isn't available so we're just triggering to show the badge at the launcher icon. This will only have an effect for unread messages > 0
+    func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         logger.info("forground notification")
         if #available(iOS 14.0, *) {
             completionHandler([.list, .badge])
