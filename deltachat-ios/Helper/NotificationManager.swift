@@ -41,8 +41,6 @@ public class NotificationManager {
                         return
                     }
 
-                    let array = DcContext.shared.getFreshMessages()
-                    UIApplication.shared.applicationIconBadgeNumber = array.count
                     NotificationManager.updateApplicationIconBadge(reset: false)
 
                     let chat = DcContext.shared.getChat(chatId: chatId)
