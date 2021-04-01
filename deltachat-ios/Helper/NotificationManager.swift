@@ -86,7 +86,7 @@ public class NotificationManager {
                                                         content: content,
                                                         trigger: trigger)
                     UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                    DcContext.shared.logger?.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
+                    logger.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
                 }
             }
         }
