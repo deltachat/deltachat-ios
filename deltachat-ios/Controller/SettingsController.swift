@@ -324,7 +324,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
                 appDelegate.registerForNotifications()
             }
         } else {
-            NotificationManager.deleteAllNotifications()
+            NotificationManager.removeAllNotifications()
         }
         UserDefaults.standard.synchronize()
         NotificationManager.updateApplicationIconBadge(reset: !sender.isOn)

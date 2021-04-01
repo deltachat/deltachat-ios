@@ -24,7 +24,7 @@ public class NotificationManager {
         }
     }
 
-    public static func deleteAllNotifications() {
+    public static func removeAllNotifications() {
         let nc = UNUserNotificationCenter.current()
         nc.removeAllDeliveredNotifications()
         nc.removeAllPendingNotificationRequests()
