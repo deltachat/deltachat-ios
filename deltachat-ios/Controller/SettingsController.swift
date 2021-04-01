@@ -323,6 +323,8 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 appDelegate.registerForNotifications()
             }
+        } else {
+            NotificationManager.deleteAllNotifications()
         }
         UserDefaults.standard.synchronize()
         NotificationManager.updateApplicationIconBadge(reset: !sender.isOn)

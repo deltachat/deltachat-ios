@@ -439,7 +439,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // this method will be called if the user tapped on a notification
     func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        if response.notification.request.identifier == Constants.notificationIdentifier {
+        if !response.notification.request.identifier.containsExact(subSequence: Constants.notificationIdentifier).isEmpty {
             logger.info("handling notifications")
             let userInfo = response.notification.request.content.userInfo
              if let chatId = userInfo["chat_id"] as? Int,
