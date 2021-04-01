@@ -40,11 +40,6 @@ public class NotificationManager {
                    let chatId = ui["chat_id"] as? Int,
                    let messageId = ui["message_id"] as? Int,
                    !UserDefaults.standard.bool(forKey: "notifications_disabled") {
-                    
-                    if let lastChatId = AppStateRestorer.shared.restoreLastActiveChatId(),
-                       lastChatId == chatId {
-                        return
-                    }
 
                     NotificationManager.updateApplicationIconBadge(reset: false)
 
