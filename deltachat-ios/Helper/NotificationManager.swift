@@ -8,6 +8,10 @@ public class NotificationManager {
     var incomingMsgObserver: Any?
     var msgsNoticedObserver: Any?
 
+    init() {
+        initIncomingMsgsObserver()
+        initMsgsNoticedObserver()
+    }
 
     public static func updateApplicationIconBadge(reset: Bool) {
         var unreadMessages = 0
@@ -20,9 +24,10 @@ public class NotificationManager {
         }
     }
 
-    init() {
-        initIncomingMsgsObserver()
-        initMsgsNoticedObserver()
+    public static func removeAllNotifications() {
+        let nc = UNUserNotificationCenter.current()
+        nc.removeAllDeliveredNotifications()
+        nc.removeAllPendingNotificationRequests()
     }
 
     private func initIncomingMsgsObserver() {
@@ -35,11 +40,6 @@ public class NotificationManager {
                    let chatId = ui["chat_id"] as? Int,
                    let messageId = ui["message_id"] as? Int,
                    !UserDefaults.standard.bool(forKey: "notifications_disabled") {
-                    
-                    if let lastChatId = AppStateRestorer.shared.restoreLastActiveChatId(),
-                       lastChatId == chatId {
-                        return
-                    }
 
                     NotificationManager.updateApplicationIconBadge(reset: false)
 
@@ -73,10 +73,15 @@ public class NotificationManager {
                         }
                     }
                     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
-
-                    let request = UNNotificationRequest(identifier: Constants.notificationIdentifier, content: content, trigger: trigger)
+                    let accountEmail = DcContact(id: Int(DC_CONTACT_ID_SELF)).email
+                    if #available(iOS 12.0, *) {
+                        content.threadIdentifier = "\(accountEmail)\(chatId)"
+                    }
+                    let request = UNNotificationRequest(identifier: "\(Constants.notificationIdentifier).\(accountEmail).\(chatId).\(msg.messageId)",
+                                                        content: content,
+                                                        trigger: trigger)
                     UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                    DcContext.shared.logger?.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
+                    logger.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
                 }
             }
         }
@@ -86,14 +91,48 @@ public class NotificationManager {
         msgsNoticedObserver =  NotificationCenter.default.addObserver(
             forName: dcMsgsNoticed,
             object: nil, queue: OperationQueue.main
-        ) { _ in
-            DispatchQueue.global(qos: .background).async {
+        ) { notification in
+            DispatchQueue.global(qos: .background).async { [weak self] in
                 if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
                     NotificationManager.updateApplicationIconBadge(reset: false)
+                    if let ui = notification.userInfo,
+                       let chatId = ui["chat_id"] as? Int {
+                        self?.removePendingNotificationsFor(chatId: chatId)
+                        self?.removeDeliveredNotificationsFor(chatId: chatId)
+                    }
                 }
             }
         }
     }
+
+    private func removeDeliveredNotificationsFor(chatId: Int) {
+        var identifiers = [String]()
+        let nc = UNUserNotificationCenter.current()
+        nc.getDeliveredNotifications { notifications in
+            let accountEmail = DcContact(id: Int(DC_CONTACT_ID_SELF)).email
+            for notification in notifications {
+                if !notification.request.identifier.containsExact(subSequence: "\(Constants.notificationIdentifier).\(accountEmail).\(chatId)").isEmpty {
+                    identifiers.append(notification.request.identifier)
+                }
+            }
+            nc.removeDeliveredNotifications(withIdentifiers: identifiers)
+        }
+    }
+
+    private func removePendingNotificationsFor(chatId: Int) {
+        var identifiers = [String]()
+        let nc = UNUserNotificationCenter.current()
+        nc.getPendingNotificationRequests { notificationRequests in
+            let accountEmail = DcContact(id: Int(DC_CONTACT_ID_SELF)).email
+            for request in notificationRequests {
+                if !request.identifier.containsExact(subSequence: "\(Constants.notificationIdentifier).\(accountEmail).\(chatId)").isEmpty {
+                    identifiers.append(request.identifier)
+                }
+            }
+            nc.removePendingNotificationRequests(withIdentifiers: identifiers)
+        }
+    }
+
     
     deinit {
         NotificationCenter.default.removeObserver(self)
