@@ -426,6 +426,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: - Handle notification banners
 
     // This method will be called if an incoming message was received while the app was in forground.
+    // We don't show foreground notifications in the notification center because they don't get grouped properly
     func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         logger.info("forground notification")
         completionHandler([.badge])
