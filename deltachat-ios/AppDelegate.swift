@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let console = ConsoleDestination()
         logger.addDestination(console)
         dcContext.logger = DcLogger()
-        logger.info("launching")
+        logger.info("➡️ didFinishLaunchingWithOptions")
 
         window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = window else {
@@ -98,6 +98,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // `open` is called when an url should be opened by Delta Chat.
     // we currently use that for handling oauth2 and for handing openpgp4fpr
     func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        logger.info("➡️ open url")
+
         // gets here when app returns from oAuth2-Setup process - the url contains the provided token
         if let params = url.queryParameters, let token = params["code"] {
             NotificationCenter.default.post(name: NSNotification.Name("oauthLoginApproved"), object: nil, userInfo: ["token": token])
@@ -119,7 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // we have 30 seconds time for our job, leave some seconds for graceful termination.
     // also, the faster we return, the sooner we get called again.
     func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        logger.info("---- background-fetch ----")
+        logger.info("➡️ performFetchWithCompletionHandler")
         increaseDebugCounter("notify-local-wakeup")
 
         // if we're in foreground, there is nothing to do
@@ -147,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func applicationWillEnterForeground(_: UIApplication) {
-        logger.info("---- foreground ----")
+        logger.info("➡️ applicationWillEnterForeground")
         appIsInForeground = true
         dcContext.maybeStartIo()
 
@@ -173,7 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func applicationDidEnterBackground(_: UIApplication) {
-        logger.info("---- background ----")
+        logger.info("⬅️ applicationDidEnterBackground")
         appIsInForeground = false
         maybeStop()
     }
@@ -181,21 +183,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private func maybeStop() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             let app = UIApplication.shared
-            logger.info("state: \(app.applicationState) time remaining \(app.backgroundTimeRemaining)")
-
             if app.applicationState != .background {
-                // only need to do sth in the background
+                logger.info("⬅️ no longer in background")
                 return
             } else if app.backgroundTimeRemaining < 10 {
+                logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), stopping")
                 self.dcContext.stopIo()
             } else {
+                logger.info("⬅️ remaining background time: \(app.backgroundTimeRemaining)")
                 self.maybeStop()
             }
         }
     }
 
     func applicationWillTerminate(_: UIApplication) {
-        logger.info("---- terminate ----")
+        logger.info("⬅️ applicationWillTerminate")
         closeDatabase()
 
         reachability.stopNotifier()
@@ -277,6 +279,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 handleEvent(event: event)
             }
             if self.backgroundTask != .invalid {
+                logger.info("⬅️ event emitter finished")
                 self.endBackgroundTask()
             }
         }
@@ -285,7 +288,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: - BackgroundTask
 
     private func registerBackgroundTask() {
-        logger.info("background task registered")
+        logger.info("⬅️ registering background task")
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
             self?.endBackgroundTask()
         }
@@ -293,7 +296,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     private func endBackgroundTask() {
-        logger.info("background task ended")
+        logger.info("⬅️ background task ended")
         UIApplication.shared.endBackgroundTask(backgroundTask)
         backgroundTask = .invalid
     }
@@ -310,12 +313,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // register for showing notifications
         UNUserNotificationCenter.current()
           .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
-            logger.info("Notifications: Permission granted: \(granted)")
-
             if granted {
                 // we are allowed to show notifications:
                 // register for receiving push notifications
+                logger.info("Notifications: Permission granted: \(granted)")
                 self?.maybeRegisterForRemoteNotifications()
+            } else {
+                logger.info("Notifications: Permission not granted.")
             }
         }
     }
@@ -357,7 +361,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let endpoint = "https://notifications.delta.chat/register"
         #endif
 
-        logger.verbose("Notifications: POST token: \(tokenString) to \(endpoint)")
+        logger.info("Notifications: POST token: \(tokenString) to \(endpoint)")
 
         if let url = URL(string: endpoint) {
             var request = URLRequest(url: url)
@@ -369,9 +373,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     logger.error("Notifications: cannot POST to notification server: \(error)")
                     return
                 }
-                logger.info("Notifications: request to notification server succeeded with respose, data: \(String(describing: response)), \(String(describing: data))")
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode == 200 {
+                    logger.info("Notifications: request to notification server succeeded")
+                } else {
+                    logger.error("Notifications: request to notification server failed: \(String(describing: response)), \(String(describing: data))")
+                }
                 self.notifyToken = tokenString
-
             }
             task.resume()
         } else {
@@ -403,7 +410,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         _ application: UIApplication,
         didReceiveRemoteNotification userInfo: [AnyHashable: Any],
         fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        logger.verbose("Notifications: didReceiveRemoteNotification \(userInfo)")
+        logger.info("➡️ Notifications: didReceiveRemoteNotification \(userInfo)")
         increaseDebugCounter("notify-remote-receive")
 
         // didReceiveRemoteNotification might be called if we're in foreground,
@@ -450,17 +457,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - Handle notification banners
 
-    // This method will be called if an incoming message was received while the app was in forground.
+    // This method will be called if an incoming message was received while the app was in foreground.
     // We don't show foreground notifications in the notification center because they don't get grouped properly
     func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        logger.info("forground notification")
+        logger.info("Notifications: foreground notification")
         completionHandler([.badge])
     }
 
     // this method will be called if the user tapped on a notification
     func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if !response.notification.request.identifier.containsExact(subSequence: Constants.notificationIdentifier).isEmpty {
-            logger.info("handling notifications")
+            logger.info("Notifications: notification tapped")
             let userInfo = response.notification.request.content.userInfo
              if let chatId = userInfo["chat_id"] as? Int,
                  let msgId = userInfo["message_id"] as? Int {
