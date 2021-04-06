@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         DBDebugToolkit.setupCrashReporting()
         
         let console = ConsoleDestination()
+        console.format = "$DHH:mm:ss.SSS$d $C$L$c $M" // see https://docs.swiftybeaver.com/article/20-custom-format
         logger.addDestination(console)
         dcContext.logger = DcLogger()
         logger.info("➡️ didFinishLaunchingWithOptions")
