@@ -65,8 +65,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         setStockTranslations()
 
         reachability.whenReachable = { reachability in
+            // maybeNetwork() shall not be called in ui thread;
+            // Reachability::reachabilityChanged uses DispatchQueue.main.async only
             logger.info("network: reachable", reachability.connection.description)
-            self.dcContext.maybeNetwork()
+            DispatchQueue.global(qos: .background).async { [weak self] in
+                self?.dcContext.maybeNetwork()
+            }
         }
 
         reachability.whenUnreachable = { _ in
@@ -118,6 +122,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("---- background-fetch ----")
         increaseDebugCounter("notify-local-wakeup")
 
+        // if we're in foreground, there is nothing to do
+        if self.appIsInForeground {
+            logger.warning("➡️ app already in foreground")
+            completionHandler(.newData)
+            return
+        }
+
+        // we're in background, run IO for a little time
         dcContext.maybeStartIo()
         dcContext.maybeNetwork()
 
@@ -138,20 +150,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("---- foreground ----")
         appIsInForeground = true
         dcContext.maybeStartIo()
-        if reachability.connection != .none {
-            self.dcContext.maybeNetwork()
-        }
 
-        if let userDefaults = UserDefaults.shared, userDefaults.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
-            userDefaults.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
-            let nc = NotificationCenter.default
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else { return }
+            if self.appIsInForeground {
+                if self.reachability.connection != .none {
+                    self.dcContext.maybeNetwork()
+                }
 
-            DispatchQueue.main.async {
-                nc.post(
-                    name: dcNotificationChanged,
-                    object: nil,
-                    userInfo: [:]
-                )
+                if let userDefaults = UserDefaults.shared, userDefaults.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
+                    userDefaults.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
+                    DispatchQueue.main.async {
+                        NotificationCenter.default.post(
+                            name: dcNotificationChanged,
+                            object: nil,
+                            userInfo: [:]
+                        )
+                    }
+                }
             }
         }
     }
@@ -390,6 +406,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.verbose("Notifications: didReceiveRemoteNotification \(userInfo)")
         increaseDebugCounter("notify-remote-receive")
 
+        // didReceiveRemoteNotification might be called if we're in foreground,
+        // in this case, there is no need to wait for things or do sth.
+        if self.appIsInForeground {
+            logger.warning("➡️ app already in foreground")
+            completionHandler(.newData)
+            return
+        }
+
+        // we're in background, run IO for a little time
         dcContext.maybeStartIo()
         dcContext.maybeNetwork()
 
