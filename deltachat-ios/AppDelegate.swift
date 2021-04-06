@@ -175,26 +175,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
+    func applicationWillResignActive(_: UIApplication) {
+        logger.info("⬅️ applicationWillResignActive")
+        registerBackgroundTask()
+    }
+
     func applicationDidEnterBackground(_: UIApplication) {
         logger.info("⬅️ applicationDidEnterBackground")
         appIsInForeground = false
-        maybeStop()
-    }
-
-    private func maybeStop() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            let app = UIApplication.shared
-            if app.applicationState != .background {
-                logger.info("⬅️ no longer in background")
-                return
-            } else if app.backgroundTimeRemaining < 10 {
-                logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), stopping")
-                self.dcContext.stopIo()
-            } else {
-                logger.info("⬅️ remaining background time: \(app.backgroundTimeRemaining)")
-                self.maybeStop()
-            }
-        }
     }
 
     func applicationWillTerminate(_: UIApplication) {
@@ -273,33 +261,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func installEventHandler() {
         DispatchQueue.global(qos: .background).async {
-            self.registerBackgroundTask()
             let eventEmitter = self.dcContext.getEventEmitter()
             while true {
                 guard let event = eventEmitter.getNextEvent() else { break }
                 handleEvent(event: event)
             }
-            if self.backgroundTask != .invalid {
-                logger.info("⬅️ event emitter finished")
-                self.endBackgroundTask()
-            }
+            logger.info("⬅️ event emitter finished")
         }
     }
 
     // MARK: - BackgroundTask
 
+    // let the app run in background for a little while
+    // eg. to complete sending messages out and to react to responses.
     private func registerBackgroundTask() {
         logger.info("⬅️ registering background task")
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
-            self?.endBackgroundTask()
+            // usually, the background thread is finished before in maybeStop()
+            logger.info("⬅️ background expirationHandler called")
+            self?.unregisterBackgroundTask()
         }
-        assert(backgroundTask != .invalid)
+        maybeStop()
     }
 
-    private func endBackgroundTask() {
-        logger.info("⬅️ background task ended")
-        UIApplication.shared.endBackgroundTask(backgroundTask)
-        backgroundTask = .invalid
+    private func unregisterBackgroundTask() {
+        if backgroundTask != .invalid {
+            UIApplication.shared.endBackgroundTask(backgroundTask)
+            backgroundTask = .invalid
+        }
+    }
+
+    private func maybeStop() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            let app = UIApplication.shared
+            if app.applicationState != .background {
+                logger.info("⬅️ no longer in background")
+                self.unregisterBackgroundTask()
+            } else if app.backgroundTimeRemaining < 10 {
+                logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), stopping")
+                self.dcContext.stopIo()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), done")
+                    self.unregisterBackgroundTask()
+                }
+            } else {
+                logger.info("⬅️ remaining background time: \(app.backgroundTimeRemaining)")
+                self.maybeStop()
+            }
+        }
     }
 
 
