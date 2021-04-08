@@ -92,8 +92,11 @@ public class DcContext {
     }
 
     public func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
+        let start = CFAbsoluteTimeGetCurrent()
         let chatlistPointer = dc_get_chatlist(contextPointer, flags, queryString, UInt32(queryId))
         let chatlist = DcChatlist(chatListPointer: chatlistPointer)
+        let diff = CFAbsoluteTimeGetCurrent() - start
+        logger?.info("⏰ getChatlist: \(diff) s")
         return chatlist
     }
 
