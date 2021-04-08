@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var appIsInForeground = false
     var notifyToken: String?
 
+
+    // MARK: - app main entry point
+
     // `didFinishLaunchingWithOptions` is the main entry point
     // that is called if the app is started for the first time
     // or after the app is killed.
@@ -97,7 +100,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     // `open` is called when an url should be opened by Delta Chat.
-    // we currently use that for handling oauth2 and for handing openpgp4fpr
+    // we currently use that for handling oauth2 and for handing openpgp4fpr.
+    //
+    // before `open` gets called, `didFinishLaunchingWithOptions` is called.
     func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         logger.info("➡️ open url")
 
@@ -115,39 +120,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
 
-    // `performFetchWithCompletionHandler` is called on local wakeup.
-    // this requires "UIBackgroundModes: fetch" to be set in Info.plist
-    // ("App downloads content from the network" in Xcode)
-    //
-    // we have 30 seconds time for our job, leave some seconds for graceful termination.
-    // also, the faster we return, the sooner we get called again.
-    func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        logger.info("➡️ performFetchWithCompletionHandler")
-        increaseDebugCounter("notify-local-wakeup")
 
-        // if we're in foreground, there is nothing to do
-        if self.appIsInForeground {
-            logger.warning("➡️ app already in foreground")
-            completionHandler(.newData)
-            return
-        }
-
-        // we're in background, run IO for a little time
-        dcContext.maybeStartIo()
-        dcContext.maybeNetwork()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
-            guard let self = self else {
-                completionHandler(.failed)
-                return
-            }
-
-            if !self.appIsInForeground {
-                self.dcContext.stopIo()
-            }
-            completionHandler(.newData)
-        }
-    }
+    // MARK: - app lifecycle
 
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("➡️ applicationWillEnterForeground")
@@ -188,89 +162,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillTerminate(_: UIApplication) {
         logger.info("⬅️ applicationWillTerminate")
         closeDatabase()
-
         reachability.stopNotifier()
     }
 
-    func openDatabase() {
-        guard let databaseLocation = DatabaseHelper().updateDatabaseLocation() else {
-            fatalError("Database could not be opened")
-        }
-        logger.info("open: \(databaseLocation)")
-        dcContext.openDatabase(dbFile: databaseLocation)
-    }
 
-    func closeDatabase() {
-        dcContext.closeDatabase()
-    }
-
-    func setStockTranslations() {
-        dcContext.setStockTranslation(id: DC_STR_NOMESSAGES, localizationKey: "chat_no_messages")
-        dcContext.setStockTranslation(id: DC_STR_SELF, localizationKey: "self")
-        dcContext.setStockTranslation(id: DC_STR_DRAFT, localizationKey: "draft")
-        dcContext.setStockTranslation(id: DC_STR_VOICEMESSAGE, localizationKey: "voice_message")
-        dcContext.setStockTranslation(id: DC_STR_DEADDROP, localizationKey: "chat_contact_request")
-        dcContext.setStockTranslation(id: DC_STR_IMAGE, localizationKey: "image")
-        dcContext.setStockTranslation(id: DC_STR_VIDEO, localizationKey: "video")
-        dcContext.setStockTranslation(id: DC_STR_AUDIO, localizationKey: "audio")
-        dcContext.setStockTranslation(id: DC_STR_FILE, localizationKey: "file")
-        dcContext.setStockTranslation(id: DC_STR_STATUSLINE, localizationKey: "pref_default_status_text")
-        dcContext.setStockTranslation(id: DC_STR_NEWGROUPDRAFT, localizationKey: "group_hello_draft")
-        dcContext.setStockTranslation(id: DC_STR_MSGGRPNAME, localizationKey: "systemmsg_group_name_changed")
-        dcContext.setStockTranslation(id: DC_STR_MSGGRPIMGCHANGED, localizationKey: "systemmsg_group_image_changed")
-        dcContext.setStockTranslation(id: DC_STR_MSGADDMEMBER, localizationKey: "systemmsg_member_added")
-        dcContext.setStockTranslation(id: DC_STR_MSGDELMEMBER, localizationKey: "systemmsg_member_removed")
-        dcContext.setStockTranslation(id: DC_STR_MSGGROUPLEFT, localizationKey: "systemmsg_group_left")
-        dcContext.setStockTranslation(id: DC_STR_GIF, localizationKey: "gif")
-        dcContext.setStockTranslation(id: DC_STR_ENCRYPTEDMSG, localizationKey: "encrypted_message")
-        dcContext.setStockTranslation(id: DC_STR_CANTDECRYPT_MSG_BODY, localizationKey: "systemmsg_cannot_decrypt")
-        dcContext.setStockTranslation(id: DC_STR_READRCPT, localizationKey: "systemmsg_read_receipt_subject")
-        dcContext.setStockTranslation(id: DC_STR_READRCPT_MAILBODY, localizationKey: "systemmsg_read_receipt_body")
-        dcContext.setStockTranslation(id: DC_STR_MSGGRPIMGDELETED, localizationKey: "systemmsg_group_image_deleted")
-        dcContext.setStockTranslation(id: DC_STR_CONTACT_VERIFIED, localizationKey: "contact_verified")
-        dcContext.setStockTranslation(id: DC_STR_CONTACT_NOT_VERIFIED, localizationKey: "contact_not_verified")
-        dcContext.setStockTranslation(id: DC_STR_CONTACT_SETUP_CHANGED, localizationKey: "contact_setup_changed")
-        dcContext.setStockTranslation(id: DC_STR_ARCHIVEDCHATS, localizationKey: "chat_archived_chats_title")
-        dcContext.setStockTranslation(id: DC_STR_AC_SETUP_MSG_SUBJECT, localizationKey: "autocrypt_asm_subject")
-        dcContext.setStockTranslation(id: DC_STR_AC_SETUP_MSG_BODY, localizationKey: "autocrypt_asm_general_body")
-        dcContext.setStockTranslation(id: DC_STR_CANNOT_LOGIN, localizationKey: "login_error_cannot_login")
-        dcContext.setStockTranslation(id: DC_STR_SERVER_RESPONSE, localizationKey: "login_error_server_response")
-        dcContext.setStockTranslation(id: DC_STR_MSGACTIONBYUSER, localizationKey: "systemmsg_action_by_user")
-        dcContext.setStockTranslation(id: DC_STR_MSGACTIONBYME, localizationKey: "systemmsg_action_by_me")
-        dcContext.setStockTranslation(id: DC_STR_DEVICE_MESSAGES, localizationKey: "device_talk")
-        dcContext.setStockTranslation(id: DC_STR_SAVED_MESSAGES, localizationKey: "saved_messages")
-        dcContext.setStockTranslation(id: DC_STR_DEVICE_MESSAGES_HINT, localizationKey: "device_talk_explain")
-        dcContext.setStockTranslation(id: DC_STR_WELCOME_MESSAGE, localizationKey: "device_talk_welcome_message")
-        dcContext.setStockTranslation(id: DC_STR_UNKNOWN_SENDER_FOR_CHAT, localizationKey: "systemmsg_unknown_sender_for_chat")
-        dcContext.setStockTranslation(id: DC_STR_SUBJECT_FOR_NEW_CONTACT, localizationKey: "systemmsg_subject_for_new_contact")
-        dcContext.setStockTranslation(id: DC_STR_FAILED_SENDING_TO, localizationKey: "systemmsg_failed_sending_to")
-        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_DISABLED, localizationKey: "systemmsg_ephemeral_timer_disabled")
-        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_SECONDS, localizationKey: "systemmsg_ephemeral_timer_enabled")
-        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_MINUTE, localizationKey: "systemmsg_ephemeral_timer_minute")
-        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_HOUR, localizationKey: "systemmsg_ephemeral_timer_hour")
-        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_DAY, localizationKey: "systemmsg_ephemeral_timer_day")
-        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_WEEK, localizationKey: "systemmsg_ephemeral_timer_week")
-        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_FOUR_WEEKS, localizationKey: "systemmsg_ephemeral_timer_four_weeks")
-        dcContext.setStockTranslation(id: DC_STR_VIDEOCHAT_INVITATION, localizationKey: "videochat_invitation")
-        dcContext.setStockTranslation(id: DC_STR_VIDEOCHAT_INVITE_MSG_BODY, localizationKey: "videochat_invitation_body")
-        dcContext.setStockTranslation(id: DC_STR_CONFIGURATION_FAILED, localizationKey: "configuration_failed_with_error")
-        dcContext.setStockTranslation(id: DC_STR_PROTECTION_ENABLED, localizationKey: "systemmsg_chat_protection_enabled")
-        dcContext.setStockTranslation(id: DC_STR_PROTECTION_DISABLED, localizationKey: "systemmsg_chat_protection_disabled")
-        dcContext.setStockTranslation(id: DC_STR_REPLY_NOUN, localizationKey: "reply_noun")
-    }
-
-    func installEventHandler() {
-        DispatchQueue.global(qos: .background).async {
-            let eventEmitter = self.dcContext.getEventEmitter()
-            while true {
-                guard let event = eventEmitter.getNextEvent() else { break }
-                handleEvent(event: event)
-            }
-            logger.info("⬅️ event emitter finished")
-        }
-    }
-
-    // MARK: - BackgroundTask
+    // MARK: - fade out app smoothly
 
     // let the app run in background for a little while
     // eg. to complete sending messages out and to react to responses.
@@ -312,10 +208,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
 
-    // MARK: - PushNotifications
+    // MARK: - background fetch and notifications
 
     // `registerForNotifications` asks the user if they want to get notifiations shown.
-    // if so, it registers for receiving push notifications.
+    // if so, it registers for receiving remote notifications.
     func registerForNotifications() {
         UNUserNotificationCenter.current().delegate = self
         notifyToken = nil
@@ -325,7 +221,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
           .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
             if granted {
                 // we are allowed to show notifications:
-                // register for receiving push notifications
+                // register for receiving remote notifications
                 logger.info("Notifications: Permission granted: \(granted)")
                 self?.maybeRegisterForRemoteNotifications()
             } else {
@@ -334,7 +230,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
-    // register on apple server for receiving push notifications
+    // register on apple server for receiving remote notifications
     // and pass the token to the app's notification server.
     //
     // on success, we get a token at didRegisterForRemoteNotificationsWithDeviceToken;
@@ -404,7 +300,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.error("Notifications: Failed to register: \(error)")
     }
 
-    // `didReceiveRemoteNotification` is called by iOS when a push notification is received.
+    // `didReceiveRemoteNotification` is called by iOS when a remote notification is received.
     //
     // we need to ensure IO is running as the function may be called from suspended state
     // (with app in memory, but gracefully shut down before; sort of freezed).
@@ -448,24 +344,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
-    private func increaseDebugCounter(_ name: String) {
-        let nowDate = Date()
-        let nowTimestamp = Double(nowDate.timeIntervalSince1970)
-        let startTimestamp = UserDefaults.standard.double(forKey: name + "-start")
-        if nowTimestamp > startTimestamp + 60*60*24 {
-            let cal: Calendar = Calendar(identifier: .gregorian)
-            let newStartDate: Date = cal.date(bySettingHour: 0, minute: 0, second: 0, of: nowDate)!
-            UserDefaults.standard.set(0, forKey: name + "-count")
-            UserDefaults.standard.set(Double(newStartDate.timeIntervalSince1970), forKey: name + "-start")
+    // `performFetchWithCompletionHandler` is called by iOS on local wakeup.
+    //
+    // this requires "UIBackgroundModes: fetch" to be set in Info.plist
+    // ("App downloads content from the network" in Xcode)
+    //
+    // we have 30 seconds time for our job, things are quite similar as in `didReceiveRemoteNotification`
+    func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        logger.info("➡️ performFetchWithCompletionHandler")
+        increaseDebugCounter("notify-local-wakeup")
+
+        // if we're in foreground, there is nothing to do
+        if self.appIsInForeground {
+            logger.warning("➡️ app already in foreground")
+            completionHandler(.newData)
+            return
         }
 
-        let cnt = UserDefaults.standard.integer(forKey: name + "-count")
-        UserDefaults.standard.set(cnt + 1, forKey: name + "-count")
-        UserDefaults.standard.set(nowTimestamp, forKey: name + "-last")
+        // we're in background, run IO for a little time
+        dcContext.maybeStartIo()
+        dcContext.maybeNetwork()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
+            guard let self = self else {
+                completionHandler(.failed)
+                return
+            }
+
+            if !self.appIsInForeground {
+                self.dcContext.stopIo()
+            }
+            completionHandler(.newData)
+        }
     }
 
 
-    // MARK: - Handle notification banners
+    // MARK: - handle notification banners
 
     // This method will be called if an incoming message was received while the app was in foreground.
     // We don't show foreground notifications in the notification center because they don't get grouped properly
@@ -486,5 +400,102 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
 
         completionHandler()
+    }
+
+
+    // MARK: - misc.
+
+    func openDatabase() {
+        guard let databaseLocation = DatabaseHelper().updateDatabaseLocation() else {
+            fatalError("Database could not be opened")
+        }
+        logger.info("open: \(databaseLocation)")
+        dcContext.openDatabase(dbFile: databaseLocation)
+    }
+
+    func closeDatabase() {
+        dcContext.closeDatabase()
+    }
+
+    func installEventHandler() {
+        DispatchQueue.global(qos: .background).async {
+            let eventEmitter = self.dcContext.getEventEmitter()
+            while true {
+                guard let event = eventEmitter.getNextEvent() else { break }
+                handleEvent(event: event)
+            }
+            logger.info("⬅️ event emitter finished")
+        }
+    }
+
+    private func increaseDebugCounter(_ name: String) {
+        let nowDate = Date()
+        let nowTimestamp = Double(nowDate.timeIntervalSince1970)
+        let startTimestamp = UserDefaults.standard.double(forKey: name + "-start")
+        if nowTimestamp > startTimestamp + 60*60*24 {
+            let cal: Calendar = Calendar(identifier: .gregorian)
+            let newStartDate: Date = cal.date(bySettingHour: 0, minute: 0, second: 0, of: nowDate)!
+            UserDefaults.standard.set(0, forKey: name + "-count")
+            UserDefaults.standard.set(Double(newStartDate.timeIntervalSince1970), forKey: name + "-start")
+        }
+
+        let cnt = UserDefaults.standard.integer(forKey: name + "-count")
+        UserDefaults.standard.set(cnt + 1, forKey: name + "-count")
+        UserDefaults.standard.set(nowTimestamp, forKey: name + "-last")
+    }
+
+    private func setStockTranslations() {
+        dcContext.setStockTranslation(id: DC_STR_NOMESSAGES, localizationKey: "chat_no_messages")
+        dcContext.setStockTranslation(id: DC_STR_SELF, localizationKey: "self")
+        dcContext.setStockTranslation(id: DC_STR_DRAFT, localizationKey: "draft")
+        dcContext.setStockTranslation(id: DC_STR_VOICEMESSAGE, localizationKey: "voice_message")
+        dcContext.setStockTranslation(id: DC_STR_DEADDROP, localizationKey: "chat_contact_request")
+        dcContext.setStockTranslation(id: DC_STR_IMAGE, localizationKey: "image")
+        dcContext.setStockTranslation(id: DC_STR_VIDEO, localizationKey: "video")
+        dcContext.setStockTranslation(id: DC_STR_AUDIO, localizationKey: "audio")
+        dcContext.setStockTranslation(id: DC_STR_FILE, localizationKey: "file")
+        dcContext.setStockTranslation(id: DC_STR_STATUSLINE, localizationKey: "pref_default_status_text")
+        dcContext.setStockTranslation(id: DC_STR_NEWGROUPDRAFT, localizationKey: "group_hello_draft")
+        dcContext.setStockTranslation(id: DC_STR_MSGGRPNAME, localizationKey: "systemmsg_group_name_changed")
+        dcContext.setStockTranslation(id: DC_STR_MSGGRPIMGCHANGED, localizationKey: "systemmsg_group_image_changed")
+        dcContext.setStockTranslation(id: DC_STR_MSGADDMEMBER, localizationKey: "systemmsg_member_added")
+        dcContext.setStockTranslation(id: DC_STR_MSGDELMEMBER, localizationKey: "systemmsg_member_removed")
+        dcContext.setStockTranslation(id: DC_STR_MSGGROUPLEFT, localizationKey: "systemmsg_group_left")
+        dcContext.setStockTranslation(id: DC_STR_GIF, localizationKey: "gif")
+        dcContext.setStockTranslation(id: DC_STR_ENCRYPTEDMSG, localizationKey: "encrypted_message")
+        dcContext.setStockTranslation(id: DC_STR_CANTDECRYPT_MSG_BODY, localizationKey: "systemmsg_cannot_decrypt")
+        dcContext.setStockTranslation(id: DC_STR_READRCPT, localizationKey: "systemmsg_read_receipt_subject")
+        dcContext.setStockTranslation(id: DC_STR_READRCPT_MAILBODY, localizationKey: "systemmsg_read_receipt_body")
+        dcContext.setStockTranslation(id: DC_STR_MSGGRPIMGDELETED, localizationKey: "systemmsg_group_image_deleted")
+        dcContext.setStockTranslation(id: DC_STR_CONTACT_VERIFIED, localizationKey: "contact_verified")
+        dcContext.setStockTranslation(id: DC_STR_CONTACT_NOT_VERIFIED, localizationKey: "contact_not_verified")
+        dcContext.setStockTranslation(id: DC_STR_CONTACT_SETUP_CHANGED, localizationKey: "contact_setup_changed")
+        dcContext.setStockTranslation(id: DC_STR_ARCHIVEDCHATS, localizationKey: "chat_archived_chats_title")
+        dcContext.setStockTranslation(id: DC_STR_AC_SETUP_MSG_SUBJECT, localizationKey: "autocrypt_asm_subject")
+        dcContext.setStockTranslation(id: DC_STR_AC_SETUP_MSG_BODY, localizationKey: "autocrypt_asm_general_body")
+        dcContext.setStockTranslation(id: DC_STR_CANNOT_LOGIN, localizationKey: "login_error_cannot_login")
+        dcContext.setStockTranslation(id: DC_STR_SERVER_RESPONSE, localizationKey: "login_error_server_response")
+        dcContext.setStockTranslation(id: DC_STR_MSGACTIONBYUSER, localizationKey: "systemmsg_action_by_user")
+        dcContext.setStockTranslation(id: DC_STR_MSGACTIONBYME, localizationKey: "systemmsg_action_by_me")
+        dcContext.setStockTranslation(id: DC_STR_DEVICE_MESSAGES, localizationKey: "device_talk")
+        dcContext.setStockTranslation(id: DC_STR_SAVED_MESSAGES, localizationKey: "saved_messages")
+        dcContext.setStockTranslation(id: DC_STR_DEVICE_MESSAGES_HINT, localizationKey: "device_talk_explain")
+        dcContext.setStockTranslation(id: DC_STR_WELCOME_MESSAGE, localizationKey: "device_talk_welcome_message")
+        dcContext.setStockTranslation(id: DC_STR_UNKNOWN_SENDER_FOR_CHAT, localizationKey: "systemmsg_unknown_sender_for_chat")
+        dcContext.setStockTranslation(id: DC_STR_SUBJECT_FOR_NEW_CONTACT, localizationKey: "systemmsg_subject_for_new_contact")
+        dcContext.setStockTranslation(id: DC_STR_FAILED_SENDING_TO, localizationKey: "systemmsg_failed_sending_to")
+        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_DISABLED, localizationKey: "systemmsg_ephemeral_timer_disabled")
+        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_SECONDS, localizationKey: "systemmsg_ephemeral_timer_enabled")
+        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_MINUTE, localizationKey: "systemmsg_ephemeral_timer_minute")
+        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_HOUR, localizationKey: "systemmsg_ephemeral_timer_hour")
+        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_DAY, localizationKey: "systemmsg_ephemeral_timer_day")
+        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_WEEK, localizationKey: "systemmsg_ephemeral_timer_week")
+        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_FOUR_WEEKS, localizationKey: "systemmsg_ephemeral_timer_four_weeks")
+        dcContext.setStockTranslation(id: DC_STR_VIDEOCHAT_INVITATION, localizationKey: "videochat_invitation")
+        dcContext.setStockTranslation(id: DC_STR_VIDEOCHAT_INVITE_MSG_BODY, localizationKey: "videochat_invitation_body")
+        dcContext.setStockTranslation(id: DC_STR_CONFIGURATION_FAILED, localizationKey: "configuration_failed_with_error")
+        dcContext.setStockTranslation(id: DC_STR_PROTECTION_ENABLED, localizationKey: "systemmsg_chat_protection_enabled")
+        dcContext.setStockTranslation(id: DC_STR_PROTECTION_DISABLED, localizationKey: "systemmsg_chat_protection_disabled")
+        dcContext.setStockTranslation(id: DC_STR_REPLY_NOUN, localizationKey: "reply_noun")
     }
 }
