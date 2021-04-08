@@ -20,6 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     var notifyToken: String?
 
+    // `bgIoTimestamp` is set to last enter-background or last remote- or local-wakeup.
+    // in the minute after these events, subsequent remote- or local-wakeups are skipped -
+    // in favor to the chance of being awakened when it makes more sense
+    // and to avoid issues with calling concurrent series of startIo/maybeNetwork/stopIo.
+    var bgIoTimestamp: Double = 0.0
+
 
     // MARK: - app main entry point
 
@@ -167,6 +173,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // eg. to complete sending messages out and to react to responses.
     private func registerBackgroundTask() {
         logger.info("⬅️ registering background task")
+        bgIoTimestamp = Double(Date().timeIntervalSince1970)
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
             // usually, the background thread is finished before in maybeStop()
             logger.info("⬅️ background expirationHandler called")
@@ -340,6 +347,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             completionHandler(.newData)
             return
         }
+
+        // from time to time, `didReceiveRemoteNotification` and `performFetchWithCompletionHandler`
+        // are actually called at the same millisecond.
+        //
+        // therefore, if last fetch is less than a minute ago, we skip this call;
+        // this also lets the completionHandler being called earlier so that we maybe get awakened when it makes more sense.
+        //
+        // nb: calling the completion handler with .noData results in less calls overall.
+        // if at some point we do per-message-push-notifications, we need to tweak this gate.
+        let nowTimestamp = Double(Date().timeIntervalSince1970)
+        if nowTimestamp < bgIoTimestamp + 60 {
+            logger.info("➡️ fetch was just executed, skipping")
+            completionHandler(.newData)
+            return
+        }
+        bgIoTimestamp = nowTimestamp
 
         // we're in background, run IO for a little time
         dcContext.maybeStartIo()

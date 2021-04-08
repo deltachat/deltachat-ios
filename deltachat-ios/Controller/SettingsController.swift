@@ -477,17 +477,21 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         for name in ["notify-remote-launch", "notify-remote-receive", "notify-local-wakeup"] {
             let cnt = UserDefaults.standard.integer(forKey: name + "-count")
 
-            let startInt = UserDefaults.standard.double(forKey: name + "-start")
-            let startStr = startInt==0.0 ? "" : " since " + DateUtils.getExtendedRelativeTimeSpanString(timeStamp: startInt)
+            let startDbl = UserDefaults.standard.double(forKey: name + "-start")
+            let startStr = startDbl==0.0 ? "" : " since " + DateUtils.getExtendedRelativeTimeSpanString(timeStamp: startDbl)
 
-            let timestampInt = UserDefaults.standard.double(forKey: name + "-last")
-            let timestampStr = timestampInt==0.0 ? "" : ", last " + DateUtils.getExtendedRelativeTimeSpanString(timeStamp: timestampInt)
+            let timestampDbl = UserDefaults.standard.double(forKey: name + "-last")
+            let timestampStr = timestampDbl==0.0 ? "" : ", last " + DateUtils.getExtendedRelativeTimeSpanString(timeStamp: timestampDbl)
 
             info += "\(name)=\(cnt)x\(startStr)\(timestampStr)\n"
         }
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             info += "notify-token=\(appDelegate.notifyToken ?? "<unset>")\n"
+
+            let timestampDbl = appDelegate.bgIoTimestamp
+            let timestampStr = timestampDbl==0.0 ? "<unset>" : DateUtils.getExtendedRelativeTimeSpanString(timeStamp: timestampDbl)
+            info += "last-bg-io=\(timestampStr)\n"
         }
 
         #if DEBUG
