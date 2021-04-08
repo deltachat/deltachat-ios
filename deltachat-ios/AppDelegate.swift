@@ -18,8 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability = Reachability()!
     var window: UIWindow?
-    var appIsInForeground = false
     var notifyToken: String?
+
+    // `bgIoTimestamp` is set to last enter-background or last remote- or local-wakeup.
+    // in the minute after these events, subsequent remote- or local-wakeups are skipped -
+    // in favor to the chance of being awakened when it makes more sense
+    // and to avoid issues with calling concurrent series of startIo/maybeNetwork/stopIo.
+    var bgIoTimestamp: Double = 0.0
 
 
     // MARK: - app main entry point
@@ -125,25 +130,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("➡️ applicationWillEnterForeground")
-        appIsInForeground = true
         dcContext.maybeStartIo()
 
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
-            if self.appIsInForeground {
-                if self.reachability.connection != .none {
-                    self.dcContext.maybeNetwork()
-                }
+            if self.reachability.connection != .none {
+                self.dcContext.maybeNetwork()
+            }
 
-                if let userDefaults = UserDefaults.shared, userDefaults.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
-                    userDefaults.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
-                    DispatchQueue.main.async {
-                        NotificationCenter.default.post(
-                            name: dcNotificationChanged,
-                            object: nil,
-                            userInfo: [:]
-                        )
-                    }
+            if let userDefaults = UserDefaults.shared, userDefaults.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
+                userDefaults.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(
+                        name: dcNotificationChanged,
+                        object: nil,
+                        userInfo: [:]
+                    )
                 }
             }
         }
@@ -156,7 +158,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationDidEnterBackground(_: UIApplication) {
         logger.info("⬅️ applicationDidEnterBackground")
-        appIsInForeground = false
     }
 
     func applicationWillTerminate(_: UIApplication) {
@@ -172,6 +173,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // eg. to complete sending messages out and to react to responses.
     private func registerBackgroundTask() {
         logger.info("⬅️ registering background task")
+        bgIoTimestamp = Double(Date().timeIntervalSince1970)
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
             // usually, the background thread is finished before in maybeStop()
             logger.info("⬅️ background expirationHandler called")
@@ -313,35 +315,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // (see https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application)
     // (at some point it would be nice if we get a clear signal from the core)
     func application(
-        _ application: UIApplication,
-        didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-        fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+      _ application: UIApplication,
+      didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
+    ) {
         logger.info("➡️ Notifications: didReceiveRemoteNotification \(userInfo)")
         increaseDebugCounter("notify-remote-receive")
-
-        // didReceiveRemoteNotification might be called if we're in foreground,
-        // in this case, there is no need to wait for things or do sth.
-        if self.appIsInForeground {
-            logger.warning("➡️ app already in foreground")
-            completionHandler(.newData)
-            return
-        }
-
-        // we're in background, run IO for a little time
-        dcContext.maybeStartIo()
-        dcContext.maybeNetwork()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
-            guard let self = self else {
-                completionHandler(.failed)
-                return
-            }
-
-            if !self.appIsInForeground {
-                self.dcContext.stopIo()
-            }
-            completionHandler(.newData)
-        }
+        performFetch(completionHandler: completionHandler)
     }
 
     // `performFetchWithCompletionHandler` is called by iOS on local wakeup.
@@ -350,28 +330,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // ("App downloads content from the network" in Xcode)
     //
     // we have 30 seconds time for our job, things are quite similar as in `didReceiveRemoteNotification`
-    func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        logger.info("➡️ performFetchWithCompletionHandler")
+    func application(
+      _ application: UIApplication,
+      performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
+    ) {
+        logger.info("➡️ Notifications: performFetchWithCompletionHandler")
         increaseDebugCounter("notify-local-wakeup")
+        performFetch(completionHandler: completionHandler)
+    }
 
-        // if we're in foreground, there is nothing to do
-        if self.appIsInForeground {
-            logger.warning("➡️ app already in foreground")
+    private func performFetch(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // `didReceiveRemoteNotification` as well as `performFetchWithCompletionHandler` might be called if we're in foreground,
+        // in this case, there is no need to wait for things or do sth.
+        if appIsInForeground() {
+            logger.info("➡️ app already in foreground")
             completionHandler(.newData)
             return
         }
+
+        // from time to time, `didReceiveRemoteNotification` and `performFetchWithCompletionHandler`
+        // are actually called at the same millisecond.
+        //
+        // therefore, if last fetch is less than a minute ago, we skip this call;
+        // this also lets the completionHandler being called earlier so that we maybe get awakened when it makes more sense.
+        //
+        // nb: calling the completion handler with .noData results in less calls overall.
+        // if at some point we do per-message-push-notifications, we need to tweak this gate.
+        let nowTimestamp = Double(Date().timeIntervalSince1970)
+        if nowTimestamp < bgIoTimestamp + 60 {
+            logger.info("➡️ fetch was just executed, skipping")
+            completionHandler(.newData)
+            return
+        }
+        bgIoTimestamp = nowTimestamp
 
         // we're in background, run IO for a little time
         dcContext.maybeStartIo()
         dcContext.maybeNetwork()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
+            logger.info("⬅️ finishing fetch")
+
             guard let self = self else {
                 completionHandler(.failed)
                 return
             }
-
-            if !self.appIsInForeground {
+            if !self.appIsInForeground() {
                 self.dcContext.stopIo()
             }
             completionHandler(.newData)
@@ -497,5 +501,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_PROTECTION_ENABLED, localizationKey: "systemmsg_chat_protection_enabled")
         dcContext.setStockTranslation(id: DC_STR_PROTECTION_DISABLED, localizationKey: "systemmsg_chat_protection_disabled")
         dcContext.setStockTranslation(id: DC_STR_REPLY_NOUN, localizationKey: "reply_noun")
+    }
+
+    private func appIsInForeground() -> Bool {
+        switch UIApplication.shared.applicationState {
+        case .background, .inactive:
+            return false
+        case .active:
+            return true
+        }
     }
 }
