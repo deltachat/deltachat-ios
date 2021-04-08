@@ -1,4 +1,4 @@
-# UIView layout thoughts
+# code layout thoughts
 
 ## view definitions
   
@@ -116,6 +116,31 @@ a tricky part (see eg. [3]) seems to be to hold the correct type of rerences to 
   https://developer.apple.com/tutorials/swiftui/interfacing-with-uikit
 
 
+## notification system
+
+- `NotificationCenter.default.post()`
+  post events to all observers _synchronously_ on the same thread;
+  this may not be the thread the observer registered itself [5].
+  Observers may receive the event in any random thread therefore.
+
+- best practise [6] would be that the observers assume,
+  they receive the notification in any thread
+  and call `DispatchQueue.main.async` where actually needed.
+  for new code, we should use that approach, it won't hurt.
+
+- however, existing code might assume
+  that the notification arrives in main thread;
+  therefore, we also call `DispatchQueue.main.async` for sending events out.
+
+- using always main thread for sending/receiving and adding/remove observers
+  also avoids other multithreading-issues of NotificationCenter itself,
+  see https://lapcatsoftware.com/articles/nsnotificationcenter-is-threadsafe-not.html
+  for details.
+
+tl;dr: post from main thread and also add/remove observers from main thread.
+on receiving, assume, things will block.
+
+
 ## some sources
 
 [1] https://developer.apple.com/documentation/uikit/uiapplication
@@ -126,3 +151,8 @@ a tricky part (see eg. [3]) seems to be to hold the correct type of rerences to 
 https://github.com/deltachat/deltachat-ios/issues/323
   
 [4] https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application
+
+[5] https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Notifications/Articles/Threading.html#//apple_ref/doc/uid/20001289-CEGJFDFG
+
+[6] https://medium.com/@hadhi631/myths-and-facts-about-nsnotifcation-posting-and-receiving-df7f5729b19f
+
