@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability = Reachability()!
     var window: UIWindow?
-    var appIsInForeground = false
     var notifyToken: String?
 
 
@@ -125,25 +124,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("➡️ applicationWillEnterForeground")
-        appIsInForeground = true
         dcContext.maybeStartIo()
 
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
-            if self.appIsInForeground {
-                if self.reachability.connection != .none {
-                    self.dcContext.maybeNetwork()
-                }
+            if self.reachability.connection != .none {
+                self.dcContext.maybeNetwork()
+            }
 
-                if let userDefaults = UserDefaults.shared, userDefaults.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
-                    userDefaults.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
-                    DispatchQueue.main.async {
-                        NotificationCenter.default.post(
-                            name: dcNotificationChanged,
-                            object: nil,
-                            userInfo: [:]
-                        )
-                    }
+            if let userDefaults = UserDefaults.shared, userDefaults.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
+                userDefaults.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(
+                        name: dcNotificationChanged,
+                        object: nil,
+                        userInfo: [:]
+                    )
                 }
             }
         }
@@ -156,7 +152,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationDidEnterBackground(_: UIApplication) {
         logger.info("⬅️ applicationDidEnterBackground")
-        appIsInForeground = false
     }
 
     func applicationWillTerminate(_: UIApplication) {
@@ -340,7 +335,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private func performFetch(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         // `didReceiveRemoteNotification` as well as `performFetchWithCompletionHandler` might be called if we're in foreground,
         // in this case, there is no need to wait for things or do sth.
-        if appIsInForeground {
+        if appIsInForeground() {
             logger.info("➡️ app already in foreground")
             completionHandler(.newData)
             return
@@ -351,12 +346,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.maybeNetwork()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
+            logger.info("⬅️ finishing fetch")
+
             guard let self = self else {
                 completionHandler(.failed)
                 return
             }
-
-            if !self.appIsInForeground {
+            if !self.appIsInForeground() {
                 self.dcContext.stopIo()
             }
             completionHandler(.newData)
@@ -482,5 +478,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_PROTECTION_ENABLED, localizationKey: "systemmsg_chat_protection_enabled")
         dcContext.setStockTranslation(id: DC_STR_PROTECTION_DISABLED, localizationKey: "systemmsg_chat_protection_disabled")
         dcContext.setStockTranslation(id: DC_STR_REPLY_NOUN, localizationKey: "reply_noun")
+    }
+
+    private func appIsInForeground() -> Bool {
+        switch UIApplication.shared.applicationState {
+        case .background, .inactive:
+            return false
+        case .active:
+            return true
+        }
     }
 }
