@@ -313,35 +313,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // (see https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application)
     // (at some point it would be nice if we get a clear signal from the core)
     func application(
-        _ application: UIApplication,
-        didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-        fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+      _ application: UIApplication,
+      didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
+    ) {
         logger.info("➡️ Notifications: didReceiveRemoteNotification \(userInfo)")
         increaseDebugCounter("notify-remote-receive")
-
-        // didReceiveRemoteNotification might be called if we're in foreground,
-        // in this case, there is no need to wait for things or do sth.
-        if self.appIsInForeground {
-            logger.warning("➡️ app already in foreground")
-            completionHandler(.newData)
-            return
-        }
-
-        // we're in background, run IO for a little time
-        dcContext.maybeStartIo()
-        dcContext.maybeNetwork()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
-            guard let self = self else {
-                completionHandler(.failed)
-                return
-            }
-
-            if !self.appIsInForeground {
-                self.dcContext.stopIo()
-            }
-            completionHandler(.newData)
-        }
+        performFetch(completionHandler: completionHandler)
     }
 
     // `performFetchWithCompletionHandler` is called by iOS on local wakeup.
@@ -350,13 +328,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // ("App downloads content from the network" in Xcode)
     //
     // we have 30 seconds time for our job, things are quite similar as in `didReceiveRemoteNotification`
-    func application(_: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        logger.info("➡️ performFetchWithCompletionHandler")
+    func application(
+      _ application: UIApplication,
+      performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
+    ) {
+        logger.info("➡️ Notifications: performFetchWithCompletionHandler")
         increaseDebugCounter("notify-local-wakeup")
+        performFetch(completionHandler: completionHandler)
+    }
 
-        // if we're in foreground, there is nothing to do
-        if self.appIsInForeground {
-            logger.warning("➡️ app already in foreground")
+    private func performFetch(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // `didReceiveRemoteNotification` as well as `performFetchWithCompletionHandler` might be called if we're in foreground,
+        // in this case, there is no need to wait for things or do sth.
+        if appIsInForeground {
+            logger.info("➡️ app already in foreground")
             completionHandler(.newData)
             return
         }
