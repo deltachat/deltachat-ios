@@ -79,8 +79,14 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
             gclFlags |= DC_GCL_FOR_FORWARDING
         }
         self.chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
-        if notifyListener {
-            onChatListUpdate?()
+        if notifyListener, let onChatListUpdate = onChatListUpdate {
+            if Thread.isMainThread {
+                onChatListUpdate()
+            } else {
+                DispatchQueue.main.async {
+                    onChatListUpdate()
+                }
+            }
         }
     }
 

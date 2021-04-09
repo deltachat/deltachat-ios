@@ -173,7 +173,9 @@ class ChatListController: UITableViewController {
     @objc func applicationDidBecomeActive(_ notification: NSNotification) {
         if navigationController?.visibleViewController == self {
             startTimer()
-            viewModel.refreshData()
+            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+                self?.viewModel.refreshData()
+            }
         }
     }
 
