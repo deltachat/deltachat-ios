@@ -488,10 +488,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             info += "notify-token=\(appDelegate.notifyToken ?? "<unset>")\n"
-
-            let timestampDbl = appDelegate.bgIoTimestamp
-            let timestampStr = timestampDbl==0.0 ? "<unset>" : DateUtils.getExtendedRelativeTimeSpanString(timeStamp: timestampDbl)
-            info += "last-bg-io=\(timestampStr)\n"
         }
 
         #if DEBUG

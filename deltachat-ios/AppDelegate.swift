@@ -20,11 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     var notifyToken: String?
 
-    // `bgIoTimestamp` is set to last enter-background or last remote- or local-wakeup.
-    // in the minute after these events, subsequent remote- or local-wakeups are skipped -
+    // purpose of `bgIoTimestamp` is to block rapidly subsequent calls to remote- or local-wakeups:
+    //
+    // `bgIoTimestamp` is set to last init, enter-background or last remote- or local-wakeup;
+    // in the minute after these events, subsequent remote- or local-wakeups are skipped
     // in favor to the chance of being awakened when it makes more sense
     // and to avoid issues with calling concurrent series of startIo/maybeNetwork/stopIo.
-    var bgIoTimestamp: Double = 0.0
+    private var bgIoTimestamp: Double = 0.0
 
 
     // MARK: - app main entry point
@@ -43,6 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // explicitly ignore SIGPIPE to avoid crashes, see https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html
         // setupCrashReporting() may create an additional handler, but we do not want to rely on that
         signal(SIGPIPE, SIG_IGN)
+
+        bgIoTimestamp = Double(Date().timeIntervalSince1970)
 
         DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
         DBDebugToolkit.setupCrashReporting()
